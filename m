@@ -2,105 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A063E44C46D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 16:31:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA1AD44C47A
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 16:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232216AbhKJPep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 10:34:45 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:52704 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S231408AbhKJPem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 10:34:42 -0500
-X-IronPort-AV: E=Sophos;i="5.87,224,1631545200"; 
-   d="scan'208";a="100118282"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 11 Nov 2021 00:31:54 +0900
-Received: from localhost.localdomain (unknown [10.226.92.40])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1CAFB4000931;
-        Thu, 11 Nov 2021 00:31:50 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 2/3] dt-bindings: timer: renesas: ostm: Document Renesas RZ/G2L OSTM
-Date:   Wed, 10 Nov 2021 15:31:41 +0000
-Message-Id: <20211110153142.3451-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211110153142.3451-1-biju.das.jz@bp.renesas.com>
-References: <20211110153142.3451-1-biju.das.jz@bp.renesas.com>
+        id S232231AbhKJPiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 10:38:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59976 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231408AbhKJPip (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 10:38:45 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 98CE3610CF;
+        Wed, 10 Nov 2021 15:35:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1636558558;
+        bh=URiugvpGHTALMYCylZuNWuUm3jBP0rgFHdNaUl92irI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CnsXp4TJKnfFIis0DvvcIVUpj0ASTwbbrkeCeHxNID92un6H+XdAHBth7ntYKvytL
+         6l01z3oT9OkWGcMX6qO+H5ChO6hCmRkUXmcfffUVxmm4TuknE9aXa+WxiovxDzK5CB
+         eukQA5NZvHkOcTLxYbCCo8spaKsWRm3GbVbJmvL8=
+Date:   Wed, 10 Nov 2021 16:35:55 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2] of/unittest: Disable new dtc
+ node_name_vs_property_name and interrupt_map warnings
+Message-ID: <YYvm21SK1xH/KlUg@kroah.com>
+References: <20211028130423.4025578-1-robh@kernel.org>
+ <YYvJn8ds5iI9SqVR@kroah.com>
+ <CAL_JsqLZPb_WhfGdL6kt27c4+3KM7cDaXcSytyfF0p6cqunHJA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLZPb_WhfGdL6kt27c4+3KM7cDaXcSytyfF0p6cqunHJA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the General Timer Module(a.k.a OSTM) found on the RZ/G2L SoC.
+On Wed, Nov 10, 2021 at 07:48:16AM -0600, Rob Herring wrote:
+> On Wed, Nov 10, 2021 at 7:31 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+> >
+> > On Thu, Oct 28, 2021 at 08:04:23AM -0500, Rob Herring wrote:
+> > > The unittest dtbs have various intentional errors which cause warnings.
+> > > With the latest dtc sync to v1.6.1-19-g0a3a9d3449c8, we need to disable
+> > > some new checks: node_name_vs_property_name and interrupt_map warnings.
+> > > These warnings are also generated for static_base_1.dtb, so add
+> > > DTC_FLAGS for it.
+> > >
+> > > Note that the interrupt_map warnings only appear once interrupt_provider
+> > > warning is re-enabled globally.
+> > >
+> > > drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+> > >
+> > > Fixes: e76187b9792e ("scripts/dtc: Update to upstream version v1.6.1-19-g0a3a9d3449c8")
+> > > Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> > > Cc: Frank Rowand <frowand.list@gmail.com>
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  drivers/of/unittest-data/Makefile | 8 +++++++-
+> > >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
+> > > index a5d2d9254b2c..fbded24c608c 100644
+> > > --- a/drivers/of/unittest-data/Makefile
+> > > +++ b/drivers/of/unittest-data/Makefile
+> > > @@ -37,7 +37,9 @@ DTC_FLAGS_overlay_base += -@
+> > >  DTC_FLAGS_testcases += -@
+> > >
+> > >  # suppress warnings about intentional errors
+> > > -DTC_FLAGS_testcases += -Wno-interrupts_property
+> > > +DTC_FLAGS_testcases += -Wno-interrupts_property \
+> > > +     -Wno-node_name_vs_property_name \
+> > > +     -Wno-interrupt_map
+> > >
+> > >  # Apply overlays statically with fdtoverlay.  This is a build time test that
+> > >  # the overlays can be applied successfully by fdtoverlay.  This does not
+> > > @@ -82,6 +84,10 @@ apply_static_overlay_1 := overlay_0.dtbo \
+> > >
+> > >  apply_static_overlay_2 := overlay.dtbo
+> > >
+> > > +DTC_FLAGS_static_base_1 += -Wno-interrupts_property \
+> > > +     -Wno-node_name_vs_property_name \
+> > > +     -Wno-interrupt_map
+> > > +
+> > >  static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
+> > >  static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
+> > >
+> > > --
+> > > 2.32.0
+> > >
+> >
+> > Note this commit in Linus's tree breaks clang-based systems with the
+> > following build errors:
+> >         FATAL ERROR: Unrecognized check name "interrupt_map"
+> >         FATAL ERROR: Unrecognized check name "node_name_vs_property_name"
+> >
+> > Any thoughts about what to do?
+> 
+> I don't think it has anything to do with clang. These messages come
+> from dtc and there's not any 'test the options are supported'
+> mechanism for new options. It looks like the dtc update referenced in
+> Fixes is missing or dtc is stale. There's no error in kernelci[1].
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
- * Use renesas,ostm instead od rzg2l-ostm
----
- .../bindings/timer/renesas,ostm.yaml          | 20 ++++++++++++++++---
- 1 file changed, 17 insertions(+), 3 deletions(-)
+Ah, yes, turns out that Android is building their kernel with an old
+version of dtc.  So that's the issue here, I'll go work to fix that
+up...
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-index 600d47ab7d58..7fa7f977b44c 100644
---- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-+++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-@@ -21,9 +21,10 @@ properties:
-   compatible:
-     items:
-       - enum:
--          - renesas,r7s72100-ostm # RZ/A1H
--          - renesas,r7s9210-ostm  # RZ/A2M
--      - const: renesas,ostm       # Generic
-+          - renesas,r7s72100-ostm  # RZ/A1H
-+          - renesas,r7s9210-ostm   # RZ/A2M
-+          - renesas,r9a07g044-ostm # RZ/G2{L,LC}
-+      - const: renesas,ostm        # Generic
- 
-   reg:
-     maxItems: 1
-@@ -37,6 +38,9 @@ properties:
-   power-domains:
-     maxItems: 1
- 
-+  resets:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -44,6 +48,16 @@ required:
-   - clocks
-   - power-domains
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - renesas,r9a07g044-ostm
-+then:
-+  required:
-+    - resets
-+
- additionalProperties: false
- 
- examples:
--- 
-2.17.1
+Sorry for the noise.
 
+thanks,
+
+greg k-h
