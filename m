@@ -2,265 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B535644BE0B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 10:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B687A44BE29
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 10:58:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230495AbhKJJxA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 Nov 2021 04:53:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34196 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbhKJJw7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 04:52:59 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F613C061766
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 01:50:12 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mkkF7-00078w-ST; Wed, 10 Nov 2021 10:50:09 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mkkF5-0004G9-VB; Wed, 10 Nov 2021 10:50:07 +0100
-Message-ID: <59e1e68131b37b7c22109d79acad75a6e63a890c.camel@pengutronix.de>
-Subject: Re: [PATCH v2 2/2] serial:sunplus-uart:Add Sunplus SoC UART Driver
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Hammer Hsieh <hammerh0314@gmail.com>, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jirislaby@kernel.org
-Cc:     tony.huang@sunplus.com, wells.lu@sunplus.com,
-        Hammer Hsieh <hammer.hsieh@sunplus.com>
-Date:   Wed, 10 Nov 2021 10:50:07 +0100
-In-Reply-To: <1636530670-6995-3-git-send-email-hammer.hsieh@sunplus.com>
-References: <1635752903-14968-1-git-send-email-hammer.hsieh@sunplus.com>
-         <1636530670-6995-1-git-send-email-hammer.hsieh@sunplus.com>
-         <1636530670-6995-3-git-send-email-hammer.hsieh@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        id S230522AbhKJKBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 05:01:41 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:44285 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229781AbhKJKBk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 05:01:40 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1636538333; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
+ To: From: Sender; bh=fcAghAoVZ0JxeVWaGkjHk7dhQU80Wv79lwRh7/w5leA=; b=YONSAFkIVy8MPKG2z45+r95oWH+g9iu1Quwgynf0h9lH1x46cg+RhfIjvsFA5Ud3X60ekyQV
+ 2zOP/cFtSfSFFAos1O/AgdsHgmAdR59spjFRI7jvoN6K6+ZOYLzwal5rwPk2xdMlMHBo1f3a
+ niEkXv0LXTgEfpVuA2JEKdGbNBs=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 618b97db0f34c3436a4a4aaa (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Nov 2021 09:58:51
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 8A01DC43616; Wed, 10 Nov 2021 09:58:50 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 85DE0C4338F;
+        Wed, 10 Nov 2021 09:58:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 85DE0C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
+Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mmc@vger.kernel.org,
+        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: Re: [PATCH v7 05/24] wfx: add main.c/main.h
+References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
+        <87zgrl86cx.fsf@codeaurora.org> <87v92985ys.fsf@codeaurora.org>
+        <6117440.dvjIZRh6BQ@pc-42>
+Date:   Wed, 10 Nov 2021 11:58:41 +0200
+In-Reply-To: <6117440.dvjIZRh6BQ@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
+ Pouiller"'s message of "Thu,
+        07 Oct 2021 13:22:14 +0200")
+Message-ID: <87lf1wnxgu.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
 
-On Wed, 2021-11-10 at 15:51 +0800, Hammer Hsieh wrote:
-[...]
-> +struct sunplus_uart_port {
-> +	char name[16];
-> +	struct uart_port uport;
-> +	struct sunplus_dma_info *uartdma_rx;
-> +	struct sunplus_dma_info *uartdma_tx;
-> +	struct clk *clk;
-> +	struct reset_control *rstc;
-> +	unsigned int pllsys_rate;
-> +	struct gpio_desc *rts_gpio;
-> +	struct hrtimer rts_check_tx_empty;
-> +	struct hrtimer rts_delay_before_send;
-> +	struct hrtimer rts_delay_after_send;
-> +};
-> +struct sunplus_uart_port sunplus_uart_ports[UART_NR];
+> On Thursday 7 October 2021 12:49:47 CEST Kalle Valo wrote:
+>> CAUTION: This email originated from outside of the organization. Do
+>> not click links or open attachments unless you recognize the sender
+>> and know the content is safe.
+>>=20
+>>=20
+>> Kalle Valo <kvalo@codeaurora.org> writes:
+>>=20
+>> > J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+>> >
+>> >>> >> >> I'm not really fond of having this kind of ASCII based parser =
+in the
+>> >>> >> >> kernel. Do you have an example compressed file somewhere?
+>> >>> >> >
+>> >>> >> > An example of uncompressed configuration file can be found here=
+[1]. Once
+>> >>> >> > compressed with [2], you get:
+>> >>> >> >
+>> >>> >> >     {a:{a:4,b:1},b:{a:{a:4,b:0,c:0,d:0,e:A},b:{a:4,b:0,c:0,d:0,=
+e:B},c:{a:4,b:0,c:0,d:0,e:C},d:{a:4,b:0,c:0,d:0,e:D},e:{a:4,b:0,c:0,d:0,e:E=
+},f:{a:4,b:0,c:0,d:0,e:F},g:{a:4,b:0,c:0,d:0,e:G},h:{a:4,b:0,c:0,d:0,e:H},i=
+:{a:4,b:0,c:0,d:0,e:I},j:{a:4,b:0,c:0,d:0,e:J},k:{a:4,b:0,c:0,d:0,e:K},l:{a=
+:4,b:0,c:0,d:1,e:L},m:{a:4,b:0,c:0,d:1,e:M}},c:{a:{a:4},b:{a:6},c:{a:6,c:0}=
+,d:{a:6},e:{a:6},f:{a:6}},e:{b:0,c:1},h:{e:0,a:50,b:0,d:0,c:[{a:1,b:[0,0,0,=
+0,0,0]},{a:2,b:[0,0,0,0,0,0]},{a:[3,9],b:[0,0,0,0,0,0]},{a:A,b:[0,0,0,0,0,0=
+]},{a:B,b:[0,0,0,0,0,0]},{a:[C,D],b:[0,0,0,0,0,0]},{a:E,b:[0,0,0,0,0,0]}]},=
+j:{a:0,b:0}}
+>> >>> >>
+>> >>> >> So what's the grand idea with this braces format? I'm not getting=
+ it.
+>> >>> >
+>> >>> >   - It allows to describe a tree structure
+>> >>> >   - It is ascii (easy to dump, easy to copy-paste)
+>> >>> >   - It is small (as I explain below, size matters)
+>> >>> >   - Since it is similar to JSON, the structure is obvious to many =
+people
+>> >>> >
+>> >>> > Anyway, I am not the author of that and I have to deal with it.
+>> >>>
+>> >>> I'm a supported for JSON like formats, flexibility and all that. But
+>> >>> they belong to user space, not kernel.
+>> >>>
+>> >>> >> Usually the drivers just consider this kind of firmware configura=
+tion
+>> >>> >> data as a binary blob and dump it to the firmware, without knowin=
+g what
+>> >>> >> the data contains. Can't you do the same?
+>> >>> >
+>> >>> > [I didn't had received this mail :( ]
+>> >>> >
+>> >>> > The idea was also to send it as a binary blob. However, the firmwa=
+re use
+>> >>> > a limited buffer (1500 bytes) to parse it. In most of case the PDS=
+ exceeds
+>> >>> > this size. So, we have to split the PDS before to send it.
+>> >>> >
+>> >>> > Unfortunately, we can't split it anywhere. The PDS is a tree struc=
+ture and
+>> >>> > the firmware expects to receive a well formatted tree.
+>> >>> >
+>> >>> > So, the easiest way to send it to the firmware is to split the tree
+>> >>> > between each root nodes and send each subtree separately (see also=
+ the
+>> >>> > comment above wfx_send_pds()).
+>> >>> >
+>> >>> > Anyway, someone has to cook this configuration before to send it t=
+o the
+>> >>> > firmware. This could be done by a script outside of the kernel. Th=
+en we
+>> >>> > could change the input format to simplify a bit the processing in =
+the
+>> >>> > kernel.
+>> >>>
+>> >>> I think a binary file with TLV format would be much better, but I'm =
+sure
+>> >>> there also other good choises.
+>> >>>
+>> >>> > However, the driver has already some users and I worry that changi=
+ng
+>> >>> > the input format would lead to a mess.
+>> >>>
+>> >>> You can implement a script which converts the old format to the new
+>> >>> format. And you can use different naming scheme in the new format so
+>> >>> that we don't accidentally load the old format. And even better if y=
+ou
+>> >>> add a some kind of signature in the new format and give a proper err=
+or
+>> >>> from the driver if it doesn't match.
+>> >>
+>> >> Ok. I am going to change the input format. I think the new function is
+>> >> going to look like:
+>> >>
+>> >> int wfx_send_pds(struct wfx_dev *wdev, u8 *buf, size_t buf_len)
+>> >> {
+>> >>      int ret;
+>> >>      int start =3D 0;
+>> >>
+>> >>      if (buf[start] !=3D '{') {
+>> >>              dev_err(wdev->dev, "valid PDS start with '{'. Did you fo=
+rget to compress it?\n");
+>> >>              return -EINVAL;
+>> >>      }
+>> >>      while (start < buf_len) {
+>> >>              len =3D strnlen(buf + start, buf_len - start);
+>> >>              if (len > WFX_PDS_MAX_SIZE) {
+>> >>                      dev_err(wdev->dev, "PDS chunk is too big (legacy=
+ format?)\n");
+>> >>                      return -EINVAL;
+>> >>              }
+>> >>              dev_dbg(wdev->dev, "send PDS '%s'\n", buf + start);
+>> >>              ret =3D wfx_hif_configuration(wdev, buf + start, len);
+>> >>              /* FIXME: Add error handling here */
+>> >>              start +=3D len;
+>> >>      }
+>> >>      return 0;
+>> >
+>> > Did you read at all what I wrote above? Please ditch the ASCII format
+>> > completely.
+>>=20
+>> Sorry, I read this too hastily. I just saw "buf[start] !=3D '{'" and
+>> assumed this is the same ASCII format, but not sure anymore. Can you
+>> explain what changes you made now?
+>
+> The script I am going to write will compute where the PDS have to be split
+> (this work is currently done by the driver). The script will add a
+> separating character (let's say '\0') between each chunk.
+>
+> The driver will just have to find the separating character, send the
+> chunk and repeat.
 
-Does this have to be a global array? I would expect these to be
-allocated in the probe function, one at a time.
+I would forget ASCII altogether and implement a proper binary format
+like TLV. For example, ath10k uses TLV with board-2.bin files (grep for
+enum ath10k_bd_ie_type).
 
-[...]
-> +static int sunplus_uart_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *res_mem;
-> +	struct uart_port *port;
-> +	struct clk *clk, *pllsys;
-> +	unsigned int pllsys_rate;
-> +	int ret, irq;
-> +	int idx_offset, idx;
-> +	int idx_which_uart;
-> +	char peri_name[16];
-> +
-> +	if (pdev->dev.of_node) {
-> +		pdev->id = of_alias_get_id(pdev->dev.of_node, "serial");
-> +		if (pdev->id < 0)
-> +			pdev->id = of_alias_get_id(pdev->dev.of_node, "uart");
-> +	}
-> +
-> +	idx_offset = -1;
-> +
-> +	if (IS_UARTDMARX_ID(pdev->id))
-> +		idx_offset = 0;
-> +	else if (IS_UARTDMATX_ID(pdev->id))
-> +		idx_offset = UART_DMARX_NR;
-> +
-> +	/* init txdma or rxdma */
-> +	if (idx_offset >= 0) {
-> +		clk = devm_clk_get(&pdev->dev, NULL);
+Also I recommend changing the file "signature" ('{') to something else
+so that the driver detects incorrect formats. And maybe even use suffix
+.pds2 or something like that to make it more obvious and avoid
+confusion?
 
-Should this be requested by name? Looking at the binding, this could be
-UADMA or HWUA?
+--=20
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-> +		if (IS_ERR(clk))
-> +			return PTR_ERR(clk);
-> +
-> +		ret = clk_prepare_enable(clk);
-> +		if (ret)
-> +			return ret;
-
-I suggest to move this down after all required resources are available.
-Otherwise you'll have to either disable the clock in the error paths, or
-you are left with a running clock if anything below fails.
-
-> +		if (idx_offset == 0)
-> +			idx = idx_offset + pdev->id - ID_BASE_DMARX;
-> +		else
-> +			idx = idx_offset + pdev->id - ID_BASE_DMATX;
-> +
-> +		res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +		if (!res_mem)
-> +			return -ENODEV;
-> +
-> +		sprintf(peri_name, "PERI%d", (idx & 0x01));
-> +
-> +		clk = devm_clk_get(&pdev->dev, peri_name);
-> +		if (IS_ERR(clk))
-> +			return PTR_ERR(clk);
-> +
-> +		ret = clk_prepare_enable(clk);
-
-Same as above.
-
-> +		if (ret)
-> +			return ret;
-> +
-> +		sunplus_uartdma[idx].addr_phy =
-> +			(unsigned long)(res_mem->start);
-> +		sunplus_uartdma[idx].membase =
-> +			devm_ioremap_resource(&pdev->dev, res_mem);
-> +
-> +		if (IS_ERR(sunplus_uartdma[idx].membase))
-> +			return PTR_ERR(sunplus_uartdma[idx].membase);
-> +
-> +		if (IS_UARTDMARX_ID(pdev->id)) {
-> +			irq = platform_get_irq(pdev, 0);
-> +			if (irq < 0)
-> +				return -ENODEV;
-> +
-> +			sunplus_uartdma[idx].irq = irq;
-> +		} else {
-> +			res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +			if (!res_mem)
-> +				return -ENODEV;
-> +
-> +			sunplus_uartdma[idx].gdma_membase =
-> +				devm_ioremap_resource(&pdev->dev, res_mem);
-> +
-> +			if (IS_ERR(sunplus_uartdma[idx].gdma_membase))
-> +				return -EINVAL;
-> +		}
-> +
-> +		if (of_property_read_u32(pdev->dev.of_node, "which-uart", &idx_which_uart) != 0) {
-> +			dev_err(&pdev->dev, "\"which-uart\" is not assigned.");
-> +			return -EINVAL;
-> +		}
-> +
-> +		if (idx_which_uart >= UART_NR) {
-> +			dev_err(&pdev->dev, "\"which-uart\" is not valid.");
-> +			return -EINVAL;
-> +		}
-> +
-> +		sunplus_uartdma[idx].which_uart = idx_which_uart;
-> +
-> +		return 0;
-> +	} else if (pdev->id < 0 || pdev->id >= UART_NR)
-> +		return -EINVAL;
-> +
-> +	/* init uart */
-> +	port = &sunplus_uart_ports[pdev->id].uport;
-> +	if (port->membase)
-> +		return -EBUSY;
-> +
-> +	memset(port, 0, sizeof(*port));
-> +
-> +	res_mem = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res_mem)
-> +		return -ENODEV;
-> +
-> +	port->dev = &pdev->dev;
-> +	port->mapbase = res_mem->start;
-> +
-> +	port->membase = devm_ioremap_resource(&pdev->dev, res_mem);
-> +	if (IS_ERR(port->membase))
-> +		return PTR_ERR(port->membase);
-> +
-> +	irq = platform_get_irq(pdev, 0);
-> +	if (irq < 0)
-> +		return -ENODEV;
-> +
-> +	uart_get_rs485_mode(port);
-> +	sunplus_uart_ports[pdev->id].rts_gpio =
-> +		devm_gpiod_get(&pdev->dev, "rts", GPIOD_OUT_LOW);
-> +	port->rs485_config = sunplus_uart_config_rs485;
-> +	sunplus_uart_ports[pdev->id].rts_check_tx_empty.function = NULL;
-> +	sunplus_uart_ports[pdev->id].rts_delay_before_send.function = NULL;
-> +	sunplus_uart_ports[pdev->id].rts_delay_after_send.function = NULL;
-> +	if (port->rs485.flags & SER_RS485_ENABLED)
-> +		sunplus_uart_rs485_on(port);
-> +
-> +	sunplus_uart_ports[pdev->id].clk = devm_clk_get(&pdev->dev, NULL);
-
-Here the same nameless clock as in the loop above is requested again.
-Should this be UADMA or HWUA?
-
-> +	if (IS_ERR(sunplus_uart_ports[pdev->id].clk))
-> +		return PTR_ERR(sunplus_uart_ports[pdev->id].clk);
-> +
-> +	ret = clk_prepare_enable(sunplus_uart_ports[pdev->id].clk);
-> +	if (ret)
-> +		return ret;
-
-Same comment as above. Better to request the reset control before
-enabling the clock, for example.
-
-> +
-> +	sunplus_uart_ports[pdev->id].rstc =
-> +		devm_reset_control_get(&pdev->dev, NULL);
-
-Please use devm_reset_control_get_exclusive() instead.
-
-> +
-> +	if (IS_ERR(sunplus_uart_ports[pdev->id].rstc))
-> +		return PTR_ERR(sunplus_uart_ports[pdev->id].rstc);
-> +
-> +	ret = reset_control_deassert(sunplus_uart_ports[pdev->id].rstc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	clk = sunplus_uart_ports[pdev->id].clk;
-> +	if (IS_ERR(clk))
-
-This can't ever be true, the code above already returned in this case.
-
-[...]
-> +static int sunplus_uart_remove(struct platform_device *pdev)
-> +{
-> +#ifdef CONFIG_PM_RUNTIME_UART
-> +	if (pdev->id != 0) {
-> +		pm_runtime_disable(&pdev->dev);
-> +		pm_runtime_set_suspended(&pdev->dev);
-> +	}
-> +#endif
-> +	uart_remove_one_port(&sunplus_uart_driver,
-> +		&sunplus_uart_ports[pdev->id].uport);
-> +
-> +	if (pdev->id < UART_NR) {
-> +		clk_disable_unprepare(sunplus_uart_ports[pdev->id].clk);
-> +		reset_control_assert(sunplus_uart_ports[pdev->id].rstc);
-> +	}
-
-What about the PERI clocks? This seems to leave them enabled.
-
-regards
-Philipp
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
+hes
