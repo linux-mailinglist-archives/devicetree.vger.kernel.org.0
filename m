@@ -2,185 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0CF044C1DB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 14:06:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC25444C21C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 14:31:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232033AbhKJNJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 08:09:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51594 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231644AbhKJNJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 08:09:25 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84BD9C061766
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 05:06:37 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id t30so3882566wra.10
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 05:06:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cA5Bx+I+AGs2RfGY4hpgrqrPI8r6zTFIuO5ZwQf2Zak=;
-        b=fdGqVZ8C9sj0YrVbLfS4xU1lFVmL0RgzIYcDRVdbsvtXLOI0qdM91nPNn/4pf9sSVK
-         Fzt5m+d8l8EJw7GX5O995sZcKmqcEJOikc/+kZG7NAfA2NBmvJiE5XOl84xdkJJFI850
-         WY5O+AptZj/+SufH1qlSGqJsrrAA2VXi5pZGezYvUw9sNtXWSoZr0nmc2RzIWKD5BlZ2
-         eXw9gJ+D75YZ6P5Rsry9eXEZ0gsb6KCKLNIqJF/F3RhnJU73/a9M5wjsf1jWS6368RLZ
-         +WgeKT9olnJGVQxYYZ5HhkoDQvMa0c1SKYM3d5h/7pB/Dte1ftxMhzgMVEOn3R3R+Ssd
-         CDjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cA5Bx+I+AGs2RfGY4hpgrqrPI8r6zTFIuO5ZwQf2Zak=;
-        b=RM9MFqAiJO+P92jrxwiH8kEEYWIzi4pkOIAda8nXNkzZoVEdPsXkyP3HigiRa/hrNf
-         mM0/7J6LoN+pBbBacnO89jDarnx+4YHyiBLX9Tlj215lfP4AG9BU0n7q+22ik2lEUaj7
-         1TzOvc/uv2LXLCgYqiJvuwFSA07+oUJT9QmD07/vfFFdFc+tDF/W9kxJl5JqzlNoH1cB
-         TtAAZ7+dx+OOr+uD98Rrdlf41f0GuTkXEbX8mSSpaSTZW0lDz9rPIB8RI9irbQIz+7cr
-         N6E4ciMYm/B1pvrncGS4a0F/oKdgSTgt961buXJi+nP8SnRjqc5C1kRCR/Qkf/KiNpDE
-         yjyQ==
-X-Gm-Message-State: AOAM533rehrOxBovHaMmcQ8UJVAqfU1m2miNi9lB36k7rYX8Ylwcm2Xv
-        Lwr5xnJY56GBMZAvOicUGpx1EA==
-X-Google-Smtp-Source: ABdhPJwXoWWM9ZafT/EZtRONxNpg+gfpTPXDrROqPVfAAiWeoayF8ip582addgnnS/1foYtrAwzV5w==
-X-Received: by 2002:adf:d0c2:: with SMTP id z2mr19270769wrh.330.1636549595402;
-        Wed, 10 Nov 2021 05:06:35 -0800 (PST)
-Received: from localhost.localdomain (laubervilliers-656-1-151-143.w92-154.abo.wanadoo.fr. [92.154.18.143])
-        by smtp.gmail.com with ESMTPSA id i17sm5952175wmq.48.2021.11.10.05.06.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Nov 2021 05:06:34 -0800 (PST)
-From:   Guillaume Ranquet <granquet@baylibre.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>, Jitao shi <jitao.shi@mediatek.com>
-Cc:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 2/7] dt-bindings: mediatek,dp: Add Display Port binding
-Date:   Wed, 10 Nov 2021 14:06:18 +0100
-Message-Id: <20211110130623.20553-3-granquet@baylibre.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211110130623.20553-1-granquet@baylibre.com>
-References: <20211110130623.20553-1-granquet@baylibre.com>
+        id S231529AbhKJNeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 08:34:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54892 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231210AbhKJNeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 08:34:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6B805611AD;
+        Wed, 10 Nov 2021 13:31:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1636551073;
+        bh=N1v9m8wBIOpNhEYufO2ttASP1N9O2DRWxBJvQ/4r3YE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hcBSB3bIpV81K0hPzXfL1ntQvDN3uqQeIkjVhUC30tkzFQ8lFaQu3bCOCjF9Q7q5+
+         Y5PSKP5EdY3A4ojJQDeJ3Vq9C5/x5uTDLqSa2XiDLq5YT996xZM7MvpjTwiKDy7XeE
+         vhVfImlrp6FELHDU87OuTmMfU93XLsqyWMGT7SPs=
+Date:   Wed, 10 Nov 2021 14:31:11 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH v2] of/unittest: Disable new dtc
+ node_name_vs_property_name and interrupt_map warnings
+Message-ID: <YYvJn8ds5iI9SqVR@kroah.com>
+References: <20211028130423.4025578-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211028130423.4025578-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Markus Schneider-Pargmann <msp@baylibre.com>
+On Thu, Oct 28, 2021 at 08:04:23AM -0500, Rob Herring wrote:
+> The unittest dtbs have various intentional errors which cause warnings.
+> With the latest dtc sync to v1.6.1-19-g0a3a9d3449c8, we need to disable
+> some new checks: node_name_vs_property_name and interrupt_map warnings.
+> These warnings are also generated for static_base_1.dtb, so add
+> DTC_FLAGS for it.
+> 
+> Note that the interrupt_map warnings only appear once interrupt_provider
+> warning is re-enabled globally.
+> 
+> drivers/of/unittest-data/tests-interrupts.dtsi:32.26-35.6: Warning (interrupt_map): /testcase-data/interrupts/intmap1: Missing '#address-cells' in interrupt-map provider
+> 
+> Fixes: e76187b9792e ("scripts/dtc: Update to upstream version v1.6.1-19-g0a3a9d3449c8")
+> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  drivers/of/unittest-data/Makefile | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/unittest-data/Makefile b/drivers/of/unittest-data/Makefile
+> index a5d2d9254b2c..fbded24c608c 100644
+> --- a/drivers/of/unittest-data/Makefile
+> +++ b/drivers/of/unittest-data/Makefile
+> @@ -37,7 +37,9 @@ DTC_FLAGS_overlay_base += -@
+>  DTC_FLAGS_testcases += -@
+>  
+>  # suppress warnings about intentional errors
+> -DTC_FLAGS_testcases += -Wno-interrupts_property
+> +DTC_FLAGS_testcases += -Wno-interrupts_property \
+> +	-Wno-node_name_vs_property_name \
+> +	-Wno-interrupt_map
+>  
+>  # Apply overlays statically with fdtoverlay.  This is a build time test that
+>  # the overlays can be applied successfully by fdtoverlay.  This does not
+> @@ -82,6 +84,10 @@ apply_static_overlay_1 := overlay_0.dtbo \
+>  
+>  apply_static_overlay_2 := overlay.dtbo
+>  
+> +DTC_FLAGS_static_base_1 += -Wno-interrupts_property \
+> +	-Wno-node_name_vs_property_name \
+> +	-Wno-interrupt_map
+> +
+>  static_test_1-dtbs := static_base_1.dtb $(apply_static_overlay_1)
+>  static_test_2-dtbs := static_base_2.dtb $(apply_static_overlay_2)
+>  
+> -- 
+> 2.32.0
+> 
 
-This controller is present on several mediatek hardware. Currently
-mt8195 and mt8395 have this controller without a functional difference,
-so only one compatible field is added.
+Note this commit in Linus's tree breaks clang-based systems with the
+following build errors:
+	FATAL ERROR: Unrecognized check name "interrupt_map"
+	FATAL ERROR: Unrecognized check name "node_name_vs_property_name"
 
-The controller can have two forms, as a normal display port and as an
-embedded display port.
+Any thoughts about what to do?
 
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../display/mediatek/mediatek,dp.yaml         | 87 +++++++++++++++++++
- 1 file changed, 87 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
+thanks,
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-new file mode 100644
-index 0000000000000..068b11d766e21
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dp.yaml
-@@ -0,0 +1,87 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/mediatek/mediatek,dp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mediatek Display Port Controller
-+
-+maintainers:
-+  - CK Hu <ck.hu@mediatek.com>
-+  - Jitao shi <jitao.shi@mediatek.com>
-+
-+description: |
-+  Device tree bindings for the Mediatek (embedded) Display Port controller
-+  present on some Mediatek SoCs.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt8195-dp-tx
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: faxi clock
-+
-+  clock-names:
-+    items:
-+      - const: faxi
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Input endpoint of the controller, usually dp_intf
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Output endpoint of the controller
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/mt8195-power.h>
-+    edp_tx: edp_tx@1c500000 {
-+        compatible = "mediatek,mt8195-dp-tx";
-+        reg = <0 0x1c500000 0 0x8000>;
-+        interrupts = <GIC_SPI 676 IRQ_TYPE_LEVEL_HIGH 0>;
-+        power-domains = <&spm MT8195_POWER_DOMAIN_EPD_TX>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&edp_pin>;
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                edp_in: endpoint {
-+                    remote-endpoint = <&dp_intf0_out>;
-+                };
-+            };
-+            port@1 {
-+                reg = <1>;
-+                edp_out: endpoint {
-+                	remote-endpoint = <&panel_in>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.32.0
-
+greg k-h
