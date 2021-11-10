@@ -2,92 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A538944BBC0
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 07:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3E0044BC10
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 08:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230396AbhKJGef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 01:34:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230419AbhKJGeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 01:34:24 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5E8C061224
-        for <devicetree@vger.kernel.org>; Tue,  9 Nov 2021 22:31:32 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id u11so2205152plf.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Nov 2021 22:31:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uru6ZygcT/BbjahRjsIfXyLnWlA4uaMxI78WnRQl3Hk=;
-        b=PKU43lp4Q6vbJSHJQicfiZO4YFUOVOvUmroGqlb74zJNoNWP7IE9ok9XryJyncP4M1
-         LRJTIFYarPh2gqHkSAPg18lHHjGaBphYHUyD3PQEalhcLDw7HMFYdwe5eqbnoOFcYY0H
-         CA2RbltRJn2HTvK3hSGEKj+VZNx+jIBDb9yo8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uru6ZygcT/BbjahRjsIfXyLnWlA4uaMxI78WnRQl3Hk=;
-        b=Fy2rgHXVC2HU9gwkrBPE9ZGQ1PEX6cGI4l0us6MHcFv8HaMwPz+dm5kZWWwKfFIA4z
-         dCddnl0LIIfQ7E/nhPTEGvC9Fs+W2BOjR5U/3CBXK0BI8uGWut62HI7Htdg0V7F4eWS+
-         ZEQO8hjOzgAZBDg8nv9VbgvS4yGFLVwzjklzCS5ZgdtgTI25LaPj3tKYtXYbpNSnHul2
-         vYvJ3kvIbxM6I0YC8HPMHSEgINLf4/ABWllHt+F6I1tG76Y8uUtUScChzIjF481cO8Fl
-         1sy1GZCGasN8kzi34BruZ3UnX/9UXDfnMEXC51+cc2yaX1JoYHwxRP6PdB6x9YEyMy5D
-         RdcQ==
-X-Gm-Message-State: AOAM533HVEGIvLG6TQkDf2REenDdBm0FWrdMMbvdKn3zRdjqYdGF9OJD
-        OWJMSm6/34UpGpPDgY/mx6brYA==
-X-Google-Smtp-Source: ABdhPJx/mEB0Pl0YuO1j10sru+roHbXo7nzWSImhJUgLBlVUiZdIA1PHSaQkUMOqCv0Z3U9TSxTOlQ==
-X-Received: by 2002:a17:90a:df83:: with SMTP id p3mr14327202pjv.145.1636525891951;
-        Tue, 09 Nov 2021 22:31:31 -0800 (PST)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:6886:f712:1a79:e3d9])
-        by smtp.gmail.com with ESMTPSA id w1sm15623959pgb.50.2021.11.09.22.31.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 22:31:31 -0800 (PST)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 7/7] dt-bindings: arm64: dts: mediatek: Add sku22 for mt8183 kakadu board
-Date:   Wed, 10 Nov 2021 14:31:18 +0800
-Message-Id: <20211110063118.3412564-7-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.34.0.rc0.344.g81b53c2807-goog
-In-Reply-To: <20211110063118.3412564-1-hsinyi@chromium.org>
-References: <20211110063118.3412564-1-hsinyi@chromium.org>
+        id S229862AbhKJHWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 02:22:04 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44892 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229595AbhKJHWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 02:22:02 -0500
+X-UUID: fb885c975e1d4567a438e779bbdd3394-20211110
+X-UUID: fb885c975e1d4567a438e779bbdd3394-20211110
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1100266974; Wed, 10 Nov 2021 15:19:03 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 10 Nov 2021 15:19:02 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Wed, 10 Nov 2021 15:19:01 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <light.hsieh@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <rex-bc.chen@mediatek.com>, <guodong.liu@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v4 0/1] Mediatek pinctrl patch 
+Date:   Wed, 10 Nov 2021 15:18:59 +0800
+Message-ID: <20211110071900.4490-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add sku22 which uses different audio codec than previous kakadu board.
+This series includes 1 patches:
+1. fix global-out-of-bounds issue.
 
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
----
-v3: Split sku22 to another oneOf items since it also has 2 revs.
----
- Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+Changes in patch v4:
+1. fix sort signed-off-by name.
+2. add Reviewed-by.
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 99e7f8e294cd03..723810cffce2e7 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -165,6 +165,12 @@ properties:
-           - const: google,kakadu-rev2
-           - const: google,kakadu
-           - const: mediatek,mt8183
-+      - description: Google Kakadu (ASUS Chromebook Detachable CM3)
-+        items:
-+          - const: google,kakadu-rev3-sku22
-+          - const: google,kakadu-rev2-sku22
-+          - const: google,kakadu
-+          - const: mediatek,mt8183
-       - description: Google Kappa (HP Chromebook 11a)
-         items:
-           - const: google,kappa
--- 
-2.34.0.rc0.344.g81b53c2807-goog
+Changes in patch v3:
+1. keep original patch author
+2. fix version issue.
+
+Changes in patch v2:
+1. change check eint number boundary condition.
+
+Guodong Liu (1):
+  pinctrl: mediatek: fix global-out-of-bounds issue
+
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+--
+2.18.0
+
 
