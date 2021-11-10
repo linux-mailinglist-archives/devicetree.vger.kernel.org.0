@@ -2,284 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7870D44C4B7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 16:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17AAF44C4FB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 17:23:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232030AbhKJP6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 10:58:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33900 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231838AbhKJP6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 10:58:23 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC80C061764;
-        Wed, 10 Nov 2021 07:55:36 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id h12-20020a056830034c00b0055c8458126fso4642976ote.0;
-        Wed, 10 Nov 2021 07:55:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=33y2K1n4+a77pWOR3n6HeGOY3n+xOhILC5MDJChRPQs=;
-        b=lNx1dXg/KoSTJEUrthhuuymEFJiI4KHW5wtQZ5wifVxeU5YV7hD/VMvKQ8u1f3nxp1
-         UD1E0bCOK2aWK3ld6GztgOgLAli498Zgb0mHDrqCwwoW0DNvX/U9s430uxlshlG0mgHD
-         WgX50vixrzGZXvZNaXnPrYpk1NXfTlAjEne5R6jA7Jtxxs6TRXPinKmtanj4jhQKdpjK
-         s+Li88Fuu5avu+vraUlUifA/EjWlQ+xnuYLuXWiRY016aurqXGBjwMRws3GMYy8hF/Be
-         LesgolfkxJvxgYDnk+NUAGGBKkGAso7/IXOcRMFiMTRaCJ+hQtbPcTXyWkckZyCZs56Z
-         tTCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=33y2K1n4+a77pWOR3n6HeGOY3n+xOhILC5MDJChRPQs=;
-        b=DRljFTFmimh0wAXRgGSXuhATIkY/WVJIvyzFZoodc6YR/1JzK+LDlg4p4VU8ACY2wg
-         AGoxUK9lkP3lCibNWcdJLarJv0iLE/tQDDJUjArUPISLj6Wss1MDkyab2h8GMUVBxSTz
-         X3hxJ8HkGhjeO87XR+fnp6wATeuGVVCwbriosCn5GfzFRFGEoUdcC7050ovhTf1bpZzP
-         +43bhr2QCAtTIIhGuTGH+6pEI0ekz+4FNAX+j7qDjy96RTX4nm1PXfMXtliQik3NUe9o
-         KgzAnqNizxcWVFl3hDBaQ0fusLeK3ujebWZGsWuSzI3TTJy6XX9AOtJAcVleT0kH0D/a
-         tfsA==
-X-Gm-Message-State: AOAM530lwKkT9Br8ktPaQ6Ig//4qRQXO3sngmjGij1JrQ+anhnQ0YS6+
-        RKYXxB9cWZI0TtQQITIYC00=
-X-Google-Smtp-Source: ABdhPJyTsvfV3nJgDRLyuR7Gv6RwKoDLsSEonATegNm7ehO7yJyI+hv3yWf6/cLlDC08wXUuK+rWIA==
-X-Received: by 2002:a05:6830:236b:: with SMTP id r11mr207666oth.145.1636559734819;
-        Wed, 10 Nov 2021 07:55:34 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i15sm45851otu.67.2021.11.10.07.55.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Nov 2021 07:55:33 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Wed, 10 Nov 2021 07:55:30 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     lee.jones@linaro.org, broonie@kernel.org, kernel@pengutronix.de,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, rui.zhang@intel.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, linux-hwmon@vger.kernel.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org, linux-imx@nxp.com,
-        alistair23@gmail.com, andreas@kemnade.info, shawnguo@kernel.org
-Subject: Re: [PATCH v15 5/8] hwmon: sy7636a: Add temperature driver for
- sy7636a
-Message-ID: <20211110155530.GA2341709@roeck-us.net>
-References: <20211110122948.188683-1-alistair@alistair23.me>
- <20211110122948.188683-6-alistair@alistair23.me>
+        id S229605AbhKJQZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 11:25:49 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38754 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229602AbhKJQZt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 11:25:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8B2E061211;
+        Wed, 10 Nov 2021 16:22:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636561381;
+        bh=TkUZrNxT9Xg0EqgNv4SUEM8IWit4UdrF9FRly520EDQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WWLEUIig1SFGC9I8XrT00ImDviJ49+q9dUiUFXr2NFnR8nJGm7aK3thjaVOmHyIiY
+         i1pIONCBtBeL2T0OGfMw3SnmG6ruhClkdDdMKHgzSoPxB1Jos/quK5748woWSM2gwb
+         6w7bkqnEIGCq7T/MABMviBwBqlQ0KIGcGnMxCsnVdm5BVqIOnavOpB7zG1sMVVNaMY
+         eNJhYZS5Pjq50fCb+rUUq8bqyXjNMnZMQT5D/oZubDLNrJV9uJNF86OEPl1F3v0o03
+         ZjxE08wrDvWyrOCBRpq1hg2DBhuZgoqAYB2QRBVPyGY0SLkyb+ws0l08asTy0ZpS1Z
+         TwnO435p5bV6Q==
+Date:   Wed, 10 Nov 2021 16:22:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Lh Kuo =?utf-8?B?6YOt5Yqb6LGq?= <lh.Kuo@sunplus.com>
+Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>,
+        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
+        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: Re: [PATCH v2 1/2] SPI: Add SPI driver for Sunplus SP7021
+Message-ID: <YYvx4LtKiSPBIgCN@sirena.org.uk>
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+ <1636448488-14158-1-git-send-email-lh.kuo@sunplus.com>
+ <1636448488-14158-2-git-send-email-lh.kuo@sunplus.com>
+ <YYqMLPB6VX9k5LUK@sirena.org.uk>
+ <f98b5548cf564093af1d10ba1239507d@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="9yiih3DAiIZ/qpj8"
 Content-Disposition: inline
-In-Reply-To: <20211110122948.188683-6-alistair@alistair23.me>
+In-Reply-To: <f98b5548cf564093af1d10ba1239507d@sphcmbx02.sunplus.com.tw>
+X-Cookie: You have junk mail.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 10:29:45PM +1000, Alistair Francis wrote:
-> This is a multi-function device to interface with the sy7636a
-> EPD PMIC chip from Silergy.
-> 
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  Documentation/hwmon/index.rst         |   1 +
->  Documentation/hwmon/sy7636a-hwmon.rst |  24 ++++++
->  drivers/hwmon/Kconfig                 |   9 +++
->  drivers/hwmon/Makefile                |   1 +
->  drivers/hwmon/sy7636a-hwmon.c         | 108 ++++++++++++++++++++++++++
->  5 files changed, 143 insertions(+)
->  create mode 100644 Documentation/hwmon/sy7636a-hwmon.rst
->  create mode 100644 drivers/hwmon/sy7636a-hwmon.c
-> 
-> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-> index 7046bf1870d9..a887308850cd 100644
-> --- a/Documentation/hwmon/index.rst
-> +++ b/Documentation/hwmon/index.rst
-> @@ -180,6 +180,7 @@ Hardware Monitoring Kernel Drivers
->     smsc47m1
->     sparx5-temp
->     stpddc60
-> +   sy7636a-hwmon
->     tc654
->     tc74
->     thmc50
-> diff --git a/Documentation/hwmon/sy7636a-hwmon.rst b/Documentation/hwmon/sy7636a-hwmon.rst
-> new file mode 100644
-> index 000000000000..6b3e36d028dd
-> --- /dev/null
-> +++ b/Documentation/hwmon/sy7636a-hwmon.rst
-> @@ -0,0 +1,24 @@
-> +Kernel driver sy7636a-hwmon
-> +=========================
-> +
-> +Supported chips:
-> +
-> + * Silergy SY7636A PMIC
-> +
-> +
-> +Description
-> +-----------
-> +
-> +This driver adds hardware temperature reading support for
-> +the Silergy SY7636A PMIC.
-> +
-> +The following sensors are supported
-> +
-> +  * Temperature
-> +      - SoC on-die temperature in milli-degree C
-> +
-> +sysfs-Interface
-> +---------------
-> +
-> +temp0_input
-> +	- SoC on-die temperature (milli-degree C)
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 64bd3dfba2c4..3139a286c35a 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -1662,6 +1662,15 @@ config SENSORS_SIS5595
->  	  This driver can also be built as a module. If so, the module
->  	  will be called sis5595.
->  
-> +config SENSORS_SY7636A
-> +	tristate "Silergy SY7636A"
-> +	help
-> +	  If you say yes here you get support for the thermistor readout of
-> +	  the Silergy SY7636A PMIC.
-> +
-> +	  This driver can also be built as a module.  If so, the module
-> +	  will be called sy7636a-hwmon.
-> +
->  config SENSORS_DME1737
->  	tristate "SMSC DME1737, SCH311x and compatibles"
->  	depends on I2C && !PPC
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index baee6a8d4dd1..8f8da52098d1 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -182,6 +182,7 @@ obj-$(CONFIG_SENSORS_SMSC47M1)	+= smsc47m1.o
->  obj-$(CONFIG_SENSORS_SMSC47M192)+= smsc47m192.o
->  obj-$(CONFIG_SENSORS_SPARX5)	+= sparx5-temp.o
->  obj-$(CONFIG_SENSORS_STTS751)	+= stts751.o
-> +obj-$(CONFIG_SENSORS_SY7636A)	+= sy7636a-hwmon.o
->  obj-$(CONFIG_SENSORS_AMC6821)	+= amc6821.o
->  obj-$(CONFIG_SENSORS_TC74)	+= tc74.o
->  obj-$(CONFIG_SENSORS_THMC50)	+= thmc50.o
-> diff --git a/drivers/hwmon/sy7636a-hwmon.c b/drivers/hwmon/sy7636a-hwmon.c
-> new file mode 100644
-> index 000000000000..84ceaae3a404
-> --- /dev/null
-> +++ b/drivers/hwmon/sy7636a-hwmon.c
-> @@ -0,0 +1,108 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Functions to access SY3686A power management chip temperature
-> + *
-> + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
-> + *
-> + * Authors: Lars Ivar Miljeteig <lars.ivar.miljeteig@remarkable.com>
-> + *          Alistair Francis <alistair@alistair23.me>
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/hwmon.h>
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/machine.h>
-> +
-> +#include <linux/mfd/sy7636a.h>
-> +
-> +static int sy7636a_read(struct device *dev, enum hwmon_sensor_types type,
-> +			 u32 attr, int channel, long *temp)
-> +{
-> +	struct regmap *regmap = dev_get_drvdata(dev);
-> +	int ret, reg_val;
-> +
-> +	ret = regmap_read(regmap,
-> +			SY7636A_REG_TERMISTOR_READOUT, &reg_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*temp = reg_val * 1000;
-> +
-> +	return 0;
-> +}
-> +
-> +static umode_t sy7636a_is_visible(const void *data,
-> +				   enum hwmon_sensor_types type,
-> +				   u32 attr, int channel)
-> +{
-> +	if (type != hwmon_temp)
-> +		return 0;
-> +
-> +	if (attr != hwmon_temp_input)
-> +		return 0;
-> +
-> +	return 0444;
-> +}
-> +
-> +static const struct hwmon_ops sy7636a_hwmon_ops = {
-> +	.is_visible = sy7636a_is_visible,
-> +	.read = sy7636a_read,
-> +};
-> +
-> +static const struct hwmon_channel_info *sy7636a_info[] = {
-> +	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
-> +	HWMON_CHANNEL_INFO(temp, HWMON_T_INPUT),
-> +	NULL
-> +};
-> +
-> +static const struct hwmon_chip_info sy7636a_chip_info = {
-> +	.ops = &sy7636a_hwmon_ops,
-> +	.info = sy7636a_info,
-> +};
-> +
-> +static int sy7636a_sensor_probe(struct platform_device *pdev)
-> +{
-> +	struct regmap *regmap = dev_get_regmap(pdev->dev.parent, NULL);
-> +	struct regulator *regulator;
-> +	struct device *hwmon_dev;
-> +	int err;
-> +
-> +	if (!regmap)
-> +		return -EPROBE_DEFER;
-> +
-> +	regulator = devm_regulator_get(&pdev->dev, "vcom");
-> +	if (IS_ERR(regulator)) {
-> +		return PTR_ERR(regulator);
-> +	}
-> +
-> +	err = regulator_enable(regulator);
-> +	if (err) {
-> +		regulator_put(regulator);
 
-Is this needed ? I would have assumed that the devm_ function
-above would ensure that the put is handled automatically.
+--9yiih3DAiIZ/qpj8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Guenter
+On Wed, Nov 10, 2021 at 02:42:01AM +0000, Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=
+=AA wrote:
 
-> +		return err;
-> +	}
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(&pdev->dev,
-> +			"sy7636a_temperature", regmap, &sy7636a_chip_info, NULL);
-> +
-> +	if (IS_ERR(hwmon_dev)) {
-> +		err = PTR_ERR(hwmon_dev);
-> +		dev_err(&pdev->dev, "Unable to register hwmon device, returned %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver sy7636a_sensor_driver = {
-> +	.probe = sy7636a_sensor_probe,
-> +	.driver = {
-> +		.name = "sy7636a-temperature",
-> +	},
-> +};
-> +module_platform_driver(sy7636a_sensor_driver);
-> +
-> +MODULE_DESCRIPTION("SY7636A sensor driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.31.1
-> 
+Please don't send new patches in reply to old patches or serieses, this
+makes it harder for both people and tools to understand what is going
+on - it can bury things in mailboxes and make it difficult to keep track
+of what current patches are, both for the new patches and the old ones.
+
+> > This is *still* open coding a GPIO chip select, to repeat what I said l=
+ast time
+> > this is not OK - use the core facilities to avoid introducing bugs like=
+ double
+> > application of SPI_CS_HIGH you have here.
+
+> I try to find some function can replay this part.
+> EX:
+>   Spi.c -> spi_set_cs but it is not EXPORT_SYMBOL_GPL and it looks not fi=
+t in the driver
+>=20
+>   Spi-gpio.c -> spi_gpio_chipselect it looks not fit in the driver.
+>=20
+> Sorry maybe i misunderstood this issue
+>=20
+>   Or the problem is 	gpiod_set_value_cansleep  can't be used in here ?
+>=20
+> Which function can I use for GPIO_CS?
+
+The same way other controllers do: by setting use_gpio_descriptors in
+the controller.  The core will then request the GPIOs for the driver
+using the standard binding, this requires no further work on the part of
+the driver.
+
+> > > +// spi slave irq handler
+> > > +static irqreturn_t sp7021_spi_sla_irq(int _irq, void *_dev) {
+> > > +	struct sp7021_spi_ctlr *pspim =3D (struct sp7021_spi_ctlr *)_dev;
+
+> > If you need this cast something is very wrong, do you need it?
+
+> So the vold* should be struct * spi_controller ??
+
+No, interrupt handlers need to take an int and a void *.  There should
+be no cast.
+
+> > > +	if (RW_phase =3D=3D SP7021_SLA_WRITE) {
+
+> > This looks like a switch statement, though given how little code is sha=
+red it's
+> > not clear why this is all in one function.
+
+> It is easy to check the flow and setting for me
+
+It's contributing to making the code hard for other people to follow.
+
+> > > +		if (_t->tx_dma =3D=3D pspim->tx_dma_phy_base)
+> > > +			memcpy(pspim->tx_dma_vir_base, _t->tx_buf, _t->len);
+
+> > Why are we copying data into a DMA transfer buffer, doesn't this defeat=
+ the
+> > point of DMA?  I'd expect to DMA data directly.  I'd also expect some
+> > synchronisation operations to ensure that everything has a consistent v=
+iew of
+> > the memory.
+
+> It only happens when tx_dma =3D pspim->tx_dma_phy_base
+> And if it can't get dma-addr or wrong case. I will set tx_dma =3D pspim->=
+tx_dma_phy_base.
+
+What does that mean at a higher level - what is tx_dma here?  Why does
+not being able to get an address to DMA mean that we need to memcpy()
+things?  I can't see any reason for the memcpy() at all.
+
+> > > +// spi master irq handler
+> > > +static irqreturn_t sp7021_spi_mas_irq_dma(int _irq, void *_dev) {
+> > > +	struct sp7021_spi_ctlr *pspim =3D (struct sp7021_spi_ctlr *)_dev;
+
+> > > +	spin_lock_irq(&pspim->lock);
+
+> > Why are we using spin_lock_irq() when we're already in an interrupt han=
+dler?
+
+> Yes it is in interrupt handler
+
+Yes, I know it's an interrupt handler - to repeat my question why are we
+we using spin_lock_irq() in that case?
+
+> > > +	return IRQ_HANDLED;
+> > > +}
+
+> > This unconditionally reports IRQ_HANDLED even if we didn't actually see=
+ any
+> > interrupt status flagged, this will break shared interrupts and reduce =
+the ability
+> > of the interrupt core to handle errors.
+
+> Sorry I'm confuse. What should i do in this issue
+
+Report IRQ_NONE if there was no interrupts reported by the hardware.
+
+> > This is still copying all data for no apparent reason as highlighted la=
+st time.
+
+> It is difference case. It is in master mode and and can only be transmitt=
+ed through FIFO
+
+> And It is transmitting for one message and I need collect the all tx data=
+ first.
+
+For what reason do you need to collect all the tx data?  It really is
+not at all apparent from the code and seems especially unusual in the
+PIO case.
+
+> > Is the device full duplex or half duplex?  The code immediately above t=
+his
+> > treats both transmit and recieve buffers as optional.  If the device do=
+es
+> > actually need to be full duplex then the driver should flag it as such.
+
+> You mean set the flsg of should be struct * spi_controller in probe funct=
+ion
+
+> Ctlr-flags =3D SPI_CONTROLLER_FULL_DUPLEX  right ?
+
+Yes.
+
+> > > +// called when child device is registering on the bus static int
+> > > +sp7021_spi_dev_setup(struct spi_device *_s) {
+> > > +	struct sp7021_spi_ctlr *pspim =3D
+> > spi_controller_get_devdata(_s->controller);
+> > > +	int ret;
+> > > +
+> > > +	ret =3D pm_runtime_get_sync(pspim->dev);
+> > > +		if (ret < 0)
+> > > +			return 0;
+> > > +
+> > > +	pm_runtime_get_sync(pspim->dev);;
+> > > +
+> > > +	return 0;
+> > > +
+> > > +}
+
+> > This function does nothing except bounce the power on the device, this =
+is
+> > obviously not useful and should be removed.
+
+> You mean set the auto_runtime_pm of should be struct * spi_controller in =
+probe function
+> And remove pm_runtime_get_sync(pspim->dev);
+
+> pm_runtime_get_sync(pspim->dev);
+
+> even the pm_runtime in the probe should be remove . right ?
+
+You should only take a runtime reference for the period that it's
+actually needed.  Taking one in probe and then not dropping it before
+the end of probe would defeat the point of having runtime PM.
+
+> > > +static size_t sp7021_spi_max_length(struct spi_device *spi) {
+> > > +	return SP7021_SPI_MSG_SIZE;
+> > > +}
+
+> > Is there any actual limit in the hardware?  This looks very much like i=
+t's a
+> > completely artificial limit in the driver for no obvious reason.
+
+>   The limit of the hardware is only 255 bytes . But more user need more t=
+han the limit.
+> So I try to extend by software that is one reason use one message transfe=
+r and use CS-GPIO
+
+As ever *please* use the core features rather than open coding - if you
+specify a maximum transfer size the core already supports using a
+software controllable chip select to handle messages with transfers of
+arbatrary lengths.  There is no need for the driver to do anything here
+other than providing a length, but that needs to be per transfer and not
+per message.
+
+In general if you're doing something that doesn't interact directly with
+the hardware it shouldn't be in the driver, it's a pure software thing
+which will also apply to any other similar hardware and should therefore
+be done in the core. =20
+
+> > > +	pm_runtime_get_sync(pspim->dev);
+
+> > To repeat the feedback from last time do not open code runtime PM, use =
+the
+> > core support.
+
+> Only set set the auto_runtime_pm of should be struct * spi_controller in =
+probe function  right ?
+
+Yes.
+
+> > > +	list_for_each_entry(xfer, &m->transfers, transfer_list) {
+> > > +		if (!first_xfer)
+> > > +			first_xfer =3D xfer;
+> > > +		total_len +=3D  xfer->len;
+
+> > To further repeat my prior feedback I can't see any reason why this dri=
+ver
+> > doesn't just use transfer_one().
+
+> The FIFO only 16bytes for one action. I need push tx_data and pull rx_dat=
+a as soon as possible.
+> Use one message I can collect the data first and start transmitting=20
+> It is more efficient than transfer_one at real case.
+
+That doesn't mean it's a good idea to just duplicate the core code, that
+means that you should look into improving the performance of the core
+code so any optimisation benefits everyone and the driver doesn't end
+up with some combination of bugs, missing features and reduced
+performance in the open coded version.  Having small FIFOs isn't at all
+unusual so it seems unlikely that there's any need for anything here to
+be device specific, and any benefits from copying all the data into a
+linear buffer have got to be application specific, indeed it'll clearly
+make things worse in some common cases.  For example with something like
+flash where we have frequent use of large transfers for data payloads
+the data is already mostly in large buffers the overhead of copying
+those buffers is going to be very noticable compared to any saving,
+especially given that there's only two transfers.  On the other end of
+things when something like regmap is already linearising small writes
+into single transfers then the copy is just pure overhead.
+
+There's definitely scope for improving things here, the main one being
+to pull advancing to the next transfer into spi_finalize_current_transfer()
+which would benefit DMA as well, that don't introduce these overheads
+and don't involve all this code duplication.
+
+--9yiih3DAiIZ/qpj8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGL8d8ACgkQJNaLcl1U
+h9ApYQf9FzEypJPaLmkcT70D1lkGZNXFHmFjgggLNGdIq8jrjf2nPQRYazZObGJu
+YFcu3z5PFHYcZIzFu/nh9bnrc4weP7G0ppZuQZ+14CcnpoxKRgaDe0q4LzZOXxXr
+8YjL42Ye7IVwj12/2Z7qU9tkldlaAeZYNYmd+GvTKMonztvIpJIUtvMEIMf2qRkW
+BdkrsDf4YbbYdqdaO6vRzEcMryhvY+jLcdQVctUaySnCt5Uu7y4RHQp0ptfWumTW
+sn8ZkeEA9mmGVEmBUPru6X9ukO8rdaPfMsZ1BvWtvJKiy9DlxvMVvxdcG0/YFRN1
+V0ieA19eIji/nJtvtz7JzAX7IvPykw==
+=Vrme
+-----END PGP SIGNATURE-----
+
+--9yiih3DAiIZ/qpj8--
