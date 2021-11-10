@@ -2,216 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B687A44BE29
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 10:58:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD90244BE4E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 11:12:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230522AbhKJKBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 05:01:41 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:44285 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229781AbhKJKBk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 05:01:40 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1636538333; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Message-ID: In-Reply-To: Date: References: Subject: Cc:
- To: From: Sender; bh=fcAghAoVZ0JxeVWaGkjHk7dhQU80Wv79lwRh7/w5leA=; b=YONSAFkIVy8MPKG2z45+r95oWH+g9iu1Quwgynf0h9lH1x46cg+RhfIjvsFA5Ud3X60ekyQV
- 2zOP/cFtSfSFFAos1O/AgdsHgmAdR59spjFRI7jvoN6K6+ZOYLzwal5rwPk2xdMlMHBo1f3a
- niEkXv0LXTgEfpVuA2JEKdGbNBs=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 618b97db0f34c3436a4a4aaa (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 10 Nov 2021 09:58:51
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8A01DC43616; Wed, 10 Nov 2021 09:58:50 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 85DE0C4338F;
-        Wed, 10 Nov 2021 09:58:46 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 85DE0C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     =?utf-8?B?SsOpcsO0bWU=?= Pouiller <jerome.pouiller@silabs.com>
-Cc:     linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-mmc@vger.kernel.org,
-        Pali =?utf-8?Q?Roh?= =?utf-8?Q?=C3=A1r?= <pali@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v7 05/24] wfx: add main.c/main.h
-References: <20210920161136.2398632-1-Jerome.Pouiller@silabs.com>
-        <87zgrl86cx.fsf@codeaurora.org> <87v92985ys.fsf@codeaurora.org>
-        <6117440.dvjIZRh6BQ@pc-42>
-Date:   Wed, 10 Nov 2021 11:58:41 +0200
-In-Reply-To: <6117440.dvjIZRh6BQ@pc-42> (=?utf-8?B?IkrDqXLDtG1l?=
- Pouiller"'s message of "Thu,
-        07 Oct 2021 13:22:14 +0200")
-Message-ID: <87lf1wnxgu.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S231147AbhKJKPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 05:15:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230455AbhKJKPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 05:15:21 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDF80C061766
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:12:33 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id j21so8299185edt.11
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 02:12:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=iwrQkGdUPhk+QMSVvZiSAulM37+6icUvxRn7kPKP+hw=;
+        b=uP3euyDDsU9oS9V9jaeqz+9kbCdTk2b/bFUScZCBdkhwnGVOlDfYzb9X/NVGZbY5Wl
+         dzsUhlwUCbR0xRdiDe5bVaBSGfoOxxxYmuZgoMofeTGxL8EkJWBqm/Y6ZgyZ4y0xzrWQ
+         aYoBHmP0/93iceTpdPCoh04IMRytqrdWYPkLs5T/5pPvyCuTAxF3Um+SuZd9l6c8NdBb
+         kA4xuXl3TnWRmCEnL9IcJZssNfTE0uACotqi4UmIe0/vkjDwxs9QnLMGRFNssKy+2t8A
+         Z8X33Y5Wlam0kkD7Q9H8rHYgCxy5imrrxEbBI5rwbH/8QNA3JIHG8ne0wDSj8igRMWLp
+         al1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iwrQkGdUPhk+QMSVvZiSAulM37+6icUvxRn7kPKP+hw=;
+        b=HtmnX+jx6+ZD/RYqWsf1oEpyn3FlWwXzsqXkzOvEf+r+UfQSdWBaIRNZv30sTiZ/KM
+         HOAiBOjfTVYaWRLmd4DkiSM9TKFOKyGoDBCzy5hSsjuEAmHnucxk1+z/95+HM2tibwPP
+         R2OoQAMroCzr4znQ647gI2R0WW1PSA4Sp1TU0A06sd29htNF10Eu3nTrKWKUJ6dt/8/o
+         7BH7VhDmYS8OkJ8wZXqPeH9HyOVomUqe2Vzxj1+KvOUq7Q9GlKj/RqJhlwahxqRkXglp
+         dfb/JI56q9MlB8mTzjhvfE/q+mELzoyxDHWDGmYYwop4l9WeutXVaBqr3LKh46qR+ZSW
+         9ByA==
+X-Gm-Message-State: AOAM532zRpkdml4v+7pJRY7BYsVQuNkKfMUf9j9aDr00Sz0khMLE1ibU
+        Vqxv08Mx+IP8/FKYuVoOZcMAaA==
+X-Google-Smtp-Source: ABdhPJyFMAADT0iNvQneqnoq3jXcfQ9exfItDCCBzjODGF6El21zfS6VYYeAkF3SXF3XSP6ZcoJNwg==
+X-Received: by 2002:a05:6402:42c8:: with SMTP id i8mr20478536edc.60.1636539152289;
+        Wed, 10 Nov 2021 02:12:32 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id r19sm12287575edt.54.2021.11.10.02.12.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 10 Nov 2021 02:12:31 -0800 (PST)
+Subject: Re: [PATCH] ASoC: codecs: MBHC: Add support for special headset
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1635938324-17763-1-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <8422a82f-5aa7-2458-8080-87f330fa63ea@linaro.org>
+Date:   Wed, 10 Nov 2021 10:12:30 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1635938324-17763-1-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
+Thanks for adding this support.
 
-> On Thursday 7 October 2021 12:49:47 CEST Kalle Valo wrote:
->> CAUTION: This email originated from outside of the organization. Do
->> not click links or open attachments unless you recognize the sender
->> and know the content is safe.
->>=20
->>=20
->> Kalle Valo <kvalo@codeaurora.org> writes:
->>=20
->> > J=C3=A9r=C3=B4me Pouiller <jerome.pouiller@silabs.com> writes:
->> >
->> >>> >> >> I'm not really fond of having this kind of ASCII based parser =
-in the
->> >>> >> >> kernel. Do you have an example compressed file somewhere?
->> >>> >> >
->> >>> >> > An example of uncompressed configuration file can be found here=
-[1]. Once
->> >>> >> > compressed with [2], you get:
->> >>> >> >
->> >>> >> >     {a:{a:4,b:1},b:{a:{a:4,b:0,c:0,d:0,e:A},b:{a:4,b:0,c:0,d:0,=
-e:B},c:{a:4,b:0,c:0,d:0,e:C},d:{a:4,b:0,c:0,d:0,e:D},e:{a:4,b:0,c:0,d:0,e:E=
-},f:{a:4,b:0,c:0,d:0,e:F},g:{a:4,b:0,c:0,d:0,e:G},h:{a:4,b:0,c:0,d:0,e:H},i=
-:{a:4,b:0,c:0,d:0,e:I},j:{a:4,b:0,c:0,d:0,e:J},k:{a:4,b:0,c:0,d:0,e:K},l:{a=
-:4,b:0,c:0,d:1,e:L},m:{a:4,b:0,c:0,d:1,e:M}},c:{a:{a:4},b:{a:6},c:{a:6,c:0}=
-,d:{a:6},e:{a:6},f:{a:6}},e:{b:0,c:1},h:{e:0,a:50,b:0,d:0,c:[{a:1,b:[0,0,0,=
-0,0,0]},{a:2,b:[0,0,0,0,0,0]},{a:[3,9],b:[0,0,0,0,0,0]},{a:A,b:[0,0,0,0,0,0=
-]},{a:B,b:[0,0,0,0,0,0]},{a:[C,D],b:[0,0,0,0,0,0]},{a:E,b:[0,0,0,0,0,0]}]},=
-j:{a:0,b:0}}
->> >>> >>
->> >>> >> So what's the grand idea with this braces format? I'm not getting=
- it.
->> >>> >
->> >>> >   - It allows to describe a tree structure
->> >>> >   - It is ascii (easy to dump, easy to copy-paste)
->> >>> >   - It is small (as I explain below, size matters)
->> >>> >   - Since it is similar to JSON, the structure is obvious to many =
-people
->> >>> >
->> >>> > Anyway, I am not the author of that and I have to deal with it.
->> >>>
->> >>> I'm a supported for JSON like formats, flexibility and all that. But
->> >>> they belong to user space, not kernel.
->> >>>
->> >>> >> Usually the drivers just consider this kind of firmware configura=
-tion
->> >>> >> data as a binary blob and dump it to the firmware, without knowin=
-g what
->> >>> >> the data contains. Can't you do the same?
->> >>> >
->> >>> > [I didn't had received this mail :( ]
->> >>> >
->> >>> > The idea was also to send it as a binary blob. However, the firmwa=
-re use
->> >>> > a limited buffer (1500 bytes) to parse it. In most of case the PDS=
- exceeds
->> >>> > this size. So, we have to split the PDS before to send it.
->> >>> >
->> >>> > Unfortunately, we can't split it anywhere. The PDS is a tree struc=
-ture and
->> >>> > the firmware expects to receive a well formatted tree.
->> >>> >
->> >>> > So, the easiest way to send it to the firmware is to split the tree
->> >>> > between each root nodes and send each subtree separately (see also=
- the
->> >>> > comment above wfx_send_pds()).
->> >>> >
->> >>> > Anyway, someone has to cook this configuration before to send it t=
-o the
->> >>> > firmware. This could be done by a script outside of the kernel. Th=
-en we
->> >>> > could change the input format to simplify a bit the processing in =
-the
->> >>> > kernel.
->> >>>
->> >>> I think a binary file with TLV format would be much better, but I'm =
-sure
->> >>> there also other good choises.
->> >>>
->> >>> > However, the driver has already some users and I worry that changi=
-ng
->> >>> > the input format would lead to a mess.
->> >>>
->> >>> You can implement a script which converts the old format to the new
->> >>> format. And you can use different naming scheme in the new format so
->> >>> that we don't accidentally load the old format. And even better if y=
-ou
->> >>> add a some kind of signature in the new format and give a proper err=
-or
->> >>> from the driver if it doesn't match.
->> >>
->> >> Ok. I am going to change the input format. I think the new function is
->> >> going to look like:
->> >>
->> >> int wfx_send_pds(struct wfx_dev *wdev, u8 *buf, size_t buf_len)
->> >> {
->> >>      int ret;
->> >>      int start =3D 0;
->> >>
->> >>      if (buf[start] !=3D '{') {
->> >>              dev_err(wdev->dev, "valid PDS start with '{'. Did you fo=
-rget to compress it?\n");
->> >>              return -EINVAL;
->> >>      }
->> >>      while (start < buf_len) {
->> >>              len =3D strnlen(buf + start, buf_len - start);
->> >>              if (len > WFX_PDS_MAX_SIZE) {
->> >>                      dev_err(wdev->dev, "PDS chunk is too big (legacy=
- format?)\n");
->> >>                      return -EINVAL;
->> >>              }
->> >>              dev_dbg(wdev->dev, "send PDS '%s'\n", buf + start);
->> >>              ret =3D wfx_hif_configuration(wdev, buf + start, len);
->> >>              /* FIXME: Add error handling here */
->> >>              start +=3D len;
->> >>      }
->> >>      return 0;
->> >
->> > Did you read at all what I wrote above? Please ditch the ASCII format
->> > completely.
->>=20
->> Sorry, I read this too hastily. I just saw "buf[start] !=3D '{'" and
->> assumed this is the same ASCII format, but not sure anymore. Can you
->> explain what changes you made now?
->
-> The script I am going to write will compute where the PDS have to be split
-> (this work is currently done by the driver). The script will add a
-> separating character (let's say '\0') between each chunk.
->
-> The driver will just have to find the separating character, send the
-> chunk and repeat.
+few minor nits,
 
-I would forget ASCII altogether and implement a proper binary format
-like TLV. For example, ath10k uses TLV with board-2.bin files (grep for
-enum ath10k_bd_ie_type).
+On 03/11/2021 11:18, Srinivasa Rao Mandadapu wrote:
+> Update MBHC driver to support special headset such as apple
+> and huwawei headsets.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> ---
+>   sound/soc/codecs/wcd-mbhc-v2.c | 78 +++++++++++++++++++++++++++++++++++++++---
+>   1 file changed, 74 insertions(+), 4 deletions(-)
+> 
+> diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
+> index 405128c..3b4cd39 100644
+> --- a/sound/soc/codecs/wcd-mbhc-v2.c
+> +++ b/sound/soc/codecs/wcd-mbhc-v2.c
+> @@ -1022,6 +1022,57 @@ static int wcd_mbhc_get_plug_from_adc(struct wcd_mbhc *mbhc, int adc_result)
+>   	return plug_type;
+>   }
+>   
+> +static int wcd_mbhc_get_spl_hs_thres(struct wcd_mbhc *mbhc)
+> +{
+> +	int hs_threshold, micbias_mv;
+> +
+> +	micbias_mv = wcd_mbhc_get_micbias(mbhc);
+> +	if (mbhc->cfg->hs_thr && mbhc->cfg->micb_mv != WCD_MBHC_ADC_MICBIAS_MV) {
+> +		if (mbhc->cfg->micb_mv == micbias_mv)
+> +			hs_threshold = mbhc->cfg->hs_thr;
+> +		else
+> +			hs_threshold = (mbhc->cfg->hs_thr * micbias_mv) /
+> +								mbhc->cfg->micb_mv;
 
-Also I recommend changing the file "signature" ('{') to something else
-so that the driver detects incorrect formats. And maybe even use suffix
-.pds2 or something like that to make it more obvious and avoid
-confusion?
+You should consider using 100 chars per line, so that reading is much easy.
 
---=20
-https://patchwork.kernel.org/project/linux-wireless/list/
+> +	} else {
+> +		hs_threshold = ((WCD_MBHC_ADC_HS_THRESHOLD_MV * micbias_mv) /
+> +							WCD_MBHC_ADC_MICBIAS_MV);
+> +	}
+> +	return hs_threshold;
+> +}
+> +
+> +static bool wcd_mbhc_check_for_spl_headset(struct wcd_mbhc *mbhc)
+> +{
+> +	bool is_spl_hs = false;
+> +	int output_mv, hs_threshold, hph_threshold;
+> +
+> +	if (!mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic)
+> +		return false;
+> +
+> +	/* Bump up MIC_BIAS2 to 2.7V */
+> +	mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, true);
+> +	usleep_range(10000, 10100);
+> +
+> +	output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
+> +	hs_threshold = wcd_mbhc_get_spl_hs_thres(mbhc);
+> +	hph_threshold = wcd_mbhc_adc_get_hph_thres(mbhc);
+> +
+> +	if (output_mv > hs_threshold || output_mv < hph_threshold) {
+> +		if (mbhc->force_linein == true)
+> +			is_spl_hs = false;
+> +	} else {
+> +		is_spl_hs = true;
+> +	}
+> +
+> +	/* Back MIC_BIAS2 to 1.8v if the type is not special headset */
+> +	if (!is_spl_hs) {
+> +		mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, false);
+> +		/* Add 10ms delay for micbias to settle */
+> +		usleep_range(10000, 10100);
+> +	}
+> +
+> +	return is_spl_hs;
+> +}
+> +
+>   static void wcd_correct_swch_plug(struct work_struct *work)
+>   {
+>   	struct wcd_mbhc *mbhc;
+> @@ -1029,12 +1080,14 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>   	enum wcd_mbhc_plug_type plug_type = MBHC_PLUG_TYPE_INVALID;
+>   	unsigned long timeout;
+>   	int pt_gnd_mic_swap_cnt = 0;
+> -	int output_mv, cross_conn, hs_threshold, try = 0;
+> +	int output_mv, cross_conn, hs_threshold, try = 0, micbias_mv;
+> +	bool is_spl_hs = false;
+>   	bool is_pa_on;
+>   
+>   	mbhc = container_of(work, struct wcd_mbhc, correct_plug_swch);
+>   	component = mbhc->component;
+>   
+> +	micbias_mv = wcd_mbhc_get_micbias(mbhc);
+>   	hs_threshold = wcd_mbhc_adc_get_hs_thres(mbhc);
+>   
+>   	/* Mask ADC COMPLETE interrupt */
+> @@ -1097,6 +1150,18 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>   		plug_type = wcd_mbhc_get_plug_from_adc(mbhc, output_mv);
+>   		is_pa_on = wcd_mbhc_read_field(mbhc, WCD_MBHC_HPH_PA_EN);
+>   
+> +
+unnecessary extra new line here.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatc=
-hes
+> +		if ((output_mv > hs_threshold) &&
+> +		    (!is_spl_hs)) {
+wrap to 100 chars and unneccessary brackets around the conditions.
+
+With those fixed
+
+
+Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+--srini
+
+> +			is_spl_hs = wcd_mbhc_check_for_spl_headset(mbhc);
+> +			output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
+> +
+> +			if (is_spl_hs) {
+> +				hs_threshold = (hs_threshold * wcd_mbhc_get_micbias(mbhc)) /
+> +									micbias_mv; > +			}
+> +		}
+> +
+>   		if ((output_mv <= hs_threshold) && !is_pa_on) {
+>   			/* Check for cross connection*/
+>   			cross_conn = wcd_check_cross_conn(mbhc);
+> @@ -1122,14 +1187,19 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>   			}
+>   		}
+>   
+> -		if (output_mv > hs_threshold) /* cable is extension cable */
+> +		/* cable is extension cable */
+> +		if (output_mv > hs_threshold || mbhc->force_linein == true)
+>   			plug_type = MBHC_PLUG_TYPE_HIGH_HPH;
+>   	}
+>   
+>   	wcd_mbhc_bcs_enable(mbhc, plug_type, true);
+>   
+> -	if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH)
+> -		wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
+> +	if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH) {
+> +		if (is_spl_hs)
+> +			plug_type = MBHC_PLUG_TYPE_HEADSET;
+> +		else
+> +			wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
+> +	}
+>   
+>   	wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_MODE, 0);
+>   	wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_EN, 0);
+> 
