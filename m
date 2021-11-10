@@ -2,111 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A15EE44BCED
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:32:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A643E44BCE9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 09:32:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229930AbhKJIet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 03:34:49 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:41853 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S230245AbhKJIet (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 03:34:49 -0500
-X-IronPort-AV: E=Sophos;i="5.87,223,1631545200"; 
-   d="scan'208";a="99778034"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 10 Nov 2021 17:32:01 +0900
-Received: from localhost.localdomain (unknown [10.226.92.40])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id AE7BE40062CE;
-        Wed, 10 Nov 2021 17:31:58 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: timer: renesas: ostm: Document Renesas RZ/G2L OSTM
-Date:   Wed, 10 Nov 2021 08:31:51 +0000
-Message-Id: <20211110083152.31144-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211110083152.31144-1-biju.das.jz@bp.renesas.com>
-References: <20211110083152.31144-1-biju.das.jz@bp.renesas.com>
+        id S230136AbhKJIeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 03:34:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230117AbhKJIeq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 03:34:46 -0500
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0E8FC061764
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 00:31:58 -0800 (PST)
+Received: by mail-oi1-x22d.google.com with SMTP id t19so3945835oij.1
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 00:31:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=zLqvkJgCAjTpG7osjAd/FkvEnqLbJcOnM2H/5l4Vzaw=;
+        b=mZqGi79Yc2keMvXJhJAiGIl0oeFtrCDiO0WC8/DCLDoQM2aDERPH4ORYW9OuwjeqFW
+         1lBkH9l2f8S34zLK3q+ULafokRdXwDBx270L0tBOj0s8HOVkMcBHh0IonP5KSbjEd7/Z
+         6TSvdCtIToKTlaPoCDPlLpwkZXRpjlIna1kSIamxsdQnr3cMHoxoFrEzrbZfXPRbQqfT
+         A8P+eu2gi831hRUpJonFjWcsC668YRnH+eipbcZuzt8ZGw9wvZqkEZHhE6ABfufUijNl
+         h63gMoWwQdq6/ZBXmXv0wZCuFbxfQLypgUGx49hoBLydOY5uwFDIrBKt7xg8E8dGga3P
+         lIwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=zLqvkJgCAjTpG7osjAd/FkvEnqLbJcOnM2H/5l4Vzaw=;
+        b=RJLjo8aQTEQuje0wzWRp1cHwODTp9uOWZevDBAvduhdgJeGyRK8la6UJ7SMBF8/ImT
+         UlrflNGysHgtXYW9m6pRDPgAqypKwQJIrNNCEYDuaZ9W5vz31MiTHTeGYEaohPbRQKBI
+         lCMDBwgESiWXXj5nVvU53B0U8J23CH+Dt8GwTJUKCKIxkoCeI8eOjtxnXDQwEMHFNof3
+         4ql31JBTvoD8CNfYZI3EFoC3uaykAiXu+imI8aXmRxEz1/opPAqp+8bTFx2oB9yXL4M7
+         56UyuyfcVXLdtsfN8ygPz6g2s1JLnAaGERQz1U/lMxj7GPg0h9/G+sjlWLGHRY2afSEp
+         QdTA==
+X-Gm-Message-State: AOAM530/j/VDlo2RCNRKIcp6H5BOnj1vIK+knYDieXHbhrLaiki9R054
+        LP4HC7ldbjq+bnqxyFkL9SRlBSbHopGZV8J/Hu4=
+X-Google-Smtp-Source: ABdhPJw9Ea6uipjCYszoBHbVu0JOC76IvOJRI+kOsrhgC6pXjaNXYZZd87wIXtv6Gc4Iv7HUOZgwIuPll6ccqF28sZQ=
+X-Received: by 2002:a05:6808:f92:: with SMTP id o18mr11301305oiw.46.1636533118144;
+ Wed, 10 Nov 2021 00:31:58 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:a4a:df49:0:0:0:0:0 with HTTP; Wed, 10 Nov 2021 00:31:57
+ -0800 (PST)
+Reply-To: mrs.helenfavour1@gmail.com
+From:   "Mrs.Helen Favour" <coolrtsss@gmail.com>
+Date:   Wed, 10 Nov 2021 09:31:57 +0100
+Message-ID: <CAOwE4EMaAaPX1tZsE1=mKYn3UT7GCzf-xpPhgxwBQEELOOGRmw@mail.gmail.com>
+Subject: Thanks and God bless you
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the General Timer Module(a.k.a OSTM) found on the RZ/G2L SoC.
+My Dearest..
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../bindings/timer/renesas,ostm.yaml          | 29 +++++++++++++++----
- 1 file changed, 24 insertions(+), 5 deletions(-)
+May the peace of the Lord be unto you and your household Amen? I am
+Mrs.Helen Favour, I am writing you now from the Hospital due to my
+cancer sickness,Please I have a fund I inherited from my late husband
+Mr. Gabriel Favour the sum of ($3,400,000.00 USD) and I want to donate
+it in your name to help the less privilege, widows and motherless home
+in your country,
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-index 600d47ab7d58..5a8ffdc8b1cb 100644
---- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-+++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
-@@ -19,11 +19,17 @@ description:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - renesas,r7s72100-ostm # RZ/A1H
--          - renesas,r7s9210-ostm  # RZ/A2M
--      - const: renesas,ostm       # Generic
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r7s72100-ostm  # RZ/A1H
-+              - renesas,r7s9210-ostm   # RZ/A2M
-+          - const: renesas,ostm        # Generic
-+
-+      - items:
-+          - enum:
-+              - renesas,r9a07g044-ostm # RZ/G2{L,LC}
-+          - const: renesas,rzg2l-ostm  # RZ/G2L
- 
-   reg:
-     maxItems: 1
-@@ -37,6 +43,9 @@ properties:
-   power-domains:
-     maxItems: 1
- 
-+  resets:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
-@@ -44,6 +53,16 @@ required:
-   - clocks
-   - power-domains
- 
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - renesas,rzg2l-ostm
-+then:
-+  required:
-+    - resets
-+
- additionalProperties: false
- 
- examples:
--- 
-2.17.1
+I will be happy to hear from you soon.
 
+Thanks and God bless you
+
+Yours faithful Sister.
