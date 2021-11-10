@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B77C944BF7A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 12:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 345A944BF7B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 12:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbhKJLDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231593AbhKJLDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 10 Nov 2021 06:03:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50372 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231593AbhKJLC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 06:02:59 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A99C06120D
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 03:00:11 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id np3so1259450pjb.4
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 03:00:11 -0800 (PST)
+        with ESMTP id S231694AbhKJLDL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 06:03:11 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C39C061195
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 03:00:17 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id n8so2687819plf.4
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 03:00:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cMr0eE8FXgPe+QXcGVoNpVzyu/9rj5/pkeXUEo39aLo=;
-        b=WvLNS+ggr7y59JU7GQNkZ16qg2QM7b5NhBYESPwK0gzPRVg7QE8HFXrALmBXcytmqJ
-         JjD3zTTk78kldYjj4SIyaXQjdJPFu8UES1W3iJx9bsvMucETp5FdWsloIHj+9nub+FlI
-         T+eaEOFxN6Xf9NZFdgGlOwZtyfh4eplPJqV4UIT8p1CZRVzVHTkOsPssRf0AvMm93tke
-         i3gJVZbq7MLHYfM8M93NbWLGqIGh9tRTBOGoDek6pV6VYHfLXFZzMAcExWXw0zQ/aI+Q
-         iYGn78bkkTPMbyfBdutcQO1JzhwFNwe+EZ2MS3nhPBb/R8pjpUxvTfQhBupkmPkdfYwu
-         o5aQ==
+        bh=Kl/T88F25r8f4Ku0pHT3jWyyjVwCGP8jBzT3ZsV+t6c=;
+        b=cZXAnuf5k/IaNtyS5xogwOnFGddfjeXy7FVrckHL/XkVQAltqf4O2YUBDIWecT/xgr
+         DPOJ8G+7rhFubWhLel9+sL9/mnAEWwJXI9SkCl8ESFwNZ+dTFLHMxevhYhD4wY4MRk7q
+         xPInEzuRdjEGLOAB9o+UqCp+4SQz41QtL8OPsbwo0cELuWwMLxd6O4gluLZek/2zcpxl
+         FUxoThR9sNfTAZovZhQHsLQdhDTIKBgXNaE/1JRofeRdJ6q+otonl0NAqoACbJ/FtDYM
+         h4BstBIKTc1jJUSovCOtIyDsxLKbZXQM54G4XWAqsYY/kJdhohp/ZFM3SAj+40WRaQ3S
+         qP1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cMr0eE8FXgPe+QXcGVoNpVzyu/9rj5/pkeXUEo39aLo=;
-        b=nrbMBhi8+VQNRLrqUJhbBqPl+tx2ZIelzIuKokiOPn2cR4Mwo0xlI5I+5MqCqX/rbC
-         Sq2yEfGF8Uuqk4CN9mEh3oZ/s0GIzfO4kpzuXI87d2q9/Um8c9QLIbgbOc5yoQmHIEoJ
-         DM7JQfyIWUkNJtpkEIuVEjrteUghkLOt4Ds/gtH9jEIbFjFuJRefbuS1gqCk5tyEccAb
-         o3YU49BeueNCYeB++zJc0zp+PW55cC6kctJ+KTI4LgoP38fTx49D71aJZSMSMDT/rjdS
-         t4WuWQOAFov9e0QFR4ypmcwPOvBH5rFT9RGcblH5p/uqXW2MGTgcmvrvmDxqCJY4neXy
-         FBlg==
-X-Gm-Message-State: AOAM533CvPmt0Sq3Vr9nfJgcjl85Maaiy0y97mTS0AxbaFtbLpNJZCSB
-        avzP0J+c5ueDFoUZAhYHYZjZ/w==
-X-Google-Smtp-Source: ABdhPJzvVpgiH2PlMxXWAmipSkGsWQhyKhW8YmToX7VhyCW0Zali00uwZ+BsJuQ7Wd8QuR87/F3Fpg==
-X-Received: by 2002:a17:902:e851:b0:142:19fe:982a with SMTP id t17-20020a170902e85100b0014219fe982amr14573280plg.13.1636542011471;
-        Wed, 10 Nov 2021 03:00:11 -0800 (PST)
+        bh=Kl/T88F25r8f4Ku0pHT3jWyyjVwCGP8jBzT3ZsV+t6c=;
+        b=eEebc99iZulLGRzj3hlHgloYMN4A5FlAP9itEFTpFO4e8mziUdf2m0Mewwiy+AOeQ0
+         OYHzB2CaPqCiwVOV30QIHiMWzcHPoNZlbaYyFMPyKZ0BbrMR58Ro8kQlnT+dayC1qdNT
+         p0oAqEAS8K/3W3WnWm7nd3VHKyOxII++gXKz8EmXg8jKlaR6e7xqV+YKA2Z1IyKZ7aBy
+         kgPNTOnv19wvoD/As6ZyaEu5yiUI9H5Gf38K4qKteudS3/CRD37E6VGyXv2Iu7pzcy7r
+         hWenrt8v9dRfDK89rbc1fWcTtwZJYUohP8P77Gw3dE/V4jOMJLlXFXvGNrTpbmMTLXNw
+         Sgnw==
+X-Gm-Message-State: AOAM5312yuI5+KWLuy722h6VZwu9Q8bqKXavsbBFBK85Bhk9R5cXS9Rn
+        X4G8QSCOqv5Ey8XQXskgGu+GtQ==
+X-Google-Smtp-Source: ABdhPJxkWOikxhyUtXSLsL3VUZ6v0b0KfyIBRDafoSEW3dx1tECA+0pQKG7eR+nvHaC7OlOZqJFMdQ==
+X-Received: by 2002:a17:90b:1b03:: with SMTP id nu3mr15759231pjb.47.1636542017193;
+        Wed, 10 Nov 2021 03:00:17 -0800 (PST)
 Received: from localhost.name ([122.161.52.143])
-        by smtp.gmail.com with ESMTPSA id e11sm5585282pjl.20.2021.11.10.03.00.06
+        by smtp.gmail.com with ESMTPSA id e11sm5585282pjl.20.2021.11.10.03.00.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Nov 2021 03:00:11 -0800 (PST)
+        Wed, 10 Nov 2021 03:00:16 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
@@ -54,10 +54,11 @@ Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
         robh+dt@kernel.org, agross@kernel.org, herbert@gondor.apana.org.au,
         davem@davemloft.net, stephan@gerhold.net,
         Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: [PATCH v5 06/22] dt-bindings: qcom-bam: Add "powered remotely" mode
-Date:   Wed, 10 Nov 2021 16:29:06 +0530
-Message-Id: <20211110105922.217895-7-bhupesh.sharma@linaro.org>
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v5 07/22] dt-bindings: qcom-qce: Convert bindings to yaml
+Date:   Wed, 10 Nov 2021 16:29:07 +0530
+Message-Id: <20211110105922.217895-8-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
 References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
@@ -67,43 +68,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some configurations, the BAM DMA controller is set up by a remote
-processor and the local processor can simply start making use of it
-without setting up the BAM. This is already supported using the
-"qcom,controlled-remotely" property.
-
-However, for some reason another possible configuration is that the
-remote processor is responsible for powering up the BAM, but we are
-still responsible for initializing it (e.g. resetting it etc). Add
-a "qcom,powered-remotely" property to describe that configuration.
+Convert Qualcomm QCE crypto devicetree binding to YAML.
 
 Cc: Thara Gopinath <thara.gopinath@linaro.org>
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-[moved Stephan's change to the YAML dt-binding format]
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 ---
- Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/crypto/qcom-qce.txt   | 25 -------
+ .../devicetree/bindings/crypto/qcom-qce.yaml  | 67 +++++++++++++++++++
+ 2 files changed, 67 insertions(+), 25 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.txt
+ create mode 100644 Documentation/devicetree/bindings/crypto/qcom-qce.yaml
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-index cfff3a2286fb..bf0a59e8a2bf 100644
---- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-@@ -73,6 +73,12 @@ properties:
-       Indicates that the bam is controlled by remote proccessor i.e.
-       execution environment.
- 
-+  qcom,powered-remotely:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description:
-+      Indicates that the bam is powered up by a remote processor
-+      but must be initialized by the local processor.
+diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.txt b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
+deleted file mode 100644
+index fdd53b184ba8..000000000000
+--- a/Documentation/devicetree/bindings/crypto/qcom-qce.txt
++++ /dev/null
+@@ -1,25 +0,0 @@
+-Qualcomm crypto engine driver
+-
+-Required properties:
+-
+-- compatible  : should be "qcom,crypto-v5.1"
+-- reg         : specifies base physical address and size of the registers map
+-- clocks      : phandle to clock-controller plus clock-specifier pair
+-- clock-names : "iface" clocks register interface
+-                "bus" clocks data transfer interface
+-                "core" clocks rest of the crypto block
+-- dmas        : DMA specifiers for tx and rx dma channels. For more see
+-                Documentation/devicetree/bindings/dma/dma.txt
+-- dma-names   : DMA request names should be "rx" and "tx"
+-
+-Example:
+-	crypto@fd45a000 {
+-		compatible = "qcom,crypto-v5.1";
+-		reg = <0xfd45a000 0x6000>;
+-		clocks = <&gcc GCC_CE2_AHB_CLK>,
+-			 <&gcc GCC_CE2_AXI_CLK>,
+-			 <&gcc GCC_CE2_CLK>;
+-		clock-names = "iface", "bus", "core";
+-		dmas = <&cryptobam 2>, <&cryptobam 3>;
+-		dma-names = "rx", "tx";
+-	};
+diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+new file mode 100644
+index 000000000000..3a839c159d92
+--- /dev/null
++++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/crypto/qcom-qce.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-   qcom,num-ees:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     minimum: 0
++title: Qualcomm crypto engine driver
++
++maintainers:
++  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
++
++description: |
++  This document defines the binding for the QCE crypto
++  controller found on Qualcomm parts.
++
++properties:
++  compatible:
++    const: qcom,crypto-v5.1
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: iface clocks register interface.
++      - description: bus clocks data transfer interface.
++      - description: core clocks rest of the crypto block.
++
++  clock-names:
++    items:
++      - const: iface
++      - const: bus
++      - const: core
++
++  dmas:
++    items:
++      - description: DMA specifiers for rx dma channel.
++      - description: DMA specifiers for tx dma channel.
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-apq8084.h>
++    crypto-engine@fd45a000 {
++        compatible = "qcom,crypto-v5.1";
++        reg = <0xfd45a000 0x6000>;
++        clocks = <&gcc GCC_CE2_AHB_CLK>,
++                 <&gcc GCC_CE2_AXI_CLK>,
++                 <&gcc GCC_CE2_CLK>;
++        clock-names = "iface", "bus", "core";
++        dmas = <&cryptobam 2>, <&cryptobam 3>;
++        dma-names = "rx", "tx";
++    };
 -- 
 2.31.1
 
