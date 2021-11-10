@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58B5144C8EF
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 20:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BBF44C8F1
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 20:24:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231779AbhKJT10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 14:27:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52920 "EHLO
+        id S232753AbhKJT11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 14:27:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbhKJT1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 14:27:25 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB16C0613F5
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:24:37 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id y196so3140958wmc.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:24:37 -0800 (PST)
+        with ESMTP id S232725AbhKJT10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 14:27:26 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 905A8C061766
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:24:38 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id y196so3141009wmc.3
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:24:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=TkI4GyDCSIwmbXr9V/MQ9+7DcTXEuCd0g4gBgL+0EyA=;
-        b=i7Z1Pn8QdFKfxUDCIMDU7Nl9er7l71NiK2V1C90wAjvXBpTR0hSMvTNt2R+6QFxiZc
-         B9NzrWeTGyq9I1dGtU6DW9LmHuWZaQ8YqHkROyvYY5z6D9YUHiDs+bfg/nCilHhvZE+H
-         8v0G7m8bOqLOhSUx3RG/nR6sxnmclH1TjGzbxs158ez2Ig5k22E/oRoz1V4HsYBz+L65
-         B51Q0GyZ8VwUtJY3k9R4oHTgz/oVV3fjU5Ib1UeoQasvv4dO7KvguV77bIO6Kg8Rv5W9
-         ALMO+d9fLuS3+Z5ddKtCfzLjKSeiSyu7CXvW+9ZBdzkHLQBSNrJ3UCrEn230+xVjreqB
-         qdUg==
+        bh=hGC5vbTP7eVhWvQa6obMxUPyW7fE6TkeuAmRY62poPc=;
+        b=o8YgN3Yr2RJVNTOVw0QWOGogKTBQMT4+qFJOEYABx2bj6SGGv63pxe/SJ4WVcCC3jn
+         S05I4wPHD8+z79WW8vHnLfVOVCRrvtfEbM0/n3C7vWEAhsPrY0b4qbqwJixF8XZ6zP5U
+         t9iCkujPvC/hTFn2vw7e85oBE8a126iesSSEPM7b21YMhn2y7EXSS5A7k/Lm4H6EI3VQ
+         D9NTMrB8kCHJgzWX/9+4BDtAepVPqgHEJBSpZGf6y6io+5o3D1ucoHi3oeUB8Ko8aXpy
+         AMIRhMvdNEHXMpDoABTqi5nFy1ORDwR4ZjebDc2S0fEpdHIvzVLWIaQEBZb8sdP2GT1u
+         eSEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=TkI4GyDCSIwmbXr9V/MQ9+7DcTXEuCd0g4gBgL+0EyA=;
-        b=hBMYKGq8wlZfLzG324f/SzHHjUiM+9YWDuPAOefqveIsAPpqpBNwKqH4/PGMVbWHHy
-         6zoo3gHqKmn/HEtaKG4QElwi9aNdTwFLxJb6NiPhk+k8L3QoM0VNFhwl4H+Y+48m4gke
-         1Z4NSwdk3yHSD6KFnDpr0r+m8zjxqYvQRDPcRa9IBtnOsnCiTKrEnMOxCJzlnL5VC5Bd
-         eRuQ+bLZBKfZyn4yuMRNbWuzjgdfckT/z9C7jYugeEUZsXZM2ccN+XLKhd0UY2vAcLvf
-         bKpi+pEhfKk02rlERgN5f06PymYhTUlDj15ItgF1ztQw09CgkReD+CdwOYW16oLkgOKJ
-         r43Q==
-X-Gm-Message-State: AOAM533gA0DLTEA9YzvJtUwSGWqA8wp1RY6nldW8sK832BzbzXq+8eMn
-        vp3iNCXeIAGlLIQbzdzj0PstHg==
-X-Google-Smtp-Source: ABdhPJzRUmYbyJGZmJg6Yqk42aKpyaRMUXbxlNPTEK2WhaJfvzp/Rwxnr7av9EPW/dLsGsYFs6jjjQ==
-X-Received: by 2002:a1c:f219:: with SMTP id s25mr19188607wmc.31.1636572275780;
-        Wed, 10 Nov 2021 11:24:35 -0800 (PST)
+        bh=hGC5vbTP7eVhWvQa6obMxUPyW7fE6TkeuAmRY62poPc=;
+        b=L12flByBDVj1PO1yY6p4lQyGkHBZ9rgpz7sGtv0Tsovgm35BKyopYoyTnudfPfe7FN
+         qQR4o+eA/XmcOuXoOtj9DVLw2t1iWnzu4ssbetKu36LK+bTyNvP0+nqL3B72MRDlzFWw
+         qlAfGypULHGu3xUzMLDxXQ98OnDB+gCkI67Ajuo2d532YV8L1/ZAjEWMCqInryOIxaHI
+         GIR9tXI0DYQAb5odKM4GrZ2+dxCHG+E7HC+G4bzHiqLlO3IVhUyE+RXjC6I8ObWtympj
+         B5JJ1Qc15UITiskLGDs8JsQNrDF3tiP0ZumuwIRY33KpWp+GB60WHntsS6qwaZa2yxmJ
+         jQxQ==
+X-Gm-Message-State: AOAM531QreK6tFEaBogwG4MIlzNZSTmOhByASA8VNa/VknwFgKAVBe9k
+        uZlCJYhL9yvNsLCyg+K8Nm0JdA==
+X-Google-Smtp-Source: ABdhPJwaqqXQvPtpGCJMftdZKiPsBPV2gDWdi4b770EA4FIRU+mVpBnIMR/wI0wlnRlRhRDKVUbAUw==
+X-Received: by 2002:a1c:3546:: with SMTP id c67mr1721206wma.43.1636572277143;
+        Wed, 10 Nov 2021 11:24:37 -0800 (PST)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id d16sm6250113wmb.37.2021.11.10.11.24.34
+        by smtp.gmail.com with ESMTPSA id d16sm6250113wmb.37.2021.11.10.11.24.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Nov 2021 11:24:35 -0800 (PST)
+        Wed, 10 Nov 2021 11:24:36 -0800 (PST)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>
 Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/3] arm64: dts: mediatek: mt8183-pumpkin: add HDMI support
-Date:   Wed, 10 Nov 2021 20:24:16 +0100
-Message-Id: <20211110192417.4177741-2-fparent@baylibre.com>
+Subject: [PATCH 3/3] arm64: dts: mediatek: mt8183-pumpkin: add USB host support
+Date:   Wed, 10 Nov 2021 20:24:17 +0100
+Message-Id: <20211110192417.4177741-3-fparent@baylibre.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20211110192417.4177741-1-fparent@baylibre.com>
 References: <20211110192417.4177741-1-fparent@baylibre.com>
@@ -65,159 +65,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MT8183 Pumpkin board has a micro-HDMI connector. HDMI support is
-provided by an IT66121 DPI <-> HDMI bridge.
-
-This commit enables DPI and add the node for the IT66121 bridge.
+The MT8183 Pumpkin board provides USB host support through 2 type-A
+ports. In addition the board provides Ethernet support
+with the LAN9512 IP connected on the USB bus.
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
 ---
- .../boot/dts/mediatek/mt8183-pumpkin.dts      | 115 ++++++++++++++++++
- 1 file changed, 115 insertions(+)
+ .../boot/dts/mediatek/mt8183-pumpkin.dts      | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-index ee912825cfc6..d5a6628e9c5b 100644
+index d5a6628e9c5b..541b382c0e81 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
 +++ b/arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dts
-@@ -62,6 +62,18 @@ ntc {
- 		pulldown-ohm = <0>;
- 		io-channels = <&auxadc 0>;
- 	};
-+
-+	connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "d";
-+
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_connector_out>;
-+			};
-+		};
-+	};
- };
- 
- &auxadc {
-@@ -120,6 +132,41 @@ &i2c6 {
- 	pinctrl-0 = <&i2c6_pins>;
- 	status = "okay";
- 	clock-frequency = <100000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	it66121hdmitx: hdmitx@4c {
-+		compatible = "ite,it66121";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ite_pins>;
-+		vcn33-supply = <&mt6358_vcn33_wifi_reg>;
-+		vcn18-supply = <&mt6358_vcn18_reg>;
-+		vrf12-supply = <&mt6358_vrf12_reg>;
-+		reset-gpios = <&pio 160 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-+		reg = <0x4c>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				it66121_in: endpoint {
-+					bus-width = <12>;
-+					remote-endpoint = <&dpi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				hdmi_connector_out: endpoint {
-+					remote-endpoint = <&hdmi_connector_in>;
-+				};
-+			};
-+		};
-+	};
- };
- 
- &mmc0 {
-@@ -332,6 +379,61 @@ pins_clk {
- 			input-enable;
+@@ -434,6 +434,18 @@ pins_gpio {
+ 				 <PINMUX_GPIO28__FUNC_GPIO28>;
  		};
  	};
 +
-+	ite_pins: ite-pins {
-+		pins_rst {
-+			pinmux = <PINMUX_GPIO160__FUNC_GPIO160>;
-+			output-high;
++	usb_pins: usb-pins {
++		pins_usb {
++			pinmux = <PINMUX_GPIO42__FUNC_GPIO42>;
++			output-low;
 +		};
-+	};
 +
-+	dpi_pins_func: dpi-pins-func {
-+		pins_dpi {
-+			pinmux = <PINMUX_GPIO12__FUNC_I2S5_BCK>,
-+				 <PINMUX_GPIO46__FUNC_I2S5_LRCK>,
-+				 <PINMUX_GPIO47__FUNC_I2S5_DO>,
-+				 <PINMUX_GPIO13__FUNC_DBPI_D0>,
-+				 <PINMUX_GPIO14__FUNC_DBPI_D1>,
-+				 <PINMUX_GPIO15__FUNC_DBPI_D2>,
-+				 <PINMUX_GPIO16__FUNC_DBPI_D3>,
-+				 <PINMUX_GPIO17__FUNC_DBPI_D4>,
-+				 <PINMUX_GPIO18__FUNC_DBPI_D5>,
-+				 <PINMUX_GPIO19__FUNC_DBPI_D6>,
-+				 <PINMUX_GPIO20__FUNC_DBPI_D7>,
-+				 <PINMUX_GPIO21__FUNC_DBPI_D8>,
-+				 <PINMUX_GPIO22__FUNC_DBPI_D9>,
-+				 <PINMUX_GPIO23__FUNC_DBPI_D10>,
-+				 <PINMUX_GPIO24__FUNC_DBPI_D11>,
-+				 <PINMUX_GPIO25__FUNC_DBPI_HSYNC>,
-+				 <PINMUX_GPIO26__FUNC_DBPI_VSYNC>,
-+				 <PINMUX_GPIO27__FUNC_DBPI_DE>,
-+				 <PINMUX_GPIO28__FUNC_DBPI_CK>;
-+		};
-+	};
-+
-+	dpi_pins_idle: dpi-pins-idle {
-+		pins_gpio {
-+			pinmux = <PINMUX_GPIO12__FUNC_GPIO12>,
-+				 <PINMUX_GPIO46__FUNC_GPIO46>,
-+				 <PINMUX_GPIO47__FUNC_GPIO47>,
-+				 <PINMUX_GPIO13__FUNC_GPIO13>,
-+				 <PINMUX_GPIO14__FUNC_GPIO14>,
-+				 <PINMUX_GPIO15__FUNC_GPIO15>,
-+				 <PINMUX_GPIO16__FUNC_GPIO16>,
-+				 <PINMUX_GPIO17__FUNC_GPIO17>,
-+				 <PINMUX_GPIO18__FUNC_GPIO18>,
-+				 <PINMUX_GPIO19__FUNC_GPIO19>,
-+				 <PINMUX_GPIO20__FUNC_GPIO20>,
-+				 <PINMUX_GPIO21__FUNC_GPIO21>,
-+				 <PINMUX_GPIO22__FUNC_GPIO22>,
-+				 <PINMUX_GPIO23__FUNC_GPIO23>,
-+				 <PINMUX_GPIO24__FUNC_GPIO24>,
-+				 <PINMUX_GPIO25__FUNC_GPIO25>,
-+				 <PINMUX_GPIO26__FUNC_GPIO26>,
-+				 <PINMUX_GPIO27__FUNC_GPIO27>,
-+				 <PINMUX_GPIO28__FUNC_GPIO28>;
++		pins_hub_rst {
++			pinmux = <PINMUX_GPIO9__FUNC_GPIO9>;
++			output-low;
 +		};
 +	};
  };
  
  &mfg {
-@@ -381,3 +483,16 @@ &scp {
- &dsi0 {
- 	status = "disabled";
+@@ -496,3 +508,17 @@ dpi_out: endpoint {
+ 		};
+ 	};
  };
 +
-+&dpi0 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&dpi_pins_func>;
-+	pinctrl-1 = <&dpi_pins_idle>;
++&ssusb {
++	pinctrl-names = "default";
++	pinctrl-0 = <&usb_pins>;
++	maximum-speed = "high-speed";
++	dr_mode = "host";
++	vusb33-supply = <&mt6358_vusb_reg>;
 +	status = "okay";
++};
 +
-+	port {
-+		dpi_out: endpoint {
-+			remote-endpoint = <&it66121_in>;
-+		};
-+	};
++&usb_host {
++	vusb33-supply = <&mt6358_vusb_reg>;
++	status = "okay";
 +};
 -- 
 2.33.1
