@@ -2,260 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C2344BDAD
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 10:17:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D03DE44BDDE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 10:35:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbhKJJTm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 10 Nov 2021 04:19:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54864 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230425AbhKJJTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 04:19:41 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EDE5C061766
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 01:16:54 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id S230475AbhKJJiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 04:38:06 -0500
+Received: from mxout70.expurgate.net ([91.198.224.70]:51517 "EHLO
+        mxout70.expurgate.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229831AbhKJJiG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 04:38:06 -0500
+Received: from [127.0.0.1] (helo=localhost)
+        by relay.expurgate.net with smtp (Exim 4.92)
+        (envelope-from <fe@dev.tdt.de>)
+        id 1mkk0h-000MaJ-1v; Wed, 10 Nov 2021 10:35:15 +0100
+Received: from [195.243.126.94] (helo=securemail.tdt.de)
+        by relay.expurgate.net with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mkjir-0003mV-RL; Wed, 10 Nov 2021 10:16:49 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1mkjip-0003Jb-3d; Wed, 10 Nov 2021 10:16:47 +0100
-Message-ID: <c7d73b7b21d3fda29c6c1cfbebd7b681e057e8cb.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] I2C: Add I2C driver for Sunplus SP7021
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Lh Kuo =?UTF-8?Q?=E9=83=AD=E5=8A=9B=E8=B1=AA?= 
-        <lh.Kuo@sunplus.com>, "LH.Kuo" <lhjeff911@gmail.com>,
-        "daniel.thompson@linaro.org" <daniel.thompson@linaro.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
-        Wells Lu =?UTF-8?Q?=E5=91=82=E8=8A=B3=E9=A8=B0?= 
-        <wells.lu@sunplus.com>
-Date:   Wed, 10 Nov 2021 10:16:47 +0100
-In-Reply-To: <af65896bb3d94afa9e296a428dcbd0e1@sphcmbx02.sunplus.com.tw>
-References: <1635496955-13985-1-git-send-email-lh.kuo@sunplus.com>
-         <1636441166-8127-1-git-send-email-lh.kuo@sunplus.com>
-         <1636441166-8127-2-git-send-email-lh.kuo@sunplus.com>
-         <6d87acc51ed6fea6a93b92dbcc65f46a3c05ac35.camel@pengutronix.de>
-         <af65896bb3d94afa9e296a428dcbd0e1@sphcmbx02.sunplus.com.tw>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        (envelope-from <fe@dev.tdt.de>)
+        id 1mkk0g-0008Pt-BS; Wed, 10 Nov 2021 10:35:14 +0100
+Received: from securemail.tdt.de (localhost [127.0.0.1])
+        by securemail.tdt.de (Postfix) with ESMTP id E47B9240042;
+        Wed, 10 Nov 2021 10:35:13 +0100 (CET)
+Received: from mail.dev.tdt.de (unknown [10.2.4.42])
+        by securemail.tdt.de (Postfix) with ESMTP id 6D3ED240041;
+        Wed, 10 Nov 2021 10:35:13 +0100 (CET)
+Received: from mail.dev.tdt.de (localhost [IPv6:::1])
+        by mail.dev.tdt.de (Postfix) with ESMTP id 0571A20176;
+        Wed, 10 Nov 2021 10:35:13 +0100 (CET)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 10 Nov 2021 10:35:12 +0100
+From:   Florian Eckert <fe@dev.tdt.de>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     robh+dt@kernel.org, Eckert.Florian@googlemail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] leds: Add KTD20xx RGB LEDs driver from Kinetic
+In-Reply-To: <20211109232917.GA26764@amd>
+References: <20211109100822.5412-1-fe@dev.tdt.de>
+ <20211109232917.GA26764@amd>
+Message-ID: <41f6b993ecb9f37a7cf191f770363a79@dev.tdt.de>
+X-Sender: fe@dev.tdt.de
+User-Agent: Roundcube Webmail/1.3.16
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+        autolearn_force=no version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.dev.tdt.de
+X-purgate-type: clean
+X-purgate: clean
+X-purgate-ID: 151534::1636536914-0000527C-E04B6D23/0/0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+> Hi!
 
-On Wed, 2021-11-10 at 05:37 +0000, Lh Kuo 郭力豪 wrote:
-[...]
-> > > +	/* dma alloc*/
-> > > +	sp_i2c_dev_info->dma_vir_base = dma_alloc_coherent(&pdev->dev,
-> > SP_BUFFER_SIZE,
-> > > +					&sp_i2c_dev_info->dma_phy_base, GFP_ATOMIC);
-> > > +	if (!sp_i2c_dev_info->dma_vir_base)
-> > > +		goto free_dma;
-> > 
-> > Please fix your error paths, the driver shouldn't try to revert the action that
-> > just failed.
-> > 
-> > Here you can use dmam_alloc_coherent() and just return -ENOMEM on error.
-> > 
-> I will make change as below  is it OK ?
+Thanks for reviewing my patchset.
+
+>> Florian Eckert (2):
+>>   leds: ktd20xx: Add the KTD20xx family of the RGB LEDs driver from
+>>     Kinetic
+>>   dt: bindings: KTD20xx: Introduce the ktd20xx family of RGB drivers
 > 
-> 	/* dma alloc*/
-> 	sp_i2c_dev_info->dma_vir_base = dmam_alloc_coherent(&pdev->dev, SP_BUFFER_SIZE,
-> 					&sp_i2c_dev_info->dma_phy_base, GFP_ATOMIC);
-> 	if (!sp_i2c_dev_info->dma_vir_base)
-> 		return -ENOMEM;
+> That's... not a nice piece of hardware.
 
-Yes, this looks good to me. With this change, you can remove the
-dma_free_coherent() calls below.
+Yes, that may be, but I have tried to use what the chip can do.
+So that it works for my use case. It would be great if we could 
+integrate it
+into the color LED framework of the kernel.
 
-> > > +
-> > > +	sp_i2c_dev_info->clk = devm_clk_get(dev, NULL);
-> > > +
-> > > +	if (IS_ERR(sp_i2c_dev_info->clk)) {
-> > > +		ret = PTR_ERR(sp_i2c_dev_info->clk);
-> > > +		dev_err(&pdev->dev, "failed to retrieve clk: %d\n", ret);
-> > > +		goto err_clk_disable;
-> > 
-> > Then this could
-> > 
-> > 		return ret;
-> > 
-> > Better, use return dev_err_probe().
-> > 
-> 
-> I will make change as below  is it OK ?
-> 
-> 	sp_i2c_dev_info->clk = devm_clk_get(dev, NULL);
-> 
-> 	if (IS_ERR(sp_i2c_dev_info->clk)) {
-> 		return dev_err_probe(&pdev->dev, PTR_ERR(sp_i2c_dev_info->clk),
-> 				     "Could not get clock\n");
-> 	}
 
-Yes.
+> If this uses non-standard interface, it will need to be
+> documented. But I would like to understand the limitations first.
 
-> > > +	}
-> > > +
-> > > +	sp_i2c_dev_info->rstc = devm_reset_control_get_exclusive(dev, NULL);
-> > > +
-> > > +	if (IS_ERR(sp_i2c_dev_info->rstc)) {
-> > > +		ret = PTR_ERR(sp_i2c_dev_info->rstc);
-> > > +		dev_err(&pdev->dev, "failed to retrieve reset controller: %d\n", ret);
-> > > +		goto err_clk_disable;
-> > 
-> > Same as above.
-> > 
-> 
-> I will make change as below  is it OK ?
-> 
-> 	sp_i2c_dev_info->rstc = devm_reset_control_get_exclusive(dev, NULL);
-> 
-> 	if (IS_ERR(sp_i2c_dev_info->rstc)) {
-> 		return dev_err_probe(&pdev->dev, PTR_ERR(sp_i2c_dev_info->rstc),
-> 				     "Could not get clock\n");
-> 	}
+OK Then I will try it.
 
-The error message should be "Could not get reset\n" instead.
+Register Layout:
 
-> > > +	}
-> > > +
-> > > +	ret = clk_prepare_enable(sp_i2c_dev_info->clk);
-> > > +
-> > > +	if (ret) {
-> > > +		dev_err(&pdev->dev, "failed to enable clk: %d\n", ret);
-> > 
-> > Consider using "%pe" and ERR_PTR(ret) to print the error name instead of a
-> > number [1].
-> > 
-> > [1]
-> > https://www.kernel.org/doc/html/latest/core-api/printk-formats.html?#error-p
-> > ointers
-> > 
-> > > +		goto err_clk_disable;
-> > 
-> > 		return ret;
-> > 
-> 
-> I will make change as below  is it OK ?
-> 
-> 	ret = clk_prepare_enable(sp_i2c_dev_info->clk);
-> 
-> 	if (ret) {
-> 		dev_err(&pdev->dev, "failed to enable clk: %pe\n", ERR_PTR(ret));
+| Address |  Name   |  Type  | Access | Default | B7 | B6 | B5 | B4 | B3 
+| B2 | B1 | B0 |
+|:-------:|:-------:|:------:|:------:|:-------:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|  0x00   |   ID    |  Data  |   R    |  0xA4   | VENDOR[2:0]  |       
+DIE_ID[4:0]      |
+|  0x01   | MONITOR | Status |   R    |  0x30   |    DIE_REV[3:0]   | SC 
+| BE | CE | UV |
+|  0x02   | CONTROL | Config |  R/W   |  0x00   |MODE[1:0]| BE 
+|TEMP[1:0]|FADE_RATE[2:0]|
+|  0x03   |  IRED0  | Config |  R/W   |  0x28   |            
+IRED_SET0[7:0]             |
+|  0x04   |  IGRN0  | Config |  R/W   |  0x28   |            
+IGRN_SET0[7:0]             |
+|  0x05   |  IBLU0  | Config |  R/W   |  0x28   |            
+IBLU_SET0[7:0]             |
+|  0x06   |  IRED1  | Config |  R/W   |  0x60   |            
+IRED_SET1[7:0]             |
+|  0x07   |  IGRN1  | Config |  R/W   |  0x60   |            
+IGRN_SET1[7:0]             |
+|  0x08   |  IBLU1  | Config |  R/W   |  0x60   |            
+IBLU_SET1[7:0]             |
+|  0x09   | ISELA12 | Config |  R/W   |  0x00   
+|ENA1|RGBA1_SEL[2:0]|ENA2|RGBA2_SEL[2:0]|
+|  0x0A   | ISELA34 | Config |  R/W   |  0x00   
+|ENA3|RGBA3_SEL[2:0]|ENA4|RGBA4_SEL[2:0]|
+|  0x0B   | ISELB12 | Config |  R/W   |  0x00   
+|ENB1|RGBB1_SEL[2:0]|ENB2|RGBB2_SEL[2:0]|
+|  0x0C   | ISELB34 | Config |  R/W   |  0x00   
+|ENB3|RGBB3_SEL[2:0]|ENB4|RGBB4_SEL[2:0]|
+|  0x0D   | ISELC12 | Config |  R/W   |  0x00   
+|ENC1|RGBC1_SEL[2:0]|ENC2|RGBC2_SEL[2:0]|
+|  0x0E   | ISELc34 | Config |  R/W   |  0x00   
+|ENC3|RGBC3_SEL[2:0]|ENC4|RGBC4_SEL[2:0]|
 
-Ok. Alternatively, you could also use dev_err_probe() as above.
+The registers 0x0A to 0x0E controls the LEDs. Each register controls two 
+LEDs.
+The top bit [3] of each byte nibble controls whether the LED is on or 
+off.
+The other bits [0:2] of each nibble, select which color register to use 
+Ixxx_SET0
+and Ixxx_SET1 (0x03 to 0x08).
 
-> 		goto err_clk_disable;
+Bit 0 -> Blue (RGBxx_SEL):
+If this bit is set to 1 then use IBLU_SET1 value otherwise bit is 0 use 
+IBLU_SET0 value.
 
-Not ok. If clk_prepare_enable() did not succeed, do not call
-clk_disable_unprepare(). return ret instead.
+Bit 1 -> Green RGBxx_SEL):
+If this bit is set to 1 then use IGRN_SET1 value otherwise bit is 0 use 
+IGRN_SET0 value.
 
-> 	}
-> 
-> > > +	}
-> > > +
-> > > +	ret = reset_control_deassert(sp_i2c_dev_info->rstc);
-> > > +
-> > > +	if (ret) {
-> > > +		dev_err(&pdev->dev, "failed to deassert reset line: %d\n", ret);
+Bit 2 -> Red RGBxx_SEL):
+If this bit is set to 1 then use IRED_SET1 value otherwise bit is 0 use 
+IRED_SET0 value.
 
-Consider either changing this to %pe or use dev_err_probe(), for
-consistency with the above error messages.
+This means that we can define two colors from the full RGB range in the 
+Ixxx_SET0
+and Ixxx_SET1 respectively. And the LEDs can select which RGB color, 
+value they want
+to use for the individual basic color via the RGBxx_SEL. In reality, 
+this is the electrical
+current that the LED gets. The different electric currents produce a 
+color depending
+on the current ratio.
 
-> > > +		goto err_reset_assert;
-> > 
-> > 		goto err_clk_disable;
+There are now various possibilities for the whole chip to fit into the 
+color LED framework
+of the kernel.
 
-This is required as well.
+Variant1:
+Prefill Ixxx_SET0 with one value for example 0x28 and set Ixxx_SET1 to 
+0x00.
+Then we could select with the RGBxx_SEl[2:0] of an LED which color we 
+want.
+But we only could have 8 colors because of the limition
 
-> > 
-> > > +	}
-> > > +
-> > > +	init_waitqueue_head(&sp_i2c_dev_info->wait);
-> > > +
-> > > +	dev_mode = of_device_get_match_data(&pdev->dev);
-> > > +	sp_i2c_dev_info->mode = dev_mode->mode;
-> > > +	sp_i2c_dev_info->total_port = dev_mode->total_port;
-> > > +	p_adap = &sp_i2c_dev_info->adap;
-> > > +	sprintf(p_adap->name, "%s%d", SP_DEVICE_NAME, device_id);
-> > > +	p_adap->algo = &sp_algorithm;
-> > > +	p_adap->algo_data = sp_i2c_dev_info;
-> > > +	p_adap->nr = device_id;
-> > > +	p_adap->class = 0;
-> > > +	p_adap->retries = 5;
-> > > +	p_adap->dev.parent = &pdev->dev;
-> > > +	p_adap->dev.of_node = pdev->dev.of_node;
-> > > +
-> > > +	ret = i2c_add_numbered_adapter(p_adap);
-> > > +
-> > > +	ret = _sp_i2cm_init(device_id, sp_i2c_dev_info);
-> > > +	if (ret != 0) {
-> > > +		dev_err(&pdev->dev, "i2c master %d init error\n", device_id);
-> > > +		goto err_reset_assert;
-> > 
-> > This one is correct, but I'd also print ret.
-> > 
-> 
-> I will make change as below  is it OK ?
-> 
-> 	ret = _sp_i2cm_init(device_id, sp_i2c_dev_info);
-> 	if (ret != 0) {
-> 		dev_err(&pdev->dev, "i2c master %d init error ret %d\n", device_id, ret);
-> 		goto err_reset_assert;
-> 	}
+This are the colors we could produce with this setup.
+| Red | Green | Blue |   Color |
+|:---:|:-----:|:----:|:-------:|
+|  0  |   0   |   1  |  Blue   |
+|  0  |   1   |   0  |  Green  |
+|  0  |   1   |   1  |Turquoise|
+|  1  |   0   |   0  |  Red    |
+|  1  |   0   |   1  |  Purple |
+|  1  |   1   |   0  |  Yellow |
+|  1  |   1   |   1  |  White  |
+|  0  |   0   |   0  |  Black  |
 
-Yes, although I'd prefer a consistent style with the error messages
-above. For example:
+The color brightness for the eight RGB colors can only be changed 
+together.
+To do this, the value of the entire Ixxx_SET0 must be changed at once, 
+for
+example 0x28 -> 0x14 to halve the brightness. However, this applies to 
+all LEDS!
+This variant would fit into the color LED framework of the kernel.
 
-		dev_err(&pdev->dev, "i2c master %d init error: %pe\n", device_id, ERR_PTR(ret));
+Variant2:
+Prefill Ixxx_SET0 and Ixxx_SET1 via device sysfs with an RGB color, and
+the select for every LEDS with RGBxx[2:0] which color ratio we want to 
+use.
+The problem with this is that we have to decide beforehand which color
+we want to use. We should not change the Ixxx_SET0 and Ixx_SET1 register
+value because that would affect all the LEDs! This variant would not fit 
+so well
+into the color LED framework of the kernel, as we could not selectively 
+change the
+color for each LED.
 
-or
+I hope I could make it understandable, if not please ask :-)
 
-		dev_err_probe(&pdev->dev, ret, "i2c master %d init error", device_id);
+> Do you have actual device where this is used?
 
-> > > +	}
-> > > +
-> > > +	if (ret < 0)
-> > > +		goto err_reset_assert;
-> > > +	else
-> > > +		platform_set_drvdata(pdev, sp_i2c_dev_info);
-> > > +
-> > > +	ret = request_irq(sp_i2c_dev_info->irq, _sp_i2cm_irqevent_handler,
-> > IRQF_TRIGGER_HIGH,
-> > > +				p_adap->name, sp_i2c_dev_info);
-> > > +	if (ret) {
-> > > +		dev_err(&pdev->dev, "request irq fail !!\n");
-> > > +		return I2C_ERR_REQUESET_IRQ;
-> > 
-> > Don't return non-standard error codes. This should return ret instead, but not
-> > before going through the error cleanup path below. Also, consider using
-> > devm_request_irq().
-> > 
-> 
-> I will make change as below  is it OK ?
-> 	ret = devm_request_irq(&pdev->dev, sp_i2c_dev_info->irq, _sp_i2cm_irqevent_handler,
-> 		IRQF_TRIGGER_HIGH, p_adap->name, sp_i2c_dev_info);
-> 	if (ret) {
-> 		dev_err(&pdev->dev, "request irq fail !!\n");
-> 		return ret;
-> 	}
+I don't know where the chip is installed, but we just have
+new hardware in the pipeline that has this chip for LED control.
+For our setup we only need 7 colors. Therefore, this chip is sufficient.
 
-Yes. With this, you can remove the free_irq() call below.
 
-regards
-Philipp
+- Best regards
+
+Florian
