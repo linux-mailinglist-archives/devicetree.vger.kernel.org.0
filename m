@@ -2,88 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB20E44B9DB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 02:07:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AD444BA39
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 03:14:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbhKJBJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Nov 2021 20:09:55 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:39554 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229512AbhKJBJz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 20:09:55 -0500
-Received: by mail-ot1-f49.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso1413182ots.6;
-        Tue, 09 Nov 2021 17:07:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=XVy96mJGWAltgt7UegL9Otd1SwtIvQvMyrZTa4hhou0=;
-        b=Iptavy81VH3Oz99JI6L9poAiXb+yDSAIUf4HVyKpCMSVSoSB2gXt2pAKg+t+NWNHlP
-         hmjCFc3vDO1VJ59SAEIE0JLet/aEjdT3biTsyt46v91xKoocZa8LpOt4B8PU7MM0JGui
-         zpWZClJZt4oV+KieF4sNPEaKuMUV4qHln2njUSdEh1bCIqIg3E0Db3tBghipuM0b5I63
-         q0UBGmdwBkoQPm+GAM2VQRTWhwn444vjYxLWwzp7YYCgRiq6SPLORPnxuYIV89Fl6+7O
-         7v8DoaKedIDBP8CX2TDYN7fytmNo4g8jr5q1a1z8R4KFfRwjN/EWuPliQyjMocWQezUj
-         d+vg==
-X-Gm-Message-State: AOAM5336vjw3fvQXgOdR/gBatT88d/tTD1ZE7FWlB4s5Lw07JxAkX2+5
-        52GBf+Y/mf8vDzjcDtm4qF2b+bmYjQ==
-X-Google-Smtp-Source: ABdhPJx9pN6F8YVjrzduGrvQpecWUeRByej2GoCjnvs7ACsSkC/DZAwpGEuXa596mR8zK5CSZEnMUA==
-X-Received: by 2002:a9d:7b51:: with SMTP id f17mr6824298oto.88.1636506427801;
-        Tue, 09 Nov 2021 17:07:07 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e2sm6919606ooh.40.2021.11.09.17.07.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Nov 2021 17:07:07 -0800 (PST)
-Received: (nullmailer pid 3016195 invoked by uid 1000);
-        Wed, 10 Nov 2021 01:07:06 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     jic23@kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-In-Reply-To: <20211109123127.96399-4-antoniu.miclaus@analog.com>
-References: <20211109123127.96399-1-antoniu.miclaus@analog.com> <20211109123127.96399-4-antoniu.miclaus@analog.com>
-Subject: Re: [PATCH 3/4] dt-bindings:iio:filter: add admv8818 doc
-Date:   Tue, 09 Nov 2021 19:07:06 -0600
-Message-Id: <1636506426.248164.3016194.nullmailer@robh.at.kernel.org>
+        id S229803AbhKJCRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Nov 2021 21:17:05 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:59288 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229630AbhKJCRE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Nov 2021 21:17:04 -0500
+X-UUID: 0d384af02bb242e48b9a527fd2e7d963-20211110
+X-UUID: 0d384af02bb242e48b9a527fd2e7d963-20211110
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <zhiyong.tao@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 42788957; Wed, 10 Nov 2021 10:14:15 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Wed, 10 Nov 2021 10:14:14 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Wed, 10 Nov 2021 10:14:13 +0800
+From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
+To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
+        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
+        <sean.wang@kernel.org>
+CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
+        <hui.liu@mediatek.com>, <light.hsieh@mediatek.com>,
+        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
+        <rex-bc.chen@mediatek.com>, <guodong.liu@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
+Subject: [PATCH v3 0/1] Mediatek pinctrl patch 
+Date:   Wed, 10 Nov 2021 10:14:10 +0800
+Message-ID: <20211110021411.31761-1-zhiyong.tao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Nov 2021 14:31:26 +0200, Antoniu Miclaus wrote:
-> Add device tree bindings for the ADMV8818 Filter.
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
->  .../bindings/iio/filter/adi,admv8818.yaml     | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
-> 
+This series includes 1 patches:
+1. fix global-out-of-bounds issue.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Changes in patch v3:
+1. keep original patch author
+2. fix version issue.
 
-yamllint warnings/errors:
+Changes in patch v2:
+1. change check eint number boundary condition.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml: properties:adi,bw-hz: '$ref' should not be valid under {'const': '$ref'}
-	hint: Standard unit suffix properties don't need a type $ref
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml: ignoring, error in schema: properties: adi,bw-hz
-warning: no schema found in file: ./Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
-Documentation/devicetree/bindings/iio/filter/adi,admv8818.example.dt.yaml:0:0: /example-0/spi/admv8818@0: failed to match any schema with compatible: ['adi,admv8818']
+Guodong Liu (1):
+  pinctrl: mediatek: fix global-out-of-bounds issue
 
-doc reference errors (make refcheckdocs):
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-See https://patchwork.ozlabs.org/patch/1552959
+--
+2.18.0
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
 
