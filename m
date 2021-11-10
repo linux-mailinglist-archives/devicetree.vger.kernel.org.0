@@ -2,62 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6E2A44C97F
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 20:50:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D93D44C983
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 20:50:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231882AbhKJTxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 14:53:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58924 "EHLO
+        id S231910AbhKJTxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 14:53:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231834AbhKJTxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 14:53:05 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD47DC061764
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:50:17 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id s13so5963690wrb.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:50:17 -0800 (PST)
+        with ESMTP id S231994AbhKJTxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 14:53:09 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4243FC0613F5
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:50:20 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id u1so5893884wru.13
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:50:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=IvmETFDU1aZRyg9GHS+FGtvzWa39IdshgN6HuoFmqYI=;
-        b=dKuxtI2584RvobmXc8CJP3nWR59VbsiSNVrW+FbRSzx2kB3wxpqGivnSRkUcp+4oZO
-         lzWMBSPeC5rT0BpFt0LqmblipaIUtKPqVoYM/N1E8gGsmCOHEjbfv8CztelutewnqNTo
-         Hhb7cwYhtPmnkx2/NQZKwhXVIfeqpiFiI2bnGiIHQfMyE2+Ml1lzfc6Maz8R/Oo8DVVB
-         2JkI1YYbZfiJjJ6MR4jdcb9FXhgS/mj9ivAhVAKHnT8/O7rkfFakekn9UqgqKKHaD4ad
-         VDeqnGPDJdCa3HgNZ1Fhl6jFv7I1d+UMvXXiqyVoogMBMl/9ientCN5Nd+RoFByj0mry
-         3HHw==
+        bh=fi1SQ0650VpnUBsZivmkkBhDo1jhzZgEKHW44G9Rwtw=;
+        b=h3AI7I6ru3Nn/MCBCN35cPu4WE47fz6h+EIjb1eXtPS/nC4egSJFdDxGFcHv0KaE7p
+         gt2ox2xz4q/bE6vbUm4+C5y1y1axolM+2MKnGJyp33JG1q5EcxX+mDca6A1MdDAPjH14
+         Iw2YT7/zeUur84LG9TKKpGcjdr+t3eoiuYsae9Y5PI2E686+j47lM6po+zm/iif9+2td
+         G1gnU1A6G8zFUJMo/eoIoeo8ivhQSrcHpol52F5NQYnWb2OoacJU89GqL63cfQlvR8HB
+         qp7IoZjwOuXLDV9bFLm1IgT/dZWW8QzbUJamQ+Rq1MqR8bGTdkRObjNsq73lwQHgNYmn
+         kCiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=IvmETFDU1aZRyg9GHS+FGtvzWa39IdshgN6HuoFmqYI=;
-        b=0bKIs5z2jFaMxxn6YOo5V2rSy2ZMFpVzArKfd59XbTnXWe7sIgYriOnh/Xlqn9lJaI
-         fHh4Y7iRD5K4IaQuDsH6oLE48jcJdkGdfowSSCx0MFRkTGNhaOWy46lQhujT1MUXiZZx
-         sf2KnLuQH3BJUfbg54ct7BJ0etWVlzu2d4w3lN7oaJpUogS4vFU5L+AkEfKBxqn5uk6X
-         Nl7wEGc57hESW5eDjg+UdXpqxtsrhMYc+NSQk3fKmZ1yL3D50TCTTxsh5CK/Yz8r6f3u
-         +WWFvG+j6AhIG0FOysGeVpliaxkyS88TudVKDIm++RnMjgulSWZa8n2r400sSg7REPPs
-         R83w==
-X-Gm-Message-State: AOAM532irg06hf+bXI5wtmZyWnRIdAcdMfqDLUXv4FA6Pwb2dSg0/fAn
-        YkbHpLvXAhz1rd4wAmneXr4mtA==
-X-Google-Smtp-Source: ABdhPJyt91L5dhbRUokBF789uCxIJneb+BFFENpsod7T3a54QzIpI6DlYXnYJQHB/pK/KpbL5weNvg==
-X-Received: by 2002:a5d:47c7:: with SMTP id o7mr2028688wrc.204.1636573816415;
-        Wed, 10 Nov 2021 11:50:16 -0800 (PST)
+        bh=fi1SQ0650VpnUBsZivmkkBhDo1jhzZgEKHW44G9Rwtw=;
+        b=45d4iPzlyoGqM+KCWAhLTCfxEPl9sPvf8nnxDBaBXknn6sJfDP66NOexq6+fVyMsYM
+         X3GqsBvvK4a80kppPgBqm24DU8LXXFf/xBWR1YOT23VzduKYS1LbWJHjam/40XCTHN6G
+         ixEkr/nP0sP1bwpd/3iMPhF7jJmxSNcO+XGY2HZWQZAA1yQ9b1Qm+lMM1b3R3eqmJPKL
+         miemSRn5n7u5Z0G3AqbDWSee57BrsTm34z0ZwQkMiZJBk8uBL7ZPEoQWEVfqhSAOvujn
+         8v99a8Ljio2e8J8PNbO6Y1e4GhYPCBzYU4r4CwREWjDHDHU27UhM7qs/Y84n/V4pRhwC
+         nwiA==
+X-Gm-Message-State: AOAM530kmc5mGzdvOk/gnk2GSmIA0s8K4YdscnwG9C7kAZJI3EMJjbeW
+        CRHkiJui0ufc0nXA6XVCnj/is58ZZOls4g==
+X-Google-Smtp-Source: ABdhPJyNwAHNRfrXhmSz0qWblbyRi1RZjAletdfZItDgstEuKD8EM5XYNkrrljsACKRpt8B1eOaSzA==
+X-Received: by 2002:a5d:6043:: with SMTP id j3mr1857692wrt.375.1636573818895;
+        Wed, 10 Nov 2021 11:50:18 -0800 (PST)
 Received: from localhost.localdomain ([88.160.162.107])
-        by smtp.gmail.com with ESMTPSA id k15sm750935wrx.53.2021.11.10.11.50.15
+        by smtp.gmail.com with ESMTPSA id k15sm750935wrx.53.2021.11.10.11.50.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Nov 2021 11:50:15 -0800 (PST)
+        Wed, 10 Nov 2021 11:50:18 -0800 (PST)
 From:   Fabien Parent <fparent@baylibre.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Qii Wang <qii.wang@mediatek.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh@kernel.org>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/4] dt-bindings: i2c: i2c-mt65xx: add binding for MT8365 SoC
-Date:   Wed, 10 Nov 2021 20:49:57 +0100
-Message-Id: <20211110194959.20611-2-fparent@baylibre.com>
+Subject: [PATCH v3 4/4] arm64: dts: mediatek: mt8192: fix i2c node names
+Date:   Wed, 10 Nov 2021 20:49:59 +0100
+Message-Id: <20211110194959.20611-4-fparent@baylibre.com>
 X-Mailer: git-send-email 2.33.1
 In-Reply-To: <20211110194959.20611-1-fparent@baylibre.com>
 References: <20211110194959.20611-1-fparent@baylibre.com>
@@ -67,30 +65,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding documentation for the MT8365 I2C controllers.
+Fix the i2c node names to be compliant to the YAML schema. The
+I2C node name should match the following pattern: "^i2c@[0-9a-f]+$".
 
 Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 v3: rebased
-v2: No change
+v2: new patch
 
- Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-index af0880fcc22b..843f3b22e975 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mt65xx.yaml
-@@ -27,6 +27,7 @@ properties:
-           - mediatek,mt8173-i2c
-           - mediatek,mt8183-i2c
-           - mediatek,mt8192-i2c
-+          - mediatek,mt8365-i2c
-       - items:
-           - enum:
-               - mediatek,mt2701-i2c
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index c7c7d4e017ae..53d790c335f9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -479,7 +479,7 @@ audsys: clock-controller@11210000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		i2c3: i2c3@11cb0000 {
++		i2c3: i2c@11cb0000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11cb0000 0 0x1000>,
+ 			      <0 0x10217300 0 0x80>;
+@@ -498,7 +498,7 @@ imp_iic_wrap_e: clock-controller@11cb1000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		i2c7: i2c7@11d00000 {
++		i2c7: i2c@11d00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d00000 0 0x1000>,
+ 			      <0 0x10217600 0 0x180>;
+@@ -511,7 +511,7 @@ i2c7: i2c7@11d00000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c8: i2c8@11d01000 {
++		i2c8: i2c@11d01000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d01000 0 0x1000>,
+ 			      <0 0x10217780 0 0x180>;
+@@ -524,7 +524,7 @@ i2c8: i2c8@11d01000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c9: i2c9@11d02000 {
++		i2c9: i2c@11d02000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d02000 0 0x1000>,
+ 			      <0 0x10217900 0 0x180>;
+@@ -543,7 +543,7 @@ imp_iic_wrap_s: clock-controller@11d03000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		i2c1: i2c1@11d20000 {
++		i2c1: i2c@11d20000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d20000 0 0x1000>,
+ 			      <0 0x10217100 0 0x80>;
+@@ -556,7 +556,7 @@ i2c1: i2c1@11d20000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c2: i2c2@11d21000 {
++		i2c2: i2c@11d21000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d21000 0 0x1000>,
+ 			      <0 0x10217180 0 0x180>;
+@@ -569,7 +569,7 @@ i2c2: i2c2@11d21000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c4: i2c4@11d22000 {
++		i2c4: i2c@11d22000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11d22000 0 0x1000>,
+ 			      <0 0x10217380 0 0x180>;
+@@ -588,7 +588,7 @@ imp_iic_wrap_ws: clock-controller@11d23000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		i2c5: i2c5@11e00000 {
++		i2c5: i2c@11e00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11e00000 0 0x1000>,
+ 			      <0 0x10217500 0 0x80>;
+@@ -607,7 +607,7 @@ imp_iic_wrap_w: clock-controller@11e01000 {
+ 			#clock-cells = <1>;
+ 		};
+ 
+-		i2c0: i2c0@11f00000 {
++		i2c0: i2c@11f00000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11f00000 0 0x1000>,
+ 			      <0 0x10217080 0 0x80>;
+@@ -620,7 +620,7 @@ i2c0: i2c0@11f00000 {
+ 			status = "disabled";
+ 		};
+ 
+-		i2c6: i2c6@11f01000 {
++		i2c6: i2c@11f01000 {
+ 			compatible = "mediatek,mt8192-i2c";
+ 			reg = <0 0x11f01000 0 0x1000>,
+ 			      <0 0x10217580 0 0x80>;
 -- 
 2.33.1
 
