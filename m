@@ -2,95 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2DBD44C609
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 18:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BD244C630
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 18:47:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbhKJRj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 12:39:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56834 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230380AbhKJRj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 12:39:58 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B628AC061766;
-        Wed, 10 Nov 2021 09:37:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=KlxesLbWPDNXnoH7U/Oi4/4ZNt/bBTzHwkDgmf86Hwg=; b=k5h77rlfxFgN394lib723UsbiC
-        gZdAW788aWrEruU9eYofr8azJIOH7uxyusGDBb82Sn+8fDjquCMkwsKwSEXXcVz3lpNaeXGQwzeTe
-        93DeqK1pdqmdL6u3ZslsioXuEC66aqiavxLejWlufrfrjgtZ6YsjiEh2kLuLsZklJ05s=;
-Received: from [77.247.85.102] (helo=localhost)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1mkrWy-0000B7-GL; Wed, 10 Nov 2021 18:37:04 +0100
-Received: from [::1] (helo=localhost)
-        by eeepc with esmtp (Exim 4.92)
-        (envelope-from <andreas@kemnade.info>)
-        id 1mkrWp-00043U-7S; Wed, 10 Nov 2021 18:36:55 +0100
-Date:   Wed, 10 Nov 2021 18:36:54 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Alistair Francis <alistair23@gmail.com>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
+        id S231825AbhKJRt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 12:49:58 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:39604 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230100AbhKJRt6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 12:49:58 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 468C82010CF;
+        Wed, 10 Nov 2021 18:47:09 +0100 (CET)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 398EA2010A1;
+        Wed, 10 Nov 2021 18:47:09 +0100 (CET)
+Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id AA7C1203B6;
+        Wed, 10 Nov 2021 18:47:08 +0100 (CET)
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mylene Josserand <mylene.josserand@free-electrons.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/4] Documentation: DT: bindings: input: Add
- documentation for cyttsp5
-Message-ID: <20211110183654.61328998@kemnade.info>
-In-Reply-To: <CAKmqyKNx00ecsAyOjtLk8i6r75WD0uw=nd=fd9z44yBuau+Vdw@mail.gmail.com>
-References: <20211103114830.62711-1-alistair@alistair23.me>
-        <20211103114830.62711-3-alistair@alistair23.me>
-        <20211105152154.20f5cbd1@aktux>
-        <CAKmqyKNx00ecsAyOjtLk8i6r75WD0uw=nd=fd9z44yBuau+Vdw@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; i686-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Abel Vesa <abel.vesa@nxp.com>
+Subject: [PATCH v4 00/12] arm64: dts: Add i.MX8DXL initial support 
+Date:   Wed, 10 Nov 2021 19:46:43 +0200
+Message-Id: <1636566415-22750-1-git-send-email-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Nov 2021 22:59:50 +1000
-Alistair Francis <alistair23@gmail.com> wrote:
+Changes since v3:
+ * Fixed the existing 8QM imx-lpi2c dtbs_check error
+ * Fixed the existing 8QM fsl-lpuart dtbs_check error
+ * Fixed the newly added 8DXL imx-lpi2c binding in order to not break others
+ * Fixed the newly added 8DXL fsl-lpuart binding in order to not break others
 
-[...]
-> >  
-> > > +            reset-gpios = <&pio 7 1 GPIO_ACTIVE_HIGH>;  
-> >
-> > hmm, if the reset gpio at the chip is active low (I guess it is) that
-> > would indicate an inverter between SoC and gpio. So a nonstandard setup
-> > as an example, probably not a good idea.  
-> 
-> It seems to be common for the cypress,tt2100, as the original
-> documentation and the rM2 both do this. Does the Kobo not do this?
-> 
+Abel Vesa (7):
+  dt-bindings: i2c: imx-lpi2c: Fix i.MX 8QM compatible matching
+  dt-bindings: serial: fsl-lpuart: Fix i.MX 8QM compatible matching
+  arm64: dts: imx8-ss-lsio: Add mu5a mailbox
+  arm64: dts: freescale: Add adma subsystem dtsi for imx8dxl
+  dt-bindings: fsl: scu: Add i.MX8DXL ocotp binding
+  dt-bindings: i2c: imx-lpi2c: Add i.MX8DXL compatible match
+  dt-bindings: serial: fsl-lpuart: Add i.MX8DXL compatible
 
-You have a kind of double inversion here, so things are automagically fixed.
-IMHO to describe it correctly would be to set GPIO_ACTIVE_LOW here
-and in the driver
+Jacky Bai (5):
+  arm64: dts: freescale: Add the top level dtsi support for imx8dxl
+  arm64: dts: freescale: Add the imx8dxl connectivity subsys dtsi
+  arm64: dts: freescale: Add ddr subsys dtsi for imx8dxl
+  arm64: dts: freescale: Add lsio subsys dtsi for imx8dxl
+  arm64: dts: imx8dxl: Add i.MX8DXL evk board support
 
-	/* Reset the gpio to be in a reset state */
-	ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-	if (IS_ERR(ts->reset_gpio)) {
-		rc = PTR_ERR(ts->reset_gpio);
-		dev_err(dev, "Failed to request reset gpio, error %d\n", rc);
-		return rc;
-	}
-	gpiod_set_value(ts->reset_gpio, 0);
+ .../bindings/arm/freescale/fsl,scu.txt        |   3 +-
+ .../bindings/i2c/i2c-imx-lpi2c.yaml           |   6 +-
+ .../bindings/serial/fsl-lpuart.yaml           |   7 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8-ss-lsio.dtsi      |   7 +
+ arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 266 ++++++++++++++++++
+ .../boot/dts/freescale/imx8dxl-ss-adma.dtsi   |  53 ++++
+ .../boot/dts/freescale/imx8dxl-ss-conn.dtsi   | 137 +++++++++
+ .../boot/dts/freescale/imx8dxl-ss-ddr.dtsi    |  36 +++
+ .../boot/dts/freescale/imx8dxl-ss-lsio.dtsi   |  78 +++++
+ arch/arm64/boot/dts/freescale/imx8dxl.dtsi    | 245 ++++++++++++++++
+ 11 files changed, 836 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-ddr.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8dxl.dtsi
 
-That is the way how other active-low reset lines are handled.
+-- 
+2.31.1
 
-Regards,
-Andreas
