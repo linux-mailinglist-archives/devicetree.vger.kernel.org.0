@@ -2,87 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F121344CCA4
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 23:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CC544CCAE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 23:28:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233642AbhKJW14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 17:27:56 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:55422 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233552AbhKJW1z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Nov 2021 17:27:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=6c7O9hvf//7ub1+0PLLd9pZ0Zd9X3mBxwS7SrJoaOIw=; b=aQMlY2ZIhrflITkxdfmcBwng62
-        wFM9qpYp8HuEJd6lyYIrJXjB3i4EPMasctvzVpUopFvVd5a1dywemthxZO5ivY0/UomxgPdqFOZpy
-        grMYLlM87sH6DmRsfZHkYh7S/TeX0cr24HjK/VdzLAuR70oJz7ok54yDgvktn+eviZLk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mkw1a-00D937-Nb; Wed, 10 Nov 2021 23:24:58 +0100
-Date:   Wed, 10 Nov 2021 23:24:58 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [RFC PATCH v3 2/8] leds: add function to configure hardware
- controlled LED
-Message-ID: <YYxGuloRkpsCI1oJ@lunn.ch>
-References: <20211109022608.11109-1-ansuelsmth@gmail.com>
- <20211109022608.11109-3-ansuelsmth@gmail.com>
- <20211109040103.7b56bf82@thinkpad>
- <YYqEPZpGmjNgFj0L@Ansuel-xps.localdomain>
- <YYre31rVDcs8OWre@lunn.ch>
- <YYwisR8XLL7TnwCB@Ansuel-xps.localdomain>
+        id S233519AbhKJWbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 17:31:11 -0500
+Received: from mta-02.yadro.com ([89.207.88.252]:40864 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S233039AbhKJWbK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Nov 2021 17:31:10 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id D91F045135;
+        Wed, 10 Nov 2021 22:28:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1636583301; x=
+        1638397702; bh=ujb4GC9grTv/jvMk6Gp1Kf5rclIO070PfVmTW4wEeso=; b=g
+        2UbOksnKslJ01YaEB2qDlVdaVtiFe5jGGTiEiZmKzIXqXemjH2+kzke/gUe8v1uX
+        ax1D2t3nhJUsGAawF+p41QEPoOm8xKPp2N3zDL5wZ24WHHKa8fkFnvebUBKXCA7D
+        ipWlYDoMPAWT02S0jD69OGSCd4ZcQncS2pLC2hx75E=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 9rDZC4b3qj3o; Thu, 11 Nov 2021 01:28:21 +0300 (MSK)
+Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 486BE4149B;
+        Thu, 11 Nov 2021 01:28:19 +0300 (MSK)
+Received: from nb-511.yadro.com (10.199.10.105) by T-EXCH-04.corp.yadro.com
+ (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Thu, 11
+ Nov 2021 01:28:18 +0300
+From:   Andrei Kartashev <a.kartashev@yadro.com>
+To:     <joel@jms.id.au>, <andrew@aj.id.au>, <openbmc@lists.ozlabs.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH 0/2] ARM: dts: device tree for YADRO VEGMAN BMC
+Date:   Thu, 11 Nov 2021 01:28:01 +0300
+Message-ID: <20211110222803.836-1-a.kartashev@yadro.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YYwisR8XLL7TnwCB@Ansuel-xps.localdomain>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.199.10.105]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-04.corp.yadro.com (172.17.100.104)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> If we should reuse blink_set to control hw blink I need to understand 2
-> thing.
-> 
-> The idea to implement the function hw_control_configure was to provide
-> the triggers some way to configure the various blink_mode. (and by using
-> the cmd enum provide different info based on the return value)
-> 
-> The advised path from Marek is to make the changes in the trigger_data
-> and the LED driver will then use that to configure blink mode.
-> 
-> I need to call an example to explain my concern:
-> qca8k switch. Can both run in hardware mode and software mode (by
-> controlling the reg to trigger manual blink) and also there is an extra
-> mode to blink permanently at 4hz.
-> 
-> Now someone would declare the brightness_set to control the led
-> manually and blink_set (for the permanent 4hz blink feature)
-> So that's where my idea comes about introducting another function and
-> the fact that it wouldn't match that well with blink_set with some LED.
-> 
-> I mean if we really want to use blink_set also for this(hw_control), we
-> can consider adding a bool to understand when hw_control is active or not.
-> So blink_set can be used for both feature.
+This brings initial DTS files for VEGMAN BMC machines
 
-I don't see why we need the bool. The driver should know that speeds
-it supports. If asked to do something it cannot do in the current mode
-it should return either -EINVAL, or maybe -EOPNOTSUPP. Depending on
-how to the trigger works, we might want -EOPNOTSUPP when in a hardware
-offload mode, which gets returned to user space. If we are in a
-software blinking mode -EINVAL, so that the trigger does the blinking
-in software.
+Andrei Kartashev (2):
+  dt-bindings: vendor-prefixes: add YADRO
+  ARM: dts: aspeed: add device tree for YADRO VEGMAN BMC
 
-   Andrew
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   5 +-
+ arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts  | 149 +++++++
+ arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts  | 255 ++++++++++++
+ arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts  | 154 +++++++
+ arch/arm/boot/dts/aspeed-bmc-vegman.dtsi      | 381 ++++++++++++++++++
+ 6 files changed, 945 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
+
+-- 
+2.32.0
+
