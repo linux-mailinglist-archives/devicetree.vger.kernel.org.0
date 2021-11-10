@@ -2,116 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E507F44C890
-	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 20:08:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D9544C8EE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Nov 2021 20:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230235AbhKJTKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 14:10:35 -0500
-Received: from mail-ua1-f54.google.com ([209.85.222.54]:45760 "EHLO
-        mail-ua1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232658AbhKJTKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 14:10:35 -0500
-Received: by mail-ua1-f54.google.com with SMTP id ay21so6909483uab.12;
-        Wed, 10 Nov 2021 11:07:47 -0800 (PST)
+        id S231238AbhKJT1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 14:27:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231779AbhKJT1Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 14:27:24 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00751C061766
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:24:35 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id t30so5806778wra.10
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 11:24:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZBcNPte2JXqPPCbEyKj3qBnsYEms5FQgmkXXyIOHj4o=;
+        b=g1uERBZq8p2ygU7G/w6WcKWaEF0vsLuDSAM24vOncFKQu6RUj7RcLgPl5GXCxE+9pX
+         4YpW4iLSPc96b7BKxII6r88zDn7HNPI9RjkhMn9T0sH6Oot09NPQb6fb4690M69mTiR/
+         +ZQZmvO+Rw6QQUGOx2QUwK2eVOCzFtN5ir7wY0KH+6bITt8fkx21LrgIcZgtUEiwn4C8
+         eBgIARzp/Vf3VvREVqCtloMZp/qVEf1Q+Q5jxIu4eSCikcUcVISJWI8bWnsMUgFZswLw
+         EbCjKsIhWzabKpbpbEJCK9NoVSznd5ISCSt4jSw/1dtaDssSVaVFG4NjuDUu8T+PE4ZT
+         o2tA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JVkOVIMojOtjUqioksXn7GnT56ja9tgOLgQ+4277MEE=;
-        b=fjYd9yz6VcyU8bHkb7NCESnndM5ERwt/R6eMIB60oXmL6xMJGL4iOfVRaRj3ar0Jqb
-         3ZEaNO3lrz49KdnI5FHckHwpOxhYjMlrxPX5Ht1GYJxlYUKn8PzRzHPzExqrPed2RG1C
-         51EoQzXxOzZSyoy0OslIqvMdwKCKUzpJvz7Eq5T7nrMz/r/ATYp8sLlwVAIAJ+yHHY/f
-         OVj0zYE5B0d1A2r9SKsvNNoP4gxzcqRnwrclwf1FFd/0RbJNlSsQK0r7NuCpxqNzqf83
-         hYRxCeD1LFoto6cfVGkvcv3sKF+9UbmxlHRuHZK+0icxbNnFaGja5x3VBHoNj84zGlVK
-         IHKw==
-X-Gm-Message-State: AOAM533g65lhvf+wLaq1fqggmL6HldV4WSXOoQaNgbfc6eK3+4/3BDfJ
-        0MG0Fpv7Tg2XgJwFuMV/zsC8KMHzrP9Gvg==
-X-Google-Smtp-Source: ABdhPJz+5wSNqDwACFvZCj9Bqo/s6w8WqkMTykc6tiPrOZqv3IDJZ4PLRbigmePd99pI/3CXAQqrOQ==
-X-Received: by 2002:a05:6102:d94:: with SMTP id d20mr2044416vst.12.1636571265982;
-        Wed, 10 Nov 2021 11:07:45 -0800 (PST)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id u14sm592142vsi.2.2021.11.10.11.07.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Nov 2021 11:07:45 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id i6so6943206uae.6;
-        Wed, 10 Nov 2021 11:07:45 -0800 (PST)
-X-Received: by 2002:a05:6102:2910:: with SMTP id cz16mr2351290vsb.9.1636571265036;
- Wed, 10 Nov 2021 11:07:45 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZBcNPte2JXqPPCbEyKj3qBnsYEms5FQgmkXXyIOHj4o=;
+        b=usP6uyaZ8PKQNrtH6p703X+4DHkwL9FPOOESeFmwUWTyZClSdWlNWVkipsssW4QFVl
+         aGFNEmbgblXdjMS+j5VPfaxY/MeK5onm8PVUYW+DM/1LiPywHjUf7+T8gvsasAURlTnH
+         Fq3JAcWEDj6RNJAid4X811z917eWNlpe2tmy9Ljo8C90e4dYI3/juNJzI6NF0hVZZWmm
+         eGUYfsINZzP7epg9hoypAuIfYJTOwFvQGF+Ed313wwedV6k2zV9EUF5warMEF/oQtwiI
+         yoldLlID2U76iC0Mm3P+wxWfhUJW1BvOBxiPrpKu54Ay4U7QJCahCBhH49ovA87sCAnc
+         syBw==
+X-Gm-Message-State: AOAM533zFuGpo7NV6P74Yq9VkPu0Cey3qLMD66oIpcR+n4e2HqdXQIuw
+        aU/fkxYOeRt6a7a29c7R7h2VVQ==
+X-Google-Smtp-Source: ABdhPJz2CFovYIbvWQjxyj3Y/wTT7TED3FY5M53+Mhy5pC+92jywXsPb6uDNVPidlkv4OHjR3R7s/g==
+X-Received: by 2002:adf:eece:: with SMTP id a14mr1689076wrp.333.1636572274488;
+        Wed, 10 Nov 2021 11:24:34 -0800 (PST)
+Received: from localhost.localdomain ([88.160.162.107])
+        by smtp.gmail.com with ESMTPSA id d16sm6250113wmb.37.2021.11.10.11.24.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 10 Nov 2021 11:24:34 -0800 (PST)
+From:   Fabien Parent <fparent@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        Jitao Shi <jitao.shi@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/3] arm64: dts: mt8183: add dpi node to mt8183
+Date:   Wed, 10 Nov 2021 20:24:15 +0100
+Message-Id: <20211110192417.4177741-1-fparent@baylibre.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <ef59d6fd3b2201b912d5eaa7f7a037d8f9adb744.1636561068.git.geert+renesas@glider.be>
- <ddcfa4b9-f7f4-04f5-89f2-b04c284e1945@prevas.dk>
-In-Reply-To: <ddcfa4b9-f7f4-04f5-89f2-b04c284e1945@prevas.dk>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 10 Nov 2021 20:07:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX_h9Tz8C-2SYyrS_G5BBbBNctqRA1mgKbhmYJxWzF-hg@mail.gmail.com>
-Message-ID: <CAMuHMdX_h9Tz8C-2SYyrS_G5BBbBNctqRA1mgKbhmYJxWzF-hg@mail.gmail.com>
-Subject: Re: [PATCH/RFC] of: Shrink struct of_device_id
-To:     Rasmus Villemoes <rasmus.villemoes@prevas.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rasmus,
+From: Pi-Hsun Shih <pihsun@chromium.org>
 
-On Wed, Nov 10, 2021 at 5:51 PM Rasmus Villemoes
-<rasmus.villemoes@prevas.dk> wrote:
-> On 10/11/2021 17.23, Geert Uytterhoeven wrote:
-> > Currently struct of_device_id is 196 (32-bit) or 200 (64-bit) bytes
-> > large.  It contains fixed-size strings for a name, a type, and a
-> > compatible value, but the first two are barely used.
-> > OF device ID tables contain multiple entries, plus an empty sentinel
-> > entry.
-> >
-> > Statistics for my current kernel source tree:
-> >   - 4487 tables with 16836 entries (3367200 bytes)
-> >   - 176 names (average 6.7 max 23 chars)
-> >   - 66 types (average 5.1 max 21 chars)
-> >   - 12192 compatible values (average 18.0 max 45 chars)
-> > Taking into account the minimum needed size to store the strings, only
-> > 6.9% of the allocated space is used...
-> >
-> > Reduce kernel size by reducing the sizes of the fixed strings by one
-> > half.
->
-> Tried something like this 2.5 years ago:
-> https://lore.kernel.org/lkml/20190425203101.9403-1-linux@rasmusvillemoes.dk/
+Add dpi node to mt8183.
 
-I wasn't aware of that.  I reworked some code which used multiple
-of_find_compatible_node() calls before, and noticed the end result
-had grown a lot due to the sheer size of of_device_id
-("[PATCH] soc: renesas: Consolidate product register handling",
- https://lore.kernel.org/all/057721f46c7499de4133135488f0f3da7fb39265.1636570669.git.geert+renesas@glider.be).
+Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+Signed-off-by: Fabien Parent <fparent@baylibre.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-> I think that there might be some not-in-tree code that relies on the
-> existing layout. I considered adding a CONFIG_ knob, either for these
-> sizes in particular, or more generally a def_bool y "CONFIG_LEGACY"
-> which embedded folks that build the entire distro from source and don't
-> have any legacy things can turn off, and then get more sensible defaults
-> all around.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index ba4584faca5a..7c283c0b68b5 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -1443,6 +1443,17 @@ dsi0: dsi@14014000 {
+ 			phy-names = "dphy";
+ 		};
+ 
++		dpi0: dpi@14015000 {
++			compatible = "mediatek,mt8183-dpi";
++			reg = <0 0x14015000 0 0x1000>;
++			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
++			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
++			clocks = <&mmsys CLK_MM_DPI_IF>,
++				 <&mmsys CLK_MM_DPI_MM>,
++				 <&apmixedsys CLK_APMIXED_TVDPLL>;
++			clock-names = "pixel", "engine", "pll";
++		};
++
+ 		mutex: mutex@14016000 {
+ 			compatible = "mediatek,mt8183-disp-mutex";
+ 			reg = <0 0x14016000 0 0x1000>;
+-- 
+2.33.1
 
-Most of that should have been gone since the #ifdef KERNEL was removed
-from include/linux/mod_devicetable.h in commit 6543becf26fff612
-("mod/file2alias: make modalias generation safe for cross compiling").
-Of course you can never know for sure...
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
