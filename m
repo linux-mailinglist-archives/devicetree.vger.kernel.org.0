@@ -2,255 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2679B44D249
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 08:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B2A344D2F1
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 09:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231589AbhKKHPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 02:15:23 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:36872 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231643AbhKKHPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 02:15:17 -0500
-X-UUID: 72a5d5c72bb746b09b4da0bec55eab1d-20211111
-X-UUID: 72a5d5c72bb746b09b4da0bec55eab1d-20211111
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 437877343; Thu, 11 Nov 2021 15:12:25 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.792.15; Thu, 11 Nov 2021 15:12:24 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
- Transport; Thu, 11 Nov 2021 15:12:23 +0800
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>
-Subject: [PATCH v2 5/5] arm64: dts: mt8195: add ethernet device node
-Date:   Thu, 11 Nov 2021 15:12:14 +0800
-Message-ID: <20211111071214.21027-6-biao.huang@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211111071214.21027-1-biao.huang@mediatek.com>
-References: <20211111071214.21027-1-biao.huang@mediatek.com>
+        id S229969AbhKKINp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 03:13:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230300AbhKKINo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 03:13:44 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C77B6C061766
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 00:10:55 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ml5AV-0007nx-Qf; Thu, 11 Nov 2021 09:10:47 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ore@pengutronix.de>)
+        id 1ml5AU-002z3q-4t; Thu, 11 Nov 2021 09:10:46 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: [PATCH v1] ARM: at91: add Microchip EVB-KSZ9477 board
+Date:   Thu, 11 Nov 2021 09:10:45 +0100
+Message-Id: <20211111081045.711323-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device node for mt8195 ethernet.
+Add KSZ9477 managed switch evaluation kit with SAMA5D36 MPU:
+https://www.microchip.com/en-us/development-tool/evb-ksz9477
 
-Signed-off-by: Biao Huang <biao.huang@mediatek.com>
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- arch/arm64/boot/dts/mediatek/mt8195-evb.dts | 92 +++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt8195.dtsi    | 70 ++++++++++++++++
- 2 files changed, 162 insertions(+)
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../arm/boot/dts/at91-sama5d3_ksz9477_evb.dts | 209 ++++++++++++++++++
+ 2 files changed, 210 insertions(+)
+ create mode 100644 arch/arm/boot/dts/at91-sama5d3_ksz9477_evb.dts
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-index 5cce9a5d3163..d90308f80229 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8195-evb.dts
-@@ -5,6 +5,8 @@
-  */
- /dts-v1/;
- #include "mt8195.dtsi"
-+#include <dt-bindings/pinctrl/mt8195-pinfunc.h>
-+#include <dt-bindings/gpio/gpio.h>
- 
- / {
- 	model = "MediaTek MT8195 evaluation board";
-@@ -32,6 +34,96 @@ reserved_memory: reserved-memory {
- 	};
- };
- 
-+&eth {
-+	phy-mode ="rgmii-rxid";
-+	phy-handle = <&eth_phy0>;
-+	snps,reset-gpio = <&pio 93 GPIO_ACTIVE_HIGH>;
-+	snps,reset-delays-us = <0 10000 10000>;
-+	mediatek,tx-delay-ps = <2030>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&eth_default>;
-+	pinctrl-1 = <&eth_sleep>;
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 7e0934180724..ff0557b9dfc7 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -59,6 +59,7 @@ dtb-$(CONFIG_SOC_SAM_V7) += \
+ 	at91-sama5d2_icp.dtb \
+ 	at91-sama5d2_ptc_ek.dtb \
+ 	at91-sama5d2_xplained.dtb \
++	at91-sama5d3_ksz9477_evb.dtb \
+ 	at91-sama5d3_xplained.dtb \
+ 	at91-dvk_som60.dtb \
+ 	at91-gatwick.dtb \
+diff --git a/arch/arm/boot/dts/at91-sama5d3_ksz9477_evb.dts b/arch/arm/boot/dts/at91-sama5d3_ksz9477_evb.dts
+new file mode 100644
+index 000000000000..443e8b022897
+--- /dev/null
++++ b/arch/arm/boot/dts/at91-sama5d3_ksz9477_evb.dts
+@@ -0,0 +1,209 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++/*
++ * Copyright (c) 2021 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
++ */
++/dts-v1/;
++#include "sama5d36.dtsi"
++
++/ {
++	model = "EVB-KSZ9477";
++	compatible = "microchip,sama5d3-ksz9477-evb", "atmel,sama5d36",
++		     "atmel,sama5d3", "atmel,sama5";
++
++	chosen {
++		stdout-path = &dbgu;
++	};
++
++	reg_3v3: regulator-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	reg_vcc_mmc0: regulator-mmc0 {
++		compatible = "regulator-fixed";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_mcc0_vcc>;
++		regulator-name = "mmc0-vcc";
++		regulator-max-microvolt = <3300000>;
++		regulator-min-microvolt = <3300000>;
++		gpio = <&pioE 2 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&dbgu {
++	status = "okay";
++};
++
++&ebi {
++	pinctrl-0 = <&pinctrl_ebi_nand_addr>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&i2c0 {
++	pinctrl-0 = <&pinctrl_i2c0_pu>;
++	status = "okay";
++};
++
++&macb0 {
++	phy-mode = "rgmii";
 +	status = "okay";
 +
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		eth_phy0: eth_phy0@1 {
-+			compatible = "ethernet-phy-id001c.c916";
-+			reg = <0x1>;
++	fixed-link {
++		speed = <1000>;
++		full-duplex;
++	};
++};
++
++&main_xtal {
++	clock-frequency = <12000000>;
++};
++
++&mmc0 {
++	pinctrl-0 = <&pinctrl_mmc0_clk_cmd_dat0 &pinctrl_mmc0_dat1_3
++		     &pinctrl_mmc0_dat4_7 &pinctrl_mmc0_cd>;
++	status = "okay";
++
++	slot@0 {
++		reg = <0>;
++		bus-width = <8>;
++		cd-gpios = <&pioE 0 GPIO_ACTIVE_LOW>;
++		disable-wp;
++		vmmc-supply = <&reg_vcc_mmc0>;
++		vqmmc-supply = <&reg_3v3>;
++	};
++};
++
++&nand_controller {
++	status = "okay";
++
++	nand@3 {
++		reg = <0x3 0x0 0x2>;
++		atmel,rb = <0>;
++		nand-bus-width = <8>;
++		nand-ecc-mode = "hw";
++		nand-ecc-strength = <4>;
++		nand-ecc-step-size = <512>;
++		nand-on-flash-bbt;
++		label = "atmel_nand";
++	};
++};
++
++&slow_xtal {
++	clock-frequency = <32768>;
++};
++
++&spi0 {
++	cs-gpios = <&pioD 13 GPIO_ACTIVE_LOW>, <0>, <0>,
++		   <&pioD 16 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
++&spi1 {
++	pinctrl-0 = <&pinctrl_spi_ksz>;
++	cs-gpios = <&pioC 25 GPIO_ACTIVE_LOW>;
++	status = "okay";
++
++	switch@0 {
++		compatible = "microchip,ksz9477";
++		reg = <0>;
++		spi-max-frequency = <1000000>;
++		spi-cpha;
++		spi-cpol;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				label = "lan1";
++			};
++
++			port@1 {
++				reg = <1>;
++				label = "lan2";
++			};
++
++			port@2 {
++				reg = <2>;
++				label = "lan3";
++			};
++
++			port@3 {
++				reg = <3>;
++				label = "lan4";
++			};
++
++			port@4 {
++				reg = <4>;
++				label = "lan5";
++			};
++
++			port@5 {
++				reg = <5>;
++				label = "cpu";
++				ethernet = <&macb0>;
++				phy-mode = "rgmii-txid";
++
++				fixed-link {
++					speed = <1000>;
++					full-duplex;
++				};
++			};
 +		};
 +	};
 +};
 +
-+&pio {
-+	eth_default: eth_default {
-+		txd_pins {
-+			pinmux = <PINMUX_GPIO77__FUNC_GBE_TXD3>,
-+				 <PINMUX_GPIO78__FUNC_GBE_TXD2>,
-+				 <PINMUX_GPIO79__FUNC_GBE_TXD1>,
-+				 <PINMUX_GPIO80__FUNC_GBE_TXD0>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+		cc_pins {
-+			pinmux = <PINMUX_GPIO85__FUNC_GBE_TXC>,
-+				 <PINMUX_GPIO88__FUNC_GBE_TXEN>,
-+				 <PINMUX_GPIO87__FUNC_GBE_RXDV>,
-+				 <PINMUX_GPIO86__FUNC_GBE_RXC>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+		rxd_pins {
-+			pinmux = <PINMUX_GPIO81__FUNC_GBE_RXD3>,
-+				 <PINMUX_GPIO82__FUNC_GBE_RXD2>,
-+				 <PINMUX_GPIO83__FUNC_GBE_RXD1>,
-+				 <PINMUX_GPIO84__FUNC_GBE_RXD0>;
-+		};
-+		mdio_pins {
-+			pinmux = <PINMUX_GPIO89__FUNC_GBE_MDC>,
-+				 <PINMUX_GPIO90__FUNC_GBE_MDIO>;
-+			input-enable;
-+		};
-+		power_pins {
-+			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-+				 <PINMUX_GPIO92__FUNC_GPIO92>;
-+			output-high;
-+		};
-+	};
++&usb0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usba_vbus>;
++	atmel,vbus-gpio = <&pioE 9 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++};
 +
-+	eth_sleep: eth_sleep {
-+		txd_pins {
-+			pinmux = <PINMUX_GPIO77__FUNC_GPIO77>,
-+				 <PINMUX_GPIO78__FUNC_GPIO78>,
-+				 <PINMUX_GPIO79__FUNC_GPIO79>,
-+				 <PINMUX_GPIO80__FUNC_GPIO80>;
++&pinctrl {
++	board {
++		pinctrl_i2c0_pu: i2c0-pu {
++			atmel,pins =
++				<AT91_PIOA 30 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
++				<AT91_PIOA 31 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
 +		};
-+		cc_pins {
-+			pinmux = <PINMUX_GPIO85__FUNC_GPIO85>,
-+				 <PINMUX_GPIO88__FUNC_GPIO88>,
-+				 <PINMUX_GPIO87__FUNC_GPIO87>,
-+				 <PINMUX_GPIO86__FUNC_GPIO86>;
++
++		pinctrl_mmc0_cd: mmc0-cd {
++			atmel,pins = <AT91_PIOE 0 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
 +		};
-+		rxd_pins {
-+			pinmux = <PINMUX_GPIO81__FUNC_GPIO81>,
-+				 <PINMUX_GPIO82__FUNC_GPIO82>,
-+				 <PINMUX_GPIO83__FUNC_GPIO83>,
-+				 <PINMUX_GPIO84__FUNC_GPIO84>;
++
++		pinctrl_mcc0_vcc: mmc0-vcc {
++			atmel,pins = <AT91_PIOE 2 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
 +		};
-+		mdio_pins {
-+			pinmux = <PINMUX_GPIO89__FUNC_GPIO89>,
-+				 <PINMUX_GPIO90__FUNC_GPIO90>;
-+			input-disable;
-+			bias-disable;
++
++		pinctrl_spi_ksz: spi-ksz {
++			atmel,pins =
++				<
++				/* SPI1_MISO */
++				AT91_PIOC 22 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
++				/* SPI1_MOSI */
++				AT91_PIOC 23 AT91_PERIPH_A AT91_PINCTRL_NONE
++				/* SPI1_SPCK */
++				AT91_PIOC 24 AT91_PERIPH_A AT91_PINCTRL_NONE
++
++				/* SPI CS */
++				AT91_PIOC 25 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
++				/* switch IRQ */
++				AT91_PIOB 28 AT91_PERIPH_GPIO AT91_PINCTRL_DEGLITCH
++				/* switch PME_N, SoC IN */
++				AT91_PIOC 30 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP
++				/* switch RST */
++				AT91_PIOC 31 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH
++				>;
 +		};
-+		power_pins {
-+			pinmux = <PINMUX_GPIO91__FUNC_GPIO91>,
-+				 <PINMUX_GPIO92__FUNC_GPIO92>;
-+			input-disable;
-+			bias-disable;
++
++		pinctrl_usba_vbus: usba-vbus {
++			atmel,pins =
++				<AT91_PIOE 9 AT91_PERIPH_GPIO AT91_PINCTRL_DEGLITCH>;
 +		};
 +	};
 +};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index a59c0e9d1fc2..f30a60dca5ef 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -823,6 +823,76 @@ spis1: spi@1101e000 {
- 			status = "disabled";
- 		};
- 
-+		eth: ethernet@11021000 {
-+			compatible = "mediatek,mt8195-gmac", "snps,dwmac-5.10a";
-+			reg = <0 0x11021000 0 0x4000>;
-+			interrupts = <GIC_SPI 716 IRQ_TYPE_LEVEL_HIGH 0>;
-+			interrupt-names = "macirq";
-+			mac-address = [00 55 7b b5 7d f7];
-+			clock-names = "axi",
-+				      "apb",
-+				      "mac_cg",
-+				      "mac_main",
-+				      "ptp_ref",
-+				      "rmii_internal";
-+			clocks = <&pericfg_ao CLK_PERI_AO_ETHERNET>,
-+				 <&pericfg_ao CLK_PERI_AO_ETHERNET_BUS>,
-+				 <&pericfg_ao CLK_PERI_AO_ETHERNET_MAC>,
-+				 <&topckgen CLK_TOP_SNPS_ETH_250M>,
-+				 <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
-+				 <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
-+			assigned-clocks = <&topckgen CLK_TOP_SNPS_ETH_250M>,
-+					  <&topckgen CLK_TOP_SNPS_ETH_62P4M_PTP>,
-+					  <&topckgen CLK_TOP_SNPS_ETH_50M_RMII>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_ETHPLL_D2>,
-+						 <&topckgen CLK_TOP_ETHPLL_D8>,
-+						 <&topckgen CLK_TOP_ETHPLL_D10>;
-+			power-domains = <&spm MT8195_POWER_DOMAIN_ETHER>;
-+			mediatek,pericfg = <&infracfg_ao>;
-+			snps,axi-config = <&stmmac_axi_setup>;
-+			snps,mtl-rx-config = <&mtl_rx_setup>;
-+			snps,mtl-tx-config = <&mtl_tx_setup>;
-+			snps,txpbl = <16>;
-+			snps,rxpbl = <16>;
-+			clk_csr = <0>;
-+			status = "disabled";
-+
-+			stmmac_axi_setup: stmmac-axi-config {
-+				snps,wr_osr_lmt = <0x7>;
-+				snps,rd_osr_lmt = <0x7>;
-+				snps,blen = <0 0 0 0 16 8 4>;
-+			};
-+
-+			mtl_rx_setup: rx-queues-config {
-+				snps,rx-queues-to-use = <1>;
-+				snps,rx-sched-sp;
-+				queue0 {
-+					snps,dcb-algorithm;
-+					snps,map-to-dma-channel = <0x0>;
-+					snps,priority = <0x0>;
-+				};
-+			};
-+			mtl_tx_setup: tx-queues-config {
-+				snps,tx-queues-to-use = <3>;
-+				snps,tx-sched-wrr;
-+				queue0 {
-+					snps,weight = <0x10>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x0>;
-+				};
-+				queue1 {
-+					snps,weight = <0x11>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x1>;
-+				};
-+				queue2 {
-+					snps,weight = <0x12>;
-+					snps,dcb-algorithm;
-+					snps,priority = <0x2>;
-+				};
-+			};
-+		};
-+
- 		mmc0: mmc@11230000 {
- 			compatible = "mediatek,mt8195-mmc", "mediatek,mt8192-mmc";
- 			reg = <0 0x11230000 0 0x10000>,
 -- 
-2.25.1
+2.30.2
 
