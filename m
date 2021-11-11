@@ -2,230 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F16744CFD1
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 03:11:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A7244CFDE
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 03:14:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234160AbhKKCMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 21:12:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60296 "EHLO
+        id S232723AbhKKCQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 21:16:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234013AbhKKCMP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 21:12:15 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 676BDC06122A
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 18:08:18 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id r12so18071661edt.6
-        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 18:08:18 -0800 (PST)
+        with ESMTP id S230338AbhKKCQx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 21:16:53 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8259C061766
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 18:14:04 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id bf8so8875242oib.6
+        for <devicetree@vger.kernel.org>; Wed, 10 Nov 2021 18:14:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
+        d=bytedance-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=x2f7mNHFGCNYaSYUTYmGvh1vF4I+NlTW7cZ0xXVFvLk=;
-        b=R4e4rH97jtwiKe8JCRSPD7urIB71/MDTR7HT4WFDvsXO8IrUI4+548uXNHI9ID3lZu
-         ctRbmW192o3CLs0qNxFTxBCye9EBSZkH+6BcdqEU6rVxRlFYKy040LsrwY9U2/e3N9jk
-         g/4+qNNO3jPTFBzaQHv+vSZJo6HD1LXmlOdccw3xhoNNOq0Wx3YUYcQOgtpjf2QssKqf
-         Ka0cbFDu8beL9hediOtMJ61ifIeAMkFmCOuTBo4KFiMKHUb/xX8WuLw/E1xpveb816UN
-         Rf52hxvUYnbd0Oz9Zd1+EL7Mx4InKcoZh16Uy1SpFRE+cL0hPTYM5mCzX1zqW56R1I3Z
-         6Z+w==
+        bh=MYi5aCjUCD0+yB7qfxUE4373YpQKBy2WyMq5xwnmcA4=;
+        b=Sws/mIn0Gk51Xd6SsH32MldeYkxZr5XC8c327sareMM+DOgEeKA4ZNSt1umQZdCWLZ
+         +UMPAUD0HKAndn9BWL1nEmXBMY1iSvN4KzAbOdyy+TlcJwaHdwJt3X84Q02Fb0uWjK0x
+         z+2WgAK/8//QJgFEnHUoOSm5MMSvZiw6J8gbgMFJqjUM7Vqf6E1KRYPPYqStf/ITPIyI
+         IOr5DW1e0HVOdIL8N7lRjcgUUhP3XfGgAfBRRHmO6F9iAchJWHxX/cEE/nq7dLtE6SdI
+         uJNE4q+/BCBiujekYRCK0IxVUpgj869Sc6wD8tNqFP/Tu4ADELUa4GKolN7AuBmKrCJ0
+         DrtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=x2f7mNHFGCNYaSYUTYmGvh1vF4I+NlTW7cZ0xXVFvLk=;
-        b=7bjLFo8Xff0Zn04z+02V86fReBhI+X58fIrXvW2cbUsHgaarc3tu0USJ3CdQCFfLXj
-         6pt3DP7JpeWR7fXLO3uw7LwJbAZtBf1zdoML947v76ad0Fp8dGEfgLKoOHvJmcdDncjs
-         0oDKE8go44xGN5RN1XH2SQ84eVfbrkdFaGRvWFrLHX6/ch4t3G62Pss0PAwvGJ0ta9vM
-         9h5WWLBkiLd14RsWnC8jXXXPpo0QmUJQ0xkk2lcMdpEtvoA1o+aTKjgzn1WyRU6ipcuS
-         egYOlrW5dLSLAJRI0W1H+Qxpb5k4jfpLRJwsosVoZqv5hIN4pOH0E6Q4wnVPgdG6p++j
-         aYlQ==
-X-Gm-Message-State: AOAM531V+3gQliBYWsW1ZY1gaYUxVFyd0tMsyijLbjCCSuomB5HhnpAC
-        SX1SbtbJjPr4aXKEAEQYsKOWXd1wYZxp+Vp5hf2RsQ==
-X-Google-Smtp-Source: ABdhPJwJ+V96RLd1FGOaO5sgF7EbrYmQoVDLbepCA1fvbEiabgxL8IStUtFtpIgbWCwxk9FiIehcIWd/3jwLCeXjOIk=
-X-Received: by 2002:a17:906:1451:: with SMTP id q17mr4784534ejc.36.1636596496906;
- Wed, 10 Nov 2021 18:08:16 -0800 (PST)
+        bh=MYi5aCjUCD0+yB7qfxUE4373YpQKBy2WyMq5xwnmcA4=;
+        b=B0xbUpWwOjjsEvQGkIyIs5QOQSYehP59wogAvtR8E02GK8Cz9lsZZ2EzTKeCiDc6RI
+         q5V1w6Qf1JACTnryjIM5M9rLPidcahpR9PVAJYIwfa1l955Dzbq7sNylRaHyKLtXkIRr
+         u3iXteLqnfuvKFqKn/0372IBaIEuposYbt/I4gHKwL/vUXHAwPfchGgRu02o/wuppf8f
+         y5TdXDmdKIiE2dYBKwLztqQ9Y34ukGd0N+NDEv29zhAxnfqSTu5g95MmVXAtn4VhKd/p
+         oTgit9UrQ+yhbsLvyCCh336sH/NKyl6rYML1tzu3bSdjxvDY2rXYuMM3WjjVRImoIMGR
+         A0Fw==
+X-Gm-Message-State: AOAM532NumIZ1uk70ZU+RUeQU4JRjfNR08GPK1nVUFQkjybzr/IcdYqY
+        b8yIZ4/7Uk73iqD7yraxsF1bCD3oZNlYdUb3vgvdPA==
+X-Google-Smtp-Source: ABdhPJy+EG4MlenKY/065waysP/gEnN6ZfNyVa8/y+Ek2fHIYAtEjpemB73dSsWDy8j+Ykvx850NuIlpnPWPGAHMPJ4=
+X-Received: by 2002:a05:6808:1384:: with SMTP id c4mr16980516oiw.34.1636596844169;
+ Wed, 10 Nov 2021 18:14:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-12-brad@pensando.io>
- <YXnGkjXMmLdFHEIF@robh.at.kernel.org>
-In-Reply-To: <YXnGkjXMmLdFHEIF@robh.at.kernel.org>
-From:   Brad Larson <brad@pensando.io>
-Date:   Wed, 10 Nov 2021 18:08:05 -0800
-Message-ID: <CAK9rFnzRF_Tv-DRO3SvrcZz7PmzPQOGJLS6f_ZBJPR4QbjG-Dw@mail.gmail.com>
-Subject: Re: [PATCH v3 11/11] arm64: dts: Add Pensando Elba SoC support
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211110222803.836-1-a.kartashev@yadro.com> <20211110222803.836-3-a.kartashev@yadro.com>
+In-Reply-To: <20211110222803.836-3-a.kartashev@yadro.com>
+From:   Lei Yu <yulei.sh@bytedance.com>
+Date:   Thu, 11 Nov 2021 10:13:53 +0800
+Message-ID: <CAGm54UESNecrEJfiv9vXyLYqM6OSGp1Cxt8hB0UJgG_Bgi=-tg@mail.gmail.com>
+Subject: Re: [External] [PATCH 2/2] ARM: dts: aspeed: add device tree for
+ YADRO VEGMAN BMC
+To:     Andrei Kartashev <a.kartashev@yadro.com>
+Cc:     joel@jms.id.au, andrew@aj.id.au, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Thu, Nov 11, 2021 at 6:29 AM Andrei Kartashev <a.kartashev@yadro.com> wrote:
+> +
+> +&fmc {
+> +       status = "okay";
+> +       flash@0 {
+> +               status = "okay";
+> +               label = "bmc";
+> +               m25p,fast-read;
+> +               partitions {
+> +                       compatible = "fixed-partitions";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +
+> +                       u-boot@0 {
+> +                               reg = <0x0 0x80000>; // 512KB
+> +                               label = "u-boot";
+> +                       };
+> +
+> +                       fit-image-a@80000 {
+> +                               reg = <0x80000 0x1b80000>; // 27.5MB
+> +                               label = "image-a";
+> +                       };
+> +
+> +                       sofs@1c00000 {
+> +                               reg = <0x1c00000 0x200000>; // 2MB
+> +                               label = "sofs";
+> +                       };
+> +
+> +                       rwfs@1e00000 {
+> +                               reg = <0x1e00000 0x600000>;  // 6MB
+> +                               label = "rwfs";
+> +                       };
+> +
+> +                       u-boot-env@2400000 {
+> +                               reg = <0x2400000 0x20000>; // 128KB
+> +                               label = "u-boot-env";
+> +                       };
+> +
+> +                       fit-image-b@2480000 {
+> +                               reg = <0x2480000 0x1b80000>; // 27.5MB
+> +                               label = "image-b";
+> +                       };
+> +               };
+> +       };
+> +};
 
-On Wed, Oct 27, 2021 at 2:37 PM Rob Herring <robh@kernel.org> wrote:
->
-> > +always-y     := $(dtb-y)
-> > +subdir-y     := $(dts-dirs)
-> > +clean-files  := *.dtb
->
-> None of these lines should be needed.
+The flash layout is not the same as the openbmc static layout, but
+like the one used by Intel-BMC.
+May I ask if you are going to upstream the bmc-code-update related
+changes for this layout?
 
-Yes, these will be removed.
 
-> > diff --git a/arch/arm64/boot/dts/pensando/elba-16core.dtsi b/arch/arm64/boot/dts/pensando/elba-16core.dtsi
-> > new file mode 100644
-> > index 000000000000..acf5941afbc1
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/pensando/elba-16core.dtsi
-> > @@ -0,0 +1,192 @@
-> > +// SPDX-License-Identifier: GPL-2.0
->
-> Do you care about using with non-GPL OS? Dual license is preferred.
->
-Dual is fine, changing to this:
-SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +&i2c0 {
+> +       /* SMB_IPMB_STBY_LVC3 */
+> +       multi-master;
+> +       general-call;
+> +       aspeed,dma-buf-size = <4095>;
+> +       aspeed,hw-timeout-ms = <300>;
 
-> > +             psci {
->
-> This goes at the root level.
->
-Moving to the root level
+These properties are not available in openbmc linux kernel tree, but
+used in Intel-BMC/linux, may I ask if you are going to upstream the
+related changes?
 
-> > +                     compatible = "arm,psci-0.2";
-> > +                     method = "smc";
-> > +             };
-> > +
-> > +     };
-> > +};
-> > diff --git a/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi b/arch/arm64/boot/dts/pensando/elba-asic-common.dtsi
-> > +
-> > +&spi0 {
-> > +     num-cs = <4>;
-> > +     cs-gpios = <0>, <0>, <&porta 1 GPIO_ACTIVE_LOW>,
-> > +                <&porta 7 GPIO_ACTIVE_LOW>;
-> > +     status = "okay";
-> > +     spi0_cs0@0 {
->
-> Node names should reflect the class of device and use standard name
-> defined in the DT spec. This probably doesn't have one. 'lora' perhaps?
->
-Right, I didn't see a standard name and found many approaches in other files
-so I likely based off of one of these below.   I searched the dts
-files for 'lora' and
-didn't find it.  Is that an acronym?  I can change it to what the preference is.
+> +       status = "okay";
+> +};
+> +
 
-./microchip/sparx5_pcb134_board.dtsi:
-&spi0 {
-   status = "okay";
-   spi@0 {
-           compatible = "spi-mux";
-           ...
-};
-
-./rockchip/rk3399.dtsi:
-spi5 {
-        spi5_clk: spi5-clk {
-                rockchip,pins =
-                        <2 RK_PC6 2 &pcfg_pull_up>;
-        };
-        spi5_cs0: spi5-cs0 {
-                rockchip,pins =
-                        <2 RK_PC7 2 &pcfg_pull_up>;
-        };
-        spi5_rx: spi5-rx {
-                rockchip,pins =
-                        <2 RK_PC4 2 &pcfg_pull_up>;
-        };
-        spi5_tx: spi5-tx {
-                rockchip,pins =
-                        <2 RK_PC5 2 &pcfg_pull_up>;
-        };
-};
-
->
-> > +             compatible = "semtech,sx1301";  /* Enable spidev */
->
-> What's spidev?
->
-It's module drivers/spi/spidev.c which won't populate /dev/spidevB.C unless
-there is a match which we need for the system to boot.  An earlier patch added
-to the compatible list below and the feedback on that was to remove it.  Later I
-noticed the compatible list expanded...
-
-static const struct of_device_id spidev_dt_ids[] = {
-        { .compatible = "rohm,dh2228fv" },
-        { .compatible = "lineartechnology,ltc2488" },
-        { .compatible = "semtech,sx1301" },
-        { .compatible = "lwn,bk4" },
-        { .compatible = "dh,dhcom-board" },
-        { .compatible = "menlo,m53cpld" },
-        { .compatible = "cisco,spi-petra" },
-        { .compatible = "micron,spi-authenta" },
-        {},
-};
-
-> > +             #address-cells = <1>;
-> > +             #size-cells = <1>;
-> > +             spi-max-frequency = <12000000>;
-> > +             reg = <0>;
-> > +     };
-> > +
-> > +     spi0_cs1@1 {
-> > +             compatible = "semtech,sx1301";
-> > +             #address-cells = <1>;
-> > +             #size-cells = <1>;
-> > +             spi-max-frequency = <12000000>;
-> > +             reg = <1>;
-> > +     };
-> > +
-> > +     spi0_cs2@2 {
-> > +             compatible = "semtech,sx1301";
-> > +             #address-cells = <1>;
-> > +             #size-cells = <1>;
-> > +             spi-max-frequency = <12000000>;
-> > +             reg = <2>;
-> > +             interrupt-parent = <&porta>;
-> > +             interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> > +     };
-> > +
-> > +     spi0_cs3@3 {
-> > +             compatible = "semtech,sx1301";
-> > +             #address-cells = <1>;
-> > +             #size-cells = <1>;
-> > +             spi-max-frequency = <12000000>;
-> > +             reg = <3>;
-> > +     };
-> > +};
-> > diff --git a/arch/arm64/boot/dts/pensando/elba-asic.dts b/arch/arm64/boot/dts/pensando/elba-asic.dts
-> > new file mode 100644
-> > index 000000000000..131931dc643f
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/pensando/elba-asic.dts
-> > @@ -0,0 +1,23 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +/dts-v1/;
-> > +
-> > +/ {
-> > +     model = "Elba ASIC Board";
-> > +     compatible = "pensando,elba";
->
-> Normally we have a compatible for the board plus the soc compatible.
-
-In this case there are currently five different boards/products that have no
-variations needing a board level description.
-
-Thanks,
-Brad
+-- 
+BRs,
+Lei YU
