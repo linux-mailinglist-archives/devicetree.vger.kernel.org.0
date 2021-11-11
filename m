@@ -2,250 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5F944D966
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 16:46:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4331C44D9D2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 17:06:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234009AbhKKPtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 10:49:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
+        id S233113AbhKKQJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 11:09:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234010AbhKKPtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:49:01 -0500
-Received: from mail-pj1-x1029.google.com (mail-pj1-x1029.google.com [IPv6:2607:f8b0:4864:20::1029])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D1EC061767
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:46:12 -0800 (PST)
-Received: by mail-pj1-x1029.google.com with SMTP id x7so4404334pjn.0
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:46:12 -0800 (PST)
+        with ESMTP id S233153AbhKKQJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 11:09:22 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37813C061766;
+        Thu, 11 Nov 2021 08:06:33 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id bu18so15402419lfb.0;
+        Thu, 11 Nov 2021 08:06:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gdTkR49a2fjsLz2HZrs6mipLH/WYyEV/YROuBEVCTvc=;
-        b=TcRLIlJ+XSCZ39y/QjV+b+52OgxQtLsaIBvwAFO3+lLtP2b208pm6yoqMgAjSDP8gm
-         8+ZmRw6cQqpNCx/uFNKcZhBi1AebPoIf6PTP15mMGcUpuzhvbVqPnhHQ9N8wKNUq7J1x
-         ZFAzMrRxQCjqHq8kFOEPCL7AQBmWl1sb82bKw=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CKJUqhZF5ZFTvwMtANSKQusnvw1X0fA7nKg2F8RC/Ms=;
+        b=E7DOIK5OLuR7Qd875x9oQw0cG2GNuu07Tgb4xeBwdyfFZXqPTxXbM3idPFqr5FDewI
+         9g3cmkTcvYRpXDkTeupkc8+UiJFVWjYFmkOImZ/IcvmOTa3lBCc8h2voJIkWd7fddoRv
+         +ovIqqHdzpwQHLWoXo37dnZy+YbsBkQYSHzqP1F8IvIOkzCZdFKWvyxHRZIg82N4BtZy
+         S1MfKKR3XM81iZSXu+cWhcrCz4WwcxbkDVZO7Ywr5Hb70OOc38pZtOJzizlc/AVdld6l
+         dF6uA6L+aJwQY97YkgfpaKnoIgb0GWD0yCLmxDWNFytHu12MQpIMVFUdIlk4UyPoslOs
+         zbog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gdTkR49a2fjsLz2HZrs6mipLH/WYyEV/YROuBEVCTvc=;
-        b=KopENNHqUx+FwzmY1ewvfU2k9WITTcEPJxDAKUpy0mq46O2fFbukvzNQ0mnIK7A0YR
-         i4zEJNWL0a/MFuGTNJ3U77yMzVHCbCnaHVF+SUo4M0iLdHgi8sjhWUftPrt4sRPraVH7
-         +NP9CuQLhlODC7fNNIbhNIwkSsyBWj3opPsfrH9VIMhtig8YGUCwho8GRnhedCq1A4T6
-         avkxHdh5MR3ChUr+Uegi9dU93kYZa87aoA1HSot6q+kE0Cn6ziiDedqAeylsTSOrkEnC
-         XdN/RehM/XdFqt1ZsLIcdhYTVHBDnKyuzsADZFCCodXHcIWqMd69v6AQ39eQjYKLXCxb
-         lcCw==
-X-Gm-Message-State: AOAM533873DoQH+0buC2oUyuA91oVTc0D0w3broMIzxRVdfsPUlTmbnZ
-        L/ZehuZutOPqcI/OdusZtFZpwA==
-X-Google-Smtp-Source: ABdhPJyKSFVtrhqu4iMD2tbs6mrsV3pZeqAmyazdKIQ4OxQiHBYF0P3har+ERDcfRZXS1g8Awncltw==
-X-Received: by 2002:a17:902:f24a:b0:141:c6fc:2e18 with SMTP id j10-20020a170902f24a00b00141c6fc2e18mr9195025plc.55.1636645571516;
-        Thu, 11 Nov 2021 07:46:11 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a0a9:3041:135c:4e21:846c])
-        by smtp.gmail.com with ESMTPSA id m15sm2782122pjf.49.2021.11.11.07.46.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CKJUqhZF5ZFTvwMtANSKQusnvw1X0fA7nKg2F8RC/Ms=;
+        b=TcOPwfaE2JukoHc9P8HXpGUDZ0F0nhR5dMoSCsAdPvhd6aIeXR4pK8FgXRZn6VJ9sk
+         ueU8Wniv1tTLqvHANWPoQ2pgIhz1M0kSJbYk1qwhko5/YOxMIAQ0GipJUOZtm3aPmnTB
+         HuUvWq7LuHI+7gJsf2SrNX7Oa6SFdsIcv9mfe3i8jRcwpcG2Cb5WJguUNnkTcMKMXQ2u
+         4xr8CMkDtY85dlOuXfrVEnnV8skn4K4BrFsvJJ1783D+qCLAu/biDATFhUfUES2tXmNe
+         6ZKjXA3q/Swd+6SI/OwLYQH9aYReDMMwG5PYkeTr/CDo60JniKZpPReTjWdRNVz1uJET
+         6/Zg==
+X-Gm-Message-State: AOAM531J694Nc4UYQwxvFoVOt5Q20I83XFUV9xTjNBLfo6JcIpeOl9iM
+        RElbdXjdVFDzKmBmYiUkVsw=
+X-Google-Smtp-Source: ABdhPJxPJz3SZSMyS0anevF9Xao7uDB74dc0E1Dk6qIJ+s4vfldsk+aSk7BmjfUwQjCZLAB2xV2Esw==
+X-Received: by 2002:ac2:4e44:: with SMTP id f4mr7401210lfr.458.1636646791483;
+        Thu, 11 Nov 2021 08:06:31 -0800 (PST)
+Received: from mobilestation ([95.79.188.236])
+        by smtp.gmail.com with ESMTPSA id u23sm311037lji.56.2021.11.11.08.06.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 07:46:11 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amarula@amarulasolutions.com,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 3/3] ARM: dts: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1" OF
-Date:   Thu, 11 Nov 2021 21:15:57 +0530
-Message-Id: <20211111154557.852637-3-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211111154557.852637-1-jagan@amarulasolutions.com>
-References: <20211111154557.852637-1-jagan@amarulasolutions.com>
+        Thu, 11 Nov 2021 08:06:31 -0800 (PST)
+Date:   Thu, 11 Nov 2021 19:06:27 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        nandhini.srikandan@intel.com, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mgross@linux.intel.com,
+        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
+        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
+        mahesh.r.vaidya@intel.com, rashmi.a@intel.com
+Subject: Re: [PATCH v3 3/5] spi: dw: Add support for master mode selection
+ for DWC SSI controller
+Message-ID: <20211111160627.fcgrvj2k7x3lwtkp@mobilestation>
+References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
+ <20211111065201.10249-4-nandhini.srikandan@intel.com>
+ <YY0lpZkIsJih+g2o@sirena.org.uk>
+ <20211111145246.dj4gogl4rlbem6qc@mobilestation>
+ <YY0zUjjVobtg85o6@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YY0zUjjVobtg85o6@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ARM: dts: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0
+On Thu, Nov 11, 2021 at 03:14:26PM +0000, Mark Brown wrote:
+> On Thu, Nov 11, 2021 at 05:52:46PM +0300, Serge Semin wrote:
+> > On Thu, Nov 11, 2021 at 02:16:05PM +0000, Mark Brown wrote:
+> > > On Thu, Nov 11, 2021 at 02:51:59PM +0800, nandhini.srikandan@intel.com wrote:
+> 
+> > > > Add support to select the controller mode as master mode by setting
+> > > > Bit 31 of CTRLR0 register. This feature is supported for controller
+> > > > versions above v1.02.
+> 
+> > > Clearly older versions of the controller can also run in this mode...
+> 
+> > Yes, but the driver doesn't support the slave mode at the moment.
+> > So always enabling the master mode seems natural. (see my next comment
+> > also concerning this matter)
+> 
 
-Engicam C.TOUCH 2.0 is an EDIMM compliant general purpose Carrier
-board.
+> The commit message makes it sound like master mode is only supported for
+> the newer versions.
 
-Genaral features:
-- Ethernet 10/100
-- Wifi/BT
-- USB Type A/OTG
-- Audio Out
-- CAN
-- 10" LVDS Panel (SN65DSI84 DSI-LVDS bridge on SoM)
+I meant it doesn't really matter if the bit has been reserved before
+and the driver doesn't support the Slave-mode of the controller
+anyway.
+Regarding the Master-mode feature availability. Originally Wan added
+that flag setting for v1.01a here:
+https://patchwork.kernel.org/project/spi-devel-general/patch/20200312113129.8198-8-wan.ahmad.zainie.wan.mohamad@intel.com/
+Nandhini said in v2 that both Keem Bay and Thunder Bay uses DWC SSI
+v1.02a and the BIT[31] functionality is not Intel-specific, but
+generic for DWC SSIs.  So version-wise it's either Wan or Nandhini
+ware mistaken at some point.
 
-i.Core STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
+> 
+> > > This makes the configuration unconditional, it's not gated by controller
+> > > version checks or any kind of quirk any more meaning that if anything
+> 
+> > We have already discussed this feature in v2:
+> > https://patchwork.kernel.org/project/spi-devel-general/patch/20210824085856.12714-3-nandhini.srikandan@intel.com/
+> > Since that bit has been reserved before 1.02a but is no available for
+> > any DWC SSI controller and the driver doesn't support the SPI-slave mode
+> > at the moment I suggested to just always set that flag for the DWC SSI
+> > code. Please see my reply to Nandhini here:
+> 
 
-10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
+> Given that people seem to frequently customise these IPs when
+> integrating them I wouldn't trust people not to have added some other
+> control into that reserved bit doing some magic stuff that's useful in
+> their system.
 
-i.Core STM32MP1 needs to mount on top of C.TOUCH 2.0 carrier with
-pluged 10.1" OF for creating complete i.Core STM32MP1 C.TOUCH 2.0
-10.1" Open Frame board.
+In that case the corresponding platform code would have needed to have
+that peculiarity properly handled and not to use a generic compatibles
+like "snps,dwc-ssi-1.01a" or "snps,dw-apb-ssi", which are supposed to
+be utilized for the default IP-core configs only. For the sake of the
+code simplification I'd stick to setting that flag for each generic
+DWC SSI-compatible device. That will be also helpful for DWC SSIs
+which for some reason have the slave-mode enabled by default.
 
-Add support for it.
+Alternatively the driver could read the IP-core version from the
+DW_SPI_VERSION register, parse it (since it's in ASCII) and then use
+it in the conditional Master mode activation here. But that could have
+been a better solution in case if the older IP-cores would have used
+that bit for something special, while Nandhini claims it was reserved.
+So in this case I would stick with a simpler approach until we get to
+face any problem in this matter, especially seeing we already pocking
+the reserved bits of the CTRL0 register in this driver in the
+spi_hw_init() method when it comes to the DFS field width detection.
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- ...tm32mp157a-icore-stm32mp1-ctouch2-of10.dts | 132 ++++++++++++++++++
- 2 files changed, 133 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..641220e970e8 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1140,6 +1140,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp157a-microgea-stm32mp1-microdev2.0.dtb \
- 	stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dtb \
- 	stm32mp157a-icore-stm32mp1-ctouch2.dtb \
-+	stm32mp157a-icore-stm32mp1-ctouch2-of10.dtb \
- 	stm32mp157a-icore-stm32mp1-edimm2.2.dtb \
- 	stm32mp157a-stinger96.dtb \
- 	stm32mp157c-dhcom-pdk2.dtb \
-diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-new file mode 100644
-index 000000000000..351be43b3d39
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
-+ * Copyright (c) 2020 Engicam srl
-+ * Copyright (c) 2020 Amarula Solutons(India)
-+ */
-+
-+/dts-v1/;
-+#include "stm32mp157.dtsi"
-+#include "stm32mp157a-icore-stm32mp1.dtsi"
-+#include "stm32mp15-pinctrl.dtsi"
-+#include "stm32mp15xxaa-pinctrl.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1\" Open Frame";
-+	compatible = "engicam,icore-stm32mp1-ctouch2-of10",
-+		     "engicam,icore-stm32mp1", "st,stm32mp157";
-+
-+	aliases {
-+		serial0 = &uart4;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "gpio-backlight";
-+		gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
-+		default-on;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	panel {
-+		compatible = "ampire,am-1280800n3tzqw-t00h";
-+		backlight = <&backlight>;
-+		power-supply = <&v3v3>;
-+
-+		port {
-+			panel_in_lvds: endpoint {
-+				remote-endpoint = <&bridge_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi {
-+	status = "okay";
-+	phy-dsi-supply = <&reg18>;
-+
-+	ports {
-+		port@0 {
-+			reg = <0>;
-+			dsi_in: endpoint {
-+				remote-endpoint = <&ltdc_ep0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dsi_out: endpoint {
-+				remote-endpoint = <&bridge_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	i2c-scl-falling-time-ns = <20>;
-+	i2c-scl-rising-time-ns = <185>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c6_pins_a>;
-+	pinctrl-1 = <&i2c6_sleep_pins_a>;
-+	status = "okay";
-+
-+	bridge@2c {
-+		compatible = "ti,sn65dsi84";
-+		reg = <0x2c>;
-+		enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				bridge_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+					data-lanes = <0 1>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+				bridge_out: endpoint {
-+					remote-endpoint = <&panel_in_lvds>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&dsi_in>;
-+		};
-+	};
-+};
-+
-+&sdmmc1 {
-+	bus-width = <4>;
-+	disable-wp;
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	st,neg-edge;
-+	vmmc-supply = <&v3v3>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	status = "okay";
-+};
--- 
-2.25.1
+-Sergey
 
