@@ -2,199 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A52344D4D6
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 11:13:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEE244D52B
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 11:40:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230021AbhKKKP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 05:15:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54730 "EHLO
+        id S232940AbhKKKnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 05:43:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbhKKKP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 05:15:59 -0500
-Received: from mail-ua1-x92e.google.com (mail-ua1-x92e.google.com [IPv6:2607:f8b0:4864:20::92e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EDC4C061766;
-        Thu, 11 Nov 2021 02:13:10 -0800 (PST)
-Received: by mail-ua1-x92e.google.com with SMTP id b3so10824761uam.1;
-        Thu, 11 Nov 2021 02:13:10 -0800 (PST)
+        with ESMTP id S232951AbhKKKnH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 05:43:07 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64CA8C0613F5
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 02:40:17 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id p16so13147974lfa.2
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 02:40:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc;
-        bh=OV0UM9gJNoYarjOdaNebNlg6ZUQZxi88zAgzP/6FP0w=;
-        b=QrRvMTm/TwaPYXc45yS3JOUYUvVgZB71WdWV4dRm4JBHXWgxODzYLwW7+tmsU4qccH
-         5T8Jrhg1T+HfdM1ZQ7j4uHRlbn32QHJsz7p8dnRhA8RR0iahxUVUOeJ0XuI5T/eWq7xt
-         y2I2AKlwgIHG4XaEAiGZo8C7fEEZdQ0gZ9Qg7X/hG9h0eGO1t3gc7RIq7MEmhFl4W2xi
-         ulsQ8DLglPKgwxM/D2OSeg5SZRzOJXqfNDWFL5Tm58r8V3EexsnbV/eYXNaKPro6YvMV
-         Zpdbf/s7qj5I0hLSUyqykram8SZMmkApvAqQwiew7nu5zuEz9iYHiiI5GZGNH7wJU9Ja
-         eyuw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9tIx/igNKPYVIrwndCggjgpScM833Y4RL5Ah+VgOguU=;
+        b=DimTsruqEQMoF6afspPb/WQy4ew0Vd3WE4uUd9Bcq6kQ2kby/N9oSKkMx/WMc8aGMF
+         lwfmDXtMz9QmQrtpJWlpZS3P/k1+l+TZBhAQYqLvKU5kDenjkHerHRNJ+QBwFVchbM1k
+         k+dnVSZzel1b8uFhnDZaSpoUvsn/fhz+g+uPEiOAXXlyO+wID55gcsp1B5dR4IX5xpFD
+         +d3d2wGMf7NF2U6Sno4QqHQ0aYuF9ihzOhbwe9R2bjIxPn7ETuRf19qjThfxDYUQuBFW
+         f/wiamhlhi0xgGf2ncaD5yvplDL/3Z7wmkTVSs0ea8ByocaxleBny0xsujWZTfWtyIks
+         csEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=OV0UM9gJNoYarjOdaNebNlg6ZUQZxi88zAgzP/6FP0w=;
-        b=Foan/J8ZI5zIT3vEjwsZG+59B5J5Rsv5Q7EIAEbH77/Txpg7Swkd4CDquG8ThTb9yU
-         CLb2CkhvgLv8A9wC7ooklZiMStgfk7HMb5ky2zlfDe0jJH5FrVn6glykt2W1vfYNS4mw
-         zzTlF5gkLODBX+4ZNVXTjhL8uhDclDhjG9M/WI6IhQYrCp3s3R+f+SRbn5m+NTs63pPh
-         Hlmn5GNKS/fjKf3dnGTT/1Goy8XKL0n39Rd0sIDEsbZqGsGrO+5ppHAcjofpO5X5rqPV
-         UaGJSpZbgnKW/O/YHb0xVJ4mYoDebgqApairQd5hjMHMSUUVVDPs3LPeJdz5nvmHxhra
-         EenA==
-X-Gm-Message-State: AOAM532ueouJ75dzzNfpVk/+rNS3Im5SCcftRkjfuXjHtEdpPf0QC65L
-        jiTW2S/ThzWS4k4W18KVq6Kmo0KBCeYE32/0ewg=
-X-Google-Smtp-Source: ABdhPJxaRHHUZ22k+Ko739D5cwF3n8FJ9wWblVSb/ZT5zX8uIXJ17kDPhR3ACJmIcRvwwzfU30Vzy5n1WHsxeMot7CY=
-X-Received: by 2002:ab0:3e3:: with SMTP id 90mr8641510uau.102.1636625589295;
- Thu, 11 Nov 2021 02:13:09 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9tIx/igNKPYVIrwndCggjgpScM833Y4RL5Ah+VgOguU=;
+        b=sn20yS46wPciVO3q1tXmaJBnGT0gxEtbxdCITtCtlFNPzGvFUfL7r7e69Xl6A/VNiC
+         8ZusMFpjbn/h36p0NGr1TCIw0w+mpS6ariApnyrYGnqFmugap/IJSnsNmC7oUkSojyko
+         EpFXYUu+CtT5n5hG5xITknqDvNxLcxL9XZfOzOJNtmyDPNBXxAMNbzc5j/eNKudSrpxn
+         pubT9P5O4mkGt5/KQrjeG0VKXZMQEvukMJBCBQajnDnah22KZiaFYVtZc+P55D9FqcvO
+         4MY9PT2YxvHr6Y9ceCfngi1l43/M3eMCRWxFzGGg79PvpbVkv+QEQsq0FxxjOv2cam7G
+         /1Ng==
+X-Gm-Message-State: AOAM531HKW/S+X9kBSuPxmzV5yXBhS9ETGXDTSmrZjoyO4gfU/STixon
+        +Y/7K9BUcSeO7JVyPdfoJOSXDA5wc6hS8eFPg/uRPw==
+X-Google-Smtp-Source: ABdhPJxxMnc/++Ejn4mwaEgWk7yDts/ov3C1q1UFglFDJR1j83ZeQbo+BIoKTPuhhKDDvw47Oef3D/aDqV3Dz4XMJgU=
+X-Received: by 2002:a05:6512:2305:: with SMTP id o5mr5308056lfu.362.1636627215652;
+ Thu, 11 Nov 2021 02:40:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20210715141742.15072-1-andrea.merello@gmail.com>
- <20211028101840.24632-1-andrea.merello@gmail.com> <20211028101840.24632-11-andrea.merello@gmail.com>
- <20211028121001.73d8abbe@jic23-huawei>
-In-Reply-To: <20211028121001.73d8abbe@jic23-huawei>
-Reply-To: andrea.merello@gmail.com
-From:   Andrea Merello <andrea.merello@gmail.com>
-Date:   Thu, 11 Nov 2021 11:12:58 +0100
-Message-ID: <CAN8YU5PjJ9e8_RuLpY0JgLek-+HwxOLJ61MAGBqqzbqd6KWuYA@mail.gmail.com>
-Subject: Re: [v2 10/10] iio: imu: add BNO055 I2C driver
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Matt Ranostay <matt.ranostay@konsulko.com>,
-        Alexandru Ardelean <ardeleanalex@gmail.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Andrea Merello <andrea.merello@iit.it>
+References: <20211027181350.91630-1-nikita@trvn.ru> <CACRpkda_EM9mXuJdrZcpFaJCKF1UDgXkfdxkaniyXFHFd_7+Pw@mail.gmail.com>
+ <ec9185459dbc0e95dc2f2cdf27baa0f6@trvn.ru>
+In-Reply-To: <ec9185459dbc0e95dc2f2cdf27baa0f6@trvn.ru>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 11 Nov 2021 11:40:04 +0100
+Message-ID: <CACRpkdbp6udtBsDHkLmCivRcxCCCbMcGu5z41HVgMpLkPCkLGA@mail.gmail.com>
+Subject: Re: [PATCH 0/6] Add touch-keys support to the Zinitix touch driver
+To:     Nikita Travkin <nikita@trvn.ru>
+Cc:     dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        Michael.Srba@seznam.cz, broonie@kernel.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just an inline comment; OK for the rest.
-
-Il giorno gio 28 ott 2021 alle ore 13:05 Jonathan Cameron
-<jic23@kernel.org> ha scritto:
->
-> On Thu, 28 Oct 2021 12:18:40 +0200
-> Andrea Merello <andrea.merello@gmail.com> wrote:
->
-> > This path adds an I2C driver for communicating to a BNO055 IMU via I2C bus
-> > and it enables the BNO055 core driver to work in this scenario.
+On Tue, Nov 9, 2021 at 4:23 PM Nikita Travkin <nikita@trvn.ru> wrote:
+> [Me]
+> > Have you notices some behaviour like surplus touch events
+> > (like many press/release events fall through to the UI)
+> > when using this driver? I think it might need some z fuzzing
+> > but I am not sure.
 > >
-> > Signed-off-by: Andrea Merello <andrea.merello@iit.it>
-> Hi Andrea,
 >
-> A few minor things inline.
->
-> Jonathan
->
-> > ---
-> >  drivers/iio/imu/bno055/Kconfig      |  6 ++++
-> >  drivers/iio/imu/bno055/Makefile     |  1 +
-> >  drivers/iio/imu/bno055/bno055_i2c.c | 54 +++++++++++++++++++++++++++++
-> >  3 files changed, 61 insertions(+)
-> >  create mode 100644 drivers/iio/imu/bno055/bno055_i2c.c
-> >
-> > diff --git a/drivers/iio/imu/bno055/Kconfig b/drivers/iio/imu/bno055/Kconfig
-> > index 941e43f0368d..87200787d548 100644
-> > --- a/drivers/iio/imu/bno055/Kconfig
-> > +++ b/drivers/iio/imu/bno055/Kconfig
-> > @@ -7,3 +7,9 @@ config BOSH_BNO055_SERIAL
-> >       tristate "Bosh BNO055 attached via serial bus"
-> >       depends on SERIAL_DEV_BUS
-> >       select BOSH_BNO055_IIO
-> > +
-> > +config BOSH_BNO055_I2C
-> > +     tristate "Bosh BNO055 attached via I2C bus"
-> > +     depends on I2C
-> > +     select REGMAP_I2C
-> > +     select BOSH_BNO055_IIO
-> > diff --git a/drivers/iio/imu/bno055/Makefile b/drivers/iio/imu/bno055/Makefile
-> > index 7285ade2f4b9..eaf24018cb28 100644
-> > --- a/drivers/iio/imu/bno055/Makefile
-> > +++ b/drivers/iio/imu/bno055/Makefile
-> > @@ -2,3 +2,4 @@
-> >
-> >  obj-$(CONFIG_BOSH_BNO055_IIO) += bno055.o
-> >  obj-$(CONFIG_BOSH_BNO055_SERIAL) += bno055_sl.o
-> > +obj-$(CONFIG_BOSH_BNO055_I2C) += bno055_i2c.o
-> > diff --git a/drivers/iio/imu/bno055/bno055_i2c.c b/drivers/iio/imu/bno055/bno055_i2c.c
-> > new file mode 100644
-> > index 000000000000..eea0daa6a61d
-> > --- /dev/null
-> > +++ b/drivers/iio/imu/bno055/bno055_i2c.c
-> > @@ -0,0 +1,54 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * I2C interface for Bosh BNO055 IMU.
-> > + * This file implements I2C communication up to the register read/write
-> > + * level.
->
-> Not really. It just uses regmap, so I'd drop this comment.
->
-> > + *
-> > + * Copyright (C) 2021 Istituto Italiano di Tecnologia
-> > + * Electronic Design Laboratory
-> > + * Written by Andrea Merello <andrea.merello@iit.it>
-> > + */
-> > +
-> > +#include <linux/i2c.h>
->
-> Why?  I'm not seeing an i2c specific calls in here.
+> On my device (8 inch tablet with BT532) I saw no problems with touch
+> so far. However another person with a different tablet (10 inch with
+> ZT7554)
+> indeed says that they notice "multiplied" touches that make typing hard
+> so maybe that depends on controller model/firmware...
 
-Because of the definition of struct i2c_client, that is being accessed
-in lines like this
-dev_err(&client->dev, "Unable to init register map");
+It may even be depending on specimen. I saw that the vendor driver
+does contain some debouncing code.
 
-> > +#include <linux/regmap.h>
-> > +#include <linux/module.h>
->
-> mod_devicetable.h for struct i2c_device_id
->
-> > +
-> > +#include "bno055.h"
-> > +
-> > +#define BNO055_I2C_XFER_BURST_BREAK_THRESHOLD 3 /* FIXME */
-> > +
-> > +static int bno055_i2c_probe(struct i2c_client *client,
-> > +                         const struct i2c_device_id *id)
-> > +{
-> > +     struct regmap *regmap =
-> > +             devm_regmap_init_i2c(client, &bno055_regmap_config);
-> > +
-> > +     if (IS_ERR(regmap)) {
-> > +             dev_err(&client->dev, "Unable to init register map");
-> > +             return PTR_ERR(regmap);
-> > +     }
-> > +
-> > +     return bno055_probe(&client->dev, regmap,
-> > +                         BNO055_I2C_XFER_BURST_BREAK_THRESHOLD);
-> > +
-> > +     return 0;
->
-> ?
->
-> > +}
-> > +
-> > +static const struct i2c_device_id bno055_i2c_id[] = {
-> > +     {"bno055", 0},
-> > +     { },
->
-> It's at terminator, so don't put a comma as we'll never add entries after this.
->
-> > +};
-> > +MODULE_DEVICE_TABLE(i2c, bno055_i2c_id);
-> > +
-> > +static struct i2c_driver bno055_driver = {
-> > +     .driver = {
-> > +             .name = "bno055-i2c",
-> > +     },
-> > +     .probe = bno055_i2c_probe,
-> > +     .id_table = bno055_i2c_id
-> > +};
-> > +module_i2c_driver(bno055_driver);
-> > +
-> > +MODULE_AUTHOR("Andrea Merello");
-> > +MODULE_DESCRIPTION("Bosch BNO055 I2C interface");
-> > +MODULE_LICENSE("GPL v2");
->
+> And speaking of that ZT7554: Seems like it's works with the driver
+> and I'd like to add the compatible for it in v2 but I'd also have to add
+> it to the bindings. Looking at how you add all other similar names for BT*
+> there does it make sense to add ZT* as well?
+
+Yeah probably, if they are electrically very similar.
+
+> Maybe you have some hints where
+> to look for a list of the models?
+
+I usually google ... try to find things like powerpoints with roadmaps
+from the vendor and things like that. Best thing is if they answer
+to mail but I don't know if Zinitix are even around anymore.
+
+> I've noticed a yet another quirky issue with the touch controller:
+> At least on my device, for some reason enabling touchkeys changes the
+> way the
+> controller reports the finger touch events which breaks multi-touch...
+> Assuming that *not* enabling the touchkeys leads to calibration being
+> wrong
+> (controller assigns the touchkey sense lines to the touch area in that
+> case)
+> I now have to resolve this quirk as well...
+
+Hm yeah I guess refer to the (messy) vendor driver for hints.
+
+Yours,
+Linus Walleij
