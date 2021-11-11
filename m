@@ -2,145 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7F344D09A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 05:06:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F56144D0A2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 05:15:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230185AbhKKEJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 23:09:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58174 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231185AbhKKEJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 23:09:19 -0500
-Received: from mail-qk1-x72b.google.com (mail-qk1-x72b.google.com [IPv6:2607:f8b0:4864:20::72b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E2EC061766;
-        Wed, 10 Nov 2021 20:06:23 -0800 (PST)
-Received: by mail-qk1-x72b.google.com with SMTP id j2so4649815qkl.7;
-        Wed, 10 Nov 2021 20:06:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=OLcFQVtD+zrg7PXIBfRA8cAQH7T7V2/4cfVGtfrxAq8=;
-        b=lS36aFbkIRhJuC6Cd/AAaIIRXR6DpEI+MiQBTh+HAqDGQ7SJt2kOk9H7OefPb7ebNK
-         3aaMIjZ2VlWMsGo6UecehmNcDjgJPL0cuqd0Umndtlo7lzpVLJosTFKfQ5jLQmWN+gWR
-         Jr5xvZvaie2aDWnjNWXbAbJGgix5rr9ARnzYKIC+eLHLu1eICDbrqm5BMAU1FSKAGoDN
-         49GzgVLS1AtMP3yl2OZ0HlByk+DJfaIP8+CSdmBdJiTSYsNiET6sL5V9FzCrGaRLtDUg
-         DNpaMHeGFR8f41ArSJvrUf5szRHojZN4RxBZV/DP/lerAQFp9+r2/Xy1TUACK3rmOSMW
-         l+9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=OLcFQVtD+zrg7PXIBfRA8cAQH7T7V2/4cfVGtfrxAq8=;
-        b=WqgjKERpBcPonVVBQE9V/P66ZXnnR2iJAKlkitGeay/F2ngxMBtnsaQ5LkZUAipn1K
-         z42dIb0plTjDtDPd5ATEvilYT3mE9EY8lS8UHLdQIrDo+civqykkFjI2RP1mtECHMG9H
-         8loV0DXxvmEonIfrpUO7h9/twFcZAX4EWcbqs5WhhyJX471ccGTkgw87YWPGymvzI9up
-         VcTn51GQuxS0/yuMGTNJPGqsneqNpTKiLTuuFEwvxLmzJpR7apKn80U2jNeAFYF8eez5
-         1vxA8i5dSvB+10FwnoZi4AsL/sUhYWq3NpW4cLk51inmj4KcVU1gHdhIkHnXH2u1kdn5
-         pjzw==
-X-Gm-Message-State: AOAM530Dn7/7g7oanpf5udQSVBKRWSW51PX6GUlJtEI3racWK74UeOR4
-        V5e8VGBNniLPHgTgJUeKLz0=
-X-Google-Smtp-Source: ABdhPJwy1jkciX4+znRvqnHrGi5juDKLXSdn6bNl6om1ZBoExEpt68bOz9etkvnkVJVIPj1CjWlbwA==
-X-Received: by 2002:a37:5804:: with SMTP id m4mr3775483qkb.137.1636603582779;
-        Wed, 10 Nov 2021 20:06:22 -0800 (PST)
-Received: from [192.168.43.249] (mobile-166-172-188-236.mycingular.net. [166.172.188.236])
-        by smtp.gmail.com with ESMTPSA id p5sm1084681qtw.69.2021.11.10.20.06.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Nov 2021 20:06:22 -0800 (PST)
-Subject: Re: [PATCH/RFC] of: Shrink struct of_device_id
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, linux-mips@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <ef59d6fd3b2201b912d5eaa7f7a037d8f9adb744.1636561068.git.geert+renesas@glider.be>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <9e20f1b0-3fc4-920a-dff4-1227f72207cf@gmail.com>
-Date:   Wed, 10 Nov 2021 23:06:20 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230314AbhKKERy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 23:17:54 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49572 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229699AbhKKERx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 23:17:53 -0500
+X-UUID: 654d0d9315e34f51a8e916be87a02431-20211111
+X-UUID: 654d0d9315e34f51a8e916be87a02431-20211111
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 390699867; Thu, 11 Nov 2021 12:15:03 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 11 Nov 2021 12:15:02 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
+ Transport; Thu, 11 Nov 2021 12:15:01 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v10, 00/19] Support multi hardware decode using of_platform_populate
+Date:   Thu, 11 Nov 2021 12:14:41 +0800
+Message-ID: <20211111041500.17363-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <ef59d6fd3b2201b912d5eaa7f7a037d8f9adb744.1636561068.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+This series adds support for multi hardware decode into mtk-vcodec, by first adding use
+of_platform_populate to manage each hardware information: interrupt, clock, register
+bases and power. Secondly add core work queue to deal with core hardware message,
+at the same time, add msg queue for different hardware share messages. Lastly, the
+architecture of different specs are not the same, using specs type to separate them.
 
-On 11/10/21 11:23 AM, Geert Uytterhoeven wrote:
-> Currently struct of_device_id is 196 (32-bit) or 200 (64-bit) bytes
-> large.  It contains fixed-size strings for a name, a type, and a
-> compatible value, but the first two are barely used.
-> OF device ID tables contain multiple entries, plus an empty sentinel
-> entry.
-> 
-> Statistics for my current kernel source tree:
->   - 4487 tables with 16836 entries (3367200 bytes)
->   - 176 names (average 6.7 max 23 chars)
->   - 66 types (average 5.1 max 21 chars)
->   - 12192 compatible values (average 18.0 max 45 chars)
-> Taking into account the minimum needed size to store the strings, only
-> 6.9% of the allocated space is used...
+This series has been tested with both MT8183 and MT8173. Decoding was working for both chips.
 
-I like the idea of using less memory (and thank you for the above data!),
-but I do not like the implementation, which reduces the size (of name at
-least - I didn't check each field) to less than what the standard allows.
+Patches 1~3 rewrite get register bases and power on/off interface.
+Patches 4 export decoder pm interfaces.
+Patches 5 add to support 8192.
+Patch 6 support multi hardware.
+Patch 7 separate video encoder and decoder document
+Patch 8-17 add interfaces to support core hardware.
+Patch 18-19 remove mtk_vcodec_release_dec/enc_pm interfaces.
+---
+changes compared with v9:
+- need not to build ko, just export pm interfaces for patch 04/19.
+- fix comments for patch 06/19
 
-I have an idea of another way to accomplish the same goal, but I need to
-dig a bit to make sure I'm not shooting myself in the foot.
+changes compared with v8:
+- add new patch 18~19 to remove mtk_vcodec_release_de/enc_pm interfaces.
+- fix spelling mistakes for patch 17/19
+- fix yaml comments for patch 15/19
 
--Frank
+Changes compared with v7:
+- add new patch 4 to build decoder pm file as module
+- add new patch 5 to support 8192
+- fix comments for patch 6/17
+- change some logic for using work queue instead of create thread for core hardware decode for patch 10/17
+- using work queue for hardware decode instead of create thread for patch 13/17
+- add returen value for patch 14/17
+- fix yaml check fail 15/17
 
-> 
-> Reduce kernel size by reducing the sizes of the fixed strings by one
-> half.
-> 
-> This reduces the size of an ARM multi_v7_defconfig kernel by ca. 400
-> KiB.  For a typical kernel supporting a single board, you can expect to
-> save 50-100 KiB.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Notes:
->   - While gcc complains if the non-NUL characters in a string do not fit
->     in the available space, it does not complain if there is no space to
->     store the string's NUL-terminator.  However, that should be caught
->     during testing, as the affected entry won't ever match.  The kernel
->     won't crash, as such strings will still be terminated by the
->     sentinel in the table.
-> 
->   - We could save even more by converting the strings from fixed-size
->     arrays to pointers, at the expense of making it harder to mark
->     entries __init.  Given most drivers support binding and unbinding
->     and thus cannot use __init for of_device_id tables, perhaps that's
->     the way to go?
-> 
-> Thanks for your comments!
-> ---
->  include/linux/mod_devicetable.h | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/include/linux/mod_devicetable.h b/include/linux/mod_devicetable.h
-> index ae2e75d15b219920..2bb2558d52d30d2b 100644
-> --- a/include/linux/mod_devicetable.h
-> +++ b/include/linux/mod_devicetable.h
-> @@ -266,9 +266,9 @@ struct sdw_device_id {
->   * Struct used for matching a device
->   */
->  struct of_device_id {
-> -	char	name[32];
-> -	char	type[32];
-> -	char	compatible[128];
-> +	char	name[24];
-> +	char	type[24];
-> +	char	compatible[48];
->  	const void *data;
->  };
->  
-> 
+Changes compared with v6:
+- Use of_platform_populate to manage multi hardware, not component framework for patch 4/15
+- Re-write dtsi document for hardware architecture changed for patch 13/15 -The dtsi will write like below in patch 13/15:
+    vcodec_dec: vcodec_dec@16000000 {
+        compatible = "mediatek,mt8192-vcodec-dec";
+        #address-cells = <2>;
+        #size-cells = <2>;
+        ranges;
+        reg = <0 0x16000000 0 0x1000>;		/* VDEC_SYS */
+        mediatek,scp = <&scp>;
+        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
+        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
+        vcodec_lat {
+            compatible = "mediatek,mtk-vcodec-lat";
+            reg = <0 0x16010000 0 0x800>;		/* VDEC_MISC */
+            reg-name = "reg-misc";
+            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
+            iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
+                 <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
+            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+                 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+                 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+                 <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
+                 <&topckgen CLK_TOP_MAINPLL_D4>;
+            clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+                  "vdec-vdec", "vdec-top";
+            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
+        };
+
+        vcodec_core {
+            compatible = "mediatek,mtk-vcodec-core";
+            reg = <0 0x16025000 0 0x1000>;		/* VDEC_CORE_MISC */
+            reg-names = "reg-misc";
+            interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
+            iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
+                 <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
+            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+                 <&vdecsys CLK_VDEC_VDEC>,
+                 <&vdecsys CLK_VDEC_LAT>,
+                 <&vdecsys CLK_VDEC_LARB1>,
+                 <&topckgen CLK_TOP_MAINPLL_D4>;
+            clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
+                  "vdec-vdec", "vdec-top";
+            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
+            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
+            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
+        };
+    };
+
+Changes compared with v5:
+- Add decoder hardware block diagram for patch 13/15
+
+Changes compared with v4:
+- Fix comments for patch 4/15
+  >> +     if (dev->is_comp_supported) {
+  >> +             ret = mtk_vcodec_init_master(dev);
+  >> +             if (ret < 0)
+  >> +                     goto err_component_match;
+  >> +     } else {
+  >> +             platform_set_drvdata(pdev, dev);
+  >> +     }
+  Fix platform_set_drvdata.
+- Fix build error for patch 9/15
+- Add depend patch in case of error header file for patch 13/15
+
+Changes compared with v3:
+- Fix return value for patch 1/15
+- Fix comments for patch 4/15
+  > Looking up "mediatek,mtk-vcodec-core" to determine if it uses component framwork sounds like...
+  Add prameter in pdata, for all platform will use compoent after mt8183
+
+  >> +     if (dev->is_comp_supported) {
+  >> +             ret = mtk_vcodec_init_master(dev);
+  >> +             if (ret < 0)
+  >> +                     goto err_component_match;
+  >> +     } else {
+  >> +             platform_set_drvdata(pdev, dev);
+  >> +     }
+  > + Has asked the same question in [1].  Why it removes the
+  > +platform_set_drvdata() above?  mtk_vcodec_init_master() also calls platform_set_drvdata().
+  Must call component_master_add_with_match after platform_set_drvdata for component architecture.
+- Fix yaml files check fail for patch 5/15
+- Fix yaml file check fail for patch 14/15
+
+Changes compared with v1:
+- Fix many comments for patch 3/14
+- Remove unnecessary code for patch 4/14
+- Using enum mtk_vdec_hw_count instead of magic numbers for patch 6/14
+- Reconstructed get/put lat buffer for lat and core hardware for patch 7/14
+- Using yaml format to instead of txt file for patch 12/14
+
+Yunfei Dong (19):
+  media: mtk-vcodec: Get numbers of register bases from DT
+  media: mtk-vcodec: Align vcodec wake up interrupt interface
+  media: mtk-vcodec: Refactor vcodec pm interface
+  media: mtk-vcodec: export decoder pm functions
+  media: mtk-vcodec: Support MT8192
+  media: mtk-vcodec: Manage multi hardware information
+  dt-bindings: media: mtk-vcodec: Separate video encoder and decoder
+    dt-bindings
+  media: mtk-vcodec: Use pure single core for MT8183
+  media: mtk-vcodec: Add irq interface for multi hardware
+  media: mtk-vcodec: Add msg queue feature for lat and core architecture
+  media: mtk-vcodec: Generalize power and clock on/off interfaces
+  media: mtk-vcodec: Add new interface to lock different hardware
+  media: mtk-vcodec: Add work queue for core hardware decode
+  media: mtk-vcodec: Support 34bits dma address for vdec
+  dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
+  media: mtk-vcodec: Add core dec and dec end ipi msg
+  media: mtk-vcodec: Use codec type to separate different hardware
+  media: mtk-vcodec: Remove mtk_vcodec_release_dec_pm
+  media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
+
+ .../media/mediatek,vcodec-decoder.yaml        | 176 +++++++++++
+ .../media/mediatek,vcodec-encoder.yaml        | 187 ++++++++++++
+ .../media/mediatek,vcodec-subdev-decoder.yaml | 261 ++++++++++++++++
+ .../bindings/media/mediatek-vcodec.txt        | 131 --------
+ drivers/media/platform/mtk-vcodec/Makefile    |   6 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_dec.h      |   1 +
+ .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 219 +++++++++++---
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   | 172 +++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_hw.h   |  55 ++++
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 104 +++++--
+ .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |  12 +-
+ .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   2 +
+ .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  20 ++
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  75 ++++-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  21 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   |  10 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |   3 +-
+ .../platform/mtk-vcodec/mtk_vcodec_intr.c     |  27 +-
+ .../platform/mtk-vcodec/mtk_vcodec_intr.h     |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_util.c     |  87 +++++-
+ .../platform/mtk-vcodec/mtk_vcodec_util.h     |   8 +-
+ .../platform/mtk-vcodec/vdec/vdec_h264_if.c   |   2 +-
+ .../mtk-vcodec/vdec/vdec_h264_req_if.c        |   2 +-
+ .../platform/mtk-vcodec/vdec/vdec_vp8_if.c    |   2 +-
+ .../platform/mtk-vcodec/vdec/vdec_vp9_if.c    |   2 +-
+ .../media/platform/mtk-vcodec/vdec_drv_if.c   |  21 +-
+ .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |  16 +-
+ .../platform/mtk-vcodec/vdec_msg_queue.c      | 286 ++++++++++++++++++
+ .../platform/mtk-vcodec/vdec_msg_queue.h      | 148 +++++++++
+ .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  46 ++-
+ .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  22 ++
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   |   2 +-
+ .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   2 +-
+ 34 files changed, 1841 insertions(+), 295 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec.txt
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.h
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
+
+-- 
+2.25.1
 
