@@ -2,99 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A59444D900
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 16:16:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9612D44D933
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 16:31:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231739AbhKKPTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 10:19:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39248 "EHLO
+        id S232565AbhKKPeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 10:34:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232611AbhKKPTj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:19:39 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700A2C061767
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:16:50 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id g91-20020a9d12e4000000b0055ae68cfc3dso9314944otg.9
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:16:50 -0800 (PST)
+        with ESMTP id S233963AbhKKPea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:34:30 -0500
+Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41801C06127A
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:31:41 -0800 (PST)
+Received: by mail-oi1-x232.google.com with SMTP id n66so12170480oia.9
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:31:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FhB8iItBejzwjrEa1loJueZ9ZXnRDY7hXmZta29xgJ4=;
-        b=RHhhmajT9R6bgHbRESc2fgGIJLv2CWFiaAkYb1xPPG+nNOQf6SpbKlUAhc5IufiRDY
-         BU7qnZ6QjGBz57yN5sG5Sv9pkFHUKy8UAZDWTsBRmPn0wcv7vfBPaIfQ4OpqYMcnbFZ/
-         wnxZubBSMhKfY1ILz9ikdxOvzGUNqtZTIBgAvTqI8JIamxhHi3KkMmZZOQiaqhkHqKL6
-         ql6hLDx8Za/XsD5qQzjpDOvGZeRpSBm5LQlBMqBxxc2MyDhf9metgDRpPNJsafGIkpb/
-         +LRDXHoJoRF3Aw0MB4odMuCncLgN7Ws/hK8JaZnSoTn+y1q0yKjdzUPD1sCTTlF4wFeO
-         sJLw==
+         :cc:content-transfer-encoding;
+        bh=8pB+WwRzjj1VLddfWPFnbpX1zEu/AXjp6IsntdVdc4M=;
+        b=eVfYB5znA4+u5yoC3kq22eC1l5Wk36GwHpTFQmVXZ+6Wi+IGQQecl5zjDn5PbwLebG
+         9NHQW2rnKHVfOfkkaCicef7RsP2uCQ3uaHpeNbs8CuQklO+liFDFxf8YCkkK098I1lms
+         6LVa5VMuACMj7YYOCiicFLyVA11JCk92IaoioXkwrVxUkIuiT5fI4BcAWKbiKu9Wf+vs
+         OlvtAvy/c7q3SnQYWw1YHaUCqAuQdqCRPiuCs3gCnSbRbM0TMH4LcRsyQLHrTiRR+o6E
+         hG2jqomYCTG9lyC3nK0iC2K+lbj+FPd/WIUSUasqzzxuFnnc/bsC+ksk+rQPBWpRUMMY
+         RVbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FhB8iItBejzwjrEa1loJueZ9ZXnRDY7hXmZta29xgJ4=;
-        b=RBT5BPKRAagP0XFaHkMp3AKCgg13N/PMUM/8KGraxh4KEftZ1I8wGi0ZuACEetKElz
-         P/wgP69BBbj8ZXsKnJx424BBAOIt/HxSFyGSwkX6toNfP7Wfiqp8sNAeLV2PzXAijsuo
-         45TjpTmSvLV9VAyQoh0iK8bbtETJJ7jUZbzcZfSD83YWTjpDkfqqWWUfX5ULxwMblJFM
-         1prSuN/btkcc4IL/da/2PQGtcNvrS4QVHH8v4AwF3sohKlGWhALidFavYvDV7h6dJrJZ
-         tIxxVMJFKPDynqHIY99EQtQ3hfobaL92Q9dtm17Mko9vW9ULzVHhsYzGIhZH1mGlj05c
-         H7yg==
-X-Gm-Message-State: AOAM531qw1wqDOVgrzz15UKA0vpgVlcQBp2tZIsLoUBjfDf2h8kBMa1h
-        unqkh5Eoi0/LZwRjFK8FdlqGM7FLNvbvpclKnmidGw==
-X-Google-Smtp-Source: ABdhPJxYcwHKiOWs+DTPgi9NESiPf7NVzw/HdlcpYLb2qQtA0XFzifD249u7EjiXWMyo/n0b8DRsmXxQk9rPwf2aPd4=
-X-Received: by 2002:a9d:6348:: with SMTP id y8mr6611657otk.179.1636643809760;
- Thu, 11 Nov 2021 07:16:49 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8pB+WwRzjj1VLddfWPFnbpX1zEu/AXjp6IsntdVdc4M=;
+        b=ETeobECEk7Qa/llev52hvkodHiy20ZlqbcRwPITmu/ElLEbEudmaMbj2sVdUmX+oYl
+         kH5mvSNoe5mb6knGQfVa2qbtQ1BP0+B5QdIVOxtOzmgX3BTWuT5jhb1IS1usPWqZvUv8
+         Qb3wBLYHJZRTvb8z4DKJs0Xj3QH8eMcGP/HzypdMARsU75WaMzx88Y4R+vKH1Lc7xbLB
+         2F8M+W+WnLMTmj11Cs9Sq4Q7uQRi0SbDLVlGjbVI4h5A3pCGKsb6YpCit+oaN3386aIf
+         wsQB2VYU+X0EILwWUcGD07+9fMxEwkmMlkis7tBFr3BRpKKBlAindg71qYDHTCX9bP3o
+         SJ7g==
+X-Gm-Message-State: AOAM531Srp629fjwxmxdDJ6nWhl/bMaBguJMGUWvPQHtYZouxYZXK6pZ
+        usHP8/sNrPnwMYnBXosNAhKFWU7uyX18zEFIv0KApA==
+X-Google-Smtp-Source: ABdhPJwfj+szv19ZdA3wyhVqNUMQ0EA+/NDT2FaE6iQd8Igj9fZrBAlPin27pfo4wMPzekrNeaOxHlxFTjTEVk+FqJc=
+X-Received: by 2002:a05:6808:60e:: with SMTP id y14mr6897527oih.162.1636644700468;
+ Thu, 11 Nov 2021 07:31:40 -0800 (PST)
 MIME-Version: 1.0
-References: <20211103114830.62711-1-alistair@alistair23.me>
- <20211103114830.62711-3-alistair@alistair23.me> <20211105152154.20f5cbd1@aktux>
- <CAKmqyKNx00ecsAyOjtLk8i6r75WD0uw=nd=fd9z44yBuau+Vdw@mail.gmail.com> <20211110183654.61328998@kemnade.info>
-In-Reply-To: <20211110183654.61328998@kemnade.info>
+References: <20211110231436.8866-1-zajec5@gmail.com>
+In-Reply-To: <20211110231436.8866-1-zajec5@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Nov 2021 16:16:37 +0100
-Message-ID: <CACRpkdbrf8a7B-J=3s9x7JCyGgDk9VcsTd_-9o484MtfapVzHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] Documentation: DT: bindings: input: Add
- documentation for cyttsp5
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Alistair Francis <alistair23@gmail.com>,
-        Alistair Francis <alistair@alistair23.me>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mylene Josserand <mylene.josserand@free-electrons.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 11 Nov 2021 16:31:28 +0100
+Message-ID: <CACRpkdbAS0JiqTQUU0R0yRhVCwagubwsNYLxj1DLE1Ldc+H_JQ@mail.gmail.com>
+Subject: Re: [PATCH RFC] dt-bindings: pinctrl: support specifying pins
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        ext Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 6:37 PM Andreas Kemnade <andreas@kemnade.info> wrote:
-> Alistair Francis <alistair23@gmail.com> wrote:
+On Thu, Nov 11, 2021 at 12:14 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com>=
+ wrote:
 
-> You have a kind of double inversion here, so things are automagically fixed.
-> IMHO to describe it correctly would be to set GPIO_ACTIVE_LOW here
-> and in the driver
->
->         /* Reset the gpio to be in a reset state */
->         ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
->         if (IS_ERR(ts->reset_gpio)) {
->                 rc = PTR_ERR(ts->reset_gpio);
->                 dev_err(dev, "Failed to request reset gpio, error %d\n", rc);
->                 return rc;
->         }
->         gpiod_set_value(ts->reset_gpio, 0);
->
-> That is the way how other active-low reset lines are handled.
+> While working with pinctrl in Linux I started wondering if we could
+> start specifying pins in DT instead of Linux drivers. When working with
+> DT we usually avoid hardcoding hardware description in drivers so it
+> isn't clear to me why it doesn't apply to pins.
 
-Correct.
+Historically this is what pinctrl-single.c does.
+Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
 
-This is a source of confusion, I contemplated just changing the name
-of GPIOD_OUT_HIGH to GPIOD_OUT_ASSERTED etc to indicate
-what is going on.
+At the time we created pin control there was a bit back-and-forth and
+the conclusion was that there is not one-size-fits all for pin defines.
 
-gpiod_set_value(ts->reset_gpio, 0) should similarly be interpreted
-as "de-assert this line" no matter the polarity.
+The reason TI (Tony) wanted to push the information into DT
+was that what he gets is a number of unprocessed ASIC datasets,
+that are then turned into tables with a script. Header files or DTS
+source alike, but some kind of tables.
+
+At the time (2011?) it was unclear what kind of data should go into
+e.g. header and data files in the kernel (modules) and what should
+go into the DT. So the approach to put pin information into the DT
+was allowed for pinctrl-single.
+
+The way I have understood it, DT maintainers have since gotten
+a bit wary about (ab)using the DT as a container for "anything data"
+and prefer that drivers contain details and derive these from
+compatible strings.
+
+As of today, IIUC the DT maintainers are against this scheme.
+
+That said, the topic is open in a way. Some people are also annoyed
+that some graphics drivers just ask Torvalds to pull 100.000+ lines
+of register defnes in some merge windows. The data has to go
+somewhere.
 
 Yours,
 Linus Walleij
