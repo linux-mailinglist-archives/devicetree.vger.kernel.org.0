@@ -2,166 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31B7244D62D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 12:54:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5758C44D662
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 13:11:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233300AbhKKL5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 06:57:32 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:7763 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S233245AbhKKL53 (ORCPT
+        id S233143AbhKKMOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 07:14:47 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:44547 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S232855AbhKKMOq (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Nov 2021 06:57:29 -0500
-X-IronPort-AV: E=Sophos;i="5.87,225,1631545200"; 
-   d="scan'208";a="99921035"
+        Thu, 11 Nov 2021 07:14:46 -0500
+X-IronPort-AV: E=Sophos;i="5.87,226,1631545200"; 
+   d="scan'208";a="100233917"
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 11 Nov 2021 20:54:39 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 11 Nov 2021 21:11:57 +0900
 Received: from localhost.localdomain (unknown [10.226.93.91])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 98E3F4009419;
-        Thu, 11 Nov 2021 20:54:36 +0900 (JST)
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 1F7914017D75;
+        Thu, 11 Nov 2021 21:11:54 +0900 (JST)
 From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         Chris Paterson <Chris.Paterson2@renesas.com>,
         Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2 2/3] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
-Date:   Thu, 11 Nov 2021 11:54:26 +0000
-Message-Id: <20211111115427.8228-3-biju.das.jz@bp.renesas.com>
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 3/4] arm64: dts: renesas: r9a07g044: Sort psci node
+Date:   Thu, 11 Nov 2021 12:11:43 +0000
+Message-Id: <20211111121144.11131-4-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211111115427.8228-1-biju.das.jz@bp.renesas.com>
-References: <20211111115427.8228-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211111121144.11131-1-biju.das.jz@bp.renesas.com>
+References: <20211111121144.11131-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the WDT hardware in the RZ/G2L series.
+Sort psci node alphabetically.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
-V1->V2:
- * No Change
-RFC->V1:
- * Added clock-names and interrupt-names as required properties for RZ/G2L
- * Re-order clocknames with internal module clock first
----
- .../bindings/watchdog/renesas,wdt.yaml        | 75 ++++++++++++++-----
- 1 file changed, 57 insertions(+), 18 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index ab66d3f0c476..91a98ccd4226 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -10,9 +10,6 @@ maintainers:
-   - Wolfram Sang <wsa+renesas@sang-engineering.com>
-   - Geert Uytterhoeven <geert+renesas@glider.be>
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 485ef5f0fea1..43a5d359519a 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -42,11 +42,6 @@
+ 		clock-frequency = <0>;
+ 	};
  
--allOf:
--  - $ref: "watchdog.yaml#"
+-	psci {
+-		compatible = "arm,psci-1.0", "arm,psci-0.2";
+-		method = "smc";
+-	};
 -
- properties:
-   compatible:
-     oneOf:
-@@ -22,6 +19,11 @@ properties:
-               - renesas,r7s9210-wdt      # RZ/A2
-           - const: renesas,rza-wdt       # RZ/A
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -85,6 +80,11 @@
+ 		};
+ 	};
  
-+      - items:
-+          - enum:
-+              - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
-+          - const: renesas,rzg2l-wdt     # RZ/G2L
++	psci {
++		compatible = "arm,psci-1.0", "arm,psci-0.2";
++		method = "smc";
++	};
 +
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -56,11 +58,13 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    maxItems: 1
-+  interrupts: true
- 
--  clocks:
--    maxItems: 1
-+  interrupt-names: true
-+
-+  clocks: true
-+
-+  clock-names: true
- 
-   power-domains:
-     maxItems: 1
-@@ -75,17 +79,52 @@ required:
-   - reg
-   - clocks
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          enum:
--            - renesas,rza-wdt
--then:
--  required:
--    - power-domains
--    - resets
-+allOf:
-+  - $ref: "watchdog.yaml#"
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - renesas,rza-wdt
-+    then:
-+      required:
-+        - power-domains
-+        - resets
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        interrupt-names:
-+          items:
-+            - const: wdt
-+            - const: perrout
-+        clocks:
-+          items:
-+            - description: Register access clock
-+            - description: Main clock
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: oscclk
-+      required:
-+        - clock-names
-+        - interrupt-names
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        clocks:
-+          maxItems: 1
- 
- additionalProperties: false
- 
+ 	soc: soc {
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&gic>;
 -- 
 2.17.1
 
