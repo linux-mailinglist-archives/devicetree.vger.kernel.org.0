@@ -2,138 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B3AD44D767
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 14:41:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 395A044D797
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 14:53:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233431AbhKKNog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 08:44:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45532 "EHLO mail.kernel.org"
+        id S232951AbhKKN4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 08:56:13 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47524 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230177AbhKKNoe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Nov 2021 08:44:34 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A778F60E54;
-        Thu, 11 Nov 2021 13:41:42 +0000 (UTC)
+        id S232630AbhKKN4M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Nov 2021 08:56:12 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6093561078;
+        Thu, 11 Nov 2021 13:53:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636638104;
-        bh=sqkxx2F9izR8cpE/fARCX9a3Bd3IAf/rb6U8tEEs7R4=;
+        s=k20201202; t=1636638803;
+        bh=PC3AED/wdcnjt5pabpXHnmNl8TCQOHZSTsClFTB2r/k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gWmidjO+J9YVN/ig0b4/bbh69v3Lt8yZDLo2mPxWIZn9sGWaazAs5E/2dMc0EYZN2
-         ADgVLu2r8KXXXm0Uza0aOtDIU0y+Que57a+u6VOqk0bp3OmZFAT9snQ5BJGVq4pssV
-         kSxybjNXfPL5zx7YzPmnmSDUedhdW6GR1TKINMrymJjWGHqmMjLyXT21B0N8U0MlKS
-         vGcM3cM6HpnEH4zVVGce4aqaOu7ubEZSYuGtbNS68sVQUyA4W4v3zKy0ohKs/UyLst
-         oaXhE0x6iQ+fVdbeHcjljAMhX1maCbmc//0SNeB7bul3Hoje5MqRg6YhfRtDFiSxOw
-         qzoW5lQbt9/Ug==
-Date:   Thu, 11 Nov 2021 13:41:39 +0000
+        b=FqFFiWklf43ktDgHLedObvQNaRHF2KZvKKLHhhlJQwlOYYqnm9nhHt7lXebOp4XSu
+         P846cwdwvcqfvVzfsjTuppWppYR5qO1qVVeC4QRp+bpdEUySSxQaUpj+QSgSvU7jlp
+         xqtzjaQmwQS4loJzmNTSuTFFmEETO5MlnXGa8kLRJvJIQ+O2PVC8VIeMEaW8L+IjOo
+         6H6yaCYbOM/Z1VJUH1l0RUkPcrwkuACdHtOKzn8wupmm2jKUu3/whnp/XG480BqX2T
+         sfDp9ZbHmt6Po+zwINsBMp2hP/QmaYnbm3496ANe/1cX5hjGvDGT6sWLF+613IDvrk
+         jlFOk8WuDx5Ng==
+Date:   Thu, 11 Nov 2021 13:53:18 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Lh Kuo =?utf-8?B?6YOt5Yqb6LGq?= <lh.Kuo@sunplus.com>
-Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "dvorkin@tibbo.com" <dvorkin@tibbo.com>,
-        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
-        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: Re: [PATCH v2 1/2] SPI: Add SPI driver for Sunplus SP7021
-Message-ID: <YY0dk26NqoOi2QEH@sirena.org.uk>
-References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
- <1636448488-14158-1-git-send-email-lh.kuo@sunplus.com>
- <1636448488-14158-2-git-send-email-lh.kuo@sunplus.com>
- <YYqMLPB6VX9k5LUK@sirena.org.uk>
- <f98b5548cf564093af1d10ba1239507d@sphcmbx02.sunplus.com.tw>
- <YYvx4LtKiSPBIgCN@sirena.org.uk>
- <70a9c10ef34e46c2a51f134829abdd08@sphcmbx02.sunplus.com.tw>
+To:     nandhini.srikandan@intel.com
+Cc:     fancer.lancer@gmail.com, robh+dt@kernel.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mgross@linux.intel.com,
+        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
+        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
+        mahesh.r.vaidya@intel.com, rashmi.a@intel.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: spi: Add SSTE support for DWC SSI
+ controller
+Message-ID: <YY0gTnvyzdMkCPQa@sirena.org.uk>
+References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
+ <20211111065201.10249-2-nandhini.srikandan@intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pck+/FIWitogOn/m"
+        protocol="application/pgp-signature"; boundary="RoXBPVi3d1kCLI/p"
 Content-Disposition: inline
-In-Reply-To: <70a9c10ef34e46c2a51f134829abdd08@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <20211111065201.10249-2-nandhini.srikandan@intel.com>
 X-Cookie: Teutonic:
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pck+/FIWitogOn/m
-Content-Type: text/plain; charset=utf-8
+--RoXBPVi3d1kCLI/p
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 11, 2021 at 08:32:39AM +0000, Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=
-=AA wrote:
+On Thu, Nov 11, 2021 at 02:51:57PM +0800, nandhini.srikandan@intel.com wrote:
 
-Please fix your mail client to word wrap within paragraphs at something
-substantially less than 80 columns.  Doing this makes your messages much
-easier to read and reply to.
+> +      snps,sste:
+> +        description: Slave select line will toggle between consecutive
+> +          data frames, with the serial clock being held to its default
+> +          value while slave select line is high.
+> +        type: boolean
 
-> #define SPI_CS_HIGH   0x04 /* chipselect active high? */
-> Is it mean?
-> CASE1 : standby, CS high =3D> start transfer CS become low =3D> transfer =
-end CS become high and standby
-> CASE2 : standby, CS low =3D> start transfer CS become high =3D> transfer =
-end CS become low and standby
+This is not something that should be configured in the DT, it needs to
+be controlled by the client driver.  Changing this without involving the
+client driver will lead to data corruption.
 
-> I think SPI_CS_HIGH means CASE2, But it is strange that more chipset work=
- in CASE1 but drivers set SPI_CS_HIGH as defined.
-
-SPI_CS_HIGH is case 2.
-
-> 2. And in the CASE1 I should set=20
-> cs_gpios =3D 	<gpio 3 2 GPIO_ACTIVE_LOW>,
-> or
-> cs_gpios =3D 	<gpio 3 2 GPIO_ACTIVE_HIGH>,
-
-_ACTIVE_HIGH if _CS_HIGH is specified, though the binding will try to
-sort things out either way.
-
-> 3. If I did not set the max_transfer_size of spi_control
-> And use transfer_one set max_transfer_size and use_gpio_descriptors
-> Can it transmit data that exceeds FIFO max bytes (even exceed HW's one-ti=
-me transfer) in one transmission activity?
-
-Yes, if you don't set a maximum transfer size the driver might get any
-transfer size.  If you set a maximum transfer size then the driver will
-not see any transfers that exceed the maximum transfer size.
-
-> This is my concern, so I use Transfer_One_message
-
-I can't understand how that would follow on.  If there's a limit on the
-size of an individual transfer then tell the framework about that limit,
-that's all that needs doing.  Why would it be preferable to not tell the
-core about the limit and instead open code things?
-
-*Please* think about the lengthy explanation I provided in my last
-message about putting things that are not device specific in the
-framework not the driver.
-
-> Ex : Need to transmit 4000 bytes.=20
->   Then I set Ctlr->transfer_one and use_gpio_descriptors
->     ctlr->max_transfer_size =3D 255;
->     The CS of device is low active
-
->    When the transmission starts, I can see the signal gpio-CS changes fro=
-m high to low
-> Ctlr->transfer_one will be triggered to execute 16 times, and transfer en=
-d gpio-CS changes from low to high.
-
-This is exactly what will happen if you do as has been repeatedly
-suggested.  Set a maximum *transfer* (not message) size, let the core
-handle the chip select GPIO and implement transfer_one().
-
---pck+/FIWitogOn/m
+--RoXBPVi3d1kCLI/p
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGNHZIACgkQJNaLcl1U
-h9BhxQf/dNb3QGDghgy0gCEBIz77vsh2QBE4ak32dP/7LIaFPqHKjg8F5QSrVhKM
-gBdHwkLceWkCRzOFDiWGZmHBPaD3502B5XwsrErdMrkIGRRTDTOhbRniCPa2s5Ts
-EKpT8RWNmKGNzMqywvGTgRREknWidEGRjURTGJOO1L57L+qoosr55b2aJQRbSUUC
-sD9XtWVYOj//TBB4msjA56nZMo9y/YMC99dokmeWG5OaU3nlvDyWB2AONG1CndF4
-uzFIF9ByZgh03G/byuluOWpBqFNaIReVZC+lDi3DsEKtZQIhh2Q2OPsXOm8/iaEg
-gA+vmVbkTK75FlpLsHJnpO7qT42D+A==
-=6rJr
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGNIE0ACgkQJNaLcl1U
+h9A1Rgf+NOYvhLV6S/alRWbYsG9Pzw9bVn6Bb7rGS1sYtYZy8CtTGTTbx1bLmVQz
+pEANxG15iPKdhzLRbIsh/AMKFXyalptkQYnHvHqLJaKL6AkiOSrkabgyn+1ODp/6
+XqkbVvLD2OyUd7PStloxw5TNWLB6dgmvYS5sdYnuniS9qQIEdd7H04HBADcmci4X
+ZHc7KsiaHCMIKS8jYvRcYpLJJgXdnEQmJCht53sMqBx0KfygOoUuMti8XzQIdos6
+zHrT9A5qxTq8RYukHfmWlo+iLg5/ANXbQ81YoM6NzbOfenqr653avEKoGFXigTMO
+4/AB4GtXyZTtS34wOvaAx4btTh4f+Q==
+=n+TN
 -----END PGP SIGNATURE-----
 
---pck+/FIWitogOn/m--
+--RoXBPVi3d1kCLI/p--
