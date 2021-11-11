@@ -2,111 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1254A44DC5F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 21:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E6744DC7A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 21:25:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231129AbhKKUI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 15:08:57 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:38821 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229539AbhKKUI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 15:08:56 -0500
-Received: by mail-oi1-f174.google.com with SMTP id r26so13627646oiw.5;
-        Thu, 11 Nov 2021 12:06:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=HuT29kr7jQT7cuNJmoGPLr0geLlUe5ftqPVAaDrc9ho=;
-        b=A8NuL1wOy/ZRMKxUmj6nUeGV4uZXy0Xq37BWwEUa7RfeZM2KCMDmAwMzGrLK2fDywX
-         L/gywIvzi8wVOHPINWuj7PSNj5JA6Z1O5y2snZRrDXxQCOyFtcpYQW4quACZCQrIwbW0
-         3tBvIN80Xoy98MDOUq3oI4n4+6H+d7igxPqa85uV4wxhpOoD8XJEZvTjAsYyToHa5pdo
-         DR6mHD+PvPqrs71tgi7GYEkF6nqSn+JwNPSCQ4aMqD0ZoaCIT/9opRRfSE1zu0OkmkEN
-         MaP+sy3kHub/rJkS/4AtmvniWaz//IgwD9rIm6Zc8B0usLMfMI5nP8uC1nBfmhZx25EC
-         5DTQ==
-X-Gm-Message-State: AOAM532ZITjoE3SXyq16lW9L+lrrOBwix/mtKP0RPXw+BaIVFpyDzIzM
-        DByszUn7F9SGuHTXhkI7TQ==
-X-Google-Smtp-Source: ABdhPJwz5SIVcWpRIh29F5oJTI35LeD9ENrLRATSeuGMhvBuf8o4x0OWa36CzlMzxop2TVbYrGJDGw==
-X-Received: by 2002:a05:6808:211f:: with SMTP id r31mr8393771oiw.64.1636661166208;
-        Thu, 11 Nov 2021 12:06:06 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x23sm709471ooo.34.2021.11.11.12.06.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 12:06:05 -0800 (PST)
-Received: (nullmailer pid 14106 invoked by uid 1000);
-        Thu, 11 Nov 2021 20:06:04 -0000
-Date:   Thu, 11 Nov 2021 14:06:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH RFC] dt-bindings: pinctrl: support specifying pins
-Message-ID: <YY13rKxQpzcB4f0b@robh.at.kernel.org>
-References: <20211110231436.8866-1-zajec5@gmail.com>
+        id S233139AbhKKU2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 15:28:43 -0500
+Received: from mta-02.yadro.com ([89.207.88.252]:45094 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229785AbhKKU2m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Nov 2021 15:28:42 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id CC1E445BF1;
+        Thu, 11 Nov 2021 20:25:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-transfer-encoding:mime-version:user-agent:content-type
+        :content-type:organization:references:in-reply-to:date:date:from
+        :from:subject:subject:message-id:received:received:received; s=
+        mta-01; t=1636662349; x=1638476750; bh=6gDZLMf4TvWeS5t/XFi9kNM78
+        Izk9i5A/kJCZnzJ4MU=; b=unURXPAV17xCErdTCAZEbRotgjBVi0JM9663mPiwl
+        8SmM7wbmOCQPozgdUxARXQZYd+PpU+T3F9mwsM8kZjyCHfQLIK8AbV4O9y3FjblY
+        E9N5o4xGmAsRK7gOxuULe85nN/Tmg9r7OBgSErZsa4RHKcO+6gNuVIjTntyqqNQf
+        GE=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id cr5eBZthYzEg; Thu, 11 Nov 2021 23:25:49 +0300 (MSK)
+Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id 8F3E94597C;
+        Thu, 11 Nov 2021 23:25:48 +0300 (MSK)
+Received: from [10.199.10.105] (10.199.10.105) by T-EXCH-04.corp.yadro.com
+ (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Thu, 11
+ Nov 2021 23:25:47 +0300
+Message-ID: <98e923bf1a12d2819510be7c74e497628988454f.camel@yadro.com>
+Subject: Re: [External] [PATCH 2/2] ARM: dts: aspeed: add device tree for
+ YADRO VEGMAN BMC
+From:   Andrei Kartashev <a.kartashev@yadro.com>
+To:     Lei Yu <yulei.sh@bytedance.com>
+CC:     <joel@jms.id.au>, <andrew@aj.id.au>, <openbmc@lists.ozlabs.org>,
+        <devicetree@vger.kernel.org>
+Date:   Thu, 11 Nov 2021 23:25:46 +0300
+In-Reply-To: <CAGm54UESNecrEJfiv9vXyLYqM6OSGp1Cxt8hB0UJgG_Bgi=-tg@mail.gmail.com>
+References: <20211110222803.836-1-a.kartashev@yadro.com>
+         <20211110222803.836-3-a.kartashev@yadro.com>
+         <CAGm54UESNecrEJfiv9vXyLYqM6OSGp1Cxt8hB0UJgG_Bgi=-tg@mail.gmail.com>
+Organization: YADRO
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211110231436.8866-1-zajec5@gmail.com>
+X-Originating-IP: [10.199.10.105]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-04.corp.yadro.com (172.17.100.104)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 11, 2021 at 12:14:36AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, 2021-11-11 at 10:13 +0800, Lei Yu wrote:
+> On Thu, Nov 11, 2021 at 6:29 AM Andrei Kartashev
+> <a.kartashev@yadro.com> wrote:
+> > +
+> > +&fmc {
+> > +       status = "okay";
+> > +       flash@0 {
+> > +               status = "okay";
+> > +               label = "bmc";
+> > +               m25p,fast-read;
+> > +               partitions {
+> > +                       compatible = "fixed-partitions";
+> > +                       #address-cells = <1>;
+> > +                       #size-cells = <1>;
+> > +
+> > +                       u-boot@0 {
+> > +                               reg = <0x0 0x80000>; // 512KB
+> > +                               label = "u-boot";
+> > +                       };
+> > +
+> > +                       fit-image-a@80000 {
+> > +                               reg = <0x80000 0x1b80000>; // 27.5MB
+> > +                               label = "image-a";
+> > +                       };
+> > +
+> > +                       sofs@1c00000 {
+> > +                               reg = <0x1c00000 0x200000>; // 2MB
+> > +                               label = "sofs";
+> > +                       };
+> > +
+> > +                       rwfs@1e00000 {
+> > +                               reg = <0x1e00000 0x600000>;  // 6MB
+> > +                               label = "rwfs";
+> > +                       };
+> > +
+> > +                       u-boot-env@2400000 {
+> > +                               reg = <0x2400000 0x20000>; // 128KB
+> > +                               label = "u-boot-env";
+> > +                       };
+> > +
+> > +                       fit-image-b@2480000 {
+> > +                               reg = <0x2480000 0x1b80000>; //
+> > 27.5MB
+> > +                               label = "image-b";
+> > +                       };
+> > +               };
+> > +       };
+> > +};
 > 
-> Add support for "pins" node with pin@ subnodes. This allows specifying
-> all pins (and their names) at DT level.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> While working with pinctrl in Linux I started wondering if we could
-> start specifying pins in DT instead of Linux drivers. When working with
-> DT we usually avoid hardcoding hardware description in drivers so it
-> isn't clear to me why it doesn't apply to pins.
-> 
-> Please let me know if this makes sense. If by some chance I'm correct I
-> think that specifying groups and functions could follow too.
-> 
-> FWIW: I didn't start working on Linux reading pins from DT yet.
-> ---
->  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 12 +++++++++-
->  .../devicetree/bindings/pinctrl/pinctrl.yaml  | 23 +++++++++++++++++++
->  2 files changed, 34 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
-> index 8d1e5b1cdd5f..92a86b0822d6 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
-> @@ -74,7 +74,7 @@ required:
->    - reg
->    - reg-names
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> @@ -83,6 +83,16 @@ examples:
->          reg = <0x1800c1c0 0x24>;
->          reg-names = "cru_gpio_control";
->  
-> +        pins {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            pin@0 {
-> +                reg = <0>;
+> The flash layout is not the same as the openbmc static layout, but
+> like the one used by Intel-BMC.
+> May I ask if you are going to upstream the bmc-code-update related
+> changes for this layout?
 
-Where does 'reg' value come from?
+Yeh, we got to this mess, so now it is not easy to change, so we have
+to deal with Intel-BMC layout.
+We have our own utility to manage firmware:
+https://github.com/YADRO-KNS/obmc-yadro-fwupdate
+What to do with updates through webui, I don't know yet.
 
-> +                label = "spi_clk";
-> +            };
+> > +&i2c0 {
+> > +       /* SMB_IPMB_STBY_LVC3 */
+> > +       multi-master;
+> > +       general-call;
+> > +       aspeed,dma-buf-size = <4095>;
+> > +       aspeed,hw-timeout-ms = <300>;
+> 
+> These properties are not available in openbmc linux kernel tree, but
+> used in Intel-BMC/linux, may I ask if you are going to upstream the
+> related changes?
+> 
 
-If you just want a list of pins names, then why not just a list of 
-names?
+Thank you for pointing this, will remove in next revision.
 
-Rob
+> > +       status = "okay";
+> > +};
+> > +
+> 
+
+-- 
+Best regards,
+Andrei Kartashev
+
+
