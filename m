@@ -2,71 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93AAD44DDC8
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 23:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C3BB44DE0E
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 23:59:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230136AbhKKWUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 17:20:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59278 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229652AbhKKWUG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Nov 2021 17:20:06 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4F5D06101C;
-        Thu, 11 Nov 2021 22:17:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636669036;
-        bh=a93R/TAKIik/1JJkF9BtbeeMgT0GaFv/oi3iUd1WivI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=YS9Nld5GPwBbGgcQpz+CWYAj7G5NB3P7EtN7+OuDP1C8d2YLn/Fhw8InjV4cyS4Gj
-         TqcoDNBC3V4b1ciNgy0KIrORuM87tA4BaLa1xqoU5OlUiAbKsvvYOHCmPFO7YlTk7Q
-         OLqcr5yprEaFkFOyRAv42u7hIThnuk6gtoQbPqG/92uh0WKl7BMGBu275Qra7bnsec
-         Hn2IL/61xjVsArXbgDkwchOVPzCbNkh/H2J/LntRptvJaf9XJSINOihlc5nxPQzDKN
-         oGEBrMGwuO7VeFIoW7QjJdttuznno6ZczB6PQJd5m6DXo3trKz7Aq1mYX9H6a4Sf05
-         zygR/0yS/ECpQ==
-Date:   Thu, 11 Nov 2021 16:17:14 -0600
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
+        id S234155AbhKKXCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 18:02:00 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:55082 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230131AbhKKXB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Nov 2021 18:01:59 -0500
+Received: from [77.244.183.192] (port=63166 helo=melee.fritz.box)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1mlJ2C-0007N5-1p; Thu, 11 Nov 2021 23:59:08 +0100
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v8 3/8] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-Message-ID: <20211111221714.GA1354700@bhelgaas>
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: [PATCH v3 0/8] Add MAX77714 PMIC minimal driver (RTC and watchdog only)
+Date:   Thu, 11 Nov 2021 23:58:44 +0100
+Message-Id: <20211111225852.3128201-1-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211110221456.11977-4-jim2101024@gmail.com>
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 05:14:43PM -0500, Jim Quinlan wrote:
-> Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
-> allows optional regulators to be attached and controlled by the PCIe RC
-> driver.  That being said, this driver searches in the DT subnode (the EP
-> node, eg pci-ep@0,0) for the regulator property.
-> 
-> The use of a regulator property in the pcie EP subnode such as
-> "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-> file at
-> 
-> https://github.com/devicetree-org/dt-schema/pull/63
+Hi,
 
-Can you use a lore URL here?  github.com is sort of outside the Linux
-ecosystem and this link is more likely to remain useful if it's to
-something in kernel.org.
+this series adds minimal drivers for the Maxim Semiconductor MAX77714
+(https://www.maximintegrated.com/en/products/power/power-management-ics/MAX77714.html).
+Only RTC and watchdog are implemented by these patches.
 
-The subject says what this patch does, but the commit log doesn't.
-It's OK to repeat the subject in the commit log if that's what makes
-the most sense.
+All implemented functionality is tested and working: RTC read/write,
+watchdog start/stop/ping/set_timeout.
+
+Patches 1-3 + 6 are trivial cleanups to the max77686 drivers and Kconfig
+indentation and can probably be applied easily.
+
+Patches 4, 5, 7 and 8 add: dt bindings, mfd driver, watchdog driver and rtc
+driver.
+
+Changes in v3:
+ - fixed all issues reported on v1 patches
+ - removed patch 1 of v2, already applied
+   ("mfd: max77686: Correct tab-based alignment of register addresses")
+
+Changes in v2:
+ - fixed all issues reported on v1 patches
+ - added patch 7 ("watchdog: Kconfig: fix help text indentation")
+ - additional minor improvements
+
+Luca
+
+Luca Ceresoli (8):
+  rtc: max77686: convert comments to kernel-doc format
+  rtc: max77686: rename day-of-month defines
+  rtc: max77686: remove unused code to read in 12-hour mode
+  dt-bindings: mfd: add Maxim MAX77714 PMIC
+  mfd: max77714: Add driver for Maxim MAX77714 PMIC
+  watchdog: Kconfig: fix help text indentation
+  watchdog: max77714: add driver for the watchdog in the MAX77714 PMIC
+  rtc: max77686: add MAX77714 support
+
+ .../bindings/mfd/maxim,max77714.yaml          |  68 +++++++
+ MAINTAINERS                                   |   8 +
+ drivers/mfd/Kconfig                           |  14 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max77686.c                        |   2 +-
+ drivers/mfd/max77714.c                        | 152 +++++++++++++++
+ drivers/rtc/Kconfig                           |   2 +-
+ drivers/rtc/rtc-max77686.c                    |  75 +++++---
+ drivers/watchdog/Kconfig                      |  57 +++---
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/max77714_wdt.c               | 179 ++++++++++++++++++
+ include/linux/mfd/max77686-private.h          |   4 +-
+ include/linux/mfd/max77714.h                  |  60 ++++++
+ 13 files changed, 565 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
+ create mode 100644 drivers/mfd/max77714.c
+ create mode 100644 drivers/watchdog/max77714_wdt.c
+ create mode 100644 include/linux/mfd/max77714.h
+
+-- 
+2.25.1
+
