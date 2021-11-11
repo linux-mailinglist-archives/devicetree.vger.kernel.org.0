@@ -2,82 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4BF44D226
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 07:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A33244D238
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 08:12:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232049AbhKKG5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 01:57:33 -0500
-Received: from mga11.intel.com ([192.55.52.93]:34073 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231730AbhKKG53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Nov 2021 01:57:29 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10164"; a="230324766"
-X-IronPort-AV: E=Sophos;i="5.87,225,1631602800"; 
-   d="scan'208";a="230324766"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2021 22:54:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,225,1631602800"; 
-   d="scan'208";a="642864959"
-Received: from ubuntu18.png.intel.com ([10.88.229.69])
-  by fmsmga001.fm.intel.com with ESMTP; 10 Nov 2021 22:54:38 -0800
-From:   nandhini.srikandan@intel.com
-To:     fancer.lancer@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, mgross@linux.intel.com,
-        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
-        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
-        mahesh.r.vaidya@intel.com, nandhini.srikandan@intel.com,
-        rashmi.a@intel.com
-Subject: [PATCH v3 5/5] spi: dw: Add support for Intel Thunder Bay SPI controller
-Date:   Thu, 11 Nov 2021 14:52:01 +0800
-Message-Id: <20211111065201.10249-6-nandhini.srikandan@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211111065201.10249-1-nandhini.srikandan@intel.com>
-References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
+        id S230014AbhKKHPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 02:15:12 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:50744 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229649AbhKKHPM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 02:15:12 -0500
+X-UUID: d256bc8e433a42a28496a25a41389d46-20211111
+X-UUID: d256bc8e433a42a28496a25a41389d46-20211111
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1191703551; Thu, 11 Nov 2021 15:12:20 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.792.15; Thu, 11 Nov 2021 15:12:18 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.792.15 via Frontend
+ Transport; Thu, 11 Nov 2021 15:12:17 +0800
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Biao Huang <biao.huang@mediatek.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>
+Subject: [PATCH v2 0/5] MediaTek Ethernet Patches on MT8195
+Date:   Thu, 11 Nov 2021 15:12:09 +0800
+Message-ID: <20211111071214.21027-1-biao.huang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nandhini Srikandan <nandhini.srikandan@intel.com>
+Changes in v2:
+1. fix errors/warnings in mediatek-dwmac.yaml with upgraded dtschema tools
 
-Add support for Intel Thunder Bay SPI controller, which uses DesignWare
-DWC_ssi core and also add common init function for both Keem Bay and
-Thunder Bay.
+This series include 5 patches:
+1. add platform level clocks management for dwmac-mediatek
+2. resue more common features defined in stmmac_platform.c
+3. add ethernet entry for mt8195
+4. convert mediatek-dwmac.txt to mediatek-dwmac.yaml
+5. add ethernet device node for mt8195
 
-Signed-off-by: Nandhini Srikandan <nandhini.srikandan@intel.com>
----
- drivers/spi/spi-dw-mmio.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+Biao Huang (5):
+  net: stmmac: dwmac-mediatek: add platform level clocks management
+  net: stmmac: dwmac-mediatek: Reuse more common features
+  net: stmmac: dwmac-mediatek: add support for mt8195
+  dt-bindings: net: dwmac: Convert mediatek-dwmac to DT schema
+  arm64: dts: mt8195: add ethernet device node
 
-diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 3379720cfcb8..c357680f4aa3 100644
---- a/drivers/spi/spi-dw-mmio.c
-+++ b/drivers/spi/spi-dw-mmio.c
-@@ -214,10 +214,10 @@ static int dw_spi_dwc_ssi_init(struct platform_device *pdev,
- 	return 0;
- }
- 
--static int dw_spi_keembay_init(struct platform_device *pdev,
--			       struct dw_spi_mmio *dwsmmio)
-+static int dw_spi_intel_init(struct platform_device *pdev,
-+			     struct dw_spi_mmio *dwsmmio)
- {
--	dwsmmio->dws.caps = DW_SPI_CAP_KEEMBAY_MST | DW_SPI_CAP_DWC_SSI;
-+	dwsmmio->dws.caps = DW_SPI_CAP_DWC_SSI;
- 
- 	return 0;
- }
-@@ -348,7 +348,8 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
- 	{ .compatible = "amazon,alpine-dw-apb-ssi", .data = dw_spi_alpine_init},
- 	{ .compatible = "renesas,rzn1-spi", .data = dw_spi_dw_apb_init},
- 	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
--	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
-+	{ .compatible = "intel,keembay-ssi", .data = dw_spi_intel_init},
-+	{ .compatible = "intel,thunderbay-ssi", .data = dw_spi_intel_init},
- 	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
- 	{ .compatible = "canaan,k210-spi", dw_spi_canaan_k210_init},
- 	{ /* end of table */}
--- 
-2.17.1
+ .../bindings/net/mediatek-dwmac.txt           |  91 -----
+ .../bindings/net/mediatek-dwmac.yaml          | 211 ++++++++++++
+ arch/arm64/boot/dts/mediatek/mt8195-evb.dts   |  92 +++++
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  70 ++++
+ .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 313 ++++++++++++++++--
+ 5 files changed, 664 insertions(+), 113 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+ create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
+
+--
+2.18.0
+
 
