@@ -2,101 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E7F944D3EA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 10:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D89BF44D43C
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 10:42:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229625AbhKKJV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 04:21:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42366 "EHLO
+        id S230300AbhKKJpo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 04:45:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232067AbhKKJVx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 04:21:53 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE63AC061767
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 01:19:03 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id m15so781146pgu.11
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 01:19:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=W4oON9tVLzbGnMHdSvx5FpIn6WtCPoheg0Qx9WxWbPQ=;
-        b=LEI+Zjqvo5YR46BDk0UGfF0Z206KbIE5NfmIdD1sEs38gVeU/TXLHux/kPRlEhpwpm
-         CKnJNdTqjFVmVY7fu07F4vbbKnEpeJ2Bj16hCjCBZzOwas3FwxaISJe+xwjqMQMK5s+y
-         pn5aWxgxZxZi8BHfshdRinyy3kjTyvS01GXAK/49RSSdNZf/MtmU9QfX2oAXmZwfe/hu
-         UdzVBaFmyiNiYcmCL5HKtRanaJEGwvJsntBRkhIKEoM9iXFteOmnIX1xqzYBMHfQZN+8
-         ubPkn+Q3+swfnbA88+4LlBqwA0ms/McQxqxEuCObiQiZfQLL7SMnHiyPBRvgKD4NsMoV
-         x85Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=W4oON9tVLzbGnMHdSvx5FpIn6WtCPoheg0Qx9WxWbPQ=;
-        b=pKU2P+spHunLkXxRCR2Ani2zG1Jdz7jTQI2++OcZaWY7z2e7cri4eW8RqQ3MTI2W0w
-         LNzSXfZW9+ZVg4q+iMkD9tug3XDRXRK1H9kMZgbI0ryn82csi82d7Z9mIurAJpLyw2rx
-         vEdmjNNoetMKoB3LGe/8+HKcYpXJAvvADIL88H73tDSEsV8vGlvcoDL1g7ATWFLhUgbA
-         eNDkIRODzAac8zM0nc1uj8kcQ5r9CdLzoVcIyizSDxF8W6jGk++JrPpa1McVGzD+W8bW
-         6IfG4/gjkCObqkaB8dQXMbD4DSPzcKPdp3PfW94T5p3gcBcmSp+oyEi/w+owwO72MQc+
-         DDrg==
-X-Gm-Message-State: AOAM533LaaR081zG7vub3kE6EYEXPIY2FDnv3xLxoBrh+BqB/1BDgSjj
-        2zkg0BkMqn08R157s+vXRWN0QQ==
-X-Google-Smtp-Source: ABdhPJyAgSAhmt4zPqV47R/uN2HyIfaw0kvLLeTkHktBsw5JQz044Jif9nZJrLioItZgzYZiwiQepQ==
-X-Received: by 2002:a62:1c0e:0:b0:4a0:3492:37b5 with SMTP id c14-20020a621c0e000000b004a0349237b5mr5425509pfc.33.1636622343312;
-        Thu, 11 Nov 2021 01:19:03 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id u10sm2240141pfh.49.2021.11.11.01.19.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 11 Nov 2021 01:19:02 -0800 (PST)
-Date:   Thu, 11 Nov 2021 17:18:56 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        linux-kernel@vger.kernel.org,
+        with ESMTP id S229668AbhKKJpo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 04:45:44 -0500
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23977C061766;
+        Thu, 11 Nov 2021 01:42:55 -0800 (PST)
+Received: from SoMainline.org (D57D4C6E.static.ziggozakelijk.nl [213.125.76.110])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 23B4F1F96A;
+        Thu, 11 Nov 2021 10:42:51 +0100 (CET)
+Date:   Thu, 11 Nov 2021 10:42:49 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Georgi Djakov <djakov@kernel.org>
-Subject: Re: [PATCH 5/6] dt-bindings: interconnect: Add Qualcomm QCM2290 NoC
- support
-Message-ID: <20211111091855.GK7231@dragon>
-References: <20211110120716.6401-1-shawn.guo@linaro.org>
- <20211110120716.6401-6-shawn.guo@linaro.org>
- <1636573460.901134.1783738.nullmailer@robh.at.kernel.org>
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Alexey Min <alexey.min@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Martin Botka <martin.botka@somainline.org>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v3 0/8] Improve support for Xiaomi Redmi Note 7
+Message-ID: <20211111094249.mnnmjy3vkavmnqzb@SoMainline.org>
+References: <20211111031635.3839947-1-danct12@riseup.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1636573460.901134.1783738.nullmailer@robh.at.kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20211111031635.3839947-1-danct12@riseup.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 01:44:20PM -0600, Rob Herring wrote:
-> On Wed, 10 Nov 2021 20:07:15 +0800, Shawn Guo wrote:
-> > Add bindings for Qualcomm QCM2290 Network-On-Chip interconnect devices.
-> > 
-> > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
-> > ---
-> >  .../bindings/interconnect/qcom,qcm2290.yaml   | 117 ++++++++++++++++++
-> >  .../dt-bindings/interconnect/qcom,qcm2290.h   |  94 ++++++++++++++
-> >  2 files changed, 211 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,qcm2290.yaml
-> >  create mode 100644 include/dt-bindings/interconnect/qcom,qcm2290.h
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/interconnect/qcom,qcm2290.example.dts:20:18: fatal error: dt-bindings/clock/qcom,gcc-qcm2290.h: No such file or directory
->    20 |         #include <dt-bindings/clock/qcom,gcc-qcm2290.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Hi Dang,
 
-Thanks for the report!
+On 2021-11-11 10:16:27, Dang Huynh wrote:
+> This series expand the Redmi Note 7 device port to support:
+>  + Regulators
+>  + Volume keys
+>  + eMMC and SD card slot
+>  + Framebuffer display
+>  + USB
+> 
+> Changes in v2:
+>  - Dropped linux,input-type from volume up as 1 is set by default.
+>  - Dropped gpio-key,wakeup as it's a legacy property name and is
+> not relevant for a volume button.
+>  - Rename label cont_splash_mem to framebuffer_mem and change node
+> name to memory.
+> 
+> Changes in v3:
+>  - Add voltage range for vph_pwr
+>  - Move RESIN to PM660 and make PON keys disabled by default 
+>  - Addressed review comments from Konrad
 
-The header has just landed on mainline tree.  But the binding actually
-doesn't need to include it.  I will drop it for the next posting.
+A bit of a formality: keep in mind that you cannot add Reviewed-by: to
+patches unless explicitly given by the reviewer.  They do not represent
+that a person has at some point given you a review on the patch; rather
+they indicate that the reviewer in question has checked and agreed with
+the changes.
 
-Shawn
+In other words, after Konrad has reviewed your patches you should resend
+a fixed version without his Reviewed-by:.  He'll reply with this line
+once he has seen and acknowledged the resulting changes (or otherwise
+reply with more requests for changes).  The maintainer picks these up
+when applying the patchset to the tree, but you should pick them up
+yourself if/when resending a new version.
+
+Finally, this is a bit tricky but you should technically drop every
+Reviewed-by: whenever a patch is changed in a followup patchset, leaving
+it up to the reviewers to acknowledge that they are also okay with the
+updated patch.
+
+- Marijn
+
+>  - Make Alexey Min the author of the USB patch as he came up with
+> the patch first on downstream. 
+> 
+> Alexey Min (1):
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add USB
+> 
+> Dang Huynh (7):
+>   arm64: dts: qcom: sdm630: Assign numbers to eMMC and SD
+>   arm64: dts: qcom: sdm630-pm660: Move RESIN to pm660 dtsi
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add RPM and fixed regulators
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add PWRKEY and RESIN
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add volume up button
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add eMMC and SD
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Enable Simple Framebuffer
+> 
+>  arch/arm64/boot/dts/qcom/pm660.dtsi           |  12 +-
+>  .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  16 +-
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi          |   5 +
+>  .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 383 ++++++++++++++++++
+>  4 files changed, 407 insertions(+), 9 deletions(-)
+> 
+> -- 
+> 2.33.1
+> 
