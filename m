@@ -2,90 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F69C44CFEC
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 03:16:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C352544CFF7
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 03:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233719AbhKKCTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 21:19:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34124 "EHLO
+        id S233745AbhKKCVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 21:21:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233590AbhKKCTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 21:19:40 -0500
-Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D58CC061766;
-        Wed, 10 Nov 2021 18:16:52 -0800 (PST)
-Received: from [192.168.1.101] (83.6.165.118.neoplus.adsl.tpnet.pl [83.6.165.118])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 5AE0A3F6B4;
-        Thu, 11 Nov 2021 03:16:47 +0100 (CET)
-Message-ID: <fe19d7e6-8d31-a157-65d0-da53095485ea@somainline.org>
-Date:   Thu, 11 Nov 2021 03:16:44 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.1
-Subject: Re: [PATCH] arm64: dts: qcom: Add support for SONY Xperia XZ2 / XZ2C
- / XZ3 (Tama platform)
-Content-Language: en-US
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        with ESMTP id S233491AbhKKCVf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 21:21:35 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE79C061766;
+        Wed, 10 Nov 2021 18:18:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
+        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
+        bh=N8Ya7xuJZuZa7uVD5bXff/mdxtAgK083vH8aF2C6p+4=; b=XTU/23LeVC6QNY8nkO+/0v+d08
+        xjnp2jDziI4L27Q/yz8EfHdyxY1X9Ct1QPrYH62cvv3hRcJOa2WmTDGxqekCRZlF3vXAdeYGeLsg9
+        ah++R6TVN8O/IN6ORvF+KxZMFDvCwpWOQx/zS5O4SrDTnI1pHLgOFQgK8lDoW/1Lr4JwLKEAKDW34
+        Wp/lsgbMSnrWDDAoODP6JmmkxIdCfC4NFEocsYqFYPwSeTEuQdVZSSlGNZMEypb84iJy7ZvHpZUNT
+        mAPVYuUdXZu7ql0w2K3W9FWre5yBuL/IfUNrVxUePn8myEOdq2xXckc3bAPJ+aiqfPlXrxUXdcnZN
+        zq5JZDNA==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mkzfq-006pG9-Tm; Thu, 11 Nov 2021 02:18:47 +0000
+Subject: Re: [RFC PATCH v4 6/8] leds: trigger: add hardware-phy-activity
+ trigger
+To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211106191437.84943-1-konrad.dybcio@somainline.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20211106191437.84943-1-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset=UTF-8
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
+        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+References: <20211111013500.13882-1-ansuelsmth@gmail.com>
+ <20211111013500.13882-7-ansuelsmth@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <94f6db80-04a3-6007-5dc4-62a3b45dcb49@infradead.org>
+Date:   Wed, 10 Nov 2021 18:18:44 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211111013500.13882-7-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/10/21 5:34 PM, Ansuel Smith wrote:
+> diff --git a/drivers/leds/trigger/Kconfig b/drivers/leds/trigger/Kconfig
+> index dc6816d36d06..737a8be533a3 100644
+> --- a/drivers/leds/trigger/Kconfig
+> +++ b/drivers/leds/trigger/Kconfig
+> @@ -154,4 +154,32 @@ config LEDS_TRIGGER_TTY
+>   
+>   	  When build as a module this driver will be called ledtrig-tty.
+>   
+> +config LEDS_TRIGGER_HARDWARE_PHY_ACTIVITY
+> +	tristate "LED Trigger for PHY Activity for Hardware Controlled LED"
+> +	depends on LEDS_HARDWARE_CONTROL
+> +	help
+> +	  This allows LEDs to be configured to run by hardware and offloaded
 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> new file mode 100644
-> index 000000000000..6b088675f4b9
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-> @@ -0,0 +1,442 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2021, Konrad Dybcio <konrad.dybcio@somainline.org>
-> + */
+	                                    to be run
+
+> +	  based on some rules. The LED will blink or be on based on the PHY
+
+	                                          or be "on" based on
+
+> +	  activity for example on packet receive or based on the link speed.
 > +
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include "sdm845.dtsi"
-> +#include "pm8005.dtsi"
-> +#include "pm8998.dtsi"
-> +#include "pmi8998.dtsi"
+> +	  The current supported offload triggers are:
+> +	  - blink_tx: Blink LED on tx packet receive
+> +	  - blink_rx: Blink LED on rx packet receive
+> +	  - keep_link_10m: Keep LED on with 10m link speed
+> +	  - keep_link_100m: Keep LED on with 100m link speed
+> +	  - keep_link_1000m: Keep LED on with 1000m link speed
+> +	  - keep_half_duplex: Keep LED on with half duplex link
+> +	  - keep_full_duplex: Keep LED on with full duplex link
+> +	  - option_linkup_over: Blink rules are ignored with absent link
+> +	  - option_power_on_reset: Power ON Led on Switch/PHY reset
+> +	  - option_blink_2hz: Set blink speed at 2hz for every blink event
+> +	  - option_blink_4hz: Set blink speed at 4hz for every blink event
+> +	  - option_blink_8hz: Set blink speed at 8hz for every blink event
 > +
-> +/ {
-> +	qcom,msm-id = <321 0x20001>; /* SDM845 v2.1 */
-> +	qcom,board-id = <8 0>;
+> +	  These blink modes are present in the LED sysfs dir under
+> +	  hardware-phy-activity if supported by the LED driver.
 > +
-> +	gpio-keys {
-
-Whooops! It seems that I totally forgot to add a compatible to gpio-keys.. Could that be fixed when applying if the patch is otherwise good? Should it not be the case, I'll surely fix that in the next revision..
+> +	  This trigger can be used only by LEDs that support Hardware mode.
 
 
-> +		cam-focus {
-> +			label = "cam_focus";
-> +			gpios = <&pm8998_gpio 2 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_CAMERA_FOCUS>;
-> +			debounce-interval = <15>;
-> +			gpio-key,wakeup;
-> +		};
-> +
-
-
-Konrad
-
+-- 
+~Randy
