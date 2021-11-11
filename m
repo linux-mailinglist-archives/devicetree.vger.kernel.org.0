@@ -2,24 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 880DA44D72F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 14:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD4C44D733
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 14:27:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233071AbhKKN3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 08:29:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41648 "EHLO
+        id S233397AbhKKNad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 08:30:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhKKN3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 08:29:36 -0500
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436EDC061767
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 05:26:47 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 8D7323E981;
-        Thu, 11 Nov 2021 14:26:42 +0100 (CET)
+        with ESMTP id S231380AbhKKNac (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 08:30:32 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AD01C061767;
+        Thu, 11 Nov 2021 05:27:43 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id DFB9F1F45B7A
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1636637261; bh=v3jNwU3svQR6Lr7BTf8BYgD2MW9QjuxGXOskm/lyYXY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Y6ziKRm36l0zHh0H4YQ33UupfOluTs+DQiEwvC5QTfF31BXyVi6GHvQ9XdRG+BLwR
+         q3Qi2aXCV1MkKOaK7VN0uOe0fYV6fM8OIVj3iNIgw1JFGS9Xv5RkGPT1FrFwcvRW1F
+         ywzl+a9+PQOZVUW81z0f4spRlPrdVaf9yMw2bgaAfCQgYolXnQpg6ORpM61DeukP2A
+         Pgtv1EIF94XlH4JZxqBlM/bW3GU/d1KPBIbxG4e93MAivv4OtZwiVwKYDplPHaeXR7
+         UVMsW9q/IoaaY6ltJQAbI3tCYaj3cBl9Cw7Y8gy0Md+Cm4KtLABnqAlYZ+7Lhvw7r2
+         PyvUxuK/gxYMw==
 Subject: Re: [PATCH v2 3/5] net: stmmac: dwmac-mediatek: add support for
  mt8195
 To:     Biao Huang <biao.huang@mediatek.com>, davem@davemloft.net,
@@ -38,9 +44,9 @@ Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
 References: <20211111071214.21027-1-biao.huang@mediatek.com>
  <20211111071214.21027-4-biao.huang@mediatek.com>
 From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <6f894146-692b-63c7-cef6-2b26a171f006@somainline.org>
-Date:   Thu, 11 Nov 2021 14:26:42 +0100
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <5ba1bcd8-ec41-5899-bcab-b95e0df90bc1@collabora.com>
+Date:   Thu, 11 Nov 2021 14:27:38 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.13.0
 MIME-Version: 1.0
@@ -60,6 +66,12 @@ Il 11/11/21 08:12, Biao Huang ha scritto:
 >   .../ethernet/stmicro/stmmac/dwmac-mediatek.c  | 261 +++++++++++++++++-
 >   1 file changed, 260 insertions(+), 1 deletion(-)
 > 
+
+Hello Biao,
+
+thanks for the patch!
+
+
 > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
 > index 6ea972e96665..b1266b68e21f 100644
 > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-mediatek.c
@@ -349,6 +361,16 @@ Il 11/11/21 08:12, Biao Huang ha scritto:
 > +	if (variant->dwmac_fix_mac_speed)
 > +		variant->dwmac_fix_mac_speed(priv, speed);
 
+This function serves only as a wrapper to call variant->dwmac_fix_mac_speed, which
+
+also happens to have the same function signature as the one in plat_stmmacenet_data
+
+...so, why are you introducing this?
+
+
+
+Is this function expected to do more than just wrap the call?
+
 > +}
 > +
 >   static int mediatek_dwmac_probe(struct platform_device *pdev)
@@ -368,8 +390,6 @@ Il 11/11/21 08:12, Biao Huang ha scritto:
 >   	plat_dat->exit = mediatek_dwmac_exit;
 >   	plat_dat->clks_config = mediatek_dwmac_clks_config;
 > +	plat_dat->fix_mac_speed = mediatek_fix_mac_speed;
-
-
 
 So, since that function serves as a wrapper only....
 
