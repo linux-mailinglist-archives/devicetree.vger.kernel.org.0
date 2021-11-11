@@ -2,165 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C74CE44D0E5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 05:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E5DA44D105
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 05:53:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234315AbhKKESr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Nov 2021 23:18:47 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:34198 "EHLO
+        id S233192AbhKKE4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Nov 2021 23:56:40 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:48784 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234313AbhKKESW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 23:18:22 -0500
-X-UUID: 40e0de87e8594595bb138c794b9ee8e3-20211111
-X-UUID: 40e0de87e8594595bb138c794b9ee8e3-20211111
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 75772754; Thu, 11 Nov 2021 12:15:30 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 11 Nov 2021 12:15:29 +0800
-Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
- mtkexhb02.mediatek.inc (172.21.101.103) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 11 Nov 2021 12:15:28 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkmbs10n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.792.3 via Frontend
- Transport; Thu, 11 Nov 2021 12:15:26 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        with ESMTP id S229699AbhKKE4j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Nov 2021 23:56:39 -0500
+X-UUID: cdd2fb37af2044a3884bf40e1a2a5e8a-20211111
+X-UUID: cdd2fb37af2044a3884bf40e1a2a5e8a-20211111
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <james.lo@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1736305020; Thu, 11 Nov 2021 12:53:48 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.792.3;
+ Thu, 11 Nov 2021 12:53:47 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs10n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.792.15 via Frontend Transport; Thu, 11 Nov 2021 12:53:47 +0800
+From:   James Lo <james.lo@mediatek.com>
+To:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        James Lo <james.lo@mediatek.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
         <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
         <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v10, 19/19] media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
-Date:   Thu, 11 Nov 2021 12:15:00 +0800
-Message-ID: <20211111041500.17363-20-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211111041500.17363-1-yunfei.dong@mediatek.com>
-References: <20211111041500.17363-1-yunfei.dong@mediatek.com>
+Subject: [PATCH v14 0/3] Add SPMI support for Mediatek SoC IC
+Date:   Thu, 11 Nov 2021 12:53:41 +0800
+Message-ID: <20211111045344.11664-1-james.lo@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
+Content-Type: text/plain
 X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are only two lines in mtk_vcodec_release_enc_pm, using
-pm_runtime_disable and put_device instead directly.
+This series adds support for new SoC MT6873/MT8192/MT8195 to the spmi driver.
+This series is based on Chun-Jie's patches[1].
 
-Move pm_runtime_enable outside mtk_vcodec_release_enc_pm to symmetry with
-pm_runtime_disable, after that, rename mtk_vcodec_init_enc_pm to *_clk since
-it only has clock operations now.
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=521655
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Co-developed-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c | 9 ++++++---
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c  | 9 +--------
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h  | 3 +--
- 3 files changed, 8 insertions(+), 13 deletions(-)
+changes since v13:
+- rebase to v5.15-rc1.
+- merge two patch(1,2) to one patch(1) to fix yaml error
+  patch 1. dt-bindings: spmi: modify the constraint of reg property
+  patch 2. dt-bindings: spmi: document binding for the Mediatek SPMI controller
 
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-index 0f326d82dea0..7816efb90cbe 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-@@ -11,6 +11,7 @@
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/of.h>
-+#include <linux/pm_runtime.h>
- #include <media/v4l2-event.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/videobuf2-dma-contig.h>
-@@ -260,7 +261,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		return PTR_ERR(dev->fw_handler);
- 
- 	dev->venc_pdata = of_device_get_match_data(&pdev->dev);
--	ret = mtk_vcodec_init_enc_pm(dev);
-+	ret = mtk_vcodec_init_enc_clk(dev);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Failed to get mtk vcodec clock source!");
- 		goto err_enc_pm;
-@@ -372,7 +373,8 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- err_enc_alloc:
- 	v4l2_device_unregister(&dev->v4l2_dev);
- err_res:
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- err_enc_pm:
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return ret;
-@@ -462,7 +464,8 @@ static int mtk_vcodec_enc_remove(struct platform_device *pdev)
- 		video_unregister_device(dev->vfd_enc);
- 
- 	v4l2_device_unregister(&dev->v4l2_dev);
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return 0;
- }
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-index 0c8c8f86788c..0825c6ec4eb7 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-@@ -13,7 +13,7 @@
- #include "mtk_vcodec_enc_pm.h"
- #include "mtk_vcodec_util.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *mtkdev)
- {
- 	struct device_node *node;
- 	struct platform_device *pdev;
-@@ -86,13 +86,6 @@ int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
- 	return ret;
- }
- 
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *mtkdev)
--{
--	pm_runtime_disable(mtkdev->pm.dev);
--	put_device(mtkdev->pm.larbvenc);
--}
--
--
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm)
- {
- 	struct mtk_vcodec_clk *enc_clk = &pm->venc_clk;
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-index b7ecdfd74823..bc455cefc0cd 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-@@ -9,8 +9,7 @@
- 
- #include "mtk_vcodec_drv.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *dev);
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *dev);
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *dev);
- 
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm);
- void mtk_vcodec_enc_clock_off(struct mtk_vcodec_pm *pm);
--- 
-2.25.1
+James Lo (3):
+  dt-bindings: spmi: modify the constraint of reg property
+  spmi: mediatek: Add support for MT6873/8192
+  spmi: mediatek: Add support for MT8195
+
+Henry Chen (1):
+  spmi: mediatek: Add support for MT8195
+
+Hsin-Hsiung Wang (3):
+  dt-bindings: spmi: modify the constraint of reg property
+  dt-bindings: spmi: document binding for the Mediatek SPMI controller
+  spmi: mediatek: Add support for MT6873/8192
+
+ .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      |  76 +++
+ .../devicetree/bindings/spmi/spmi.yaml        |   3 +-
+ drivers/spmi/Kconfig                          |  11 +
+ drivers/spmi/Makefile                         |   1 +
+ drivers/spmi/spmi-mtk-pmif.c                  | 542 ++++++++++++++++++
+ 5 files changed, 632 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+ create mode 100644 drivers/spmi/spmi-mtk-pmif.c
+
+--
+2.18.0
 
