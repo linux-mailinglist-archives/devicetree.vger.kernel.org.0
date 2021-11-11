@@ -2,112 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E672144D8A2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 15:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5599E44D8B2
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 15:57:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233586AbhKKOzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 09:55:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33550 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232778AbhKKOzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 09:55:40 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5EFAC061766;
-        Thu, 11 Nov 2021 06:52:50 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id h11so12487026ljk.1;
-        Thu, 11 Nov 2021 06:52:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8A7hURGRK27cExB7JA3d0U7r7U3aVexHtqO36HqGG9I=;
-        b=cld9pHE9I3y0XFBMaSeIu8abMfVMmti6/tE8JjUkGWw92zjXZjEXRxyJpW/aSo70RO
-         BcvCLwhP1je724JwxU2mSeGh1uP445lRQhbY9riFt2JFHKLyqJNYdpIWfZiNGeY1rbgw
-         QfnJ/wMAW199ncO2+S8oaYgEbx7Fqd/xJZRzB178Omvd/HKj5ECMStN5P2//k2niL39G
-         40VzQL5jHmWR5+eS9lSwb9zGlpyF8vF7evDwjPdjgkMg4Yynbt9M4WHnsP29om3qf1zS
-         wJWK2KSFsNft0AAEiQLdQR5/onl+yAGbuq45f9H1jZ0IYeUDo/Kn+JcqU4pNyD7iSoeS
-         wtbg==
+        id S233014AbhKKPAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 10:00:21 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:37647 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232033AbhKKPAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:00:20 -0500
+Received: by mail-oi1-f178.google.com with SMTP id o83so12017014oif.4;
+        Thu, 11 Nov 2021 06:57:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8A7hURGRK27cExB7JA3d0U7r7U3aVexHtqO36HqGG9I=;
-        b=dr7NdZOISZFELbSVfDP7LSrwkZJMRYIaNdQp3uAU/vlwzhiIabgt5Dk4Aslgls2MSe
-         AZel6zMRJDS3euoXnVd4HOztXHCKVzDNn8SBxfBjWQIY5OkUu22Pqfr3XHOtgkQmc3S5
-         B2xEX8H71BdB0e5fXx9vj01H84PSmFXNj5D2uwt0fsbSzKGQHVkS7L39xrKVA8bsFF2v
-         UY55FX4VmQTsH7FdmgRxR1A3R5OYViR8wOT1WT23jFI2lDi8pqntHnZ9klqbvUeKbOY1
-         zcT8+GR58Fao+iPbo1gWHrMmYA8t9CGOy9+VuUcJLaWNvh+j0HId/pFdzpu9ZFPYHn5K
-         4ftw==
-X-Gm-Message-State: AOAM5306aB5TKOUpi/fayWm5Gb3gPgJfrpMjRLjR81F8DhBu4k/Ytt7b
-        xfeFmy/oHUzlL6TmuxtHzmU=
-X-Google-Smtp-Source: ABdhPJzTU0BqBSsZ7ne4RJyZ92AjdR7Y8f2NrJ2uLoNVETVKBLVcUHV+kRaA+7zD4MWqm8GxgvubjQ==
-X-Received: by 2002:a2e:bc24:: with SMTP id b36mr7734881ljf.54.1636642369080;
-        Thu, 11 Nov 2021 06:52:49 -0800 (PST)
-Received: from mobilestation ([95.79.188.236])
-        by smtp.gmail.com with ESMTPSA id l19sm320244lji.27.2021.11.11.06.52.48
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=R7zk+o5f/F0OgLbsWoxwuTgZGcESXnxoCctVtMNWdEU=;
+        b=8Ga8gKvtN/UWwRsrDaJdgTCIBzSMhEOIB7zWXrfaNEpNDVMZjFMRECkQVC4jLL6FLv
+         hEVednquoOYLI8BO0d1Sgj3XVxC6D5ULVxthkRmeWYRfLD/D5Op4/CTvSCqLi3bqnInE
+         bZUMUxmial8nP/LWSgf6FwK48lnZpItYtsQLOFULMlJNEYcpsbE6JSavdi3jZiJUkb/x
+         2sZmVP3zEqbYRrNLh/le8NScujS/ovK5VqYvJmr9Fq9RcCTnHpymuv2Yp+WYXbRGNORl
+         hConr8v2fFW6lGMzxxak67odI8qqctTV+xK7TrxcOzU2d3p5mYgcmNFcI+CiZ08xqk/L
+         drKw==
+X-Gm-Message-State: AOAM532txqzHzg/COLGWujkkhHfoWpojte5gxsSR73FIuip+q8UFsR/+
+        SUAZNcMFY1v6u7a5px/7C9VcssV6Pw==
+X-Google-Smtp-Source: ABdhPJzuQbo38UpOM4K4zoxHNYkhMhMKbgGcvAsCg6RfNTOyr1EfdkDGQE+UrYFETFyfrMEtwdQx4A==
+X-Received: by 2002:a05:6808:f08:: with SMTP id m8mr1649495oiw.5.1636642650538;
+        Thu, 11 Nov 2021 06:57:30 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q10sm807331oiw.17.2021.11.11.06.57.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 06:52:48 -0800 (PST)
-Date:   Thu, 11 Nov 2021 17:52:46 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        nandhini.srikandan@intel.com, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mgross@linux.intel.com,
-        kris.pan@intel.com, kenchappa.demakkanavar@intel.com,
-        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
-        mahesh.r.vaidya@intel.com, rashmi.a@intel.com
-Subject: Re: [PATCH v3 3/5] spi: dw: Add support for master mode selection
- for DWC SSI controller
-Message-ID: <20211111145246.dj4gogl4rlbem6qc@mobilestation>
-References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
- <20211111065201.10249-4-nandhini.srikandan@intel.com>
- <YY0lpZkIsJih+g2o@sirena.org.uk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YY0lpZkIsJih+g2o@sirena.org.uk>
+        Thu, 11 Nov 2021 06:57:29 -0800 (PST)
+Received: (nullmailer pid 3774085 invoked by uid 1000);
+        Thu, 11 Nov 2021 14:57:26 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     michal.simek@xilinx.com, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        git-dev@xilinx.com
+In-Reply-To: <20211111085939.21769-1-shubhrajyoti.datta@xilinx.com>
+References: <20211111085939.21769-1-shubhrajyoti.datta@xilinx.com>
+Subject: Re: [PATCH] dt-bindings: mailbox: zynqmp_ipi: convert to yaml
+Date:   Thu, 11 Nov 2021 08:57:26 -0600
+Message-Id: <1636642646.899407.3774084.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Mark,
-
-On Thu, Nov 11, 2021 at 02:16:05PM +0000, Mark Brown wrote:
-> On Thu, Nov 11, 2021 at 02:51:59PM +0800, nandhini.srikandan@intel.com wrote:
+On Thu, 11 Nov 2021 14:29:39 +0530, Shubhrajyoti Datta wrote:
+> Convert the ipi doc to yaml.
 > 
-> > Add support to select the controller mode as master mode by setting
-> > Bit 31 of CTRLR0 register. This feature is supported for controller
-> > versions above v1.02.
-> 
-
-> Clearly older versions of the controller can also run in this mode...
-
-Yes, but the driver doesn't support the slave mode at the moment.
-So always enabling the master mode seems natural. (see my next comment
-also concerning this matter)
-
-> 
-> > -		if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
-> > -			cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
-> > +		/* CTRLR0[31] MST */
-> > +		cr0 |= DWC_SSI_CTRLR0_MST;
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> ---
+>  .../mailbox/xlnx,zynqmp-ipi-mailbox.txt       | 127 ------------------
+>  .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      |  91 +++++++++++++
+>  2 files changed, 91 insertions(+), 127 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
 > 
 
-> This makes the configuration unconditional, it's not gated by controller
-> version checks or any kind of quirk any more meaning that if anything
-> interprets that bit differently things might break.  If this is really
-> required to put the controller in master mode it seems that either the
-> 1.02 version is not widespread or this is generally the hardware
-> default.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-We have already discussed this feature in v2:
-https://patchwork.kernel.org/project/spi-devel-general/patch/20210824085856.12714-3-nandhini.srikandan@intel.com/
-Since that bit has been reserved before 1.02a but is no available for
-any DWC SSI controller and the driver doesn't support the SPI-slave mode
-at the moment I suggested to just always set that flag for the DWC SSI
-code. Please see my reply to Nandhini here:
-https://patchwork.kernel.org/project/spi-devel-general/patch/20210824085856.12714-3-nandhini.srikandan@intel.com/#24433679
+yamllint warnings/errors:
 
--Sergey
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.example.dt.yaml: zynqmp_ipi: 'reg' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.example.dt.yaml: zynqmp_ipi: '#mbox-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.example.dt.yaml: zynqmp_ipi: '#address-cells', '#size-cells', 'mailbox@ff990400', 'mailbox@ff990440', 'ranges' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1553827
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
