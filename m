@@ -2,100 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9612D44D933
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 16:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6718244D960
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 16:46:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232565AbhKKPeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 10:34:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
+        id S233898AbhKKPsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 10:48:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233963AbhKKPea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:34:30 -0500
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41801C06127A
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:31:41 -0800 (PST)
-Received: by mail-oi1-x232.google.com with SMTP id n66so12170480oia.9
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:31:41 -0800 (PST)
+        with ESMTP id S233981AbhKKPsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:48:54 -0500
+Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AC21C061767
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:46:05 -0800 (PST)
+Received: by mail-pl1-x630.google.com with SMTP id y1so6036476plk.10
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 07:46:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=8pB+WwRzjj1VLddfWPFnbpX1zEu/AXjp6IsntdVdc4M=;
-        b=eVfYB5znA4+u5yoC3kq22eC1l5Wk36GwHpTFQmVXZ+6Wi+IGQQecl5zjDn5PbwLebG
-         9NHQW2rnKHVfOfkkaCicef7RsP2uCQ3uaHpeNbs8CuQklO+liFDFxf8YCkkK098I1lms
-         6LVa5VMuACMj7YYOCiicFLyVA11JCk92IaoioXkwrVxUkIuiT5fI4BcAWKbiKu9Wf+vs
-         OlvtAvy/c7q3SnQYWw1YHaUCqAuQdqCRPiuCs3gCnSbRbM0TMH4LcRsyQLHrTiRR+o6E
-         hG2jqomYCTG9lyC3nK0iC2K+lbj+FPd/WIUSUasqzzxuFnnc/bsC+ksk+rQPBWpRUMMY
-         RVbg==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IHt50f9mlyj2/SGCeb4ttMHVOWoii0nmE+uZwCQwvss=;
+        b=pJ+aj0QcW5CArcwgJ/NlNf7LjHw/5Dte0pH8KK1eCFpa3e3bzsXEOjr0mZfAd97E87
+         wneccpy8j5SVG3wQuitDaYXf3q+k4h3nGJYGTDSsR/tMAZyDl4IFpSOQvlzkInw3kAR2
+         Md4gPyfxT+6FZ+yPkZo0DiItVLsxp4GaQPqB0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=8pB+WwRzjj1VLddfWPFnbpX1zEu/AXjp6IsntdVdc4M=;
-        b=ETeobECEk7Qa/llev52hvkodHiy20ZlqbcRwPITmu/ElLEbEudmaMbj2sVdUmX+oYl
-         kH5mvSNoe5mb6knGQfVa2qbtQ1BP0+B5QdIVOxtOzmgX3BTWuT5jhb1IS1usPWqZvUv8
-         Qb3wBLYHJZRTvb8z4DKJs0Xj3QH8eMcGP/HzypdMARsU75WaMzx88Y4R+vKH1Lc7xbLB
-         2F8M+W+WnLMTmj11Cs9Sq4Q7uQRi0SbDLVlGjbVI4h5A3pCGKsb6YpCit+oaN3386aIf
-         wsQB2VYU+X0EILwWUcGD07+9fMxEwkmMlkis7tBFr3BRpKKBlAindg71qYDHTCX9bP3o
-         SJ7g==
-X-Gm-Message-State: AOAM531Srp629fjwxmxdDJ6nWhl/bMaBguJMGUWvPQHtYZouxYZXK6pZ
-        usHP8/sNrPnwMYnBXosNAhKFWU7uyX18zEFIv0KApA==
-X-Google-Smtp-Source: ABdhPJwfj+szv19ZdA3wyhVqNUMQ0EA+/NDT2FaE6iQd8Igj9fZrBAlPin27pfo4wMPzekrNeaOxHlxFTjTEVk+FqJc=
-X-Received: by 2002:a05:6808:60e:: with SMTP id y14mr6897527oih.162.1636644700468;
- Thu, 11 Nov 2021 07:31:40 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IHt50f9mlyj2/SGCeb4ttMHVOWoii0nmE+uZwCQwvss=;
+        b=2U5Vo5L33rCnjO+SY6eygD4GY3n26EWIr2ha+oRDi86kr0Z2RvAPpXhPRcRBsAmmxc
+         4whjBhwg1tHF3GyAuT5p+HmNMMmFTa0lVB7YZwoR3EIeyFkhFs+/yuXKI1AykjZV0Uz1
+         mZqTKu1iGlGrnvaBXP47FhTO2SJqa4ILJEkACPTgtMHTUB5yOtcX51E9LxfbG6G6beDF
+         I+69N7ie4Tb8uDlbd0MDJONMOPHeDnfSF1tQbz2upUmsuIqwxXV1/EEiNq6wwkSCAOzN
+         Ajcknm78q5Rejgt/54Tc6vLPDK2xEurfopRuzjI9sPo6ILdYJ+m3gwO2cYxmjuGxL/wh
+         GBgQ==
+X-Gm-Message-State: AOAM532iq/nzsWfK8nDe74rVij2I80SRu9Qnhjp+egDyUcNTGN4mYrKW
+        AmPXsQhkg0mByjsHYUk8DraFiw==
+X-Google-Smtp-Source: ABdhPJxC6ZgyozJNOpUT/48/RGwMj3ZvL6O5TXHm+OR45a6ap3fs4/22wlkQl/SgvLOHLCzAQ+3q/Q==
+X-Received: by 2002:a17:90a:17a5:: with SMTP id q34mr27153922pja.122.1636645564865;
+        Thu, 11 Nov 2021 07:46:04 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a0a9:3041:135c:4e21:846c])
+        by smtp.gmail.com with ESMTPSA id m15sm2782122pjf.49.2021.11.11.07.46.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Nov 2021 07:46:04 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amarula@amarulasolutions.com,
+        Matteo Lisi <matteo.lisi@engicam.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 1/3] ARM: dts: stm32: Enable LVDS panel on i.Core STM32MP1 EDIMM2.2
+Date:   Thu, 11 Nov 2021 21:15:55 +0530
+Message-Id: <20211111154557.852637-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211110231436.8866-1-zajec5@gmail.com>
-In-Reply-To: <20211110231436.8866-1-zajec5@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 11 Nov 2021 16:31:28 +0100
-Message-ID: <CACRpkdbAS0JiqTQUU0R0yRhVCwagubwsNYLxj1DLE1Ldc+H_JQ@mail.gmail.com>
-Subject: Re: [PATCH RFC] dt-bindings: pinctrl: support specifying pins
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        ext Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 11, 2021 at 12:14 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com>=
- wrote:
+Engicam i.Core STM32MP1 EDIMM2.2 Starter Kit has plugged with
+7" LVDS panel.
 
-> While working with pinctrl in Linux I started wondering if we could
-> start specifying pins in DT instead of Linux drivers. When working with
-> DT we usually avoid hardcoding hardware description in drivers so it
-> isn't clear to me why it doesn't apply to pins.
+Engicam i.Core STM32MP1 SoM has SN65DSI84 DSI to LVDS bridge.
 
-Historically this is what pinctrl-single.c does.
-Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+This patch adds a display pipeline to connect DSI to SN65DSI84
+to 7" LVDS panel.
 
-At the time we created pin control there was a bit back-and-forth and
-the conclusion was that there is not one-size-fits all for pin defines.
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ .../stm32mp157a-icore-stm32mp1-edimm2.2.dts   | 85 +++++++++++++++++++
+ 1 file changed, 85 insertions(+)
 
-The reason TI (Tony) wanted to push the information into DT
-was that what he gets is a number of unprocessed ASIC datasets,
-that are then turned into tables with a script. Header files or DTS
-source alike, but some kind of tables.
+diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
+index ec9f1d1cd50f..d80b4415e761 100644
+--- a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
++++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-edimm2.2.dts
+@@ -24,6 +24,91 @@ aliases {
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
++
++	backlight: backlight {
++		compatible = "gpio-backlight";
++		gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
++		default-on;
++	};
++
++	panel {
++		compatible = "yes-optoelectronics,ytc700tlag-05-201c";
++		backlight = <&backlight>;
++		power-supply = <&v3v3>;
++
++		port {
++			panel_out_bridge: endpoint {
++				remote-endpoint = <&bridge_out_panel>;
++			};
++		};
++	};
++};
++
++&dsi {
++	status = "okay";
++	phy-dsi-supply = <&reg18>;
++
++	ports {
++		port@0 {
++			reg = <0>;
++			dsi_in_ltdc: endpoint {
++				remote-endpoint = <&ltdc_out_dsi>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			dsi_out_bridge: endpoint {
++				remote-endpoint = <&bridge_in_dsi>;
++			};
++		};
++	};
++};
++
++&i2c6 {
++	i2c-scl-falling-time-ns = <20>;
++	i2c-scl-rising-time-ns = <185>;
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&i2c6_pins_a>;
++	pinctrl-1 = <&i2c6_sleep_pins_a>;
++	status = "okay";
++
++	bridge@2c {
++		compatible = "ti,sn65dsi84";
++		reg = <0x2c>;
++		enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				bridge_in_dsi: endpoint {
++					remote-endpoint = <&dsi_out_bridge>;
++					data-lanes = <0 1>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++				bridge_out_panel: endpoint {
++					remote-endpoint = <&panel_out_bridge>;
++				};
++			};
++		};
++	};
++};
++
++&ltdc {
++	status = "okay";
++
++	port {
++		ltdc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_in_ltdc>;
++		};
++	};
+ };
+ 
+ &sdmmc1 {
+-- 
+2.25.1
 
-At the time (2011?) it was unclear what kind of data should go into
-e.g. header and data files in the kernel (modules) and what should
-go into the DT. So the approach to put pin information into the DT
-was allowed for pinctrl-single.
-
-The way I have understood it, DT maintainers have since gotten
-a bit wary about (ab)using the DT as a container for "anything data"
-and prefer that drivers contain details and derive these from
-compatible strings.
-
-As of today, IIUC the DT maintainers are against this scheme.
-
-That said, the topic is open in a way. Some people are also annoyed
-that some graphics drivers just ask Torvalds to pull 100.000+ lines
-of register defnes in some merge windows. The data has to go
-somewhere.
-
-Yours,
-Linus Walleij
