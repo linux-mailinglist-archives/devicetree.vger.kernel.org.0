@@ -2,89 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F5544D5FE
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 12:41:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12EE744D626
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 12:54:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229668AbhKKLnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 06:43:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46036 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232987AbhKKLnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 06:43:52 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 570DDC061766;
-        Thu, 11 Nov 2021 03:41:03 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 542691F45B1A
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1636630861; bh=yaYinyVYYl0N0+dtMK6+ku0bg03EnhdN+DOz/1sMwr8=;
-        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
-        b=no3Uds5F4F508vhMrZab+HejB/C3NhT5KZUDZRYsQXmxZ/JLYlFoKTLKUpb2hzBxE
-         BgJAwDrXf1Ado/c/hLd3dPF00AjE3S4yMfKNiC+boOLn7hAgCnr9oE1Sz4b7XXuLKE
-         Bkj9qW4XxFaKRDdVC1kR+C8XyTtz7OI6LGezuDYkoHHwHsb+RKyyYpZ/pjZjJ9wr4b
-         G/qwQ/2SsBlzcPSB/6g3bbBCdqJfZc1zSbcQiS0PtjKl1CsjXt1DlVoS2iu92npFrY
-         LzZU/xW98Bokw+uovBd6WuIlpdjRfRGCJElGWWU5qREaviFcx5jVJWy6UiAyqzOaOJ
-         8eKvxTizo/RiQ==
-Subject: Re: [PATCH v8 1/7] soc: mediatek: mmsys: add support for MDP
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        id S233288AbhKKL5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 06:57:25 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:33491 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S233339AbhKKL5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Nov 2021 06:57:24 -0500
+X-IronPort-AV: E=Sophos;i="5.87,225,1631545200"; 
+   d="scan'208";a="99921027"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 11 Nov 2021 20:54:33 +0900
+Received: from localhost.localdomain (unknown [10.226.93.91])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A879A400F79A;
+        Thu, 11 Nov 2021 20:54:30 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tfiga@chromium.org, drinkcat@chromium.org, acourbot@chromium.org,
-        pihsun@chromium.org, menghui.lin@mediatek.com,
-        sj.huang@mediatek.com, allen-kh.cheng@mediatek.com,
-        randy.wu@mediatek.com, srv_heupstream@mediatek.com,
-        hsinyi@google.com
-References: <20211015123832.17914-1-moudy.ho@mediatek.com>
- <20211015123832.17914-2-moudy.ho@mediatek.com>
- <31577e05-34b8-2e5e-14f0-db9949ffdd3d@collabora.com>
-Message-ID: <6876d923-bd71-8f10-e5fb-1c228642a163@collabora.com>
-Date:   Thu, 11 Nov 2021 12:40:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <31577e05-34b8-2e5e-14f0-db9949ffdd3d@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2 0/3] Add WDT driver for RZ/G2L
+Date:   Thu, 11 Nov 2021 11:54:24 +0000
+Message-Id: <20211111115427.8228-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/10/21 15:50, AngeloGioacchino Del Regno ha scritto:
-> Il 15/10/21 14:38, Moudy Ho ha scritto:
->> For the purpose of module independence, related settings should be moved
->> from MDP to the corresponding driver.
->> This patch adds more 8183 MDP settings and interface. and MDP
->> related settings must be set via CMDQ to avoid frame unsynchronized.
->>
->> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
->> ---
->>   drivers/soc/mediatek/Kconfig           |   1 +
->>   drivers/soc/mediatek/mt8183-mmsys.h    | 219 +++++++++++++++++++++++++
->>   drivers/soc/mediatek/mtk-mmsys.c       |  52 ++++++
->>   drivers/soc/mediatek/mtk-mmsys.h       |   2 +
->>   include/linux/soc/mediatek/mtk-mmsys.h |  56 +++++++
->>   5 files changed, 330 insertions(+)
->>
-> 
+This patch series aims to add WDT driver support for RZ/G2L SoC's.
 
-This patch does not apply cleanly anymore, as of next-20211111.
-Can you please send a v9 asap?
+WDT has 3 channels 
+1) CH0 to check the operation of Cortex-A55-CPU Core0
+2) CH1 to check the operation of Cortex-A55-CPU Core1
+3) CH2 to check the operation of Cortex-M33 CPU
 
-Thanks,
-Angelo
+WDT IP supports 
+1) Normal Watchdog Timer Function
+2) Reset Request Function due to CPU Parity Error
+
+Once the software activates the watchdog timer, the watchdog timer does
+not stop until it is reset.
+
+The WDT Overflow System Reset Register (CPG_WDTOVF_RST) and 
+WDT Reset Selector Register (CPG_WDTRST_SEL) are in CPG IP
+block.
+
+Current driver supports Normal Watchdog Timer basic functionality.
+
+Tested WDT driver with selftests tool and reboot command
+
+All 3 channels tested with below command.
+
+cat /dev/watchdog  & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800808; done
+cat /dev/watchdog1  & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800c08; done
+cat /dev/watchdog2 & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800408; done
+
+V1->V2:
+ * started using clk_get/put instead of devm_clk_get/put
+ * Moved devm_add_action_or_reset after set_drvdata() and 
+ * removed redundant action on devm_add_action_or_reset() failure.
+RFC->V1
+ * Removed patch#3, the clk patch is queued for 5.17
+ * Added clock-names and interrupt-names as required properties for RZ/G2L
+ * Re-order clocknames with internal module clock first
+ * Removed pclk_rate from priv.
+ * rzg2l_wdt_write() returns void and Removed tiemout related to register update 
+ * rzg2l_wdt_init_timeout() returns void and removed delays.
+ * removed set_bit(WDOG_HW_RUNNING,..) as we can stop watchdog
+ * renamed reset_assert_clock_disable->reset_assert_pm_disable_put
+ * started using devm_reset_control_get_exclusive()
+ * removed platform_set_drvdata(pdev, priv) as there is no user
+ * removed watchdog_set_restart_priority(&priv->wdev, 0) as 0 is the default.
+ * removed remove callback as it is empty.
+
+Biju Das (3):
+  clk: renesas: rzg2l: Add support for watchdog reset selection
+  dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
+  watchdog: Add Watchdog Timer driver for RZ/G2L
+
+ .../bindings/watchdog/renesas,wdt.yaml        |  75 ++++--
+ drivers/clk/renesas/r9a07g044-cpg.c           |  22 ++
+ drivers/clk/renesas/rzg2l-cpg.c               |   6 +
+ drivers/clk/renesas/rzg2l-cpg.h               |  14 +
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/rzg2l_wdt.c                  | 255 ++++++++++++++++++
+ 7 files changed, 363 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/watchdog/rzg2l_wdt.c
+
+-- 
+2.17.1
+
