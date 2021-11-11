@@ -2,59 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DEDB44DB5D
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 18:56:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D111944DB8D
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 19:23:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234436AbhKKR7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 12:59:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234339AbhKKR7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 12:59:36 -0500
-Received: from relay04.th.seeweb.it (relay04.th.seeweb.it [IPv6:2001:4b7a:2000:18::165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 413B8C061766;
-        Thu, 11 Nov 2021 09:56:47 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id ADB7220370;
-        Thu, 11 Nov 2021 18:56:43 +0100 (CET)
-Subject: Re: [PATCH v2 1/7] arm64: dts: qcom: sdm630: Assign numbers to eMMC
- and SD
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, martin.botka@somainline.org,
-        marijn.suijten@somainline.org, paul.bouchara@somainline.org,
-        Caleb Connolly <caleb@connolly.tech>
-References: <20211108050336.3404559-1-danct12@riseup.net>
- <20211108050336.3404559-2-danct12@riseup.net>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <64490877-ad65-c49f-cc7c-32fbd456c8b5@somainline.org>
-Date:   Thu, 11 Nov 2021 18:56:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232203AbhKKS01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 13:26:27 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:57028 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232930AbhKKS01 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Nov 2021 13:26:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=Vn/FEUnwBAyr2EGt/+6N9yAjiUxR9PT2i5SKEAIC2/Q=; b=HZal7urJUrZK46lzxb474watrg
+        fvc1bD30yeoEbxD9VK1Y+aKyif1zrvhP9cikm0U4u2eAeD4lzm7nEEZ04fsOicxS+oL9ryYXRK5iU
+        h6QyopfXeoeoVgAO4zpwMAdvWJhZWzme48cF6uXJ7Gi3b0HL3ZC1dy5HboQfs/h1QCPk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mlEjR-00DCxq-SZ; Thu, 11 Nov 2021 19:23:29 +0100
+Date:   Thu, 11 Nov 2021 19:23:29 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu <wellslutw@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        vincent.shih@sunplus.com, Wells Lu <wells.lu@sunplus.com>
+Subject: Re: [PATCH v2 1/2] devicetree: bindings: net: Add bindings doc for
+ Sunplus SP7021.
+Message-ID: <YY1fofJI0CW4Wmh5@lunn.ch>
+References: <cover.1636620754.git.wells.lu@sunplus.com>
+ <321e3b1a7dfca81f3ffae03b11099e8efeef92fa.1636620754.git.wells.lu@sunplus.com>
 MIME-Version: 1.0
-In-Reply-To: <20211108050336.3404559-2-danct12@riseup.net>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <321e3b1a7dfca81f3ffae03b11099e8efeef92fa.1636620754.git.wells.lu@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 08/11/21 06:03, Dang Huynh ha scritto:
-> This makes eMMC/SD device number consistent.
-> 
-> Reviewed-by: Martin Botka <martin.botka@somainline.org>
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
->   arch/arm64/boot/dts/qcom/sdm630.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    emac: emac@9c108000 {
+> +        compatible = "sunplus,sp7021-emac";
+> +        reg = <0x9c108000 0x400>, <0x9c000280 0x80>;
+> +        reg-names = "emac", "moon5";
+> +        interrupt-parent = <&intc>;
+> +        interrupts = <66 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clkc 0xa7>;
+> +        resets = <&rstc 0x97>;
+> +        phy-handle1 = <&eth_phy0>;
+> +        phy-handle2 = <&eth_phy1>;
+> +        pinctrl-0 = <&emac_demo_board_v3_pins>;
+> +        pinctrl-names = "default";
+> +        nvmem-cells = <&mac_addr0>, <&mac_addr1>;
+> +        nvmem-cell-names = "mac_addr0", "mac_addr1";
+> +
+> +        mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            eth_phy0: ethernet-phy@0 {
+> +                reg = <0>;
+> +                phy-mode = "rmii";
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+This is in the wrong place. It is a MAC property. You usually put it
+next to phy-handle.
+
+> +            };
+> +            eth_phy1: ethernet-phy@1 {
+> +                reg = <1>;
+> +                phy-mode = "rmii";
+> +            };
+> +        };
+
+I would suggest you structure this differently to make it clear it is
+a two port switch:
+
+	ethernet-ports {
+		#address-cells = <1>;
+                #size-cells = <0>;
+
+                port@0 {
+                    reg = <0>;
+		    phy-handle = <&eth_phy0>;
+		    phy-mode = "rmii";
+		}
+
+		port@1 {
+                    reg = <1>;
+		    phy-handle = <&eth_phy1>;
+		    phy-mode = "rmii";
+		}
+	}
+
+	Andrew
