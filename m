@@ -2,93 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEFB44D8BA
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 15:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B64644D8CC
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 16:01:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232796AbhKKPAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 10:00:35 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:41640 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233316AbhKKPAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:00:25 -0500
-Received: by mail-oi1-f181.google.com with SMTP id u74so12003358oie.8;
-        Thu, 11 Nov 2021 06:57:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=eOq5ir+TFZBL5cj7XaOZPw0GldpRN8fcVtMKUZ8KDPc=;
-        b=SMY2FKgbDJZoMRFWODsXCP3a5xnsRNrW/LHfFYnEZcyMtMU/AewOQf/Sb0zj78L8wb
-         04rdXvKzB2RHRYGnY7EAWWbdDHhxf7hxguX4nnmUQ5rtZX3l/xYBagSWM2YwsTibO7gV
-         uB2flJPMTHS0H2j/8HeNrilNSxGMy/FeO65hcIJkdHGs7q7Zg/xqEKXM5cqeZvOJ97C4
-         GhkVB7Yfa/6w6Sxz9PR4uURLEXbPq8taOSOYk+emwEkWv9kt+esyE/ZB3YXJSR8wXdFn
-         ElxFTDcgJmLTqqMyeuZnD9vqtb1yV6baIQ03djiIAPv/UDlo1bT92yvTXCaFvO7eeg2n
-         4lbA==
-X-Gm-Message-State: AOAM5316OSKNuYSKpj2gyQ9MZsD+oCT219up2Gf+2HKieLUiG3BjJwik
-        ToRqmvIAvfhzW08xmLJQUQ==
-X-Google-Smtp-Source: ABdhPJylUnRgVbfCJwWY8YapTYWcyJT8PtHaBGyigns+dkTO2lU8gHUIpbJagVcgphNPxro1ePlm2w==
-X-Received: by 2002:a05:6808:159a:: with SMTP id t26mr20008829oiw.106.1636642655301;
-        Thu, 11 Nov 2021 06:57:35 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id ay42sm769577oib.22.2021.11.11.06.57.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 06:57:34 -0800 (PST)
-Received: (nullmailer pid 3774089 invoked by uid 1000);
-        Thu, 11 Nov 2021 14:57:26 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Biao Huang <biao.huang@mediatek.com>
-Cc:     netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        Jose Abreu <joabreu@synopsys.com>, srv_heupstream@mediatek.com,
-        davem@davemloft.net, linux-arm-kernel@lists.infradead.org,
-        macpaul.lin@mediatek.com,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-mediatek@lists.infradead.org,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-In-Reply-To: <20211111071214.21027-5-biao.huang@mediatek.com>
-References: <20211111071214.21027-1-biao.huang@mediatek.com> <20211111071214.21027-5-biao.huang@mediatek.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: net: dwmac: Convert mediatek-dwmac to DT schema
-Date:   Thu, 11 Nov 2021 08:57:26 -0600
-Message-Id: <1636642646.918741.3774088.nullmailer@robh.at.kernel.org>
+        id S232778AbhKKPEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 10:04:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41050 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230177AbhKKPEH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Nov 2021 10:04:07 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0CBC1610A2;
+        Thu, 11 Nov 2021 15:01:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636642878;
+        bh=uS7AjnXMAtTTLK2QXT7jX014gaj/3UVYVDR6aRPON98=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W5ovTJil3ubv82wwqLB2yw9MZ3IehldRT16BUotCXwAerMxBegV1j1cFwKBho2lVP
+         QdNvgIHtBd4JA1W+FZ8Po7F1yz0RNmx8WSxykS6/IMoiBl6boZWXC/wqqntQ5Om+z8
+         jsmQ0wzQbVdcMRKNF+jiN8oewSCzSZCJ1c7W1E14RaLbYZZBTWMf3SL1lydAG3e1Bb
+         w9OZPkxydOKU94CwSJ7XS2JmheEy1iFBGnWFk3XdSh280A1kghB7IqeLMbtuDCuqhC
+         WdaTF28E5D2F7mjlpkYZY5qflopmvCXXmGcS/m2keY+DZQJik8/DkKbuhQv0CKU3yK
+         TI+/qiMTAku5g==
+Date:   Thu, 11 Nov 2021 15:01:12 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     nandhini.srikandan@intel.com,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, kris.pan@intel.com,
+        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
+        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
+        rashmi.a@intel.com
+Subject: Re: [PATCH v3 1/5] dt-bindings: spi: Add SSTE support for DWC SSI
+ controller
+Message-ID: <YY0wOBoT7X//GfQ8@sirena.org.uk>
+References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
+ <20211111065201.10249-2-nandhini.srikandan@intel.com>
+ <20211111143108.pxovseqvm2ywmoc2@mobilestation>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="msY2aCMFe/FNn5o4"
+Content-Disposition: inline
+In-Reply-To: <20211111143108.pxovseqvm2ywmoc2@mobilestation>
+X-Cookie: Teutonic:
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Nov 2021 15:12:13 +0800, Biao Huang wrote:
-> Convert mediatek-dwmac to DT schema, and delete old mediatek-dwmac.txt.
-> 
-> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> ---
->  .../bindings/net/mediatek-dwmac.txt           |  91 --------
->  .../bindings/net/mediatek-dwmac.yaml          | 211 ++++++++++++++++++
->  2 files changed, 211 insertions(+), 91 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
->  create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
-> 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+--msY2aCMFe/FNn5o4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+On Thu, Nov 11, 2021 at 05:31:08PM +0300, Serge Semin wrote:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1553803
+> BTW Mark, why not to have a generic DT-property which would set that
+> flag automatically by the SPI-core subsystem seeing it's indeed a
+> client device-property? For instance there can be some property like
+> "spi-cs-toggle" DT-property which when specified for the particular
+> SPI-client DT-node will make the SPI-core subsystem to set the
 
+Anything like this is fundamentally part of the wire protocol for the
+device, there's no need for an extra property on top of the compatible
+for the device and the driver really, really needs to know what's going
+on to avoid data corruption.  You could also use this feature together
+with varying the word size as an optimisation at runtime (eg, do long
+sequences of register writes in a single hardware operation by setting
+an appropriate word length to cause the controller to bounce chip
+select between writes).
 
-ethernet@1101c000: clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref'] is too short
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+> SPI_CS_WORD flag of the device mode? Like it has already been done for
+> "spi-cs-high"/"spi-lsb-first"/etc.
 
-ethernet@1101c000: clocks: [[27, 34], [27, 37], [6, 154], [6, 155]] is too short
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+I don't think either of those properties was a good idea, there's a
+bunch of stuff in the older SPI bindings that don't make much sense.
 
-ethernet@1101c000: compatible: ['mediatek,mt2712-gmac'] does not contain items matching the given schema
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+--msY2aCMFe/FNn5o4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-ethernet@1101c000: compatible: 'oneOf' conditional failed, one must be fixed:
-	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGNMDgACgkQJNaLcl1U
+h9A69wf8DefUDl1wuH91X13IzD3bwWUOzWSPEV4LGsq2YCdUNo9VfRJ9L7e+J4Br
+/1tkwFSlJhOVlrRAp66Ov/kVhM+Br8h+yCrLNuOHrBqDZFPIh2N5j6MSn0+QjZNB
+SN2WX7vH2FErJLjvb4iMu+6cvYKes1K9X2yXWrHvdhvQ27EgOp+BcmrF14MtDh2Y
+Y/zsuW/fYHAXqeRWPSghPLiU/mLM8Rk2Uy4nlmOPm3OB34otL2OCvo2n5hZlKr8b
+VQVxRlA3iDMNi5dyaqKXWgupLo0CiVbY6FsdBM3DXm121jLoYFOoqbm46EEBbunq
+MjOILfeaeIW0pK9oK3KIaiwhMFmyLA==
+=kf7P
+-----END PGP SIGNATURE-----
+
+--msY2aCMFe/FNn5o4--
