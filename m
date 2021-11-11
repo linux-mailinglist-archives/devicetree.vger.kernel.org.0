@@ -2,115 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D4244D8B3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 15:57:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DEFB44D8BA
+	for <lists+devicetree@lfdr.de>; Thu, 11 Nov 2021 15:57:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233170AbhKKPAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 10:00:23 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:43860 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230177AbhKKPAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:00:18 -0500
-Received: by mail-oi1-f173.google.com with SMTP id o4so11993075oia.10;
-        Thu, 11 Nov 2021 06:57:29 -0800 (PST)
+        id S232796AbhKKPAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 10:00:35 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:41640 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233316AbhKKPAZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 10:00:25 -0500
+Received: by mail-oi1-f181.google.com with SMTP id u74so12003358oie.8;
+        Thu, 11 Nov 2021 06:57:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=qNEjXj/HNgs612CxAaN/7ARospzmOAVl901gKnKjQak=;
-        b=agx4kR2N42ii7BrWCYeLhZB/Lc27yIGBhp+LkFP32xzdzlCwNzuAjsFTd6IMVNikVP
-         PVreo8LU/0QkIZeI743xIg6B9V2q3uwnH8P1duwhmmX5ljwZeTA+meLMmlDoo1FS37tX
-         GAqkpOPPumzmYzVRy7898E0xxxsopmcnd35pFxjp0qh35dFRNNmCSr5V3dbmEZ09uKcN
-         cM2bXjm28orj+x+xJMpVa0jfbMVamja5TUv+OPzQXjV3415pMh2jgwJp03AOvYRWX5Rr
-         2d8Y6FdDeFRNa1XwIkPh9Duc2ygWWHQrpF8dq/p6OLpUCdW/Nlu+AsyYoFApkKBDExGl
-         SDsA==
-X-Gm-Message-State: AOAM5312JPnPyyxHxGqWsj9K9Qx0ep3rPJPYEnsSmWooafVyhDCQZL1t
-        UCH++jTjqJwjK0Blg0DxdA==
-X-Google-Smtp-Source: ABdhPJwLcneflSvlTMqVQa7wx8N++jT4UqWGoLvdDyD7I/PEJOPtmHneR0Q6RSCyi4LFQ9/yRsBRiw==
-X-Received: by 2002:a54:4616:: with SMTP id p22mr19795772oip.96.1636642649070;
-        Thu, 11 Nov 2021 06:57:29 -0800 (PST)
+        bh=eOq5ir+TFZBL5cj7XaOZPw0GldpRN8fcVtMKUZ8KDPc=;
+        b=SMY2FKgbDJZoMRFWODsXCP3a5xnsRNrW/LHfFYnEZcyMtMU/AewOQf/Sb0zj78L8wb
+         04rdXvKzB2RHRYGnY7EAWWbdDHhxf7hxguX4nnmUQ5rtZX3l/xYBagSWM2YwsTibO7gV
+         uB2flJPMTHS0H2j/8HeNrilNSxGMy/FeO65hcIJkdHGs7q7Zg/xqEKXM5cqeZvOJ97C4
+         GhkVB7Yfa/6w6Sxz9PR4uURLEXbPq8taOSOYk+emwEkWv9kt+esyE/ZB3YXJSR8wXdFn
+         ElxFTDcgJmLTqqMyeuZnD9vqtb1yV6baIQ03djiIAPv/UDlo1bT92yvTXCaFvO7eeg2n
+         4lbA==
+X-Gm-Message-State: AOAM5316OSKNuYSKpj2gyQ9MZsD+oCT219up2Gf+2HKieLUiG3BjJwik
+        ToRqmvIAvfhzW08xmLJQUQ==
+X-Google-Smtp-Source: ABdhPJylUnRgVbfCJwWY8YapTYWcyJT8PtHaBGyigns+dkTO2lU8gHUIpbJagVcgphNPxro1ePlm2w==
+X-Received: by 2002:a05:6808:159a:: with SMTP id t26mr20008829oiw.106.1636642655301;
+        Thu, 11 Nov 2021 06:57:35 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 187sm680123oig.19.2021.11.11.06.57.27
+        by smtp.gmail.com with ESMTPSA id ay42sm769577oib.22.2021.11.11.06.57.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 06:57:28 -0800 (PST)
-Received: (nullmailer pid 3774080 invoked by uid 1000);
+        Thu, 11 Nov 2021 06:57:34 -0800 (PST)
+Received: (nullmailer pid 3774089 invoked by uid 1000);
         Thu, 11 Nov 2021 14:57:26 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        David Airlie <airlied@linux.ie>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-mips@vger.kernel.org, Maxime Ripard <maxime@cerno.tech>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Brown <broonie@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
-        Kees Cook <keescook@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        letux-kernel@openphoenux.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
-        Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <70f2abb5277369721cb352eb50daa407bee3fd04.1636573413.git.hns@goldelico.com>
-References: <cover.1636573413.git.hns@goldelico.com> <70f2abb5277369721cb352eb50daa407bee3fd04.1636573413.git.hns@goldelico.com>
-Subject: Re: [PATCH v6 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
+To:     Biao Huang <biao.huang@mediatek.com>
+Cc:     netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        Jose Abreu <joabreu@synopsys.com>, srv_heupstream@mediatek.com,
+        davem@davemloft.net, linux-arm-kernel@lists.infradead.org,
+        macpaul.lin@mediatek.com,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+In-Reply-To: <20211111071214.21027-5-biao.huang@mediatek.com>
+References: <20211111071214.21027-1-biao.huang@mediatek.com> <20211111071214.21027-5-biao.huang@mediatek.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: net: dwmac: Convert mediatek-dwmac to DT schema
 Date:   Thu, 11 Nov 2021 08:57:26 -0600
-Message-Id: <1636642646.871896.3774079.nullmailer@robh.at.kernel.org>
+Message-Id: <1636642646.918741.3774088.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 10 Nov 2021 20:43:28 +0100, H. Nikolaus Schaller wrote:
-> From: Sam Ravnborg <sam@ravnborg.org>
+On Thu, 11 Nov 2021 15:12:13 +0800, Biao Huang wrote:
+> Convert mediatek-dwmac to DT schema, and delete old mediatek-dwmac.txt.
 > 
-> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
-> Based on .txt binding from Zubair Lutfullah Kakakhel
-> 
-> We also add add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
-> 
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Biao Huang <biao.huang@mediatek.com>
 > ---
->  .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
->  .../bindings/display/ingenic-jz4780-hdmi.yaml | 76 +++++++++++++++++++
->  2 files changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml
+>  .../bindings/net/mediatek-dwmac.txt           |  91 --------
+>  .../bindings/net/mediatek-dwmac.yaml          | 211 ++++++++++++++++++
+>  2 files changed, 211 insertions(+), 91 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/mediatek-dwmac.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml:36:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.example.dt.yaml: hdmi@10180000: 'clock-names', 'ddc-i2c-bus', 'interrupt-parent', 'interrupts', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/ingenic-jz4780-hdmi.yaml
+Full log is available here: https://patchwork.ozlabs.org/patch/1553803
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1553577
+ethernet@1101c000: clock-names: ['axi', 'apb', 'mac_main', 'ptp_ref'] is too short
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+ethernet@1101c000: clocks: [[27, 34], [27, 37], [6, 154], [6, 155]] is too short
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+ethernet@1101c000: compatible: ['mediatek,mt2712-gmac'] does not contain items matching the given schema
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+ethernet@1101c000: compatible: 'oneOf' conditional failed, one must be fixed:
+	arch/arm64/boot/dts/mediatek/mt2712-evb.dt.yaml
 
