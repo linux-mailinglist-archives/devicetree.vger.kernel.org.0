@@ -2,167 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0F4844ED39
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 20:23:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 083A144ED4D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 20:34:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235545AbhKLT0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 14:26:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52124 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235379AbhKLT0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 14:26:34 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A32C061767;
-        Fri, 12 Nov 2021 11:23:43 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id q124so19751933oig.3;
-        Fri, 12 Nov 2021 11:23:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WrJ2FS7TORtddR51pqZ41XSBhGPCEKrQUsKpP2xmt9E=;
-        b=qLidZt7X5l4IKHTiM0YIZtltiXZbayCcQmqaU0BMui+Yq5iW0SeIcSsK2rLlFMtduV
-         smucjb+yldFORB/dcUTNs4RBgNkFQQRMok4XcTucMd+y3LBX9U5ZQe77pt2WiLknBy4l
-         LBFIZAoINpBbhk5o33f93ImvfDMZiILcUrHY9S9iZZeiHmfXInukNelahQh3z8EB7bNN
-         DqYpefPKU3FizSpxW+gnzFmVfaDF6Q4NK5YII/doT8LhvsYT0evszfEG6hzANiJeXmfg
-         TYqupOztxgpwpCq/lcKvhFR1V9cnGHfHeIkx3jVQswB1W+VK43vrFTVP0IVnfEZrg1OH
-         wMeg==
+        id S232383AbhKLTgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 14:36:51 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:46727 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230101AbhKLTgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 14:36:51 -0500
+Received: by mail-oi1-f182.google.com with SMTP id s139so19691496oie.13;
+        Fri, 12 Nov 2021 11:34:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WrJ2FS7TORtddR51pqZ41XSBhGPCEKrQUsKpP2xmt9E=;
-        b=vKWC9/YciZIhJJJiEi4OnrtOnrWfGbbZD7Y3fO/8Ym7hb4pKduK77kvYiSFihQa8/c
-         qMnNVUgaRYYYCWCGgjiZ+EMC3A7zM4MWhkKuXvOFQBRxOUhYGrHCmR9A7KhTuNNDspd3
-         547a4D7V+Js++anOhvF+thQedeHc7SO2HzM+f66WQksQ2vs9NfeVG444/BZGke0Xn8A9
-         dPSo6saqGfHaSVc7mqEvg4WnIS1CZ97nJZCSPL2f7m8O4I/U6Hl+YHQSuzvUhHIFvRr1
-         p000y1jJf0F7m5obH2ywKXZu/CF8hnugVpTW30i2ApzwMNCiAsrugw/i9nQBnPsqK4Hy
-         yD+Q==
-X-Gm-Message-State: AOAM530O8MZFMjIy7tni01vOyPda3vrIPfDtoJXKwumNhocoklPBqqi+
-        rvcNlAued9rGZGK88sl3yuA=
-X-Google-Smtp-Source: ABdhPJwzWyksEBlMAXYzd4nQG2O5luIKtybhOlHS3E20s2wTaegpZmMaDH3pDoTMK0vDufUlB/crKw==
-X-Received: by 2002:a05:6808:2287:: with SMTP id bo7mr20199336oib.177.1636745023073;
-        Fri, 12 Nov 2021 11:23:43 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id bd6sm1217414oib.53.2021.11.12.11.23.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Nov 2021 11:23:42 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v3 7/8] watchdog: max77714: add driver for the watchdog in
- the MAX77714 PMIC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=57Adm9risFC+iiho0gvxjmtvx2b1Ul1A2/SX3qSS5Jc=;
+        b=cESD5Ht9h1xURQB2nH3yBSFwVkygYl0l//rJDb3AqLEirwindXu2tbvkEPHxRTxkhS
+         f8+Dq17r8dhDlS1FcRWzPzgnQL79rZTLZmbU4zyAe0UCkWbZ3zrYggXtcJpd2FUilDKf
+         zeYBOryoYuADySP3Rixp1kewlDh7aXrPUImO7SoH3EfBf4+w22addSj78R8hKISexuf1
+         z771uJAZZvcjl64ph9gTD5AdDknnpw9R2L5iia3VK0piLMqexpkgOF29zBNkk08KuuJn
+         mnval8VU6NIVRqshf+d7Q5088nouZrCfuDOluLHTxlUE57TskQcJKeUVf5mjfgi/Tjfi
+         iYEg==
+X-Gm-Message-State: AOAM532q6HEU7O6pHhdPzJhZubbnlRHw9oXQwfn57kKXipdfGfvIwz+i
+        +9LIzqj9nsIux8ezUca03w==
+X-Google-Smtp-Source: ABdhPJwCVnbZJHOqyOwKUfLZqJRrGRpVXWj6i9/qA5s0AHlXT2sIkmi0agaMsW5YBXeuze0I92CYLg==
+X-Received: by 2002:aca:df82:: with SMTP id w124mr28360042oig.171.1636745639570;
+        Fri, 12 Nov 2021 11:33:59 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w19sm353035oik.58.2021.11.12.11.33.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 11:33:58 -0800 (PST)
+Received: (nullmailer pid 3232250 invoked by uid 1000);
+        Fri, 12 Nov 2021 19:33:57 -0000
+Date:   Fri, 12 Nov 2021 13:33:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20211111225852.3128201-1-luca@lucaceresoli.net>
- <20211111225852.3128201-8-luca@lucaceresoli.net>
- <0f278280-27d0-4d43-8065-76ec1f7c19b5@roeck-us.net>
- <7584d85a-5050-2b9d-1648-7d3bed2d10ea@lucaceresoli.net>
- <2af4073a-a5d9-e878-d622-b757b082359b@canonical.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <f1cbbc17-7a06-2d57-bf3d-c8133dcd30f7@roeck-us.net>
-Date:   Fri, 12 Nov 2021 11:23:39 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        Sebastian Reichel <sre@kernel.org>
+Subject: Re: [PATCH RFC 1/3] dt-bindings: power: reset: syscon-reboot: use
+ non-deprecated example
+Message-ID: <YY7BpeQ4mee6EVmA@robh.at.kernel.org>
+References: <20211102152207.11891-1-zajec5@gmail.com>
+ <20211102152207.11891-2-zajec5@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <2af4073a-a5d9-e878-d622-b757b082359b@canonical.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211102152207.11891-2-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/21 8:07 AM, Krzysztof Kozlowski wrote:
-> On 12/11/2021 17:02, Luca Ceresoli wrote:
->> Hi Guenter,
->>
->> On 12/11/21 15:57, Guenter Roeck wrote:
->>> On 11/11/21 2:58 PM, Luca Ceresoli wrote:
->>>> Add a simple driver to support the watchdog embedded in the Maxim
->>>> MAX77714
->>>> PMIC.
->>>>
->>>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->>>>
->>>
->>> I just realized that this is effectively a rewrite of
->>> drivers/watchdog/max77620_wdt.c.
->>> The only difference I can see is is the register offsets (0x91 and 0x92
->>> vs. 1 and 2) and some implementation details. Please add support for this
->>> watchdog to the other driver or provide a _really_ good reason why that
->>> is not possible.
->>
->> I initially started developing MAX77714 watchdog support as an addition
->> to max77620_wdt.c as the procedures look identical at least for the
->> basic features.
->>
->> But the register content seems completely different. Here are the notes
->> I took at that time:
->>
->> -------------------------8<-------------------------
->>
->> MAX77620 has reg ONOFFCNFG1  at 0x41, ONOFFCNFG2  at 0x42.
->> MAX77714 has reg CNFG1_ONOFF at 0x93, CNFG2_ONOFF at 0x94.
->> OK, we can handle this with a register indirection table, indexed by
->> chip model.
->>
->> MAX77620 has MAX77620_REG_FPS_CFG0 register.
->> On MAX77714 I was unable to find any such register (I haven't looked at
->> FPS in detail though).
->> OK, we can handle this with some if()s or entirely disable PM on the
->> 77714 until anybody cares.
->>
->> MAX77620 ONOFFCNFG1  has SFT_RST in bit 7.
->> MAX77714 CNFG1_ONOFF has SFT_RST is bit 6.
->> Uhm, should we have a _bit_ indirection table in addition to the
->> _register_ indirection table?
->>
->> MAX77620 ONOFFCNFG2  bit 5 is SLP_LPM_MSK, involved in FPS.
->> MAX77620 ONOFFCNFG2  bit 6 is WD_RTS_WK, configures the watchdog timer.
->> MAX77714 CNFG2_ONOFF bit 5 is WD_RTS_WK, configures the watchdog timer.
->> On MAX77714 I haven't found SLP_LPM_MSK.
->>
->> MAX77620 has 6 CID registers with "ES version" in CID5.
->> MAX77714 has 5 CID registers with "DEVICE id" in CID3.
->> CID registers would be useful to get the chip model directly from the
->> chip, if only they had the same structure.
->>
->> Almost all of the registers I have been looking into have similar
->> differences.
->>
->> -------------------------8<-------------------------
->>
->> When I started adding indirection tables the driver started growing
->> bigger and uglier, and that little simple driver started being big and
->> complex. So I opted to add a new driver.
->>
+On Tue, 02 Nov 2021 16:22:05 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> The register offset differences are trivial and we do it in several
-> drivers. Also in rtc-max77686 used by you here.
-> Lack of features as well - just have a variant/driver data which defines
-> certain features (true/false) or quirk bits (see s3c2410_wdt).
+> Usage of "regmap" property has been deprecated by the commit
+> 2140d68d69d4 ("dt-bindings: power: reset: Unrequire regmap property in
+> syscon-reboot node"). Rewrite example to help people using
+> non-deprecated binding.
 > 
-> The second driver - s3c2410_wdt - also customizes the bits.
-> 
-> Therefore if the generic device operating configuration is similar (same
-> generic control flow) and differences are in bits and offsets, then it
-> should be one driver.
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+>  .../bindings/power/reset/syscon-reboot.yaml        | 14 +++++++++-----
+>  1 file changed, 9 insertions(+), 5 deletions(-)
 > 
 
-Exactly.
-
-Thanks,
-Guenter
-
+Reviewed-by: Rob Herring <robh@kernel.org>
