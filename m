@@ -2,86 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DD744E911
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 15:38:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38DD344E914
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 15:39:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235000AbhKLOlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 09:41:40 -0500
-Received: from mail-ua1-f44.google.com ([209.85.222.44]:33445 "EHLO
-        mail-ua1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231553AbhKLOlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 09:41:39 -0500
-Received: by mail-ua1-f44.google.com with SMTP id b17so19336163uas.0;
-        Fri, 12 Nov 2021 06:38:48 -0800 (PST)
+        id S235145AbhKLOmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 09:42:19 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:45870 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235197AbhKLOmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 09:42:16 -0500
+Received: by mail-ot1-f47.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso6994972otf.12;
+        Fri, 12 Nov 2021 06:39:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RJ+UbO1XlTn+a5bEKrJdgxXRE0fGry1ajxGH+r1uHc8=;
-        b=2K+0VX8h+lKzrXltQr9R6PtTmcYZgyqSsy8mT1zqhmfM/8+YyQjUJHKNm9q4NWBxS8
-         RYtevtHuk78lbbXxrDZ61+lIX5/ZF+vz4j4Km/Vrp4NAaKHSUa3oTxq0xacWPn+pIJAk
-         N/o6PuS/v6Xral00/bnl4AHojCEBAWx9mVPvdUykWQo3atMx+rZMN7Og3JfCODwOo/hd
-         eDiVHnnrgZdLJu0ihZTxm9LEkOOHsSNjKDScn74S8fWKMl8nC5EEl8HiiAgBKJ0acNw4
-         81w9ZycUEZe4cHycimOKBdxz89/qls9emZ3Q/Y9jVD7GkZrlLOKawvMeJUtbri8tZngp
-         WjwA==
-X-Gm-Message-State: AOAM533A98veHl91KmMfqMZ6PK5AwUNnjOnCo9yKOd3jH//yYXRXzp/s
-        dzaYQIW2epIJC0YX01hge4bpCFpkk+SR9w==
-X-Google-Smtp-Source: ABdhPJzOUAJIk/gaDImdp0HF5uBL5VoD5mgx/kDNRnCIWSAgqwEYFdAq6SeAqt4oyjvCERVm4yhW6Q==
-X-Received: by 2002:ab0:3049:: with SMTP id x9mr22921586ual.55.1636727928167;
-        Fri, 12 Nov 2021 06:38:48 -0800 (PST)
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
-        by smtp.gmail.com with ESMTPSA id y24sm4664403uaq.17.2021.11.12.06.38.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Nov 2021 06:38:47 -0800 (PST)
-Received: by mail-ua1-f46.google.com with SMTP id b17so19335987uas.0;
-        Fri, 12 Nov 2021 06:38:46 -0800 (PST)
-X-Received: by 2002:a67:c38f:: with SMTP id s15mr10597139vsj.50.1636727926568;
- Fri, 12 Nov 2021 06:38:46 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B6njGCOtAPdSNAuOe7swnVsW9oevSWDdaggrotGskeo=;
+        b=TJlypDzU95i4mocSVb0wvRQ5JPUWEaTkufTZoG7Aimq+/ghlSyvb+3NpSDyJL9Am/h
+         x2+C3GpB5S81OOmEH12rhaUoSWkgxQmNRVE0W8dCUnDMiBK4n/nip4RkwL3N/mZ1wquA
+         FXG4ttsF0Pg/X9jAZGnMLk58aE5nzNJqAhSkhji4fRS/QQp5+3aHYa+ZHvXWeVfggUly
+         7tBDvX3JeCMmrkRBTR7syhJzAIjfgMR1nVi0L/vSlYMRLfAvtFplLdrfq7QxE5DAcfv+
+         CxiRBOk+MoRLy6pXqPdZ1vfROYeUstbVcYIkUOWAeWdD3yXvScaUHzgfC+m9fwkKOHPI
+         o0Sg==
+X-Gm-Message-State: AOAM530SYBMePfvUzsIYCM0XvriQ2WYZkWCbUXiDN/6yDSuSH49QUEIX
+        cTB8W7en9HP52xkZSJstJA==
+X-Google-Smtp-Source: ABdhPJy2mKElAbOQoGe6LCLJxhUph8grG9DKPpaNJvjDqBm7dGdTlzYH+4C8eQ/v1DQl+h1S1uKjQw==
+X-Received: by 2002:a9d:6e0d:: with SMTP id e13mr13236285otr.10.1636727965575;
+        Fri, 12 Nov 2021 06:39:25 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id y9sm1092440oon.8.2021.11.12.06.39.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 06:39:25 -0800 (PST)
+Received: (nullmailer pid 2679482 invoked by uid 1000);
+        Fri, 12 Nov 2021 14:39:24 -0000
+Date:   Fri, 12 Nov 2021 08:39:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jarrett Schultz <jaschultzms@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Mark Gross <mgross@linux.intel.com>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Felipe Balbi <balbi@kernel.org>,
+        Jarrett Schultz <jaschultz@microsoft.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: platform: microsoft: Document
+ surface xbl
+Message-ID: <YY58nB3XjEbTFBzT@robh.at.kernel.org>
+References: <20211108164449.3036210-1-jaschultz@microsoft.com>
+ <20211108164449.3036210-2-jaschultz@microsoft.com>
 MIME-Version: 1.0
-References: <20211110153142.3451-1-biju.das.jz@bp.renesas.com> <20211110153142.3451-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211110153142.3451-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Nov 2021 15:38:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXuLrhi29L9BUxB=XrhORGtei-skxSXa5AJw6rwANXQ2g@mail.gmail.com>
-Message-ID: <CAMuHMdXuLrhi29L9BUxB=XrhORGtei-skxSXa5AJw6rwANXQ2g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: timer: renesas: ostm: Document
- Renesas RZ/G2L OSTM
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211108164449.3036210-2-jaschultz@microsoft.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 4:31 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document the General Timer Module(a.k.a OSTM) found on the RZ/G2L SoC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, Nov 08, 2021 at 08:44:45AM -0800, Jarrett Schultz wrote:
+> Introduce yaml for surface xbl driver.
+> 
+> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Author and Sob emails need to match.
 
-Gr{oetje,eeting}s,
+> 
+> ---
+> 
+> Changes in v2:
+>  - Removed json-schema dependence
+>  - Elaborated on description of driver
+>  - Updated example
+> 
+> ---
+> 
+>  .../platform/microsoft/surface-xbl.yaml       | 57 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 +++
+>  2 files changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml b/Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
+> new file mode 100644
+> index 000000000000..09f806f373bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/platform/microsoft/surface-xbl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Surface Extensible Bootloader for Microsoft Surface Duo
+> +
+> +maintainers:
+> +  - Jarrett Schultz <jaschultzMS@gmail.com>
+> +
+> +description: |
+> +  Exposes the following device information to user space via sysfs -
 
-                        Geert
+What's sysfs? :) Linux details don't go in bindings.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +    * board_id
+> +    * battery_present
+> +    * hw_init_retries
+> +    * is_customer_mode
+> +    * is_act_mode
+> +    * pmic_reset_reason
+> +    * touch_fw_version
+> +    * ocp_error_location
+> +  See sysfs documentation for more information.
+> +
+> +properties:
+> +  compatible:
+> +    const: microsoft,sm8150-surface-duo-xbl
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    xbl@146bfa94 {
+> +      compatible = "microsoft,sm8150-surface-duo-xbl";
+> +      reg = <0x00 0x146bfa94 0x00 0x100>;
+> +    };
+> +  - |
+> +    imem@146bf000 {
+> +      compatible = "simple-mfd";
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+'simple-mfd' needs a specific compatible for the block.
+
+> +      reg = <0x0 0x146bf000 0x0 0x1000>;
+> +      ranges = <0x0 0x0 0x146bf000 0x1000>;
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +
+> +      xbl@a94 {
+> +        compatible = "microsoft,sm8150-surface-duo-xbl";
+> +        reg = <0xa94 0x100>;
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index eeb4c70b3d5b..8643546f8fab 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -12423,6 +12423,13 @@ F:	Documentation/driver-api/surface_aggregator/clients/dtx.rst
+>  F:	drivers/platform/surface/surface_dtx.c
+>  F:	include/uapi/linux/surface_aggregator/dtx.h
+>  
+> +MICROSOFT SURFACE DUO XBL DRIVER
+> +M:	Jarrett Schultz <jaschultz@microsoft.com>
+> +L:	linux-arm-msm@vger.kernel.org
+> +L:	platform-driver-x86@vger.kernel.org
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/platform/microsoft/surface-xbl.yaml
+> +
+>  MICROSOFT SURFACE GPE LID SUPPORT DRIVER
+>  M:	Maximilian Luz <luzmaximilian@gmail.com>
+>  L:	platform-driver-x86@vger.kernel.org
+> -- 
+> 2.25.1
+> 
+> 
