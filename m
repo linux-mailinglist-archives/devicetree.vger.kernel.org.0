@@ -2,71 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E08144EEF3
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 22:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59FA344EEF4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 22:58:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230388AbhKLWAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 17:00:49 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:39642 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232139AbhKLWAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 17:00:48 -0500
-Received: by mail-oi1-f180.google.com with SMTP id bf8so20398114oib.6
-        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 13:57:57 -0800 (PST)
+        id S230267AbhKLWBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 17:01:17 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:37536 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232139AbhKLWBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 17:01:17 -0500
+Received: by mail-ot1-f49.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so15020314otg.4;
+        Fri, 12 Nov 2021 13:58:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xccSVfJVrdrr8KimAN3EMNzjL3fPcR3SofzIz95+CP4=;
-        b=BiIQRQ+T1/KMw0MO37tIs2UThnMF48wvGsE+Us34XtZtN6shkTOZY37iao2/7aIhRT
-         haIox1d1/lFl5g851zKx1Hl/0Kwac9OPFAVSL/Zz5QoMYFymhyHsfYTlQM/tNppAFYRT
-         BH/0nukmtMkkGvNQKBADfbYTwQUpwtO9K8nqrsRBvMjvcz/Sq5HGf/+ViwgRTRC6Iv84
-         fsq3LTepTtzV3K9X1LQmlea5qOD6BnxIc0vFuIx0epRr+kS7Wa3Twk/CUwyyKR/X6L7a
-         RFazzk1r+LbTN50fFXC/kPkTYYJQ1ve+gAci4JPzzGLOJux8hcti/uCvm8hBqKDTPP1R
-         LIsQ==
-X-Gm-Message-State: AOAM5324KphMr3PoyzN4vzQxBpdZO8u2o0cyMecDaY1CrdikPpsX2g6S
-        gs+5BzDacpAoTdeZshBgaWO13Gk3yA==
-X-Google-Smtp-Source: ABdhPJzXH2uXtlwTPVV2Dnd3/REyaabvQJmrcCmiIDT4uAxXHmANZrjgTnOCq8iJBXTHbKI27bKF8A==
-X-Received: by 2002:a05:6808:179d:: with SMTP id bg29mr28294193oib.138.1636754277332;
-        Fri, 12 Nov 2021 13:57:57 -0800 (PST)
+        bh=ujggLbBDEkfrqujMAD0QbtGbSj6ls97bFcIKgu53BaI=;
+        b=7eq7LdvNZzsWRE7sbuBwhPLX175GweTD69s8w4hIAwvDcG4qZwEpgD9uFspfBEGmMM
+         CbZ6OX+aU2nk5VW+mNskDn77n1nTySIAQCnzlGXU0hLA+5rJESdEk9gAqoiHfnPVXQf7
+         7KOWxUKxFG4xwQ8O8BILDAfFl/HccxfMYkz1kHumWhKI2VTjh3LTxAC9eg3QG+wZ/CY6
+         V6g8q+JvXrNR0+QNZx3EgSB5KaT17hHIqwqV+vR1is0njexEip6O7YdtJzCEhJW5Wnut
+         uz7iaW7dBXMNQF/UTx4uc9i3h6N6FJbU9ny/JTANDHVXQlhsZ5hkdQNDzI8mC1mScouH
+         fKag==
+X-Gm-Message-State: AOAM533vgSKR/O4H6iCUnQLkyJ1w60ETrwsesv4z3otjJ2Tr5i70H/VB
+        fbPRxbqXLsi91DysXyORQQ==
+X-Google-Smtp-Source: ABdhPJxGbJ4uLX2lU52O6Fdz64eVlCqS58ED2KL2ipgQUUbCA1bFUsB8koXZKcm8LGvWo91vI86DVw==
+X-Received: by 2002:a05:6830:441f:: with SMTP id q31mr8784939otv.164.1636754305459;
+        Fri, 12 Nov 2021 13:58:25 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k14sm1442785otb.50.2021.11.12.13.57.56
+        by smtp.gmail.com with ESMTPSA id x8sm1440181otg.31.2021.11.12.13.58.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 13:57:56 -0800 (PST)
-Received: (nullmailer pid 3444888 invoked by uid 1000);
-        Fri, 12 Nov 2021 21:57:55 -0000
-Date:   Fri, 12 Nov 2021 15:57:55 -0600
+        Fri, 12 Nov 2021 13:58:24 -0800 (PST)
+Received: (nullmailer pid 3445679 invoked by uid 1000);
+        Fri, 12 Nov 2021 21:58:23 -0000
+Date:   Fri, 12 Nov 2021 15:58:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Ricard Wanderlof <ricardw@axis.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: sound: tlv320adc3xxx: New codec
- driver
-Message-ID: <YY7jY9+0n1RzdZ/1@robh.at.kernel.org>
-References: <alpine.DEB.2.21.2111041421580.31205@lnxricardw1.se.axis.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     l.stach@pengutronix.de, ariel.dalessandro@collabora.com,
+        tharvey@gateworks.com, aford@beaconembedded.com,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        krzk@kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH V3 3/9] dt-bindings: power: imx8mn: add defines for DISP
+ blk-ctrl domains
+Message-ID: <YY7jf2NYmF8kO9wC@robh.at.kernel.org>
+References: <20211104161804.587250-1-aford173@gmail.com>
+ <20211104161804.587250-4-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.21.2111041421580.31205@lnxricardw1.se.axis.com>
+In-Reply-To: <20211104161804.587250-4-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 04 Nov 2021 14:25:31 +0100, Ricard Wanderlof wrote:
+On Thu, 04 Nov 2021 11:17:58 -0500, Adam Ford wrote:
+> This adds the defines for the power domains provided by the DISP
+> blk-ctrl.
 > 
-> DT bindings for tlv320adc3xxx driver, currently supporting
-> Texas Instruments TLV320ADC3001 and TLV320ADC3101 audio ADCs.
-> 
-> Signed-off-by: Ricard Wanderlof <ricardw@axis.com>
-> ---
->  .../bindings/sound/ti,tlv320adc3xxx.yaml      | 137 ++++++++++++++++++
->  include/dt-bindings/sound/tlv320adc3xxx.h     |  28 ++++
->  2 files changed, 165 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
->  create mode 100644 include/dt-bindings/sound/tlv320adc3xxx.h
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
