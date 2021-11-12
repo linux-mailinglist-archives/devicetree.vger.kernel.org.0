@@ -2,130 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9DE44EE36
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 21:56:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B44E044EE78
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 22:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235621AbhKLU7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 15:59:31 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55898 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232902AbhKLU7a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Nov 2021 15:59:30 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 53ADD61054;
-        Fri, 12 Nov 2021 20:56:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636750599;
-        bh=rzDM62qKUHovQU+MhdVK8d0HgV8lWhPkzWsz2/o9QJc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=JmMLeas7ZzygNSJGZRtIeB2WG6WWDiLY3qJYG4ORcnn9gQvKXbTgxuK8Omz/SirEY
-         oM6oNbiZjCwCSYeXBI6rKrDHWQZvyoLb7iP+MaTsCApaJJUweTo9o4J0fEX7b3z/U+
-         TRVtCWMHxAbADMGgz2T5VgCFzvHu0gHje9byzTFBp2cnf8P19TMstMo8cUVs5bMnvy
-         Wj0M89Jmj+tOeOj1GHlYdeFKd7c7RNmhlhM+Zjr8URIF1noERaqdCtETvvk4gfYGAr
-         wp/xn2CTcE91NM9MiWWVQ8LMYNYbL5Wt0SmmwE55XwWZRBfj9PVgty5M9x10Nwm3hQ
-         BoVBXpVWPg0NQ==
-Received: by mail-ed1-f54.google.com with SMTP id b15so42425518edd.7;
-        Fri, 12 Nov 2021 12:56:39 -0800 (PST)
-X-Gm-Message-State: AOAM5338KyeBRgNkqr3mam0ldMsOuYXhFd9/vuRL+BPKX64yElEUGxpw
-        WoaTmfNBXCV7xMqwZIuXdZLXKD+qgFrbqAa5vA==
-X-Google-Smtp-Source: ABdhPJyypORhRapjTj1CCJprTyCdzV3vHgZynh25QQfmnHCI4VZ4gdDlaKe4SURbrxJy/nJ6PXpXnQIcsba7VADfWko=
-X-Received: by 2002:a17:907:a411:: with SMTP id sg17mr22531942ejc.84.1636750597802;
- Fri, 12 Nov 2021 12:56:37 -0800 (PST)
+        id S235630AbhKLVWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 16:22:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232183AbhKLVWM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 16:22:12 -0500
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 687B2C061766
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 13:19:21 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id i13so7164497qvm.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 13:19:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=XLeTIT2e+1GYs3LrVJnFg0lz8R1NW70HFsPjjOtgHhg=;
+        b=iLuEidlJGUAZurZtFTCYkyuzqR+jXCc50ipQQEUSXYYPlVKdPPKJinoFPRcWODKIFL
+         MElid0ohU/gEFYIwHgDKlsNStmZjo5StAA81RU/gC0hnAT96LQSt/KKN9wbiX1MYpCKo
+         JSTpTqHjX64EdX9kIfsfl8pSZVCURYMki9+rsK/myl/Qg61QpdIrxrdhM4DlXkTbCvGF
+         kTHwzldXp4GjvRkmdscVgJgRjAbyc5ggIUvEA8Vja2BgxA6docZtW6JviVfARM13GZD5
+         nWOk9Zt2v4sD6GGayDGw3Hqskm211WtvHmmctJVVXpfAsC/tybvK0VKOA0HEsWG7G5R8
+         VWyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=XLeTIT2e+1GYs3LrVJnFg0lz8R1NW70HFsPjjOtgHhg=;
+        b=Ft0ZPamXPfG50/FXUMhJg0BdU41iKc4otCYQ0U1y7pl5celyRuU0/ac1HTE1L/VnrV
+         BGy48j4BVTqoBsmfGj654LGsu5ix9zPGQg3Fhn6GVIhOUzDRLgDKbD3fLoRDUVgmsow+
+         4FkgCmvHmp+U5y+NS23jJ54XkzY8NUjn3/4k5WM5joVmQVd2T+096sVXIns4ReUXroVT
+         xRwzYTvcIaGQ4fMYbrp8hSo8bs1GOaO04qs8pgtgj59/0N/ChnaockzNjZdDTGUduWN4
+         ZOcijTQ6JkmNW33cVpG3wcvL+9nuUYtv7vBUWVvkTpUVWK2mW3rWAndir3PlLLWaNxw1
+         M0+w==
+X-Gm-Message-State: AOAM531TuKtNaeOMAXJop1NYoT18OsTuAQhNoKuGpWlQqRhFvqDt2n4h
+        jWETdKbAmZ+IT+bGkFrnLM01XmRFSBoZ888wN1I=
+X-Google-Smtp-Source: ABdhPJxP13q69hgoukH5l0Tv2AvrQ4tkKTJ8E0j7g6M5wHguOhCtC7xfUaicwuL1MyLLRUh56gjf4uVB8tHTGy/ZUiU=
+X-Received: by 2002:a05:6214:2606:: with SMTP id gu6mr17217798qvb.30.1636751960418;
+ Fri, 12 Nov 2021 13:19:20 -0800 (PST)
 MIME-Version: 1.0
-References: <20211031150706.27873-1-kabel@kernel.org> <YY6HYM4T+A+tm85P@robh.at.kernel.org>
- <20211112153208.s4nuckz7js4fipce@pali> <CAL_JsqJ+FYFFcDEm-_Ow=9TERhhEMVKm3OCHyDdGo02onK7dmg@mail.gmail.com>
- <20211112171249.46xmj5zo3svm4qn2@pali>
-In-Reply-To: <20211112171249.46xmj5zo3svm4qn2@pali>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 12 Nov 2021 14:56:26 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+0ByuPqGw0L94qJktMy+J2XyGUQ1ZRjkBoMGX+ggBizw@mail.gmail.com>
-Message-ID: <CAL_Jsq+0ByuPqGw0L94qJktMy+J2XyGUQ1ZRjkBoMGX+ggBizw@mail.gmail.com>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add 'slot-power-limit-milliwatt'
- PCIe port property
-To:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>
-Cc:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>
+Received: by 2002:a05:6214:1c0b:0:0:0:0 with HTTP; Fri, 12 Nov 2021 13:19:20
+ -0800 (PST)
+Reply-To: fritzbogerelsa@yahoo.com
+From:   EU Aid Volunteers <frgilbertbougma@gmail.com>
+Date:   Fri, 12 Nov 2021 21:19:20 +0000
+Message-ID: <CAJF4ZTR6-=-0JGG5Ysje2yoh80_240xAcOFCddLCAqZDhDXBEg@mail.gmail.com>
+Subject: Re; REF: 05ML-03NRI/EUAID/OPEC/TGF
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 12, 2021 at 11:12 AM Pali Roh=C3=A1r <pali@kernel.org> wrote:
->
-> On Friday 12 November 2021 10:30:01 Rob Herring wrote:
-> > On Fri, Nov 12, 2021 at 9:32 AM Pali Roh=C3=A1r <pali@kernel.org> wrote=
-:
-> > >
-> > > On Friday 12 November 2021 09:25:20 Rob Herring wrote:
-> > > > On Sun, Oct 31, 2021 at 04:07:05PM +0100, Marek Beh=C3=BAn wrote:
-> > > > > +   If present, this property specifies slot power limit in milli=
-watts. Host
-> > > > > +   drivers can parse this property and use it for programming Ro=
-ot Port or host
-> > > > > +   bridge, or for composing and sending PCIe Set_Slot_Power_Limi=
-t messages
-> > > > > +   through the Root Port or host bridge when transitioning PCIe =
-link from a
-> > > > > +   non-DL_Up Status to a DL_Up Status.
-> > > >
-> > > > If your slots are behind a switch, then doesn't this apply to any b=
-ridge
-> > > > port?
-> > >
-> > > The main issue here is that pci.txt (and also scheme on github) is
-> > > mixing host bridge and root ports into one node. This new property
-> > > should be defined at the same place where is supports-clkreq or
-> > > reset-gpios, as it belongs to them.
-> >
-> > Unfortunately that ship has already sailed. So we can split things up,
-> > but we still have to allow for the existing cases. I'm happy to take
-> > changes splitting up pci-bus.yaml to 2 or 3 schemas (host bridge,
-> > root-port, and PCI(e)-PCI(e) bridge?).
->
-> Well, no problem. I just need to know how you want to handle backward
-> compatibility definitions in YAML. Because it is possible via versioning
-> (like in JSONSchema-like structures in OpenAPI versioning) or via
+-- 
+REF: 05ML-03NRI/EUAID/OPEC/TGF
 
-Got a pointer to that?
+Congratulations, you are hereby being approved for a lump sum of
+USD$449,500.00 (Four Hundred and Forty-Nine Thousand Five Hundred
+United States Dollars) in your favor through an international bank
+draft cheque cash-able anywhere in the world. As decided by the
+Management Committee of EU Aid Volunteers in-conjunction with OPEC
+Fund and The Global Fund you have been automatically shortlisted among
+the beneficiaries of Proposals for EU Aid Volunteers in-conjunction
+with OPEC in 2021.
 
-> deprecated attributes or via defining two schemas (one strict and one
-> loose)... There are lot of options and I saw all these options in
-> different projects which use YAML or JSON.
+EU Aid Volunteers brings volunteers and organizations together from
+different countries, providing practical support to humanitarian aid
+projects and contributing to strengthening local capacity and
+resilience of disaster-affected communities.
 
-The short answer is we don't have a defined way beyond deprecating
-properties within a given binding with 'deprecated: true'. The only
-versioning we have ATM is the kernel requires a minimum version of
-dtschema (which we'll have to bump for all this).
+The OPEC Fund provides emergency aid assistance and supports selected
+regional and global initiatives, especially those addressing priority
+issues on the sustainable development agenda.
 
-We could have something like:
+The Global Fund has a vital role to play in supporting individuals
+from countries that implement Global Fund-financed programs with their
+response to the COVID-19 pandemic, while maintaining its focus in
+continuing the fight against HIV, TB and malaria.
 
-old-pci-bridge.yaml:
-  allOf:
-    - $ref: pci-host-bridge.yaml#
-    - $ref: pcie-port.yaml#
+Contact: Elsa Fritzboger here: fritzbogerelsa@yahoo.com with the below
+information as soon as possible for the delivery of your international
+bank draft cheque. We've authorized him to release the Bank Draft
+cheque to you whenever you contact him regarding it.
 
-new-pci-bridge.yaml:
-  allOf:
-    - $ref: pci-host-bridge.yaml#
-  properties:
-    pci@0:
-      $ref: pcie-port.yaml#
+Name in full:
+Nationality:
+Age:
+Occupation:
+Phone/Fax:
+Postal Address:
 
-And then both of the above schemas will have $ref to a pci-bridge.yaml
-schema which should be most of pci-bus.yaml. linux,pci-domain and
-dma-ranges? go to pci-host-bridge.yaml. max-link-speed, num-lanes,
-reset-gpios, slot-power-limit-milliwatt, and the pending supply
-additions (Broadcom) go to pcie-port.yaml.
+Thanks for your Cooperation
+A A. Larsson
+EU Aid Volunteers.
+For more information visit: https://www.aidvolunteers.org/
 
-> I did not know about github repository, I always looked at schemas and
-> definitions only in linux kernel tree and external files which were
-> mentioned in kernel tree.
->
-> Something I wrote in my RFC email, but I wrote this email patch...
-> https://lore.kernel.org/linux-pci/20211023144252.z7ou2l2tvm6cvtf7@pali/
-
-I think we're pretty much in alignment. Look at the Broadcom portdrv
-changes proposed if you haven't already. It's all interrelated.
-
-Rob
+****************************** ******************************
+NOTE: If you received this message in your SPAM/BULK folder , that is
+because of the restrictions implemented by your server
+****************************** ******************************
