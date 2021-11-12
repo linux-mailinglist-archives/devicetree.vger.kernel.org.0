@@ -2,113 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA8A244ED8B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 20:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 91FEF44ED93
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 20:52:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232735AbhKLTyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 14:54:15 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:40593 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230101AbhKLTyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 14:54:14 -0500
-Received: by mail-oi1-f173.google.com with SMTP id bk14so19855810oib.7;
-        Fri, 12 Nov 2021 11:51:23 -0800 (PST)
+        id S230101AbhKLTyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 14:54:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58450 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235422AbhKLTyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 14:54:49 -0500
+Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80992C061208
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 11:51:58 -0800 (PST)
+Received: by mail-qt1-x834.google.com with SMTP id v22so4890948qtx.8
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 11:51:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=sbMEA9n9Pj/HfzsuX4iVianfftPXl0x7Eo0HpPDJsqs=;
+        b=Yw+p9Uo+5KQGoccvBks5Ci8+ZDlSvu7l93VGRCY8ZYQsu1lz4knSEy8/eb+Lm1NrTH
+         GzipEoLboD7DWs9KzyvxslfEQnOs47b4R+Mj3XTWdKpp9XbQbKGtQ5YEG4ijUfu4jtFE
+         /W10fgxlqEe+6aRVIUBq8hjn0WDG4ehNda55kNT8iGXmOlSHaRwW1cWqtcqPo7/8IsYv
+         ++i9VPM2+sDvzFA/3oGv0pgZ14q/FD3/XGYca2kZucVBmfHmPufcVhCxgT6+p0hlokNp
+         mczuTft5lmdIQk+wmMyhToWgPsUVVogCgYAJYJiCefNKNr/IESGhoapdVJe5hEI4CWJ5
+         GL1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wnYxAuGAMyIVD/s8arSghnQlkopMtZnXmDifjgRoSDw=;
-        b=y3FPABCyA48Zy0Hz2aLfcJIXtFAGTqh+Ugc/wJnqhzwL3uP6qZuphiDndHxW8nDY8o
-         i1Ldompo1m8xCPO2E4uY5alB4uKLuuyRGW3l7prcC+u/OMpYYqm9ELpMMuUPa+venw+p
-         aBbklez6WYXnrCu1IOad/+UZkihm1NMFLSgXsJ7Wwh0oGRhy9BThiK0xjlScA4QGAkqq
-         vtiWDMk3MVA8fG1EYYLj3fgN2vEAA3UEhANccc8ucsGbDmAeGu3isqMY1VjEJ5Mdv9Ib
-         YDlHitNf5Ok9Okn4DurGSBPls/h6aP6/WxnJVSUJ/JuCvgkglqOW5/eIcz26lzHhozmP
-         0rsw==
-X-Gm-Message-State: AOAM532vpyzQt7lQnnrw85zewv9J5a9p91p8LwgZHz3u+c1QvDxhUxq1
-        RjdGzti35JAxj/O3Lb9FPzGibJ8hfg==
-X-Google-Smtp-Source: ABdhPJziN3WHLy8iLfxC+mSQM4EDSEx6IrWAnqNiTbvF8ew+XPeJLaXQ4OwMmHynX10XvHhFjErqLA==
-X-Received: by 2002:a05:6808:3097:: with SMTP id bl23mr15403219oib.0.1636746683394;
-        Fri, 12 Nov 2021 11:51:23 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bf17sm1812139oib.27.2021.11.12.11.51.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 11:51:22 -0800 (PST)
-Received: (nullmailer pid 3258902 invoked by uid 1000);
-        Fri, 12 Nov 2021 19:51:21 -0000
-Date:   Fri, 12 Nov 2021 13:51:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     peda@axentia.se, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: i2c-mux: Add property for settle time
-Message-ID: <YY7FuUKIyZn5892i@robh.at.kernel.org>
-References: <20211103091839.1665672-1-horatiu.vultur@microchip.com>
- <20211103091839.1665672-2-horatiu.vultur@microchip.com>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=sbMEA9n9Pj/HfzsuX4iVianfftPXl0x7Eo0HpPDJsqs=;
+        b=WuiqtZ/lTx9w6cOHvnug+z8VQXLKtmz3q+BUiU/V2hrM/05BzyZQinDISlDjiZcq0Y
+         v51eOz8Y6oXiYjz3rKJWlaRWMjyuGL5Y6ETh2d2K3vtP7uOdc4uDThbjrLswmkfZJ2xy
+         D/XA3szbyAwacG1tv6PUMRHxIyBMe3sipzw9IJjK7t8MB9qj9B4eoyBdMP3JH7HpndG3
+         2utPAMMx0Ty+MNHUV69UqwzLjKfamxw4LW4rhEM5cIOpAhLiYjZrZN16Uoe1mc/p7RMo
+         3Nbjre5Uw7O6LLygx/BvbU7uG/9vzn6MTdtgXChXKnQb0t6YSWKVJb9vH0dZ/TFncPqB
+         z8Bw==
+X-Gm-Message-State: AOAM531bXLSyUr3DSz+IWrt/oQIc50XidC0BpLmDdNVL2SsMKcHUaqV0
+        lzPo9Y296PGLxMNWk17NbHQEEBUP7+1XTMZI+Q4=
+X-Google-Smtp-Source: ABdhPJzgXRGarOjDsfXSyoLLQhf4PuMveqEb8UybTzsWaDF3my0/TZkv9ycoscWO5tfBf/dcGT3T28QHSdbjOxuqecM=
+X-Received: by 2002:ac8:74c7:: with SMTP id j7mr18777867qtr.118.1636746717505;
+ Fri, 12 Nov 2021 11:51:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211103091839.1665672-2-horatiu.vultur@microchip.com>
+Received: by 2002:ac8:5a03:0:0:0:0:0 with HTTP; Fri, 12 Nov 2021 11:51:56
+ -0800 (PST)
+Reply-To: wmchfa@gmail.com
+From:   William Chalmers <pv.wcha@gmail.com>
+Date:   Fri, 12 Nov 2021 20:51:56 +0100
+Message-ID: <CAO9cJj-OSU5qoJZ85Ow=KAGpF82M3g_cF3aScOinyZwY3Tj3mw@mail.gmail.com>
+Subject: URGENT
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 03, 2021 at 10:18:38AM +0100, Horatiu Vultur wrote:
-> Some HW requires some time for the signals to settle after the muxing is
-> changed. Allow this time to be specified in device tree.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-mux.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> index 24cac36037f5..4c81e56d02f7 100644
-> --- a/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-mux.yaml
-> @@ -19,6 +19,11 @@ description: |+
->    populating the i2c child busses.  If an 'i2c-mux' subnode is present, only
->    subnodes of this will be considered as i2c child busses.
->  
-> +  Optional properties may not be supported by all drivers. However, if a driver
-> +  wants to support one of the below features, it should adopt these bindings.
+ATTENTION,
+        Sir/Madam.
 
-What drivers? Bindings are independent. I don't think you need the 
-comment, but this should be a separate change with an explanation along 
-the lines of what we discussed.
+Greetings to you, I am contacting you after going through your
+interesting profile. I am Mr.William Chalmers. I am from London, United
+Kingdom, If this message successfully gets to you, I will like to
+discuss business with you, which you will have an immense benefit from
+if we can work together with, The Group Finance Director of Lloyds
+Banking Group United Kingdom.
 
-> +
-> +select: false
-> +
->  properties:
->    $nodename:
->      pattern: '^(i2c-?)?mux'
-> @@ -29,6 +34,11 @@ properties:
->    '#size-cells':
->      const: 0
->  
-> +  settle-time-us:
-> +    default: 0
-> +    description:
-> +      The time required for the signals to settle.
-> +
->  patternProperties:
->    '^i2c@[0-9a-f]+$':
->      $ref: /schemas/i2c/i2c-controller.yaml
-> @@ -41,6 +51,10 @@ patternProperties:
->  
->  additionalProperties: true
->  
-> +required:
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +
+I am contacting you for a legitimate business transaction strictly for
+you and me alone. I personally discovered a dormant account with a
+total sum of =C2=A3 1,35,000.000.00 - [One-hundred Thirty-Five Million GBP
+Only] here in our bank. The owner of this dormant account died on 4th
+Jan 2012. Since his death, nobody has operated in his account because
+the account has NO BENEFICIARY attached to it. I wish to present you
+as the next of kin to the bank.
 
-This too is a separate change.
+Kindly get back to me as soon as possible for more details on how to
+proceed further. I look forward to hearing from you soon.
 
->  examples:
->    - |
->      /*
-> -- 
-> 2.33.0
-> 
-> 
+Regards,
+Mr.William Chalmers.
