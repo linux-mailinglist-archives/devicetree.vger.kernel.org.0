@@ -2,129 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F4244E892
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 15:23:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ADDE44E895
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 15:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235127AbhKLOZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 09:25:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39804 "EHLO
+        id S232299AbhKLO1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 09:27:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235106AbhKLOZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 09:25:49 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBAFCC061766;
-        Fri, 12 Nov 2021 06:22:58 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id s186so24002579yba.12;
-        Fri, 12 Nov 2021 06:22:58 -0800 (PST)
+        with ESMTP id S231718AbhKLO07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 09:26:59 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38E3EC061766
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 06:24:09 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id g18so8602259pfk.5
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 06:24:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ggAR2uubSaydz9H2bhZaHxQ14ET7vRT2WA5ZzUM/Bq4=;
-        b=RmKrY1Mg6PRkyDz1IdWCexNeP/AXl4K1EwGea8Lbgt+TIk/zCcR97hrA6qvZGTHrcM
-         OeY4h7le+zysNz7HeifFubwumUkRt5uRNy2lUCnf2RD3FPIc7wMvwNihVbwO/U5scdgH
-         NXx6tzo83iI1UjbUy6H6vZyelZD0FaZbx/Dw6uHde0uD4BbE35cF9XOQkzlmwJMX1KU9
-         +GSdsMPZahMKqzl94uBuZkYZ77vJHKu1S/SpboJtV7ds/dEDgRmTj8qyMrLDKmVsJVnv
-         /txyxYe609hUCiABQEVu3Rw/1AluIkHy4bprZ/CBxbIFiI/+kJTm1NS9sdXLk7sYQ6OH
-         uYyw==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ilsk+MaRfmtCqUcT3SwAuDne2pJc5N62fUP65s6Y02I=;
+        b=XWDsDubF2gjeTUcY0wJ5xYscXaFEhrGJTeS5cC41iu64kDeHIzKtRtX3pDwleuE88y
+         TgSD6/RmExP6Lmi1zcCAGZnFVOe0qNAt+OP8cEn09U8h55dXSABwYjY71HVVZ2F1BDyt
+         fWuETgJ+H61a8luchtOm/mGC/vr8L7BpjGWKE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ggAR2uubSaydz9H2bhZaHxQ14ET7vRT2WA5ZzUM/Bq4=;
-        b=4rCs1hnaH/tjdI82FZVqNFo7I1ndxFdLzIDyCtIAov+xiPPQ6cCVYtwNbGccIApNuH
-         G8kJATsMuG4uxqSUbN2RLNgw8o5M+UJLlVNEbmHtwxr/EY0VonFHRDdNzlT370pA9qTe
-         TCcTvMCrJxZ/XksNz5U4ZipcN7NJ3Gwa+S7QVlqD2Ix7mTuWQ/PUWM31POe94PlaLhAv
-         td51WL5ip7icEa78Qe0QCuLL+UKzt3gCvoP91QKbQeO3mDYWCiX0QL6+Ur02ZFt6s1d1
-         Yr9jdLHRHpU41lU9onTHw7xq4a49A83yICtQKs8UuwqPn5OK4VWeOLNAa67glSdQE4/t
-         kGpw==
-X-Gm-Message-State: AOAM531hM73nvs5BSnwd3d6L6aY54E2By5IM+g/iWNjaZiSXcOgUoO++
-        PvAJS+IxOKsn6w091LaXTLkWoniTxGf1/9oezgY=
-X-Google-Smtp-Source: ABdhPJyR7CKGHvXg49KCfNoT5U0Y+hsV3oGjChLcbb/t6QQoHHxwVAoOOEMYuIH8zySnXIegmuAbgC8Cs4np+f3RF2E=
-X-Received: by 2002:a25:f502:: with SMTP id a2mr17981752ybe.254.1636726977939;
- Fri, 12 Nov 2021 06:22:57 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ilsk+MaRfmtCqUcT3SwAuDne2pJc5N62fUP65s6Y02I=;
+        b=G28WH8b51TiktceTPewLOiRpceaoJwwb+3A0kmOtCGAsNsctA76jBXRc4WmoYVNWc6
+         6eM3Qzj1qw1yK2qQhthJiStcxBgRnzEXN9X3DyERqMGSvE72WvJX8yL5u/+vXQI9xh25
+         kBo3ZSXpQSe3nqJSEbtsdHCvIX+67ZhGSJJICRxMz8AYB1t2Q3MXLwCl5jkdzruOc01u
+         Qe0tMsfCOLIrKZ26nm0P9YLq93dTDBPVFFC6N+HgC2qWMd47rKD/4Z8XbbDvRE9r5/zU
+         JzfsljcLkVQaREJYiodkZdl0LJk5eVnYSRyj/dkvKxQBk3rM2jgaQSODPu/Lla9o24IV
+         1rng==
+X-Gm-Message-State: AOAM530sEb7WssfVo2/X8lDHmmpXIaCUGj3T0TiiQHEGops68bnn+B4X
+        ELsgCZzatDt0fgXcj3Kbv1fwbA==
+X-Google-Smtp-Source: ABdhPJxp4hPp/X7DFL0yQUq6jyg7zfYLXscjglRLdO0i5i+wDpxfwkrtU85HxJQRA1Jr6XWXofGlZg==
+X-Received: by 2002:a63:556:: with SMTP id 83mr10222511pgf.222.1636727048728;
+        Fri, 12 Nov 2021 06:24:08 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a0a9:828f:77c4:f985:d787])
+        by smtp.gmail.com with ESMTPSA id l6sm7702271pfc.126.2021.11.12.06.24.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 06:24:08 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH] arm64: dts: rockchip: Fix Bluetooth on ROCK Pi 4 boards
+Date:   Fri, 12 Nov 2021 19:53:59 +0530
+Message-Id: <20211112142359.320798-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWmvPgAeS1o8aubaYBihuFrggoVkpT8XtnTZ6nq-VXn9A@mail.gmail.com>
-In-Reply-To: <CAMuHMdWmvPgAeS1o8aubaYBihuFrggoVkpT8XtnTZ6nq-VXn9A@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 12 Nov 2021 14:22:32 +0000
-Message-ID: <CA+V-a8tLRircMSHxqHRP6g611fPpSrVe1motkKAULeuAM1bMUA@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 0/7] Renesas RZ/G2L IRQC support
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+This patch fixes the Bluetooth on ROCK Pi 4 boards.
 
-On Fri, Nov 12, 2021 at 2:12 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, Nov 10, 2021 at 11:58 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > The RZ/G2L Interrupt Controller is a front-end for the GIC found on
-> > Renesas RZ/G2L SoC's with below pins:
-> > - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
-> > - GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
-> >   maximum of only 32 can be mapped to 32 GIC SPI interrupts,
-> > - NMI edge select.
-> >
-> >                                                                 _____________
-> >                                                                 |    GIC     |
-> >                                                                 |  ________  |
-> >                                          ____________           | |        | |
-> > NMI ------------------------------------>|          |  SPI0-479 | | GIC-600| |
-> >                 _______                  |          |------------>|        | |
-> >                 |      |                 |          |  PPI16-31 | |        | |
-> >                 |      | IRQ0-IRQ8       |   IRQC   |------------>|        | |
->
-> IRQ0-IRQ7?
->
-oops typo here.
+ROCK Pi 4 boards has BCM4345C5 and now it is supported
+on Mainline Linux, brcm,bcm43438-bt still working but
+observed the BT Audio issues with latest test.
 
-> > P0_P48_4 ------>| GPIO |---------------->|          |           | |________| |
-> >                 |      |GPIOINT0-122     |          |           |            |
-> >                 |      |---------------->| TINT0-31 |           |            |
-> >                 |______|                 |__________|           |____________|
-> >
-> > The proposed RFC patches, add the IRQ domains in GPIO (pinctrl driver) and the
-> > IRQC driver. The IRQC domain handles the actual SPI interrupt and upon reception
-> > of the interrupt it propagates to the GPIO IRQ domain to handle virq.
-Also this bit isnt true (copy pasted from v1 :(). IRQ now is handled
-by the slave driver requesting interrupts. IRQC now handles eoi
-callbacks.
+So, use the BCM4345C5 compatible and its associated
+properties like clock-names as lpo and max-speed.
 
-> > Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is handled by
-> > the IRQC driver.
->
+Attach vbat and vddio supply rails as well.
 
-Cheers,
-Prabhakar
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts | 7 +++++--
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts      | 7 +++++--
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts      | 7 +++++--
+ 3 files changed, 15 insertions(+), 6 deletions(-)
 
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
+index dfad13d2ab24..5bd2b8db3d51 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
+@@ -35,13 +35,16 @@ &uart0 {
+ 	status = "okay";
+ 
+ 	bluetooth {
+-		compatible = "brcm,bcm43438-bt";
++		compatible = "brcm,bcm4345c5";
+ 		clocks = <&rk808 1>;
+-		clock-names = "ext_clock";
++		clock-names = "lpo";
+ 		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
+ 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+ 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
++		max-speed = <1500000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
++		vbat-supply = <&vcc3v3_sys>;
++		vddio-supply = <&vcc_1v8>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+index 6c63e617063c..cf48746a3ad8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b.dts
+@@ -34,13 +34,16 @@ &uart0 {
+ 	status = "okay";
+ 
+ 	bluetooth {
+-		compatible = "brcm,bcm43438-bt";
++		compatible = "brcm,bcm4345c5";
+ 		clocks = <&rk808 1>;
+-		clock-names = "ext_clock";
++		clock-names = "lpo";
+ 		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
+ 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+ 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
++		max-speed = <1500000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
++		vbat-supply = <&vcc3v3_sys>;
++		vddio-supply = <&vcc_1v8>;
+ 	};
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+index 99169bcd51c0..57ddf55ee693 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4c.dts
+@@ -35,14 +35,17 @@ &uart0 {
+ 	status = "okay";
+ 
+ 	bluetooth {
+-		compatible = "brcm,bcm43438-bt";
++		compatible = "brcm,bcm4345c5";
+ 		clocks = <&rk808 1>;
+-		clock-names = "ext_clock";
++		clock-names = "lpo";
+ 		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
+ 		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
+ 		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
++		max-speed = <1500000>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
++		vbat-supply = <&vcc3v3_sys>;
++		vddio-supply = <&vcc_1v8>;
+ 	};
+ };
+ 
+-- 
+2.25.1
+
