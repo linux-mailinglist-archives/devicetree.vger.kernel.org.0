@@ -2,113 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 134E344E565
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 12:11:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D574F44E563
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 12:10:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234821AbhKLLNw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 06:13:52 -0500
-Received: from [113.204.237.245] ([113.204.237.245]:41414 "EHLO
-        test.cqplus1.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234896AbhKLLNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 06:13:48 -0500
-X-Greylist: delayed 576 seconds by postgrey-1.27 at vger.kernel.org; Fri, 12 Nov 2021 06:13:47 EST
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.28.114.216
-        by cqmailgates with MailGates ESMTP Server V5.0(16723:0:AUTH_RELAY)
-        (envelope-from <xt.hu@cqplus1.com>); Fri, 12 Nov 2021 19:00:25 +0800 (CST)
-From:   Xiantao Hu <xt.hu@cqplus1.com>
-To:     wim@linux-watchdog.org, p.zabel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux@roeck-us.net, robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     wells.lu@sunplus.com, qinjian@cqplus1.com,
-        Xiantao Hu <xt.hu@cqplus1.com>
-Subject: [PATCH 2/2] dt-bindings: watchdog: Add Sunplus SP7021 WDT devicetree bindings documentation
-Date:   Fri, 12 Nov 2021 18:59:52 +0800
-Message-Id: <20211112105952.216280-3-xt.hu@cqplus1.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211112105952.216280-1-xt.hu@cqplus1.com>
-References: <20211112105952.216280-1-xt.hu@cqplus1.com>
+        id S234835AbhKLLNf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 06:13:35 -0500
+Received: from mail-ua1-f46.google.com ([209.85.222.46]:34486 "EHLO
+        mail-ua1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234940AbhKLLN1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 06:13:27 -0500
+Received: by mail-ua1-f46.google.com with SMTP id n6so1428320uak.1;
+        Fri, 12 Nov 2021 03:10:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AVBmMdKgsDBAxNzrbvJj6kMzaTUTUQW9uDTokYhWy2s=;
+        b=OQKv3n6DvqIIIqp6NG4f6vLyz8sxFWB+Dhy3YMpv3At2/r+Mt9PI773dpkS9aH9NfX
+         ucehTBTUwlERtC5KYLjYvhSVOPqb89Rwpt7bXexmXz+Z4vXgjEnWq1TREN+/P5/CouuW
+         1xSo7nmiiO6fWXMKfARVSsM7m/DYg9ZAB3If7BJdBuKzXBRFcDr8Ub1ZBTzI1X38V0mA
+         hWukHGRxh7u2t2y+Ac2fGzOYPv1OYOeOekut4E5vZWGv9Z0BLSoWu4PCpq2WRkuinBHu
+         XC+fyD07b62DhSh/dl6588FE8nkaCbjVrRwv/8Hly5Yxoqt9NYUZ9FFdT6B8KQjcwoSJ
+         3ytA==
+X-Gm-Message-State: AOAM531H4jcAnWJwO15AUvhSi0F5O5kbENWWcFkIcU+4F8onm2XXZ1rC
+        q+ecaWQIXpPxo9d7wGCH0aITr1C6IUSHmw==
+X-Google-Smtp-Source: ABdhPJwDP3eE4WEBalNJQgILPEN0veGbmKJQajEEE9AiU65zHQgd4vgzD/sMiRGXYKPEYsUsUtWsdA==
+X-Received: by 2002:a05:6102:3a11:: with SMTP id b17mr8860178vsu.28.1636715435445;
+        Fri, 12 Nov 2021 03:10:35 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id i1sm3624796vkn.55.2021.11.12.03.10.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Nov 2021 03:10:34 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id y5so76553ual.7;
+        Fri, 12 Nov 2021 03:10:34 -0800 (PST)
+X-Received: by 2002:a05:6102:2910:: with SMTP id cz16mr9156566vsb.9.1636715434722;
+ Fri, 12 Nov 2021 03:10:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211110191610.5664-1-wsa+renesas@sang-engineering.com> <20211110191610.5664-8-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20211110191610.5664-8-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 12 Nov 2021 12:10:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVTUTTPYHWfzD+CN+c9HH+iCyd3xTvLsWV1=1Bva45AfQ@mail.gmail.com>
+Message-ID: <CAMuHMdVTUTTPYHWfzD+CN+c9HH+iCyd3xTvLsWV1=1Bva45AfQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 07/21] dt-bindings: mmc: renesas,sdhi: add optional
+ SDnH clock
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the documentation for the devicetree bindings of the Sunplus
-SP7021 watchdog driver, found from SP7021 SoCs and newer.
+Hi Wolfram,
 
-Signed-off-by: Xiantao Hu <xt.hu@cqplus1.com>
----
- .../bindings/watchdog/sunplus,sp7021-wdt.yaml | 47 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
+CC devicetree
 
-diff --git a/Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml b/Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
-new file mode 100644
-index 000000000..bb728f298
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/sunplus,sp7021-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus SoCs Watchdog Device Tree Bindings
-+
-+maintainers:
-+  - XianTao Hu <xt.hu@cqplus1.com>
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-wdt
-+
-+  reg:
-+    items:
-+      - description: Base address and length of the watchdog registers
-+      - description: Base address and length of the miscellaneous control registers
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    watchdog: watchdog@9c000630 {
-+        compatible = "sunplus,sp7021-wdt";
-+        reg = <0x9c000630 0x08>, <0x9C000274 0x04>;
-+        clocks = <&clkc 0x24>;
-+        resets = <&rstc 0x14>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f6a328772..d51f0cb1a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17937,6 +17937,7 @@ SUNPLUS WATCHDOG DRIVER
- M:	Xiantao Hu <xt.hu@cqplus1.com>
- L:	linux-watchdog@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/watchdog/sunplus,sp7021-wdt.yaml
- F:	drivers/watchdog/sunplus_wdt.c
- 
- SUPERH
--- 
-2.33.1
+On Wed, Nov 10, 2021 at 8:16 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> Changes since RFC v1:
+> * use 'oneOf' for the clock-names
 
+Thanks for the update!
+
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -132,12 +132,20 @@ allOf:
+>        properties:
+>          clocks:
+>            minItems: 1
+> -          maxItems: 2
+> +          maxItems: 3
+>          clock-names:
+> -          minItems: 1
+> -          items:
+> +          oneOf:
+>              - const: core
+> -            - const: cd
+> +            - items:
+> +                - const: core
+> +                - const: cd
+> +            - items:
+> +                - const: core
+> +                - const: clkh
+> +            - items:
+> +                - const: core
+> +                - const: clkh
+> +                - const: cd
+
+That can be simplified to:
+
+        clock-names:
+          minItems: 1
+          maxItems: 3
+          uniqueItems: true
+          items:
+            - const: core
+            - enum: [ clkh, cd ]
+            - const: cd
+
+But shouldn't the clkh case be restricted to "renesas,rcar-gen3-sdhi"?
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
