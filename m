@@ -2,166 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6408A44E68A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:36:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C78244E6B8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:45:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234894AbhKLMjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 07:39:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43384 "EHLO
+        id S235100AbhKLMsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 07:48:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231652AbhKLMjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:39:12 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7922DC061766;
-        Fri, 12 Nov 2021 04:36:21 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id b12so15287826wrh.4;
-        Fri, 12 Nov 2021 04:36:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zHiTZHyfCPKYIMhub7GuBrT8ulvTaEX2NWZm9Yhsbb4=;
-        b=W+ite0oDuvPmWMP65ro6yPN67E5dAA+ZnZOZjJxz/aJTE870XxyHBKn0AOkt7wkeid
-         Zm4IIYEvM82+QXoucCC9dMwvgjdFthw8R1fP74Onm/7PeSPMGQ2e4TKiWTPyNZx/JLWm
-         KR1kaBQD4ixmJ4XxYBJgLQMgp+o2HMdvJ5LVKI+WOz6dPFFc0Ar4U2FOy4vDfvOsWymV
-         aVW5GhfqT7LApLV5VO7UAZdh9UJvPlDQP4nYkuBgv9PGZdU4dEOA145zeXWLTzaP6TCR
-         XVW5sRwMhVI2DMXb1sNTZIpgRKvM0Q9OP+WCi/3kh8PdXZlBwUbCYpnuJLuZp5AcvRav
-         K7SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zHiTZHyfCPKYIMhub7GuBrT8ulvTaEX2NWZm9Yhsbb4=;
-        b=LWnkrPBrSXuf/LsauCEIEU82uMic2DE55Bna/XdoKiJvQbLMhhxZvHsFQc5HO7lDj6
-         R7VU1ISlZE7JqjW5pqLAI4OzyF+p2JoBZSxg1LlTQaOU14lz2jdlA+/hN18tY1Oz5iOi
-         byNvGd+CSCFmaejKJxHT+/sGYE0cSuzS+PON9y+Fc+Csv3H2NEhlNnkL+6seFt8XRl+5
-         WFGE1nPJULKjBjScjLpnDczDQqa4NeHlKFcpzB7mNu1kjnP1hF5EOvA4fEfeZTkeUvBE
-         SPQA2GncCV+ciD+r8QV+U96UAGAJPQVCO8LaJ06CpwfivIBDLb8GGrHl6rdNoUWmv3pi
-         GofA==
-X-Gm-Message-State: AOAM5331YVLybaOzzQYlCCn6qbGAGCZ84A090CoKhchmlo4zJpshgHMP
-        B2AD9iHmsCsdHHPjKR7QMy0=
-X-Google-Smtp-Source: ABdhPJwigPesw0YSxeUU+3t05dwjD/rfupyAJjvypCLSX4uz37bT2r5oVhLl3fDZR4A4urhiO6SnhA==
-X-Received: by 2002:a5d:59ae:: with SMTP id p14mr18335060wrr.365.1636720580101;
-        Fri, 12 Nov 2021 04:36:20 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id o3sm12459754wms.10.2021.11.12.04.36.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 04:36:19 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 11/11] arm64: tegra: Add NVIDIA Jetson AGX Orin Developer Kit support
-Date:   Fri, 12 Nov 2021 13:35:42 +0100
-Message-Id: <20211112123542.3680629-12-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211112123542.3680629-1-thierry.reding@gmail.com>
-References: <20211112123542.3680629-1-thierry.reding@gmail.com>
+        with ESMTP id S235082AbhKLMsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:48:16 -0500
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A042FC0613F5;
+        Fri, 12 Nov 2021 04:45:25 -0800 (PST)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AA7CC3F246;
+        Fri, 12 Nov 2021 13:45:23 +0100 (CET)
+Date:   Fri, 12 Nov 2021 13:45:22 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [RESEND PATCH v2 05/13] backlight: qcom-wled: Override default
+ length with qcom,enabled-strings
+Message-ID: <20211112124522.g7e3m7l2oxxxobof@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>, Bryan Wu <cooloney@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org
+References: <20211112002706.453289-1-marijn.suijten@somainline.org>
+ <20211112002706.453289-6-marijn.suijten@somainline.org>
+ <20211112121238.kb3kkt6xzv5so26j@maple.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211112121238.kb3kkt6xzv5so26j@maple.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mikko Perttunen <mperttunen@nvidia.com>
+On 2021-11-12 12:12:38, Daniel Thompson wrote:
+> On Fri, Nov 12, 2021 at 01:26:58AM +0100, Marijn Suijten wrote:
+> > The length of qcom,enabled-strings as property array is enough to
+> > determine the number of strings to be enabled, without needing to set
+> > qcom,num-strings to override the default number of strings when less
+> > than the default (which is also the maxium) is provided in DT.
+> > 
+> > Fixes: 775d2ffb4af6 ("backlight: qcom-wled: Restructure the driver for WLED3")
+> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> > ---
+> >  drivers/video/backlight/qcom-wled.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
+> > index c5232478a343..9bfbf601762a 100644
+> > --- a/drivers/video/backlight/qcom-wled.c
+> > +++ b/drivers/video/backlight/qcom-wled.c
+> > @@ -1518,6 +1518,8 @@ static int wled_configure(struct wled *wled)
+> >  				return -EINVAL;
+> >  			}
+> >  		}
+> > +
+> > +		cfg->num_strings = string_len;
+> 
+> I still don't really understand why this wants to be a separate patch.
 
-The Jetson AGX Orin Developer Kit is a continuation of the Jetson
-Developer Kit line using the new NVIDIA Tegra234 (Orin) SoC.
+I'm viewing this as a separate issue, and this makes it easier to
+document the change in a loose commit.
 
-Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/Makefile           |  1 +
- .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  | 25 +++++++++++++++++++
- .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 24 ++++++++++++++++++
- .../boot/dts/nvidia/tegra234-p3737-0000.dtsi  |  5 ++++
- 4 files changed, 55 insertions(+)
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
- create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
+> The warning text emitted by the previous patch (whatever text we agree
+> on) will be nonsense until this patch is applied.
+> 
+> If this patch cannot appear before the warning is introduces then there
+> is no correct order for patches 4 and 5 (which implies they should be the
+> same patch).
 
-diff --git a/arch/arm64/boot/dts/nvidia/Makefile b/arch/arm64/boot/dts/nvidia/Makefile
-index c80f7dc2935e..ea3f338fd013 100644
---- a/arch/arm64/boot/dts/nvidia/Makefile
-+++ b/arch/arm64/boot/dts/nvidia/Makefile
-@@ -12,3 +12,4 @@ dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p2972-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0000.dtb
- dtb-$(CONFIG_ARCH_TEGRA_194_SOC) += tegra194-p3509-0000+p3668-0001.dtb
- dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-sim-vdk.dtb
-+dtb-$(CONFIG_ARCH_TEGRA_234_SOC) += tegra234-p3737-0000+p3701-0000.dtb
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-new file mode 100644
-index 000000000000..d3c936822186
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+#include "tegra234.dtsi"
-+
-+/ {
-+	model = "NVIDIA Jetson AGX Orin";
-+	compatible = "nvidia,p3701-0000", "nvidia,tegra234";
-+
-+	bus@0 {
-+		mmc@3460000 {
-+			status = "okay";
-+			bus-width = <8>;
-+			non-removable;
-+			only-1-8-v;
-+		};
-+
-+		rtc@c2a0000 {
-+			status = "okay";
-+		};
-+
-+		pmc@c360000 {
-+			nvidia,invert-interrupt;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-new file mode 100644
-index 000000000000..e3bb874869df
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+#include "tegra234-p3701-0000.dtsi"
-+#include "tegra234-p3737-0000.dtsi"
-+
-+/ {
-+	model = "NVIDIA Jetson AGX Orin Developer Kit";
-+	compatible = "nvidia,p3737-0000+p3701-0000", "nvidia,p3701-0000", "nvidia,tegra234";
-+
-+	aliases {
-+		mmc3 = "/bus@0/mmc@3460000";
-+		serial0 = &tcu;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS0,115200n8";
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	tcu {
-+		status = "okay";
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-new file mode 100644
-index 000000000000..a85993c85e45
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
-@@ -0,0 +1,5 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	compatible = "nvidia,p3737-0000";
-+};
--- 
-2.33.1
+Agreed, this is a weird way of doing things in v2 - the error message is
+printed yet the length of qcom,enabled-strings is always ignored before
+this patch.
 
+If we were to reorder patch 5 before patch 4 that should also
+temporarily move `cfg->num_strings = cfg->num_strings + 1;` right below
+this `if` so that `qcom,num-strings` remains the definitive way to
+set/override length.  That's doable, and makes it easier to read patch 4
+as that bit of code will be replaced by of_property_read_u32 on that
+exact line.  Let me know which method you prefer.
+
+- Marijn
