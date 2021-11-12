@@ -2,137 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC42844E87F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 15:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FE0D44E886
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 15:21:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235280AbhKLOWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 09:22:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235295AbhKLOWM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 09:22:12 -0500
-Received: from relay02.th.seeweb.it (relay02.th.seeweb.it [IPv6:2001:4b7a:2000:18::163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A6B0C061766
-        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 06:19:21 -0800 (PST)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id CD8CB1F633;
-        Fri, 12 Nov 2021 15:19:18 +0100 (CET)
-Date:   Fri, 12 Nov 2021 15:19:17 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [RESEND PATCH v2 05/13] backlight: qcom-wled: Override default
- length with qcom,enabled-strings
-Message-ID: <20211112141917.akufukmeyz5enjg3@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>, Bryan Wu <cooloney@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org
-References: <20211112002706.453289-1-marijn.suijten@somainline.org>
- <20211112002706.453289-6-marijn.suijten@somainline.org>
- <20211112121238.kb3kkt6xzv5so26j@maple.lan>
- <20211112124522.g7e3m7l2oxxxobof@SoMainline.org>
- <20211112132336.z2x4bzrfqr4u3jol@maple.lan>
+        id S235049AbhKLOX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 09:23:57 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:39861 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233894AbhKLOX4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 09:23:56 -0500
+Received: by mail-ua1-f41.google.com with SMTP id i6so19092548uae.6;
+        Fri, 12 Nov 2021 06:21:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d0xUKMNGAKW3Rv2NiR2CE/TSNmlcrsKAFcxfksPwJsc=;
+        b=RL3vJ7j9iuORfEq6EvcizcD9TTu1NbRoAESKz+AflnMUvZkgCs8qC1LyF+bM0RM7Sa
+         UO+/04mJN5UJDb49mhvaNr22Q+zq41feQuN/XQaUphbw2nMtGW52PFZ/fnqZfaxOksFJ
+         t/TAPJnVGkRGtX7yWnBbsi/fKTHcbZ8MRkHm9XqzRmSMSHqgIGxunSG6AQfnaxLHzOYh
+         kJfzGpdEsw0Wry2UsWd+HI80ru0o7hXEikqytqm2pU//PX0cOJUw42QDWkH+S0DbELe6
+         u2AbDoJaNzYBrdihXB3c0+Hi9mEZCyuHOuXBuP2gc4VLmicGAM7lBltuM8RxLGsWY0DV
+         D70A==
+X-Gm-Message-State: AOAM532/DgTPe1eJwfTbzNIkU0vpWCOZ8mwn3uYFWy22SSz6zNDNAvrE
+        2kiSUqOiSqrEC0o9Ek0F04+P01ykQ/TcqQ==
+X-Google-Smtp-Source: ABdhPJwtAZ2nlUntcVflRIDcdzZRS/OxqcqCaQDDg9wv5sciVWz1cJv8uLClM814F9dGHZ4NoOjT1Q==
+X-Received: by 2002:a05:6102:dcb:: with SMTP id e11mr10634002vst.8.1636726864420;
+        Fri, 12 Nov 2021 06:21:04 -0800 (PST)
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
+        by smtp.gmail.com with ESMTPSA id p3sm4200321vsr.3.2021.11.12.06.21.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Nov 2021 06:21:04 -0800 (PST)
+Received: by mail-ua1-f50.google.com with SMTP id t13so19083541uad.9;
+        Fri, 12 Nov 2021 06:21:03 -0800 (PST)
+X-Received: by 2002:a05:6102:1354:: with SMTP id j20mr10408439vsl.41.1636726863321;
+ Fri, 12 Nov 2021 06:21:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112132336.z2x4bzrfqr4u3jol@maple.lan>
+References: <20211110232920.19198-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211110232920.19198-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211110232920.19198-4-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 12 Nov 2021 15:20:52 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXXhBpcL+VrLQCnSNvsdVWLACyBRSGaVKj+F_NZZBxGTg@mail.gmail.com>
+Message-ID: <CAMuHMdXXhBpcL+VrLQCnSNvsdVWLACyBRSGaVKj+F_NZZBxGTg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] serial: sh-sci: Add support to deassert/assert
+ reset line
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-12 13:23:36, Daniel Thompson wrote:
-> On Fri, Nov 12, 2021 at 01:45:22PM +0100, Marijn Suijten wrote:
-> > On 2021-11-12 12:12:38, Daniel Thompson wrote:
-> > > On Fri, Nov 12, 2021 at 01:26:58AM +0100, Marijn Suijten wrote:
-> > > > The length of qcom,enabled-strings as property array is enough to
-> > > > determine the number of strings to be enabled, without needing to set
-> > > > qcom,num-strings to override the default number of strings when less
-> > > > than the default (which is also the maxium) is provided in DT.
-> > > > 
-> > > > Fixes: 775d2ffb4af6 ("backlight: qcom-wled: Restructure the driver for WLED3")
-> > > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > > > ---
-> > > >  drivers/video/backlight/qcom-wled.c | 2 ++
-> > > >  1 file changed, 2 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > > > index c5232478a343..9bfbf601762a 100644
-> > > > --- a/drivers/video/backlight/qcom-wled.c
-> > > > +++ b/drivers/video/backlight/qcom-wled.c
-> > > > @@ -1518,6 +1518,8 @@ static int wled_configure(struct wled *wled)
-> > > >  				return -EINVAL;
-> > > >  			}
-> > > >  		}
-> > > > +
-> > > > +		cfg->num_strings = string_len;
-> > > 
-> > > I still don't really understand why this wants to be a separate patch.
-> > 
-> > I'm viewing this as a separate issue, and this makes it easier to
-> > document the change in a loose commit.
-> > 
-> > > The warning text emitted by the previous patch (whatever text we agree
-> > > on) will be nonsense until this patch is applied.
-> > > 
-> > > If this patch cannot appear before the warning is introduces then there
-> > > is no correct order for patches 4 and 5 (which implies they should be the
-> > > same patch).
-> > 
-> > Agreed, this is a weird way of doing things in v2 - the error message is
-> > printed yet the length of qcom,enabled-strings is always ignored before
-> > this patch.
-> > 
-> > If we were to reorder patch 5 before patch 4 that should also
-> > temporarily move `cfg->num_strings = cfg->num_strings + 1;` right below
-> > this `if` so that `qcom,num-strings` remains the definitive way to
-> > set/override length.  That's doable, and makes it easier to read patch 4
-> > as that bit of code will be replaced by of_property_read_u32 on that
-> > exact line.  Let me know which method you prefer.
-> 
-> Personally I would just squash them together. There are no redundant
-> values in the DT that could be fixed until we can use the string_len
-> to set num_strings.
+On Thu, Nov 11, 2021 at 12:29 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> On RZ/G2L SoC we need to explicitly deassert the reset line
+> for the device to work, use this opportunity to deassert/assert
+> reset line in sh-sci driver.
+>
+> This patch adds support to read the "resets" property (if available)
+> from DT and perform deassert/assert when required.
+>
+> Also, propagate the error to the caller of sci_parse_dt() instead of
+> returning NULL in case of failure.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-Reordering this patch before patch 4 in the way described above should
-allow just that, except that no warnings will be given for ambiguity
-until patch 4 is applied after that - which is weird given that that
-patch only intends the off-by-one error.  Perhaps we should keep the
-order as it is, but add the ambiguity warning in this patch instead.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-That means we have one patch to fix the off-by-one first, and another
-that allows qcom,num-strings to provide a default for num_strings.  I
-guess that's better to keep separated?
+Gr{oetje,eeting}s,
 
-- Marijn
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
