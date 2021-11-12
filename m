@@ -2,97 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E95044E0B5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 04:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76FAC44E0FA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 05:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233752AbhKLDRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 22:17:36 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:40481 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbhKLDRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 22:17:36 -0500
-Received: by mail-ot1-f51.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so3935447otj.7
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 19:14:46 -0800 (PST)
+        id S230169AbhKLEWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 23:22:34 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:37666 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229698AbhKLEWe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 23:22:34 -0500
+Received: by mail-ot1-f47.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so11245155otg.4;
+        Thu, 11 Nov 2021 20:19:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=FhkP3DqyQXh5RMUcdf21YAJZtHtRc6ehAtBhoS54R60=;
-        b=U361krQRnIhzkZkvmzvdLLtiiswkswvU9Mj1503LSQGxSoSCw09Zs/BqSXqU/WdJe5
-         xAxoA7w0kQ/ekVzSo+lxSDwkVOShWLdX2jp4gVqfcVZGKKkDCBTlqznb2SA6yQvBCSZD
-         Jt9dBy9o9YcgDeJNQHQwwvVnTzdN7i5eAb4EAb90BMhoBfhSSpM86NZsSJKkOH0PnIre
-         p3Dw7UZFcoeVSEUsF6BhsDQDQK2vj0g7fwpRE6/RgzxlnszUb2zJsbxpYJOHfhZK39At
-         /VBaEYGKNyyAG0A/QrIDSOqdZ7F7c4vPHPmsV4Je7QazjM0U3/CFEooHX4/Ot48jf3Y9
-         uiVQ==
-X-Gm-Message-State: AOAM532WS1LB3PIWeKeLVzfV8Aqtz999v/qbknodlgvLiib3sSAAe01G
-        mVN/kyPNzs4YxQfIVvopvQ==
-X-Google-Smtp-Source: ABdhPJxnY5O0cEKzuWXi7lcuRysab5RQjF26ANiZ53Y0PdC4u9Y+5lzakJ/OFSJKr8zDNBVstn+TbA==
-X-Received: by 2002:a05:6830:1da:: with SMTP id r26mr9840805ota.73.1636686886205;
-        Thu, 11 Nov 2021 19:14:46 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qxOn87ULPwV2ERYJX91GmCv249cvAtIa56rKI6JKMzk=;
+        b=IxVceATxm+PuainVHnaDeB6OZus2Xuofm3ooeNiE/FMTeP/SoE3dM8jG3mAQ5Z26jS
+         xZswqxfepRxz0qi//mmt7qfdtVpHPAGT3LUlGdrtGvUMU+X6ds3y9L5mBXek00ppHlk7
+         79UfzKm1lkuKM9K1SBCP9DtG/T0NV+Dfb6Qx3NGGQM4BnqiN6t72pC0HcDyoI8eSHqfC
+         SF6UPrUDmuuhZKmb9YHrgOj5LwphUcWYCoSBw+0E769s1F2JuEqx9bxFe056vJxJfyd0
+         bDJcHa3bVzcXtRDjR9r5zMGG528/3G+S5x82D17KZ7+BiDzoK/00e97i970x9+3KiEJS
+         ssYg==
+X-Gm-Message-State: AOAM530AE3qb3ly2o9SdSKo1vqKerFWi4RQLkuuNXbVSjPxNfDjPDnjU
+        RpyAQod6H8Z0BKuRuuOHbTGvmGav0A==
+X-Google-Smtp-Source: ABdhPJwcK2aLTenLOImwG5si5qgq36w7YMDwGzNedczDclnQAxDotdfG+bzfTYlQD4IWl7Ex88oHCw==
+X-Received: by 2002:a05:6830:22d8:: with SMTP id q24mr9908105otc.170.1636690782006;
+        Thu, 11 Nov 2021 20:19:42 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o26sm993950otj.14.2021.11.11.19.14.45
+        by smtp.gmail.com with ESMTPSA id 62sm922824ooa.47.2021.11.11.20.19.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 19:14:45 -0800 (PST)
-Received: (nullmailer pid 621132 invoked by uid 1000);
-        Fri, 12 Nov 2021 03:14:44 -0000
+        Thu, 11 Nov 2021 20:19:41 -0800 (PST)
+Received: (nullmailer pid 756536 invoked by uid 1000);
+        Fri, 12 Nov 2021 04:19:39 -0000
+Date:   Thu, 11 Nov 2021 22:19:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
-        linux-amarula@amarulasolutions.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-In-Reply-To: <20211111154557.852637-2-jagan@amarulasolutions.com>
-References: <20211111154557.852637-1-jagan@amarulasolutions.com> <20211111154557.852637-2-jagan@amarulasolutions.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1" OF
-Date:   Thu, 11 Nov 2021 21:14:44 -0600
-Message-Id: <1636686884.626655.621131.nullmailer@robh.at.kernel.org>
+To:     David Heidelberg <david@ixit.cz>
+Cc:     linux-sunxi@lists.linux.dev,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Chen-Yu Tsai <wens@csie.org>, ~okias/devicetree@lists.sr.ht,
+        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: watchdog: sunxi: fix error in schema
+Message-ID: <YY3rWykk1lIjPVe8@robh.at.kernel.org>
+References: <20211029142443.68779-1-david@ixit.cz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211029142443.68779-1-david@ixit.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Nov 2021 21:15:56 +0530, Jagan Teki wrote:
-> i.Core STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
+On Fri, 29 Oct 2021 16:24:42 +0200, David Heidelberg wrote:
+> "maxItems" is not needed with an "items" list
 > 
-> C.TOUCH 2.0 is a general purpose carrier board with capacitive
-> touch interface support.
+> Fixes:
+> $ DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml make dtbs_check
+> Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml: properties:clocks: {'required': ['maxItems']} is not allowed for {'minItems': 1, 'maxItems': 2, 'items': [{'description': 'High-frequency oscillator input, divided internally'}, {'description': 'Low-frequency oscillator input, only found on some variants'}]}
+> 	hint: "maxItems" is not needed with an "items" list
+> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+> ...
 > 
-> 10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
-> 
-> i.Core STM32MP1 needs to mount on top of C.TOUCH 2.0 carrier with
-> pluged 10.1" OF for creating complete i.Core STM32MP1 C.TOUCH 2.0
-> 10.1" Open Frame board.
-> 
-> Add bindings for it.
-> 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 --
+>  1 file changed, 2 deletions(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/arm/stm32/stm32.yaml:76:111: [warning] line too long (116 > 110 characters) (line-length)
-
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1553999
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Applied, thanks!
