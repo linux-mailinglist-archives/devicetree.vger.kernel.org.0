@@ -2,105 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4939644E638
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:17:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4982D44E641
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:20:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234857AbhKLMUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 07:20:48 -0500
-Received: from mail-vk1-f173.google.com ([209.85.221.173]:46022 "EHLO
-        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234811AbhKLMUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:20:48 -0500
-Received: by mail-vk1-f173.google.com with SMTP id m19so213047vko.12;
-        Fri, 12 Nov 2021 04:17:57 -0800 (PST)
+        id S234800AbhKLMW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 07:22:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234811AbhKLMWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:22:55 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31BD0C06127A
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 04:20:05 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id d5so15197922wrc.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 04:20:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ekAy44bxYcE4719//M2Agt8con9V746x7iZRtQHtp3A=;
+        b=okzkqHjBZhid2abmaHx79x9eNG6/T+iOIjm6zgNQbmIFT8x4OlzM30xm3ucTjnGCkR
+         I4ZBb1525SOlr9Ff1G4y7d62vfM/T6bVzUqr6pGIQt+utmpXt/4Y0wJqnf47tTeSDU0B
+         lYFWM7TfLIL3I28tI4DIaTepVZtoShvE2QK25y4cjpjmVZaUM+I+nQUNxsUEoaD8A6NA
+         SNLghy6rvhZY7SvZagFN1WBigiJ11hUB196wDUflqhlzkEiEGfTc3yeF/OiHQGSGnFo7
+         SP2Mcc03KU4EESnx6azApdjEvIB6pzoQMzrl/JMBWMfBNTcJSw6GOI3lqXABPx5pToxf
+         C9BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KS2sKiDr9po7riufi5pMSwEWAne4JUDpYMGieP7r2Lg=;
-        b=7BjBloGsD6wSFzTVX4bjJT87mUYDfdpASipKZ+OwsIXIcA4dzX3iyL+rebzXkuO76+
-         2BSehMFSvR62rwQeTTFFy58ZH+/yLtajRNiq2hrm2oYl47PgC0YeugsuGzkmXXgY8I06
-         MfvgQ0eC6/1DGtJAPJF8IO/Et2jxUB8wKRDz1q8J2z3+m2mpoBOSeD+Mgwp4bD4Z8JBK
-         SgUtSktRygqZ0o+iNS5TqbPQ5lJe6aeOe55jHfs+dCZ8lss3OUr7U9ANFC2fMDZjl0pY
-         BQ9CWvsHCYUYOkN486bHOt1K+/o893t7h5t1HB6u1ikC9wyljGq4ZZQ3G2ytuynBi2jz
-         oNyA==
-X-Gm-Message-State: AOAM533FyPviL14ENF1HOOdX8l1ZwOJ09kNqxRwwDVKnxkEsk0sJIRfv
-        52HB4rztl5goaWhcdMSw+P6nJOHVIZonzw==
-X-Google-Smtp-Source: ABdhPJzxSaWSWU+HZ2fG6cLQ1m0tcFyVXKy3FfYhOEVPj99aERN4QGYja2kGTUf/Pro+SDBoUBls6w==
-X-Received: by 2002:a1f:d0c4:: with SMTP id h187mr22750377vkg.1.1636719476807;
-        Fri, 12 Nov 2021 04:17:56 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id e9sm4165619uan.9.2021.11.12.04.17.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Nov 2021 04:17:56 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id e10so18436964uab.3;
-        Fri, 12 Nov 2021 04:17:56 -0800 (PST)
-X-Received: by 2002:ab0:15a1:: with SMTP id i30mr21935808uae.122.1636719476202;
- Fri, 12 Nov 2021 04:17:56 -0800 (PST)
-MIME-Version: 1.0
-References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com>
- <20210817090313.31858-3-biju.das.jz@bp.renesas.com> <CAMuHMdVXpn7X3Tm_ouq6DVUDP4mxMO8EObFjtfEU4pX6sodo9A@mail.gmail.com>
- <YY5WZ1r10EphBJEZ@shikoro>
-In-Reply-To: <YY5WZ1r10EphBJEZ@shikoro>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Nov 2021 13:17:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUbU5NX7Zpd=oSmizCwpOVEn6Ojnfw85uBET78HUsDFCw@mail.gmail.com>
-Message-ID: <CAMuHMdUbU5NX7Zpd=oSmizCwpOVEn6Ojnfw85uBET78HUsDFCw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ekAy44bxYcE4719//M2Agt8con9V746x7iZRtQHtp3A=;
+        b=0eA2P5gUAq6sQd/ZOoTunUKCMq1t/DarRioh3yblW2OrIAU2HxXntkp9tp/cOpu5/x
+         fAv1o5n0SasJlCpMuIHIpx79MgKiNdoJdzHQo4HPGIpfc/Lt5kSdK+KGEzcvAf7Ze15o
+         uWuSFIXHGOWHDVacJ37w96s2rroY9Fioy+9QhTb1zNXewJiYKsVVxQqxxSn4wMUH2Gqz
+         hytYARjIWU7Ee+JSEsMuwrgr7/nO4fECiFKWw9mtNY08n51/xNhIIFchWGZylj5/sJeu
+         qWRUSYuBQHbAKCGzKjh5sHzcHb6zf4hCfYj+/OUAg+AZutF+SNW3xNHenWr32BJUtqLF
+         ebdQ==
+X-Gm-Message-State: AOAM531iRxKUX2WKGxavGgRGlJo6Jvx4T8yRdJlW/azPGaS9b8mA32Pe
+        MVQhXWZjz++dgzrYsPoaLFKPEA==
+X-Google-Smtp-Source: ABdhPJzUDqalj7QNH7bS9OFqHBZBbBagrC99qMZAAdpP4vZLeXhJhoqFtb9ZUxsbToXqPrsaYZE6Yg==
+X-Received: by 2002:a5d:4d81:: with SMTP id b1mr18784594wru.366.1636719603596;
+        Fri, 12 Nov 2021 04:20:03 -0800 (PST)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id l7sm7236877wry.86.2021.11.12.04.20.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 04:20:03 -0800 (PST)
+Date:   Fri, 12 Nov 2021 12:20:01 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [RESEND PATCH v2 09/13] backlight: qcom-wled: Respect
+ enabled-strings in set_brightness
+Message-ID: <20211112122001.x67ljs6hvrtsfnd7@maple.lan>
+References: <20211112002706.453289-1-marijn.suijten@somainline.org>
+ <20211112002706.453289-10-marijn.suijten@somainline.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211112002706.453289-10-marijn.suijten@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Fri, Nov 12, 2021 at 01:27:02AM +0100, Marijn Suijten wrote:
+> The hardware is capable of controlling any non-contiguous sequence of
+> LEDs specified in the DT using qcom,enabled-strings as u32
+> array, and this also follows from the DT-bindings documentation.  The
+> numbers specified in this array represent indices of the LED strings
+> that are to be enabled and disabled.
+> 
+> Its value is appropriately used to setup and enable string modules, but
+> completely disregarded in the set_brightness paths which only iterate
+> over the number of strings linearly.
+> Take an example where only string 2 is enabled with
+> qcom,enabled_strings=<2>: this string is appropriately enabled but
+> subsequent brightness changes would have only touched the zero'th
+> brightness register because num_strings is 1 here.  This is simply
+> addressed by looking up the string for this index in the enabled_strings
+> array just like the other codepaths that iterate over num_strings.
+> 
+> Likewise enabled_strings is now also used in the autodetection path for
+> consistent behaviour: when a list of strings is specified in DT only
+> those strings will be probed for autodetection, analogous to how the
+> number of strings that need to be probed is already bound by
+> qcom,num-strings.  After all autodetection uses the set_brightness
+> helpers to set an initial value, which could otherwise end up changing
+> brightness on a different set of strings.
+> 
+> Fixes: 775d2ffb4af6 ("backlight: qcom-wled: Restructure the driver for WLED3")
+> Fixes: 03b2b5e86986 ("backlight: qcom-wled: Add support for WLED4 peripheral")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 
-On Fri, Nov 12, 2021 at 12:56 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> > > +            - description: IMCLK, SDHI channel main clock1.
->
-> Sounds like "core"
->
-> > > +            - description: IMCLK2, SDHI channel main clock2. When this clock is
-> > > +                           turned off, external SD card detection cannot be
-> > > +                           detected.
->
-> "cd"
->
-> > > +            - description: CLK_HS, SDHI channel High speed clock which operates
-> > > +                           4 times that of SDHI channel main clock1.
->
-> "clkh" compared to the Gen3 bindings to me.
->
-> > > +            - description: ACLK, SDHI channel bus clock.
->
-> This I don't understand. The CPG-MSSR clock?
+Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-RZ/G2L has more fine-grained control of module clocks.
-On e.g. R-Car SoCs, there is a single "MSTP" bit to disable "the"
-module clock, but in practice it may control multiple clock inputs
-to a module.  The actual clock tree is not documented, so we model
-this as a single module clock.  So probably the MSTP bit controls
-both the main channel clock and the bus clock.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Daniel.
