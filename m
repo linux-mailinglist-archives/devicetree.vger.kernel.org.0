@@ -2,116 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0F444DF3A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 01:38:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4359B44DF8F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 02:06:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234480AbhKLAlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 19:41:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52972 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233817AbhKLAlL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 19:41:11 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8166C061766
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 16:38:21 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id x131so6979649pfc.12
-        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 16:38:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6V0YnnkWAGWiDmZp2NjWEznJa73Yi3xUG8ZLOn1q/Ek=;
-        b=cLMvhV4oZxE15N+mSTNdBHjBLxrKePFf01qAgNgyJX1bbqJZzZ5HQyQP1FAjVqrrVZ
-         HZDefmqrgCsWGUCxfRxJxIPr2gddCZPSeYxU39sJCqPLesoAgPxAtP9gD/0dRRBViyhq
-         MlSnrLdRhIP5mQ7331JLVanifvBZZ1M4vT5dEEph+zp6lsJmMKuqBVZVCwgHWTOTkfX/
-         rPcIYr61SUJubQFPuti0aU/Z438en7VsYAbuPamf5TKFE3SjyYbkX9hd7feZfK0ewsOz
-         DRVnKk5BEgYQLcnAtxXAM2ySdAFSA0OEeA5CQZxrcfK0eri0khoO4G6r8Wn/v2IRuwVN
-         dVGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6V0YnnkWAGWiDmZp2NjWEznJa73Yi3xUG8ZLOn1q/Ek=;
-        b=4uydh5KrkNVbxg5jwJ7O305S81fsBIp2AW5KBes65Bdww5HKvvVv2mQHZEnG8TmB6d
-         WmxckekS+f3J0rTnS3Zia/w3bKDYNzsu7MvLKiKKRJb7yYlxvC+ItH3nU35byNVNeixq
-         fn2mrAvo4s7tb0lA0dWDl1AgD8QAnzirtkRdGyY39KSP/0Sh3NcZwuKuWUNEv7x+55CI
-         dAigFhhhXR5Lt8Dgwv8xmbM4lo/QXZ/ONHaVHMZYFP9rxph85NLvievnRT9++atq3eP7
-         71wY7PYPIZ4YImAaG1nI7z8ps5Nr3KFF0OlPR+qBPqX0PZHYa8neAvCMo2GTX2Gv/Tey
-         GhcQ==
-X-Gm-Message-State: AOAM533mr/iOixDMXePUSSv2iR/mp91gtqZsa1VsPTS6tVX0umNBGa+u
-        5AYVFhb9wzUltUh5FBpL5iu/D4XFWgxcYPVkZHRmfQ==
-X-Google-Smtp-Source: ABdhPJxaCFDAIhmCkXGL8hllEw8h73+sJwzBBj0q4Odpc93JOWrcVnEA1nrzNasBIza5BdOzQ0Lp3M4dqoieeVJ5FR4=
-X-Received: by 2002:a63:5f56:: with SMTP id t83mr7396167pgb.432.1636677501335;
- Thu, 11 Nov 2021 16:38:21 -0800 (PST)
+        id S234686AbhKLBJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 20:09:05 -0500
+Received: from mailout2.samsung.com ([203.254.224.25]:64130 "EHLO
+        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234625AbhKLBJE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 20:09:04 -0500
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20211112010613epoutp02c9aa306e00cf53bb1aa541ea8406eea3~2pwlzEtSt0433504335epoutp02l
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 01:06:13 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20211112010613epoutp02c9aa306e00cf53bb1aa541ea8406eea3~2pwlzEtSt0433504335epoutp02l
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1636679173;
+        bh=dKeBiRvU5OdA4A+Gv8Y0NQfXa57ytQb7cj57ANQ3Yms=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=M5FBZdvvL3SuxS2IvaMXPQ6bhgzVdMS8PLC42lTrK/nuztKXKBuetVSUynt35eHQ2
+         fEK/ZMUN1CXzSNp2VOwpR9tvKtBBIeMcvwj2DcbJLrKmOmjbvQWvDdHbCyrJ+QeHwN
+         5VxsN4rs+aIEaERFy/Qhwy/AtmpAeKFtQ8shSt0k=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
+        20211112010613epcas2p4296345d6a08ff7bb320870df79d1fdd5~2pwlPgxbr2822828228epcas2p4h;
+        Fri, 12 Nov 2021 01:06:13 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.102]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4Hr0lN3R4Hz4x9Qg; Fri, 12 Nov
+        2021 01:06:08 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        59.60.10018.BFDBD816; Fri, 12 Nov 2021 10:06:03 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+        20211112010603epcas2p331fe717eabfd9fc0280792921b25c535~2pwcCQ57K3148131481epcas2p3_;
+        Fri, 12 Nov 2021 01:06:03 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20211112010603epsmtrp2e0557ed89c8504a22330dec0d1be85a0~2pwcBefSm2332823328epsmtrp2U;
+        Fri, 12 Nov 2021 01:06:03 +0000 (GMT)
+X-AuditID: b6c32a46-a0fff70000002722-33-618dbdfb5c1b
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2E.6C.29871.BFDBD816; Fri, 12 Nov 2021 10:06:03 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.51]) by
+        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20211112010602epsmtip2856e61c365cddc19b3276994e2382ac2~2pwb0h5i71804718047epsmtip2a;
+        Fri, 12 Nov 2021 01:06:02 +0000 (GMT)
+From:   Jaewon Kim <jaewon02.kim@samsung.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        chanho61.park@samsung.com, linux-arm-kernel@lists.infradead.org,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>
+Subject: [PATCH v3 0/2] i2c: exynos5: add support for ExynosAutov9 SoC
+Date:   Fri, 12 Nov 2021 10:01:35 +0900
+Message-Id: <20211112010137.149174-1-jaewon02.kim@samsung.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20211111101456.584061-1-jagan@amarulasolutions.com> <20211111101456.584061-2-jagan@amarulasolutions.com>
-In-Reply-To: <20211111101456.584061-2-jagan@amarulasolutions.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 11 Nov 2021 16:38:10 -0800
-Message-ID: <CAJ+vNU0fdSmhQqw-__8ndkeXrbwFEKOb5G0wukfG7h9g6YKJ8g@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 1/3] arm64: dts: imx8mm: Add eLCDIF node support
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Adam Ford <aford173@gmail.com>, Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKJsWRmVeSWpSXmKPExsWy7bCmhe7vvb2JBm8maFpc3q9tMf/IOVaL
+        HQ1HWC02vv3BZLHp8TVWi46/XxgtLu+aw2Yx4/w+JovWvUfYLZ73AVl3989ldOD2mNXQy+ax
+        aVUnm8eda3vYPDYvqffo27KK0ePzJrkAtqhsm4zUxJTUIoXUvOT8lMy8dFsl7+B453hTMwND
+        XUNLC3MlhbzE3FRbJRefAF23zByg65QUyhJzSoFCAYnFxUr6djZF+aUlqQoZ+cUltkqpBSk5
+        BeYFesWJucWleel6eaklVoYGBkamQIUJ2RlPXs5hLLjDXvHk7gbmBsZpbF2MnBwSAiYSX1cu
+        ZQWxhQR2MErsXGvUxcgFZH9ilLjwfR4LhPONUWLvpFusMB0t7y4yQST2MkpM3veSEcL5yCjx
+        58wXRpAqNgFtie/rF4N1iAjUSXTvagUrYhaYxiRxc9IRdpCEsICbxNFlt8FsFgFViQtt/8CO
+        4hWwk7j4eCI7xDp5iYkT7rFDxAUlTs58wgJiMwPFm7fOZgYZKiHwlV3i3fleRogGF4n3XRdZ
+        IGxhiVfHt0ANkpL4/G4v0AIOILte4usNB4jeHkaJNV2/mCBq7CV+Td/CClLDLKApsX6XPkS5
+        ssSRW1Br+SQ6Dv9lhwjzSnS0CUE0qkncn3oOGqQyEpOOrGSCKPGQWNhvBQndWIn5u2+xTGCU
+        n4Xkl1lIfpmFsHYBI/MqRrHUguLc9NRiowIjeJwm5+duYgSnTy23HYxT3n7QO8TIxMF4iFGC
+        g1lJhPf8wt5EId6UxMqq1KL8+KLSnNTiQ4ymwNCdyCwlmpwPTOB5JfGGJpYGJmZmhuZGpgbm
+        SuK8lqLZiUIC6YklqdmpqQWpRTB9TBycUg1MocetPISWaxj4HP4u2h9w69SqK6s/npUzenvR
+        pevbG81JqSYS9gn/I9Z8L9B0uB8xZXPfo+OlhhaxM7oTFwrqb7k5c/fxtAkaH17+CEzitWC0
+        LFq96sLeRzIBX/7eT/18PCWtdeLPgKtrF97fduq0TKmXQMn+B21arzdW+yZEZMwpaU/7Fux7
+        JvWo34PjkvsD0ox1V3VyBMROOucg9VXlytK5q8N+xMmmqfzd4n763t5nfOmzRc40vjwUZe8v
+        3vnT75zPXe6wQuNy5vSFbQdvZPgHrRT1fZc8f2udzcaV9V51t+Jtpv1cf+vgxZx1ezn/hKQ7
+        GJ3fx+HZpGP3+tqEWmV9x00zln1+1Nk9UfL7KSWW4oxEQy3mouJEAF106XMoBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBLMWRmVeSWpSXmKPExsWy7bCSvO7vvb2JBpOXslhc3q9tMf/IOVaL
+        HQ1HWC02vv3BZLHp8TVWi46/XxgtLu+aw2Yx4/w+JovWvUfYLZ73AVl3989ldOD2mNXQy+ax
+        aVUnm8eda3vYPDYvqffo27KK0ePzJrkAtigum5TUnMyy1CJ9uwSujCcv5zAW3GGveHJ3A3MD
+        4zS2LkZODgkBE4mWdxeZuhi5OIQEdjNKHP33ghkiISOx/FkfVJGwxP2WI6wQRe8ZJS40NDGB
+        JNgEtCW+r18MlhARaGCUePttEdgoZoE5TBIL/r8DqxIWcJM4uuw2O4jNIqAqcaHtH9hYXgE7
+        iYuPJ7JDrJCXmDjhHjtEXFDi5MwnLCA2M1C8eets5gmMfLOQpGYhSS1gZFrFKJlaUJybnlts
+        WGCYl1quV5yYW1yal66XnJ+7iREc2FqaOxi3r/qgd4iRiYPxEKMEB7OSCO/5hb2JQrwpiZVV
+        qUX58UWlOanFhxilOViUxHkvdJ2MFxJITyxJzU5NLUgtgskycXBKNTDZPy25zWT3v+n0/omN
+        ma+jt6ttdGf8FMxqLR4cq9ozc/snph0NPZYz15+JfivtPSd12aaHxksv5TyzOqvgNOfC86vH
+        Ylcd2lB/73TzbsMpDB88FguLKUz64r1Xg+dh2J+yb/l3dE3vvo76svyabPv0f3sWXhLZn73q
+        UeNp3thX4hwzdpvklu769+7+xEd2cn82zXr4PyZswZRnTtv/LtK5fSP/4vOG2sOcLDtKvbpF
+        pr5r5zlef/HUZ4PzN/bls3kamG7dwce6kP/+tu4/t+/5qe+TiKs4u3L119fSFR9O/3jzv+6p
+        Alt4Q6JoQd5FlTkl6dlfjN/2vLfLmh9cqsb4cs67o0udedsrKyyUHWaa5yqxFGckGmoxFxUn
+        AgCxe/8X2wIAAA==
+X-CMS-MailID: 20211112010603epcas2p331fe717eabfd9fc0280792921b25c535
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211112010603epcas2p331fe717eabfd9fc0280792921b25c535
+References: <CGME20211112010603epcas2p331fe717eabfd9fc0280792921b25c535@epcas2p3.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 11, 2021 at 2:15 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> Add eLCDIF controller node for i.MX8MM.
->
+Serial IPs(UART, I2C, SPI) are integrated into New IP-Core
+called USI(Universal Serial Interface).
 
-Jagan,
+As it is integrated into USI, there are additinal HW changes.
+Registers to control USI and sysreg to set serial IPs have been added.
+Also, some timing registres have been changed.
 
-It doesn't look like you sent this to the Device Tree mainling list so
-I added that to cc.
+Changes in v3:
+ - Changes has_usi variable type
+ - Changes comment style
 
-> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index c2f3f118f82e..caeb93313413 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -1068,6 +1068,25 @@ aips4: bus@32c00000 {
->                         #size-cells = <1>;
->                         ranges = <0x32c00000 0x32c00000 0x400000>;
->
-> +                       lcdif: lcdif@32e00000 {
-> +                               compatible = "fsl,imx28-lcdif";
-> +                               reg = <0x32e00000 0x10000>;
-> +                               clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
-> +                                        <&clk IMX8MM_CLK_DISP_AXI_ROOT>,
-> +                                        <&clk IMX8MM_CLK_DISP_APB_ROOT>;
-> +                               clock-names = "pix", "disp_axi", "axi";
-> +                               assigned-clocks = <&clk IMX8MM_CLK_LCDIF_PIXEL>,
-> +                                                 <&clk IMX8MM_CLK_DISP_AXI>,
-> +                                                 <&clk IMX8MM_CLK_DISP_APB>;
-> +                               assigned-clock-parents = <&clk IMX8MM_VIDEO_PLL1_OUT>,
-> +                                                        <&clk IMX8MM_SYS_PLL2_1000M>,
-> +                                                        <&clk IMX8MM_SYS_PLL1_800M>;
-> +                               assigned-clock-rate = <594000000>, <500000000>, <200000000>;
-> +                               interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +                               power-domains = <&disp_blk_ctrl IMX8MM_DISPBLK_PD_LCDIF>;
-> +                               status = "disabled";
-> +                       };
-> +
->                         disp_blk_ctrl: blk-ctrl@32e28000 {
->                                 compatible = "fsl,imx8mm-disp-blk-ctrl", "syscon";
->                                 reg = <0x32e28000 0x100>;
-> --
-> 2.25.1
->
+Changes in v2:
+ - Changes compatible name to "samsung,exynosautov9-hsi2c"
+ - Changes I2C type name to "I2C_TYPE_EXYNOSAUTOV9" from "I2C_TYPE_USI"
+ - Changes to clear after reset instread of clearing reset
+ - Add description about system register for USI
+ - fix typo in description
+
+Jaewon Kim (2):
+  dt-bindings: i2c: exynos5: add exynosautov9-hsi2c compatible
+  i2c: exynos5: add support for ExynosAutov9 SoC
+
+ .../devicetree/bindings/i2c/i2c-exynos5.txt   |   7 +
+ drivers/i2c/busses/i2c-exynos5.c              | 135 ++++++++++++++++--
+ 2 files changed, 132 insertions(+), 10 deletions(-)
+
+-- 
+2.33.1
+
