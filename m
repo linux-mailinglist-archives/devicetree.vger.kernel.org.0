@@ -2,91 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73BD644E969
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:02:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E5FC44E971
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:02:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235268AbhKLPE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 10:04:56 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:38743 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235215AbhKLPEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 10:04:55 -0500
-Received: by mail-oi1-f176.google.com with SMTP id r26so18365982oiw.5;
-        Fri, 12 Nov 2021 07:02:05 -0800 (PST)
+        id S235278AbhKLPFC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 10:05:02 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:37518 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235276AbhKLPFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 10:05:01 -0500
+Received: by mail-ot1-f53.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so13353143otg.4;
+        Fri, 12 Nov 2021 07:02:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=4EQIArY31QPwnI5p1XwTVStzIn2qrhq9vLI4hmJG9T0=;
-        b=6YF8f2mIayHn3NZUDLuSKc4FAZuxNx/iGPusT33rT4x3P/QLBiw0Dth48Gwjx/C3Uf
-         r5q3q41g6lPvm0A0FFeZ4i9sLyygUpHTUzHJvY4euqF2Coo63SiPWHwY2nl7NIPu2dwo
-         ycW9MH1fyevHJGGV/RcKF41EGQqC4kyym7kcn7D2jD6p6vJYyuSiLJkqUj5D1ZcolW83
-         1qoEcvqRC3Ex4/wqxO9IfvctA9eRaGILM7de6ZzSQxjGZhzzvQmmoVtsgw1y86bam5rr
-         QJSaT253+h7Zrx5SegPd25XM893SlhWDhebYhj/ErWJ5FcGuyQ/qT9BwJqQxhGZWk+mk
-         vn7g==
-X-Gm-Message-State: AOAM5304m+yGgplPrmn5sjPrbss9cwyHYqzo50TIIgIOsRZrI5eu6bAQ
-        IXB6fsrTLB+BfEbzAjmLLA==
-X-Google-Smtp-Source: ABdhPJx+xbP84uwYTtLFhLNrEa5jvd7KYdTt8H/tFZy6EMBE0mRB44Ra4DF7atburXjEvRFGoetoHQ==
-X-Received: by 2002:a05:6808:1a01:: with SMTP id bk1mr13759058oib.46.1636729324807;
-        Fri, 12 Nov 2021 07:02:04 -0800 (PST)
+        bh=kOEufQVZI0BrI7LuPRN4qS0HPEEz/Vbkkh5HQHq4qhE=;
+        b=ZYJSfOQVIzjuweaewbiknoYFbUaMMGxLUq1fkr+hi94G9gqqb9xr+a1ZjvhzhlCsGq
+         5vUvbYk6rr/rzyYp8Ir+AxEU2J4FhawXsIM2VLlTFV5i4+GgrSvLoiauVUUV0oX4szFZ
+         P0EuQnrzOj8YiO7Wp0N8YXjgpSp7DrPZZevNL6te+okEzjt2sOxrnj1mcxj00kACqpWL
+         va/FOIJQ/ywwXcqinm2QmVPpGmTTDtC8UClY9TAizhnOQra5q9f6I+Za1lhEjN1ApKiZ
+         hQkvqwb+o8rrXDgUFTU5b68iDRD9rWIIEx3dobQRjQ+YI1UsnMGAljU9B4j1JNmVrTyT
+         5X4w==
+X-Gm-Message-State: AOAM5305iaTFhXQgPvOkEvPxx3TTj5b86inrfjVC81BaNKpjYDIqrsDR
+        g99nCDc5WcREhINxmCvsE5J5ByTtCA==
+X-Google-Smtp-Source: ABdhPJzXjvrSczFnaz12NXIx0PZTeUKha1Hbo6b1S56wkq2O6hDSkmJlTC9bTKUTsfEZbl2pnf9MVA==
+X-Received: by 2002:a05:6830:3499:: with SMTP id c25mr13491792otu.206.1636729329073;
+        Fri, 12 Nov 2021 07:02:09 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bk41sm47351oib.31.2021.11.12.07.02.03
+        by smtp.gmail.com with ESMTPSA id a16sm1183189otj.79.2021.11.12.07.02.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 07:02:04 -0800 (PST)
-Received: (nullmailer pid 2842413 invoked by uid 1000);
+        Fri, 12 Nov 2021 07:02:08 -0800 (PST)
+Received: (nullmailer pid 2842419 invoked by uid 1000);
         Fri, 12 Nov 2021 15:01:59 -0000
 From:   Rob Herring <robh@kernel.org>
 To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org
-In-Reply-To: <20211112120518.3679793-14-thierry.reding@gmail.com>
-References: <20211112120518.3679793-1-thierry.reding@gmail.com> <20211112120518.3679793-14-thierry.reding@gmail.com>
-Subject: Re: [PATCH 13/15] dt-bindings: i2c: tegra-bpmp: Convert to json-schema
+Cc:     linux-tegra@vger.kernel.org, Jon Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20211112120518.3679793-16-thierry.reding@gmail.com>
+References: <20211112120518.3679793-1-thierry.reding@gmail.com> <20211112120518.3679793-16-thierry.reding@gmail.com>
+Subject: Re: [PATCH 15/15] dt-bindings: serial: Document Tegra234 TCU
 Date:   Fri, 12 Nov 2021 09:01:59 -0600
-Message-Id: <1636729319.962879.2842412.nullmailer@robh.at.kernel.org>
+Message-Id: <1636729319.995745.2842418.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Nov 2021 13:05:16 +0100, Thierry Reding wrote:
+On Fri, 12 Nov 2021 13:05:18 +0100, Thierry Reding wrote:
 > From: Thierry Reding <treding@nvidia.com>
 > 
-> Convert the NVIDIA Tegra186 (and later) BPMP I2C bindings from the
-> free-form text format to json-schema.
+> Add the compatible string for the TCU found on the Tegra234 SoC.
 > 
 > Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../bindings/i2c/nvidia,tegra186-bpmp-i2c.txt | 42 -------------------
->  .../i2c/nvidia,tegra186-bpmp-i2c.yaml         | 40 ++++++++++++++++++
->  2 files changed, 40 insertions(+), 42 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.txt
->  create mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
+>  .../devicetree/bindings/serial/nvidia,tegra194-tcu.yaml    | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml: 'additionalProperties' is a required property
-	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
+Full log is available here: https://patchwork.ozlabs.org/patch/1554322
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1554317
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+tcu: $nodename:0: 'tcu' does not match '^serial(@.*)?$'
+	arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dt.yaml
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dt.yaml
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dt.yaml
 
