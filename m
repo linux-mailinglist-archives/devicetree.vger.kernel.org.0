@@ -2,96 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F2A44E7D5
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6F6244E7DE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:49:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235079AbhKLNvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 08:51:33 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:36430 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235074AbhKLNvc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 08:51:32 -0500
-Received: by mail-ot1-f49.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so13939488otl.3;
-        Fri, 12 Nov 2021 05:48:41 -0800 (PST)
+        id S235132AbhKLNvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 08:51:46 -0500
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:39838 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235075AbhKLNvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 08:51:42 -0500
+Received: by mail-oi1-f172.google.com with SMTP id bf8so17961400oib.6;
+        Fri, 12 Nov 2021 05:48:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=jxmVxwVEIODsUz5cmQZGbjxDZQfY0Nw513i0hXKcGII=;
-        b=ERxj3hi8q+QXpUSernFfBvHIXsEc+DwI+RWeMWEAvbCj2qPPeRDtd1xgkDlhmgwz4F
-         NiTeLyWEjK4IW3qfBShk55euZKHdo+/YD+v7bCWYjltWZKDU2TeBhnpZ0+4UC0eFs2Tg
-         2IcfsNYU1x45Oa7DxVBxYakYgyjtb61Lggfb1xzUouDCAEBLD79fe4FTdbxm74avkuiI
-         jyEJDWlWalOWYVQ4YPVVjQrB5vuiYCST+RUciH1+K5bTMBkPVuqsPlw8CkNwITnoarv2
-         ACu/8D8dnwBl3zVCpno0FY+23bpfAshAuX5FaaQ3Gm0NJeLz34aOWjDWWEhZwNrvp8iM
-         KLeA==
-X-Gm-Message-State: AOAM532hz+eotNWnkOmEVgOkkZj+tIinUVUg+wa3N3ojbkHlbKFMar77
-        d8urOA5p4c+05l2HNR9GjC1BQr6U2Q==
-X-Google-Smtp-Source: ABdhPJz80ATDrF4RPUbdjx4SU03fMnowayCqKTca1SIIyrBu7+tXWUedFcxGs/KXDkApzfvbZ9Ebwg==
-X-Received: by 2002:a9d:62ce:: with SMTP id z14mr12325812otk.56.1636724920972;
-        Fri, 12 Nov 2021 05:48:40 -0800 (PST)
+        bh=TC2M+mU+A5z9HrDX9S9GZXSmeMTv6gFjkiYKXqPqtKU=;
+        b=PDf2hNDkay3S9sSRwW9ke8Cmov/20KXOJKW6m8MlVoa9RRJdt9/g6JQ6hOKfqXsH56
+         aAAHfunu/0ygu4S6vavZqDfYldvGtl5xQZF2oiZWMmVg4c1r5oUGUsU8fkbCxWntFHEj
+         j/nYARXMzlH20UIGpMQH2CQLlwdvlywOnxPDtz82iL2BooSYf9Q4a2JthrvBQSlEABK2
+         pCDb/zp1/fOj+1hCpxuc2sk21y14ZRXtd7Kn0uWkEnQNTq8cVT8JZOL7VRW6Yt7qZLxR
+         FT5Y+MMFZjJV0y3uEPeOUXSh60OT5+kHkYQas3hIg++JNAHFJLqdh/6Xshn5V897nf+J
+         5Jvg==
+X-Gm-Message-State: AOAM533OOsOGhdcx1VxlEIG6RD+FLvjTGkPKfHFLGjNosWGxF7B2GELa
+        WkADSH8KMs4mgkoyarOWJA==
+X-Google-Smtp-Source: ABdhPJyqLCyeEGS/my0wi5TWURD/69mMXlwnqhbDUdTjRdhY68jF3ugams1WHnb2/8Hlm26KL1Qd8w==
+X-Received: by 2002:aca:5c82:: with SMTP id q124mr27682430oib.113.1636724930650;
+        Fri, 12 Nov 2021 05:48:50 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j5sm1219479ots.68.2021.11.12.05.48.39
+        by smtp.gmail.com with ESMTPSA id q12sm1172983otl.66.2021.11.12.05.48.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 05:48:40 -0800 (PST)
-Received: (nullmailer pid 2463367 invoked by uid 1000);
+        Fri, 12 Nov 2021 05:48:50 -0800 (PST)
+Received: (nullmailer pid 2463371 invoked by uid 1000);
         Fri, 12 Nov 2021 13:48:37 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-In-Reply-To: <20211112120518.3679793-4-thierry.reding@gmail.com>
-References: <20211112120518.3679793-1-thierry.reding@gmail.com> <20211112120518.3679793-4-thierry.reding@gmail.com>
-Subject: Re: [PATCH 03/15] dt-bindings: mailbox: tegra: Convert to json-schema
+To:     James Lo <james.lo@mediatek.com>
+Cc:     srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20211112055410.21418-2-james.lo@mediatek.com>
+References: <20211112055410.21418-1-james.lo@mediatek.com> <20211112055410.21418-2-james.lo@mediatek.com>
+Subject: Re: [RESEND, v14 1/3] dt-bindings: spmi: modify the constraint of reg property
 Date:   Fri, 12 Nov 2021 07:48:37 -0600
-Message-Id: <1636724917.104467.2463366.nullmailer@robh.at.kernel.org>
+Message-Id: <1636724917.135780.2463370.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Nov 2021 13:05:06 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Fri, 12 Nov 2021 13:54:08 +0800, James Lo wrote:
+> The constraint of reg may larger than 1, so we modify to
+> 'minItem: 1' and 'maxItem: 2'.
+> And adds documentation for the SPMI controller found on
+> Mediatek SoCs.
 > 
-> Convert the NVIDIA Tegra HSP bindings from the free-form text format to
-> json-schema.
+> Merge [RESEND,v13,2/4] into [RESEND,v13,1/4] for fix yaml
+> error.
+> [RESEND,v13,1/4] :
+> dt-bindings: spmi: modify the constraint of reg property
+> [RESEND,v13,2/4] :
+> dt-bindings: spmi: document binding for the Mediatek SPMI
+> controller
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: James Lo <james.lo@mediatek.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
->  .../bindings/mailbox/nvidia,tegra186-hsp.txt  |  72 ------------
->  .../bindings/mailbox/nvidia,tegra186-hsp.yaml | 109 ++++++++++++++++++
->  2 files changed, 109 insertions(+), 72 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.txt
->  create mode 100644 Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+>  .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      | 76 +++++++++++++++++++
+>  .../devicetree/bindings/spmi/spmi.yaml        |  3 +-
+>  2 files changed, 78 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml: properties:compatible:oneOf: [{'const': 'nvidia,tegra186-hsp'}, {'const': 'nvidia,tegra194-hsp'}] should not be valid under {'items': {'propertyNames': {'const': 'const'}, 'required': ['const']}}
-	hint: Use 'enum' rather than 'oneOf' + 'const' entries
-	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml: 'additionalProperties' is a required property
-	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml: ignoring, error in schema: properties: compatible: oneOf
-warning: no schema found in file: ./Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
-Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.example.dt.yaml:0:0: /example-0/hsp@3c00000: failed to match any schema with compatible: ['nvidia,tegra186-hsp']
+Full log is available here: https://patchwork.ozlabs.org/patch/1554153
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1554298
+spmi@1c40000: reg: [[29622272, 4352], [31457280, 33554432], [65011712, 1048576], [66060288, 655360], [29401088, 155648]] is too long
+	arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dt.yaml
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+spmi@200f000: reg: [[33615872, 4096], [37748736, 4194304], [46137344, 4194304], [58720256, 2097152], [33595392, 8448]] is too long
+	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+spmi@200f000: reg: [[33615872, 4096], [37748736, 8388608], [46137344, 8388608], [58720256, 2097152], [33595392, 8448]] is too long
+	arch/arm64/boot/dts/qcom/qcs404-evb-1000.dt.yaml
+	arch/arm64/boot/dts/qcom/qcs404-evb-4000.dt.yaml
 
-pip3 install dtschema --upgrade
+spmi@800f000: reg: [[134279168, 4096], [138412032, 16777216], [155189248, 16777216], [171966464, 2228224], [134258688, 12288]] is too long
+	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-ganges-kirin.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-discovery.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-pioneer.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile-voyager.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm636-sony-xperia-ganges-mermaid.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dt.yaml
 
-Please check and re-submit.
+spmi@c440000: #address-cells:0:0: 2 was expected
+	arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
+
+spmi@c440000: reg: [[0, 205783040, 0, 4352], [0, 207618048, 0, 33554432], [0, 241172480, 0, 1048576], [0, 242221056, 0, 655360], [0, 205561856, 0, 155648]] is too long
+	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
+	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
+	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
+	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
+
+spmi@c440000: #size-cells:0:0: 0 was expected
+	arch/arm64/boot/dts/qcom/sc7180-idp.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-coachz-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-limozeen-nots-r4.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r2-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-pompom-r3-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7180-trogdor-r1-lte.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
+	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
+
+spmi@fc4c0000: reg: [[4232900608, 4096], [4232884224, 4096], [4232880128, 4096]] is too long
+	arch/arm64/boot/dts/qcom/apq8094-sony-xperia-kitakami-karin_windy.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8992-bullhead-rev-101.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8992-msft-lumia-octagon-talkman.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-angler-rev-101.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon-cityman.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-sumire.dt.yaml
+	arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dt.yaml
+
+spmi@fc4cf000: reg: [[4232900608, 4096], [4232884224, 4096], [4232880128, 4096]] is too long
+	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
+	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
+	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
+	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
+	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
+	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
+	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
+	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
+	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
 
