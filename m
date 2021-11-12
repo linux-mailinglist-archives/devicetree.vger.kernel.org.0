@@ -2,99 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D9C44EBF4
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 18:25:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD51A44EBFF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 18:31:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235463AbhKLR1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 12:27:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39132 "EHLO mail.kernel.org"
+        id S234572AbhKLRe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 12:34:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43946 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235458AbhKLR1y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Nov 2021 12:27:54 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E51F560FE3;
-        Fri, 12 Nov 2021 17:25:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636737902;
-        bh=SoXgrHClC00+SbuZ7huPC/6CYTPZ/iRLlOyzpg2cyIg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Nnh7Jaq9sGLzhdBpmd9emvUxgXc2d/crA9SGXwx5KmukEGlmtnGW+8quYpaYRv4sg
-         vcnYOFdM+UTaLHcV0dMX1ZLs9atfIaGeNYEbtuKKsmDVcMi4kTSW3yEStiBWlLnXjS
-         W87z/PpsfapyOUcE5HXF2h0BqRi7+HmLNVp08cKTYF3YmlJ65acUc1507XQeWjXFTu
-         04u0k3+ZaHvFaFLfkdb/TL/i65+1ixqaDM5YBT3VPnm0JaMaioK7fbcxRCY6ptkUpA
-         3oBwVppZOOnda4VPEu37HrN7/WcaRrh1/cDQV9V+6atnbd3Nm6fZbMAIpZ5G0kjXfx
-         xWggYY83qm3Dw==
-Date:   Fri, 12 Nov 2021 18:24:58 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Pali =?UTF-8?B?Um9ow6Fy?= <pali@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
- 'slot-power-limit-milliwatt' PCIe port property
-Message-ID: <20211112182458.51745d4d@thinkpad>
-In-Reply-To: <20211112171249.46xmj5zo3svm4qn2@pali>
-References: <20211031150706.27873-1-kabel@kernel.org>
-        <YY6HYM4T+A+tm85P@robh.at.kernel.org>
-        <20211112153208.s4nuckz7js4fipce@pali>
-        <CAL_JsqJ+FYFFcDEm-_Ow=9TERhhEMVKm3OCHyDdGo02onK7dmg@mail.gmail.com>
-        <20211112171249.46xmj5zo3svm4qn2@pali>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S233404AbhKLRe2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 12:34:28 -0500
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8F3EF60FE7;
+        Fri, 12 Nov 2021 17:31:36 +0000 (UTC)
+Date:   Fri, 12 Nov 2021 17:36:21 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/4] iio: add filter subfolder
+Message-ID: <20211112173621.0ce23ef3@jic23-huawei>
+In-Reply-To: <20211109123127.96399-2-antoniu.miclaus@analog.com>
+References: <20211109123127.96399-1-antoniu.miclaus@analog.com>
+        <20211109123127.96399-2-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Nov 2021 18:12:49 +0100
-Pali Roh=C3=A1r <pali@kernel.org> wrote:
+On Tue, 9 Nov 2021 14:31:24 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> On Friday 12 November 2021 10:30:01 Rob Herring wrote:
-> > On Fri, Nov 12, 2021 at 9:32 AM Pali Roh=C3=A1r <pali@kernel.org> wrote=
-: =20
-> > >
-> > > On Friday 12 November 2021 09:25:20 Rob Herring wrote: =20
-> > > > On Sun, Oct 31, 2021 at 04:07:05PM +0100, Marek Beh=C3=BAn wrote: =
-=20
-> > > > > +   If present, this property specifies slot power limit in milli=
-watts. Host
-> > > > > +   drivers can parse this property and use it for programming Ro=
-ot Port or host
-> > > > > +   bridge, or for composing and sending PCIe Set_Slot_Power_Limi=
-t messages
-> > > > > +   through the Root Port or host bridge when transitioning PCIe =
-link from a
-> > > > > +   non-DL_Up Status to a DL_Up Status. =20
-> > > >
-> > > > If your slots are behind a switch, then doesn't this apply to any b=
-ridge
-> > > > port? =20
-> > >
-> > > The main issue here is that pci.txt (and also scheme on github) is
-> > > mixing host bridge and root ports into one node. This new property
-> > > should be defined at the same place where is supports-clkreq or
-> > > reset-gpios, as it belongs to them. =20
-> >=20
-> > Unfortunately that ship has already sailed. So we can split things up,
-> > but we still have to allow for the existing cases. I'm happy to take
-> > changes splitting up pci-bus.yaml to 2 or 3 schemas (host bridge,
-> > root-port, and PCI(e)-PCI(e) bridge?). =20
->=20
-> Well, no problem. I just need to know how you want to handle backward
-> compatibility definitions in YAML. Because it is possible via versioning
-> (like in JSONSchema-like structures in OpenAPI versioning) or via
-> deprecated attributes or via defining two schemas (one strict and one
-> loose)... There are lot of options and I saw all these options in
-> different projects which use YAML or JSON.
->=20
-> I did not know about github repository, I always looked at schemas and
-> definitions only in linux kernel tree and external files which were
-> mentioned in kernel tree.
->=20
-> Something I wrote in my RFC email, but I wrote this email patch...
-> https://lore.kernel.org/linux-pci/20211023144252.z7ou2l2tvm6cvtf7@pali/
+> Add filter subfolder for IIO devices that handle filter functionality.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
 
-New kernel should always work with old device-tree. But does also new
-device-tree need to work with old kernels?
+Hi Antoniu,
 
-Marek
+Are we likely to see many filter drivers?  If not we could classify them
+as analog front ends and put them in the AFE directory?
+
+If there are going to be lots then I'm fine with a new directory.
+
+Jonathan
+
+> ---
+>  drivers/iio/Kconfig         | 1 +
+>  drivers/iio/Makefile        | 1 +
+>  drivers/iio/filter/Kconfig  | 8 ++++++++
+>  drivers/iio/filter/Makefile | 6 ++++++
+>  4 files changed, 16 insertions(+)
+>  create mode 100644 drivers/iio/filter/Kconfig
+>  create mode 100644 drivers/iio/filter/Makefile
+> 
+> diff --git a/drivers/iio/Kconfig b/drivers/iio/Kconfig
+> index 2334ad249b46..3a496a28bad4 100644
+> --- a/drivers/iio/Kconfig
+> +++ b/drivers/iio/Kconfig
+> @@ -77,6 +77,7 @@ source "drivers/iio/chemical/Kconfig"
+>  source "drivers/iio/common/Kconfig"
+>  source "drivers/iio/dac/Kconfig"
+>  source "drivers/iio/dummy/Kconfig"
+> +source "drivers/iio/filter/Kconfig"
+>  source "drivers/iio/frequency/Kconfig"
+>  source "drivers/iio/gyro/Kconfig"
+>  source "drivers/iio/health/Kconfig"
+> diff --git a/drivers/iio/Makefile b/drivers/iio/Makefile
+> index 65e39bd4f934..97d2fbcf0950 100644
+> --- a/drivers/iio/Makefile
+> +++ b/drivers/iio/Makefile
+> @@ -24,6 +24,7 @@ obj-y += common/
+>  obj-y += dac/
+>  obj-y += dummy/
+>  obj-y += gyro/
+> +obj-y += filter/
+>  obj-y += frequency/
+>  obj-y += health/
+>  obj-y += humidity/
+> diff --git a/drivers/iio/filter/Kconfig b/drivers/iio/filter/Kconfig
+> new file mode 100644
+> index 000000000000..e268bba43852
+> --- /dev/null
+> +++ b/drivers/iio/filter/Kconfig
+> @@ -0,0 +1,8 @@
+> +#
+> +# Filter drivers
+> +#
+> +# When adding new entries keep the list in alphabetical order
+> +
+> +menu "Filters"
+> +
+> +endmenu
+> diff --git a/drivers/iio/filter/Makefile b/drivers/iio/filter/Makefile
+> new file mode 100644
+> index 000000000000..cc0892c01142
+> --- /dev/null
+> +++ b/drivers/iio/filter/Makefile
+> @@ -0,0 +1,6 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Makefile for industrial I/O Filter drivers
+> +#
+> +
+> +# When adding new entries keep the list in alphabetical order
+
