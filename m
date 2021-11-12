@@ -2,112 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4588344EED1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 22:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA6CA44EEF1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 22:56:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231910AbhKLVts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 16:49:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37970 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230388AbhKLVtr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Nov 2021 16:49:47 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1D24D61073;
-        Fri, 12 Nov 2021 21:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636753616;
-        bh=MWc2jsxYe1597deB9/lwgCuOii0kKitFDvDvQtQbw84=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=h1nUnBWqcNX9zFj8jIcKElqsmNLYZjSnxzWJv1o0BjeEi9IWlLyVv6SKagMskjMMP
-         8D4V8a5eeA/hERUz/hqQNhrWxFQrCvGAGAPHzywbam9TPIXl5dPOjtMsik+yO3abVI
-         f1MYXb3V3D/K3ytcb3IEd+yyVounGnpJZTl1TbKXb0x3NvQOVp6eOkvnzPkQxLjvnS
-         rwfYXiuJDzTE6lbUZWrhZFdb92MSYU4olpyKqOI3+AcPXf1arU8/xsisWsL1lvt69J
-         v7Wza+oqqePP7Jk9mCe0iXRBMTuZtVTEjk1fmJYS7tr1vdNlOM/ETrZhdCFzuarAVl
-         vovvZQSn17lNA==
-Received: by mail-ed1-f43.google.com with SMTP id x15so43123808edv.1;
-        Fri, 12 Nov 2021 13:46:56 -0800 (PST)
-X-Gm-Message-State: AOAM533snG5FawFe2bPfdanxLI8uO1UamGPm78nfQh4ziJ6mAX2mGppn
-        TABZKEKE5D7jF5aBO8J1snK3i6D1Ob7w2Qagpg==
-X-Google-Smtp-Source: ABdhPJz2sj87J9vsUh6n5hpj2yVJsnrONJYB2w5h4ZSZ55MSqVKR22BptNf8vVI7snv/2CopLAoeMaTCrMtL3IfAGRI=
-X-Received: by 2002:aa7:d997:: with SMTP id u23mr17964290eds.164.1636753614437;
- Fri, 12 Nov 2021 13:46:54 -0800 (PST)
-MIME-Version: 1.0
-References: <CANCKTBun0MCiH5QWBMQqP+pxAN=+dX=ziB1ga39kdr5CmK=Gfw@mail.gmail.com>
- <20211112202051.GA1414166@bhelgaas>
-In-Reply-To: <20211112202051.GA1414166@bhelgaas>
+        id S235756AbhKLV7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 16:59:23 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:38901 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230388AbhKLV7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 16:59:22 -0500
+Received: by mail-oi1-f182.google.com with SMTP id r26so20415774oiw.5;
+        Fri, 12 Nov 2021 13:56:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=U9+VQc020mmJbdUsN6EvanNKFKGmosUJ6gTy0h9MuLg=;
+        b=KZsSLvZB9bwhqbgl1zXFRIgyv8VsnzKEFDYvsMVwRoAeUrjVPEl29A5k1Vvx7ivaHS
+         dbyUY4k4yq15xkbWWCZYLiQS3tDhltHQUTsLc6d12lmO8RpSI/MHBQ/htGAci5QcaYki
+         RR/KY6lZ/4p4j3yy5duvyqWKdwqn2YqqNbUTtDVEGHo0h4hnrLmpFFkbtNgO5z9WvNVw
+         AEQujOxGcw3XlRGAttyCexGTgNWeA7GoIHo62F3yH+d3Ah1FwGiKOZt44+5nZDpu2W42
+         XWMMiSVrglTARSni/UbjWA1eTkw5ch++yNm+mgOdUQy7EnnadziMfiaisZkb8X+FNi1W
+         JzAQ==
+X-Gm-Message-State: AOAM5321JEGXU6c+w0Qe3VYZ+Amv0SOSPAKTH0EENPFBpOUhfzNVb65z
+        2qzMXsEgEEEYgYX1UZY9rA==
+X-Google-Smtp-Source: ABdhPJyqsRqmGEzJFtjui/LGkNT5GgYTDD7ARVbbxu7RUKuQQAavvDotjX2ZY+q2gvt5cLKTh1mmkA==
+X-Received: by 2002:a05:6808:609:: with SMTP id y9mr16089326oih.178.1636754190973;
+        Fri, 12 Nov 2021 13:56:30 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id t62sm1628794oib.56.2021.11.12.13.56.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 13:56:30 -0800 (PST)
+Received: (nullmailer pid 3442561 invoked by uid 1000);
+        Fri, 12 Nov 2021 21:56:29 -0000
+Date:   Fri, 12 Nov 2021 15:56:29 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 12 Nov 2021 15:46:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLhpmrmw=z=3JCVgBTJr531eqMhACht_j16Czv6Q+CQLA@mail.gmail.com>
-Message-ID: <CAL_JsqLhpmrmw=z=3JCVgBTJr531eqMhACht_j16Czv6Q+CQLA@mail.gmail.com>
-Subject: Re: [PATCH v8 3/8] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Jim Quinlan <jim2101024@gmail.com>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Qin Jian <qinjian@cqplus1.com>
+Cc:     robh+dt@kernel.org, arnd@arndb.de, linux-kernel@vger.kernel.org,
+        broonie@kernel.org, linux-clk@vger.kernel.org,
+        p.zabel@pengutronix.de, maz@kernel.org, devicetree@vger.kernel.org,
+        wells.lu@sunplus.com, linux-arm-kernel@lists.infradead.org,
+        sboyd@kernel.org, linux@armlinux.org.uk, mturquette@baylibre.com
+Subject: Re: [PATCH v4 03/10] dt-bindings: reset: Add bindings for SP7021
+ reset driver
+Message-ID: <YY7jDakmH4cPKb5n@robh.at.kernel.org>
+References: <cover.1635993377.git.qinjian@cqplus1.com>
+ <179206a3d7eb7335ea205830751fbcd618675d86.1635993377.git.qinjian@cqplus1.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <179206a3d7eb7335ea205830751fbcd618675d86.1635993377.git.qinjian@cqplus1.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 12, 2021 at 2:20 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Fri, Nov 12, 2021 at 01:25:11PM -0500, Jim Quinlan wrote:
-> > On Thu, Nov 11, 2021 at 5:17 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
-> > > On Wed, Nov 10, 2021 at 05:14:43PM -0500, Jim Quinlan wrote:
-> > > > Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
-> > > > allows optional regulators to be attached and controlled by the PCIe RC
-> > > > driver.  That being said, this driver searches in the DT subnode (the EP
-> > > > node, eg pci-ep@0,0) for the regulator property.
-> > > >
-> > > > The use of a regulator property in the pcie EP subnode such as
-> > > > "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-> > > > file at
-> > > >
-> > > > https://github.com/devicetree-org/dt-schema/pull/63
-> > >
-> > > Can you use a lore URL here?  github.com is sort of outside the Linux
-> > > ecosystem and this link is more likely to remain useful if it's to
-> > > something in kernel.org.
-> > Hi Bjorn,
-> > I'm afraid I don't know how or if  this github repo transfers
-> > information to Linux.  RobH, what should I be doing here?
->
-> Does this change get posted to any mailing lists where people can
-> review it?
+On Thu, 04 Nov 2021 10:57:00 +0800, Qin Jian wrote:
+> Add documentation to describe Sunplus SP7021 reset driver bindings.
+> 
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+> ---
+>  .../bindings/reset/sunplus,reset.yaml         | 38 ++++++++
+>  MAINTAINERS                                   |  2 +
+>  include/dt-bindings/reset/sp-sp7021.h         | 97 +++++++++++++++++++
+>  3 files changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
+>  create mode 100644 include/dt-bindings/reset/sp-sp7021.h
+> 
 
-devicetree-spec is where I direct folks to. It's not in lore, but we
-could add it I guess. But I take PRs too. There's so few other
-contributions I'm looking to make it as painless as possible for
-contributors. I'd be happy for more reviewers other than me, but I
-don't think where changes are posted is the problem there. :( Someone
-should review all the crap Python code I write too.
-
-Generally the flow is I redirect things submitted to the kernel to
-dtschema instead. So that review happens first at least.
-
-> Or would people have to watch the github devicetree-org
-> repo if they wanted to do that?  I was assuming this pci-bus.yaml
-> change was something that would eventually end up in the Linux kernel
-> source tree, but dt-scheme doesn't seem to be based on Linus' tree, so
-> I don't know if there's a connection.
-
-It's more the other way around. The 'rule' is common bindings go in
-dtschema and device specific bindings in the kernel tree. Reality is
-some common bindings are in the kernel tree primarily because I want
-everything in dtschema dual licensed and relicensing is a pain. That's
-why we have pci.txt and pci-bus.yaml still.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
