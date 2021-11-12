@@ -2,95 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 959B944E610
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:06:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B37C644E61A
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:08:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235089AbhKLMJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 07:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
+        id S234772AbhKLMLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 07:11:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235016AbhKLMJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:09:04 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4D0C061205;
-        Fri, 12 Nov 2021 04:06:06 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id y196so7495812wmc.3;
-        Fri, 12 Nov 2021 04:06:06 -0800 (PST)
+        with ESMTP id S231221AbhKLMLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:11:34 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C1DC0613F5
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 04:08:43 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id s13so15149222wrb.3
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 04:08:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zeKFXDCOK1JKP/WgTGfGZCqCINDxzG0cnQHN+HuP6jE=;
-        b=YqQdlvtW9Tsi5iU25qtoaG3ns9eAm+qb1YQdxyV8sRCEqys4ddjJuEl8v38IKSr1Gq
-         ZdG+/+RRd1f5/LhrZD3RARVgBDxt5WqNXhxteeqksRD8ydXcy70IUPncFLcL6rujZTfI
-         rRsn5VudBuRHZfIZdifq2WtYgubx6QnkG2Tau/rnytFlmGyNmFrWBmHWFhBriQA87mAp
-         wm62vPmSJFa4aT4GuwaYhSG+G+smCXKxz1Cp4/OtAus0hAJZdr0sKlUTWxVT8oIXlgEO
-         DY+uu+7dE6l9Y0i6AiQkzAI4m7/MrA66+rNLABGDRcKGe7SpYWNqvBiRm3KhHupPCtZw
-         yLug==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=otZ0McVJ5SiYRqP7yOEzIbw/1AxWwGOspMcAdakaeds=;
+        b=LQvnnW/sBfmRpWNRpou+Po67N6Z73lHiWzAUWeL56rM8KZQ3wcMuaQRgL4/GQOgHAr
+         NR1N8PTQ7wPb9IWjzJE/t1++yyiwBNJyVLj/9x1KLhsENhmeUAOwV23X9xgrxu9dlZlK
+         seKCNreAhLBnz43Fg9g9UkKZpJNfC9Ft9GORMdYh4HJwBa0vHgHlHtAlp4EhcTk/OdNy
+         wRWINay5dRtLg7UIlQbAA7oPswjbqMCoX1c9wJB1r0beZvHgeuw/9uWDWc9AgbQOUVuV
+         ksKKfkkdm5ZXqiFm2hH26ZX6Uf503hnuuVwow3sJy2yfebYMkBaHDCTwrwEvvfjVLwkv
+         qmSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zeKFXDCOK1JKP/WgTGfGZCqCINDxzG0cnQHN+HuP6jE=;
-        b=YKY9LIH5smNSwbuLIR48Se9Ss7tXL7zeLnOuzg3zL46tJd5JZgWNMDL/Q+bwG29d56
-         Rf3h++EO7gOenu47sNn+yZi1bGry77pnAo6oVrJvJkjsH0SuoiTZZY9uegIKG1zvJtuX
-         +fxwIQBnZ5ZHirDAQmS2mGmnQsT5jqBfBnLrXZFoufiyjfEhFFKeIq7/lOBQMAFc0UC0
-         ojnwQEzlAb/jR1I1fDEFPi/LdS0qtrrkIi5T6Hzzo/qMhyqVlYGS5ydLfyO/ya7wGmGv
-         jvdpjaTi4yer+WpA56QtD1TrZl7TRz3e0O5zrWO06M/m7OWBp+Gi68D3DWKmVBCtsdUJ
-         m2uA==
-X-Gm-Message-State: AOAM532mi/kWcPXtkIHBGFDk7ima9yBO/jjpA0tRgDokAcJmUXPVyiP3
-        IGF2GkoKSgxO9SOU/uMeC3AA2/UqyELspA==
-X-Google-Smtp-Source: ABdhPJyuK3rtN3nf/2PIMu6ZjdZoaeswvWM2NGKoO82gEGP/6TXIuPFaPrkFFPI7mBI8nTzOvUM+kQ==
-X-Received: by 2002:a7b:c841:: with SMTP id c1mr34146356wml.80.1636718765271;
-        Fri, 12 Nov 2021 04:06:05 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id n15sm12141458wmq.38.2021.11.12.04.06.04
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=otZ0McVJ5SiYRqP7yOEzIbw/1AxWwGOspMcAdakaeds=;
+        b=yE4eDrvCprTBThdyCcQHnSqdfnwNujhyeHPNdR+mNlp1REXgqQcYn7ezTfJpDtgHCf
+         4TauR8oah5Ah4jhoSTcfUIKyy2/og+1egup+I1GGrQ36vus0K3pkzrtSTJJHaHScJLfc
+         5iYJjbiw0JJxpCf5T/AynNWRRwyrGimjJpjhjn68VTAFlfQwlvHPHLhqmi0vgv54mJOx
+         rIO4pZA2Y0V2TVyfaY/f5FlhBjIkfu7KoMonzbEttPglvPagcgxMn3KPfum8bIIw43sD
+         BcTwf6euTx5hhiiRu/8JBp8in4Eh6jKdBtA6GUWCvaUwWplh9bw4c1rIJhSNCUePik5e
+         qbAA==
+X-Gm-Message-State: AOAM530v+PhTDY/QUi50hb4It33sRVu3DDOLInt+hFQye9nimSKxGvSk
+        91kXV8DdUEE5TcTod5rBrR81yw==
+X-Google-Smtp-Source: ABdhPJxBlMEeY7j5TABoz1gcsiHhfYOgh3JsBIzuuI4vMpGemDgBxW2s1QNyVKfFDMXNmN/UEcWvGA==
+X-Received: by 2002:a5d:6e8c:: with SMTP id k12mr17741380wrz.401.1636718921903;
+        Fri, 12 Nov 2021 04:08:41 -0800 (PST)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id 126sm11086997wmz.28.2021.11.12.04.08.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 04:06:04 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH 15/15] dt-bindings: serial: Document Tegra234 TCU
-Date:   Fri, 12 Nov 2021 13:05:18 +0100
-Message-Id: <20211112120518.3679793-16-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211112120518.3679793-1-thierry.reding@gmail.com>
-References: <20211112120518.3679793-1-thierry.reding@gmail.com>
+        Fri, 12 Nov 2021 04:08:41 -0800 (PST)
+Date:   Fri, 12 Nov 2021 12:08:39 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        Courtney Cavin <courtney.cavin@sonymobile.com>
+Subject: Re: [RESEND PATCH v2 04/13] backlight: qcom-wled: Fix off-by-one
+ maximum with default num_strings
+Message-ID: <20211112120839.i6g747vewg6bkyk7@maple.lan>
+References: <20211112002706.453289-1-marijn.suijten@somainline.org>
+ <20211112002706.453289-5-marijn.suijten@somainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211112002706.453289-5-marijn.suijten@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Fri, Nov 12, 2021 at 01:26:57AM +0100, Marijn Suijten wrote:
+> When not specifying num-strings in the DT the default is used, but +1 is
+> added to it which turns WLED3 into 4 and WLED4/5 into 5 strings instead
+> of 3 and 4 respectively, causing out-of-bounds reads and register
+> read/writes.  This +1 exists for a deficiency in the DT parsing code,
+> and is simply omitted entirely - solving this oob issue - by parsing the
+> property separately much like qcom,enabled-strings.
+> 
+> This also allows more stringent checks on the maximum value when
+> qcom,enabled-strings is provided in the DT.  Note that num-strings is
+> parsed after enabled-strings to give it final sign-off over the length,
+> which DT currently utilizes to get around an incorrect fixed read of
+> four elements from that array (has been addressed in a prior patch).
+> 
+> Fixes: 93c64f1ea1e8 ("leds: add Qualcomm PM8941 WLED driver")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> ---
+>  drivers/video/backlight/qcom-wled.c | 51 +++++++++++------------------
+>  1 file changed, 19 insertions(+), 32 deletions(-)
+> 
+> diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
+> index 977cd75827d7..c5232478a343 100644
+> --- a/drivers/video/backlight/qcom-wled.c
+> +++ b/drivers/video/backlight/qcom-wled.c
+> @@ -1552,6 +1520,25 @@ static int wled_configure(struct wled *wled)
+>  		}
+>  	}
+> 
+> +	rc = of_property_read_u32(dev->of_node, "qcom,num-strings", &val);
+> +	if (!rc) {
+> +		if (val < 1 || val > wled->max_string_count) {
+> +			dev_err(dev, "qcom,num-strings must be between 1 and %d\n",
+> +				wled->max_string_count);
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (string_len > 0) {
+> +			dev_warn(dev, "qcom,num-strings and qcom,enabled-strings are ambiguous\n");
 
-Add the compatible string for the TCU found on the Tegra234 SoC.
+This warning occurs even when there is no ambiguity.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../devicetree/bindings/serial/nvidia,tegra194-tcu.yaml    | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+This could be:
 
-diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-index 7987eca0bb52..e2d111b3e0b0 100644
---- a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-+++ b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-@@ -22,7 +22,12 @@ properties:
-     pattern: "^serial(@.*)?$"
- 
-   compatible:
--    const: nvidia,tegra194-tcu
-+    oneOf:
-+      - const: nvidia,tegra194-tcu
-+      - items:
-+          - enum:
-+              - nvidia,tegra234-tcu
-+          - const: nvidia,tegra194-tcu
- 
-   mbox-names:
-     items:
--- 
-2.33.1
+	if (string_len > 0 && val != string_len)
 
+The warning should also be below the error message on the next if statement.
+Combined these changes allows us to give a much more helpful and assertive
+warning message:
+
+qcom,num-strings mis-matches and will partially override
+qcom,enabled-strings (remove qcom,num-strings?)
+
+
+> +			if (val > string_len) {
+> +				dev_err(dev, "qcom,num-strings exceeds qcom,enabled-strings\n");
+> +				return -EINVAL;
+> +			}
+> +		}
+
+
+Daniel.
