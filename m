@@ -2,102 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ACF344EC93
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 19:25:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80CE344EC9F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 19:30:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235386AbhKLS2O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 13:28:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39068 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbhKLS2O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 13:28:14 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC4EC061766;
-        Fri, 12 Nov 2021 10:25:22 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id bk14so19449137oib.7;
-        Fri, 12 Nov 2021 10:25:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sa0jBA3wpvakD7viFQ8ToAySOGD0WqRf4octMEbtih0=;
-        b=kjSyXDtPvbAlccyL7gHYWEEa6qBv/xCU7kJ4Vv0o73t3sx8ohpKywpXvTiDcvx5Ouw
-         Rd1O3C5asrJ2KJT+98X41ucEGMX9o1+PxoBIpwrikCIooZNkQwo5SMCuN5ao2zywCM7N
-         KGoV+KD21T2A1GH0a4BxgvDDtPkpmjhpMs1oBURvtRMTy0ssMSFrbQYr3pvYFlwbUoK+
-         3dZ0C7C9YqmTaxwUDP+mCIkLEa2/SV4XvGT0RSsxqxofCSAmuhoU3U7/KsEQdTpuRHOF
-         Fx672TWwXdqprhXnVps7RLUPQd4KBVA6UBVc/B8N3U6MOJ7teH7wxz5RhV9J6LcFW6HX
-         FVqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sa0jBA3wpvakD7viFQ8ToAySOGD0WqRf4octMEbtih0=;
-        b=zLS54n9hGbo2BBgJ4Cww3QHK0yl7frND8+rlAeRK1Bk+UVqVpgknLO+34qJtlUrH0D
-         3+0Bi3z3+5UPXe6rNCQSwyF5Fxhh5RdxbbnTP2C/4QkBPj5942PyYa9nAILs/n4K0vg4
-         An3sJolFkWmrlpECLyS9xPXs3UP5K+LLXUqETHUvlBmvYAxZsL/1IzQ4pzwvGCKICFiL
-         RGcZvz/PiqV8+QCxAZPRGymnWmUTjR2bOviBv5sB/YkWeqXZN8+h0WN4z13Z5GybRaRe
-         zFpwANTzNvgoQvnHWQpiFNn1gBwJWoaVyMyoOktdixH2lX6SVudgGmVlSCchX6vboQ52
-         /DAw==
-X-Gm-Message-State: AOAM532ixGZdrD93Je4H5wbZC6cTu1cukDcWRQy90D66mvoUW+PuzWSx
-        CcDLfTmLY6GIIj/JA2C3YP3nJ2eQKcXqlzLwYSs=
-X-Google-Smtp-Source: ABdhPJx+m1O3ZfKBTW5vP7GJjq+TTjrXGPwdtitmdl2plac2LYfIgefS40oau5QEX2T48Fa4J+BgWorNYStSrHLKTaU=
-X-Received: by 2002:a54:4707:: with SMTP id k7mr27139073oik.163.1636741522427;
- Fri, 12 Nov 2021 10:25:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20211110221456.11977-4-jim2101024@gmail.com> <20211111221714.GA1354700@bhelgaas>
-In-Reply-To: <20211111221714.GA1354700@bhelgaas>
-From:   Jim Quinlan <jim2101024@gmail.com>
-Date:   Fri, 12 Nov 2021 13:25:11 -0500
-Message-ID: <CANCKTBun0MCiH5QWBMQqP+pxAN=+dX=ziB1ga39kdr5CmK=Gfw@mail.gmail.com>
-Subject: Re: [PATCH v8 3/8] dt-bindings: PCI: Add bindings for Brcmstb EP
- voltage regulators
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh@kernel.org>, Mark Brown <broonie@kernel.org>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
+        id S235429AbhKLSdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 13:33:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57708 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235122AbhKLSdo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 13:33:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id BBF1E6103A;
+        Fri, 12 Nov 2021 18:30:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636741853;
+        bh=TnsJsZ5u6wSAfEYYk+ohxEusQvP6rbCeRilD0+Tc4ZI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=GW+Tel5aZWbeuKMUdv+ysaVVKstiw7b1WmjiL1L1R3eazdxj9ejLMnQ/EN3sbaUDm
+         SUcTdr2z56OYioReK4I18dm9DIJQndUgYeImwcvE7bgNU57Dmv3HSr+k3LOqvnca/G
+         u0EO57/32P7kWgJcHjkDh0ryIjlzK5AOV8osz01XaSJL90FUQdeprwCuKPWUsE9uXD
+         XYAFE5VoNp6Km1+a0TGys3fw6nJtycqP1059cOC9HrUrjuwGC3fuLkyV2XDXok5D2d
+         5Sp3+WptnLY8cCjRKBL9SD8I2O3XAa0nDCbyCDDkRG0phjZNqNunPWr/EAhDw34mkD
+         gsiiUQxVPqjuQ==
+Date:   Fri, 12 Nov 2021 19:30:47 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
+        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [RFC PATCH v4 0/8] Adds support for PHY LEDs with offload
+ triggers
+Message-ID: <20211112193047.0e867ed5@thinkpad>
+In-Reply-To: <YY6JufxwvXpZp6yT@Ansuel-xps.localdomain>
+References: <20211111013500.13882-1-ansuelsmth@gmail.com>
+        <20211111031608.11267828@thinkpad>
+        <YY6JufxwvXpZp6yT@Ansuel-xps.localdomain>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 11, 2021 at 5:17 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> On Wed, Nov 10, 2021 at 05:14:43PM -0500, Jim Quinlan wrote:
-> > Similar to the regulator bindings found in "rockchip-pcie-host.txt", this
-> > allows optional regulators to be attached and controlled by the PCIe RC
-> > driver.  That being said, this driver searches in the DT subnode (the EP
-> > node, eg pci-ep@0,0) for the regulator property.
-> >
-> > The use of a regulator property in the pcie EP subnode such as
-> > "vpcie12v-supply" depends on a pending pullreq to the pci-bus.yaml
-> > file at
-> >
-> > https://github.com/devicetree-org/dt-schema/pull/63
->
-> Can you use a lore URL here?  github.com is sort of outside the Linux
-> ecosystem and this link is more likely to remain useful if it's to
-> something in kernel.org.
-Hi Bjorn,
-I'm afraid I don't know how or if  this github repo transfers
-information to Linux.  RobH, what should I be doing here?
->
-> The subject says what this patch does, but the commit log doesn't.
-> It's OK to repeat the subject in the commit log if that's what makes
-> the most sense.
-Got it.
-Thanks,
-Jim Quinlan
-Broadcom STB
+On Fri, 12 Nov 2021 16:35:21 +0100
+Ansuel Smith <ansuelsmth@gmail.com> wrote:
+
+> On Thu, Nov 11, 2021 at 03:16:08AM +0100, Marek Beh=C3=BAn wrote:
+> > On Thu, 11 Nov 2021 02:34:52 +0100
+> > Ansuel Smith <ansuelsmth@gmail.com> wrote:
+> >  =20
+> > > This is another attempt in adding support for PHY LEDs. Most of the
+> > > times Switch/PHY have connected multiple LEDs that are controlled by =
+HW
+> > > based on some rules/event. Currently we lack any support for a generic
+> > > way to control the HW part and normally we either never implement the
+> > > feature or only add control for brightness or hw blink.
+> > >=20
+> > > This is based on Marek idea of providing some API to cled but use a
+> > > different implementation that in theory should be more generilized.
+> > >=20
+> > > The current idea is:
+> > > - LED driver implement 3 API (hw_control_status/start/stop).
+> > >   They are used to put the LED in hardware mode and to configure the
+> > >   various trigger.
+> > > - We have hardware triggers that are used to expose to userspace the
+> > >   supported hardware mode and set the hardware mode on trigger
+> > >   activation.
+> > > - We can also have triggers that both support hardware and software m=
+ode.
+> > > - The LED driver will declare each supported hardware blink mode and
+> > >   communicate with the trigger all the supported blink modes that will
+> > >   be available by sysfs.
+> > > - A trigger will use blink_set to configure the blink mode to active
+> > >   in hardware mode.
+> > > - On hardware trigger activation, only the hardware mode is enabled b=
+ut
+> > >   the blink modes are not configured. The LED driver should reset any
+> > >   link mode active by default.
+> > >=20
+> > > Each LED driver will have to declare explicit support for the offload
+> > > trigger (or return not supported error code) as we the trigger_data t=
+hat
+> > > the LED driver will elaborate and understand what is referring to (ba=
+sed
+> > > on the current active trigger).
+> > >=20
+> > > I posted a user for this new implementation that will benefit from th=
+is
+> > > and will add a big feature to it. Currently qca8k can have up to 3 LE=
+Ds
+> > > connected to each PHY port and we have some device that have only one=
+ of
+> > > them connected and the default configuration won't work for that.
+> > >=20
+> > > I also posted the netdev trigger expanded with the hardware support.
+> > >=20
+> > > More polish is required but this is just to understand if I'm taking
+> > > the correct path with this implementation hoping we find a correct
+> > > implementation and we start working on the ""small details"" =20
+> >=20
+> > Hello Ansuel,
+> >=20
+> > besides other things, I am still against the idea of the
+> > `hardware-phy-activity` trigger: I think that if the user wants the LED
+> > to indicate network device's link status or activity, it should always
+> > be done via the existing netdev trigger, and with that trigger only.
+> >=20
+> > Yes, I know that netdev trigger does not currently support indicating
+> > different link modes, only whether the link is up (in any mode). That
+> > should be solved by extending the netdev trigger.
+> >=20
+> > I am going to try to revive my last attempt and send my proposal again.
+> > Hope you don't mind.
+> >=20
+> > Marek =20
+>=20
+> Honestly... It's a bit sad.
+> The netdev trigger have its limitation and I see introducing an
+> additional trigger a practical way to correctly support some
+> strange/specific PHY.
+> I implemented both idea: expand netdev and introduce a dedicated
+> trigger and still this is problematic.
+> Is having an additional trigger for the specific task that bad?
+>=20
+> I don't care as long as the feature is implemented but again
+> pretty sad how this LEDs proposal went.
+
+Dear Ansuel,
+
+  Is having an additional trigger for the specific task that bad?
+
+No, for a very specific thing it is not bad. By specific I mean
+something that an existing trigger does not support and can't support
+in a reasonable way. But netdev trigger already supports blinking on rx
+and tx, and even setting blinking frequency, and indicating link. And
+it can be reasonably extended to support indicating different link
+modes and even more complex things. For example what I would like to
+see is having support for indicating different links by different
+colors with RGB LEDs. I have ideas about how it can be implemented.
+
+But a very specific thing can be implemented by a separate trigger.
+For an ethernet PHY chip this can be something like ethernet collision
+indication, or Energy Efficient Ethernet indication. But link and
+activity should be done via netdev.
+
+Note that we even have an API for such specific triggers that can only
+work with some LEDs: the LED private triggers. Look at the member
+  struct led_hw_trigger_type *trigger_type;
+of struct led_classdev and struct led_trigger.
+With this member you can make a trigger to be only visible for some
+LEDs, so that when the user does
+  cd /sys/class/leds/<LED_WITH_PRIVATE_TRIGGER>
+  cat trigger
+it will output
+  [none] netdev something something ... my-private-trigger
+but for other LEDs (all those with different trigger_type) it will omit
+the my-private-trigger.
+
+Your hardware-phy trigger should in fact use this private trigger API
+so that the user only sees the trigger for the LEDs that actually
+support it.
+
+Anyway, Ansuel, if you are willing, we can have a call about this where
+I can explain my ideas to you and you to me and we can discuss it more
+and maybe come to an understanding? I am not opposed to working on this
+together.
+
+Marek
