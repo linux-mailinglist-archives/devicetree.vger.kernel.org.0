@@ -2,97 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A953944EF41
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 23:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CD7244EF47
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 23:33:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233571AbhKLWaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 17:30:55 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:40693 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbhKLWaz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 17:30:55 -0500
-Received: by mail-oi1-f176.google.com with SMTP id bk14so20530571oib.7;
-        Fri, 12 Nov 2021 14:28:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vQPRv80bc8SYmXYBWVHsPdB/KpWaN0qWlOQNTUrjSMk=;
-        b=DyXFUL7hlEh0E7LaS3fXQR7xHeqmsYxt2oGt7/ZlD2wwHGJ2WT+4W75Hd6FqkZcmeJ
-         NFR60IhXCRVj6usDPPbn4LTSvMvFIUHwzLZQzqHx99WPRjf4/WOQ0GaiUSOIV6+sO5cB
-         hUjbZdyFUv3XK6v2fcEXTIx/i+irU4u1/XUcU5RQln623Tk315FKZ3NNoMmurHOCeUAa
-         pr1Dn29llOcSNbKntoISLL39FkwYCa0iTtopyDF4ttkmaUwFsAoDvOBXWSf37Rk+af8C
-         oK5SIKxq2SxMrEFsNkV3uW3cjIWCzASK3sly573GBD2kVPz6DQ5Y+QvDVfEhtMP0yVDb
-         eSjg==
-X-Gm-Message-State: AOAM5322lhSCdJfNIKT2M+YA0TwXVOJbXUXV2v+UbnHJEkd+Ez3jFME+
-        xZnAZs/FxSnYmuHKhv4/hw==
-X-Google-Smtp-Source: ABdhPJxbnpWk0b2Fa+X5OdC+d0rg3/J+o676Yv1+6M0xlBeX2KddE2j4h3c3LHlDwuKVqADB3818Rg==
-X-Received: by 2002:aca:ba55:: with SMTP id k82mr28770010oif.167.1636756083777;
-        Fri, 12 Nov 2021 14:28:03 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o2sm1126496oik.11.2021.11.12.14.28.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 14:28:03 -0800 (PST)
-Received: (nullmailer pid 3488745 invoked by uid 1000);
-        Fri, 12 Nov 2021 22:28:02 -0000
-Date:   Fri, 12 Nov 2021 16:28:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
-        gregkh@linuxfoundation.org, bjorn.andersson@linaro.org,
-        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, wcheng@codeaurora.org
-Subject: Re: [PATCH v3 1/7] dt-bindings: usb: Add qcom,pmic-usb-typec
- dt-binding header
-Message-ID: <YY7qcrf3axIWcQni@robh.at.kernel.org>
-References: <20211105033558.1573552-1-bryan.odonoghue@linaro.org>
- <20211105033558.1573552-2-bryan.odonoghue@linaro.org>
+        id S234508AbhKLWfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 17:35:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49276 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232001AbhKLWfx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 17:35:53 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DCF2E60C40;
+        Fri, 12 Nov 2021 22:33:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636756381;
+        bh=OX37xBMLDPG8GvoVjgJ4HrQGg53P8Am7nW55ykoyfK4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HiE+kx/Vgayxg3TNfMtjmrCjNnuK7GqZS6BfXW1t2ZPjuloip2uFCc8+BDeUylYqs
+         JdVsGYbyVghFAbIqe1AQAX3txZVnIBfuYAhBGhZSd8H89IU4b/Ohhq2wwU5TjKyT6v
+         FJolDaNn/MiX1a98JWWCSRLXX9rAIO/lpY3R8vYIiI0f24CDsmLdK/fP5Nzmd0DF4h
+         EmptrxcUq8BV5pIu5M+1W+xn0cDCh7MSmEzPUzlAASdv4KQrdpl/fNHLwZXrCM4TpX
+         rQ6IEWRpq6qEouyDnvBITfBPLJu1GYXvc+ZNF1F1Vw9n04tApNe3B+m2GQ+q90Nwqz
+         JecL+gfguypvg==
+Received: by mail-ed1-f52.google.com with SMTP id z21so43389421edb.5;
+        Fri, 12 Nov 2021 14:33:01 -0800 (PST)
+X-Gm-Message-State: AOAM531vn5qNSioGVTSx0W0iOANkM+0ec7hIS8rz6WC4k6KTowVu9BF2
+        yBAix1qhfORlhwkUuFJjnpMr3eYXauHzhMMKYw==
+X-Google-Smtp-Source: ABdhPJzYtFgbgVcfR/gubaTS3HjlLwGDbw/fwwNn3/rDqET7xynxk0C8qtNQYMPpdSGKsaU35/nKQ0EBHb3wDkORNLY=
+X-Received: by 2002:a17:907:7f25:: with SMTP id qf37mr23908790ejc.147.1636756380319;
+ Fri, 12 Nov 2021 14:33:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211105033558.1573552-2-bryan.odonoghue@linaro.org>
+References: <20211102152207.11891-1-zajec5@gmail.com> <CAL_JsqL5qJZz8K7330cOhV8x86097LUE7oFNx5Qu3M4XLL+gMg@mail.gmail.com>
+ <8f02af47-d9dc-a29d-b839-e10969a448d0@gmail.com>
+In-Reply-To: <8f02af47-d9dc-a29d-b839-e10969a448d0@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 12 Nov 2021 16:32:48 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJB+KneifCaybF7ng0KuwbLgtYk3UMKjkFNOL5Bj8U2pg@mail.gmail.com>
+Message-ID: <CAL_JsqJB+KneifCaybF7ng0KuwbLgtYk3UMKjkFNOL5Bj8U2pg@mail.gmail.com>
+Subject: Re: [PATCH RFC 0/3] reset: syscon-reboot: add "reg" property support
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 05, 2021 at 03:35:52AM +0000, Bryan O'Donoghue wrote:
-> Adds a series of defines which are used in the DTS and type-c driver for
-> identifying interrupts.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../usb/typec/tcpm/qcom,pmic-usb-typec.h       | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 include/dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h
-> 
-> diff --git a/include/dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h b/include/dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h
-> new file mode 100644
-> index 0000000000000..263c999b59b8d
-> --- /dev/null
-> +++ b/include/dt-bindings/usb/typec/tcpm/qcom,pmic-usb-typec.h
-> @@ -0,0 +1,18 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
+On Fri, Nov 12, 2021 at 4:23 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
+>
+> On 12.11.2021 23:18, Rob Herring wrote:
+> > On Tue, Nov 2, 2021 at 10:22 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.c=
+om> wrote:
+> >>
+> >> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >>
+> >> During my work on MFD binding for Broadcom's TWD block I received
+> >> comment from Rob saying that "syscon-reboot" should use "reg" property=
+.
+> >> I'm not sure if my understanding & implementation are correct so I'm
+> >> sending this RFC.
+> >>
+> >> What bothers me is non-standard "reg" property usage. Treating it as a
+> >> simple (unsigned) integer number means different logic when it comes t=
+o
+> >> ranges.
+> >
+> > It shouldn't be. The idea is that 'reg' works like normal. See below.
+> >
+> >> Consider this example:
+> >>
+> >> timer@400 {
+> >>          compatible =3D "simple-mfd", "syscon";
+> >>          reg =3D <0x400 0x3c>;
+> >>          ranges;
+> >
+> > ranges =3D <0 0x400 0x100>; // Just guessing for size
+> >
+> >>
+> >>          #address-cells =3D <1>;
+> >>          #size-cells =3D <1>;
+> >>
+> >>          reboot@434 {
+> >
+> > reboot@34
+> >
+> > Just reading 'reg' is fine, but really, Linux should be either getting
+> > the translated address or have a function to get the offset from the
+> > parent base. IOW, it should also work if you just changed 'reg' to
+> > '<0x434 0x4>'.
+>
+> Are you aware of anyone working on support for getting translated
+> address? Do you recall any efforts on implementing such a helper?
 
-Did you check with QCom on this license choice for DT files?
+All the DT address functions give you translated addresses. It's the
+latter that doesn't exist that I'm aware of offhand. It's just
+of_address_to_resource() on the child and parent nodes and then
+calculate the offset.
 
-> +/*
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +#ifndef _DT_BINDINGS_TCPM_QCOM_PMIC_USB_TYPEC_H
-> +#define _DT_BINDINGS_TCPM_QCOM_PMIC_USB_TYPEC_H
-> +
-> +#define PMIC_TYPEC_OR_RID_IRQ		0x0
-> +#define PMIC_TYPEC_VPD_IRQ		0x1
-> +#define PMIC_TYPEC_CC_STATE_IRQ		0x2
-> +#define PMIC_TYPEC_VCONN_OC_IRQ		0x3
-> +#define PMIC_TYPEC_VBUS_IRQ		0x4
-> +#define PMIC_TYPEC_ATTACH_DETACH_IRQ	0x5
-> +#define PMIC_TYPEC_LEGACY_CABLE_IRQ	0x6
-> +#define PMIC_TYPEC_TRY_SNK_SRC_IRQ	0x7
-> +
-> +#endif
-> -- 
-> 2.33.0
-> 
-> 
+Rob
