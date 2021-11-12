@@ -2,80 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C5944E632
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:16:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4939644E638
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:17:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231172AbhKLMT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 07:19:28 -0500
-Received: from muru.com ([72.249.23.125]:55452 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231147AbhKLMT2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Nov 2021 07:19:28 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 3580180E2;
-        Fri, 12 Nov 2021 12:17:14 +0000 (UTC)
-Date:   Fri, 12 Nov 2021 14:16:35 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH RFC] dt-bindings: pinctrl: support specifying pins
-Message-ID: <YY5bI+QzDA0zs/mN@atomide.com>
-References: <20211110231436.8866-1-zajec5@gmail.com>
- <CACRpkdbAS0JiqTQUU0R0yRhVCwagubwsNYLxj1DLE1Ldc+H_JQ@mail.gmail.com>
- <YY4+4Wb/H2ogKnQg@atomide.com>
- <CAHp75VeO4yr9fAx_-MHDnRGQn1paWF=59+o-9ZyP5PGSCPU8og@mail.gmail.com>
+        id S234857AbhKLMUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 07:20:48 -0500
+Received: from mail-vk1-f173.google.com ([209.85.221.173]:46022 "EHLO
+        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234811AbhKLMUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:20:48 -0500
+Received: by mail-vk1-f173.google.com with SMTP id m19so213047vko.12;
+        Fri, 12 Nov 2021 04:17:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KS2sKiDr9po7riufi5pMSwEWAne4JUDpYMGieP7r2Lg=;
+        b=7BjBloGsD6wSFzTVX4bjJT87mUYDfdpASipKZ+OwsIXIcA4dzX3iyL+rebzXkuO76+
+         2BSehMFSvR62rwQeTTFFy58ZH+/yLtajRNiq2hrm2oYl47PgC0YeugsuGzkmXXgY8I06
+         MfvgQ0eC6/1DGtJAPJF8IO/Et2jxUB8wKRDz1q8J2z3+m2mpoBOSeD+Mgwp4bD4Z8JBK
+         SgUtSktRygqZ0o+iNS5TqbPQ5lJe6aeOe55jHfs+dCZ8lss3OUr7U9ANFC2fMDZjl0pY
+         BQ9CWvsHCYUYOkN486bHOt1K+/o893t7h5t1HB6u1ikC9wyljGq4ZZQ3G2ytuynBi2jz
+         oNyA==
+X-Gm-Message-State: AOAM533FyPviL14ENF1HOOdX8l1ZwOJ09kNqxRwwDVKnxkEsk0sJIRfv
+        52HB4rztl5goaWhcdMSw+P6nJOHVIZonzw==
+X-Google-Smtp-Source: ABdhPJzxSaWSWU+HZ2fG6cLQ1m0tcFyVXKy3FfYhOEVPj99aERN4QGYja2kGTUf/Pro+SDBoUBls6w==
+X-Received: by 2002:a1f:d0c4:: with SMTP id h187mr22750377vkg.1.1636719476807;
+        Fri, 12 Nov 2021 04:17:56 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id e9sm4165619uan.9.2021.11.12.04.17.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Nov 2021 04:17:56 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id e10so18436964uab.3;
+        Fri, 12 Nov 2021 04:17:56 -0800 (PST)
+X-Received: by 2002:ab0:15a1:: with SMTP id i30mr21935808uae.122.1636719476202;
+ Fri, 12 Nov 2021 04:17:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75VeO4yr9fAx_-MHDnRGQn1paWF=59+o-9ZyP5PGSCPU8og@mail.gmail.com>
+References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com>
+ <20210817090313.31858-3-biju.das.jz@bp.renesas.com> <CAMuHMdVXpn7X3Tm_ouq6DVUDP4mxMO8EObFjtfEU4pX6sodo9A@mail.gmail.com>
+ <YY5WZ1r10EphBJEZ@shikoro>
+In-Reply-To: <YY5WZ1r10EphBJEZ@shikoro>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 12 Nov 2021 13:17:45 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUbU5NX7Zpd=oSmizCwpOVEn6Ojnfw85uBET78HUsDFCw@mail.gmail.com>
+Message-ID: <CAMuHMdUbU5NX7Zpd=oSmizCwpOVEn6Ojnfw85uBET78HUsDFCw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Andy Shevchenko <andy.shevchenko@gmail.com> [211112 11:22]:
-> > We only need the SoC specific data for the booted SoC, so devicetree
-> > and loadable modules makes more sense there compared to the current
-> > built-in setup.
-> 
-> I'm against putting that into DT and here is why.
-> 
-> DT is the thing that describes the _platform_. While it's fine to put
-> GPIO expander thingy (and we actually do this with labeling schema for
-> GPIOs, right?), the SoC level of things is a _hardware_ and with all
-> flexibility the DT gives us we will definitely have a deviations on
-> _different_ platforms with _the same_ SoC! To work around this we must
-> have a validation of the pin names and their functions in many places.
+Hi Wolfram,
 
-I think you are misunderstanding what I mean here. Certainly the driver
-needs to know how to deal with the SoC specific hardware. And that we
-can easily do that in quite easily already. The device tree data I'm
-describing would be similar to the interrupts with instance offset and
-generic mux flags.
+On Fri, Nov 12, 2021 at 12:56 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > > +            - description: IMCLK, SDHI channel main clock1.
+>
+> Sounds like "core"
+>
+> > > +            - description: IMCLK2, SDHI channel main clock2. When this clock is
+> > > +                           turned off, external SD card detection cannot be
+> > > +                           detected.
+>
+> "cd"
+>
+> > > +            - description: CLK_HS, SDHI channel High speed clock which operates
+> > > +                           4 times that of SDHI channel main clock1.
+>
+> "clkh" compared to the Gen3 bindings to me.
+>
+> > > +            - description: ACLK, SDHI channel bus clock.
+>
+> This I don't understand. The CPG-MSSR clock?
 
-See for example the driver for drivers/pinctrl/ti/pinctrl-ti-iodelay.c.
-For that driver we have the instance and picosecond iodelay values in
-the devicetree, and with #nr-pinctrl cells there could be some generic
-pinctrl mux flags. We are missing the generic pinctrl flags part AFAIK.
+RZ/G2L has more fine-grained control of module clocks.
+On e.g. R-Car SoCs, there is a single "MSTP" bit to disable "the"
+module clock, but in practice it may control multiple clock inputs
+to a module.  The actual clock tree is not documented, so we model
+this as a single module clock.  So probably the MSTP bit controls
+both the main channel clock and the bus clock.
 
-> And last but not least the copying it in tons of DT feels like a
-> duplication effort.,
+Gr{oetje,eeting}s,
 
-Hmm I don't think we have any of that for what I'm describing. But
-please take a look at the iodelay example above, maybe I'm not
-following.
+                        Geert
 
-> AFAIU the topic, the pin control lacks labeling schema that will
-> provide the view from the platform perspective, while driver provides
-> from HW perspective.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Agreed we need a generic labeling schema.
-
-Regards,
-
-Tony
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
