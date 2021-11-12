@@ -2,73 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F7E44E9ED
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:20:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 723A944E9F9
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:25:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbhKLPXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 10:23:08 -0500
-Received: from mail-ot1-f50.google.com ([209.85.210.50]:37530 "EHLO
-        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233793AbhKLPXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 10:23:04 -0500
-Received: by mail-ot1-f50.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so13432412otg.4;
-        Fri, 12 Nov 2021 07:20:13 -0800 (PST)
+        id S229632AbhKLP2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 10:28:13 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:38907 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230019AbhKLP2M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 10:28:12 -0500
+Received: by mail-ot1-f49.google.com with SMTP id z2-20020a9d71c2000000b0055c6a7d08b8so14338205otj.5;
+        Fri, 12 Nov 2021 07:25:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XL7WHChnykm1XEF7Yo39vqcbHAAH7PV5WQdRdC97D8s=;
-        b=j/kb4VzmWa3hc5pDznIKRehK+N59F1bNGOZtILMbDTe3ECF9L9oSczTWGculZbJN7Q
-         FTR3zKvhbHC0AzL7KtVIdZ1DAHokoMvRxMPvTUI4kujuZ+9WpDgXdObeSjKoyljLO/Jl
-         jC74L8E6lMvlKARedX87iiQrQb59txTzFTPhvdyReocvBKcAQM1Ce1nIxz35AzT2EDv4
-         gNyxwLdBW2gttXfinOuej3zyn6CQrEBkjc1biraEFVokoiPM10SDJmDyDK1CHFJuzxRU
-         0IP2w1oNCPtK9eVpNJW4+in3t0+u3gwwYOIS225FnC1C7V9PRTLCuPBzGjcd3nBTHXdW
-         TI4g==
-X-Gm-Message-State: AOAM5333tlPyoyh5irS3Pm3scWuX+6bvdlWtZW+4U1kdkyLMtm9eFJAJ
-        BcowvGKt4PfZm8AhjjJ5WCyim6o58w==
-X-Google-Smtp-Source: ABdhPJy8eBQbPOkE+3SSIRibQY8WLVPaKWMwduUfydGqT0FYX5JU0EsXU2XqNIyLKmS5Pu87s0EaTA==
-X-Received: by 2002:a9d:5190:: with SMTP id y16mr13227870otg.364.1636730413416;
-        Fri, 12 Nov 2021 07:20:13 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=RVXOKUzn8xx+A/BupGQH+H1y0lrA5OuyDafvitY6wbw=;
+        b=Ll51/pVEjb+3sDEQFQ2vOq+UoWIPAA31G3QEMQT8gWASmOmWjTaluDoW3H5dgoGCKQ
+         ifKaShLKNFRRBY4bS7PtPTjsrmxAjSd+PwBvkxgJdLxd+52Fl8ZG7+X67ATMSRBS+/Hv
+         ec1LogTN5MQS4RM4WNMq7EtqcUgKixs7j8wlgUVzvGhjc/Nxxx2Y3nRKUey89JBwXUSW
+         /YbQKYQdPLTCVAFjRnalIIl02Bn3NOiQzhsccwPudI++0dxfr8QyBBosTm0SGfMVbFuJ
+         d4Vzl1aLmBEQaewuLTN0f4jn6kYIyg3PHXJVivFcKWkYQdMj8HKv5GW8eoK1xT5zBgPN
+         ExbA==
+X-Gm-Message-State: AOAM532G2JzHBzS9GHDTyHXx9sjFIcu8BNALvKf6lvtTv/2+E8WgUcbx
+        b/bSbsV9At/fG9nu9fDpYRctulVLFg==
+X-Google-Smtp-Source: ABdhPJxu33SV5+1/0Na2x6ygvkBdQx6MbCAqUgjHERfuNpjoS46LGDUC7vbjn4IQa/e2YId3CgF5YA==
+X-Received: by 2002:a9d:6653:: with SMTP id q19mr13101255otm.116.1636730721655;
+        Fri, 12 Nov 2021 07:25:21 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g1sm1150338ooq.2.2021.11.12.07.20.12
+        by smtp.gmail.com with ESMTPSA id l2sm1260686otl.61.2021.11.12.07.25.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 07:20:12 -0800 (PST)
-Received: (nullmailer pid 2872324 invoked by uid 1000);
-        Fri, 12 Nov 2021 15:20:11 -0000
-Date:   Fri, 12 Nov 2021 09:20:11 -0600
+        Fri, 12 Nov 2021 07:25:20 -0800 (PST)
+Received: (nullmailer pid 2878900 invoked by uid 1000);
+        Fri, 12 Nov 2021 15:25:20 -0000
+Date:   Fri, 12 Nov 2021 09:25:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-Cc:     lars@metafoo.de, pmeerw@pmeerw.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        michal.simek@xilinx.com, jic23@kernel.org, git@xilinx.com
-Subject: Re: [PATCH v8 3/4] dt-bindings: iio: adc: Add Xilinx AMS binding
- documentation
-Message-ID: <YY6GK3K5B/cgdczY@robh.at.kernel.org>
-References: <20211108210509.29870-1-anand.ashok.dumbre@xilinx.com>
- <20211108210509.29870-4-anand.ashok.dumbre@xilinx.com>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        Bjorn Helgaas <helgaas@kernel.org>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
+Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
+ 'slot-power-limit-milliwatt' PCIe port property
+Message-ID: <YY6HYM4T+A+tm85P@robh.at.kernel.org>
+References: <20211031150706.27873-1-kabel@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211108210509.29870-4-anand.ashok.dumbre@xilinx.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211031150706.27873-1-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Nov 2021 21:05:08 +0000, Anand Ashok Dumbre wrote:
-> Xilinx AMS have several ADC channels that can be used for measurement of
-> different voltages and temperatures. Document the same in the bindings.
+On Sun, Oct 31, 2021 at 04:07:05PM +0100, Marek Behún wrote:
+> From: Pali Rohár <pali@kernel.org>
 > 
-> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+> This property specifies slot power limit in mW unit. It is a form-factor
+> and board specific value and must be initialized by hardware.
+> 
+> Some PCIe controllers delegate this work to software to allow hardware
+> flexibility and therefore this property basically specifies what should
+> host bridge program into PCIe Slot Capabilities registers.
+> 
+> The property needs to be specified in mW unit instead of the special format
+> defined by Slot Capabilities (which encodes scaling factor or different
+> unit). Host drivers should convert the value from mW to needed format.
+> 
+> Signed-off-by: Pali Rohár <pali@kernel.org>
+> Signed-off-by: Marek Behún <kabel@kernel.org>
 > ---
->  .../bindings/iio/adc/xlnx,zynqmp-ams.yaml     | 227 ++++++++++++++++++
->  1 file changed, 227 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,zynqmp-ams.yaml
+>  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
+> index 6a8f2874a24d..7296d599c5ac 100644
+> --- a/Documentation/devicetree/bindings/pci/pci.txt
+> +++ b/Documentation/devicetree/bindings/pci/pci.txt
+> @@ -32,6 +32,12 @@ driver implementation may support the following properties:
+>     root port to downstream device and host bridge drivers can do programming
+>     which depends on CLKREQ signal existence. For example, programming root port
+>     not to advertise ASPM L1 Sub-States support if there is no CLKREQ signal.
+> +- slot-power-limit-miliwatt:
 
+Typo.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+But we shouldn't be adding to pci.txt. This needs to go in the 
+schema[1]. Patch to devicetree-spec list or GH PR is fine.
 
-If a tag was not added on purpose, please state why and what changed.
+> +   If present, this property specifies slot power limit in milliwatts. Host
+> +   drivers can parse this property and use it for programming Root Port or host
+> +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit messages
+> +   through the Root Port or host bridge when transitioning PCIe link from a
+> +   non-DL_Up Status to a DL_Up Status.
 
+If your slots are behind a switch, then doesn't this apply to any bridge 
+port?
+
+[1] https://github.com/devicetree-org/dt-schema/blob/main/schemas/pci/pci-bus.yaml
