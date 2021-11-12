@@ -2,191 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E22544E573
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 12:14:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1D8B44E586
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 12:22:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232791AbhKLLRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 06:17:17 -0500
-Received: from mail-ua1-f45.google.com ([209.85.222.45]:45855 "EHLO
-        mail-ua1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233883AbhKLLRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 06:17:16 -0500
-Received: by mail-ua1-f45.google.com with SMTP id ay21so17977910uab.12;
-        Fri, 12 Nov 2021 03:14:25 -0800 (PST)
+        id S234730AbhKLLZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 06:25:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54762 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233883AbhKLLZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 06:25:02 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE8F8C061766;
+        Fri, 12 Nov 2021 03:22:11 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id g14so36360650edz.2;
+        Fri, 12 Nov 2021 03:22:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9V5Di8a8qyE+6jAAu0K6/l3AcCOwFjxWjFK/ohjqHvM=;
+        b=ZruTDvmwL9J3DhYB0V0NebSG2YNkc2mEybtAJg1zCWCe5N5tbzkxPgIEfyTYH7lDT0
+         EKkx6RcH8148+XKgBROyI4XxxUfLtKKbrH5b753u2q1MK2zj1+1d4/S+MJInhIG2ivd/
+         rhi6K1TYKO81ndafBfgeqRj75hdy3aHToS4OkEdVLvk9PwIUqCzIiIbJTCOA40wJISZQ
+         w+C7+vOuBcR18T2UFE1DLmXtu5I2TsjzXXAJZN8InrBF5vCxpsUJjRxZZXmfBsnjrhe/
+         UJmPBDghtGVD0Ri/jx3PiQkksk/lTq7USQ/160hE/IYq87dnXMM8MR/behE7saOo/5Gp
+         wIVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kcPHPCWihqx4U5kW/XcCfGRSox61flLxbhTI2bkYqCU=;
-        b=kJjnfTryjzAFZUnICn3MC0/eClBL/8wzYOMq/9fKepMX6yBqa/mj4qxrW4M7j76hp8
-         a7W4CsQKG/A/m3WUW/S6vC2oW9ISkwc/9u4OI1SdKb7YshNr5vaM2kDAS8xRMrw+c/W+
-         28AwH95BoCm1XTZqM7LelO+5aauP+b17reAcCVWSPegCcRL+YJNC7HrZlUb7QPXnDIG4
-         R6bSOgO0+rmytlAjgWyfZooUjMSQZRzPPwc56B0Q3TufL67/9/MHjPEaxEd1wrOgHJbO
-         TB3SVYdMTzeagk6FZ+yNePFdvJLVUvtqvCWj7VZjLXKWPLD+lT7d0Eopo2mDqH0YU/Ep
-         j8tw==
-X-Gm-Message-State: AOAM5319BbWJmFEUA+N0Ek6fXkdSAilBXIWgdwmnUFVg2T/aIV1+mByj
-        4aKr9mFLEhR26K67cGFk7l3GZpFejnjlBg==
-X-Google-Smtp-Source: ABdhPJwleBQuy5OITcURtJ0IGyfkpxPBvLKadORYlr+0SwbFSiwFrrAC05I00vWsil1N5dt5npflVA==
-X-Received: by 2002:a05:6102:dcb:: with SMTP id e11mr9120480vst.8.1636715664737;
-        Fri, 12 Nov 2021 03:14:24 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id l28sm3772471vkn.45.2021.11.12.03.14.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 12 Nov 2021 03:14:24 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id t13so17991062uad.9;
-        Fri, 12 Nov 2021 03:14:23 -0800 (PST)
-X-Received: by 2002:a67:af0a:: with SMTP id v10mr9010955vsl.35.1636715663609;
- Fri, 12 Nov 2021 03:14:23 -0800 (PST)
+        bh=9V5Di8a8qyE+6jAAu0K6/l3AcCOwFjxWjFK/ohjqHvM=;
+        b=3dj1nUPdEvxcZ683UtAZYF8E8oe7Vg8KUrBUTg8nqNTbRnPaR3K6qwcyV1OLGVtO8m
+         kAEpm1ytst0EhADQ/qzL6fBJq0kJ3v7tVXvd70nehR62bb8YdLehY5QExlaI4yOaAFRx
+         jTIZNByBwliHQIYvC1DGqbWRrFvH9IB+j3rFsj+a52Wbmu9bLQ3uCzg1v1aBOAQDrrRP
+         oS4VpkKPhQR/tGcaU1grHXH47tSMj2l7fZ/Kzh8P5UEAQUnqLzCBbP8+OlnR0jmQq8uD
+         eicH+fJX58H339UYqIywc/bS0ziKgHvsQigV82+iz9Wn+AWfPvpv/VfkMkQvFfCYRwxf
+         mSTA==
+X-Gm-Message-State: AOAM531qqbBUiDakdTOpJrlL+xF1fjTEDaZjYzhv4D62uAXg0fdC5L7x
+        PUASFQyeLw0Q6GKviRfWVpo9BUj3M4dz2J7EdOfKhJ/rbBvmbg==
+X-Google-Smtp-Source: ABdhPJynT0/Ydf2hVmCsiNCZ25jcRpNCeBcKZGpTrxDUkkmvTP0NtWl9e2cBnHMISg5oLEKwA+LaVPf5kHVfTuL8iiY=
+X-Received: by 2002:a50:9ec9:: with SMTP id a67mr8043060edf.238.1636716130294;
+ Fri, 12 Nov 2021 03:22:10 -0800 (PST)
 MIME-Version: 1.0
-References: <20210817090313.31858-1-biju.das.jz@bp.renesas.com> <20210817090313.31858-3-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20210817090313.31858-3-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Nov 2021 12:14:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVXpn7X3Tm_ouq6DVUDP4mxMO8EObFjtfEU4pX6sodo9A@mail.gmail.com>
-Message-ID: <CAMuHMdVXpn7X3Tm_ouq6DVUDP4mxMO8EObFjtfEU4pX6sodo9A@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+References: <20211110231436.8866-1-zajec5@gmail.com> <CACRpkdbAS0JiqTQUU0R0yRhVCwagubwsNYLxj1DLE1Ldc+H_JQ@mail.gmail.com>
+ <YY4+4Wb/H2ogKnQg@atomide.com>
+In-Reply-To: <YY4+4Wb/H2ogKnQg@atomide.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 12 Nov 2021 13:21:26 +0200
+Message-ID: <CAHp75VeO4yr9fAx_-MHDnRGQn1paWF=59+o-9ZyP5PGSCPU8og@mail.gmail.com>
+Subject: Re: [PATCH RFC] dt-bindings: pinctrl: support specifying pins
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Linux MMC List <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
-
-On Tue, Aug 17, 2021 at 11:03 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document RZ/G2L SDHI controller bindings.
+On Fri, Nov 12, 2021 at 12:16 PM Tony Lindgren <tony@atomide.com> wrote:
+> * Linus Walleij <linus.walleij@linaro.org> [211111 15:32]:
+> > At the time (2011?) it was unclear what kind of data should go into
+> > e.g. header and data files in the kernel (modules) and what should
+> > go into the DT. So the approach to put pin information into the DT
+> > was allowed for pinctrl-single.
+> >
+> > The way I have understood it, DT maintainers have since gotten
+> > a bit wary about (ab)using the DT as a container for "anything data"
+> > and prefer that drivers contain details and derive these from
+> > compatible strings.
+> >
+> > As of today, IIUC the DT maintainers are against this scheme.
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Thanks for your patch, which is now commit bfadee4554c3782b
-("dt-bindings: mmc: renesas,sdhi: Document RZ/G2L bindings")
-in v5.15.
-
-> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -44,19 +44,20 @@ properties:
->            - const: renesas,sdhi-mmc-r8a77470 # RZ/G1C (SDHI/MMC IP)
->        - items:
->            - enum:
-> -              - renesas,sdhi-r8a774a1 # RZ/G2M
-> -              - renesas,sdhi-r8a774b1 # RZ/G2N
-> -              - renesas,sdhi-r8a774c0 # RZ/G2E
-> -              - renesas,sdhi-r8a774e1 # RZ/G2H
-> -              - renesas,sdhi-r8a7795  # R-Car H3
-> -              - renesas,sdhi-r8a7796  # R-Car M3-W
-> -              - renesas,sdhi-r8a77961 # R-Car M3-W+
-> -              - renesas,sdhi-r8a77965 # R-Car M3-N
-> -              - renesas,sdhi-r8a77970 # R-Car V3M
-> -              - renesas,sdhi-r8a77980 # R-Car V3H
-> -              - renesas,sdhi-r8a77990 # R-Car E3
-> -              - renesas,sdhi-r8a77995 # R-Car D3
-> -              - renesas,sdhi-r8a779a0 # R-Car V3U
-> +              - renesas,sdhi-r8a774a1  # RZ/G2M
-> +              - renesas,sdhi-r8a774b1  # RZ/G2N
-> +              - renesas,sdhi-r8a774c0  # RZ/G2E
-> +              - renesas,sdhi-r8a774e1  # RZ/G2H
-> +              - renesas,sdhi-r8a7795   # R-Car H3
-> +              - renesas,sdhi-r8a7796   # R-Car M3-W
-> +              - renesas,sdhi-r8a77961  # R-Car M3-W+
-> +              - renesas,sdhi-r8a77965  # R-Car M3-N
-> +              - renesas,sdhi-r8a77970  # R-Car V3M
-> +              - renesas,sdhi-r8a77980  # R-Car V3H
-> +              - renesas,sdhi-r8a77990  # R-Car E3
-> +              - renesas,sdhi-r8a77995  # R-Car D3
-> +              - renesas,sdhi-r8a779a0  # R-Car V3U
-> +              - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
->            - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
-
-I don't think SDHI on RZ/G2L is fully compatible with SDHI on R-Car Gen3...
-
+> We have some newish tools now compared 2011 though with #pinctrl-cells.
+> And we now have also GENERIC_PINCTRL_GROUPS, GENERIC_PINMUX_FUNCTIONS
+> and GENERIC_PINCONF :)
 >
->    reg:
-> @@ -66,15 +67,9 @@ properties:
->      minItems: 1
->      maxItems: 3
+> The problem with the pinctrl-single binding is that it uses the hardware
+> specific mux values in addition to the mux register offsets. IMO the
+> values should use Linux generic pinctrl defines instead. Just like we
+> do for the gpio and interrupt bindings. And then the generic pinctrl
+> binding would be very similar to the interrupts-extended binding for
+> example.
 >
-> -  clocks:
-> -    minItems: 1
-> -    maxItems: 2
-> +  clocks: true
+> And with a generic pinctrl binding pinctrl-single could be updated to
+> parse the generic binding naturally too in addition to the legacy
+> binding.
 >
-> -  clock-names:
-> -    minItems: 1
-> -    items:
-> -      - const: core
-> -      - const: cd
-> +  clock-names: true
+> > That said, the topic is open in a way. Some people are also annoyed
+> > that some graphics drivers just ask Torvalds to pull 100.000+ lines
+> > of register defnes in some merge windows. The data has to go
+> > somewhere.
 >
->    dmas:
->      minItems: 4
-> @@ -108,6 +103,42 @@ properties:
->  allOf:
->    - $ref: "mmc-controller.yaml"
+> Yes and the amount of SoC specific LOC under drivers/pinctrl is pretty
+> staggering already.
 >
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,sdhi-r9a07g044
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: IMCLK, SDHI channel main clock1.
-> +            - description: IMCLK2, SDHI channel main clock2. When this clock is
-> +                           turned off, external SD card detection cannot be
-> +                           detected.
-> +            - description: CLK_HS, SDHI channel High speed clock which operates
-> +                           4 times that of SDHI channel main clock1.
-> +            - description: ACLK, SDHI channel bus clock.
-> +        clock-names:
-> +          items:
-> +            - const: imclk
-> +            - const: imclk2
-> +            - const: clk_hs
-> +            - const: aclk
-> +      required:
-> +        - clock-names
-> +        - resets
-> +    else:
-> +      properties:
-> +        clocks:
-> +          minItems: 1
-> +          maxItems: 2
-> +        clock-names:
-> +          minItems: 1
-> +          items:
-> +            - const: core
-> +            - const: cd
-> +
->    - if:
->        properties:
->          compatible:
+> With all that SoC specific data built into the kernel, it's like going
+> camping with all your pants stuffed into your car instead of just the
+> pants you need :)
+>
+> We only need the SoC specific data for the booted SoC, so devicetree
+> and loadable modules makes more sense there compared to the current
+> built-in setup.
 
-... as the clock handling is completely different.
+I'm against putting that into DT and here is why.
 
-Does this actually work with the current Linux SDHI driver? How are
-the extra clocks handled?
+DT is the thing that describes the _platform_. While it's fine to put
+GPIO expander thingy (and we actually do this with labeling schema for
+GPIOs, right?), the SoC level of things is a _hardware_ and with all
+flexibility the DT gives us we will definitely have a deviations on
+_different_ platforms with _the same_ SoC! To work around this we must
+have a validation of the pin names and their functions in many places.
 
-Gr{oetje,eeting}s,
+And last but not least the copying it in tons of DT feels like a
+duplication effort.,
 
-                        Geert
+AFAIU the topic, the pin control lacks labeling schema that will
+provide the view from the platform perspective, while driver provides
+from HW perspective.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+With Best Regards,
+Andy Shevchenko
