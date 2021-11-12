@@ -2,102 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF53244E7BB
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97CFF44E7C8
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:46:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231736AbhKLNrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 08:47:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58852 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235021AbhKLNrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 08:47:04 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA4CC061766
-        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 05:44:13 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id z21so37877170edb.5
-        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 05:44:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+11/5QhDjvHebghuXrK94NMiJV4iB56FWTY6infSJEM=;
-        b=VCxAzCnKeRIEjI3hyvDrZ5J+WNdd9RaNLmwNwJmdgC0+ZnCPEFSx9c9uyeJK1scqWk
-         2QNPDVV8tT37ztpw5F5RbdRAv/oqmFfxQTMKUxbI7ddrlgw1NGqsqL98LExawIvVVzTm
-         fGZuswg5VPHfMcxTlJU5QHVT5xgIXU6GrcMY9xWHIZMa40NXJGO17yWIi8JooZaRV4gS
-         8/5/OcwiLMs9kacJyspSPvDJbRYW91QoprdUb1Map6iPEa1BrQiv4EbQenYukutV1gwP
-         PVCR3EGldCSqUDOsfSVTt/ujeCY/RSqdi7DQWTkxW4EOqCmFDbztw0F4kHG1FK5eHhmE
-         IjBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+11/5QhDjvHebghuXrK94NMiJV4iB56FWTY6infSJEM=;
-        b=2M0/+7vWEIU93JvhtsDhVWWgILbvlKFfO5UzMe2Cg2vPj4fG6AU7oVGSq1FtBLbO9s
-         whtUO68R7/D15EDuB+7REgyPCe7BwP8M61TOSekruJAZz9YcDl4aUviyhWcRL/DpnYzf
-         gnSyrjdf/TKvExT4IJi2N64z3nirsgePFl0eahdmhNrfF5WlkTrGFwRJNes3+sJusujM
-         2kdHwZ14ybwyJanAcmzQSvYTUiEpTkG/DzZ9Z4hDOB+udklVbwS/2vpYb547jaM1gQyY
-         2Mt90fHaB2UiamdksJ71WUocjG1WtwnLM2kFPYtd/Cl9pZKfax0bmqVe6s9hE7clamHM
-         cQ7A==
-X-Gm-Message-State: AOAM531d8iuyeyp96trHJjTkBAMzTwv5424k9Vh1c7GM3daWX9rkVToZ
-        5iYHAkhpIFgHrPFGkWyAzPaX2lsm7vC/SA==
-X-Google-Smtp-Source: ABdhPJyVGL0HggktauQzfX4R4SPudEdtG9PweoAnYEfD814Ix+78MGhFz6hY+lnGlnekPElkvwLCVQ==
-X-Received: by 2002:a17:907:7703:: with SMTP id kw3mr19507359ejc.34.1636724652384;
-        Fri, 12 Nov 2021 05:44:12 -0800 (PST)
-Received: from fedora.. (dh207-98-14.xnet.hr. [88.207.98.14])
-        by smtp.googlemail.com with ESMTPSA id z6sm3142867edc.53.2021.11.12.05.44.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 05:44:11 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        miquel.raynal@bootlin.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        pali@kernel.org, marek.behun@nic.cz
-Cc:     Robert Marko <robert.marko@sartura.hr>
-Subject: [PATCH 2/2] arm64: dts: marvell: cn9130: enable CP0 GPIO controllers
-Date:   Fri, 12 Nov 2021 14:44:03 +0100
-Message-Id: <20211112134403.1016717-2-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211112134403.1016717-1-robert.marko@sartura.hr>
-References: <20211112134403.1016717-1-robert.marko@sartura.hr>
+        id S235039AbhKLNtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 08:49:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44020 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235021AbhKLNtf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 08:49:35 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A9FA261054;
+        Fri, 12 Nov 2021 13:46:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636724805;
+        bh=TuruUUrvaK1PlbT0DO7/rZVvUO3uIxHO0WyVV0YwPCc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kYkOKu5lyiDVntszhjQGbrn8UkLQjGuPSBu6SGiGsPFTwsEAg4VMGQbPOfQPH/K5Y
+         AlVQcjsYsPjkamfb01KcbZ4O+Jj/FKv+mVhQ2l3nPpC22dOqjgRoxJ/089NZ4DP9DA
+         nahVnmsBUcGD98Apzg2FobhazahZc5/HTTq2zOtIjHYQj1OgS5Hwi9BML2PkEW3Bv2
+         T4qdEQbOrQSY4b5/fjffkY8nHTeQraQMXLRmLLaKcOtVYfTVQ1Xry8MhJhgKYagsCf
+         HfHcN5TPUO5TwJll1iLZXFPUSPQhDoPUXkX1wgZN7Lu+WGlJI01eyyt5ewGJNNOo9M
+         ATfRQkrS+bCpQ==
+Date:   Fri, 12 Nov 2021 13:46:38 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] dt-bindings: regulator: Add bindings for Unisoc's
+ SC2730 regulator
+Message-ID: <YY5wPh0rwRvFjSRG@sirena.org.uk>
+References: <20211008031953.339461-1-zhang.lyra@gmail.com>
+ <20211008031953.339461-3-zhang.lyra@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BXpsF9fcILSz6uPG"
+Content-Disposition: inline
+In-Reply-To: <20211008031953.339461-3-zhang.lyra@gmail.com>
+X-Cookie: While supplies last.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CN9130 has a built-in CP115 which has 2 GPIO controllers, but unlike in
-Armada 7k and 8k both are left disabled by the SoC DTSI.
 
-This first of all makes no sense as they are always present due to being
-SoC built-in and its an issue as boards like CN9130-CRB use the CPO GPIO2
-pins for regulators and SD card support without enabling them first.
+--BXpsF9fcILSz6uPG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-So, enable both of them like Armada 7k and 8k do.
+On Fri, Oct 08, 2021 at 11:19:53AM +0800, Chunyan Zhang wrote:
 
-Fixes: 6b8970bd8d7a ("arm64: dts: marvell: Add support for Marvell CN9130 SoC support")
+> +properties:
+> +  compatible:
+> +    const: sprd,sc2730-regulator
 
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
----
- arch/arm64/boot/dts/marvell/cn9130.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+I still don't understand why this MFD subfunction for a specific device
+is a separate binding with a separate compatible string, the issues I
+mentioned previously with this just encoding current Linux internals
+into the DT rather than describing the device still apply.
 
-diff --git a/arch/arm64/boot/dts/marvell/cn9130.dtsi b/arch/arm64/boot/dts/marvell/cn9130.dtsi
-index 71769ac7f058..327b04134134 100644
---- a/arch/arm64/boot/dts/marvell/cn9130.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9130.dtsi
-@@ -42,3 +42,11 @@ aliases {
- #undef CP11X_PCIE0_BASE
- #undef CP11X_PCIE1_BASE
- #undef CP11X_PCIE2_BASE
-+
-+&cp0_gpio1 {
-+	status = "okay";
-+};
-+
-+&cp0_gpio2 {
-+	status = "okay";
-+};
--- 
-2.33.1
+--BXpsF9fcILSz6uPG
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGOcD4ACgkQJNaLcl1U
+h9DNPwf9FzYXDmsgF2KZJNeBv/iF2rCDy8hHO87Dv4BvJmDmiCLBQ1JwutQIzVPq
+jQrjyg7VvKqQ5ETgH8nwqQqCzkPjG/hdNSZPRQmSiUVwx+ZhuiiwUPr/gObaV161
+812O3TL8HdEI46C1tKEteoDhze5w3Oxy/jCTcQfjkSO5BA+V7DYu55ZzXVkWgCBD
+8xQv9nKDyr0cY0ZoO6iJkm0tiHTZuTSHCICdizBXyg1FhPwTI9XrpJZQvePg6okD
+q7ztUS//QZz+vMG65Sz7E0l8cfbpOR6hgLP/PVpLXgF1nXdBsQinPdU0IfQp73Nh
+yVh3RTySxjb9b+GdTbEZ5n6RQ5v5Ow==
+=NMca
+-----END PGP SIGNATURE-----
+
+--BXpsF9fcILSz6uPG--
