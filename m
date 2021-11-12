@@ -2,76 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76FAC44E0FA
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 05:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 397A744E0FE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 05:23:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230169AbhKLEWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 23:22:34 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:37666 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbhKLEWe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 23:22:34 -0500
-Received: by mail-ot1-f47.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so11245155otg.4;
-        Thu, 11 Nov 2021 20:19:42 -0800 (PST)
+        id S230410AbhKLE0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 23:26:05 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:35429 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229632AbhKLE0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 23:26:02 -0500
+Received: by mail-oi1-f178.google.com with SMTP id m6so15715882oim.2;
+        Thu, 11 Nov 2021 20:23:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qxOn87ULPwV2ERYJX91GmCv249cvAtIa56rKI6JKMzk=;
-        b=IxVceATxm+PuainVHnaDeB6OZus2Xuofm3ooeNiE/FMTeP/SoE3dM8jG3mAQ5Z26jS
-         xZswqxfepRxz0qi//mmt7qfdtVpHPAGT3LUlGdrtGvUMU+X6ds3y9L5mBXek00ppHlk7
-         79UfzKm1lkuKM9K1SBCP9DtG/T0NV+Dfb6Qx3NGGQM4BnqiN6t72pC0HcDyoI8eSHqfC
-         SF6UPrUDmuuhZKmb9YHrgOj5LwphUcWYCoSBw+0E769s1F2JuEqx9bxFe056vJxJfyd0
-         bDJcHa3bVzcXtRDjR9r5zMGG528/3G+S5x82D17KZ7+BiDzoK/00e97i970x9+3KiEJS
-         ssYg==
-X-Gm-Message-State: AOAM530AE3qb3ly2o9SdSKo1vqKerFWi4RQLkuuNXbVSjPxNfDjPDnjU
-        RpyAQod6H8Z0BKuRuuOHbTGvmGav0A==
-X-Google-Smtp-Source: ABdhPJwcK2aLTenLOImwG5si5qgq36w7YMDwGzNedczDclnQAxDotdfG+bzfTYlQD4IWl7Ex88oHCw==
-X-Received: by 2002:a05:6830:22d8:: with SMTP id q24mr9908105otc.170.1636690782006;
-        Thu, 11 Nov 2021 20:19:42 -0800 (PST)
+        bh=3dQq4I227MVmj/mJuu+x0SuENW4zynmTgvI5Gd45HxM=;
+        b=sS6Xfq7c7Es2WQVooq/kt8OYlDov7W5D2LeBKgb3EVTQw+iUsizCL4pFv3audF3JV6
+         HdgvZZD1EobnxJvDvGXfsZa9o36+yvGLNSO552FlDURJ4MFNCQtSVvQ5IyrGR7nn3iXK
+         CP/6y8fOQvurITMfDhHLpsnXEAp7SFGyCThifmt1msgkczlTXxhYxkbnKKghrM8ETLn/
+         10XDjtD/xXhT1CRW7XIGIZB9vcXWzN4f+WdStLWfVIpA0wpLVZDFPbJtnvGkSQjUyp6e
+         C2n1l1D7tqfZN+eV2SgHnpG1EX65fBVkb+eCB5Ksz/73PbnzNvbE424Np4cnnsET45Ca
+         k3pQ==
+X-Gm-Message-State: AOAM531saJ5vZ0A2vmSACowscANXm6hTmqLTqcS6ZWyPDpjfTtUkmqc1
+        AVAqUrODcmSifub49qc37pV89bdY9Q==
+X-Google-Smtp-Source: ABdhPJz047OAXv4R/Qs0MJ3SGiM6kjGIUNixhPWX42NYZTZDp+UDQEOZ/D6LcVgz05Pk6hIlKsaB2g==
+X-Received: by 2002:aca:2b0f:: with SMTP id i15mr24664974oik.114.1636690991895;
+        Thu, 11 Nov 2021 20:23:11 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 62sm922824ooa.47.2021.11.11.20.19.40
+        by smtp.gmail.com with ESMTPSA id x16sm1013240ott.8.2021.11.11.20.23.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 11 Nov 2021 20:19:41 -0800 (PST)
-Received: (nullmailer pid 756536 invoked by uid 1000);
-        Fri, 12 Nov 2021 04:19:39 -0000
-Date:   Thu, 11 Nov 2021 22:19:39 -0600
+        Thu, 11 Nov 2021 20:23:11 -0800 (PST)
+Received: (nullmailer pid 761481 invoked by uid 1000);
+        Fri, 12 Nov 2021 04:23:10 -0000
+Date:   Thu, 11 Nov 2021 22:23:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     linux-sunxi@lists.linux.dev,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Chen-Yu Tsai <wens@csie.org>, ~okias/devicetree@lists.sr.ht,
-        linux-kernel@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        linux-watchdog@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: watchdog: sunxi: fix error in schema
-Message-ID: <YY3rWykk1lIjPVe8@robh.at.kernel.org>
-References: <20211029142443.68779-1-david@ixit.cz>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>, linux-media@vger.kernel.org,
+        Dikshita Agarwal <dikshita@codeaurora.org>
+Subject: Re: [PATCH v2] bindings: media: venus: Drop redundant maxItems for
+ power-domain-names
+Message-ID: <YY3sLvysqWlB4f9Q@robh.at.kernel.org>
+References: <d94924e1bd00f396f2106f04d4a2bb839cf5f071.1636453406.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211029142443.68779-1-david@ixit.cz>
+In-Reply-To: <d94924e1bd00f396f2106f04d4a2bb839cf5f071.1636453406.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 16:24:42 +0200, David Heidelberg wrote:
-> "maxItems" is not needed with an "items" list
+On Tue, 09 Nov 2021 11:29:41 +0100, Geert Uytterhoeven wrote:
+> make dt_binding_check:
 > 
-> Fixes:
-> $ DT_SCHEMA_FILES=Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml make dtbs_check
-> Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml: properties:clocks: {'required': ['maxItems']} is not allowed for {'minItems': 1, 'maxItems': 2, 'items': [{'description': 'High-frequency oscillator input, divided internally'}, {'description': 'Low-frequency oscillator input, only found on some variants'}]}
-> 	hint: "maxItems" is not needed with an "items" list
-> 	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-> ...
+>     Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml: ignoring, error in schema: properties: power-domain-names
+>     warning: no schema found in file: Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml
+>     Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml: properties:power-domain-names: {'required': ['maxItems']} is not allowed for {'minItems': 2, 'maxItems': 3, 'items': [{'const': 'venus'}, {'const': 'vcodec0'}, {'const': 'cx'}]}
+> 	   hint: "maxItems" is not needed with an "items" list
+> 	   from schema $id: http://devicetree.org/meta-schemas/items.yaml#
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Fixes: e48b839b6699c226 ("media: dt-bindings: media: venus: Add sc7280 dt schema")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
->  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 --
->  1 file changed, 2 deletions(-)
+> v2:
+>   - Add Acked-by,
+>   - s/bogus/redundant/,
+>   - Include full error message.
+> ---
+>  Documentation/devicetree/bindings/media/qcom,sc7280-venus.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
 Applied, thanks!
