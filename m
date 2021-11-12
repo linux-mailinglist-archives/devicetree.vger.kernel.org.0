@@ -2,147 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA72D44E66E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:35:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8297644E674
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:36:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234966AbhKLMh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 07:37:57 -0500
-Received: from relay06.th.seeweb.it ([5.144.164.167]:45937 "EHLO
-        relay06.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234927AbhKLMh4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:37:56 -0500
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 237123F1EA;
-        Fri, 12 Nov 2021 13:35:03 +0100 (CET)
-Date:   Fri, 12 Nov 2021 13:35:01 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>
-Subject: Re: [RESEND PATCH v2 04/13] backlight: qcom-wled: Fix off-by-one
- maximum with default num_strings
-Message-ID: <20211112123501.pz5e6g7gavlinung@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>, Bryan Wu <cooloney@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>
-References: <20211112002706.453289-1-marijn.suijten@somainline.org>
- <20211112002706.453289-5-marijn.suijten@somainline.org>
- <20211112120839.i6g747vewg6bkyk7@maple.lan>
+        id S234953AbhKLMim (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 07:38:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234881AbhKLMim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:38:42 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB51C061766;
+        Fri, 12 Nov 2021 04:35:51 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id w29so15198961wra.12;
+        Fri, 12 Nov 2021 04:35:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PBEHoURKIBaY3X5BAcdBbjQ4Zu1VyqdYU7IZMgF72QU=;
+        b=KRgXGMgbEMCOvx7Q2K9d8BSZW9Jkvl0qYNWkPalWccSZy70bYf+/UzTAluzPl0jrkN
+         9zskR1dYQLKAjjEznnG/aVLc/5xjh1ZTcFyursONeDyAmKtX60VVRxAcjwtQy6Ik7b9G
+         5vHlZW/H75nrOQWHUeCcNRocJj/y2s7062Q6oc3fs4fveKfrcJxnS6hO9/4wrJm7tn4K
+         cYi/PX8wgzEwBSJZb+OCImRgolXcw6xKRp4BZuUOwnWsxIlWfMOxCPxTq5T/R9lRYlGY
+         2c4479QZBtbUm7dg2LIwnFRXXvh4LkTbClujHDC2WzlqtjIRmfjSvEwLSTEYSXDuMUuy
+         x+hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PBEHoURKIBaY3X5BAcdBbjQ4Zu1VyqdYU7IZMgF72QU=;
+        b=TyrsdYAKpc4hiCBedwf3Uaw4C3sH1le8TnQX1/SlEbJ4NLRchGSyWGFjURz6ulmzJb
+         bN5Dvebg6ZUUPO6g9Ghhaw8QJQefSnqVEhhuXaLZYxjpFt/XmkNtP88NuPrTCxR5lgqF
+         8fG3GUT9AMzIYKdKfiLR3xGHXjBq+Z9tOlGRb7t/3aqFMjerebohvD8ToDRpQFNokXKY
+         BUEW88iEOsxvelTtKM1mSyUmJQlFRM7TcEVwGv+eHHkQyMwkfi5AoBlYDTJmU6ygbcTk
+         6ZFOpgoUD5D/0uu8RJl97/LAQusaHkQ0PKiWyuZX+Z/aAoN3gxtwFOpK5oYHy6UQAHID
+         71Yg==
+X-Gm-Message-State: AOAM533+r79EPhWPBV4n1A5/pkg5RDKEmk+Ynor46UfKkPtmWfczN23l
+        gk4sbTZjbMNdnUbai3MJN5I=
+X-Google-Smtp-Source: ABdhPJyw2VM2tsSURj3/dtDnvRn1uWyrNMElohylC0CqsZ9EAIEJdjtJUSQzaseLyEAlhGiCGsP1fQ==
+X-Received: by 2002:adf:dec9:: with SMTP id i9mr18310621wrn.18.1636720550013;
+        Fri, 12 Nov 2021 04:35:50 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id z6sm7183458wmp.1.2021.11.12.04.35.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 04:35:48 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 00/11] arm64: tegra: Add NVIDIA Jetson AGX Orin support
+Date:   Fri, 12 Nov 2021 13:35:31 +0100
+Message-Id: <20211112123542.3680629-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112120839.i6g747vewg6bkyk7@maple.lan>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-12 12:08:39, Daniel Thompson wrote:
-> On Fri, Nov 12, 2021 at 01:26:57AM +0100, Marijn Suijten wrote:
-> > When not specifying num-strings in the DT the default is used, but +1 is
-> > added to it which turns WLED3 into 4 and WLED4/5 into 5 strings instead
-> > of 3 and 4 respectively, causing out-of-bounds reads and register
-> > read/writes.  This +1 exists for a deficiency in the DT parsing code,
-> > and is simply omitted entirely - solving this oob issue - by parsing the
-> > property separately much like qcom,enabled-strings.
-> > 
-> > This also allows more stringent checks on the maximum value when
-> > qcom,enabled-strings is provided in the DT.  Note that num-strings is
-> > parsed after enabled-strings to give it final sign-off over the length,
-> > which DT currently utilizes to get around an incorrect fixed read of
-> > four elements from that array (has been addressed in a prior patch).
-> > 
-> > Fixes: 93c64f1ea1e8 ("leds: add Qualcomm PM8941 WLED driver")
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > ---
-> >  drivers/video/backlight/qcom-wled.c | 51 +++++++++++------------------
-> >  1 file changed, 19 insertions(+), 32 deletions(-)
-> > 
-> > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > index 977cd75827d7..c5232478a343 100644
-> > --- a/drivers/video/backlight/qcom-wled.c
-> > +++ b/drivers/video/backlight/qcom-wled.c
-> > @@ -1552,6 +1520,25 @@ static int wled_configure(struct wled *wled)
-> >  		}
-> >  	}
-> > 
-> > +	rc = of_property_read_u32(dev->of_node, "qcom,num-strings", &val);
-> > +	if (!rc) {
-> > +		if (val < 1 || val > wled->max_string_count) {
-> > +			dev_err(dev, "qcom,num-strings must be between 1 and %d\n",
-> > +				wled->max_string_count);
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		if (string_len > 0) {
-> > +			dev_warn(dev, "qcom,num-strings and qcom,enabled-strings are ambiguous\n");
-> 
-> The warning should also be below the error message on the next if statement.
+From: Thierry Reding <treding@nvidia.com>
 
-Agreed.
+Hi,
 
-> This warning occurs even when there is no ambiguity.
-> 
-> This could be:
-> 
-> 	if (string_len > 0 && val != string_len)
-> 
-> Combined these changes allows us to give a much more helpful and assertive
-> warning message:
-> 
-> qcom,num-strings mis-matches and will partially override
-> qcom,enabled-strings (remove qcom,num-strings?)
+This set of patches adds support for the new NVIDIA Jetson AGX Orin
+module and the corresponding developer kit. It builds on the existing
+Tegra234 support introduced a while ago for the simulation VDK platform
+and updates a couple of details and adds a few more things that have
+changed since then.
 
-I want to let the user know it's set regardless of whether they're
-equivalent; no need to set both.
+Most of this work was done by Mikko Perttunen.
 
-How about:
+Thierry
 
-    Only one of qcom,num-strings or qcom,enabled-strings should be set
+Mikko Perttunen (7):
+  dt-bindings: Update headers for Tegra234
+  misc: sram: Add compatible string for Tegra234 SYSRAM
+  arm64: tegra: Add clock for Tegra234 RTC
+  arm64: tegra: Update Tegra234 BPMP channel addresses
+  arm64: tegra: Fill in properties for Tegra234 eMMC
+  arm64: tegra: Add Tegra234 TCU device
+  arm64: tegra: Add NVIDIA Jetson AGX Orin Developer Kit support
 
-That should be more descriptive?  Otherwise, let me know if you really
-want to allow users to (unnecessarily) set both - or if it can / should
-be caught in DT validation instead.
+Thierry Reding (4):
+  dt-bindings: tegra: Describe recent developer kits consistently
+  dt-bindings: tegra: Document Jetson AGX Orin (and devkit)
+  dt-bindings: sram: Document NVIDIA Tegra SYSRAM
+  arm64: tegra: Fixup SYSRAM references
 
-- Marijn
+ .../devicetree/bindings/arm/tegra.yaml        | 29 ++++++++----
+ .../devicetree/bindings/sram/sram.yaml        |  3 ++
+ arch/arm64/boot/dts/nvidia/Makefile           |  1 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  2 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  2 +-
+ .../boot/dts/nvidia/tegra234-p3701-0000.dtsi  | 25 +++++++++++
+ .../nvidia/tegra234-p3737-0000+p3701-0000.dts | 24 ++++++++++
+ .../boot/dts/nvidia/tegra234-p3737-0000.dtsi  |  5 +++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 45 ++++++++++++++-----
+ drivers/misc/sram.c                           |  1 +
+ include/dt-bindings/clock/tegra234-clock.h    | 17 +++++--
+ include/dt-bindings/reset/tegra234-reset.h    | 12 ++++-
+ 12 files changed, 139 insertions(+), 27 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3701-0000.dtsi
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra234-p3737-0000.dtsi
 
-> > +			if (val > string_len) {
-> > +				dev_err(dev, "qcom,num-strings exceeds qcom,enabled-strings\n");
-> > +				return -EINVAL;
-> > +			}
-> > +		}
-> 
-> 
-> Daniel.
+-- 
+2.33.1
+
