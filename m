@@ -2,148 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46EAD44E06A
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 03:40:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FCCD44E089
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 03:50:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234214AbhKLCng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 21:43:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233752AbhKLCnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 21:43:35 -0500
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12873C061766;
-        Thu, 11 Nov 2021 18:40:46 -0800 (PST)
-Received: by mail-il1-x131.google.com with SMTP id i9so7666183ilu.8;
-        Thu, 11 Nov 2021 18:40:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JYtrXD23shdyMcsFVgaL3Kb0G11os2lduL5hO5DAisc=;
-        b=jRE5rg1/zaGSX+gVN/bOD8YjB3IaKxvdDoCmy5NcoFuoswXqvRBlIst8meObLmBAxs
-         u/iuQQm9Sdbq38gLkav2/5wyrj5hRbZLNC2yZYHXZndX64i53+t1v/b3YSrFbbT6PMy0
-         537NSp+aaWYstCxLd0AGLdcUiCzol4Thn5IZvGZNcczz1qFiNFgtEXqQDmTiZ6ewZihF
-         JlwJg4FTlauqHGaSdvvOS3CSQLPQaY1aRnSxbCOS4lZ9eppD74hTQpz/MhS5OdftxJ8e
-         Q3rKYFyRn8u70EYZ2hxZGjsCB4hQ3VKG44uS59rBEngDVa7kK51VuXWejwMAMg+P2co4
-         en0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JYtrXD23shdyMcsFVgaL3Kb0G11os2lduL5hO5DAisc=;
-        b=iGd5tHJ1d9vmGbDb02yaRMIzGUhnzdYN2eovIUTOt0pN5+uQCY/ggqK3C5xzDWo1mo
-         6kb6wVwS0i1w6Ix2eAuhz1N2GsI/pNYB7YzEjBnOWYlBdzqXlMDyfXR7ffyxBnJAJASz
-         u4aN3V3JTN+5RAwf0WgsyjYvaOoQyOiawneJIrLvu2ocUZm84iGrxutwDo1Pw8akQ5F7
-         8reYkzquq4kfjefWAyqewGdB2HHso92Dcd1KSL/qOLulyEz8z++gV3zxfRBFFFzjAFx5
-         Yk6CUlEpTkIS9ujkmxkb7vZfknSU/NGdUuzKA4mr5tpB15fWcU9MXX07a4qbl3HYXf7L
-         ZTRw==
-X-Gm-Message-State: AOAM532rZqJ+ShhQoVuZ+42q0X0RNGCoDf6JmkHz2aQ87XbOTmCj0ZTF
-        zSYnQ01VkgEVRAOaIQZDJPTFlEE4ey02g9ZRQwk=
-X-Google-Smtp-Source: ABdhPJx2ylAuHoOxN4N4gLfnyGTlEMXkoeCsHghAswy/PPJwkBYT64Wngb8jz94z0xFcQDtSgx6XsgDViC6DmJSuuiY=
-X-Received: by 2002:a05:6e02:1d1a:: with SMTP id i26mr7591972ila.303.1636684845448;
- Thu, 11 Nov 2021 18:40:45 -0800 (PST)
+        id S234570AbhKLCxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 21:53:09 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:40510 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S234569AbhKLCxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 21:53:08 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(25022:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Fri, 12 Nov 2021 10:50:07 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Fri, 12 Nov 2021 10:50:06 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 12 Nov
+ 2021 10:50:07 +0800
+From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+To:     Andrew Lunn <andrew@lunn.ch>, Wells Lu <wellslutw@gmail.com>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
+Subject: RE: [PATCH v2 1/2] devicetree: bindings: net: Add bindings doc for
+ Sunplus SP7021.
+Thread-Topic: [PATCH v2 1/2] devicetree: bindings: net: Add bindings doc for
+ Sunplus SP7021.
+Thread-Index: AQHX1ttD14D1e9fuyEOeGcQRZL+/3qv+HqCAgAEP3AA=
+Date:   Fri, 12 Nov 2021 02:50:07 +0000
+Message-ID: <ad1bd782276844f7b4e2457c5d971af4@sphcmbx02.sunplus.com.tw>
+References: <cover.1636620754.git.wells.lu@sunplus.com>
+ <321e3b1a7dfca81f3ffae03b11099e8efeef92fa.1636620754.git.wells.lu@sunplus.com>
+ <YY1fofJI0CW4Wmh5@lunn.ch>
+In-Reply-To: <YY1fofJI0CW4Wmh5@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <1635232282-3992-1-git-send-email-dillon.minfei@gmail.com> <1635232282-3992-10-git-send-email-dillon.minfei@gmail.com>
-In-Reply-To: <1635232282-3992-10-git-send-email-dillon.minfei@gmail.com>
-From:   Dillon Min <dillon.minfei@gmail.com>
-Date:   Fri, 12 Nov 2021 10:40:09 +0800
-Message-ID: <CAL9mu0LVBSorMK9KbZ3kXYcnubi44yPDxzMroKYVYB2c=o+xjQ@mail.gmail.com>
-Subject: Re: [PATCH v7 09/10] clk: stm32: Fix ltdc's clock turn off by
- clk_disable_unused() after system enter shell
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Patrice CHOTARD <patrice.chotard@foss.st.com>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>, gnurou@gmail.com,
-        ezequiel@collabora.com, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        mchehab+huawei@kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        hugues.fruchet@foss.st.com,
-        linux-media <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>,
-        kbuild-all@lists.01.org, llvm@lists.linux.dev,
-        Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stephen
-
-Would you pick up this patch? Thanks.
-
-Best Regards.
-Dillon
-
-On Tue, 26 Oct 2021 at 15:12, Dillon Min <dillon.minfei@gmail.com> wrote:
->
-> stm32's clk driver register two ltdc gate clk to clk core by
-> clk_hw_register_gate() and clk_hw_register_composite()
->
-> first: 'stm32f429_gates[]', clk name is 'ltdc', which no user to use.
-> second: 'stm32f429_aux_clk[]', clk name is 'lcd-tft', used by ltdc driver
->
-> both of them point to the same offset of stm32's RCC register. after
-> kernel enter console, clk core turn off ltdc's clk as 'stm32f429_gates[]'
-> is no one to use. but, actually 'stm32f429_aux_clk[]' is in use.
->
-> stm32f469/746/769 have the same issue, fix it.
->
-> Fixes: daf2d117cbca ("clk: stm32f4: Add lcd-tft clock")
-> Link: https://lore.kernel.org/linux-arm-kernel/1590564453-24499-7-git-send-email-dillon.minfei@gmail.com/
-> Link: https://lore.kernel.org/lkml/CAPTRvHkf0cK_4ZidM17rPo99gWDmxgqFt4CDUjqFFwkOeQeFDg@mail.gmail.com/
-> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
-> Reviewed-by: Patrice Chotard <patrice.chotard@foss.st.com>
-> Acked-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> ---
-> v7:
-> - collect acked-by, reviewed-by from Gabriel, Patrice.
->
->  drivers/clk/clk-stm32f4.c | 4 ----
->  1 file changed, 4 deletions(-)
->
-> diff --git a/drivers/clk/clk-stm32f4.c b/drivers/clk/clk-stm32f4.c
-> index af46176ad053..473dfe632cc5 100644
-> --- a/drivers/clk/clk-stm32f4.c
-> +++ b/drivers/clk/clk-stm32f4.c
-> @@ -129,7 +129,6 @@ static const struct stm32f4_gate_data stm32f429_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 20,      "spi5",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->  };
->
->  static const struct stm32f4_gate_data stm32f469_gates[] __initconst = {
-> @@ -211,7 +210,6 @@ static const struct stm32f4_gate_data stm32f469_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 20,      "spi5",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->  };
->
->  static const struct stm32f4_gate_data stm32f746_gates[] __initconst = {
-> @@ -286,7 +284,6 @@ static const struct stm32f4_gate_data stm32f746_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 23,      "sai2",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->  };
->
->  static const struct stm32f4_gate_data stm32f769_gates[] __initconst = {
-> @@ -364,7 +361,6 @@ static const struct stm32f4_gate_data stm32f769_gates[] __initconst = {
->         { STM32F4_RCC_APB2ENR, 21,      "spi6",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 22,      "sai1",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 23,      "sai2",         "apb2_div" },
-> -       { STM32F4_RCC_APB2ENR, 26,      "ltdc",         "apb2_div" },
->         { STM32F4_RCC_APB2ENR, 30,      "mdio",         "apb2_div" },
->  };
->
-> --
-> 2.7.4
->
+SGksDQoNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4gKyAgICAjaW5jbHVkZSA8ZHQt
+YmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQo+ID4gKyAgICBlbWFjOiBlbWFj
+QDljMTA4MDAwIHsNCj4gPiArICAgICAgICBjb21wYXRpYmxlID0gInN1bnBsdXMsc3A3MDIxLWVt
+YWMiOw0KPiA+ICsgICAgICAgIHJlZyA9IDwweDljMTA4MDAwIDB4NDAwPiwgPDB4OWMwMDAyODAg
+MHg4MD47DQo+ID4gKyAgICAgICAgcmVnLW5hbWVzID0gImVtYWMiLCAibW9vbjUiOw0KPiA+ICsg
+ICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8JmludGM+Ow0KPiA+ICsgICAgICAgIGludGVycnVw
+dHMgPSA8NjYgSVJRX1RZUEVfTEVWRUxfSElHSD47DQo+ID4gKyAgICAgICAgY2xvY2tzID0gPCZj
+bGtjIDB4YTc+Ow0KPiA+ICsgICAgICAgIHJlc2V0cyA9IDwmcnN0YyAweDk3PjsNCj4gPiArICAg
+ICAgICBwaHktaGFuZGxlMSA9IDwmZXRoX3BoeTA+Ow0KPiA+ICsgICAgICAgIHBoeS1oYW5kbGUy
+ID0gPCZldGhfcGh5MT47DQo+ID4gKyAgICAgICAgcGluY3RybC0wID0gPCZlbWFjX2RlbW9fYm9h
+cmRfdjNfcGlucz47DQo+ID4gKyAgICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCj4g
+PiArICAgICAgICBudm1lbS1jZWxscyA9IDwmbWFjX2FkZHIwPiwgPCZtYWNfYWRkcjE+Ow0KPiA+
+ICsgICAgICAgIG52bWVtLWNlbGwtbmFtZXMgPSAibWFjX2FkZHIwIiwgIm1hY19hZGRyMSI7DQo+
+ID4gKw0KPiA+ICsgICAgICAgIG1kaW8gew0KPiA+ICsgICAgICAgICAgICAjYWRkcmVzcy1jZWxs
+cyA9IDwxPjsNCj4gPiArICAgICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gKyAgICAg
+ICAgICAgIGV0aF9waHkwOiBldGhlcm5ldC1waHlAMCB7DQo+ID4gKyAgICAgICAgICAgICAgICBy
+ZWcgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICBwaHktbW9kZSA9ICJybWlpIjsNCj4gDQo+
+IFRoaXMgaXMgaW4gdGhlIHdyb25nIHBsYWNlLiBJdCBpcyBhIE1BQyBwcm9wZXJ0eS4gWW91IHVz
+dWFsbHkgcHV0IGl0IG5leHQgdG8gcGh5LWhhbmRsZS4NCg0KWWVzLCBJJ2xsIG1vdmUgcGh5LW1v
+ZGUgdG8gRXRoZXJuZXQtcG9ydCBuZXh0IHBhdGNoLg0KDQoNCj4gPiArICAgICAgICAgICAgfTsN
+Cj4gPiArICAgICAgICAgICAgZXRoX3BoeTE6IGV0aGVybmV0LXBoeUAxIHsNCj4gPiArICAgICAg
+ICAgICAgICAgIHJlZyA9IDwxPjsNCj4gPiArICAgICAgICAgICAgICAgIHBoeS1tb2RlID0gInJt
+aWkiOw0KPiA+ICsgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAgIH07DQo+IA0KPiBJIHdvdWxk
+IHN1Z2dlc3QgeW91IHN0cnVjdHVyZSB0aGlzIGRpZmZlcmVudGx5IHRvIG1ha2UgaXQgY2xlYXIg
+aXQgaXMgYSB0d28gcG9ydCBzd2l0Y2g6DQo+IA0KPiAJZXRoZXJuZXQtcG9ydHMgew0KPiAJCSNh
+ZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiAgICAgICAgICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47
+DQo+IA0KPiAgICAgICAgICAgICAgICAgcG9ydEAwIHsNCj4gICAgICAgICAgICAgICAgICAgICBy
+ZWcgPSA8MD47DQo+IAkJICAgIHBoeS1oYW5kbGUgPSA8JmV0aF9waHkwPjsNCj4gCQkgICAgcGh5
+LW1vZGUgPSAicm1paSI7DQo+IAkJfQ0KPiANCj4gCQlwb3J0QDEgew0KPiAgICAgICAgICAgICAg
+ICAgICAgIHJlZyA9IDwxPjsNCj4gCQkgICAgcGh5LWhhbmRsZSA9IDwmZXRoX3BoeTE+Ow0KPiAJ
+CSAgICBwaHktbW9kZSA9ICJybWlpIjsNCj4gCQl9DQo+IAl9DQo+IA0KPiAJQW5kcmV3DQoNClll
+cywgcmVmZXIgdG8gbmV3IGV4YW1wbGU6DQoNCmV4YW1wbGVzOg0KICAtIHwNCiAgICAjaW5jbHVk
+ZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQogICAgZW1hYzogZW1h
+Y0A5YzEwODAwMCB7DQogICAgICAgIGNvbXBhdGlibGUgPSAic3VucGx1cyxzcDcwMjEtZW1hYyI7
+DQogICAgICAgIHJlZyA9IDwweDljMTA4MDAwIDB4NDAwPiwgPDB4OWMwMDAyODAgMHg4MD47DQog
+ICAgICAgIHJlZy1uYW1lcyA9ICJlbWFjIiwgIm1vb241IjsNCiAgICAgICAgaW50ZXJydXB0LXBh
+cmVudCA9IDwmaW50Yz47DQogICAgICAgIGludGVycnVwdHMgPSA8NjYgSVJRX1RZUEVfTEVWRUxf
+SElHSD47DQogICAgICAgIGNsb2NrcyA9IDwmY2xrYyAweGE3PjsNCiAgICAgICAgcmVzZXRzID0g
+PCZyc3RjIDB4OTc+Ow0KICAgICAgICBwaW5jdHJsLTAgPSA8JmVtYWNfZGVtb19ib2FyZF92M19w
+aW5zPjsNCiAgICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCiAgICAgICAgbnZtZW0t
+Y2VsbHMgPSA8Jm1hY19hZGRyMD4sIDwmbWFjX2FkZHIxPjsNCiAgICAgICAgbnZtZW0tY2VsbC1u
+YW1lcyA9ICJtYWNfYWRkcjAiLCAibWFjX2FkZHIxIjsNCg0KICAgICAgICBldGhlcm5ldC1wb3J0
+cyB7DQogICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCiAgICAgICAgICAgICNzaXpl
+LWNlbGxzID0gPDA+Ow0KDQogICAgICAgICAgICBwb3J0QDAgew0KICAgICAgICAgICAgICAgIHJl
+ZyA9IDwwPjsNCiAgICAgICAgICAgICAgICBwaHktaGFuZGxlID0gPCZldGhfcGh5MD47DQogICAg
+ICAgICAgICAgICAgcGh5LW1vZGUgPSAicm1paSI7DQogICAgICAgICAgICB9Ow0KDQogICAgICAg
+ICAgICBwb3J0QDEgew0KICAgICAgICAgICAgICAgIHJlZyA9IDwxPjsNCiAgICAgICAgICAgICAg
+ICBwaHktaGFuZGxlID0gPCZldGhfcGh5MT47DQogICAgICAgICAgICAgICAgcGh5LW1vZGUgPSAi
+cm1paSI7DQogICAgICAgICAgICB9Ow0KICAgICAgICB9Ow0KDQogICAgICAgIG1kaW8gew0KICAg
+ICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQogICAgICAgICAgICAjc2l6ZS1jZWxscyA9
+IDwwPjsNCg0KICAgICAgICAgICAgZXRoX3BoeTA6IGV0aGVybmV0LXBoeUAwIHsNCiAgICAgICAg
+ICAgICAgICByZWcgPSA8MD47DQogICAgICAgICAgICB9Ow0KDQogICAgICAgICAgICBldGhfcGh5
+MTogZXRoZXJuZXQtcGh5QDEgew0KICAgICAgICAgICAgICAgIHJlZyA9IDwxPjsNCiAgICAgICAg
+ICAgIH07DQogICAgICAgIH07DQogICAgfTsNCg0KSXMgaXQgY29ycmVjdD8NCg0KVGhhbmsgeW91
+IHZlcnkgbXVjaCBmb3IgeW91ciByZXZpZXcuDQoNCg==
