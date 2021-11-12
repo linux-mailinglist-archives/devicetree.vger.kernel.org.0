@@ -2,185 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1290644EFDC
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 23:58:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A691E44EFE2
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 00:01:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233247AbhKLXBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 18:01:43 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:46750 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233569AbhKLXBk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 18:01:40 -0500
-Received: by mail-ot1-f46.google.com with SMTP id b5-20020a9d60c5000000b0055c6349ff22so16009648otk.13;
-        Fri, 12 Nov 2021 14:58:49 -0800 (PST)
+        id S231877AbhKLXEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 18:04:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44996 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229634AbhKLXEH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 18:04:07 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56625C061766
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 15:01:16 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id d5so18132661wrc.1
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 15:01:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=vc+ozzegQu9E060BWyNWE6QYi6X3ewwqh8BLUJc9Afg=;
+        b=L+Y/HehTTOAHNMJTXcZyxIi1eFGVjS7HuEyu9bSNGLfOh7gTwl10LpbmklxM9741XC
+         kHtpX5n88Z4g7Yu4yh4sG0i1dUMkX+obauYPx65dCWNaXd/nmvOL1FmXpWOgh1NPBl30
+         33ptRRA02umH08gWy7DqOTCTu6tSeE5nJD8MWqUrzWd5LlH72reVB8TQJRldnfz5dJEn
+         2mMM7E56rHpGdR9I0EFKOwwe5v0mcRjnU7/Fh/rfQ36DflKEYyodzmV4aZNhX639Apoh
+         rMxL08Bvpkqm+eTE4ZNLbqFkJiYktvScquxGF31bhPVFaaeNpwVXY/r1r1aKU5v50yDL
+         3BCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=n70w2ubplDiZAdzqk24kbZs0VlRAwLWhU8ICxlpOJjA=;
-        b=FGlTsBGwxWhD6oeD83AtgukxpAFTvEWpbQTUD7gb50Ma5DgHNyMuCk4G0E7upUuXNT
-         3Rk2+DzbV/1JHOMlTrK818kby+sNPjPck/ZUfkjToU2Z5sauV3nht355/up/aNd6Iz6B
-         nXB1JOvs9zGr0ElphCNBzKPaMRvHj0rVUaGw3lFLyX/b0mASHoF83oG4LXDCzGcci2mQ
-         SCD3N2T2tlXa/DHPFisNk+I5xe27gQN2AmvWfvwzD8nQOGTLVwM9YLwHbkmpjQd0WEll
-         /fuUoZ7QLV1u7T0gERB09doatqtClt/VdleIHlS9O2NnFnVDpOJXuOZ/5hunLOZc229G
-         N4BQ==
-X-Gm-Message-State: AOAM533I6B57dCg8IiZ6YWUiSEf9h4vB84F3PKDZQOv7zmvUbxmChI0Z
-        OTsHqFOZUecYWlOV7du9Lg==
-X-Google-Smtp-Source: ABdhPJyclPgxDJ9KXlC2POWFBgGSHoxPgp2rjJQPATtn61R3v0OFcZJxbAqUJDOxOG6Ief5H0ietBA==
-X-Received: by 2002:a9d:805:: with SMTP id 5mr14501816oty.383.1636757928682;
-        Fri, 12 Nov 2021 14:58:48 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d25sm1530251oti.9.2021.11.12.14.58.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 14:58:48 -0800 (PST)
-Received: (nullmailer pid 3534743 invoked by uid 1000);
-        Fri, 12 Nov 2021 22:58:47 -0000
-Date:   Fri, 12 Nov 2021 16:58:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Edwin Chiu =?utf-8?B?6YKx5Z6C5bOw?= <edwin.chiu@sunplus.com>
-Cc:     Edwin chiu <edwinchiu0505tw@gmail.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bingings:arm:sunplus:add sp7021 compatible string
- to sunplus,idle-state.yaml
-Message-ID: <YY7xp3qcO68rJJUC@robh.at.kernel.org>
-References: <cover.1636356928.git.edwin.chiu@sunplus.com>
- <5d2231d33d647d24d2b95c9f652687f7f1dccd2d.1636356928.git.edwin.chiu@sunplus.com>
- <1636376582.101053.3181499.nullmailer@robh.at.kernel.org>
- <d2e1fc4e7913459fbc96d845eb73b87b@sphcmbx02.sunplus.com.tw>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=vc+ozzegQu9E060BWyNWE6QYi6X3ewwqh8BLUJc9Afg=;
+        b=SEjvKX7nodBY1iyY1c+uwaxdXZ1qfPX/g9HJj1JK4ynDokYstJVaGcNdNWj7O+aLQp
+         GZUaE3BJK8uWK0/zGdT3zShSk0GO52bPYxQprwkdx2xctPaHv3rfIS7rfyDjsyOl9f/P
+         FMYOVlnPdTH/kCnzGWBPK0F/nfYYEAN+6doYE4oqI+w/Qk4MF2W8JTFqtCXDvgWoX+yy
+         UmzvGji7mWTnQ40GCVDXl6ifBpTRKuVSx4DWX+ed0XCDBhnHMD8hW3q/Gl7VMCMNIfOj
+         49P2OClYYxOLGLJ3sZZ8dSu8GVU56FzG2UlWuNGe89g2hXjKDnB368iPxA/TOLS0q/V3
+         aumQ==
+X-Gm-Message-State: AOAM532eD2fdf2ynb7pqPy9CvlmME3Vo8+iLIsrG8CMy35/m7SOu6Xd7
+        OLH/e/fVWXnfOKC9J2ekpYEWkg==
+X-Google-Smtp-Source: ABdhPJzl8b1hRH5zxaTKqUesqVewP4iALaU9dSBVgJ7MJ64/+XclXmFexpLIQdymL1AtDiO9sH+xtw==
+X-Received: by 2002:adf:f88c:: with SMTP id u12mr23491919wrp.29.1636758074601;
+        Fri, 12 Nov 2021 15:01:14 -0800 (PST)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id u15sm7753483wmq.13.2021.11.12.15.01.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 12 Nov 2021 15:01:14 -0800 (PST)
+Message-ID: <c2716d3c-e9ec-eb43-1bca-dfbdd7217cdc@linaro.org>
+Date:   Fri, 12 Nov 2021 23:03:15 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d2e1fc4e7913459fbc96d845eb73b87b@sphcmbx02.sunplus.com.tw>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.1
+Subject: Re: [PATCH v3 1/7] dt-bindings: usb: Add qcom,pmic-usb-typec
+ dt-binding header
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux@roeck-us.net, heikki.krogerus@linux.intel.com,
+        gregkh@linuxfoundation.org, bjorn.andersson@linaro.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wcheng@codeaurora.org
+References: <20211105033558.1573552-1-bryan.odonoghue@linaro.org>
+ <20211105033558.1573552-2-bryan.odonoghue@linaro.org>
+ <YY7qcrf3axIWcQni@robh.at.kernel.org>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <YY7qcrf3axIWcQni@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 09, 2021 at 06:58:24AM +0000, Edwin Chiu 邱垂峰 wrote:
-> Hi Rob:
+On 12/11/2021 22:28, Rob Herring wrote:
+>> @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+> Did you check with QCom on this license choice for DT files?
 > 
-> Look into the full log, it show you check 3 programs
-> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> Context	Check	Description
-> robh/checkpatch	warning	total: 0 errors, 1 warnings, 67 lines checked
-> robh/dt-meta-schema	success	
-> robh/dtbs-check	fail	build log
-> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> 1) The checkpatch warning is WARNING: From:/Signed-off-by: email address mismatch: 'From: Edwin chiu <edwinchiu0505tw@gmail.com>' != 'Signed-off-by: Edwin chiu <edwin.chiu@sunplus.com>'
-> ==> I want explain to you that <edwin.chiu@sunplus.com> is my email in the company, but it disagree operate by "git send-email".
->     So I used <edwinchiu0505tw@gmail.com> in my linux system to operate with "git send-email".
->    Actually I checkpatch in my side was 0 error 0 warning.
 
-The email used to send and the author emails are independent in git. 
-There should be a 'From:' line in the resulting patch when the sender 
-and author don't match.
+Hmm to be fair I'm not sure this matches the original header downstream, 
+I will check again.
 
-Maybe you need to set sendemail.from config option to your corp email.
-
-> 
-> 2) Regarding to dtbs-check issue, your list warnings related to others company's yaml file, it not my yaml file case. 
->    What is the purpose you want? Or what should I do?
-
-You aren't adding anything custom, so why are you even adding the 
-schema? arm/idle-states.yaml should be enough.
-
-> 
-> 3) Execute=>make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
-> There are many config select items…..I don't know how to select them.
-> (I execute "make config " and "make all" were pass)
-> Can you teach me how to do "make dtbs_check"?
-
-Did you read Documentation/devicetree/bindings/writing-schema.rst?
-
-To check all dts files (for an arch) and run the validation, do:
-
-make allmodconfig
-make dtbs_check
-
-Rob
-
-> 
-> 邱垂峰 EdwinChiu
-> 智能運算專案
-> T: +886-3-5786005 ext.2590
-> edwin.chiu@sunplus.com
-> 300 新竹科學園區創新一路19號
-> 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org> 
-> Sent: Monday, November 8, 2021 9:03 PM
-> To: Edwin chiu <edwinchiu0505tw@gmail.com>
-> Cc: robh+dt@kernel.org; daniel.lezcano@linaro.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; rafael@kernel.org; linux-pm@vger.kernel.org; Edwin Chiu 邱垂峰 <edwin.chiu@sunplus.com>
-> Subject: Re: [PATCH 1/2] dt-bingings:arm:sunplus:add sp7021 compatible string to sunplus,idle-state.yaml
-> 
-> On Mon, 08 Nov 2021 15:55:09 +0800, Edwin chiu wrote:
-> > Add the compatible string for cpuidle state on sp7021
-> > 
-> > Signed-off-by: Edwin chiu <edwin.chiu@sunplus.com>
-> > ---
-> >  .../bindings/arm/sunplus/sunplus,idle-state.yaml   | 55 ++++++++++++++++++++++
-> >  MAINTAINERS                                        |  6 +++
-> >  2 files changed, 61 insertions(+)
-> >  create mode 100644 
-> > Documentation/devicetree/bindings/arm/sunplus/sunplus,idle-state.yaml
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the following warnings. Consider if they are expected or the schema is incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1552228
-> 
-> 
-> spc: compatible:0: 'arm,idle-state' was expected
-> 	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-> 
-> spc: compatible: Additional items are not allowed ('arm,idle-state' was unexpected)
-> 	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-> 
-> spc: compatible: ['qcom,idle-state-spc', 'arm,idle-state'] is too long
-> 	arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8074-dragonboard.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8084-ifc6540.dt.yaml
-> 	arch/arm/boot/dts/qcom-apq8084-mtp.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-samsung-klte.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dt.yaml
-> 	arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dt.yaml
-> 
+---
+bod
