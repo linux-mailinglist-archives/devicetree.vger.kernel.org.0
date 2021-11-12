@@ -2,69 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6445444ECB8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 19:42:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9C8344ECC4
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 19:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235122AbhKLSow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 13:44:52 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:44958 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbhKLSov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 13:44:51 -0500
-Received: by mail-ot1-f52.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso15144593otj.11;
-        Fri, 12 Nov 2021 10:42:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vcgR1nbufCoCbRuAa8zswFRoB//aqIyQ2E43eUuCpvY=;
-        b=iZW6N1pSoMuApese+yWGKnDLezceqYi7BAxMKdf3IpoMSv0YTqYdF8NfiYVfQrYAvo
-         UmZRIfChn8ZN51Oa8J63Q/FhSckYLAZ8JyrwiEqK/cMm9Pn+EeO/szRdQrm59Un349O+
-         p7X29hL5foZ5Ih849zyxeVHnCJrO/+1qtuNrpk6eao3UbJ8dKtd2PIINrbG/hb7Jgqtd
-         OhVKvvM4vfqZ32+TrfR27YcWbBOmbg70O3GJFIdQyaMG5VAyUfUpaG4U+jfnUfaqwMDQ
-         3VGxlNIet7Q44Xz/JA5S+88CkxLXw5NDgSLfAQSJyLSbXGTlbZD0KuhbUQKgXNWg/hXu
-         9WDQ==
-X-Gm-Message-State: AOAM53243QDr+jtZGq/f3bHsJVBreHEiFopmMFO6AVsLSwuJlFjekaNH
-        mTdAygTMnfsv/xlrG33D8A==
-X-Google-Smtp-Source: ABdhPJzFnFwbxtWBlX5ksSuUmXfL7XL/+HW0ccs5ZAZrL43wYYjI/Yi9v/+FK15zydRYZgg+WFgiSg==
-X-Received: by 2002:a05:6830:25c2:: with SMTP id d2mr10917364otu.51.1636742520434;
-        Fri, 12 Nov 2021 10:42:00 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e2sm1187521ooh.40.2021.11.12.10.41.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 10:41:59 -0800 (PST)
-Received: (nullmailer pid 3152154 invoked by uid 1000);
-        Fri, 12 Nov 2021 18:41:58 -0000
-Date:   Fri, 12 Nov 2021 12:41:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rakesh Pillai <pillair@codeaurora.org>
-Cc:     ohad@wizery.com, agross@kernel.org, swboyd@chromium.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, mpubbise@codeaurora.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        sibis@codeaurora.org, kuabhs@chromium.org, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, mathieu.poirier@linaro.org
-Subject: Re: [PATCH v8 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS
- support
-Message-ID: <YY61dp43htii+Nk0@robh.at.kernel.org>
-References: <1635860673-12146-1-git-send-email-pillair@codeaurora.org>
- <1635860673-12146-3-git-send-email-pillair@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1635860673-12146-3-git-send-email-pillair@codeaurora.org>
+        id S235615AbhKLSrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 13:47:17 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:46808 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235616AbhKLSrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 13:47:16 -0500
+X-IronPort-AV: E=Sophos;i="5.87,230,1631545200"; 
+   d="scan'208";a="100101575"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 13 Nov 2021 03:44:25 +0900
+Received: from localhost.localdomain (unknown [10.226.92.48])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 4E36840D6012;
+        Sat, 13 Nov 2021 03:44:22 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 2/4] dt-bindings: timer: renesas: ostm: Document Renesas RZ/G2L OSTM
+Date:   Fri, 12 Nov 2021 18:44:11 +0000
+Message-Id: <20211112184413.4391-3-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20211112184413.4391-1-biju.das.jz@bp.renesas.com>
+References: <20211112184413.4391-1-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 02 Nov 2021 19:14:32 +0530, Rakesh Pillai wrote:
-> Add WPSS PIL loading support for SC7280 SoCs.
-> 
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
->  .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 217 +++++++++++++++++++++
->  1 file changed, 217 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-> 
+Document the General Timer Module(a.k.a OSTM) found on the RZ/G2L SoC.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+V2->v3:
+ * Added Geert's Rb tag.
+v1->v2:
+ * Use renesas,ostm instead od rzg2l-ostm
+---
+ .../bindings/timer/renesas,ostm.yaml          | 20 ++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+index 600d47ab7d58..7fa7f977b44c 100644
+--- a/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
++++ b/Documentation/devicetree/bindings/timer/renesas,ostm.yaml
+@@ -21,9 +21,10 @@ properties:
+   compatible:
+     items:
+       - enum:
+-          - renesas,r7s72100-ostm # RZ/A1H
+-          - renesas,r7s9210-ostm  # RZ/A2M
+-      - const: renesas,ostm       # Generic
++          - renesas,r7s72100-ostm  # RZ/A1H
++          - renesas,r7s9210-ostm   # RZ/A2M
++          - renesas,r9a07g044-ostm # RZ/G2{L,LC}
++      - const: renesas,ostm        # Generic
+ 
+   reg:
+     maxItems: 1
+@@ -37,6 +38,9 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  resets:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+@@ -44,6 +48,16 @@ required:
+   - clocks
+   - power-domains
+ 
++if:
++  properties:
++    compatible:
++      contains:
++        enum:
++          - renesas,r9a07g044-ostm
++then:
++  required:
++    - resets
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.17.1
+
