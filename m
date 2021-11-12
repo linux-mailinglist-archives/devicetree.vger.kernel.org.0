@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C49EE44EA11
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A983444EA18
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:32:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234849AbhKLPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 10:32:28 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36473 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229841AbhKLPc2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 10:32:28 -0500
-Received: by mail-oi1-f169.google.com with SMTP id q124so18514645oig.3;
-        Fri, 12 Nov 2021 07:29:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NcKV1P8PtklrAEv0EqDF5emPk1NdNH66AlfbPOIsk58=;
-        b=IFWTClQIXqhlMQb8wr4Nbq+zYg6C+kr8BHnV70t6um0APLJfoy5B0vzvTZdfCeqAN8
-         2v+1G1x1w0Aud9NkwVp+z7MfHoF2cy3lSthCQ5qXeOqGEG0EEzAQD4U9QTmDIf29e3nv
-         Tz0pYbQgUFRWGk1vppKRQwKf3ZMm+xn1LEe/YzybqnZPIdiFszfawkZXkZA0pdqferPW
-         00uocr9lrZJ0cPgm/JmULiwuHd2Q0xynUziVx2EQibIlIipLhI983TF7F7IAfh+i94zE
-         9pKj6xirOiNVI5gO0g9uxk5j3hSWMA8ZeiV57RLyDxDveev+IuoROjhwT1DOU/i2ove9
-         k4vg==
-X-Gm-Message-State: AOAM532mRxBrd+QMGd3QTkoRpXcmudh7m+QFJ9hPQmidDxAS9HFJAFrK
-        kZ13PuX8gHc4i80tFORgNw==
-X-Google-Smtp-Source: ABdhPJwKyezcypEhopkQsqPZqd2bc/4EdlYNnybf6hgAvuR7p9iajdD+9EvTtzuxT+R2z7irxYQ5nQ==
-X-Received: by 2002:a05:6808:bc7:: with SMTP id o7mr10400028oik.172.1636730977266;
-        Fri, 12 Nov 2021 07:29:37 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l2sm1262579otl.61.2021.11.12.07.29.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 07:29:36 -0800 (PST)
-Received: (nullmailer pid 2884680 invoked by uid 1000);
-        Fri, 12 Nov 2021 15:29:35 -0000
-Date:   Fri, 12 Nov 2021 09:29:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     David Virag <virag.david003@gmail.com>
-Cc:     linux-gpio@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: samsung: Document Exynos7885
-Message-ID: <YY6IX0FYGfdP11zR@robh.at.kernel.org>
-References: <20211031231511.46856-1-virag.david003@gmail.com>
+        id S230308AbhKLPfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 10:35:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36888 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229509AbhKLPfB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 10:35:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CFBC360EBD;
+        Fri, 12 Nov 2021 15:32:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636731131;
+        bh=kKRhDzHtRFfUXSKAuOEAK80vLG3pkJ5tWmulI3l4RTs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jLpvW4NB7E/wWiS9lWf8SIo4K+NMTtgb7Lv40EaNCI6aqux5UKpA8zezkGKS5knKg
+         Dt9VMIPRA/QNVfrWTzTyyx9YzvHnH7GQb+oJ+dhlue7Tf+R9obguWYsAnUidG8d3Hp
+         L0LDX170AQhX8rlYT1eTH5LF7xNTc4yBjOIngDhVREpexLcWnLKpc2NS5qAvUAL/eE
+         J8piJ7soVdQd3rMfMJtm3j/Dh0U4XSk2jJ5GIzwb+1FbfUECOWOAJeFhRt9JcMYN37
+         QUDmJ1SL+pwVxDGGS+w2/edit8ocQQo0SQ9+IesnVCNw0WUSjmUqU9OjgFiV+A7fAV
+         FtqDxHqJAwIBA==
+Received: by pali.im (Postfix)
+        id 92D6C79D; Fri, 12 Nov 2021 16:32:08 +0100 (CET)
+Date:   Fri, 12 Nov 2021 16:32:08 +0100
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        Bjorn Helgaas <helgaas@kernel.org>
+Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
+ 'slot-power-limit-milliwatt' PCIe port property
+Message-ID: <20211112153208.s4nuckz7js4fipce@pali>
+References: <20211031150706.27873-1-kabel@kernel.org>
+ <YY6HYM4T+A+tm85P@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211031231511.46856-1-virag.david003@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YY6HYM4T+A+tm85P@robh.at.kernel.org>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 01 Nov 2021 00:15:11 +0100, David Virag wrote:
-> Document compatible string for Exynos7885 SoC.
+On Friday 12 November 2021 09:25:20 Rob Herring wrote:
+> On Sun, Oct 31, 2021 at 04:07:05PM +0100, Marek Behún wrote:
+> > +   If present, this property specifies slot power limit in milliwatts. Host
+> > +   drivers can parse this property and use it for programming Root Port or host
+> > +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit messages
+> > +   through the Root Port or host bridge when transitioning PCIe link from a
+> > +   non-DL_Up Status to a DL_Up Status.
 > 
-> Signed-off-by: David Virag <virag.david003@gmail.com>
-> ---
-> Changes in v2:
->   - (none)
-> 
->  Documentation/devicetree/bindings/pinctrl/samsung-pinctrl.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> If your slots are behind a switch, then doesn't this apply to any bridge 
+> port?
 
-Acked-by: Rob Herring <robh@kernel.org>
+The main issue here is that pci.txt (and also scheme on github) is
+mixing host bridge and root ports into one node. This new property
+should be defined at the same place where is supports-clkreq or
+reset-gpios, as it belongs to them.
+
+And you are right, that this new property should be defined only for
+root ports and downstream ports of switch.
