@@ -2,119 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C78244E6B8
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 13:45:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 067EB44E6FE
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:06:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235100AbhKLMsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 07:48:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45450 "EHLO
+        id S234899AbhKLNJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 08:09:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235082AbhKLMsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 07:48:16 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A042FC0613F5;
-        Fri, 12 Nov 2021 04:45:25 -0800 (PST)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id AA7CC3F246;
-        Fri, 12 Nov 2021 13:45:23 +0100 (CET)
-Date:   Fri, 12 Nov 2021 13:45:22 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [RESEND PATCH v2 05/13] backlight: qcom-wled: Override default
- length with qcom,enabled-strings
-Message-ID: <20211112124522.g7e3m7l2oxxxobof@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>, Bryan Wu <cooloney@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org
-References: <20211112002706.453289-1-marijn.suijten@somainline.org>
- <20211112002706.453289-6-marijn.suijten@somainline.org>
- <20211112121238.kb3kkt6xzv5so26j@maple.lan>
+        with ESMTP id S231652AbhKLNJW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 08:09:22 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B5AC061766;
+        Fri, 12 Nov 2021 05:06:31 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id s13so15445553wrb.3;
+        Fri, 12 Nov 2021 05:06:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8Yrfd/ijTqnwsVY0AsIgyAz4+oo/Nt1kqDk4QVJjw1A=;
+        b=Jvhp3tqpaMCssceziTTb044FnhBOR+aHEZh+gECgv1H6MZqm3k3hDR8kBzYnmCR142
+         85hR/qVOvWuehXjL14CZyRsvBMR0/PXLX/CEcCY+zOC9dhgRma7U19cbEeeA356Tt8Sz
+         m1dUlwsbKzTun+Q8WpsTqyU4YW85g35OIYfmqpS5fFdIWmLcpF4yvLtPr8Aig+XEMHjw
+         XmkYeeTrqH58D3x0dRLb77Yvj0wldCD36n5aDXJIw0JfpGXa6WbOs+mcs7s+S2Z86gjw
+         F32J1rrEgTn1OQ28aJMrevDvve4lLySk582dL24RnB3Twyh4drwgrwgobz6AZ9PfmqLC
+         uAmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8Yrfd/ijTqnwsVY0AsIgyAz4+oo/Nt1kqDk4QVJjw1A=;
+        b=HlrfHth3FPW5qa175bonFgON/EkcwW3is3Cg42hkQW144sL5spK1Dnj0pg3rQ7KtC1
+         PGduNLS0QulQMZbwEwW/vAbrfHVHTqY1Ab0AFKQ5lkephO7AgmqjbG0SncWO4bLA1nps
+         FlExoJQpcraRU/gR+Eqvt2Hbu/Q0sveZCSzZGat6ik2gui0sK4ELIOkuPHuDfmSgvjCe
+         ryHpLOT8A7hcShDxYCESChy9zd98XxKtnFfrs2ihdIaL2C2QoHtji9qypRFxqw5+aixh
+         /yAG+bZNHm2bD+CwkX3kYtYupttCJn5PsLvqBwL4ZVGzpv+v1CA8SI9Y74vIQpsbXolC
+         w4cw==
+X-Gm-Message-State: AOAM533FSJu7/8ANxCMox+sYyUoZF0WatERPlj8YsrrKcsEhfp0TSyCi
+        3roku+u1fLlZUgfwjldAVqQl9B1982Sanw==
+X-Google-Smtp-Source: ABdhPJwLcB4mQF84pkJgqXGTyb3auYnMOC1x6fc19EOw78pFtAg4mHlrY/+DFBNdYFeKmMDuRuXX1A==
+X-Received: by 2002:a5d:69c5:: with SMTP id s5mr17837746wrw.283.1636722390119;
+        Fri, 12 Nov 2021 05:06:30 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id g13sm5354445wmk.37.2021.11.12.05.06.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 05:06:29 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] memory: tegra: Add Tegra234 support
+Date:   Fri, 12 Nov 2021 14:06:22 +0100
+Message-Id: <20211112130627.3682795-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112121238.kb3kkt6xzv5so26j@maple.lan>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-12 12:12:38, Daniel Thompson wrote:
-> On Fri, Nov 12, 2021 at 01:26:58AM +0100, Marijn Suijten wrote:
-> > The length of qcom,enabled-strings as property array is enough to
-> > determine the number of strings to be enabled, without needing to set
-> > qcom,num-strings to override the default number of strings when less
-> > than the default (which is also the maxium) is provided in DT.
-> > 
-> > Fixes: 775d2ffb4af6 ("backlight: qcom-wled: Restructure the driver for WLED3")
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > ---
-> >  drivers/video/backlight/qcom-wled.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > index c5232478a343..9bfbf601762a 100644
-> > --- a/drivers/video/backlight/qcom-wled.c
-> > +++ b/drivers/video/backlight/qcom-wled.c
-> > @@ -1518,6 +1518,8 @@ static int wled_configure(struct wled *wled)
-> >  				return -EINVAL;
-> >  			}
-> >  		}
-> > +
-> > +		cfg->num_strings = string_len;
-> 
-> I still don't really understand why this wants to be a separate patch.
+From: Thierry Reding <treding@nvidia.com>
 
-I'm viewing this as a separate issue, and this makes it easier to
-document the change in a loose commit.
+Hi,
 
-> The warning text emitted by the previous patch (whatever text we agree
-> on) will be nonsense until this patch is applied.
-> 
-> If this patch cannot appear before the warning is introduces then there
-> is no correct order for patches 4 and 5 (which implies they should be the
-> same patch).
+this series adds support to the Tegra memory controller driver for the
+version found on the new Tegra234 SoC. It is mostly similar to that on
+earlier chips, except that the memory clients differ.
 
-Agreed, this is a weird way of doing things in v2 - the error message is
-printed yet the length of qcom,enabled-strings is always ignored before
-this patch.
+This also updates the device tree binding with a missing property and
+ensures that all versions of the memory controller device tree nodes can
+be properly validated.
 
-If we were to reorder patch 5 before patch 4 that should also
-temporarily move `cfg->num_strings = cfg->num_strings + 1;` right below
-this `if` so that `qcom,num-strings` remains the definitive way to
-set/override length.  That's doable, and makes it easier to read patch 4
-as that bit of code will be replaced by of_property_read_u32 on that
-exact line.  Let me know which method you prefer.
+Finally, the device trees for Tegra234 are updated and memory client
+nodes are hooked up to the memory controller via interconnect
+properties.
 
-- Marijn
+Thierry
+
+Thierry Reding (5):
+  dt-bindings: memory: tegra: Document #interconnect-cells property
+  dt-bindings: memory: tegra: Add Tegra234 support
+  memory: tegra: Add Tegra234 support
+  arm64: tegra: Add memory controller on Tegra234
+  arm64: tegra: Hook up MMC and BPMP to memory controller
+
+ .../nvidia,tegra186-mc.yaml                   | 14 +++-
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      | 57 +++++++++++++
+ drivers/memory/tegra/Makefile                 |  1 +
+ drivers/memory/tegra/mc.c                     |  3 +
+ drivers/memory/tegra/mc.h                     |  7 +-
+ drivers/memory/tegra/tegra186-emc.c           |  3 +
+ drivers/memory/tegra/tegra234.c               | 81 +++++++++++++++++++
+ include/dt-bindings/clock/tegra234-clock.h    |  9 +++
+ include/dt-bindings/memory/tegra234-mc.h      | 32 ++++++++
+ 9 files changed, 203 insertions(+), 4 deletions(-)
+ create mode 100644 drivers/memory/tegra/tegra234.c
+ create mode 100644 include/dt-bindings/memory/tegra234-mc.h
+
+-- 
+2.33.1
+
