@@ -2,461 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6354644E72E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB7644E732
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:19:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232642AbhKLNWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 08:22:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53100 "EHLO
+        id S233236AbhKLNWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 08:22:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232523AbhKLNWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 08:22:02 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1554C061767;
-        Fri, 12 Nov 2021 05:19:11 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id d72-20020a1c1d4b000000b00331140f3dc8so6767023wmd.1;
-        Fri, 12 Nov 2021 05:19:11 -0800 (PST)
+        with ESMTP id S232523AbhKLNWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 08:22:20 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162E5C0613F5
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 05:19:30 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id b184-20020a1c1bc1000000b0033140bf8dd5so6713849wmb.5
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 05:19:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=rFFBsweLVulkeHO4uR3+8xjcp2/qK2qrpHp+ypySGyM=;
-        b=Udsa077xhK5ZJUzs89kDtRWOUYKaR1FbKy1NgsANG1RHZijYTLLRDTFEk4GQ9cxBzR
-         IvQfskrgNOG946FAu0Wsd7KCeZxP9s3vPIvvAqsTJcz958AclOWDusYhf7gBQutUlaVE
-         919uOahBjMGlfRP3hAQT7Z4XIe/2JfUqhd2oYmPPLDoKZu0X543q6Nqwus6aAKWCIuap
-         d60u7o1RBVoP6BgsJ5TIwyegGoOH6V6r3ObRgLnSBXYEXff34no2rNA5WqfGu24L1ES2
-         65IFR2visnhxWUx+hxOh33hmmVOE0JO7WRWiG0gRZ7GJNsNOSHr5/aNbM7S77cgooF2q
-         paFQ==
+        d=linaro.org; s=google;
+        h=date:from:to:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1eaJViV6yW2w/7feIrBH34EYgKSWZrLiHMX+rKu9+Ec=;
+        b=JPsAx3UoeFB+Q+s++U4FCu9KL6kCzcAnqEpWrv7us5Q47qsbYMibg+3wsg3saypWim
+         Z1o6kg+CKkjkt+e13H9Z+KCcUatH5Ps8kLtjxM6L/aFOWaHUxsJbGOe8wE55cQU0pwIl
+         0QHqmb3CVT1SxOJ2PbV8+qc3h4Pj/uWNGFmO6vHR6/xjoVJ0GhZa7+q9IXOr5aJflESk
+         KVJXQP27EhfQGYIB2oNfvQo214Hi0kPolGTDCay/fBgoeaY07j0X5QoAUcqA/upPxgY/
+         fbL70uvsybKZeUMWVsQXSxN2w5VN2XiiS5DcA5cWoRXZ/OoCe6n+G3lYI7CWaEW/+yif
+         Z2zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=rFFBsweLVulkeHO4uR3+8xjcp2/qK2qrpHp+ypySGyM=;
-        b=FxDbNZ06AdbGMt5V9NITRSrl3DDWiUi8QLQRjvKCjGhmqHld3mAQWEmacPRCRPe+lP
-         RqSytYfDmDts7xKA0s5ICFwR82CSvujao9JUWrKmOMFkSBCzGk5vNUO6PZO4858T1CzH
-         BPMEyGb/cnnZoIGQ9nPcRC9z2ueyM9rSrjmmrmu9fEh0FSBqaQohjwJ7fYQZZ1uHtbxc
-         dEWCHgSon6HqrONJsDPCsvNmwq9ynRco2AoWm11B6kt8+hAI+I8J9xk0RUvFwBywORdv
-         SVyW/9Y+ZsI3WBtbXUKYbkRUbpfPhnY7CB1U7dGooBttPvP5EECcT0yKAF1G85BWwZru
-         8ZPw==
-X-Gm-Message-State: AOAM533T8EhLXNNAi60dTRzX13xai0xYbwJzE2jDE9tUAWUqPleD3ryt
-        5TgXYxnK4i9kt3WDcp+NJzM=
-X-Google-Smtp-Source: ABdhPJx2Wv4yULLGcjTlQ7NRcpn8iagTZ2Nm7lMjWp38EEDgUJXE12cUsEg0QAmy8U8sEoy94shItA==
-X-Received: by 2002:a7b:c7cd:: with SMTP id z13mr32969855wmk.172.1636723150208;
-        Fri, 12 Nov 2021 05:19:10 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id g5sm9006420wri.45.2021.11.12.05.19.08
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1eaJViV6yW2w/7feIrBH34EYgKSWZrLiHMX+rKu9+Ec=;
+        b=60sWD8htBiUSTCizfB3vmGpY6c5+feERdqRriTbw7kPsRQWpuO5Kz9HUbq0RpaGwQ+
+         dEfuDKz1YF/6pfhZ1Pe2qC25+dVgMXcYkFMWIrDPYclgrjzu5mAt0vu/8uxhQ+tALR4i
+         xnlO28naZDwdkww5sKiRZhHAEGw8IUjLfn1rNvJiE/WObFDL/TPt1eFGCtwztHuMGnQn
+         7sc3QyENxTh6hdwMD8wrsqIaO57Tyw/xr2Xkf06VrCJx3R3krquUKnslpP18e5/iOPSz
+         MlKQHechqkqHQnk1pyoAkyANqkdGAIekJcWpLmMBP18ePZyWBd8XB3FHc4AxWi39iwD+
+         RKuQ==
+X-Gm-Message-State: AOAM530XZW21vu4Z2WsU7VMkvcckrxRFieJOydVH2FYEkQjGQNKxBBVW
+        Pr1N6Vddpv9TBqlUi+irZ0dl1w==
+X-Google-Smtp-Source: ABdhPJy8PaKQk1FMOFQ+Jw0w8lm3dSgQdxGTQKA3ULTMRo8aBRFcqJUNv4Q/Nt8CFeZvX5gA0SUbZw==
+X-Received: by 2002:a1c:1fd6:: with SMTP id f205mr34655741wmf.98.1636723168587;
+        Fri, 12 Nov 2021 05:19:28 -0800 (PST)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id f3sm11409384wmb.12.2021.11.12.05.19.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 05:19:09 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
-Subject: [PATCH 2/2] arm64: tegra: Describe Tegra234 CPU hierarchy
-Date:   Fri, 12 Nov 2021 14:19:04 +0100
-Message-Id: <20211112131904.3683428-2-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211112131904.3683428-1-thierry.reding@gmail.com>
-References: <20211112131904.3683428-1-thierry.reding@gmail.com>
+        Fri, 12 Nov 2021 05:19:27 -0800 (PST)
+Date:   Fri, 12 Nov 2021 13:19:25 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        Courtney Cavin <courtney.cavin@sonymobile.com>
+Subject: Re: [RESEND PATCH v2 04/13] backlight: qcom-wled: Fix off-by-one
+ maximum with default num_strings
+Message-ID: <20211112131925.fqallv3z73ehc6y3@maple.lan>
+References: <20211112002706.453289-1-marijn.suijten@somainline.org>
+ <20211112002706.453289-5-marijn.suijten@somainline.org>
+ <20211112120839.i6g747vewg6bkyk7@maple.lan>
+ <20211112123501.pz5e6g7gavlinung@SoMainline.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211112123501.pz5e6g7gavlinung@SoMainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+On Fri, Nov 12, 2021 at 01:35:01PM +0100, Marijn Suijten wrote:
+> On 2021-11-12 12:08:39, Daniel Thompson wrote:
+> > On Fri, Nov 12, 2021 at 01:26:57AM +0100, Marijn Suijten wrote:
+> > > +		if (string_len > 0) {
+> > > +			dev_warn(dev, "qcom,num-strings and qcom,enabled-strings are ambiguous\n");
+> > 
+> > The warning should also be below the error message on the next if statement.
+> 
+> Agreed.
+> 
+> > This warning occurs even when there is no ambiguity.
+> > 
+> > This could be:
+> > 
+> > 	if (string_len > 0 && val != string_len)
+> > 
+> > Combined these changes allows us to give a much more helpful and assertive
+> > warning message:
+> > 
+> > qcom,num-strings mis-matches and will partially override
+> > qcom,enabled-strings (remove qcom,num-strings?)
+> 
+> I want to let the user know it's set regardless of whether they're
+> equivalent; no need to set both.
+> 
+> How about:
+> 
+>     Only one of qcom,num-strings or qcom,enabled-strings should be set
+> 
+> That should be more descriptive?  Otherwise, let me know if you really
+> want to allow users to (unnecessarily) set both - or if it can / should
+> be caught in DT validation instead.
 
-The NVIDIA Tegra234 SoC has 3 clusters of 4 Cortex-A78AE CPU cores each,
-for a total of 12 CPUs. Each CPU has 64 KiB instruction and data caches
-with each cluster having an additional 256 KiB unified L2 cache and a 2
-MiB L3 cache.
+Yes. I can live with that text. Let's use that.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234.dtsi | 365 ++++++++++++++++++++++-
- 1 file changed, 363 insertions(+), 2 deletions(-)
+Maybe I wouldn't if there gazilions of existing DTs with both
+properties but IIRC the number is likely to be small or zero
+(although we couldn't be 100% sure which).
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-index 104e5fdd5f8a..db24f48edc9f 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-@@ -736,12 +736,373 @@ cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		cpu@0 {
-+		cpu0_0: cpu@0 {
-+			compatible = "arm,cortex-a78";
- 			device_type = "cpu";
--			reg = <0x000>;
-+			reg = <0x00000>;
- 
- 			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c0_0>;
-+		};
-+
-+		cpu0_1: cpu@100 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x00100>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c0_1>;
-+		};
-+
-+		cpu0_2: cpu@200 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x00200>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c0_2>;
-+		};
-+
-+		cpu0_3: cpu@300 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x00300>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c0_3>;
-+		};
-+
-+		cpu1_0: cpu@10000 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x10000>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c1_0>;
-+		};
-+
-+		cpu1_1: cpu@10100 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x10100>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c1_1>;
-+		};
-+
-+		cpu1_2: cpu@10200 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x10200>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c1_2>;
-+		};
-+
-+		cpu1_3: cpu@10300 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x10300>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c1_3>;
-+		};
-+
-+		cpu2_0: cpu@20000 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x20000>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c2_0>;
-+		};
-+
-+		cpu2_1: cpu@20100 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x20100>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c2_1>;
-+		};
-+
-+		cpu2_2: cpu@20200 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x20200>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c2_2>;
-+		};
-+
-+		cpu2_3: cpu@20300 {
-+			compatible = "arm,cortex-a78";
-+			device_type = "cpu";
-+			reg = <0x20300>;
-+
-+			enable-method = "psci";
-+
-+			i-cache-size = <65536>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <256>;
-+			d-cache-size = <65536>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <256>;
-+			next-level-cache = <&l2c2_3>;
-+		};
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu0_0>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu0_1>;
-+				};
-+
-+				core2 {
-+					cpu = <&cpu0_2>;
-+				};
-+
-+				core3 {
-+					cpu = <&cpu0_3>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu1_0>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu1_1>;
-+				};
-+
-+				core2 {
-+					cpu = <&cpu1_2>;
-+				};
-+
-+				core3 {
-+					cpu = <&cpu1_3>;
-+				};
-+			};
-+
-+			cluster2 {
-+				core0 {
-+					cpu = <&cpu2_0>;
-+				};
-+
-+				core1 {
-+					cpu = <&cpu2_1>;
-+				};
-+
-+				core2 {
-+					cpu = <&cpu2_2>;
-+				};
-+
-+				core3 {
-+					cpu = <&cpu2_3>;
-+				};
-+			};
-+		};
-+
-+		l2c0_0: l2-cache00 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c0>;
-+		};
-+
-+		l2c0_1: l2-cache01 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c0>;
- 		};
-+
-+		l2c0_2: l2-cache02 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c0>;
-+		};
-+
-+		l2c0_3: l2-cache03 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c0>;
-+		};
-+
-+		l2c1_0: l2-cache10 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c1>;
-+		};
-+
-+		l2c1_1: l2-cache11 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c1>;
-+		};
-+
-+		l2c1_2: l2-cache12 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c1>;
-+		};
-+
-+		l2c1_3: l2-cache13 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c1>;
-+		};
-+
-+		l2c2_0: l2-cache20 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c2>;
-+		};
-+
-+		l2c2_1: l2-cache21 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c2>;
-+		};
-+
-+		l2c2_2: l2-cache22 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c2>;
-+		};
-+
-+		l2c2_3: l2-cache23 {
-+			cache-size = <262144>;
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+			cache-unified;
-+			next-level-cache = <&l3c2>;
-+		};
-+
-+		l3c0: l3-cache0 {
-+			cache-size = <2097152>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+		};
-+
-+		l3c1: l3-cache1 {
-+			cache-size = <2097152>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+		};
-+
-+		l3c2: l3-cache2 {
-+			cache-size = <2097152>;
-+			cache-line-size = <64>;
-+			cache-sets = <2048>;
-+		};
-+	};
-+
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+		status = "okay";
- 	};
- 
- 	psci {
--- 
-2.33.1
 
+Daniel.
