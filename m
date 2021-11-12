@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87B8144E787
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:39:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E58A244E7B0
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 14:43:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232441AbhKLNmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 08:42:35 -0500
-Received: from foss.arm.com ([217.140.110.172]:37478 "EHLO foss.arm.com"
+        id S231436AbhKLNqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 08:46:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43034 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231436AbhKLNmf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Nov 2021 08:42:35 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 11DCEED1;
-        Fri, 12 Nov 2021 05:39:44 -0800 (PST)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 020143F70D;
-        Fri, 12 Nov 2021 05:39:42 -0800 (PST)
-Subject: Re: [PATCH 1/2] dt-bindings: arm: cpus: Add ARM Cortex-A78
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
-References: <20211112131904.3683428-1-thierry.reding@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <ee1fff5f-cbf9-845a-0b7d-9602ec987c11@arm.com>
-Date:   Fri, 12 Nov 2021 13:39:38 +0000
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S234440AbhKLNqN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 08:46:13 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AE15C60F46;
+        Fri, 12 Nov 2021 13:43:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636724602;
+        bh=TndXQF8eNYfxNvw0ePcsQ5tjzuc+YhY2I9M/NOjrCo8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Zwnv0S9hQRQrTQkEwpGSqxyyJKPfCzg7qyDRlT0PT9u45Pg0elkH8k1z3cAIVpyfi
+         /EqBgED/CR6ExxNb/7cUhGQ4wy0UbLESS9kYPlAWoixhMG9Ccns41hM8w1wtRUp7Xm
+         tp988LFtMh4/YLs0Qj2BkJiW+3vB0M/hxqOPqhAG7caJVQAA7SulUyX8dcHeaQYqVU
+         cYWa/DJ2Coi8MZrlESMI8n+Gzqy+mloFO3OmNZzfTUXGsKCNXgUNEKaCsU9zh9B/td
+         Wg9TmLF1SK0oq36spsL6dwpSRxy1eAaRFgI3TLAXS8jrALV9RDpLZ9Tt4sicRU0hw4
+         I3sLNhTYaqApg==
+Date:   Fri, 12 Nov 2021 08:43:21 -0500
+From:   Sasha Levin <sashal@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        robh+dt@kernel.org, pawel.moll@arm.com, mark.rutland@arm.com,
+        ijc+devicetree@hellion.org.uk, galak@codeaurora.org,
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH AUTOSEL 5.15 73/82] arm64: dts: qcom: msm8916: Add CPU
+ ACC and SAW/SPM
+Message-ID: <YY5veYUpixJn9Q92@sashalap>
+References: <20211109221641.1233217-1-sashal@kernel.org>
+ <20211109221641.1233217-73-sashal@kernel.org>
+ <YYuFcOrEXL0b8UEo@gerhold.net>
 MIME-Version: 1.0
-In-Reply-To: <20211112131904.3683428-1-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <YYuFcOrEXL0b8UEo@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/2021 1:19 pm, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> The ARM Cortex-A78 CPU can be found in a number of recent SoCs such as
-> the NVIDIA Tegra234 (Orin).
+On Wed, Nov 10, 2021 at 09:40:16AM +0100, Stephan Gerhold wrote:
+>Hi Sasha,
+>
+>On Tue, Nov 09, 2021 at 05:16:31PM -0500, Sasha Levin wrote:
+>> From: Stephan Gerhold <stephan@gerhold.net>
+>>
+>> [ Upstream commit a22f9a766e1dc61f8f6ee2edfe83d4d23d78e059 ]
+>>
+>> Add the device tree nodes necessary for SMP bring-up and cpuidle
+>> without PSCI on ARM32. The hardware is typically controlled by the
+>> PSCI implementation in the TrustZone firmware and is therefore marked
+>> as status = "reserved" by default (from the device tree specification):
+>>
+>>   "Indicates that the device is operational, but should not be used.
+>>    Typically this is used for devices that are controlled by another
+>>    software component, such as platform firmware."
+>>
+>> Since this is part of the MSM8916 SoC it should be added to msm8916.dtsi
+>> but in practice these nodes should only get enabled via an extra include
+>> on ARM32.
+>>
+>> This is necessary for some devices with signed firmware which is missing
+>> both ARM64 and PSCI support and can therefore only boot ARM32 kernels.
+>>
+>> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>> Link: https://lore.kernel.org/r/20211004204955.21077-13-stephan@gerhold.net
+>> Signed-off-by: Sasha Levin <sashal@kernel.org>
+>>
+>
+>This patch is not useful without other changes that landed in 5.16
+>(in particular, the new device actually making use of these nodes).
+>
+>Can you drop this patch?
 
-Oops, that reminds me that I'm sitting on a patch somewhere to bring 
-these fully up-to-date (I got sidetracked pondering what to do about PMU 
-naming). I should track that down and post it next week...
+Yup, thanks!
 
-However if Rob feels like applying this one first,
-
-Acked-by: Robin Murphy <robin.muephy@arm.com>
-
-Cheers,
-Robin.
-
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->   Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
-> index f2ab6423b4af..452bfd1d4ecc 100644
-> --- a/Documentation/devicetree/bindings/arm/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
-> @@ -137,6 +137,7 @@ properties:
->         - arm,cortex-a75
->         - arm,cortex-a76
->         - arm,cortex-a77
-> +      - arm,cortex-a78
->         - arm,cortex-m0
->         - arm,cortex-m0+
->         - arm,cortex-m1
-> 
+-- 
+Thanks,
+Sasha
