@@ -2,232 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8881444F008
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 00:35:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C605844F021
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 00:59:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbhKLXi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 18:38:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52506 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbhKLXi0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 18:38:26 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B79FFC061766;
-        Fri, 12 Nov 2021 15:35:34 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id x15so43904345edv.1;
-        Fri, 12 Nov 2021 15:35:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KufwM5mCfLvkfHB9L44xSjMiP/J9vtXWW8H7fEHQm8A=;
-        b=VeeEX+hb8Q38dXiCudlk+Gtk+dN0Ujc2jObM5z0Zu2SXCSFpjE+MXTtB4Qo0nEDchJ
-         hHK17DghW93X+xDr1x9hhXh9EQzkKHAWs7585/CmXjUfQfv0K0gedX1ypz4VGxzRaBju
-         MNd78yGv0cRc2wHFw/5rqiKOCypPFU8yw9eCFRt7GSfyC52wN208EwHmvCkrF5S0TjRv
-         wc0bGTuEFsXuxZdwEd93CAn35xjfHCxk9Y1I+diNuVlJXdoZIObfpl5PHpU4q7LIKeJN
-         DjDwq/rnl44OkJ9wFIBQ6aZLswBKzXnQA4+GFGGH4grVGY0p0xBzZpaYh5FDQotolV0T
-         enAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KufwM5mCfLvkfHB9L44xSjMiP/J9vtXWW8H7fEHQm8A=;
-        b=kK/XZAeL3HpSpV9yM6mRcAqfOidBoAU38VgNMm5/wEb2FD+3viHOTJMS9vljuBJ3nO
-         FHMsj5VPO7mgl3zBOiE/jI6+0KZswtKgqSn/YfrzZrxnDJRbGxavKkkLcSOTvbytzWrs
-         tPsNu3Vnue82Kdmm9apOajFa8EfHyj+wu9tVZZO2wn9qI4cb9LQNtnBy3gRt1b5bWUvw
-         fFH/vkqHHZgbt4S6llxpON3IIGCHZP0T/2DkdoNPOAWHwMQD/XLSTnY3Ys1PG/3UhwN+
-         UGn/m/YtodAn7XIwhwRB3jtnp8gRZErQZL+vBM+BDDW7uWm0EqNnXMFWHOoxkSr3goPx
-         eaDw==
-X-Gm-Message-State: AOAM532bV026CYIf31Gq77JXm1ecGyjx+U31Kpnw8JhAxRr/J28MfOw+
-        B1Dzb1X5ERx6e0xptwHFT0P4jBwjvZ6KioK76lU=
-X-Google-Smtp-Source: ABdhPJzTTsMoDpRSN2aarqfhlwtnbIjFTA6/TzvWdZgQNjkCsqJd34bqQjQ3nyaZd+w5tZUbJ2cjv/b3kJ/6Oq/d2I0=
-X-Received: by 2002:aa7:d4d4:: with SMTP id t20mr26681856edr.374.1636760132643;
- Fri, 12 Nov 2021 15:35:32 -0800 (PST)
+        id S232758AbhKMABw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 19:01:52 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:59190 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231261AbhKMABv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 19:01:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=MBOs/AjY5zcm+4rGWB/QgkLatksippMCYzVgh7elE48=; b=eKc/iAD/CUz3oMOkcdOXzBdk+0
+        UCpyNaVFn1/k2rW3L6zdHrn21TjDjK2hknrYkT/4OCgQr6FkfgnNOfXFP+Lw6Z26+8f7EdYtA6TCL
+        vpt0d5P+7ub8JH4JUAHn+lcC/F3/6rf1E8FNt8i1+kvYK55L82YH+lqlPKePOEndWqtg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mlgRb-00DIlI-Bp; Sat, 13 Nov 2021 00:58:55 +0100
+Date:   Sat, 13 Nov 2021 00:58:55 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu <wellslutw@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        vincent.shih@sunplus.com, Wells Lu <wells.lu@sunplus.com>
+Subject: Re: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
+Message-ID: <YY7/v1msiaqJF3Uy@lunn.ch>
+References: <cover.1636620754.git.wells.lu@sunplus.com>
+ <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
 MIME-Version: 1.0
-References: <20211104161804.587250-1-aford173@gmail.com> <20211104161804.587250-5-aford173@gmail.com>
- <YY7kg3GC5lnX7TgW@robh.at.kernel.org>
-In-Reply-To: <YY7kg3GC5lnX7TgW@robh.at.kernel.org>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 12 Nov 2021 18:35:20 -0500
-Message-ID: <CAHCN7xJHx5eDt3iMH3vtDrL=zgvHq3LtLxe_8XUSjSJR4b1Fug@mail.gmail.com>
-Subject: Re: [PATCH V3 4/9] dt-bindings: soc: add binding for i.MX8MN DISP blk-ctrl
-To:     Rob Herring <robh@kernel.org>
-Cc:     arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        ariel.dalessandro@collabora.com,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 12, 2021 at 5:02 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Nov 04, 2021 at 11:17:59AM -0500, Adam Ford wrote:
-> > Add the DT binding for the i.MX8MN DISP blk-ctrl.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> > new file mode 100644
-> > index 000000000000..fbeaac399c50
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> > @@ -0,0 +1,97 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP i.MX8MN DISP blk-ctrl
-> > +
-> > +maintainers:
-> > +  - Lucas Stach <l.stach@pengutronix.de>
-> > +
-> > +description:
-> > +  The i.MX8MN DISP blk-ctrl is a top-level peripheral providing access to
-> > +  the NoC and ensuring proper power sequencing of the display and MIPI CSI
-> > +  peripherals located in the DISP domain of the SoC.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: fsl,imx8mn-disp-blk-ctrl
-> > +      - const: syscon
->
-> Are there other functions in this block? If so, what?
+> +void rx_descs_flush(struct sp_common *comm)
 
-This is similar to the i.MX8M Mini.  From what I can tell, there are
-some extra clock and reset registers that are not associated with
-their respective blocks. The main power domain controller called GPCv2
-partially enables the power domains, but there is some ping-pong
-between that IP block and this one,
+As both Florian and I have said, you need a prefix for all your
+functions, structures, etc. sp_ is not the best prefix either, it is
+not very unique. spl2sw_ would be better.
 
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  '#power-domain-cells':
-> > +    const: 1
-> > +
-> > +  power-domains:
-> > +    minItems: 5
-> > +    maxItems: 5
-> > +
-> > +  power-domain-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: isi
-> > +      - const: lcdif
-> > +      - const: mipi-dsi
-> > +      - const: mipi-csi
-> > +
-> > +  clocks:
-> > +    minItems: 11
-> > +    maxItems: 11
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: disp_axi
-> > +      - const: disp_apb
-> > +      - const: disp_axi_root
-> > +      - const: disp_apb_root
-> > +      - const: lcdif-axi
-> > +      - const: lcdif-apb
-> > +      - const: lcdif-pix
-> > +      - const: dsi-pclk
-> > +      - const: dsi-ref
-> > +      - const: csi-aclk
-> > +      - const: csi-pclk
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - power-domains
-> > +  - power-domain-names
-> > +  - clocks
-> > +  - clock-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/imx8mn-clock.h>
-> > +    #include <dt-bindings/power/imx8mn-power.h>
-> > +
-> > +    disp_blk_ctl: blk_ctrl@32e28000 {
-> > +      compatible = "fsl,imx8mn-disp-blk-ctrl", "syscon";
-> > +      reg = <0x32e28000 0x100>;
-> > +      power-domains = <&pgc_dispmix>, <&pgc_dispmix>,
-> > +                      <&pgc_dispmix>, <&pgc_mipi>,
-> > +                      <&pgc_mipi>;
-> > +      power-domain-names = "bus", "isi", "lcdif", "mipi-dsi",
-> > +                           "mipi-csi";
->
-> This looks odd. These are the same power domains this node provides.
+> +void rx_descs_clean(struct sp_common *comm)
+> +{
+> +	u32 i, j;
+> +	struct mac_desc *rx_desc;
+> +	struct skb_info *rx_skbinfo;
 
-It is odd, but  I'll try to explain it the best I can.
+netdev wants reverse christmas tree. You need to change the order of
+your local variables, longest lines first, shorted last.
 
-When this SoC was developed, there were a few additional registers
-placed into this IP block that control other IP blocks, and ping-pong
-with the main power domain controller to make the various IP blocks
-work.
+> +
+> +	for (i = 0; i < RX_DESC_QUEUE_NUM; i++) {
+> +		if (!comm->rx_skb_info[i])
+> +			continue;
+> +
+> +		rx_desc = comm->rx_desc[i];
+> +		rx_skbinfo = comm->rx_skb_info[i];
+> +		for (j = 0; j < comm->rx_desc_num[i]; j++) {
+> +			rx_desc[j].cmd1 = 0;
+> +			wmb();	// Clear OWN_BIT and then set other fields.
+> +			rx_desc[j].cmd2 = 0;
+> +			rx_desc[j].addr1 = 0;
+> +
+> +			if (rx_skbinfo[j].skb) {
+> +				dma_unmap_single(&comm->pdev->dev, rx_skbinfo[j].mapping,
+> +						 comm->rx_desc_buff_size, DMA_FROM_DEVICE);
+> +				dev_kfree_skb(rx_skbinfo[j].skb);
+> +				rx_skbinfo[j].skb = NULL;
+> +				rx_skbinfo[j].mapping = 0;
+> +			}
+> +		}
+> +
+> +		kfree(rx_skbinfo);
+> +		comm->rx_skb_info[i] = NULL;
+> +	}
+> +}
 
-GPCv2, the main power domain controller attempts to enable the domain,
-but it has to enable the bus clock and clear the bus reset from this
-IP block because neither the reset nor the clock enable were placed
-into reset or clock IP blocks.
+> +int rx_descs_init(struct sp_common *comm)
+> +{
+> +	struct sk_buff *skb;
+> +	u32 i, j;
+> +	struct mac_desc *rx_desc;
+> +	struct skb_info *rx_skbinfo;
+> +
+> +	for (i = 0; i < RX_DESC_QUEUE_NUM; i++) {
+> +		comm->rx_skb_info[i] = kmalloc_array(comm->rx_desc_num[i],
+> +						     sizeof(struct skb_info), GFP_KERNEL);
+> +		if (!comm->rx_skb_info[i])
+> +			goto MEM_ALLOC_FAIL;
+> +
+> +		rx_skbinfo = comm->rx_skb_info[i];
+> +		rx_desc = comm->rx_desc[i];
+> +		for (j = 0; j < comm->rx_desc_num[i]; j++) {
+> +			skb = __dev_alloc_skb(comm->rx_desc_buff_size + RX_OFFSET,
+> +					      GFP_ATOMIC | GFP_DMA);
+> +			if (!skb)
+> +				goto MEM_ALLOC_FAIL;
+> +
+> +			skb->dev = comm->ndev;
+> +			skb_reserve(skb, RX_OFFSET);	/* +data +tail */
+> +
+> +			rx_skbinfo[j].skb = skb;
+> +			rx_skbinfo[j].mapping = dma_map_single(&comm->pdev->dev, skb->data,
+> +							       comm->rx_desc_buff_size,
+> +							       DMA_FROM_DEVICE);
+> +			rx_desc[j].addr1 = rx_skbinfo[j].mapping;
+> +			rx_desc[j].addr2 = 0;
+> +			rx_desc[j].cmd2 = (j == comm->rx_desc_num[i] - 1) ?
+> +					  EOR_BIT | comm->rx_desc_buff_size :
+> +					  comm->rx_desc_buff_size;
+> +			wmb();	// Set OWN_BIT after other fields are effective.
+> +			rx_desc[j].cmd1 = OWN_BIT;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +MEM_ALLOC_FAIL:
 
-For example,  when the mipi-csi controller needs to come up, it needs
-to request the power domain from disp-blk-ctrl IP block.  The blk-ctrl
-block first requests the pgc_mipi power domain.  The GPC ping-pongs
-the blk-ctrl which has to set or clear registers so the GPC can finish
-its job.  One the GPC has finished its part the blk-ctrl then enables
-the clock and reset that controls the csi.  This same is true for
-several quasi-related items like DSI, CSI, and LCDIF.
+lower case labels. Didn't somebody already say that?
 
-The items listed in the power-domains are from the GPC, and the items
-in the power-domain-names are inside the blk-ctrl.  When an item needs
-a power domain from the blk-ctrl, the corresponding GPC power domain
-must also be referenced.
+> +int descs_init(struct sp_common *comm)
+> +{
+> +	u32 i, ret;
+> +
+> +	// Initialize rx descriptor's data
+> +	comm->rx_desc_num[0] = RX_QUEUE0_DESC_NUM;
+> +#if RX_DESC_QUEUE_NUM > 1
+> +	comm->rx_desc_num[1] = RX_QUEUE1_DESC_NUM;
+> +#endif
 
-In order to enable some of the registers, the blk-ctrl IP block also
-needs to enable some additional clocks or the system can hang.
+Avoid #if statements. Why is this needed?
 
-Lucas Stach wrote the original driver and might be able to better
-explain how it works on the Mini, but the Nano behaves the same way
-with different bits in the regisers.
+> +++ b/drivers/net/ethernet/sunplus/sp_driver.c
+> @@ -0,0 +1,606 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright Sunplus Technology Co., Ltd.
+> + *       All rights reserved.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/reset.h>
+> +#include <linux/nvmem-consumer.h>
+> +#include <linux/of_net.h>
+> +#include "sp_driver.h"
+> +#include "sp_phy.h"
+> +
+> +static const char def_mac_addr[ETHERNET_MAC_ADDR_LEN] = {
+> +	0xfc, 0x4b, 0xbc, 0x00, 0x00, 0x00
 
+This does not have the locally administered bit set. Should it? Or is
+this and address from your OUI?
 
->
-> > +      clocks = <&clk IMX8MN_CLK_DISP_AXI>,
-> > +               <&clk IMX8MN_CLK_DISP_APB>,
-> > +               <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> > +               <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> > +               <&clk IMX8MN_CLK_DISP_AXI_ROOT>,
-> > +               <&clk IMX8MN_CLK_DISP_APB_ROOT>,
-> > +               <&clk IMX8MN_CLK_DISP_PIXEL_ROOT>,
-> > +               <&clk IMX8MN_CLK_DSI_CORE>,
-> > +               <&clk IMX8MN_CLK_DSI_PHY_REF>,
-> > +               <&clk IMX8MN_CLK_CSI1_PHY_REF>,
-> > +               <&clk IMX8MN_CLK_CAMERA_PIXEL_ROOT>;
-> > +       clock-names = "disp_axi", "disp_apb", "disp_axi_root", "disp_apb_root",
-> > +                     "lcdif-axi", "lcdif-apb", "lcdif-pix", "dsi-pclk",
-> > +                     "dsi-ref", "csi-aclk", "csi-pclk";
-> > +       #power-domain-cells = <1>;
-> > +    };
-> > --
-> > 2.32.0
-> >
-> >
+> +static void ethernet_set_rx_mode(struct net_device *ndev)
+> +{
+> +	if (ndev) {
+
+How can ndev be NULL?
+
+> +++ b/drivers/net/ethernet/sunplus/sp_hal.c
+> @@ -0,0 +1,331 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright Sunplus Technology Co., Ltd.
+> + *       All rights reserved.
+> + */
+> +
+> +#include <linux/iopoll.h>
+> +#include "sp_hal.h"
+> +
+> +void hal_mac_stop(struct sp_mac *mac)
+
+I suggest you avoid any references to hal. It makes people think you
+have ported a driver from some other operating system and then put a
+layer of code on top of it. That is not how you do it in Linux. This
+is a Linux driver, nothing else.
+
+> +void hal_mac_reset(struct sp_mac *mac)
+> +{
+> +}
+> +
+
+Should not exist.
+
+> +void hal_mac_addr_set(struct sp_mac *mac)
+> +{
+> +	struct sp_common *comm = mac->comm;
+> +	u32 reg;
+> +
+> +	// Write MAC address.
+> +	writel(mac->mac_addr[0] + (mac->mac_addr[1] << 8),
+> +	       comm->sp_reg_base + SP_W_MAC_15_0);
+> +	writel(mac->mac_addr[2] + (mac->mac_addr[3] << 8) + (mac->mac_addr[4] << 16) +
+> +	      (mac->mac_addr[5] << 24),	comm->sp_reg_base + SP_W_MAC_47_16);
+> +
+> +	// Set aging=1
+> +	writel((mac->cpu_port << 10) + (mac->vlan_id << 7) + (1 << 4) + 0x1,
+> +	       comm->sp_reg_base + SP_WT_MAC_AD0);
+
+Is this actually adding an entry into the address translation table?
+If so, make this clear in the function name. You are not setting the
+MAC address, you are just adding a static forwarding entry.
+
+> +
+> +	// Wait for completing.
+> +	do {
+> +		reg = readl(comm->sp_reg_base + SP_WT_MAC_AD0);
+> +		ndelay(10);
+> +		netdev_dbg(mac->ndev, "wt_mac_ad0 = %08x\n", reg);
+> +	} while ((reg & (0x1 << 1)) == 0x0);
+> +
+> +	netdev_dbg(mac->ndev, "mac_ad0 = %08x, mac_ad = %08x%04x\n",
+> +		   readl(comm->sp_reg_base + SP_WT_MAC_AD0),
+> +		   readl(comm->sp_reg_base + SP_W_MAC_47_16),
+> +		   readl(comm->sp_reg_base + SP_W_MAC_15_0) & 0xffff);
+> +}
+
+> +void hal_rx_mode_set(struct net_device *ndev)
+> +{
+> +	struct sp_mac *mac = netdev_priv(ndev);
+> +	struct sp_common *comm = mac->comm;
+> +	u32 mask, reg, rx_mode;
+> +
+> +	netdev_dbg(ndev, "ndev->flags = %08x\n", ndev->flags);
+> +
+> +	mask = (mac->lan_port << 2) | (mac->lan_port << 0);
+> +	reg = readl(comm->sp_reg_base + SP_CPU_CNTL);
+> +
+> +	if (ndev->flags & IFF_PROMISC) {	/* Set promiscuous mode */
+> +		// Allow MC and unknown UC packets
+> +		rx_mode = (mac->lan_port << 2) | (mac->lan_port << 0);
+> +	} else if ((!netdev_mc_empty(ndev) && (ndev->flags & IFF_MULTICAST)) ||
+> +		   (ndev->flags & IFF_ALLMULTI)) {
+> +		// Allow MC packets
+> +		rx_mode = (mac->lan_port << 2);
+> +	} else {
+> +		// Disable MC and unknown UC packets
+> +		rx_mode = 0;
+> +	}
+> +
+> +	writel((reg & (~mask)) | ((~rx_mode) & mask), comm->sp_reg_base + SP_CPU_CNTL);
+> +	netdev_dbg(ndev, "cpu_cntl = %08x\n", readl(comm->sp_reg_base + SP_CPU_CNTL));
+
+This looks like it belongs in the ethtool code.
+
+> +int hal_mdio_access(struct sp_mac *mac, u8 op_cd, u8 phy_addr, u8 reg_addr, u32 wdata)
+> +{
+> +	struct sp_common *comm = mac->comm;
+> +	u32 val, ret;
+> +
+> +	writel((wdata << 16) | (op_cd << 13) | (reg_addr << 8) | phy_addr,
+> +	       comm->sp_reg_base + SP_PHY_CNTL_REG0);
+> +
+> +	ret = read_poll_timeout(readl, val, val & op_cd, 10, 1000, 1,
+> +				comm->sp_reg_base + SP_PHY_CNTL_REG1);
+> +	if (ret == 0)
+> +		return val >> 16;
+> +	else
+> +		return ret;
+> +}
+
+Should go with the other mdio code.
+
+> +void hal_phy_addr(struct sp_mac *mac)
+> +{
+> +	struct sp_common *comm = mac->comm;
+> +	u32 reg;
+> +
+> +	// Set address of phy.
+> +	reg = readl(comm->sp_reg_base + SP_MAC_FORCE_MODE);
+> +	reg = (reg & (~(0x1f << 16))) | ((mac->phy_addr & 0x1f) << 16);
+> +	if (mac->next_ndev) {
+> +		struct net_device *ndev2 = mac->next_ndev;
+> +		struct sp_mac *mac2 = netdev_priv(ndev2);
+> +
+> +		reg = (reg & (~(0x1f << 24))) | ((mac2->phy_addr & 0x1f) << 24);
+> +	}
+> +	writel(reg, comm->sp_reg_base + SP_MAC_FORCE_MODE);
+> +}
+
+As i said before, the hardware never directly communicates with the
+PHY. So you can remove this.
+
+> +static void port_status_change(struct sp_mac *mac)
+> +{
+> +	u32 reg;
+> +	struct net_device *ndev = mac->ndev;
+> +
+> +	reg = read_port_ability(mac);
+> +	if (!netif_carrier_ok(ndev) && (reg & PORT_ABILITY_LINK_ST_P0)) {
+> +		netif_carrier_on(ndev);
+
+phylib should be handling the carrier for you.
+
+> +	if (mac->next_ndev) {
+> +		struct net_device *ndev2 = mac->next_ndev;
+> +
+> +		if (!netif_carrier_ok(ndev2) && (reg & PORT_ABILITY_LINK_ST_P1)) {
+> +			netif_carrier_on(ndev2);
+> +			netif_start_queue(ndev2);
+> +		} else if (netif_carrier_ok(ndev2) && !(reg & PORT_ABILITY_LINK_ST_P1)) {
+> +			netif_carrier_off(ndev2);
+> +			netif_stop_queue(ndev2);
+> +		}
+
+Looks very odd. The two netdev should be independent.
+
+> diff --git a/drivers/net/ethernet/sunplus/sp_mdio.c b/drivers/net/ethernet/sunplus/sp_mdio.c
+> new file mode 100644
+> index 0000000..f6a7e64
+> --- /dev/null
+> +++ b/drivers/net/ethernet/sunplus/sp_mdio.c
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright Sunplus Technology Co., Ltd.
+> + *       All rights reserved.
+> + */
+> +
+> +#include "sp_mdio.h"
+> +
+> +u32 mdio_read(struct sp_mac *mac, u32 phy_id, u16 regnum)
+> +{
+> +	int ret;
+> +
+> +	ret = hal_mdio_access(mac, MDIO_READ_CMD, phy_id, regnum, 0);
+> +	if (ret < 0)
+> +		return -EOPNOTSUPP;
+> +
+> +	return ret;
+> +}
+> +
+> +u32 mdio_write(struct sp_mac *mac, u32 phy_id, u32 regnum, u16 val)
+> +{
+> +	int ret;
+> +
+> +	ret = hal_mdio_access(mac, MDIO_WRITE_CMD, phy_id, regnum, val);
+> +	if (ret < 0)
+> +		return -EOPNOTSUPP;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mii_read(struct mii_bus *bus, int phy_id, int regnum)
+> +{
+> +	struct sp_mac *mac = bus->priv;
+
+What happened about my request to return -EOPNOTSUPP for C45 requests?
+
+     Andrew
