@@ -2,73 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1834D44E09C
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 04:01:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E95044E0B5
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 04:14:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234477AbhKLDEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Nov 2021 22:04:39 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:37526 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233920AbhKLDEj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 22:04:39 -0500
-X-UUID: df2fc82293ee4f5fb34c6c04b26d38c8-20211112
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VcNEpCuXHbGjzxYQZ8fWTghPoSSE5d5qJMlyOwvGVLU=;
-        b=Apw+BjyOhwLGw7ZwzAGczT5WI1WK7v3KzXv4EClm9RxNj9CjqjsZpG78wy0DpzNC+ZY3hlyCnMR4jEpIZK1CD0W5rXn6V+4aFDhnVqkVPDC3DE55WzkYbGAWYjMLDwd9urkfz0Eu9PtEwG5/MLNMHnJrjWwOOliFTb6yUOZSA0w=;
-X-UUID: df2fc82293ee4f5fb34c6c04b26d38c8-20211112
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1913137450; Fri, 12 Nov 2021 11:01:46 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 12 Nov 2021 11:01:45 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 12 Nov 2021 11:01:44 +0800
-Message-ID: <1c762a13ee1c73142771c4b409d7d678240ace67.camel@mediatek.com>
-Subject: Re: [PATCH v2 2/5] net: stmmac: dwmac-mediatek: Reuse more common
- features
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        id S233752AbhKLDRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Nov 2021 22:17:36 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:40481 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230169AbhKLDRg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Nov 2021 22:17:36 -0500
+Received: by mail-ot1-f51.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so3935447otj.7
+        for <devicetree@vger.kernel.org>; Thu, 11 Nov 2021 19:14:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=FhkP3DqyQXh5RMUcdf21YAJZtHtRc6ehAtBhoS54R60=;
+        b=U361krQRnIhzkZkvmzvdLLtiiswkswvU9Mj1503LSQGxSoSCw09Zs/BqSXqU/WdJe5
+         xAxoA7w0kQ/ekVzSo+lxSDwkVOShWLdX2jp4gVqfcVZGKKkDCBTlqznb2SA6yQvBCSZD
+         Jt9dBy9o9YcgDeJNQHQwwvVnTzdN7i5eAb4EAb90BMhoBfhSSpM86NZsSJKkOH0PnIre
+         p3Dw7UZFcoeVSEUsF6BhsDQDQK2vj0g7fwpRE6/RgzxlnszUb2zJsbxpYJOHfhZK39At
+         /VBaEYGKNyyAG0A/QrIDSOqdZ7F7c4vPHPmsV4Je7QazjM0U3/CFEooHX4/Ot48jf3Y9
+         uiVQ==
+X-Gm-Message-State: AOAM532WS1LB3PIWeKeLVzfV8Aqtz999v/qbknodlgvLiib3sSAAe01G
+        mVN/kyPNzs4YxQfIVvopvQ==
+X-Google-Smtp-Source: ABdhPJxnY5O0cEKzuWXi7lcuRysab5RQjF26ANiZ53Y0PdC4u9Y+5lzakJ/OFSJKr8zDNBVstn+TbA==
+X-Received: by 2002:a05:6830:1da:: with SMTP id r26mr9840805ota.73.1636686886205;
+        Thu, 11 Nov 2021 19:14:46 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id o26sm993950otj.14.2021.11.11.19.14.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 11 Nov 2021 19:14:45 -0800 (PST)
+Received: (nullmailer pid 621132 invoked by uid 1000);
+        Fri, 12 Nov 2021 03:14:44 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org, Matteo Lisi <matteo.lisi@engicam.com>,
+        linux-amarula@amarulasolutions.com,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>
-Date:   Fri, 12 Nov 2021 11:01:44 +0800
-In-Reply-To: <71620d46-c9d5-07cc-befd-da838f0dcd1f@collabora.com>
-References: <20211111071214.21027-1-biao.huang@mediatek.com>
-         <20211111071214.21027-3-biao.huang@mediatek.com>
-         <71620d46-c9d5-07cc-befd-da838f0dcd1f@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+In-Reply-To: <20211111154557.852637-2-jagan@amarulasolutions.com>
+References: <20211111154557.852637-1-jagan@amarulasolutions.com> <20211111154557.852637-2-jagan@amarulasolutions.com>
+Subject: Re: [PATCH 2/3] dt-bindings: arm: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1" OF
+Date:   Thu, 11 Nov 2021 21:14:44 -0600
+Message-Id: <1636686884.626655.621131.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBBbmdlbG8sDQoJVGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzLg0KT24gVGh1LCAyMDIxLTEx
-LTExIGF0IDE0OjI4ICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4g
-SWwgMTEvMTEvMjEgMDg6MTIsIEJpYW8gSHVhbmcgaGEgc2NyaXR0bzoNCj4gPiBUaGlzIHBhdGNo
-IG1ha2VzIGR3bWFjLW1lZGlhdGVrIHJldXNlIG1vcmUgZmVhdHVyZXMNCj4gPiBzdXBwb3J0ZWQg
-Ynkgc3RtbWFjX3BsYXRmb3JtLmMuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogQmlhbyBIdWFu
-ZyA8Ymlhby5odWFuZ0BtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gICAuLi4vZXRoZXJuZXQv
-c3RtaWNyby9zdG1tYWMvZHdtYWMtbWVkaWF0ZWsuYyAgfCAzMiArKysrKysrKystLS0tLQ0KPiA+
-IC0tLS0tDQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgMTUgaW5zZXJ0aW9ucygrKSwgMTcgZGVsZXRp
-b25zKC0pDQo+ID4gDQo+IA0KPiBBY2tlZC1ieTogQW5nZWxvR2lvYWNjaGlubyBEZWwgUmVnbm8g
-PA0KPiBhbmdlbG9naW9hY2NoaW5vLmRlbHJlZ25vQGNvbGxhYm9yYS5jb20+DQpPSywgd2lsbCBh
-ZGQgdGhpcyBpbmZvIGluIG5leHQgc2VuZC4NCg==
+On Thu, 11 Nov 2021 21:15:56 +0530, Jagan Teki wrote:
+> i.Core STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
+> 
+> C.TOUCH 2.0 is a general purpose carrier board with capacitive
+> touch interface support.
+> 
+> 10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
+> 
+> i.Core STM32MP1 needs to mount on top of C.TOUCH 2.0 carrier with
+> pluged 10.1" OF for creating complete i.Core STM32MP1 C.TOUCH 2.0
+> 10.1" Open Frame board.
+> 
+> Add bindings for it.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/arm/stm32/stm32.yaml:76:111: [warning] line too long (116 > 110 characters) (line-length)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1553999
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
