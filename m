@@ -2,101 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 723A944E9F9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:25:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA7FD44E9FF
+	for <lists+devicetree@lfdr.de>; Fri, 12 Nov 2021 16:27:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbhKLP2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 10:28:13 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:38907 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbhKLP2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 10:28:12 -0500
-Received: by mail-ot1-f49.google.com with SMTP id z2-20020a9d71c2000000b0055c6a7d08b8so14338205otj.5;
-        Fri, 12 Nov 2021 07:25:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=RVXOKUzn8xx+A/BupGQH+H1y0lrA5OuyDafvitY6wbw=;
-        b=Ll51/pVEjb+3sDEQFQ2vOq+UoWIPAA31G3QEMQT8gWASmOmWjTaluDoW3H5dgoGCKQ
-         ifKaShLKNFRRBY4bS7PtPTjsrmxAjSd+PwBvkxgJdLxd+52Fl8ZG7+X67ATMSRBS+/Hv
-         ec1LogTN5MQS4RM4WNMq7EtqcUgKixs7j8wlgUVzvGhjc/Nxxx2Y3nRKUey89JBwXUSW
-         /YbQKYQdPLTCVAFjRnalIIl02Bn3NOiQzhsccwPudI++0dxfr8QyBBosTm0SGfMVbFuJ
-         d4Vzl1aLmBEQaewuLTN0f4jn6kYIyg3PHXJVivFcKWkYQdMj8HKv5GW8eoK1xT5zBgPN
-         ExbA==
-X-Gm-Message-State: AOAM532G2JzHBzS9GHDTyHXx9sjFIcu8BNALvKf6lvtTv/2+E8WgUcbx
-        b/bSbsV9At/fG9nu9fDpYRctulVLFg==
-X-Google-Smtp-Source: ABdhPJxu33SV5+1/0Na2x6ygvkBdQx6MbCAqUgjHERfuNpjoS46LGDUC7vbjn4IQa/e2YId3CgF5YA==
-X-Received: by 2002:a9d:6653:: with SMTP id q19mr13101255otm.116.1636730721655;
-        Fri, 12 Nov 2021 07:25:21 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l2sm1260686otl.61.2021.11.12.07.25.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 12 Nov 2021 07:25:20 -0800 (PST)
-Received: (nullmailer pid 2878900 invoked by uid 1000);
-        Fri, 12 Nov 2021 15:25:20 -0000
-Date:   Fri, 12 Nov 2021 09:25:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        Bjorn Helgaas <helgaas@kernel.org>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
- 'slot-power-limit-milliwatt' PCIe port property
-Message-ID: <YY6HYM4T+A+tm85P@robh.at.kernel.org>
-References: <20211031150706.27873-1-kabel@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211031150706.27873-1-kabel@kernel.org>
+        id S229959AbhKLP3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 10:29:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35978 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229509AbhKLP3v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 10:29:51 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 367A660F4F;
+        Fri, 12 Nov 2021 15:27:01 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mlYSB-00530W-25; Fri, 12 Nov 2021 15:26:59 +0000
+Date:   Fri, 12 Nov 2021 15:26:58 +0000
+Message-ID: <87h7ch8ke5.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Christian Zigotzky <chzigotzky@xenosoft.de>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH] of/irq: Don't ignore interrupt-controller when interrupt-map failed
+In-Reply-To: <CAL_Jsq+qyER34Q1s3farhX=2=QAic24v1-T0nC+Ln0C5Un81rQ@mail.gmail.com>
+References: <20211112143644.434995-1-maz@kernel.org>
+        <CAL_Jsq+qyER34Q1s3farhX=2=QAic24v1-T0nC+Ln0C5Un81rQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: robh@kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, chzigotzky@xenosoft.de, bhelgaas@google.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 31, 2021 at 04:07:05PM +0100, Marek Behún wrote:
-> From: Pali Rohár <pali@kernel.org>
+On Fri, 12 Nov 2021 14:57:13 +0000,
+Rob Herring <robh@kernel.org> wrote:
 > 
-> This property specifies slot power limit in mW unit. It is a form-factor
-> and board specific value and must be initialized by hardware.
+> On Fri, Nov 12, 2021 at 8:37 AM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > @@ -244,8 +245,14 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+> >
+> >                         pr_debug(" -> imaplen=%d\n", imaplen);
+> >                 }
+> > -               if (!match)
+> > +               if (!match) {
+> > +                       if (intc) {
+> > +                               pr_debug("%pOF interrupt-map failed, using interrupt-controller\n", ipar);
 > 
-> Some PCIe controllers delegate this work to software to allow hardware
-> flexibility and therefore this property basically specifies what should
-> host bridge program into PCIe Slot Capabilities registers.
-> 
-> The property needs to be specified in mW unit instead of the special format
-> defined by Slot Capabilities (which encodes scaling factor or different
-> unit). Host drivers should convert the value from mW to needed format.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->  Documentation/devicetree/bindings/pci/pci.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> index 6a8f2874a24d..7296d599c5ac 100644
-> --- a/Documentation/devicetree/bindings/pci/pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> @@ -32,6 +32,12 @@ driver implementation may support the following properties:
->     root port to downstream device and host bridge drivers can do programming
->     which depends on CLKREQ signal existence. For example, programming root port
->     not to advertise ASPM L1 Sub-States support if there is no CLKREQ signal.
-> +- slot-power-limit-miliwatt:
+> Let's make this a WARN for !IS_ENABLED(CONFIG_PASEMI). (whatever the
+> right kconfig symbol is).
 
-Typo.
+I've folded this in.
 
-But we shouldn't be adding to pci.txt. This needs to go in the 
-schema[1]. Patch to devicetree-spec list or GH PR is fine.
+	M.
 
-> +   If present, this property specifies slot power limit in milliwatts. Host
-> +   drivers can parse this property and use it for programming Root Port or host
-> +   bridge, or for composing and sending PCIe Set_Slot_Power_Limit messages
-> +   through the Root Port or host bridge when transitioning PCIe link from a
-> +   non-DL_Up Status to a DL_Up Status.
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index 508fb1717de3..b10f015b2e37 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -247,7 +247,13 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+ 		}
+ 		if (!match) {
+ 			if (intc) {
+-				pr_debug("%pOF interrupt-map failed, using interrupt-controller\n", ipar);
++				/*
++				 * The PASEMI Nemo is a known offender, so
++				 * let's only warn for anyone else.
++				 */
++				WARN(!IS_ENABLED(CONFIG_PPC_PASEMI),
++				     "%pOF interrupt-map failed, using interrupt-controller\n",
++				     ipar);
+ 				return 0;
+ 			}
 
-If your slots are behind a switch, then doesn't this apply to any bridge 
-port?
-
-[1] https://github.com/devicetree-org/dt-schema/blob/main/schemas/pci/pci-bus.yaml
+-- 
+Without deviation from the norm, progress is not possible.
