@@ -2,159 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3DCF44F2E0
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 12:47:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF29844F2E4
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 12:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235671AbhKMLtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Nov 2021 06:49:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41164 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234372AbhKMLtz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Nov 2021 06:49:55 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0B8C061766;
-        Sat, 13 Nov 2021 03:47:02 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id k37so29183712lfv.3;
-        Sat, 13 Nov 2021 03:47:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=o/mkbhEb1uyZt1SZztusHTiZond5GP2dgg4hEXLzLtI=;
-        b=EACvDY4D3mB3Si/gjQbY9KAzfrF6MJRZ6GtiTj+KRnyp/6+e0xthGIk3P3om983TNA
-         fXBSLGyaug8icy7/kmW6XQ+rRwDzt8XQx1+bEsQh3MmaVtiwtLoE/l70aRll/s1MDWHO
-         W4bTLf+HSrnU84QQ5Tg3NbVz8TnZOotzX5Ffe61jgLhmRPrzDtBkDTe36o2bRMK8/LAn
-         zKmRSvzBR6zlB66IbN3bArUP0otUerHr4zrxg3Ok7hACpRoGppdxuL/6mRNs0ltdTL78
-         fZTTcNiccsVXdBlvaOSvKfG1BctCZtrbGaWU2KhO6RfKUV3aTK6aSrseLEZIHTl9Sg0G
-         a3vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=o/mkbhEb1uyZt1SZztusHTiZond5GP2dgg4hEXLzLtI=;
-        b=UKmX8fQcvmmGzsME9ROoI/venFn7bOM+gW22Rtv0WU3jB3sMKagLfN7dtAQK9VkSsf
-         x06oE0Dwfcx/e9nb7P13M9jfXlm2bB01irSGNhBYXWDb8XhRcDbXiFz7+NSmoTybpljl
-         vs0tMgp7eSV0mD7F8At9MOvZpNsQ7YeWRTqmgXRUIQN298m3xgCvXXJdQI2fO2yfMahz
-         t3Dwu0hMz4hZJykB/P4z7W7F9GWscgEC9/Nfs07kRky4iHOPBB6hsY35xbhCsDv3rKEF
-         42Z0KrATR2TSsBTFJGiybog/cNTwymX7GfjZQJP/yqrXU0eYEbzIlLK7XE5H5vSANWfD
-         1pUQ==
-X-Gm-Message-State: AOAM533Jlh7aQSitl91E1GrUaCGJ25XXJd/1N+X5fxVd82eQWpgYj6Jt
-        e46/aXj4ZwY+Zpkg6PK+HoU=
-X-Google-Smtp-Source: ABdhPJzLh+TG6zpNdV+lzp/25s3Gzt2l7hc5dGJPc6FCRfTQpKWWS7eBbbS4Hu+rwIGzUuE+Smt9Jw==
-X-Received: by 2002:a05:6512:3f86:: with SMTP id x6mr20906852lfa.389.1636804020908;
-        Sat, 13 Nov 2021 03:47:00 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id m8sm941676lfg.140.2021.11.13.03.47.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 13 Nov 2021 03:47:00 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V4 2/2] dt-bindings: mfd: add Broadcom's Timer-Watchdog block
-Date:   Sat, 13 Nov 2021 12:46:45 +0100
-Message-Id: <20211113114645.27360-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211113114645.27360-1-zajec5@gmail.com>
-References: <20211113114645.27360-1-zajec5@gmail.com>
+        id S235040AbhKML53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Nov 2021 06:57:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55840 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232925AbhKML52 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Nov 2021 06:57:28 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C454A60F6B;
+        Sat, 13 Nov 2021 11:54:36 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mlrcA-005BG2-KW; Sat, 13 Nov 2021 11:54:34 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: [PATCH 0/8] drivers/perf: CPU PMU driver for Apple M1
+Date:   Sat, 13 Nov 2021 11:54:21 +0000
+Message-Id: <20211113115429.4027571-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+The M1 SoC embeds a per-CPU PMU that has a very different programming
+interface compared to the architected PMUv3 that is normally present
+on standard implementations.
 
-It's a block implementing few time related functions depending on a
-(SoC specific) variant. At this point there is ready binding for a
-watchdog only. Work on remaining subblocks (e.g. "reg" based reboot) is
-in progress.
+This small series adds a driver for this HW by leveraging the arm_pmu
+infrastructure, resulting in a rather simple driver.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Update $id, description, compatible, example & commit message
-V3: Drop "brcm,twd" from compatible list per Rob's review
----
- .../devicetree/bindings/mfd/brcm,twd.yaml     | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/brcm,twd.yaml
+Of course, we know next to nothing about the actual events this PMU
+counts, aside from CPU cycles and instructions. Everything else is
+undocumented.
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-new file mode 100644
-index 000000000000..634526f790b8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/brcm,twd.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom's Timer-Watchdog (aka TWD)
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+description: |
-+  Broadcom has a Timer-Watchdog block used in multiple SoCs (e.g., BCM4908,
-+  BCM63xx, BCM7038). There are few variants available (they differ slightly in
-+  registers layout). This block consists of: timers, watchdog and optionally a
-+  software reset handler.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm4908-twd
-+          - brcm,bcm7038-twd
-+      - const: simple-mfd
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  ranges: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  '^watchdog@[a-f0-9]+$':
-+    $ref: /schemas/watchdog/brcm,bcm7038-wdt.yaml
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    timer-mfd@ff800400 {
-+        compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
-+        reg = <0xff800400 0x4c>;
-+        ranges = <0x00000000 0xff800400 0x4c>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        watchdog@28 {
-+            compatible = "brcm,bcm7038-wdt";
-+            reg = <0x28 0x8>;
-+        };
-+    };
+My hope is that this driver will help people to explore the event
+space and propose possible interpretations for these events using
+reproducible test cases.
+
+Marc Zyngier (8):
+  dt-bindings: arm-pmu: Document Apple PMU compatible strings
+  dt-bindings: apple,aic: Add CPU PMU per-cpu pseudo-interrupts
+  irqchip/apple-aic: Add cpumasks for E and P cores
+  irqchip/apple-aic: Wire PMU interrupts
+  irqchip/apple-aic: Move PMU-specific registers to their own include
+    file
+  arm64: apple: t8301: Add PMU nodes
+  drivers/perf: arm_pmu: Handle 47 bit counters
+  drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
+
+ .../devicetree/bindings/arm/pmu.yaml          |   2 +
+ .../interrupt-controller/apple,aic.yaml       |   2 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  12 +
+ arch/arm64/include/asm/apple_m1_pmu.h         |  64 ++
+ drivers/irqchip/irq-apple-aic.c               |  59 +-
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/apple_m1_cpu_pmu.c               | 632 ++++++++++++++++++
+ drivers/perf/arm_pmu.c                        |   2 +
+ .../interrupt-controller/apple-aic.h          |   2 +
+ include/linux/perf/arm_pmu.h                  |   2 +
+ 11 files changed, 763 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/include/asm/apple_m1_pmu.h
+ create mode 100644 drivers/perf/apple_m1_cpu_pmu.c
+
 -- 
-2.31.1
+2.30.2
 
