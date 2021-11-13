@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B99A44F0DC
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 03:45:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B8744F102
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 04:22:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235302AbhKMCsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 21:48:33 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53110 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232571AbhKMCsd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 21:48:33 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AD2hn8W013163;
-        Fri, 12 Nov 2021 20:43:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1636771429;
-        bh=mhr8E9T4/nfsYQVYgx7OTXivgSgiT+8i+vo9IYLf+YY=;
-        h=From:To:CC:Subject:Date;
-        b=uaDWQc/kDocfHQnEV95+Choi3i8YXEXg88nOzLxrqyLZ4VU2JHUIeR0M41c+BMc0y
-         1zEDU2c4+Zu0l+RzR/giE9YiRKbyFzBxut2W+m8EsVOWpu7xCkGfXcPXzFnfg+oDAf
-         92U7+Mr016wctSzSZl3V0zljX65FxR98h+tsvFUk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AD2hn79109998
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 12 Nov 2021 20:43:49 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 12
- Nov 2021 20:43:49 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Fri, 12 Nov 2021 20:43:49 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AD2hnY0110243;
-        Fri, 12 Nov 2021 20:43:49 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>,
-        <linux-omap@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>
-Subject: [PATCH] arm64: dts: k3-j7200: Correct the d-cache-sets info
-Date:   Fri, 12 Nov 2021 20:43:48 -0600
-Message-ID: <20211113024348.29257-1-nm@ti.com>
-X-Mailer: git-send-email 2.32.0
+        id S232571AbhKMDZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 22:25:03 -0500
+Received: from smtpbg604.qq.com ([59.36.128.82]:43413 "EHLO smtpbg604.qq.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232113AbhKMDZD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Nov 2021 22:25:03 -0500
+X-QQ-mid: bizesmtp39t1636773727t3mf18cu
+Received: from localhost.localdomain (unknown [125.69.41.88])
+        by esmtp6.qq.com (ESMTP) with 
+        id ; Sat, 13 Nov 2021 11:22:06 +0800 (CST)
+X-QQ-SSF: 01000000000000C0F000B00A0000000
+X-QQ-FEAT: YSwSv5UBo8iyDs0LqepHxm3Da4Ty9d3fh9KZboilL/WAOHMO1XsSu2aVYrRk3
+        kKh5CGxjGRYL9hPcBttnI5YxO2FrtZQZWcJS3Y6vAtYi1f/DW6/jKFknkRgcDfjC44eOclo
+        wDCF2OkauWWkeECWPQgpmWo1lGEgaAatcEBf/77mj+AwAan5nhKWbfnBHW/B9kkil54fctM
+        A9X1C7btND+Hqr08VLHbQHXpiSK/kJFzbDxE0CoIuutvDWFpfvJeSc4QVw/tR4zwvUC6hKH
+        JNeH3FVYZV5BxOcuduQiDOT2wtV5TjkCqjCV6bxrgrV9EJql85n9vVRmUdxkydu7Oi9SYd9
+        3Y/YnFl3FAamtsgRnorBqEWero/PY83TovSu1fq
+X-QQ-GoodBg: 0
+From:   Jason Wang <wangborong@cdjrlc.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Jason Wang <wangborong@cdjrlc.com>
+Subject: [PATCH] ARM: dts: I.MX: Fix typo in some comments of imx
+Date:   Sat, 13 Nov 2021 11:21:56 +0800
+Message-Id: <20211113032156.48799-1-wangborong@cdjrlc.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:cdjrlc.com:qybgspam:qybgspam4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A72 Cluster (chapter 1.3,1 [1]) has 48KB Icache, 32KB Dcache and 1MB L2 Cache
- - ICache is 3-way set-associative
- - Dcache is 2-way set-associative
- - Line size are 64bytes
+Remove the repeated `configurable' in some comments in imx1-pinfunc.h
+and imx27-pinfunc.h.
 
-32KB (Dcache)/64 (fixed line length of 64 bytes) = 512 ways
-512 ways / 2 (Dcache is 2-way per set) = 256 sets.
-
-So, correct the d-cache-sets info.
-
-[1] https://www.ti.com/lit/pdf/spruiu1
-
-Fixes: d361ed88455f ("arm64: dts: ti: Add support for J7200 SoC")
-Reported-by: Peng Fan <peng.fan@nxp.com>
-Signed-off-by: Nishanth Menon <nm@ti.com>
+Signed-off-by: Jason Wang <wangborong@cdjrlc.com>
 ---
- arch/arm64/boot/dts/ti/k3-j7200.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/imx1-pinfunc.h  | 6 +++---
+ arch/arm/boot/dts/imx27-pinfunc.h | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-index 47567cb260c2..958587d3a33d 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
-@@ -62,7 +62,7 @@ cpu0: cpu@0 {
- 			i-cache-sets = <256>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
--			d-cache-sets = <128>;
-+			d-cache-sets = <256>;
- 			next-level-cache = <&L2_0>;
- 		};
+diff --git a/arch/arm/boot/dts/imx1-pinfunc.h b/arch/arm/boot/dts/imx1-pinfunc.h
+index 050a1fc46a77..bd2e679cb26c 100644
+--- a/arch/arm/boot/dts/imx1-pinfunc.h
++++ b/arch/arm/boot/dts/imx1-pinfunc.h
+@@ -26,9 +26,9 @@
+  *                2 - 0
+  *                3 - 1
+  *
+- * 'pin' is an integer between 0 and 0xbf. i.MX1 has 4 ports with 32 configurable
+- * configurable pins each. 'pin' is PORT * 32 + PORT_PIN, PORT_PIN is the pin
+- * number on the specific port (between 0 and 31).
++ * 'pin' is an integer between 0 and 0xbf. i.MX1 has 4 ports with 32
++ * configurable pins each. 'pin' is PORT * 32 + PORT_PIN, PORT_PIN is
++ * the pin number on the specific port (between 0 and 31).
+  */
  
-@@ -76,7 +76,7 @@ cpu1: cpu@1 {
- 			i-cache-sets = <256>;
- 			d-cache-size = <0x8000>;
- 			d-cache-line-size = <64>;
--			d-cache-sets = <128>;
-+			d-cache-sets = <256>;
- 			next-level-cache = <&L2_0>;
- 		};
- 	};
+ #define MX1_PAD_A24__A24			0x00 0x004
+diff --git a/arch/arm/boot/dts/imx27-pinfunc.h b/arch/arm/boot/dts/imx27-pinfunc.h
+index 1514d80a3112..75aea0c701d4 100644
+--- a/arch/arm/boot/dts/imx27-pinfunc.h
++++ b/arch/arm/boot/dts/imx27-pinfunc.h
+@@ -26,9 +26,9 @@
+  *                2 - 0
+  *                3 - 1
+  *
+- * 'pin' is an integer between 0 and 0xbf. imx27 has 6 ports with 32 configurable
+- * configurable pins each. 'pin' is PORT * 32 + PORT_PIN, PORT_PIN is the pin
+- * number on the specific port (between 0 and 31).
++ * 'pin' is an integer between 0 and 0xbf. imx27 has 6 ports with 32
++ * configurable pins each. 'pin' is PORT * 32 + PORT_PIN, PORT_PIN is
++ * the pin number on the specific port (between 0 and 31).
+  */
+ 
+ #define MX27_PAD_USBH2_CLK__USBH2_CLK                      0x00 0x000
 -- 
-2.32.0
+2.33.0
 
