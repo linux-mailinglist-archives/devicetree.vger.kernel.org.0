@@ -2,119 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3D8B44F05A
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 02:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78FE444F0B9
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 03:02:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231998AbhKMBHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Nov 2021 20:07:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43604 "EHLO
+        id S235168AbhKMCFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Nov 2021 21:05:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbhKMBHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 20:07:13 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FFDCC061766;
-        Fri, 12 Nov 2021 17:04:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:To:
-        Subject:Sender:Reply-To:Cc:Content-ID:Content-Description;
-        bh=W3pYbR+KVmnwM9kipI6oWi9/VlOqRdBW9731D/Unbls=; b=SirK07t7fUZav/KZHpehdWm2dg
-        smFKrI3HxOycN0XM7e5Z3I3VjABmpRwkJ9ojak4flvNLdePbVfQnhJu2CBAVGyJZIhjxgM/B1vjeQ
-        a2m66ITzael0Za5s9QT1rtT1CNiPhRa1ETLIofTfB/97h2Bi8wY1LfQuey1dIlJjBv7b3Ar3F+nlO
-        ZRKXc6Fb8CxrGsCMX+FEgPWoWmXwNMHah01n1yPtBDfDKb1jTvwM8ycck2w0dvtVYkixVQNdp5nAK
-        FndQ6j8iOUsGxN0821G9gIRw37/hr13KRusgBWRh4wQtcRZcQFEidlFbrdgxYXMN0XJKLb+fFCksU
-        DDu7SfhQ==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mlhSv-00BxSy-9a; Sat, 13 Nov 2021 01:04:21 +0000
-Subject: Re: [PATCH v5 1/8] leds: add support for hardware driven LEDs
-To:     Ansuel Smith <ansuelsmth@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        with ESMTP id S233303AbhKMCFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Nov 2021 21:05:39 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5916C061767
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 18:02:47 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id 207so21899852ljf.10
+        for <devicetree@vger.kernel.org>; Fri, 12 Nov 2021 18:02:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=snejp.pl; s=gmail;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2iGO71on63/LBV4+V6rXPmECeBXzrpOVOk0VbOEmQkM=;
+        b=Z+XMlXS8tibXv5AQJYE37X01NbN8LVqtLnu8NxqopAXH7wUSGRnHAUjMk/Xl66gLt0
+         /4jxMigxQtDyCVEOHH+HqwzaxyapiU+VGgc7NXp4YQmtqaXh00Vyvr8WBPmSoSoS8Xn+
+         DDmavL9kUdukD2R7d2MQhi3wTaCU9KSaely3QUIJilekR75TbdC2DjbM8XeF5NAS3GpZ
+         rJ1nUW0CWsMX+ht+J3K9KuPqWAzaiqAjSfv+rn1n3uMeDtl4ovCIuSnHQVjNwL1WC6EA
+         Hxbu5oPds02nsoq0/gAqZWyUPzzDtcOrbatyHRh48RZ1AbDd9WWpehOip0flDNsLzcoD
+         6dEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2iGO71on63/LBV4+V6rXPmECeBXzrpOVOk0VbOEmQkM=;
+        b=bu0ZtdWhM0KkXsWp1tTzmTYNhy8IqN/wLuDqu2Qim6sTrkeB6HGb6bzE1DUJF9Kh7I
+         gHBvAaT1mveSpx25YaV6ocjOb69ry/iZE/wm0MbCU54T+6y6cYERrfHlwfwM/7lX6ADd
+         ee0xraFU44QobDpabglHyGtkbOEg/tc5cgD/VW11/9e5zYO7h0QGi2O/iCKIordlHWwu
+         N2if34NsZ2g1Ap7XK3U8KDGQCfzgrPLcmo765GotbA5YzHylN6rLU1Whpkdx7Na66rlP
+         /hHbYLFAYCP5jQN4o1SMplD79R1Y2dxkViAksgs8et1scMsa/faiDyDNhpo8hv30WEdW
+         TcNg==
+X-Gm-Message-State: AOAM53229UUzTU2eZB2QkZEy0nyrTX90Gl3vT/ilvs7MPx0xIyK5V/EG
+        JlNVGQXH03zQy/eLu/8mhntypS1M/zLj07jF
+X-Google-Smtp-Source: ABdhPJztdtW06NfPhsVRQ0uv0GsFyBFCTeBNWfpaGQudrt/u1Ud/EW1oLbH0ge7kHcdlsOlmMgsiag==
+X-Received: by 2002:a05:651c:1543:: with SMTP id y3mr20179876ljp.436.1636768965984;
+        Fri, 12 Nov 2021 18:02:45 -0800 (PST)
+Received: from PackardBell ([82.160.139.10])
+        by smtp.googlemail.com with ESMTPSA id j20sm686185ljg.104.2021.11.12.18.02.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 12 Nov 2021 18:02:45 -0800 (PST)
+Received: from localhost (PackardBell [local])
+        by PackardBell (OpenSMTPD) with ESMTPA id 66928ea7;
+        Sat, 13 Nov 2021 02:02:43 +0000 (UTC)
+From:   Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Pavel Machek <pavel@ucw.cz>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
+        Jeffrey Hugo <jhugo@codeaurora.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-leds@vger.kernel.org,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
-References: <20211112153557.26941-1-ansuelsmth@gmail.com>
- <20211112153557.26941-2-ansuelsmth@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <523edf1d-ec7d-5915-0212-d7ab0b1ce1d6@infradead.org>
-Date:   Fri, 12 Nov 2021 17:04:20 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Subject: [PATCH 1/2] dt-bindings: clock: Add support for the MSM8226 mmcc
+Date:   Sat, 13 Nov 2021 02:58:43 +0100
+Message-Id: <20211113015844.92762-1-bartosz.dudziak@snejp.pl>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20211112153557.26941-2-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/21 7:35 AM, Ansuel Smith wrote:
-> diff --git a/Documentation/leds/leds-class.rst b/Documentation/leds/leds-class.rst
-> index cd155ead8703..e5d266919a19 100644
-> --- a/Documentation/leds/leds-class.rst
-> +++ b/Documentation/leds/leds-class.rst
-> @@ -169,6 +169,38 @@ Setting the brightness to zero with brightness_set() callback function
->   should completely turn off the LED and cancel the previously programmed
->   hardware blinking function, if any.
->   
-> +Hardware driven LEDs
-> +===================================
-> +
-> +Some LEDs can be driven by hardware (for example an LED connected to
-> +an ethernet PHY or an ethernet switch can be configured to blink on activity on
-> +the network, which in software is done by the netdev trigger).
-> +
-> +To do such offloading, LED driver must support this and a supported trigger must
-> +be used.
-> +
-> +LED driver should declare the correct control mode supported and should set
-> +the LED_SOFTWARE_CONTROLLED or LED_HARDWARE_CONTROLLED bit in the flags
-> +parameter.
-> +The trigger will check these bits and fail to activate if the control mode
-> +is not supported. By default if a LED driver doesn't declare a control mode,
+Document the multimedia clock controller found on MSM8226.
 
-                                 if an LED driver
+Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+---
+ Documentation/devicetree/bindings/clock/qcom,mmcc.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> +bit LED_SOFTWARE_CONTROLLED is assumed and set.
-> +
-> +The LED must implement 3 main APIs:
-> +- hw_control_status(): This asks the LED driver if hardware mode is enabled
-> +    or not.
-> +- hw_control_start(): This will simply enable the hardware mode for the LED
-> +    and the LED driver should reset any active blink_mode.
-> +- hw_control_stop(): This will simply disable the hardware mode for the LED.
-> +    It's advised to the driver to put the LED in the old state but this is not
-> +    enforced and putting the LED off is also accepted.
-> +
-> +If LED_HARDWARE_CONTROLLED bit is the only control mode set (LED_SOFTWARE_CONTROLLED
-> +not set) set hw_control_status/start/stop is optional as the LED supports only
-
-             ^^^ is that an extra "set"?  I can't quite read this sentence.
-
-And it would be better with a comma added, like so:
-
-   not set),
-
-
-> +hardware mode and any software only trigger will reject activation.
-
-                          software-only
-
-> +
-> +On init an LED driver that support a hardware mode should reset every blink mode
-
-                               supports
-
-> +set by default.
-
-
+diff --git a/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml b/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+index 68fdc3d49..4b79e89fd 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,mmcc.yaml
+@@ -19,6 +19,7 @@ properties:
+     enum:
+       - qcom,mmcc-apq8064
+       - qcom,mmcc-apq8084
++      - qcom,mmcc-msm8226
+       - qcom,mmcc-msm8660
+       - qcom,mmcc-msm8960
+       - qcom,mmcc-msm8974
 -- 
-~Randy
+2.25.1
+
