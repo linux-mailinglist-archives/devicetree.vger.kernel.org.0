@@ -2,797 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D285F44F2F0
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 12:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9F544F304
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 13:09:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235862AbhKML5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Nov 2021 06:57:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56046 "EHLO mail.kernel.org"
+        id S235880AbhKMMMD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Nov 2021 07:12:03 -0500
+Received: from mail.z3ntu.xyz ([128.199.32.197]:55308 "EHLO mail.z3ntu.xyz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235832AbhKML5b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 13 Nov 2021 06:57:31 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CF623611C0;
-        Sat, 13 Nov 2021 11:54:38 +0000 (UTC)
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.lan)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mlrcC-005BG2-Vu; Sat, 13 Nov 2021 11:54:37 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        id S234466AbhKMMMC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Nov 2021 07:12:02 -0500
+Received: from g550jk.localnet (ip-213-127-109-54.ip.prioritytelecom.net [213.127.109.54])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 25DE7C5E2A;
+        Sat, 13 Nov 2021 12:09:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1636805349; bh=cGnsNNtpKIpi/U846vGQ/SgRErN6GSc4nEr2luFl5yw=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=oflwb81vFmoZfpRTitC35xDEKkhvSTVcTWv6hRQXdn7rotmNdK1wporPw3Rl2iA/D
+         q/42a/R7GyNle6ZOGyCrDNwouGrK8hz39xeywqq7BnQlaRjFcjJW2NQgidmxuuLJbG
+         pS/RbyY9DmJYPUeR8pWK/9ELR9pO2zae64JVxTls=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: [PATCH 8/8] drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
-Date:   Sat, 13 Nov 2021 11:54:29 +0000
-Message-Id: <20211113115429.4027571-9-maz@kernel.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211113115429.4027571-1-maz@kernel.org>
-References: <20211113115429.4027571-1-maz@kernel.org>
+        Jeffrey Hugo <jhugo@codeaurora.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>,
+        Bartosz Dudziak <bartosz.dudziak@snejp.pl>
+Subject: Re: [PATCH 2/2] clk: qcom: Add MSM8226 Multimedia Clock Controller support
+Date:   Sat, 13 Nov 2021 13:09:08 +0100
+Message-ID: <5765145.lOV4Wx5bFT@g550jk>
+In-Reply-To: <20211113015844.92762-2-bartosz.dudziak@snejp.pl>
+References: <20211113015844.92762-1-bartosz.dudziak@snejp.pl> <20211113015844.92762-2-bartosz.dudziak@snejp.pl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a new, weird and wonderful driver for the equally weird Apple
-PMU HW. Although the PMU itself is functional, we don't know much
-about the events yet, so this can be considered as yet another
-random number generator...
+Hi Bartosz,
 
-Nonetheless, it can reliably count at least cycles and instructions
-in the usually wonky big-little way. For anything else, it of course
-supports raw event numbers.
+thanks for the patch!
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
----
- arch/arm64/include/asm/apple_m1_pmu.h |  45 ++
- drivers/perf/Kconfig                  |   7 +
- drivers/perf/Makefile                 |   1 +
- drivers/perf/apple_m1_cpu_pmu.c       | 632 ++++++++++++++++++++++++++
- 4 files changed, 685 insertions(+)
- create mode 100644 drivers/perf/apple_m1_cpu_pmu.c
+On Samstag, 13. November 2021 02:58:44 CET Bartosz Dudziak wrote:
+> Modify the existing MSM8974 multimedia clock controller driver to
+> support the MMCC found on MSM8226 based devices. This should allow most
+> multimedia device drivers to probe and control their clocks.
+> 
+> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
 
-diff --git a/arch/arm64/include/asm/apple_m1_pmu.h b/arch/arm64/include/asm/apple_m1_pmu.h
-index b848af7faadc..99483b19b99f 100644
---- a/arch/arm64/include/asm/apple_m1_pmu.h
-+++ b/arch/arm64/include/asm/apple_m1_pmu.h
-@@ -6,8 +6,21 @@
- #include <linux/bits.h>
- #include <asm/sysreg.h>
- 
-+/* Counters */
-+#define SYS_IMP_APL_PMC0_EL1	sys_reg(3, 2, 15, 0, 0)
-+#define SYS_IMP_APL_PMC1_EL1	sys_reg(3, 2, 15, 1, 0)
-+#define SYS_IMP_APL_PMC2_EL1	sys_reg(3, 2, 15, 2, 0)
-+#define SYS_IMP_APL_PMC3_EL1	sys_reg(3, 2, 15, 3, 0)
-+#define SYS_IMP_APL_PMC4_EL1	sys_reg(3, 2, 15, 4, 0)
-+#define SYS_IMP_APL_PMC5_EL1	sys_reg(3, 2, 15, 5, 0)
-+#define SYS_IMP_APL_PMC6_EL1	sys_reg(3, 2, 15, 6, 0)
-+#define SYS_IMP_APL_PMC7_EL1	sys_reg(3, 2, 15, 7, 0)
-+#define SYS_IMP_APL_PMC8_EL1	sys_reg(3, 2, 15, 9, 0)
-+#define SYS_IMP_APL_PMC9_EL1	sys_reg(3, 2, 15, 10, 0)
-+
- /* Core PMC control register */
- #define SYS_IMP_APL_PMCR0_EL1	sys_reg(3, 1, 15, 0, 0)
-+#define PMCR0_CNT_ENABLE_0_7	GENMASK(7, 0)
- #define PMCR0_IMODE		GENMASK(10, 8)
- #define PMCR0_IMODE_OFF		0
- #define PMCR0_IMODE_PMI		1
-@@ -15,5 +28,37 @@
- #define PMCR0_IMODE_HALT	3
- #define PMCR0_IMODE_FIQ		4
- #define PMCR0_IACT		BIT(11)
-+#define PMCR0_PMI_ENABLE_0_7	GENMASK(19, 12)
-+#define PMCR0_STOP_CNT_ON_PMI	BIT(20)
-+#define PMCR0_CNT_GLOB_L2C_EVT	BIT(21)
-+#define PMCR0_DEFER_PMI_TO_ERET	BIT(22)
-+#define PMCR0_ALLOW_CNT_EN_EL0	BIT(30)
-+#define PMCR0_CNT_ENABLE_8_9	GENMASK(33, 32)
-+#define PMCR0_PMI_ENABLE_8_9	GENMASK(45, 44)
-+
-+#define SYS_IMP_APL_PMCR1_EL1	sys_reg(3, 1, 15, 1, 0)
-+#define PMCR1_COUNT_A64_EL0_0_7	GENMASK(15, 8)
-+#define PMCR1_COUNT_A64_EL1_0_7	GENMASK(23, 16)
-+#define PMCR1_COUNT_A64_EL0_8_9	GENMASK(41, 40)
-+#define PMCR1_COUNT_A64_EL1_8_9	GENMASK(49, 48)
-+
-+#define SYS_IMP_APL_PMCR2_EL1	sys_reg(3, 1, 15, 2, 0)
-+#define SYS_IMP_APL_PMCR3_EL1	sys_reg(3, 1, 15, 3, 0)
-+#define SYS_IMP_APL_PMCR4_EL1	sys_reg(3, 1, 15, 4, 0)
-+
-+#define SYS_IMP_APL_PMESR0_EL1	sys_reg(3, 1, 15, 5, 0)
-+#define PMESR0_EVT_CNT_2	GENMASK(7, 0)
-+#define PMESR0_EVT_CNT_3	GENMASK(15, 8)
-+#define PMESR0_EVT_CNT_4	GENMASK(23, 16)
-+#define PMESR0_EVT_CNT_5	GENMASK(31, 24)
-+
-+#define SYS_IMP_APL_PMESR1_EL1	sys_reg(3, 1, 15, 6, 0)
-+#define PMESR1_EVT_CNT_6	GENMASK(7, 0)
-+#define PMESR1_EVT_CNT_7	GENMASK(15, 8)
-+#define PMESR1_EVT_CNT_8	GENMASK(23, 16)
-+#define PMESR1_EVT_CNT_9	GENMASK(31, 24)
-+
-+#define SYS_IMP_APL_PMSR_EL1	sys_reg(3, 1, 15, 13, 0)
-+#define PMSR_OVERFLOW		GENMASK(9, 0)
- 
- #endif /* __ASM_APPLE_M1_PMU_h */
-diff --git a/drivers/perf/Kconfig b/drivers/perf/Kconfig
-index 4374af292e6d..a6af7bcb82ef 100644
---- a/drivers/perf/Kconfig
-+++ b/drivers/perf/Kconfig
-@@ -139,6 +139,13 @@ config ARM_DMC620_PMU
- 	  Support for PMU events monitoring on the ARM DMC-620 memory
- 	  controller.
- 
-+config APPLE_M1_CPU_PMU
-+	bool "Apple M1 CPU PMU support"
-+	depends on ARM_PMU && ARCH_APPLE
-+	help
-+	  Provides support for the non-architectural CPU PMUs present on
-+	  the Apple M1 SoCs and derivatives.
-+
- source "drivers/perf/hisilicon/Kconfig"
- 
- endmenu
-diff --git a/drivers/perf/Makefile b/drivers/perf/Makefile
-index 5260b116c7da..1c8cffc8c326 100644
---- a/drivers/perf/Makefile
-+++ b/drivers/perf/Makefile
-@@ -14,3 +14,4 @@ obj-$(CONFIG_THUNDERX2_PMU) += thunderx2_pmu.o
- obj-$(CONFIG_XGENE_PMU) += xgene_pmu.o
- obj-$(CONFIG_ARM_SPE_PMU) += arm_spe_pmu.o
- obj-$(CONFIG_ARM_DMC620_PMU) += arm_dmc620_pmu.o
-+obj-$(CONFIG_APPLE_M1_CPU_PMU) += apple_m1_cpu_pmu.o
-diff --git a/drivers/perf/apple_m1_cpu_pmu.c b/drivers/perf/apple_m1_cpu_pmu.c
-new file mode 100644
-index 000000000000..bc991fc892eb
---- /dev/null
-+++ b/drivers/perf/apple_m1_cpu_pmu.c
-@@ -0,0 +1,632 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * CPU PMU driver for the Apple M1 and derivatives
-+ *
-+ * Copyright (C) 2021 Google LLC
-+ *
-+ * Author: Marc Zyngier <maz@kernel.org>
-+ *
-+ * Most of the information used in this driver was provided by the
-+ * Asahi Linux project. The rest was experimentally discovered.
-+ */
-+
-+#include <linux/of.h>
-+#include <linux/perf/arm_pmu.h>
-+#include <linux/platform_device.h>
-+
-+#include <asm/apple_m1_pmu.h>
-+#include <asm/irq_regs.h>
-+#include <asm/perf_event.h>
-+
-+#define M1_PMU_NR_COUNTERS		10
-+
-+#define M1_PMU_CFG_EVENT		GENMASK(7, 0)
-+
-+#define ANY_BUT_0_1			GENMASK(9, 2)
-+#define ONLY_2_TO_7			GENMASK(7, 2)
-+#define ONLY_2_4_6			(BIT(2) | BIT(4) | BIT(6))
-+#define ONLY_5_6_7			GENMASK(7, 5)
-+
-+/*
-+ * Description of the events we actually know about, as well as those with
-+ * a specific counter affinity. Yes, this is a grand total of two known
-+ * counters, and the rest is anybody's guess.
-+ *
-+ * Not all counters can count all events. Counters #0 and #1 are wired to
-+ * count cycles and instructions respectively, and some events have
-+ * bizarre mappings (every other counter, or even *one* counter). These
-+ * restrictins equally apply to both P and E cores.
-+ *
-+ * It is worth noting that the PMUs attached to P and E cores are likely
-+ * to be different because the underlying uarches are different. At the
-+ * moment, we don't really need to distinguish between the two because we
-+ * know next to nothing about the events themselves, and we already have
-+ * per cpu-type PMU abstractions.
-+ *
-+ * If we eventually find out that the events are different across
-+ * implementations, we'll have to introduce per cpu-type tables.
-+ */
-+enum m1_pmu_events {
-+	M1_PMU_PERFCTR_UNKNOWN_01	= 0x01,
-+	M1_PMU_PERFCTR_CPU_CYCLES	= 0x02,
-+	M1_PMU_PERFCTR_INSTRUCTIONS	= 0x8c,
-+	M1_PMU_PERFCTR_UNKNOWN_8d	= 0x8d,
-+	M1_PMU_PERFCTR_UNKNOWN_8e	= 0x8e,
-+	M1_PMU_PERFCTR_UNKNOWN_8f	= 0x8f,
-+	M1_PMU_PERFCTR_UNKNOWN_90	= 0x90,
-+	M1_PMU_PERFCTR_UNKNOWN_93	= 0x93,
-+	M1_PMU_PERFCTR_UNKNOWN_94	= 0x94,
-+	M1_PMU_PERFCTR_UNKNOWN_95	= 0x95,
-+	M1_PMU_PERFCTR_UNKNOWN_96	= 0x96,
-+	M1_PMU_PERFCTR_UNKNOWN_97	= 0x97,
-+	M1_PMU_PERFCTR_UNKNOWN_98	= 0x98,
-+	M1_PMU_PERFCTR_UNKNOWN_99	= 0x99,
-+	M1_PMU_PERFCTR_UNKNOWN_9a	= 0x9a,
-+	M1_PMU_PERFCTR_UNKNOWN_9b	= 0x9b,
-+	M1_PMU_PERFCTR_UNKNOWN_9c	= 0x9c,
-+	M1_PMU_PERFCTR_UNKNOWN_9f	= 0x9f,
-+	M1_PMU_PERFCTR_UNKNOWN_bf	= 0xbf,
-+	M1_PMU_PERFCTR_UNKNOWN_c0	= 0xc0,
-+	M1_PMU_PERFCTR_UNKNOWN_c1	= 0xc1,
-+	M1_PMU_PERFCTR_UNKNOWN_c4	= 0xc4,
-+	M1_PMU_PERFCTR_UNKNOWN_c5	= 0xc5,
-+	M1_PMU_PERFCTR_UNKNOWN_c6	= 0xc6,
-+	M1_PMU_PERFCTR_UNKNOWN_c8	= 0xc8,
-+	M1_PMU_PERFCTR_UNKNOWN_ca	= 0xca,
-+	M1_PMU_PERFCTR_UNKNOWN_cb	= 0xcb,
-+	M1_PMU_PERFCTR_UNKNOWN_f5	= 0xf5,
-+	M1_PMU_PERFCTR_UNKNOWN_f6	= 0xf6,
-+	M1_PMU_PERFCTR_UNKNOWN_f7	= 0xf7,
-+	M1_PMU_PERFCTR_UNKNOWN_f8	= 0xf8,
-+	M1_PMU_PERFCTR_UNKNOWN_fd	= 0xfd,
-+	M1_PMU_PERFCTR_LAST		= M1_PMU_CFG_EVENT,
-+
-+	/*
-+	 * From this point onwards, these are not actual HW events,
-+	 * but attributes that get stored in hw->config_base.
-+	 */
-+	M1_PMU_CFG_COUNT_USER		= BIT(8),
-+	M1_PMU_CFG_COUNT_KERNEL		= BIT(9),
-+};
-+
-+/*
-+ * Per-event affinity table. Most events can be installed on counter
-+ * 2-9, but there are a numbre of exceptions. Note that this table
-+ * has been created experimentally, and I wouldn't be surprised if more
-+ * counters had strange affinities.
-+ */
-+static const u16 m1_pmu_event_affinity[M1_PMU_PERFCTR_LAST + 1] = {
-+	[0 ... M1_PMU_PERFCTR_LAST]	= ANY_BUT_0_1,
-+	[M1_PMU_PERFCTR_UNKNOWN_01]	= BIT(7),
-+	[M1_PMU_PERFCTR_CPU_CYCLES]	= ANY_BUT_0_1 | BIT(0),
-+	[M1_PMU_PERFCTR_INSTRUCTIONS]	= BIT(7) | BIT(1),
-+	[M1_PMU_PERFCTR_UNKNOWN_8d]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_8e]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_8f]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_90]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_93]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_94]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_95]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_96]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_97]	= BIT(7),
-+	[M1_PMU_PERFCTR_UNKNOWN_98]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_99]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_9a]	= BIT(7),
-+	[M1_PMU_PERFCTR_UNKNOWN_9b]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_9c]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_9f]	= BIT(7),
-+	[M1_PMU_PERFCTR_UNKNOWN_bf]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_c0]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_c1]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_c4]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_c5]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_c6]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_c8]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_ca]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_cb]	= ONLY_5_6_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_f5]	= ONLY_2_4_6,
-+	[M1_PMU_PERFCTR_UNKNOWN_f6]	= ONLY_2_4_6,
-+	[M1_PMU_PERFCTR_UNKNOWN_f7]	= ONLY_2_4_6,
-+	[M1_PMU_PERFCTR_UNKNOWN_f8]	= ONLY_2_TO_7,
-+	[M1_PMU_PERFCTR_UNKNOWN_fd]	= ONLY_2_4_6,
-+};
-+
-+static const unsigned m1_pmu_perf_map[PERF_COUNT_HW_MAX] = {
-+	PERF_MAP_ALL_UNSUPPORTED,
-+	[PERF_COUNT_HW_CPU_CYCLES]	= M1_PMU_PERFCTR_CPU_CYCLES,
-+	[PERF_COUNT_HW_INSTRUCTIONS]	= M1_PMU_PERFCTR_INSTRUCTIONS,
-+	/* No idea about the rest yet */
-+};
-+
-+/* sysfs definitions */
-+static ssize_t m1_pmu_events_sysfs_show(struct device *dev,
-+					struct device_attribute *attr,
-+					char *page)
-+{
-+	struct perf_pmu_events_attr *pmu_attr;
-+
-+	pmu_attr = container_of(attr, struct perf_pmu_events_attr, attr);
-+
-+	return sprintf(page, "event=0x%04llx\n", pmu_attr->id);
-+}
-+
-+#define M1_PMU_EVENT_ATTR(name, config)					\
-+	PMU_EVENT_ATTR_ID(name, m1_pmu_events_sysfs_show, config)
-+
-+static struct attribute *m1_pmu_event_attrs[] = {
-+	M1_PMU_EVENT_ATTR(cycles, M1_PMU_PERFCTR_CPU_CYCLES),
-+	M1_PMU_EVENT_ATTR(instructions, M1_PMU_PERFCTR_INSTRUCTIONS),
-+	NULL,
-+};
-+
-+static const struct attribute_group m1_pmu_events_attr_group = {
-+	.name = "events",
-+	.attrs = m1_pmu_event_attrs,
-+};
-+
-+PMU_FORMAT_ATTR(event, "config:0-7");
-+
-+static struct attribute *m1_pmu_format_attrs[] = {
-+	&format_attr_event.attr,
-+	NULL,
-+};
-+
-+static const struct attribute_group m1_pmu_format_attr_group = {
-+	.name = "format",
-+	.attrs = m1_pmu_format_attrs,
-+};
-+
-+/* Low level accessors. No synchronisation. */
-+#define PMU_READ_COUNTER(_idx)						\
-+	case _idx:	return read_sysreg_s(SYS_IMP_APL_PMC## _idx ##_EL1)
-+
-+#define PMU_WRITE_COUNTER(_val, _idx)					\
-+	case _idx:							\
-+		write_sysreg_s(_val, SYS_IMP_APL_PMC## _idx ##_EL1);	\
-+		return
-+
-+static u64 m1_pmu_read_hw_counter(unsigned int index)
-+{
-+	switch (index) {
-+		PMU_READ_COUNTER(0);
-+		PMU_READ_COUNTER(1);
-+		PMU_READ_COUNTER(2);
-+		PMU_READ_COUNTER(3);
-+		PMU_READ_COUNTER(4);
-+		PMU_READ_COUNTER(5);
-+		PMU_READ_COUNTER(6);
-+		PMU_READ_COUNTER(7);
-+		PMU_READ_COUNTER(8);
-+		PMU_READ_COUNTER(9);
-+	}
-+
-+	BUG();
-+}
-+
-+static void m1_pmu_write_hw_counter(u64 val, unsigned int index)
-+{
-+	switch (index) {
-+		PMU_WRITE_COUNTER(val, 0);
-+		PMU_WRITE_COUNTER(val, 1);
-+		PMU_WRITE_COUNTER(val, 2);
-+		PMU_WRITE_COUNTER(val, 3);
-+		PMU_WRITE_COUNTER(val, 4);
-+		PMU_WRITE_COUNTER(val, 5);
-+		PMU_WRITE_COUNTER(val, 6);
-+		PMU_WRITE_COUNTER(val, 7);
-+		PMU_WRITE_COUNTER(val, 8);
-+		PMU_WRITE_COUNTER(val, 9);
-+	}
-+
-+	BUG();
-+}
-+
-+#define get_bit_offset(index, mask)	(__ffs(mask) + (index))
-+
-+static void __m1_pmu_enable_counter(unsigned int index, bool en)
-+{
-+	u64 val, bit;
-+
-+	switch (index) {
-+	case 0 ... 7:
-+		bit = BIT(get_bit_offset(index, PMCR0_CNT_ENABLE_0_7));
-+		break;
-+	case 8 ... 9:
-+		bit = BIT(get_bit_offset(index - 8, PMCR0_CNT_ENABLE_8_9));
-+		break;
-+	default:
-+		BUG();
-+	}
-+
-+	val = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
-+
-+	if (en)
-+		val |= bit;
-+	else
-+		val &= ~bit;
-+
-+	write_sysreg_s(val, SYS_IMP_APL_PMCR0_EL1);
-+}
-+
-+static void m1_pmu_enable_counter(unsigned int index)
-+{
-+	__m1_pmu_enable_counter(index, true);
-+}
-+
-+static void m1_pmu_disable_counter(unsigned int index)
-+{
-+	__m1_pmu_enable_counter(index, false);
-+}
-+
-+static void __m1_pmu_enable_counter_interrupt(unsigned int index, bool en)
-+{
-+	u64 val, bit;
-+
-+	switch (index) {
-+	case 0 ... 7:
-+		bit = BIT(get_bit_offset(index, PMCR0_PMI_ENABLE_0_7));
-+		break;
-+	case 8 ... 9:
-+		bit = BIT(get_bit_offset(index - 8, PMCR0_PMI_ENABLE_8_9));
-+		break;
-+	default:
-+		BUG();
-+	}
-+
-+	val = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
-+
-+	if (en)
-+		val |= bit;
-+	else
-+		val &= ~bit;
-+
-+	write_sysreg_s(val, SYS_IMP_APL_PMCR0_EL1);
-+}
-+
-+static void m1_pmu_enable_counter_interrupt(unsigned int index)
-+{
-+	__m1_pmu_enable_counter_interrupt(index, true);
-+}
-+
-+static void m1_pmu_disable_counter_interrupt(unsigned int index)
-+{
-+	__m1_pmu_enable_counter_interrupt(index, false);
-+}
-+
-+static void m1_pmu_configure_counter(unsigned int index, u8 event,
-+				     bool user, bool kernel)
-+{
-+	u64 val, user_bit, kernel_bit;
-+	int shift;
-+
-+	switch (index) {
-+	case 0 ... 7:
-+		user_bit = BIT(get_bit_offset(index, PMCR1_COUNT_A64_EL0_0_7));
-+		kernel_bit = BIT(get_bit_offset(index, PMCR1_COUNT_A64_EL1_0_7));
-+		break;
-+	case 8 ... 9:
-+		user_bit = BIT(get_bit_offset(index - 8, PMCR1_COUNT_A64_EL0_8_9));
-+		kernel_bit = BIT(get_bit_offset(index - 8, PMCR1_COUNT_A64_EL1_8_9));
-+		break;
-+	default:
-+		BUG();
-+	}
-+
-+	val = read_sysreg_s(SYS_IMP_APL_PMCR1_EL1);
-+
-+	if (user)
-+		val |= user_bit;
-+	else
-+		val &= ~user_bit;
-+
-+	if (kernel)
-+		val |= kernel_bit;
-+	else
-+		val &= ~kernel_bit;
-+
-+	write_sysreg_s(val, SYS_IMP_APL_PMCR1_EL1);
-+
-+	switch (index) {
-+	case 0 ... 1:
-+		/* 0 and 1 have fixed events */
-+		break;
-+	case 2 ... 5:
-+		shift = (index - 2) * 8;
-+		val = read_sysreg_s(SYS_IMP_APL_PMESR0_EL1);
-+		val &= ~((u64)0xff << shift);
-+		val |= (u64)event << shift;
-+		write_sysreg_s(val, SYS_IMP_APL_PMESR0_EL1);
-+		break;
-+	case 6 ... 9:
-+		shift = (index - 6) * 8;
-+		val = read_sysreg_s(SYS_IMP_APL_PMESR1_EL1);
-+		val &= ~((u64)0xff << shift);
-+		val |= (u64)event << shift;
-+		write_sysreg_s(val, SYS_IMP_APL_PMESR1_EL1);
-+		break;
-+	}
-+}
-+
-+/* arm_pmu backend */
-+static void m1_pmu_enable_event(struct perf_event *event)
-+{
-+	struct arm_pmu *cpu_pmu = to_arm_pmu(event->pmu);
-+	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
-+	unsigned long flags;
-+	bool user, kernel;
-+	u8 evt;
-+
-+	evt = event->hw.config_base & M1_PMU_CFG_EVENT;
-+	user = event->hw.config_base & M1_PMU_CFG_COUNT_USER;
-+	kernel = event->hw.config_base & M1_PMU_CFG_COUNT_KERNEL;
-+
-+	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
-+
-+	m1_pmu_disable_counter_interrupt(event->hw.idx);
-+	m1_pmu_disable_counter(event->hw.idx);
-+	isb();
-+
-+	m1_pmu_configure_counter(event->hw.idx, evt, user, kernel);
-+	m1_pmu_enable_counter(event->hw.idx);
-+	m1_pmu_enable_counter_interrupt(event->hw.idx);
-+	isb();
-+
-+	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
-+}
-+
-+static void __m1_pmu_disable_event(struct perf_event *event)
-+{
-+	m1_pmu_disable_counter_interrupt(event->hw.idx);
-+	m1_pmu_disable_counter(event->hw.idx);
-+	isb();
-+}
-+
-+static void m1_pmu_disable_event(struct perf_event *event)
-+{
-+	struct arm_pmu *cpu_pmu = to_arm_pmu(event->pmu);
-+	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
-+
-+	__m1_pmu_disable_event(event);
-+
-+	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
-+}
-+
-+static irqreturn_t m1_pmu_handle_irq(struct arm_pmu *cpu_pmu)
-+{
-+	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
-+	irqreturn_t ret = IRQ_HANDLED;
-+	struct pt_regs *regs;
-+	u64 overflow, state;
-+	unsigned long flags;
-+	int idx;
-+
-+	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
-+	state = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
-+	overflow = read_sysreg_s(SYS_IMP_APL_PMSR_EL1);
-+	if (!overflow) {
-+		ret = IRQ_NONE;
-+		goto out;
-+	}
-+
-+	regs = get_irq_regs();
-+
-+	for (idx = 0; idx < cpu_pmu->num_events; idx++) {
-+		struct perf_event *event = cpuc->events[idx];
-+		struct perf_sample_data data;
-+
-+		if (!event)
-+			continue;
-+
-+		armpmu_event_update(event);
-+		perf_sample_data_init(&data, 0, event->hw.last_period);
-+		if (!armpmu_event_set_period(event))
-+			continue;
-+
-+		if (perf_event_overflow(event, &data, regs))
-+			__m1_pmu_disable_event(event);
-+	}
-+
-+out:
-+	state &= ~PMCR0_IACT;
-+	write_sysreg_s(state, SYS_IMP_APL_PMCR0_EL1);
-+	isb();
-+
-+	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
-+
-+	return ret;
-+}
-+
-+static u64 m1_pmu_read_counter(struct perf_event *event)
-+{
-+	return m1_pmu_read_hw_counter(event->hw.idx);
-+}
-+
-+static void m1_pmu_write_counter(struct perf_event *event, u64 value)
-+{
-+	m1_pmu_write_hw_counter(value, event->hw.idx);
-+	isb();
-+}
-+
-+static int m1_pmu_get_event_idx(struct pmu_hw_events *cpuc,
-+				struct perf_event *event)
-+{
-+	unsigned long evtype = event->hw.config_base & M1_PMU_CFG_EVENT;
-+	unsigned long affinity = m1_pmu_event_affinity[evtype];
-+	int idx;
-+
-+	/*
-+	 * Place the event on the first free counter that can count
-+	 * this event.
-+	 *
-+	 * We could do a better job if we had a view of all the events
-+	 * counting on the PMU at any given time, and by placing the
-+	 * most constraint events first.
-+	 */
-+	for_each_set_bit(idx, &affinity, M1_PMU_NR_COUNTERS) {
-+		if (!test_and_set_bit(idx, cpuc->used_mask))
-+			return idx;
-+	}
-+
-+	return -EAGAIN;
-+}
-+
-+static void m1_pmu_clear_event_idx(struct pmu_hw_events *cpuc,
-+				   struct perf_event *event)
-+{
-+	clear_bit(event->hw.idx, cpuc->used_mask);
-+}
-+
-+static void m1_pmu_start(struct arm_pmu *cpu_pmu)
-+{
-+	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
-+	unsigned long flags;
-+	u64 val;
-+
-+	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
-+
-+	val = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
-+	val &= ~PMCR0_IMODE;
-+	val |= FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_FIQ);
-+	val |= PMCR0_STOP_CNT_ON_PMI;
-+
-+	write_sysreg_s(val, SYS_IMP_APL_PMCR0_EL1);
-+	isb();
-+
-+	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
-+}
-+
-+static void __m1_pmu_stop(void)
-+{
-+	u64 val;
-+
-+	val = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
-+	val &= ~PMCR0_IMODE;
-+	val |= FIELD_PREP(PMCR0_IMODE, PMCR0_IMODE_OFF);
-+	write_sysreg_s(val, SYS_IMP_APL_PMCR0_EL1);
-+	isb();
-+}
-+
-+static void m1_pmu_stop(struct arm_pmu *cpu_pmu)
-+{
-+	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
-+	unsigned long flags;
-+
-+	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
-+
-+	__m1_pmu_stop();
-+
-+	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
-+}
-+
-+static int m1_pmu_map_event(struct perf_event *event)
-+{
-+	/*
-+	 * Although the counters are 48bit wide, bit 47 is what
-+	 * triggers the overflow interrupt. Advertise the counters
-+	 * being 47bit wide to mimick the behaviour of the ARM PMU.
-+	 */
-+	event->hw.flags |= ARMPMU_EVT_47BIT;
-+	return armpmu_map_event(event, &m1_pmu_perf_map, NULL, M1_PMU_CFG_EVENT);
-+}
-+
-+static void m1_pmu_reset(void *info)
-+{
-+	int i;
-+
-+	__m1_pmu_stop();
-+
-+	for (i = 0; i < M1_PMU_NR_COUNTERS; i++) {
-+		m1_pmu_disable_counter(i);
-+		m1_pmu_disable_counter_interrupt(i);
-+		m1_pmu_write_hw_counter(0, i);
-+	}
-+
-+	isb();
-+}
-+
-+static int m1_pmu_set_event_filter(struct hw_perf_event *event,
-+				   struct perf_event_attr *attr)
-+{
-+	unsigned long config_base = 0;
-+
-+	if (!attr->exclude_kernel)
-+		config_base |= M1_PMU_CFG_COUNT_KERNEL;
-+	if (!attr->exclude_user)
-+		config_base |= M1_PMU_CFG_COUNT_USER;
-+
-+	event->config_base = config_base;
-+
-+	return 0;
-+}
-+
-+static int m1_pmu_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->handle_irq	  = m1_pmu_handle_irq;
-+	cpu_pmu->enable		  = m1_pmu_enable_event;
-+	cpu_pmu->disable	  = m1_pmu_disable_event;
-+	cpu_pmu->read_counter	  = m1_pmu_read_counter;
-+	cpu_pmu->write_counter	  = m1_pmu_write_counter;
-+	cpu_pmu->get_event_idx	  = m1_pmu_get_event_idx;
-+	cpu_pmu->clear_event_idx  = m1_pmu_clear_event_idx;
-+	cpu_pmu->start		  = m1_pmu_start;
-+	cpu_pmu->stop		  = m1_pmu_stop;
-+	cpu_pmu->map_event	  = m1_pmu_map_event;
-+	cpu_pmu->reset		  = m1_pmu_reset;
-+	cpu_pmu->set_event_filter = m1_pmu_set_event_filter;
-+
-+	cpu_pmu->num_events	  = M1_PMU_NR_COUNTERS;
-+	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_EVENTS] = &m1_pmu_events_attr_group;
-+	cpu_pmu->attr_groups[ARMPMU_ATTR_GROUP_FORMATS] = &m1_pmu_format_attr_group;
-+	return 0;
-+}
-+
-+/* Device driver gunk */
-+static int m1_pmu_ice_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->name = "apple_icestorm_pmu";
-+	return m1_pmu_init(cpu_pmu);
-+}
-+
-+static int m1_pmu_fire_init(struct arm_pmu *cpu_pmu)
-+{
-+	cpu_pmu->name = "apple_firestorm_pmu";
-+	return m1_pmu_init(cpu_pmu);
-+}
-+
-+static const struct of_device_id m1_pmu_of_device_ids[] = {
-+	{ .compatible = "apple,icestorm-pmu",	.data = m1_pmu_ice_init, },
-+	{ .compatible = "apple,firestorm-pmu",	.data = m1_pmu_fire_init, },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, m1_pmu_of_device_ids);
-+
-+static int m1_pmu_device_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+
-+	ret = arm_pmu_device_probe(pdev, m1_pmu_of_device_ids, NULL);
-+	if (!ret) {
-+		/*
-+		 * If probe succeeds, taint the kernel as this is all
-+		 * undocumented, implementation defined black magic.
-+		 */
-+		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
-+	}
-+
-+	return ret;
-+}
-+
-+static struct platform_driver m1_pmu_driver = {
-+	.driver		= {
-+		.name			= "apple-m1-cpu-pmu",
-+		.of_match_table		= m1_pmu_of_device_ids,
-+		.suppress_bind_attrs	= true,
-+	},
-+	.probe		= m1_pmu_device_probe,
-+};
-+
-+module_platform_driver(m1_pmu_driver);
-+MODULE_LICENSE("GPL v2");
--- 
-2.30.2
+Tested-by: Luca Weiss <luca@z3ntu.xyz> # lg-lenok
+
+And for reference, I've used this devicetree node:
+
+mmcc: clock-controller@fd8c0000 {
+        compatible = "qcom,mmcc-msm8226";
+        #clock-cells = <1>;
+        #reset-cells = <1>;
+        #power-domain-cells = <1>;
+        reg = <0xfd8c0000 0x6000>;
+};
+
+I think it makes sense adding this to qcom-msm8226.dtsi in this patch series?
+
+Regards,
+Luca
+
+> ---
+>  drivers/clk/qcom/mmcc-msm8974.c | 206 +++++++++++++++++++++++++++++++-
+>  1 file changed, 201 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/mmcc-msm8974.c
+> b/drivers/clk/qcom/mmcc-msm8974.c index a1552b677..e890a23c2 100644
+> --- a/drivers/clk/qcom/mmcc-msm8974.c
+> +++ b/drivers/clk/qcom/mmcc-msm8974.c
+> @@ -257,6 +257,18 @@ static struct clk_rcg2 mmss_ahb_clk_src = {
+>  	},
+>  };
+> 
+> +static struct freq_tbl ftbl_mmss_axi_clk_msm8226[] = {
+> +	F(19200000, P_XO, 1, 0, 0),
+> +	F(37500000, P_GPLL0, 16, 0, 0),
+> +	F(50000000, P_GPLL0, 12, 0, 0),
+> +	F(75000000, P_GPLL0, 8, 0, 0),
+> +	F(100000000, P_GPLL0, 6, 0, 0),
+> +	F(150000000, P_GPLL0, 4, 0, 0),
+> +	F(200000000, P_MMPLL0, 4, 0, 0),
+> +	F(266666666, P_MMPLL0, 3, 0, 0),
+> +	{ }
+> +};
+> +
+>  static struct freq_tbl ftbl_mmss_axi_clk[] = {
+>  	F( 19200000, P_XO, 1, 0, 0),
+>  	F( 37500000, P_GPLL0, 16, 0, 0),
+> @@ -364,6 +376,23 @@ static struct clk_rcg2 csi3_clk_src = {
+>  	},
+>  };
+> 
+> +static struct freq_tbl ftbl_camss_vfe_vfe0_clk_msm8226[] = {
+> +	F(37500000, P_GPLL0, 16, 0, 0),
+> +	F(50000000, P_GPLL0, 12, 0, 0),
+> +	F(60000000, P_GPLL0, 10, 0, 0),
+> +	F(80000000, P_GPLL0, 7.5, 0, 0),
+> +	F(100000000, P_GPLL0, 6, 0, 0),
+> +	F(109090000, P_GPLL0, 5.5, 0, 0),
+> +	F(133330000, P_GPLL0, 4.5, 0, 0),
+> +	F(150000000, P_GPLL0, 4, 0, 0),
+> +	F(200000000, P_GPLL0, 3, 0, 0),
+> +	F(228570000, P_MMPLL0, 3.5, 0, 0),
+> +	F(266670000, P_MMPLL0, 3, 0, 0),
+> +	F(320000000, P_MMPLL0, 2.5, 0, 0),
+> +	F(400000000, P_MMPLL0, 2, 0, 0),
+> +	{ }
+> +};
+> +
+>  static struct freq_tbl ftbl_camss_vfe_vfe0_1_clk[] = {
+>  	F(37500000, P_GPLL0, 16, 0, 0),
+>  	F(50000000, P_GPLL0, 12, 0, 0),
+> @@ -407,6 +436,18 @@ static struct clk_rcg2 vfe1_clk_src = {
+>  	},
+>  };
+> 
+> +static struct freq_tbl ftbl_mdss_mdp_clk_msm8226[] = {
+> +	F(37500000, P_GPLL0, 16, 0, 0),
+> +	F(60000000, P_GPLL0, 10, 0, 0),
+> +	F(75000000, P_GPLL0, 8, 0, 0),
+> +	F(92310000, P_GPLL0, 6.5, 0, 0),
+> +	F(100000000, P_GPLL0, 6, 0, 0),
+> +	F(133330000, P_MMPLL0, 6, 0, 0),
+> +	F(177780000, P_MMPLL0, 4.5, 0, 0),
+> +	F(200000000, P_MMPLL0, 4, 0, 0),
+> +	{ }
+> +};
+> +
+>  static struct freq_tbl ftbl_mdss_mdp_clk[] = {
+>  	F(37500000, P_GPLL0, 16, 0, 0),
+>  	F(60000000, P_GPLL0, 10, 0, 0),
+> @@ -513,6 +554,14 @@ static struct clk_rcg2 pclk1_clk_src = {
+>  	},
+>  };
+> 
+> +static struct freq_tbl ftbl_venus0_vcodec0_clk_msm8226[] = {
+> +	F(66700000, P_GPLL0, 9, 0, 0),
+> +	F(100000000, P_GPLL0, 6, 0, 0),
+> +	F(133330000, P_MMPLL0, 6, 0, 0),
+> +	F(160000000, P_MMPLL0, 5, 0, 0),
+> +	{ }
+> +};
+> +
+>  static struct freq_tbl ftbl_venus0_vcodec0_clk[] = {
+>  	F(50000000, P_GPLL0, 12, 0, 0),
+>  	F(100000000, P_GPLL0, 6, 0, 0),
+> @@ -593,6 +642,13 @@ static struct clk_rcg2 camss_gp1_clk_src = {
+>  	},
+>  };
+> 
+> +static struct freq_tbl ftbl_camss_mclk0_3_clk_msm8226[] = {
+> +	F(19200000, P_XO, 1, 0, 0),
+> +	F(24000000, P_GPLL0, 5, 1, 5),
+> +	F(66670000, P_GPLL0, 9, 0, 0),
+> +	{ }
+> +};
+> +
+>  static struct freq_tbl ftbl_camss_mclk0_3_clk[] = {
+>  	F(4800000, P_XO, 4, 0, 0),
+>  	F(6000000, P_GPLL0, 10, 1, 10),
+> @@ -705,6 +761,15 @@ static struct clk_rcg2 csi2phytimer_clk_src = {
+>  	},
+>  };
+> 
+> +static struct freq_tbl ftbl_camss_vfe_cpp_clk_msm8226[] = {
+> +	F(133330000, P_GPLL0, 4.5, 0, 0),
+> +	F(150000000, P_GPLL0, 4, 0, 0),
+> +	F(266670000, P_MMPLL0, 3, 0, 0),
+> +	F(320000000, P_MMPLL0, 2.5, 0, 0),
+> +	F(400000000, P_MMPLL0, 2, 0, 0),
+> +	{ }
+> +};
+> +
+>  static struct freq_tbl ftbl_camss_vfe_cpp_clk[] = {
+>  	F(133330000, P_GPLL0, 4.5, 0, 0),
+>  	F(266670000, P_MMPLL0, 3, 0, 0),
+> @@ -2366,6 +2431,116 @@ static struct gdsc oxilicx_gdsc = {
+>  	.pwrsts = PWRSTS_OFF_ON,
+>  };
+> 
+> +static struct clk_regmap *mmcc_msm8226_clocks[] = {
+> +	[MMSS_AHB_CLK_SRC] = &mmss_ahb_clk_src.clkr,
+> +	[MMSS_AXI_CLK_SRC] = &mmss_axi_clk_src.clkr,
+> +	[MMPLL0] = &mmpll0.clkr,
+> +	[MMPLL0_VOTE] = &mmpll0_vote,
+> +	[MMPLL1] = &mmpll1.clkr,
+> +	[MMPLL1_VOTE] = &mmpll1_vote,
+> +	[CSI0_CLK_SRC] = &csi0_clk_src.clkr,
+> +	[CSI1_CLK_SRC] = &csi1_clk_src.clkr,
+> +	[VFE0_CLK_SRC] = &vfe0_clk_src.clkr,
+> +	[MDP_CLK_SRC] = &mdp_clk_src.clkr,
+> +	[JPEG0_CLK_SRC] = &jpeg0_clk_src.clkr,
+> +	[PCLK0_CLK_SRC] = &pclk0_clk_src.clkr,
+> +	[VCODEC0_CLK_SRC] = &vcodec0_clk_src.clkr,
+> +	[CCI_CLK_SRC] = &cci_clk_src.clkr,
+> +	[CAMSS_GP0_CLK_SRC] = &camss_gp0_clk_src.clkr,
+> +	[CAMSS_GP1_CLK_SRC] = &camss_gp1_clk_src.clkr,
+> +	[MCLK0_CLK_SRC] = &mclk0_clk_src.clkr,
+> +	[MCLK1_CLK_SRC] = &mclk1_clk_src.clkr,
+> +	[CSI0PHYTIMER_CLK_SRC] = &csi0phytimer_clk_src.clkr,
+> +	[CSI1PHYTIMER_CLK_SRC] = &csi1phytimer_clk_src.clkr,
+> +	[CPP_CLK_SRC] = &cpp_clk_src.clkr,
+> +	[BYTE0_CLK_SRC] = &byte0_clk_src.clkr,
+> +	[ESC0_CLK_SRC] = &esc0_clk_src.clkr,
+> +	[VSYNC_CLK_SRC] = &vsync_clk_src.clkr,
+> +	[CAMSS_CCI_CCI_AHB_CLK] = &camss_cci_cci_ahb_clk.clkr,
+> +	[CAMSS_CCI_CCI_CLK] = &camss_cci_cci_clk.clkr,
+> +	[CAMSS_CSI0_AHB_CLK] = &camss_csi0_ahb_clk.clkr,
+> +	[CAMSS_CSI0_CLK] = &camss_csi0_clk.clkr,
+> +	[CAMSS_CSI0PHY_CLK] = &camss_csi0phy_clk.clkr,
+> +	[CAMSS_CSI0PIX_CLK] = &camss_csi0pix_clk.clkr,
+> +	[CAMSS_CSI0RDI_CLK] = &camss_csi0rdi_clk.clkr,
+> +	[CAMSS_CSI1_AHB_CLK] = &camss_csi1_ahb_clk.clkr,
+> +	[CAMSS_CSI1_CLK] = &camss_csi1_clk.clkr,
+> +	[CAMSS_CSI1PHY_CLK] = &camss_csi1phy_clk.clkr,
+> +	[CAMSS_CSI1PIX_CLK] = &camss_csi1pix_clk.clkr,
+> +	[CAMSS_CSI1RDI_CLK] = &camss_csi1rdi_clk.clkr,
+> +	[CAMSS_CSI_VFE0_CLK] = &camss_csi_vfe0_clk.clkr,
+> +	[CAMSS_GP0_CLK] = &camss_gp0_clk.clkr,
+> +	[CAMSS_GP1_CLK] = &camss_gp1_clk.clkr,
+> +	[CAMSS_ISPIF_AHB_CLK] = &camss_ispif_ahb_clk.clkr,
+> +	[CAMSS_JPEG_JPEG0_CLK] = &camss_jpeg_jpeg0_clk.clkr,
+> +	[CAMSS_JPEG_JPEG_AHB_CLK] = &camss_jpeg_jpeg_ahb_clk.clkr,
+> +	[CAMSS_JPEG_JPEG_AXI_CLK] = &camss_jpeg_jpeg_axi_clk.clkr,
+> +	[CAMSS_MCLK0_CLK] = &camss_mclk0_clk.clkr,
+> +	[CAMSS_MCLK1_CLK] = &camss_mclk1_clk.clkr,
+> +	[CAMSS_MICRO_AHB_CLK] = &camss_micro_ahb_clk.clkr,
+> +	[CAMSS_PHY0_CSI0PHYTIMER_CLK] = &camss_phy0_csi0phytimer_clk.clkr,
+> +	[CAMSS_PHY1_CSI1PHYTIMER_CLK] = &camss_phy1_csi1phytimer_clk.clkr,
+> +	[CAMSS_TOP_AHB_CLK] = &camss_top_ahb_clk.clkr,
+> +	[CAMSS_VFE_CPP_AHB_CLK] = &camss_vfe_cpp_ahb_clk.clkr,
+> +	[CAMSS_VFE_CPP_CLK] = &camss_vfe_cpp_clk.clkr,
+> +	[CAMSS_VFE_VFE0_CLK] = &camss_vfe_vfe0_clk.clkr,
+> +	[CAMSS_VFE_VFE_AHB_CLK] = &camss_vfe_vfe_ahb_clk.clkr,
+> +	[CAMSS_VFE_VFE_AXI_CLK] = &camss_vfe_vfe_axi_clk.clkr,
+> +	[MDSS_AHB_CLK] = &mdss_ahb_clk.clkr,
+> +	[MDSS_AXI_CLK] = &mdss_axi_clk.clkr,
+> +	[MDSS_BYTE0_CLK] = &mdss_byte0_clk.clkr,
+> +	[MDSS_ESC0_CLK] = &mdss_esc0_clk.clkr,
+> +	[MDSS_MDP_CLK] = &mdss_mdp_clk.clkr,
+> +	[MDSS_MDP_LUT_CLK] = &mdss_mdp_lut_clk.clkr,
+> +	[MDSS_PCLK0_CLK] = &mdss_pclk0_clk.clkr,
+> +	[MDSS_VSYNC_CLK] = &mdss_vsync_clk.clkr,
+> +	[MMSS_MISC_AHB_CLK] = &mmss_misc_ahb_clk.clkr,
+> +	[MMSS_MMSSNOC_AHB_CLK] = &mmss_mmssnoc_ahb_clk.clkr,
+> +	[MMSS_MMSSNOC_BTO_AHB_CLK] = &mmss_mmssnoc_bto_ahb_clk.clkr,
+> +	[MMSS_MMSSNOC_AXI_CLK] = &mmss_mmssnoc_axi_clk.clkr,
+> +	[MMSS_S0_AXI_CLK] = &mmss_s0_axi_clk.clkr,
+> +	[OCMEMCX_AHB_CLK] = &ocmemcx_ahb_clk.clkr,
+> +	[OXILI_OCMEMGX_CLK] = &oxili_ocmemgx_clk.clkr,
+> +	[OXILI_GFX3D_CLK] = &oxili_gfx3d_clk.clkr,
+> +	[OXILICX_AHB_CLK] = &oxilicx_ahb_clk.clkr,
+> +	[OXILICX_AXI_CLK] = &oxilicx_axi_clk.clkr,
+> +	[VENUS0_AHB_CLK] = &venus0_ahb_clk.clkr,
+> +	[VENUS0_AXI_CLK] = &venus0_axi_clk.clkr,
+> +	[VENUS0_VCODEC0_CLK] = &venus0_vcodec0_clk.clkr,
+> +};
+> +
+> +static const struct qcom_reset_map mmcc_msm8226_resets[] = {
+> +	[SPDM_RESET] = { 0x0200 },
+> +	[SPDM_RM_RESET] = { 0x0300 },
+> +	[VENUS0_RESET] = { 0x1020 },
+> +	[MDSS_RESET] = { 0x2300 },
+> +};
+> +
+> +static struct gdsc *mmcc_msm8226_gdscs[] = {
+> +	[VENUS0_GDSC] = &venus0_gdsc,
+> +	[MDSS_GDSC] = &mdss_gdsc,
+> +	[CAMSS_JPEG_GDSC] = &camss_jpeg_gdsc,
+> +	[CAMSS_VFE_GDSC] = &camss_vfe_gdsc,
+> +};
+> +
+> +static const struct regmap_config mmcc_msm8226_regmap_config = {
+> +	.reg_bits	= 32,
+> +	.reg_stride	= 4,
+> +	.val_bits	= 32,
+> +	.max_register	= 0x5104,
+> +	.fast_io	= true,
+> +};
+> +
+> +static const struct qcom_cc_desc mmcc_msm8226_desc = {
+> +	.config = &mmcc_msm8226_regmap_config,
+> +	.clks = mmcc_msm8226_clocks,
+> +	.num_clks = ARRAY_SIZE(mmcc_msm8226_clocks),
+> +	.resets = mmcc_msm8226_resets,
+> +	.num_resets = ARRAY_SIZE(mmcc_msm8226_resets),
+> +	.gdscs = mmcc_msm8226_gdscs,
+> +	.num_gdscs = ARRAY_SIZE(mmcc_msm8226_gdscs),
+> +};
+> +
+>  static struct clk_regmap *mmcc_msm8974_clocks[] = {
+>  	[MMSS_AHB_CLK_SRC] = &mmss_ahb_clk_src.clkr,
+>  	[MMSS_AXI_CLK_SRC] = &mmss_axi_clk_src.clkr,
+> @@ -2569,23 +2744,44 @@ static const struct qcom_cc_desc mmcc_msm8974_desc =
+> { };
+> 
+>  static const struct of_device_id mmcc_msm8974_match_table[] = {
+> -	{ .compatible = "qcom,mmcc-msm8974" },
+> +	{ .compatible = "qcom,mmcc-msm8226", .data = &mmcc_msm8226_desc },
+> +	{ .compatible = "qcom,mmcc-msm8974", .data = &mmcc_msm8974_desc },
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, mmcc_msm8974_match_table);
+> 
+> +static void msm8226_clock_override(void)
+> +{
+> +	mmss_axi_clk_src.freq_tbl = ftbl_mmss_axi_clk_msm8226;
+> +	vfe0_clk_src.freq_tbl = ftbl_camss_vfe_vfe0_clk_msm8226;
+> +	mdp_clk_src.freq_tbl = ftbl_mdss_mdp_clk_msm8226;
+> +	vcodec0_clk_src.freq_tbl = ftbl_venus0_vcodec0_clk_msm8226;
+> +	mclk0_clk_src.freq_tbl = ftbl_camss_mclk0_3_clk_msm8226;
+> +	mclk1_clk_src.freq_tbl = ftbl_camss_mclk0_3_clk_msm8226;
+> +	cpp_clk_src.freq_tbl = ftbl_camss_vfe_cpp_clk_msm8226;
+> +}
+> +
+>  static int mmcc_msm8974_probe(struct platform_device *pdev)
+>  {
+>  	struct regmap *regmap;
+> +	const struct of_device_id *match;
+> +
+> +	match = of_match_device(mmcc_msm8974_match_table, &pdev->dev);
+> +	if (!match)
+> +		return -ENODEV;
+> 
+> -	regmap = qcom_cc_map(pdev, &mmcc_msm8974_desc);
+> +	regmap = qcom_cc_map(pdev, match->data);
+>  	if (IS_ERR(regmap))
+>  		return PTR_ERR(regmap);
+> 
+> -	clk_pll_configure_sr_hpm_lp(&mmpll1, regmap, &mmpll1_config, true);
+> -	clk_pll_configure_sr_hpm_lp(&mmpll3, regmap, &mmpll3_config, false);
+> +	if (match->data == &mmcc_msm8974_desc) {
+> +		clk_pll_configure_sr_hpm_lp(&mmpll1, regmap, 
+&mmpll1_config, true);
+> +		clk_pll_configure_sr_hpm_lp(&mmpll3, regmap, 
+&mmpll3_config, false);
+> +	} else {
+> +		msm8226_clock_override();
+> +	}
+> 
+> -	return qcom_cc_really_probe(pdev, &mmcc_msm8974_desc, regmap);
+> +	return qcom_cc_really_probe(pdev, match->data, regmap);
+>  }
+> 
+>  static struct platform_driver mmcc_msm8974_driver = {
+
+
+
 
