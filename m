@@ -2,82 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5336644F1FF
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 08:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EAAF44F253
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 10:47:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229553AbhKMHap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Nov 2021 02:30:45 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:50496 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229487AbhKMHap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Nov 2021 02:30:45 -0500
-X-UUID: 664ce49ed7ce428b9d1e858b73644acb-20211113
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3CcmwmG9wnA+1Z3HaoflW55pO15Lyi+1HRNgCZzfSno=;
-        b=BkpEq3RQi0clhC/VK0HY5AxGgYBbPtuKKeHx5qcx07kG9v+PjH5hRp22F3IfnQmmaEY//PqQs2dO1KAO62NTOE7yaZ2eHyu2BELGHHXBtzYxj8mbayo9wfCAbA0OLLJ0uqij1CpMoFgkJC1lgBWKYG/q6G02bvZIdko8KtXbHio=;
-X-UUID: 664ce49ed7ce428b9d1e858b73644acb-20211113
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1011733850; Sat, 13 Nov 2021 15:27:48 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sat, 13 Nov 2021 15:27:46 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 13 Nov 2021 15:27:46 +0800
-Message-ID: <24035c4a5cd6f33fded4fb30e2f153013663c403.camel@mediatek.com>
-Subject: Re: [PATCH 1/3] dt-bindings: usb: mtk-xhci: add support ip-sleep
- for mt8195
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Sat, 13 Nov 2021 15:27:46 +0800
-In-Reply-To: <YY6dAT3OHbu0CO/J@robh.at.kernel.org>
-References: <20211102060049.1843-1-chunfeng.yun@mediatek.com>
-         <YY6dAT3OHbu0CO/J@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S234199AbhKMJui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Nov 2021 04:50:38 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:47937 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230482AbhKMJui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Nov 2021 04:50:38 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id BC77E580C06;
+        Sat, 13 Nov 2021 04:47:45 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Sat, 13 Nov 2021 04:47:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm2; bh=TQ9hcmGxps5GZp3N9bxxRcf5+B
+        NwI07/EPaXfrdG24I=; b=Dhf3UQmQJ9zrCQVxgDRKoKA/EiMuKMHvP3AmVpXqJa
+        Mrd3MruhQGsXmJiUttc8PBKOrq33YWRfScx7lBZMnGQPvQ4nws6bg2OfFpGVwgfW
+        bjTyUk/RhPFxE/gJxe/TFsNeSm0ubgmREYpx7kMCfoNzr51FpzLrOKurSHfNU3Wl
+        /IpVFNrTcJei30jcX9sIUGkbXn27o30iWWjhWkcAuBxD8tDwVrDLYmQHj9OE4S3i
+        3QuThN5RdComOsFsi4QwNSMYVle1+bEysKy3GnOfesUw1948bfEMbd4kwMM7+FHL
+        zCTlGyQGX0QnJy862mvQCzx2Zv5Ugbmb6ZAzDtGOdQHA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TQ9hcmGxps5GZp3N9
+        bxxRcf5+BNwI07/EPaXfrdG24I=; b=OnPb97xwBbA7+UDraNjr3WUmMVuaZWy0J
+        a6OD4IqByEB0M7fQdawSnqDAnGS8QYylTMdwO2q1hkn3ELIGLXGeCIQc8nbtXnHH
+        EtVLlpGJORoUdQf9YhbftWsmA4JBuVyLjRrUnvdRayJuo5KKZNBrGTlY9nnnfx6X
+        ojkU3fhYZLbsviGzEhpV+ksN4RHyBPCc+uHpUI0oKEIFh0lJ0zZ11E6IeQpseCRH
+        0iM29MhENEjA6OGPFObvSMtY3siPS6no5fe6PND+hrjuZnhQ8eJf7amLx3GUlFbz
+        cVZIiRxwkYBM9/YAS10fRszyC/o5Dzhwlg5fuYgN1xqaqzzDEGbkg==
+X-ME-Sender: <xms:wImPYbEppwLLFjQMu-e940coq_XnaA0U60KM98O9XK-JJ-BzM_KoBg>
+    <xme:wImPYYXiw4WKrJX4l0UI2kEzmwL9-uAC7zS3o4B8pTYuZANXiw25VAv8wPpIp-U4Z
+    8EL1GlbB2LAEZvblos>
+X-ME-Received: <xmr:wImPYdJI5xGvu-d5cMOyn4E-qe_KrORSLJYjYhmhestao6VLu3y3RV7ulLy1tyO_h2F2XPCVhKASikb0aprwbm88cPkg6PRQe_8sFnc5-7n1MtvM3qFa-4HdGFiznA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrvdehgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfrvght
+    vghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrhhnpe
+    duffejkeevlefggfekkeevjeffgeekjedtjedtfeethfeludehkeehgfeuteekhfenucff
+    ohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:wImPYZEZYu1BhVBjCxNmhGYro2Wu-Sns75HhL38yiQ_bLVbhJe-6Lg>
+    <xmx:wImPYRXtrMF1XKTpnnCScSQfOWmortYE2WfO1Xw-gsTtw9KWRKAakA>
+    <xmx:wImPYUNs5Blno1Qxuo3VJI57pxFptozburDpbxSkVAFz5f1JtEdxgw>
+    <xmx:wYmPYZTA5BylJiTYWdFKNf0Bt5GpqTJacoLm4DQ4pEFCCTER5HjPww>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 13 Nov 2021 04:47:42 -0500 (EST)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: watchdog: Add Apple Watchdog
+Date:   Sat, 13 Nov 2021 10:47:31 +0100
+Message-Id: <20211113094732.73889-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIxLTExLTEyIGF0IDEwOjU3IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVHVlLCBOb3YgMDIsIDIwMjEgYXQgMDI6MDA6NDdQTSArMDgwMCwgQ2h1bmZlbmcgWXVuIHdy
-b3RlOg0KPiA+IFRoZXJlIGFyZSA0IFVTQiBjb250cm9sbGVycyBvbiBNVDgxOTUsIGVhY2ggY29u
-dHJvbGxlcidzIHdha2V1cA0KPiA+IGNvbnRyb2wgaXMNCj4gPiBkaWZmZXJlbnQsIGFkZCBzb21l
-IHNwaWNpZmljIHZlcnNpb25zIGZvciB0aGVtLg0KPiANCj4gc3BlY2lmaWMNCldpbGwgZml4IGl0
-LCB0aGFua3MNCg0KPiANCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNo
-dW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL3VzYi9tZWRpYXRlayxtdGsteGhjaS55YW1sICAgICAgICAgIHwgNg0KPiA+ICsrKysr
-LQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+
-ID4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91
-c2IvbWVkaWF0ZWssbXRrLQ0KPiA+IHhoY2kueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLQ0KPiA+IHhoY2kueWFtbA0KPiA+IGluZGV4IDEx
-ZjdiYWNkNGUyYi4uNDFlZmI1MTYzOGQxIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2kueWFtbA0KPiA+ICsrKyBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRrLXhoY2ku
-eWFtbA0KPiA+IEBAIC0xNDYsNyArMTQ2LDExIEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICAgICAg
-ICAgIDIgLSB1c2VkIGJ5IG10MjcxMiBldGMsIHJldmlzaW9uIDIgZm9sbG93aW5nIElQTSBydWxl
-Ow0KPiA+ICAgICAgICAgICAgICAxMDEgLSB1c2VkIGJ5IG10ODE4Mywgc3BlY2lmaWMgMS4wMTsN
-Cj4gPiAgICAgICAgICAgICAgMTAyIC0gdXNlZCBieSBtdDgxOTIsIHNwZWNpZmljIDEuMDI7DQo+
-ID4gLSAgICAgICAgICBlbnVtOiBbMSwgMiwgMTAxLCAxMDJdDQo+ID4gKyAgICAgICAgICAgIDEw
-MyAtIHVzZWQgYnkgbXQ4MTk1LCBJUDAsIHNwZWNpZmljIDEuMDM7DQo+ID4gKyAgICAgICAgICAg
-IDEwNCAtIHVzZWQgYnkgbXQ4MTk1LCBJUDEsIHNwZWNpZmljIDEuMDQ7DQo+ID4gKyAgICAgICAg
-ICAgIDEwNSAtIHVzZWQgYnkgbXQ4MTk1LCBJUDIsIHNwZWNpZmljIDEuMDU7DQo+ID4gKyAgICAg
-ICAgICAgIDEwNiAtIHVzZWQgYnkgbXQ4MTk1LCBJUDMsIHNwZWNpZmljIDEuMDY7DQo+ID4gKyAg
-ICAgICAgICBlbnVtOiBbMSwgMiwgMTAxLCAxMDIsIDEwMywgMTA0LCAxMDUsIDEwNl0NCj4gPiAg
-DQo+ID4gICAgbWVkaWF0ZWssdTNwLWRpcy1tc2s6DQo+ID4gICAgICAkcmVmOiAvc2NoZW1hcy90
-eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCj4gPiAtLSANCj4gPiAyLjE4LjANCj4gPiAN
-Cj4gPiANCg==
+Apple SoCs come with a simple embedded watchdog. This watchdog is also
+required in order to reset the SoC.
+
+Signed-off-by: Sven Peter <sven@svenpeter.dev>
+---
+ .../bindings/watchdog/apple,wdt.yaml          | 52 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+
+diff --git a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+new file mode 100644
+index 000000000000..e58c56a6fdf6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/apple,wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Apple SoC Watchdog
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++maintainers:
++  - Sven Peter <sven@svenpeter.dev>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - apple,t8103-wdt
++          - apple,t6000-wdt
++      - const: apple,wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/apple-aic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    wdt: watchdog@50000000 {
++        compatible = "apple,t8103-wdt", "apple,wdt";
++        reg = <0x50000000 0x4000>;
++        clocks = <&clk>;
++        interrupts = <AIC_IRQ 123 IRQ_TYPE_LEVEL_HIGH>;
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5b7a13f706fa..ba480837724d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1749,6 +1749,7 @@ F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+ F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+ F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
++F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+ F:	arch/arm64/boot/dts/apple/
+ F:	drivers/i2c/busses/i2c-pasemi-core.c
+ F:	drivers/i2c/busses/i2c-pasemi-platform.c
+-- 
+2.25.1
 
