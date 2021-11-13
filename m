@@ -2,87 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65EA144F561
-	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 22:09:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF1B844F574
+	for <lists+devicetree@lfdr.de>; Sat, 13 Nov 2021 22:23:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236050AbhKMVMb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Nov 2021 16:12:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50274 "EHLO
+        id S236053AbhKMV0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Nov 2021 16:26:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230189AbhKMVMb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Nov 2021 16:12:31 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F777C061766
-        for <devicetree@vger.kernel.org>; Sat, 13 Nov 2021 13:09:38 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id e9so25996087ljl.5
-        for <devicetree@vger.kernel.org>; Sat, 13 Nov 2021 13:09:38 -0800 (PST)
+        with ESMTP id S236034AbhKMV0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Nov 2021 16:26:12 -0500
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D92CC061767
+        for <devicetree@vger.kernel.org>; Sat, 13 Nov 2021 13:23:19 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso19917041otj.1
+        for <devicetree@vger.kernel.org>; Sat, 13 Nov 2021 13:23:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=tgWrNkQpQ5ht7tmtk402HI6oMsxYZvyT2EDkvxAC7bA=;
-        b=a+IVZDTVhK91jzHyjiG9X5zAlgYB2RIheo9W0FKWNWNPdypBV0nzKswyWOb8z6uUr/
-         wzzISO1qg0YYuZAGU7PrKfk7eVYAOq/YgEbvjEaCPDybncWSNM/O6CDiqHMAXWKU1ySh
-         gWOfMOd3hUhfAujJ/pKJWes+3AGedyrhADMHS07bTTXNgsU7jcqsBN5kC2SESxRVrWxw
-         9Bgg6O0sFzsEk4fd9g/iI683Adlw51z8IdOz6wL7MzxzXNSRO7pq4JjY6sVbDFz3mtzk
-         4iLdizx+Dd7aioAmc1Fk7tGbRZSlXwSLUojVK2G2YDgMn8WpqZNEFFIZpaYiyMYva8C5
-         6eFw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=PgwFOxRbye665HPAHu5pKtfz1gVh/X9N9qhHERxK7Qc=;
+        b=EhbkkVpKZ33C5U5LivBDvf64Xhlyt7NJtaOhq3LItqpkZZykiL+hKkW62GcXstACoa
+         idT4ZaSM++SZPQxJFr6LOnvqsNNiCT72YF/By9JBbd+4DvNP0MdB80govrtvPZSRvOM/
+         CXWU3y3duhKVC8HwoWO1+KXZEytz16tr81kJlyd7En+ZJDhsvcLPwWBWGVmJrPZ1HvPa
+         me8ltNq/EUkVt0Ku2z36uAoLw1png1IxQz7c9CfQHv5DQNeBayO1JHKqbfNn1uUM5YAA
+         0fquAI0VbVnERcVre4k9iUrP527i8GblEraGmXUVd0oot7N2XkMf5YuDVqdDf1V0vnNg
+         njsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=tgWrNkQpQ5ht7tmtk402HI6oMsxYZvyT2EDkvxAC7bA=;
-        b=MLrm6EoMG1qvcCidjU5qt63Ge5z1uE1k8FLtWOGIFEA9cvHO1vSZdw6EE9T6AOMnfa
-         FZOd7nQWmAeIe30Z4u7EQ0hMPrg70qaVYVP78Ul7b0BMSBn8SqdMcvlJiSIgycsTwwyq
-         aal1de/7s+Qbe5B/TxSDayh9Un3b0nRp7seQJKPkqqoIXo9Drb5Ind234u/wsb46hJ7W
-         hwiJfu/3S3LacH9rNBxGyFoz9WVf4do7370Y/JQJrPoLrtAZ27dh5Pt2svHYnVRVxyIg
-         Zn1HAr7TOeIxojdF4kgP4gvPby7/BzYWFV8Pf3SCIiwEQTE202aLxWkB/ghMKW0L8Crv
-         62GA==
-X-Gm-Message-State: AOAM533KQZEuauWN/dZ0H3LwnzRx4UxMPCCWX4lbnJ14nFIFrHE/CK92
-        hf3sgGSXYDcRtSK2maWVIHFxWTCK08dKeVhQOXg=
-X-Google-Smtp-Source: ABdhPJyEYCObDpovXTCyjDMVEF7fp602fGF728mQ2Pw9vxTcUS1om8unHdjKYnTZPGtlAiKy6B7DAe6Sx0Xt2766D68=
-X-Received: by 2002:a2e:985a:: with SMTP id e26mr25856871ljj.265.1636837777007;
- Sat, 13 Nov 2021 13:09:37 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PgwFOxRbye665HPAHu5pKtfz1gVh/X9N9qhHERxK7Qc=;
+        b=D7xPGWp6x0PYSwbUnEzM+dZNX0vve3fTUjfJCWgXBMwJQPklqlx+AlgoiENjjTvmuY
+         r7bbgJO1vgvtlYdTZYLOupKBwt7MDavdRbEdHmHfepXcYJ/wTkf+D2EOvsDxIVfw0Qys
+         d1ws8EnUPKD77fGK00aMAxi9a3Puhex/Phg98L5AsbQQ88QqYcTBQOvqGzrjY2z8fqZy
+         BIPVnNKgkSGmznAkw8Bn2v0POmZc2ZDADQCCTWwas2wJXmzQVKsi8UjEp1qztQcwUkMk
+         CmAe1sezMaFR2pYFUfTX0m+7sdOhq3blOi2qD6N1ogdm79rdwci5EpoMA0Do9sWxomvN
+         Bvvw==
+X-Gm-Message-State: AOAM5310HcLl/KqVd1h/h6HvhgV05n1efXgqcGztpbo/oIUbCobGimoz
+        el/9hKuySnsQfCqTJzjE0eTPvw==
+X-Google-Smtp-Source: ABdhPJw/WPzsbdAMiyWODFphyNDeI0fEqz0ppcNwT1aOcGe67xBZg3TpAzzUGNGDnVJN8+jOm3P55g==
+X-Received: by 2002:a9d:f63:: with SMTP id 90mr17065550ott.268.1636838598630;
+        Sat, 13 Nov 2021 13:23:18 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s205sm2179463oie.37.2021.11.13.13.23.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 13 Nov 2021 13:23:18 -0800 (PST)
+Date:   Sat, 13 Nov 2021 15:23:13 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 10/22] dt-bindings: qcom-qce: Add 'iommus' to optional
+ properties
+Message-ID: <YZAswXhDql3v2JqA@builder.lan>
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-11-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Received: by 2002:a05:6512:2382:0:0:0:0 with HTTP; Sat, 13 Nov 2021 13:09:36
- -0800 (PST)
-Reply-To: mrschantal11@gmail.com
-From:   Mrs Bill Chantal <yilmazzakirah@gmail.com>
-Date:   Sun, 14 Nov 2021 09:09:36 +1200
-Message-ID: <CAK-xi109ERujSeedYG3zw4HkGLETdM3nR7p3e2pYz7w1T5TP=Q@mail.gmail.com>
-Subject: URGENT ATTENTION
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211110105922.217895-11-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Dear Friend......
+On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
 
-We bring greetings to you in the name of the lord. This message is
-sent to you as a notification that you have been chosen to benefit
-from our charity project aimed at touching lives and helping those
-that we came across the world as God has blessed us. I won the
-Powerball lottery of $ 150 Million on November 2, 2019 and I have
-voluntarily decided to donate the sum of $ 75 Million to charity, I try
-to reach people randomly from different sources and modes so as to
-touch lives from different angles, Hence you are getting a message
-here.
+> Add the missing optional property - 'iommus' to the
+> device-tree binding documentation for qcom-qce crypto IP.
+> 
+> This property describes the phandle(s) to apps_smmu node with sid mask.
 
-You have been listed as one of the lucky recipients to receive $ 8.5
-Million dollars
-This donation is made out to you so to enable you strengthen your
-personal issues and mostly to generously help us extend hands of
-giving to the less privileged, orphans and charity organizations
-within your locality To verify
-https://www.powerball.com/winner-story/150-million-powerball-ticket-claimed
+"This property describes the iommu streams for crypto pipes" or
+something along those lines - depending on what those streams actually
+represent.
 
-Get back to me on how to receive the donation through my official
-email address below ( mrschantal11@gmail.com )
+> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  .../devicetree/bindings/crypto/qcom-qce.yaml          | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> index f35bdb9ee7a8..efe349e66ae7 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
+> @@ -32,6 +32,12 @@ properties:
+>        - const: bus
+>        - const: core
+>  
+> +  iommus:
+> +    minItems: 1
+> +    maxItems: 8
+> +    description: |
 
- The earlier you contact my email the earlier
-you will receive your donation
+No need for the '|' here...
 
-Thanks
+> +      phandle to apps_smmu node with sid mask.
+> +
+>    interconnects:
+>      maxItems: 1
+>      description:
+> @@ -70,4 +76,9 @@ examples:
+>          clock-names = "iface", "bus", "core";
+>          dmas = <&cryptobam 2>, <&cryptobam 3>;
+>          dma-names = "rx", "tx";
+> +        iommus = <&apps_smmu 0x584 0x0011>,
+> +                 <&apps_smmu 0x586 0x0011>,
+> +                 <&apps_smmu 0x594 0x0011>,
+> +                 <&apps_smmu 0x596 0x0011>;
+> +
 
-Mrs. Bill.Chantal Lawrence
+Extra empty line here.
+
+Regards,
+Bjorn
+
+>      };
+> -- 
+> 2.31.1
+> 
