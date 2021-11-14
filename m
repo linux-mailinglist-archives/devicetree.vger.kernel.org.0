@@ -2,164 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B7F44FA06
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:00:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0326944FA1C
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:19:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236075AbhKNTCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 14:02:54 -0500
-Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:47692
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234564AbhKNTCx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 14:02:53 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(25031:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Mon, 15 Nov 2021 02:59:48 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Mon, 15 Nov 2021 02:59:48 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Mon, 15 Nov
- 2021 02:59:48 +0800
-From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-CC:     =?utf-8?B?VmluY2VudCBTaGloIOaWvemMlem0uw==?= 
-        <vincent.shih@sunplus.com>
-Subject: RE: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Index: AQHX1ttDZ0jKVsi7r0auZS2tEQF+d6wAAtwAgAMgyAA=
-Date:   Sun, 14 Nov 2021 18:59:48 +0000
-Message-ID: <e06c11ec6dec4d379f5cda27c9f47c43@sphcmbx02.sunplus.com.tw>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <cover.1636620754.git.wells.lu@sunplus.com>
- <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
- <a8c656b8-a564-6aa6-7ca4-50e7a0bd65a1@gmail.com>
-In-Reply-To: <a8c656b8-a564-6aa6-7ca4-50e7a0bd65a1@gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S236169AbhKNTWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 14:22:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53948 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236196AbhKNTWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 14:22:32 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6979EC061746;
+        Sun, 14 Nov 2021 11:19:36 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id k23so2543759lje.1;
+        Sun, 14 Nov 2021 11:19:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Smx2GT4U6hH7iOi/1cAa+TyFVS+CT1sHsL8FpqzaNu4=;
+        b=jyJ8oMAhhusNAOyaTldgTm6ov6aZJo7J45gYTadmnWyN7IpoLSjbpGT4OiU8zSIsQb
+         LzLYKv8U7x/mRTEeJo3/EcFLrRG13C8f2MjGYEquJ1TiaZbEMcfq8a/V0/sX5B1rdGXp
+         UaP/INv3Z9zFgoLYFpaICBY44t/ouP0XJ0H6BXOBQmCnI97oy7ATSqc57EtFuaexJrbL
+         Kg8dZxEEinoEm/+HcZYmdtIU02uxyNpOZKKfzYrJ4hMrQwQSTJ3UjIVcahvRvFpvG5Mb
+         tAlexfKhawnR+Wgu8D2IDZfch/xTjiTALKUuky0UIpIhpom9juIgwllRbR1aODWodS3M
+         lzbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Smx2GT4U6hH7iOi/1cAa+TyFVS+CT1sHsL8FpqzaNu4=;
+        b=k9BmxhQO3RLSDWkHZjlIkgsdEKvad/kTdR2fVmnBMxSgLaMlEw4yTFjjB/KVzJ38O7
+         G/X9K29ZQXgUBMQ43E9fqeBkEtZJuXzKIwJ0b3hJHhW4T+SF6RoAnfMaHsIkhCKGf5yc
+         ltyhzL+2TA7LLkwycOMposRmNVeb99Srl0F6J82E55WJwWyLcek0/QT4kfA7e8GriBXY
+         KfXQE1nFv5YbUXui4KMLDaISyqrnERVf+yOsCuS8wevcC9uVHV8gY5NDIU40TVlfQh1p
+         +M5UTN3Bto5Yx27LbihVnue5+AYW9N+Mfx6VCTPWuA9m/BrxLAk9IiYmvbafRsZG3GUA
+         UWUQ==
+X-Gm-Message-State: AOAM531VY0vowNrSQ1IsUnymq2/kf56tKiJp8d7mmEbZsdS/s9foJFZO
+        NcU1sdQXz5m+9nNa78B6k7eRgPOdEnQ=
+X-Google-Smtp-Source: ABdhPJzI9fS20qwc93wj1B/cBFKmjS/NEKhioBTw85bvrmdUlSYHx/3ku6lcga7NsytXKzsikLxCyw==
+X-Received: by 2002:a2e:3c13:: with SMTP id j19mr4771535lja.311.1636917574668;
+        Sun, 14 Nov 2021 11:19:34 -0800 (PST)
+Received: from [192.168.1.11] ([94.103.224.112])
+        by smtp.gmail.com with ESMTPSA id b14sm1192840lfs.174.2021.11.14.11.19.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 14 Nov 2021 11:19:33 -0800 (PST)
+Message-ID: <52dbf9c9-0fa6-d4c6-ed6e-bba39e6e921b@gmail.com>
+Date:   Sun, 14 Nov 2021 22:19:29 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+Content-Language: en-US
+To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Cc:     Wells Lu <wells.lu@sunplus.com>
+References: <cover.1635936610.git.wells.lu@sunplus.com>
+ <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+From:   Pavel Skripkin <paskripkin@gmail.com>
+In-Reply-To: <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCj4gT24gMTEvMTEvMjEgMTowNCBBTSwgV2VsbHMgTHUgd3JvdGU6DQo+ID4gQWRkIGRy
-aXZlciBmb3IgU3VucGx1cyBTUDcwMjEuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBXZWxscyBM
-dSA8d2VsbHMubHVAc3VucGx1cy5jb20+DQo+ID4gLS0tDQo+IA0KPiBbc25pcF0NCj4gDQo+ID4g
-K3UzMiBtZGlvX3JlYWQoc3RydWN0IHNwX21hYyAqbWFjLCB1MzIgcGh5X2lkLCB1MTYgcmVnbnVt
-KSB7DQo+ID4gKwlpbnQgcmV0Ow0KPiA+ICsNCj4gPiArCXJldCA9IGhhbF9tZGlvX2FjY2Vzcyht
-YWMsIE1ESU9fUkVBRF9DTUQsIHBoeV9pZCwgcmVnbnVtLCAwKTsNCj4gPiArCWlmIChyZXQgPCAw
-KQ0KPiA+ICsJCXJldHVybiAtRU9QTk9UU1VQUDsNCj4gPiArDQo+ID4gKwlyZXR1cm4gcmV0Ow0K
-PiA+ICt9DQo+ID4gKw0KPiA+ICt1MzIgbWRpb193cml0ZShzdHJ1Y3Qgc3BfbWFjICptYWMsIHUz
-MiBwaHlfaWQsIHUzMiByZWdudW0sIHUxNiB2YWwpIHsNCj4gPiArCWludCByZXQ7DQo+ID4gKw0K
-PiA+ICsJcmV0ID0gaGFsX21kaW9fYWNjZXNzKG1hYywgTURJT19XUklURV9DTUQsIHBoeV9pZCwg
-cmVnbnVtLCB2YWwpOw0KPiA+ICsJaWYgKHJldCA8IDApDQo+ID4gKwkJcmV0dXJuIC1FT1BOT1RT
-VVBQOw0KPiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+IA0KPiBZb3Ugc2hvdWxkIG5v
-dCBiZSBleHBvc2luZyB0aGVzZSBmdW5jdGlvbnMsIGlmIHlvdSBkbywgdGhhdCBtZWFucyBhbm90
-aGVyIHBhcnQgb2YgeW91cg0KPiBjb2RlIHBlcmZvcm1zIE1ESU8gYnVzIHJlYWQvd3JpdGUgb3Bl
-cmF0aW9ucyB3aXRob3V0IHVzaW5nIHRoZSBhcHByb3ByaWF0ZSBsYXllciwgc28gbm8uDQoNClll
-cywgSSdsbCByZS1kZWNsYXJlIHRoZSB0d28gZnVuY3Rpb25zIGFzIHN0YXRpYyBmdW5jdGlvbnMu
-DQoNCg0KPiA+ICsNCj4gPiArc3RhdGljIGludCBtaWlfcmVhZChzdHJ1Y3QgbWlpX2J1cyAqYnVz
-LCBpbnQgcGh5X2lkLCBpbnQgcmVnbnVtKSB7DQo+ID4gKwlzdHJ1Y3Qgc3BfbWFjICptYWMgPSBi
-dXMtPnByaXY7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIG1kaW9fcmVhZChtYWMsIHBoeV9pZCwgcmVn
-bnVtKTsgfQ0KPiA+ICsNCj4gPiArc3RhdGljIGludCBtaWlfd3JpdGUoc3RydWN0IG1paV9idXMg
-KmJ1cywgaW50IHBoeV9pZCwgaW50IHJlZ251bSwgdTE2DQo+ID4gK3ZhbCkgew0KPiA+ICsJc3Ry
-dWN0IHNwX21hYyAqbWFjID0gYnVzLT5wcml2Ow0KPiA+ICsNCj4gPiArCXJldHVybiBtZGlvX3dy
-aXRlKG1hYywgcGh5X2lkLCByZWdudW0sIHZhbCk7IH0NCj4gPiArDQo+ID4gK3UzMiBtZGlvX2lu
-aXQoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldiwgc3RydWN0IG5ldF9kZXZpY2UgKm5kZXYp
-DQo+IA0KPiBUaG9zZSBmdW5jdGlvbiBuYW1lcyBuZWVkIHRvIGJlIHByZWZpeGVkIHdpdGggc3Bf
-IHRvIGRlbm90ZSB0aGUgZHJpdmVyIGxvY2FsIHNjb3BlLCB0aGlzDQo+IGFwcGxpZXMgZm9yIHlv
-dXIgZW50aXJlIHBhdGNoIHNldC4NCg0KWWVzLCBJJ2xsIGFkZCB2ZW5kb3Itc3BlY2lmaWVkIHBy
-ZWZpeCB0byB0aGUgdHdvIGZ1bmN0aW9ucyBhbmQgYWxsIHRoZSBvdGhlciBmdW5jdGlvbnMgaW4N
-CnRoZSBkcml2ZXJzLg0KDQoNCj4gW3NuaXBdDQo+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L25ldC9ldGhlcm5ldC9zdW5wbHVzL3NwX21kaW8uaA0KPiA+IGIvZHJpdmVycy9uZXQvZXRoZXJu
-ZXQvc3VucGx1cy9zcF9tZGlvLmgNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4
-IDAwMDAwMDAuLmQ3MDg2MjQNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvZHJpdmVycy9u
-ZXQvZXRoZXJuZXQvc3VucGx1cy9zcF9tZGlvLmgNCj4gPiBAQCAtMCwwICsxLDIwIEBADQo+ID4g
-Ky8qIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wICovDQo+ID4gKy8qIENvcHlyaWdo
-dCBTdW5wbHVzIFRlY2hub2xvZ3kgQ28uLCBMdGQuDQo+ID4gKyAqICAgICAgIEFsbCByaWdodHMg
-cmVzZXJ2ZWQuDQo+ID4gKyAqLw0KPiA+ICsNCj4gPiArI2lmbmRlZiBfX1NQX01ESU9fSF9fDQo+
-ID4gKyNkZWZpbmUgX19TUF9NRElPX0hfXw0KPiA+ICsNCj4gPiArI2luY2x1ZGUgInNwX2RlZmlu
-ZS5oIg0KPiA+ICsjaW5jbHVkZSAic3BfaGFsLmgiDQo+ID4gKw0KPiA+ICsjZGVmaW5lIE1ESU9f
-UkVBRF9DTUQgICAgICAgICAgIDB4MDINCj4gPiArI2RlZmluZSBNRElPX1dSSVRFX0NNRCAgICAg
-ICAgICAweDAxDQo+ID4gKw0KPiA+ICt1MzIgIG1kaW9fcmVhZChzdHJ1Y3Qgc3BfbWFjICptYWMs
-IHUzMiBwaHlfaWQsIHUxNiByZWdudW0pOw0KPiA+ICt1MzIgIG1kaW9fd3JpdGUoc3RydWN0IHNw
-X21hYyAqbWFjLCB1MzIgcGh5X2lkLCB1MzIgcmVnbnVtLCB1MTYgdmFsKTsNCj4gDQo+IFBsZWFz
-ZSBzY29wZSB5b3VyIGZ1bmN0aW9ucyBiZXR0ZXIsIGFuZCBuYW1lIHRoZW0gc3BfbWRpb19yZWFk
-LCBldGMuDQo+IGJlY2F1c2UgbWRpb19yZWFkKCkgaXMgd2F5IHRvbyBnZW5lcmljLiBBbHNvLCBj
-YW4geW91IHBsZWFzZSBmb2xsb3cgdGhlIHNhbWUgcHJvdG90eXBlDQo+IGFzIHdoYXQgaW5jbHVk
-ZS9saW51eC9tZGlvLmggaGFzIGZvciB0aGUgbWRpb2J1cy0+cmVhZCBhbmQgLT53cml0ZSBjYWxs
-cywgdGhhdCBpcyBwaHlfaWQNCj4gaXMgaW50LCByZWdudW0gaXMgdTMyLCBldGMuDQoNClllcywg
-SSdsbCByZS1kZWNsYXJlIHRoZSB0d28gZnVuY3Rpb25zLCBtZGlvX3JlYWQoKSBhbmQgbWRpb193
-cml0ZSgpLCBhcyBzdGF0aWMgDQpmdW5jdGlvbnMgYW5kIGFkZCB2ZW5kb3Itc3BlY2lmaWVkIHBy
-ZWZpeCB0byB0aGVtLg0KDQpUaGUgd3JvbmcgZGVjbGFyYXRpb24gb2YgdGhlIHR3byBmdW5jdGlv
-bnMgd2lsbCBiZSByZW1vdmVkIGZyb20gdGhlIGhlYWRlciBmaWxlLg0KDQoNCj4gPiArdTMyICBt
-ZGlvX2luaXQoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldiwgc3RydWN0IG5ldF9kZXZpY2UN
-Cj4gPiArKm5kZXYpOyB2b2lkIG1kaW9fcmVtb3ZlKHN0cnVjdCBuZXRfZGV2aWNlICpuZGV2KTsN
-Cj4gPiArDQo+ID4gKyNlbmRpZg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL25ldC9ldGhlcm5l
-dC9zdW5wbHVzL3NwX3BoeS5jDQo+ID4gYi9kcml2ZXJzL25ldC9ldGhlcm5ldC9zdW5wbHVzL3Nw
-X3BoeS5jDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwLi5kZjZk
-ZjNhDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL2RyaXZlcnMvbmV0L2V0aGVybmV0L3N1
-bnBsdXMvc3BfcGh5LmMNCj4gPiBAQCAtMCwwICsxLDY0IEBADQo+ID4gKy8vIFNQRFgtTGljZW5z
-ZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+ID4gKy8qIENvcHlyaWdodCBTdW5wbHVzIFRlY2hub2xv
-Z3kgQ28uLCBMdGQuDQo+ID4gKyAqICAgICAgIEFsbCByaWdodHMgcmVzZXJ2ZWQuDQo+ID4gKyAq
-Lw0KPiA+ICsNCj4gPiArI2luY2x1ZGUgInNwX3BoeS5oIg0KPiA+ICsjaW5jbHVkZSAic3BfbWRp
-by5oIg0KPiA+ICsNCj4gPiArc3RhdGljIHZvaWQgbWlpX2xpbmtjaGFuZ2Uoc3RydWN0IG5ldF9k
-ZXZpY2UgKm5ldGRldikgeyB9DQo+IA0KPiBEb2VzIHlvdXIgTUFDIGZ1bGx5IGF1dG8tY29uZmln
-dXJlIGJhc2VkIG9uIHRoZSBQSFkncyBsaW5rIHBhcmFtZXRlcnMsIGlmIHNvLCBob3cgZG9lcw0K
-PiBpdCBkbyBpdD8gWW91IG1vc3QgY2VydGFpbmx5IG5lZWQgdG8gYWN0IG9uIGR1cGxleCBjaGFu
-Z2VzLCBvciBzcGVlZCBjaGFuZ2VzIG5vPw0KDQpZZXMsIGl0IGRvZXMuIFNQNzAyMSBNQUMgY29t
-bXVuaWNhdGVzIHdpdGggUEhZIGF1dG9tYXRpY2FsbHkuDQpJdCByZWFkcyBsaW5rIHN0YXR1cyAo
-aGFsZi0gb3IgZnVsbC1kdXBsZXgsIDEwTSBvciAxMDBNKSBmcm9tIFBIWSANCmFuZCBzZXRzIGl0
-c2VsZiBhdXRvbWF0aWNhbGx5Lg0KSXQgYWxzbyByZWFkcyBwb3J0IHN0YXR1cyAobGluayB1cCBv
-ciBkb3duKSBhbmQgZ2VuZXJhdGVzIA0KaW50ZXJydXB0IHRvIGRyaXZlci4NCg0KDQo+ID4gKw0K
-PiA+ICtpbnQgc3BfcGh5X3Byb2JlKHN0cnVjdCBuZXRfZGV2aWNlICpuZGV2KSB7DQo+ID4gKwlz
-dHJ1Y3Qgc3BfbWFjICptYWMgPSBuZXRkZXZfcHJpdihuZGV2KTsNCj4gPiArCXN0cnVjdCBwaHlf
-ZGV2aWNlICpwaHlkZXY7DQo+ID4gKwlpbnQgaTsNCj4gPiArDQo+ID4gKwlwaHlkZXYgPSBvZl9w
-aHlfY29ubmVjdChuZGV2LCBtYWMtPnBoeV9ub2RlLCBtaWlfbGlua2NoYW5nZSwNCj4gPiArCQkJ
-CTAsIG1hYy0+cGh5X21vZGUpOw0KPiA+ICsJaWYgKCFwaHlkZXYpIHsNCj4gPiArCQluZXRkZXZf
-ZXJyKG5kZXYsICJcIiVzXCIgZmFpbGVkIHRvIGNvbm5lY3QgdG8gcGh5IVxuIiwgbmRldi0+bmFt
-ZSk7DQo+ID4gKwkJcmV0dXJuIC1FTk9ERVY7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICsJZm9yIChp
-ID0gMDsgaSA8IHNpemVvZihwaHlkZXYtPnN1cHBvcnRlZCkgLyBzaXplb2YobG9uZyk7IGkrKykN
-Cj4gPiArCQlwaHlkZXYtPmFkdmVydGlzaW5nW2ldID0gcGh5ZGV2LT5zdXBwb3J0ZWRbaV07DQo+
-ID4gKw0KPiA+ICsJcGh5ZGV2LT5pcnEgPSBQSFlfTUFDX0lOVEVSUlVQVDsNCj4gPiArCW1hYy0+
-cGh5X2RldiA9IHBoeWRldjsNCj4gPiArDQo+ID4gKwkvLyBCdWcgd29ya2Fyb3VuZDoNCj4gPiAr
-CS8vIEZsb3ctY29udHJvbCBvZiBwaHkgc2hvdWxkIGJlIGVuYWJsZWQuIE1BQyBmbG93LWNvbnRy
-b2wgd2lsbCByZWZlcg0KPiA+ICsJLy8gdG8gdGhlIGJpdCB0byBkZWNpZGUgdG8gZW5hYmxlIG9y
-IGRpc2FibGUgZmxvdy1jb250cm9sLg0KPiA+ICsJbWRpb193cml0ZShtYWMsIG1hYy0+cGh5X2Fk
-ZHIsIDQsIG1kaW9fcmVhZChtYWMsIG1hYy0+cGh5X2FkZHIsIDQpIHwNCj4gPiArKDEgPDwgMTAp
-KTsNCj4gDQo+IFRoaXMgaXMgYSBsYXllcmluZyB2aW9sYXRpb24sIGFuZCB5b3Ugc2hvdWxkIG5v
-dCBiZSBkb2luZyB0aG9zZSB0aGluZ3MgaGVyZSwgaWYgeW91IG5lZWQNCj4gdG8gYWR2ZXJ0aXNl
-IGZsb3cgY29udHJvbCwgdGhlbiBwbGVhc2Ugc2V0IEFEVkVSVElTRV9QQVVTRV9DQVAgYW5kL29y
-IEFEVkVSVElTRV9QQVVTRV9BU1lNDQo+IGFjY29yZGluZ2x5LCBzZWUgd2hldGhlcg0KPiBwaHlf
-c2V0X2FzeW1fcGF1c2UoKSBjYW4gZG8gd2hhdCB5b3UgbmVlZCBpdCB0by4NCg0KWWVzLCBJJ2xs
-IHJlbW92ZSB0aGUgc3RhdGVtZW50LCBpbnN0ZWFkLCB1c2UgcGh5X3NldF9hc3ltX3BhdXNlKCku
-DQoNCg0KPiA+ICsNCj4gPiArCXJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICt2b2lkIHNw
-X3BoeV9zdGFydChzdHJ1Y3QgbmV0X2RldmljZSAqbmRldikgew0KPiA+ICsJc3RydWN0IHNwX21h
-YyAqbWFjID0gbmV0ZGV2X3ByaXYobmRldik7DQo+ID4gKw0KPiA+ICsJaWYgKG1hYy0+cGh5X2Rl
-dikNCj4gPiArCQlwaHlfc3RhcnQobWFjLT5waHlfZGV2KTsNCj4gPiArfQ0KPiA+ICsNCj4gPiAr
-dm9pZCBzcF9waHlfc3RvcChzdHJ1Y3QgbmV0X2RldmljZSAqbmRldikgew0KPiA+ICsJc3RydWN0
-IHNwX21hYyAqbWFjID0gbmV0ZGV2X3ByaXYobmRldik7DQo+ID4gKw0KPiA+ICsJaWYgKG1hYy0+
-cGh5X2RldikNCj4gPiArCQlwaHlfc3RvcChtYWMtPnBoeV9kZXYpOw0KPiA+ICt9DQo+ID4gKw0K
-PiA+ICt2b2lkIHNwX3BoeV9yZW1vdmUoc3RydWN0IG5ldF9kZXZpY2UgKm5kZXYpIHsNCj4gPiAr
-CXN0cnVjdCBzcF9tYWMgKm1hYyA9IG5ldGRldl9wcml2KG5kZXYpOw0KPiA+ICsNCj4gPiArCWlm
-IChtYWMtPnBoeV9kZXYpIHsNCj4gPiArCQlwaHlfZGlzY29ubmVjdChtYWMtPnBoeV9kZXYpOw0K
-PiA+ICsJCW1hYy0+cGh5X2RldiA9IE5VTEw7DQo+ID4gKwl9DQo+IA0KPiBUaGUgbmV0X2Rldmlj
-ZSBzdHJ1Y3R1cmUgYWxyZWFkeSBjb250YWlucyBhIHBoeV9kZXZpY2UgcG9pbnRlciwgeW91IGRv
-bid0IG5lZWQgdG8gaGF2ZQ0KPiBvbmUgaW4geW91ciBzcF9tYWMgc3RydWN0dXJlLCB0b28uDQoN
-ClllcywgSSdsbCByZW1vdmUgcGh5X2RldmljZSBmcm9tIHN0cnVjdCBzcF9tYWMuDQoNCg0KPiAt
-LQ0KPiBGbG9yaWFuDQoNClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgcmV2aWV3Lg0KDQo=
+Hi, Wells!
+
+On 11/3/21 14:02, Wells Lu wrote:
+
+[code snip]
+
+> +		if (comm->dual_nic) {
+> +			struct net_device *net_dev2 = mac->next_netdev;
+> +
+> +			if (!netif_running(net_dev2)) {
+> +				mac_hw_stop(mac);
+> +
+> +				mac2 = netdev_priv(net_dev2);
+> +
+
+(*)
+
+> +				// unregister and free net device.
+> +				unregister_netdev(net_dev2);
+> +				free_netdev(net_dev2);
+> +				mac->next_netdev = NULL;
+> +				pr_info(" Unregistered and freed net device \"eth1\"!\n");
+> +
+> +				comm->dual_nic = 0;
+> +				mac_switch_mode(mac);
+> +				rx_mode_set(net_dev);
+> +				mac_hw_addr_del(mac2);
+> +
+
+mac2 is net_dev2 private data (*), so it will become freed after 
+free_netdev() call.
+
+FWIW the latest `smatch` should warn about this type of bugs.
+
+> +				// If eth0 is up, turn on lan 0 and 1 when
+> +				// switching to daisy-chain mode.
+> +				if (comm->enable & 0x1)
+> +					comm->enable = 0x3;
+
+[code snip]
+
+> +static int l2sw_remove(struct platform_device *pdev)
+> +{
+> +	struct net_device *net_dev;
+> +	struct net_device *net_dev2;
+> +	struct l2sw_mac *mac;
+> +
+> +	net_dev = platform_get_drvdata(pdev);
+> +	if (!net_dev)
+> +		return 0;
+> +	mac = netdev_priv(net_dev);
+> +
+> +	// Unregister and free 2nd net device.
+> +	net_dev2 = mac->next_netdev;
+> +	if (net_dev2) {
+> +		unregister_netdev(net_dev2);
+> +		free_netdev(net_dev2);
+> +	}
+> +
+
+Is it save here to free mac->next_netdev before unregistering "parent" 
+netdev? I haven't checked the whole code, just asking :)
+
+> +	sysfs_remove_group(&pdev->dev.kobj, &l2sw_attribute_group);
+> +
+> +	mac->comm->enable = 0;
+> +	soc0_stop(mac);
+> +
+> +	napi_disable(&mac->comm->rx_napi);
+> +	netif_napi_del(&mac->comm->rx_napi);
+> +	napi_disable(&mac->comm->tx_napi);
+> +	netif_napi_del(&mac->comm->tx_napi);
+> +
+> +	mdio_remove(net_dev);
+> +
+> +	// Unregister and free 1st net device.
+> +	unregister_netdev(net_dev);
+> +	free_netdev(net_dev);
+> +
+> +	clk_disable(mac->comm->clk);
+> +
+> +	// Free 'common' area.
+> +	kfree(mac->comm);
+
+Same here with `mac`.
+
+> +	return 0;
+> +}
+
+
+I haven't read the whole thread, i am sorry if these questions were 
+already discussed.
+
+
+
+With regards,
+Pavel Skripkin
