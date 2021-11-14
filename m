@@ -2,168 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0326944FA1C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1B4644FB46
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236169AbhKNTWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 14:22:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53948 "EHLO
+        id S236242AbhKNTtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 14:49:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236196AbhKNTWc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 14:22:32 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6979EC061746;
-        Sun, 14 Nov 2021 11:19:36 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id k23so2543759lje.1;
-        Sun, 14 Nov 2021 11:19:36 -0800 (PST)
+        with ESMTP id S236725AbhKNTrX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 14:47:23 -0500
+Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAF38C06121D;
+        Sun, 14 Nov 2021 11:41:09 -0800 (PST)
+Received: by mail-qk1-x72a.google.com with SMTP id a11so7956414qkh.13;
+        Sun, 14 Nov 2021 11:41:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Smx2GT4U6hH7iOi/1cAa+TyFVS+CT1sHsL8FpqzaNu4=;
-        b=jyJ8oMAhhusNAOyaTldgTm6ov6aZJo7J45gYTadmnWyN7IpoLSjbpGT4OiU8zSIsQb
-         LzLYKv8U7x/mRTEeJo3/EcFLrRG13C8f2MjGYEquJ1TiaZbEMcfq8a/V0/sX5B1rdGXp
-         UaP/INv3Z9zFgoLYFpaICBY44t/ouP0XJ0H6BXOBQmCnI97oy7ATSqc57EtFuaexJrbL
-         Kg8dZxEEinoEm/+HcZYmdtIU02uxyNpOZKKfzYrJ4hMrQwQSTJ3UjIVcahvRvFpvG5Mb
-         tAlexfKhawnR+Wgu8D2IDZfch/xTjiTALKUuky0UIpIhpom9juIgwllRbR1aODWodS3M
-         lzbQ==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=B0aLeVClI5MOAHXGhwAkD7MiTSI2ENeGUFmzYV+zPro=;
+        b=fG3vbKA4jcSGeGmYEzDIXCyZdrQ6mQnbbgyUdc0AMBunLgAZj9Dv1GveUH/agOS4GC
+         zmo1wD/6U2ytukqm3JpjlOuuLtTxD1Fla3l6jkjrtJIF9irLm71xmnEFLQPKuIEjiHLa
+         rESTkgYlpHG7n5dEYvFa9tHjOpj1JPuTo8ifighJ3Q2pJetqd9HbSD4MxWPRixByEIdV
+         qMQrmUNU4HHmQlWlo94TmOIYB3CrP5yHwQLpCNISTGNwWXE4jKHBiM36BK/l4SgV4M+c
+         iCV8XfFwKeLbh2+uNmqjyf82iYmnLvYcWLrq/u/KQK732dhkLA3x+RhHbmJ8dY1fxSOW
+         YBlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Smx2GT4U6hH7iOi/1cAa+TyFVS+CT1sHsL8FpqzaNu4=;
-        b=k9BmxhQO3RLSDWkHZjlIkgsdEKvad/kTdR2fVmnBMxSgLaMlEw4yTFjjB/KVzJ38O7
-         G/X9K29ZQXgUBMQ43E9fqeBkEtZJuXzKIwJ0b3hJHhW4T+SF6RoAnfMaHsIkhCKGf5yc
-         ltyhzL+2TA7LLkwycOMposRmNVeb99Srl0F6J82E55WJwWyLcek0/QT4kfA7e8GriBXY
-         KfXQE1nFv5YbUXui4KMLDaISyqrnERVf+yOsCuS8wevcC9uVHV8gY5NDIU40TVlfQh1p
-         +M5UTN3Bto5Yx27LbihVnue5+AYW9N+Mfx6VCTPWuA9m/BrxLAk9IiYmvbafRsZG3GUA
-         UWUQ==
-X-Gm-Message-State: AOAM531VY0vowNrSQ1IsUnymq2/kf56tKiJp8d7mmEbZsdS/s9foJFZO
-        NcU1sdQXz5m+9nNa78B6k7eRgPOdEnQ=
-X-Google-Smtp-Source: ABdhPJzI9fS20qwc93wj1B/cBFKmjS/NEKhioBTw85bvrmdUlSYHx/3ku6lcga7NsytXKzsikLxCyw==
-X-Received: by 2002:a2e:3c13:: with SMTP id j19mr4771535lja.311.1636917574668;
-        Sun, 14 Nov 2021 11:19:34 -0800 (PST)
-Received: from [192.168.1.11] ([94.103.224.112])
-        by smtp.gmail.com with ESMTPSA id b14sm1192840lfs.174.2021.11.14.11.19.32
+        bh=B0aLeVClI5MOAHXGhwAkD7MiTSI2ENeGUFmzYV+zPro=;
+        b=jX1qHXHR0wQoLeGXcFRdoTWQk/erX+g+JWkCbFGXGgzCmVwfYBttGJqhhrV7LXEZY5
+         GPcZIqhyrIarOVJ0kKJQA144/XsVVeEViuVYmMK4gBAqI6Kih752sBTAOFe2zcOzmvrZ
+         LjsqsI8YhF+k4lroy+UgGEl01i+SCNx6X1f4RbhicfKjwu03hOWYb2I5kuEzP684RVHS
+         E89r5sSvn21N5bbN5S7TbivLLM2qcAsF/QvNCa+t/UsEpHJPCOg3BSE0huEIr1cNTzvm
+         2UaTtuEa6Rcik0l+lnQHx2GzDJz0D5tAZjnSb1VLKiErpknLDu2K70gzZjkWJCEZqQui
+         6DoA==
+X-Gm-Message-State: AOAM533EIxpLnhWL0Y75noXaqV3zztTMWaMK+XvShccmPLivDQWsuAIf
+        HjG6TMkDB4Uh0tV2Qb8j/eY=
+X-Google-Smtp-Source: ABdhPJy2DFyPkjUspGEAGgKuo+EAVFyDEqhuLbTPI38qGyL83PHA3bi5nRucpKO0jvOnGtIUflHrpA==
+X-Received: by 2002:a37:ae83:: with SMTP id x125mr25430688qke.37.1636918868794;
+        Sun, 14 Nov 2021 11:41:08 -0800 (PST)
+Received: from [192.168.43.249] ([107.87.137.168])
+        by smtp.gmail.com with ESMTPSA id k19sm1357136qko.73.2021.11.14.11.41.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Nov 2021 11:19:33 -0800 (PST)
-Message-ID: <52dbf9c9-0fa6-d4c6-ed6e-bba39e6e921b@gmail.com>
-Date:   Sun, 14 Nov 2021 22:19:29 +0300
+        Sun, 14 Nov 2021 11:41:08 -0800 (PST)
+Subject: Re: [PATCH] of: base: Skip CPU nodes with non-"okay"/"disabled"
+ status
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211108084804.13474-1-matthias.schiffer@ew.tq-group.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <7b4afaa7-13df-513a-5986-e1a9f5f5d7ed@gmail.com>
+Date:   Sun, 14 Nov 2021 14:41:06 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH 2/2] net: ethernet: Add driver for Sunplus SP7021
+In-Reply-To: <20211108084804.13474-1-matthias.schiffer@ew.tq-group.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de
-Cc:     Wells Lu <wells.lu@sunplus.com>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
-From:   Pavel Skripkin <paskripkin@gmail.com>
-In-Reply-To: <650ec751dd782071dd56af5e36c0d509b0c66d7f.1635936610.git.wells.lu@sunplus.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Wells!
-
-On 11/3/21 14:02, Wells Lu wrote:
-
-[code snip]
-
-> +		if (comm->dual_nic) {
-> +			struct net_device *net_dev2 = mac->next_netdev;
-> +
-> +			if (!netif_running(net_dev2)) {
-> +				mac_hw_stop(mac);
-> +
-> +				mac2 = netdev_priv(net_dev2);
-> +
-
-(*)
-
-> +				// unregister and free net device.
-> +				unregister_netdev(net_dev2);
-> +				free_netdev(net_dev2);
-> +				mac->next_netdev = NULL;
-> +				pr_info(" Unregistered and freed net device \"eth1\"!\n");
-> +
-> +				comm->dual_nic = 0;
-> +				mac_switch_mode(mac);
-> +				rx_mode_set(net_dev);
-> +				mac_hw_addr_del(mac2);
-> +
-
-mac2 is net_dev2 private data (*), so it will become freed after 
-free_netdev() call.
-
-FWIW the latest `smatch` should warn about this type of bugs.
-
-> +				// If eth0 is up, turn on lan 0 and 1 when
-> +				// switching to daisy-chain mode.
-> +				if (comm->enable & 0x1)
-> +					comm->enable = 0x3;
-
-[code snip]
-
-> +static int l2sw_remove(struct platform_device *pdev)
+On 11/8/21 3:48 AM, Matthias Schiffer wrote:
+> Allow fully disabling CPU nodes using status = "fail". Having no status
+> property at all is still interpreted as "okay" as usual.
+> 
+> This allows a bootloader to change the number of available CPUs (for
+> example when a common DTS is used for SoC variants with different numbers
+> of cores) without deleting the nodes altogether, which could require
+> additional fixups to avoid dangling phandle references.
+> 
+> References:
+> - https://www.lkml.org/lkml/2020/8/26/1237
+> - https://www.spinics.net/lists/devicetree-spec/msg01007.html
+> - https://github.com/devicetree-org/dt-schema/pull/61
+> 
+> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> ---
+>  drivers/of/base.c | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 61de453b885c..4e9973627c8d 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -650,6 +650,32 @@ bool of_device_is_available(const struct device_node *device)
+>  }
+>  EXPORT_SYMBOL(of_device_is_available);
+>  
+> +/**
+> + *  __of_device_is_disabled - check if a device has status "disabled"
+> + *
+> + *  @device: Node to check status for, with locks already held
+> + *
+> + *  Return: True if the status property is set to "disabled",
+> + *  false otherwise
+> + *
+> + *  Most callers should use __of_device_is_available() instead, this function
+> + *  only exists due to the special interpretation of the "disabled" status for
+> + *  CPU nodes.
+> + */
+> +static bool __of_device_is_disabled(const struct device_node *device)
 > +{
-> +	struct net_device *net_dev;
-> +	struct net_device *net_dev2;
-> +	struct l2sw_mac *mac;
+> +	const char *status;
 > +
-> +	net_dev = platform_get_drvdata(pdev);
-> +	if (!net_dev)
-> +		return 0;
-> +	mac = netdev_priv(net_dev);
+> +	if (!device)
+> +		return false;
 > +
-> +	// Unregister and free 2nd net device.
-> +	net_dev2 = mac->next_netdev;
-> +	if (net_dev2) {
-> +		unregister_netdev(net_dev2);
-> +		free_netdev(net_dev2);
-> +	}
+> +	status = __of_get_property(device, "status", NULL);
+> +	if (status == NULL)
+> +		return false;
 > +
-
-Is it save here to free mac->next_netdev before unregistering "parent" 
-netdev? I haven't checked the whole code, just asking :)
-
-> +	sysfs_remove_group(&pdev->dev.kobj, &l2sw_attribute_group);
-> +
-> +	mac->comm->enable = 0;
-> +	soc0_stop(mac);
-> +
-> +	napi_disable(&mac->comm->rx_napi);
-> +	netif_napi_del(&mac->comm->rx_napi);
-> +	napi_disable(&mac->comm->tx_napi);
-> +	netif_napi_del(&mac->comm->tx_napi);
-> +
-> +	mdio_remove(net_dev);
-> +
-> +	// Unregister and free 1st net device.
-> +	unregister_netdev(net_dev);
-> +	free_netdev(net_dev);
-> +
-> +	clk_disable(mac->comm->clk);
-> +
-> +	// Free 'common' area.
-> +	kfree(mac->comm);
-
-Same here with `mac`.
-
-> +	return 0;
+> +	return !strcmp(status, "disabled");
 > +}
+> +
+>  /**
+>   *  of_device_is_big_endian - check if a device has BE registers
+>   *
+> @@ -817,6 +843,9 @@ struct device_node *of_get_next_cpu_node(struct device_node *prev)
+>  		of_node_put(node);
+>  	}
+>  	for (; next; next = next->sibling) {
 
+> +		if (!__of_device_is_available(next) &&
+> +		    !__of_device_is_disabled(next))
 
-I haven't read the whole thread, i am sorry if these questions were 
-already discussed.
+Shouldn't that just be a check to continue if the device is disabled?
 
+If adding a check for available, then all of the callers of for_each_of_cpu_node()
+need to be checked.  There is at least one that is suspicious - arch/arm/mach-imx/platsmp.c
+has a comment:
 
+ * Initialise the CPU possible map early - this describes the CPUs
+ * which may be present or become present in the system.
 
-With regards,
-Pavel Skripkin
+-Frank
+
+> +			continue;
+>  		if (!(of_node_name_eq(next, "cpu") ||
+>  		      __of_node_is_type(next, "cpu")))
+>  			continue;
+> 
+
