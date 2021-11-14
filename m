@@ -2,60 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A86BA44FB5E
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:56:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3897C44FB69
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 21:05:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236153AbhKNT71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 14:59:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54202 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234686AbhKNT70 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Nov 2021 14:59:26 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPS id 44A6661105;
-        Sun, 14 Nov 2021 19:56:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636919789;
-        bh=HcfPAvbJVfzlCdasghoTLjUA9UGQWxKlYA2tyq2qThQ=;
-        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-        b=I93htGGCm7F5Mw1m0+dBuSdFQkMIMhghQaeo7jWuVaDFOqRQ74j60jBwUCLp55SO+
-         UFSqraOA99GqguXrvwK63IA/vn39yEkd9KN3vhF8gr/5GlZN0qqMlCd0mfA3qdv5ju
-         nMvepFMwg7o4tYztZ+lhX2NJ0QoHpiz/89OfKbCjINLs28bFsvHSE0ZEgnRkF8pcxo
-         QM8VSfDFBBiuc3jG5jt8/QbOm+AHYzwifX1vUZSnBUGAgAp1TySDiKW3JtpfHOCQMm
-         4rto7ipvvVsdVSWsSzZBxlwc0uX9O8/wn59oPT4/VwaXxc+DV5sDebcdXMsLlSv0FK
-         MYQ6Pr0Pd7mqQ==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 3EAF46097A;
-        Sun, 14 Nov 2021 19:56:29 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree fixes for v5.16, take 1
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <YZE6F+5f4ckFmxZg@robh.at.kernel.org>
-References: <YZE6F+5f4ckFmxZg@robh.at.kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <YZE6F+5f4ckFmxZg@robh.at.kernel.org>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.16-1
-X-PR-Tracked-Commit-Id: 913d3a3f84085e168177ec2ca843403fe2af2838
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 0d1503d8d864e94e4de1d51baf5353df01708217
-Message-Id: <163691978925.22669.17766382570100414750.pr-tracker-bot@kernel.org>
-Date:   Sun, 14 Nov 2021 19:56:29 +0000
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
+        id S233136AbhKNUHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 15:07:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231469AbhKNUHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 15:07:44 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199B1C061746;
+        Sun, 14 Nov 2021 12:04:49 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id e9so30802546ljl.5;
+        Sun, 14 Nov 2021 12:04:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=McOiS/Q0CFO6uwemy53qifQP3mC9vDonaeYr2NzuA14=;
+        b=URyDiCvf5kN1pLBxwuj/DOsEWXm3s7PlS6sTafNgjKH+ktnvoqAplLPWskoD/ZKgez
+         WSiAiARt1Drp0Sfd8wXjpfzqTd/tCoeldnrn/UiHUwPT29g3HXB/KuUL7QrUr+2dBB3q
+         PaEZPXHe58MEcEzrZpfDAfIdJH4G1XDpxCeNMZ9pLHfKvdlzfOTQnHxNLCDYR9sX9SCd
+         /IhO3vKZqjSF+W42ADM1/bgD9OlRlkxBli0RMI0qAxhtpxM0lCADzJISbsylnInEWlSc
+         /qkUNv2os3SdBSwiE0ISwO2GbupYIM9auJ3oywIFpzjpcpWptEyjCReJvfp4e0HB7XgP
+         cDgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=McOiS/Q0CFO6uwemy53qifQP3mC9vDonaeYr2NzuA14=;
+        b=2+vyppYJ44ALPJjNUm8xtt9dIkCqoLYq93Vh3f3mAFbc+8cWuTnYnfVjgrBAxuV9v2
+         s1hmFHEtOuWKToQOZACJvygIWpMvxLOHkBGADZK8JiLp7WXFb7/NX4Vp02cZz5o/qIHg
+         wv5N3tZI+8NqCLkJQQPDFNoXMhX+rrnzvny7QuPmNlkUiNkZFhHxCEsFezEP5AvREVms
+         DkKmwp1JoMeVDa5k5Kwr1JSdfJik9p1bn5Vy+Jd3wagLrCquTE/Zo+EYz4Bmu0Iz7VYA
+         SRMVPjPNRTlj6qfmvDEYES8AZeUEFxw8P1Tq7Mr3J7LWyy1nkNeXXKf3s8zBdjHBjV+K
+         p2wg==
+X-Gm-Message-State: AOAM5322ZqXGAKktz6DV/8gU0jmYLJoVCQK6zZa5jRtowPSvZGxmo2eC
+        BS3GNaV5raZbNVFR+GDgF2k=
+X-Google-Smtp-Source: ABdhPJxxL1WqMIAul+o3bZ58Im+ZHiPvwoqlenuOM6pTc/79qVsFAir5bH4M6ujqa4zF5rDn5okzJw==
+X-Received: by 2002:a2e:a882:: with SMTP id m2mr34863256ljq.416.1636920287459;
+        Sun, 14 Nov 2021 12:04:47 -0800 (PST)
+Received: from localhost.localdomain (46-138-46-211.dynamic.spd-mgts.ru. [46.138.46.211])
+        by smtp.gmail.com with ESMTPSA id g4sm1193914lfv.288.2021.11.14.12.04.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Nov 2021 12:04:47 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Support HannStar HSD101PWW2 display panel
+Date:   Sun, 14 Nov 2021 23:04:29 +0300
+Message-Id: <20211114200431.28484-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Sun, 14 Nov 2021 10:32:23 -0600:
+Add support for HannStar HSD101PWW2 display panel used by ASUS Transformer
+TF201T tablet device.
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.16-1
+Svyatoslav Ryhel (2):
+  dt-bindings: display: simple: Add HannStar HSD101PWW2
+  drm/panel: simple: Add support for HannStar HSD101PWW2 panel
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/0d1503d8d864e94e4de1d51baf5353df01708217
-
-Thank you!
+ .../bindings/display/panel/panel-simple.yaml  |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c          | 28 +++++++++++++++++++
+ 2 files changed, 30 insertions(+)
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+2.33.1
+
