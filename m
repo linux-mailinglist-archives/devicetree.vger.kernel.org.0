@@ -2,91 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EB3F44FB52
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:50:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A86BA44FB5E
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 20:56:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236252AbhKNTxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 14:53:34 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:57382 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236510AbhKNTuL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Nov 2021 14:50:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1636919238; x=1668455238;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=4C0I4YERPpT7n947dVQeZpCOPyoTOARzQaqepHDnkYg=;
-  b=YjXEuOTw1x8Ug7tpQirsfNWPFF1E8wHnR2T1vl9Q04YRzgtmduq0qzNh
-   p45i4mS6ctD9aYi7+5KXc38Dr4Za0OjCJdk9AVCxSHOpLmZHFX4/h0Ecx
-   wWRUeEwhFTLy6gfTZXKVeY1bi5zvFbzL5+DnPiGIfaWAHEsffv8bY9yZ1
-   Y=;
-Received: from unknown (HELO ironmsg03-sd.qualcomm.com) ([10.53.140.143])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 14 Nov 2021 11:47:13 -0800
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg03-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2021 11:47:11 -0800
-Received: from [10.110.80.240] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 14 Nov
- 2021 11:47:12 -0800
-Subject: Re: [PATCH 13/16] arm64: dts: qcom: Add support for Xperia 1 III / 5
- III
-To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>
-CC:     <martin.botka@somainline.org>,
-        <angelogioacchino.delregno@somainline.org>,
-        <marijn.suijten@somainline.org>, <jamipkettunen@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211114012755.112226-1-konrad.dybcio@somainline.org>
- <20211114012755.112226-13-konrad.dybcio@somainline.org>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-Message-ID: <51341a10-c0a5-079e-b7f1-159d42211bf3@quicinc.com>
-Date:   Sun, 14 Nov 2021 11:47:13 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20211114012755.112226-13-konrad.dybcio@somainline.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
+        id S236153AbhKNT71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 14:59:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54202 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234686AbhKNT70 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Nov 2021 14:59:26 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPS id 44A6661105;
+        Sun, 14 Nov 2021 19:56:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1636919789;
+        bh=HcfPAvbJVfzlCdasghoTLjUA9UGQWxKlYA2tyq2qThQ=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=I93htGGCm7F5Mw1m0+dBuSdFQkMIMhghQaeo7jWuVaDFOqRQ74j60jBwUCLp55SO+
+         UFSqraOA99GqguXrvwK63IA/vn39yEkd9KN3vhF8gr/5GlZN0qqMlCd0mfA3qdv5ju
+         nMvepFMwg7o4tYztZ+lhX2NJ0QoHpiz/89OfKbCjINLs28bFsvHSE0ZEgnRkF8pcxo
+         QM8VSfDFBBiuc3jG5jt8/QbOm+AHYzwifX1vUZSnBUGAgAp1TySDiKW3JtpfHOCQMm
+         4rto7ipvvVsdVSWsSzZBxlwc0uX9O8/wn59oPT4/VwaXxc+DV5sDebcdXMsLlSv0FK
+         MYQ6Pr0Pd7mqQ==
+Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 3EAF46097A;
+        Sun, 14 Nov 2021 19:56:29 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v5.16, take 1
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <YZE6F+5f4ckFmxZg@robh.at.kernel.org>
+References: <YZE6F+5f4ckFmxZg@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <YZE6F+5f4ckFmxZg@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.16-1
+X-PR-Tracked-Commit-Id: 913d3a3f84085e168177ec2ca843403fe2af2838
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 0d1503d8d864e94e4de1d51baf5353df01708217
+Message-Id: <163691978925.22669.17766382570100414750.pr-tracker-bot@kernel.org>
+Date:   Sun, 14 Nov 2021 19:56:29 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+The pull request you sent on Sun, 14 Nov 2021 10:32:23 -0600:
 
-On 11/13/2021 5:27 PM, Konrad Dybcio wrote:
-> 
-> Then, you need to flash it on the device and get rid of all the
-> vendor_boot/dtbo mess:
-> 
-> fastboot flash boot boot.img-sony-xperia-pdx215
-> fastboot erase vendor_boot
-> fastboot flash dtbo emptydtbo.img
-> fastboot reboot
-> 
-> Where emptydtbo.img is a tiny file that consists of 2 bytes (all zeroes), doing
-> a "fastboot erase" won't cut it, the bootloader will go crazy and things will
-> fall apart when it tries to overlay random bytes from an empty partition onto a
-> perfectly good appended DTB.
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.16-1
 
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/0d1503d8d864e94e4de1d51baf5353df01708217
 
-I will check on this part and see if we can make simpler support 
-fastboot erase dtbo without the extra emptydtbo.
+Thank you!
 
----Trilok Soni
-
-
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
