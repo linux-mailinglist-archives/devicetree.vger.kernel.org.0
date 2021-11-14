@@ -2,242 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1890544F806
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 14:20:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0424944F829
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 14:45:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235961AbhKNNX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 08:23:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52636 "EHLO mail.kernel.org"
+        id S234996AbhKNNsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 08:48:40 -0500
+Received: from rosenzweig.io ([138.197.143.207]:48438 "EHLO rosenzweig.io"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235950AbhKNNX1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Nov 2021 08:23:27 -0500
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 03BA960C4D;
-        Sun, 14 Nov 2021 13:20:31 +0000 (UTC)
-Date:   Sun, 14 Nov 2021 13:25:18 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] iio:amplifiers:ad7293: add support for AD7293
-Message-ID: <20211114132518.5228c30f@jic23-huawei>
-In-Reply-To: <20211108152238.189650-1-antoniu.miclaus@analog.com>
-References: <20211108152238.189650-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S234703AbhKNNsh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Nov 2021 08:48:37 -0500
+Date:   Sun, 14 Nov 2021 08:45:30 -0500
+From:   Alyssa Rosenzweig <alyssa@rosenzweig.io>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH 8/8] drivers/perf: Add Apple icestorm/firestorm CPU PMU
+ driver
+Message-ID: <YZES+gF7WdCiCwAe@sunset>
+References: <20211113115429.4027571-1-maz@kernel.org>
+ <20211113115429.4027571-9-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211113115429.4027571-9-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Nov 2021 17:22:37 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+> +/* Counters */
+> +#define SYS_IMP_APL_PMC0_EL1	sys_reg(3, 2, 15, 0, 0)
+> +#define SYS_IMP_APL_PMC1_EL1	sys_reg(3, 2, 15, 1, 0)
+> +#define SYS_IMP_APL_PMC2_EL1	sys_reg(3, 2, 15, 2, 0)
+> +#define SYS_IMP_APL_PMC3_EL1	sys_reg(3, 2, 15, 3, 0)
+> +#define SYS_IMP_APL_PMC4_EL1	sys_reg(3, 2, 15, 4, 0)
+> +#define SYS_IMP_APL_PMC5_EL1	sys_reg(3, 2, 15, 5, 0)
+> +#define SYS_IMP_APL_PMC6_EL1	sys_reg(3, 2, 15, 6, 0)
+> +#define SYS_IMP_APL_PMC7_EL1	sys_reg(3, 2, 15, 7, 0)
+--gap--
+> +#define SYS_IMP_APL_PMC8_EL1	sys_reg(3, 2, 15, 9, 0)
+> +#define SYS_IMP_APL_PMC9_EL1	sys_reg(3, 2, 15, 10, 0)
 
-> The AD7293 is a Power Amplifier drain current controller
-> containing functionality for general-purpose monitoring
-> and control of current, voltage, and temperature, integrated
-> into a single chip solution with an SPI-compatible interface.
-> 
-> Datasheet:
-> https://www.analog.com/media/en/technical-documentation/data-sheets/AD7293.pdf
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Do we know what the gap is?
 
+> +/*
+> + * Description of the events we actually know about, as well as those with
+> + * a specific counter affinity. Yes, this is a grand total of two known
+> + * counters, and the rest is anybody's guess.
+> + *
+> + * Not all counters can count all events. Counters #0 and #1 are wired to
+> + * count cycles and instructions respectively, and some events have
+> + * bizarre mappings (every other counter, or even *one* counter). These
+> + * restrictins equally apply to both P and E cores.
 
-Hi Antoniu,
+restrictions
 
-Looks good to me.  A few really minor editorial type things that I noticed
-whilst reading through this version.
-
-All are in the up to you or can be added later categories.  So subject to DT review
-and anyone else noticing things they want changing I'm happy to either pick this
-version up or a v3 that tidies up minor corners.
-
-
-> diff --git a/drivers/iio/amplifiers/ad7293.c b/drivers/iio/amplifiers/ad7293.c
-> new file mode 100644
-> index 000000000000..15aac5ad3407
-> --- /dev/null
-> +++ b/drivers/iio/amplifiers/ad7293.c
-
-
-...
-
+> +/* Low level accessors. No synchronisation. */
+> +#define PMU_READ_COUNTER(_idx)						\
+> +	case _idx:	return read_sysreg_s(SYS_IMP_APL_PMC## _idx ##_EL1)
 > +
-> +static int ad7293_get_offset(struct ad7293_state *st, unsigned int ch, u16 *offset)
+> +#define PMU_WRITE_COUNTER(_val, _idx)					\
+> +	case _idx:							\
+> +		write_sysreg_s(_val, SYS_IMP_APL_PMC## _idx ##_EL1);	\
+> +		return
+> +
+> +static u64 m1_pmu_read_hw_counter(unsigned int index)
 > +{
-> +	if (ch < AD7293_TSENSE_MIN_OFFSET_CH)
-> +		return ad7293_spi_read(st, AD7293_REG_VIN0_OFFSET + ch, offset);
-> +	else if (ch < AD7293_ISENSE_MIN_OFFSET_CH)
-> +		return ad7293_spi_read(st, AD7293_REG_TSENSE_INT_OFFSET + (ch - 4), offset);
-> +	else if (ch < AD7293_VOUT_MIN_OFFSET_CH)
-> +		return ad7293_spi_read(st, AD7293_REG_ISENSE0_OFFSET + (ch - 7), offset);
-> +	else if (ch <= AD7293_VOUT_MAX_OFFSET_CH)
-> +		return ad7293_spi_read(st, AD7293_REG_UNI_VOUT0_OFFSET + (ch - 11), offset);
-> +	else
-> +		return -EINVAL;
+> +	switch (index) {
+> +		PMU_READ_COUNTER(0);
+> +		PMU_READ_COUNTER(1);
+> +		PMU_READ_COUNTER(2);
+> +		PMU_READ_COUNTER(3);
+> +		PMU_READ_COUNTER(4);
+> +		PMU_READ_COUNTER(5);
+> +		PMU_READ_COUNTER(6);
+> +		PMU_READ_COUNTER(7);
+> +		PMU_READ_COUNTER(8);
+> +		PMU_READ_COUNTER(9);
+> +	}
+> +
+> +	BUG();
 > +}
 > +
-> +static int ad7293_set_offset(struct ad7293_state *st, unsigned int ch, u16 offset)
+> +static void m1_pmu_write_hw_counter(u64 val, unsigned int index)
 > +{
-> +	if (ch < AD7293_TSENSE_MIN_OFFSET_CH)
-> +		return ad7293_spi_write(st, AD7293_REG_VIN0_OFFSET + ch, offset);
-> +	else if (ch < AD7293_ISENSE_MIN_OFFSET_CH)
-> +		return ad7293_spi_write(st, AD7293_REG_TSENSE_INT_OFFSET + (ch - AD7293_TSENSE_MIN_OFFSET_CH), offset);
-> +	else if (ch < AD7293_VOUT_MIN_OFFSET_CH)
-> +		return ad7293_spi_write(st, AD7293_REG_ISENSE0_OFFSET + (ch - AD7293_ISENSE_MIN_OFFSET_CH), offset);
-> +	else if (ch <= AD7293_VOUT_MAX_OFFSET_CH)
-> +		return ad7293_spi_update_bits(st, AD7293_REG_UNI_VOUT0_OFFSET + (ch - AD7293_VOUT_MIN_OFFSET_CH),
-> +						AD7293_REG_VOUT_OFFSET_MSK,
-> +						FIELD_PREP(AD7293_REG_VOUT_OFFSET_MSK, offset));
-> +	else
-> +		return -EINVAL;
-
-final else doesn't add much so I'd just have a return -EINVAL; after if the if stack..
-i.e.
-	return -EINVAL;
-
-> +}
+> +	switch (index) {
+> +		PMU_WRITE_COUNTER(val, 0);
+> +		PMU_WRITE_COUNTER(val, 1);
+> +		PMU_WRITE_COUNTER(val, 2);
+> +		PMU_WRITE_COUNTER(val, 3);
+> +		PMU_WRITE_COUNTER(val, 4);
+> +		PMU_WRITE_COUNTER(val, 5);
+> +		PMU_WRITE_COUNTER(val, 6);
+> +		PMU_WRITE_COUNTER(val, 7);
+> +		PMU_WRITE_COUNTER(val, 8);
+> +		PMU_WRITE_COUNTER(val, 9);
+> +	}
 > +
+> +	BUG();
+> +}
 
+Probbaly cleaner to use a single switch and no macros, registers become
+greppable and the code is shorter too. Caveat: didn't check if it
+compiles.
+
+	static inline u64 m1_pmu_hw_counter(unsigned int index)
+	{
+		switch (index) {
+		case 0: return SYS_IMP_APL_PMC0_EL1;
+		case 1: return SYS_IMP_APL_PMC1_EL1;
+		case 2: return SYS_IMP_APL_PMC2_EL1;
+		case 3: return SYS_IMP_APL_PMC3_EL1;
+		case 4: return SYS_IMP_APL_PMC4_EL1;
+		case 5: return SYS_IMP_APL_PMC5_EL1;
+		case 6: return SYS_IMP_APL_PMC6_EL1;
+		case 7: return SYS_IMP_APL_PMC7_EL1;
+		case 8: return SYS_IMP_APL_PMC8_EL1;
+		case 9: return SYS_IMP_APL_PMC9_EL1;
+		}
+
+		BUG();
+	}
+
+	static u64 m1_pmu_read_hw_counter(unsigned int index) {
+		return read_sysreg_s(m1_pmu_hw_counter(index));
+	}
+
+
+	static void m1_pmu_write_hw_counter(u64 val, unsigned int index)
+	{
+		write_sysreg_s(val, m1_pmu_hw_counter(index));
+	}
+
+> +static void __m1_pmu_enable_counter(unsigned int index, bool en)
+> +{
+> +	u64 val, bit;
+> +
+> +	switch (index) {
+> +	case 0 ... 7:
+> +		bit = BIT(get_bit_offset(index, PMCR0_CNT_ENABLE_0_7));
+> +		break;
+> +	case 8 ... 9:
+> +		bit = BIT(get_bit_offset(index - 8, PMCR0_CNT_ENABLE_8_9));
+> +		break;
+> +	default:
+> +		BUG();
+> +	}
+> +
+> +	val = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
+> +
+> +	if (en)
+> +		val |= bit;
+> +	else
+> +		val &= ~bit;
+> +
+> +	write_sysreg_s(val, SYS_IMP_APL_PMCR0_EL1);
+> +}
 ...
+> +static void __m1_pmu_enable_counter_interrupt(unsigned int index, bool en)
+> +{
+> +	u64 val, bit;
+> +
+> +	switch (index) {
+> +	case 0 ... 7:
+> +		bit = BIT(get_bit_offset(index, PMCR0_PMI_ENABLE_0_7));
+> +		break;
+> +	case 8 ... 9:
+> +		bit = BIT(get_bit_offset(index - 8, PMCR0_PMI_ENABLE_8_9));
+> +		break;
+> +	default:
+> +		BUG();
+> +	}
+> +
+> +	val = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
+> +
+> +	if (en)
+> +		val |= bit;
+> +	else
+> +		val &= ~bit;
+> +
+> +	write_sysreg_s(val, SYS_IMP_APL_PMCR0_EL1);
+> +}
 
-> +static int ad7293_dac_write_raw(struct ad7293_state *st, unsigned int ch, u16 raw)
+These two helper functions have basically the same logic -- maybe worth combining?
+
+> +static void m1_pmu_configure_counter(unsigned int index, u8 event,
+> +				     bool user, bool kernel)
+> +{
+....
+> +	switch (index) {
+> +	case 0 ... 1:
+> +		/* 0 and 1 have fixed events */
+> +		break;
+> +	case 2 ... 5:
+> +		shift = (index - 2) * 8;
+> +		val = read_sysreg_s(SYS_IMP_APL_PMESR0_EL1);
+> +		val &= ~((u64)0xff << shift);
+> +		val |= (u64)event << shift;
+> +		write_sysreg_s(val, SYS_IMP_APL_PMESR0_EL1);
+> +		break;
+> +	case 6 ... 9:
+> +		shift = (index - 6) * 8;
+> +		val = read_sysreg_s(SYS_IMP_APL_PMESR1_EL1);
+> +		val &= ~((u64)0xff << shift);
+> +		val |= (u64)event << shift;
+> +		write_sysreg_s(val, SYS_IMP_APL_PMESR1_EL1);
+> +		break;
+> +	}
+> +}
+
+I'd love an explanation what's happening here.
+
+> +	/*
+> +	 * Place the event on the first free counter that can count
+> +	 * this event.
+> +	 *
+> +	 * We could do a better job if we had a view of all the events
+> +	 * counting on the PMU at any given time, and by placing the
+> +	 * most constraint events first.
+> +	 */
+
+constraining
+
+> +static int m1_pmu_device_probe(struct platform_device *pdev)
 > +{
 > +	int ret;
 > +
-> +	mutex_lock(&st->lock);
-> +
-> +	ret = __ad7293_spi_update_bits(st, AD7293_REG_DAC_EN, 1 << ch, 1 << ch);
-
-You could use BIT(ch) for all these 1 << ch though they are fairly clear as it
-stands if you would prefer not to for some reason.
-
-> +	if (ret)
-> +		goto exit;
-> +
-> +	ret =  __ad7293_spi_write(st, AD7293_REG_UNI_VOUT0 + ch,
-> +				  FIELD_PREP(AD7293_REG_DATA_RAW_MSK, raw));
-> +
-> +exit:
-> +	mutex_unlock(&st->lock);
+> +	ret = arm_pmu_device_probe(pdev, m1_pmu_of_device_ids, NULL);
+> +	if (!ret) {
+> +		/*
+> +		 * If probe succeeds, taint the kernel as this is all
+> +		 * undocumented, implementation defined black magic.
+> +		 */
+> +		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
+> +	}
 > +
 > +	return ret;
 > +}
-> +
 
-
-...
-
-> +
-> +static int ad7293_write_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan,
-> +			    int val, int val2, long info)
-> +{
-> +	struct ad7293_state *st = iio_priv(indio_dev);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		switch (chan->type) {
-> +		case IIO_VOLTAGE:
-> +			if (!chan->output)
-> +				return -EINVAL;
-> +
-> +			return ad7293_dac_write_raw(st, chan->channel, val);
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		switch (chan->type) {
-> +		case IIO_VOLTAGE:
-> +			if (chan->output)
-> +				return ad7293_set_offset(st, chan->channel + AD7293_VOUT_MIN_OFFSET_CH, val);
-> +			else
-> +				return ad7293_set_offset(st, chan->channel, val);
-
-It is common not to provide a full range of avail attributes, but perhaps it makes sense to provide
-ranges that are valid for these offsets and possibly the DAC output range above.
-Both such things can be useful both to userspace and to in kernel drivers using these channels.
-
-> +		case IIO_CURRENT:
-> +			return ad7293_set_offset(st, chan->channel + AD7293_ISENSE_MIN_OFFSET_CH, val);
-> +		case IIO_TEMP:
-> +			return ad7293_set_offset(st, chan->channel + AD7293_TSENSE_MIN_OFFSET_CH, val);
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	case IIO_CHAN_INFO_SCALE:
-> +		switch (chan->type) {
-> +		case IIO_VOLTAGE:
-> +			return ad7293_adc_set_scale(st, chan->channel, val);
-> +		case IIO_CURRENT:
-> +			return ad7293_isense_set_scale(st, chan->channel, val);
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-
-...
-> +
-> +#define AD7293_CHAN_ADC(_channel) {				\
-> +	.type = IIO_VOLTAGE,					\
-> +	.output = 0,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +	.info_mask_separate =					\
-> +		BIT(IIO_CHAN_INFO_RAW) |			\
-> +		BIT(IIO_CHAN_INFO_SCALE) |			\
-> +		BIT(IIO_CHAN_INFO_OFFSET),			\
-> +	.info_mask_shared_by_type_available =			\
-> +		BIT(IIO_CHAN_INFO_SCALE)			\
-> +}
-> +
-> +#define AD7293_CHAN_DAC(_channel) {				\
-> +	.type = IIO_VOLTAGE,					\
-> +	.output = 1,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +	.info_mask_separate =					\
-> +		BIT(IIO_CHAN_INFO_RAW) |			\
-> +		BIT(IIO_CHAN_INFO_OFFSET),			\
-> +	.info_mask_shared_by_type_available =			\
-> +		BIT(IIO_CHAN_INFO_OFFSET),			\
-> +}
-> +
-> +#define AD7293_CHAN_ISENSE(_channel) {				\
-> +	.type = IIO_CURRENT,					\
-> +	.output = 0,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +	.info_mask_separate =					\
-> +		BIT(IIO_CHAN_INFO_RAW) |			\
-> +		BIT(IIO_CHAN_INFO_OFFSET) |			\
-> +		BIT(IIO_CHAN_INFO_SCALE),			\
-> +	.info_mask_shared_by_type_available =			\
-> +		BIT(IIO_CHAN_INFO_SCALE)			\
-> +}
-> +
-> +#define AD7293_CHAN_TEMP(_channel) {				\
-> +	.type = IIO_TEMP,					\
-> +	.output = 0,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +	.info_mask_separate =					\
-> +		BIT(IIO_CHAN_INFO_RAW) |			\
-> +		BIT(IIO_CHAN_INFO_OFFSET),			\
-> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE)	\
-> +}
-
-...
-
-
-Thanks,
-
-Jonathan
-
+What are the implications of this taint? You could say that about every
+driver we've written for the M1, but...
