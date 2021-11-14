@@ -2,307 +2,816 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E45D544FC1C
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 23:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1456944FC5B
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 23:54:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236399AbhKNWHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 17:07:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33772 "EHLO
+        id S231877AbhKNW53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 17:57:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236493AbhKNWHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 17:07:36 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2726C06120E
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 14:04:35 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id m14so63348429edd.0
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 14:04:35 -0800 (PST)
+        with ESMTP id S231496AbhKNW5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 17:57:24 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 561F7C061746;
+        Sun, 14 Nov 2021 14:54:29 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id i63so31403200lji.3;
+        Sun, 14 Nov 2021 14:54:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XGXI0pGKW9jw8ve7rtCgznIqb0N0U9eB1A1huwUMCKY=;
-        b=Jg8GOdYGrH+j/Oz375DXqiyJ8UgTS/K9i745bjh5ZBTjKQ2L+7gdEcWPi+JDZwpZeD
-         ogAC/RRybNFO5cvC3UK6uEc2QmVyvFoEAlXnyDH6T2GA8JmtS+H+AmSqUBSQwFn3fkj6
-         3MjnzJFAmbFG3iG1cQ69oUPhc3897Fb1q0wMqiQRuf4lJ30E9Tgbftsf2Bvk7D6YjdxD
-         f8h5xo7GRePI2ysrJLIrm8KHIaCejAZSs363lQADwuZeN9w1kl7wiwhuqtqiSyQ9baB+
-         +6hLX9m2K7q7z8Utdne6v5GicED3Ezk26/2XG2kxissFaWulRE+M2vMzGUAoP4Ir9eId
-         CB6w==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4s7bw72a+4Qe+ggB/EasoDTMUz0gQ/J9xbfgWy5bBUw=;
+        b=NKB7rrJVW8qY9W2ONJLBlXIS3mtOCPNfGwx4Ehw+b5REbhR+76eUptQSAP+tTNYNru
+         qB513LLV5Jzffzfmv7mxa9+mmIAxiEYJtsxAz8SDKgLQwY1cmNdDBMB1aRTyF30DJrVr
+         8jvCU17dAt+pPGFYNEnZv1NEmx+Oylles5ea5xGE7fI0mgLotp85f0R8XXB1rq/uYH0l
+         uLBhnthXx81tpFsynLZWbuT5OLXpFZQ+wYH9YDr0rTfe4HudvbwLjC9Jg59cDx/+r3v0
+         cDlkOZdY5IgOkf7BM/ENnarDa/oXJDZ/0MIDfKfkHSMW4woc8cjhzUgxKzqClcTXv5J5
+         nP2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XGXI0pGKW9jw8ve7rtCgznIqb0N0U9eB1A1huwUMCKY=;
-        b=EFLwqEjcv9fZg85DqgRz22F5dHNbrwPg2hhfEDkiv9ndwc6WzP5MGaMzmAuYpmIplr
-         Kxp2Q3uDPWtlveq5zCDrSio/suyZ17SXW4cbZBMxhcB3X3t2UlgY/5xd89nWxyGRjFn2
-         we+d2oozaM+aJ4Vum9aJkNYSOqDDNsk80t44LjxGdUp+zJsx4+PS/ct+QW/TEmO/A0Lf
-         EIrbkSwyvEAtfmCBuAUJuSI5Dg47ZQHfQTYc1Tm1fQq7J9urlGeXyVmMmJNTZRziTI9g
-         pggGyCd13/7nGpzNW9ekeywsN3fjHLKxeFouiwIGzynlIuGD3nDQ3NR4Jf3LdcnLt1AU
-         DIFA==
-X-Gm-Message-State: AOAM531QFkOhAZx3oap+8jXko/buU/BrRI9jCuCvYRLFfi+ExzOQWsWm
-        dtOoEPqrGNmmKGSyqJTPf/aFlv6huLTTnYZPFLL/kTyEx3MceQ==
-X-Google-Smtp-Source: ABdhPJwJrQ10JMR83VRQsh+aHUb3E7LThFdNmZ0fTfwGv0tUuN5p8AdcBbcSDoyDQy5iHZi8U9GgRSL6LznSceCI7Ts=
-X-Received: by 2002:a17:906:1c56:: with SMTP id l22mr18527239ejg.208.1636927474270;
- Sun, 14 Nov 2021 14:04:34 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4s7bw72a+4Qe+ggB/EasoDTMUz0gQ/J9xbfgWy5bBUw=;
+        b=itTYayfFTTxj2zMYpyrD9F3Xtezz9DRyzqTdkuEGaAZv4uDjtt8NUJh+QYGGbOxT2l
+         wbGVug1jy3xSc4LP0mesR7POHwfMyB1kMgW1Xj9I/xtpfVbQ72Bk78t4VGMKL1YVKjfL
+         6ewt2oOQu4/nJdWyEbWQDau2Fl+gKFN26S+fzbJfTkCf0DqHbB/4DDhFYP/ND2YbqTqz
+         LzN7LAINstJ4Odw9ezazsHdIVl45XujHNjIt1j4ErhVhaC/Qtf3t63X9H4aYk8pDxPpJ
+         U0tZ6NffmpTKH9oFVtbZGlVFP8+0h77gYH79T4/XnrjYzses5h9tx/jaMYlKRNJe2/3N
+         m+Zg==
+X-Gm-Message-State: AOAM533h0KmFbIKzEe47yHjuz4PObciZw13maOm6Ngikucti2RHtVfm5
+        CzAPIUQczpoSAPoNEPdng2wfJzfWhxk=
+X-Google-Smtp-Source: ABdhPJy7FOCcUvozb3PvROxlJ7nmzrezYuINym9BgMyz/9Y/ewuleGhAUQ5HdfkLTxsVLntdb0JGcQ==
+X-Received: by 2002:a05:651c:907:: with SMTP id e7mr36378263ljq.300.1636930467490;
+        Sun, 14 Nov 2021 14:54:27 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id n9sm1336890lji.131.2021.11.14.14.54.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Nov 2021 14:54:27 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: leds: convert BCM6328 controller to the json-schema
+Date:   Sun, 14 Nov 2021 23:54:16 +0100
+Message-Id: <20211114225416.3174-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20211111041500.17363-1-yunfei.dong@mediatek.com>
-In-Reply-To: <20211111041500.17363-1-yunfei.dong@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Sun, 14 Nov 2021 19:04:22 -0300
-Message-ID: <CAAEAJfDrCihxPEnV8K=Unj7ejzqgcUOrP9pZO71DYDHCtWDdVQ@mail.gmail.com>
-Subject: Re: [PATCH v10, 00/19] Support multi hardware decode using of_platform_populate
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yunfei,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Thu, 11 Nov 2021 at 01:15, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> This series adds support for multi hardware decode into mtk-vcodec, by first adding use
-> of_platform_populate to manage each hardware information: interrupt, clock, register
-> bases and power. Secondly add core work queue to deal with core hardware message,
-> at the same time, add msg queue for different hardware share messages. Lastly, the
-> architecture of different specs are not the same, using specs type to separate them.
->
-> This series has been tested with both MT8183 and MT8173. Decoding was working for both chips.
->
+This helps validating DTS files.
 
-How are you testing Decoding? If you are running some test suite, it would
-be good to add such information.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ .../devicetree/bindings/leds/leds-bcm6328.txt | 319 --------------
+ .../bindings/leds/leds-bcm6328.yaml           | 403 ++++++++++++++++++
+ 2 files changed, 403 insertions(+), 319 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-bcm6328.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-bcm6328.yaml
 
-Are you testing some edge-cases such as parallel/concurrent decoding,
-removing the driver while streaming, and so on? This should help catch
-some typical issues.
+diff --git a/Documentation/devicetree/bindings/leds/leds-bcm6328.txt b/Documentation/devicetree/bindings/leds/leds-bcm6328.txt
+deleted file mode 100644
+index a555d94084b7..000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-bcm6328.txt
++++ /dev/null
+@@ -1,319 +0,0 @@
+-LEDs connected to Broadcom BCM6328 controller
+-
+-This controller is present on BCM6318, BCM6328, BCM6362 and BCM63268.
+-In these SoCs it's possible to control LEDs both as GPIOs or by hardware.
+-However, on some devices there are Serial LEDs (LEDs connected to a 74x164
+-controller), which can either be controlled by software (exporting the 74x164
+-as spi-gpio. See Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml),
+-or by hardware using this driver.
+-Some of these Serial LEDs are hardware controlled (e.g. ethernet LEDs) and
+-exporting the 74x164 as spi-gpio prevents those LEDs to be hardware
+-controlled, so the only chance to keep them working is by using this driver.
+-
+-BCM6328 LED controller has a HWDIS register, which controls whether a LED
+-should be controlled by a hardware signal instead of the MODE register value,
+-with 0 meaning hardware control enabled and 1 hardware control disabled. This
+-is usually 1:1 for hardware to LED signals, but through the activity/link
+-registers you have some limited control over rerouting the LEDs (as
+-explained later in brcm,link-signal-sources). Even if a LED is hardware
+-controlled you are still able to make it blink or light it up if it isn't,
+-but you can't turn it off if the hardware decides to light it up. For this
+-reason, hardware controlled LEDs aren't registered as LED class devices.
+-
+-Required properties:
+-  - compatible : should be "brcm,bcm6328-leds".
+-  - #address-cells : must be 1.
+-  - #size-cells : must be 0.
+-  - reg : BCM6328 LED controller address and size.
+-
+-Optional properties:
+-  - brcm,serial-leds : Boolean, enables Serial LEDs.
+-    Default : false
+-  - brcm,serial-mux : Boolean, enables Serial LEDs multiplexing.
+-    Default : false
+-  - brcm,serial-clk-low : Boolean, makes clock signal active low.
+-    Default : false
+-  - brcm,serial-dat-low : Boolean, makes data signal active low.
+-    Default : false
+-  - brcm,serial-shift-inv : Boolean, inverts Serial LEDs shift direction.
+-    Default : false
+-
+-Each LED is represented as a sub-node of the brcm,bcm6328-leds device.
+-
+-LED sub-node required properties:
+-  - reg : LED pin number (only LEDs 0 to 23 are valid).
+-
+-LED sub-node optional properties:
+-  a) Optional properties for sub-nodes related to software controlled LEDs:
+-    - label : see Documentation/devicetree/bindings/leds/common.txt
+-    - active-low : Boolean, makes LED active low.
+-      Default : false
+-    - default-state : see
+-      Documentation/devicetree/bindings/leds/common.txt
+-    - linux,default-trigger : see
+-      Documentation/devicetree/bindings/leds/common.txt
+-
+-  b) Optional properties for sub-nodes related to hardware controlled LEDs:
+-    - brcm,hardware-controlled : Boolean, makes this LED hardware controlled.
+-      Default : false
+-    - brcm,link-signal-sources : An array of hardware link
+-      signal sources. Up to four link hardware signals can get muxed into
+-      these LEDs. Only valid for LEDs 0 to 7, where LED signals 0 to 3 may
+-      be muxed to LEDs 0 to 3, and signals 4 to 7 may be muxed to LEDs
+-      4 to 7. A signal can be muxed to more than one LED, and one LED can
+-      have more than one source signal.
+-    - brcm,activity-signal-sources : An array of hardware activity
+-      signal sources. Up to four activity hardware signals can get muxed into
+-      these LEDs. Only valid for LEDs 0 to 7, where LED signals 0 to 3 may
+-      be muxed to LEDs 0 to 3, and signals 4 to 7 may be muxed to LEDs
+-      4 to 7. A signal can be muxed to more than one LED, and one LED can
+-      have more than one source signal.
+-
+-Examples:
+-Scenario 1 : BCM6328 with 4 EPHY LEDs
+-	leds0: led-controller@10000800 {
+-		compatible = "brcm,bcm6328-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x10000800 0x24>;
+-
+-		alarm_red@2 {
+-			reg = <2>;
+-			active-low;
+-			label = "red:alarm";
+-		};
+-		inet_green@3 {
+-			reg = <3>;
+-			active-low;
+-			label = "green:inet";
+-		};
+-		power_green@4 {
+-			reg = <4>;
+-			active-low;
+-			label = "green:power";
+-			default-state = "on";
+-		};
+-		ephy0_spd@17 {
+-			reg = <17>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy1_spd@18 {
+-			reg = <18>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy2_spd@19 {
+-			reg = <19>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy3_spd@20 {
+-			reg = <20>;
+-			brcm,hardware-controlled;
+-		};
+-	};
+-
+-Scenario 2 : BCM63268 with Serial/GPHY0 LEDs
+-	leds0: led-controller@10001900 {
+-		compatible = "brcm,bcm6328-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x10001900 0x24>;
+-		brcm,serial-leds;
+-		brcm,serial-dat-low;
+-		brcm,serial-shift-inv;
+-
+-		gphy0_spd0@0 {
+-			reg = <0>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <0>;
+-		};
+-		gphy0_spd1@1 {
+-			reg = <1>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <1>;
+-		};
+-		inet_red@2 {
+-			reg = <2>;
+-			active-low;
+-			label = "red:inet";
+-		};
+-		dsl_green@3 {
+-			reg = <3>;
+-			active-low;
+-			label = "green:dsl";
+-		};
+-		usb_green@4 {
+-			reg = <4>;
+-			active-low;
+-			label = "green:usb";
+-		};
+-		wps_green@7 {
+-			reg = <7>;
+-			active-low;
+-			label = "green:wps";
+-		};
+-		inet_green@8 {
+-			reg = <8>;
+-			active-low;
+-			label = "green:inet";
+-		};
+-		ephy0_act@9 {
+-			reg = <9>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy1_act@10 {
+-			reg = <10>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy2_act@11 {
+-			reg = <11>;
+-			brcm,hardware-controlled;
+-		};
+-		gphy0_act@12 {
+-			reg = <12>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy0_spd@13 {
+-			reg = <13>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy1_spd@14 {
+-			reg = <14>;
+-			brcm,hardware-controlled;
+-		};
+-		ephy2_spd@15 {
+-			reg = <15>;
+-			brcm,hardware-controlled;
+-		};
+-		power_green@20 {
+-			reg = <20>;
+-			active-low;
+-			label = "green:power";
+-			default-state = "on";
+-		};
+-	};
+-
+-Scenario 3 : BCM6362 with 1 LED for each EPHY
+-	leds0: led-controller@10001900 {
+-		compatible = "brcm,bcm6328-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x10001900 0x24>;
+-
+-		usb@0 {
+-			reg = <0>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <0>;
+-			brcm,activity-signal-sources = <0>;
+-			/* USB link/activity routed to USB LED */
+-		};
+-		inet@1 {
+-			reg = <1>;
+-			brcm,hardware-controlled;
+-			brcm,activity-signal-sources = <1>;
+-			/* INET activity routed to INET LED */
+-		};
+-		ephy0@4 {
+-			reg = <4>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <4>;
+-			/* EPHY0 link routed to EPHY0 LED */
+-		};
+-		ephy1@5 {
+-			reg = <5>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <5>;
+-			/* EPHY1 link routed to EPHY1 LED */
+-		};
+-		ephy2@6 {
+-			reg = <6>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <6>;
+-			/* EPHY2 link routed to EPHY2 LED */
+-		};
+-		ephy3@7 {
+-			reg = <7>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <7>;
+-			/* EPHY3 link routed to EPHY3 LED */
+-		};
+-		power_green@20 {
+-			reg = <20>;
+-			active-low;
+-			label = "green:power";
+-			default-state = "on";
+-		};
+-	};
+-
+-Scenario 4 : BCM6362 with 1 LED for all EPHYs
+-	leds0: led-controller@10001900 {
+-		compatible = "brcm,bcm6328-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x10001900 0x24>;
+-
+-		usb@0 {
+-			reg = <0>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <0 1>;
+-			brcm,activity-signal-sources = <0 1>;
+-			/* USB/INET link/activity routed to USB LED */
+-		};
+-		ephy@4 {
+-			reg = <4>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <4 5 6 7>;
+-			/* EPHY0/1/2/3 link routed to EPHY0 LED */
+-		};
+-		power_green@20 {
+-			reg = <20>;
+-			active-low;
+-			label = "green:power";
+-			default-state = "on";
+-		};
+-	};
+-
+-Scenario 5 : BCM6362 with EPHY LEDs swapped
+-	leds0: led-controller@10001900 {
+-		compatible = "brcm,bcm6328-leds";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x10001900 0x24>;
+-
+-		usb@0 {
+-			reg = <0>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <0>;
+-			brcm,activity-signal-sources = <0 1>;
+-			/* USB link/act and INET act routed to USB LED */
+-		};
+-		ephy0@4 {
+-			reg = <4>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <7>;
+-			/* EPHY3 link routed to EPHY0 LED */
+-		};
+-		ephy1@5 {
+-			reg = <5>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <6>;
+-			/* EPHY2 link routed to EPHY1 LED */
+-		};
+-		ephy2@6 {
+-			reg = <6>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <5>;
+-			/* EPHY1 link routed to EPHY2 LED */
+-		};
+-		ephy3@7 {
+-			reg = <7>;
+-			brcm,hardware-controlled;
+-			brcm,link-signal-sources = <4>;
+-			/* EPHY0 link routed to EPHY3 LED */
+-		};
+-		power_green@20 {
+-			reg = <20>;
+-			active-low;
+-			label = "green:power";
+-			default-state = "on";
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/leds/leds-bcm6328.yaml b/Documentation/devicetree/bindings/leds/leds-bcm6328.yaml
+new file mode 100644
+index 000000000000..b7e72feb7a07
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-bcm6328.yaml
+@@ -0,0 +1,403 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-bcm6328.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LEDs connected to Broadcom BCM6328 controller
++
++maintainers:
++  - Álvaro Fernández Rojas <noltari@gmail.com>
++
++description: |
++  This controller is present on BCM6318, BCM6328, BCM6362 and BCM63268.
++  In these SoCs it's possible to control LEDs both as GPIOs or by hardware.
++  However, on some devices there are Serial LEDs (LEDs connected to a 74x164
++  controller), which can either be controlled by software (exporting the 74x164
++  as spi-gpio. See
++  Documentation/devicetree/bindings/gpio/fairchild,74hc595.yaml), or by hardware
++  using this driver.
++  Some of these Serial LEDs are hardware controlled (e.g. ethernet LEDs) and
++  exporting the 74x164 as spi-gpio prevents those LEDs to be hardware
++  controlled, so the only chance to keep them working is by using this driver.
++
++  BCM6328 LED controller has a HWDIS register, which controls whether a LED
++  should be controlled by a hardware signal instead of the MODE register value,
++  with 0 meaning hardware control enabled and 1 hardware control disabled. This
++  is usually 1:1 for hardware to LED signals, but through the activity/link
++  registers you have some limited control over rerouting the LEDs (as
++  explained later in brcm,link-signal-sources). Even if a LED is hardware
++  controlled you are still able to make it blink or light it up if it isn't,
++  but you can't turn it off if the hardware decides to light it up. For this
++  reason, hardware controlled LEDs aren't registered as LED class devices.
++
++  Each LED is represented as a sub-node of the brcm,bcm6328-leds device.
++
++properties:
++  compatible:
++    const: brcm,bcm6328-leds
++
++  reg:
++    maxItems: 1
++
++  brcm,serial-leds:
++    type: boolean
++    description: Enables Serial LEDs.
++
++  brcm,serial-mux:
++    type: boolean
++    description: Enables Serial LEDs multiplexing.
++
++  brcm,serial-clk-low:
++    type: boolean
++    description: Makes clock signal active low.
++
++  brcm,serial-dat-low:
++    type: boolean
++    description: Makes data signal active low.
++
++  brcm,serial-shift-inv:
++    type: boolean
++    description: Inverts Serial LEDs shift direction.
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "@[a-f0-9]+$":
++    type: object
++
++    $ref: common.yaml#
++
++    properties:
++      reg:
++        maxItems: 1
++        description: LED pin number (only LEDs 0 to 23 are valid).
++
++      active-low:
++        type: boolean
++        description: Makes LED active low.
++
++      brcm,hardware-controlled:
++        type: boolean
++        description: Makes this LED hardware controlled.
++
++      brcm,link-signal-sources:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        minItems: 1
++        maxItems: 4
++        description: >
++          An array of hardware link signal sources. Up to four link hardware
++          signals can get muxed into these LEDs. Only valid for LEDs 0 to 7,
++          where LED signals 0 to 3 may be muxed to LEDs 0 to 3, and signals 4 to
++          7 may be muxed to LEDs 4 to 7. A signal can be muxed to more than one
++          LED, and one LED can have more than one source signal.
++
++      brcm,activity-signal-sources:
++        $ref: /schemas/types.yaml#/definitions/uint32-array
++        minItems: 1
++        maxItems: 4
++        description: >
++          An array of hardware activity signal sources. Up to four activity
++          hardware signals can get muxed into these LEDs. Only valid for LEDs 0
++          to 7, where LED signals 0 to 3 may be muxed to LEDs 0 to 3, and
++          signals 4 to 7 may be muxed to LEDs 4 to 7. A signal can be muxed to
++          more than one LED, and one LED can have more than one source signal.
++
++    required:
++      - reg
++
++    unevaluatedProperties: false
++
++required:
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    /* BCM6328 with 4 EPHY LEDs */
++    led-controller@10000800 {
++        compatible = "brcm,bcm6328-leds";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x10000800 0x24>;
++
++        alarm_red@2 {
++            reg = <2>;
++            active-low;
++            label = "red:alarm";
++        };
++
++        inet_green@3 {
++            reg = <3>;
++            active-low;
++            label = "green:inet";
++        };
++
++        power_green@4 {
++            reg = <4>;
++            active-low;
++            label = "green:power";
++            default-state = "on";
++        };
++
++        ephy0_spd@17 {
++            reg = <17>;
++            brcm,hardware-controlled;
++        };
++
++        ephy1_spd@18 {
++            reg = <18>;
++            brcm,hardware-controlled;
++        };
++
++        ephy2_spd@19 {
++            reg = <19>;
++            brcm,hardware-controlled;
++        };
++
++        ephy3_spd@20 {
++            reg = <20>;
++            brcm,hardware-controlled;
++        };
++    };
++  - |
++    /* BCM63268 with Serial/GPHY0 LEDs */
++    led-controller@10001900 {
++        compatible = "brcm,bcm6328-leds";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x10001900 0x24>;
++        brcm,serial-leds;
++        brcm,serial-dat-low;
++        brcm,serial-shift-inv;
++
++        gphy0_spd0@0 {
++            reg = <0>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <0>;
++        };
++
++        gphy0_spd1@1 {
++            reg = <1>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <1>;
++        };
++
++        inet_red@2 {
++            reg = <2>;
++            active-low;
++            label = "red:inet";
++        };
++
++        dsl_green@3 {
++            reg = <3>;
++            active-low;
++            label = "green:dsl";
++        };
++
++        usb_green@4 {
++            reg = <4>;
++            active-low;
++            label = "green:usb";
++        };
++
++        wps_green@7 {
++            reg = <7>;
++            active-low;
++            label = "green:wps";
++        };
++
++        inet_green@8 {
++            reg = <8>;
++            active-low;
++            label = "green:inet";
++        };
++
++        ephy0_act@9 {
++            reg = <9>;
++            brcm,hardware-controlled;
++        };
++
++        ephy1_act@10 {
++            reg = <10>;
++            brcm,hardware-controlled;
++        };
++
++        ephy2_act@11 {
++            reg = <11>;
++            brcm,hardware-controlled;
++        };
++
++        gphy0_act@12 {
++            reg = <12>;
++            brcm,hardware-controlled;
++        };
++
++        ephy0_spd@13 {
++            reg = <13>;
++            brcm,hardware-controlled;
++        };
++
++        ephy1_spd@14 {
++            reg = <14>;
++            brcm,hardware-controlled;
++        };
++
++        ephy2_spd@15 {
++            reg = <15>;
++            brcm,hardware-controlled;
++        };
++
++        power_green@20 {
++            reg = <20>;
++            active-low;
++            label = "green:power";
++            default-state = "on";
++        };
++    };
++  - |
++    /* BCM6362 with 1 LED for each EPHY */
++    led-controller@10001900 {
++        compatible = "brcm,bcm6328-leds";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x10001900 0x24>;
++
++        usb@0 {
++            reg = <0>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <0>;
++            brcm,activity-signal-sources = <0>;
++            /* USB link/activity routed to USB LED */
++        };
++
++        inet@1 {
++            reg = <1>;
++            brcm,hardware-controlled;
++            brcm,activity-signal-sources = <1>;
++            /* INET activity routed to INET LED */
++        };
++
++        ephy0@4 {
++            reg = <4>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <4>;
++            /* EPHY0 link routed to EPHY0 LED */
++        };
++
++        ephy1@5 {
++            reg = <5>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <5>;
++            /* EPHY1 link routed to EPHY1 LED */
++        };
++
++        ephy2@6 {
++            reg = <6>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <6>;
++            /* EPHY2 link routed to EPHY2 LED */
++        };
++
++        ephy3@7 {
++            reg = <7>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <7>;
++            /* EPHY3 link routed to EPHY3 LED */
++        };
++
++        power_green@20 {
++            reg = <20>;
++            active-low;
++            label = "green:power";
++            default-state = "on";
++        };
++    };
++  - |
++    /* BCM6362 with 1 LED for all EPHYs */
++    led-controller@10001900 {
++        compatible = "brcm,bcm6328-leds";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x10001900 0x24>;
++
++        usb@0 {
++            reg = <0>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <0 1>;
++            brcm,activity-signal-sources = <0 1>;
++            /* USB/INET link/activity routed to USB LED */
++        };
++
++        ephy@4 {
++            reg = <4>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <4 5 6 7>;
++            /* EPHY0/1/2/3 link routed to EPHY0 LED */
++        };
++
++        power_green@20 {
++            reg = <20>;
++            active-low;
++            label = "green:power";
++            default-state = "on";
++        };
++    };
++  - |
++    /* BCM6362 with EPHY LEDs swapped */
++    led-controller@10001900 {
++        compatible = "brcm,bcm6328-leds";
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0x10001900 0x24>;
++
++        usb@0 {
++            reg = <0>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <0>;
++            brcm,activity-signal-sources = <0 1>;
++            /* USB link/act and INET act routed to USB LED */
++        };
++
++        ephy0@4 {
++            reg = <4>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <7>;
++            /* EPHY3 link routed to EPHY0 LED */
++        };
++
++        ephy1@5 {
++            reg = <5>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <6>;
++            /* EPHY2 link routed to EPHY1 LED */
++        };
++
++        ephy2@6 {
++            reg = <6>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <5>;
++            /* EPHY1 link routed to EPHY2 LED */
++        };
++
++        ephy3@7 {
++            reg = <7>;
++            brcm,hardware-controlled;
++            brcm,link-signal-sources = <4>;
++            /* EPHY0 link routed to EPHY3 LED */
++        };
++
++        power_green@20 {
++            reg = <20>;
++            active-low;
++            label = "green:power";
++            default-state = "on";
++        };
++    };
+-- 
+2.31.1
 
-Thanks,
-Ezequiel
-
-> Patches 1~3 rewrite get register bases and power on/off interface.
-> Patches 4 export decoder pm interfaces.
-> Patches 5 add to support 8192.
-> Patch 6 support multi hardware.
-> Patch 7 separate video encoder and decoder document
-> Patch 8-17 add interfaces to support core hardware.
-> Patch 18-19 remove mtk_vcodec_release_dec/enc_pm interfaces.
-> ---
-> changes compared with v9:
-> - need not to build ko, just export pm interfaces for patch 04/19.
-> - fix comments for patch 06/19
->
-> changes compared with v8:
-> - add new patch 18~19 to remove mtk_vcodec_release_de/enc_pm interfaces.
-> - fix spelling mistakes for patch 17/19
-> - fix yaml comments for patch 15/19
->
-> Changes compared with v7:
-> - add new patch 4 to build decoder pm file as module
-> - add new patch 5 to support 8192
-> - fix comments for patch 6/17
-> - change some logic for using work queue instead of create thread for core hardware decode for patch 10/17
-> - using work queue for hardware decode instead of create thread for patch 13/17
-> - add returen value for patch 14/17
-> - fix yaml check fail 15/17
->
-> Changes compared with v6:
-> - Use of_platform_populate to manage multi hardware, not component framework for patch 4/15
-> - Re-write dtsi document for hardware architecture changed for patch 13/15 -The dtsi will write like below in patch 13/15:
->     vcodec_dec: vcodec_dec@16000000 {
->         compatible = "mediatek,mt8192-vcodec-dec";
->         #address-cells = <2>;
->         #size-cells = <2>;
->         ranges;
->         reg = <0 0x16000000 0 0x1000>;          /* VDEC_SYS */
->         mediatek,scp = <&scp>;
->         iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
->         dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
->         vcodec_lat {
->             compatible = "mediatek,mtk-vcodec-lat";
->             reg = <0 0x16010000 0 0x800>;               /* VDEC_MISC */
->             reg-name = "reg-misc";
->             interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
->             iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
->                  <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
->             clocks = <&topckgen CLK_TOP_VDEC_SEL>,
->                  <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
->                  <&vdecsys_soc CLK_VDEC_SOC_LAT>,
->                  <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
->                  <&topckgen CLK_TOP_MAINPLL_D4>;
->             clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
->                   "vdec-vdec", "vdec-top";
->             assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
->             assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
->             power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
->         };
->
->         vcodec_core {
->             compatible = "mediatek,mtk-vcodec-core";
->             reg = <0 0x16025000 0 0x1000>;              /* VDEC_CORE_MISC */
->             reg-names = "reg-misc";
->             interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
->             iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
->                  <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
->             clocks = <&topckgen CLK_TOP_VDEC_SEL>,
->                  <&vdecsys CLK_VDEC_VDEC>,
->                  <&vdecsys CLK_VDEC_LAT>,
->                  <&vdecsys CLK_VDEC_LARB1>,
->                  <&topckgen CLK_TOP_MAINPLL_D4>;
->             clock-names = "vdec-sel", "vdec-soc-vdec", "vdec-soc-lat",
->                   "vdec-vdec", "vdec-top";
->             assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
->             assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
->             power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
->         };
->     };
->
-> Changes compared with v5:
-> - Add decoder hardware block diagram for patch 13/15
->
-> Changes compared with v4:
-> - Fix comments for patch 4/15
->   >> +     if (dev->is_comp_supported) {
->   >> +             ret = mtk_vcodec_init_master(dev);
->   >> +             if (ret < 0)
->   >> +                     goto err_component_match;
->   >> +     } else {
->   >> +             platform_set_drvdata(pdev, dev);
->   >> +     }
->   Fix platform_set_drvdata.
-> - Fix build error for patch 9/15
-> - Add depend patch in case of error header file for patch 13/15
->
-> Changes compared with v3:
-> - Fix return value for patch 1/15
-> - Fix comments for patch 4/15
->   > Looking up "mediatek,mtk-vcodec-core" to determine if it uses component framwork sounds like...
->   Add prameter in pdata, for all platform will use compoent after mt8183
->
->   >> +     if (dev->is_comp_supported) {
->   >> +             ret = mtk_vcodec_init_master(dev);
->   >> +             if (ret < 0)
->   >> +                     goto err_component_match;
->   >> +     } else {
->   >> +             platform_set_drvdata(pdev, dev);
->   >> +     }
->   > + Has asked the same question in [1].  Why it removes the
->   > +platform_set_drvdata() above?  mtk_vcodec_init_master() also calls platform_set_drvdata().
->   Must call component_master_add_with_match after platform_set_drvdata for component architecture.
-> - Fix yaml files check fail for patch 5/15
-> - Fix yaml file check fail for patch 14/15
->
-> Changes compared with v1:
-> - Fix many comments for patch 3/14
-> - Remove unnecessary code for patch 4/14
-> - Using enum mtk_vdec_hw_count instead of magic numbers for patch 6/14
-> - Reconstructed get/put lat buffer for lat and core hardware for patch 7/14
-> - Using yaml format to instead of txt file for patch 12/14
->
-> Yunfei Dong (19):
->   media: mtk-vcodec: Get numbers of register bases from DT
->   media: mtk-vcodec: Align vcodec wake up interrupt interface
->   media: mtk-vcodec: Refactor vcodec pm interface
->   media: mtk-vcodec: export decoder pm functions
->   media: mtk-vcodec: Support MT8192
->   media: mtk-vcodec: Manage multi hardware information
->   dt-bindings: media: mtk-vcodec: Separate video encoder and decoder
->     dt-bindings
->   media: mtk-vcodec: Use pure single core for MT8183
->   media: mtk-vcodec: Add irq interface for multi hardware
->   media: mtk-vcodec: Add msg queue feature for lat and core architecture
->   media: mtk-vcodec: Generalize power and clock on/off interfaces
->   media: mtk-vcodec: Add new interface to lock different hardware
->   media: mtk-vcodec: Add work queue for core hardware decode
->   media: mtk-vcodec: Support 34bits dma address for vdec
->   dt-bindings: media: mtk-vcodec: Adds decoder dt-bindings for mt8192
->   media: mtk-vcodec: Add core dec and dec end ipi msg
->   media: mtk-vcodec: Use codec type to separate different hardware
->   media: mtk-vcodec: Remove mtk_vcodec_release_dec_pm
->   media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
->
->  .../media/mediatek,vcodec-decoder.yaml        | 176 +++++++++++
->  .../media/mediatek,vcodec-encoder.yaml        | 187 ++++++++++++
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 261 ++++++++++++++++
->  .../bindings/media/mediatek-vcodec.txt        | 131 --------
->  drivers/media/platform/mtk-vcodec/Makefile    |   6 +-
->  .../platform/mtk-vcodec/mtk_vcodec_dec.c      |   4 +-
->  .../platform/mtk-vcodec/mtk_vcodec_dec.h      |   1 +
->  .../platform/mtk-vcodec/mtk_vcodec_dec_drv.c  | 219 +++++++++++---
->  .../platform/mtk-vcodec/mtk_vcodec_dec_hw.c   | 172 +++++++++++
->  .../platform/mtk-vcodec/mtk_vcodec_dec_hw.h   |  55 ++++
->  .../platform/mtk-vcodec/mtk_vcodec_dec_pm.c   | 104 +++++--
->  .../platform/mtk-vcodec/mtk_vcodec_dec_pm.h   |  12 +-
->  .../mtk-vcodec/mtk_vcodec_dec_stateful.c      |   2 +
->  .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  20 ++
->  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  75 ++++-
->  .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  21 +-
->  .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   |  10 +-
->  .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |   3 +-
->  .../platform/mtk-vcodec/mtk_vcodec_intr.c     |  27 +-
->  .../platform/mtk-vcodec/mtk_vcodec_intr.h     |   4 +-
->  .../platform/mtk-vcodec/mtk_vcodec_util.c     |  87 +++++-
->  .../platform/mtk-vcodec/mtk_vcodec_util.h     |   8 +-
->  .../platform/mtk-vcodec/vdec/vdec_h264_if.c   |   2 +-
->  .../mtk-vcodec/vdec/vdec_h264_req_if.c        |   2 +-
->  .../platform/mtk-vcodec/vdec/vdec_vp8_if.c    |   2 +-
->  .../platform/mtk-vcodec/vdec/vdec_vp9_if.c    |   2 +-
->  .../media/platform/mtk-vcodec/vdec_drv_if.c   |  21 +-
->  .../media/platform/mtk-vcodec/vdec_ipi_msg.h  |  16 +-
->  .../platform/mtk-vcodec/vdec_msg_queue.c      | 286 ++++++++++++++++++
->  .../platform/mtk-vcodec/vdec_msg_queue.h      | 148 +++++++++
->  .../media/platform/mtk-vcodec/vdec_vpu_if.c   |  46 ++-
->  .../media/platform/mtk-vcodec/vdec_vpu_if.h   |  22 ++
->  .../platform/mtk-vcodec/venc/venc_h264_if.c   |   2 +-
->  .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   2 +-
->  34 files changed, 1841 insertions(+), 295 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-vcodec.txt
->  create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.c
->  create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_hw.h
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.c
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec_msg_queue.h
->
-> --
-> 2.25.1
->
