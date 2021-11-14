@@ -2,262 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4177C44FBE5
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 22:56:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13D7644FBF3
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 23:02:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234686AbhKNV7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 16:59:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60134 "EHLO
+        id S236233AbhKNWFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 17:05:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234667AbhKNV7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 16:59:49 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DCFDC061746
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 13:56:51 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id w1so63139098edd.10
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 13:56:51 -0800 (PST)
+        with ESMTP id S234738AbhKNWFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 17:05:03 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 080BBC061202;
+        Sun, 14 Nov 2021 14:01:56 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id 13so31216528ljj.11;
+        Sun, 14 Nov 2021 14:01:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z+a45scJUghbWle9ZBsDg+s+2wzuH5GEQRWeFAD8t7E=;
-        b=AKBJYmPfyiaYmwd7oyncnL6zw9NtPWAJSbT7wJ9CoM5XRX4y7lYR4azZmAWJhnkbx3
-         wApEFEVRRFjCRlk8LcnF6jhjQwm5wv7r4B6Skyc7KmZmOOftQeLeqyS9W4PEM5aCIXOK
-         3C2t8LKXJCZlA74FYaRzy+O2yuqZGrD9mvi+IO33lc7L6Yucfzu+gveGnyIDEh2HehQo
-         GXFDuQDrEVz3+SlIQXV7z/Scjb381zZkmaPcGnIu7xzfs3l25xVRGofL7jjsWciVrfFx
-         LQ7c+cenNltzXc/rnPZhVahuvpT8J2ioVmkhvGdpu+lB9nG1RnYh946IZT2OyC/m7P+O
-         T77w==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j2/RMDDNKUW81/NSLsMNvwdhPKuNgHO8UBT3kEWNBR0=;
+        b=A8s98yAEtUTI3iT9jaFKoyqPOReQ2A9qlFX6uHHoWmjOHc60K/kFSwj9ViS/d7tyvj
+         CR2y3wXNLfbCBA4s9Qz/jYLcDmb300gBny0bva1FtLeF3/P/Fow/XFL7zqK4CppApEmu
+         TPcyG4oGhWq3fy9C5ZeAh3n4HeR62MzkMlnyvK+PZMtrtYoPBnpHlM10UU5ZlXpIszDW
+         /1RXbdPd9Tz84zqgyDTeBBG2Kc4H8nUwGrFv4+kOUa/LU3Xf91xm1c9+QwWG1OdGYlxf
+         mmiw7V90Ejj0F/QunhQcOqnz+A9cteorjozupFix5xOpupt1Kmj2fDMUdanSnb98DLlf
+         LAag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z+a45scJUghbWle9ZBsDg+s+2wzuH5GEQRWeFAD8t7E=;
-        b=Bb4pGuidcVQRNrXdokpKqHLopNJiOk9N6rzXHxEYV1sT8JcYsXEAx7FmpvgCu5cjv8
-         r8J6+5eo/Y4uwKuELwnFc2Fnv9vvmqxbwMx4ioequhUzoGZ+tr+2DOoIx//i+tNYAJXR
-         OVVEXpIFXCvacmTYMJ/EznMLtpG8OzNhrFFlrPwKC632JrZUvcAJf8fBN1ZlVErLyuVb
-         eYCLKz3VfgK59Mo6se4fL2trBdf6UE5yXwpTpuZMk18o4h+M4wK/nhJH4jWA3kEmGpA5
-         Ok8UBw841CuW1vEnlbxtGk7q9Dow/GhgaoIsSo7BJBHtDV/1qZnxN+tM4h1eZUNXplbm
-         LP8g==
-X-Gm-Message-State: AOAM532FhJdLaerwrrutH3bKw8FNgkb76OL1xDUdqoyRSsuWIfQh1XiE
-        LXXcKGLLuZCj0N+MBSz7jBnlWj6U/rxiPhVwpFe8nQ==
-X-Google-Smtp-Source: ABdhPJyomQczgvwHG7w6id4jh3N0ebh0Ihr1LveJ55TvN/g341+OWtesIcRAQSmVB1tvezeAr3cMSOUbMM62omekLG0=
-X-Received: by 2002:a05:6402:190d:: with SMTP id e13mr47552746edz.339.1636927009693;
- Sun, 14 Nov 2021 13:56:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20211111041500.17363-1-yunfei.dong@mediatek.com> <20211111041500.17363-16-yunfei.dong@mediatek.com>
-In-Reply-To: <20211111041500.17363-16-yunfei.dong@mediatek.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Sun, 14 Nov 2021 18:56:37 -0300
-Message-ID: <CAAEAJfBWgP1fMsEQQEa=2Rk810oHzDo609TzicYgwPbU8AMunQ@mail.gmail.com>
-Subject: Re: [PATCH v10, 15/19] dt-bindings: media: mtk-vcodec: Adds decoder
- dt-bindings for mt8192
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=j2/RMDDNKUW81/NSLsMNvwdhPKuNgHO8UBT3kEWNBR0=;
+        b=GueCgU9FJNX2o6dRibfyH2+LqS9TnDYm7LcIhJ33BCHoowR+loakvSEUF2hFgueqnz
+         tyxGyTbOeUenOJA4NORehjqpC7Gsh29avPhq67QVrXJ/lVA7yV25Fd7BkHkYr4sM8dpY
+         ukw9eUlNSETyi+ZR1mKVAP58e4Ww+0fF41XvXTsseVjCA4jZCPbKfeyPw8pFfYVvlbha
+         98eVxijs8rdmb086JpnzJci6SNFAvAKwbccOXhUDLDkgBAs5xXHvNTbGtcHMKBMnIMW6
+         KCgsYpfJPh7b5OlYryVjUc9QIPvDHXQ4LZA7BHH+zIeG/6frujovdWX6QBnmN6mtBTQk
+         T5MQ==
+X-Gm-Message-State: AOAM530t7tVcxniXzlXX4rPklzo1dedHAEUpgVh/TPWGB/buakD/SvHw
+        Iv2YEcq+oemsqMc80yTfIDQ=
+X-Google-Smtp-Source: ABdhPJzM3mrjjEG5A/tfKwjeOJuRmqvbXYVSEv37ZNEm+CLFBemVKM6U0NTtdwNVockf57DrvHOHDw==
+X-Received: by 2002:a2e:b7d4:: with SMTP id p20mr32966755ljo.248.1636927314397;
+        Sun, 14 Nov 2021 14:01:54 -0800 (PST)
+Received: from localhost.localdomain (46-138-46-211.dynamic.spd-mgts.ru. [46.138.46.211])
+        by smtp.gmail.com with ESMTPSA id t5sm1353842lfd.80.2021.11.14.14.01.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Nov 2021 14:01:54 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-media <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        David Heidelberg <david@ixit.cz>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>,
+        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
+        Nikola Milosavljevic <mnidza@outlook.com>,
+        Ion Agorria <ion@agorria.com>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        Thomas Graichen <thomas.graichen@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 00/14] NVIDIA Tegra ARM32 device-tree patches for 5.17
+Date:   Mon, 15 Nov 2021 01:01:05 +0300
+Message-Id: <20211114220119.18909-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Yunfei,
+In this patchset you will find:
 
-On Thu, 11 Nov 2021 at 01:15, Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> Adds decoder dt-bindings for mt8192.
->
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 261 ++++++++++++++++++
->  1 file changed, 261 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> new file mode 100644
-> index 000000000000..1886fae6e39d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-> @@ -0,0 +1,261 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/media/mediatek,vcodec-subdev-decoder.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Mediatek Video Decode Accelerator With Multi Hardware
-> +
-> +maintainers:
-> +  - Yunfei Dong <yunfei.dong@mediatek.com>
-> +
-> +description: |
-> +  Mediatek Video Decode is the video decode hardware present in Mediatek
-> +  SoCs which supports high resolution decoding functionalities. Required
-> +  main and subdev device node.
-> +
-> +  About the Decoder Hardware Block Diagram, please check below:
-> +
-> +    +---------------------------------+------------------------------------+
-> +    |                                 |                                    |
-> +    | input -> lat HW -> lat buffer --|--> lat buffer -> core HW -> output
- |
+  - New device-trees of ASUS Transformer and Pegatron Chagall tablets.
 
-To be completely honest, I can't really understand what is the meaning
-of the blocks
-with input -> lat hw -> lat buffer, and how this means lat- and core-
-are children of some parent.
+  - New device-tree of Nyan Big Chromebook variant that has 1080p display
+    panel.
 
-> +    |            ||                   |                     ||             |
-> +    +------------||-------------------+---------------------||-------------+
-> +                 ||       lat thread  |  core thread        ||     <parent>
-> +    -------------||-----------------------------------------||----------------
-> +                 ||                                         ||     <child>
-> +                 \/ <----------------HW index-------------->\/
-> +           +------------------------------------------------------+
-> +           |                    enable/disable                    |
-> +           |           clk     power    irq    iommu port         |
-> +           |                 (lat/lat soc/core0/core1)            |
-> +           +------------------------------------------------------+
-> +
-> +  As above, <parent> mean in main device, <child> mean in subdev device. The information
-> +  of each hardware will be stored in subdev device. There are two workqueues in main device:
-> +  lat and core. Enable/disable the lat clk/power/irq when lat need to work through hardware
-> +  index, core is the same.
-> +
-> +  Normally the smi common may not the same for each hardware, can't combine all hardware in
-> +  one node, or leading to iommu fault when access dram data.
-> +
+  - Enabled video decoder on Tegra114.
 
-To what extent the lat- and core- devices are really "children"
-or "subdevices" of the  video-codec@16000000 device?
+  - Minor cleanup of Nexus7 device-tree.
 
-I.e. what resources do they share? What are the details of
-their bus topology?
+  - Renamed clocks and regulator nodes. I'm sending this patch second time
+    because previously there was no good reason given about why not to apply
+    it. Please apply it this time.
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/mt8192-larb-port.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mt8192-clk.h>
-> +    #include <dt-bindings/power/mt8192-power.h>
-> +
-> +    video-codec@16000000 {
-> +        compatible = "mediatek,mt8192-vcodec-dec";
-> +        reg = <0x16000000 0x1000>;             /* VDEC_SYS */
-> +        mediatek,scp = <&scp>;
-> +        iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>;
-> +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +        vcodec-lat@16010000 {
-> +            compatible = "mediatek,mtk-vcodec-lat";
-> +            reg = <0x16010000 0x800>;
-> +            interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            iommus = <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_VLD2_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_AVC_MV_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_PRED_RD_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_TILE_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_WDMA_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_LAT0_RG_CTRL_DMA_EXT>,
-> +                <&iommu0 M4U_PORT_L5_VDEC_UFO_ENC_EXT>;
-> +            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +                <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-> +                <&vdecsys_soc CLK_VDEC_SOC_LAT>,
-> +                <&vdecsys_soc CLK_VDEC_SOC_LARB1>,
-> +                <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-> +            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-> +            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC>;
-> +        };
-> +
-> +        vcodec-core@16025000 {
-> +            compatible = "mediatek,mtk-vcodec-core";
-> +            reg = <0x16025000 0x1000>;
+Anton Bambura (3):
+  ARM: tegra: Add labels to tegra114.dtsi
+  ARM: tegra: Add device-tree for Asus Transformer Pad TF701T
+  ARM: tegra: Enable video decoder on Tegra114
 
-The children address space might need some thinking.
-In other words,
+David Heidelberg (3):
+  dt-bindings: ARM: tegra: Document Pegatron Chagall
+  ARM: tegra: Name clock and regulator nodes according to DT-schema
+  ARM: tegra: nexus7: Drop clock-frequency from NFC node
 
-video-codec@16000000 {
+Dmitry Osipenko (1):
+  ARM: tegra: Add device-tree for 1080p version of Nyan Big
 
-  vcodec-lat@16010000 {
-  }
+Michał Mirosław (1):
+  ARM: tegra: Add device-tree for ASUS Transformer Pad TF300T
 
-  vcodec-core@16025000 {
-  }
-}
+Nikola Milosavljevic (1):
+  ARM: tegra: Add device-tree for ASUS Transformer EeePad TF101
 
-Your proposal has vcodec-lat as children of video-codec, but its address space
-are really on the same level, instead of children being contained in
-the parent address space:
+Svyatoslav Ryhel (5):
+  dt-bindings: ARM: tegra: Document ASUS Transformers
+  ARM: tegra: Add device-tree for ASUS Transformer Prime TF201
+  ARM: tegra: Add device-tree for ASUS Transformer Pad TF300TG
+  ARM: tegra: Add device-tree for ASUS Transformer Infinity TF700T
+  ARM: tegra: Add device-tree for Pegatron Chagall tablet
 
-video-codec@16000000 {
+ .../devicetree/bindings/arm/tegra.yaml        |   19 +
+ arch/arm/boot/dts/Makefile                    |   10 +-
+ arch/arm/boot/dts/tegra114-asus-tf701t.dts    |  832 +++++
+ arch/arm/boot/dts/tegra114-dalmore.dts        |   16 +-
+ arch/arm/boot/dts/tegra114-roth.dts           |   14 +-
+ arch/arm/boot/dts/tegra114-tn7.dts            |    8 +-
+ arch/arm/boot/dts/tegra114.dtsi               |   90 +-
+ arch/arm/boot/dts/tegra124-jetson-tk1.dts     |   26 +-
+ arch/arm/boot/dts/tegra124-nyan-big-fhd.dts   |   10 +
+ arch/arm/boot/dts/tegra124-nyan.dtsi          |   28 +-
+ arch/arm/boot/dts/tegra124-venice2.dts        |   28 +-
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |   12 +-
+ arch/arm/boot/dts/tegra20-asus-tf101.dts      | 1187 +++++++
+ arch/arm/boot/dts/tegra20-harmony.dts         |   16 +-
+ arch/arm/boot/dts/tegra20-medcom-wide.dts     |    8 +-
+ arch/arm/boot/dts/tegra20-paz00.dts           |    6 +-
+ arch/arm/boot/dts/tegra20-plutux.dts          |    8 +-
+ arch/arm/boot/dts/tegra20-seaboard.dts        |   16 +-
+ arch/arm/boot/dts/tegra20-tamonten.dtsi       |    4 +-
+ arch/arm/boot/dts/tegra20-tec.dts             |    8 +-
+ arch/arm/boot/dts/tegra20-trimslice.dts       |   12 +-
+ arch/arm/boot/dts/tegra20-ventana.dts         |   12 +-
+ .../boot/dts/tegra30-asus-lvds-display.dtsi   |   46 +
+ .../tegra30-asus-nexus7-grouper-common.dtsi   |   10 +-
+ ...egra30-asus-nexus7-grouper-maxim-pmic.dtsi |    4 +-
+ .../tegra30-asus-nexus7-grouper-ti-pmic.dtsi  |    2 +-
+ .../boot/dts/tegra30-asus-nexus7-grouper.dtsi |    1 -
+ .../boot/dts/tegra30-asus-nexus7-tilapia.dtsi |    2 -
+ arch/arm/boot/dts/tegra30-asus-tf201.dts      |  623 ++++
+ arch/arm/boot/dts/tegra30-asus-tf300t.dts     | 1030 ++++++
+ arch/arm/boot/dts/tegra30-asus-tf300tg.dts    | 1072 +++++++
+ arch/arm/boot/dts/tegra30-asus-tf700t.dts     |  807 +++++
+ .../dts/tegra30-asus-transformer-common.dtsi  | 1751 ++++++++++
+ arch/arm/boot/dts/tegra30-beaver.dts          |   20 +-
+ arch/arm/boot/dts/tegra30-cardhu-a02.dts      |   12 +-
+ arch/arm/boot/dts/tegra30-cardhu-a04.dts      |   14 +-
+ arch/arm/boot/dts/tegra30-cardhu.dtsi         |   28 +-
+ .../arm/boot/dts/tegra30-pegatron-chagall.dts | 2806 +++++++++++++++++
+ 38 files changed, 10412 insertions(+), 186 deletions(-)
+ create mode 100644 arch/arm/boot/dts/tegra114-asus-tf701t.dts
+ create mode 100644 arch/arm/boot/dts/tegra124-nyan-big-fhd.dts
+ create mode 100644 arch/arm/boot/dts/tegra20-asus-tf101.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-lvds-display.dtsi
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf201.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf300t.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf300tg.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf700t.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
+ create mode 100644 arch/arm/boot/dts/tegra30-pegatron-chagall.dts
 
-  vcodec-lat@10000 {
-  }
+-- 
+2.33.1
 
-  vcodec-core@25000 {
-  }
-}
-
-I think this last tree makes more sense from a device-tree point of view.
-The ranges property allows you to put the right translation information,
-so the device driver itself will get the correct address 0x16000000 + 0x25000.
-
-You might find that the ranges property is tricky to understand at first.
-
-Thanks,
-Ezequiel
-
-
-> +            interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH 0>;
-> +            iommus = <&iommu0 M4U_PORT_L4_VDEC_MC_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_UFO_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PP_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PRED_RD_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PRED_WR_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_PPWRAP_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_TILE_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_VLD_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_VLD2_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_AVC_MV_EXT>,
-> +                <&iommu0 M4U_PORT_L4_VDEC_RG_CTRL_DMA_EXT>;
-> +            clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +                <&vdecsys CLK_VDEC_VDEC>,
-> +                <&vdecsys CLK_VDEC_LAT>,
-> +                <&vdecsys CLK_VDEC_LARB1>,
-> +                <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            clock-names = "sel", "soc-vdec", "soc-lat", "vdec", "top";
-> +            assigned-clocks = <&topckgen CLK_TOP_VDEC_SEL>;
-> +            assigned-clock-parents = <&topckgen CLK_TOP_MAINPLL_D4>;
-> +            power-domains = <&spm MT8192_POWER_DOMAIN_VDEC2>;
-> +        };
-> +    };
-> --
-> 2.25.1
->
