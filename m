@@ -2,251 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1601944F7A0
-	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 12:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA09744F7A4
+	for <lists+devicetree@lfdr.de>; Sun, 14 Nov 2021 12:38:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbhKNLgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 06:36:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229563AbhKNLgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 06:36:16 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B8E1C061746;
-        Sun, 14 Nov 2021 03:33:22 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id m20so12387492edc.5;
-        Sun, 14 Nov 2021 03:33:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ogu/YhyQO8ICUmENU2FAy3SJRpIJSF2lRArsc1NLhYg=;
-        b=OGFWL0sRErovz1CmXuD79Pc+BM+1UMzkkpVIsjQEYcS8LH3zaft7m/2u0GqYdhFVER
-         cyyCr19jjWUWi3MLXoNrj8bCscylE2dFkS3+IU6gu98WhAWb/cRhxGhvbI+UMsyktXXh
-         cWvuxc04U1tdViB+snjeyJIGIZlM1Bph3WkgNMK8T5eqiBt9gYJczxa/xxWd1ndmxXOa
-         ljvV685pSS2gvNNJwwqlwd79dkufWsh4utGL6WYcdfK75EbWnV5EzIY/2gsbhR9uVOUh
-         o36ALtbxYCLXmmnHWQfTmfsoe2/6MpW+UAaZfuJE7mkPOaRIKcEHOiwErQRo7SQT5cSd
-         9qng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ogu/YhyQO8ICUmENU2FAy3SJRpIJSF2lRArsc1NLhYg=;
-        b=IhshUQrx03BeywvPNoLJDHrELkD9BqKsvba96CzeNn48Y3Idye2BqiwWVHUNcwhBNU
-         jEeWVcsBTIZKO+QQXnEBeTevo1yG+0LnWedYC5+djPG76jfrkHY15WUyIbUaxgMvpdd/
-         ocamTt09zy1NXfhcw4s7tX3wqtvmfnsAa9Oa9IxlMTOzzUNAnqXdZenF5Ru1Xu23oGyb
-         MzgWBJxm4Dm0BS9hkuwdxjOO7q19BNBTeQeHLzUjC9W+n0a83TBEAUrdAVXJA93NP0wL
-         bzaDwCFJ39ktQRc7UJMsMXowo8U8QXG+6TOVRjss0Iv//9XRliV/QRAPtqfborcQs+vy
-         FvpQ==
-X-Gm-Message-State: AOAM531J6QIRqj0mm4RuVB+nrxOSANx13Cdemh+WoKfFeKmiiNq1uIbG
-        OASVC2FF0MTpEz7GEQtXREA=
-X-Google-Smtp-Source: ABdhPJwV64eWsyJF9IcerkYBp/vULP771LGHIpnfkZPUzLrrkmMRTLPAowgjZeLBZWvUEFXBZNEkNQ==
-X-Received: by 2002:aa7:c3c8:: with SMTP id l8mr2270702edr.278.1636889600864;
-        Sun, 14 Nov 2021 03:33:20 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id m11sm5789601edd.58.2021.11.14.03.33.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 14 Nov 2021 03:33:20 -0800 (PST)
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add naneng combo phy nodes
- for rk3568
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>, heiko@sntech.de,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, vkoul@kernel.org,
-        michael.riesch@wolfvision.net, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kishon@ti.com,
-        p.zabel@pengutronix.de, cl@rock-chips.com
-References: <20211025080632.32063-1-yifeng.zhao@rock-chips.com>
- <20211025080632.32063-4-yifeng.zhao@rock-chips.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-Message-ID: <167392de-8b5e-6877-94aa-66d9368e96a7@gmail.com>
-Date:   Sun, 14 Nov 2021 12:33:19 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211025080632.32063-4-yifeng.zhao@rock-chips.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S231656AbhKNLlF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 06:41:05 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:59709 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230267AbhKNLlA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Nov 2021 06:41:00 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 17D0A3200A1E;
+        Sun, 14 Nov 2021 06:38:04 -0500 (EST)
+Received: from imap47 ([10.202.2.97])
+  by compute3.internal (MEProxy); Sun, 14 Nov 2021 06:38:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm2; bh=kVt32bRdunDSKqz99dZa5ReeKAhQ
+        4s8YMHBQ8vywbDo=; b=fBVrOulOiJoFHb37TPRaCs1N6eOE70DoTFBd3yN/eiR0
+        ylw4nnaDlba/dKa7zBXs4ohHl7UP8OEfjxWiiCwiexBXdHmMZIHlngnWy80CThun
+        pMrGtEcHzkNqPBKabL70kLXbWmmqv5vndPQA5Ygqv0AT4AK2zqx3QkiyCuYSxVHg
+        h5fjTvKldf664cTeO9gnH8paVzOhnKWzmWeNNwqwfos1oMS1aj61/f7KHWe1F5iP
+        XWssULDdvERD6XLYmKNhB5vg4mjqcWxa2FoF/3Aq4Dmh4BFAm8HbIiGYB7Ud/f+a
+        cpaa/RLUy7pAiYM9eB6AiK/BaAp0/rwVGoiCiVyckQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=kVt32b
+        RdunDSKqz99dZa5ReeKAhQ4s8YMHBQ8vywbDo=; b=dqGPyo+y47tSBq1K4MI9zw
+        1LhJQAXWHbkABKDavhowrb4rhKAPI3suSiQOrcuGjch+yKagPE6WorAAkXdgUKYV
+        dAub7yavzDWXkz5jsB7i89NMoyJrd7/buPaUboNKlMJiyHrQrC5TE0zXegWMP69P
+        v5E7o6b6ubbzr8DDHPq93uwMe3Ou/a0gM9EVo0rQh8xHHsFr7KMTfTW/Ziv7WS0y
+        LfJtRtZyvqZun6zPEUJ7APOGdkoNb2hiNCZNUVbtgXFD4dUYJjG3FRNj7pdPYOc9
+        6Ti4AdoKYe65zCK3AWU1XFMZxhfR5M/wKq1ETYv4DFGXH99S659CGCbJd5iYlbrg
+        ==
+X-ME-Sender: <xms:GvWQYb2mVNl-VY1R32yYkmsr-SqSc5gmyBpuNiOQ1-At41NLp1F9kg>
+    <xme:GvWQYaHoCntibUmcptsZf0kYcNuBWbCRI9kRDfYjdOUPhPRO0loq2gfxmRZcu_lyu
+    7hAFC9PJmobg9wga2o>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrvdejgddvlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhvvghn
+    ucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrth
+    htvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudehvdef
+    keffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    hvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:GvWQYb4KcjpfOE5hWg94gLD1HPxLXdGOu08FQow4y-G6jW8EnRXnnQ>
+    <xmx:GvWQYQ2zQEg22caSzrafeEJH326hCrfwFmjLus-MGks31oNBauaE2Q>
+    <xmx:GvWQYeGuqXbC1ZPeZxR9H1rG7A6TpimlTVStYrqHB16Yfvrpfznrvg>
+    <xmx:G_WQYR3d8w4eFA6xs5hPPdcm3yy53zAe0qxxErvC1uIE0dJVeYzQ4g>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 6E365274013E; Sun, 14 Nov 2021 06:38:02 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1371-g2296cc3491-fm-20211109.003-g2296cc34
+Mime-Version: 1.0
+Message-Id: <95dea968-f452-4ba0-9b66-c9bc4269a52c@www.fastmail.com>
+In-Reply-To: <YY/YnlCxLqdw/zAo@sunset>
+References: <20211113094732.73889-1-sven@svenpeter.dev>
+ <20211113094732.73889-2-sven@svenpeter.dev> <YY/YnlCxLqdw/zAo@sunset>
+Date:   Sun, 14 Nov 2021 12:37:42 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Alyssa Rosenzweig" <alyssa@rosenzweig.io>
+Cc:     "Wim Van Sebroeck" <wim@linux-watchdog.org>,
+        "Guenter Roeck" <linux@roeck-us.net>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] watchdog: Add Apple SoC watchdog driver
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
-
-Add more compatible strings to:
-Documentation/devicetree/bindings/mfd/syscon.yaml
-Also add mfd maintainers and list to CC.
-
-On 10/25/21 10:06 AM, Yifeng Zhao wrote:
-> Add the core dt-node for the rk3568's naneng combo phys.
-> 
-> Signed-off-by:  Zhao <yifeng.zhao@rock-chips.com>
-> ---
-> 
-> Changes in v3:
-> - Move pipe_phy_grf0 to rk3568.dtsi
-> 
-> Changes in v2:
-> - Move phy0 to rk3568.dtsi
-> 
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi | 21 +++++++++++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 47 ++++++++++++++++++++++++
->  2 files changed, 68 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> index 2fd313a295f8..4db5d3c2a04e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> @@ -8,6 +8,11 @@
->  / {
->  	compatible = "rockchip,rk3568";
->  
-> +	pipe_phy_grf0: syscon@fdc70000 {
-
-> +		compatible = "rockchip,pipe-phy-grf", "syscon";
-
-Compatible strings are supposed to be SOC related.
-
-compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
 
 
-> +		reg = <0x0 0xfdc70000 0x0 0x1000>;
-> +	};
-> +
->  	qos_pcie3x1: qos@fe190080 {
->  		compatible = "rockchip,rk3568-qos", "syscon";
->  		reg = <0x0 0xfe190080 0x0 0x20>;
-> @@ -71,6 +76,22 @@
->  			queue0 {};
->  		};
->  	};
-> +
-> +	combphy0_us: phy@fe820000 {
-> +		compatible = "rockchip,rk3568-naneng-combphy";
-> +		reg = <0x0 0xfe820000 0x0 0x100>;
+On Sat, Nov 13, 2021, at 16:24, Alyssa Rosenzweig wrote:
+>> + * This HW block has three separate watchdogs. WD0 resets the machine
+>> + * to recovery mode and is not very useful for us. WD1 and WD2 trigger a normal
+>> + * machine reset. WD0 additionally supports a configurable interrupt.
+>
+> Do we have any idea what the difference between WD1 and WD2 is?
 
-> +		#phy-cells = <1>;
+I've never seen macOS write to WD2 when running in our hypervisor and only
+found that one when I was looking at the rest of the MMIO region.
+From what I can tell it works exactly like WD1.
 
-Dump things with "#" down the list above status.
-> +		clocks = <&pmucru CLK_PCIEPHY0_REF>, <&cru PCLK_PIPEPHY0>,
-> +			 <&cru PCLK_PIPE>;
-> +		clock-names = "ref", "apb", "pipe";
-> +		assigned-clocks = <&pmucru CLK_PCIEPHY0_REF>;
-> +		assigned-clock-rates = <100000000>;
-> +		resets = <&cru SRST_P_PIPEPHY0>, <&cru SRST_PIPEPHY0>;
-
-> +		reset-names = "combphy-apb", "combphy";
-
-There are 2 resets. When the reset order does matter then use
-devm_reset_control_array_get() to get the resets.
-The use of reset-names is then not needed.
-
-> +		rockchip,pipe-grf = <&pipegrf>;
-> +		rockchip,pipe-phy-grf = <&pipe_phy_grf0>;
-> +		status = "disabled";
-> +	};
->  };
->  
->  &cpu0_opp_table {
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index 46d9552f6028..4380580d061b 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -214,11 +214,26 @@
->  		};
->  	};
->  
-> +	pipegrf: syscon@fdc50000 {
-> +		compatible = "rockchip,rk3568-pipegrf", "syscon";
-
-compatible = "rockchip,rk3568-pipe-grf", "syscon";
-
-> +		reg = <0x0 0xfdc50000 0x0 0x1000>;
-> +	};
-> +
->  	grf: syscon@fdc60000 {
->  		compatible = "rockchip,rk3568-grf", "syscon", "simple-mfd";
->  		reg = <0x0 0xfdc60000 0x0 0x10000>;
->  	};
->  
-> +	pipe_phy_grf1: syscon@fdc80000 {
-> +		compatible = "rockchip,pipe-phy-grf", "syscon";
-
-Compatible strings are supposed to be SOC related.
-
-compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-
-> +		reg = <0x0 0xfdc80000 0x0 0x1000>;
-> +	};
-> +
-> +	pipe_phy_grf2: syscon@fdc90000 {
-
-> +		compatible = "rockchip,pipe-phy-grf", "syscon";
-
-Compatible strings are supposed to be SOC related.
-
-compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
-
-> +		reg = <0x0 0xfdc90000 0x0 0x1000>;
-> +	};
-> +
->  	pmucru: clock-controller@fdd00000 {
->  		compatible = "rockchip,rk3568-pmucru";
->  		reg = <0x0 0xfdd00000 0x0 0x1000>;
-> @@ -1077,6 +1092,38 @@
->  		status = "disabled";
->  	};
->  
-> +	combphy1_usq: phy@fe830000 {
-> +		compatible = "rockchip,rk3568-naneng-combphy";
-> +		reg = <0x0 0xfe830000 0x0 0x100>;
-
-> +		#phy-cells = <1>;
-dito
-
-> +		clocks = <&pmucru CLK_PCIEPHY1_REF>, <&cru PCLK_PIPEPHY1>,
-> +			 <&cru PCLK_PIPE>;
-> +		clock-names = "ref", "apb", "pipe";
-> +		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
-> +		assigned-clock-rates = <100000000>;
-> +		resets = <&cru SRST_P_PIPEPHY1>, <&cru SRST_PIPEPHY1>;
-
-> +		reset-names = "combphy-apb", "combphy";
-
-dito
-
-> +		rockchip,pipe-grf = <&pipegrf>;
-> +		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
-> +		status = "disabled";
-> +	};
-> +
-> +	combphy2_psq: phy@fe840000 {
-> +		compatible = "rockchip,rk3568-naneng-combphy";
-> +		reg = <0x0 0xfe840000 0x0 0x100>;
-
-> +		#phy-cells = <1>;
-
-dito
-
-> +		clocks = <&pmucru CLK_PCIEPHY2_REF>, <&cru PCLK_PIPEPHY2>,
-> +			 <&cru PCLK_PIPE>;
-> +		clock-names = "ref", "apb", "pipe";
-> +		assigned-clocks = <&pmucru CLK_PCIEPHY2_REF>;
-> +		assigned-clock-rates = <100000000>;
-> +		resets = <&cru SRST_P_PIPEPHY2>, <&cru SRST_PIPEPHY2>;
-
-> +		reset-names = "combphy-apb", "combphy";
-
-dito
-
-> +		rockchip,pipe-grf = <&pipegrf>;
-> +		rockchip,pipe-phy-grf = <&pipe_phy_grf2>;
-> +		status = "disabled";
-> +	};
-> +
->  	pinctrl: pinctrl {
->  		compatible = "rockchip,rk3568-pinctrl";
->  		rockchip,grf = <&grf>;
-> 
+Sven
