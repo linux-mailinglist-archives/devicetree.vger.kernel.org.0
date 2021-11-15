@@ -2,104 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 642A045150F
+	by mail.lfdr.de (Postfix) with ESMTP id ACE4F451510
 	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245315AbhKOUY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 15:24:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
+        id S245382AbhKOUY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 15:24:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344286AbhKOTYZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:24:25 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 615D3C04A194
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:32:44 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id u74so36642751oie.8
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:32:44 -0800 (PST)
+        with ESMTP id S1345555AbhKOT2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:28:42 -0500
+Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A4CFC0AFD66
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:55:25 -0800 (PST)
+Received: by mail-vk1-xa2f.google.com with SMTP id q21so1217509vkn.2
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:55:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=y1TKddjxKZ5v+j9dZNgjQaGVeBF/kGBo0N15AUsK7L8=;
-        b=V6Hux7zvB7lremLUtn3yHu5xFS6Z8EBAqeknZZPnplV4XLP/OE/3HdxArTFWXX6277
-         HXygrRfJw8tEueaDPl13ofnLYjXcvpVq9QKVJr2siHWIgDnfKouT4kM/6fHU/3VE0e9K
-         YvKxo9x8NonLsCzbR0S9c/9YXkV6rm2Ss2NtVPOLBmrPJNC/U1LrcmZgmKv92Ar5RvfS
-         Vx+CdQHPENf99vKCeXJa8rO6sByHj3/NVwi3LyU7sr3siPXpNrKq+W+DRA1ua3RZzHz1
-         z5bh+KQ9CmqpxX3Kx+Rhb6UgQEueZAaDpm+BTYFJStfvIHOhY42INnCK0rfl9uMRtozT
-         +GUg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ujrej7d92V5EhRlK+3EewLoVi5xc/mqOkrT4CjFGGaA=;
+        b=qbGgWimd/zl8hR/d1wmjGsswVAvWWq9T4xBmZ9kPnF4Nv+5BtR9ht22tPbnnSvA2tE
+         ShK6TOhU84TjH36sYEwUf9k6PIFUUnieQbViM66S9ExZyDaWO2HslaQ4UQFh5U0oyFWH
+         epdh6MIzOhRl52VFImL1gDnfW8sx+fwanyzgjZGcri1L6WDipX62Fo8Y98lsR0oo6JH3
+         nHseHSisL/i5WuFVRZcE9fAy3Hl+p8A6TxJtd0r0D5N4dPQ9N1m6iCb2hrp8Yr0B3kdx
+         zKV2EjNUTyxPBJW7UxaixBe0S9DoBbIoK9xgtdWOG0Bg890DJoy6pBMl/bCMHH9ynJHc
+         +AKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=y1TKddjxKZ5v+j9dZNgjQaGVeBF/kGBo0N15AUsK7L8=;
-        b=v2HBPWJUmLB33jlNFSAo07Kme4Z1olapEVDhjcY8gZ73ltESfTsyWe16qk08nOKwgB
-         53mL0t370/yTF2d8Icm6tcUgiSLZ54eaxQN/HgTiqYPA0j/0+4A3MeLvtFti18Kc/pIm
-         VtyP666iVNi4CB0it/WRzIHPik48pl8Wz+mdVo4DpVVj2wGT4ABW+g4EGxnsrYMz6gHk
-         JKHaHJQ5hlDEohRtYRRap9GCROhcobGGKWpdjDwQs9FEi3O5a7+9gGWPqD/JrV6pxB/A
-         zldsoEyJWIqqZ8K7HdSeoY4tCBHNjD+mANy0GbyXD1MtZXKuUdW4YKd6LeRfT4Cx6Ws4
-         MNZw==
-X-Gm-Message-State: AOAM533ylIXL6EG8eZ+AXA1iBLN7nJ0IPAloN+AHKX2I5qc0mNJsYePO
-        jEL54wRV7qtTIkHngZ7OcPfM3w==
-X-Google-Smtp-Source: ABdhPJx+ctQTPfrO9WziAND3PxHA9yTsBw8L5+tuxONnM43DjPiOhuKuQ66TI40t4uivTyKlYnZp0w==
-X-Received: by 2002:a05:6808:2187:: with SMTP id be7mr39151347oib.97.1637001164202;
-        Mon, 15 Nov 2021 10:32:44 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w5sm1396878otk.70.2021.11.15.10.32.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 10:32:43 -0800 (PST)
-Date:   Mon, 15 Nov 2021 12:32:40 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
-Subject: Re: [PATCH v5 19/22] crypto: qce: Add 'sm8250-qce' compatible string
- check
-Message-ID: <YZKnyAeIsv44DA9Y@builder.lan>
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-20-bhupesh.sharma@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ujrej7d92V5EhRlK+3EewLoVi5xc/mqOkrT4CjFGGaA=;
+        b=XS2kCDGyVTr+p0UhpHn/zReHGQ8VpZ62ehjV9O4P8WWAWDg+r7heznA0RxhzhdIyr0
+         rU5WmfSIFeQ0s333+XhU89GY/nAFYZU/yjRK4UTwBmPvmYmZkRRvB0SA7mflnJcVW4+b
+         ufthWUpPpj1xcwELPwwJdqbNGgVsqVngq4LcnQwtS06fF4GSEFAYhVdcQEyJ0wL7OVhv
+         lDQQzPwdCuQbNgBIs6o17Rq75Mk+B0uNInRSW7YaSIlivhXxQ2nBwHJ7XwnJcICfu3oM
+         wmbEJn7MM5gK2EV4e3/dg5/ZmIylt4wqXxnI18OVwuDXE/zmlNs7bIF17p+XIBhPS3nr
+         6eaw==
+X-Gm-Message-State: AOAM531rkUU0O6ymjz+ADPnw2/y7rvQcGZESuKytnP0zGI9PnmyZL6xo
+        vIEPgvuGhYD/IOJAlHXlCdc4FlNBMvtoOCJFkYYObw==
+X-Google-Smtp-Source: ABdhPJxZm2/GaNIBlVhWXnnB0thxte8AwzYEv7aIlNKGaRcmHgT3jVH/s7XhMAN2Cnq4/4V7hsOTQwR2hfLp5T4xgRI=
+X-Received: by 2002:a05:6122:d08:: with SMTP id az8mr63057762vkb.15.1637002524288;
+ Mon, 15 Nov 2021 10:55:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211110105922.217895-20-bhupesh.sharma@linaro.org>
+References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
+ <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
+In-Reply-To: <20211112010137.149174-3-jaewon02.kim@samsung.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 15 Nov 2021 20:55:12 +0200
+Message-ID: <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
+To:     Jaewon Kim <jaewon02.kim@samsung.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        chanho61.park@samsung.com, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
-
-> Add 'sm8250-qce' compatible string check in qce crypto
-> driver as we add support for sm8250 crypto device in the
-> device-tree in the subsequent patch.
-> 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-
-Both patch 19 and 20 can be squashed with the previous patch adding
-sdm845 & ipq6018.
-
-Regards,
-Bjorn
-
+On Fri, 12 Nov 2021 at 03:06, Jaewon Kim <jaewon02.kim@samsung.com> wrote:
+>
+> Serial IPs(UART, I2C, SPI) are integrated into New IP-Core
+> called USI(Universal Serial Interface).
+>
+> As it is integrated into USI, there are additinal HW changes.
+> Registers to control USI and sysreg to set serial IPs have been added.
+> Also, some timing registres have been changed.
+>
+> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
 > ---
->  drivers/crypto/qce/core.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index 84ed9e253d5d..a7d7d7d5d02f 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -309,6 +309,7 @@ static const struct of_device_id qce_crypto_of_match[] = {
->  	/* Add compatible strings as per updated dt-bindings, here: */
->  	{ .compatible = "qcom,ipq6018-qce", },
->  	{ .compatible = "qcom,sdm845-qce", },
-> +	{ .compatible = "qcom,sm8250-qce", },
->  	{}
+
+Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
+Tested-by: Sam Protsenko <semen.protsenko@linaro.org>
+
+With this patch the Exynos850 HSI2C becomes functional. The only
+nit-pick from my side (just a food for thought): do we want to
+configure USI related config inside of particular drivers (SPI, I2C,
+UART)? Or it would be better design to implement some platform driver
+for that, so we can choose USI configuration (SPI/I2C/UART) in device
+tree? I think this series is good to be merged as is, but we should
+probably consider all upsides and downsides of each option, for the
+future work.
+
+Thanks!
+
+>  drivers/i2c/busses/i2c-exynos5.c | 135 ++++++++++++++++++++++++++++---
+>  1 file changed, 125 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/i2c/busses/i2c-exynos5.c b/drivers/i2c/busses/i2c-exynos5.c
+> index 97d4f3ac0abd..6ce94795a618 100644
+> --- a/drivers/i2c/busses/i2c-exynos5.c
+> +++ b/drivers/i2c/busses/i2c-exynos5.c
+> @@ -22,6 +22,8 @@
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/spinlock.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/regmap.h>
+>
+>  /*
+>   * HSI2C controller from Samsung supports 2 modes of operation
+> @@ -166,9 +168,21 @@
+>
+>  #define EXYNOS5_I2C_TIMEOUT (msecs_to_jiffies(100))
+>
+> +/* USI(Universal Serial Interface) Register map */
+> +#define USI_CON                                        0xc4
+> +#define USI_OPTION                             0xc8
+> +
+> +/* USI(Universal Serial Interface) Register bits */
+> +#define USI_CON_RESET                          BIT(0)
+> +
+> +/* SYSREG Register bit */
+> +#define SYSREG_USI_SW_CONF_MASK                        (0x7 << 0)
+> +#define SYSREG_I2C_SW_CONF                     BIT(2)
+> +
+>  enum i2c_type_exynos {
+>         I2C_TYPE_EXYNOS5,
+>         I2C_TYPE_EXYNOS7,
+> +       I2C_TYPE_EXYNOSAUTOV9,
 >  };
->  MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
-> -- 
-> 2.31.1
-> 
+>
+>  struct exynos5_i2c {
+> @@ -199,6 +213,10 @@ struct exynos5_i2c {
+>
+>         /* Version of HS-I2C Hardware */
+>         const struct exynos_hsi2c_variant *variant;
+> +
+> +       /* USI sysreg info */
+> +       struct regmap           *usi_sysreg;
+> +       unsigned int            usi_offset;
+>  };
+>
+>  /**
+> @@ -213,21 +231,31 @@ struct exynos5_i2c {
+>  struct exynos_hsi2c_variant {
+>         unsigned int            fifo_depth;
+>         enum i2c_type_exynos    hw;
+> +       bool                    has_usi;
+>  };
+>
+>  static const struct exynos_hsi2c_variant exynos5250_hsi2c_data = {
+>         .fifo_depth     = 64,
+>         .hw             = I2C_TYPE_EXYNOS5,
+> +       .has_usi        = false,
+>  };
+>
+>  static const struct exynos_hsi2c_variant exynos5260_hsi2c_data = {
+>         .fifo_depth     = 16,
+>         .hw             = I2C_TYPE_EXYNOS5,
+> +       .has_usi        = false,
+>  };
+>
+>  static const struct exynos_hsi2c_variant exynos7_hsi2c_data = {
+>         .fifo_depth     = 16,
+>         .hw             = I2C_TYPE_EXYNOS7,
+> +       .has_usi        = false,
+> +};
+> +
+> +static const struct exynos_hsi2c_variant exynosautov9_hsi2c_data = {
+> +       .fifo_depth     = 64,
+> +       .hw             = I2C_TYPE_EXYNOSAUTOV9,
+> +       .has_usi        = true,
+>  };
+>
+>  static const struct of_device_id exynos5_i2c_match[] = {
+> @@ -243,6 +271,9 @@ static const struct of_device_id exynos5_i2c_match[] = {
+>         }, {
+>                 .compatible = "samsung,exynos7-hsi2c",
+>                 .data = &exynos7_hsi2c_data
+> +       }, {
+> +               .compatible = "samsung,exynosautov9-hsi2c",
+> +               .data = &exynosautov9_hsi2c_data
+>         }, {},
+>  };
+>  MODULE_DEVICE_TABLE(of, exynos5_i2c_match);
+> @@ -281,6 +312,32 @@ static int exynos5_i2c_set_timing(struct exynos5_i2c *i2c, bool hs_timings)
+>                 i2c->op_clock;
+>         int div, clk_cycle, temp;
+>
+> +       /*
+> +        * In case of HSI2C controllers in EXYNOSAUTOV9
+> +        * timing control formula changed.
+> +        *
+> +        * FSCL = IPCLK / ((CLK_DIV + 1) * 16)
+> +        * T_SCL_LOW = IPCLK * (CLK_DIV + 1) * (N + M)
+> +        *  [N : number of 0's in the TSCL_H_HS]
+> +        *  [M : number of 0's in the TSCL_L_HS]
+> +        * T_SCL_HIGH = IPCLK * (CLK_DIV + 1) * (N + M)
+> +        *  [N : number of 1's in the TSCL_H_HS]
+> +        *  [M : number of 1's in the TSCL_L_HS]
+> +        *
+> +        *  result of (N + M) is always 8.
+> +        *  In general use case, we don't need to control timing_s1, timing_s2.
+> +        */
+> +       if (i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9) {
+> +               div = ((clkin / (16 * i2c->op_clock)) - 1);
+> +               i2c_timing_s3 = div << 16;
+> +               if (hs_timings)
+> +                       writel(i2c_timing_s3, i2c->regs + HSI2C_TIMING_HS3);
+> +               else
+> +                       writel(i2c_timing_s3, i2c->regs + HSI2C_TIMING_FS3);
+> +
+> +               return 0;
+> +       }
+> +
+>         /*
+>          * In case of HSI2C controller in Exynos5 series
+>          * FPCLK / FI2C =
+> @@ -355,6 +412,20 @@ static int exynos5_hsi2c_clock_setup(struct exynos5_i2c *i2c)
+>         return exynos5_i2c_set_timing(i2c, true);
+>  }
+>
+> +static void exynos_usi_reset(struct exynos5_i2c *i2c)
+> +{
+> +       u32 val;
+> +
+> +       val = readl(i2c->regs + USI_CON);
+> +       val |= USI_CON_RESET;
+> +       writel(val, i2c->regs + USI_CON);
+> +       udelay(1);
+> +
+> +       val = readl(i2c->regs + USI_CON);
+> +       val &= ~USI_CON_RESET;
+> +       writel(val, i2c->regs + USI_CON);
+> +}
+> +
+>  /*
+>   * exynos5_i2c_init: configures the controller for I2C functionality
+>   * Programs I2C controller for Master mode operation
+> @@ -385,6 +456,9 @@ static void exynos5_i2c_reset(struct exynos5_i2c *i2c)
+>  {
+>         u32 i2c_ctl;
+>
+> +       if (i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9)
+> +               exynos_usi_reset(i2c);
+> +
+>         /* Set and clear the bit for reset */
+>         i2c_ctl = readl(i2c->regs + HSI2C_CTL);
+>         i2c_ctl |= HSI2C_SW_RST;
+> @@ -422,7 +496,8 @@ static irqreturn_t exynos5_i2c_irq(int irqno, void *dev_id)
+>         writel(int_status, i2c->regs + HSI2C_INT_STATUS);
+>
+>         /* handle interrupt related to the transfer status */
+> -       if (i2c->variant->hw == I2C_TYPE_EXYNOS7) {
+> +       if (i2c->variant->hw == I2C_TYPE_EXYNOS7 ||
+> +                       i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9) {
+>                 if (int_status & HSI2C_INT_TRANS_DONE) {
+>                         i2c->trans_done = 1;
+>                         i2c->state = 0;
+> @@ -569,13 +644,13 @@ static void exynos5_i2c_bus_check(struct exynos5_i2c *i2c)
+>  {
+>         unsigned long timeout;
+>
+> -       if (i2c->variant->hw != I2C_TYPE_EXYNOS7)
+> +       if (i2c->variant->hw == I2C_TYPE_EXYNOS5)
+>                 return;
+>
+>         /*
+> -        * HSI2C_MASTER_ST_LOSE state in EXYNOS7 variant before transaction
+> -        * indicates that bus is stuck (SDA is low). In such case bus recovery
+> -        * can be performed.
+> +        * HSI2C_MASTER_ST_LOSE state in EXYNOS7 or EXYNOSAUTOV9 variant before
+> +        * transaction indicates that bus is stuck (SDA is low).
+> +        * In such case bus recovery can be performed.
+>          */
+>         timeout = jiffies + msecs_to_jiffies(100);
+>         for (;;) {
+> @@ -611,10 +686,10 @@ static void exynos5_i2c_message_start(struct exynos5_i2c *i2c, int stop)
+>         unsigned long flags;
+>         unsigned short trig_lvl;
+>
+> -       if (i2c->variant->hw == I2C_TYPE_EXYNOS7)
+> -               int_en |= HSI2C_INT_I2C_TRANS;
+> -       else
+> +       if (i2c->variant->hw == I2C_TYPE_EXYNOS5)
+>                 int_en |= HSI2C_INT_I2C;
+> +       else
+> +               int_en |= HSI2C_INT_I2C_TRANS;
+>
+>         i2c_ctl = readl(i2c->regs + HSI2C_CTL);
+>         i2c_ctl &= ~(HSI2C_TXCHON | HSI2C_RXCHON);
+> @@ -738,6 +813,42 @@ static const struct i2c_algorithm exynos5_i2c_algorithm = {
+>         .functionality          = exynos5_i2c_func,
+>  };
+>
+> +static int exynos_usi_init(struct exynos5_i2c *i2c)
+> +{
+> +       struct device *dev = i2c->dev;
+> +       int ret;
+> +
+> +       if (!i2c->variant->has_usi)
+> +               return 0;
+> +
+> +       /*
+> +        * System Register has a field that can select the serial IP
+> +        * provided by USI. We need to set it to I2C to use I2C.
+> +        */
+> +       i2c->usi_sysreg = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +                                                         "samsung,sysreg");
+> +       if (IS_ERR(i2c->usi_sysreg)) {
+> +               dev_err(dev, "Cannot find sysreg\n");
+> +               return PTR_ERR(i2c->usi_sysreg);
+> +       }
+> +
+> +       ret = of_property_read_u32_index(dev->of_node, "samsung,sysreg",
+> +                                        1, &i2c->usi_offset);
+> +       if (ret) {
+> +               dev_err(dev, "sysreg offset is not specified\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = regmap_update_bits(i2c->usi_sysreg, i2c->usi_offset,
+> +                       SYSREG_USI_SW_CONF_MASK, SYSREG_I2C_SW_CONF);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       exynos_usi_reset(i2c);
+> +
+> +       return 0;
+> +}
+> +
+>  static int exynos5_i2c_probe(struct platform_device *pdev)
+>  {
+>         struct device_node *np = pdev->dev.of_node;
+> @@ -777,6 +888,12 @@ static int exynos5_i2c_probe(struct platform_device *pdev)
+>         i2c->adap.algo_data = i2c;
+>         i2c->adap.dev.parent = &pdev->dev;
+>
+> +       i2c->variant = of_device_get_match_data(&pdev->dev);
+> +
+> +       ret = exynos_usi_init(i2c);
+> +       if (ret)
+> +               return ret;
+> +
+>         /* Clear pending interrupts from u-boot or misc causes */
+>         exynos5_i2c_clr_pend_irq(i2c);
+>
+> @@ -794,8 +911,6 @@ static int exynos5_i2c_probe(struct platform_device *pdev)
+>                 goto err_clk;
+>         }
+>
+> -       i2c->variant = of_device_get_match_data(&pdev->dev);
+> -
+>         ret = exynos5_hsi2c_clock_setup(i2c);
+>         if (ret)
+>                 goto err_clk;
+> --
+> 2.33.1
+>
