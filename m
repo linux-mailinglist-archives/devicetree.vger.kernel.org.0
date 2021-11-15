@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69568451DE2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:31:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 763A6451DD2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:31:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349491AbhKPAe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 19:34:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36182 "EHLO
+        id S1347695AbhKPAeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 19:34:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343854AbhKOTWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:22:16 -0500
+        with ESMTP id S1344528AbhKOTY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:24:56 -0500
 Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410BCC048762
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:25:33 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id t23so5234487oiw.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:25:33 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3E1C05D6E4
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:34:14 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id s139so36603818oie.13
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:34:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=HN1NCx7JIMUsBaK251BKMLk0H2MuiMh68RpU4GH1CmE=;
-        b=j1zjZJIRex2oI/rVE3FDpbG8gf/28UiJJikSonSFlO/ubi7n7t1qhmJA9Zk3BkVcZ/
-         r2AG7tOj+Y0vTIMJGVv5lNIlFT/Ea/3XdXs5H7doFHzYhpiLaLITKWuxts37XO5k4vW+
-         G2SD6hcAuHcizsnUUwkGjZ7jrEt4d3+jQXIZzB75b+FDcUiaWdv52rVJg4Zc/5eCGXiH
-         iN3kfUoszXr4zjcMiv3TYgKoD9Ehul81Lc105bri7AY4FwUcwkSp7zakpkRdxERZOFrh
-         lgady0BwgMrhT1VML4vY3OtJYE2RiXxFUuBgLOBP1YGs2KVWLHnDn4erSrw2bXg3yeQr
-         LnVA==
+        bh=JwKaMGX//1jqQPgDQEKIqD6sj+mcxEeOUNB16V+QNig=;
+        b=DFT6UQaUnkLeIQWICHLYL168uKkR+5z/D503YvheavNu5LiGXarxG6M4vUb/yuUeFD
+         wBeAd1dgB4RTBrkHKWNx5vHplM5nGYRvGK6EK2v8gYF/BgYKF5TAeSn9oTYU2G9Rg6ry
+         z2c4r2xISK/Vtm2nhmfSxW68yTnYiaYpGTGqkDNwXAqZgA8XmgltvNZukUt+9DrFjMuD
+         r73Q4hkk7eD/v5RIcYrP/VSaMyRINws5XEqPvF3FmAvUzyfwJb0zkbwxkf2cMnq2YAGs
+         CGRKPgVnuTvg6vm0+59+1YVaYaJ+91+pWkyulqApmmQzKhQUNbWlmiqQm3Q0bV+wPvMf
+         llQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HN1NCx7JIMUsBaK251BKMLk0H2MuiMh68RpU4GH1CmE=;
-        b=h+ZOmO/lU2cewDRv7Aqe5Ww4kKyN38q2/au7LHHqdUh4oHzDW1JsyUvSTnmSB57cOK
-         MhC4XihBzJZpdSxpQ/OnkUhBSN/MvPuOywBx8seDD/MBmy+ovJk8wM6sTcYHyB2dq1Xb
-         32FyV1Kz0r/6sJpJo/dTbm+26EbgSzIIU/brf7zodm1yemaIXMx85qp5JlwepaM1/fa9
-         EGSINYVjclGLTM1n8yzLj/hJcmwSTA5UhqKTs4Rss4KEgHltgBRJkKmveHsnEoxsYOkD
-         u4nCvlGXauJ3FM0eiLigtI42hHb81r1a2W4S0Xrbdi+E/Gp0OquzgQE9T0EB26wd+yVF
-         KdQQ==
-X-Gm-Message-State: AOAM530LGBEfreEwe1X9D7nb/KfvTorNhdI7TjWtz9iGU3tX+yyKfm3A
-        RR3KLNVQr+TjSpuB01hIXQ60Aw==
-X-Google-Smtp-Source: ABdhPJzH0ytwU5FPl3q9BO3pRs6hkdUarp2Wku4ZUD3QY7RBfhFr0NjvEvckp86XBdj5+brPW5lVBA==
-X-Received: by 2002:aca:2205:: with SMTP id b5mr624000oic.177.1637000732576;
-        Mon, 15 Nov 2021 10:25:32 -0800 (PST)
+        bh=JwKaMGX//1jqQPgDQEKIqD6sj+mcxEeOUNB16V+QNig=;
+        b=DTUBEXRIIL8NI6ETaL2ds/AhQQ+3MVgvZDRUCjfDTkQmk26dPzuvmEd0QmEY+sDifi
+         /2ULIs/Gy1haCYFTicgunztWLYYTaqZfrSN1giTEAzTnJZ9bFZKKY2y6xqK0Yyx2nnSl
+         2pOSRdWO6I8bRmBCM55H+k+jpCgaQo+aFpfIDj2yEAoCZ2Uwnq7wWy/Imab3KQJpmjcC
+         FhFIq6D9xCUDfT5uATfw2soc5vqzsLuqAY9Ojh+6aK+EqnNbyOSOslITCP3E6K2Fe+cr
+         lXS6XJkzltegD8mGfHF4H05A5Zd3izntYLQQ9WfusJvp2YUh0DX7tVgNjHa2P1wTYNXo
+         TNag==
+X-Gm-Message-State: AOAM532zPtnrZDlL+vF/0NjHYXrraLF2j2TKv6C5olEvL8twV0MKuruK
+        VYu0NPpAn6AkI5QvUVUfda2ZoQ==
+X-Google-Smtp-Source: ABdhPJxgGwtHSE6Ow+bkBcfir6vTaVoPAfAiPVhu0Xx/3q9Ecwchi5RX5V5eKCac1+SsR9K0YPHcGQ==
+X-Received: by 2002:a54:4f1d:: with SMTP id e29mr47401177oiy.179.1637001253519;
+        Mon, 15 Nov 2021 10:34:13 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 64sm3103622otm.37.2021.11.15.10.25.31
+        by smtp.gmail.com with ESMTPSA id o2sm2821311oik.11.2021.11.15.10.34.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 10:25:32 -0800 (PST)
-Date:   Mon, 15 Nov 2021 12:25:27 -0600
+        Mon, 15 Nov 2021 10:34:13 -0800 (PST)
+Date:   Mon, 15 Nov 2021 12:34:08 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
@@ -55,131 +55,78 @@ Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
         devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
         herbert@gondor.apana.org.au, davem@davemloft.net,
         stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
-Subject: Re: [PATCH v5 14/22] crypto: qce: core: Add support to initialize
- interconnect path
-Message-ID: <YZKmF06Z4JehoQoM@builder.lan>
+Subject: Re: [PATCH v5 21/22] arm64/dts: qcom: sm8250: Add dt entries to
+ support crypto engine.
+Message-ID: <YZKoIA7kPHDaFoQK@builder.lan>
 References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-15-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-22-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211110105922.217895-15-bhupesh.sharma@linaro.org>
+In-Reply-To: <20211110105922.217895-22-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
 
-> From: Thara Gopinath <thara.gopinath@linaro.org>
+> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> "sm8250.dtsi".
 > 
-> Crypto engine on certain Snapdragon processors like sm8150, sm8250, sm8350
-> etc. requires interconnect path between the engine and memory to be
-> explicitly enabled and bandwidth set prior to any operations. Add support
-> in the qce core to enable the interconnect path appropriately.
-> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
 > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 > Cc: Rob Herring <robh+dt@kernel.org>
 > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> [Make header file inclusion alphabetical and use devm_of_icc_get()]
 > Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 > ---
->  drivers/crypto/qce/core.c | 34 +++++++++++++++++++++++++++-------
->  drivers/crypto/qce/core.h |  1 +
->  2 files changed, 28 insertions(+), 7 deletions(-)
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 28 ++++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
 > 
-> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> index d3780be44a76..89d9c01ba009 100644
-> --- a/drivers/crypto/qce/core.c
-> +++ b/drivers/crypto/qce/core.c
-> @@ -5,6 +5,7 @@
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 6f6129b39c9c..691c28066cec 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -4104,6 +4104,34 @@ cpufreq_hw: cpufreq@18591000 {
 >  
->  #include <linux/clk.h>
->  #include <linux/dma-mapping.h>
-> +#include <linux/interconnect.h>
->  #include <linux/interrupt.h>
->  #include <linux/module.h>
->  #include <linux/mod_devicetable.h>
-> @@ -22,6 +23,8 @@
->  #define QCE_MAJOR_VERSION5	0x05
->  #define QCE_QUEUE_LENGTH	1
->  
-> +#define QCE_DEFAULT_MEM_BANDWIDTH	393600
+>  			#freq-domain-cells = <1>;
+>  		};
 > +
->  static const struct qce_algo_ops *qce_ops[] = {
->  #ifdef CONFIG_CRYPTO_DEV_QCE_SKCIPHER
->  	&skcipher_ops,
-> @@ -206,21 +209,35 @@ static int qce_crypto_probe(struct platform_device *pdev)
->  	if (ret < 0)
->  		return ret;
->  
-> +	qce->mem_path = devm_of_icc_get(qce->dev, "memory");
-> +	if (IS_ERR(qce->mem_path))
-> +		return PTR_ERR(qce->mem_path);
-> +
->  	qce->core = devm_clk_get(qce->dev, "core");
-> -	if (IS_ERR(qce->core))
-> -		return PTR_ERR(qce->core);
-> +	if (IS_ERR(qce->core)) {
-> +		ret = PTR_ERR(qce->core);
-> +		goto err;
+> +		cryptobam: dma-controller@1dc4000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0 0x01dc4000 0 0x24000>;
 
-I don't see a reason here, or in the following patches to move from
-return to goto here.
+Please keep nodes under /soc sorted by address.
 
-Regards,
+Thanks,
 Bjorn
 
-> +	}
->  
->  	qce->iface = devm_clk_get(qce->dev, "iface");
-> -	if (IS_ERR(qce->iface))
-> -		return PTR_ERR(qce->iface);
-> +	if (IS_ERR(qce->iface)) {
-> +		ret = PTR_ERR(qce->iface);
-> +		goto err;
-> +	}
->  
->  	qce->bus = devm_clk_get(qce->dev, "bus");
-> -	if (IS_ERR(qce->bus))
-> -		return PTR_ERR(qce->bus);
-> +	if (IS_ERR(qce->bus)) {
-> +		ret = PTR_ERR(qce->bus);
-> +		goto err;
-> +	}
+> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			iommus = <&apps_smmu 0x584 0x0011>,
+> +				 <&apps_smmu 0x586 0x0011>,
+> +				 <&apps_smmu 0x594 0x0011>,
+> +				 <&apps_smmu 0x596 0x0011>;
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "memory";
+> +		};
 > +
-> +	ret = icc_set_bw(qce->mem_path, QCE_DEFAULT_MEM_BANDWIDTH, QCE_DEFAULT_MEM_BANDWIDTH);
-> +	if (ret)
-> +		goto err;
+> +		crypto: crypto@1dfa000 {
+> +			compatible = "qcom,sm8250-qce";
+> +			reg = <0 0x01dfa000 0 0x6000>;
+> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
+> +			dma-names = "rx", "tx";
+> +			iommus = <&apps_smmu 0x584 0x0011>,
+> +				 <&apps_smmu 0x586 0x0011>,
+> +				 <&apps_smmu 0x594 0x0011>,
+> +				 <&apps_smmu 0x596 0x0011>;
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "memory";
+> +		};
+>  	};
 >  
->  	ret = clk_prepare_enable(qce->core);
->  	if (ret)
-> -		return ret;
-> +		goto err_mem_path_disable;
->  
->  	ret = clk_prepare_enable(qce->iface);
->  	if (ret)
-> @@ -260,6 +277,9 @@ static int qce_crypto_probe(struct platform_device *pdev)
->  	clk_disable_unprepare(qce->iface);
->  err_clks_core:
->  	clk_disable_unprepare(qce->core);
-> +err_mem_path_disable:
-> +	icc_set_bw(qce->mem_path, 0, 0);
-> +err:
->  	return ret;
->  }
->  
-> diff --git a/drivers/crypto/qce/core.h b/drivers/crypto/qce/core.h
-> index 085774cdf641..228fcd69ec51 100644
-> --- a/drivers/crypto/qce/core.h
-> +++ b/drivers/crypto/qce/core.h
-> @@ -35,6 +35,7 @@ struct qce_device {
->  	void __iomem *base;
->  	struct device *dev;
->  	struct clk *core, *iface, *bus;
-> +	struct icc_path *mem_path;
->  	struct qce_dma_data dma;
->  	int burst_size;
->  	unsigned int pipe_pair_id;
+>  	timer {
 > -- 
 > 2.31.1
 > 
