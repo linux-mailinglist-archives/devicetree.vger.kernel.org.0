@@ -2,115 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D54244FF42
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 08:34:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4281544FFC1
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 09:07:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229663AbhKOHgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 02:36:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44952 "EHLO
+        id S237645AbhKOIKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 03:10:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229713AbhKOHgh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 02:36:37 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94F2C061746;
-        Sun, 14 Nov 2021 23:33:40 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id b11so13655652pld.12;
-        Sun, 14 Nov 2021 23:33:40 -0800 (PST)
+        with ESMTP id S230354AbhKOIJc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 03:09:32 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C36C061202
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 00:06:10 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id t23so1801565oiw.3
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 00:06:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/dQKM6Vi+xbmsi2IWyfz9saHV4nVyKR/J4jSrspx45E=;
-        b=WBOj4H/GjtPc4aLHjlWeRrOGun4Nn3S+8FAfiR2MKRbA3Jr4TLySdN69h58Anqet0K
-         YJy5oGZw2+1wP9UyOnmvuTQ5nGtrQkQ8Oxjn7kqEGDqQbTTk5ysFDtfqhjTRUmKj5vtn
-         qv/di+GK1LuL3hF8z+i1eGtjcRHrdW3Plnjl3YXmlCj2hDIEBc2k70SXM0+x8X3ya9gk
-         A0P44IKj+3s1/TTZRUPF/yDEl+g3fn7a+HJr974wvh2MivOvhFlwnEX5EroRH0rZIKbV
-         +6Fgdfu6HMu4zUxG9tyKWOFtvoW1NQ8lRawZSXfddDeZ1NRY+kZojsPfPyISk5WsjRXA
-         4UGg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vInCllpdZJK8HYx6VQyYUDaprqkzpWu+HmJAPYn2v50=;
+        b=HxgSxKIntchJ9V+1j6TZ6/zSWnalYU4SllF6Qtl1TAmuWiQD/m8ic51slAuG0LR6uO
+         fnkH9OnHkBaQ+nyG2iYWLHXgWdRQHf0SFhhxZ9rU7G6tsGP/aQSD/vUOk57r8bO5BLVm
+         ktc2j7bpxi22rL+/rsWaQDWZS1eM59ibUf9gvizDgXrVa3Kx+fZKFhx4HaBZ4eVjLK4/
+         298CTDz2iJ58wlGFsU1O6ltqWSWRP/t3sVL086mcW+rdJYI6JUAtKWw6kH1hnPHOtkRC
+         HbeqEbqmRupAq0sMu/prFcPer60b1uIFdnXjh3t2f7XNaGfDnGRLdQxRxZSWWSOICyk6
+         nVnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/dQKM6Vi+xbmsi2IWyfz9saHV4nVyKR/J4jSrspx45E=;
-        b=v+XMz1jLmUk9SD3LFnGGSJvmAIpz44GKVD0Ki3ppyX3lTnYnducszxxrZBfsl7pwiF
-         4BuFoDlwEyAisBeTNdVdM0YImggcfIKFHHP9v5EXpscmtOw96XRRXjyb8EDLEiIAajqs
-         KFVDgDYR4fG5zsw2ScshpXBzab09dnOcsawVjd/K6IiDzX42ULUAW1+ejxMpFJx/wV1J
-         8iI0PdufrGSOnbsN3T9G71pQTCFL28mc88jBmnvoRCOTjgNc8aVkYawqsy3C9XiGhW9v
-         YrGd6gHnHzpfc3ikgL30NNDZuYzteR+B0wXzn79ymogLogw64s2Nlg+QH2jsa3TGj3p7
-         q13Q==
-X-Gm-Message-State: AOAM531jUO9JMZETS1d39MK3/S9nxYrUmAGHyw3YqFmJ5Z9j1RJAcAWY
-        H4suW+iqDePkuzAvTbE2h09XqQ0zroaOsg==
-X-Google-Smtp-Source: ABdhPJzjk5a4xFIILiS6XXVnNV0TB6/EsIrOo6taGKzn2Jt0fU1oS7/KzU+6pbn4Fjeo+E3oTBSlOQ==
-X-Received: by 2002:a17:90a:3d41:: with SMTP id o1mr37671094pjf.215.1636961620285;
-        Sun, 14 Nov 2021 23:33:40 -0800 (PST)
-Received: from localhost.localdomain ([103.99.179.247])
-        by smtp.gmail.com with ESMTPSA id n15sm13441851pfv.216.2021.11.14.23.33.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Nov 2021 23:33:39 -0800 (PST)
-From:   Calvin Zhang <calvinzhang.cool@gmail.com>
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Calvin Zhang <calvinzhang.cool@gmail.com>
-Subject: [PATCH v2] of: make MAX_RESERVED_REGIONS configurable
-Date:   Mon, 15 Nov 2021 15:32:40 +0800
-Message-Id: <20211115073240.3476043-1-calvinzhang.cool@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vInCllpdZJK8HYx6VQyYUDaprqkzpWu+HmJAPYn2v50=;
+        b=YNn7iiMr+Gm2tHOAIHQI39jR6kYyYZmjmfdUCSdvvFAAcbdIV4VXM0YODP3M7WAnJV
+         fsruyAM5nsklI2Z1nYGJj0DlqtqH1/zm4N+MZXMghXjLOMzIB4EF1TBmkNxHm6trXwvM
+         za7F7RyMCHirpvu3iKcr6xc8Kz+TehN08zsw36Is8TrE9rCfKnhj9um4WVZQFklBEHOv
+         CzwzGm86kVk4rH37OOY9GgkSqfUgNbWf8aN3Zct2XWNiiFHH9BiERxvwO5eHMGAJsKqd
+         1nKwtat0bBMqrUVWwCc0kAbTRQoAVomfpd2XknOEDwx6aIbgR/6E7VVRQg/wCSjVmFqt
+         zBkA==
+X-Gm-Message-State: AOAM530IFh2qPAMYAI4cZMnM+NdFOeVTrpUXtUC5vAIqDviIdyIP33N4
+        FSR4qHRMfff9T0Hg1bm8NEJDb8SHE2pLpgh3NzpUURbXMLA=
+X-Google-Smtp-Source: ABdhPJzMEV2wPO87eb6zhBFjYr/AyoSofRxeiCu2JqzFVwV7tOI9z0eR69HajfWSWZZKHbGj2TJxsuZDqRt54wsuiwY=
+X-Received: by 2002:a05:6808:b08:: with SMTP id s8mr5206631oij.126.1636963569363;
+ Mon, 15 Nov 2021 00:06:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-4-bhupesh.sharma@linaro.org> <YZAOTCQ0yIJUJTYO@builder.lan>
+In-Reply-To: <YZAOTCQ0yIJUJTYO@builder.lan>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 15 Nov 2021 13:35:58 +0530
+Message-ID: <CAH=2Ntw=GC0a2iscffe--6_UpnCkdpnNO=7bZSAgFQonuK-4BA@mail.gmail.com>
+Subject: Re: [PATCH v5 03/22] dt-bindings: qcom-bam: Convert binding to YAML
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MAX_RESERVED_REGIONS has changed several times. Max reserved regions
-count grows bigger as more SOC subsystems require reserved regions.
+Hi Bjorn,
 
-Add a Kconfig for it so that when properly configured, the static
-reserved_mem array consumes less memory on systems with few reserved
-regions.
+On Sun, 14 Nov 2021 at 00:43, Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
+>
+> > Convert Qualcomm BAM DMA devicetree binding to YAML.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  .../devicetree/bindings/dma/qcom_bam_dma.txt  | 50 ----------
+> >  .../devicetree/bindings/dma/qcom_bam_dma.yaml | 91 +++++++++++++++++++
+> >  2 files changed, 91 insertions(+), 50 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> >  create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> > deleted file mode 100644
+> > index cf5b9e44432c..000000000000
+> > --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> > +++ /dev/null
+> > @@ -1,50 +0,0 @@
+> > -QCOM BAM DMA controller
+> > -
+> > -Required properties:
+> > -- compatible: must be one of the following:
+> > - * "qcom,bam-v1.4.0" for MSM8974, APQ8074 and APQ8084
+> > - * "qcom,bam-v1.3.0" for APQ8064, IPQ8064 and MSM8960
+> > - * "qcom,bam-v1.7.0" for MSM8916
+> > -- reg: Address range for DMA registers
+> > -- interrupts: Should contain the one interrupt shared by all channels
+> > -- #dma-cells: must be <1>, the cell in the dmas property of the client device
+> > -  represents the channel number
+> > -- clocks: required clock
+> > -- clock-names: must contain "bam_clk" entry
+> > -- qcom,ee : indicates the active Execution Environment identifier (0-7) used in
+> > -  the secure world.
+> > -- qcom,controlled-remotely : optional, indicates that the bam is controlled by
+> > -  remote proccessor i.e. execution environment.
+> > -- num-channels : optional, indicates supported number of DMA channels in a
+> > -  remotely controlled bam.
+> > -- qcom,num-ees : optional, indicates supported number of Execution Environments
+> > -  in a remotely controlled bam.
+> > -
+> > -Example:
+> > -
+> > -     uart-bam: dma@f9984000 = {
+> > -             compatible = "qcom,bam-v1.4.0";
+> > -             reg = <0xf9984000 0x15000>;
+> > -             interrupts = <0 94 0>;
+> > -             clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
+> > -             clock-names = "bam_clk";
+> > -             #dma-cells = <1>;
+> > -             qcom,ee = <0>;
+> > -     };
+> > -
+> > -DMA clients must use the format described in the dma.txt file, using a two cell
+> > -specifier for each channel.
+> > -
+> > -Example:
+> > -     serial@f991e000 {
+> > -             compatible = "qcom,msm-uart";
+> > -             reg = <0xf991e000 0x1000>
+> > -                     <0xf9944000 0x19000>;
+> > -             interrupts = <0 108 0>;
+> > -             clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
+> > -                     <&gcc GCC_BLSP1_AHB_CLK>;
+> > -             clock-names = "core", "iface";
+> > -
+> > -             dmas = <&uart-bam 0>, <&uart-bam 1>;
+> > -             dma-names = "rx", "tx";
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> > new file mode 100644
+> > index 000000000000..3ca222bd10bd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> > @@ -0,0 +1,91 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/qcom_bam_dma.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: QCOM BAM DMA controller binding
+> > +
+> > +maintainers:
+> > +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > +
+> > +description: |
+> > +  This document defines the binding for the BAM DMA controller
+> > +  found on Qualcomm parts.
+> > +
+> > +allOf:
+> > +  - $ref: "dma-controller.yaml#"
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,bam-v1.3.0 # for APQ8064, IPQ8064 and MSM8960
+> > +      - qcom,bam-v1.4.0 # for MSM8974, APQ8074 and APQ8084
+> > +      - qcom,bam-v1.7.0 # for MSM8916
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: bam_clk
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 31
+>
+> The old binding uses the wording "the one interrupt" and at least the
+> Linux implementation indicates that there's only a single interrupt.
+>
+> So I think this should just be maxItems: 1
+>
+> > +
+> > +  num-channels:
+> > +    maximum: 31
+> > +    description:
+> > +      Indicates supported number of DMA channels in a remotely controlled bam.
+> > +
+> > +  "#dma-cells":
+> > +    const: 1
+> > +    description: The single cell represents the channel index.
+> > +
+> > +  qcom,ee:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 7
+> > +    description:
+> > +      Indicates the active Execution Environment identifier (0-7)
+> > +      used in the secure world.
+> > +
+> > +  qcom,controlled-remotely:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      Indicates that the bam is controlled by remote proccessor i.e.
+> > +      execution environment.
+> > +
+> > +  qcom,num-ees:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 31
+> > +    default: 2
+> > +    description:
+> > +      Indicates supported number of Execution Environments in a
+> > +      remotely controlled bam.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - "#dma-cells"
+> > +  - qcom,ee
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/qcom,gcc-msm8974.h>
+> > +    dma-controller@f9984000 {
+> > +        compatible = "qcom,bam-v1.4.0";
+> > +        reg = <0xf9984000 0x15000>;
+> > +        interrupts = <0 94 0>;
+>
+> While the txt->yaml conversion should retain the original content, I
+> think it's okay to fix this line up while you're at it; and make it:
+>
+>         interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
 
-Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
----
- drivers/of/Kconfig           | 10 ++++++++++
- drivers/of/of_reserved_mem.c |  3 +--
- 2 files changed, 11 insertions(+), 2 deletions(-)
+Sure, will do this in v6.
 
-diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-index 80b5fd44ab1c..47ffff9f6aba 100644
---- a/drivers/of/Kconfig
-+++ b/drivers/of/Kconfig
-@@ -73,6 +73,16 @@ config OF_IRQ
- config OF_RESERVED_MEM
- 	def_bool OF_EARLY_FLATTREE
- 
-+config OF_MAX_RESERVED_REGIONS
-+	int "Maximum count of reserved regions"
-+	depends on OF_RESERVED_MEM
-+	default 64
-+	help
-+	  Reserved regions in /reserved-memory node includes static
-+	  reservations with fixed location and dynamic ones for device
-+	  CMA regions. This parameter sets the maximum number of reserved
-+	  regions in the system.
-+
- config OF_RESOLVE
- 	bool
- 
-diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
-index 9c0fb962c22b..d90ae4c03011 100644
---- a/drivers/of/of_reserved_mem.c
-+++ b/drivers/of/of_reserved_mem.c
-@@ -25,8 +25,7 @@
- 
- #include "of_private.h"
- 
--#define MAX_RESERVED_REGIONS	64
--static struct reserved_mem reserved_mem[MAX_RESERVED_REGIONS];
-+static struct reserved_mem reserved_mem[CONFIG_OF_MAX_RESERVED_REGIONS];
- static int reserved_mem_count;
- 
- static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
--- 
-2.30.2
+Regards,
+Bhupesh
 
+> > +        clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
+> > +        clock-names = "bam_clk";
+> > +        #dma-cells = <1>;
+> > +        qcom,ee = <0>;
+> > +    };
+> > --
+> > 2.31.1
+> >
