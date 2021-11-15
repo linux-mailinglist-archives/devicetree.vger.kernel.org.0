@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F37452843
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 04:10:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98D4C452848
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 04:11:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347208AbhKPDM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 22:12:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54816 "EHLO
+        id S240005AbhKPDOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 22:14:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245015AbhKPDMs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 22:12:48 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84F0DC079786
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:41:38 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so30287780otl.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:41:38 -0800 (PST)
+        with ESMTP id S245039AbhKPDNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 22:13:40 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325C9C0432F5
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:43:28 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id w199so5087661oiw.4
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:43:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:in-reply-to:references:from:user-agent:date:message-id
          :subject:to:cc;
-        bh=i2SNPRq3pLKtwSNGCAzk+IUcH/Vb3+yYVDf0j3H0K+0=;
-        b=mtZZGO4oP1PYAw3s3wv6aw5HRKl8k3hgNW+PQgfljpI1uZ7pU5leGxruNQnn2yiOWK
-         Wd83MZ7tXvR2UcrJ9HgImIS4uy7wwJO8TpEGagjQXZruPiVfcnIwvjxApg9eb5GZRx4A
-         QsWVwNKNtrG9ZEWrsBPGOiUi/xkmuGjOKbQ40=
+        bh=hq1niQBK9hXN5OqRcd+jKLXnbjQsPYHmfo6HktmOyYQ=;
+        b=ElGa7e81Ufm21BU1nQUf2FwyYoKWv3jgjbJ7AnPUx1UdlSkE+1CTGVHKQ+N+OHHKKo
+         CY/9GY1bR7nYn7plBARAtBMZ8NqZ855XFALA6bz68eREZBxN4F6Gm6a6bEb/5bniGgv2
+         vnPsPOYZ/4EiS5qTqAiVpMj8er/rWI6BP9EzQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:in-reply-to:references:from
          :user-agent:date:message-id:subject:to:cc;
-        bh=i2SNPRq3pLKtwSNGCAzk+IUcH/Vb3+yYVDf0j3H0K+0=;
-        b=4BCix4+cbEsiva2MWP47PxpGoDaSn9axRs8Sb4sqQBqckygwAKtDDs/qj/i+bt23cQ
-         tRWsuSbCDkMt2b6zOPHeI6DtcvPREQCucIJSdhz5CQaboOA9ep4ouEhQ/ZRtE/ls9Mje
-         7iWYFpVq1T7dc8QLvolaJ5vEqDaq8q4D1c+ktlm/ADo2dthIvsCTn7brEBoU/9H0ObUO
-         1cJiS4yytH+4wmgyo/MVGjDGr/C3qrzfBXBasbX8/Eo7uoTPb0Bz8jFmnpIPlkjy8M7t
-         wfGwC8rBr3J91rdpPmqRIcqpyQs19nXk9cFfqKzTCpXoORhkUcSB6NKKw9QfCxVqgUwi
-         j+yg==
-X-Gm-Message-State: AOAM533k6OcNoaXDJ5GGJwmjDkjC5j06mb6H8285yGpGcaimud73RC1C
-        KIIBd3kh9edmvWkamIcpYLGDqtLvgSQoLE51TE7l5w==
-X-Google-Smtp-Source: ABdhPJyAK5DnGIrjLnccwyQNRehg9V4oQSI/ME20O57PnslENVbYODuBGkNt8nPUL1v6F64p1gdekCaV5kIZ173HdZ4=
-X-Received: by 2002:a9d:70ce:: with SMTP id w14mr2393306otj.77.1637019697920;
- Mon, 15 Nov 2021 15:41:37 -0800 (PST)
+        bh=hq1niQBK9hXN5OqRcd+jKLXnbjQsPYHmfo6HktmOyYQ=;
+        b=Ye1JRG619nccM2RkSe5MSwPUw2ae8Y+5FrdJWLT/eUkpGAAg+GCBIqjYcfpdDm+gaX
+         euKtTDP40En9IP3fzGmi6qDhK0I9OYIvaJmVJ2cOd5+c0DPII3TlAzp8yNEoga83A7vr
+         n2FG9RrBJ1XtBdJHIfw26YzNzZQ627Hr/8M1P/NQ9kw7kfh1JfjSn9nbpLo4rqA90HDT
+         0CbjJFYuwcsK/V4d9t2hmvwANFfpetZMcce3rDC4Nw670FvD5ZYng4WVCfo0uwB4CeBv
+         9nsE4/L5ewpJTQgq7vmIzKTvtnRQr8/zEFP7Cd4jmZ77RtO8jV/5Fsgk2Ntuz8F0S7se
+         Ga5Q==
+X-Gm-Message-State: AOAM530R9Szi5q0iB5tuQ1cctJR1E+1+FM5wq3t8/7SK/O2Ci31s/oPL
+        gdjZPDVPPNpB+UanEz4mGy3ZLtLcJLvvA7pnaO4Cbg==
+X-Google-Smtp-Source: ABdhPJzmvae9UwbAAuS+UNXKAvsH2tyT8qBtsPQNp7h9OAVLMQQAv3q1gNTR8r7cZyYIpGgIVDz4OHQi2AlJxPVBsmo=
+X-Received: by 2002:aca:2319:: with SMTP id e25mr48854187oie.164.1637019807605;
+ Mon, 15 Nov 2021 15:43:27 -0800 (PST)
 Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 15 Nov 2021 15:41:37 -0800
+ HTTPREST; Mon, 15 Nov 2021 15:43:27 -0800
 MIME-Version: 1.0
-In-Reply-To: <1635860673-12146-3-git-send-email-pillair@codeaurora.org>
-References: <1635860673-12146-1-git-send-email-pillair@codeaurora.org> <1635860673-12146-3-git-send-email-pillair@codeaurora.org>
+In-Reply-To: <1635860673-12146-4-git-send-email-pillair@codeaurora.org>
+References: <1635860673-12146-1-git-send-email-pillair@codeaurora.org> <1635860673-12146-4-git-send-email-pillair@codeaurora.org>
 From:   Stephen Boyd <swboyd@chromium.org>
 User-Agent: alot/0.9.1
-Date:   Mon, 15 Nov 2021 15:41:37 -0800
-Message-ID: <CAE-0n51uTT0KdCdsefTC-z-0bSSST53WKOz98q-YMZyt-6p1og@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+Date:   Mon, 15 Nov 2021 15:43:27 -0800
+Message-ID: <CAE-0n52effcajLwjOY_v-pjp68ytkb-zo4R9EHp3CQi=yB8nPQ@mail.gmail.com>
+Subject: Re: [PATCH v8 3/3] remoteproc: qcom: q6v5_wpss: Add support for
+ sc7280 WPSS
 To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
         bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
         ohad@wizery.com, p.zabel@pengutronix.de, robh+dt@kernel.org
@@ -61,66 +62,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rakesh Pillai (2021-11-02 06:44:32)
-> Add WPSS PIL loading support for SC7280 SoCs.
+Quoting Rakesh Pillai (2021-11-02 06:44:33)
+> diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c b/drivers/remoteproc/qcom_q6v5_adsp.c
+> index 098362e6..e2e8d33 100644
+> --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> @@ -435,12 +571,22 @@ static int adsp_probe(struct platform_device *pdev)
+>         if (!desc)
+>                 return -EINVAL;
 >
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
-> ---
+> +       firmware_name = desc->firmware_name;
+> +       ret = of_property_read_string(pdev->dev.of_node, "firmware-name",
 
-One question
+Is this documented in the binding? If not, please add it.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-
->  .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 217 +++++++++++++++++++++
->  1 file changed, 217 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
->
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-> new file mode 100644
-> index 0000000..eaf7dd1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
-> @@ -0,0 +1,217 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,sc7280-wpss-pil.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +                                     &firmware_name);
+> +       if (ret < 0 && ret != -EINVAL) {
+> +               dev_err(&pdev->dev, "unable to read firmware-name\n");
+> +               return ret;
+> +       }
 > +
-> +title: Qualcomm SC7280 WPSS Peripheral Image Loader
-> +
-> +maintainers:
-[...]
-> +
-> +  glink-edge:
-> +    type: object
-> +    description: |
-> +      Qualcomm G-Link subnode which represents communication edge, channels
-> +      and devices related to the ADSP.
-> +
-> +    properties:
-> +      interrupts:
-> +        items:
-> +          - description: IRQ from WPSS to GLINK
-> +
-> +      mboxes:
-> +        items:
-> +          - description: Mailbox for communication between APPS and WPSS
-> +
-> +      label:
-> +        description: The names of the state bits used for SMP2P output
-> +        items:
-> +          - const: wpss
-> +
-> +      qcom,remote-pid:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        description: ID of the shared memory used by GLINK for communication with WPSS
-> +        maxItems: 1
-> +
-> +    required:
-> +      - interrupts
-> +      - mboxes
-> +      - label
-> +      - qcom,remote-pid
-
-Add additionalProperties: false here too?
+>         rproc = rproc_alloc(&pdev->dev, pdev->name, &adsp_ops,
+> -                           desc->firmware_name, sizeof(*adsp));
+> +                           firmware_name, sizeof(*adsp));
+>         if (!rproc) {
