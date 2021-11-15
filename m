@@ -2,160 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C46B44FE78
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 06:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAEA044FE85
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:00:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbhKOF5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 00:57:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51152 "EHLO
+        id S230164AbhKOGDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 01:03:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230107AbhKOF5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 00:57:19 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A68C9C061766;
-        Sun, 14 Nov 2021 21:54:17 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id f18so40544914lfv.6;
-        Sun, 14 Nov 2021 21:54:17 -0800 (PST)
+        with ESMTP id S230093AbhKOGDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:03:45 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F36A3C061766
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 22:00:49 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so17639911otj.7
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 22:00:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=0ITzm3kF2CTjx8s3ujmiTGO0Uq6IhLwpCFtlE2jGWfg=;
-        b=aoOj9BmpH4wlK0zab+wtjijrWVmtQ4xi1jOJjv6ytq5zQIwDHB6j4PWiuHdABmMAcG
-         jKkeKBOVQcpGKbpNuZkWc0NUiLq4eKXBe+zVpph/2LNCibt51n6StqGRS7WUuntduyYJ
-         edgGphqzQ770deGyxl7M4vH+dtoHbw2SD6hPQWt1kVNbrbJMf5nwA65epAfG+VwRElK6
-         4pQzNoJGasQgeJcKcfS+KRIr7YrDzlnxXYSRnLI+SAWz1Wh8SBtpasyn2FaGBK2Z6qsW
-         GvjJh42UCIDnyYIcZ1NkeQhHV0R8KVR6som0znoFT35XVMs85XQUl0VjgwxigTxI/V9c
-         0BVQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Q0hjuIitrFb02fXcc+qwu0/Ao0P1TR8wWUugB4S5eBU=;
+        b=EPYAkJSYsA8WdUmfCLmL+m364i7HEJTfI84eVqPuEmyhu8fQFa4trzbIRKLnh3I+O+
+         1yI5rSDAJcF08/ZC1qms0z+OXm9HynWJ1Hjy0gE5ERSkW7up0sFoiyqBc6vASFWIX7ys
+         dJgtJoWn5R01rWfdWmdG9WGXX3rMoGqVCRQxn5cs/WZY53TUBHJJVwZpvlk/5ZkJx03i
+         2g/TdcIYIjl0JR3VZQ8PwaMDn2DcHM9yZqtTkfmkWadjKw1tXP23XlPDREdwtkthONYA
+         e9ATGJimtIYN1SvS2i/As6uyhusLbtC50ejafJA0y4Kfz2cWinuqdxBMdlfRNeHGcF97
+         4Gtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=0ITzm3kF2CTjx8s3ujmiTGO0Uq6IhLwpCFtlE2jGWfg=;
-        b=JZz9i29H9FPVcJiN6vgaV7mdDyrVrpZrjjZSaG7uxLd7TskG7hIu9SxhRTPIsAZky9
-         QiF/Vl5HQ7lPs8C/yY9BdWcpQbU/qJP1ZBl7Ov5U/7bszBmnGA3qgyr4WTg0vqVJFHuj
-         iBh/Mn0ub7QFhHTyA6AhAvIBmNv6asJ5Zn8fyBym3C8CiYirDF5pdXvH2jLWsj0Vt8gc
-         40xrQDRGwGgVVHC8wDtlYENk9ZTQOdPvuudbpMFjqWd6a7o2oMj4IgbzMeEBmHoreLi7
-         NNM/uHnRqf/7VtbJZLhjuDy4aq06UatyH25hvkKPvkgkU6An3S2VlB6jejt2ytCceDZU
-         V4wA==
-X-Gm-Message-State: AOAM533iR0o/H5QdohdfyyGhGmxga9Ku54YWlHP8ynMxHD5PHHsbdzn7
-        AIqVfhRdtXjGI7TVbpo5Fq0=
-X-Google-Smtp-Source: ABdhPJxaH7HFu5Imhc8iMFDJJWTHVcWL9DV95cUFtBv5nGIoWSJEtBa9ewhxIb4K6hGUEIFHuLRjxw==
-X-Received: by 2002:ac2:4e11:: with SMTP id e17mr32541121lfr.126.1636955655599;
-        Sun, 14 Nov 2021 21:54:15 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id i13sm1308668lfb.45.2021.11.14.21.54.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Nov 2021 21:54:15 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Lee Jones <lee.jones@linaro.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V4 RESEND 2/2] dt-bindings: mfd: add Broadcom's Timer-Watchdog block
-Date:   Mon, 15 Nov 2021 06:53:54 +0100
-Message-Id: <20211115055354.6089-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211115055354.6089-1-zajec5@gmail.com>
-References: <20211115055354.6089-1-zajec5@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Q0hjuIitrFb02fXcc+qwu0/Ao0P1TR8wWUugB4S5eBU=;
+        b=F368oimh7tH/4fkmMPpDmRrdD77LoZxudLKXeZU0dodu4cqQ3a1hJu+009cZ965nI5
+         4WV4mVe9AvbTn6BJ+mRDoWcNPSaPT/7Ir2cJ26YM2a9f2JTiKUsOWvRQ15L0j2tpLUij
+         A2/tTtjdPyRbkLRixNbi1yi0HFrER5WzF6AH6hRWK9uDfi32bKhV4Bz445GXiQ72lnbP
+         ayYYJrdC3L/RKD2oBpUZ7oHlJisFHSaVgl+JcRC3d6tjK8pMTZQJPRvJzOQVEz6RbDU7
+         7ulsQcbI7W+X80hoc4Y1bGjUTVhRHAl+Fz5HWgIy57fkhatAqNYFLLdroplG7a11cpUt
+         g9IA==
+X-Gm-Message-State: AOAM531irwqHovvOLANkgvnj0aZH9TzwiLcices1rVLc9uouY4XGAMsQ
+        pHdbjL7h4UjNmxZZ+8PoFBV4Icv230ELdOpMho4/hg==
+X-Google-Smtp-Source: ABdhPJyUbpj16P4csxyRQ9MSohPpXCQmDqHM5JN8smKtj7SiicwjKN9ibLjXA6Pg7pY8eci39b32XWXEeV1kkXjBHfc=
+X-Received: by 2002:a05:6830:44a1:: with SMTP id r33mr23418807otv.162.1636956049231;
+ Sun, 14 Nov 2021 22:00:49 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-4-bhupesh.sharma@linaro.org> <dd8cfa0d-0128-84a9-b2e5-b994a2bbd4cf@linaro.org>
+In-Reply-To: <dd8cfa0d-0128-84a9-b2e5-b994a2bbd4cf@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 15 Nov 2021 11:30:38 +0530
+Message-ID: <CAH=2Ntw6N6kgMv125ALZ1J3F-Cd6jUaT_OEJJ=92+78=xhWbzA@mail.gmail.com>
+Subject: Re: [PATCH v5 03/22] dt-bindings: qcom-bam: Convert binding to YAML
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Vladimir,
 
-It's a block implementing few time related functions depending on a
-(SoC specific) variant. At this point there is ready binding for a
-watchdog only. Work on remaining subblocks (e.g. "reg" based reboot) is
-in progress.
+On Fri, 12 Nov 2021 at 14:11, Vladimir Zapolskiy
+<vladimir.zapolskiy@linaro.org> wrote:
+>
+> Hi Bhupesh,
+>
+> On 11/10/21 12:59 PM, Bhupesh Sharma wrote:
+> > Convert Qualcomm BAM DMA devicetree binding to YAML.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >   .../devicetree/bindings/dma/qcom_bam_dma.txt  | 50 ----------
+> >   .../devicetree/bindings/dma/qcom_bam_dma.yaml | 91 +++++++++++++++++++
+> >   2 files changed, 91 insertions(+), 50 deletions(-)
+> >   delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> >   create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> > deleted file mode 100644
+> > index cf5b9e44432c..000000000000
+> > --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
+> > +++ /dev/null
+> > @@ -1,50 +0,0 @@
+> > -QCOM BAM DMA controller
+> > -
+> > -Required properties:
+> > -- compatible: must be one of the following:
+> > - * "qcom,bam-v1.4.0" for MSM8974, APQ8074 and APQ8084
+> > - * "qcom,bam-v1.3.0" for APQ8064, IPQ8064 and MSM8960
+> > - * "qcom,bam-v1.7.0" for MSM8916
+> > -- reg: Address range for DMA registers
+> > -- interrupts: Should contain the one interrupt shared by all channels
+> > -- #dma-cells: must be <1>, the cell in the dmas property of the client device
+> > -  represents the channel number
+> > -- clocks: required clock
+> > -- clock-names: must contain "bam_clk" entry
+> > -- qcom,ee : indicates the active Execution Environment identifier (0-7) used in
+> > -  the secure world.
+> > -- qcom,controlled-remotely : optional, indicates that the bam is controlled by
+> > -  remote proccessor i.e. execution environment.
+> > -- num-channels : optional, indicates supported number of DMA channels in a
+> > -  remotely controlled bam.
+> > -- qcom,num-ees : optional, indicates supported number of Execution Environments
+> > -  in a remotely controlled bam.
+> > -
+> > -Example:
+> > -
+> > -     uart-bam: dma@f9984000 = {
+> > -             compatible = "qcom,bam-v1.4.0";
+> > -             reg = <0xf9984000 0x15000>;
+> > -             interrupts = <0 94 0>;
+> > -             clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
+> > -             clock-names = "bam_clk";
+> > -             #dma-cells = <1>;
+> > -             qcom,ee = <0>;
+> > -     };
+> > -
+> > -DMA clients must use the format described in the dma.txt file, using a two cell
+> > -specifier for each channel.
+> > -
+> > -Example:
+> > -     serial@f991e000 {
+> > -             compatible = "qcom,msm-uart";
+> > -             reg = <0xf991e000 0x1000>
+> > -                     <0xf9944000 0x19000>;
+> > -             interrupts = <0 108 0>;
+> > -             clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
+> > -                     <&gcc GCC_BLSP1_AHB_CLK>;
+> > -             clock-names = "core", "iface";
+> > -
+> > -             dmas = <&uart-bam 0>, <&uart-bam 1>;
+> > -             dma-names = "rx", "tx";
+> > -     };
+> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> > new file mode 100644
+> > index 000000000000..3ca222bd10bd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
+> > @@ -0,0 +1,91 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/qcom_bam_dma.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: QCOM BAM DMA controller binding
+> > +
+> > +maintainers:
+> > +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > +
+> > +description: |
+> > +  This document defines the binding for the BAM DMA controller
+> > +  found on Qualcomm parts.
+> > +
+> > +allOf:
+> > +  - $ref: "dma-controller.yaml#"
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - qcom,bam-v1.3.0 # for APQ8064, IPQ8064 and MSM8960
+> > +      - qcom,bam-v1.4.0 # for MSM8974, APQ8074 and APQ8084
+> > +      - qcom,bam-v1.7.0 # for MSM8916
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: bam_clk
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 31
+> > +
+> > +  num-channels:
+> > +    maximum: 31
+> > +    description:
+> > +      Indicates supported number of DMA channels in a remotely controlled bam.
+> > +
+> > +  "#dma-cells":
+> > +    const: 1
+> > +    description: The single cell represents the channel index.
+> > +
+> > +  qcom,ee:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 7
+> > +    description:
+> > +      Indicates the active Execution Environment identifier (0-7)
+> > +      used in the secure world.
+> > +
+> > +  qcom,controlled-remotely:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      Indicates that the bam is controlled by remote proccessor i.e.
+> > +      execution environment.
+> > +
+> > +  qcom,num-ees:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 0
+> > +    maximum: 31
+> > +    default: 2
+> > +    description:
+> > +      Indicates supported number of Execution Environments in a
+> > +      remotely controlled bam.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - "#dma-cells"
+> > +  - qcom,ee
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/qcom,gcc-msm8974.h>
+> > +    dma-controller@f9984000 {
+> > +        compatible = "qcom,bam-v1.4.0";
+> > +        reg = <0xf9984000 0x15000>;
+> > +        interrupts = <0 94 0>;
+> > +        clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
+> > +        clock-names = "bam_clk";
+> > +        #dma-cells = <1>;
+> > +        qcom,ee = <0>;
+> > +    };
+> >
+>
+> this change should be rebased on top of the upstream commit 37aef53f5cc ("dt-bindings:
+> dmaengine: bam_dma: Add "powered remotely" mode"), which adds 'qcom,powered-remotely'
+> property description.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
-V2: Update $id, description, compatible, example & commit message
-V3: Drop "brcm,twd" from compatible list per Rob's review
-RESEND: Patchwork lost 1/2, marc.info lost 2/2
----
- .../devicetree/bindings/mfd/brcm,twd.yaml     | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mfd/brcm,twd.yaml
+Indeed. Seems there was some confusion, as we had earlier agreed that
+Stephan's change would be part of my v5 series (see [1]), but I see
+that the change has anyway being picked up for Linus's tree (in the
+.txt version of the bindings).
 
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,twd.yaml b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-new file mode 100644
-index 000000000000..634526f790b8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/brcm,twd.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom's Timer-Watchdog (aka TWD)
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+description: |
-+  Broadcom has a Timer-Watchdog block used in multiple SoCs (e.g., BCM4908,
-+  BCM63xx, BCM7038). There are few variants available (they differ slightly in
-+  registers layout). This block consists of: timers, watchdog and optionally a
-+  software reset handler.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm4908-twd
-+          - brcm,bcm7038-twd
-+      - const: simple-mfd
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  ranges: true
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+patternProperties:
-+  '^watchdog@[a-f0-9]+$':
-+    $ref: /schemas/watchdog/brcm,bcm7038-wdt.yaml
-+
-+additionalProperties: false
-+
-+required:
-+  - reg
-+
-+examples:
-+  - |
-+    timer-mfd@ff800400 {
-+        compatible = "brcm,bcm4908-twd", "simple-mfd", "syscon";
-+        reg = <0xff800400 0x4c>;
-+        ranges = <0x00000000 0xff800400 0x4c>;
-+
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        watchdog@28 {
-+            compatible = "brcm,bcm7038-wdt";
-+            reg = <0x28 0x8>;
-+        };
-+    };
--- 
-2.31.1
+No problem, I will fix the same in v6.
 
+[1]. https://www.spinics.net/lists/linux-arm-msm/msg97143.html
+
+Regards,
+Bhupesh
