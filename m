@@ -2,92 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF4D451513
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7064451518
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344870AbhKOUYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 15:24:33 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:34603 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348991AbhKOUBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:01:33 -0500
-Received: by mail-ot1-f49.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso29403500otj.1;
-        Mon, 15 Nov 2021 11:58:37 -0800 (PST)
+        id S1345970AbhKOUYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 15:24:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49730 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350414AbhKOUXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:23:48 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC7EC079781;
+        Mon, 15 Nov 2021 12:11:17 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id t30so32944792wra.10;
+        Mon, 15 Nov 2021 12:11:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OVufiMS+5ME6/qbmdZ9jFuP6rhzYyALe6R8u1xIQ+I8=;
+        b=WxqUWqw9dcjW58RqrOawZJX8dFHGcFnqlOdeYJiHKEfL/w8CcJBKNfS5hs/bRlROkS
+         DdCUsECLDA5V6QkypM6B5Wo2JFC8uqqpwXHvO2vr3PQkfLPcgvgG/dpAAkznKWl65CTh
+         JG8S6Ii+uYuNCuRUEOU6lh36LitBTBiHXD5BNIp+F0gEkasoxvJUMDb6aPfs+pDeq7Ub
+         tZ0U5WoZ06rEso3K4WPUoqi6IghSkiNAwMkIo5Gl1C2caO+WA5TvDvQjV7Npuwe7GsZ/
+         X4VpmqIT0/BJDzxJ+kavTAjlQx/27rs4f6/LGwf4soEWmIW4B6jXLoAqzFHR0c6SDKn9
+         0Sgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=h+J1vaRpXcdhcsrNBSmrsbk4IyQ3tb4/aPu9pmZiLEo=;
-        b=cIAjWzAXrd4zPwbWqoeCgTgsp9SBJs4IDlISAXZaHVOEmZQx1c6YkOUQUxxQQ8Oi0o
-         OHAUiq4L6GBrtOqTnK915Z6oJqb2zgKaX6T+S8HR2vgX6M0B0kNnSEM0ZT3BJdB1fEKN
-         vfGe+3K3uvOY/2RBVQY5retOfGXkCf1kOGdxG/TXod6lypkrhhEDho/UkHf89ep8saLC
-         9bif5JQFhkDZM880ihKXXn6AdcqEMnesCv/+8uk3gJe7P37Ukmi+nMpC7ySUGce/qVjW
-         1pU7276gyjUAal0tPjhCsCClng16FvKplzYHeu3CwjWjWNarGx0REM+H1F4fjc/DuIuc
-         PW0A==
-X-Gm-Message-State: AOAM532mZefc5/WRHfKetlP4dOvjLlt/jOHagWkv0wNEwQCqXIrOeB8O
-        3dRCCyTEAqMI7ILtB+OELnen3OT+9w==
-X-Google-Smtp-Source: ABdhPJyRURepV+1IaiJnVPG/Z5JL0u11kbv3R2qh4yDVX84o2UIEGJdGww+DOnf28Cs/UjaKZt8JxA==
-X-Received: by 2002:a9d:6346:: with SMTP id y6mr1408110otk.154.1637006317343;
-        Mon, 15 Nov 2021 11:58:37 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 111sm3196849otu.55.2021.11.15.11.58.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OVufiMS+5ME6/qbmdZ9jFuP6rhzYyALe6R8u1xIQ+I8=;
+        b=X85Jnd8C6r1Vx8ysWZn+XMZCArV6lBaycjkz1wtpi4h6eUCHHpHLN/d/Rabqyt68ok
+         C+OvUqAagrT/1/DxUlXJjaK+NLsezABUK3GpbYBYFE8tZFpfebHVij/jso3Xku5qjdEf
+         JhshxrAUh3T2vfguHpD9V99yfIAiaMWDs+IvdN65f2NcaRO2nrONC5Fau3TXzkGon8lx
+         7s41v9hbv5wiO6sAaOZmRNeOaSgHfOCho1ZaUTCCqJqjsy9T8Q0ZNPsG22/P1jPfxa2f
+         oGID/MAuQKFvhNuPzxVqx+gmbgOY7b8HgDK/f9SzAu2uqoGDUd0gtX93B1rCKVH1u4ih
+         z/pg==
+X-Gm-Message-State: AOAM533aYInPgXw8p1SRJDrEwh36m06jwDJi+sE2KL8Nvos/EY+V6nqz
+        PEZA/Zdkkp9FxVGjqdC4BEM=
+X-Google-Smtp-Source: ABdhPJxRaydlPIgKCNnFlVSM/bdOi7Fbn48Le9KlaQLD2hWe6B5eTE0Fonu5liBo3qPVFLkEO0xmbA==
+X-Received: by 2002:adf:e484:: with SMTP id i4mr2123541wrm.49.1637007075508;
+        Mon, 15 Nov 2021 12:11:15 -0800 (PST)
+Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id q4sm15529370wrs.56.2021.11.15.12.11.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 11:58:36 -0800 (PST)
-Received: (nullmailer pid 1287655 invoked by uid 1000);
-        Mon, 15 Nov 2021 19:58:35 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        linux-tegra@vger.kernel.org
-In-Reply-To: <20211115151707.287764-1-jonathanh@nvidia.com>
-References: <20211115151707.287764-1-jonathanh@nvidia.com>
-Subject: Re: [PATCH 1/2] dt-bindings: Add YAML bindings for NVENC and NVJPG
-Date:   Mon, 15 Nov 2021 13:58:35 -0600
-Message-Id: <1637006315.810213.1287654.nullmailer@robh.at.kernel.org>
+        Mon, 15 Nov 2021 12:11:15 -0800 (PST)
+From:   Jernej Skrabec <jernej.skrabec@gmail.com>
+To:     mripard@kernel.org, wens@csie.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Add SPDIF
+Date:   Mon, 15 Nov 2021 21:11:12 +0100
+Message-Id: <20211115201112.452696-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Nov 2021 15:17:06 +0000, Jon Hunter wrote:
-> Add YAML device tree bindings for the Tegra NVENC and NVJPG Host1x
-> engines.
-> 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  .../gpu/host1x/nvidia,tegra210-nvenc.yaml     | 104 ++++++++++++++++++
->  .../gpu/host1x/nvidia,tegra210-nvjpg.yaml     |  94 ++++++++++++++++
->  2 files changed, 198 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
->  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml
-> 
+Tanix TX6 board has SPDIF connector in form of 3.5 mm jack.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Add support for it.
 
-yamllint warnings/errors:
+Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+---
+ .../dts/allwinner/sun50i-h6-tanix-tx6.dts     | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.example.dt.yaml: nvenc@154c0000: interconnects: [[4294967295, 28, 4294967295], [4294967295, 43, 4294967295]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.example.dt.yaml: nvenc@154c0000: interconnect-names:1: 'read-1' was expected
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.example.dt.yaml: nvenc@154c0000: interconnect-names: ['dma-mem', 'write'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1555346
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+index 8f2a80f128de..6c10ff7f4b1c 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
+@@ -52,6 +52,24 @@ reg_vdd_cpu_gpu: regulator-vdd-cpu-gpu {
+ 		regulator-min-microvolt = <1135000>;
+ 		regulator-max-microvolt = <1135000>;
+ 	};
++
++	sound-spdif {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "sun50i-h6-spdif";
++
++		simple-audio-card,cpu {
++			sound-dai = <&spdif>;
++		};
++
++		simple-audio-card,codec {
++			sound-dai = <&spdif_out>;
++		};
++	};
++
++	spdif_out: spdif-out {
++		#sound-dai-cells = <0>;
++		compatible = "linux,spdif-dit";
++	};
+ };
+ 
+ &cpu0 {
+@@ -127,6 +145,10 @@ &r_ir {
+ 	status = "okay";
+ };
+ 
++&spdif {
++	status = "okay";
++};
++
+ &uart0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&uart0_ph_pins>;
+-- 
+2.33.1
 
