@@ -2,355 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE4F451510
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA881451508
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245382AbhKOUY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 15:24:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37248 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345555AbhKOT2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:28:42 -0500
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A4CFC0AFD66
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:55:25 -0800 (PST)
-Received: by mail-vk1-xa2f.google.com with SMTP id q21so1217509vkn.2
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:55:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ujrej7d92V5EhRlK+3EewLoVi5xc/mqOkrT4CjFGGaA=;
-        b=qbGgWimd/zl8hR/d1wmjGsswVAvWWq9T4xBmZ9kPnF4Nv+5BtR9ht22tPbnnSvA2tE
-         ShK6TOhU84TjH36sYEwUf9k6PIFUUnieQbViM66S9ExZyDaWO2HslaQ4UQFh5U0oyFWH
-         epdh6MIzOhRl52VFImL1gDnfW8sx+fwanyzgjZGcri1L6WDipX62Fo8Y98lsR0oo6JH3
-         nHseHSisL/i5WuFVRZcE9fAy3Hl+p8A6TxJtd0r0D5N4dPQ9N1m6iCb2hrp8Yr0B3kdx
-         zKV2EjNUTyxPBJW7UxaixBe0S9DoBbIoK9xgtdWOG0Bg890DJoy6pBMl/bCMHH9ynJHc
-         +AKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ujrej7d92V5EhRlK+3EewLoVi5xc/mqOkrT4CjFGGaA=;
-        b=XS2kCDGyVTr+p0UhpHn/zReHGQ8VpZ62ehjV9O4P8WWAWDg+r7heznA0RxhzhdIyr0
-         rU5WmfSIFeQ0s333+XhU89GY/nAFYZU/yjRK4UTwBmPvmYmZkRRvB0SA7mflnJcVW4+b
-         ufthWUpPpj1xcwELPwwJdqbNGgVsqVngq4LcnQwtS06fF4GSEFAYhVdcQEyJ0wL7OVhv
-         lDQQzPwdCuQbNgBIs6o17Rq75Mk+B0uNInRSW7YaSIlivhXxQ2nBwHJ7XwnJcICfu3oM
-         wmbEJn7MM5gK2EV4e3/dg5/ZmIylt4wqXxnI18OVwuDXE/zmlNs7bIF17p+XIBhPS3nr
-         6eaw==
-X-Gm-Message-State: AOAM531rkUU0O6ymjz+ADPnw2/y7rvQcGZESuKytnP0zGI9PnmyZL6xo
-        vIEPgvuGhYD/IOJAlHXlCdc4FlNBMvtoOCJFkYYObw==
-X-Google-Smtp-Source: ABdhPJxZm2/GaNIBlVhWXnnB0thxte8AwzYEv7aIlNKGaRcmHgT3jVH/s7XhMAN2Cnq4/4V7hsOTQwR2hfLp5T4xgRI=
-X-Received: by 2002:a05:6122:d08:: with SMTP id az8mr63057762vkb.15.1637002524288;
- Mon, 15 Nov 2021 10:55:24 -0800 (PST)
+        id S233265AbhKOUYW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 15 Nov 2021 15:24:22 -0500
+Received: from aposti.net ([89.234.176.197]:56316 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245298AbhKOTUC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 14:20:02 -0500
+Date:   Mon, 15 Nov 2021 19:16:51 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v6 6/8] MIPS: DTS: CI20: Add DT nodes for HDMI setup
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Message-Id: <38OM2R.QJECEBEZVSXU@crapouillou.net>
+In-Reply-To: <141a4ea23dc19629fea983093348d9dfaedb1cae.1636573413.git.hns@goldelico.com>
+References: <cover.1636573413.git.hns@goldelico.com>
+        <141a4ea23dc19629fea983093348d9dfaedb1cae.1636573413.git.hns@goldelico.com>
 MIME-Version: 1.0
-References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
- <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
-In-Reply-To: <20211112010137.149174-3-jaewon02.kim@samsung.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 15 Nov 2021 20:55:12 +0200
-Message-ID: <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
-To:     Jaewon Kim <jaewon02.kim@samsung.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        chanho61.park@samsung.com, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Nov 2021 at 03:06, Jaewon Kim <jaewon02.kim@samsung.com> wrote:
->
-> Serial IPs(UART, I2C, SPI) are integrated into New IP-Core
-> called USI(Universal Serial Interface).
->
-> As it is integrated into USI, there are additinal HW changes.
-> Registers to control USI and sysreg to set serial IPs have been added.
-> Also, some timing registres have been changed.
->
-> Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
+Hi Nikolaus, Thomas,
+
+Le mer., nov. 10 2021 at 20:43:31 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> From: Paul Boddie <paul@boddie.org.uk>
+> 
+> We need to hook up
+> * HDMI connector
+> * HDMI power regulator
+> * JZ4780_CLK_HDMI @ 27 MHz
+> * DDC pinmux
+> * HDMI and LCDC endpoint connections
+> 
+> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
 > ---
-
-Reviewed-by: Sam Protsenko <semen.protsenko@linaro.org>
-Tested-by: Sam Protsenko <semen.protsenko@linaro.org>
-
-With this patch the Exynos850 HSI2C becomes functional. The only
-nit-pick from my side (just a food for thought): do we want to
-configure USI related config inside of particular drivers (SPI, I2C,
-UART)? Or it would be better design to implement some platform driver
-for that, so we can choose USI configuration (SPI/I2C/UART) in device
-tree? I think this series is good to be merged as is, but we should
-probably consider all upsides and downsides of each option, for the
-future work.
-
-Thanks!
-
->  drivers/i2c/busses/i2c-exynos5.c | 135 ++++++++++++++++++++++++++++---
->  1 file changed, 125 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/i2c/busses/i2c-exynos5.c b/drivers/i2c/busses/i2c-exynos5.c
-> index 97d4f3ac0abd..6ce94795a618 100644
-> --- a/drivers/i2c/busses/i2c-exynos5.c
-> +++ b/drivers/i2c/busses/i2c-exynos5.c
-> @@ -22,6 +22,8 @@
->  #include <linux/of_device.h>
->  #include <linux/of_irq.h>
->  #include <linux/spinlock.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/regmap.h>
->
->  /*
->   * HSI2C controller from Samsung supports 2 modes of operation
-> @@ -166,9 +168,21 @@
->
->  #define EXYNOS5_I2C_TIMEOUT (msecs_to_jiffies(100))
->
-> +/* USI(Universal Serial Interface) Register map */
-> +#define USI_CON                                        0xc4
-> +#define USI_OPTION                             0xc8
+>  arch/mips/boot/dts/ingenic/ci20.dts | 73 
+> +++++++++++++++++++++++++++--
+>  1 file changed, 70 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
+> b/arch/mips/boot/dts/ingenic/ci20.dts
+> index a688809beebca..a62557bede565 100644
+> --- a/arch/mips/boot/dts/ingenic/ci20.dts
+> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
+> @@ -78,6 +78,18 @@ eth0_power: fixedregulator@0 {
+>  		enable-active-high;
+>  	};
+> 
+> +	hdmi_out: connector {
+> +		compatible = "hdmi-connector";
+> +		label = "HDMI OUT";
+> +		type = "a";
 > +
-> +/* USI(Universal Serial Interface) Register bits */
-> +#define USI_CON_RESET                          BIT(0)
+> +		port {
+> +			hdmi_con: endpoint {
+> +				remote-endpoint = <&dw_hdmi_out>;
+> +			};
+> +		};
+> +	};
 > +
-> +/* SYSREG Register bit */
-> +#define SYSREG_USI_SW_CONF_MASK                        (0x7 << 0)
-> +#define SYSREG_I2C_SW_CONF                     BIT(2)
+>  	ir: ir {
+>  		compatible = "gpio-ir-receiver";
+>  		gpios = <&gpe 3 GPIO_ACTIVE_LOW>;
+> @@ -102,6 +114,17 @@ otg_power: fixedregulator@2 {
+>  		gpio = <&gpf 14 GPIO_ACTIVE_LOW>;
+>  		enable-active-high;
+>  	};
 > +
->  enum i2c_type_exynos {
->         I2C_TYPE_EXYNOS5,
->         I2C_TYPE_EXYNOS7,
-> +       I2C_TYPE_EXYNOSAUTOV9,
->  };
->
->  struct exynos5_i2c {
-> @@ -199,6 +213,10 @@ struct exynos5_i2c {
->
->         /* Version of HS-I2C Hardware */
->         const struct exynos_hsi2c_variant *variant;
+> +	hdmi_power: fixedregulator@3 {
+> +		compatible = "regulator-fixed";
 > +
-> +       /* USI sysreg info */
-> +       struct regmap           *usi_sysreg;
-> +       unsigned int            usi_offset;
+> +		regulator-name = "hdmi_power";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +
+> +		gpio = <&gpa 25 GPIO_ACTIVE_LOW>;
+
+Just use 0 instead of GPIO_ACTIVE_LOW, since the flag is simply ignored 
+(I know the other regulators do use it, but I'll clean that up soon).
+
+> +		enable-active-high;
+> +	};
 >  };
->
->  /**
-> @@ -213,21 +231,31 @@ struct exynos5_i2c {
->  struct exynos_hsi2c_variant {
->         unsigned int            fifo_depth;
->         enum i2c_type_exynos    hw;
-> +       bool                    has_usi;
+> 
+>  &ext {
+> @@ -113,9 +136,9 @@ &cgu {
+>  	 * Use the 32.768 kHz oscillator as the parent of the RTC for a 
+> higher
+>  	 * precision.
+>  	 */
+> -	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>, <&cgu JZ4780_CLK_RTC>;
+> -	assigned-clock-parents = <0>, <&cgu JZ4780_CLK_RTCLK>;
+> -	assigned-clock-rates = <48000000>;
+> +	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>, <&cgu JZ4780_CLK_RTC>, 
+> <&cgu JZ4780_CLK_HDMI>;
+> +	assigned-clock-parents = <0>, <&cgu JZ4780_CLK_RTCLK>, <0>;
+> +	assigned-clock-rates = <48000000>, <0>, <27000000>;
+
+So drm-misc-next is based on a slightly older version (not v5.16-rc1 
+yet), and these lines changed in linux master.
+
+I think it would make sense to merge the DT changes (+ doc) into the 
+MIPS tree, and the driver changes into drm-misc-next.
+
+@Thomas: Is that OK for you?
+
+Cheers,
+-Paul
+
 >  };
->
->  static const struct exynos_hsi2c_variant exynos5250_hsi2c_data = {
->         .fifo_depth     = 64,
->         .hw             = I2C_TYPE_EXYNOS5,
-> +       .has_usi        = false,
+> 
+>  &tcu {
+> @@ -506,6 +529,12 @@ pins_i2c4: i2c4 {
+>  		bias-disable;
+>  	};
+> 
+> +	pins_hdmi_ddc: hdmi_ddc {
+> +		function = "hdmi-ddc";
+> +		groups = "hdmi-ddc";
+> +		bias-disable;
+> +	};
+> +
+>  	pins_nemc: nemc {
+>  		function = "nemc";
+>  		groups = "nemc-data", "nemc-cle-ale", "nemc-rd-we", "nemc-frd-fwe";
+> @@ -536,3 +565,41 @@ pins_mmc1: mmc1 {
+>  		bias-disable;
+>  	};
 >  };
->
->  static const struct exynos_hsi2c_variant exynos5260_hsi2c_data = {
->         .fifo_depth     = 16,
->         .hw             = I2C_TYPE_EXYNOS5,
-> +       .has_usi        = false,
->  };
->
->  static const struct exynos_hsi2c_variant exynos7_hsi2c_data = {
->         .fifo_depth     = 16,
->         .hw             = I2C_TYPE_EXYNOS7,
-> +       .has_usi        = false,
+> +
+> +&hdmi {
+> +	status = "okay";
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pins_hdmi_ddc>;
+> +
+> +	hdmi-5v-supply = <&hdmi_power>;
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		port@0 {
+> +			reg = <0>;
+> +			dw_hdmi_in: endpoint {
+> +				remote-endpoint = <&lcd_out>;
+> +			};
+> +		};
+> +
+> +		port@1 {
+> +			reg = <1>;
+> +			dw_hdmi_out: endpoint {
+> +				remote-endpoint = <&hdmi_con>;
+> +			};
+> +		};
+> +	};
 > +};
 > +
-> +static const struct exynos_hsi2c_variant exynosautov9_hsi2c_data = {
-> +       .fifo_depth     = 64,
-> +       .hw             = I2C_TYPE_EXYNOSAUTOV9,
-> +       .has_usi        = true,
->  };
->
->  static const struct of_device_id exynos5_i2c_match[] = {
-> @@ -243,6 +271,9 @@ static const struct of_device_id exynos5_i2c_match[] = {
->         }, {
->                 .compatible = "samsung,exynos7-hsi2c",
->                 .data = &exynos7_hsi2c_data
-> +       }, {
-> +               .compatible = "samsung,exynosautov9-hsi2c",
-> +               .data = &exynosautov9_hsi2c_data
->         }, {},
->  };
->  MODULE_DEVICE_TABLE(of, exynos5_i2c_match);
-> @@ -281,6 +312,32 @@ static int exynos5_i2c_set_timing(struct exynos5_i2c *i2c, bool hs_timings)
->                 i2c->op_clock;
->         int div, clk_cycle, temp;
->
-> +       /*
-> +        * In case of HSI2C controllers in EXYNOSAUTOV9
-> +        * timing control formula changed.
-> +        *
-> +        * FSCL = IPCLK / ((CLK_DIV + 1) * 16)
-> +        * T_SCL_LOW = IPCLK * (CLK_DIV + 1) * (N + M)
-> +        *  [N : number of 0's in the TSCL_H_HS]
-> +        *  [M : number of 0's in the TSCL_L_HS]
-> +        * T_SCL_HIGH = IPCLK * (CLK_DIV + 1) * (N + M)
-> +        *  [N : number of 1's in the TSCL_H_HS]
-> +        *  [M : number of 1's in the TSCL_L_HS]
-> +        *
-> +        *  result of (N + M) is always 8.
-> +        *  In general use case, we don't need to control timing_s1, timing_s2.
-> +        */
-> +       if (i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9) {
-> +               div = ((clkin / (16 * i2c->op_clock)) - 1);
-> +               i2c_timing_s3 = div << 16;
-> +               if (hs_timings)
-> +                       writel(i2c_timing_s3, i2c->regs + HSI2C_TIMING_HS3);
-> +               else
-> +                       writel(i2c_timing_s3, i2c->regs + HSI2C_TIMING_FS3);
+> +&lcdc0 {
+> +	status = "okay";
 > +
-> +               return 0;
-> +       }
-> +
->         /*
->          * In case of HSI2C controller in Exynos5 series
->          * FPCLK / FI2C =
-> @@ -355,6 +412,20 @@ static int exynos5_hsi2c_clock_setup(struct exynos5_i2c *i2c)
->         return exynos5_i2c_set_timing(i2c, true);
->  }
->
-> +static void exynos_usi_reset(struct exynos5_i2c *i2c)
-> +{
-> +       u32 val;
-> +
-> +       val = readl(i2c->regs + USI_CON);
-> +       val |= USI_CON_RESET;
-> +       writel(val, i2c->regs + USI_CON);
-> +       udelay(1);
-> +
-> +       val = readl(i2c->regs + USI_CON);
-> +       val &= ~USI_CON_RESET;
-> +       writel(val, i2c->regs + USI_CON);
-> +}
-> +
->  /*
->   * exynos5_i2c_init: configures the controller for I2C functionality
->   * Programs I2C controller for Master mode operation
-> @@ -385,6 +456,9 @@ static void exynos5_i2c_reset(struct exynos5_i2c *i2c)
->  {
->         u32 i2c_ctl;
->
-> +       if (i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9)
-> +               exynos_usi_reset(i2c);
-> +
->         /* Set and clear the bit for reset */
->         i2c_ctl = readl(i2c->regs + HSI2C_CTL);
->         i2c_ctl |= HSI2C_SW_RST;
-> @@ -422,7 +496,8 @@ static irqreturn_t exynos5_i2c_irq(int irqno, void *dev_id)
->         writel(int_status, i2c->regs + HSI2C_INT_STATUS);
->
->         /* handle interrupt related to the transfer status */
-> -       if (i2c->variant->hw == I2C_TYPE_EXYNOS7) {
-> +       if (i2c->variant->hw == I2C_TYPE_EXYNOS7 ||
-> +                       i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9) {
->                 if (int_status & HSI2C_INT_TRANS_DONE) {
->                         i2c->trans_done = 1;
->                         i2c->state = 0;
-> @@ -569,13 +644,13 @@ static void exynos5_i2c_bus_check(struct exynos5_i2c *i2c)
->  {
->         unsigned long timeout;
->
-> -       if (i2c->variant->hw != I2C_TYPE_EXYNOS7)
-> +       if (i2c->variant->hw == I2C_TYPE_EXYNOS5)
->                 return;
->
->         /*
-> -        * HSI2C_MASTER_ST_LOSE state in EXYNOS7 variant before transaction
-> -        * indicates that bus is stuck (SDA is low). In such case bus recovery
-> -        * can be performed.
-> +        * HSI2C_MASTER_ST_LOSE state in EXYNOS7 or EXYNOSAUTOV9 variant before
-> +        * transaction indicates that bus is stuck (SDA is low).
-> +        * In such case bus recovery can be performed.
->          */
->         timeout = jiffies + msecs_to_jiffies(100);
->         for (;;) {
-> @@ -611,10 +686,10 @@ static void exynos5_i2c_message_start(struct exynos5_i2c *i2c, int stop)
->         unsigned long flags;
->         unsigned short trig_lvl;
->
-> -       if (i2c->variant->hw == I2C_TYPE_EXYNOS7)
-> -               int_en |= HSI2C_INT_I2C_TRANS;
-> -       else
-> +       if (i2c->variant->hw == I2C_TYPE_EXYNOS5)
->                 int_en |= HSI2C_INT_I2C;
-> +       else
-> +               int_en |= HSI2C_INT_I2C_TRANS;
->
->         i2c_ctl = readl(i2c->regs + HSI2C_CTL);
->         i2c_ctl &= ~(HSI2C_TXCHON | HSI2C_RXCHON);
-> @@ -738,6 +813,42 @@ static const struct i2c_algorithm exynos5_i2c_algorithm = {
->         .functionality          = exynos5_i2c_func,
->  };
->
-> +static int exynos_usi_init(struct exynos5_i2c *i2c)
-> +{
-> +       struct device *dev = i2c->dev;
-> +       int ret;
-> +
-> +       if (!i2c->variant->has_usi)
-> +               return 0;
-> +
-> +       /*
-> +        * System Register has a field that can select the serial IP
-> +        * provided by USI. We need to set it to I2C to use I2C.
-> +        */
-> +       i2c->usi_sysreg = syscon_regmap_lookup_by_phandle(dev->of_node,
-> +                                                         "samsung,sysreg");
-> +       if (IS_ERR(i2c->usi_sysreg)) {
-> +               dev_err(dev, "Cannot find sysreg\n");
-> +               return PTR_ERR(i2c->usi_sysreg);
-> +       }
-> +
-> +       ret = of_property_read_u32_index(dev->of_node, "samsung,sysreg",
-> +                                        1, &i2c->usi_offset);
-> +       if (ret) {
-> +               dev_err(dev, "sysreg offset is not specified\n");
-> +               return ret;
-> +       }
-> +
-> +       ret = regmap_update_bits(i2c->usi_sysreg, i2c->usi_offset,
-> +                       SYSREG_USI_SW_CONF_MASK, SYSREG_I2C_SW_CONF);
-> +       if (ret < 0)
-> +               return ret;
-> +
-> +       exynos_usi_reset(i2c);
-> +
-> +       return 0;
-> +}
-> +
->  static int exynos5_i2c_probe(struct platform_device *pdev)
->  {
->         struct device_node *np = pdev->dev.of_node;
-> @@ -777,6 +888,12 @@ static int exynos5_i2c_probe(struct platform_device *pdev)
->         i2c->adap.algo_data = i2c;
->         i2c->adap.dev.parent = &pdev->dev;
->
-> +       i2c->variant = of_device_get_match_data(&pdev->dev);
-> +
-> +       ret = exynos_usi_init(i2c);
-> +       if (ret)
-> +               return ret;
-> +
->         /* Clear pending interrupts from u-boot or misc causes */
->         exynos5_i2c_clr_pend_irq(i2c);
->
-> @@ -794,8 +911,6 @@ static int exynos5_i2c_probe(struct platform_device *pdev)
->                 goto err_clk;
->         }
->
-> -       i2c->variant = of_device_get_match_data(&pdev->dev);
-> -
->         ret = exynos5_hsi2c_clock_setup(i2c);
->         if (ret)
->                 goto err_clk;
+> +	port {
+> +		lcd_out: endpoint {
+> +			remote-endpoint = <&dw_hdmi_in>;
+> +		};
+> +	};
+> +};
 > --
-> 2.33.1
->
+> 2.33.0
+> 
+
+
