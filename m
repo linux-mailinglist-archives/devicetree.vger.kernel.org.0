@@ -2,201 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8681D44FDA2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 04:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BB7644FDCC
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 05:03:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237062AbhKODrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 22:47:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50838 "EHLO
+        id S237370AbhKOEGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 23:06:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237005AbhKODqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 22:46:50 -0500
-Received: from mail-qv1-xf2b.google.com (mail-qv1-xf2b.google.com [IPv6:2607:f8b0:4864:20::f2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7491FC061746;
-        Sun, 14 Nov 2021 19:43:55 -0800 (PST)
-Received: by mail-qv1-xf2b.google.com with SMTP id s9so10445955qvk.12;
-        Sun, 14 Nov 2021 19:43:55 -0800 (PST)
+        with ESMTP id S237363AbhKOEGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 23:06:03 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7123DC061766
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 20:03:08 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id bf8so32153903oib.6
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 20:03:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ULLabupwpKZ9q0uzoJvIF5vhkAHSbV+6NawrmKl86jU=;
-        b=YPsPndXsufgMAjwX+0mAHSmIjffN/anUwJ2PTqrKhaKIqnIVPEysGRIwqPGhrxZgrK
-         ikU90sS+216cYhdvp6X5YOIIBqnXbvnLDoJE602hIpoBmyJxXm0RBzJ1wn+vVZQlbrcZ
-         egK/bcvJl2sVwM+cKludIBhTugpcTmhk7hq7KiQt9c5p4obN2k33TDbm70ZhOH7Xwk5n
-         AQ4LZ+DmmrapBPd7sjsn9gnEbFaKPWEj8dWvAPFZi1PA9WMv4wLg8lOhChNehZe3aY8s
-         kB911cNLhE8aNOpO3bXON852akTbEzWGHKWo4l/OcnvBtcuMn2HaIrCbE4AiHq6rj7PA
-         OA3g==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=hJ/kPFaMFBXC9iFz4oTcvMGtTFuxx7SBObBu2dq6Ghc=;
+        b=M0lnck0wNApxatXdEso/4Nac5+gIBFI/iMkhUgGrjbqqxLpVSBIkcId77SyXeiE/0d
+         adN13MK1HDUFya5ZmjzNaUDix+By05Ji6WPvJ4GBmr0Tc79X2MJBUMXpe3VrfyoHn+Cd
+         hk6CAs8oW91W55yTRvMiZNxpCD1smro2g7PdlIMlBShvxLa1Rsp/XBfLVPap6YhLAf/y
+         PIoU3/mz0DrKDWtu8/WeuJT+X2WY/d+V/4HYY1FfmHaeKsOF+c3dvl2dCEEt7Q1AmfOr
+         xTwJzf5WRWgDg2+Qr4vZ3HjTAgwyv5hIBuQTXKpAEciaVUQgBP0e8FjdNM+kSJQZGxdr
+         +Dog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ULLabupwpKZ9q0uzoJvIF5vhkAHSbV+6NawrmKl86jU=;
-        b=7vIAHuc+AVxnltVnTSQWDtygYSmAmghWMGK1WA+CR2v35T4pnMP6kEI2ZHMfznJijb
-         Upf9pbe/xzUf/1kJ8AGjoNzjNLsx4Ctp6STYp4cvPgsOVLGVfF2n56sZnuO/SaTYx4Dq
-         P+rSzfF0vDYFU2KSNutWnRp98GTqJbHSxMgVqSBv/xcjYAvtl5lcbphayqNO+76Q/AdG
-         E2vWfqmWeJVwutP7pgl9RuQgdexGh3xnlkTnUZkUyZqb1LXCrsd90qt7rte7E5hBBakO
-         2jX77krgos+faWxcP9ZaA9J7zUSbpv0B2CuE5aGvSb7kpWqkAhvX9BwIWvlRwPx9gmb4
-         W0DQ==
-X-Gm-Message-State: AOAM531PuCXBw//vpVRFiv9bZds/AjzdfwCZnEiZ0xoOgs+pz8cn6tfm
-        W7EVveJyXYxEipWZg2TPhdSZF8FS6vw=
-X-Google-Smtp-Source: ABdhPJz3CT2phySirIRZCTcHO911TUPPF4oXibyT0E6xf2aW91lBsp6wLHXGreA/GGVzLdk4id+skQ==
-X-Received: by 2002:a0c:fa07:: with SMTP id q7mr34051205qvn.18.1636947834600;
-        Sun, 14 Nov 2021 19:43:54 -0800 (PST)
-Received: from shaak.. (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id h5sm206519qkn.62.2021.11.14.19.43.53
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=hJ/kPFaMFBXC9iFz4oTcvMGtTFuxx7SBObBu2dq6Ghc=;
+        b=QhguQjw8Te3Xh5a84nqwgQ7AF71NVjo0uWbctBpQsoXzB0SZfQXzPNurq5N8a6vd2n
+         iS7MjtEo9OlF3ZBKg9Uhf8KfdeLnTEUlQlf4SYHmkHHgSH6ag/73hqAVQrpjo0RAHlds
+         Crle81PzRpMxCBUBd1up3gOGOBHH721EFgRJmvXAHWF206juVQb06nHRAbVlJfwlfafG
+         0QgDBJaAdbz2p4yIjVaXUt8bfnm6GAyBlpNWRO6/qufRh7wrrzxLUVA252k+LHzSTbng
+         vvKeQm18n6rn8+G4wXgTs6t+VhH0sVAmEISTl9cA78de7Ojd/wzLRXjFTs4VgzMTcYDH
+         bxVw==
+X-Gm-Message-State: AOAM533fDzK+G/scUwxk/vId12ad4webVsENABhOJyxassc3BgLW4y9c
+        xiHmqgGqzyiKKFs3XhYM/0CQcA==
+X-Google-Smtp-Source: ABdhPJw7mqvrKQdnHEWT/5xRFMDSB8QK16xrJ14s3Zo781J5XYJFPP1LaTD5/GLsxZSxjZAULcbYTA==
+X-Received: by 2002:aca:2b02:: with SMTP id i2mr28668746oik.140.1636948987351;
+        Sun, 14 Nov 2021 20:03:07 -0800 (PST)
+Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s17sm1047063ooj.42.2021.11.14.20.03.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Nov 2021 19:43:54 -0800 (PST)
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     liambeguin@gmail.com, peda@axentia.se, jic23@kernel.org,
-        lars@metafoo.de
-Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: [PATCH v9 14/14] dt-bindings: iio: afe: add bindings for temperature transducers
-Date:   Sun, 14 Nov 2021 22:43:34 -0500
-Message-Id: <20211115034334.1713050-15-liambeguin@gmail.com>
-X-Mailer: git-send-email 2.32.0.452.g940fe202adcb
-In-Reply-To: <20211115034334.1713050-1-liambeguin@gmail.com>
-References: <20211115034334.1713050-1-liambeguin@gmail.com>
+        Sun, 14 Nov 2021 20:03:06 -0800 (PST)
+Date:   Sun, 14 Nov 2021 22:03:01 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Huang Yiwei <quic_hyiwei@quicinc.com>
+Cc:     agross@kernel.org, mani@kernel.org, jassisinghbrar@gmail.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_psodagud@quicinc.com, quic_tsoni@quicinc.com,
+        quic_aiquny@quicinc.com, quic_eberman@quicinc.com
+Subject: Re: [PATCH] mailbox: qcom-ipcc: Update the QCOM_IPCC driver
+Message-ID: <YZHb9c8HXoV3fE2w@yoga>
+References: <20211115031830.6795-1-quic_hyiwei@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211115031830.6795-1-quic_hyiwei@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Liam Beguin <lvb@xiphos.com>
+On Sun 14 Nov 21:18 CST 2021, Huang Yiwei wrote:
 
-An ADC is often used to measure other quantities indirectly.
-This binding describe one case, the measurement of a temperature
-through a temperature transducer (either voltage or current).
+> Update the QCOM_IPCC driver with below main features:
+> Dynamic alloc for channel arrangement instead of static alloced
+> array.
+> Multiple instance can be supported.
+> IPCC interrupt wake up support from suspend.
+> More protocol and client ID support added.
+> 
 
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../iio/afe/temperature-transducer.yaml       | 114 ++++++++++++++++++
- 1 file changed, 114 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
+Whenever you have "this patch changes x, y, z" you should split that up
+in multiple patches, each changing one thing in a clean fashion.
 
-diff --git a/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-new file mode 100644
-index 000000000000..cfbf5350db27
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/afe/temperature-transducer.yaml
-@@ -0,0 +1,114 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/afe/temperature-transducer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Temperature Transducer
-+
-+maintainers:
-+  - Liam Beguin <liambeguin@gmail.com>
-+
-+description: |
-+  A temperature transducer is a device that converts a thermal quantity
-+  into any other physical quantity. This binding applies to temperature to
-+  voltage (like the LTC2997), and temperature to current (like the AD590)
-+  linear transducers.
-+  In both cases these are assumed to be connected to a voltage ADC.
-+
-+  When an io-channel measures the output voltage of a temperature analog front
-+  end such as a temperature transducer, the interesting measurement is almost
-+  always the corresponding temperature, not the voltage output. This binding
-+  describes such a circuit.
-+
-+  The general transfer function here is (using SI units)
-+    V(T) = Rsense * Isense(T)
-+    T = (Isense(T) / alpha) + offset
-+    T = 1 / (Rsense * alpha) * (V + offset * Rsense * alpha)
-+
-+  When using a temperature to voltage transducer, Rsense is set to 1.
-+
-+  The following circuits show a temperature to current and a temperature to
-+  voltage transducer that can be used with this binding.
-+
-+           VCC
-+          -----
-+            |
-+        +---+---+
-+        | AD590 |                               VCC
-+        +---+---+                              -----
-+            |                                    |
-+            V proportional to T             +----+----+
-+            |                          D+ --+         |
-+            +---- Vout                      | LTC2997 +--- Vout
-+            |                          D- --+         |
-+        +---+----+                          +---------+
-+        | Rsense |                               |
-+        +---+----+                             -----
-+            |                                   GND
-+          -----
-+           GND
-+
-+properties:
-+  compatible:
-+    const: temperature-transducer
-+
-+  io-channels:
-+    maxItems: 1
-+    description: |
-+      Channel node of a voltage io-channel.
-+
-+  '#io-channel-cells':
-+    const: 0
-+
-+  sense-offset-millicelsius:
-+    description: |
-+      Temperature offset.
-+      This offset is commonly used to convert from Kelvins to degrees Celsius.
-+      In that case, sense-offset-millicelsius would be set to <(-273150)>.
-+    default: 0
-+
-+  sense-resistor-ohms:
-+    description: |
-+      The sense resistor.
-+      By default sense-resistor-ohms cancels out the resistor making the
-+      circuit behave like a temperature transducer.
-+    default: 1
-+
-+  alpha-ppm-per-celsius:
-+    description: |
-+      Sometimes referred to as output gain, slope, or temperature coefficient.
-+
-+      alpha is expressed in parts per million which can be micro-amps per
-+      degrees Celsius or micro-volts per degrees Celsius. The is the main
-+      characteristic of a temperature transducer and should be stated in the
-+      datasheet.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - io-channels
-+  - alpha-ppm-per-celsius
-+
-+examples:
-+  - |
-+    ad950: temperature-sensor-0 {
-+        compatible = "temperature-transducer";
-+        #io-channel-cells = <0>;
-+        io-channels = <&temp_adc 3>;
-+
-+        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-+        sense-resistor-ohms = <8060>;
-+        alpha-ppm-per-celsius = <1>; /* 1 uA/K */
-+    };
-+  - |
-+    znq_tmp: temperature-sensor-1 {
-+        compatible = "temperature-transducer";
-+        #io-channel-cells = <0>;
-+        io-channels = <&temp_adc 2>;
-+
-+        sense-offset-millicelsius = <(-273150)>; /* Kelvin to degrees Celsius */
-+        alpha-ppm-per-celsius = <4000>; /* 4 mV/K */
-+    };
-+...
--- 
-2.32.0.452.g940fe202adcb
+So please respin this as 4 patches, to make it possible to review.
 
+Regards,
+Bjorn
+
+> Signed-off-by: Huang Yiwei <quic_hyiwei@quicinc.com>
+> ---
+>  drivers/mailbox/qcom-ipcc.c             | 101 ++++++++++++++++++------
+>  include/dt-bindings/mailbox/qcom-ipcc.h |   9 ++-
+>  2 files changed, 85 insertions(+), 25 deletions(-)
+> 
+> diff --git a/drivers/mailbox/qcom-ipcc.c b/drivers/mailbox/qcom-ipcc.c
+> index f1d4f4679b17..80bac21ccbc3 100644
+> --- a/drivers/mailbox/qcom-ipcc.c
+> +++ b/drivers/mailbox/qcom-ipcc.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+>  /*
+> - * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
+>   */
+>  
+>  #include <linux/bitfield.h>
+> @@ -13,8 +13,6 @@
+>  
+>  #include <dt-bindings/mailbox/qcom-ipcc.h>
+>  
+> -#define IPCC_MBOX_MAX_CHAN		48
+> -
+>  /* IPCC Register offsets */
+>  #define IPCC_REG_SEND_ID		0x0c
+>  #define IPCC_REG_RECV_ID		0x10
+> @@ -52,9 +50,10 @@ struct qcom_ipcc {
+>  	struct device *dev;
+>  	void __iomem *base;
+>  	struct irq_domain *irq_domain;
+> -	struct mbox_chan chan[IPCC_MBOX_MAX_CHAN];
+> -	struct qcom_ipcc_chan_info mchan[IPCC_MBOX_MAX_CHAN];
+> +	struct mbox_chan *chans;
+> +	struct qcom_ipcc_chan_info *mchan;
+>  	struct mbox_controller mbox;
+> +	int num_chans;
+>  	int irq;
+>  };
+>  
+> @@ -166,25 +165,37 @@ static struct mbox_chan *qcom_ipcc_mbox_xlate(struct mbox_controller *mbox,
+>  	struct qcom_ipcc *ipcc = to_qcom_ipcc(mbox);
+>  	struct qcom_ipcc_chan_info *mchan;
+>  	struct mbox_chan *chan;
+> -	unsigned int i;
+> +	struct device *dev;
+> +	int chan_id;
+> +
+> +	dev = ipcc->dev;
+>  
+>  	if (ph->args_count != 2)
+>  		return ERR_PTR(-EINVAL);
+>  
+> -	for (i = 0; i < IPCC_MBOX_MAX_CHAN; i++) {
+> -		chan = &ipcc->chan[i];
+> -		if (!chan->con_priv) {
+> -			mchan = &ipcc->mchan[i];
+> -			mchan->client_id = ph->args[0];
+> -			mchan->signal_id = ph->args[1];
+> -			chan->con_priv = mchan;
+> -			break;
+> -		}
+> +	for (chan_id = 0; chan_id < mbox->num_chans; chan_id++) {
+> +		chan = &ipcc->chans[chan_id];
+> +		mchan = chan->con_priv;
+>  
+> -		chan = NULL;
+> +		if (!mchan)
+> +			break;
+> +		else if (mchan->client_id == ph->args[0] &&
+> +				mchan->signal_id == ph->args[1])
+> +			return ERR_PTR(-EBUSY);
+>  	}
+>  
+> -	return chan ?: ERR_PTR(-EBUSY);
+> +	if (chan_id >= mbox->num_chans)
+> +		return ERR_PTR(-EBUSY);
+> +
+> +	mchan = devm_kzalloc(dev, sizeof(*mchan), GFP_KERNEL);
+> +	if (!mchan)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	mchan->client_id = ph->args[0];
+> +	mchan->signal_id = ph->args[1];
+> +	chan->con_priv = mchan;
+> +
+> +	return chan;
+>  }
+>  
+>  static const struct mbox_chan_ops ipcc_mbox_chan_ops = {
+> @@ -192,15 +203,49 @@ static const struct mbox_chan_ops ipcc_mbox_chan_ops = {
+>  	.shutdown = qcom_ipcc_mbox_shutdown,
+>  };
+>  
+> -static int qcom_ipcc_setup_mbox(struct qcom_ipcc *ipcc)
+> +static int qcom_ipcc_setup_mbox(struct qcom_ipcc *ipcc,
+> +				struct device_node *controller_dn)
+>  {
+> +	struct of_phandle_args curr_ph;
+> +	struct device_node *client_dn;
+>  	struct mbox_controller *mbox;
+>  	struct device *dev = ipcc->dev;
+> +	int i, j, ret;
+> +
+> +	/*
+> +	 * Find out the number of clients interested in this mailbox
+> +	 * and create channels accordingly.
+> +	 */
+> +	ipcc->num_chans = 0;
+> +	for_each_node_with_property(client_dn, "mboxes") {
+> +		if (!of_device_is_available(client_dn))
+> +			continue;
+> +		i = of_count_phandle_with_args(client_dn,
+> +						"mboxes", "#mbox-cells");
+> +		for (j = 0; j < i; j++) {
+> +			ret = of_parse_phandle_with_args(client_dn, "mboxes",
+> +						"#mbox-cells", j, &curr_ph);
+> +			of_node_put(curr_ph.np);
+> +			if (!ret && curr_ph.np == controller_dn) {
+> +				ipcc->num_chans++;
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
+> +	/* If no clients are found, skip registering as a mbox controller */
+> +	if (!ipcc->num_chans)
+> +		return 0;
+> +
+> +	ipcc->chans = devm_kcalloc(dev, ipcc->num_chans,
+> +					sizeof(struct mbox_chan), GFP_KERNEL);
+> +	if (!ipcc->chans)
+> +		return -ENOMEM;
+>  
+>  	mbox = &ipcc->mbox;
+>  	mbox->dev = dev;
+> -	mbox->num_chans = IPCC_MBOX_MAX_CHAN;
+> -	mbox->chans = ipcc->chan;
+> +	mbox->num_chans = ipcc->num_chans;
+> +	mbox->chans = ipcc->chans;
+>  	mbox->ops = &ipcc_mbox_chan_ops;
+>  	mbox->of_xlate = qcom_ipcc_mbox_xlate;
+>  	mbox->txdone_irq = false;
+> @@ -212,6 +257,8 @@ static int qcom_ipcc_setup_mbox(struct qcom_ipcc *ipcc)
+>  static int qcom_ipcc_probe(struct platform_device *pdev)
+>  {
+>  	struct qcom_ipcc *ipcc;
+> +	static int id;
+> +	char *name;
+>  	int ret;
+>  
+>  	ipcc = devm_kzalloc(&pdev->dev, sizeof(*ipcc), GFP_KERNEL);
+> @@ -228,27 +275,33 @@ static int qcom_ipcc_probe(struct platform_device *pdev)
+>  	if (ipcc->irq < 0)
+>  		return ipcc->irq;
+>  
+> +	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "ipcc_%d", id++);
+> +	if (!name)
+> +		return -ENOMEM;
+> +
+>  	ipcc->irq_domain = irq_domain_add_tree(pdev->dev.of_node,
+>  					       &qcom_ipcc_irq_ops, ipcc);
+>  	if (!ipcc->irq_domain)
+>  		return -ENOMEM;
+>  
+> -	ret = qcom_ipcc_setup_mbox(ipcc);
+> +	ret = qcom_ipcc_setup_mbox(ipcc, pdev->dev.of_node);
+>  	if (ret)
+>  		goto err_mbox;
+>  
+>  	ret = devm_request_irq(&pdev->dev, ipcc->irq, qcom_ipcc_irq_fn,
+> -			       IRQF_TRIGGER_HIGH, "ipcc", ipcc);
+> +			IRQF_TRIGGER_HIGH | IRQF_NO_SUSPEND, name, ipcc);
+>  	if (ret < 0) {
+>  		dev_err(&pdev->dev, "Failed to register the irq: %d\n", ret);
+> -		goto err_mbox;
+> +		goto err_req_irq;
+>  	}
+>  
+> -	enable_irq_wake(ipcc->irq);
+>  	platform_set_drvdata(pdev, ipcc);
+>  
+>  	return 0;
+>  
+> +err_req_irq:
+> +	if (ipcc->num_chans)
+> +		mbox_controller_unregister(&ipcc->mbox);
+>  err_mbox:
+>  	irq_domain_remove(ipcc->irq_domain);
+>  
+> diff --git a/include/dt-bindings/mailbox/qcom-ipcc.h b/include/dt-bindings/mailbox/qcom-ipcc.h
+> index eb91a6c05b71..fb405e211028 100644
+> --- a/include/dt-bindings/mailbox/qcom-ipcc.h
+> +++ b/include/dt-bindings/mailbox/qcom-ipcc.h
+> @@ -1,6 +1,6 @@
+>  /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+>  /*
+> - * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
+>   */
+>  
+>  #ifndef __DT_BINDINGS_MAILBOX_IPCC_H
+> @@ -8,8 +8,13 @@
+>  
+>  /* Signal IDs for MPROC protocol */
+>  #define IPCC_MPROC_SIGNAL_GLINK_QMP	0
+> +#define IPCC_MPROC_SIGNAL_TZ		1
+>  #define IPCC_MPROC_SIGNAL_SMP2P		2
+>  #define IPCC_MPROC_SIGNAL_PING		3
+> +#define IPCC_MPROC_SIGNAL_MAX		4 /* Used by driver only */
+> +
+> +#define IPCC_COMPUTE_L0_SIGNAL_MAX	32 /* Used by driver only */
+> +#define IPCC_COMPUTE_L1_SIGNAL_MAX	32 /* Used by driver only */
+>  
+>  /* Client IDs */
+>  #define IPCC_CLIENT_AOP			0
+> @@ -29,6 +34,8 @@
+>  #define IPCC_CLIENT_PCIE1		14
+>  #define IPCC_CLIENT_PCIE2		15
+>  #define IPCC_CLIENT_SPSS		16
+> +#define IPCC_CLIENT_TME			23
+>  #define IPCC_CLIENT_WPSS		24
+> +#define IPCC_CLIENT_MAX			25 /* Used by driver only */
+>  
+>  #endif
+> -- 
+> 2.17.1
+> 
