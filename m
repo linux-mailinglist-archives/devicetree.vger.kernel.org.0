@@ -2,79 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E62D944FEBA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:40:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F83744FEE2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbhKOGn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 01:43:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33018 "EHLO
+        id S230143AbhKOG67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 01:58:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230028AbhKOGnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:43:25 -0500
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79492C061766;
-        Sun, 14 Nov 2021 22:40:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
-        Subject:Sender:Reply-To:Content-ID:Content-Description;
-        bh=MYduknSzCz2rCZxs6GbMLdGFkdcMbYHoRgSEau67hNY=; b=ek+9c7zClyORXLVjTPcGcKHAuR
-        NZIHsfaExs7e9D7VkYYj3b+itIsDuWw5FCwnh98bsqanmC+kgxfY/pJNZZKpdAZmkogHITaGMeZbi
-        ZgBalGw1CE7pOWjlsYwJGPpzuXJv2LlDTvOCQZiRfGmyNOuRauXGlNMGLcoEwbKnvXvjO48KUzeQk
-        QaVPh9BLY3KBiR9AkF8NH6TMXNZgG6KF2FnliwhUI8Wwoaj+ILOa3pjVbnuQfAo+pbDPeII2euNK2
-        DCbZbQRCHLE+AdN+B11bbqK9vs6EfeZIC1l9MjM+hu5N9NAd0xWt0By1NNJKJ3p4BV+Z1pBBilKDi
-        lusBaGNw==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mmVfK-00EShs-28; Mon, 15 Nov 2021 06:40:30 +0000
-Subject: Re: [PATCH] of: make MAX_RESERVED_REGIONS configurable
-To:     Calvin Zhang <calvinzhang.cool@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211115063521.3457302-1-calvinzhang.cool@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-Message-ID: <18eb2d82-d3b3-79ec-9c20-c5c5cf5cab52@infradead.org>
-Date:   Sun, 14 Nov 2021 22:40:29 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S230207AbhKOG65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:58:57 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94E9C061766
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 22:56:02 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id z5so7359607edd.3
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 22:56:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=DnhRi/yEd8/77prJmECQX07Ui1HU8yjd7OJqe5An4dY=;
+        b=t9Se2sEFkosEsGaNqN9T9TCcZk0wJQhitNRtoH2HD7Q2i2sVGG1qJ3I3iazk8G1Zhx
+         DzzlyqGN/XFf0VbvwUIZ8tQVqAvpQjouQUkr2GU+QBikDZMFlGq9s2QzIBuEos8B/HqW
+         EFe9W+COyW+NeY2MoRs9g8EOuHeVF1/8XylW/KfsqFMGmGzUkuTFrdPg9AV1k2eIyVfb
+         OimAFbLeYeBb61FeElkDPneXjoWJhwx1tqGrhE7zBN0C1kvJiuzZELex0qiYQfhJgD6F
+         2MDLkJY7YLD5bffE4C5GkyEiDhaUGqp5Z6pAs7awOEro/Odbc7Jh6Mu9QkAykwWCICvg
+         6znA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=DnhRi/yEd8/77prJmECQX07Ui1HU8yjd7OJqe5An4dY=;
+        b=2bv/bXVjVD5QghG0IulpT94gnkjJDCXeFnCLDiXCqUKK7V0f4g/bREfm9+sue1vtR6
+         we1X4ytM5/zN/Rx/UGIijVbPRT6eqXP+bRkOruHppfSkvCmWcknFfHT4jdooniRBHlnt
+         oT7qdybljGxp9lKQncMlpuDjUmrxHgz5BpiS49GI//exlaGbMefEPMhdsjPapPpi6Qwy
+         EhqEtefH/S+jL52sa4NA/e3giZOwnRhO1hKgz3t+aEP33DLylxujTeGTD4keC+HTdgQZ
+         ePHA7dWt9tDHEEAbfEJfqM3lrgj/7gIwluTPhZvVMqr2cnQzfG9CvYrS57dThAUPWhr6
+         aUCw==
+X-Gm-Message-State: AOAM533g3132iOXPi0Dj8KBpNs0WVPVNYezqOhICowQ1XIJ2QcDzjI1e
+        qk2I4ZqAk0qrqjX39/eLCcFwGh+MyUA1HucW9qVh8g==
+X-Google-Smtp-Source: ABdhPJxlHl1kfno22u1uQK+1W5VimX8ZWFmx5vC5rSL362dcc7YkX1nxubWNXAqFsM73XZh/gTsf7e19SMdHhJVT6EU=
+X-Received: by 2002:a05:6402:26c2:: with SMTP id x2mr52235690edd.198.1636959361036;
+ Sun, 14 Nov 2021 22:56:01 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211115063521.3457302-1-calvinzhang.cool@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Mon, 15 Nov 2021 12:25:50 +0530
+Message-ID: <CA+G9fYsZ_Zks32WTNgKjQg2gwRuqS4E92ttH+okUCdnPFdaNTQ@mail.gmail.com>
+Subject: [stable-rc queue/5/15 ]: rk3568-evb1-v10.dts:10:10: fatal error:
+ rk3568.dtsi: No such file or directory
+To:     Peter Geis <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     linux-stable <stable@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/14/21 10:35 PM, Calvin Zhang wrote:
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index 80b5fd44ab1c..591b2c4d9dd0 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -73,6 +73,16 @@ config OF_IRQ
->   config OF_RESERVED_MEM
->   	def_bool OF_EARLY_FLATTREE
->   
-> +config OF_MAX_RESERVED_REGIONS
-> +    int "Maximum count of reserved regions"
-> +    depends on OF_RESERVED_MEM
-> +    default 64
-> +    help
-> +        Reserved regions in /reserved-memory node includes static
-> +        reservations with fixed location and dynamic ones for device
-> +        cma regions. This parameter sets the maximum number of reserved
+Following build warnings/ errors noticed on Linux stable-rc queue/5.15 branch.
+with gcc-11 for arm64 architecture.
 
-	  CMA
+arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+(pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+configuration space
+arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+(pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+configuration space
+arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+(pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+configuration space
+arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+(pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+configuration space
+arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts:10:10: fatal error:
+rk3568.dtsi: No such file or directory
+   10 | #include rk3568.dtsi
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+make[3]: *** [scripts/Makefile.lib:358:
+arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dtb] Error 1
 
-(as is used in mm/Kconfig)
+The first bad commit:
+--------
+arm64: dts: rockchip: move rk3568 dtsi to rk356x dtsi
+[ Upstream commit 4e50d2173b67115a5574f4f4ce64ec9c5d9c136e ]
 
-> +        regions in the system.
+In preparation for separating the rk3568 and rk3566 device trees, move
+the base rk3568 dtsi to rk356x dtsi.
+This will allow us to strip out the rk3568 specific nodes.
 
-Also, all 4 lines of the help text should be indented with
-one tab + 2 spaces, not all spaces.
+Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+Link: https://lore.kernel.org/r/20210710151034.32857-2-pgwipeout@gmail.com
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org
 
 
-thanks.
--- 
-~Randy
+
+Build config:
+https://builds.tuxbuild.com/20wHY13986hVAE9j4Kwxq4C8JUX/config
+
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
+
+meta data:
+-----------
+    git_describe: v5.15.2-851-g750602323c68
+    git_ref:
+    git_repo: https://gitlab.com/Linaro/lkft/mirrors/stable/linux-stable-rc-queues
+    git_sha: 750602323c68ab51f3b65c59efc4289a7e7c60f9
+    git_short_log: 750602323c68 (\thermal: int340x: fix build on
+32-bit targets\)
+    kernel_version: 5.15.2
+    target_arch: arm64
+    toolchain: gcc-11
+    kconfig: [
+        defconfig,
+        https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/lkft.config,
+        https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/lkft-crypto.config,
+        https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/distro-overrides.config,
+        https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/systemd.config,
+        https://raw.githubusercontent.com/Linaro/meta-lkft/sumo/recipes-kernel/linux/files/virtio.config,
+        CONFIG_ARM64_MODULE_PLTS=y,
+        CONFIG_SYN_COOKIES=y
+    ],
+
+steps to reproduce:
+tuxmake --runtime podman --target-arch arm64 --toolchain gcc-11
+--kconfig defconfig \
+ --kconfig-add https://builds.tuxbuild.com/20wHY13986hVAE9j4Kwxq4C8JUX/config
+
+https://builds.tuxbuild.com/20wHY13986hVAE9j4Kwxq4C8JUX/tuxmake_reproducer.sh
+
+--
+Linaro LKFT
+https://lkft.linaro.org
