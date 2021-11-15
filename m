@@ -2,95 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B4234504CA
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 13:58:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A7BD4504E3
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:03:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbhKONBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 08:01:48 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:59212
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230118AbhKONBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 08:01:08 -0500
-Received: from mail-lj1-f199.google.com (mail-lj1-f199.google.com [209.85.208.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CCF873F199
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 12:58:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1636981091;
-        bh=2lXKGcDk8cSuLceqIHqxG7vShboL2N5LAEantx9d1mY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=j6zesks5ecStBYkVrR4ouZyd7cmC6TDkGRgu9GjlIOB8XkKGCdHbw2FIPfmB23h/J
-         g/d7mduYK6ohSSRG323Kaorgk+WfDEs0NcDpiyF84c85C78e2VBGaZl3DSBJneEgyw
-         eHkf3l51Quy80gOqXh0LIjBbdqrGwPFQWt8JJLX1WUZSmYXxnG5lsq+T/xj1AQspat
-         pA7tfGIO8b/cmtQfAiCTVXcdjUAQv2AfsLs6f8d0OoxThjnc6IipnrmQKkgOug9x4p
-         dWBCDy+CTOTtu9CamIAb1D8zywNZ6moSgv53/9mbccovDBeJ29/vOmfJqzuus5CPDV
-         APeMXJUmZFfBA==
-Received: by mail-lj1-f199.google.com with SMTP id y11-20020a2e978b000000b00218df7f76feso5076428lji.11
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 04:58:11 -0800 (PST)
+        id S230179AbhKONGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 08:06:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230076AbhKONGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 08:06:46 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7709DC061570
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:03:50 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id z8so35317598ljz.9
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:03:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
+        b=Txd06e31SJqSlEenf94CBNtKh1CaFJhlsZ6hCxKSedcHCM0QCZn77JLY/GKTOJM9Oj
+         2bn53HJxUDjAjG+O+73nvHeHcoSuwdAUx7Gmu6xpJhDTTAsWJa9BBSqgYmNxAy8bh3Tz
+         e/S4p3x/gK7/MLPrM7qcyDCvLZrkSrN8Gq3ZygRxwoie9d3YlfU+ReovSdm2eb1YbaWz
+         frsJN5jTqkf8caqfDpHAgACcPsK+STmIRr5zKPoT8yXrlhvVIX+INO/lVzko6OdfA5fj
+         GwUAbwpUwurAXe706Qu4mJj2xF5vKCT+bDGibaU1Udwbam0/zb5Antw0kJmsqCSDbXab
+         CFhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2lXKGcDk8cSuLceqIHqxG7vShboL2N5LAEantx9d1mY=;
-        b=geFDzq4iWcDBs+G/Ov+CC9lds/ByKl/1j7g8hbwPgGmzOQ1552O/rD3ykqx8eoNzjG
-         saEsMGPbcfbQSDdqmso7B/hAvq4tIoL6KWw9aiqxqqJ9aWKYmO7nTWUzR0kiA3tH65iH
-         /zJrqSqMEvLukMXtpIxAU7G13rhqZyrQ/p06/0ZbXQtdV7lLSdkI7pXQIj0WMYSzizT2
-         HkAYsA8wW7Znq29VNUrVPCCBV2kIoJHfqLY2JWKK7uyqdiTVEMdxelnPhg2zEE2Y0T+T
-         xSsLhfA6Cw1mxmwDSNrA3QuNkinSCnq7tFaLIE2eBzJq6wbunQovBrLyaGXnaCJcNIEb
-         VYpg==
-X-Gm-Message-State: AOAM533SMVkw7VEIC5pGwsE+VlQsz+Fhcuv6go2nCaY0SDUyjStYNmH7
-        k1bHZauLlKU+5J4llZ0cNPLJNvEq0HbewXS7rvkMGsyj2i0j8/FkvE1p2+IMo+NVIAIJHq3zNCc
-        d1K9Hb+6NcbPdrkfK3mVDgRXgpj/F2mouODaMB9g=
-X-Received: by 2002:a2e:a696:: with SMTP id q22mr37826682lje.423.1636981091284;
-        Mon, 15 Nov 2021 04:58:11 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwSSpA6BEigGpu15ImH+tj1eDb+rSEziSgrm62AcPCKMxkKiI/gEKtDBzBfK9v9+/JUjhbvUg==
-X-Received: by 2002:a2e:a696:: with SMTP id q22mr37826660lje.423.1636981091086;
-        Mon, 15 Nov 2021 04:58:11 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id x17sm1482167lji.96.2021.11.15.04.58.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Nov 2021 04:58:10 -0800 (PST)
-Message-ID: <b4647d13-80c0-7f25-c987-a9f673b787bb@canonical.com>
-Date:   Mon, 15 Nov 2021 13:58:09 +0100
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
+        b=qeUmC7wbbNhxdh79PI3DMu5QCexdw/hqpfU7sSI9Or5+FnZK2zSvuzTWiV+2lTJ36D
+         3bMbCdNadpF0Ju2RQwD52kNE3LOWAD3vFySPipkLPyv32n1U1JuTTSy0qOryzFG8NTVM
+         1fOUzowABeQsAaOCtPWMayEdmoqdGvMv2Sw0pnUW7iS/Hncz4GfwWQs2LUDtL88IDHNx
+         bXAekINJE6Ih0dwZnj5l+C5lU0AxgG4KQ/dSFFg+viBhujSxSuqACGflcUDKxbpaNEO+
+         zghRj8m7BSIy+ZQeZau2fEUGcAa9AAx1iQ3LQsAmDT72WI4Q729W+eGJ4Gu1wGWwx7fw
+         jyfQ==
+X-Gm-Message-State: AOAM533UNxvnq01h8HPIyLn8Aj2Vk8zsgSlrj2HJ7we5X/JHcxLnMpYD
+        DRPzzegU8wjnSjNJtsVk/fU4JrC/bzOXAvtKgYU=
+X-Google-Smtp-Source: ABdhPJytlMRIbvYAOj6p49TSm7ewj4rnGya/Cy4qGEEzdd9DAP7yZsjDUSrK9bWfqqWitv7vaTuvNwyhyajDBQVLRAQ=
+X-Received: by 2002:a05:651c:2123:: with SMTP id a35mr39094190ljq.285.1636981428725;
+ Mon, 15 Nov 2021 05:03:48 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH] arm64: dts: exynosautov9: drop
- samsung,ufs-shareability-reg-offset
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        'Rob Herring' <robh+dt@kernel.org>
-References: <CGME20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c@epcas2p2.samsung.com>
- <20211102064826.15796-1-chanho61.park@samsung.com>
- <02d501d7da12$9ec499b0$dc4dcd10$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <02d501d7da12$9ec499b0$dc4dcd10$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a05:6504:3048:0:0:0:0 with HTTP; Mon, 15 Nov 2021 05:03:48
+ -0800 (PST)
+Reply-To: christopherdaniel830@gmail.com
+From:   Christopher Daniel <chrstopherdaniel830@gmail.com>
+Date:   Mon, 15 Nov 2021 13:03:48 +0000
+Message-ID: <CAN=DgiR_tmab8hDmMEqiZvr3QDnbfw1o0K0rxX_T0_QAnmCepg@mail.gmail.com>
+Subject: Investment Funding
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/11/2021 12:19, Chanho Park wrote:
-> Hi Krzysztof,
-> 
-> Recently, Exynosauto v9 ufs patch series have been merged at v5.16-rc1.
-> So, below patch is required according to the changes. Could you please review & pick it up your tree?
-> Or Do I need to add "Fixes:" tag?
-> 
-> Best Regards,
-> Chanho Park
-> 
+.
+I wish to invite you to participate in our Investment Funding Program,
+get back to me for more details if interested please.
 
-I'll take it to fixes branch with a Fixes tag for
-31bbac5263aa63dfc8bfed2180bb6a5a3c531681.
-
-
-Best regards,
-Krzysztof
+Regards.
+Christopher Daniel.
