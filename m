@@ -2,143 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA26344FDF2
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 05:35:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 602BA44FE08
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 06:05:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236253AbhKOEia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 23:38:30 -0500
-Received: from mx0b-0016f401.pphosted.com ([67.231.156.173]:23566 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230319AbhKOEiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Nov 2021 23:38:23 -0500
-Received: from pps.filterd (m0045851.ppops.net [127.0.0.1])
-        by mx0b-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AF1t28O014999;
-        Sun, 14 Nov 2021 20:35:21 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=pfpt0220; bh=sapoluduHjOGMwDz/WKzgkpSHkqvEQagjvWzUJ2+kUk=;
- b=Ai7nNAjRE/NeJYX0ifusPIM7DqLcO1wdqskn5NE/4Mt6+2sle6UQ3iT1mBuwYiffgHEM
- LNjz/0Foxo/Pv4VehsigHSLF3GWQtawD42rhBzcppih46Oos+Y6PbZIImwVRNSIqndOB
- pCm5R9fJLH0E1IMCWJElbaZzU37z6Nf5wFPPNJcY6S5hSNRjKvxpVK8kwqvxPUHTxmh4
- pubgqCMoBOVoC6ne73ETiBPbgxLpSqh1FEqfeRwct2IWxTeg9Z+zfRZbLzu741G43GeS
- 7WSxr+t/Fn/3HDUu3u2P8NcP/MaBLUL4CikQlPsAE4L0rUrqnfFh7Bhq5ebfs+j/fxHc VQ== 
-Received: from dc5-exch02.marvell.com ([199.233.59.182])
-        by mx0b-0016f401.pphosted.com (PPS) with ESMTPS id 3cbea8gf2c-3
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Sun, 14 Nov 2021 20:35:21 -0800
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Sun, 14 Nov
- 2021 20:35:20 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Sun, 14 Nov 2021 20:35:19 -0800
-Received: from hyd1soter3.marvell.com (unknown [10.29.37.12])
-        by maili.marvell.com (Postfix) with ESMTP id 628853F7075;
-        Sun, 14 Nov 2021 20:35:17 -0800 (PST)
-From:   Bhaskara Budiredla <bbudiredla@marvell.com>
-To:     <will@kernel.org>, <mark.rutland@arm.com>, <robh+dt@kernel.org>,
-        <bbhushan2@marvell.com>, <sgoutham@marvell.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bhaskara Budiredla <bbudiredla@marvell.com>
-Subject: [PATCH v7 2/2] dt-bindings: perf: Add YAML schemas for Marvell CN10K LLC-TAD pmu bindings
-Date:   Mon, 15 Nov 2021 10:05:06 +0530
-Message-ID: <20211115043506.6679-3-bbudiredla@marvell.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211115043506.6679-1-bbudiredla@marvell.com>
-References: <20211115043506.6679-1-bbudiredla@marvell.com>
+        id S229735AbhKOFIB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 00:08:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229565AbhKOFH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 00:07:57 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E889AC061746
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:05:01 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id b5-20020a9d60c5000000b0055c6349ff22so25352547otk.13
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:05:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JHrhWAX2hQVCS39Z0qh/1XKWuVoHM9rjZxjvoaThtm4=;
+        b=aILiIugcaxhFkz3Nv9I61TgKO/mhDAT2DpqhXBmzZvwpInxER6q8uCXDKhUQsBtP4s
+         mHnfUBz2QjAteqw1TFsiUEqViSJusVWfCgDyC8YQCKodu82MA08vFS02wWN7DZdfNMv1
+         OycmASRw1mX/idzy0l0GVziq0dpvLnuUamBKyF9dkf9Lz8PAK4bETXpEiRRULTVL/CPn
+         yTniX78IJl7CvccCGYGVY1CblkzOSWT0YxB+ZMM96ZGIrq9bhiAeieefIq9cEM3kLlyw
+         XuHsPMQHHGF8G+xh4fcZ03xT87bDLDruBy3d3YY2zLB9cn9VvgIkb5M/KDtSnF44rop8
+         0jKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JHrhWAX2hQVCS39Z0qh/1XKWuVoHM9rjZxjvoaThtm4=;
+        b=iHIuak9DrwS/yX5poQaO2gQp4yK+K94zzxAmn+sRs5OcTz5TA91sIQ/qX82bRAgjLU
+         ktJpze6+Y2HGuzOnQpdqQStZAkKVMx1ov2nRk3KP2TX1DOZ94iTVnae0Wf1CFKM7YKvi
+         YBNEUwk40OMlYbLva8jecRuU4BxA4b/tLpmo+fFXTBpYm301k+phD6O6AP3U5A+o3HXz
+         cLwhpJpo9ulpvvUlDYVq4kK2armNJczUzO8J/0/KTZrjulvfpMr+205ct1Powx35pruz
+         zeb9CVvz+G41+yZs0xiEYFTpQGQ3d6sZywqHGCTQEiwYJmBWNImO5Tc6redkrz2YUsn/
+         prFg==
+X-Gm-Message-State: AOAM532IUBCNfD/s1WCrhzm/IBUqV4Hyr/PgJK+MpLbpTPJhrxzyqd8E
+        q8URSVaQfpdUzDLYSfZHqGWn4UVwT9Ycqy5KrUYSQA==
+X-Google-Smtp-Source: ABdhPJyx/NXeuruSZYCP6RmBQ2IDicSOu74/i/SA2lHFYkeHg16bF7PA87Kk/p/fQVfbS0fqYA74Mtgt/o1d6X3iHv8=
+X-Received: by 2002:a9d:63d2:: with SMTP id e18mr15410715otl.28.1636952701274;
+ Sun, 14 Nov 2021 21:05:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-GUID: RauBKABmIo5qatrMMKTMIUyk32Ukw38X
-X-Proofpoint-ORIG-GUID: RauBKABmIo5qatrMMKTMIUyk32Ukw38X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-15_03,2021-11-12_01,2020-04-07_01
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-13-bhupesh.sharma@linaro.org> <7328ae17-1dc7-eaa1-5993-411b986e5e02@linaro.org>
+In-Reply-To: <7328ae17-1dc7-eaa1-5993-411b986e5e02@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 15 Nov 2021 10:34:50 +0530
+Message-ID: <CAH=2Ntw7Npzrba7xnu--GHh1-ofVXKU8SEe9hLj8bt-gQQMBsQ@mail.gmail.com>
+Subject: Re: [PATCH v5 12/22] arm64/dts: qcom: Use new compatibles for crypto nodes
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for Last-level-cache Tag-and-data
-(LLC-TAD) unit PMU for Marvell CN10K SoCs.
+Hi Vladimir,
 
-Signed-off-by: Bhaskara Budiredla <bbudiredla@marvell.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Bhaskara Budiredla <bbudiredla@marvell.com>
----
- .../bindings/perf/marvell-cn10k-tad.yaml      | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
+On Fri, 12 Nov 2021 at 15:56, Vladimir Zapolskiy
+<vladimir.zapolskiy@linaro.org> wrote:
+>
+> Hi Bhupesh,
+>
+> On 11/10/21 12:59 PM, Bhupesh Sharma wrote:
+> > Since we are using soc specific qce crypto IP compatibles
+> > in the bindings now, use the same in the device tree files
+> > which include the crypto nodes.
+> >
+> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 2 +-
+> >   arch/arm64/boot/dts/qcom/sdm845.dtsi  | 2 +-
+> >   2 files changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > index 933b56103a46..f477d026c949 100644
+> > --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > @@ -204,7 +204,7 @@ cryptobam: dma-controller@704000 {
+> >               };
+> >
+> >               crypto: crypto@73a000 {
+> > -                     compatible = "qcom,crypto-v5.1";
+> > +                     compatible = "qcom,ipq6018-qce";
+> >                       reg = <0x0 0x0073a000 0x0 0x6000>;
+> >                       clocks = <&gcc GCC_CRYPTO_AHB_CLK>,
+> >                               <&gcc GCC_CRYPTO_AXI_CLK>,
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > index 526087586ba4..8e7cbadff25a 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > @@ -2329,7 +2329,7 @@ cryptobam: dma-controller@1dc4000 {
+> >               };
+> >
+> >               crypto: crypto@1dfa000 {
+> > -                     compatible = "qcom,crypto-v5.4";
+> > +                     compatible = "qcom,sdm845-qce";
+> >                       reg = <0 0x01dfa000 0 0x6000>;
+> >                       clocks = <&gcc GCC_CE1_AHB_CLK>,
+> >                                <&gcc GCC_CE1_AXI_CLK>,
+> >
+>
+> and in connection to my review comment on v5 11/22 there should be done
+> similar changes for ipq8074.dtsi and msm8996.dtsi.
 
-diff --git a/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
-new file mode 100644
-index 000000000000..362142252667
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/marvell-cn10k-tad.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/marvell-cn10k-tad.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell CN10K LLC-TAD performance monitor
-+
-+maintainers:
-+  - Bhaskara Budiredla <bbudiredla@marvell.com>
-+
-+description: |
-+  The Tag-and-Data units (TADs) maintain coherence and contain CN10K
-+  shared on-chip last level cache (LLC). The tad pmu measures the
-+  performance of last-level cache. Each tad pmu supports up to eight
-+  counters.
-+
-+  The DT setup comprises of number of tad blocks, the sizes of pmu
-+  regions, tad blocks and overall base address of the HW.
-+
-+properties:
-+  compatible:
-+    const: marvell,cn10k-tad-pmu
-+
-+  reg:
-+    maxItems: 1
-+
-+  marvell,tad-cnt:
-+    description: specifies the number of tads on the soc
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  marvell,tad-page-size:
-+    description: specifies the size of each tad page
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  marvell,tad-pmu-page-size:
-+    description: specifies the size of page that the pmu uses
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+required:
-+  - compatible
-+  - reg
-+  - marvell,tad-cnt
-+  - marvell,tad-page-size
-+  - marvell,tad-pmu-page-size
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    tad {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        tad_pmu@80000000 {
-+            compatible = "marvell,cn10k-tad-pmu";
-+            reg = <0x87e2 0x80000000 0x0 0x1000>;
-+            marvell,tad-cnt = <1>;
-+            marvell,tad-page-size = <0x1000>;
-+            marvell,tad-pmu-page-size = <0x1000>;
-+        };
-+    };
--- 
-2.17.1
+Ok, I will fix this in v6.
 
+Thanks,
+Bhupesh
