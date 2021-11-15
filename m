@@ -2,63 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A7BD4504E3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7B74504E5
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:04:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbhKONGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 08:06:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230076AbhKONGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 08:06:46 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7709DC061570
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:03:50 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id z8so35317598ljz.9
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:03:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
-        b=Txd06e31SJqSlEenf94CBNtKh1CaFJhlsZ6hCxKSedcHCM0QCZn77JLY/GKTOJM9Oj
-         2bn53HJxUDjAjG+O+73nvHeHcoSuwdAUx7Gmu6xpJhDTTAsWJa9BBSqgYmNxAy8bh3Tz
-         e/S4p3x/gK7/MLPrM7qcyDCvLZrkSrN8Gq3ZygRxwoie9d3YlfU+ReovSdm2eb1YbaWz
-         frsJN5jTqkf8caqfDpHAgACcPsK+STmIRr5zKPoT8yXrlhvVIX+INO/lVzko6OdfA5fj
-         GwUAbwpUwurAXe706Qu4mJj2xF5vKCT+bDGibaU1Udwbam0/zb5Antw0kJmsqCSDbXab
-         CFhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
-        b=qeUmC7wbbNhxdh79PI3DMu5QCexdw/hqpfU7sSI9Or5+FnZK2zSvuzTWiV+2lTJ36D
-         3bMbCdNadpF0Ju2RQwD52kNE3LOWAD3vFySPipkLPyv32n1U1JuTTSy0qOryzFG8NTVM
-         1fOUzowABeQsAaOCtPWMayEdmoqdGvMv2Sw0pnUW7iS/Hncz4GfwWQs2LUDtL88IDHNx
-         bXAekINJE6Ih0dwZnj5l+C5lU0AxgG4KQ/dSFFg+viBhujSxSuqACGflcUDKxbpaNEO+
-         zghRj8m7BSIy+ZQeZau2fEUGcAa9AAx1iQ3LQsAmDT72WI4Q729W+eGJ4Gu1wGWwx7fw
-         jyfQ==
-X-Gm-Message-State: AOAM533UNxvnq01h8HPIyLn8Aj2Vk8zsgSlrj2HJ7we5X/JHcxLnMpYD
-        DRPzzegU8wjnSjNJtsVk/fU4JrC/bzOXAvtKgYU=
-X-Google-Smtp-Source: ABdhPJytlMRIbvYAOj6p49TSm7ewj4rnGya/Cy4qGEEzdd9DAP7yZsjDUSrK9bWfqqWitv7vaTuvNwyhyajDBQVLRAQ=
-X-Received: by 2002:a05:651c:2123:: with SMTP id a35mr39094190ljq.285.1636981428725;
- Mon, 15 Nov 2021 05:03:48 -0800 (PST)
+        id S230076AbhKONGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 08:06:53 -0500
+Received: from www.zeus03.de ([194.117.254.33]:45380 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231229AbhKONGt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 08:06:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=OLQihzRKyh2y1tQZCycpI3W9roJE
+        NIrd1K7JiBrcKzw=; b=e3Bu02K7i7uyvNYMDoFHa46HUAPsXRIPSBTVuOHM4mR/
+        vrYNlMettOwqW611Y6BjqKTTJzT2FGszgkpJme9B3HYLTrfcCET06f9hgR/7WSXY
+        8l/kPvJQrXup+4Myb+hu4+4gmiBxQ4m2sErKCtDDPnUsCwNHfRw+js+cxSlSvus=
+Received: (qmail 2337764 invoked from network); 15 Nov 2021 14:03:50 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Nov 2021 14:03:50 +0100
+X-UD-Smtp-Session: l3s3148p1@2jancNPQvrYgAwDPXwfBADNdh3YJLcIx
+Date:   Mon, 15 Nov 2021 14:03:50 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH v2 7/7] memory: renesas-rpc-if: Add support for RZ/G2L
+Message-ID: <YZJatk2Xs6bYdCyB@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Brown <broonie@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6504:3048:0:0:0:0 with HTTP; Mon, 15 Nov 2021 05:03:48
- -0800 (PST)
-Reply-To: christopherdaniel830@gmail.com
-From:   Christopher Daniel <chrstopherdaniel830@gmail.com>
-Date:   Mon, 15 Nov 2021 13:03:48 +0000
-Message-ID: <CAN=DgiR_tmab8hDmMEqiZvr3QDnbfw1o0K0rxX_T0_QAnmCepg@mail.gmail.com>
-Subject: Investment Funding
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ih87i6XTGwSWpEQ3"
+Content-Disposition: inline
+In-Reply-To: <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-.
-I wish to invite you to participate in our Investment Funding Program,
-get back to me for more details if interested please.
 
-Regards.
-Christopher Daniel.
+--ih87i6XTGwSWpEQ3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Oct 25, 2021 at 09:56:31PM +0100, Lad Prabhakar wrote:
+> SPI Multi I/O Bus Controller on RZ/G2L SoC is almost identical to
+> the RPC-IF interface found on R-Car Gen3 SoC's.
+>=20
+> This patch adds a new compatible string for the RZ/G2L family so
+> that the timing values on RZ/G2L can be adjusted.
+>=20
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+After some internal investigations we found out that we have to live
+with these magic numbers. We shouldn't mix documentation there. So, this
+patch is fine as is. The minor nit I will fix incrementally because I
+will work on this file soon as well.
+
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+
+--ih87i6XTGwSWpEQ3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGSWrUACgkQFA3kzBSg
+KbZACQ//QW6h49hTvyDnW3FXxCnOu8Fjy4Du93vzYyiffKiu1rT1kWz/eCxEDYIe
+nAjwuUERonPPxtlnfyH7b1ZvC4wAde8dskw01huc7sJT/gNFHNp5t20B9Aj1R/eP
+yMNoG5cEtDcYNUvjTQkfLZ9XQvH8m7KWVQUOcVx9IgCnCL9QGzOe6lGVADhTf5gX
+orNojeAF09rUS/VkjzEbvcsx/8l4zKHQYmYWEIb9Q3nPvrv3UtT0DZeK7S9r1LMi
+NsCrQCTKQQ4F31Vl3VQQMF+WhO3hGHXpzQKWK6MjccNGA/HgccptkYmgx7MECgrX
++k5deLVADSt18C+1ExdaODcD056JYw39cqOZL3Ig1K+9YVeWDFXXIcfFGoSUwFNR
+eCn6Z+ps5LWaVqRIUkLHjo6X80IXoK3Z8GX2R518BLxc+tLRZbC0LObGPmIr3T+l
+U0AE2NjVxscEFB/CFHRx4JR0W1ywyD6ZwbIoZVo2Mf5kdvjzJGajGRrGQLbPzLkO
+9K8as9oOsjHwDhMKTJ4a8/9qTzWgsmzz5x9hZB+30g8JJm9l18+s0EKHFwmt0kR/
+Ly0L8nVSI3C4NSTf+i02jsxC5wXoUXUZzAJc57XdME5SQEGxEbDJNbNvhstKsyZh
+je4ZKZtMQKci6ngq+QhKF/eODcypttoHlG886SPcmoH5W+U6cKA=
+=JiqE
+-----END PGP SIGNATURE-----
+
+--ih87i6XTGwSWpEQ3--
