@@ -2,87 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B18A0450598
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACAE84505A2
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:36:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231571AbhKONjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 08:39:00 -0500
-Received: from mail.iot.bzh ([51.75.236.24]:3234 "EHLO frontal.iot.bzh"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231499AbhKONiA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 08:38:00 -0500
-Received: from frontal.iot.bzh (localhost [127.0.0.1])
-        by frontal.iot.bzh (Proxmox) with ESMTP id 82F561B57A;
-        Mon, 15 Nov 2021 14:34:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iot.bzh; h=cc:cc
-        :content-transfer-encoding:content-type:content-type:date:from
-        :from:in-reply-to:message-id:mime-version:references:reply-to
-        :subject:subject:to:to; s=iot.bzh; bh=rZI6guij8/w14rkCNcERxGdCoB
-        9Aj0bsCuVWlWNBPEg=; b=KBvy+QCUDr83hIY/7Rh7/u20WKBbIyiqdwqmD2PW2o
-        1cmGzVi3vX39ZZ+bksKXYAKkQLbLOuOXXb/Q+PrHqp0fckPHwN66eJfVIcT5x7ef
-        W4saEbFPWhXAdchRc5ck98o8a4XRaNHmOkCvQyJzTfx97qVfqAdiM2D8BoxVlz1v
-        SzGCIfh4fIUvSCz+9j3zNX6Ctrlm4oYYlRrSdg65VvD53fzOi+PDApTgAEM1vKWF
-        xAQRxOBgIRpP+eCAvbtyugWWkxgx7R6XZl7NCbo8tmMN/2n82wJ3Skm+tTGS0BXd
-        IK9vOkqwTjN1pbZyxA/5TCXSDlx700PGDi5l+GpjUN/w==
-Message-ID: <fea8f698-ef98-2e11-a366-c32df5fd6cb2@iot.bzh>
-Date:   Mon, 15 Nov 2021 14:34:45 +0100
+        id S231842AbhKONjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 08:39:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231761AbhKONjc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 08:39:32 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C40C061570
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:36:33 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id k2so28060768lji.4
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:36:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=NHAujRj3nNPe07TxWi88DybAbp7vcb7zQT2ctaDgCnw=;
+        b=FzR5Eh1p/wYI0Xp5azs3EHYM9ZHdO9JS9dUE/3rqnok7FzetK1pjBVefVkSSOPK1ny
+         8L9uwBtpgMn5p3+uMyI6tfYNl8s+uguhyl3THyw4w6bQZHX5vu8z1WC3uYKCyXvZGFtr
+         BHFDgLKuwvJB7urYRXnSEdPgPgNf3Xwd6Hz5IEsLc4706VDmubwDhun7FEPNtbvTSBPB
+         uiGL+egfsXVeihYDezxEBRBgLxYaOLp0DoFcnsDRBYkuXz4zxa4m5UxgXaCAELRcOruI
+         ULYw8O0UvYXDWcLgSzm120cxaWcUn2OZtRxSATdQH+QSzzRA1WxLIjvc+q2XJ93QLtzT
+         S5Ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=NHAujRj3nNPe07TxWi88DybAbp7vcb7zQT2ctaDgCnw=;
+        b=5R1FoIlrrSif3/NSTF2C8cNiEUYWyzXD/5Xjpf+mK7BxiMaPLItECf+qBuicoS8+KP
+         FG4TstXFSLvLtoZICcce8z7cuhmWreC0V+3VBhYuTIq1D4NVv+BuwN07//MEgsABgD08
+         S3QhvWU6b3jsIfcPFmlqbWQGEshVmDFP7tl6ffQ9iZupMdDhk0FjFo0vfrv53R9JMroP
+         TsDWk1C5BWP2N7DobhHgeciYo20/4tfcH7sC22CAa1Jzk2XGrdNeqNSNTVKzXaoj4KO/
+         WiEimahpDhQWlijA6txoGgE4lOXu+y6oYKC7vkQAsnYFKZfPio24EtIQ/Z0QDG3BGioL
+         gzag==
+X-Gm-Message-State: AOAM532Y0fZjwjg7PbVRIsOSCjYoR2/NR2zkxyVKSM3xZ8C3pprlAukY
+        0gvGEev4FIgNk4WryKDghvBm9KuUBmOEr3ePfps=
+X-Google-Smtp-Source: ABdhPJzK3b21kk4b6oBF5sFFIAibvE6ar3wdTuB/WAT+ROWAWzf7yD3K/b1WopuLBAYM64W7CwaLIRGThouWlkcOeII=
+X-Received: by 2002:a2e:8041:: with SMTP id p1mr38907529ljg.158.1636983391337;
+ Mon, 15 Nov 2021 05:36:31 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Subject: Re: [RFC PATCH 1/3] dt-bindings: remoteproc: Add Renesas R-Car
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     geert+renesas@glider.be, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, mathieu.poirier@linaro.org
-References: <20211027073020.17055-1-julien.massot@iot.bzh>
- <20211027073020.17055-2-julien.massot@iot.bzh>
- <1635343948.051238.862170.nullmailer@robh.at.kernel.org>
-From:   Julien Massot <julien.massot@iot.bzh>
-In-Reply-To: <1635343948.051238.862170.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a9a:7448:0:b0:14b:25db:9719 with HTTP; Mon, 15 Nov 2021
+ 05:36:30 -0800 (PST)
+Reply-To: salemchantal@mail.ee
+From:   MRS Salem Chantal Lawrence <jh9216366@gmail.com>
+Date:   Mon, 15 Nov 2021 05:36:30 -0800
+Message-ID: <CAOcbk86WkugRNG3tvCfxxw1zBY6EdaK+TOtkZaW2_tuQYKxj5Q@mail.gmail.com>
+Subject: Dear Friend
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Attention
 
-On 10/27/21 16:12, Rob Herring wrote:
-> On Wed, 27 Oct 2021 09:30:18 +0200, Julien Massot wrote:
->> Renesas R-Car SoCs may contains a Realtime processor.
->> This patch adds binding for this remote processor.
->>
->> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
->> ---
->>   .../remoteproc/renesas,rcar-rproc.yaml        | 66 +++++++++++++++++++
->>   1 file changed, 66 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:26.17-46: Warning (reg_format): /example-0/reserved-memory/cr7_ram@40040000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:22.13-20: Warning (ranges_format): /example-0/reserved-memory:ranges: empty "ranges" property but its #address-cells (2) differs from /example-0 (1)
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:24.39-27.15: Warning (avoid_default_addr_size): /example-0/reserved-memory/cr7_ram@40040000: Relying on default #address-cells value
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dts:24.39-27.15: Warning (avoid_default_addr_size): /example-0/reserved-memory/cr7_ram@40040000: Relying on default #size-cells value
-> Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-> Indeed address-cells and size-cells was not specified in this binding example,
-will be fixed in next version.
+You have been compensated with the sum of 4.6 million dollars in this
+United Nation the payment will be issue into Atm Visa Card and send to you
+from the Bank we need your Address Passport and your whatsapp number
 
-Thanks for the test !
+Contact This My WhatsApp Number for more Details (+1 (201)308-2233
 
-Regards,
--- 
-Julien Massot [IoT.bzh]
-
+THANKS
+MRS Salem Chantal Lawrence
