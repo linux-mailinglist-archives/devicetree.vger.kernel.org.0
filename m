@@ -2,134 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CF5644FE6D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 06:34:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7083544FE76
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 06:54:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbhKOFhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 00:37:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46892 "EHLO
+        id S229448AbhKOF5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 00:57:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbhKOFhi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 00:37:38 -0500
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 038B8C0613B9
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:34:42 -0800 (PST)
-Received: by mail-ot1-x32c.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso12005363otr.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:34:42 -0800 (PST)
+        with ESMTP id S230093AbhKOF5I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 00:57:08 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 400DCC061746;
+        Sun, 14 Nov 2021 21:54:09 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id 1so33060356ljv.2;
+        Sun, 14 Nov 2021 21:54:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0v+LGI2uk93QWh0zE0VchiXosnpImd7/fjmzIO4RhH4=;
-        b=ljdiFAqtZ9NPKkvltzxH4bg3ngROQECeo8ejU0Y6tHLuMP3wi1QCPrFvplPgDFWNzf
-         15JJjBoHIQ8Isk/aYpGaqQLD/wk9IR2Q97xUbnp1IKi5niLXS6HBKX8qZSJ1SU3r//Tl
-         XZ+f37jt3IOPdJRdRTpEAwdIaoi/JorESwGeobXlgr+s/VRJJCTYulzOtybsIRhk59Rr
-         BgHLjxs2DRdrE09uIGldzbPF0aoXjwJjsZeca+b3C08tzAP4YvPlF8kwL3N0I0Uz/zoD
-         AMBiVM6cFv5bOrwWvDR2XrfqqvtUIDYmHXkVu0UQfon2XyM4HV/noyNefHz5dU+Fb02e
-         NzfA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8qflnB7MYgfziBXsT+LtjTucbsoWLob914EY3p4OTsQ=;
+        b=K+ISysR7l4RTt12UPbkyLNCunsqekRgtKdrbxcG72ND5Uqvd/bVx8YI+spx3ccPa3+
+         cnBCAk/Z0ZVY1XkesS5Fm3Jy6/Ey7n+XsXxYtqqCx3RkKf5XqETAcA3nTqvUGyPcdII8
+         07w6fXgUewxdWbBezCFEVk+o9Dv/H0GhXH2tAWORwu1Sg7m75OWs9N0udMT2+XDMgYQa
+         9S07cYCS0SXawTtmZXZFUkrPXzSdiFFayOycnuTNlMyV65oDHQghrN8G0RlUYq5NNaCH
+         srPK7M8dSunw+8e5FzmE3B+rOf/PoRTXHMfxk5gO6sQLrRw/D/b+M91yZTuocf3ntSFl
+         IjwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0v+LGI2uk93QWh0zE0VchiXosnpImd7/fjmzIO4RhH4=;
-        b=J2R3e4ALNoWBpQ3FT1/bH02RGU5nvqp8WIli2noGY1qPQ3JGTKfRzPyQENML9WHfQL
-         TGkqKEoHTz+VZh3KGQkj6/OJiDnYLNP9Q+EQbPYHatQdyGFcYGawm0RFOJ8A89lwGiXX
-         oVBZDFUcFKsMgDgHyM5h8jtboz4Y20IPp3KkKE8iCNmsk1x6gYHBHRqlxxca35X8kWSc
-         KMuzvpb/kGqO/6Q01WgZQ9g6E38jySGAijcd+V9SfV0NsQ1+k77RF8ZFb187a2WVW4O0
-         Aap8b6nrYokEOJZkUFOBG8mf141Bxt1q2jNSXv1cSqEH9ucZp+rZILczSNuJJXxKQjx7
-         abHQ==
-X-Gm-Message-State: AOAM532ddBsgJ4dyuw0prSAM7MYw9EAI5VXrA8Uf8T0+i0ASpCWQvWhu
-        O798asoYMRNFU2BTGfiLM+IWXBFHNqJeqWXXVFXdfA==
-X-Google-Smtp-Source: ABdhPJwHFd1VM2HzkhZ7fd6WbE+aZtyX+zR0/Z8uF68YjNe5BDchdN2S4CXJSImAUK2bAuhAc0W+NfpsQA6yL2f8HY0=
-X-Received: by 2002:a05:6830:34a0:: with SMTP id c32mr30374599otu.379.1636954482214;
- Sun, 14 Nov 2021 21:34:42 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8qflnB7MYgfziBXsT+LtjTucbsoWLob914EY3p4OTsQ=;
+        b=IqVJ86OPQI6EnF4dBw9c9K6kL5NGZtNtlasTCGSTYr3K7hyLGbdKyVx2hqCBH8DUAH
+         +Fmxezz7fePMWV8LEH4CaU99BEi+bR50zRlzPl6sUTub5mPwhQ5QkQH5N2Qbz2JkUznm
+         QQ+oG80krbD85wYWJ7xu15O9Ah0H3JxMkFnSxlpTC7yYN/M2c2bysFdbkzEi3vrEHEfb
+         eXxAxDQSCM0Nx0ulzWhlnkKo3Tpr4vs1kx7TM/aETQk95uirj3hGfK6Y+rn/1Q3nuAD3
+         1ezxN0U8fXwNTnW+kZUDeDgSIQMmpQF8OfTD4PR3JsTRd02qF21gQXRoYikhfFTu+pPU
+         QEEg==
+X-Gm-Message-State: AOAM533pnKE/mqFZo6WmkIrM+hY0zoLh9OItN0vyqNqnp3IrjhyWIJqY
+        QseZLZn1hjWJQJKei2s1gV7aLTtiTrU=
+X-Google-Smtp-Source: ABdhPJyZaHVXNgDAuGbMz7OLoG2mleARlbDaV7o3MGSGjKAWPeHcioFgyl4hXtX9R5+er/99PjoKig==
+X-Received: by 2002:a2e:4952:: with SMTP id b18mr36117251ljd.352.1636955645266;
+        Sun, 14 Nov 2021 21:54:05 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id i13sm1308668lfb.45.2021.11.14.21.54.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 14 Nov 2021 21:54:04 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Justin Chen <justinpopo6@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH V4 RESEND 1/2] dt-bindings: watchdog: convert Broadcom's WDT to the json-schema
+Date:   Mon, 15 Nov 2021 06:53:53 +0100
+Message-Id: <20211115055354.6089-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-10-bhupesh.sharma@linaro.org> <YZAZxmsp5WLeOBuF@builder.lan>
-In-Reply-To: <YZAZxmsp5WLeOBuF@builder.lan>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 15 Nov 2021 11:04:31 +0530
-Message-ID: <CAH=2NtwGM0==3etkG6seV=3+xO347VNEoKghpyBs9DjZPU4xNA@mail.gmail.com>
-Subject: Re: [PATCH v5 09/22] dt-bindings: qcom-qce: Move 'clocks' to optional properties
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-On Sun, 14 Nov 2021 at 01:32, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
->
-> > QCom QCE block on some SoCs like ipq6018 don't
-> > require clock as the required property, so the properties
-> > 'clocks' and 'clock-names' can be moved instead in the dt-bindings
-> > to the 'optional' properties section.
-> >
-> > Otherwise, running 'make dtbs_check' leads to the following
-> > errors:
-> >
-> > dma-controller@7984000: clock-names:0: 'bam_clk' was expected
-> >       arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
-> >
-> > dma-controller@7984000: clock-names: Additional items are not allowed ('bam_clk' was unexpected)
-> >       arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
-> >
-> > dma-controller@7984000: clock-names: ['iface_clk', 'bam_clk'] is too long
-> >       arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
-> >
-> > dma-controller@7984000: clocks: [[9, 138], [9, 137]] is too long
-> >       arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 2 --
-> >  1 file changed, 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > index 30deaa0fa93d..f35bdb9ee7a8 100644
-> > --- a/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > +++ b/Documentation/devicetree/bindings/crypto/qcom-qce.yaml
-> > @@ -53,8 +53,6 @@ properties:
-> >  required:
-> >    - compatible
-> >    - reg
-> > -  - clocks
-> > -  - clock-names
->
-> I would prefer that we make this conditional on the compatible. That
-> said, if this only applies to ipq6018 I think we should double check the
-> fact that there's no clock there...
->
-> For the sake of making progress on the series, I think you should omit
-> this patch from the next version.
+This helps validating DTS files.
 
-Without this patch, 'make dtbs_check' fails with the following error:
-dma-controller@7984000: clock-names:0: 'bam_clk' was expected
-        arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+V2: Use valid $id
+V4: Add "clocks" maxItems and include Rob's Reviewed-by
+RESEND: Patchwork lost 1/2, marc.info lost 2/2
+---
+ .../bindings/watchdog/brcm,bcm7038-wdt.txt    | 19 ---------
+ .../bindings/watchdog/brcm,bcm7038-wdt.yaml   | 41 +++++++++++++++++++
+ 2 files changed, 41 insertions(+), 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
 
-dma-controller@7984000: clock-names: Additional items are not allowed
-('bam_clk' was unexpected)
-        arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
+deleted file mode 100644
+index 84122270be8f..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-BCM7038 Watchdog timer
+-
+-Required properties:
+-
+-- compatible : should be "brcm,bcm7038-wdt"
+-- reg : Specifies base physical address and size of the registers.
+-
+-Optional properties:
+-
+-- clocks: The clock running the watchdog. If no clock is found the
+-	  driver will default to 27000000 Hz.
+-
+-Example:
+-
+-watchdog@f040a7e8 {
+-	compatible = "brcm,bcm7038-wdt";
+-	clocks = <&upg_fixed>;
+-	reg = <0xf040a7e8 0x16>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
+new file mode 100644
+index 000000000000..ed6210666ead
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/brcm,bcm7038-wdt.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/brcm,bcm7038-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: BCM7038 watchdog timer
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++maintainers:
++  - Florian Fainelli <f.fainelli@gmail.com>
++  - Justin Chen <justinpopo6@gmail.com>
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  compatible:
++    const: brcm,bcm7038-wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++    description: >
++      The clock running the watchdog. If no clock is found the driver will
++      default to 27000000 Hz.
++
++unevaluatedProperties: false
++
++required:
++  - reg
++
++examples:
++  - |
++    watchdog@f040a7e8 {
++      compatible = "brcm,bcm7038-wdt";
++      reg = <0xf040a7e8 0x16>;
++      clocks = <&upg_fixed>;
++    };
+-- 
+2.31.1
 
-which I think is making Rob bot-check fail.
-
-So, I think instead of dropping the patch, let's try and understand
-from the 'ipq6018 qce' documentation if the clocks are really
-'optional' there for the qce block (as clock properties are not
-mentioned in the dts from the very first upstream version). If not, we
-can try and fix the 'ipq6018 qce' dts node itself.
-
-Regards,
-Bhupesh
