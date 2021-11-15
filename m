@@ -2,145 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45691451514
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEF4D451513
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350531AbhKOUYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 15:24:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47148 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347746AbhKOUJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:09:25 -0500
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C80DC06122A;
-        Mon, 15 Nov 2021 11:46:58 -0800 (PST)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D97583EEFB;
-        Mon, 15 Nov 2021 20:46:53 +0100 (CET)
-Date:   Mon, 15 Nov 2021 20:46:52 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>
-Subject: Re: [RESEND PATCH v2 04/13] backlight: qcom-wled: Fix off-by-one
- maximum with default num_strings
-Message-ID: <20211115194652.c4g2mg4budf4lkct@SoMainline.org>
-Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>, Bryan Wu <cooloney@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>
-References: <20211112002706.453289-1-marijn.suijten@somainline.org>
- <20211112002706.453289-5-marijn.suijten@somainline.org>
- <20211112120839.i6g747vewg6bkyk7@maple.lan>
- <20211112123501.pz5e6g7gavlinung@SoMainline.org>
- <20211112214337.r5xrpeyjgdygzc3n@SoMainline.org>
- <20211115112327.tklic3fggrv5mzjt@maple.lan>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211115112327.tklic3fggrv5mzjt@maple.lan>
+        id S1344870AbhKOUYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 15:24:33 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:34603 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348991AbhKOUBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:01:33 -0500
+Received: by mail-ot1-f49.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso29403500otj.1;
+        Mon, 15 Nov 2021 11:58:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=h+J1vaRpXcdhcsrNBSmrsbk4IyQ3tb4/aPu9pmZiLEo=;
+        b=cIAjWzAXrd4zPwbWqoeCgTgsp9SBJs4IDlISAXZaHVOEmZQx1c6YkOUQUxxQQ8Oi0o
+         OHAUiq4L6GBrtOqTnK915Z6oJqb2zgKaX6T+S8HR2vgX6M0B0kNnSEM0ZT3BJdB1fEKN
+         vfGe+3K3uvOY/2RBVQY5retOfGXkCf1kOGdxG/TXod6lypkrhhEDho/UkHf89ep8saLC
+         9bif5JQFhkDZM880ihKXXn6AdcqEMnesCv/+8uk3gJe7P37Ukmi+nMpC7ySUGce/qVjW
+         1pU7276gyjUAal0tPjhCsCClng16FvKplzYHeu3CwjWjWNarGx0REM+H1F4fjc/DuIuc
+         PW0A==
+X-Gm-Message-State: AOAM532mZefc5/WRHfKetlP4dOvjLlt/jOHagWkv0wNEwQCqXIrOeB8O
+        3dRCCyTEAqMI7ILtB+OELnen3OT+9w==
+X-Google-Smtp-Source: ABdhPJyRURepV+1IaiJnVPG/Z5JL0u11kbv3R2qh4yDVX84o2UIEGJdGww+DOnf28Cs/UjaKZt8JxA==
+X-Received: by 2002:a9d:6346:: with SMTP id y6mr1408110otk.154.1637006317343;
+        Mon, 15 Nov 2021 11:58:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 111sm3196849otu.55.2021.11.15.11.58.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Nov 2021 11:58:36 -0800 (PST)
+Received: (nullmailer pid 1287655 invoked by uid 1000);
+        Mon, 15 Nov 2021 19:58:35 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        linux-tegra@vger.kernel.org
+In-Reply-To: <20211115151707.287764-1-jonathanh@nvidia.com>
+References: <20211115151707.287764-1-jonathanh@nvidia.com>
+Subject: Re: [PATCH 1/2] dt-bindings: Add YAML bindings for NVENC and NVJPG
+Date:   Mon, 15 Nov 2021 13:58:35 -0600
+Message-Id: <1637006315.810213.1287654.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-15 11:23:27, Daniel Thompson wrote:
-> On Fri, Nov 12, 2021 at 10:43:37PM +0100, Marijn Suijten wrote:
-> > On 2021-11-12 13:35:03, Marijn Suijten wrote:
-> > > On 2021-11-12 12:08:39, Daniel Thompson wrote:
-> > > > On Fri, Nov 12, 2021 at 01:26:57AM +0100, Marijn Suijten wrote:
-> > > > > When not specifying num-strings in the DT the default is used, but +1 is
-> > > > > added to it which turns WLED3 into 4 and WLED4/5 into 5 strings instead
-> > > > > of 3 and 4 respectively, causing out-of-bounds reads and register
-> > > > > read/writes.  This +1 exists for a deficiency in the DT parsing code,
-> > > > > and is simply omitted entirely - solving this oob issue - by parsing the
-> > > > > property separately much like qcom,enabled-strings.
-> > > > > 
-> > > > > This also allows more stringent checks on the maximum value when
-> > > > > qcom,enabled-strings is provided in the DT.  Note that num-strings is
-> > > > > parsed after enabled-strings to give it final sign-off over the length,
-> > > > > which DT currently utilizes to get around an incorrect fixed read of
-> > > > > four elements from that array (has been addressed in a prior patch).
-> > > > > 
-> > > > > Fixes: 93c64f1ea1e8 ("leds: add Qualcomm PM8941 WLED driver")
-> > > > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > > > > Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > > > > ---
-> > > > >  drivers/video/backlight/qcom-wled.c | 51 +++++++++++------------------
-> > > > >  1 file changed, 19 insertions(+), 32 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > > > > index 977cd75827d7..c5232478a343 100644
-> > > > > --- a/drivers/video/backlight/qcom-wled.c
-> > > > > +++ b/drivers/video/backlight/qcom-wled.c
-> > > > > @@ -1552,6 +1520,25 @@ static int wled_configure(struct wled *wled)
-> > > > >  		}
-> > > > >  	}
-> > > > > 
-> > > > > +	rc = of_property_read_u32(dev->of_node, "qcom,num-strings", &val);
-> > > > > +	if (!rc) {
-> > > > > +		if (val < 1 || val > wled->max_string_count) {
-> > > > > +			dev_err(dev, "qcom,num-strings must be between 1 and %d\n",
-> > > > > +				wled->max_string_count);
-> > > > > +			return -EINVAL;
-> > > > > +		}
-> > > > > +
-> > > > > +		if (string_len > 0) {
-> > > > > +			dev_warn(dev, "qcom,num-strings and qcom,enabled-strings are ambiguous\n");
-> > > > 
-> > > > The warning should also be below the error message on the next if statement.
-> > > 
-> > > Agreed.
-> > 
-> > Thinking about this again while reworking the patches, I initially put
-> > this above the error to make DT writers aware.  There's no point telling
-> > them that their values are out of sync (num-strings >
-> > len(enabled-strings)), when they "shouldn't even" (don't need to) set
-> > both in the first place.  They might needlessly fix the discrepancy, see
-> > the driver finally probe (working backlight) and carry on without
-> > noticing this warning that now appears.
-> > 
-> > Sorry for bringing this back up, but I'm curious about your opinion.
+On Mon, 15 Nov 2021 15:17:06 +0000, Jon Hunter wrote:
+> Add YAML device tree bindings for the Tegra NVENC and NVJPG Host1x
+> engines.
 > 
-> With a more helpful warning about how to fix then I think it is OK to
-> have both the warning and the error.
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  .../gpu/host1x/nvidia,tegra210-nvenc.yaml     | 104 ++++++++++++++++++
+>  .../gpu/host1x/nvidia,tegra210-nvjpg.yaml     |  94 ++++++++++++++++
+>  2 files changed, 198 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml
+> 
 
-Thanks - I presume the message we settled upon last time is helpful
-enough:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-    Only one of qcom,num-strings or qcom,enabled-strings should be set
+yamllint warnings/errors:
 
-I'll respin this, together with this warning reordered into the next
-commit, and using __le16 for the cpu_to_le16 output.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.example.dt.yaml: nvenc@154c0000: interconnects: [[4294967295, 28, 4294967295], [4294967295, 43, 4294967295]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.example.dt.yaml: nvenc@154c0000: interconnect-names:1: 'read-1' was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.example.dt.yaml: nvenc@154c0000: interconnect-names: ['dma-mem', 'write'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
 
-- Marijn
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1555346
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
