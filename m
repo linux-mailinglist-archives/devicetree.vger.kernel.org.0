@@ -2,160 +2,527 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CBC344FF40
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 08:32:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCB5144FF39
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 08:30:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbhKOHfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 02:35:48 -0500
-Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:33814
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229663AbhKOHfs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 02:35:48 -0500
-X-Greylist: delayed 446 seconds by postgrey-1.27 at vger.kernel.org; Mon, 15 Nov 2021 02:35:47 EST
-X-MailGates: (compute_score:DELIVER,40,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(23393:0:AUTH_RELAY)
-        (envelope-from <vincent.shih@sunplus.com>); Mon, 15 Nov 2021 15:25:22 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Mon, 15 Nov 2021 15:25:17 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Mon, 15 Nov
- 2021 15:25:17 +0800
-From:   =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
-To:     Rob Herring <robh@kernel.org>,
-        Vincent Shih <vincent.sunplus@gmail.com>
-CC:     "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 2/2] dt-bindings: nvmem: Convert Sunplus OCOTP to
- json-schema
-Thread-Topic: [PATCH 2/2] dt-bindings: nvmem: Convert Sunplus OCOTP to
- json-schema
-Thread-Index: AQHXzt+Bi4bot/K8A0ijdtTeY0vwWav/kYWAgASdYUA=
-Date:   Mon, 15 Nov 2021 07:25:17 +0000
-Message-ID: <9e500e29435140279d21ea42a85c9d2e@sphcmbx02.sunplus.com.tw>
-References: <1635743712-25358-1-git-send-email-vincent.shih@sunplus.com>
- <1635743712-25358-3-git-send-email-vincent.shih@sunplus.com>
- <YY6JXT2UK+tyXfdY@robh.at.kernel.org>
-In-Reply-To: <YY6JXT2UK+tyXfdY@robh.at.kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.45]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S230357AbhKOHdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 02:33:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44192 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229879AbhKOHdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 02:33:17 -0500
+Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23BADC061746;
+        Sun, 14 Nov 2021 23:30:22 -0800 (PST)
+Received: by mail-ua1-x930.google.com with SMTP id n6so16339716uak.1;
+        Sun, 14 Nov 2021 23:30:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=1su6iA46WyFetS4ZI0bp7XINkatMdXDdw1i0/lyrVEA=;
+        b=Jrk3hcsrX/me/i9TrETBvNnGZMwYE6E4CJ/izt7Aae1ZJmbkJwaei5JcgdCvd/IdE6
+         KGagX3F7XJW/s7yLDfxJJoxWCrXIiapGUOvHt9K/9Rw3nUXjrSVlpTajHYhd3kXLyS6N
+         zA0i1a9Y6wP6LCvQVYwkLv38l5MMM1ZiNd3W0JCmHYXvV5H39+GzXb9SX0cMMN6v5FqM
+         OjlNbhmh1zzDLHJfqurCbQGcTqttc+kcaERd86THc/0gFCs5G64MxSZSX3r97ClFotF2
+         ixTxf+fifQELPj167e4p1VE8rpGxTvvfnkmjQlWGRjyFdraJej7qwBmutyGp70vUqL74
+         x1mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=1su6iA46WyFetS4ZI0bp7XINkatMdXDdw1i0/lyrVEA=;
+        b=cVO+WqcV3m+Y8u4yYXMh+TLVBDHYwC6Lo3+j85ijYbwUm0uhOmo/EVHJ3rHJZvCh4p
+         x6OPqjNMoK+iFivrWrUbdZnL7FNxDR8aDCIoPC1oC+Gkwus60PzXACOfPGxj9dx+nFaw
+         XR95cwCjLG/n3GqC5MhjbhVPvfohD46K3MZNxTF7oXA8aUuGj5IsMoBdcWZT9VVVKJSc
+         6FGqBfky/93bXK4y71L1DdS1rrvm87l8J3/nelJUj3qJ8+XDQg7pMhHIRCRxkhlKynMN
+         IkcTz9yLhPgbpCvLvVY1EixTMokLRig/5XYM5B2lPfnxATKG4bnGCue+33t1quLy5USC
+         X3gA==
+X-Gm-Message-State: AOAM533PLLCelxMM9qXohtfQNs4RaFpdOCIlHtteDvOo4g9W44a6tiJW
+        51w1iOYXjIK6X8Y6qMA10Um2yvlCh+hbnCgKol/h3Aj3
+X-Google-Smtp-Source: ABdhPJxOtSWE6ZPFl63nFH1tnx7de41xfmZibd3YbdZs22eZAKxu+9/Cju8vcCai9OgIoXwMV0Vtl3nUUIMypWV+quw=
+X-Received: by 2002:a67:df07:: with SMTP id s7mr39994709vsk.42.1636961421166;
+ Sun, 14 Nov 2021 23:30:21 -0800 (PST)
 MIME-Version: 1.0
+References: <20211114132335.47651-1-gilles.talis@gmail.com>
+ <20211114132335.47651-2-gilles.talis@gmail.com> <b86bd1eb-8c05-2c54-4e05-e5d72ba3a890@metafoo.de>
+ <CAKcgs2x7FCf8xBj-PQ62UQNgkxBjFfQznEVCysNO547Yr5Ct3w@mail.gmail.com> <20211114164942.32b60952@jic23-huawei>
+In-Reply-To: <20211114164942.32b60952@jic23-huawei>
+From:   Gilles Talis <gilles.talis@gmail.com>
+Date:   Mon, 15 Nov 2021 08:29:57 +0100
+Message-ID: <CAKcgs2xw8B9gkoihMtGAWWf8aj33vR68DrZvUv1rbQn091NyoA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] iio: humidity: Add support for Sensirion SHTC3 sensor
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-aGVsbG8NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSb2IgSGVycmlu
-ZyA8cm9iaEBrZXJuZWwub3JnPg0KPiBTZW50OiBGcmlkYXksIE5vdmVtYmVyIDEyLCAyMDIxIDEx
-OjM0IFBNDQo+IFRvOiBWaW5jZW50IFNoaWggPHZpbmNlbnQuc3VucGx1c0BnbWFpbC5jb20+DQo+
-IENjOiBzcmluaXZhcy5rYW5kYWdhdGxhQGxpbmFyby5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtl
-cm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBWaW5jZW50DQo+IFNoaWggrEnA
-Q8JFIDx2aW5jZW50LnNoaWhAc3VucGx1cy5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggMi8y
-XSBkdC1iaW5kaW5nczogbnZtZW06IENvbnZlcnQgU3VucGx1cyBPQ09UUCB0byBqc29uLXNjaGVt
-YQ0KPiANCj4gT24gTW9uLCBOb3YgMDEsIDIwMjEgYXQgMDE6MTU6MTJQTSArMDgwMCwgVmluY2Vu
-dCBTaGloIHdyb3RlOg0KPiA+IENvbnZlcnQgU3VucGx1cyBPQ09UUCB0byBqc29uLXNjaGVtYQ0K
-PiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogVmluY2VudCBTaGloIDx2aW5jZW50LnNoaWhAc3VucGx1
-cy5jb20+DQo+IA0KPiBBdXRob3IgYW5kIFNvYiBlbWFpbHMgZG9uJ3QgbWF0Y2guDQo+IA0KPiA+
-IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvbnZtZW0vc3VucGx1cyxzcDcwMjEtb2NvdHAueWFtbCAg
-ICAgICB8IDExNiArKysrKysrKysrKysrKysrKysrKysNCj4gPiAgTUFJTlRBSU5FUlMgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDEgKw0KPiA+ICAyIGZpbGVzIGNo
-YW5nZWQsIDExNyBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+IERv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9zdW5wbHVzLHNwNzAyMS1vY290
-cC55YW1sDQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvbnZtZW0vc3VucGx1cyxzcDcwMjEtb2NvdHAueWFtbA0KPiA+IGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL252bWVtL3N1bnBsdXMsc3A3MDIxLW9jb3RwLnlh
-bWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAuLjJkMThmMzgN
-Cj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL252bWVtL3N1bnBsdXMsc3A3MDIxLW9jb3RwLnlhbQ0KPiA+ICsrKyBsDQo+ID4gQEAg
-LTAsMCArMSwxMTYgQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAt
-b25seSBPUiBCU0QtMi1DbGF1c2UpICMgQ29weXJpZ2h0DQo+ID4gKyhDKSBTdW5wbHVzIENvLiwg
-THRkLiAyMDIxICVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJl
-ZS5vcmcvc2NoZW1hcy9udm1lbS9zdW5wbHVzLHNwNzAyMS1vY290cC55YW1sIw0KPiA+ICskc2No
-ZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiAr
-DQo+ID4gK3RpdGxlOiBPbi1DaGlwIE9UUCBNZW1vcnkgZm9yIFN1bnBsdXMgc3A3MDIxDQo+ID4g
-Kw0KPiA+ICttYWludGFpbmVyczoNCj4gPiArICAtIFZpbmNlbnQgU2hpaCA8dmluY2VudC5zaGlo
-QHN1bnBsdXMuY29tPg0KPiA+ICsNCj4gPiArYWxsT2Y6DQo+ID4gKyAgLSAkcmVmOiAibnZtZW0u
-eWFtbCMiDQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4g
-KyAgICBjb25zdDogc3VucGx1cyxzcDcwMjEtb2NvdHANCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+
-ICsgICAgbWF4SXRlbXM6IDINCj4gPiArDQo+ID4gKyAgcmVnLW5hbWVzOg0KPiA+ICsgICAgaXRl
-bXM6DQo+ID4gKyAgICAgIC0gY29uc3Q6IGhiX2dwaW8NCj4gPiArICAgICAgLSBjb25zdDogb3Rw
-cngNCj4gPiArDQo+ID4gKyAgY2xvY2tzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+
-ID4gKyAgcmVzZXRzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgIiNhZGRy
-ZXNzLWNlbGxzIjoNCj4gPiArICAgIGNvbnN0OiAxDQo+ID4gKw0KPiA+ICsgICIjc2l6ZS1jZWxs
-cyI6DQo+ID4gKyAgICBjb25zdDogMQ0KPiA+ICsNCj4gPiArICB0aGVybV9jYWxpYjoNCj4gDQo+
-IHMvXy8tLyBpbiBub2RlIG5hbWVzLg0KPiANCj4gPiArICAgIHR5cGU6IG9iamVjdA0KPiA+ICsg
-ICAgZGVzY3JpcHRpb246IHRoZXJtYWwgY2FsaWJyYXRpb24gdmFsdWVzDQo+IA0KPiA+ICsgICAg
-cHJvcGVydGllczoNCj4gPiArICAgICAgcmVnOg0KPiA+ICsgICAgICAgIG1heEl0ZW1zOiAxDQo+
-ID4gKw0KPiA+ICsgICAgcmVxdWlyZWQ6DQo+ID4gKyAgICAgIC0gcmVnDQo+IA0KPiBZb3UgY2Fu
-IGRyb3AgJ3JlZycgYXMgbnZtZW0ueWFtbCBzaG91bGQgY292ZXIgdGhhdC4NCj4gDQo+ID4gKw0K
-PiA+ICsgIG1hY19hZGRyMDoNCj4gPiArICAgIHR5cGU6IG9iamVjdA0KPiA+ICsgICAgZGVzY3Jp
-cHRpb246IE1BQyBhZGRyZXNzIG9mIGV0aGVybmV0IHBvcnQgMA0KPiA+ICsgICAgcHJvcGVydGll
-czoNCj4gPiArICAgICAgcmVnOg0KPiA+ICsgICAgICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+
-ICsgICAgcmVxdWlyZWQ6DQo+ID4gKyAgICAgIC0gcmVnDQo+ID4gKw0KPiA+ICsgIG1hY19hZGRy
-MToNCj4gPiArICAgIHR5cGU6IG9iamVjdA0KPiA+ICsgICAgZGVzY3JpcHRpb246IE1BQyBhZGRy
-ZXNzIG9mIGV0aGVybmV0IHBvcnQgMQ0KPiA+ICsgICAgcHJvcGVydGllczoNCj4gPiArICAgICAg
-cmVnOg0KPiA+ICsgICAgICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgICAgcmVxdWlyZWQ6
-DQo+ID4gKyAgICAgIC0gcmVnDQo+ID4gKw0KPiA+ICsgIGRpc2Nfdm9sOg0KPiA+ICsgICAgdHlw
-ZTogb2JqZWN0DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogZGlzY29ubmVjdCB2b2x0YWdlcyBvZiB1
-c2IyIHBvcnQgMCBhbmQgcG9ydCAxDQo+ID4gKyAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICBy
-ZWc6DQo+ID4gKyAgICAgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgICByZXF1aXJlZDoN
-Cj4gPiArICAgICAgLSByZWcNCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0
-aWJsZQ0KPiA+ICsgIC0gcmVnDQo+ID4gKyAgLSByZWctbmFtZXMNCj4gPiArICAtIGNsb2Nrcw0K
-PiA+ICsgIC0gcmVzZXRzDQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNl
-DQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNpbmNsdWRlIDxk
-dC1iaW5kaW5ncy9jbG9jay9zcC1zcDcwMjEuaD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5k
-aW5ncy9yZXNldC9zcC1zcDcwMjEuaD4NCj4gPiArDQo+ID4gKyAgICBvdHA6IG90cEA5QzAwQUYw
-MCB7DQo+IA0KPiBMb3dlcmNhc2UgaGV4IGZvciB1bml0LWFkZHJlc3MNCj4gDQo+ID4gKyAgICAg
-ICAgY29tcGF0aWJsZSA9ICJzdW5wbHVzLHNwNzAyMS1vY290cCI7DQo+ID4gKyAgICAgICAgcmVn
-ID0gPDB4OUMwMEFGMDAgMHgzND4sIDwweDlDMDBBRjgwIDB4NTg+Ow0KPiA+ICsgICAgICAgIHJl
-Zy1uYW1lcyA9ICJoYl9ncGlvIiwgIm90cHJ4IjsNCj4gPiArICAgICAgICBjbG9ja3MgPSA8JmNs
-a3MgT1RQUlg+Ow0KPiA+ICsgICAgICAgIHJlc2V0cyA9IDwmcnN0YyBSU1RfT1RQUlg+Ow0KPiA+
-ICsNCj4gPiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCj4gPiArICAgICAgICAjc2l6
-ZS1jZWxscyA9IDwxPjsNCj4gPiArICAgICAgICB0aGVybV9jYWxpYjogdGhlcm1fY2FsaWJAMTQg
-ew0KPiA+ICsgICAgICAgICAgcmVnID0gPDB4MTQgMHgzPjsNCj4gPiArICAgICAgICB9Ow0KPiA+
-ICsgICAgICAgIG1hY19hZGRyMDogbWFjX2FkZHIwQDM0IHsNCj4gPiArICAgICAgICAgIHJlZyA9
-IDwweDM0IDB4Nj47DQo+ID4gKyAgICAgICAgfTsNCj4gPiArICAgICAgICBtYWNfYWRkcjE6IG1h
-Y19hZGRyMUAzQSB7DQo+IA0KPiBIZXJlIHRvby4gSWYgbnZtZW0ueWFtbCBpcyBub3QgY2hlY2tp
-bmcgdGhpcywgaXQgc2hvdWxkIGJlLg0KPiANCj4gPiArICAgICAgICAgIHJlZyA9IDwweDNBIDB4
-Nj47DQo+ID4gKyAgICAgICAgfTsNCj4gPiArICAgICAgICBkaXNjX3ZvbDogZGlzY192b2xAMTgg
-ew0KPiANCj4gU29ydCBub2RlcyBpbiBvcmRlciBvZiB1bml0LWFkZHJlc3MuDQo+IA0KPiA+ICsg
-ICAgICAgICAgcmVnID0gPDB4MTggMHgyPjsNCj4gPiArICAgICAgICB9Ow0KPiA+ICsgICAgfTsN
-Cj4gPiArLi4uDQo+ID4gZGlmZiAtLWdpdCBhL01BSU5UQUlORVJTIGIvTUFJTlRBSU5FUlMgaW5k
-ZXggYjdkZjJmMS4uYzBjY2M5NSAxMDA2NDQNCj4gPiAtLS0gYS9NQUlOVEFJTkVSUw0KPiA+ICsr
-KyBiL01BSU5UQUlORVJTDQo+ID4gQEAgLTE3OTUwLDYgKzE3OTUwLDcgQEAgRjoJZHJpdmVycy9u
-ZXQvZXRoZXJuZXQvZGxpbmsvc3VuZGFuY2UuYw0KPiA+ICBTVU5QTFVTIE9DT1RQIERSSVZFUg0K
-PiA+ICBNOglWaW5jZW50IFNoaWggPHZpbmNlbnQuc2hpaEBzdW5wbHVzLmNvbT4NCj4gPiAgUzoJ
-TWFpbnRhaW5lZA0KPiA+ICtGOglEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZt
-ZW0vc3VucGx1cyxzcDcwMjEtb2NvdHAueWFtbA0KPiA+ICBGOglkcml2ZXJzL252bWVtL3N1bnBs
-dXMtb2NvdHAuYw0KPiA+ICBGOglkcml2ZXJzL252bWVtL3N1bnBsdXMtb2NvdHAuaA0KPiA+ICBG
-Oglkcml2ZXJzL252bWVtL3N1bnBsdXMtb2NvdHAwLmMNCj4gPiAtLQ0KPiA+IDIuNy40DQo+ID4N
-Cj4gPg0KDQpSZWZlciB0byB5b3VyIGNvbW1lbnRzLCBJIG1vZGlmaWVkIHRoZSBzdGF0ZW1lbnRz
-IHNob3duIGJlbG93DQouLi4NCi4uLg0KICB0aGVybWFsLWNhbGlicmF0aW9uOg0KICAgIHR5cGU6
-IG9iamVjdA0KICAgIGRlc2NyaXB0aW9uOiB0aGVybWFsIGNhbGlicmF0aW9uIHZhbHVlcw0KDQog
-IGRpc2Nvbm5lY3Qtdm9sdGFnZToNCiAgICB0eXBlOiBvYmplY3QNCiAgICBkZXNjcmlwdGlvbjog
-ZGlzY29ubmVjdCB2b2x0YWdlcyBvZiB1c2IyIHBvcnQgMCBhbmQgcG9ydCAxDQoNCiAgbWFjLWFk
-ZHJlc3MwOg0KICAgIHR5cGU6IG9iamVjdA0KICAgIGRlc2NyaXB0aW9uOiBNQUMgYWRkcmVzcyBv
-ZiBldGhlcm5ldCBwb3J0IDANCg0KICBtYWMtYWRkcmVzczE6DQogICAgdHlwZTogb2JqZWN0DQog
-ICAgZGVzY3JpcHRpb246IE1BQyBhZGRyZXNzIG9mIGV0aGVybmV0IHBvcnQgMQ0KDQpyZXF1aXJl
-ZDoNCiAgLSBjb21wYXRpYmxlDQogIC0gcmVnDQogIC0gcmVnLW5hbWVzDQogIC0gY2xvY2tzDQog
-IC0gcmVzZXRzDQoNCkV4YW1wbGVzOg0KICAtIHwNCiAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3Mv
-Y2xvY2svc3Atc3A3MDIxLmg+DQogICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Jlc2V0L3NwLXNw
-NzAyMS5oPg0KDQogICAgb3RwOiBvdHBAOWMwMGFmMDAgew0KICAgICAgY29tcGF0aWJsZSA9ICJz
-dW5wbHVzLHNwNzAyMS1vY290cCI7DQogICAgICByZWcgPSA8MHg5YzAwYWYwMCAweDM0PiwgPDB4
-OWMwMGFmODAsIDB4NTg+Ow0KICAgICAgcmVnLW5hbWVzID0gImhiX2dwaW8iLCAib3RwcngiOw0K
-ICAgICAgY2xvY2tzID0gPCZjbGtzIE9UUFJYPjsNCiAgICAgIHJlc2V0cyA9IDwmcnN0YywgUlNU
-X09UUFJYPjsNCg0KICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQogICAgICAjc2l6ZS1jZWxs
-cyA9IDwxPjsNCiAgICAgIHRoZXJtX2NhbGliOiB0aGVybWFsLWNhbGlicmF0aW9uQDE0IHsNCiAg
-ICAgICAgcmVnID0gPDB4MTQgMHgzPjsNCiAgICAgIH0NCiAgICAgIGRpc2Nfdm9sOiBkaXNjb25u
-ZWN0LXZvbHRhZ2VAMTggew0KICAgICAgICByZWcgPSA8MHgxOCAweDI+Ow0KICAgICAgfQ0KICAg
-ICAgbWFjX2FkZHIwOiBtYWMtYWRkcmVzczBAMzQgew0KICAgICAgICByZWcgPSA8MHgzNCAweDY+
-Ow0KICAgICAgfQ0KICAgICAgbWFjX2FkZHIxOiBtYWMtYWRkcmVzczFAM2Egew0KICAgICAgICBy
-ZWcgPSA8MHgzYSAweDY+Ow0KICAgICAgfTsNCiAgICB9Ow0KLi4uDQoNCklzIHRoYXQgY29ycmVj
-dD8NClRoYW5rIHlvdSBmb3IgeW91ciByZXZpZXcgIQ0K
+Hi Jonathan,
+
+Le dim. 14 nov. 2021 =C3=A0 17:44, Jonathan Cameron <jic23@kernel.org> a =
+=C3=A9crit :
+>
+> On Sun, 14 Nov 2021 15:58:15 +0100
+> Gilles Talis <gilles.talis@gmail.com> wrote:
+>
+> > Hi Lars,
+> >
+> > Le dim. 14 nov. 2021 =C3=A0 14:47, Lars-Peter Clausen <lars@metafoo.de>=
+ a =C3=A9crit :
+> >
+> > > On 11/14/21 2:23 PM, Gilles Talis wrote:
+> > > > The SHTC3 is a digital humidity and temperature sensor.
+> > > > It covers humidity measurement range from 0 to 100% relative humidi=
+ty
+> > > > and temperature measurement range from -45 to 125 deg C.
+> > > >
+> > > > Datasheet: https://www.sensirion.com/file/datasheet_shtc3
+> > > >
+> > > > Signed-off-by: Gilles Talis <gilles.talis@gmail.com>
+> > >
+> > > Hi,
+> > >
+> > > Thanks for the path. This looks really good, very well written driver=
+.
+> > >
+> > > But we already have support for the shtc3 in the Linux kernel as part=
+ of
+> > > the hwmon framework, see drivers/hwmon/shtc1.c.
+> > >
+> > > - Lars
+> > >
+> > Thanks for the review. Oops, I should have been more careful. Next time=
+, I
+> > will try to be.
+> > Sorry for the spamming.
+>
+> The fun question of whether humidity drivers should be in IIO or HWMON wa=
+s my
+> fault many years ago.  Pre IIO being anywhere near ready for mainline (an=
+d mostly
+> a concept rather than code) I wanted to get at least one of the drivers I=
+ was
+> working with upstream and the characteristics of humidity drivers were ra=
+ther
+> different from ADCs and Accelerometers etc so I asked if Humidty counted =
+as
+> hardware monitoring and got something like "sure it could be" as a reply =
+so
+> upstreamed one driver in hwmon (sht15).
+>
+> Ever since it's been a bit random on where humidity drivers end up based =
+on
+> who is submitting them and their usecase + most similar drivers already u=
+pstream.
+>
+> Sorry you fell into this historical quirk!
+No problem. Thanks for taking the time to explain the history. Next
+time, I will make sure I also look in other subsystems before
+submitting such a driver.
+
+>
+> I took a quick look and agree with Lars: nice clean driver, but as you ca=
+n guess
+> we don't really want 2 drivers and there isn't a strong reason to propose
+> moving this one between subsystems.
+This obviously makes no sense having 2 drivers for this device. Thanks
+for the review and the kind words.
+
+>
+> Thanks,
+>
+> Jonathan
+Thanks,
+
+Gilles.
+
+>
+> >
+> > Thanks!
+> > Gilles.
+> >
+> >
+> >
+> > >
+> > > > ---
+> > > >   drivers/iio/humidity/Kconfig  |  11 ++
+> > > >   drivers/iio/humidity/Makefile |   1 +
+> > > >   drivers/iio/humidity/shtc3.c  | 286 +++++++++++++++++++++++++++++=
++++++
+> > > >   3 files changed, 298 insertions(+)
+> > > >   create mode 100644 drivers/iio/humidity/shtc3.c
+> > > >
+> > > > diff --git a/drivers/iio/humidity/Kconfig b/drivers/iio/humidity/Kc=
+onfig
+> > > > index 2de5494e7c22..7aab6141c64b 100644
+> > > > --- a/drivers/iio/humidity/Kconfig
+> > > > +++ b/drivers/iio/humidity/Kconfig
+> > > > @@ -98,6 +98,17 @@ config HTU21
+> > > >         This driver can also be built as a module. If so, the modul=
+e will
+> > > >         be called htu21.
+> > > >
+> > > > +config SHTC3
+> > > > +     tristate "Sensirion SHTC3 humidity and temperature sensor"
+> > > > +     depends on I2C
+> > > > +     select CRC8
+> > > > +     help
+> > > > +       Say yes here to build support for the Sensirion SHTC3
+> > > > +       humidity and temperature sensor.
+> > > > +
+> > > > +       To compile this driver as a module, choose M here: the modu=
+le
+> > > > +       will be called shtc3.
+> > > > +
+> > > >   config SI7005
+> > > >       tristate "SI7005 relative humidity and temperature sensor"
+> > > >       depends on I2C
+> > > > diff --git a/drivers/iio/humidity/Makefile
+> > > b/drivers/iio/humidity/Makefile
+> > > > index f19ff3de97c5..13020dfad1b3 100644
+> > > > --- a/drivers/iio/humidity/Makefile
+> > > > +++ b/drivers/iio/humidity/Makefile
+> > > > @@ -16,6 +16,7 @@ obj-$(CONFIG_HTS221_I2C) +=3D hts221_i2c.o
+> > > >   obj-$(CONFIG_HTS221_SPI) +=3D hts221_spi.o
+> > > >
+> > > >   obj-$(CONFIG_HTU21) +=3D htu21.o
+> > > > +obj-$(CONFIG_SHTC3) +=3D shtc3.o
+> > > >   obj-$(CONFIG_SI7005) +=3D si7005.o
+> > > >   obj-$(CONFIG_SI7020) +=3D si7020.o
+> > > >
+> > > > diff --git a/drivers/iio/humidity/shtc3.c b/drivers/iio/humidity/sh=
+tc3.c
+> > > > new file mode 100644
+> > > > index 000000000000..ec3d7215e378
+> > > > --- /dev/null
+> > > > +++ b/drivers/iio/humidity/shtc3.c
+> > > > @@ -0,0 +1,286 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-only
+> > > > +/*
+> > > > + * Sensirion SHTC3 Humidity and Temperature Sensor
+> > > > + *
+> > > > + * Copyright (c) 2021 Gilles Talis <gilles.talis@gmail.com>
+> > > > + *
+> > > > + * Datasheet: https://www.sensirion.com/file/datasheet_shtc3
+> > > > + *
+> > > > + * I2C slave address: 0x70
+> > > > + */
+> > > > +
+> > > > +#include <linux/crc8.h>
+> > > > +#include <linux/delay.h>
+> > > > +#include <linux/i2c.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/mod_devicetable.h>
+> > > > +
+> > > > +#include <linux/iio/iio.h>
+> > > > +
+> > > > +#define SHTC3_CMD(cmd_word)          cpu_to_be16(cmd_word)
+> > > > +#define SHTC3_CMD_LEN                        2
+> > > > +
+> > > > +#define SHTC3_ID_MASK                        0x083F
+> > > > +#define SHTC3_ID                     0x0807
+> > > > +
+> > > > +#define SHTC3_CRC8_POLYNOMIAL                0x31
+> > > > +
+> > > > +enum shtc3_cmd {
+> > > > +     SHTC3_CMD_GET_ID                =3D SHTC3_CMD(0xEFC8),
+> > > > +     SHTC3_CMD_SOFT_RESET            =3D SHTC3_CMD(0x805D),
+> > > > +     SHTC3_CMD_SLEEP                 =3D SHTC3_CMD(0xB098),
+> > > > +     SHTC3_CMD_WAKEUP                =3D SHTC3_CMD(0x3517),
+> > > > +     /*
+> > > > +      * Run measurement, low-power mode, clock stretching
+> > > > +      * temperature first
+> > > > +      */
+> > > > +     SHTC3_CMD_TEMP_MEAS_LP_CS       =3D SHTC3_CMD(0x6458),
+> > > > +     /*
+> > > > +      * Run measurement, low-power mode, clock stretching
+> > > > +      * relative humidity first
+> > > > +      */
+> > > > +     SHTC3_CMD_RH_MEAS_LP_CS         =3D SHTC3_CMD(0x44DE),
+> > > > +};
+> > > > +
+> > > > +DECLARE_CRC8_TABLE(shtc3_crc8_tbl);
+> > > > +
+> > > > +struct shtc3_rx_data {
+> > > > +     __be16  data;
+> > > > +     u8      crc;
+> > > > +} __packed;
+> > > > +
+> > > > +static int shtc3_send_cmd(struct i2c_client *client, u16 cmd, u16 =
+*data)
+> > > > +{
+> > > > +     int ret;
+> > > > +     struct shtc3_rx_data rx_data;
+> > > > +     u8 crc;
+> > > > +
+> > > > +     ret =3D i2c_master_send(client, (const char *)&cmd, SHTC3_CMD=
+_LEN);
+> > > > +     if (ret !=3D SHTC3_CMD_LEN)
+>
+> That might eat another error, so convention is to check ret < 0 first and=
+ then
+> check the length. That way you can return a more informative error if the=
+re
+> is one.   I see you do that on the recv below.
+>
+> > > > +             return -EIO;
+> > > > +
+> > > > +     /*
+> > > > +      * This is used to read temperature and humidity measurements
+> > > > +      * as well as the sensor ID.
+> > > > +      * Sensor sends 2 bytes of data followed by one byte of CRC
+> > > > +      */
+> > > > +     if (data) {
+> > > > +             ret =3D i2c_master_recv(client, (u8 *) &rx_data,
+> > > > +                                     sizeof(struct shtc3_rx_data))=
+;
+> > > > +             if (ret < 0)
+> > > > +                     return ret;
+> > > > +             if (ret !=3D sizeof(struct shtc3_rx_data))
+> > > > +                     return -EIO;
+> > > > +
+> > > > +             crc =3D crc8(shtc3_crc8_tbl, (u8 *)&rx_data.data,
+> > > > +                         2, CRC8_INIT_VALUE);
+> > > > +             if (crc !=3D rx_data.crc)
+> > > > +                     return -EIO;
+> > > > +
+> > > > +             *data =3D be16_to_cpu(rx_data.data);
+> > > > +     }
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static int shtc3_sleep(struct i2c_client *client)
+> > > > +{
+> > > > +     return shtc3_send_cmd(client, SHTC3_CMD_SLEEP, 0);
+> > > > +}
+> > > > +
+> > > > +static int shtc3_wakeup(struct i2c_client *client)
+> > > > +{
+> > > > +     if (shtc3_send_cmd(client, SHTC3_CMD_WAKEUP, 0) < 0)
+> > > > +             return -EIO;
+> > > > +
+> > > > +     /* Wait for device to wake up */
+> > > > +     usleep_range(180, 240);
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static int shtc3_read_channel(struct i2c_client *client, bool temp=
+)
+> > > > +{
+> > > > +     int ret;
+> > > > +     u16 cmd;
+> > > > +     u16 meas;
+> > > > +
+> > > > +     ret =3D shtc3_wakeup(client);
+> > > > +     if (ret < 0)
+> > > > +             return ret;
+> > > > +
+> > > > +     /*
+> > > > +      * Sensor sends back measurement results after measurement co=
+mmand
+> > > > +      * has been issued by the host.
+> > > > +      * Sensor sends 3 bytes (2 bytes of data + 1 byte of CRC) for=
+ each
+> > > > +      * channel sequentially
+> > > > +      * The command issued by the host determines the channel for =
+which
+> > > > +      * the sensor will first send the data.
+> > > > +      * We select the channel for which we need the results
+> > > > +      * then only read back the 2 bytes corresponding to this chan=
+nel.
+> > > > +      */
+> > > > +     cmd =3D temp ? SHTC3_CMD_TEMP_MEAS_LP_CS : SHTC3_CMD_RH_MEAS_=
+LP_CS;
+> > > > +     ret =3D shtc3_send_cmd(client, cmd, &meas);
+> > > > +     if (ret < 0)
+> > > > +             return ret;
+> > > > +
+> > > > +     /* Go back to sleep */
+> > > > +     shtc3_sleep(client);
+> > > > +
+> > > > +     return meas;
+> > > > +}
+> > > > +
+> > > > +static int shtc3_read_raw(struct iio_dev *indio_dev,
+> > > > +                        struct iio_chan_spec const *chan, int *val=
+,
+> > > > +                        int *val2, long mask)
+> > > > +{
+> > > > +     struct i2c_client **client =3D iio_priv(indio_dev);
+> > > > +     int ret;
+> > > > +
+> > > > +     switch (mask) {
+> > > > +     case IIO_CHAN_INFO_RAW:
+> > > > +             ret =3D shtc3_read_channel(*client, (chan->type =3D=
+=3D
+> > > IIO_TEMP));
+> > > > +             if (ret < 0)
+> > > > +                     return ret;
+> > > > +             *val =3D ret;
+> > > > +             return IIO_VAL_INT;
+> > > > +     case IIO_CHAN_INFO_SCALE:
+> > > > +             if (chan->type =3D=3D IIO_TEMP) {
+> > > > +                     *val =3D 2;
+> > > > +                     *val2 =3D 670000;
+> > > > +             } else {
+> > > > +                     *val =3D 0;
+> > > > +                     *val2 =3D 1525;
+> > > > +             }
+> > > > +             return IIO_VAL_INT_PLUS_MICRO;
+> > > > +     case IIO_CHAN_INFO_OFFSET:
+> > > > +             *val =3D -16852;
+> > > > +             return IIO_VAL_INT;
+> > > > +     default:
+> > > > +             break;
+> > > > +     }
+> > > > +
+> > > > +     return -EINVAL;
+>
+> I'd move this into the default: statement as saves a few lines and makes =
+it
+> slightly easier to read.
+>
+> > > > +}
+> > > > +
+> > > > +static const struct iio_chan_spec shtc3_channels[] =3D {
+> > > > +     {
+> > > > +             .type =3D IIO_HUMIDITYRELATIVE,
+> > > > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > > > +                     BIT(IIO_CHAN_INFO_SCALE),
+> > > > +     },
+> > > > +     {
+> > > > +             .type =3D IIO_TEMP,
+> > > > +             .info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |
+> > > > +                     BIT(IIO_CHAN_INFO_SCALE) |
+> > > BIT(IIO_CHAN_INFO_OFFSET),
+> > > > +     }
+> > > > +};
+> > > > +
+> > > > +static const struct iio_info shtc3_info =3D {
+> > > > +     .read_raw =3D shtc3_read_raw,
+> > > > +};
+> > > > +
+> > > > +static int shtc3_verify_id(struct i2c_client *client)
+> > > > +{
+> > > > +     int ret;
+> > > > +     u16 device_id;
+> > > > +     u16 reg_val;
+> > > > +
+> > > > +     ret =3D shtc3_send_cmd(client, SHTC3_CMD_GET_ID, &reg_val);
+> > > > +     if (ret < 0)
+> > > > +             return ret;
+> > > > +
+> > > > +     device_id =3D reg_val & SHTC3_ID_MASK;
+> > > > +     if (device_id !=3D SHTC3_ID)
+> > > > +             return -ENODEV;
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static int shtc3_reset(struct i2c_client *client)
+> > > > +{
+> > > > +     int ret;
+> > > > +
+> > > > +     ret =3D shtc3_send_cmd(client, SHTC3_CMD_SOFT_RESET, 0);
+> > > > +     if (ret < 0)
+> > > > +             return ret;
+> > > > +
+> > > > +     /* Wait for device to enter idle state */
+> > > > +     usleep_range(180, 240);
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static int shtc3_setup(struct i2c_client *client)
+> > > > +{
+> > > > +     int ret;
+> > > > +
+> > > > +     ret =3D shtc3_verify_id(client);
+> > > > +     if (ret < 0) {
+> > > > +             dev_err(&client->dev, "SHTC3 not found\n");
+> > > > +             return -ENODEV;
+> > > > +     }
+> > > > +
+> > > > +     ret =3D shtc3_reset(client);
+> > > > +     if (ret < 0)
+> > > > +             return ret;
+> > > > +
+> > > > +     return shtc3_sleep(client);
+> > > > +}
+> > > > +
+> > > > +static int shtc3_probe(struct i2c_client *client,
+> > > > +                     const struct i2c_device_id *id)
+> > > > +{
+> > > > +     struct iio_dev *indio_dev;
+> > > > +     struct i2c_client **data;
+> > > > +     int ret;
+> > > > +
+> > > > +     indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*dat=
+a));
+> > > > +     if (!indio_dev)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     data =3D iio_priv(indio_dev);
+> > > > +     *data =3D client;
+>
+> It's normally better to put a structure in there because the chances
+> of a later change requiring more data is rather high...
+>
+> Obviously for now it will only have one element so will end up
+> compiling to pretty much the same you have here.
+>
+> > > > +
+> > > > +     indio_dev->name =3D dev_name(&client->dev);
+> > > > +     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > > > +     indio_dev->info =3D &shtc3_info;
+> > > > +     indio_dev->channels =3D shtc3_channels;
+> > > > +     indio_dev->num_channels =3D ARRAY_SIZE(shtc3_channels);
+> > > > +
+> > > > +     crc8_populate_msb(shtc3_crc8_tbl, SHTC3_CRC8_POLYNOMIAL);
+> > > > +
+> > > > +     ret =3D shtc3_setup(client);
+> > > > +     if (ret < 0) {
+> > > > +             dev_err(&client->dev, "SHTC3 setup failed\n");
+> > > > +             return ret;
+> > > > +     }
+> > > > +
+> > > > +     return devm_iio_device_register(&client->dev, indio_dev);
+> > > > +}
+> > > > +
+> > > > +static const struct i2c_device_id shtc3_id[] =3D {
+> > > > +     { "shtc3", 0 },
+> > > > +     { }
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(i2c, shtc3_id);
+> > > > +
+> > > > +static const struct of_device_id shtc3_dt_ids[] =3D {
+> > > > +     { .compatible =3D "sensirion,shtc3" },
+> > > > +     { }
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, shtc3_dt_ids);
+> > > > +
+> > > > +static struct i2c_driver shtc3_driver =3D {
+> > > > +     .driver =3D {
+> > > > +             .name =3D "shtc3",
+> > > > +             .of_match_table =3D shtc3_dt_ids,
+> > > > +     },
+> > > > +     .probe          =3D shtc3_probe,
+> > > > +     .id_table       =3D shtc3_id,
+> > > > +};
+> > > > +
+> > > > +module_i2c_driver(shtc3_driver);
+> > > > +MODULE_DESCRIPTION("Sensirion SHTC3 Humidity and Temperature Senso=
+r");
+> > > > +MODULE_AUTHOR("Gilles Talis <gilles.talis@gmail.com>");
+> > > > +MODULE_LICENSE("GPL");
+> > >
+> > >
+> > >
+>
