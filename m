@@ -2,143 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C16DF4519AA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:22:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4331B451D18
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:22:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347156AbhKOXZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 18:25:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        id S1350448AbhKPAZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 19:25:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353579AbhKOXWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 18:22:35 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46EFFC048C9E
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 14:24:52 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id m20so32711058edc.5
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 14:24:52 -0800 (PST)
+        with ESMTP id S244889AbhKPAVU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 19:21:20 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63A9C0337C5;
+        Mon, 15 Nov 2021 14:55:10 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id h24so14136500pjq.2;
+        Mon, 15 Nov 2021 14:55:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IA3uzL8dfIEQ00f28ulGEts22lGGQNmtQewySBj0XO4=;
-        b=Bnv0ttRfNHVHdyq5LKLvyQjxpdMyK7zrZW+zF5YjwYhHNMqsmwWAV+1/zv3GBfmNDp
-         dXZU4ZfENKWeRflnaGRWMV7/FLXl9mG+IQLudrxrRoFHQiAC8EGsSesyMOVUo5McbFRf
-         +ppanSSlMs9Y4KjlkRjfUIf5VlAb1iLIWkx5y64VCMv7JDe6NmtMgXnhUpdfxxE3ybIg
-         /Hohp9KrrQy5z8x2OBjx4agALcsIkg5fPX6iWzTB/WpMsVL7RmSwgi1CCzJrKrV7dXtC
-         ig4npH2Y26QS10+qVyUxNe6jMz0mps8dMY3nnEb87rYqgDXq7Iw2K8aoFA58OHiqXBfm
-         +gKw==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=h8mwC+d4QFHQpJNSGAlWP8/9bYmJ7cMAeS2IPbzMTgQ=;
+        b=Qy4kfsxQQIJ83pPLnGP+x52ZcDGeq0d1/5m+1il30OUK50oo8cjqyHXxsLC7VaBy9g
+         qP6VJRvOnToiS5iaeXYDdbOGq4ucbM2k9UQE59leS7eFCzicgKKrw5U0gXrh0eDIy9Tf
+         cS8jrIu6KcA2Z7i2Ldsx5eHTjE/X1xAYl3oOQ5GOArzzg/vBFTdm4pSA9c/oOl0GtyCO
+         CcVLhNY5+Pcjly47OML5ZDWY5I7MSF6UErJzoyd3xxkh7UToklQd00pmSzcUW8LFWd4C
+         M2LUlyFVIgMrieSaF2yWb34zMiB9tI0xAIvOB2YeP5+GXG3yvyjW+UrJQRyHdDNfiK4t
+         U4AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IA3uzL8dfIEQ00f28ulGEts22lGGQNmtQewySBj0XO4=;
-        b=FPUHIbSSkh9kwiox7h0i+YJVLFvD4ZU2NIH+5utuf1RFxoeVrn86JrDBiAEJJKE6rR
-         FGh791oobkZfCwmqIPodqGty0TG8jSoqOFxPn27QSlJpaSaOV6fgWIHaspH9qqbXszxU
-         AiW6hZGaH0woegGDPD0Nw0nwf8P8eYDTERMqiWQpsXHjbnJ8PjC2yOxtrBc+YoK19DcK
-         +Ja50CY3h81BhaWDlQJO8wrYuCLtpdcjB8Z0lx2e4sgdkfS9zt6PQHAJp3KxkJ3iS00X
-         iNNsLb3NfA3Yz4NMNyclnKw0oPHtmdyKj11OCvmGGaAHIAQL01cL8aycpU+xsn+4Mf0D
-         8Nrg==
-X-Gm-Message-State: AOAM532f0BPL8CtffpODsIVQz7fAhj1IRh9kN96khbIUHxrJXMiDhIon
-        KiHkbDHe+P4K++oZqnskAT0m62Cse/wOGqyfIDXOeg==
-X-Google-Smtp-Source: ABdhPJzxxVv/7atCKO4fqs47SY7HQRIQQsohvPdp3HNDWi3IhAIZG7PhKinKRwqO+bPgkrlboDKA7GrYcJYLOWPB3fY=
-X-Received: by 2002:a17:907:6da9:: with SMTP id sb41mr3361170ejc.88.1637015090784;
- Mon, 15 Nov 2021 14:24:50 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=h8mwC+d4QFHQpJNSGAlWP8/9bYmJ7cMAeS2IPbzMTgQ=;
+        b=JqbgMkRvbgD+pO75zn+30Jj6Xfl/NY4CSYsgPPDwC5R9sIUPrYsk+Q3N5lsf2CuJOY
+         VwsTPNSIHh19rkbcVssQZlFHHk1cio38UEpV7Ez2VvHTYB6yfk8qzKfMNoFePMVr739J
+         iiGwgxtUm7Zk8aKcktx10fk6SMflfTitBOWim4UuRUYiM4UvvU9q78DxRVgXUK4RsUCe
+         Yb5BHvHB5q/87UrtUMogUKKB68ZF0Q6cl6k4vdEuKJXK1M/mV2UGziz9lJ9/2ok+KMPI
+         j6zdF2ZTOtab55Ubtq/9gwPlqOiBQ+f7HpDxfXpa6sHQUpvDzajRXa5TZnff1CPYuMRI
+         KiWg==
+X-Gm-Message-State: AOAM532US/IUmAvCZUhPOjYL+5UY81vEipjXOhQPdj7+F/PCbpQss9Zo
+        EXXw+XniqHOFgN2l360Qh/U=
+X-Google-Smtp-Source: ABdhPJxiOLMAUa/Qn//xvGZCMUSVTcRvv2iJ2fc4TRb4gxDGAwLuf8bsLmNDQdoktUGSxID+g9hUEw==
+X-Received: by 2002:a17:90a:d3c3:: with SMTP id d3mr69609638pjw.209.1637016910276;
+        Mon, 15 Nov 2021 14:55:10 -0800 (PST)
+Received: from localhost ([103.99.179.247])
+        by smtp.gmail.com with ESMTPSA id e15sm15559680pfc.134.2021.11.15.14.55.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Nov 2021 14:55:09 -0800 (PST)
+Date:   Tue, 16 Nov 2021 06:55:05 +0800
+From:   Calvin Zhang <calvinzhang.cool@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Calvin Zhang <calvinzhang.cool@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] of: make MAX_RESERVED_REGIONS configurable
+Message-ID: <YZLlSd9vPXpQFz5b@debian>
+References: <20211115073240.3476043-1-calvinzhang.cool@gmail.com>
+ <CAL_JsqLtG4m6hqKc0TJs+e8ZBRZSGgOAoumnvg7u_D46i5D_AA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-6-brad@pensando.io>
- <20211028074945.rv2j5kgzk7yc2srr@mobilestation>
-In-Reply-To: <20211028074945.rv2j5kgzk7yc2srr@mobilestation>
-From:   Brad Larson <brad@pensando.io>
-Date:   Mon, 15 Nov 2021 14:24:40 -0800
-Message-ID: <CAK9rFnw396xK+u3qUpgbnGNw7WDJPJm0L3o4nPAcFeqQjBDbXg@mail.gmail.com>
-Subject: Re: [PATCH v3 05/11] spi: dw: Add Pensando Elba SoC SPI Controller bindings
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Rob Herring <robh@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLtG4m6hqKc0TJs+e8ZBRZSGgOAoumnvg7u_D46i5D_AA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
-
-On Thu, Oct 28, 2021 at 12:49 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+On Mon, Nov 15, 2021 at 08:05:45AM -0600, Rob Herring wrote:
+>On Mon, Nov 15, 2021 at 1:33 AM Calvin Zhang <calvinzhang.cool@gmail.com> wrote:
+>>
+>> MAX_RESERVED_REGIONS has changed several times. Max reserved regions
+>> count grows bigger as more SOC subsystems require reserved regions.
+>>
+>> Add a Kconfig for it so that when properly configured, the static
+>> reserved_mem array consumes less memory on systems with few reserved
+>> regions.
 >
-> On Sun, Oct 24, 2021 at 06:51:50PM -0700, Brad Larson wrote:
-> > The Pensando Elba SoC has integrated the DW APB SPI Controller
+>Please read prior discussions:
 >
-> Please add the "dt-bindings: " prefix to the patch name and discard
-> the word "bindings" from the title as the submitting DT-patches
-> requires:
-> Documentation/devicetree/bindings/submitting-patches.rst
-
-I'll add that.  I recall looking at the recent git log for similar
-changes to the file as the current recommended approach.
-
-> >
-> > Signed-off-by: Brad Larson <brad@pensando.io>
-> > ---
-> >  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > index d7e08b03e204..0b5ebb2ae6e7 100644
-> > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > @@ -73,6 +73,8 @@ properties:
-> >                - renesas,r9a06g032-spi # RZ/N1D
-> >                - renesas,r9a06g033-spi # RZ/N1S
-> >            - const: renesas,rzn1-spi   # RZ/N1
+>https://lore.kernel.org/all/?q=of+MAX_RESERVED_REGIONS
 >
-> > +      - description: Pensando Elba SoC SPI Controller
-> > +        const: pensando,elba-spi
+>And these 2 in particular:
 >
-> AFAICS from the driver-part of the patchset it's not enough. You've
-> also got the syscon phandle, which needs to be reflected in the
-> bindings. That also makes me thinking that you didn't perform the
-> "dtbs_check" on the dts-files you were going to submit, but for some
-> reason discarded from this series (btw why?). If you did you would
-> have got an error of an unevaluated property detection.
+>https://lore.kernel.org/all/CAL_JsqJQcWsguwfehAoaRf4o-2VqXxSzKzTqg7s4+N1bp=6V5Q@mail.gmail.com/
+>https://lore.kernel.org/all/CAL_JsqLGvUYQmCGXLgSO+6kFj2i87dpaTbMGbyu5oMt=eeu35A@mail.gmail.com/
+>
+OK. I will try to make the array dynamic.
 
-I ran the checks below and didn't get errors.  Rob provided some info
-and I found the server did not have yamllint installed (not flagged by
-tool).  Also dt-schema was not the latest.  I'm re-doing this and
-including "DT_CHECKER_FLAGS=-m" as that is new with v5.13.
-
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
-make ARCH=arm64 dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/pensando,elba.yaml
-
-make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
-make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/pensando,elba.yaml
-
-Thanks
-Brad
+Thanks,
+Calvin
