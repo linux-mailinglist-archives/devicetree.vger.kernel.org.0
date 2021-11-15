@@ -2,126 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 169F4450438
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 13:14:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B37450468
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 13:27:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230411AbhKOMRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 07:17:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53012 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbhKOMRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 07:17:23 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6663C061570;
-        Mon, 15 Nov 2021 04:14:26 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id w1so4815426edc.6;
-        Mon, 15 Nov 2021 04:14:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/gFycgLwyUjPa56INw/jotbUAOArA4S3TZPtoDHTkhw=;
-        b=nZeqMsC9B+frnRpBsl8HNdu6ipmI1MmXmepnct1stIpOCHPxcsCXTX95VrB7s94Tk5
-         FooebXGDsHa3yd6hcCGWnv2KmSa1GACgrH3Dy1lSgMn+ZS5LYW6buTiTgUevPlYH126F
-         wP5xQCBQpDVQTQ4i5PWrDIHwiLV47nvEw5lXetKJA95R0/Mk9IBudz3F8riyowSbUonr
-         fE/wslenOKtkim5lvroGv8kyVm/76IY3UUEeIazuqSwz1BHuQ7M4hovDPo6Vc1J/2mxV
-         VTY/odNC1uRoF2bTqGuszFjPhUhhFF52oBCSznezapiL7ylbS5rhfyPM0Ge/sJQivlG8
-         e2Jg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/gFycgLwyUjPa56INw/jotbUAOArA4S3TZPtoDHTkhw=;
-        b=z49ZrYL+UDA0i6B9nEXXzuE2F6qQGjZPZAuL+OtD5tIv112EKC19ZZ8SBLVLLawmgb
-         jz1IOvnECXuXiZVk9oXiMHOil9P42a7IVz13wFANkkwTKpxKp1DzsairPtsWwIYLESu3
-         GCi1osAS/uiAi8KcHA1aMdmCdaCSO8h9ANOQT8M8Rjd44ISnCw+9FPdQRN7mRx9KyesG
-         xI/F3r1uEUKVMlROq9dNMMY6VUIl0/oH+4Dai9fSxQo0vCwXlmfAfjKe8SddExetR2+p
-         AzJonddAdC515iU8tKWiYCeX5kn0w/97jCcwjTlL3P7sromD0ao0T6OPDDNRWyn8Uf/E
-         q9gQ==
-X-Gm-Message-State: AOAM5306hFhQQfvXE/hn5gtxuAOCOKlyowpCMfxCb3bBXR6mvPqGPoqL
-        JufXGENntPZXxvAiu3RlBcMXwhBRpnJ7WmCv8a8=
-X-Google-Smtp-Source: ABdhPJzzwWnEWZ1UrwJqyyomeAyCyojDjxz3yveHxH6voyPEbrTiAjqQZOA4Hl39RcdjtqSve9bKe8DBK6BkJ67PTvM=
-X-Received: by 2002:a05:6402:2067:: with SMTP id bd7mr6432385edb.240.1636978465314;
- Mon, 15 Nov 2021 04:14:25 -0800 (PST)
+        id S231307AbhKOMaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 07:30:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34524 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230023AbhKOMaR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 07:30:17 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id AF8E660E75;
+        Mon, 15 Nov 2021 12:27:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1636979237;
+        bh=F5xgtFrJKjVfMvCfA7QcAJ4dsZ16s3LT8k5CKGr/1PI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=o1L9ZjDhBQk84fpotogO9VX6NQUvApXx8FP5J3ngm4nD0JAZDlls92/d76XlH4b0/
+         9947OrVg1rGXZLqUwWmLj04FDD5L9RLt6nelgnExl6/iA6WdLEGyzp4+q4OfYuhxYa
+         h7kImsHey1PTyj8c9k1w9YIkklxJllGA1aUaz6+k=
+Date:   Mon, 15 Nov 2021 13:27:14 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Naresh Kamboju <naresh.kamboju@linaro.org>
+Cc:     Peter Geis <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-stable <stable@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkft-triage@lists.linaro.org
+Subject: Re: [stable-rc queue/5/15 ]: rk3568-evb1-v10.dts:10:10: fatal error:
+ rk3568.dtsi: No such file or directory
+Message-ID: <YZJSIvb3JF6dIsgx@kroah.com>
+References: <CA+G9fYsZ_Zks32WTNgKjQg2gwRuqS4E92ttH+okUCdnPFdaNTQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211108210509.29870-1-anand.ashok.dumbre@xilinx.com>
- <20211108210509.29870-3-anand.ashok.dumbre@xilinx.com> <20211113161724.371e4bcf@jic23-huawei>
- <CAHp75Vfz7zPXg2E=7Q+E-QnvfdHEDv7eFin1srjVZ53PtrMz7g@mail.gmail.com> <BY5PR02MB6916142EBF6AE18E49273A94A9989@BY5PR02MB6916.namprd02.prod.outlook.com>
-In-Reply-To: <BY5PR02MB6916142EBF6AE18E49273A94A9989@BY5PR02MB6916.namprd02.prod.outlook.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 15 Nov 2021 14:13:43 +0200
-Message-ID: <CAHp75VeemaMFCLncFAF24RU6kEbj=9F3w5LWjA-o-uky=pO=5w@mail.gmail.com>
-Subject: Re: [PATCH v8 2/4] iio: adc: Add Xilinx AMS driver
-To:     Anand Ashok Dumbre <ANANDASH@xilinx.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio <linux-iio@vger.kernel.org>, git <git@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Manish Narani <MNARANI@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+G9fYsZ_Zks32WTNgKjQg2gwRuqS4E92ttH+okUCdnPFdaNTQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 15, 2021 at 1:59 PM Anand Ashok Dumbre <ANANDASH@xilinx.com> wrote:
+On Mon, Nov 15, 2021 at 12:25:50PM +0530, Naresh Kamboju wrote:
+> Following build warnings/ errors noticed on Linux stable-rc queue/5.15 branch.
+> with gcc-11 for arm64 architecture.
+> 
+> arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+> (pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+> configuration space
+> arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+> (pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+> configuration space
+> arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+> (pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+> configuration space
+> arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi:464.3-52: Warning
+> (pci_device_reg): /pcie@f8000000/pcie@0,0:reg: PCI reg address is not
+> configuration space
+> arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts:10:10: fatal error:
+> rk3568.dtsi: No such file or directory
+>    10 | #include rk3568.dtsi
+>       |          ^~~~~~~~~~~~~
+> compilation terminated.
+> make[3]: *** [scripts/Makefile.lib:358:
+> arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dtb] Error 1
+> 
+> The first bad commit:
+> --------
+> arm64: dts: rockchip: move rk3568 dtsi to rk356x dtsi
+> [ Upstream commit 4e50d2173b67115a5574f4f4ce64ec9c5d9c136e ]
+> 
+> In preparation for separating the rk3568 and rk3566 device trees, move
+> the base rk3568 dtsi to rk356x dtsi.
+> This will allow us to strip out the rk3568 specific nodes.
+> 
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> Link: https://lore.kernel.org/r/20210710151034.32857-2-pgwipeout@gmail.com
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Sasha Levin <sashal@kernel.org
+> 
+> 
+> 
+> Build config:
+> https://builds.tuxbuild.com/20wHY13986hVAE9j4Kwxq4C8JUX/config
+> 
+> Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
 
-...
+Now dropped, thanks.
 
-> > > > +             ams->pl_base = of_iomap(node, 0);
-> > >
-> > > Hmm. So of_iomap() leaves us dependent on dt specific calls. Whilst it
-> > > doesn't exactly look hard to create a generic version covering at
-> > > least dt and acpi I don' think there is an equivalent acpi function currently
-> > defined.
-> > >
-> > > Andy, do you think this is a good thing to add to the generic firmware
-> > > node handling?  It's a bit specialist as most of the time this will be
-> > > wrapped up in the platform device handling or similar rather than being in a
-> > child node like this.
-> >
-> > I saw this issue previously somewhere else and we can do something about
-> > it.
-> > But first (before going to ACPI guts) we may indeed introduce a basic
-> > skeleton under fwnode API for this.
-> >
-> > Something like
-> >
-> > void __iomem *fwnode_iomap(...)
-> > {
-> >   if (is_of_node(fwnode))
-> >     return of_iomap();
-> >   return NULL;
-> > }
-> > EXPORT_SYMBOL_GPL(fwnode_iomap);
-> >
-> > At least it will allow drivers to make them property provider agnostic.
-> >
-> > Okay, I checked the current version of the ACPI specification and the
-> > proposed DTS here. With above API and something like
-> >
-> > Device (AMS0) {
-> >   Name (_CRS, ...)
-> >   ...
-> >   Device (PLMN) {
-> >     Name (_CRS, ...)
-> >   }
-> >   Device (PSMN) {
-> >     Name (_CRS, ...)
-> >   }
-> > }
-> >
-> > we may get the resource from the corresponding fwnode's _CRS object
->
-> Just to be sure, do I need to do anything for this in this iteration?
-
-Can you provide a helper to drivers/base/property.h for the X-node
-iomap() to be agnostic?
-
-(X - SW, FW, ...)
-
--- 
-With Best Regards,
-Andy Shevchenko
+greg k-h
