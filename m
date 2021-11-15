@@ -2,92 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49412450519
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D709A450532
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:18:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230142AbhKONPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 08:15:37 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:59658
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231701AbhKONOf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 08:14:35 -0500
-Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 560813F1A5
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 13:11:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1636981899;
-        bh=Ek/Fldzw6HQOPZj1XYTC44c+sdFSqm7+VnT8VkD8Rfw=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=drAtQ3p+a8aqyMf0Bb1S9H0Fxbf/UDGo7qxusuX8Iwjzmk3Aut48tOe6Aty2e2N6Z
-         gYBNSJr47ZEhiS+V2cfb3sjU6Sl1Ab7CLztVkhzUkII7mP1m58WXA3wzUp/nwTmLGA
-         FhfavO12MeAAfFub1PBmtGb2roJ8oa9X5tJTE3YMfOdn0zDfVxxF+Kn33CIo4JGKhn
-         WvVJhaxDFJXHJ3k9ra5vZ9qCddVSi14tqBSmxBYN1/KP0/qOpLdhOus3NAaUCsgAQa
-         x+qmuhaCxcl6REge/haKJhVxHcLx9y63MXvPC+XXGt0TF8Q2nADXgQ8oKjJXWh0eEn
-         +vjXkRlmzCsNw==
-Received: by mail-lf1-f70.google.com with SMTP id g38-20020a0565123ba600b004036147023bso6753937lfv.10
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:11:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ek/Fldzw6HQOPZj1XYTC44c+sdFSqm7+VnT8VkD8Rfw=;
-        b=PytReuq2PUO3QNFNqdHSmfN08qm+yIrsFE6/1eRPquG+MfXeA8Wpesp3iDdw6PJlcC
-         xOO4RxoIroOg5Q8dCZs7NDH0MDxqvDnV6H6+7JJe0ElQ1WCQ7DEA6AaRubyYOvW79q3f
-         Ro8kNpxHevftJGScpfLysxdyU1Im6/rKauve6vNoLxXE0iX8akIhoM2f5dBuI2zpRuj0
-         zFUtpauaSlli4pYrlkiJTIceDlwhAZE5yyX3IBee/HYURf+rAh/NwZHJsAmMKlEST3r9
-         MyvYQNiTtkNa9qN/PLUK0uuJI2kzYedNvD0iSO9EtE9eEYIHt8DfxQONpxrGKC98bMVu
-         dUVg==
-X-Gm-Message-State: AOAM5328B0tX338zCyppz2+QXWUCBd9IhFm9FOzt02WhpQreOZqv4vOp
-        bRp0gTH0GAPgkch4S0s5UFIKRb//YJ87Km1QgykxEOs4MeHn+9PQFy27ja68o2b1LTaK0+L88Kv
-        9NXjnBRz23q+kKEO4wuk/wdj81n9WGeCA4SF+14E=
-X-Received: by 2002:a2e:8143:: with SMTP id t3mr38123509ljg.18.1636981898877;
-        Mon, 15 Nov 2021 05:11:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwEgeHAM0nYXXWQdsOhrhSNd86XLgS1t7Bl6YTvfQwwvZk1C4SUKQ+X8kW2UH5L8O81hyXlNA==
-X-Received: by 2002:a2e:8143:: with SMTP id t3mr38123497ljg.18.1636981898738;
-        Mon, 15 Nov 2021 05:11:38 -0800 (PST)
-Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id p21sm1411254lfa.289.2021.11.15.05.11.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 05:11:38 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Paul Cercueil <paul@crapouillou.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] ARM: dts: exynos/i9100: Fix BCM4330 Bluetooth reset polarity
-Date:   Mon, 15 Nov 2021 14:11:33 +0100
-Message-Id: <163698188786.128367.17376497674811914207.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211031234137.87070-1-paul@crapouillou.net>
-References: <20211031234137.87070-1-paul@crapouillou.net>
+        id S231375AbhKONV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 08:21:27 -0500
+Received: from mail.iot.bzh ([51.75.236.24]:65250 "EHLO frontal.iot.bzh"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231669AbhKONUr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 08:20:47 -0500
+Received: from frontal.iot.bzh (localhost [127.0.0.1])
+        by frontal.iot.bzh (Proxmox) with ESMTP id 6B8D91B49B;
+        Mon, 15 Nov 2021 14:17:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iot.bzh; h=cc:cc
+        :content-transfer-encoding:content-type:content-type:date:from
+        :from:in-reply-to:message-id:mime-version:references:reply-to
+        :subject:subject:to:to; s=iot.bzh; bh=iD/8ScGgHyxYRSyim/LEUHDqOQ
+        /t6Gf9toI7NdGvnOM=; b=WClNw81+cXhjY7/ASVO0Rth8iRMB1Fe4QCJCIckypX
+        0PWijdnXv+q9b3TDw8dDp6lSUEe28sJ4txC5ns+K5MgVMHzmQAMSQGGMKGmpnARl
+        D16zO2OFAyFaf0/1uIqEbeMEwJ3jvP5nLYt9knA0JGyzgfd99v19iBhCn1hsY8ln
+        pQQpSHxTv9NwmVbXKaTBmYjDDmw5+E/0uOZQNcCvFe0c1zdwCuUiaS5AiIyxGyX+
+        RjV7xKv6oFP66xJW9mf3wzMd9jk91/DTHxzFCSdSQl8XsNQ2jL3Q3UhNH2ad2UDL
+        glPceC2w9sj9CYMUeFeq8euG/lV0u34ATLQMPZG267Yg==
+Message-ID: <80842bed-86ce-3424-feac-b4c38675cea8@iot.bzh>
+Date:   Mon, 15 Nov 2021 14:17:00 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Subject: Re: [RFC PATCH 3/3] remoteproc: Add Renesas rcar driver
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211027073020.17055-1-julien.massot@iot.bzh>
+ <20211027073020.17055-4-julien.massot@iot.bzh>
+ <20211108184252.GA1971795@p14s>
+From:   Julien Massot <julien.massot@iot.bzh>
+In-Reply-To: <20211108184252.GA1971795@p14s>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 31 Oct 2021 23:41:36 +0000, Paul Cercueil wrote:
-> The reset GPIO was marked active-high, which is against what's specified
-> in the documentation. Mark the reset GPIO as active-low. With this
-> change, Bluetooth can now be used on the i9100.
+Hi Mathieu,
+
+Thanks for the review !
+
+>> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+>> index 9a6eedc3994a..3e87eadbaf59 100644
+>> --- a/drivers/remoteproc/Kconfig
+>> +++ b/drivers/remoteproc/Kconfig
+>> @@ -261,6 +261,17 @@ config QCOM_WCNSS_PIL
+>>   	  verified and booted with the help of the Peripheral Authentication
+>>   	  System (PAS) in TrustZone.
+>>   
+>> +config RCAR_REMOTEPROC
+>> +	tristate "Renesas RCAR remoteproc support"
+> 
+> It is probably a good idea to include the type of SoC being supported, something
+> like:
+> 
+>          tristate "Renesas Gen3 RCAR remoteproc support"
+> 
+> That will make it easier to support future RCAR processors that may not share
+> the same architecture.
+
+Ok, changed according to Geert's suggestion to:
+"Renesas R-CAR Gen3 remoteproc support"
+
 > 
 > 
+>> +	depends on ARCH_RENESAS
+>> +	depends on REMOTEPROC
+>> +	help
+>> +	  Say y here to support R-Car realtime processor via the
+>> +	  remote processor framework. An elf firmware can be loaded
+>> +	  thanks to sysfs remoteproc entries. The remote processor
+>> +	  can be started and stopped.
+>> +	  This can be either built-in or a loadable module.
+> 
+> Please add the name of the module when compiled as such.
+Ok
 
-Applied, thanks!
 
-[1/2] ARM: dts: exynos/i9100: Fix BCM4330 Bluetooth reset polarity
-      commit: 9cb6de45a006a9799ec399bce60d64b6d4fcc4af
-[2/2] ARM: dts: exynos/i9100: Use interrupt for BCM4330 host wakeup
-      commit: 8e14b530f8c90346eab43c7b59b03ff9fec7d171
+>> +
+>> +#include "remoteproc_internal.h"
+>> +
+>> +struct rcar_rproc {
+>> +	struct device			*dev;
+>> +	struct rproc			*rproc;
+>> +	struct reset_control            *rst;
+>> +};
+>> +
+>> +static int rcar_rproc_mem_alloc(struct rproc *rproc,
+>> +				 struct rproc_mem_entry *mem)
+>> +{
+>> +	struct device *dev = rproc->dev.parent;
+>> +	void *va;
+>> +
+>> +	dev_dbg(dev, "map memory: %p+%zx\n", &mem->dma, mem->len);
+> 
+> I think this should be "map memory: %pa+%lx\n" to be consistent with dev_err()
+> below and the original implementation in stm32_rproc.c.
+Ok
 
-Best regards,
+..
+>> +
+>> +static int rcar_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = rproc_elf_load_rsc_table(rproc, fw);
+>> +	if (ret)
+>> +		dev_info(&rproc->dev, "No resource table in elf\n");
+> 
+> In the above functions rproc->dev.parent is used for output.  I don't have a
+> strong opinion on which of rproc->dev or rproc->dev.parent is used but I would
+> like to see consistency throughout the driver.
+Thanks I choosed to use rproc->dev. Indeed logs are more consistent now.
+> 
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int rcar_rproc_start(struct rproc *rproc)
+>> +{
+>> +	struct rcar_rproc *priv = rproc->priv;
+>> +	int err;
+>> +
+>> +	if (!rproc->bootaddr)
+>> +		return -EINVAL;
+>> +
+>> +	err = rcar_rst_set_rproc_boot_addr(rproc->bootaddr);
+>> +	if (err) {
+>> +		dev_err(&rproc->dev, "failed to set rproc boot addr\n");
+> 
+> Same comment as above.
+ok
+
+>> +
+>> +static int rcar_rproc_probe(struct platform_device *pdev)
+>> +{
+>> +	struct device *dev = &pdev->dev;
+>> +	struct device_node *np = dev->of_node;
+>> +	struct rcar_rproc *priv;
+>> +	struct rproc *rproc;
+>> +	int ret;
+>> +
+>> +	rproc = rproc_alloc(dev, np->name, &rcar_rproc_ops,
+>> +			    NULL, sizeof(*priv));
+>> +	if (!rproc)
+>> +		return -ENOMEM;
+>> +
+>> +	priv = rproc->priv;
+>> +	priv->rproc = rproc;
+> 
+> I don't see rcar_rproc::rproc being used anywhere.
+Indeed, rproc member will be removed in next version.
+
+> 
+>> +	priv->dev = dev;
+>> +
+>> +	priv->rst = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+>> +	if (IS_ERR(priv->rst)) {
+>> +		ret = PTR_ERR(priv->rst);
+>> +		dev_err(dev, "fail to acquire rproc reset\n");
+>> +		goto free_rproc;
+>> +	}
+>> +
+>> +	pm_runtime_enable(priv->dev);
+>> +	ret = pm_runtime_get_sync(priv->dev);
+> 
+> There is no dev_pm_ops for the platform driver nor clocks to manage for this
+> device - is there something that requires pm_runtime operations to be called?
+Will reply in Geert's reply.
+>> +
+>> +static int rcar_rproc_remove(struct platform_device *pdev)
+>> +{
+>> +	struct rproc *rproc = platform_get_drvdata(pdev);
+>> +	struct rcar_rproc *priv = rproc->priv;
+>> +
+>> +	rproc_del(rproc);
+>> +	pm_runtime_disable(priv->dev);
+> 
+> As far as I can tell rcar_rproc::dev is not required.  It is only used in
+> rproc_probe() and rproc_remove() where pdev->dev is available.
+Thanks rcar_rproc::dev will be removed in next version.
+
+
+Regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Julien Massot [IoT.bzh]
+
