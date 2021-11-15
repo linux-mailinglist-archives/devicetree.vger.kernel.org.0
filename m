@@ -2,145 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7BCE451D5B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE32C451AA4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:38:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234028AbhKPA3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 19:29:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46460 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245091AbhKPA0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 19:26:34 -0500
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6F8FC06BABB
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 14:56:30 -0800 (PST)
-Received: by mail-pl1-x632.google.com with SMTP id t21so15706562plr.6
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 14:56:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lcf3se7dyjsLzXA0To/0PfvJUa1TCjgRaGYziSCdAjQ=;
-        b=b5jiTdFgq7uQFKutKbb4oOxkjB1hX3rS6pAVG5AsD1RF22dLMdJfU5YxK7/uwByX3O
-         krX9FoJpM0IR6Rln6IBwaHX2lX9ovSZqYMXlGhYcTWon4/v2olTBjZ6ewjkpCyQe7EWz
-         y/SsMfVsSemDG4X0hgkfA8KWXopizQmmiPDRGe1N3VrghHkDa42W0raayKdutqklgB2P
-         ZnkRYAE+qtCc3Z/vobiUMbsIvi/9l63G7r4JFoOvuU0Wv8rYOEB+UDnjDhEXYoe659Su
-         hjLoTepa6g2jDQhL/BwaCptocqNCFI91owYCDwjNFqdRKT7nF2RRw+puCZEZybvCXpNx
-         ymbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lcf3se7dyjsLzXA0To/0PfvJUa1TCjgRaGYziSCdAjQ=;
-        b=mGhVTeYIRzwPkiyak29YtRagRLOMl5cxnQu21eQ6pb7F/2LZUvRXBVuyrRHpAFQcAs
-         LVW6cH0WfdxgB4KQPI1gk8StRDwk9H4vT8EvXgyAOijkS80vny3gWYr3/3iOv4r8MHn7
-         hfKT8bC0jtbaqVDVBLb9ocMFsgeLlNAk6bqqopj5cH78fN8huBaomyQYN1/gRzzIrv2T
-         LG0dISLV1lC2hcvo8iVGc/0G9lQ6MU2/U7R0bE43Po4yaLAvGpWhGMLVxBhiSEpqlWTB
-         d4JS82QxkghEMerfoB/W+slqsLthBoyLEe+9cPno5yqUbzxTSdnkN4A6y4v6DydW+/eU
-         O2/A==
-X-Gm-Message-State: AOAM531pex4hTRhnNDnTdc9UFF9i3y6d+Wtl6VpmR/BCpP4wOAWWhOmO
-        09uiRm/EELA4NDeRt9/4jw4mjH70H78O+JPrNi3/Fg==
-X-Google-Smtp-Source: ABdhPJxqdIqPtf9DYqUiWP7+UcNNXzPI5APnlVpOeVYFLWVT5MJPlOrodfCH2bTWwX01v8EIVQTHEhgkn7MIvJVCwCE=
-X-Received: by 2002:a17:90b:1b06:: with SMTP id nu6mr2717814pjb.155.1637016990367;
- Mon, 15 Nov 2021 14:56:30 -0800 (PST)
+        id S1351619AbhKOXlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 18:41:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45370 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1355084AbhKOXjA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 18:39:00 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id F298961B48;
+        Mon, 15 Nov 2021 23:34:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637019261;
+        bh=TImIHqbp486HLuwHQvsUohXCnLk5VoW2gEDqvRP9Bv8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=uJTH4aXwYaa+dSQMHLezRwehNizg4YsBHW4nowq/m7HD+udnSv4giJGTdAAJuKhQd
+         OWbn3oaOB7gt7gEUN4e0GyWusfn1wGRLjmgvQQj877n1sEok1yrLjVlBdNJjUpDHYW
+         mBy0cE6ycLj8/jYrJLVhAexR4HvSlvcjqDuaE8vA3JkSbQrXVYdsHHOssizJV0m2Wl
+         Fmh0LtLVsSrZX9GPG31ubLoOf58pUQK+n3B5rPcB7QMRw1TWKaX9d4LU+xs9zXhaVe
+         Hn/LpJ2cbVCekxxaoFEOAXcMlW+NdflLDago6i+ZuZHO4eq/eqP8jk4AalYShi+UcK
+         jx2t0pvwrgX9Q==
+Received: by mail-ed1-f47.google.com with SMTP id z10so52659061edc.11;
+        Mon, 15 Nov 2021 15:34:20 -0800 (PST)
+X-Gm-Message-State: AOAM532ORZs0bUVYxOoZcFLR7gNsn+UM1BI/y5tOFS+MM4APUYHk4VMK
+        KBcLNJqpVZ3r1FKahUJ+j++MJ70GOjZp4Lro1A==
+X-Google-Smtp-Source: ABdhPJyigb0xM4tUbMt5283H/raL8mEwtPWWbhCfWI/2StAgMHYuqxQHh9LRuw1npThsAwOZ+I4iT2VnrXstnJeipDM=
+X-Received: by 2002:aa7:d3d0:: with SMTP id o16mr3686530edr.159.1637019259273;
+ Mon, 15 Nov 2021 15:34:19 -0800 (PST)
 MIME-Version: 1.0
-References: <1635820355-27009-1-git-send-email-hongxing.zhu@nxp.com>
-In-Reply-To: <1635820355-27009-1-git-send-email-hongxing.zhu@nxp.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Mon, 15 Nov 2021 14:56:19 -0800
-Message-ID: <CAJ+vNU3r0aC8GrTQ2z5BqsCFCAXP+BWt2ntqsNy8DBd--nxdvQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/8] Add the imx8m pcie phy driver and imx8mm pcie support
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>, vkoul@kernel.org,
-        Rob Herring <robh@kernel.org>, galak@kernel.crashing.org,
-        Shawn Guo <shawnguo@kernel.org>, linux-phy@lists.infradead.org,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>
+References: <20210930155222.5861-1-yongqiang.niu@mediatek.com> <20210930155222.5861-2-yongqiang.niu@mediatek.com>
+In-Reply-To: <20210930155222.5861-2-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 16 Nov 2021 07:34:08 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8++T24XmaxneZCEqiWSMmUG=EEd5Jhs+6Szn9fQACt-Q@mail.gmail.com>
+Message-ID: <CAAOTY_8++T24XmaxneZCEqiWSMmUG=EEd5Jhs+6Szn9fQACt-Q@mail.gmail.com>
+Subject: Re: [PATCH v10, 1/5] drm/mediatek: add component OVL_2L2
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 1, 2021 at 7:58 PM Richard Zhu <hongxing.zhu@nxp.com> wrote:
->
-> Refer to the discussion [1] when try to enable i.MX8MM PCIe support,
-> one standalone PCIe PHY driver should be seperated from i.MX PCIe
-> driver when enable i.MX8MM PCIe support.
->
-> This patch-set adds the standalone PCIe PHY driver suport[1-5], and i.MX8MM
-> PCIe support[6-8] to have whole view to review this patch-set.
->
-> The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
-> [2] and this patch-set. And tested by Tim and Marcel on the different
-> reference clock modes boards.
->
-> [1] https://patchwork.ozlabs.org/project/linux-pci/patch/20210510141509.929120-3-l.stach@pengutronix.de/
-> [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210910202640.980366-1-l.stach@pengutronix.de/
->
-> Main changes v4 --> v5:
-> - Set the AUX_EN always 1b'1, thus it can fix the regression introduced in v4
->   series on Marcel's board.
-> - Use the lower-case letter in the devicetreee refer to Marcel's comments.
-> - Since the default value of the deemphasis parameters are zero, only set
->   the deemphasis registers when the input paramters are none zero.
->
-> Main changes v3 --> v4:
-> - Update the yaml to fix syntax error, add maxitems and drop description of phy
-> - Correct the clock name in PHY DT node.
-> - Squash the EVK board relalted dts changes into one patch, and drop the
->   useless dummy clock and gpio suffix in DT nodes.
-> - Add board specific de-emphasis parameters as DT properties. Thus each board
->   can specify its actual de-emphasis values.
-> - Update the commit log of PHY driver.
-> - Remove the useless codes from PCIe driver, since they are moved to PHY driver
-> - After the discussion and verification of the CLKREQ# configurations with Tim,
->   agree to add an optional boolean property "fsl,clkreq-unsupported", indicates
->   the CLKREQ# signal is hooked or not in HW designs.
-> - Add "Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>" tag, since
->   Marcel help to test the v3 patch-set.
->
-> Main changes v2 --> v3:
-> - Regarding Lucas' comments.
->  - to have a whole view to review the patches, send out the i.MX8MM PCIe support too.
->  - move the PHY related bits manipulations of the GPR/SRC to standalone PHY driver.
->  - split the dts changes to SOC and board DT, and use the enum instead of raw value.
->  - update the license of the dt-binding header file.
->
-> Changes v1 --> v2:
-> - Update the license of the dt-binding header file to make the license
->   compatible with dts files.
-> - Fix the dt_binding_check errors.
->
-> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
-> Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  95 ++++++++++++++++++++++++++++++++
-> arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  55 +++++++++++++++++++
-> arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |  46 +++++++++++++++-
-> drivers/pci/controller/dwc/pci-imx6.c                        |  73 ++++++++++++++++++++++---
-> drivers/phy/freescale/Kconfig                                |   9 ++++
-> drivers/phy/freescale/Makefile                               |   1 +
-> drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 237 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> include/dt-bindings/phy/phy-imx8-pcie.h                      |  14 +++++
-> 9 files changed, 528 insertions(+), 8 deletions(-)
->
-> [PATCH v5 1/8] dt-bindings: phy: phy-imx8-pcie: Add binding for the
-> [PATCH v5 2/8] dt-bindings: phy: Add imx8 pcie phy driver support
-> [PATCH v5 3/8] dt-bindings: imx6q-pcie: Add PHY phandles and name
-> [PATCH v5 4/8] arm64: dts: imx8mm: Add the pcie phy support
-> [PATCH v5 5/8] phy: freescale: pcie: Initialize the imx8 pcie
-> [PATCH v5 6/8] arm64: dts: imx8mm: Add the pcie support
-> [PATCH v5 7/8] arm64: dts: imx8mm-evk: Add the pcie support on imx8mm
-> [PATCH v5 8/8] PCI: imx: Add the imx8mm pcie support
+Hi, Yongqiang:
 
-Richard,
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=
+=8830=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8811:52=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> This patch add component OVL_2L2
 
-Are you posting a v6 of this series or have we already missed the
-window for 5.16?
+Applied to mediatek-drm-next [1], thanks.
 
-Best regards,
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-Tim
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.c
+> index 33e8789fde8a..4a2abcf3e5f9 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -353,6 +353,7 @@ static const struct mtk_ddp_comp_match mtk_ddp_matche=
+s[DDP_COMPONENT_ID_MAX] =3D {
+>         [DDP_COMPONENT_OVL1]    =3D { MTK_DISP_OVL,       1, &ddp_ovl },
+>         [DDP_COMPONENT_OVL_2L0] =3D { MTK_DISP_OVL_2L,    0, &ddp_ovl },
+>         [DDP_COMPONENT_OVL_2L1] =3D { MTK_DISP_OVL_2L,    1, &ddp_ovl },
+> +       [DDP_COMPONENT_OVL_2L2] =3D { MTK_DISP_OVL_2L,    2, &ddp_ovl },
+>         [DDP_COMPONENT_PWM0]    =3D { MTK_DISP_PWM,       0, NULL },
+>         [DDP_COMPONENT_PWM1]    =3D { MTK_DISP_PWM,       1, NULL },
+>         [DDP_COMPONENT_PWM2]    =3D { MTK_DISP_PWM,       2, NULL },
+> --
+> 2.25.1
+>
