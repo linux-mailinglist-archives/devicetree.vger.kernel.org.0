@@ -2,73 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16642452855
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 04:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 750DF45287E
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 04:21:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239037AbhKPDSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 22:18:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55468 "EHLO
+        id S245365AbhKPDYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 22:24:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237713AbhKPDRz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 22:17:55 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F498C043190
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:45:47 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso30309557otj.1
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:45:47 -0800 (PST)
+        with ESMTP id S1346489AbhKPDWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 22:22:18 -0500
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C00B0C04A528
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:48:20 -0800 (PST)
+Received: by mail-il1-x141.google.com with SMTP id j28so18484659ila.1
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:48:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=DJxnAju8ZcoHymLSy/2zxtKet5bzIUVWZOB8Xt+TFDM=;
-        b=MrYtDApAgMWv95IIbmh2ZbmKWIdvEbyaVwK++N/ANKcr1LFdbHpeshfpvFJ7WcKewM
-         r3eXc4CSQJ8aLR22q9fFIKN/yy87kzTl24H/tCzYorrOHnp7C8G8W3IQvzIfouWUuMIh
-         5wfp5+YNlBMIBeOh1odqjGFG4xRYoQGxUCHgU=
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=OZJwjfFDQdewi+xbeyqOBYzLPwD/79wL8NpiYm7+qHQ=;
+        b=F43+WbACYjdCnLgqrqHzHkVDtWZnoxo0Gc7GsxhY2+CQxm1L311FhHFQ23FZAModxj
+         3gwTo/VRipvg7/Ob+FoLM9GjfLSVQwhGW1+rEwNXcVJfArZdkiSLPDIX1UxeGPlehc7h
+         BU4NwGPoNbG6IyrQjA1Fm+ALecBFQ0ynsuZy7lF4yGbJEOXq2IK8Iz5U/ITRUIYhypu8
+         26soI4sGIRaHRdGp4PBtAD4JeMTzn1BTpKHuDG7QVQSNhWwQL0eAjwdpgdCKlRR1J3nz
+         VhPoN5bCAaVZdUFY1JTPs1UzwME1vXJ2haM0Q+Lt1u5lkzr58jH+vn2hcANGICtsEkw/
+         vwzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=DJxnAju8ZcoHymLSy/2zxtKet5bzIUVWZOB8Xt+TFDM=;
-        b=TIz8o4sXN2YWLH93kU1jg7clXSQFqxOlnboo9U/CG+BSIwTXmw9aumdJG9iakXD4cx
-         MnB+z998MUitrFk3Uvx9GHUfCfeEgu/IIMqtV2mHXM/qmcK6CdymMNxcpEG6vdOWLA6C
-         bD4Qm76Os6ZKOWr21vQbnEYp6acLEdjv9n2mnPRIH0LGWfcndomoz8cgH7bMrjSIM7Ye
-         wEgGlfgngORSF0GT5RBKDBtImEUJ+yNFDHfxXg0kM5GjJE7ER+u51pEvfKYApm2RslXk
-         w53YNqLATkMzdvzqM0pjBwku3v37V8LVFIlLP4kRu+zAkBCZqnI7WiIG4DQlBlRprVHI
-         EVYw==
-X-Gm-Message-State: AOAM530oKZcgWBjRh+BpZuZs1NDOBvBSJeO5r5MZXQKbdXxfZRiW2i7p
-        WvFJV5JLxKQtF1Bne6u6ix/qZY+bix/b3wuoH6UfuQ==
-X-Google-Smtp-Source: ABdhPJxIHTJ4V0v3V0REg6nwGmuD8+3FvwcZO5Cv3CkaMLWJnA1lIGUFiTSPqAkR30MnUa8+OH3cLsFZG0TnE2Wr1mY=
-X-Received: by 2002:a9d:7655:: with SMTP id o21mr2410261otl.126.1637019946748;
- Mon, 15 Nov 2021 15:45:46 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 15 Nov 2021 15:45:46 -0800
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=OZJwjfFDQdewi+xbeyqOBYzLPwD/79wL8NpiYm7+qHQ=;
+        b=iDxVUPmzOBqLZHBOCoihqSPSAyRcQFM87dQJJnI1lFsSf7Ce/NxvGmgtiYmOEum1P4
+         5XqlkjjTml50ktL1t1eMjPtuMBC4VWPOj9lr/pTVYb5Q6o0ZrKF21Uj6iQYzRf0HYujL
+         xLtm/+tL9iNFwX5KihVsdrpJJY5uZB3VkUZv1ozrlGIfpoD617LXruAhOOKObjHB3W9m
+         jWj9ZPZdxhIykQU64MGVYlJN0gG0rfd1uw6zlTv8uB40FnFCdvf0uoSMgcX1BzRJdTJG
+         9XNTwv/gYyaVvjEDmlgLuMjaUCsRXrg/eHGcuilqe6qa34tlMwz6YHlNtkXxigLQ4qt4
+         kKaQ==
+X-Gm-Message-State: AOAM532Eve1E0SVwK8inbxK0X7UXBNQZVBJAa8KsHFv2csTObUDEI4Te
+        M8EXGnondkjDWa1j9y/Jd5AonM6j8ao7ZgWqbP4=
+X-Google-Smtp-Source: ABdhPJzBJ9cCxHRYhK3qfIeJuH2hjy7QgH20EYOK9e/FHVYsvg0P67RiLTqTnXnZkA6huKnO6CHFNn2S7zuG9tsIgx8=
+X-Received: by 2002:a92:2903:: with SMTP id l3mr1717053ilg.35.1637020100223;
+ Mon, 15 Nov 2021 15:48:20 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211115030155.9395-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20211115030155.9395-1-yangcong5@huaqin.corp-partner.google.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Mon, 15 Nov 2021 15:45:46 -0800
-Message-ID: <CAE-0n531-YnSYJ+Yf8v-s3YE7LkF5i9wuBOTZPmr9DzbCM_Nrg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: sc7180: Fix ps8640 power sequence for
- Homestar rev4
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        dianders@chromium.org, philipchen@chromium.org, robh+dt@kernel.org,
-        yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+Received: by 2002:a05:6602:3154:0:0:0:0 with HTTP; Mon, 15 Nov 2021 15:48:19
+ -0800 (PST)
+Reply-To: activobank5@gmail.com
+From:   ACTIVO BANK <krishinakrish417@gmail.com>
+Date:   Tue, 16 Nov 2021 11:48:19 +1200
+Message-ID: <CAGfATnCixRU3EKChvEQ0=zNmuW+7fOnuEQKnrRzWCiVdoCR6Bg@mail.gmail.com>
+Subject: URGENT RESPONSE
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting yangcong (2021-11-14 19:01:55)
-> When powering up the ps8640, we need to deassert PD right
-> after we turn on the vdd33 regulator. Unfortunately, the vdd33
-> regulator takes some time (~4ms) to turn on. Add in the delay
-> for the vdd33 regulator so that when the driver deasserts PD
-> that the regulator has had time to ramp.
->
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
-> ---
+-- 
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Congratulations!
+
+The United Nations has come into conclusion to endorse compensation
+fund payment of six million us dollars ($ 6 000 000.00 ) to lucky
+beneficiaries across the globe
+through the help of the newly elected president due to covid-19 (
+coronavirus ) that has cause economic melt down in different countries
+and global hazard to so many lives.
+ The United Nations has instructed the swiss world bank to release
+compensation fund payment in collaboration with activo bank of spain.
+The payment will be issue into atm visa card and send it to lucky
+beneficiary who apply for it via activo bank in spain through
+diplomatic courier service company close to the beneficiary country.
+
+This is the information activo bank management require to deliver
+compensation fund payment to beneficiary country door step.
+
+1. Your name:
+2. Home address:
+3. City:
+4. Country:
+5. Occupation:
+6. Sex:
+7. Marital status:
+8. Age:
+9. Passport / ID card/ Drivers lience
+10.Phone number:
+
+
+Contact our email id: ( activobank5@gmail.com ) for your payment
+
+
+Thanks
+
+Activo bank management
