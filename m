@@ -2,112 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7B74504E5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:04:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 011D7450516
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbhKONGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 08:06:53 -0500
-Received: from www.zeus03.de ([194.117.254.33]:45380 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231229AbhKONGt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 08:06:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=OLQihzRKyh2y1tQZCycpI3W9roJE
-        NIrd1K7JiBrcKzw=; b=e3Bu02K7i7uyvNYMDoFHa46HUAPsXRIPSBTVuOHM4mR/
-        vrYNlMettOwqW611Y6BjqKTTJzT2FGszgkpJme9B3HYLTrfcCET06f9hgR/7WSXY
-        8l/kPvJQrXup+4Myb+hu4+4gmiBxQ4m2sErKCtDDPnUsCwNHfRw+js+cxSlSvus=
-Received: (qmail 2337764 invoked from network); 15 Nov 2021 14:03:50 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Nov 2021 14:03:50 +0100
-X-UD-Smtp-Session: l3s3148p1@2jancNPQvrYgAwDPXwfBADNdh3YJLcIx
-Date:   Mon, 15 Nov 2021 14:03:50 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S231230AbhKONO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 08:14:56 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:47420
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231687AbhKONOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 08:14:33 -0500
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1224E3F19B
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 13:11:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1636981897;
+        bh=OJCA5ZvzNWjkD2Sxk8qxrrXGgiPPEZw138MIcH0bp9Q=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version:Content-Type;
+        b=PC2LXtaem23MhHl1lwRpm2jNVFAieuZ5u4VRr7mVIgem6fRQDa5NKBjlJ6CFw1wNG
+         m6MnTJ1IjBrRL4WFz0zVFeBpS0lArtTox4YT6ZZOK1Q7z56xnX4QXDf/HXli73NiVD
+         /f/g+2QxCv7BtDZM4H03W31PuhtXA4ghzF2dKX7KFKe0x8hGoeKJbzOaDpH1N5NxjM
+         p06J6bZIBYcI+yVttmOex2+RhG4Wu7RA0OT1VEfjbWTA15GbYKnOE+lBrbI0ZeyP1V
+         XpugBozpap82MESz3EZtbum/yYcheTxLlRu++gwXlySFwopYIuLivnhf88n0NIJuPG
+         SBY6AljRVY3jA==
+Received: by mail-lj1-f197.google.com with SMTP id p21-20020a2e9ad5000000b00219ee503efeso4121729ljj.14
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:11:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=OJCA5ZvzNWjkD2Sxk8qxrrXGgiPPEZw138MIcH0bp9Q=;
+        b=ycNd+Rw+HF9Dasum1h8NWVkmBcs1d/d22OF+tDA5LYrNGepHP3EdjUg8YrG5xA46CF
+         etyiRr8LG3F6BU0LrTVMNyeBGS/Pj0eDbPraz3iNOTd+D0Pxk8ti3oQyFSWf6Figbbx8
+         f6h9icFkbYB6EollKiQOwco5LbbnvU1V0rflhjFkpBmFxHkqKz7vyIju4OgejxhFRtoa
+         z7RgstZZHxepVC8nt21lo/Ski2ryOdlbmuxUCp9fqQK2llkRVp5/TuXUJO4zpJDjOEER
+         VsyEH2N6S73T9kPl64NypTqXTNLkRSDIhvloyjpU4wI3LhEftWVctwdWQkZJJqT081jy
+         MBUg==
+X-Gm-Message-State: AOAM533r5cIj7uNNYqMN9EOu+qjn2NPyhmyVUmV36rYv22gwsJWx2NhP
+        oavze6MTdqb/tJHRVYxGy1yUNcUrU6K0jHk94YO9EnzdDd2xNwjJk+l9lkd7pv0urpdd4BBaM3a
+        8b4Bphj6Ffr7HdD9ulGZDQXE7HElePQUQhEfsYk0=
+X-Received: by 2002:a2e:a4d1:: with SMTP id p17mr37547739ljm.318.1636981896498;
+        Mon, 15 Nov 2021 05:11:36 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxdEUnILP/yVPCQGk9Fv6GL+8+eRne9/6CM/DR8GFRq0H4eSeKiYlpJViXXIWwou1uZpuumjA==
+X-Received: by 2002:a2e:a4d1:: with SMTP id p17mr37547722ljm.318.1636981896362;
+        Mon, 15 Nov 2021 05:11:36 -0800 (PST)
+Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id p21sm1411254lfa.289.2021.11.15.05.11.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Nov 2021 05:11:35 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Chanho Park <chanho61.park@samsung.com>
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [PATCH v2 7/7] memory: renesas-rpc-if: Add support for RZ/G2L
-Message-ID: <YZJatk2Xs6bYdCyB@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: exynosautov9: drop samsung,ufs-shareability-reg-offset
+Date:   Mon, 15 Nov 2021 14:11:31 +0100
+Message-Id: <163698188786.128367.112304195355876732.b4-ty@canonical.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211102064826.15796-1-chanho61.park@samsung.com>
+References: <CGME20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c@epcas2p2.samsung.com> <20211102064826.15796-1-chanho61.park@samsung.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ih87i6XTGwSWpEQ3"
-Content-Disposition: inline
-In-Reply-To: <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2 Nov 2021 15:48:26 +0900, Chanho Park wrote:
+> samsung,ufs-shareability-reg-offset is not necessary anymore since it
+> was integrated into the second argument of samsung,sysreg.
+> 
+> 
 
---ih87i6XTGwSWpEQ3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks!
 
-On Mon, Oct 25, 2021 at 09:56:31PM +0100, Lad Prabhakar wrote:
-> SPI Multi I/O Bus Controller on RZ/G2L SoC is almost identical to
-> the RPC-IF interface found on R-Car Gen3 SoC's.
->=20
-> This patch adds a new compatible string for the RZ/G2L family so
-> that the timing values on RZ/G2L can be adjusted.
->=20
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+[1/1] arm64: dts: exynosautov9: drop samsung,ufs-shareability-reg-offset
+      commit: 4f5d06d381badc6e16f6d54eac7ab0125e9a7168
 
-After some internal investigations we found out that we have to live
-with these magic numbers. We shouldn't mix documentation there. So, this
-patch is fine as is. The minor nit I will fix incrementally because I
-will work on this file soon as well.
-
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-
---ih87i6XTGwSWpEQ3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGSWrUACgkQFA3kzBSg
-KbZACQ//QW6h49hTvyDnW3FXxCnOu8Fjy4Du93vzYyiffKiu1rT1kWz/eCxEDYIe
-nAjwuUERonPPxtlnfyH7b1ZvC4wAde8dskw01huc7sJT/gNFHNp5t20B9Aj1R/eP
-yMNoG5cEtDcYNUvjTQkfLZ9XQvH8m7KWVQUOcVx9IgCnCL9QGzOe6lGVADhTf5gX
-orNojeAF09rUS/VkjzEbvcsx/8l4zKHQYmYWEIb9Q3nPvrv3UtT0DZeK7S9r1LMi
-NsCrQCTKQQ4F31Vl3VQQMF+WhO3hGHXpzQKWK6MjccNGA/HgccptkYmgx7MECgrX
-+k5deLVADSt18C+1ExdaODcD056JYw39cqOZL3Ig1K+9YVeWDFXXIcfFGoSUwFNR
-eCn6Z+ps5LWaVqRIUkLHjo6X80IXoK3Z8GX2R518BLxc+tLRZbC0LObGPmIr3T+l
-U0AE2NjVxscEFB/CFHRx4JR0W1ywyD6ZwbIoZVo2Mf5kdvjzJGajGRrGQLbPzLkO
-9K8as9oOsjHwDhMKTJ4a8/9qTzWgsmzz5x9hZB+30g8JJm9l18+s0EKHFwmt0kR/
-Ly0L8nVSI3C4NSTf+i02jsxC5wXoUXUZzAJc57XdME5SQEGxEbDJNbNvhstKsyZh
-je4ZKZtMQKci6ngq+QhKF/eODcypttoHlG886SPcmoH5W+U6cKA=
-=JiqE
------END PGP SIGNATURE-----
-
---ih87i6XTGwSWpEQ3--
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
