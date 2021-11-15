@@ -2,212 +2,318 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40B32450811
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 16:17:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47D40450819
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 16:17:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236300AbhKOPUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 10:20:09 -0500
-Received: from mail-tycjpn01on2120.outbound.protection.outlook.com ([40.107.114.120]:57412
-        "EHLO JPN01-TYC-obe.outbound.protection.outlook.com"
+        id S236472AbhKOPU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 10:20:29 -0500
+Received: from mail-mw2nam12on2068.outbound.protection.outlook.com ([40.107.244.68]:41283
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234996AbhKOPUD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 10:20:03 -0500
+        id S236465AbhKOPU0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 10:20:26 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b/1RmtDZREGCzsG8wHiDH1yHGIGeTn+gBL5llX0jAIm5BnPqoKqWIsE9B0fGDOgEDjaZ3khXcLhjsdgJHw1fq8ERrhHTyglNEheogKfdBTPzm0QbtQgNSFBAAYszG8sXWSEQzF/3yIpfYuacxeQxYRzkLeyK1w1OZmwcI7Qn8Uw0nLRhrbEAfy4V3qdrTm00kP1sngNNyop1igi9md/G9F0iqnc1fr2TY8Ro5omIkC/8vsZsH5CXhyq+mcw7hKe6pAxd3KuuP7qrwE1aciv+vB1El+ma8rY08jFuKQfn9Gl20NvQipcg/MpkhyVaL6Xw6fhE0ePZOkqLFwjunWu0Bg==
+ b=gseSOF/ROTrUTV6wMdhQpXXo7AtB4/nfK1oDo/mcQBcyXGRiXFENtaOQW5isj0r5aqY/AdvfaNQOH+1zGbhQ8H7anJFYGaxEEh7Pi+qP3OBTo8WTpcWLqPccsYqfPf5NnM9GrctbASb/U0mrUJPqWEiqaiyCh35wE1eSj2iG1F3cNU/aAWEx+91Bbews4jGuT/snEQPJRbSC3Pq4PTYQe1Ot9d2+jo8RZvqXKrD4TG4w56d5lxreA/kuDhlblb3MBFPZAXyChmHVeOPJNPkx0qw6Yx0rs/ZgLwU+rbvd2b4m7M/ylOJRz1pBgroIH5hA55cqRvyo9k/zku1QgaPGYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cBf72QB/1f9qaKi5cwGweWWkDk1/MLcRA/dRYgw73TY=;
- b=T4Nuji5afGwFVTqQXpN7nSNaUN1D8fl36e5ZhS3Use8QHCjjkRmuHN1HFi5q/PHoks1lar/Q0JW+M3YeRh3QiwZqLhFr27kouu/+A7gOzbBk4pR2Q4IfZmOfkhgDse5METeapB+LBdDwuNmCI8Ts/z/wbWktcTGBhcjDJ/OlcVUckh0MhQ1wD93k2JYhjENq40x0j8dQSPvT8OH/WHZzIxcxPQczjfWHb919wOux7GaNyQ0p6IR5iWcKtobCQiE+zzUEET1eg/jmRnoAI5PnNfxtfzxjUlxmYlT17cb2D+kIXLC0RIbdHDtJ1Oi/GOkbrkdiEg+zA7zmM7Fz9QEbVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ bh=8oaccqM4gwmU4z9wUARyq2NA+z9i4vUMQFKWrx3fiPc=;
+ b=Qj2d4Jnk/egwbwJqocBq6Vkwk4qAYBYj+PSYjwYr4L8kOuc1x3bwCDT6cCR7QCr/zYz0nPFgJNbqe7YiCNbsrlHkSN4ihaw4iTTw6McXHV/Si7nM62ZBSMJq3dq8erycQBsD5ZvevjsBYX8pJhna92QLiGqdpflsmhb24KPQALX/8frci4LpzM0eYRBVD0B9Xp5ZTVSjXQEbr+S5pW4cn1sIfolF3TmN3EVqvo0/4W/r6AvoO6Sf27RDkVrGpqxLvEwbdkdhXrB/lTjttqjsHT2/sMwmjP/NGA2k1H9XIlLAIUtOhN9ml74hbfhywcHX95i+HGdbWwFUVCcPm1YpTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.32) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cBf72QB/1f9qaKi5cwGweWWkDk1/MLcRA/dRYgw73TY=;
- b=XC+/6UaeH4X5O9LFefKC8S+dswd+5xx+88FZd3ZwvQelBcZNtFuKDgRVJF7Gplfjim7cdpgcI1iQbQi/HFxiQx9l0B2cl549+3jtwG+eun7dw6/MGPTy5PGhdkr30ZWOCfxd5y74msaZOBEqPrxOmSgiiuqRz8EByikh9nnmkTo=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OSBPR01MB3573.jpnprd01.prod.outlook.com (2603:1096:604:40::18) with
+ bh=8oaccqM4gwmU4z9wUARyq2NA+z9i4vUMQFKWrx3fiPc=;
+ b=lRphNR6LjeQ0daBut15hyLAUzKzC8x6PQZ7+iu+41XcqgrDEIFRhZXB9b39yOc0cJ1a8aXuk3KpEpqtwBSP57CgCompbLH+l0gXyLvFMv2oN6HysmGdACSEyAqVthhMAmFTDAzOCdc8jn9ux0nrc7QpHXy1n6a97G7bK3lraeqKgIW/N9MlUz5u9bwDVKLJH29yGEC/+9gXxRkY/hrB6Vy74lZ7+ctnR572w+dIClvleENGHAZ77S8gIGHsC1vMz+7NHV9ThebMDBnwagJYvSN5wUfieppYHSh42ee2aL3TU09AqKlm4cRb53UKi5w06v994lddVZaMV0rzpsquzWQ==
+Received: from DM6PR02CA0153.namprd02.prod.outlook.com (2603:10b6:5:332::20)
+ by DM6PR12MB3082.namprd12.prod.outlook.com (2603:10b6:5:11b::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.22; Mon, 15 Nov
- 2021 15:17:04 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c0bd:405a:cdd3:f153]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::c0bd:405a:cdd3:f153%8]) with mapi id 15.20.4690.027; Mon, 15 Nov 2021
- 15:17:04 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Julien Massot <julien.massot@iot.bzh>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>
-CC:     "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v1 3/3] remoteproc: Add Renesas rcar driver
-Thread-Topic: [PATCH v1 3/3] remoteproc: Add Renesas rcar driver
-Thread-Index: AQHX2ifxeC/e9Bm+2E2JGBX7Ft2snawEoDGAgAAJMoCAAAS20A==
-Date:   Mon, 15 Nov 2021 15:17:04 +0000
-Message-ID: <OS0PR01MB5922693BB948B4E567CEF63E86989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20211115135032.129227-1-julien.massot@iot.bzh>
- <20211115135032.129227-4-julien.massot@iot.bzh>
- <OS0PR01MB5922D67AEFD75847CE5B0DD586989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <ebca7899-1b7e-66d4-f022-576b18b9bc95@iot.bzh>
-In-Reply-To: <ebca7899-1b7e-66d4-f022-576b18b9bc95@iot.bzh>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 302a1719-ddc2-4812-fdbf-08d9a84afb3d
-x-ms-traffictypediagnostic: OSBPR01MB3573:
-x-microsoft-antispam-prvs: <OSBPR01MB3573F3BD38CD54134D8DC36786989@OSBPR01MB3573.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 40nV2FzbpZPgenxEsDdkDKJWtDedbsmkUgqDaQEm7JniHf/BZZi3shRR11DvjbleyCxBBKXAxctPRzAhi9seQ0zV46/ZKuVLLbXt84tFGe1W8cvdJmQJ4lwxRM0GgMhQvY12n9GRtsrXvBJ9oE8lYeD7eO9Nioml4hyOIYL3H9UF5mpuiRh2M+JrFw+Znd64bCx53TvUFq0qW8Pwu40glcJiebWPmXxEZt3sDuRv2c3xUIR0GIeYePTtFxc7h3C9OEBijMq4wF61jlQF/qf98V/unMXk/GKUMa3IJh9d+5fY79ar9iTfjYhA4ilW1esYDt8OG5jOIUc3RngrZ3vcYLl5KHIGYmnI4OC1aFdyYMn5r3nc67KWmzjG0BN5hILDSt3xIJytHs3cdS1ZFETFY9s6L6W29kmXTWy3WPsNCw6XQpyADkauHsix53jAcW4A8QsR9Xpruisx0naeVTewLC6+blqF6zERZctZAhx0Xrk5tUKKXvll6ov65vvvVLIPXlChDEnvpi7qbSQ4VZPe+ey+iwoJImPHUNVWXkDiW/hzflCUoHC+jZaZe4CK/GCaM9B5HpPXg7mNmwsDy05ndK2k7NkJKRugjr67BfPTezk0PzEmVpud0JdWuJjAGUdmUdSYBrEn9p9JlFJ8plvuLY3dNctNykSS829sDcoFMMkh2A0iTDv4IHZTxpSBmghqHg+krGBZhAxSqfwlClololx2n9jUQHIJDF3zBIuwanlhX/oAxjxphjXnAAxwPpFylgwTABHhWgvAT2i6JLRKmg0zDGgtUkidHmCQqSu4Mx0=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(4326008)(38100700002)(71200400001)(2906002)(110136005)(966005)(8676002)(86362001)(38070700005)(122000001)(6506007)(316002)(52536014)(54906003)(8936002)(26005)(45080400002)(5660300002)(33656002)(186003)(83380400001)(508600001)(9686003)(66446008)(7696005)(76116006)(64756008)(66476007)(66946007)(66556008)(55016002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dss3X1zzVBUcyFTfX2nn7rQHiudtP7smNxuPkyshFTbISQOsuPA+QnhC3cPE?=
- =?us-ascii?Q?YPxOX1bxKMV+LEYkJowKuMhlIJpV269OEXvBiZDYBqECzpgSwVEa0jT2Jn37?=
- =?us-ascii?Q?tcJiAWFIAOc5tOMkYNDWLPi8tbFkGL6BUe57Tk52B9XmjevAxpDBGmZxNBzu?=
- =?us-ascii?Q?yolkdFs9Zt+IL5dwAtUHplMmpQAbjlImbyxVtfCgs/WeLgnYCFmkryPBAXQi?=
- =?us-ascii?Q?cKFD9BM1w8YHRJPXeYAnXj8UEDDBsx2v12Xt+UpcqCWqm9g8BrFb0OgAC11b?=
- =?us-ascii?Q?e6zgbeZA85cOZEvyvP/x8vDF9WiyxqQUOdW6jJz1VrLIRSn65PggqcwInqs9?=
- =?us-ascii?Q?EeFM56+V25enyDdhrYWvORh9VX5GrvuQWCeM3gJIXHUWFKEFSz/oFIl0/Loz?=
- =?us-ascii?Q?BUMGxeYKlfslQYtIE/Ls60eJzhCjr1LORpbr2M/cErww0nYu/9XcpcuBCYA2?=
- =?us-ascii?Q?ukEKFyNX1Bv5+C6VeSA7Nytp5fJJxC7RfuJbyGnMsM8ctHNFlppw0UnKDAgv?=
- =?us-ascii?Q?YZnE3Zlp6/ovgS3BdpVBCeST1Jg1MUZmQ4VPG2k+bEavt3i4Z9v5OR5WxbhO?=
- =?us-ascii?Q?dz+9NUHbmWneeEh++leMY786eVX1YdJmau/fTSnVLaKManrr2KQaUduOjwmr?=
- =?us-ascii?Q?rZoNr8rR3cQ5AOkLKxzw7qSUp0/iJHD3BpMOWW/tDk1gjY0IV2kCYn93Bzo3?=
- =?us-ascii?Q?2GH2h6o6X89duy1r9zg373wx0bFVwW157tibB6boh0Ht+Kc50+dsvsitMrRV?=
- =?us-ascii?Q?vO5a93qoiyOUKSff23uK9qssdHW+gXPedmDwnY9l68dvrksu6a1CqZhcDw0W?=
- =?us-ascii?Q?dhTJkGayuW6TTqp+hrPD2Vf7uj+TqPtrQlXq5Fr9+KMjjhlX6KLKRwMV5ERx?=
- =?us-ascii?Q?QvcvqiHTD7Vw2ojRqKL9gBhYwyWnNkF/PFAW5L0Z0qUKaloFvXrGcmbdh4f8?=
- =?us-ascii?Q?ubo0OTnylrgdWQQsIDJEil4qiIZyKCNnL5iujuGTx6GKezyyBSgCXHriMlZT?=
- =?us-ascii?Q?vqbbYC5UsSMWjmaz20pnpE0tJ3Zn8Cr0MQc+CnQh3pcHur1cMpkGQ2cNjFaj?=
- =?us-ascii?Q?NkgoN7wJ9Le+rTjpnr9gIeJt0WUJlfK/KeaErB3ygB140ln/NM8khwPefQRj?=
- =?us-ascii?Q?2WS5Nf0deyCBi9HVmVBZMsenkzDjhX5ayjnx171IidP2gwvsJ2zDSiOBd0kL?=
- =?us-ascii?Q?OJ/L59PkjTCYGcYRIJ2+IJzsjRpB+Gr+c46DwB14//KBc59QIxRVVVgTJ04l?=
- =?us-ascii?Q?uHDyfN0Zp+cr35bfilEJLSbAbRwevFo29ZYQRZ6tA4Gq5TIWl7uaN+mOyF1k?=
- =?us-ascii?Q?8nwQPHwliDD9tHxg24/dCzjYdx21xFYrO7RyRlHUuQkRu4O+doWpa3riNULK?=
- =?us-ascii?Q?Yfzh+gaCWNgDEfAUCM8aUWjcM4XDnqZnFJMF5cIPS/qEa56N8P/2vuN8UtlD?=
- =?us-ascii?Q?Rbq3d2chD3DVb1/P1xANmgFDotpGydIPYqTGfRDYe9lETDfGACn7AaN4/HFV?=
- =?us-ascii?Q?pcaUybhFfHVFIXjHfziQPWEKo9G4kEif329twsiKqgUe7/91hTCNLMdS6n70?=
- =?us-ascii?Q?AdmpaaE1Wq8Ft4IiacC8+1eOG5+IRS3xt0WE10vIUjkNZc+bIGBiSfkq7fLr?=
- =?us-ascii?Q?sYrPOPehwl2TVwYRvVuY/RBOqzBdBZ9CkLVjfrKSKFOS/3d567j8kBplygiu?=
- =?us-ascii?Q?YN7mpA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.16; Mon, 15 Nov
+ 2021 15:17:28 +0000
+Received: from DM6NAM11FT040.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:332:cafe::2b) by DM6PR02CA0153.outlook.office365.com
+ (2603:10b6:5:332::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.15 via Frontend
+ Transport; Mon, 15 Nov 2021 15:17:28 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.32; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.32) by
+ DM6NAM11FT040.mail.protection.outlook.com (10.13.173.133) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4690.15 via Frontend Transport; Mon, 15 Nov 2021 15:17:27 +0000
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 15 Nov
+ 2021 07:17:19 -0800
+Received: from moonraker.home (172.20.187.5) by mail.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Mon, 15 Nov 2021 15:17:18 +0000
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Mikko Perttunen <mperttunen@nvidia.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH 1/2] dt-bindings: Add YAML bindings for NVENC and NVJPG
+Date:   Mon, 15 Nov 2021 15:17:06 +0000
+Message-ID: <20211115151707.287764-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 302a1719-ddc2-4812-fdbf-08d9a84afb3d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2021 15:17:04.4541
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 042973ac-eddc-4020-9c31-08d9a84b0938
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3082:
+X-Microsoft-Antispam-PRVS: <DM6PR12MB30828E4D44739E6067F0CFECD9989@DM6PR12MB3082.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: yg/NN9fJZ6CZntG9QtP8D7Y3f52CIIg3Q4BEdFq7BTZ6kkJSWJp+90NEMoZ5zSUjOnSW05z2U3ZqLCJOYUHcZVACGyu6kOH9EyVpjbGLdNbXx+NrqVLTa4MeLb7mPRGi3FImfuz55Llamt4azyRY8RBYq+WzR1XnmFeefSjySlHAt7tWA6GLCcrK9LTEBNShTRrIOfPbCVBfO738Wl0q0cc06oklK+dbglX7sBPjMA6ZpmCz9ig1y2tSfSMATH66Evp1goYktpkhuA1jM0o/fqscP4D1tcR9yBBN+3SLVRztfTVWnUFO8BjU8ARfNz7Fcu7VhMM91ZBdW7cE3R615CJfMdFONTxJqCjotOxwLmLhw/A2CIDZpbNaQpWqWvHpmeTMXkPib7/gx4y8ECdqtAZDM5+8hw+o3bcbDYWx1gSsQCYdsJpQgWQ5gd/JSWSaOr6GF7WZv44pVQ4YzyMCs+n+9Ga8wD9lNBMYs4b26azlACy0wGUJGMSVrG+FUFIL7dbkcqV0djDtrCTCr2d7zRw5uzArcinCt09JC9K+aDlKKpYR5rkQ1/VV4OxARv/S662rZAJ1o5PC+nuL+ayRSqara1fkR0/dr7QLEYU1EgWmqfhaO/JfhFrexJ3BU6PLOG4uOhxSOm6Xh24HdJk2BrDLvkPQUzznUzvn0vrKKTeeVKnPeAmEY1GtOL14mmbKdYNhRihemRi7RcPFic9HUEcOxK1Aamhq9KIOE/l6xfCLC5CJDfx/t5TmfIZCc3eT8oDXgZYJ/XaNbZ0U2aJ6KEPmZkErSSdaYoEzcirkAEnMqA34+miSSvMTjoM7MfJJMrqMlw3CLryV2ok2EQ919A==
+X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(110136005)(316002)(426003)(356005)(36756003)(2616005)(36860700001)(70586007)(70206006)(6666004)(47076005)(336012)(8936002)(86362001)(54906003)(107886003)(4326008)(186003)(6636002)(5660300002)(1076003)(508600001)(7636003)(2906002)(83380400001)(26005)(82310400003)(8676002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2021 15:17:27.9185
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cuj97WzLmYuHYohaPvofm5RRTai1p9LfeBsg7UbSuyhxbiqfDM8PRueUkWnGOq1W5g6XMVO8PCuACq7EDV9pkwrDWCE5RhvZHrUx09vEMZE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB3573
+X-MS-Exchange-CrossTenant-Network-Message-Id: 042973ac-eddc-4020-9c31-08d9a84b0938
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT040.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB3082
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Julien,
+Add YAML device tree bindings for the Tegra NVENC and NVJPG Host1x
+engines.
 
-> Subject: Re: [PATCH v1 3/3] remoteproc: Add Renesas rcar driver
->=20
-> Hi Biju,
->=20
-> >
-> > One question CR7 Can be master boot processor. In that case How to
-> > avoid loading and booting  CR7 processor from Linux?
-> > Reading boot modes??
-> >
-> Thanks for the question.
->=20
-> I did not test this case.=20
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ .../gpu/host1x/nvidia,tegra210-nvenc.yaml     | 104 ++++++++++++++++++
+ .../gpu/host1x/nvidia,tegra210-nvjpg.yaml     |  94 ++++++++++++++++
+ 2 files changed, 198 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+ create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml
 
-OK.
-
-There is also other scenarios where the
-> Cortex-R7 is started by an earlier component such as BL2, u-boot or OP-
-> Tee.
-> In these cases Linux should not try to start / stop this remote processor=
-.
-
-
-OK. But Linux can check whether CR7 is alive at frequent interval and issue
-Soft-reboot, if there is a  hang.
-
-> One idea could be to read the power status CR7PSTR / PWRSR7, or use one o=
-f
-> the MFIS register as a communication register.
-
-I know MFIS is used for communication between CR7 and CA-57. But don't know
-much details.
-
-STM32 processor use this
-> last solution to indicate that the remote processor is already started, i=
-n
-> that scenario remoteproc driver starts in 'detached' state instead of
-> 'offline' state.
-> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit.k=
-ern
-> el.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Ftorvalds%2Flinux.git%2Ftree%2=
-F
-> include%2Flinux%2Fremoteproc.h%23n418&amp;data=3D04%7C01%7Cbiju.das.jz%40=
-bp.
-> renesas.com%7C945a25980e5a49cc361a08d9a846020c%7C53d82571da1947e49cb4625a=
-1
-> 66a4a2a%7C0%7C0%7C637725840924834250%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4w=
-L
-> jAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3D=
-yXH
-> 2qBpmUI2YtZRnApFdWt6iONcFKDPSPa45AirThBw%3D&amp;reserved=3D0
->=20
-> In that state, remoteproc driver can initiate communication with this
-> remote processor but will not try to start or to stop it.
->=20
-> That's something I have in mind, with an existing implementation there
-> https://jpn01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgithu=
-b.c
-> om%2Fiotbzh%2Flinux%2Fblob%2Fiot%2Fjulien%2Frproc%2Fdrivers%2Fremoteproc%=
-2
-> Frcar_rproc.c%23L524&amp;data=3D04%7C01%7Cbiju.das.jz%40bp.renesas.com%7C=
-945
-> a25980e5a49cc361a08d9a846020c%7C53d82571da1947e49cb4625a166a4a2a%7C0%7C0%=
-7
-> C637725840924834250%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV=
-2
-> luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=3DWYKygEUiXyliOmX2C=
-Uxk
-> Yfj5pq2QOmZC%2BGtXRAlB%2Bws%3D&amp;reserved=3D0
-> (that is not ready for upstream yet :)).
->=20
-> I guess this issue also exists when one device is dedicated to the secure
-> world, so the device exists, but not available for Linux.=20
-
-May be for prototyping activity, if some one wants to run an RTOS on CR7.
-This will be a good solution. Linux will load and boot CR7 which
-Run an RTOS which communicates with Linux. Once communication established
-Linux can check the health of CR7 at frequent intervals and take necessary =
-action.
-
-Regards,
-Biju
-
-
-The most obvious
-> (and dirty ?) solution is to keep the device disabled in dts.
->=20
-> Regards,
-> Julien
+diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+new file mode 100644
+index 000000000000..5071832ce23a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+@@ -0,0 +1,104 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvenc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Device tree binding for NVIDIA Tegra NVENC
++
++description: |
++  NVENC is the hardware video encoder present on NVIDIA Tegra210
++  and newer chips. It is located on the Host1x bus and typically
++  programmed through Host1x channels.
++
++maintainers:
++  - Thierry Reding <treding@gmail.com>
++  - Mikko Perttunen <mperttunen@nvidia.com>
++
++properties:
++  $nodename:
++    pattern: "^nvenc@[0-9a-f]*$"
++
++  compatible:
++    enum:
++      - nvidia,tegra210-nvenc
++      - nvidia,tegra186-nvenc
++      - nvidia,tegra194-nvenc
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: nvenc
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: nvenc
++
++  power-domains:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++  dma-coherent: true
++
++  interconnects:
++    items:
++      - description: DMA read memory client
++      - description: DMA read 2 memory client
++      - description: DMA write memory client
++
++  interconnect-names:
++    items:
++      - const: dma-mem
++      - const: read-1
++      - const: write
++
++  nvidia,host1x-class:
++    description: |
++      Host1x class of the engine, used to specify the targeted engine
++      when programming the engine through Host1x channels or when
++      configuring engine-specific behavior in Host1x.
++    default: 0x21
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/tegra186-clock.h>
++    #include <dt-bindings/memory/tegra186-mc.h>
++    #include <dt-bindings/power/tegra186-powergate.h>
++    #include <dt-bindings/reset/tegra186-reset.h>
++
++    nvenc@154c0000 {
++            compatible = "nvidia,tegra186-nvenc";
++            reg = <0x154c0000 0x40000>;
++            clocks = <&bpmp TEGRA186_CLK_NVENC>;
++            clock-names = "nvenc";
++            resets = <&bpmp TEGRA186_RESET_NVENC>;
++            reset-names = "nvenc";
++
++            power-domains = <&bpmp TEGRA186_POWER_DOMAIN_MPE>;
++            interconnects = <&mc TEGRA186_MEMORY_CLIENT_NVENCSRD &emc>,
++                            <&mc TEGRA186_MEMORY_CLIENT_NVENCSWR &emc>;
++            interconnect-names = "dma-mem", "write";
++            iommus = <&smmu TEGRA186_SID_NVENC>;
++    };
+diff --git a/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml
+new file mode 100644
+index 000000000000..8647404d67e4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/gpu/host1x/nvidia,tegra210-nvjpg.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Device tree binding for NVIDIA Tegra NVJPG
++
++description: |
++  NVJPG is the hardware JPEG decoder and encoder present on NVIDIA Tegra210
++  and newer chips. It is located on the Host1x bus and typically programmed
++  through Host1x channels.
++
++maintainers:
++  - Thierry Reding <treding@gmail.com>
++  - Mikko Perttunen <mperttunen@nvidia.com>
++
++properties:
++  $nodename:
++    pattern: "^nvjpg@[0-9a-f]*$"
++
++  compatible:
++    enum:
++      - nvidia,tegra210-nvjpg
++      - nvidia,tegra186-nvjpg
++      - nvidia,tegra194-nvjpg
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: nvjpg
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: nvjpg
++
++  power-domains:
++    maxItems: 1
++
++  iommus:
++    maxItems: 1
++
++  dma-coherent: true
++
++  interconnects:
++    items:
++      - description: DMA read memory client
++      - description: DMA write memory client
++
++  interconnect-names:
++    items:
++      - const: dma-mem
++      - const: write
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/tegra186-clock.h>
++    #include <dt-bindings/memory/tegra186-mc.h>
++    #include <dt-bindings/power/tegra186-powergate.h>
++    #include <dt-bindings/reset/tegra186-reset.h>
++
++    nvjpg@15380000 {
++            compatible = "nvidia,tegra186-nvjpg";
++            reg = <0x15380000 0x40000>;
++            clocks = <&bpmp TEGRA186_CLK_NVJPG>;
++            clock-names = "nvjpg";
++            resets = <&bpmp TEGRA186_RESET_NVJPG>;
++            reset-names = "nvjpg";
++
++            power-domains = <&bpmp TEGRA186_POWER_DOMAIN_NVJPG>;
++            interconnects = <&mc TEGRA186_MEMORY_CLIENT_NVJPGSRD &emc>,
++                            <&mc TEGRA186_MEMORY_CLIENT_NVJPGSWR &emc>;
++            interconnect-names = "dma-mem", "write";
++            iommus = <&smmu TEGRA186_SID_NVJPG>;
++    };
+-- 
+2.25.1
 
