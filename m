@@ -2,68 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AB8644FFF9
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 09:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC0E450002
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 09:33:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229720AbhKOIbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 03:31:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57336 "EHLO
+        id S229917AbhKOIg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 03:36:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229707AbhKOIbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 03:31:09 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4068C061746
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 00:28:13 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id b40so41437646lfv.10
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 00:28:13 -0800 (PST)
+        with ESMTP id S229842AbhKOIg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 03:36:26 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0039AC061746;
+        Mon, 15 Nov 2021 00:33:30 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id s138so5928923pgs.4;
+        Mon, 15 Nov 2021 00:33:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to;
-        bh=Z/AonHYgIyTnhUgXhUYt7rvkbbUxEPLmY9JAL7YXwgw=;
-        b=kjpYcoj/MLrD39WzDWz5dUFipn2JMO9Qkkv5YsSVY1+XNTUc6IvfSsvN0ycf7KPfgv
-         3c3e9EVqp1BvVcKwRvrf7rOLKJHFkmvWwWh2R1iAG8rek17A8GtTWJ+nEFCzyq9hT037
-         I1A6FUDJqyjysLGYyiYvzNz5sDaZBFg/urcI7ZzPhQ8pW08UgzvnRTjrBjLoYtTRPwK2
-         BED9XiiYLtZ/vDJoBEccCMhkGQLiI/tk/lqqGTseYYqyCXuhQ+P33sFNlYLcTMhjfGSh
-         ig0f2pRJnHCbhaUFz01BE/R2dsM90j3M/jHr1M4V+zWio2jd+URNsKJGUXMh5MJRjpXw
-         bc8g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/gMkQZauTwd6OuO+QfItqAhCFoiNfC1xEu6hFg/h1EE=;
+        b=Lc+JSpSqLP1ALI/lFuAfnHgbQxisllh8DaVDwop4LsuY+kOWf8vo54WttCBSXunw2A
+         k218zUvtfUz3+NA047StSxSQdWJFoz5B4VKSpja3Td0TqKovIt83ifxRvkqULY8ejI2I
+         b/JXWRvVdrqW32ncDADLxILBVzDNX4OE5GAHo2uAzqDQP46Rr0jlvEN3DRxRxENP7EDt
+         wQU2neAjydJyBMZ3zxqOlc3WV571xt4dSh7ZrUv/t0itMDQ5haZDfDu74UcpcblraOVO
+         uidfOGSUJ510TAMdQoctTINeb7aURAR4vgN6DoD1La9TShKjpVzUvl39Ch0dEMbf4yTC
+         Nxmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to;
-        bh=Z/AonHYgIyTnhUgXhUYt7rvkbbUxEPLmY9JAL7YXwgw=;
-        b=iQ5RLsMFf8oPblhHju0EDIvRH+YCQd2JXhV4jrs+lGwOodMEh0deolHWhsOq6KUWfO
-         UlAUPBvFcZ+WnBLI6rizvVyrl4pyd7AhF6sD2baSt/93HZ6p3y0HR348eD4Yf/wr6Pk5
-         Bj9g46+yt27vqvobMzRou1B6dCvTZOnCGDYsU2570JUMqdCHTs/+w/d0d7bwtVxIoivk
-         dlMsZVOoAR71wMGWF2Ds5Xn83EQEFMwlVQO08L1Fop/IYUx+h/NILMZyUslrzJrksg8V
-         gzK9wwZ7iuk0uqpkos+zc8M4DPvoBzfJmeuGO5ZGa1gMZCqInq6KV9ZyKcG/ganOaTWx
-         5exg==
-X-Gm-Message-State: AOAM532GnLT1KkgAWOY2uNlYmNRrA3DaUNmFuiO4InugCQgVGlyCRI+B
-        7jJmJxBPFPnpM4Us7uLFBR+ZbQsNaTJTVCHoabg=
-X-Google-Smtp-Source: ABdhPJyuX/5kvfqkZHMW9AoGdpgUt/MtfmWoQ8WyxGkvg3yke2HCjvrHxEB+L9zdNS19Y4khZ0CmblMwb3HtY3wyz7g=
-X-Received: by 2002:a05:6512:1113:: with SMTP id l19mr33598412lfg.184.1636964891706;
- Mon, 15 Nov 2021 00:28:11 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/gMkQZauTwd6OuO+QfItqAhCFoiNfC1xEu6hFg/h1EE=;
+        b=LKqcQQvw6/Am6dUKisCt219Nz2YF1Xq5UaHvjW40Pp8i08UIZcFoss7t2VLAYeW6b+
+         UfhormyN7LnL/iNTtVR8f7/rmWVnKD0Ax4LyN4hQiaBGCbyoqUl5DFyvd8upJeivB6RH
+         Ucfef4D9ZkIBL8W4o0X3yfUqKvwp4rqU40+h42mZG56qeknVY5hQDSbNgERLB5ouOa6L
+         biqppu7VVXXcHX4bsjIly6yE4XtmpJAwMdIcVAB2xWSXCwfkTz4Lve3KEGWdH7FmexF4
+         b53eM8aEebDY78m2QujWnchVswmJrnluOEeg1U6HFecgPwss6h+pP1RUAgyIUUf42/dr
+         CWSw==
+X-Gm-Message-State: AOAM533SoI3cC+wt1oqcPnddMTRT/1bRfp0Qz015nqv3Ohn6IBYnB26T
+        RuPU4uvI3/KSVKXQnb4mMc5V/VWW8L1m0A==
+X-Google-Smtp-Source: ABdhPJx/d1+XqlXqsJgHJV4tgEC0br4TKdZQ71lEr0uj1XQOpofUk6AA2eG9uVqze1Eb8JJvgmuFLw==
+X-Received: by 2002:a05:6a00:15c1:b0:49f:d21f:1d63 with SMTP id o1-20020a056a0015c100b0049fd21f1d63mr30936426pfu.18.1636965210524;
+        Mon, 15 Nov 2021 00:33:30 -0800 (PST)
+Received: from localhost.localdomain (104.194.74.249.16clouds.com. [104.194.74.249])
+        by smtp.gmail.com with ESMTPSA id n20sm11012537pgc.10.2021.11.15.00.33.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Nov 2021 00:33:30 -0800 (PST)
+From:   Artem Lapkin <email2tema@gmail.com>
+X-Google-Original-From: Artem Lapkin <art@khadas.com>
+To:     heiko@sntech.de, linux-rockchip@lists.infradead.org
+Cc:     robh+dt@kernel.org, jbx6244@gmail.com, wenst@chromium.org,
+        christianshewitt@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        art@khadas.com, nick@khadas.com, gouwa@khadas.com
+Subject: [PATCH v2] arm64: dts: rockchip: remove mmc-hs400-enhanced-strobe from rk3399-khadas-edge
+Date:   Mon, 15 Nov 2021 16:33:21 +0800
+Message-Id: <20211115083321.2627461-1-art@khadas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Reply-To: lw46655@yahoo.com
-Sender: mrsjudiithc91@gmail.com
-Received: by 2002:a05:6512:c21:0:0:0:0 with HTTP; Mon, 15 Nov 2021 00:28:11
- -0800 (PST)
-From:   Lisa <ml771500@gmail.com>
-Date:   Mon, 15 Nov 2021 00:28:11 -0800
-X-Google-Sender-Auth: n5uBQ3lSAzvf4U-oYqOC6J9KJVg
-Message-ID: <CACgv11AfxXK+BGnFSqkB-vomKXN7aOVnmx4Tw9ysADs4bhjaUw@mail.gmail.com>
-Subject: Hi Dear!
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dear,
+Remove mmc-hs400-enhanced-strobe from the rk3399-khadas-edge dts to
+improve compatibility with a wider range of eMMC chips.
 
-My name is Lisa  Williams, I am from the United States of America, Its
-my pleasure to contact you for new and special friendship  I will be
-glad to see your reply for us to know each other better and exchange
-pictures.
+Before (BJTD4R 29.1 GiB):
 
-Yours
-Lisa
+[    7.001493] mmc2: CQHCI version 5.10
+[    7.027971] mmc2: SDHCI controller on fe330000.mmc [fe330000.mmc] using ADMA
+.......
+[    7.207086] mmc2: mmc_select_hs400es failed, error -110
+[    7.207129] mmc2: error -110 whilst initialising MMC card
+[    7.308893] mmc2: mmc_select_hs400es failed, error -110
+[    7.308921] mmc2: error -110 whilst initialising MMC card
+[    7.427524] mmc2: mmc_select_hs400es failed, error -110
+[    7.427546] mmc2: error -110 whilst initialising MMC card
+[    7.590993] mmc2: mmc_select_hs400es failed, error -110
+[    7.591012] mmc2: error -110 whilst initialising MMC card
+
+After:
+
+[    6.960785] mmc2: CQHCI version 5.10
+[    6.984672] mmc2: SDHCI controller on fe330000.mmc [fe330000.mmc] using ADMA
+[    7.175021] mmc2: Command Queue Engine enabled
+[    7.175053] mmc2: new HS400 MMC card at address 0001
+[    7.175808] mmcblk2: mmc2:0001 BJTD4R 29.1 GiB
+[    7.176033] mmcblk2boot0: mmc2:0001 BJTD4R 4.00 MiB
+[    7.176245] mmcblk2boot1: mmc2:0001 BJTD4R 4.00 MiB
+[    7.176495] mmcblk2rpmb: mmc2:0001 BJTD4R 4.00 MiB, chardev (242:0)
+
+Signed-off-by: Artem Lapkin <art@khadas.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
+
+V2: update & tidy commit message + put testing information here
+(suggested by Christian Hewitt <christianshewitt@gmail.com> )
+
+Testing with a selection of eMMC modules shows no observable performance
+difference. For example, testing with DUTA42 116 GiB & BJTD4R 29.1 GiB:
+
+..... mmc-hs400-enhanced-strobe disabled
+[    7.175053] mmc2: new HS400 MMC card at address 0001
+786432000 bytes (786 MB, 750 MiB) copied, 3 s, 262 MB/s
+
+..... mmc-hs400-enhanced-strobe enabled
+[    7.135880] mmc2: Command Queue Engine enabled
+[    7.135928] mmc2: new HS400 Enhanced strobe MMC card at address 0001
+[    7.136992] mmcblk2: mmc2:0001 DUTA42 116 GiB
+1048576000 bytes (1.0 GB, 1000 MiB) copied, 4 s, 262 MB/s
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+index d5c7648c841d..f1fcc6b5b402 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+@@ -705,7 +705,6 @@ &sdmmc {
+ &sdhci {
+ 	bus-width = <8>;
+ 	mmc-hs400-1_8v;
+-	mmc-hs400-enhanced-strobe;
+ 	non-removable;
+ 	status = "okay";
+ };
+-- 
+2.25.1
+
