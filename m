@@ -2,818 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1C5F45281D
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 03:53:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79F2F452832
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 04:04:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239784AbhKPC4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 21:56:35 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47314 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S241044AbhKPCy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 21:54:29 -0500
-X-UUID: 76dc2a224d064adf9a38d2048b57ebc8-20211116
-X-UUID: 76dc2a224d064adf9a38d2048b57ebc8-20211116
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <chun-jie.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 362542196; Tue, 16 Nov 2021 10:51:27 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 16 Nov 2021 10:51:26 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 16 Nov 2021 10:51:25 +0800
-From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Subject: [v6 5/5] soc: mediatek: pm-domains: Add support for mt8195
-Date:   Tue, 16 Nov 2021 10:50:45 +0800
-Message-ID: <20211116025045.5401-6-chun-jie.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20211116025045.5401-1-chun-jie.chen@mediatek.com>
-References: <20211116025045.5401-1-chun-jie.chen@mediatek.com>
+        id S1343666AbhKPDHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 22:07:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245054AbhKPDHb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 22:07:31 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8C56C06121D
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:36:09 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id s139so38198975oie.13
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 15:36:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=dWC8K8ncLeoNS//sQPeLcxjUFBd9YRjPbYe+Yaf2cCA=;
+        b=Ld8WMJc61fY24i8/fosv3XDha5eYvH4ZtJgZ7Ip/4po3hvifMffK6YpDS4U+K9shX/
+         Ye1Fz9V/tCRC8KXDEZBzkYbX/7zV94nOhQtuitRH+0q5aAeldmVgMQDSRhUP/SpssTta
+         pPO3Y/bbyq2a6HvAkVdyKc/apDvM2hOQHfGW0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=dWC8K8ncLeoNS//sQPeLcxjUFBd9YRjPbYe+Yaf2cCA=;
+        b=RpKOnK5nqCKsn8UqmU18e0zscD7IqCCEIQvaLv8wFM19JpZyBDrITelF28T0d2m1qD
+         REJ3uyncqSUWnmPurTLfQZ7DBt3Y2A+prXwh/99Dv4daT/Sn6IwEc7HZYTi8qJmDs3d7
+         Y8Xs4NKI6NYHwlnsd1wf5rol37p/HEB60/9qsFnYUfkPH80UIPLq3NLZGXPUgSRS1T9J
+         ytM8tobSJyRHuUOINIwmWnc0dSTFhwh2G5kiWWq0qDV88aBOYx5vSDpPMoGjZwXwDDyy
+         D0O18qiBj2u+bZ3JKMc8kV8rXA1jHay90hYXpnJr2Ym66lcgXH51arroIdPgTQAE1r85
+         icnA==
+X-Gm-Message-State: AOAM5336BbW/YCCaS1FW96hyztvAd4Vggq2sxpJhS7A/OJY4hwKQMMLy
+        YXnN47YogG38ZmwZanCU3agCDE4aH+pmi9vtlNo9aA==
+X-Google-Smtp-Source: ABdhPJxtAo45rLZbDwdWOiRCk+PyKniWJlEnVa2OYhWCNTMvbYmZhhrueYbKLk8uaACFucgFyIQwJ7Fq+eYCbJsj4Hk=
+X-Received: by 2002:aca:2319:: with SMTP id e25mr48820032oie.164.1637019369080;
+ Mon, 15 Nov 2021 15:36:09 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 15 Nov 2021 15:36:08 -0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <1636960288-27537-1-git-send-email-srivasam@codeaurora.org>
+References: <1636960288-27537-1-git-send-email-srivasam@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Mon, 15 Nov 2021 15:36:08 -0800
+Message-ID: <CAE-0n52n7nscLfqt8-7+UmXdEh2suDNC-ywPRUZL8FdPONbhZQ@mail.gmail.com>
+Subject: Re: [PATCH v2] ASoC: codecs: MBHC: Add support for special headset
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, plai@codeaurora.org, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add domain control data including bus protection data size
-change due to more protection steps in mt8195.
+Quoting Srinivasa Rao Mandadapu (2021-11-14 23:11:28)
+> diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
+> index 405128c..d6545e4 100644
+> --- a/sound/soc/codecs/wcd-mbhc-v2.c
+> +++ b/sound/soc/codecs/wcd-mbhc-v2.c
+> @@ -1022,6 +1022,56 @@ static int wcd_mbhc_get_plug_from_adc(struct wcd_mbhc *mbhc, int adc_result)
+>         return plug_type;
+>  }
+>
+> +static int wcd_mbhc_get_spl_hs_thres(struct wcd_mbhc *mbhc)
+> +{
+> +       int hs_threshold, micbias_mv;
+> +
+> +       micbias_mv = wcd_mbhc_get_micbias(mbhc);
+> +       if (mbhc->cfg->hs_thr && mbhc->cfg->micb_mv != WCD_MBHC_ADC_MICBIAS_MV) {
+> +               if (mbhc->cfg->micb_mv == micbias_mv)
+> +                       hs_threshold = mbhc->cfg->hs_thr;
+> +               else
+> +                       hs_threshold = (mbhc->cfg->hs_thr * micbias_mv) / mbhc->cfg->micb_mv;
+> +       } else {
+> +               hs_threshold = ((WCD_MBHC_ADC_HS_THRESHOLD_MV * micbias_mv) /
+> +                                                       WCD_MBHC_ADC_MICBIAS_MV);
+> +       }
+> +       return hs_threshold;
+> +}
+> +
+> +static bool wcd_mbhc_check_for_spl_headset(struct wcd_mbhc *mbhc)
+> +{
+> +       bool is_spl_hs = false;
+> +       int output_mv, hs_threshold, hph_threshold;
+> +
+> +       if (!mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic)
+> +               return false;
+> +
+> +       /* Bump up MIC_BIAS2 to 2.7V */
+> +       mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, true);
+> +       usleep_range(10000, 10100);
+> +
+> +       output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
+> +       hs_threshold = wcd_mbhc_get_spl_hs_thres(mbhc);
+> +       hph_threshold = wcd_mbhc_adc_get_hph_thres(mbhc);
+> +
+> +       if (output_mv > hs_threshold || output_mv < hph_threshold) {
+> +               if (mbhc->force_linein == true)
 
-Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
----
-The gpu mtcmos needs to have extra pmic buck support,
-so add domain supply capacity in mfg0 power domain to
-enable regulator control when power on and off.
----
- drivers/soc/mediatek/mt8195-pm-domains.h | 613 +++++++++++++++++++++++
- drivers/soc/mediatek/mtk-pm-domains.c    |   5 +
- drivers/soc/mediatek/mtk-pm-domains.h    |   2 +-
- include/linux/soc/mediatek/infracfg.h    |  82 +++
- 4 files changed, 701 insertions(+), 1 deletion(-)
- create mode 100644 drivers/soc/mediatek/mt8195-pm-domains.h
+Just 'if (mbhc->force_linein)'
 
-diff --git a/drivers/soc/mediatek/mt8195-pm-domains.h b/drivers/soc/mediatek/mt8195-pm-domains.h
-new file mode 100644
-index 000000000000..938f4d51f5ae
---- /dev/null
-+++ b/drivers/soc/mediatek/mt8195-pm-domains.h
-@@ -0,0 +1,613 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2021 MediaTek Inc.
-+ * Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-+ */
-+
-+#ifndef __SOC_MEDIATEK_MT8195_PM_DOMAINS_H
-+#define __SOC_MEDIATEK_MT8195_PM_DOMAINS_H
-+
-+#include "mtk-pm-domains.h"
-+#include <dt-bindings/power/mt8195-power.h>
-+
-+/*
-+ * MT8195 power domain support
-+ */
-+
-+static const struct scpsys_domain_data scpsys_domain_data_mt8195[] = {
-+	[MT8195_POWER_DOMAIN_PCIE_MAC_P0] = {
-+		.name = "pcie_mac_p0",
-+		.sta_mask = BIT(11),
-+		.ctl_offs = 0x328,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDNR_PCIE_MAC_P0,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_SET,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDNR_1_PCIE_MAC_P0,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_SET,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_PCIE_MAC_P1] = {
-+		.name = "pcie_mac_p1",
-+		.sta_mask = BIT(12),
-+		.ctl_offs = 0x32C,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDNR_PCIE_MAC_P1,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_SET,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDNR_1_PCIE_MAC_P1,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_SET,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_PCIE_PHY] = {
-+		.name = "pcie_phy",
-+		.sta_mask = BIT(13),
-+		.ctl_offs = 0x330,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY] = {
-+		.name = "ssusb_pcie_phy",
-+		.sta_mask = BIT(14),
-+		.ctl_offs = 0x334,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8195_POWER_DOMAIN_CSI_RX_TOP] = {
-+		.name = "csi_rx_top",
-+		.sta_mask = BIT(18),
-+		.ctl_offs = 0x3C4,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_ETHER] = {
-+		.name = "ether",
-+		.sta_mask = BIT(3),
-+		.ctl_offs = 0x344,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8195_POWER_DOMAIN_ADSP] = {
-+		.name = "adsp",
-+		.sta_mask = BIT(10),
-+		.ctl_offs = 0x360,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_2_ADSP,
-+				    MT8195_TOP_AXI_PROT_EN_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_2_STA1),
-+		},
-+		.caps = MTK_SCPD_SRAM_ISO | MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8195_POWER_DOMAIN_AUDIO] = {
-+		.name = "audio",
-+		.sta_mask = BIT(8),
-+		.ctl_offs = 0x358,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_2_AUDIO,
-+				    MT8195_TOP_AXI_PROT_EN_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_2_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_MFG0] = {
-+		.name = "mfg0",
-+		.sta_mask = BIT(1),
-+		.ctl_offs = 0x300,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_DOMAIN_SUPPLY,
-+	},
-+	[MT8195_POWER_DOMAIN_MFG1] = {
-+		.name = "mfg1",
-+		.sta_mask = BIT(2),
-+		.ctl_offs = 0x304,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MFG1,
-+				    MT8195_TOP_AXI_PROT_EN_SET,
-+				    MT8195_TOP_AXI_PROT_EN_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_2_MFG1,
-+				    MT8195_TOP_AXI_PROT_EN_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_1_MFG1,
-+				    MT8195_TOP_AXI_PROT_EN_1_SET,
-+				    MT8195_TOP_AXI_PROT_EN_1_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_1_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_2_MFG1_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MFG1_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_SET,
-+				    MT8195_TOP_AXI_PROT_EN_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_MFG1,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_SET,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_MFG2] = {
-+		.name = "mfg2",
-+		.sta_mask = BIT(3),
-+		.ctl_offs = 0x308,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_MFG3] = {
-+		.name = "mfg3",
-+		.sta_mask = BIT(4),
-+		.ctl_offs = 0x30C,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_MFG4] = {
-+		.name = "mfg4",
-+		.sta_mask = BIT(5),
-+		.ctl_offs = 0x310,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_MFG5] = {
-+		.name = "mfg5",
-+		.sta_mask = BIT(6),
-+		.ctl_offs = 0x314,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_MFG6] = {
-+		.name = "mfg6",
-+		.sta_mask = BIT(7),
-+		.ctl_offs = 0x318,
-+		.pwr_sta_offs = 0x174,
-+		.pwr_sta2nd_offs = 0x178,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_VPPSYS0] = {
-+		.name = "vppsys0",
-+		.sta_mask = BIT(11),
-+		.ctl_offs = 0x364,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VPPSYS0,
-+				    MT8195_TOP_AXI_PROT_EN_SET,
-+				    MT8195_TOP_AXI_PROT_EN_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS0,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VPPSYS0_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_SET,
-+				    MT8195_TOP_AXI_PROT_EN_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS0_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_VPPSYS0,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_SET,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_VDOSYS0] = {
-+		.name = "vdosys0",
-+		.sta_mask = BIT(13),
-+		.ctl_offs = 0x36C,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDOSYS0,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDOSYS0,
-+				    MT8195_TOP_AXI_PROT_EN_SET,
-+				    MT8195_TOP_AXI_PROT_EN_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_VDOSYS0,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_SET,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_VPPSYS1] = {
-+		.name = "vppsys1",
-+		.sta_mask = BIT(12),
-+		.ctl_offs = 0x368,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VPPSYS1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VPPSYS1_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_VDOSYS1] = {
-+		.name = "vdosys1",
-+		.sta_mask = BIT(14),
-+		.ctl_offs = 0x370,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDOSYS1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDOSYS1_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VDOSYS1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_DP_TX] = {
-+		.name = "dp_tx",
-+		.sta_mask = BIT(16),
-+		.ctl_offs = 0x378,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDNR_1_DP_TX,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_SET,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_EPD_TX] = {
-+		.name = "epd_tx",
-+		.sta_mask = BIT(17),
-+		.ctl_offs = 0x37C,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_VDNR_1_EPD_TX,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_SET,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_VDNR_1_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_HDMI_TX] = {
-+		.name = "hdmi_tx",
-+		.sta_mask = BIT(18),
-+		.ctl_offs = 0x380,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF | MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8195_POWER_DOMAIN_WPESYS] = {
-+		.name = "wpesys",
-+		.sta_mask = BIT(15),
-+		.ctl_offs = 0x374,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_WPESYS,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_WPESYS,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_WPESYS_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+	},
-+	[MT8195_POWER_DOMAIN_VDEC0] = {
-+		.name = "vdec0",
-+		.sta_mask = BIT(20),
-+		.ctl_offs = 0x388,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDEC0,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VDEC0,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDEC0_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VDEC0_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_VDEC1] = {
-+		.name = "vdec1",
-+		.sta_mask = BIT(21),
-+		.ctl_offs = 0x38C,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDEC1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VDEC1_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_VDEC2] = {
-+		.name = "vdec2",
-+		.sta_mask = BIT(22),
-+		.ctl_offs = 0x390,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VDEC2,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VDEC2_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_VENC] = {
-+		.name = "venc",
-+		.sta_mask = BIT(23),
-+		.ctl_offs = 0x394,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VENC,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VENC_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VENC,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_VENC_CORE1] = {
-+		.name = "venc_core1",
-+		.sta_mask = BIT(24),
-+		.ctl_offs = 0x398,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_VENC_CORE1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_VENC_CORE1,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_IMG] = {
-+		.name = "img",
-+		.sta_mask = BIT(29),
-+		.ctl_offs = 0x3AC,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_IMG,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_IMG_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_DIP] = {
-+		.name = "dip",
-+		.sta_mask = BIT(30),
-+		.ctl_offs = 0x3B0,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_IPE] = {
-+		.name = "ipe",
-+		.sta_mask = BIT(31),
-+		.ctl_offs = 0x3B4,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_IPE,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_IPE,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_CAM] = {
-+		.name = "cam",
-+		.sta_mask = BIT(25),
-+		.ctl_offs = 0x39C,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_infracfg = {
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_2_CAM,
-+				    MT8195_TOP_AXI_PROT_EN_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_2_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_CAM,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_1_CAM,
-+				    MT8195_TOP_AXI_PROT_EN_1_SET,
-+				    MT8195_TOP_AXI_PROT_EN_1_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_1_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_CAM_2ND,
-+				    MT8195_TOP_AXI_PROT_EN_MM_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_STA1),
-+			BUS_PROT_WR(MT8195_TOP_AXI_PROT_EN_MM_2_CAM,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_SET,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_CLR,
-+				    MT8195_TOP_AXI_PROT_EN_MM_2_STA1),
-+		},
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_CAM_RAWA] = {
-+		.name = "cam_rawa",
-+		.sta_mask = BIT(26),
-+		.ctl_offs = 0x3A0,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_CAM_RAWB] = {
-+		.name = "cam_rawb",
-+		.sta_mask = BIT(27),
-+		.ctl_offs = 0x3A4,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8195_POWER_DOMAIN_CAM_MRAW] = {
-+		.name = "cam_mraw",
-+		.sta_mask = BIT(28),
-+		.ctl_offs = 0x3A8,
-+		.pwr_sta_offs = 0x16c,
-+		.pwr_sta2nd_offs = 0x170,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.caps = MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+};
-+
-+static const struct scpsys_soc_data mt8195_scpsys_data = {
-+	.domains_data = scpsys_domain_data_mt8195,
-+	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8195),
-+};
-+
-+#endif /* __SOC_MEDIATEK_MT8195_PM_DOMAINS_H */
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-index ad06b6f90435..61973a306e97 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.c
-+++ b/drivers/soc/mediatek/mtk-pm-domains.c
-@@ -20,6 +20,7 @@
- #include "mt8173-pm-domains.h"
- #include "mt8183-pm-domains.h"
- #include "mt8192-pm-domains.h"
-+#include "mt8195-pm-domains.h"
- 
- #define MTK_POLL_DELAY_US		10
- #define MTK_POLL_TIMEOUT		USEC_PER_SEC
-@@ -569,6 +570,10 @@ static const struct of_device_id scpsys_of_match[] = {
- 		.compatible = "mediatek,mt8192-power-controller",
- 		.data = &mt8192_scpsys_data,
- 	},
-+	{
-+		.compatible = "mediatek,mt8195-power-controller",
-+		.data = &mt8195_scpsys_data,
-+	},
- 	{ }
- };
- 
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-index c233ed828f86..daa24e890dd4 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.h
-+++ b/drivers/soc/mediatek/mtk-pm-domains.h
-@@ -37,7 +37,7 @@
- #define PWR_STATUS_AUDIO		BIT(24)
- #define PWR_STATUS_USB			BIT(25)
- 
--#define SPM_MAX_BUS_PROT_DATA		5
-+#define SPM_MAX_BUS_PROT_DATA		6
- 
- #define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) {	\
- 		.bus_prot_mask = (_mask),			\
-diff --git a/include/linux/soc/mediatek/infracfg.h b/include/linux/soc/mediatek/infracfg.h
-index 4615a228da51..d858e0bab7a2 100644
---- a/include/linux/soc/mediatek/infracfg.h
-+++ b/include/linux/soc/mediatek/infracfg.h
-@@ -2,6 +2,88 @@
- #ifndef __SOC_MEDIATEK_INFRACFG_H
- #define __SOC_MEDIATEK_INFRACFG_H
- 
-+#define MT8195_TOP_AXI_PROT_EN_STA1                     0x228
-+#define MT8195_TOP_AXI_PROT_EN_1_STA1                   0x258
-+#define MT8195_TOP_AXI_PROT_EN_SET			0x2a0
-+#define MT8195_TOP_AXI_PROT_EN_CLR                      0x2a4
-+#define MT8195_TOP_AXI_PROT_EN_1_SET                    0x2a8
-+#define MT8195_TOP_AXI_PROT_EN_1_CLR                    0x2ac
-+#define MT8195_TOP_AXI_PROT_EN_MM_SET                   0x2d4
-+#define MT8195_TOP_AXI_PROT_EN_MM_CLR                   0x2d8
-+#define MT8195_TOP_AXI_PROT_EN_MM_STA1                  0x2ec
-+#define MT8195_TOP_AXI_PROT_EN_2_SET                    0x714
-+#define MT8195_TOP_AXI_PROT_EN_2_CLR                    0x718
-+#define MT8195_TOP_AXI_PROT_EN_2_STA1                   0x724
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_SET                 0xb84
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_CLR                 0xb88
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_STA1                0xb90
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_SET               0xba4
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_CLR               0xba8
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_STA1              0xbb0
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_2_SET               0xbb8
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_2_CLR               0xbbc
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_2_STA1              0xbc4
-+#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_SET       0xbcc
-+#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_CLR       0xbd0
-+#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_STA1      0xbd8
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_SET                 0xdcc
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_CLR                 0xdd0
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_STA1                0xdd8
-+
-+#define MT8195_TOP_AXI_PROT_EN_VDOSYS0			BIT(6)
-+#define MT8195_TOP_AXI_PROT_EN_VPPSYS0			BIT(10)
-+#define MT8195_TOP_AXI_PROT_EN_MFG1			BIT(11)
-+#define MT8195_TOP_AXI_PROT_EN_MFG1_2ND			GENMASK(22, 21)
-+#define MT8195_TOP_AXI_PROT_EN_VPPSYS0_2ND		BIT(23)
-+#define MT8195_TOP_AXI_PROT_EN_1_MFG1			GENMASK(20, 19)
-+#define MT8195_TOP_AXI_PROT_EN_1_CAM			BIT(22)
-+#define MT8195_TOP_AXI_PROT_EN_2_CAM			BIT(0)
-+#define MT8195_TOP_AXI_PROT_EN_2_MFG1_2ND		GENMASK(6, 5)
-+#define MT8195_TOP_AXI_PROT_EN_2_MFG1			BIT(7)
-+#define MT8195_TOP_AXI_PROT_EN_2_AUDIO			(BIT(9) | BIT(11))
-+#define MT8195_TOP_AXI_PROT_EN_2_ADSP			(BIT(12) | GENMASK(16, 14))
-+#define MT8195_TOP_AXI_PROT_EN_MM_CAM			(BIT(0) | BIT(2) | BIT(4))
-+#define MT8195_TOP_AXI_PROT_EN_MM_IPE			BIT(1)
-+#define MT8195_TOP_AXI_PROT_EN_MM_IMG			BIT(3)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS0		GENMASK(21, 17)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VPPSYS1		GENMASK(8, 5)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VENC			(BIT(9) | BIT(11))
-+#define MT8195_TOP_AXI_PROT_EN_MM_VENC_CORE1		(BIT(10) | BIT(12))
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDEC0			BIT(13)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDEC1			BIT(14)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS1_2ND		BIT(22)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VPPSYS1_2ND		BIT(23)
-+#define MT8195_TOP_AXI_PROT_EN_MM_CAM_2ND		BIT(24)
-+#define MT8195_TOP_AXI_PROT_EN_MM_IMG_2ND		BIT(25)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VENC_2ND		BIT(26)
-+#define MT8195_TOP_AXI_PROT_EN_MM_WPESYS		BIT(27)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDEC0_2ND		BIT(28)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDEC1_2ND		BIT(29)
-+#define MT8195_TOP_AXI_PROT_EN_MM_VDOSYS1		GENMASK(31, 30)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS0_2ND		(GENMASK(1, 0) | BIT(4) | BIT(11))
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VENC		BIT(2)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VENC_CORE1		(BIT(3) | BIT(15))
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_CAM			(BIT(5) | BIT(17))
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS1		(GENMASK(7, 6) | BIT(18))
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VPPSYS0		GENMASK(9, 8)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VDOSYS1		BIT(10)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC2_2ND		BIT(12)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC0_2ND		BIT(13)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_WPESYS_2ND		BIT(14)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_IPE			BIT(16)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC2		BIT(21)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_VDEC0		BIT(22)
-+#define MT8195_TOP_AXI_PROT_EN_MM_2_WPESYS		GENMASK(24, 23)
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_EPD_TX		BIT(1)
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_DP_TX		BIT(2)
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_PCIE_MAC_P0		(BIT(11) | BIT(28))
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_PCIE_MAC_P1		(BIT(12) | BIT(29))
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_PCIE_MAC_P0	BIT(13)
-+#define MT8195_TOP_AXI_PROT_EN_VDNR_1_PCIE_MAC_P1	BIT(14)
-+#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_MFG1	(BIT(17) | BIT(19))
-+#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_VPPSYS0	BIT(20)
-+#define MT8195_TOP_AXI_PROT_EN_SUB_INFRA_VDNR_VDOSYS0	BIT(21)
-+
- #define MT8192_TOP_AXI_PROT_EN_STA1			0x228
- #define MT8192_TOP_AXI_PROT_EN_1_STA1			0x258
- #define MT8192_TOP_AXI_PROT_EN_SET			0x2a0
--- 
-2.18.0
+Also, if this is false, then false is set above. So checking for
+mbhc->force_linein is useless.
 
+> +                       is_spl_hs = false;
+> +       } else {
+> +               is_spl_hs = true;
+> +       }
+> +
+> +       /* Back MIC_BIAS2 to 1.8v if the type is not special headset */
+> +       if (!is_spl_hs) {
+> +               mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, false);
+> +               /* Add 10ms delay for micbias to settle */
+> +               usleep_range(10000, 10100);
+> +       }
+> +
+> +       return is_spl_hs;
+> +}
+> +
+>  static void wcd_correct_swch_plug(struct work_struct *work)
+>  {
+>         struct wcd_mbhc *mbhc;
+> @@ -1029,12 +1079,14 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>         enum wcd_mbhc_plug_type plug_type = MBHC_PLUG_TYPE_INVALID;
+>         unsigned long timeout;
+>         int pt_gnd_mic_swap_cnt = 0;
+> -       int output_mv, cross_conn, hs_threshold, try = 0;
+> +       int output_mv, cross_conn, hs_threshold, try = 0, micbias_mv;
+> +       bool is_spl_hs = false;
+>         bool is_pa_on;
+>
+>         mbhc = container_of(work, struct wcd_mbhc, correct_plug_swch);
+>         component = mbhc->component;
+>
+> +       micbias_mv = wcd_mbhc_get_micbias(mbhc);
+>         hs_threshold = wcd_mbhc_adc_get_hs_thres(mbhc);
+>
+>         /* Mask ADC COMPLETE interrupt */
+> @@ -1097,6 +1149,16 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>                 plug_type = wcd_mbhc_get_plug_from_adc(mbhc, output_mv);
+>                 is_pa_on = wcd_mbhc_read_field(mbhc, WCD_MBHC_HPH_PA_EN);
+>
+> +               if ((output_mv > hs_threshold) && (!is_spl_hs)) {
+
+Please drop useless parenthesis
+
+> +                       is_spl_hs = wcd_mbhc_check_for_spl_headset(mbhc);
+> +                       output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
+> +
+> +                       if (is_spl_hs) {
+> +                               hs_threshold = (hs_threshold * wcd_mbhc_get_micbias(mbhc)) /
+> +                                                                       micbias_mv;
+
+Same. It may be good to split it to two assignments to clarify
+overflow/underflow.
+
+> +                       }
+> +               }
+> +
+>                 if ((output_mv <= hs_threshold) && !is_pa_on) {
+>                         /* Check for cross connection*/
+>                         cross_conn = wcd_check_cross_conn(mbhc);
+> @@ -1122,14 +1184,19 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>                         }
+>                 }
+>
+> -               if (output_mv > hs_threshold) /* cable is extension cable */
+> +               /* cable is extension cable */
+> +               if (output_mv > hs_threshold || mbhc->force_linein == true)
+
+Drop the == true please.
+
+>                         plug_type = MBHC_PLUG_TYPE_HIGH_HPH;
+>         }
+>
+>         wcd_mbhc_bcs_enable(mbhc, plug_type, true);
+>
+> -       if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH)
+> -               wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
+> +       if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH) {
+> +               if (is_spl_hs)
+> +                       plug_type = MBHC_PLUG_TYPE_HEADSET;
+> +               else
+> +                       wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
+> +       }
+>
+>         wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_MODE, 0);
+>         wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_EN, 0);
