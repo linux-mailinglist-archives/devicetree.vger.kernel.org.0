@@ -2,286 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BACD44502AC
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 11:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15CA24502CD
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 11:51:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237588AbhKOKpL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 05:45:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58288 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237595AbhKOKpI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 05:45:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 1AEFF6023F;
-        Mon, 15 Nov 2021 10:42:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1636972933;
-        bh=exSM5dtqDd3i2XgYAUKLN6dyoIm8Jdkkh/4Sl301rs8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KcmJIXsuheO935pa31Dn0qSK6cbgL2Q3+KzeqETmI1F/NQ4p3HWi37IOkRXjShxaH
-         Z71B59fllZvlPGH4URAVLgOQZXg1fQafqO1TGx+k+9O4x5/akyfnpkYK0Im4E1UJMf
-         AdXpe8mQtpX4cZLpwm1C4nUXMI9Jic7Fvgt8gSkeniLDqzOLi/s44iM5GxOOimukj2
-         Ja4cgRAKIB8s1zSDH9KizJFM6NBbZi3C50M277vuFmlk3GBdntFRaY633mSXgmrLiC
-         WQMUikvwso81p0V83AWOVAYiqdp60UbegJUENKCzwiOKG3pKmJgWOF5qCZ4O1zWgha
-         a2WGmp8K+P1gQ==
-Date:   Mon, 15 Nov 2021 16:12:05 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Huang Yiwei <quic_hyiwei@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        jassisinghbrar@gmail.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_psodagud@quicinc.com,
-        quic_tsoni@quicinc.com, quic_aiquny@quicinc.com,
-        quic_eberman@quicinc.com
-Subject: Re: [PATCH] mailbox: qcom-ipcc: Update the QCOM_IPCC driver
-Message-ID: <20211115104205.GA15218@thinkpad>
-References: <20211115031830.6795-1-quic_hyiwei@quicinc.com>
+        id S231213AbhKOKx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 05:53:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33638 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231135AbhKOKxx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 05:53:53 -0500
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D281C0613B9
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 02:50:58 -0800 (PST)
+Received: by mail-ed1-x52f.google.com with SMTP id w1so70008883edd.10
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 02:50:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Uby7LO9dL88mrbNcNOuehqU8c8tZrroU3ttW6LQ5FA4=;
+        b=pgWl6ipxSbsjyFtgANj5lwVnsFOLDk87zFIoP42y5MSD5OPRJqQ2MW6VSfYeWolGS7
+         +r9wvE/OowwWha9JQKUPRDWZ+ahv+V1F57CI9DVSKvwMPed2kx5sT8GoV2ST/VlcWQsm
+         bqDl+Erl+zKADgiDgnYIIFocudmTNfiCJ+ZMlAJhLZk7CCFiAnWFClvSiIGNo6Eya2hY
+         nRuRTMWIN0OgqeZDSOQFEIwn3k05+q8LAzoqz0ng+4PfqQ5SUXxj+x9VCMoesh3W1++1
+         zwXAeCgWj2pDAg/7Q9YbsWvObJPP9ntphK/+j/bdeknijuhDIQrRHWuijhSodG5tvGiw
+         dpsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Uby7LO9dL88mrbNcNOuehqU8c8tZrroU3ttW6LQ5FA4=;
+        b=4auM1IjnnGTqv796nQ5jx5xSon3gBrMEL64uiwEH2/3fvySGCJ8N8EsxhXzQsbmmYS
+         ul98IQaWnZB17oWqoyQ0mMUloy6BQwr8BwaBq2rq8FnO7pGoNEsfdkSLcxivVk7wAIOW
+         h0TxVG1sAvHqhKrSXYVelo205hnoiXZv0TNz6U+0iD0q7wdNqrZ83cOxts35Mb0yy9fC
+         U2k6Da4IoXSNVIIAWeOt4/8dFVOou6k9935KvWHmhORNTMbNObZWJxtNUDnAQ8s4KNFO
+         i3U0R5S0s7YifGFaA5pgiDXxDt4mxpdwC1DSQu1stxWeo9eLMeOhEold9IQ8WfiMdSaP
+         ZpIQ==
+X-Gm-Message-State: AOAM531i56GnKrvvziW4eEjm3VfnD+V8GTaC52D3y5W20StAVymAKoir
+        NmhEKAZTVj9Y4C+vHOmpDMNEem3AKTs5sqr7/Sy51A==
+X-Google-Smtp-Source: ABdhPJyVHSR9lRk3LOcNxNeMeyuyUFb/qift9UIm/qJKFrFEmzZIOKhLRAIkkmIlJQmaX668BadzUikFj4Veoa4DoEE=
+X-Received: by 2002:a17:907:3e9a:: with SMTP id hs26mr49241448ejc.433.1636973456861;
+ Mon, 15 Nov 2021 02:50:56 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211115031830.6795-1-quic_hyiwei@quicinc.com>
+References: <20211112071858.3641788-1-peng.fan@oss.nxp.com>
+In-Reply-To: <20211112071858.3641788-1-peng.fan@oss.nxp.com>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Mon, 15 Nov 2021 11:50:45 +0100
+Message-ID: <CAMRc=McEBD5K+btkNHLn1yA9XecTGk5_B1q=MhHVCXcqEX47pA@mail.gmail.com>
+Subject: Re: [PATCH V4] dt-bindings: gpio: gpio-vf610: Add imx8ulp compatible string
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, stefan@agner.ch,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Rob Herring <robh@kernel.org>, Peng Fan <peng.fan@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 15, 2021 at 11:18:30AM +0800, Huang Yiwei wrote:
-> Update the QCOM_IPCC driver with below main features:
-> Dynamic alloc for channel arrangement instead of static alloced
-> array.
-> Multiple instance can be supported.
-> IPCC interrupt wake up support from suspend.
-> More protocol and client ID support added.
-> 
-
-As Bjorn said, please split this patch into multiple ones based on the feature.
-
-Thanks,
-Mani
-
-> Signed-off-by: Huang Yiwei <quic_hyiwei@quicinc.com>
+On Fri, Nov 12, 2021 at 8:20 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+>
+> From: Jacky Bai <ping.bai@nxp.com>
+>
+> Add the compatible string for i.MX8ULP.
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/mailbox/qcom-ipcc.c             | 101 ++++++++++++++++++------
->  include/dt-bindings/mailbox/qcom-ipcc.h |   9 ++-
->  2 files changed, 85 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/mailbox/qcom-ipcc.c b/drivers/mailbox/qcom-ipcc.c
-> index f1d4f4679b17..80bac21ccbc3 100644
-> --- a/drivers/mailbox/qcom-ipcc.c
-> +++ b/drivers/mailbox/qcom-ipcc.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0-only
->  /*
-> - * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
->   */
->  
->  #include <linux/bitfield.h>
-> @@ -13,8 +13,6 @@
->  
->  #include <dt-bindings/mailbox/qcom-ipcc.h>
->  
-> -#define IPCC_MBOX_MAX_CHAN		48
-> -
->  /* IPCC Register offsets */
->  #define IPCC_REG_SEND_ID		0x0c
->  #define IPCC_REG_RECV_ID		0x10
-> @@ -52,9 +50,10 @@ struct qcom_ipcc {
->  	struct device *dev;
->  	void __iomem *base;
->  	struct irq_domain *irq_domain;
-> -	struct mbox_chan chan[IPCC_MBOX_MAX_CHAN];
-> -	struct qcom_ipcc_chan_info mchan[IPCC_MBOX_MAX_CHAN];
-> +	struct mbox_chan *chans;
-> +	struct qcom_ipcc_chan_info *mchan;
->  	struct mbox_controller mbox;
-> +	int num_chans;
->  	int irq;
->  };
->  
-> @@ -166,25 +165,37 @@ static struct mbox_chan *qcom_ipcc_mbox_xlate(struct mbox_controller *mbox,
->  	struct qcom_ipcc *ipcc = to_qcom_ipcc(mbox);
->  	struct qcom_ipcc_chan_info *mchan;
->  	struct mbox_chan *chan;
-> -	unsigned int i;
-> +	struct device *dev;
-> +	int chan_id;
-> +
-> +	dev = ipcc->dev;
->  
->  	if (ph->args_count != 2)
->  		return ERR_PTR(-EINVAL);
->  
-> -	for (i = 0; i < IPCC_MBOX_MAX_CHAN; i++) {
-> -		chan = &ipcc->chan[i];
-> -		if (!chan->con_priv) {
-> -			mchan = &ipcc->mchan[i];
-> -			mchan->client_id = ph->args[0];
-> -			mchan->signal_id = ph->args[1];
-> -			chan->con_priv = mchan;
-> -			break;
-> -		}
-> +	for (chan_id = 0; chan_id < mbox->num_chans; chan_id++) {
-> +		chan = &ipcc->chans[chan_id];
-> +		mchan = chan->con_priv;
->  
-> -		chan = NULL;
-> +		if (!mchan)
-> +			break;
-> +		else if (mchan->client_id == ph->args[0] &&
-> +				mchan->signal_id == ph->args[1])
-> +			return ERR_PTR(-EBUSY);
->  	}
->  
-> -	return chan ?: ERR_PTR(-EBUSY);
-> +	if (chan_id >= mbox->num_chans)
-> +		return ERR_PTR(-EBUSY);
-> +
-> +	mchan = devm_kzalloc(dev, sizeof(*mchan), GFP_KERNEL);
-> +	if (!mchan)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	mchan->client_id = ph->args[0];
-> +	mchan->signal_id = ph->args[1];
-> +	chan->con_priv = mchan;
-> +
-> +	return chan;
->  }
->  
->  static const struct mbox_chan_ops ipcc_mbox_chan_ops = {
-> @@ -192,15 +203,49 @@ static const struct mbox_chan_ops ipcc_mbox_chan_ops = {
->  	.shutdown = qcom_ipcc_mbox_shutdown,
->  };
->  
-> -static int qcom_ipcc_setup_mbox(struct qcom_ipcc *ipcc)
-> +static int qcom_ipcc_setup_mbox(struct qcom_ipcc *ipcc,
-> +				struct device_node *controller_dn)
->  {
-> +	struct of_phandle_args curr_ph;
-> +	struct device_node *client_dn;
->  	struct mbox_controller *mbox;
->  	struct device *dev = ipcc->dev;
-> +	int i, j, ret;
-> +
-> +	/*
-> +	 * Find out the number of clients interested in this mailbox
-> +	 * and create channels accordingly.
-> +	 */
-> +	ipcc->num_chans = 0;
-> +	for_each_node_with_property(client_dn, "mboxes") {
-> +		if (!of_device_is_available(client_dn))
-> +			continue;
-> +		i = of_count_phandle_with_args(client_dn,
-> +						"mboxes", "#mbox-cells");
-> +		for (j = 0; j < i; j++) {
-> +			ret = of_parse_phandle_with_args(client_dn, "mboxes",
-> +						"#mbox-cells", j, &curr_ph);
-> +			of_node_put(curr_ph.np);
-> +			if (!ret && curr_ph.np == controller_dn) {
-> +				ipcc->num_chans++;
-> +				break;
-> +			}
-> +		}
-> +	}
-> +
-> +	/* If no clients are found, skip registering as a mbox controller */
-> +	if (!ipcc->num_chans)
-> +		return 0;
-> +
-> +	ipcc->chans = devm_kcalloc(dev, ipcc->num_chans,
-> +					sizeof(struct mbox_chan), GFP_KERNEL);
-> +	if (!ipcc->chans)
-> +		return -ENOMEM;
->  
->  	mbox = &ipcc->mbox;
->  	mbox->dev = dev;
-> -	mbox->num_chans = IPCC_MBOX_MAX_CHAN;
-> -	mbox->chans = ipcc->chan;
-> +	mbox->num_chans = ipcc->num_chans;
-> +	mbox->chans = ipcc->chans;
->  	mbox->ops = &ipcc_mbox_chan_ops;
->  	mbox->of_xlate = qcom_ipcc_mbox_xlate;
->  	mbox->txdone_irq = false;
-> @@ -212,6 +257,8 @@ static int qcom_ipcc_setup_mbox(struct qcom_ipcc *ipcc)
->  static int qcom_ipcc_probe(struct platform_device *pdev)
->  {
->  	struct qcom_ipcc *ipcc;
-> +	static int id;
-> +	char *name;
->  	int ret;
->  
->  	ipcc = devm_kzalloc(&pdev->dev, sizeof(*ipcc), GFP_KERNEL);
-> @@ -228,27 +275,33 @@ static int qcom_ipcc_probe(struct platform_device *pdev)
->  	if (ipcc->irq < 0)
->  		return ipcc->irq;
->  
-> +	name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "ipcc_%d", id++);
-> +	if (!name)
-> +		return -ENOMEM;
-> +
->  	ipcc->irq_domain = irq_domain_add_tree(pdev->dev.of_node,
->  					       &qcom_ipcc_irq_ops, ipcc);
->  	if (!ipcc->irq_domain)
->  		return -ENOMEM;
->  
-> -	ret = qcom_ipcc_setup_mbox(ipcc);
-> +	ret = qcom_ipcc_setup_mbox(ipcc, pdev->dev.of_node);
->  	if (ret)
->  		goto err_mbox;
->  
->  	ret = devm_request_irq(&pdev->dev, ipcc->irq, qcom_ipcc_irq_fn,
-> -			       IRQF_TRIGGER_HIGH, "ipcc", ipcc);
-> +			IRQF_TRIGGER_HIGH | IRQF_NO_SUSPEND, name, ipcc);
->  	if (ret < 0) {
->  		dev_err(&pdev->dev, "Failed to register the irq: %d\n", ret);
-> -		goto err_mbox;
-> +		goto err_req_irq;
->  	}
->  
-> -	enable_irq_wake(ipcc->irq);
->  	platform_set_drvdata(pdev, ipcc);
->  
->  	return 0;
->  
-> +err_req_irq:
-> +	if (ipcc->num_chans)
-> +		mbox_controller_unregister(&ipcc->mbox);
->  err_mbox:
->  	irq_domain_remove(ipcc->irq_domain);
->  
-> diff --git a/include/dt-bindings/mailbox/qcom-ipcc.h b/include/dt-bindings/mailbox/qcom-ipcc.h
-> index eb91a6c05b71..fb405e211028 100644
-> --- a/include/dt-bindings/mailbox/qcom-ipcc.h
-> +++ b/include/dt-bindings/mailbox/qcom-ipcc.h
-> @@ -1,6 +1,6 @@
->  /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
->  /*
-> - * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2018-2021, The Linux Foundation. All rights reserved.
->   */
->  
->  #ifndef __DT_BINDINGS_MAILBOX_IPCC_H
-> @@ -8,8 +8,13 @@
->  
->  /* Signal IDs for MPROC protocol */
->  #define IPCC_MPROC_SIGNAL_GLINK_QMP	0
-> +#define IPCC_MPROC_SIGNAL_TZ		1
->  #define IPCC_MPROC_SIGNAL_SMP2P		2
->  #define IPCC_MPROC_SIGNAL_PING		3
-> +#define IPCC_MPROC_SIGNAL_MAX		4 /* Used by driver only */
-> +
-> +#define IPCC_COMPUTE_L0_SIGNAL_MAX	32 /* Used by driver only */
-> +#define IPCC_COMPUTE_L1_SIGNAL_MAX	32 /* Used by driver only */
->  
->  /* Client IDs */
->  #define IPCC_CLIENT_AOP			0
-> @@ -29,6 +34,8 @@
->  #define IPCC_CLIENT_PCIE1		14
->  #define IPCC_CLIENT_PCIE2		15
->  #define IPCC_CLIENT_SPSS		16
-> +#define IPCC_CLIENT_TME			23
->  #define IPCC_CLIENT_WPSS		24
-> +#define IPCC_CLIENT_MAX			25 /* Used by driver only */
->  
->  #endif
-> -- 
-> 2.17.1
-> 
+>
+>  - v4 changes:
+>    no, just resend this patch as a single one
+>
+>  - v3 changes:
+>    no
+>
+>  - v2 changes:
+>    no
+>
+>  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> index 19738a457a58..e1359391d3a4 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+> @@ -24,6 +24,9 @@ properties:
+>        - items:
+>            - const: fsl,imx7ulp-gpio
+>            - const: fsl,vf610-gpio
+> +      - items:
+> +          - const: fsl,imx8ulp-gpio
+> +          - const: fsl,imx7ulp-gpio
+>
+>    reg:
+>      description: The first reg tuple represents the PORT module, the second tuple
+> --
+> 2.25.1
+>
+
+Applied, thanks!
+
+Bart
