@@ -2,84 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9129E451AE2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEACE451AC9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:42:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245119AbhKOXoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 18:44:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45368 "EHLO mail.kernel.org"
+        id S233862AbhKOXnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 18:43:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45364 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1355337AbhKOXlA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 18:41:00 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B65786325B;
-        Mon, 15 Nov 2021 23:35:16 +0000 (UTC)
+        id S1355340AbhKOXlB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 18:41:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E86CC63272;
+        Mon, 15 Nov 2021 23:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637019319;
-        bh=sepJeKAqWD8OEq16yv5uQxj8oK3WHPvL+LfRcZh0niI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=dChFpCCkDxohYHTlOa+kJKHYpjYgV2kJNoJjZS9AIeP6IzOBQXUTvKC+IdcKRsmWJ
-         fUqaXJZfT4aAdPolbpqvut7vCnP2VpqZV5vkQlBSJFAWC6xoDegTyMcWPB2XjqM1yt
-         hJh0cFuIrTpkTCCuvcBGkNhc4mMcroWm3L4hcCSOve1py6hjutrLJLsI5y9VXnDu9g
-         nAQdZrJShGkQ2MblqrPDP1962r6dGehUcxW9Q7c6l3CzYCbna/FoBR5ReoZVDb7YTZ
-         9RrECdd6AYXgVLbsGmx3M+Y8Iegx+IP0/VkgKzMb8GxJ+RgzleQdKlBvihI8Rtq1uB
-         yviu9M6AEoNHw==
-From:   Mark Brown <broonie@kernel.org>
-To:     swboyd@chromium.org, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        rohitkr@codeaurora.org, robh+dt@kernel.org,
-        alsa-devel@alsa-project.org, plai@codeaurora.org,
-        linux-kernel@vger.kernel.org, perex@perex.cz,
-        judyhsiao@chromium.org, lgirdwood@gmail.com,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        tiwai@suse.com, bgoswami@codeaurora.org, agross@kernel.org,
-        srinivas.kandagatla@linaro.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-In-Reply-To: <1636960288-27537-1-git-send-email-srivasam@codeaurora.org>
-References: <1636960288-27537-1-git-send-email-srivasam@codeaurora.org>
-Subject: Re: [PATCH v2] ASoC: codecs: MBHC: Add support for special headset
-Message-Id: <163701931648.675370.4567378408146703552.b4-ty@kernel.org>
-Date:   Mon, 15 Nov 2021 23:35:16 +0000
+        s=k20201202; t=1637019406;
+        bh=cctpZu5Y6zldBTQH9BYecYmoFJAIKu/tEYPP+N2ifkg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BUm+Or9GZUEVDVDQzn5Avd+95mdVhm4Ue+D7E4a+p7ajRCd5/l6Ays9aEhEEd8+Gg
+         thA2uLAZJD9ZVWzlqZvL/WFoGabVcwiynnUswgq40HjdebxPBO+XwPoQhDa6wey8rJ
+         zrrr/oLf7UjiMhWh7+3f0uSpgbnTofAjQLfpck/naZHMhtCvwsfMmhDMEB+e7srKqO
+         k0Rdc5GNWGFGIQPC4ZJ9oh++gp9Rq/XyTpzNfVynSZBEU/5rJxDQLuBGyx2yr/8Utv
+         fnG6HhVuGI2AMXi7ZdPmPLwMlw8uv5D+NBZxqc7AeXUMy9EO1MVcPDJV7fnDwCnHbD
+         UtbAx+QWfJyWQ==
+Received: by mail-ed1-f51.google.com with SMTP id r11so15347163edd.9;
+        Mon, 15 Nov 2021 15:36:46 -0800 (PST)
+X-Gm-Message-State: AOAM533ACluWjIP1qxJ5gVu6haaYv7qjxWD3EVM67thrBUfWW1y6GUL5
+        y66TfeztcOWGsj56L7liNEVqWcvehjApJGabQw==
+X-Google-Smtp-Source: ABdhPJxBF8uXp/soiWJMvx1BBMQh38TTql9xsdOjCMlzFG/WKZ34mL89epAie4tWiEUIrY4Yg2UkZ8zuSWFa0MXJF2Y=
+X-Received: by 2002:aa7:c415:: with SMTP id j21mr3624586edq.357.1637019405373;
+ Mon, 15 Nov 2021 15:36:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20210930155222.5861-1-yongqiang.niu@mediatek.com> <20210930155222.5861-3-yongqiang.niu@mediatek.com>
+In-Reply-To: <20210930155222.5861-3-yongqiang.niu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 16 Nov 2021 07:36:34 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9R+=VPXMLEo0QTuzJSePyVNi6hmHUoCe8ctbKYKLDU1g@mail.gmail.com>
+Message-ID: <CAAOTY_9R+=VPXMLEo0QTuzJSePyVNi6hmHUoCe8ctbKYKLDU1g@mail.gmail.com>
+Subject: Re: [PATCH v10, 2/5] drm/mediatek: add component POSTMASK
+To:     Yongqiang Niu <yongqiang.niu@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Yi Wang <hsinyi@chromium.org>, CK Hu <ck.hu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Nov 2021 12:41:28 +0530, Srinivasa Rao Mandadapu wrote:
-> Update MBHC driver to support special headset such as apple
-> and huwawei headsets.
-> 
-> Changes Since V1:
->     -- Fix typo errors.
-> 
-> 
-> [...]
+Hi, Yongqiang:
 
-Applied to
+Yongqiang Niu <yongqiang.niu@mediatek.com> =E6=96=BC 2021=E5=B9=B49=E6=9C=
+=8830=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=8811:52=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+>
+> This patch add component POSTMASK.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Applied to mediatek-drm-next [1], thanks.
 
-Thanks!
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
 
-[1/1] ASoC: codecs: MBHC: Add support for special headset
-      commit: 3c8a3ad4019126f06016ab0128dde11817502f52
+Regards,
+Chun-Kuang.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 102 ++++++++++++++------
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
+>  2 files changed, 73 insertions(+), 30 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.c
+> index 4a2abcf3e5f9..89170ad825fd 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -62,6 +62,12 @@
+>  #define DITHER_ADD_LSHIFT_G(x)                 (((x) & 0x7) << 4)
+>  #define DITHER_ADD_RSHIFT_G(x)                 (((x) & 0x7) << 0)
+>
+> +#define DISP_POSTMASK_EN                       0x0000
+> +#define POSTMASK_EN                                    BIT(0)
+> +#define DISP_POSTMASK_CFG                      0x0020
+> +#define POSTMASK_RELAY_MODE                            BIT(0)
+> +#define DISP_POSTMASK_SIZE                     0x0030
+> +
+>  struct mtk_ddp_comp_dev {
+>         struct clk *clk;
+>         void __iomem *regs;
+> @@ -214,6 +220,32 @@ static void mtk_dither_stop(struct device *dev)
+>         writel_relaxed(0x0, priv->regs + DISP_DITHER_EN);
+>  }
+>
+> +static void mtk_postmask_config(struct device *dev, unsigned int w,
+> +                               unsigned int h, unsigned int vrefresh,
+> +                               unsigned int bpc, struct cmdq_pkt *cmdq_p=
+kt)
+> +{
+> +       struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
+> +
+> +       mtk_ddp_write(cmdq_pkt, w << 16 | h, &priv->cmdq_reg, priv->regs,
+> +                     DISP_POSTMASK_SIZE);
+> +       mtk_ddp_write(cmdq_pkt, POSTMASK_RELAY_MODE, &priv->cmdq_reg,
+> +                     priv->regs, DISP_POSTMASK_CFG);
+> +}
+> +
+> +static void mtk_postmask_start(struct device *dev)
+> +{
+> +       struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
+> +
+> +       writel(POSTMASK_EN, priv->regs + DISP_POSTMASK_EN);
+> +}
+> +
+> +static void mtk_postmask_stop(struct device *dev)
+> +{
+> +       struct mtk_ddp_comp_dev *priv =3D dev_get_drvdata(dev);
+> +
+> +       writel_relaxed(0x0, priv->regs + DISP_POSTMASK_EN);
+> +}
+> +
+>  static const struct mtk_ddp_comp_funcs ddp_aal =3D {
+>         .clk_enable =3D mtk_aal_clk_enable,
+>         .clk_disable =3D mtk_aal_clk_disable,
+> @@ -289,6 +321,14 @@ static const struct mtk_ddp_comp_funcs ddp_ovl =3D {
+>         .bgclr_in_off =3D mtk_ovl_bgclr_in_off,
+>  };
+>
+> +static const struct mtk_ddp_comp_funcs ddp_postmask =3D {
+> +       .clk_enable =3D mtk_ddp_clk_enable,
+> +       .clk_disable =3D mtk_ddp_clk_disable,
+> +       .config =3D mtk_postmask_config,
+> +       .start =3D mtk_postmask_start,
+> +       .stop =3D mtk_postmask_stop,
+> +};
+> +
+>  static const struct mtk_ddp_comp_funcs ddp_rdma =3D {
+>         .clk_enable =3D mtk_rdma_clk_enable,
+>         .clk_disable =3D mtk_rdma_clk_disable,
+> @@ -324,6 +364,7 @@ static const char * const mtk_ddp_comp_stem[MTK_DDP_C=
+OMP_TYPE_MAX] =3D {
+>         [MTK_DISP_MUTEX] =3D "mutex",
+>         [MTK_DISP_OD] =3D "od",
+>         [MTK_DISP_BLS] =3D "bls",
+> +       [MTK_DISP_POSTMASK] =3D "postmask",
+>  };
+>
+>  struct mtk_ddp_comp_match {
+> @@ -333,36 +374,37 @@ struct mtk_ddp_comp_match {
+>  };
+>
+>  static const struct mtk_ddp_comp_match mtk_ddp_matches[DDP_COMPONENT_ID_=
+MAX] =3D {
+> -       [DDP_COMPONENT_AAL0]    =3D { MTK_DISP_AAL,       0, &ddp_aal },
+> -       [DDP_COMPONENT_AAL1]    =3D { MTK_DISP_AAL,       1, &ddp_aal },
+> -       [DDP_COMPONENT_BLS]     =3D { MTK_DISP_BLS,       0, NULL },
+> -       [DDP_COMPONENT_CCORR]   =3D { MTK_DISP_CCORR,     0, &ddp_ccorr }=
+,
+> -       [DDP_COMPONENT_COLOR0]  =3D { MTK_DISP_COLOR,     0, &ddp_color }=
+,
+> -       [DDP_COMPONENT_COLOR1]  =3D { MTK_DISP_COLOR,     1, &ddp_color }=
+,
+> -       [DDP_COMPONENT_DITHER]  =3D { MTK_DISP_DITHER,    0, &ddp_dither =
+},
+> -       [DDP_COMPONENT_DPI0]    =3D { MTK_DPI,            0, &ddp_dpi },
+> -       [DDP_COMPONENT_DPI1]    =3D { MTK_DPI,            1, &ddp_dpi },
+> -       [DDP_COMPONENT_DSI0]    =3D { MTK_DSI,            0, &ddp_dsi },
+> -       [DDP_COMPONENT_DSI1]    =3D { MTK_DSI,            1, &ddp_dsi },
+> -       [DDP_COMPONENT_DSI2]    =3D { MTK_DSI,            2, &ddp_dsi },
+> -       [DDP_COMPONENT_DSI3]    =3D { MTK_DSI,            3, &ddp_dsi },
+> -       [DDP_COMPONENT_GAMMA]   =3D { MTK_DISP_GAMMA,     0, &ddp_gamma }=
+,
+> -       [DDP_COMPONENT_OD0]     =3D { MTK_DISP_OD,        0, &ddp_od },
+> -       [DDP_COMPONENT_OD1]     =3D { MTK_DISP_OD,        1, &ddp_od },
+> -       [DDP_COMPONENT_OVL0]    =3D { MTK_DISP_OVL,       0, &ddp_ovl },
+> -       [DDP_COMPONENT_OVL1]    =3D { MTK_DISP_OVL,       1, &ddp_ovl },
+> -       [DDP_COMPONENT_OVL_2L0] =3D { MTK_DISP_OVL_2L,    0, &ddp_ovl },
+> -       [DDP_COMPONENT_OVL_2L1] =3D { MTK_DISP_OVL_2L,    1, &ddp_ovl },
+> -       [DDP_COMPONENT_OVL_2L2] =3D { MTK_DISP_OVL_2L,    2, &ddp_ovl },
+> -       [DDP_COMPONENT_PWM0]    =3D { MTK_DISP_PWM,       0, NULL },
+> -       [DDP_COMPONENT_PWM1]    =3D { MTK_DISP_PWM,       1, NULL },
+> -       [DDP_COMPONENT_PWM2]    =3D { MTK_DISP_PWM,       2, NULL },
+> -       [DDP_COMPONENT_RDMA0]   =3D { MTK_DISP_RDMA,      0, &ddp_rdma },
+> -       [DDP_COMPONENT_RDMA1]   =3D { MTK_DISP_RDMA,      1, &ddp_rdma },
+> -       [DDP_COMPONENT_RDMA2]   =3D { MTK_DISP_RDMA,      2, &ddp_rdma },
+> -       [DDP_COMPONENT_UFOE]    =3D { MTK_DISP_UFOE,      0, &ddp_ufoe },
+> -       [DDP_COMPONENT_WDMA0]   =3D { MTK_DISP_WDMA,      0, NULL },
+> -       [DDP_COMPONENT_WDMA1]   =3D { MTK_DISP_WDMA,      1, NULL },
+> +       [DDP_COMPONENT_AAL0]            =3D { MTK_DISP_AAL,       0, &ddp=
+_aal },
+> +       [DDP_COMPONENT_AAL1]            =3D { MTK_DISP_AAL,       1, &ddp=
+_aal },
+> +       [DDP_COMPONENT_BLS]             =3D { MTK_DISP_BLS,       0, NULL=
+ },
+> +       [DDP_COMPONENT_CCORR]           =3D { MTK_DISP_CCORR,     0, &ddp=
+_ccorr },
+> +       [DDP_COMPONENT_COLOR0]          =3D { MTK_DISP_COLOR,     0, &ddp=
+_color },
+> +       [DDP_COMPONENT_COLOR1]          =3D { MTK_DISP_COLOR,     1, &ddp=
+_color },
+> +       [DDP_COMPONENT_DITHER]          =3D { MTK_DISP_DITHER,    0, &ddp=
+_dither },
+> +       [DDP_COMPONENT_DPI0]            =3D { MTK_DPI,            0, &ddp=
+_dpi },
+> +       [DDP_COMPONENT_DPI1]            =3D { MTK_DPI,            1, &ddp=
+_dpi },
+> +       [DDP_COMPONENT_DSI0]            =3D { MTK_DSI,            0, &ddp=
+_dsi },
+> +       [DDP_COMPONENT_DSI1]            =3D { MTK_DSI,            1, &ddp=
+_dsi },
+> +       [DDP_COMPONENT_DSI2]            =3D { MTK_DSI,            2, &ddp=
+_dsi },
+> +       [DDP_COMPONENT_DSI3]            =3D { MTK_DSI,            3, &ddp=
+_dsi },
+> +       [DDP_COMPONENT_GAMMA]           =3D { MTK_DISP_GAMMA,     0, &ddp=
+_gamma },
+> +       [DDP_COMPONENT_OD0]             =3D { MTK_DISP_OD,        0, &ddp=
+_od },
+> +       [DDP_COMPONENT_OD1]             =3D { MTK_DISP_OD,        1, &ddp=
+_od },
+> +       [DDP_COMPONENT_OVL0]            =3D { MTK_DISP_OVL,       0, &ddp=
+_ovl },
+> +       [DDP_COMPONENT_OVL1]            =3D { MTK_DISP_OVL,       1, &ddp=
+_ovl },
+> +       [DDP_COMPONENT_OVL_2L0]         =3D { MTK_DISP_OVL_2L,    0, &ddp=
+_ovl },
+> +       [DDP_COMPONENT_OVL_2L1]         =3D { MTK_DISP_OVL_2L,    1, &ddp=
+_ovl },
+> +       [DDP_COMPONENT_OVL_2L2]         =3D { MTK_DISP_OVL_2L,    2, &ddp=
+_ovl },
+> +       [DDP_COMPONENT_POSTMASK0]       =3D { MTK_DISP_POSTMASK,  0, &ddp=
+_postmask },
+> +       [DDP_COMPONENT_PWM0]            =3D { MTK_DISP_PWM,       0, NULL=
+ },
+> +       [DDP_COMPONENT_PWM1]            =3D { MTK_DISP_PWM,       1, NULL=
+ },
+> +       [DDP_COMPONENT_PWM2]            =3D { MTK_DISP_PWM,       2, NULL=
+ },
+> +       [DDP_COMPONENT_RDMA0]           =3D { MTK_DISP_RDMA,      0, &ddp=
+_rdma },
+> +       [DDP_COMPONENT_RDMA1]           =3D { MTK_DISP_RDMA,      1, &ddp=
+_rdma },
+> +       [DDP_COMPONENT_RDMA2]           =3D { MTK_DISP_RDMA,      2, &ddp=
+_rdma },
+> +       [DDP_COMPONENT_UFOE]            =3D { MTK_DISP_UFOE,      0, &ddp=
+_ufoe },
+> +       [DDP_COMPONENT_WDMA0]           =3D { MTK_DISP_WDMA,      0, NULL=
+ },
+> +       [DDP_COMPONENT_WDMA1]           =3D { MTK_DISP_WDMA,      1, NULL=
+ },
+>  };
+>
+>  static bool mtk_drm_find_comp_in_ddp(struct device *dev,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/dr=
+m/mediatek/mtk_drm_ddp_comp.h
+> index bb914d976cf5..cd1dec6b4cdf 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> @@ -30,6 +30,7 @@ enum mtk_ddp_comp_type {
+>         MTK_DISP_UFOE,
+>         MTK_DSI,
+>         MTK_DPI,
+> +       MTK_DISP_POSTMASK,
+>         MTK_DISP_PWM,
+>         MTK_DISP_MUTEX,
+>         MTK_DISP_OD,
+> --
+> 2.25.1
+>
