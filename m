@@ -2,42 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7101451AC3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEAD2451AE1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348013AbhKOXnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 18:43:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45366 "EHLO mail.kernel.org"
+        id S243743AbhKOXop (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 18:44:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45370 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351738AbhKOXlA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S1351474AbhKOXlA (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Mon, 15 Nov 2021 18:41:00 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3AA5C63257;
-        Mon, 15 Nov 2021 23:35:02 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPSA id D71BB61B3D;
+        Mon, 15 Nov 2021 23:35:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637019305;
-        bh=pPWGsdSRc3ah+Za5nl35yZ+jRecYwDbqdAFCvmivTqQ=;
+        s=k20201202; t=1637019309;
+        bh=2BLuML7QlU7NsI1hA9jTUfLKUXT81kLYlx9JSVSAxQM=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=YLfrj8o20Wo/XsGDGyxXCbPKBjuMweX+vvptZPnj8vt7RC9yL9b6x/Wbsf5Bsh0Uz
-         1J0WKO2v9qBsglUnc9qzoaATUhWOJclaFGE8EfGFdFHaqXeMwzOcDAkS7VHEsVqEP/
-         T0X2+1TWd00UQM5tzzwr/ov/HRnMtmCHTNpE+k73jc6x5kKnAnCDCc46SjbvcLvNxa
-         JQHxTyrrJJTXZD9sMpfMsMMV6uqYUKxgCeC/+QuJfdXZ7RW/o526saQA80/xORbHcS
-         NjTPiWdewyfaAJw+wTxVb0soDVZFXmpvlDg+Fqa2yP6InumhzndQz9zrFSY9EsbT5u
-         rAyTkKLQIP7Ag==
+        b=ECdCqy8bYsf1/UCfEWI36qc+40S1DXBLScAOAQeEkCr4OWKhjDIE4O1q1aHq9ZVDm
+         uAPrv65eA5Boy/Ehv/PHcxqWuYg/rD06quBG7Mx6SJhiblxBzxVNNiZL0z9srVfOgp
+         Ft8lvyUq3fPfEfg2eqAmY5PaTJbBZjfbjpNUvzBJr3IR4cxRZpzngqJghg+ZI0e6TS
+         t/UE/bPXIlD4WcSjQeRmuKJ9y+tBJwbxmV3cfyi4AVuNiDSLuyx4dzihtgtpJBmgbh
+         aQcaumIcBJf6B4TSE7s5gWvgmLz2twbgdD08sz/+gv5caB6Lak+67joNIXuuPefX77
+         OmtdLp3qAqV2w==
 From:   Mark Brown <broonie@kernel.org>
-To:     swboyd@chromium.org, devicetree@vger.kernel.org,
-        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        perex@perex.cz, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        plai@codeaurora.org, robh+dt@kernel.org, rohitkr@codeaurora.org,
-        judyhsiao@chromium.org, linux-kernel@vger.kernel.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        tiwai@suse.com, bgoswami@codeaurora.org, agross@kernel.org,
-        srinivas.kandagatla@linaro.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-In-Reply-To: <1635938324-17763-1-git-send-email-srivasam@codeaurora.org>
-References: <1635938324-17763-1-git-send-email-srivasam@codeaurora.org>
-Subject: Re: [PATCH] ASoC: codecs: MBHC: Add support for special headset
-Message-Id: <163701930197.675370.7604536221667945815.b4-ty@kernel.org>
-Date:   Mon, 15 Nov 2021 23:35:01 +0000
+To:     - <patches@opensource.cirrus.com>,
+        David Heidelberg <david@ixit.cz>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        ~okias/devicetree@lists.sr.ht, devicetree@vger.kernel.org
+In-Reply-To: <20211028124639.38420-1-david@ixit.cz>
+References: <20211028124639.38420-1-david@ixit.cz>
+Subject: Re: [PATCH v2] dt-bindings: sound: wlf,wm8903: Convert txt bindings to yaml
+Message-Id: <163701930762.675370.11238236735151846802.b4-ty@kernel.org>
+Date:   Mon, 15 Nov 2021 23:35:07 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -45,9 +43,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 3 Nov 2021 16:48:44 +0530, Srinivasa Rao Mandadapu wrote:
-> Update MBHC driver to support special headset such as apple
-> and huwawei headsets.
+On Thu, 28 Oct 2021 14:46:38 +0200, David Heidelberg wrote:
+> Convert the Wolfson WM8903 Ultra-Low Power Stereo CODEC Device Tree
+> binding documentation to json-schema.
 > 
 > 
 
@@ -57,8 +55,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: codecs: MBHC: Add support for special headset
-      commit: 3c8a3ad4019126f06016ab0128dde11817502f52
+[1/1] dt-bindings: sound: wlf,wm8903: Convert txt bindings to yaml
+      commit: 5ecc573d0c542c0f95497ba4586a6226814e4e18
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
