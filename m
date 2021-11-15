@@ -2,135 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80BDE451507
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF44451509
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:21:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243099AbhKOUYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 15:24:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
+        id S244965AbhKOUYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 15:24:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245129AbhKOTTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:19:32 -0500
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69682C0432FA
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:10:40 -0800 (PST)
-Received: by mail-pl1-x634.google.com with SMTP id q17so15102281plr.11
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:10:40 -0800 (PST)
+        with ESMTP id S1344150AbhKOTXe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:23:34 -0500
+Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53B4C088891
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:29:16 -0800 (PST)
+Received: by mail-ot1-x32c.google.com with SMTP id o15-20020a9d410f000000b0055c942cc7a0so28966504ote.8
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:29:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=YM/BDkHk6Vn5QiPpZwxaD/d/I7TPDYs9RR7ukf+/xMs=;
-        b=bkDelfYnLSqD4Yv5PZ3Oy9XmA4+IHYG+hCzcQJ+091dZmyzry8Y06ewKRMQXmVZ1fM
-         o+bRzlT9cQfG7ihzd631YIIky7cX2dyFEbrDqVeu4tGv2IKgd2J2n5ojH+g253wPm5H2
-         MiLGZWPrRRygy+AkWk2L4LGRXGdHc8/1fepym8C/Z6Y8gUUAQ9wuLm33Dc2/BtSTcQTD
-         PUFtcqkPmal09lIdzbVSY3JtCwGqVdu5TTrDtcxxcMDic9cfNUDwcNPsiWbslRRzM2G0
-         kr/zF5RFkQZ3+G+T4hzzRhXKKCyYZxeb/hbnnuscqynkmvNKT+pMDgLdAE4rFSonSI9X
-         HJxQ==
+        bh=S9JEaZ5BtOcabxLBRmUDBJQLkGUlrZ/MG6Txwkmqf+A=;
+        b=OH/FizDobI3SZFXSTIcVA9637tP/HH/F9batz8Ro1DAOOjpp2sFrJuifRI/VVQxTXb
+         acxkVRT6OBIam++W6Sgbi2uJhd+G+3f02qS40zWaDEFdnlONAGDyfaldyJ058Ln5GW45
+         owLkEyombYcqMXBaX5OvYVwfSIKxcEZDsOUwZKH6UCodpnHraNXAgP2iEXUt2kZzJCY8
+         KNXoWyEk4NLsoqwvuVQBLneAwdv8UdN/5y3qe+K72MXkIHY2BCAQadzLdLnW/GAbLoSC
+         zoJwnhsS/MH7SsiS62bNPCrYTWSgoLKNiRzcnss2rwcTqDlYO6yZnT03S16dS9+0GgE5
+         iahA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YM/BDkHk6Vn5QiPpZwxaD/d/I7TPDYs9RR7ukf+/xMs=;
-        b=soJrVHAzpWmgySOhl+dgsVU73i6N6M7CSJ0kjV2VGvyculE2wRm8+T4/h13j9giNOq
-         F+DPK/Th4RTm36jSSmBBYgWJhIrT0lTrHYj5T27sWpRR9VY8AHVVFLj/LKX+gGQGHMlY
-         XtvQC9Kdsqi9S5gLHH9YiX/7KfCKrBfdN1pORxoAeop7IL9J4hq69ZDZAbqk1hSyO+w+
-         pSOrVwy6/H4tchaFP29QodaXsoyFeoVVL4OsXwPccwQArCge9fIUu6DCjNkFIOPNv82F
-         oWqthI2xlSBr+2HOYUh55voGKr0qDLbka8F+4dCeWfLy9dp+M2wzdUB+LdNWohCR1ZWl
-         ZNIQ==
-X-Gm-Message-State: AOAM532ljrP3hvfv12p048m/bp037yBR/XtGQpxIKx+2qIxZgIPP2kMF
-        nBvWD+VIPb2LoUQCavxtZJJK556smkpzuw==
-X-Google-Smtp-Source: ABdhPJyQqPiDgUfpIPWJFzXM/rmCYzhCuO9hlX8B2xMkX1lEl5guJ1XdOMoeSvRr5ILEOWHp41w4Dw==
-X-Received: by 2002:a17:90b:4a50:: with SMTP id lb16mr557483pjb.147.1636999839828;
-        Mon, 15 Nov 2021 10:10:39 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id co4sm46714pjb.2.2021.11.15.10.10.38
+        bh=S9JEaZ5BtOcabxLBRmUDBJQLkGUlrZ/MG6Txwkmqf+A=;
+        b=vHkYvKbeOJnE0scaPkx1hwPLlQM+gD1iAq/ryZl+O/jBiz11RqM8lXlUzrRGOOJ1q9
+         zJqwken7FpqZthFNE0tXG0dZLkC7v9SWWjFN7NC3otqKCmq5Guo2gCPzCtXepXTKkgB6
+         a+XK42mDTHXqnZzsNW44LnkqwCDKMdfKVLO5eglZSJm8KWA2SCuE7ZwAhWBTYHf+QfK5
+         Udy4l8QaF4RCIh5tlGaMETJ5+LiRRQHS7VM/5TZYcNOYzEVw4IbzVogM8ziWZwLC/uvt
+         wIt3wpL19N/iHdCHeqUPu7qeb6WQXRAfwyr3zFduUZUXZCWHNQDKldU6s+DOZRP9z43I
+         UUdw==
+X-Gm-Message-State: AOAM530gEhqj9CiDKv0oZU85gQN/BSxEh9DunOkENSAqLdtTzl5VQgm/
+        JOcEFCJl/nx5xNxF4HfAfkbfvnEIzNRKsQ==
+X-Google-Smtp-Source: ABdhPJzXeGCcvSUHpRXfTznQBZg4X5ODF42zxT6tS11Jpzc1IWXFQKeX1uGVjWLEvA/NZCY9kYYmUg==
+X-Received: by 2002:a9d:6394:: with SMTP id w20mr907316otk.248.1637000955996;
+        Mon, 15 Nov 2021 10:29:15 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id u13sm2713672oop.28.2021.11.15.10.29.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 10:10:38 -0800 (PST)
-Date:   Mon, 15 Nov 2021 11:10:36 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Julien Massot <julien.massot@iot.bzh>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 0/3] Initial Renesas R-Car remoteproc support
-Message-ID: <20211115181036.GA2281903@p14s>
-References: <20211115135032.129227-1-julien.massot@iot.bzh>
+        Mon, 15 Nov 2021 10:29:15 -0800 (PST)
+Date:   Mon, 15 Nov 2021 12:29:10 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
+Subject: Re: [PATCH v5 18/22] crypto: qce: Defer probing if BAM dma channel
+ is not yet initialized
+Message-ID: <YZKm9gU4fPMbc291@builder.lan>
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-19-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211115135032.129227-1-julien.massot@iot.bzh>
+In-Reply-To: <20211110105922.217895-19-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good morning,
+On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
 
-I have received your patchset but the backlog accumulated over the last little
-while as become impressive.  As such I may not be able to provide a review in
-a timeframe that usually expected.
+> Since the Qualcomm qce crypto driver needs the BAM dma driver to be
+> setup first (to allow crypto operations), it makes sense to defer
+> the qce crypto driver probing in case the BAM dma driver is not yet
+> probed.
+> 
 
+To me this sentence implies that qce_crypto_probe() doesn't return
+-EPROBE_DEFER from qce_dma_request(), but looking at the code I don't
+see why this would be...
 
-Thanks,
-Mathieu
+> Move the code leg requesting dma channels earlier in the
+> probe() flow. This fixes the qce probe failure issues when both qce
+> and BMA dma are compiled as static part of the kernel.
+> 
 
-On Mon, Nov 15, 2021 at 02:50:29PM +0100, Julien Massot wrote:
-> Most of the SoCs in the R-Car gen3 SoC series such as
-> H3,M3 and E3 have an 'Arm Realtime Core'.
-> This Realtime core is an Arm Cortex-R7 clocked at 800MHz.
-> This series adds initial support to load a firmware and start
-> this remote processor through the remoteproc subsystem.
+As far as I can tell the only actual difference is that you're moving
+the qce_dma_request() above the icc_set_bw() call and the three
+clk_prepare_enable() calls.
+
+This is a very valid optimization, but where does qce_crypto_probe()
+fail and why does it need the BAM driver to have probed before we try to
+turn on the clocks and (our) interconnect vote?
+
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> ---
+>  drivers/crypto/qce/core.c | 23 ++++++++++++++---------
+>  1 file changed, 14 insertions(+), 9 deletions(-)
 > 
-> This series depends on
-> https://patchwork.kernel.org/project/linux-renesas-soc/patch/20211022122101.66998-1-julien.massot@iot.bzh/
-> to be able to set the Cortex-R7 boot address.
-> 
-> One of the way to test this driver is to  use the zephyr upstream support
-> for h3ulcb board 'blinky' demo is my favorite testing firmware.
-> 
-> To generate a firmware with the zephyr project.
-> 
-> follow this starting guide
-> https://docs.zephyrproject.org/2.7.0/getting_started/index.html
-> 
-> Then compile your zephyr demo
-> west build -b rcar_h3ulcb_cr7 zephyr/samples/basic/blinky \
->     -DCONFIG_KERNEL_ENTRY=\"_vector_table\" \
->     --build-dir h3-blinky
-> 
-> Then you can use h3-blinky/zephyr/zephyr.elf as a testing
-> firmware.
-> 
-> Patch 1/3 adds the dt-bindings
-> 
-> Patch 2/3 adds entries into the dts/dtsi files for r8a77951,
-> my testing platform. This driver has also been tested on E3 and M3,
-> but lacks proper zephyr support at the moment.
-> 
-> Modifications to r8a77951-ulcb.dts are given as usage example
-> and may be dropped in future patchset since it use some memory
-> range that may be reserved for other usage.
-> 
-> Patch 3/3 is a small driver to cover basic remoteproc
-> usage: loading firmware from filesystem, starting and stopping the
-> Cortex-r7 processor.
-> 
-> Julien Massot (3):
->   dt-bindings: remoteproc: Add Renesas R-Car
->   arm64: dts: renesas: r8a77951: Add CR7 realtime processor
->   remoteproc: Add Renesas rcar driver
-> 
->  .../remoteproc/renesas,rcar-rproc.yaml        |  66 +++++
->  arch/arm64/boot/dts/renesas/r8a77951-ulcb.dts |  15 ++
->  arch/arm64/boot/dts/renesas/r8a77951.dtsi     |   7 +
->  drivers/remoteproc/Kconfig                    |  12 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/rcar_rproc.c               | 226 ++++++++++++++++++
->  6 files changed, 327 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
->  create mode 100644 drivers/remoteproc/rcar_rproc.c
-> 
+> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> index 7c90401a2ef1..84ed9e253d5d 100644
+> --- a/drivers/crypto/qce/core.c
+> +++ b/drivers/crypto/qce/core.c
+> @@ -209,9 +209,19 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	/* qce driver requires BAM dma driver to be setup first.
+> +	 * In case the dma channel are not set yet, this check
+> +	 * helps use to return -EPROBE_DEFER earlier.
+> +	 */
+
+This comment warrants the change, but I don't see that it will add value
+in the code once the patch is merged. Please drop it.
+
+> +	ret = qce_dma_request(qce->dev, &qce->dma);
+> +	if (ret)
+
+I presume this is where your added dev_err() in err: comes in handy. I
+definitely think this warrants an error print; so return dev_err_probe()
+here would be the right thing to do (in the previous patch).
+
+> +		return ret;
+> +
+>  	qce->mem_path = devm_of_icc_get(qce->dev, "memory");
+> -	if (IS_ERR(qce->mem_path))
+> -		return PTR_ERR(qce->mem_path);
+
+But I see no reason for moving it above devm_of_icc_get() and the
+devm_clk_get*() calls - as they don't actually do anything, but moving
+qce_dma_request() above them forces the introduction of goto here.
+
+Regards,
+Bjorn
+
+> +	if (IS_ERR(qce->mem_path)) {
+> +		ret = PTR_ERR(qce->mem_path);
+> +		goto err;
+> +	}
+>  
+>  	qce->core = devm_clk_get_optional(qce->dev, "core");
+>  	if (IS_ERR(qce->core)) {
+> @@ -247,10 +257,6 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_clks_iface;
+>  
+> -	ret = qce_dma_request(qce->dev, &qce->dma);
+> -	if (ret)
+> -		goto err_clks;
+> -
+>  	ret = qce_check_version(qce);
+>  	if (ret)
+>  		goto err_clks;
+> @@ -265,12 +271,10 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>  
+>  	ret = qce_register_algs(qce);
+>  	if (ret)
+> -		goto err_dma;
+> +		goto err_clks;
+>  
+>  	return 0;
+>  
+> -err_dma:
+> -	qce_dma_release(&qce->dma);
+>  err_clks:
+>  	clk_disable_unprepare(qce->bus);
+>  err_clks_iface:
+> @@ -280,6 +284,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
+>  err_mem_path_disable:
+>  	icc_set_bw(qce->mem_path, 0, 0);
+>  err:
+> +	qce_dma_release(&qce->dma);
+>  	dev_err(dev, "%s failed : %d\n", __func__, ret);
+>  	return ret;
+>  }
 > -- 
 > 2.31.1
-> 
 > 
