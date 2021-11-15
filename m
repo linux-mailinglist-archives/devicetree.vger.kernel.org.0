@@ -2,142 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06CEA44FEB5
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:38:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E62D944FEBA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:40:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229661AbhKOGlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 01:41:31 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:39526 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbhKOGlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:41:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1636958316; x=1668494316;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=ZCdyBfPAycYXHOAPOEAo6conMb52KuZIsOmNlhXRFuI=;
-  b=miRt6fTqv2Osk0dskAKsjeviUlkk1ikXfsBOCERP119AhuOzcwl/FSvG
-   R/73/i5hVbUFFxNzYAYmu7PoO5UHyxG9m2y2jelu/1Xp3V7KrYW+aifR2
-   Vyqo71vs3kbHbiqFKUA7LPhrZYTp2wZyAbvXAptozNICW7q7iRGCDaeZs
-   4=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 14 Nov 2021 22:38:36 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Nov 2021 22:38:35 -0800
-Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 14 Nov 2021 22:38:34 -0800
-Received: from [10.231.205.174] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 14 Nov
- 2021 22:38:30 -0800
-Message-ID: <fcbeded0-8619-79dc-ec2e-42481acbc43c@quicinc.com>
-Date:   Mon, 15 Nov 2021 14:38:28 +0800
+        id S229935AbhKOGn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 01:43:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33018 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230028AbhKOGnZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:43:25 -0500
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:e::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79492C061766;
+        Sun, 14 Nov 2021 22:40:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:
+        Subject:Sender:Reply-To:Content-ID:Content-Description;
+        bh=MYduknSzCz2rCZxs6GbMLdGFkdcMbYHoRgSEau67hNY=; b=ek+9c7zClyORXLVjTPcGcKHAuR
+        NZIHsfaExs7e9D7VkYYj3b+itIsDuWw5FCwnh98bsqanmC+kgxfY/pJNZZKpdAZmkogHITaGMeZbi
+        ZgBalGw1CE7pOWjlsYwJGPpzuXJv2LlDTvOCQZiRfGmyNOuRauXGlNMGLcoEwbKnvXvjO48KUzeQk
+        QaVPh9BLY3KBiR9AkF8NH6TMXNZgG6KF2FnliwhUI8Wwoaj+ILOa3pjVbnuQfAo+pbDPeII2euNK2
+        DCbZbQRCHLE+AdN+B11bbqK9vs6EfeZIC1l9MjM+hu5N9NAd0xWt0By1NNJKJ3p4BV+Z1pBBilKDi
+        lusBaGNw==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by bombadil.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mmVfK-00EShs-28; Mon, 15 Nov 2021 06:40:30 +0000
+Subject: Re: [PATCH] of: make MAX_RESERVED_REGIONS configurable
+To:     Calvin Zhang <calvinzhang.cool@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211115063521.3457302-1-calvinzhang.cool@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+Message-ID: <18eb2d82-d3b3-79ec-9c20-c5c5cf5cab52@infradead.org>
+Date:   Sun, 14 Nov 2021 22:40:29 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [RESEND PATCH v2 11/11] dt-bindings: convert qcom,spmi-pmic-arb
- binding to YAML format
+In-Reply-To: <20211115063521.3457302-1-calvinzhang.cool@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-From:   Fenglin Wu <quic_fenglinw@quicinc.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <sboyd@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>, <maz@kernel.org>,
-        <devicetree@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <tglx@linutronix.de>, <collinsd@codeaurora.org>,
-        <subbaram@codeaurora.org>
-References: <1636691059-4305-1-git-send-email-quic_fenglinw@quicinc.com>
- <1636691059-4305-12-git-send-email-quic_fenglinw@quicinc.com>
- <1636724917.088909.2463363.nullmailer@robh.at.kernel.org>
- <b2c7bfcb-754b-8817-667e-b81a6ca5500f@quicinc.com>
-In-Reply-To: <b2c7bfcb-754b-8817-667e-b81a6ca5500f@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/14/21 10:35 PM, Calvin Zhang wrote:
+> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> index 80b5fd44ab1c..591b2c4d9dd0 100644
+> --- a/drivers/of/Kconfig
+> +++ b/drivers/of/Kconfig
+> @@ -73,6 +73,16 @@ config OF_IRQ
+>   config OF_RESERVED_MEM
+>   	def_bool OF_EARLY_FLATTREE
+>   
+> +config OF_MAX_RESERVED_REGIONS
+> +    int "Maximum count of reserved regions"
+> +    depends on OF_RESERVED_MEM
+> +    default 64
+> +    help
+> +        Reserved regions in /reserved-memory node includes static
+> +        reservations with fixed location and dynamic ones for device
+> +        cma regions. This parameter sets the maximum number of reserved
 
-On 2021/11/15 8:16, Fenglin Wu wrote:
->
-> On 2021/11/12 21:48, Rob Herring wrote:
->> On Fri, 12 Nov 2021 12:24:19 +0800, Fenglin Wu wrote:
->>> Convert the SPMI PMIC arbiter documentation to JSON/yaml.
->>>
->>> Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
->>> ---
->>>   .../bindings/spmi/qcom,spmi-pmic-arb.txt           |  67 -----------
->>>   .../bindings/spmi/qcom,spmi-pmic-arb.yaml          | 122 
->>> +++++++++++++++++++++
->>>   2 files changed, 122 insertions(+), 67 deletions(-)
->>>   delete mode 100644 
->>> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
->>>
->> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml: 
->> properties:interrupt-names: 'const' should not be valid under 
->> {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 
->> 'minimum', 'maximum', 'multipleOf', 'pattern']}
->>     hint: Scalar and array keywords cannot be mixed
->>     from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml: 
->> properties:reg-names: {'minItems': 3, 'maxItems': 5, 'items': 
->> [{'const': 'core'}, {'const': 'intr'}, {'const': 'cnfg'}, {'const': 
->> 'chnls'}, {'const': 'obsrvr'}]} should not be valid under 
->> {'required': ['maxItems']}
->>     hint: "maxItems" is not needed with an "items" list
->>     from schema $id: http://devicetree.org/meta-schemas/items.yaml#
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml: 
->> ignoring, error in schema: properties: interrupt-names
->> warning: no schema found in file: 
->> ./Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.yaml
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dt.yaml: 
->> spmi@fc4cf000: reg: [[4232900608, 4096], [4232884224, 4096], 
->> [4232880128, 4096]] is too long
->>     From schema: 
->> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/spmi.yaml
->> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.example.dt.yaml:0:0: 
->> /example-0/spmi@fc4cf000: failed to match any schema with compatible: 
->> ['qcom,spmi-pmic-arb']
->>
->> doc reference errors (make refcheckdocs):
->> Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.txt: 
->> Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
->>
->> See https://patchwork.ozlabs.org/patch/1554141
->>
->> This check can fail if there are any dependencies. The base for a patch
->> series is generally the most recent rc1.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit.
-> I actually ran "make dt-binding-check 
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/qcom,spmi-pmic-arb.txt"
-> and confirmed there was no error or warning before pushing the change. 
-> Anyway I will follow
-> your steps here andcheck it again, if any changes is required, I will 
-> have them updated it
-> in next patchset.
-> Thanks
-I could see the same warning message after installed 'yamllint'.
-I will fix this and re-submit.
-Thanks
+	  CMA
+
+(as is used in mm/Kconfig)
+
+> +        regions in the system.
+
+Also, all 4 lines of the help text should be indented with
+one tab + 2 spaces, not all spaces.
+
+
+thanks.
+-- 
+~Randy
