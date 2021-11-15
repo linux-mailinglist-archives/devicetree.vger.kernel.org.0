@@ -2,256 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4281544FFC1
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 09:07:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3850344FFDA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 09:14:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237645AbhKOIKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 03:10:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52418 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230354AbhKOIJc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 03:09:32 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C36C061202
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 00:06:10 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id t23so1801565oiw.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 00:06:10 -0800 (PST)
+        id S236432AbhKOIQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 03:16:47 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:26958 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236727AbhKOIQn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 03:16:43 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vInCllpdZJK8HYx6VQyYUDaprqkzpWu+HmJAPYn2v50=;
-        b=HxgSxKIntchJ9V+1j6TZ6/zSWnalYU4SllF6Qtl1TAmuWiQD/m8ic51slAuG0LR6uO
-         fnkH9OnHkBaQ+nyG2iYWLHXgWdRQHf0SFhhxZ9rU7G6tsGP/aQSD/vUOk57r8bO5BLVm
-         ktc2j7bpxi22rL+/rsWaQDWZS1eM59ibUf9gvizDgXrVa3Kx+fZKFhx4HaBZ4eVjLK4/
-         298CTDz2iJ58wlGFsU1O6ltqWSWRP/t3sVL086mcW+rdJYI6JUAtKWw6kH1hnPHOtkRC
-         HbeqEbqmRupAq0sMu/prFcPer60b1uIFdnXjh3t2f7XNaGfDnGRLdQxRxZSWWSOICyk6
-         nVnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vInCllpdZJK8HYx6VQyYUDaprqkzpWu+HmJAPYn2v50=;
-        b=YNn7iiMr+Gm2tHOAIHQI39jR6kYyYZmjmfdUCSdvvFAAcbdIV4VXM0YODP3M7WAnJV
-         fsruyAM5nsklI2Z1nYGJj0DlqtqH1/zm4N+MZXMghXjLOMzIB4EF1TBmkNxHm6trXwvM
-         za7F7RyMCHirpvu3iKcr6xc8Kz+TehN08zsw36Is8TrE9rCfKnhj9um4WVZQFklBEHOv
-         CzwzGm86kVk4rH37OOY9GgkSqfUgNbWf8aN3Zct2XWNiiFHH9BiERxvwO5eHMGAJsKqd
-         1nKwtat0bBMqrUVWwCc0kAbTRQoAVomfpd2XknOEDwx6aIbgR/6E7VVRQg/wCSjVmFqt
-         zBkA==
-X-Gm-Message-State: AOAM530IFh2qPAMYAI4cZMnM+NdFOeVTrpUXtUC5vAIqDviIdyIP33N4
-        FSR4qHRMfff9T0Hg1bm8NEJDb8SHE2pLpgh3NzpUURbXMLA=
-X-Google-Smtp-Source: ABdhPJzMEV2wPO87eb6zhBFjYr/AyoSofRxeiCu2JqzFVwV7tOI9z0eR69HajfWSWZZKHbGj2TJxsuZDqRt54wsuiwY=
-X-Received: by 2002:a05:6808:b08:: with SMTP id s8mr5206631oij.126.1636963569363;
- Mon, 15 Nov 2021 00:06:09 -0800 (PST)
-MIME-Version: 1.0
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-4-bhupesh.sharma@linaro.org> <YZAOTCQ0yIJUJTYO@builder.lan>
-In-Reply-To: <YZAOTCQ0yIJUJTYO@builder.lan>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 15 Nov 2021 13:35:58 +0530
-Message-ID: <CAH=2Ntw=GC0a2iscffe--6_UpnCkdpnNO=7bZSAgFQonuK-4BA@mail.gmail.com>
-Subject: Re: [PATCH v5 03/22] dt-bindings: qcom-bam: Convert binding to YAML
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1636964028; x=1668500028;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=d9w1hHGeqrAi9vzCE5kTs/S+OT21nKM0nTVCiPQ2ofg=;
+  b=BoT4wgDx04x2929zqDb4xY01rQ8eAEebGpyFO874crEgZ72s0j5wT1WT
+   z9qha9XjZR5r/RpqGbT2wXS7KaQ6LnBhu9rNOjJNiLdy9KVjAm3uQttXL
+   k+JPm5zWRfMGts3WJdvZipQdrCbRkFEDWxUBs3uYAjVUPgqMFgORqS4Dh
+   LgLDSES78FCPYkiFreRH7aTX8vzWORRd4k9aIYDmiIRGT8g/jEohh/PN0
+   VPNjnlMJlCmBu5bJU5FKAAZthRFmMGeE6W/smLs6BPupfNCjiFNiRgRIs
+   F0aliOr9jEhJFv2aQ9cqUHeepaiMZhQtXs7Jif/jmXd6Qp63cXfavYIUh
+   g==;
+X-IronPort-AV: E=Sophos;i="5.87,235,1631570400"; 
+   d="scan'208";a="20457720"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 15 Nov 2021 09:13:44 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 15 Nov 2021 09:13:44 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 15 Nov 2021 09:13:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1636964024; x=1668500024;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=d9w1hHGeqrAi9vzCE5kTs/S+OT21nKM0nTVCiPQ2ofg=;
+  b=bmSRn6UTTIMaT5PbL2lK8FjPjq1RnLoO+kgEl0TC8lrPg+r6r8P7xMEt
+   vK8BVJhnx44eJoaLPXx2MPW89tdRdaZVZXQESaisBem8UJ64cWeQctPKB
+   /2Ztv4of6eqGb1l03W+BFLQJUH8QXvjdIAf1BFD5GYSOAyU/uKfdTZb5Q
+   DuwHVI0ZUi0tBbYmCN711yhiXqSAy6oTb7nAns/cPvpYqSfrIxLd8fH1B
+   pINzo3ycA9KyKeHARVsRvevuqpzs9qpWafROfkVuuVHw77LySGVtc0qq+
+   Wk1l6sgeQcPZ1FgYfgVqsY5QORn9XH+SFyqL2as2/dXEnXM2XT/Y+7DKT
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.87,235,1631570400"; 
+   d="scan'208";a="20457719"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 15 Nov 2021 09:13:44 +0100
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 4F1C8280065;
+        Mon, 15 Nov 2021 09:13:44 +0100 (CET)
+Message-ID: <19130461cbdd39e92b06ec425db5db2984b41a41.camel@ew.tq-group.com>
+Subject: Re: [PATCH] of: base: Skip CPU nodes with non-"okay"/"disabled"
+ status
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 15 Nov 2021 09:13:42 +0100
+In-Reply-To: <7b4afaa7-13df-513a-5986-e1a9f5f5d7ed@gmail.com>
+References: <20211108084804.13474-1-matthias.schiffer@ew.tq-group.com>
+         <7b4afaa7-13df-513a-5986-e1a9f5f5d7ed@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
-
-On Sun, 14 Nov 2021 at 00:43, Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
->
-> > Convert Qualcomm BAM DMA devicetree binding to YAML.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+On Sun, 2021-11-14 at 14:41 -0500, Frank Rowand wrote:
+> On 11/8/21 3:48 AM, Matthias Schiffer wrote:
+> > Allow fully disabling CPU nodes using status = "fail". Having no status
+> > property at all is still interpreted as "okay" as usual.
+> > 
+> > This allows a bootloader to change the number of available CPUs (for
+> > example when a common DTS is used for SoC variants with different numbers
+> > of cores) without deleting the nodes altogether, which could require
+> > additional fixups to avoid dangling phandle references.
+> > 
+> > References:
+> > - https://www.lkml.org/lkml/2020/8/26/1237
+> > - https://www.spinics.net/lists/devicetree-spec/msg01007.html
+> > - https://github.com/devicetree-org/dt-schema/pull/61
+> > 
+> > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
 > > ---
-> >  .../devicetree/bindings/dma/qcom_bam_dma.txt  | 50 ----------
-> >  .../devicetree/bindings/dma/qcom_bam_dma.yaml | 91 +++++++++++++++++++
-> >  2 files changed, 91 insertions(+), 50 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> >  create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt b/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> > deleted file mode 100644
-> > index cf5b9e44432c..000000000000
-> > --- a/Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> > +++ /dev/null
-> > @@ -1,50 +0,0 @@
-> > -QCOM BAM DMA controller
-> > -
-> > -Required properties:
-> > -- compatible: must be one of the following:
-> > - * "qcom,bam-v1.4.0" for MSM8974, APQ8074 and APQ8084
-> > - * "qcom,bam-v1.3.0" for APQ8064, IPQ8064 and MSM8960
-> > - * "qcom,bam-v1.7.0" for MSM8916
-> > -- reg: Address range for DMA registers
-> > -- interrupts: Should contain the one interrupt shared by all channels
-> > -- #dma-cells: must be <1>, the cell in the dmas property of the client device
-> > -  represents the channel number
-> > -- clocks: required clock
-> > -- clock-names: must contain "bam_clk" entry
-> > -- qcom,ee : indicates the active Execution Environment identifier (0-7) used in
-> > -  the secure world.
-> > -- qcom,controlled-remotely : optional, indicates that the bam is controlled by
-> > -  remote proccessor i.e. execution environment.
-> > -- num-channels : optional, indicates supported number of DMA channels in a
-> > -  remotely controlled bam.
-> > -- qcom,num-ees : optional, indicates supported number of Execution Environments
-> > -  in a remotely controlled bam.
-> > -
-> > -Example:
-> > -
-> > -     uart-bam: dma@f9984000 = {
-> > -             compatible = "qcom,bam-v1.4.0";
-> > -             reg = <0xf9984000 0x15000>;
-> > -             interrupts = <0 94 0>;
-> > -             clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
-> > -             clock-names = "bam_clk";
-> > -             #dma-cells = <1>;
-> > -             qcom,ee = <0>;
-> > -     };
-> > -
-> > -DMA clients must use the format described in the dma.txt file, using a two cell
-> > -specifier for each channel.
-> > -
-> > -Example:
-> > -     serial@f991e000 {
-> > -             compatible = "qcom,msm-uart";
-> > -             reg = <0xf991e000 0x1000>
-> > -                     <0xf9944000 0x19000>;
-> > -             interrupts = <0 108 0>;
-> > -             clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>,
-> > -                     <&gcc GCC_BLSP1_AHB_CLK>;
-> > -             clock-names = "core", "iface";
-> > -
-> > -             dmas = <&uart-bam 0>, <&uart-bam 1>;
-> > -             dma-names = "rx", "tx";
-> > -     };
-> > diff --git a/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> > new file mode 100644
-> > index 000000000000..3ca222bd10bd
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> > @@ -0,0 +1,91 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/dma/qcom_bam_dma.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >  drivers/of/base.c | 29 +++++++++++++++++++++++++++++
+> >  1 file changed, 29 insertions(+)
+> > 
+> > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > index 61de453b885c..4e9973627c8d 100644
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+> > @@ -650,6 +650,32 @@ bool of_device_is_available(const struct device_node *device)
+> >  }
+> >  EXPORT_SYMBOL(of_device_is_available);
+> >  
+> > +/**
+> > + *  __of_device_is_disabled - check if a device has status "disabled"
+> > + *
+> > + *  @device: Node to check status for, with locks already held
+> > + *
+> > + *  Return: True if the status property is set to "disabled",
+> > + *  false otherwise
+> > + *
+> > + *  Most callers should use __of_device_is_available() instead, this function
+> > + *  only exists due to the special interpretation of the "disabled" status for
+> > + *  CPU nodes.
+> > + */
+> > +static bool __of_device_is_disabled(const struct device_node *device)
+> > +{
+> > +	const char *status;
 > > +
-> > +title: QCOM BAM DMA controller binding
+> > +	if (!device)
+> > +		return false;
 > > +
-> > +maintainers:
-> > +  - Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > +	status = __of_get_property(device, "status", NULL);
+> > +	if (status == NULL)
+> > +		return false;
 > > +
-> > +description: |
-> > +  This document defines the binding for the BAM DMA controller
-> > +  found on Qualcomm parts.
+> > +	return !strcmp(status, "disabled");
+> > +}
 > > +
-> > +allOf:
-> > +  - $ref: "dma-controller.yaml#"
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - qcom,bam-v1.3.0 # for APQ8064, IPQ8064 and MSM8960
-> > +      - qcom,bam-v1.4.0 # for MSM8974, APQ8074 and APQ8084
-> > +      - qcom,bam-v1.7.0 # for MSM8916
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  clock-names:
-> > +    const: bam_clk
-> > +
-> > +  interrupts:
-> > +    minItems: 1
-> > +    maxItems: 31
->
-> The old binding uses the wording "the one interrupt" and at least the
-> Linux implementation indicates that there's only a single interrupt.
->
-> So I think this should just be maxItems: 1
->
-> > +
-> > +  num-channels:
-> > +    maximum: 31
-> > +    description:
-> > +      Indicates supported number of DMA channels in a remotely controlled bam.
-> > +
-> > +  "#dma-cells":
-> > +    const: 1
-> > +    description: The single cell represents the channel index.
-> > +
-> > +  qcom,ee:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 7
-> > +    description:
-> > +      Indicates the active Execution Environment identifier (0-7)
-> > +      used in the secure world.
-> > +
-> > +  qcom,controlled-remotely:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description:
-> > +      Indicates that the bam is controlled by remote proccessor i.e.
-> > +      execution environment.
-> > +
-> > +  qcom,num-ees:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 31
-> > +    default: 2
-> > +    description:
-> > +      Indicates supported number of Execution Environments in a
-> > +      remotely controlled bam.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - "#dma-cells"
-> > +  - qcom,ee
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/qcom,gcc-msm8974.h>
-> > +    dma-controller@f9984000 {
-> > +        compatible = "qcom,bam-v1.4.0";
-> > +        reg = <0xf9984000 0x15000>;
-> > +        interrupts = <0 94 0>;
->
-> While the txt->yaml conversion should retain the original content, I
-> think it's okay to fix this line up while you're at it; and make it:
->
->         interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
+> >  /**
+> >   *  of_device_is_big_endian - check if a device has BE registers
+> >   *
+> > @@ -817,6 +843,9 @@ struct device_node *of_get_next_cpu_node(struct device_node *prev)
+> >  		of_node_put(node);
+> >  	}
+> >  	for (; next; next = next->sibling) {
+> > +		if (!__of_device_is_available(next) &&
+> > +		    !__of_device_is_disabled(next))
+> 
+> Shouldn't that just be a check to continue if the device is disabled?
+> 
+> If adding a check for available, then all of the callers of for_each_of_cpu_node()
+> need to be checked.  There is at least one that is suspicious - arch/arm/mach-imx/platsmp.c
+> has a comment:
+> 
+>  * Initialise the CPU possible map early - this describes the CPUs
+>  * which may be present or become present in the system.
 
-Sure, will do this in v6.
+Previously, there were two option for the (effective) value of the
+status of a device_node:
 
-Regards,
-Bhupesh
+- "okay", "ok" or unset
+- anything else (which includes "disabled" and "fail")
 
-> > +        clocks = <&gcc GCC_BAM_DMA_AHB_CLK>;
-> > +        clock-names = "bam_clk";
-> > +        #dma-cells = <1>;
-> > +        qcom,ee = <0>;
-> > +    };
-> > --
-> > 2.31.1
-> >
+__of_device_is_available() checks which of these two is the case.
+
+With the new code, we have 3 cases for the status of CPU nodes:
+
+- "okay", "ok" or unset
+- "disabled"
+- anything else ("fail", ...)
+
+My patch will only change the behaviour in one case: When a CPU node
+has a status that is not "okay", "ok", "disabled" or unset - which is
+exactly the point of my patch.
+
+See also the change [1], which removed the !available check a while
+ago, and the discussion in [2], which led us to the conclusion that 
+of_get_next_cpu_node() must not distinguish "okay" and "disabled" CPU
+nodes and we instead need a third status to disable a CPU for real.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/of/base.c?id=c961cb3be9064d1097ccc019390f8b5739daafc6
+[2] https://www.lkml.org/lkml/2020/8/26/1237
+
+
+> 
+> -Frank
+> 
+> > +			continue;
+> >  		if (!(of_node_name_eq(next, "cpu") ||
+> >  		      __of_node_is_type(next, "cpu")))
+> >  			continue;
+> > 
+> 
+> 
+
