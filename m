@@ -2,176 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EBA450352
+	by mail.lfdr.de (Postfix) with ESMTP id 3BF0B450350
 	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 12:22:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231337AbhKOLZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 06:25:12 -0500
-Received: from mailout2.samsung.com ([203.254.224.25]:61578 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231443AbhKOLW6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 06:22:58 -0500
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20211115111923epoutp02f17417c8dc0fad0c71d2398af0e9b16a~3tDzuOJeM1519015190epoutp02T
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 11:19:23 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20211115111923epoutp02f17417c8dc0fad0c71d2398af0e9b16a~3tDzuOJeM1519015190epoutp02T
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1636975163;
-        bh=oObEwWdeZ4972GKO2r7QRGnpiQKmJeGXlyehSdXted8=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=Qcf/zSjz3eiVisPXgiM2a+Yf3O35rRvLyWJeLET4ZuWENIz7r3p6Bhx0cB5wJON28
-         Nk4UOmtZzyEROnTutVmGmE+WS6iNCI79/H1Ao04WyE2xV3B9ksG9BfvI2dx1h9/lzk
-         HDepAS/Cya4BZ5mPvbdPsEpW1A6p+1X84ef0Fl+E=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20211115111923epcas2p48327a26edc0236cdde7cb79a9a5fe373~3tDzbyFvS1533815338epcas2p4y;
-        Mon, 15 Nov 2021 11:19:23 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4Ht6CW2gfDz4x9Pt; Mon, 15 Nov
-        2021 11:19:19 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        AE.3F.10014.23242916; Mon, 15 Nov 2021 20:19:14 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20211115111914epcas2p14ea9d22a4899b499866dcf549ec13c78~3tDrBR2R01727517275epcas2p1f;
-        Mon, 15 Nov 2021 11:19:14 +0000 (GMT)
-Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20211115111914epsmtrp127ea0ecc7c0796dcc445ebd38b2cc10a~3tDrArc5j0489504895epsmtrp1F;
-        Mon, 15 Nov 2021 11:19:14 +0000 (GMT)
-X-AuditID: b6c32a47-473ff7000000271e-52-619242321db3
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        51.5E.08738.13242916; Mon, 15 Nov 2021 20:19:13 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20211115111913epsmtip1d4c0fc549c3232970ff204f2c85bbb62~3tDqzsuo02907829078epsmtip1X;
-        Mon, 15 Nov 2021 11:19:13 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>
-Cc:     <devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>
-In-Reply-To: <20211102064826.15796-1-chanho61.park@samsung.com>
-Subject: RE: [PATCH] arm64: dts: exynosautov9: drop
- samsung,ufs-shareability-reg-offset
-Date:   Mon, 15 Nov 2021 20:19:13 +0900
-Message-ID: <02d501d7da12$9ec499b0$dc4dcd10$@samsung.com>
+        id S231286AbhKOLZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 06:25:10 -0500
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:39096 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231486AbhKOLXK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 06:23:10 -0500
+Received: from pps.filterd (m0098414.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 1AFBAfp0019208;
+        Mon, 15 Nov 2021 11:19:57 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=7A8WJnxEub7TjzKh/8V7/VNswiioRZU7+WSJNf5i2co=;
+ b=dPjYjYyVgqesStpkaQIOwX0749NZD6T2zUgGQ3i/3V7RQvBO1fiVxgQF4GadxSRes+ho
+ b26A4EIuDkm0dsLVqGDwBVBnvAZ88p37N4k2/iEt41TlAaxKsoTVERKPRoilgOrDSTAZ
+ /JOSqnf1CDUyZuXsfhTMhGB2d7BszeiaVPgt4ikRixg+/rUwWW7AYptEYEUrDIBYJoD8
+ BwCJPy6OWVdRwGBUTwtPSx5j9k9X/pgrHMV/NmG3vySTm1QfG8Ix8nGngOPn7TlDwyL2
+ 8Cbw2oz9sLEu6aiGW2IsXb2tF8djMo+KzFlzyiitxAP39U+miQEVcVXsDAc8JAQSP4dE SA== 
+Received: from ppma03ams.nl.ibm.com (62.31.33a9.ip4.static.sl-reverse.com [169.51.49.98])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 3cbkwq3cm3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 15 Nov 2021 11:19:55 +0000
+Received: from pps.filterd (ppma03ams.nl.ibm.com [127.0.0.1])
+        by ppma03ams.nl.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 1AFBDX9c026453;
+        Mon, 15 Nov 2021 11:19:53 GMT
+Received: from b06avi18878370.portsmouth.uk.ibm.com (b06avi18878370.portsmouth.uk.ibm.com [9.149.26.194])
+        by ppma03ams.nl.ibm.com with ESMTP id 3ca509mpmb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 15 Nov 2021 11:19:53 +0000
+Received: from d06av22.portsmouth.uk.ibm.com (d06av22.portsmouth.uk.ibm.com [9.149.105.58])
+        by b06avi18878370.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 1AFBCwYw64094594
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Mon, 15 Nov 2021 11:12:58 GMT
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1ECF64C05C;
+        Mon, 15 Nov 2021 11:19:51 +0000 (GMT)
+Received: from d06av22.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id CC25B4C044;
+        Mon, 15 Nov 2021 11:19:49 +0000 (GMT)
+Received: from [9.171.2.161] (unknown [9.171.2.161])
+        by d06av22.portsmouth.uk.ibm.com (Postfix) with ESMTP;
+        Mon, 15 Nov 2021 11:19:49 +0000 (GMT)
+Message-ID: <a12f593a-a9e4-44bf-1740-92303ceb1dc3@linux.ibm.com>
+Date:   Mon, 15 Nov 2021 13:19:49 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQG193NJzuVkbw8bChOjtPIyHEsMqgIIQmw5rDfzFuA=
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrHKsWRmVeSWpSXmKPExsWy7bCmma6R06REg4MrJSzmHznHarHx7Q8m
-        ixnn9zFZtO49wu7A4jGroZfNY9OqTjaPz5vkApijsm0yUhNTUosUUvOS81My89JtlbyD453j
-        Tc0MDHUNLS3MlRTyEnNTbZVcfAJ03TJzgLYpKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yV
-        UgtScgrMC/SKE3OLS/PS9fJSS6wMDQyMTIEKE7Izfqxaxl5wXqhi5q3LzA2Mb/i7GDk5JARM
-        JH7u72ftYuTiEBLYwSixY94KZpCEkMAnRomV//MhEp8ZJW53XmaH6dj0dj1Uxy5GiV1bLzFC
-        OC8YJb5u7GEBqWIT0Jd42bGNFcQWEbCXWNfyiBHEZhbIldj/5iAbiM0JFG9eMQesXlggUqLt
-        dg9YnEVAVaL5+AQwm1fAUmLns5PsELagxMmZT1gg5mhLLFv4mhniIgWJn0+XQe2ykpj/eCdU
-        jYjE7M42ZpDjJAResku8Wv8YqsFFYv/i2WwQtrDEq+NboF6TknjZ38YO0dDNKNH66D9UYjWj
-        RGejD4RtL/Fr+hagbRxAGzQl1u/SBzElBJQljtyC2ssn0XH4LztEmFeio00IolFd4sD26SwQ
-        tqxE95zPrBMYlWYh+WwWks9mIflgFsKuBYwsqxjFUguKc9NTi40KjOGRnZyfu4kRnBC13Hcw
-        znj7Qe8QIxMH4yFGCQ5mJRHehGkTE4V4UxIrq1KL8uOLSnNSiw8xmgLDeiKzlGhyPjAl55XE
-        G5pYGpiYmRmaG5kamCuJ8+ax9yUKCaQnlqRmp6YWpBbB9DFxcEo1ME1d+VkrziYk29lPqFBC
-        vUp6Ure218otj56sF139O+t1wFJvUdbwxhzdY77Tyy0fqbJsC9l2f0d5h2T5scAX+QtEG7Lm
-        HEirf/j+5rH33yzjFyu5cpqI/5/VzT4p6EK4W2dL5qxUSQ/bdwcCDj9WbkvsO7pr8jm5rroN
-        98WPHk68v+Cf0IqAufuO3b52u7hn352OEIEdy+8WKky1lr7zn31/T1ZFjHzJo7OnQvYm5z2o
-        vZ41fefl6a91GC+6S917JNmU2DLx9RyLXJm3D7fIpYo6PHl1fe+GvANPyvW5ljrmX+tQvrvd
-        yW6JXJfObSebUwEdW6KUHW7VT5v1gzf04oJzm3TvXuSYNX1fWN1k1yglluKMREMt5qLiRABW
-        6vbyEQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrNLMWRmVeSWpSXmKPExsWy7bCSnK6h06REg6ufTCzmHznHarHx7Q8m
-        ixnn9zFZtO49wu7A4jGroZfNY9OqTjaPz5vkApijuGxSUnMyy1KL9O0SuDJ+Tb7PVtAmVHH6
-        wmPGBsa5/F2MnBwSAiYSm96uZ+1i5OIQEtjBKHFvygt2iISsxLN3O6BsYYn7LUegip4xSpz6
-        9ZMNJMEmoC/xsmMbK4gtImAvsa7lESOIzSyQLzFzx3p2iIYJjBILdi4CK+IEKmpeMYcFxBYW
-        CJe4PmUVM4jNIqAq0Xx8AthQXgFLiZ3PTrJD2IISJ2c+YYEYqi3R+7CVEcZetvA1M8R1ChI/
-        ny6DOsJKYv7jnVD1IhKzO9uYJzAKz0IyahaSUbOQjJqFpGUBI8sqRsnUguLc9NxiwwKjvNRy
-        veLE3OLSvHS95PzcTYzg+NDS2sG4Z9UHvUOMTByMhxglOJiVRHgTpk1MFOJNSaysSi3Kjy8q
-        zUktPsQozcGiJM57oetkvJBAemJJanZqakFqEUyWiYNTqoEp2eLn4tL2ar0kqd1V52OUqpdY
-        yogymQcfMl/yznbpe9NHG284X54b3rDCWix5m8Nezge/muwa2pnfa64NP1qbxb3m6X8ZqS+h
-        PgIfzrUJMK0UauZ3i1pnq/KmMtX/lM/mxuQLOfysP+/o83WVnt34KXKnxv7pczTmsFlseaGk
-        /KXlzIvFVd6LFfOOiG9VVWvetvGGnfrUjSKdDXsyp53Ypr/k6YmCFW4z269dnBh8UFWZkb+Z
-        65ByV2cHu9cGxvSEM+miTiXzFQT2amp06exg8Nvg+rcowor/0AWJh5J7/XgCGG6c6z21YlbC
-        ih0Pih/tO3Q8/9GSjKzoD7/3Ktw57GbVJusy86lBbqfGnsNKLMUZiYZazEXFiQDYK9aJ/gIA
-        AA==
-X-CMS-MailID: 20211115111914epcas2p14ea9d22a4899b499866dcf549ec13c78
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c
-References: <CGME20211102065208epcas2p2213e346b2c37f315e73a04f511a1037c@epcas2p2.samsung.com>
-        <20211102064826.15796-1-chanho61.park@samsung.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v2 1/6] net: ocelot: add support to get port mac from
+ device-tree
+Content-Language: en-US
+To:     =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20211103091943.3878621-1-clement.leger@bootlin.com>
+ <20211103091943.3878621-2-clement.leger@bootlin.com>
+From:   Julian Wiedmann <jwi@linux.ibm.com>
+In-Reply-To: <20211103091943.3878621-2-clement.leger@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: H6wf7pqRbxGK-vgjJd6SfEEuOkcEhfVD
+X-Proofpoint-ORIG-GUID: H6wf7pqRbxGK-vgjJd6SfEEuOkcEhfVD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-15_10,2021-11-12_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 phishscore=0 mlxlogscore=999 mlxscore=0 adultscore=0
+ spamscore=0 malwarescore=0 clxscore=1011 bulkscore=0 impostorscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2110150000 definitions=main-2111150061
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-Recently, Exynosauto v9 ufs patch series have been merged at v5.16-rc1.
-So, below patch is required according to the changes. Could you please revi=
-ew & pick it up your tree?
-Or Do I need to add =22Fixes:=22 tag?
-
-Best Regards,
-Chanho Park
-
-> -----Original Message-----
-> From: Chanho Park <chanho61.park=40samsung.com>
-> Sent: Tuesday, November 2, 2021 3:48 PM
-> To: Krzysztof Kozlowski <krzysztof.kozlowski=40canonical.com>; Rob Herrin=
-g
-> <robh+dt=40kernel.org>
-> Cc: devicetree=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org; Ch=
-anho
-> Park <chanho61.park=40samsung.com>
-> Subject: =5BPATCH=5D arm64: dts: exynosautov9: drop samsung,ufs-shareabil=
-ity-
-> reg-offset
->=20
-> samsung,ufs-shareability-reg-offset is not necessary anymore since it was
-> integrated into the second argument of samsung,sysreg.
->=20
-> Signed-off-by: Chanho Park <chanho61.park=40samsung.com>
+On 03.11.21 11:19, Clément Léger wrote:
+> Add support to get mac from device-tree using of_get_mac_address.
+> 
+> Signed-off-by: Clément Léger <clement.leger@bootlin.com>
 > ---
-> This is a modification of =5B1=5D which is already started the pull-reque=
-st.
-> It has been changed a bit while reviewing DT property=5B2=5D and the chan=
-ged
-> version has been merged into scsi tree=5B3=5D.
->=20
-> =5B1=5D:
-> https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux.git/commit/?h=
-=3Dn
-> ext/dt64&id=3D31bbac5263aa63dfc8bfed2180bb6a5a3c531681
-> =5B2=5D: https://lore.kernel.org/linux-samsung-
-> soc/011e01d7c410=244a420340=24dec609c0=24=40samsung.com/T/=23u
-> =5B3=5D:
-> https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git/commit/?h=3D=
-5.1
-> 6/scsi-staging&id=3Dcc52e15397cc5dc773d3c6792b98352d3209f93f
->=20
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi =7C 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> index 3e4727344b4a..a960c0bc2dba 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov9.dtsi
-> =40=40 -296,8 +296,7 =40=40 ufs_0: ufs0=4017e00000 =7B
->  			pinctrl-0 =3D <&ufs_rst_n &ufs_refclk_out>;
->  			phys =3D <&ufs_0_phy>;
->  			phy-names =3D =22ufs-phy=22;
-> -			samsung,sysreg =3D <&syscon_fsys2>;
-> -			samsung,ufs-shareability-reg-offset =3D <0x710>;
-> +			samsung,sysreg =3D <&syscon_fsys2 0x710>;
->  			status =3D =22disabled=22;
->  		=7D;
->  	=7D;
-> --
-> 2.31.1.442.g7e391989789d
+>  drivers/net/ethernet/mscc/ocelot_net.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/ethernet/mscc/ocelot_net.c b/drivers/net/ethernet/mscc/ocelot_net.c
+> index eaeba60b1bba..d76def435b23 100644
+> --- a/drivers/net/ethernet/mscc/ocelot_net.c
+> +++ b/drivers/net/ethernet/mscc/ocelot_net.c
+> @@ -1704,7 +1704,10 @@ int ocelot_probe_port(struct ocelot *ocelot, int port, struct regmap *target,
+>  		NETIF_F_HW_TC;
+>  	dev->features |= NETIF_F_HW_VLAN_CTAG_FILTER | NETIF_F_HW_TC;
+>  
+> -	eth_hw_addr_gen(dev, ocelot->base_mac, port);
+> +	err = of_get_mac_address(portnp, dev->dev_addr);
 
+of_get_ethdev_address() maybe, so that this gets routed through Jakub's fancy
+new eth_hw_addr_set() infrastructure?
+
+> +	if (err)
+> +		eth_hw_addr_gen(dev, ocelot->base_mac, port);
+> +
+>  	ocelot_mact_learn(ocelot, PGID_CPU, dev->dev_addr,
+>  			  OCELOT_VLAN_UNAWARE_PVID, ENTRYTYPE_LOCKED);
+>  
+> 
 
