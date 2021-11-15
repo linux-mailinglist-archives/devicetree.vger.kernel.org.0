@@ -2,204 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA881451508
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45691451514
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233265AbhKOUYW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 15 Nov 2021 15:24:22 -0500
-Received: from aposti.net ([89.234.176.197]:56316 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245298AbhKOTUC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 14:20:02 -0500
-Date:   Mon, 15 Nov 2021 19:16:51 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v6 6/8] MIPS: DTS: CI20: Add DT nodes for HDMI setup
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <38OM2R.QJECEBEZVSXU@crapouillou.net>
-In-Reply-To: <141a4ea23dc19629fea983093348d9dfaedb1cae.1636573413.git.hns@goldelico.com>
-References: <cover.1636573413.git.hns@goldelico.com>
-        <141a4ea23dc19629fea983093348d9dfaedb1cae.1636573413.git.hns@goldelico.com>
+        id S1350531AbhKOUYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 15:24:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47148 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347746AbhKOUJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:09:25 -0500
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C80DC06122A;
+        Mon, 15 Nov 2021 11:46:58 -0800 (PST)
+Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id D97583EEFB;
+        Mon, 15 Nov 2021 20:46:53 +0100 (CET)
+Date:   Mon, 15 Nov 2021 20:46:52 +0100
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        Courtney Cavin <courtney.cavin@sonymobile.com>
+Subject: Re: [RESEND PATCH v2 04/13] backlight: qcom-wled: Fix off-by-one
+ maximum with default num_strings
+Message-ID: <20211115194652.c4g2mg4budf4lkct@SoMainline.org>
+Mail-Followup-To: Marijn Suijten <marijn.suijten@somainline.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>, Bryan Wu <cooloney@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org,
+        Courtney Cavin <courtney.cavin@sonymobile.com>
+References: <20211112002706.453289-1-marijn.suijten@somainline.org>
+ <20211112002706.453289-5-marijn.suijten@somainline.org>
+ <20211112120839.i6g747vewg6bkyk7@maple.lan>
+ <20211112123501.pz5e6g7gavlinung@SoMainline.org>
+ <20211112214337.r5xrpeyjgdygzc3n@SoMainline.org>
+ <20211115112327.tklic3fggrv5mzjt@maple.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211115112327.tklic3fggrv5mzjt@maple.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus, Thomas,
-
-Le mer., nov. 10 2021 at 20:43:31 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> From: Paul Boddie <paul@boddie.org.uk>
+On 2021-11-15 11:23:27, Daniel Thompson wrote:
+> On Fri, Nov 12, 2021 at 10:43:37PM +0100, Marijn Suijten wrote:
+> > On 2021-11-12 13:35:03, Marijn Suijten wrote:
+> > > On 2021-11-12 12:08:39, Daniel Thompson wrote:
+> > > > On Fri, Nov 12, 2021 at 01:26:57AM +0100, Marijn Suijten wrote:
+> > > > > When not specifying num-strings in the DT the default is used, but +1 is
+> > > > > added to it which turns WLED3 into 4 and WLED4/5 into 5 strings instead
+> > > > > of 3 and 4 respectively, causing out-of-bounds reads and register
+> > > > > read/writes.  This +1 exists for a deficiency in the DT parsing code,
+> > > > > and is simply omitted entirely - solving this oob issue - by parsing the
+> > > > > property separately much like qcom,enabled-strings.
+> > > > > 
+> > > > > This also allows more stringent checks on the maximum value when
+> > > > > qcom,enabled-strings is provided in the DT.  Note that num-strings is
+> > > > > parsed after enabled-strings to give it final sign-off over the length,
+> > > > > which DT currently utilizes to get around an incorrect fixed read of
+> > > > > four elements from that array (has been addressed in a prior patch).
+> > > > > 
+> > > > > Fixes: 93c64f1ea1e8 ("leds: add Qualcomm PM8941 WLED driver")
+> > > > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> > > > > Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> > > > > ---
+> > > > >  drivers/video/backlight/qcom-wled.c | 51 +++++++++++------------------
+> > > > >  1 file changed, 19 insertions(+), 32 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
+> > > > > index 977cd75827d7..c5232478a343 100644
+> > > > > --- a/drivers/video/backlight/qcom-wled.c
+> > > > > +++ b/drivers/video/backlight/qcom-wled.c
+> > > > > @@ -1552,6 +1520,25 @@ static int wled_configure(struct wled *wled)
+> > > > >  		}
+> > > > >  	}
+> > > > > 
+> > > > > +	rc = of_property_read_u32(dev->of_node, "qcom,num-strings", &val);
+> > > > > +	if (!rc) {
+> > > > > +		if (val < 1 || val > wled->max_string_count) {
+> > > > > +			dev_err(dev, "qcom,num-strings must be between 1 and %d\n",
+> > > > > +				wled->max_string_count);
+> > > > > +			return -EINVAL;
+> > > > > +		}
+> > > > > +
+> > > > > +		if (string_len > 0) {
+> > > > > +			dev_warn(dev, "qcom,num-strings and qcom,enabled-strings are ambiguous\n");
+> > > > 
+> > > > The warning should also be below the error message on the next if statement.
+> > > 
+> > > Agreed.
+> > 
+> > Thinking about this again while reworking the patches, I initially put
+> > this above the error to make DT writers aware.  There's no point telling
+> > them that their values are out of sync (num-strings >
+> > len(enabled-strings)), when they "shouldn't even" (don't need to) set
+> > both in the first place.  They might needlessly fix the discrepancy, see
+> > the driver finally probe (working backlight) and carry on without
+> > noticing this warning that now appears.
+> > 
+> > Sorry for bringing this back up, but I'm curious about your opinion.
 > 
-> We need to hook up
-> * HDMI connector
-> * HDMI power regulator
-> * JZ4780_CLK_HDMI @ 27 MHz
-> * DDC pinmux
-> * HDMI and LCDC endpoint connections
-> 
-> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  arch/mips/boot/dts/ingenic/ci20.dts | 73 
-> +++++++++++++++++++++++++++--
->  1 file changed, 70 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
-> b/arch/mips/boot/dts/ingenic/ci20.dts
-> index a688809beebca..a62557bede565 100644
-> --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> @@ -78,6 +78,18 @@ eth0_power: fixedregulator@0 {
->  		enable-active-high;
->  	};
-> 
-> +	hdmi_out: connector {
-> +		compatible = "hdmi-connector";
-> +		label = "HDMI OUT";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con: endpoint {
-> +				remote-endpoint = <&dw_hdmi_out>;
-> +			};
-> +		};
-> +	};
-> +
->  	ir: ir {
->  		compatible = "gpio-ir-receiver";
->  		gpios = <&gpe 3 GPIO_ACTIVE_LOW>;
-> @@ -102,6 +114,17 @@ otg_power: fixedregulator@2 {
->  		gpio = <&gpf 14 GPIO_ACTIVE_LOW>;
->  		enable-active-high;
->  	};
-> +
-> +	hdmi_power: fixedregulator@3 {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "hdmi_power";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +
-> +		gpio = <&gpa 25 GPIO_ACTIVE_LOW>;
+> With a more helpful warning about how to fix then I think it is OK to
+> have both the warning and the error.
 
-Just use 0 instead of GPIO_ACTIVE_LOW, since the flag is simply ignored 
-(I know the other regulators do use it, but I'll clean that up soon).
+Thanks - I presume the message we settled upon last time is helpful
+enough:
 
-> +		enable-active-high;
-> +	};
->  };
-> 
->  &ext {
-> @@ -113,9 +136,9 @@ &cgu {
->  	 * Use the 32.768 kHz oscillator as the parent of the RTC for a 
-> higher
->  	 * precision.
->  	 */
-> -	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>, <&cgu JZ4780_CLK_RTC>;
-> -	assigned-clock-parents = <0>, <&cgu JZ4780_CLK_RTCLK>;
-> -	assigned-clock-rates = <48000000>;
-> +	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>, <&cgu JZ4780_CLK_RTC>, 
-> <&cgu JZ4780_CLK_HDMI>;
-> +	assigned-clock-parents = <0>, <&cgu JZ4780_CLK_RTCLK>, <0>;
-> +	assigned-clock-rates = <48000000>, <0>, <27000000>;
+    Only one of qcom,num-strings or qcom,enabled-strings should be set
 
-So drm-misc-next is based on a slightly older version (not v5.16-rc1 
-yet), and these lines changed in linux master.
+I'll respin this, together with this warning reordered into the next
+commit, and using __le16 for the cpu_to_le16 output.
 
-I think it would make sense to merge the DT changes (+ doc) into the 
-MIPS tree, and the driver changes into drm-misc-next.
-
-@Thomas: Is that OK for you?
-
-Cheers,
--Paul
-
->  };
-> 
->  &tcu {
-> @@ -506,6 +529,12 @@ pins_i2c4: i2c4 {
->  		bias-disable;
->  	};
-> 
-> +	pins_hdmi_ddc: hdmi_ddc {
-> +		function = "hdmi-ddc";
-> +		groups = "hdmi-ddc";
-> +		bias-disable;
-> +	};
-> +
->  	pins_nemc: nemc {
->  		function = "nemc";
->  		groups = "nemc-data", "nemc-cle-ale", "nemc-rd-we", "nemc-frd-fwe";
-> @@ -536,3 +565,41 @@ pins_mmc1: mmc1 {
->  		bias-disable;
->  	};
->  };
-> +
-> +&hdmi {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pins_hdmi_ddc>;
-> +
-> +	hdmi-5v-supply = <&hdmi_power>;
-> +
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		port@0 {
-> +			reg = <0>;
-> +			dw_hdmi_in: endpoint {
-> +				remote-endpoint = <&lcd_out>;
-> +			};
-> +		};
-> +
-> +		port@1 {
-> +			reg = <1>;
-> +			dw_hdmi_out: endpoint {
-> +				remote-endpoint = <&hdmi_con>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&lcdc0 {
-> +	status = "okay";
-> +
-> +	port {
-> +		lcd_out: endpoint {
-> +			remote-endpoint = <&dw_hdmi_in>;
-> +		};
-> +	};
-> +};
-> --
-> 2.33.0
-> 
-
-
+- Marijn
