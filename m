@@ -2,337 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52397450997
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 17:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C55D14509A8
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 17:31:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbhKOQaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 11:30:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54856 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230118AbhKOQaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 11:30:03 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AFC7C061570;
-        Mon, 15 Nov 2021 08:27:07 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id n29so31804909wra.11;
-        Mon, 15 Nov 2021 08:27:07 -0800 (PST)
+        id S230096AbhKOQeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 11:34:07 -0500
+Received: from mail-eopbgr1400120.outbound.protection.outlook.com ([40.107.140.120]:4896
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229940AbhKOQeD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 11:34:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gHjhnOFzHkm2WOiXpME3+t6fhJAnbZXBSka8cW4/5QWg8L3lbL5BQVc6X2TWszSPOU2CUZuLKJ4Inh6yfgr5+cQO+OiKuvwJR2+jtdAwAKBNOsD8aykpblthbX6xJBZdFB3g2eFwLhcX70mrChG60iLzb4K6kljyclCM3hBkHrXH9Us+7hsIvN1N1yG9dKFqHDeUNRcqGbJifABtdYOWBi5LOsEgRj85PyV4d+RV1QBcSzZfewn7hR3BL8Uq5t4yPsethXB9c1br3aR42BlSBKqcOaZQo5SdK73ICtBKdiWKYmEGStoobz7znv+ov72W1xnHxzvtP8ywprwEn7iypQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ThGuPiFMdX2Qe5PSDiRsSnqG4cxKG0mF9jvNxaDojKU=;
+ b=SSExOCgO96QbFVY1O97AiJoCndlulXGXKrVKMhm23AXHTh7hw48XLAfnw3WogncnTwOx9eYukr5Tsllps2ziUGn08uaIcCSzPumn9swodFs5x1dlK5Zo5xjvHUJEbC5zEihk33nFoTTV7xB8ZKPrRrEE9QP65hdjJRr7hL1/5bTrmL9oEC0jJ0RHukBNdnvOr5M2u3Z5jRRFLPbVWv2ZNvTofxlLHDRb/vqpMaDBJ4nvgTuECJr0c7toXILp5/XwSouczWazAeaawlMwUiQEnBavHw81rCKHLCFAWRq7hfNGiowKsgwp26tl6jGkCUkQilpMXi3GYW6Oxg++UaWxAg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=nAJZ/8qBlkSeumTdsWvf6jWRnWI5SJHgxgMuaAAXq3o=;
-        b=BXS3nKzWpOZD+Xhwu4uHcArysuwKdApgrodmIaA2LaYXzSAxIAUlegzcKtQ8ZBsHrE
-         e5te+Xf9Nx0OeRH04kcXrWlIIsXbOMbHdHRnOAF7aM2GiH2BHXtWvzsof8Cil5D923n2
-         gusBkFSEvt/GXgrg7fNI5/4Ogy6dFAnIYoTrLd3VVcJQ8HJvhzb6SWLHmbvxlHiNRAuD
-         oR/R2eGjw2eBnjSsvyEVlVVPZZ1zYXFIAUQ2b7KwNDOyFMx5mGFc5h6LEtJpwANCar6p
-         d53OBflD8F37uMzh9mueJ2jaAfyhRChBnnLt8zn00aeU4eG2xpOJA/Ayzwc/TILlVg7I
-         5xag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=nAJZ/8qBlkSeumTdsWvf6jWRnWI5SJHgxgMuaAAXq3o=;
-        b=2qgauL+DCeNsRsxL4CBQ8okrPquuZcijL3ek76gp6N6weBT4t8eK9HEAX5UUQ6h/ZG
-         Hk9g71QuJmyS084vTYlqYfoQi5tBlon4bQ0gTftNGyyjl5fzwNv/FIEoJcr9lFGVVhLb
-         4yKHxwGV3ljZm2VOXh39tXWgCjRHgfaGuF58DlrVNdTbEwLMvc6BknDuKf2N/Z2pYrHw
-         +UHtFKSYaxUA+pme565D2yCISMB6S6wvjGRIDH0e1JJXOu3LfeFuLtYkmuB371TSKUN/
-         dfcbZT4NbNr3/Z1ReFoSw5A1XozkIA3p24YRAgL5bCG6tTGyaD9EEu9utYgaDa41r90Y
-         TYYg==
-X-Gm-Message-State: AOAM531Rn3258X/V2PL+hpUirwNbqNpbTViw5Vv7/42v5jT6/mJBvX8C
-        5hXc6PvX/HztaAZHncsVx1EHcy3vUC0=
-X-Google-Smtp-Source: ABdhPJzzAKpVTkRMgFqXkIwX+JryWBKs/hcZHsMQlUjkbZOR+Zu2WitCf3UVQuX2X30tgKDlb5+VPQ==
-X-Received: by 2002:adf:f9d2:: with SMTP id w18mr247969wrr.303.1636993625973;
-        Mon, 15 Nov 2021 08:27:05 -0800 (PST)
-Received: from [192.168.0.18] (static-160-219-86-188.ipcom.comunitel.net. [188.86.219.160])
-        by smtp.gmail.com with ESMTPSA id m22sm16377559wmq.38.2021.11.15.08.27.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Nov 2021 08:27:05 -0800 (PST)
-Message-ID: <d411aec5-efa8-c71d-8179-54ff52c17039@gmail.com>
-Date:   Mon, 15 Nov 2021 17:27:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ThGuPiFMdX2Qe5PSDiRsSnqG4cxKG0mF9jvNxaDojKU=;
+ b=Uv+5+QeGXBLSU+7fIj0kJqZxDr3IHWGj/0hJQkl09itDe1R9rhwM/fQ2pt294wnO2uYhBcNiTJ809aQvVfxSmT93Y7qXm+/mAAP4jDHINgGA+9gBpKzXZMbA2DztRCeG8YlA/OWx3eybM57iLyrKhG9lVEFSpqRdpcYk/k9BTE4=
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (20.183.20.197) by
+ OSZPR01MB6680.jpnprd01.prod.outlook.com (13.101.246.204) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4690.20; Mon, 15 Nov 2021 16:31:02 +0000
+Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c0bd:405a:cdd3:f153]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
+ ([fe80::c0bd:405a:cdd3:f153%8]) with mapi id 15.20.4690.027; Mon, 15 Nov 2021
+ 16:31:02 +0000
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+CC:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Subject: RE: [PATCH v3] dt-bindings: mmc: renesas,sdhi: add optional SDnH
+ clock
+Thread-Topic: [PATCH v3] dt-bindings: mmc: renesas,sdhi: add optional SDnH
+ clock
+Thread-Index: AQHX2jrE4eSX7ohpXUa1PkZIvz7h+6wEx4Ew
+Date:   Mon, 15 Nov 2021 16:31:02 +0000
+Message-ID: <OS0PR01MB59220D97CD59F44918DE4FA586989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+References: <20211115160600.4455-1-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20211115160600.4455-1-wsa+renesas@sang-engineering.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
-References: <20211018114009.13350-1-sam.shih@mediatek.com>
- <20211018114009.13350-3-sam.shih@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v7 2/3] arm64: dts: mediatek: add basic mt7986a support
-In-Reply-To: <20211018114009.13350-3-sam.shih@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9933969f-d424-456e-9490-08d9a8555049
+x-ms-traffictypediagnostic: OSZPR01MB6680:
+x-microsoft-antispam-prvs: <OSZPR01MB6680C7EDCF32D29B3BD0527986989@OSZPR01MB6680.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 7b7znMx3qUEwO6ihELsX7DW7Os1Ih9lySvtuxCX8bH6Z0finkfclxi5xx846tg9e+vmNNk15kSxhryOYrBXyGo7EaWMWDZMXc8UyXz0Wu0qzU+BMxthnUqU5m6lBkmLyj9TPb0V7cEwS38Nx6igBF/0pPqP9OOjpebixzpZmVPfOsdbiCxUCjnYuxyj1ugprXL7UuRLP7PwlxfKvGW3f+13NX7NSWmKrNC4ClYE6oicuG8d/wPe8zGw2sf10up55FmNsWRr/J9ZdX+LaZTTMbL02KjZpHpKp4MdXebOg+hcG5RmlLJ+g/kGgyvh77JwM/pOs74JU5XhrrsMiGKJjPgIaIkzgIVdESSoTQK7q1ye2SxKQ1xrS1MVStLUrDVUG34665w3CsCfxGA6NHndX2tdkNRivjbeVh3dV8grZdAsoYOmIEXkGynEjyvwTP1IGF9l/c7y0yZDrIkEhF4dCGei1T32KCq8BtnV1IFiyUrr5uifo+zjf+/XNzFxl6WR7oDMhR6IZugGA0vSSPnHIJ1AhF8MZBLiEPDuPFmiEmYk6jLu91nKOIiKbeO9/4wL7mOrfgb3eaF0R/05xYMksI5+Ie0nV8GsR007E0EWs0Zlq06dwNBbo+SOFEk4MbgVf/nU/Q6iplBkvEv7xJQsYKz8NXhH13FunwhsXTTKcWwOtP+0R1TPDPC8VKhOprL9PMOONw1cZiPLv/MjHdABGIQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(122000001)(38100700002)(54906003)(55016002)(110136005)(6506007)(9686003)(52536014)(66556008)(66476007)(38070700005)(66446008)(186003)(26005)(64756008)(66946007)(316002)(33656002)(8676002)(2906002)(5660300002)(83380400001)(7696005)(8936002)(508600001)(86362001)(4326008)(71200400001)(76116006);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6cIV+8LtFgET83nGrQqmx9HDIcD63+HH3aB9RMiQDixtuH8haBImlo/JjqEa?=
+ =?us-ascii?Q?DdROd0cIY1EVWWx1NgRg/qW9FnaSZbQGiqdvfM6c6rZjCY+pbSuDEujAaKfe?=
+ =?us-ascii?Q?rGDkt55cHx3FNlvBUyI3WMZ/k7WUrK+b/S1rLnHJnmO2gXu/andQMU3TlD8j?=
+ =?us-ascii?Q?HdaQux8cfwjZKXR1NCuEvElH7qURIkHkeZIeFt5cJY0Va2DjDIRZek0Yv0FJ?=
+ =?us-ascii?Q?tDYbK3Bm8mULThO4E8o9stMG2JJMNYRhQItzsGjP6Nz8OArKQ7Fw2xBjuTZ/?=
+ =?us-ascii?Q?eZXXcSjNRK8DI3shWL+QPdBhKHId1nJlsYSncP6HkTTRQeBMWtTAUT/3oZ2s?=
+ =?us-ascii?Q?Sj42sxTC1adnCQgAg3X7tYcmmVVZrzsrFaQHCmcL0gFs0t0vznFq6lqsjUTs?=
+ =?us-ascii?Q?Fwkj+2IgQv2DUJsom9ooMnXcGUj+TAD80BeEk0VDixiQaUEqBWfryj8LvUfT?=
+ =?us-ascii?Q?2T1gAmjC5v8Me7mHvrdXsKKeoUmM9aMdJrqB+/RLQFXKS5ioBcW+jfxptZjW?=
+ =?us-ascii?Q?qqzXeeHGm2ro0babk7Qg59hIJtmywZlKaYFtVRC7n8detI9OXRKkYlrnunWH?=
+ =?us-ascii?Q?YcO/+j++rpP0BbhUQOMBRC3dm8fKbNLJJqu203fwp7fBm3JjdjEfcE+lpVag?=
+ =?us-ascii?Q?Hw/a1exGBADw9IcgujFqn3Sz+j+aWngsZN3HVQHVnt6ED3P3LkkBFHimC/lW?=
+ =?us-ascii?Q?kh7YQbrqPklVAEDCVqyGWYL51YYbZM7oeed96cAuQb71eEW6aZn+cedW81LX?=
+ =?us-ascii?Q?3ohsJOiUy+5fuzUijHHLr6yXijuc1ZQ3UYHsmWH/OMzTBJZh7UXfHGglOSA5?=
+ =?us-ascii?Q?FzzLxvUcO4syUZOblifIo6wEjYcjpC3t0QFWZkk4n/NbUy5WmNM9cF85K7Il?=
+ =?us-ascii?Q?UokvPWqFFb83eCXEYpvRMfBYRpzrgRJNjYDUYKqehcbx0WM7Qgbwive4gMiF?=
+ =?us-ascii?Q?D6LmZ21FEminKe4TJyLzXvMqYWe0KW38vCn/I6d9q++nyfv4Oj6xb3fnCMqV?=
+ =?us-ascii?Q?3FLmcoE+BVhb9VjszkhDRlPpPPopa2R0nnHt1s5OwHzvZQWqVmQeGwEI0r6/?=
+ =?us-ascii?Q?k2S5CvfUzieL7OzbB6q0UjDNMmlHTNj83vi2a6+v+0yXHT8SfZLsUsTj/aPU?=
+ =?us-ascii?Q?JfyScnWzgHHjKC67uvmxUcmJQeeQRYlRMP7nQKjkOBfHvPcQ2eJBRsQp01WW?=
+ =?us-ascii?Q?kx+qCsBEvgvTnA5/4439+MGI7QMH2C4+7wcXhbNUn5hDNy4ByJ9ECXfaY0GG?=
+ =?us-ascii?Q?M87BPbrWEZLK/XMklRMznWgfhawxYIypzydsQ3TsHCPRA+JMFkruZ12Qyhml?=
+ =?us-ascii?Q?7FpsaoheaBkk2PN5ffEzdWGwG0jKCsbZbXsLJ8A+1gjbS3hmgOO4HRgW+gS/?=
+ =?us-ascii?Q?1V6gaaskIjNwYWx44wA0O+KanRIzSxiD/Suf8QgRtFMwQAam0v81AN4ASOgk?=
+ =?us-ascii?Q?09IDLMYJDLtjjuUkstAm1h7ifcMjBWVdNd3TJpUWavz7eHWy1y6kkagFEiGI?=
+ =?us-ascii?Q?wEQEuVdlPyehKyZp7xo3OUVAafO0yCrYIDZy1FKyPDUpygsSXQuZZ+LsdEis?=
+ =?us-ascii?Q?fonWm364oEYwAGpHy4jA9WMeZd43OYIT9u9NCLs5X4ON0Jc4hoYWTuNzx+xO?=
+ =?us-ascii?Q?xLpXDmuXLscJXk4poNIeGfw/o7wbnPGf98icH88tBOh4wOBrxApSpvjh3UN3?=
+ =?us-ascii?Q?0PqbXA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9933969f-d424-456e-9490-08d9a8555049
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2021 16:31:02.0280
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zUPSr6E9EuksNAxSLj1n6gGgp+TQIPtISb4QCHnM6YxeBkdW8mZNia8RhHJX37U43VUopXSMyEXf6rOBKeAaMkuKlAyBez8Hwd+rvJuenHU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSZPR01MB6680
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Wolfram,
 
-On 18/10/2021 13:40, Sam Shih wrote:
-> Add basic chip support for Mediatek mt7986a, include
-> basic uart nodes, rng node and watchdog node.
-> 
-> Add cpu node, timer node, gic node, psci and reserved-memory node
-> for ARM Trusted Firmware.
-> 
+Thanks for the patch.
 
-What is the exact difference between mt7986a and mt7986b? Right now, it's only 
-the compatible, for that it makes no sense to split them.
-
-It would be good to see what the exact differences are, so that we can see if it 
-makes sense to have one of the alternatives:
-1) use a common mt7986.dtsi which get included by mt7986[a,b].dtsi
-2) Use on mt7986.dtsi and only add one mt7986a.dtsi or mt7986b.dtsi which has 
-add-ons.
-
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> 
+> Subject: [PATCH v3] dt-bindings: mmc: renesas,sdhi: add optional SDnH
+> clock
+>=20
+> This only applies to R-Car Gen2 and later generations, so we need to
+> distinguish.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 > ---
-> v7: added memory node back to dts
-> v6: removed clock and pinctrl node, to separate basic part into a single
->      patch series
-> 
-> Original thread:
-> https://lore.kernel.org/all/20211004124155.1404-1-sam.shih@mediatek.com/
-> 
-> v5: follow reviewr's comment: removed clock freqency node in timer due to
->      we have set CNTFRQ_EL0 in ATF firmware, and also corrected GICD range
-> v4: added missing gic register bases, and fixed range of GICR
-> v3: used the stdout-path instead of console=ttyS0
-> v2: modified clock and uart node due to clock driver updated
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile        |   1 +
->   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  38 +++++
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 149 +++++++++++++++++++
->   3 files changed, 188 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
->   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
-> index 4f68ebed2e31..e6c3a73b9e4a 100644
-> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
-> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
->   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> new file mode 100644
-> index 000000000000..ca074cf8e578
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
-> @@ -0,0 +1,38 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2021 MediaTek Inc.
-> + * Author: Sam.Shih <sam.shih@mediatek.com>
-> + */
-> +
-> +/dts-v1/;
-> +#include "mt7986a.dtsi"
-> +
-> +/ {
-> +	model = "MediaTek MT7986a RFB";
-> +	compatible = "mediatek,mt7986a-rfb";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +		bootargs = "earlycon=uart8250,mmio32,0x11002000 swiotlb=512";
+>=20
+> v1 and v2 were part of a 21-patch-series which was accepted now except fo=
+r
+> this patch. Updated according to Geert's comments and finally also sent t=
+o
+> Rob and the DT mailing list.
+>=20
+> Tested with:
+> m dtbs_check
+> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+>=20
+> I hope it really does what I intended to check.
+>=20
+> If so, the patch can be applied individually. I think, however, it is mos=
+t
+> convenient if Geert picks it up together with the 20 other patches.
+>=20
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml | 40 ++++++++++++++-----
+>  1 file changed, 31 insertions(+), 9 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> index 9f1e7092cf44..43fc6ac56038 100644
+> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+> @@ -129,15 +129,37 @@ allOf:
+>          - clock-names
+>          - resets
+>      else:
+> -      properties:
+> -        clocks:
+> -          minItems: 1
+> -          maxItems: 2
+> -        clock-names:
+> -          minItems: 1
+> -          items:
+> -            - const: core
+> -            - const: cd
+> +      if:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - renesas,rcar-gen2-sdhi
+> +                - renesas,rcar-gen3-sdhi
 
-We normally don't add earlycon parameter to the normal bootargs, as it's only 
-for debugging. Also what do we need the swiotlb? Are there any limitation in the 
-HW that makes us need it?
+What about RZ/G2L, as it has 4 clocks?
 
 Regards,
-Matthias
+Biju
 
-> +	};
-> +
-> +	memory {
-> +		reg = <0 0x40000000 0 0x40000000>;
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> new file mode 100644
-> index 000000000000..75912bcf6c9c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -0,0 +1,149 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright (C) 2021 MediaTek Inc.
-> + * Author: Sam.Shih <sam.shih@mediatek.com>
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/ {
-> +	compatible = "mediatek,mt7986a";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	system_clk: dummy40m {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <40000000>;
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			enable-method = "psci";
-> +			reg = <0x0>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			enable-method = "psci";
-> +			reg = <0x1>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			enable-method = "psci";
-> +			reg = <0x2>;
-> +			#cooling-cells = <2>;
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			device_type = "cpu";
-> +			enable-method = "psci";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x3>;
-> +			#cooling-cells = <2>;
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible  = "arm,psci-0.2";
-> +		method      = "smc";
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
-> +		secmon_reserved: secmon@43000000 {
-> +			reg = <0 0x43000000 0 0x30000>;
-> +			no-map;
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupt-parent = <&gic>;
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		ranges;
-> +
-> +		gic: interrupt-controller@c000000 {
-> +			compatible = "arm,gic-v3";
-> +			#interrupt-cells = <3>;
-> +			interrupt-parent = <&gic>;
-> +			interrupt-controller;
-> +			reg = <0 0x0c000000 0 0x10000>,  /* GICD */
-> +			      <0 0x0c080000 0 0x80000>,  /* GICR */
-> +			      <0 0x0c400000 0 0x2000>,   /* GICC */
-> +			      <0 0x0c410000 0 0x1000>,   /* GICH */
-> +			      <0 0x0c420000 0 0x2000>;   /* GICV */
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		watchdog: watchdog@1001c000 {
-> +			compatible = "mediatek,mt7986-wdt",
-> +				     "mediatek,mt6589-wdt";
-> +			reg = <0 0x1001c000 0 0x1000>;
-> +			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-> +			#reset-cells = <1>;
-> +			status = "disabled";
-> +		};
-> +
-> +		trng: trng@1020f000 {
-> +			compatible = "mediatek,mt7986-rng",
-> +				     "mediatek,mt7623-rng";
-> +			reg = <0 0x1020f000 0 0x100>;
-> +			clocks = <&system_clk>;
-> +			clock-names = "rng";
-> +			status = "disabled";
-> +		};
-> +
-> +		uart0: serial@11002000 {
-> +			compatible = "mediatek,mt7986-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11002000 0 0x400>;
-> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&system_clk>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart1: serial@11003000 {
-> +			compatible = "mediatek,mt7986-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11003000 0 0x400>;
-> +			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&system_clk>;
-> +			status = "disabled";
-> +		};
-> +
-> +		uart2: serial@11004000 {
-> +			compatible = "mediatek,mt7986-uart",
-> +				     "mediatek,mt6577-uart";
-> +			reg = <0 0x11004000 0 0x400>;
-> +			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&system_clk>;
-> +			status = "disabled";
-> +		};
-> +
-> +	};
-> +
-> +};
-> 
+> +      then:
+> +        properties:
+> +          clocks:
+> +            minItems: 1
+> +            maxItems: 3
+> +          clock-names:
+> +            minItems: 1
+> +            maxItems: 3
+> +            uniqueItems: true
+> +            items:
+> +              - const: core
+> +              - enum: [ clkh, cd ]
+> +              - const: cd
+> +      else:
+> +        properties:
+> +          clocks:
+> +            minItems: 1
+> +            maxItems: 2
+> +          clock-names:
+> +            minItems: 1
+> +            maxItems: 2
+> +            items:
+> +              - const: core
+> +              - const: cd
+>=20
+>    - if:
+>        properties:
+> --
+> 2.30.2
+
