@@ -2,116 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7064451518
+	by mail.lfdr.de (Postfix) with ESMTP id 07C62451516
 	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 21:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345970AbhKOUYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 15:24:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49730 "EHLO
+        id S1350548AbhKOUYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 15:24:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350414AbhKOUXs (ORCPT
+        with ESMTP id S1350417AbhKOUXs (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:23:48 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC7EC079781;
-        Mon, 15 Nov 2021 12:11:17 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id t30so32944792wra.10;
-        Mon, 15 Nov 2021 12:11:17 -0800 (PST)
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91605C079783
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 12:11:40 -0800 (PST)
+Received: by mail-ot1-x32a.google.com with SMTP id h12-20020a056830034c00b0055c8458126fso29537106ote.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 12:11:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OVufiMS+5ME6/qbmdZ9jFuP6rhzYyALe6R8u1xIQ+I8=;
-        b=WxqUWqw9dcjW58RqrOawZJX8dFHGcFnqlOdeYJiHKEfL/w8CcJBKNfS5hs/bRlROkS
-         DdCUsECLDA5V6QkypM6B5Wo2JFC8uqqpwXHvO2vr3PQkfLPcgvgG/dpAAkznKWl65CTh
-         JG8S6Ii+uYuNCuRUEOU6lh36LitBTBiHXD5BNIp+F0gEkasoxvJUMDb6aPfs+pDeq7Ub
-         tZ0U5WoZ06rEso3K4WPUoqi6IghSkiNAwMkIo5Gl1C2caO+WA5TvDvQjV7Npuwe7GsZ/
-         X4VpmqIT0/BJDzxJ+kavTAjlQx/27rs4f6/LGwf4soEWmIW4B6jXLoAqzFHR0c6SDKn9
-         0Sgw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=DnTpN3V7pf+joD5qh4ITq1+EZdAEZtVPtGOOXePkcLQ=;
+        b=IN0jBpF9GlP8d27T+5LzU2/AdrYDUqj9FftsV7QDHYobl1bErsLOf8Rb9o2pRiEMYz
+         35LEE6+iUMNIVkswnf+GLmDVCiZlx55IDnYKoxcb+4Wt//yd45BpRJ6L7YX5rHlIF0Nl
+         ulwhYE9lMWQcE93WL5nWj9/iFnL9xSbtVKJ70UNRpN7vX/L2iIMaSv/Z05JHlXwYj28r
+         6CalhJpzjD7lwWq//gcdg0CN3b514j7PtwTiJbc6RHG8XQ4/dRL+TbNFI00i0h/4Pbkl
+         9oqAaB9/ab4/op84A3R4wxiC41QcN6uXqfkgGvG+oSXoB1hDx3wIFXEdJYWbu+q3qFJX
+         27Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OVufiMS+5ME6/qbmdZ9jFuP6rhzYyALe6R8u1xIQ+I8=;
-        b=X85Jnd8C6r1Vx8ysWZn+XMZCArV6lBaycjkz1wtpi4h6eUCHHpHLN/d/Rabqyt68ok
-         C+OvUqAagrT/1/DxUlXJjaK+NLsezABUK3GpbYBYFE8tZFpfebHVij/jso3Xku5qjdEf
-         JhshxrAUh3T2vfguHpD9V99yfIAiaMWDs+IvdN65f2NcaRO2nrONC5Fau3TXzkGon8lx
-         7s41v9hbv5wiO6sAaOZmRNeOaSgHfOCho1ZaUTCCqJqjsy9T8Q0ZNPsG22/P1jPfxa2f
-         oGID/MAuQKFvhNuPzxVqx+gmbgOY7b8HgDK/f9SzAu2uqoGDUd0gtX93B1rCKVH1u4ih
-         z/pg==
-X-Gm-Message-State: AOAM533aYInPgXw8p1SRJDrEwh36m06jwDJi+sE2KL8Nvos/EY+V6nqz
-        PEZA/Zdkkp9FxVGjqdC4BEM=
-X-Google-Smtp-Source: ABdhPJxRaydlPIgKCNnFlVSM/bdOi7Fbn48Le9KlaQLD2hWe6B5eTE0Fonu5liBo3qPVFLkEO0xmbA==
-X-Received: by 2002:adf:e484:: with SMTP id i4mr2123541wrm.49.1637007075508;
-        Mon, 15 Nov 2021 12:11:15 -0800 (PST)
-Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id q4sm15529370wrs.56.2021.11.15.12.11.14
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DnTpN3V7pf+joD5qh4ITq1+EZdAEZtVPtGOOXePkcLQ=;
+        b=Dj1LNEXCqPqArzD32mD5V4JaMNRyiHtCAtg6Qu5T053jgOUquWWcZw15/5jDrX4bOh
+         ojuHWgURCi08FRP+Q4w1ZDV1zhIlxrsqNLjXCKfkFh5wiu9mST8ursbU/5Movus8FWQ9
+         8xrKsaxgFYkGWwdgmAUxQbu/iKGxo76xH8VvhZJb2zhJM4AaBTotgKfKT7QB27fJCh28
+         m2EHXnrcIEPXrNrrcR3c1iag/l8uC9CeTKtiBlTkfopvl7BDcLSonrLb4WSGUerOBSxq
+         EJTPQxVlr1f55vmMXMQFi1MWUbslKJhx8rQJoi1tCMUA2LJqkAL5QqJ1xo9WCGC1h1GE
+         0HEg==
+X-Gm-Message-State: AOAM532zSvZH9lqVX4eHw1b7BYrv66dRM/1fFtyOHa890XCv8ncCVKex
+        JyLUjKX997bGITBzdHBmpPEkbw==
+X-Google-Smtp-Source: ABdhPJwDHcO1BFEuFFDETnP3C+wXDED5yvMFPiZg845gXJiwCR4MHwdU6Nd4vXCoK4GwOkbs5dEH2Q==
+X-Received: by 2002:a05:6830:22d8:: with SMTP id q24mr1373215otc.170.1637007099923;
+        Mon, 15 Nov 2021 12:11:39 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w22sm1775175ooc.47.2021.11.15.12.11.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 12:11:15 -0800 (PST)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Add SPDIF
-Date:   Mon, 15 Nov 2021 21:11:12 +0100
-Message-Id: <20211115201112.452696-1-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.33.1
+        Mon, 15 Nov 2021 12:11:39 -0800 (PST)
+Date:   Mon, 15 Nov 2021 14:11:34 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
+Subject: Re: [PATCH v5 21/22] arm64/dts: qcom: sm8250: Add dt entries to
+ support crypto engine.
+Message-ID: <YZK+9pT7tsbkMz9J@builder.lan>
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-22-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211110105922.217895-22-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tanix TX6 board has SPDIF connector in form of 3.5 mm jack.
+On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
 
-Add support for it.
+Forgot to mention, please double check that the $subject prefix matches
+other patches to the file.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- .../dts/allwinner/sun50i-h6-tanix-tx6.dts     | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Regards,
+Bjorn
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-index 8f2a80f128de..6c10ff7f4b1c 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-@@ -52,6 +52,24 @@ reg_vdd_cpu_gpu: regulator-vdd-cpu-gpu {
- 		regulator-min-microvolt = <1135000>;
- 		regulator-max-microvolt = <1135000>;
- 	};
-+
-+	sound-spdif {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "sun50i-h6-spdif";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&spdif>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&spdif_out>;
-+		};
-+	};
-+
-+	spdif_out: spdif-out {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+	};
- };
- 
- &cpu0 {
-@@ -127,6 +145,10 @@ &r_ir {
- 	status = "okay";
- };
- 
-+&spdif {
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_ph_pins>;
--- 
-2.33.1
-
+> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> "sm8250.dtsi".
+> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 28 ++++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index 6f6129b39c9c..691c28066cec 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -4104,6 +4104,34 @@ cpufreq_hw: cpufreq@18591000 {
+>  
+>  			#freq-domain-cells = <1>;
+>  		};
+> +
+> +		cryptobam: dma-controller@1dc4000 {
+> +			compatible = "qcom,bam-v1.7.0";
+> +			reg = <0 0x01dc4000 0 0x24000>;
+> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +			#dma-cells = <1>;
+> +			qcom,ee = <0>;
+> +			qcom,controlled-remotely;
+> +			iommus = <&apps_smmu 0x584 0x0011>,
+> +				 <&apps_smmu 0x586 0x0011>,
+> +				 <&apps_smmu 0x594 0x0011>,
+> +				 <&apps_smmu 0x596 0x0011>;
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "memory";
+> +		};
+> +
+> +		crypto: crypto@1dfa000 {
+> +			compatible = "qcom,sm8250-qce";
+> +			reg = <0 0x01dfa000 0 0x6000>;
+> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
+> +			dma-names = "rx", "tx";
+> +			iommus = <&apps_smmu 0x584 0x0011>,
+> +				 <&apps_smmu 0x586 0x0011>,
+> +				 <&apps_smmu 0x594 0x0011>,
+> +				 <&apps_smmu 0x596 0x0011>;
+> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
+> +			interconnect-names = "memory";
+> +		};
+>  	};
+>  
+>  	timer {
+> -- 
+> 2.31.1
+> 
