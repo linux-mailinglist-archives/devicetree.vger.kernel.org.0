@@ -2,84 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEDF6451D02
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:20:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C16DF4519AA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 00:22:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349639AbhKPAXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 19:23:03 -0500
-Received: from relay02.th.seeweb.it ([5.144.164.163]:58135 "EHLO
-        relay02.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351863AbhKOUi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 15:38:59 -0500
-Received: from Marijn-Arch-PC.localdomain (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 8A5D320151;
-        Mon, 15 Nov 2021 21:35:12 +0100 (CET)
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: [PATCH v3 8/9] backlight: qcom-wled: Remove unnecessary double whitespace
-Date:   Mon, 15 Nov 2021 21:34:58 +0100
-Message-Id: <20211115203459.1634079-9-marijn.suijten@somainline.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211115203459.1634079-1-marijn.suijten@somainline.org>
-References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
+        id S1347156AbhKOXZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 18:25:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353579AbhKOXWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 18:22:35 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46EFFC048C9E
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 14:24:52 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id m20so32711058edc.5
+        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 14:24:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IA3uzL8dfIEQ00f28ulGEts22lGGQNmtQewySBj0XO4=;
+        b=Bnv0ttRfNHVHdyq5LKLvyQjxpdMyK7zrZW+zF5YjwYhHNMqsmwWAV+1/zv3GBfmNDp
+         dXZU4ZfENKWeRflnaGRWMV7/FLXl9mG+IQLudrxrRoFHQiAC8EGsSesyMOVUo5McbFRf
+         +ppanSSlMs9Y4KjlkRjfUIf5VlAb1iLIWkx5y64VCMv7JDe6NmtMgXnhUpdfxxE3ybIg
+         /Hohp9KrrQy5z8x2OBjx4agALcsIkg5fPX6iWzTB/WpMsVL7RmSwgi1CCzJrKrV7dXtC
+         ig4npH2Y26QS10+qVyUxNe6jMz0mps8dMY3nnEb87rYqgDXq7Iw2K8aoFA58OHiqXBfm
+         +gKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IA3uzL8dfIEQ00f28ulGEts22lGGQNmtQewySBj0XO4=;
+        b=FPUHIbSSkh9kwiox7h0i+YJVLFvD4ZU2NIH+5utuf1RFxoeVrn86JrDBiAEJJKE6rR
+         FGh791oobkZfCwmqIPodqGty0TG8jSoqOFxPn27QSlJpaSaOV6fgWIHaspH9qqbXszxU
+         AiW6hZGaH0woegGDPD0Nw0nwf8P8eYDTERMqiWQpsXHjbnJ8PjC2yOxtrBc+YoK19DcK
+         +Ja50CY3h81BhaWDlQJO8wrYuCLtpdcjB8Z0lx2e4sgdkfS9zt6PQHAJp3KxkJ3iS00X
+         iNNsLb3NfA3Yz4NMNyclnKw0oPHtmdyKj11OCvmGGaAHIAQL01cL8aycpU+xsn+4Mf0D
+         8Nrg==
+X-Gm-Message-State: AOAM532f0BPL8CtffpODsIVQz7fAhj1IRh9kN96khbIUHxrJXMiDhIon
+        KiHkbDHe+P4K++oZqnskAT0m62Cse/wOGqyfIDXOeg==
+X-Google-Smtp-Source: ABdhPJzxxVv/7atCKO4fqs47SY7HQRIQQsohvPdp3HNDWi3IhAIZG7PhKinKRwqO+bPgkrlboDKA7GrYcJYLOWPB3fY=
+X-Received: by 2002:a17:907:6da9:: with SMTP id sb41mr3361170ejc.88.1637015090784;
+ Mon, 15 Nov 2021 14:24:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-6-brad@pensando.io>
+ <20211028074945.rv2j5kgzk7yc2srr@mobilestation>
+In-Reply-To: <20211028074945.rv2j5kgzk7yc2srr@mobilestation>
+From:   Brad Larson <brad@pensando.io>
+Date:   Mon, 15 Nov 2021 14:24:40 -0800
+Message-ID: <CAK9rFnw396xK+u3qUpgbnGNw7WDJPJm0L3o4nPAcFeqQjBDbXg@mail.gmail.com>
+Subject: Re: [PATCH v3 05/11] spi: dw: Add Pensando Elba SoC SPI Controller bindings
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Rob Herring <robh@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove redundant spaces inside for loop conditions.  No other double
-spaces were found that are not part of indentation with `[^\s]  `.
+Hi Sergey,
 
-Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
----
- drivers/video/backlight/qcom-wled.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thu, Oct 28, 2021 at 12:49 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+>
+> On Sun, Oct 24, 2021 at 06:51:50PM -0700, Brad Larson wrote:
+> > The Pensando Elba SoC has integrated the DW APB SPI Controller
+>
+> Please add the "dt-bindings: " prefix to the patch name and discard
+> the word "bindings" from the title as the submitting DT-patches
+> requires:
+> Documentation/devicetree/bindings/submitting-patches.rst
 
-diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-index f975c1f6398b..e2a78f4a9668 100644
---- a/drivers/video/backlight/qcom-wled.c
-+++ b/drivers/video/backlight/qcom-wled.c
-@@ -235,7 +235,7 @@ static int wled3_set_brightness(struct wled *wled, u16 brightness)
- 
- 	v = cpu_to_le16(brightness & WLED3_SINK_REG_BRIGHT_MAX);
- 
--	for (i = 0;  i < wled->cfg.num_strings; ++i) {
-+	for (i = 0; i < wled->cfg.num_strings; ++i) {
- 		rc = regmap_bulk_write(wled->regmap, wled->ctrl_addr +
- 				       WLED3_SINK_REG_BRIGHT(i),
- 				       &v, sizeof(v));
-@@ -258,7 +258,7 @@ static int wled4_set_brightness(struct wled *wled, u16 brightness)
- 
- 	v = cpu_to_le16(brightness & WLED3_SINK_REG_BRIGHT_MAX);
- 
--	for (i = 0;  i < wled->cfg.num_strings; ++i) {
-+	for (i = 0; i < wled->cfg.num_strings; ++i) {
- 		rc = regmap_bulk_write(wled->regmap, wled->sink_addr +
- 				       WLED4_SINK_REG_BRIGHT(i),
- 				       &v, sizeof(v));
--- 
-2.33.1
+I'll add that.  I recall looking at the recent git log for similar
+changes to the file as the current recommended approach.
 
+> >
+> > Signed-off-by: Brad Larson <brad@pensando.io>
+> > ---
+> >  Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > index d7e08b03e204..0b5ebb2ae6e7 100644
+> > --- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > +++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+> > @@ -73,6 +73,8 @@ properties:
+> >                - renesas,r9a06g032-spi # RZ/N1D
+> >                - renesas,r9a06g033-spi # RZ/N1S
+> >            - const: renesas,rzn1-spi   # RZ/N1
+>
+> > +      - description: Pensando Elba SoC SPI Controller
+> > +        const: pensando,elba-spi
+>
+> AFAICS from the driver-part of the patchset it's not enough. You've
+> also got the syscon phandle, which needs to be reflected in the
+> bindings. That also makes me thinking that you didn't perform the
+> "dtbs_check" on the dts-files you were going to submit, but for some
+> reason discarded from this series (btw why?). If you did you would
+> have got an error of an unevaluated property detection.
+
+I ran the checks below and didn't get errors.  Rob provided some info
+and I found the server did not have yamllint installed (not flagged by
+tool).  Also dt-schema was not the latest.  I'm re-doing this and
+including "DT_CHECKER_FLAGS=-m" as that is new with v5.13.
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/pensando,elba.yaml
+
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
+make dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/pensando,elba.yaml
+
+Thanks
+Brad
