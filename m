@@ -2,131 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 763A6451DD2
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:31:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEBCA451E1C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:32:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347695AbhKPAeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 19:34:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37256 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344528AbhKOTY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 14:24:56 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3E1C05D6E4
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:34:14 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id s139so36603818oie.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 10:34:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JwKaMGX//1jqQPgDQEKIqD6sj+mcxEeOUNB16V+QNig=;
-        b=DFT6UQaUnkLeIQWICHLYL168uKkR+5z/D503YvheavNu5LiGXarxG6M4vUb/yuUeFD
-         wBeAd1dgB4RTBrkHKWNx5vHplM5nGYRvGK6EK2v8gYF/BgYKF5TAeSn9oTYU2G9Rg6ry
-         z2c4r2xISK/Vtm2nhmfSxW68yTnYiaYpGTGqkDNwXAqZgA8XmgltvNZukUt+9DrFjMuD
-         r73Q4hkk7eD/v5RIcYrP/VSaMyRINws5XEqPvF3FmAvUzyfwJb0zkbwxkf2cMnq2YAGs
-         CGRKPgVnuTvg6vm0+59+1YVaYaJ+91+pWkyulqApmmQzKhQUNbWlmiqQm3Q0bV+wPvMf
-         llQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JwKaMGX//1jqQPgDQEKIqD6sj+mcxEeOUNB16V+QNig=;
-        b=DTUBEXRIIL8NI6ETaL2ds/AhQQ+3MVgvZDRUCjfDTkQmk26dPzuvmEd0QmEY+sDifi
-         /2ULIs/Gy1haCYFTicgunztWLYYTaqZfrSN1giTEAzTnJZ9bFZKKY2y6xqK0Yyx2nnSl
-         2pOSRdWO6I8bRmBCM55H+k+jpCgaQo+aFpfIDj2yEAoCZ2Uwnq7wWy/Imab3KQJpmjcC
-         FhFIq6D9xCUDfT5uATfw2soc5vqzsLuqAY9Ojh+6aK+EqnNbyOSOslITCP3E6K2Fe+cr
-         lXS6XJkzltegD8mGfHF4H05A5Zd3izntYLQQ9WfusJvp2YUh0DX7tVgNjHa2P1wTYNXo
-         TNag==
-X-Gm-Message-State: AOAM532zPtnrZDlL+vF/0NjHYXrraLF2j2TKv6C5olEvL8twV0MKuruK
-        VYu0NPpAn6AkI5QvUVUfda2ZoQ==
-X-Google-Smtp-Source: ABdhPJxgGwtHSE6Ow+bkBcfir6vTaVoPAfAiPVhu0Xx/3q9Ecwchi5RX5V5eKCac1+SsR9K0YPHcGQ==
-X-Received: by 2002:a54:4f1d:: with SMTP id e29mr47401177oiy.179.1637001253519;
-        Mon, 15 Nov 2021 10:34:13 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o2sm2821311oik.11.2021.11.15.10.34.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 10:34:13 -0800 (PST)
-Date:   Mon, 15 Nov 2021 12:34:08 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>
-Subject: Re: [PATCH v5 21/22] arm64/dts: qcom: sm8250: Add dt entries to
- support crypto engine.
-Message-ID: <YZKoIA7kPHDaFoQK@builder.lan>
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-22-bhupesh.sharma@linaro.org>
+        id S1344000AbhKPAfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 19:35:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45390 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345112AbhKOT0e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 14:26:34 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E5FEC63715;
+        Mon, 15 Nov 2021 19:10:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1637003426;
+        bh=DtHrB66HXLmxewymT8yGeifJxpPVREBisB7HVDuwLYk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uWDI6azBQctDhxtdF1G9iKbhqkN2qYhQctn9Q95ee03P+8wXH7qRA3GAepSUdZg2n
+         uKk6RWow7OZupqCCke9iIi2MeT8WkPYc4AvR4GCkYQP6OBFfqIRBToDvoJHxCRdtmJ
+         raMFBms7HRLxupcaecmEaqky9XClk8sQ0odpZa3o=
+Date:   Mon, 15 Nov 2021 19:49:57 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Iwona Winiarska <iwona.winiarska@intel.com>
+Cc:     linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-hwmon@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Borislav Petkov <bp@alien8.de>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
+        Dan Williams <dan.j.williams@intel.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Zev Weiss <zweiss@equinix.com>,
+        David Muller <d.mueller@elsoft.ch>,
+        Dave Hansen <dave.hansen@intel.com>
+Subject: Re: [PATCH v3 06/13] peci: Add device detection
+Message-ID: <YZKr1Rqfx6Cmw+Ok@kroah.com>
+References: <20211115182552.3830849-1-iwona.winiarska@intel.com>
+ <20211115182552.3830849-7-iwona.winiarska@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211110105922.217895-22-bhupesh.sharma@linaro.org>
+In-Reply-To: <20211115182552.3830849-7-iwona.winiarska@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 10 Nov 04:59 CST 2021, Bhupesh Sharma wrote:
-
-> Add crypto engine (CE) and CE BAM related nodes and definitions to
-> "sm8250.dtsi".
-> 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 28 ++++++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index 6f6129b39c9c..691c28066cec 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -4104,6 +4104,34 @@ cpufreq_hw: cpufreq@18591000 {
->  
->  			#freq-domain-cells = <1>;
->  		};
+On Mon, Nov 15, 2021 at 07:25:45PM +0100, Iwona Winiarska wrote:
+> +void peci_device_destroy(struct peci_device *device)
+> +{
+> +	bool killed;
 > +
-> +		cryptobam: dma-controller@1dc4000 {
-> +			compatible = "qcom,bam-v1.7.0";
-> +			reg = <0 0x01dc4000 0 0x24000>;
+> +	device_lock(&device->dev);
+> +	killed = kill_device(&device->dev);
 
-Please keep nodes under /soc sorted by address.
+Eeek, why call this?
 
-Thanks,
-Bjorn
-
-> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +			#dma-cells = <1>;
-> +			qcom,ee = <0>;
-> +			qcom,controlled-remotely;
-> +			iommus = <&apps_smmu 0x584 0x0011>,
-> +				 <&apps_smmu 0x586 0x0011>,
-> +				 <&apps_smmu 0x594 0x0011>,
-> +				 <&apps_smmu 0x596 0x0011>;
-> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-> +			interconnect-names = "memory";
-> +		};
+> +	device_unlock(&device->dev);
 > +
-> +		crypto: crypto@1dfa000 {
-> +			compatible = "qcom,sm8250-qce";
-> +			reg = <0 0x01dfa000 0 0x6000>;
-> +			dmas = <&cryptobam 4>, <&cryptobam 5>;
-> +			dma-names = "rx", "tx";
-> +			iommus = <&apps_smmu 0x584 0x0011>,
-> +				 <&apps_smmu 0x586 0x0011>,
-> +				 <&apps_smmu 0x594 0x0011>,
-> +				 <&apps_smmu 0x596 0x0011>;
-> +			interconnects = <&aggre2_noc MASTER_CRYPTO_CORE_0 &mc_virt SLAVE_EBI_CH0>;
-> +			interconnect-names = "memory";
-> +		};
->  	};
->  
->  	timer {
-> -- 
-> 2.31.1
-> 
+> +	if (!killed)
+> +		return;
+
+What happened if something changed after you unlocked it?
+
+Why is kill_device() required at all?  That's a very rare function to
+call, and one that only one "bus" calls today because it is very
+special (i.e. crazy and broken...)
+
+thanks,
+
+greg k-h
