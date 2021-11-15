@@ -2,264 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3E844FE8C
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:05:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA6C44FEAA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 07:32:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230053AbhKOGID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 01:08:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbhKOGIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:08:02 -0500
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9080C061746
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 22:05:07 -0800 (PST)
-Received: by mail-oo1-xc2e.google.com with SMTP id e17-20020a4a8291000000b002c5ee0645e7so83982oog.2
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 22:05:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YcL98dcYP0M2jStnva8J9nz+JoDlg+B8cM6xTQH4RCQ=;
-        b=dc0GvEaEwe22fG8jKGnx1MzaNk0hPiJuSY/aH0zd969M6SxekXRsIPnuhSJPGUj2tO
-         c80PUSwnfb9d3U7dsE82NNBtmlcWLF9iNrAYIRa60UcZ0xNS3MTDiekjEowFN1cOF/Ou
-         1H7cBeouxC6Zpgwg6LuUSc+pGUhYLFjf2B3H1ElO/CXxlv8GHCA4JTcEv5RDWgtzB/vO
-         RemWEg/fMEp+TpWtroIFDncRWDPSnL3U/5KQX3acU/g9j6jX539N3wicz9Qc3adK5qy0
-         c3iu7Ve2aJfQprUEfONHMko/o1FGO88rKMV9iunCCCxcoFUvfGTEiHbmkzqrvCbPuemV
-         FKZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YcL98dcYP0M2jStnva8J9nz+JoDlg+B8cM6xTQH4RCQ=;
-        b=XL02/D8XJ5P94m0aAE2dgqIPeCzv58d8DqyeTp4WJ1x7UNRJtqOKGnoMZKgS2Q1hip
-         61HhSzuqgLO+ljHPElvYym/J9a0eRXXJsOwEeqwBLPywvfEz2bVhf5iMxZB2pDP49vbw
-         ukk+78+LiZUvCoBFM2l6WkHfS9YUvxhKlqzq7CBJ9A97smyEP885FVnoAzBWTvpAR4Se
-         gt7CDe44SWurtNwbqol/vfU3av5Pmfo5HPvZNZ6AfIvfAPDf3aBv85U2ZOCUpHUAZT8K
-         owt6D0d1kRJoklREnWeytZSE/ebJL9kPoy/f8jha7EEM7zUPjMsMuIGg+pEVcTCzejH3
-         ykgQ==
-X-Gm-Message-State: AOAM532knjFer2MEyyVI9CHM/Zh7mhyFj+Bo4sgGpkFIjoP/GhT4hFLh
-        KgJsCSTYBXT+nPmNXkdAwpKUl0jXM8qopmJ7LViJIg==
-X-Google-Smtp-Source: ABdhPJy2e88x2dTWGeoIROKmY2ssRaLj47rFk3JxO0UxewJexSUFIh7d7O86pYVMHaBaVufQ9xcStyzMZjIc2Ltdprc=
-X-Received: by 2002:a4a:ea84:: with SMTP id r4mr18628390ooh.13.1636956306909;
- Sun, 14 Nov 2021 22:05:06 -0800 (PST)
+        id S229651AbhKOGfo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 01:35:44 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38442 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229935AbhKOGfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 01:35:40 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AF6VrjL093042;
+        Mon, 15 Nov 2021 00:31:53 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1636957913;
+        bh=Yp6cJZ8oIsFnm9F73Lzb1xo9cWF3HS71rWFf2uvETQM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=tb7mjZbvhX+CsniZ8ypDDVMisBYCCgVpSxpZNYMzxisbRqJW2jJ5DAWGz5becJN55
+         60WKLcpd8nNkq9TGJDH/fWXAgeDIDsovEPLfgX2wtGNkrKE39LXARtwJTP8+grxBpH
+         UbRraZkSr6uEEAQ+1tOZxWS5srf4bU7qT3a4TspE=
+Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AF6Vr1h097679
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 15 Nov 2021 00:31:53 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 15
+ Nov 2021 00:31:53 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 15 Nov 2021 00:31:53 -0600
+Received: from [10.250.232.124] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AF6VnnP059580;
+        Mon, 15 Nov 2021 00:31:49 -0600
+Subject: Re: [PATCH RFC 2/2] phy: phy-can-transceiver: Add support for setting
+ mux
+To:     Peter Rosin <peda@axentia.se>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211111164313.649-1-a-govindraju@ti.com>
+ <20211111164313.649-3-a-govindraju@ti.com>
+ <20211112084027.b2t2beqiiodnwjtv@pengutronix.de>
+ <085ec3c0-75c6-f3c2-9999-348098fd88f9@ti.com>
+ <f933048c-099f-054a-6563-671cf2a2e2af@axentia.se>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <8be2b770-9c4c-ce41-4c49-27fa30b4afee@ti.com>
+Date:   Mon, 15 Nov 2021 12:01:48 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-4-bhupesh.sharma@linaro.org> <1636573460.935618.1783742.nullmailer@robh.at.kernel.org>
-In-Reply-To: <1636573460.935618.1783742.nullmailer@robh.at.kernel.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 15 Nov 2021 11:34:56 +0530
-Message-ID: <CAH=2NtycQ7B40Q4oLQDa-65r5riAiCdCGLx6fkLBQS5P-dQSsw@mail.gmail.com>
-Subject: Re: [PATCH v5 03/22] dt-bindings: qcom-bam: Convert binding to YAML
-To:     Rob Herring <robh@kernel.org>
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, herbert@gondor.apana.org.au,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        stephan@gerhold.net, bhupesh.linux@gmail.com, davem@davemloft.net,
-        linux-crypto@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <f933048c-099f-054a-6563-671cf2a2e2af@axentia.se>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Peter,
 
-On Thu, 11 Nov 2021 at 01:14, Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 10 Nov 2021 16:29:03 +0530, Bhupesh Sharma wrote:
-> > Convert Qualcomm BAM DMA devicetree binding to YAML.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  .../devicetree/bindings/dma/qcom_bam_dma.txt  | 50 ----------
-> >  .../devicetree/bindings/dma/qcom_bam_dma.yaml | 91 +++++++++++++++++++
-> >  2 files changed, 91 insertions(+), 50 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.txt
-> >  create mode 100644 Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml
-> >
->
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
->
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
->
-> Full log is available here: https://patchwork.ozlabs.org/patch/1553369
->
->
-> dma@12142000: $nodename:0: 'dma@12142000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
->
-> dma@12182000: $nodename:0: 'dma@12182000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
->         arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
->         arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
->         arch/arm/boot/dts/qcom-mdm9615-wp8548-mangoh-green.dt.yaml
->
-> dma@121c2000: $nodename:0: 'dma@121c2000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
->
-> dma@12402000: $nodename:0: 'dma@12402000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-apq8064-asus-nexus7-flo.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-cm-qs600.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-ifc6410.dt.yaml
->         arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dt.yaml
->         arch/arm/boot/dts/qcom-ipq8064-ap148.dt.yaml
->         arch/arm/boot/dts/qcom-ipq8064-rb3011.dt.yaml
->
-> dma@1dc4000: $nodename:0: 'dma@1dc4000' does not match '^dma-controller(@.*)?$'
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
->
-> dma@1dc4000: 'iommus' does not match any of the regexes: 'pinctrl-[0-9]+'
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
->
-> dma@1dc4000: qcom,controlled-remotely: 'oneOf' conditional failed, one must be fixed:
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
->
-> dma@704000: $nodename:0: 'dma@704000' does not match '^dma-controller(@.*)?$'
->         arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
->         arch/arm64/boot/dts/qcom/ipq8074-hk10-c1.dt.yaml
->         arch/arm64/boot/dts/qcom/ipq8074-hk10-c2.dt.yaml
->
-> dma@704000: qcom,controlled-remotely: 'oneOf' conditional failed, one must be fixed:
->         arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
->         arch/arm64/boot/dts/qcom/ipq8074-hk10-c1.dt.yaml
->         arch/arm64/boot/dts/qcom/ipq8074-hk10-c2.dt.yaml
->
-> dma@7544000: $nodename:0: 'dma@7544000' does not match '^dma-controller(@.*)?$'
->         arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
->         arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
->
-> dma@7584000: $nodename:0: 'dma@7584000' does not match '^dma-controller(@.*)?$'
->         arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
->         arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
->
-> dma@7884000: $nodename:0: 'dma@7884000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c3.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c2.dt.yaml
->
-> dma@7984000: $nodename:0: 'dma@7984000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c3.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c2.dt.yaml
->
-> dma@8e04000: $nodename:0: 'dma@8e04000' does not match '^dma-controller(@.*)?$'
->         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4018-jalapeno.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk01.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk04.1-c3.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c1.dt.yaml
->         arch/arm/boot/dts/qcom-ipq4019-ap.dk07.1-c2.dt.yaml
->
-> dma@c184000: $nodename:0: 'dma@c184000' does not match '^dma-controller(@.*)?$'
->         arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dt.yaml
->         arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dt.yaml
->
-> dma-controller@17184000: 'iommus' does not match any of the regexes: 'pinctrl-[0-9]+'
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
->         arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
->
-> dma-controller@704000: 'qcom,config-pipe-trust-reg' does not match any of the regexes: 'pinctrl-[0-9]+'
->         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
->
-> dma-controller@704000: qcom,controlled-remotely: 'oneOf' conditional failed, one must be fixed:
->         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
->
-> dma-controller@7984000: clock-names:0: 'bam_clk' was expected
->         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
->
-> dma-controller@7984000: clock-names: Additional items are not allowed ('bam_clk' was unexpected)
->         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
->
-> dma-controller@7984000: clock-names: ['iface_clk', 'bam_clk'] is too long
->         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
->
-> dma-controller@7984000: clocks: [[9, 138], [9, 137]] is too long
->         arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
+On 13/11/21 12:45 am, Peter Rosin wrote:
+> Hi!
+> 
+> On 2021-11-12 14:48, Aswath Govindraju wrote:
+>> Hi Marc,
+>>
+>> On 12/11/21 2:10 pm, Marc Kleine-Budde wrote:
+>>> On 11.11.2021 22:13:12, Aswath Govindraju wrote:
+>>>> On some boards, for routing CAN signals from controller to transceiver,
+>>>> muxes might need to be set. Therefore, add support for setting the mux by
+>>>> reading the mux-controls property from the device tree node.
+>>>>
+>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>> ---
+>>>>  drivers/phy/phy-can-transceiver.c | 21 +++++++++++++++++++++
+>>>>  1 file changed, 21 insertions(+)
+>>>>
+>>>> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
+>>>> index 6f3fe37dee0e..3d8da5226e27 100644
+>>>> --- a/drivers/phy/phy-can-transceiver.c
+>>>> +++ b/drivers/phy/phy-can-transceiver.c
+>>>> @@ -10,6 +10,7 @@
+>>>>  #include<linux/module.h>
+>>>>  #include<linux/gpio.h>
+>>>>  #include<linux/gpio/consumer.h>
+>>>> +#include <linux/mux/consumer.h>
+>>>>  
+>>>>  struct can_transceiver_data {
+>>>>  	u32 flags;
+>>>> @@ -21,13 +22,22 @@ struct can_transceiver_phy {
+>>>>  	struct phy *generic_phy;
+>>>>  	struct gpio_desc *standby_gpio;
+>>>>  	struct gpio_desc *enable_gpio;
+>>>> +	struct mux_control *mux_ctrl;
+>>>>  };
+>>>>  
+>>>>  /* Power on function */
+>>>>  static int can_transceiver_phy_power_on(struct phy *phy)
+>>>>  {
+>>>> +	int ret;
+>>>>  	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
+>>>>  
+>>>> +	if (can_transceiver_phy->mux_ctrl) {
+>>>> +		ret = mux_control_select(can_transceiver_phy->mux_ctrl, 1);
+>>>
+>>> Hard coding the "1" looks wrong here. I have seen some boards where you
+>>> can select between a CAN-2.0 and a single wire CAN transceiver with a
+>>> mux. So I think we cannot hard code the "1" here.
+>>>
+>>
+>> Yes, as you mentioned it is not ideal to hard code "1". I feel that, it
+>> would be much better to read the state of the mux to be set from the
+>> mux-controls property. The issue that I see with this approach is that
+>> the current implementation in the mux framework only allows for one
+>> argument, which is for indicating the line to be toggled in the mux. If
+>> more arguments are added then an error is returned from the
+>> "mux_control_get". I am not sure why this limitation was added.
+> 
+> The only current use of the first argument is for mux chips that contain
+> more than one mux control. The limit in the mux core is there since no
+> mux driver need more than this one argument. The number of mux-control
+> property arguments is fixed by the #mux-control-cells property in the
+> mux-control node. I don't see any way to and a new optional mux-control
+> property argument that specifies a specific state. How would that not
+> break all existing users?
+> 
 
-As noted with v4 review as well, all the errors reported above are
-fixed via other patches in this patchset, for e.g.:
+My idea was to use the second argument for reading the state of mux to
+be set after increasing the #mux-control-cells value to 2. I don't think
+this will break the existing mux controller users as the second argument
+was not used till now, would be equivalent to adding an additional feature.
 
-[PATCH v5 01/22] arm64: dts: qcom: msm8996: Fix
-qcom,controlled-remotely property
-[PATCH v5 02/22] arm64: dts: qcom: msm8996: Fix 'dma' nodes in dts
-[PATCH v5 04/22] dt-bindings: qcom-bam: Add 'interconnects' &
-'interconnect-names' to optional properties
-[PATCH v5 05/22] dt-bindings: qcom-bam: Add 'iommus' to optional properties
+One more question that I had is, if the number of arguments match the
+#mux-control-cells and if the number of arguments are greater than 1 why
+is an error being returned?
 
-Regards,
-Bhupesh
+> The current mux interface is designed around the idea that you wrap a
+> mux control in a mux (lacking better name) application. There are
+> several such mux applications in the tree, those for I2C, IIO and SPI
+> pops into my head, and that you then tie the end user consumer to this
+> muxing application. The mux state comes as a part of how you have tied
+> the end user consumer to the mux application and is not really something
+> that the mux-control is involved in.
+> 
+> In other words, a mux-control is not really designed to be used directly
+> by a driver that needs only one of the states.
+> 
+> However, I'm not saying that doing so isn't also a useful model. It
+> cetainly sound like it could be. However, the reason it's not done that
+> way is that I did not want to add muxing code to *all* drivers. I.e. it
+> would not be flexible to have to add boilerplate mux code to each and
+> every IIO driver that happen to be connected in a way that a mux has to
+> be in a certain state for the signal to reach the ADC (or whatever).
+> Instead, new IIO channels are created for the appropriate mux states
+> and the IIO mux is connected to the parent IIO channel. When one of the
+> muxed channels is accessed the mux is selected as needed, and the ADC
+> driver needs to know nothing about it. If two muxes need to be in a
+> certain position, you again have no need to "pollute" drivers with
+> double builerplate mux code. Instead, you simply add two levels of
+> muxing to the muxed IIO channel.
+> 
+> I think the same is probably true in this case too, and that it would
+> perhaps be better to create a mux application for phys? But I don't know
+> what the phy structure looks like, so I'm not in a position to say for
+> sure if this model fits. But I imagine that phys have providers and
+> consumers and that a mux can be jammed in there in some way and
+> intercept some api such that the needed mux state can be selected when
+> needed.
+> 
+
+Yes, I understand that reading the state of the mux in drivers would not
+be efficient as it would adding the boiler plate code in each of the
+drivers. However, for phys as each of them can be used for a different
+interface, I am not sure if a common mux phy wrapper can be introduced.
+This is reason why I felt that drivers should be allowed to read the
+state of the mux directly, when no mux wrapper application is suitable
+for it.
+
+Thanks,
+Aswath
+
+> Cheers,
+> Peter
+> 
+>>
+>>>> +		if (ret) {
+>>>> +			dev_err(&phy->dev, "Failed to select CAN mux: %d\n", ret);
+>>>> +			return ret;
+>>>> +		}
+>>>> +	}
+>>>>  	if (can_transceiver_phy->standby_gpio)
+>>>>  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
+>>>>  	if (can_transceiver_phy->enable_gpio)
+>>>> @@ -45,6 +55,8 @@ static int can_transceiver_phy_power_off(struct phy *phy)
+>>>>  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
+>>>>  	if (can_transceiver_phy->enable_gpio)
+>>>>  		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
+>>>> +	if (can_transceiver_phy->mux_ctrl)
+>>>> +		mux_control_deselect(can_transceiver_phy->mux_ctrl);
+>>>>  
+>>>>  	return 0;
+>>>>  }
+>>>> @@ -95,6 +107,15 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
+>>>>  	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
+>>>>  	drvdata = match->data;
+>>>>  
+>>>> +	if (of_property_read_bool(dev->of_node, "mux-controls")) {
+>>>
+>>> Is this the proper way of doing this? Looks like we need a
+>>> devm_mux_control_get_optional(), which doesn't return a -ENODEV if the
+>>> device doesn't exist.
+>>>
+>>> Cc'ed Peter Rosin.
+>>>
+>>>> +		struct mux_control *control;
+>>>> +
+>>>> +		control = devm_mux_control_get(dev, NULL);
+>>>> +		if (IS_ERR(control))
+>>>> +			return PTR_ERR(control);
+>>>
+>>> What about making use of dev_err_probe()?
+>>>
+>>
+>> Sure, I will make this change.
+>>
+>> Thank you for the comments.
+>>
+>> Regards,
+>> Aswath
+>>
+>>>> +		can_transceiver_phy->mux_ctrl = control;
+>>>> +	}
+>>>> +
+>>>>  	phy = devm_phy_create(dev, dev->of_node,
+>>>>  			      &can_transceiver_phy_ops);
+>>>>  	if (IS_ERR(phy)) {
+>>>> -- 
+>>>> 2.17.1
+>>>>
+>>>>
+>>>
+>>> Regards,
+>>> Marc
+>>>
+>>
+
