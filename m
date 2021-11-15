@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A338544FCE6
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 03:10:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E6D344FCEA
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 03:10:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236227AbhKOCNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Nov 2021 21:13:30 -0500
-Received: from mail-oo1-f45.google.com ([209.85.161.45]:44648 "EHLO
-        mail-oo1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236191AbhKOCN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 21:13:29 -0500
-Received: by mail-oo1-f45.google.com with SMTP id t9-20020a4a8589000000b002c5c4d19723so1081941ooh.11;
-        Sun, 14 Nov 2021 18:10:34 -0800 (PST)
+        id S236280AbhKOCNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Nov 2021 21:13:37 -0500
+Received: from mail-ot1-f46.google.com ([209.85.210.46]:43854 "EHLO
+        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236240AbhKOCNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Nov 2021 21:13:31 -0500
+Received: by mail-ot1-f46.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so24768422otm.10;
+        Sun, 14 Nov 2021 18:10:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=EcWazStHMBzkeUqUKg871NcAh5km8nD2bxzBNAKhSts=;
-        b=sjEr3aPBiEvX5PP+vKYRuTZ2OcFTeZazHUHB/o3jmv3xIBJ0zTsbIZWRWbg9DnvgXr
-         NzhDuvQ2KWCkGqYXd99Ssyw6fqEIJNDMMgNgCGFdj/VxUH1j5DPTIFRl5tPytEpGr4xo
-         poYyClwpDlqxz3Hq/G3OEwfJqyPZ6l/JhnuaeuOXJ1xWIkghA6eRVDs/tNJTKtsjWncZ
-         RFcC4VJKQN8hnCrHcgx86SajoVSOW6GhJ2BJEyr+HEBerj3MgEMdgRA4fSkVt9ErCZmW
-         Zk7HbvKXvU6hgQ9DiMScfJlKmDNX35tfan9wfTeolGU/YS9ci3YyCCXQup4SAnp13/kd
-         yYwg==
-X-Gm-Message-State: AOAM530RqRxEQk2xYpShYk2MDHo18tVAaatn3sQ8x2KQBV2NaYKDG/jr
-        2vDreYTpyOnSEBVyHrRZYk+eBXnYXw==
-X-Google-Smtp-Source: ABdhPJyQC8PXrpS/2xNBLC9mcCg4j3oZwxmowhchO5VctfLmSSbKl9dqq5AzmhwQB31Tgnq9HhS7Gw==
-X-Received: by 2002:a4a:da1a:: with SMTP id e26mr3719912oou.79.1636942234563;
-        Sun, 14 Nov 2021 18:10:34 -0800 (PST)
+        bh=z8ZfoyfHKKBFGiYdX8Dup3pn0hyus7Ct6ubn5t+9TRY=;
+        b=ff+KJsfkKkAxqJ+i2Ezg8QoQpK9VhYcfrnd7lknERHrCSepK9gdUcUNtrLiML7imRP
+         nP2TFrzwVHHrIrnocbE5lUMKbsEqG1Mb0Wrvb6iexat4LVjion8J1weuo7bdD0E9EKMm
+         rfr2jCD6MvvtGed0q+e/dyMBM0vWCwk7UCfDrnbtmuJpV8pSdnlvYCepK+hZlnK6mWjL
+         21/1tBHL5IQT2VKGe8amMPwTM7UiQ14PyV1XG6knbFgzUU1Yqv8cD/mjdhy3VPkZjZ+v
+         OdHR+h50eDrI2rtRIxIRGBMRVOSx+Ny+cOLNH7J2iuVpKo1TyrEBW1o0nmglA4sKcyQN
+         jR+Q==
+X-Gm-Message-State: AOAM530m1vFn9Pqyqa6Lg4eKP1eN1Zs2PdITYMnGTWNuSAnKHtSXDOP/
+        TVLrejV6zri+4a51J7K7/w==
+X-Google-Smtp-Source: ABdhPJyugnIoBugvV/ymi2bazYiqcEFTPF190Q/UlJQEmI8dYoZuC1NfsXInsFevOKZyBCZy8m8rNg==
+X-Received: by 2002:a05:6830:1688:: with SMTP id k8mr27762637otr.238.1636942236077;
+        Sun, 14 Nov 2021 18:10:36 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l2sm2731307otl.61.2021.11.14.18.10.33
+        by smtp.gmail.com with ESMTPSA id u136sm2894379oie.13.2021.11.14.18.10.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 14 Nov 2021 18:10:34 -0800 (PST)
-Received: (nullmailer pid 3712867 invoked by uid 1000);
+        Sun, 14 Nov 2021 18:10:35 -0800 (PST)
+Received: (nullmailer pid 3712870 invoked by uid 1000);
         Mon, 15 Nov 2021 02:10:32 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Justin Chen <justinpopo6@gmail.com>,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-watchdog@vger.kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20211113114645.27360-2-zajec5@gmail.com>
-References: <20211113114645.27360-1-zajec5@gmail.com> <20211113114645.27360-2-zajec5@gmail.com>
-Subject: Re: [PATCH V4 2/2] dt-bindings: mfd: add Broadcom's Timer-Watchdog block
+To:     Gilles Talis <gilles.talis@gmail.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org, lars@metafoo.de,
+        jic23@kernel.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, pmeerw@pmeerw.net
+In-Reply-To: <20211114132335.47651-3-gilles.talis@gmail.com>
+References: <20211114132335.47651-1-gilles.talis@gmail.com> <20211114132335.47651-3-gilles.talis@gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: trivial-devices: Add Sensirion SHTC3 humidity sensor
 Date:   Sun, 14 Nov 2021 20:10:32 -0600
-Message-Id: <1636942232.944025.3712866.nullmailer@robh.at.kernel.org>
+Message-Id: <1636942232.952764.3712869.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 13 Nov 2021 12:46:45 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Sun, 14 Nov 2021 14:23:35 +0100, Gilles Talis wrote:
+> Sensirion SHTC3 is a humidity and temperature sensor controlled
+> through I2C interface
 > 
-> It's a block implementing few time related functions depending on a
-> (SoC specific) variant. At this point there is ready binding for a
-> watchdog only. Work on remaining subblocks (e.g. "reg" based reboot) is
-> in progress.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Gilles Talis <gilles.talis@gmail.com>
 > ---
-> V2: Update $id, description, compatible, example & commit message
-> V3: Drop "brcm,twd" from compatible list per Rob's review
-> ---
->  .../devicetree/bindings/mfd/brcm,twd.yaml     | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,twd.yaml
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -81,17 +65,12 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/watchdog/brcm,bcm7038-wdt.yaml'
-xargs: dt-doc-validate: exited with status 255; aborting
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/brcm,twd.example.dt.yaml'
-Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/watchdog/brcm,bcm7038-wdt.yaml'
-make[1]: *** [scripts/Makefile.lib:385: Documentation/devicetree/bindings/mfd/brcm,twd.example.dt.yaml] Error 255
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1441: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hwmon/sensirion,shtc1.example.dt.yaml: shtc3@70: 'sensirion,blocking-io' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/trivial-devices.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1554679
+See https://patchwork.ozlabs.org/patch/1554826
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
