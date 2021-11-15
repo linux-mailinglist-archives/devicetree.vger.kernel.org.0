@@ -2,146 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28469450360
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 12:23:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ED4A450369
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 12:28:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231318AbhKOL0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 06:26:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41200 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231388AbhKOL02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 06:26:28 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12587C0613B9
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 03:23:32 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso12578840wms.3
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 03:23:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=f4u4+jt8ypE5xH9p7rgAcXb4lPM3Z6q0r6PSS8fTKHI=;
-        b=jP1n/U+yzHcokMi3lhdqzC3if7O6KZkCqx54OxRpYSGay0te96CO0CKrwB0URvPjOR
-         2F6t0UufliWZemKMURzFE4OJKr11+QmpYUn2dL8+sVM92o9JUs0vwdUNggg22vOZUNfm
-         32JfoJLb+kPKfvsh7QVa8RHqdsiFtUG/23lbjAVe1YRDVQI3JZr/lXePgZyxoDTB15YO
-         9tx3yE6/8LpVOZ4Ph+dfvm7gIS0uFXHjNKXJ5pf7RH5g6PgVUugoWIz76W3ot9aKDi/R
-         4RRVUg39s4VFCBkYUtN47Zup0KL1sgfMCVZZigFi6JOKlxp5cPPVHF67zzDS5tePZrRq
-         wEPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f4u4+jt8ypE5xH9p7rgAcXb4lPM3Z6q0r6PSS8fTKHI=;
-        b=anMrCQCQxpv0Jc5RL1/nXCPfhVvY3Cj4mLzPhX2zHKAXoXI+67PldiOpZSM5yKbu4T
-         8susQMTNhXJu9WBn6SGKNSoM7t3Dot8ObB3HOHrf+nyQ7todpuwxw1YyPxOz284oiv0b
-         W/1ULffNSGMdDRCsyyTFmCX1aMXqGS47QV3pOHErHYyOzb8C48mDcqLuK8okailoV0iD
-         SVeS0C/H5ik82BoGf+Z5RqgPYFA9E+XlS267mxZ7g5mBZJXRDGI7k/NoLlMK7tf+VkTL
-         27ddajOwB6cNlgJ1feG7mz55tHt0DxPd0jArJ2x0HXImHYo3vkNeJlJ2HcVhCNmy+4FX
-         SJ9g==
-X-Gm-Message-State: AOAM5324u4YaepFGkOamdm10qNPpXXrHRYPk5mqEwXYyHbo6SRHz0jaW
-        oEd9gdIakxlmQUjeJwWcuL91VQ==
-X-Google-Smtp-Source: ABdhPJydAY2sk1/zCzZMibQHqVqEhwBELyjB7z2vGpTbcl9BNIGws50Duzyyhd3exyGjYR2A6vmRxw==
-X-Received: by 2002:a1c:540c:: with SMTP id i12mr7957382wmb.33.1636975410470;
-        Mon, 15 Nov 2021 03:23:30 -0800 (PST)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id h7sm13665207wrt.64.2021.11.15.03.23.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 03:23:29 -0800 (PST)
-Date:   Mon, 15 Nov 2021 11:23:27 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S231236AbhKOLba convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 15 Nov 2021 06:31:30 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:38055 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231168AbhKOLbW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 06:31:22 -0500
+Received: (Authenticated sender: clement.leger@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 4E18760012;
+        Mon, 15 Nov 2021 11:28:20 +0000 (UTC)
+Date:   Mon, 15 Nov 2021 12:24:32 +0100
+From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
+To:     Julian Wiedmann <jwi@linux.ibm.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        Courtney Cavin <courtney.cavin@sonymobile.com>
-Subject: Re: [RESEND PATCH v2 04/13] backlight: qcom-wled: Fix off-by-one
- maximum with default num_strings
-Message-ID: <20211115112327.tklic3fggrv5mzjt@maple.lan>
-References: <20211112002706.453289-1-marijn.suijten@somainline.org>
- <20211112002706.453289-5-marijn.suijten@somainline.org>
- <20211112120839.i6g747vewg6bkyk7@maple.lan>
- <20211112123501.pz5e6g7gavlinung@SoMainline.org>
- <20211112214337.r5xrpeyjgdygzc3n@SoMainline.org>
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/6] net: ocelot: add support to get port mac from
+ device-tree
+Message-ID: <20211115122432.273d09b5@fixe.home>
+In-Reply-To: <a12f593a-a9e4-44bf-1740-92303ceb1dc3@linux.ibm.com>
+References: <20211103091943.3878621-1-clement.leger@bootlin.com>
+        <20211103091943.3878621-2-clement.leger@bootlin.com>
+        <a12f593a-a9e4-44bf-1740-92303ceb1dc3@linux.ibm.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112214337.r5xrpeyjgdygzc3n@SoMainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 12, 2021 at 10:43:37PM +0100, Marijn Suijten wrote:
-> On 2021-11-12 13:35:03, Marijn Suijten wrote:
-> > On 2021-11-12 12:08:39, Daniel Thompson wrote:
-> > > On Fri, Nov 12, 2021 at 01:26:57AM +0100, Marijn Suijten wrote:
-> > > > When not specifying num-strings in the DT the default is used, but +1 is
-> > > > added to it which turns WLED3 into 4 and WLED4/5 into 5 strings instead
-> > > > of 3 and 4 respectively, causing out-of-bounds reads and register
-> > > > read/writes.  This +1 exists for a deficiency in the DT parsing code,
-> > > > and is simply omitted entirely - solving this oob issue - by parsing the
-> > > > property separately much like qcom,enabled-strings.
-> > > > 
-> > > > This also allows more stringent checks on the maximum value when
-> > > > qcom,enabled-strings is provided in the DT.  Note that num-strings is
-> > > > parsed after enabled-strings to give it final sign-off over the length,
-> > > > which DT currently utilizes to get around an incorrect fixed read of
-> > > > four elements from that array (has been addressed in a prior patch).
-> > > > 
-> > > > Fixes: 93c64f1ea1e8 ("leds: add Qualcomm PM8941 WLED driver")
-> > > > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > > > Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > > > ---
-> > > >  drivers/video/backlight/qcom-wled.c | 51 +++++++++++------------------
-> > > >  1 file changed, 19 insertions(+), 32 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/video/backlight/qcom-wled.c b/drivers/video/backlight/qcom-wled.c
-> > > > index 977cd75827d7..c5232478a343 100644
-> > > > --- a/drivers/video/backlight/qcom-wled.c
-> > > > +++ b/drivers/video/backlight/qcom-wled.c
-> > > > @@ -1552,6 +1520,25 @@ static int wled_configure(struct wled *wled)
-> > > >  		}
-> > > >  	}
-> > > > 
-> > > > +	rc = of_property_read_u32(dev->of_node, "qcom,num-strings", &val);
-> > > > +	if (!rc) {
-> > > > +		if (val < 1 || val > wled->max_string_count) {
-> > > > +			dev_err(dev, "qcom,num-strings must be between 1 and %d\n",
-> > > > +				wled->max_string_count);
-> > > > +			return -EINVAL;
-> > > > +		}
-> > > > +
-> > > > +		if (string_len > 0) {
-> > > > +			dev_warn(dev, "qcom,num-strings and qcom,enabled-strings are ambiguous\n");
-> > > 
-> > > The warning should also be below the error message on the next if statement.
+Le Mon, 15 Nov 2021 13:19:49 +0200,
+Julian Wiedmann <jwi@linux.ibm.com> a écrit :
+
+> On 03.11.21 11:19, Clément Léger wrote:
+> > Add support to get mac from device-tree using of_get_mac_address.
 > > 
-> > Agreed.
+> > Signed-off-by: Clément Léger <clement.leger@bootlin.com>
+> > ---
+> >  drivers/net/ethernet/mscc/ocelot_net.c | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/net/ethernet/mscc/ocelot_net.c b/drivers/net/ethernet/mscc/ocelot_net.c
+> > index eaeba60b1bba..d76def435b23 100644
+> > --- a/drivers/net/ethernet/mscc/ocelot_net.c
+> > +++ b/drivers/net/ethernet/mscc/ocelot_net.c
+> > @@ -1704,7 +1704,10 @@ int ocelot_probe_port(struct ocelot *ocelot, int port, struct regmap *target,
+> >  		NETIF_F_HW_TC;
+> >  	dev->features |= NETIF_F_HW_VLAN_CTAG_FILTER | NETIF_F_HW_TC;
+> >  
+> > -	eth_hw_addr_gen(dev, ocelot->base_mac, port);
+> > +	err = of_get_mac_address(portnp, dev->dev_addr);  
 > 
-> Thinking about this again while reworking the patches, I initially put
-> this above the error to make DT writers aware.  There's no point telling
-> them that their values are out of sync (num-strings >
-> len(enabled-strings)), when they "shouldn't even" (don't need to) set
-> both in the first place.  They might needlessly fix the discrepancy, see
-> the driver finally probe (working backlight) and carry on without
-> noticing this warning that now appears.
+> of_get_ethdev_address() maybe, so that this gets routed through Jakub's fancy
+> new eth_hw_addr_set() infrastructure?
+
+Hi Julian,
+
+Acked, I will use that.
+
 > 
-> Sorry for bringing this back up, but I'm curious about your opinion.
+> > +	if (err)
+> > +		eth_hw_addr_gen(dev, ocelot->base_mac, port);
+> > +
+> >  	ocelot_mact_learn(ocelot, PGID_CPU, dev->dev_addr,
+> >  			  OCELOT_VLAN_UNAWARE_PVID, ENTRYTYPE_LOCKED);
+> >  
+> >   
+> 
 
-With a more helpful warning about how to fix then I think it is OK to
-have both the warning and the error.
 
 
-Daniel.
+-- 
+Clément Léger,
+Embedded Linux and Kernel engineer at Bootlin
+https://bootlin.com
