@@ -2,68 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0878B450740
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 15:39:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85AA1450752
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 15:42:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236697AbhKOOmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 09:42:16 -0500
-Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:43452
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234526AbhKOOmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 09:42:03 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(29069:1:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Mon, 15 Nov 2021 22:38:55 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Mon, 15 Nov 2021 22:38:51 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Mon, 15 Nov
- 2021 22:38:51 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>
-CC:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
-Subject: RE: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Index: AQHX1ttDZ0jKVsi7r0auZS2tEQF+d6wAAtwAgAACQ4CABKf0kA==
-Date:   Mon, 15 Nov 2021 14:38:51 +0000
-Message-ID: <76a9501f4c4d46a59e489b73aa6da1f7@sphcmbx02.sunplus.com.tw>
-References: <cover.1635936610.git.wells.lu@sunplus.com>
- <cover.1636620754.git.wells.lu@sunplus.com>
- <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
- <a8c656b8-a564-6aa6-7ca4-50e7a0bd65a1@gmail.com> <YY73u/c6IyQW2Sl3@lunn.ch>
-In-Reply-To: <YY73u/c6IyQW2Sl3@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S236462AbhKOOos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 09:44:48 -0500
+Received: from mail.iot.bzh ([51.75.236.24]:3001 "EHLO frontal.iot.bzh"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236330AbhKOOoY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 09:44:24 -0500
+Received: from frontal.iot.bzh (localhost [127.0.0.1])
+        by frontal.iot.bzh (Proxmox) with ESMTP id AC1341BB74;
+        Mon, 15 Nov 2021 15:41:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iot.bzh; h=cc:cc
+        :content-transfer-encoding:content-type:content-type:date:from
+        :from:in-reply-to:message-id:mime-version:references:reply-to
+        :subject:subject:to:to; s=iot.bzh; bh=j+bzqqrq+TWyqf01ZRR84hQ+Wq
+        V/PrDVrNtYep63MsQ=; b=Qo0IDOn6WCcWC5mzu2auDKbNpbNagTb82VwDalaYQd
+        4hIYf7x1Y0ed5TVY5gmfMrhzK3r3zsqXZbW3ywFHj2PPrWv5EnX79o3vXLXRP2ZJ
+        2/0k5PE6E65mIPZAXEUP9v5I6XvPiG4ym46n91apxLipUIE1m01u9AViKPRx7CL3
+        tFcJ3z4ltk6cEdtJUphT/TIWXaoWm330so9VCToQH1HN+ZBFPBxKSp++NlfAfUXb
+        BW1ew7lSv27dukm6sH1GX1EETP9N2TzUdEJl6fx0ffbTTweIEqI2ysEz3sEjV804
+        /gnteCFJ5/tPT/IaL4MAEh/H8MEo0EjW73lHgUAXqV+g==
+Message-ID: <ebca7899-1b7e-66d4-f022-576b18b9bc95@iot.bzh>
+Date:   Mon, 15 Nov 2021 15:41:19 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.1.0
+Subject: Re: [PATCH v1 3/3] remoteproc: Add Renesas rcar driver
+Content-Language: en-US
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "geert+renesas@glider.be" <geert+renesas@glider.be>
+Cc:     "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20211115135032.129227-1-julien.massot@iot.bzh>
+ <20211115135032.129227-4-julien.massot@iot.bzh>
+ <OS0PR01MB5922D67AEFD75847CE5B0DD586989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Julien Massot <julien.massot@iot.bzh>
+In-Reply-To: <OS0PR01MB5922D67AEFD75847CE5B0DD586989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQpUaGFuayB5b3UgZm9yIHJlbWluZGluZy4NCg0KSSdsbCBkbyBteSBiZXN0
-IHRvIGFkZHJlc3MgYWxsIGNvbW1lbnRzLg0KSSBmdWxseSB1bmRlcnN0YW5kIHRoYXQgYWxsIHJl
-dmlld2VycycgY29tbWVudHMgc2hvdWxkIGJlIGFkZHJlc3NlZC4NCklmIEkgbG9zdCBhZGRyZXNz
-aW5nIGFueSBjb21tZW50cywgcGxlYXNlIGtpbmRseSByZW1pbmQgbWUgYWdhaW4uDQoNCg0KQmVz
-dCByZWdhcmRzLA0KV2VsbHMNCg0KDQo+IEhpIEZsb3JpYW4NCj4gDQo+IFlvdSBhcmUgYmFzaWNh
-bGx5IHBvaW50aW5nIG91dCBpc3N1ZXMgaSBhbHJlYWR5IHBvaW50ZWQgb3V0IGluIHByZXZpb3Vz
-IHZlcnNpb25zLCBhbmQgaGF2ZQ0KPiBiZWVuIGlnbm9yZWQgOi0oDQo+IA0KPiBXZWxscywgcGxl
-YXNlIGxvb2sgYXQgdGhlIGNvbW1lbnRzIGkgbWFkZSBvbiB5b3VyIGVhcmxpZXIgdmVyc2lvbnMu
-IFRob3NlIGNvbW1lbnRzIGFyZQ0KPiBzdGlsbCB2YWxpZCBhbmQgbmVlZCBhZGRyZXNzaW5nLg0K
-PiANCj4gCSBBbmRyZXcNCg==
+Hi Biju,
+
+> 
+> One question CR7 Can be master boot processor. In that case
+> How to avoid loading and booting  CR7 processor from Linux?
+> Reading boot modes??
+> 
+Thanks for the question.
+
+I did not test this case. There is also other scenarios where the
+Cortex-R7 is started by an earlier component such as BL2, u-boot or
+OP-Tee.
+In these cases Linux should not try to start / stop this remote processor.
+One idea could be to read the power status CR7PSTR / PWRSR7, or use
+one of the MFIS register as a communication register. STM32 processor
+use this last solution to indicate that the remote processor is
+already started, in that scenario remoteproc driver starts in 'detached' state
+instead of 'offline' state.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/remoteproc.h#n418
+
+In that state, remoteproc driver can initiate communication with
+this remote processor but will not try to start or to stop it.
+
+That's something I have in mind, with an existing implementation there
+https://github.com/iotbzh/linux/blob/iot/julien/rproc/drivers/remoteproc/rcar_rproc.c#L524
+(that is not ready for upstream yet :)).
+
+I guess this issue also exists when one device is dedicated to the secure world, so
+the device exists, but not available for Linux. The most obvious (and dirty ?) solution is to keep
+the device disabled in dts.
+
+Regards,
+Julien
+
