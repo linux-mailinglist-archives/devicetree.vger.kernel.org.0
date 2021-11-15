@@ -2,90 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9C24505DB
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:44:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 005304505D6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 14:44:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231881AbhKONrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 08:47:03 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:48556
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236498AbhKONo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 08:44:28 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 29DC13F1AD
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 13:41:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1636983692;
-        bh=1ZCgOXXdDSaFd9PKWHDCusbT3xu4LFc8Tvux7T3aIBU=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=E8q3sFU/wVQgJ/aB+lU5l4bzwv61AZwZHSXnM/ZUKZEH93Hb+LGYhrybp/VGi+B9+
-         ZOce0MfCMta2lVTF5N21atORfucvi8QY9fZWTWUNmlev2CddnYXFboONcfTQq6+TFn
-         XJEpQVrbEiN3cCl2AR6vLgA3KNlCsOleEOSXYLwr9v8uf1uAFVKd2vG0zRohCcjAbG
-         GuYM6jIqdC1CF1WYolB3IFaucAQ8V5F9qttZit4H6sfPp9wibXT4GjQGFYHz4xcKOg
-         7RnXJ8wFEvdqx1md1URx3CK5swDjVu0GNiwJJOghbP7Z97eZYjJYHVI2bWxNM0CawQ
-         ESVP1t5GICchA==
-Received: by mail-lf1-f72.google.com with SMTP id s18-20020ac25c52000000b004016bab6a12so6756045lfp.21
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 05:41:32 -0800 (PST)
+        id S235096AbhKONqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 08:46:39 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:39728 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231721AbhKONp6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 08:45:58 -0500
+Received: by mail-ot1-f45.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso27526109ots.6;
+        Mon, 15 Nov 2021 05:42:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1ZCgOXXdDSaFd9PKWHDCusbT3xu4LFc8Tvux7T3aIBU=;
-        b=6B6PZUx5JnmTjtRmkYf3rbranv36/AC0DlPr5nLiNjYlShzU+1aQscFal/5f/sYLdm
-         K1O56k7IYorjbyIWk0xOkKcNiZYiP95Y6xw0U3rgbMjPvEERbURpmO1z+QQPbsnXDRgh
-         nUMzLoqA1CHmBvey/SLQUDyhlFr0udC5FG1CWUW0YXPwCGrXyz+Tlm1Wbli7l279+fF6
-         j9gfD8ywycXJSZn9puyTpvchrDiZZFqFJobYar5YDb+F3J+5Hqm8CuHikrjqadnsw4Zq
-         av1hxHlvNt2SCQKWEvTOvOhuxXn0rFVIFXXLp8uCRvkohNF8Kakq6aVj97JvjArEJx25
-         /Emw==
-X-Gm-Message-State: AOAM533HXrVhKlI3lUrRlDEqCtO7uV+EiXDhQAo+8HPnpdfht/jdONQl
-        jHHlT7ZNDxhRxcdkG9WeXguBbPs8cxK1CogTlxjedGWjeUAv0tIrBo/NXoRZhn8fT1bKKnL5PEl
-        dDczqbmdC10BaOpiPIUdEB9Cm6QLoA1lFlXTr+To=
-X-Received: by 2002:a05:6512:691:: with SMTP id t17mr34698462lfe.220.1636983691674;
-        Mon, 15 Nov 2021 05:41:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxng74YqcBM5rQLyeNbIa3LcnMO+DI/reH2X/yvLXYaZUD1UX6NyysXD1j0gLvJDKBiAD7CTg==
-X-Received: by 2002:a05:6512:691:: with SMTP id t17mr34698445lfe.220.1636983691527;
-        Mon, 15 Nov 2021 05:41:31 -0800 (PST)
-Received: from krzk-bin.lan (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id i3sm1421786lfu.156.2021.11.15.05.41.30
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=1XUBk5dND8WMgCnXdXyvWeYm6VJhK9ji7tENzoDG3gg=;
+        b=1A5gorZloK3w5ooVojngowFnx3GYMNafttABd9EtV3Qy0Dih54Lwkm+vZbtPhkB5WY
+         NyrdrbwgDxO2c9zbzdW7oApalfGsqA0Ax3Hx7ctwArP0GKAeRFbWxhOXzD+R66p//Dl6
+         TYSU9C44HtCAEqmQzeDs1xXuIXJm3b07Sr/rj0VlFp/bnna8CO6FdJ+lsjXSif9cUk8p
+         0tVsDi70tOkVWF34LngGzSlvasXgFpM/ogxINRSFkKJhwPXBB5EgHn3qR1am8CojIih2
+         iQQ4IVid83jdmb+NiuZFg1PwKsoE5U4xHPODLZrKoBU/02t6kyqZvX2+sJI+wFbfkB1X
+         d9KQ==
+X-Gm-Message-State: AOAM530NNkZELvh8QVB7KSb9BLV1rtW4mzzvfVsJzdZjYUPyDTdtldL+
+        elnwFolHNoF8Lp8dXdv0GQ==
+X-Google-Smtp-Source: ABdhPJwjLQPGbiNHm2MtihChqN7jAyE1W7XudAKR26/0iCsaIZo9ezOTSDEjak404pOwjMT6GOth7A==
+X-Received: by 2002:a05:6830:4a3:: with SMTP id l3mr27726777otd.229.1636983757695;
+        Mon, 15 Nov 2021 05:42:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 9sm3095876oij.16.2021.11.15.05.42.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 15 Nov 2021 05:41:31 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Mon, 15 Nov 2021 05:42:37 -0800 (PST)
+Received: (nullmailer pid 595908 invoked by uid 1000);
+        Mon, 15 Nov 2021 13:42:35 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     James Lo <james.lo@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, Stephen Boyd <sboyd@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: samsung: pmu: Document Exynos850
-Date:   Mon, 15 Nov 2021 14:41:26 +0100
-Message-Id: <163698368315.132512.2195595073396495435.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211028144313.9444-1-semen.protsenko@linaro.org>
-References: <20211028144313.9444-1-semen.protsenko@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211115042030.30293-3-james.lo@mediatek.com>
+References: <20211115042030.30293-1-james.lo@mediatek.com> <20211115042030.30293-3-james.lo@mediatek.com>
+Subject: Re: [PATCH v15 2/4] dt-bindings: spmi: document binding for the Mediatek SPMI controller
+Date:   Mon, 15 Nov 2021 07:42:35 -0600
+Message-Id: <1636983755.172933.595907.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 17:43:12 +0300, Sam Protsenko wrote:
-> Exynos850 SoC can reuse PMU driver functionality. Add corresponding
-> compatible string to PMU bindings documentation.
+On Mon, 15 Nov 2021 12:20:28 +0800, James Lo wrote:
+> This adds documentation for the SPMI controller found on Mediatek SoCs.
 > 
+> Signed-off-by: James Lo <james.lo@mediatek.com>
+> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> ---
+>  .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
 > 
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[1/2] dt-bindings: samsung: pmu: Document Exynos850
-      commit: a67cce83945170994fcef241b934699b6018b707
-[2/2] soc: samsung: exynos-pmu: Add Exynos850 support
-      commit: f5dc0140d483fcc6417d1d655481f0ff1de390b0
+yamllint warnings/errors:
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.example.dt.yaml: spmi@10027000: reg: [[268595200, 3584], [268603392, 256]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/spmi.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.example.dt.yaml: spmi@10027000: reg: [[268595200, 3584], [268603392, 256]] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1555114
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
