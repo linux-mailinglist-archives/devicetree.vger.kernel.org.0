@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B0144FE10
-	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 06:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB0DC44FE1F
+	for <lists+devicetree@lfdr.de>; Mon, 15 Nov 2021 06:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229775AbhKOFKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 00:10:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40984 "EHLO
+        id S229795AbhKOFRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 00:17:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbhKOFKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 00:10:31 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C714C061746
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:07:34 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso25383731otj.11
-        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:07:34 -0800 (PST)
+        with ESMTP id S229651AbhKOFRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 00:17:49 -0500
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEB78C061766
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:14:53 -0800 (PST)
+Received: by mail-ot1-x330.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so17459204otj.7
+        for <devicetree@vger.kernel.org>; Sun, 14 Nov 2021 21:14:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=JfbO/Vsh+loj1RG89WTf7VdfBOnW42pFflx7PRsRXkQ=;
-        b=n/JM7h3e9nwNeSPzaXE9vbItKL57qAgSDSFiAdRX7cZ3odTsOfWExwxqIjf5ANgn89
-         dtnt8SijDs+SGqg/vwZyhuwB/nq4MB66Dq8jNKP9Hcf4FqxRGjGdxfiehpXcaeGkAup0
-         aSQHUFoWo/8IjMwykkYNFLVRqtmuvgQW2z/iOA8+cDu3kuEeLLSaJdY/r7mxjqbtDlku
-         aBN+rTJZhV+RsYE9LPR7mvTjIVtf6J0vPTieP5xDwj49fzFO/rx34HBzMp5GN/FrKyBS
-         /rD8Q7Kv5L7goFMHKpPz9ij9vjtV3ewzW4658VQ+9NwG/IoFLc57t6/Oc5eUYqlXdLvl
-         AtDw==
+        bh=BMbEPtsbChaQ9kwcj5OuQcbYWqd3cNOAC83nr5T8yyI=;
+        b=DHEFZoB9bkdBRG/oDo/N4tyJjtDpz8D14UVrZUnxt8V870CTf+qFHI/lvtvuHqRB/S
+         0G0cjwSQGbh2B1qLGr73dpG/vQULcOEreyjmvDTjPnUDXuObqmEtgniwz4vo5XbksBVg
+         vCCncJQQhH3fcNQbTYmJPBQxrlMraOGsSKdodP4JgpkTMJIwrubWgZrFda1g8OIzTNxm
+         Hvifk8oz7cvw0SB76JMeE7rzbvOcaciTbzgb4U+5vt6012qcEIsys86HzCh47wcNbu0E
+         veJdQWV5l4be7+kxFoPzZ6NolTqC7Gt177WZ62AeYA8gsmgry5iFCmjYgM5mYCp8Dk3j
+         YlDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=JfbO/Vsh+loj1RG89WTf7VdfBOnW42pFflx7PRsRXkQ=;
-        b=lkzZ7ixJBF1TSKYKU88BUnMAakr2n5I7jJjJiZYFDa4Hh7iJ0vImGqEmbN33jXObAS
-         7gImYcWK2wiQ/+78rU/zrBvbeqgHKNRrZtlGaA3KGmR8WkY+FuMKA+TIHtm8CQLdVPYc
-         ADNS1MeRYJuMzgEq2Xz8rMdbcxH2hRgohRleOnRhqSV2VVsvrjWQIKh6hSzjt78niIy1
-         7mSITtHc4a01J7Ir6ztfHJmWuA4SRxijUpgIezU+iN2smKqTzu2KQgDEhz/nfH7EQIgj
-         R0d3DX4oT67NfyU0TohdmL+gWIdXVfTOStjiy1HRC5IbeG1nP1BGw/w7LwwtBCUxVSOr
-         5lxQ==
-X-Gm-Message-State: AOAM531VvsMoYx7merWFXW8Zm8V09zDcjwBcaeg1b/885WmcZ1QbH62R
-        b2s8fYJiXS4TaIM9DodYDBIPa/1OSxGRQqYFwIQU+A==
-X-Google-Smtp-Source: ABdhPJw3u81Kp1TNb6DCto2dC/etUsCZ6hNczuHJzqRM5aSBXNUvVPYDuPkWOK3meU2MTfmU/j5HCkrMB33k2ahSfHE=
-X-Received: by 2002:a9d:63d2:: with SMTP id e18mr15420810otl.28.1636952853539;
- Sun, 14 Nov 2021 21:07:33 -0800 (PST)
+        bh=BMbEPtsbChaQ9kwcj5OuQcbYWqd3cNOAC83nr5T8yyI=;
+        b=X9KC/j0XLiiegaeVqE8YTHY+2EahFn3cRYFP4TFSdXRVx/yoxCtKkYRqWTzSaBDXpu
+         K1fRbNF77ymEFtZ6xo6rFYzUBMiI3fJDmdZ2ksDjHj1Ssk1v8qedlLmHuj3qcGhDF8VV
+         T9AymBlnyx5SCkncr2J46U0zA5E5pMg60qKgj7FUHgSIBduhkmxikhpHFAlo5eHncZCq
+         OjxwSHBlli07wF38al/W8NU97hK6Sx9+hjgAwJTD7SWX7DYwk8J4lXDOmbXxlXudApb2
+         EvZuiWn3l1+IoQyrDFo1f26UFeu0/sAGQdkXb9yBVLk3xpMOHTuyefNlu9ua7KHiz19q
+         p/MQ==
+X-Gm-Message-State: AOAM530jnhf1PVVtk5JZX4hFVKZ9pD5X0X7/vNb/i6wroJ1rE+6hKyl6
+        9NHgxd61l4OtQxwZPavav4UOrqFd9HAahslepdc6Vg==
+X-Google-Smtp-Source: ABdhPJz3TTMNAa2dJFRzkpEI9ELUZYw8ZgbwV5c101o89o5/Ov2SfAi97SBBev+zEl8y8GYrD7s2hO/0jqAVRmXvwEo=
+X-Received: by 2002:a9d:63d2:: with SMTP id e18mr15449878otl.28.1636953293247;
+ Sun, 14 Nov 2021 21:14:53 -0800 (PST)
 MIME-Version: 1.0
 References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-16-bhupesh.sharma@linaro.org> <f5b7c89c-3bdd-1e1e-772e-721aa5e95bbf@linaro.org>
-In-Reply-To: <f5b7c89c-3bdd-1e1e-772e-721aa5e95bbf@linaro.org>
+ <20211110105922.217895-18-bhupesh.sharma@linaro.org> <5b8d5f23-e766-5b9c-986c-ef70fae9119e@linaro.org>
+In-Reply-To: <5b8d5f23-e766-5b9c-986c-ef70fae9119e@linaro.org>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Mon, 15 Nov 2021 10:37:22 +0530
-Message-ID: <CAH=2Ntww_yOQL_xE+X=kqpR7j9gzVf4MBjVYntzqBvdcFgw6Hg@mail.gmail.com>
-Subject: Re: [PATCH v5 15/22] crypto: qce: Add new compatibles for qce crypto driver
+Date:   Mon, 15 Nov 2021 10:44:42 +0530
+Message-ID: <CAH=2NtyD4fFNn2VNw8ha=NHVTB+A8TNTKGNL8iVmwBKZUfTyVQ@mail.gmail.com>
+Subject: Re: [PATCH v5 17/22] crypto: qce: Print a failure msg in case probe() fails
 To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
         bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
         herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
+        stephan@gerhold.net, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -65,50 +65,47 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Vladimir,
 
-On Fri, 12 Nov 2021 at 16:06, Vladimir Zapolskiy
+On Fri, 12 Nov 2021 at 16:12, Vladimir Zapolskiy
 <vladimir.zapolskiy@linaro.org> wrote:
 >
 > Hi Bhupesh,
 >
 > On 11/10/21 12:59 PM, Bhupesh Sharma wrote:
-> > Since we decided to use soc specific compatibles for describing
-> > the qce crypto IP nodes in the device-trees, adapt the driver
-> > now to handle the same.
+> > Print a failure message (dev_err) in case the qcom qce crypto
+> > driver probe() fails.
 > >
-> > Keep the old deprecated compatible strings still in the driver,
-> > to ensure backward compatibility.
-> >
-> > Cc: Thara Gopinath <thara.gopinath@linaro.org>
 > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 > > Cc: Rob Herring <robh+dt@kernel.org>
+> > Reviewed-by: Thara Gopinath <thara.gopinath@linaro.org>
 > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > > ---
-> >   drivers/crypto/qce/core.c | 4 ++++
-> >   1 file changed, 4 insertions(+)
+> >   drivers/crypto/qce/core.c | 1 +
+> >   1 file changed, 1 insertion(+)
 > >
 > > diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
-> > index 89d9c01ba009..dd2604f5ce6a 100644
+> > index 98784d63d78c..7c90401a2ef1 100644
 > > --- a/drivers/crypto/qce/core.c
 > > +++ b/drivers/crypto/qce/core.c
-> > @@ -297,8 +297,12 @@ static int qce_crypto_remove(struct platform_device *pdev)
+> > @@ -280,6 +280,7 @@ static int qce_crypto_probe(struct platform_device *pdev)
+> >   err_mem_path_disable:
+> >       icc_set_bw(qce->mem_path, 0, 0);
+> >   err:
+> > +     dev_err(dev, "%s failed : %d\n", __func__, ret);
+> >       return ret;
 > >   }
 > >
-> >   static const struct of_device_id qce_crypto_of_match[] = {
-> > +     /* Following two entries are deprecated (kept only for backward compatibility) */
-> >       { .compatible = "qcom,crypto-v5.1", },
-> >       { .compatible = "qcom,crypto-v5.4", },
-> > +     /* Add compatible strings as per updated dt-bindings, here: */
-> > +     { .compatible = "qcom,ipq6018-qce", },
-> > +     { .compatible = "qcom,sdm845-qce", },
-> >       {}
-> >   };
-> >   MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
 > >
 >
-> and two more compatibles should be added to the list, see my review
-> comment on v5 11/22.
+> in my opinion expressed earlier this change is not needed, but I'll recede,
+> if somebody thinks that the change is useful in any way.
 
-Ok, I will fix this in v6.
+As I mentioned in the reply to the review comments to the previous
+series, the need for this failure message was actually felt to address
+failures seen with boot-on crypto tests via
+'CRYPTO_MANAGER_EXTRA_TESTS'.
+
+So, I would suggest keeping this patch in, unless there are some major
+concerns with the change.
 
 Regards,
 Bhupesh
