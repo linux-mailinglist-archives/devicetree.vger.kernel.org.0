@@ -2,93 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9B34451E1A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:32:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AFE451D15
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 01:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242357AbhKPAfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 19:35:09 -0500
-Received: from www.zeus03.de ([194.117.254.33]:35256 "EHLO mail.zeus03.de"
+        id S1349550AbhKPAZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 19:25:03 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43348 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345201AbhKOT1v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Nov 2021 14:27:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=Y2JiVanJ7s0pY1QA31psPPSh9JMJ
-        rsrYBMRBfkm56a4=; b=wXjmKqCkgYb0YBtKSHe6TlaZ3lxRy/vQYOPkuFdGYvGh
-        0WSrC4bf1ZKbR33VEyh0iQhx1bg5yIx3jHNwCAnm4El69gaHOq67rkAMqcdNGoFY
-        YY1R9ANsgRx4N+O2haoN6SPvz48mWJvNnqgH5h60DKowqkmY7DRXSWpABU54LzU=
-Received: (qmail 2448756 invoked from network); 15 Nov 2021 20:24:52 +0100
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 15 Nov 2021 20:24:52 +0100
-X-UD-Smtp-Session: l3s3148p1@bdb+wtjQIuIgAwDPXwfBALyiinaC5TBu
-Date:   Mon, 15 Nov 2021 20:24:46 +0100
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: mmc: renesas,sdhi: add optional SDnH
- clock
-Message-ID: <YZKz/ptgPfzqGfeq@kunai>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-References: <20211115160600.4455-1-wsa+renesas@sang-engineering.com>
- <OS0PR01MB59220D97CD59F44918DE4FA586989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+        id S1350056AbhKOUVY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Nov 2021 15:21:24 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 67C8961BFE;
+        Mon, 15 Nov 2021 20:18:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637007508;
+        bh=K3pfS4NVMA2CpFVPUUWV/jwChtsYnKjFN0rX/alvMW4=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=GnaAa3OMfZjo0cdkgZJPQdMWdKnJe2oF94QBvMIgKUL2AeeNHfpj6tgH7KjefnNWS
+         xa16sWmbNMynWx89TRjz0BV529TEsM/JAOYDBAP03ub/AzuBqwt5YSM2Nt5jIXIsg/
+         8USGrkghwCn4f3Qqz9z5aSOaTOxz2S4wdIEqHWDYIsXL9+o8AO3xgY2VFol0RmoHj1
+         NVD8XVrVN+uCfW32VTTc/STp0+ltHjeFVNMGluPHBwXIPFptNqvNHfgHlar1kJXaIJ
+         WRXz4gz/O4sr1flZYelXgBj//rplzrzJ7i+Gxu+rOeQh42qXubmopWE2RP3y4/Wcou
+         7bVZhgjZPANDg==
+From:   Mark Brown <broonie@kernel.org>
+To:     perex@perex.cz, robh+dt@kernel.org, tiwai@suse.com,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        stephan@gerhold.net, lgirdwood@gmail.com
+Cc:     alsa-devel@alsa-project.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20211031210956.812101-1-vincent.knecht@mailoo.org>
+References: <20211031210956.812101-1-vincent.knecht@mailoo.org>
+Subject: Re: [PATCH 0/2] Add tfa9897 rcv-gpios support
+Message-Id: <163700750616.2049880.11874024359672809309.b4-ty@kernel.org>
+Date:   Mon, 15 Nov 2021 20:18:26 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YeVVO4yRUGN36Suk"
-Content-Disposition: inline
-In-Reply-To: <OS0PR01MB59220D97CD59F44918DE4FA586989@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 31 Oct 2021 22:09:54 +0100, Vincent Knecht wrote:
+> This is the continuation of a previous series [1] where
+> - patch 1/4 is removed in favor of using pin switch
+>   This will be posted independently of tfa989x support,
+>   since it mainly require changes to sound/soc/qcom/common.c
+>   and device DTS.
+> - patch 2/4 is already merged
+> so here are reworked patch 3/4 (bindings fixed and example added)
+> and patch 4/4 unchanged.
+> 
+> [...]
 
---YeVVO4yRUGN36Suk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> > +      if:
-> > +        properties:
-> > +          compatible:
-> > +            contains:
-> > +              enum:
-> > +                - renesas,rcar-gen2-sdhi
-> > +                - renesas,rcar-gen3-sdhi
->=20
-> What about RZ/G2L, as it has 4 clocks?
+Thanks!
 
-They are a few lines above this in a seperate block if I am not
-confusing the SoC numbering.
+[1/2] ASoC: dt-bindings: nxp, tfa989x: Add rcv-gpios property for tfa9897
+      commit: 77fffb83933ad9e514ea0c7fd93b28cabcdea311
+[2/2] ASoC: codecs: tfa989x: Add support for tfa9897 optional rcv-gpios
+      commit: 9da52c39b33e7bd9c1f56175c0466fa468d7f145
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
---YeVVO4yRUGN36Suk
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGSs/oACgkQFA3kzBSg
-KbbVYw/+PwUy3kevClvDMdTD+Og9gc1Uw/+QH8PriE+iQCnxQNCVIZlPvbjO5aF/
-9OVn5L6kYdJQBdB1iHWw7cIgEB9fMAZlM5k6KEBBAqu0hCqgi5R6Zr4LadWEnVZu
-b0mV0vipLd7B4SQG91AJjsVThAtZbEk6J/tXqpsLY2lq8IoPIHn0zMPO98OWgFz3
-w52O48GCk1M+yTGyrFb7bGOLWVI2QjROTZ7KyGEjICy8p01hnLiIB8gT7IuTMdgc
-ORjecHJlcp+Ia3M3ABo9PG6KQJjiIdNMxGR5+9RyxoNGx+hTHAlcaKp9yuweI142
-oOv5XfPawOi/iXVnqSKSgK/P9cAqGz0efVMKfEOlAJMUs3N3RwIQQGROtCQvutjm
-1UVS+KEcywi4a3C4MpG0CnOhjBnoBvPhvAhbIyoPxlYCvpw+p7sWdpmmiUUqj5K5
-kqmOqoGM0HhNuhqlI88Up4O+KxCd5tfavP8cfxPoSoQPjNire1omlGNtvzn40zUV
-LYw5fvpNoYZkE02JMQWLabVXRaBbrDe4b8ptqF2qH9yEdIad+Jlj5wV83mprBqFu
-wupD5Xaf9vBOC+1xXBkUHkyxHJod9islkvQ9NSgrAmxHc0w9SPKyhb/tXROQ5JOd
-i8hmoFKRPxbZcTSNOrklJ/crDILg/HhjoQ7plwvrvdexZxOxHo4=
-=I8Zj
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---YeVVO4yRUGN36Suk--
+Thanks,
+Mark
