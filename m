@@ -2,130 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC879452E18
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 10:34:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3867A452E27
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 10:39:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233121AbhKPJhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 04:37:11 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:42090 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233267AbhKPJgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 04:36:53 -0500
-X-UUID: 04329e55bd3541b3b2a8b663cb736d41-20211116
-X-UUID: 04329e55bd3541b3b2a8b663cb736d41-20211116
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1937280426; Tue, 16 Nov 2021 17:33:49 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Tue, 16 Nov 2021 17:33:48 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 16 Nov
- 2021 17:33:48 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 16 Nov 2021 17:33:48 +0800
-Message-ID: <f915d1090abf2b6d188ce27068919a181828e463.camel@mediatek.com>
-Subject: Re: [PATCH 3/4] ASoC: mediatek: mt8195: separate the common code
- from machine driver
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     YC Hung <yc.hung@mediatek.com>, Mark Brown <broonie@kernel.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <tiwai@suse.com>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <matthias.bgg@gmail.com>, <daniel.baluta@nxp.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 16 Nov 2021 17:33:48 +0800
-In-Reply-To: <4e876c89ee58cd1408511a34573005e3df359cd0.camel@mediatek.com>
-References: <20211103100040.11933-1-trevor.wu@mediatek.com>
-         <20211103100040.11933-4-trevor.wu@mediatek.com>
-         <YYP+l7tMofYoB+aC@sirena.org.uk>
-         <b4360ea17c3045759e85ee13fa9c001afe73c93c.camel@mediatek.com>
-         <YYVQC7KLZx8oxdXT@sirena.org.uk>
-         <e404d241-0685-643b-4b9d-d85bb8783385@linux.intel.com>
-         <YYVez/V9ocCXhYmg@sirena.org.uk>
-         <4e876c89ee58cd1408511a34573005e3df359cd0.camel@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S233384AbhKPJmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 04:42:16 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:47936 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233162AbhKPJmM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 04:42:12 -0500
+Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mmuvh-00039f-KB; Tue, 16 Nov 2021 10:39:05 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>
+Cc:     Vincent Pelletier <plr.vincent@gmail.com>
+Subject: Re: [PATCH] riscv: dts: sifive unmatched: Name gpio lines.
+Date:   Tue, 16 Nov 2021 10:39:04 +0100
+Message-ID: <11612716.TMCrJ2abzX@diego>
+In-Reply-To: <f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com>
+References: <f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-11-08 at 17:40 +0800, YC Hung wrote:
-> Hi Mark,
-> 
-> I am YC Hung from Mediatek. Let me show our block diagram as the link
-> below for the sound card which support SOF.
-> 
-> 
-https://user-images.githubusercontent.com/62316/132476344-923dfe3a-5305-43e5-9fc8-c63d9ab2c58f.png
-> In this sound card, there are two components , one is SOF based
-> component and another is non-SOF based component(called Normal in the
-> block).
-> We want to reuse some BEs of Normal which can control Mediatek Audio
-> Front End hardware power, clock , and DAI module and still keep some
-> FEs(e.g. DPTX) then we can use it on the same sound card.
-> Therefore, we use late_probe callback function
-> "mt8195_mt6359_rt1019_rt5682_card_late_probe" to add route path from
-> SOF widget to non-SOF BEs.
-> For two patches https://github.com/thesofproject/linux/pull/3217 and 
-> https://github.com/thesofproject/linux/pull/3236, we want to keep FEs
-> of non-SOF components and can reuse them. Please let me know if I am
-> not clear enough.Thanks.
-> 
-> On Fri, 2021-11-05 at 16:41 +0000, Mark Brown wrote:
-> > On Fri, Nov 05, 2021 at 11:16:05AM -0500, Pierre-Louis Bossart
-> > wrote:
-> > > On 11/5/21 10:38 AM, Mark Brown wrote:
-> > > > We shouldn't be requiring people to load completely different
-> > > > drivers
-> > > > based on software configuration, what if a system wants to
-> > > > bypass
-> > > > the
-> > > > DSP in some but not all configurations?  Can we not just have
-> > > > controls
-> > > > allowing users to route round the DSP where appropriate?
-> > > 
-> > > It was my understanding the card relies on separate components
-> > > - a SOF-based component to provide support for DSP-managed
-> > > interfaces
-> > > - a 'non-SOF' component for 'regular' interfaces not handled by
-> > > the
-> > > DSP.
-> > > this was the basis for the changes discussed in
-> > > https://github.com/thesofproject/linux/pull/3217 and
-> > > https://github.com/thesofproject/linux/pull/3236
-> > 
-> > So it's actually supposed to end up as two different cards which
-> > can't
-> > possibly be interlinked?  That doesn't seem to add up entirely
-> > given
-> > that there's stuff being moved out of the current card, and I
-> > thought
-> > these systems had a fairly comprehensive audio muxing capability.
-> > Trevor, could you be a bit more specific about what's actually
-> > going
-> > on
-> > here physically please?+++++++++
-> > 
+Hi Vincent,
 
-Hi Mark,
+Am Dienstag, 16. November 2021, 01:52:56 CET schrieb Vincent Pelletier:
+> Follow the pin descriptions given in the version 3 of the board schematics.
+> 
+> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
 
-Is the reply from YC clear? Any suggestion would be appreciated. If you
-need more information, please let us know. 
+when sending a patch series with "git format-patch -6" and friends will
+automcatically generate x/y additions like "[PATCH 1/6]" and so on.
 
-Additionally, it was my understanding you suggested that DSP routes
-should be configurable in some ways, and we should not just add a new
-driver for SOF in case we need to support some other interface
-combinations in the future. If I'm wrong, please kindly correct me.
+Please try to keep them around when sending, as automated tools for patch
+handling like "b4", stumble when they encounter a patch series without them.
 
-Thanks,
-Trevor
+In this case a
+
+	b4 am f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com
+
+[first patch in the series]
+will actually only retrieve the last patch
+
+	"[PATCH] riscv: dts: sifive unmatched: Link the tmp451 with its power supply."
+
+as it thinks it's a new version of the first one.
+
+
+Thanks
+Heiko
+
+> ---
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 4f66919215f6..305a086e5207 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -245,4 +245,8 @@ &pwm1 {
+>  
+>  &gpio {
+>  	status = "okay";
+> +	gpio-line-names = "J29.1", "PMICNTB", "PMICSHDN", "J8.1", "J8.3",
+> +		"PCIe_PWREN", "THERM", "UBRDG_RSTN", "PCIe_PERSTN",
+> +		"ULPI_RSTN", "J8.2", "UHUB_RSTN", "GEMGXL_RST", "J8.4",
+> +		"EN_VDD_SD", "SD_CD";
+>  };
+> 
+
+
 
 
