@@ -2,93 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 125D5452FBC
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:04:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1A8F452FBE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:04:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234616AbhKPLGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 06:06:39 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:49925 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234578AbhKPLFh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 06:05:37 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637060560; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=lkYYKJ9rC188XMHqEjBHgL+sHAmWDWuj2LTR40sZorg=; b=l+S8Y77mqgBXTOOMYiFYwdJ0I7A+WiqLGGCHzNwmSTZdTjYFNYmqIREoOksFPnuax3ggr1ym
- /hs64iurPouIpJJQHJrodATiWu3TWpY3IM0INTEwztcKYi8c0pmlvdW+sLl61cf4HOJeUVMC
- oiMnNz75qCl2Qoc+JoUgirG42NI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 61938fb64db4233966bbb1c5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 16 Nov 2021 11:02:14
- GMT
-Sender: pmaliset=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7C5F2C43616; Tue, 16 Nov 2021 11:02:14 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S234680AbhKPLGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 06:06:52 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:42440
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234699AbhKPLFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 06:05:50 -0500
+Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        (Authenticated sender: pmaliset)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 25BE7C4360C;
-        Tue, 16 Nov 2021 11:02:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 25BE7C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Prasad Malisetty <pmaliset@codeaurora.org>
-To:     swboyd@chromium.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org,
-        robh+dt@kernel.org, mka@chromium.org, lorenzo.pieralisi@arm.com,
-        svarbanov@mm-sol.com, bhelgaas@google.com
-Cc:     Prasad Malisetty <pmaliset@codeaurora.org>
-Subject: [PATCH v3 3/3] arm64: dts: qcom: Fix 'interrupt-map' parent address cells
-Date:   Tue, 16 Nov 2021 16:31:48 +0530
-Message-Id: <1637060508-30375-4-git-send-email-pmaliset@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637060508-30375-1-git-send-email-pmaliset@codeaurora.org>
-References: <1637060508-30375-1-git-send-email-pmaliset@codeaurora.org>
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AFD413F190
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 11:02:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1637060570;
+        bh=/fhj+bVJm076Wq/VhTriJ0yxdPwTog87+Zp8k+Dl/zY=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=NUWFbxQoCZvJWjTS8Ht7e3I2J5ylWjXWPLTwiEZjiEPjjjL/l4M3yesmp8gtzBp/e
+         xKqxhssVrSmlnQXVW1Vs+sYohaZO2Tfjxb54q6nVaiGsYb+e7x7KBobbvrd5LTsSyI
+         PDljoEHz0YRdwBb4gAe7J0XuMO4djMTufpZUvBiQrtYUuYDotIQNsFmrLa99/QFInZ
+         2Mc6BR3QBS9rAew/rstubrrRJdcH+TelAsPtzagYG4uP8QhO4Q9JSetTMD4zffqz+u
+         4cVUqrHO/aFHyCLGoWjjTMSh3/D2TaPVtywzI7XC195M272gx4G2ArdjEmh2MxLoL+
+         BPT72sUXpD1qQ==
+Received: by mail-lf1-f70.google.com with SMTP id c14-20020a056512104e00b004036d17f91bso8045492lfb.17
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 03:02:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/fhj+bVJm076Wq/VhTriJ0yxdPwTog87+Zp8k+Dl/zY=;
+        b=jB/QnLJRZMr3j1caP3gK2vuZkgCelCn+Noaveo3a6xO8kpFnu0cMa6cTNT71Jwk4h9
+         HUJUMD9pHdl42vArTEZxWOklpQT3xRm42RlVzlb1ElLWAG18S7NEsepKbHmRzi6WTMO2
+         xXWsp9jI1wl61iOLeJH3GMkOkiHP1GIuMZlSdBfLIFgT2nm4Dz9+cR1wc1Z6KHF17n4o
+         pIQeaNjbO8SXGGfi8EmddN1zvonHacG53I1RF83aEp/sawZc0ulxS6tHvlp19KqFdkZe
+         9MgF0gAGnOViz1oUQWG6ruKVs62lsyRyq6258Ke1pfwDFnr6+0kxVdBR40a/rK6iMb/+
+         WuNw==
+X-Gm-Message-State: AOAM531WjWxfFn1ftIh0LM348Lms33CuUoePoiNGJKML0neazBAnw7v7
+        4OZQrfZ+GCs1K0kvkBNPT0ic7AdiCAhmYnciRGEJyV3SaoBMf6gWhp5pdKghxlvNUCZIhNS25Cx
+        mCHZzIX9m8IXjes6fYwSalHUezOyM46dFoggFB4w=
+X-Received: by 2002:a05:6512:604:: with SMTP id b4mr5696010lfe.198.1637060569522;
+        Tue, 16 Nov 2021 03:02:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx7ajDYjXbeKcZbiXLfcr+dTx8ryW8atDeHVo7pyKw8Zx2SmbmhraxaC8+5fg6M9h4tJ5URtQ==
+X-Received: by 2002:a05:6512:604:: with SMTP id b4mr5695972lfe.198.1637060569244;
+        Tue, 16 Nov 2021 03:02:49 -0800 (PST)
+Received: from localhost.localdomain (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id z8sm1420074ljj.86.2021.11.16.03.02.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 03:02:48 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Vincent Pelletier <plr.vincent@gmail.com>
+Subject: [PATCH] dt-bindings: hwmon: add TI DC-DC converters
+Date:   Tue, 16 Nov 2021 12:02:07 +0100
+Message-Id: <20211116110207.68494-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update interrupt-map parent address cells for sc7280
-Similar to existing Qcom SoCs.
+Few Texas Instruments DC-DC converters on PMBus like TPS544B20 do not
+have bindings and are used only as hardware monitoring sensor.  These
+devices are actually not trivial and can receive basic configuration
+(e.g. power up mode, CNTL pin polarity, expected input voltage), however
+devicetree support for configuration was never added.
 
-Fixes: 92e0ee9f8 ("arm64: dts: qcom: sc7280: Add PCIe and PHY related nodes")
+Therefore in current state the devices are used only in read-only mode
+and have trivial bindings, so document them to have basic dtschema
+tests.
 
-Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+Cc: Vincent Pelletier <plr.vincent@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/trivial-devices.yaml | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 3fb9338..9ca9c31 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -1593,10 +1593,10 @@
- 			interrupt-names = "msi";
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
--			interrupt-map = <0 0 0 1 &intc 0 434 IRQ_TYPE_LEVEL_HIGH>,
--					<0 0 0 2 &intc 0 435 IRQ_TYPE_LEVEL_HIGH>,
--					<0 0 0 3 &intc 0 438 IRQ_TYPE_LEVEL_HIGH>,
--					<0 0 0 4 &intc 0 439 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 3 &intc 0 0 0 438 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 0 0 4 &intc 0 0 0 439 IRQ_TYPE_LEVEL_HIGH>;
- 
- 			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
- 				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 791079021f1b..3297a6480534 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -329,12 +329,19 @@ properties:
+           - ti,tmp122
+             # Digital Temperature Sensor
+           - ti,tmp275
++            # TI DC-DC converter on PMBus
++          - ti,tps40400
+             # TI Dual channel DCAP+ multiphase controller TPS53676 with AVSBus
+           - ti,tps53676
+             # TI Dual channel DCAP+ multiphase controller TPS53679
+           - ti,tps53679
+             # TI Dual channel DCAP+ multiphase controller TPS53688
+           - ti,tps53688
++            # TI DC-DC converters on PMBus
++          - ti,tps544b20
++          - ti,tps544b25
++          - ti,tps544c20
++          - ti,tps544c25
+             # Winbond/Nuvoton H/W Monitor
+           - winbond,w83793
+             # i2c trusted platform module (TPM)
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.32.0
 
