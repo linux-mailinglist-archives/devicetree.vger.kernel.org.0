@@ -2,118 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A285E45397F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 19:41:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED7AA4539EF
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 20:16:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239557AbhKPSoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 13:44:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41942 "EHLO
+        id S236280AbhKPTSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 14:18:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233361AbhKPSon (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 13:44:43 -0500
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19035C061570;
-        Tue, 16 Nov 2021 10:41:46 -0800 (PST)
-Received: by mail-lj1-x230.google.com with SMTP id v15so614587ljc.0;
-        Tue, 16 Nov 2021 10:41:45 -0800 (PST)
+        with ESMTP id S229934AbhKPTSp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 14:18:45 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91CAAC061570;
+        Tue, 16 Nov 2021 11:15:47 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id u3so291210lfl.2;
+        Tue, 16 Nov 2021 11:15:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Ev+Z8GofAuShA+6MSPbZsEyMexTvzjpgK5iAE8RYcEo=;
-        b=WP6JjhxLaDgeIKB3Oaah0awO6eNzClvs20jJHLQ4Uhm9yqz4hM9gHJ8mH1nQJacF9o
-         lpaMm6uMdq3YLjCO2MNAT2W9GOpC3c5KVDXSW0Xu/VsyXIV7LZx7AXoojNM7pRxT3b5A
-         Img5LjlfTYCoYRqFEccV6Z8AhFIctVXFl0gy67lBTFwCWFRDYVXqaEDPrkJGeSn5o1wV
-         bvWYykjXvB6VK+LZnbzlq8YbfRXSDjIXE8ABWl4ktk4RUvYUXIilP85DJTFI1YdFoBHk
-         OCtSucHG//VoN2Q8k2s+QQwqProlEESCn4/Jp9GwGW8o5RM2U5RknKIFA0Uo3Fq0gGD8
-         17ZA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=iJ4UbTyx0xYSrKsT+KZw01D3yr4wr+sTORIlc74dG70=;
+        b=ja1oJQhqa5HUt1YVG8UHgCiHcm4d5EFjjWyeL7uQgxXe1YDxtRqhZH6QKja9YG2Eym
+         CysYq8oh1qOI1rDy7F7m9qxFN+1Xkzg4/lqwk44bm2X4uzoLScRiaQhSNV8e4THA8Q26
+         j4usJhgmSAc6/agSiN4nQxWCGWX6+jditUjlJ26O1mcomHTRysG63avm5wYsKTlI/UtU
+         jt/3vFFEf2KVxLR5MMU+4lGHbGAtFVwUI0cQ0wraZkEIckzg4EXxuP3N0fJGB1ri2FmU
+         dZqCLJZPPxrxNkHFs3RheiR/5Zoxfu/9Zzye6sz5bUmFDRfNsSvW4H1QyVEfNCHmAGMQ
+         JWhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Ev+Z8GofAuShA+6MSPbZsEyMexTvzjpgK5iAE8RYcEo=;
-        b=SfxhXloDNU++kDpLGMV+0yxfB4NM5L92Q64LSXY00nN9l/MKhHPT5zFGA32+N9jJgY
-         hdKL/vkNu6+QkSXyN73CnDJQTgKFCCvMx8fkDO8jxEHK1nfgRwsOE1RItZ+6rZgVhjmu
-         AlICnz8cXajya+wNnJpKjyiQwV1LeELnF7EBya9nvgwit7U6CZ86p6hCg02pmph3YDVW
-         WaPljZA+0ttwwBp4IuDiopd0H1kzH+8rDz2PVMJJQZ+abcSKkLI1deqoRmZn483YPKrC
-         fZ9/bll/Vas1lab/XHvw0SXWkXpFSRvZNAIbgR6tifZEx9VtVTm+Rakr7YjDxvOnHhRz
-         040w==
-X-Gm-Message-State: AOAM530VWDiOoaUP6KiJNL3+jswRbaGUkvTR+pwEUFBX5SXp0tnu8kAz
-        l3NAiYQ7uPayo/mKtE82SBo=
-X-Google-Smtp-Source: ABdhPJwy7gnyina6AmEtdTgTI8tN+0APz/lr3dAPSGSO7jRZEGujy4FJ3mEu9Kb8MKhcScMinhw4ug==
-X-Received: by 2002:a05:651c:11cf:: with SMTP id z15mr1349209ljo.30.1637088104403;
-        Tue, 16 Nov 2021 10:41:44 -0800 (PST)
-Received: from ?IPV6:2001:14ba:16ee:fa00::4? (dc73szyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16ee:fa00::4])
-        by smtp.gmail.com with ESMTPSA id n7sm1924466ljg.113.2021.11.16.10.41.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Nov 2021 10:41:44 -0800 (PST)
-Message-ID: <50c260a1-c6d0-1a0b-45da-ab1a2d1379c3@gmail.com>
-Date:   Tue, 16 Nov 2021 20:41:42 +0200
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=iJ4UbTyx0xYSrKsT+KZw01D3yr4wr+sTORIlc74dG70=;
+        b=NGkpoI5qtf6R4lXiM9H1MUfNTalKiTcjtG/qpbwAVJnZmj6EZMoUGZcAyXESQUwS3K
+         AWShdOxWgo9NBsamTEtIQ4f9hxSmAz7ICE+yuTVM8ZkzE1bc/UuYSwhDNXwe+dAi3T/k
+         HQQTwXU12wCBsYhPSWtifU2BDbokqOHzwxT9QgQy+X/9EGp064sFJSx81Mvb/zAaKG9u
+         rutieRpdezrkdEIvTyj2hWyQnvNN43eUx2omNQ+Ss6YpAdY+6Yg8uwUbWNNWHZgWdOgw
+         JYwDz14rqDH5HrT0Olf/er+9MA12i1H1fEKfvMMquEGBPzuna1CnLCbKNzpFyWETaYPP
+         U8nA==
+X-Gm-Message-State: AOAM532I5SPwUEhnewt93nxY6UFLv7I7fQ3IiudsKM6xRDVrXxiplF7z
+        jHTr7XRjM6yjvtjSqAs7YjHsJ3PlCymiaw==
+X-Google-Smtp-Source: ABdhPJxa5RKZ5XwYDB5GwzjUJhlvOMfUgZb5AjfmGpIEAgIILxJAfOIDxpYXKsecBXtc0Aq7HGp9LA==
+X-Received: by 2002:a05:6512:1382:: with SMTP id p2mr1943501lfa.403.1637090145862;
+        Tue, 16 Nov 2021 11:15:45 -0800 (PST)
+Received: from mobilestation ([95.79.188.236])
+        by smtp.gmail.com with ESMTPSA id q6sm1928399ljh.1.2021.11.16.11.15.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 11:15:45 -0800 (PST)
+Date:   Tue, 16 Nov 2021 22:15:42 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Mark Brown <broonie@kernel.org>, nandhini.srikandan@intel.com
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, kris.pan@intel.com,
+        kenchappa.demakkanavar@intel.com, furong.zhou@intel.com,
+        mallikarjunappa.sangannavar@intel.com, mahesh.r.vaidya@intel.com,
+        rashmi.a@intel.com
+Subject: Re: [PATCH v3 3/5] spi: dw: Add support for master mode selection
+ for DWC SSI controller
+Message-ID: <20211116191542.vc42cxvflzn66ien@mobilestation>
+References: <20211111065201.10249-1-nandhini.srikandan@intel.com>
+ <20211111065201.10249-4-nandhini.srikandan@intel.com>
+ <YY0lpZkIsJih+g2o@sirena.org.uk>
+ <20211111145246.dj4gogl4rlbem6qc@mobilestation>
+ <YY0zUjjVobtg85o6@sirena.org.uk>
+ <20211111160627.fcgrvj2k7x3lwtkp@mobilestation>
+ <YY1D3tM4fg8h6mmj@sirena.org.uk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Subject: Re: [PATCH RESEND 0/4] Drop ROHM BD70528 support
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>
-References: <cover.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
- <CAHp75Ve_qS0Qc8XLHLwFnWEPzQtgNfEeVr8q9L4gK2m5a-By0A@mail.gmail.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <CAHp75Ve_qS0Qc8XLHLwFnWEPzQtgNfEeVr8q9L4gK2m5a-By0A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YY1D3tM4fg8h6mmj@sirena.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/16/21 18:10, Andy Shevchenko wrote:
-> On Tue, Nov 16, 2021 at 2:52 PM Matti Vaittinen
-> <matti.vaittinen@fi.rohmeurope.com> wrote:
->>
->> Drop ROHM BD70528 support
->>
->> Unfortunately there has not been a big demand for ROHM BD70528
->> IC. The few users I know control PMIC from separate M4-core,
->> which is not running Linux. I am not aware of any users of this
->> Linux driver.
->>
->> While I did really like this IC and writing the drivers for it,
->> seems like these drivers are becoming useless burden. So, I see
->> no point in maintaining them. Let's just drop the drivers if
->> there is no objections to this series. :(
->>
->> The regulator, WDG and power-supply drivers were already dropped.
->>
->> The RTC and clk drivers remain in use by few other ROHM IC drivers.
->> Nevertheless, they are already converted to not depend the BD70528
->> defines during previous cycle.
->>
->> This series cleans the remaining pieces, GPIO, MFD, dt-bindings and
->> MAINTAINER entries. The GPIO code uses defines from MFD - but the GPIO
->> part is also depending on MFD KConfig entry - so there should be no
->> breakages even if the patches were applied to respective subsystem trees
->> and were not carried via single tree.
+On Thu, Nov 11, 2021 at 04:25:02PM +0000, Mark Brown wrote:
+> On Thu, Nov 11, 2021 at 07:06:27PM +0300, Serge Semin wrote:
+> > On Thu, Nov 11, 2021 at 03:14:26PM +0000, Mark Brown wrote:
 > 
-> FWIW, no objections from me.
+> > > Given that people seem to frequently customise these IPs when
+> > > integrating them I wouldn't trust people not to have added some other
+> > > control into that reserved bit doing some magic stuff that's useful in
+> > > their system.
+> 
+> > In that case the corresponding platform code would have needed to have
+> > that peculiarity properly handled and not to use a generic compatibles
+> > like "snps,dwc-ssi-1.01a" or "snps,dw-apb-ssi", which are supposed to
+> > be utilized for the default IP-core configs only. For the sake of the
+> > code simplification I'd stick to setting that flag for each generic
+> > DWC SSI-compatible device. That will be also helpful for DWC SSIs
+> > which for some reason have the slave-mode enabled by default.
+> 
 
-Thanks Andy!
+> That's easier right up until the point where it explodes - I'd prefer to
+> be more conservative here.  Fixing things up after the fact gets painful
+> when people end up only finding the bug in released kernels, especially
+> if it's distro end users or similar rather than developers.
 
-I see acks from Andu, Bartosz, Lee and Rob. It'd be nice to see ack from 
-Linus W too - but other than that - I guess this is good to go. Any 
-preferences regarding the tree(s) that could carry the patches? All via 
-MFD or each patch merged to the subsystem it fits the best?
+Since IP-core and components versions is now supported that will easy
+to implement. Thanks for merging the corresponding series in BTW.
 
-Best Regards
-	Matti Vaittinen
+> 
+> > Alternatively the driver could read the IP-core version from the
+> > DW_SPI_VERSION register, parse it (since it's in ASCII) and then use
+> > it in the conditional Master mode activation here. But that could have
+> > been a better solution in case if the older IP-cores would have used
+> > that bit for something special, while Nandhini claims it was reserved.
+> > So in this case I would stick with a simpler approach until we get to
+> > face any problem in this matter, especially seeing we already pocking
+> > the reserved bits of the CTRL0 register in this driver in the
+> > spi_hw_init() method when it comes to the DFS field width detection.
+> 
+> If the device has a version register checking that seems ideal - the
+> infrastructure will most likely be useful in future anyway.  A bit of a
+> shame that it's an ASCII string though.
+
+That's what the patchset has been implemented for in the first place
+https://lore.kernel.org/linux-spi/20211115181917.7521-1-Sergey.Semin@baikalelectronics.ru/
+
+Nandhini, Mark has just merged in the series that adds the IP-core
+versions infrastructure support to the DW SSI driver.  So now you can
+easily convert this patch to be using that new interface like this:
+-               if (dws->caps & DW_SPI_CAP_KEEMBAY_MST)
+-                       cr0 |= DWC_SSI_CTRLR0_KEEMBAY_MST;
++               /* CTRLR0[31] MST */
++		if (dw_spi_ver_is_ge(dws, HSSI, 102A))
++       	        cr0 |= DWC_HSSI_CTRLR0_MST;
+
+Please don't forget to convert the DWC_SSI_CTRLR0_KEEMBAY_MST name to
+something like DWC_HSSI_CTRLR0_MST and place it at the top of the DWC
+HSSI CTRLR0 register macros list.
+
+-Sergey
+
