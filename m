@@ -2,89 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E4B453C2B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 23:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA475453C62
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 23:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231370AbhKPWSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 17:18:12 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:36846 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230484AbhKPWSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 17:18:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=hodBCJqu6DrYhRyFZgnOax5xrSZCHSnQVs9tmJudSdU=; b=mknBv1g28v8YIZCaSKyS+jkYJB
-        yd0ueYWiA1nFKZTT1mvhbLE/gXGwKBtMIFiYl1u58oQxdTPgNjgGSD1EadJKg5hRPOQnVmNfbe7rQ
-        aNtDmjtjV5V5D3R2L82MrTd54pnrJq25naHiEB22VJsIAluba/AJpBHcNT4/HMd0eeQY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mn6jH-00Djdt-TU; Tue, 16 Nov 2021 23:15:03 +0100
-Date:   Tue, 16 Nov 2021 23:15:03 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Vincent Shih =?utf-8?B?5pa96YyV6bS7?= 
-        <vincent.shih@sunplus.com>
-Subject: Re: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Message-ID: <YZQtZ4kMEGa+tFuU@lunn.ch>
-References: <cover.1636620754.git.wells.lu@sunplus.com>
- <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
- <YY7/v1msiaqJF3Uy@lunn.ch>
- <452b9aa57d034bed988a685d320906c6@sphcmbx02.sunplus.com.tw>
+        id S232034AbhKPWz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 17:55:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230274AbhKPWz3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 17:55:29 -0500
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16751C061746
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 14:52:32 -0800 (PST)
+Received: by mail-ot1-x32e.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so1131674otl.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 14:52:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OecF1BbqsxHuxs1+6x6lNqlLgG9K3kJNOTTucdcNkPg=;
+        b=MtXwM7O5OKvUbeiN2lwW8Ov64fKBAExk180fpvGV+pavI2cbx3Hxt5pyO3yMECmq5X
+         LW/pNuqPYP5wpO60MORNu5O4acyH7Uf8iLj+Gqz8p0WqvN82hBLeIrMNzjLZQ1XuFhpu
+         ry8yZ3qKdkbGjHzxkb916C2D8n7FT4A05jm8Z8C5kn2WNhwH7fDRxeVoUpY4mXN+c5fc
+         7I55116jWuy2qjYjiinKs7LxnfMV0CT3mBwN6/GT7hBwmIcg3YtGgoHhwi7a4eYrV4oR
+         B4my2Ux1HnJiaAfIiLKaYM9dOf7bHVsvKUQRzg11mbIRV2mD5BN6jVpYPdYmOjsiQqR2
+         huLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OecF1BbqsxHuxs1+6x6lNqlLgG9K3kJNOTTucdcNkPg=;
+        b=AXzGHgaPye5KCMTqXov+SkPl+wIpCC+AY6vds4Ktj7a02UBg+3IS4ESMyydhoQ7YIW
+         ARhA8+dQzKy4eATO2WN2HpqhcYRvE5pL0Eo2HR8xy3xNrf2zAh7VSjmFLxudN0bFfpqt
+         O47aLgaRsV7RjMXh9oq6eSeV5LxbU07BkD3b4q83++uDoNbwhEZPrFlfBWUEP0lYBlzR
+         ActqDdNZZfCkV4tLbD46gr/hoxTeDZRbzHnX4nqM23ELnFKSsw/E1cP/x87LYZXYVMO+
+         TuWwy3Az16T2RaOu7jq9ljyg3YFBUPp6MhbRhBdLWcJQVnG27/NpRFxYWz9rcIkv4d9w
+         Xpxw==
+X-Gm-Message-State: AOAM532uZWeB3D0B46ueRdqrOJwSQddXbR9gDacr0rJdSJQmp5ieMtbF
+        Px2BdIBW90ww0/uJEIZNsU+GpjpVWgATXxavGqxC1A==
+X-Google-Smtp-Source: ABdhPJy3xSZkgt5J1IN15s2fGgvywYH5rJ/4MbT3jfNX+qjb6TCizzD79OANTnNUA9T03S0RnwU1spPqTJ/pHKES0UI=
+X-Received: by 2002:a9d:74d0:: with SMTP id a16mr9065421otl.237.1637103151373;
+ Tue, 16 Nov 2021 14:52:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <452b9aa57d034bed988a685d320906c6@sphcmbx02.sunplus.com.tw>
+References: <cover.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
+ <CAHp75Ve_qS0Qc8XLHLwFnWEPzQtgNfEeVr8q9L4gK2m5a-By0A@mail.gmail.com> <50c260a1-c6d0-1a0b-45da-ab1a2d1379c3@gmail.com>
+In-Reply-To: <50c260a1-c6d0-1a0b-45da-ab1a2d1379c3@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 16 Nov 2021 23:52:19 +0100
+Message-ID: <CACRpkda_=LSyqKq=+mocqie667b5pTfM_SAWozxnWpgjMvHg5g@mail.gmail.com>
+Subject: Re: [PATCH RESEND 0/4] Drop ROHM BD70528 support
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > +static const char def_mac_addr[ETHERNET_MAC_ADDR_LEN] = {
-> > > +	0xfc, 0x4b, 0xbc, 0x00, 0x00, 0x00
-> > 
-> > This does not have the locally administered bit set. Should it? Or is this and address
-> > from your OUI?
-> 
-> This is default MAC address when MAC address in NVMEM is not found.
-> Fc:4b:bc:00:00:00 is OUI of "Sunplus Technology Co., Ltd.".
-> Can I keep this? or it should be removed?
+On Tue, Nov 16, 2021 at 7:41 PM Matti Vaittinen
+<mazziesaccount@gmail.com> wrote:
 
-Please add a comment about whos OUI it is.
+> I see acks from Andu, Bartosz, Lee and Rob. It'd be nice to see ack from
+> Linus W too - but other than that - I guess this is good to go.
 
-It is however more normal to use a random MAC address if no other MAC
-address is available. That way, you avoid multiple devices on one LAN
-using the same default MAC address.
+Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-> > > +	if (mac->next_ndev) {
-> > > +		struct net_device *ndev2 = mac->next_ndev;
-> > > +
-> > > +		if (!netif_carrier_ok(ndev2) && (reg & PORT_ABILITY_LINK_ST_P1)) {
-> > > +			netif_carrier_on(ndev2);
-> > > +			netif_start_queue(ndev2);
-> > > +		} else if (netif_carrier_ok(ndev2) && !(reg & PORT_ABILITY_LINK_ST_P1)) {
-> > > +			netif_carrier_off(ndev2);
-> > > +			netif_stop_queue(ndev2);
-> > > +		}
-> > 
-> > Looks very odd. The two netdev should be independent.
-> 
-> I don't understand your comment.
-> ndev checks PORT_ABILITY_LINK_ST_P0
-> ndev2 checks PORT_ABILITY_LINK_ST_P1
-> They are independent already.
-
-I would try to remove the mac->next_ndev. I think without that, you
-will get a cleaner abstraction. You might want to keep an array of mac
-pointers in your top level shared structure.
-
-	 Andrew
+Yours,
+Linus Walleij
