@@ -2,125 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1DFE452F2B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 11:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21BA3452F34
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 11:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234262AbhKPKgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 05:36:35 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41618
+        id S234269AbhKPKid (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 05:38:33 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41670
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234236AbhKPKgE (ORCPT
+        by vger.kernel.org with ESMTP id S234202AbhKPKiJ (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 05:36:04 -0500
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+        Tue, 16 Nov 2021 05:38:09 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4870540016
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 10:33:07 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E248D3F199
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 10:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637058787;
-        bh=9Le9vThg2zYYZ4FT+Lsh8JZmnjsCqwGI+kiP40c27ZQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+        s=20210705; t=1637058911;
+        bh=RiDE8XXvbEJD12cizRsQR7WHmOv+p0GSx9+K53KWmuU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
          In-Reply-To:Content-Type;
-        b=R+54iYerD3XUe0bho3L2AEPDUBTwpTJsRvL6Z6hVfdLPKVFfNNx+nwjDgYZ8qqF51
-         C/t2i2mIeYEdtMDPfn8RSPLirEuDuWpMH8NDwLVfy5ruPaWMJkFZCaqEl1ZnDxQEmI
-         DFrEt+qf7QxWGzp9Lq8TMgyplU/0q/CJPxU5UxX4Pn1wGow1Wg8ga+HKcogj1g8592
-         h3hQET6ea2/zIHQmZFI8ovCP3lMdkkqMNplheIUiEselpNUHUAqOduSkeA4HN6F2oe
-         yNefAGATRZgQSG0X8i8JbDmn4DM1lbBKy9d2LqrNGWqoF0jRNk9iGsdBhCRkd+cQ+I
-         ulzqdtH+P7FWw==
-Received: by mail-lj1-f197.google.com with SMTP id i14-20020a2e864e000000b00218a2c57df8so6018676ljj.20
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 02:33:07 -0800 (PST)
+        b=Y3QosOexUuwJ0z0/DXeWJZboAdakiNBRKF1+WOeyqcam+Ag9rKp/DRQZfExgPWOkK
+         IQ0m+gFtWioS9G0uiZEMZJtqB9hUDtcoZaGs3B0i/stYoDNm9pH9UWkbMs6nR90GY/
+         bGPFTpzrKATNi0VeLtr+nzlC+REv7uHgbUxjE9E/qi7ykNRCQIx1CdJeM0r3JSCTbw
+         ha7AE8oOOw5sOqn02W+o1qTK1wjlxUssw2NUIMo8vCWsd6JMsqcZL9pN8rbX0muaim
+         HtWVYHJR3WGisuMPlZQ3uNKfU8YdTR4QNX3SzjkeHMH0X9Lytou3ursrEQyWMVO1oT
+         f3YzPgk5YZAbQ==
+Received: by mail-lf1-f72.google.com with SMTP id i1-20020a056512318100b003ffd4e89eb9so7968452lfe.19
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 02:35:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9Le9vThg2zYYZ4FT+Lsh8JZmnjsCqwGI+kiP40c27ZQ=;
-        b=bf/wG9dYyV/01Pq/Pk70lkf1JXwfvnpIHwWkoC6bbl9GRHeNvLydhvnkIpyGFmOBnx
-         ZEWrIKhJIlPD0HBIAgh16CtwDg2Q0UKWaerg26pv+MHwhfXua2Ux4mUXESCvFZ0GFURA
-         Lo2STJFREqxISRlOkuCPD2Er89MrFC4PY/o43O3z1KBhvtBSsXjYHiA03+/zs+VIR4RJ
-         RR3QC4t0KC+ozBSJOQCiE5E51OM1iRzcDxxPWA37TPK+ZrKP/xpUdHWxF41DP9TC688L
-         oYQWdkvAwNXBHDhHJ74YV15mqovJU03Kt9EbPtTaqNG5Mi1jktHEMeF10fCm/dB3mAJ9
-         LMPw==
-X-Gm-Message-State: AOAM530Aqu8mw0h30C/dV8APTsRvCNN2zsuyWtImRZl/S9vXdp+cQr0x
-        GyXrKKN59CCUD8pMVDJOkykeMZBoWBKP3y8AAGlVxRfDI4TzZqZi8Nbjeh98wChKUkPf8mn41tj
-        QcGuTF48vmHPoBAeiLIhESrszH9CT2OVgP7ar1kc=
-X-Received: by 2002:ac2:5dc2:: with SMTP id x2mr5601486lfq.228.1637058786583;
-        Tue, 16 Nov 2021 02:33:06 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxPHWqAmG6+W2LmzevHiirWdaFqHMhmEygAsdCaVQYS7N7sZyD1DqEoJyS2ahO2I8igQ/Bl5w==
-X-Received: by 2002:ac2:5dc2:: with SMTP id x2mr5601460lfq.228.1637058786409;
-        Tue, 16 Nov 2021 02:33:06 -0800 (PST)
+        bh=RiDE8XXvbEJD12cizRsQR7WHmOv+p0GSx9+K53KWmuU=;
+        b=yC93GhYXGQ+0FvC2Z8JAv52Ji6s8GRS9Q3otDJrYsLLjjzK8w4ffJczhcA5lrnCPZe
+         89/ZI2i+mlWPJuPcSF933HKRe6Ka8amImHiZUExG95sllA5FKGb7TAK7xSa8Eh0q7aL2
+         BBRLMLD/EwYmF3eRwZ48fS3o3zJmzP7Tz4sEeNJTry75Umzlky+kb1HthDbCtWwJ6tiJ
+         hkbQsnWTNIqAJHi4c+wSw8hyntIc1Wb9aYKybQLW7pxoJpBWGk+pFyqfcIWf5V+l3C9w
+         mKb01ecA0JDDIW+QbNikCciOziYF0Fek31CU63BGOI6BasusvAhn1ODZVDi/BAZnop6Y
+         DO6g==
+X-Gm-Message-State: AOAM532DFpyNugfNmnIIy+oBMLPbZZvvIGiF0BcDNlqeFejuz5kac0zy
+        MGsnBQ7xSZf0aWe2JNn2b3c8C0KKobB+Qk+BfG/IgiBVfAEDKDqeOWnwpnFqFcbveeSsz485+Z/
+        q70R2X+FSJ/bMNWrfvEuJYNkZK8S5IyrbGywcR3U=
+X-Received: by 2002:ac2:4ad0:: with SMTP id m16mr5736889lfp.29.1637058911334;
+        Tue, 16 Nov 2021 02:35:11 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwwSo0x9s6yBf2L1c3SFhk3EKtwdZI+SJJfsF8Gjd3qbkGSH9A8xJa+C2h3zY2e+7KIvujJHA==
+X-Received: by 2002:ac2:4ad0:: with SMTP id m16mr5736873lfp.29.1637058911184;
+        Tue, 16 Nov 2021 02:35:11 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id p3sm1717385lft.66.2021.11.16.02.33.05
+        by smtp.gmail.com with ESMTPSA id z12sm1719295lfs.101.2021.11.16.02.35.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Nov 2021 02:33:06 -0800 (PST)
-Message-ID: <a8b126e6-62e7-7979-01cb-b7a1ce4ae8d1@canonical.com>
-Date:   Tue, 16 Nov 2021 11:33:05 +0100
+        Tue, 16 Nov 2021 02:35:10 -0800 (PST)
+Message-ID: <65f0586d-ac95-3907-9458-3e17f600ca09@canonical.com>
+Date:   Tue, 16 Nov 2021 11:35:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.1
-Subject: Re: [PATCH v2 0/7] Add SPI Multi I/O Bus Controller support for
- RZ/G2L
+Subject: Re: [PATCH v2 2/2] memory: fsl_ifc: populate child devices without
+ relying on simple-bus
 Content-Language: en-US
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20211015005707.1996-1-leoyang.li@nxp.com>
+ <20211015005707.1996-3-leoyang.li@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211015005707.1996-3-leoyang.li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/10/2021 22:56, Lad Prabhakar wrote:
-> Hi All,
+On 15/10/2021 02:57, Li Yang wrote:
+> After we update the binding to not use simple-bus compatible for the
+> controller, we need the driver to populate the child devices explicitly.
 > 
-> This patch series adds a couple of fixes for rpc-if driver and
-> adds support for RZ/G2L SoC, where the SPI Multi I/O Bus Controller
-> is identical to the RPC-IF block found on R-Car Gen3 SoC's.
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> ---
+>  drivers/memory/fsl_ifc.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> Cheers,
-> Prabhakar
-> 
-> Changes for v2:
-> * Rebased the patches on linux-next
-> * Split patch 5 from v1
-> * Included RB tags
-> * Fixed review comments pointed by Wolfram
-> 
-> v1:
-> https://patchwork.kernel.org/project/linux-renesas-soc/cover/
-> 20210928140721.8805-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> 
-> Lad Prabhakar (7):
->   dt-bindings: memory: renesas,rpc-if: Add support for the R9A07G044
->   dt-bindings: memory: renesas,rpc-if: Add optional interrupts property
->   spi: spi-rpc-if: Check return value of rpcif_sw_init()
->   mtd: hyperbus: rpc-if: Check return value of rpcif_sw_init()
->   memory: renesas-rpc-if: Return error in case devm_ioremap_resource()
->     fails
->   memory: renesas-rpc-if: Drop usage of RPCIF_DIRMAP_SIZE macro
->   memory: renesas-rpc-if: Add support for RZ/G2L
-> 
+> diff --git a/drivers/memory/fsl_ifc.c b/drivers/memory/fsl_ifc.c
+> index d062c2f8250f..ef2092fa90d9 100644
+> --- a/drivers/memory/fsl_ifc.c
+> +++ b/drivers/memory/fsl_ifc.c
+> @@ -88,6 +88,7 @@ static int fsl_ifc_ctrl_remove(struct platform_device *dev)
+>  {
+>  	struct fsl_ifc_ctrl *ctrl = dev_get_drvdata(&dev->dev);
+>  
+> +	of_platform_depopulate(&dev->dev);
+>  	free_irq(ctrl->nand_irq, ctrl);
+>  	free_irq(ctrl->irq, ctrl);
+>  
+> @@ -285,6 +286,12 @@ static int fsl_ifc_ctrl_probe(struct platform_device *dev)
+>  		}
+>  	}
+>  
+> +	/* legacy dts may still use "simple-bus" compatible */
+> +	ret = of_platform_populate(dev->dev.of_node, NULL, NULL,
+> +					&dev->dev);
+> +	if (ret)
+> +		goto err_nandirq;
+> +
 
-Applied parts 1, 2, 5 and 6. I think 7 is going to have a new version
-due to Wolfram's comments?
-
+This one does not apply. Please rebase.
 
 Best regards,
 Krzysztof
