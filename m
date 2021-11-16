@@ -2,95 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48D004531D3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 13:09:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE694531BB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 13:04:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235822AbhKPMMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 07:12:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34746 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236107AbhKPMKb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 07:10:31 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC96AC0432D1
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 04:02:17 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 67-20020a1c1946000000b0030d4c90fa87so2185624wmz.2
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 04:02:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=lDB8txmndiyc2KBELD6n3DhmgYu8EUzPVuapNCQo1zs=;
-        b=mldJEOu5NnmqmiMKzPY9mz4IDbBaAR8ZcKLbG0mHBR1p/bymyHk4A4WmkcwvmMlC49
-         QXby76RujpVem0BcrrnMrZl6V/5ovityJgIR9R7IPEF0w0lN9nfNaFvG0ZcaH+odLMrV
-         BLXG0Gj43otjSUslxvnTqFnMIdf5lgrLEgxMaJF7BAnLMjfYaLV9ccYKHnkaHna67Tc3
-         f+NUSLHyELqD+EhXH//cGilrC5xyNQn+yfKIGQYlMBCY4T69ZIUyZOXC7PX9sLQuUUkd
-         3TE726MkaJFV+JTdlj8n3RWk/IG/usYTIma6oaI5FhMfjDY0uR1acYx+8yBvUL03L8zj
-         xviw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=lDB8txmndiyc2KBELD6n3DhmgYu8EUzPVuapNCQo1zs=;
-        b=YFudxztAeBTgKVqN6YrZ6dS4/rC5o94uouMOGnhvGmbVtaMkv1jbTI9aE/k1f0EFGk
-         mcBcXPuau9SCcCnDAHxSgTMZMZ8UCgdQDM7lrXOkmEI4WCtMuoOEVDJCX6W+r7GrCT70
-         VtcdDxd2EV39hiJHo4kYh3QhokX0KtFQJNa2vU1NzTrtoG2hLCZoUEGniuOfbT5LLqa9
-         ueTXrIRIGFyIsi36qEh/OfG3CZ0b+uwP3VlgTfl/J0DUtIK0R/pH1kx1mPsOa519bVF2
-         wDvZMqDoJ1QQpLz9vY2BzATpfQpPpUeM5aMP5yAvHMpTuOtFHGnUAU9H3Zmzs7F5WcHV
-         wMGA==
-X-Gm-Message-State: AOAM533ipBvoPjqsiv70CFqSzPxtOvIhCah/ZI7RP026PFE2FbafDPCs
-        iM+C2qwni0BUVqdSeUdlcFrsOg==
-X-Google-Smtp-Source: ABdhPJy0s8g4BijfftlxD/F7elVGNq4pmmk3Cu5+zRpMwyxjgqhMYGMoZqI1RiG+YUAJq6W28VKZIg==
-X-Received: by 2002:a05:600c:a0b:: with SMTP id z11mr70111480wmp.147.1637064136454;
-        Tue, 16 Nov 2021 04:02:16 -0800 (PST)
-Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
-        by smtp.gmail.com with ESMTPSA id l124sm2298443wml.8.2021.11.16.04.02.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 04:02:15 -0800 (PST)
-Date:   Tue, 16 Nov 2021 12:02:13 +0000
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 0/9] backlight: qcom-wled: fix and solidify handling
- of enabled-strings
-Message-ID: <20211116120213.n7qxqfi62lrxhyl7@maple.lan>
-References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
+        id S236012AbhKPMHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 07:07:47 -0500
+Received: from mail-mw2nam10on2073.outbound.protection.outlook.com ([40.107.94.73]:44556
+        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236023AbhKPMFk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 07:05:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=iIeKEjq0r4atICA5Rdwe4FgaJQs9XzUA+wWPZWJthwH5kNCbuYhIkXHotD3iwp53eJ0tEJAmVJV0Wo4cBd8oBDWdDxlumCE9MwX9yXBUurLKYCkw8AZnXpngIN1H1fEKveOeQJTY8XIG+bSjykqGdI/NAjZBXoLFbZXjWAbCt2/wrQGQPxk3XLnWdWKcj7D3ZNEx4TsLTi5UPWP4D7oRuGoApHZfC8afgthUp8B8z7FqjP3OGmVHKvW1SotKxtm6ZJyVj4gNsOlZzezVWl+nSdTpTgnlDP8SnZ1cEkjY6bjMeNfQ6b/OmSMGpUd6D853/Dwz/w763HLCtesWlzrK3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=D3qmuZdiX/kQ73A+DJBP6kvynXZDhrs1p5LiH+Z8w5k=;
+ b=mfTTi4kCaxlaOwBclsvsBz2Y3KLjiX34/aDF5KVKg6dcSFOmKvEwlkOsT+Dk2dS9VEwJqGnUMSerfZZ6hVioSwzbXpCD5Ku5RIWjV0DL7l7CCy4USBmExodDCMSv1Dg6lQd2y2ophSKpVq1BzSmOR58yskmOCIJrOQ49CUUoEsLisBi6lmYxKdmarPAQlpolbeQVlZGi/CaxFGpX9DFPDrMf2dxYa+My1KFDPb0YoiTZtaot7FQhgrLKvfNku8Q72wMAIeSTm+dZVxfvuXyh/ATZM98xhVrqkeSR3jJK0o/hOr2wq0KLcsVCSK/XWXc9CvPZQzFUpPa1rYNiVeuGQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.32) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=D3qmuZdiX/kQ73A+DJBP6kvynXZDhrs1p5LiH+Z8w5k=;
+ b=qqNVNeWGWIkZsYblNM6glmy4KVXCOHoys/g0el3DUEB9+XYpbzd2ltSL+Rj10pfiQ5HcTZjIjFI7DIapGVUGU8kxsr0RcCR8cGkGr48Q/sY7n+v5CgUoQsxB0A87aDLluBSsB1JX0IACV6spxUq9vtwe6Fa0vpFKIrade/vlvJW4Aaq3jWkHMV6/PCaBOCeFE4C+iDzfclJPyqc51cnpHF+hsNNMmfuZ7wHBeiiY6zIdBOAHrBvmygDpMZzjYkNk53n9ksHNcUrQgcaZAKnXdC+jiKu0m45McT8w5AfFDVHRkYxhOFGG86ohJl7HP9I1DLpv23HAZxH1UEvw/k7vFg==
+Received: from DM6PR13CA0050.namprd13.prod.outlook.com (2603:10b6:5:134::27)
+ by SN1PR12MB2461.namprd12.prod.outlook.com (2603:10b6:802:27::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.27; Tue, 16 Nov
+ 2021 12:02:42 +0000
+Received: from DM6NAM11FT026.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:134:cafe::14) by DM6PR13CA0050.outlook.office365.com
+ (2603:10b6:5:134::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.17 via Frontend
+ Transport; Tue, 16 Nov 2021 12:02:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.32; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.32) by
+ DM6NAM11FT026.mail.protection.outlook.com (10.13.172.161) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4690.15 via Frontend Transport; Tue, 16 Nov 2021 12:02:41 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 16 Nov
+ 2021 04:02:41 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Tue, 16 Nov
+ 2021 12:02:40 +0000
+Received: from pshete-ubuntu.nvidia.com (172.20.187.5) by mail.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Tue, 16 Nov 2021 04:02:38 -0800
+From:   Prathamesh Shete <pshete@nvidia.com>
+To:     <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <pshete@nvidia.com>, <anrao@nvidia.com>, <smangipudi@nvidia.com>
+Subject: [PATCH] arm64: tegra: Add support to enumerate SD in UHS mode
+Date:   Tue, 16 Nov 2021 17:32:36 +0530
+Message-ID: <20211116120236.10648-1-pshete@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211115203459.1634079-1-marijn.suijten@somainline.org>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 99426124-ff60-4e94-101e-08d9a8f8fe08
+X-MS-TrafficTypeDiagnostic: SN1PR12MB2461:
+X-Microsoft-Antispam-PRVS: <SN1PR12MB24615ABE4B9E449B3DC6BE69B7999@SN1PR12MB2461.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2201;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: FuglJp8L/ThisnDrtYs4Hk8BX2afLrTMDPcQ52l7aVdYpMeOEI5Fokj5CNnkQop/yP/367udLb5OK6LN6ghPMXLRx6hmR/qB09fyfLnnbb/IVdhIMw5/0UpiIirTSP2tmboq79P1LWyJFjw773r+2WJwChZgnPXVAP7GZvPMvxnYIu/IuaJXKKIXhgsvGIm5tlxq1Q3391T8sqhFh762rA6zVLVQChng1ViBfbAw2hvON73yrbv+SR1zEO9zotKb7yfBFsVP5yN5mPHZaDh78Nx1XJINWGyFOmXDI3iMjnyfSzaO+1z8+xpXSKFygcBObhKEvIayG7EM6Clk2ZQUgB4oU5pgZVsM1v9osCU0mn4UfiMPgTFvmxqDqFYVnKjGDurpsfjXGqfJ7f/0SP6pT1++iPdjWM8ZXmlPTMGhh6Df/6r1Ck9/kYOIqB8t66C6mXWYAb8YV4OYKIBO47FwO7Qh6M1uI33kPvr1QflBMcrNRYDo1qBTldzQUxab9++rS9/8JjMsKMDojslB5/oyvcWbs95zn9Tns9bKahl7AXOpLFZ56ubxH6Cm6sc3u181bCTXEQOjkHIdpNGiURZbp3jYnH9q/3mgmLCzrTPoLH4WAwxWlygZd8gI6lU+tFJk52uc4AEex+r8Kinm+FQzcHOAraD8bXaPOAagZYXJ8cEq8hU3TpPaeyab4mieeBwzCZBYKAvrmkuviawDCnet2w==
+X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(8676002)(86362001)(110136005)(5660300002)(107886003)(83380400001)(2616005)(36756003)(54906003)(82310400003)(1076003)(356005)(7636003)(508600001)(8936002)(2906002)(186003)(316002)(426003)(336012)(26005)(47076005)(7696005)(36860700001)(70206006)(70586007)(4326008);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2021 12:02:41.5723
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99426124-ff60-4e94-101e-08d9a8f8fe08
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT026.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN1PR12MB2461
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee
+Add support to enumerate SD in UHS mode on Tegra194.
 
-On Mon, Nov 15, 2021 at 09:34:50PM +0100, Marijn Suijten wrote:
-> This patchset fixes WLED's handling of enabled-strings: besides some
-> cleanup it is now actually possible to specify a non-contiguous array of
-> enabled strings (not necessarily starting at zero) and the values from
-> DT are now validated to prevent possible unexpected out-of-bounds
-> register and array element accesses.
-> Off-by-one mistakes in the maximum number of strings, also causing
-> out-of-bounds access, have been addressed as well.
+Add required device-tree properties in SDMMC1 and SDMMC3
+instances to enable dynamic pad voltage switching
+and enumerate SD card in UHS-I modes.
 
-They have arrived piecemeal (during v1, v2 and v3) but all patches on
-the set should now have my R-b: attached to them.
+Signed-off-by: Prathamesh Shete <pshete@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi | 34 ++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+index b7d532841390..cc89f42bef38 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
+@@ -3,6 +3,7 @@
+ #include <dt-bindings/gpio/tegra194-gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/mailbox/tegra186-hsp.h>
++#include <dt-bindings/pinctrl/pinctrl-tegra-io-pad.h>
+ #include <dt-bindings/pinctrl/pinctrl-tegra.h>
+ #include <dt-bindings/power/tegra194-powergate.h>
+ #include <dt-bindings/reset/tegra194-reset.h>
+@@ -735,6 +736,9 @@
+ 					<&mc TEGRA194_MEMORY_CLIENT_SDMMCWA &emc>;
+ 			interconnect-names = "dma-mem", "write";
+ 			iommus = <&smmu TEGRA194_SID_SDMMC1>;
++			pinctrl-names = "sdmmc-3v3", "sdmmc-1v8";
++			pinctrl-0 = <&sdmmc1_3v3>;
++			pinctrl-1 = <&sdmmc1_1v8>;
+ 			nvidia,pad-autocal-pull-up-offset-3v3-timeout =
+ 									<0x07>;
+ 			nvidia,pad-autocal-pull-down-offset-3v3-timeout =
+@@ -746,6 +750,10 @@
+ 			nvidia,pad-autocal-pull-down-offset-sdr104 = <0x00>;
+ 			nvidia,default-tap = <0x9>;
+ 			nvidia,default-trim = <0x5>;
++			sd-uhs-sdr25;
++			sd-uhs-sdr50;
++			sd-uhs-ddr50;
++			sd-uhs-sdr104;
+ 			status = "disabled";
+ 		};
+ 
+@@ -762,6 +770,9 @@
+ 					<&mc TEGRA194_MEMORY_CLIENT_SDMMCW &emc>;
+ 			interconnect-names = "dma-mem", "write";
+ 			iommus = <&smmu TEGRA194_SID_SDMMC3>;
++			pinctrl-names = "sdmmc-3v3", "sdmmc-1v8";
++			pinctrl-0 = <&sdmmc3_3v3>;
++			pinctrl-1 = <&sdmmc3_1v8>;
+ 			nvidia,pad-autocal-pull-up-offset-1v8 = <0x00>;
+ 			nvidia,pad-autocal-pull-down-offset-1v8 = <0x7a>;
+ 			nvidia,pad-autocal-pull-up-offset-3v3-timeout = <0x07>;
+@@ -774,6 +785,10 @@
+ 			nvidia,pad-autocal-pull-down-offset-sdr104 = <0x00>;
+ 			nvidia,default-tap = <0x9>;
+ 			nvidia,default-trim = <0x5>;
++			sd-uhs-sdr25;
++			sd-uhs-sdr50;
++			sd-uhs-ddr50;
++			sd-uhs-sdr104;
+ 			status = "disabled";
+ 		};
+ 
+@@ -1303,6 +1318,25 @@
+ 
+ 			#interrupt-cells = <2>;
+ 			interrupt-controller;
++			sdmmc1_3v3: sdmmc1-3v3 {
++				pins = "sdmmc1-hv";
++				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
++			};
++
++			sdmmc1_1v8: sdmmc1-1v8 {
++				pins = "sdmmc1-hv";
++				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
++			};
++			sdmmc3_3v3: sdmmc3-3v3 {
++				pins = "sdmmc3-hv";
++				power-source = <TEGRA_IO_PAD_VOLTAGE_3V3>;
++			};
++
++			sdmmc3_1v8: sdmmc3-1v8 {
++				pins = "sdmmc3-hv";
++				power-source = <TEGRA_IO_PAD_VOLTAGE_1V8>;
++			};
++
+ 		};
+ 
+ 		smmu: iommu@12000000 {
+-- 
+2.17.1
 
-Daniel.
