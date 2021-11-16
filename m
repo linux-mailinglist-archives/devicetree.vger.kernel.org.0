@@ -2,107 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A231D453634
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F0E2453630
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:43:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238424AbhKPPqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 10:46:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56516 "EHLO
+        id S238509AbhKPPp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 10:45:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238428AbhKPPpf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:45:35 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DA4C061220
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:28 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id e3so53382889edu.4
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:28 -0800 (PST)
+        with ESMTP id S238552AbhKPPpT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:45:19 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25B6C06121D
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:19 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id u1so38436078wru.13
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=O6sbtn5xvEBNaOtn9UEFFKe+g7L6F0RYzfYTzDVMF/I=;
-        b=eynKHH0QO52xWjqQj6zrLoZm4ne3qN6aPkoTwvfBmLf1pr+gN5PTFe0ZpIhs7trXsb
-         VIRQf5PFhG4ylLXFO+F5NADxLSlh8zZUYIftK4zfmYQ+FuLfvfLGkmPd7bBIA3ptmxSs
-         vEX/J9mh5TBHuw7EznlL46fXe3JhT1PW1Oz7czW7O8jyDO+km6g04eb1asxwOCh0YQBh
-         /V8rgoUFfN3FEqjPtmj+MOM4OcVXl3nX6JMUb1gPH51N+cflV74s2RiDTN06CKqjzUGF
-         O2lZmiYL1xWw/1NugBNnlbDenbgP6jVEPaRsWaFCmeOV5PNXi2ntm6GEyx1IxOtYUoKj
-         bhVQ==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=MaOSO/5HtReWKBBksqBOQJDhfTRE2n/pBGJORKYgmI8=;
+        b=dpMihBVSiTIhJ8gwEIK/0RaxfyXs2DtvxfMOWHwvsfqgQpUny0lQtED0wIphEPCb6v
+         AEzTzY5KUWh+ZBUlwhm1MKOSsfEKvWzAZN6hA0iVz1ZkNSHET0GNQ7X4qOZ4ru7PoXmg
+         a/08/a6OGQp4ufg1hfyxfYLxOjuSPoP4Iv2indtDuuY25uHOzB4zY/j/Htu2gPPN48F8
+         +FDsCnukvP5bxxuyqV5df/R9Dld2m5MFGmv/6quqjj8jagtwmzBL49QLLLkaiJPMV3TB
+         utBJFccrrLjAw31i2P+rtb2jHXojpAt5V88ehKxTw8pEyulGHnLBAJQgM7JuB/O0nT8J
+         yzQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=O6sbtn5xvEBNaOtn9UEFFKe+g7L6F0RYzfYTzDVMF/I=;
-        b=2ujr9bSvkMicjbuSbHlLTQDbwp/rmyZJsgN7eXujaDSTeNZtP+JZmIa8gNYNumuPF8
-         zs9HNzAA4Tkabl23ZZMcd2nlF09vCradcY6R7HwLa2dC4JBX9TGtpoWofIKwKZLZZxgv
-         CG0qeeLELXTrQto5swlY2ByEpfjsYpmOBvUHViLYzbzmBTNb1NxjiwzGagBbQQP1+CYW
-         MgXPLCmz7VwBlwTvyu4sAX1IvG1DEOXmeDElM/IAI+BmAWOPXNZgtvdP3Lq7cC40S858
-         33dkEKHSqdB5suNW0K5tYK5xnRX2fz+HXuJbhEvezokWT07CVuk+GQhl3YTxphsa4deN
-         MMrw==
-X-Gm-Message-State: AOAM530dazEpLbbFo9kDloIOXCW7mQHAbEQEv3XXh+CerXKJxeBltW7I
-        l95wS81Wnyc3Q1x5o0pLrtd6cw==
-X-Google-Smtp-Source: ABdhPJx0eQ+PslF4hYTTpI2Xpbj5O8GvvC/hQB20eDbfaRVoh8niF5Qt3h1b6H5RW7O+XXP7v5RzyQ==
-X-Received: by 2002:a17:906:fcb0:: with SMTP id qw16mr10483926ejb.495.1637077346511;
-        Tue, 16 Nov 2021 07:42:26 -0800 (PST)
-Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id bo20sm9763810edb.31.2021.11.16.07.42.25
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=MaOSO/5HtReWKBBksqBOQJDhfTRE2n/pBGJORKYgmI8=;
+        b=SWuz5Q7e4MDsLIbf65r78jUUJaLC1TeX/SwTepTQ5Ylylyck4f/vAQk6WjDnwh2N8F
+         pdZzNZzqkFDApNTx0csWaSN/H0ZKigS/lwbcd1L4bZZ4pcWSA70kO/XZxlAzCq+9MU4F
+         T7crbEMZmiTilytNNdt6DEBf1+jOeMSk3KU7E4U8BsDkKash9foZ30uRneIpjBZxnqHD
+         y0u1Qzyk6GwfDc7DLEJFmEe/aeR4VfqlCCaxEoshsmIpSY0cf4xJxU05xKSWqiO+soL4
+         dtwxpZsiEEtUbUF3jUt8n0u0C+KKNY9Gawu2C6kKsXicqXhsEX0DSyGDf2NWMhEXHNfD
+         g/Fg==
+X-Gm-Message-State: AOAM530UkF0ba6584ASwMMVxfIoTXVaEvZA0GfezBAk47u41OrOYlj0y
+        xSJAdAMydCr8x0H4AawLr3u6ug==
+X-Google-Smtp-Source: ABdhPJwGazAeHXqWI2KmcXg8HN2YudpmutPJQ1rdklClDDMa6uJ9nc+mW3BEpIrYrJ5e6pEnv6kpCA==
+X-Received: by 2002:a5d:5303:: with SMTP id e3mr10447721wrv.73.1637077337983;
+        Tue, 16 Nov 2021 07:42:17 -0800 (PST)
+Received: from google.com ([95.148.6.231])
+        by smtp.gmail.com with ESMTPSA id q4sm17892469wrs.56.2021.11.16.07.42.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 07:42:26 -0800 (PST)
-Date:   Tue, 16 Nov 2021 15:42:05 +0000
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     robh+dt@kernel.org, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        will@kernel.org, joro@8bytes.org, mark.rutland@arm.com,
-        jkchen@linux.alibaba.com, leo.yan@linaro.org,
-        uchida.jun@socionext.com
-Subject: Re: [PATCH 0/2] perf/smmuv3: Support devicetree
-Message-ID: <YZPRTUis+G279XIO@myrica>
-References: <20211116113536.69758-1-jean-philippe@linaro.org>
- <3b5cb536-5a11-5096-4369-cec3d369ec52@arm.com>
+        Tue, 16 Nov 2021 07:42:17 -0800 (PST)
+Date:   Tue, 16 Nov 2021 15:42:15 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v3 0/9] backlight: qcom-wled: fix and solidify handling
+ of enabled-strings
+Message-ID: <YZPRV2jD1EBYGdHL@google.com>
+References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
+ <20211116120213.n7qxqfi62lrxhyl7@maple.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <3b5cb536-5a11-5096-4369-cec3d369ec52@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211116120213.n7qxqfi62lrxhyl7@maple.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 12:02:47PM +0000, Robin Murphy wrote:
-> On 2021-11-16 11:35, Jean-Philippe Brucker wrote:
-> > Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
-> > Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
-> > multiple independent PMCGs, for example one for the Translation Control
-> > Unit (TCU) and one per Translation Buffer Unit (TBU).
-> > 
-> > I previously sent the binding as reply to Jay Chen's thread implementing
-> > device tree support [1]. This posting addresses the comments from that
-> > thread.
+On Tue, 16 Nov 2021, Daniel Thompson wrote:
+
+> Hi Lee
 > 
-> Ha, I'd also resurrected this and was planning to post it at some point this
-> week[0] - you should have said :)
-
-Ah sorry about that, I just resent because there was some demand for it at
-Linaro
-
-> > Patch 1 adds two compatible strings. "arm,smmu-v3-pmcg" is common to all
-> > PMCGs. "hisilicon,smmu-v3-pmcg-hip08" allows to support the same quirk
-> > as IORT for that implementation (see patch 2). We'll probably want to
-> > also introduce compatible strings for each implementation that has
-> > additional perf events. For example the MMU-600 implementation has
-> > different events for TCU and TBU PMCGs [2], but both components have the
-> > same device IDs. So the driver could differentiate them if they had two
-> > distinct compatible strings such as "arm,mmu-600-pmcg-tbu" and
-> > "arm,mmu-600-pmcg-tcu".
+> On Mon, Nov 15, 2021 at 09:34:50PM +0100, Marijn Suijten wrote:
+> > This patchset fixes WLED's handling of enabled-strings: besides some
+> > cleanup it is now actually possible to specify a non-contiguous array of
+> > enabled strings (not necessarily starting at zero) and the values from
+> > DT are now validated to prevent possible unexpected out-of-bounds
+> > register and array element accesses.
+> > Off-by-one mistakes in the maximum number of strings, also causing
+> > out-of-bounds access, have been addressed as well.
 > 
-> Actually it only needs a general MMU-600 compatible, since once you know
-> it's an Arm Ltd. implementation, you can assume the pattern for the IMP_DEF
-> ID registers to figure out the rest.
+> They have arrived piecemeal (during v1, v2 and v3) but all patches on
+> the set should now have my R-b: attached to them.
 
-It might be an error in the MMU-600 spec specifically, both TBU and TCU
-PMU registers have a 0x83 PIDR0, where I think the TBU should be 0x84 (the
-revC model uses that value). It's possible that the implementation
-actually has 0x84 instead.
+I can see that.  Nothing for you to worry about.
 
-Thanks,
-Jean
+I'll apply these when I conduct my next sweep, thanks.
 
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
