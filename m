@@ -2,191 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BCD4453693
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 17:00:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0701A4536AB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 17:03:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238650AbhKPQC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 11:02:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60760 "EHLO
+        id S238712AbhKPQEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 11:04:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238707AbhKPQCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 11:02:18 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B931CC061767;
-        Tue, 16 Nov 2021 07:59:20 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id b12so38584424wrh.4;
-        Tue, 16 Nov 2021 07:59:20 -0800 (PST)
+        with ESMTP id S238651AbhKPQEq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 11:04:46 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 784ACC061746;
+        Tue, 16 Nov 2021 08:01:49 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id x15so90076092edv.1;
+        Tue, 16 Nov 2021 08:01:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9naSO5r8tQZJvBK4TMPDYz6tlDwHC4XzxH7Ok+hs3N0=;
-        b=im56I/I3rNGeFIuG/hbOWptU7uBt56fr502x72sNSv9QV1KWjvTqVtyhDwXHezl5Uc
-         i0oluNPhwgGg7xdlucKDQJTdnqjFCBGZm93PZm9/VkOLIeg9rs/Lmu1SOVcsFqpD03fz
-         6l73AUMNradKV2xf8hfdZ56UsIqlMvci8ZE444tVeQD28GBi2ALerXudrrmTZnYWlnbM
-         fI8qKezzwjI26GRuQqlG74SewAast6MxAsHo/p3DkUJpv1nPl4zEY/5a3wRtnDuUHsoC
-         YP3AwY4zKD6Xdjg5Qu+T9E6arkiKCsW5pQwz9cBbyzy+uGcJeiOqPg+kClGzwL3z6aCl
-         Xbwg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ySPSIhgGlDPGDfTKXPQfx7BBJ7PKQuLIgLGG9EGPNjU=;
+        b=P+2E8VGaViDHPR1oCM4hxl7uAIciZnec+yHqRWkb3fHtlsZOQdkyJAB910tWekry2c
+         oRS4ADqHapGgPr7/dgg4TstxNTnr0OpxsmoteMLvKuSpzKOy7N/hK7JdetI+WZ+8MCQm
+         hDsc91gwb+jVjMWsUXJeADGC4s7N5kQwgM2Mk3MDrB9FcpH8VUyhOKFRgFRyO166fx8o
+         H4u6QrphHFnaUz7hbgQ7YVRJW64h+bKTOLGkh0Kr8Uy7M+zi4rUOZPDwA2YgMNKGEplc
+         jhrflLvc2I26TA21C3nhXPp6/bWR7EFzaTX0BY9tR3v4IJyx0KfZOdN7Ic4atndNB2XZ
+         83Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9naSO5r8tQZJvBK4TMPDYz6tlDwHC4XzxH7Ok+hs3N0=;
-        b=OcXRwP9V0yXBI8aatB2opdz5FQre1iKAkd6aNV2MKh5NRcV5uEB9L9/9noeUgaJ5si
-         vpFmCAwJ9ObtMenyv3UCBhP68GAwGqklfNkfR48uaoBiZMtICvJLAOAGPC7EwDdBDbR+
-         syb+uv+y8KQmg4OvFvz4z8CvXHevDbaOVceCuLWojfbfyCXopXotlRFBCFvcLPGOSEZ5
-         lSJFqfAFDo/9rWYIN4ujXf4OBVDxrRyqMaGAavBDft6gndgKoK0KDyT/ur9on4XrP6RN
-         ozvUEua0NfXPF85N/Bvy8pQRt5+wBPSSApETwiOaS9zG6wI64QNzeeLUQMqJAGVm9XZM
-         lCCA==
-X-Gm-Message-State: AOAM530HZq5MzFsTBPJKaoh+MdN3wTe+24BO55FPsSrJF3K3POfx2WuM
-        kjNsMuAo8bmLcpnz8G5sm1Y=
-X-Google-Smtp-Source: ABdhPJxxbHh6aw+ynme2nbX81ydqgm8JRSXnAUANc3S0WflysKuwlLlXTvqS8npcaPMd6OcCQUSxgw==
-X-Received: by 2002:adf:e810:: with SMTP id o16mr10725300wrm.359.1637078359314;
-        Tue, 16 Nov 2021 07:59:19 -0800 (PST)
-Received: from localhost.localdomain ([87.75.40.14])
-        by smtp.googlemail.com with ESMTPSA id g124sm2327650wme.28.2021.11.16.07.59.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 07:59:19 -0800 (PST)
-From:   Iain Hunter <drhunter95@gmail.com>
-Cc:     iain@hunterembedded.co.uk, Iain Hunter <drhunter95@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] Add binding for IIO ADS1018
-Date:   Tue, 16 Nov 2021 15:58:58 +0000
-Message-Id: <20211116155917.304294-1-drhunter95@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ySPSIhgGlDPGDfTKXPQfx7BBJ7PKQuLIgLGG9EGPNjU=;
+        b=zN2wXWO6S1WlBuZr6eqGaDBrUE+Q+A/56kxelSeSKIXLzotF0xaP5EZ+jkWw0NHVxu
+         ehJeBvi6LXDlujN/HsJXOznUVBmh5H4RZf6klTIdBJ1q92WSwJIXpLrPpqpY8eX4Per0
+         pWoTf5T9ro+BYpucTEgBRWDcwZ/ynwMP5p0VwsDev41XeFVu50NRWqnOIeURRCEIOJNQ
+         ZTCTCHHNNAq/r0OZkMKpLafPWrWh1Z++LB9IxG44Mi+HRXuduCRUiX7D1THWNCWLE711
+         OzYC6wXdMODH1Xg24dIMIoE7OkaVcBr8jlcqtpyyIwg+61+KaNT1QeYHJhG3q3slIVTr
+         XY5w==
+X-Gm-Message-State: AOAM532H87vV9iOkK8NAe33NdhH+cILGaoVbxQ3jiGf4nkq7ueEHFP5b
+        erzSbW7deW2HL5q2SUs5bzG7P78GVdOX5Qnm638=
+X-Google-Smtp-Source: ABdhPJyNe+0XxZ3ZIzgFXMTNdR5XxYAdKqcxEUj45ALL6BVP0JadkcURTMN/dOrb6B++nliOzLRdTmk/2Rz/zA1Etv4=
+X-Received: by 2002:a05:6402:2067:: with SMTP id bd7mr11757034edb.240.1637078507230;
+ Tue, 16 Nov 2021 08:01:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+References: <20211116150119.2171-1-kernel@esmil.dk> <20211116150119.2171-10-kernel@esmil.dk>
+In-Reply-To: <20211116150119.2171-10-kernel@esmil.dk>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 16 Nov 2021 18:01:05 +0200
+Message-ID: <CAHp75VcUziRv4_U9aDfKu2SKnqj1dab7y+N90tw0JaEKxWW_wQ@mail.gmail.com>
+Subject: Re: [PATCH v4 09/16] reset: starfive-jh7100: Add StarFive JH7100
+ reset driver
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v2 has me as suggested maintainer per Daniel's feedback.
+On Tue, Nov 16, 2021 at 5:06 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+>
+> Add a driver for the StarFive JH7100 reset controller.
 
-Signed-off-by: Iain Hunter <drhunter95@gmail.com>
----
- .../bindings/iio/adc/ti,ads1018.yaml          | 109 ++++++++++++++++++
- 1 file changed, 109 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
+Thanks!
+Couple of minor remarks below and take my
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-new file mode 100644
-index 000000000000..bd7421f882a8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,ads1015.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI ADS1018 4 channel I2C analog to digital converter
-+
-+maintainers:
-+  - Iain Hunter <iain@hunterembedded.co.uk>
-+
-+description: |
-+  Datasheet at: https://www.ti.com/lit/gpn/ads1018
-+  Supports both single ended and differential channels.
-+
-+properties:
-+  compatible:
-+    const: ti,ads1018
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+patternProperties:
-+  "^channel@[0-7]+$":
-+    type: object
-+    description:
-+      Child nodes needed for each channel that the platform uses.
-+
-+    properties:
-+      reg:
-+        description: |
-+          0: Voltage over AIN0 and AIN1.
-+          1: Voltage over AIN0 and AIN3.
-+          2: Voltage over AIN1 and AIN3.
-+          3: Voltage over AIN2 and AIN3.
-+          4: Voltage over AIN0 and GND.
-+          5: Voltage over AIN1 and GND.
-+          6: Voltage over AIN2 and GND.
-+          7: Voltage over AIN3 and GND.
-+        items:
-+          - minimum: 0
-+            maximum: 7
-+
-+      ti,gain:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 5
-+        description: |
-+          pga is the programmable gain amplifier (values are full scale)
-+          0: +/- 6.144 V
-+          1: +/- 4.096 V
-+          2: +/- 2.048 V (default)
-+          3: +/- 1.024 V
-+          4: +/- 0.512 V
-+          5: +/- 0.256 V
-+
-+      ti,datarate:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 6
-+        description: |
-+          Data acquisition rate in samples per second
-+          0: 128
-+          1: 250
-+          2: 490
-+          3: 920
-+          4: 1600 (default)
-+          5: 2400
-+          6: 3300
-+
-+    required:
-+      - reg
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@1 {
-+            compatible = "ti,ads1018";
-+            reg = <0x1>;
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            channel@4 {
-+              reg = <4>;
-+              ti,gain = <3>;
-+              ti,datarate = <5>;
-+            };
-+        };
-+    };
-+...
+> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
+> ---
+>  MAINTAINERS                           |   7 +
+>  drivers/reset/Kconfig                 |   7 +
+>  drivers/reset/Makefile                |   1 +
+>  drivers/reset/reset-starfive-jh7100.c | 176 ++++++++++++++++++++++++++
+>  4 files changed, 191 insertions(+)
+>  create mode 100644 drivers/reset/reset-starfive-jh7100.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 2548ef1f8246..1152f5d94690 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18137,6 +18137,13 @@ F:     Documentation/devicetree/bindings/clock/starfive,jh7100-clkgen.yaml
+>  F:     drivers/clk/starfive/clk-starfive-jh7100.c
+>  F:     include/dt-bindings/clock/starfive-jh7100.h
+>
+> +STARFIVE JH7100 RESET CONTROLLER DRIVER
+> +M:     Emil Renner Berthing <kernel@esmil.dk>
+> +S:     Maintained
+> +F:     Documentation/devicetree/bindings/reset/starfive,jh7100-reset.yaml
+> +F:     drivers/reset/reset-starfive-jh7100.c
+> +F:     include/dt-bindings/reset/starfive-jh7100.h
+> +
+>  STATIC BRANCH/CALL
+>  M:     Peter Zijlstra <peterz@infradead.org>
+>  M:     Josh Poimboeuf <jpoimboe@redhat.com>
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 85024eb1d2ea..6f8ba0ddc05f 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -224,6 +224,13 @@ config RESET_SOCFPGA
+>           This enables the reset driver for the SoCFPGA ARMv7 platforms. This
+>           driver gets initialized early during platform init calls.
+>
+> +config RESET_STARFIVE_JH7100
+> +       bool "StarFive JH7100 Reset Driver"
+> +       depends on SOC_STARFIVE || COMPILE_TEST
+> +       default SOC_STARFIVE
+> +       help
+> +         This enables the reset controller driver for the StarFive JH7100 SoC.
+> +
+>  config RESET_SUNXI
+>         bool "Allwinner SoCs Reset Driver" if COMPILE_TEST && !ARCH_SUNXI
+>         default ARCH_SUNXI
+> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+> index 21d46d8869ff..bd0a97be18b5 100644
+> --- a/drivers/reset/Makefile
+> +++ b/drivers/reset/Makefile
+> @@ -29,6 +29,7 @@ obj-$(CONFIG_RESET_RZG2L_USBPHY_CTRL) += reset-rzg2l-usbphy-ctrl.o
+>  obj-$(CONFIG_RESET_SCMI) += reset-scmi.o
+>  obj-$(CONFIG_RESET_SIMPLE) += reset-simple.o
+>  obj-$(CONFIG_RESET_SOCFPGA) += reset-socfpga.o
+> +obj-$(CONFIG_RESET_STARFIVE_JH7100) += reset-starfive-jh7100.o
+>  obj-$(CONFIG_RESET_SUNXI) += reset-sunxi.o
+>  obj-$(CONFIG_RESET_TI_SCI) += reset-ti-sci.o
+>  obj-$(CONFIG_RESET_TI_SYSCON) += reset-ti-syscon.o
+> diff --git a/drivers/reset/reset-starfive-jh7100.c b/drivers/reset/reset-starfive-jh7100.c
+> new file mode 100644
+> index 000000000000..2f7615cbf1dc
+> --- /dev/null
+> +++ b/drivers/reset/reset-starfive-jh7100.c
+> @@ -0,0 +1,176 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Reset driver for the StarFive JH7100 SoC
+> + *
+> + * Copyright (C) 2021 Emil Renner Berthing <kernel@esmil.dk>
+> + */
+> +
+> +#include <linux/bitmap.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+> +#include <linux/spinlock.h>
+> +
+> +#include <dt-bindings/reset/starfive-jh7100.h>
+> +
+> +/* register offsets */
+> +#define JH7100_RESET_ASSERT0   0x00
+> +#define JH7100_RESET_ASSERT1   0x04
+> +#define JH7100_RESET_ASSERT2   0x08
+> +#define JH7100_RESET_ASSERT3   0x0c
+> +#define JH7100_RESET_STATUS0   0x10
+> +#define JH7100_RESET_STATUS1   0x14
+> +#define JH7100_RESET_STATUS2   0x18
+> +#define JH7100_RESET_STATUS3   0x1c
+
+> +#if BITS_PER_LONG == 64
+> +#define jh7100_reset_read      readq
+> +#define jh7100_reset_write     writeq
+> +#else
+> +#define jh7100_reset_read      readl
+> +#define jh7100_reset_write     writel
+> +#endif
+
+No need, just use always readq() / writeq() and include io-64-nonatomic-lo-hi
+
+> +/*
+> + * Writing a 1 to the n'th bit of the m'th ASSERT register asserts
+> + * line 32m + n, and writing a 0 deasserts the same line.
+> + * Most reset lines have their status inverted so a 0 bit in the STATUS
+> + * register means the line is asserted and a 1 means it's deasserted. A few
+> + * lines don't though, so store the expected value of the status registers when
+> + * all lines are asserted.
+> + */
+> +static const DECLARE_BITMAP(jh7100_reset_asserted, 4 * 32) = {
+> +       BITMAP_FROM_U64(BIT_ULL_MASK(JH7100_RST_U74) |
+> +                       BIT_ULL_MASK(JH7100_RST_VP6_DRESET) |
+> +                       BIT_ULL_MASK(JH7100_RST_VP6_BRESET) |
+> +                       BIT_ULL_MASK(JH7100_RST_HIFI4_DRESET) |
+> +                       BIT_ULL_MASK(JH7100_RST_HIFI4_BRESET)),
+> +       BITMAP_FROM_U64(BIT_ULL_MASK(JH7100_RST_E24)),
+> +};
+> +
+> +struct jh7100_reset {
+> +       struct reset_controller_dev rcdev;
+> +       /* protect registers against concurrent read-modify-write */
+> +       spinlock_t lock;
+> +       void __iomem *base;
+> +};
+> +
+> +static inline struct jh7100_reset *
+> +jh7100_reset_from(struct reset_controller_dev *rcdev)
+> +{
+> +       return container_of(rcdev, struct jh7100_reset, rcdev);
+> +}
+> +
+> +static int jh7100_reset_update(struct reset_controller_dev *rcdev,
+> +                              unsigned long id, bool assert)
+> +{
+> +       struct jh7100_reset *data = jh7100_reset_from(rcdev);
+> +       unsigned long offset = id / BITS_PER_LONG;
+> +       void __iomem *reg_assert = data->base + JH7100_RESET_ASSERT0 + offset * sizeof(long);
+> +       void __iomem *reg_status = data->base + JH7100_RESET_STATUS0 + offset * sizeof(long);
+> +       unsigned long mask = BIT_MASK(id);
+
+It's better to group offset and mask, so it will give a hint to human
+and compiler that
+'/' + '%' can be optimized to one assembly instructions on some
+architectures (in case of compile-test or new RISC-V types, I dunno if
+they have it now).
+
+And use BIT_WORD() for offset calculation. Same for the above function.
+
+> +       unsigned long done = jh7100_reset_asserted[offset] & mask;
+> +       unsigned long value;
+> +       unsigned long flags;
+> +       int ret;
+> +
+> +       if (!assert)
+> +               done ^= mask;
+> +
+> +       spin_lock_irqsave(&data->lock, flags);
+> +
+> +       value = jh7100_reset_read(reg_assert);
+> +       if (assert)
+> +               value |= mask;
+> +       else
+> +               value &= ~mask;
+> +       jh7100_reset_write(value, reg_assert);
+> +
+> +       /* if the associated clock is gated, deasserting might otherwise hang forever */
+> +       ret = readx_poll_timeout_atomic(jh7100_reset_read, reg_status, value,
+> +                                       (value & mask) == done, 0, 1000);
+> +
+> +       spin_unlock_irqrestore(&data->lock, flags);
+> +       return ret;
+> +}
+> +
+> +static int jh7100_reset_assert(struct reset_controller_dev *rcdev,
+> +                              unsigned long id)
+> +{
+> +       return jh7100_reset_update(rcdev, id, true);
+> +}
+> +
+> +static int jh7100_reset_deassert(struct reset_controller_dev *rcdev,
+> +                                unsigned long id)
+> +{
+> +       return jh7100_reset_update(rcdev, id, false);
+> +}
+> +
+> +static int jh7100_reset_reset(struct reset_controller_dev *rcdev,
+> +                             unsigned long id)
+> +{
+> +       int ret;
+> +
+> +       ret = jh7100_reset_assert(rcdev, id);
+> +       if (ret)
+> +               return ret;
+> +
+> +       return jh7100_reset_deassert(rcdev, id);
+> +}
+> +
+> +static int jh7100_reset_status(struct reset_controller_dev *rcdev,
+> +                              unsigned long id)
+> +{
+> +       struct jh7100_reset *data = jh7100_reset_from(rcdev);
+> +       unsigned long offset = id / BITS_PER_LONG;
+> +       void __iomem *reg_status = data->base + JH7100_RESET_STATUS0 + offset * sizeof(long);
+> +       unsigned long value = jh7100_reset_read(reg_status);
+> +       unsigned long mask = BIT_MASK(id);
+> +
+> +       return !((value ^ jh7100_reset_asserted[offset]) & mask);
+> +}
+> +
+> +static const struct reset_control_ops jh7100_reset_ops = {
+> +       .assert         = jh7100_reset_assert,
+> +       .deassert       = jh7100_reset_deassert,
+> +       .reset          = jh7100_reset_reset,
+> +       .status         = jh7100_reset_status,
+> +};
+> +
+> +static int __init jh7100_reset_probe(struct platform_device *pdev)
+> +{
+> +       struct jh7100_reset *data;
+> +
+> +       data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
+> +       if (!data)
+> +               return -ENOMEM;
+> +
+> +       data->base = devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(data->base))
+> +               return PTR_ERR(data->base);
+> +
+> +       data->rcdev.ops = &jh7100_reset_ops;
+> +       data->rcdev.owner = THIS_MODULE;
+> +       data->rcdev.nr_resets = JH7100_RSTN_END;
+> +       data->rcdev.dev = &pdev->dev;
+> +       data->rcdev.of_node = pdev->dev.of_node;
+> +       spin_lock_init(&data->lock);
+> +
+> +       return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+> +}
+> +
+> +static const struct of_device_id jh7100_reset_dt_ids[] = {
+> +       { .compatible = "starfive,jh7100-reset" },
+> +       { /* sentinel */ }
+> +};
+> +
+> +static struct platform_driver jh7100_reset_driver = {
+> +       .driver = {
+> +               .name = "jh7100-reset",
+> +               .of_match_table = jh7100_reset_dt_ids,
+> +               .suppress_bind_attrs = true,
+> +       },
+> +};
+> +builtin_platform_driver_probe(jh7100_reset_driver, jh7100_reset_probe);
+> --
+> 2.33.1
+>
+
+
 -- 
-2.25.1
-
+With Best Regards,
+Andy Shevchenko
