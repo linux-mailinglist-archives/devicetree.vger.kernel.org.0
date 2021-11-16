@@ -2,87 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CAC8453578
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:15:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34C73453583
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231739AbhKPPSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 10:18:48 -0500
-Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:54721 "EHLO
-        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237900AbhKPPSX (ORCPT
+        id S237855AbhKPPUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 10:20:55 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:29293 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S237778AbhKPPUy (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 10:18:23 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 5B6863200B5E;
-        Tue, 16 Nov 2021 10:15:23 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Tue, 16 Nov 2021 10:15:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
-        D/F/AfKJj86ZhqS1GUEtYPWSp/tbVPMVzBI2O66iYyc=; b=FUB4sSWwRVNqsilb
-        fZmI9XtNqXz6MG87K5hZT/vSZyl516CMOvX5rGBUkHwKAvY+cXy++gFDzK+iu9Dr
-        qPbvrbGtQ+26pybwUzQAt26Hflc2qxjDmKgYvN98ehS3k/uA1su8W145BwGDVCtT
-        xXYL8Wc3HTcxdplWO2rBPZanDLtd4Q9MMtSsSEdZarQq4M3hzhIaCzoBr+HeRQqK
-        TCzFClZ6UK+PVLIr/NOsc/wvX+0/Tdzb9ehU8ykQCW+U7AIu9uiXplrP2MbDFXIU
-        8gF3dXhblWsD7cKx1MbSBT+G6lnCk8QoR9aXsyz3+n8qaignwvD2S6c/ZMiLFl6k
-        AkaIHA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=D/F/AfKJj86ZhqS1GUEtYPWSp/tbVPMVzBI2O66iY
-        yc=; b=B5rq4vkw61plJhKQ7IsSuNdliHQDU18cUTRLmy1U4/um7IyYi7CH+im6x
-        r8VF8mHnzpiW47tYO7KSvhv5KGq9WLQm8eVLcOPTNFUq9heWydcQLNm7gg5npfeb
-        5A2wRnxh+ETZc+BbaU6SvOcRoV5SecJtQ/vgoLBKIg+HbVoougVgGMXNewZktpRN
-        2hp/dcedSdXQqK4hAE2eKK6jGf3Eg2eADwjPRfIklZ4ZWLUBxeQzDpAA2SvlxB1y
-        qlPKB+s5a4CFtFUXrkrQQC2KV3cNMIHfA+YjrZphWp4qFXo5ICFdiusitDjx77OQ
-        kejSkuGAWRVLefuztjjyd+3UKvV/Q==
-X-ME-Sender: <xms:CsuTYR1yW4i08qbJNEs1XGva81QzQtMMDTTaJXgwqjjVjzqXrgX1ow>
-    <xme:CsuTYYHAJ9gIcclcfWoxWa9LuArcyTjzdRsh_WqDOKkOh_5P1etMJuRohOERKU35Y
-    KzqFuSqHFne6Y0-Mbs>
-X-ME-Received: <xmr:CsuTYR41LQycxY82s63jqa9BBMBWrJ-NZ9SXKE0HgOHHQEWshWfQJZf1xH2EbGxw7Ieu7ziPCuuWy8mBVY4hnZQoyr5CJJFEAx8qUHi2>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfedvgdejvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
-    keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:CsuTYe39gw19agJVDDE5nbF69w2M8UIAoo6lsTqfFsBXjDbQlY7ilg>
-    <xmx:CsuTYUHQFTC8HEzMo5Cxh1p41XrTQYAxTzEiLO2TD7I-y3DkZjdrhg>
-    <xmx:CsuTYf-tNu2F60tBb2sW2nMaXgcpbIoxdxx8G2zFhHJnaD9ANEFtxg>
-    <xmx:CsuTYf1sdr4rbAd-v8fiRWNKlrpewoCg5mu8GXkwD2wpaaj5A6sNmA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 16 Nov 2021 10:15:21 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     wens@csie.org, Jernej Skrabec <jernej.skrabec@gmail.com>,
-        mripard@kernel.org
-Cc:     Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Add SPDIF
-Date:   Tue, 16 Nov 2021 16:15:19 +0100
-Message-Id: <163707571157.389306.3979022331947907978.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211115201112.452696-1-jernej.skrabec@gmail.com>
-References: <20211115201112.452696-1-jernej.skrabec@gmail.com>
+        Tue, 16 Nov 2021 10:20:54 -0500
+X-IronPort-AV: E=Sophos;i="5.87,239,1631545200"; 
+   d="scan'208";a="100471786"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 17 Nov 2021 00:17:56 +0900
+Received: from localhost.localdomain (unknown [10.226.92.242])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 6367C40062CC;
+        Wed, 17 Nov 2021 00:17:53 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH 0/5] Add Thermal support for RZ/G2L
+Date:   Tue, 16 Nov 2021 15:17:45 +0000
+Message-Id: <20211116151750.24857-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Nov 2021 21:11:12 +0100, Jernej Skrabec wrote:
-> Tanix TX6 board has SPDIF connector in form of 3.5 mm jack.
-> 
-> Add support for it.
-> 
-> 
+RZ/G2L SoC incorporates a thermal sensor unit (TSU) that measures
+the temperature inside the LSI.
+ 
+The thermal sensor in this unit measures temperatures in the range from
+−40°C to 125°C with an accuracy of ±3°C. The TSU repeats measurement at
+20-µs intervals, and automatically updates the results of measurement.
 
-Applied to sunxi/linux.git (sunxi/dt-for-5.17).
+The TSU has no external pins as well as no interrupts.
 
-Thanks!
-Maxime
+This patch series aims to add TSU driver support for RZ/G2L SoC.
+
+Biju Das (5):
+  clk: renesas: r9a07g044: Add TSU clock and reset entries
+  dt-bindings: thermal: Document Renesas RZ/G2L TSU
+  thermal/drivers: Add TSU driver for RZ/G2L
+  arm64: dts: renesas: r9a07g044: Add TSU node
+  arm64: dts: renesas: r9a07g044: Create thermal zone to support IPA
+
+ .../bindings/thermal/rzg2l-thermal.yaml       |  76 ++++++
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  42 +++
+ drivers/clk/renesas/r9a07g044-cpg.c           |   3 +
+ drivers/thermal/Kconfig                       |   9 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/rzg2l_thermal.c               | 239 ++++++++++++++++++
+ 6 files changed, 370 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
+ create mode 100644 drivers/thermal/rzg2l_thermal.c
+
+-- 
+2.17.1
+
