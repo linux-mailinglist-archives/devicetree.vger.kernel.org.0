@@ -2,179 +2,352 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D37DE453C98
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 00:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0605453CAB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 00:23:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229704AbhKPXPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 18:15:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46904 "EHLO
+        id S232312AbhKPX0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 18:26:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230413AbhKPXPD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 18:15:03 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2146DC061570
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 15:12:06 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id b15so2012524edd.7
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 15:12:06 -0800 (PST)
+        with ESMTP id S232302AbhKPX0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 18:26:22 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DEF5C061746
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 15:23:25 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id j5-20020a17090a318500b001a6c749e697so3119041pjb.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 15:23:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+FOQ/sRLLKL2n8D67xhtne1+6QjN4MmxkGWuAPYSYFU=;
-        b=ZSbtVfyHFNCPojkasx6Tp7Wo3H/ofQiL38o5dRfRNGrRB1kyRN8Vd7Z83qaN7FH/n8
-         bL58fwkkH7Ol/VPda6afFVS6M5W80Ga4tJ6MVNCCRr1z2uSibF/FMjiyBj363LW0HgOi
-         DfWaTzKB2Yt7wlaRD5m4LhklSnIP7m7DxMx2dD4CivyXH2Sz9JBJg0T3NyJwBnNdmUJg
-         2nQYNZjx4m8pXYfv5GNtLbh5MjGgVMxRAHdIu2yQYUuB2Jol1gI5NY5PkcI/o3bJAHKV
-         YuFk6Be73lvUEGF3MW1uFaVnPdcgqMPa+KWvSTe7G7zC+HKhrmce4UG2YeON3EfGaewi
-         GZAg==
+         :cc:content-transfer-encoding;
+        bh=zxTey4bXWx+umOajsjEd+wFlBARgJ1fw718xKlGewME=;
+        b=khMbQcTLL176UaHQQoN33nz+qfqyiiE6fzArLs0h2APd/BiBtAg4qXtlitiUC6oT5f
+         ZBQzNX7qMfWv3uUqt/qR028LjhLXuroa1bY29yRTy/L9TZVktqO0I4vmetajar90SHlw
+         3ZzO/vXBq3tsTvIZYTy36V2nQs8M39JUvP1uqa7QGXXfzwXrryCjPV/LutlJMFY7gPMO
+         xmx4alxBjwLjDzQgDhINKtkf8MOYWt2CdSIoSk7yVkT4WPGS5vHOWXhkij/ZiMF1hUR8
+         7SQk9ZcgIWC3sHwlm7d/WOeD/d1fkMQfoQ1Y4YWABBWiCTmSU3CjdxhrvlXNfJCvvgrg
+         EPHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+FOQ/sRLLKL2n8D67xhtne1+6QjN4MmxkGWuAPYSYFU=;
-        b=UQyFmf9NtUjnphBjTn6gy6qa3bJXALMuzE0lewcnq6i1868WiNTrqGigbtusgkSxXe
-         mCBz/CAmiw8g6ogdQh8XvnDDzRudMgI/BzpF10sxdBGfNY7Lj5N8drxW419bJx5UaWFf
-         Nq6OoRJtYlr/OK/H4ZaNbinuK5S+uOtb9YqhdoF0Xh14gNsU5uK/RNMZJ4iA1qpdjBto
-         LRsam3o0pY1OHARPXz0A0GATsxbblxLFmwikAJTW5JQWa65PjDyXthWMJQ876SniH7SN
-         kJIKe2HMqjPVIgEsCgTmTG51UDIIRVmO5f/P6d5A2lSq1zRabpLtnx9VErGW2aBL5YAc
-         XR6Q==
-X-Gm-Message-State: AOAM532cOxOh8XXg1bQqnxx45w5wdTwaZx/HPm65fRuM22vUqb2J8HBF
-        LeEt4LcK24bUeHDI40zallDoyJYQIXj3JGP22N9EJg==
-X-Google-Smtp-Source: ABdhPJz2wF5JF1ydPJjyqPEwYlCjMltAxHidsQ4cfpYNY8KosRGi6/KK+aEQfERtYk3HS3Fkv18BPluzzYQrew/QaNI=
-X-Received: by 2002:a17:907:2d20:: with SMTP id gs32mr14959055ejc.270.1637104324599;
- Tue, 16 Nov 2021 15:12:04 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=zxTey4bXWx+umOajsjEd+wFlBARgJ1fw718xKlGewME=;
+        b=CDJgqG3Dr1wHUcPixuUXtS+SbewES7/TbFpkIMsk4r3Yod26a2kitSJhS4x1OCGxI6
+         tQk+qaccjw6WyvMwo61SRhWGn9R0nS1JwGn7QNQdBasAPldCruk3GO0s69GRRgUK5BnM
+         uVDRhdQ6KMWWDmePjeEOuIotf9szG+sne1f4BhkI4m+37Xq/4mM+5zxwzl6VX6OpSYC0
+         49KQMzYwyB/Fji4xk9DoNdoi1/g5r5F1GOOPHvc4/ypEN6ujjDuGkYXwIBzOQOnP2Ukv
+         6U6yXEkKWl3cozssFnP3QUMqQGzgmb3FJ5s1Vt4ENw4fwpIVEmjIun2cwhQjsN9x8HjP
+         u+sQ==
+X-Gm-Message-State: AOAM533AD+brxUMdAU+pGAwv35zqrwVHA3VwvWkaqOsFJbwcrdiVvzXn
+        FS5/nOemqLoznoB3l7rbmV8UTucntiesKJ8GxtvVYA==
+X-Google-Smtp-Source: ABdhPJwkH8r6CzV6bw0meyrOKgEahj/nKlvNwR7HOcT6Ca5olMjh9DK15n31Z4qxPSBebnSgnwlQeaVoycjkpSPp/dI=
+X-Received: by 2002:a17:902:7c8a:b0:143:bb4a:7bb3 with SMTP id
+ y10-20020a1709027c8a00b00143bb4a7bb3mr34042567pll.46.1637105004862; Tue, 16
+ Nov 2021 15:23:24 -0800 (PST)
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-6-brad@pensando.io>
- <20211028074945.rv2j5kgzk7yc2srr@mobilestation> <CAK9rFnw396xK+u3qUpgbnGNw7WDJPJm0L3o4nPAcFeqQjBDbXg@mail.gmail.com>
- <20211116112907.lbwdcz5pmgxqzv55@mobilestation>
-In-Reply-To: <20211116112907.lbwdcz5pmgxqzv55@mobilestation>
-From:   Brad Larson <brad@pensando.io>
-Date:   Tue, 16 Nov 2021 15:11:53 -0800
-Message-ID: <CAK9rFny7zQRpvGOVK0+01hKQNu7XCMOz8vTfbHPs6gMR10muDw@mail.gmail.com>
-Subject: Re: [PATCH v3 05/11] spi: dw: Add Pensando Elba SoC SPI Controller bindings
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
+References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+ <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com> <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+In-Reply-To: <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 16 Nov 2021 15:23:13 -0800
+Message-ID: <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Adam Ford <aford173@gmail.com>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
-
-On Tue, Nov 16, 2021 at 3:29 AM Serge Semin <fancer.lancer@gmail.com> wrote:
+On Tue, Nov 9, 2021 at 7:57 AM Nicolas Dufresne <nicolas@ndufresne.ca> wrot=
+e:
 >
-> > > AFAICS from the driver-part of the patchset it's not enough. You've
-> > > also got the syscon phandle, which needs to be reflected in the
-> > > bindings. That also makes me thinking that you didn't perform the
-> > > "dtbs_check" on the dts-files you were going to submit, but for some
-> > > reason discarded from this series (btw why?). If you did you would
-> > > have got an error of an unevaluated property detection.
+> Le lundi 08 novembre 2021 =C3=A0 10:33 -0600, Adam Ford a =C3=A9crit :
+> > On Mon, Nov 8, 2021 at 7:59 AM Nicolas Dufresne <nicolas@ndufresne.ca> =
+wrote:
+> > >
+> > > Hi Adam,
+> > >
+> > > thanks for you work, I'll try and reply  about the GStreamer question=
+s below, if
+> > > you have further question feel free to ask.
+> > >
+> > > Le samedi 06 novembre 2021 =C3=A0 13:37 -0500, Adam Ford a =C3=A9crit=
+ :
+> > > > The i.MX8M has two Hantro video decoders, called G1 and G2 which ap=
+pear
+> > > > to be related to the video decoders used on the i.MX8MQ, but becaus=
+e of
+> > > > how the Mini handles the power domains, the VPU driver does not nee=
+d to
+> > > > handle all the functions, so a new compatible flag is required.
+> > > >
+> > > > This is an RFC because I don't have functional video on my system y=
+et,
+> > > > and I'm hoping there might be people who do and can help test this.
+> > > > I have only tested this far enough to see they enumerate and appear
+> > > > as /dev/videoX and /dev/mediaX devices.
+> > >
+> > > I will check the patchset, but you need in the mini-variant to disabl=
+e the G1
+> > > post processor, because this block was fused out. We didn't make it o=
+ptional
 > >
-> > I ran the checks below and didn't get errors.  Rob provided some info
-> > and I found the server did not have yamllint installed (not flagged by
-> > tool).  Also dt-schema was not the latest.  I'm re-doing this and
-> > including "DT_CHECKER_FLAGS=-m" as that is new with v5.13.
+> > Thanks for being willing to review this.
 > >
+> > > from the start as according to the V1 of the TRM it was there, but th=
+at error
+> > > was corrected in V3.
+> >
+> > Thanks for the clarification.  It wasn't obvious to me, because in
+> > some instances the PP looked like it was there and sometimes not
+> > there.  I'll remove the postproc stuff.
+> >
+> > >
+> > > >
+> > > > I am also curious to know if/what gstreamer plugins are necessary. =
+ In
+> > > > NXP's custom kernel, there are IMX-specific plugins, and I was hopi=
+ng there
+> > > > would be more generic plugins that I can use to test.  I am hoping =
+some
+> > > > of the linux-media experts might chime in on how to best test.
+> > >
+> > > I will recommend using GStreamer 1.19.3 or main branch (GStreamer is =
+now a
+> > > single git repo). You will then be able to test Hantro G1 decoding of=
+ MPEG2,
+> > > H264 and VP8. Remember that the related plugin depends on libgudev (a=
+ glib
+> > > binding of udev).
+> >
+> > Thanks for the tip.
+> >
+> > >
+> > > For the encoder, I believe only JPEG maybe supported, since this is a=
+ll there is
+> > > mainline for RK3288 (and perhaps other RK). But this will need testin=
+g and
+> > > debugging as the G1 version is slightly newer on NXP SoC.
+> >
+> > For what it's worth the G1 seems to repond cleanly to the inquiries
+> > from v42-compliance.
+> > The G2 throws some splat when I run v4l2-compliance, but I am still
+> > investigating that.
+> >
+> > [  405.456979] ------------[ cut here ]------------
+> > [  405.464173] WARNING: CPU: 0 PID: 563 at mm/page_alloc.c:5344
+> > __alloc_pages+0x5a4/0xbe0
+> > [  405.472104] Modules linked in: 8021q garp mrp stp llc caam_jr
+> > caamhash_desc caamalg_desc crypto_engine rng_core authenc libdes
+> > imx7_media_csi(C) crct10dif_ce imx_media_common(C)
+> > snd_soc_fsl_asoc_card imx7_mipi_csis(C) snd_soc_imx_audmux
+> > snd_soc_simple_card_utils fsl_imx8_ddr_perf imx8m_ddrc brcmfmac
+> > brcmutil hantro_vpu(C) v4l2_h264 v4l2_mem2mem videobuf2_vmalloc
+> > videobuf2_dma_contig videobuf2_memops cfg80211 ov5640 videobuf2_v4l2
+> > v4l2_fwnode v4l2_async videobuf2_common videodev etnaviv gpu_sched
+> > hci_uart mc btqca btbcm snd_soc_wm8962 at24 spi_imx rtc_pcf85363
+> > rtc_snvs clk_bd718x7 spi_bitbang snvs_pwrkey snd_soc_fsl_sai
+> > imx_pcm_dma caam error bluetooth imx8mm_thermal ecdh_generic
+> > imx_cpufreq_dt ecc rfkill fuse drm ipv6
+> > [  405.535835] CPU: 0 PID: 563 Comm: v4l2-compliance Tainted: G      D
+> >  C        5.15.0-next-20211105-00010-g4bb8e8a25d3c-dirty #28
+> > [  405.547401] Hardware name: Beacon EmbeddedWorks i.MX8M Mini
+> > Development Kit (DT)
+> > [  405.554797] pstate: 20000005 (nzCv daif -PAN -UAO -TCO -DIT -SSBS BT=
+YPE=3D--)
+> > [  405.561762] pc : __alloc_pages+0x5a4/0xbe0
+> > [  405.565861] lr : __dma_direct_alloc_pages+0x17c/0x1e0
+> > [  405.570917] sp : ffff800012443810
+> > [  405.574232] x29: ffff800012443810 x28: 0000000000000000 x27: ffff000=
+005288220
+> > [  405.581375] x26: 0000000000000034 x25: 0000000000000000 x24: ffff000=
+000259010
+> > [  405.588517] x23: ffff80001011ab7c x22: ffff000000259010 x21: 0000000=
+0ffffffff
+> > [  405.595659] x20: 0000000000000cc1 x19: 0000000000000000 x18: 0000000=
+000000000
+> > [  405.602803] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000=
+000000000
+> > [  405.609947] x14: 0000000000000001 x13: 0000000000000000 x12: 0000000=
+000000000
+> > [  405.617090] x11: ffff80001241d000 x10: ffff00000528833a x9 : ffff000=
+00528832a
+> > [  405.624232] x8 : 0000000000000000 x7 : 0000000000000000 x6 : 0000000=
+000000cc0
+> > [  405.631378] x5 : 00000000bfffffff x4 : ffff000009e30dc0 x3 : 0000000=
+000000000
+> > [  405.638520] x2 : 0000000000000000 x1 : 0000000000000001 x0 : 0000000=
+000000cc1
+> > [  405.645666] Call trace:
+> > [  405.648113]  __alloc_pages+0x5a4/0xbe0
+> > [  405.651862]  __dma_direct_alloc_pages+0x17c/0x1e0
+> > [  405.656569]  dma_direct_alloc+0x70/0x310
+> > [  405.660494]  dma_alloc_attrs+0x7c/0xe4
+> > [  405.664246]  hantro_hevc_get_ref_buf+0x15c/0x184 [hantro_vpu]
+> > [  405.670021]  hantro_g2_hevc_dec_run+0x3b8/0x1910 [hantro_vpu]
+> > [  405.675791]  device_run+0xac/0x110 [hantro_vpu]
+> > [  405.680345]  v4l2_m2m_try_run+0xac/0x1b0 [v4l2_mem2mem]
+> > [  405.685598]  v4l2_m2m_ioctl_streamon+0x84/0xa0 [v4l2_mem2mem]
+> > [  405.691366]  v4l_streamon+0x28/0x34 [videodev]
+> > [  405.695877]  __video_do_ioctl+0x178/0x3dc [videodev]
+> > [  405.700897]  video_usercopy+0x368/0x6dc [videodev]
+> > [  405.705745]  video_ioctl2+0x1c/0x30 [videodev]
+> > [  405.710246]  v4l2_ioctl+0x44/0x64 [videodev]
+> > [  405.714574]  __arm64_sys_ioctl+0xac/0xf0
+> > [  405.718502]  invoke_syscall+0x48/0x114
+> > [  405.722258]  el0_svc_common.constprop.0+0xd4/0xfc
+> > [  405.726969]  do_el0_svc+0x2c/0x94
+> > [  405.730286]  el0_svc+0x28/0x80
+> > [  405.733348]  el0t_64_sync_handler+0xa8/0x130
+> > [  405.737619]  el0t_64_sync+0x1a0/0x1a4
+> > [  405.741287] ---[ end trace 270ed4a899803006 ]---
+> >
+> > The H1 encoder seems to hang the system when I run v4l2-compliance on
+> > it when H1 is set up as I submitted the patch.  I tried dropping all
+> > the encoder formats except the JPEG format, and it doesn't hang any
+> > more, but it also doesn't really do anything.
+> > The datasheet only references VPU_H1 as supporting VP8 and H.264, so I
+> > am not sure JPEG is even supported.
 >
-> > make ARCH=arm64 dtbs_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
-> > make ARCH=arm64 dtbs_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-> > make ARCH=arm64 dtbs_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-> > make ARCH=arm64 dtbs_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > make ARCH=arm64 dtbs_check
-> > DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/pensando,elba.yaml
+> If JPEG is not supported, then there is nothing left for mainline in this
+> regard. The kernel control interface and encoding flow needs to be design=
+ed and
+> specified for encoders like VP8 and H264. Some prototypes and prior-art e=
+xist
+> though, but nothing ever got formalized in the form of a specification.
 >
-> Hmm, that's weird. Rob, does dtschema tool have the
-> "unevaluatedProperties" property support?
+> >
+> > The log from v4l2-compliance on the H1 with everything except the JPEG
+> > removed looks like:
+> >
+> > root@beacon-imx8mm-kit:~# v4l2-compliance -d2
+> > v4l2-compliance SHA: not available
+> > , 64 bits, 64-bit time_t
+> >
+> > Segmentation fault
+> > root@beacon-imx8mm-kit:~#
+> > Message from syslogd@  at Thu Jan  1 00:05:07 1970 ...
+> > : Internal error: Oops: 96000004 [#2] SMP
+> >
+> > Message from syslogd@  at Thu Jan  1 00:05:07 1970 ...
+> > : Code: 52800001 aa1403e0 d2801802 95c31ab9 (b9400aa1)
+> >
+> > I want to install Gstreamer, but I don't have functioning DSI video,
+> > so I am not entirely sure how I will go about testing the decoders
+> > except by using fakesink
 >
-> Brad, anyway you still need to add the syscon-property (pensando,*spics)
-> requirement in the snps,dw-apb-ssi.yaml schema. See the way it's done there
-> for instance for "baikal,bt1-sys-ssi" when it comes to the
-> vendor-specific properties definition in the allOf composition block.
-> You'll need to define a custom phandle property there in case if a
-> DT-node is compatible with you SPI controller.
+> We too don't have an mainline DSI to test the CODECs on recent NXP SoC. F=
+or
+> decoders we use fluster, a tool that runs publicly available conformance =
+test.
+> It will simply decode to disk and compare a checksum of the decoded image
+> against the compliant checksum (produced by the reference decoders). For =
+you
+> interested, it uses the new videocodectestsink, which is specialized for
+> producing or calculating conformance image/checksum.
+>
+> https://github.com/fluendo/fluster
+>
+> We have added support for GStreamer stateless decoders already.
+>
+> >
+> > If the G1 ends up working with some of the newer Gstreamer stuff, I
+> > might just submit a formal patch to just enable the G1 for now.
+>
+> This looks like a good idea indeed.
+>
+> >
+> > adam
+> > >
+> > > >
+> > > > Lastly, I didn't update any device tree binding YAML files, because
+> > > > I know there have been some discussions about the power domains on =
+the
+> > > > imx8mq, and I wasn't sure if the imx8mm should get a separate YAML =
+file
+> > > > or if the existing one for te imx8mq should just be modified.
+> > > >
+> > > > This will likely require the following series in order to apply cor=
+rectly:
+> > > > https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=
+=3D576407
+> > > >
+> > > > Adam Ford (5):
+> > > >   media: hantro: Add support for i.MX8M Mini
+> > > >   arm64: dts: imx8mm:  Enable VPU-G1 and VPU-G2
+> > > >   media: hantro: Rename ROCKCHIP_VPU_ENC_FMT to HANTRO_VPU_ENC_FMT
+> > > >   media: hantro: Add H1 encoder support on i.MX8M Mini
+> > > >   arm64: dts: imx8mm:  Enable Hantro H1 Encoder
+> > > >
+> > > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  61 ++++++++
+> > > >  drivers/staging/media/hantro/hantro_drv.c     |   3 +
+> > > >  drivers/staging/media/hantro/hantro_hw.h      |  19 ++-
+> > > >  drivers/staging/media/hantro/imx8m_vpu_hw.c   | 143 ++++++++++++++=
+++++
+> > > >  .../staging/media/hantro/rockchip_vpu_hw.c    |  26 ++--
+> > > >  5 files changed, 231 insertions(+), 21 deletions(-)
+> > > >
+> > >
+>
 
-Updating and adding only this bindings update to file
-snps,dw-apb-ssi.yaml in 5.16.0-rc1 (next-20211116):
+Nicolas and Adam,
 
-diff --git a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-index d7e08b03e204..99deb587a47b 100644
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -37,6 +37,21 @@ allOf:
-     else:
-       required:
-         - interrupts
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - pensando,elba-spics
-+    then:
-+      properties:
-+        pensando,spics:
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+          description:
-+            Phandle to the system control device node which provides access to
-+            the spics control register
-+      required:
-+        - pensando,spics
+For the H1 patches in this series: I've been able to test the IMX8MM
+H1 JPEG encode using GStreamer 1.18.5:
+$ gst-inspect-1.0 | grep -e "v4l2.*enc"
+video4linux2:  v4l2jpegenc: V4L2 JPEG Encoder
+$ gst-launch-1.0 videotestsrc ! jpegenc ! rtpjpegpay ! udpsink
+host=3D192.168.1.146 port=3D5000
+viewed on client@192.168.1.146 via:
+$ gst-launch-1.0 udpsrc port=3D5000 ! application/x-rtp,payload=3D96 !
+rtpjpegdepay ! jpegdec ! autovideosink
 
- properties:
-   compatible:
-@@ -73,6 +88,8 @@ properties:
-               - renesas,r9a06g032-spi # RZ/N1D
-               - renesas,r9a06g033-spi # RZ/N1S
-           - const: renesas,rzn1-spi   # RZ/N1
-+      - description: Pensando Elba SoC SPI Controller
-+        const: pensando,elba-spics
+For the G1/G2 patches in the series I don't see any Gstreamer
+'v4l2.*dec' elements. Perhaps I need a newer version of Gstreamer.
 
-   reg:
-     minItems: 1
+I have CSI capture and DSI display currently working on
+imx8mm-venice-gw73xx-0x that I can play with. The CSI sensor only
+supports RAW8/RAW10 (and gstreamer currently only supports RAW8) and I
+can't efficiently convert to something the JPEG encoder likes without
+bayer2rgbneon (a libneon version).
 
-$ make ARCH=arm64 defconfig
-...
+I see from the IMX8MMRM that the 2D GPU supports scaling etc with a
+wide range of data formats but I'm not sure how to tap into this as
+that hardware is managed by the vivante driver. On the IMX6QDL there
+is a separate IPU block that Philipp Zabel wrote a nice mem2mem
+csc/scaler driver for but I don't see any equivalent currently for
+IMX8MM.
 
-$ make DT_CHECKER_FLAGS=-m dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-...
-  DTEX    Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.example.dts
-  DTC     Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.example.dt.yaml
-  CHECK   Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.example.dt.yaml
-Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.example.dt.yaml:0:0:
-/example-0/spi@fff00000/flash@1: failed to match any schema with
-compatible: ['spi-nand']
+Best regards,
 
-The spi-nand schema match failure happens before I make any change.
-The tool also throws errors for these files which are unrelated
-
-Documentation/devicetree/bindings/net/qcom,ipa.yaml: ignoring, error
-in schema: properties: qcom,smem-state-names
-Documentation/devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml:
-ignoring, error in schema: patternProperties: ^filter@[0-9]+$:
-properties: st,adc-channel-names
-Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml:
-ignoring, error in schema: properties: qcom,bcm-voter-names
-
-Thanks,
-Brad
+Tim
