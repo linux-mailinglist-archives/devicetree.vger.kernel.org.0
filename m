@@ -2,132 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F8D0452E0A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 10:32:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC879452E18
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 10:34:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233188AbhKPJfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 04:35:00 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:54212
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233127AbhKPJe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 04:34:58 -0500
-Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 67A773F32D
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 09:32:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637055120;
-        bh=ehnfGawteeyhlUwbu9+j2LLxbkkJ0pH25hQdNnnLslo=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=NkF+4eN3useUEmAi9ecSikJGhKCsE0fGJEdo2mq2EoZml1cr48d/afa1K5saYBtij
-         ugaIRKmlPS5Qw5XQHBXquHXoGfRlOzEjB8X66IHJNPpmvw5PoEkNvL+wVB234xaDMR
-         9VG8MoGZAKuFvYx1ii5kP14LVKEiduJZViEjWM/IbZdW2wiSo0sX8oe2VTKuL9WUru
-         tC3X0P/WWLcO9KAmDxXYnatV3wd1eRe0Ec2fEaDAlKsEXawGE49dUXA1/VgWIY1Z8p
-         esuCFW5DZiE7/4x17/bZecbOXF68klj72OmXaMpzoLuza0iDNyPSyVyenXTwrlBsJ5
-         iifHBr025pdcA==
-Received: by mail-lf1-f72.google.com with SMTP id i1-20020a056512318100b003ffd4e89eb9so7903441lfe.19
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 01:32:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ehnfGawteeyhlUwbu9+j2LLxbkkJ0pH25hQdNnnLslo=;
-        b=hSDHu8u9y4JhkEcKjPOdfzrp3w3rI9g1ztDRz4Tr8z4Aca2gYDSNjLJCKD+/9GoA/5
-         qxLACR1UTZUcxDmGMSl6KCqr+zJzUscGp/fhSC2rrWg7ZK+MsU3pVY5yuosa+a/JGRnH
-         byBO4h9+Unypqh415nNFGpHKw69Sc4Dp2eiX7RhdMK51ylMER5EcxIm7GweUK68fMOPP
-         hXgWryyk4PvsLqVV1SPL/S3CxOZSIONVT/jWWhNh/o3SvfcN8MYWZyClOaVz1xYBC2Zu
-         qkIkdpt8RvvYARlWNXaPLCAktyZYuxdAap8X08oDG+GrlbTCtLkV/rNm9cchqqfyeaT2
-         2agA==
-X-Gm-Message-State: AOAM5317AZJ96ngVmwfg9A9Ef/Ce83x9OPfgsXZ5JNOoIwmQ460zB0IY
-        fVDF1DWMNjkSsVezkGVTMfKbLepWv29PZKw9k9DP0OShM9OEYC6OJ+7ILQwbSJbpE0OKclco9d/
-        Mk0PUgF9w5oytKEJBbvjiQMgSMc5rOaE4SnNk3lk=
-X-Received: by 2002:ac2:442c:: with SMTP id w12mr5361245lfl.554.1637055119888;
-        Tue, 16 Nov 2021 01:31:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyoIFJgoO9BfuRzytBejWadPiMEkn9NfvQz8Vj7Ew//pbJ/BmzZR3GbXzbPFtW40CFEKz2ing==
-X-Received: by 2002:ac2:442c:: with SMTP id w12mr5361225lfl.554.1637055119702;
-        Tue, 16 Nov 2021 01:31:59 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id a7sm1702229lfi.149.2021.11.16.01.31.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 16 Nov 2021 01:31:59 -0800 (PST)
-Message-ID: <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
-Date:   Tue, 16 Nov 2021 10:31:58 +0100
+        id S233121AbhKPJhL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 04:37:11 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:42090 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S233267AbhKPJgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 04:36:53 -0500
+X-UUID: 04329e55bd3541b3b2a8b663cb736d41-20211116
+X-UUID: 04329e55bd3541b3b2a8b663cb736d41-20211116
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <trevor.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1937280426; Tue, 16 Nov 2021 17:33:49 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 16 Nov 2021 17:33:48 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 16 Nov
+ 2021 17:33:48 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 16 Nov 2021 17:33:48 +0800
+Message-ID: <f915d1090abf2b6d188ce27068919a181828e463.camel@mediatek.com>
+Subject: Re: [PATCH 3/4] ASoC: mediatek: mt8195: separate the common code
+ from machine driver
+From:   Trevor Wu <trevor.wu@mediatek.com>
+To:     YC Hung <yc.hung@mediatek.com>, Mark Brown <broonie@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <tiwai@suse.com>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <matthias.bgg@gmail.com>, <daniel.baluta@nxp.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 16 Nov 2021 17:33:48 +0800
+In-Reply-To: <4e876c89ee58cd1408511a34573005e3df359cd0.camel@mediatek.com>
+References: <20211103100040.11933-1-trevor.wu@mediatek.com>
+         <20211103100040.11933-4-trevor.wu@mediatek.com>
+         <YYP+l7tMofYoB+aC@sirena.org.uk>
+         <b4360ea17c3045759e85ee13fa9c001afe73c93c.camel@mediatek.com>
+         <YYVQC7KLZx8oxdXT@sirena.org.uk>
+         <e404d241-0685-643b-4b9d-d85bb8783385@linux.intel.com>
+         <YYVez/V9ocCXhYmg@sirena.org.uk>
+         <4e876c89ee58cd1408511a34573005e3df359cd0.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
-Content-Language: en-US
-To:     Chanho Park <chanho61.park@samsung.com>,
-        'Sam Protsenko' <semen.protsenko@linaro.org>,
-        'Jaewon Kim' <jaewon02.kim@samsung.com>
-Cc:     'Wolfram Sang' <wsa@kernel.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
- <20211112010137.149174-1-jaewon02.kim@samsung.com>
- <20211112010137.149174-3-jaewon02.kim@samsung.com>
- <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
- <001401d7da86$f7ebd660$e7c38320$@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <001401d7da86$f7ebd660$e7c38320$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2021 02:12, Chanho Park wrote:
->> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
->> from my side (just a food for thought): do we want to configure USI
->> related config inside of particular drivers (SPI, I2C, UART)? Or it would
->> be better design to implement some platform driver for that, so we can
->> choose USI configuration (SPI/I2C/UART) in device tree? I think this
->> series is good to be merged as is, but we should probably consider all
->> upsides and downsides of each option, for the future work.
+On Mon, 2021-11-08 at 17:40 +0800, YC Hung wrote:
+> Hi Mark,
 > 
-> I'm also considering how to support this USI configuration gracefully.
-> Current version of USI is v2 which means there is a v1 version as well. It might be a non-upstream SoC so we don't need to consider it so far.
-> But, there is a possibility that the USI hw version can be bumped for future SoCs.
+> I am YC Hung from Mediatek. Let me show our block diagram as the link
+> below for the sound card which support SOF.
 > 
-> As you probably know, earlier version of the product kernel has a USI SoC driver[1] and it was designed to be configured the USI settings by device tree.
 > 
-> Option1) Make a USI driver under soc/samsung/ like [1].
-> Option2) Use more generic driver such as "reset driver"? This might be required to extend the reset core driver.
-> Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respectively and expose some configurations which can be variable as device tree.
+https://user-images.githubusercontent.com/62316/132476344-923dfe3a-5305-43e5-9fc8-c63d9ab2c58f.png
+> In this sound card, there are two components , one is SOF based
+> component and another is non-SOF based component(called Normal in the
+> block).
+> We want to reuse some BEs of Normal which can control Mediatek Audio
+> Front End hardware power, clock , and DAI module and still keep some
+> FEs(e.g. DPTX) then we can use it on the same sound card.
+> Therefore, we use late_probe callback function
+> "mt8195_mt6359_rt1019_rt5682_card_late_probe" to add route path from
+> SOF widget to non-SOF BEs.
+> For two patches https://github.com/thesofproject/linux/pull/3217 and 
+> https://github.com/thesofproject/linux/pull/3236, we want to keep FEs
+> of non-SOF components and can reuse them. Please let me know if I am
+> not clear enough.Thanks.
 > 
-> [1]: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi_v2.c
+> On Fri, 2021-11-05 at 16:41 +0000, Mark Brown wrote:
+> > On Fri, Nov 05, 2021 at 11:16:05AM -0500, Pierre-Louis Bossart
+> > wrote:
+> > > On 11/5/21 10:38 AM, Mark Brown wrote:
+> > > > We shouldn't be requiring people to load completely different
+> > > > drivers
+> > > > based on software configuration, what if a system wants to
+> > > > bypass
+> > > > the
+> > > > DSP in some but not all configurations?  Can we not just have
+> > > > controls
+> > > > allowing users to route round the DSP where appropriate?
+> > > 
+> > > It was my understanding the card relies on separate components
+> > > - a SOF-based component to provide support for DSP-managed
+> > > interfaces
+> > > - a 'non-SOF' component for 'regular' interfaces not handled by
+> > > the
+> > > DSP.
+> > > this was the basis for the changes discussed in
+> > > https://github.com/thesofproject/linux/pull/3217 and
+> > > https://github.com/thesofproject/linux/pull/3236
+> > 
+> > So it's actually supposed to end up as two different cards which
+> > can't
+> > possibly be interlinked?  That doesn't seem to add up entirely
+> > given
+> > that there's stuff being moved out of the current card, and I
+> > thought
+> > these systems had a fairly comprehensive audio muxing capability.
+> > Trevor, could you be a bit more specific about what's actually
+> > going
+> > on
+> > here physically please?+++++++++
+> > 
 
-I don't have user manuals, so all my knowledge here is based on
-Exynos9825 vendor source code, therefore it is quite limited. In
-devicetree the USI devices have their own nodes - but does it mean it's
-separate SFR range dedicated to USI? Looks like that, especially that
-address space is just for one register (4 bytes).
+Hi Mark,
 
-In such case having separate dedicated driver makes sense and you would
-only have to care about driver ordering (e.g. via device links or phandles).
+Is the reply from YC clear? Any suggestion would be appreciated. If you
+need more information, please let us know. 
 
-Option 2 looks interesting - reusing reset framework to set proper USI
-mode, however this looks more like a hack. As you said Chanho, if there
-is a USI version 3, this reset framework might not be sufficient.
+Additionally, it was my understanding you suggested that DSP routes
+should be configurable in some ways, and we should not just add a new
+driver for SOF in case we need to support some other interface
+combinations in the future. If I'm wrong, please kindly correct me.
 
-In option 3 each driver (UART/I2C/SPI) would need to receive second IO
-range and toggle some registers, which could be done via shared
-function. If USI v3 is coming, all such drivers could get more complicated.
+Thanks,
+Trevor
 
-I think option 1 is the cleanest and extendable in future. It's easy to
-add usi-v3 or whatever without modifying the UART/I2C/SPI drivers. It
-also nicely encapsulates USI-related stuff in separate driver. Probe
-ordering should not be a problem now.
 
-But as I said, I don't have even the big picture here, so I rely on your
-opinions more.
-
-Best regards,
-Krzysztof
