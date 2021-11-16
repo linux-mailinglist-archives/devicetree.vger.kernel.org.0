@@ -2,133 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D639E4531D0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 13:08:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F8B453211
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 13:24:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235953AbhKPMLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 07:11:03 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:4099 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235964AbhKPMJn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 07:09:43 -0500
-Received: from fraeml741-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4HtlCZ3mXzz67bJm;
-        Tue, 16 Nov 2021 20:06:34 +0800 (CST)
-Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
- fraeml741-chm.china.huawei.com (10.206.15.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 16 Nov 2021 13:06:41 +0100
-Received: from [10.47.82.31] (10.47.82.31) by lhreml724-chm.china.huawei.com
- (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2308.20; Tue, 16 Nov
- 2021 12:06:40 +0000
-Subject: Re: [PATCH 2/2] perf/smmuv3: Add devicetree support
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-        <robin.murphy@arm.com>, <iommu@lists.linux-foundation.org>,
-        <uchida.jun@socionext.com>, <leo.yan@linaro.org>,
-        <will@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
-References: <20211116113536.69758-1-jean-philippe@linaro.org>
- <20211116113536.69758-3-jean-philippe@linaro.org>
-From:   John Garry <john.garry@huawei.com>
-Message-ID: <0f410098-2a58-9024-9fe4-77fb54b2a076@huawei.com>
-Date:   Tue, 16 Nov 2021 12:06:36 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+        id S235759AbhKPM1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 07:27:17 -0500
+Received: from mail-lj1-f172.google.com ([209.85.208.172]:47074 "EHLO
+        mail-lj1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235642AbhKPM1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 07:27:12 -0500
+Received: by mail-lj1-f172.google.com with SMTP id e11so42792245ljo.13;
+        Tue, 16 Nov 2021 04:24:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=nwXPLfuXNs4r/4M323hMt8HZvJdI500wmNneRu9EdJs=;
+        b=3kfQ0CaOwTOsttqbVu4HxRuDStQgYWbxZ2k+1Bj5FFpx9hSzYoYbT8IgElA6YdI5AD
+         wThtyAqqiyTbB3ctQys46RS+HiKnAPEOI4XzVs/Na3ptjqVkuNjA5xqkd2G1NeFEqeFk
+         l8JLpuwSweepax/kR+eyFnG+eQaVvBXBOjSPKcrwZ+S6ZOGz6qtVuDR18Nk+/EulR5M8
+         Y4xpz/Hh4uuaNziNB7kckAmnKrShweJSmbX9oS9uzbVzMB3VQKpJrVU0rf12X4MrwMBM
+         nOYmXncsfDTRcl6GPeTOAAC9ayyg2Kezj6SLtYTeDKOukG7C/xu2mv6/btyKdOY0E0H0
+         ruWA==
+X-Gm-Message-State: AOAM532xXW3neaZR846bmQEijeBBtXqCKo3si6Y06/Tut5BLwRv5IE29
+        Ga22S/Pxn/zRS3sNw0oARJk=
+X-Google-Smtp-Source: ABdhPJxeOb8ZhaC7ZWfhkLirFwlmLfcypzLHupToDHjHuAXtZbFv2xGNAzxsogSAOyOeHTXSPitRVQ==
+X-Received: by 2002:a05:651c:54d:: with SMTP id q13mr6685924ljp.498.1637065454297;
+        Tue, 16 Nov 2021 04:24:14 -0800 (PST)
+Received: from fedora (dc73szyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16ee:fa00::4])
+        by smtp.gmail.com with ESMTPSA id o1sm1822192ljg.130.2021.11.16.04.24.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 04:24:13 -0800 (PST)
+Date:   Tue, 16 Nov 2021 14:24:06 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>, rostokus@gmail.com,
+        fan.chen@mediatek.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: [RFC PATCH v3 0/9] power: supply: Add some fuel-gauge logic
+Message-ID: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <20211116113536.69758-3-jean-philippe@linaro.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.82.31]
-X-ClientProxiedBy: lhreml706-chm.china.huawei.com (10.201.108.55) To
- lhreml724-chm.china.huawei.com (10.201.108.75)
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="HOenYRA7r8rtk9BF"
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2021 11:35, Jean-Philippe Brucker wrote:
-> Add device-tree support to the SMMUv3 PMCG.  One small cosmetic change
-> while factoring the option mask printout: don't display it when zero, it
-> only contains one erratum at the moment.
-> 
-> Signed-off-by: Jay Chen <jkchen@linux.alibaba.com>
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> ---
->   drivers/perf/arm_smmuv3_pmu.c | 25 +++++++++++++++++++++++--
->   1 file changed, 23 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/perf/arm_smmuv3_pmu.c b/drivers/perf/arm_smmuv3_pmu.c
-> index 226348822ab3..958325ac103a 100644
-> --- a/drivers/perf/arm_smmuv3_pmu.c
-> +++ b/drivers/perf/arm_smmuv3_pmu.c
-> @@ -47,6 +47,7 @@
->   #include <linux/kernel.h>
->   #include <linux/list.h>
->   #include <linux/msi.h>
-> +#include <linux/of.h>
->   #include <linux/perf_event.h>
->   #include <linux/platform_device.h>
->   #include <linux/smp.h>
-> @@ -750,8 +751,15 @@ static void smmu_pmu_get_acpi_options(struct smmu_pmu *smmu_pmu)
->   		smmu_pmu->options |= SMMU_PMCG_EVCNTR_RDONLY;
->   		break;
->   	}
-> +}
-> +
-> +static void smmu_pmu_get_of_options(struct smmu_pmu *smmu_pmu)
-> +{
-> +	struct device_node *node = smmu_pmu->dev->of_node;
->   
-> -	dev_notice(smmu_pmu->dev, "option mask 0x%x\n", smmu_pmu->options);
-> +	if (of_device_is_compatible(node, "hisilicon,smmu-v3-pmcg-hip08"))
 
-I don't think that this is necessary. We don't support DT for hip08, nor 
-have any plans to. Incidentally, was this binding missing in your series?
+--HOenYRA7r8rtk9BF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-John
+As usual, I picked you as recipients just because I assumed
+you could have something to say in here. Again, please let me know
+if you wish to be dropped from CC if this gets any further.
 
-> +		/* HiSilicon Erratum 162001800 */
-> +		smmu_pmu->options |= SMMU_PMCG_EVCNTR_RDONLY;
->   }
->   
->   static int smmu_pmu_probe(struct platform_device *pdev)
-> @@ -834,7 +842,13 @@ static int smmu_pmu_probe(struct platform_device *pdev)
->   		return -EINVAL;
->   	}
->   
-> -	smmu_pmu_get_acpi_options(smmu_pmu);
-> +	if (dev->of_node)
-> +		smmu_pmu_get_of_options(smmu_pmu);
-> +	else
-> +		smmu_pmu_get_acpi_options(smmu_pmu);
-> +
-> +	if (smmu_pmu->options)
-> +		dev_notice(dev, "option mask 0x%x\n", smmu_pmu->options);
->   
->   	/* Pick one CPU to be the preferred one to use */
->   	smmu_pmu->on_cpu = raw_smp_processor_id();
-> @@ -884,10 +898,17 @@ static void smmu_pmu_shutdown(struct platform_device *pdev)
->   	smmu_pmu_disable(&smmu_pmu->pmu);
->   }
->   
-> +static const struct of_device_id arm_smmu_pmu_match[] = {
-> +	{ .compatible = "arm,smmu-v3-pmcg" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, arm_smmu_pmu_match);
-> +
->   static struct platform_driver smmu_pmu_driver = {
->   	.driver = {
->   		.name = "arm-smmu-v3-pmcg",
->   		.suppress_bind_attrs = true,
-> +		.of_match_table = of_match_ptr(arm_smmu_pmu_match),
->   	},
->   	.probe = smmu_pmu_probe,
->   	.remove = smmu_pmu_remove,
-> 
+power: supply: add simple-gauge for SOC estimation and CC correction
 
+This RFC has received some testing under qemu, with recorded
+battery-data and a dummy MFD driver converting the battery-data to
+register-values for BD71815 PMIC driver. The testing has not really
+covered a lot though. Some tests are also ran on a BeagleBoneBlack
+connected to a real PMIC hwrdware - but unfortunately without a real
+battery. So - this is still not tested too well.
+
+Regarding the purpose of this RFC:
+
+Patches 1 - 6
+I hope that the patches which change the power-supply class for static
+battery node information  could be properly reviewed and perhaps even
+considered to be merged upstream. It'd be great if someone had the time
+to test those in real HW to ensure existing stuff is not borked.
+Especially the patches 4 and 6 might be of interest.
+
+The patch 7:
+This adds some simple fuel-gauge logic in kernel. I think this is
+getting it's shape - but may have few hiccups left - and could benefit
+=66rom suggestions how to run the gauge thread. A few downstream setups do
+use separate ROHM drivers for BD71815, BD71817, BD71827, BD71828 and
+BD71879 which all contain similar fuel-gauge logic to what is implented
+in simple-gauge. They poll the PMIC and compute the temperature/capacity
+and zero-corrected "state of charge" and report that to the user-space.
+Additionally those drivers 'calibrate' the CC based on OCV when battery
+is relaxed - or when battery is fully charged. The patch 7 attempts to
+make this logic generic and allows IC drivers to fill the IC specific
+operations.
+
+It is fair to say that I don't know the user-space software which is
+utilizing the existing drivers - or why the SoC computation is
+originally placed in-kernel. I can only assume the existing IC users
+might have a bit wider smile if the SOC was reported by the kernel also
+in the future.
+
+Patches 8 and 9:
+The patches 8 and 9 bring in IC level support for ROHM BD71815 and BD71828
+PMIC charger IPs. It is also fairly trivial to extend the support to
+ND71827 and BD71879 later. The state of these patches is not final yet,
+I don't expect them to be thoroughly reviewed yet. They are provided to
+give some more context.
+
+Changelog RFC v3:
+  - rename sw-gauge to simple-gauge
+  batinfo:
+     - kerneldoc fixes
+     - add batinfo getters usable prior supply registration
+     - Add constant battery aging degradation to batinfo
+  simple-gauge:
+      - use devm_add_action_or_reset
+      - Rename to simple_gauge
+      - Limit access to power_supply parameters
+      - Introduce simple_gauge_drvdata
+      - no need to show simple_gauge at config menu. Users should just SELE=
+CT it.
+      - allow tristate
+      - Add blocking 'iteration run' - loop.
+      - updated the comment section
+      - Fixed clamped SOC which was not updated
+      - Small comment improvements
+      - Don't allow negative CC after computing capacity corrections
+      - Fix gauge looping when last client exits
+ ROHM ic-drivers:
+      - Updated BD71815 IRQ information
+      - adapt to simple_gauge parameter changes
+      - Initial BD71815 support
+      - Use drvdata properly.
+      - Sort includes
+      - Prepare to provide dcin_collapse voltage from DT
+      - clean unused defines
+      - use OCV tables from batinfo if module params not given
+      - do not directly call bd71827_voltage_to_capacity from calibration
+        but use provided operation.
+      - Mask the power-state from relax-condition on BD71815 as is done by
+        the ROHM driver. REX state is used to do OCV =3D> SOC conversion
+        when battery is relaxed even if REX_CC was not used.
+      - Clarify that we require either the module params or DT values for
+        battery. Fail probe if parameters are not given.
+      - Utilize degrade_cycle_uah aging degradation.
+      - Get battery max and min values either as module parameters or from
+        static battery node at DT.
+      - Allow giving the zero correction threshold as a module param or
+        compute it as 10% of "remaining battery voltage" based on max and
+        min voltages given via DT.
+      - Add proper MODULE_ALIAS
+      - Implement VDR table reading from DT
+      - Do not require fixed amount of battery parameters
+      - Fix Coulomb Counter to uAh conversion
+      - Fix endianess related warnings
+      - clean-up comment
+      - Avoid dividing by zero at VDR computation
+      - Use the fwnode API instead of of_* API
+      . don't assume 32bit int
+      - Fix IC type prints
+      - Fix the current sense resistor DT property *-ohm =3D> *-ohms
+
+Changelog RFC v2:
+ - lots of logic fixes.
+ - rechecked units
+ - changed low-voltage correction to capacity correction
+ - added first draft of IC driver which could use the swgauge
+
+---
+
+Matti Vaittinen (9):
+  dt-bindings: battery: Add temperature-capacity degradation table
+  power: supply: add cap2ocv batinfo helper
+  power: supply: Support DT originated temperature-capacity tables
+  power: supply: Add batinfo getters usable prior supply registration
+  power: supply: Add constant battery aging degradation to batinfo
+  power: supply: Add batinfo functions for OCV to SOC with 0.1% accuracy
+  power: supply: add simple-gauge for SOC estimation and CC correction
+  mfd: bd71828, bd71815 prepare for power-supply support
+  power: supply: Add bd718(15/27/28/78) charger driver
+
+ .../bindings/power/supply/battery.yaml        |   19 +
+ drivers/mfd/rohm-bd71828.c                    |   42 +-
+ drivers/power/supply/Kconfig                  |   14 +
+ drivers/power/supply/Makefile                 |    2 +
+ drivers/power/supply/bd71827-power.c          | 2473 +++++++++++++++++
+ drivers/power/supply/power_supply_core.c      |  449 ++-
+ drivers/power/supply/simple-gauge.c           | 1303 +++++++++
+ include/linux/mfd/rohm-bd71827.h              |  295 ++
+ include/linux/mfd/rohm-bd71828.h              |   65 +
+ include/linux/mfd/rohm-generic.h              |    2 +
+ include/linux/power/simple_gauge.h            |  244 ++
+ include/linux/power_supply.h                  |   41 +
+ 12 files changed, 4843 insertions(+), 106 deletions(-)
+ create mode 100644 drivers/power/supply/bd71827-power.c
+ create mode 100644 drivers/power/supply/simple-gauge.c
+ create mode 100644 include/linux/mfd/rohm-bd71827.h
+ create mode 100644 include/linux/power/simple_gauge.h
+
+--=20
+2.31.1
+
+
+--=20
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =3D]=20
+
+--HOenYRA7r8rtk9BF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmGTos8ACgkQeFA3/03a
+ocXImAgAnxiVYJM0qSBRFNkSeBT3fSVTqeD8jkry5KgUJHj8UXrUyBszpxgkdunW
+652pADFgox2nc1z5ZSA4tpYV2KuArQchQOBw2joFmGIfPbS7IKiJrN/V5IPvIzlZ
+i/BCGYP6J3RR7M14GZMiOn5SI/sJFXwcwnvF8OkcYTto1AbzknLbMXhaLJ7xRdOK
+5n9QXXRa0IZ6dgO30Hp5m12yi9aFmMjivDtt4StE0bEhz7aamsQTZTGUA5nFLpHe
+QGHeafqTNLrWBtdQ9e5bwMH6PSU4d09IKkgxsyC11tBeYD6lsXC3S68Ozi5JHtmN
+TUMENyxRd8ZaQ6WqTpMNk1eZim2Ikw==
+=2+sv
+-----END PGP SIGNATURE-----
+
+--HOenYRA7r8rtk9BF--
