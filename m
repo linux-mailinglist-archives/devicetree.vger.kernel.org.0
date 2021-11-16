@@ -2,113 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEDAC453636
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:43:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D88145363A
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:44:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238563AbhKPPqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 10:46:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56926 "EHLO
+        id S238393AbhKPPqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 10:46:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238489AbhKPPpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:45:53 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD61C0613B9
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:55 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id u1so38439940wru.13
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:55 -0800 (PST)
+        with ESMTP id S238507AbhKPPqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:46:33 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601CBC061207
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:43:35 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id b15so89472315edd.7
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:43:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=73W+eAVWIQvhx1y8meb9GkMNaweSrLQquuQCwdCLdlM=;
-        b=tTBwR2mJVmrbw05vqMoeWpcPdynH5H7MFpf8U/8M6xAuOKKys74i66yvqrb7RY9j0c
-         IF7HThF8ogn4WMAQ2xF+1XUR3nF9pRF3mx0z2644qRJ7JqOfW6pNG37Q9MmrhI64L7/1
-         5nOS7Oai+JmTOPLteY90Q5vXTUc4E5uPgv8E4k2vUNWeZsmPs0teGgIiDewfWs5w4at1
-         9n/BphIsJYboNZAdn4C2ib8Iq2I9IsT8rcjRiAnWuP9K2N878bsWMD0CHAaOBnNdWTa+
-         gIcE9MJLWh1bZas0FX7UDx98TnKHEubMHnpcccJbOTSC1wZCrqjXVnETxhBquCaynfdY
-         zQnQ==
+        bh=5aVRsL9BgtWuBmT3ahZ2vhpwBbSn39kzECaSNgBwqKw=;
+        b=c6X7kn2AIS1OZtKHSE0inktLzjU5KSCa/Nb8TqkJsa/pBXkM5v+Fv/W7SlBRWYzds4
+         1OzuvsxfGBXNrAwZxTi1zPS99/9Y1OYaabugz6BcFZOOEUUorUxA7SxLfFB/5BBalCNU
+         K5TvJd6/5TqQUzxYnlL05T/iQvSBoJT+Jgh/IGk1avf9+lfx5qR/OlqwUSkhKJcz/V1J
+         NAdvpIOtwxQqD/7L1Z1LFEJEFU198X5LZYl/P101uGbR2oOAGeZOOIKFYoDgazHnmzfq
+         3A12fIy/lPG7KwUNztHd34ZiPgZKPpUCtd7iwyc5a5x2FBqFiOyYQsDizIi+BPVuXPg4
+         DMfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=73W+eAVWIQvhx1y8meb9GkMNaweSrLQquuQCwdCLdlM=;
-        b=wzgTX+hnnqOl7A51Io+HNugF7fO5Ih6MMvdl7RXjtNdqf8th6ah3NUtD+O7gDqJNrR
-         DLW00xRf6hHXSuEKL4bAyVCUQHNrg28p5qRlh1D4CQ0i0d9WCxXAfDlHJpYZy2ZQEujH
-         PBRG8X7HtIItu/2IDobaHafcF138GKk8k0AQevsbeXGWue9WKB//p3vN1v6hd2XQsTfJ
-         4/7bIOr7I+7roVe38QKOoo56pyC/lz4CdIxYQ1seWk6ytT7+xbo8n7mK2EsIKhKXijQ2
-         g7mf0gQ7AQbaDpWnbe6tmiNMVxGK5B0KXparbT+krWK6wJjD738+yK1Z5EIC9/vktz+y
-         uPbQ==
-X-Gm-Message-State: AOAM531S/hXhsUx8W7AsxI6NfoIORoVaW8V9eWQsuXx/uZ+HHtXc6khw
-        O9Uluuvj3dc7mSNS8vlRdf4sIA==
-X-Google-Smtp-Source: ABdhPJyKqFpr5MW3WSKHEzdeBo0mZSQini6a3jugtcFq28ioUcWTEOtVBpkQKMt1YvUY/9Jb3SJZlw==
-X-Received: by 2002:a05:6000:1201:: with SMTP id e1mr10350062wrx.298.1637077373724;
-        Tue, 16 Nov 2021 07:42:53 -0800 (PST)
+        bh=5aVRsL9BgtWuBmT3ahZ2vhpwBbSn39kzECaSNgBwqKw=;
+        b=uaTuBHPrzMSlkHhko3rSiltQRtgXe8VY7qlfT17lTC0yi6on8CG1RcCOMxUlNz/mnW
+         7m2ATt4rEx9DbxQ5Fa9831gTQSnJ4KkwH/NoMcAWD3RagD97F4Dl3GZmKS3c53zeGfr0
+         e1819cAOgoLLTYY8xULPX9Z0rSKYG8oWkb+6Lb0UMUD7k/jas1KKAdGwe4yl9YxtbGSo
+         jeyQ4CJpDaskkDNPqk3nFz9Cgma7Qkeow8Nfbh4gBr3UAyQCC7J0YcCz/hdzyqYFNZZf
+         gKHWWbi74hSFXCpkGwAZRP2qO1428pCo7E0w8wI5cXxeXi7DAvkqK/YbkBJxMFnDI5DZ
+         +7Mw==
+X-Gm-Message-State: AOAM5320yKrEuVuRCpBE3a7aotlcFYlWAGHJo9aAfW8AzQp3GK+Ifsou
+        hq0S0E8iH8UOOjkoClc8JKQM3A==
+X-Google-Smtp-Source: ABdhPJwi9H2HaoW1lVB301nRq/HD7R3uM+Gy4F0+t0NQ+v3dJyqfgmfCwqm49KVqXUeLazSns2evNA==
+X-Received: by 2002:a50:e683:: with SMTP id z3mr11614453edm.206.1637077413955;
+        Tue, 16 Nov 2021 07:43:33 -0800 (PST)
 Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id p14sm2742034wms.29.2021.11.16.07.42.52
+        by smtp.gmail.com with ESMTPSA id hd18sm8603095ejc.84.2021.11.16.07.43.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 07:42:53 -0800 (PST)
-Date:   Tue, 16 Nov 2021 15:42:32 +0000
+        Tue, 16 Nov 2021 07:43:33 -0800 (PST)
+Date:   Tue, 16 Nov 2021 15:43:12 +0000
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     John Garry <john.garry@huawei.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, robin.murphy@arm.com,
-        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
-        leo.yan@linaro.org, will@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
-Subject: Re: [PATCH 2/2] perf/smmuv3: Add devicetree support
-Message-ID: <YZPRaKqfWMJcqaC0@myrica>
+To:     Rob Herring <robh@kernel.org>
+Cc:     uchida.jun@socionext.com, iommu@lists.linux-foundation.org,
+        jkchen@linux.alibaba.com, devicetree@vger.kernel.org,
+        will@kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, joro@8bytes.org, mark.rutland@arm.com,
+        robin.murphy@arm.com, leo.yan@linaro.org
+Subject: Re: [PATCH 1/2] dt-bindings: Add Arm SMMUv3 PMCG binding
+Message-ID: <YZPRkOii110K6dr2@myrica>
 References: <20211116113536.69758-1-jean-philippe@linaro.org>
- <20211116113536.69758-3-jean-philippe@linaro.org>
- <0f410098-2a58-9024-9fe4-77fb54b2a076@huawei.com>
+ <20211116113536.69758-2-jean-philippe@linaro.org>
+ <1637071373.514426.3444644.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0f410098-2a58-9024-9fe4-77fb54b2a076@huawei.com>
+In-Reply-To: <1637071373.514426.3444644.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 12:06:36PM +0000, John Garry wrote:
-> On 16/11/2021 11:35, Jean-Philippe Brucker wrote:
-> > Add device-tree support to the SMMUv3 PMCG.  One small cosmetic change
-> > while factoring the option mask printout: don't display it when zero, it
-> > only contains one erratum at the moment.
-> > 
-> > Signed-off-by: Jay Chen <jkchen@linux.alibaba.com>
-> > Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> > ---
-> >   drivers/perf/arm_smmuv3_pmu.c | 25 +++++++++++++++++++++++--
-> >   1 file changed, 23 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/perf/arm_smmuv3_pmu.c b/drivers/perf/arm_smmuv3_pmu.c
-> > index 226348822ab3..958325ac103a 100644
-> > --- a/drivers/perf/arm_smmuv3_pmu.c
-> > +++ b/drivers/perf/arm_smmuv3_pmu.c
-> > @@ -47,6 +47,7 @@
-> >   #include <linux/kernel.h>
-> >   #include <linux/list.h>
-> >   #include <linux/msi.h>
-> > +#include <linux/of.h>
-> >   #include <linux/perf_event.h>
-> >   #include <linux/platform_device.h>
-> >   #include <linux/smp.h>
-> > @@ -750,8 +751,15 @@ static void smmu_pmu_get_acpi_options(struct smmu_pmu *smmu_pmu)
-> >   		smmu_pmu->options |= SMMU_PMCG_EVCNTR_RDONLY;
-> >   		break;
-> >   	}
-> > +}
-> > +
-> > +static void smmu_pmu_get_of_options(struct smmu_pmu *smmu_pmu)
-> > +{
-> > +	struct device_node *node = smmu_pmu->dev->of_node;
-> > -	dev_notice(smmu_pmu->dev, "option mask 0x%x\n", smmu_pmu->options);
-> > +	if (of_device_is_compatible(node, "hisilicon,smmu-v3-pmcg-hip08"))
+On Tue, Nov 16, 2021 at 08:02:53AM -0600, Rob Herring wrote:
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> I don't think that this is necessary. We don't support DT for hip08, nor
-> have any plans to. Incidentally, was this binding missing in your series?
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.yaml:24:9: [warning] wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.yaml:25:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.example.dt.yaml: example-0: pmu@2b420000:reg:0: [0, 725745664, 0, 4096] is too long
+> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.example.dt.yaml: example-0: pmu@2b420000:reg:1: [0, 725811200, 0, 4096] is too long
+> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.example.dt.yaml: example-0: pmu@2b440000:reg:0: [0, 725876736, 0, 4096] is too long
+> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.example.dt.yaml: example-0: pmu@2b440000:reg:1: [0, 725942272, 0, 4096] is too long
+> 	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/1555758
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
 
-Ok I'll drop this (and the compatible value from patch 1)
+Right I'll fix those, I had only run dtbs_check
 
 Thanks,
 Jean
