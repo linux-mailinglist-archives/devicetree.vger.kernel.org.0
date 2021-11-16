@@ -2,147 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A067452331
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 02:18:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 278F74524EA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 02:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349865AbhKPBVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 20:21:13 -0500
-Received: from mailout1.samsung.com ([203.254.224.24]:63973 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243996AbhKPBP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 20:15:27 -0500
-Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20211116011226epoutp019dc2bbc242d81563423e72e7d9e5bf83~34bJtw81z2706127061epoutp01F
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 01:12:26 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20211116011226epoutp019dc2bbc242d81563423e72e7d9e5bf83~34bJtw81z2706127061epoutp01F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1637025146;
-        bh=8JRydum/R4RdFUqGlzeiN6SYCDCW1ggDFZyoszTdHJo=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=q4G2O32iCBNEutMrZF/eHatdlcCVD807rXvbHwhqtJcZGhG5LibMC2I9848LrD9p4
-         bEHY6l+x5bnN7VRghqKOk9cNf1g7mSVninVoC76VZjEGe3EebK5+hYCpM4TxffBs//
-         Xn/LhD7j4fE7TrbNTFrMDTVmr8WEQWJlfOqkZsXE=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20211116011225epcas2p1b5d0e237b941eef4d90e74efaa93fa0a~34bJOmHgW0919509195epcas2p1w;
-        Tue, 16 Nov 2021 01:12:25 +0000 (GMT)
-Received: from epsmges2p4.samsung.com (unknown [182.195.36.100]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4HtShV1SHzz4x9QR; Tue, 16 Nov
-        2021 01:12:10 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        2B.F7.12141.56503916; Tue, 16 Nov 2021 10:12:05 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-        20211116011205epcas2p1bb00ede94948a305aba820f418058dbe~34a2TmxYv2468624686epcas2p1R;
-        Tue, 16 Nov 2021 01:12:05 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20211116011205epsmtrp25329047fd36504abbf296e6a755c6851~34a2SzF-70535505355epsmtrp2h;
-        Tue, 16 Nov 2021 01:12:05 +0000 (GMT)
-X-AuditID: b6c32a48-d5dff70000002f6d-fd-6193056510a0
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        DD.81.29871.56503916; Tue, 16 Nov 2021 10:12:05 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20211116011205epsmtip28a67f81e78b0ae0d47bbf1c5d442f74d~34a2InGwx0690906909epsmtip2j;
-        Tue, 16 Nov 2021 01:12:05 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        "'Jaewon Kim'" <jaewon02.kim@samsung.com>
-Cc:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
-        "'Wolfram Sang'" <wsa@kernel.org>,
-        "'Rob Herring'" <robh+dt@kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        id S237926AbhKPBqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 20:46:02 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:54466 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1350816AbhKPBmx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 20:42:53 -0500
+X-UUID: 934df52e779f4867bbd86a4a2749ac70-20211116
+X-UUID: 934df52e779f4867bbd86a4a2749ac70-20211116
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 682536482; Tue, 16 Nov 2021 09:39:50 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 16 Nov 2021 09:39:49 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 16 Nov 2021 09:39:49 +0800
+Message-ID: <d299493d8fec0f34f527942f2cdedf15f2136c9a.camel@mediatek.com>
+Subject: Re: [PATCH v7 2/3] arm64: dts: mediatek: add basic mt7986a support
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-In-Reply-To: <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
-Subject: RE: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
-Date:   Tue, 16 Nov 2021 10:12:04 +0900
-Message-ID: <001401d7da86$f7ebd660$e7c38320$@samsung.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
+Date:   Tue, 16 Nov 2021 09:39:49 +0800
+In-Reply-To: <d411aec5-efa8-c71d-8179-54ff52c17039@gmail.com>
+References: <20211018114009.13350-1-sam.shih@mediatek.com>
+         <20211018114009.13350-3-sam.shih@mediatek.com>
+         <d411aec5-efa8-c71d-8179-54ff52c17039@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQMJYAnbi/JobnCUuSzxD63N6CCU9gMctf4RAdOLUHUBZYQpI6lvl8Tg
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJJsWRmVeSWpSXmKPExsWy7bCmmW4q6+REgw/fVSzmHznHarGj4Qir
-        xca3P5gsNj2+xmrR8fcLo8XlXXPYLGac38dk0br3CLvF8z4g6+7+uYwOXB6zGnrZPDat6mTz
-        uHNtD5vH5iX1Hn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+SmZduq+QdHO8cb2pmYKhraGlh
-        rqSQl5ibaqvk4hOg65aZA3SZkkJZYk4pUCggsbhYSd/Opii/tCRVISO/uMRWKbUgJafAvECv
-        ODG3uDQvXS8vtcTK0MDAyBSoMCE748zFq0wFS7grGq42sTYwTuTsYuTkkBAwkTi09jhLFyMX
-        h5DADkaJe/OXsUI4nxglPsybxQjhfGOUuLFuGjNMy58rW9kgEnsZJT7Oa4Lqf8Eo8evPChaQ
-        KjYBfYmXHdtYQWwRgXiJNad3g3UzC+xgkjjbbQ1icwoESixethSonoNDWMBLYs/8KpAwi4Cq
-        xIzdDUwgNq+ApcTK/9vYIGxBiZMzn7BAjNGWWLbwNdRBChI/ny6DWuUmse1dHyNEjYjE7M42
-        ZpDbJARWckh8vziRCWSXhICLxIl58RC9whKvjm9hh7ClJD6/28sGUd/NKNH66D9UYjWjRGej
-        D4RtL/Fr+hZWkDnMApoS63fpQ4xUljhyC+o0PomOw3/ZIcK8Eh1tQhCN6hIHtk9ngbBlJbrn
-        fGadwKg0C8ljs5A8NgvJA7MQdi1gZFnFKJZaUJybnlpsVGACj+vk/NxNjOA0q+Wxg3H22w96
-        hxiZOBgPMUpwMCuJ8LJET0oU4k1JrKxKLcqPLyrNSS0+xGgKDOqJzFKiyfnARJ9XEm9oYmlg
-        YmZmaG5kamCuJM6bx96XKCSQnliSmp2aWpBaBNPHxMEp1cAUWiCxLDWf41r+8SxZ8b6Opu+J
-        unk/Flxdc1Dv+TbRxsDY5Becz1Q1Mxo+W1pf9Z1jwCjEbrzISf2Sr/HGDwIXVmX0nvI+GP5n
-        ipC0yKGEFaGee64lpX+cx7A96I2tX6XJv6Rr1j9/rslc0flU/edt+8gX75bWrSvJFmFxfxER
-        qD3V6fqTffd2JXDyCcr2i7dG/pPzOSBgJO5+ZKG+ecWdKMv7W7+sYl66b2kd12S+p5bbj7xa
-        +lV5gcOXezPuNBu0rq3f9KbmEkvVHEuGJFUT8dfmH3Xm7g98eea75HuljNhtGyN4T8n/rulw
-        TotXPfYufG/L1+J1zLW11lPeV3dz18R0p2or8Ho+L5y/lFuJpTgj0VCLuag4EQDW00OZPAQA
-        AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOIsWRmVeSWpSXmKPExsWy7bCSvG4q6+REg9tP2CzmHznHarGj4Qir
-        xca3P5gsNj2+xmrR8fcLo8XlXXPYLGac38dk0br3CLvF8z4g6+7+uYwOXB6zGnrZPDat6mTz
-        uHNtD5vH5iX1Hn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJXx+cI65oJZ3BXvVr5kbWBs5uxi
-        5OSQEDCR+HNlK1sXIxeHkMBuRolzHceZIRKyEs/e7WCHsIUl7rccYYUoesYocX/LEbAiNgF9
-        iZcd21hBbBGBeIndq96AFTEL7GOSaL58Aaqjg0mi58FCFpAqToFAicXLlgLZHBzCAl4Se+ZX
-        gYRZBFQlZuxuYAKxeQUsJVb+38YGYQtKnJz5BKyVWUBbovdhKyOMvWzha6hLFSR+Pl0GdYSb
-        xLZ3fVA1IhKzO9uYJzAKz0IyahaSUbOQjJqFpGUBI8sqRsnUguLc9NxiwwLDvNRyveLE3OLS
-        vHS95PzcTYzguNPS3MG4fdUHvUOMTByMhxglOJiVRHhZoiclCvGmJFZWpRblxxeV5qQWH2KU
-        5mBREue90HUyXkggPbEkNTs1tSC1CCbLxMEp1cBkcHEho36e1fuuWiN9Lz8Ps9tdwnxy1VER
-        uzb1sb/Ur6/n00q8tK266cpnEX9BPbtrFnZLr53ROcifn2gf/DbSMHlfodofZ4uXoh8OP76j
-        NXW9TxuDUrvlyR4OE3eevQIJqo0xa7lXnV16ulXJQyvFfJaVa/DGt/mnF1ok37La61/ct++M
-        hP5Ut442Te085prQfUuuPTJp5278JX2B0UQs9q5Za2ujmM33/EWfLl+IF1q1ICf3atf6pts3
-        z266fvVMbhx76tmlKxiPbbrouli+4MC9Y2EHzD485rvR4fvi+qlJ7n9+7fx6m0lpeZr/4c/O
-        T+4e5w8WK227ueTS8qXb2HNEv2lvPHQ/5+n+o6VKLMUZiYZazEXFiQAFKtQWKgMAAA==
-X-CMS-MailID: 20211116011205epcas2p1bb00ede94948a305aba820f418058dbe
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0
-References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
-        <20211112010137.149174-1-jaewon02.kim@samsung.com>
-        <20211112010137.149174-3-jaewon02.kim@samsung.com>
-        <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
-> from my side (just a food for thought): do we want to configure USI
-> related config inside of particular drivers (SPI, I2C, UART)? Or it would
-> be better design to implement some platform driver for that, so we can
-> choose USI configuration (SPI/I2C/UART) in device tree? I think this
-> series is good to be merged as is, but we should probably consider all
-> upsides and downsides of each option, for the future work.
+Hi,
 
-I'm also considering how to support this USI configuration gracefully.
-Current version of USI is v2 which means there is a v1 version as well. It =
-might be a non-upstream SoC so we don't need to consider it so far.
-But, there is a possibility that the USI hw version can be bumped for futur=
-e SoCs.
+On Mon, 2021-11-15 at 17:27 +0100, Matthias Brugger wrote:
+> Hi,
+> 
+> On 18/10/2021 13:40, Sam Shih wrote:
+> > Add basic chip support for Mediatek mt7986a, include
+> > basic uart nodes, rng node and watchdog node.
+> > 
+> > Add cpu node, timer node, gic node, psci and reserved-memory node
+> > for ARM Trusted Firmware.
+> > 
+> 
+> What is the exact difference between mt7986a and mt7986b? Right now,
+> it's only 
+> the compatible, for that it makes no sense to split them.
+> 
 
-As you probably know, earlier version of the product kernel has a USI SoC d=
-river=5B1=5D and it was designed to be configured the USI settings by devic=
-e tree.
+The difference between mt7986a and mt7986b is pinout which described
+in our pinctrl patch series 
+https://lore.kernel.org/all/20211022124036.5291-3-sam.shih@mediatek.com/
 
-Option1) Make a USI driver under soc/samsung/ like =5B1=5D.
-Option2) Use more generic driver such as =22reset driver=22? This might be =
-required to extend the reset core driver.
-Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respe=
-ctively and expose some configurations which can be variable as device tree=
-.
+You are right, in this "basic SoC support" patch series, only show
+compatible differences
 
-=5B1=5D: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi=
-_v2.c
+> It would be good to see what the exact differences are, so that we
+> can see if it 
+> makes sense to have one of the alternatives:
+> 1) use a common mt7986.dtsi which get included by mt7986[a,b].dtsi
+> 2) Use on mt7986.dtsi and only add one mt7986a.dtsi or mt7986b.dtsi
+> which has 
+> add-ons.
+> 
 
-Best Regards,
-Chanho Park
+In this case, can we use solution (1) to create a generic mt7986.dtsi
+in this patch series, and add mt7986[a,b].dtsi to the dts part of the
+pinctrl patch series to separate the difference nodes?
+
+> > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> > 
+> > ---
+> > v7: added memory node back to dts
+> > v6: removed clock and pinctrl node, to separate basic part into a
+> > single
+> >      patch series
+> > 
+> > Original thread:
+> > 
+https://urldefense.com/v3/__https://lore.kernel.org/all/20211004124155.1404-1-sam.shih@mediatek.com/__;!!CTRNKA9wMg0ARbw!xCEW0lwTKx4k272sWASoi90y_yRyQdAx0oNJC-jSAIWnIEkprJD-gAc1ugCvo0ex$
+> >  
+> > 
+> > v5: follow reviewr's comment: removed clock freqency node in timer
+> > due to
+> >      we have set CNTFRQ_EL0 in ATF firmware, and also corrected
+> > GICD range
+> > v4: added missing gic register bases, and fixed range of GICR
+> > v3: used the stdout-path instead of console=ttyS0
+> > v2: modified clock and uart node due to clock driver updated
+> > ---
+> >   arch/arm64/boot/dts/mediatek/Makefile        |   1 +
+> >   arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  38 +++++
+> >   arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 149
+> > +++++++++++++++++++
+> >   3 files changed, 188 insertions(+)
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> >   create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> > 
+> > diff --git a/arch/arm64/boot/dts/mediatek/Makefile
+> > b/arch/arm64/boot/dts/mediatek/Makefile
+> > index 4f68ebed2e31..e6c3a73b9e4a 100644
+> > --- a/arch/arm64/boot/dts/mediatek/Makefile
+> > +++ b/arch/arm64/boot/dts/mediatek/Makefile
+> > @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+> > +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
+> >   dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> > b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> > new file mode 100644
+> > index 000000000000..ca074cf8e578
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+> > @@ -0,0 +1,38 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2021 MediaTek Inc.
+> > + * Author: Sam.Shih <sam.shih@mediatek.com>
+> > + */
+> > +
+> > +/dts-v1/;
+> > +#include "mt7986a.dtsi"
+> > +
+> > +/ {
+> > +	model = "MediaTek MT7986a RFB";
+> > +	compatible = "mediatek,mt7986a-rfb";
+> > +
+> > +	aliases {
+> > +		serial0 = &uart0;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = "serial0:115200n8";
+> > +		bootargs = "earlycon=uart8250,mmio32,0x11002000
+> > swiotlb=512";
+> 
+> We normally don't add earlycon parameter to the normal bootargs, as
+> it's only 
+> for debugging. Also what do we need the swiotlb? Are there any
+> limitation in the 
+> HW that makes us need it?
+> 
+
+Thank you for your suggestion, as far as I know, it should not have
+hardware limitations. This bootargs is just inherent from mt7622-
+rfb.dts, I will delete it and test again on our development board.
+
+> Regards,
+> Matthias
+> 
+> > +	};
+> > +
+> > +	memory {
+> > +		reg = <0 0x40000000 0 0x40000000>;
+> > +	};
+> > +};
+> > +
+> > +&uart0 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&uart2 {
+> > +	status = "okay";
+> > +};
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> > b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> > new file mode 100644
+> > index 000000000000..75912bcf6c9c
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+> > @@ -0,0 +1,149 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +/*
+> > + * Copyright (C) 2021 MediaTek Inc.
+> > + * Author: Sam.Shih <sam.shih@mediatek.com>
+> > + */
+> > +
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +/ {
+> > +	compatible = "mediatek,mt7986a";
+> > +	interrupt-parent = <&gic>;
+> > +	#address-cells = <2>;
+> > +	#size-cells = <2>;
+> > +
+> > +	system_clk: dummy40m {
+> > +		compatible = "fixed-clock";
+> > +		clock-frequency = <40000000>;
+> > +		#clock-cells = <0>;
+> > +	};
+> > +
+> > +	cpus {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +		cpu0: cpu@0 {
+> > +			device_type = "cpu";
+> > +			compatible = "arm,cortex-a53";
+> > +			enable-method = "psci";
+> > +			reg = <0x0>;
+> > +			#cooling-cells = <2>;
+> > +		};
+> > +
+> > +		cpu1: cpu@1 {
+> > +			device_type = "cpu";
+> > +			compatible = "arm,cortex-a53";
+> > +			enable-method = "psci";
+> > +			reg = <0x1>;
+> > +			#cooling-cells = <2>;
+> > +		};
+> > +
+> > +		cpu2: cpu@2 {
+> > +			device_type = "cpu";
+> > +			compatible = "arm,cortex-a53";
+> > +			enable-method = "psci";
+> > +			reg = <0x2>;
+> > +			#cooling-cells = <2>;
+> > +		};
+> > +
+> > +		cpu3: cpu@3 {
+> > +			device_type = "cpu";
+> > +			enable-method = "psci";
+> > +			compatible = "arm,cortex-a53";
+> > +			reg = <0x3>;
+> > +			#cooling-cells = <2>;
+> > +		};
+> > +	};
+> > +
+> > +	psci {
+> > +		compatible  = "arm,psci-0.2";
+> > +		method      = "smc";
+> > +	};
+> > +
+> > +	reserved-memory {
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +		ranges;
+> > +		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
+> > +		secmon_reserved: secmon@43000000 {
+> > +			reg = <0 0x43000000 0 0x30000>;
+> > +			no-map;
+> > +		};
+> > +	};
+> > +
+> > +	timer {
+> > +		compatible = "arm,armv8-timer";
+> > +		interrupt-parent = <&gic>;
+> > +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+> > +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+> > +	};
+> > +
+> > +	soc {
+> > +		#address-cells = <2>;
+> > +		#size-cells = <2>;
+> > +		compatible = "simple-bus";
+> > +		ranges;
+> > +
+> > +		gic: interrupt-controller@c000000 {
+> > +			compatible = "arm,gic-v3";
+> > +			#interrupt-cells = <3>;
+> > +			interrupt-parent = <&gic>;
+> > +			interrupt-controller;
+> > +			reg = <0 0x0c000000 0 0x10000>,  /* GICD */
+> > +			      <0 0x0c080000 0 0x80000>,  /* GICR */
+> > +			      <0 0x0c400000 0 0x2000>,   /* GICC */
+> > +			      <0 0x0c410000 0 0x1000>,   /* GICH */
+> > +			      <0 0x0c420000 0 0x2000>;   /* GICV */
+> > +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> > +		};
+> > +
+> > +		watchdog: watchdog@1001c000 {
+> > +			compatible = "mediatek,mt7986-wdt",
+> > +				     "mediatek,mt6589-wdt";
+> > +			reg = <0 0x1001c000 0 0x1000>;
+> > +			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+> > +			#reset-cells = <1>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		trng: trng@1020f000 {
+> > +			compatible = "mediatek,mt7986-rng",
+> > +				     "mediatek,mt7623-rng";
+> > +			reg = <0 0x1020f000 0 0x100>;
+> > +			clocks = <&system_clk>;
+> > +			clock-names = "rng";
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		uart0: serial@11002000 {
+> > +			compatible = "mediatek,mt7986-uart",
+> > +				     "mediatek,mt6577-uart";
+> > +			reg = <0 0x11002000 0 0x400>;
+> > +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&system_clk>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		uart1: serial@11003000 {
+> > +			compatible = "mediatek,mt7986-uart",
+> > +				     "mediatek,mt6577-uart";
+> > +			reg = <0 0x11003000 0 0x400>;
+> > +			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&system_clk>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +		uart2: serial@11004000 {
+> > +			compatible = "mediatek,mt7986-uart",
+> > +				     "mediatek,mt6577-uart";
+> > +			reg = <0 0x11004000 0 0x400>;
+> > +			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks = <&system_clk>;
+> > +			status = "disabled";
+> > +		};
+> > +
+> > +	};
+> > +
+> > +};
+> > 
+
+Regards,
+Sam
 
