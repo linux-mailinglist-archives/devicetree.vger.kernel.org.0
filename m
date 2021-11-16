@@ -2,99 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9FC45386A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 18:21:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52D89453883
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 18:28:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236295AbhKPRXz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 12:23:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235906AbhKPRXy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 12:23:54 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3ADC061570
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 09:20:56 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id w1so25055217edc.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 09:20:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Y7/ymhGPjLSJyJ+YNwQEo5utnlZQVkYRG4UA4vbBNwE=;
-        b=Z6E7Zuy9PVFwXGePFb9KxhGg+daLtMwLGjckBQ7b2vySbEEd1DJ0lUYC6pLSnm7zSy
-         kXaweByb8FcJBWyKrE0jB3m51ljQqHMdGCk7ZkQqVUt+khzHBmkhOhYe1GeFo2W6Nsso
-         vazqnh/kK2bGZ911xdksNeaXzz4+eRLENNElhVi8yJ2J5xEZwstLoQikqgkyc4PHcOjs
-         XhCdev6ycGAfTq4vNwHJOk+sXDN1s+oVbuSatxxkOwnnFrHnGr8o0dVBJWdYc+XtttBs
-         NI6LHtNi5BKXpHXhsMPWOn1q/Bomz5sn42rCzH5vIJIZ7JDKmxvWD/Nouai7ne9MAmAZ
-         Va+g==
+        id S238850AbhKPRbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 12:31:52 -0500
+Received: from mail-pg1-f177.google.com ([209.85.215.177]:44904 "EHLO
+        mail-pg1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238725AbhKPRbu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 12:31:50 -0500
+Received: by mail-pg1-f177.google.com with SMTP id m15so14347847pgu.11;
+        Tue, 16 Nov 2021 09:28:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y7/ymhGPjLSJyJ+YNwQEo5utnlZQVkYRG4UA4vbBNwE=;
-        b=kZXZYUHHz6RQ96XVljOiwcXw2Z6rPyKjUXmL588m/W6k4im/zY0qVAE5v2hNX5Wh5A
-         4hxEhG7K6Ig1YSMCHlEDtwTgJeyRlBB5GOLZwsyCMv7ZfkRpkzJa7RKYiba5vj65DQcS
-         XcbnJPQx83eYlQRfyDDXyL02GMRVm16gtgARuUaQxg874DOCSLPt/hYM6n+s6RTSVPRE
-         udQmVM7Li+UtOGJT91bUqDqwzJR5eaDwXouHj8g3JR27d34/4gQLVeyxAT/BUIYbt050
-         0HwBvjsF62S9e0shbHc6smgQ1EM4w38QCpvaO690YUZkT12QRuJIsO+t3kwNoMyeb9Ha
-         ObNQ==
-X-Gm-Message-State: AOAM531EaVK7uEfoQ51qj9LMg603+yI4HdJJUaRi67ehf3UTgaY/7834
-        0/FGAKnOTCrdAz58ACSR0FuiHhbzLaRhCA==
-X-Google-Smtp-Source: ABdhPJysrk4hn2MXFU1z+7fNFOPzdwH3NRQbppL+rDRVzDdxxgEucQ2rht9F4+xHJqZt9Jy1xcVSqg==
-X-Received: by 2002:a17:907:629b:: with SMTP id nd27mr12055773ejc.24.1637083255412;
-        Tue, 16 Nov 2021 09:20:55 -0800 (PST)
-Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id j3sm8344871ejo.2.2021.11.16.09.20.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 09:20:54 -0800 (PST)
-Date:   Tue, 16 Nov 2021 17:20:33 +0000
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     robh+dt@kernel.org, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        will@kernel.org, joro@8bytes.org, mark.rutland@arm.com,
-        jkchen@linux.alibaba.com, leo.yan@linaro.org,
-        uchida.jun@socionext.com
-Subject: Re: [PATCH 0/2] perf/smmuv3: Support devicetree
-Message-ID: <YZPoYSIU/hBYgt3m@myrica>
-References: <20211116113536.69758-1-jean-philippe@linaro.org>
- <3b5cb536-5a11-5096-4369-cec3d369ec52@arm.com>
- <YZPRTUis+G279XIO@myrica>
- <54be6173-59d3-7ce8-e04b-b5197fdc0e10@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FkA51tWxSsscDQ4OnDVF0gVKl+TpddKexu+rNB6rga4=;
+        b=SGPLW0Gs4GbGKkyxZ5mwFJQ8mK+cSYPURcI1lpwH9R0ikX9PnRvhqq3IhaMSw6cigF
+         wYInfhIxvua96lYrJWEGVASX2z5w7WkJfh9tcLr8aUE90WUlcsSJ9qNwENe5gaCVZeLL
+         Pe4AV/I+nAhOyb5dpeSlZraDc5Wjm4rvoTGnsxCg2SS4tgIA4v8GndMJNmRzF0lN5wJq
+         Ka2m5bbuBmh4MYKHbpmuPuMrhoGD2FCqqyhNjaienJvKNRLGG9vnzpWm/QyBBxyOXQun
+         PtH8yqSr0w0YQkPtZnUofhZ73TAuo2/K0dCgqA5XFNCxdaMA1Lr+0e+qWHoB15yUm5LQ
+         ZRJQ==
+X-Gm-Message-State: AOAM533MpTy5ZOd85TrYgGO4zWHPTqaD5RgKUoISRONCWE3xMX1dkX14
+        HGLHJXDF5ZbFa72HCmFZ/TWV7dmE8hKcb2aLAWc=
+X-Google-Smtp-Source: ABdhPJztWnQTEvyFBXk/EWoYZuOO/BsO/4j2XiqLi5dCPei8GORqCEcvrDQZtaHkVUqJCHntXdMP/Q0JwesAiwH1PXU=
+X-Received: by 2002:a63:3f44:: with SMTP id m65mr422498pga.15.1637083733060;
+ Tue, 16 Nov 2021 09:28:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <54be6173-59d3-7ce8-e04b-b5197fdc0e10@arm.com>
+References: <20211116150119.2171-1-kernel@esmil.dk> <CAK8P3a38+Osmr7SjD42ZEQzOPwWXM7x+31a5E4bRWVp6JdMS_w@mail.gmail.com>
+In-Reply-To: <CAK8P3a38+Osmr7SjD42ZEQzOPwWXM7x+31a5E4bRWVp6JdMS_w@mail.gmail.com>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Tue, 16 Nov 2021 18:28:41 +0100
+Message-ID: <CANBLGcykFks+EF2m0bdD+j5w43Qy30LBgVnAYJWU+5-WVJH6PA@mail.gmail.com>
+Subject: Re: [PATCH v4 00/16] Basic StarFive JH7100 RISC-V SoC support
+To:     Arnd Bergmann <arnd@arndb.de>, Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 05:00:14PM +0000, Robin Murphy wrote:
-> On 2021-11-16 15:42, Jean-Philippe Brucker wrote:
-> > On Tue, Nov 16, 2021 at 12:02:47PM +0000, Robin Murphy wrote:
-> > > On 2021-11-16 11:35, Jean-Philippe Brucker wrote:
-> > > > Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
-> > > > Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
-> > > > multiple independent PMCGs, for example one for the Translation Control
-> > > > Unit (TCU) and one per Translation Buffer Unit (TBU).
-> > > > 
-> > > > I previously sent the binding as reply to Jay Chen's thread implementing
-> > > > device tree support [1]. This posting addresses the comments from that
-> > > > thread.
-> > > 
-> > > Ha, I'd also resurrected this and was planning to post it at some point this
-> > > week[0] - you should have said :)
-> > 
-> > Ah sorry about that, I just resent because there was some demand for it at
-> > Linaro
-> 
-> Heh, no worries - it's not like you were even CC'ed on the thread where I
-> only mentioned I *might* do it.
-> 
-> Can I get away with being cheeky and just saying that my review comments are
-> the diff between my branch and yours, I wonder...
+On Tue, 16 Nov 2021 at 17:08, Arnd Bergmann <arnd@arndb.de> wrote:
+> On Tue, Nov 16, 2021 at 4:01 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> >
+> > This series adds support for the StarFive JH7100 RISC-V SoC. The SoC has
+> > many devices that need non-coherent dma operations to work which isn't
+> > upstream yet[1], so this just adds basic support to boot up, get a
+> > serial console, blink an LED and reboot itself. Unlike the Allwinner D1
+> > this chip doesn't use any extra pagetable bits, but instead the DDR RAM
+> > appears twice in the memory map, with and without the cache.
+> >
+> > The JH7100 is a test chip for the upcoming JH7110 and about 300 BeagleV
+> > Starlight Beta boards were sent out with them as part of a now cancelled
+> > BeagleBoard.org project. However StarFive has produced more of the
+> > JH7100s and more boards will be available[2] to buy. I've seen pictures
+> > of the new boards now, so hopefully before the end of the year.
+> >
+> > This series is also available at
+> > https://github.com/esmil/linux/commits/starlight-minimal
+> > ..but a more complete kernel including drivers for non-coherent
+> > peripherals based on this series can be found at
+> > https://github.com/starfive-tech/linux/tree/visionfive
+> >
+> > [1]: https://lore.kernel.org/linux-riscv/20210723214031.3251801-2-atish.patra@wdc.com/
+> > [2]: https://www.linkedin.com/pulse/starfive-release-open-source-single-board-platform-q3-2021-starfive/
+>
+> Thanks for adding me to Cc, I've had a look at the series and didn't
+> see anything
+> wrong with it, and I'm happy to merge it through the SoC tree for the
+> initial support
+> in 5.17, provided you get an Ack from the arch/riscv maintainers for it.
 
-Sure, that works for me, I'll send a v2 this week or so
+Cool!
 
-Thanks,
-Jean
+@Palmer, do you mind looking through this? Probably patch 1, 15 and 16
+are the most relevant to you.
+
+> Regarding the coherency issue, it's a bit sad to see yet another hacky
+> workaround
+> in the hardware, but as you say this is unrelated to the driver
+> series. I'd actually
+> argue that this one isn't that different from the other hack you
+> describe, except
+> this steals the pagetable bits from the address instead of the reserved flags...
+
+Yeah, it's definitely a hack, but at least it's not using bits the
+spec said was reserved. Hopefully the JH7110 will be fully coherent or
+maybe implement the new Svpbmt extension.
+
+/Emil
+
+
+/Emil
