@@ -2,208 +2,397 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0CDD453022
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:18:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AA57453023
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:18:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234808AbhKPLVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 06:21:02 -0500
-Received: from mail-bn7nam10on2064.outbound.protection.outlook.com ([40.107.92.64]:43292
-        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S234805AbhKPLUx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 06:20:53 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UmDyl+QBwUNs+cggx0bLyx/CGdMtcmVPZSaUX+ZlUU722qUddRT9zRPgt9wgNaVD0ZtG5ED062bV76MXMkIPT9mtfR0L34K+VT7MdiPt7ZOs3/0FXsFDvKuyCSFmahkwuwpHMhwOPGakpXnAIBiLCPwAZM7jf/zheIuGr8N1KNu+Y67flihh72/mkGVag1cPZ8Jb9PX1thcGESn0RX41Kpr3iT/0ueEuh+AggBuEHUWyiyfwc/bdORdITDPDBLGUAnUb7XoiDgKIBS4PDWt8tIHpYnE4vKIV3BpRzH+Zgz7OWmzJur8BXjCE770KZeKH94NcMZETlb0cIL9mv6FDEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=I8J2datZXpGKMZQSdeCfnK4/sXLgj24LIYR3AWoF+Mw=;
- b=NFy90H4MotFnpEntqBHGIMto4z7Acg7BLobohFW6eJ2gqddKkcKF4OYHMIiDbS0fMS+4+dqi1HHRD8oNPklxvNLtT0jccm8cgvUPH8uAjdGcGZcbMVPeIxBqrwnmViguCKkd67IG1baG4TCNNmrFLl69xLa+0CK6PIodfupMkbBxLqAD9m0neUc5fvRA4Dv9jcWemJxsMh3vi++KW2WxnPm8ezje9mOOs/TZZAkczKTvZMdSUs3og+aL9DsJLZkD4ZAjX9Tc87pd7JZw5L1Edf8azeKCS4awoag+cAfC/vJX+/aFEwqgCbN8zBLior3QHBUbqWlrCQq1R4g7Er5vWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
+        id S234766AbhKPLVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 06:21:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52448 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234757AbhKPLVO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 06:21:14 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43AA8C061570;
+        Tue, 16 Nov 2021 03:18:17 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id c71-20020a1c9a4a000000b0032cdcc8cbafso2086657wme.3;
+        Tue, 16 Nov 2021 03:18:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I8J2datZXpGKMZQSdeCfnK4/sXLgj24LIYR3AWoF+Mw=;
- b=shzmTOiyMiLaD86pv/LO86qohFcV477l0PfE+gbWGyGJKPP2pHO3RJNwpB6H/5xuCAILRv4hW73h6MFN+uUeaLBrLTpBDq4vce+CanXoP1EXCm6tx9l87uzUmsHM7oatyIfWtB2ou4dsy2MRktILesfK9VFgCwKTMJetdp29nXg=
-Received: from BN9PR03CA0334.namprd03.prod.outlook.com (2603:10b6:408:f6::9)
- by DM6PR02MB5498.namprd02.prod.outlook.com (2603:10b6:5:7d::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.26; Tue, 16 Nov
- 2021 11:17:55 +0000
-Received: from BN1NAM02FT020.eop-nam02.prod.protection.outlook.com
- (2603:10b6:408:f6:cafe::54) by BN9PR03CA0334.outlook.office365.com
- (2603:10b6:408:f6::9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.27 via Frontend
- Transport; Tue, 16 Nov 2021 11:17:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BN1NAM02FT020.mail.protection.outlook.com (10.13.2.135) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.4690.15 via Frontend Transport; Tue, 16 Nov 2021 11:17:55 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 16 Nov 2021 03:17:54 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Tue, 16 Nov 2021 03:17:54 -0800
-Envelope-to: linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org,
- robh+dt@kernel.org,
- gregkh@linuxfoundation.org
-Received: from [10.140.6.39] (port=51454 helo=xhdsgoud40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <shubhrajyoti.datta@xilinx.com>)
-        id 1mmwTK-0004ZS-Ff; Tue, 16 Nov 2021 03:17:54 -0800
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-To:     <linux-serial@vger.kernel.org>
-CC:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>,
-        Raviteja Narayanam <raviteja.narayanam@xilinx.com>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Subject: [PATCH 2/2] serial: pl011: Add support for Xilinx Uart
-Date:   Tue, 16 Nov 2021 16:47:46 +0530
-Message-ID: <3d24a1f6dedd70794fd08f9b4f85a7d362d835d4.1637061057.git.shubhrajyoti.datta@xilinx.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
-References: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=lRQsw39q87TQG3Wp6ZE2EXeT9gINH2OmBiOA+uRkqxQ=;
+        b=KIxBCbNz0wInKJ4xL7ysL7HnsAj0vjREmYXCFrVjQEI5Dvbu/PmHu0IGw5ytlhWRyF
+         9vlnI12EOPWfDcahPufAsmA6r/5CRq8DNX7k9RGqLDrXm03heDGHuhJpIzm56UkiYwF9
+         ChAUQSfRl3lXVJvhK6o2GRSUmXOnB59EfBvqjf+cdKHVvtZb4eRA7c0GIMRS3YSa7bPw
+         SuBCkjvg3hKTxe8j34ACZt6rQBpVbZ5r2OcNRNCcp+HZeVNsqKs9LvXPE/+2YrO3li8H
+         jSJIVbMyGWE0tWiTbyhCRYjI7xGH7i1p6U20UbjTFNFlaLV9cnWjZPQDj2PiJYqLWRFq
+         fibg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=lRQsw39q87TQG3Wp6ZE2EXeT9gINH2OmBiOA+uRkqxQ=;
+        b=cyhZlS0nALsj08P36vax/GdQe6hab6a2V/m6BeN/rrOn9cAjNHbHYzAmSFzY2OOhG9
+         zYEucmBfNB9W+GUhEJzi2dCOBCFLexvRVUxU009+21Jmq46sbH1ZhwZ7gzYLqG96g+kT
+         SNvUJ35kM2QF1qCSIFs12kA1O9v5DXMYQWpwQZl5lvTYgrluZZsirZnZnxF7H42EnLkP
+         jFeQJpFA1+RFSx/Jx+2wmqFYQ25/AAT4nSCtZwmdH8zI+KaPQS45L3bifYDHhsFayw8U
+         idRh0QXn8YxosWokP1KPzp9Yj4exdmwll68GwcxqF0kGXQFoT+vH98DQ6mPGvcTai3J3
+         9sDQ==
+X-Gm-Message-State: AOAM530kjL5MMl2ZX/9urW5IXaAMMNVHPq1iKr/8Uuzlg4Ndfui8QeRX
+        JjZevgdZyeQTWG/3yQe4Yyc=
+X-Google-Smtp-Source: ABdhPJyn0V0nVHouB1Hkda0tjQ7aSEr2Na6ZMxg689+Jn3ahbpWWZ2Vl46C7RY1O0tp9iYgEeFArIw==
+X-Received: by 2002:a05:600c:1c07:: with SMTP id j7mr71149885wms.12.1637061495153;
+        Tue, 16 Nov 2021 03:18:15 -0800 (PST)
+Received: from [192.168.2.177] ([207.188.161.251])
+        by smtp.gmail.com with ESMTPSA id j40sm2454114wms.19.2021.11.16.03.18.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Nov 2021 03:18:14 -0800 (PST)
+Message-ID: <c5c0849d-a95a-25a0-11f8-9156770afc10@gmail.com>
+Date:   Tue, 16 Nov 2021 12:18:13 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a8e70c96-bf03-4ac3-d7d5-08d9a8f2bcd8
-X-MS-TrafficTypeDiagnostic: DM6PR02MB5498:
-X-Microsoft-Antispam-PRVS: <DM6PR02MB5498515BA4E2FAF1CF65E76BAA999@DM6PR02MB5498.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:5236;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: arqnzpoSr593LaVSU7a6nKIaYmC6J5n25To6PkTnXpi/IlswBA7wk+jBarf08A4padzUXA34pWvoucqwE08olVUnHv5QC9KfLBhf1upQqbjIUrC3DLFERMkG3gEv7MojluzrT3FzEFIizIT2E+weCh+tRzyIvhXhTmLOInAlpCHH9vocb5Er4lzFwOjxQaMP/uT0WZJbHzZof836k/EdXZdNkbUMVZ2Wzbo+YajD37qVmkx86BRACOankSyIJYKiR+IkuynZYt5br/R7d+ezPZ3DuJQjdD0SIGt/R2TnOOyy/Egs+VKznk/23YzcMSClcVyWuppO35IJODfE5JerqCRy7YFLy+e80iPKsdy4RdmolYqTkeAMEfDgNwh6krIImxlJ0GTOvcm92/kJ74D6dMVRAxJa1sMlBLG/TwGmSiDim01E6mJqoD0L/0CifWMLAqkHFsEQfAOzxHs9A/7BXpSC6Bt9TzRcduA27NUhwdAg4sZMyxSWo6/gOLn9FzE69CRucAnk3THhyk2RSEdbxQ5Iv567DUUoOReH+XohG6f8hvSe9INqevSoaA/WVoDQ7iacGBY9oU27UJzgXRyl02W6vqaf3xwQXWypriBpC23qqhkFidEJDQTxy9UpFuUe4CsCG9pxZ1uVPNUZFdEXF6f4Jujh7otgvjDG8xYiYrd/bJHC/p+wg3K1IBEIG/stLKmYePnBjijK8n16JMD3MkvFd1OPKNYY7PJmmd4a7vU=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(46966006)(36840700001)(7636003)(7696005)(44832011)(508600001)(8676002)(2616005)(54906003)(36756003)(336012)(9786002)(5660300002)(4326008)(426003)(6666004)(356005)(6916009)(36860700001)(83380400001)(107886003)(47076005)(186003)(82310400003)(26005)(8936002)(316002)(2906002)(70586007)(36906005)(70206006)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2021 11:17:55.2196
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8e70c96-bf03-4ac3-d7d5-08d9a8f2bcd8
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT020.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5498
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Content-Language: en-US
+To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
+References: <20211018114009.13350-1-sam.shih@mediatek.com>
+ <20211018114009.13350-3-sam.shih@mediatek.com>
+ <d411aec5-efa8-c71d-8179-54ff52c17039@gmail.com>
+ <d299493d8fec0f34f527942f2cdedf15f2136c9a.camel@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v7 2/3] arm64: dts: mediatek: add basic mt7986a support
+In-Reply-To: <d299493d8fec0f34f527942f2cdedf15f2136c9a.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
 
-The xilinx uart used in Versal SOC follows arm pl011 implementation
-with just a minor change in data bus width. The minimum data
-transaction width in Versal SOC is 32-bit as specified in the
-TRM (Chapter 39: Transaction attributes). Pl011 defaults to 16-bit
-in the driver.
-So, add the xilinx uart as platform device with properties specified
-in 'vendor_data' structure.
 
-Signed-off-by: Raviteja Narayanam <raviteja.narayanam@xilinx.com>
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
----
- drivers/tty/serial/amba-pl011.c | 33 +++++++++++++++++++++++++++++++--
- 1 file changed, 31 insertions(+), 2 deletions(-)
+On 16/11/2021 02:39, Sam Shih wrote:
+> Hi,
+> 
+> On Mon, 2021-11-15 at 17:27 +0100, Matthias Brugger wrote:
+>> Hi,
+>>
+>> On 18/10/2021 13:40, Sam Shih wrote:
+>>> Add basic chip support for Mediatek mt7986a, include
+>>> basic uart nodes, rng node and watchdog node.
+>>>
+>>> Add cpu node, timer node, gic node, psci and reserved-memory node
+>>> for ARM Trusted Firmware.
+>>>
+>>
+>> What is the exact difference between mt7986a and mt7986b? Right now,
+>> it's only
+>> the compatible, for that it makes no sense to split them.
+>>
+> 
+> The difference between mt7986a and mt7986b is pinout which described
+> in our pinctrl patch series
+> https://lore.kernel.org/all/20211022124036.5291-3-sam.shih@mediatek.com/
+> 
+> You are right, in this "basic SoC support" patch series, only show
+> compatible differences
+> 
+>> It would be good to see what the exact differences are, so that we
+>> can see if it
+>> makes sense to have one of the alternatives:
+>> 1) use a common mt7986.dtsi which get included by mt7986[a,b].dtsi
+>> 2) Use on mt7986.dtsi and only add one mt7986a.dtsi or mt7986b.dtsi
+>> which has
+>> add-ons.
+>>
+> 
+> In this case, can we use solution (1) to create a generic mt7986.dtsi
+> in this patch series, and add mt7986[a,b].dtsi to the dts part of the
+> pinctrl patch series to separate the difference nodes?
+> 
 
-diff --git a/drivers/tty/serial/amba-pl011.c b/drivers/tty/serial/amba-pl011.c
-index d361cd84ff8c..278255a45ad9 100644
---- a/drivers/tty/serial/amba-pl011.c
-+++ b/drivers/tty/serial/amba-pl011.c
-@@ -124,6 +124,21 @@ static const struct vendor_data vendor_sbsa = {
- 	.fixed_options		= true,
- };
- 
-+static const struct vendor_data vendor_xlnx = {
-+	.reg_offset             = pl011_std_offsets,
-+	.ifls                   = UART011_IFLS_RX4_8 | UART011_IFLS_TX4_8,
-+	.fr_busy                = UART01x_FR_BUSY,
-+	.fr_dsr                 = UART01x_FR_DSR,
-+	.fr_cts                 = UART01x_FR_CTS,
-+	.fr_ri                  = UART011_FR_RI,
-+	.access_32b             = true,
-+	.oversampling           = false,
-+	.dma_threshold          = false,
-+	.cts_event_workaround   = false,
-+	.always_enabled         = true,
-+	.fixed_options          = false,
-+};
-+
- #ifdef CONFIG_ACPI_SPCR_TABLE
- static const struct vendor_data vendor_qdt_qdf2400_e44 = {
- 	.reg_offset		= pl011_std_offsets,
-@@ -2628,6 +2643,7 @@ static int __init pl011_early_console_setup(struct earlycon_device *device,
- }
- OF_EARLYCON_DECLARE(pl011, "arm,pl011", pl011_early_console_setup);
- OF_EARLYCON_DECLARE(pl011, "arm,sbsa-uart", pl011_early_console_setup);
-+OF_EARLYCON_DECLARE(pl011, "arm,xlnx-uart", pl011_early_console_setup);
- 
- /*
-  * On Qualcomm Datacenter Technologies QDF2400 SOCs affected by
-@@ -2872,6 +2888,7 @@ static int sbsa_uart_probe(struct platform_device *pdev)
- {
- 	struct uart_amba_port *uap;
- 	struct resource *r;
-+	int xlnx_uart = 0;
- 	int portnr, ret;
- 	int baudrate;
- 
-@@ -2882,6 +2899,7 @@ static int sbsa_uart_probe(struct platform_device *pdev)
- 	if (pdev->dev.of_node) {
- 		struct device_node *np = pdev->dev.of_node;
- 
-+		xlnx_uart = of_device_is_compatible(np, "arm,xlnx-uart");
- 		ret = of_property_read_u32(np, "current-speed", &baudrate);
- 		if (ret)
- 			return ret;
-@@ -2911,13 +2929,23 @@ static int sbsa_uart_probe(struct platform_device *pdev)
- #endif
- 		uap->vendor = &vendor_sbsa;
- 
-+	uap->port.ops   = &sbsa_uart_pops;
-+
-+	if (xlnx_uart) {
-+		uap->vendor = &vendor_xlnx;
-+		uap->clk = devm_clk_get(&pdev->dev, NULL);
-+		if (IS_ERR(uap->clk))
-+			return PTR_ERR(uap->clk);
-+
-+		uap->port.ops = &amba_pl011_pops;
-+	}
-+
- 	uap->reg_offset	= uap->vendor->reg_offset;
- 	uap->fifosize	= 32;
- 	uap->port.iotype = uap->vendor->access_32b ? UPIO_MEM32 : UPIO_MEM;
--	uap->port.ops	= &sbsa_uart_pops;
- 	uap->fixed_baud = baudrate;
- 
--	snprintf(uap->type, sizeof(uap->type), "SBSA");
-+	snprintf(uap->type, sizeof(uap->type), "%s\n", (xlnx_uart ? "xlnx_uart" : "SBSA"));
- 
- 	r = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 
-@@ -2941,6 +2969,7 @@ static int sbsa_uart_remove(struct platform_device *pdev)
- 
- static const struct of_device_id sbsa_uart_of_match[] = {
- 	{ .compatible = "arm,sbsa-uart", },
-+	{ .compatible = "arm,xlnx-uart", },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sbsa_uart_of_match);
--- 
-2.25.1
+If the only difference is the GPIO controller then why not go with solution 2. 
+Create a mt7986.dtsi which holds e.g. the node for pincontroller mt7986a and 
+then create a mt7986b.dtsi that just changes compatible and gpio-ranges:
 
+&pio {
+    compatible = "mediatek,mt7986b-pinctrl";
+    gpio-ranges = <&pio 0 0 41>, <&pio 66 66 35>;
+}
+
+What do you think?
+
+Regards,
+Matthias
+
+>>> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+>>>
+>>> ---
+>>> v7: added memory node back to dts
+>>> v6: removed clock and pinctrl node, to separate basic part into a
+>>> single
+>>>       patch series
+>>>
+>>> Original thread:
+>>>
+> https://urldefense.com/v3/__https://lore.kernel.org/all/20211004124155.1404-1-sam.shih@mediatek.com/__;!!CTRNKA9wMg0ARbw!xCEW0lwTKx4k272sWASoi90y_yRyQdAx0oNJC-jSAIWnIEkprJD-gAc1ugCvo0ex$
+>>>   
+>>>
+>>> v5: follow reviewr's comment: removed clock freqency node in timer
+>>> due to
+>>>       we have set CNTFRQ_EL0 in ATF firmware, and also corrected
+>>> GICD range
+>>> v4: added missing gic register bases, and fixed range of GICR
+>>> v3: used the stdout-path instead of console=ttyS0
+>>> v2: modified clock and uart node due to clock driver updated
+>>> ---
+>>>    arch/arm64/boot/dts/mediatek/Makefile        |   1 +
+>>>    arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts |  38 +++++
+>>>    arch/arm64/boot/dts/mediatek/mt7986a.dtsi    | 149
+>>> +++++++++++++++++++
+>>>    3 files changed, 188 insertions(+)
+>>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>>>    create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile
+>>> b/arch/arm64/boot/dts/mediatek/Makefile
+>>> index 4f68ebed2e31..e6c3a73b9e4a 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>>> @@ -7,6 +7,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-evb.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt6797-x20-dev.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-rfb1.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt7622-bananapi-bpi-r64.dtb
+>>> +dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm.dtb
+>>>    dtb-$(CONFIG_ARCH_MEDIATEK) += mt8173-elm-hana.dtb
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>>> b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>>> new file mode 100644
+>>> index 000000000000..ca074cf8e578
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a-rfb.dts
+>>> @@ -0,0 +1,38 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> +/*
+>>> + * Copyright (C) 2021 MediaTek Inc.
+>>> + * Author: Sam.Shih <sam.shih@mediatek.com>
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +#include "mt7986a.dtsi"
+>>> +
+>>> +/ {
+>>> +	model = "MediaTek MT7986a RFB";
+>>> +	compatible = "mediatek,mt7986a-rfb";
+>>> +
+>>> +	aliases {
+>>> +		serial0 = &uart0;
+>>> +	};
+>>> +
+>>> +	chosen {
+>>> +		stdout-path = "serial0:115200n8";
+>>> +		bootargs = "earlycon=uart8250,mmio32,0x11002000
+>>> swiotlb=512";
+>>
+>> We normally don't add earlycon parameter to the normal bootargs, as
+>> it's only
+>> for debugging. Also what do we need the swiotlb? Are there any
+>> limitation in the
+>> HW that makes us need it?
+>>
+> 
+> Thank you for your suggestion, as far as I know, it should not have
+> hardware limitations. This bootargs is just inherent from mt7622-
+> rfb.dts, I will delete it and test again on our development board.
+> 
+>> Regards,
+>> Matthias
+>>
+>>> +	};
+>>> +
+>>> +	memory {
+>>> +		reg = <0 0x40000000 0 0x40000000>;
+>>> +	};
+>>> +};
+>>> +
+>>> +&uart0 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&uart1 {
+>>> +	status = "okay";
+>>> +};
+>>> +
+>>> +&uart2 {
+>>> +	status = "okay";
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+>>> b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+>>> new file mode 100644
+>>> index 000000000000..75912bcf6c9c
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
+>>> @@ -0,0 +1,149 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> +/*
+>>> + * Copyright (C) 2021 MediaTek Inc.
+>>> + * Author: Sam.Shih <sam.shih@mediatek.com>
+>>> + */
+>>> +
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +/ {
+>>> +	compatible = "mediatek,mt7986a";
+>>> +	interrupt-parent = <&gic>;
+>>> +	#address-cells = <2>;
+>>> +	#size-cells = <2>;
+>>> +
+>>> +	system_clk: dummy40m {
+>>> +		compatible = "fixed-clock";
+>>> +		clock-frequency = <40000000>;
+>>> +		#clock-cells = <0>;
+>>> +	};
+>>> +
+>>> +	cpus {
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +		cpu0: cpu@0 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a53";
+>>> +			enable-method = "psci";
+>>> +			reg = <0x0>;
+>>> +			#cooling-cells = <2>;
+>>> +		};
+>>> +
+>>> +		cpu1: cpu@1 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a53";
+>>> +			enable-method = "psci";
+>>> +			reg = <0x1>;
+>>> +			#cooling-cells = <2>;
+>>> +		};
+>>> +
+>>> +		cpu2: cpu@2 {
+>>> +			device_type = "cpu";
+>>> +			compatible = "arm,cortex-a53";
+>>> +			enable-method = "psci";
+>>> +			reg = <0x2>;
+>>> +			#cooling-cells = <2>;
+>>> +		};
+>>> +
+>>> +		cpu3: cpu@3 {
+>>> +			device_type = "cpu";
+>>> +			enable-method = "psci";
+>>> +			compatible = "arm,cortex-a53";
+>>> +			reg = <0x3>;
+>>> +			#cooling-cells = <2>;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	psci {
+>>> +		compatible  = "arm,psci-0.2";
+>>> +		method      = "smc";
+>>> +	};
+>>> +
+>>> +	reserved-memory {
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +		ranges;
+>>> +		/* 192 KiB reserved for ARM Trusted Firmware (BL31) */
+>>> +		secmon_reserved: secmon@43000000 {
+>>> +			reg = <0 0x43000000 0 0x30000>;
+>>> +			no-map;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	timer {
+>>> +		compatible = "arm,armv8-timer";
+>>> +		interrupt-parent = <&gic>;
+>>> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
+>>> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
+>>> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
+>>> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+>>> +	};
+>>> +
+>>> +	soc {
+>>> +		#address-cells = <2>;
+>>> +		#size-cells = <2>;
+>>> +		compatible = "simple-bus";
+>>> +		ranges;
+>>> +
+>>> +		gic: interrupt-controller@c000000 {
+>>> +			compatible = "arm,gic-v3";
+>>> +			#interrupt-cells = <3>;
+>>> +			interrupt-parent = <&gic>;
+>>> +			interrupt-controller;
+>>> +			reg = <0 0x0c000000 0 0x10000>,  /* GICD */
+>>> +			      <0 0x0c080000 0 0x80000>,  /* GICR */
+>>> +			      <0 0x0c400000 0 0x2000>,   /* GICC */
+>>> +			      <0 0x0c410000 0 0x1000>,   /* GICH */
+>>> +			      <0 0x0c420000 0 0x2000>;   /* GICV */
+>>> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>>> +		};
+>>> +
+>>> +		watchdog: watchdog@1001c000 {
+>>> +			compatible = "mediatek,mt7986-wdt",
+>>> +				     "mediatek,mt6589-wdt";
+>>> +			reg = <0 0x1001c000 0 0x1000>;
+>>> +			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			#reset-cells = <1>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		trng: trng@1020f000 {
+>>> +			compatible = "mediatek,mt7986-rng",
+>>> +				     "mediatek,mt7623-rng";
+>>> +			reg = <0 0x1020f000 0 0x100>;
+>>> +			clocks = <&system_clk>;
+>>> +			clock-names = "rng";
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		uart0: serial@11002000 {
+>>> +			compatible = "mediatek,mt7986-uart",
+>>> +				     "mediatek,mt6577-uart";
+>>> +			reg = <0 0x11002000 0 0x400>;
+>>> +			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			clocks = <&system_clk>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		uart1: serial@11003000 {
+>>> +			compatible = "mediatek,mt7986-uart",
+>>> +				     "mediatek,mt6577-uart";
+>>> +			reg = <0 0x11003000 0 0x400>;
+>>> +			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			clocks = <&system_clk>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +		uart2: serial@11004000 {
+>>> +			compatible = "mediatek,mt7986-uart",
+>>> +				     "mediatek,mt6577-uart";
+>>> +			reg = <0 0x11004000 0 0x400>;
+>>> +			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
+>>> +			clocks = <&system_clk>;
+>>> +			status = "disabled";
+>>> +		};
+>>> +
+>>> +	};
+>>> +
+>>> +};
+>>>
+> 
+> Regards,
+> Sam
+> 
