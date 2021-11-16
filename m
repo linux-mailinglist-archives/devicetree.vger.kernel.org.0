@@ -2,107 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F0E2453630
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEDAC453636
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238509AbhKPPp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 10:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
+        id S238563AbhKPPqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 10:46:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238552AbhKPPpT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:45:19 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25B6C06121D
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:19 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id u1so38436078wru.13
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:19 -0800 (PST)
+        with ESMTP id S238489AbhKPPpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:45:53 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD61C0613B9
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:55 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id u1so38439940wru.13
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=MaOSO/5HtReWKBBksqBOQJDhfTRE2n/pBGJORKYgmI8=;
-        b=dpMihBVSiTIhJ8gwEIK/0RaxfyXs2DtvxfMOWHwvsfqgQpUny0lQtED0wIphEPCb6v
-         AEzTzY5KUWh+ZBUlwhm1MKOSsfEKvWzAZN6hA0iVz1ZkNSHET0GNQ7X4qOZ4ru7PoXmg
-         a/08/a6OGQp4ufg1hfyxfYLxOjuSPoP4Iv2indtDuuY25uHOzB4zY/j/Htu2gPPN48F8
-         +FDsCnukvP5bxxuyqV5df/R9Dld2m5MFGmv/6quqjj8jagtwmzBL49QLLLkaiJPMV3TB
-         utBJFccrrLjAw31i2P+rtb2jHXojpAt5V88ehKxTw8pEyulGHnLBAJQgM7JuB/O0nT8J
-         yzQw==
+         :content-disposition:in-reply-to;
+        bh=73W+eAVWIQvhx1y8meb9GkMNaweSrLQquuQCwdCLdlM=;
+        b=tTBwR2mJVmrbw05vqMoeWpcPdynH5H7MFpf8U/8M6xAuOKKys74i66yvqrb7RY9j0c
+         IF7HThF8ogn4WMAQ2xF+1XUR3nF9pRF3mx0z2644qRJ7JqOfW6pNG37Q9MmrhI64L7/1
+         5nOS7Oai+JmTOPLteY90Q5vXTUc4E5uPgv8E4k2vUNWeZsmPs0teGgIiDewfWs5w4at1
+         9n/BphIsJYboNZAdn4C2ib8Iq2I9IsT8rcjRiAnWuP9K2N878bsWMD0CHAaOBnNdWTa+
+         gIcE9MJLWh1bZas0FX7UDx98TnKHEubMHnpcccJbOTSC1wZCrqjXVnETxhBquCaynfdY
+         zQnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=MaOSO/5HtReWKBBksqBOQJDhfTRE2n/pBGJORKYgmI8=;
-        b=SWuz5Q7e4MDsLIbf65r78jUUJaLC1TeX/SwTepTQ5Ylylyck4f/vAQk6WjDnwh2N8F
-         pdZzNZzqkFDApNTx0csWaSN/H0ZKigS/lwbcd1L4bZZ4pcWSA70kO/XZxlAzCq+9MU4F
-         T7crbEMZmiTilytNNdt6DEBf1+jOeMSk3KU7E4U8BsDkKash9foZ30uRneIpjBZxnqHD
-         y0u1Qzyk6GwfDc7DLEJFmEe/aeR4VfqlCCaxEoshsmIpSY0cf4xJxU05xKSWqiO+soL4
-         dtwxpZsiEEtUbUF3jUt8n0u0C+KKNY9Gawu2C6kKsXicqXhsEX0DSyGDf2NWMhEXHNfD
-         g/Fg==
-X-Gm-Message-State: AOAM530UkF0ba6584ASwMMVxfIoTXVaEvZA0GfezBAk47u41OrOYlj0y
-        xSJAdAMydCr8x0H4AawLr3u6ug==
-X-Google-Smtp-Source: ABdhPJwGazAeHXqWI2KmcXg8HN2YudpmutPJQ1rdklClDDMa6uJ9nc+mW3BEpIrYrJ5e6pEnv6kpCA==
-X-Received: by 2002:a5d:5303:: with SMTP id e3mr10447721wrv.73.1637077337983;
-        Tue, 16 Nov 2021 07:42:17 -0800 (PST)
-Received: from google.com ([95.148.6.231])
-        by smtp.gmail.com with ESMTPSA id q4sm17892469wrs.56.2021.11.16.07.42.16
+         :mime-version:content-disposition:in-reply-to;
+        bh=73W+eAVWIQvhx1y8meb9GkMNaweSrLQquuQCwdCLdlM=;
+        b=wzgTX+hnnqOl7A51Io+HNugF7fO5Ih6MMvdl7RXjtNdqf8th6ah3NUtD+O7gDqJNrR
+         DLW00xRf6hHXSuEKL4bAyVCUQHNrg28p5qRlh1D4CQ0i0d9WCxXAfDlHJpYZy2ZQEujH
+         PBRG8X7HtIItu/2IDobaHafcF138GKk8k0AQevsbeXGWue9WKB//p3vN1v6hd2XQsTfJ
+         4/7bIOr7I+7roVe38QKOoo56pyC/lz4CdIxYQ1seWk6ytT7+xbo8n7mK2EsIKhKXijQ2
+         g7mf0gQ7AQbaDpWnbe6tmiNMVxGK5B0KXparbT+krWK6wJjD738+yK1Z5EIC9/vktz+y
+         uPbQ==
+X-Gm-Message-State: AOAM531S/hXhsUx8W7AsxI6NfoIORoVaW8V9eWQsuXx/uZ+HHtXc6khw
+        O9Uluuvj3dc7mSNS8vlRdf4sIA==
+X-Google-Smtp-Source: ABdhPJyKqFpr5MW3WSKHEzdeBo0mZSQini6a3jugtcFq28ioUcWTEOtVBpkQKMt1YvUY/9Jb3SJZlw==
+X-Received: by 2002:a05:6000:1201:: with SMTP id e1mr10350062wrx.298.1637077373724;
+        Tue, 16 Nov 2021 07:42:53 -0800 (PST)
+Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
+        by smtp.gmail.com with ESMTPSA id p14sm2742034wms.29.2021.11.16.07.42.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 07:42:17 -0800 (PST)
-Date:   Tue, 16 Nov 2021 15:42:15 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Kiran Gunda <kgunda@codeaurora.org>,
-        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v3 0/9] backlight: qcom-wled: fix and solidify handling
- of enabled-strings
-Message-ID: <YZPRV2jD1EBYGdHL@google.com>
-References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
- <20211116120213.n7qxqfi62lrxhyl7@maple.lan>
+        Tue, 16 Nov 2021 07:42:53 -0800 (PST)
+Date:   Tue, 16 Nov 2021 15:42:32 +0000
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     John Garry <john.garry@huawei.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, robin.murphy@arm.com,
+        iommu@lists.linux-foundation.org, uchida.jun@socionext.com,
+        leo.yan@linaro.org, will@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Shameer Kolothum <shameerali.kolothum.thodi@huawei.com>
+Subject: Re: [PATCH 2/2] perf/smmuv3: Add devicetree support
+Message-ID: <YZPRaKqfWMJcqaC0@myrica>
+References: <20211116113536.69758-1-jean-philippe@linaro.org>
+ <20211116113536.69758-3-jean-philippe@linaro.org>
+ <0f410098-2a58-9024-9fe4-77fb54b2a076@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211116120213.n7qxqfi62lrxhyl7@maple.lan>
+In-Reply-To: <0f410098-2a58-9024-9fe4-77fb54b2a076@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Nov 2021, Daniel Thompson wrote:
-
-> Hi Lee
+On Tue, Nov 16, 2021 at 12:06:36PM +0000, John Garry wrote:
+> On 16/11/2021 11:35, Jean-Philippe Brucker wrote:
+> > Add device-tree support to the SMMUv3 PMCG.  One small cosmetic change
+> > while factoring the option mask printout: don't display it when zero, it
+> > only contains one erratum at the moment.
+> > 
+> > Signed-off-by: Jay Chen <jkchen@linux.alibaba.com>
+> > Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> > ---
+> >   drivers/perf/arm_smmuv3_pmu.c | 25 +++++++++++++++++++++++--
+> >   1 file changed, 23 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/perf/arm_smmuv3_pmu.c b/drivers/perf/arm_smmuv3_pmu.c
+> > index 226348822ab3..958325ac103a 100644
+> > --- a/drivers/perf/arm_smmuv3_pmu.c
+> > +++ b/drivers/perf/arm_smmuv3_pmu.c
+> > @@ -47,6 +47,7 @@
+> >   #include <linux/kernel.h>
+> >   #include <linux/list.h>
+> >   #include <linux/msi.h>
+> > +#include <linux/of.h>
+> >   #include <linux/perf_event.h>
+> >   #include <linux/platform_device.h>
+> >   #include <linux/smp.h>
+> > @@ -750,8 +751,15 @@ static void smmu_pmu_get_acpi_options(struct smmu_pmu *smmu_pmu)
+> >   		smmu_pmu->options |= SMMU_PMCG_EVCNTR_RDONLY;
+> >   		break;
+> >   	}
+> > +}
+> > +
+> > +static void smmu_pmu_get_of_options(struct smmu_pmu *smmu_pmu)
+> > +{
+> > +	struct device_node *node = smmu_pmu->dev->of_node;
+> > -	dev_notice(smmu_pmu->dev, "option mask 0x%x\n", smmu_pmu->options);
+> > +	if (of_device_is_compatible(node, "hisilicon,smmu-v3-pmcg-hip08"))
 > 
-> On Mon, Nov 15, 2021 at 09:34:50PM +0100, Marijn Suijten wrote:
-> > This patchset fixes WLED's handling of enabled-strings: besides some
-> > cleanup it is now actually possible to specify a non-contiguous array of
-> > enabled strings (not necessarily starting at zero) and the values from
-> > DT are now validated to prevent possible unexpected out-of-bounds
-> > register and array element accesses.
-> > Off-by-one mistakes in the maximum number of strings, also causing
-> > out-of-bounds access, have been addressed as well.
-> 
-> They have arrived piecemeal (during v1, v2 and v3) but all patches on
-> the set should now have my R-b: attached to them.
+> I don't think that this is necessary. We don't support DT for hip08, nor
+> have any plans to. Incidentally, was this binding missing in your series?
 
-I can see that.  Nothing for you to worry about.
+Ok I'll drop this (and the compatible value from patch 1)
 
-I'll apply these when I conduct my next sweep, thanks.
+Thanks,
+Jean
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
