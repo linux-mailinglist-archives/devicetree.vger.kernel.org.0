@@ -2,381 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B71F45295F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 06:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9855E4529CC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 06:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240605AbhKPFJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 00:09:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51970 "EHLO
+        id S234441AbhKPFet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 00:34:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231240AbhKPFJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 00:09:24 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0714EC2CE2F8
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 18:08:35 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id gf14-20020a17090ac7ce00b001a7a2a0b5c3so841615pjb.5
-        for <devicetree@vger.kernel.org>; Mon, 15 Nov 2021 18:08:35 -0800 (PST)
+        with ESMTP id S234445AbhKPFec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 00:34:32 -0500
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66DFDC2D8F3E;
+        Mon, 15 Nov 2021 18:44:14 -0800 (PST)
+Received: by mail-qk1-x731.google.com with SMTP id 193so19062208qkh.10;
+        Mon, 15 Nov 2021 18:44:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PCNcz7gXnGfaX5DVsuzUbuuXMxo7d2wz8Wt49uOFvWk=;
-        b=LXoWiPa+xcxnCc13uR6IPKQaQFGuuzEIIblfjmSEAgij5u4lFq+US9j0pKdXzh7AZ+
-         mLcsXatUzA/EQVN3ayK8vxjBlPNr9Kssb559TA1fgsPPVNz5+LPG5CozIArfTPdr41vN
-         6oShyAzhYqMaluQN7bbdszWDl2ktfpIr3WaBw=
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+IsQBHoFAXBIkB1Kw8WNji5f2haXZUreOBVyURuDYXY=;
+        b=l72T4yHHjmckvxjl/bthixU/FwFfghPSs3EadNJjMWX37Etlj/vn2pNjYgjl+dEV+4
+         YQKDwq6Hl/65E3gKuGjHyRmWm6bE9SYztKS+bGWD5trEp4yVqmVWGia7jT1x2rSCG9Va
+         bAsV/ONCMORPfMlrW4T9/C4ya+OhPhV3+JRxQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PCNcz7gXnGfaX5DVsuzUbuuXMxo7d2wz8Wt49uOFvWk=;
-        b=jaU6kWZRhDC2R03pVU/ePSiNuI0scu2Qv+NC65kIorLajrZnRXTXI2CtyTLwGCmAzU
-         IlEu9vzUYdeRclYMNne+0Ifsn2XZU3aqnFBSOq4JzV9cXBWtaftOxEcpnEkTuDuw4MbW
-         00ftgMxg164LMxB1NsPswRis2/W7tx+6brOd3NwMXgAcE1GsNqhgVwUwhx6Jmw5fgUi6
-         DIZ1+0ttvxa5Jhux1o40hyD+NBOZvqUS3N1dc5554MmI48U+PFMbRdEx9knxE1hDnEYH
-         oMy4BATfgXjOsKweUXOs2pJiKKz9wzLoUnfuJ7riFf3hbQL5MDnU2Yar/yqVurbr/nRR
-         7ubA==
-X-Gm-Message-State: AOAM532lv/YUXHBzzH2dzzV3S2Xsb7UagSE0hrhKUUx3C6lQad85+qt9
-        kQifd1qn9lBbhhBXi/6viAPmUw==
-X-Google-Smtp-Source: ABdhPJyCy/QiNDJlSXbhoIuD/WObr8cyR6V9q+6r4aOE7l2hOZgzLIn3JuB1j8kr56dvjjo69PnAxw==
-X-Received: by 2002:a17:90b:4c8c:: with SMTP id my12mr69698947pjb.157.1637028514438;
-        Mon, 15 Nov 2021 18:08:34 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:54aa:73ab:b480:41e2])
-        by smtp.gmail.com with UTF8SMTPSA id t80sm12921817pgb.26.2021.11.15.18.08.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Nov 2021 18:08:34 -0800 (PST)
-Date:   Mon, 15 Nov 2021 18:08:32 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-        Peter Chen <peter.chen@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Al Cooper <alcooperx@gmail.com>
-Subject: Re: [PATCH v16 1/7] usb: misc: Add onboard_usb_hub driver
-Message-ID: <YZMSoPg10xoZ5LYK@google.com>
-References: <20210813195228.2003500-1-mka@chromium.org>
- <20210813125146.v16.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <CAD=FV=U2OuZFrqzVfrbLOUM4nHXwr1uYAYZ9XYWMr-Q95gb_EA@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+IsQBHoFAXBIkB1Kw8WNji5f2haXZUreOBVyURuDYXY=;
+        b=PcKjITc5DykR3RtiYctr+5CHbuTg8Pck2/VmBlJFnQbT9ZBf82cEi1XqlH4OLIPfog
+         dRI3nldwUrAHToh//wDfOcnXPgSB4IlIa2RtSQCUstmphkMPka8SbN65KIzuOWen1iBA
+         VZlm2Eh3MvSDO3Sg0MjeKwoec0hnJju3MyZprl/OiS/U2kbV3vY9KgEE0OVDKCpD/Kk7
+         sHcYar9EJayUGsHZ++PsdUJW+1YckvYw2IUENnO97KWD9cscgOfpHbxx+1VYo+80/jgz
+         ZjsQKb1Ujs8WZDwqinep1fa0dz2LJhdNSiXzTNym3cPku4hYCrf3mtUifwSQ0Dm5/S9A
+         hITw==
+X-Gm-Message-State: AOAM532kc7bN7fa/MkeUesvmWdCUIiT6g21qjVtkwrfbLZOPZ/OlYqV2
+        Obfsmjr9po0ayT+qunrUvXTDsb9Ba1PZ+QJbgRQ=
+X-Google-Smtp-Source: ABdhPJwFg2x8AJ1R5syQ8XsYLcOycKjHQkw7M4LD3hkby3taUtS6CF+5GtXIucrImQ59MMWh5GgdKa+ymtIJF4dYXg8=
+X-Received: by 2002:a05:620a:38f:: with SMTP id q15mr3429838qkm.291.1637030653516;
+ Mon, 15 Nov 2021 18:44:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=U2OuZFrqzVfrbLOUM4nHXwr1uYAYZ9XYWMr-Q95gb_EA@mail.gmail.com>
+References: <20210921043936.468001-1-andrew@aj.id.au> <20210921043936.468001-2-andrew@aj.id.au>
+ <CACRpkdZRWzq_j_UsU+eZurv1wT7muB1V4ktui1-Q0mHV3xw58A@mail.gmail.com>
+In-Reply-To: <CACRpkdZRWzq_j_UsU+eZurv1wT7muB1V4ktui1-Q0mHV3xw58A@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 16 Nov 2021 02:44:00 +0000
+Message-ID: <CACPK8Xef1hVFFAJS-tHa+fjR0SgNZ7d5W04KwOYi-CvQdpnJww@mail.gmail.com>
+Subject: Re: [PATCH 1/2] leds: pca955x: Make the gpiochip always expose all pins
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Pavel Machek <pavel@ucw.cz>
+Cc:     Andrew Jeffery <andrew@aj.id.au>, linux-leds@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
+Hello Pavel and Arnd,
 
-thanks for the thorough review!
+This one has slipped through the cracks. Andrew asked for a follow up
+and Linus sent a review, but we haven't heard from Pavel at all.
 
-On Thu, Nov 11, 2021 at 03:31:31PM -0800, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Aug 13, 2021 at 12:52 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+We've merged device tree changes through the soc tree in v5.16 that
+depend on this patch. Ideally I would like to see it applied to fix
+those device trees, instead of sending reverts for the device trees.
+
+Additionally, I'm now reviewing changes for v5.17 and want to decide
+which direction we should take.
+
+Pavel, are you happy with the change?
+
+If so, would you consider merging it as a fix for v5.16?
+
+Cheers,
+
+Joel
+
+On Tue, 9 Nov 2021 at 11:03, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Tue, Sep 21, 2021 at 6:40 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> > The devicetree binding allows specifying which pins are GPIO vs LED.
+> > Limiting the instantiated gpiochip to just these pins as the driver
+> > currently does requires an arbitrary mapping between pins and GPIOs, but
+> > such a mapping is not implemented by the driver. As a result,
+> > specifying GPIOs in such a way that they don't map 1-to-1 to pin indexes
+> > does not function as expected.
 > >
-> > +++ b/Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
-> > @@ -0,0 +1,8 @@
-> > +What:          /sys/bus/platform/devices/<dev>/always_powered_in_suspend
-> > +Date:          March 2021
-> > +KernelVersion: 5.13
-> 
-> I dunno how stuff like this is usually managed, but March 2021 and
-> 5.13 is no longer correct.
-
-will update, though it's not unlikely it will go stale again before this
-series lands.
-
-> > +ONBOARD USB HUB DRIVER
-> > +M:     Matthias Kaehlcke <mka@chromium.org>
-> > +L:     linux-usb@vger.kernel.org
-> > +S:     Maintained
-> > +F:     Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> 
-> I'm confused. Where is this .yaml file? It doesn't look landed and it
-> doesn't look to be in your series.
-
-It's a leftover from the early days of the series, when the driver had
-it's own binding, I'll remove it.
-
-> I guess this should be updated to:
-> 
-> F: Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-
-Not sure about that, the rts5411 binding could exist without this driver.
-
-> Also: should this have:
-> 
-> F: Documentation/ABI/testing/sysfs-bus-platform-onboard-usb-hub
-
-ack
-
-> > +struct udev_node {
-> > +       struct usb_device *udev;
-> > +       struct list_head list;
-> > +};
-> 
-> nit: 'udev' has a whole different connotation to me. Maybe just go
-> with `usbdev_node` ?
-
-Will change to 'usbdev_dev' node as suggested, I think it's ok to keep
-'udev' for the pointer to the USB device itself, since that abbreviation
-is used commonly in USB kernel land.
-
-> > +static int __maybe_unused onboard_hub_suspend(struct device *dev)
-> > +{
-> > +       struct onboard_hub *hub = dev_get_drvdata(dev);
-> > +       struct udev_node *node;
-> > +       bool power_off;
-> > +       int rc = 0;
-> > +
-> > +       if (hub->always_powered_in_suspend)
-> > +               return 0;
-> > +
-> > +       power_off = true;
-> > +
-> > +       mutex_lock(&hub->lock);
-> > +
-> > +       list_for_each_entry(node, &hub->udev_list, list) {
-> > +               if (!device_may_wakeup(node->udev->bus->controller))
-> > +                       continue;
-> > +
-> > +               if (usb_wakeup_enabled_descendants(node->udev)) {
-> > +                       power_off = false;
-> > +                       break;
-> > +               }
-> > +       }
-> > +
-> > +       mutex_unlock(&hub->lock);
-> > +
-> > +       if (power_off)
-> > +               rc = onboard_hub_power_off(hub);
-> > +
-> > +       return rc;
-> 
-> optional nit: get rid of "rc" and write the above as:
-> 
-> if (power_off)
->   return onboard_hub_power_off(hub);
-> 
-> return 0;
-
-ok, I plan to revert the suggested logic though and bail out 'early' if there
-is nothing to do.
-
-> > +static int __maybe_unused onboard_hub_resume(struct device *dev)
-> > +{
-> > +       struct onboard_hub *hub = dev_get_drvdata(dev);
-> > +       int rc = 0;
-> > +
-> > +       if (!hub->is_powered_on)
-> > +               rc = onboard_hub_power_on(hub);
-> > +
-> > +       return rc;
-> 
-> optional nit: get rid of "rc" and write the above as:
-> 
-> if (!hub->is_powered_on)
->   return onboard_hub_power_on(hub);
-> 
-> return 0;
-
-ok, same as above
-
-> > +static void onboard_hub_remove_usbdev(struct onboard_hub *hub, struct usb_device *udev)
-> > +{
-> > +       struct udev_node *node;
-> > +       char link_name[64];
-> > +
-> > +       snprintf(link_name, sizeof(link_name), "usb_dev.%s", dev_name(&udev->dev));
-> > +       sysfs_remove_link(&hub->dev->kobj, link_name);
-> 
-> I would be at least moderately worried about the duplicate snprintf
-> between here and the add function. Any way that could be a helper?
-
-I'll add a helper
-
-> > +static struct onboard_hub *_find_onboard_hub(struct device *dev)
-> > +{
-> > +       struct platform_device *pdev;
-> > +       struct device_node *np;
-> > +       phandle ph;
-> > +
-> > +       pdev = of_find_device_by_node(dev->of_node);
-> > +       if (!pdev) {
-> > +               if (of_property_read_u32(dev->of_node, "companion-hub", &ph)) {
-> > +                       dev_err(dev, "failed to read 'companion-hub' property\n");
-> > +                       return ERR_PTR(-EINVAL);
-> > +               }
-> > +
-> > +               np = of_find_node_by_phandle(ph);
-> > +               if (!np) {
-> > +                       dev_err(dev, "failed to find device node for companion hub\n");
-> > +                       return ERR_PTR(-EINVAL);
-> > +               }
-> 
-> Aren't the above two calls equivalent to this?
-> 
-> npc = of_parse_phandle(dev->of_node, "companion-hub", 0)
-
-Indeed, will use of_parse_phandle() instead
-
-> > +
-> > +               pdev = of_find_device_by_node(np);
-> > +               of_node_put(np);
-> > +
-> > +               if (!pdev)
-> > +                       return ERR_PTR(-EPROBE_DEFER);
-> 
-> Shouldn't you also defer if the dev_get_drvdata() returns NULL? What
-> if you're racing the probe of the platform device?
-
-Yeah, it seems that race could happen. IIUC we could use device_is_bound()
-to check if probing completed, really_probe() calls driver_bound() only
-after successfully probing the device.
-
-> > +       }
-> > +
-> > +       put_device(&pdev->dev);
-> > +
-> > +       return dev_get_drvdata(&pdev->dev);
-> 
-> It feels like it would be safer to call dev_get_drvdata() before
-> putting the device? ...and actually, are you sure you should even be
-> putting the device? Maybe we should wait to put it until
-> onboard_hub_usbdev_disconnect()
-
-It shouldn't be necessary, when the platform device is destroyed it
-unbinds the associated USB devices (see onboard_hub_remove()), hence
-they don't keep using the drvdata. There was a related discussion in
-the early days of this series: https://lkml.org/lkml/2020/9/21/2153
-
-> > +static struct usb_device_driver onboard_hub_usbdev_driver = {
-> > +
-> > +       .name = "onboard-usb-hub",
-> 
-> Remove the extra blank line at the start of the structure?
-
-ok
-
-> > +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
-> > +{
-> > +       int i;
-> > +       phandle ph;
-> > +       struct device_node *np, *npc;
-> > +       struct platform_device *pdev;
-> > +       struct pdev_list_entry *pdle;
-> 
-> Should the `INIT_LIST_HEAD(pdev_list);` go here? Is there any reason
-> why we need to push this into the caller?
-
-That would limit pdev_list to a single entry, which is not what we want. A
-parent hub might have multiple compatible onboard hubs connected to it.
-
-> > +       for (i = 1; i <= parent_hub->maxchild; i++) {
-> > +               np = usb_of_get_device_node(parent_hub, i);
-> > +               if (!np)
-> > +                       continue;
-> > +
-> > +               if (!of_is_onboard_usb_hub(np))
-> > +                       goto node_put;
-> > +
-> > +               if (of_property_read_u32(np, "companion-hub", &ph))
-> > +                       goto node_put;
-> > +
-> > +               npc = of_find_node_by_phandle(ph);
-> > +               if (!npc)
-> > +                       goto node_put;
-> 
-> Aren't the above two calls equivalent to this?
-> 
-> npc = of_parse_phandle(np, "companion-hub", 0)
-
-yes, will change to of_parse_phandle()
-
-> I'm also curious why a companion-hub is a _required_ property.
-> Couldn't you support USB 2.0 hubs better by just allowing
-> companion-hub to be optional? I guess that could be a future
-> improvement, but it also seems trivial to support from the start.
-
-The evolution of this driver somewhat tied it to xHCI, however that
-isn't strictly necessary. In a sense it is nice when 'companion-hub'
-is mandatory, since things can get messy if it is forgotten when it
-should be there.
-
-The property should be mandatory in the bindings of the USB >= 3.0
-hubs that are supported by this driver, but it could be optional
-for USB 2.0 hubs. Instead of doing the enforcement in the driver
-it could be limited to checking a DT against the bindings in .yaml.
-It's also an option to make it mandatory in the driver through a
-list of compatible strings / VIDs/PIDs.
-
-> > +               pdev = of_find_device_by_node(npc);
-> > +               of_node_put(npc);
-> > +
-> > +               if (pdev) {
-> > +                       /* the companion hub already has a platform device, nothing to do here */
-> > +                       put_device(&pdev->dev);
-> > +                       goto node_put;
-> > +               }
-> > +
-> > +               pdev = of_platform_device_create(np, NULL, &parent_hub->dev);
-> > +               if (pdev) {
-> > +                       pdle = kzalloc(sizeof(*pdle), GFP_KERNEL);
-> 
-> Maybe devm_kzalloc(&pdev->dev, GFP_KERNEL) ? Then you can get rid of
-> the free in the destroy function?
-
-it feels a bit sneaky to do it after creation instead of probe(), but I guess
-it's fine.
-
-> > +                       if (!pdle)
-> > +                               goto node_put;
-> 
-> If your memory allocation fails here, don't you need to
-> of_platform_device_destroy() ?
-
-right, will call of_platform_device_destroy() in case of failure
-
-> > +                       INIT_LIST_HEAD(&pdle->node);
-> 
-> I don't believe that the INIT_LIST_HEAD() does anything useful here.
-> &pdle->node is not a list head--it's a list element. Adding it to the
-> end of the existing list will fully initialize its ->next and ->prev
-> pointers but won't look at what they were.
-
-indeed, will remove
-
-> > +                       pdle->pdev = pdev;
-> > +                       list_add(&pdle->node, pdev_list);
-> > +               } else {
-> > +                       dev_err(&parent_hub->dev,
-> > +                               "failed to create platform device for onboard hub '%s'\n",
-> > +                               of_node_full_name(np));
-> 
-> Use "%pOF" instead of open-coding.
-
-ack
-
-> > +void onboard_hub_destroy_pdevs(struct list_head *pdev_list)
-> > +{
-> > +       struct pdev_list_entry *pdle, *tmp;
-> > +
-> > +       list_for_each_entry_safe(pdle, tmp, pdev_list, node) {
-> > +               of_platform_device_destroy(&pdle->pdev->dev, NULL);
-> > +               kfree(pdle);
-> 
-> It feels like you should be removing the node from the list too,
-> right? Otherwise if you unbind / bind the USB driver you'll still have
-> garbage in your list the 2nd time?
-
-Could catch, it seems I limited testing to a single removal ...
+> > Establishing such a mapping is more complex than not and even if we did,
+> > doing so leads to a slightly hairy userspace experience as the behaviour
+> > of the PCA955x gpiochip would depend on how the pins are assigned in the
+> > devicetree. Instead, always expose all pins via the gpiochip to provide
+> > a stable interface and track which pins are in use.
+> >
+> > Specifying a pin as `type = <PCA955X_TYPE_GPIO>;` in the devicetree
+> > becomes a no-op.
+> >
+> > I've assessed the impact of this change by looking through all of the
+> > affected devicetrees as of the tag leds-5.15-rc1:
+> >
+> > ```
+> > $ git grep -l 'pca955[0123]' $(find . -name dts -type d)
+> > arch/arm/boot/dts/aspeed-bmc-ibm-everest.dts
+> > arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
+> > arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts
+> > arch/arm/boot/dts/aspeed-bmc-opp-mowgli.dts
+> > arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+> > arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> > arch/arm/boot/dts/aspeed-bmc-opp-witherspoon.dts
+> > ```
+> >
+> > These are all IBM-associated platforms. I've analysed both the
+> > devicetrees and schematics where necessary to determine whether any
+> > systems hit the hazard of the current broken behaviour. For the most
+> > part, the systems specify the pins as either all LEDs or all GPIOs, or
+> > at least do so in a way such that the broken behaviour isn't exposed.
+> >
+> > The main counter-point to this observation is the Everest system whose
+> > devicetree describes a large number of PCA955x devices and in some cases
+> > has pin assignments that hit the hazard. However, there does not seem to
+> > be any use of the affected GPIOs in the userspace associated with
+> > Everest.
+> >
+> > Regardless, any use of the hazardous GPIOs in Everest is already broken,
+> > so let's fix the interface and then fix any already broken userspace
+> > with it.
+> >
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+>
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Yours,
+> Linus Walleij
