@@ -2,87 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C730452BBE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 08:40:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFA81452BE1
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 08:44:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231186AbhKPHmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 02:42:35 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:32321 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230425AbhKPHmc (ORCPT
+        id S231335AbhKPHpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 02:45:42 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:48885 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S231274AbhKPHpi (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 02:42:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637048375; x=1668584375;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=TCfnqbUmdUhqnlLBT/Sg3zLbuO4OF3Gri0hto/EcruI=;
-  b=q6hhI+KhHrWm6UmZZ5JVsFTpsyo3ieGcwue0IFV2e+/6mh9Mqx5mVSgq
-   TK2XCDe2QJA8UXe5YB2CpmLSLL4/RBF6aGK9zjbOG2hXxxkWqTrGhtqy0
-   qhEjxgEcLUCdRamH+drJNrv6i7cZs+kTSyPkH0HR0MFnY/+GN3uaoA3vS
-   Q=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 15 Nov 2021 23:39:08 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Nov 2021 23:39:07 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 15 Nov 2021 23:38:35 -0800
-Received: from hu-vamslank-sd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 15 Nov 2021 23:38:35 -0800
-From:   <quic_vamslank@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <manivannan.sadhasivam@linaro.org>,
-        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 6/6] dt-bindings: clock: Introduce pdc bindings for SDX65
-Date:   Mon, 15 Nov 2021 23:38:12 -0800
-Message-ID: <0943c652b09dda026545cc10f44b0c535088072f.1637047731.git.quic_vamslank@quicinc.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <cover.1637047731.git.quic_vamslank@quicinc.com>
-References: <cover.1637047731.git.quic_vamslank@quicinc.com>
+        Tue, 16 Nov 2021 02:45:38 -0500
+X-IronPort-AV: E=Sophos;i="5.87,238,1631545200"; 
+   d="scan'208";a="100433326"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 16 Nov 2021 16:42:37 +0900
+Received: from localhost.localdomain (unknown [10.166.14.185])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 337AB40083D3;
+        Tue, 16 Nov 2021 16:42:37 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH 00/16] treewide: Initial support for R-Car S4-8
+Date:   Tue, 16 Nov 2021 16:41:14 +0900
+Message-Id: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+This patch series adds initial support for the Renesas R-Car S4-8
+(r8a779f0) SoC.
 
-Add compatible for SDX65 pdc.
+Yoshihiro Shimoda (16):
+  dt-bindings: arm: renesas: Document R-Car S4-8 SoC DT bindings
+  dt-bindings: arm: renesas: Document Renesas Spider boards
+  dt-bindings: reset: renesas,rst: Document r8a779f0 reset module
+  dt-bindings: power: renesas,rcar-sysc: Document r8a779f0 SYSC bindings
+  dt-bindings: power: Add r8a779f0 SYSC power domain definitions
+  dt-bindings: clock: renesas,cpg-mssr: Document r8a779f0
+  dt-bindings: clock: Add r8a779f0 CPG Core Clock Definitions
+  dt-bindings: serial: renesas,scif: Document r8a779f0 bindings
+  soc: renesas: Identify R-Car S4-8
+  soc: renesas: r8a779f0-sysc: Add r8a779f0 support
+  soc: renesas: rcar-rst: Add support for R-Car S4-8
+  clk: renesas: cpg-mssr: Add support for R-Car S4-8
+  tty: serial: sh-sci: Add support for R-Car Gen4
+  arm64: dts: renesas: Add Renesas R8A779F0 SoC support
+  arm64: dts: renesas: Add Renesas Spider boards support
+  arm64: defconfig: Enable R-Car S4-8
 
-Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/interrupt-controller/qcom,pdc.txt        | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/arm/renesas.yaml      |  12 +
+ .../bindings/clock/renesas,cpg-mssr.yaml      |   1 +
+ .../bindings/power/renesas,rcar-sysc.yaml     |   1 +
+ .../bindings/reset/renesas,rst.yaml           |   1 +
+ .../bindings/serial/renesas,scif.yaml         |   6 +
+ arch/arm64/boot/dts/renesas/Makefile          |   2 +
+ .../boot/dts/renesas/r8a779f0-spider-cpu.dtsi |  36 ++
+ .../boot/dts/renesas/r8a779f0-spider.dts      |  22 +
+ arch/arm64/boot/dts/renesas/r8a779f0.dtsi     | 121 ++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/renesas/Kconfig                   |  10 +
+ drivers/clk/renesas/Makefile                  |   2 +
+ drivers/clk/renesas/r8a779a0-cpg-mssr.c       |   2 +-
+ drivers/clk/renesas/r8a779f0-cpg-mssr.c       | 188 +++++++++
+ drivers/clk/renesas/rcar-gen4-cpg.c           | 141 +++++++
+ drivers/clk/renesas/rcar-gen4-cpg.h           |  76 ++++
+ drivers/clk/renesas/renesas-cpg-mssr.c        |  42 +-
+ drivers/clk/renesas/renesas-cpg-mssr.h        |   3 +-
+ drivers/soc/renesas/Kconfig                   |  10 +
+ drivers/soc/renesas/Makefile                  |   3 +-
+ drivers/soc/renesas/r8a779a0-sysc.c           | 380 +-----------------
+ drivers/soc/renesas/r8a779f0-sysc.c           |  47 +++
+ drivers/soc/renesas/rcar-gen4-sysc.c          | 376 +++++++++++++++++
+ drivers/soc/renesas/rcar-gen4-sysc.h          |  43 ++
+ drivers/soc/renesas/rcar-rst.c                |  14 +-
+ drivers/soc/renesas/renesas-soc.c             |  13 +
+ drivers/tty/serial/sh-sci.c                   |   3 +
+ include/dt-bindings/clock/r8a779f0-cpg-mssr.h |  65 +++
+ include/dt-bindings/power/r8a779f0-sysc.h     |  30 ++
+ 29 files changed, 1251 insertions(+), 400 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779f0-spider.dts
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+ create mode 100644 drivers/clk/renesas/r8a779f0-cpg-mssr.c
+ create mode 100644 drivers/clk/renesas/rcar-gen4-cpg.c
+ create mode 100644 drivers/clk/renesas/rcar-gen4-cpg.h
+ create mode 100644 drivers/soc/renesas/r8a779f0-sysc.c
+ create mode 100644 drivers/soc/renesas/rcar-gen4-sysc.c
+ create mode 100644 drivers/soc/renesas/rcar-gen4-sysc.h
+ create mode 100644 include/dt-bindings/clock/r8a779f0-cpg-mssr.h
+ create mode 100644 include/dt-bindings/power/r8a779f0-sysc.h
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-index 98d89e53013d..ce631d853db4 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-@@ -23,6 +23,7 @@ Properties:
- 		    - "qcom,sdm845-pdc": For SDM845
- 		    - "qcom,sdm8250-pdc": For SM8250
- 		    - "qcom,sdm8350-pdc": For SM8350
-+		    - "qcom,sdx65-pdc": For SDX65
- 
- - reg:
- 	Usage: required
 -- 
-2.33.1
+2.25.1
 
