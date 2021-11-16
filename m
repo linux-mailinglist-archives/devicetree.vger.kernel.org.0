@@ -2,185 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A62F9452A6B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 07:19:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C037452AE8
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 07:29:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229521AbhKPGWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 01:22:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40252 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229441AbhKPGVx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 01:21:53 -0500
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF5AC061570;
-        Mon, 15 Nov 2021 22:18:56 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id p4so11129936qkm.7;
-        Mon, 15 Nov 2021 22:18:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=moerj2/cgT79WMwA3cg6oVNVd7JpZXYnNz8s9GSEqKA=;
-        b=axRjeAncLDk6D+syQ/d2VsHsutNSI4x27SjHRyoPl9o25rBGBK3j6Gh4Dn9KUiWnYT
-         0MpySKJno6XucXPEWA+VlJam/a0zHvgekifkZK9g1vznIhawEDyupHKl1ijMsf+2rPC8
-         rwSGWJalrbiZGu92meQeUQbIiBUy2xwuixcdI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=moerj2/cgT79WMwA3cg6oVNVd7JpZXYnNz8s9GSEqKA=;
-        b=svSzEtMpbFh/WD+L7sXdbL0GdLOd/ON2b4YnuKKzTAsNRfWw/HCJ43/NbdifQ4JNbw
-         bAtFJVNKsUrnJlNyXiSkZskRBGXAsrRCskpgm5ga3gEnJIABXoUfL4X29IvbgJtBUSB0
-         0UsyuWxz+83Eb7q5Tip9pNUdNkdXl2v08Ph2Qsbz1OC/ycdl6yAsRJ/QRkPiKT1A+0RP
-         q2Ca4RUwXW0qtvkmh4ky56AgAHR/isepJhoJkY/YrUpDLYwft1ODanXxlzUn5qj9s0V9
-         VTzjgouBqBlPUQRGkWQTrunU5XFLJZWS8IU0F6mmvFejAhaPpelfbFNEvDU2CF3wQ1d7
-         rLVA==
-X-Gm-Message-State: AOAM531V7pXhr3BwM5x3Zzso4YfSav6VkEE1sBfrIFK0Ljb1sWJhjKQA
-        VMsIUfYr05GAAv3QpmM8Vg0dyL3MHfgd2aZF22U=
-X-Google-Smtp-Source: ABdhPJwbRmw+e/yporUG0JiCfdTUsBHQLhSw4joRHWlLquSvp7BF321H3I8yxPtqP2ko/CFyW/RBwgtfEUdd7Wx+7jg=
-X-Received: by 2002:a05:620a:298a:: with SMTP id r10mr4130440qkp.381.1637043535864;
- Mon, 15 Nov 2021 22:18:55 -0800 (PST)
+        id S232900AbhKPGbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 01:31:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60736 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231978AbhKPG3j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 01:29:39 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2AA8A614C8;
+        Tue, 16 Nov 2021 06:26:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1637044002;
+        bh=AiP1xjR6qcKw8cmJ80lJrFN5bNbs0D2VyefHMyYb3z0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rAdWQ1YQxccyMONofsDbmG5JRlehNbsB99jOPJzaVFcdTRcA4ws39LiNWk3dB7uWb
+         uNAT5/M4GeN3kEnYpwksavGrmR+POUUZtsZDKXx42L9m0V4gGSyQ+y+ecJSg6h7zao
+         wwhvs9UzhWYf/FBFU0d7JfWEdkj/s1ZlCxm2+EV8=
+Date:   Tue, 16 Nov 2021 07:26:28 +0100
+From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+To:     "Winiarska, Iwona" <iwona.winiarska@intel.com>
+Cc:     "corbet@lwn.net" <corbet@lwn.net>,
+        "jae.hyun.yoo@linux.intel.com" <jae.hyun.yoo@linux.intel.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "Luck, Tony" <tony.luck@intel.com>,
+        "Hansen, Dave" <dave.hansen@intel.com>,
+        "d.mueller@elsoft.ch" <d.mueller@elsoft.ch>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "rdunlap@infradead.org" <rdunlap@infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "zweiss@equinix.com" <zweiss@equinix.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "bp@alien8.de" <bp@alien8.de>, "joel@jms.id.au" <joel@jms.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "pierre-louis.bossart@linux.intel.com" 
+        <pierre-louis.bossart@linux.intel.com>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "Williams, Dan J" <dan.j.williams@intel.com>
+Subject: Re: [PATCH v3 06/13] peci: Add device detection
+Message-ID: <YZNPFGPXfCLfJMq3@kroah.com>
+References: <20211115182552.3830849-1-iwona.winiarska@intel.com>
+ <20211115182552.3830849-7-iwona.winiarska@intel.com>
+ <YZKr1Rqfx6Cmw+Ok@kroah.com>
+ <368c990c30c5bacde15ac4bce5db8389aea3ec9c.camel@intel.com>
 MIME-Version: 1.0
-References: <20211101110107.29010-1-tommy_huang@aspeedtech.com> <20211101110107.29010-4-tommy_huang@aspeedtech.com>
-In-Reply-To: <20211101110107.29010-4-tommy_huang@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 16 Nov 2021 06:18:43 +0000
-Message-ID: <CACPK8XembQc9vMZbschzC6NuXftcXAuzZbLw1ic==iXkK8c-PA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] drm/aspeed: Update INTR_STS handling
-To:     tommy-huang <tommy_huang@aspeedtech.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <368c990c30c5bacde15ac4bce5db8389aea3ec9c.camel@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 Nov 2021 at 11:01, tommy-huang <tommy_huang@aspeedtech.com> wrote:
->
->     The V-sync INTR_STS is differnet on AST2600.
->     Change into general rule to handle it.
->
-> Signed-off-by: tommy-huang <tommy_huang@aspeedtech.com>
-> ---
->  drivers/gpu/drm/aspeed/aspeed_gfx.h     |  2 ++
->  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c | 26 ++++++++++++++++++++++---
->  2 files changed, 25 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx.h b/drivers/gpu/drm/aspeed/aspeed_gfx.h
-> index 96501152bafa..5eed9275bce7 100644
-> --- a/drivers/gpu/drm/aspeed/aspeed_gfx.h
-> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx.h
-> @@ -12,6 +12,8 @@ struct aspeed_gfx {
->         struct regmap                   *scu;
->
->         u32                             dac_reg;
-> +       u32                             int_reg;
-> +       u32                             int_clr_reg;
->         u32                             vga_scratch_reg;
->         u32                             throd_val;
->         u32                             scan_line_max;
-> diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-> index b53fee6f1c17..1092060cb59c 100644
-> --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-> +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-> @@ -60,6 +60,8 @@
->
->  struct aspeed_gfx_config {
->         u32 dac_reg;            /* DAC register in SCU */
-> +       u32 int_status_reg;     /* Interrupt status register */
+On Mon, Nov 15, 2021 at 10:35:23PM +0000, Winiarska, Iwona wrote:
+> On Mon, 2021-11-15 at 19:49 +0100, Greg Kroah-Hartman wrote:
+> > On Mon, Nov 15, 2021 at 07:25:45PM +0100, Iwona Winiarska wrote:
+> > > +void peci_device_destroy(struct peci_device *device)
+> > > +{
+> > > +       bool killed;
+> > > +
+> > > +       device_lock(&device->dev);
+> > > +       killed = kill_device(&device->dev);
+> > 
+> > Eeek, why call this?
+> > 
+> > > +       device_unlock(&device->dev);
+> > > +
+> > > +       if (!killed)
+> > > +               return;
+> > 
+> > What happened if something changed after you unlocked it?
+> 
+> We either killed it, or the other caller killed it.
+> 
+> > 
+> > Why is kill_device() required at all?  That's a very rare function to
+> > call, and one that only one "bus" calls today because it is very
+> > special (i.e. crazy and broken...)
+> 
+> It's used to avoid double-delete in case of races between peci_controller
+> unregister and "manually" removing the device using sysfs (pointed out by Dan in
+> v2). We're calling peci_device_destroy() in both callsites.
+> Other way to solve it would be to just have a peci-specific lock, but
+> kill_device seemed to be well suited for the problem at hand.
+> Do you suggest to remove it and just go with the lock?
 
-This is the same for all supported chips; do you need to introduce the
-variable for it?
+Yes please, remove it and use the lock.
 
-> +       u32 int_clear_reg;      /* Interrupt clear register */
->         u32 vga_scratch_reg;    /* VGA scratch register in SCU */
->         u32 throd_val;          /* Default Threshold Seting */
->         u32 scan_line_max;      /* Max memory size of one scan line */
-> @@ -67,6 +69,8 @@ struct aspeed_gfx_config {
->
->  static const struct aspeed_gfx_config ast2400_config = {
->         .dac_reg = 0x2c,
-> +       .int_status_reg = 0x60,
-> +       .int_clear_reg = 0x60,
->         .vga_scratch_reg = 0x50,
->         .throd_val = CRT_THROD_LOW(0x1e) | CRT_THROD_HIGH(0x12),
->         .scan_line_max = 64,
-> @@ -74,14 +78,26 @@ static const struct aspeed_gfx_config ast2400_config = {
->
->  static const struct aspeed_gfx_config ast2500_config = {
->         .dac_reg = 0x2c,
-> +       .int_status_reg = 0x60,
-> +       .int_clear_reg = 0x60,
->         .vga_scratch_reg = 0x50,
->         .throd_val = CRT_THROD_LOW(0x24) | CRT_THROD_HIGH(0x3c),
->         .scan_line_max = 128,
->  };
->
-> +static const struct aspeed_gfx_config ast2600_config = {
-> +       .dac_reg = 0xc0,
-> +       .int_status_reg = 0x60,
-> +       .int_clear_reg = 0x68,
-> +       .vga_scratch_reg = 0x50,
-> +       .throd_val = CRT_THROD_LOW(0x50) | CRT_THROD_HIGH(0x70),
-> +       .scan_line_max = 128,
-> +};
+Also, why are you required to have a sysfs file that can remove the
+device?  Who wants that?
 
-This patch combines adding the clear_reg functionality with support
-for the 2600. Can you split them out; add int_clear_reg first, and
-then add support for the 2600 in the following patch?
+thanks,
 
-
-> +
->  static const struct of_device_id aspeed_gfx_match[] = {
->         { .compatible = "aspeed,ast2400-gfx", .data = &ast2400_config },
->         { .compatible = "aspeed,ast2500-gfx", .data = &ast2500_config },
-> +       { .compatible = "aspeed,ast2600-gfx", .data = &ast2600_config },
->         { },
->  };
->  MODULE_DEVICE_TABLE(of, aspeed_gfx_match);
-> @@ -113,13 +129,15 @@ static irqreturn_t aspeed_gfx_irq_handler(int irq, void *data)
->  {
->         struct drm_device *drm = data;
->         struct aspeed_gfx *priv = to_aspeed_gfx(drm);
-> -       u32 reg;
-> +       u32 reg, clr_reg;
->
-> -       reg = readl(priv->base + CRT_CTRL1);
-> +       reg = readl(priv->base + priv->int_reg);
->
->         if (reg & CRT_CTRL_VERTICAL_INTR_STS) {
->                 drm_crtc_handle_vblank(&priv->pipe.crtc);
-> -               writel(reg, priv->base + CRT_CTRL1);
-> +               clr_reg = (readl(priv->base + priv->int_clr_reg) |
-> +                       CRT_CTRL_VERTICAL_INTR_STS);
-> +               writel(clr_reg, priv->base + priv->int_clr_reg);
-You do not need to do read-modify-write.
-
-On the 2500 you're writing back the value you read. On the 2600 all of
-the bits are read only except the INTR_STS bit, which is W1C, so you
-can use the value you read from CRT_CTRL1, so this should be enough:
-
- writel(reg, priv->base + priv->int_clr_reg);
-
->                 return IRQ_HANDLED;
->         }
->
-> @@ -147,6 +165,8 @@ static int aspeed_gfx_load(struct drm_device *drm)
->         config = match->data;
->
->         priv->dac_reg = config->dac_reg;
-> +       priv->int_reg = config->int_status_reg;
-> +       priv->int_clr_reg = config->int_clear_reg;
->         priv->vga_scratch_reg = config->vga_scratch_reg;
->         priv->throd_val = config->throd_val;
->         priv->scan_line_max = config->scan_line_max;
-> --
-> 2.17.1
->
+greg k-h
