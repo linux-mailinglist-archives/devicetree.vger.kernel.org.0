@@ -2,84 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB39452F85
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 11:54:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 759B3452FAA
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:02:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234395AbhKPK5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 05:57:16 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:36404 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234377AbhKPK5O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 05:57:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637060058; x=1668596058;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=6p8b8jPiDl25t3SNlwqW1xWe288t0b87c/qI2szEEYo=;
-  b=usGdguDp7xbBrMuMHhgbnrwYkK1C1twcWgcglwjE/7NbWkVZBZZZ8yxw
-   N/mODUfSHsX+ELnKItucDqSdpKe93NTicrT1k8+ZA8CjNWP8c1Bg6sGfJ
-   i+jbzrlvCFN4e+dFSBFLRk4BjBFSmPmzZDeQyx9GutYWMDMuOQq3OSw55
-   BzVVEA4gKLmeYmSpRm5MvGLFzZiTxdJfNw+eLRjHSy5ey7oH2dGBLUL+a
-   idUq/0KcaSpG68VEfLpulQbsGvxQxSiTC+myoLLEqMNyrJCsXckiiY9eA
-   Jh8Uq6MgDuXiXPYexrnj4pe34132uESyyxVpE93DYJkShyd8ecu3pIjYb
-   Q==;
-IronPort-SDR: eeM1e3aec4XeYA2aIS/ahf2rUqdYVi90rpzLNM+u8izh+kTktBvixszzFFrktWUlnWnIsaWdOk
- 3gvyWTAVQ4FzX0/e36FCZniSM6dxpdjVTAc03M/4nTLSuxHRqYd9JJnEl/WyOpeSZjdWGbx6We
- KRcWqq1LGdHZus6c8AJGVVJCgBrWeaiYpS0XwtX3mZc9ogkfSx17jqmOP18X0AEyd09r+1ApiT
- BME8LH1zgvAahJgIW3tAWj6dv+AWgqTKybhuT9FnA/lIO+7W1AfxelpQRwmLrARWxCQszRmUF1
- iGRpvGZxGcMuI0illY/ijE7h
-X-IronPort-AV: E=Sophos;i="5.87,239,1631602800"; 
-   d="scan'208";a="139275682"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Nov 2021 03:54:15 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 16 Nov 2021 03:54:15 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 16 Nov 2021 03:54:15 -0700
-Date:   Tue, 16 Nov 2021 11:56:01 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <kishon@ti.com>, <robh+dt@kernel.org>, <andrew@lunn.ch>,
-        <alexandre.belloni@bootlin.com>, <kuba@kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH resend v4 0/3] phy: Add driver for lan966x Serdes driver
-Message-ID: <20211116105601.fauvfv2wzlmcf6jc@soft-dev3-1.localhost>
-References: <20211116100818.1615762-1-horatiu.vultur@microchip.com>
- <20211116102151.k3evnn4f2rwsi5nk@soft-dev3-1.localhost>
- <YZOLyQPsgoOYJZch@matsya>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YZOLyQPsgoOYJZch@matsya>
+        id S232080AbhKPLFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 06:05:01 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:21526 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234499AbhKPLFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 06:05:00 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637060521; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=Wt/HjrcdB9QYwp3Rr18jUECoJIJBfzCHQYUTqCg6wzA=; b=cyHonmwfs0k9wn0g+cBAXnBhspEZNDSRNhMBLDnRhgfG1wIjtXub1bFdrVcOX4eQG4QGme1D
+ rd3RTHCQYGPX98qtKCkumLfn6XIxjx3JPg1Dr1EdZHifXAqzZjGaLyiZZLWtGewnM51RFg7p
+ /Abv0EQ9Qiks43/Ux1cJDtX/bEg=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61938fa94db4233966bb7416 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 16 Nov 2021 11:02:01
+ GMT
+Sender: pmaliset=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 65B6CC43618; Tue, 16 Nov 2021 11:02:01 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pmaliset-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pmaliset)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 14EA0C4338F;
+        Tue, 16 Nov 2021 11:01:56 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 14EA0C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Prasad Malisetty <pmaliset@codeaurora.org>
+To:     swboyd@chromium.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, manivannan.sadhasivam@linaro.org,
+        robh+dt@kernel.org, mka@chromium.org, lorenzo.pieralisi@arm.com,
+        svarbanov@mm-sol.com, bhelgaas@google.com
+Cc:     Prasad Malisetty <pmaliset@codeaurora.org>
+Subject: [PATCH v3 0/2] Add PCIe clock DT entries for SC7280
+Date:   Tue, 16 Nov 2021 16:31:45 +0530
+Message-Id: <1637060508-30375-1-git-send-email-pmaliset@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/16/2021 16:15, Vinod Koul wrote:
-> 
-> On 16-11-21, 11:21, Horatiu Vultur wrote:
-> > The 11/16/2021 11:08, Horatiu Vultur wrote:
-> >
-> > Hi Kison, Vinod,
-> >
-> > Can you let me know if you have more comments to this patch series?
-> > Otherwise can you ack on it? Because I would like to have the patches
-> > merged via netdev if that is OK for you.
-> 
-> Any reason for merge thru netdev, there is no dependency and now with
-> merge window closed, I can pick this up..
+Changes Added in v3:
+	
+	* Seperated v2 patch as two patches. One patch is for 
+	  Fixing incorrect clock name and another patch is for
+	  Adding PCIe clock handle for SC7280.
 
-Because I would like to send some patches for the lan966x network driver.
-And these network patches depend on the serdes driver.
+	* Added fixes patch for interrup-map parent address cells 
+	  For SC7280.
 
-> 
-> --
-> ~Vinod
+Prasad Malisetty (2):
+  arm64: dts: qcom: sc7280: Fix incorrect clock name
+  arm64: dts: qcom: sc7280: Add pcie clock support
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 -- 
-/Horatiu
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
