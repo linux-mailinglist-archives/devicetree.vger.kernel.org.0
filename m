@@ -2,257 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87E25452CAD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 09:25:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5115452CD2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 09:32:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231950AbhKPI2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 03:28:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39518 "EHLO mail.kernel.org"
+        id S232083AbhKPIfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 03:35:13 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:21030 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231913AbhKPI2b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 03:28:31 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A1C1361B49;
-        Tue, 16 Nov 2021 08:25:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637051134;
-        bh=QAjKaUITJh85DQxjILDk66ZZ2DD739TBS0bdfMMRImI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DPJBN/lM1PeY+qyhBLdcF6kWXbS2ipAsjtHiBhKeiiRdkO8/LzoT8cjKgywvxsjWv
-         lq7LC64jzHBdrb7WJOeQS7q3/CHoGRBzC5CzQb29zbDZaDqlRiK016GJHGuhygMVU1
-         zJTu7Sn+FW63l7jBR8H41mc5G8o63I4TcMMAAgEszeIiH5NinjgOf+TgDXHVHrl+h3
-         A5FS8K9prHO6J0Y8Q1/Ro6enN3ULagpndjDmgmrkbmIoOXxnZ5EmxxmkUVBr2YZOZH
-         XkCd6LJSxEOkei1IcRKmxQPbwDBVVriqlsUblG8R2QbZS4JiqjljFA0xOhR/EJAWg1
-         vUeMKv2g42hNw==
-Date:   Tue, 16 Nov 2021 13:55:29 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     quic_vamslank@quicinc.com
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v4 2/6] clk: qcom: Add LUCID_EVO PLL type for SDX65
-Message-ID: <YZNq+Y07kwhbIboe@matsya>
-References: <cover.1637047731.git.quic_vamslank@quicinc.com>
- <5a048452c128e4b678609bef780e2c1328c482fc.1637047731.git.quic_vamslank@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5a048452c128e4b678609bef780e2c1328c482fc.1637047731.git.quic_vamslank@quicinc.com>
+        id S231863AbhKPIfL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 03:35:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1637051535; x=1668587535;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=znU9LehZrn6drxfXvozvV494USWdBTfhm6EK8AQwbYE=;
+  b=jLbx5TdW5r8MIzOmmMhwkpgTmtOQ+ObnfnkRPAdHexH5xR59VK/yDFpP
+   9tm/fOa3it7ej1Sty/nAYGGeUecI/J/4TT063abCr+e0dgvzF6XD4Kx2m
+   2pUzKY0YInccQrzRW3dxxugAy6BlhaR0BnyShgjxBGjaXayDAqyM/l6mv
+   1NRDKskKJui8u7mboTRbSrZalE1OMFuncWsiD8yk8wa0JKMj9PKsVlKEY
+   PW5LxlhLR3G2UJ9vyhHC6uUHbvwu+dAx1POqXO3d+HZTp15TVsESywyNc
+   r+aRZlBeeGtUPYIDYpctSD/dxjORGwHjevj5Mip/4RzCDt+IFmTuUnYlp
+   g==;
+X-IronPort-AV: E=Sophos;i="5.87,238,1631570400"; 
+   d="scan'208";a="20481749"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 16 Nov 2021 09:32:13 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Tue, 16 Nov 2021 09:32:13 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Tue, 16 Nov 2021 09:32:13 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1637051533; x=1668587533;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=znU9LehZrn6drxfXvozvV494USWdBTfhm6EK8AQwbYE=;
+  b=pviToSL1mfKaDP0k/Mc7Dj/AFqxlaC/XSCCml36nNO6a7X+s53p8EZf5
+   TNnU7HLzaKZIZzsm8DfvqCpVebz7EhaHq7NCXQe5UNXPzhB//nNMM2zAb
+   Tgmkk0l5AhfAjeKQ4p4eLtxcBggtfifwa9BKsSiROBHDZx//4rjxTwfhQ
+   V6wYC6rO4jtmFiWzNFq2PjqDlXv6y25MNB+goVOgxfNmtybr4xxrzk53Y
+   hh5MRY09t8EBbzy1xUNBHQxYouDbZetoLkGo1vMjiHdjemzD7dnExtx/2
+   7QH/WGNN7584r+qVDqmDdploF2K4zAQS1fCNvkVqWEPQJPFao1VzZ1JMV
+   A==;
+X-IronPort-AV: E=Sophos;i="5.87,238,1631570400"; 
+   d="scan'208";a="20481748"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Nov 2021 09:32:13 +0100
+Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id 4FC86280065;
+        Tue, 16 Nov 2021 09:32:13 +0100 (CET)
+Message-ID: <e1a8d864a87553fb99bae8ac0c437dad8c37cd79.camel@ew.tq-group.com>
+Subject: Re: [PATCH] of: base: Skip CPU nodes with non-"okay"/"disabled"
+ status
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 16 Nov 2021 09:32:11 +0100
+In-Reply-To: <0b4b4c4c-7b8d-7139-54b1-29c79f7ec081@gmail.com>
+References: <20211108084804.13474-1-matthias.schiffer@ew.tq-group.com>
+         <7b4afaa7-13df-513a-5986-e1a9f5f5d7ed@gmail.com>
+         <19130461cbdd39e92b06ec425db5db2984b41a41.camel@ew.tq-group.com>
+         <0b4b4c4c-7b8d-7139-54b1-29c79f7ec081@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-11-21, 23:38, quic_vamslank@quicinc.com wrote:
-> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+On Mon, 2021-11-15 at 12:23 -0500, Frank Rowand wrote:
+> Hi Matthias,
 > 
-> Add a LUCID_EVO PLL type for SDX65 SoC from Qualcomm.
+> On 11/15/21 3:13 AM, Matthias Schiffer wrote:
+> > On Sun, 2021-11-14 at 14:41 -0500, Frank Rowand wrote:
+> > > On 11/8/21 3:48 AM, Matthias Schiffer wrote:
+> > > > Allow fully disabling CPU nodes using status = "fail". Having no status
+> > > > property at all is still interpreted as "okay" as usual.
+> > > > 
+> > > > This allows a bootloader to change the number of available CPUs (for
+> > > > example when a common DTS is used for SoC variants with different numbers
+> > > > of cores) without deleting the nodes altogether, which could require
+> > > > additional fixups to avoid dangling phandle references.
+> > > > 
+> > > > References:
+> > > > - https://www.lkml.org/lkml/2020/8/26/1237
+> > > > - https://www.spinics.net/lists/devicetree-spec/msg01007.html
+> > > > - https://github.com/devicetree-org/dt-schema/pull/61
+> > > > 
+> > > > Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> > > > ---
+> > > >  drivers/of/base.c | 29 +++++++++++++++++++++++++++++
+> > > >  1 file changed, 29 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/of/base.c b/drivers/of/base.c
+> > > > index 61de453b885c..4e9973627c8d 100644
+> > > > --- a/drivers/of/base.c
+> > > > +++ b/drivers/of/base.c
+> > > > @@ -650,6 +650,32 @@ bool of_device_is_available(const struct device_node *device)
+> > > >  }
+> > > >  EXPORT_SYMBOL(of_device_is_available);
+> > > >  
+> > > > +/**
+> > > > + *  __of_device_is_disabled - check if a device has status "disabled"
+> > > > + *
+> > > > + *  @device: Node to check status for, with locks already held
+> > > > + *
+> > > > + *  Return: True if the status property is set to "disabled",
+> > > > + *  false otherwise
+> > > > + *
+> > > > + *  Most callers should use __of_device_is_available() instead, this function
+> > > > + *  only exists due to the special interpretation of the "disabled" status for
+> > > > + *  CPU nodes.
+> > > > + */
+> > > > +static bool __of_device_is_disabled(const struct device_node *device)
+> > > > +{
+> > > > +	const char *status;
+> > > > +
+> > > > +	if (!device)
+> > > > +		return false;
+> > > > +
+> > > > +	status = __of_get_property(device, "status", NULL);
+> > > > +	if (status == NULL)
+> > > > +		return false;
+> > > > +
+> > > > +	return !strcmp(status, "disabled");
+> > > > +}
+> > > > +
+> > > >  /**
+> > > >   *  of_device_is_big_endian - check if a device has BE registers
+> > > >   *
+> > > > @@ -817,6 +843,9 @@ struct device_node *of_get_next_cpu_node(struct device_node *prev)
+> > > >  		of_node_put(node);
+> > > >  	}
+> > > >  	for (; next; next = next->sibling) {
+> > > > +		if (!__of_device_is_available(next) &&
+> > > > +		    !__of_device_is_disabled(next))
+> > > 
+> > > Shouldn't that just be a check to continue if the device is disabled?
+> > > 
+> > > If adding a check for available, then all of the callers of for_each_of_cpu_node()
+> > > need to be checked.  There is at least one that is suspicious - arch/arm/mach-imx/platsmp.c
+> > > has a comment:
+> > > 
+> > >  * Initialise the CPU possible map early - this describes the CPUs
+> > >  * which may be present or become present in the system.
 > 
-> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 171 +++++++++++++++++++++++++++++++
->  drivers/clk/qcom/clk-alpha-pll.h |   3 +
->  2 files changed, 174 insertions(+)
+> Thanks for the links to previous discussion you provided below.  I had
+> forgotten the previous discussion.
 > 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index eaedcceb766f..b2dbb8d56773 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -1,5 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
-> + * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
+> In [2] Rob ended up saying that there were two options he was fine with.
+> Either (or both), in of_get_next_cpu_node(),
+> 
+>   (1) use status of "fail" as the check or
+> 
+>   (2) use status of "disabled" as the check, conditional on !IS_ENABLED(CONFIG_PPC)
+>       "this would need some spec update"
+>       "Need to double check MIPS and Sparc though."
+> 
+> Neither of these two options are what this patch does.  It seems to me that
+> option 1 is probably the easiest and least intrusive method.
 
-This line should ideally come after the below line..
+My intuition is that a device with an unknown status value should not
+be used. For most devices this is already handled by treating any value
+that is not unset, "okay" or "ok" the same. For CPU nodes, this would
+be the case by treating such values like "fail".
 
->   * Copyright (c) 2015, 2018, The Linux Foundation. All rights reserved.
->   */
->  
-> @@ -139,6 +140,20 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
->  		[PLL_OFF_OPMODE] = 0x28,
->  		[PLL_OFF_STATUS] = 0x38,
->  	},
-> +	[CLK_ALPHA_PLL_TYPE_LUCID_EVO] = {
-> +		[PLL_OFF_OPMODE] = 0x04,
-> +		[PLL_OFF_STATUS] = 0x0c,
-> +		[PLL_OFF_L_VAL] = 0x10,
-> +		[PLL_OFF_ALPHA_VAL] = 0x14,
-> +		[PLL_OFF_USER_CTL] = 0x18,
-> +		[PLL_OFF_USER_CTL_U] = 0x1c,
-> +		[PLL_OFF_CONFIG_CTL] = 0x20,
-> +		[PLL_OFF_CONFIG_CTL_U] = 0x24,
-> +		[PLL_OFF_CONFIG_CTL_U1] = 0x28,
-> +		[PLL_OFF_TEST_CTL] = 0x2c,
-> +		[PLL_OFF_TEST_CTL_U] = 0x30,
-> +		[PLL_OFF_TEST_CTL_U1] = 0x34,
-> +        },
->  };
->  EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->  
-> @@ -175,6 +190,10 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->  #define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
->  #define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
->  
-> +/* LUCID EVO PLL specific settings and offsets */
-> +#define LUCID_EVO_ENABLE_VOTE_RUN       BIT(25)
-> +#define LUCID_EVO_PLL_L_VAL_MASK        GENMASK(15, 0)
-> +
->  /* ZONDA PLL specific */
->  #define ZONDA_PLL_OUT_MASK	0xf
->  #define ZONDA_STAY_IN_CFA	BIT(16)
-> @@ -1951,3 +1970,155 @@ const struct clk_ops clk_alpha_pll_zonda_ops = {
->  	.set_rate = clk_zonda_pll_set_rate,
->  };
->  EXPORT_SYMBOL(clk_alpha_pll_zonda_ops);
-> +
-> +static int alpha_pll_lucid_evo_enable(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* If in FSM mode, just vote for it */
-> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
-> +		ret = clk_enable_regmap(hw);
-> +		if (ret)
-> +			return ret;
-> +		return wait_for_pll_enable_lock(pll);
-> +	}
-> +
-> +	/* Check if PLL is already enabled */
-> +	ret = trion_pll_is_enabled(pll, regmap);
-> +	if (ret < 0)
-> +		return ret;
-> +	else if (ret) {
-> +		pr_warn("%s PLL is already enabled\n",
-> +				clk_hw_get_name(&pll->clkr.hw));
+I did a quick grep through the in-tree Device Trees, and I did find a
+few unusual status properties (none of them in CPU nodes though):
 
-this should fit in a single line
+- Typo "failed" (4 cases)
+- Typo "disable" (17 cases)
+- "reserved" (19 cases)
 
-> +		return 0;
-> +	}
-> +
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set operation mode to RUN */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_RUN);
-> +
-> +	ret = wait_for_pll_enable_lock(pll);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Enable the PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Enable the global PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Ensure that the write above goes through before returning. */
-> +	mb();
-> +	return ret;
-> +}
-> +
-> +static void alpha_pll_lucid_evo_disable(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> +	if (ret)
-> +		return;
-> +
-> +	/* If in FSM mode, just unvote it */
-> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
-> +		clk_disable_regmap(hw);
-> +		return;
-> +	}
-> +
-> +	/* Disable the global PLL output */
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	/* Disable the PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	/* Place the PLL mode in STANDBY */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
-> +}
-> +
-> +static unsigned long alpha_pll_lucid_evo_recalc_rate(struct clk_hw *hw,
-> +		unsigned long parent_rate)
+"fail" appears 2 times, the rest is "okay", "ok" or "disabled".
 
-pls align this to preceding line open brace
+I do not have a strong opinion on this though - for our concrete
+usecase, checking for "fail" is fine, and we can treat unknown values
+like "disabled" if you prefer that solution. Should "fail-*" status
+values also be treated like "fail" then?
 
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 l, frac;
-> +
-> +	regmap_read(regmap, PLL_L_VAL(pll), &l);
-> +	l &= LUCID_EVO_PLL_L_VAL_MASK;
-> +	regmap_read(regmap, PLL_ALPHA_VAL(pll), &frac);
-> +
-> +	return alpha_pll_calc_rate(parent_rate, l, frac, pll_alpha_width(pll));
-> +}
 
-I think this can use __alpha_pll_trion_set_rate()
 
-> +
-> +static int clk_lucid_evo_pll_postdiv_set_rate(struct clk_hw *hw,
-> +		unsigned long rate, unsigned long parent_rate)
-> +{
-> +	struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	int i, val, div, ret;
-> +
-> +	/*
-> +	 * If the PLL is in FSM mode, then treat set_rate callback as a
-> +	 * no-operation.
-> +	 */
-> +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN)
-> +		return 0;
-> +
-> +	if (!pll->post_div_table) {
-> +		pr_err("Missing the post_div_table for the PLL\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
-> +	for (i = 0; i < pll->num_post_div; i++) {
-> +		if (pll->post_div_table[i].div == div) {
-> +			val = pll->post_div_table[i].val;
-> +			break;
-> +		}
-> +	}
-> +
-> +	return regmap_update_bits(regmap, PLL_USER_CTL(pll),
-> +			(BIT(pll->width) - 1) << pll->post_div_shift,
-> +			val << pll->post_div_shift);
-> +}
 
-This looks _very_ similar to clk_lucid_5lpe_pll_postdiv_set_rate() maybe
-add a helper which both can use and pass on the
-LUCID_EVO_ENABLE_VOTE_RUN as argument to helper?
+> 
+> -Frank
+> 
+> > Previously, there were two option for the (effective) value of the
+> > status of a device_node:
+> > 
+> > - "okay", "ok" or unset
+> > - anything else (which includes "disabled" and "fail")
+> > 
+> > __of_device_is_available() checks which of these two is the case.
+> > 
+> > With the new code, we have 3 cases for the status of CPU nodes:
+> > 
+> > - "okay", "ok" or unset
+> > - "disabled"
+> > - anything else ("fail", ...)
+> > 
+> > My patch will only change the behaviour in one case: When a CPU node
+> > has a status that is not "okay", "ok", "disabled" or unset - which is
+> > exactly the point of my patch.
+> > 
+> > See also the change [1], which removed the !available check a while
+> > ago, and the discussion in [2], which led us to the conclusion that 
+> > of_get_next_cpu_node() must not distinguish "okay" and "disabled" CPU
+> > nodes and we instead need a third status to disable a CPU for real.
+> > 
+> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/of/base.c?id=c961cb3be9064d1097ccc019390f8b5739daafc6
+> > [2] https://www.lkml.org/lkml/2020/8/26/1237
+> > 
+> > 
+> > > 
+> > > -Frank
+> > > 
+> > > > +			continue;
+> > > >  		if (!(of_node_name_eq(next, "cpu") ||
+> > > >  		      __of_node_is_type(next, "cpu")))
+> > > >  			continue;
+> > > > 
+> > > 
+> > > 
+> 
+> 
 
--- 
-~Vinod
