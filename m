@@ -2,320 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE0BC453AB0
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 21:09:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4F3C453A97
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 21:08:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231886AbhKPUMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 15:12:12 -0500
-Received: from mout.gmx.net ([212.227.15.18]:54461 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240441AbhKPULu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 15:11:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1637093321;
-        bh=uAG+D63V5JJv6JbVHM8XoWktFfvPnzrPAkc82zLEVXE=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=A3hzkWi3V452yXfB3cp6bFufKqkhvcPoFPNQFAyF2uZJ+5ngKD6hcfPqwzmSzcOt1
-         6yGTEh+ZR4TdOwWP5ek9Gc8hqraN+7id7yW/yfBb/vKGxo9qS1SHzQBGn3+UU/VKrD
-         3sePH86VeTGN/oRpih8KOrPYkreb4uJtCA9oAsvw=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from x1-yoga-arch.speedport.ip ([93.243.64.255]) by mail.gmx.net
- (mrgmx005 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MIx3I-1n7TxC3OX4-00KMrm; Tue, 16 Nov 2021 21:08:40 +0100
-From:   Julian Ribbeck <julian.ribbeck@gmx.de>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Julian Ribbeck <julian.ribbeck@gmx.de>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH] arm64: dts: qcom: Add device tree for Samsung J5 2015 (samsung-j5)
-Date:   Tue, 16 Nov 2021 21:07:34 +0100
-Message-Id: <20211116200734.73920-1-julian.ribbeck@gmx.de>
-X-Mailer: git-send-email 2.33.1
+        id S240243AbhKPUKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 15:10:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33452 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240225AbhKPUKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 15:10:50 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16105C061764
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 12:07:53 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id m14so409949pfc.9
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 12:07:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=zvDK4g+MssztZL9f0zgas9whsPHn8yfadjOivX02YqU=;
+        b=cyZBykbvgBUa1WxWjpfw7wyDr7wRRBZyXCA/JX8pNR7uIzH0Rqm81Cszko7ZIz+QIW
+         BgtCMoTYJYcXRfstoAZuAqdx5GQ6PyuOOmrq5CylHIdIZYEikdOIiRUXcAKqFGHbmNRa
+         xh29X96REsy7e46OkRth94JCinRyubKmN/WU4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=zvDK4g+MssztZL9f0zgas9whsPHn8yfadjOivX02YqU=;
+        b=TAGzhr5pskxkfDRI4sGbtbfEbISPcCwlA0nSijufnCE+jB0WSnadDU5+ecDLurHGfe
+         IdAHwizEIobnOXjRmdxM0WThZCWmpT5XyXPz39aV/81qNCuO/RazntY/O8zXxaoQYlG1
+         YUGDdL22YOBPVuOaZKlvJ+j+49hTVQ0WyndAm+3GISpc1fyS1FMZVwbBYH50BuG2OxuZ
+         MP7ZzH6GJjsBpE46NvzvP9DcLZbXQmVu8h8jWNm0I8eZBcP1keUN/UL8ZSbfV8UlcZov
+         Z6RkPNS2nZO7A3M1J4NQiTvfnEeeQMusvct+8ypa1q9GRM+U4Bu4U4uVONsh5GPEeDn2
+         wfgQ==
+X-Gm-Message-State: AOAM53383pwCHJLpXynLTWL2QZD7LPOjawzRAgKuwyL+KpjaiZNOAS63
+        PUbFXNRZ9iNdLDCERuSBC9dLxg==
+X-Google-Smtp-Source: ABdhPJxPC+dDUBDh8PLix9hhdK1SakGbKdPXJrCH/qiTo0UzPSLelJ7Ov0WB3vXQCRxh3+SaX8Eriw==
+X-Received: by 2002:a65:6a56:: with SMTP id o22mr1191230pgu.249.1637093272499;
+        Tue, 16 Nov 2021 12:07:52 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:54aa:73ab:b480:41e2])
+        by smtp.gmail.com with UTF8SMTPSA id r2sm7291219pgm.4.2021.11.16.12.07.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Nov 2021 12:07:52 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v17 2/7] of/platform: Add stubs for of_platform_device_create/destroy()
+Date:   Tue, 16 Nov 2021 12:07:34 -0800
+Message-Id: <20211116120642.v17.2.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
+X-Mailer: git-send-email 2.34.0.rc1.387.gb447b232ab-goog
+In-Reply-To: <20211116200739.924401-1-mka@chromium.org>
+References: <20211116200739.924401-1-mka@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:WIqNp2HfBaNd1fGUfl4FLZcEnr/7sjvWQwZBDVEkZduYN+V0RQN
- i0RNN8Cnm05nNvmhHRu7ULJnJWv8X7lXO89Yi7+gjl857CHA09dEydBwsuXEIQ/IOG3T3aG
- oiLbsWKxff7VxUMU+EmS9QR6ypVDF2duwjoF4KSw00MBpUD8Ic0GgdwLiQ2KIQRLvsv+8+z
- kaouarwCE5hB+RSk5d4sA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:p5Z7bTd5bq4=:pmXRCTX/pN1c3uqj4s1Tax
- uOWeUX0Hyk1sYUmM1pLerH0trnSGfrMI8vRXQbnm1a+Wi77y7MV3YMl/UrE4kYI/IIyJ1/+w0
- Teh0vZCpaeDN62g3Ng21l0PDYx3vQxXGFPZtbrjuDrrWl8WEBsQB53TPw3oaWxfv8ogzWBM30
- AFVj4T6726ggN6HBaEgm+Jt8zXEYpGPzjnj2z5TXXKWm/07bZN2UtKLyWaM6Xx1wYNKMX+XlE
- rVOAY0811y/VQdMCs8DyEq0xpoUNREq8T6rRdGElOMh+7L9SISht1MAyCDEDhiDipjncLzs0S
- bfF6r8biuSotTTTtmjyhFYTe52F4KnqGLmti3xtUrcuXe8dISYCc/Zc5ui1y3686gc7kb/BZz
- yich0CaWDI5NeTc6AwkcnbbGjRgCCmsajdJqJ7Lhf3AzcrnOThEOu/l0ZfkrtuVvDVkY7qnLj
- vDwPchPSU7C+rCePdWCGg3nQhw/WLtDcsSVSfwvEI8+/rua9APdVqjjkvv5rgtiyIYKbrJa4h
- A14Das3UEnfndbj1SOZB+S4MUsAkpESlY7/6+OdY7yZFP/a0vbhvPoQlxuBP6Shac43KGF4ui
- FFbMIFWT8gQpbAsoBnsLE3Yhth+hYmDm+0HnLNQeAPZLwFyvXB0BTHynm5yiBCGP3tbmGsMz0
- Ru3rtmjixXt1kHy89ron3BO01Vi8drUnxWfx8sF1xLH5JbzvddOmv0Xf3wkMADzOBogXd4k8o
- bPMmsQHh/96JXQF17i2GO3Q4Mri6XeAxrUUyyhlEj9S6Mz7dKw9ZwxpaDHd2IT048Da9VZIFS
- pe9x5D/4tsRY2Ka8iJMEMh9aU4ooIZP2dTYDJe1Sc/FcK3Qqyhsy4q7L8sWzq3f5Nn4CQsd4g
- 7NC+vcrBOCud+EwXSLMlq6FxyT3zsF218j9FKIdO3FEN2Ei1bfjXgohEVWjjbZQF8Ug8UWeVB
- GrpIG1emnOLQeRY3uMJ9TwfjSjoBFXqUwLLoa/MRmXXfGNmYWn4OyIMJUYJt9Zmu2ebSYGGsg
- UA6ubBgAoqyQXuv5vOuPElv1zgXAdwIz6zn5sorYXhQdc9SiQW6bkst0xl8U5+mmC7CRT3nU1
- 4DoFvsKhBrIAw4=
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Samsung J5 2015 is a MSM8916 based Smartphone. It is similar to some of th=
-e
-other MSM8916 devices, especially the Samsung ones.
+Code for platform_device_create() and of_platform_device_destroy() is
+only generated if CONFIG_OF_ADDRESS=y. Add stubs to avoid unresolved
+symbols when CONFIG_OF_ADDRESS is not set.
 
-With this patch initial support for the following is added:
-  - eMMC/SD card
-  - Buttons
-  - USB (although no suiting MUIC driver currently)
-  - UART (untested for lack of equipment)
-  - WiFi/Bluetooth (WCNSS)
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
 
-It is worth noting that Samsung J5 with MSM8916 exists in different
-generations (e.g Samsung J5 2015 and Samsung J5 2016) which each have
-different models (e.g. samsung-j5nlte, samsung-j5xnlte, etc). This patch
-is only regarding the 2015 generation, but should work with all of it's
-models, as far as we could test.
+Changes in v17:
+- none
 
-Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
-=2D--
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/msm8916-samsung-j5.dts      | 209 ++++++++++++++++++
- 2 files changed, 210 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+Changes in v16:
+- none
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/=
-Makefile
-index 6b816eb33309..08bfccb0daeb 100644
-=2D-- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-longcheer-l8910.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-samsung-a3u-eur.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-samsung-a5u-eur.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-samsung-j5.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-samsung-serranove.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+=3D msm8992-bullhead-rev-101.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts b/arch/arm64/=
-boot/dts/qcom/msm8916-samsung-j5.dts
-new file mode 100644
-index 000000000000..687bea438a57
-=2D-- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
-@@ -0,0 +1,209 @@
-+// SPDX-License-Identifier: GPL-2.0-only
+Changes in v15:
+- none
+
+Changes in v14:
+- none
+
+Changes in v13:
+- none
+
+Changes in v12:
+- none
+
+Changes in v11:
+- none
+
+Changes in v10:
+- none
+
+Changes in v9:
+- added Rob's 'Acked-by' tag
+
+Changes in v8:
+- fixed C&P error in commit message
+
+Changes in v7:
+- none
+
+Changes in v6:
+- patch added to the series
+
+ include/linux/of_platform.h | 22 ++++++++++++++++++----
+ 1 file changed, 18 insertions(+), 4 deletions(-)
+
+diff --git a/include/linux/of_platform.h b/include/linux/of_platform.h
+index 84a966623e78..d15b6cd5e1c3 100644
+--- a/include/linux/of_platform.h
++++ b/include/linux/of_platform.h
+@@ -61,16 +61,18 @@ static inline struct platform_device *of_find_device_by_node(struct device_node
+ }
+ #endif
+ 
++extern int of_platform_bus_probe(struct device_node *root,
++				 const struct of_device_id *matches,
++				 struct device *parent);
 +
-+/dts-v1/;
++#ifdef CONFIG_OF_ADDRESS
+ /* Platform devices and busses creation */
+ extern struct platform_device *of_platform_device_create(struct device_node *np,
+ 						   const char *bus_id,
+ 						   struct device *parent);
+ 
+ extern int of_platform_device_destroy(struct device *dev, void *data);
+-extern int of_platform_bus_probe(struct device_node *root,
+-				 const struct of_device_id *matches,
+-				 struct device *parent);
+-#ifdef CONFIG_OF_ADDRESS
 +
-+#include "msm8916-pm8916.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
+ extern int of_platform_populate(struct device_node *root,
+ 				const struct of_device_id *matches,
+ 				const struct of_dev_auxdata *lookup,
+@@ -84,6 +86,18 @@ extern int devm_of_platform_populate(struct device *dev);
+ 
+ extern void devm_of_platform_depopulate(struct device *dev);
+ #else
++/* Platform devices and busses creation */
++static inline struct platform_device *of_platform_device_create(struct device_node *np,
++								const char *bus_id,
++								struct device *parent)
++{
++	return NULL;
++}
++static inline int of_platform_device_destroy(struct device *dev, void *data)
++{
++	return -ENODEV;
++}
 +
-+/ {
-+	model =3D "Samsung Galaxy J5 (2015)";
-+	compatible =3D "samsung,j5", "qcom,msm8916";
-+	chassis-type =3D "handset";
-+
-+	aliases {
-+		serial0 =3D &blsp1_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path =3D "serial0";
-+	};
-+
-+	reserved-memory {
-+		/* Additional memory used by Samsung firmware modifications */
-+		tz-apps@85500000 {
-+			reg =3D <0x0 0x85500000 0x0 0xb00000>;
-+			no-map;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible =3D "gpio-keys";
-+
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&gpio_keys_default>;
-+
-+		label =3D "GPIO Buttons";
-+
-+		volume-up {
-+			label =3D "Volume Up";
-+			gpios =3D <&msmgpio 107 GPIO_ACTIVE_LOW>;
-+			linux,code =3D <KEY_VOLUMEUP>;
-+		};
-+
-+		home-key {
-+			lable =3D "Home Key";
-+			gpios =3D <&msmgpio 109 GPIO_ACTIVE_LOW>;
-+			linux,code =3D <KEY_HOMEPAGE>;
-+		};
-+	};
-+};
-+
-+&blsp1_uart2 {
-+	status =3D "okay";
-+};
-+
-+&pm8916_resin {
-+	status =3D "okay";
-+	linux,code =3D <KEY_VOLUMEDOWN>;
-+};
-+
-+/* FIXME: Replace with SM5703 MUIC when driver is available */
-+&pm8916_usbin {
-+	status =3D "okay";
-+};
-+
-+&pronto {
-+	status =3D "okay";
-+};
-+
-+&sdhc_1 {
-+	status =3D "okay";
-+
-+	pinctrl-names =3D "default", "sleep";
-+	pinctrl-0 =3D <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
-+	pinctrl-1 =3D <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
-+};
-+
-+&sdhc_2 {
-+	status =3D "okay";
-+
-+	pinctrl-names =3D "default", "sleep";
-+	pinctrl-0 =3D <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
-+	pinctrl-1 =3D <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
-+
-+	cd-gpios =3D <&msmgpio 38 GPIO_ACTIVE_LOW>;
-+};
-+
-+&usb {
-+	status =3D "okay";
-+	dr_mode =3D "peripheral";
-+	extcon =3D <&pm8916_usbin>;
-+};
-+
-+&usb_hs_phy {
-+	extcon =3D <&pm8916_usbin>;
-+	qcom,init-seq =3D /bits/ 8 <0x1 0x19 0x2 0x0b>;
-+};
-+
-+&smd_rpm_regulators {
-+	vdd_l1_l2_l3-supply =3D <&pm8916_s3>;
-+	vdd_l4_l5_l6-supply =3D <&pm8916_s4>;
-+	vdd_l7-supply =3D <&pm8916_s4>;
-+
-+	s3 {
-+		regulator-min-microvolt =3D <1200000>;
-+		regulator-max-microvolt =3D <1300000>;
-+	};
-+
-+	s4 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <2100000>;
-+	};
-+
-+	l1 {
-+		regulator-min-microvolt =3D <1225000>;
-+		regulator-max-microvolt =3D <1225000>;
-+	};
-+
-+	l2 {
-+		regulator-min-microvolt =3D <1200000>;
-+		regulator-max-microvolt =3D <1200000>;
-+	};
-+
-+	l4 {
-+		regulator-min-microvolt =3D <2050000>;
-+		regulator-max-microvolt =3D <2050000>;
-+	};
-+
-+	l5 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <1800000>;
-+	};
-+
-+	l6 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <1800000>;
-+	};
-+
-+	l7 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <1800000>;
-+	};
-+
-+	l8 {
-+		regulator-min-microvolt =3D <2850000>;
-+		regulator-max-microvolt =3D <2900000>;
-+	};
-+
-+	l9 {
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-max-microvolt =3D <3300000>;
-+	};
-+
-+	l10 {
-+		regulator-min-microvolt =3D <2700000>;
-+		regulator-max-microvolt =3D <2800000>;
-+	};
-+
-+	l11 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <2950000>;
-+		regulator-allow-set-load;
-+		regulator-system-load =3D <200000>;
-+	};
-+
-+	l12 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <2950000>;
-+	};
-+
-+	l13 {
-+		regulator-min-microvolt =3D <3075000>;
-+		regulator-max-microvolt =3D <3075000>;
-+	};
-+
-+	l14 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <3300000>;
-+	};
-+
-+	l15 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <3300000>;
-+	};
-+
-+	l16 {
-+		regulator-min-microvolt =3D <1800000>;
-+		regulator-max-microvolt =3D <3300000>;
-+	};
-+
-+	l17 {
-+		regulator-min-microvolt =3D <3000000>;
-+		regulator-max-microvolt =3D <3000000>;
-+	};
-+
-+	l18 {
-+		regulator-min-microvolt =3D <2700000>;
-+		regulator-max-microvolt =3D <2700000>;
-+	};
-+};
-+
-+&msmgpio {
-+	gpio_keys_default: gpio-keys-default {
-+		pins =3D "gpio107", "gpio109";
-+		function =3D "gpio";
-+
-+		drive-strength =3D <2>;
-+		bias-pull-up;
-+	};
-+};
-=2D-
-2.33.1
+ static inline int of_platform_populate(struct device_node *root,
+ 					const struct of_device_id *matches,
+ 					const struct of_dev_auxdata *lookup,
+-- 
+2.34.0.rc1.387.gb447b232ab-goog
 
