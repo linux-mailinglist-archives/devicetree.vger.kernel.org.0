@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 129D345343A
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 15:33:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2063745344D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 15:35:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237412AbhKPOgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 09:36:02 -0500
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:43203 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S237311AbhKPOgA (ORCPT
+        id S237469AbhKPOih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 09:38:37 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:39123 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S237511AbhKPOiH (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 09:36:00 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id 119052B012A8;
-        Tue, 16 Nov 2021 09:33:00 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Tue, 16 Nov 2021 09:33:00 -0500
+        Tue, 16 Nov 2021 09:38:07 -0500
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 623973200E5F;
+        Tue, 16 Nov 2021 09:35:09 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Tue, 16 Nov 2021 09:35:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=6hLb7OiPLBrXnVyULLTa9eHYTZ
-        vzjrzL3lOYSa2SxUA=; b=h+v4YcQKu+CrzkqZTy9bmNtSZ2hXULf0aC8sHp1E4e
-        Z/ni0EHF0HiM3Dfl0QtAymT2PVq5z15HzVNWqobF6+eZ52f1AwdsXWMin7hBXBSp
-        pvU8fbVOaIrUgt2e2yddrhKm+O1Lct/lW/7QSPQVaKe3eiitFNp1mXJ36czbQHjJ
-        /ZnfsX+qvTJfgSkUWnKCMTUJRBJvJIcFtPVOZnY4nCYJr2O0/W+QQqcjSO2hEWS0
-        TzULGCzNEngZZLnj88B0Wm4X5l9dAx2HkJSfyS0XSGE8ZDErYb08/qgn+9SLAnsv
-        ZLe3LFgLzqHGoO8Y+2hTFyI/Gc9mIaq2Zm4sDbkLtiwg==
+        :content-transfer-encoding; s=fm1; bh=7JZgFqmAlcsRJ2awiJtJSt4of6
+        zoDu+OgL/facGVHho=; b=JFvP9g8jKpgoUyPADqeJ109nkYVBVLpzPcjoi91P5P
+        vW41XO9gkBo1aLTlrhxIkAyMp2X6mkH5s4HmxlQ25bssifzkr5+7EVYjtlfITVUx
+        lgGBRiZBmvi6GpZTEd0jaLR4deX+uKoPkLEtrvRU1VhqPMJqUzsBmiPMm9vp2Wtc
+        /UEg6FP6382CulQ2M4kaIS5kz2L2el+Pmvvn7PMWQ3gMsaKSFSNipf4qErVujlWU
+        bDEeLaRPy0/uBanelATGhFuj9AoFkRjsMl7HRnDa0LujZJWSDnwPRsNi73kCZjdu
+        vd+mfaQAbFZyQuKZBl9jvNCfWGvwVl0nWSrPtTFGZZyw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6hLb7OiPLBrXnVyUL
-        LTa9eHYTZvzjrzL3lOYSa2SxUA=; b=lYvIBrks1J5OC0qoI5w0NwLEF2d0RtLzt
-        T3CZQ28oh4ijYSJNm3DU/+p7e7YWPFHJAzR4DcUWDrWmkqLnKrOqWjBWOkFkDFGO
-        PyRJpmFX+VC0Xl7UkwJXQmO6C/4CCbnfz5J1rFZHX7uCKEd16v4h+qFIlz+ax+Wk
-        bWu205D/op0Z7zBV3/AV68PyJHJz0NLlpi3ZvnOiLAwl8vNdk03B0xiIy4VKQyef
-        ClK28MkyIsyhCBOSOsJ0e3BdGzCYB4NyetwFXb6hPMG2pAofPIlLJLzpm44KPB+8
-        97UCHeXcPymYwjKG5lhP1KlyZxpUdP+Gf/aRgLPpu4WgDvdD2+HoQ==
-X-ME-Sender: <xms:GsGTYaDtOYcM-Y8T8Yrf_Qa12vKN-RydhBqdTbCRuYz5RnX6kQ1t8A>
-    <xme:GsGTYUgJnra-_Hvasw9UEjf4k75ehvU4UMaNTe-OentATW79qAUSnuY7hCbpHwZFa
-    Gv-Mby9hZ-eTvsvN_E>
-X-ME-Received: <xmr:GsGTYdn7YLMx-5UDDrr6pBS9i5zMfeLUP9-cc8KJiESiVCaHI1dQfpRRP8aYK9f0jEtTjQubqCqToQy18WT7ezdBkIzBddaGLWDesIiq>
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7JZgFqmAlcsRJ2awi
+        JtJSt4of6zoDu+OgL/facGVHho=; b=PP7hGHNO/dPsXE0kv8SsRxl4uPllP/eny
+        SVZg21LEpgiAw3u0DDc6+qgCHifVbeZZlYDFD1LLlM+5B195YTi7+A+s3lSeV8jj
+        h0FSghFDg1yDOAatcEkUmyOL1RaQtQ+7xo2QAfEGduVg19JlDxQJlrBYAaT3pxbl
+        6XGfGGReRXN3aeenhzPoH9wpupTx6sl9ymaWw/Y3nSMRNnjxTmy8OSFj4612kxy8
+        gYOF/p2e4iNt7MYgkm1DzBk9Mm7SE5/kvZrCrPnDsraKibfPx2wBZjuWXUd9BaQu
+        tdWxg6y6P4Zli99CqUvGBFqaMrRQb18ZBIecEciXEhPhJsTgLUcZA==
+X-ME-Sender: <xms:m8GTYcH4yI6Q7Q2RSRaSxW45mxZ9LX5D4PJ0DJ2DrnuCRq7NwJL6Gg>
+    <xme:m8GTYVVs8VJZn4Hv_DIBo_vhqCCv6wZNkY0wuL4XfFxewDzhvb74vdiokuEmVnaQg
+    N9lAWd598klfMGeD2M>
+X-ME-Received: <xmr:m8GTYWLW28MCvpehIUTb9mINeJyAxo1tMB5wbBc3JKMxFmb93SXFJYg5HN10BUJnedMBi2gNFRNybWjkNIq0n613AEK7N7fbY1gXrUVd>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfedvgdeigecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepofgrgihimhgvucft
-    ihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtthgvrh
-    hnpeejffehuddvvddvlefhgeelleffgfeijedvhefgieejtdeiueetjeetfeeukeejgeen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigih
-    hmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:GsGTYYydfyEhLnPJlKflOFIZ_j1DFl04W98JVkOIUe-tYdaeX7NZ5A>
-    <xmx:GsGTYfSgNcwwotchPUcyJW44h9c5fBLbRjzqIi4w2KWS6ail8IYaoA>
-    <xmx:GsGTYTZcR5tiSfewkOu_Sunv2DYjKHLFPt-NBkDRTJCDVe-qEPko5Q>
-    <xmx:G8GTYU85J4GqdSITe81KCz4ZBAi-AChIINzXopoqrU_PLlPAddjqHLr9Khk>
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenog
+    evohgrshhtrghlqdfhgeduvddqtddvucdludehtddmnecujfgurhephffvufffkffoggfg
+    sedtkeertdertddtnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimh
+    gvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhephffhhfevtddthefgieei
+    geffudehkefgtdeufedvtdduheduieekvddvfedvkeetnecuffhomhgrihhnpeguvghvih
+    gtvghtrhgvvgdrohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgr
+    ihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:m8GTYeG_ccps6GJSXV8qHnw-cmom2tmt5fU97qORWDYILCqDkTKSPg>
+    <xmx:m8GTYSWdgqIrUOygmctt2t3ss3aMmjVHuLXHkqw53YCFL-ucaHW43w>
+    <xmx:m8GTYRPDzv_it6niUD0o_YoyFPDr4oO_nSWAZ5sAhsozXJaGvVWojQ>
+    <xmx:ncGTYWoblY6O3lqjwvz4Z2pu5GCO7liaYoCPbOUo35ififLXTcwjOA>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 16 Nov 2021 09:32:57 -0500 (EST)
+ 16 Nov 2021 09:35:07 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
-To:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org
-Subject: [PATCH] dt-bindings: crypto: Add optional dma properties
-Date:   Tue, 16 Nov 2021 15:32:55 +0100
-Message-Id: <20211116143255.385480-1-maxime@cerno.tech>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH 1/2] dt-bindings: display: Turn lvds.yaml into a generic schema
+Date:   Tue, 16 Nov 2021 15:35:02 +0100
+Message-Id: <20211116143503.385807-1-maxime@cerno.tech>
 X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -74,37 +75,294 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some platforms, like the v3s, have DMA channels assigned to the crypto
-engine, which were in the DTSI but were never documented.
+The lvds.yaml file so far was both defining the generic LVDS properties
+(such as data-mapping) that could be used for any LVDS sink, but also
+the panel-lvds binding.
 
-Let's make sure they are.
+That last binding was to describe LVDS panels simple enough, and had a
+number of other bindings using it as a base to specialise it further.
+
+However, this situation makes it fairly hard to extend and reuse both
+the generic parts, and the panel-lvds itself.
+
+Let's remove the panel-lvds parts and leave only the generic LVDS
+properties.
 
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml    | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../display/panel/advantech,idk-1110wr.yaml   | 17 ++++++++++-
+ .../display/panel/innolux,ee101ia-01d.yaml    | 21 +++++++++++++-
+ .../bindings/display/panel/lvds.yaml          | 29 +------------------
+ .../display/panel/mitsubishi,aa104xd12.yaml   | 17 ++++++++++-
+ .../display/panel/mitsubishi,aa121td01.yaml   | 17 ++++++++++-
+ .../display/panel/sgd,gktw70sdae4se.yaml      | 17 ++++++++++-
+ 6 files changed, 85 insertions(+), 33 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-index 0429fb774f10..dedc99e34ebc 100644
---- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-+++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
-@@ -44,6 +44,16 @@ properties:
-       - const: ahb
-       - const: mod
+diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
+index 93878c2cd370..f27cd2038636 100644
+--- a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
++++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
  
-+  dmas:
-+    items:
-+      - description: RX DMA Channel
-+      - description: TX DMA Channel
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-   resets:
-     maxItems: 1
+ allOf:
++  - $ref: panel-common.yaml#
+   - $ref: lvds.yaml#
  
++select:
++  properties:
++    compatible:
++      contains:
++        const: advantech,idk-1110wr
++
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     items:
+       - const: advantech,idk-1110wr
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   data-mapping:
+     const: jeida-24
+@@ -35,6 +45,11 @@ additionalProperties: false
+ 
+ required:
+   - compatible
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
+ 
+ examples:
+   - |+
+diff --git a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
+index a69681e724cb..6e06eecac14e 100644
+--- a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
++++ b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
+@@ -11,15 +11,26 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
++  - $ref: panel-common.yaml#
+   - $ref: lvds.yaml#
+ 
++select:
++  properties:
++    compatible:
++      contains:
++        const: innolux,ee101ia-01d
++
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     items:
+       - const: innolux,ee101ia-01d
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   backlight: true
++  data-mapping: true
+   enable-gpios: true
+   power-supply: true
+   width-mm: true
+@@ -27,5 +38,13 @@ properties:
+   panel-timing: true
+   port: true
+ 
++required:
++  - compatible
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
++
+ additionalProperties: false
+ ...
+diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+index 49460c9dceea..5281a75c8bb5 100644
+--- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
++++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/display/panel/lvds.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: LVDS Display Panel
++title: LVDS Display Common Properties
+ 
+ maintainers:
+   - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+@@ -26,18 +26,7 @@ description: |+
+   Device compatible with those specifications have been marketed under the
+   FPD-Link and FlatLink brands.
+ 
+-allOf:
+-  - $ref: panel-common.yaml#
+-
+ properties:
+-  compatible:
+-    contains:
+-      const: panel-lvds
+-    description:
+-      Shall contain "panel-lvds" in addition to a mandatory panel-specific
+-      compatible string defined in individual panel bindings. The "panel-lvds"
+-      value shall never be used on its own.
+-
+   data-mapping:
+     enum:
+       - jeida-18
+@@ -96,22 +85,6 @@ properties:
+       If set, reverse the bit order described in the data mappings below on all
+       data lanes, transmitting bits for slots 6 to 0 instead of 0 to 6.
+ 
+-  port: true
+-  ports: true
+-
+-required:
+-  - compatible
+-  - data-mapping
+-  - width-mm
+-  - height-mm
+-  - panel-timing
+-
+-oneOf:
+-  - required:
+-      - port
+-  - required:
+-      - ports
+-
+ additionalProperties: true
+ 
+ ...
+diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
+index b5e7ee230fa6..e684b9771532 100644
+--- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
++++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
++  - $ref: panel-common.yaml#
+   - $ref: lvds.yaml#
+ 
++select:
++  properties:
++    compatible:
++      contains:
++        const: mitsubishi,aa104xd12
++
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     items:
+       - const: mitsubishi,aa104xd12
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   vcc-supply:
+     description: Reference to the regulator powering the panel VCC pins.
+@@ -39,6 +49,11 @@ additionalProperties: false
+ required:
+   - compatible
+   - vcc-supply
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
+ 
+ examples:
+   - |+
+diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
+index 977c50a85b67..c0df6ee89c7a 100644
+--- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
++++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
++  - $ref: panel-common.yaml#
+   - $ref: lvds.yaml#
+ 
++select:
++  properties:
++    compatible:
++      contains:
++        const: mitsubishi,aa121td01
++
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     items:
+       - const: mitsubishi,aa121td01
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   vcc-supply:
+     description: Reference to the regulator powering the panel VCC pins.
+@@ -39,6 +49,11 @@ additionalProperties: false
+ required:
+   - compatible
+   - vcc-supply
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
++  - port
+ 
+ examples:
+   - |+
+diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+index e63a570ae59d..8bb85701e507 100644
+--- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+@@ -11,13 +11,23 @@ maintainers:
+   - Thierry Reding <thierry.reding@gmail.com>
+ 
+ allOf:
++  - $ref: panel-common.yaml#
+   - $ref: lvds.yaml#
+ 
++select:
++  properties:
++    compatible:
++      contains:
++        const: sgd,gktw70sdae4se
++
++  required:
++    - compatible
++
+ properties:
+   compatible:
+     items:
+       - const: sgd,gktw70sdae4se
+-      - {} # panel-lvds, but not listed here to avoid false select
++      - const: panel-lvds
+ 
+   data-mapping:
+     const: jeida-18
+@@ -35,6 +45,11 @@ additionalProperties: false
+ 
+ required:
+   - compatible
++  - port
++  - data-mapping
++  - width-mm
++  - height-mm
++  - panel-timing
+ 
+ examples:
+   - |+
 -- 
 2.33.1
 
