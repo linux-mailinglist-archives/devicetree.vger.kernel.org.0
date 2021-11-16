@@ -2,89 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2875B4531BD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 13:05:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1043F4531C4
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 13:07:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235886AbhKPMIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 07:08:00 -0500
-Received: from foss.arm.com ([217.140.110.172]:44450 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235968AbhKPMFz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 07:05:55 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6EDE11FB;
-        Tue, 16 Nov 2021 04:02:57 -0800 (PST)
-Received: from [10.57.82.45] (unknown [10.57.82.45])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A58CC3F5A1;
-        Tue, 16 Nov 2021 04:02:55 -0800 (PST)
-Message-ID: <3b5cb536-5a11-5096-4369-cec3d369ec52@arm.com>
-Date:   Tue, 16 Nov 2021 12:02:47 +0000
+        id S235914AbhKPMKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 07:10:12 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49108 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S235939AbhKPMIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 07:08:10 -0500
+X-UUID: aeff3aaacce34bf193da63748a948ffb-20211116
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Ya/WGYXOkqE+jebPD6tyVEujeE5LL4XzlDlRj81I3bc=;
+        b=axrUVltCzsoa+DlnulOV/kA7B03JnU4QSJBHo7NsRiaZHdWBuo3Lqj9Q0f6hUOrSQ+E0KlIC/T4JoVMTIpWELVyZ3cZXS0yatnXI+ozIj7ESyUWJeHdxF62KiGgBlmjCQyy6BZgTirlAtTNYXKgcihKLVMzUklR64gZCVHC28sA=;
+X-UUID: aeff3aaacce34bf193da63748a948ffb-20211116
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1241904242; Tue, 16 Nov 2021 20:05:06 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 16 Nov 2021 20:05:05 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 16 Nov 2021 20:05:03 +0800
+Message-ID: <bf72f620071c3bfe7c3dea3eec6464afce3e7f4f.camel@mediatek.com>
+Subject: Re: [PATCH v10, 15/19] dt-bindings: media: mtk-vcodec: Adds decoder
+ dt-bindings for mt8192
+From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+CC:     Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        "Tiffany Lin" <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Irui Wang <irui.wang@mediatek.com>,
+        "Benjamin Gaignard" <benjamin.gaignard@collabora.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "Hsin-Yi Wang" <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        "Dafna Hirschfeld" <dafna.hirschfeld@collabora.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media <linux-media@vger.kernel.org>
+Date:   Tue, 16 Nov 2021 20:05:03 +0800
+In-Reply-To: <CAAEAJfBWgP1fMsEQQEa=2Rk810oHzDo609TzicYgwPbU8AMunQ@mail.gmail.com>
+References: <20211111041500.17363-1-yunfei.dong@mediatek.com>
+         <20211111041500.17363-16-yunfei.dong@mediatek.com>
+         <CAAEAJfBWgP1fMsEQQEa=2Rk810oHzDo609TzicYgwPbU8AMunQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH 0/2] perf/smmuv3: Support devicetree
-Content-Language: en-GB
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
-        robh+dt@kernel.org
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, will@kernel.org,
-        joro@8bytes.org, mark.rutland@arm.com, jkchen@linux.alibaba.com,
-        leo.yan@linaro.org, uchida.jun@socionext.com
-References: <20211116113536.69758-1-jean-philippe@linaro.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20211116113536.69758-1-jean-philippe@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-16 11:35, Jean-Philippe Brucker wrote:
-> Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
-> Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
-> multiple independent PMCGs, for example one for the Translation Control
-> Unit (TCU) and one per Translation Buffer Unit (TBU).
-> 
-> I previously sent the binding as reply to Jay Chen's thread implementing
-> device tree support [1]. This posting addresses the comments from that
-> thread.
+SGkgRXplcXVpZWwsDQoNClRoYW5rcyBmb3IgeW91ciBzdWdnZXN0aW9uLg0KT24gU3VuLCAyMDIx
+LTExLTE0IGF0IDE4OjU2IC0wMzAwLCBFemVxdWllbCBHYXJjaWEgd3JvdGU6DQo+IFl1bmZlaSwN
+Cj4gDQo+IE9uIFRodSwgMTEgTm92IDIwMjEgYXQgMDE6MTUsIFl1bmZlaSBEb25nIDx5dW5mZWku
+ZG9uZ0BtZWRpYXRlay5jb20+DQo+IHdyb3RlOg0KPiA+IA0KPiA+IEFkZHMgZGVjb2RlciBkdC1i
+aW5kaW5ncyBmb3IgbXQ4MTkyLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFl1bmZlaSBEb25n
+IDx5dW5mZWkuZG9uZ0BtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIC4uLi9tZWRpYS9tZWRp
+YXRlayx2Y29kZWMtc3ViZGV2LWRlY29kZXIueWFtbCB8IDI2MQ0KPiA+ICsrKysrKysrKysrKysr
+KysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMjYxIGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRl
+IG1vZGUgMTAwNjQ0DQo+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlh
+L21lZGlhdGVrLHZjb2RlYy1zdWJkZXYtDQo+ID4gZGVjb2Rlci55YW1sDQo+ID4gDQo+ID4gZGlm
+ZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21lZGlhL21l
+ZGlhdGVrLHZjb2RlYy1zdWJkZXYtDQo+ID4gZGVjb2Rlci55YW1sDQo+ID4gYi9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVkaWEvbWVkaWF0ZWssdmNvZGVjLXN1YmRldi0NCj4g
+PiBkZWNvZGVyLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4IDAwMDAw
+MDAwMDAwMC4uMTg4NmZhZTZlMzlkDQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZWRpYS9tZWRpYXRlayx2Y29kZWMtDQo+ID4g
+c3ViZGV2LWRlY29kZXIueWFtbA0KPiA+IEBAIC0wLDAgKzEsMjYxIEBADQo+ID4gKyMgU1BEWC1M
+aWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICsN
+Cj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6ICINCj4gPiBodHRwOi8vZGV2aWNl
+dHJlZS5vcmcvc2NoZW1hcy9tZWRpYS9tZWRpYXRlayx2Y29kZWMtc3ViZGV2LWRlY29kZXIueWFt
+bCMNCj4gPiAiDQo+ID4gKyRzY2hlbWE6ICJodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hl
+bWFzL2NvcmUueWFtbCMiDQo+ID4gKw0KPiA+ICt0aXRsZTogTWVkaWF0ZWsgVmlkZW8gRGVjb2Rl
+IEFjY2VsZXJhdG9yIFdpdGggTXVsdGkgSGFyZHdhcmUNCj4gPiArDQo+ID4gK21haW50YWluZXJz
+Og0KPiA+ICsgIC0gWXVuZmVpIERvbmcgPHl1bmZlaS5kb25nQG1lZGlhdGVrLmNvbT4NCj4gPiAr
+DQo+ID4gK2Rlc2NyaXB0aW9uOiB8DQo+ID4gKyAgTWVkaWF0ZWsgVmlkZW8gRGVjb2RlIGlzIHRo
+ZSB2aWRlbyBkZWNvZGUgaGFyZHdhcmUgcHJlc2VudCBpbg0KPiA+IE1lZGlhdGVrDQo+ID4gKyAg
+U29DcyB3aGljaCBzdXBwb3J0cyBoaWdoIHJlc29sdXRpb24gZGVjb2RpbmcgZnVuY3Rpb25hbGl0
+aWVzLg0KPiA+IFJlcXVpcmVkDQo+ID4gKyAgbWFpbiBhbmQgc3ViZGV2IGRldmljZSBub2RlLg0K
+PiA+ICsNCj4gPiArICBBYm91dCB0aGUgRGVjb2RlciBIYXJkd2FyZSBCbG9jayBEaWFncmFtLCBw
+bGVhc2UgY2hlY2sgYmVsb3c6DQo+ID4gKw0KPiA+ICsgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiAtLS0tLS0tLS0r
+DQo+ID4gKyAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIA0KPiA+ICAgICAgICAgIHwNCj4gPiArICAgIHwgaW5wdXQgLT4gbGF0
+IEhXIC0+IGxhdCBidWZmZXIgLS18LS0+IGxhdCBidWZmZXIgLT4gY29yZSBIVw0KPiA+IC0+IG91
+dHB1dA0KPiANCj4gIHwNCj4gDQo+IFRvIGJlIGNvbXBsZXRlbHkgaG9uZXN0LCBJIGNhbid0IHJl
+YWxseSB1bmRlcnN0YW5kIHdoYXQgaXMgdGhlDQo+IG1lYW5pbmcNCj4gb2YgdGhlIGJsb2Nrcw0K
+PiB3aXRoIGlucHV0IC0+IGxhdCBodyAtPiBsYXQgYnVmZmVyLCBhbmQgaG93IHRoaXMgbWVhbnMg
+bGF0LSBhbmQgY29yZS0NCj4gYXJlIGNoaWxkcmVuIG9mIHNvbWUgcGFyZW50Lg0KPiANCkkgd2ls
+bCBhZGQgbW9yZSBkZXRhaWwgaW5mb3JtYXRpb24gYXMgYmVsb3c6DQpUaGUgYmxvY2sgZGlhZ3Jh
+bSBpcyBkYXRhIGZsb3csIG5lZWQgdHdvIG9yIG1vcmUgaGFyZHdhcmVzIHRvIGRlY29kZQ0KZm9y
+IGVhY2ggcGljdHVyZS4gaW5wdXQgaXMgaW5wdXQgYml0c3RyZWFtLCBsYXQgaGFyZHdhcmUgbmVl
+ZCBpbnB1dA0KYml0c3RyZWFtIGFuZCBsYXQgYnVmZmVyIHRvIGRlY29kZSwgd2lsbCB3cml0ZSB0
+ZW1wIGluZm9ybWF0aW9uIHRvIGxhdA0KYnVmZmVyIHdoZW4gbGF0IGRlY29kZSBkb25lLiBsYXQg
+YnVmZmVyIGlzIHVzZWQgdG8gc2hhcmUgbGF0IGJ1ZmZlcg0KaW5mb3JtYXRpb24gZm9yIGxhdCBo
+YXJkd2FyZSBhbmQgY29yZSBoYXJkd2FyZS4gY29yZSBoYXJkd2FyZSBuZWVkDQpmcmFtZSBidWZm
+ZXIgYW5kIGxhdCBidWZmZXIgdG8gZGVjb2RlLCB3aWxsIHdyaXRlIGRlY29kZSByZXN1bHQgdG8N
+CmZyYW1lIGJ1ZmZlci4NCg0KPiA+ICsgICAgfCAgICAgICAgICAgIHx8ICAgICAgICAgICAgICAg
+ICAgIHwgICAgICAgICAgICAgICAgICAgICB8fCAgICANCj4gPiAgICAgICAgICB8DQo+ID4gKyAg
+ICArLS0tLS0tLS0tLS0tfHwtLS0tLS0tLS0tLS0tLS0tLS0tKy0tLS0tLS0tLS0tLS0tLS0tLS0t
+LXx8LS0NCj4gPiAtLS0tLS0tLS0tLSsNCj4gPiArICAgICAgICAgICAgICAgICB8fCAgICAgICBs
+YXQgdGhyZWFkICB8ICBjb3JlDQo+ID4gdGhyZWFkICAgICAgICB8fCAgICAgPHBhcmVudD4NCj4g
+PiArICAgIC0tLS0tLS0tLS0tLS18fC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tfHwtLQ0KPiA+IC0tLS0tLS0tLS0tLS0tDQo+ID4gKyAgICAgICAgICAgICAgICAgfHwg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHx8ICAgIA0KPiA+ICA8Y2hp
+bGQ+DQo+ID4gKyAgICAgICAgICAgICAgICAgXC8gPC0tLS0tLS0tLS0tLS0tLS1IVyBpbmRleC0t
+LS0tLS0tLS0tLS0tPlwvDQo+ID4gKyAgICAgICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gPiAtLSsNCj4gPiArICAgICAgICAgICB8
+ICAgICAgICAgICAgICAgICAgICBlbmFibGUvZGlzYWJsZSAgICAgICAgICAgICAgICAgICAgDQo+
+ID4gfA0KPiA+ICsgICAgICAgICAgIHwgICAgICAgICAgIGNsayAgICAgcG93ZXIgICAgaXJxICAg
+IGlvbW11DQo+ID4gcG9ydCAgICAgICAgIHwNCj4gPiArICAgICAgICAgICB8ICAgICAgICAgICAg
+ICAgICAobGF0L2xhdA0KPiA+IHNvYy9jb3JlMC9jb3JlMSkgICAgICAgICAgICB8DQo+ID4gKyAg
+ICAgICAgICAgKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0NCj4gPiAtLSsNCj4gPiArDQo+ID4gKyAgQXMgYWJvdmUsIDxwYXJlbnQ+IG1lYW4gaW4g
+bWFpbiBkZXZpY2UsIDxjaGlsZD4gbWVhbiBpbiBzdWJkZXYNCj4gPiBkZXZpY2UuIFRoZSBpbmZv
+cm1hdGlvbg0KPiA+ICsgIG9mIGVhY2ggaGFyZHdhcmUgd2lsbCBiZSBzdG9yZWQgaW4gc3ViZGV2
+IGRldmljZS4gVGhlcmUgYXJlIHR3bw0KPiA+IHdvcmtxdWV1ZXMgaW4gbWFpbiBkZXZpY2U6DQo+
+ID4gKyAgbGF0IGFuZCBjb3JlLiBFbmFibGUvZGlzYWJsZSB0aGUgbGF0IGNsay9wb3dlci9pcnEg
+d2hlbiBsYXQgbmVlZA0KPiA+IHRvIHdvcmsgdGhyb3VnaCBoYXJkd2FyZQ0KPiA+ICsgIGluZGV4
+LCBjb3JlIGlzIHRoZSBzYW1lLg0KPiA+ICsNCj4gPiArICBOb3JtYWxseSB0aGUgc21pIGNvbW1v
+biBtYXkgbm90IHRoZSBzYW1lIGZvciBlYWNoIGhhcmR3YXJlLA0KPiA+IGNhbid0IGNvbWJpbmUg
+YWxsIGhhcmR3YXJlIGluDQo+ID4gKyAgb25lIG5vZGUsIG9yIGxlYWRpbmcgdG8gaW9tbXUgZmF1
+bHQgd2hlbiBhY2Nlc3MgZHJhbSBkYXRhLg0KPiA+ICsNCj4gDQpUaGVyZSBhcmUgb25lIHBhcmVu
+dCBub2RlLCByZWdhcmRzIGl0IGFzIG1haW4gZGV2aWNlLCBlYWNoIGNoaWxkIG5vZGUNCmFzIHN1
+YmRldmljZXMsIG9uZSBjaGlsZCBub2RlIG1lYW4gb25lIGhhcmR3YXJlLg0KDQpUaGVyZSBhcmUg
+dHdvIHdvcmsgcXVldWVzIGluIG1haW4gZGV2aWNlIHVzZWQgZm9yIGxhdCBhbmQgY29yZSBoYXJk
+d2FyZQ0KdG8gZGVjb2RlLg0KDQpUaGUgaW5mb3JtYXRpb24gb2YgZWFjaCBoYXJkd2FyZSB3aWxs
+IGJlIHN0b3JlZCBpbiBzdWJkZXZpY2VzLg0KRW5hYmxlL2Rpc2FibGUgdGhlIGxhdCBjbGsvcG93
+ZXIvaXJxIHdoZW4gaGFyZHdhcmUgbmVlZCB0byB3b3JrLg0KPiBUbyB3aGF0IGV4dGVudCB0aGUg
+bGF0LSBhbmQgY29yZS0gZGV2aWNlcyBhcmUgcmVhbGx5ICJjaGlsZHJlbiINCj4gb3IgInN1YmRl
+dmljZXMiIG9mIHRoZSAgdmlkZW8tY29kZWNAMTYwMDAwMDAgZGV2aWNlPw0KPiANCj4gSS5lLiB3
+aGF0IHJlc291cmNlcyBkbyB0aGV5IHNoYXJlPyBXaGF0IGFyZSB0aGUgZGV0YWlscyBvZg0KPiB0
+aGVpciBidXMgdG9wb2xvZ3k/DQo+IA0KVGhlIGhhcmR3YXJlIGlzIHJlYWxseSB2ZXJ5IHNpbXBs
+ZSwganVzdCBlbmFibGUgaXQgdG8gd29yayB3aGVuIG5lZWRlZC4NCkJ1dCBlYWNoIGhhcmR3YXJl
+IGlzbid0IGluZGVwZW5kZW50LCBuZWVkIGxhdCBhbmQgY29yZSB0byBkZWNvZGUgZm9yDQpldmVy
+eSBwaWN0dXJlLiBObyBjb21wbGV4IGJ1cyB0b3BvbG9neS4NCj4gPiArDQo+ID4gK2V4YW1wbGVz
+Og0KPiA+ICsgIC0gfA0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2ludGVycnVwdC1j
+b250cm9sbGVyL2FybS1naWMuaD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9tZW1v
+cnkvbXQ4MTkyLWxhcmItcG9ydC5oPg0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2lu
+dGVycnVwdC1jb250cm9sbGVyL2lycS5oPg0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJpbmRpbmdz
+L2Nsb2NrL210ODE5Mi1jbGsuaD4NCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9wb3dl
+ci9tdDgxOTItcG93ZXIuaD4NCj4gPiArDQo+ID4gKyAgICB2aWRlby1jb2RlY0AxNjAwMDAwMCB7
+DQo+ID4gKyAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxOTItdmNvZGVjLWRlYyI7
+DQo+ID4gKyAgICAgICAgcmVnID0gPDB4MTYwMDAwMDAgMHgxMDAwPjsgICAgICAgICAgICAgLyog
+VkRFQ19TWVMgKi8NCj4gPiArICAgICAgICBtZWRpYXRlayxzY3AgPSA8JnNjcD47DQo+ID4gKyAg
+ICAgICAgaW9tbXVzID0gPCZpb21tdTAgTTRVX1BPUlRfTDRfVkRFQ19NQ19FWFQ+Ow0KPiA+ICsg
+ICAgICAgIGRtYS1yYW5nZXMgPSA8MHgxIDB4MCAweDAgMHg0MDAwMDAwMCAweDAgMHhmZmYwMDAw
+MD47DQo+ID4gKyAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgI3Np
+emUtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgcmFuZ2VzOw0KPiA+ICsgICAgICAgIHZjb2Rl
+Yy1sYXRAMTYwMTAwMDAgew0KPiA+ICsgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVr
+LG10ay12Y29kZWMtbGF0IjsNCj4gPiArICAgICAgICAgICAgcmVnID0gPDB4MTYwMTAwMDAgMHg4
+MDA+Ow0KPiA+ICsgICAgICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNDI2IElSUV9UWVBF
+X0xFVkVMX0hJR0ggMD47DQo+ID4gKyAgICAgICAgICAgIGlvbW11cyA9IDwmaW9tbXUwIE00VV9Q
+T1JUX0w1X1ZERUNfTEFUMF9WTERfRVhUPiwNCj4gPiArICAgICAgICAgICAgICAgIDwmaW9tbXUw
+IE00VV9QT1JUX0w1X1ZERUNfTEFUMF9WTEQyX0VYVD4sDQo+ID4gKyAgICAgICAgICAgICAgICA8
+JmlvbW11MCBNNFVfUE9SVF9MNV9WREVDX0xBVDBfQVZDX01WX0VYVD4sDQo+ID4gKyAgICAgICAg
+ICAgICAgICA8JmlvbW11MCBNNFVfUE9SVF9MNV9WREVDX0xBVDBfUFJFRF9SRF9FWFQ+LA0KPiA+
+ICsgICAgICAgICAgICAgICAgPCZpb21tdTAgTTRVX1BPUlRfTDVfVkRFQ19MQVQwX1RJTEVfRVhU
+PiwNCj4gPiArICAgICAgICAgICAgICAgIDwmaW9tbXUwIE00VV9QT1JUX0w1X1ZERUNfTEFUMF9X
+RE1BX0VYVD4sDQo+ID4gKyAgICAgICAgICAgICAgICA8JmlvbW11MCBNNFVfUE9SVF9MNV9WREVD
+X0xBVDBfUkdfQ1RSTF9ETUFfRVhUPiwNCj4gPiArICAgICAgICAgICAgICAgIDwmaW9tbXUwIE00
+VV9QT1JUX0w1X1ZERUNfVUZPX0VOQ19FWFQ+Ow0KPiA+ICsgICAgICAgICAgICBjbG9ja3MgPSA8
+JnRvcGNrZ2VuIENMS19UT1BfVkRFQ19TRUw+LA0KPiA+ICsgICAgICAgICAgICAgICAgPCZ2ZGVj
+c3lzX3NvYyBDTEtfVkRFQ19TT0NfVkRFQz4sDQo+ID4gKyAgICAgICAgICAgICAgICA8JnZkZWNz
+eXNfc29jIENMS19WREVDX1NPQ19MQVQ+LA0KPiA+ICsgICAgICAgICAgICAgICAgPCZ2ZGVjc3lz
+X3NvYyBDTEtfVkRFQ19TT0NfTEFSQjE+LA0KPiA+ICsgICAgICAgICAgICAgICAgPCZ0b3Bja2dl
+biBDTEtfVE9QX01BSU5QTExfRDQ+Ow0KPiA+ICsgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJz
+ZWwiLCAic29jLXZkZWMiLCAic29jLWxhdCIsICJ2ZGVjIiwNCj4gPiAidG9wIjsNCj4gPiArICAg
+ICAgICAgICAgYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX1ZERUNfU0VMPjsN
+Cj4gPiArICAgICAgICAgICAgYXNzaWduZWQtY2xvY2stcGFyZW50cyA9IDwmdG9wY2tnZW4NCj4g
+PiBDTEtfVE9QX01BSU5QTExfRDQ+Ow0KPiA+ICsgICAgICAgICAgICBwb3dlci1kb21haW5zID0g
+PCZzcG0gTVQ4MTkyX1BPV0VSX0RPTUFJTl9WREVDPjsNCj4gPiArICAgICAgICB9Ow0KPiA+ICsN
+Cj4gPiArICAgICAgICB2Y29kZWMtY29yZUAxNjAyNTAwMCB7DQo+ID4gKyAgICAgICAgICAgIGNv
+bXBhdGlibGUgPSAibWVkaWF0ZWssbXRrLXZjb2RlYy1jb3JlIjsNCj4gPiArICAgICAgICAgICAg
+cmVnID0gPDB4MTYwMjUwMDAgMHgxMDAwPjsNCj4gDQo+IFRoZSBjaGlsZHJlbiBhZGRyZXNzIHNw
+YWNlIG1pZ2h0IG5lZWQgc29tZSB0aGlua2luZy4NCj4gSW4gb3RoZXIgd29yZHMsDQo+IA0KPiB2
+aWRlby1jb2RlY0AxNjAwMDAwMCB7DQo+IA0KPiAgIHZjb2RlYy1sYXRAMTYwMTAwMDAgew0KPiAg
+IH0NCj4gDQo+ICAgdmNvZGVjLWNvcmVAMTYwMjUwMDAgew0KPiAgIH0NCj4gfQ0KPiANCj4gWW91
+ciBwcm9wb3NhbCBoYXMgdmNvZGVjLWxhdCBhcyBjaGlsZHJlbiBvZiB2aWRlby1jb2RlYywgYnV0
+IGl0cw0KPiBhZGRyZXNzIHNwYWNlDQo+IGFyZSByZWFsbHkgb24gdGhlIHNhbWUgbGV2ZWwsIGlu
+c3RlYWQgb2YgY2hpbGRyZW4gYmVpbmcgY29udGFpbmVkIGluDQo+IHRoZSBwYXJlbnQgYWRkcmVz
+cyBzcGFjZToNCj4gDQo+IHZpZGVvLWNvZGVjQDE2MDAwMDAwIHsNCj4gDQo+ICAgdmNvZGVjLWxh
+dEAxMDAwMCB7DQo+ICAgfQ0KPiANCj4gICB2Y29kZWMtY29yZUAyNTAwMCB7DQo+ICAgfQ0KPiB9
+DQo+IA0KDQp5ZXMsIEkgd2lsbCB0cnkgdG8gZml4IHRoZSBkdHNpIGFzOiB2Y29kZWMtbGF0QDEw
+MDAwLCBpZiBpdCBsb29rcyBtdWNoDQptb3JlIHJlYXNvbmFibGUuDQo+IEkgdGhpbmsgdGhpcyBs
+YXN0IHRyZWUgbWFrZXMgbW9yZSBzZW5zZSBmcm9tIGEgZGV2aWNlLXRyZWUgcG9pbnQgb2YNCj4g
+dmlldy4NCj4gVGhlIHJhbmdlcyBwcm9wZXJ0eSBhbGxvd3MgeW91IHRvIHB1dCB0aGUgcmlnaHQg
+dHJhbnNsYXRpb24NCj4gaW5mb3JtYXRpb24sDQo+IHNvIHRoZSBkZXZpY2UgZHJpdmVyIGl0c2Vs
+ZiB3aWxsIGdldCB0aGUgY29ycmVjdCBhZGRyZXNzIDB4MTYwMDAwMDAgKw0KPiAweDI1MDAwLg0K
+PiANCj4gWW91IG1pZ2h0IGZpbmQgdGhhdCB0aGUgcmFuZ2VzIHByb3BlcnR5IGlzIHRyaWNreSB0
+byB1bmRlcnN0YW5kIGF0DQo+IGZpcnN0Lg0KPiANCj4gVGhhbmtzLA0KPiBFemVxdWllbA0KPiAN
+CkhvcGUgdG8gZ2V0IHlvdXIgZmVlZGJhY2suDQoNClRoYW5rcywNCll1bmZlaSBEb25nDQo+IA0K
+PiA+ICsgICAgICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgNDI1IElSUV9UWVBFX0xFVkVM
+X0hJR0ggMD47DQo+ID4gKyAgICAgICAgICAgIGlvbW11cyA9IDwmaW9tbXUwIE00VV9QT1JUX0w0
+X1ZERUNfTUNfRVhUPiwNCj4gPiArICAgICAgICAgICAgICAgIDwmaW9tbXUwIE00VV9QT1JUX0w0
+X1ZERUNfVUZPX0VYVD4sDQo+ID4gKyAgICAgICAgICAgICAgICA8JmlvbW11MCBNNFVfUE9SVF9M
+NF9WREVDX1BQX0VYVD4sDQo+ID4gKyAgICAgICAgICAgICAgICA8JmlvbW11MCBNNFVfUE9SVF9M
+NF9WREVDX1BSRURfUkRfRVhUPiwNCj4gPiArICAgICAgICAgICAgICAgIDwmaW9tbXUwIE00VV9Q
+T1JUX0w0X1ZERUNfUFJFRF9XUl9FWFQ+LA0KPiA+ICsgICAgICAgICAgICAgICAgPCZpb21tdTAg
+TTRVX1BPUlRfTDRfVkRFQ19QUFdSQVBfRVhUPiwNCj4gPiArICAgICAgICAgICAgICAgIDwmaW9t
+bXUwIE00VV9QT1JUX0w0X1ZERUNfVElMRV9FWFQ+LA0KPiA+ICsgICAgICAgICAgICAgICAgPCZp
+b21tdTAgTTRVX1BPUlRfTDRfVkRFQ19WTERfRVhUPiwNCj4gPiArICAgICAgICAgICAgICAgIDwm
+aW9tbXUwIE00VV9QT1JUX0w0X1ZERUNfVkxEMl9FWFQ+LA0KPiA+ICsgICAgICAgICAgICAgICAg
+PCZpb21tdTAgTTRVX1BPUlRfTDRfVkRFQ19BVkNfTVZfRVhUPiwNCj4gPiArICAgICAgICAgICAg
+ICAgIDwmaW9tbXUwIE00VV9QT1JUX0w0X1ZERUNfUkdfQ1RSTF9ETUFfRVhUPjsNCj4gPiArICAg
+ICAgICAgICAgY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX1ZERUNfU0VMPiwNCj4gPiArICAg
+ICAgICAgICAgICAgIDwmdmRlY3N5cyBDTEtfVkRFQ19WREVDPiwNCj4gPiArICAgICAgICAgICAg
+ICAgIDwmdmRlY3N5cyBDTEtfVkRFQ19MQVQ+LA0KPiA+ICsgICAgICAgICAgICAgICAgPCZ2ZGVj
+c3lzIENMS19WREVDX0xBUkIxPiwNCj4gPiArICAgICAgICAgICAgICAgIDwmdG9wY2tnZW4gQ0xL
+X1RPUF9NQUlOUExMX0Q0PjsNCj4gPiArICAgICAgICAgICAgY2xvY2stbmFtZXMgPSAic2VsIiwg
+InNvYy12ZGVjIiwgInNvYy1sYXQiLCAidmRlYyIsDQo+ID4gInRvcCI7DQo+ID4gKyAgICAgICAg
+ICAgIGFzc2lnbmVkLWNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9WREVDX1NFTD47DQo+ID4g
+KyAgICAgICAgICAgIGFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8JnRvcGNrZ2VuDQo+ID4gQ0xL
+X1RPUF9NQUlOUExMX0Q0PjsNCj4gPiArICAgICAgICAgICAgcG93ZXItZG9tYWlucyA9IDwmc3Bt
+IE1UODE5Ml9QT1dFUl9ET01BSU5fVkRFQzI+Ow0KPiA+ICsgICAgICAgIH07DQo+ID4gKyAgICB9
+Ow0KPiA+IC0tDQo+ID4gMi4yNS4xDQo+ID4gDQo=
 
-Ha, I'd also resurrected this and was planning to post it at some point 
-this week[0] - you should have said :)
-
-> Patch 1 adds two compatible strings. "arm,smmu-v3-pmcg" is common to all
-> PMCGs. "hisilicon,smmu-v3-pmcg-hip08" allows to support the same quirk
-> as IORT for that implementation (see patch 2). We'll probably want to
-> also introduce compatible strings for each implementation that has
-> additional perf events. For example the MMU-600 implementation has
-> different events for TCU and TBU PMCGs [2], but both components have the
-> same device IDs. So the driver could differentiate them if they had two
-> distinct compatible strings such as "arm,mmu-600-pmcg-tbu" and
-> "arm,mmu-600-pmcg-tcu".
-
-Actually it only needs a general MMU-600 compatible, since once you know 
-it's an Arm Ltd. implementation, you can assume the pattern for the 
-IMP_DEF ID registers to figure out the rest.
-
-Robin.
-
-[0] https://gitlab.arm.com/linux-arm/linux-rm/-/commits/smmu-pmcg
-
-> The series doesn't deal with this because for testing I use a software
-> model which only implements architected events. I do not include DTS
-> change for that platform because enabling PMCGs requires an additional
-> model option. See my branch smmu/pmu-dt [3] for details.
-> 
-> [1] https://lore.kernel.org/all/20200707150114.GC159413@myrica/
-> [2] https://developer.arm.com/documentation/100310/0202/Functional-description/Operation/Performance-Monitoring-Unit
-> [3] https://jpbrucker.net/git/linux/log/?h=smmu/pmu-dt
-> 
-> Jean-Philippe Brucker (2):
->    dt-bindings: Add Arm SMMUv3 PMCG binding
->    perf/smmuv3: Add devicetree support
-> 
->   .../bindings/iommu/arm,smmu-v3-pmcg.yaml      | 67 +++++++++++++++++++
->   drivers/perf/arm_smmuv3_pmu.c                 | 25 ++++++-
->   2 files changed, 90 insertions(+), 2 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/iommu/arm,smmu-v3-pmcg.yaml
-> 
