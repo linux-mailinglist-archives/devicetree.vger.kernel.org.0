@@ -2,82 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F8E45389C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 18:36:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9D904538CB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 18:49:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238931AbhKPRi4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 12:38:56 -0500
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:56359 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233537AbhKPRi4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 12:38:56 -0500
-Received: from [77.244.183.192] (port=62096 helo=[192.168.178.41])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1mn2NB-0000Vf-6r; Tue, 16 Nov 2021 18:35:57 +0100
-Subject: Re: [PATCH v2 3/3] power: supply: max77976: add Maxim MAX77976
- charger driver
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20211108162706.2816454-1-luca@lucaceresoli.net>
- <20211108162706.2816454-3-luca@lucaceresoli.net>
- <20211116152108.z4qpfl43h4f2pbm7@earth.universe>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <7f91e875-3a87-0b01-4b40-232ca109ef38@lucaceresoli.net>
-Date:   Tue, 16 Nov 2021 18:35:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S239101AbhKPRw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 12:52:29 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:15858 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239090AbhKPRwL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 12:52:11 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637084954; h=Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Message-ID: Date: Subject: In-Reply-To: References: Cc:
+ To: From: Sender; bh=RpXTxXojtSMaFiAviBxl1ly/oJ2rVFyQHcVBvJ3tF/A=; b=Dfmv0ab8Ka+b38g8EBAuEOYg8cmBae1gUDP9M7LpRWLaIZD2AN2jTftk+2Vyq+uX+uS7/nVM
+ D0SRNtivGjau/15sxIq0dRrucNftop3SxR/SLrENX+xAZ2dolH/pwEeFFd2lzFyc1kYHcLX1
+ Zkf5gfDbuHeYezLugK4HdBZHGmM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 6193ef195bbbed1f707c4349 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 16 Nov 2021 17:49:13
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id AC34AC43619; Tue, 16 Nov 2021 17:49:13 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from PILLAIR1 (unknown [49.205.244.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 90822C4338F;
+        Tue, 16 Nov 2021 17:49:08 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 90822C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   <pillair@codeaurora.org>
+To:     "'Stephen Boyd'" <swboyd@chromium.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <mathieu.poirier@linaro.org>,
+        <ohad@wizery.com>, <p.zabel@pengutronix.de>, <robh+dt@kernel.org>
+Cc:     <linux-arm-msm@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sibis@codeaurora.org>,
+        <mpubbise@codeaurora.org>, <kuabhs@chromium.org>
+References: <1635860673-12146-1-git-send-email-pillair@codeaurora.org> <1635860673-12146-4-git-send-email-pillair@codeaurora.org> <CAE-0n52effcajLwjOY_v-pjp68ytkb-zo4R9EHp3CQi=yB8nPQ@mail.gmail.com>
+In-Reply-To: <CAE-0n52effcajLwjOY_v-pjp68ytkb-zo4R9EHp3CQi=yB8nPQ@mail.gmail.com>
+Subject: RE: [PATCH v8 3/3] remoteproc: qcom: q6v5_wpss: Add support for sc7280 WPSS
+Date:   Tue, 16 Nov 2021 23:19:05 +0530
+Message-ID: <00ea01d7db12$43b6d9b0$cb248d10$@codeaurora.org>
 MIME-Version: 1.0
-In-Reply-To: <20211116152108.z4qpfl43h4f2pbm7@earth.universe>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
+Content-Type: text/plain;
+        charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHDHL+CUvw+y47EfzH06QSq/wfqRgJVSCfZAjsT72usC2fSsA==
+Content-Language: en-us
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
 
-On 16/11/21 16:21, Sebastian Reichel wrote:
-> Hi,
+
+> -----Original Message-----
+> From: Stephen Boyd <swboyd@chromium.org>
+> Sent: Tuesday, November 16, 2021 5:13 AM
+> To: Rakesh Pillai <pillair@codeaurora.org>; agross@kernel.org;
+> bjorn.andersson@linaro.org; mathieu.poirier@linaro.org; ohad@wizery.com;
+> p.zabel@pengutronix.de; robh+dt@kernel.org
+> Cc: linux-arm-msm@vger.kernel.org; linux-remoteproc@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> sibis@codeaurora.org; mpubbise@codeaurora.org; kuabhs@chromium.org
+> Subject: Re: [PATCH v8 3/3] remoteproc: qcom: q6v5_wpss: Add support for
+> sc7280 WPSS
 > 
-> On Mon, Nov 08, 2021 at 05:27:06PM +0100, Luca Ceresoli wrote:
->> Add support for the MAX77976 3.5/5.5A 1-Cell Li+ Battery Charger.
->>
->> This is a simple implementation enough to be used as a simple battery
->> charger without OTG and boost.
->>
->> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->>
->> ---
+> Quoting Rakesh Pillai (2021-11-02 06:44:33)
+> > diff --git a/drivers/remoteproc/qcom_q6v5_adsp.c
+> b/drivers/remoteproc/qcom_q6v5_adsp.c
+> > index 098362e6..e2e8d33 100644
+> > --- a/drivers/remoteproc/qcom_q6v5_adsp.c
+> > +++ b/drivers/remoteproc/qcom_q6v5_adsp.c
+> > @@ -435,12 +571,22 @@ static int adsp_probe(struct platform_device
+> *pdev)
+> >         if (!desc)
+> >                 return -EINVAL;
+> >
+> > +       firmware_name = desc->firmware_name;
+> > +       ret = of_property_read_string(pdev->dev.of_node, "firmware-
+> name",
 > 
-> Thanks, I queued this to power-supply's for-next branch together
-> with the other 2 patches
+> Is this documented in the binding? If not, please add it.
 
-Thanks!
+Hi Stephen,
+"firmware-name" is already documented in the bindings.
 
-> with one small change: The of_match_ptr()
-> is not needed and actually should result in a warning when building
-> the driver with CONFIG_OF disabled.
+Thanks,
+Rakesh Pillai.
 
-Ouch. I made the same mistake in the past and the kernel test robot
-noticed, I wonder why it didn't this time but hopefully I will remember
-in the future!
-
-Regards,
--- 
-Luca
