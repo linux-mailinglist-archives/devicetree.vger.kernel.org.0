@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB6D3453BA9
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 22:31:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B97E4453BEB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 22:49:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229583AbhKPVeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 16:34:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55728 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229556AbhKPVeC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 16:34:02 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8A94361465;
-        Tue, 16 Nov 2021 21:31:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637098264;
-        bh=AhSW+z29ukUaI4sgjjRdVPgwUI6/M8usLcrVanI20cQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iuoCR5RjNl07SkKEM2lBRUOqbbR8uhFDiSuGkS1hZg/gUmdlzc+zY25ndKzX84sPA
-         pBib3WOO1+3pe2VQJfph62Md99ji/PtO25y8eFm/a+XrtbS5r0Chu3ePEfQdjQGLvY
-         ofKMzu+edXe8304UhX7vbPmtiR+CXpGeQVOx8QPG4zLnv1j5I4FSXhMU7HdnEkIT2y
-         pnMlLoKPCVrN7RyGy+C7DU6icq2fU8Kpi5VGvt1yjyJfOBK6hRSm4Fe0gXzs2aJcAf
-         6jl+xsI5pQDtqfsJrI2fQ4L9sDfADxDYP7e4rnxTQmZZKp0pMgVTBV8SgvTqQuJoee
-         K1bVfZdPdoDZA==
-Received: by pali.im (Postfix)
-        id EE74388C; Tue, 16 Nov 2021 22:31:01 +0100 (CET)
-Date:   Tue, 16 Nov 2021 22:31:01 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>,
-        devicetree@vger.kernel.org, PCI <linux-pci@vger.kernel.org>,
-        Bjorn Helgaas <helgaas@kernel.org>
-Subject: Re: [PATCH dt + pci 1/2] dt-bindings: Add
- 'slot-power-limit-milliwatt' PCIe port property
-Message-ID: <20211116213101.enedflqtezel5rmq@pali>
-References: <20211031150706.27873-1-kabel@kernel.org>
- <YY6HYM4T+A+tm85P@robh.at.kernel.org>
- <20211112153208.s4nuckz7js4fipce@pali>
- <CAL_JsqJ+FYFFcDEm-_Ow=9TERhhEMVKm3OCHyDdGo02onK7dmg@mail.gmail.com>
- <20211112171249.46xmj5zo3svm4qn2@pali>
- <CAL_Jsq+0ByuPqGw0L94qJktMy+J2XyGUQ1ZRjkBoMGX+ggBizw@mail.gmail.com>
- <20211113113106.a3ludtlycnrmbvnh@pali>
+        id S230494AbhKPVwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 16:52:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230467AbhKPVwY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 16:52:24 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28B7DC061570
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 13:49:27 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id u74so1553352oie.8
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 13:49:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=1Bbi1dTodYSxYFvQyegx5oXbco/1YM4dBbouw8AdF18=;
+        b=jQYGZXbCZPo717dUPm9+P7BeqvF+sr8gTyn8wKhS1x1T4tc2lpiTu5TnMduJY0z7HP
+         9qE76piIka7+YZnfuvjsCpii141O1E2NVdv8BUfYVtqUoJLhY8EzgfBngHYYcyFE+tJ6
+         iLzkEOYA2aVfK6k+dnQVXvbwMfOYk9cLgu5M1izWvanu+X6jjpYsW3S04S4le2vCRm63
+         7rtbe0du5TK+bEgMBBXZOddIk4Z9M3PWlmYNCP+DL8qGU21n6bjHWqXhHY4wxa9hKGCc
+         AqsIM0Z2QMHSnMCT9Tpkvq9Do0sNah1x+0f4PJ/uEK8vACvUhyEKr2lgiE1WIAAxYAKC
+         i/lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=1Bbi1dTodYSxYFvQyegx5oXbco/1YM4dBbouw8AdF18=;
+        b=nOv2KyRxbp96E6EmANNtlOw7O+h1uDWNX2lQZ1SqRkRCD21Pb/HHlqYGfaJgIvFXV7
+         3tA2Gpqtn0gbL8chxnn1+Kewhyf+iMZ09zWYBXb9sS8b3wpTP472iABczsQxXOOu4qlX
+         cFnb/Er4sNJJ59B5j93KeOZwXvqyua3ZqKGZZ/2zf0FBkXTsDnEA9SDYoXSft/ibmJv3
+         XDz1VaMYa3YF6SW5b9euRPM1bAJvOau6bCkxOH6vLmOnwPAbIPFXe7F5ZOprMzpEn0sr
+         Z+33eAo7ILAWMKNrX8XLQhq2pq3zFSKNBGp2a6EGsvaFAf/AN4ERm62eZPQXX4NhTUjS
+         KArw==
+X-Gm-Message-State: AOAM533k/WgV3U3vKGCV9sp1xzHwcmXEiKlN8Lto2U4t+99DlbLuJx6k
+        dx+wxEKkNCwJHtxInHvaB7AdSipWL1aTNf5uc2Y=
+X-Google-Smtp-Source: ABdhPJw3feZqTBt1wB0Dg1oUivD3c70EsQjU8dKdl+6uwwP+w/gORXe4ouQsV/TWIpuNKSirx8DXU3dRvkpxUxPDIZA=
+X-Received: by 2002:aca:df04:: with SMTP id w4mr57328353oig.95.1637099366076;
+ Tue, 16 Nov 2021 13:49:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211113113106.a3ludtlycnrmbvnh@pali>
-User-Agent: NeoMutt/20180716
+Received: by 2002:a05:6839:639e:0:0:0:0 with HTTP; Tue, 16 Nov 2021 13:49:25
+ -0800 (PST)
+Reply-To: ahmadmustafa.7800@gmail.com
+From:   Ahmad Mustafa <delgadoangelo650@gmail.com>
+Date:   Tue, 16 Nov 2021 22:49:25 +0100
+Message-ID: <CAKOM8vqWKiecr4SrU0746vYe2R9u-vNVVVaZMVE_rQjs2iLsiQ@mail.gmail.com>
+Subject: LOANS AND INVESTMENT
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Saturday 13 November 2021 12:31:06 Pali Rohár wrote:
-> On Friday 12 November 2021 14:56:26 Rob Herring wrote:
-> > The only
-> > versioning we have ATM is the kernel requires a minimum version of
-> > dtschema (which we'll have to bump for all this).
-> > 
-> > We could have something like:
-> > 
-> > old-pci-bridge.yaml:
-> >   allOf:
-> >     - $ref: pci-host-bridge.yaml#
-> >     - $ref: pcie-port.yaml#
-> > 
-> > new-pci-bridge.yaml:
-> >   allOf:
-> >     - $ref: pci-host-bridge.yaml#
-> >   properties:
-> >     pci@0:
-> >       $ref: pcie-port.yaml#
-> > 
-> > And then both of the above schemas will have $ref to a pci-bridge.yaml
-> > schema which should be most of pci-bus.yaml. linux,pci-domain and
-> > dma-ranges? go to pci-host-bridge.yaml. max-link-speed, num-lanes,
-> > reset-gpios, slot-power-limit-milliwatt, and the pending supply
-> > additions (Broadcom) go to pcie-port.yaml.
-> 
-> This looks like a nice solution.
-> 
-> I would propose just one other thing: Do not allow new kernel drivers
-> to use old-pci-bridge.yaml schema, so new drivers would not use old
-> "deprecated" APIs...
-> 
-> So should I prepare some schemas and send it for review via github pull
-> request mechanism? (I'm not sure how is that github project related to
-> kernel DTS bindings and how is reviewing on it going...)
+Dear Sir,
 
-I prepared something for discussion:
-https://github.com/devicetree-org/dt-schema/pull/64
+Aseel Islamic finance PJSC is private joint stock company that was
+established in 2006 and has built a leading market position for itself
+in the UAE's Islamic finance market which specializes in loan finance
+and investment activities in real estate, hospitality, industrial &
+sustainable technologies, strategic financial investments, specialized
+education, healthcare services, agriculture, manufacturing,
+mining,energy and additional environmentally sustainable projects.
+
+For further details,kindly indicate your interest.
+
+Best regards.
+
+Mr. Ibn Ahmad Mustafa
+International Business Coordinator
+Aseel Islamic Finance PJSC
+Al Mankhool, Dubai C2 Tower,
+Ground floor,P.O 94669 Dubai, UAE
+Abu Dhabi - United Arab Emirates
+Email : ahmadmustafa.7800@gmail.com
