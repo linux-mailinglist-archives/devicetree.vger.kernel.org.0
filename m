@@ -2,200 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE274523C3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 02:27:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A067452331
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 02:18:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354024AbhKPBaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Nov 2021 20:30:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60338 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354284AbhKPB2E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 20:28:04 -0500
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D61D9C08C30C;
-        Mon, 15 Nov 2021 15:10:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=7eaRSnO6DvJcmgSx4Jh9u88P+ZEa+bilmuFqzgTMEmA=; b=fnBzpsc64M38Z6WqKOeB2dosXj
-        eSKc5upq/AZOP2TtjbCP1cSDKf4JOovVIfz2FpIZ5TshxFjr76p3biNl5GX6Q154cO2lIM4Zsw1oR
-        zr5QGxBJrsOKHrJqCzDD2S3rlIMPYTUFukpe9cxUOJdA/L70GzieAkhJfS6AVyObDubo=;
-Received: from p200300ccff0ca2001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0c:a200:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1mml77-00068e-IG; Tue, 16 Nov 2021 00:10:13 +0100
-Date:   Tue, 16 Nov 2021 00:10:10 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     lee.jones@linaro.org, broonie@kernel.org, kernel@pengutronix.de,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, rui.zhang@intel.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        s.hauer@pengutronix.de, linux-hwmon@vger.kernel.org,
-        amitk@kernel.org, linux-pm@vger.kernel.org, linux-imx@nxp.com,
-        alistair23@gmail.com, shawnguo@kernel.org
-Subject: Re: [PATCH v15 3/8] mfd: simple-mfd-i2c: Enable support for the
- silergy,sy7636a
-Message-ID: <20211116000634.767dcdc0@aktux>
-In-Reply-To: <20211110122948.188683-4-alistair@alistair23.me>
-References: <20211110122948.188683-1-alistair@alistair23.me>
-        <20211110122948.188683-4-alistair@alistair23.me>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1349865AbhKPBVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Nov 2021 20:21:13 -0500
+Received: from mailout1.samsung.com ([203.254.224.24]:63973 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243996AbhKPBP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Nov 2021 20:15:27 -0500
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20211116011226epoutp019dc2bbc242d81563423e72e7d9e5bf83~34bJtw81z2706127061epoutp01F
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 01:12:26 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20211116011226epoutp019dc2bbc242d81563423e72e7d9e5bf83~34bJtw81z2706127061epoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1637025146;
+        bh=8JRydum/R4RdFUqGlzeiN6SYCDCW1ggDFZyoszTdHJo=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=q4G2O32iCBNEutMrZF/eHatdlcCVD807rXvbHwhqtJcZGhG5LibMC2I9848LrD9p4
+         bEHY6l+x5bnN7VRghqKOk9cNf1g7mSVninVoC76VZjEGe3EebK5+hYCpM4TxffBs//
+         Xn/LhD7j4fE7TrbNTFrMDTVmr8WEQWJlfOqkZsXE=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+        20211116011225epcas2p1b5d0e237b941eef4d90e74efaa93fa0a~34bJOmHgW0919509195epcas2p1w;
+        Tue, 16 Nov 2021 01:12:25 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.100]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 4HtShV1SHzz4x9QR; Tue, 16 Nov
+        2021 01:12:10 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+        epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+        2B.F7.12141.56503916; Tue, 16 Nov 2021 10:12:05 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+        20211116011205epcas2p1bb00ede94948a305aba820f418058dbe~34a2TmxYv2468624686epcas2p1R;
+        Tue, 16 Nov 2021 01:12:05 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20211116011205epsmtrp25329047fd36504abbf296e6a755c6851~34a2SzF-70535505355epsmtrp2h;
+        Tue, 16 Nov 2021 01:12:05 +0000 (GMT)
+X-AuditID: b6c32a48-d5dff70000002f6d-fd-6193056510a0
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        DD.81.29871.56503916; Tue, 16 Nov 2021 10:12:05 +0900 (KST)
+Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20211116011205epsmtip28a67f81e78b0ae0d47bbf1c5d442f74d~34a2InGwx0690906909epsmtip2j;
+        Tue, 16 Nov 2021 01:12:05 +0000 (GMT)
+From:   "Chanho Park" <chanho61.park@samsung.com>
+To:     "'Sam Protsenko'" <semen.protsenko@linaro.org>,
+        "'Jaewon Kim'" <jaewon02.kim@samsung.com>
+Cc:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Wolfram Sang'" <wsa@kernel.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-i2c@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+In-Reply-To: <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
+Subject: RE: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
+Date:   Tue, 16 Nov 2021 10:12:04 +0900
+Message-ID: <001401d7da86$f7ebd660$e7c38320$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQMJYAnbi/JobnCUuSzxD63N6CCU9gMctf4RAdOLUHUBZYQpI6lvl8Tg
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJJsWRmVeSWpSXmKPExsWy7bCmmW4q6+REgw/fVSzmHznHarGj4Qir
+        xca3P5gsNj2+xmrR8fcLo8XlXXPYLGac38dk0br3CLvF8z4g6+7+uYwOXB6zGnrZPDat6mTz
+        uHNtD5vH5iX1Hn1bVjF6fN4kF8AWlW2TkZqYklqkkJqXnJ+SmZduq+QdHO8cb2pmYKhraGlh
+        rqSQl5ibaqvk4hOg65aZA3SZkkJZYk4pUCggsbhYSd/Opii/tCRVISO/uMRWKbUgJafAvECv
+        ODG3uDQvXS8vtcTK0MDAyBSoMCE748zFq0wFS7grGq42sTYwTuTsYuTkkBAwkTi09jhLFyMX
+        h5DADkaJe/OXsUI4nxglPsybxQjhfGOUuLFuGjNMy58rW9kgEnsZJT7Oa4Lqf8Eo8evPChaQ
+        KjYBfYmXHdtYQWwRgXiJNad3g3UzC+xgkjjbbQ1icwoESixethSonoNDWMBLYs/8KpAwi4Cq
+        xIzdDUwgNq+ApcTK/9vYIGxBiZMzn7BAjNGWWLbwNdRBChI/ny6DWuUmse1dHyNEjYjE7M42
+        ZpDbJARWckh8vziRCWSXhICLxIl58RC9whKvjm9hh7ClJD6/28sGUd/NKNH66D9UYjWjRGej
+        D4RtL/Fr+hZWkDnMApoS63fpQ4xUljhyC+o0PomOw3/ZIcK8Eh1tQhCN6hIHtk9ngbBlJbrn
+        fGadwKg0C8ljs5A8NgvJA7MQdi1gZFnFKJZaUJybnlpsVGACj+vk/NxNjOA0q+Wxg3H22w96
+        hxiZOBgPMUpwMCuJ8LJET0oU4k1JrKxKLcqPLyrNSS0+xGgKDOqJzFKiyfnARJ9XEm9oYmlg
+        YmZmaG5kamCuJM6bx96XKCSQnliSmp2aWpBaBNPHxMEp1cAUWiCxLDWf41r+8SxZ8b6Opu+J
+        unk/Flxdc1Dv+TbRxsDY5Becz1Q1Mxo+W1pf9Z1jwCjEbrzISf2Sr/HGDwIXVmX0nvI+GP5n
+        ipC0yKGEFaGee64lpX+cx7A96I2tX6XJv6Rr1j9/rslc0flU/edt+8gX75bWrSvJFmFxfxER
+        qD3V6fqTffd2JXDyCcr2i7dG/pPzOSBgJO5+ZKG+ecWdKMv7W7+sYl66b2kd12S+p5bbj7xa
+        +lV5gcOXezPuNBu0rq3f9KbmEkvVHEuGJFUT8dfmH3Xm7g98eea75HuljNhtGyN4T8n/rulw
+        TotXPfYufG/L1+J1zLW11lPeV3dz18R0p2or8Ho+L5y/lFuJpTgj0VCLuag4EQDW00OZPAQA
+        AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprOIsWRmVeSWpSXmKPExsWy7bCSvG4q6+REg9tP2CzmHznHarGj4Qir
+        xca3P5gsNj2+xmrR8fcLo8XlXXPYLGac38dk0br3CLvF8z4g6+7+uYwOXB6zGnrZPDat6mTz
+        uHNtD5vH5iX1Hn1bVjF6fN4kF8AWxWWTkpqTWZZapG+XwJXx+cI65oJZ3BXvVr5kbWBs5uxi
+        5OSQEDCR+HNlK1sXIxeHkMBuRolzHceZIRKyEs/e7WCHsIUl7rccYYUoesYocX/LEbAiNgF9
+        iZcd21hBbBGBeIndq96AFTEL7GOSaL58Aaqjg0mi58FCFpAqToFAicXLlgLZHBzCAl4Se+ZX
+        gYRZBFQlZuxuYAKxeQUsJVb+38YGYQtKnJz5BKyVWUBbovdhKyOMvWzha6hLFSR+Pl0GdYSb
+        xLZ3fVA1IhKzO9uYJzAKz0IyahaSUbOQjJqFpGUBI8sqRsnUguLc9NxiwwLDvNRyveLE3OLS
+        vHS95PzcTYzguNPS3MG4fdUHvUOMTByMhxglOJiVRHhZoiclCvGmJFZWpRblxxeV5qQWH2KU
+        5mBREue90HUyXkggPbEkNTs1tSC1CCbLxMEp1cBkcHEho36e1fuuWiN9Lz8Ps9tdwnxy1VER
+        uzb1sb/Ur6/n00q8tK266cpnEX9BPbtrFnZLr53ROcifn2gf/DbSMHlfodofZ4uXoh8OP76j
+        NXW9TxuDUrvlyR4OE3eevQIJqo0xa7lXnV16ulXJQyvFfJaVa/DGt/mnF1ok37La61/ct++M
+        hP5Ut442Te085prQfUuuPTJp5278JX2B0UQs9q5Za2ujmM33/EWfLl+IF1q1ICf3atf6pts3
+        z266fvVMbhx76tmlKxiPbbrouli+4MC9Y2EHzD485rvR4fvi+qlJ7n9+7fx6m0lpeZr/4c/O
+        T+4e5w8WK227ueTS8qXb2HNEv2lvPHQ/5+n+o6VKLMUZiYZazEXFiQAFKtQWKgMAAA==
+X-CMS-MailID: 20211116011205epcas2p1bb00ede94948a305aba820f418058dbe
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0
+References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
+        <20211112010137.149174-1-jaewon02.kim@samsung.com>
+        <20211112010137.149174-3-jaewon02.kim@samsung.com>
+        <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
+> from my side (just a food for thought): do we want to configure USI
+> related config inside of particular drivers (SPI, I2C, UART)? Or it would
+> be better design to implement some platform driver for that, so we can
+> choose USI configuration (SPI/I2C/UART) in device tree? I think this
+> series is good to be merged as is, but we should probably consider all
+> upsides and downsides of each option, for the future work.
 
-this all creates a lot of question marks...
-One of my main question is whether sy7636a = sy7636 (at least the
-driver in the kobo vendor kernels does not have the "A" at the end,
-whic does not necessarily mean a difference).
+I'm also considering how to support this USI configuration gracefully.
+Current version of USI is v2 which means there is a v1 version as well. It =
+might be a non-upstream SoC so we don't need to consider it so far.
+But, there is a possibility that the USI hw version can be bumped for futur=
+e SoCs.
 
-https://www.silergy.com/products/panel_pmic
-lists only a SY7636ARMC, so chances are good that the letters were just
-stripped away by the driver developers. Printing on chip package is
-cryptic so it is not that helpful. It is just "BWNBDA"
+As you probably know, earlier version of the product kernel has a USI SoC d=
+river=5B1=5D and it was designed to be configured the USI settings by devic=
+e tree.
 
- On Wed, 10 Nov 2021 22:29:43 +1000
-Alistair Francis <alistair@alistair23.me> wrote:
+Option1) Make a USI driver under soc/samsung/ like =5B1=5D.
+Option2) Use more generic driver such as =22reset driver=22? This might be =
+required to extend the reset core driver.
+Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respe=
+ctively and expose some configurations which can be variable as device tree=
+.
 
-[...]
-> diff --git a/include/linux/mfd/sy7636a.h b/include/linux/mfd/sy7636a.h
-> new file mode 100644
-> index 000000000000..2797c22dabc2
-> --- /dev/null
-> +++ b/include/linux/mfd/sy7636a.h
-> @@ -0,0 +1,36 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Functions to access SY3686A power management chip.
+=5B1=5D: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi=
+_v2.c
 
-Typo? or is it really a SY3686A? So what we are talking about?
+Best Regards,
+Chanho Park
 
-> + *
-> + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
-> + */
-> +
-> +#ifndef __MFD_SY7636A_H
-> +#define __MFD_SY7636A_H
-> +
-> +#define SY7636A_REG_OPERATION_MODE_CRL		0x00
-> +#define SY7636A_OPERATION_MODE_CRL_VCOMCTL	BIT(6)
-
-hmm, this thing is called VCOM_MANUAL in the 4.1.15-based driver for the
-Kobos and in the 3.0.35 kernel for the Tolinos it is:
-
-// 1:controll the vcom by external VCOM_EN pin 
-#define SY7636_REG_OPM_VCOM_EXT_mask    0x1 //  
-#define SY7636_REG_OPM_VCOM_EXT_lsb             6 //  
-
-In both kernels, it is set if a gpio is used to control the regulator.
-That does not necessarily conflict with your usage. The gpio might just
-be hardwired to something in your device. Maybe just a comment about
-that issue.
- 
-> +#define SY7636A_OPERATION_MODE_CRL_ONOFF	BIT(7)
-> +#define SY7636A_REG_VCOM_ADJUST_CTRL_L		0x01
-> +#define SY7636A_REG_VCOM_ADJUST_CTRL_H		0x02
-> +#define SY7636A_REG_VCOM_ADJUST_CTRL_MASK	0x01ff
-> +#define SY7636A_REG_VLDO_VOLTAGE_ADJULST_CTRL	0x03
-> +#define SY7636A_REG_POWER_ON_DELAY_TIME		0x06
-> +#define SY7636A_REG_FAULT_FLAG			0x07
-> +#define SY7636A_FAULT_FLAG_PG			BIT(0)
-> +#define SY7636A_REG_TERMISTOR_READOUT		0x08
-> +
-> +#define SY7636A_REG_MAX				0x08
-> +
-> +#define VCOM_MIN		0
-> +#define VCOM_MAX		5000
-
-hmm, what does that maximum mean? What you can set without something
-freaking out just by setting it? Or the limit where the driver works
-reliably?
-> +
-> +#define VCOM_ADJUST_CTRL_MASK	0x1ff
-> +// Used to shift the high byte
-> +#define VCOM_ADJUST_CTRL_SHIFT	8
-> +// Used to scale from VCOM_ADJUST_CTRL to mv
-> +#define VCOM_ADJUST_CTRL_SCAL	10000
-> +
-> +#define FAULT_FLAG_SHIFT	1
-> +
-> +#endif /* __LINUX_MFD_SY7636A_H */
-
-Hmm, are that all defines you know about? I am fine with not including
-unused things now, but I am curious.
-For comparison, here is my "scratchpad" of all the information I could
-squeeze out of the sy7636 driver until now:
-
-OPMODE 0
-  RAILS_ON 7
-  VCOM_MANUAL 6
-  LIGHTNESS 5
-
-  VDDH_DISABLE 4
-  VEE_DISABLE 3
-  VPOS_DISABLE 2
-  VNEG_DISABLE 1
-  VCOM_DISABLE 0
-
-  -> combined as RAILS_DISABLE in code
-
-  VCOM: 10000 uV per step, accepts up to 2.75V (that is a bit contradictory)
-VCOM_ADJ1 1
-
-VCOM_ADJ2 2
-  VCOM2_B8 7
-  VDDH_EXT 0..4
-
-VLDO_ADJ 3
-  VLDO_ADJ = 5..7
-  VPDD_ADJ = 0..4 
-
-VPDD_LEN 4 
-  VPPD_LEN 0..4
-
-VEE_VP_EXT 5
-  VP_EXT 5..6
-  VEE_EXT 0..4
-
-PWRON_DLY = 6
-  TDLY4 = 6..7
-  TDLY3 = 4..5
-  TDLY2 = 2..3
-  TDLY1 = 0..1
-
-FAULTFLAGS 7
-  FAULS 1..4: to be read out after interrupt and cleared
-      0  no faults
-      1  UVP at VB rail
-      2  UVP at VN rail
-      3  UVP at VPOS rail
-      4  UVP at VNEG rail
-      5  UVP at VDDH rail
-      6  UVP at VEE rail
-      7  SCP at VB rail
-      8  SCP at VN rail
-      9  SCP at VPOS rail
-      A  SCP at VNEG rail
-      B  SCP at VDDH rail
-      C  SCP at VEE rail
-      D  SCP at VCOM rail
-      E  UVLO
-      F  Thermal shutdown
-
-  PG 0
-
-THERM 8
-
-Regards,
-Andreas
