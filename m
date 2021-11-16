@@ -2,163 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9794535D8
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A231D453634
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 16:43:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238273AbhKPPey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 10:34:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54348 "EHLO
+        id S238424AbhKPPqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 10:46:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237556AbhKPPex (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:34:53 -0500
-Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D7A4C061746
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:31:56 -0800 (PST)
-Received: by mail-ua1-x929.google.com with SMTP id p37so41634519uae.8
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:31:56 -0800 (PST)
+        with ESMTP id S238428AbhKPPpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 10:45:35 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47DA4C061220
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:28 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id e3so53382889edu.4
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 07:42:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tsrV+hfFCVu/lguKxyW5H34AzEuQICjVq9Wuxqx+30s=;
-        b=t5/2NAXadqXAMwAiI9RIP3gOoQY4iP2IRi9cf5GQoc3LIoPav3xQzx9O6dh8IWGd+B
-         S4VutQCpR3V9WIfTCmveVjh3KKjL7jILRXRqcRBgqReRwrHVt2uwRQJhtE+YbeXvdIcH
-         f2K1j30ztG6CwRB/8CgVoxgqEsZqtWFz1GIr7klc9YT1NDQqqUEZXQv4qTAVKo1vUeJ2
-         hReZoa+BfBUX7Um1+ZKMr27iclbkoSqEZQ8hk1szDHC6UDhAn9DnMLgoH50ozs4hHzQf
-         uEVcJma99XK7xK8meSQ/l9ZRmPmEBq5ylKKP3aGi5tXxKiN7Dk6Zp4qj2lxGtw3r4SQN
-         jnwA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=O6sbtn5xvEBNaOtn9UEFFKe+g7L6F0RYzfYTzDVMF/I=;
+        b=eynKHH0QO52xWjqQj6zrLoZm4ne3qN6aPkoTwvfBmLf1pr+gN5PTFe0ZpIhs7trXsb
+         VIRQf5PFhG4ylLXFO+F5NADxLSlh8zZUYIftK4zfmYQ+FuLfvfLGkmPd7bBIA3ptmxSs
+         vEX/J9mh5TBHuw7EznlL46fXe3JhT1PW1Oz7czW7O8jyDO+km6g04eb1asxwOCh0YQBh
+         /V8rgoUFfN3FEqjPtmj+MOM4OcVXl3nX6JMUb1gPH51N+cflV74s2RiDTN06CKqjzUGF
+         O2lZmiYL1xWw/1NugBNnlbDenbgP6jVEPaRsWaFCmeOV5PNXi2ntm6GEyx1IxOtYUoKj
+         bhVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tsrV+hfFCVu/lguKxyW5H34AzEuQICjVq9Wuxqx+30s=;
-        b=zILrWbCLSurSVNn3ayYKzSEYT0Lf4e/mHTVJkOQt0B/ouVCCgGCMlmhmOiv/N9O8Jf
-         tSznu+NuIToezBrqpWx7upQJCJOI8EyykbxcLNpU5OWCQsgwQZ2IWdL/GZOYRl5X8w/Z
-         wAkN9SYmVukOvBsrlN1vjEo8IqMrB+loCXa/atRos4kgvBEkI8inFy8OkvVzFlzd+t9U
-         XtcXcJzIaOaCT7crNDJOdLj8i2NZdGHLwWxQUmLlLYg64AIvNsBF46RZavysGkjbK1Gw
-         rcIIiD2Q5hCrgTbCbXjoGHU2LZvmIeDph9lk95dL4Pq/SyiZSfZmTWWVADbw2+mbt82O
-         wpbA==
-X-Gm-Message-State: AOAM532qDLq2sIMPo8A90VL7eHNryk+gb9b0Gh9UCZ+e2dDgB2RLXybl
-        4T0xNnBQYT/+OYf/AzN4BVV1mWpg6BZfyGufEEUZrA==
-X-Google-Smtp-Source: ABdhPJzI1vYHs3IlbeTAF3zLZ2iugMLFFYsb7zRv/5mdhBpZbcKWUCT8T42LC150nqoSu9alCPYFu2j907jPq57oocE=
-X-Received: by 2002:ab0:458e:: with SMTP id u14mr12043487uau.104.1637076715001;
- Tue, 16 Nov 2021 07:31:55 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=O6sbtn5xvEBNaOtn9UEFFKe+g7L6F0RYzfYTzDVMF/I=;
+        b=2ujr9bSvkMicjbuSbHlLTQDbwp/rmyZJsgN7eXujaDSTeNZtP+JZmIa8gNYNumuPF8
+         zs9HNzAA4Tkabl23ZZMcd2nlF09vCradcY6R7HwLa2dC4JBX9TGtpoWofIKwKZLZZxgv
+         CG0qeeLELXTrQto5swlY2ByEpfjsYpmOBvUHViLYzbzmBTNb1NxjiwzGagBbQQP1+CYW
+         MgXPLCmz7VwBlwTvyu4sAX1IvG1DEOXmeDElM/IAI+BmAWOPXNZgtvdP3Lq7cC40S858
+         33dkEKHSqdB5suNW0K5tYK5xnRX2fz+HXuJbhEvezokWT07CVuk+GQhl3YTxphsa4deN
+         MMrw==
+X-Gm-Message-State: AOAM530dazEpLbbFo9kDloIOXCW7mQHAbEQEv3XXh+CerXKJxeBltW7I
+        l95wS81Wnyc3Q1x5o0pLrtd6cw==
+X-Google-Smtp-Source: ABdhPJx0eQ+PslF4hYTTpI2Xpbj5O8GvvC/hQB20eDbfaRVoh8niF5Qt3h1b6H5RW7O+XXP7v5RzyQ==
+X-Received: by 2002:a17:906:fcb0:: with SMTP id qw16mr10483926ejb.495.1637077346511;
+        Tue, 16 Nov 2021 07:42:26 -0800 (PST)
+Received: from myrica (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
+        by smtp.gmail.com with ESMTPSA id bo20sm9763810edb.31.2021.11.16.07.42.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 07:42:26 -0800 (PST)
+Date:   Tue, 16 Nov 2021 15:42:05 +0000
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     robh+dt@kernel.org, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        will@kernel.org, joro@8bytes.org, mark.rutland@arm.com,
+        jkchen@linux.alibaba.com, leo.yan@linaro.org,
+        uchida.jun@socionext.com
+Subject: Re: [PATCH 0/2] perf/smmuv3: Support devicetree
+Message-ID: <YZPRTUis+G279XIO@myrica>
+References: <20211116113536.69758-1-jean-philippe@linaro.org>
+ <3b5cb536-5a11-5096-4369-cec3d369ec52@arm.com>
 MIME-Version: 1.0
-References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
- <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
- <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
- <001401d7da86$f7ebd660$e7c38320$@samsung.com> <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
-In-Reply-To: <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Tue, 16 Nov 2021 17:31:43 +0200
-Message-ID: <CAPLW+4n2hZ1c9BuOo4JtKLZp48fH81xUr0GSaJoc21=ad2vv1Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3b5cb536-5a11-5096-4369-cec3d369ec52@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Nov 2021 at 11:32, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 16/11/2021 02:12, Chanho Park wrote:
-> >> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
-> >> from my side (just a food for thought): do we want to configure USI
-> >> related config inside of particular drivers (SPI, I2C, UART)? Or it would
-> >> be better design to implement some platform driver for that, so we can
-> >> choose USI configuration (SPI/I2C/UART) in device tree? I think this
-> >> series is good to be merged as is, but we should probably consider all
-> >> upsides and downsides of each option, for the future work.
-> >
-> > I'm also considering how to support this USI configuration gracefully.
-> > Current version of USI is v2 which means there is a v1 version as well. It might be a non-upstream SoC so we don't need to consider it so far.
-> > But, there is a possibility that the USI hw version can be bumped for future SoCs.
-> >
-> > As you probably know, earlier version of the product kernel has a USI SoC driver[1] and it was designed to be configured the USI settings by device tree.
-> >
-> > Option1) Make a USI driver under soc/samsung/ like [1].
-> > Option2) Use more generic driver such as "reset driver"? This might be required to extend the reset core driver.
-> > Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respectively and expose some configurations which can be variable as device tree.
-> >
-> > [1]: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi_v2.c
->
-> I don't have user manuals, so all my knowledge here is based on
-> Exynos9825 vendor source code, therefore it is quite limited. In
-> devicetree the USI devices have their own nodes - but does it mean it's
-> separate SFR range dedicated to USI? Looks like that, especially that
-> address space is just for one register (4 bytes).
->
-> In such case having separate dedicated driver makes sense and you would
-> only have to care about driver ordering (e.g. via device links or phandles).
->
-> Option 2 looks interesting - reusing reset framework to set proper USI
-> mode, however this looks more like a hack. As you said Chanho, if there
-> is a USI version 3, this reset framework might not be sufficient.
->
-> In option 3 each driver (UART/I2C/SPI) would need to receive second IO
-> range and toggle some registers, which could be done via shared
-> function. If USI v3 is coming, all such drivers could get more complicated.
->
-> I think option 1 is the cleanest and extendable in future. It's easy to
-> add usi-v3 or whatever without modifying the UART/I2C/SPI drivers. It
-> also nicely encapsulates USI-related stuff in separate driver. Probe
-> ordering should not be a problem now.
->
-> But as I said, I don't have even the big picture here, so I rely on your
-> opinions more.
->
+On Tue, Nov 16, 2021 at 12:02:47PM +0000, Robin Murphy wrote:
+> On 2021-11-16 11:35, Jean-Philippe Brucker wrote:
+> > Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
+> > Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
+> > multiple independent PMCGs, for example one for the Translation Control
+> > Unit (TCU) and one per Translation Buffer Unit (TBU).
+> > 
+> > I previously sent the binding as reply to Jay Chen's thread implementing
+> > device tree support [1]. This posting addresses the comments from that
+> > thread.
+> 
+> Ha, I'd also resurrected this and was planning to post it at some point this
+> week[0] - you should have said :)
 
-To provide more context, USI registers are split across two different
-register maps:
+Ah sorry about that, I just resent because there was some demand for it at
+Linaro
 
-    - USI protocol configuration (where we choose which protocol to
-use: HSI2C, SPI or UART) is done via *_SW_CONF registers, from System
-Register SFR range. To access those SW_CONF registers we need to
-either:
-        (Option 3) pass System Register registers to corresponding
-driver (HSI2C/SPI/UART) via syscon
-        (Option 1) or implement separate USI driver, so we can choose
-desired protocol in device tree; in that case I guess System Register
-registers should be passed via syscon to USI driver
-    - USI registers (like USI_CON register, which contains USI_RESET
-bit) are contained in the same SFR range as corresponding
-HSI2C/SPI/UART IP-core. Or rather HSI2C/SPI/UART IP-cores are
-encapsulated within USI block(s). So to access registers like USI_CON
-we only need to use memory already passed to corresponding
-HSI2C/SPI/UART driver via "reg" property.
+> > Patch 1 adds two compatible strings. "arm,smmu-v3-pmcg" is common to all
+> > PMCGs. "hisilicon,smmu-v3-pmcg-hip08" allows to support the same quirk
+> > as IORT for that implementation (see patch 2). We'll probably want to
+> > also introduce compatible strings for each implementation that has
+> > additional perf events. For example the MMU-600 implementation has
+> > different events for TCU and TBU PMCGs [2], but both components have the
+> > same device IDs. So the driver could differentiate them if they had two
+> > distinct compatible strings such as "arm,mmu-600-pmcg-tbu" and
+> > "arm,mmu-600-pmcg-tcu".
+> 
+> Actually it only needs a general MMU-600 compatible, since once you know
+> it's an Arm Ltd. implementation, you can assume the pattern for the IMP_DEF
+> ID registers to figure out the rest.
 
-So I'd say ideally we should do next:
-  - modify USI registers (like USI_CON) in corresponding
-HSI2C/SPI/UART drivers; but because all HSI2C/SPI/UART drivers share
-the same USI registers, we might want to pull USI register offsets and
-bits to some common header file, for example (to not duplicate that
-code in drivers)
-  - implement separate USI driver to control SW_CONF registers from
-System Register module (Option 1), so we can choose desired protocol
-in device tree (in some USI node, not in HSI2C node)
-  - also, it probably makes sense to group all USI related nodes in
-some separate *-usi.dtsi file; that would reduce confusion, given that
-we have even more encapsulation in Exynos850 thanks to CMGP (Common
-GPIO) block
+It might be an error in the MMU-600 spec specifically, both TBU and TCU
+PMU registers have a 0x83 PIDR0, where I think the TBU should be 0x84 (the
+revC model uses that value). It's possible that the implementation
+actually has 0x84 instead.
 
-My suggestion is to take this patch as is, and then we can work on USI
-driver implementation/upstreaming. Right now we don't have much of
-device tree files that use USI HSI2C driver, so it'll be fairly easy
-to fix those dts's once we implemented USI driver. That will also
-unblock me with submitting dev board support (dts files) I'm working
-on right now. Krzysztof, please let me know if I'm wrong and if we
-shouldn't change dts API too much, so it's mandatory to implement USI
-driver before accepting this patch.
+Thanks,
+Jean
 
-Thanks!
-
-> Best regards,
-> Krzysztof
