@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 013AE453148
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F95C453189
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:57:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235536AbhKPLxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 06:53:40 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:35364 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235154AbhKPLxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 06:53:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637063443; x=1668599443;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=i1b2J+jr9/cEXI1gGs8JEfqxkc51INl+52zhCG9XRRE=;
-  b=p270CPA86rPTZUsZlPb/eXzV7QzGS4r77Lk0QENZnwuiiWNsZDUH92nn
-   wj3Yylukq01ev5t9Ij3fUMezAS9qUZcMOs9BsqK3Qt/m1nUCCqZv4gdGg
-   uv1IDyN3M1efrLZcbLsi3eTdBXcHJ4yBIEf6X5x2U0V6guYd9V0bCyLIl
-   mEmF+M6Zos/VbCvuFQU+F9uS2+izCzAJknPfA0b4ua5YJh9RQxShrcnKm
-   sB2JU7IZRgEPjwLGxOZZEBJKXIV6+I2Xpe6nRDxEFu3uFjJeWfVRBcpKX
-   F1hLQz1z6L5nn2uhw4uAe6cEYqHZo+Ww6Phx6pnvsgbqbnYU0wbvIoGYy
-   w==;
-IronPort-SDR: 6BLFG/kzWU+9TdFx51b+S79rC0vLPNmp0s7BN1WwaQMcfGPweK240iWbIWoGEHUtcZ8NUHtDdS
- LZJIKZ+qbb0wwbeJ0JG8iSDSiE326I48pPShCIlEh4RK34sJuGa+X6kfO9OLKRyrt2d18S1Qhp
- FjnJZ1PJE8SQbamGwfd/fR4enYHjf13fK2BpmRscTe0YMnb4T/f1aR7DpR24aLLjPmbY37BSTV
- gmK+hZ3Sunq/q6ZhAc3PzKz8RNCDQnKT53ArVXpLSwzAYgj6TlKRHi5I8CHGnpRWXGKt4Sj4rB
- bejErPEcLAsEW7rfsyZwQkKM
-X-IronPort-AV: E=Sophos;i="5.87,239,1631602800"; 
-   d="scan'208";a="136717777"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Nov 2021 04:50:42 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Tue, 16 Nov 2021 04:50:42 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Tue, 16 Nov 2021 04:50:42 -0700
-Date:   Tue, 16 Nov 2021 12:52:28 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <kishon@ti.com>, <robh+dt@kernel.org>, <andrew@lunn.ch>,
-        <alexandre.belloni@bootlin.com>, <kuba@kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH resend v4 0/3] phy: Add driver for lan966x Serdes driver
-Message-ID: <20211116115228.5qn4o3gkh26674rw@soft-dev3-1.localhost>
-References: <20211116100818.1615762-1-horatiu.vultur@microchip.com>
- <20211116102151.k3evnn4f2rwsi5nk@soft-dev3-1.localhost>
- <YZOLyQPsgoOYJZch@matsya>
- <20211116105601.fauvfv2wzlmcf6jc@soft-dev3-1.localhost>
- <YZOZZv3NPq2C9NXu@matsya>
+        id S235591AbhKPL7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 06:59:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32970 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235566AbhKPL7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 06:59:39 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBC9FC061766
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 03:56:41 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id c4so36948750wrd.9
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 03:56:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tykKfzZRZs8W8LB8dDzw5i3CD5rhrU5zWD1WHrFGu6I=;
+        b=PdFx29zeOFtKWYfkjdFXu4FzngjheOfZFBdUnmdD06TBxqyhoP6ZiWipqG8zf5x9K5
+         Zk/t5mwNF7kmhQ+x98VH6LWeOs4ba9wDFEdZQ4vAan0vTm4HNF+cH013ecdNxfv3/w2y
+         Y/G/U+1hr4yNWe0jyu2HzBrH/b1OxP8Nw/r7bgQjDI3vq0eGP+tuYkgALS0YS7LiCsYv
+         /4z7Oi7UR2jJs2oMtIIDa8MTnoL+UKxaoccn2YEkC3gXvBxL67XBhKJOc6yxemkZRcnN
+         c24vxX82rD3hgOG4IxBEfTTcuVB/r/mUJvyZIsuMLNQDdFjNiFJbaq5WVtrksKSDpiAv
+         DWbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tykKfzZRZs8W8LB8dDzw5i3CD5rhrU5zWD1WHrFGu6I=;
+        b=I6arJ2d2A2RLBM3jbQTtyjnvaBuLVVrziJMJ+S4NSAKUl1uoYrMZd57x2AKGyxhHkr
+         9YcAnP5YHgfnENTEgFlnfBvFxSNyVz1EvPdVu6MhMxpnh1fX+FoiiBPl1BH2WQX4zYrD
+         B4qMFTfhYH+sPbyxKvjzpkJrtRfnbRxHQTa4zSqiONhJ8c1M/arckUuslNa+TF2rqigJ
+         AzTNtiNKe0p1elRI92i9MvRgNDoBL0wscKLMJV9yk4tMQ1eoCrt/xf6pGDomr35w/eEy
+         PnElU2ycpH+q88CPdpRLuz/ErCFSWujiFgoWQat92VgLTOCuFPKNOoJZTUaqezZHYQ4N
+         6KzA==
+X-Gm-Message-State: AOAM533UFRzThxIv8TG9+aEEFpopfhL1QUDmeclIWR2H294FJT+0hfeO
+        VQezmA9KICnMIXpzoW+JUkx/lw==
+X-Google-Smtp-Source: ABdhPJx+DsVIlJi3qFUEgUdKvjqrCDE8LrH3TXHbTDv/qIgV8UK1fSvVa2mKOiRmfZXNdh/uzdkPpw==
+X-Received: by 2002:a5d:6c6b:: with SMTP id r11mr8549336wrz.231.1637063800263;
+        Tue, 16 Nov 2021 03:56:40 -0800 (PST)
+Received: from maple.lan (cpc141216-aztw34-2-0-cust174.18-1.cable.virginm.net. [80.7.220.175])
+        by smtp.gmail.com with ESMTPSA id m125sm2157270wmm.39.2021.11.16.03.56.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 03:56:39 -0800 (PST)
+Date:   Tue, 16 Nov 2021 11:56:37 +0000
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Kiran Gunda <kgunda@codeaurora.org>,
+        Bryan Wu <cooloney@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v3 3/9] backlight: qcom-wled: Use cpu_to_le16 macro to
+ perform conversion
+Message-ID: <20211116115637.22v2pluxkni36ehr@maple.lan>
+References: <20211115203459.1634079-1-marijn.suijten@somainline.org>
+ <20211115203459.1634079-4-marijn.suijten@somainline.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YZOZZv3NPq2C9NXu@matsya>
+In-Reply-To: <20211115203459.1634079-4-marijn.suijten@somainline.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/16/2021 17:13, Vinod Koul wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+On Mon, Nov 15, 2021 at 09:34:53PM +0100, Marijn Suijten wrote:
+> The kernel already provides appropriate primitives to perform endianness
+> conversion which should be used in favour of manual bit-wrangling.
 > 
-> On 16-11-21, 11:56, Horatiu Vultur wrote:
-> > The 11/16/2021 16:15, Vinod Koul wrote:
-> > >
-> > > On 16-11-21, 11:21, Horatiu Vultur wrote:
-> > > > The 11/16/2021 11:08, Horatiu Vultur wrote:
-> > > >
-> > > > Hi Kison, Vinod,
-> > > >
-> > > > Can you let me know if you have more comments to this patch series?
-> > > > Otherwise can you ack on it? Because I would like to have the patches
-> > > > merged via netdev if that is OK for you.
-> > >
-> > > Any reason for merge thru netdev, there is no dependency and now with
-> > > merge window closed, I can pick this up..
-> >
-> > Because I would like to send some patches for the lan966x network driver.
-> > And these network patches depend on the serdes driver.
-> 
-> There cant be a compile time dependency... the network driver can use
-> the phy apis.. I dont think it is required here... Did I miss something
-> obvious?
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 
-You are right, there is no compile time dependency and the network
-driver can use the PHY APIs.
+Reviewed-by: Daniel Thompson <daniel.thompson@linaro.org>
 
-But at runtime the network driver will need to configure the serdes
-using the PHY API to be able to work properly.
 
-> 
-> --
-> ~Vinod
-
--- 
-/Horatiu
+Daniel.
