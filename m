@@ -2,110 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 896A3453006
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:13:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5968A45301D
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:18:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234581AbhKPLQd convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 16 Nov 2021 06:16:33 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:49022 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234742AbhKPLQd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 06:16:33 -0500
-Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mmwOu-0003c8-H6; Tue, 16 Nov 2021 12:13:20 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
-        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Vincent Pelletier <plr.vincent@gmail.com>
-Subject: Re: [PATCH] riscv: dts: sifive unmatched: Expose the FU740 core supply regulator.
-Date:   Tue, 16 Nov 2021 12:13:18 +0100
-Message-ID: <1856369.5VkklvvnQl@diego>
-In-Reply-To: <202f0fd8-1208-b17d-5ee5-e776e45cb065@canonical.com>
-References: <f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com> <2266648.AD6qrfpaa2@diego> <202f0fd8-1208-b17d-5ee5-e776e45cb065@canonical.com>
+        id S234799AbhKPLUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 06:20:50 -0500
+Received: from mail-mw2nam08on2060.outbound.protection.outlook.com ([40.107.101.60]:11520
+        "EHLO NAM04-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S234816AbhKPLUs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 06:20:48 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EuRXYke86ZS8yGJENXn8/qT9k1s0h/QZQIHjfZZt07UBSQ3K8p2fJq9Gv848VGn/xmFu8h+t3ZNdkwr+JcdesQ4e1mjeCxL+zEs1eS8/XSd0GvteKNo/sVaGsKAlnSJYCCbatei7P0dQuLvYHt+cE5fqkimU1sX/LS+ZywIahYeKr9XPRne8UJk94Bj9aaGAeWmbC2Zenwp4bPPkWGA7e+vHuNz8SgFeJDpH8gOjZb3aYITrch1T3VrTb1hbEgxsvgRZlE3p4b9FQmGKyiOsL9BAFLLGTGRMBnqG1k8nF68uvpPTWfBrDGTaq6ETJY5ybwedBJYAaxxVEcgDxM+4Ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GkpwTRDy25wYnk0NPEpblKPccNjfQB+gIJOYOwF7RB0=;
+ b=OSxcqumnrpP1HPec4ijnGsnDJr5NL1inwvmA9TLqd8YvrlEDAWougKWkh7Zle4Yo9ZP9O0zzHKy/a5Pt5E7iwJk5Ct2nRpIUanNWxwRHVuwTIFNBGLD5VSOJX1Z7LmLsIG6xaY2qhJ+3VDw0UUuNV024uiPTe1GWG9HOHAdXZM+Xmp4jXbGhw0VDbGXyn1IQG28OEta98iROpgtArFB+4xqqAiRKavXHU35gXxTQQuffCUzh/Sz8JFeX/sFYO4pMJLSmfwm1ZLSfvi7ogqNkQkCnp4xfL3HJlfjOPVQ5vZv94v72Cgdp+GyQ6CSUGLSUGjqY+MXk6A9aVxpy+SRCuw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GkpwTRDy25wYnk0NPEpblKPccNjfQB+gIJOYOwF7RB0=;
+ b=XihPRBkvOo+bWJqRZlIl0Led6Sd67PmDwvy25RbrcAr9zbqxOzc0oklnk+NUeeS6Y076EIgC5lCpZOocNWFBP9S6T3eTX25cbHwyYW14QERj194Nfm3D4IU6JJoihBfZ93SKOiBgMEjw/NM1mVFsoxkEgWbPce/BGRcDZQaoNEk=
+Received: from BN9PR03CA0352.namprd03.prod.outlook.com (2603:10b6:408:f6::27)
+ by CO1PR02MB8347.namprd02.prod.outlook.com (2603:10b6:303:162::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.16; Tue, 16 Nov
+ 2021 11:17:50 +0000
+Received: from BN1NAM02FT020.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:408:f6:cafe::1d) by BN9PR03CA0352.outlook.office365.com
+ (2603:10b6:408:f6::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.27 via Frontend
+ Transport; Tue, 16 Nov 2021 11:17:49 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ BN1NAM02FT020.mail.protection.outlook.com (10.13.2.135) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4690.15 via Frontend Transport; Tue, 16 Nov 2021 11:17:49 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 16 Nov 2021 03:17:49 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 16 Nov 2021 03:17:49 -0800
+Envelope-to: linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ robh+dt@kernel.org,
+ gregkh@linuxfoundation.org
+Received: from [10.140.6.39] (port=51454 helo=xhdsgoud40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <shubhrajyoti.datta@xilinx.com>)
+        id 1mmwTE-0004ZS-Vl; Tue, 16 Nov 2021 03:17:49 -0800
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+To:     <linux-serial@vger.kernel.org>
+CC:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>,
+        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Subject: [PATCH 0/2] serial: pl011: Add xilinx uart
+Date:   Tue, 16 Nov 2021 16:47:44 +0530
+Message-ID: <cover.1637061057.git.shubhrajyoti.datta@xilinx.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ea32f901-d8d9-4094-672d-08d9a8f2b98d
+X-MS-TrafficTypeDiagnostic: CO1PR02MB8347:
+X-Microsoft-Antispam-PRVS: <CO1PR02MB834752FE2FA80873575C9CE2AA999@CO1PR02MB8347.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: YKiROb/pXrFzbokcN5zvZl7yyRxv+KZmIXrEnOyQVx6el53SueINyygngh+u2e3NJAvu9dO75EUdQ/o49AWeKKqKbJVycd1TCBc9n47TyfIIQyyD9EbluFBuV4RAz0YfQCV2ioN7K+530emApFiOSpcdVQvQJ1N+5Hp8q9liX0DtzalM4oLqfe8MlxhDdJ58EZ7gquzocdn/W7ileg75DXVsijMhUBOMuYX2RDAEqEEnDOnpCphttLy2K31rJaRSC7dEsZzMosyewsl9wc6oZMVLJoKdro2o0bYhuVe/5rv+a8yhGln5WzHOAsk2YUW+MrvuLRrJDxBbOZcmKidfW/UpBinaxFKzPD+mD3tLpZmyahMPTWrzZMKan6Myg5J295G6PUxMQqGi8e9S0mzsuwTmOrGoS8L3jfWR0VfPywNDvJ0xeo/tVC/V6jP+D88dFMHlXGwLGBX6eCR2yqJYdoR/SL7A0TzL9jlqTCC4fP3xEG1zXxTJy5jnALQOD8OqhsyEYlHuMYzb8En+V0DYtIDs4laJIfmc0LuR9aoOwCOnKybTFOhgGz3QLBmtSXzt3Ed0HNmnKaNoUIblnq12eXv675+J+GZLCDGsibALBHuETmPrTeVXhPo6UoxRu5mJs33PNbOAlO2d7F4u9xXteQlqOJoRKrCCjUYR1kCqQgQWSsGhMf1zmaGzFLAKC9aWHJvR5dwpDp4sjmMBV6tnKKSpHfEMHTRv1YIJnB842j0=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(36840700001)(46966006)(2906002)(36756003)(26005)(2616005)(82310400003)(107886003)(4744005)(36860700001)(316002)(508600001)(6666004)(336012)(8936002)(426003)(70206006)(54906003)(70586007)(6916009)(47076005)(83380400001)(5660300002)(9786002)(7696005)(36906005)(44832011)(186003)(8676002)(356005)(7636003)(4326008)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2021 11:17:49.6910
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea32f901-d8d9-4094-672d-08d9a8f2b98d
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN1NAM02FT020.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR02MB8347
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 16. November 2021, 12:08:01 CET schrieb Krzysztof Kozlowski:
-> On 16/11/2021 10:53, Heiko Stübner wrote:
-> > Hi Vincent,
-> > 
-> > Am Dienstag, 16. November 2021, 01:52:59 CET schrieb Vincent Pelletier:
-> >> Provides monitoring of core voltage and current:
-> >> tps544b20-i2c-0-1e
-> >> Adapter: i2c-ocores
-> >> vout1:       906.00 mV
-> >> temp1:        -40.0°C  (high = +125.0°C, crit = +150.0°C)
-> >> iout1:         5.06 A  (max = +20.00 A, crit max = +26.00 A)
-> >>
-> >> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
-> >>
-> >> --
-> >> Note for review: this patch has one warning from checkpatch.pl:
-> >>   WARNING: DT compatible string "tps544b20" appears un-documented -- check ./Documentation/devicetree/bindings/
-> >>   #32: FILE: arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts:55:
-> >>   +               compatible = "tps544b20";
-> >> This chip is handled by the existing pmbus module, and there is indeed no
-> >> matching entry in Documentation/devicetree/bindings/hwmon/pmbus. I am not
-> >> especially knowledgeable about this chip, I only know it is used by this
-> >> board, so I am not sure I can do the best job in putting such a file
-> >> together.
-> >> If needed I can git it a try.
-> > 
-> > Devicetree bindings are supposed to be stable into the future, so an actually
-> > reviewed binding is quite necessary ;-) .
-> > 
-> > In the case of your tps544b20 it should also be pretty easy to do, as
-> > 
-> > 	Documentation/devicetree/bindings/hwmon/pmbus/ti,ucd90320.yaml
-> > 
-> > is probably a pretty good match to what you need in terms of Yaml notation.
-> > Just need to replace the naming in your copy and drop in the correct
-> > description from
-> > 
-> > 	https://www.ti.com/lit/ds/symlink/tps544b20.pdf?ts=1637055780278
-> > 
-> > and you have a working binding.
-> > 
-> > Then just add another patch to your series that mimics
-> > 
-> > 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8a36e38d8b0fbb92609e837a67f919202ec7ec51
-> > 
-> > and include the relevant maintainers that scripts/get_maintainer.pl will
-> > give you, and you're all set :-)
-> > 
-> 
-> Hi Heiko,
-> 
-> In current form the bindings would be close to trivial and we actually
-> do not know how proper bindings would look like (the device is not
-> trivial). Therefore based on Rob's recent comments - better to have
-> trivial schema than nothing - I sent a patch adding them to trivial-devices:
-> 
-> https://lore.kernel.org/linux-devicetree/20211116110207.68494-1-krzysztof.kozlowski@canonical.com/T/#u
-
-Though I guess there isn't anything hindering additions to a individual
-simpler binding.
-
-But yeah, just adding it to trivial devices will also just work for now, as there
-really are no additional properties right now and might make the process
-a tad shorter ;-)
+-Support uart peripheral in Xilinx Versal SOC.
+Add the dt-binding for the same
 
 
-Heiko
+Raviteja Narayanam (1):
+  serial: pl011: Add support for Xilinx Uart
 
+Shubhrajyoti Datta (1):
+  dt-bindings: serial: pl011: Add 'arm,xlnx-uart'
 
+ .../devicetree/bindings/serial/pl011.yaml     | 10 ++++--
+ drivers/tty/serial/amba-pl011.c               | 33 +++++++++++++++++--
+ 2 files changed, 38 insertions(+), 5 deletions(-)
+
+-- 
+2.25.1
 
