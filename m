@@ -2,74 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2161D453CEB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 00:53:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F6B4453CF2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 00:57:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232462AbhKPX4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 18:56:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56098 "EHLO
+        id S230378AbhKQAAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 19:00:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232398AbhKPX4G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 18:56:06 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1944EC061570
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 15:53:09 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id s139so2111913oie.13
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 15:53:09 -0800 (PST)
+        with ESMTP id S229819AbhKQAAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 19:00:45 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99DBFC061746;
+        Tue, 16 Nov 2021 15:57:47 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id q17so550879plr.11;
+        Tue, 16 Nov 2021 15:57:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=KFUf/CthI/bS+ZQgvAygcfDGxDGo7QNEjise0MnefUk=;
-        b=mK/6ikPS6kaJlyMjmNnOBa6iOsd2iYbIqMHzl1BXEDg/YUNMNxad5YIiG5G+Gv0Mha
-         lg4L8Z5bJIKf4WzbYdu1iSQCh7v2Hn7N8xF1Ke78/rjwmlLkOzB2v1tYFHErHCGfBV9d
-         qOLpnuRbRmNkN8FNDgGobx6YnmCyo/78RyVb8=
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vrbIOXmEg+gIS4wEDNBUS5d/guo/eziPZaC2mTYxZXc=;
+        b=JWrZ4w7QNwVa8l2FZpPgy01wj1EYBBbDAwBRw1ZHUVQSJEAUVhd7Laz4aO1UhUJSOY
+         /v2g56IJj/ybdHGNuNeh616KSX7ScKdPk4+NhebzZvlDJB+mJAOVEMk1zUV8HYhF4ozc
+         2/LRBX6ZsthvqkmxwIuq0MWF9cXfyrzfohk66dvudtDYrvI9kh1Y8GGmuP402bAbFWoD
+         l8if6KJYJ0nNIehrLc7UNbmoQgwDw1WUHLq+vFieDMACwjVK8A/1DXaz017T654YuSpl
+         hnOffQobD248JAzLfLbRxZ3q7+ZM8aqfmF+ttkvPt1WwLqH4qTnQiUi9u7D8NEPQlUUm
+         OIYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=KFUf/CthI/bS+ZQgvAygcfDGxDGo7QNEjise0MnefUk=;
-        b=QsQf88UD4t8CTH+39XVvUOghEbu9jD4wyts9pAAXHIHk/r9O7Gy96Ylu4G31WstACR
-         d9ivd47EhljcKideQ8jdZS+9KUcJuG+81SBd3B/94UMLpSfdlkXEkiagWQR0PWXv5H6f
-         haEbhDd2+9GLTeOQEO6p8hfgwhr51/12AMFxTZGyYURmdVv2TlXAkIKjvxlYRfLd+esR
-         kz/MLkATb8guElMHpWMhCoqcboEjaZfaXsBKaYUg74+/4aP+mtJBjQ7LanBUPIbEfSVp
-         TgzKSVd85Q/SJtReKmfH7ZRh9ZuTvjlxZgDMg+5tS70GMfOfeYQuOAWFvsW0cZmPPAIR
-         vG6Q==
-X-Gm-Message-State: AOAM533V1P2XD9sZpAqvlXlEjK/osaxcmrpt7pk0SOHaupVmnlSxi7a3
-        gTqDsNVQomPMTwtL4qnzpk6b4kB4Q48rSPpWjMR3fR1jVIk=
-X-Google-Smtp-Source: ABdhPJwccuxLou2oRfuz+ayeUbq55/sG63cd1jzCiEn4K2zwqAWWmXhnujN2bMQ6TSnBc66iJtbNr0QrzdjedXY/oZ4=
-X-Received: by 2002:aca:2319:: with SMTP id e25mr56712319oie.164.1637106788501;
- Tue, 16 Nov 2021 15:53:08 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 16 Nov 2021 15:53:07 -0800
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=vrbIOXmEg+gIS4wEDNBUS5d/guo/eziPZaC2mTYxZXc=;
+        b=OCeuqCkMljU6OQ6AYLflMlcDI1zrQmWYn7SLV3+QyjAhJVM4lBc0fAmPneCqBZ7IFa
+         Y9bIoF22qmJv0xBfoJwKgRhT1pZ26jBGWjJT9bVI9eX793icCaylnWHrX58XrCoEnWqX
+         uqBo7tHhJ57ZmQhe6L0WdhgaXl9HbcCcuinRCVMuq9BG01DRJClNHNA05RwxhR68sWt0
+         2P551MSlSnbsqCtGxDKHXEugWu5z7962rDs64juZrktdCYi92lm76KMtzrHE9Cov7Y9g
+         wrJBsJKrffBh/AYm9rq4OqFX+Pofx+X2NBvXFsZYh2LTDq7kZ36+OQiQD4/zSJt4sX/g
+         xrPA==
+X-Gm-Message-State: AOAM531uO3cQpIHoNzFeEQH1eq28znN1hN8/35t1k9eUyJjxOHKO/0zV
+        y64hw7oCl1B03zC/W5YB1r0=
+X-Google-Smtp-Source: ABdhPJzmUhE6Hy6mniZz6KoEJb3wtxhjDBL/clLr9G1wQO8UmiPC+vpReQmMadnklyyhjTJymuFmeQ==
+X-Received: by 2002:a17:90b:1b03:: with SMTP id nu3mr3873436pjb.47.1637107067201;
+        Tue, 16 Nov 2021 15:57:47 -0800 (PST)
+Received: from localhost.lan ([2400:4070:175b:7500::7a7])
+        by smtp.gmail.com with ESMTPSA id o9sm10314408pfh.37.2021.11.16.15.57.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 15:57:46 -0800 (PST)
+Received: from x2.lan (localhost [127.0.0.1])
+        by localhost.lan (Postfix) with ESMTPSA id A11D9900949;
+        Tue, 16 Nov 2021 23:57:44 +0000 (GMT)
+From:   Vincent Pelletier <plr.vincent@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>
+Subject: [PATCH v2 1/6] riscv: dts: sifive unmatched: Name gpio lines
+Date:   Tue, 16 Nov 2021 23:57:37 +0000
+Message-Id: <bb7e8e36425a2c243cfbf03a23af525499268822.1637107062.git.plr.vincent@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-In-Reply-To: <00ea01d7db12$43b6d9b0$cb248d10$@codeaurora.org>
-References: <1635860673-12146-1-git-send-email-pillair@codeaurora.org>
- <1635860673-12146-4-git-send-email-pillair@codeaurora.org>
- <CAE-0n52effcajLwjOY_v-pjp68ytkb-zo4R9EHp3CQi=yB8nPQ@mail.gmail.com> <00ea01d7db12$43b6d9b0$cb248d10$@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Tue, 16 Nov 2021 15:53:07 -0800
-Message-ID: <CAE-0n53Djw69-Q6VOrayhdgefiWOWqAjmuFj0MkkwyEMaS0sCw@mail.gmail.com>
-Subject: RE: [PATCH v8 3/3] remoteproc: qcom: q6v5_wpss: Add support for
- sc7280 WPSS
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, ohad@wizery.com,
-        p.zabel@pengutronix.de, pillair@codeaurora.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sibis@codeaurora.org, mpubbise@codeaurora.org, kuabhs@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting pillair@codeaurora.org (2021-11-16 09:49:05)
-> >
-> > Is this documented in the binding? If not, please add it.
->
-> Hi Stephen,
-> "firmware-name" is already documented in the bindings.
->
+Follow the pin descriptions given in the version 3 of the board schematics.
 
-Ok I see it now. Thanks!
+Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+
+--
+Changes since v1:
+- Remove trailing "." on subject line.
+---
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index 4f66919215f6..305a086e5207 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -245,4 +245,8 @@ &pwm1 {
+ 
+ &gpio {
+ 	status = "okay";
++	gpio-line-names = "J29.1", "PMICNTB", "PMICSHDN", "J8.1", "J8.3",
++		"PCIe_PWREN", "THERM", "UBRDG_RSTN", "PCIe_PERSTN",
++		"ULPI_RSTN", "J8.2", "UHUB_RSTN", "GEMGXL_RST", "J8.4",
++		"EN_VDD_SD", "SD_CD";
+ };
+-- 
+2.33.1
+
