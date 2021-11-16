@@ -2,134 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C18ED453925
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 19:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2599045392B
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 19:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239160AbhKPSHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 13:07:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33548 "EHLO
+        id S234242AbhKPSKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 13:10:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236111AbhKPSHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 13:07:46 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA75BC061570;
-        Tue, 16 Nov 2021 10:04:48 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id y12so35206447eda.12;
-        Tue, 16 Nov 2021 10:04:48 -0800 (PST)
+        with ESMTP id S232090AbhKPSKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 13:10:15 -0500
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A69CC061764
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 10:07:18 -0800 (PST)
+Received: by mail-pf1-x42a.google.com with SMTP id n26so143173pff.3
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 10:07:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8S00cZYjJS5B2ipxZwFq4XXVl6pSa2hTsTbEl4vf8W8=;
-        b=fyfMYhSC33bK5D2F1TX4Uk95i9s5yuxB0ijFmVFXXaLpSAPG/G88oFq4RRJBGplQoz
-         vlXLh/BxmteywjbyfoBPfQBF4cshFtz9Bcukdf2myLT1HzRDDoUAR8KldrrTh/V9szol
-         6H7lmnNrwU1WF+ejjjAWZJNPaNDUTkBctJf/mWzNmx18vBsOYrAujuzVmglipR9n+Meo
-         NjwlYSCPt7Ee/MxUnRvFO5qK/HUARWcSiQKgzM4ghpqrt/g8SJ6um/joplvQ3rTrtkil
-         aHbPJX+VHo1WEhWGoWnMJm+wu9gQqNIH8FFMuCb+M3xUcXzNRyFJJCyxewWRlFzbVH5c
-         fJEw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=dJLPLJIkQPjO7UzbeQTBcB7R7AACxPrWxl+uljB+ks4=;
+        b=MuEc9myys8soSc9S5p/9ZYxQFINzZE+kAA+k/U3FM52jlU+6MJ1sN342xuvi42MyiM
+         ZMBjLooJ7voz/onZnJrPlWcorIIuLCoKkgjvfuvaYADaSZoZDmAMeW84d3xwQVEbocct
+         qdT5YRu1/seNagLz3qhmq16768PfXRj60IRok=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8S00cZYjJS5B2ipxZwFq4XXVl6pSa2hTsTbEl4vf8W8=;
-        b=t1sSdYt0sfvB+NyHHFwbaVSd28ZFUdK0Cki0dK60BO68KynGyIBTXA9fqm15muZY2m
-         QNkoPeb/qUz9s29zRpSGqywH9y9R99l8pXTZPpWvhs8Ri2ThvZilZbM5GtJawEMskGVF
-         uujsKC8KFYjI4F4mjm9CDxXaKTKI5NxziIq3i6cF1w3SF/qXrxv4xBx00nEmmXehVXVM
-         SIHHxSMfiWnvP6eay5xb8r/pOsUU2sFPB+luJ2Gr1FnDm2YdHLKB1IyCfHEn7y6sc5YO
-         96nD6VHNSp3OnuIY20+VUYVehRWFReifDAWglfD3bTrpZzadQK+rpo6GPs1lsmwnB6Tz
-         4NHQ==
-X-Gm-Message-State: AOAM533p39+2qNcizxg0zWtoXTHnjINCBK8vMOtqUoC5x/e/SOT0KDlh
-        IwFZ2WW8uYwp02I+1Uw47yLMenzWehWHMLxlDnI=
-X-Google-Smtp-Source: ABdhPJy8ntBTwxCwIVdOUaYVsJaADTSztW9TgIFn+NMnDozLqErKNxV9XpelcPe8Axtota6BpT2YKGvzZWOuHSOpLRg=
-X-Received: by 2002:a05:6402:2751:: with SMTP id z17mr9482571edd.296.1637085887127;
- Tue, 16 Nov 2021 10:04:47 -0800 (PST)
-MIME-Version: 1.0
-References: <20211104161804.587250-1-aford173@gmail.com> <CAJ+vNU2jcWyCm3UyiOnvknS0t+mSdpaB+CgGWYO3jxXTa3LhRA@mail.gmail.com>
-In-Reply-To: <CAJ+vNU2jcWyCm3UyiOnvknS0t+mSdpaB+CgGWYO3jxXTa3LhRA@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 16 Nov 2021 12:04:36 -0600
-Message-ID: <CAHCN7xJrnZMQgXVMJg7MZdFMWyesf6Ph7HnfMH7-9bm1qODHFw@mail.gmail.com>
-Subject: Re: [PATCH V3 0/9] arm64: imx8mn: Enable more imx8m Nano functions
-To:     Tim Harvey <tharvey@gateworks.com>
-Cc:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        ariel.dalessandro@collabora.com,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dJLPLJIkQPjO7UzbeQTBcB7R7AACxPrWxl+uljB+ks4=;
+        b=JrveIqWuGep1u0/BDkuCRC7zvlht82z6NQmAIiNvPbnZp1dg6MRhHaHW2OSOgK+O1S
+         skgoby9JJ5g9cG+xosyzU5oZqhR22ecwOOpaHGu+kUEPdZFXXcKSqU6asnPvv83DXHBz
+         tb0aNWjsnpnM/lbTPrSgLYBtmsxi6Tmb5oDTwGxDQDB8y5wiyIP78Rr3OPMvyqY4FUSq
+         9juyHNTbw0+m2vfiMMAT1oVNu6rCtb45kHjixPc99/s4odgrOU32sarD4d5lrYkITQJW
+         7sJ0WQ0KINSaJ2bkh5dHNe5A5TvMw9WxJ0mmPxXWXUiijnklGqJP2Lm+UK6bm3IucnNi
+         HwEw==
+X-Gm-Message-State: AOAM531F4wPLB0yUBCX3HDe4rZjlbAXsQ4GnciWsw/+/lhl+JkIBKeL5
+        +sEw+Ao42rc1K1YeUQ31MFameA==
+X-Google-Smtp-Source: ABdhPJwhmpm1yvMfuJzR2UucqZRo6IvMajPPkE5cdkExWK4ezhfJ19WuO6fjzPR4AH6ILz/jpNvTTw==
+X-Received: by 2002:a63:c61:: with SMTP id 33mr552897pgm.415.1637086037631;
+        Tue, 16 Nov 2021 10:07:17 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:54aa:73ab:b480:41e2])
+        by smtp.gmail.com with UTF8SMTPSA id e7sm2315303pgj.11.2021.11.16.10.07.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Nov 2021 10:07:16 -0800 (PST)
+Date:   Tue, 16 Nov 2021 10:07:14 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        Peter Chen <peter.chen@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Roger Quadros <rogerq@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v16 5/7] usb: Specify dependencies on USB_XHCI_PLATFORM
+ with 'depends on'
+Message-ID: <YZPzUmwWuuiwqJ2b@google.com>
+References: <20210813195228.2003500-1-mka@chromium.org>
+ <20210813125146.v16.5.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
+ <CAD=FV=UFUFqojhws0MBqrq41gU9ww1h-T+OjzebFKVwzeC+LYQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=UFUFqojhws0MBqrq41gU9ww1h-T+OjzebFKVwzeC+LYQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 11:57 AM Tim Harvey <tharvey@gateworks.com> wrote:
->
-> On Thu, Nov 4, 2021 at 9:18 AM Adam Ford <aford173@gmail.com> wrote:
+On Thu, Nov 11, 2021 at 03:48:06PM -0800, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Aug 13, 2021 at 12:52 PM Matthias Kaehlcke <mka@chromium.org> wrote:
 > >
-> > The i.MX8M Nano is similar to the i.MX8M Mini in some ways, but very
-> > different in others.  With the blk-ctrl driver for Mini in place,
-> > this series expands the blk-ctrl driver to support the Nano which
-> > opens the door for additional functions in the future.  As part of
-> > this series, it also addresses some issues in the GPCv2 driver and
-> > finally adds support for enabling USB and GPU.
-> >
-> > V3:  Fixes an the yaml example
-> > V2:  Fixes the clock count in the blk-ctrl
-> >
-> > Adam Ford (9):
-> >   soc: imx: gpcv2: keep i.MX8MN gpumix bus clock enabled
-> >   soc: imx: gpcv2: Add dispmix and mipi domains to imx8mn
-> >   dt-bindings: power: imx8mn: add defines for DISP blk-ctrl domains
-> >   dt-bindings: soc: add binding for i.MX8MN DISP blk-ctrl
-> >   soc: imx: imx8m-blk-ctrl: add i.MX8MN DISP blk-ctrl
-> >   arm64: dts: imx8mn: add GPC node
-> >   arm64: dts: imx8mn: put USB controller into power-domains
-> >   arm64: dts: imx8mn: add DISP blk-ctrl
-> >   arm64: dts: imx8mn: Enable GPU
-> >
-> >  .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     |  97 +++++++++++++++++
-> >  arch/arm64/boot/dts/freescale/imx8mn.dtsi     | 103 ++++++++++++++++++
-> >  drivers/soc/imx/gpcv2.c                       |  26 +++++
-> >  drivers/soc/imx/imx8m-blk-ctrl.c              |  75 ++++++++++++-
-> >  include/dt-bindings/power/imx8mn-power.h      |   5 +
-> >  5 files changed, 305 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml
-> >
->
-> Adam,
->
-> Thanks for the patches. I'm not sure how best to test this but on an
-> imx8mm-venice-gw7902 which has USB, but no display.
->
-> I find that if DRM_ETNAVIV is enabled I hang at 'etnaviv etnaviv:
-> bound 38000000.gpu (ops 0xffff800010964748)'.
+> >  config USB_DWC3
+> >         tristate "DesignWare USB3 DRD Core Support"
+> > -       depends on (USB || USB_GADGET) && HAS_DMA
+> > -       select USB_XHCI_PLATFORM if USB_XHCI_HCD
+> > +       depends on ((USB && USB_XHCI_PLATFORM) || USB_GADGET) && HAS_DMA
+> 
+> Technically you don't need the "USB &&", right? Since
+> USB_XHCI_PLATFORM is defined in 'usb/host/Kconfig' and that's only
+> even included if USB is defined. So it can be just:
+> 
+> depends on (USB_XHCI_PLATFORM || USB_GADGET) && HAS_DMA
 
-Thanks for testing this.
+True, the dependency on USB isn't strictly needed.
 
-Does your board send power to the GPU?  I recall someone somewhere
-didn't power theirGPU, but I can't remember who and/or what board was
-being discussed.
+> That's not terribly important, though, so:
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-I'll run some more tests on the latest 5.16-rc1 to see if I can
-replicate your issue.
-
-adam
->
-> If DRM_ETNAVIV is not enabled:
-> - boots fine
-> - usb works
-> - soft reboot works (does not hang)
-
-At least we have some progress.  :-)
-
-adam
->
-> Best regards,
->
-> Tim
+Thanks!
