@@ -2,112 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C78452F5B
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 11:42:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AF28452F69
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 11:45:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234485AbhKPKpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 05:45:05 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:27159 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234587AbhKPKol (ORCPT
+        id S234331AbhKPKri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 05:47:38 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:41984
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234136AbhKPKrh (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 05:44:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637059302; x=1668595302;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=SceYZYaxP3MyPUXhL7rmZQ2ur6GUtmAtRJ0oBSPiYcM=;
-  b=KuIgsJsCq/4GcG8HJWyCtV8P6bS2+RCEi050aSz1XmaNwRKJMupoeJSW
-   QEXHq+wNKHRystfhGVR3sczPrmPmsw/bHER5A1kEfBlK9dIqtbHWiFMrJ
-   HPcGq8IKJ0viXQeUEctx9FHdDD7Rn/zPWMkT0hRYJmFgYOWETOYTEFfYH
-   8=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Nov 2021 02:41:40 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2021 02:41:40 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 16 Nov 2021 02:41:39 -0800
-Received: from [10.216.15.92] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Tue, 16 Nov
- 2021 02:41:34 -0800
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: usb-xhci: Add bindings for
- usb-skip-phy-init property
-To:     Rob Herring <robh@kernel.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
-References: <1636353710-25582-1-git-send-email-quic_c_sanm@quicinc.com>
- <1636353710-25582-2-git-send-email-quic_c_sanm@quicinc.com>
- <YY7vAzxj9aR/zBSB@robh.at.kernel.org>
-From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Message-ID: <3e02ae12-660b-8cf5-d6f8-3a8d1a2abc4e@quicinc.com>
-Date:   Tue, 16 Nov 2021 16:11:30 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        Tue, 16 Nov 2021 05:47:37 -0500
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1731440013
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 10:44:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1637059480;
+        bh=HNvZ1tf4tqT4mDgVZbm+N3k8Io7A/bebwGQCK1l5BZ0=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+         In-Reply-To:Content-Type;
+        b=gyTBVK4HV+pxzocafeXUUAb9+gjK46fkRPpXuJBLcFXqZWqvbsacVcPHs5NZ/Vgyj
+         VoI9Q9qdsLNh8syUI/AkNz+7h2LVDwb/76HSKo2h0plLiYPHZRCIIhjeVAT+NmFq0M
+         18jfuqww32ybMNPID2YbH2UfUOQboBqY+DHNNiOO8yQ9PswcDQ6kRfm+urdp4/qoCy
+         V2caxaLsENPfFaRgVqhxs5Nu1egXEf3zhS3WMmyKOY7KMPjN27Oh2bX40cjNZC40om
+         fznLhC6JOuA7XKuIbFsmcckYVBL0th9kIxnSoUFLcBF/qJQRfuPVj+CPL47LPuR6Bh
+         xBFeKRCWgUHCw==
+Received: by mail-lj1-f200.google.com with SMTP id b16-20020a2ebc10000000b00218d00045c4so6050067ljf.5
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 02:44:40 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HNvZ1tf4tqT4mDgVZbm+N3k8Io7A/bebwGQCK1l5BZ0=;
+        b=hBiJRdj/KmHfbDSJGV2uJhr2Iq88PSl2E4uhDvUCP2kqBP0/El06NK0NYyvaFt12Yw
+         RG+AEBaAjJRL/YTO4LXS2blPtn6DuCgmKFWUeV5SK6G4LPNZ4qBzuTyTB6cE3pgiSnWm
+         8xSP/6JL6BSooPGA0ZXPlgn3bnK5o63lU2/Yd0e/2bLScR8gwgBZz707oJYNGErPYLT3
+         apZF72DN6y7cRE+9JmWxqLFZ9nZwgH77d1RjW/8tIgQIpbpJ84hkf0jnN+FfCdmdXnb5
+         Qt139ope2EweArQDpoUNSszrArT5ekjgk4kikMCCxs9csG0s0f21OH1kMnsPDk/ZDHHB
+         TnLA==
+X-Gm-Message-State: AOAM5330aB6/e1n1kens/nU4Y0OS3Jd1TAUSSJYnktrBLf+JoV53yiSS
+        34HAtq8kO409bVCE9rZ3GXMHs78uF11blHIkgry2rn1s7M4EEKOSwFTT1cWuWGYm2XNSfhuTVi2
+        cqLpDN4CIcG4Ly+7gxl6XDeF0nuOk/Fm+llFLlxA=
+X-Received: by 2002:a05:651c:1506:: with SMTP id e6mr6017421ljf.41.1637059479355;
+        Tue, 16 Nov 2021 02:44:39 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyD2/brVwmP+fxPjmH64gkeCFja1QsZELxsviHR6oPBbUhLXYbkGo8De6w06v59AluCYYjESw==
+X-Received: by 2002:a05:651c:1506:: with SMTP id e6mr6017398ljf.41.1637059479149;
+        Tue, 16 Nov 2021 02:44:39 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id e19sm1782137ljn.82.2021.11.16.02.44.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Nov 2021 02:44:38 -0800 (PST)
+Message-ID: <886518b4-de22-2443-286d-8135eeaa2ad1@canonical.com>
+Date:   Tue, 16 Nov 2021 11:44:37 +0100
 MIME-Version: 1.0
-In-Reply-To: <YY7vAzxj9aR/zBSB@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH] riscv: dts: sifive unmatched: Expose the FU740 core
+ supply regulator.
 Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+To:     Vincent Pelletier <plr.vincent@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>
+References: <f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com>
+ <0879c5b0c72b9bf6bf71f880def166f8804f41c7.1637023980.git.plr.vincent@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <0879c5b0c72b9bf6bf71f880def166f8804f41c7.1637023980.git.plr.vincent@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/11/2021 01:52, Vincent Pelletier wrote:
+> Provides monitoring of core voltage and current:
+> tps544b20-i2c-0-1e
+> Adapter: i2c-ocores
+> vout1:       906.00 mV
+> temp1:        -40.0°C  (high = +125.0°C, crit = +150.0°C)
+> iout1:         5.06 A  (max = +20.00 A, crit max = +26.00 A)
+> 
+> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+> 
+> --
+> Note for review: this patch has one warning from checkpatch.pl:
+>   WARNING: DT compatible string "tps544b20" appears un-documented -- check ./Documentation/devicetree/bindings/
+>   #32: FILE: arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts:55:
+>   +               compatible = "tps544b20";
+> This chip is handled by the existing pmbus module, and there is indeed no
+> matching entry in Documentation/devicetree/bindings/hwmon/pmbus. I am not
+> especially knowledgeable about this chip, I only know it is used by this
+> board, so I am not sure I can do the best job in putting such a file
+> together.
+> If needed I can git it a try.
 
-On 11/13/2021 4:17 AM, Rob Herring wrote:
-> On Mon, Nov 08, 2021 at 12:11:48PM +0530, Sandeep Maheswaram wrote:
->> Adding bindings for usb-skip-phy-init property.
->> Runtime suspend of phy drivers was failing from DWC3 driver as
->> runtime usage value is 2 because the phy is initialized from
->> DWC3 core and HCD core.
->> Some controllers like DWC3 and CDNS3 manage phy in their core drivers.
->> This property can be set to avoid phy initialization in HCD core.
-> You already know if you have a DWC3 and CDNS3 controller, so you don't
-> need more data in DT.
+It's not required. I can try adding it.
 
-We don't have a device tree node for xhci platform device and create 
-xhci platform device from dwc3/host.c
+> ---
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index 270360b258b7..e327831d0d48 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -51,6 +51,11 @@ &uart1 {
+>  &i2c0 {
+>  	status = "okay";
+>  
+> +	tps544b20@1e {
 
-So we want to pass this property to check in xhci-plat.c and skip phy 
-initialization.
+Node name should be a generic class of a device. This is a DC-DC
+converter, so I suppose we should name it "regulator"?
 
->> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/usb/usb-xhci.yaml | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.yaml b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
->> index 965f87f..a64d29f 100644
->> --- a/Documentation/devicetree/bindings/usb/usb-xhci.yaml
->> +++ b/Documentation/devicetree/bindings/usb/usb-xhci.yaml
->> @@ -25,6 +25,10 @@ properties:
->>       description: Set if the controller has broken port disable mechanism
->>       type: boolean
->>   
->> +  usb-skip-phy-init:
->> +    description: Set if the phy initialization is managed by controller
->> +    type: boolean
->> +
->>     imod-interval-ns:
->>       description: Interrupt moderation interval
->>       default: 5000
->> -- 
->> 2.7.4
->>
->>
+> +		compatible = "tps544b20";
+> +		reg = <0x1e>;
+> +	};
+> +
+>  	temperature-sensor@4c {
+>  		compatible = "ti,tmp451";
+>  		reg = <0x4c>;
+> 
+
+
+Best regards,
+Krzysztof
