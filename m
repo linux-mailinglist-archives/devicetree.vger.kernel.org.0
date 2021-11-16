@@ -2,103 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68081452FFE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:12:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 896A3453006
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:13:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234717AbhKPLPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 06:15:17 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:57854
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234766AbhKPLO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 06:14:58 -0500
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3482D3F4B3
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 11:12:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637061120;
-        bh=nrGxaoqv3fyhOTJzGXUVPLJO6wTEQyr0HU27b7o02x0=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=ufVAelJYG7E810iPm6P435eBmZN0rza24mATQ358lxzp8DY7+ATBGrul+dSHAplxs
-         YAUkHmHdNkukz9dwm7MCOGXzEZmf7ex9+BaKmCGmCg8AqZhIiy2Ix9pwK31Y5v0zBI
-         WhHvl+KLZOYSKW7vnjigX2hosE0DBhA74/ZS4htQixX2fLccyfV8QxgelMpppqo1FL
-         3O1b1mjLREvcvucCaj8Qmps+hbRyAN6sjokMDgT5PVUCqzvhJCZBVrQo6LWmgMLDSX
-         TdBryY+RYPoOl0uQIM6NqoVYatyfn7oicvM3Ikl84atrRR7oy12DsA7g1PemgYf+yw
-         9Hg8UFT4cd4Dw==
-Received: by mail-lf1-f69.google.com with SMTP id f15-20020a056512228f00b004037c0ab223so8069380lfu.16
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 03:12:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nrGxaoqv3fyhOTJzGXUVPLJO6wTEQyr0HU27b7o02x0=;
-        b=20RAOi6/revrLqrrSIc+7INSa9oR2dp0q9tAio5cgeB1777f7JtFGPE9EeRX2i3E+s
-         IePGEJ9u34tnTg9UoVwlBQXAvi4KoSF5jq0bdZ4uhUgwmOVF/xQlBUVtJHlRAz1eH6PB
-         utwxZ2M0zeBHodqtmtFMIF/CSx9IKlltWLF7vpuXErRRSzXFZr/cWpbh7HYVv4Ntk6FZ
-         tJrzRWI82LUm0cM/hsF2NzYSIOywfvBu9BKHEu6+zOIxD58kGep7ttluelHwZwbZGMdU
-         KniUQTyv3YG5/yRf30IauI0CCP6YBXuufnwrJsxQfoj1gGDy6uSpjJVmL48+3M+1lhPI
-         Lj+Q==
-X-Gm-Message-State: AOAM531yEn4Nh2atgioPpuaS23AYqB6WTkSaW5+3snz7dyNyX24GJ0oU
-        X/JYKkwUuIWGWXQklMGt/P4lF3KwBoR8cijEai4252p+Omjxdat/teOi9hlSZDy3Y3p9fbds0t0
-        DJH854LNfDCyhaMElyYN6fbcvaR8h3Mx+sIDAlvQ=
-X-Received: by 2002:ac2:55a5:: with SMTP id y5mr5719669lfg.468.1637061118565;
-        Tue, 16 Nov 2021 03:11:58 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwFB8CGB99pv7Z7UsgUdq1tSHOm4adL/MVMH5OYqBZECJqMcRYQf5zZBqfhkDpckCfM0VsW7A==
-X-Received: by 2002:ac2:55a5:: with SMTP id y5mr5719653lfg.468.1637061118424;
-        Tue, 16 Nov 2021 03:11:58 -0800 (PST)
-Received: from localhost.localdomain (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id m8sm1724540lfq.27.2021.11.16.03.11.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 03:11:57 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 7/7] memory: renesas-rpc-if: Add support for RZ/G2L
-Date:   Tue, 16 Nov 2021 12:11:21 +0100
-Message-Id: <163706107706.69862.835899154165201477.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20211025205631.21151-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211025205631.21151-8-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S234581AbhKPLQd convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 16 Nov 2021 06:16:33 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:49022 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234742AbhKPLQd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 06:16:33 -0500
+Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mmwOu-0003c8-H6; Tue, 16 Nov 2021 12:13:20 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Vincent Pelletier <plr.vincent@gmail.com>
+Subject: Re: [PATCH] riscv: dts: sifive unmatched: Expose the FU740 core supply regulator.
+Date:   Tue, 16 Nov 2021 12:13:18 +0100
+Message-ID: <1856369.5VkklvvnQl@diego>
+In-Reply-To: <202f0fd8-1208-b17d-5ee5-e776e45cb065@canonical.com>
+References: <f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com> <2266648.AD6qrfpaa2@diego> <202f0fd8-1208-b17d-5ee5-e776e45cb065@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Oct 2021 21:56:31 +0100, Lad Prabhakar wrote:
-> SPI Multi I/O Bus Controller on RZ/G2L SoC is almost identical to
-> the RPC-IF interface found on R-Car Gen3 SoC's.
+Am Dienstag, 16. November 2021, 12:08:01 CET schrieb Krzysztof Kozlowski:
+> On 16/11/2021 10:53, Heiko Stübner wrote:
+> > Hi Vincent,
+> > 
+> > Am Dienstag, 16. November 2021, 01:52:59 CET schrieb Vincent Pelletier:
+> >> Provides monitoring of core voltage and current:
+> >> tps544b20-i2c-0-1e
+> >> Adapter: i2c-ocores
+> >> vout1:       906.00 mV
+> >> temp1:        -40.0°C  (high = +125.0°C, crit = +150.0°C)
+> >> iout1:         5.06 A  (max = +20.00 A, crit max = +26.00 A)
+> >>
+> >> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+> >>
+> >> --
+> >> Note for review: this patch has one warning from checkpatch.pl:
+> >>   WARNING: DT compatible string "tps544b20" appears un-documented -- check ./Documentation/devicetree/bindings/
+> >>   #32: FILE: arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts:55:
+> >>   +               compatible = "tps544b20";
+> >> This chip is handled by the existing pmbus module, and there is indeed no
+> >> matching entry in Documentation/devicetree/bindings/hwmon/pmbus. I am not
+> >> especially knowledgeable about this chip, I only know it is used by this
+> >> board, so I am not sure I can do the best job in putting such a file
+> >> together.
+> >> If needed I can git it a try.
+> > 
+> > Devicetree bindings are supposed to be stable into the future, so an actually
+> > reviewed binding is quite necessary ;-) .
+> > 
+> > In the case of your tps544b20 it should also be pretty easy to do, as
+> > 
+> > 	Documentation/devicetree/bindings/hwmon/pmbus/ti,ucd90320.yaml
+> > 
+> > is probably a pretty good match to what you need in terms of Yaml notation.
+> > Just need to replace the naming in your copy and drop in the correct
+> > description from
+> > 
+> > 	https://www.ti.com/lit/ds/symlink/tps544b20.pdf?ts=1637055780278
+> > 
+> > and you have a working binding.
+> > 
+> > Then just add another patch to your series that mimics
+> > 
+> > 	https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8a36e38d8b0fbb92609e837a67f919202ec7ec51
+> > 
+> > and include the relevant maintainers that scripts/get_maintainer.pl will
+> > give you, and you're all set :-)
+> > 
 > 
-> This patch adds a new compatible string for the RZ/G2L family so
-> that the timing values on RZ/G2L can be adjusted.
+> Hi Heiko,
 > 
+> In current form the bindings would be close to trivial and we actually
+> do not know how proper bindings would look like (the device is not
+> trivial). Therefore based on Rob's recent comments - better to have
+> trivial schema than nothing - I sent a patch adding them to trivial-devices:
 > 
-> [...]
+> https://lore.kernel.org/linux-devicetree/20211116110207.68494-1-krzysztof.kozlowski@canonical.com/T/#u
 
-Applied, thanks!
+Though I guess there isn't anything hindering additions to a individual
+simpler binding.
 
-[7/7] memory: renesas-rpc-if: Add support for RZ/G2L
-      commit: b04cc0d912eb80d3c438b11d96ca847c3e77e8ab
+But yeah, just adding it to trivial devices will also just work for now, as there
+really are no additional properties right now and might make the process
+a tad shorter ;-)
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+Heiko
+
+
+
