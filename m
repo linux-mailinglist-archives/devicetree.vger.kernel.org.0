@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A1A8F452FBE
-	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:04:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E87452FCB
+	for <lists+devicetree@lfdr.de>; Tue, 16 Nov 2021 12:05:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234680AbhKPLGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 06:06:52 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:42440
+        id S234665AbhKPLIE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 06:08:04 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:42484
         "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234699AbhKPLFu (ORCPT
+        by vger.kernel.org with ESMTP id S234559AbhKPLH0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Nov 2021 06:05:50 -0500
+        Tue, 16 Nov 2021 06:07:26 -0500
 Received: from mail-lf1-f70.google.com (mail-lf1-f70.google.com [209.85.167.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id AFD413F190
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 11:02:50 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 630B23F1A5
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 11:04:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637060570;
-        bh=/fhj+bVJm076Wq/VhTriJ0yxdPwTog87+Zp8k+Dl/zY=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=NUWFbxQoCZvJWjTS8Ht7e3I2J5ylWjXWPLTwiEZjiEPjjjL/l4M3yesmp8gtzBp/e
-         xKqxhssVrSmlnQXVW1Vs+sYohaZO2Tfjxb54q6nVaiGsYb+e7x7KBobbvrd5LTsSyI
-         PDljoEHz0YRdwBb4gAe7J0XuMO4djMTufpZUvBiQrtYUuYDotIQNsFmrLa99/QFInZ
-         2Mc6BR3QBS9rAew/rstubrrRJdcH+TelAsPtzagYG4uP8QhO4Q9JSetTMD4zffqz+u
-         4cVUqrHO/aFHyCLGoWjjTMSh3/D2TaPVtywzI7XC195M272gx4G2ArdjEmh2MxLoL+
-         BPT72sUXpD1qQ==
-Received: by mail-lf1-f70.google.com with SMTP id c14-20020a056512104e00b004036d17f91bso8045492lfb.17
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 03:02:50 -0800 (PST)
+        s=20210705; t=1637060667;
+        bh=bd/U/oRwjQmdvpZocDSS6S8UbyaPfaAFv6cbOhCrjwk=;
+        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+         In-Reply-To:Content-Type;
+        b=lhJzfvve+52ddVzNah2DKS4ZqG775igkvfgKtHZaqEVBnWDyfxabXJl3l45b6wSeY
+         rbl/RHnACejr1Nb31WjRuXQ6TSCcMnaitN3/yCdCg+ThiMc5c6k6nqNW3R0EBbwEnj
+         quhR3xGrcvNdP4So2vYs8s+39+o3Fp07graFpM/EYlz4Cr6brfgxzl8FlARnsCJe1R
+         1Gxo51YNm+WPRucnuMVTjAbnDJ3gjj4Y/eRceyuqVkiDF/NRdioQfcON3T8ybYUo2H
+         1N4I3mfiy3pYQzwebnMLZMsf47nTd9+T1Ig1qalnwvZtsZP1ZmN9rvOG+Syghnc5zR
+         TjnhKV466/w9A==
+Received: by mail-lf1-f70.google.com with SMTP id f15-20020a056512228f00b004037c0ab223so8060156lfu.16
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 03:04:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/fhj+bVJm076Wq/VhTriJ0yxdPwTog87+Zp8k+Dl/zY=;
-        b=jB/QnLJRZMr3j1caP3gK2vuZkgCelCn+Noaveo3a6xO8kpFnu0cMa6cTNT71Jwk4h9
-         HUJUMD9pHdl42vArTEZxWOklpQT3xRm42RlVzlb1ElLWAG18S7NEsepKbHmRzi6WTMO2
-         xXWsp9jI1wl61iOLeJH3GMkOkiHP1GIuMZlSdBfLIFgT2nm4Dz9+cR1wc1Z6KHF17n4o
-         pIQeaNjbO8SXGGfi8EmddN1zvonHacG53I1RF83aEp/sawZc0ulxS6tHvlp19KqFdkZe
-         9MgF0gAGnOViz1oUQWG6ruKVs62lsyRyq6258Ke1pfwDFnr6+0kxVdBR40a/rK6iMb/+
-         WuNw==
-X-Gm-Message-State: AOAM531WjWxfFn1ftIh0LM348Lms33CuUoePoiNGJKML0neazBAnw7v7
-        4OZQrfZ+GCs1K0kvkBNPT0ic7AdiCAhmYnciRGEJyV3SaoBMf6gWhp5pdKghxlvNUCZIhNS25Cx
-        mCHZzIX9m8IXjes6fYwSalHUezOyM46dFoggFB4w=
-X-Received: by 2002:a05:6512:604:: with SMTP id b4mr5696010lfe.198.1637060569522;
-        Tue, 16 Nov 2021 03:02:49 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx7ajDYjXbeKcZbiXLfcr+dTx8ryW8atDeHVo7pyKw8Zx2SmbmhraxaC8+5fg6M9h4tJ5URtQ==
-X-Received: by 2002:a05:6512:604:: with SMTP id b4mr5695972lfe.198.1637060569244;
-        Tue, 16 Nov 2021 03:02:49 -0800 (PST)
-Received: from localhost.localdomain (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id z8sm1420074ljj.86.2021.11.16.03.02.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 03:02:48 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Vincent Pelletier <plr.vincent@gmail.com>
-Subject: [PATCH] dt-bindings: hwmon: add TI DC-DC converters
-Date:   Tue, 16 Nov 2021 12:02:07 +0100
-Message-Id: <20211116110207.68494-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
+        bh=bd/U/oRwjQmdvpZocDSS6S8UbyaPfaAFv6cbOhCrjwk=;
+        b=FI8tBRFWKkv24BtG6M+Vgrk36ZIMOe6daJolH8qrZ71b/BSb0B6wAm4QjpyYoxi20k
+         bud1+R36ojh5OknQ2XRecHgzHUYDr3IcDzok3jq4YLuJjf+vlEkEir4zV8z8UI8fplrK
+         8svsWndud6Ty4hyGBY68CM5capIcaVfKSlMYefHHjFIlVjjQ8cDj44ZjrJGNi5uxPHek
+         iRJddMbf05JJLoU7Z23WPZAOURUaW/kBGvQyaAxsfY1vwfg+XCG0LWsGLYm8tHHQbV9U
+         BLFQEp0e3ZytrLN8yTlQbdftoItz9jCixv7+ldl7xcKQJNY51VABWwY1eUb+97KiVjQw
+         Cw2A==
+X-Gm-Message-State: AOAM532JUdFVtPolJ5pKlkzVqNLuw7zSYjmJQVj1bNFT+eT/3+iA7DCB
+        kPJPYbJjoM6EVsk8/e3iD6YHtYvp4JT41WylaQ8FYOJDW6ZDoyO/fLpIcqm8MniHtpeehUloBrg
+        9UzdaCOH9sNKEjdD860zMzMOKiIz/G5TlsFf+VK8=
+X-Received: by 2002:a2e:9c58:: with SMTP id t24mr6002319ljj.506.1637060666726;
+        Tue, 16 Nov 2021 03:04:26 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJw3ZYxUSFJRJ5iP/OKHvrIDa1zcy8UEUVBHT/gsOdQTDQkeqm/SrTdZ4qxtY7sZdQaUPhlyxA==
+X-Received: by 2002:a2e:9c58:: with SMTP id t24mr6002284ljj.506.1637060666538;
+        Tue, 16 Nov 2021 03:04:26 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id b22sm1915106lfv.20.2021.11.16.03.04.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Nov 2021 03:04:26 -0800 (PST)
+Message-ID: <842021c3-b199-8917-6354-93b396c2541a@canonical.com>
+Date:   Tue, 16 Nov 2021 12:04:25 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH] riscv: dts: sifive unmatched: Link the tmp451 with its
+ power supply.
+Content-Language: en-US
+To:     Vincent Pelletier <plr.vincent@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        Yash Shah <yash.shah@sifive.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>
+References: <f6512cc50dc31a086e00ed59c63ea60d8c148fc4.1637023980.git.plr.vincent@gmail.com>
+ <d04daf5956ad61496188c7aee3d2eb958e34d7d2.1637023980.git.plr.vincent@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <d04daf5956ad61496188c7aee3d2eb958e34d7d2.1637023980.git.plr.vincent@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Few Texas Instruments DC-DC converters on PMBus like TPS544B20 do not
-have bindings and are used only as hardware monitoring sensor.  These
-devices are actually not trivial and can receive basic configuration
-(e.g. power up mode, CNTL pin polarity, expected input voltage), however
-devicetree support for configuration was never added.
+On 16/11/2021 01:53, Vincent Pelletier wrote:
+> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
 
-Therefore in current state the devices are used only in read-only mode
-and have trivial bindings, so document them to have basic dtschema
-tests.
+This needs commit description, explaining what are you doing and why.
 
-Cc: Vincent Pelletier <plr.vincent@gmail.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+> ---
+>  arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> index bd6e90288c8a..73c1e4adf650 100644
+> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+> @@ -59,6 +59,7 @@ tps544b20@1e {
+>  	temperature-sensor@4c {
+>  		compatible = "ti,tmp451";
+>  		reg = <0x4c>;
+> +		vcc-supply = <&vdd_bpro>;
+>  		interrupt-parent = <&gpio>;
+>  		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
+>  	};
+> 
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 791079021f1b..3297a6480534 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -329,12 +329,19 @@ properties:
-           - ti,tmp122
-             # Digital Temperature Sensor
-           - ti,tmp275
-+            # TI DC-DC converter on PMBus
-+          - ti,tps40400
-             # TI Dual channel DCAP+ multiphase controller TPS53676 with AVSBus
-           - ti,tps53676
-             # TI Dual channel DCAP+ multiphase controller TPS53679
-           - ti,tps53679
-             # TI Dual channel DCAP+ multiphase controller TPS53688
-           - ti,tps53688
-+            # TI DC-DC converters on PMBus
-+          - ti,tps544b20
-+          - ti,tps544b25
-+          - ti,tps544c20
-+          - ti,tps544c25
-             # Winbond/Nuvoton H/W Monitor
-           - winbond,w83793
-             # i2c trusted platform module (TPM)
--- 
-2.32.0
 
+Best regards,
+Krzysztof
