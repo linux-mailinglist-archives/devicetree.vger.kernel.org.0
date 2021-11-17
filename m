@@ -2,86 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 243ED454047
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFF7545404D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:45:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229801AbhKQFl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 00:41:26 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:53294 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbhKQFl0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 00:41:26 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AH5c8Fk004762;
-        Tue, 16 Nov 2021 23:38:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637127488;
-        bh=fZ+tCpl6aMiTVA4kq/Iai8pN1fLAIcMf+25zZQaYStE=;
-        h=From:To:CC:Subject:Date;
-        b=wTn5/5v93SxqcBMZl0tQQU3L+felqLHq361+6Bpy8OzEj9xZQYidp5OwnUefCq2+b
-         sHGwqyXOX1dfBIOqMAxM0+vQQ22M6RMW4VaZmYP2vu2ov8mc/VskzYtZV4RcacIS/j
-         ApsR1cQWpL43zIyPfOfwO/ENFzc0Pyoo9BHGUz4Y=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AH5c8sh071185
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 16 Nov 2021 23:38:08 -0600
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 16
- Nov 2021 23:38:08 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 16 Nov 2021 23:38:08 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AH5c7cO098283;
-        Tue, 16 Nov 2021 23:38:07 -0600
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <nm@ti.com>
-CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
-        <jan.kiszka@siemens.com>, <j-choudhary@ti.com>,
+        id S229455AbhKQFsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 00:48:32 -0500
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:56530 "EHLO
+        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230082AbhKQFsc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 00:48:32 -0500
+Received: from mail.aspeedtech.com ([192.168.0.24])
+        by twspam01.aspeedtech.com with ESMTP id 1AH5Lkma034565;
+        Wed, 17 Nov 2021 13:21:46 +0800 (GMT-8)
+        (envelope-from tommy_huang@aspeedtech.com)
+Received: from tommy0527-VirtualBox.aspeedtech.com (192.168.2.141) by
+ TWMBX02.aspeed.com (192.168.0.24) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 17 Nov 2021 13:45:28 +0800
+From:   tommy-huang <tommy_huang@aspeedtech.com>
+To:     <joel@jms.id.au>, <airlied@linux.ie>, <daniel@ffwll.ch>,
+        <robh+dt@kernel.org>, <andrew@aj.id.au>,
+        <linux-aspeed@lists.ozlabs.org>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: iot2050: Disable mcasp nodes at dtsi level
-Date:   Wed, 17 Nov 2021 11:08:06 +0530
-Message-ID: <20211117053806.10095-1-j-choudhary@ti.com>
+        <linux-kernel@vger.kernel.org>
+CC:     <BMC-SW@aspeedtech.com>
+Subject: [PATCH v3 0/4] Add Aspeed AST2600 soc display support
+Date:   Wed, 17 Nov 2021 13:45:14 +0800
+Message-ID: <20211117054518.3555-1-tommy_huang@aspeedtech.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [192.168.2.141]
+X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
+ (192.168.0.24)
+X-DNSRBL: 
+X-MAIL: twspam01.aspeedtech.com 1AH5Lkma034565
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Disable mcasp nodes 0-2 because several required properties
-are not present in the dtsi file as they are board specific.
-These nodes can be enabled via an overlay whenever required.
+v3:
+  Refine the patch for clear separate purpose.
+  Skip to send devicetree patch
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+v2:
+  Remove some unnecessary patch.
+  Refine for reviwer request.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index 65da226847f4..c9407ed67866 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -731,3 +731,15 @@
- &icssg2_mdio {
- 	status = "disabled";
- };
-+
-+&mcasp0 {
-+	status = "disabled";
-+};
-+
-+&mcasp1 {
-+	status = "disabled";
-+};
-+
-+&mcasp2 {
-+	status = "disabled";
-+};
+v1:
+  First add patch.
+
+Joel Stanley (2):
+  ARM: dts: aspeed: Add GFX node to AST2600
+  ARM: dts: aspeed: ast2600-evb: Enable GFX device
+
+tommy-huang (2):
+  drm/aspeed: Update INTR_STS handling
+  drm/aspeed: Add AST2600 chip support
+
+ arch/arm/boot/dts/aspeed-ast2600-evb.dts | 18 ++++++++++++++++++
+ arch/arm/boot/dts/aspeed-g6.dtsi         | 11 +++++++++++
+ drivers/gpu/drm/aspeed/aspeed_gfx.h      |  1 +
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c  | 15 ++++++++++++++-
+ 4 files changed, 44 insertions(+), 1 deletion(-)
+
 -- 
 2.17.1
 
