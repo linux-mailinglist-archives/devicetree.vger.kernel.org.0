@@ -2,98 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C567454810
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:02:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CFA145485D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:18:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236805AbhKQOFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:05:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50666 "EHLO
+        id S238321AbhKQOVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:21:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236577AbhKQOF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:05:29 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64D25C061764
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:02:30 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id t5so11903741edd.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:02:30 -0800 (PST)
+        with ESMTP id S234203AbhKQOVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:21:13 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C82DC061570;
+        Wed, 17 Nov 2021 06:18:14 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id v64so8017758ybi.5;
+        Wed, 17 Nov 2021 06:18:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=48jpMjB7ikIGAY5IH4NRA+sLzh4QPo/RYNwFWYqiuv4=;
-        b=dUS2SR7j0B4r/3q4ToNQmhhGg4WvoE5bfUdVO+ewVd2u5prBQdg4PikCaa9edENq8W
-         WA3abYUryvhuFfX9eG/Bk60UNOiZyY/kymMokjqyBSLSIxftr3B4KwOpjaL4oMYZtowk
-         V8eZLDBK8lvp+BVx2loNqo5JryZzLrYEpVkuqN+cu16sHJ4B94TVyWeNSnr1F6u2swOh
-         ngug0eihvoNMHEjgawDVduGZxAqviQw5BaeCtNtjO9jJIWbZ+BXrnQYq9b484MBqZlvu
-         b/j9CBI0EbYdcAJ4ToeKQp71xUoW8UMAInLAzS0U6ArqCQRTt6HWuOXTGHT3ffzJ3pKz
-         +kZA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YKmu7HqClDPfAW/KPYXmYV7MKJHnHVcWDjB0/hF1xw8=;
+        b=PBeVZDrOlwkuTprP+rnTkf9goyQlSrzdgEhfE8/fqQofrGbWlExJnsG1/wvTYFsrCR
+         YtBBMFY4ezgL2Du9NufECbBuYv++ofZbTrwu5bVhCe/FgpWmYLRFkDhxUSY2VJ4j5gZP
+         kzj0Ybc4NxIYWwWJgIYOogyR7twDQlWwdduF1zNmGy8BBnrTFqr70vE+UMdshIoYo25B
+         rukBhaZYY0SySYBlK8NxcZRjrk5/7dhWeWuci7XpV1Gx39vnVMkIQ18aKFu7Wady4AQg
+         n0nYKbNsoNzBNcPIkSwdXYKNO6iQ+oi3NxW1353fVdHCM9veFWtSYR+FrwevD9c9cW2P
+         lsPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=48jpMjB7ikIGAY5IH4NRA+sLzh4QPo/RYNwFWYqiuv4=;
-        b=ghT+QqfzH/d6nvoSVSK5Wr+vKaca7b40leWrafhxg5neGF+K+rPOXjf1jEtFoLtbAh
-         XOOlOMvHvTNzD6EHRQRC6JHaNxscfMmGQoVEruYiilgAwsz49PL7DL9dl3pb2ex6Hntt
-         Y9OWOSGpd+RfNTaaeIkqIEfxj7N/xRjL+jXC4EWXhicI4ifL1U7GgjN5NWJDvEHH5EuE
-         PgaxLAkz1XGAYw5/OlmUjep3IpPqLX6uxT5D7Mo093i0CgieVy2yZuKL5uwFpGTadV26
-         WyDkXw3vDpvTJNVeM7jUOvMhZG1prJ2I0R06BpEYtQd/3Wsy8Dbg9tDLCLro7IkEH2Zo
-         0ivQ==
-X-Gm-Message-State: AOAM530hO/z44l6qs8lLIDLfD8s8aebQDKOqqDmtpYx3IxKF2n0rxmeH
-        XnCXpCLvf6PLdFIio8w4lO6jlg==
-X-Google-Smtp-Source: ABdhPJx98JoRl+qaja/gfMY6n9+koVO1zpPmRMUeZF13GS79wlEvIe00MnF0trXn+b5HYmtnQQvQbw==
-X-Received: by 2002:a17:907:c0c:: with SMTP id ga12mr23434041ejc.417.1637157748723;
-        Wed, 17 Nov 2021 06:02:28 -0800 (PST)
-Received: from fedora.. (dh207-98-180.xnet.hr. [88.207.98.180])
-        by smtp.googlemail.com with ESMTPSA id qw27sm10725963ejc.101.2021.11.17.06.02.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Nov 2021 06:02:28 -0800 (PST)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     robh+dt@kernel.org, mripard@kernel.org, wens@csie.org,
-        jernej.skrabec@gmail.com, hauke@hauke-m.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Cc:     Robert Marko <robert.marko@sartura.hr>,
-        Ron Goossens <rgoossens@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v2] arm64: dts: allwinner: orangepi-zero-plus: fix PHY mode
-Date:   Wed, 17 Nov 2021 15:02:22 +0100
-Message-Id: <20211117140222.43692-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.33.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YKmu7HqClDPfAW/KPYXmYV7MKJHnHVcWDjB0/hF1xw8=;
+        b=7KudRnuWwSegrnsuy5kLTrR8kUibtrQ5DMFnc7lYAMjszozzvK5LOAhBu2GzMYM6/n
+         vwPx15Kygz0Wkx55M0x+WYaGuAfeKL8QafNH2oWZ8EwET+aMGDfhg8pzIOgX2qIDeBCY
+         oenOoehSJBK6pO6WAuIneph0nqGTICdaD3890A2VTp0IX6SJylRKF5Or+8CfPGC+48SB
+         E4lHkySSnCGW+VclAHMzgoNSh4+hcQ8dA+nqktB0AOpovVlsnDdz5eK/5H26KFpzIzUJ
+         vZtf3EFGmQN0LMqqjpwGTT/+mii3O40Am4G+n7chU8WjmkUDe7dmVRY6SfnER4JsgRnr
+         ND3g==
+X-Gm-Message-State: AOAM532zKW/68GTPhgW1Kh6SqjhFBvMXQ55cgf/rWrAgeXjUqsidqm6C
+        gKhCLSVoMo2fnHp+TL53zXmKGGvaACuHl28KOcs=
+X-Google-Smtp-Source: ABdhPJyzrfXj737b4n0md6i/+FpCUd9X5qky5KKOjDVUy1T1FiOVGc6U7lj1/OYEg51bksg+1Qype+wmNWUV+K21wII=
+X-Received: by 2002:a25:dc4d:: with SMTP id y74mr17393513ybe.422.1637158693784;
+ Wed, 17 Nov 2021 06:18:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211117010527.27365-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211117010527.27365-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <YZT7suWucdD+FU6k@sirena.org.uk>
+In-Reply-To: <YZT7suWucdD+FU6k@sirena.org.uk>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 17 Nov 2021 14:17:47 +0000
+Message-ID: <CA+V-a8u1xb2A3RZX2-VCM10m3htpzzyDzhoLX1dkFnjFFGMVhA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: renesas,rspi: Document RZ/G2L SoC
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Orange Pi Zero Plus uses a Realtek RTL8211E RGMII Gigabit PHY, but its
-currently set to plain RGMII mode meaning that it doesn't introduce
-delays.
+Hi Mark,
 
-With this setup, TX packets are completely lost and changing the mode to
-RGMII-ID so the PHY will add delays internally fixes the issue.
+Thank you for the review.
 
-Fixes: a7affb13b271 ("arm64: allwinner: H5: Add Xunlong Orange Pi Zero Plus")
+On Wed, Nov 17, 2021 at 12:55 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Wed, Nov 17, 2021 at 01:05:25AM +0000, Lad Prabhakar wrote:
+> > Add RSPI binding documentation for Renesas RZ/G2L SoC.
+> >
+> > RSPI block is identical to one found on RZ/A, so no driver changes are
+> > required the fallback compatible string "renesas,rspi-rz" will be used
+> > on RZ/G2L
+>
+> Please submit patches using subject lines reflecting the style for the
+> subsystem, this makes it easier for people to identify relevant patches.
+> Look at what existing commits in the area you're changing are doing and
+> make sure your subject lines visually resemble what they're doing.
+> There's no need to resubmit to fix this alone.
 
-Tested-by: Ron Goossens <rgoossens@gmail.com>
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Tested-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+My bad will update it to "spi: dt-bindings: renesas,rspi: Document
+RZ/G2L SoC" and re-send a v2 along with the review commented by Geert.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-index d13980ed7a79..7ec5ac850a0d 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-zero-plus.dts
-@@ -69,7 +69,7 @@ &emac {
- 	pinctrl-0 = <&emac_rgmii_pins>;
- 	phy-supply = <&reg_gmac_3v3>;
- 	phy-handle = <&ext_rgmii_phy>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	status = "okay";
- };
- 
--- 
-2.33.1
-
+Cheers,
+Prabhakar
