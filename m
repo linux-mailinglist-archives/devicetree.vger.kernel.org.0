@@ -2,124 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B31BC454515
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 11:37:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5788345453C
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 11:53:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236454AbhKQKkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 05:40:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60216 "EHLO
+        id S234714AbhKQK4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 05:56:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231862AbhKQKkK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 05:40:10 -0500
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6708C061570;
-        Wed, 17 Nov 2021 02:37:11 -0800 (PST)
-Received: by mail-yb1-xb32.google.com with SMTP id d10so6147504ybe.3;
-        Wed, 17 Nov 2021 02:37:11 -0800 (PST)
+        with ESMTP id S231591AbhKQK4C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 05:56:02 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF6DC061570;
+        Wed, 17 Nov 2021 02:53:03 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id o4so5452716oia.10;
+        Wed, 17 Nov 2021 02:53:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9kpv4KGrO4GJ0G9k0hpTY0E2pkoIkgRo3saOZhyWEio=;
-        b=I2hPQUQRCqDufn3VCUhav/kJmKCzg67ZpUnSre7u6/AjSImlFgudfiFy7za4w2iZQs
-         UF42VGqYEifqt2TWcMef1sX5qrDotyKyo0ZzpztxjBPC/DO5m4XQ/fZBjKD0KHnXz6Hk
-         QMicKForO6x+HYaw+7xZWIvI3uhvSAP0YyukRla9XzTjqecizcdH7iyLTN0rauyE/Rqk
-         KyJOtLGN3ycqdTAo4Wi7rCYiQfOSnB0HVDI/gApQ2BnTBTav5UYpsh0sC924SKsXbGEz
-         xk40iYB6MweFRFPwO9bPsu/+TY+Q/JBpzzV9RGSifm3G6KfZOIr/biT86K9FmeaqjZyH
-         qa1A==
+         :cc:content-transfer-encoding;
+        bh=wIIT6/ePIyMUBZgvwPlMAbfK34sVLGh7GgquvsLE084=;
+        b=cSytHkCzD13jEuMPLeN1fKQZoR/1NY3pe/zNd5KzepItAPyUCztHvPyI/Bhm0FwBBP
+         MSj+jfDd2fxU0th/ADKVbG2l09WgyUc/8UosqhaB6PtljhAHtAnpPuGUfI0mpJTLVbrZ
+         n2CDYNwNZihCC5BKwmiFdamPVvUkm/xceZwZ1JRTbA0dlRn/g6s81oVQxxYmg6yR/uow
+         eX2SDlMwz5u2bDwFhEWFJlhzqTDfAK7c0CpCsUz58qtbX/exHHflmqVLFUxGLtwK6UmX
+         701WHdKsG5+f5o9/RU07CiAolx/W39PgpdPoOfG4WbelnlOwe9DyioY3z+gI3Yo9ZqUi
+         VJPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9kpv4KGrO4GJ0G9k0hpTY0E2pkoIkgRo3saOZhyWEio=;
-        b=6Tjb30bVI07x28RlV1WmQxMzzjeHI9AB4qNRk0rsIJTRjmQhA5w9Ei9pJNGEgfSoUU
-         chXsZPXi/qHioaR9TyBbn6OSgPuir7mh1DxXUDBJQu/00zdsbKY7QSwp9Bf7ayi2h2Sj
-         xKaHJP6JG0+FEJIXO5SxBZ9z9zQdYtT8XkiOUnYxOIRXJG/txKU8n6PrEjBx42IQFRG4
-         92ysCf1+lMfNHmkHgrQECnkV2TYagpuFt6pkjdeIn7EokxX9qlYpuF/hKM6iqUYL5f/y
-         KE39fClXld7LE0xK0KdqnlnJtuDmidvKI7I13TNRlGjT6HWsNB9HmG+yy46+nq9K4G80
-         ECRQ==
-X-Gm-Message-State: AOAM530gma56LYLcBS7oKRZWve8vjUXqTLmN0/r8cuNemZV3hWqVuJnU
-        V0fkJHQthdKXiANtTNJWPVeQPAGSI1yHyB3igyM=
-X-Google-Smtp-Source: ABdhPJy5doJzhWrllqCTkyKTck5vNCP4Bmpd+qHpFUkqE7ckRM2iZXXTmQR5/Y49OOTV4ZDAG7SjDfho6USb3NI76aY=
-X-Received: by 2002:a25:b7c6:: with SMTP id u6mr16335957ybj.16.1637145431222;
- Wed, 17 Nov 2021 02:37:11 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wIIT6/ePIyMUBZgvwPlMAbfK34sVLGh7GgquvsLE084=;
+        b=Kv4rHmihqjgqQi24LUfGzi9P2kblIOiphGJ3HwUeMWa0EZtgBoT8hoHdooM36qliK8
+         WkR3P+LnT7qvrV0l//UM7u5ODoT4wLhGupGjBbOcN4Wv93t7uuD7hp81GCutc4qQmtQo
+         ZgN6XiTBLsr98/Rh1uGPamTalVZS8CoufChBpW3eU89aMmHRzGoQl/CxLiLSIhEahgmj
+         L/pIhUGkRGYKl2XWyNAbsQ76WDNCRGjLv575+Y0dMiHVHdiNSlhN3zG1lQpUdSSWDLZ3
+         bTf5Cdtn5QcG9dOnInChUi2S3hvKSYUyfr/873ldapCePC0N4eEgYp4o25yXkqXc+0QK
+         qmUQ==
+X-Gm-Message-State: AOAM530M3zdjBkZJKZielZPIFoelvXrWYeSYJ4M3qWLxKzYw1NAjgPZN
+        rjjdZ7U2JRsnAoS4vCYDNZuPajim12zPowhuGMk=
+X-Google-Smtp-Source: ABdhPJxlARpq3W7ryl+eHHGyYfKPeP0uoWKZGjdn3QYa+VuCU6DhRnPI/OTqygHbwGKYA4ZRJK0EPjK6nt7LBA+wRas=
+X-Received: by 2002:aca:bb45:: with SMTP id l66mr13523131oif.51.1637146383235;
+ Wed, 17 Nov 2021 02:53:03 -0800 (PST)
 MIME-Version: 1.0
-References: <20211117011247.27621-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20211117011247.27621-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdVbd4e=Z4+s3VOTCSwitdG=wYV8M+MotWBiK=HwhwuopA@mail.gmail.com>
- <CA+V-a8uQi8c_Zv+a-YWdsGWZom8rKu3EuOCMVdoyqVDWX-h+Hg@mail.gmail.com> <CAMuHMdVCFHKgd+uMCbudmSx6OtEeKBT3m3eGJv8uZxjJSWKmXA@mail.gmail.com>
-In-Reply-To: <CAMuHMdVCFHKgd+uMCbudmSx6OtEeKBT3m3eGJv8uZxjJSWKmXA@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 17 Nov 2021 10:36:45 +0000
-Message-ID: <CA+V-a8sg5bGUVBuYuGUSLetVA811ZuRXth07JMYbG+2GScXv5A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg2l-smarc: Enable RSPI1 on
- carrier board
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+References: <1637133726-6581-1-git-send-email-u0084500@gmail.com>
+In-Reply-To: <1637133726-6581-1-git-send-email-u0084500@gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Wed, 17 Nov 2021 18:52:52 +0800
+Message-ID: <CAE+NS37eLbnTZtv5pO59XWrWVKEJEA+J8DE=H1NwZr+u71WwfQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: leds: Replace moonlight with indicator in
+ mt6360 example
+To:     cy_huang <u0084500@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        Gene Chen <gene_chen@richtek.com>, wilma.wu@mediatek.com,
+        benjamin.chao@mediatek.com, ChiYuan Huang <cy_huang@richtek.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Wed, Nov 17, 2021 at 10:25 AM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
+cy_huang <u0084500@gmail.com> =E6=96=BC 2021=E5=B9=B411=E6=9C=8817=E6=97=A5=
+ =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:22=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Hi Prabhakar,
+> From: ChiYuan Huang <cy_huang@richtek.com>
 >
-> On Wed, Nov 17, 2021 at 11:16 AM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
-> > On Wed, Nov 17, 2021 at 10:10 AM Geert Uytterhoeven
-> > <geert@linux-m68k.org> wrote:
-> > > On Wed, Nov 17, 2021 at 2:12 AM Lad Prabhakar
-> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on carrier
-> > > > board, This patch adds pinmux and spi1 node to carrier board dtsi file.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> > > > @@ -31,6 +31,7 @@
-> > > >                 i2c0 = &i2c0;
-> > > >                 i2c1 = &i2c1;
-> > > >                 i2c3 = &i2c3;
-> > > > +               spi1 = &spi1;
-> > >
-> > > Do you mind if I drop this while applying?
-> > >
-> > Fine by me. Any reason to do so? (I ask because in future I can take
-> > care of it prior to posting)
+> Replace moonlight with indicator in mt6360 example to prevent the below
+> build error:
 >
-> Aliases are used to match physical connectors with a device, so they
-> make sense for serial and network ports.
-> We don't have them for SPI on any Renesas arm64 boards.
-> We do have them for I2C, but I2C differs from SPI, as on I2C you can
-> instantiate new devices from sysfs.
+> Error: Documentation/devicetree/bindings/leds/leds-mt6360.example.dts:114=
+.24-25
+> syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:385:
+> Documentation/devicetree/bindings/leds/leds-mt6360.example.dt.yaml]
+> Error 1
 >
-Agreed makes sense now. Thank you for the clarification.
-
-Cheers,
-Prabhakar
-
-> Gr{oetje,eeting}s,
+> Link: https://lore.kernel.org/lkml/CAL_JsqJRMVE163LaHTbtFARc4f_qg33bfQx+s=
+D3ukce_xQF+gA@mail.gmail.com/
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+> Hi, Gene:
 >
->                         Geert
+> I saw you have removed LED_FUNCTION_MOONLIGHT in v14.
+> But you may forget to remove it from the binding example.
 >
+> Please help to review this change.
+> ---
+>  Documentation/devicetree/bindings/leds/leds-mt6360.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Do=
+cumentation/devicetree/bindings/leds/leds-mt6360.yaml
+> index 2353155..b2fe6eb 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> @@ -133,7 +133,7 @@ examples:
+>       };
+>       led@3 {
+>         reg =3D <3>;
+> -       function =3D LED_FUNCTION_MOONLIGHT;
+> +       function =3D LED_FUNCTION_INDICATOR;
+>         color =3D <LED_COLOR_ID_WHITE>;
+>         led-max-microamp =3D <150000>;
+>       };
 > --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 2.7.4
 >
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+
+Reviewed-by: Gene Chen <gene_chen@richtek.com>
+Thanks
