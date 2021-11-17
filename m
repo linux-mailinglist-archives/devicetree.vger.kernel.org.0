@@ -2,96 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 818514543BF
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 10:29:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A5394543FB
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 10:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233943AbhKQJcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 04:32:01 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:52192
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231582AbhKQJcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 04:32:00 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8C7AC3F19A
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 09:29:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637141341;
-        bh=g6sftRfYoS5K8kCTriz66+zQQzgvVb2wBfDCaV4eUgU=;
-        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-         In-Reply-To:Content-Type;
-        b=PF30djKa5SRkbsiPnkDAUCwJv28dAbT5S5h42BJ5MZbwHdSqyBOiuLQoyqx3WSqzw
-         MApQe99mVQdZceBTsIj7ciJ2Ra8uUmTLZEf/4O3/R3X/MO140Nq4b8UoO1LWZ7+qa/
-         I5pyuZ8GTKnRwC6inD8MDJL14QPI2mVbdl06o7mEa9zcV9nspZE9okAykRJ1Zt5Sqx
-         AXlDtdIYcXOokmEnlXQTaDPv3ib8a8/gxfp7X1HWoaj4IxLkC/DsSUu9n4pPMX59kV
-         U6Ebx9WS+elaq248VPQuD4kih+O7VCTJP8Av409KLvrJGqUL78DsVy0BGB5iEMxnqz
-         6DXVFEkU5K60g==
-Received: by mail-lf1-f71.google.com with SMTP id bp10-20020a056512158a00b0040376f60e35so1075177lfb.8
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 01:29:01 -0800 (PST)
+        id S235432AbhKQJot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 04:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46632 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235527AbhKQJol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 04:44:41 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B91C1C06121D;
+        Wed, 17 Nov 2021 01:41:28 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso4240124wml.1;
+        Wed, 17 Nov 2021 01:41:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VpV9K7y9xbwVeUZlIBpQM+FwHcFAhfT6/Op5MFxhjjE=;
+        b=Ah+gaxAKVXxQYTpyery0Fvw4CYxf+yrRdZeHrkWPgxVQ3m6zCLe5kaXtHHC8uSiVsA
+         P59ptQ5LGo7lZwnwZpUM+rwU/OF4VTArUWuNHxVMk2wRfHCzVSZMg3DD7bxrRtSkMdWa
+         hCd9iFKkiYHzc5E9oy2dJ3ZCIhsr/XOoiuJb3ioOlj+5Pfiz7WIfmBQvVYinFU6WXgo4
+         c3ugHldx8ceRsa9oy7QMzo7Yf1rb+j0FZCH9MoUuAWYglkjDotQhuMYbzvHkb1AssgON
+         1h8Aer7AZE4CpB9s+Sgmxtk7A5NCvTctfkl1Q3rb3Qo3Pwk1whDdn/B0OX0F2mm73ry8
+         zTHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=g6sftRfYoS5K8kCTriz66+zQQzgvVb2wBfDCaV4eUgU=;
-        b=uAdnW41kybAVP7Apx3sUmFE34jOPaI6vh5Z0GO0q4Ahx3+o2OM8nryvmwkK8vwEaR7
-         jq7dChcfft9mVw2UxuTppxrQ4Y6rdjpwFNaFdhpM/gUiQQ5FE+C+NI1EUNBlEXX6hV6P
-         TwLgHiqbAJ8FTMurQB/P6z4gFW279rEDhmiMjoPg5X1a9ORK2MrN5XAo3gmh0AyywspZ
-         IY9x59UaNh4Ku39PbmdVGhdf0sBO3oOQGTG7B+KNorzvOU98btvYPfFGdvVd+RIL+hC9
-         FyhH/GnkCySqSIRCAgM1vmVSqE3KPDQBLLk6DlS7Ej0nqXy2eQ1kg1nVdc6C2PLM0BN2
-         1sGA==
-X-Gm-Message-State: AOAM532R/h3ShBNuh9t1Cvg9qGEG7G5rC/2LEGhFE1ptXNwBW5ueAMTX
-        H3/sxQyUrcGNXzFOafOuPKsbX9vFzVAS8gb+k8FnGLrEbAnUFOjT9QDTU8gBtgX7+H+/Y2uUCMY
-        1MfHa9r+Qsejo6ohC3Xb5Mu+OPYKMBi3A5x6K1Bc=
-X-Received: by 2002:a2e:a591:: with SMTP id m17mr6124182ljp.511.1637141340605;
-        Wed, 17 Nov 2021 01:29:00 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxk3rckhVD3o/KrVz7Fl+GIwyh2oCoLL4QcTE6BtGG9W8Byfyh6HuAtKrO+h4bpUSVl1x+npw==
-X-Received: by 2002:a2e:a591:: with SMTP id m17mr6124171ljp.511.1637141340471;
-        Wed, 17 Nov 2021 01:29:00 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id u16sm1666325lfu.42.2021.11.17.01.28.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Nov 2021 01:29:00 -0800 (PST)
-Message-ID: <1444ff08-24a6-afbe-1512-9ea24ad5b32d@canonical.com>
-Date:   Wed, 17 Nov 2021 10:28:59 +0100
+        bh=VpV9K7y9xbwVeUZlIBpQM+FwHcFAhfT6/Op5MFxhjjE=;
+        b=x/oWYu5lxQISvjZhp9F70bGHdgOoRHLeE7wuXwq5G0gAXjrYl0Rte+qjMYXMfrD3bz
+         lwh8Gpu5ug4YlAFXXWXhL+nBxFpFTPwhO4IIBUWQbhJ3u7n6pC1s8h9Kxyd9brLkNWGx
+         gNJy4j9nFp8D1ACPyMYSsFO0720UFHYuL10tToHHGdl8MDKxxZcYtKt1voEjov0gEgUY
+         kTzDq++OkPozUzAJdHZI5nTF2Xm7iYresqXF42GqDABS9P34HrxnMxdz//aOZsFmvzJJ
+         OqmblH5zP45K/c8je3q9ZpQrmY+6ZB57Xs9yeeiinrEqrdMoiUQqVw1Bk9E8/2Qxt+2S
+         BF0g==
+X-Gm-Message-State: AOAM533vWemUKGEEDy8CGp5NKXxPyxCmR6qhsuUreB/voAmPiCy5CP+c
+        P1xE9O+hjkbpgLzQAiX0ntk=
+X-Google-Smtp-Source: ABdhPJy6bQUEjNtHPqm4RaCwaeXGt2ZQXoRtN0pm6epuTa7oGmyQdGgpt8AZfNxEqhMsjay91G4vuA==
+X-Received: by 2002:a1c:21d7:: with SMTP id h206mr15728874wmh.60.1637142087270;
+        Wed, 17 Nov 2021 01:41:27 -0800 (PST)
+Received: from localhost.localdomain ([87.75.40.14])
+        by smtp.googlemail.com with ESMTPSA id l26sm5694314wms.15.2021.11.17.01.41.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Nov 2021 01:41:26 -0800 (PST)
+From:   Iain Hunter <drhunter95@gmail.com>
+Cc:     iain@hunterembedded.co.uk, Iain Hunter <drhunter95@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] Add binding for IIO ADS1018
+Date:   Wed, 17 Nov 2021 09:40:48 +0000
+Message-Id: <20211117094109.402397-1-drhunter95@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.1
-Subject: Re: [PATCH v2 1/6] riscv: dts: sifive unmatched: Name gpio lines
-Content-Language: en-US
-To:     Vincent Pelletier <plr.vincent@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>
-References: <bb7e8e36425a2c243cfbf03a23af525499268822.1637107062.git.plr.vincent@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <bb7e8e36425a2c243cfbf03a23af525499268822.1637107062.git.plr.vincent@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/11/2021 00:57, Vincent Pelletier wrote:
-> Follow the pin descriptions given in the version 3 of the board schematics.
-> 
-> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
-> 
-> --
-> Changes since v1:
-> - Remove trailing "." on subject line.
-> ---
+v3 has me as suggested maintainer per Daniel's feedback and corrected id
 
-This is not a correct changelog placement - you have to use '---' just
-like git uses it. Just test it yourself and you will see the problem.
+Signed-off-by: Iain Hunter <drhunter95@gmail.com>
+---
+ .../bindings/iio/adc/ti,ads1018.yaml          | 109 ++++++++++++++++++
+ 1 file changed, 109 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
+new file mode 100644
+index 000000000000..14345bfb71dc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
+@@ -0,0 +1,109 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/ti,ads1018.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI ADS1018 4 channel I2C analog to digital converter
++
++maintainers:
++  - Iain Hunter <iain@hunterembedded.co.uk>
++
++description: |
++  Datasheet at: https://www.ti.com/lit/gpn/ads1018
++  Supports both single ended and differential channels.
++
++properties:
++  compatible:
++    const: ti,ads1018
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  "#io-channel-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++patternProperties:
++  "^channel@[0-7]+$":
++    type: object
++    description:
++      Child nodes needed for each channel that the platform uses.
++
++    properties:
++      reg:
++        description: |
++          0: Voltage over AIN0 and AIN1.
++          1: Voltage over AIN0 and AIN3.
++          2: Voltage over AIN1 and AIN3.
++          3: Voltage over AIN2 and AIN3.
++          4: Voltage over AIN0 and GND.
++          5: Voltage over AIN1 and GND.
++          6: Voltage over AIN2 and GND.
++          7: Voltage over AIN3 and GND.
++        items:
++          - minimum: 0
++            maximum: 7
++
++      ti,gain:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 5
++        description: |
++          pga is the programmable gain amplifier (values are full scale)
++          0: +/- 6.144 V
++          1: +/- 4.096 V
++          2: +/- 2.048 V (default)
++          3: +/- 1.024 V
++          4: +/- 0.512 V
++          5: +/- 0.256 V
++
++      ti,datarate:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        minimum: 0
++        maximum: 6
++        description: |
++          Data acquisition rate in samples per second
++          0: 128
++          1: 250
++          2: 490
++          3: 920
++          4: 1600 (default)
++          5: 2400
++          6: 3300
++
++    required:
++      - reg
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@1 {
++            compatible = "ti,ads1018";
++            reg = <0x1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++            channel@4 {
++              reg = <4>;
++              ti,gain = <3>;
++              ti,datarate = <5>;
++            };
++        };
++    };
++...
+-- 
+2.25.1
+
