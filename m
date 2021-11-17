@@ -2,81 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21F95454BD1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:19:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75335454BF2
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:28:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239081AbhKQRWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 12:22:39 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:40290 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhKQRWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:22:38 -0500
-Received: from pendragon.ideasonboard.com (85-76-75-165-nat.elisa-mobile.fi [85.76.75.165])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 52CF1E7;
-        Wed, 17 Nov 2021 18:19:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1637169578;
-        bh=i85HkmfsVufd/ppr7LYU9Ftt+cP5kKVfCIqqo3Ckf1I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KQ3Uw0AtZuJXpID7xp3NjydkJfLwjlOej/d0InW72YeBX9229aUV0oopeULzOzTFx
-         qz2qahSgV++DFvG56+k68h7YAqVHfdqn8I29Ncaggw79MezSkrLCZbkydcG+D4fYV/
-         KV/3BQNIrTPAPajhW+3H8HXi3y1m3IBqUpDUaJRY=
-Date:   Wed, 17 Nov 2021 19:19:12 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     rmfrfs@gmail.com, mchehab@kernel.org, robh@kernel.org,
-        shawnguo@kernel.org, kernel@pengutronix.de, kernel@puri.sm,
-        linux-imx@nxp.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: media: document imx8mq support for
- imx7-csi
-Message-ID: <YZU5kEmHGV9JWqZc@pendragon.ideasonboard.com>
-References: <20211117092710.3084034-1-martin.kepplinger@puri.sm>
- <20211117092710.3084034-2-martin.kepplinger@puri.sm>
+        id S239385AbhKQRbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 12:31:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41924 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237770AbhKQRbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:31:24 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A4EC061570;
+        Wed, 17 Nov 2021 09:28:25 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id z200so2945457wmc.1;
+        Wed, 17 Nov 2021 09:28:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xCAjuM6xrMxdm2CIKZbX9BC7fNzMpEXwSr+NlcFIgXY=;
+        b=PS5HmOY111lxaOKyFH5b7wLUoIO4BkbIWwJWMSbYG+9lI+D9XepvBN4yIdSO22FXET
+         lcsowfM2saoih0R3aQm/0loM9yfqCRB6khY8d1iP9lDM+3tqtAiKsxr5EF4eZ8Xw5BjS
+         b11+/u7HBi10leypAOTxiE6vWIvvE50tvUtpVw91XbWl93OuEwHJkuT7uY7oguiKgq2q
+         7vcnwYWGJi37PiLNGUNcygYLgC7BvONlH0t+xu3cjjSQp683FUb+Xn5d5ids/6N2XLut
+         nLE7I15VjcmNV0RpqMZruHqCwS5sRubsgKNkJo9P6ij91/sQT3u0NaVFDbiu5R8Hpe3q
+         MMvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xCAjuM6xrMxdm2CIKZbX9BC7fNzMpEXwSr+NlcFIgXY=;
+        b=H7vaH9RLjWKAgzj3HUEjO06zxZUukqCuMeBzXqDLaNW+WZW4Jna5I41yoQ0xDvxbpM
+         gawKQTVE+oXYwbnQzqMC5iNJhL0PgX9DntaOBMsAaZTDnQns28tXcanTlZ19zHo/x+QV
+         MF6wbeHxYQmuOB8bxGeMPajM+LGm6B7FaHMPnRrTBP96Q+649Q6wuB1qVF742oHxoWWa
+         pYfCPavm4a2kWAA5yRfm8DKViA+ObV/bn67+g9Q989SZVAvUWlyJTP+7Aqq1gC4dc0oX
+         y1+FUtcKUnWbHtuZq54wQCCNvHFIIVZVittEzpxUtVMU4eU9XQSzk/BZ7xrYF0yO0GAm
+         aXBw==
+X-Gm-Message-State: AOAM532gVCYbLnf/G6akn7+9mJpl7giSfB1Qn8lX3OJCvBfpy02lAO6e
+        mKqShOW2mrxT+QDYVDIGpsk=
+X-Google-Smtp-Source: ABdhPJwl4Lr4z57Y0zAraZ6nqqnmdjjF1I7QV2xUuRwF5x+SjagSG9FFzeJcB7mHvGPWPSqjqhTPsA==
+X-Received: by 2002:a05:600c:253:: with SMTP id 19mr1528602wmj.179.1637170104238;
+        Wed, 17 Nov 2021 09:28:24 -0800 (PST)
+Received: from [192.168.0.18] (static-160-219-86-188.ipcom.comunitel.net. [188.86.219.160])
+        by smtp.gmail.com with ESMTPSA id n8sm464457wrp.95.2021.11.17.09.28.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Nov 2021 09:28:23 -0800 (PST)
+Message-ID: <4a2afd96-49c6-3ee8-bc00-42dbd87a71cb@gmail.com>
+Date:   Wed, 17 Nov 2021 18:28:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211117092710.3084034-2-martin.kepplinger@puri.sm>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH RESEND] arm64: dts: mediatek: mt8516: remove 2 invalid i2c
+ clocks
+Content-Language: en-US
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20211110193520.488-1-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20211110193520.488-1-fparent@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
 
-Thank you for the patch.
 
-On Wed, Nov 17, 2021 at 10:27:10AM +0100, Martin Kepplinger wrote:
-> Add the fsl,imx8mq-csi compatible string to the bindings for nxp,imx7-csi
-> since the driver explicitly handles that now.
-
-The commit message should describe why a different compatible string is
-needed, without mentioning the driver, as DT bindings are not
-driver-dependent.
-
-With that fixed,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml | 1 +
->  1 file changed, 1 insertion(+)
+On 10/11/2021 20:35, Fabien Parent wrote:
+> The two clocks "main-source" and "main-sel" are not present in the
+> driver and not defined in the binding documentation. Remove them
+> as they are not used and not described in the documentation.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> index 5922a2795167..4f7b78265336 100644
-> --- a/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> +++ b/Documentation/devicetree/bindings/media/nxp,imx7-csi.yaml
-> @@ -17,6 +17,7 @@ properties:
->    compatible:
->      oneOf:
->        - enum:
-> +          - fsl,imx8mq-csi
->            - fsl,imx7-csi
->            - fsl,imx6ul-csi
->        - items:
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
--- 
-Regards,
+Applied to v5.16-next/dts64
 
-Laurent Pinchart
+thanks
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8516.dtsi | 27 ++++++------------------
+>   1 file changed, 6 insertions(+), 21 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8516.dtsi b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> index bbe5a1419eff..d1b67c82d761 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> @@ -345,14 +345,9 @@ i2c0: i2c@11009000 {
+>   			reg = <0 0x11009000 0 0x90>,
+>   			      <0 0x11000180 0 0x80>;
+>   			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_LOW>;
+> -			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+> -				 <&infracfg CLK_IFR_I2C0_SEL>,
+> -				 <&topckgen CLK_TOP_I2C0>,
+> +			clocks = <&topckgen CLK_TOP_I2C0>,
+>   				 <&topckgen CLK_TOP_APDMA>;
+> -			clock-names = "main-source",
+> -				      "main-sel",
+> -				      "main",
+> -				      "dma";
+> +			clock-names = "main", "dma";
+>   			#address-cells = <1>;
+>   			#size-cells = <0>;
+>   			status = "disabled";
+> @@ -364,14 +359,9 @@ i2c1: i2c@1100a000 {
+>   			reg = <0 0x1100a000 0 0x90>,
+>   			      <0 0x11000200 0 0x80>;
+>   			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_LOW>;
+> -			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+> -				 <&infracfg CLK_IFR_I2C1_SEL>,
+> -				 <&topckgen CLK_TOP_I2C1>,
+> +			clocks = <&topckgen CLK_TOP_I2C1>,
+>   				 <&topckgen CLK_TOP_APDMA>;
+> -			clock-names = "main-source",
+> -				      "main-sel",
+> -				      "main",
+> -				      "dma";
+> +			clock-names = "main", "dma";
+>   			#address-cells = <1>;
+>   			#size-cells = <0>;
+>   			status = "disabled";
+> @@ -383,14 +373,9 @@ i2c2: i2c@1100b000 {
+>   			reg = <0 0x1100b000 0 0x90>,
+>   			      <0 0x11000280 0 0x80>;
+>   			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_LOW>;
+> -			clocks = <&topckgen CLK_TOP_AHB_INFRA_D2>,
+> -				 <&infracfg CLK_IFR_I2C2_SEL>,
+> -				 <&topckgen CLK_TOP_I2C2>,
+> +			clocks = <&topckgen CLK_TOP_I2C2>,
+>   				 <&topckgen CLK_TOP_APDMA>;
+> -			clock-names = "main-source",
+> -				      "main-sel",
+> -				      "main",
+> -				      "dma";
+> +			clock-names = "main", "dma";
+>   			#address-cells = <1>;
+>   			#size-cells = <0>;
+>   			status = "disabled";
+> 
