@@ -2,113 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD974540A2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 07:06:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 918BC4540D4
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 07:21:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233058AbhKQGJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 01:09:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54300 "EHLO
+        id S233567AbhKQGYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 01:24:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbhKQGJV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 01:09:21 -0500
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 144F0C061570;
-        Tue, 16 Nov 2021 22:06:23 -0800 (PST)
-Received: by mail-qv1-xf30.google.com with SMTP id m17so1273823qvx.8;
-        Tue, 16 Nov 2021 22:06:23 -0800 (PST)
+        with ESMTP id S233562AbhKQGYC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 01:24:02 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CA4DC061746
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 22:21:04 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso2916719otj.1
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 22:21:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=exxQZeTlLjwyYOEXvP2J7ckZPmIHzoNG3ykObH7i1Jg=;
-        b=Xa5f5PaU6GwK+axztDEsAzgk22vSmE794lLj4cFjYWA/uhyo3wOod3NyMQUuDvuN3j
-         RjeoTU1HsdGxqm1LlfItecJJ9wBftlAUgQohX9WD01hsqldml9/5T9l7sCi+I94N2jl9
-         GKca4147Fl74hQzyY/UGIRKGDkAbjLIUEGRRs=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=02STHSCJ+jlfTWifoEAhvcHaf43ykG6Mrv7Wewp8ywE=;
+        b=ts+ssPefBnK/b0xWWGyuIHXzQvtf0bKkDpcKwhHFgCAOipm9TZROyc5ycNCt79uxos
+         7bc/7L8DdLy6AXP2HysL6ftcAx9in+/YQDC2IO1ckXG2c5GIhwUB4oe1ZgGnj7zomIiF
+         DLWEllyBlxgcgDr7FS1D/WMLD3eJZtaIgT7TnYIQXFv67Tyjt8gG/B8YzprE/HmF4tj8
+         pT8zicMULnJARBOTf3Nt8JDUQ72vbq5ZeHjX/NnEX/2EX1sidEnivE/WfaTp8AwqlHvi
+         51OY1/2ysPEZzxANAPd9nuDV2yRVtS3gcqQj/nG9GcSO8qUi6DkpnQnKFMIeGN1S4SWt
+         /BMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=exxQZeTlLjwyYOEXvP2J7ckZPmIHzoNG3ykObH7i1Jg=;
-        b=u4VaBF8z/LXpJiSIBE5kDlpuWntbwKQggsHM36wLCQQEe17VXjTFVRxyyL4Tv0Xlyx
-         6V4ODMOr69H20bsRioDVwuofq+n0+7j8FZExFZXHv2g5w811VZ6vT13TTR9STAoR+Br4
-         0zC9PQXfElVjO2VrnMYt5lG7zIrLOBukxikgvXjtxkrzRPx0Uch7fsf4dak8QLG5ECCV
-         DN/ouKSBZu5yPnMFPbflFBSUcWdCJQO04BjaA1JOlVhwo2j/7AxUdqwUq72BsAjM6GK7
-         vmK1SzvZ69y591OxguuZ02U/BpEZx4kwUsYU4fKn+0+LgdzGlsVFJSgt3KvN0YzV38nB
-         WeVw==
-X-Gm-Message-State: AOAM533u1PD7cyvFAqepS//iImlEHMgRkzBTe10nIqLtvIb2627isHnr
-        igYKSWPGJ7mo+oU8uzmsgwJP6Pw31K11a7Hga/E=
-X-Google-Smtp-Source: ABdhPJyy+O6dLRTx7HA3aDStqUGjsNbJahcCfn9Mfvr+JYEnDxr5XxCFJ999s+LaaSrJJJfMSMqhU+u5CKh8Spk7Ztk=
-X-Received: by 2002:a0c:eb90:: with SMTP id x16mr52902167qvo.41.1637129182078;
- Tue, 16 Nov 2021 22:06:22 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=02STHSCJ+jlfTWifoEAhvcHaf43ykG6Mrv7Wewp8ywE=;
+        b=DLss2CQu+UWPB1oQWyLQX9gcdU3075WALvMMjT2T24tGJxmwZfwq/LSDe0doeiQMO5
+         Dj4VvRPCJguk/zAbcGcryEYkx3ClrHTnM8Jp9XJ3yZBoXIS10X80wChNfeMuU0Pr+X1r
+         m8m5p2auSsuSbpff049WOWdjNP71bVk2IKimuwOshg3K7xJ5X0XX5CsdRn4mEYqYs8Ni
+         nO/ZEdmymxntYTsyNWUcSNohV/3p49v6jbca0ykifFYAhBxECEeHTPydJZWOp8sfI6Hu
+         VvFi/MJ5OZySgpwtDR8/eul2TNNJVwHe8sC2o7eAHeAzC5C7/xRTWMDqPPGnsOSlj94D
+         29sQ==
+X-Gm-Message-State: AOAM5306ZOa2z6UZNaVr5S0h4BB8KV+if8/MGuak5YB9m+QsTmJjg9So
+        Y/Lbdip7H+kzdEMTB19IpaGIuw==
+X-Google-Smtp-Source: ABdhPJyosdYfUTLZJbq491fRXwcpGZHjZtnVxZZx9dDPfScH/FG3mEvQ3JbD4RMslrC2fwzcxo7amQ==
+X-Received: by 2002:a9d:6304:: with SMTP id q4mr10991214otk.290.1637130063455;
+        Tue, 16 Nov 2021 22:21:03 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id h14sm4128983ots.22.2021.11.16.22.21.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 22:21:03 -0800 (PST)
+Date:   Wed, 17 Nov 2021 00:20:58 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Katherine Perez <kaperez@linux.microsoft.com>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 0/4] arm64: dts: qcom: sm8150: display support for
+ Microsoft Surface Duo
+Message-ID: <YZSfSgz/ALWTfLQ5@builder.lan>
+References: <20211117013516.4111383-1-kaperez@linux.microsoft.com>
 MIME-Version: 1.0
-References: <20211117054518.3555-1-tommy_huang@aspeedtech.com>
-In-Reply-To: <20211117054518.3555-1-tommy_huang@aspeedtech.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 17 Nov 2021 06:06:10 +0000
-Message-ID: <CACPK8XdUHZBAwcwT96Su+Fa_nenYSa75vCNpskh864Cvx04y8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Add Aspeed AST2600 soc display support
-To:     tommy-huang <tommy_huang@aspeedtech.com>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211117013516.4111383-1-kaperez@linux.microsoft.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Nov 2021 at 05:45, tommy-huang <tommy_huang@aspeedtech.com> wrote:
->
-> v3:
->   Refine the patch for clear separate purpose.
->   Skip to send devicetree patch
+On Tue 16 Nov 19:35 CST 2021, Katherine Perez wrote:
 
-Thanks Tommy. A few things:
+> Hi Bjorn and Vinod,
+> 
+> I'm trying to enable the display subsystem on SM8150 but am having
+> trouble enabling the DISP_CC_MDSS_AHB_CLK. Trace shows "disp_cc_mdss_ahb_clk
+> status stuck at off". Do you have any pointers on enabling this clock?
+> 
 
- - Set up your authorship in git:
+Hi Katherine,
 
- git config --global user.name "Tommy Haung"
+This looks quite similar to an issue I'm chasing the past few days on
+the sc8180x platform (which is derived from sm8150).
 
-- The "Add AST2600 chip support" patch is the same as the one I sent,
-you can put mine back in your series now
+The problem seems to come down to the fact that we're not holding the
+MMCX power-domain at a high enough performance_state through the boot
+process and in contrast with other platforms these two are stricter in
+their requirements.
 
-- We should add a device tree bindings document
+For these platforms, the essence of the solution is that we need to hold
+MMCX at nominal as long as there's display clocks ticking at high speed,
+unfortunately there doesn't seem to be any quick way to achieve this -
+so I now have a handful of patches that fix various aspects of this
+issue, but not something reliable enough to post just yet.
 
-Can you confirm you tested these changes on both the ast2500 and the
-ast2600? How did you test?
+Regards,
+Bjorn
 
-Cheers,
-
-Joel
-
-
->
-> v2:
->   Remove some unnecessary patch.
->   Refine for reviwer request.
->
-> v1:
->   First add patch.
->
-> Joel Stanley (2):
->   ARM: dts: aspeed: Add GFX node to AST2600
->   ARM: dts: aspeed: ast2600-evb: Enable GFX device
->
-> tommy-huang (2):
->   drm/aspeed: Update INTR_STS handling
->   drm/aspeed: Add AST2600 chip support
->
->  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 18 ++++++++++++++++++
->  arch/arm/boot/dts/aspeed-g6.dtsi         | 11 +++++++++++
->  drivers/gpu/drm/aspeed/aspeed_gfx.h      |  1 +
->  drivers/gpu/drm/aspeed/aspeed_gfx_drv.c  | 15 ++++++++++++++-
->  4 files changed, 44 insertions(+), 1 deletion(-)
->
+> msm_dsi_phy ae94400.dsi-phy: [drm:dsi_phy_driver_probe [msm]] *ERROR* dsi_phy_driver_probe: Unable to get ahb clk
+> disp_cc-sm8250 af00000.clock-controller: supply mmcx not found, using dummy regulator
+> platform ae96000.dsi: Fixing up cyclic dependency with ae00000.mdss:mdp@ae010000
+> ------------[ cut here ]------------
+> disp_cc_mdss_ahb_clk status stuck at 'off'
+> WARNING: CPU: 6 PID: 76 at drivers/clk/qcom/clk-branch.c:91 clk_branch_wait+0x14c/0x164
+> CPU: 6 PID: 76 Comm: kworker/u16:2 Not tainted 5.15.0 #17
+> Hardware name: Microsoft Surface Duo (DT)
+> Workqueue: events_unbound deferred_probe_work_func
+> pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> pc : clk_branch_wait+0x14c/0x164
+> lr : clk_branch_wait+0x14c/0x164
+> sp : ffff80001078ba40
+> x29: ffff80001078ba40 x28: 0000000000000000 x27: ffff65e6008e2100
+> x26: ffffb8630ec8e278 x25: ffff65e60005e005 x24: ffffb8630ebc0f98
+> x23: ffffb8630e234dd8 x22: 0000000000000001 x21: ffffb8630d5b8b60
+> x20: 0000000000000000 x19: ffffb8630eb5e7b8 x18: 0000000000000030
+> x17: 2e726f74616c7567 x16: ffffb8630d5a3800 x15: ffffffffffffffff
+> x14: 0000000000000000 x13: 6f27207461206b63 x12: 7574732073757461
+> x11: 77705f313439386d x10: 0000000000000027 x9 : ffffb8630cf974bc
+> x8 : 0000000000000027 x7 : 0000000000000002 x6 : 0000000000000027
+> x5 : ffff65e6f93cc9a8 x4 : ffff80001078b890 x3 : 0000000000000001
+> x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff65e600851d80
+> Call trace:
+>  clk_branch_wait+0x14c/0x164
+>  clk_branch2_enable+0x3c/0x60
+>  clk_core_enable+0x78/0x220
+>  clk_enable+0x38/0x60
+>  dsi_phy_enable_resource+0x98/0xac [msm]
+>  dsi_phy_driver_probe+0x29c/0x4f8 [msm]
+>  platform_probe+0x74/0xe4
+>  really_probe.part.0+0xa4/0x328
+>  __driver_probe_device+0xa0/0x150
+>  driver_probe_device+0x4c/0x164
+>  __device_attach_driver+0xc0/0x128
+>  bus_for_each_drv+0x84/0xe0
+>  __device_attach+0xe0/0x188
+>  device_initial_probe+0x20/0x2c
+>  bus_probe_device+0xa8/0xbc
+>  deferred_probe_work_func+0x90/0xc8
+>  process_one_work+0x1f4/0x43c
+>  worker_thread+0x78/0x4f0
+>  kthread+0x154/0x160
+>  ret_from_fork+0x10/0x20
+> ---[ end trace 734ed75908fc6b0e ]---
+> 
+> Katherine Perez (4):
+>   arm64: dts: qcom: sm8150: add dispcc node
+>   arm64: dts: qcom: sm8150: add display nodes
+>   arm64: dts: qcom: sm8150: add DSI display nodes
+>   arm64: dts: qcom: sm8150: display support for Microsoft Surface Duo
+> 
+>  .../dts/qcom/sm8150-microsoft-surface-duo.dts |  26 ++
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi          | 292 ++++++++++++++++++
+>  2 files changed, 318 insertions(+)
+> 
 > --
-> 2.17.1
->
+> 2.31.1
+> 
