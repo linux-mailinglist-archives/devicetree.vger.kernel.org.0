@@ -2,238 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6091C45444E
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 10:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9C7A4544B9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 11:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235406AbhKQJ7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 04:59:24 -0500
-Received: from mail-dm6nam11on2087.outbound.protection.outlook.com ([40.107.223.87]:35456
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S235719AbhKQJ7X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 04:59:23 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kei0xEHvHbfrAHIUnBxTHi+S3kenv2GZS2u5uQU7/JBXqxoYZ/jJX1cdvbm2tx7oKURES4Sh3n2AN+NLrjKidKR6AeYzviRnc0w44IH8zLpEzle7ZMmKmAQn37+caPiFytkfUb0Ykb7jLU68bNHyg/n2FvIOgiyGwR75+m7SBayQElYwUD2yosRUPKuY+QZc9ENpEGdqQGGGaJ9h9/7fu+B5iv8IurvAVNii2y0ywQ+Lpwp5xRPBY5WY5FWnAcMPT5afQSYGQWIf5VRIqO44vDbwEZOkNTMPdo6YbYl9BdHuP1yA/Z7+BoYYj6syACm5h1sGYymCi02RoVTWcd3Meg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zn5Q8bh8jYStsvRCO/wZ+ql/12lFOmpC5TY/9K6oM/0=;
- b=RypWQkAnOXYX3THKpQ6Wq+G5N7x8zOswPKWKXL2g4EwvOaHmy6aFBVCdSSikheUA+Qu/IqFSxdAi36yK18wYpQIeF+jwQANHaxortr8Gfky9bWRMNtVQ+2tnegGAD3ryvfJuRV+FrJnAx9nAUVaD/guovdc+gUGe/FAn7feLAabi0WL9sJ9KrJKjGlDg+5wp+ImmKfwLe/1S5uTwTHIVo+/J+JEMY9MgH3JUzoWHRAn61vsLk3QKckhpjc0YGb1nmmwpK/Gf1gG4ScZUlXjB7bjbiS7CMpwGI+xVjFyl8Js0R9VcI+ivKCjHzRQGsP0v5biSm//LaoNil9dCZNRZNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.34) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zn5Q8bh8jYStsvRCO/wZ+ql/12lFOmpC5TY/9K6oM/0=;
- b=iWNSep2jTWvZFxn870/rBnE7Bq3Dggrb9x1Mje9JUqnjXaL5BJOSTu4hizKObM9QJ+OnnMDiMkA5+3GmoiXyE+HeyuhBnrp+6lCw61KezAizN7HC4hL7L7J3di5Ee1w8XR78fbvwHHjV2qTDiqJVHi+wir56ELxO16x3Kw9JLMFplA7EvmohmX4jTLmJqFgBAlgbd+j4gj4LkGo46VjQjj6WA8lJl6v+IxPfYTI+505seGxdGhKlluX49U5X8ln4Js5mn2QdvqSUwMPyLSmksjFGCw33HkttJk9ibhMg2TzZWm51bdMgU2b9JwPnFgugYoNvgCUCNFv6rzD1x3vUUg==
-Received: from BN0PR03CA0039.namprd03.prod.outlook.com (2603:10b6:408:e7::14)
- by BY5PR12MB4115.namprd12.prod.outlook.com (2603:10b6:a03:20f::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Wed, 17 Nov
- 2021 09:56:23 +0000
-Received: from BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:e7:cafe::7f) by BN0PR03CA0039.outlook.office365.com
- (2603:10b6:408:e7::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.26 via Frontend
- Transport; Wed, 17 Nov 2021 09:56:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.34)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.34 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.34; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.34) by
- BN8NAM11FT032.mail.protection.outlook.com (10.13.177.88) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4690.15 via Frontend Transport; Wed, 17 Nov 2021 09:56:23 +0000
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 17 Nov
- 2021 09:56:22 +0000
-Received: from moonraker.nvidia.com (172.20.187.6) by mail.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Wed, 17 Nov 2021 09:56:20 +0000
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH V3 2/2] arm64: tegra: Add NVENC and NVJPG nodes for Tegra186 and Tegra194
-Date:   Wed, 17 Nov 2021 09:56:08 +0000
-Message-ID: <20211117095608.60415-2-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211117095608.60415-1-jonathanh@nvidia.com>
-References: <20211117095608.60415-1-jonathanh@nvidia.com>
+        id S236095AbhKQKNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 05:13:54 -0500
+Received: from mail-ua1-f44.google.com ([209.85.222.44]:37814 "EHLO
+        mail-ua1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236071AbhKQKNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 05:13:53 -0500
+Received: by mail-ua1-f44.google.com with SMTP id o1so4706394uap.4;
+        Wed, 17 Nov 2021 02:10:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qevdWOqC+tLNVkrAWY5Ram6wKwTTrGq6c/WGLRh1MTs=;
+        b=JHeDgYBoobloEOzmS4UsTslPHFV5UL8l84pQoXJowfSE7B1ycW9Vif7aX3DbyGEa+6
+         jdSnvJUVrCsqqWwWjaVHxlB1oDkXkK765o9RQnT7vIGPjoJ1I4OT7tlqliQBA8SZU8bp
+         kV2jxkKASgk9PiQ6XCf/DXfGVK77qHT/HRdqkzc+Q6rz1ZRAi8KAw01cyEZNVFVqGAfk
+         KB4raA+Z2UnDuATLq2LKqioYwb/Rbu4yxib00IiKHqCyy7q7yqErsueD9L6enpTQVN4R
+         aPpTIHSX20MDYBQgDfVOQuGnTu6BWdoqpq2121VFXO6s9Uk3507HpJlC20joqosl3YsD
+         ZJOw==
+X-Gm-Message-State: AOAM531HdK9XcQJ5UGm7lTDOAuQO4myOpDMQlMBA5NQXRuixBBWmadF0
+        6JPWbrIJ4VLM7WNOlbkNP8CyFBxMdZvktQ==
+X-Google-Smtp-Source: ABdhPJz2IKejb+wBnv4SXliW3evzzzQtJ688e1/e9Ys3/LihZNn1vJlFel5SHVKVIQBiKdbm24OO1g==
+X-Received: by 2002:a67:d61d:: with SMTP id n29mr67070534vsj.52.1637143854405;
+        Wed, 17 Nov 2021 02:10:54 -0800 (PST)
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com. [209.85.221.175])
+        by smtp.gmail.com with ESMTPSA id l24sm11528127vkk.37.2021.11.17.02.10.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Nov 2021 02:10:54 -0800 (PST)
+Received: by mail-vk1-f175.google.com with SMTP id e64so1300450vke.4;
+        Wed, 17 Nov 2021 02:10:54 -0800 (PST)
+X-Received: by 2002:a05:6122:20ab:: with SMTP id i43mr86278652vkd.19.1637143853825;
+ Wed, 17 Nov 2021 02:10:53 -0800 (PST)
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a734b90b-6208-4bcf-5834-08d9a9b08360
-X-MS-TrafficTypeDiagnostic: BY5PR12MB4115:
-X-Microsoft-Antispam-PRVS: <BY5PR12MB4115BEA4905350AD1B685922D99A9@BY5PR12MB4115.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: AwAJHm3+SMly8l6s2y4HiuwvjaS5ByFmMoeFuPWz9yJ0s+FQarfg+vNyJRSESBm1RVPk3HhiM7fJ1gys/85FRKlg+LIM7MCRjgEES5lJSynv+uewHsYaWOelHzFVu8qtoh9VUZHIv9OsCN4KXuhFUIFyKTIlyclplOnnX5NeWAeVcTvbfo5nfNi1QhFyjGx3xRA9M1qTF99NJ4To4NsO+JK8Mmzd73XxJGxmEsPKBSD8TgyqQC8w74QcwyMjbsnuF3MSn2MLqnhB5XTN9DMmqq0jlxvK/33g4Y4KTsEohUGOWdM7w4VTkYbd9QEQlFiFc336FT7y4QgFl36rdfHZy2yVZdnPlrLCdk/L8vS7T5J0nS80wtCkwD5ULdfdeKCkpvFLpHXSUttCr2z18ibUK767gdmus0DM4147ZD4Oo8MuNtw1b6Nu+57Fs4fpCA4NIaOC1XYgjqu6E1vXvgNb+fH9bK4MMUCUXesDfb9E9U4bpEjPhaawGoj/24GMa2xKz0Ah3ASJL8UIgs5nh0G+YSUn6pnB977fWa3M+0LBaBOmUZGSBKWLyvpCo+LnZkZ8EMlRXRr6NaWBdFbC3YgjJj3/NMg8BEExtCLFUOdq/jyPr2g5dbBAXxPokgxwEnqj1bVQGlednhxVNJxpfC/Jc9bQ6e0K4X57vAOpv/rm6Toh6Ey0vb+/j8O8RYEwy1fiuXiKlHZ9m9HtVwUSC0Pd1A==
-X-Forefront-Antispam-Report: CIP:216.228.112.34;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid03.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(6666004)(70586007)(107886003)(36756003)(36906005)(4326008)(316002)(336012)(186003)(426003)(47076005)(8936002)(7696005)(508600001)(36860700001)(2906002)(70206006)(54906003)(110136005)(86362001)(5660300002)(8676002)(2616005)(82310400003)(26005)(1076003)(83380400001)(7636003)(6636002)(356005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2021 09:56:23.1244
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a734b90b-6208-4bcf-5834-08d9a9b08360
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.34];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT032.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4115
+References: <20211117011247.27621-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211117011247.27621-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211117011247.27621-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 17 Nov 2021 11:10:42 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVbd4e=Z4+s3VOTCSwitdG=wYV8M+MotWBiK=HwhwuopA@mail.gmail.com>
+Message-ID: <CAMuHMdVbd4e=Z4+s3VOTCSwitdG=wYV8M+MotWBiK=HwhwuopA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: rzg2l-smarc: Enable RSPI1 on
+ carrier board
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate the device-tree nodes for NVENC and NVJPG Host1x engines on
-Tegra186 and Tegra194.
+Hi Prabhakar,
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
-Changes since V1:
-- None
+On Wed, Nov 17, 2021 at 2:12 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> RSPI1 (SPI1) interface is available on PMOD0 connector (J1) on carrier
+> board, This patch adds pinmux and spi1 node to carrier board dtsi file.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
- arch/arm64/boot/dts/nvidia/tegra186.dtsi | 30 +++++++++++++
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 54 ++++++++++++++++++++++++
- 2 files changed, 84 insertions(+)
+Thanks for your patch!
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index 9ac4f0140700..f21cfcaab2a6 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -1538,6 +1538,21 @@ vic@15340000 {
- 			iommus = <&smmu TEGRA186_SID_VIC>;
- 		};
- 
-+		nvjpg@15380000 {
-+			compatible = "nvidia,tegra186-nvjpg";
-+			reg = <0x15380000 0x40000>;
-+			clocks = <&bpmp TEGRA186_CLK_NVJPG>;
-+			clock-names = "nvjpg";
-+			resets = <&bpmp TEGRA186_RESET_NVJPG>;
-+			reset-names = "nvjpg";
-+
-+			power-domains = <&bpmp TEGRA186_POWER_DOMAIN_NVJPG>;
-+			interconnects = <&mc TEGRA186_MEMORY_CLIENT_NVJPGSRD &emc>,
-+					<&mc TEGRA186_MEMORY_CLIENT_NVJPGSWR &emc>;
-+			interconnect-names = "dma-mem", "write";
-+			iommus = <&smmu TEGRA186_SID_NVJPG>;
-+		};
-+
- 		dsib: dsi@15400000 {
- 			compatible = "nvidia,tegra186-dsi";
- 			reg = <0x15400000 0x10000>;
-@@ -1569,6 +1584,21 @@ nvdec@15480000 {
- 			iommus = <&smmu TEGRA186_SID_NVDEC>;
- 		};
- 
-+		nvenc@154c0000 {
-+			compatible = "nvidia,tegra186-nvenc";
-+			reg = <0x154c0000 0x40000>;
-+			clocks = <&bpmp TEGRA186_CLK_NVENC>;
-+			clock-names = "nvenc";
-+			resets = <&bpmp TEGRA186_RESET_NVENC>;
-+			reset-names = "nvenc";
-+
-+			power-domains = <&bpmp TEGRA186_POWER_DOMAIN_MPE>;
-+			interconnects = <&mc TEGRA186_MEMORY_CLIENT_NVENCSRD &emc>,
-+					<&mc TEGRA186_MEMORY_CLIENT_NVENCSWR &emc>;
-+			interconnect-names = "dma-mem", "write";
-+			iommus = <&smmu TEGRA186_SID_NVENC>;
-+		};
-+
- 		sor0: sor@15540000 {
- 			compatible = "nvidia,tegra186-sor";
- 			reg = <0x15540000 0x10000>;
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index 1adf076526c8..9586af9a100b 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -1782,6 +1782,22 @@ vic@15340000 {
- 				dma-coherent;
- 			};
- 
-+			nvjpg@15380000 {
-+				compatible = "nvidia,tegra194-nvjpg";
-+				reg = <0x15380000 0x40000>;
-+				clocks = <&bpmp TEGRA194_CLK_NVJPG>;
-+				clock-names = "nvjpg";
-+				resets = <&bpmp TEGRA194_RESET_NVJPG>;
-+				reset-names = "nvjpg";
-+
-+				power-domains = <&bpmp TEGRA194_POWER_DOMAIN_NVJPG>;
-+				interconnects = <&mc TEGRA194_MEMORY_CLIENT_NVJPGSRD &emc>,
-+						<&mc TEGRA194_MEMORY_CLIENT_NVJPGSWR &emc>;
-+				interconnect-names = "dma-mem", "write";
-+				iommus = <&smmu TEGRA194_SID_NVJPG>;
-+				dma-coherent;
-+			};
-+
- 			nvdec@15480000 {
- 				compatible = "nvidia,tegra194-nvdec";
- 				reg = <0x15480000 0x00040000>;
-@@ -1801,6 +1817,25 @@ nvdec@15480000 {
- 				nvidia,host1x-class = <0xf0>;
- 			};
- 
-+			nvenc@154c0000 {
-+				compatible = "nvidia,tegra194-nvenc";
-+				reg = <0x154c0000 0x40000>;
-+				clocks = <&bpmp TEGRA194_CLK_NVENC>;
-+				clock-names = "nvenc";
-+				resets = <&bpmp TEGRA194_RESET_NVENC>;
-+				reset-names = "nvenc";
-+
-+				power-domains = <&bpmp TEGRA194_POWER_DOMAIN_NVENCA>;
-+				interconnects = <&mc TEGRA194_MEMORY_CLIENT_NVENCSRD &emc>,
-+						<&mc TEGRA194_MEMORY_CLIENT_NVENCSRD1 &emc>,
-+						<&mc TEGRA194_MEMORY_CLIENT_NVENCSWR &emc>;
-+				interconnect-names = "dma-mem", "read-1", "write";
-+				iommus = <&smmu TEGRA194_SID_NVENC>;
-+				dma-coherent;
-+
-+				nvidia,host1x-class = <0x21>;
-+			};
-+
- 			dpaux0: dpaux@155c0000 {
- 				compatible = "nvidia,tegra194-dpaux";
- 				reg = <0x155c0000 0x10000>;
-@@ -1937,6 +1972,25 @@ i2c-bus {
- 				};
- 			};
- 
-+			nvenc@15a80000 {
-+				compatible = "nvidia,tegra194-nvenc";
-+				reg = <0x15a80000 0x00040000>;
-+				clocks = <&bpmp TEGRA194_CLK_NVENC1>;
-+				clock-names = "nvenc";
-+				resets = <&bpmp TEGRA194_RESET_NVENC1>;
-+				reset-names = "nvenc";
-+
-+				power-domains = <&bpmp TEGRA194_POWER_DOMAIN_NVENCB>;
-+				interconnects = <&mc TEGRA194_MEMORY_CLIENT_NVENC1SRD &emc>,
-+						<&mc TEGRA194_MEMORY_CLIENT_NVENC1SRD1 &emc>,
-+						<&mc TEGRA194_MEMORY_CLIENT_NVENC1SWR &emc>;
-+				interconnect-names = "dma-mem", "read-1", "write";
-+				iommus = <&smmu TEGRA194_SID_NVENC1>;
-+				dma-coherent;
-+
-+				nvidia,host1x-class = <0x22>;
-+			};
-+
- 			sor0: sor@15b00000 {
- 				compatible = "nvidia,tegra194-sor";
- 				reg = <0x15b00000 0x40000>;
--- 
-2.25.1
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> @@ -31,6 +31,7 @@
+>                 i2c0 = &i2c0;
+>                 i2c1 = &i2c1;
+>                 i2c3 = &i2c3;
+> +               spi1 = &spi1;
 
+Do you mind if I drop this while applying?
+
+>         };
+>
+>         chosen {
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.17.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
