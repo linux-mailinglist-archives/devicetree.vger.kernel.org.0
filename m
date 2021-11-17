@@ -2,180 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEF16454F82
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 22:41:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A42455049
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 23:18:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240394AbhKQVoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 16:44:00 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:33460 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240640AbhKQVnz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 16:43:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637185256; x=1668721256;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=27nbSQ7gN1tPViPmDsvKhjsUvLmCDX41GQ6XMHIbi4o=;
-  b=FY5TSpJFEwmzPWsZUgbtzqP8dc+DflCs4isOoyyZ4/wtuU5418IjkHxt
-   FW4W0it+Io7Fr6tyOTiQQcRh2X2OzefVgxzo5YEFRm9b1YBOH82k4vvbd
-   Bi9S2YhxYOYc40pPHLGDFB26cGLRWCJP4kqjdUP/LKyDMhRmW25o+PWH4
-   3Ql3WyDHsa2zP/Gmglupvm/pKaSnhX1bLwnWlUtAr6YBNQM4HLTF2xlRO
-   zYfOHcinQp5sf0MyT0YerrtEfu2YGjafDIEBHyji1IR+IeEUD9uavDkNa
-   5KtxlV9+ghnRWJYaYbZYmzT3lCO6ucksOtn+Dv4632PKG/OZT0eES3tkb
-   w==;
-IronPort-SDR: CB+195Istl/ha0rjIkv51y1sHkrscSKmAn7T9Z4K7u1l8NX/Ag4OmpTchx8L+RCWnmtz9yahPw
- VziwOGjsAgNJPGF+zAdi0kakrIAHkhCHWrmeYj2tHEHU8KboZyyfkQdwsWt7CE6NqgHGefFOba
- S8LUaDAWAu1Ph9xAvWWouOby+A5Fkdw2lJEv6jx/dFzYfNawwD30JcVsO40Nf7uOYMyqiPRSIb
- tio8aLW1umykkiHnNBvj91tDum2Gb2yJdi6UHGzpdf50LPR6KIWeOi4lZj7aaWYCo/BDVgevdS
- FwVi9ZgSQs4GsGEA0pzKkgL9
-X-IronPort-AV: E=Sophos;i="5.87,243,1631602800"; 
-   d="scan'208";a="76789820"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Nov 2021 14:40:54 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 17 Nov 2021 14:40:44 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Wed, 17 Nov 2021 14:40:44 -0700
-Date:   Wed, 17 Nov 2021 22:42:31 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 2/5] net: lan966x: add the basic lan966x driver
-Message-ID: <20211117214231.yiv2s6nxl6yx4klq@soft-dev3-1.localhost>
-References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
- <20211117091858.1971414-3-horatiu.vultur@microchip.com>
- <9ab98fba364f736b267dbd5e1d305d3e8426e877.camel@pengutronix.de>
+        id S241131AbhKQWVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 17:21:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51410 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241100AbhKQWVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 17:21:12 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB12C061570;
+        Wed, 17 Nov 2021 14:18:13 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id y12so17611523eda.12;
+        Wed, 17 Nov 2021 14:18:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=uwaJGhx917BJGzmEA12X6fG6XxZWYSzTmRZkffjSJ9A=;
+        b=boPWvSAdRPsQcp1xrzCbOVLo6NvHJXRgB/uBhddLwm4vOztoJbDBHUFAg+9qNx/mIl
+         5OnQdDVbzgCYRSnSIuTxyCnZR6yzDB+FAsoJQ7wytbT94AKMT8QsIEoiittY3nve0oRI
+         Md1xWZhxdISj/QA5eSDWrsvjRfI5EWP06wQHaAIEAu628KxflvuzG3/LYfAKj+WHgeWc
+         JXhEtOyDJKkl59yXejYAPuPVMfpTdNcOHOr8vWMqCjU29TlhQLKh/Ks2fYN3OaagZftI
+         gYVt59QWip+XUyWuRfleqWbamEt1GeRWPuAlo8ur/kXLQX9GE3vyt572oGKLzaPFlHuz
+         hLrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=uwaJGhx917BJGzmEA12X6fG6XxZWYSzTmRZkffjSJ9A=;
+        b=HGpIlCZmuzvQrhoKUqMH2xxvfDZ2RT153ubEAlv2Zb11U0QmJ3Y9MQ6kxTOz9XTsoW
+         GZqvaHuiUVlrEj7uxEJbbY5XTQn128J+ZE2EWgtleQxe5D2YbmEeCdEwgbeVKj/7li9r
+         LsiHG5wyrzcYBNP6lieSw+TRpswOuLYKD17pLTDDQigcC8OkYd4LaJ4M93n+5jh1cX+W
+         wHd1WnfcywAXFzNU4fD7naq4AZvmeT3iQ5e7X6ndsZQGPRl8YEdqMSZqlCffWakjOeFS
+         ohHcV6wKhZ5exMYRnOdidtkbRj8yPqYnNqGwlVp3/pVuWr2BEinypuir7MkmePSkamxt
+         fV6g==
+X-Gm-Message-State: AOAM532KcP90tR51B0dN4Hi8FjEktp/FEAvsVnwGRuD/AY0nqOpIPo3H
+        jWjMN+RhPv3WarTuti9Qt5I=
+X-Google-Smtp-Source: ABdhPJy52mXAuwaFzuszO3cNDfb51dXVqQPAC0VHCpaWesxHmfSAxn9hxqCLxBnU1pZl/C/9iG28LQ==
+X-Received: by 2002:a05:6402:35d2:: with SMTP id z18mr3416427edc.188.1637187492003;
+        Wed, 17 Nov 2021 14:18:12 -0800 (PST)
+Received: from ?IPv6:2a02:ab88:368f:2080:eab:126a:947d:3008? ([2a02:ab88:368f:2080:eab:126a:947d:3008])
+        by smtp.gmail.com with ESMTPSA id mp5sm522733ejc.68.2021.11.17.14.18.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Nov 2021 14:18:11 -0800 (PST)
+Message-ID: <9ee9584833d948188347414991a117ca86edfaaf.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
+From:   David Virag <virag.david003@gmail.com>
+To:     Chanho Park <chanho61.park@samsung.com>,
+        'Sam Protsenko' <semen.protsenko@linaro.org>,
+        'Jaewon Kim' <jaewon02.kim@samsung.com>
+Cc:     'Krzysztof Kozlowski' <krzysztof.kozlowski@canonical.com>,
+        'Wolfram Sang' <wsa@kernel.org>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Wed, 17 Nov 2021 23:17:55 +0100
+In-Reply-To: <001401d7da86$f7ebd660$e7c38320$@samsung.com>
+References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
+         <20211112010137.149174-1-jaewon02.kim@samsung.com>
+         <20211112010137.149174-3-jaewon02.kim@samsung.com>
+         <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
+         <001401d7da86$f7ebd660$e7c38320$@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <9ab98fba364f736b267dbd5e1d305d3e8426e877.camel@pengutronix.de>
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/17/2021 10:52, Philipp Zabel wrote:
-> 
-> Hi Horatio,
+> Current version of USI is v2 which means there is a v1 version as well.
+> It might be a non-upstream SoC so we don't need to consider it so far.
 
-Hi Phillip,
+The Exynos7885 I'm working on has USI v1. It doesn't seem to be heavily
+used as the SoC has just 3 USI blocks if I didn't miss anything.
 
-> 
-> On Wed, 2021-11-17 at 10:18 +0100, Horatiu Vultur wrote:
-> > +static int lan966x_reset_switch(struct lan966x *lan966x)
-> > +{
-> > +     struct reset_control *reset;
-> > +     int val = 0;
-> > +     int ret;
-> > +
-> > +     reset = devm_reset_control_get_shared(lan966x->dev, "switch");
-> > +     if (IS_ERR(reset))
-> > +             dev_warn(lan966x->dev, "Could not obtain switch reset: %ld\n",
-> > +                      PTR_ERR(reset));
-> > +     else
-> > +             reset_control_reset(reset);
-> 
-> According to the device tree bindings, both resets are required.
-> I'd expect this to return on error.
-> Is there any chance of the device working with out the switch reset
-> being triggered?
+The most obvious difference I saw was instead of having 3 modes (SPI,
+UART, and HSI2C) It has:
+ - SPI
+ - HSI2C0 (meaning I2C pins are connected to the first 2 pins out of
+the 4 if I understand it correctly)
+ - HSI2C1 (connected to last 2 pins)
+ - HSI2C0_HSI2C1 (2 I2C devices connected to first 2 and last 2 pins)
+ - UART
+ - UART_HSI2C1 (first 2 pins are UART, rest is I2C)
 
-The only case that I see is if the bootloader triggers this switch
-reset and then when bootloader starts the kernel and doesn't set back
-the switch in reset. Is this a valid scenario or is a bug in the
-bootloader?
+Also there doesn't seem to be any USI_CON or USI_OPTION registers in
+SPI, UART, or I2C. It seems like it's just the USI driver doing all the
+work (just setting up the SYSREG) and the I2C driver writing values to
+the SYSREG at suspend/resume for some reason. 
 
-> 
-> > +
-> > +     reset = devm_reset_control_get_shared(lan966x->dev, "phy");
-> > +     if (IS_ERR(reset)) {
-> > +             dev_warn(lan966x->dev, "Could not obtain phy reset: %ld\n",
-> > +                      PTR_ERR(reset));
-> > +     } else {
-> > +             reset_control_reset(reset);
-> > +     }
-> 
-> Same as above.
-> Consider printing errors with %pe or dev_err_probe().
-> 
-> > +     lan_wr(SYS_RESET_CFG_CORE_ENA_SET(0), lan966x, SYS_RESET_CFG);
-> > +     lan_wr(SYS_RAM_INIT_RAM_INIT_SET(1), lan966x, SYS_RAM_INIT);
-> > +     ret = readx_poll_timeout(lan966x_ram_init, lan966x,
-> > +                              val, (val & BIT(1)) == 0, READL_SLEEP_US,
-> > +                              READL_TIMEOUT_US);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     lan_wr(SYS_RESET_CFG_CORE_ENA_SET(1), lan966x, SYS_RESET_CFG);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int lan966x_probe(struct platform_device *pdev)
-> > +{
-> > +     struct fwnode_handle *ports, *portnp;
-> > +     struct lan966x *lan966x;
-> > +     int err, i;
-> > +
-> > +     lan966x = devm_kzalloc(&pdev->dev, sizeof(*lan966x), GFP_KERNEL);
-> > +     if (!lan966x)
-> > +             return -ENOMEM;
-> > +
-> > +     platform_set_drvdata(pdev, lan966x);
-> > +     lan966x->dev = &pdev->dev;
-> > +
-> > +     ports = device_get_named_child_node(&pdev->dev, "ethernet-ports");
-> > +     if (!ports) {
-> > +             dev_err(&pdev->dev, "no ethernet-ports child not found\n");
-> > +             err = -ENODEV;
-> > +             goto out;
-> 
-> No need to goto as long as there's just a "return err;" after the out:
-> label.
+From the looks of it, it doesn't look like it'd be hard to add this to
+USI v2 drivers when needed. (USI driver (if that's the way it will go)
+would just need minor modifications to add v1 modes and UART/SPI/I2C
+drivers may just work with non-USI compatibles/would only need SoC
+specific data added).
 
-True, I will udate this.
-
-> 
-> > +     }
-> > +
-> > +     err = lan966x_create_targets(pdev, lan966x);
-> > +     if (err)
-> > +             goto out;
-> > +
-> > +     if (lan966x_reset_switch(lan966x)) {
-> > +             err = -EINVAL;
-> 
-> This should propagate the error returned from lan966x_reset_switch()
-> instead.
-
-I will fix it in the next version.
-
-> 
-> > +             goto out;
-> > +     }
-> > +
-> > +     i = 0;
-> > +     fwnode_for_each_available_child_node(ports, portnp)
-> > +             ++i;
-> > +
-> > +     lan966x->num_phys_ports = i;
-> > +     lan966x->ports = devm_kcalloc(&pdev->dev, lan966x->num_phys_ports,
-> > +                                   sizeof(struct lan966x_port *),
-> > +                                   GFP_KERNEL);
-> 
->         if (!lan966x->ports)
->                 return -ENOMEM;
-
-Good catch.
-
-> 
-> regards
-> Philipp
-
--- 
-/Horatiu
+Best Regards,
+David
