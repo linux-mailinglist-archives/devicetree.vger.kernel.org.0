@@ -2,260 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DC914550D7
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 23:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5A954550DF
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 00:00:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241486AbhKQWyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 17:54:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241488AbhKQWyJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 17:54:09 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id AC3C461BCF;
-        Wed, 17 Nov 2021 22:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637189470;
-        bh=GyCY08s0Brp5i/xVSdvC3xXsX4BvDeO4gHsWneeh5cM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=m5bsagck3HXz6EptfxjY6t13DRb0ZLML5sNtFHersJoYS8nWQ/BUlVGPIThie7Xkr
-         WoR+UnATcmu6sTJBVN/c4mlop6adUQ+etdgH50ldmKG2Qf5VUCUM+2Z5EzeO+Jc4lL
-         EJLALjm2gNvB8y2x0vNXeNFby/7u1abx3rnHs+ioJbucKOhAEEM6PF95egEg2ao0Hz
-         g+5/0Mkn/Nqa2SnN64Q3z9kz4R48px3aG3JKTywNhmSwEGcMI0RfOvkxOun0jGr52h
-         NKnchGqSBoqM6vbcYws0Tmwl+7VpDbiPZXjs9qZuLyJzM5puwRmoCb49g3tzQ+kXXl
-         TbR14HsR+4HQg==
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH net-next 8/8] net: phy: marvell10g: select host interface configuration
-Date:   Wed, 17 Nov 2021 23:50:50 +0100
-Message-Id: <20211117225050.18395-9-kabel@kernel.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211117225050.18395-1-kabel@kernel.org>
-References: <20211117225050.18395-1-kabel@kernel.org>
+        id S233852AbhKQXCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 18:02:55 -0500
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:38115 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233251AbhKQXCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 18:02:53 -0500
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 230876000D;
+        Wed, 17 Nov 2021 22:59:51 +0000 (UTC)
+Date:   Wed, 17 Nov 2021 23:59:51 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+Cc:     robh+dt@kernel.org, linus.walleij@linaro.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com
+Subject: Re: [PATCH 2/2] pinctrl: ocelot: Extend support for lan966x
+Message-ID: <YZWJZzCuzXTVzIJ+@piout.net>
+References: <20211029092703.18886-1-kavyasree.kotagiri@microchip.com>
+ <20211029092703.18886-3-kavyasree.kotagiri@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211029092703.18886-3-kavyasree.kotagiri@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Russell King <rmk+kernel@armlinux.org.uk>
+Hello Kavya,
 
-Select the host interface configuration according to the capabilities of
-the host.
+On 29/10/2021 14:57:03+0530, Kavyasree Kotagiri wrote:
+> +	LAN966X_PIN(76),
+> +	LAN966X_PIN(77),
+> +};
+> +
+> +
 
-This allows the kernel to:
-- support SFP modules with 88X33X0 or 88E21X0 inside them
-- switch interface modes when the PHY is used with the mvpp2 MAC
-  (e.g. on MacchiatoBIN)
+One blank line should be removed
 
-Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-[ rebase, updated, also added support for 88E21X0 ]
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
- drivers/net/phy/marvell10g.c | 120 +++++++++++++++++++++++++++++++++--
- 1 file changed, 115 insertions(+), 5 deletions(-)
+>  static int ocelot_get_functions_count(struct pinctrl_dev *pctldev)
+>  {
+>  	return ARRAY_SIZE(ocelot_function_names);
+> @@ -709,6 +1056,9 @@ static int ocelot_pin_function_idx(struct ocelot_pinctrl *info,
+>  	for (i = 0; i < OCELOT_FUNC_PER_PIN; i++) {
+>  		if (function == p->functions[i])
+>  			return i;
+> +
+> +		if (function == p->a_functions[i])
+> +			return i + OCELOT_FUNC_PER_PIN;
+>  	}
+>  
+>  	return -1;
+> @@ -744,6 +1094,36 @@ static int ocelot_pinmux_set_mux(struct pinctrl_dev *pctldev,
+>  	return 0;
+>  }
+>  
+> +static int lan966x_pinmux_set_mux(struct pinctrl_dev *pctldev,
+> +				  unsigned int selector, unsigned int group)
+> +{
+> +	struct ocelot_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
+> +	struct ocelot_pin_caps *pin = info->desc->pins[group].drv_data;
+> +	unsigned int p = pin->pin % 32;
+> +	int f;
+> +
+> +	f = ocelot_pin_function_idx(info, group, selector);
+> +	if (f < 0)
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * f is encoded on three bits.
+> +	 * bit 0 of f goes in BIT(pin) of ALT[0], bit 1 of f goes in BIT(pin) of
+> +	 * ALT[1], bit 2 of f goes in BIT(pin) of ALT[2]
+> +	 * This is racy because both registers can't be updated at the same time
 
-diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
-index 0cb9b4ef09c7..94bea1bade6f 100644
---- a/drivers/net/phy/marvell10g.c
-+++ b/drivers/net/phy/marvell10g.c
-@@ -96,6 +96,11 @@ enum {
- 	MV_PCS_PORT_INFO_NPORTS_MASK	= 0x0380,
- 	MV_PCS_PORT_INFO_NPORTS_SHIFT	= 7,
- 
-+	/* SerDes reinitialization 88E21X0 */
-+	MV_AN_21X0_SERDES_CTRL2	= 0x800f,
-+	MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS	= BIT(13),
-+	MV_AN_21X0_SERDES_CTRL2_RUN_INIT	= BIT(15),
-+
- 	/* These registers appear at 0x800X and 0xa00X - the 0xa00X control
- 	 * registers appear to set themselves to the 0x800X when AN is
- 	 * restarted, but status registers appear readable from either.
-@@ -140,6 +145,8 @@ struct mv3310_chip {
- 	bool (*has_downshift)(struct phy_device *phydev);
- 	void (*init_supported_interfaces)(unsigned long *mask);
- 	int (*get_mactype)(struct phy_device *phydev);
-+	int (*set_mactype)(struct phy_device *phydev, int mactype);
-+	int (*select_mactype)(unsigned long *interfaces);
- 	int (*init_interface)(struct phy_device *phydev, int mactype);
- 
- #ifdef CONFIG_HWMON
-@@ -593,6 +600,49 @@ static int mv2110_get_mactype(struct phy_device *phydev)
- 	return mactype & MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK;
- }
- 
-+static int mv2110_set_mactype(struct phy_device *phydev, int mactype)
-+{
-+	int err, val;
-+
-+	mactype &= MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK;
-+	err = phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_21X0_PORT_CTRL,
-+			     MV_PMA_21X0_PORT_CTRL_SWRST |
-+			     MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK,
-+			     MV_PMA_21X0_PORT_CTRL_SWRST | mactype);
-+	if (err)
-+		return err;
-+
-+	err = phy_set_bits_mmd(phydev, MDIO_MMD_AN, MV_AN_21X0_SERDES_CTRL2,
-+			       MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS |
-+			       MV_AN_21X0_SERDES_CTRL2_RUN_INIT);
-+	if (err)
-+		return err;
-+
-+	err = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_AN,
-+					MV_AN_21X0_SERDES_CTRL2, val,
-+					!(val &
-+					  MV_AN_21X0_SERDES_CTRL2_RUN_INIT),
-+					5000, 100000, true);
-+	if (err)
-+		return err;
-+
-+	return phy_clear_bits_mmd(phydev, MDIO_MMD_AN, MV_AN_21X0_SERDES_CTRL2,
-+				  MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS);
-+}
-+
-+static int mv2110_select_mactype(unsigned long *interfaces)
-+{
-+	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
-+		return MV_PMA_21X0_PORT_CTRL_MACTYPE_USXGMII;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 !test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_PMA_21X0_PORT_CTRL_MACTYPE_5GBASER;
-+	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_PMA_21X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
-+	else
-+		return -1;
-+}
-+
- static int mv3310_get_mactype(struct phy_device *phydev)
- {
- 	int mactype;
-@@ -604,6 +654,46 @@ static int mv3310_get_mactype(struct phy_device *phydev)
- 	return mactype & MV_V2_33X0_PORT_CTRL_MACTYPE_MASK;
- }
- 
-+static int mv3310_set_mactype(struct phy_device *phydev, int mactype)
-+{
-+	int ret;
-+
-+	mactype &= MV_V2_33X0_PORT_CTRL_MACTYPE_MASK;
-+	ret = phy_modify_mmd_changed(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
-+				     MV_V2_33X0_PORT_CTRL_MACTYPE_MASK,
-+				     mactype);
-+	if (ret <= 0)
-+		return ret;
-+
-+	return phy_set_bits_mmd(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
-+				MV_V2_33X0_PORT_CTRL_SWRST);
-+}
-+
-+static int mv3310_select_mactype(unsigned long *interfaces)
-+{
-+	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_USXGMII;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
-+		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI;
-+	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
-+	else if (test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI_RATE_MATCH;
-+	else if (test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
-+		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI_RATE_MATCH;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
-+	else
-+		return -1;
-+}
-+
- static int mv2110_init_interface(struct phy_device *phydev, int mactype)
- {
- 	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
-@@ -674,10 +764,16 @@ static int mv3310_config_init(struct phy_device *phydev)
- {
- 	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
- 	const struct mv3310_chip *chip = to_mv3310_chip(phydev);
-+	DECLARE_PHY_INTERFACE_MASK(interfaces);
- 	int err, mactype;
- 
--	/* Check that the PHY interface type is compatible */
--	if (!test_bit(phydev->interface, priv->supported_interfaces))
-+	/* In case host didn't provide supported interfaces */
-+	__set_bit(phydev->interface, phydev->host_interfaces);
-+
-+	/* Check that there is at least one compatible PHY interface type */
-+	phy_interface_and(interfaces, phydev->host_interfaces,
-+			  priv->supported_interfaces);
-+	if (phy_interface_empty(interfaces))
- 		return -ENODEV;
- 
- 	phydev->mdix_ctrl = ETH_TP_MDI_AUTO;
-@@ -687,9 +783,15 @@ static int mv3310_config_init(struct phy_device *phydev)
- 	if (err)
- 		return err;
- 
--	mactype = chip->get_mactype(phydev);
--	if (mactype < 0)
--		return mactype;
-+	mactype = chip->select_mactype(interfaces);
-+	if (mactype < 0) {
-+		mactype = chip->get_mactype(phydev);
-+	} else {
-+		phydev_info(phydev, "Changing MACTYPE to %i\n", mactype);
-+		err = chip->set_mactype(phydev, mactype);
-+		if (err)
-+			return err;
-+	}
- 
- 	err = chip->init_interface(phydev, mactype);
- 	if (err) {
-@@ -1049,6 +1151,8 @@ static const struct mv3310_chip mv3310_type = {
- 	.has_downshift = mv3310_has_downshift,
- 	.init_supported_interfaces = mv3310_init_supported_interfaces,
- 	.get_mactype = mv3310_get_mactype,
-+	.set_mactype = mv3310_set_mactype,
-+	.select_mactype = mv3310_select_mactype,
- 	.init_interface = mv3310_init_interface,
- 
- #ifdef CONFIG_HWMON
-@@ -1060,6 +1164,8 @@ static const struct mv3310_chip mv3340_type = {
- 	.has_downshift = mv3310_has_downshift,
- 	.init_supported_interfaces = mv3340_init_supported_interfaces,
- 	.get_mactype = mv3310_get_mactype,
-+	.set_mactype = mv3310_set_mactype,
-+	.select_mactype = mv3310_select_mactype,
- 	.init_interface = mv3340_init_interface,
- 
- #ifdef CONFIG_HWMON
-@@ -1070,6 +1176,8 @@ static const struct mv3310_chip mv3340_type = {
- static const struct mv3310_chip mv2110_type = {
- 	.init_supported_interfaces = mv2110_init_supported_interfaces,
- 	.get_mactype = mv2110_get_mactype,
-+	.set_mactype = mv2110_set_mactype,
-+	.select_mactype = mv2110_select_mactype,
- 	.init_interface = mv2110_init_interface,
- 
- #ifdef CONFIG_HWMON
-@@ -1080,6 +1188,8 @@ static const struct mv3310_chip mv2110_type = {
- static const struct mv3310_chip mv2111_type = {
- 	.init_supported_interfaces = mv2111_init_supported_interfaces,
- 	.get_mactype = mv2110_get_mactype,
-+	.set_mactype = mv2110_set_mactype,
-+	.select_mactype = mv2110_select_mactype,
- 	.init_interface = mv2110_init_interface,
- 
- #ifdef CONFIG_HWMON
+That's three registers, not two so I guess this sentence should be
+reworked.
+
+> +	 * but it doesn't matter much for now.
+> +	 * Note: ALT0/ALT1/ALT2 are organized specially for 78 gpio targets
+> +	 */
+> +	regmap_update_bits(info->map, REG_ALT(0, info, pin->pin),
+> +			   BIT(p), f << p);
+> +	regmap_update_bits(info->map, REG_ALT(1, info, pin->pin),
+> +			   BIT(p), (f >> 1) << p);
+> +	regmap_update_bits(info->map, REG_ALT(2, info, pin->pin),
+> +			   BIT(p), (f >> 2) << p);
+> +
+
+I would have thought the hardware would be fixed because you now have 78
+pins and this probably will get worse over time. This is really a poor
+choice of interface as now you will get two transient states instead of
+one.
+
+> +	return 0;
+> +}
+> +
+>  #define REG(r, info, p) ((r) * (info)->stride + (4 * ((p) / 32)))
+>  
+>  static int ocelot_gpio_set_direction(struct pinctrl_dev *pctldev,
+> @@ -774,6 +1154,23 @@ static int ocelot_gpio_request_enable(struct pinctrl_dev *pctldev,
+>  	return 0;
+>  }
+>  
+> +static int lan966x_gpio_request_enable(struct pinctrl_dev *pctldev,
+> +				       struct pinctrl_gpio_range *range,
+> +				       unsigned int offset)
+> +{
+> +	struct ocelot_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
+> +	unsigned int p = offset % 32;
+> +
+> +	regmap_update_bits(info->map, REG_ALT(0, info, offset),
+> +			   BIT(p), 0);
+> +	regmap_update_bits(info->map, REG_ALT(1, info, offset),
+> +			   BIT(p), 0);
+> +	regmap_update_bits(info->map, REG_ALT(2, info, offset),
+> +			   BIT(p), 0);
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct pinmux_ops ocelot_pmx_ops = {
+>  	.get_functions_count = ocelot_get_functions_count,
+>  	.get_function_name = ocelot_get_function_name,
+> @@ -783,6 +1180,15 @@ static const struct pinmux_ops ocelot_pmx_ops = {
+>  	.gpio_request_enable = ocelot_gpio_request_enable,
+>  };
+>  
+> +static const struct pinmux_ops lan966x_pmx_ops = {
+> +	.get_functions_count = ocelot_get_functions_count,
+> +	.get_function_name = ocelot_get_function_name,
+> +	.get_function_groups = ocelot_get_function_groups,
+> +	.set_mux = lan966x_pinmux_set_mux,
+> +	.gpio_set_direction = ocelot_gpio_set_direction,
+> +	.gpio_request_enable = lan966x_gpio_request_enable,
+> +};
+> +
+>  static int ocelot_pctl_get_groups_count(struct pinctrl_dev *pctldev)
+>  {
+>  	struct ocelot_pinctrl *info = pinctrl_dev_get_drvdata(pctldev);
+> @@ -1074,6 +1480,14 @@ static struct pinctrl_desc sparx5_desc = {
+>  	.npins = ARRAY_SIZE(sparx5_pins),
+>  	.pctlops = &ocelot_pctl_ops,
+>  	.pmxops = &ocelot_pmx_ops,
+> +};
+> +
+> +static struct pinctrl_desc lan966x_desc = {
+> +	.name = "lan966x-pinctrl",
+> +	.pins = lan966x_pins,
+> +	.npins = ARRAY_SIZE(lan966x_pins),
+> +	.pctlops = &ocelot_pctl_ops,
+> +	.pmxops = &lan966x_pmx_ops,
+>  	.confops = &ocelot_confops,
+>  	.owner = THIS_MODULE,
+>  };
+> @@ -1114,6 +1528,7 @@ static int ocelot_create_group_func_map(struct device *dev,
+>  	return 0;
+>  }
+>  
+> +
+
+Useless blank line
+
+>  static int ocelot_pinctrl_register(struct platform_device *pdev,
+>  				   struct ocelot_pinctrl *info)
+>  {
+> @@ -1337,6 +1752,7 @@ static const struct of_device_id ocelot_pinctrl_of_match[] = {
+>  	{ .compatible = "mscc,ocelot-pinctrl", .data = &ocelot_desc },
+>  	{ .compatible = "mscc,jaguar2-pinctrl", .data = &jaguar2_desc },
+>  	{ .compatible = "microchip,sparx5-pinctrl", .data = &sparx5_desc },
+> +	{ .compatible = "microchip,lan966x-pinctrl", .data = &lan966x_desc },
+>  	{},
+>  };
+>  
+> -- 
+> 2.17.1
+> 
+
 -- 
-2.32.0
-
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
