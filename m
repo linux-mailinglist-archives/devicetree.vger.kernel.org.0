@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F3C4548E3
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:34:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3F084548E7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:34:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238610AbhKQOhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:37:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
+        id S238613AbhKQOhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:37:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238613AbhKQOhE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:37:04 -0500
+        with ESMTP id S238637AbhKQOhO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:37:14 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3C8FC061764
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:34:05 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAFC0C061570
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:34:15 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1mnM0e-0005tZ-F7; Wed, 17 Nov 2021 15:34:00 +0100
+        id 1mnM0e-0005ta-FN; Wed, 17 Nov 2021 15:34:00 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1mnM0a-001P66-W3; Wed, 17 Nov 2021 15:33:56 +0100
+        id 1mnM0b-001P68-0Q; Wed, 17 Nov 2021 15:33:57 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -32,11 +32,14 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-Date:   Wed, 17 Nov 2021 15:33:35 +0100
-Message-Id: <20211117143347.314294-1-s.hauer@pengutronix.de>
+Subject: [PATCH 01/12] dt-bindings: display: rockchip: Add compatible for rk3568 HDMI
+Date:   Wed, 17 Nov 2021 15:33:36 +0100
+Message-Id: <20211117143347.314294-2-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211117143347.314294-1-s.hauer@pengutronix.de>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
@@ -47,65 +50,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds initial graphics support for the Rockchip RK356[68]
-SoCs.  Graphics support is based around the VOP2 controller which
-replaces the VOP controller found on earlier Rockchip SoCs. The driver
-has been tested with HDMI support included in this series and MIPI-DSI
-which is not included because it needs some more work. The driver is
-taken from the downstream Rockchip kernel and heavily polished, most non
-standard features have been removed for now. I tested the driver with
-the libdrm modetest utility and also with weston with both pixman and
-panfrost driver support. Michael Riesch reported the driver to work on
-the RK3566 as well, but device tree support for this SoC is not yet
-included in this series.
+From: Benjamin Gaignard <benjamin.gaignard@collabora.com>
 
-The HDMI changes are based on patches from Benjamin Gaignard, but
-modified a bit as I found out that the HDMI port on the RK3568 only
-needs one additional clock, not two. Also I added regulator support
-which is needed to get the HDMI up on the rk3568-EVB board.
+Define a new compatible for rk3568 HDMI.
+This version of HDMI hardware block needs two new clocks hclk_vio and hclk
+to provide phy reference clocks.
 
-All review and testing feedback welcome
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20210707120323.401785-2-benjamin.gaignard@collabora.com
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+ .../bindings/display/rockchip/rockchip,dw-hdmi.yaml         | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-Sascha
-
-Benjamin Gaignard (2):
-  dt-bindings: display: rockchip: Add compatible for rk3568 HDMI
-  drm/rockchip: dw_hdmi: add rk3568 support
-
-Sascha Hauer (10):
-  drm/rockchip: dw_hdmi: Do not leave clock enabled in error case
-  drm/rockchip: dw_hdmi: add regulator support
-  of: graph: Allow disabled endpoints
-  dt-bindings: of: graph: Allow disabled endpoints
-  dt-bindings: display: rockchip: Add binding for VOP2
-  arm64: dts: rockchip: rk356x: Add VOP2 nodes
-  arm64: dts: rockchip: rk356x: Add HDMI nodes
-  arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
-  drm/rockchip: Make VOP driver optional
-  drm: rockchip: Add VOP2 driver
-
- .../display/rockchip/rockchip,dw-hdmi.yaml    |   12 +-
- .../display/rockchip/rockchip-vop2.yaml       |  114 +
- .../bindings/media/video-interfaces.yaml      |    8 +
- arch/arm/configs/multi_v7_defconfig           |    1 +
- .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   24 +
- arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  117 +
- arch/arm64/configs/defconfig                  |    1 +
- drivers/gpu/drm/drm_of.c                      |    6 +-
- drivers/gpu/drm/rockchip/Kconfig              |   13 +
- drivers/gpu/drm/rockchip/Makefile             |    4 +-
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  137 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    3 +-
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |   22 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |  774 ++++
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 3611 +++++++++++++++++
- drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  916 +++++
- drivers/of/property.c                         |    3 +
- 17 files changed, 5731 insertions(+), 35 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
- create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
- create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
-
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+index da3b889ad8fcd..53fa42479d5b7 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
+@@ -23,6 +23,7 @@ properties:
+       - rockchip,rk3288-dw-hdmi
+       - rockchip,rk3328-dw-hdmi
+       - rockchip,rk3399-dw-hdmi
++      - rockchip,rk3568-dw-hdmi
+ 
+   reg-io-width:
+     const: 4
+@@ -49,8 +50,11 @@ properties:
+           - vpll
+       - enum:
+           - grf
++          - hclk_vio
++          - vpll
++      - enum:
++          - hclk
+           - vpll
+-      - const: vpll
+ 
+   ddc-i2c-bus:
+     $ref: /schemas/types.yaml#/definitions/phandle
 -- 
 2.30.2
 
