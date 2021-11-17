@@ -2,91 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D55E1453DB8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 02:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22F6C453DBF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 02:35:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231367AbhKQBbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 20:31:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbhKQBbH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 20:31:07 -0500
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4918FC061764
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 17:28:09 -0800 (PST)
-Received: by mail-ed1-x532.google.com with SMTP id w1so3182097edc.6
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 17:28:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jzvlfo3mwRIjVNI3uBTsFictJR41rZxk5TeM/Ei1okM=;
-        b=dY7xWxkn7EP7A0fQBKQJAS/t/i7hXMR3B340Y/elUV8VDoipVyFbxy5jMONgm4naWQ
-         H8dqN6lbybISfOjw5fnLKUkLxN5/BGp6sibWyRuKLrkVn1r9GGXspRVHL8tGN/UYmwb0
-         STaq9YjmufwVATs+jU7/L8dVTgNaP/Wo13DvnHmiMCvRu5VFNlootrnqj8YCfB8HZGMg
-         PjxybDwrZNpkpAyCAPI9cpgCbZCvEGKnnMNuIL6qKCOP6i7dSXiUBsCtiZVtNOIEPcjD
-         VVjwoLdDhIadxmgDtD8wfExhWrl2aExZok3xu0N/bFAiKC4MQxK7Uck8Ig6e+T2EnkZB
-         JdBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jzvlfo3mwRIjVNI3uBTsFictJR41rZxk5TeM/Ei1okM=;
-        b=Yd/OUMCmpztPlWldcCAikh19o3t1fL6brjr07couQQfKOa3gkypUbxJSt8r4NCYrzI
-         Z5waLTsD3edT1xhpdP7lIzh9uaeO4WRsQ0wgPryRX29dQzxYvf7+nwlZ0y3+Mz52h2C0
-         xxbYuKqtCs5MDlOX7M1SWJw0kiokvhtbjTU29ywYPs6zccOVy8YqqN5IYTyUR0/AcL8T
-         kXNTmIH7x9gpA/y6hQiRXcPFg1lKjGgJkTDrSDq+8ALwd3nSKnQjbnFwuWbutMTKjHel
-         bnzNcvK6KIDfk29PlD7PJmRtYZwaxfER5aFhV0Izpf8NCZavjs3NLaO1gToIXL2AVsBp
-         tsew==
-X-Gm-Message-State: AOAM531k2Qhz+EIeaT3D/Ko0lOqzvO36B2EA7WLaPM9S4bMSEKQ0RVIw
-        xs23b3Hi3dQk3Tr4hJIvEXPuUJ+UDweokBGM4Ioq9g==
-X-Google-Smtp-Source: ABdhPJz8mPrCc7kO/eC8/+0RnyK+b3AbY3p624T+emqGvUizx5GBVl4RNjW24qFhHOr0XuvwQ4Abd5P+LJhWQMTB2t4=
-X-Received: by 2002:a17:907:9487:: with SMTP id dm7mr16812462ejc.95.1637112487826;
- Tue, 16 Nov 2021 17:28:07 -0800 (PST)
+        id S231583AbhKQBiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 20:38:21 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:33850 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231256AbhKQBiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 20:38:20 -0500
+Received: from thelio.attlocal.net (107-203-255-60.lightspeed.sntcca.sbcglobal.net [107.203.255.60])
+        by linux.microsoft.com (Postfix) with ESMTPSA id CCA1D20C5A74;
+        Tue, 16 Nov 2021 17:35:22 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CCA1D20C5A74
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1637112923;
+        bh=WUd5PwiMkcnWkeIXQp9yo8ikbNySEIy+IekhJmWKMoU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=qq769TKHE65HLZhdHoFgh96IL9hf9qB5noWfIf6cUymdnOhrkT/Qv0WqGqTu+YOE0
+         7JsQpCy/Ha8ZsEmHGT94F0TgDWaFuiBRd1vQFqWlCSNjS5qzD0SlUKWe51XjCtxiO6
+         4mhQ6uuW8mxdlui6tCN8zQ4+vd9ua0MIZxuM75nE=
+From:   Katherine Perez <kaperez@linux.microsoft.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v2 0/4] arm64: dts: qcom: sm8150: display support for Microsoft Surface Duo
+Date:   Tue, 16 Nov 2021 17:35:12 -0800
+Message-Id: <20211117013516.4111383-1-kaperez@linux.microsoft.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-4-brad@pensando.io>
- <YXhErvvSfKIBvHae@robh.at.kernel.org> <CAK9rFnyk=gW_ZRZUci3byu=DNwdrmKBb30HQgxK0iWJuVVPbfQ@mail.gmail.com>
-In-Reply-To: <CAK9rFnyk=gW_ZRZUci3byu=DNwdrmKBb30HQgxK0iWJuVVPbfQ@mail.gmail.com>
-From:   Brad Larson <brad@pensando.io>
-Date:   Tue, 16 Nov 2021 17:27:57 -0800
-Message-ID: <CAK9rFnzvcOmEUXYufa4R42xo+SY1Bq_Txfj=Y1QhkAVwfv-oXw@mail.gmail.com>
-Subject: Re: [PATCH v3 03/11] dt-bindings: mmc: Add Pensando Elba SoC binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Bjorn and Vinod,
 
-On Tue, Nov 16, 2021 at 5:21 PM Brad Larson <brad@pensando.io> wrote:
->
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - microchip,mpfs-sd4hc
+I'm trying to enable the display subsystem on SM8150 but am having
+trouble enabling the DISP_CC_MDSS_AHB_CLK. Trace shows "disp_cc_mdss_ahb_clk
+status stuck at off". Do you have any pointers on enabling this clock?
 
-"microchip,mpfs-sd4hc" was inadvertently removed in moving to
-5.16.0-rc1 and won't be in the re-spin of the patchset, its recently
-added.
+msm_dsi_phy ae94400.dsi-phy: [drm:dsi_phy_driver_probe [msm]] *ERROR* dsi_phy_driver_probe: Unable to get ahb clk
+disp_cc-sm8250 af00000.clock-controller: supply mmcx not found, using dummy regulator
+platform ae96000.dsi: Fixing up cyclic dependency with ae00000.mdss:mdp@ae010000
+------------[ cut here ]------------
+disp_cc_mdss_ahb_clk status stuck at 'off'
+WARNING: CPU: 6 PID: 76 at drivers/clk/qcom/clk-branch.c:91 clk_branch_wait+0x14c/0x164
+CPU: 6 PID: 76 Comm: kworker/u16:2 Not tainted 5.15.0 #17
+Hardware name: Microsoft Surface Duo (DT)
+Workqueue: events_unbound deferred_probe_work_func
+pstate: 604000c5 (nZCv daIF +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : clk_branch_wait+0x14c/0x164
+lr : clk_branch_wait+0x14c/0x164
+sp : ffff80001078ba40
+x29: ffff80001078ba40 x28: 0000000000000000 x27: ffff65e6008e2100
+x26: ffffb8630ec8e278 x25: ffff65e60005e005 x24: ffffb8630ebc0f98
+x23: ffffb8630e234dd8 x22: 0000000000000001 x21: ffffb8630d5b8b60
+x20: 0000000000000000 x19: ffffb8630eb5e7b8 x18: 0000000000000030
+x17: 2e726f74616c7567 x16: ffffb8630d5a3800 x15: ffffffffffffffff
+x14: 0000000000000000 x13: 6f27207461206b63 x12: 7574732073757461
+x11: 77705f313439386d x10: 0000000000000027 x9 : ffffb8630cf974bc
+x8 : 0000000000000027 x7 : 0000000000000002 x6 : 0000000000000027
+x5 : ffff65e6f93cc9a8 x4 : ffff80001078b890 x3 : 0000000000000001
+x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff65e600851d80
+Call trace:
+ clk_branch_wait+0x14c/0x164
+ clk_branch2_enable+0x3c/0x60
+ clk_core_enable+0x78/0x220
+ clk_enable+0x38/0x60
+ dsi_phy_enable_resource+0x98/0xac [msm]
+ dsi_phy_driver_probe+0x29c/0x4f8 [msm]
+ platform_probe+0x74/0xe4
+ really_probe.part.0+0xa4/0x328
+ __driver_probe_device+0xa0/0x150
+ driver_probe_device+0x4c/0x164
+ __device_attach_driver+0xc0/0x128
+ bus_for_each_drv+0x84/0xe0
+ __device_attach+0xe0/0x188
+ device_initial_probe+0x20/0x2c
+ bus_probe_device+0xa8/0xbc
+ deferred_probe_work_func+0x90/0xc8
+ process_one_work+0x1f4/0x43c
+ worker_thread+0x78/0x4f0
+ kthread+0x154/0x160
+ ret_from_fork+0x10/0x20
+---[ end trace 734ed75908fc6b0e ]---
 
-Also, as you mentioned the patchset should be sent against rc1
+Katherine Perez (4):
+  arm64: dts: qcom: sm8150: add dispcc node
+  arm64: dts: qcom: sm8150: add display nodes
+  arm64: dts: qcom: sm8150: add DSI display nodes
+  arm64: dts: qcom: sm8150: display support for Microsoft Surface Duo
 
-Thanks
-Brad
+ .../dts/qcom/sm8150-microsoft-surface-duo.dts |  26 ++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 292 ++++++++++++++++++
+ 2 files changed, 318 insertions(+)
+
+--
+2.31.1
+
