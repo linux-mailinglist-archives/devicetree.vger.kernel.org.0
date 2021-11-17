@@ -2,219 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4615A45493C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE17454956
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:54:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbhKQOyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:54:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34026 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231788AbhKQOyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:54:51 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80B7FC061570;
-        Wed, 17 Nov 2021 06:51:52 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id y196so2472111wmc.3;
-        Wed, 17 Nov 2021 06:51:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
-         :from:to:references:in-reply-to;
-        bh=jJ51ZlH+2lE8rLSSFCiYjXjBtLDKQFWHhyS+Y+x5rso=;
-        b=EJFSm/6QhkB5EwLlV7ulH4Kv0lZPoeIvlf0+dl+5Jp+1HqbXIpUP5HhYNmgBJTDzO1
-         Ru88IiQiRV4eAqbzcsN0QPoiohfoPuCd+Pn567jxPVnPEzOtHeiyILKzTlbP01ReR2Uc
-         bp/vHtQd5g7rNOpIDNE9T5x+2qx4sfmOOzndY6n9YRO0tU0PNAbS5F1DegSTiz9aoB1r
-         m2hgskZZ6+ErJq7hzDY7vX20m5q5Fhh90CVb6Elal0oGxqSLQkkgUWQ+9RQki3zdt7E/
-         lzh4nddM7Ai4INJscIUq1q58SIDV4qIm3cEqTJ4aSzavScQ68dDinTTimRTZQPhmVLw/
-         uvtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:cc:subject:from:to:references:in-reply-to;
-        bh=jJ51ZlH+2lE8rLSSFCiYjXjBtLDKQFWHhyS+Y+x5rso=;
-        b=LK1az/klk8Kbu0PcbA5v0yHTaAk2g/2FenEWy64dQDJXiLQTGyIFhOUzuFiGL2cPYU
-         jI8e4QdhOrig79JPvBCQKUK8aF55vkhAY2DEVXxPf7wjhkzlLanZiIE9+Q+9W8k3gF1j
-         1bp0PxN0nmtwkeAp/rPfih6lUQuVCkA/02jTwTpNGnqQ3nKoGYssOp1R6ZX4qRUzAxHR
-         6L40be+iTFc+DSjCnLSlG+MRq16Yj+C03rr39m/Ly0AfVwcqPAhrvLiFclUtKyEydZTg
-         OHG3nahoogptS1/fyzUtFC7ruS4arPqbb0kj4es2McAmfKxmXz4ug0AgPx1Ik0WuMz5J
-         osJQ==
-X-Gm-Message-State: AOAM532THfOMvpNpkvNL8Mu3Kg3fo7/Tn7e9cC44Mma3Jzw9npm/sf2t
-        EZUlL/DZ6BagnRLxeMslp4c=
-X-Google-Smtp-Source: ABdhPJzHtEsTAdKaqa4gQxikWsbXFcywF/SZtl1a+gJCxhuR5b8+1mx7mQYYZoC5FJl1qFAIBeS3iQ==
-X-Received: by 2002:a05:600c:21d6:: with SMTP id x22mr265604wmj.194.1637160711086;
-        Wed, 17 Nov 2021 06:51:51 -0800 (PST)
-Received: from localhost (a109-49-33-111.cpe.netcabo.pt. [109.49.33.111])
-        by smtp.gmail.com with ESMTPSA id m34sm6599446wms.25.2021.11.17.06.51.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Nov 2021 06:51:50 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 17 Nov 2021 14:51:48 +0000
-Message-Id: <CFS51AQQ7SCD.7FK8RLAWLXRH@arch-thunder>
-Cc:     <kernel@pengutronix.de>, <kernel@puri.sm>, <linux-imx@nxp.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/2] media: imx: imx7-media-csi: add support for imx8mq
-From:   "Rui Miguel Silva" <rmfrfs@gmail.com>
-To:     "Martin Kepplinger" <martin.kepplinger@puri.sm>,
-        <laurent.pinchart@ideasonboard.com>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <shawnguo@kernel.org>
-References: <20211117092710.3084034-1-martin.kepplinger@puri.sm>
-In-Reply-To: <20211117092710.3084034-1-martin.kepplinger@puri.sm>
+        id S231635AbhKQO5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:57:49 -0500
+Received: from mail.kernel.org ([198.145.29.99]:32976 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231324AbhKQO5t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Nov 2021 09:57:49 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id EBC2B61B2B
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 14:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637160891;
+        bh=bgjr8yJOWsL+nIbaL9cKsP3o2b2qmUpIgL5aZebelLo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JTd+v5Z6z01TfR/bR9dmTn87qBNRyDSSvXGsI6etW0Txeu2IWFcrwMihng3+EG9mz
+         LKecFZeu1/tBJmEol1kk0tGJY+wpza49zFtz0zxD9ncwSonfkgf70Oxdjp2X6g3p7T
+         fxfHu+nWTwLhQptBX4c71rHmo6sjpTTuzP9WxA62K19TLz9n/CQYcGVv6h1aakx4VA
+         B6aTvz9mvI5L/Q0CN+S7SuD97aCm0chOJC/75/rggKjR8MNq103umV7WwdkQlXaank
+         n6+8i6L3FxSrCDuN2UNRGsp3YKneIHfGYkdPqzKWyHrPRQD19t3QDXjbbWTemFj2G3
+         vv6FvS3XEMRzQ==
+Received: by mail-ed1-f45.google.com with SMTP id y12so12275422eda.12
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:54:50 -0800 (PST)
+X-Gm-Message-State: AOAM530NoAqiRG91ERUsMqlCKo9fIaWcLM/Rh8b7Q1CDVUFXfzy4Ck25
+        XlI7k6t9dvwf6y1To33kKh2o62XOY29xM+67sw==
+X-Google-Smtp-Source: ABdhPJw0S7ajbekMY4Kz6agkssG2VWOwZDiRqdiVwjh429yqwO31JlqnTUZtYuiwYFavxe4b0vRatEav0QC/Rq3OPEs=
+X-Received: by 2002:a50:8dcb:: with SMTP id s11mr22594000edh.318.1637160889361;
+ Wed, 17 Nov 2021 06:54:49 -0800 (PST)
+MIME-Version: 1.0
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+In-Reply-To: <20211117143347.314294-1-s.hauer@pengutronix.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 17 Nov 2021 08:54:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJxJj2JT-0vN45vYyoy_Sh87NnoTfJQH-4qxRoPNwtj5Q@mail.gmail.com>
+Message-ID: <CAL_JsqJxJj2JT-0vN45vYyoy_Sh87NnoTfJQH-4qxRoPNwtj5Q@mail.gmail.com>
+Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
-Thanks for the patch.
-
-On Wed Nov 17, 2021 at 9:27 AM WET, Martin Kepplinger wrote:
-
-> Modeled after the NXP driver mx6s_capture.c that this driver is based on,
-> imx8mq needs different settings for the baseaddr_switch mechanism. Define
-> the needed bits and set that for imx8mq.
+On Wed, Nov 17, 2021 at 8:34 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
 >
-> Without these settings, the system will "sometimes" hang completely when
-> starting to stream (the interrupt will never be called).
->
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  drivers/staging/media/imx/imx7-media-csi.c | 34 ++++++++++++++++++++--
->  1 file changed, 32 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging=
-/media/imx/imx7-media-csi.c
-> index 2288dadb2683..8619cf2fc694 100644
-> --- a/drivers/staging/media/imx/imx7-media-csi.c
-> +++ b/drivers/staging/media/imx/imx7-media-csi.c
-> @@ -12,6 +12,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
-> +#include <linux/of_device.h>
->  #include <linux/of_graph.h>
->  #include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
-> @@ -122,6 +123,10 @@
->  #define BIT_DATA_FROM_MIPI		BIT(22)
->  #define BIT_MIPI_YU_SWAP		BIT(21)
->  #define BIT_MIPI_DOUBLE_CMPNT		BIT(20)
-> +#define BIT_MASK_OPTION_FIRST_FRAME	(0 << 18)
-> +#define BIT_MASK_OPTION_CSI_EN		(1 << 18)
-> +#define BIT_MASK_OPTION_SECOND_FRAME	(2 << 18)
-> +#define BIT_MASK_OPTION_ON_DATA		(3 << 18)
->  #define BIT_BASEADDR_CHG_ERR_EN		BIT(9)
->  #define BIT_BASEADDR_SWITCH_SEL		BIT(5)
->  #define BIT_BASEADDR_SWITCH_EN		BIT(4)
-> @@ -154,6 +159,12 @@
->  #define CSI_CSICR18			0x48
->  #define CSI_CSICR19			0x4c
-> =20
-> +enum imx_soc {
-> +	IMX6UL =3D 0,
-> +	IMX7,
-> +	IMX8MQ,
+> This series adds initial graphics support for the Rockchip RK356[68]
+> SoCs.  Graphics support is based around the VOP2 controller which
+> replaces the VOP controller found on earlier Rockchip SoCs. The driver
+> has been tested with HDMI support included in this series and MIPI-DSI
+> which is not included because it needs some more work. The driver is
+> taken from the downstream Rockchip kernel and heavily polished, most non
+> standard features have been removed for now. I tested the driver with
+> the libdrm modetest utility and also with weston with both pixman and
+> panfrost driver support. Michael Riesch reported the driver to work on
+> the RK3566 as well, but device tree support for this SoC is not yet
+> included in this series.
 
-maybe instead of this enum we could use a bool in structure...
->
->+};
-> +
->  struct imx7_csi {
->  	struct device *dev;
->  	struct v4l2_subdev sd;
-> @@ -189,6 +200,8 @@ struct imx7_csi {
->  	bool is_csi2;
-> =20
->  	struct completion last_eof_completion;
-> +
-> +	enum imx_soc type;
+Can you outline what exactly you want to disable? I don't think
+'status' is the right way. I think between the parent device being
+disabled, an incomplete graph and user configuration choice that
+should be enough to disable parts.
 
-here, bool is_imx8mq?
-
->  };
-> =20
->  static struct imx7_csi *
-> @@ -537,6 +550,16 @@ static void imx7_csi_deinit(struct imx7_csi *csi,
->  	clk_disable_unprepare(csi->mclk);
->  }
-> =20
-> +static void imx8mq_baseaddr_switch(struct imx7_csi *csi)
-
-I think this function needs a better name. First add the imx7_csi
-prefix that all functions have, and also you are setting it specific
-to second frame and the function should not be specific to imx8.
-
-maybe something:
-
-imx7_csi_write_on_second_frame_enable, maybe?
-
-> +{
-> +	u32 cr18 =3D imx7_csi_reg_read(csi, CSI_CSICR18);
-> +
-> +	cr18 |=3D BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
-> +		BIT_BASEADDR_CHG_ERR_EN;
-> +	cr18 |=3D BIT_MASK_OPTION_SECOND_FRAME;
-> +	imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
-> +}
-> +
->  static void imx7_csi_enable(struct imx7_csi *csi)
->  {
->  	/* Clear the Rx FIFO and reflash the DMA controller. */
-> @@ -551,7 +574,11 @@ static void imx7_csi_enable(struct imx7_csi *csi)
-> =20
->  	/* Enable the RxFIFO DMA and the CSI. */
->  	imx7_csi_dmareq_rff_enable(csi);
-> +
-
-unrelated new line.
-
->  	imx7_csi_hw_enable(csi);
-> +
-> +	if (csi->type =3D=3D IMX8MQ)
-> +		imx8mq_baseaddr_switch(csi);
-
-change this to new types and names?
-
->  }
-> =20
->  static void imx7_csi_disable(struct imx7_csi *csi)
-> @@ -1155,6 +1182,8 @@ static int imx7_csi_probe(struct platform_device *p=
-dev)
->  	if (IS_ERR(csi->regbase))
->  		return PTR_ERR(csi->regbase);
-> =20
-> +	csi->type =3D (enum imx_soc)of_device_get_match_data(&pdev->dev);
-
-here something:
-        csi->is_imx8mq =3D of_device_is_compatible(np, "fsl,imx8mq-csi");
-> +
->  	spin_lock_init(&csi->irqlock);
->  	mutex_init(&csi->lock);
-> =20
-> @@ -1249,8 +1278,9 @@ static int imx7_csi_remove(struct platform_device *=
-pdev)
->  }
-> =20
->  static const struct of_device_id imx7_csi_of_match[] =3D {
-> -	{ .compatible =3D "fsl,imx7-csi" },
-> -	{ .compatible =3D "fsl,imx6ul-csi" },
-> +	{ .compatible =3D "fsl,imx8mq-csi", .data =3D (void *)IMX8MQ },
-
-and with the above you should not need to add the data field here.
-
-------
-Cheers,
-     Rui
-
-> +	{ .compatible =3D "fsl,imx7-csi", .data =3D (void *)IMX7 },
-> +	{ .compatible =3D "fsl,imx6ul-csi", .data =3D (void *)IMX6UL },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
-> --=20
-> 2.30.2
-
-
-
+Rob
