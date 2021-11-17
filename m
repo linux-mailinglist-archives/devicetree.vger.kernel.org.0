@@ -2,114 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01397454937
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:51:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C12E454939
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:51:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234747AbhKQOyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:54:01 -0500
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:35763 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233936AbhKQOxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 09:53:53 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 781735808AD;
-        Wed, 17 Nov 2021 09:50:54 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 17 Nov 2021 09:50:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=mLLzlElNt+foG
-        XGUbWNPyrcc8VA72A241ZqZ42H44io=; b=YYiHpYbuZNVNZrEMylD4fazPL8e10
-        5gucWGiPRXU8c0sHxgBNt++bwJf0PbRz2Dwv675dOzFz4zQCeXxWTR21igJMU1ov
-        CLL+dJdOb//UD3Mkx801be/eEI4sNRd7PBXQWuvM+RuF6jI0RpAFOo4OAl6EvSxN
-        tsErbtg0XviT6PYmjwzrlRiwGonoRn3d0LOmeffXowvlDRdPl19S3gK/Im1TqQwj
-        YfyBgF3yjIwIeQ8oxb705pW7I8L3YrrjijVIvjRGnH8m0kCjqm1neYYpOVVP+wcT
-        X41PdaaqSNiKjpS2UXsYsfgt5urqpFgLit9aekX75lLCB7iin1DFTa62w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=mLLzlElNt+foGXGUbWNPyrcc8VA72A241ZqZ42H44io=; b=NxMbvxvY
-        t8aZw4YxbS5EkRTxORmcBGt8E30AhU2yL/HU/o3/jCs9r3VlkZ0zamBht/OZFcQt
-        VNZ32RRmaCx8G1De1hcZPtcb1JyLIimghelz42WN1JMbyvf7M0hXdYYDcbp6J0Fr
-        PlWjleifnMIJMj7/5jy747ZBZvW8qdnaZl3lhNR8D/xv/RygWB9ywTgu5BJX2rlc
-        ODkVCJGtcIvFpR1vYIdWPTH2lnppeqwy7BlpP6e10mWoegYZPgGw41+feTkZeuyu
-        jNEPahcLLLW9HGV8Ale0of8vHCh1sS1Km7Gibr1zZf5sd0d4tzK0i/g2r92df2U0
-        C9dWy7MpgT6M+Q==
-X-ME-Sender: <xms:zhaVYYeZv0o5i2O4BJfU_PoUYErdgX3rWWRxBBz6qkdJEWBzUKk5Ig>
-    <xme:zhaVYaPE7dk2FjomC8KAPYaxjhniXszAhM_HkFfVIRlfx8HRfLNrV7lKF-p9O9YqZ
-    N_ypGGgq5EQncfk1iA>
-X-ME-Received: <xmr:zhaVYZiDiwC6RgLHD06QTc1k6-tknHwoyAft-y_9g-uoMkmOqi_Qqb-bxfaMka2OlJJlVBBJdvzXH3Ry7jQZ9KxvDbACHwWjOF5fAqhSYOg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeeggdeifecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:zhaVYd8Dpfh22jL5Sf-sG-iD8RTVkoEJ3ZLAEBDZt3d0jOg2zctIuQ>
-    <xmx:zhaVYUvElE8u0h96OeCQ2LjKHAxuk9e8yQ5xGDN2iZZ-yWeMCn0q4A>
-    <xmx:zhaVYUGSvQpN4r1ynYopdWQhUCW5BRSOLWVNGjkbmTMCuTaVtldwYg>
-    <xmx:zhaVYfkiC5WWNlzdN1o0ausuGVGpvj7Z1umadGWY9BXnPeBbAXetsg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 17 Nov 2021 09:50:53 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Scott Branden <sbranden@broadcom.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-rpi-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
+        id S232215AbhKQOyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:54:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232142AbhKQOyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:54:00 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737D1C0613B9
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:51:01 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mnMH1-0000XG-Hs; Wed, 17 Nov 2021 15:50:55 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mnMH0-0001C9-9I; Wed, 17 Nov 2021 15:50:54 +0100
+Date:   Wed, 17 Nov 2021 15:50:54 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     dri-devel@lists.freedesktop.org,
         linux-arm-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH 5/5] ARM: dts: rpi: Add the firmware node to vc4
-Date:   Wed, 17 Nov 2021 15:50:40 +0100
-Message-Id: <20211117145040.334827-6-maxime@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211117145040.334827-1-maxime@cerno.tech>
-References: <20211117145040.334827-1-maxime@cerno.tech>
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 11/12] drm/rockchip: Make VOP driver optional
+Message-ID: <20211117145054.GL6556@pengutronix.de>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+ <20211117143347.314294-12-s.hauer@pengutronix.de>
+ <15744316.EhFUcUTHNY@diego>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <15744316.EhFUcUTHNY@diego>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:44:50 up 272 days, 18:08, 147 users,  load average: 0.28, 0.17,
+ 0.17
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the firmware phandle to the vc4 node so that we can send it the
-message that we're done with the firmware display.
+On Wed, Nov 17, 2021 at 03:40:26PM +0100, Heiko Stübner wrote:
+> Am Mittwoch, 17. November 2021, 15:33:46 CET schrieb Sascha Hauer:
+> > With upcoming VOP2 support VOP won't be the only choice anymore, so make
+> > the VOP driver optional.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >  arch/arm/configs/multi_v7_defconfig         | 1 +
+> >  arch/arm64/configs/defconfig                | 1 +
+> >  drivers/gpu/drm/rockchip/Kconfig            | 7 +++++++
+> >  drivers/gpu/drm/rockchip/Makefile           | 3 ++-
+> >  drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
+> >  5 files changed, 12 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+> > index c951aeed2138c..fc123e8f3e2f9 100644
+> > --- a/arch/arm/configs/multi_v7_defconfig
+> > +++ b/arch/arm/configs/multi_v7_defconfig
+> > @@ -667,6 +667,7 @@ CONFIG_DRM_EXYNOS_DPI=y
+> >  CONFIG_DRM_EXYNOS_DSI=y
+> >  CONFIG_DRM_EXYNOS_HDMI=y
+> >  CONFIG_DRM_ROCKCHIP=m
+> > +CONFIG_ROCKCHIP_VOP=y
+> >  CONFIG_ROCKCHIP_ANALOGIX_DP=y
+> >  CONFIG_ROCKCHIP_DW_HDMI=y
+> >  CONFIG_ROCKCHIP_DW_MIPI_DSI=y
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index f2e2b9bdd7024..a623386473dc9 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -682,6 +682,7 @@ CONFIG_DRM_EXYNOS_DSI=y
+> >  CONFIG_DRM_EXYNOS_HDMI=y
+> >  CONFIG_DRM_EXYNOS_MIC=y
+> >  CONFIG_DRM_ROCKCHIP=m
+> > +CONFIG_ROCKCHIP_VOP=y
+> >  CONFIG_ROCKCHIP_ANALOGIX_DP=y
+> >  CONFIG_ROCKCHIP_CDN_DP=y
+> >  CONFIG_ROCKCHIP_DW_HDMI=y
+> > diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+> > index 9f1ecefc39332..a1c4158259099 100644
+> > --- a/drivers/gpu/drm/rockchip/Kconfig
+> > +++ b/drivers/gpu/drm/rockchip/Kconfig
+> > @@ -21,8 +21,15 @@ config DRM_ROCKCHIP
+> >  
+> >  if DRM_ROCKCHIP
+> >  
+> > +config ROCKCHIP_VOP
+> > +	bool "Rockchip VOP driver"
+> 
+> would this benefit from a default-y ?
+> For builds reusing preexisting .configs.
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
----
- arch/arm/boot/dts/bcm2835-rpi.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+I enabled CONFIG_ROCKCHIP_VOP for all configs in the tree that enable
+CONFIG_DRM_ROCKCHIP, so defconfig users shouldn't see any surprises.
+That won't help users of custom configs of course.
 
-diff --git a/arch/arm/boot/dts/bcm2835-rpi.dtsi b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-index 87ddcad76083..bc5dc51ba579 100644
---- a/arch/arm/boot/dts/bcm2835-rpi.dtsi
-+++ b/arch/arm/boot/dts/bcm2835-rpi.dtsi
-@@ -67,6 +67,10 @@ &usb {
- 	power-domains = <&power RPI_POWER_DOMAIN_USB>;
- };
- 
-+&vc4 {
-+	raspberrypi,firmware = <&firmware>;
-+};
-+
- &vec {
- 	power-domains = <&power RPI_POWER_DOMAIN_VEC>;
- 	status = "okay";
+I don't know what's preferred in such cases, I can change to default-y
+if you like.
+
+Sascha
+
 -- 
-2.33.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
