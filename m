@@ -2,92 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A17AB454B62
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 17:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDDD3454BA7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:09:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234759AbhKQQxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 11:53:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33380 "EHLO
+        id S239074AbhKQRMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 12:12:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233890AbhKQQxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 11:53:47 -0500
-Received: from mail-il1-x132.google.com (mail-il1-x132.google.com [IPv6:2607:f8b0:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A49C061570
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 08:50:48 -0800 (PST)
-Received: by mail-il1-x132.google.com with SMTP id l19so3496752ilk.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 08:50:48 -0800 (PST)
+        with ESMTP id S233179AbhKQRMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:12:41 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3B0BC061570;
+        Wed, 17 Nov 2021 09:09:42 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id k37-20020a05600c1ca500b00330cb84834fso5370056wms.2;
+        Wed, 17 Nov 2021 09:09:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jLYkMtFnDmV7z5mlviZaA8HEm3Bspty3ASVJh0ASF+0=;
-        b=a3S9Zdzy3vVzknJ2+MHEl7tGolYPQfJtco92MsePu1QameG4aar+6NG8EaO27mYF5Z
-         ZmXJl913QfJWkppAjJFBObbxLFbQcPWz03bylfP1u6elDT7gvVP06/iicHQBbHg3OrKv
-         BT3bDdw9OgsRnmKwfL9qUvicbYLejYZH/f6RQRlWfo9ke4vnkpeyY8iAj+oJf9Bv/rgv
-         SmmRrxajfQ+l2ylCDENTpMOKpMg6IYevTI/DoAA3OL5vZs4BRjHfSCpKgxooL1LvwBx5
-         KS7xc5YiqBBxkPGILVUw2uysiZcrNYzDkx3pPMRdWviyGmbh5iLnLTb3hgwxHA/dYtoi
-         B+PA==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=0B+N0FA61IWnA1l5AfQzrBop1ZHsqAbfOO+sgyYzC58=;
+        b=Ks1SXb180c0C9y2x2MA1wxqwqNhxfF1eIbBVXQ/pLIUBawraenmhHjlLtFqYaP5rRM
+         JD99zoH+3g8POKfTifx0n5M9w/xP9atLflYx35pxWWgJzIcz9Ll4qhRRDSHODLp36Tte
+         ztIbX8l0EsVjCP7get9NWkhCrC8fkXfYz/yRWEz/C7M8oOOnleGUUMwiep+6unGy6Lok
+         j6e8qtJKTanvbHhlgdguDdZXc3hTYNVDjRlYLFxtIdilrFj2Vf4QiO4A8bBrq56mm6wR
+         +4uV01kPmJhbAtICFVFWMOPdOL2/uCbbKJdkztnSBCb0+Dy3zAppcdWqKWeV3ZcCNazr
+         KmFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jLYkMtFnDmV7z5mlviZaA8HEm3Bspty3ASVJh0ASF+0=;
-        b=iNAoVjnKEG+WiarGNVM9JlzsvnqS4KvmSjVwp7nRpiY6mbcrVe8NkLxp5RzqJXEHxJ
-         dZa9oSmHGH3ENuTMDULOsnKC2MtORaL9kLEH4Uo9wMusrWWoumY9WjiLry1gZ3fOWQPL
-         sZKjws36IUesuGgPE5mewbWKLsugTRLu6f5U3j6Aajtan8V9YzjtE5VahIZ7Hx/Usc6B
-         PPKFR+A9zBccRBJvB9QrqaoYhBWdsxKQhCBYUiiY2XnOGCkEIXgJZZXMuRvcjRdXbSIM
-         MIwmQkAkBWJdYCHSFYawiWZnaz0Djjv2YmjbsnDGlbV8fXrt09qjcNYI3BXm8i3Yjo7m
-         UkxA==
-X-Gm-Message-State: AOAM5316i0hNC+sPWSWNUtPOM4LsqspgP11tgzSdvxaa5tyCpci9Vamv
-        QO7uXUrbHwr1hoeLJCroMNcMEIbd2pFigdGp8oQT9w==
-X-Google-Smtp-Source: ABdhPJyHO2KLqbPMiL7hCboUwfUWjOcp+fzSzCmfoiGYW7MY2QXlhJC/3FBFB/CsoleOuaxPymfWFzGOKO4POP7mF+8=
-X-Received: by 2002:a05:6e02:144e:: with SMTP id p14mr11313033ilo.180.1637167847569;
- Wed, 17 Nov 2021 08:50:47 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=0B+N0FA61IWnA1l5AfQzrBop1ZHsqAbfOO+sgyYzC58=;
+        b=bEgONa681ED8RQZlD92zS5vmr1SZ3vhsT331o4FylhTyLd5Dd/A27iKOzjUMwSKdq2
+         k8rHwexs/Y+WTxqKi+P1wGB1dG7H1LkWVPXNEhZcE0XdY9cijaV4mbbRBZBIE0zsBuzt
+         Bo2Zv6N5DzaDswwtZX7O+DaHKFHzvOchZnvsTVnlDntChZpSEeL98ZYXFugXXqdR2K9N
+         K5DlnzRW4hVPSdIgYOjadJFE1kUCwI8TuizNVFuPMq3BDLOKbfssWRC/6sw8qSctOJIy
+         nl0KhPIEx317YPJe3KmkVH5kX8/z8A5rjM9hisKp0SpRTTp3Qd8i7I/EJkVieVi/x/Zu
+         WEbA==
+X-Gm-Message-State: AOAM530no5cNDwbKFZPv+1SS5qc5IFJaFE1YtY2iYfdL7ltTGIlXYdDN
+        tPFvkSqvED/TiWwVN7jtMP0QkER6o4w=
+X-Google-Smtp-Source: ABdhPJxGcBEQhtQFfbKcOJuuOam7iLbD22APsVdCohpJtRkkAnBdMxBD3SvwJTW07cLtCktLxwczaw==
+X-Received: by 2002:a7b:ce8c:: with SMTP id q12mr1396307wmj.91.1637168981409;
+        Wed, 17 Nov 2021 09:09:41 -0800 (PST)
+Received: from [192.168.0.18] (static-160-219-86-188.ipcom.comunitel.net. [188.86.219.160])
+        by smtp.gmail.com with ESMTPSA id m17sm432110wrz.22.2021.11.17.09.09.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Nov 2021 09:09:40 -0800 (PST)
+Message-ID: <acf4a474-7abf-49e5-aa4e-a25d101fb3d8@gmail.com>
+Date:   Wed, 17 Nov 2021 18:09:39 +0100
 MIME-Version: 1.0
-References: <20211112084302.2447931-1-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=XWdA5kC5VpRPNWzCQDJjmDg5s7bP=sa7yVuqnRcxWf+w@mail.gmail.com>
-In-Reply-To: <CAD=FV=XWdA5kC5VpRPNWzCQDJjmDg5s7bP=sa7yVuqnRcxWf+w@mail.gmail.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Wed, 17 Nov 2021 08:50:36 -0800
-Message-ID: <CAD=FV=XirCUp3t8sM_zXwZJ_x5-zbXzLQCdHHyor=5q2jr8ZrA@mail.gmail.com>
-Subject: Re: [PATCH] drm/bridge: parade-ps8640: Fix additional suspend/resume
- at bootup
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     swboyd@chromium.org, robert.foss@linaro.org,
-        narmstrong@baylibre.com, laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@linux.ie,
-        daniel@ffwll.ch, a.hajda@samsung.com, philipchen@chromium.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH v3 4/4] arm64: dts: mediatek: mt8192: fix i2c node names
+Content-Language: en-US
+To:     Fabien Parent <fparent@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20211110194959.20611-1-fparent@baylibre.com>
+ <20211110194959.20611-4-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20211110194959.20611-4-fparent@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Fri, Nov 12, 2021 at 8:32 AM Doug Anderson <dianders@google.com> wrote:
->
-> Hi,
->
-> On Fri, Nov 12, 2021 at 12:43 AM yangcong
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > Through log and waveform, we can see that there will be additional
-> > suspend/resume when booting. This timing does not meet the ps8640 spec.
-> > It seems that the delay of 500ms does not satisfied drm_panel_get_modes.
-> > I increased it to 900ms and it seems that this problem can be solved.
-> > To be safe, I'd just round up to a full 1000.
->
-> Do be clear: I'm still not convinced that the old 500 ms actually
-> causes any real problems. I think someone is just measuring with a
-> scope and upset that they see the device power on and then power off
-> again. In any case, if we can avoid an extra power cycle at boot then
-> that seems sane to me. Since this is a tiny change, I'll plan to merge
-> it some time next week unless someone yells.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-Pushed to drm-misc-next:
+On 10/11/2021 20:49, Fabien Parent wrote:
+> Fix the i2c node names to be compliant to the YAML schema. The
+> I2C node name should match the following pattern: "^i2c@[0-9a-f]+$".
+> 
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-aa70a0996b0e drm/bridge: parade-ps8640: Fix additional suspend/resume at bootup
+Applied to v5.16-next/dts64
+
+Thanks
+
+> ---
+> 
+> v3: rebased
+> v2: new patch
+> 
+>   arch/arm64/boot/dts/mediatek/mt8192.dtsi | 20 ++++++++++----------
+>   1 file changed, 10 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> index c7c7d4e017ae..53d790c335f9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> @@ -479,7 +479,7 @@ audsys: clock-controller@11210000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		i2c3: i2c3@11cb0000 {
+> +		i2c3: i2c@11cb0000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11cb0000 0 0x1000>,
+>   			      <0 0x10217300 0 0x80>;
+> @@ -498,7 +498,7 @@ imp_iic_wrap_e: clock-controller@11cb1000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		i2c7: i2c7@11d00000 {
+> +		i2c7: i2c@11d00000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11d00000 0 0x1000>,
+>   			      <0 0x10217600 0 0x180>;
+> @@ -511,7 +511,7 @@ i2c7: i2c7@11d00000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c8: i2c8@11d01000 {
+> +		i2c8: i2c@11d01000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11d01000 0 0x1000>,
+>   			      <0 0x10217780 0 0x180>;
+> @@ -524,7 +524,7 @@ i2c8: i2c8@11d01000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c9: i2c9@11d02000 {
+> +		i2c9: i2c@11d02000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11d02000 0 0x1000>,
+>   			      <0 0x10217900 0 0x180>;
+> @@ -543,7 +543,7 @@ imp_iic_wrap_s: clock-controller@11d03000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		i2c1: i2c1@11d20000 {
+> +		i2c1: i2c@11d20000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11d20000 0 0x1000>,
+>   			      <0 0x10217100 0 0x80>;
+> @@ -556,7 +556,7 @@ i2c1: i2c1@11d20000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c2: i2c2@11d21000 {
+> +		i2c2: i2c@11d21000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11d21000 0 0x1000>,
+>   			      <0 0x10217180 0 0x180>;
+> @@ -569,7 +569,7 @@ i2c2: i2c2@11d21000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c4: i2c4@11d22000 {
+> +		i2c4: i2c@11d22000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11d22000 0 0x1000>,
+>   			      <0 0x10217380 0 0x180>;
+> @@ -588,7 +588,7 @@ imp_iic_wrap_ws: clock-controller@11d23000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		i2c5: i2c5@11e00000 {
+> +		i2c5: i2c@11e00000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11e00000 0 0x1000>,
+>   			      <0 0x10217500 0 0x80>;
+> @@ -607,7 +607,7 @@ imp_iic_wrap_w: clock-controller@11e01000 {
+>   			#clock-cells = <1>;
+>   		};
+>   
+> -		i2c0: i2c0@11f00000 {
+> +		i2c0: i2c@11f00000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11f00000 0 0x1000>,
+>   			      <0 0x10217080 0 0x80>;
+> @@ -620,7 +620,7 @@ i2c0: i2c0@11f00000 {
+>   			status = "disabled";
+>   		};
+>   
+> -		i2c6: i2c6@11f01000 {
+> +		i2c6: i2c@11f01000 {
+>   			compatible = "mediatek,mt8192-i2c";
+>   			reg = <0 0x11f01000 0 0x1000>,
+>   			      <0 0x10217580 0 0x80>;
+> 
