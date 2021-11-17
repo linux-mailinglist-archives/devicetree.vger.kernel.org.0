@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBA8454945
+	by mail.lfdr.de (Postfix) with ESMTP id B548F454947
 	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231518AbhKQOzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:55:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
+        id S230085AbhKQOzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:55:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230085AbhKQOzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:55:36 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6243C061570
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:52:37 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id y13so12171632edd.13
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:52:37 -0800 (PST)
+        with ESMTP id S230459AbhKQOzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:55:37 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98DD4C061764
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:52:38 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id b15so12350694edd.7
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:52:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nbFF/7gtUy+99k8e1NtB2gMx+MTF8Q65aibKnryEXnE=;
-        b=xBUaFM2qmdQljE9TB00BFnFwIarIPq6wrlAQZG0rfdHNpQ35r8lFwuxJSea9OQ1FAY
-         6uOwGhPHwdiIxrb2/43B2IdIBdWfGZ5iwyUm5ew6s0lV1H2As1kK6xn7AT482vJFjH8b
-         GmcyzUZB30sJ5tnwdUvHqZzFMQ44ASQ5vFPmF43Ic/0fw2YnU7jspNxHkoEJpSd0yuk8
-         R5i9IjjO1VKftdJtVN3ohcqhdyJ5rLFw+Qb1rK8G6h3CosmV921I6zEPVVNRrU4//yUB
-         AfJxC/bL6OmVhKaYE76R8vz0UYSiJ4WOt+rv1jYJmHjo0M2kwfIXVywFBHBGrFwVP9cJ
-         p8lQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6a4q4pVmQUXtzn45oqIQ9MFMoZugw/FbbL0Z8a0gnOg=;
+        b=rUtkJyDRSqarprvrSuT5wzU3tWckAsA4nxQrLS6fI/rjg9yCAfIUAYsw2Xh78wJir6
+         uMpgv0/Dv08euJ1JMFVLijyLbdf3oUHnfoeTp7nKGM/aOEAO4zMIDG0E3MbnKwyJP0GZ
+         QA8FRC0w5SQa5Djk+ory93VLGjtjzZbWrm+PzPodr0WyLRNV41q2HFugiwMsSe0XX1y7
+         RFsb+j1o5sU/R6CkLqFA1qRZO56JEVcWrtxfajNJW4cBcIEFdKQEjFaf5PLTHz0/SXmD
+         ULhxuhsyysxIAWf/l1GMyDFI7K91UWKXZ8T+jWEDwZTsxa3tYoBA1d4m8K5gMn94x6yp
+         3hSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nbFF/7gtUy+99k8e1NtB2gMx+MTF8Q65aibKnryEXnE=;
-        b=cnTCg/3kQ3XP/Bl1DzQK3po8xUufBJMAqT4VWXhAiN5hISflMIJN9/HKGghN9OVtXw
-         3oG+yBxrX3lN2E6Z30hgcg4vXIkfXz8rG00r3BA1LNxo4H5kQqQZNrzGL250Xs0JKBIs
-         8OX5J3/2VHP0Iqvg8jKe5Zw49nIWjZuzLM+PzxPYbrjB4jyd8pNUGyr9cG2OA+cQN8JS
-         fSTzIuCbB9gOXjT6BKxcSPYfrtcz286RcE1mkA1/oqTtjFBXgW1REeeB+/pMiIjXDzO5
-         1PQLH1F/WQNXgq4NuA0BOvGJxqc7KCyALPL6Cwq1k7H4TUOxM3iu5ENHutHocX3pbbY0
-         cFUg==
-X-Gm-Message-State: AOAM533u/jDz1rNzoqOXQeCIJQPmJcpTCQ8GNepv5Aa4ST611KCMGBOY
-        NN1gBfdqT6zB51wSa+DftktKdeYtRqdRmw==
-X-Google-Smtp-Source: ABdhPJzaluFCdabwVapcVv+el0UpwvCLsJJrI7V1vzIb9r6w8HWWT7EJru/5Eoh/o49qPUxpbXIpUw==
-X-Received: by 2002:a17:906:b50:: with SMTP id v16mr22778059ejg.384.1637160756247;
-        Wed, 17 Nov 2021 06:52:36 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6a4q4pVmQUXtzn45oqIQ9MFMoZugw/FbbL0Z8a0gnOg=;
+        b=eEEX+4jQWLuGfre3/AzRjwEqtsDwRm72vEn9Ha9MtDlSwrI9z6z2UjPln8EylOWkS1
+         592WhsTa89ZBl2x/n485Ct3FcbfA4oTs2zYsXFAMoZVAUyVnA2W9P6Ay6yPPUyqLaCBB
+         lf6W5xGaXAtN0R2EQjwZW9UV88JvQd/0LGHpLy+0PToKxNcv+AbRb1bp3OWis+pdzbvN
+         TgYZZLVPhPgDdA7DLaTBWyHXTxhhdrKef5BV6vjJqkVx79d5Yw8oUn8WW95S15a+i5Ta
+         ZnIBqwW2sEotvkfZpkAqSODiD1/PAqUk5pQWCplWhHrMNs9tTu5K5BmsIf3ktCVJ3exj
+         byJg==
+X-Gm-Message-State: AOAM531Yj+C3HBnfuo3NI9HqZoUGty35jsiYBYY952e5cv4qam6qOrNQ
+        gRGj6+fuKlvqh8wkjKGudc0VxQ==
+X-Google-Smtp-Source: ABdhPJwHaeJCQFolHmoVIN0lPrlp5s2Djgnu9qxNlKfuAMmCjAAT2Yf+Qc4rCkHRafGx6mc9LtDV1Q==
+X-Received: by 2002:a05:6402:d49:: with SMTP id ec9mr22561651edb.235.1637160757182;
+        Wed, 17 Nov 2021 06:52:37 -0800 (PST)
 Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
-        by smtp.gmail.com with ESMTPSA id gs15sm63917ejc.42.2021.11.17.06.52.34
+        by smtp.gmail.com with ESMTPSA id gs15sm63917ejc.42.2021.11.17.06.52.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Nov 2021 06:52:35 -0800 (PST)
+        Wed, 17 Nov 2021 06:52:36 -0800 (PST)
 From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
 To:     robh+dt@kernel.org
 Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
@@ -55,43 +55,107 @@ Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
         jkchen@linux.alibaba.com, leo.yan@linaro.org,
         uchida.jun@socionext.com,
         Jean-Philippe Brucker <jean-philippe@linaro.org>
-Subject: [PATCH v2 0/3] perf/smmuv3: Support devicetree
-Date:   Wed, 17 Nov 2021 14:48:42 +0000
-Message-Id: <20211117144844.241072-1-jean-philippe@linaro.org>
+Subject: [PATCH v2 1/3] dt-bindings: Add Arm SMMUv3 PMCG binding
+Date:   Wed, 17 Nov 2021 14:48:43 +0000
+Message-Id: <20211117144844.241072-2-jean-philippe@linaro.org>
 X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211117144844.241072-1-jean-philippe@linaro.org>
+References: <20211117144844.241072-1-jean-philippe@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
-Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
-multiple independent PMCGs, for example one for the Translation Control
-Unit (TCU) and one per Translation Buffer Unit (TBU).
+Add binding for the Arm SMMUv3 PMU. Each node represents a PMCG, and is
+placed as a sibling node of the SMMU. Although the PMCGs registers may
+be within the SMMU MMIO region, they are separate devices, and there can
+be multiple PMCG devices for each SMMU (for example one for the TCU and
+one for each TBU).
 
-Since v1 [1]:
-* Fixed warnings in the binding doc
-* Removed hip08 support
-* Merged Robin's version. I took the liberty of splitting the driver
-  patch into 2 and 3. One fix in patch 3, and whitespace changes (the
-  driver uses spaces instead of tabs to align #define values, which I
-  was going to fix but actually seems more common across the tree.)
-
-[1] https://lore.kernel.org/linux-iommu/20211116113536.69758-1-jean-philippe@linaro.org/
-
-Jean-Philippe Brucker (2):
-  dt-bindings: Add Arm SMMUv3 PMCG binding
-  perf/smmuv3: Add devicetree support
-
-Robin Murphy (1):
-  perf/smmuv3: Synthesize IIDR from CoreSight ID registers
-
+Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+---
  .../bindings/perf/arm,smmu-v3-pmcg.yaml       | 70 +++++++++++++++++++
- drivers/perf/arm_smmuv3_pmu.c                 | 66 ++++++++++++++++-
- 2 files changed, 134 insertions(+), 2 deletions(-)
+ 1 file changed, 70 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
 
+diff --git a/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml b/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
+new file mode 100644
+index 000000000000..a4b53a6a1ebf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,smmu-v3-pmcg.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Arm SMMUv3 Performance Monitor Counter Group
++
++maintainers:
++  - Will Deacon <will@kernel.org>
++  - Robin Murphy <robin.murphy@arm.com>
++
++description: |
++  An SMMUv3 may have several Performance Monitor Counter Group (PMCG).
++  They are standalone performance monitoring units that support both
++  architected and IMPLEMENTATION DEFINED event counters.
++
++properties:
++  $nodename:
++    pattern: "^pmu@[0-9a-f]*"
++  compatible:
++    oneOf:
++      - items:
++          - const: arm,mmu-600-pmcg
++          - const: arm,smmu-v3-pmcg
++      - const: arm,smmu-v3-pmcg
++
++  reg:
++    items:
++      - description: Register page 0
++      - description: Register page 1, if SMMU_PMCG_CFGR.RELOC_CTRS = 1
++    minItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  msi-parent: true
++
++required:
++  - compatible
++  - reg
++
++anyOf:
++  - required:
++      - interrupts
++  - required:
++      - msi-parent
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    pmu@2b420000 {
++            compatible = "arm,smmu-v3-pmcg";
++            reg = <0x2b420000 0x1000>,
++                  <0x2b430000 0x1000>;
++            interrupts = <GIC_SPI 80 IRQ_TYPE_EDGE_RISING>;
++            msi-parent = <&its 0xff0000>;
++    };
++
++    pmu@2b440000 {
++            compatible = "arm,smmu-v3-pmcg";
++            reg = <0x2b440000 0x1000>,
++                  <0x2b450000 0x1000>;
++            interrupts = <GIC_SPI 81 IRQ_TYPE_EDGE_RISING>;
++            msi-parent = <&its 0xff0000>;
++    };
 -- 
 2.33.1
 
