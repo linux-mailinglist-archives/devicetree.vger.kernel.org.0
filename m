@@ -2,109 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7814D454E23
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 20:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60781454E92
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 21:31:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240043AbhKQTs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 14:48:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232079AbhKQTsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 14:48:55 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B424EC061570
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 11:45:56 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mnQsQ-0002ub-VJ; Wed, 17 Nov 2021 20:45:50 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mnQsN-0002t0-Lm; Wed, 17 Nov 2021 20:45:47 +0100
-Date:   Wed, 17 Nov 2021 20:45:47 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 12/12] drm: rockchip: Add VOP2 driver
-Message-ID: <20211117194547.GN6556@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <20211117143347.314294-13-s.hauer@pengutronix.de>
- <7182753.rMVL1d3Icj@archbook>
+        id S229641AbhKQUeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 15:34:01 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:49817 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229606AbhKQUeA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 15:34:00 -0500
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 13D44200008;
+        Wed, 17 Nov 2021 20:30:58 +0000 (UTC)
+Date:   Wed, 17 Nov 2021 21:30:58 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: Re: [PATCH v3 2/8] rtc: max77686: rename day-of-month defines
+Message-ID: <YZVmgo1PEyA3Rv6/@piout.net>
+References: <20211111225852.3128201-1-luca@lucaceresoli.net>
+ <20211111225852.3128201-3-luca@lucaceresoli.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7182753.rMVL1d3Icj@archbook>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 20:43:02 up 272 days, 23:06, 125 users,  load average: 0.13, 0.21,
- 0.20
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20211111225852.3128201-3-luca@lucaceresoli.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 07:05:33PM +0100, Nicolas Frattaroli wrote:
-> On Mittwoch, 17. November 2021 15:33:47 CET Sascha Hauer wrote:
-> > The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
-> > It replaces the VOP unit found in the older Rockchip SoCs.
-> > 
-> > This driver has been derived from the downstream Rockchip Kernel and
-> > heavily modified:
-> > 
-> > - All nonstandard DRM properties have been removed
-> > - dropped struct vop2_plane_state and pass around less data between
-> >   functions
-> > - Dropped all DRM_FORMAT_* not known on upstream
-> > - rework register access to get rid of excessively used macros
-> > 
-> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
-> > board. Overlay support is tested with the modetest utility. AFBC support
-> > is still present in the driver, but currently untested due to the lack
-> > of suitable image sources. Also the driver has been tested with weston
-> > using pixman and (yet to be upstreamed) panfrost driver support.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
+On 11/11/2021 23:58:46+0100, Luca Ceresoli wrote:
+> RTC_DATE and REG_RTC_DATE are used for the registers holding the day of
+> month. Rename these constants to mean what they mean.
 > 
-> Hi Sascha,
+> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > 
-> thank you very much for your work on this! I gave it a try tonight,
-> and unfortunately it appears to currently always attempt to use
-> 1920x1080p60 as the mode regardless of the monitor. For example,
-> on an old 720p monitor I had laying around:
-> 
-> 	[  225.732342] rockchip-drm display-subsystem: [drm] Update mode to 1920x1080p60, type: 11 for vp0, output 0x00000800  HDMI0
-> 
-> This results in a broken picture (all white with occasional glitches).
-> Somebody else observed the same behaviour on a 1440p monitor.
+Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Unfortunately all my monitors I have here have exactly 1920x1080p60, so
-I didn't notice. Anyway, when I try another mode like 1280x1024 which
-should be supported as well then my monitor responds with "out of
-range", so something is indeed fishy here.
-
-I'll have a look into it.
-
-Sascha
+> ---
+> 
+> Changes in v3: none
+> 
+> Changes in v2:
+>  - fix drivers/mfd/max77686.c build failure due to missing rename
+>    (Reported-by: kernel test robot <lkp@intel.com>)
+> ---
+>  drivers/mfd/max77686.c               |  2 +-
+>  drivers/rtc/rtc-max77686.c           | 16 ++++++++--------
+>  include/linux/mfd/max77686-private.h |  4 ++--
+>  3 files changed, 11 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/mfd/max77686.c b/drivers/mfd/max77686.c
+> index f9e12ab2bc75..2ac64277fb84 100644
+> --- a/drivers/mfd/max77686.c
+> +++ b/drivers/mfd/max77686.c
+> @@ -87,7 +87,7 @@ static bool max77802_rtc_is_volatile_reg(struct device *dev, unsigned int reg)
+>  		reg == MAX77802_RTC_WEEKDAY ||
+>  		reg == MAX77802_RTC_MONTH ||
+>  		reg == MAX77802_RTC_YEAR ||
+> -		reg == MAX77802_RTC_DATE);
+> +		reg == MAX77802_RTC_MONTHDAY);
+>  }
+>  
+>  static bool max77802_is_volatile_reg(struct device *dev, unsigned int reg)
+> diff --git a/drivers/rtc/rtc-max77686.c b/drivers/rtc/rtc-max77686.c
+> index bac52cdea97d..7e765207f28e 100644
+> --- a/drivers/rtc/rtc-max77686.c
+> +++ b/drivers/rtc/rtc-max77686.c
+> @@ -57,7 +57,7 @@ enum {
+>  	RTC_WEEKDAY,
+>  	RTC_MONTH,
+>  	RTC_YEAR,
+> -	RTC_DATE,
+> +	RTC_MONTHDAY,
+>  	RTC_NR_TIME
+>  };
+>  
+> @@ -119,7 +119,7 @@ enum max77686_rtc_reg_offset {
+>  	REG_RTC_WEEKDAY,
+>  	REG_RTC_MONTH,
+>  	REG_RTC_YEAR,
+> -	REG_RTC_DATE,
+> +	REG_RTC_MONTHDAY,
+>  	REG_ALARM1_SEC,
+>  	REG_ALARM1_MIN,
+>  	REG_ALARM1_HOUR,
+> @@ -150,7 +150,7 @@ static const unsigned int max77686_map[REG_RTC_END] = {
+>  	[REG_RTC_WEEKDAY]    = MAX77686_RTC_WEEKDAY,
+>  	[REG_RTC_MONTH]      = MAX77686_RTC_MONTH,
+>  	[REG_RTC_YEAR]       = MAX77686_RTC_YEAR,
+> -	[REG_RTC_DATE]       = MAX77686_RTC_DATE,
+> +	[REG_RTC_MONTHDAY]   = MAX77686_RTC_MONTHDAY,
+>  	[REG_ALARM1_SEC]     = MAX77686_ALARM1_SEC,
+>  	[REG_ALARM1_MIN]     = MAX77686_ALARM1_MIN,
+>  	[REG_ALARM1_HOUR]    = MAX77686_ALARM1_HOUR,
+> @@ -233,7 +233,7 @@ static const unsigned int max77802_map[REG_RTC_END] = {
+>  	[REG_RTC_WEEKDAY]    = MAX77802_RTC_WEEKDAY,
+>  	[REG_RTC_MONTH]      = MAX77802_RTC_MONTH,
+>  	[REG_RTC_YEAR]       = MAX77802_RTC_YEAR,
+> -	[REG_RTC_DATE]       = MAX77802_RTC_DATE,
+> +	[REG_RTC_MONTHDAY]   = MAX77802_RTC_MONTHDAY,
+>  	[REG_ALARM1_SEC]     = MAX77802_ALARM1_SEC,
+>  	[REG_ALARM1_MIN]     = MAX77802_ALARM1_MIN,
+>  	[REG_ALARM1_HOUR]    = MAX77802_ALARM1_HOUR,
+> @@ -288,7 +288,7 @@ static void max77686_rtc_data_to_tm(u8 *data, struct rtc_time *tm,
+>  
+>  	/* Only a single bit is set in data[], so fls() would be equivalent */
+>  	tm->tm_wday = ffs(data[RTC_WEEKDAY] & mask) - 1;
+> -	tm->tm_mday = data[RTC_DATE] & 0x1f;
+> +	tm->tm_mday = data[RTC_MONTHDAY] & 0x1f;
+>  	tm->tm_mon = (data[RTC_MONTH] & 0x0f) - 1;
+>  	tm->tm_year = data[RTC_YEAR] & mask;
+>  	tm->tm_yday = 0;
+> @@ -309,7 +309,7 @@ static int max77686_rtc_tm_to_data(struct rtc_time *tm, u8 *data,
+>  	data[RTC_MIN] = tm->tm_min;
+>  	data[RTC_HOUR] = tm->tm_hour;
+>  	data[RTC_WEEKDAY] = 1 << tm->tm_wday;
+> -	data[RTC_DATE] = tm->tm_mday;
+> +	data[RTC_MONTHDAY] = tm->tm_mday;
+>  	data[RTC_MONTH] = tm->tm_mon + 1;
+>  
+>  	if (info->drv_data->alarm_enable_reg) {
+> @@ -565,8 +565,8 @@ static int max77686_rtc_start_alarm(struct max77686_rtc_info *info)
+>  			data[RTC_MONTH] |= (1 << ALARM_ENABLE_SHIFT);
+>  		if (data[RTC_YEAR] & info->drv_data->mask)
+>  			data[RTC_YEAR] |= (1 << ALARM_ENABLE_SHIFT);
+> -		if (data[RTC_DATE] & 0x1f)
+> -			data[RTC_DATE] |= (1 << ALARM_ENABLE_SHIFT);
+> +		if (data[RTC_MONTHDAY] & 0x1f)
+> +			data[RTC_MONTHDAY] |= (1 << ALARM_ENABLE_SHIFT);
+>  
+>  		ret = regmap_bulk_write(info->rtc_regmap, map[REG_ALARM1_SEC],
+>  					data, ARRAY_SIZE(data));
+> diff --git a/include/linux/mfd/max77686-private.h b/include/linux/mfd/max77686-private.h
+> index b1482b3cf353..3acceeedbaba 100644
+> --- a/include/linux/mfd/max77686-private.h
+> +++ b/include/linux/mfd/max77686-private.h
+> @@ -152,7 +152,7 @@ enum max77686_rtc_reg {
+>  	MAX77686_RTC_WEEKDAY		= 0x0A,
+>  	MAX77686_RTC_MONTH		= 0x0B,
+>  	MAX77686_RTC_YEAR		= 0x0C,
+> -	MAX77686_RTC_DATE		= 0x0D,
+> +	MAX77686_RTC_MONTHDAY		= 0x0D,
+>  	MAX77686_ALARM1_SEC		= 0x0E,
+>  	MAX77686_ALARM1_MIN		= 0x0F,
+>  	MAX77686_ALARM1_HOUR		= 0x10,
+> @@ -352,7 +352,7 @@ enum max77802_rtc_reg {
+>  	MAX77802_RTC_WEEKDAY		= 0xCA,
+>  	MAX77802_RTC_MONTH		= 0xCB,
+>  	MAX77802_RTC_YEAR		= 0xCC,
+> -	MAX77802_RTC_DATE		= 0xCD,
+> +	MAX77802_RTC_MONTHDAY		= 0xCD,
+>  	MAX77802_RTC_AE1		= 0xCE,
+>  	MAX77802_ALARM1_SEC		= 0xCF,
+>  	MAX77802_ALARM1_MIN		= 0xD0,
+> -- 
+> 2.25.1
+> 
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
