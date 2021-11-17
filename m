@@ -2,138 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6803454904
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:40:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CBA8454945
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:52:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238055AbhKQOnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:43:33 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:60288 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236665AbhKQOnc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 09:43:32 -0500
-Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mnM6t-0004he-Gm; Wed, 17 Nov 2021 15:40:27 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     dri-devel@lists.freedesktop.org,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH 11/12] drm/rockchip: Make VOP driver optional
-Date:   Wed, 17 Nov 2021 15:40:26 +0100
-Message-ID: <15744316.EhFUcUTHNY@diego>
-In-Reply-To: <20211117143347.314294-12-s.hauer@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de> <20211117143347.314294-12-s.hauer@pengutronix.de>
+        id S231518AbhKQOzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:55:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230085AbhKQOzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:55:36 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6243C061570
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:52:37 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id y13so12171632edd.13
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:52:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nbFF/7gtUy+99k8e1NtB2gMx+MTF8Q65aibKnryEXnE=;
+        b=xBUaFM2qmdQljE9TB00BFnFwIarIPq6wrlAQZG0rfdHNpQ35r8lFwuxJSea9OQ1FAY
+         6uOwGhPHwdiIxrb2/43B2IdIBdWfGZ5iwyUm5ew6s0lV1H2As1kK6xn7AT482vJFjH8b
+         GmcyzUZB30sJ5tnwdUvHqZzFMQ44ASQ5vFPmF43Ic/0fw2YnU7jspNxHkoEJpSd0yuk8
+         R5i9IjjO1VKftdJtVN3ohcqhdyJ5rLFw+Qb1rK8G6h3CosmV921I6zEPVVNRrU4//yUB
+         AfJxC/bL6OmVhKaYE76R8vz0UYSiJ4WOt+rv1jYJmHjo0M2kwfIXVywFBHBGrFwVP9cJ
+         p8lQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nbFF/7gtUy+99k8e1NtB2gMx+MTF8Q65aibKnryEXnE=;
+        b=cnTCg/3kQ3XP/Bl1DzQK3po8xUufBJMAqT4VWXhAiN5hISflMIJN9/HKGghN9OVtXw
+         3oG+yBxrX3lN2E6Z30hgcg4vXIkfXz8rG00r3BA1LNxo4H5kQqQZNrzGL250Xs0JKBIs
+         8OX5J3/2VHP0Iqvg8jKe5Zw49nIWjZuzLM+PzxPYbrjB4jyd8pNUGyr9cG2OA+cQN8JS
+         fSTzIuCbB9gOXjT6BKxcSPYfrtcz286RcE1mkA1/oqTtjFBXgW1REeeB+/pMiIjXDzO5
+         1PQLH1F/WQNXgq4NuA0BOvGJxqc7KCyALPL6Cwq1k7H4TUOxM3iu5ENHutHocX3pbbY0
+         cFUg==
+X-Gm-Message-State: AOAM533u/jDz1rNzoqOXQeCIJQPmJcpTCQ8GNepv5Aa4ST611KCMGBOY
+        NN1gBfdqT6zB51wSa+DftktKdeYtRqdRmw==
+X-Google-Smtp-Source: ABdhPJzaluFCdabwVapcVv+el0UpwvCLsJJrI7V1vzIb9r6w8HWWT7EJru/5Eoh/o49qPUxpbXIpUw==
+X-Received: by 2002:a17:906:b50:: with SMTP id v16mr22778059ejg.384.1637160756247;
+        Wed, 17 Nov 2021 06:52:36 -0800 (PST)
+Received: from localhost.localdomain (cpc92880-cmbg19-2-0-cust679.5-4.cable.virginm.net. [82.27.106.168])
+        by smtp.gmail.com with ESMTPSA id gs15sm63917ejc.42.2021.11.17.06.52.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Nov 2021 06:52:35 -0800 (PST)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     robh+dt@kernel.org
+Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, will@kernel.org,
+        robin.murphy@arm.com, joro@8bytes.org, mark.rutland@arm.com,
+        jkchen@linux.alibaba.com, leo.yan@linaro.org,
+        uchida.jun@socionext.com,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v2 0/3] perf/smmuv3: Support devicetree
+Date:   Wed, 17 Nov 2021 14:48:42 +0000
+Message-Id: <20211117144844.241072-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 17. November 2021, 15:33:46 CET schrieb Sascha Hauer:
-> With upcoming VOP2 support VOP won't be the only choice anymore, so make
-> the VOP driver optional.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
->  arch/arm/configs/multi_v7_defconfig         | 1 +
->  arch/arm64/configs/defconfig                | 1 +
->  drivers/gpu/drm/rockchip/Kconfig            | 7 +++++++
->  drivers/gpu/drm/rockchip/Makefile           | 3 ++-
->  drivers/gpu/drm/rockchip/rockchip_drm_drv.c | 2 +-
->  5 files changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-> index c951aeed2138c..fc123e8f3e2f9 100644
-> --- a/arch/arm/configs/multi_v7_defconfig
-> +++ b/arch/arm/configs/multi_v7_defconfig
-> @@ -667,6 +667,7 @@ CONFIG_DRM_EXYNOS_DPI=y
->  CONFIG_DRM_EXYNOS_DSI=y
->  CONFIG_DRM_EXYNOS_HDMI=y
->  CONFIG_DRM_ROCKCHIP=m
-> +CONFIG_ROCKCHIP_VOP=y
->  CONFIG_ROCKCHIP_ANALOGIX_DP=y
->  CONFIG_ROCKCHIP_DW_HDMI=y
->  CONFIG_ROCKCHIP_DW_MIPI_DSI=y
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index f2e2b9bdd7024..a623386473dc9 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -682,6 +682,7 @@ CONFIG_DRM_EXYNOS_DSI=y
->  CONFIG_DRM_EXYNOS_HDMI=y
->  CONFIG_DRM_EXYNOS_MIC=y
->  CONFIG_DRM_ROCKCHIP=m
-> +CONFIG_ROCKCHIP_VOP=y
->  CONFIG_ROCKCHIP_ANALOGIX_DP=y
->  CONFIG_ROCKCHIP_CDN_DP=y
->  CONFIG_ROCKCHIP_DW_HDMI=y
-> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
-> index 9f1ecefc39332..a1c4158259099 100644
-> --- a/drivers/gpu/drm/rockchip/Kconfig
-> +++ b/drivers/gpu/drm/rockchip/Kconfig
-> @@ -21,8 +21,15 @@ config DRM_ROCKCHIP
->  
->  if DRM_ROCKCHIP
->  
-> +config ROCKCHIP_VOP
-> +	bool "Rockchip VOP driver"
+Add devicetree binding for the SMMUv3 PMU, called Performance Monitoring
+Counter Group (PMCG) in the spec. Each SMMUv3 implementation can have
+multiple independent PMCGs, for example one for the Translation Control
+Unit (TCU) and one per Translation Buffer Unit (TBU).
 
-would this benefit from a default-y ?
-For builds reusing preexisting .configs.
+Since v1 [1]:
+* Fixed warnings in the binding doc
+* Removed hip08 support
+* Merged Robin's version. I took the liberty of splitting the driver
+  patch into 2 and 3. One fix in patch 3, and whitespace changes (the
+  driver uses spaces instead of tabs to align #define values, which I
+  was going to fix but actually seems more common across the tree.)
 
+[1] https://lore.kernel.org/linux-iommu/20211116113536.69758-1-jean-philippe@linaro.org/
 
-Heiko
+Jean-Philippe Brucker (2):
+  dt-bindings: Add Arm SMMUv3 PMCG binding
+  perf/smmuv3: Add devicetree support
 
-> +	help
-> +	  This selects support for the VOP driver. You should enable it
-> +	  on all older SoCs up to RK3399.
-> +
->  config ROCKCHIP_ANALOGIX_DP
->  	bool "Rockchip specific extensions for Analogix DP driver"
-> +	depends on ROCKCHIP_VOP
->  	help
->  	  This selects support for Rockchip SoC specific extensions
->  	  for the Analogix Core DP driver. If you want to enable DP
-> diff --git a/drivers/gpu/drm/rockchip/Makefile b/drivers/gpu/drm/rockchip/Makefile
-> index 17a9e7eb2130d..cd6e7bb5ce9c5 100644
-> --- a/drivers/gpu/drm/rockchip/Makefile
-> +++ b/drivers/gpu/drm/rockchip/Makefile
-> @@ -4,9 +4,10 @@
->  # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
->  
->  rockchipdrm-y := rockchip_drm_drv.o rockchip_drm_fb.o \
-> -		rockchip_drm_gem.o rockchip_drm_vop.o rockchip_vop_reg.o
-> +		rockchip_drm_gem.o
->  rockchipdrm-$(CONFIG_DRM_FBDEV_EMULATION) += rockchip_drm_fbdev.o
->  
-> +rockchipdrm-$(CONFIG_ROCKCHIP_VOP) += rockchip_drm_vop.o rockchip_vop_reg.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_ANALOGIX_DP) += analogix_dp-rockchip.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_CDN_DP) += cdn-dp-core.o cdn-dp-reg.o
->  rockchipdrm-$(CONFIG_ROCKCHIP_DW_HDMI) += dw_hdmi-rockchip.o
-> diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> index e4ebe60b3cc1a..64fa5fd62c01a 100644
-> --- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> +++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.c
-> @@ -473,7 +473,7 @@ static int __init rockchip_drm_init(void)
->  	int ret;
->  
->  	num_rockchip_sub_drivers = 0;
-> -	ADD_ROCKCHIP_SUB_DRIVER(vop_platform_driver, CONFIG_DRM_ROCKCHIP);
-> +	ADD_ROCKCHIP_SUB_DRIVER(vop_platform_driver, CONFIG_ROCKCHIP_VOP);
->  	ADD_ROCKCHIP_SUB_DRIVER(rockchip_lvds_driver,
->  				CONFIG_ROCKCHIP_LVDS);
->  	ADD_ROCKCHIP_SUB_DRIVER(rockchip_dp_driver,
-> 
+Robin Murphy (1):
+  perf/smmuv3: Synthesize IIDR from CoreSight ID registers
 
+ .../bindings/perf/arm,smmu-v3-pmcg.yaml       | 70 +++++++++++++++++++
+ drivers/perf/arm_smmuv3_pmu.c                 | 66 ++++++++++++++++-
+ 2 files changed, 134 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,smmu-v3-pmcg.yaml
 
-
+-- 
+2.33.1
 
