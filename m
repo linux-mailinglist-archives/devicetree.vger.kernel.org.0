@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A30A3454C00
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 698DC454C05
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:33:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237646AbhKQRek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 12:34:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42648 "EHLO
+        id S239429AbhKQRgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 12:36:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhKQRek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:34:40 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68B81C061570;
-        Wed, 17 Nov 2021 09:31:41 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id b184-20020a1c1bc1000000b0033140bf8dd5so2702523wmb.5;
-        Wed, 17 Nov 2021 09:31:41 -0800 (PST)
+        with ESMTP id S237812AbhKQRgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:36:22 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90BC6C061764;
+        Wed, 17 Nov 2021 09:33:23 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 77-20020a1c0450000000b0033123de3425so5467853wme.0;
+        Wed, 17 Nov 2021 09:33:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=/8znBzxWnYUTFtm0bh/WbwD/k2I/6DqFEZbIjaU/ygs=;
-        b=WiEoGbxhcag/Yj2EyGJiVwKT2nTwgzHlm69xKBxuzGEip5ZYycyA9VIfH2kGrcCOnp
-         ZWVuxQ/8ZkzV0rhjvEeyLZVy/LqQLMJHnCQK3JAG2FzmLpcDwETxAN79z7IrLqpZZexx
-         IwiAqKuC7gl9FwaqG3VWZhyAuOJG8gUN/j8xDsxYl+nLJcViczrL2HZe/KXakM6LdsYP
-         p/YBFd2U135adbNU8mMcejENpwyVkS+TVgkm4j/HmaFTejhLWHDBQGZqaMh2hczHJ4Mf
-         bxyUjLTcLAIP3Ki/43YCQfR2+kjXaxga6tFnYT4xugE3ZwBZ6KI+4rpc5n9Ww3+Ae+Cl
-         X+EQ==
+        bh=IljrZVfmkKHCxYMQbSMY/43208uZSuA4ajkMssOxNXQ=;
+        b=UkX9HvcjswTCpEGvE9k2l62gZ9bzRtTGZnJ+UvXI/wXyMFPZYVz36qYAjECtfU2hHO
+         h+nXjrXpvJ9nMIQWwkomKiFnAW5JUnzts/f09XRfzqCGfzPImZWPuJtAEvPLYOKbzReJ
+         Tmsq0881b+2g3bYZF/45cTHRomS1zLKddwYP61ZJw5Cyg+s5itiexEkgO2U+k2qLx7+D
+         Eoy/U0709VyJjvYcI5U4HYNpjhPJHwqXnPeO35SwFyeSKbswMxHiEMVLqNVWxRWNnlr6
+         HySzjGHuo+jWsZT6Ja8qG9ATuZ4n4R8e2KqnTvsm9rJErjmzyXoSpcveecInY/4NVNWl
+         YsOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=/8znBzxWnYUTFtm0bh/WbwD/k2I/6DqFEZbIjaU/ygs=;
-        b=VL9WjudFkYsHe8k3GrQjVERetaVSNghzr52wsIORfIYT0bQNHSvfuz8sAHDLoD7N48
-         GW8cE9aS+acqRMf/vZJRz8H2cBuchAredov+miKnAKH3OH9B0dGgwqp+I300qYvzPeaK
-         whWAidocJRhIsScbUj+G2dkwUD9HkU4N+ucWtTQ6MYZo5vIP7nzmd5AugVr4W0yVJ2iX
-         X4xQuxjAfpYpfLi16imxeVkP+7+MvuyEu474W6I9raHBDOciTjN8A3OhmS2zJynu48i1
-         8hqSw6c4oXQ7hFNm5u+UjdAzu8W1g+c3BpbsAQjzMcodbNil4GJ9hnROfTSbgKssJTO6
-         AYyg==
-X-Gm-Message-State: AOAM531uHL+BFLphTu1e9HcDfLR/nRl/Tj8jNSoXRc3PS4vcyLn725zp
-        OXPNeptmord7cL5z4qySv14=
-X-Google-Smtp-Source: ABdhPJw26WVzu3C/ccQ1PDjQq/w4b2/WnMQ9AUtYFX2IWmI+T/7SZnVIS5jVm8onWml++0683aXSQQ==
-X-Received: by 2002:a1c:9842:: with SMTP id a63mr1656413wme.102.1637170299994;
-        Wed, 17 Nov 2021 09:31:39 -0800 (PST)
+        bh=IljrZVfmkKHCxYMQbSMY/43208uZSuA4ajkMssOxNXQ=;
+        b=SVIIAPVBhZhmdvtrcigtLHzdxnNDcpGXaEot9C2SIK3+YMJxY7yvTWPu0pR9VniVHJ
+         Uju2d8tFmA5BtkZPLU02CSJYNFY4UIMujsHytX+1pPbHaCeBpocsrzWPX1Mg/gZwP2qR
+         zWXkPlGk4kDq4RrYUYBvnQv8HgvSinRSk+inHw6qf0+nDiBLcn387ZntvztyPY74w+cD
+         u/0G8C+WAo+zU3LAxd5tyvXRg8lfzPxFc2b0eq66ifqn01+ptmQToCf3th6QgyeYyIP/
+         zv1vqKsg+01WCohHWXZ8asJDyzgcryeF/ArctyFfobyAD2CKfrwWNx36dl9XrzzyBiqu
+         kFbw==
+X-Gm-Message-State: AOAM5332PITVBIExxYyPC6ss3EwN6JsFr4mn+xzFEf8O5JREE4oMAcgl
+        yIZBk0zSqrI8wWwCIOKG67o=
+X-Google-Smtp-Source: ABdhPJwYSeSfo4vw2gAZcvsGMBvnN2B4NTBwCxzZ7Q//nD5+9c0AjD9FINSwBsfYdYXqAK9BJssh/g==
+X-Received: by 2002:a7b:c1d5:: with SMTP id a21mr1657801wmj.14.1637170402185;
+        Wed, 17 Nov 2021 09:33:22 -0800 (PST)
 Received: from [192.168.0.18] (static-160-219-86-188.ipcom.comunitel.net. [188.86.219.160])
-        by smtp.gmail.com with ESMTPSA id g18sm511817wrv.42.2021.11.17.09.31.39
+        by smtp.gmail.com with ESMTPSA id l11sm474771wrp.61.2021.11.17.09.33.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Nov 2021 09:31:39 -0800 (PST)
-Message-ID: <24067294-2e86-fcd6-8a47-95d56ff5e569@gmail.com>
-Date:   Wed, 17 Nov 2021 18:31:38 +0100
+        Wed, 17 Nov 2021 09:33:21 -0800 (PST)
+Message-ID: <03de9880-1f1a-b07b-6ec3-279945e08cea@gmail.com>
+Date:   Wed, 17 Nov 2021 18:33:20 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8183-evb: Add node for thermistor
+Subject: Re: [PATCH 1/3] arm64: dts: mt8183: add dpi node to mt8183
 Content-Language: en-US
 To:     Fabien Parent <fparent@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
+        Jitao Shi <jitao.shi@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20211110192631.4182485-1-fparent@baylibre.com>
+References: <20211110192417.4177741-1-fparent@baylibre.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20211110192631.4182485-1-fparent@baylibre.com>
+In-Reply-To: <20211110192417.4177741-1-fparent@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
@@ -70,37 +72,45 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/11/2021 20:26, Fabien Parent wrote:
-> Add node to be able to read the temperature for the thermistor
-> connected to AUXIN0.
+On 10/11/2021 20:24, Fabien Parent wrote:
+> From: Pi-Hsun Shih <pihsun@chromium.org>
 > 
+> Add dpi node to mt8183.
+> 
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
 > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-
-Applied to v5.16-next/dts64
-
-Thanks
-
 > ---
->   arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
+>   1 file changed, 11 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> index 7bc0a6a7fadf..f3fd3cca23e9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> @@ -36,6 +36,14 @@ scp_mem_reserved: scp_mem_region {
->   			no-map;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index ba4584faca5a..7c283c0b68b5 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -1443,6 +1443,17 @@ dsi0: dsi@14014000 {
+>   			phy-names = "dphy";
 >   		};
->   	};
-> +
-> +	ntc@0 {
-> +		compatible = "murata,ncp03wf104";
-> +		pullup-uv = <1800000>;
-> +		pullup-ohm = <390000>;
-> +		pulldown-ohm = <0>;
-> +		io-channels = <&auxadc 0>;
-> +	};
->   };
 >   
->   &auxadc {
+> +		dpi0: dpi@14015000 {
+> +			compatible = "mediatek,mt8183-dpi";
+> +			reg = <0 0x14015000 0 0x1000>;
+> +			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
+> +			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
+> +			clocks = <&mmsys CLK_MM_DPI_IF>,
+> +				 <&mmsys CLK_MM_DPI_MM>,
+> +				 <&apmixedsys CLK_APMIXED_TVDPLL>;
+> +			clock-names = "pixel", "engine", "pll";
+
+
+We are missing the output port node, don't we?
+
+Regards,
+Matthias
+
+> +		};
+> +
+>   		mutex: mutex@14016000 {
+>   			compatible = "mediatek,mt8183-disp-mutex";
+>   			reg = <0 0x14016000 0 0x1000>;
 > 
