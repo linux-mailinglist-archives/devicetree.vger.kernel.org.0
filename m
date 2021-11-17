@@ -2,98 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F73E453E74
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 03:27:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15A64453E77
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 03:27:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229992AbhKQCaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 21:30:13 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:36631 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbhKQCaL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 21:30:11 -0500
-Received: by mail-oi1-f179.google.com with SMTP id t23so2966730oiw.3;
-        Tue, 16 Nov 2021 18:27:13 -0800 (PST)
+        id S229733AbhKQCaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 21:30:14 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:39906 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229984AbhKQCaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 21:30:12 -0500
+Received: by mail-ot1-f48.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso1927322ots.6;
+        Tue, 16 Nov 2021 18:27:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=Gi1zkQUusKr2oOET/+vmdyiUMkS7tjWRTDsmrGSi95U=;
-        b=Kfdr5XaByoxO5wofHAhvmaSw5JgJ60yW8+dAWs18OIKstOfisEA+a8iEaRhaXBBkrF
-         ZRlPvzI3RL2ddKJI/m2CS0+RtV+Bf830pd9+r1p3itbT7QuiFPUA5OXdJlFxfG0tO5KX
-         0oTDUr4rSdaq+g3OX5xSU0K0prKehZ7519QqYKZX1DhLRDWSRm3Gm6u+GZLm0/t9TZk2
-         rt16vOJMgtc7IddH8tY8MzXYky9/GrLmHbGXr02xSCJ06tXTSl85xGtmjAtjWuF63wig
-         u/YX+wCP9AG8j4eNpjLcPJz31Osy9BOf1He/jIcdHQExo30WZq7DCQlhoqUAxQ+aMoX7
-         4qZg==
-X-Gm-Message-State: AOAM531iKALeWlGgwcklquLihB4Mx722qiC/hwdPKvbewXvFVuz4zTXq
-        8gNttPrPlkUQtuI5tMggmNfbDsv6qg==
-X-Google-Smtp-Source: ABdhPJxRWYhsA6sYXwAKKgt94oXi44oGPgwsIh7XEiwG0npDL4m9qIjfjiPVBZop174yqTn2JS8TzQ==
-X-Received: by 2002:aca:3b89:: with SMTP id i131mr10965582oia.102.1637116033279;
-        Tue, 16 Nov 2021 18:27:13 -0800 (PST)
+        bh=GiBxOtk/fw1zoy+M3sDTAnUOqTDqO1s7zdGfWtlfDXA=;
+        b=NpIiegWmXS3paBcpitxIF6nhMINprMs+75gXVU2SD7uQlfIeJjqnlAv1N9rhtA3u5W
+         WXZjVUc5rvdSCzJQQYmHCUlfnWwO3AHFJp5vVUohIjFzQe/o7S0/Snv9Lt+YCKrHE+Cn
+         OhHfkIQ6IccAhla0L0cc031iaBGWPcKR+N+eohD7dqcnuKvUWC0kV5ajiFWscMfIPrea
+         jkRGkelFOT/oo4/fpTwqh/C/YgoXoyO9lFEmuGOqkOYaIlUco4zRM9UUAmJDg0Ja64+Z
+         bBPwYroSUMf1zQ3S0uRbTCYTJ8orqGFzogtHfE+h6Jkp3Jw2YATGu6SXninVsUsQVWAV
+         mfsw==
+X-Gm-Message-State: AOAM531Kp52etETacnGOGESd5UrdKUpt8gsLRkRq1pXEafQb2kx13MMp
+        eHihuz8IVB8r8eS77n30Dw==
+X-Google-Smtp-Source: ABdhPJxXsvLSjYWoB892y4XGG05NWc805nrkX5neFLH0Yh5DguvAoddR4LohY0Q3CkwFpiD01RYcIg==
+X-Received: by 2002:a9d:4e93:: with SMTP id v19mr10480309otk.146.1637116034592;
+        Tue, 16 Nov 2021 18:27:14 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o6sm1669635oou.41.2021.11.16.18.27.12
+        by smtp.gmail.com with ESMTPSA id w4sm1188076oiv.37.2021.11.16.18.27.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 18:27:12 -0800 (PST)
-Received: (nullmailer pid 1207284 invoked by uid 1000);
+        Tue, 16 Nov 2021 18:27:14 -0800 (PST)
+Received: (nullmailer pid 1207280 invoked by uid 1000);
         Wed, 17 Nov 2021 02:27:10 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Anilkumar Kolli <akolli@codeaurora.org>
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <1637082058-6398-1-git-send-email-akolli@codeaurora.org>
-References: <1637082058-6398-1-git-send-email-akolli@codeaurora.org>
-Subject: Re: [PATCH v2 1/2] dt: bindings: add new DT entry for ath11k PCI device support
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20211116155413.164242-1-jonathanh@nvidia.com>
+References: <20211116155413.164242-1-jonathanh@nvidia.com>
+Subject: Re: [PATCH V2 1/2] dt-bindings: Add YAML bindings for NVENC and NVJPG
 Date:   Tue, 16 Nov 2021 20:27:10 -0600
-Message-Id: <1637116030.353961.1207283.nullmailer@robh.at.kernel.org>
+Message-Id: <1637116030.331789.1207279.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Nov 2021 22:30:57 +0530, Anilkumar Kolli wrote:
-> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
-> Ath11k firmware uses host DDR memory. DT entry is used to reserve
-> these host DDR memory regions, send these memory base
-> addresses using DT entries.
+On Tue, 16 Nov 2021 15:54:12 +0000, Jon Hunter wrote:
+> Add YAML device tree bindings for the Tegra NVENC and NVJPG Host1x
+> engines.
 > 
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
-> V2:
->   - Use reserved-memory (Rob)
+> Changes since V1:
+> - Fixed errors reported by Rob's bot
 > 
->  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 ++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
+>  .../gpu/host1x/nvidia,tegra210-nvenc.yaml     | 135 ++++++++++++++++++
+>  .../gpu/host1x/nvidia,tegra210-nvjpg.yaml     |  94 ++++++++++++
+>  2 files changed, 229 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml
+>  create mode 100644 Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvjpg.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml:103:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
+./Documentation/devicetree/bindings/gpu/host1x/nvidia,tegra210-nvenc.yaml:104:13: [warning] wrong indentation: expected 11 but found 12 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:160.13-31: Warning (reg_format): /example-0/pcie0_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:164.17-36: Warning (reg_format): /example-0/pcie0_rp/ath11k@0:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:170.13-31: Warning (reg_format): /example-0/pcie1_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:174.17-36: Warning (reg_format): /example-0/pcie1_rp/ath11k@1:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:138.16-141.11: Warning (unit_address_vs_reg): /example-0/memory: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:159.28-167.11: Warning (unit_address_vs_reg): /example-0/pcie0_rp: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:169.28-177.11: Warning (unit_address_vs_reg): /example-0/pcie1_rp: node has a reg or ranges property, but no unit name
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #address-cells value
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #size-cells value
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #address-cells value
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #size-cells value
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie0@51100000:reg:0: [0, 1360003072, 0, 55574528] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie1@54600000:reg:0: [0, 1415577600, 0, 55574528] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1555958
+See https://patchwork.ozlabs.org/patch/1555900
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
