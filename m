@@ -2,106 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B4A453DC4
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 02:35:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC7CD453E69
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 03:21:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232053AbhKQBiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 20:38:23 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:33862 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231916AbhKQBiW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 20:38:22 -0500
-Received: from thelio.attlocal.net (107-203-255-60.lightspeed.sntcca.sbcglobal.net [107.203.255.60])
-        by linux.microsoft.com (Postfix) with ESMTPSA id 2AF7E20C634D;
-        Tue, 16 Nov 2021 17:35:24 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2AF7E20C634D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1637112924;
-        bh=DZkZygZsNbm4yhyqYJBFOjarSjiO0M4rZLNpUdPdo4Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mUnc1/QQ8N3OHsBl2w/F+BCTBzNOiAoxAltBDKfQxgdpG3zEvXHAc/PqCdRzTCN6G
-         XbCovQmK9UuUT7G6YUktq+GB0SNddSfe+eCu6vPndBXBkPv/hJde2EO2EZCXrrraG0
-         /I28h8XmIwSfYjzey1WnY+QI6XkDgTWkFfaCubVA=
-From:   Katherine Perez <kaperez@linux.microsoft.com>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sm8150: display support for Microsoft Surface Duo
-Date:   Tue, 16 Nov 2021 17:35:16 -0800
-Message-Id: <20211117013516.4111383-5-kaperez@linux.microsoft.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211117013516.4111383-1-kaperez@linux.microsoft.com>
-References: <20211117013516.4111383-1-kaperez@linux.microsoft.com>
+        id S230127AbhKQCYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 21:24:43 -0500
+Received: from netrider.rowland.org ([192.131.102.5]:56161 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S229733AbhKQCYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 21:24:43 -0500
+Received: (qmail 158965 invoked by uid 1000); 16 Nov 2021 21:21:44 -0500
+Date:   Tue, 16 Nov 2021 21:21:44 -0500
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Tony Lindgren <tony@atomide.com>,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v17 7/7] usb: Specify dependencies on USB_XHCI_PLATFORM
+ with 'depends on'
+Message-ID: <20211117022144.GA158646@rowland.harvard.edu>
+References: <20211116200739.924401-1-mka@chromium.org>
+ <20211116120642.v17.7.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211116120642.v17.7.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for display to Microsoft Surface Duo.
+On Tue, Nov 16, 2021 at 12:07:39PM -0800, Matthias Kaehlcke wrote:
+> Some USB controller drivers that depend on the xhci-plat driver
+> specify this dependency using 'select' in Kconfig. This is not
+> recommended for symbols that have other dependencies as it may
+> lead to invalid configurations. Use 'depends on' to specify the
+> dependency instead of 'select'.
+> 
+> For dwc3 specify the dependency on USB_XHCI_PLATFORM in
+> USB_DWC3_HOST and USB_DWC3_DUAL_ROLE. Also adjust the
+> dependencies of USB_DWC3_CORE to make sure that at least one
+> of USB_DWC3_HOST, USB_DWC3_GADGET or USB_DWC3_DUAL_ROLE can be
+> selected.
+> 
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> ---
+> 
+> Changes in v17:
+> - removed explicit dependency on USB from USB_DWC3
+> - added 'Reviewed-by' tags from Roger and Doug
+> 
+> Changes in v16:
+> - none
+> 
+> Changes in v15:
+> - adjusted dependencies of USB_DWC3_CORE to make sure it can only
+>   be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
+>   or USB_DWC3_DUAL_ROLE is selectable
+> - updated commit message
+> 
+> Changes in v14:
+> - none
+> 
+> Changes in v13:
+> - patch added to the series
 
-Signed-off-by: Katherine Perez <kaperez@linux.microsoft.com>
----
+> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
+> index d1d926f8f9c2..e5e612f143a1 100644
+> --- a/drivers/usb/host/Kconfig
+> +++ b/drivers/usb/host/Kconfig
+> @@ -80,7 +80,7 @@ config USB_XHCI_MTK
+>  
+>  config USB_XHCI_MVEBU
+>  	tristate "xHCI support for Marvell Armada 375/38x/37xx"
+> -	select USB_XHCI_PLATFORM
+> +	depends on USB_XHCI_PLATFORM
+>  	depends on HAS_IOMEM
+>  	depends on ARCH_MVEBU || COMPILE_TEST
+>  	help
+> @@ -112,9 +112,9 @@ config USB_EHCI_BRCMSTB
+>  config USB_BRCMSTB
+>  	tristate "Broadcom STB USB support"
+>  	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
+> +	depends on !USB_XHCI_HCD || USB_XHCI_PLATFORM
+>  	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
+>  	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
+> -	select USB_XHCI_PLATFORM if USB_XHCI_HCD
+>  	help
+>  	  Enables support for XHCI, EHCI and OHCI host controllers
+>  	  found in Broadcom STB SoC's.
 
-Changes in v3:
-	- Update dsi nodes to match mdss_dsi*
+It should be pointed out that this now requires people with xHCI systems 
+to actively turn on CONFIG_USB_XHCI_PLATFORM before they can enable 
+CONFIG_USB_BRCMSTB.  Before, that was not necessary.  Some users might 
+get confused and not realize what is needed.  Perhaps something should 
+be added to the "help" text.
 
- .../dts/qcom/sm8150-microsoft-surface-duo.dts | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-index 5901c28e6696..6135a820037b 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dts
-@@ -270,6 +270,8 @@ vdda_hv_ebi1:
- 		vdda_hv_ebi2:
- 		vdda_hv_ebi3:
- 		vdda_hv_refgen0:
-+		vdda_mipi_dsi0_1p2:
-+		vdda_mipi_dsi1_1p2:
- 		vdda_qlink_hv_ck:
- 		vreg_l3c_1p2: ldo3 {
- 			regulator-min-microvolt = <1200000>;
-@@ -359,6 +361,26 @@ vreg_l6f_2p85: ldo6 {
- 	};
- };
-
-+&mdss_dsi0 {
-+	status = "okay";
-+	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-+};
-+
-+&mdss_dsi0_phy {
-+	status = "okay";
-+	vdds-supply = <&vdda_dsi_0_pll_0p9>;
-+};
-+
-+&mdss_dsi1 {
-+	status = "okay";
-+	vdda-supply = <&vdda_mipi_dsi1_1p2>;
-+};
-+
-+&mdss_dsi1_phy {
-+	status = "okay";
-+	vdds-supply = <&vdda_dsi_1_pll_0p9>;
-+};
-+
- &i2c1 {
- 	status = "okay";
- 	clock-frequency = <400000>;
-@@ -430,6 +452,10 @@ &i2c19 {
- 	/* MAX34417 @ 0x1e */
- };
-
-+&mdss {
-+	status = "okay";
-+};
-+
- &pon {
- 	pwrkey {
- 		status = "okay";
---
-2.31.1
-
+Alan Stern
