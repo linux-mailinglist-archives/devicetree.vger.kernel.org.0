@@ -2,163 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ED50455071
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 23:28:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EA74550C7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 23:51:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241246AbhKQWbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 17:31:53 -0500
-Received: from mx0a-0016f401.pphosted.com ([67.231.148.174]:36370 "EHLO
-        mx0b-0016f401.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S241234AbhKQWbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 17:31:52 -0500
-Received: from pps.filterd (m0045849.ppops.net [127.0.0.1])
-        by mx0a-0016f401.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AHKt5Ko018539;
-        Wed, 17 Nov 2021 14:28:43 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marvell.com; h=from : to : cc :
- subject : date : message-id : mime-version : in-reply-to : references :
- content-transfer-encoding : content-type; s=pfpt0220;
- bh=HLM8Yr+Co8RdV6Vxg07CVlRMlj5TEV3a+mUrbRF9ccs=;
- b=NxgBw4yWXvZddSKHZWbYUe6vY/nQ7HANrKWEXMBk6/qkrsBRNvsJEQahWi879Crrhp0r
- 5l/DRavKuX2+JkFQBk+N/Tp+hegZIjEcX2HvTKEI608QPANmWSCO3c1BimVE31ZK+EqT
- CSDCif1JbSO1WT1wh9LMK50zw36zbllU8eh8gAeVCHwFGcegD2It1dwI7cjOfuje2ymT
- tmBwqcGAlpeJyzoSkBVMeXrnOcfHJkIZX/eiEcmw26Mzf8QUWnX8OqbSzMFm3WDH86yy
- OxRk9Wp2JbVHjg85x20llI37z+vSg+MuD+CFcD4Vq+AARFoBSWVc916khiyRThuvvhUs Kg== 
-Received: from dc5-exch01.marvell.com ([199.233.59.181])
-        by mx0a-0016f401.pphosted.com (PPS) with ESMTPS id 3cd34btexb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Wed, 17 Nov 2021 14:28:43 -0800
-Received: from DC5-EXCH02.marvell.com (10.69.176.39) by DC5-EXCH01.marvell.com
- (10.69.176.38) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 17 Nov
- 2021 14:28:41 -0800
-Received: from maili.marvell.com (10.69.176.80) by DC5-EXCH02.marvell.com
- (10.69.176.39) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Wed, 17 Nov 2021 14:28:41 -0800
-Received: from localhost.localdomain (unknown [10.110.150.170])
-        by maili.marvell.com (Postfix) with ESMTP id 7F7055B694D;
-        Wed, 17 Nov 2021 14:28:41 -0800 (PST)
-From:   Wojciech Bartczak <wbartczak@marvell.com>
-To:     <linux-mmc@vger.kernel.org>
-CC:     <ulf.hansson@linaro.org>, <beanhuo@micron.com>,
-        <tanxiaofei@huawei.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <wbartczak@marvell.com>
-Subject: [PATCH 2/2] dt-bindings: mmc: Add vmmc/vqmmc for Cavium driver
-Date:   Wed, 17 Nov 2021 14:28:01 -0800
-Message-ID: <f1aa09f05ea34c2970785a79c3d791626da9bc32.1637186803.git.wbartczak@marvell.com>
-X-Mailer: git-send-email 2.17.1
+        id S241458AbhKQWx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 17:53:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51180 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241453AbhKQWx4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Nov 2021 17:53:56 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3BA9B6101C;
+        Wed, 17 Nov 2021 22:50:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637189455;
+        bh=Gp4cZyvkkY3yWz+J9l2y1gO5FE6wWKBpohI3wxcnrqg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=BKfYiaKAVSoWNJRHPjwteoNNBeToVYlvmk7rR9uZ+CRu7I4FzML8kXe0wqv7pd1n6
+         uInDumDLzI3JFBk0d39aoI2fikssz0oTVsZaBAm92YCSHcY8eSZg4258lQD+VLhPRA
+         pamsfWTy/U4j5mP9fYw3yTLvzdRte6/uyYhj4tf8joDhnISu3roGC2oX1nYoZnH9vN
+         hQV8JwYYylN536mHy63V44oc7ywDfrCnRKar0P/QbR2gq7x9N7nQuA0ong5EkFq3Mp
+         Wmpz4G/LOqKf7RDm2/JlgB6P9B842CruX6V7bXLsbWE6LnzhrbkqwQ2+vAwrCvOG1d
+         P19NXabb7NKiw==
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+To:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
+Subject: [PATCH net-next 0/8] Extend `phy-mode` to string array
+Date:   Wed, 17 Nov 2021 23:50:42 +0100
+Message-Id: <20211117225050.18395-1-kabel@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <cover.1637186803.git.wbartczak@marvell.com>
-References: <cover.1637186803.git.wbartczak@marvell.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: Vo_x-LER69sAzH9KcjzKJRpvhpuD39Fz
-X-Proofpoint-GUID: Vo_x-LER69sAzH9KcjzKJRpvhpuD39Fz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-17_09,2021-11-17_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Octeon/OcteonTX MMC supports up to 3 card slots.
-Each slot can support SD or MMC cards with various speed.
-However, any level-shifting to accommodate different signal voltages
-for the cards is done by external hardware, under control of an optional
-vqmmc regulator object, typically controlled by gpio.
-The details of device-tree control of MMC signals via GPIO at reset
-is available in this file.
+Hello,
 
-If any mmc-slots have a vqmmc-supply property,
-take it as a warning that we must switch carefully between
-slots (unless they have the same vqmmc object), tri-stating
-MMC signals to avoid any transient states as level-shifters
-are enabled/disabled, by zeroing MIO_EMM_CFG[bus_id].
+this series extends the `phy-connection-type` / `phy-mode` property to
+be an array of strings, instead of just one string, and makes the
+corresponding changes to code. It then uses this changes to make
+marvell10g PHY driver choose the best MACTYPE according to which
+phy-modes are supported by the MAC, the PHY and the board.
 
-There's no need to list vqmmc property if all the mmc-slots
-on a board run at same signal voltage, and have same width.
-In this case the old behavior, enabling all probed slots in
-MIO_EMM_CFG, allows faster slot-switching.
+Conventionaly the `phy-mode` means "this is the mode I want the PHY to
+operate in". But we now have some PHYs that may need to change the PHY
+mode during operation (marvell10g PHY driver), and so we need to know
+all the supported modes. Russell King is working on MAC and PHY drivers
+to inform phylink on which PHY interface modes they support, but it is
+not enough, because even if a MAC/PHY driver fills all the modes
+supported by the driver, still each individual board may have only some
+of these modes actually wired.
 
-Signed-off-by: Wojciech Bartczak <wbartczak@marvell.com>
----
- .../devicetree/bindings/mmc/cavium-mmc.txt    | 47 ++++++++++++++++++-
- 1 file changed, 45 insertions(+), 2 deletions(-)
+This series
+- changes the type of the `phy-mode` property to be an array of PHY
+  interface strings,
+- updated documentation of of_get_phy_mode() and related to inform that
+  only first mode is returned by these functions (since this function
+  is needed to still support conventional usage of the `phy-mode`
+  property),
+- adds fwnode_get_phy_modes() function which reads the `phy-mode` array
+  and fills bitmap with mentioned modes,
+- adds code to phylink to intersect the supported interfaces bitmap
+  supplied by MAC driver, with interface modes defined in device-tree
+  (and keeps backwards compatibility with conventional usage of the
+   phy-mode property, for more information read the commit message of
+   patch 4/8),
+- passes supported interfaces to PHY driver so that it may configure
+  a PHY to a specific mode given these interfaces,
+- uses this information in marvell10g driver.
 
-diff --git a/Documentation/devicetree/bindings/mmc/cavium-mmc.txt b/Documentation/devicetree/bindings/mmc/cavium-mmc.txt
-index 1433e6201dff..d0b750e23332 100644
---- a/Documentation/devicetree/bindings/mmc/cavium-mmc.txt
-+++ b/Documentation/devicetree/bindings/mmc/cavium-mmc.txt
-@@ -28,6 +28,46 @@ Deprecated properties:
- - power-gpios : use vmmc-supply instead
- - cavium,octeon-6130-mmc-slot : use mmc-slot instead
- 
-+GPIO control via vmmc-supply & vqmmc-supply:
-+  Two types of regulator object can be specified as mmc properties,
-+  typically regulator-fixed controlled by GPIO pins.
-+
-+  Octeon/OcteonTX chips commonly use GPIO8 as an MMC-reset pin.
-+  In systems which may boot from MMC, it starts as input, and is gently
-+  pulled up/down by board logic to indicate the active sense of the
-+  signal. Chip reset then drives the signal in the opposite direction
-+  to effect a reset of target devices.
-+  Device tree should model this with a vmmc-supply regulator, gated by
-+  GPIO8, so GPIO8 is driven in the non-reset direction when MMC devices
-+  are probed, and held there until rmmod/shutdown/suspend.
-+  This allows a warm reboot to reset the MMC devices.
-+
-+  Octeon/OcteonTX MMC supports up to 3 mmc slots, but any
-+  level-shifting to accommodate different signal voltages is
-+  done by external hardware, under control of an optional
-+  vqmmc regulator object, typically controlled by GPIO.
-+
-+  If any mmc-slots have a vqmmc-supply property, it is taken as a warning
-+  that we must switch carefully between slots (unless they have the same
-+  vqmmc object), tri-stating MMC signals to avoid any transient states
-+  as level-shifters are enabled/disabled.
-+
-+  Even when so-called bi-directional level shifters are used,
-+  this technique should be employed when using different bus-widths
-+  on different slots, disabling level shifters to avoid presenting
-+  non-uniform impedance across DATA0-7 & CMD when non-selected
-+  4-wide slots are left enabled, while accessing 8-wide targets.
-+
-+  Note that it's not possible to specify multiple regulators
-+  controlled by same GPIO pin, but with different active state.
-+  If one GPIO line is require to switch voltage/routing between
-+  different mmc-slots, specify a vqmmc-supply on one slot, but
-+  not the other. The regulator_disable call on leaving that slot
-+  will implicitly switch the state to support the unmarked slot.
-+
-+  There's no need to list vqmmc-supply if all the mmc-slots on
-+  a board run at same voltage, and have same width.
-+
- Examples:
- 	mmc_1_4: mmc@1,4 {
- 		compatible = "cavium,thunder-8390-mmc";
-@@ -40,7 +80,8 @@ Examples:
- 			compatible = "mmc-slot";
- 			reg = <0>;
- 			vmmc-supply = <&mmc_supply_3v3>;
--			max-frequency = <42000000>;
-+			vqmmc-supply = <&vqmmc_3v3>;
-+			max-frequency = <52000000>;
- 			bus-width = <4>;
- 			cap-sd-highspeed;
- 		};
-@@ -49,9 +90,11 @@ Examples:
- 			compatible = "mmc-slot";
- 			reg = <1>;
- 			vmmc-supply = <&mmc_supply_3v3>;
--			max-frequency = <42000000>;
-+			vqmmc-supply = <&vqmmc_1v8>;
-+			max-frequency = <100000000>;
- 			bus-width = <8>;
- 			cap-mmc-highspeed;
- 			non-removable;
- 		};
- 	};
-+
+Changes since RFC:
+- update also description of the `phy-connection-type` property
+
+Marek Behún (7):
+  dt-bindings: ethernet-controller: support multiple PHY connection
+    types
+  net: Update documentation for *_get_phy_mode() functions
+  device property: add helper function for getting phy mode bitmap
+  net: phylink: update supported_interfaces with modes from fwnode
+  net: phylink: pass supported PHY interface modes to phylib
+  net: phy: marvell10g: Use generic macro for supported interfaces
+  net: phy: marvell10g: Use tabs instead of spaces for indentation
+
+Russell King (1):
+  net: phy: marvell10g: select host interface configuration
+
+ .../bindings/net/ethernet-controller.yaml     |  94 ++++++------
+ drivers/base/property.c                       |  48 +++++-
+ drivers/net/phy/marvell10g.c                  | 140 ++++++++++++++++--
+ drivers/net/phy/phylink.c                     |  91 ++++++++++++
+ include/linux/phy.h                           |  10 ++
+ include/linux/property.h                      |   3 +
+ net/core/of_net.c                             |   9 +-
+ 7 files changed, 325 insertions(+), 70 deletions(-)
+
 -- 
-2.17.1
+2.32.0
 
