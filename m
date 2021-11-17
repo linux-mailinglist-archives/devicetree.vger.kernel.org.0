@@ -2,119 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5788345453C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 11:53:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BCFC454556
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 12:03:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234714AbhKQK4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 05:56:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35554 "EHLO
+        id S231200AbhKQLGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 06:06:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231591AbhKQK4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 05:56:02 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF6DC061570;
-        Wed, 17 Nov 2021 02:53:03 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id o4so5452716oia.10;
-        Wed, 17 Nov 2021 02:53:03 -0800 (PST)
+        with ESMTP id S236644AbhKQLGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 06:06:47 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4160C061746
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 03:03:48 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id f18so6412708lfv.6
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 03:03:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=wIIT6/ePIyMUBZgvwPlMAbfK34sVLGh7GgquvsLE084=;
-        b=cSytHkCzD13jEuMPLeN1fKQZoR/1NY3pe/zNd5KzepItAPyUCztHvPyI/Bhm0FwBBP
-         MSj+jfDd2fxU0th/ADKVbG2l09WgyUc/8UosqhaB6PtljhAHtAnpPuGUfI0mpJTLVbrZ
-         n2CDYNwNZihCC5BKwmiFdamPVvUkm/xceZwZ1JRTbA0dlRn/g6s81oVQxxYmg6yR/uow
-         eX2SDlMwz5u2bDwFhEWFJlhzqTDfAK7c0CpCsUz58qtbX/exHHflmqVLFUxGLtwK6UmX
-         701WHdKsG5+f5o9/RU07CiAolx/W39PgpdPoOfG4WbelnlOwe9DyioY3z+gI3Yo9ZqUi
-         VJPw==
+         :cc;
+        bh=bGszPtOceAbegmnVkD6OoZ0csNfW6t/mFlSuDP0gjWc=;
+        b=xl3l+CiGKVRR4IXp1c86MrjPvqJfn/ODrGL1hLDg/vS4MrCm7rz1v1xX4MWM8UlqvT
+         rFbzXMGVOWTYtrtlIyFgKukTHDDlhGIb+qXkrfRj2EMJMlRd0Cqm/SXL+7dWjEVtLMR3
+         WyOhKtzKEmg7zxOGRszGAGW07ytMAPw0WPu/nv1cPMJ7LSB9IB5lMhV9KBPrbngh3226
+         fOZisjHy3ae4dKpFtEUcV+gJrQQsLzwO9dnrqHiOkYP6oOLNv+Guk4XT35n6JIb8S8ZK
+         FgzVFENstSe4TyZraOFYxz3qPqZZiK6IxS6/OXIdzjfPFqhA1lBnGg5ErnVsyEnXR9I0
+         devw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wIIT6/ePIyMUBZgvwPlMAbfK34sVLGh7GgquvsLE084=;
-        b=Kv4rHmihqjgqQi24LUfGzi9P2kblIOiphGJ3HwUeMWa0EZtgBoT8hoHdooM36qliK8
-         WkR3P+LnT7qvrV0l//UM7u5ODoT4wLhGupGjBbOcN4Wv93t7uuD7hp81GCutc4qQmtQo
-         ZgN6XiTBLsr98/Rh1uGPamTalVZS8CoufChBpW3eU89aMmHRzGoQl/CxLiLSIhEahgmj
-         L/pIhUGkRGYKl2XWyNAbsQ76WDNCRGjLv575+Y0dMiHVHdiNSlhN3zG1lQpUdSSWDLZ3
-         bTf5Cdtn5QcG9dOnInChUi2S3hvKSYUyfr/873ldapCePC0N4eEgYp4o25yXkqXc+0QK
-         qmUQ==
-X-Gm-Message-State: AOAM530M3zdjBkZJKZielZPIFoelvXrWYeSYJ4M3qWLxKzYw1NAjgPZN
-        rjjdZ7U2JRsnAoS4vCYDNZuPajim12zPowhuGMk=
-X-Google-Smtp-Source: ABdhPJxlARpq3W7ryl+eHHGyYfKPeP0uoWKZGjdn3QYa+VuCU6DhRnPI/OTqygHbwGKYA4ZRJK0EPjK6nt7LBA+wRas=
-X-Received: by 2002:aca:bb45:: with SMTP id l66mr13523131oif.51.1637146383235;
- Wed, 17 Nov 2021 02:53:03 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=bGszPtOceAbegmnVkD6OoZ0csNfW6t/mFlSuDP0gjWc=;
+        b=gk0RG7dHfs4PeKzzVCc+N/1pRCkyxmmrlbV+k7bbsCZvCHvjS/yEr4HgaumgJnQVpc
+         RXpWoLCw2u1m0V5f40fH7FvBKzUTRo+Iga7/FTMXr6MqREpiOmO7+wTbnkCer2R65IrC
+         X4GcwKvvlC/50Vz/boeTBLs0KFgyO2gxsiE3p++sxF+221O0DUlTGdesznEyMhXYV37U
+         gRVQhwMxH20EdmU9s7Y/l8oNnZ8nVC4nU/t2PreYzIc8buTIQ0z4R2mxCtE8MBpILw2Q
+         UhHS/tHHW+sY1j/MqxFBZsYr0wuyt/XatW5PBEg3uCQGdduCeZMlX/cXHIAgdowV38ar
+         LF0w==
+X-Gm-Message-State: AOAM5331xvrxHUCkHr5rkLMPon2HOygK5usqxbeL/EEiBtg7l6M2y8qa
+        n6nUHquXW3CRPXWGnwpy7XavMIkGtfl0zKn91ENqWQ==
+X-Google-Smtp-Source: ABdhPJxPyzuqmdehmZW1HkriKdkpQMAsQy/dOXECGrTuPidvPZuT+6F9z8t4KDv8xlKyHHpdf+SBQoUSgXea+AGbShk=
+X-Received: by 2002:ac2:5a46:: with SMTP id r6mr14635901lfn.358.1637147026694;
+ Wed, 17 Nov 2021 03:03:46 -0800 (PST)
 MIME-Version: 1.0
-References: <1637133726-6581-1-git-send-email-u0084500@gmail.com>
-In-Reply-To: <1637133726-6581-1-git-send-email-u0084500@gmail.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Wed, 17 Nov 2021 18:52:52 +0800
-Message-ID: <CAE+NS37eLbnTZtv5pO59XWrWVKEJEA+J8DE=H1NwZr+u71WwfQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: leds: Replace moonlight with indicator in
- mt6360 example
-To:     cy_huang <u0084500@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, wilma.wu@mediatek.com,
-        benjamin.chao@mediatek.com, ChiYuan Huang <cy_huang@richtek.com>
+References: <20210414085121.28951-1-peng.zhou@mediatek.com>
+ <20210414085121.28951-2-peng.zhou@mediatek.com> <CAPDyKFpOzmYxstRwSrD6tWKLMwxFPvHNfpDPDCrogzRah5iZtA@mail.gmail.com>
+ <1628219664.14221.7.camel@mbjsdccf07> <CAPDyKFo6r9LX5h2OaW1+2=LvKeXLaRBXGSx89MeZA5QVPJh3rQ@mail.gmail.com>
+ <02c914ee3fbfb6d548669ca02d95f89d0997f7ae.camel@mediatek.com>
+In-Reply-To: <02c914ee3fbfb6d548669ca02d95f89d0997f7ae.camel@mediatek.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 17 Nov 2021 12:03:10 +0100
+Message-ID: <CAPDyKFqiN74C0TG3b6UpFuGyaAdZSz97FSTKVaTq_247H_6k1w@mail.gmail.com>
+Subject: Re: [PATCH RESEND v3 1/3] mmc: Mediatek: add Inline Crypto Engine support
+To:     "Peng.Zhou" <peng.zhou@mediatek.com>
+Cc:     Eric Biggers <ebiggers@kernel.org>,
+        =?UTF-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?= 
+        <chaotian.jing@mediatek.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Satya Tangirala <satyat@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?B?V3VsaW4gTGkgKOadjuatpuaelyk=?= <wulin.li@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-cy_huang <u0084500@gmail.com> =E6=96=BC 2021=E5=B9=B411=E6=9C=8817=E6=97=A5=
- =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:22=E5=AF=AB=E9=81=93=EF=BC=9A
+On Thu, 4 Nov 2021 at 08:23, Peng.Zhou <peng.zhou@mediatek.com> wrote:
 >
-> From: ChiYuan Huang <cy_huang@richtek.com>
+> On Mon, 2021-08-09 at 17:29 +0200, Ulf Hansson wrote:
+> > On Fri, 6 Aug 2021 at 05:16, Peng.Zhou <peng.zhou@mediatek.com>
+> > wrote:
+> > >
+> > > Hi Ulf,
+> > >
+> > > Thank you for your advise, I have a question about genpd provider,
+> > > is it
+> > > a mandatory DT node for eMMC? Why I confuse it due to I found we
+> > > only do
+> > > enable/disable clock during used eMMC in our platforms without any
+> > > power
+> > > releated actions....it seems that there is no any "pwner-domain"
+> > > used
+> > > for eMMC in our platforms.
+> >
+> > A power-domain is optional for an eMMC controller to use.
+> >
+> > It then sounds like you should add it, in cases when you have mmc
+> > crypto support.
+> >
+> > Hope this helps!
+> >
+> > Kind regards
+> > Uffe
 >
-> Replace moonlight with indicator in mt6360 example to prevent the below
-> build error:
+> Hi Ulf,
 >
-> Error: Documentation/devicetree/bindings/leds/leds-mt6360.example.dts:114=
-.24-25
-> syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:385:
-> Documentation/devicetree/bindings/leds/leds-mt6360.example.dt.yaml]
-> Error 1
->
-> Link: https://lore.kernel.org/lkml/CAL_JsqJRMVE163LaHTbtFARc4f_qg33bfQx+s=
-D3ukce_xQF+gA@mail.gmail.com/
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
-> Hi, Gene:
->
-> I saw you have removed LED_FUNCTION_MOONLIGHT in v14.
-> But you may forget to remove it from the binding example.
->
-> Please help to review this change.
-> ---
->  Documentation/devicetree/bindings/leds/leds-mt6360.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/Do=
-cumentation/devicetree/bindings/leds/leds-mt6360.yaml
-> index 2353155..b2fe6eb 100644
-> --- a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-> +++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-> @@ -133,7 +133,7 @@ examples:
->       };
->       led@3 {
->         reg =3D <3>;
-> -       function =3D LED_FUNCTION_MOONLIGHT;
-> +       function =3D LED_FUNCTION_INDICATOR;
->         color =3D <LED_COLOR_ID_WHITE>;
->         led-max-microamp =3D <150000>;
->       };
-> --
-> 2.7.4
->
+> Sorry for long time no response. I have checked eMMC power domain with
+> our SoC designers and power experts in the past period of time, both
+> past and present, our power domain hardware design doesn't include
+> any eMMC part and the future will be same...so I am not sure is
+> there is any idea in your view? Do you think put atf smc call in genpd
+> hook is mandatory for us?
 
-Reviewed-by: Gene Chen <gene_chen@richtek.com>
-Thanks
+Yes. To me, it seems best suited to be managed from a genpd provider.
+Moreover, the corresponding crypto clock can then also be nicely
+abstracted and managed outside of the driver.
+
+Or perhaps you see some other concerns with this approach?
+
+Kind regards
+Uffe
+
+>
+> Thanks!
+> >
+> > >
+> > > On Mon, 2021-05-10 at 19:57 +0800, Ulf Hansson wrote:
+> > > > On Wed, 14 Apr 2021 at 11:12, Peng Zhou <peng.zhou@mediatek.com>
+> > > > wrote:
+> > > > >
+> > > > > From: Peng Zhou <Peng.Zhou@mediatek.com>
+> > > > >
+> > > > > 1. add crypto clock control and ungate it before CQHCI init
+> > > > >
+> > > > > 2. set MMC_CAP2_CRYPTO property of eMMC
+> > > > >
+> > > > > Signed-off-by: Peng Zhou <Peng.Zhou@mediatek.com>
+> > > >
+> > > > As discussed [1], I think the ARM SMC call should be managed
+> > > > together
+> > > > with the crypto clock, from a PM domain (a genpd provider).
+> > > >
+> > > > These are the steps I think should help to get this supported:
+> > > >
+> > > > 1)
+> > > > Add a new generic mmc DT property for crypto support. Make it
+> > > > being
+> > > > parsed from mmc_of_parse() and let it set MMC_CAP2_CRYPTO.
+> > > >
+> > > > 2)
+> > > > Start by adding a genpd provider in DT and implement support for
+> > > > it in
+> > > > drivers/soc/*. See
+> > > > Documentation/devicetree/bindings/power/power-domain.yaml, for
+> > > > generic
+> > > > DT bindings.
+> > > >
+> > > > If you already have a genpd provider for the device, you may
+> > > > either
+> > > > extend it to cope with the below or implement a new and model the
+> > > > it
+> > > > as a child (subdomain) of the existing one.
+> > > >
+> > > > 3)
+> > > > To fetch the crypto clock during probe, the genpd provider should
+> > > > implement the ->attach|detach_dev() callbacks. The ->attach_dev()
+> > > > callback is invoked from genpd_add_device(), which is called
+> > > > while
+> > > > probing the device. Vice verse for the ->detach_dev() callback.
+> > > >
+> > > > 4)
+> > > > Ungating/gating the clock should be implemented from the genpd
+> > > > provider's ->start|stop() callbacks. These callbacks are called
+> > > > from
+> > > > genpd_runtime_suspend|resume(), thus when the device gets runtime
+> > > > suspended/resumed. As the mmc host driver already supports
+> > > > runtime PM,
+> > > > only a minor update in the driver's ->probe() is needed, which is
+> > > > to
+> > > > call dev_pm_domain_start(). This turns on the crypto clock and
+> > > > allows
+> > > > its registers to be accessed.
+> > > >
+> > > > 5)
+> > > > Add also the ARM SMC calls to the genpd provider's ->start|stop()
+> > > > callbacks. This means those gets called from SoC specific code,
+> > > > which
+> > > > helps to keep the driver portable.
+> > > >
+> > > > 6)
+> > > > Add the crypto clock DT binding for the mmc host.
+> > > >
+> > > > 7)
+> > > > Wire up the mmc host device node in DT to be attached to the
+> > > > genpd
+> > > > provider (see power-domains and power-domain-names properties).
+> > > > Make
+> > > > sure to also specify the crypto clock and the new mmc crypto
+> > > > property
+> > > > for it.
+> > > >
+> > > > Please, just ask if there is anything unclear. I will do my best
+> > > > to help!
+> > > >
+> > > > Kind regards
+> > > > Uffe
+> > > >
+> > > > [1]
+> > > >
+> https://patchwork.kernel.org/project/linux-mmc/patch/20210309015750.6283-1-peng.zhou@mediatek.com/
+> > > >
+> > > > > ---
+> > > > >  drivers/mmc/host/mtk-sd.c | 15 ++++++++++++++-
+> > > > >  1 file changed, 14 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-
+> > > > > sd.c
+> > > > > index 898ed1b023df..1c90360d6cf2 100644
+> > > > > --- a/drivers/mmc/host/mtk-sd.c
+> > > > > +++ b/drivers/mmc/host/mtk-sd.c
+> > > > > @@ -442,6 +442,7 @@ struct msdc_host {
+> > > > >         struct clk *src_clk_cg; /* msdc source clock control
+> > > > > gate */
+> > > > >         struct clk *sys_clk_cg; /* msdc subsys clock control
+> > > > > gate */
+> > > > >         struct clk_bulk_data bulk_clks[MSDC_NR_CLOCKS];
+> > > > > +       struct clk *crypto_clk; /* msdc crypto clock */
+> > > > >         u32 mclk;               /* mmc subsystem clock
+> > > > > frequency */
+> > > > >         u32 src_clk_freq;       /* source clock frequency */
+> > > > >         unsigned char timing;
+> > > > > @@ -802,6 +803,7 @@ static void msdc_set_busy_timeout(struct
+> > > > > msdc_host *host, u64 ns, u64 clks)
+> > > > >
+> > > > >  static void msdc_gate_clock(struct msdc_host *host)
+> > > > >  {
+> > > > > +       clk_disable_unprepare(host->crypto_clk);
+> > > > >         clk_bulk_disable_unprepare(MSDC_NR_CLOCKS, host-
+> > > > > >bulk_clks);
+> > > > >         clk_disable_unprepare(host->src_clk_cg);
+> > > > >         clk_disable_unprepare(host->src_clk);
+> > > > > @@ -822,6 +824,7 @@ static void msdc_ungate_clock(struct
+> > > > > msdc_host *host)
+> > > > >                 dev_err(host->dev, "Cannot enable pclk/axi/ahb
+> > > > > clock gates\n");
+> > > > >                 return;
+> > > > >         }
+> > > > > +       clk_prepare_enable(host->crypto_clk);
+> > > > >
+> > > > >         while (!(readl(host->base + MSDC_CFG) &
+> > > > > MSDC_CFG_CKSTB))
+> > > > >                 cpu_relax();
+> > > > > @@ -2512,6 +2515,15 @@ static int msdc_drv_probe(struct
+> > > > > platform_device *pdev)
+> > > > >                 goto host_free;
+> > > > >         }
+> > > > >
+> > > > > +       /* only eMMC has crypto property */
+> > > > > +       if ((mmc->caps2 & MMC_CAP2_NO_SD) && (mmc->caps2 &
+> > > > > MMC_CAP2_NO_SDIO)) {
+> > > > > +               host->crypto_clk = devm_clk_get(&pdev->dev,
+> > > > > "crypto");
+> > > > > +               if (IS_ERR(host->crypto_clk))
+> > > > > +                       host->crypto_clk = NULL;
+> > > > > +               else
+> > > > > +                       mmc->caps2 |= MMC_CAP2_CRYPTO;
+> > > > > +       }
+> > > > > +
+> > > > >         host->irq = platform_get_irq(pdev, 0);
+> > > > >         if (host->irq < 0) {
+> > > > >                 ret = -EINVAL;
+> > > > > @@ -2582,6 +2594,8 @@ static int msdc_drv_probe(struct
+> > > > > platform_device *pdev)
+> > > > >                 host->dma_mask = DMA_BIT_MASK(32);
+> > > > >         mmc_dev(mmc)->dma_mask = &host->dma_mask;
+> > > > >
+> > > > > +       /* here ungate due to cqhci init will access registers
+> > > > > */
+> > > > > +       msdc_ungate_clock(host);
+> > > > >         if (mmc->caps2 & MMC_CAP2_CQE) {
+> > > > >                 host->cq_host = devm_kzalloc(mmc->parent,
+> > > > >                                              sizeof(*host-
+> > > > > >cq_host),
+> > > > > @@ -2618,7 +2632,6 @@ static int msdc_drv_probe(struct
+> > > > > platform_device *pdev)
+> > > > >         spin_lock_init(&host->lock);
+> > > > >
+> > > > >         platform_set_drvdata(pdev, mmc);
+> > > > > -       msdc_ungate_clock(host);
+> > > > >         msdc_init_hw(host);
+> > > > >
+> > > > >         ret = devm_request_irq(&pdev->dev, host->irq, msdc_irq,
+> > > > > --
+> > > > > 2.18.0
