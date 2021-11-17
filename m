@@ -2,106 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B340453DB2
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 02:25:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D55E1453DB8
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 02:28:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229977AbhKQB23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 20:28:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
+        id S231367AbhKQBbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 20:31:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbhKQB23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 20:28:29 -0500
-Received: from mail-pg1-x54a.google.com (mail-pg1-x54a.google.com [IPv6:2607:f8b0:4864:20::54a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3FD6C061746
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 17:25:31 -0800 (PST)
-Received: by mail-pg1-x54a.google.com with SMTP id j18-20020a63fc12000000b002dd2237eb1cso417984pgi.5
-        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 17:25:31 -0800 (PST)
+        with ESMTP id S231259AbhKQBbH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 20:31:07 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4918FC061764
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 17:28:09 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id w1so3182097edc.6
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 17:28:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=jzis9D6fqTyyLA02o3dSfzs5yeXW2O0+Qf+DxR2EUps=;
-        b=bTiS7jnTXeCNNkiePPmzv8eI5F02AN9TpuuVmOQmReiT1bttmG112fOlQa2HVmv7iK
-         vaqEBALepUgjzMRx6MtkCQ/yMlvPV+V2UB1XXSG42pyi/mkcKk80NE7oG3E2Er2By4Iw
-         aA2rTyz5rOvRZONXeD3K1GdbBbHYBjDKxA3B+jegyj3qAfQxakwKdwSnGzCAZZKr9D8S
-         0i88cUzVgCzmVzhpLpqul3o6ducwtkzVXjgo4n6eevI3iq7iorMJ2yGjjECmT5hbNF1q
-         tnOB6GZDkgwU89OAMty7oTApkK18b7Qs4fVGCcYFL2InhDBPtToim1uW5H5sFycHfOx0
-         yLHA==
+        d=pensando.io; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jzvlfo3mwRIjVNI3uBTsFictJR41rZxk5TeM/Ei1okM=;
+        b=dY7xWxkn7EP7A0fQBKQJAS/t/i7hXMR3B340Y/elUV8VDoipVyFbxy5jMONgm4naWQ
+         H8dqN6lbybISfOjw5fnLKUkLxN5/BGp6sibWyRuKLrkVn1r9GGXspRVHL8tGN/UYmwb0
+         STaq9YjmufwVATs+jU7/L8dVTgNaP/Wo13DvnHmiMCvRu5VFNlootrnqj8YCfB8HZGMg
+         PjxybDwrZNpkpAyCAPI9cpgCbZCvEGKnnMNuIL6qKCOP6i7dSXiUBsCtiZVtNOIEPcjD
+         VVjwoLdDhIadxmgDtD8wfExhWrl2aExZok3xu0N/bFAiKC4MQxK7Uck8Ig6e+T2EnkZB
+         JdBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=jzis9D6fqTyyLA02o3dSfzs5yeXW2O0+Qf+DxR2EUps=;
-        b=n1B78motQxkah2+Id/8ua8+U7FWKayKj96Xd3pkI9JYoowEbfsZf5gAFl1JLZ721t3
-         iYmpNHzAmgz7mMtkPQNgJxRvKwexJzUHGgKUoDJWwV+5ttpM6B5I5fHbfkhZTxwE/K3S
-         ENKmHeN7LlWsgPkaP3XW8CQDcNFgtuGWCukTTtIEyseBMzxtkadXrQz0vXcua0xTGjOH
-         PASkrDgByso3EjY295Q+pbcacLe3dhrtcCX+Mt8MzsUotCeZ8dywTYyoslOJLMu3hOo9
-         1woKDEWGVJylcfZ1dcuIIZalJTs8nf8LjFesWZ15ouyYn65EEYxbUPYSAsfJebNa4Pks
-         pq2A==
-X-Gm-Message-State: AOAM533qcrj1ktXxMexHvZtAR7FQMFI9WO/G1xgJtEbCqkRFLeNT0t1N
-        UoOmpjqUgpxs8F20vsLR6oNctC0=
-X-Google-Smtp-Source: ABdhPJxKbny7Hyg+azjy336lJqICWE1jEiVwfA8cEngT+yLZ0bq0tdD7vltBF4qoJcDK4j3FUxDsi/A=
-X-Received: from wak-linux.svl.corp.google.com ([2620:15c:2c5:13:784a:d347:659f:f1f3])
- (user=wak job=sendgmr) by 2002:a17:903:18b:b0:141:eda2:d5fa with SMTP id
- z11-20020a170903018b00b00141eda2d5famr50271146plg.63.1637112331084; Tue, 16
- Nov 2021 17:25:31 -0800 (PST)
-Date:   Tue, 16 Nov 2021 17:25:12 -0800
-Message-Id: <20211117012512.1081593-1-wak@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.34.0.rc1.387.gb447b232ab-goog
-Subject: [PATCH] ARM: dts: nuvoton: Fix FIU reg definition
-From:   "William A. Kennington III" <wak@google.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
-        tali.perry1@gmail.com
-Cc:     joel@jms.id.au, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        "William A. Kennington III" <wak@google.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jzvlfo3mwRIjVNI3uBTsFictJR41rZxk5TeM/Ei1okM=;
+        b=Yd/OUMCmpztPlWldcCAikh19o3t1fL6brjr07couQQfKOa3gkypUbxJSt8r4NCYrzI
+         Z5waLTsD3edT1xhpdP7lIzh9uaeO4WRsQ0wgPryRX29dQzxYvf7+nwlZ0y3+Mz52h2C0
+         xxbYuKqtCs5MDlOX7M1SWJw0kiokvhtbjTU29ywYPs6zccOVy8YqqN5IYTyUR0/AcL8T
+         kXNTmIH7x9gpA/y6hQiRXcPFg1lKjGgJkTDrSDq+8ALwd3nSKnQjbnFwuWbutMTKjHel
+         bnzNcvK6KIDfk29PlD7PJmRtYZwaxfER5aFhV0Izpf8NCZavjs3NLaO1gToIXL2AVsBp
+         tsew==
+X-Gm-Message-State: AOAM531k2Qhz+EIeaT3D/Ko0lOqzvO36B2EA7WLaPM9S4bMSEKQ0RVIw
+        xs23b3Hi3dQk3Tr4hJIvEXPuUJ+UDweokBGM4Ioq9g==
+X-Google-Smtp-Source: ABdhPJz8mPrCc7kO/eC8/+0RnyK+b3AbY3p624T+emqGvUizx5GBVl4RNjW24qFhHOr0XuvwQ4Abd5P+LJhWQMTB2t4=
+X-Received: by 2002:a17:907:9487:: with SMTP id dm7mr16812462ejc.95.1637112487826;
+ Tue, 16 Nov 2021 17:28:07 -0800 (PST)
+MIME-Version: 1.0
+References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-4-brad@pensando.io>
+ <YXhErvvSfKIBvHae@robh.at.kernel.org> <CAK9rFnyk=gW_ZRZUci3byu=DNwdrmKBb30HQgxK0iWJuVVPbfQ@mail.gmail.com>
+In-Reply-To: <CAK9rFnyk=gW_ZRZUci3byu=DNwdrmKBb30HQgxK0iWJuVVPbfQ@mail.gmail.com>
+From:   Brad Larson <brad@pensando.io>
+Date:   Tue, 16 Nov 2021 17:27:57 -0800
+Message-ID: <CAK9rFnzvcOmEUXYufa4R42xo+SY1Bq_Txfj=Y1QhkAVwfv-oXw@mail.gmail.com>
+Subject: Re: [PATCH v3 03/11] dt-bindings: mmc: Add Pensando Elba SoC binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Brown <broonie@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The current definitions have a reg-name for "memory", but no
-corresponding reg space defined. These values were taken from the
-NPCM7xx documentation and tested on real hardware.
+Hi Rob,
 
-Without this definition, the FIU driver does not take advantage of
-direct read support.
+On Tue, Nov 16, 2021 at 5:21 PM Brad Larson <brad@pensando.io> wrote:
+>
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - microchip,mpfs-sd4hc
 
-Signed-off-by: William A. Kennington III <wak@google.com>
----
- arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+"microchip,mpfs-sd4hc" was inadvertently removed in moving to
+5.16.0-rc1 and won't be in the re-spin of the patchset, its recently
+added.
 
-diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-index aca0e0e390d8..c164ec9fc96f 100644
---- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-@@ -181,7 +181,7 @@ fiu0: spi@fb000000 {
- 			compatible = "nuvoton,npcm750-fiu";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0xfb000000 0x1000>;
-+			reg = <0xfb000000 0x1000>, <0x80000000 0x10000000>;
- 			reg-names = "control", "memory";
- 			clocks = <&clk NPCM7XX_CLK_SPI0>;
- 			clock-names = "clk_spi0";
-@@ -192,7 +192,7 @@ fiu3: spi@c0000000 {
- 			compatible = "nuvoton,npcm750-fiu";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0xc0000000 0x1000>;
-+			reg = <0xc0000000 0x1000>, <0xa0000000 0x20000000>;
- 			reg-names = "control", "memory";
- 			clocks = <&clk NPCM7XX_CLK_SPI3>;
- 			clock-names = "clk_spi3";
-@@ -265,7 +265,7 @@ fiux: spi@fb001000 {
- 			compatible = "nuvoton,npcm750-fiu";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0xfb001000 0x1000>;
-+			reg = <0xfb001000 0x1000>, <0xf8000000 0x2000000>;
- 			reg-names = "control", "memory";
- 			clocks = <&clk NPCM7XX_CLK_SPIX>;
- 			clock-names = "clk_spix";
--- 
-2.34.0.rc1.387.gb447b232ab-goog
+Also, as you mentioned the patchset should be sent against rc1
 
+Thanks
+Brad
