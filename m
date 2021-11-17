@@ -2,148 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3094454A2C
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 16:41:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 454E2454A2D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 16:41:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238459AbhKQPok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 10:44:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238514AbhKQPoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 10:44:38 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C745C061570
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 07:41:39 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mnN40-0008Dd-MS; Wed, 17 Nov 2021 16:41:32 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mnN3x-00057n-D4; Wed, 17 Nov 2021 16:41:29 +0100
-Date:   Wed, 17 Nov 2021 16:41:29 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-Message-ID: <20211117154129.GM6556@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <CAL_JsqJxJj2JT-0vN45vYyoy_Sh87NnoTfJQH-4qxRoPNwtj5Q@mail.gmail.com>
+        id S238520AbhKQPor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 10:44:47 -0500
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:60807 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238514AbhKQPoq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Nov 2021 10:44:46 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 5753858054D;
+        Wed, 17 Nov 2021 10:41:47 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Wed, 17 Nov 2021 10:41:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+        qGoNrB8MmSWjk4fStkb5QZHrvZbDVOv+blS2NAOcX34=; b=jRPlhi3olJn1rKCd
+        afqF/1TVudA1PzZNVdODwGt+qzjnbToT61M8wDh4qUM7kvoTo0F9Xs6L0mBqI8Mh
+        qOWeRBJ86KAhDdj5sfYemWNW1KBRUG5Ym26VPyvNInUusMKFnQennPB/x/I66aFJ
+        3peswOzW/X/xh04bcQFzHKGvyBbIGUHTMfPthcqkLGR7PFhKmIa531Xk8v2Vv3jx
+        gdU7wyAHB6Mw+Gp7ewd0Gz2agYnPLAcqeJ63yAqaaEQIwrdqP3oDeEAPE+amh+Ta
+        KOFY8xMDMap4+cCoCe1o9UwrQcfAU3jZrogN+y3VvrleaccT8F5OzvctKB4x/U5F
+        bAMxjQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=qGoNrB8MmSWjk4fStkb5QZHrvZbDVOv+blS2NAOcX
+        34=; b=CMpAtcDGCIjAn9qndl/7O4ynB1f9SeU3kDDZ3I1uLOyTW+xsqDfxMMLS1
+        CmNCnFXPFhgIob7kgU/v4OIf+04T9gy2gD4nzNY2ZUv0g4dxdG8uXNX/FzYlgPgl
+        NdYZb5kv4WqlvodWroScfgpx1dZcizfLnCPAElgS5NfpVWe9gcNc24UZOaXnJUS/
+        vzv6mUzQQy6db+okSixau+SH3dkTNmn2Gnsqo0NxtfC9QIgDi2ktiOoY7fc4qbm+
+        73siSVX9NweVVd+wrISOVZmPhThDOEKI1tvScDJGhIpGjQKS0Ca9BEGKQg9RIq3+
+        idwie26SnU5ldj8Hf80m+Vkpexl+A==
+X-ME-Sender: <xms:uyKVYUploxFJihwWfKWiDHKHX7kALr0lTfRKzeKnssuxGTAKiqCxKg>
+    <xme:uyKVYaq4wCMeYzL2bWD3OyuxFB79agXavuP8lMGm3qIU1uMEHBDzY_4NsiEYXymIJ
+    -YQBgCVbaHMA6mPgcc>
+X-ME-Received: <xmr:uyKVYZO0D__HdXIwWqc7FnOPC7NA7MWOWks9xOuhY9C8ZH309fCUnyTb6_LLHGSHhuM636oetFmA8yFnGoNO5OrUZ0DBg6kXf1QjlTpNZLg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeeggdejgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
+    keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:uyKVYb5gU-y26SOe56DgEKMnB1FHvQo35pVYadco1BczJWZyraZRfg>
+    <xmx:uyKVYT6p1rcp2xrMs-GuJ0wD5BliojHEFIR8V2h25KuJryVkTtiv7A>
+    <xmx:uyKVYbhfgmx3yIStpXpHmkesAckOdAdTDy3f8kKdhg-E6NZOY3LsZg>
+    <xmx:uyKVYXjQzy8TS6WPna9274jZkGZQJTXcpLso8wnY1ZcIGs6bC_D6oQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 17 Nov 2021 10:41:46 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     linux-sunxi@lists.linux.dev, wens@csie.org, mripard@kernel.org,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        hauke@hauke-m.de, jernej.skrabec@gmail.com,
+        Robert Marko <robert.marko@sartura.hr>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Ron Goossens <rgoossens@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Subject: Re: (subset) [PATCH v2] arm64: dts: allwinner: orangepi-zero-plus: fix PHY mode
+Date:   Wed, 17 Nov 2021 16:41:44 +0100
+Message-Id: <163716369742.342081.15629886204343104754.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211117140222.43692-1-robert.marko@sartura.hr>
+References: <20211117140222.43692-1-robert.marko@sartura.hr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJxJj2JT-0vN45vYyoy_Sh87NnoTfJQH-4qxRoPNwtj5Q@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 15:58:28 up 272 days, 18:22, 147 users,  load average: 0.17, 0.18,
- 0.18
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 08:54:37AM -0600, Rob Herring wrote:
-> On Wed, Nov 17, 2021 at 8:34 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> >
-> > This series adds initial graphics support for the Rockchip RK356[68]
-> > SoCs.  Graphics support is based around the VOP2 controller which
-> > replaces the VOP controller found on earlier Rockchip SoCs. The driver
-> > has been tested with HDMI support included in this series and MIPI-DSI
-> > which is not included because it needs some more work. The driver is
-> > taken from the downstream Rockchip kernel and heavily polished, most non
-> > standard features have been removed for now. I tested the driver with
-> > the libdrm modetest utility and also with weston with both pixman and
-> > panfrost driver support. Michael Riesch reported the driver to work on
-> > the RK3566 as well, but device tree support for this SoC is not yet
-> > included in this series.
+On Wed, 17 Nov 2021 15:02:22 +0100, Robert Marko wrote:
+> Orange Pi Zero Plus uses a Realtek RTL8211E RGMII Gigabit PHY, but its
+> currently set to plain RGMII mode meaning that it doesn't introduce
+> delays.
 > 
-> Can you outline what exactly you want to disable? I don't think
-> 'status' is the right way. I think between the parent device being
-> disabled, an incomplete graph and user configuration choice that
-> should be enough to disable parts.
+> With this setup, TX packets are completely lost and changing the mode to
+> RGMII-ID so the PHY will add delays internally fixes the issue.
+> 
+> [...]
 
-The VOP2 on the RK3568 has three CRTCS, or video ports (VP) in Rockchip
-nomenclature. Each of them can be connected to the different outputs,
-like HDMI, MIPI-DSI and so on. In the device tree the CRTCs are
-described as of-graph ports with links to the HDMI, MIPI-DSI nodes.
-An example limited to HDMI looks like this:
+Applied to local tree (sunxi/fixes-for-5.16).
 
-	vop: vop@fe040000 {
-		compatible = "rockchip,rk3568-vop";
-		vop_out: ports {
-			vp0: port@0 {
-				vp0_out_hdmi: endpoint@0 {
-					reg = <0>;
-					remote-endpoint = <&hdmi_in_vp0>;
-					status = "disabled";
-				};
-
-				... MIPI, dP, ...
-			};
-
-			vp1: port@1 {
-				vp1_out_hdmi: endpoint@0 {
-					reg = <0>;
-					remote-endpoint = <&hdmi_in_vp1>;
-					status = "disabled";
-				};
-
-				... MIPI, dP, ...
-			};
-
-			vp2: port@2 {
-				...
-			};
-		};
-	};
-
-	hdmi: hdmi@fe0a0000 {
-		compatible = "rockchip,rk3568-dw-hdmi";
-		ports {
-			hdmi_in: port@0 {
-				hdmi_in_vp0: endpoint@0 {
-					reg = <0>;
-					remote-endpoint = <&vp0_out_hdmi>;
-					status = "disabled";
-				};
-
-				hdmi_in_vp1: endpoint@1 {
-					reg = <1>;
-					remote-endpoint = <&vp1_out_hdmi>;
-					status = "disabled";
-				};
-
-				...
-			};
-		};
-	};
-
-Theoretically every VP can be routed to every output, but depending on
-the board there are some constraints. For example for the three vps
-there are only two PLLs for the pixel clock, and the HDMI port is
-hardwired to one single PLL. To avoid different VPs setting conflicting
-rates on a PLL we can only allow a subset of the possible routes.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks!
+Maxime
