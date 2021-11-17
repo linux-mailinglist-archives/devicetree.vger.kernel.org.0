@@ -2,124 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC7CD453E69
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 03:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F73E453E74
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 03:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230127AbhKQCYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 21:24:43 -0500
-Received: from netrider.rowland.org ([192.131.102.5]:56161 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S229733AbhKQCYn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 21:24:43 -0500
-Received: (qmail 158965 invoked by uid 1000); 16 Nov 2021 21:21:44 -0500
-Date:   Tue, 16 Nov 2021 21:21:44 -0500
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Tony Lindgren <tony@atomide.com>,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v17 7/7] usb: Specify dependencies on USB_XHCI_PLATFORM
- with 'depends on'
-Message-ID: <20211117022144.GA158646@rowland.harvard.edu>
-References: <20211116200739.924401-1-mka@chromium.org>
- <20211116120642.v17.7.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211116120642.v17.7.If248f05613bbb06a44eb0b0909be5d97218f417b@changeid>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S229992AbhKQCaN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 21:30:13 -0500
+Received: from mail-oi1-f179.google.com ([209.85.167.179]:36631 "EHLO
+        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229733AbhKQCaL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 21:30:11 -0500
+Received: by mail-oi1-f179.google.com with SMTP id t23so2966730oiw.3;
+        Tue, 16 Nov 2021 18:27:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=Gi1zkQUusKr2oOET/+vmdyiUMkS7tjWRTDsmrGSi95U=;
+        b=Kfdr5XaByoxO5wofHAhvmaSw5JgJ60yW8+dAWs18OIKstOfisEA+a8iEaRhaXBBkrF
+         ZRlPvzI3RL2ddKJI/m2CS0+RtV+Bf830pd9+r1p3itbT7QuiFPUA5OXdJlFxfG0tO5KX
+         0oTDUr4rSdaq+g3OX5xSU0K0prKehZ7519QqYKZX1DhLRDWSRm3Gm6u+GZLm0/t9TZk2
+         rt16vOJMgtc7IddH8tY8MzXYky9/GrLmHbGXr02xSCJ06tXTSl85xGtmjAtjWuF63wig
+         u/YX+wCP9AG8j4eNpjLcPJz31Osy9BOf1He/jIcdHQExo30WZq7DCQlhoqUAxQ+aMoX7
+         4qZg==
+X-Gm-Message-State: AOAM531iKALeWlGgwcklquLihB4Mx722qiC/hwdPKvbewXvFVuz4zTXq
+        8gNttPrPlkUQtuI5tMggmNfbDsv6qg==
+X-Google-Smtp-Source: ABdhPJxRWYhsA6sYXwAKKgt94oXi44oGPgwsIh7XEiwG0npDL4m9qIjfjiPVBZop174yqTn2JS8TzQ==
+X-Received: by 2002:aca:3b89:: with SMTP id i131mr10965582oia.102.1637116033279;
+        Tue, 16 Nov 2021 18:27:13 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id o6sm1669635oou.41.2021.11.16.18.27.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Nov 2021 18:27:12 -0800 (PST)
+Received: (nullmailer pid 1207284 invoked by uid 1000);
+        Wed, 17 Nov 2021 02:27:10 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Anilkumar Kolli <akolli@codeaurora.org>
+Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <1637082058-6398-1-git-send-email-akolli@codeaurora.org>
+References: <1637082058-6398-1-git-send-email-akolli@codeaurora.org>
+Subject: Re: [PATCH v2 1/2] dt: bindings: add new DT entry for ath11k PCI device support
+Date:   Tue, 16 Nov 2021 20:27:10 -0600
+Message-Id: <1637116030.353961.1207283.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 12:07:39PM -0800, Matthias Kaehlcke wrote:
-> Some USB controller drivers that depend on the xhci-plat driver
-> specify this dependency using 'select' in Kconfig. This is not
-> recommended for symbols that have other dependencies as it may
-> lead to invalid configurations. Use 'depends on' to specify the
-> dependency instead of 'select'.
+On Tue, 16 Nov 2021 22:30:57 +0530, Anilkumar Kolli wrote:
+> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+> Ath11k firmware uses host DDR memory. DT entry is used to reserve
+> these host DDR memory regions, send these memory base
+> addresses using DT entries.
 > 
-> For dwc3 specify the dependency on USB_XHCI_PLATFORM in
-> USB_DWC3_HOST and USB_DWC3_DUAL_ROLE. Also adjust the
-> dependencies of USB_DWC3_CORE to make sure that at least one
-> of USB_DWC3_HOST, USB_DWC3_GADGET or USB_DWC3_DUAL_ROLE can be
-> selected.
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Reviewed-by: Roger Quadros <rogerq@kernel.org>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > ---
+> V2:
+>   - Use reserved-memory (Rob)
 > 
-> Changes in v17:
-> - removed explicit dependency on USB from USB_DWC3
-> - added 'Reviewed-by' tags from Roger and Doug
+>  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 ++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
 > 
-> Changes in v16:
-> - none
-> 
-> Changes in v15:
-> - adjusted dependencies of USB_DWC3_CORE to make sure it can only
->   be enabled when at least one of USB_DWC3_HOST, USB_DWC3_GADGET
->   or USB_DWC3_DUAL_ROLE is selectable
-> - updated commit message
-> 
-> Changes in v14:
-> - none
-> 
-> Changes in v13:
-> - patch added to the series
 
-> diff --git a/drivers/usb/host/Kconfig b/drivers/usb/host/Kconfig
-> index d1d926f8f9c2..e5e612f143a1 100644
-> --- a/drivers/usb/host/Kconfig
-> +++ b/drivers/usb/host/Kconfig
-> @@ -80,7 +80,7 @@ config USB_XHCI_MTK
->  
->  config USB_XHCI_MVEBU
->  	tristate "xHCI support for Marvell Armada 375/38x/37xx"
-> -	select USB_XHCI_PLATFORM
-> +	depends on USB_XHCI_PLATFORM
->  	depends on HAS_IOMEM
->  	depends on ARCH_MVEBU || COMPILE_TEST
->  	help
-> @@ -112,9 +112,9 @@ config USB_EHCI_BRCMSTB
->  config USB_BRCMSTB
->  	tristate "Broadcom STB USB support"
->  	depends on (ARCH_BRCMSTB && PHY_BRCM_USB) || COMPILE_TEST
-> +	depends on !USB_XHCI_HCD || USB_XHCI_PLATFORM
->  	select USB_OHCI_HCD_PLATFORM if USB_OHCI_HCD
->  	select USB_EHCI_BRCMSTB if USB_EHCI_HCD
-> -	select USB_XHCI_PLATFORM if USB_XHCI_HCD
->  	help
->  	  Enables support for XHCI, EHCI and OHCI host controllers
->  	  found in Broadcom STB SoC's.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-It should be pointed out that this now requires people with xHCI systems 
-to actively turn on CONFIG_USB_XHCI_PLATFORM before they can enable 
-CONFIG_USB_BRCMSTB.  Before, that was not necessary.  Some users might 
-get confused and not realize what is needed.  Perhaps something should 
-be added to the "help" text.
+yamllint warnings/errors:
 
-Alan Stern
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:160.13-31: Warning (reg_format): /example-0/pcie0_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:164.17-36: Warning (reg_format): /example-0/pcie0_rp/ath11k@0:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:170.13-31: Warning (reg_format): /example-0/pcie1_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:174.17-36: Warning (reg_format): /example-0/pcie1_rp/ath11k@1:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:138.16-141.11: Warning (unit_address_vs_reg): /example-0/memory: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:159.28-167.11: Warning (unit_address_vs_reg): /example-0/pcie0_rp: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:169.28-177.11: Warning (unit_address_vs_reg): /example-0/pcie1_rp: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #address-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #size-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #address-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #size-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie0@51100000:reg:0: [0, 1360003072, 0, 55574528] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie1@54600000:reg:0: [0, 1415577600, 0, 55574528] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1555958
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
