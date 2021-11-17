@@ -2,115 +2,259 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 698DC454C05
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 663B6454C11
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:36:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239429AbhKQRgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 12:36:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
+        id S239469AbhKQRjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 12:39:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237812AbhKQRgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:36:22 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90BC6C061764;
-        Wed, 17 Nov 2021 09:33:23 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id 77-20020a1c0450000000b0033123de3425so5467853wme.0;
-        Wed, 17 Nov 2021 09:33:23 -0800 (PST)
+        with ESMTP id S232047AbhKQRjw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:39:52 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F58FC061570;
+        Wed, 17 Nov 2021 09:36:53 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso5435722wms.3;
+        Wed, 17 Nov 2021 09:36:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IljrZVfmkKHCxYMQbSMY/43208uZSuA4ajkMssOxNXQ=;
-        b=UkX9HvcjswTCpEGvE9k2l62gZ9bzRtTGZnJ+UvXI/wXyMFPZYVz36qYAjECtfU2hHO
-         h+nXjrXpvJ9nMIQWwkomKiFnAW5JUnzts/f09XRfzqCGfzPImZWPuJtAEvPLYOKbzReJ
-         Tmsq0881b+2g3bYZF/45cTHRomS1zLKddwYP61ZJw5Cyg+s5itiexEkgO2U+k2qLx7+D
-         Eoy/U0709VyJjvYcI5U4HYNpjhPJHwqXnPeO35SwFyeSKbswMxHiEMVLqNVWxRWNnlr6
-         HySzjGHuo+jWsZT6Ja8qG9ATuZ4n4R8e2KqnTvsm9rJErjmzyXoSpcveecInY/4NVNWl
-         YsOA==
+        h=mime-version:content-transfer-encoding:date:message-id:to:cc
+         :subject:from:references:in-reply-to;
+        bh=B37VhRVH10DOHJycHWYpGnJNBeThOeAwxJtJbpn+pOA=;
+        b=aY8ibj+wSmOT66sGlmL064kCsv5vmrnIi4bh6qKJtinz/VT3fxoXM3Xvc0qkiRjYTt
+         CU6ePRO2eyppOw6kC2csU/UbjpsyfCqqDzCAKWBSXEyPIl25SxAUpDgX8MQ324gdK0Ci
+         ZcQdqss+mj+0SfysJyA8nXbWG1tGZeEbSDQW6sGNQKZ0i8QRleUjTGNffCnsSERjIeTI
+         cmqEoHCK2hBO95ZGZManQ9Xn4mrEcFEUpkK/e6uTyPQxBuB8d+8j1zv9gMvYXEhdQb3v
+         Hor/0/KqUrFxsnEHSSf9cxMNZERgbLPebls5toNW9rYgAmex6hx+ZsV8rDk6lNp5nUuN
+         /PWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IljrZVfmkKHCxYMQbSMY/43208uZSuA4ajkMssOxNXQ=;
-        b=SVIIAPVBhZhmdvtrcigtLHzdxnNDcpGXaEot9C2SIK3+YMJxY7yvTWPu0pR9VniVHJ
-         Uju2d8tFmA5BtkZPLU02CSJYNFY4UIMujsHytX+1pPbHaCeBpocsrzWPX1Mg/gZwP2qR
-         zWXkPlGk4kDq4RrYUYBvnQv8HgvSinRSk+inHw6qf0+nDiBLcn387ZntvztyPY74w+cD
-         u/0G8C+WAo+zU3LAxd5tyvXRg8lfzPxFc2b0eq66ifqn01+ptmQToCf3th6QgyeYyIP/
-         zv1vqKsg+01WCohHWXZ8asJDyzgcryeF/ArctyFfobyAD2CKfrwWNx36dl9XrzzyBiqu
-         kFbw==
-X-Gm-Message-State: AOAM5332PITVBIExxYyPC6ss3EwN6JsFr4mn+xzFEf8O5JREE4oMAcgl
-        yIZBk0zSqrI8wWwCIOKG67o=
-X-Google-Smtp-Source: ABdhPJwYSeSfo4vw2gAZcvsGMBvnN2B4NTBwCxzZ7Q//nD5+9c0AjD9FINSwBsfYdYXqAK9BJssh/g==
-X-Received: by 2002:a7b:c1d5:: with SMTP id a21mr1657801wmj.14.1637170402185;
-        Wed, 17 Nov 2021 09:33:22 -0800 (PST)
-Received: from [192.168.0.18] (static-160-219-86-188.ipcom.comunitel.net. [188.86.219.160])
-        by smtp.gmail.com with ESMTPSA id l11sm474771wrp.61.2021.11.17.09.33.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Nov 2021 09:33:21 -0800 (PST)
-Message-ID: <03de9880-1f1a-b07b-6ec3-279945e08cea@gmail.com>
-Date:   Wed, 17 Nov 2021 18:33:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.2.0
-Subject: Re: [PATCH 1/3] arm64: dts: mt8183: add dpi node to mt8183
-Content-Language: en-US
-To:     Fabien Parent <fparent@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
-        Jitao Shi <jitao.shi@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20211110192417.4177741-1-fparent@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20211110192417.4177741-1-fparent@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:to:cc:subject:from:references:in-reply-to;
+        bh=B37VhRVH10DOHJycHWYpGnJNBeThOeAwxJtJbpn+pOA=;
+        b=IQBrydCEDnLFCiOraFESQi4xM1RfcfK/06CLajlDs5QN4JB1LylpW28k5/F5anjF8g
+         ECyiMMw+nZ4BNcwW4kirizesrNnDEvvf45iZZnbShWp+ck7BcGkpp/V3703vw2QVb4PF
+         bpAMYT7HsniLzNixgk5iH3o3t3+OGYrIqXjyzKVCsamKC90c2cuLfPqgYJNc4g9aFzgm
+         OMMxCATh39qCf/Rr/UaoheeCh6B2cH5yV8GQ/pARFLHrCst3at/fp+6uh3QL1BWtJsr+
+         RP/q7wvAq/40mhQF819LmkBIA2Gfi8JM0U/5BEpq1UNcS4PrBdYREWbJABKex4pOUAJW
+         YhrQ==
+X-Gm-Message-State: AOAM531ORoA6aIqi2jBV7LLjYr/GqGnxi1lWsOzMSPT+nswgAV5ia8wf
+        qUL2JsMG0zOM748GqHdwraA=
+X-Google-Smtp-Source: ABdhPJytf89XaaxDLsXJ/Dwa6PPoNM34lhDNxYFolzEEHjbvSdqx3GRCciK9+Peogg4gD9Twa/+rfw==
+X-Received: by 2002:a05:600c:1e8d:: with SMTP id be13mr1638199wmb.79.1637170611869;
+        Wed, 17 Nov 2021 09:36:51 -0800 (PST)
+Received: from localhost (a109-49-33-111.cpe.netcabo.pt. [109.49.33.111])
+        by smtp.gmail.com with ESMTPSA id w4sm448173wrs.88.2021.11.17.09.36.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Nov 2021 09:36:51 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 17 Nov 2021 17:36:49 +0000
+Message-Id: <CFS8JN8RKHL1.HM7182TDYAR0@arch-thunder>
+To:     "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>
+Cc:     "Martin Kepplinger" <martin.kepplinger@puri.sm>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <shawnguo@kernel.org>,
+        <kernel@pengutronix.de>, <kernel@puri.sm>, <linux-imx@nxp.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] media: imx: imx7-media-csi: add support for imx8mq
+From:   "Rui Miguel Silva" <rmfrfs@gmail.com>
+References: <20211117092710.3084034-1-martin.kepplinger@puri.sm>
+ <CFS51AQQ7SCD.7FK8RLAWLXRH@arch-thunder>
+ <YZU5C0E3WBd7VLS2@pendragon.ideasonboard.com>
+In-Reply-To: <YZU5C0E3WBd7VLS2@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
+On Wed Nov 17, 2021 at 5:16 PM WET, Laurent Pinchart wrote:
+
+> On Wed, Nov 17, 2021 at 02:51:48PM +0000, Rui Miguel Silva wrote:
+> > Hi Martin,
+> > Thanks for the patch.
+> >=20
+> > On Wed Nov 17, 2021 at 9:27 AM WET, Martin Kepplinger wrote:
+> >=20
+> > > Modeled after the NXP driver mx6s_capture.c that this driver is based=
+ on,
+> > > imx8mq needs different settings for the baseaddr_switch mechanism. De=
+fine
+> > > the needed bits and set that for imx8mq.
+> > >
+> > > Without these settings, the system will "sometimes" hang completely w=
+hen
+> > > starting to stream (the interrupt will never be called).
+>
+> Do we know why ? Are all the bits that you set required ?
+>
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > ---
+> > >  drivers/staging/media/imx/imx7-media-csi.c | 34 ++++++++++++++++++++=
+--
+> > >  1 file changed, 32 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/sta=
+ging/media/imx/imx7-media-csi.c
+> > > index 2288dadb2683..8619cf2fc694 100644
+> > > --- a/drivers/staging/media/imx/imx7-media-csi.c
+> > > +++ b/drivers/staging/media/imx/imx7-media-csi.c
+> > > @@ -12,6 +12,7 @@
+> > >  #include <linux/interrupt.h>
+> > >  #include <linux/mfd/syscon.h>
+> > >  #include <linux/module.h>
+> > > +#include <linux/of_device.h>
+> > >  #include <linux/of_graph.h>
+> > >  #include <linux/pinctrl/consumer.h>
+> > >  #include <linux/platform_device.h>
+> > > @@ -122,6 +123,10 @@
+> > >  #define BIT_DATA_FROM_MIPI		BIT(22)
+> > >  #define BIT_MIPI_YU_SWAP		BIT(21)
+> > >  #define BIT_MIPI_DOUBLE_CMPNT		BIT(20)
+> > > +#define BIT_MASK_OPTION_FIRST_FRAME	(0 << 18)
+> > > +#define BIT_MASK_OPTION_CSI_EN		(1 << 18)
+> > > +#define BIT_MASK_OPTION_SECOND_FRAME	(2 << 18)
+> > > +#define BIT_MASK_OPTION_ON_DATA		(3 << 18)
+> > >  #define BIT_BASEADDR_CHG_ERR_EN		BIT(9)
+> > >  #define BIT_BASEADDR_SWITCH_SEL		BIT(5)
+> > >  #define BIT_BASEADDR_SWITCH_EN		BIT(4)
+> > > @@ -154,6 +159,12 @@
+> > >  #define CSI_CSICR18			0x48
+> > >  #define CSI_CSICR19			0x4c
+> > > =20
+> > > +enum imx_soc {
+> > > +	IMX6UL =3D 0,
+> > > +	IMX7,
+> > > +	IMX8MQ,
+> >=20
+> > maybe instead of this enum we could use a bool in structure...
+>
+> An enum would be more extensible, but we shouldn't define different
+> values for IMX6UL and IMX7 if they're compatible. Maybe an enum
+> imx_csi_model with two values (IMX_CSI_IMX7 and IMX_CSI_IMX8MQ ?).
+
+If there are only 2 possible values, for now, I think a enum would be
+overkill. But do not have a strong feeling about it. So, an enum it is
+more extensible and ok too, but with the IMX_CSI or even better=20
+IMX7_CSI prefix.
+
+>
+> Are there other SoCs in the i.MX8 family that require this ? The BSP
+> driver sets the baseaddr switch mechanism for i.MX8MM too, but it seems
+> to work fine without it.
+>
+> > >+};
+> > > +
+> > >  struct imx7_csi {
+> > >  	struct device *dev;
+> > >  	struct v4l2_subdev sd;
+> > > @@ -189,6 +200,8 @@ struct imx7_csi {
+> > >  	bool is_csi2;
+> > > =20
+> > >  	struct completion last_eof_completion;
+> > > +
+> > > +	enum imx_soc type;
+> >=20
+> > here, bool is_imx8mq?
+> >=20
+> > >  };
+> > > =20
+> > >  static struct imx7_csi *
+> > > @@ -537,6 +550,16 @@ static void imx7_csi_deinit(struct imx7_csi *csi=
+,
+> > >  	clk_disable_unprepare(csi->mclk);
+> > >  }
+> > > =20
+> > > +static void imx8mq_baseaddr_switch(struct imx7_csi *csi)
+> >=20
+> > I think this function needs a better name. First add the imx7_csi
+> > prefix that all functions have, and also you are setting it specific
+> > to second frame and the function should not be specific to imx8.
+> >=20
+> > maybe something:
+> >=20
+> > imx7_csi_write_on_second_frame_enable, maybe?
+> >=20
+> > > +{
+> > > +	u32 cr18 =3D imx7_csi_reg_read(csi, CSI_CSICR18);
+> > > +
+> > > +	cr18 |=3D BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
+> > > +		BIT_BASEADDR_CHG_ERR_EN;
+> > > +	cr18 |=3D BIT_MASK_OPTION_SECOND_FRAME;
+> > > +	imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
+> > > +}
+> > > +
+> > >  static void imx7_csi_enable(struct imx7_csi *csi)
+> > >  {
+> > >  	/* Clear the Rx FIFO and reflash the DMA controller. */
+> > > @@ -551,7 +574,11 @@ static void imx7_csi_enable(struct imx7_csi *csi=
+)
+> > > =20
+> > >  	/* Enable the RxFIFO DMA and the CSI. */
+> > >  	imx7_csi_dmareq_rff_enable(csi);
+> > > +
+> >=20
+> > unrelated new line.
+> >=20
+> > >  	imx7_csi_hw_enable(csi);
+> > > +
+> > > +	if (csi->type =3D=3D IMX8MQ)
+> > > +		imx8mq_baseaddr_switch(csi);
+> >=20
+> > change this to new types and names?
+> >=20
+> > >  }
+> > > =20
+> > >  static void imx7_csi_disable(struct imx7_csi *csi)
+> > > @@ -1155,6 +1182,8 @@ static int imx7_csi_probe(struct platform_devic=
+e *pdev)
+> > >  	if (IS_ERR(csi->regbase))
+> > >  		return PTR_ERR(csi->regbase);
+> > > =20
+> > > +	csi->type =3D (enum imx_soc)of_device_get_match_data(&pdev->dev);
+> >=20
+> > here something:
+> >         csi->is_imx8mq =3D of_device_is_compatible(np, "fsl,imx8mq-csi"=
+);
+> >
+> > > +
+> > >  	spin_lock_init(&csi->irqlock);
+> > >  	mutex_init(&csi->lock);
+> > > =20
+> > > @@ -1249,8 +1278,9 @@ static int imx7_csi_remove(struct platform_devi=
+ce *pdev)
+> > >  }
+> > > =20
+> > >  static const struct of_device_id imx7_csi_of_match[] =3D {
+> > > -	{ .compatible =3D "fsl,imx7-csi" },
+> > > -	{ .compatible =3D "fsl,imx6ul-csi" },
+> > > +	{ .compatible =3D "fsl,imx8mq-csi", .data =3D (void *)IMX8MQ },
+> >=20
+> > and with the above you should not need to add the data field here.
+>
+> I like match data personally (especially if we keep a device model
+> enum). This is exactly what match data has been designed for, to avoid
+> is_compatible() checks.
+
+agree.
+
+Many thanks Laurent,
+------
+Cheers,
+     Rui
+>
+> > > +	{ .compatible =3D "fsl,imx7-csi", .data =3D (void *)IMX7 },
+> > > +	{ .compatible =3D "fsl,imx6ul-csi", .data =3D (void *)IMX6UL },
+> > >  	{ },
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
+>
+> --=20
+> Regards,
+>
+> Laurent Pinchart
 
 
-On 10/11/2021 20:24, Fabien Parent wrote:
-> From: Pi-Hsun Shih <pihsun@chromium.org>
-> 
-> Add dpi node to mt8183.
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index ba4584faca5a..7c283c0b68b5 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1443,6 +1443,17 @@ dsi0: dsi@14014000 {
->   			phy-names = "dphy";
->   		};
->   
-> +		dpi0: dpi@14015000 {
-> +			compatible = "mediatek,mt8183-dpi";
-> +			reg = <0 0x14015000 0 0x1000>;
-> +			interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
-> +			power-domains = <&spm MT8183_POWER_DOMAIN_DISP>;
-> +			clocks = <&mmsys CLK_MM_DPI_IF>,
-> +				 <&mmsys CLK_MM_DPI_MM>,
-> +				 <&apmixedsys CLK_APMIXED_TVDPLL>;
-> +			clock-names = "pixel", "engine", "pll";
 
-
-We are missing the output port node, don't we?
-
-Regards,
-Matthias
-
-> +		};
-> +
->   		mutex: mutex@14016000 {
->   			compatible = "mediatek,mt8183-disp-mutex";
->   			reg = <0 0x14016000 0 0x1000>;
-> 
