@@ -2,91 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 968AA454074
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:53:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 81B2F45409F
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 07:06:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233420AbhKQF4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 00:56:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45520 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233348AbhKQF4D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 00:56:03 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C206C60E08;
-        Wed, 17 Nov 2021 05:53:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637128385;
-        bh=FoIpIh0kWZhRl7ZuVuarWxUqjOzcP3NUPIm79CZvako=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gwIIQt3I/u+7T4N3Adz1s9U12jXTJFrI4PJo2KUxZbUOCP/FkjwkV7v/M+TvE8SGR
-         Nvmw11cVlGkr8gXZaX453XRnGAacRSb9uRwM4dhvaelHlRrOtu1IROG+3HEM3dT0Y6
-         SjzVOC7t4JOxt57jq3dvLsqLtlwJjKY7jkW4G1AdH1G2WKjyl294OA04uvVJoy2HDW
-         4VKSxZDhIxf6+PF/E3R/4e687d7+Gvc9MoPgbaM3kF9XOO0M3DgfDUviSuW5hYa9FZ
-         kbzOJHuP9/nls56zwWy5CMHdWJyg6mjUXqT1j8OrzJD8tHloZW2iZCRF7Df0ipxMgN
-         UDSjprpO/vKCw==
-Date:   Wed, 17 Nov 2021 11:23:00 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        bhupesh.linux@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        stephan@gerhold.net, Thara Gopinath <thara.gopinath@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v5 02/22] arm64: dts: qcom: msm8996: Fix 'dma' nodes in
- dts
-Message-ID: <YZSYvBEoDExaaGD5@matsya>
-References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
- <20211110105922.217895-3-bhupesh.sharma@linaro.org>
+        id S233013AbhKQGId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 01:08:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233015AbhKQGId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 01:08:33 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33856C061764
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 22:05:35 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id b40so4165606lfv.10
+        for <devicetree@vger.kernel.org>; Tue, 16 Nov 2021 22:05:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=4LVxHtzmhByQ4U/dSb68NhLXMVvIEPZo6dVOi9vo43g=;
+        b=C0uAk1Pp9IAEgXnwwSMRPgnlPxvK3hhkqInx2WZTrXOBhY+IFlF/HlEXffEnV8hJvD
+         RRJYTFpYleZBBuBIcWna4JUzrI3WQD96gLzb7CdzNZ8qSwxzlha04L9ojSRDW0AZJtm5
+         dY+w6AeEtvjoGMra1EV+qsP3e57uojvySV0sibfy31X8h9MqdKduVkvE+n5OdH4v1QuW
+         qZhlt2pZ1sdFVJwIvwYuB8dGc7/br6NI9RKZ/w7exO6bv5q2+t7sofE+C5SfCjU5ewGT
+         9RD/r202o5wrADC4HdqEOFerH2p3JvA1Jj7AjZoOzZZJAiIfM/JAV9ybQ6Mez5lg6WEt
+         3l+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=4LVxHtzmhByQ4U/dSb68NhLXMVvIEPZo6dVOi9vo43g=;
+        b=EGYEpJpopVHRxyS5NTKGTnNb0vuQu+LKFIUNjZiyobXdhIQ2Byl2hOUPeU6poI3T6D
+         OeFGns0IhQ74miliqF1uNhzPEPswIog7lhd5kzfe3xMVTGeD6HNrD03KVC3oZ3e8w/HI
+         sey9O39izZyksOPTokJPbsr/kucAxOfQJZnZAUiyHtSNRHBPxAy6yz9/Ze+03A5sblQa
+         4rqVc4YfbpkZM5M9S3yx1LyljnX+f7SJW2pX97Edkz4E+GrPlGBIqZvsRbWMkKGM0hqw
+         U6pKW2j/CxJw1lunIPhOzPNvsyxrQn0VH+5pBPLnc1Xjm0a4H9/RhGqa4O6v0P0TCxea
+         aobQ==
+X-Gm-Message-State: AOAM531JvsZNHiz+bFC5H1hqtGpPBRg93aAUlEJ1c21A6O3Vu9FtKA42
+        kAZFSCZsoo9JCrhvupYFmZg+2wQdC2IMX25jB6E=
+X-Google-Smtp-Source: ABdhPJxaSkctjTq2Z7Rr1g2jmwJC63bkbPBKS3jh2bgew2ZGmIxSWGMGn7QwWwlescjdN1lBpf7IwENb2JeUUzNFv54=
+X-Received: by 2002:a05:6512:1392:: with SMTP id p18mr3679219lfa.591.1637129133338;
+ Tue, 16 Nov 2021 22:05:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211110105922.217895-3-bhupesh.sharma@linaro.org>
+Received: by 2002:a05:6520:50d:b0:14d:d38f:7fd8 with HTTP; Tue, 16 Nov 2021
+ 22:05:32 -0800 (PST)
+Reply-To: maddahabdwabbo@gmail.com
+From:   Abd-Jafaari Maddah <mackshawn74@gmail.com>
+Date:   Tue, 16 Nov 2021 22:05:32 -0800
+Message-ID: <CAJ=jc=EAb-=0DnEin71nbtu7Xs=99S1u9LqW_E8UJN+E0uUZSQ@mail.gmail.com>
+Subject: Why Am Writing You Again
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-11-21, 16:29, Bhupesh Sharma wrote:
-> Preparatory patch for subsequent patch in this series which
-> converts the qcom_bam_dma device-tree binding into YAML format.
-> 
-> Correct dma-controller node inside msm8996 dts, which
-> leads to following errors with 'make dtbs_check':
-> 
->      dma@164400: $nodename:0: 'dma@164400' does not match
->      '^dma-controller(@.*)?$'
-> 
-> Fix the same.
-
-
-Looks like one more crept in, this is the only one.. I did fix a bunch
-previously...
-
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-
-> 
-> Cc: Thara Gopinath <thara.gopinath@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index 27683d7fdfe6..508cd9d06350 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -705,7 +705,7 @@ tsens1: thermal-sensor@4ad000 {
->  			#thermal-sensor-cells = <1>;
->  		};
->  
-> -		cryptobam: dma@644000 {
-> +		cryptobam: dma-controller@644000 {
->  			compatible = "qcom,bam-v1.7.0";
->  			reg = <0x00644000 0x24000>;
->  			interrupts = <GIC_SPI 206 IRQ_TYPE_LEVEL_HIGH>;
-> -- 
-> 2.31.1
-
 -- 
-~Vinod
+Dear,
+I had sent you a mail but i don't think you received it that's why am
+writing you again so we discuss,it's important.
+Am waiting,
+Abd-jafaari Maddah
