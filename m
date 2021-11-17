@@ -2,84 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87C204546A9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 13:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7D04546B9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 13:55:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237328AbhKQMyC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 07:54:02 -0500
-Received: from mga18.intel.com ([134.134.136.126]:47772 "EHLO mga18.intel.com"
+        id S235887AbhKQM6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 07:58:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58436 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237331AbhKQMxs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 07:53:48 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10170"; a="220825545"
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; 
-   d="scan'208";a="220825545"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2021 04:50:49 -0800
-X-IronPort-AV: E=Sophos;i="5.87,241,1631602800"; 
-   d="scan'208";a="593341576"
-Received: from smile.fi.intel.com ([10.237.72.184])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2021 04:50:45 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1mnKOb-007nEs-Sq;
-        Wed, 17 Nov 2021 14:50:37 +0200
-Date:   Wed, 17 Nov 2021 14:50:37 +0200
-From:   "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>
-To:     "A, Rashmi" <rashmi.a@intel.com>
-Cc:     "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "kris.pan@linux.intel.com" <kris.pan@linux.intel.com>,
-        "Zhou, Furong" <furong.zhou@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>,
-        "Hunter, Adrian" <adrian.hunter@intel.com>,
-        "Vaidya, Mahesh R" <mahesh.r.vaidya@intel.com>,
-        "Srikandan, Nandhini" <nandhini.srikandan@intel.com>
-Subject: Re: [RESEND PATCH v2 4/4] phy: intel: Add Thunder Bay eMMC PHY
- support
-Message-ID: <YZT6nTI0aJXsJ1o2@smile.fi.intel.com>
-References: <20211027115516.4475-1-rashmi.a@intel.com>
- <20211027115516.4475-5-rashmi.a@intel.com>
- <DM6PR11MB3065C3329182A196C46DE5F68C9A9@DM6PR11MB3065.namprd11.prod.outlook.com>
+        id S235135AbhKQM6S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Nov 2021 07:58:18 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 7575861B7D;
+        Wed, 17 Nov 2021 12:55:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637153719;
+        bh=8JLZmI9VYjUjkTwlKzaUB2jGVugQsQHRSvVyCU0a5gw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RxmGFuA1QFLoIvddFpnX7yipA/mGAdKzmsjvyEiKjXm9AlhP4Jm40fSsDB+C58J0f
+         JSpE3v1vBgdfgxtHUCajhN+2uejc0wKibHMeQ+lTiuC0l11SrnZZ8BKyMFMifU9Xw2
+         2T9z9eYkgX7r1uBoZz3vGLdqjOMZ8ZIrFdl7BuG8jyow1HHIwPrjJRsMJ3un3FGmJt
+         IsWaY5AkeCZAhOyaKAtSTsOjDfonpHAHi9/yOTRhX/rAcNPs3D0vgrH3nlD1SUUEor
+         3n4hTvksnXK6NwvrJQM+KrXq6CrFzZrzhzvGu00g5XTr/m5xMF2FNX2gA+2PXYoZGE
+         rEGQM9dmkvJqA==
+Date:   Wed, 17 Nov 2021 12:55:14 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-spi@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH 1/3] dt-bindings: spi: renesas,rspi: Document RZ/G2L SoC
+Message-ID: <YZT7suWucdD+FU6k@sirena.org.uk>
+References: <20211117010527.27365-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211117010527.27365-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="dTY+a439r+UjD8cz"
 Content-Disposition: inline
-In-Reply-To: <DM6PR11MB3065C3329182A196C46DE5F68C9A9@DM6PR11MB3065.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20211117010527.27365-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Cookie: One Bell System - it sometimes works.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 06:38:59AM +0000, A, Rashmi wrote:
-> > -----Original Message-----
-> > From: A, Rashmi <rashmi.a@intel.com>
-> > Sent: Wednesday, October 27, 2021 5:25 PM
 
-> Thank you Rob for the review of emmc dt-bindings.
-> 
-> Hi Vinod/Kishon,
-> 
-> Please let me know if there are any comments.
-> Looking forward for your acknowledgement for the patch, phy: intel: Add Thunder Bay eMMC PHY support
+--dTY+a439r+UjD8cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please, learn how not to put 450 unrelated lines in your responce(s) via email.
-(Yes, I know that one may try to configure folding, but by default not many
- MUAs support this)
+On Wed, Nov 17, 2021 at 01:05:25AM +0000, Lad Prabhakar wrote:
+> Add RSPI binding documentation for Renesas RZ/G2L SoC.
+>=20
+> RSPI block is identical to one found on RZ/A, so no driver changes are
+> required the fallback compatible string "renesas,rspi-rz" will be used
+> on RZ/G2L
 
--- 
-With Best Regards,
-Andy Shevchenko
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
+--dTY+a439r+UjD8cz
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGU+7EACgkQJNaLcl1U
+h9BdtAf/VmkMMGhu3XIzeaXgRoqE0g29SY/hGvaybxu0nXF+m0MZrbbpS83fNEe6
+EffVbR0u5hsbdNCQtvOE4mf/saXqtnKMNetoxmYYZZMB5Lc1aPkk/pT2I1GtMd1Y
+P2qI2S9PxpJfHQhe22ziN9N14ZBONPWoX50YojMVbOGpbxUTjctDZca6h++8hNcZ
+xe2Z55pKMTWGalEMeoXpVLPIXxh+53wnr1r/bgFxtO2xPwYMPv9QhZIz9XPSLdHV
+kmq/QavqBPe+baiwog+QzaFx44hf8Kgz2ynAA7km6aMwXXtxsE6xWwObNdVz+gTx
+eKPdt55LNZaxQDJhWsSVyq3uUNQx1g==
+=IzaT
+-----END PGP SIGNATURE-----
+
+--dTY+a439r+UjD8cz--
