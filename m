@@ -2,150 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 755BD454F6B
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 22:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 806EA454F7D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 22:40:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240165AbhKQVi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 16:38:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41788 "EHLO
+        id S236367AbhKQVnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 16:43:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240055AbhKQVi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 16:38:27 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67AD0C0613B9
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 13:35:28 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id t5so17549280edd.0
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 13:35:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pensando.io; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oE/PpLF33Bzsi0HnoSd2D3IwGwaXk2bQ1kvpSMCx344=;
-        b=QXKVrGtTrCFY3/MBy6Ae0VTxlonw/DRAwSMtioyfsFpu2GcapCZk8ECLNgHzTseKvw
-         z4a+aYv43SjZNW9uCZfhmS17j+f8gCgthROz70Lx0hFYnFUcRSvmoInMeC07P6JZ0h3V
-         Xr+RAhPlvzJYcKexb/aQuT9t9+/L4FZKUWiptUjyDUslFUoqctzOgri6mtkQcbbZTtvA
-         npV5JkOzQTIeSfkzvp74QKTJGPdVK/AX9ysyEayMfOemtar8e6uJ3fKQWAITwhXv9fZr
-         jEHJWh4QDMrx2m8a5nMPQ7jXzh/j7+IFYmXyz3+PXKz7B21vPoOBG9YEk3lVpfjvf/z4
-         HMow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oE/PpLF33Bzsi0HnoSd2D3IwGwaXk2bQ1kvpSMCx344=;
-        b=q2Jn4d166wL2KGAxKhI+s2iNse6VoiHtXT3YF5u14DUUwWxKvi4G+/eQr9jMhmR5lt
-         XPcaqe0qELHY5DwsNg/+Djz6/4kQfMM51dpPI4xRm0SCUv6fkbaulQLbI0L+j1u8VK2A
-         OebtJlbtXwDQ9vY0Hgfc8MNhZeQPGslRsitoFfwhdlpVADFj1C4tJy1LN4eQdy/wwak1
-         gKnqMPXdiNIj6yy5CBr+NgboqIGvmX59ZsCjTI9zf6WJ0QekGEyw1YgMYvt9FLsHqnAf
-         VjgXoxcKAUyx6xNgnwrfVPeTVrZnvmBq3702QM+fMJiLd3247pXk8PR9FH0/ZUQiaLYk
-         YzWg==
-X-Gm-Message-State: AOAM530uOtIn0q9JjzoUzOMJPwWeSgWWV1CXOzshFOSSlt7h0wRv1te7
-        Qnek9UxGRVBqwLQAb3oEBpUMK+/iDf9xucaFRyBh7Q==
-X-Google-Smtp-Source: ABdhPJzr0FWsxLkdp+GqPycs6CHrFza83kIvQ058rw/43FF71YpE2yK7ii3nVMCgEOTvhGBAP0KBWaoOOVwD5hfSdFQ=
-X-Received: by 2002:a17:907:9487:: with SMTP id dm7mr26958236ejc.95.1637184926827;
- Wed, 17 Nov 2021 13:35:26 -0800 (PST)
+        with ESMTP id S231839AbhKQVnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 16:43:01 -0500
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C33C061570;
+        Wed, 17 Nov 2021 13:40:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=JFZEUOPWf1/nxGeGtVRYuWseGaRsxvnuJVELp2zrJLw=; b=cI6tiWIw8UrB0NnC9bDlb7IRkj
+        9VyLjEXqJiZ+ikt0/0lKIZ2hFeU19SmbUsmRMKLCMLoGhhZVZv6d2n1qo0FaLeXNe7xo377hbPO1j
+        pfztujetrGwJ3qq+Ri2v4hSEzw143ca3BxZLu0Qq2wwK+beGN04s3lCP7b7BPRzVbxpU=;
+Received: from p200300ccff0ece001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0e:ce00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1mnSel-0004n2-UB; Wed, 17 Nov 2021 22:39:52 +0100
+Date:   Wed, 17 Nov 2021 22:39:50 +0100
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     lee.jones@linaro.org, broonie@kernel.org, kernel@pengutronix.de,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, rui.zhang@intel.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        s.hauer@pengutronix.de, linux-hwmon@vger.kernel.org,
+        amitk@kernel.org, linux-pm@vger.kernel.org, linux-imx@nxp.com,
+        alistair23@gmail.com, shawnguo@kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v15 1/8] dt-bindings: mfd: Initial commit of
+ silergy,sy7636a.yaml
+Message-ID: <20211117223950.3a7eaf7a@aktux>
+In-Reply-To: <20211110122948.188683-2-alistair@alistair23.me>
+References: <20211110122948.188683-1-alistair@alistair23.me>
+        <20211110122948.188683-2-alistair@alistair23.me>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20211025015156.33133-1-brad@pensando.io> <20211025015156.33133-6-brad@pensando.io>
- <20211028074945.rv2j5kgzk7yc2srr@mobilestation> <CAK9rFnw396xK+u3qUpgbnGNw7WDJPJm0L3o4nPAcFeqQjBDbXg@mail.gmail.com>
- <20211116112907.lbwdcz5pmgxqzv55@mobilestation> <CAK9rFny7zQRpvGOVK0+01hKQNu7XCMOz8vTfbHPs6gMR10muDw@mail.gmail.com>
- <20211117081922.nnqsr5zzzydurq5t@mobilestation>
-In-Reply-To: <20211117081922.nnqsr5zzzydurq5t@mobilestation>
-From:   Brad Larson <brad@pensando.io>
-Date:   Wed, 17 Nov 2021 13:35:15 -0800
-Message-ID: <CAK9rFnzJ4scTXF7pVGDuerp873K+qN_2D9C3X6pdo_TzhyE=ZQ@mail.gmail.com>
-Subject: Re: [PATCH v3 05/11] spi: dw: Add Pensando Elba SoC SPI Controller bindings
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Brown <broonie@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
+On Wed, 10 Nov 2021 22:29:41 +1000
+Alistair Francis <alistair@alistair23.me> wrote:
 
-On Wed, Nov 17, 2021 at 12:19 AM Serge Semin <fancer.lancer@gmail.com> wrote:
->
-> I was wrong using that construction here (fixup patch would be very
-> welcome) seeing the "snps,dw-apb-ssi" doesn't permit having a generic
-> "snps,dw*" compatible string. So just const-compatible property should
-> be enough:
->
-> +        compatible:
-> +          const: pensando,elba-spics
->
->
-> > +    then:
-> > +      properties:
-> > +        pensando,spics:
-> > +          $ref: /schemas/types.yaml#/definitions/phandle
-> > +          description:
-> > +            Phandle to the system control device node which provides access to
-> > +            the spics control register
-> > +      required:
->
-> > +        - pensando,spics
->
-> Please note, I've asked to be more specific in this property naming.
-> Something like this should be fine
-> "pensando,elba-syscon-spics"/"pensando,syscon-spics".
+> Initial support for the Silergy SY7636A Power Management chip
+> and regulator.
+> 
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> ---
+>  .../bindings/mfd/silergy,sy7636a.yaml         | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> new file mode 100644
+> index 000000000000..0566f9498e2f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+[...]
+> +  regulators:
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        const: silergy,sy7636a-regulator
+> +
+> +      vcom:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        properties:
+> +          regulator-name:
+> +            const: vcom
+> +
+hmm, this is what? If I understand it correctly, vcom means some
+voltage for compensation. On other comparable pmics (e.g. TPS65185
+which has also a sane public datasheet, MAX17135) I have seen some
+methods to measure a voltage while the display is doing something
+defined and then program this voltage non-volatile for compensation
+during manufacturing.
 
-I would have avoided a typo in the last reply if the spics property
-was more specific.  Based on needed construction like this?
+If I understand the code correctly all the bunch of voltages are
+powered up if this one is enabled.
+So at least a description should be suitable.
 
-DT:
-                spi0: spi@2800 {
-                        compatible = "pensando,elba-spi";
-                        reg = <0x0 0x2800 0x0 0x100>;
-                        pensando,elba-syscon-spics = <&mssoc 0x2468>;
-                        clocks = <&ahb_clk>;
-                        interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-                        #address-cells = <1>;
-                        #size-cells = <0>;
-                        num-cs = <2>;
-                        status = "disabled";
-                };
+The other comparable PMICs have at least regulators named VCOM, DISPLAY
+(controls several regulators, started with delays configured via
+registers) and V3P3. MAX17135 source can be found in NXP kernels, 
+TPS65185 in Kobo vendor kernels.
 
-Binding:
---- a/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-+++ b/Documentation/devicetree/bindings/spi/snps,dw-apb-ssi.yaml
-@@ -37,6 +37,15 @@ allOf:
-     else:
-       required:
-         - interrupts
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - pensando,elba-spi
-+    then:
-+      required:
-+        - pensando,elba-syscon-spics
+So I would expect to see something similar here and a description or at
+least not such a misleading name as vcom if it is for some reason not
+feasible to separate the regulators.
 
- properties:
-   compatible:
-@@ -73,6 +82,8 @@ properties:
-               - renesas,r9a06g032-spi # RZ/N1D
-               - renesas,r9a06g033-spi # RZ/N1S
-           - const: renesas,rzn1-spi   # RZ/N1
-+      - description: Pensando Elba SoC SPI Controller
-+        const: pensando,elba-spi
-
-   reg:
-     minItems: 1
-
-Thanks,
-Brad
+Regards,
+Andreas
