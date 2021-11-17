@@ -2,69 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 309D9454301
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 09:53:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D331D454311
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 09:56:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234666AbhKQI43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 03:56:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48232 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231591AbhKQI42 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 03:56:28 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F334360EBD;
-        Wed, 17 Nov 2021 08:53:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1637139210;
-        bh=o6etGoUAw0MU2+u2wtIY46DjtntsBZYr7eHRot7BNHo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JNKkpoJN5yQ1jboaKHkA11HOaTmnn/PPZO96FSrA6vKDf4cs7GkqVsCxT3SHgQZW/
-         rR6GC1/DoC/t09sw0MYsfhQ4Za8TCBFxZO49VBuyU8pgAEJxazhzrlKPSl3jfNwbeK
-         V81+V1aC1OveoZ2FqAcC7q0NRCqKWMaHSwtKpt6A=
-Date:   Wed, 17 Nov 2021 09:53:28 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, derek.kiernan@xilinx.com,
-        dragan.cvetic@xilinx.com, arnd@arndb.de, wells.lu@sunplus.com,
-        Tony Huang <tony.huang@sunplus.com>
-Subject: Re: [PATCH 2/2] misc: Add iop driver for Sunplus SP7021
-Message-ID: <YZTDCG6bTjh7BoUH@kroah.com>
-References: <1637131687-23000-1-git-send-email-tony.huang@sunplus.com>
- <1637131687-23000-3-git-send-email-tony.huang@sunplus.com>
+        id S234735AbhKQI7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 03:59:05 -0500
+Received: from mail-ua1-f50.google.com ([209.85.222.50]:44595 "EHLO
+        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234722AbhKQI6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 03:58:42 -0500
+Received: by mail-ua1-f50.google.com with SMTP id p2so4209506uad.11;
+        Wed, 17 Nov 2021 00:55:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=sW49Xr+1bOjDY12omUEsih/dwouIC8EM4gaLxaa8Zd4=;
+        b=aX44Aq9zh6MZlNHWKQTujDEsbqxvJE83QUva+jIqI+awNHS5WyLTkx37oLRB8x9+z0
+         VpGAmWaMw365lusquN5LxjxxRId1yoKs04U0nbDqVsTWeYSZlnmwJFSwl855vWq8AwfI
+         N9KOg5csKiaw+sSEyo+VgA0BhX5m/u4qDSJPKxdC3jOx/edBN5Gs6tc+bVYvmMhGCSWg
+         Vb5iwraj6BXgnLOGI9Bgdng2AWgVLTcMA2di7YIP90Vbq3begDt/dFbrgsAV2NRh5vkI
+         Ba23kZ2NRPyh0Uyu5eXZHzMkcbv8RCqHRReNm7ASwJEj3eCGaaXhU4EJyYGrYQGN3YX+
+         tWXQ==
+X-Gm-Message-State: AOAM531PUSnRtxiG+85YWrmNudL6j+BVRi6twp+fosDN+sgNvAraZ41I
+        9VazASocAHcPWOT+6Ju4UOnB+XudYle7zg==
+X-Google-Smtp-Source: ABdhPJzEESxBNj9TsDxlC2s7TdE2CvCu3VT2w+erwjKi1xgg1OnDDysmrodk3XhwvUbk8/1tMvI5LQ==
+X-Received: by 2002:a05:6102:6d6:: with SMTP id m22mr68523953vsg.30.1637139343578;
+        Wed, 17 Nov 2021 00:55:43 -0800 (PST)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id u14sm12669762vsi.2.2021.11.17.00.55.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Nov 2021 00:55:43 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id v3so4226800uam.10;
+        Wed, 17 Nov 2021 00:55:42 -0800 (PST)
+X-Received: by 2002:a67:af0a:: with SMTP id v10mr65640282vsl.35.1637139342767;
+ Wed, 17 Nov 2021 00:55:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1637131687-23000-3-git-send-email-tony.huang@sunplus.com>
+References: <20211117010527.27365-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20211117010527.27365-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211117010527.27365-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 17 Nov 2021 09:55:31 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUPuHQEEyyDC9iR1hePPs7ZexRJ_Vf=rZDN=CiTSLZtnQ@mail.gmail.com>
+Message-ID: <CAMuHMdUPuHQEEyyDC9iR1hePPs7ZexRJ_Vf=rZDN=CiTSLZtnQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] spi: spi-rspi: Add support to deassert/assert reset line
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 02:48:07PM +0800, Tony Huang wrote:
-> Add iop driver for Sunplus SP7021
-> 
-> Signed-off-by: Tony Huang <tony.huang@sunplus.com>
+On Wed, Nov 17, 2021 at 2:05 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> On RZ/G2L SoC we need to explicitly deassert the reset line
+> for the device to work, use this opportunity to deassert/assert
+> reset line in spi-rspi driver.
+>
+> This patch adds support to read the "resets" property (if available)
+> from DT and perform deassert/assert when required.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Along with everything that Arnd said, one more thing:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> +#define IOP_KDBG_INFO
-> +#define IOP_FUNC_DEBUG
-> +#define IOP_KDBG_ERR
-> +#ifdef IOP_KDBG_INFO
-> +	#define FUNC_DEBUG()	pr_info("K_IOP: %s(%d)\n", __func__, __LINE__)
-> +#else
-> +	#define FUNC_DEBUG()
-> +#endif
+Gr{oetje,eeting}s,
 
-This should just be deleted entirely, use ftrace if you want to see what
-your kernel driver is doing.
+                        Geert
 
-No single driver should have special debugging macros like this, use the
-kernel-wide system please.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-This driver code can get a lot smaller after you make these cleanups.
-Also be sure to use scripts/checkpatch.pl to remove the issues that it
-points out so we don't have to say the same thing.
-
-thanks,
-
-greg k-h
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
