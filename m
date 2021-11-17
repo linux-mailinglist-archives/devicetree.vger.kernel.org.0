@@ -2,99 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F94A454031
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:27:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 243ED454047
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:38:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231586AbhKQFaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 00:30:12 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:26328 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhKQFaM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 00:30:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637126835; x=1668662835;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AlwB3RTtcb0Bby2mku2EUrYuvZDnavBskw+PSx+KDLg=;
-  b=n0dUYteZk29ZEoactV8qimzU3E3Zyi77xoxD2Di629Ai4ohnKv4vunRW
-   qKvUKYUMr8jNnrwVY9B2tXjzglPZJc4VoXw62EDcWiv8T57FVU6uraH8b
-   qEJymsoYbNSNlDZ7KqRR5QaPDM8Sve7BCVBGu/XhyrL5IIfEVrkLPgAyX
-   E=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 16 Nov 2021 21:27:14 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2021 21:27:13 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 16 Nov 2021 21:27:12 -0800
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Tue, 16 Nov 2021 21:27:07 -0800
-Date:   Wed, 17 Nov 2021 10:57:03 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-CC:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        "Matthias Kaehlcke" <mka@chromium.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: usb: usb-xhci: Add bindings for
- usb-skip-phy-init property
-Message-ID: <20211117052703.GA6511@hu-pkondeti-hyd.qualcomm.com>
-References: <1636353710-25582-1-git-send-email-quic_c_sanm@quicinc.com>
- <1636353710-25582-2-git-send-email-quic_c_sanm@quicinc.com>
- <YY7vAzxj9aR/zBSB@robh.at.kernel.org>
- <3e02ae12-660b-8cf5-d6f8-3a8d1a2abc4e@quicinc.com>
+        id S229801AbhKQFl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 00:41:26 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:53294 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229455AbhKQFl0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 00:41:26 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AH5c8Fk004762;
+        Tue, 16 Nov 2021 23:38:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637127488;
+        bh=fZ+tCpl6aMiTVA4kq/Iai8pN1fLAIcMf+25zZQaYStE=;
+        h=From:To:CC:Subject:Date;
+        b=wTn5/5v93SxqcBMZl0tQQU3L+felqLHq361+6Bpy8OzEj9xZQYidp5OwnUefCq2+b
+         sHGwqyXOX1dfBIOqMAxM0+vQQ22M6RMW4VaZmYP2vu2ov8mc/VskzYtZV4RcacIS/j
+         ApsR1cQWpL43zIyPfOfwO/ENFzc0Pyoo9BHGUz4Y=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AH5c8sh071185
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 Nov 2021 23:38:08 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 16
+ Nov 2021 23:38:08 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Tue, 16 Nov 2021 23:38:08 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AH5c7cO098283;
+        Tue, 16 Nov 2021 23:38:07 -0600
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <nm@ti.com>
+CC:     <vigneshr@ti.com>, <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <jan.kiszka@siemens.com>, <j-choudhary@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: iot2050: Disable mcasp nodes at dtsi level
+Date:   Wed, 17 Nov 2021 11:08:06 +0530
+Message-ID: <20211117053806.10095-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <3e02ae12-660b-8cf5-d6f8-3a8d1a2abc4e@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sandeep,
+Disable mcasp nodes 0-2 because several required properties
+are not present in the dtsi file as they are board specific.
+These nodes can be enabled via an overlay whenever required.
 
-On Tue, Nov 16, 2021 at 04:11:30PM +0530, Sandeep Maheswaram wrote:
-> 
-> On 11/13/2021 4:17 AM, Rob Herring wrote:
-> >On Mon, Nov 08, 2021 at 12:11:48PM +0530, Sandeep Maheswaram wrote:
-> >>Adding bindings for usb-skip-phy-init property.
-> >>Runtime suspend of phy drivers was failing from DWC3 driver as
-> >>runtime usage value is 2 because the phy is initialized from
-> >>DWC3 core and HCD core.
-> >>Some controllers like DWC3 and CDNS3 manage phy in their core drivers.
-> >>This property can be set to avoid phy initialization in HCD core.
-> >You already know if you have a DWC3 and CDNS3 controller, so you don't
-> >need more data in DT.
-> 
-> We don't have a device tree node for xhci platform device and create xhci
-> platform device from dwc3/host.c
-> 
-> So we want to pass this property to check in xhci-plat.c and skip phy
-> initialization.
-> 
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Would not the below condition from your other patch [1] work here too?
-
-if (of_device_is_compatible(dev->parent->of_node, "snps,dwc3"))
-
-[1] https://lore.kernel.org/linux-usb/1635753224-23975-2-git-send-email-quic_c_sanm@quicinc.com/
-
-Thanks,
-Pavan
+diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+index 65da226847f4..c9407ed67866 100644
+--- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
+@@ -731,3 +731,15 @@
+ &icssg2_mdio {
+ 	status = "disabled";
+ };
++
++&mcasp0 {
++	status = "disabled";
++};
++
++&mcasp1 {
++	status = "disabled";
++};
++
++&mcasp2 {
++	status = "disabled";
++};
+-- 
+2.17.1
 
