@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFF7545404D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:45:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B09B454051
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 06:45:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbhKQFsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 00:48:32 -0500
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:56530 "EHLO
+        id S233233AbhKQFsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 00:48:52 -0500
+Received: from twspam01.aspeedtech.com ([211.20.114.71]:22259 "EHLO
         twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230082AbhKQFsc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 00:48:32 -0500
+        with ESMTP id S230082AbhKQFsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 00:48:51 -0500
 Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 1AH5Lkma034565;
-        Wed, 17 Nov 2021 13:21:46 +0800 (GMT-8)
+        by twspam01.aspeedtech.com with ESMTP id 1AH5Llqc034566;
+        Wed, 17 Nov 2021 13:21:47 +0800 (GMT-8)
         (envelope-from tommy_huang@aspeedtech.com)
 Received: from tommy0527-VirtualBox.aspeedtech.com (192.168.2.141) by
  TWMBX02.aspeed.com (192.168.0.24) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 17 Nov 2021 13:45:28 +0800
+ 15.0.1497.2; Wed, 17 Nov 2021 13:45:29 +0800
 From:   tommy-huang <tommy_huang@aspeedtech.com>
 To:     <joel@jms.id.au>, <airlied@linux.ie>, <daniel@ffwll.ch>,
         <robh+dt@kernel.org>, <andrew@aj.id.au>,
@@ -26,46 +26,55 @@ To:     <joel@jms.id.au>, <airlied@linux.ie>, <daniel@ffwll.ch>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-kernel@vger.kernel.org>
 CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH v3 0/4] Add Aspeed AST2600 soc display support
-Date:   Wed, 17 Nov 2021 13:45:14 +0800
-Message-ID: <20211117054518.3555-1-tommy_huang@aspeedtech.com>
+Subject: [PATCH v3 1/4] ARM: dts: aspeed: Add GFX node to AST2600
+Date:   Wed, 17 Nov 2021 13:45:15 +0800
+Message-ID: <20211117054518.3555-2-tommy_huang@aspeedtech.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20211117054518.3555-1-tommy_huang@aspeedtech.com>
+References: <20211117054518.3555-1-tommy_huang@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Originating-IP: [192.168.2.141]
 X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
  (192.168.0.24)
 X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 1AH5Lkma034565
+X-MAIL: twspam01.aspeedtech.com 1AH5Llqc034566
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-v3:
-  Refine the patch for clear separate purpose.
-  Skip to send devicetree patch
+From: Joel Stanley <joel@jms.id.au>
 
-v2:
-  Remove some unnecessary patch.
-  Refine for reviwer request.
+The GFX device is present in the AST2600 SoC.
 
-v1:
-  First add patch.
+Signed-off-by: Joel Stanley <joel@jms.id.au>
+Signed-off-by: tommy-huang <tommy_huang@aspeedtech.com>
+---
+ arch/arm/boot/dts/aspeed-g6.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Joel Stanley (2):
-  ARM: dts: aspeed: Add GFX node to AST2600
-  ARM: dts: aspeed: ast2600-evb: Enable GFX device
-
-tommy-huang (2):
-  drm/aspeed: Update INTR_STS handling
-  drm/aspeed: Add AST2600 chip support
-
- arch/arm/boot/dts/aspeed-ast2600-evb.dts | 18 ++++++++++++++++++
- arch/arm/boot/dts/aspeed-g6.dtsi         | 11 +++++++++++
- drivers/gpu/drm/aspeed/aspeed_gfx.h      |  1 +
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c  | 15 ++++++++++++++-
- 4 files changed, 44 insertions(+), 1 deletion(-)
-
+diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+index 1b47be1704f8..e38c3742761b 100644
+--- a/arch/arm/boot/dts/aspeed-g6.dtsi
++++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+@@ -351,6 +351,17 @@
+ 				quality = <100>;
+ 			};
+ 
++			gfx: display@1e6e6000 {
++				compatible = "aspeed,ast2600-gfx", "aspeed,ast2500-gfx", "syscon";
++				reg = <0x1e6e6000 0x1000>;
++				reg-io-width = <4>;
++				clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
++				resets = <&syscon ASPEED_RESET_GRAPHICS>;
++				syscon = <&syscon>;
++				status = "disabled";
++				interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
++			};
++
+ 			xdma: xdma@1e6e7000 {
+ 				compatible = "aspeed,ast2600-xdma";
+ 				reg = <0x1e6e7000 0x100>;
 -- 
 2.17.1
 
