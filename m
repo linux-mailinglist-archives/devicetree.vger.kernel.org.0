@@ -2,86 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A997B45424D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 09:04:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05831454253
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 09:05:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234354AbhKQIHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 03:07:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51226 "EHLO mail.kernel.org"
+        id S234324AbhKQIIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 03:08:38 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:26353 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234361AbhKQIG7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 03:06:59 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id BCD836128E;
-        Wed, 17 Nov 2021 08:04:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637136241;
-        bh=53LIri9ceqQRfbR49DUvFwGparRn4PhQA7Foel/BK+Y=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=YIXeJ8t0V0OByv2YUHnyBo3um5VH3vV7JG2RnXV/1f/Yy4/OokwjyKy54eBZHuzMk
-         Q2zwCUngN65dAEPiPJL2jpnoqDsJRlU0c4EsBN5gr8IpKJhDxDMBJAkjFsLbi0QSFP
-         9gMt2/6EzTUlSmuCWvrS4rJSOugKU65Hwfta6QCa99tHSjIa8SRCSJV15Rm/7K4Dx5
-         ZQuPY6WKeNpNFZ0b5OqK5Z0aCm01lStgz9HGcFwCd5zn5UgHXN1jR/qDfSaJjLCZC7
-         0EJcwWneqvUbbIyYzVbqXH2g0S1tUhavpBWZfMZYT1FtX2hnpGQXWdJUBHl5j9gQ7e
-         ZZRlrDeenlFyA==
-Message-ID: <640dd9a5bdb4c28b7429a6ab9507d645de06c125.camel@kernel.org>
-Subject: Re: [PATCH v19 2/5] tpm: tpm_tis: Rewrite "tpm_tis_req_canceled()"
-From:   Jarkko Sakkinen <jarkko@kernel.org>
-To:     amirmizi6@gmail.com, Eyal.Cohen@nuvoton.com,
-        oshrialkoby85@gmail.com, alexander.steffen@infineon.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
-        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org,
-        benoit.houyere@st.com, eajames@linux.ibm.com, joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, oshri.alkoby@nuvoton.com,
-        tmaimon77@gmail.com, gcwilson@us.ibm.com, kgoldman@us.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        shmulik.hager@nuvoton.com, amir.mizinski@nuvoton.com
-Date:   Wed, 17 Nov 2021 10:03:58 +0200
-In-Reply-To: <20211104140211.6258-3-amirmizi6@gmail.com>
-References: <20211104140211.6258-1-amirmizi6@gmail.com>
-         <20211104140211.6258-3-amirmizi6@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.40.4-1 
+        id S234388AbhKQIIi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Nov 2021 03:08:38 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637136340; h=Content-Type: MIME-Version: Message-ID:
+ In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
+ bh=HVRNzrs1nP5Jz4ZKRK0Rxuo5ZuOCFu/DJU29ClKa/2g=; b=jaSqHqXmRRwlmeI6QgF2jCLpDsEK5nKY7uBNK+00qmm02YAFiar43cOT0VvktdSEDASAFhot
+ tyYMUxlhnESL2vNSU8QY6lH7VOiJUWdJdrg/5WcndQing7lPT2KgMcPtqCl+si+kbuQJfhXS
+ PnJ06bq561rtRBM72SUBxKO8k6c=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 6194b7d3638a2f4d612a3518 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 17 Nov 2021 08:05:39
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E58C8C4338F; Wed, 17 Nov 2021 08:05:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from tykki (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 75957C4338F;
+        Wed, 17 Nov 2021 08:05:36 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 75957C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Anilkumar Kolli <akolli@codeaurora.org>
+Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH v2 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
+References: <1637082058-6398-1-git-send-email-akolli@codeaurora.org>
+        <1637082058-6398-2-git-send-email-akolli@codeaurora.org>
+Date:   Wed, 17 Nov 2021 10:05:34 +0200
+In-Reply-To: <1637082058-6398-2-git-send-email-akolli@codeaurora.org>
+        (Anilkumar Kolli's message of "Tue, 16 Nov 2021 22:30:58 +0530")
+Message-ID: <87wnl7dx69.fsf@codeaurora.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
 MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2021-11-04 at 16:02 +0200, amirmizi6@gmail.com wrote:
-> From: Amir Mizinski <amirmizi6@gmail.com>
->=20
-> tpm_tis_req_canceled() function is used to check if the caller requested
-> to abort the current operation. It was found that in some cases
-> tpm_tis_req_canceled() wrongly returned true.
+Anilkumar Kolli <akolli@codeaurora.org> writes:
 
-Please, bring some context, i.e. please describe the scenarios.
+> Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
+> is reserved through DT entries for firmware usage. Send the base
+> address and size from DT entries.
+>
+> If DT entry is available, PCI devices work with
+> fixed_mem_region else host allocates multiple segments.
+>
+> IPQ8074 on HK10 board supports multiple PCI devices.
+> IPQ8074 + QCN9074 is tested with this patch.
+>
+> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+> ---
+> V2:
+>   - Use of_ API to read from dt node (Rob)
+>
+>  drivers/net/wireless/ath/ath11k/mhi.c | 42 ++++++++++++++++++--
+>  drivers/net/wireless/ath/ath11k/pci.c | 10 ++++-
+>  drivers/net/wireless/ath/ath11k/qmi.c | 75 +++++++++++++++++++++++++++++++----
+>  drivers/net/wireless/ath/ath11k/qmi.h |  1 +
+>  4 files changed, 116 insertions(+), 12 deletions(-)
+>
+> diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
+> index 26c7ae242db6..0ea6ab7edeb9 100644
+> --- a/drivers/net/wireless/ath/ath11k/mhi.c
+> +++ b/drivers/net/wireless/ath/ath11k/mhi.c
+> @@ -3,6 +3,7 @@
+>  
+>  #include <linux/msi.h>
+>  #include <linux/pci.h>
+> +#include <linux/of.h>
+>  
+>  #include "core.h"
+>  #include "debug.h"
+> @@ -316,7 +317,11 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>  	struct ath11k_base *ab = ab_pci->ab;
+>  	struct mhi_controller *mhi_ctrl;
+>  	struct mhi_controller_config *ath11k_mhi_config;
+> -	int ret;
+> +	struct device_node *np;
+> +	int ret, len, sw, aw;
+> +	u32 *reg, *reg_end;
+> +	unsigned long start, size;
+> +	bool no_dt_entry = 0;
 
-> Since a cancel request sets the TPM_STS.commandReady field to TRUE, the=
-=20
-          ~~~~~~~~~~~~~~
+Use only true or false with bools.
 
-What the heck is this? Please refer the exact things.
+>  	mhi_ctrl = mhi_alloc_controller();
+>  	if (!mhi_ctrl)
+> @@ -339,8 +344,39 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
+>  		return ret;
+>  	}
+>  
+> -	mhi_ctrl->iova_start = 0;
+> -	mhi_ctrl->iova_stop = 0xffffffff;
+> +	np = of_find_node_by_type(NULL, "memory");
+> +	if (!np) {
+> +		no_dt_entry = 1;
 
+true
 
-> tpm_tis_req_canceled() function should check only the TPM_STS.commandRead=
-y
-> field value.
+> +		goto no_dt_entry;
+> +	}
+> +
+> +	aw = of_n_addr_cells(np);
+> +	sw = of_n_size_cells(np);
+> +
+> +	reg = (unsigned int *)of_get_property(np, "reg", &len);
 
-Why?
+Always try to avoid casts. of_get_property() returns 'const void *' so
+you are casting out const here, which is a bug. You don't need to do
+casting with void pointers so remove it here.
 
-> The case for TPM_VID_WINBOND is wrong and was therefore removed.
+But is reg property really unsigned int? And not u32 or dma_addr_t, for
+example?
 
-Why?
+> +	if (!reg) {
+> +		no_dt_entry = 1;
 
-It is not removed in the existing mainline, so it definitely *was not*
-removed.
+true
 
-> Also, the default comparison is wrong. Only cmdReady bit needs to be
-> compared instead of the full lower status register byte.
+> +		goto no_dt_entry;
+> +	}
+> +
+> +	reg_end = reg + len / (aw * sw);
+> +
+> +	do {
+> +		start = of_read_number(reg, aw);
+> +		reg += aw;
+> +		size = of_read_number(reg, sw);
 
-You should split this into two patches, if it fixes two different
-issues.
+of_read_number() takes 'const __be32 *cell' but reg is 'u32 *'?
 
-/Jarkko
+> +		reg += sw;
+> +	} while (reg < reg_end);
+> +
+> +no_dt_entry:
+> +	if (no_dt_entry) {
+> +		mhi_ctrl->iova_start = 0;
+> +		mhi_ctrl->iova_stop = 0xFFFFFFFF;
+> +	} else {
+> +		mhi_ctrl->iova_start = (dma_addr_t)(start + 0x1000000);
+> +		mhi_ctrl->iova_stop = (dma_addr_t)(start + size);
 
+I don't like casts, they hide bugs like the const issue above. Is there
+any way to do this without casts?
+
+> @@ -1245,6 +1246,13 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
+>  	pci_set_drvdata(pdev, ab);
+>  	spin_lock_init(&ab_pci->window_lock);
+>  
+> +	/* Set fixed_mem_region to true for platforms support reserved memory
+> +	 * from DT. If memory is reserved from DT for FW, ath11k driver need not
+> +	 * allocate memory.
+> +	 */
+> +	if (!of_property_read_u32(ab->dev->of_node, "memory-region", &addr))
+> +		ab->bus_params.fixed_mem_region = true;
+
+ab->bus_params is supposed to be const to catch this, but clearly it's
+not. The idea of bus_params is to have static bus level configuration,
+please instead use dev_flags or something else.
+
+>  static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
+>  {
+> -	int i, idx;
+> +	struct device *dev = ab->dev;
+> +	struct device_node *hremote_node = NULL;
+> +	phandle hremote_phandle;
+> +	int i, idx, len, sw, aw, host_ddr_sz;
+> +	u32 *reg, *reg_end;
+> +	u64 start, size;
+>  
+>  	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
+>  		switch (ab->qmi.target_mem[i].type) {
+> +		case HOST_DDR_REGION_TYPE:
+> +			if (of_property_read_u32(dev->of_node, "memory-region",
+> +						 &hremote_phandle)) {
+> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
+> +					   "qmi fail to get hremote phandle\n");
+> +				return 0;
+> +			}
+> +
+> +			hremote_node = of_find_node_by_phandle(hremote_phandle);
+> +			if (!hremote_node) {
+> +				ath11k_dbg(ab, ATH11K_DBG_QMI,
+> +					   "qmi fail to get hremote_node\n");
+> +				return 0;
+> +			}
+> +
+> +			aw = of_n_addr_cells(hremote_node);
+> +			sw = of_n_size_cells(hremote_node);
+> +
+> +			reg = (unsigned int *)of_get_property(hremote_node, "reg", &len);
+
+No need to cast. And I guess you are again removing the const?
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
