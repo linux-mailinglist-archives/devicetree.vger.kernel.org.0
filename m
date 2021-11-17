@@ -2,107 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CF1F4545C9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 12:38:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 776914545D7
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 12:42:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236873AbhKQLlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 06:41:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45652 "EHLO
+        id S236895AbhKQLo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 06:44:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236826AbhKQLlK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 06:41:10 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61BD8C061764
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 03:38:11 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d5so4099793wrc.1
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 03:38:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=XyOjQunOpo2TS4TFjfja+I3SgK50zUH2kPWfXvVevW0=;
-        b=D96vSlf+lsm5RcOTrab0sbR7/7wjR2DMnG92fryYaAbJrWg96DULGxRftLJ7b4qab0
-         4ZjdqzbE5YkymZ7fLTWXe9L1NBP1Dc6gjFI/6l61zQzc6sR7AFPYNX7JIdFyjxza/Rnl
-         yXsCur2C0w4p1M8DCs51hSQGe7Hg0B4ie5AMQXSd9W7JuAhv8vJwqrLSwK5ER07nMd2v
-         CjL8Eoi13G0V1vO3oPk16mb7xuy12XW+lZb01d6D/9ceAs0b9oFh/DmQVOFz9Li/lQwe
-         b00ROcvijENFmFfcmW7V2TmbIUCqbmyVjwBbzhtb16ZhVhQoK7K4Y59gCwpxlrCVEezV
-         9sDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XyOjQunOpo2TS4TFjfja+I3SgK50zUH2kPWfXvVevW0=;
-        b=eM5M7mJqBsaM5jpzMWFaIWUcw2jYhWMLNDq9fmOjUF36wkOGJZ6d/XRDTmJtLc3nsV
-         8kWb4v1uWPH9KggRoWxdXYUsxHmHUTX3DNkSYqjkaCCQa8ITfzEu6aGae3aDy6L9P7v2
-         69fBLJobOhudjXn9yGKixq2qgTOtiOi7Ho5VmOOrwLKo+30Gyk4hPWvcqm1L9e1TgQWf
-         Vfsun2/mkJylf/Kga4YaK2tcBJ729u2oAHKHm5lWE4+QIevWpXqVW7t5PkL1zyoU3A8T
-         SJEEsynohLnYDcgb4LUzwZqPmwL77JVbjJVN1fTq2iFhUOlvBEXpDfCz4z65iscBc7Ab
-         NnuA==
-X-Gm-Message-State: AOAM532Kblyo/oSF8HjjJWncTA2IZO6KZlUAVUd8yJ3zmnfKW/nq+GzU
-        XdmRQBxVZrTRSLy+X2ah9NcCcA==
-X-Google-Smtp-Source: ABdhPJxyMbNrrS7ybS4Euxd0IGlcdzgUJ/5eUgoA6UGuz09w0vFXJPSB8JRJEaPT61mVbGW9QLDoVw==
-X-Received: by 2002:a5d:4cd1:: with SMTP id c17mr19272427wrt.31.1637149089870;
-        Wed, 17 Nov 2021 03:38:09 -0800 (PST)
-Received: from xps7590.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id t8sm6560453wmq.32.2021.11.17.03.38.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Nov 2021 03:38:09 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sdm845-db845c: Remove clock-lanes property from &camss node
-Date:   Wed, 17 Nov 2021 12:38:00 +0100
-Message-Id: <20211117113800.260741-5-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211117113800.260741-1-robert.foss@linaro.org>
-References: <20211117113800.260741-1-robert.foss@linaro.org>
+        with ESMTP id S235061AbhKQLo5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 06:44:57 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3199EC061746;
+        Wed, 17 Nov 2021 03:41:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=mBBJF2yawl0kgACqc2HujgjVeeJsd5fX8mPLwpdeQ10=; b=shC1P+sQyMdlspE6psXkKoiUrl
+        j2A1Nvj3lJMLEhXPba0eldUERms+FosQ1L5h4dqlpR9CnFr3yau/XUJ3AF+W7idsJR0L02r4Hbv1f
+        uh8TGrycL4QyANpN5yCMH0WI2Y0omr49y5vG3pTpf0Wpf4+Pfh/TJh5cC9WujOsXc76qytzdnuJkp
+        yz8LKzcSMwFJFhosQ5f2XURIcmipf2izNAnvgTq3mm8e+f78YMGKN8MwbcoNyOiqKGN5s3VJAIebV
+        XuZL8daeTzGv8V8Ne5k1JDpXdNj06CvQyjt+6A0AEhvliWpgptE2vmo5c0LJzx/gZjUhgnQgerinO
+        2SpQPU3Q==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55678)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mnJK0-0001l5-5Q; Wed, 17 Nov 2021 11:41:48 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mnJJy-0002uI-KG; Wed, 17 Nov 2021 11:41:46 +0000
+Date:   Wed, 17 Nov 2021 11:41:46 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 3/5] net: lan966x: add port module support
+Message-ID: <YZTqekOTK8pm86G+@shell.armlinux.org.uk>
+References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
+ <20211117091858.1971414-4-horatiu.vultur@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211117091858.1971414-4-horatiu.vultur@microchip.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock-lanes property is no longer used as it is not programmable by
-the CSIPHY hardware block of Qcom ISPs and should be removed.
+Hi,
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 3 ---
- 1 file changed, 3 deletions(-)
+By the way...
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-index 2d5533dd4ec2..0ac084f2f926 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-@@ -1119,7 +1119,6 @@ ports {
- 		port@0 {
- 			reg = <0>;
- 			csiphy0_ep: endpoint {
--				clock-lanes = <7>;
- 				data-lanes = <0 1 2 3>;
- 				remote-endpoint = <&ov8856_ep>;
- 			};
-@@ -1160,7 +1159,6 @@ camera@10 {
- 
- 		port {
- 			ov8856_ep: endpoint {
--				clock-lanes = <1>;
- 				link-frequencies = /bits/ 64
- 					<360000000 180000000>;
- 				data-lanes = <1 2 3 4>;
-@@ -1205,7 +1203,6 @@ camera@60 {
- 
- 		port {
- 			ov7251_ep: endpoint {
--				clock-lanes = <1>;
- 				data-lanes = <0 1>;
- //				remote-endpoint = <&csiphy3_ep>;
- 			};
+On Wed, Nov 17, 2021 at 10:18:56AM +0100, Horatiu Vultur wrote:
+> +	port->phylink_config.mac_capabilities = MAC_ASYM_PAUSE | MAC_SYM_PAUSE |
+> +		MAC_10 | MAC_100 | MAC_1000FD | MAC_2500FD;
+> +
+> +	__set_bit(PHY_INTERFACE_MODE_MII,
+> +		  port->phylink_config.supported_interfaces);
+> +	__set_bit(PHY_INTERFACE_MODE_GMII,
+> +		  port->phylink_config.supported_interfaces);
+> +	__set_bit(PHY_INTERFACE_MODE_SGMII,
+> +		  port->phylink_config.supported_interfaces);
+> +	__set_bit(PHY_INTERFACE_MODE_QSGMII,
+> +		  port->phylink_config.supported_interfaces);
+> +	__set_bit(PHY_INTERFACE_MODE_1000BASEX,
+> +		  port->phylink_config.supported_interfaces);
+> +	__set_bit(PHY_INTERFACE_MODE_2500BASEX,
+> +		  port->phylink_config.supported_interfaces);
+...
+> +const struct phylink_mac_ops lan966x_phylink_mac_ops = {
+> +	.validate = phylink_generic_validate,
+
+Thank you for switching the driver to use phylink_generic_validate(),
+that's really very useful, and saves a chunk of code in your driver!
+
 -- 
-2.32.0
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
