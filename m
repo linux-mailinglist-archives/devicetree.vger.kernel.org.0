@@ -2,238 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFF50454C49
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F30CA454C7B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 18:49:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238435AbhKQRp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 12:45:26 -0500
-Received: from comms.puri.sm ([159.203.221.185]:50464 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238079AbhKQRpX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Nov 2021 12:45:23 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id AF9BEE00C2;
-        Wed, 17 Nov 2021 09:42:23 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id KDr3y4KgU4uJ; Wed, 17 Nov 2021 09:42:22 -0800 (PST)
-Message-ID: <77aa25f26ad9bfcf5d87dc23c8f9b82e1fc549b9.camel@puri.sm>
-Subject: Re: [PATCH 1/2] media: imx: imx7-media-csi: add support for imx8mq
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rui Miguel Silva <rmfrfs@gmail.com>
-Cc:     mchehab@kernel.org, robh@kernel.org, shawnguo@kernel.org,
-        kernel@pengutronix.de, kernel@puri.sm, linux-imx@nxp.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Wed, 17 Nov 2021 18:41:55 +0100
-In-Reply-To: <YZU5C0E3WBd7VLS2@pendragon.ideasonboard.com>
-References: <20211117092710.3084034-1-martin.kepplinger@puri.sm>
-         <CFS51AQQ7SCD.7FK8RLAWLXRH@arch-thunder>
-         <YZU5C0E3WBd7VLS2@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S236231AbhKQRwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 12:52:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46932 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239659AbhKQRwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 12:52:23 -0500
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FEFCC061570;
+        Wed, 17 Nov 2021 09:49:24 -0800 (PST)
+Received: by mail-wr1-x436.google.com with SMTP id s13so6277223wrb.3;
+        Wed, 17 Nov 2021 09:49:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=fiHs8iQnwarpgINjD3LQ7dtBIrw9yKtXyNgpZs7Iakk=;
+        b=AtDty0Mm3zDKVilAvvCwgO4E4Q+I09avG4GOJdJYB6Kroa4IQkpgG/AOf493yJc+YA
+         HgQS3uno8JyJtEAVclwbe6Jak/vD3wlzx7XzD01h6TaJp/ELBXOeMUdALjEpj1KGBogM
+         GN8i8vUPxMHBD6F9uY1WGIRuwoHQVZypgtTRaEWj9uRx7ISS6IPS1YI+kc6xMMJZV2ID
+         ub/ETmhxyWPcCjxIF8SSnZvoFmK+4JHOstg1lz1aCAnW0Cp4B8dMYwtlWKRc8EDkMeMt
+         pstt+o9puDIjjy2x93xDF5mTMkozEegd1pYeNB4Cxldcpmv44HZRrfcT9AyJaQuxzCWI
+         +Mqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=fiHs8iQnwarpgINjD3LQ7dtBIrw9yKtXyNgpZs7Iakk=;
+        b=OKyyy0LSCHF5jTcj7TIcRLaiwfMRCQUSpSEyejUPaOlmmE9luQZParJT/LtVq/7nUb
+         Lnch6tNf7NaTmpbqDgqhlD6TFR1bkZmNh+7CNxQcZqWfGt1rcoa/ukNmvU+Vzx/N1gJc
+         1aC9vEJSvj2ue33sx8V1i0z0mCMVIE5SZSfidg0fZ+rgpqpFqPmtHaDwGcoZdXgahIfH
+         f3uOWAWTKtTKFw3m91AwMG0thzEdZuJqTkgHEaQKmvp4tqOU325+kqryx8qTrDyPvXR4
+         49Oqm59+HgiW5KXOCgKpYOijgWYfOzQ3fY905aB6JTEbMncT6A7BFnTC3JPZeLqz8YXk
+         8SVg==
+X-Gm-Message-State: AOAM530AMd7tGeed0h75qFZUYjpOPOYrhLtJ+IuIH2+8z49ccOcqUvXN
+        Kmhxr6fRMyK6720jnfy5qw4=
+X-Google-Smtp-Source: ABdhPJyEaE48k1laWISx6Mz0Ip2Kud6SQkUsbpKJbrjEpkcvZPop620ByephU9M4Rl2b1ga5zVZwGw==
+X-Received: by 2002:adf:dd0d:: with SMTP id a13mr21292351wrm.259.1637171362828;
+        Wed, 17 Nov 2021 09:49:22 -0800 (PST)
+Received: from [192.168.0.18] (static-160-219-86-188.ipcom.comunitel.net. [188.86.219.160])
+        by smtp.gmail.com with ESMTPSA id 9sm808343wry.0.2021.11.17.09.49.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 17 Nov 2021 09:49:22 -0800 (PST)
+Message-ID: <003d475d-2dcd-ec24-0b9e-0cfd021f9da4@gmail.com>
+Date:   Wed, 17 Nov 2021 18:49:21 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.0
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8173: Add gce-client-reg to
+ display od/ufo
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+References: <20211104135254.580257-1-angelogioacchino.delregno@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20211104135254.580257-1-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 17.11.2021 um 19:16 +0200 schrieb Laurent Pinchart:
-> On Wed, Nov 17, 2021 at 02:51:48PM +0000, Rui Miguel Silva wrote:
-> > Hi Martin,
-> > Thanks for the patch.
-> > 
-> > On Wed Nov 17, 2021 at 9:27 AM WET, Martin Kepplinger wrote:
-> > 
-> > > Modeled after the NXP driver mx6s_capture.c that this driver is
-> > > based on,
-> > > imx8mq needs different settings for the baseaddr_switch
-> > > mechanism. Define
-> > > the needed bits and set that for imx8mq.
-> > > 
-> > > Without these settings, the system will "sometimes" hang
-> > > completely when
-> > > starting to stream (the interrupt will never be called).
+
+
+On 04/11/2021 14:52, AngeloGioacchino Del Regno wrote:
+> In order to use CMDQ commands on these two IPs, we need to declare
+> the appropriate mediatek,gce-client-reg for them.
 > 
-> Do we know why ? Are all the bits that you set required ?
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-tbh I don't know much more details about why. I debugged this quite a
-while and yes, from what I saw I need all these bits set.
+Now applied to v5.16-next/dts64 thanks!
 
-rx fifo overflow should be taken care of by the underrun buffer, but
-since imx8mq has an erratum that hangs the system in such case, see
-below, can it in any way be one reason for this to be needed?
-
-https://community.nxp.com/t5/i-MX-Processors/IMX8MQ-MIPI-CSI2-Base-address-switching-change-error/m-p/1216509/highlight/true#M167970
-
-intuitively I'd say it's unrelated though.
-
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > > ---
-> > >  drivers/staging/media/imx/imx7-media-csi.c | 34
-> > > ++++++++++++++++++++--
-> > >  1 file changed, 32 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/drivers/staging/media/imx/imx7-media-csi.c
-> > > b/drivers/staging/media/imx/imx7-media-csi.c
-> > > index 2288dadb2683..8619cf2fc694 100644
-> > > --- a/drivers/staging/media/imx/imx7-media-csi.c
-> > > +++ b/drivers/staging/media/imx/imx7-media-csi.c
-> > > @@ -12,6 +12,7 @@
-> > >  #include <linux/interrupt.h>
-> > >  #include <linux/mfd/syscon.h>
-> > >  #include <linux/module.h>
-> > > +#include <linux/of_device.h>
-> > >  #include <linux/of_graph.h>
-> > >  #include <linux/pinctrl/consumer.h>
-> > >  #include <linux/platform_device.h>
-> > > @@ -122,6 +123,10 @@
-> > >  #define BIT_DATA_FROM_MIPI             BIT(22)
-> > >  #define BIT_MIPI_YU_SWAP               BIT(21)
-> > >  #define BIT_MIPI_DOUBLE_CMPNT          BIT(20)
-> > > +#define BIT_MASK_OPTION_FIRST_FRAME    (0 << 18)
-> > > +#define BIT_MASK_OPTION_CSI_EN         (1 << 18)
-> > > +#define BIT_MASK_OPTION_SECOND_FRAME   (2 << 18)
-> > > +#define BIT_MASK_OPTION_ON_DATA                (3 << 18)
-> > >  #define BIT_BASEADDR_CHG_ERR_EN                BIT(9)
-> > >  #define BIT_BASEADDR_SWITCH_SEL                BIT(5)
-> > >  #define BIT_BASEADDR_SWITCH_EN         BIT(4)
-> > > @@ -154,6 +159,12 @@
-> > >  #define CSI_CSICR18                    0x48
-> > >  #define CSI_CSICR19                    0x4c
-> > >  
-> > > +enum imx_soc {
-> > > +       IMX6UL = 0,
-> > > +       IMX7,
-> > > +       IMX8MQ,
-> > 
-> > maybe instead of this enum we could use a bool in structure...
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> index dee66e5f054c..2b7d331a4588 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> @@ -1212,6 +1212,7 @@ ufoe@1401a000 {
+>   			interrupts = <GIC_SPI 191 IRQ_TYPE_LEVEL_LOW>;
+>   			power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
+>   			clocks = <&mmsys CLK_MM_DISP_UFOE>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xa000 0x1000>;
+>   		};
+>   
+>   		dsi0: dsi@1401b000 {
+> @@ -1316,6 +1317,7 @@ od@14023000 {
+>   			compatible = "mediatek,mt8173-disp-od";
+>   			reg = <0 0x14023000 0 0x1000>;
+>   			clocks = <&mmsys CLK_MM_DISP_OD>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1402XXXX 0x3000 0x1000>;
+>   		};
+>   
+>   		hdmi0: hdmi@14025000 {
 > 
-> An enum would be more extensible, but we shouldn't define different
-> values for IMX6UL and IMX7 if they're compatible. Maybe an enum
-> imx_csi_model with two values (IMX_CSI_IMX7 and IMX_CSI_IMX8MQ ?).
-> 
-> Are there other SoCs in the i.MX8 family that require this ? The BSP
-> driver sets the baseaddr switch mechanism for i.MX8MM too, but it
-> seems
-> to work fine without it.
-
-I'm looking at
-https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/media/platform/mxc/capture/mx6s_capture.c?h=imx_5.4.70_2.3.0
-for the comparison that is not explicitly targeting imx8mm, right?
-
-Anyway it looks like we need these bits on imx8mq only. Sorry, but
-maybe somebody from NXP could tell us more about the reasons?
-
-thanks a lot for reviewing, I'll queue a v2.
-
-> 
-> > > +};
-> > > +
-> > >  struct imx7_csi {
-> > >         struct device *dev;
-> > >         struct v4l2_subdev sd;
-> > > @@ -189,6 +200,8 @@ struct imx7_csi {
-> > >         bool is_csi2;
-> > >  
-> > >         struct completion last_eof_completion;
-> > > +
-> > > +       enum imx_soc type;
-> > 
-> > here, bool is_imx8mq?
-> > 
-> > >  };
-> > >  
-> > >  static struct imx7_csi *
-> > > @@ -537,6 +550,16 @@ static void imx7_csi_deinit(struct imx7_csi
-> > > *csi,
-> > >         clk_disable_unprepare(csi->mclk);
-> > >  }
-> > >  
-> > > +static void imx8mq_baseaddr_switch(struct imx7_csi *csi)
-> > 
-> > I think this function needs a better name. First add the imx7_csi
-> > prefix that all functions have, and also you are setting it
-> > specific
-> > to second frame and the function should not be specific to imx8.
-> > 
-> > maybe something:
-> > 
-> > imx7_csi_write_on_second_frame_enable, maybe?
-> > 
-> > > +{
-> > > +       u32 cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
-> > > +
-> > > +       cr18 |= BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL
-> > > |
-> > > +               BIT_BASEADDR_CHG_ERR_EN;
-> > > +       cr18 |= BIT_MASK_OPTION_SECOND_FRAME;
-> > > +       imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
-> > > +}
-> > > +
-> > >  static void imx7_csi_enable(struct imx7_csi *csi)
-> > >  {
-> > >         /* Clear the Rx FIFO and reflash the DMA controller. */
-> > > @@ -551,7 +574,11 @@ static void imx7_csi_enable(struct imx7_csi
-> > > *csi)
-> > >  
-> > >         /* Enable the RxFIFO DMA and the CSI. */
-> > >         imx7_csi_dmareq_rff_enable(csi);
-> > > +
-> > 
-> > unrelated new line.
-> > 
-> > >         imx7_csi_hw_enable(csi);
-> > > +
-> > > +       if (csi->type == IMX8MQ)
-> > > +               imx8mq_baseaddr_switch(csi);
-> > 
-> > change this to new types and names?
-> > 
-> > >  }
-> > >  
-> > >  static void imx7_csi_disable(struct imx7_csi *csi)
-> > > @@ -1155,6 +1182,8 @@ static int imx7_csi_probe(struct
-> > > platform_device *pdev)
-> > >         if (IS_ERR(csi->regbase))
-> > >                 return PTR_ERR(csi->regbase);
-> > >  
-> > > +       csi->type = (enum imx_soc)of_device_get_match_data(&pdev-
-> > > >dev);
-> > 
-> > here something:
-> >         csi->is_imx8mq = of_device_is_compatible(np, "fsl,imx8mq-
-> > csi");
-> > 
-> > > +
-> > >         spin_lock_init(&csi->irqlock);
-> > >         mutex_init(&csi->lock);
-> > >  
-> > > @@ -1249,8 +1278,9 @@ static int imx7_csi_remove(struct
-> > > platform_device *pdev)
-> > >  }
-> > >  
-> > >  static const struct of_device_id imx7_csi_of_match[] = {
-> > > -       { .compatible = "fsl,imx7-csi" },
-> > > -       { .compatible = "fsl,imx6ul-csi" },
-> > > +       { .compatible = "fsl,imx8mq-csi", .data = (void *)IMX8MQ
-> > > },
-> > 
-> > and with the above you should not need to add the data field here.
-> 
-> I like match data personally (especially if we keep a device model
-> enum). This is exactly what match data has been designed for, to
-> avoid
-> is_compatible() checks.
-> 
-> > > +       { .compatible = "fsl,imx7-csi", .data = (void *)IMX7 },
-> > > +       { .compatible = "fsl,imx6ul-csi", .data = (void *)IMX6UL
-> > > },
-> > >         { },
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
-> 
-
-
