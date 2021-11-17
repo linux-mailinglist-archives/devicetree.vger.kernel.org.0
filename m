@@ -2,79 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B5D4548AA
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:25:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F3C4548E3
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 15:34:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232926AbhKQO2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 09:28:49 -0500
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:45656 "EHLO
-        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238356AbhKQO2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:28:48 -0500
-Received: by mail-vk1-f170.google.com with SMTP id m19so1722507vko.12;
-        Wed, 17 Nov 2021 06:25:50 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc;
-        bh=lgl9BpbsUud0C8euZ8/m/mBaucmePFOdUSvOyanF4Vw=;
-        b=gAogHr5PMulo665onOuhjzOo0GKmkfwifsNcPwxi9Tk2B18vxn01C0eYx8CfwEvix7
-         fwmH3T0Z6PiFhtMXvYPJ9cgyMC631RDP01Y3aGMkhMCwxeV9BcleCQM3pzPxebxXYnPj
-         Bcf6gk0iObxVTZ1KQgTWWSBPOBJpWt21mmTSpG7wVB9KD6DCEFJMH+hhFtfk+Xy6wWG8
-         oYw5524Fbr8P3b2Z2gb/ah9H16bY9u/aishmzgzXRz7whGNYRhuhwspXotREamy4Wrre
-         GRKEYVMz8fpyLweWkkjNVbdmzywl5WPp+3xYEeBslug6c+rV8yHaZg4XTl2NieRRylOj
-         L0EQ==
-X-Gm-Message-State: AOAM531ZxHDQWMIRE3KRRLFn9CWm7CDMicium3pORnc0YvGW0u2Wl5Uh
-        XSb8d2fe3NyrFupBnp91AsbfnbVwC6Z2Yw==
-X-Google-Smtp-Source: ABdhPJxxwFlO1c5VGguxVtSIT6faUBymOb879t64G5w9bFLbdj84F4QlCJWmeLFBT3mK9884zVZKMw==
-X-Received: by 2002:a1f:e287:: with SMTP id z129mr88015912vkg.17.1637159149858;
-        Wed, 17 Nov 2021 06:25:49 -0800 (PST)
-Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
-        by smtp.gmail.com with ESMTPSA id t11sm8698347vkt.34.2021.11.17.06.25.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Nov 2021 06:25:49 -0800 (PST)
-Received: by mail-ua1-f41.google.com with SMTP id b17so6440703uas.0;
-        Wed, 17 Nov 2021 06:25:49 -0800 (PST)
-X-Received: by 2002:a67:fb41:: with SMTP id e1mr51636446vsr.28.1637159148368;
- Wed, 17 Nov 2021 06:25:48 -0800 (PST)
+        id S238610AbhKQOhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 09:37:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238613AbhKQOhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 09:37:04 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3C8FC061764
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 06:34:05 -0800 (PST)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mnM0e-0005tZ-F7; Wed, 17 Nov 2021 15:34:00 +0100
+Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mnM0a-001P66-W3; Wed, 17 Nov 2021 15:33:56 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
+Date:   Wed, 17 Nov 2021 15:33:35 +0100
+Message-Id: <20211117143347.314294-1-s.hauer@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <20211117140222.43692-1-robert.marko@sartura.hr>
-In-Reply-To: <20211117140222.43692-1-robert.marko@sartura.hr>
-Reply-To: wens@csie.org
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 17 Nov 2021 22:25:36 +0800
-X-Gmail-Original-Message-ID: <CAGb2v677JvkwZnp+3ST0UNsOWLnzT2QfmYAq22t7T03AVuOSzQ@mail.gmail.com>
-Message-ID: <CAGb2v677JvkwZnp+3ST0UNsOWLnzT2QfmYAq22t7T03AVuOSzQ@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: allwinner: orangepi-zero-plus: fix PHY mode
-To:     Robert Marko <robert.marko@sartura.hr>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Ron Goossens <rgoossens@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 10:02 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Orange Pi Zero Plus uses a Realtek RTL8211E RGMII Gigabit PHY, but its
-> currently set to plain RGMII mode meaning that it doesn't introduce
-> delays.
->
-> With this setup, TX packets are completely lost and changing the mode to
-> RGMII-ID so the PHY will add delays internally fixes the issue.
->
-> Fixes: a7affb13b271 ("arm64: allwinner: H5: Add Xunlong Orange Pi Zero Plus")
->
-> Tested-by: Ron Goossens <rgoossens@gmail.com>
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> Tested-by: Samuel Holland <samuel@sholland.org>
+This series adds initial graphics support for the Rockchip RK356[68]
+SoCs.  Graphics support is based around the VOP2 controller which
+replaces the VOP controller found on earlier Rockchip SoCs. The driver
+has been tested with HDMI support included in this series and MIPI-DSI
+which is not included because it needs some more work. The driver is
+taken from the downstream Rockchip kernel and heavily polished, most non
+standard features have been removed for now. I tested the driver with
+the libdrm modetest utility and also with weston with both pixman and
+panfrost driver support. Michael Riesch reported the driver to work on
+the RK3566 as well, but device tree support for this SoC is not yet
+included in this series.
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+The HDMI changes are based on patches from Benjamin Gaignard, but
+modified a bit as I found out that the HDMI port on the RK3568 only
+needs one additional clock, not two. Also I added regulator support
+which is needed to get the HDMI up on the rk3568-EVB board.
+
+All review and testing feedback welcome
+
+Sascha
+
+Benjamin Gaignard (2):
+  dt-bindings: display: rockchip: Add compatible for rk3568 HDMI
+  drm/rockchip: dw_hdmi: add rk3568 support
+
+Sascha Hauer (10):
+  drm/rockchip: dw_hdmi: Do not leave clock enabled in error case
+  drm/rockchip: dw_hdmi: add regulator support
+  of: graph: Allow disabled endpoints
+  dt-bindings: of: graph: Allow disabled endpoints
+  dt-bindings: display: rockchip: Add binding for VOP2
+  arm64: dts: rockchip: rk356x: Add VOP2 nodes
+  arm64: dts: rockchip: rk356x: Add HDMI nodes
+  arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
+  drm/rockchip: Make VOP driver optional
+  drm: rockchip: Add VOP2 driver
+
+ .../display/rockchip/rockchip,dw-hdmi.yaml    |   12 +-
+ .../display/rockchip/rockchip-vop2.yaml       |  114 +
+ .../bindings/media/video-interfaces.yaml      |    8 +
+ arch/arm/configs/multi_v7_defconfig           |    1 +
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     |   24 +
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  117 +
+ arch/arm64/configs/defconfig                  |    1 +
+ drivers/gpu/drm/drm_of.c                      |    6 +-
+ drivers/gpu/drm/rockchip/Kconfig              |   13 +
+ drivers/gpu/drm/rockchip/Makefile             |    4 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  137 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |    3 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h   |   22 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |  774 ++++
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c  | 3611 +++++++++++++++++
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |  916 +++++
+ drivers/of/property.c                         |    3 +
+ 17 files changed, 5731 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+ create mode 100644 drivers/gpu/drm/rockchip/rockchip_vop2_reg.c
+
+-- 
+2.30.2
+
