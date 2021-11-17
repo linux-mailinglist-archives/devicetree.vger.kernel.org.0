@@ -2,95 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85DC4453D33
-	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 01:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B1A453D6E
+	for <lists+devicetree@lfdr.de>; Wed, 17 Nov 2021 02:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbhKQAmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Nov 2021 19:42:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbhKQAmK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Nov 2021 19:42:10 -0500
-Received: from mail-qt1-x82c.google.com (mail-qt1-x82c.google.com [IPv6:2607:f8b0:4864:20::82c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F21F8C061570;
-        Tue, 16 Nov 2021 16:39:12 -0800 (PST)
-Received: by mail-qt1-x82c.google.com with SMTP id p19so982208qtw.12;
-        Tue, 16 Nov 2021 16:39:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=w76EybrnaGtyzuuTmNM/pkrCVBcP2o2Ywq7QeTL4Wj4=;
-        b=RfEDaEpM7Q/JbCzUtjePEIyY9JqlYyicN/Lshcteuz3P9tYc5LKAiizOxu9wGkv5zo
-         qwhKViIe5PwkpySjmVeI4j8tmCD9ofW9MTxuMbygx5y1B5UCjALQUTBvF+mNMk1KunQ0
-         qgTqdvh9Q8K8O/PZZ00ngNxFIYea7D5nY4N/od3PNqTqTj/XV/mCXzh1a5XSNlMo/6ba
-         KLTDbJ43dCQ/EdZIEWJTtzrzzmdDEn10wIWjedJyPANe2bHAHLkjExYqniywLA7DfN7X
-         VF4sru+3YffMcMxJVbauLgQ04k4i8YtaaUaOeV3FN3x0frVlUlr/R3/jF4rLL7wBQnA9
-         jxdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=w76EybrnaGtyzuuTmNM/pkrCVBcP2o2Ywq7QeTL4Wj4=;
-        b=h9VjcxlVoMQVQf/cF+urLwboOSEyriSvAocFP4ZnDShI+1gDW9Rws9y24IJGH1NxAu
-         64dsXo205JpL4qi8Dp5XcrwDSQAI/GMJkDyUomLSZZsdDAscBch982Zbutgn8HfrIREy
-         V3Fbi5hxbxu7ehb1/y3/reN0j2jUJeGfz52GF/7DST2w/FZmICWpIefnVevAzV3LuOhN
-         KyJJ3fP/WZ5wKqx1AhCLrkRjvH6T4SkuZp8Xd7uAKIKcaPb+kSEw5BX1AwUlg5HtHZ9Z
-         7S1U2siuCM6itSLUgkbYjRILmNC5cD0/AG6ixdxL7KvqSPHsfvSYMza7SA075UFfXMhQ
-         4ysQ==
-X-Gm-Message-State: AOAM531uj+9Rx7R+FThk4Emt1dlR3Y1TKTv/reW+JiatfVX8Cnk7kAFo
-        o0p8rqFzMTyyLywCwR8Kb84=
-X-Google-Smtp-Source: ABdhPJxbeSHNuB4kFTbLxOih9qJ62SSPVRY/aQlqThDRVr2hf19MTW/Jd3fVex7UJYa6VazPT4stxw==
-X-Received: by 2002:ac8:7d45:: with SMTP id h5mr12280765qtb.256.1637109552186;
-        Tue, 16 Nov 2021 16:39:12 -0800 (PST)
-Received: from shaak.xiphos.ca (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
-        by smtp.gmail.com with ESMTPSA id a38sm8403777qkp.80.2021.11.16.16.39.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 16 Nov 2021 16:39:11 -0800 (PST)
-From:   Liam Beguin <liambeguin@gmail.com>
-X-Google-Original-From: Liam Beguin <lvb@xiphos.com>
-To:     liambeguin@gmail.com,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S229883AbhKQBIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Nov 2021 20:08:37 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:15400 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229543AbhKQBIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Nov 2021 20:08:36 -0500
+X-IronPort-AV: E=Sophos;i="5.87,239,1631545200"; 
+   d="scan'208";a="100509775"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 17 Nov 2021 10:05:37 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 11243400A897;
+        Wed, 17 Nov 2021 10:05:34 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     Liam Beguin <lvb@xiphos.com>, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/1] dt-bindings: phy: zynqmp-psgtr: fix USB phy name
-Date:   Tue, 16 Nov 2021 19:38:41 -0500
-Message-Id: <20211117003841.2030813-1-lvb@xiphos.com>
-X-Mailer: git-send-email 2.34.0
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-spi@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/3] SPI driver support for RZ/G2L
+Date:   Wed, 17 Nov 2021 01:05:24 +0000
+Message-Id: <20211117010527.27365-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PHY_TYPE_USB is undefined and was added as PHY_TYPE_USB2 and
-PHY_TYPE_USB3 in 2fbbc96d1600 (phy: Add PHY header file for DT x Driver
-defines, 2014-11-04). Fix documentation to avoid misleading users.
+Hi All,
 
-Signed-off-by: Liam Beguin <lvb@xiphos.com>
----
- Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patch series adds RSPI driver and dt binding support to RZ/G2L SoC.
 
-diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-index 04d5654efb38..79906519c652 100644
---- a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-+++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-@@ -29,7 +29,7 @@ properties:
-           - PHY_TYPE_PCIE
-           - PHY_TYPE_SATA
-           - PHY_TYPE_SGMII
--          - PHY_TYPE_USB
-+          - PHY_TYPE_USB3
-       - description: The PHY instance
-         minimum: 0
-         maximum: 1 # for DP, SATA or USB
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: spi: renesas,rspi: Document RZ/G2L SoC
+  spi: spi-rspi: Add support to deassert/assert reset line
+  spi: spi-rspi: Drop redeclaring ret variable in qspi_transfer_in()
+
+ .../devicetree/bindings/spi/renesas,rspi.yaml | 13 ++++++++-
+ drivers/spi/spi-rspi.c                        | 27 ++++++++++++++++++-
+ 2 files changed, 38 insertions(+), 2 deletions(-)
+
 -- 
-2.34.0
+2.17.1
 
