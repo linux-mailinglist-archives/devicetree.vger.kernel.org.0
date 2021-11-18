@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D86455BD0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:49:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A233455BD2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:49:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344880AbhKRMwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 07:52:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48360 "EHLO
+        id S244069AbhKRMwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 07:52:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344836AbhKRMvf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 07:51:35 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D2FC06120C
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 04:48:27 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id r8so11311410wra.7
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 04:48:26 -0800 (PST)
+        with ESMTP id S244371AbhKRMvo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 07:51:44 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20A60C061210
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 04:48:28 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id u1so11277415wru.13
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 04:48:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=IdJJhrRpftq1m7Kk3EVMrUIrSaR2a6rKnBgshEFLV04=;
-        b=z5m6uA03cNGQW2msDM61TPa4HNGsgKCe/IGworjgFDjkyikan4WivxJy/8Kyzsj33R
-         gThj7mJFM5zA7KUa5CgA2F7s2EC0L3sHbBUi9EWUxA3Xw+4f081UGE1OZjpZLfzhbfCY
-         btjSo0gIA2VE/4Xb2BDkVZuob9cIZryLOTBJwlhQpRSLWbuN+weFkEc6fc2bKuyZY5pF
-         kDggsSbJfYDfCoxE997S/NDBoM2iqVC8lQ3/IqQhAJICOB0Oyot+ujHfc+Qn56y2Ce+4
-         Y3Y99WU5aeFaDLu2x9h/gPpGeCsKfRRQDEbhnw0XUIDPcuxl9t4ZRnCQwv+vIuWwGF+d
-         U30g==
+        bh=aVyUtXcdz7QxHPyS2w5eETDfqlriTQ4tFPGsRNeCcvk=;
+        b=jsGazaMauv2TecWWXLkP6S8jRjHZznKOjVjOeVhS/pU/XPUt8hkqz7OLE8r4CZ1Qas
+         V/Jtg6IoYtIN50bm4AmEim5ZgKnuvi/FOX2TLByiht1AonUE1RpI26Xe2uMWsHXxiy5V
+         H3ovhF1ZNBIOSeaievDIj9Xz5PFIg79LTClu54/9uiw42Uhmg+U4RZQic0CfPbgaP0O2
+         bsal2fwyyWD4v2as0Pc01xGo+yH2yeGZ7GNDfCSb3QpsX9ttLOQ/m4G/tSZPkrBqzqw1
+         Ob9JlSBiYabb/7drCJNoTJfcLH3QAT4/66mZQStuAYZbjgbxp4WNtftKucjXGaSJ18V+
+         hkNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=IdJJhrRpftq1m7Kk3EVMrUIrSaR2a6rKnBgshEFLV04=;
-        b=hy8vM0r5mjNJq4Ac9SwKXK7FVqUcMfCtrUtH0F8jWRE0L2yO7W4TiyU/HHQeKtcvaN
-         fzYVfNQx45f1EmWAd8UnhjXffhhm2QqfpT6hGGh/AqIW3rz9hyC3C7fI2IBprK36eE8z
-         oh9ZF7O6UwwOyXsA6ePdtp4NgstyS+aJM+8/92hlLT951nXqcMKxIXn9hZgAE1PlVF19
-         1ylRNFHTteLuDnTf1+VHm85zlxCFnLLX5TL1cg7EmBvWsIOUhjkat2EyXvkugXbddqwy
-         s5dYuF62+gQ0+qli3vXU0ZIXwTlCfBlhvdzasqns4djIyVnbBevthpzdB8eiGLxXO6zG
-         U/9A==
-X-Gm-Message-State: AOAM531gEHmkukQcRTXgeywNnyw9iTW/Dmf1qiWqfksv/Y7OJORN8/0V
-        KnB6n2of1O02butw8IOm21cRoA==
-X-Google-Smtp-Source: ABdhPJxuHQBl5svDT34j751LWMJqy8Vgr4w6aPk8zBkra5UKlTq6u3ZPcnlyV+xoj0l/Jtkcq2bfxQ==
-X-Received: by 2002:adf:a194:: with SMTP id u20mr30165396wru.153.1637239705530;
-        Thu, 18 Nov 2021 04:48:25 -0800 (PST)
+        bh=aVyUtXcdz7QxHPyS2w5eETDfqlriTQ4tFPGsRNeCcvk=;
+        b=E1cIVHrunJH7wL/dh55vi6X7ey1FE+42fv/rqIeMXXX1q8NANo9ELQV3ghqR4vEA8h
+         1ZEzhDQXfVZFhV/7BXYBJ3ISYpa4QWXCaslyEqOyPINfk59vuPMcr6WDXQ9wc0sqGB1v
+         nUiLyyCWSIyOrw43qGKXe+bC7luO3P/A/7niGkk7G2SOndeJHYKFcQ6Bhdq8OsLHAvH1
+         PHQO02EXNn0yHsgLTwkXN55GOZ41V9PTBKIF/4xt8XSOlmtmUCw6Hdp46U/9OSLaduP1
+         lsShyu7Ce4/hAO/gjMDtZLBtYFnOoIgAJ3bizZmaQPz1dgHFZKF8rcq/Wr6AAIgL7TNU
+         8T3A==
+X-Gm-Message-State: AOAM533UFm2ACdQdYygjr7RzmhaXuQnj2i6eGgfDyaARR5dtbMFmK5KT
+        Ak6X/4WBnX4d7sXnVKJQeFQxjA==
+X-Google-Smtp-Source: ABdhPJy2f9DtCMg4OcWFm26oWicRoIZWvNHJN5PRI5t5tNCVFSVpy0va7aFjALpPoOB96q+7/vwBVw==
+X-Received: by 2002:a05:6000:2a2:: with SMTP id l2mr30092829wry.110.1637239706601;
+        Thu, 18 Nov 2021 04:48:26 -0800 (PST)
 Received: from xps7590.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id h2sm2955635wrz.23.2021.11.18.04.48.24
+        by smtp.gmail.com with ESMTPSA id h2sm2955635wrz.23.2021.11.18.04.48.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 04:48:25 -0800 (PST)
+        Thu, 18 Nov 2021 04:48:26 -0800 (PST)
 From:   Robert Foss <robert.foss@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         robert.foss@linaro.org, todor.too@gmail.com, mchehab@kernel.org,
@@ -56,9 +56,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
         Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
         Andrey Konovalov <andrey.konovalov@linaro.org>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v3 2/4] media: dt-bindings: media: camss: Remove clock-lane property
-Date:   Thu, 18 Nov 2021 13:48:17 +0100
-Message-Id: <20211118124819.1902427-3-robert.foss@linaro.org>
+Subject: [PATCH v3 3/4] arm64: dts: qcom: apq8016-sbc: Remove clock-lanes property from &camss node
+Date:   Thu, 18 Nov 2021 13:48:18 +0100
+Message-Id: <20211118124819.1902427-4-robert.foss@linaro.org>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20211118124819.1902427-1-robert.foss@linaro.org>
 References: <20211118124819.1902427-1-robert.foss@linaro.org>
@@ -68,272 +68,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock-lanes property is not programmable by the hardware,
-and as such it should not be exposed in the dt-binding.
+The clock-lanes property is no longer used as it is not programmable by
+the CSIPHY hardware block of Qcom ISPs and should be removed.
 
 Signed-off-by: Robert Foss <robert.foss@linaro.org>
 ---
- .../bindings/media/qcom,msm8916-camss.yaml    | 10 ----------
- .../bindings/media/qcom,msm8996-camss.yaml    | 20 -------------------
- .../bindings/media/qcom,sdm660-camss.yaml     | 20 -------------------
- .../bindings/media/qcom,sdm845-camss.yaml     | 17 ----------------
- 4 files changed, 67 deletions(-)
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-index 304908072d72..12ec3e1ea869 100644
---- a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-@@ -83,10 +83,6 @@ properties:
-             unevaluatedProperties: false
+diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+index a5320d6d30e7..b7a578aafcbb 100644
+--- a/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
++++ b/arch/arm64/boot/dts/qcom/apq8016-sbc.dts
+@@ -253,7 +253,6 @@ ports {
+ 		port@0 {
+ 			reg = <0>;
+ 			csiphy0_ep: endpoint {
+-				clock-lanes = <1>;
+ 				data-lanes = <0 2>;
+ 				remote-endpoint = <&ov5640_ep>;
+ 				status = "okay";
+@@ -289,7 +288,6 @@ camera_rear@3b {
  
-             properties:
--              clock-lanes:
--                items:
--                  - const: 1
--
-               data-lanes:
-                 description:
-                   An array of physical data lanes indexes.
-@@ -99,7 +95,6 @@ properties:
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@1:
-@@ -114,16 +109,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 1
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-   reg:
-diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-index 38be41e932f0..6aeb3d6d02d5 100644
---- a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-@@ -105,10 +105,6 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 description:
-                   An array of physical data lanes indexes.
-@@ -121,7 +117,6 @@ properties:
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@1:
-@@ -136,16 +131,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@2:
-@@ -160,16 +150,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@3:
-@@ -184,16 +169,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-   reg:
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-index 841a1aafdd13..338ab28d5f3b 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-@@ -111,16 +111,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@1:
-@@ -135,16 +130,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@2:
-@@ -159,16 +149,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@3:
-@@ -183,16 +168,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-   reg:
-diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-index 9ca5dfa7f226..9404d6b9db54 100644
---- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-+++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-@@ -105,15 +105,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                maxItems: 1
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@1:
-@@ -128,16 +124,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                items:
--                  - const: 7
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@2:
-@@ -152,15 +143,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                maxItems: 1
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-       port@3:
-@@ -175,15 +162,11 @@ properties:
-             unevaluatedProperties: false
- 
-             properties:
--              clock-lanes:
--                maxItems: 1
--
-               data-lanes:
-                 minItems: 1
-                 maxItems: 4
- 
-             required:
--              - clock-lanes
-               - data-lanes
- 
-   reg:
+ 		port {
+ 			ov5640_ep: endpoint {
+-				clock-lanes = <1>;
+ 				data-lanes = <0 2>;
+ 				remote-endpoint = <&csiphy0_ep>;
+ 			};
 -- 
 2.32.0
 
