@@ -2,131 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9811B455D37
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 15:02:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE6C455DAB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 15:12:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231934AbhKROFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 09:05:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37166 "EHLO
+        id S232806AbhKROPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 09:15:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231848AbhKROFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 09:05:45 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB519C061570
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 06:02:44 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id y26so26453183lfa.11
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 06:02:44 -0800 (PST)
+        with ESMTP id S232771AbhKROPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 09:15:54 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713F3C061570
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 06:12:54 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id bi37so26694656lfb.5
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 06:12:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EcvMf04a42I8nvaFKWnn+hHtsxzFN2+dQNetw5PDMV4=;
-        b=rlt2VRwuJrLjMD1u62DODkASk5YQGVq12j1CL1oNN9gYt01TPAj0Z2gSttN4b9a1Cc
-         PCCSwYuavb06GBpikMmt63YfO4B1XxUbhYS4dXw6M2bJhLBdCJvwj9HphwsQa3X/RWhM
-         ZdyIL+2NzbvORZScEGLo6lM6RKV7YcF0WwzxQr43XIwYDamfHR9MILbrh3/ohNa1ZVqf
-         h7yZOX5YV2kcwvyO20CAQDxUeTnz/uAKAbPgugaQONs1f2e8XZAPjl4DW8GIit+qeUG/
-         15FMowfE1EAEnMprapgTN/DLppeLSdT07sLyWLoc6RS5Xz1J04WUuJeCdljo/JVrOOSh
-         5Xbw==
+        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Or4AgXyW4tgl2yKbvbtrdnKt4RJ7VfsqFDnQl/vuTc0=;
+        b=7D2x6Zw+zQCe/b4dFMjkLMGeg/ONrzRoCRRyI4h5ma2+YlV7tsKBCBXfdu9/h+qudn
+         CA20OmsXGnLzEE6YvRwLEf3bjOqtMKU+PTQZYoUkfhF1lsOjDNPq8oVedIZwyz4xRx0t
+         /k+uYxAW7Q2Bi8noo4cJPzB5XfpPqJL3pr/AYW+t47Pt/VhcT+TNtxq7TvDyH+x8rVAE
+         l4wbFEP2yt/6AWekU5uml5vvNw0E2xu08mz12SzqB7PnNNtEoRUvbzodoFHHI8q5wl6j
+         Gn/LSbKaPx0hyA85wZXz2JpeJLD8xR8anrxpRwMcP2HGWUav2z6MIUhIVfcUS29m+xFh
+         TQUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EcvMf04a42I8nvaFKWnn+hHtsxzFN2+dQNetw5PDMV4=;
-        b=6tlFfWYDd2IicMQAgetsLMDRc3CL4VTPTiHPwQYPYvaopPv+oWJjgnI4hnDfDZOpzV
-         +5mUOgvmTkCNVuHj5NFGhmJqEKAKURtz8OKX2nat9bIacRVTsk6RYpFmsxggLlgAYrpX
-         riWy49TBydD1MuJXxa6ZmrVWp+8n9d9lv4yuh9ohOao2J4VUGZCGuRRJJX1tpUbvgWwL
-         OucsvzoC4YJW2+EQLX+1pLVqfp3gtBiiZ3FF7tWdk3Vn6mP8NrJP02g/EYeEtA+VZaKz
-         oLIjkyz75MZ9ElftichlZAf014CIAQHpQbCFtyGMRN3D75aHcYvGojWGjZOMu3zhEu+T
-         HNpQ==
-X-Gm-Message-State: AOAM530nkh1TlUo3IrwkfTgBhWzoD9/6YYnue7Uy7/hi194lhZHQeweE
-        5tSCCpD2kEIsj24FGtBIrvzX3BSWV30b9Vzzlxlj+w==
-X-Google-Smtp-Source: ABdhPJwLhJuGAR+t56gMBcybZC15N2Oh5BbNKdeI9yWoV9VlHVR6e9tjjRqNJkVldiRcDTShHr5i/t/lVfJqI8EMZmg=
-X-Received: by 2002:a05:6512:3d07:: with SMTP id d7mr24614147lfv.233.1637244162680;
- Thu, 18 Nov 2021 06:02:42 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Or4AgXyW4tgl2yKbvbtrdnKt4RJ7VfsqFDnQl/vuTc0=;
+        b=sgwtK6wpIYyPE9VOY50AGR4Bp5HO2/mRPbybd0O7dO9tzeaDunJfi2VFad9PBw38u7
+         H3VxrBHpVzEiSvIGxoXvn9WuDQsKSenx9DkpscVyTd3dn5jqEVMhkN1YJxIc90jQ66Sz
+         shiq3CkpCJRvNkce/8hMrrmhHebDGp72LpkCp5PQTKrU+SrBQc5mpxra77vSejU4GGSw
+         lvMMj016NWvyUu2tNycqFgZLMORVs3qQ4c/wO6V2+xasHMNQmVuHZtQmCnhKcKOesE4H
+         TqTRIDb9k46lhxnVLv+JpHRrsw3C7k7atcFH8wfWHoFGMPWXjqkEG6SIhIvVhvnuKTlt
+         iTeg==
+X-Gm-Message-State: AOAM533lqIBFHRayn75puh6CkbOtimDA9BdWO3lPpY+bNvvO3ykd0wjP
+        7aKIvcf0YGDBstcYgHTEa905XQ==
+X-Google-Smtp-Source: ABdhPJyghWKlwD40NYXvO7Wpmo/rE7eEgxm6PEby+PI/2Q5Arc3dROddVEFwY23331mAF7yf5pEk0g==
+X-Received: by 2002:a05:6512:22cd:: with SMTP id g13mr23684891lfu.417.1637244772797;
+        Thu, 18 Nov 2021 06:12:52 -0800 (PST)
+Received: from boger-laptop.lan (81.5.99.121.dhcp.mipt-telecom.ru. [81.5.99.121])
+        by smtp.gmail.com with ESMTPSA id s15sm193634lfp.252.2021.11.18.06.12.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 06:12:52 -0800 (PST)
+From:   Evgeny Boger <boger@wirenboard.com>
+To:     linux-iio@vger.kernel.org
+Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Quentin Schulz <foss@0leil.net>, linux-sunxi@lists.linux.dev
+Subject: [PATCH 0/2] iio: adc: axp20x: add support for NTC thermistor
+Date:   Thu, 18 Nov 2021 17:12:31 +0300
+Message-Id: <20211118141233.247907-1-boger@wirenboard.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20210902090221.820254-1-ulf.hansson@linaro.org>
-In-Reply-To: <20210902090221.820254-1-ulf.hansson@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 18 Nov 2021 15:02:06 +0100
-Message-ID: <CAPDyKFqdjpT2fzpq7LGDotkzwruZ7OjKnkw=_O+2eV9bgdYvkQ@mail.gmail.com>
-Subject: Re: [PATCH] of: property: fw_devlink: Fixup behaviour when
- 'node_not_dev' is set
-To:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Cc:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Saravana Kannan <saravanak@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Sept 2021 at 11:02, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> In the struct supplier_bindings the member 'node_not_dev' is described as
-> "The consumer node containing the property is never a device.", but that is
-> inconsistent with the behaviour of the code in of_link_property(), as it
-> calls of_get_compat_node() that starts parsing for a compatible property
-> from the node it gets passed to it. The proper behaviour is to start at the
-> node's parent, so let's do that.
->
-> While at it, let's take the opportunity to update the description of the
-> 'node_not_dev' flag, as to clarify its purpose.
->
-> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
+Most AXPxxx-based reference designs place a 10k NTC thermistor on a
+TS pin. When appropriately configured, AXP PMICs will inject fixed
+current (80uA by default) into TS pin and measure the voltage across a
+thermistor. The PMIC itself will by default compare this voltage with
+predefined thresholds  and disable battery charging whenever
+the battery is too hot or too cold.
 
-Rob, just a gentle reminder about this one. Should I perhaps resend?
+Alternatively, the TS pin can be configured as general-purpose
+ADC input. This mode is not supported by the driver.
+    
+This patch series allows reading the voltage on the TS pin. The voltage
+can be then either processed by userspace or used by kernel consumer like
+hwmon ntc thermistor driver.
 
-Kind regards
-Uffe
 
-> ---
->  drivers/of/property.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 6c028632f425..a94d007be416 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1075,6 +1075,17 @@ static struct device_node *of_get_compat_node(struct device_node *np)
->         return np;
->  }
->
-> +static struct device_node *of_get_compat_node_parent(struct device_node *np)
-> +{
-> +       struct device_node *parent, *node;
-> +
-> +       parent = of_get_parent(np);
-> +       node = of_get_compat_node(parent);
-> +       of_node_put(parent);
-> +
-> +       return node;
-> +}
-> +
->  /**
->   * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
->   * @con_np: consumer device tree node
-> @@ -1249,7 +1260,9 @@ static struct device_node *parse_##fname(struct device_node *np,       \
->   * @parse_prop.index: For properties holding a list of phandles, this is the
->   *                   index into the list
->   * @optional: Describes whether a supplier is mandatory or not
-> - * @node_not_dev: The consumer node containing the property is never a device.
-> + * @node_not_dev: The consumer node containing the property is never converted
-> + *               to a struct device. Instead, parse ancestor nodes for the
-> + *               compatible property to find a node corresponding to a device.
->   *
->   * Returns:
->   * parse_prop() return values are
-> @@ -1416,7 +1429,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
->                         struct device_node *con_dev_np;
->
->                         con_dev_np = s->node_not_dev
-> -                                       ? of_get_compat_node(con_np)
-> +                                       ? of_get_compat_node_parent(con_np)
->                                         : of_node_get(con_np);
->                         matched = true;
->                         i++;
-> --
-> 2.25.1
->
+Evgeny Boger (2):
+  iio:adc:axp20x: add support for NTC thermistor
+  dt-bindings: iio: adc: document TS voltage in AXP PMICs
+
+ .../bindings/iio/adc/x-powers,axp209-adc.yaml |  3 ++
+ drivers/iio/adc/axp20x_adc.c                  | 45 ++++++++++++++++---
+ 2 files changed, 42 insertions(+), 6 deletions(-)
+
+-- 
+2.25.1
+
