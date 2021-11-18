@@ -2,97 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 970BC455876
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 10:59:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7000D455895
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:06:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245391AbhKRKCr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 05:02:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38812 "EHLO
+        id S244589AbhKRKJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 05:09:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245401AbhKRKCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 05:02:25 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A418C061764;
-        Thu, 18 Nov 2021 01:59:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=XSzI0hxUCG6rROg2YuT5S/lnEZyhlyFPWKDzxXoo5Dk=; b=qbeKC7UBBqkkXKRHyxe1GUqcVm
-        vhWgOhMX91jnQMHprsWDlgmaFTv9OuRoZmlD0uQClmTf2GSLFcVN42NZXOiGCncw6bea2lM3x0M45
-        8oUtugUbryc3DWQw1w8LiwHIRUDnFkN2eg6Z+nOr2+NAjr4IWZWa6i+C9E5Lqz+5V/Md+6kv0y5bW
-        vB1zVpYIul781eK3YkpXx3J+ZrRedtxKow++omRFEe3iSdzoyqmBkO/AF2PJcrFz9qk68aOgOZ2/Z
-        oMjnSJX4evdefMDm0RfoWlpBMi9F9SE7Xy8+gRBOfulYTOmLtR5Qz0jJ9T5ciVrjK/iWo0Tp8Hs6g
-        iXsT6+XQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55708)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mneCN-0002mO-CP; Thu, 18 Nov 2021 09:59:19 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mneCL-0003pb-Hy; Thu, 18 Nov 2021 09:59:17 +0000
-Date:   Thu, 18 Nov 2021 09:59:17 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 3/5] net: lan966x: add port module support
-Message-ID: <YZYj9fwCeWdIZJOt@shell.armlinux.org.uk>
-References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
- <20211117091858.1971414-4-horatiu.vultur@microchip.com>
- <YZTRUfvPPu5qf7mE@shell.armlinux.org.uk>
- <20211118095703.owsb2nen5hb5vjz2@soft-dev3-1.localhost>
+        with ESMTP id S244392AbhKRKHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 05:07:40 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D58C0613B9
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 02:04:04 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mneGr-0005Hg-Fj; Thu, 18 Nov 2021 11:03:57 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1mneGp-0003wj-3u; Thu, 18 Nov 2021 11:03:55 +0100
+Date:   Thu, 18 Nov 2021 11:03:55 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Kever Yang <kever.yang@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        =?utf-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
+Message-ID: <20211118100355.GO6556@pengutronix.de>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+ <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com>
+ <4310886.V3yF0ifEZO@diego>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211118095703.owsb2nen5hb5vjz2@soft-dev3-1.localhost>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4310886.V3yF0ifEZO@diego>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 11:01:35 up 273 days, 13:25, 149 users,  load average: 0.68, 0.41,
+ 0.41
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 10:57:03AM +0100, Horatiu Vultur wrote:
-> > > +static void decode_sgmii_word(u16 lp_abil, struct lan966x_port_status *status)
-> > > +{
-> > > +     status->an_complete = true;
-> > > +     if (!(lp_abil & LPA_SGMII_LINK)) {
-> > > +             status->link = false;
-> > > +             return;
-> > > +     }
-> > > +
-> > > +     switch (lp_abil & LPA_SGMII_SPD_MASK) {
-> > > +     case LPA_SGMII_10:
-> > > +             status->speed = SPEED_10;
-> > > +             break;
-> > > +     case LPA_SGMII_100:
-> > > +             status->speed = SPEED_100;
-> > > +             break;
-> > > +     case LPA_SGMII_1000:
-> > > +             status->speed = SPEED_1000;
-> > > +             break;
-> > > +     default:
-> > > +             status->link = false;
-> > > +             return;
-> > > +     }
-> > > +     if (lp_abil & LPA_SGMII_FULL_DUPLEX)
-> > > +             status->duplex = DUPLEX_FULL;
-> > > +     else
-> > > +             status->duplex = DUPLEX_HALF;
-> > > +}
-> > 
-> > The above mentioned function will also handle SGMII as well.
+On Thu, Nov 18, 2021 at 10:26:29AM +0100, Heiko Stübner wrote:
+> Hi Kever,
 > 
-> I noticed that you have phylink_decode_sgmii_work(), so I will try to
-> export it also.
+> Am Donnerstag, 18. November 2021, 02:27:10 CET schrieb Kever Yang:
+> > Hi Sascha Hauer,
+> > 
+> > On 2021/11/17 下午10:33, Sascha Hauer wrote:
+> > > This series adds initial graphics support for the Rockchip RK356[68]
+> > > SoCs.  Graphics support is based around the VOP2 controller which
+> > > replaces the VOP controller found on earlier Rockchip SoCs. The driver
+> > > has been tested with HDMI support included in this series and MIPI-DSI
+> > > which is not included because it needs some more work. The driver is
+> > > taken from the downstream Rockchip kernel
+> > 
+> > Yes, you do know this is from Rockchip kernel.
+> > 
+> > Could you point me out where is the information about original author  
+> > in your commit?
+> 
+> The copyrights for added files seem to have stayed intact.
+> For example the added rockchip_drm_vop2.c file in patch12
+> does contain the copyright as
+> 
+> 	Copyright (c) 2020 Rockchip Electronics Co., Ltd.
+> 	Author: Andy Yan <andy.yan@rock-chips.com>
+> 
+> 
+> We can of course debate if the commit-author should also be set to
+> Andy or another Rockchip engineer, with Sascha adding a 
+> "Co-developed-by" with his credentials.
+> 
+> That's probably a nice compromise, I guess.
 
-Another approach would be to split phylink_mii_c22_pcs_decode_state()
-so that the appropriate decode function is selected depending on the
-interface state, which may be a better idea.
+The commit author was merely lost while copying the driver file into my git.
+Changing it back to Andy is fine with me, I didn't mean to steal anyones
+credits.
+
+Sascha
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
