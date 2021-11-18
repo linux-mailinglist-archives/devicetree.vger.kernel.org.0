@@ -2,82 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 230944561C2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 18:50:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 184154561D2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 18:52:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234180AbhKRRxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 12:53:19 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:37554 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233172AbhKRRxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 12:53:19 -0500
-Received: by mail-ua1-f51.google.com with SMTP id o1so15537257uap.4;
-        Thu, 18 Nov 2021 09:50:18 -0800 (PST)
+        id S233740AbhKRRzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 12:55:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34820 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229674AbhKRRza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 12:55:30 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B12B3C06173E
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 09:52:30 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id v19so5905994plo.7
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 09:52:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TtnoYGtAxGPW+9L6edJ2N+GbKnq2mOeeAWUKCB6RQko=;
+        b=PYEEEbkZpq54OWNcaYpvnCzoYdE+vHgsvc8G3jHkXs3dGt+LDkIRK1mFxA+qVUUnOK
+         8k8l2iZfTu00sNd2Mb9Y/efZU3RA7OYSwmBgmBukA3SQ2SkvuzaD/rli/JlDPxtBqVV2
+         6LFZqSjXprrigWpxA7vUTzrHPzhr8y1Lld5bU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bFeM04vKOaS71VYDOH4xnU67t1j31v0rHakjN+vE8aU=;
-        b=ZeXeXI+qEI5OhSH5NoCSs0kHgp+Ps8FZiR+hcbXsqtaVKN1sF0xFhTWhrAF/NlmdSW
-         1uFzsk2Bek82uXrnQ2E0ZCIPXL+zSXSORKuY41MXIQCZ2g6gdsFeMr3Py9dt7cxQBCaV
-         IiMmH8uy/F4PdAI9sTgWqteBlTKadWKNqjAcY0yPiM9c8pc0RaAVI4PDoexX0lyW80SR
-         SPPvvjRT6M+fGb8f7mzgALGRJgt0C3yLB4xi7N0zn3ujNYDzSyZfaZ52OPG88iWfTuYL
-         6YeN0/agsH8YmTzk/LBGbMTLtodGme2L0ykJ7eVWcreqAAxvDJQ8YANtVku4rNDeugNl
-         l3vA==
-X-Gm-Message-State: AOAM5320ErYXbqaMhXKnCEm56J0kMoWmYtiSg0GLf/Grc0oUaQOLB95K
-        YxBeMkDfKsXGjgsrLEdAW7iB2ui/XkBOVg==
-X-Google-Smtp-Source: ABdhPJx2gfXrCjBGBZJpRAkszgu5dmmehAyXjiUVK3l3E8OaItmlADsJ39RA+3upqYSOKcldcX8aXQ==
-X-Received: by 2002:a9f:3142:: with SMTP id n2mr13035488uab.102.1637257818240;
-        Thu, 18 Nov 2021 09:50:18 -0800 (PST)
-Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
-        by smtp.gmail.com with ESMTPSA id c23sm271437vko.8.2021.11.18.09.50.17
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TtnoYGtAxGPW+9L6edJ2N+GbKnq2mOeeAWUKCB6RQko=;
+        b=774OYG0LwjXi45C4HU/yLzZF7tNbiqtkKlWOpOXroAj3oyMydOzO6lvR5h5eY3XtK8
+         dOQ94KC9O0m8Me1cH2w9wFyn37vIrAMjcSr82G2OrwRp4QxgqParkbO7Hih2VHNza+SV
+         bySfPQIQYFO5FgccubfzClQL4OGpyPDY9UPn1zukwDop9AWFgiyiWg6y+h6mfz21V39/
+         1lAlMXa6QEc+xj5gyZ7wi+ToIYaxfYQ88nm/53QQHO1UDnVrdVdwpTjvweDq2gmKV+zJ
+         gm8UXHMsrvH9CJmrL4RzHdM6xlzQgfPbc/8wf7Ft55gAuCeGCbKVFrNt6UW3wY59RbSI
+         vStg==
+X-Gm-Message-State: AOAM533DOvPfwxxwjW9NmRk500F5ICWkFG37WWBOLDFE+p8HwVfuq3wq
+        M75aKmxonSM1G0Y2LHQmfju9wA==
+X-Google-Smtp-Source: ABdhPJxEksdhN49ug4fA0rYwLkMrniqIXGi6GQjKTL9BIpYpmQbTQ+4El8cL1u7uZGrRNFpWRr1Dfg==
+X-Received: by 2002:a17:902:c78a:b0:142:1b7a:930 with SMTP id w10-20020a170902c78a00b001421b7a0930mr68883923pla.8.1637257950264;
+        Thu, 18 Nov 2021 09:52:30 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:8ceb:c68a:21af:bebe])
+        by smtp.gmail.com with UTF8SMTPSA id f21sm280683pfc.85.2021.11.18.09.52.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Nov 2021 09:50:17 -0800 (PST)
-Received: by mail-ua1-f43.google.com with SMTP id i6so15496022uae.6;
-        Thu, 18 Nov 2021 09:50:17 -0800 (PST)
-X-Received: by 2002:a67:af0a:: with SMTP id v10mr84084028vsl.35.1637257817105;
- Thu, 18 Nov 2021 09:50:17 -0800 (PST)
-MIME-Version: 1.0
-References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com> <20211116074130.107554-2-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20211116074130.107554-2-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 18 Nov 2021 18:50:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVf2ZQtPpTkh82smeptOUhW2zfOmGzoE=zfWiH9Ccy4ww@mail.gmail.com>
-Message-ID: <CAMuHMdVf2ZQtPpTkh82smeptOUhW2zfOmGzoE=zfWiH9Ccy4ww@mail.gmail.com>
-Subject: Re: [PATCH 01/16] dt-bindings: arm: renesas: Document R-Car S4-8 SoC
- DT bindings
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        Thu, 18 Nov 2021 09:52:29 -0800 (PST)
+Date:   Thu, 18 Nov 2021 09:52:28 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>
+Subject: Re: [PATCH v17 1/7] usb: misc: Add onboard_usb_hub driver
+Message-ID: <YZaS3NpfUqqg4L+v@google.com>
+References: <20211116200739.924401-1-mka@chromium.org>
+ <20211116120642.v17.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <CAD=FV=VnRQzvgjVzTNgx5kaC6VDvFGvTx2njtdTo27LW1zxWJA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=VnRQzvgjVzTNgx5kaC6VDvFGvTx2njtdTo27LW1zxWJA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 8:42 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add device tree bindings documentation for Renesas R-Car S4-8
-> (r8a779f0).
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On Wed, Nov 17, 2021 at 04:11:34PM -0800, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Nov 16, 2021 at 12:07 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > --- a/drivers/usb/misc/Kconfig
+> > +++ b/drivers/usb/misc/Kconfig
+> > @@ -284,3 +284,20 @@ config BRCM_USB_PINMAP
+> >           This option enables support for remapping some USB external
+> >           signals, which are typically on dedicated pins on the chip,
+> >           to any gpio.
+> > +
+> > +config USB_ONBOARD_HUB
+> > +       tristate "Onboard USB hub support"
+> 
+> Aren't you back to shenanigans now that you're being called straight
+> from the USB core? What if you're a module and the USB core is
+> builtin? It can't call you, right? ...or what if you're builtin but
+> the USB core is a module (yeah, I know that sounds insane but I don't
+> think anything technically prevents it)?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.17.
+Indeed, a dependency involving USB host mode is needed, as previously
+with xhci_plat.
 
-Gr{oetje,eeting}s,
+> Can you just add a dependency here such that if the USB core is a
+> module that you're a module and if the USB core is builtin that you're
+> builtin?
 
-                        Geert
+I couldn't find a way to specify that in the config options of the driver
+itself. I fear the dependency has to be specified in CONFIG_USB, like it
+was done previously with USB_XHCI_PLATFORM:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+https://patchwork.kernel.org/project/linux-usb/patch/20210813125146.v16.6.I7a3a7d9d2126c34079b1cab87aa0b2ec3030f9b7@changeid/
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Hope that isn't controversial.
+
+> > +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
+> > +{
+> > +       int i;
+> > +       struct device_node *np, *npc;
+> > +       struct platform_device *pdev;
+> > +       struct pdev_list_entry *pdle;
+> > +
+> > +       INIT_LIST_HEAD(pdev_list);
+> > +
+> > +       for (i = 1; i <= parent_hub->maxchild; i++) {
+> > +               np = usb_of_get_device_node(parent_hub, i);
+> > +               if (!np)
+> > +                       continue;
+> > +
+> > +               if (!of_is_onboard_usb_hub(np))
+> > +                       goto node_put;
+> > +
+> > +               npc = of_parse_phandle(np, "companion-hub", 0);
+> > +               if (!npc)
+> > +                       goto create_pdev;
+> > +
+> > +               pdev = of_find_device_by_node(npc);
+> > +               of_node_put(npc);
+> > +
+> > +               if (pdev) {
+> > +                       /* the companion hub already has a platform device, nothing to do here */
+> > +                       put_device(&pdev->dev);
+> > +                       goto node_put;
+> > +               }
+> > +
+> > +create_pdev:
+> 
+> I don't really like this "goto". I'd rather just use an "if" test for
+> the few lines even if the indentation gets to be a bit much.
+
+Ok, I'll remove the "goto" in the next version.
