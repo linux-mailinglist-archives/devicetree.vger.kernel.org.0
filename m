@@ -2,122 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7CDA4559F4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 12:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A8A04559E6
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 12:14:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343783AbhKRLTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 06:19:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344047AbhKRLRg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 06:17:36 -0500
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E297C079792
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 03:10:36 -0800 (PST)
-Received: by mail-qv1-xf2c.google.com with SMTP id jo22so4254313qvb.13
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 03:10:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:sender:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=ZqAX4YtMqNKdsUhPlAzSCK1RUFbpc0qh6a3l6J60wAI=;
-        b=KFnZioEXm/Dxfoh5RAwhZUlyeFCpEANaipWZvrME2uXe01p2k/w5sSDg45fzFpbqOp
-         qOlr2l1d5zYy3fKu8OM3gSFKk907bjY9gOc6AfR3bQMbvCQHgu1mb+HBsMVEGvgKx1yM
-         bvYSr0kcV++VibJOzYhovAxR+4BvEKyyfNCNUNCJaBrQjo4sKkt/CFw1IKC3uVWW5Xl0
-         ZrwS20/ycWOSpD2o0kdcX1nmx6LeEx7m8II4IFNiJwCjWDY9sPaMFWJOZr3VOX/+3fRX
-         lR1COOj9cOfWTELLooNuiKO1/uMoghtDFmRUOTNcJRSgsXzBu/khbUJ/MHbdXJvalTQX
-         d4bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:sender:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=ZqAX4YtMqNKdsUhPlAzSCK1RUFbpc0qh6a3l6J60wAI=;
-        b=cpfKuvmkZCvUmNZhgUo7Gt5Q/nIKzyspTd5UmO8JgYLg28HKfFYb5BH6RDq5ffN2bt
-         ObgQVvc/82kgpO2u4YP5pEa91SitlPDQ2IwZ+6lOcR5x84KONBuVlTR+zFGJEAt790SD
-         ogeywJUm7Ue07U0EsXgDXp7ZIdpLu8NR/9pVNeNkpkoVk9bvh8crKZ5fT0sz1wNEL6gX
-         g1YDLxsi6oYJJQ5DDRW049A7+iwsdsk8wO1ZFjM0jhFvOU2AN5kLOgdUsxw7qFUsR2G2
-         tZvAanqlEtU032lF+k1DToz0HOJSLBunoqBQv6B2t0U1RrOnqsLNiwzfm7kakOMPWnqc
-         bxnw==
-X-Gm-Message-State: AOAM530Cl4ilvFJWpA+Iqyvb5sOZ0G//szbJMN9vhuGv815WMFzEo8iC
-        3tQh1rnLBVXFiHaEbu8lLPbBstoadm7+Lg4PwoY=
-X-Google-Smtp-Source: ABdhPJyl5O+40GbQ9oVmcEapjmmebsI27CZOVOp7HgTobcmeAFuSKzTFke8dP596pGcR2bSgZHdJPM/sF5jmTineRg4=
-X-Received: by 2002:ad4:5f0d:: with SMTP id fo13mr65677606qvb.10.1637233835197;
- Thu, 18 Nov 2021 03:10:35 -0800 (PST)
+        id S1343905AbhKRLRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 06:17:35 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:36682 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343911AbhKRLPb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 06:15:31 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AIBC6q7056350;
+        Thu, 18 Nov 2021 05:12:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637233926;
+        bh=V7yPbnnma5Hb1kIJnwWQfhUbAlN9gFoVmGDPT0oyMbg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=iuwcjZ8hiinhosA151HPSbb/aUkeGKqWRhYsy0OWVrcdCyIoCsynLvnx/z6OE1rQz
+         WJAL26ydS4aGgVA+kXBf4OLQqfSppTIdkX1uQ28TbB8B2UW10uOG4ml1j/hVT56RnG
+         g+UH4XSCZACYDEU5gOfsavJMoLPetQ7v+mtR55jk=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AIBC5e3034846
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 18 Nov 2021 05:12:06 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 18
+ Nov 2021 05:12:05 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 18 Nov 2021 05:12:05 -0600
+Received: from [10.250.232.124] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AIBC1Zj030631;
+        Thu, 18 Nov 2021 05:12:02 -0600
+Subject: Re: [PATCH RFC 2/2] phy: phy-can-transceiver: Add support for setting
+ mux
+To:     Peter Rosin <peda@axentia.se>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211111164313.649-1-a-govindraju@ti.com>
+ <20211111164313.649-3-a-govindraju@ti.com>
+ <20211112084027.b2t2beqiiodnwjtv@pengutronix.de>
+ <085ec3c0-75c6-f3c2-9999-348098fd88f9@ti.com>
+ <f933048c-099f-054a-6563-671cf2a2e2af@axentia.se>
+ <8be2b770-9c4c-ce41-4c49-27fa30b4afee@ti.com>
+ <b8b0c7c4-3006-071b-d68f-8b18d24a1f72@axentia.se>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <f47dc612-adea-4dfb-f2fd-d67b5df6ed50@ti.com>
+Date:   Thu, 18 Nov 2021 16:42:00 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Reply-To: zebdaniabderazack0@gmail.com
-Sender: mahamabaye14@gmail.com
-Received: by 2002:a0c:c68a:0:0:0:0:0 with HTTP; Thu, 18 Nov 2021 03:10:34
- -0800 (PST)
-From:   Abderazack zebdani <zebdaniabderazack0@gmail.com>
-Date:   Thu, 18 Nov 2021 03:10:34 -0800
-X-Google-Sender-Auth: C2CfD1pe188RfaTXfcz6wsjrdZg
-Message-ID: <CA+mMugKEL-JMqkyXeTJKPOOhUrtJQoYFFsd+oD0rdbxC0+B-tg@mail.gmail.com>
-Subject: Waiting for your reply
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <b8b0c7c4-3006-071b-d68f-8b18d24a1f72@axentia.se>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings.
+Hi Peter,
 
-Please I want you to read this letter very carefully and I must
-apologize for barging this message into your mail =C2=A0box without any
-formal introduction due to the urgency and confidentiality of this
-business. My name is Mr.Abderazack Zebdani, from Burkina Faso, West
-Africa. I =C2=A0work in Bank Of Africa (BOA) as telex manager, please see
-this as a confidential message and do not reveal it to another =C2=A0person
-and let me know whether you can be of assistance regarding my proposal
-below because it is top secret.I am about to retire from active
-Banking service to start a new life but I am skeptical to reveal this
-particular secret to a =C2=A0stranger. You must assure me that everything
-will be handled confidentially because we are not going to suffer
-again in life.=C2=A0 It has been 10 years now that most of the greedy
-African Politicians used our bank to launder money overseas through
-the =C2=A0help of their Political advisers. Most of the funds which they
-transferred out of the shores of Africa were gold and oil money =C2=A0that
-was supposed to have been used to develop the continent. Their
-Political advisers always inflated the amounts before =C2=A0transferring to
-foreign accounts, so I also used the opportunity to divert part of the
-funds hence I am aware that there is no =C2=A0official trace of how much
-was transferred as all the accounts used for such transfers were being
-closed after transfer. I =C2=A0acted as the Bank Officer to most of the
-politicians and when I discovered that they were using me to succeed
-in their =C2=A0greedy act; I also cleaned some of their banking records
-from the Bank files and no one cared to ask me because the =C2=A0money was
-too much for them to control. They laundered over $5billion Dollars
-during the process.
+On 18/11/21 2:54 am, Peter Rosin wrote:
+> Hi!
+> 
+> On 2021-11-15 07:31, Aswath Govindraju wrote:
+>> Hi Peter,
+>>
+>> On 13/11/21 12:45 am, Peter Rosin wrote:
+>>> Hi!
+>>>
+>>> On 2021-11-12 14:48, Aswath Govindraju wrote:
+>>>> Hi Marc,
+>>>>
+>>>> On 12/11/21 2:10 pm, Marc Kleine-Budde wrote:
+>>>>> On 11.11.2021 22:13:12, Aswath Govindraju wrote:
+>>>>>> On some boards, for routing CAN signals from controller to transceiver,
+>>>>>> muxes might need to be set. Therefore, add support for setting the mux by
+>>>>>> reading the mux-controls property from the device tree node.
+>>>>>>
+>>>>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>>>>>> ---
+>>>>>>  drivers/phy/phy-can-transceiver.c | 21 +++++++++++++++++++++
+>>>>>>  1 file changed, 21 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
+>>>>>> index 6f3fe37dee0e..3d8da5226e27 100644
+>>>>>> --- a/drivers/phy/phy-can-transceiver.c
+>>>>>> +++ b/drivers/phy/phy-can-transceiver.c
+>>>>>> @@ -10,6 +10,7 @@
+>>>>>>  #include<linux/module.h>
+>>>>>>  #include<linux/gpio.h>
+>>>>>>  #include<linux/gpio/consumer.h>
+>>>>>> +#include <linux/mux/consumer.h>
+>>>>>>  
+>>>>>>  struct can_transceiver_data {
+>>>>>>  	u32 flags;
+>>>>>> @@ -21,13 +22,22 @@ struct can_transceiver_phy {
+>>>>>>  	struct phy *generic_phy;
+>>>>>>  	struct gpio_desc *standby_gpio;
+>>>>>>  	struct gpio_desc *enable_gpio;
+>>>>>> +	struct mux_control *mux_ctrl;
+>>>>>>  };
+>>>>>>  
+>>>>>>  /* Power on function */
+>>>>>>  static int can_transceiver_phy_power_on(struct phy *phy)
+>>>>>>  {
+>>>>>> +	int ret;
+>>>>>>  	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
+>>>>>>  
+>>>>>> +	if (can_transceiver_phy->mux_ctrl) {
+>>>>>> +		ret = mux_control_select(can_transceiver_phy->mux_ctrl, 1);
+>>>>>
+>>>>> Hard coding the "1" looks wrong here. I have seen some boards where you
+>>>>> can select between a CAN-2.0 and a single wire CAN transceiver with a
+>>>>> mux. So I think we cannot hard code the "1" here.
+>>>>>
+>>>>
+>>>> Yes, as you mentioned it is not ideal to hard code "1". I feel that, it
+>>>> would be much better to read the state of the mux to be set from the
+>>>> mux-controls property. The issue that I see with this approach is that
+>>>> the current implementation in the mux framework only allows for one
+>>>> argument, which is for indicating the line to be toggled in the mux. If
+>>>> more arguments are added then an error is returned from the
+>>>> "mux_control_get". I am not sure why this limitation was added.
+>>>
+>>> The only current use of the first argument is for mux chips that contain
+>>> more than one mux control. The limit in the mux core is there since no
+>>> mux driver need more than this one argument. The number of mux-control
+>>> property arguments is fixed by the #mux-control-cells property in the
+>>> mux-control node. I don't see any way to and a new optional mux-control
+>>> property argument that specifies a specific state. How would that not
+>>> break all existing users?
+>>>
+>>
+>> My idea was to use the second argument for reading the state of mux to
+>> be set after increasing the #mux-control-cells value to 2. I don't think
+>> this will break the existing mux controller users as the second argument
+>> was not used till now, would be equivalent to adding an additional feature.
+> 
+> Ok, I see what you mean now, sorry for being dense. If we allow this then
+> there is a need to add a special value that means all/many states (such as
+> -1 or something such) so that a mux-control can be used simultaneously by
+> drivers "pointing at" a specific state like you want to do, and by the
+> existing "application" style drivers that wraps the whole mux control.
+> 
+> I.e. something like this
+> 
+> 	mux: mux {
+> 		compatible = "mux-gpio";
+> 		...
+> 
+> 		#mux-control-cells = <1>; /* one more than previously */
+> 	};
+> 
+> 	phy {
+> 		...
+> 
+> 		mux-control = <&mux 3>; /* point to specific state */
+> 	};
+> 
+> 	i2c-mux {
+> 		compatible = "i2c-mux-gpmux";
+> 		parent = <&i2c0>
+> 		mux-control = <&mux (-1)>; /* many states needed */
+> 
+> 		...
+> 
+> 		i2c@1 {
+> 			eeprom@50 {
+> 				...
+> 			};
+> 		};
+> 
+> 		i2c@2 {
+> 			...
+> 		};
+> 	};
+> 
+> Yes, I realize that accesses to the eeprom cannot happen if the mux is
+> constantly selected and locked in state 3 by the phy, and that a mux with
+> one channel being a phy and other channels being I2C might not be
+> realistic, but the same gpio lines might control several muxes that are
+> used for separate signals solving at least the latter "problem" with this
+> completely made up example. Anyway, the above is in principle, and HW
+> designs are sometimes too weird for words.
+> 
 
-Before I send this message to you, I have already diverted
-($10.5million Dollars) to an escrow account belonging to no one =C2=A0in
-the bank. The bank is anxious now to know who the beneficiary to the
-funds because they have made a lot of profits with =C2=A0the funds. It is
-more than Eight years now and most of the politicians are no longer
-using our bank to transfer funds =C2=A0overseas. The ($10.5million Dollars)
-has been laying waste in our bank and I don=E2=80=99t want to retire from t=
-he
-bank without =C2=A0transferring the funds to a foreign account to enable me
-share the proceeds with the receiver (a foreigner). The money will =C2=A0be
-shared 60% for me and 40% for you. There is no one coming to ask you
-about the funds because I secured everything. I only want you to
-assist me by providing a reliable bank account where the funds can be
-transferred.
+This is almost exactly what I was intending to implement except for one
+more change. The state of the mux will always be represented using the
+second argument(i.e. #mux-control-cells = <2>).
 
-You are not to face any difficulties or legal implications. If you are
-capable of =C2=A0receiving the funds, do let me know to enable me give you
-a detailed information on what to do. For me, I have =C2=A0not stolen the
-money from anyone because the other people that took the whole money
-did not face any problems. This is =C2=A0 my chance to grab my own life
-opportunity but you must keep the details of the funds secret to avoid
-any leakages as no =C2=A0one in the bank knows about my plans.Please get
-back to me if you are interested and capable to handle this project, I
-am =C2=A0looking forward to hear from you immediately for further
-information.
- KINDLY REPLY TO THIS EMAIL (abderazackzebdani7@gmail.com)
-Thanks with my best regards.
-Mr.Abderazack Zebdani.
+For example,
+mux-controls = <&mux 0 1>, <&mux 1 0>;
 
-Telex Manager
-Bank Of Africa (BOA)
-Burkina Faso.
+
+With this I think we wouldn't need a special value for all or many states.
+
+>> One more question that I had is, if the number of arguments match the
+>> #mux-control-cells and if the number of arguments are greater than 1 why
+>> is an error being returned?
+> 
+> Changing that would require a bindings update anyway, so I simply
+> disallowed it as an error. Not much thought went into the decision,
+> as it couldn't be wrong to do what is being done with the bindings
+> that exist. That said, I have no problem lifting this restriction,
+> if there's a matching bindings update that makes it all fit.
+> 
+
+Sure, I think making a change in
+
+Documentation/devicetree/bindings/mux/gpio-mux.yaml, should be good
+enough I assume.
+
+
+Thank you for the comments. I'll post a respin of this series, with the
+above changes.
+
+Thanks,
+Aswath
+
+>>> The current mux interface is designed around the idea that you wrap a
+>>> mux control in a mux (lacking better name) application. There are
+>>> several such mux applications in the tree, those for I2C, IIO and SPI
+>>> pops into my head, and that you then tie the end user consumer to this
+>>> muxing application. The mux state comes as a part of how you have tied
+>>> the end user consumer to the mux application and is not really something
+>>> that the mux-control is involved in.
+>>>
+>>> In other words, a mux-control is not really designed to be used directly
+>>> by a driver that needs only one of the states.
+>>>
+>>> However, I'm not saying that doing so isn't also a useful model. It
+>>> cetainly sound like it could be. However, the reason it's not done that
+>>> way is that I did not want to add muxing code to *all* drivers. I.e. it
+>>> would not be flexible to have to add boilerplate mux code to each and
+>>> every IIO driver that happen to be connected in a way that a mux has to
+>>> be in a certain state for the signal to reach the ADC (or whatever).
+>>> Instead, new IIO channels are created for the appropriate mux states
+>>> and the IIO mux is connected to the parent IIO channel. When one of the
+>>> muxed channels is accessed the mux is selected as needed, and the ADC
+>>> driver needs to know nothing about it. If two muxes need to be in a
+>>> certain position, you again have no need to "pollute" drivers with
+>>> double builerplate mux code. Instead, you simply add two levels of
+>>> muxing to the muxed IIO channel.
+>>>
+>>> I think the same is probably true in this case too, and that it would
+>>> perhaps be better to create a mux application for phys? But I don't know
+>>> what the phy structure looks like, so I'm not in a position to say for
+>>> sure if this model fits. But I imagine that phys have providers and
+>>> consumers and that a mux can be jammed in there in some way and
+>>> intercept some api such that the needed mux state can be selected when
+>>> needed.
+>>>
+>>
+>> Yes, I understand that reading the state of the mux in drivers would not
+>> be efficient as it would adding the boiler plate code in each of the
+>> drivers. However, for phys as each of them can be used for a different
+>> interface, I am not sure if a common mux phy wrapper can be introduced.
+>> This is reason why I felt that drivers should be allowed to read the
+>> state of the mux directly, when no mux wrapper application is suitable
+>> for it.
+> 
+> It need not be one grand unifying phy mux, it could be one for each
+> kind of phy interface. But again, I don't know much about how phys
+> work nor their interfaces, not event roughly how many drivers there
+> are etc etc. I have simply never needed to look.
+> 
+> Hmm, wild idea, maybe there could be a mux "application" for pinctrl?
+> I mean such that you could tie pinctrl states to mux states. It doesn't
+> sound like too bad of a match to me?
+> 
+> Cheers,
+> Peter
+> 
+
