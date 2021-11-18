@@ -2,336 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB59455C96
+	by mail.lfdr.de (Postfix) with ESMTP id D66B7455C98
 	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:22:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbhKRNZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:25:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56040 "EHLO
+        id S230411AbhKRNZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:25:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbhKRNZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:25:19 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2111FC061767;
-        Thu, 18 Nov 2021 05:22:19 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id c32so26014986lfv.4;
-        Thu, 18 Nov 2021 05:22:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ULF68UwhVDlRTvRbeXuUFDMpZQ8miFxqyGy0nvwt3uk=;
-        b=pGo1wzg0o2Q8EeSlsXb/UhoMwD2LzHiKdnm68v0zPZs3YW98qOdHxiEmBM40i+ORjP
-         s1oDysRZIqf3oucuL7AI0b2/oz6ayhrSUZkmYhZpDQEybzfzHyosNhfKn7f57xZ/T/ri
-         2i8Fa+ZFz/zwxJQEkevTM46eNqVDUOgfzKYy0yX/09v3u8rP5nhLTUdGh3Yfs2tSZv7q
-         wZVyHSMPKSyJ42OH5kga6Vk016etBoO9QIsr+g3nmfXWtIaCq4vmpRZp5CHQ/6frxBUM
-         KTBGFHh6iPUJoINT7O+WqDGD6lCDL+APf/O1k6Rrn8Oq3k1/IUlTgdY47MeWzPb/TIJB
-         iCYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ULF68UwhVDlRTvRbeXuUFDMpZQ8miFxqyGy0nvwt3uk=;
-        b=XOy8Y7VdDTx4gvFmSakKkgLEWhDzI9XtFx0WDwPqsOTnumLjuiFb4dCOtlO6ig64V3
-         aKutEc17KvPmVKTE1YdDeqJsKXRSbngFuZBJuFphiCiEtXLMjM+b8KYbz4B5ltD/J++7
-         sX7hNGgrjuHVUWKCocgrMzy5v+AHu3ffsXAJq0awQui0I6/9Rf98cvs0BlbleAoJau9e
-         QtVDl4f3YdNxYyo/RX2FuEV+qIkaS/A6sHcnmwqWenCyBH2GeLpA6gV7P+PZj/PhLHvL
-         p74XTXxZT5shUJDm+hg+TaL0+4aVYUKzPDQBcsfOxduVyBN8aZAnYJeCrRx9jF6vTthj
-         FIEw==
-X-Gm-Message-State: AOAM532VfkrK+YrGqNc8slIHberN1ZvFmUd2WeIJsHK09EAf78Y4MWKF
-        iosidDTFzqlpILUEBhU1Ep4=
-X-Google-Smtp-Source: ABdhPJwHCfXME+dCe7HSwWboePM3jMjp/q/TB3ludt+Evadz5tV+XX3KLaFub0RTmqqDLK0TBApfPA==
-X-Received: by 2002:a2e:9641:: with SMTP id z1mr18419557ljh.66.1637241737452;
-        Thu, 18 Nov 2021 05:22:17 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id bp36sm356550lfb.0.2021.11.18.05.22.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 05:22:17 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Tony Lindgren <tony@atomide.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 5/5] ARM: dts: BCM5301X: add pinctrl pins, groups & functions
-Date:   Thu, 18 Nov 2021 14:21:52 +0100
-Message-Id: <20211118132152.15722-6-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211118132152.15722-1-zajec5@gmail.com>
-References: <20211118132152.15722-1-zajec5@gmail.com>
+        with ESMTP id S230357AbhKRNZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:25:23 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 651B1C061570;
+        Thu, 18 Nov 2021 05:22:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=P6fgBQxcPE/vbwzAayGW8ixGK4Inob6EQIzVZCrQsJQ=; b=fEM5f5Ha4WFP2EEwSLweJcGLGI
+        ddS4rk5cB9+QGDj3qoHLk/mByzIgCmJR7wymOzNyY5d8lB+Vw4jgXDtXpAiB3JZN4vk8oG6IctW+1
+        LqCB0rWArpzNBPR/BRokpeXkPHSBtix+OlcOD/gP0haG1ahGC9m9MYmpe0LxN86m98fJGeSVnTt/d
+        rSn3dEofdq7LMqN2FKNGmFgjxE+6p/MJwjWyqJBgomm/JMb1SZzL3AUaQOyJCG5VE+QrkblEThYHa
+        V0nt/n1mKVMHU3EM6x5iI2Zodvd9ACA/+I2xFL0lEQrcz9AEWP/5sq0HZEAjWURO480kjn5jPuUA7
+        iOxhs7qw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55716)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mnhMp-0002xN-JW; Thu, 18 Nov 2021 13:22:19 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mnhMo-0003xE-2v; Thu, 18 Nov 2021 13:22:18 +0000
+Date:   Thu, 18 Nov 2021 13:22:18 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 8/8] net: phy: marvell10g: select host interface
+ configuration
+Message-ID: <YZZTinTgX3SPWIZM@shell.armlinux.org.uk>
+References: <20211117225050.18395-1-kabel@kernel.org>
+ <20211117225050.18395-9-kabel@kernel.org>
+ <20211118120334.jjujutp5cnjgwjq2@skbuf>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211118120334.jjujutp5cnjgwjq2@skbuf>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, Nov 18, 2021 at 02:03:34PM +0200, Vladimir Oltean wrote:
+> On Wed, Nov 17, 2021 at 11:50:50PM +0100, Marek Beh�n wrote:
+> > +static int mv3310_select_mactype(unsigned long *interfaces)
+> > +{
+> > +	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
+> > +		return MV_V2_33X0_PORT_CTRL_MACTYPE_USXGMII;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
+> > +		 test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
+> > +		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
+> > +		 test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
+> > +		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
+> > +		 test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
+> > +		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
+> > +		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
+> > +		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI_RATE_MATCH;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
+> > +		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI_RATE_MATCH;
+> > +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces))
+> > +		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
+> > +	else
+> > +		return -1;
+> > +}
+> > +
+> 
+> I would like to understand this heuristic better. Both its purpose and
+> its implementation.
+> 
+> It says:
+> (a) If the intersection between interface modes supported by the MAC and
+>     the PHY contains USXGMII, then use USXGMII as a MACTYPE
+> (b) Otherwise, if the intersection contains both 10GBaseR and SGMII, then
+>     use 10GBaseR as MACTYPE
+> (...)
+> (c) Otherwise, if the intersection contains just 10GBaseR (no SGMII), then
+>     use 10GBaseR with rate matching as MACTYPE
+> (...)
+> (d) Otherwise, if the intersection contains just SGMII (no 10GBaseR), then
+>     use 10GBaseR as MACTYPE (no rate matching).
 
-They can now be described in DT so do that.
+What is likely confusing you is a misinterpretation of the constant.
+MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER actually means the PHY will
+choose between 10GBASE-R, 5GBASE-R, 2500BASE-X, and SGMII depending
+on the speed negotiated by the media. In this setting, the PHY
+dictates which interface mode will be used.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/bcm4709.dtsi  |  74 +++++++++++++++++++
- arch/arm/boot/dts/bcm47094.dtsi |  11 +--
- arch/arm/boot/dts/bcm5301x.dtsi | 123 ++++++++++++++++++++++++++++++++
- 3 files changed, 198 insertions(+), 10 deletions(-)
+I could have named "MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER" as
+"MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_5GBASER_2500BASEX_SGMII_AUTONEG_ON".
+Similar with "MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_NO_SGMII_AN", which
+would be
+"MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_5GBASER_2500BASEX_SGMII_AUTONEG_OFF".
+And "MV_V2_3310_PORT_CTRL_MACTYPE_XAUI" would be
+"MV_V2_3310_PORT_CTRL_MACTYPE_XAUI_5GBASER_2500BASEX_SGMII_AUTONEG_ON".
 
-diff --git a/arch/arm/boot/dts/bcm4709.dtsi b/arch/arm/boot/dts/bcm4709.dtsi
-index cba3d910bed8..ba4700a85772 100644
---- a/arch/arm/boot/dts/bcm4709.dtsi
-+++ b/arch/arm/boot/dts/bcm4709.dtsi
-@@ -10,6 +10,80 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&pinctrl {
-+	compatible = "brcm,bcm4709-pinmux";
-+
-+	pins {
-+		reg@6 {
-+			reg = <6>;
-+			label = "mdc";
-+		};
-+
-+		reg@7 {
-+			reg = <7>;
-+			label = "mdio";
-+		};
-+
-+		reg@10 {
-+			reg = <16>;
-+			label = "uart2_rx";
-+		};
-+
-+		reg@11 {
-+			reg = <17>;
-+			label = "uart2_tx";
-+		};
-+
-+		/* TODO
-+		 * reg@ {
-+		 *	label = "xtal_out";
-+		 * };
-+		 */
-+
-+		reg@16 {
-+			reg = <22>;
-+			label = "sdio_pwr";
-+		};
-+
-+		reg@17 {
-+			reg = <23>;
-+			label = "sdio_en_1p8v";
-+		};
-+	};
-+
-+	groups {
-+		mdio_grp: mdio_grp {
-+			pins = <6 7>;
-+		};
-+
-+		uart2_grp: uart2_grp {
-+			pins = <16 17>;
-+		};
-+
-+		sdio_pwr_grp: sdio_pwr_grp {
-+			pins = <22>;
-+		};
-+
-+		sdio_1p8v_grp: sdio_1p8v_grp {
-+			pins = <23>;
-+		};
-+	};
-+
-+	functions {
-+		mdio {
-+			groups = <&mdio_grp>;
-+		};
-+
-+		uart2 {
-+			groups = <&uart2_grp>;
-+		};
-+
-+		sdio {
-+			groups = <&sdio_pwr_grp &sdio_1p8v_grp>;
-+		};
-+	};
-+};
-+
- &srab {
- 	compatible = "brcm,bcm53012-srab", "brcm,bcm5301x-srab";
- };
-diff --git a/arch/arm/boot/dts/bcm47094.dtsi b/arch/arm/boot/dts/bcm47094.dtsi
-index 6282363313e1..239c1c1b0268 100644
---- a/arch/arm/boot/dts/bcm47094.dtsi
-+++ b/arch/arm/boot/dts/bcm47094.dtsi
-@@ -3,14 +3,12 @@
-  * Copyright (C) 2016 Rafał Miłecki <rafal@milecki.pl>
-  */
- 
--#include "bcm4708.dtsi"
-+#include "bcm4709.dtsi"
- 
- / {
- };
- 
- &pinctrl {
--	compatible = "brcm,bcm4709-pinmux";
--
- 	pinmux_mdio: mdio-pins {
- 		groups = "mdio_grp";
- 		function = "mdio";
-@@ -21,11 +19,4 @@ &usb3_phy {
- 	compatible = "brcm,ns-bx-usb3-phy";
- };
- 
--&uart0 {
--	clock-frequency = <125000000>;
--	status = "okay";
--};
- 
--&srab {
--	compatible = "brcm,bcm53012-srab", "brcm,bcm5301x-srab";
--};
-diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
-index d4f355015e3c..31c6a3dbba30 100644
---- a/arch/arm/boot/dts/bcm5301x.dtsi
-+++ b/arch/arm/boot/dts/bcm5301x.dtsi
-@@ -473,6 +473,129 @@ pinmux_uart1: uart1-pins {
- 					groups = "uart1_grp";
- 					function = "uart1";
- 				};
-+
-+				pins {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					pin@0 {
-+						reg = <0>;
-+						label = "spi_clk";
-+					};
-+
-+					pin@1 {
-+						reg = <1>;
-+						label = "spi_ss";
-+					};
-+
-+					pin@2 {
-+						reg = <2>;
-+						label = "spi_mosi";
-+					};
-+
-+					pin@3 {
-+						reg = <3>;
-+						label = "spi_miso";
-+					};
-+
-+					pin@4 {
-+						reg = <4>;
-+						label = "i2c_scl";
-+					};
-+
-+					pin@5 {
-+						reg = <5>;
-+						label = "i2c_sda";
-+					};
-+
-+					pin@8 {
-+						reg = <8>;
-+						label = "pwm0";
-+					};
-+
-+					pin@9 {
-+						reg = <9>;
-+						label = "pwm1";
-+					};
-+
-+					pin@a {
-+						reg = <10>;
-+						label = "pwm2";
-+					};
-+
-+					pin@b {
-+						reg = <11>;
-+						label = "pwm3";
-+					};
-+
-+					pin@c {
-+						reg = <12>;
-+						label = "uart1_rx";
-+					};
-+
-+					pin@d {
-+						reg = <13>;
-+						label = "uart1_tx";
-+					};
-+
-+					pin@e {
-+						reg = <14>;
-+						label = "uart1_cts";
-+					};
-+
-+					pin@f {
-+						reg = <15>;
-+						label = "uart1_rts";
-+					};
-+				};
-+
-+				groups {
-+					spi_grp: spi_grp {
-+						pins = <0 1 2 3>;
-+					};
-+
-+					i2c_grp: i2c_grp {
-+						pins = <4 5>;
-+					};
-+
-+					pwm0_grp: pwm0_grp {
-+						pins = <8>;
-+					};
-+
-+					pwm1_grp: pwm1_grp {
-+						pins = <9>;
-+					};
-+
-+					pwm2_grp: pwm2_grp {
-+						pins = <10>;
-+					};
-+
-+					pwm3_grp: pwm3_grp {
-+						pins = <11>;
-+					};
-+
-+					uart1_grp: uart1_grp {
-+						pins = <12 13 14 15>;
-+					};
-+				};
-+
-+				functions {
-+					spi {
-+						groups = <&spi_grp>;
-+					};
-+
-+					i2c {
-+						groups = <&i2c_grp>;
-+					};
-+
-+					pwm {
-+						groups = <&pwm0_grp &pwm1_grp &pwm2_grp &pwm3_grp>;
-+					};
-+
-+					uart1 {
-+						groups = <&uart1_grp>;
-+					};
-+				};
- 			};
- 
- 			thermal: thermal@2c0 {
+Clearly using such long identifiers would have been rediculous,
+especially the second one at 74 characters.
+
+> First of all, what is MACTYPE exactly? And what is the purpose of
+> changing it? What would happen if this configuration remained fixed, as
+> it were?
+
+The PHY defines the MAC interface mode depending on the MACTYPE
+setting selected and the results of the media side negotiation.
+
+I think the above answers your remaining questions.
+
 -- 
-2.31.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
