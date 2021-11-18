@@ -2,81 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4410245657A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:10:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F461456576
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230357AbhKRWNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 17:13:00 -0500
-Received: from mail-oi1-f176.google.com ([209.85.167.176]:34723 "EHLO
-        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232131AbhKRWM7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:12:59 -0500
-Received: by mail-oi1-f176.google.com with SMTP id t19so17519632oij.1;
-        Thu, 18 Nov 2021 14:09:59 -0800 (PST)
+        id S231911AbhKRWM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 17:12:59 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:38807 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232161AbhKRWM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:12:56 -0500
+Received: by mail-ot1-f49.google.com with SMTP id z2-20020a9d71c2000000b0055c6a7d08b8so13506990otj.5;
+        Thu, 18 Nov 2021 14:09:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=SxT3ONyYpreQT8IIX7A9/ZVCO+SDcq2roFW7IXDibpk=;
-        b=v3AUGyKdr74vUg9j5pfWS6HrO29ZOusHbR85Hd5hIcbeHUFVM+mtEHX8n60xSzV4ri
-         XTKLO2CnZEJqZ1AmAtpwMm8b7puKjgM7g2EefRl5Q54iOCGcbBp2zDN6m4lkabJCIm6X
-         7wbSlw1EAgDwSiv6CdfiDVr7vYKMW3SzG5Mtc/XVQnZjw7Zsbrhoc8taL2o/zvYOGpCs
-         bnS3/fkJxiB25fc8KrR4zSsqNq/NEWmdMrLOPb2uGPWSsY+wJp5M+Q4Mrjhj4cIZWBy1
-         7+NFvcRqUxAlqnL6JX/owjajW9wJ5l5WDbP1bz+40QuEqJ7MdDnYFhIQZ6Ak5m6FDTrI
-         tPag==
-X-Gm-Message-State: AOAM532pO+1pA87PuWn3UrggZdB1BU5HhvpcBi+vcN5uiCbE8x9iCyde
-        3W2A/qbreZaTXR7IqiaU0w==
-X-Google-Smtp-Source: ABdhPJxKX57lY7gdG8nv72GlU2sQpc01A5HqVPlgDbAwNE8DUI6yluL2hSqlZWAk4zl2RwzpC7Nodw==
-X-Received: by 2002:a05:6808:1285:: with SMTP id a5mr349219oiw.104.1637273398695;
-        Thu, 18 Nov 2021 14:09:58 -0800 (PST)
+        bh=PoptMI3B81A8R96xYHYdkAlGrDKa99jlgABV4FHfLeQ=;
+        b=aL43Arjko0ir9Av6NARZneQkKS98W70hm1KukAb638X5QmewwkGiQ0JBuJgmufwMKb
+         Nb6KfL/VnqTAw83kPQF/wVV1FgpUThs37VTGfZoQ6qtap96rQE07ci/tTTUB0eeAXSXf
+         qiEHiQsPtZlpaceMGumjHAQ+XXBxJn260RlpFVzg3FKMuyTLUkBBofg4YpdVSOdDPz+g
+         JzTEzB5stNFPujZGfpC5E9MZ43ndElwXfahttcMwcoEefYhai5LMkJyqH+4DK9TtyGvP
+         OOQAm1tJd6+Nua3N5AuRw9W7AWonfCVjfx609kIsryVP2kNQJHuvUozYUg6OtIyPTAhZ
+         J2gQ==
+X-Gm-Message-State: AOAM533gveA8IaVCnifLbBxkPc9gVQ2mMinUdeVICN8BW28TlhnNPSQQ
+        2geezla7BwSoyBom9N41xg==
+X-Google-Smtp-Source: ABdhPJzS2MhDtYAnKO+WWlnoZwjb3nJiGTBN1bzPMIxk0TXyax3CW/zo0Chgj3GmmOzEas4Q79PK0Q==
+X-Received: by 2002:a9d:7f91:: with SMTP id t17mr456686otp.197.1637273395638;
+        Thu, 18 Nov 2021 14:09:55 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k14sm260842oil.38.2021.11.18.14.09.57
+        by smtp.gmail.com with ESMTPSA id r5sm256835oiw.20.2021.11.18.14.09.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 14:09:58 -0800 (PST)
-Received: (nullmailer pid 1841668 invoked by uid 1000);
+        Thu, 18 Nov 2021 14:09:55 -0800 (PST)
+Received: (nullmailer pid 1841663 invoked by uid 1000);
         Thu, 18 Nov 2021 22:09:54 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Lizhi Hou <lizhi.hou@xilinx.com>
-Cc:     linux-fpga@vger.kernel.org, yliu@xilinx.com, dwmw2@infradead.org,
-        devicetree@vger.kernel.org, stefanos@xilinx.com,
-        sonal.santan@xilinx.com, michal.simek@xilinx.com, mdf@kernel.org,
-        linux-kernel@vger.kernel.org, Max Zhen <max.zhen@xilinx.com>,
-        trix@redhat.com, maxz@xilinx.com
-In-Reply-To: <20211118210323.1070283-3-lizhi.hou@xilinx.com>
-References: <20211118210323.1070283-1-lizhi.hou@xilinx.com> <20211118210323.1070283-3-lizhi.hou@xilinx.com>
-Subject: Re: [PATCH V1 XRT Alveo Infrastructure 2/9] Documentation: devicetree: bindings: add xrt group binding
+To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20211118132152.15722-3-zajec5@gmail.com>
+References: <20211118132152.15722-1-zajec5@gmail.com> <20211118132152.15722-3-zajec5@gmail.com>
+Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: brcm,ns-pinmux: extend example
 Date:   Thu, 18 Nov 2021 16:09:54 -0600
-Message-Id: <1637273394.274455.1841667.nullmailer@robh.at.kernel.org>
+Message-Id: <1637273394.255655.1841662.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Nov 2021 13:03:16 -0800, Lizhi Hou wrote:
-> Create device tree binding document for xrt group device.
+On Thu, 18 Nov 2021 14:21:49 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> pinctrl bindings allow specifying pins, groups & functions now. Put some
+> entries in binding example to help writing DTS files.
+> 
+> Specify pins, groups & functions in the example.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  .../bindings/xrt/xlnx,xrt-group.yaml          | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/xrt/xlnx,xrt-group.yaml
+>  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 29 ++++++++++++++++++-
+>  1 file changed, 28 insertions(+), 1 deletion(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/xrt/xlnx,xrt-group.yaml:22:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
-./Documentation/devicetree/bindings/xrt/xlnx,xrt-group.yaml:25:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/xrt/xlnx,xrt-group.example.dt.yaml:0:0: /example-0/xrt-bus/xrt-group@48,0/ep_fpga_configuration_00@0,0,1e88000: failed to match any schema with compatible: ['xilinx.com,reg_abs-axi_hwicap-1.0', 'axi_hwicap']
-Documentation/devicetree/bindings/xrt/xlnx,xrt-group.example.dt.yaml:0:0: /example-0/xrt-bus/xrt-group@48,0/ep_fpga_configuration_00@0,0,1e88000: failed to match any schema with compatible: ['xilinx.com,reg_abs-axi_hwicap-1.0', 'axi_hwicap']
+schemas/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml: 'additionalProperties' is a required property
+	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
+Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml:0:0: /example-0/pin-controller@1800c1c0: failed to match any schema with compatible: ['brcm,bcm4708-pinmux']
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml'
+schemas/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-validate", line 170, in <module>
+    sg.check_trees(filename, testtree)
+  File "/usr/local/bin/dt-validate", line 119, in check_trees
+    self.check_subtree(dt, subtree, False, "/", "/", filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 110, in check_subtree
+    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
+  File "/usr/local/bin/dt-validate", line 105, in check_subtree
+    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
+  File "/usr/local/bin/dt-validate", line 49, in check_node
+    errors = sorted(dtschema.DTValidator(schema).iter_errors(node), key=lambda e: e.linecol)
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 224, in iter_errors
+    for error in errors:
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 25, in patternProperties
+    yield from validator.descend(
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 240, in descend
+    for error in self.evolve(schema=schema).iter_errors(instance):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 224, in iter_errors
+    for error in errors:
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 298, in ref
+    yield from validator.descend(instance, resolved)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 240, in descend
+    for error in self.evolve(schema=schema).iter_errors(instance):
+  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
+    for error in super().iter_errors(instance, _schema):
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 214, in iter_errors
+    scope = id_of(_schema)
+  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 90, in _id_of
+    return schema.get("$id", "")
+AttributeError: 'NoneType' object has no attribute 'get'
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1556809
+See https://patchwork.ozlabs.org/patch/1556628
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
