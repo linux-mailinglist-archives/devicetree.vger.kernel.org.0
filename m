@@ -2,87 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30880455CB3
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:31:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B007455CD9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:38:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbhKRNeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:34:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58138 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230249AbhKRNeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:34:19 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4849FC061570;
-        Thu, 18 Nov 2021 05:31:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=U3N4YPILgQ/uPDE2BJ2/bMrkZykcR8BBN2K9CD7VYQ4=; b=XY4RacNN3IB6ryNs35EvUNthL4
-        qgYK9YeTteUIvrt6Ps4BUHoCtudpD4jjidMLXvKWnFbK2AgoUzE54LqRKyb84RpR0wa3PWjt5FIsD
-        4DBAFTU1zvtb9Qv1pU6pyEWvHjRhLzIkE/vibzPgGUnJTQcjQQFrNcL/Fz4yADNJkutgHoO8hc9Yk
-        w8KR/lN1lU6u8DFIErDJz2cODWWzstZagogy3GnHId9PDgrGn8IW0d0uXq9ZWJcXfz/wGZB/wO0vc
-        qWacPp19+cH7Hjke9jv0VS5WNNkVVnyk7rEQkKpQGpWMfmgymuo7b+P4uXGvlg4ylaWykY8FxSlVo
-        CLm3Iy/g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55718)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mnhVR-0002yL-2O; Thu, 18 Nov 2021 13:31:13 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mnhVP-0003xW-W1; Thu, 18 Nov 2021 13:31:12 +0000
-Date:   Thu, 18 Nov 2021 13:31:11 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Sean Anderson <sean.anderson@seco.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        p.zabel@pengutronix.de, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 3/5] net: lan966x: add port module support
-Message-ID: <YZZVn6jve4BvSqyX@shell.armlinux.org.uk>
-References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
- <20211117091858.1971414-4-horatiu.vultur@microchip.com>
- <YZTRUfvPPu5qf7mE@shell.armlinux.org.uk>
- <20211118095703.owsb2nen5hb5vjz2@soft-dev3-1.localhost>
- <YZYj9fwCeWdIZJOt@shell.armlinux.org.uk>
- <20211118125928.tav7k5xlbnhrgp3o@soft-dev3-1.localhost>
+        id S231360AbhKRNl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:41:28 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33496 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230501AbhKRNl1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 08:41:27 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 90673617E5;
+        Thu, 18 Nov 2021 13:38:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637242707;
+        bh=hLl7IjdRvqKdkE+mSKKqxPbm1kSkIRvdG0UJzw4TKwA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jePfkbfF3EH7tLYMgp9uodBG445aeIc+BhDplVOr3iHfnGjN8+TgWg3FCiJ/SwRZH
+         nsvn1DjOtfOoCm2WsufUZ7oxQ2YX/nqZXJ1c1IfVbMflOtEebjjAWcyv9kZjmzuJhi
+         lLofh00MJGlYKM6YGmGfoKYOnNpOuoeqtC9xAdYdPcH4mIIIEFR4bK+MunSuHmplEH
+         MAQxMEbKQ0sHaKmSppYnVx7pMptZFE6+LHL7pCKe4DDVXWk4Y5yGb4sAHLVShZJG9i
+         hytUzKK4mHJDWpNWB5j5XoGsAfMDm/fQwOqxEL5xvAFlorJeidUsrTuQ3NtYnbtnoL
+         u0cA9HdFALpJA==
+Date:   Thu, 18 Nov 2021 13:38:22 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Lh Kuo =?utf-8?B?6YOt5Yqb6LGq?= <lh.Kuo@sunplus.com>
+Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>,
+        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
+        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: Re: [PATCH v2 1/2] SPI: Add SPI driver for Sunplus SP7021
+Message-ID: <YZZXTokMn6+p7C3H@sirena.org.uk>
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+ <1636448488-14158-1-git-send-email-lh.kuo@sunplus.com>
+ <1636448488-14158-2-git-send-email-lh.kuo@sunplus.com>
+ <YYqMLPB6VX9k5LUK@sirena.org.uk>
+ <f98b5548cf564093af1d10ba1239507d@sphcmbx02.sunplus.com.tw>
+ <YYvx4LtKiSPBIgCN@sirena.org.uk>
+ <70a9c10ef34e46c2a51f134829abdd08@sphcmbx02.sunplus.com.tw>
+ <YY0dk26NqoOi2QEH@sirena.org.uk>
+ <083dc70e20964ec8b74f71f6817be55e@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tplQcX+QKV56luWj"
 Content-Disposition: inline
-In-Reply-To: <20211118125928.tav7k5xlbnhrgp3o@soft-dev3-1.localhost>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <083dc70e20964ec8b74f71f6817be55e@sphcmbx02.sunplus.com.tw>
+X-Cookie: People respond to people who respond.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 01:59:28PM +0100, Horatiu Vultur wrote:
-> The 11/18/2021 09:59, Russell King (Oracle) wrote:
-> > Another approach would be to split phylink_mii_c22_pcs_decode_state()
-> > so that the appropriate decode function is selected depending on the
-> > interface state, which may be a better idea.
-> 
-> I have tried to look for phylink_mii_c22_pcs_decode_state() and I
-> have found it only here [1], and seems that it depends on [2]. But not
-> much activity happened to these series since October.
-> Do you think they will still get in?
 
-I don't see any reason the first two patches should not be sent. I'm
-carrying the second one locally because I use it in some changes I've
-made to the mv88e6xxx code - as I mentioned in the patchwork entry you
-linked to. See:
+--tplQcX+QKV56luWj
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- http://git.armlinux.org.uk/cgit/linux-arm.git/log/?h=net-queue
+On Wed, Nov 17, 2021 at 09:11:08AM +0000, Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=
+=AA wrote:
 
- "net: phylink: Add helpers for c22 registers without MDIO"
+> The main function are as follows
+>=20
+> The sp7021_spi_mas_transfer_one is replace the transfer_one_message funct=
+ion.
+>=20
+> static int sp7021_spi_mas_transfer_one(struct spi_controller *ctlr,
+> 		struct spi_device *spi, struct spi_transfer *xfer)
+> {
+> 	struct sp7021_spi_ctlr *pspim =3D spi_master_get_devdata(ctlr);
+> 	u32 reg_temp =3D 0;
+> 	unsigned long timeout =3D msecs_to_jiffies(1000);
 
-Although I notice I committed it to my tree with the wrong author. :(
+I'm still not clear why this needs to be transfer_one_message() and not
+just transfer_one()?  The whole thing with copying everything into a
+buffer is a bit confusing to me.
 
-Sean, please can you submit the mdiodev patch and this patch for
-net-next as they have general utility? Thanks.
+> The probe function is as follows.
+>=20
+> static int sp7021_spi_controller_probe(struct platform_device *pdev)
+> {
+> 	int ret;
+> 	int mode;
+> 	struct spi_controller *ctlr;
+> 	struct sp7021_spi_ctlr *pspim;
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+This looks fine.
+
+--tplQcX+QKV56luWj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGWV00ACgkQJNaLcl1U
+h9ACYAf/WN2ye9DzTP1BTyDED8vTdgtzpXVIRx5bvw8xz9/l8mluwdplMlwXRle+
+zFLDiAqiRG9kysYPdE02/BewqGMPwTwgfT+3KwIbL7BQYXzI803MQuE4KJD3VQNL
+BLnxmEgAhR1PWDIfBX1THd6E1Eccn9Wz6TJ2k39QB59C0amAw3earHEGFAkVG5aM
+7MpC4A/PBwtsh2XGeEwDIJSNwnkYbE1vgmJjqvZuTgOoTT88g1hELG675UYQPfO3
+3zdsLjHMNminXqFzIa3Rri9E8EkLJMjfGsOrstHKgyT9P/cft+MFMKwhSJNAUtPs
+1Oh7gawY7IV3wyNBbZWTrzwQtBWEiQ==
+=KTHo
+-----END PGP SIGNATURE-----
+
+--tplQcX+QKV56luWj--
