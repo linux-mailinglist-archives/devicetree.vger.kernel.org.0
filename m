@@ -2,112 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9745B45523F
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 02:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C662A45525E
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 02:51:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242270AbhKRBgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 20:36:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242268AbhKRBgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 20:36:51 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B65C061766
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 17:33:52 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so8058555otj.7
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 17:33:52 -0800 (PST)
+        id S240991AbhKRByV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 20:54:21 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:62529 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239516AbhKRByV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 20:54:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=4b4P2TJUsQmMD7ulO5jskW7J+R4EF/1H7E16Fc7M+tk=;
-        b=lwE1jNkaQ6vRIYJfuDg1xVkUFcf6I9dfnMdqvFzcLVB9aZRng6kzelTHzd9M2GegQt
-         G+F6eYa/CXyot083R2bqXE1ZITf+EOHFfCrAuPGKm/iEJlaxBPzElDYHm+wER3E6nXcv
-         QqgCD+3QH3rqwWIYqnDlyqizIZB5ODklXHB1yl8yC6wzlvc85IfV/gHa3pF6niOkuPOg
-         HxMcizZ2Ly8ANIpX0OR0kYfl6gDnFmnCMPC947Qy90+zQ8QQMVjy1EhgvgLtTeaMoSgo
-         VYorYBk3LxsAqqIAPOzJccXh6uOrl33XCXnN9hkWcP+AhMTXGa4aeeXa+9V73FGNO9bi
-         PRZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=4b4P2TJUsQmMD7ulO5jskW7J+R4EF/1H7E16Fc7M+tk=;
-        b=zFQUVAlsS+uLy2RDdUu0Z9j8yjd75YegulGSQw5rH+sOIGU5A4r2Ty4TTTZLB4B0GC
-         UoU0TV9qmZx24RRmZZePm3PUBhsEiXtS2XjHcYcPpREIM/59HOMY+TMSHBRqTZLqS+cg
-         XGuS4t6jy5E1DowjW6g/Gkd6tXNSVCQOJ0+eDhISwsJ4DHZzK909p/7P6aBDCR+1aaCW
-         9SqQWaXtzroL16A/TBCJ3a8H5B4wMMklXZJNKH89h1Mle2+GUefQXqzZqrFtRDX3KYRD
-         15pmkCnWe8vOG9tsvyetYQ3uKVNbbbU2vvHDUtGNQ+MlBqRwE+xaUcbynL5QAZO8+PyU
-         qP1w==
-X-Gm-Message-State: AOAM533Hpr8QbJ23GYHEZudTB5z8G92biMNnDv36l1QuaJehfouJZIMD
-        Gmm+GKWJ4id+ZPw3lGYZdGnXSQ==
-X-Google-Smtp-Source: ABdhPJyAP0uCLZL43+mhZCRInEmazFHlxnQ7X8cjmMuZqDA2VCVNiYRJvwQ9Jffhy6a/v8ncNhEAsA==
-X-Received: by 2002:a05:6830:1358:: with SMTP id r24mr18065620otq.8.1637199231021;
-        Wed, 17 Nov 2021 17:33:51 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t14sm329745oth.81.2021.11.17.17.33.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Nov 2021 17:33:50 -0800 (PST)
-Date:   Wed, 17 Nov 2021 19:33:48 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        devicetree@vger.kernel.org, robdclark@gmail.com,
-        robh+dt@kernel.org, sean@poorly.run, vkoul@kernel.org,
-        quic_abhinavk@quicinc.com, aravindh@codeaurora.org,
-        quic_sbillaka@quicinc.com, quic_mkrishn@quicinc.com,
-        quic_kalyant@quicinc.coml, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kuogee Hsieh <khsieh@codeaurora.org>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add Display Port node
-Message-ID: <YZWtfGNPAGtHOXZ+@builder.lan>
-References: <1635896673-5841-1-git-send-email-quic_khsieh@quicinc.com>
- <CAE-0n53ArJSYEAtLbc5dFrPspKhi3Kv=hpu=wS1TMsOWcmz6pw@mail.gmail.com>
- <88a5219e-c82a-87fa-6af3-578238d6027b@quicinc.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637200282; x=1668736282;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pHAUTMlLZUcPH+j0lo9O2t4oMTrQMjACYd/sq9HoKG0=;
+  b=olT+tvH7Ueg+IPoykr2HVt6b3BBoAt/0cgs9DEpZa5OZUgVZiT0+YzNW
+   d+bf1NG6gqfJjrA2Bl79E78v83G0qGN0SvI1grIxCHR+rCRNMGDO/nBP9
+   cF9Z624JB4UGYWMBdyhUeKBp1mdvQDUOn8n0GXkJkUf876CG4fgnlG7pd
+   E=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 17 Nov 2021 17:51:21 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2021 17:51:20 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 17 Nov 2021 17:51:19 -0800
+Received: from quicinc.com (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Wed, 17 Nov
+ 2021 17:51:19 -0800
+Date:   Wed, 17 Nov 2021 17:51:18 -0800
+From:   Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <manivannan.sadhasivam@linaro.org>,
+        "kernel test robot" <lkp@intel.com>
+Subject: Re: [PATCH v4 3/6] clk: qcom: Add SDX65 GCC support
+Message-ID: <20211118015117.GA18984@quicinc.com>
+References: <cover.1637047731.git.quic_vamslank@quicinc.com>
+ <b61d16ad890bcf07057f8fbd83dfffaf9812cda6.1637047731.git.quic_vamslank@quicinc.com>
+ <YZNsvjwp0/AX0Hdo@matsya>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <88a5219e-c82a-87fa-6af3-578238d6027b@quicinc.com>
+In-Reply-To: <YZNsvjwp0/AX0Hdo@matsya>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 16 Nov 10:43 CST 2021, Kuogee Hsieh wrote:
-
-> 
-> On 11/15/2021 3:39 PM, Stephen Boyd wrote:
-> > Quoting Kuogee Hsieh (2021-11-02 16:44:33)
-> > > From: Kuogee Hsieh<khsieh@codeaurora.org>
-> > > 
-> > > Signed-off-by: Kuogee Hsieh<quic_khsieh@quicinc.com>
-> > > ---
-> > What tree is this based on? I don't see edp_phy upstream for sc7280
-> 
-> this patch is depend on  --> [PATCH v2 4/4] arm64: dts: qcom: sc7280: add
-> edp display dt nodes
-> 
-
-But there's a v3 of 3 patches in the patchworks queue, unfortunately I
-don't have this in my inbox. Not sure why, but looking at
-lore.kernel.org, you didn't use get_maintainers...
-
-Also why are the patches Reported-by: kernel test robot <lkp@intel.com>?
-
-Did lkp tell you that you where missing edp support? ;)
-
-
-Could you please resubmit the 4 patches together?
-
-Regards,
-Bjorn
-
-> it had completed reviewed.
-> 
-> https://mail.codeaurora.org/?_task=mail&_caps=pdf%3D1%2Cflash%3D0%2Ctiff%3D0%2Cwebp%3D1&_uid=1789&_mbox=INBOX&_action=show
-> 
-> 
+On Tue, Nov 16, 2021 at 02:03:02PM +0530, Vinod Koul wrote:
+> On 15-11-21, 23:38, quic_vamslank@quicinc.com wrote:
+> > From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
 > > 
-> > Otherwise, looks good to me.
+> > Add Global Clock Controller (GCC) support for SDX65 SoCs from Qualcomm.
 > > 
-> > Reviewed-by: Stephen Boyd<swboyd@chromium.org>
+> > Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
+> > Reported-by: kernel test robot <lkp@intel.com>
+> 
+> Missing support reported ??
+
+Not mising support but it reported to delete unused varaibles and after
+the fix mentioned to add the reported tag.
+
+> 
+> > +static struct clk_branch gcc_ahb_pcie_link_clk = {
+> > +	.halt_reg = 0x2e004,
+> > +	.halt_check = BRANCH_HALT,
+> > +	.clkr = {
+> > +		.enable_reg = 0x2e004,
+> > +		.enable_mask = BIT(0),
+> > +		.hw.init = &(struct clk_init_data){
+> > +			.name = "gcc_ahb_pcie_link_clk",
+> > +			.flags = CLK_IS_CRITICAL,
+> > +			.ops = &clk_branch2_ops,
+> > +		},
+> 
+> If this clk is critical then why model in linux, enable directly in probe
+> and leave it...?
+
+Yes, actually i have the code which is enabling it directly inside the probe function.
+so i will remove it here.
+
+> 
+> > +static struct clk_branch gcc_pcie_0_clkref_en = {
+> > +	.halt_reg = 0x88004,
+> > +	.halt_check = BRANCH_HALT_DELAY,
+> 
+> Why delay, add a comment at least for that
+
+sure, will do
+
+> > +	.clkr = {
+> > +		.enable_reg = 0x88004,
+> > +		.enable_mask = BIT(0),
+> > +		.hw.init = &(struct clk_init_data){
+> > +			.name = "gcc_pcie_0_clkref_en",
+> > +			.ops = &clk_branch2_ops,
+> > +		},
+> > +	},
+> > +};
+> > +
+> > +static struct clk_branch gcc_pcie_aux_clk = {
+> > +	.halt_reg = 0x43034,
+> > +	.halt_check = BRANCH_HALT_DELAY,
+> 
+> Here too
+
+will do.
+
+> 
+> > +static struct clk_branch gcc_pcie_mstr_axi_clk = {
+> > +	.halt_reg = 0x43024,
+> > +	.halt_check = BRANCH_HALT_VOTED,
+> > +	.hwcg_reg = 0x43024,
+> > +	.hwcg_bit = 1,
+> > +	.clkr = {
+> > +		.enable_reg = 0x6d010,
+> > +		.enable_mask = BIT(1),
+> > +		.hw.init = &(struct clk_init_data){
+> > +			.name = "gcc_pcie_mstr_axi_clk",
+> > +			.ops = &clk_branch2_ops,
+> > +		},
+> > +	},
+> > +};
+> > +
+> > +static struct clk_branch gcc_pcie_pipe_clk = {
+> > +	.halt_reg = 0x4303c,
+> > +	.halt_check = BRANCH_HALT_DELAY,
+> 
+> here as well and few more places I guess
+> 
+> > +static struct clk_branch gcc_xo_pcie_link_clk = {
+> > +	.halt_reg = 0x2e008,
+> > +	.halt_check = BRANCH_HALT,
+> > +	.hwcg_reg = 0x2e008,
+> > +	.hwcg_bit = 1,
+> > +	.clkr = {
+> > +		.enable_reg = 0x2e008,
+> > +		.enable_mask = BIT(0),
+> > +		.hw.init = &(struct clk_init_data){
+> > +			.name = "gcc_xo_pcie_link_clk",
+> > +			.flags = CLK_IS_CRITICAL,
+> 
+> Here as well
+
+Same as above.
+
+
+> -- 
+> ~Vinod
