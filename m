@@ -2,138 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE4D455184
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 01:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5324551B9
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 01:34:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241827AbhKRAOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 19:14:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
+        id S241957AbhKRAhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 19:37:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241819AbhKRAOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 19:14:48 -0500
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B804DC061766
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 16:11:49 -0800 (PST)
-Received: by mail-io1-xd2c.google.com with SMTP id f9so5593159ioo.11
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 16:11:49 -0800 (PST)
+        with ESMTP id S241952AbhKRAhV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 19:37:21 -0500
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC18C061570;
+        Wed, 17 Nov 2021 16:34:21 -0800 (PST)
+Received: by mail-pf1-x435.google.com with SMTP id x131so4205183pfc.12;
+        Wed, 17 Nov 2021 16:34:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QQmfsxDLxgEs9nX9rSOSZBMe+yfw/Mx6HQKSmuKCC3g=;
-        b=Kb4PcktbaPyqHZ2UQU1v+/ez0LRcLtjC2X24LD92/dndf9/61zXTJbtySx8bxMrfOr
-         QEfS1D+TV8oOQvh1TYtPrsaYsZ9KleEl/UOfci3IoO4IBwoi9jbigV8L2Q6iVKRsuxZk
-         7DXPA61QQTPLY2JG9ESVsQRExfu9E6FZac4VU=
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=1jZNtYupjDyRzj/OP9VMy9ZZOqtGQ1DuQYj3eJHdRhg=;
+        b=S60j/kMrd3JzCK5gaccWBjkfG1JObTx3uBqcEh/Vg8AXySg+8rnQsBYuHZHUbAvlb0
+         OhCDCZ/+fOw2jVpjSFFgTi5qAHPiwxwMeBfsN6zdbb9ciPSauGM62yDUZmPdF5G+F5nR
+         n2gxbAx+B7wydPG5aZoJevWhD7b35vHdaQhc8fErrbdQiz3UQQleOVHB68tETnJNgZH3
+         TBg/gNO2olctGJYxWslozAxssJ+1Qo4ZfpobXwaxbv3+T9/P3CM8Tx7Lp9hooDRoYvqQ
+         6xeoyBnSamx6Y3SjU6KKQpk3sbf7fNU6pkMOqDmmnPkrC0OEYiY0u4LOIOls9pInWdua
+         cF4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QQmfsxDLxgEs9nX9rSOSZBMe+yfw/Mx6HQKSmuKCC3g=;
-        b=7yFY8jT2CrHz56w7MSsccuAdZAjIsNgXO2Q+kCjj0DytJ6/Rm6U7znO7XrLYQuE4Q0
-         Dqjww+2SaS0FW/Sq34iiDyv4noK2jUJxdVW+6uyATqJWT4CGpTmbM7Wv3DgGHKZY2BQ/
-         9Zz8tcuEaqyFPqHxUDmBLdOiJyAYZaFCdC2wwq5z2D4SdRqeWGeLJ9tiMcikJK5WZBk7
-         64rxTYDXg2ee+tB+p/FVyXDHVL+90ARfTwl53wIl4I/iverwdpkTUsd+Lh/eBTd7i66u
-         kIspb8fCc5LNKwspjrLkyBU5n8mZWhaNUUAYv/v1dBz8qFVFvePASsSxtOyroDGs810X
-         D9IA==
-X-Gm-Message-State: AOAM531mRsl03DDTNLsQL8LIkarBOpqRHIc/wynm6c3qRhamuzAglk9t
-        uCuVWjLGNLytOi53BIiaEXZjL7UD9DLIiA==
-X-Google-Smtp-Source: ABdhPJwKlHTpj7TdAmf1D5kRlRYT0TDXTSpaVFhmd/8Ui6S+ifzwfx04VAvHuIEPJHJ56nOPXb2fMg==
-X-Received: by 2002:a05:6638:d46:: with SMTP id d6mr14439459jak.129.1637194308931;
-        Wed, 17 Nov 2021 16:11:48 -0800 (PST)
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com. [209.85.166.45])
-        by smtp.gmail.com with ESMTPSA id x14sm1219185ilu.53.2021.11.17.16.11.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 17 Nov 2021 16:11:47 -0800 (PST)
-Received: by mail-io1-f45.google.com with SMTP id p23so5674536iod.7
-        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 16:11:47 -0800 (PST)
-X-Received: by 2002:a6b:440f:: with SMTP id r15mr14131151ioa.128.1637194307041;
- Wed, 17 Nov 2021 16:11:47 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=1jZNtYupjDyRzj/OP9VMy9ZZOqtGQ1DuQYj3eJHdRhg=;
+        b=Rwh9Y7RpOR3+y3a0PmARFQa/YHbn5XFQ5e6+LB5YkUTsSTVjqU10JMTBOtdsgLd/CN
+         WeWll1N0IbpULX2PzUKYusRh5qzTSaPilmo+fQhfcZkr6VeFoAN9fhUY9HxdFzeTiCPr
+         ZLps2Fv1bzkeykJ8U7y2HJZWxdEs0JRztdhFcvyDncieWXAvydMwW5DtwEL3j8V5pTyD
+         MPAYjCnwk5knB5UB/1Any+PT9iZoBTZyFXCc+VyfmWxOvTXy0EdTQrrAj6eZJkrbbfM1
+         EQOjkHDuXA/jdufaIYI+drVZYj4h3HI7nbZdN32qwfMyXIE46/wCYBlpVaClOAQl2vFR
+         vY4g==
+X-Gm-Message-State: AOAM533AkxERP/3ZW822884SqxqSZdbyUTqAXetplmh12PL5WPlFiFtM
+        AooX20ntlN0V7Pl1EXuhSCg=
+X-Google-Smtp-Source: ABdhPJx6X9YDfRHx6Yw5QdMFyy6Of4A5872CH3bPuN+uuxoN/VV1d8hdIGL4OAI3cgpyNIkW7CkTbA==
+X-Received: by 2002:aa7:8dc6:0:b0:49f:c66e:2d55 with SMTP id j6-20020aa78dc6000000b0049fc66e2d55mr11121671pfr.81.1637195660976;
+        Wed, 17 Nov 2021 16:34:20 -0800 (PST)
+Received: from localhost.lan (p4899162-ipngn25301marunouchi.tokyo.ocn.ne.jp. [122.18.9.162])
+        by smtp.gmail.com with ESMTPSA id mm22sm711166pjb.28.2021.11.17.16.34.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Nov 2021 16:34:20 -0800 (PST)
+Received: from localhost (localhost [IPv6:::1])
+        by localhost.lan (Postfix) with ESMTPSA id 5D156900922;
+        Thu, 18 Nov 2021 00:34:18 +0000 (GMT)
+Date:   Thu, 18 Nov 2021 00:34:18 +0000
+From:   Vincent Pelletier <plr.vincent@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>
+Subject: Re: [PATCH v2 1/6] riscv: dts: sifive unmatched: Name gpio lines
+Message-ID: <20211118003418.2edd1913@gmail.com>
+In-Reply-To: <1444ff08-24a6-afbe-1512-9ea24ad5b32d@canonical.com>
+References: <bb7e8e36425a2c243cfbf03a23af525499268822.1637107062.git.plr.vincent@gmail.com>
+ <1444ff08-24a6-afbe-1512-9ea24ad5b32d@canonical.com>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20211116200739.924401-1-mka@chromium.org> <20211116120642.v17.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
-In-Reply-To: <20211116120642.v17.1.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 17 Nov 2021 16:11:34 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VnRQzvgjVzTNgx5kaC6VDvFGvTx2njtdTo27LW1zxWJA@mail.gmail.com>
-Message-ID: <CAD=FV=VnRQzvgjVzTNgx5kaC6VDvFGvTx2njtdTo27LW1zxWJA@mail.gmail.com>
-Subject: Re: [PATCH v17 1/7] usb: misc: Add onboard_usb_hub driver
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, 17 Nov 2021 10:28:59 +0100, Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
+> On 17/11/2021 00:57, Vincent Pelletier wrote:
+> > Follow the pin descriptions given in the version 3 of the board schematics.
+> > 
+> > Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
+> > 
+> > --
+> > Changes since v1:
+> > - Remove trailing "." on subject line.
+> > ---  
+> 
+> This is not a correct changelog placement - you have to use '---' just
+> like git uses it. Just test it yourself and you will see the problem.
 
-On Tue, Nov 16, 2021 at 12:07 PM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> --- a/drivers/usb/misc/Kconfig
-> +++ b/drivers/usb/misc/Kconfig
-> @@ -284,3 +284,20 @@ config BRCM_USB_PINMAP
->           This option enables support for remapping some USB external
->           signals, which are typically on dedicated pins on the chip,
->           to any gpio.
-> +
-> +config USB_ONBOARD_HUB
-> +       tristate "Onboard USB hub support"
+Indeed, thanks for catching this.
 
-Aren't you back to shenanigans now that you're being called straight
-from the USB core? What if you're a module and the USB core is
-builtin? It can't call you, right? ...or what if you're builtin but
-the USB core is a module (yeah, I know that sounds insane but I don't
-think anything technically prevents it)?
+Is there a recommended way for managing these not-for-commit-message
+chunks automatically ?
+I obviously compose them by hand so far, and put them in my local git
+working copy commit messages, but I would be happier if I did not have
+to make (bad) decisions on such mechanical detail.
 
-Can you just add a dependency here such that if the USB core is a
-module that you're a module and if the USB core is builtin that you're
-builtin?
+On a related topic, is there a way to automate "git send-email"
+recipient list using get_maintainer.pl (plus some more magic lines,
+for example to exclude bouncing addresses) ?
 
+While process/submitting-patches.rst describes what the result should
+look like, it feels to me that it (or another related file) could be
+more directive on what commands/workflows help to get such result, for
+casual contributors like myself. Have I missed such documentation ?
 
-> +void onboard_hub_create_pdevs(struct usb_device *parent_hub, struct list_head *pdev_list)
-> +{
-> +       int i;
-> +       struct device_node *np, *npc;
-> +       struct platform_device *pdev;
-> +       struct pdev_list_entry *pdle;
-> +
-> +       INIT_LIST_HEAD(pdev_list);
-> +
-> +       for (i = 1; i <= parent_hub->maxchild; i++) {
-> +               np = usb_of_get_device_node(parent_hub, i);
-> +               if (!np)
-> +                       continue;
-> +
-> +               if (!of_is_onboard_usb_hub(np))
-> +                       goto node_put;
-> +
-> +               npc = of_parse_phandle(np, "companion-hub", 0);
-> +               if (!npc)
-> +                       goto create_pdev;
-> +
-> +               pdev = of_find_device_by_node(npc);
-> +               of_node_put(npc);
-> +
-> +               if (pdev) {
-> +                       /* the companion hub already has a platform device, nothing to do here */
-> +                       put_device(&pdev->dev);
-> +                       goto node_put;
-> +               }
-> +
-> +create_pdev:
-
-I don't really like this "goto". I'd rather just use an "if" test for
-the few lines even if the indentation gets to be a bit much.
-
--Doug
+Regards,
+-- 
+Vincent Pelletier
+GPG fingerprint 983A E8B7 3B91 1598 7A92 3845 CAC9 3691 4257 B0C1
