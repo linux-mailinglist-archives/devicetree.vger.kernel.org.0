@@ -2,117 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B760455C03
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:58:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C566455C89
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:22:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233094AbhKRNBP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:01:15 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:57418 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232163AbhKRNAn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:00:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637240263; x=1668776263;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=j/0ca7hXl32K5luAtpihGEK4BUx6G5/UQ4YGF/yuGKM=;
-  b=EDnqY57QKwSO0c5ur4w0blGtXqak3DImpCeJfN1CC/tCkDvlrxfBXDT+
-   Frt/PqNm/VsbyQGFO2GwEjGp0QL/se0u1WviTh7Czt6OoAmQ9K7pryVtE
-   kN9TAka19gorF3kBIncHGj6iY1aAhW6dICAo/uTLmFu6+t47Nnk+pxPzi
-   hSnKV2usNst+6KvFYfzxXXTmFWR/rJLfUtqJzgqEBNLj7kRgjhxIElfjW
-   qkyOr/RJoL79MkKJ5JYAtlrmgvxDbLlpHa6OtFRvzP5Fwuany6agQ+TKi
-   kEZl1gS44vtPRdhy2ra0K1kV8mr8/a5QA6/8I2izeHKPMks1D7BK/EfaN
-   Q==;
-IronPort-SDR: Tte6N3iF1NeBc+TCVuZMv25iVdoZ6KV/9vbmNe3qFYcrghSUQAvVxj9IQ4J1X+8Qz1JmkZvIvc
- FZMeNv8xWqxC49Yqy4r7tNOnMk06/eyo49cjxglOqXKPuH1WtA5xyOk1p9mDiMZi1RLIVjKuoj
- V+lf5ivrfHEtyAFj6k/LOri1HecMKrvhuW6z8T0Uf/jNx3FCX0YpCUsCVw8ksxuBZOJX96niJq
- 2iqiPIDEfpJXdXlup4tW4eNndOrtgtR7jBRHyKnp40ykfQH9myxiVV0dLVYk3+M16QGzZazWE8
- 1IM8bOrB/kpGmj98oDC9Oq+/
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; 
-   d="scan'208";a="136998624"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Nov 2021 05:57:40 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 18 Nov 2021 05:57:40 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 18 Nov 2021 05:57:40 -0700
-Date:   Thu, 18 Nov 2021 13:59:28 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 3/5] net: lan966x: add port module support
-Message-ID: <20211118125928.tav7k5xlbnhrgp3o@soft-dev3-1.localhost>
-References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
- <20211117091858.1971414-4-horatiu.vultur@microchip.com>
- <YZTRUfvPPu5qf7mE@shell.armlinux.org.uk>
- <20211118095703.owsb2nen5hb5vjz2@soft-dev3-1.localhost>
- <YZYj9fwCeWdIZJOt@shell.armlinux.org.uk>
+        id S229594AbhKRNZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:25:03 -0500
+Received: from regular1.263xmail.com ([211.150.70.198]:38676 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229599AbhKRNZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:25:02 -0500
+X-Greylist: delayed 442 seconds by postgrey-1.27 at vger.kernel.org; Thu, 18 Nov 2021 08:25:02 EST
+Received: from localhost (unknown [192.168.167.70])
+        by regular1.263xmail.com (Postfix) with ESMTP id 8C9EF14A0;
+        Thu, 18 Nov 2021 21:14:27 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-SKE-CHECKED: 1
+X-ABS-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from [172.16.12.89] (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P31296T140158641805056S1637241264970100_;
+        Thu, 18 Nov 2021 21:14:26 +0800 (CST)
+X-IP-DOMAINF: 1
+X-RL-SENDER: andy.yan@rock-chips.com
+X-SENDER: yxj@rock-chips.com
+X-LOGIN-NAME: andy.yan@rock-chips.com
+X-FST-TO: linux-arm-kernel@lists.infradead.org
+X-RCPT-COUNT: 13
+X-LOCAL-RCPT-COUNT: 2
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-UNIQUE-TAG: <733c4135ae7513b928b6ecc7489c4be9>
+X-System-Flag: 0
+Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
+To:     Daniel Stone <daniel@fooishbar.org>,
+        Kever Yang <kever.yang@rock-chips.com>
+Cc:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+ <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com>
+ <4310886.V3yF0ifEZO@diego>
+ <CAPj87rPNSt7nZX93prAYD3Emf-34RdTZWp_1TOuAybBebObZhQ@mail.gmail.com>
+ <fba695b7-863a-c492-0209-41bc07c7baee@rock-chips.com>
+ <CAPj87rO86Mom-076Z5QX9hd=0bQi=AQcofkc1fSR4-VV2Zo6aQ@mail.gmail.com>
+From:   Andy Yan <andy.yan@rock-chips.com>
+Message-ID: <e948ee33-d1ea-cd53-a792-2e044eed1529@rock-chips.com>
+Date:   Thu, 18 Nov 2021 21:14:25 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YZYj9fwCeWdIZJOt@shell.armlinux.org.uk>
+In-Reply-To: <CAPj87rO86Mom-076Z5QX9hd=0bQi=AQcofkc1fSR4-VV2Zo6aQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/18/2021 09:59, Russell King (Oracle) wrote:
-> 
-> On Thu, Nov 18, 2021 at 10:57:03AM +0100, Horatiu Vultur wrote:
-> > > > +static void decode_sgmii_word(u16 lp_abil, struct lan966x_port_status *status)
-> > > > +{
-> > > > +     status->an_complete = true;
-> > > > +     if (!(lp_abil & LPA_SGMII_LINK)) {
-> > > > +             status->link = false;
-> > > > +             return;
-> > > > +     }
-> > > > +
-> > > > +     switch (lp_abil & LPA_SGMII_SPD_MASK) {
-> > > > +     case LPA_SGMII_10:
-> > > > +             status->speed = SPEED_10;
-> > > > +             break;
-> > > > +     case LPA_SGMII_100:
-> > > > +             status->speed = SPEED_100;
-> > > > +             break;
-> > > > +     case LPA_SGMII_1000:
-> > > > +             status->speed = SPEED_1000;
-> > > > +             break;
-> > > > +     default:
-> > > > +             status->link = false;
-> > > > +             return;
-> > > > +     }
-> > > > +     if (lp_abil & LPA_SGMII_FULL_DUPLEX)
-> > > > +             status->duplex = DUPLEX_FULL;
-> > > > +     else
-> > > > +             status->duplex = DUPLEX_HALF;
-> > > > +}
-> > >
-> > > The above mentioned function will also handle SGMII as well.
-> >
-> > I noticed that you have phylink_decode_sgmii_work(), so I will try to
-> > export it also.
-> 
-> Another approach would be to split phylink_mii_c22_pcs_decode_state()
-> so that the appropriate decode function is selected depending on the
-> interface state, which may be a better idea.
+Hi Daniel:
 
-I have tried to look for phylink_mii_c22_pcs_decode_state() and I
-have found it only here [1], and seems that it depends on [2]. But not
-much activity happened to these series since October.
-Do you think they will still get in?
+On 11/18/21 8:07 PM, Daniel Stone wrote:
+> Hi Kever,
+>
+> On Thu, 18 Nov 2021 at 10:50, Kever Yang <kever.yang@rock-chips.com> wrote:
+>> On 2021/11/18 下午5:53, Daniel Stone wrote:
+>>> Exactly what Heiko said. If you would like to upstream the driver then
+>>> that would be fantastic to see, but I'm afraid you do not get to
+>>> prevent someone else from doing the work themselves.
+>> First of all, we never stop any one to doing there work on upstream if
+>> the source code is write totally by themselves.
+>>
+>> Second, there are also many modules are upstream by developers based on
+>> Rockchip source code, please note that
+>> all of them have basic respect to our work, they do communicate with us
+>> first.
+>>
+>> But this committer do not take any respect to our engineers and their
+>> hard working:
+>> - He didn't contact with us;
+>> - There isn't  any information about original author in the commit message;
+>>       As I have known, if I use source code from another developer, I
+>> need to at least add a "Signed-off-by" with original author;
+>> - This commit and mail does not even have a 'CC' to original author.
+>>
+>> I NAK because I  think this is not part of the  open source spirit, and
+>> this kind of  behavior should not be encouraged.
+> OK, I see where you're coming from, and I agree that the attribution
+> should have been handled more carefully.
+>
+> On the other hand, please consider this from the other perspective.
+> Sascha has been free to take the downstream Rockchip BSP code and
+> attempt to upstream it to the Linux kernel, which you are unhappy
+> about. But then the Rockchip driver was developed totally downstream,
+> with no attempt to ever communicate with the upstream Linux or DRM/KMS
+> developers. Rockchip advertises that it is shipped as a Linux kernel
+> with a KMS driver. But we were never informed, or CCed, or anything.
+>
+> If you would like the community to more actively work with you - then
+> please yourself work more actively with the community. The first
+> commit of the VOP2 driver was in July 2020, and that was of the full
+> driver so presumably it started quite some time before then. So that
+> is a minimum of 17 months that you have had to engage with upstream
+> ...
+>
+> Technically, the driver cannot be upstreamed as-is. It looks as if it
+> were a pre-atomic driver, that was half-converted to atomic, and then
+> has been half-converted to atomic helpers as well. Things like
+> reference counting and global state are not handled correctly at all.
+> You can see this if you try to run Weston on top of the VOP2 driver:
+> the framerate is decimated because the event handling massively
+> over-synchronises, and the event timestamps which arrive are
+> incorrect. This would be fixed by correctly using the event helpers
+> that we have had in the tree for years (which would also eliminate the
+> unnecessary framebuffer reference handling). It also does not work
+> with the GPU drivers in the tree because it lacks the one-liner to
+> correctly handle dma_resv synchronisation, which makes it both too
+> fast as it displays content which is not ready, and too slow because
+> it can't do it at full frame rate.
 
-[1] https://patchwork.kernel.org/project/netdevbpf/patch/20211022160959.3350916-1-sean.anderson@seco.com/
-[2] https://lore.kernel.org/netdev/20211022155914.3347672-1-sean.anderson@seco.com/
 
-> 
-> --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+We have different team run Android , X11, Weston on rk356x, especially 
+for android, we can run at 60 fps.
 
--- 
-/Horatiu
+Our vop2 driver is developed on Linux 4.19, am not sure which version of 
+kernel you put our drivers on.
+
+>
+> Similarly, on the RK3566 EVB, the DSI does not work unless HDMI is
+> also active, but when HDMI is active at the same time as DSI, it just
+
+I am very sure rk3566 evb DSI can work without HDMI.
+
+But take care that the vop on rk3566 has a special limitation: there are 
+three
+
+windows(Cluster1/Esmart1/Smart1) that have a mirror lock, that means they
+
+can't be programed framebuffer address independently , they can only
+
+share framebuffer address with Cluster0/Esmart0/Smart0. We use these feature
+
+on Android.
+
+I have comment these limitation in our driver.
+
+Compared to old vop, vop is strong but a bit complicated, we try very had to
+
+make it work on as much display framework as possible.
+
+We have upstream plane, but I am really in a rush this year. So sorry 
+for the late of upstream, but we glad to work with community.
+
+So Sascha, please feel free to go on with your work.
+
+> shows a blank screen. I believe the root cause of this is that the
+> VOP2 driver does not use any of the atomic state correctly, and
+> instead stores its own state in driver-global structures, using a lot
+> of unnecessary mutexes to try to synchronise this state. Not only does
+> this synchronisation not actually work, but it causes a severe
+> performance degradation due to mutex contention.
+>
+> I believe the best path forward to an upstream VOP2 driver is a patch
+> series consisting of:
+>    - start from a blank slate, using the atomic framework and helpers
+> as they were intended to be, with basic support for the VOP2 and one
+> or two connector types, doing linear XRGB only
+>    - any cleanups which would enable this to share more code with
+>    - add YUV support, including planar buffers
+>    - add AFBC support, with the AFBC enable/disable correctly
+> synchronised through atomic state (this is necessary since the AFBC
+> decoder is not directly on the planes per se but shared)
+>    - add more connector types
+>    - add writeback support
+>    - add other Rockchip-specific codepaths such as HDR10
+>
+> Cheers,
+> Daniel
+>
+>
+>
+
+
