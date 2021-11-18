@@ -2,118 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44D8B455A15
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 12:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBE73455A60
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 12:31:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343690AbhKRLZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 06:25:16 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:45082 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343898AbhKRLXa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Nov 2021 06:23:30 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637234429; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=V0O5o9Y5iT8rkl0A/PwJ6T3Pn0iIKrXiHMODcgx8FkE=; b=LVM43mmaMqp+woBZuxrzi/VpHQS3ECY2lYyaErt304BfdYGEzSKPhJ9wj2f3GdLhl7qVrbsY
- S32SOnjJvTv8VeGa10jQ+LotsR63JRhowgRjOfqDryFFj1ZJiqD9fEbkVU8fXyyiv4jwtbxs
- Buf162pZfrcFKL57akpDhn7lKtM=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 619636fcf5c956d49e74a091 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 11:20:28
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 976A5C4360D; Thu, 18 Nov 2021 11:20:28 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95489C4338F;
-        Thu, 18 Nov 2021 11:20:22 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 95489C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: [PATCH] ASoC: codecs: MBHC: Remove useless condition check
-Date:   Thu, 18 Nov 2021 16:50:11 +0530
-Message-Id: <1637234411-554-1-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1344137AbhKRLcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 06:32:48 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:14563 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344059AbhKRLas (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 06:30:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1637234869; x=1668770869;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=72iw7hIyLO++igxJdp9HPgiBSp9KSlDA7icpAXKwqcI=;
+  b=gP+faEh9jyuVTP98708VbnOupX3oWlsekmShxVx4YNOiukul+sWrwn//
+   oVnWL/+Zzf4mZiHM8xi7lLWyhMbsh4FhNFnTDGLMeiyVaIpTMn5W/zmg5
+   r21IGi6thBRfRJVOf9Gv5hHWRRQf695K2C2+k7FitbGYvCx4vW9licOsI
+   IvwyUUuCTuiVqQFwJrX8YUO2xa2NUZt8tajHEHRqb1Br8JMd986F+dt87
+   t6YnCYeVHK10t7KSOBuQDLYWK/bvdqapOf/ItygAwLWVxrAX6US2vsRGh
+   UeHHlM2cYOjGvIcpHgnpnaKLn5QH8UvTW+9WUsC0DcKNRLwWh5dFQsEji
+   g==;
+IronPort-SDR: huzUMBsMGdmDUYm3ruEdDHD4w24aJWdi1aBmj3hUKILuj063Tmsfp3dP4M5SdGx6kg+4Q7zsKE
+ ctVue0slDgtRxkYO13SQA4O49F/W0wDQQ1fYKRsn/OsYZZ52dho6iwh/phv/E3nhO6gkqVDmw1
+ E4RjvWQY0GpEcSyRstpk7VQpGEqAWvCOEmYLmRdigJBDUhh8XnvSrTN7FUsLZor6O6pphsKArU
+ AG4apk3lhDt8wGSFb+TOBO/2jL/S1npcXQB+nJBhYU17SaGy4cdMW28kYCgk9eo/vshkFsgQwx
+ f2lkZj+I800hvoBlrxhNaazc
+X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; 
+   d="scan'208";a="143794407"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Nov 2021 04:27:47 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 18 Nov 2021 04:27:46 -0700
+Received: from kavya-HP-Compaq-6000-Pro-SFF-PC.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 18 Nov 2021 04:27:43 -0700
+From:   Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
+To:     <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <quentin.schulz@bootlin.com>, <linus.walleij@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-gpio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Kavyasree.Kotagiri@microchip.com>, <Manohar.Puri@microchip.com>
+Subject: [PATCH v4 0/2] Extend pinctrl-ocelot driver for lan966x
+Date:   Thu, 18 Nov 2021 16:55:46 +0530
+Message-ID: <20211118112548.14582-1-kavyasree.kotagiri@microchip.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove redundant conditional check and clean code in special
-headset support functions.
+This patch series extends pinctrl-ocelot driver to support lan966x.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
----
- sound/soc/codecs/wcd-mbhc-v2.c | 14 +++++---------
- 1 file changed, 5 insertions(+), 9 deletions(-)
+v3 -> v4:
+- Minor description fix in lan966x_pinmux_set_mux().
 
-diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
-index d6545e4..99586ce 100644
---- a/sound/soc/codecs/wcd-mbhc-v2.c
-+++ b/sound/soc/codecs/wcd-mbhc-v2.c
-@@ -1055,12 +1055,8 @@ static bool wcd_mbhc_check_for_spl_headset(struct wcd_mbhc *mbhc)
- 	hs_threshold = wcd_mbhc_get_spl_hs_thres(mbhc);
- 	hph_threshold = wcd_mbhc_adc_get_hph_thres(mbhc);
- 
--	if (output_mv > hs_threshold || output_mv < hph_threshold) {
--		if (mbhc->force_linein == true)
--			is_spl_hs = false;
--	} else {
-+	if (!(output_mv > hs_threshold || output_mv < hph_threshold))
- 		is_spl_hs = true;
--	}
- 
- 	/* Back MIC_BIAS2 to 1.8v if the type is not special headset */
- 	if (!is_spl_hs) {
-@@ -1149,13 +1145,13 @@ static void wcd_correct_swch_plug(struct work_struct *work)
- 		plug_type = wcd_mbhc_get_plug_from_adc(mbhc, output_mv);
- 		is_pa_on = wcd_mbhc_read_field(mbhc, WCD_MBHC_HPH_PA_EN);
- 
--		if ((output_mv > hs_threshold) && (!is_spl_hs)) {
-+		if (output_mv > hs_threshold && !is_spl_hs) {
- 			is_spl_hs = wcd_mbhc_check_for_spl_headset(mbhc);
- 			output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
- 
- 			if (is_spl_hs) {
--				hs_threshold = (hs_threshold * wcd_mbhc_get_micbias(mbhc)) /
--									micbias_mv;
-+				hs_threshold *= wcd_mbhc_get_micbias(mbhc);
-+				hs_threshold /= micbias_mv;
- 			}
- 		}
- 
-@@ -1185,7 +1181,7 @@ static void wcd_correct_swch_plug(struct work_struct *work)
- 		}
- 
- 		/* cable is extension cable */
--		if (output_mv > hs_threshold || mbhc->force_linein == true)
-+		if (output_mv > hs_threshold || mbhc->force_linein)
- 			plug_type = MBHC_PLUG_TYPE_HIGH_HPH;
- 	}
- 
+v2 -> v3:
+- Removed extra new lines in pinctrl-ocelot.
+- Reverted sparx5_desc changes which are done by mistake.
+
+v1 -> v2:
+- Use consistent name lan966x everywhere.
+
+Kavyasree Kotagiri (2):
+  dt-bindings: pinctrl: ocelot: add lan966x SoC support
+  pinctrl: ocelot: Extend support for lan966x
+
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |   3 +-
+ drivers/pinctrl/pinctrl-ocelot.c              | 416 ++++++++++++++++++
+ 2 files changed, 418 insertions(+), 1 deletion(-)
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.17.1
 
