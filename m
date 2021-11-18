@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF11B455FC4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 16:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA17A455FDA
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 16:50:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231613AbhKRPtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 10:49:04 -0500
-Received: from mail-vk1-f172.google.com ([209.85.221.172]:42518 "EHLO
-        mail-vk1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231920AbhKRPtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 10:49:02 -0500
-Received: by mail-vk1-f172.google.com with SMTP id b125so4043885vkb.9;
-        Thu, 18 Nov 2021 07:46:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=shqi6GAZQi9nVTVL9z1EWiqg7vtbPf56eOryjn/ImXI=;
-        b=sr2ayZAFy0xIdXylOnC34Z7cC/DiSQGOf3pnqx8cdmvFq30ti3aGjtw42uvRSHVNEk
-         ZOp20IjmQlGRc5UV/uNtleT0CYmlNU5k6Kf0cRyKITGH2UYVB0noTwD2YkFX3pV7xDHS
-         e3S90Q0P7cF/oBJm6qqQKWDC23dS83eaM3U5m5GUCAaZPHXsF1ZvXpq3pia6X1XBe/TV
-         xmL/YnRXytp18YiudPLvej6VT/wGFnrf8YBylIOb0W9TCoGCBruz1E7OnEo8TugVQX35
-         Y9nv+MpvkI1Y7+YEGGGvOXyzpRDsmZWD3AyoYEYaiKtqaVAYfEaFFb3LUXOhTXAELqK0
-         4+pQ==
-X-Gm-Message-State: AOAM530VsUupdMzNQnzK9Xg+a4JeXnV0GiCcCva0PTYE+yYEZU0TKi8/
-        5QCwN4w1ksC9bnj+/6ZlGfwiuRR8ekC3Ig==
-X-Google-Smtp-Source: ABdhPJwDPp6BWq6ryAgJCqUHaj+53QL74yofGpZS0crZnKgDO5BhZ+pAW0IDrWFKxLun6ZrflpO1rQ==
-X-Received: by 2002:a05:6122:907:: with SMTP id j7mr106439572vka.12.1637250361043;
-        Thu, 18 Nov 2021 07:46:01 -0800 (PST)
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
-        by smtp.gmail.com with ESMTPSA id r13sm89105vkl.13.2021.11.18.07.46.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Nov 2021 07:46:00 -0800 (PST)
-Received: by mail-vk1-f179.google.com with SMTP id s17so4054496vka.5;
-        Thu, 18 Nov 2021 07:46:00 -0800 (PST)
-X-Received: by 2002:a05:6122:7d4:: with SMTP id l20mr9348507vkr.26.1637250360038;
- Thu, 18 Nov 2021 07:46:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20211115142830.12651-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211115142830.12651-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 18 Nov 2021 16:45:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWyKt0XyLwXE8J5jvEhqtitHY5Lhw1zryY3uzJ4LN4PBg@mail.gmail.com>
-Message-ID: <CAMuHMdWyKt0XyLwXE8J5jvEhqtitHY5Lhw1zryY3uzJ4LN4PBg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: cat875: Add rx/tx delays
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Willy Liu <willy.liu@realtek.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S232145AbhKRPxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 10:53:40 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:15934 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232672AbhKRPxj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 10:53:39 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637250639; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=iX11h+Op1PNzjFTEsnyBCkeChhmqWolo+4Fuu4ZniBo=; b=UVGm1ihuIwXsvijUpF4F09rnZP4GDJopXzpRhYb69k2boC0p85O/nHmCFSqKmh153DCAKFP6
+ dhzoEn1cpe6Yh/UdSw6yDla3LaMCCX8qp0vIOToBcx0cy/pgWPQsD1aw9X6KNBS7P6xDgNlA
+ WBeYdRJxkoYIy3VP7VzMObG+9Ds=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 6196764e1e1d2f5233090278 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 15:50:38
+ GMT
+Sender: pillair=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 46EA6C4361B; Thu, 18 Nov 2021 15:50:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from pillair-linux.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: pillair)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8942EC4338F;
+        Thu, 18 Nov 2021 15:50:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 8942EC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Rakesh Pillai <pillair@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, ohad@wizery.com,
+        mathieu.poirier@linaro.org, robh+dt@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org,
+        Rakesh Pillai <pillair@codeaurora.org>
+Subject: [PATCH v9 0/3] Add support for sc7280 WPSS PIL loading
+Date:   Thu, 18 Nov 2021 21:20:17 +0530
+Message-Id: <1637250620-8926-1-git-send-email-pillair@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 15, 2021 at 3:28 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> The CAT875 sub board from Silicon Linux uses Realtek PHY.
->
-> The phy driver commit bbc4d71d63549bcd003
-> ("net: phy: realtek: fix rtl8211e rx/tx delay config") introduced
-> NFS mount failure. Now it needs both rx/tx delays for the NFS mount to
-> work.
->
-> This patch fixes the NFS mount failure issue by adding "rgmii-id" mode
-> on the avb device node.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Fixes: bbc4d71d63549bcd ("net: phy: realtek: fix rtl8211e rx/tx delay config")
+Add support for PIL loading of WPSS co-processor for SC7280 SOCs.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.17.
+Changes from v8:
+- Disallow num_proxy_pds to be more than the max allowed
+- Add "additionalProperties: false" for glink-edge property in wpss dt-bindings.
 
-Gr{oetje,eeting}s,
+Changes from v7:
+- Use "interrupts" instead of "interrupts-extended" in DT bindings.
+- Add glink-edge properties in DT bindings.
+- Use size_t for "proxy_pd_count" in wpss remoteproc driver
 
-                        Geert
+Changes from v6:
+- Fixed the dt-bindings check in qcom,sc7280-wpss-pil.yaml
+- Fixed CDSP dt-bindings example node (compatible, glink-edge)
+- Fixed the clock-names used in wpss driver
+- Add support to get firmware-name from DTSI entry for wpss.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Changes from v4/v5:
+- Add yaml conversion for adsp/cdsp dt-bindings
+- Change clock names in wpss dt-bindings
+- Correct mistake in signed-off enail ID
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Rakesh Pillai (3):
+  dt-bindings: remoteproc: qcom: adsp: Convert binding to YAML
+  dt-bindings: remoteproc: qcom: Add SC7280 WPSS support
+  remoteproc: qcom: q6v5_wpss: Add support for sc7280 WPSS
+
+ .../bindings/remoteproc/qcom,hexagon-v56.txt       | 140 -------------
+ .../bindings/remoteproc/qcom,qcs404-cdsp-pil.yaml  | 161 +++++++++++++++
+ .../bindings/remoteproc/qcom,sc7280-wpss-pil.yaml  | 219 ++++++++++++++++++++
+ .../bindings/remoteproc/qcom,sdm845-adsp-pil.yaml  | 160 +++++++++++++++
+ drivers/remoteproc/qcom_q6v5_adsp.c                | 222 +++++++++++++++++++--
+ 5 files changed, 746 insertions(+), 156 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,hexagon-v56.txt
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,qcs404-cdsp-pil.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sc7280-wpss-pil.yaml
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/qcom,sdm845-adsp-pil.yaml
+
+-- 
+2.7.4
+
