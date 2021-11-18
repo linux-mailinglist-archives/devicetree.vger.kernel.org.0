@@ -2,97 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 395A6455231
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 02:27:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9745B45523F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 02:33:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbhKRBaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 20:30:24 -0500
-Received: from regular1.263xmail.com ([211.150.70.202]:33726 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232630AbhKRBaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 20:30:21 -0500
-Received: from localhost (unknown [192.168.167.16])
-        by regular1.263xmail.com (Postfix) with ESMTP id 66A10779;
-        Thu, 18 Nov 2021 09:27:18 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.93] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P11048T139933688260352S1637198830607739_;
-        Thu, 18 Nov 2021 09:27:14 +0800 (CST)
-X-IP-DOMAINF: 1
-X-RL-SENDER: kever.yang@rock-chips.com
-X-SENDER: yk@rock-chips.com
-X-LOGIN-NAME: kever.yang@rock-chips.com
-X-FST-TO: andy.yan@rock-chips.com
-X-RCPT-COUNT: 12
-X-LOCAL-RCPT-COUNT: 2
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-UNIQUE-TAG: <8a96bdeaec7a0268badde3c4ba993496>
-X-System-Flag: 0
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        =?UTF-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
-From:   Kever Yang <kever.yang@rock-chips.com>
-Message-ID: <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com>
-Date:   Thu, 18 Nov 2021 09:27:10 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S242270AbhKRBgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 20:36:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38930 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242268AbhKRBgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 20:36:51 -0500
+Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B65C061766
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 17:33:52 -0800 (PST)
+Received: by mail-ot1-x336.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so8058555otj.7
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 17:33:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=4b4P2TJUsQmMD7ulO5jskW7J+R4EF/1H7E16Fc7M+tk=;
+        b=lwE1jNkaQ6vRIYJfuDg1xVkUFcf6I9dfnMdqvFzcLVB9aZRng6kzelTHzd9M2GegQt
+         G+F6eYa/CXyot083R2bqXE1ZITf+EOHFfCrAuPGKm/iEJlaxBPzElDYHm+wER3E6nXcv
+         QqgCD+3QH3rqwWIYqnDlyqizIZB5ODklXHB1yl8yC6wzlvc85IfV/gHa3pF6niOkuPOg
+         HxMcizZ2Ly8ANIpX0OR0kYfl6gDnFmnCMPC947Qy90+zQ8QQMVjy1EhgvgLtTeaMoSgo
+         VYorYBk3LxsAqqIAPOzJccXh6uOrl33XCXnN9hkWcP+AhMTXGa4aeeXa+9V73FGNO9bi
+         PRZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=4b4P2TJUsQmMD7ulO5jskW7J+R4EF/1H7E16Fc7M+tk=;
+        b=zFQUVAlsS+uLy2RDdUu0Z9j8yjd75YegulGSQw5rH+sOIGU5A4r2Ty4TTTZLB4B0GC
+         UoU0TV9qmZx24RRmZZePm3PUBhsEiXtS2XjHcYcPpREIM/59HOMY+TMSHBRqTZLqS+cg
+         XGuS4t6jy5E1DowjW6g/Gkd6tXNSVCQOJ0+eDhISwsJ4DHZzK909p/7P6aBDCR+1aaCW
+         9SqQWaXtzroL16A/TBCJ3a8H5B4wMMklXZJNKH89h1Mle2+GUefQXqzZqrFtRDX3KYRD
+         15pmkCnWe8vOG9tsvyetYQ3uKVNbbbU2vvHDUtGNQ+MlBqRwE+xaUcbynL5QAZO8+PyU
+         qP1w==
+X-Gm-Message-State: AOAM533Hpr8QbJ23GYHEZudTB5z8G92biMNnDv36l1QuaJehfouJZIMD
+        Gmm+GKWJ4id+ZPw3lGYZdGnXSQ==
+X-Google-Smtp-Source: ABdhPJyAP0uCLZL43+mhZCRInEmazFHlxnQ7X8cjmMuZqDA2VCVNiYRJvwQ9Jffhy6a/v8ncNhEAsA==
+X-Received: by 2002:a05:6830:1358:: with SMTP id r24mr18065620otq.8.1637199231021;
+        Wed, 17 Nov 2021 17:33:51 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t14sm329745oth.81.2021.11.17.17.33.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Nov 2021 17:33:50 -0800 (PST)
+Date:   Wed, 17 Nov 2021 19:33:48 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kuogee Hsieh <quic_khsieh@quicinc.com>
+Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        devicetree@vger.kernel.org, robdclark@gmail.com,
+        robh+dt@kernel.org, sean@poorly.run, vkoul@kernel.org,
+        quic_abhinavk@quicinc.com, aravindh@codeaurora.org,
+        quic_sbillaka@quicinc.com, quic_mkrishn@quicinc.com,
+        quic_kalyant@quicinc.coml, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Kuogee Hsieh <khsieh@codeaurora.org>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7280: Add Display Port node
+Message-ID: <YZWtfGNPAGtHOXZ+@builder.lan>
+References: <1635896673-5841-1-git-send-email-quic_khsieh@quicinc.com>
+ <CAE-0n53ArJSYEAtLbc5dFrPspKhi3Kv=hpu=wS1TMsOWcmz6pw@mail.gmail.com>
+ <88a5219e-c82a-87fa-6af3-578238d6027b@quicinc.com>
 MIME-Version: 1.0
-In-Reply-To: <20211117143347.314294-1-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+In-Reply-To: <88a5219e-c82a-87fa-6af3-578238d6027b@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha Hauer,
+On Tue 16 Nov 10:43 CST 2021, Kuogee Hsieh wrote:
 
-On 2021/11/17 下午10:33, Sascha Hauer wrote:
-> This series adds initial graphics support for the Rockchip RK356[68]
-> SoCs.  Graphics support is based around the VOP2 controller which
-> replaces the VOP controller found on earlier Rockchip SoCs. The driver
-> has been tested with HDMI support included in this series and MIPI-DSI
-> which is not included because it needs some more work. The driver is
-> taken from the downstream Rockchip kernel
+> 
+> On 11/15/2021 3:39 PM, Stephen Boyd wrote:
+> > Quoting Kuogee Hsieh (2021-11-02 16:44:33)
+> > > From: Kuogee Hsieh<khsieh@codeaurora.org>
+> > > 
+> > > Signed-off-by: Kuogee Hsieh<quic_khsieh@quicinc.com>
+> > > ---
+> > What tree is this based on? I don't see edp_phy upstream for sc7280
+> 
+> this patch is depend on� --> [PATCH v2 4/4] arm64: dts: qcom: sc7280: add
+> edp display dt nodes
+> 
 
-Yes, you do know this is from Rockchip kernel.
+But there's a v3 of 3 patches in the patchworks queue, unfortunately I
+don't have this in my inbox. Not sure why, but looking at
+lore.kernel.org, you didn't use get_maintainers...
 
-Could you point me out where is the information about original author  
-in your commit?
+Also why are the patches Reported-by: kernel test robot <lkp@intel.com>?
 
->   and heavily polished, most non
-> standard features have been removed for now.
-
-I don't agree with this, we do believe you have do some clean up to meet 
-the requirement
-
-of upstream, but all the framework and feature implement are from 
-Rockchip engineer,
-
-we have made a great effort to make everything work which block us to 
-upstream this driver for now.
+Did lkp tell you that you where missing edp support? ;)
 
 
-NAK for this series.
+Could you please resubmit the 4 patches together?
 
+Regards,
+Bjorn
 
-- Kever
-
-
-
+> it had completed reviewed.
+> 
+> https://mail.codeaurora.org/?_task=mail&_caps=pdf%3D1%2Cflash%3D0%2Ctiff%3D0%2Cwebp%3D1&_uid=1789&_mbox=INBOX&_action=show
+> 
+> 
+> > 
+> > Otherwise, looks good to me.
+> > 
+> > Reviewed-by: Stephen Boyd<swboyd@chromium.org>
