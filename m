@@ -2,232 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36C32455D01
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:51:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8429B455D09
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:53:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231664AbhKRNx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:53:59 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:31017 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231620AbhKRNx6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:53:58 -0500
+        id S231737AbhKRN42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:56:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35018 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231707AbhKRN42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:56:28 -0500
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF76C061570;
+        Thu, 18 Nov 2021 05:53:27 -0800 (PST)
+Received: by mail-ed1-x52c.google.com with SMTP id w1so27261029edd.10;
+        Thu, 18 Nov 2021 05:53:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637243458; x=1668779458;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=CJR1fG+YuzhuLB13jNgULGuZOsS9eMa1X46m29OB0Jc=;
-  b=UlkDNl3PvICGB2KcQTblpE2caVQvshmPnltZoGDD4/9mZZmvWptFTgvk
-   tkaaGWf0Y7jgJ1cmrdJ9AG/oKDVvYLv63bo0mjniikqABM7gZCa+++pYk
-   RUqgBsxMk8AaeiJ/pi6gUBvWhkv0YzNVLvZL15k2JMbNCy45gQc0Mn+Lj
-   s=;
-Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
-  by alexa-out.qualcomm.com with ESMTP; 18 Nov 2021 05:50:57 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Nov 2021 05:50:56 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Thu, 18 Nov 2021 05:50:56 -0800
-Received: from [10.216.52.30] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 18 Nov
- 2021 05:50:51 -0800
-Subject: Re: [PATCH V3 4/4] arm64: dts: qcom: sc7280: Add pm8008 regulators
- support for sc7280-idp
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, <collinsd@codeurora.org>,
-        <subbaram@codeaurora.org>, Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1635434072-32055-1-git-send-email-quic_c_skakit@quicinc.com>
- <1635434072-32055-5-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n53kp5M6LG2iwaJeysQDrJD1AvcctEd6xjVdTXs5ddhu2w@mail.gmail.com>
-From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
-Message-ID: <66f2eb4b-eb63-1d21-46da-c78085d3ae92@quicinc.com>
-Date:   Thu, 18 Nov 2021 19:20:11 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.8.0
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=XDayD9Up8pbYTX0I4VR30Djj/ittgN+V+boM5K4mUIY=;
+        b=WLZCOIAx3qp0YLH6Rb2Qh54zX1GGVdUM9lMq3IzYxw58I+20lx/4WS8jHxRNeZ1Q4Y
+         UMDSSchapqFFYKI6BIP01IDzlYABMor1Y5MTPHJvZle6vUBf+4GZoN+1laxjVdHplZD7
+         OeR8N7qfudCiT8yq49tk10rgcJ/LWFez14HF+ljrxTtXerfpOPIunv/QX9Rl9yoo+uh3
+         ZoMHHMtDjU3oTHdWd53gl2Y3i2b66NemHkNq6FirH9RkB0KXbeGAMYXKbgU5OBLDsB8U
+         X1vHK1jgKYhDWlyJ42rn2shM5/HR59SXP7zWdDu6NMMfUfFnGGfOFejYv2zU1oDuwlKQ
+         38kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=XDayD9Up8pbYTX0I4VR30Djj/ittgN+V+boM5K4mUIY=;
+        b=gQ7PGGZWO9d1dJ4qIBbynf/GdqnYzZY/u236odPgizOMVLg8RAxJ0Mt1V1vkG2uO4J
+         ex0ljKTmGNUWoicgrq2rhtM3V+sfmIiqbFd3yXNiMwNEXZUNfZWxWiuv/SG2l6Z1EmML
+         htmHSPytiMukynqSw8BD6TgkAViS2bqZ4+BunMrKWUq6/kjDLynvyeJ7/t1w/Ew7f1QQ
+         KwOwd6/+23n011TaUK3yFqqVlF8xNz0S4wisa468FCcigxypvrKOZ341OUSwjQrjR4fu
+         vaIBnaNQ9SuYF+5BIACukho4G2s1e2CmDsLLdDQT2DWrRHMIMO9UHA/MG00edUTVk5gZ
+         g2Dw==
+X-Gm-Message-State: AOAM531G8fqLhm+s80Th6jsQG7wE8D+o7SVA2VWMhFQwIQX+6e1ywl0Y
+        9b1gJwUOvnrc3RivNT/qqviHGrhNr3Tnvn4PhUU=
+X-Google-Smtp-Source: ABdhPJy2REv7kj+jyhdpi5wrTBR+64ueROt4QMmoHSq5852Vc1KuxgLNDj6OumdIPWFd3FPAdZPkD4607nGXHr9d7bE=
+X-Received: by 2002:a17:907:60d0:: with SMTP id hv16mr32852451ejc.425.1637243606288;
+ Thu, 18 Nov 2021 05:53:26 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAE-0n53kp5M6LG2iwaJeysQDrJD1AvcctEd6xjVdTXs5ddhu2w@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <20211118132152.15722-1-zajec5@gmail.com>
+In-Reply-To: <20211118132152.15722-1-zajec5@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 18 Nov 2021 15:52:45 +0200
+Message-ID: <CAHp75VfckgE9VNkYTiJfxdQu66-DntUNOT7ttHr678Rt5fwmFg@mail.gmail.com>
+Subject: Re: [PATCH 0/5] pinctrl: allow storing pins, groups & functions in DT
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 18, 2021 at 3:22 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
+>
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> A week ago I sent
+> [PATCH RFC] dt-bindings: pinctrl: support specifying pins
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2021111023=
+1436.8866-1-zajec5@gmail.com/
+>
+> From short discussion in that thread it seems that using DT to store
+> pinctrl pins, groups & functions may be an option. I'd like to ask for
+> reviewing my patchset implementing that.
+>
+> Please note it's about describing hardware elements and not actual
+> programming way. It may be used with pinctrl-single.c one day but it's
+> designed as a generic solution for data.
+>
+> Patches 1-4 are for linux-pinctrl.git. Patch 5 I found worth including
+> as DT big example. It can go through Linus with Florian's Ack or I can
+> send it to Florian later.
 
-On 10/29/2021 2:10 AM, Stephen Boyd wrote:
-> Quoting Satya Priya (2021-10-28 08:14:32)
->> Add pm8008 regulators support for sc7280 idp.
->>
->> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
->> ---
->> Changes in V2:
->>   - As per Stephen's comments, replaced '_' with '-' for node names.
->>
->> Changes in V3:
->>   - Changed the regulator node names as l1, l2 etc
->>   - Changed "pm8008-regulators" to "regulators"
->>   - Changed "qcom,min-dropout-voltage" to "regulator-min-dropout-voltage-microvolt"
->>
->>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 103 +++++++++++++++++++++++++++++++
->>   1 file changed, 103 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> index d623d71..493575b 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
->> @@ -309,6 +309,97 @@
->>          };
->>   };
->>
->> +&i2c1 {
->> +       #address-cells = <1>;
->> +       #size-cells = <0>;
->> +       status = "okay";
->> +
->> +       pm8008_chip: pm8008@8 {
-> If this is going to be copy/pasted wherever devices that use pm8008 live
-> then it's probably better to make a new file like we do for other pmics.
-Sounds good, I'll do that.
-> Maybe something like
->
-> &pm8008_i2c {
-> 	<All the generic stuff in here like reg properties and
-> 	address/size cells and compatible>
-> };
->
-> and then have each board set the min/max voltages and min dropout
-> properties. Then we can include the pm8008.dtsi file after defining
-> which i2c bus it lives on.
->
-> pm8008_i2c: i2c5 { };
-> #include "pm8008.dtsi"
->
-> ...
->
->
-> &pm8008_l1 {
-> 	regulator-min-microvolt = <...>;
-> 	...
-> };
->
->> +               compatible = "qcom,pm8008";
->> +               reg = <0x8>;
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +
->> +               pinctrl-names = "default";
->> +               pinctrl-0 = <&pm8008_active>;
->> +       };
->> +
->> +       pm8008_ldo: pm8008@9 {
->> +               compatible = "qcom,pm8008";
->> +               reg = <0x9>;
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +
->> +               regulators {
->> +                       compatible = "qcom,pm8008-regulator";
->> +                       #address-cells = <1>;
->> +                       #size-cells = <0>;
->> +
->> +                       vdd_l1_l2-supply = <&vreg_s8b_1p2>;
->> +                       vdd_l3_l4-supply = <&vreg_s1b_1p8>;
->> +                       vdd_l5-supply = <&vreg_bob>;
->> +                       vdd_l6-supply = <&vreg_bob>;
->> +                       vdd_l7-supply = <&vreg_bob>;
->> +
->> +                       pm8008_l1: l1@4000 {
->> +                               reg = <0x4000>;
->> +                               regulator-name = "pm8008_l1";
->> +                               regulator-min-microvolt = <950000>;
->> +                               regulator-max-microvolt = <1300000>;
->> +                               regulator-min-dropout-voltage-microvolt = <96000>;
->> +                       };
->> +
->> +                       pm8008_l2: l2@4100 {
->> +                               reg = <0x4100>;
->> +                               regulator-name = "pm8008_l2";
->> +                               regulator-min-microvolt = <950000>;
->> +                               regulator-max-microvolt = <1250000>;
->> +                               regulator-min-dropout-voltage-microvolt = <24000>;
->> +                       };
->> +
->> +                       pm8008_l3: l3@4200 {
->> +                               reg = <0x4200>;
->> +                               regulator-name = "pm8008_l3";
->> +                               regulator-min-microvolt = <1650000>;
->> +                               regulator-max-microvolt = <3000000>;
->> +                               regulator-min-dropout-voltage-microvolt = <224000>;
->> +                       };
->> +
->> +                       pm8008_l4: l4@4300 {
->> +                               reg = <0x4300>;
->> +                               regulator-name = "pm8008_l4";
->> +                               regulator-min-microvolt = <1504000>;
->> +                               regulator-max-microvolt = <1600000>;
->> +                               regulator-min-dropout-voltage-microvolt = <0>;
->> +                       };
->> +
->> +                       pm8008_l5: l5@4400 {
->> +                               reg = <0x4400>;
->> +                               regulator-name = "pm8008_l5";
->> +                               regulator-min-microvolt = <2600000>;
->> +                               regulator-max-microvolt = <3000000>;
->> +                               regulator-min-dropout-voltage-microvolt = <104000>;
->> +                       };
->> +
->> +                       pm8008_l6: l6@4500 {
->> +                               reg = <0x4500>;
->> +                               regulator-name = "pm8008_l6";
->> +                               regulator-min-microvolt = <2600000>;
->> +                               regulator-max-microvolt = <3000000>;
->> +                               regulator-min-dropout-voltage-microvolt = <112000>;
->> +                       };
->> +
->> +                       pm8008_l7: l7@4600 {
->> +                               reg = <0x4600>;
->> +                               regulator-name = "pm8008_l7";
->> +                               regulator-min-microvolt = <3000000>;
->> +                               regulator-max-microvolt = <3544000>;
->> +                               regulator-min-dropout-voltage-microvolt = <96000>;
->> +                       };
->> +               };
->> +       };
->> +};
->> +
->>   &qfprom {
->>          vcc-supply = <&vreg_l1c_1p8>;
->>   };
->> @@ -437,6 +528,18 @@
->>          };
->>   };
->>
->> +&pm8350c_gpios {
->> +       pm8008-reset {
-> Why is it a subnode of a subnode? Shouldn't it be pm8008-active
-> directly underneath pm8350c_gpios?
-Right, I'll remove the subnode pm8008-reset.
->> +               pm8008_active: pm8008-active {
->> +                       pins = "gpio4";
->> +                       function = "normal";
->> +                       bias-disable;
->> +                       output-high;
->> +                       power-source = <0>;
->> +               };
->> +       };
->> +};
->> +
->>   &qspi_cs0 {
->>          bias-disable;
->>   };
+DT is not the only one,
+
+So, I would like to see some kind of roadmap / vision on how this can
+be useful in the ACPI case.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
