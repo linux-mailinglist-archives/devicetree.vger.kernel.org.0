@@ -2,77 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 089AF456073
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 17:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 607B745607A
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 17:30:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233257AbhKRQb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 11:31:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43684 "EHLO
+        id S233086AbhKRQdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 11:33:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233086AbhKRQb5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 11:31:57 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB6EC061574;
-        Thu, 18 Nov 2021 08:28:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=iJONWK5pC/+lJWh7aMPzJ59swDI+mtk+OPmyLCba9Do=; b=znSTf81AAlmwJbkHyQTIbc9E7R
-        x5BTymJCwZuYMPJTJYmaxuUKBhdxUC8a2TErT1ADWGTFsfzG7diug1fug9XIKpIwNrXmQa8Bkilvf
-        F5T/RSlheOhgNUFOO2oCXG84DNn//neiTQGOL6nhIrlkSKr7//Fubm/emzrA2mYPgiHjJnRuwEEhb
-        YrODUz0PCY7X7PJvL2L4OhnIHT+gkdqRhEiW2IB2FKygFBorV9DMYylW36jdenBVkz/SNI2Qn0QAY
-        dpVVOI/9IioiaS7/5RYoYwmqZzBXQxDa6j3Bsr+6htiCWNY32lUbgI+ahHH07LerSjOEV4XDIxi7V
-        nq/gqukQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55730)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mnkHP-000399-EL; Thu, 18 Nov 2021 16:28:55 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mnkHO-00044N-O4; Thu, 18 Nov 2021 16:28:54 +0000
-Date:   Thu, 18 Nov 2021 16:28:54 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 5/8] net: phylink: pass supported PHY interface
- modes to phylib
-Message-ID: <YZZ/RumbwsfQ1jrO@shell.armlinux.org.uk>
-References: <20211117225050.18395-1-kabel@kernel.org>
- <20211117225050.18395-6-kabel@kernel.org>
- <YZZ+1LBrTxHzMJpP@lunn.ch>
+        with ESMTP id S233352AbhKRQdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 11:33:01 -0500
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B246C061574
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 08:30:01 -0800 (PST)
+Received: from terra.local.svanheule.net (unknown [IPv6:2a02:a03f:eafe:c901:baf4:d6c5:5600:301])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id D10C6273809;
+        Thu, 18 Nov 2021 17:29:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1637253000;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=1JTDewxmDd3Uj2UDDhFbVjaroT1xBd19dnBZLJEMz1A=;
+        b=XH5kuUG7tAmftkxkqBU4En1mrcWH48Lxsfz5bZpjGpgTzrFpzWMJxhN+fo9XNFwQAusX2c
+        fs2VJoGa0br6Ay5sBsyjusGeeWMKZNxw0bfh/Uj/B0+0TnPSQf5qgchjkyXurZVfVDIQLS
+        gNRPx3mqlZ7MJiMoTT3ZmF+47W42l7c05UK1THAmA0N9hIN/4LUftwsgk4Q3uZoue2IKYA
+        6rgIkp2RNEwd5bvedItGTTDl6OBnmlSezQQqtC3OHXOx98uQt5rnzeSosFlBl6X7RR25TM
+        fjklzZhKoiy6JoxTWZ3vfhaIiQs8X0nGKxVHoIW8ASJTlruF52qhRXSI6jNqsQ==
+From:   Sander Vanheule <sander@svanheule.net>
+To:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH v4 0/2] Add Realtek Otto WDT support
+Date:   Thu, 18 Nov 2021 17:29:50 +0100
+Message-Id: <cover.1637252610.git.sander@svanheule.net>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YZZ+1LBrTxHzMJpP@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 05:27:00PM +0100, Andrew Lunn wrote:
-> > +static int __init phylink_init(void)
-> > +{
-> > +	__set_bit(PHY_INTERFACE_MODE_USXGMII, phylink_sfp_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_10GBASER, phylink_sfp_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_10GKR, phylink_sfp_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_5GBASER, phylink_sfp_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_2500BASEX, phylink_sfp_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_SGMII, phylink_sfp_interfaces);
-> > +	__set_bit(PHY_INTERFACE_MODE_1000BASEX, phylink_sfp_interfaces);
-> 
-> Do we need to include PHY_INTERFACE_MODE_100BASEX here for 100BaseFX?
-> Not sure we actually have any systems using it.
+This watchdog timer is found on Realtek's Otto MIPS platforms, including the
+RTL838x, RTL839x, and RTL930x series of ethernet switch SoCs. It has a number
+of reset modes (SoC, CPU, software), and can provide pretimeout interrupts.
 
-Most likely. I think we can now drop PHY_INTERFACE_MODE_10GKR from
-this too.
+The timer has two timeout phases. Both phases have a maximum duration of 32
+prescaled clock ticks, which is ca. 43s with a clock of 200MHz:
+- Phase 1: During this phase, the WDT can be pinged to reset the timeout.
+- Phase 2: Starts after phase 1 has timed out, and only serves to give the
+  system some time to clean up, or notify others that it's going to reset.
+  During this phase, pinging the WDT has no effect, and a reset is unavoidable.
+
+The driver has been tested on a Zyxel GS1900-8 (RTL8380, mainline kernel and
+OpenWrt), a Zyxel GS1900-48 (RTL8393, mainline), a Netgear GS110TPPv1
+(RTL8381, mainline), and a Zyxel XGS1250-12 (RTL9203B, Openwrt).
+
+Changes since v3:
+Link: https://lore.kernel.org/all/cover.1636018117.git.sander@svanheule.net/
+- Improve clock initialisation
+
+Changes since v2:
+Link: https://lore.kernel.org/all/20211104085952.13572-1-sander@svanheule.net/
+- Fix off-by-one error in prescale assignment
+
+Main changes since v1:
+Link: https://lore.kernel.org/all/cover.1634131707.git.sander@svanheule.net/
+- Drop implementation of phase2 irq, since it is only triggered on system reset
+- Drop redundant value checks and lock
+- Add RTL930x compatibility
+
+Sander Vanheule (2):
+  dt-bindings: watchdog: Realtek Otto WDT binding
+  watchdog: Add Realtek Otto watchdog timer
+
+ .../bindings/watchdog/realtek,otto-wdt.yaml   |  91 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/realtek_otto_wdt.c           | 384 ++++++++++++++++++
+ 5 files changed, 496 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/realtek,otto-wdt.yaml
+ create mode 100644 drivers/watchdog/realtek_otto_wdt.c
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.33.1
+
