@@ -2,108 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD10D4561D9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 18:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12FFB456209
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 19:12:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbhKRR5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 12:57:09 -0500
-Received: from mail-ua1-f53.google.com ([209.85.222.53]:43766 "EHLO
-        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbhKRR5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 12:57:08 -0500
-Received: by mail-ua1-f53.google.com with SMTP id j14so5729992uan.10;
-        Thu, 18 Nov 2021 09:54:08 -0800 (PST)
+        id S231574AbhKRSPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 13:15:15 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:36547 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231467AbhKRSPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 13:15:15 -0500
+Received: by mail-oi1-f181.google.com with SMTP id t23so16084581oiw.3;
+        Thu, 18 Nov 2021 10:12:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eeSR6hQYhnDAp5L8gQBKQrxj8blan72aPxUZHPXNNXE=;
-        b=j8Al71t9wNY0o/K3KLnfC+hUP9bF3JrL8kXo5w2m79/7Rh2liLhE1p76BjYkEfw21l
-         Xh70/tXZtClnVYOpDGHALGVWobR1Z0LR1u3XXYJaPUB+9I2tTk0hjAphFQbaki7UswVF
-         nXymA94mgcPpt3u/iVh5ET9wjCTjflFaqNXUMjPxySyhEdVaKY53KydP2BMag8T8Tx0L
-         kc2xld641lc5rsOu6AA2gJXatV/fi0UFKeQEt2Gw4V94NV+AJmeHBSW40Uci5wErS5KK
-         vJBnikoW1I6TSjeinNl6NsPMGXU7s5sIOqV2RLQn+NPDj9eFZtyrF1Cpk+MaTiFSFPUL
-         OW3Q==
-X-Gm-Message-State: AOAM530o/BZEH1BIkD2bqfxOO0VSrMjyf3dBManztTk1H9YjQiD6L8Pz
-        jQnnVaXKSY2ZpW4CEdS2PAlnTaOwdttJJQ==
-X-Google-Smtp-Source: ABdhPJzjEFb42SIExKfw59nFKhF7eCFivz4040MnfzwxXQy3KKaturwzqOtZBXWDTbw6a+FYtJRd7g==
-X-Received: by 2002:a05:6102:5093:: with SMTP id bl19mr83419557vsb.43.1637258047783;
-        Thu, 18 Nov 2021 09:54:07 -0800 (PST)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id u14sm352101vsi.2.2021.11.18.09.54.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Nov 2021 09:54:07 -0800 (PST)
-Received: by mail-ua1-f54.google.com with SMTP id y5so15484834ual.7;
-        Thu, 18 Nov 2021 09:54:07 -0800 (PST)
-X-Received: by 2002:a05:6102:e82:: with SMTP id l2mr83851227vst.37.1637258046974;
- Thu, 18 Nov 2021 09:54:06 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZWdr6e4SiKEwyVeW7jig9nB/OfdKCWQxGTViJArBtNk=;
+        b=Iad+sKd+t5EJ7SEr0ju4oISmk39DnvwklXYlV/16ZFAAwhyh+CG/hvYfxE3TOaT+Qg
+         BcA1bzH7sAH8UGOVvxIZbgAmOHDr1vaeY610ar+/D8832ZkWlyzS1NoO1CkbAIgOQPB4
+         Ks03Kv6aDPYs89mAqIq3uwmdhRGUgOii0RxYPvJp+aszzuLcRTcK/6VwnIMHxurXxpDy
+         w3xrYXyW/4upgqV0WsSXSYjTQvr/no+KLI/djugdvTRde/gYFT5iQCboZm+hUyuO+rZW
+         419T3vV013XRqc5pVOJF9yJLWnczyMFeii83cOdyPca+KeXqd0NiHTBzKsTcXN8Zk4BO
+         7yJw==
+X-Gm-Message-State: AOAM5331djO7LfGJWCxe6S/zyECHVoUiOBgfyk6RLdu+IfmaQ46cDZeu
+        /7FlaWFTOmKVp60aqD85r4o07W+Edw==
+X-Google-Smtp-Source: ABdhPJyMTHkFTgzUFk6reybeEUonyuO0UVS3U62hmM+wu1p7V7zF8Vjh3UeI1rSTPyE7qMTSz5OFmg==
+X-Received: by 2002:aca:7c3:: with SMTP id 186mr9614934oih.60.1637259134717;
+        Thu, 18 Nov 2021 10:12:14 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id n20sm99339ooe.7.2021.11.18.10.12.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 10:12:14 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Paul Mackerras <paulus@samba.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: [PATCH 0/3] of/fdt: Rework early FDT scanning functions
+Date:   Thu, 18 Nov 2021 12:12:09 -0600
+Message-Id: <20211118181213.1433346-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com> <20211116074130.107554-3-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20211116074130.107554-3-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 18 Nov 2021 18:53:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUK5gaBh0O5kmOpB+YN6S6OsLSC_J_KmmSMxRTtu6LPNg@mail.gmail.com>
-Message-ID: <CAMuHMdUK5gaBh0O5kmOpB+YN6S6OsLSC_J_KmmSMxRTtu6LPNg@mail.gmail.com>
-Subject: Re: [PATCH 02/16] dt-bindings: arm: renesas: Document Renesas Spider boards
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+The early FDT scanning functions use of_scan_flat_dt() which implements 
+its own node walking method. This function predates libfdt and is an 
+unnecessary indirection. This series reworks 
+early_init_dt_scan_chosen(), early_init_dt_scan_root(), and 
+early_init_dt_scan_memory() to be called directly and use libfdt calls.
 
-On Tue, Nov 16, 2021 at 8:42 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add device tree bindings documentation for Renesas R-Car S4-8
-> Spider CPU and BreakOut boards.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Ultimately, I want to remove of_scan_flat_dt(). Most of the remaining 
+of_scan_flat_dt() users are in powerpc.
 
-Thanks for your patch!
+Rob
 
-> --- a/Documentation/devicetree/bindings/arm/renesas.yaml
-> +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-> @@ -317,6 +317,14 @@ properties:
->
->        - description: R-Car S4-8 (R8A779F0)
->          items:
-> +          - enum:
-> +              - renesas,spider-cpu # Spider CPU board (RTP8A779FASKB0SC2S)
-> +          - const: renesas,r8a779f0
-> +
-> +        items:
 
-Missing "-" in front of "items:".
+Rob Herring (3):
+  of/fdt: Rework early_init_dt_scan_chosen() to call directly
+  of/fdt: Rework early_init_dt_scan_root() to call directly
+  of/fdt: Rework early_init_dt_scan_memory() to call directly
 
-> +          - enum:
-> +              - renesas,spider-breakout # Spider BreakOut board (RTP8A779F0ASKB0SB0S)
-> +          - const: renesas,spider-cpu
->            - const: renesas,r8a779f0
->
->        - description: R-Car H3e (R8A779M0)
+ arch/mips/ralink/of.c                |  16 +---
+ arch/powerpc/kernel/prom.c           |  22 ++---
+ arch/powerpc/mm/nohash/kaslr_booke.c |   4 +-
+ drivers/of/fdt.c                     | 121 ++++++++++++++-------------
+ include/linux/of_fdt.h               |   9 +-
+ 5 files changed, 79 insertions(+), 93 deletions(-)
 
-The rest LGTM.
-Reading[1], I assume "RTP8A779F0ASKB0SP2S" is the part number of the
-full kit?
+-- 
+2.32.0
 
-[1] https://www.renesas.com/us/en/products/automotive-products/automotive-system-chips-socs/rtp8a779f0askb0sp2s-r-car-s4-reference-boardspider
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
