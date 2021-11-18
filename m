@@ -2,94 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86966456081
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 17:30:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18419456083
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 17:31:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233313AbhKRQd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 11:33:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232841AbhKRQd6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 11:33:58 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC24CC061574;
-        Thu, 18 Nov 2021 08:30:57 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id u3so28766239lfl.2;
-        Thu, 18 Nov 2021 08:30:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=P6Cs05oMd2OpRj6myRO3sxVEhv7HF5q1kH05zj1oWcA=;
-        b=T1+ef2jJXAECOChH2guVLhTPNfQjK776PgM7Jj1Y89rmYOnM/mDpjk8rMehdeptza5
-         AMXtjaQhI2kWNRfTI7xHNihYUrVCwX9KrookpEAM7ZGm9UxiXBF1YtXZdOzXA+cN4JMm
-         n36HFu9x2pzXLWQnzJh1V1yZWXSxYbJiW+ZIetOQiizVt4IKK7yR6Sr/CAXPHNozXAAw
-         dZBkoKFzhALhJDR1tf+w+HEULpypgx5tfr/alkIf9TQ79+sDEyjymWEcFcWvqBhGY5Pi
-         ehNu1R/LH4Uw9ZDNPbGZYZ9UhA//IkMqQKirZ4dE6d/1NLE0l9AapKcA9KXNcgsQ0m3F
-         rtUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=P6Cs05oMd2OpRj6myRO3sxVEhv7HF5q1kH05zj1oWcA=;
-        b=ghmyjG8jWgy2en4SEXhb+nPDfNdZlcAYfXKzSFTeQgEBEMisOlxssyZiypwz499eyC
-         /FL08drJZ+VMq17vfBVDYe+z9vmo77pyClNfltoq4k5M+qn08yyFqZegOtNAaNOcUQ3i
-         Gbjn5u8KjD0J2CMr4F7H0dv7PdBviILjADzcaFdFvHucf7Kt/dUev7G1pa/WhcMb2kRy
-         frPE9zfu+Wm21cWwMcWfZwW15q0m6L/2Btv560DXIaCtUqn1Ef7IJWqcQqnfz6r0xP5K
-         bvGzqyaHEVVIsMUHfrfE0EZhDJB40PIkXAWuoq/kIr+Pjlo58j3JokcAiJwC5r+a4+vi
-         OVZA==
-X-Gm-Message-State: AOAM533Tr2zyN2uEiox8Gjfz9+6IEvuOmuwiYVQtsS06N6HiJfhNBAB/
-        QE5jfWwDwg1MrdP0GXueZiiSLwXc1jZfNznbfNw=
-X-Google-Smtp-Source: ABdhPJxu5SKnDTe+mX+HJrKiOkIbwUD+GWhJIhxlZyGOwcZdtNOaV2fk4BmqDtUsGY8TGPPGYKj2cF7CSgNwmSiDUYk=
-X-Received: by 2002:a05:6512:260e:: with SMTP id bt14mr26640077lfb.129.1637253054688;
- Thu, 18 Nov 2021 08:30:54 -0800 (PST)
+        id S233318AbhKRQeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 11:34:11 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:40890 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232841AbhKRQeK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 11:34:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=u9DHdSwC6kM/XXgGIze7GoPBJLaS72VY8WJLlQ1X+0Y=; b=Gb
+        u/S4To55rvC4JhcYaSO+7r1YxjVWifhdbqFy1aVpvV7sACBbpcqCAGPtdwS+s9YJawsSLRfevDOJu
+        RF39n7R8nL/3pGE/09z0+FKk7OP8aNH6PSjG+oOAorvWTJ0cG2siU3Hav69tCiTf9VsPoCjTL9HcG
+        fNhCgQp9O01/ie4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mnkJX-00E0AS-Bg; Thu, 18 Nov 2021 17:31:07 +0100
+Date:   Thu, 18 Nov 2021 17:31:07 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     netdev@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/8] device property: add helper function for
+ getting phy mode bitmap
+Message-ID: <YZZ/y9qXKL8zhTfu@lunn.ch>
+References: <20211117225050.18395-1-kabel@kernel.org>
+ <20211117225050.18395-4-kabel@kernel.org>
 MIME-Version: 1.0
-References: <20211118132152.15722-1-zajec5@gmail.com> <CAHp75VfckgE9VNkYTiJfxdQu66-DntUNOT7ttHr678Rt5fwmFg@mail.gmail.com>
- <c128065a-6039-6469-4c4d-f35e02ff4f54@gmail.com>
-In-Reply-To: <c128065a-6039-6469-4c4d-f35e02ff4f54@gmail.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 18 Nov 2021 18:30:14 +0200
-Message-ID: <CAHp75VfjaeCEbvZtg8pJ-DV2QnaX_fa717Zbw=RxCG9q5MOF5w@mail.gmail.com>
-Subject: Re: [PATCH 0/5] pinctrl: allow storing pins, groups & functions in DT
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211117225050.18395-4-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 3:59 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
-wrote:
-> On 18.11.2021 14:52, Andy Shevchenko wrote:
-> > DT is not the only one,
-> >
-> > So, I would like to see some kind of roadmap / vision on how this can
-> > be useful in the ACPI case.
->
-> Unfortunately I don't do any ACPI development and I also have zero ACPI
-> experience. I'm not sure how to proceed with this. Does ACPI have some
-> tables that get translated into DT-like form? Can I emulate that and
-> test somehow?
->
-> Anyone else willing to help on the ACPI part?
+On Wed, Nov 17, 2021 at 11:50:45PM +0100, Marek Behún wrote:
+> Now that the 'phy-mode' property can be a string array containing more
+> PHY modes, add helper function fwnode_get_phy_modes() that reads this
+> property and fills in PHY interfaces bitmap.
+> 
+> Signed-off-by: Marek Behún <kabel@kernel.org>
 
-As I elaborated in the subthread of patch 3 you don't need to care
-about ACPI _implementation_, only about _design_ that will give no
-obstacles to have the ACPI part be implemented. I may do it in case
-somebody prepares internal APIs and data structures for the
-interaction with FW (descriptions). That said, you don't need to know
-the ACPI details at all. Ask questions in case you are in doubt, I
-would be happy to help.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
---=20
-With Best Regards,
-Andy Shevchenko
+    Andrew
