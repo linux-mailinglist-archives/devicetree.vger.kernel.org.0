@@ -2,848 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F4304552F8
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 03:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D13B8455315
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 04:10:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235619AbhKRDBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 22:01:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57780 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233719AbhKRDBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 22:01:33 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA91C061570;
-        Wed, 17 Nov 2021 18:58:34 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id 200so4039027pga.1;
-        Wed, 17 Nov 2021 18:58:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Et7K9gyPgDPK+2bDtYcVInbWq0aInOTpwKkTVhY9i80=;
-        b=f+fel3LeKP/AWYiJm6qlPA5BLKS3ho5T2oNezaB4nlX164nD3vA+tXMeUA9oMuIUaG
-         /drF2tTUaH9zEZ4Pd6iwuEMIMN3lcOFT0ZejYs4kBiPanKHoic3WeAwV4jObeqchNcBN
-         EhQMjuiaC+TBM4aTAq79yzqxjem/Ib5AjJuVJol11J/RdO46tK487CKPdxw3WbDBRCUS
-         N0JmA8+PzBB9vTtHqp7cf5ttrKmslhOXaKlk44DAWCdyv9vGoSxThfx84mMQd0YiAjYX
-         AZPSNfDrqIs9/fIAqKfCwcd+yvlC+x8dzKcEtozzur3l/oTSXUoBWqGNAB6pM6l52hdA
-         VwFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Et7K9gyPgDPK+2bDtYcVInbWq0aInOTpwKkTVhY9i80=;
-        b=1e+RvuqNhYOiut+Zw/mJ+hNnxquwVwsEJRqoXuD7clOQl0YVazlwVdk/1rCAmaYZTn
-         EGRoeHODrFAiDljQ6JGQe0tgy5qodbN0syrm7jvPRuj3WMSRQ1Bx5h/ujJ5JPd+TkAps
-         LeAsFLb6A7cDNaPpArcAQX3F8RY+ER0OWHe33oETWhwLFkGZY5Q7WQljve16SRV9K7wl
-         ipS6D8p9pGPblZr/ezQCHHMnmHNBKAoyE/hwVEvua9eZfY/PgAJbkzvlSzDR8uIk8oA9
-         ZjYw1CZn2nzMpoptfJrM/+74cxGSaJBHEzF2lH+ow3+1vUCUSPIN8AkH1bDmbMq3MC1g
-         Q6Uw==
-X-Gm-Message-State: AOAM531jFqc4Yr4zLUsn3awmNwuudhWRxZiAI4t4regPk7c+BG60m6wH
-        8mBszc5BrwiGsxMGVlLlxWA=
-X-Google-Smtp-Source: ABdhPJyY9WQjTqSrWO1qbo857pj/L05teaQXv60VeKm+lkTh2rl1D2Ufxs7oXzupiWY9ctShrxe7rw==
-X-Received: by 2002:aa7:88d5:0:b0:49f:e382:3d62 with SMTP id k21-20020aa788d5000000b0049fe3823d62mr11494560pff.76.1637204313896;
-        Wed, 17 Nov 2021 18:58:33 -0800 (PST)
-Received: from howard-System-Product-Name.dhcpserver.bu9bmc.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id m7sm812355pgn.32.2021.11.17.18.58.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 17 Nov 2021 18:58:33 -0800 (PST)
-From:   Howard Chiu <howard10703049@gmail.com>
-X-Google-Original-From: Howard Chiu <howard.chiu@quantatw.com>
-To:     arnd@arndb.de, olof@lixom.net, soc@kernel.org, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        patrick@stwcx.xyz
-Cc:     Howard Chiu <howard.chiu@quantatw.com>
-Subject: [PATCH v4] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-Date:   Thu, 18 Nov 2021 10:56:27 +0800
-Message-Id: <20211118025627.3517958-1-howard.chiu@quantatw.com>
-X-Mailer: git-send-email 2.25.1
+        id S242618AbhKRDNB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 22:13:01 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:60566 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S242443AbhKRDNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 22:13:00 -0500
+X-UUID: d4d3ce8644f64b179953ae5fb827ebd0-20211118
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=eiZG4F1mIiW90Szr5u/pQmwRwrGim6XkRI3sYIZIuno=;
+        b=lthtNhD1mFIvd20wvbTy3MB2VDdLU+X+Ul+BN+wDMFSMUcMr/Fp/hdQSK4ms0AzH4tLCq3RglSrA4Ub0e/xtP9jbt9zOk1vfJ2xAVkJPAYkBRa/RE3v2K4Ej82IO8Rl0KJxGNCD2n0htzWOOohAtnORlpVIvHSKQ0oKRT/TJb/0=;
+X-UUID: d4d3ce8644f64b179953ae5fb827ebd0-20211118
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1345420090; Thu, 18 Nov 2021 11:09:57 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Thu, 18 Nov 2021 11:09:56 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 18 Nov 2021 11:09:55 +0800
+Message-ID: <5f6fec21ef9f2bca6007283b37e35301cfe745ed.camel@mediatek.com>
+Subject: Re: [PATCH v3 4/7] net-next: dt-bindings: dwmac: Convert
+ mediatek-dwmac to DT schema
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>, <davem@davemloft.net>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "Maxime Coquelin" <mcoquelin.stm32@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <srv_heupstream@mediatek.com>, <macpaul.lin@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>, <dkirjanov@suse.de>
+Date:   Thu, 18 Nov 2021 11:09:55 +0800
+In-Reply-To: <04051f18-a955-9397-d94e-0c61fc8f595b@gmail.com>
+References: <20211112093918.11061-1-biao.huang@mediatek.com>
+         <20211112093918.11061-5-biao.huang@mediatek.com>
+         <04051f18-a955-9397-d94e-0c61fc8f595b@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Initial introduction of Facebook Bletchley equipped with
-Aspeed 2600 BMC SoC.
-
-Signed-off-by: Howard Chiu <howard.chiu@quantatw.com>
-
-change since v3:
-- Add a TMP421 on i2c-10
-
-Change since v2:
-- Remove uart5 workaround
-- Remove gpio nodes of pca9552/pca9539
-- Modify gpio-line-name of led/power/presence pins with openbmc pattern
-- Add MP5023 devices
-
-Change since v1:
-- Keep sorted in Makefile
-- Change baudrate to 57600 from 115200
-- Rename node *-ember to *-amber
-- Use openbmc-flash-layout-128.dtsi
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/aspeed-bmc-facebook-bletchley.dts     | 736 ++++++++++++++++++
- 2 files changed, 737 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..b804b577010a 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1482,6 +1482,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
- 	aspeed-bmc-bytedance-g220a.dtb \
-+	aspeed-bmc-facebook-bletchley.dtb \
- 	aspeed-bmc-facebook-cloudripper.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-new file mode 100644
-index 000000000000..e6eaf3b4d27a
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -0,0 +1,736 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2021 Facebook Inc.
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/usb/pd.h>
-+
-+/ {
-+	model = "Facebook Bletchley BMC";
-+	compatible = "facebook,bletchley-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS4,57600n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+			<&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-+	};
-+
-+	spi_gpio: spi-gpio {
-+		status = "okay";
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-sck = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-+		gpio-mosi = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-+		gpio-miso = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-+
-+		tpmdev@0 {
-+			compatible = "tcg,tpm_tis-spi";
-+			spi-max-frequency = <33000000>;
-+			reg = <0>;
-+		};
-+	};
-+
-+	switchphy: ethernet-phy@0 {
-+		// Fixed-link
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		sys_log_id {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&front_leds 0 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan0_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 8 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan1_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 9 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan2_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 10 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan3_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 11 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan0_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 12 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan1_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 13 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan2_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 14 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan3_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 15 GPIO_ACTIVE_HIGH>;
-+		};
-+		sled0_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled0_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled0_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled0_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled1_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled1_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled1_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled1_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled2_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled2_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled2_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled2_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled3_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled3_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled3_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled3_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled4_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled4_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled4_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled4_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled5_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled5_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled5_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled5_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&mac2 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&switchphy>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii3_default>;
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-128.dtsi"
-+	};
-+};
-+
-+&spi2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "pnor";
-+		spi-max-frequency = <100000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled0_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED0_BMC_CCG5_INT","SLED0_INA230_ALERT","SLED0_P12V_STBY_ALERT",
-+		"SLED0_SSD_ALERT","SLED0_MS_DETECT","SLED0_MD_REF_PWM","",
-+		"SLED0_MD_STBY_RESET","SLED0_MD_IOEXP_EN_FAULT","SLED0_MD_DIR","SLED0_MD_DECAY",
-+		"SLED0_MD_MODE1","SLED0_MD_MODE2","SLED0_MD_MODE3","power-sled0";
-+	};
-+
-+	sled0_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled0-amber","led-sled0-blue","SLED0_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled0_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled1_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED1_BMC_CCG5_INT","SLED1_INA230_ALERT","SLED1_P12V_STBY_ALERT",
-+		"SLED1_SSD_ALERT","SLED1_MS_DETECT","SLED1_MD_REF_PWM","",
-+		"SLED1_MD_STBY_RESET","SLED1_MD_IOEXP_EN_FAULT","SLED1_MD_DIR","SLED1_MD_DECAY",
-+		"SLED1_MD_MODE1","SLED1_MD_MODE2","SLED1_MD_MODE3","power-sled1";
-+	};
-+
-+	sled1_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled1-amber","led-sled1-blue","SLED1_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled1_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled2_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED2_BMC_CCG5_INT","SLED2_INA230_ALERT","SLED2_P12V_STBY_ALERT",
-+		"SLED2_SSD_ALERT","SLED2_MS_DETECT","SLED2_MD_REF_PWM","",
-+		"SLED2_MD_STBY_RESET","SLED2_MD_IOEXP_EN_FAULT","SLED2_MD_DIR","SLED2_MD_DECAY",
-+		"SLED2_MD_MODE1","SLED2_MD_MODE2","SLED2_MD_MODE3","power-sled2";
-+	};
-+
-+	sled2_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled2-amber","led-sled2-blue","SLED2_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled2_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled3_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED3_BMC_CCG5_INT","SLED3_INA230_ALERT","SLED3_P12V_STBY_ALERT",
-+		"SLED3_SSD_ALERT","SLED3_MS_DETECT","SLED3_MD_REF_PWM","",
-+		"SLED3_MD_STBY_RESET","SLED3_MD_IOEXP_EN_FAULT","SLED3_MD_DIR","SLED3_MD_DECAY",
-+		"SLED3_MD_MODE1","SLED3_MD_MODE2","SLED3_MD_MODE3","power-sled3";
-+	};
-+
-+	sled3_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled3-amber","led-sled3-blue","SLED3_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled3_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled4_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED4_BMC_CCG5_INT","SLED4_INA230_ALERT","SLED4_P12V_STBY_ALERT",
-+		"SLED4_SSD_ALERT","SLED4_MS_DETECT","SLED4_MD_REF_PWM","",
-+		"SLED4_MD_STBY_RESET","SLED4_MD_IOEXP_EN_FAULT","SLED4_MD_DIR","SLED4_MD_DECAY",
-+		"SLED4_MD_MODE1","SLED4_MD_MODE2","SLED4_MD_MODE3","power-sled4";
-+	};
-+
-+	sled4_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled4-amber","led-sled4-blue","SLED4_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled4_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled5_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"","SLED5_BMC_CCG5_INT","SLED5_INA230_ALERT","SLED5_P12V_STBY_ALERT",
-+		"SLED5_SSD_ALERT","SLED5_MS_DETECT","SLED5_MD_REF_PWM","",
-+		"SLED5_MD_STBY_RESET","SLED5_MD_IOEXP_EN_FAULT","SLED5_MD_DIR","SLED5_MD_DECAY",
-+		"SLED5_MD_MODE1","SLED5_MD_MODE2","SLED5_MD_MODE3","power-sled5";
-+	};
-+
-+	sled5_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled5-amber","led-sled5-blue","SLED5_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled5_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x54>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	eeprom@56 {
-+		compatible = "atmel,24c64";
-+		reg = <0x56>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf85263";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	hdc1080@40 {
-+		compatible = "ti,hdc1080";
-+		reg = <0x40>;
-+	};
-+
-+	front_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-fault-identify","power-p5v-stby-good",
-+		"power-p1v0-dvdd-good","power-p1v0-avdd-good",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+
-+	adm1278@11 {
-+		compatible = "adi,adm1278";
-+		reg = <0x11>;
-+	};
-+
-+	tmp421@4c {
-+		compatible = "ti,tmp421";
-+		reg = <0x4c>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	fan_ioexp: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"presence-fan0","presence-fan1",
-+		"presence-fan2","presence-fan3",
-+		"power-fan0-good","power-fan1-good",
-+		"power-fan2-good","power-fan3-good",
-+		"","","","",
-+		"","","","";
-+	};
-+};
-+
-+&i2c13 {
-+	multi-master;
-+	aspeed,hw-timeout-ms = <1000>;
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"","","","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"presence-riser1","presence-riser2",
-+			"presence-sled0","presence-sled1",
-+			"presence-sled2","presence-sled3",
-+			"presence-sled4","presence-sled5",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"alert_sled0","alert_sled1",
-+			"alert_sled2","alert_sled3",
-+			"alert_sled4","alert_sled5",
-+			"p12v_aux_alert1","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
-+&adc0 {
-+	vref = <1800>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	vref = <2500>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		&pinctrl_adc10_default &pinctrl_adc11_default
-+		&pinctrl_adc12_default &pinctrl_adc13_default
-+		&pinctrl_adc14_default &pinctrl_adc15_default>;
-+};
--- 
-2.25.1
+RGVhciBNYXR0aGlhcywNCglBZ3JlZSwgY29udmVydGluZyBhbmQgY2hhbmdlcyBzaG91bGQgYmUg
+c2VwZXJhdGVkLg0KDQoJVGhlcmUgYXJlIHNvbWUgY2hhbmdlcyBpbiB0aGUgZHJpdmVyLCBidXQg
+bWVkaWF0ZWstZHdtYWMudHh0DQoJDQppcyBub3QgdXBkYXRlZCBmb3IgYSBsb25nIHRpbWUsIGFu
+ZCBpcyBub3QgYWNjdXJhdGUgZW5vdWdoLg0KDQoJU28gdGhpcyBwYXRjaCBpcyBtb3JlIGxpa2Ug
+YSBuZXcgeWFtbCByZXBsYWNlIHRoZSBvbGQgdHh0LA0KCXRoYW4gYSB3b3JkLXRvLXdvcmQgY29u
+dmVydGluZy4NCg0KCQ0KQW55d2F5LCBvbmx5IDMgbGl0dGxlIGNoYW5nZXMgY29tcGFyZSB0byBv
+bGQgbWVkaWF0ZS1kd21hYy50eHQsIAlvdGhlcnMNCmFsbW9zdCBrZWVwIHRoZSBzYW1lOg0KCTEu
+IGNvbXBhdGlibGUgIiBjb25zdDogc25wcyxkd21hYy00LjIwIg0KCTIuIGRlbGV0ZSAic25wcyxy
+ZXNldC1hY3RpdmUtbG93OyIgaW4gZXhhbXBsZSwgc2luY2UgZHJpdmVyDQpyZW1vdmUgdGhpcyBw
+cm9wZXJ0eSBsb25nIGFnby4NCgkzLiBhZGQgInNucHMscmVzZXQtZGVsYXlzLXVzID0gPDAgMTAw
+MDAgMTAwMDA+OyIgaW4gZXhhbXBsZSwgDQoNCglTaG91bGQgSSBzcGxpdCB0aGlzIHBhdGNoPyAN
+CglJZiB5ZXMsIEknbGwgc3BsaXQgaW4gbmV4dCBzZW5kLg0KCVRoYW5rcy4NCg0KUmVnYXJkcyEN
+Cg0KT24gV2VkLCAyMDIxLTExLTE3IGF0IDE2OjExICswMTAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdy
+b3RlOg0KPiANCj4gT24gMTIvMTEvMjAyMSAxMDozOSwgQmlhbyBIdWFuZyB3cm90ZToNCj4gPiBD
+b252ZXJ0IG1lZGlhdGVrLWR3bWFjIHRvIERUIHNjaGVtYSwgYW5kIGRlbGV0ZSBvbGQgbWVkaWF0
+ZWstDQo+ID4gZHdtYWMudHh0Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEJpYW8gSHVhbmcg
+PGJpYW8uaHVhbmdAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAgLi4uL2JpbmRpbmdzL25l
+dC9tZWRpYXRlay1kd21hYy50eHQgICAgICAgICAgIHwgIDkxIC0tLS0tLS0tLS0NCj4gPiAgIC4u
+Li9iaW5kaW5ncy9uZXQvbWVkaWF0ZWstZHdtYWMueWFtbCAgICAgICAgICB8IDE1Nw0KPiA+ICsr
+KysrKysrKysrKysrKysrKw0KPiA+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxNTcgaW5zZXJ0aW9ucygr
+KSwgOTEgZGVsZXRpb25zKC0pDQo+ID4gICBkZWxldGUgbW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0L21lZGlhdGVrLWR3bWFjLnR4dA0KPiA+ICAg
+Y3JlYXRlIG1vZGUgMTAwNjQ0DQo+ID4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L25ldC9tZWRpYXRlay1kd21hYy55YW1sDQo+ID4gDQo+IA0KPiAgRnJvbSBhIHF1aWNrIGxvb2sg
+eW91IGFyZSBjb252ZXJ0aW5nIHRoZSBiaW5kaW5nIHRvIHlhbWwgYW5kIGluIHRoZQ0KPiBzYW1l
+IHBhdGNoIA0KPiBjaGFuZ2UgdGhlIGJpbmRpbmcuIFBsZWFzZSBkbyB0aGF0IGluIHR3byBkaWZm
+ZXJlbnQgcGF0Y2hlcyBhcw0KPiBvdGhlcndpc2UgaXQncyANCj4gZGlmaWN1bHQgdG8gcmV2aWV3
+Lg0KPiANCj4gUmVnYXJkcywNCj4gTWF0dGhpYXMNCj4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvbWVkaWF0ZWstDQo+ID4gZHdtYWMudHh0
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL25ldC9tZWRpYXRlay0NCj4gPiBk
+d21hYy50eHQNCj4gPiBkZWxldGVkIGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCBhZmJjYWVi
+ZjA2MmUuLjAwMDAwMDAwMDAwMA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9uZXQvbWVkaWF0ZWstZHdtYWMudHh0DQo+ID4gKysrIC9kZXYvbnVsbA0KPiA+IEBA
+IC0xLDkxICswLDAgQEANCj4gPiAtTWVkaWFUZWsgRFdNQUMgZ2x1ZSBsYXllciBjb250cm9sbGVy
+DQo+ID4gLQ0KPiA+IC1UaGlzIGZpbGUgZG9jdW1lbnRzIHBsYXRmb3JtIGdsdWUgbGF5ZXIgZm9y
+IHN0bW1hYy4NCj4gPiAtUGxlYXNlIHNlZSBzdG1tYWMudHh0IGZvciB0aGUgb3RoZXIgdW5jaGFu
+Z2VkIHByb3BlcnRpZXMuDQo+ID4gLQ0KPiA+IC1UaGUgZGV2aWNlIG5vZGUgaGFzIGZvbGxvd2lu
+ZyBwcm9wZXJ0aWVzLg0KPiA+IC0NCj4gPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiAtLSBj
+b21wYXRpYmxlOiAgU2hvdWxkIGJlICJtZWRpYXRlayxtdDI3MTItZ21hYyIgZm9yIE1UMjcxMiBT
+b0MNCj4gPiAtLSByZWc6ICBBZGRyZXNzIGFuZCBsZW5ndGggb2YgdGhlIHJlZ2lzdGVyIHNldCBm
+b3IgdGhlIGRldmljZQ0KPiA+IC0tIGludGVycnVwdHM6ICBTaG91bGQgY29udGFpbiB0aGUgTUFD
+IGludGVycnVwdHMNCj4gPiAtLSBpbnRlcnJ1cHQtbmFtZXM6IFNob3VsZCBjb250YWluIGEgbGlz
+dCBvZiBpbnRlcnJ1cHQgbmFtZXMNCj4gPiBjb3JyZXNwb25kaW5nIHRvDQo+ID4gLQl0aGUgaW50
+ZXJydXB0cyBpbiB0aGUgaW50ZXJydXB0cyBwcm9wZXJ0eSwgaWYgYXZhaWxhYmxlLg0KPiA+IC0J
+U2hvdWxkIGJlICJtYWNpcnEiIGZvciB0aGUgbWFpbiBNQUMgSVJRDQo+ID4gLS0gY2xvY2tzOiBN
+dXN0IGNvbnRhaW4gYSBwaGFuZGxlIGZvciBlYWNoIGVudHJ5IGluIGNsb2NrLW5hbWVzLg0KPiA+
+IC0tIGNsb2NrLW5hbWVzOiBUaGUgbmFtZSBvZiB0aGUgY2xvY2sgbGlzdGVkIGluIHRoZSBjbG9j
+a3MNCj4gPiBwcm9wZXJ0eS4gVGhlc2UgYXJlDQo+ID4gLQkiYXhpIiwgImFwYiIsICJtYWNfbWFp
+biIsICJwdHBfcmVmIiwgInJtaWlfaW50ZXJuYWwiIGZvciBNVDI3MTINCj4gPiBTb0MuDQo+ID4g
+LS0gbWFjLWFkZHJlc3M6IFNlZSBldGhlcm5ldC50eHQgaW4gdGhlIHNhbWUgZGlyZWN0b3J5DQo+
+ID4gLS0gcGh5LW1vZGU6IFNlZSBldGhlcm5ldC50eHQgaW4gdGhlIHNhbWUgZGlyZWN0b3J5DQo+
+ID4gLS0gbWVkaWF0ZWsscGVyaWNmZzogQSBwaGFuZGxlIHRvIHRoZSBzeXNjb24gbm9kZSB0aGF0
+IGNvbnRyb2wNCj4gPiBldGhlcm5ldA0KPiA+IC0JaW50ZXJmYWNlIGFuZCB0aW1pbmcgZGVsYXku
+DQo+ID4gLQ0KPiA+IC1PcHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+IC0tIG1lZGlhdGVrLHR4LWRl
+bGF5LXBzOiBUWCBjbG9jayBkZWxheSBtYWNybyB2YWx1ZS4gRGVmYXVsdCBpcyAwLg0KPiA+IC0J
+SXQgc2hvdWxkIGJlIGRlZmluZWQgZm9yIFJHTUlJL01JSSBpbnRlcmZhY2UuDQo+ID4gLQlJdCBz
+aG91bGQgYmUgZGVmaW5lZCBmb3IgUk1JSSBpbnRlcmZhY2Ugd2hlbiB0aGUgcmVmZXJlbmNlDQo+
+ID4gY2xvY2sgaXMgZnJvbSBNVDI3MTIgU29DLg0KPiA+IC0tIG1lZGlhdGVrLHJ4LWRlbGF5LXBz
+OiBSWCBjbG9jayBkZWxheSBtYWNybyB2YWx1ZS4gRGVmYXVsdCBpcyAwLg0KPiA+IC0JSXQgc2hv
+dWxkIGJlIGRlZmluZWQgZm9yIFJHTUlJL01JSSBpbnRlcmZhY2UuDQo+ID4gLQlJdCBzaG91bGQg
+YmUgZGVmaW5lZCBmb3IgUk1JSSBpbnRlcmZhY2UuDQo+ID4gLUJvdGggZGVsYXkgcHJvcGVydGll
+cyBuZWVkIHRvIGJlIGEgbXVsdGlwbGUgb2YgMTcwIGZvciBSR01JSQ0KPiA+IGludGVyZmFjZSwN
+Cj4gPiAtb3Igd2lsbCByb3VuZCBkb3duLiBSYW5nZSAwfjMxKjE3MC4NCj4gPiAtQm90aCBkZWxh
+eSBwcm9wZXJ0aWVzIG5lZWQgdG8gYmUgYSBtdWx0aXBsZSBvZiA1NTAgZm9yIE1JSS9STUlJDQo+
+ID4gaW50ZXJmYWNlLA0KPiA+IC1vciB3aWxsIHJvdW5kIGRvd24uIFJhbmdlIDB+MzEqNTUwLg0K
+PiA+IC0NCj4gPiAtLSBtZWRpYXRlayxybWlpLXJ4YzogYm9vbGVhbiBwcm9wZXJ0eSwgaWYgcHJl
+c2VudCBpbmRpY2F0ZXMgdGhhdA0KPiA+IHRoZSBSTUlJDQo+ID4gLQlyZWZlcmVuY2UgY2xvY2ss
+IHdoaWNoIGlzIGZyb20gZXh0ZXJuYWwgUEhZcywgaXMgY29ubmVjdGVkIHRvDQo+ID4gUlhDIHBp
+bg0KPiA+IC0Jb24gTVQyNzEyIFNvQy4NCj4gPiAtCU90aGVyd2lzZSwgaXMgY29ubmVjdGVkIHRv
+IFRYQyBwaW4uDQo+ID4gLS0gbWVkaWF0ZWsscm1paS1jbGstZnJvbS1tYWM6IGJvb2xlYW4gcHJv
+cGVydHksIGlmIHByZXNlbnQNCj4gPiBpbmRpY2F0ZXMgdGhhdA0KPiA+IC0JTVQyNzEyIFNvQyBw
+cm92aWRlcyB0aGUgUk1JSSByZWZlcmVuY2UgY2xvY2ssIHdoaWNoIG91dHB1dHMgdG8NCj4gPiBU
+WEMgcGluIG9ubHkuDQo+ID4gLS0gbWVkaWF0ZWssdHhjLWludmVyc2U6IGJvb2xlYW4gcHJvcGVy
+dHksIGlmIHByZXNlbnQgaW5kaWNhdGVzDQo+ID4gdGhhdA0KPiA+IC0JMS4gdHggY2xvY2sgd2ls
+bCBiZSBpbnZlcnNlZCBpbiBNSUkvUkdNSUkgY2FzZSwNCj4gPiAtCTIuIHR4IGNsb2NrIGluc2lk
+ZSBNQUMgd2lsbCBiZSBpbnZlcnNlZCByZWxhdGl2ZSB0byByZWZlcmVuY2UNCj4gPiBjbG9jaw0K
+PiA+IC0JICAgd2hpY2ggaXMgZnJvbSBleHRlcm5hbCBQSFlzIGluIFJNSUkgY2FzZSwgYW5kIGl0
+IHJhcmVseQ0KPiA+IGhhcHBlbi4NCj4gPiAtCTMuIHRoZSByZWZlcmVuY2UgY2xvY2ssIHdoaWNo
+IG91dHB1dHMgdG8gVFhDIHBpbiB3aWxsIGJlDQo+ID4gaW52ZXJzZWQgaW4gUk1JSSBjYXNlDQo+
+ID4gLQkgICB3aGVuIHRoZSByZWZlcmVuY2UgY2xvY2sgaXMgZnJvbSBNVDI3MTIgU29DLg0KPiA+
+IC0tIG1lZGlhdGVrLHJ4Yy1pbnZlcnNlOiBib29sZWFuIHByb3BlcnR5LCBpZiBwcmVzZW50IGlu
+ZGljYXRlcw0KPiA+IHRoYXQNCj4gPiAtCTEuIHJ4IGNsb2NrIHdpbGwgYmUgaW52ZXJzZWQgaW4g
+TUlJL1JHTUlJIGNhc2UuDQo+ID4gLQkyLiByZWZlcmVuY2UgY2xvY2sgd2lsbCBiZSBpbnZlcnNl
+ZCB3aGVuIGFycml2ZWQgYXQgTUFDIGluIFJNSUkNCj4gPiBjYXNlLCB3aGVuDQo+ID4gLQkgICB0
+aGUgcmVmZXJlbmNlIGNsb2NrIGlzIGZyb20gZXh0ZXJuYWwgUEhZcy4NCj4gPiAtCTMuIHRoZSBp
+bnNpZGUgY2xvY2ssIHdoaWNoIGJlIHNlbnQgdG8gTUFDLCB3aWxsIGJlIGludmVyc2VkIGluDQo+
+ID4gUk1JSSBjYXNlIHdoZW4NCj4gPiAtCSAgIHRoZSByZWZlcmVuY2UgY2xvY2sgaXMgZnJvbSBN
+VDI3MTIgU29DLg0KPiA+IC0tIGFzc2lnbmVkLWNsb2NrczogbWFjX21haW4gYW5kIHB0cF9yZWYg
+Y2xvY2tzDQo+ID4gLS0gYXNzaWduZWQtY2xvY2stcGFyZW50czogcGFyZW50IGNsb2NrcyBvZiB0
+aGUgYXNzaWduZWQgY2xvY2tzDQo+ID4gLQ0KPiA+IC1FeGFtcGxlOg0KPiA+IC0JZXRoOiBldGhl
+cm5ldEAxMTAxYzAwMCB7DQo+ID4gLQkJY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDI3MTItZ21h
+YyI7DQo+ID4gLQkJcmVnID0gPDAgMHgxMTAxYzAwMCAwIDB4MTMwMD47DQo+ID4gLQkJaW50ZXJy
+dXB0cyA9IDxHSUNfU1BJIDIzNyBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiA+IC0JCWludGVycnVw
+dC1uYW1lcyA9ICJtYWNpcnEiOw0KPiA+IC0JCXBoeS1tb2RlID0icmdtaWktcnhpZCI7DQo+ID4g
+LQkJbWFjLWFkZHJlc3MgPSBbMDAgNTUgN2IgYjUgN2QgZjddOw0KPiA+IC0JCWNsb2NrLW5hbWVz
+ID0gImF4aSIsDQo+ID4gLQkJCSAgICAgICJhcGIiLA0KPiA+IC0JCQkgICAgICAibWFjX21haW4i
+LA0KPiA+IC0JCQkgICAgICAicHRwX3JlZiIsDQo+ID4gLQkJCSAgICAgICJybWlpX2ludGVybmFs
+IjsNCj4gPiAtCQljbG9ja3MgPSA8JnBlcmljZmcgQ0xLX1BFUklfR01BQz4sDQo+ID4gLQkJCSA8
+JnBlcmljZmcgQ0xLX1BFUklfR01BQ19QQ0xLPiwNCj4gPiAtCQkJIDwmdG9wY2tnZW4gQ0xLX1RP
+UF9FVEhFUl8xMjVNX1NFTD4sDQo+ID4gLQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfRVRIRVJfNTBN
+X1NFTD4sDQo+ID4gLQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfRVRIRVJfNTBNX1JNSUlfU0VMPjsN
+Cj4gPiAtCQlhc3NpZ25lZC1jbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfRVRIRVJfMTI1TV9T
+RUw+LA0KPiA+IC0JCQkJICA8JnRvcGNrZ2VuIENMS19UT1BfRVRIRVJfNTBNX1NFTD4sDQo+ID4g
+LQkJCQkgIDwmdG9wY2tnZW4NCj4gPiBDTEtfVE9QX0VUSEVSXzUwTV9STUlJX1NFTD47DQo+ID4g
+LQkJYXNzaWduZWQtY2xvY2stcGFyZW50cyA9IDwmdG9wY2tnZW4NCj4gPiBDTEtfVE9QX0VUSEVS
+UExMXzEyNU0+LA0KPiA+IC0JCQkJCSA8JnRvcGNrZ2VuIENMS19UT1BfQVBMTDFfRDM+LA0KPiA+
+IC0JCQkJCSA8JnRvcGNrZ2VuDQo+ID4gQ0xLX1RPUF9FVEhFUlBMTF81ME0+Ow0KPiA+IC0JCXBv
+d2VyLWRvbWFpbnMgPSA8JnNjcHN5cyBNVDI3MTJfUE9XRVJfRE9NQUlOX0FVRElPPjsNCj4gPiAt
+CQltZWRpYXRlayxwZXJpY2ZnID0gPCZwZXJpY2ZnPjsNCj4gPiAtCQltZWRpYXRlayx0eC1kZWxh
+eS1wcyA9IDwxNTMwPjsNCj4gPiAtCQltZWRpYXRlayxyeC1kZWxheS1wcyA9IDwxNTMwPjsNCj4g
+PiAtCQltZWRpYXRlayxybWlpLXJ4YzsNCj4gPiAtCQltZWRpYXRlayx0eGMtaW52ZXJzZTsNCj4g
+PiAtCQltZWRpYXRlayxyeGMtaW52ZXJzZTsNCj4gPiAtCQlzbnBzLHR4cGJsID0gPDE+Ow0KPiA+
+IC0JCXNucHMscnhwYmwgPSA8MT47DQo+ID4gLQkJc25wcyxyZXNldC1ncGlvID0gPCZwaW8gODcg
+R1BJT19BQ1RJVkVfTE9XPjsNCj4gPiAtCQlzbnBzLHJlc2V0LWFjdGl2ZS1sb3c7DQo+ID4gLQl9
+Ow0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbmV0
+L21lZGlhdGVrLQ0KPiA+IGR3bWFjLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvbmV0L21lZGlhdGVrLQ0KPiA+IGR3bWFjLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEw
+MDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMmViNDc4MTUzNmY3DQo+ID4gLS0tIC9kZXYv
+bnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQvbWVk
+aWF0ZWstZHdtYWMueWFtbA0KPiA+IEBAIC0wLDAgKzEsMTU3IEBADQo+ID4gKyMgU1BEWC1MaWNl
+bnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICslWUFN
+TCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMv
+bmV0L21lZGlhdGVrLWR3bWFjLnlhbWwjDQo+ID4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVl
+Lm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsNCj4gPiArdGl0bGU6IE1lZGlhVGVr
+IERXTUFDIGdsdWUgbGF5ZXIgY29udHJvbGxlcg0KPiA+ICsNCj4gPiArbWFpbnRhaW5lcnM6DQo+
+ID4gKyAgLSBCaWFvIEh1YW5nIDxiaWFvLmh1YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiArDQo+ID4g
+K2Rlc2NyaXB0aW9uOg0KPiA+ICsgIFRoaXMgZmlsZSBkb2N1bWVudHMgcGxhdGZvcm0gZ2x1ZSBs
+YXllciBmb3Igc3RtbWFjLg0KPiA+ICsNCj4gPiArIyBXZSBuZWVkIGEgc2VsZWN0IGhlcmUgc28g
+d2UgZG9uJ3QgbWF0Y2ggYWxsIG5vZGVzIHdpdGgNCj4gPiAnc25wcyxkd21hYycNCj4gPiArc2Vs
+ZWN0Og0KPiA+ICsgIHByb3BlcnRpZXM6DQo+ID4gKyAgICBjb21wYXRpYmxlOg0KPiA+ICsgICAg
+ICBjb250YWluczoNCj4gPiArICAgICAgICBlbnVtOg0KPiA+ICsgICAgICAgICAgLSBtZWRpYXRl
+ayxtdDI3MTItZ21hYw0KPiA+ICsgIHJlcXVpcmVkOg0KPiA+ICsgICAgLSBjb21wYXRpYmxlDQo+
+ID4gKw0KPiA+ICthbGxPZjoNCj4gPiArICAtICRyZWY6ICJzbnBzLGR3bWFjLnlhbWwjIg0KPiA+
+ICsgIC0gJHJlZjogImV0aGVybmV0LWNvbnRyb2xsZXIueWFtbCMiDQo+ID4gKw0KPiA+ICtwcm9w
+ZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBvbmVPZjoNCj4gPiArICAgICAg
+LSBpdGVtczoNCj4gPiArICAgICAgICAgIC0gZW51bToNCj4gPiArICAgICAgICAgICAgICAtIG1l
+ZGlhdGVrLG10MjcxMi1nbWFjDQo+ID4gKyAgICAgICAgICAtIGNvbnN0OiBzbnBzLGR3bWFjLTQu
+MjBhDQo+ID4gKw0KPiA+ICsgIGNsb2NrczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAt
+IGRlc2NyaXB0aW9uOiBBWEkgY2xvY2sNCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjogQVBCIGNs
+b2NrDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IE1BQyBNYWluIGNsb2NrDQo+ID4gKyAgICAg
+IC0gZGVzY3JpcHRpb246IFBUUCBjbG9jaw0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBSTUlJ
+IHJlZmVyZW5jZSBjbG9jayBwcm92aWRlZCBieSBNQUMNCj4gPiArDQo+ID4gKyAgY2xvY2stbmFt
+ZXM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogYXhpDQo+ID4gKyAgICAg
+IC0gY29uc3Q6IGFwYg0KPiA+ICsgICAgICAtIGNvbnN0OiBtYWNfbWFpbg0KPiA+ICsgICAgICAt
+IGNvbnN0OiBwdHBfcmVmDQo+ID4gKyAgICAgIC0gY29uc3Q6IHJtaWlfaW50ZXJuYWwNCj4gPiAr
+DQo+ID4gKyAgbWVkaWF0ZWsscGVyaWNmZzoNCj4gPiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVz
+LnlhbWwjL2RlZmluaXRpb25zL3BoYW5kbGUNCj4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ICsg
+ICAgICBUaGUgcGhhbmRsZSB0byB0aGUgc3lzY29uIG5vZGUgdGhhdCBjb250cm9sIGV0aGVybmV0
+DQo+ID4gKyAgICAgIGludGVyZmFjZSBhbmQgdGltaW5nIGRlbGF5Lg0KPiA+ICsNCj4gPiArICBt
+ZWRpYXRlayx0eC1kZWxheS1wczoNCj4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBU
+aGUgaW50ZXJuYWwgVFggY2xvY2sgZGVsYXkgKHByb3ZpZGVkIGJ5IHRoaXMgZHJpdmVyKSBpbg0K
+PiA+IG5hbm9zZWNvbmRzLg0KPiA+ICsgICAgICBGb3IgTVQyNzEyIFJHTUlJIGludGVyZmFjZSwg
+QWxsb3dlZCB2YWx1ZSBuZWVkIHRvIGJlIGENCj4gPiBtdWx0aXBsZSBvZiAxNzAsDQo+ID4gKyAg
+ICAgIG9yIHdpbGwgcm91bmQgZG93bi4gUmFuZ2UgMH4zMSoxNzAuDQo+ID4gKyAgICAgIEZvciBN
+VDI3MTIgUk1JSS9NSUkgaW50ZXJmYWNlLCBBbGxvd2VkIHZhbHVlIG5lZWQgdG8gYmUgYQ0KPiA+
+IG11bHRpcGxlIG9mIDU1MCwNCj4gPiArICAgICAgb3Igd2lsbCByb3VuZCBkb3duLiBSYW5nZSAw
+fjMxKjU1MC4NCj4gPiArDQo+ID4gKyAgbWVkaWF0ZWsscngtZGVsYXktcHM6DQo+ID4gKyAgICBk
+ZXNjcmlwdGlvbjoNCj4gPiArICAgICAgVGhlIGludGVybmFsIFJYIGNsb2NrIGRlbGF5IChwcm92
+aWRlZCBieSB0aGlzIGRyaXZlcikgaW4NCj4gPiBuYW5vc2Vjb25kcy4NCj4gPiArICAgICAgRm9y
+IE1UMjcxMiBSR01JSSBpbnRlcmZhY2UsIEFsbG93ZWQgdmFsdWUgbmVlZCB0byBiZSBhDQo+ID4g
+bXVsdGlwbGUgb2YgMTcwLA0KPiA+ICsgICAgICBvciB3aWxsIHJvdW5kIGRvd24uIFJhbmdlIDB+
+MzEqMTcwLg0KPiA+ICsgICAgICBGb3IgTVQyNzEyIFJNSUkvTUlJIGludGVyZmFjZSwgQWxsb3dl
+ZCB2YWx1ZSBuZWVkIHRvIGJlIGENCj4gPiBtdWx0aXBsZSBvZiA1NTAsDQo+ID4gKyAgICAgIG9y
+IHdpbGwgcm91bmQgZG93bi4gUmFuZ2UgMH4zMSo1NTAuDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVr
+LHJtaWktcnhjOg0KPiA+ICsgICAgdHlwZTogYm9vbGVhbg0KPiA+ICsgICAgZGVzY3JpcHRpb246
+DQo+ID4gKyAgICAgIElmIHByZXNlbnQsIGluZGljYXRlcyB0aGF0IHRoZSBSTUlJIHJlZmVyZW5j
+ZSBjbG9jaywgd2hpY2gNCj4gPiBpcyBmcm9tIGV4dGVybmFsDQo+ID4gKyAgICAgIFBIWXMsIGlz
+IGNvbm5lY3RlZCB0byBSWEMgcGluLiBPdGhlcndpc2UsIGlzIGNvbm5lY3RlZCB0bw0KPiA+IFRY
+QyBwaW4uDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLHJtaWktY2xrLWZyb20tbWFjOg0KPiA+ICsg
+ICAgdHlwZTogYm9vbGVhbg0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIElmIHBy
+ZXNlbnQsIGluZGljYXRlcyB0aGF0IE1BQyBwcm92aWRlcyB0aGUgUk1JSSByZWZlcmVuY2UNCj4g
+PiBjbG9jaywgd2hpY2gNCj4gPiArICAgICAgb3V0cHV0cyB0byBUWEMgcGluIG9ubHkuDQo+ID4g
+Kw0KPiA+ICsgIG1lZGlhdGVrLHR4Yy1pbnZlcnNlOg0KPiA+ICsgICAgdHlwZTogYm9vbGVhbg0K
+PiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIElmIHByZXNlbnQsIGluZGljYXRlcyB0
+aGF0DQo+ID4gKyAgICAgIDEuIHR4IGNsb2NrIHdpbGwgYmUgaW52ZXJzZWQgaW4gTUlJL1JHTUlJ
+IGNhc2UsDQo+ID4gKyAgICAgIDIuIHR4IGNsb2NrIGluc2lkZSBNQUMgd2lsbCBiZSBpbnZlcnNl
+ZCByZWxhdGl2ZSB0bw0KPiA+IHJlZmVyZW5jZSBjbG9jaw0KPiA+ICsgICAgICAgICB3aGljaCBp
+cyBmcm9tIGV4dGVybmFsIFBIWXMgaW4gUk1JSSBjYXNlLCBhbmQgaXQgcmFyZWx5DQo+ID4gaGFw
+cGVuLg0KPiA+ICsgICAgICAzLiB0aGUgcmVmZXJlbmNlIGNsb2NrLCB3aGljaCBvdXRwdXRzIHRv
+IFRYQyBwaW4gd2lsbCBiZQ0KPiA+IGludmVyc2VkIGluIFJNSUkgY2FzZQ0KPiA+ICsgICAgICAg
+ICB3aGVuIHRoZSByZWZlcmVuY2UgY2xvY2sgaXMgZnJvbSBNQUMuDQo+ID4gKw0KPiA+ICsgIG1l
+ZGlhdGVrLHJ4Yy1pbnZlcnNlOg0KPiA+ICsgICAgdHlwZTogYm9vbGVhbg0KPiA+ICsgICAgZGVz
+Y3JpcHRpb246DQo+ID4gKyAgICAgIElmIHByZXNlbnQsIGluZGljYXRlcyB0aGF0DQo+ID4gKyAg
+ICAgIDEuIHJ4IGNsb2NrIHdpbGwgYmUgaW52ZXJzZWQgaW4gTUlJL1JHTUlJIGNhc2UuDQo+ID4g
+KyAgICAgIDIuIHJlZmVyZW5jZSBjbG9jayB3aWxsIGJlIGludmVyc2VkIHdoZW4gYXJyaXZlZCBh
+dCBNQUMgaW4NCj4gPiBSTUlJIGNhc2UsIHdoZW4NCj4gPiArICAgICAgICAgdGhlIHJlZmVyZW5j
+ZSBjbG9jayBpcyBmcm9tIGV4dGVybmFsIFBIWXMuDQo+ID4gKyAgICAgIDMuIHRoZSBpbnNpZGUg
+Y2xvY2ssIHdoaWNoIGJlIHNlbnQgdG8gTUFDLCB3aWxsIGJlIGludmVyc2VkDQo+ID4gaW4gUk1J
+SSBjYXNlIHdoZW4NCj4gPiArICAgICAgICAgdGhlIHJlZmVyZW5jZSBjbG9jayBpcyBmcm9tIE1B
+Qy4NCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+ICsgIC0g
+cmVnDQo+ID4gKyAgLSBpbnRlcnJ1cHRzDQo+ID4gKyAgLSBpbnRlcnJ1cHQtbmFtZXMNCj4gPiAr
+ICAtIGNsb2Nrcw0KPiA+ICsgIC0gY2xvY2stbmFtZXMNCj4gPiArICAtIHBoeS1tb2RlDQo+ID4g
+KyAgLSBtZWRpYXRlayxwZXJpY2ZnDQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6
+IGZhbHNlDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNpbmNs
+dWRlIDxkdC1iaW5kaW5ncy9jbG9jay9tdDI3MTItY2xrLmg+DQo+ID4gKyAgICAjaW5jbHVkZSA8
+ZHQtYmluZGluZ3MvZ3Bpby9ncGlvLmg+DQo+ID4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGluZ3Mv
+aW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPg0KPiA+ICsgICAgI2luY2x1ZGUgPGR0LWJp
+bmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2lycS5oPg0KPiA+ICsgICAgI2luY2x1ZGUgPGR0
+LWJpbmRpbmdzL3Bvd2VyL210MjcxMi1wb3dlci5oPg0KPiA+ICsNCj4gPiArICAgIGV0aDogZXRo
+ZXJuZXRAMTEwMWMwMDAgew0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQy
+NzEyLWdtYWMiLCAic25wcyxkd21hYy00LjIwYSI7DQo+ID4gKyAgICAgICAgcmVnID0gPDB4MTEw
+MWMwMDAgMHgxMzAwPjsNCj4gPiArICAgICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMjM3IElS
+UV9UWVBFX0xFVkVMX0xPVz47DQo+ID4gKyAgICAgICAgaW50ZXJydXB0LW5hbWVzID0gIm1hY2ly
+cSI7DQo+ID4gKyAgICAgICAgcGh5LW1vZGUgPSJyZ21paS1yeGlkIjsNCj4gPiArICAgICAgICBt
+YWMtYWRkcmVzcyA9IFswMCA1NSA3YiBiNSA3ZCBmN107DQo+ID4gKyAgICAgICAgY2xvY2stbmFt
+ZXMgPSAiYXhpIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICJhcGIiLA0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgIm1hY19tYWluIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICJwdHBfcmVmIiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICJybWlpX2ludGVybmFsIjsN
+Cj4gPiArICAgICAgICBjbG9ja3MgPSA8JnBlcmljZmcgQ0xLX1BFUklfR01BQz4sDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgPCZwZXJpY2ZnIENMS19QRVJJX0dNQUNfUENMSz4sDQo+ID4gKyAgICAg
+ICAgICAgICAgICAgPCZ0b3Bja2dlbiBDTEtfVE9QX0VUSEVSXzEyNU1fU0VMPiwNCj4gPiArICAg
+ICAgICAgICAgICAgICA8JnRvcGNrZ2VuIENMS19UT1BfRVRIRVJfNTBNX1NFTD4sDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgPCZ0b3Bja2dlbiBDTEtfVE9QX0VUSEVSXzUwTV9STUlJX1NFTD47DQo+
+ID4gKyAgICAgICAgYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX0VUSEVSXzEy
+NU1fU0VMPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICA8JnRvcGNrZ2VuIENMS19U
+T1BfRVRIRVJfNTBNX1NFTD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgPCZ0b3Bj
+a2dlbiBDTEtfVE9QX0VUSEVSXzUwTV9STUlJX1NFTD47DQo+ID4gKyAgICAgICAgYXNzaWduZWQt
+Y2xvY2stcGFyZW50cyA9IDwmdG9wY2tnZW4NCj4gPiBDTEtfVE9QX0VUSEVSUExMXzEyNU0+LA0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8JnRvcGNrZ2VuIENMS19UT1Bf
+QVBMTDFfRDM+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8JnRvcGNr
+Z2VuIENMS19UT1BfRVRIRVJQTExfNTBNPjsNCj4gPiArICAgICAgICBwb3dlci1kb21haW5zID0g
+PCZzY3BzeXMgTVQyNzEyX1BPV0VSX0RPTUFJTl9BVURJTz47DQo+ID4gKyAgICAgICAgbWVkaWF0
+ZWsscGVyaWNmZyA9IDwmcGVyaWNmZz47DQo+ID4gKyAgICAgICAgbWVkaWF0ZWssdHgtZGVsYXkt
+cHMgPSA8MTUzMD47DQo+ID4gKyAgICAgICAgc25wcyx0eHBibCA9IDwxPjsNCj4gPiArICAgICAg
+ICBzbnBzLHJ4cGJsID0gPDE+Ow0KPiA+ICsgICAgICAgIHNucHMscmVzZXQtZ3BpbyA9IDwmcGlv
+IDg3IEdQSU9fQUNUSVZFX0xPVz47DQo+ID4gKyAgICAgICAgc25wcyxyZXNldC1kZWxheXMtdXMg
+PSA8MCAxMDAwMCAxMDAwMD47DQo+ID4gKyAgICB9Ow0KPiA+IA0K
 
