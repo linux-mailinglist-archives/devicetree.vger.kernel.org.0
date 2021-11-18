@@ -2,87 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54419455C83
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:20:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF8F7455C8C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:22:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230362AbhKRNX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:23:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
+        id S230178AbhKRNZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230368AbhKRNXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:23:49 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CA0C061200
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 05:20:48 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id z5so26978531edd.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 05:20:48 -0800 (PST)
+        with ESMTP id S229786AbhKRNZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:25:10 -0500
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D69C061570;
+        Thu, 18 Nov 2021 05:22:10 -0800 (PST)
+Received: by mail-lf1-x129.google.com with SMTP id u3so25936016lfl.2;
+        Thu, 18 Nov 2021 05:22:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=o/E5pVansUx3F/k2LuNW2doPkR1FpoTGrLH7703k+v4=;
-        b=ZJ8DLJeZdFHSfQ/25itsimLa50JkvpRX+SA81xN0i0Qv+AsP6Eei13Mf79E2myn1mY
-         QYDHIST3QNvUisYr/eke9EGEXN2J1kG0aQM0Z0vX/Aius2NkH5bV/aR+ARVVdW5JaFtR
-         7suYIqTqxnj7BgnMoy4Z+/3Z/hwCB26yJvMNGKTKi+FiEZ7riuufEttMQkNbay5l45x9
-         eIW8dnSBoIOa9iyu+kuC6t/u1Gm/uvHeJPSe9phrd/4S+7Dl0pax8v48toeDyjk4vqha
-         +OOtGBBBZ5HWWEBjs07V672LMXkdE/OUT3b7m8PetG9rA2KULK7O1bBxKc8SGuTpqlZ4
-         tUtA==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jjMWmw57eJoizn/MdkVd1BrZJOz35EE2CVOU92rSq/4=;
+        b=hZf5UnOcyzLEh9qBLP6XQaEXhRD3KuDDIXkH9pn8Okmdy9F/5MmOeolZUU9ZgtXzAt
+         GYbMB+PvtoU0y8/mPeLeHxFAAG8SKdTbVyq9PWVisqf0WyndumYj75nOe1b2A8p/GG1u
+         Q0VWyqVbHShWi5Q7JLRfep0JfLz4qy+QinNkFpkYrtfoXg2AbjjBvWqfl8mrlIxp+9f4
+         Eo2GBNIMrYKqTWVqQr3tDbXDI84ix3kLZFj4Y/ez8U7DHmFDQ61/GgNhP6ohMt/Atm4Z
+         W0nKkuZCJdYkkHEMRcagjvXtEixhAEO3I+Hibf+6qViKJj/G1+IXjdd+t1cpOb2UFfQE
+         b5zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=o/E5pVansUx3F/k2LuNW2doPkR1FpoTGrLH7703k+v4=;
-        b=FCKMRxD8p+gJ/q1W+1hyUbO5+SUKk1Haoowmf3UC9LdJHKafzA3jbd1nugSrQPbe0R
-         qVO6vFVgrJ0p5vrbdFOvlaYK/AnC1+7LQxJ/NQ8vzAa95hWMzVhdBiZP+shq/6DWvAIR
-         q9GBrPec+SJf9Mc8cMykU2uVlopp3YE+/PURYWK5wlILVOSIlgIja7SaoiGwCgBX17Og
-         yIu6q0f53SyEFrjBfosBuBL9kUEn2bWSy+yB9z1UQsyng7vR+rU6Gndwb9tdFDDypjgj
-         PZTiF5fC8fPLTjFXKM/DjRAzatj9jXNom+7l2sFs7IeQaHndiBaKb81rGhSH3nCESLoZ
-         MsKA==
-X-Gm-Message-State: AOAM533tZ3UuvhumYu/YC/qIkshXAmjzRkJ7xammbNpp7AiBxsLeoCvZ
-        hk4M9R7Wui4s8bv+iB8m1i29+YLeyEFs7QhYbr2jVNOLk0LE9g==
-X-Google-Smtp-Source: ABdhPJx9isLSrkR5iF/wPCX0wzfwmwoVn6dWoYq8WCOMeBODGctMLS4FPoNPUNNA+tz+Ait67ILWAxcCLDQQbd81GHg=
-X-Received: by 2002:a17:907:6e16:: with SMTP id sd22mr32229395ejc.542.1637241636078;
- Thu, 18 Nov 2021 05:20:36 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jjMWmw57eJoizn/MdkVd1BrZJOz35EE2CVOU92rSq/4=;
+        b=RqwhbEzrJjIwvcA73VLAUzGfzDV0gklMYe6zZMcBiGUw3Cs0cFxwkVlDF1FJ+exwoq
+         1yBI+x4W1yHARMOcp0NW/lVnK2Zrb4HgXfqugwemhPFhh2fF9O1xZNeEG16zKHf+TqIc
+         aZmzlufZI3REuOtX4/8Dx54+M2bUMv8QJ8k6TTp7pCkZzVJCCJxJ0pGiZu+OuVhOW6bP
+         SF8+hdywdBTgvPL93/4jS9mPGZ5FUNb2F/hUA2BnMAHoYXxu7oH+Aqp7iRWRyd8A55j+
+         Wg/V6qEV0QyiRTzdBWT4LahpRq4SqdfnJ5HlLCxdUKFvF+RPk1X+lpgwh3YHBi3ciF0F
+         saQg==
+X-Gm-Message-State: AOAM532O4ykhUVun5hy+w+Ez6ibeBm8zJTsDOudU5ECm70eWHkd7VuIa
+        x1PU+J9Gn/tbhYmXtZlXHYE=
+X-Google-Smtp-Source: ABdhPJy8R7ZJQyi3lcjMDV9QAMDL0q5pOG30pY+enhtBxo7zcBuKN9hCqOq+sZ7FpzXH2I3ciZRjEQ==
+X-Received: by 2002:a05:6512:1310:: with SMTP id x16mr4000688lfu.436.1637241728204;
+        Thu, 18 Nov 2021 05:22:08 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id bp36sm356550lfb.0.2021.11.18.05.22.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 05:22:07 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Tony Lindgren <tony@atomide.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH 0/5] pinctrl: allow storing pins, groups & functions in DT
+Date:   Thu, 18 Nov 2021 14:21:47 +0100
+Message-Id: <20211118132152.15722-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Received: by 2002:a50:cf0b:0:0:0:0:0 with HTTP; Thu, 18 Nov 2021 05:20:35
- -0800 (PST)
-Reply-To: francoispetit113@outlook.com
-From:   Francois Petit <daphinemsparharmrhonda491@gmail.com>
-Date:   Thu, 18 Nov 2021 14:20:35 +0100
-Message-ID: <CAPd2WpdRibaOC7jU-E6BVEYPcea0W-LsjvXD5=TEuuqKgaaRAQ@mail.gmail.com>
-Subject: TREAT AS CONFIDENTIAL..
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-I'm Francois Petit with Societe Generale Bank here in France. I
-sincerely seek to present you as the Next of Kin to a late client who
-left behind $145.5 million dollars in a fixed deposit account in my
-bank before his demise.
+A week ago I sent
+[PATCH RFC] dt-bindings: pinctrl: support specifying pins
+https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20211110231436.8866-1-zajec5@gmail.com/
 
-The British born client was into Diamond and Gold mining and died
-without a Next of Kin. I shall obtain the legal documents that will
-give you legal rights to make this claim legitimately. I am willing to
-share the funds 60/40 with you and this shall be completed within 72
-hours. With the legal documents, the bank will approve you as the Next
-of Kin and pay out this amount to you within three working days. I
-considered the funds would be of better use to both of us instead of
-letting the bank or some corrupt politician to confiscate the funds.
+From short discussion in that thread it seems that using DT to store
+pinctrl pins, groups & functions may be an option. I'd like to ask for
+reviewing my patchset implementing that.
 
-Kindly get back to me as soon as possible with your full name,
-address, direct contact number and occupation for the processing of
-the legal documents if you are interested and can be trusted to return
-my own share when you have received the funds in your bank account.
-More information shall be given to you once I hear from you. I put it
-to you that this is probably going to be the best decision you ever
-make in your life.
+Please note it's about describing hardware elements and not actual
+programming way. It may be used with pinctrl-single.c one day but it's
+designed as a generic solution for data.
 
-However, if you are not interested in the offer, kindly delete this
-message from your mailbox and pretend that I never contacted you. I'll
-continue my search for a reliable person that will help out.
+Patches 1-4 are for linux-pinctrl.git. Patch 5 I found worth including
+as DT big example. It can go through Linus with Florian's Ack or I can
+send it to Florian later.
 
-Best Wishes,
-Francois Petit
+Rafał Miłecki (5):
+  dt-bindings: pinctrl: support specifying pins, groups & functions
+  dt-bindings: pinctrl: brcm,ns-pinmux: extend example
+  pinctrl: add helpers reading pins, groups & functions from DT
+  pinctrl: bcm: pinctrl-ns: supoprt DT specified pins, groups &
+    functions
+  ARM: dts: BCM5301X: add pinctrl pins, groups & functions
+
+ .../bindings/pinctrl/brcm,ns-pinmux.yaml      |  29 ++++-
+ .../devicetree/bindings/pinctrl/pinctrl.yaml  |  50 +++++++
+ arch/arm/boot/dts/bcm4709.dtsi                |  74 +++++++++++
+ arch/arm/boot/dts/bcm47094.dtsi               |  11 +-
+ arch/arm/boot/dts/bcm5301x.dtsi               | 123 ++++++++++++++++++
+ drivers/pinctrl/bcm/pinctrl-ns.c              |  90 ++++++++-----
+ drivers/pinctrl/core.c                        |  89 +++++++++++++
+ drivers/pinctrl/core.h                        |   5 +
+ drivers/pinctrl/pinmux.c                      |  43 ++++++
+ drivers/pinctrl/pinmux.h                      |   2 +
+ 10 files changed, 475 insertions(+), 41 deletions(-)
+
+-- 
+2.31.1
+
