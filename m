@@ -2,324 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1355455B29
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58419455B3B
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:07:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344473AbhKRMGn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 07:06:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38282 "EHLO
+        id S1344516AbhKRMKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 07:10:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344467AbhKRMGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 07:06:38 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014EAC0613B9;
-        Thu, 18 Nov 2021 04:03:38 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id w1so25850464edd.10;
-        Thu, 18 Nov 2021 04:03:37 -0800 (PST)
+        with ESMTP id S1344518AbhKRMKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 07:10:41 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BC2C061766
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 04:07:41 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id u60so17250457ybi.9
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 04:07:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=mewAveTCqRi9du2w88kTP85jrwc8TZs6Ft0E9xKmPFE=;
-        b=PLbIZvvlcujP4/jkzP+A+nTyEKCzovhCa7auRnoFzlIPkxyMTmGB+aXDgB/Yk8f00i
-         z/w89oag+btW0Sz7g/9LknGaZ7hGHEfF1KeZO60t6XSc4qNyHml2rFUE2rDBwHiooB03
-         rtAMtRoKkmElwSpW2Sg7OBhgQkbksqVDl4YykTmuDlv16WscSqxZkeiocplN/yN3o98o
-         D7FjpeWcw4jWcHcK4QFH+PWaSBSHwlOv+EBdH3jUrErREGVPDswT1FNP54Qp0VWhQ2Jr
-         ZAZanhbogVQkaOx+4cIXDRr3iioqGoMrcykjzyQXygs7DvPG8gNTXqauoLw9hBi4FcLz
-         rTZA==
+        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=xwZffm/5Q8IyR874NzvVEMvt4aoVvniu9ZnJ+G9kWsk=;
+        b=gacIVoLMap3lXg4tEH0YwcCLfAkqG5ikXwvtcn15HF9vj31J4B+VGr0sZYN3Je+vAQ
+         BaEDod3ldNon04MG0LZoL0x1bEnWZllYeoWfnQFsOJHVAVjSYD66bkMahT/uQyQU/+oc
+         zETPeEZ6Fqd0dphOvpeT9KbkEtdYz8hJPH9DMRZZNb6n4xr/T0WmeBZBlMbWs+wj1+VL
+         R8N5un9YMXJPuM/g4XfFtPweXpRTGHkX/e6u/dIBJUuMhNtI6+5Rgfq0D9yABnU3caVz
+         7+/tE/MXx648QKl9SCOkT6LZ3YOtQxbIu945mWxzLssEVIJkuj97w7l3IgOnK5KiBfpD
+         twZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=mewAveTCqRi9du2w88kTP85jrwc8TZs6Ft0E9xKmPFE=;
-        b=yN8KRxw8ZPGxbU2nwwjRb8JVA797dbrdVX9czidbUZj8XnLzaW9VJtUZrbpb54tEhn
-         qu4d0u6yGXTs/Sn9OVDlFG018deJ2CodgUJdD93+C52KOqchYg7puYJ/ntbfOaCfKIrf
-         CDqAEO4bHAPNeLg99D0dDKz1xwha2kRXtuEg6zG410dF6C1mx7SB7VaH8xlzTzXi2SJR
-         xMOc3/l+gcoOXxh0HlQlr/mSYG5z9wNT87w33ccJlcshU2qSYUOn5gkQIOox8nNBKkex
-         FhcrOsoRO4sqqAWswEPPo4G71asdMLclKuCLVkhbIO1UxhSUMkxDuOFuoaDsiER3zLwQ
-         3T/A==
-X-Gm-Message-State: AOAM532NaAVofrko0YV8pypoyZE/hJUaiVcK+i26bXmfG8u9nE9pFjT2
-        Bm3+GB4ebw/7xRfzd7yy7iE=
-X-Google-Smtp-Source: ABdhPJw+B7nSRvctiZ9enWFR61p6TaUmdogURkWt5tv0B77xZuIIyT0wpW5GukVDj/LbFOwE4Bn3dw==
-X-Received: by 2002:a17:906:2c47:: with SMTP id f7mr33330825ejh.94.1637237016466;
-        Thu, 18 Nov 2021 04:03:36 -0800 (PST)
-Received: from skbuf ([188.25.163.189])
-        by smtp.gmail.com with ESMTPSA id p13sm1515236eds.38.2021.11.18.04.03.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 04:03:36 -0800 (PST)
-Date:   Thu, 18 Nov 2021 14:03:34 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Jakub Kicinski <kuba@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 8/8] net: phy: marvell10g: select host interface
- configuration
-Message-ID: <20211118120334.jjujutp5cnjgwjq2@skbuf>
-References: <20211117225050.18395-1-kabel@kernel.org>
- <20211117225050.18395-9-kabel@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=xwZffm/5Q8IyR874NzvVEMvt4aoVvniu9ZnJ+G9kWsk=;
+        b=ap/vsW2bFzrtZUvYQFs9mQZtYwban21ATnZWMf2TEW35JMKMlTHwCfzy2MkVv2Ko9W
+         pXQbnkGeMU8Jnmc++m8TgpsG04QX9xCu8dzva/3x/gKnR4Qkm+dpkcyLhRU8SwGFbOo3
+         BbPfTSyW+uktDw1kVmeTp/aPXw+pXLcn1n6UdbXvnvhMdlqqZSU8/8fvjmmTQ4+tKM3j
+         J3/BjnDka6BBUMy88rzpk5RW9VCYwydKNSUhzvPfY7Jcu4LiJvZFDV/j2VHCcxcAj0R+
+         RI4a4ogxKXVDADjpRxLiQAN/C5AK19pm519P69TNR0yCswBDY30tq4BmzGlktTVZNhcC
+         BKxQ==
+X-Gm-Message-State: AOAM5334BDTgoLB7XXzyXPHC1sYNtlgulk7RhvyErNuDkIXtXAiVwRSk
+        OQ9wMJhE4f82yi0wB2wx+QIkhCf+U1jwB2IWEO5U6A==
+X-Google-Smtp-Source: ABdhPJwqejr342bjBGHcXh7vBbdNrU3UD/weVqxCR1HxxrtvQbdgNXlL1TDGAVwz6geozxJn0DtlK138DNBc8N7xqWw=
+X-Received: by 2002:a05:6902:4d3:: with SMTP id v19mr26182915ybs.500.1637237260529;
+ Thu, 18 Nov 2021 04:07:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211117225050.18395-9-kabel@kernel.org>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+ <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com> <4310886.V3yF0ifEZO@diego>
+ <CAPj87rPNSt7nZX93prAYD3Emf-34RdTZWp_1TOuAybBebObZhQ@mail.gmail.com> <fba695b7-863a-c492-0209-41bc07c7baee@rock-chips.com>
+In-Reply-To: <fba695b7-863a-c492-0209-41bc07c7baee@rock-chips.com>
+From:   Daniel Stone <daniel@fooishbar.org>
+Date:   Thu, 18 Nov 2021 12:07:27 +0000
+Message-ID: <CAPj87rO86Mom-076Z5QX9hd=0bQi=AQcofkc1fSR4-VV2Zo6aQ@mail.gmail.com>
+Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
+To:     Kever Yang <kever.yang@rock-chips.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de,
+        =?UTF-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Kever,
 
-On Wed, Nov 17, 2021 at 11:50:50PM +0100, Marek Behún wrote:
-> From: Russell King <rmk+kernel@armlinux.org.uk>
-> 
-> Select the host interface configuration according to the capabilities of
-> the host.
-> 
-> This allows the kernel to:
-> - support SFP modules with 88X33X0 or 88E21X0 inside them
-> - switch interface modes when the PHY is used with the mvpp2 MAC
->   (e.g. on MacchiatoBIN)
-> 
-> Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-> [ rebase, updated, also added support for 88E21X0 ]
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
->  drivers/net/phy/marvell10g.c | 120 +++++++++++++++++++++++++++++++++--
->  1 file changed, 115 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
-> index 0cb9b4ef09c7..94bea1bade6f 100644
-> --- a/drivers/net/phy/marvell10g.c
-> +++ b/drivers/net/phy/marvell10g.c
-> @@ -96,6 +96,11 @@ enum {
->  	MV_PCS_PORT_INFO_NPORTS_MASK	= 0x0380,
->  	MV_PCS_PORT_INFO_NPORTS_SHIFT	= 7,
->  
-> +	/* SerDes reinitialization 88E21X0 */
-> +	MV_AN_21X0_SERDES_CTRL2	= 0x800f,
-> +	MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS	= BIT(13),
-> +	MV_AN_21X0_SERDES_CTRL2_RUN_INIT	= BIT(15),
-> +
->  	/* These registers appear at 0x800X and 0xa00X - the 0xa00X control
->  	 * registers appear to set themselves to the 0x800X when AN is
->  	 * restarted, but status registers appear readable from either.
-> @@ -140,6 +145,8 @@ struct mv3310_chip {
->  	bool (*has_downshift)(struct phy_device *phydev);
->  	void (*init_supported_interfaces)(unsigned long *mask);
->  	int (*get_mactype)(struct phy_device *phydev);
-> +	int (*set_mactype)(struct phy_device *phydev, int mactype);
-> +	int (*select_mactype)(unsigned long *interfaces);
->  	int (*init_interface)(struct phy_device *phydev, int mactype);
->  
->  #ifdef CONFIG_HWMON
-> @@ -593,6 +600,49 @@ static int mv2110_get_mactype(struct phy_device *phydev)
->  	return mactype & MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK;
->  }
->  
-> +static int mv2110_set_mactype(struct phy_device *phydev, int mactype)
-> +{
-> +	int err, val;
-> +
-> +	mactype &= MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK;
-> +	err = phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_21X0_PORT_CTRL,
-> +			     MV_PMA_21X0_PORT_CTRL_SWRST |
-> +			     MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK,
-> +			     MV_PMA_21X0_PORT_CTRL_SWRST | mactype);
-> +	if (err)
-> +		return err;
-> +
-> +	err = phy_set_bits_mmd(phydev, MDIO_MMD_AN, MV_AN_21X0_SERDES_CTRL2,
-> +			       MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS |
-> +			       MV_AN_21X0_SERDES_CTRL2_RUN_INIT);
-> +	if (err)
-> +		return err;
-> +
-> +	err = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_AN,
-> +					MV_AN_21X0_SERDES_CTRL2, val,
-> +					!(val &
-> +					  MV_AN_21X0_SERDES_CTRL2_RUN_INIT),
-> +					5000, 100000, true);
-> +	if (err)
-> +		return err;
-> +
-> +	return phy_clear_bits_mmd(phydev, MDIO_MMD_AN, MV_AN_21X0_SERDES_CTRL2,
-> +				  MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS);
-> +}
-> +
-> +static int mv2110_select_mactype(unsigned long *interfaces)
-> +{
-> +	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
-> +		return MV_PMA_21X0_PORT_CTRL_MACTYPE_USXGMII;
-> +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-> +		 !test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-> +		return MV_PMA_21X0_PORT_CTRL_MACTYPE_5GBASER;
-> +	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-> +		return MV_PMA_21X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
-> +	else
-> +		return -1;
-> +}
-> +
->  static int mv3310_get_mactype(struct phy_device *phydev)
->  {
->  	int mactype;
-> @@ -604,6 +654,46 @@ static int mv3310_get_mactype(struct phy_device *phydev)
->  	return mactype & MV_V2_33X0_PORT_CTRL_MACTYPE_MASK;
->  }
->  
-> +static int mv3310_set_mactype(struct phy_device *phydev, int mactype)
-> +{
-> +	int ret;
-> +
-> +	mactype &= MV_V2_33X0_PORT_CTRL_MACTYPE_MASK;
-> +	ret = phy_modify_mmd_changed(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
-> +				     MV_V2_33X0_PORT_CTRL_MACTYPE_MASK,
-> +				     mactype);
-> +	if (ret <= 0)
-> +		return ret;
-> +
-> +	return phy_set_bits_mmd(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
-> +				MV_V2_33X0_PORT_CTRL_SWRST);
-> +}
-> +
-> +static int mv3310_select_mactype(unsigned long *interfaces)
-> +{
-> +	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
-> +		return MV_V2_33X0_PORT_CTRL_MACTYPE_USXGMII;
-> +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-> +		 test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-> +		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
-> +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-> +		 test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
-> +		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI;
-> +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-> +		 test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
-> +		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI;
-> +	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-> +		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
-> +	else if (test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
-> +		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI_RATE_MATCH;
-> +	else if (test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
-> +		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI_RATE_MATCH;
-> +	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces))
-> +		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
-> +	else
-> +		return -1;
-> +}
-> +
+On Thu, 18 Nov 2021 at 10:50, Kever Yang <kever.yang@rock-chips.com> wrote:
+> On 2021/11/18 =E4=B8=8B=E5=8D=885:53, Daniel Stone wrote:
+> > Exactly what Heiko said. If you would like to upstream the driver then
+> > that would be fantastic to see, but I'm afraid you do not get to
+> > prevent someone else from doing the work themselves.
+>
+> First of all, we never stop any one to doing there work on upstream if
+> the source code is write totally by themselves.
+>
+> Second, there are also many modules are upstream by developers based on
+> Rockchip source code, please note that
+> all of them have basic respect to our work, they do communicate with us
+> first.
+>
+> But this committer do not take any respect to our engineers and their
+> hard working:
+> - He didn't contact with us;
+> - There isn't  any information about original author in the commit messag=
+e;
+>      As I have known, if I use source code from another developer, I
+> need to at least add a "Signed-off-by" with original author;
+> - This commit and mail does not even have a 'CC' to original author.
+>
+> I NAK because I  think this is not part of the  open source spirit, and
+> this kind of  behavior should not be encouraged.
 
-I would like to understand this heuristic better. Both its purpose and
-its implementation.
+OK, I see where you're coming from, and I agree that the attribution
+should have been handled more carefully.
 
-It says:
-(a) If the intersection between interface modes supported by the MAC and
-    the PHY contains USXGMII, then use USXGMII as a MACTYPE
-(b) Otherwise, if the intersection contains both 10GBaseR and SGMII, then
-    use 10GBaseR as MACTYPE
-(...)
-(c) Otherwise, if the intersection contains just 10GBaseR (no SGMII), then
-    use 10GBaseR with rate matching as MACTYPE
-(...)
-(d) Otherwise, if the intersection contains just SGMII (no 10GBaseR), then
-    use 10GBaseR as MACTYPE (no rate matching).
+On the other hand, please consider this from the other perspective.
+Sascha has been free to take the downstream Rockchip BSP code and
+attempt to upstream it to the Linux kernel, which you are unhappy
+about. But then the Rockchip driver was developed totally downstream,
+with no attempt to ever communicate with the upstream Linux or DRM/KMS
+developers. Rockchip advertises that it is shipped as a Linux kernel
+with a KMS driver. But we were never informed, or CCed, or anything.
 
-First of all, what is MACTYPE exactly? And what is the purpose of
-changing it? What would happen if this configuration remained fixed, as
-it were?
+If you would like the community to more actively work with you - then
+please yourself work more actively with the community. The first
+commit of the VOP2 driver was in July 2020, and that was of the full
+driver so presumably it started quite some time before then. So that
+is a minimum of 17 months that you have had to engage with upstream
+...
 
-I see there is no MACTYPE definition for SGMII. Why is that? How does
-the PHY choose to use SGMII?
+Technically, the driver cannot be upstreamed as-is. It looks as if it
+were a pre-atomic driver, that was half-converted to atomic, and then
+has been half-converted to atomic helpers as well. Things like
+reference counting and global state are not handled correctly at all.
+You can see this if you try to run Weston on top of the VOP2 driver:
+the framerate is decimated because the event handling massively
+over-synchronises, and the event timestamps which arrive are
+incorrect. This would be fixed by correctly using the event helpers
+that we have had in the tree for years (which would also eliminate the
+unnecessary framebuffer reference handling). It also does not work
+with the GPU drivers in the tree because it lacks the one-liner to
+correctly handle dma_resv synchronisation, which makes it both too
+fast as it displays content which is not ready, and too slow because
+it can't do it at full frame rate.
 
-Why is item (d) correct - use 10GBaseR as MACTYPE if the intersection
-only supports SGMII?
+Similarly, on the RK3566 EVB, the DSI does not work unless HDMI is
+also active, but when HDMI is active at the same time as DSI, it just
+shows a blank screen. I believe the root cause of this is that the
+VOP2 driver does not use any of the atomic state correctly, and
+instead stores its own state in driver-global structures, using a lot
+of unnecessary mutexes to try to synchronise this state. Not only does
+this synchronisation not actually work, but it causes a severe
+performance degradation due to mutex contention.
 
-A breakdown per link speed might be helpful in understanding the
-configurations being performed here.
+I believe the best path forward to an upstream VOP2 driver is a patch
+series consisting of:
+  - start from a blank slate, using the atomic framework and helpers
+as they were intended to be, with basic support for the VOP2 and one
+or two connector types, doing linear XRGB only
+  - any cleanups which would enable this to share more code with
+  - add YUV support, including planar buffers
+  - add AFBC support, with the AFBC enable/disable correctly
+synchronised through atomic state (this is necessary since the AFBC
+decoder is not directly on the planes per se but shared)
+  - add more connector types
+  - add writeback support
+  - add other Rockchip-specific codepaths such as HDR10
 
->  static int mv2110_init_interface(struct phy_device *phydev, int mactype)
->  {
->  	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
-> @@ -674,10 +764,16 @@ static int mv3310_config_init(struct phy_device *phydev)
->  {
->  	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
->  	const struct mv3310_chip *chip = to_mv3310_chip(phydev);
-> +	DECLARE_PHY_INTERFACE_MASK(interfaces);
->  	int err, mactype;
->  
-> -	/* Check that the PHY interface type is compatible */
-> -	if (!test_bit(phydev->interface, priv->supported_interfaces))
-> +	/* In case host didn't provide supported interfaces */
-> +	__set_bit(phydev->interface, phydev->host_interfaces);
-
-Shouldn't phylib populate phydev->host_interfaces with
-phydev->interface, rather than requiring PHY drivers to do it?
-
-> +
-> +	/* Check that there is at least one compatible PHY interface type */
-> +	phy_interface_and(interfaces, phydev->host_interfaces,
-> +			  priv->supported_interfaces);
-> +	if (phy_interface_empty(interfaces))
->  		return -ENODEV;
->  
->  	phydev->mdix_ctrl = ETH_TP_MDI_AUTO;
-> @@ -687,9 +783,15 @@ static int mv3310_config_init(struct phy_device *phydev)
->  	if (err)
->  		return err;
->  
-> -	mactype = chip->get_mactype(phydev);
-> -	if (mactype < 0)
-> -		return mactype;
-> +	mactype = chip->select_mactype(interfaces);
-> +	if (mactype < 0) {
-> +		mactype = chip->get_mactype(phydev);
-> +	} else {
-> +		phydev_info(phydev, "Changing MACTYPE to %i\n", mactype);
-> +		err = chip->set_mactype(phydev, mactype);
-> +		if (err)
-> +			return err;
-> +	}
->  
->  	err = chip->init_interface(phydev, mactype);
->  	if (err) {
-> @@ -1049,6 +1151,8 @@ static const struct mv3310_chip mv3310_type = {
->  	.has_downshift = mv3310_has_downshift,
->  	.init_supported_interfaces = mv3310_init_supported_interfaces,
->  	.get_mactype = mv3310_get_mactype,
-> +	.set_mactype = mv3310_set_mactype,
-> +	.select_mactype = mv3310_select_mactype,
->  	.init_interface = mv3310_init_interface,
->  
->  #ifdef CONFIG_HWMON
-> @@ -1060,6 +1164,8 @@ static const struct mv3310_chip mv3340_type = {
->  	.has_downshift = mv3310_has_downshift,
->  	.init_supported_interfaces = mv3340_init_supported_interfaces,
->  	.get_mactype = mv3310_get_mactype,
-> +	.set_mactype = mv3310_set_mactype,
-> +	.select_mactype = mv3310_select_mactype,
->  	.init_interface = mv3340_init_interface,
->  
->  #ifdef CONFIG_HWMON
-> @@ -1070,6 +1176,8 @@ static const struct mv3310_chip mv3340_type = {
->  static const struct mv3310_chip mv2110_type = {
->  	.init_supported_interfaces = mv2110_init_supported_interfaces,
->  	.get_mactype = mv2110_get_mactype,
-> +	.set_mactype = mv2110_set_mactype,
-> +	.select_mactype = mv2110_select_mactype,
->  	.init_interface = mv2110_init_interface,
->  
->  #ifdef CONFIG_HWMON
-> @@ -1080,6 +1188,8 @@ static const struct mv3310_chip mv2110_type = {
->  static const struct mv3310_chip mv2111_type = {
->  	.init_supported_interfaces = mv2111_init_supported_interfaces,
->  	.get_mactype = mv2110_get_mactype,
-> +	.set_mactype = mv2110_set_mactype,
-> +	.select_mactype = mv2110_select_mactype,
->  	.init_interface = mv2110_init_interface,
->  
->  #ifdef CONFIG_HWMON
-> -- 
-> 2.32.0
-> 
-
+Cheers,
+Daniel
