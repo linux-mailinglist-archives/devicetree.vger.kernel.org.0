@@ -2,119 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4949A456551
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:04:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B2E456577
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:10:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231214AbhKRWHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 17:07:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35924 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229777AbhKRWHO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:07:14 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2602C06173E
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 14:04:13 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id b40so33279622lfv.10
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 14:04:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=L0AvJo2aJBbrB3dZVIskeL0rHyePfIbTkm816pl2LgU=;
-        b=znUbm10k4Aj1WViktuUfGcUCMGRUEEb5lB4X2U7OAC1UrIkIsvEGjCJfbSQwLOS8Qa
-         EuCUqx/jIRkIkNsgje5bVdyU7qA0iAkt31OHVhAHkVYSIpSBLtbgbehvX7JwrGCMg2kG
-         svx1jVtlFdR071C2+bQHY8iWEnjz0l/8kQNtq7lfKlEQuhfRbz2XXWc2/3n2XWuos1vf
-         C36d+pT/ceIWns2awlPncj5rA1ytJN5V8vXH8OF6iNiojQnl309WaHoAb6Lb+afWoUEk
-         n/+cgG3mPvqaP7Lc3yz8ZaDs0qaDO7r8Mg99byOpUFdghymUDSIgepoDPpWPNMCocqnD
-         Fd4g==
+        id S229770AbhKRWM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 17:12:59 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:37584 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230070AbhKRWM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:12:58 -0500
+Received: by mail-ot1-f42.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so13514716otg.4;
+        Thu, 18 Nov 2021 14:09:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=L0AvJo2aJBbrB3dZVIskeL0rHyePfIbTkm816pl2LgU=;
-        b=DvRKf0AabGpK5vu1Pldkk5ZW2lMXo1iVHQ2pdML1is0XLF12jT9ndD3qQWDBNnROjx
-         xKlFGCw9wA4HhhNm/VcggA1MV0hdr8FCYkC6rcapzmNe5scVTVmPUAwba3nWmwok2oMz
-         XWscA+EkovB6dF4SoRBIl9lLcEkktL3cUOTSxc/Leg00StbptiCurWMrkEYSoLRDCoCL
-         hpzblBKxIC5TgK1S6zrcsNHpaDBgBXyqMzYX9xLKqxv2LeZpwk2O+KfoEQnuYONvdeBI
-         BxyNFg6NGyWvveQRxTFdwKOM5O3wfJatKmcaJBuIxcL4IzEtHRCnggm5uwzms+EI3qJh
-         sMlQ==
-X-Gm-Message-State: AOAM530YvYcMHrkdJdA42nX24PllSAvE7c1yNd2tDbxuTXfV8n1CL5ue
-        JdYvvq7HZvyiIVKTsAJQXR+KUQ==
-X-Google-Smtp-Source: ABdhPJzxAEkNvGMDQNYy2kP/IaqUK5twgUN5jc36G/89hitn46O6fpu1RKLzKdxGzUMWIO4YRsheJg==
-X-Received: by 2002:a05:6512:38c4:: with SMTP id p4mr18851005lft.248.1637273052220;
-        Thu, 18 Nov 2021 14:04:12 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id t5sm153021lfd.80.2021.11.18.14.04.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Nov 2021 14:04:11 -0800 (PST)
-Subject: Re: [PATCH v2 3/4] arm64: dts: qcom: pm8998: Add ADC Thermal Monitor
- node
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20210923212311.2877048-1-bjorn.andersson@linaro.org>
- <20210923212311.2877048-4-bjorn.andersson@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <4335a136-35a5-48b4-5b3c-cf094a8241b0@linaro.org>
-Date:   Fri, 19 Nov 2021 01:04:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20210923212311.2877048-4-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=wyaKU21KsPhRsL8O46dW6nI8PJL6dJM95EyvFAPc4RU=;
+        b=6zo4c4AJUEuEbSKZ9gHJR1YxdEl09vxvOSNmAnplChKLPu1htNsgEV+Naqyed714zK
+         Uui4LCFqlpEguVnUn2HVRU0rtAiJEE2BHicunJ2EH+LudKJE2gIwQrLbC3/sFunr7T1t
+         eXHMipWVZlm8rhuOqv5lLvw/P22QmEOwnZ0Q0PQul0mj2NyqKyh5x2Ux4i1vAVmw/oEt
+         VU39rjoAhw8zDjmmKkcbNlZ24bLUsJ0VLuJfgBQaiEkbLrT7cbygmVLOhK344zZSE+Fm
+         RvNxU5qzLSRX/TJlYxJq4+omBaOPYFAZFwU0nk0sjCcEffcQ8oolxY3NpNA0vFJd9c3e
+         hRfg==
+X-Gm-Message-State: AOAM533kz6GVuMF70l+2eEAimzN0iOLM6lWW79iOy7NSrJqF1d2dnY9D
+        pCSrYBJ6E7zBKVzV2+m0Uw==
+X-Google-Smtp-Source: ABdhPJzhb/Rj2EsCodTBxBTM+tZP3sxLb26m+PQkfobY+xof43b9OGeWF22/ZARCzu17SIqhtH8YZQ==
+X-Received: by 2002:a9d:4f0e:: with SMTP id d14mr490282otl.137.1637273397095;
+        Thu, 18 Nov 2021 14:09:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x28sm220382ote.24.2021.11.18.14.09.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 14:09:56 -0800 (PST)
+Received: (nullmailer pid 1841666 invoked by uid 1000);
+        Thu, 18 Nov 2021 22:09:54 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Anilkumar Kolli <akolli@codeaurora.org>
+Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+Subject: Re: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI device support
+Date:   Thu, 18 Nov 2021 16:09:54 -0600
+Message-Id: <1637273394.267065.1841665.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/2021 00:23, Bjorn Andersson wrote:
-> Add a node for the ADC Thermal Monitor found in the PM8998 PMIC. This is
-> used to connect thermal zones with ADC channels.
+On Thu, 18 Nov 2021 19:44:51 +0530, Anilkumar Kolli wrote:
+> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+> Ath11k firmware uses host DDR memory, DT entry is used to reserve
+> these host DDR memory regions, send these memory base
+> addresses using DT entries.
 > 
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > ---
+> V2:
+>   - Use reserved-memory (Rob)
 > 
-> Changes since v1:
-> - New patch
-> 
->   arch/arm64/boot/dts/qcom/pm8998.dtsi | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8998.dtsi b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> index 6f5bb6b37ec2..d09f2954b6f9 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8998.dtsi
-> @@ -84,6 +84,16 @@ adc-chan@6 {
->   			};
->   		};
->   
-> +		pm8998_adc_tm: adc-tm@3400 {
-> +			compatible = "qcom,spmi-adc-tm-hc";
-> +			reg = <0x3400>;
-> +			interrupts = <0x0 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
-> +			#thermal-sensor-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->   		rtc@6000 {
->   			compatible = "qcom,pm8941-rtc";
->   			reg = <0x6000>, <0x6100>;
+>  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 ++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
 > 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-With best wishes
-Dmitry
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:160.13-31: Warning (reg_format): /example-0/pcie0_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:164.17-36: Warning (reg_format): /example-0/pcie0_rp/ath11k@0:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:170.13-31: Warning (reg_format): /example-0/pcie1_rp:reg: property has invalid length (20 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:174.17-36: Warning (reg_format): /example-0/pcie1_rp/ath11k@1:reg: property has invalid length (20 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:138.16-141.11: Warning (unit_address_vs_reg): /example-0/memory: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:159.28-167.11: Warning (unit_address_vs_reg): /example-0/pcie0_rp: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:169.28-177.11: Warning (unit_address_vs_reg): /example-0/pcie1_rp: node has a reg or ranges property, but no unit name
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #address-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:163.32-166.15: Warning (avoid_default_addr_size): /example-0/pcie0_rp/ath11k@0: Relying on default #size-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #address-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dts:173.32-176.15: Warning (avoid_default_addr_size): /example-0/pcie1_rp/ath11k@1: Relying on default #size-cells value
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie0@51100000:reg:0: [0, 1360003072, 0, 55574528] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml: reserved-memory: qcn9074_pcie1@54600000:reg:0: [0, 1415577600, 0, 55574528] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1556692
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
