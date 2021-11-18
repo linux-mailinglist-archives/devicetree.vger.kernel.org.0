@@ -2,135 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFAE8455CA4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30880455CB3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:31:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231157AbhKRN1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:27:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56564 "EHLO
+        id S231243AbhKRNeT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:34:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230513AbhKRN1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:27:20 -0500
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB29C061570
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 05:24:20 -0800 (PST)
-Received: by mail-yb1-xb2c.google.com with SMTP id e71so17899826ybh.10
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 05:24:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3CHovZnyFYzL8A4y+oY7gk4d/KIvHf2oXmR6WClb8/s=;
-        b=T6WqBHc0TCpshnyXZ0Y0DJ578rZDDMyf1YgWWuXk0Fpnpref3dIG0HDuViic5bsZaO
-         pLHoJ0eiaSOqtmuA9Vqz7lX8uC7BW9GcYolNoaStCGDfYFj3NMQ0pmovjvUVZJEtkSLU
-         gdu6Ls2fD5r5Kb7bX8FrQraDF9/jK+uZbsr5bZFfSVZZLsN9n0eHS/xCWUkL2ONPo1Yw
-         ef+b5XBuooYEblM2ZFxjouFDGhGHi818ivhaxmUTv0vhgnKSCpgaNipGIXoYygx5wU1O
-         EtHeCZ7CMAchl1gp4Jibq4butcBqnXKX6GO2T2IwKkGiWoH0TCK9rwNYDRLwBRHqqFHY
-         u3UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3CHovZnyFYzL8A4y+oY7gk4d/KIvHf2oXmR6WClb8/s=;
-        b=Bx6zZlyaAHq/mdNeIcRktTxP3CfgO5zJLvQPeAXV+t/gQDpuk1ymXQ44EGXftot9HA
-         ECRAkeIJQNQSjZ+sUqesjGu+WsHREOQmJ5SyY4eHJPzriV7d57PKR1CtdWjV5Edb/jlq
-         TKuOw0GmtVejg3UpcmqAlJ/rCfCZIBDBmNyBLbA+IQFQQQsUGQIt2qfe1laFlkD4hqOV
-         AdML931HQ6dOwQCjCFfz3S/JWPyESmWaoPFVRag+l1dyaTy0tz9zySTqFSDUp2VJxRyD
-         U4A/q0lOgh4/M8MaZE+2ujSuVrx45PSAGDgI0qkUQSbpmKAlLIJbl5bWsoWR0Yj3N6Dd
-         ylNw==
-X-Gm-Message-State: AOAM532woUS8NiSiFGywRPmWY3iyxLBYqjf1g01WAoxOsl/cW1eNq0RJ
-        73J5giHCl0yxV2z+6lerE/dxOuJ/J+F0GsqjuiZUmw==
-X-Google-Smtp-Source: ABdhPJxQH4DGzX1DsG0B1QVx1lWh1G3G3AkM7oB0/0OrlLqXkWrE2kGjQvi/XY7Qmfbr8Yqc3zf4bpfydzz5bXBUpyw=
-X-Received: by 2002:a05:6902:1021:: with SMTP id x1mr28021143ybt.43.1637241859608;
- Thu, 18 Nov 2021 05:24:19 -0800 (PST)
+        with ESMTP id S230249AbhKRNeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:34:19 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4849FC061570;
+        Thu, 18 Nov 2021 05:31:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=U3N4YPILgQ/uPDE2BJ2/bMrkZykcR8BBN2K9CD7VYQ4=; b=XY4RacNN3IB6ryNs35EvUNthL4
+        qgYK9YeTteUIvrt6Ps4BUHoCtudpD4jjidMLXvKWnFbK2AgoUzE54LqRKyb84RpR0wa3PWjt5FIsD
+        4DBAFTU1zvtb9Qv1pU6pyEWvHjRhLzIkE/vibzPgGUnJTQcjQQFrNcL/Fz4yADNJkutgHoO8hc9Yk
+        w8KR/lN1lU6u8DFIErDJz2cODWWzstZagogy3GnHId9PDgrGn8IW0d0uXq9ZWJcXfz/wGZB/wO0vc
+        qWacPp19+cH7Hjke9jv0VS5WNNkVVnyk7rEQkKpQGpWMfmgymuo7b+P4uXGvlg4ylaWykY8FxSlVo
+        CLm3Iy/g==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55718)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mnhVR-0002yL-2O; Thu, 18 Nov 2021 13:31:13 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mnhVP-0003xW-W1; Thu, 18 Nov 2021 13:31:12 +0000
+Date:   Thu, 18 Nov 2021 13:31:11 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>,
+        Sean Anderson <sean.anderson@seco.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        p.zabel@pengutronix.de, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 3/5] net: lan966x: add port module support
+Message-ID: <YZZVn6jve4BvSqyX@shell.armlinux.org.uk>
+References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
+ <20211117091858.1971414-4-horatiu.vultur@microchip.com>
+ <YZTRUfvPPu5qf7mE@shell.armlinux.org.uk>
+ <20211118095703.owsb2nen5hb5vjz2@soft-dev3-1.localhost>
+ <YZYj9fwCeWdIZJOt@shell.armlinux.org.uk>
+ <20211118125928.tav7k5xlbnhrgp3o@soft-dev3-1.localhost>
 MIME-Version: 1.0
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com> <4310886.V3yF0ifEZO@diego>
- <CAPj87rPNSt7nZX93prAYD3Emf-34RdTZWp_1TOuAybBebObZhQ@mail.gmail.com>
- <fba695b7-863a-c492-0209-41bc07c7baee@rock-chips.com> <CAPj87rO86Mom-076Z5QX9hd=0bQi=AQcofkc1fSR4-VV2Zo6aQ@mail.gmail.com>
- <e948ee33-d1ea-cd53-a792-2e044eed1529@rock-chips.com>
-In-Reply-To: <e948ee33-d1ea-cd53-a792-2e044eed1529@rock-chips.com>
-From:   Daniel Stone <daniel@fooishbar.org>
-Date:   Thu, 18 Nov 2021 13:24:07 +0000
-Message-ID: <CAPj87rOQDAP+=AGizuvHG=cOfOCNFtPhYM_g8V=XMNmJPoz6oQ@mail.gmail.com>
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     Kever Yang <kever.yang@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211118125928.tav7k5xlbnhrgp3o@soft-dev3-1.localhost>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Thu, Nov 18, 2021 at 01:59:28PM +0100, Horatiu Vultur wrote:
+> The 11/18/2021 09:59, Russell King (Oracle) wrote:
+> > Another approach would be to split phylink_mii_c22_pcs_decode_state()
+> > so that the appropriate decode function is selected depending on the
+> > interface state, which may be a better idea.
+> 
+> I have tried to look for phylink_mii_c22_pcs_decode_state() and I
+> have found it only here [1], and seems that it depends on [2]. But not
+> much activity happened to these series since October.
+> Do you think they will still get in?
 
-On Thu, 18 Nov 2021 at 13:14, Andy Yan <andy.yan@rock-chips.com> wrote:
-> On 11/18/21 8:07 PM, Daniel Stone wrote:
-> > Technically, the driver cannot be upstreamed as-is. It looks as if it
-> > were a pre-atomic driver, that was half-converted to atomic, and then
-> > has been half-converted to atomic helpers as well. Things like
-> > reference counting and global state are not handled correctly at all.
-> > You can see this if you try to run Weston on top of the VOP2 driver:
-> > the framerate is decimated because the event handling massively
-> > over-synchronises, and the event timestamps which arrive are
-> > incorrect. This would be fixed by correctly using the event helpers
-> > that we have had in the tree for years (which would also eliminate the
-> > unnecessary framebuffer reference handling). It also does not work
-> > with the GPU drivers in the tree because it lacks the one-liner to
-> > correctly handle dma_resv synchronisation, which makes it both too
-> > fast as it displays content which is not ready, and too slow because
-> > it can't do it at full frame rate.
->
-> We have different team run Android , X11, Weston on rk356x, especially
-> for android, we can run at 60 fps.
->
-> Our vop2 driver is developed on Linux 4.19, am not sure which version of
-> kernel you put our drivers on.
+I don't see any reason the first two patches should not be sent. I'm
+carrying the second one locally because I use it in some changes I've
+made to the mv88e6xxx code - as I mentioned in the patchwork entry you
+linked to. See:
 
-We forward-ported it to a current mainline kernel and started to work
-on fixing some of the issues. When we did this, we went back to the
-BSP tree posted on GitHub to test using a pure-BSP environment, and
-observed the same breakage there.
+ http://git.armlinux.org.uk/cgit/linux-arm.git/log/?h=net-queue
 
-> > Similarly, on the RK3566 EVB, the DSI does not work unless HDMI is
-> > also active, but when HDMI is active at the same time as DSI, it just
->
-> I am very sure rk3566 evb DSI can work without HDMI.
+ "net: phylink: Add helpers for c22 registers without MDIO"
 
-I'd love to know how. :) Using the meta-rockchip layer as published on
-GitHub, we cannot get working DSI without HDMI, using upstream Weston.
-When the HDMI connector is disabled, DSI comes up blank. When the HDMI
-connector is enabled, DSI works fine but HDMI is blank.
+Although I notice I committed it to my tree with the wrong author. :(
 
-> But take care that the vop on rk3566 has a special limitation: there are
-> three windows(Cluster1/Esmart1/Smart1) that have a mirror lock, that means they
-> can't be programed framebuffer address independently , they can only
-> share framebuffer address with Cluster0/Esmart0/Smart0. We use these feature
-> on Android.
->
-> I have comment these limitation in our driver.
+Sean, please can you submit the mdiodev patch and this patch for
+net-next as they have general utility? Thanks.
 
-Yeah, we noticed this.
-
-> Compared to old vop, vop is strong but a bit complicated, we try very had to
-> make it work on as much display framework as possible.
->
-> We have upstream plane, but I am really in a rush this year. So sorry
-> for the late of upstream, but we glad to work with community.
->
-> So Sascha, please feel free to go on with your work.
-
-Great, thanks. If you agree with the plan I posted, then we can all go
-forward with that upstream, doing the development work with ourselves
-and Sascha. Hopefully Rockchip will be able to support this effort.
-
-Cheers,
-Daniel
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
