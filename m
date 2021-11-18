@@ -2,141 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 308524562B5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 19:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77D0B4562C3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 19:44:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233933AbhKRSqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 13:46:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233907AbhKRSqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 13:46:02 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE41C061574
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 10:43:01 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id 8so6926799pfo.4
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 10:43:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=G1EliypIjbcEW6Z/ACxlA6Dj3vusWb8JvXLauTtA8Ec=;
-        b=V9/M+IhlXdHtPJLjRhHrJbqffe02jTBUk7q5gB83KwHpUfj5QsJbsdlm5bz3sseFcU
-         oS17QB0ghrBpj+QsgVZFjFeloINmuY+zbug5uCrkkEgT5e6Y7kabv3EraLL+joLtPaMN
-         kA8ov8LmyVfvTOTHSgKCIK0Lw0rxgHcPfl8Zo=
+        id S229853AbhKRSrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 13:47:03 -0500
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:44599 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233889AbhKRSrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 13:47:02 -0500
+Received: by mail-ua1-f47.google.com with SMTP id p2so15780057uad.11;
+        Thu, 18 Nov 2021 10:44:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=G1EliypIjbcEW6Z/ACxlA6Dj3vusWb8JvXLauTtA8Ec=;
-        b=ERFKP2BW0nXEEdanGjVSjuPQrJFSkEJUSyQPxz5CLVrDnz+sF33YZI4MG+pgaaZlmI
-         mKiRPhtN2xOW7cgyLmc310RuMKYwgeWbg18JMlx4mGhzCMW/KNOCSlo7482CnIKpbC1n
-         6unOKc6sHgScwqa4w5FRgqpS5TB+Q86kN1NQULvTbGWnMB76bcOMRTFuDMH6g1GQgEmV
-         WbFQnvWAc4/NBfEFgXlWvmeX1ainUjsDahiCY/6bWorygu+jcQm11HKY1+YTQ0//UHss
-         LZaQ3WbJfnteDFJ/3ZJzA/cZrFYZnvJjc7B7Maus6ioLxXG1nSjtpT5rAAhM0FaWfJ5Y
-         IkQw==
-X-Gm-Message-State: AOAM531mvK7nHc2/HR51etbGqQURaRgQN56KcXEm2ytg4Yevy3iKUivL
-        ISBuuXiLmYksOsmWLsa8oh10aw==
-X-Google-Smtp-Source: ABdhPJyjhcSmjkykFR9rtVJUgw5bfN+1UgOk97VaGwkkIZiiD0BiGOV4YRXSRFWZWEBsG+gxTFspJw==
-X-Received: by 2002:a63:80c6:: with SMTP id j189mr12585818pgd.200.1637260981486;
-        Thu, 18 Nov 2021 10:43:01 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:8ceb:c68a:21af:bebe])
-        by smtp.gmail.com with UTF8SMTPSA id f21sm352939pfc.85.2021.11.18.10.43.00
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/igAPULmTfgLhL5fHiLq/DTc4xiwavj/zLxqcwtodaM=;
+        b=yR1JjVHmdiAVWFoMCqKIvu97TMD0ztj3ZEK/DTN9uXOog0cAF0XsVc880w7axWiTXn
+         IMe6u/T0feHdf8AGC1/cEP7MHYkxEGjE6M4V4xt2LQ//Dc27YYqzJlvmj2wXs8MnlW2O
+         /Da5YZv3NhUITecuNxDiLMq59HXxLexUybtTxxSFW/TDqV5vQv/aqRqwxz/oYAD1yXGV
+         9LOYSf9tBO41ukZifwXGmB8HCganPHBvA8bYdOmhQ3lQu/AQRqE/gg3kaK5wsSxgEye8
+         McQFj6xsw6+BCtiXY/fUIx/6EsC/lSEEGIy6j0gm8WO59My3YWacf7dQE2TQjapu7hML
+         U95g==
+X-Gm-Message-State: AOAM532i+fyCbOwrOQ+4r0zRhNZPV/t0X2UnJeCowPGHyUWUSPH9JMzn
+        xcK3wu7EXYyIbil+q9RDsXQbZmzoflAA8Q==
+X-Google-Smtp-Source: ABdhPJwjZFp3W5qQgmjGHl8xrMiGI082VeXF+TwEpKKjHnZbTJcxaTnuzuxJlOA1Xl5SkcLBn7/1sg==
+X-Received: by 2002:ab0:22c6:: with SMTP id z6mr40037757uam.80.1637261041230;
+        Thu, 18 Nov 2021 10:44:01 -0800 (PST)
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com. [209.85.222.41])
+        by smtp.gmail.com with ESMTPSA id c2sm346058uab.11.2021.11.18.10.44.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 18 Nov 2021 10:43:01 -0800 (PST)
-Date:   Thu, 18 Nov 2021 10:43:00 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Roger Quadros <rogerq@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v17 4/7] arm64: dts: qcom: sc7180-trogdor: Add nodes for
- onboard USB hub
-Message-ID: <YZaetDjIyFZPuO6J@google.com>
-References: <20211116200739.924401-1-mka@chromium.org>
- <20211116120642.v17.4.Ie0d2c1214b767bb5551dd4cad38398bd40e4466f@changeid>
- <CAD=FV=WK3uHJTehMxWiA56L5Ly8UqjmCKnJtXBut2aOYEV6C4g@mail.gmail.com>
+        Thu, 18 Nov 2021 10:44:01 -0800 (PST)
+Received: by mail-ua1-f41.google.com with SMTP id ay21so15785232uab.12;
+        Thu, 18 Nov 2021 10:44:00 -0800 (PST)
+X-Received: by 2002:a67:c38f:: with SMTP id s15mr84419879vsj.50.1637261040791;
+ Thu, 18 Nov 2021 10:44:00 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=WK3uHJTehMxWiA56L5Ly8UqjmCKnJtXBut2aOYEV6C4g@mail.gmail.com>
+References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com> <20211116074130.107554-7-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20211116074130.107554-7-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 18 Nov 2021 19:43:49 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVOacey-KtGWLHiTiWGKVcCnRpVhg=+sTMW0P_CfvHO6w@mail.gmail.com>
+Message-ID: <CAMuHMdVOacey-KtGWLHiTiWGKVcCnRpVhg=+sTMW0P_CfvHO6w@mail.gmail.com>
+Subject: Re: [PATCH 06/16] dt-bindings: clock: renesas,cpg-mssr: Document r8a779f0
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 04:03:10PM -0800, Doug Anderson wrote:
-> Hi,
-> 
-> On Tue, Nov 16, 2021 at 12:07 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > Add nodes for the onboard USB hub on trogdor devices. Remove the
-> > 'always-on' property from the hub regulator, since the regulator
-> > is now managed by the onboard_usb_hub driver.
-> >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> >
-> > Changes in v17:
-> > - none
-> >
-> > Changes in v16:
-> > - none
-> >
-> > Changes in v15:
-> > - none
-> >
-> > Changes in v14:
-> > - none
-> >
-> > Changes in v13:
-> > - none
-> >
-> > Changes in v12:
-> > - none
-> >
-> > Changes in v11:
-> > - rebased on qcom/arm64-for-5.14 (with the rest of the series)
-> >
-> > Changes in v10:
-> > - keep 'regulator-boot-on' property
-> > - updated commit message
-> >
-> > Changes in v9:
-> > - none
-> >
-> > Changes in v8:
-> > - none
-> >
-> > Changes in v7:
-> > - rebased on qcom/arm64-for-5.13 (with the rest of the series)
-> >
-> > Changes in v6:
-> > - added 'companion-hub' entry to both USB devices
-> > - added 'vdd-supply' also to hub@2
-> >
-> > Changes in v5:
-> > - patch added to the series
-> >
-> >  .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 19 ++++++++-----------
-> >  .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 12 +++++-------
-> >  .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 19 ++++++++-----------
-> >  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 19 ++++++++++++++++++-
-> >  4 files changed, 39 insertions(+), 30 deletions(-)
-> 
-> sc7180-trogdor-pompom-r1.dts is missing? It seems to need similar
-> fixups to the early lazor/trogdor borads.
+On Tue, Nov 16, 2021 at 8:42 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add binding documentation for the R-Car S4-8 (R8A779F0) Clock Pulse
+> Generator.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-ack, also needs to be done for pompom rev1, thanks for pointing that out!
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-clk-for-v5.17.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
