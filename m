@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93C8345589D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32BD34558DE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:20:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245557AbhKRKKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 05:10:08 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:59400 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S244253AbhKRKIz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Nov 2021 05:08:55 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637229955; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=aa4GMuDD9gBxObbJT1ejXAr5fy0x2AqK6SqkkPflRc4=; b=XGcqxQpMWpwct5awawAhcEoRKRyND09Wcwl4mK79XeVLGr3Vey1XWskfmR5lhcQtU1qbie4x
- w2381cs2DjCiJLKhWvl4cpKVD22Bb9sjOVS6gtCD9pWY+8zpWTRbIVPLG7Arb7DCVFo9YUQR
- glMrm7Cq9/+FxAWLcX7TnXvNXNw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 619625820a5410021b6d23a5 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 10:05:54
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id BE149C4361B; Thu, 18 Nov 2021 10:05:53 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [10.242.143.72] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8A623C4360C;
-        Thu, 18 Nov 2021 10:05:48 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 8A623C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v4 00/10] Add support for audio on SC7280 based targets
-To:     Mark Brown <broonie@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-References: <1635838265-27346-1-git-send-email-srivasam@codeaurora.org>
- <YZUT6BQKz00jXov9@sirena.org.uk>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <e01729cd-0b2b-fe27-809b-c75ccbb6fac4@codeaurora.org>
-Date:   Thu, 18 Nov 2021 15:35:46 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S244963AbhKRKW7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 18 Nov 2021 05:22:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43098 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244820AbhKRKWd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 05:22:33 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECD7C061767
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 02:19:33 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mneVo-0007U0-08; Thu, 18 Nov 2021 11:19:24 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mneVm-0005wT-St; Thu, 18 Nov 2021 11:19:22 +0100
+Message-ID: <cdb9c0c334823505a2ce499e36be9507112f4298.camel@pengutronix.de>
+Subject: Re: [PATCH net-next 2/5] net: lan966x: add the basic lan966x driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        linux@armlinux.org.uk, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Thu, 18 Nov 2021 11:19:22 +0100
+In-Reply-To: <20211117214231.yiv2s6nxl6yx4klq@soft-dev3-1.localhost>
+References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
+         <20211117091858.1971414-3-horatiu.vultur@microchip.com>
+         <9ab98fba364f736b267dbd5e1d305d3e8426e877.camel@pengutronix.de>
+         <20211117214231.yiv2s6nxl6yx4klq@soft-dev3-1.localhost>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-In-Reply-To: <YZUT6BQKz00jXov9@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Horatiu,
 
-On 11/17/2021 8:08 PM, Mark Brown wrote:
-> On Tue, Nov 02, 2021 at 01:00:55PM +0530, Srinivasa Rao Mandadapu wrote:
->
->> This patch set depends on:
->> 	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=570161
->> 	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=572615
->> 	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=559677
-> None of those links seem to show any patches (or errors)?
+On Wed, 2021-11-17 at 22:42 +0100, Horatiu Vultur wrote:
+> > On Wed, 2021-11-17 at 10:18 +0100, Horatiu Vultur wrote:
+> > > +static int lan966x_reset_switch(struct lan966x *lan966x)
+> > > +{
+> > > +     struct reset_control *reset;
+> > > +     int val = 0;
+> > > +     int ret;
+> > > +
+> > > +     reset = devm_reset_control_get_shared(lan966x->dev, "switch");
+> > > +     if (IS_ERR(reset))
+> > > +             dev_warn(lan966x->dev, "Could not obtain switch reset: %ld\n",
+> > > +                      PTR_ERR(reset));
+> > > +     else
+> > > +             reset_control_reset(reset);
+> > 
+> > According to the device tree bindings, both resets are required.
+> > I'd expect this to return on error.
+> > Is there any chance of the device working with out the switch reset
+> > being triggered?
+> 
+> The only case that I see is if the bootloader triggers this switch
+> reset and then when bootloader starts the kernel and doesn't set back
+> the switch in reset. Is this a valid scenario or is a bug in the
+> bootloader?
 
-Sorry for Inconvenience Rob. I think due to it's status change patches 
-are not being appeared on provided link.
+I'm not sure. In general, the kernel shouldn't rely on the bootloader to
+have put the devices into a certain working state. If the driver will
+not work or worse, if register access could hang the system if the
+bootloader has passed control to the kernel with the switch held in
+reset and no reset control is available to the driver, it should not
+continue after failure to get the reset handle.
 
-With removing filter able to see patch set. Below are the links with 
-view filter change.
+I'd suggest to just use:
 
--- 
-https://patchwork.kernel.org/project/alsa-devel/list/?series=570161&archive=both&state=*
+	reset = devm_reset_control_get_shared(lan966x->dev, "switch");
+	if (IS_ERR(reset))
+		return dev_err_probe(lan966x->dev, PTR_ERR(reset),
+				     "Could not obtain switch reset");
+	reset_control_reset(reset);
 
--- 
-https://patchwork.kernel.org/project/alsa-devel/list/?series=572615&state=%2A&archive=both
+unless you have a good reason to do otherwise.
 
--- 
-https://patchwork.kernel.org/project/alsa-devel/list/?series=559677&archive=both&state=*
-
->
-> Please include human readable descriptions of things like commits and
-> issues being discussed in e-mail in your mails, this makes them much
-> easier for humans to read especially when they have no internet access.
-> I do frequently catch up on my mail on flights or while otherwise
-> travelling so this is even more pressing for me than just being about
-> making things a bit easier to read.
-
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+regards
+Philipp
