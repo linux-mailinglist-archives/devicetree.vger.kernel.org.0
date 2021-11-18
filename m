@@ -2,83 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BB134565D5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A8B74565DC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:47:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232537AbhKRWsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 17:48:16 -0500
-Received: from mail-oi1-f181.google.com ([209.85.167.181]:35610 "EHLO
-        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232460AbhKRWsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:48:15 -0500
-Received: by mail-oi1-f181.google.com with SMTP id m6so17679317oim.2;
-        Thu, 18 Nov 2021 14:45:15 -0800 (PST)
+        id S232452AbhKRWue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 17:50:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229998AbhKRWud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:50:33 -0500
+Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B990C061748
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 14:47:33 -0800 (PST)
+Received: by mail-ot1-x335.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso13581767otj.11
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 14:47:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lujsZ0IKNJaA5lx9661QkFiRqemsKwUYnfhaEJr6j9Q=;
+        b=eURB1mlKTADaw1xiFWVW/aCYXRNv2ZpmcNqxZVjtSNnpKK6IVo/sZCXn9TMNYFZfD4
+         oNYQjKMK++P0cWVkTW5Sa7foIfy+3J47VnKYhHuZfFq4gcIn9fg3Q0QMgLL51gGZmaU9
+         di6RuRLKypg1GYyXe5JxkQInbNdW7la+Njru+iOW++lrOkCZ6SQ7aJR2T9FkarOcyTYx
+         Ht6jGSOpQgOLy1sZlqCE/mH5yuC99iWMzBhincPjNz8oPmwIlz1EnpgAPSxtqOx/l5gL
+         E1DRZdJkBcvo1icLFDYhcyKhAB1REZKUKC8VcEMSL2JCJzh23Lhy1Pdog2LZOdo9Pheh
+         yjmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=H1SS+0H0PjpsXS0zy4N6RiTgJsErytrpSg6Bdnmca1Q=;
-        b=08gfUFT0tFkqq12uOi8PuCQfSn5ijIXcL8SaPFyVkD1GJSMKzk7w76Vt/3UktwgEXg
-         XwS7+ZUKIWTZzdhyrigEdYoDQaTSYhvoMBSYI0I1mh/b+IQYMZ1YgDLzbyu+eIZm2P0e
-         sW8FE0Fp6BYIMBvgme/T/Ae07eTj6kzpYHdk8IdwoT2Ig47N8E5/rna06WLUxrBLLkci
-         SdkiYKeBizNzpzmsUEvF4iUwFltRdIzLqTZJlWuc00zQKfRja+0WH3VxoGwQ9A1yOdNE
-         Ki870uJ4uuY0ORWBH9tMlWX1kGjuow5BVzkgvW8qh6qwGMqWPL4gIRvJ2WH67tBt39Ar
-         HYYA==
-X-Gm-Message-State: AOAM531tjkhh0b3L106mGL8X1pXxKZsQqVsDWhSEcTbttH3XUU8D9Vca
-        Hsyn1EjTW9niD+HFnwmQNw==
-X-Google-Smtp-Source: ABdhPJyTk374MO6gTLPWQfR9cC01JJ7y0X11rCSopQI0oasLMzQHD9V7PyGo+b/QWKjBFj+6sdRs6g==
-X-Received: by 2002:a05:6808:1644:: with SMTP id az4mr569659oib.86.1637275514743;
-        Thu, 18 Nov 2021 14:45:14 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id u40sm322644oiw.56.2021.11.18.14.45.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 14:45:13 -0800 (PST)
-Received: (nullmailer pid 1899744 invoked by uid 1000);
-        Thu, 18 Nov 2021 22:45:12 -0000
-Date:   Thu, 18 Nov 2021 16:45:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Justin Chen <justinpopo6@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com, linux-mips@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-watchdog@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH V4 RESEND 2/2] dt-bindings: mfd: add Broadcom's
- Timer-Watchdog block
-Message-ID: <YZbXePINGyUMGEaD@robh.at.kernel.org>
-References: <20211115055354.6089-1-zajec5@gmail.com>
- <20211115055354.6089-2-zajec5@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lujsZ0IKNJaA5lx9661QkFiRqemsKwUYnfhaEJr6j9Q=;
+        b=sIWSYXtatwF3YO+Aaall02XB5wEqoCgA/xU67npluY7dThis6oEsUygzubJkl92vLh
+         CcxhYvIWd17+iXtklyKKbPPBddW4zq27XfLF1n3hV4Mnx9Vd39In58yyBCD1a7+CLTB/
+         ogYgvbcE9AVaQ/SGUwf1iFDNEQvlq9CBYBPoaS2eL6Ja1M6xk2P2OeeElv4yqQf12iJw
+         Y/TjwxQy7WLqw+Pp/ZYxk11sKNvblVzCYBu5liIF3wMcT1YD9EGyzHYOvdcD2dZEYKkp
+         VACFhwowYUFujy+AWhl0adkKdkFuYN1vhxaAGys9RMBx6NBEE5GIz/uIOEE++WSX9hJ3
+         IgxA==
+X-Gm-Message-State: AOAM530d5WMND3ClVwc2laXsRlqGe6VZICz45qcjipo1Pi2fr4VUGT4W
+        q9MBtYHlw27Mncw0Xjx5rTw56Qp14wez873GZf5LBQ==
+X-Google-Smtp-Source: ABdhPJz4kH2OVTcugqn/S3qYrYQsVGaVamB9oR3h0cT9tc6hTm+QSq25T3rUJZ+u8dr3/eljhT39jN1nCjaAECVYT94=
+X-Received: by 2002:a9d:a42:: with SMTP id 60mr659216otg.179.1637275652442;
+ Thu, 18 Nov 2021 14:47:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211115055354.6089-2-zajec5@gmail.com>
+References: <20210625113435.2539282-1-linus.walleij@linaro.org>
+ <20210625113435.2539282-2-linus.walleij@linaro.org> <YPtpHg2aoGlULuQQ@google.com>
+In-Reply-To: <YPtpHg2aoGlULuQQ@google.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 18 Nov 2021 23:47:20 +0100
+Message-ID: <CACRpkdafREE31xsLHoNYciUn_+mPxoD21325LHkrObRZqFzSXA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] Input: zinitix - Handle proper supply names
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Nikita Travkin <nikita@trvn.ru>
+Cc:     linux-input@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Michael Srba <Michael.Srba@seznam.cz>,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Nov 2021 06:53:54 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> It's a block implementing few time related functions depending on a
-> (SoC specific) variant. At this point there is ready binding for a
-> watchdog only. Work on remaining subblocks (e.g. "reg" based reboot) is
-> in progress.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> V2: Update $id, description, compatible, example & commit message
-> V3: Drop "brcm,twd" from compatible list per Rob's review
-> RESEND: Patchwork lost 1/2, marc.info lost 2/2
-> ---
->  .../devicetree/bindings/mfd/brcm,twd.yaml     | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/brcm,twd.yaml
-> 
+Hi Dmitry, sorry for late reply!
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Sat, Jul 24, 2021 at 3:13 AM Dmitry Torokhov
+<dmitry.torokhov@gmail.com> wrote:
+> On Fri, Jun 25, 2021 at 01:34:35PM +0200, Linus Walleij wrote:
+
+> > +     /*
+> > +      * Some older device trees have erroneous names for the regulators,
+> > +      * so check if "vddo" is present and in that case use these names
+> > +      * and warn. Else use the proper supply names on the component.
+> > +      */
+> > +     if (IS_ENABLED(CONFIG_OF) &&
+>
+> Why is this check needed? The of_property_*() are stubbed out properly I
+> believe. We might need to check that dev->of_node is not NULL, although
+> I think of_* API handles this properly.
+(...)
+> > +         of_property_read_bool(dev->of_node, "vddo-supply")) {
+>
+> If we go with this I do not like using of_property_read_bool() as this
+> is not a boolean property, but rather of_find_property().
+
+These comments are fixed up in Nikita's respin of the series:
+https://lore.kernel.org/linux-input/20211027181350.91630-4-nikita@trvn.ru/
+
+> However maybe we should use regulator_get_optional() which will not give
+> a dummy regulator? Still quite awkward, a dedicated API to see if a
+> regulator is defined would be nice.
+
+I guess the option would be to get all four regulators by name and
+optional, but then we don't detect if more than 2 out of 4 are missing.
+Not sure, it feels like we have less control over the supplies then.
+
+I guess it sadly gets ugly because making mistakes in bindings is ugly
+in the first place.
+
+Yours,
+Linus Walleij
