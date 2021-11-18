@@ -2,192 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C566455C89
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:22:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54419455C83
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 14:20:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229594AbhKRNZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 08:25:03 -0500
-Received: from regular1.263xmail.com ([211.150.70.198]:38676 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229599AbhKRNZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:25:02 -0500
-X-Greylist: delayed 442 seconds by postgrey-1.27 at vger.kernel.org; Thu, 18 Nov 2021 08:25:02 EST
-Received: from localhost (unknown [192.168.167.70])
-        by regular1.263xmail.com (Postfix) with ESMTP id 8C9EF14A0;
-        Thu, 18 Nov 2021 21:14:27 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.89] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P31296T140158641805056S1637241264970100_;
-        Thu, 18 Nov 2021 21:14:26 +0800 (CST)
-X-IP-DOMAINF: 1
-X-RL-SENDER: andy.yan@rock-chips.com
-X-SENDER: yxj@rock-chips.com
-X-LOGIN-NAME: andy.yan@rock-chips.com
-X-FST-TO: linux-arm-kernel@lists.infradead.org
-X-RCPT-COUNT: 13
-X-LOCAL-RCPT-COUNT: 2
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-UNIQUE-TAG: <733c4135ae7513b928b6ecc7489c4be9>
-X-System-Flag: 0
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-To:     Daniel Stone <daniel@fooishbar.org>,
-        Kever Yang <kever.yang@rock-chips.com>
-Cc:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com>
- <4310886.V3yF0ifEZO@diego>
- <CAPj87rPNSt7nZX93prAYD3Emf-34RdTZWp_1TOuAybBebObZhQ@mail.gmail.com>
- <fba695b7-863a-c492-0209-41bc07c7baee@rock-chips.com>
- <CAPj87rO86Mom-076Z5QX9hd=0bQi=AQcofkc1fSR4-VV2Zo6aQ@mail.gmail.com>
-From:   Andy Yan <andy.yan@rock-chips.com>
-Message-ID: <e948ee33-d1ea-cd53-a792-2e044eed1529@rock-chips.com>
-Date:   Thu, 18 Nov 2021 21:14:25 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S230362AbhKRNX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 08:23:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230368AbhKRNXt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 08:23:49 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9CA0C061200
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 05:20:48 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id z5so26978531edd.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 05:20:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=o/E5pVansUx3F/k2LuNW2doPkR1FpoTGrLH7703k+v4=;
+        b=ZJ8DLJeZdFHSfQ/25itsimLa50JkvpRX+SA81xN0i0Qv+AsP6Eei13Mf79E2myn1mY
+         QYDHIST3QNvUisYr/eke9EGEXN2J1kG0aQM0Z0vX/Aius2NkH5bV/aR+ARVVdW5JaFtR
+         7suYIqTqxnj7BgnMoy4Z+/3Z/hwCB26yJvMNGKTKi+FiEZ7riuufEttMQkNbay5l45x9
+         eIW8dnSBoIOa9iyu+kuC6t/u1Gm/uvHeJPSe9phrd/4S+7Dl0pax8v48toeDyjk4vqha
+         +OOtGBBBZ5HWWEBjs07V672LMXkdE/OUT3b7m8PetG9rA2KULK7O1bBxKc8SGuTpqlZ4
+         tUtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=o/E5pVansUx3F/k2LuNW2doPkR1FpoTGrLH7703k+v4=;
+        b=FCKMRxD8p+gJ/q1W+1hyUbO5+SUKk1Haoowmf3UC9LdJHKafzA3jbd1nugSrQPbe0R
+         qVO6vFVgrJ0p5vrbdFOvlaYK/AnC1+7LQxJ/NQ8vzAa95hWMzVhdBiZP+shq/6DWvAIR
+         q9GBrPec+SJf9Mc8cMykU2uVlopp3YE+/PURYWK5wlILVOSIlgIja7SaoiGwCgBX17Og
+         yIu6q0f53SyEFrjBfosBuBL9kUEn2bWSy+yB9z1UQsyng7vR+rU6Gndwb9tdFDDypjgj
+         PZTiF5fC8fPLTjFXKM/DjRAzatj9jXNom+7l2sFs7IeQaHndiBaKb81rGhSH3nCESLoZ
+         MsKA==
+X-Gm-Message-State: AOAM533tZ3UuvhumYu/YC/qIkshXAmjzRkJ7xammbNpp7AiBxsLeoCvZ
+        hk4M9R7Wui4s8bv+iB8m1i29+YLeyEFs7QhYbr2jVNOLk0LE9g==
+X-Google-Smtp-Source: ABdhPJx9isLSrkR5iF/wPCX0wzfwmwoVn6dWoYq8WCOMeBODGctMLS4FPoNPUNNA+tz+Ait67ILWAxcCLDQQbd81GHg=
+X-Received: by 2002:a17:907:6e16:: with SMTP id sd22mr32229395ejc.542.1637241636078;
+ Thu, 18 Nov 2021 05:20:36 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAPj87rO86Mom-076Z5QX9hd=0bQi=AQcofkc1fSR4-VV2Zo6aQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Received: by 2002:a50:cf0b:0:0:0:0:0 with HTTP; Thu, 18 Nov 2021 05:20:35
+ -0800 (PST)
+Reply-To: francoispetit113@outlook.com
+From:   Francois Petit <daphinemsparharmrhonda491@gmail.com>
+Date:   Thu, 18 Nov 2021 14:20:35 +0100
+Message-ID: <CAPd2WpdRibaOC7jU-E6BVEYPcea0W-LsjvXD5=TEuuqKgaaRAQ@mail.gmail.com>
+Subject: TREAT AS CONFIDENTIAL..
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel:
+Hello,
 
-On 11/18/21 8:07 PM, Daniel Stone wrote:
-> Hi Kever,
->
-> On Thu, 18 Nov 2021 at 10:50, Kever Yang <kever.yang@rock-chips.com> wrote:
->> On 2021/11/18 下午5:53, Daniel Stone wrote:
->>> Exactly what Heiko said. If you would like to upstream the driver then
->>> that would be fantastic to see, but I'm afraid you do not get to
->>> prevent someone else from doing the work themselves.
->> First of all, we never stop any one to doing there work on upstream if
->> the source code is write totally by themselves.
->>
->> Second, there are also many modules are upstream by developers based on
->> Rockchip source code, please note that
->> all of them have basic respect to our work, they do communicate with us
->> first.
->>
->> But this committer do not take any respect to our engineers and their
->> hard working:
->> - He didn't contact with us;
->> - There isn't  any information about original author in the commit message;
->>       As I have known, if I use source code from another developer, I
->> need to at least add a "Signed-off-by" with original author;
->> - This commit and mail does not even have a 'CC' to original author.
->>
->> I NAK because I  think this is not part of the  open source spirit, and
->> this kind of  behavior should not be encouraged.
-> OK, I see where you're coming from, and I agree that the attribution
-> should have been handled more carefully.
->
-> On the other hand, please consider this from the other perspective.
-> Sascha has been free to take the downstream Rockchip BSP code and
-> attempt to upstream it to the Linux kernel, which you are unhappy
-> about. But then the Rockchip driver was developed totally downstream,
-> with no attempt to ever communicate with the upstream Linux or DRM/KMS
-> developers. Rockchip advertises that it is shipped as a Linux kernel
-> with a KMS driver. But we were never informed, or CCed, or anything.
->
-> If you would like the community to more actively work with you - then
-> please yourself work more actively with the community. The first
-> commit of the VOP2 driver was in July 2020, and that was of the full
-> driver so presumably it started quite some time before then. So that
-> is a minimum of 17 months that you have had to engage with upstream
-> ...
->
-> Technically, the driver cannot be upstreamed as-is. It looks as if it
-> were a pre-atomic driver, that was half-converted to atomic, and then
-> has been half-converted to atomic helpers as well. Things like
-> reference counting and global state are not handled correctly at all.
-> You can see this if you try to run Weston on top of the VOP2 driver:
-> the framerate is decimated because the event handling massively
-> over-synchronises, and the event timestamps which arrive are
-> incorrect. This would be fixed by correctly using the event helpers
-> that we have had in the tree for years (which would also eliminate the
-> unnecessary framebuffer reference handling). It also does not work
-> with the GPU drivers in the tree because it lacks the one-liner to
-> correctly handle dma_resv synchronisation, which makes it both too
-> fast as it displays content which is not ready, and too slow because
-> it can't do it at full frame rate.
+I'm Francois Petit with Societe Generale Bank here in France. I
+sincerely seek to present you as the Next of Kin to a late client who
+left behind $145.5 million dollars in a fixed deposit account in my
+bank before his demise.
 
+The British born client was into Diamond and Gold mining and died
+without a Next of Kin. I shall obtain the legal documents that will
+give you legal rights to make this claim legitimately. I am willing to
+share the funds 60/40 with you and this shall be completed within 72
+hours. With the legal documents, the bank will approve you as the Next
+of Kin and pay out this amount to you within three working days. I
+considered the funds would be of better use to both of us instead of
+letting the bank or some corrupt politician to confiscate the funds.
 
-We have different team run Android , X11, Weston on rk356x, especially 
-for android, we can run at 60 fps.
+Kindly get back to me as soon as possible with your full name,
+address, direct contact number and occupation for the processing of
+the legal documents if you are interested and can be trusted to return
+my own share when you have received the funds in your bank account.
+More information shall be given to you once I hear from you. I put it
+to you that this is probably going to be the best decision you ever
+make in your life.
 
-Our vop2 driver is developed on Linux 4.19, am not sure which version of 
-kernel you put our drivers on.
+However, if you are not interested in the offer, kindly delete this
+message from your mailbox and pretend that I never contacted you. I'll
+continue my search for a reliable person that will help out.
 
->
-> Similarly, on the RK3566 EVB, the DSI does not work unless HDMI is
-> also active, but when HDMI is active at the same time as DSI, it just
-
-I am very sure rk3566 evb DSI can work without HDMI.
-
-But take care that the vop on rk3566 has a special limitation: there are 
-three
-
-windows(Cluster1/Esmart1/Smart1) that have a mirror lock, that means they
-
-can't be programed framebuffer address independently , they can only
-
-share framebuffer address with Cluster0/Esmart0/Smart0. We use these feature
-
-on Android.
-
-I have comment these limitation in our driver.
-
-Compared to old vop, vop is strong but a bit complicated, we try very had to
-
-make it work on as much display framework as possible.
-
-We have upstream plane, but I am really in a rush this year. So sorry 
-for the late of upstream, but we glad to work with community.
-
-So Sascha, please feel free to go on with your work.
-
-> shows a blank screen. I believe the root cause of this is that the
-> VOP2 driver does not use any of the atomic state correctly, and
-> instead stores its own state in driver-global structures, using a lot
-> of unnecessary mutexes to try to synchronise this state. Not only does
-> this synchronisation not actually work, but it causes a severe
-> performance degradation due to mutex contention.
->
-> I believe the best path forward to an upstream VOP2 driver is a patch
-> series consisting of:
->    - start from a blank slate, using the atomic framework and helpers
-> as they were intended to be, with basic support for the VOP2 and one
-> or two connector types, doing linear XRGB only
->    - any cleanups which would enable this to share more code with
->    - add YUV support, including planar buffers
->    - add AFBC support, with the AFBC enable/disable correctly
-> synchronised through atomic state (this is necessary since the AFBC
-> decoder is not directly on the planes per se but shared)
->    - add more connector types
->    - add writeback support
->    - add other Rockchip-specific codepaths such as HDR10
->
-> Cheers,
-> Daniel
->
->
->
-
-
+Best Wishes,
+Francois Petit
