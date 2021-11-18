@@ -2,131 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A294563D0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 21:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D849E456433
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 21:30:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbhKRUDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 15:03:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
+        id S232841AbhKRUdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 15:33:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230436AbhKRUDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 15:03:07 -0500
-Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD3EC061748
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 12:00:06 -0800 (PST)
-Received: by mail-ua1-x92c.google.com with SMTP id r15so16380284uao.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 12:00:06 -0800 (PST)
+        with ESMTP id S231802AbhKRUdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 15:33:37 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43B45C061748
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 12:30:37 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id s139so16775831oie.13
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 12:30:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wTLcbVWrF0jAguOtxvSE2fxFOAqrINCwUvyhsM88wiQ=;
-        b=xJgHu5nGTzGq1z1uegZo1b2kDPztDnyOE5CWKBHnexjO9MeJcUxWEDUJJx7CIac2Pe
-         x+KzoJXjbNLxH3hcGhU2zf1Bl0YtV/8jA6E2t9CAlwrTzzY8yFwecOv4S6ZXR+Fal7YA
-         lQAh3fsQYn9HnhtV85TItabze0KI+BsEzle+LYN8E+99kDn4RkGhvAleItu0rCPTfNxf
-         bH8bWKG+/lNG6k1sy6KQF5hozB6lwHn8NefylmcRTFIXxlbyR3QeoKZHxVCr5aFo4glE
-         1DOnDPC7M1kQyRq6SIwQCstwEyoHhESaBXI2Gecy7UDXsRisZGGDfgWDPVbaQMU4X6US
-         HY/w==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lpxOUZi8eZtXgRuCBNNMVCz/8y8+r3vF20s7lvfQT9w=;
+        b=u2a5n/mvSzduXGiOrrvh3GGtSy3rq5tEEjevCnZ2g5lFriIVQhxWwI2g68kAe+p1ht
+         2pmrVbJHQ5kWPoIYX89tFsfC4oS5245rm3s1nhr2bT1j60N9qFy75Sp+5jPIr/StT78c
+         uvZkxgkRrU+mLZajRbZlVd3t5hQlWDpZWNxQslU9TvLtYdK7w5EmWjj0GEJeqAaU7V/9
+         pR5FW6PxyZ0QrCg94oifWcS9ucyh1eYAWemGWW4A/5Rv/6R+kgy2RSb48J3RMcGAUVa3
+         /f/lke7WUGL62Y17itVE5qq/myng8G/tQHL4qvBhSBr7sP7Q1JLF/5TGaCbMqD794NHX
+         q7lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wTLcbVWrF0jAguOtxvSE2fxFOAqrINCwUvyhsM88wiQ=;
-        b=g5oo3OmG5/eThiKkX0TY2dRFRsKAMlANmIPO4pWle9hriVwljujI0LybulcqJEG6sl
-         xn4luy6adFJSypWm/Fqs0Df9fKWEvjb76Ae1SHdeTMF3kCgFvr7G5qMiKxCT3I+n48X3
-         wvTdiRodP57xUrO0R+gWwLGX3NY2A7ywMyj7P+5CsuYv0VwqsrJlotn1t42hEa36YvGj
-         Jy7r5AQQ7AbJTR/UiLIJPKfBPbwHLJASPgbnvOvCE/uGBKsfP36jKyaXn7Paf7nrueRJ
-         kNNcnB8zU4+xV9OfJMj9rqKrMHMHmnHxPPSFjtSnKEensKECm6atHQseXEL5n18VqR5b
-         2lSA==
-X-Gm-Message-State: AOAM533sdkfesLqjlg0W9EcykTPdf01TFWA6AOzEUw05/EqwfrkYWYLP
-        XJI9tYRr7LXxpI8nMBmboBMJz7jdPolHi2yPPc2now==
-X-Google-Smtp-Source: ABdhPJwbE3pupBTAOUQbpkhtvy7vjY7xqzTjlwsvOO4K+rUdArjo9f0XPpSAvOoBNURq4nPOFYSglotNhcYITP9UmEo=
-X-Received: by 2002:a05:6102:ac3:: with SMTP id m3mr69022069vsh.1.1637265605012;
- Thu, 18 Nov 2021 12:00:05 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lpxOUZi8eZtXgRuCBNNMVCz/8y8+r3vF20s7lvfQT9w=;
+        b=cchOGvBtLBhKHw2SNY8jWXZqCGdCuiy8smxFmk8GD0MmpixFhsEEVu7ZX7DdZjCZOs
+         X2ZgUicVKIc0kc9vNkt/G62F+6EDCOLFaiIfVt7Jz39wSi/FlBLsiZYVp3PQX5q0UQI2
+         qKJEFvl/foyCiRqdG3sMzUah0Ulfl3yuGnf5NLLWUEg4FBlKNnimf9HOZAe3xMOUxHjH
+         t0uNhQ5nrEkMJxF8FM/A9xoQ6bQtHm+aYP735KF68fkpLbkG8XiF849/LtMgsQzN27it
+         Pkb8CknL/7YywffEq2L2zpQIKre3shXsCbckoIQhgDXQ2v+9Tn2wQl/mi/cwXbOF8UwQ
+         Vq7g==
+X-Gm-Message-State: AOAM53020mtzX14eHm6keKnYj4xMZd0bb0bGyylyucJ4C0zBw6GO9+Qt
+        zpviOtLbxgikttvHdIyriSrJ0g==
+X-Google-Smtp-Source: ABdhPJzr43gYSVIqQaBxtCBx1ey4ahfuAlTLLX8MN9Jlw6mkUxEuYKtvGcUH5Dafd4SArfdbXQ1/Jg==
+X-Received: by 2002:a05:6808:4d9:: with SMTP id a25mr10210086oie.52.1637267436553;
+        Thu, 18 Nov 2021 12:30:36 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w19sm215372oik.58.2021.11.18.12.30.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 12:30:35 -0800 (PST)
+Date:   Thu, 18 Nov 2021 14:30:33 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Alexey Min <alexey.min@gmail.com>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Martin Botka <martin.botka@somainline.org>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v3 0/8] Improve support for Xiaomi Redmi Note 7
+Message-ID: <YZa36ZACKVShtNtM@builder.lan>
+References: <20211111031635.3839947-1-danct12@riseup.net>
 MIME-Version: 1.0
-References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
- <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
- <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
- <001401d7da86$f7ebd660$e7c38320$@samsung.com> <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
-In-Reply-To: <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Thu, 18 Nov 2021 21:59:53 +0200
-Message-ID: <CAPLW+4kS-pzROC5oyAjW1aJp5cb1e3XK+40HsKwgPdCziSp1ZQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211111031635.3839947-1-danct12@riseup.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Nov 2021 at 11:32, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 16/11/2021 02:12, Chanho Park wrote:
-> >> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
-> >> from my side (just a food for thought): do we want to configure USI
-> >> related config inside of particular drivers (SPI, I2C, UART)? Or it would
-> >> be better design to implement some platform driver for that, so we can
-> >> choose USI configuration (SPI/I2C/UART) in device tree? I think this
-> >> series is good to be merged as is, but we should probably consider all
-> >> upsides and downsides of each option, for the future work.
-> >
-> > I'm also considering how to support this USI configuration gracefully.
-> > Current version of USI is v2 which means there is a v1 version as well. It might be a non-upstream SoC so we don't need to consider it so far.
-> > But, there is a possibility that the USI hw version can be bumped for future SoCs.
-> >
-> > As you probably know, earlier version of the product kernel has a USI SoC driver[1] and it was designed to be configured the USI settings by device tree.
-> >
-> > Option1) Make a USI driver under soc/samsung/ like [1].
-> > Option2) Use more generic driver such as "reset driver"? This might be required to extend the reset core driver.
-> > Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respectively and expose some configurations which can be variable as device tree.
-> >
-> > [1]: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi_v2.c
->
-> I don't have user manuals, so all my knowledge here is based on
-> Exynos9825 vendor source code, therefore it is quite limited. In
-> devicetree the USI devices have their own nodes - but does it mean it's
-> separate SFR range dedicated to USI? Looks like that, especially that
-> address space is just for one register (4 bytes).
->
-> In such case having separate dedicated driver makes sense and you would
-> only have to care about driver ordering (e.g. via device links or phandles).
->
-> Option 2 looks interesting - reusing reset framework to set proper USI
-> mode, however this looks more like a hack. As you said Chanho, if there
-> is a USI version 3, this reset framework might not be sufficient.
->
-> In option 3 each driver (UART/I2C/SPI) would need to receive second IO
-> range and toggle some registers, which could be done via shared
-> function. If USI v3 is coming, all such drivers could get more complicated.
->
-> I think option 1 is the cleanest and extendable in future. It's easy to
-> add usi-v3 or whatever without modifying the UART/I2C/SPI drivers. It
-> also nicely encapsulates USI-related stuff in separate driver. Probe
-> ordering should not be a problem now.
->
-> But as I said, I don't have even the big picture here, so I rely on your
-> opinions more.
->
+On Wed 10 Nov 21:16 CST 2021, Dang Huynh wrote:
 
-Hi Krzysztof,
+> This series expand the Redmi Note 7 device port to support:
+>  + Regulators
+>  + Volume keys
+>  + eMMC and SD card slot
+>  + Framebuffer display
+>  + USB
+> 
 
-Can you please let me know if you're going to apply this series as is,
-or if you want me to submit USIv2 driver first, and then rework this
-patch on top of it? I'm working on some HSI2C related patches right
-now, and thus it'd nice to know about your decision on this series
-beforehand, as some of my patches (like bindings doc patches) might
-depend on it. Basically I'd like to base my patches on the proper
-baseline, so we don't have to rebase those later.
+Thanks for the patches Dang, I think they look good and would like to
+merge them.
 
-Thanks!
+Could you please submit an updated version with the one gpio.h inclusion
+pointed out by Konrad moved and fix up the Reviewed-by pointed out my
+Martin?
 
-> Best regards,
-> Krzysztof
+Thanks,
+Bjorn
+
+> Changes in v2:
+>  - Dropped linux,input-type from volume up as 1 is set by default.
+>  - Dropped gpio-key,wakeup as it's a legacy property name and is
+> not relevant for a volume button.
+>  - Rename label cont_splash_mem to framebuffer_mem and change node
+> name to memory.
+> 
+> Changes in v3:
+>  - Add voltage range for vph_pwr
+>  - Move RESIN to PM660 and make PON keys disabled by default 
+>  - Addressed review comments from Konrad
+>  - Make Alexey Min the author of the USB patch as he came up with
+> the patch first on downstream. 
+> 
+> Alexey Min (1):
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add USB
+> 
+> Dang Huynh (7):
+>   arm64: dts: qcom: sdm630: Assign numbers to eMMC and SD
+>   arm64: dts: qcom: sdm630-pm660: Move RESIN to pm660 dtsi
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add RPM and fixed regulators
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add PWRKEY and RESIN
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add volume up button
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Add eMMC and SD
+>   arm64: dts: qcom: sdm660-xiaomi-lavender: Enable Simple Framebuffer
+> 
+>  arch/arm64/boot/dts/qcom/pm660.dtsi           |  12 +-
+>  .../dts/qcom/sdm630-sony-xperia-nile.dtsi     |  16 +-
+>  arch/arm64/boot/dts/qcom/sdm630.dtsi          |   5 +
+>  .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 383 ++++++++++++++++++
+>  4 files changed, 407 insertions(+), 9 deletions(-)
+> 
+> -- 
+> 2.33.1
+> 
