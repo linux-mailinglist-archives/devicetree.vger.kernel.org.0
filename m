@@ -2,291 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 800CB455268
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 02:54:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CCB3455270
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 02:57:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242384AbhKRB5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Nov 2021 20:57:52 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:41641 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233128AbhKRB5w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 20:57:52 -0500
+        id S233128AbhKRCAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Nov 2021 21:00:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242397AbhKRCAi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Nov 2021 21:00:38 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC42C061570
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 17:57:38 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id r26so10701405oiw.5
+        for <devicetree@vger.kernel.org>; Wed, 17 Nov 2021 17:57:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637200493; x=1668736493;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Oi7O/U4Rf2pPIs/j+dPfPg0GjDFEjDFV+JfzEknM8k8=;
-  b=X6Zz3lMfkubpwyFa9mpf9a0FLXFjXOdY6CparHf3EGHk2igNhAJdYNR4
-   wzcbtbebPBJf9+KMtdrAgzJ/Zx68IyVMl3p9s9ToH53nPEZMZs1HX5Coi
-   qca1vebqRbMVZwcApMCcmsKZpIIYgCp8pxmUMwYEzdKXuSinHZOtGImi9
-   Q=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 17 Nov 2021 17:54:52 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Nov 2021 17:54:52 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 17 Nov 2021 17:54:52 -0800
-Received: from quicinc.com (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Wed, 17 Nov
- 2021 17:54:51 -0800
-Date:   Wed, 17 Nov 2021 17:54:50 -0800
-From:   Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-To:     Vinod Koul <vkoul@kernel.org>, <g@quicinc.com>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH v4 2/6] clk: qcom: Add LUCID_EVO PLL type for SDX65
-Message-ID: <20211118015450.GB18984@quicinc.com>
-References: <cover.1637047731.git.quic_vamslank@quicinc.com>
- <5a048452c128e4b678609bef780e2c1328c482fc.1637047731.git.quic_vamslank@quicinc.com>
- <YZNq+Y07kwhbIboe@matsya>
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4GgIJU0V+ih5Gpji1Pi6wi66j+iNTVRk7nYTxCGKEII=;
+        b=R3NdEUcgp/SALb49E79HIfh/H9l6vgFtcPngo8gtuOL4QeM6wSmOrH2fKAMtc11F1O
+         uR8rQJ/5+9tqYbKiRXHMtALAW/b2OMnExwVlQqBRrIP/VPUDixGZpKtA5yjqESqc7shX
+         qanJvyIVLUlP7LtyYMPUttshh1V065F/X0ieYn89NahGTGvMh54DNL2wBAQvQ1+ql8nB
+         PbkTlM8rPIKD3eY9ZzcOgrAeEYImePXBTpjIkPVrc5eMnYQctQe3u89f9sVQQdvPCo3U
+         nnhhDXlOCxmUtF97Z7kIJaXu77l3Oh0Fd8DnW3JBmEEB/cHHTVWdpl57ofXo9ENm685C
+         VGZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4GgIJU0V+ih5Gpji1Pi6wi66j+iNTVRk7nYTxCGKEII=;
+        b=bf7POM1PwnLtARv+OjjsJnvSx9YIQAd/POT17eopadTx3WBTEfj/9ergu9tOodLvYL
+         Zq2/eblHZo5Uzn0wuWrbNhAOU64ZVJFGxEgTdWhDSn8VqZsrp3BzMJZuttvdRmcjz87T
+         ccbEEoS+/dqJVHECVbY/KshXdwawitiwtRcxhcjX0LO5BKuuwJgBXsdUhH2PTDIfj/hs
+         0rIHm62RAxksfC2clbKic4P729bTRDMheLOLK+2hCMOeWfm8IbgPP+CNmwnNZteDaaPR
+         YZc58UdF9MWmTI7WQxFguAzEc12hmfSb1tJ0t1/94ITgCbHBABWV+IoVdTGHUHjrcqsm
+         WVIw==
+X-Gm-Message-State: AOAM530uSCQKW8MCwq15SbGRzxkUtSXrCPclopblSr3N070AoyqxoEcX
+        jramemkbQ4IxMByko79NUZtHh9plrahzz6nu4YnSsQ==
+X-Google-Smtp-Source: ABdhPJwUZxZy+oDrVbVf3E8Uxu6BnHQNyTmrLqFBNwedah57MWTES9fU07YwFkjK4DKiKLrVOUn5MDF0Qc6cHwyKKO4=
+X-Received: by 2002:a54:4791:: with SMTP id o17mr4452519oic.114.1637200658149;
+ Wed, 17 Nov 2021 17:57:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YZNq+Y07kwhbIboe@matsya>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com> <740503b6b6439e01959016223f1ae464e82824c3.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <740503b6b6439e01959016223f1ae464e82824c3.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 18 Nov 2021 02:57:23 +0100
+Message-ID: <CACRpkdYE1r6mYAJsaMB9XyZjjAK-bGw3-9jhOpUFASWgkXaQBQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 1/9] dt-bindings: battery: Add temperature-capacity
+ degradation table
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, rostokus@gmail.com,
+        fan.chen@mediatek.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 01:55:29PM +0530, Vinod Koul wrote:
-> On 15-11-21, 23:38, quic_vamslank@quicinc.com wrote:
-> > From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> > 
-> > Add a LUCID_EVO PLL type for SDX65 SoC from Qualcomm.
-> > 
-> > Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> > ---
-> >  drivers/clk/qcom/clk-alpha-pll.c | 171 +++++++++++++++++++++++++++++++
-> >  drivers/clk/qcom/clk-alpha-pll.h |   3 +
-> >  2 files changed, 174 insertions(+)
-> > 
-> > diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> > index eaedcceb766f..b2dbb8d56773 100644
-> > --- a/drivers/clk/qcom/clk-alpha-pll.c
-> > +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> > @@ -1,5 +1,6 @@
-> >  // SPDX-License-Identifier: GPL-2.0
-> >  /*
-> > + * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
-> 
-> This line should ideally come after the below line..
+On Tue, Nov 16, 2021 at 1:24 PM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
 
-Will do.
+> Some charger/battery vendors describe the temperature impact to
+> battery capacity by providing tables with capacity change at
+> given temperature. Support providing this temperature - capacity
+> dependency using the simple-battery DT nodes.
+>
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 
-> 
-> >   * Copyright (c) 2015, 2018, The Linux Foundation. All rights reserved.
-> >   */
-> >  
-> > @@ -139,6 +140,20 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
-> >  		[PLL_OFF_OPMODE] = 0x28,
-> >  		[PLL_OFF_STATUS] = 0x38,
-> >  	},
-> > +	[CLK_ALPHA_PLL_TYPE_LUCID_EVO] = {
-> > +		[PLL_OFF_OPMODE] = 0x04,
-> > +		[PLL_OFF_STATUS] = 0x0c,
-> > +		[PLL_OFF_L_VAL] = 0x10,
-> > +		[PLL_OFF_ALPHA_VAL] = 0x14,
-> > +		[PLL_OFF_USER_CTL] = 0x18,
-> > +		[PLL_OFF_USER_CTL_U] = 0x1c,
-> > +		[PLL_OFF_CONFIG_CTL] = 0x20,
-> > +		[PLL_OFF_CONFIG_CTL_U] = 0x24,
-> > +		[PLL_OFF_CONFIG_CTL_U1] = 0x28,
-> > +		[PLL_OFF_TEST_CTL] = 0x2c,
-> > +		[PLL_OFF_TEST_CTL_U] = 0x30,
-> > +		[PLL_OFF_TEST_CTL_U1] = 0x34,
-> > +        },
-> >  };
-> >  EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
-> >  
-> > @@ -175,6 +190,10 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
-> >  #define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
-> >  #define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
-> >  
-> > +/* LUCID EVO PLL specific settings and offsets */
-> > +#define LUCID_EVO_ENABLE_VOTE_RUN       BIT(25)
-> > +#define LUCID_EVO_PLL_L_VAL_MASK        GENMASK(15, 0)
-> > +
-> >  /* ZONDA PLL specific */
-> >  #define ZONDA_PLL_OUT_MASK	0xf
-> >  #define ZONDA_STAY_IN_CFA	BIT(16)
-> > @@ -1951,3 +1970,155 @@ const struct clk_ops clk_alpha_pll_zonda_ops = {
-> >  	.set_rate = clk_zonda_pll_set_rate,
-> >  };
-> >  EXPORT_SYMBOL(clk_alpha_pll_zonda_ops);
-> > +
-> > +static int alpha_pll_lucid_evo_enable(struct clk_hw *hw)
-> > +{
-> > +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > +	struct regmap *regmap = pll->clkr.regmap;
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* If in FSM mode, just vote for it */
-> > +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
-> > +		ret = clk_enable_regmap(hw);
-> > +		if (ret)
-> > +			return ret;
-> > +		return wait_for_pll_enable_lock(pll);
-> > +	}
-> > +
-> > +	/* Check if PLL is already enabled */
-> > +	ret = trion_pll_is_enabled(pll, regmap);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +	else if (ret) {
-> > +		pr_warn("%s PLL is already enabled\n",
-> > +				clk_hw_get_name(&pll->clkr.hw));
-> 
-> this should fit in a single line
+Since we already support providing the capacity at different
+temperatures using ocv-capacity-celsius and the array of
+arrays ocv-capacity-table-0, 1, 2... you are introducing a
+second parallel method of describing how capacity changes
+in accordance with temperature, right?
 
-Will do.
+What do you expect to happen if someone specifies both?
 
-> 
-> > +		return 0;
-> > +	}
-> > +
-> > +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Set operation mode to RUN */
-> > +	regmap_write(regmap, PLL_OPMODE(pll), PLL_RUN);
-> > +
-> > +	ret = wait_for_pll_enable_lock(pll);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Enable the PLL outputs */
-> > +	ret = regmap_update_bits(regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Enable the global PLL outputs */
-> > +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	/* Ensure that the write above goes through before returning. */
-> > +	mb();
-> > +	return ret;
-> > +}
-> > +
-> > +static void alpha_pll_lucid_evo_disable(struct clk_hw *hw)
-> > +{
-> > +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > +	struct regmap *regmap = pll->clkr.regmap;
-> > +	u32 val;
-> > +	int ret;
-> > +
-> > +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	/* If in FSM mode, just unvote it */
-> > +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
-> > +		clk_disable_regmap(hw);
-> > +		return;
-> > +	}
-> > +
-> > +	/* Disable the global PLL output */
-> > +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	/* Disable the PLL outputs */
-> > +	ret = regmap_update_bits(regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
-> > +	if (ret)
-> > +		return;
-> > +
-> > +	/* Place the PLL mode in STANDBY */
-> > +	regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
-> > +}
-> > +
-> > +static unsigned long alpha_pll_lucid_evo_recalc_rate(struct clk_hw *hw,
-> > +		unsigned long parent_rate)
-> 
-> pls align this to preceding line open brace
+If this is an either/or situation then the schema has to
+guarantee the exclusiveness for each.
 
-Will do.
+(I would probably just use the formula you have to calculate
+a few tables using the existing method but that's just me.)
 
-> 
-> > +{
-> > +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> > +	struct regmap *regmap = pll->clkr.regmap;
-> > +	u32 l, frac;
-> > +
-> > +	regmap_read(regmap, PLL_L_VAL(pll), &l);
-> > +	l &= LUCID_EVO_PLL_L_VAL_MASK;
-> > +	regmap_read(regmap, PLL_ALPHA_VAL(pll), &frac);
-> > +
-> > +	return alpha_pll_calc_rate(parent_rate, l, frac, pll_alpha_width(pll));
-> > +}
-> 
-> I think this can use __alpha_pll_trion_set_rate()
-
-I didn't get with which function are you comparing this. I cannot able to
-find any function similar to this.
-
-> 
-> > +
-> > +static int clk_lucid_evo_pll_postdiv_set_rate(struct clk_hw *hw,
-> > +		unsigned long rate, unsigned long parent_rate)
-> > +{
-> > +	struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
-> > +	struct regmap *regmap = pll->clkr.regmap;
-> > +	int i, val, div, ret;
-> > +
-> > +	/*
-> > +	 * If the PLL is in FSM mode, then treat set_rate callback as a
-> > +	 * no-operation.
-> > +	 */
-> > +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	if (val & LUCID_EVO_ENABLE_VOTE_RUN)
-> > +		return 0;
-> > +
-> > +	if (!pll->post_div_table) {
-> > +		pr_err("Missing the post_div_table for the PLL\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
-> > +	for (i = 0; i < pll->num_post_div; i++) {
-> > +		if (pll->post_div_table[i].div == div) {
-> > +			val = pll->post_div_table[i].val;
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	return regmap_update_bits(regmap, PLL_USER_CTL(pll),
-> > +			(BIT(pll->width) - 1) << pll->post_div_shift,
-> > +			val << pll->post_div_shift);
-> > +}
-> 
-> This looks _very_ similar to clk_lucid_5lpe_pll_postdiv_set_rate() maybe
-> add a helper which both can use and pass on the
-> LUCID_EVO_ENABLE_VOTE_RUN as argument to helper?
-
-That's a good thought. I can do that.
-
-> 
-> -- 
-> ~Vinod
+Yours,
+Linus Walleij
