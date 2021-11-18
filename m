@@ -2,139 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F461456576
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:10:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED4B645658C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 23:23:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231911AbhKRWM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 17:12:59 -0500
-Received: from mail-ot1-f49.google.com ([209.85.210.49]:38807 "EHLO
-        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232161AbhKRWM4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:12:56 -0500
-Received: by mail-ot1-f49.google.com with SMTP id z2-20020a9d71c2000000b0055c6a7d08b8so13506990otj.5;
-        Thu, 18 Nov 2021 14:09:56 -0800 (PST)
+        id S229634AbhKRW0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 17:26:23 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:44636 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229600AbhKRW0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 17:26:23 -0500
+Received: by mail-oi1-f170.google.com with SMTP id be32so17444063oib.11;
+        Thu, 18 Nov 2021 14:23:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=PoptMI3B81A8R96xYHYdkAlGrDKa99jlgABV4FHfLeQ=;
-        b=aL43Arjko0ir9Av6NARZneQkKS98W70hm1KukAb638X5QmewwkGiQ0JBuJgmufwMKb
-         Nb6KfL/VnqTAw83kPQF/wVV1FgpUThs37VTGfZoQ6qtap96rQE07ci/tTTUB0eeAXSXf
-         qiEHiQsPtZlpaceMGumjHAQ+XXBxJn260RlpFVzg3FKMuyTLUkBBofg4YpdVSOdDPz+g
-         JzTEzB5stNFPujZGfpC5E9MZ43ndElwXfahttcMwcoEefYhai5LMkJyqH+4DK9TtyGvP
-         OOQAm1tJd6+Nua3N5AuRw9W7AWonfCVjfx609kIsryVP2kNQJHuvUozYUg6OtIyPTAhZ
-         J2gQ==
-X-Gm-Message-State: AOAM533gveA8IaVCnifLbBxkPc9gVQ2mMinUdeVICN8BW28TlhnNPSQQ
-        2geezla7BwSoyBom9N41xg==
-X-Google-Smtp-Source: ABdhPJzS2MhDtYAnKO+WWlnoZwjb3nJiGTBN1bzPMIxk0TXyax3CW/zo0Chgj3GmmOzEas4Q79PK0Q==
-X-Received: by 2002:a9d:7f91:: with SMTP id t17mr456686otp.197.1637273395638;
-        Thu, 18 Nov 2021 14:09:55 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OsaV9L6ypm1eFtYxy97Ih2+Ie2rmYMcatbNwYzIQHN8=;
+        b=SveFt6O2rDkSpFtfDeYeJL7zuKq/U4RMcoPX+tVsOgREaZo/ZIg4odKlNkxY3SLGpx
+         Mk1XFvuc0qnlh91osM2hjrZDWebVs2j59I0VikboN+w5DQrgy7vOXXTV8bnrCgMh1LZf
+         3IcqgeZ7vSNtOZgJbJTSSUBOof2ylsEzQF6luhOw6tWUx3hBDSc/V/RLgWC1DItv6qVU
+         qvPfqCP0RxPaDAMgdG8vjpgocOo49AWJHXeakS8Dj35II9rlAeIQOKDfk8PrvB3pfPKs
+         DcCk3srCp4et5ynkAUXHU19MHilEqPB71LXtMPQNYiVorGpjHrL2uPzUH8kA337S/Dfc
+         UZbg==
+X-Gm-Message-State: AOAM530UVg65CxBasEC056sEsWQTy4YeU6DEV++TjvotsoMty+MzXwug
+        zZFKGXSVEkLwI5tpliL4lw==
+X-Google-Smtp-Source: ABdhPJwQaIQluWZ/UijkBOhentEr+irUw5GrTqdmEFrli8Wr1pQp9SGbS6LlABDbK/j6nU86G/VHdw==
+X-Received: by 2002:a05:6808:9ae:: with SMTP id e14mr445604oig.68.1637274201868;
+        Thu, 18 Nov 2021 14:23:21 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r5sm256835oiw.20.2021.11.18.14.09.54
+        by smtp.gmail.com with ESMTPSA id n23sm244380oic.26.2021.11.18.14.23.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 14:09:55 -0800 (PST)
-Received: (nullmailer pid 1841663 invoked by uid 1000);
-        Thu, 18 Nov 2021 22:09:54 -0000
+        Thu, 18 Nov 2021 14:23:21 -0800 (PST)
+Received: (nullmailer pid 1864118 invoked by uid 1000);
+        Thu, 18 Nov 2021 22:23:20 -0000
+Date:   Thu, 18 Nov 2021 16:23:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>
-In-Reply-To: <20211118132152.15722-3-zajec5@gmail.com>
-References: <20211118132152.15722-1-zajec5@gmail.com> <20211118132152.15722-3-zajec5@gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: brcm,ns-pinmux: extend example
-Date:   Thu, 18 Nov 2021 16:09:54 -0600
-Message-Id: <1637273394.255655.1841662.nullmailer@robh.at.kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] spi: dt-bindings: add schema listing
+ peripheral-specific properties
+Message-ID: <YZbSWA5kSfORSzky@robh.at.kernel.org>
+References: <20211109181911.2251-1-p.yadav@ti.com>
+ <20211109181911.2251-2-p.yadav@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211109181911.2251-2-p.yadav@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Nov 2021 14:21:49 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Tue, Nov 09, 2021 at 11:49:09PM +0530, Pratyush Yadav wrote:
+> Many SPI controllers need to add properties to peripheral devices. This
+> could be the delay in clock or data lines, etc. These properties are
+> controller specific but need to be defined in the peripheral node
+> because they are per-peripheral and there can be multiple peripherals
+> attached to a controller.
 > 
-> pinctrl bindings allow specifying pins, groups & functions now. Put some
-> entries in binding example to help writing DTS files.
+> If these properties are not added to the peripheral binding, then the
+> dtbs check emits a warning. But these properties do not make much sense
+> in the peripheral binding because they are controller-specific and they
+> will just pollute every peripheral binding. So this binding is added to
+> collect all such properties from all such controllers. Peripheral
+> bindings should simply refer to this binding and they should be rid of
+> the warnings.
 > 
-> Specify pins, groups & functions in the example.
+> There are some limitations with this approach. Firstly, there is no way
+> to specify required properties. The schema contains properties for all
+> controllers and there is no way to know which controller is being used.
+> Secondly, there is no way to restrict additional properties. Since this
+> schema will be used with an allOf operator, additionalProperties needs
+> to be true. In addition, the peripheral schema will have to set
+> unevaluatedProperties: false.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Despite these limitations, this appears to be the best solution to this
+> problem that doesn't involve modifying existing tools or schema specs.
+> 
+> Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> 
 > ---
->  .../bindings/pinctrl/brcm,ns-pinmux.yaml      | 29 ++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
 > 
+> Changes in v3:
+> - s/slave/peripheral/g
+> - Drop the | on description.
+> - Drop the compatible property.
+> 
+> Changes in v2:
+> - Move other subnode properties listed in spi-controller.yaml to
+>   spi-slave-props.yaml
+> - Move the Cadence controller-specific properties out of
+>   spi-slave-props.yaml. They will be added in a separate file.
+> - Add a reference to spi-slave-props.yaml in spi-controller.yaml.
+> - Update description.
+> 
+>  .../bindings/spi/spi-controller.yaml          | 69 +--------------
+>  .../bindings/spi/spi-peripheral-props.yaml    | 87 +++++++++++++++++++
+>  2 files changed, 89 insertions(+), 67 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-schemas/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml: 'additionalProperties' is a required property
-	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.yaml
-Documentation/devicetree/bindings/pinctrl/brcm,ns-pinmux.example.dt.yaml:0:0: /example-0/pin-controller@1800c1c0: failed to match any schema with compatible: ['brcm,bcm4708-pinmux']
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml'
-schemas/pinctrl/brcm,ns-pinmux.yaml: ignoring, error in schema: 
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-validate", line 170, in <module>
-    sg.check_trees(filename, testtree)
-  File "/usr/local/bin/dt-validate", line 119, in check_trees
-    self.check_subtree(dt, subtree, False, "/", "/", filename)
-  File "/usr/local/bin/dt-validate", line 110, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-  File "/usr/local/bin/dt-validate", line 110, in check_subtree
-    self.check_subtree(tree, value, disabled, name, fullname + name, filename)
-  File "/usr/local/bin/dt-validate", line 105, in check_subtree
-    self.check_node(tree, subtree, disabled, nodename, fullname, filename)
-  File "/usr/local/bin/dt-validate", line 49, in check_node
-    errors = sorted(dtschema.DTValidator(schema).iter_errors(node), key=lambda e: e.linecol)
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
-    for error in super().iter_errors(instance, _schema):
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 224, in iter_errors
-    for error in errors:
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 25, in patternProperties
-    yield from validator.descend(
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 240, in descend
-    for error in self.evolve(schema=schema).iter_errors(instance):
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
-    for error in super().iter_errors(instance, _schema):
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 224, in iter_errors
-    for error in errors:
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/_validators.py", line 298, in ref
-    yield from validator.descend(instance, resolved)
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 240, in descend
-    for error in self.evolve(schema=schema).iter_errors(instance):
-  File "/usr/local/lib/python3.8/dist-packages/dtschema/lib.py", line 766, in iter_errors
-    for error in super().iter_errors(instance, _schema):
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 214, in iter_errors
-    scope = id_of(_schema)
-  File "/usr/local/lib/python3.8/dist-packages/jsonschema/validators.py", line 90, in _id_of
-    return schema.get("$id", "")
-AttributeError: 'NoneType' object has no attribute 'get'
-make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1413: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1556628
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Reviewed-by: Rob Herring <robh@kernel.org>
