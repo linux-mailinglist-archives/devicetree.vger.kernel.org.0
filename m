@@ -2,75 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 832CA455DB6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 15:14:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6473455DBC
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 15:15:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232831AbhKRORY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 09:17:24 -0500
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:42970 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232816AbhKRORY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 09:17:24 -0500
-Received: by mail-oo1-f42.google.com with SMTP id x1-20020a4aea01000000b002c296d82604so2465677ood.9;
-        Thu, 18 Nov 2021 06:14:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2/i4V3dtpF9xb337GEz6haUH1nPDQyWK9CkRADwvN/w=;
-        b=Wo2tdUvkCdlTlzT+WCEJtD6FP+qBr1jADDXxdh/34dkSjmUfvE2tyipPe1SUrizhYi
-         WZcCFl5jm1qU4iBlrYIAp1KGLWTsC+5CFxadlQNHRbtF0w3IXFOrub92euZ/Q1aYUCiy
-         ieNbBIRyuvSyRnxACRCLUCILS7Zi43Zb5zcnmjNSy1X/gPsMn8NwnA6Infq0o5HYUuLX
-         cbwJOqyu7phTHqX4z2/s5pFNnXKsyKsa1yljadz7m62XzOy7/vmDGn5XDEledKdtNKpz
-         DL1QShr0c50hKFraYl5pf23s2vJAD3fxzecJDeM0+6ZvYglpYtFtvDs6aB3HjFn8BYdh
-         YQQA==
-X-Gm-Message-State: AOAM531DMlQgqlTrXjZpAkAFO+wPfZXky1UBPpNRPRRWC1r64Y95qJ6E
-        JLmk2HrsMdeo3J1Kc+YopA==
-X-Google-Smtp-Source: ABdhPJw5DIO10PUkulsiGGz8NUhs86NhGFWYHTAurERsDa36PCBYh8eFzT7BCiomj7x7s6JWqmBvZw==
-X-Received: by 2002:a4a:5842:: with SMTP id f63mr13573966oob.97.1637244863639;
-        Thu, 18 Nov 2021 06:14:23 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e3sm573529otk.71.2021.11.18.06.14.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 06:14:22 -0800 (PST)
-Received: (nullmailer pid 1025107 invoked by uid 1000);
-        Thu, 18 Nov 2021 14:14:21 -0000
-Date:   Thu, 18 Nov 2021 08:14:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Saravana Kannan <saravanak@google.com>,
-        Dmitry Osipenko <digetx@gmail.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>
-Subject: Re: [PATCH] of: property: fw_devlink: Fixup behaviour when
- 'node_not_dev' is set
-Message-ID: <YZZfvU2SQp5A09vF@robh.at.kernel.org>
-References: <20210902090221.820254-1-ulf.hansson@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20210902090221.820254-1-ulf.hansson@linaro.org>
+        id S232861AbhKROSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 09:18:05 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:47769 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232858AbhKROSF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 09:18:05 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637244905; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=VU8pidLC2r5304DrVYrsbQSM+ifrch1Vq/R8dz9gwts=; b=s2KCbYPYgNETg3BIPyv/9xrR1iAD9FuOLH6oSp0wJgbzSMQnTScgUUnVDTIjZoZB+wl17nGr
+ 1S30FbGO+sA7gDST305ugn9SoibHOQzD+GH3hxr+2FJTx7TNJx7qeo9wQpi6vDFko1Bbcev8
+ fn3P4Rh8E44bc+ILKare2/f/wMY=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 61965fe8b920912d579d4821 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 14:15:04
+ GMT
+Sender: akolli=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 342B3C4360C; Thu, 18 Nov 2021 14:15:03 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from akolli-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akolli)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id BE1AFC4338F;
+        Thu, 18 Nov 2021 14:15:00 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org BE1AFC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Anilkumar Kolli <akolli@codeaurora.org>
+To:     ath11k@lists.infradead.org
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
+Subject: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI device support
+Date:   Thu, 18 Nov 2021 19:44:51 +0530
+Message-Id: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Sep 2021 11:02:21 +0200, Ulf Hansson wrote:
-> In the struct supplier_bindings the member 'node_not_dev' is described as
-> "The consumer node containing the property is never a device.", but that is
-> inconsistent with the behaviour of the code in of_link_property(), as it
-> calls of_get_compat_node() that starts parsing for a compatible property
-> from the node it gets passed to it. The proper behaviour is to start at the
-> node's parent, so let's do that.
-> 
-> While at it, let's take the opportunity to update the description of the
-> 'node_not_dev' flag, as to clarify its purpose.
-> 
-> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> ---
->  drivers/of/property.c | 17 +++++++++++++++--
->  1 file changed, 15 insertions(+), 2 deletions(-)
-> 
+Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+Ath11k firmware uses host DDR memory, DT entry is used to reserve
+these host DDR memory regions, send these memory base
+addresses using DT entries.
 
-Applied, thanks!
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+---
+V2:
+  - Use reserved-memory (Rob)
+
+ .../bindings/net/wireless/qcom,ath11k.yaml         | 48 ++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+index 85c2f699d602..5a8994f6cb10 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+@@ -150,6 +150,12 @@ properties:
+       string to uniquely identify variant of the calibration data in the
+       board-2.bin for designs with colliding bus and device specific ids
+ 
++  memory-region:
++    maxItems: 1
++    description:
++      phandle to a node describing reserved memory (System RAM memory)
++      used by ath11k firmware (see bindings/reserved-memory/reserved-memory.txt)
++
+ required:
+   - compatible
+   - reg
+@@ -279,3 +285,45 @@ examples:
+                           "tcl2host-status-ring";
+         qcom,rproc = <&q6v5_wcss>;
+     };
++
++    memory {
++        device_type = "memory";
++        reg = <0x0 0x40000000 0x0 0x20000000>;
++    };
++
++    reserved-memory {
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
++
++        qcn9074_pcie0: qcn9074_pcie0@51100000 {
++            no-map;
++            reg = <0x0 0x51100000 0x0 0x03500000>;
++        };
++
++        qcn9074_pcie1: qcn9074_pcie1@54600000 {
++            no-map;
++            reg = <0x0 0x54600000 0x0 0x03500000>;
++        };
++    };
++
++    pcie0_rp: pcie0_rp {
++        reg = <0 0 0 0 0>;
++
++        status = "ok";
++        ath11k_0: ath11k@0 {
++            reg = <0 0 0 0 0 >;
++            memory-region = <&qcn9074_pcie0>;
++        };
++    };
++
++    pcie1_rp: pcie1_rp {
++        reg = <0 0 0 0 0>;
++
++        status = "ok";
++        ath11k_1: ath11k@1 {
++            reg = <0 0 0 0 0 >;
++            memory-region = <&qcn9074_pcie1>;
++        };
++    };
++
+-- 
+2.7.4
+
