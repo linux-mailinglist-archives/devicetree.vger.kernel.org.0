@@ -2,116 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8570D455BC0
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:47:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC87A455C00
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 13:56:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244319AbhKRMu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 07:50:56 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:60774 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244060AbhKRMuX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 07:50:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637239643; x=1668775643;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=9KwQ7Npk018pjBseLFPR3vxg+q/5Ffg8h7DXnhBz8Zs=;
-  b=YMni4HAbowvc5aPQKu5qDtFtxJ/gxUJPS0CsFgvKZTlTuZFfkoJtfzNO
-   bMGby7sVXIOrsVb8N7XLhzusffUGd88uyCDzhXeMqMNZ9UP9Vft4sNPVw
-   cQEOe4zmQ+rYMAEomswrT0iKP3JNIQ+UoX0LCh6T2momNWQBnPR7TnH5s
-   9iSz/lanV4TOi73vKUL7r0B95qgVv1e4tkvvq01Yl2C3E39cRmbGxFiE8
-   aq/TfvoilO633qiTTjP285WSaoBmAi0R3qDCnaKpOBEhGzUyWcEY7HDcR
-   VVQlfFgjgqyExeK/oLyn0PUpypku6qlYodyEoo8ioFLP406m93jh/zu9Q
-   A==;
-IronPort-SDR: F3h5FFtrSx7cPYhtrht9EBI2hP8hrAspRsodwAC1nAUkS4HuG4xC64rXeUW/ySaoj4sBBarQ51
- JAbiKB4UTbfUYZdjx44rU6K5CdDhAU7G7UxgJ4Wu5Kz5TM40Ul5VAENeEgnpffXEOXbnlBkGsc
- BW4gkvz1CQI3ZzP3BLxxkFg3/FXoAx4BdsfcVNpTgnTn3+JQnMPYPIU9KmvO8woH23LrG/S9r0
- LjsN08R9tPVwIwOr77/xCrDOsfxWmZWA5doUMsPVgrQNA5bVur8qtQmV/nQwlifOpDUCYlophV
- LSmM9wlMx4a2vOzPGiXHNyjn
-X-IronPort-AV: E=Sophos;i="5.87,244,1631602800"; 
-   d="scan'208";a="136997341"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Nov 2021 05:47:21 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 18 Nov 2021 05:47:21 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 18 Nov 2021 05:47:20 -0700
-Date:   Thu, 18 Nov 2021 13:49:08 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next 2/5] net: lan966x: add the basic lan966x driver
-Message-ID: <20211118124908.672iif6n5x23fijw@soft-dev3-1.localhost>
-References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
- <20211117091858.1971414-3-horatiu.vultur@microchip.com>
- <9ab98fba364f736b267dbd5e1d305d3e8426e877.camel@pengutronix.de>
- <20211117214231.yiv2s6nxl6yx4klq@soft-dev3-1.localhost>
- <cdb9c0c334823505a2ce499e36be9507112f4298.camel@pengutronix.de>
+        id S231818AbhKRM7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 07:59:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244640AbhKRM5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 07:57:47 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55073C0797BD;
+        Thu, 18 Nov 2021 04:52:08 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id x10so7734751ioj.9;
+        Thu, 18 Nov 2021 04:52:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hh6WFJbrjkxar19GKDaTBBspe0IRHAyuOKu9Kp1/cDA=;
+        b=NAaZpLeTqNCDp9En3qKeDV5jszC/FGakNoK2ytbCmZW+lejAcmA5cI6Q4fuL4FOYb7
+         LRL2Hsem5g57/046Ey+oMb/iF/siq0c1KP7u6LNHjV7A5caPk5/GhZCAkeEhHR4wS4m2
+         Eo2AVgLV4/6MjpgndbJvMzcjWJ7rXynYAVJ668HrIGTlPijmRCI8II8FHwRebickVqO+
+         VsULr0vxbzChoMLpscGhjanlIhUzyGw2Hieg2cX/jjp4X7TJ5PSuDTg8uNFLKOOFDjrp
+         FJjGNL2TqAj3ASsKORgfKNqDlxE7UnhiRUhWD9sRf8kNEli66/xHyVFYV/kOehOetaws
+         Bqyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hh6WFJbrjkxar19GKDaTBBspe0IRHAyuOKu9Kp1/cDA=;
+        b=g9bouWw28NpsMCpdAZI/ze1Rug6OeZyrSt/ItwRtzOKWw0eNf4Qjay0Aq571OJtpOP
+         t4mFC8oXK/lgSzBHXcjEFENNAUa2CyosxLuYIdXhfkqjwyPOwPxgzMdeWqqN9P3c5i+5
+         e6WXcKzqnQgZNHoz7a9Fb0UQlA/6hCZgyjELsxPHc4Z/fuptyNSDg1odeYRuElLTuzsU
+         k4BCW+bj2p00nzWGQU7Y6mg8LVMPWmvfS7J+z/OArLe0D8EZnH2zP1xCWYQivfhJEnnp
+         VIxKaWuA2Qaqm3wnoULMvxeGz9Iqk0oYlhw9Zfbv1cDje5me5MqRSsB1kLEYhXQ4UvnV
+         NrZw==
+X-Gm-Message-State: AOAM530z5plKpCBOtzE/lb4o0G1yTowQ4/MfWJ4dhADjEbcAxoe4cPmc
+        ov5VOp/hxGB93dBIp85a43JAtDLISfwqFt40C/d2pw+KZPTYONgC
+X-Google-Smtp-Source: ABdhPJx5EhnYWpEZOUik32wYJq838uTveeLUrceUgABJecPHCC8kS5Dj+aDby9ceIVI2hoeZIGAm/F7LdcA47MkjDhQ=
+X-Received: by 2002:a05:6602:204e:: with SMTP id z14mr17452585iod.90.1637239927727;
+ Thu, 18 Nov 2021 04:52:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <cdb9c0c334823505a2ce499e36be9507112f4298.camel@pengutronix.de>
+References: <20211103114830.62711-1-alistair@alistair23.me>
+ <20211103114830.62711-3-alistair@alistair23.me> <20211105152154.20f5cbd1@aktux>
+ <CAKmqyKNx00ecsAyOjtLk8i6r75WD0uw=nd=fd9z44yBuau+Vdw@mail.gmail.com>
+ <20211110183654.61328998@kemnade.info> <CACRpkdbrf8a7B-J=3s9x7JCyGgDk9VcsTd_-9o484MtfapVzHQ@mail.gmail.com>
+In-Reply-To: <CACRpkdbrf8a7B-J=3s9x7JCyGgDk9VcsTd_-9o484MtfapVzHQ@mail.gmail.com>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Thu, 18 Nov 2021 22:51:41 +1000
+Message-ID: <CAKmqyKPOGyY3=1vJH50h=qfRfwFgMZAM1U+T1nKnSBk5WGyd6w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] Documentation: DT: bindings: input: Add
+ documentation for cyttsp5
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andreas Kemnade <andreas@kemnade.info>,
+        Alistair Francis <alistair@alistair23.me>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mylene Josserand <mylene.josserand@free-electrons.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/18/2021 11:19, Philipp Zabel wrote:
-> 
-> Hi Horatiu,
-> 
-> On Wed, 2021-11-17 at 22:42 +0100, Horatiu Vultur wrote:
-> > > On Wed, 2021-11-17 at 10:18 +0100, Horatiu Vultur wrote:
-> > > > +static int lan966x_reset_switch(struct lan966x *lan966x)
-> > > > +{
-> > > > +     struct reset_control *reset;
-> > > > +     int val = 0;
-> > > > +     int ret;
-> > > > +
-> > > > +     reset = devm_reset_control_get_shared(lan966x->dev, "switch");
-> > > > +     if (IS_ERR(reset))
-> > > > +             dev_warn(lan966x->dev, "Could not obtain switch reset: %ld\n",
-> > > > +                      PTR_ERR(reset));
-> > > > +     else
-> > > > +             reset_control_reset(reset);
-> > >
-> > > According to the device tree bindings, both resets are required.
-> > > I'd expect this to return on error.
-> > > Is there any chance of the device working with out the switch reset
-> > > being triggered?
+On Fri, Nov 12, 2021 at 1:16 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Wed, Nov 10, 2021 at 6:37 PM Andreas Kemnade <andreas@kemnade.info> wrote:
+> > Alistair Francis <alistair23@gmail.com> wrote:
+>
+> > You have a kind of double inversion here, so things are automagically fixed.
+> > IMHO to describe it correctly would be to set GPIO_ACTIVE_LOW here
+> > and in the driver
 > >
-> > The only case that I see is if the bootloader triggers this switch
-> > reset and then when bootloader starts the kernel and doesn't set back
-> > the switch in reset. Is this a valid scenario or is a bug in the
-> > bootloader?
-> 
-> I'm not sure. In general, the kernel shouldn't rely on the bootloader to
-> have put the devices into a certain working state. If the driver will
-> not work or worse, if register access could hang the system if the
-> bootloader has passed control to the kernel with the switch held in
-> reset and no reset control is available to the driver, it should not
-> continue after failure to get the reset handle.
-> 
-> I'd suggest to just use:
-> 
->         reset = devm_reset_control_get_shared(lan966x->dev, "switch");
->         if (IS_ERR(reset))
->                 return dev_err_probe(lan966x->dev, PTR_ERR(reset),
->                                      "Could not obtain switch reset");
->         reset_control_reset(reset);
-> 
-> unless you have a good reason to do otherwise.
+> >         /* Reset the gpio to be in a reset state */
+> >         ts->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
+> >         if (IS_ERR(ts->reset_gpio)) {
+> >                 rc = PTR_ERR(ts->reset_gpio);
+> >                 dev_err(dev, "Failed to request reset gpio, error %d\n", rc);
+> >                 return rc;
+> >         }
+> >         gpiod_set_value(ts->reset_gpio, 0);
+> >
+> > That is the way how other active-low reset lines are handled.
+>
+> Correct.
+>
+> This is a source of confusion, I contemplated just changing the name
+> of GPIOD_OUT_HIGH to GPIOD_OUT_ASSERTED etc to indicate
+> what is going on.
+>
+> gpiod_set_value(ts->reset_gpio, 0) should similarly be interpreted
+> as "de-assert this line" no matter the polarity.
 
-I agree with you. I will do like you suggested in the next version.
+Thanks! I have fixed this
 
-> 
-> regards
-> Philipp
+Alistair
 
--- 
-/Horatiu
+>
+> Yours,
+> Linus Walleij
