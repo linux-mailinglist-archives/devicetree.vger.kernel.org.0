@@ -2,129 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C696E4563C6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 20:55:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A294563D0
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 21:00:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229576AbhKRT6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 14:58:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35006 "EHLO
+        id S230094AbhKRUDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 15:03:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233115AbhKRT6n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 14:58:43 -0500
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E022C06173E
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 11:55:43 -0800 (PST)
-Received: by mail-ua1-x932.google.com with SMTP id l24so16369396uak.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 11:55:43 -0800 (PST)
+        with ESMTP id S230436AbhKRUDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 15:03:07 -0500
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD3EC061748
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 12:00:06 -0800 (PST)
+Received: by mail-ua1-x92c.google.com with SMTP id r15so16380284uao.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 12:00:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=SSd0Cyuv9cBODmrFRgSe8o1nIwm4sr0eWjwIoBSPHXk=;
-        b=UX5927ShpKzjRcmzPgd3fgzWkbVY15csEPbZfVFBxK2meRkhSSSd31OQQNPuxyP+9h
-         naNuw606mUpB7J3afr6Mhbc1xEGznUtN9nA08LFrwBGTO6NP8r7cZ5dnpYRNPOzkMaKs
-         nkPAHtyCMekP3Y8aFPmRcy0guFRBpdbzBNWGVPRRzGTrzEkw5GNMNzUh8e3dN9F+5EHh
-         VCKLfUtSceYkGtwxiT0QHSvCp0hCEHgKG1a3XhqQgSXBRpH7ubwniI/JW8tun4oT1E5Y
-         yO89lEuJm2ZVT5xdul3rI2XPG6KIIPQhZTgIqqqhy3b6KngxbDyPuVzBBGrgl6AfL+2A
-         ki1g==
+        bh=wTLcbVWrF0jAguOtxvSE2fxFOAqrINCwUvyhsM88wiQ=;
+        b=xJgHu5nGTzGq1z1uegZo1b2kDPztDnyOE5CWKBHnexjO9MeJcUxWEDUJJx7CIac2Pe
+         x+KzoJXjbNLxH3hcGhU2zf1Bl0YtV/8jA6E2t9CAlwrTzzY8yFwecOv4S6ZXR+Fal7YA
+         lQAh3fsQYn9HnhtV85TItabze0KI+BsEzle+LYN8E+99kDn4RkGhvAleItu0rCPTfNxf
+         bH8bWKG+/lNG6k1sy6KQF5hozB6lwHn8NefylmcRTFIXxlbyR3QeoKZHxVCr5aFo4glE
+         1DOnDPC7M1kQyRq6SIwQCstwEyoHhESaBXI2Gecy7UDXsRisZGGDfgWDPVbaQMU4X6US
+         HY/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=SSd0Cyuv9cBODmrFRgSe8o1nIwm4sr0eWjwIoBSPHXk=;
-        b=jn9ASwN4Aeg0LrI7V3oMmpH1rl6+nZTJSD6zCuhrRg88qTtloa3bZnH9m24UkbxpAI
-         z59msg/zCMecQekmEKqpK5uwbple48GW7Lo565NPSZXH+zMDjUpcvcjpy2eFmQITfYYr
-         jDljKIfuZDgdm+ElQ9dd9fGYvxJmpUgLkb39Hgh/yGVStP6EEKvdypXwu5EpRAy2zVvZ
-         iscan8A9LRoSg+9eHmpgSZEStjUbHHNT8NReE20jJ7ly1naPZhLxuxHW003DtWPSW3lN
-         3fZmNjgkM7K7Pqa1XWZ2QTppL8ADL5z6KzjCp8qO4M9IsAijkkDnuAME/rJu2S0LTVYr
-         GCtA==
-X-Gm-Message-State: AOAM5329imRh0G5E0GxZKdo75Fl6bFoRZuItlWYv4f8h6NRJNdfLkct6
-        E5YHnNRE+t6e1UlVUfep0KcapBaLblaOZkh3Ybk+yw==
-X-Google-Smtp-Source: ABdhPJza1OFpR9DqJC5nA8lGb/hAIiBNmJcgpCYVHmRO/QWzHosbmHDHX32aMabXVmkISVpvhcg0aigUuqaZ0tjo0Hs=
-X-Received: by 2002:a05:6102:4192:: with SMTP id cd18mr85905750vsb.35.1637265342337;
- Thu, 18 Nov 2021 11:55:42 -0800 (PST)
+        bh=wTLcbVWrF0jAguOtxvSE2fxFOAqrINCwUvyhsM88wiQ=;
+        b=g5oo3OmG5/eThiKkX0TY2dRFRsKAMlANmIPO4pWle9hriVwljujI0LybulcqJEG6sl
+         xn4luy6adFJSypWm/Fqs0Df9fKWEvjb76Ae1SHdeTMF3kCgFvr7G5qMiKxCT3I+n48X3
+         wvTdiRodP57xUrO0R+gWwLGX3NY2A7ywMyj7P+5CsuYv0VwqsrJlotn1t42hEa36YvGj
+         Jy7r5AQQ7AbJTR/UiLIJPKfBPbwHLJASPgbnvOvCE/uGBKsfP36jKyaXn7Paf7nrueRJ
+         kNNcnB8zU4+xV9OfJMj9rqKrMHMHmnHxPPSFjtSnKEensKECm6atHQseXEL5n18VqR5b
+         2lSA==
+X-Gm-Message-State: AOAM533sdkfesLqjlg0W9EcykTPdf01TFWA6AOzEUw05/EqwfrkYWYLP
+        XJI9tYRr7LXxpI8nMBmboBMJz7jdPolHi2yPPc2now==
+X-Google-Smtp-Source: ABdhPJwbE3pupBTAOUQbpkhtvy7vjY7xqzTjlwsvOO4K+rUdArjo9f0XPpSAvOoBNURq4nPOFYSglotNhcYITP9UmEo=
+X-Received: by 2002:a05:6102:ac3:: with SMTP id m3mr69022069vsh.1.1637265605012;
+ Thu, 18 Nov 2021 12:00:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20211109164436.11098-1-semen.protsenko@linaro.org>
-In-Reply-To: <20211109164436.11098-1-semen.protsenko@linaro.org>
+References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
+ <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
+ <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
+ <001401d7da86$f7ebd660$e7c38320$@samsung.com> <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
+In-Reply-To: <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
 From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Thu, 18 Nov 2021 21:55:30 +0200
-Message-ID: <CAPLW+4nphz7WEVAFye4tZNsYC3XqVGNCpVACCF6UAKXoUFthJQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] clk: samsung: exynos850: Implement CMU_CMGP
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        linux-clk@vger.kernel.org, Tomasz Figa <tomasz.figa@gmail.com>,
+Date:   Thu, 18 Nov 2021 21:59:53 +0200
+Message-ID: <CAPLW+4kS-pzROC5oyAjW1aJp5cb1e3XK+40HsKwgPdCziSp1ZQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Chanho Park <chanho61.park@samsung.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Wolfram Sang <wsa@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>
+        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 9 Nov 2021 at 18:44, Sam Protsenko <semen.protsenko@linaro.org> wrote:
+On Tue, 16 Nov 2021 at 11:32, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> This series adds CMU_CMGP clock domain to Exynos850 clock driver. In
-> particular it needs to enable HSI2C (High-Speed I2C) nodes. This series
-> depends on CMU_APM series [1].
+> On 16/11/2021 02:12, Chanho Park wrote:
+> >> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
+> >> from my side (just a food for thought): do we want to configure USI
+> >> related config inside of particular drivers (SPI, I2C, UART)? Or it would
+> >> be better design to implement some platform driver for that, so we can
+> >> choose USI configuration (SPI/I2C/UART) in device tree? I think this
+> >> series is good to be merged as is, but we should probably consider all
+> >> upsides and downsides of each option, for the future work.
+> >
+> > I'm also considering how to support this USI configuration gracefully.
+> > Current version of USI is v2 which means there is a v1 version as well. It might be a non-upstream SoC so we don't need to consider it so far.
+> > But, there is a possibility that the USI hw version can be bumped for future SoCs.
+> >
+> > As you probably know, earlier version of the product kernel has a USI SoC driver[1] and it was designed to be configured the USI settings by device tree.
+> >
+> > Option1) Make a USI driver under soc/samsung/ like [1].
+> > Option2) Use more generic driver such as "reset driver"? This might be required to extend the reset core driver.
+> > Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respectively and expose some configurations which can be variable as device tree.
+> >
+> > [1]: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi_v2.c
 >
-> Tested via /sys/kernel/debug/clk/clk_summary:
+> I don't have user manuals, so all my knowledge here is based on
+> Exynos9825 vendor source code, therefore it is quite limited. In
+> devicetree the USI devices have their own nodes - but does it mean it's
+> separate SFR range dedicated to USI? Looks like that, especially that
+> address space is just for one register (4 bytes).
 >
-> <<<<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
->                                  enable  prepare  protect
->    clock                          count    count    count        rate
-> ---------------------------------------------------------------------
+> In such case having separate dedicated driver makes sense and you would
+> only have to care about driver ordering (e.g. via device links or phandles).
 >
-> clk_rco_cmgp                         0        0        0    49152000
-> oscclk                               1        1        0    26000000
->     mout_cmgp_adc                    0        0        0    26000000
-> ...
->     gout_clkcmu_cmgp_bus             1        1        0   399750000
->        gout_cmgp_usi1_pclk           0        0        0   399750000
->        gout_cmgp_usi0_pclk           0        0        0   399750000
->        gout_gpio_cmgp_pclk           0        0        0   399750000
->        dout_cmgp_adc                 0        0        0    28553572
->        mout_cmgp_usi1                0        0        0   399750000
->           dout_cmgp_usi1             0        0        0   199875000
->              gout_cmgp_usi1_ipclk    0        0        0   199875000
->        mout_cmgp_usi0                0        0        0   399750000
->           dout_cmgp_usi0             0        0        0   199875000
->              gout_cmgp_usi0_ipclk    0        0        0   199875000
-> <<<<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+> Option 2 looks interesting - reusing reset framework to set proper USI
+> mode, however this looks more like a hack. As you said Chanho, if there
+> is a USI version 3, this reset framework might not be sufficient.
 >
-> [1] https://lkml.org/lkml/2021/10/22/979
+> In option 3 each driver (UART/I2C/SPI) would need to receive second IO
+> range and toggle some registers, which could be done via shared
+> function. If USI v3 is coming, all such drivers could get more complicated.
 >
-> Sam Protsenko (2):
->   dt-bindings: clock: samsung: Document Exynos850 CMU_CMGP
->   clk: samsung: exynos850: Implement CMU_CMGP domain
+> I think option 1 is the cleanest and extendable in future. It's easy to
+> add usi-v3 or whatever without modifying the UART/I2C/SPI drivers. It
+> also nicely encapsulates USI-related stuff in separate driver. Probe
+> ordering should not be a problem now.
 >
->  .../clock/samsung,exynos850-clock.yaml        |  19 ++++
->  drivers/clk/samsung/clk-exynos850.c           | 100 ++++++++++++++++++
->  include/dt-bindings/clock/exynos850.h         |  17 +++
->  3 files changed, 136 insertions(+)
+> But as I said, I don't have even the big picture here, so I rely on your
+> opinions more.
 >
-> --
 
-Hi Sylwester,
+Hi Krzysztof,
 
-Can you please review my patches I've submitted recently? Those are:
-
-  - [PATCH 1/2] dt-bindings: clock: samsung: Document Exynos850 CMU_APM
-  - [PATCH 2/2] clk: samsung: exynos850: Implement CMU_APM domain
-  - [PATCH 1/1] clk: samsung: exynos850: Register clocks early
-  - [PATCH 0/2] clk: samsung: exynos850: Implement CMU_CMGP
-  - [PATCH 1/2] dt-bindings: clock: samsung: Document Exynos850 CMU_CMGP
-  - [PATCH 2/2] clk: samsung: exynos850: Implement CMU_CMGP domain
-
-My further series (like device tree patches for new dev board support)
-depend on the status of above patches. So it'd great if those can be
-reviewed and applied if it's feasible.
+Can you please let me know if you're going to apply this series as is,
+or if you want me to submit USIv2 driver first, and then rework this
+patch on top of it? I'm working on some HSI2C related patches right
+now, and thus it'd nice to know about your decision on this series
+beforehand, as some of my patches (like bindings doc patches) might
+depend on it. Basically I'd like to base my patches on the proper
+baseline, so we don't have to rebase those later.
 
 Thanks!
 
-> 2.30.2
->
+> Best regards,
+> Krzysztof
