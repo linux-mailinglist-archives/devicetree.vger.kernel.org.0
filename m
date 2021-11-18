@@ -2,73 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA4645668C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 00:50:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF153456691
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 00:52:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229911AbhKRXxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 18:53:38 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:37862 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbhKRXxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 18:53:38 -0500
-Received: by mail-oi1-f175.google.com with SMTP id bj13so18033164oib.4;
-        Thu, 18 Nov 2021 15:50:37 -0800 (PST)
+        id S233400AbhKRXz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 18:55:27 -0500
+Received: from mail-oi1-f176.google.com ([209.85.167.176]:42911 "EHLO
+        mail-oi1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233280AbhKRXz0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 18:55:26 -0500
+Received: by mail-oi1-f176.google.com with SMTP id n66so17942637oia.9;
+        Thu, 18 Nov 2021 15:52:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jdQqzU43HKUpnZBB2kJWVnYdHuE9gpSLPuv7kOuXwcA=;
-        b=KjfnnAH75pyLPum/ptw2LwV5Axx/8ignO4jLhb+fMFqxeZamyT1Yx34qsnf2TvzfIb
-         pWjEyDAxAIrFCtnRnJNJBbEDzbi8lictB384zwtUZJlDrunI4zrbj6rb545c8HBmuaDW
-         H3rNnGH4ImXJu6AJIFRUcl15/wKgqCEFVEE7zuqEyezqoO/SQNDBzqtxjLDtHof3/2ZN
-         FR6y+G0oCUynrXVa3bY9vnHdHee5WSUlCmsEFex1BEsziHYX81JyEahiz73LmEwWV6AZ
-         utFsxJqGIrzJXRSB6uwTowJm1jyvj5w8ENEPdxAkJFG7bRaA7gDhJ9DCptGruxCdYwHY
-         uGoQ==
-X-Gm-Message-State: AOAM533B4DszPzKDkgjBe8Y1gCnO73mqMzE1kmALpmh+PZhn7m3x1bFR
-        FQIIUYBP9o6xzZ2VVAONYQ==
-X-Google-Smtp-Source: ABdhPJyn/bL+xzaQX+komWYvUKUMTSemYbuVI5QujiRyRaelGy2An5fwI0mbB8m9xg9IN1RZ6tTDig==
-X-Received: by 2002:a05:6808:2016:: with SMTP id q22mr876614oiw.81.1637279437332;
-        Thu, 18 Nov 2021 15:50:37 -0800 (PST)
+        bh=mdlZbMN9TOaMLBnrcnl83d3wKAwscGmZJDPaDKwPea0=;
+        b=OtZknKWNR/c3LrGxNmLARy8+wmja84t3eOyiD0X7Qac35UQG6dluicYvjEr9LEIc0u
+         NR5GZB+rB8Zn+/wrynrStcf080i0rJOOcVXB1UUV1WcvJsa7sXdkUUUNI9kU/mBqdRi+
+         Tzyd3dCQraNyGAe1ur0bATH1RfEwjw8xo9btnZTkJQWYw0a5CeR2l03RyVgNnLb3y4Kp
+         hBlMmEgSEltuzkmkbdFEu8QXzvBjKUhOsOzmltiK3RBQinU+Mevn8acZq9tPsoMSHnYk
+         ROutTOWCVqvxjX//1e5TnpcaHaredUcG0ya2dMxox+e5IqahG0F5uczOgO1/FIe5XR3m
+         D9/A==
+X-Gm-Message-State: AOAM533RfIZJ1mZWWNlysdIDAjwDon3NRSvp0eavyDq9uq8ckcqmyEAS
+        y5T1pSscM+Er80gIWJRXHy4wfI2ksg==
+X-Google-Smtp-Source: ABdhPJzMwGaxhd/IUYj4isXqiHLxIuWpR77lKuVhs+KlheqZ0MneavY6HFVTEKdkMIaLbomXOkG8qg==
+X-Received: by 2002:a54:4701:: with SMTP id k1mr903999oik.37.1637279545284;
+        Thu, 18 Nov 2021 15:52:25 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g5sm253638ooe.15.2021.11.18.15.50.36
+        by smtp.gmail.com with ESMTPSA id n6sm165204otj.78.2021.11.18.15.52.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 15:50:36 -0800 (PST)
-Received: (nullmailer pid 2015609 invoked by uid 1000);
-        Thu, 18 Nov 2021 23:50:35 -0000
-Date:   Thu, 18 Nov 2021 17:50:35 -0600
+        Thu, 18 Nov 2021 15:52:24 -0800 (PST)
+Received: (nullmailer pid 2018987 invoked by uid 1000);
+        Thu, 18 Nov 2021 23:52:23 -0000
+Date:   Thu, 18 Nov 2021 17:52:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     bhelgaas@google.com, shawnguo@kernel.org,
-        marcel.ziswiler@toradex.com, l.stach@pengutronix.de,
-        linux-phy@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        vkoul@kernel.org, linux-pci@vger.kernel.org,
-        galak@kernel.crashing.org, tharvey@gateworks.com,
-        linux-kernel@vger.kernel.org, kishon@ti.com, kernel@pengutronix.de
-Subject: Re: [PATCH v6 2/8] dt-bindings: phy: Add imx8 pcie phy driver support
-Message-ID: <YZbmy8asguINPF4O@robh.at.kernel.org>
-References: <1637200489-11855-1-git-send-email-hongxing.zhu@nxp.com>
- <1637200489-11855-3-git-send-email-hongxing.zhu@nxp.com>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     agross@kernel.org, davem@davemloft.net,
+        linux-crypto@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        robh+dt@kernel.org, Thara Gopinath <thara.gopinath@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        herbert@gondor.apana.org.au, stephan@gerhold.net,
+        linux-kernel@vger.kernel.org, bhupesh.linux@gmail.com
+Subject: Re: [PATCH v5 04/22] dt-bindings: qcom-bam: Add 'interconnects' &
+ 'interconnect-names' to optional properties
+Message-ID: <YZbnNzd9a2lPA+N8@robh.at.kernel.org>
+References: <20211110105922.217895-1-bhupesh.sharma@linaro.org>
+ <20211110105922.217895-5-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1637200489-11855-3-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20211110105922.217895-5-bhupesh.sharma@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Nov 2021 09:54:43 +0800, Richard Zhu wrote:
-> Add dt-binding for the standalone i.MX8 PCIe PHY driver.
+On Wed, 10 Nov 2021 16:29:04 +0530, Bhupesh Sharma wrote:
+> Add new optional properties - 'interconnects' and
+> 'interconnect-names' to the device-tree binding documentation for
+> qcom-bam DMA IP.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Reviewed-by: Tim Harvey <tharvey@gateworks.com>
-> Tested-by: Tim Harvey <tharvey@gateworks.com>
+> These properties describe the interconnect path between bam and main
+> memory and the interconnect type respectively.
+> 
+> Cc: Thara Gopinath <thara.gopinath@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->  .../bindings/phy/fsl,imx8-pcie-phy.yaml       | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
+>  Documentation/devicetree/bindings/dma/qcom_bam_dma.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
