@@ -2,149 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F9DC45596A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:51:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E835945596F
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:51:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343504AbhKRKyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 05:54:01 -0500
-Received: from regular1.263xmail.com ([211.150.70.196]:44892 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343552AbhKRKx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 05:53:56 -0500
-Received: from localhost (unknown [192.168.167.16])
-        by regular1.263xmail.com (Postfix) with ESMTP id E918E1F07;
-        Thu, 18 Nov 2021 18:50:48 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-SKE-CHECKED: 1
-X-ABS-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.12.93] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P11048T139933178128128S1637232636527390_;
-        Thu, 18 Nov 2021 18:50:43 +0800 (CST)
-X-IP-DOMAINF: 1
-X-RL-SENDER: kever.yang@rock-chips.com
-X-SENDER: yk@rock-chips.com
-X-LOGIN-NAME: kever.yang@rock-chips.com
-X-FST-TO: linux-arm-kernel@lists.infradead.org
-X-RCPT-COUNT: 13
-X-LOCAL-RCPT-COUNT: 2
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-UNIQUE-TAG: <10bc3a32f56e19b283f58911be9c68e0>
-X-System-Flag: 0
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-To:     Daniel Stone <daniel@fooishbar.org>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de,
-        =?UTF-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com>
- <4310886.V3yF0ifEZO@diego>
- <CAPj87rPNSt7nZX93prAYD3Emf-34RdTZWp_1TOuAybBebObZhQ@mail.gmail.com>
-From:   Kever Yang <kever.yang@rock-chips.com>
-Message-ID: <fba695b7-863a-c492-0209-41bc07c7baee@rock-chips.com>
-Date:   Thu, 18 Nov 2021 18:50:35 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+        id S1343569AbhKRKyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 05:54:31 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:30277 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343557AbhKRKyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 05:54:18 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637232679; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=5k+Vd3sGwqSJp8FP3QGkz1tM793VxNS0bm6nEdBfGzE=; b=Sm4qlhchgPoM6zwCbGqmugTxQYC6qAGuJZ5cyjl3GpGpxSezb7imaiWxPh1oWt4aP1bulGID
+ 74frjZFZhT/rXsNY3pErzIAhRBKkzqQmEUUQbDQ0l9IGoyxU7HAMnrePRl5ZyzqUTTP2g9SJ
+ P3+kyGg0AOziaI7rl0Z8hzG5SNA=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 61963026638a2f4d611d3628 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 10:51:18
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7A700C4361C; Thu, 18 Nov 2021 10:51:17 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.242.143.72] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9C66BC43460;
+        Thu, 18 Nov 2021 10:51:11 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 9C66BC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v2] ASoC: codecs: MBHC: Add support for special headset
+To:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        bjorn.andersson@linaro.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, judyhsiao@chromium.org,
+        lgirdwood@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz, plai@codeaurora.org,
+        robh+dt@kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1636960288-27537-1-git-send-email-srivasam@codeaurora.org>
+ <CAE-0n52n7nscLfqt8-7+UmXdEh2suDNC-ywPRUZL8FdPONbhZQ@mail.gmail.com>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <38575d20-8e3f-2ba2-800d-e4b9b8ee0b68@codeaurora.org>
+Date:   Thu, 18 Nov 2021 16:21:09 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <CAPj87rPNSt7nZX93prAYD3Emf-34RdTZWp_1TOuAybBebObZhQ@mail.gmail.com>
+In-Reply-To: <CAE-0n52n7nscLfqt8-7+UmXdEh2suDNC-ywPRUZL8FdPONbhZQ@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 2021/11/18 下午5:53, Daniel Stone wrote:
-> Hi,
+On 11/16/2021 5:06 AM, Stephen Boyd wrote:
+Thanks for Your time Stephen!!!
+As this patch is already accepted, will post your review comments as 
+additional patch.
+> Quoting Srinivasa Rao Mandadapu (2021-11-14 23:11:28)
+>> diff --git a/sound/soc/codecs/wcd-mbhc-v2.c b/sound/soc/codecs/wcd-mbhc-v2.c
+>> index 405128c..d6545e4 100644
+>> --- a/sound/soc/codecs/wcd-mbhc-v2.c
+>> +++ b/sound/soc/codecs/wcd-mbhc-v2.c
+>> @@ -1022,6 +1022,56 @@ static int wcd_mbhc_get_plug_from_adc(struct wcd_mbhc *mbhc, int adc_result)
+>>          return plug_type;
+>>   }
+>>
+>> +static int wcd_mbhc_get_spl_hs_thres(struct wcd_mbhc *mbhc)
+>> +{
+>> +       int hs_threshold, micbias_mv;
+>> +
+>> +       micbias_mv = wcd_mbhc_get_micbias(mbhc);
+>> +       if (mbhc->cfg->hs_thr && mbhc->cfg->micb_mv != WCD_MBHC_ADC_MICBIAS_MV) {
+>> +               if (mbhc->cfg->micb_mv == micbias_mv)
+>> +                       hs_threshold = mbhc->cfg->hs_thr;
+>> +               else
+>> +                       hs_threshold = (mbhc->cfg->hs_thr * micbias_mv) / mbhc->cfg->micb_mv;
+>> +       } else {
+>> +               hs_threshold = ((WCD_MBHC_ADC_HS_THRESHOLD_MV * micbias_mv) /
+>> +                                                       WCD_MBHC_ADC_MICBIAS_MV);
+>> +       }
+>> +       return hs_threshold;
+>> +}
+>> +
+>> +static bool wcd_mbhc_check_for_spl_headset(struct wcd_mbhc *mbhc)
+>> +{
+>> +       bool is_spl_hs = false;
+>> +       int output_mv, hs_threshold, hph_threshold;
+>> +
+>> +       if (!mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic)
+>> +               return false;
+>> +
+>> +       /* Bump up MIC_BIAS2 to 2.7V */
+>> +       mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, true);
+>> +       usleep_range(10000, 10100);
+>> +
+>> +       output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
+>> +       hs_threshold = wcd_mbhc_get_spl_hs_thres(mbhc);
+>> +       hph_threshold = wcd_mbhc_adc_get_hph_thres(mbhc);
+>> +
+>> +       if (output_mv > hs_threshold || output_mv < hph_threshold) {
+>> +               if (mbhc->force_linein == true)
+> Just 'if (mbhc->force_linein)'
 >
-> On Thu, 18 Nov 2021 at 09:26, Heiko Stübner <heiko@sntech.de> wrote:
->> Am Donnerstag, 18. November 2021, 02:27:10 CET schrieb Kever Yang:
->>> I don't agree with this, we do believe you have do some clean up to meet
->>> the requirement
->>>
->>> of upstream, but all the framework and feature implement are from
->>> Rockchip engineer,
->>>
->>> we have made a great effort to make everything work which block us to
->>> upstream this driver for now.
->> I don't fully understand what you mean here (language barrier probably),
->> but dropping non-essential functionality in a first round is pretty common
->> to at least get basic functionality working for everyone. With the special
->> features getting added again in later patches over time. This happenened
->> on the old vop as well.
->>
->> And of course, having a kernel that can "just" do normal graphics without
->> the additional features is still preferable over having _NO_ graphics support
->> at all ;-)
->>
->>> NAK for this series.
->> As you might've seen from previous graphics related patches, there
->> is a big number of people _and companies_ that seems to want/need
->> to work with the rk3566/rk3568 with a kernel based on mainline.
->>
->> --> Most likely even in real products!
-> Yes, we've been trying to ship a real product based on RK356x. We
-> started by using the vendor VOP2 driver, but it is broken beyond
-> belief. The driver needs a fundamental ground-up rework, and all the
-> additional features get in the way of doing this core rework to make
-> it actually function correctly.
+> Also, if this is false, then false is set above. So checking for
+> mbhc->force_linein is useless.
+Okay. Will check and do changes.
 >
-> So, NAK to the NAK. I would like to see the VOP2 support start simple,
-> with more features being added one by one.
+>> +                       is_spl_hs = false;
+>> +       } else {
+>> +               is_spl_hs = true;
+>> +       }
+>> +
+>> +       /* Back MIC_BIAS2 to 1.8v if the type is not special headset */
+>> +       if (!is_spl_hs) {
+>> +               mbhc->mbhc_cb->mbhc_micb_ctrl_thr_mic(mbhc->component, MIC_BIAS_2, false);
+>> +               /* Add 10ms delay for micbias to settle */
+>> +               usleep_range(10000, 10100);
+>> +       }
+>> +
+>> +       return is_spl_hs;
+>> +}
+>> +
+>>   static void wcd_correct_swch_plug(struct work_struct *work)
+>>   {
+>>          struct wcd_mbhc *mbhc;
+>> @@ -1029,12 +1079,14 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>>          enum wcd_mbhc_plug_type plug_type = MBHC_PLUG_TYPE_INVALID;
+>>          unsigned long timeout;
+>>          int pt_gnd_mic_swap_cnt = 0;
+>> -       int output_mv, cross_conn, hs_threshold, try = 0;
+>> +       int output_mv, cross_conn, hs_threshold, try = 0, micbias_mv;
+>> +       bool is_spl_hs = false;
+>>          bool is_pa_on;
+>>
+>>          mbhc = container_of(work, struct wcd_mbhc, correct_plug_swch);
+>>          component = mbhc->component;
+>>
+>> +       micbias_mv = wcd_mbhc_get_micbias(mbhc);
+>>          hs_threshold = wcd_mbhc_adc_get_hs_thres(mbhc);
+>>
+>>          /* Mask ADC COMPLETE interrupt */
+>> @@ -1097,6 +1149,16 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>>                  plug_type = wcd_mbhc_get_plug_from_adc(mbhc, output_mv);
+>>                  is_pa_on = wcd_mbhc_read_field(mbhc, WCD_MBHC_HPH_PA_EN);
+>>
+>> +               if ((output_mv > hs_threshold) && (!is_spl_hs)) {
+> Please drop useless parenthesis
+Okay.
 >
->> While Rockchip did say that they want to upstream VOP2 support, there
->> has been _NO_ movement or even information at all on this over at least
->> the last year(!), so it's pretty understandable that developers will do this
->> themself at some point, because they don't want to wait anymore for
->> something that might never happen.
+>> +                       is_spl_hs = wcd_mbhc_check_for_spl_headset(mbhc);
+>> +                       output_mv = wcd_measure_adc_once(mbhc, MUX_CTL_IN2P);
+>> +
+>> +                       if (is_spl_hs) {
+>> +                               hs_threshold = (hs_threshold * wcd_mbhc_get_micbias(mbhc)) /
+>> +                                                                       micbias_mv;
+> Same. It may be good to split it to two assignments to clarify
+> overflow/underflow.
+Okay.
+>
+>> +                       }
+>> +               }
+>> +
+>>                  if ((output_mv <= hs_threshold) && !is_pa_on) {
+>>                          /* Check for cross connection*/
+>>                          cross_conn = wcd_check_cross_conn(mbhc);
+>> @@ -1122,14 +1184,19 @@ static void wcd_correct_swch_plug(struct work_struct *work)
+>>                          }
+>>                  }
 >>
->> So a simple "NAK" without additional information is not really helpful here.
+>> -               if (output_mv > hs_threshold) /* cable is extension cable */
+>> +               /* cable is extension cable */
+>> +               if (output_mv > hs_threshold || mbhc->force_linein == true)
+> Drop the == true please.
+Okay.
+>
+>>                          plug_type = MBHC_PLUG_TYPE_HIGH_HPH;
+>>          }
 >>
->> If you don't like Sascha's series, I really want to know _WHEN_ Rockchip
->> plans on upstreaming at least basic graphis support themself.
+>>          wcd_mbhc_bcs_enable(mbhc, plug_type, true);
 >>
->> The kernel is often called a do-ocracy - the one who does the work, gets
->> to decide. So if you really don't like Sascha's series at all, I do expect
->> Rockchip to step up and provide a solution themself - and in a usable
->> timeframe.
-> Exactly what Heiko said. If you would like to upstream the driver then
-> that would be fantastic to see, but I'm afraid you do not get to
-> prevent someone else from doing the work themselves.
+>> -       if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH)
+>> -               wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
+>> +       if (plug_type == MBHC_PLUG_TYPE_HIGH_HPH) {
+>> +               if (is_spl_hs)
+>> +                       plug_type = MBHC_PLUG_TYPE_HEADSET;
+>> +               else
+>> +                       wcd_mbhc_write_field(mbhc, WCD_MBHC_ELECT_ISRC_EN, 1);
+>> +       }
+>>
+>>          wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_MODE, 0);
+>>          wcd_mbhc_write_field(mbhc, WCD_MBHC_ADC_EN, 0);
 
-First of all, we never stop any one to doing there work on upstream if 
-the source code is write totally by themselves.
-
-Second, there are also many modules are upstream by developers based on 
-Rockchip source code, please note that
-all of them have basic respect to our work, they do communicate with us 
-first.
-
-
-But this committer do not take any respect to our engineers and their 
-hard working:
-- He didn't contact with us;
-- There isn't  any information about original author in the commit message;
-     As I have known, if I use source code from another developer, I 
-need to at least add a "Signed-off-by" with original author;
-- This commit and mail does not even have a 'CC' to original author.
-
-I NAK because I  think this is not part of the  open source spirit, and 
-this kind of  behavior should not be encouraged.
-
-
-Thanks,
-- Kever
-
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
