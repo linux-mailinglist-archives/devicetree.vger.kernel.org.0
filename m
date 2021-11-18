@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF59D4557EC
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 10:20:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2BC4557E8
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 10:20:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245112AbhKRJXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 04:23:50 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:5533 "EHLO mx1.tq-group.com"
+        id S245053AbhKRJXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 04:23:37 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:5493 "EHLO mx1.tq-group.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245158AbhKRJXa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Nov 2021 04:23:30 -0500
+        id S245120AbhKRJXN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 04:23:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637227230; x=1668763230;
+  t=1637227213; x=1668763213;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=POh5eXzb/NnaGXPE+zuDTJeI+unBh++bhwgJfe3afeU=;
-  b=WDV+QuBgj5tNW0R0FRk9j/Q3NqZMi+TfCegePpWgvjCwBwA7Bsk0/a96
-   RnRhvE98tZi5Yj18xsGLajfsbJjhYq6RnGcEx+Tr5D+i7qiMX8znYGXOI
-   qkeVkQtcA3crcZUPd5vjjryY1fUaa+oTBLMGeJH0Tb6geWDVaVjv8Zm8W
-   4y0LCHfGJH8FVMP7+4ligQcn9TRZ8GGpACcdtvsFyCqPfU5/q7XG3x9Ye
-   Kcx5PzAubb8RNnXR72HMSC14BtjFgQ8Q6Yv7dy+b9ijUlcmj3+97H7U4J
-   XwvU9KDnsQTWh4CT/YH+0TDWDPAvu0WztBuzTLEXQ7KuLapvqA/4szAFJ
-   g==;
-X-IronPort-AV: E=Sophos;i="5.87,244,1631570400"; 
-   d="scan'208";a="20534724"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 18 Nov 2021 10:20:05 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 18 Nov 2021 10:20:05 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 18 Nov 2021 10:20:05 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637227205; x=1668763205;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=POh5eXzb/NnaGXPE+zuDTJeI+unBh++bhwgJfe3afeU=;
-  b=LHbIzizSJONzd4xa9nhI1KnTSGI5k/AnPu02kXKFRoun5RuTj3zb+VdD
-   Zgcpt3LOcD9JczhLeOTIMEKUMVSZa0mez89ECuEoY5ZjBvYfLJc9/O6Oe
-   G8WzliNAK+vFD8V57JahG6O9s6lTiq6BqV8BfxYMTFVblDfgG2L9/iOEh
-   DbiKZY8gcrZIN5HKOk0Wd4gkEkaXANEPYpJh1YC5ic1h6xNDFVw+GBVzP
-   JMDFs+lh+ATgo6uenKBymrFBviClqkCBnKJnT8TgP9lnPyIMbdfNrlM85
-   B/gbtYC5PFItfOM2QVqrZ0DrO6UqiX01LFy4oi/ehJqLHk+QyOxOMA8te
+  bh=yNZUM5l+dYJ1D2T3WexBrl09S2UyQ6CTHXDDKPUWb1Y=;
+  b=C0gkAY4WXP8dK9c7jqKXL5mBprpa9iMVUNmzLQ1UFaKLRsGxMn5gWPf/
+   QDqkGUQHzWQSi4gAmsMdKFQOCgwz2N/KhefDlHQNTSYZWFa7XrsHRoBbC
+   qjXZ8QfFS0d0mn1aJmu2m32mYfpJT+heIStAxEBi6HEg8+a1fhaSNjL31
+   Mfc0ld4lPESwKe4gp4dQhOuycShcKvF/Jm4Rv0SwSU65/rvpkZG+6g3rV
+   9TjzrIqikdDjsdhJJmEpcy27XvhTV7hWprWw+4pcr1C28+qmVsGcD+Njn
+   morSa5avsGZ3IVOhUstGd986+J4KSHAlmUQdpNRGq3phyX0mhPf825Z4V
    w==;
 X-IronPort-AV: E=Sophos;i="5.87,244,1631570400"; 
-   d="scan'208";a="20534714"
+   d="scan'208";a="20534721"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 18 Nov 2021 10:20:04 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Thu, 18 Nov 2021 10:20:04 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Thu, 18 Nov 2021 10:20:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1637227204; x=1668763204;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yNZUM5l+dYJ1D2T3WexBrl09S2UyQ6CTHXDDKPUWb1Y=;
+  b=AqrEgKg7hCvJHtT/QAXdjmd551L79lkgSHtLU+xyv4Gp6IcfEJ7ElkhP
+   qaYFOgWkLDomNBjzzGL/0aWYA0wJlGMla1sRDAJP/oA/NGPOWLZXtMd3X
+   yZtuGUbIev1mAQOQlnZcOAcsz32tjMjq/IlG2fguZOUzLhZXPBChR4358
+   9/d5ZQ9/m8uLpCDZWy1GUnNeUWIJIXwRwZaFM5XqqqUd6kSswo3Mho3nH
+   2JJOkjEUjsW/Zt4u8nhOuctnj7vavdLkahhwaZo1/czJ8coU+SfZroW3P
+   H6qSG3BM4fKFGccEDixcBIhwndK2KI9/MqA/hssrSIrwPtO7Q8920KipD
+   A==;
+X-IronPort-AV: E=Sophos;i="5.87,244,1631570400"; 
+   d="scan'208";a="20534715"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 18 Nov 2021 10:20:03 +0100
 Received: from steina-w.tq-net.de (unknown [10.123.49.12])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6C0AE28007C;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A9D7328007F;
         Thu, 18 Nov 2021 10:20:02 +0100 (CET)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
@@ -65,11 +65,10 @@ To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Jonas Karlman <jonas@kwiboo.se>,
         Jernej Skrabec <jernej.skrabec@gmail.com>
 Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 3/4] dt-bindings: drm/bridge: ti-sn65dsi83: Add vcc supply bindings
-Date:   Thu, 18 Nov 2021 10:19:54 +0100
-Message-Id: <20211118091955.3009900-4-alexander.stein@ew.tq-group.com>
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: [PATCH v4 4/4] drm/bridge: ti-sn65dsi83: Add vcc supply regulator support
+Date:   Thu, 18 Nov 2021 10:19:55 +0100
+Message-Id: <20211118091955.3009900-5-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211118091955.3009900-1-alexander.stein@ew.tq-group.com>
 References: <20211118091955.3009900-1-alexander.stein@ew.tq-group.com>
@@ -79,38 +78,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a VCC regulator which needs to be enabled before the EN pin is
-released.
+VCC needs to be enabled before releasing the enable GPIO.
 
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml      | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-index c3f3e73f740a..48a97bb3e2e0 100644
---- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
-@@ -32,6 +32,9 @@ properties:
-     maxItems: 1
-     description: GPIO specifier for bridge_en pin (active high).
+diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi83.c b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+index 065610edc37a..54d18e82ed74 100644
+--- a/drivers/gpu/drm/bridge/ti-sn65dsi83.c
++++ b/drivers/gpu/drm/bridge/ti-sn65dsi83.c
+@@ -33,6 +33,7 @@
+ #include <linux/of_device.h>
+ #include <linux/of_graph.h>
+ #include <linux/regmap.h>
++#include <linux/regulator/consumer.h>
  
-+  vcc-supply:
-+    description: A 1.8V power supply (see regulator/regulator.yaml).
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_bridge.h>
+@@ -143,6 +144,7 @@ struct sn65dsi83 {
+ 	struct mipi_dsi_device		*dsi;
+ 	struct drm_bridge		*panel_bridge;
+ 	struct gpio_desc		*enable_gpio;
++	struct regulator		*vcc;
+ 	int				dsi_lanes;
+ 	bool				lvds_dual_link;
+ 	bool				lvds_dual_link_even_odd_swap;
+@@ -337,6 +339,12 @@ static void sn65dsi83_atomic_enable(struct drm_bridge *bridge,
+ 	u16 val;
+ 	int ret;
+ 
++	ret = regulator_enable(ctx->vcc);
++	if (ret) {
++		dev_err(ctx->dev, "Failed to enable vcc\n");
++		return;
++	}
 +
-   ports:
-     $ref: /schemas/graph.yaml#/properties/ports
+ 	/* Deassert reset */
+ 	gpiod_set_value(ctx->enable_gpio, 1);
+ 	usleep_range(1000, 1100);
+@@ -486,11 +494,16 @@ static void sn65dsi83_atomic_disable(struct drm_bridge *bridge,
+ 				     struct drm_bridge_state *old_bridge_state)
+ {
+ 	struct sn65dsi83 *ctx = bridge_to_sn65dsi83(bridge);
++	int ret;
  
-@@ -132,6 +135,7 @@ examples:
-             reg = <0x2d>;
+ 	/* Put the chip in reset, pull EN line low, and assure 10ms reset low timing. */
+ 	gpiod_set_value(ctx->enable_gpio, 0);
+ 	usleep_range(10000, 11000);
  
-             enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
-+            vcc-supply = <&reg_sn65dsi83_1v8>;
++	ret = regulator_disable(ctx->vcc);
++	if (ret)
++		dev_err(ctx->dev, "Failed to disable vcc: %i\n", ret);
++
+ 	regcache_mark_dirty(ctx->regmap);
+ }
  
-             ports {
-                 #address-cells = <1>;
+@@ -599,6 +612,12 @@ static int sn65dsi83_parse_dt(struct sn65dsi83 *ctx, enum sn65dsi83_model model)
+ 
+ 	ctx->panel_bridge = panel_bridge;
+ 
++	ctx->vcc = devm_regulator_get(dev, "vcc");
++	if (IS_ERR(ctx->vcc))
++		return dev_err_probe(dev, PTR_ERR(ctx->vcc),
++				     "Failed to get supply 'vcc': %pe\n",
++				     ERR_PTR(ret));
++
+ 	return 0;
+ }
+ 
 -- 
 2.25.1
 
