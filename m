@@ -2,120 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 976614554CA
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 07:27:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 983C24554D3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 07:34:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243394AbhKRGas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 01:30:48 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:52252 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S243110AbhKRGap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 01:30:45 -0500
-X-UUID: 8b122f3c11a24095ae91710fff52edce-20211118
-X-UUID: 8b122f3c11a24095ae91710fff52edce-20211118
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <james.lo@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1474894681; Thu, 18 Nov 2021 14:27:42 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 18 Nov 2021 14:27:40 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 18 Nov 2021 14:27:40 +0800
-Message-ID: <f4a008ef426eacc7ec13b8f30e12d6cddc79536e.camel@mediatek.com>
-Subject: Re: [PATCH v15 2/4] dt-bindings: spmi: document binding for the
- Mediatek SPMI controller
-From:   James Lo <james.lo@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, Stephen Boyd <sboyd@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        "Rob Herring" <robh+dt@kernel.org>
-Date:   Thu, 18 Nov 2021 14:27:37 +0800
-In-Reply-To: <1636983755.172933.595907.nullmailer@robh.at.kernel.org>
-References: <20211115042030.30293-1-james.lo@mediatek.com>
-         <20211115042030.30293-3-james.lo@mediatek.com>
-         <1636983755.172933.595907.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S243153AbhKRGhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 01:37:24 -0500
+Received: from comms.puri.sm ([159.203.221.185]:44162 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S242471AbhKRGhX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 01:37:23 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 8FE9ADF90B;
+        Wed, 17 Nov 2021 22:34:23 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id IPlzYpn1Qo5L; Wed, 17 Nov 2021 22:34:22 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     martin.kepplinger@puri.sm, laurent.pinchart@ideasonboard.com,
+        mchehab@kernel.org
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        rmfrfs@gmail.com, robh@kernel.org, shawnguo@kernel.org
+Subject: [PATCH v2 1/2] media: imx: imx7-media-csi: add support for imx8mq
+Date:   Thu, 18 Nov 2021 07:33:46 +0100
+Message-Id: <20211118063347.3370678-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2021-11-15 at 07:42 -0600, Rob Herring wrote:
-> On Mon, 15 Nov 2021 12:20:28 +0800, James Lo wrote:
-> > This adds documentation for the SPMI controller found on Mediatek
-> > SoCs.
-> > 
-> > Signed-off-by: James Lo <james.lo@mediatek.com>
-> > Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> > ---
-> >  .../bindings/spmi/mtk,spmi-mtk-pmif.yaml      | 76
-> > +++++++++++++++++++
-> >  1 file changed, 76 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> > 
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m
-> dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-
-> pmif.example.dt.yaml: spmi@10027000: reg: [[268595200, 3584],
-> [268603392, 256]] is too long
-> 	From schema: /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/spmi.yaml
-> /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-
-> pmif.example.dt.yaml: spmi@10027000: reg: [[268595200, 3584],
-> [268603392, 256]] is too long
-> 	From schema: /builds/robherring/linux-dt-
-> review/Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See 
-> https://urldefense.com/v3/__https://patchwork.ozlabs.org/patch/1555114__;!!CTRNKA9wMg0ARbw!0y2jw2KWA7dbbFP4B9bbycyT0PxWYrQ0KAUovVW46dRLqIfXI2maZrfVt1KSWIC1$
->  
-> 
-> This check can fail if there are any dependencies. The base for a
-> patch
-> series is generally the most recent rc1.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up
-> to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+Modeled after the NXP driver mx6s_capture.c that this driver is based on,
+imx8mq needs different settings for the baseaddr_switch mechanism. Define
+the needed bits and set that for imx8mq.
 
-Dear Rob,
+Without these settings, the system will "sometimes" hang completely when
+starting to stream (the interrupt will never be called).
 
-Due to [2/4] depends on [1/4], 
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+---
 
-Can I only send [1/4] first ?
+revision history
+----------------
+v2: (thank you Rui and Laurent)
+ * rename function and enum
+ * remove unrealted newline
+ * add Laurents reviewed tag to the bindings patch
 
-(After [1/4] is approved, and I will send [2/4][3/4][4/4] as V16.)
+v1:
+https://lore.kernel.org/linux-media/20211117092710.3084034-1-martin.kepplinger@puri.sm/T/#t
 
-Or, could you please give us other suggestion ?
 
-Many thanks
+
+ drivers/staging/media/imx/imx7-media-csi.c | 32 ++++++++++++++++++++--
+ 1 file changed, 30 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging/media/imx/imx7-media-csi.c
+index 2288dadb2683..1f3d9e27270d 100644
+--- a/drivers/staging/media/imx/imx7-media-csi.c
++++ b/drivers/staging/media/imx/imx7-media-csi.c
+@@ -12,6 +12,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/mfd/syscon.h>
+ #include <linux/module.h>
++#include <linux/of_device.h>
+ #include <linux/of_graph.h>
+ #include <linux/pinctrl/consumer.h>
+ #include <linux/platform_device.h>
+@@ -122,6 +123,10 @@
+ #define BIT_DATA_FROM_MIPI		BIT(22)
+ #define BIT_MIPI_YU_SWAP		BIT(21)
+ #define BIT_MIPI_DOUBLE_CMPNT		BIT(20)
++#define BIT_MASK_OPTION_FIRST_FRAME	(0 << 18)
++#define BIT_MASK_OPTION_CSI_EN		(1 << 18)
++#define BIT_MASK_OPTION_SECOND_FRAME	(2 << 18)
++#define BIT_MASK_OPTION_ON_DATA		(3 << 18)
+ #define BIT_BASEADDR_CHG_ERR_EN		BIT(9)
+ #define BIT_BASEADDR_SWITCH_SEL		BIT(5)
+ #define BIT_BASEADDR_SWITCH_EN		BIT(4)
+@@ -154,6 +159,11 @@
+ #define CSI_CSICR18			0x48
+ #define CSI_CSICR19			0x4c
+ 
++enum imx_csi_model {
++	IMX7_CSI_IMX7 = 0,
++	IMX7_CSI_IMX8MQ,
++};
++
+ struct imx7_csi {
+ 	struct device *dev;
+ 	struct v4l2_subdev sd;
+@@ -189,6 +199,8 @@ struct imx7_csi {
+ 	bool is_csi2;
+ 
+ 	struct completion last_eof_completion;
++
++	enum imx_csi_model model;
+ };
+ 
+ static struct imx7_csi *
+@@ -537,6 +549,16 @@ static void imx7_csi_deinit(struct imx7_csi *csi,
+ 	clk_disable_unprepare(csi->mclk);
+ }
+ 
++static void imx7_csi_baseaddr_switch_on_second_frame(struct imx7_csi *csi)
++{
++	u32 cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
++
++	cr18 |= BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
++		BIT_BASEADDR_CHG_ERR_EN;
++	cr18 |= BIT_MASK_OPTION_SECOND_FRAME;
++	imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
++}
++
+ static void imx7_csi_enable(struct imx7_csi *csi)
+ {
+ 	/* Clear the Rx FIFO and reflash the DMA controller. */
+@@ -552,6 +574,9 @@ static void imx7_csi_enable(struct imx7_csi *csi)
+ 	/* Enable the RxFIFO DMA and the CSI. */
+ 	imx7_csi_dmareq_rff_enable(csi);
+ 	imx7_csi_hw_enable(csi);
++
++	if (csi->model == IMX7_CSI_IMX8MQ)
++		imx7_csi_baseaddr_switch_on_second_frame(csi);
+ }
+ 
+ static void imx7_csi_disable(struct imx7_csi *csi)
+@@ -1155,6 +1180,8 @@ static int imx7_csi_probe(struct platform_device *pdev)
+ 	if (IS_ERR(csi->regbase))
+ 		return PTR_ERR(csi->regbase);
+ 
++	csi->model = (enum imx_csi_model)of_device_get_match_data(&pdev->dev);
++
+ 	spin_lock_init(&csi->irqlock);
+ 	mutex_init(&csi->lock);
+ 
+@@ -1249,8 +1276,9 @@ static int imx7_csi_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id imx7_csi_of_match[] = {
+-	{ .compatible = "fsl,imx7-csi" },
+-	{ .compatible = "fsl,imx6ul-csi" },
++	{ .compatible = "fsl,imx8mq-csi", .data = (void *)IMX7_CSI_IMX8MQ },
++	{ .compatible = "fsl,imx7-csi", .data = (void *)IMX7_CSI_IMX7 },
++	{ .compatible = "fsl,imx6ul-csi", .data = (void *)IMX7_CSI_IMX7 },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
+-- 
+2.30.2
 
