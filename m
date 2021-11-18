@@ -2,106 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7000D455895
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:06:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93C8345589D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 11:07:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244589AbhKRKJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 05:09:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39176 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244392AbhKRKHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 05:07:40 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D58C0613B9
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 02:04:04 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mneGr-0005Hg-Fj; Thu, 18 Nov 2021 11:03:57 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mneGp-0003wj-3u; Thu, 18 Nov 2021 11:03:55 +0100
-Date:   Thu, 18 Nov 2021 11:03:55 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        Kever Yang <kever.yang@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        =?utf-8?B?6Zer5a2d5Yab?= <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-Message-ID: <20211118100355.GO6556@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <3bbf42f3-bd9c-ed66-e421-8d78fbeb22ad@rock-chips.com>
- <4310886.V3yF0ifEZO@diego>
+        id S245557AbhKRKKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 05:10:08 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:59400 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244253AbhKRKIz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 05:08:55 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637229955; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=aa4GMuDD9gBxObbJT1ejXAr5fy0x2AqK6SqkkPflRc4=; b=XGcqxQpMWpwct5awawAhcEoRKRyND09Wcwl4mK79XeVLGr3Vey1XWskfmR5lhcQtU1qbie4x
+ w2381cs2DjCiJLKhWvl4cpKVD22Bb9sjOVS6gtCD9pWY+8zpWTRbIVPLG7Arb7DCVFo9YUQR
+ glMrm7Cq9/+FxAWLcX7TnXvNXNw=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
+ 619625820a5410021b6d23a5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 18 Nov 2021 10:05:54
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id BE149C4361B; Thu, 18 Nov 2021 10:05:53 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from [10.242.143.72] (unknown [202.46.23.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8A623C4360C;
+        Thu, 18 Nov 2021 10:05:48 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 8A623C4360C
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Subject: Re: [PATCH v4 00/10] Add support for audio on SC7280 based targets
+To:     Mark Brown <broonie@kernel.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+References: <1635838265-27346-1-git-send-email-srivasam@codeaurora.org>
+ <YZUT6BQKz00jXov9@sirena.org.uk>
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Organization: Qualcomm India Private Limited.
+Message-ID: <e01729cd-0b2b-fe27-809b-c75ccbb6fac4@codeaurora.org>
+Date:   Thu, 18 Nov 2021 15:35:46 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <4310886.V3yF0ifEZO@diego>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:01:35 up 273 days, 13:25, 149 users,  load average: 0.68, 0.41,
- 0.41
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <YZUT6BQKz00jXov9@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 10:26:29AM +0100, Heiko Stübner wrote:
-> Hi Kever,
-> 
-> Am Donnerstag, 18. November 2021, 02:27:10 CET schrieb Kever Yang:
-> > Hi Sascha Hauer,
-> > 
-> > On 2021/11/17 下午10:33, Sascha Hauer wrote:
-> > > This series adds initial graphics support for the Rockchip RK356[68]
-> > > SoCs.  Graphics support is based around the VOP2 controller which
-> > > replaces the VOP controller found on earlier Rockchip SoCs. The driver
-> > > has been tested with HDMI support included in this series and MIPI-DSI
-> > > which is not included because it needs some more work. The driver is
-> > > taken from the downstream Rockchip kernel
-> > 
-> > Yes, you do know this is from Rockchip kernel.
-> > 
-> > Could you point me out where is the information about original author  
-> > in your commit?
-> 
-> The copyrights for added files seem to have stayed intact.
-> For example the added rockchip_drm_vop2.c file in patch12
-> does contain the copyright as
-> 
-> 	Copyright (c) 2020 Rockchip Electronics Co., Ltd.
-> 	Author: Andy Yan <andy.yan@rock-chips.com>
-> 
-> 
-> We can of course debate if the commit-author should also be set to
-> Andy or another Rockchip engineer, with Sascha adding a 
-> "Co-developed-by" with his credentials.
-> 
-> That's probably a nice compromise, I guess.
 
-The commit author was merely lost while copying the driver file into my git.
-Changing it back to Andy is fine with me, I didn't mean to steal anyones
-credits.
+On 11/17/2021 8:08 PM, Mark Brown wrote:
+> On Tue, Nov 02, 2021 at 01:00:55PM +0530, Srinivasa Rao Mandadapu wrote:
+>
+>> This patch set depends on:
+>> 	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=570161
+>> 	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=572615
+>> 	-- https://patchwork.kernel.org/project/alsa-devel/list/?series=559677
+> None of those links seem to show any patches (or errors)?
 
-Sascha
+Sorry for Inconvenience Rob. I think due to it's status change patches 
+are not being appeared on provided link.
+
+With removing filter able to see patch set. Below are the links with 
+view filter change.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+https://patchwork.kernel.org/project/alsa-devel/list/?series=570161&archive=both&state=*
+
+-- 
+https://patchwork.kernel.org/project/alsa-devel/list/?series=572615&state=%2A&archive=both
+
+-- 
+https://patchwork.kernel.org/project/alsa-devel/list/?series=559677&archive=both&state=*
+
+>
+> Please include human readable descriptions of things like commits and
+> issues being discussed in e-mail in your mails, this makes them much
+> easier for humans to read especially when they have no internet access.
+> I do frequently catch up on my mail on flights or while otherwise
+> travelling so this is even more pressing for me than just being about
+> making things a bit easier to read.
+
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
