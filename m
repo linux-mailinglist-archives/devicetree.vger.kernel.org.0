@@ -2,133 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E959455779
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 09:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6894B455793
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 10:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244906AbhKRI7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 03:59:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52360 "EHLO
+        id S245065AbhKRJEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 04:04:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244873AbhKRI6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 03:58:33 -0500
+        with ESMTP id S245012AbhKRJEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 04:04:04 -0500
 Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9E3C061227
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 00:55:18 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id n29so10006812wra.11
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 00:55:18 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9914BC061570;
+        Thu, 18 Nov 2021 01:01:04 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id d5so10127537wrc.1;
+        Thu, 18 Nov 2021 01:01:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=dSP+w0ULKXB14fx0Qg6uZmQEgEDOZqwyyo7QWe1WeRA=;
-        b=ydGmwL4bJDWdRowxUjZt8fkHicYan+sgcnHB3CDDWdrWIZ8SfGCvjnttvQl6Av5vlr
-         s6PrLg6WG4iAClWRg4ABvIUY5CoPtZ1J8dPHr9UUowjjMD4oV4y3F/fStxNQWSI7JIhu
-         Wl17LV+jYNskvi1g3OB4pI+WRDya+Ni66dYqqj1oORgx93UMAo4F6oQHfWVjY0kjzNOF
-         b0a/2g4B9e0VFYvtAFTw52qfI+9oxP11ske5S/1xGpCj0YjTW5PflN3gXSTlO9I4Lhdl
-         o5dbw2PJfgAiIgVp0fOOzgRhSj1XSewWVex+fR/7KOeHmaWcgDV5BBO2HSumFII0Xmav
-         S53g==
+        d=gmail.com; s=20210112;
+        h=mime-version:content-transfer-encoding:date:message-id:cc:subject
+         :from:to:references:in-reply-to;
+        bh=HoB8UigyPFgMPV3vxuTV7Mz+M/fc/B322pVo6Nb1Z/M=;
+        b=Tkp+Hyi8/PwTDgDCb8mHGZWCuQFfKMxxxMOdGnnXMwFJkVRW9gr+p6nBSd1JUfT7v2
+         rGwxVTuCK59egHqpvNsqMiDQx6E9mtsQDzJzie9CSTfiPdT8BXQkAiukKa5evJvsThec
+         qPFP3hI5LrpfL3yhpBTacL39PriVqBQQJjTJk1CFOv/L1Jk5iU96Fy+U9pqPwLxAbagN
+         oY/hap7xdWyAxspz+v6yobF0eGU0547G9HpfzDFmhEUVszGR6X1YOF3J+RzTOhcIXhrs
+         Uy8P8wlEsGM8vsULmfSwVe3lqpxQNl+NJtDBeOQMjDrZx/pzJAUO5MGwfIUfTaHZNP9m
+         j/WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=dSP+w0ULKXB14fx0Qg6uZmQEgEDOZqwyyo7QWe1WeRA=;
-        b=rG64GyC6tk+fP8S1lSnUQezMm7mbPFSGCQFULiMYfjinuCntolEViHVzjjJ1o5UOnf
-         er3etKg8GU0DWNkmB59hrTw/DHrbm7a3j7e/9SKzn70wfUBknZh4JMbVLyVCmEu1EctZ
-         un4HBQlyXpB2LLIUe4OQ343kcfEj7nFqwa3fMT3G71f480slXvNGSbio062nXo8CyUVu
-         Z7xtnk4oqokgCsvOfFBLhpXErk+RJ7nefHd5A5/oJYiwm2aIxnMB2hAxcZrqkvEiZXbY
-         2wiqHylAp7FrnFNPA9LJfj6eyRcLtcqvEg5zGx3nh/sJYkUOigQAAx/vFZwEfR1/qR4U
-         gWcg==
-X-Gm-Message-State: AOAM532Kcns2001zC6LuF0uRl8G9KSdYQhKWabt/c30QSBvYVJky8khp
-        TPE8OHnslFP8cAwPSxTSzrXEIQ==
-X-Google-Smtp-Source: ABdhPJxCrYvy/KHbOLzaUjVIo3pWbsYkJIUI9dO/1fGCACLzErizkkHVQ37qGCEiCScVrzOKly2AKQ==
-X-Received: by 2002:adf:d1cb:: with SMTP id b11mr30566144wrd.33.1637225717048;
-        Thu, 18 Nov 2021 00:55:17 -0800 (PST)
-Received: from google.com ([95.148.6.231])
-        by smtp.gmail.com with ESMTPSA id n129sm2279008wmn.36.2021.11.18.00.55.15
+        h=x-gm-message-state:mime-version:content-transfer-encoding:date
+         :message-id:cc:subject:from:to:references:in-reply-to;
+        bh=HoB8UigyPFgMPV3vxuTV7Mz+M/fc/B322pVo6Nb1Z/M=;
+        b=55T0VJdW5bTTRw6r6C5zE7eula1CXciyWf9Wg4p6myCsHyRWtwSRL0hl3IrWu5FmHz
+         hQiS2GhYlK+wzvUTpGtRePLpCibQKVKIL6oKcBhY7kzEGPiMK6C/VNtlDyyeQD15YsXa
+         bgSbEtRQptbI0o9zFb2LG6FPpCinGD2YkhXmpE2s86KeEekIWu5GcMjiJxqmDFbJCwDo
+         YKraeVeIPs046sbsviQ4CsMSNCstx7jMB8S/5ABvU30Km+vZWLVy8Xu/yBuu/rqtEFFE
+         saDsj5Rl+usOJ9APuWtpfNxWu1tIsYjA1bUnJrzbAv7e4qH3nwNVF9AbxNFBmG5JEYAc
+         H5Rw==
+X-Gm-Message-State: AOAM531kMEVCCd8NCDJaVywr5/4oxBazXgfcTRAvtIPqfZMSz/waeh35
+        JplrE27lU7YB1pxOrt32Jqc=
+X-Google-Smtp-Source: ABdhPJxpXMQii2ux6+hCaETePd4TfBQSSFXNgyFjTdkHDPE54QnR1Eaeb78OxXTzBwpPO7Gb6joitQ==
+X-Received: by 2002:adf:9bdb:: with SMTP id e27mr29564347wrc.417.1637226063168;
+        Thu, 18 Nov 2021 01:01:03 -0800 (PST)
+Received: from localhost (a109-49-33-111.cpe.netcabo.pt. [109.49.33.111])
+        by smtp.gmail.com with ESMTPSA id l7sm3029048wry.86.2021.11.18.01.01.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 00:55:16 -0800 (PST)
-Date:   Thu, 18 Nov 2021 08:55:14 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Lukas Bulwahn <lukas.bulwahn@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>
-Subject: Re: [PATCH RESEND 0/4] Drop ROHM BD70528 support
-Message-ID: <YZYU8hzZyzcPHCTT@google.com>
-References: <cover.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
- <CAHp75Ve_qS0Qc8XLHLwFnWEPzQtgNfEeVr8q9L4gK2m5a-By0A@mail.gmail.com>
- <50c260a1-c6d0-1a0b-45da-ab1a2d1379c3@gmail.com>
- <CAMRc=Mc-+ZR1PR9p=cXkfMWdKn1d1VCxmhBknSzNaDjepfpV-g@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=Mc-+ZR1PR9p=cXkfMWdKn1d1VCxmhBknSzNaDjepfpV-g@mail.gmail.com>
+        Thu, 18 Nov 2021 01:01:02 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 18 Nov 2021 09:01:01 +0000
+Message-Id: <CFSS79FWS3AE.3DWGLGKSNQIH9@arch-thunder>
+Cc:     <devicetree@vger.kernel.org>, <kernel@pengutronix.de>,
+        <kernel@puri.sm>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-imx@nxp.com>, <linux-kernel@vger.kernel.org>,
+        <linux-media@vger.kernel.org>, <robh@kernel.org>,
+        <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 1/2] media: imx: imx7-media-csi: add support for
+ imx8mq
+From:   "Rui Miguel Silva" <rmfrfs@gmail.com>
+To:     "Martin Kepplinger" <martin.kepplinger@puri.sm>,
+        <laurent.pinchart@ideasonboard.com>, <mchehab@kernel.org>
+References: <20211118063347.3370678-1-martin.kepplinger@puri.sm>
+In-Reply-To: <20211118063347.3370678-1-martin.kepplinger@puri.sm>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Nov 2021, Bartosz Golaszewski wrote:
+Hi Martin,
+Thanks for this version.
 
-> On Tue, Nov 16, 2021 at 7:41 PM Matti Vaittinen
-> <mazziesaccount@gmail.com> wrote:
-> >
-> > On 11/16/21 18:10, Andy Shevchenko wrote:
-> > > On Tue, Nov 16, 2021 at 2:52 PM Matti Vaittinen
-> > > <matti.vaittinen@fi.rohmeurope.com> wrote:
-> > >>
-> > >> Drop ROHM BD70528 support
-> > >>
-> > >> Unfortunately there has not been a big demand for ROHM BD70528
-> > >> IC. The few users I know control PMIC from separate M4-core,
-> > >> which is not running Linux. I am not aware of any users of this
-> > >> Linux driver.
-> > >>
-> > >> While I did really like this IC and writing the drivers for it,
-> > >> seems like these drivers are becoming useless burden. So, I see
-> > >> no point in maintaining them. Let's just drop the drivers if
-> > >> there is no objections to this series. :(
-> > >>
-> > >> The regulator, WDG and power-supply drivers were already dropped.
-> > >>
-> > >> The RTC and clk drivers remain in use by few other ROHM IC drivers.
-> > >> Nevertheless, they are already converted to not depend the BD70528
-> > >> defines during previous cycle.
-> > >>
-> > >> This series cleans the remaining pieces, GPIO, MFD, dt-bindings and
-> > >> MAINTAINER entries. The GPIO code uses defines from MFD - but the GPIO
-> > >> part is also depending on MFD KConfig entry - so there should be no
-> > >> breakages even if the patches were applied to respective subsystem trees
-> > >> and were not carried via single tree.
-> > >
-> > > FWIW, no objections from me.
-> >
-> > Thanks Andy!
-> >
-> > I see acks from Andu, Bartosz, Lee and Rob. It'd be nice to see ack from
-> > Linus W too - but other than that - I guess this is good to go. Any
-> > preferences regarding the tree(s) that could carry the patches? All via
-> > MFD or each patch merged to the subsystem it fits the best?
-> >
-> > Best Regards
-> >         Matti Vaittinen
-> 
-> Normally Lee takes MFD patches together with those touching relevant subsystems.
+On Thu Nov 18, 2021 at 6:33 AM WET, Martin Kepplinger wrote:
 
-Yep, it's on the list.
+> Modeled after the NXP driver mx6s_capture.c that this driver is based on,
+> imx8mq needs different settings for the baseaddr_switch mechanism. Define
+> the needed bits and set that for imx8mq.
+>
+> Without these settings, the system will "sometimes" hang completely when
+> starting to stream (the interrupt will never be called).
+>
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+LGTM
+
+Acked-by: Rui Miguel Silva <rmfrfs@gmail.com>
+
+------
+Cheers,
+     Rui
+> ---
+>
+> revision history
+> ----------------
+> v2: (thank you Rui and Laurent)
+>  * rename function and enum
+>  * remove unrealted newline
+>  * add Laurents reviewed tag to the bindings patch
+>
+> v1:
+> https://lore.kernel.org/linux-media/20211117092710.3084034-1-martin.keppl=
+inger@puri.sm/T/#t
+>
+>
+>
+>  drivers/staging/media/imx/imx7-media-csi.c | 32 ++++++++++++++++++++--
+>  1 file changed, 30 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging=
+/media/imx/imx7-media-csi.c
+> index 2288dadb2683..1f3d9e27270d 100644
+> --- a/drivers/staging/media/imx/imx7-media-csi.c
+> +++ b/drivers/staging/media/imx/imx7-media-csi.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_graph.h>
+>  #include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+> @@ -122,6 +123,10 @@
+>  #define BIT_DATA_FROM_MIPI		BIT(22)
+>  #define BIT_MIPI_YU_SWAP		BIT(21)
+>  #define BIT_MIPI_DOUBLE_CMPNT		BIT(20)
+> +#define BIT_MASK_OPTION_FIRST_FRAME	(0 << 18)
+> +#define BIT_MASK_OPTION_CSI_EN		(1 << 18)
+> +#define BIT_MASK_OPTION_SECOND_FRAME	(2 << 18)
+> +#define BIT_MASK_OPTION_ON_DATA		(3 << 18)
+>  #define BIT_BASEADDR_CHG_ERR_EN		BIT(9)
+>  #define BIT_BASEADDR_SWITCH_SEL		BIT(5)
+>  #define BIT_BASEADDR_SWITCH_EN		BIT(4)
+> @@ -154,6 +159,11 @@
+>  #define CSI_CSICR18			0x48
+>  #define CSI_CSICR19			0x4c
+> =20
+> +enum imx_csi_model {
+> +	IMX7_CSI_IMX7 =3D 0,
+> +	IMX7_CSI_IMX8MQ,
+> +};
+> +
+>  struct imx7_csi {
+>  	struct device *dev;
+>  	struct v4l2_subdev sd;
+> @@ -189,6 +199,8 @@ struct imx7_csi {
+>  	bool is_csi2;
+> =20
+>  	struct completion last_eof_completion;
+> +
+> +	enum imx_csi_model model;
+>  };
+> =20
+>  static struct imx7_csi *
+> @@ -537,6 +549,16 @@ static void imx7_csi_deinit(struct imx7_csi *csi,
+>  	clk_disable_unprepare(csi->mclk);
+>  }
+> =20
+> +static void imx7_csi_baseaddr_switch_on_second_frame(struct imx7_csi *cs=
+i)
+> +{
+> +	u32 cr18 =3D imx7_csi_reg_read(csi, CSI_CSICR18);
+> +
+> +	cr18 |=3D BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
+> +		BIT_BASEADDR_CHG_ERR_EN;
+> +	cr18 |=3D BIT_MASK_OPTION_SECOND_FRAME;
+> +	imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
+> +}
+> +
+>  static void imx7_csi_enable(struct imx7_csi *csi)
+>  {
+>  	/* Clear the Rx FIFO and reflash the DMA controller. */
+> @@ -552,6 +574,9 @@ static void imx7_csi_enable(struct imx7_csi *csi)
+>  	/* Enable the RxFIFO DMA and the CSI. */
+>  	imx7_csi_dmareq_rff_enable(csi);
+>  	imx7_csi_hw_enable(csi);
+> +
+> +	if (csi->model =3D=3D IMX7_CSI_IMX8MQ)
+> +		imx7_csi_baseaddr_switch_on_second_frame(csi);
+>  }
+> =20
+>  static void imx7_csi_disable(struct imx7_csi *csi)
+> @@ -1155,6 +1180,8 @@ static int imx7_csi_probe(struct platform_device *p=
+dev)
+>  	if (IS_ERR(csi->regbase))
+>  		return PTR_ERR(csi->regbase);
+> =20
+> +	csi->model =3D (enum imx_csi_model)of_device_get_match_data(&pdev->dev)=
+;
+> +
+>  	spin_lock_init(&csi->irqlock);
+>  	mutex_init(&csi->lock);
+> =20
+> @@ -1249,8 +1276,9 @@ static int imx7_csi_remove(struct platform_device *=
+pdev)
+>  }
+> =20
+>  static const struct of_device_id imx7_csi_of_match[] =3D {
+> -	{ .compatible =3D "fsl,imx7-csi" },
+> -	{ .compatible =3D "fsl,imx6ul-csi" },
+> +	{ .compatible =3D "fsl,imx8mq-csi", .data =3D (void *)IMX7_CSI_IMX8MQ }=
+,
+> +	{ .compatible =3D "fsl,imx7-csi", .data =3D (void *)IMX7_CSI_IMX7 },
+> +	{ .compatible =3D "fsl,imx6ul-csi", .data =3D (void *)IMX7_CSI_IMX7 },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
+> --=20
+> 2.30.2
+
+
+
