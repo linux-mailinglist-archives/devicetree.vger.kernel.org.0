@@ -2,91 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F924561A4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 18:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 230944561C2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Nov 2021 18:50:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234152AbhKRRmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 12:42:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60012 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232597AbhKRRmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 12:42:25 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33690C061574;
-        Thu, 18 Nov 2021 09:39:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=G6vwF896R9vK6ajugRYWK8Vbv0JXeNCUVwfNbElIQOw=; b=Y/9tMx1630WIhrfXHt5KMkZGcA
-        p2HA1/G2tw3DqV6iiGT/K38NiFgXo32bErWNDTDqG+pGxn//SqsfpQuPDrF/Dy5ZcaIRJIK/d/9Zv
-        KEg+Sp00RQZFBDOm0Pb9yxfgp9s/++q4/COmuDscuYSQkae6sPQN5ZVnRV9zely1ncf4cj0joloWc
-        0yDrVGCm39jy8g1sPdvrkM544Wzz8uwhsZEIM5Iw2xYreX23CaWpHMqnobmwN2p08wWBsdHpv5hoN
-        +EU3EmJjV1fRhwzOOiHE5B7axy8lDHNcOBb07NsGiCCPvbUxYEy9xeCtsnzDSdqDtc2r4Rqc9qang
-        TKD6TKIQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55734)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mnlNa-0003CH-DS; Thu, 18 Nov 2021 17:39:22 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mnlNZ-00047b-PW; Thu, 18 Nov 2021 17:39:21 +0000
-Date:   Thu, 18 Nov 2021 17:39:21 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 4/8] net: phylink: update supported_interfaces
- with modes from fwnode
-Message-ID: <YZaPyZ6VjTWvP1Kr@shell.armlinux.org.uk>
-References: <20211117225050.18395-1-kabel@kernel.org>
- <20211117225050.18395-5-kabel@kernel.org>
- <YZYXctnC168PrV18@shell.armlinux.org.uk>
- <YZaAXadMIduFZr08@lunn.ch>
- <YZaIeiOyhqyVNG8D@shell.armlinux.org.uk>
- <20211118183301.50dab085@thinkpad>
+        id S234180AbhKRRxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 12:53:19 -0500
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:37554 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233172AbhKRRxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 12:53:19 -0500
+Received: by mail-ua1-f51.google.com with SMTP id o1so15537257uap.4;
+        Thu, 18 Nov 2021 09:50:18 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bFeM04vKOaS71VYDOH4xnU67t1j31v0rHakjN+vE8aU=;
+        b=ZeXeXI+qEI5OhSH5NoCSs0kHgp+Ps8FZiR+hcbXsqtaVKN1sF0xFhTWhrAF/NlmdSW
+         1uFzsk2Bek82uXrnQ2E0ZCIPXL+zSXSORKuY41MXIQCZ2g6gdsFeMr3Py9dt7cxQBCaV
+         IiMmH8uy/F4PdAI9sTgWqteBlTKadWKNqjAcY0yPiM9c8pc0RaAVI4PDoexX0lyW80SR
+         SPPvvjRT6M+fGb8f7mzgALGRJgt0C3yLB4xi7N0zn3ujNYDzSyZfaZ52OPG88iWfTuYL
+         6YeN0/agsH8YmTzk/LBGbMTLtodGme2L0ykJ7eVWcreqAAxvDJQ8YANtVku4rNDeugNl
+         l3vA==
+X-Gm-Message-State: AOAM5320ErYXbqaMhXKnCEm56J0kMoWmYtiSg0GLf/Grc0oUaQOLB95K
+        YxBeMkDfKsXGjgsrLEdAW7iB2ui/XkBOVg==
+X-Google-Smtp-Source: ABdhPJx2gfXrCjBGBZJpRAkszgu5dmmehAyXjiUVK3l3E8OaItmlADsJ39RA+3upqYSOKcldcX8aXQ==
+X-Received: by 2002:a9f:3142:: with SMTP id n2mr13035488uab.102.1637257818240;
+        Thu, 18 Nov 2021 09:50:18 -0800 (PST)
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com. [209.85.222.43])
+        by smtp.gmail.com with ESMTPSA id c23sm271437vko.8.2021.11.18.09.50.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 18 Nov 2021 09:50:17 -0800 (PST)
+Received: by mail-ua1-f43.google.com with SMTP id i6so15496022uae.6;
+        Thu, 18 Nov 2021 09:50:17 -0800 (PST)
+X-Received: by 2002:a67:af0a:: with SMTP id v10mr84084028vsl.35.1637257817105;
+ Thu, 18 Nov 2021 09:50:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211118183301.50dab085@thinkpad>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com> <20211116074130.107554-2-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20211116074130.107554-2-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 18 Nov 2021 18:50:05 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVf2ZQtPpTkh82smeptOUhW2zfOmGzoE=zfWiH9Ccy4ww@mail.gmail.com>
+Message-ID: <CAMuHMdVf2ZQtPpTkh82smeptOUhW2zfOmGzoE=zfWiH9Ccy4ww@mail.gmail.com>
+Subject: Re: [PATCH 01/16] dt-bindings: arm: renesas: Document R-Car S4-8 SoC
+ DT bindings
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 06:33:01PM +0100, Marek Behún wrote:
-> On Thu, 18 Nov 2021 17:08:10 +0000
-> "Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
-> 
-> > I'm quite certain that as we try to develop phylink, such as adding
-> > extra facilities like specifying the interface modes, we're going to
-> > end up running into these kinds of problems that we can't solve, and
-> > we are going to have to keep compatibility for the old ways of doing
-> > stuff going for years to come - which is just going to get more and
-> > more painful.
-> 
-> One way to move this forward would be to check compatible of the
-> corresponding MAC in this new function. If it belongs to an unconverted
-> driver, we can ensure the old behaviour. This would require to add a
-> comment to the driver saying "if you convert this, please drop the
-> exception in phylink_update_phy_modes()".
+On Tue, Nov 16, 2021 at 8:42 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Add device tree bindings documentation for Renesas R-Car S4-8
+> (r8a779f0).
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-That could work when drivers pass the fwnode as the "device" node.
-Some drivers don't do that, they pass a sub-node instead - such as
-mvpp2. However, mvpp2 is of course up to date with all phylink
-developments.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.17.
 
-However, the same issue exists with DSA - the fwnode passed to
-phylink doesn't have a compatible. I suppose we could walk up the
-fwnode tree until we do find a node with a compatible property,
-that may work.
+Gr{oetje,eeting}s,
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
