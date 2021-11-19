@@ -2,84 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ECE94574D6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:58:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1A1457535
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 18:18:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233163AbhKSRB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 12:01:27 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:46899 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232663AbhKSRB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 12:01:27 -0500
-Received: by mail-ot1-f42.google.com with SMTP id b5-20020a9d60c5000000b0055c6349ff22so17673659otk.13;
-        Fri, 19 Nov 2021 08:58:25 -0800 (PST)
+        id S236129AbhKSRV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 12:21:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229811AbhKSRVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 12:21:25 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492FBC06173E
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 09:18:23 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id t30so19271031wra.10
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 09:18:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=FP9hwialv6yAEl5OHXjo4xWuTQn68GpOH2rXlR/66qQ=;
+        b=MuVMdJD3i6iM7EYol8YYUwOgrVkgeoYnCxECTuxTp1DkJEPyBXogLbS+0BLm/BesNc
+         5C1njJ+iZK4CmF+o4JS1nsHTp1HZauczmWlX9uTKS47QN/tRrq1CCb6BcUFNaDB6TUJd
+         Oplxn2eTRvF08OVt0TVxP0wg9173tQ3QZyrhcYsqM/7idBy/8QtQbAjZ9gGdnBY3DnU6
+         S+2syCl7sL16NDP2EWzts51NPHYI78qdJHomqglMxIrN2yEJt/KWxyCunP/tR8j8zlJ+
+         YmYEBCu9deEMXB4AojU7nrPhLxPZQS2M1JPc09XLNrpu1l2Vw0IbtJzZQyCoA1ZYaAcm
+         YvFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=7Eb6Mn0pwWUrKYAbEyduuHfEo+brQAeE2/L1JK8aNSs=;
-        b=w7yv4OujgfSnPC2UM05Q4eQAXeBFJ0a6ISfzYZCv3tActgTgFNWvPI6vEV5d1yCiLJ
-         IQ+XJx/YVQ0AEKB6HgJDA+N3Jt++tGXYN4vKpN6ZOI2Gf8eG919WzKLkbrtVBKoTU/G5
-         WMrGMCRwPxOWJbMN892af/RK4Jh7fweY6pHYZonY941qOpSz+H+LSHseXLLVWd4xIwji
-         96Hi62h6Ojs0ekyd8FmUmLVV99vbfqRSEOGUrVOuIudTprF6J+kdbO3d2xW0mI+Mwyt2
-         kyr2M9n4PuYBO8GMpRKq6skqb8f21IxUCnDtLI9sskrBrUdEiz/UL9gL78TUwc+SoNsA
-         UQyw==
-X-Gm-Message-State: AOAM533k/7nnnOxYjoD8NxNZq/71XOVLWawYCx0tdkCo0CXKf9KSThx1
-        Lbeu1s1zHDmQw99/hA/xsQ==
-X-Google-Smtp-Source: ABdhPJwN3jtor6NEoltXzhIUIfA1WYX4ocwXyZZ6LTiehDvPLKluF7rfbfLtUMRFZO67pgI3avCyPA==
-X-Received: by 2002:a05:6830:1bc3:: with SMTP id v3mr5872612ota.276.1637341105175;
-        Fri, 19 Nov 2021 08:58:25 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k4sm63781oij.54.2021.11.19.08.58.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Nov 2021 08:58:23 -0800 (PST)
-Received: (nullmailer pid 4078687 invoked by uid 1000);
-        Fri, 19 Nov 2021 16:58:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     jic23@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-In-Reply-To: <20211119114011.75406-1-cristian.pop@analog.com>
-References: <20211119114011.75406-1-cristian.pop@analog.com>
-Subject: Re: [PATCH v1 1/2] dt:bindings:iio:frequency: Add ADMV4420 doc
-Date:   Fri, 19 Nov 2021 10:58:22 -0600
-Message-Id: <1637341102.257587.4078686.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FP9hwialv6yAEl5OHXjo4xWuTQn68GpOH2rXlR/66qQ=;
+        b=m1wzAzXPeB/AIClN7vY08mrfm7tCngFVAlxKkrUXlKTXhKWacazvWZhU7+ezoS6v8t
+         0z23DngVKukqyPXWKwl9IqB/JNgr+4TxpUOlsVjWRcpcScR0PR9w+7JEtWq2YqkWyXG1
+         lWggMZM6NV+rTg3MxNC8BKtupI0RyzBG1dVmxkMQN/1aucpgJ/imqSh2zUk5BpYeruGr
+         JwPjvm4C/8RL1Rx+Ji8TYfgMBFHXExXvAHMPR3xDvXDFumn9XLPP2jRpXxrewCDl0W6k
+         +5OdfbQW+uet04j3A2FwMLsATPeJp4NR9cei8r8Wdzg3hu7fKDoiuX/bulrVkWAvlGY/
+         CpVA==
+X-Gm-Message-State: AOAM532YHtwy9MPby2b7dxv4ZCN+S700z5vt8mhFn4jRp0U3BQIHH+kN
+        5Jg72knX23Ts94WR3M9lX5oSbA==
+X-Google-Smtp-Source: ABdhPJz7rGeQ3uY7+i432blgA51XM/NysPQuKduVTwISoTtJKsk/0HgDfWQCa+KDLzxoI19YoqhHKg==
+X-Received: by 2002:a5d:648f:: with SMTP id o15mr9083862wri.381.1637342301747;
+        Fri, 19 Nov 2021 09:18:21 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id t1sm400914wre.32.2021.11.19.09.18.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Nov 2021 09:18:21 -0800 (PST)
+Subject: Re: [PATCH 3/6] nvmem: mtk-efuse: support minimum one byte access
+ stride and granularity
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yz Wu <yz.wu@mediatek.com>
+References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
+ <20211107075646.4366-3-chunfeng.yun@mediatek.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <2ba27f8a-6d10-3a7a-45b2-dbe503c79d47@linaro.org>
+Date:   Fri, 19 Nov 2021 17:18:19 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211107075646.4366-3-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021 13:40:10 +0200, Cristian Pop wrote:
-> Add device tree bindings for the ADMV4420 K band downconverter.
+
+
+On 07/11/2021 07:56, Chunfeng Yun wrote:
+> In order to support nvmem bits property, should support minimum 1 byte
+> read stride and minimum 1 byte read granularity at the same time.
 > 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Applied thanks,
+
+--srini
+
 > ---
->  .../bindings/iio/frequency/adi,admv4420.yaml  | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
+>   drivers/nvmem/mtk-efuse.c | 13 +++++++------
+>   1 file changed, 7 insertions(+), 6 deletions(-)
 > 
-
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml:10:1: [warning] wrong indentation: expected 2 but found 0 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.example.dt.yaml: admv4420@0: adi,ref_single_ended: [[0]] is not of type 'boolean'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1557045
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> diff --git a/drivers/nvmem/mtk-efuse.c b/drivers/nvmem/mtk-efuse.c
+> index 6a537d959f14..e9a375dd84af 100644
+> --- a/drivers/nvmem/mtk-efuse.c
+> +++ b/drivers/nvmem/mtk-efuse.c
+> @@ -19,11 +19,12 @@ static int mtk_reg_read(void *context,
+>   			unsigned int reg, void *_val, size_t bytes)
+>   {
+>   	struct mtk_efuse_priv *priv = context;
+> -	u32 *val = _val;
+> -	int i = 0, words = bytes / 4;
+> +	void __iomem *addr = priv->base + reg;
+> +	u8 *val = _val;
+> +	int i;
+>   
+> -	while (words--)
+> -		*val++ = readl(priv->base + reg + (i++ * 4));
+> +	for (i = 0; i < bytes; i++, val++)
+> +		*val = readb(addr + i);
+>   
+>   	return 0;
+>   }
+> @@ -45,8 +46,8 @@ static int mtk_efuse_probe(struct platform_device *pdev)
+>   	if (IS_ERR(priv->base))
+>   		return PTR_ERR(priv->base);
+>   
+> -	econfig.stride = 4;
+> -	econfig.word_size = 4;
+> +	econfig.stride = 1;
+> +	econfig.word_size = 1;
+>   	econfig.reg_read = mtk_reg_read;
+>   	econfig.size = resource_size(res);
+>   	econfig.priv = priv;
+> 
