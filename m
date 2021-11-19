@@ -2,173 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDB1C456A50
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 07:36:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D5FE456AC9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 08:17:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231193AbhKSGjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 01:39:54 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:33643 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbhKSGjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 01:39:54 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637303813; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=Ixwhfp9T0vaQlNYEIAG5gcw2ca2tRPTRKqoBDmGf6pw=; b=e/5XF4lv3oi9aTl66dtmuWnO/fa6rpyNnLkPrl5zXfqCm1QnvsuYaSS5cmfhJ9Rk3SjOjDE/
- pH3oy21yZ7+oEiOvvVt5Bwt1SXUZfLcOWPg7gDVVGwEQmboKs7h7wFoCI1WcbYf3yOz+hI+g
- 4bPv+J5ynPVaFuJ4fK+oUbKKqYE=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-east-1.postgun.com with SMTP id
- 619746040a5410021bd50d7a (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 06:36:52
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id D5274C43617; Fri, 19 Nov 2021 06:36:51 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.6 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.0
-Received: from [10.242.143.72] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S233526AbhKSHUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 02:20:17 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:47581 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231877AbhKSHUQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Nov 2021 02:20:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1637306235; x=1668842235;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4G1S93gjbwabrmFAdC43P4Mc+uXwLG7qww8pxE91teM=;
+  b=ixvpQc5OJsFqVkHuvkCKytxWUz7Nqq/YAeC0q8zy6zwpBaUu5XrbH9cH
+   pBNGuxmwTaVFr3DG4jylwNz6veWdpyMhgX6qE2zlfhGOMuOTEPYg0AHd3
+   PMUWsxLuK1/IzsN0H51BZjgfiiOqKz97pg2BxHbRlfEcJH/R/WGuwKSRA
+   xVdDf4IPf/8fValIrJk+6uy3dqANoT5wm/K/rXskODzVKCyQKP6uTE0HC
+   QBkRJRhUJwk8bzV7p3VvBFHg2LZ7zI7UTNcyCK2rbv1CyPVFKz1xTvPcG
+   CvBqJSnOX9+S/8/Ty23u7X+gxTuTUjJAT46AYJ8gels3F2RFGujipvOUU
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.87,246,1631570400"; 
+   d="scan'208";a="20555075"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 19 Nov 2021 08:17:14 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Fri, 19 Nov 2021 08:17:14 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Fri, 19 Nov 2021 08:17:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1637306234; x=1668842234;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=4G1S93gjbwabrmFAdC43P4Mc+uXwLG7qww8pxE91teM=;
+  b=VonlOVp2ANH6/O0kZw0xhmC6NLmZ2zvq+GuWdc9CAnB1hKOMmlxnFMro
+   00P2FzQSZNHB7fE3RC/ljp/qs0fUyOvDzycvh0j1WbBbTTXCtp9B/dNCe
+   F4BjQHyQAVVByjOTbSwO7Tim8BPuYG4lww0LjoYVT0C448pC4r1Twx6nY
+   cLYmUFjKDHXRY4KHVU1TK+My+dGj+QQ1cjP/ft5gVLQrDgOoTlyDLTuRl
+   0a5zjPi2HJCngnihw7/e8y14j4zakqkuT3ZZ1Nc6BWNf6pWSJx5khaDuA
+   eckz9nFtL1oUY11jiI0CMa7pdTnKk1NFdD+9DsisShEhJS7gKOiDb7/Es
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.87,246,1631570400"; 
+   d="scan'208";a="20555074"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 19 Nov 2021 08:17:14 +0100
+Received: from steina-w (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id ED379C4338F;
-        Fri, 19 Nov 2021 06:36:45 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org ED379C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v2 1/3] pinctrl: qcom: Update lpass variant independent
- functions as generic
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1635342097-2726-1-git-send-email-srivasam@codeaurora.org>
- <1635342097-2726-2-git-send-email-srivasam@codeaurora.org>
- <01c32c7f-9639-b3c8-045b-35469a3e54aa@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <19df295b-a3f1-9c31-27a3-7ebb59254694@codeaurora.org>
-Date:   Fri, 19 Nov 2021 12:06:43 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B802D280065;
+        Fri, 19 Nov 2021 08:17:13 +0100 (CET)
+Message-ID: <000f8f724ef9a8c2652e9cab0a5bb1f7768869c3.camel@ew.tq-group.com>
+Subject: Re: (EXT) Re: [PATCH v4 12/12] dt-bindings: serial: fsl-lpuart: Add
+ i.MX8DXL compatible
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh@kernel.org>, Abel Vesa <abel.vesa@nxp.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Fri, 19 Nov 2021 08:17:11 +0100
+In-Reply-To: <YZb4BClv4fXU65yz@robh.at.kernel.org>
+References: <1636566415-22750-1-git-send-email-abel.vesa@nxp.com>
+         <1636566415-22750-13-git-send-email-abel.vesa@nxp.com>
+         <YZb4BClv4fXU65yz@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
 MIME-Version: 1.0
-In-Reply-To: <01c32c7f-9639-b3c8-045b-35469a3e54aa@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am Donnerstag, dem 18.11.2021 um 19:04 -0600 schrieb Rob Herring:
+> On Wed, Nov 10, 2021 at 07:46:55PM +0200, Abel Vesa wrote:
+> > Add i.MX8DXL lpuart compatible to the bindings documentation.
+> > 
+> > Signed-off-by: Abel Vesa <
+> > abel.vesa@nxp.com
+> > >
+> > ---
+> >  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/fsl-
+> > lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-
+> > lpuart.yaml
+> > index dc1f0e07cbd4..fa8a602ccb22 100644
+> > --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > @@ -27,6 +27,10 @@ properties:
+> >        - items:
+> >            - const: fsl,imx8qm-lpuart
+> >            - const: fsl,imx8qxp-lpuart
+> > +      - items:
+> > +          - const: fsl,imx8dxl-lpuart
+> > +          - const: fsl,imx8qxp-lpuart
+> > +          - const: fsl,imx7ulp-lpuart
+> 
+> I'm confused why 8dxl is compatible with 7ulp, but 8qm is not? From
+> the 
+> driver, it looks like the difference is clocks.
 
-On 11/3/2021 4:52 PM, Srinivas Kandagatla wrote:
-Thanks for your time Srini!!!
-> Hi Srinivasa,
-> Thanks for the patches, I think you forgot to add correct mailing list 
-> for this drivers.
->
-> Please consider using scripts/get_maintainer.pl to help you with this 
-> list.
->
-> On 27/10/2021 14:41, Srinivasa Rao Mandadapu wrote:
->> Update pin control variable names to make common for all lpass varients.
->> Update bulk clock voting to optional voting as ADSP bypass platform 
->> doesn't
->> need macro and decodec clocks, these are maintained as power domains and
->> operated from lpass audio core cc.
->
-> How are you going to ensure that the powerdomains are switched on when 
-> setting up the pinctrl configuration.
->
-> Should we not take a reference to the power-domain in this driver?
+There is a difference between 8qm and 7ulp regarding the clocks. Are
+they still considered compatible? Depending on the answer [1] might not
+be the correct solution for earlycon regression on 8qm.
 
-The required power domains are getting enabled in core-boot level. So no 
-need of reference in this driver.
+Best regards,
+Alexander
 
-And still if power domain need to referenced, we can do it from device 
-tree itself.
+[1] 
+http://lists.infradead.org/pipermail/linux-arm-kernel/2021-November/696770.html
 
->
->
-> --srini
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> ---
->>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 16 ++++++++--------
->>   1 file changed, 8 insertions(+), 8 deletions(-)
->>
->> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c 
->> b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> index 2f19ab4..0bd0c16 100644
->> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
->> @@ -107,7 +107,7 @@ struct lpi_pinctrl {
->>   };
->>     /* sm8250 variant specific data */
->> -static const struct pinctrl_pin_desc sm8250_lpi_pins[] = {
->> +static const struct pinctrl_pin_desc lpass_lpi_pins[] = {
->>       PINCTRL_PIN(0, "gpio0"),
->>       PINCTRL_PIN(1, "gpio1"),
->>       PINCTRL_PIN(2, "gpio2"),
->> @@ -124,7 +124,7 @@ static const struct pinctrl_pin_desc 
->> sm8250_lpi_pins[] = {
->>       PINCTRL_PIN(13, "gpio13"),
->>   };
->>   -enum sm8250_lpi_functions {
->> +enum lpass_lpi_functions {
->>       LPI_MUX_dmic1_clk,
->>       LPI_MUX_dmic1_data,
->>       LPI_MUX_dmic2_clk,
->> @@ -203,7 +203,7 @@ static const struct lpi_pingroup sm8250_groups[] = {
->>       LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
->>   };
->>   -static const struct lpi_function sm8250_functions[] = {
->> +static const struct lpi_function lpass_functions[] = {
->>       LPI_FUNCTION(dmic1_clk),
->>       LPI_FUNCTION(dmic1_data),
->>       LPI_FUNCTION(dmic2_clk),
->> @@ -228,12 +228,12 @@ static const struct lpi_function 
->> sm8250_functions[] = {
->>   };
->>     static struct lpi_pinctrl_variant_data sm8250_lpi_data = {
->> -    .pins = sm8250_lpi_pins,
->> -    .npins = ARRAY_SIZE(sm8250_lpi_pins),
->> +    .pins = lpass_lpi_pins,
->> +    .npins = ARRAY_SIZE(lpass_lpi_pins),
->>       .groups = sm8250_groups,
->>       .ngroups = ARRAY_SIZE(sm8250_groups),
->> -    .functions = sm8250_functions,
->> -    .nfunctions = ARRAY_SIZE(sm8250_functions),
->> +    .functions = lpass_functions,
->> +    .nfunctions = ARRAY_SIZE(lpass_functions),
->>   };
->>     static int lpi_gpio_read(struct lpi_pinctrl *state, unsigned int 
->> pin,
->> @@ -615,7 +615,7 @@ static int lpi_pinctrl_probe(struct 
->> platform_device *pdev)
->>           return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
->>                        "Slew resource not provided\n");
->>   -    ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
->> +    ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, 
->> pctrl->clks);
->>       if (ret)
->>           return dev_err_probe(dev, ret, "Can't get clocks\n");
->>
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
