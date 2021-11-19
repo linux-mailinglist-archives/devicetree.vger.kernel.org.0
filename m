@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E18456B91
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:23:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6C00456B9E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:25:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234358AbhKSI0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 03:26:13 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:48059 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233909AbhKSI0M (ORCPT
+        id S234075AbhKSI2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 03:28:18 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:60481 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234457AbhKSI2Q (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 03:26:12 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id DBA4B580839;
-        Fri, 19 Nov 2021 03:23:10 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 19 Nov 2021 03:23:10 -0500
+        Fri, 19 Nov 2021 03:28:16 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 8468F5C0055;
+        Fri, 19 Nov 2021 03:25:13 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Fri, 19 Nov 2021 03:25:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=fH8UWWwhRdsoVeWKQCjiZSlkqy1
-        TytBtq7tiuhzF1E0=; b=nGL+14vY16pfLmkhnn5BulPIW4f0UDwXCW1Z6Ks6xmE
-        ItkO7dtlPQx7futTeggOVI8Wwq0vq6vzKbvsEg06YWF62dHnQ9aCDbVDOUoeE/IE
-        so3vUzA76jO7nh06buaoY2tTDj62Aqc22+EWYR3/f7skdRxovwxXtQ+mVT2/2b1I
-        XAlAnEMddqBj9I7ZeJYpSTM5eWyogwZ59eeDrfE4hiRQHBZpwbUNmBwiACQUJgP4
-        TJ2c5qJQIP+3wo0VBdaxyarKJ0kCdwvTyDb4LB48TDIL/3WQq54ccxmN5ADKmzHW
-        y/GigD6PAk2lWkRmRlGnsu/WApNBcazXHdJtuIKMPMw==
+        :content-type:in-reply-to; s=fm1; bh=ZDos6WI2j8lKtWvd3ZgKefBicWP
+        hk2jn5awU/e+rixg=; b=fC63ryhBTw4iVOkdgwJRsLXjTdP1rHJEvmg3/mF44J5
+        fzjPGoPc99O8ghAEKx5iDm+fzcBjTI6PFCVH02k3zSw7yIehfCCS1ZZvuqz7F2vY
+        BEw5q//zFIIlvNbRfQIamfbbpvn6Ygq/ZIxYRPfMRsCF6ajdZy5moEFAHrq0IPeH
+        I42jQNtKRJWhUi9vN6bBbbw2noJG3RyuVed4EOZYzl877Kn3uuy6dKjuwTHMNVrK
+        1YEcCeieB4SFTrQeDJPYJBvxl9Dmx+xXc6VeDQ1y4keZwyNHHG0D+MUkRvibAfmD
+        3eAt1YYmInQhN422f60A90bgvvetuaER6QXf0bkdl1w==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=fH8UWW
-        whRdsoVeWKQCjiZSlkqy1TytBtq7tiuhzF1E0=; b=dRE94y0G6IXse8R6r1UJ6F
-        Ptl9/6mKzHxMKD7eithJKt1cM8PJPZ8nGoCTHjAkPQFLKp501rtXy5XJULJhzz41
-        +VwtHodmZB4KKCUgCx8l3+yhB4BP7+qCQdYb2xRVkcODSl3RjnzHNDGJDOmBGA/q
-        uCEoqjmqvvHyI5qXJBDJE0J777mYOTbYxlyOJUYGEeUYqrF96H5R9C/e86VMNT4b
-        mffZw1Vuor7AO+eazYy/TUplPCrX/Th10UAAE2drNZ9Z1JDfv4Swv8iD3zs8hMZs
-        iW2f7ypBtYSuz449ljNj3kgXVBk2XdG9fXpOMRDLbCOUPVO2A9o7rQi5/GuGDYXw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZDos6W
+        I2j8lKtWvd3ZgKefBicWPhk2jn5awU/e+rixg=; b=aSwaer6ujTAkvYwqXGMMqW
+        TZ8aMllx7iEoupFnME5+5q5tnNumluWPldwpFELNdBYP5jvs0QsZAoInOltBcaBb
+        MP85mlGjtlKHOuHmz7oNkUdJeBvP6Yl3RNPivGG5Z8x7zN76/IxZSlGlNY6pa/PH
+        if/THUD2bF86D+dpiSaTBPgegWMbhiPjWsv/TRVXWsLtLs3VdFi2y46FUqAuz801
+        fLHSi6TCnhIa6N/nGtRs/ypI0uitfIzTNLwiZanqsq3oUcAdo8m0mePBQIyXGrB/
+        szTJGQcqFuwWElzCgjeWqxdRt5VRVTd8JY9Vg048tWuc1Ab6btKlxIZeYBHBUChw
         ==
-X-ME-Sender: <xms:7l6XYUbqsD4Z5sR6ZvwP7aDvxfF0gP7YApi2jViM2VCy6nUnqOkitQ>
-    <xme:7l6XYfa_TJjWdQaN5ImwKdRXjms47agMZnKaq5m3glzS8BqRQumFMqyjBORmlGiBT
-    sDfgXsONENmlxdgsT8>
-X-ME-Received: <xmr:7l6XYe8XTQ_-W6SnuTXF8pISLujiiASsM_45zDDZEIjTtwkYkKru6a2RBFVM8GjjUNph9Yc3J6ubU1KN32Ek4JpbQu7lyA-U5UhQ8a6KncQ>
+X-ME-Sender: <xms:aV-XYYndGw482OUjg9h09xC-4hl4CTCAcGhfHt-IFfYHLNIghDqGcQ>
+    <xme:aV-XYX2FKFtjLxX7Di_jfpsZhV-dhBRbM0Nvpm_GfTpEcjM8QQcfRV2fRUlM4wL4j
+    VA3IRerbKG-rdrXnmw>
+X-ME-Received: <xmr:aV-XYWp8y6SaWUMJlM08vlg_21sgWAuhrd0jMcOkK1vx1fWTnwitNl_f2MotJ_U7B-s7P1lWHlOJmfHyr4v73c4hJxxqN8Dbe1IHc0fEuyo>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeejgdduudejucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -49,46 +49,44 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeejgdduudejucetufdoteggod
     htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
     gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
     grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:7l6XYepWi16o_rbNCat4sB3_dd0O6wwK2atE0sTmovf1Nh0evFDaUQ>
-    <xmx:7l6XYfoBZrmtKp5rH5DlMnHevzIqJulbgWiIUQG2MEd-_ouJByv74Q>
-    <xmx:7l6XYcQPlLWmUhKGe41dE0_suPl6oX1cTfzQMFBD6Qg_XshRqzZL4Q>
-    <xmx:7l6XYYSbHSYZmzSs6-LgvS1Ld1QujsLTCjgZau4vQ8jvjNUR_F7DIA>
+X-ME-Proxy: <xmx:aV-XYUmhBt9lqcTROTl2X-UwyogeaWjzysRfTMdzVgfVULUdPjeMwg>
+    <xmx:aV-XYW0GSiS_B_KtRVS4drz5zA8h57-x5vOUXu-0_aFT1BdRFH-Ptw>
+    <xmx:aV-XYbtGregJsLxMu6a6Qx5ydtMxkVNy6h5yUEM052s-V2A-7t0PZw>
+    <xmx:aV-XYXJTWsZOJBgRATt4ckCfkinmgPPQejzV0yp7dlSDy4NLWBEhjQ>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 19 Nov 2021 03:23:10 -0500 (EST)
-Date:   Fri, 19 Nov 2021 09:23:08 +0100
+ 19 Nov 2021 03:25:12 -0500 (EST)
+Date:   Fri, 19 Nov 2021 09:25:11 +0100
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Samuel Holland <samuel@sholland.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+Cc:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
         linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH 2/2] media: cedrus: Add support for the D1 variant
-Message-ID: <20211119082308.2tc6mpnmr36m4nwq@gilmour>
-References: <20211119031519.23430-1-samuel@sholland.org>
- <20211119031519.23430-2-samuel@sholland.org>
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Add Allwinner R329/D1 LED
+ controller
+Message-ID: <20211119082511.apc7nrmc3ggxirc6@gilmour>
+References: <20211119054044.16286-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4cfaoqdsthlokqps"
+        protocol="application/pgp-signature"; boundary="5hiz3mcpk54stuw3"
 Content-Disposition: inline
-In-Reply-To: <20211119031519.23430-2-samuel@sholland.org>
+In-Reply-To: <20211119054044.16286-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---4cfaoqdsthlokqps
+--5hiz3mcpk54stuw3
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 18, 2021 at 09:15:18PM -0600, Samuel Holland wrote:
-> D1 has a unique variant of the video engine, which appears to drop the
-> VP8 support found on most earlier variants.
+On Thu, Nov 18, 2021 at 11:40:42PM -0600, Samuel Holland wrote:
+> The Allwinner R329 and D1 SoCs contain an LED controller designed to
+> drive a series of RGB LED pixels. It supports PIO and DMA transfers, and
+> has configurable timing and pixel format.
 >=20
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
 
@@ -96,15 +94,15 @@ Acked-by: Maxime Ripard <maxime@cerno.tech>
 
 Maxime
 
---4cfaoqdsthlokqps
+--5hiz3mcpk54stuw3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZde7AAKCRDj7w1vZxhR
-xfUkAP9/kmkUHrB8UAkA47UZrdJORmB5i0s7uRA6P/5Tgw+U8wEA6doJM16BjxUG
-v+XmYJppXhIEBWIOmsT3spUul0IP9gc=
-=IyNX
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZdfZwAKCRDj7w1vZxhR
+xSDRAQDjMUi9jltjGsD1aK7FkOoi3TFEwKQcb9nbyeBXenfkXwEArE31zniRyDpP
+gq0bxx9HG5aSVaZGN8DGVt1OpGNmogY=
+=mc8D
 -----END PGP SIGNATURE-----
 
---4cfaoqdsthlokqps--
+--5hiz3mcpk54stuw3--
