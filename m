@@ -2,78 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F5E4456F5C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 14:12:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26AC0456FA0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 14:31:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235376AbhKSNPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 08:15:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235325AbhKSNPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 08:15:06 -0500
-Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90899C06173E
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 05:12:04 -0800 (PST)
-Received: by mail-ua1-x936.google.com with SMTP id p2so21040900uad.11
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 05:12:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YM8iEZkWj09QdZV0IaAS62/GEXCOf5MjgxwudLjy2dY=;
-        b=cAE33cfo/0N63eGgp8XbsF1lNvSCLdfZ1+2RAHHG4RaBBsTG0gitWfyd/tOn+UlXeK
-         q0fSYiClNmlpIxW80wl8/1ziXRzBUdaZ6/JDoFb8RP4KfycfDQIdQvvNBvHrqVTYNaXW
-         KT+I/Khok9hk9K03fe9/iYTO36bYC08uzLHs4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YM8iEZkWj09QdZV0IaAS62/GEXCOf5MjgxwudLjy2dY=;
-        b=hcczw3uOCGuQdNx5UMovw061yED/w4LCMakcwb9nEFOyNqgV/C6J9t6Oo+nl33YCzl
-         oGiN342NVgUvuF90lxBuWYsiO/VWnENe/iOnPIqdorKkamFZXPEp0K8KGUgvjGrdD2RB
-         vyHU82CtVuGronR4618ZIciEVIJH+WxEIixNHDfBuY1Zo4RfQzlILbF920zeOOT1o4Ae
-         yXup9+9I6HJhOWD98maD0QrFOlgYmH1L+YVx75l1Du2wh5pSaMRC+YUI3rr2+PwPgu7v
-         3yMRZ3VAJA5B2fjDqRhgNWrTZ80QmJPIaFS/zCrMafZP1FGhaoEUkWuzWW0mIpQSGDIK
-         zEgg==
-X-Gm-Message-State: AOAM531geg2UCD6N0Kd5IfXyqbWeTK3sZevFaJ3iEVVXsC+LGHyMZrNn
-        4mJtmtRkRr7zVEK9RdoH+UbCnDQO1ZnR43SeIgXLKVNl3SU=
-X-Google-Smtp-Source: ABdhPJx8ZxQW/Y4NgqCFDWKYKJOnuOnviKck4eVR5XbNzsqnkFWtVWE2YsNzXL/5+5sd4UipCMXMaZBVMVKVdagJ3lo=
-X-Received: by 2002:a05:6102:38c7:: with SMTP id k7mr87839688vst.45.1637327522660;
- Fri, 19 Nov 2021 05:12:02 -0800 (PST)
-MIME-Version: 1.0
-References: <20210923065500.2284347-1-daniel@0x0f.com>
-In-Reply-To: <20210923065500.2284347-1-daniel@0x0f.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 19 Nov 2021 22:11:52 +0900
-Message-ID: <CAFr9PXmPE_vRcHgPkJp3o=d5HnAV52TFuBe-2hf=hKY8y2=BhA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/11] gpio: msc313: Add gpio support for ssd20xd
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        id S234100AbhKSNeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 08:34:02 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:38240 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232869AbhKSNeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 08:34:02 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AJDUvmR075297;
+        Fri, 19 Nov 2021 07:30:57 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637328657;
+        bh=dtTrqklX5fcVi2i9b5tFMlkenaVEqKzAe0eF769j5t4=;
+        h=From:To:CC:Subject:Date;
+        b=JZk1mA8cX0MgG+yayX2GMbubiggUMu7us+RIo5wxMfVzogGh6U/ADGLEkW+C9o31o
+         JuZ5/pIOsVKGUFEQqulfqezw357txeVfRuvAQ00pbHdItFFAdEvB9BSJtkKpR8yVmM
+         WiJK8JXfv+0KcDMV/2R+zVYeSHX20ZzzbqXu2ltI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AJDUv5I040224
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Nov 2021 07:30:57 -0600
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 19
+ Nov 2021 07:30:57 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 19 Nov 2021 07:30:57 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AJDUrNs123745;
+        Fri, 19 Nov 2021 07:30:54 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        pavel@ucw.cz, DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-leds@vger.kernel.org, Romain Perier <romain.perier@gmail.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/5] J721S2: Add initial support
+Date:   Fri, 19 Nov 2021 19:00:45 +0530
+Message-ID: <20211119133052.17793-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bartosz,
+The J721S2 SoC belongs to the K3 Multicore SoC architecture platform,
+providing advanced system integration in automotive ADAS applications and
+industrial applications requiring AI at the network edge. This SoC extends
+the Jacinto 7 family of SoCs with focus on lowering system costs and power
+while providing interfaces, memory architecture and compute performance for
+single and multi-sensor applications.
 
-On Thu, 23 Sept 2021 at 15:55, Daniel Palmer <daniel@0x0f.com> wrote:
+Some highlights of this SoC are:
 
-> Daniel Palmer (11):
->   dt-bindings: gpio: msc313: Add compatible for ssd20xd
->   dt-bindings: gpio: msc313: Add offsets for ssd20xd
->   gpio: msc313: Code clean ups
->   gpio: msc313: Add support for SSD201 and SSD202D
+* Dual Cortex-A72s in a single cluster, three clusters of lockstep capable
+dual Cortex-R5F MCUs, Deep-learning Matrix Multiply Accelerator(MMA), C7x
+floating point Vector DSP.
+* 3D GPU: Automotive grade IMG BXS-4-64
+* Vision Processing Accelerator (VPAC) with image signal processor and
+Depth and Motion Processing Accelerator (DMPAC)
+* Two CSI2.0 4L RX plus one eDP/DP, two DSI Tx, and one DPI interface.
+* Two Ethernet ports with RGMII support.
+* Single 4 lane PCIe-GEN3 controllers, USB3.0 Dual-role device subsystems,
+* Up to 20 MCANs, 5 McASP, eMMC and SD, OSPI/HyperBus memory controller,
+QSPI, I3C and I2C, eCAP/eQEP, eHRPWM, MLB among other peripherals.
+* Hardware accelerator blocks containing AES/DES/SHA/MD5 called SA2UL
+management.
+* Chips and Media Wave521CL H.264/H.265 encode/decode engine
 
-Would it be possible to get some comment on these commits and/or get
-them picked up?
-We (Romain and I) have a few bits that are blocked on this.
+See J721S2 Technical Reference Manual (SPRUJ28 – NOVEMBER 2021)
+for further details: http://www.ti.com/lit/pdf/spruj28
 
-Thanks,
+- bootlog:
+  https://pastebin.ubuntu.com/p/crVdPwQZYt/
 
-Daniel
+The following series of patches depend on,
+- http://lists.infradead.org/pipermail/linux-arm-kernel/2021-November/697574.html
+- https://patchwork.kernel.org/project/linux-dmaengine/list/?series=583035
+- https://patchwork.kernel.org/project/linux-phy/list/?series=574093
+
+Aswath Govindraju (5):
+  dt-bindings: arm: ti: Add bindings for J721s2 SoC
+  dt-bindings: pinctrl: k3: Introduce pinmux definitions for J721S2
+  arm64: dts: ti: Add initial support for J721S2 SoC
+  arm64: dts: ti: Add initial support for J721S2 System on Module
+  arch: arm64: ti: Add support J721S2 Common Processor Board
+
+ .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+ arch/arm64/boot/dts/ti/Makefile               |   2 +
+ .../dts/ti/k3-j721s2-common-proc-board.dts    | 421 ++++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    | 941 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     | 302 ++++++
+ arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi  | 175 ++++
+ arch/arm64/boot/dts/ti/k3-j721s2.dtsi         | 189 ++++
+ include/dt-bindings/pinctrl/k3.h              |   3 +
+ 8 files changed, 2039 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dts
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-som-p0.dtsi
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2.dtsi
+
+-- 
+2.17.1
+
