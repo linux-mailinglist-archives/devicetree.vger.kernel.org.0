@@ -2,182 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED3594579BC
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 00:51:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E13F74579C5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 00:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234728AbhKSXy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 18:54:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229553AbhKSXy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 18:54:56 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3D8C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 15:51:54 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id m15so9890693pgu.11
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 15:51:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BODgI+WH9LDVPfnVoZrz8d3kpc2ZwF9HgTMT9m1WMDQ=;
-        b=6oYTnLaHwy9ijpC6lNTNV6Qkj2pZqSmjviJstsVZsZP0/+D50bGRVCOSNcnlrcLvw+
-         QAGdsMcr/2GxGj2l/vnyThoZA/kAPTn5SbqVqvzihWfmVGHn25aUwLc1xJ56lp5/r1gs
-         FWqjp4e1lqvWB5XA2xe8CTiL7HltqlnWrQf7FGjhksEohu1BJ04N3OYL0Cm9IO+C6bOE
-         K8+NnUheB0nFJRCcC0JAdX02mc+xgVC7A7uTQP8o2aJ5ljJpH751/Vw9JwX5tvvFTF6a
-         RDNRdfg6YJTKJWiucUhEEDK8nCA5psGA1aNS53szgd3vHFfFH6COAlsB0mcbIUhbtSqk
-         tIGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BODgI+WH9LDVPfnVoZrz8d3kpc2ZwF9HgTMT9m1WMDQ=;
-        b=RodW4bRH0zmcDJ24SdJbFwSC+tcXHX7aC6PPl8CZDDCdJr1gpDpjBFBpYJzZdjrX7l
-         MlLE4LJHnEMPH+5jPuSq3FlDrBRTCrf0nqjRliv2k1eXNlkHu5G/W6qTdmpgSYTD9pyB
-         dp0WuJQBOLbPac2kwlr1YMW8KXhLSxb8AYGhtaJZzGyegK/WkvPSBqCuDVmMuqakf7WU
-         0HESqamatgqrLlUVn20nQQk5RSD1OCaOLYqr64AXnUEf0k32wqg60WeOH68Pgu59bJRd
-         JA19PnuZbBfsKQ4bQ0Ls7tKo8tMsbZGBH666cO6Q9IlzZNvf/hqS2SUs5vl1RsHYs3wO
-         xdLA==
-X-Gm-Message-State: AOAM531wCyt16PUfQ+tE/8iRLUe8NIfBGBdBC1UILiGqEz6B1xTc6nt1
-        muIdwEdRmwPi3AcOKnT6sitSHT7nU/OjAwSs9lOxDQ==
-X-Google-Smtp-Source: ABdhPJzMB8p8ddmaSy56jyawOAPXfj6DxYfYBB3H9qwDBj8andYHK6U8EliK1jklUWV3cYAdwsMq1nvEqhbR6YkBIqk=
-X-Received: by 2002:aa7:8149:0:b0:44c:916c:1fdb with SMTP id
- d9-20020aa78149000000b0044c916c1fdbmr26820650pfn.34.1637365913491; Fri, 19
- Nov 2021 15:51:53 -0800 (PST)
+        id S230405AbhKTAAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 19:00:06 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:49983 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230361AbhKTAAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Nov 2021 19:00:06 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 654155C00F8;
+        Fri, 19 Nov 2021 18:57:03 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 19 Nov 2021 18:57:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=4
+        r1TwomY0SX8SoZkyJ6j+G4eQP4mIUCD9MxFGJHWyAY=; b=Kq9t69W0IKmCaZAy/
+        pvaaq39QhMdb+V+zHEcR5O/90CYkXtGtnSssf1UKYha+MzTfEnVds+8EzXUD3EGW
+        yg9A6H4/4yDaGVSOQdj4VrkZWQeLmabx9pOij/wiOfW83N3NGjAX2lo5/zZM/+0f
+        uS+LYADdoDTn35mHC23WofhzUDKMy1JDrAHtLwEtZuyl+TFA4w6c9jNKtAJxbOxZ
+        iNYf39yaoTBwRYvuQITsaj4dHOTwJC1J/gUqAfUCsp0UvDAG9tobyXMUK0I7yfjg
+        MMdpV334i3S+RmXZbL8xOzdXynye3UdUYsWQdAZPBJA5p7emPD4D038OD9X8rs/I
+        jSrug==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=4r1TwomY0SX8SoZkyJ6j+G4eQP4mIUCD9MxFGJHWy
+        AY=; b=DTjtD0dC2LYC6sgWef8NHsiiSe3T+3xkmgSD8XIcE25tnMHGGXGMhCndU
+        IoS3kQQhde24WomjynK9exSjyjzFh2CkA3BpPWw2C3CTvBL/0e+LL3xyRgx/lunN
+        M7j229uVXDeLzsgaVq/Y9UEXyDWEGdueqF3ZL2H8n+rBUU62u14m7kU8RuxDMId4
+        W9IkYJuEMtEyXYfzqD1L3j39sAwKvMFpxdjpKX5MetcVKsa4TxCL0r9mR2NvTjcn
+        HYpML/1LFqb5KOgf1xE4QW6G/xeh5JLZUxZGjSaLIaNh3/grTZB5Ahy6HoRYira7
+        ZNxGZRQ4il4jIN7+1YkC47rm3I5OQ==
+X-ME-Sender: <xms:zjmYYaxbKi0MS-lDtaOIYJ7yg1GPF8QEYUma1lcvtSW8Dq6121aWeA>
+    <xme:zjmYYWSs6zuAEQWiGPQWzZgtOmIKo8hPr7ODjq92Fb0k3bAf-0GkAWpDn4dSMQTU-
+    iC6NJOVVmTev1oxlA>
+X-ME-Received: <xmr:zjmYYcWWytsAzsFHLSLo4fYb3zGilJfkpZCLTQOqVuC9gobCOu4thDGUklxvICwDiwAviasJVh6mWeXWdddPEV8Dfe7ABM2zxzKwTcuhldIUJU7tfO8c1EUfew>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeelgdduudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeehnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpeehjeeghfdufeefteelieeggfehteevieetueffhefhffekuedvffev
+    ffevtedufeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:zjmYYQicNrGpXsrweQ-qG9zr_hgQg37N6AGuKjAY7B98gvzxCPqB7Q>
+    <xmx:zjmYYcBjE4hcWgRHYsRJ9PaeU9pA0WEgt0krkXyO1bwNzmNj9f2jWQ>
+    <xmx:zjmYYRKVxlFcxUXFTalXntujFXNZM76l9lnFh_gEbFT5_TY4JObZSw>
+    <xmx:zzmYYY26kMzGU2-cjpqCKf6Gn-8uexvmQmeZ8Oo0rGp8JpJeoAKt4A>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 19 Nov 2021 18:57:02 -0500 (EST)
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211119054044.16286-1-samuel@sholland.org>
+ <20211119054044.16286-2-samuel@sholland.org>
+ <20211119082850.lrfq2wuyzhyvczdi@gilmour>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v3 2/2] leds: sun50i-r329: New driver for the R329/D1 LED
+ controller
+Message-ID: <fd4d08ee-3048-a54a-58d2-9510413c166f@sholland.org>
+Date:   Fri, 19 Nov 2021 17:57:01 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-References: <20211106155427.753197-1-aford173@gmail.com> <CAMty3ZDi+FMLBooi2jt=dPKVC8PhaBWLgtjoe3m=GHCNiqDqQw@mail.gmail.com>
-In-Reply-To: <CAMty3ZDi+FMLBooi2jt=dPKVC8PhaBWLgtjoe3m=GHCNiqDqQw@mail.gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Fri, 19 Nov 2021 15:51:42 -0800
-Message-ID: <CAJ+vNU3sCk2r2TX0=-N76wWxWNna7qnYnruxVxPTGD8L6yVtug@mail.gmail.com>
-Subject: Re: [PATCH V2 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Adam Ford <aford173@gmail.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        linux-media <linux-media@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Marek Vasut <marex@denx.de>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211119082850.lrfq2wuyzhyvczdi@gilmour>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 11, 2021 at 10:55 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
->
-> On Sat, Nov 6, 2021 at 9:24 PM Adam Ford <aford173@gmail.com> wrote:
-> >
-> > Most of the blk-ctrl reset bits are found in one register, however
-> > there are two bits in offset 8 for pulling the MIPI DPHY out of reset
-> > and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
-> > out of reset or the MIPI_CSI hangs.
-> >
-> > Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> >
-> > V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
-> >      Rename the new register to mipi_phy_rst_mask
-> >      Encapsulate the edits to this register with an if-statement
->
-> This is DPHY reset mask, not sure we can handle this via blk-ctrl.
-> Marek has similar patch to support this [1]. we need to phandle the
-> phy in host node in order to work this.
->
-> However this current patch change seems directly handling dphy reset
-> which indeed fine me as well.
->
-> >
-> >  drivers/soc/imx/imx8m-blk-ctrl.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >
-> > diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
-> > index 519b3651d1d9..581eb4bc7f7d 100644
-> > --- a/drivers/soc/imx/imx8m-blk-ctrl.c
-> > +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
-> > @@ -17,6 +17,7 @@
-> >
-> >  #define BLK_SFT_RSTN   0x0
-> >  #define BLK_CLK_EN     0x4
-> > +#define BLK_MIPI_RESET_DIV     0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
-> >
-> >  struct imx8m_blk_ctrl_domain;
-> >
-> > @@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
-> >         const char *gpc_name;
-> >         u32 rst_mask;
-> >         u32 clk_mask;
-> > +
-> > +       /*
-> > +        * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
-> > +        * which is used to control the reset for the MIPI Phy.
-> > +        * Since it's only present in certain circumstances,
-> > +        * an if-statement should be used before setting and clearing this
-> > +        * register.
-> > +        */
-> > +       u32 mipi_phy_rst_mask;
->
-> May be dphy_rst_mask (above comment may not be required, as it
-> understand directly with commit message).
->
-> >  };
-> >
-> >  #define DOMAIN_MAX_CLKS 3
-> > @@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
-> >
-> >         /* put devices into reset */
-> >         regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> > +       if (data->mipi_phy_rst_mask)
-> > +               regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
-> >
-> >         /* enable upstream and blk-ctrl clocks to allow reset to propagate */
-> >         ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
-> > @@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
-> >
-> >         /* release reset */
-> >         regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> > +       if (data->mipi_phy_rst_mask)
-> > +               regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
-> >
-> >         /* disable upstream clocks */
-> >         clk_bulk_disable_unprepare(data->num_clks, domain->clks);
-> > @@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
-> >         struct imx8m_blk_ctrl *bc = domain->bc;
-> >
-> >         /* put devices into reset and disable clocks */
-> > +       if (data->mipi_phy_rst_mask)
-> > +               regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
-> > +
-> >         regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
-> >         regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
-> >
-> > @@ -488,6 +505,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
-> >                 .gpc_name = "mipi-csi",
-> >                 .rst_mask = BIT(3) | BIT(4),
-> >                 .clk_mask = BIT(10) | BIT(11),
-> > +               .mipi_phy_rst_mask = BIT(16) | BIT(17),
->
-> DPHY has BIT(17) for Master reset and BIT(16) for Slave reset. I think
-> we just need master reset to enable. I've tested only BIT(17) on
-> mipi-dsi gpc and it is working.
->
+Hi Maxime,
 
-Jagan,
+On 11/19/21 2:28 AM, Maxime Ripard wrote:
+> Hi,
+> 
+> On Thu, Nov 18, 2021 at 11:40:43PM -0600, Samuel Holland wrote:
+>> +static const struct sun50i_r329_ledc_timing sun50i_r329_ledc_default_timing = {
+>> +	.t0h_ns = 336,
+>> +	.t0l_ns = 840,
+>> +	.t1h_ns = 882,
+>> +	.t1l_ns = 294,
+>> +	.treset_ns = 300000,
+>> +};
+> 
+> This should be mentioned in the binding as well (using the default keyword)
 
-In my testing I had to use BIT(16) | BIT(17) in order to capture via CSI.
+Ok, I'll do this for v4.
 
-Best regards,
+>> +static int sun50i_r329_ledc_parse_timing(const struct device_node *np,
+>> +					 struct sun50i_r329_ledc *priv)
+>> +{
+>> +	struct sun50i_r329_ledc_timing *timing = &priv->timing;
+>> +
+>> +	*timing = sun50i_r329_ledc_default_timing;
+>> +
+>> +	of_property_read_u32(np, "allwinner,t0h-ns", &timing->t0h_ns);
+>> +	of_property_read_u32(np, "allwinner,t0l-ns", &timing->t0l_ns);
+>> +	of_property_read_u32(np, "allwinner,t1h-ns", &timing->t1h_ns);
+>> +	of_property_read_u32(np, "allwinner,t1l-ns", &timing->t1l_ns);
+>> +	of_property_read_u32(np, "allwinner,treset-ns", &timing->treset_ns);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void sun50i_r329_ledc_set_timing(struct sun50i_r329_ledc *priv)
+>> +{
+>> +	const struct sun50i_r329_ledc_timing *timing = &priv->timing;
+>> +	unsigned long mod_freq = clk_get_rate(priv->mod_clk);
+>> +	u32 cycle_ns = NSEC_PER_SEC / mod_freq;
+>> +	u32 val;
+>> +
+>> +	val = (timing->t1h_ns / cycle_ns) << 21 |
+>> +	      (timing->t1l_ns / cycle_ns) << 16 |
+>> +	      (timing->t0h_ns / cycle_ns) <<  6 |
+>> +	      (timing->t0l_ns / cycle_ns);
+>> +	writel(val, priv->base + LEDC_T01_TIMING_CTRL_REG);
+>> +
+>> +	val = (timing->treset_ns / cycle_ns) << 16 |
+>> +	      (priv->num_leds - 1);
+>> +	writel(val, priv->base + LEDC_RESET_TIMING_CTRL_REG);
+>> +}
+>> +
+>> +static int sun50i_r329_ledc_resume(struct device *dev)
+>> +{
+>> +	struct sun50i_r329_ledc *priv = dev_get_drvdata(dev);
+>> +	u32 val;
+>> +	int ret;
+>> +
+>> +	ret = reset_control_deassert(priv->reset);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = clk_prepare_enable(priv->bus_clk);
+>> +	if (ret)
+>> +		goto err_assert_reset;
+>> +
+>> +	ret = clk_prepare_enable(priv->mod_clk);
+>> +	if (ret)
+>> +		goto err_disable_bus_clk;
+>> +
+>> +	sun50i_r329_ledc_set_format(priv);
+>> +	sun50i_r329_ledc_set_timing(priv);
+>> +
+>> +	/* The trigger level must be at least the burst length. */
+>> +	val = readl(priv->base + LEDC_DMA_CTRL_REG);
+>> +	val &= ~LEDC_DMA_CTRL_REG_FIFO_TRIG_LEVEL;
+>> +	val |= LEDC_FIFO_DEPTH / 2;
+>> +	writel(val, priv->base + LEDC_DMA_CTRL_REG);
+>> +
+>> +	val = LEDC_INT_CTRL_REG_GLOBAL_INT_EN |
+>> +	      LEDC_INT_CTRL_REG_TRANS_FINISH_INT_EN;
+>> +	writel(val, priv->base + LEDC_INT_CTRL_REG);
+>> +
+>> +	return 0;
+>> +
+>> +err_disable_bus_clk:
+>> +	clk_disable_unprepare(priv->bus_clk);
+>> +err_assert_reset:
+>> +	reset_control_assert(priv->reset);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int sun50i_r329_ledc_suspend(struct device *dev)
+>> +{
+>> +	struct sun50i_r329_ledc *priv = dev_get_drvdata(dev);
+>> +
+>> +	clk_disable_unprepare(priv->mod_clk);
+>> +	clk_disable_unprepare(priv->bus_clk);
+>> +	reset_control_assert(priv->reset);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void sun50i_r329_ledc_dma_cleanup(void *data)
+>> +{
+>> +	struct sun50i_r329_ledc *priv = data;
+>> +	struct device *dma_dev = dmaengine_get_dma_device(priv->dma_chan);
+>> +
+>> +	if (priv->buffer)
+>> +		dma_free_wc(dma_dev, LEDS_TO_BYTES(priv->num_leds),
+>> +			    priv->buffer, priv->dma_handle);
+>> +	dma_release_channel(priv->dma_chan);
+>> +}
+>> +
+>> +static int sun50i_r329_ledc_probe(struct platform_device *pdev)
+>> +{
+>> +	const struct device_node *np = pdev->dev.of_node;
+>> +	struct dma_slave_config dma_cfg = {};
+>> +	struct led_init_data init_data = {};
+>> +	struct device *dev = &pdev->dev;
+>> +	struct device_node *child;
+>> +	struct sun50i_r329_ledc *priv;
+>> +	struct resource *mem;
+>> +	int count, irq, ret;
+>> +
+>> +	count = of_get_available_child_count(np);
+>> +	if (!count)
+>> +		return -ENODEV;
+>> +	if (count > LEDC_MAX_LEDS) {
+>> +		dev_err(dev, "Too many LEDs! (max is %d)\n", LEDC_MAX_LEDS);
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	priv = devm_kzalloc(dev, struct_size(priv, leds, count), GFP_KERNEL);
+>> +	if (!priv)
+>> +		return -ENOMEM;
+>> +
+>> +	priv->dev = dev;
+>> +	priv->num_leds = count;
+>> +	spin_lock_init(&priv->lock);
+>> +	dev_set_drvdata(dev, priv);
+>> +
+>> +	ret = sun50i_r329_ledc_parse_format(np, priv);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = sun50i_r329_ledc_parse_timing(np, priv);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
+>> +	if (IS_ERR(priv->base))
+>> +		return PTR_ERR(priv->base);
+>> +
+>> +	priv->bus_clk = devm_clk_get(dev, "bus");
+>> +	if (IS_ERR(priv->bus_clk))
+>> +		return PTR_ERR(priv->bus_clk);
+>> +
+>> +	priv->mod_clk = devm_clk_get(dev, "mod");
+>> +	if (IS_ERR(priv->mod_clk))
+>> +		return PTR_ERR(priv->mod_clk);
+>> +
+>> +	priv->reset = devm_reset_control_get_exclusive(dev, NULL);
+>> +	if (IS_ERR(priv->reset))
+>> +		return PTR_ERR(priv->reset);
+>> +
+>> +	priv->dma_chan = dma_request_chan(dev, "tx");
+>> +	if (IS_ERR(priv->dma_chan))
+>> +		return PTR_ERR(priv->dma_chan);
+>> +
+>> +	ret = devm_add_action_or_reset(dev, sun50i_r329_ledc_dma_cleanup, priv);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	dma_cfg.dst_addr	= mem->start + LEDC_DATA_REG;
+>> +	dma_cfg.dst_addr_width	= DMA_SLAVE_BUSWIDTH_4_BYTES;
+>> +	dma_cfg.dst_maxburst	= LEDC_FIFO_DEPTH / 2;
+>> +	ret = dmaengine_slave_config(priv->dma_chan, &dma_cfg);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	priv->buffer = dma_alloc_wc(dmaengine_get_dma_device(priv->dma_chan),
+>> +				    LEDS_TO_BYTES(priv->num_leds),
+>> +				    &priv->dma_handle, GFP_KERNEL);
+>> +	if (!priv->buffer)
+>> +		return -ENOMEM;
+>> +
+>> +	irq = platform_get_irq(pdev, 0);
+>> +	if (irq < 0)
+>> +		return irq;
+>> +
+>> +	ret = devm_request_irq(dev, irq, sun50i_r329_ledc_irq,
+>> +			       0, dev_name(dev), priv);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = sun50i_r329_ledc_resume(dev);
+>> +	if (ret)
+>> +		return ret;
+> 
+> You seem to fill the runtime_pm hooks, but only call them directly and
+> never enable runtime_pm on that device, is that intentional?
 
-Tim
+Yes. I did not want to delay the initial version by adding runtime PM
+(and debugging the refcounts) when the driver already works now.
+However, I had runtime/system PM in mind while writing the driver.
+
+If you think it is too confusing, I could rename the functions to
+something like sun50i_r329_ledc_hw_init / sun50i_r329_ledc_hw_exit.
+
+Regards,
+Samuel
