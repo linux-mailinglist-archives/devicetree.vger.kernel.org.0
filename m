@@ -2,174 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7CB6456CA1
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 10:44:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBB9A456CDF
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 10:59:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234658AbhKSJqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 04:46:34 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:50364 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234671AbhKSJqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 04:46:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637315012; x=1668851012;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=gjNQXd45TcMbMNCM6PFG/zGDQLeKq6DMiiQVQ+Ek21c=;
-  b=vXsgZo3eJ9pB1FyxzJ9l19k11iYvqu1OSLl+1GDxdrURNTd9nIOXtC3A
-   SuHEfJA+Wj/aHtl+7Uz//4wXkK95OPpx46iDmzNO3F7F374irA3IM838o
-   8qsMjP0wBPFOqFyGTTjw/pX/8l1q+9YZW75NJZVqd1jE3yKJj5tfHp07+
-   o=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 19 Nov 2021 01:43:32 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2021 01:43:32 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Fri, 19 Nov 2021 01:43:31 -0800
-Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Fri, 19 Nov 2021 01:43:27 -0800
-From:   Satya Priya <quic_c_skakit@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, <swboyd@chromium.org>,
-        <collinsd@codeaurora.org>, <subbaram@codeaurora.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        "Lee Jones" <lee.jones@linaro.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Satya Priya <quic_c_skakit@quicinc.com>
-Subject: [PATCH V4 6/6] arm64: dts: qcom: sc7280: Add pm8008 regulators support for sc7280-idp
-Date:   Fri, 19 Nov 2021 15:12:33 +0530
-Message-ID: <1637314953-4215-7-git-send-email-quic_c_skakit@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
-References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+        id S232274AbhKSKBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 05:01:49 -0500
+Received: from mga04.intel.com ([192.55.52.120]:17003 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229974AbhKSKBs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Nov 2021 05:01:48 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="233110022"
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; 
+   d="scan'208";a="233110022"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2021 01:58:47 -0800
+X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; 
+   d="scan'208";a="568845492"
+Received: from smile.fi.intel.com ([10.237.72.184])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2021 01:58:31 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1mo0cr-008Uqj-60;
+        Fri, 19 Nov 2021 11:56:09 +0200
+Date:   Fri, 19 Nov 2021 11:56:08 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Calvin Zhang <calvinzhang.cool@gmail.com>
+Cc:     Vineet Gupta <vgupta@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Yoshinori Sato <ysato@users.sourceforge.jp>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Nick Hu <nickhu@andestech.com>,
+        Greentime Hu <green.hu@gmail.com>,
+        Vincent Chen <deanbo422@gmail.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Jonas Bonn <jonas@southpole.se>,
+        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
+        Stafford Horne <shorne@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Rich Felker <dalias@libc.org>, Chris Zankel <chris@zankel.net>,
+        Max Filippov <jcmvbkbc@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Mike Rapoport <rppt@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        David Hildenbrand <david@redhat.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Vladimir Isaev <isaev@synopsys.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Marc Zyngier <maz@kernel.org>,
+        David Brazdil <dbrazdil@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrey Konovalov <andreyknvl@gmail.com>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Souptick Joarder <jrdr.linux@gmail.com>,
+        Jinyang He <hejinyang@loongson.cn>,
+        Mauri Sandberg <sandberg@mailfence.com>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Ley Foon Tan <ley.foon.tan@intel.com>,
+        Andreas Oetken <andreas.oetken@siemens.com>,
+        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Christophe Leroy <christophe.leroy@c-s.fr>,
+        Ganesh Goudar <ganeshgr@linux.ibm.com>,
+        Markus Elfring <elfring@users.sourceforge.net>,
+        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
+        Atish Patra <atish.patra@wdc.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Nick Kossifidis <mick@ics.forth.gr>,
+        Alexandre Ghiti <alex@ghiti.fr>,
+        Vitaly Wool <vitaly.wool@konsulko.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Guo Ren <guoren@linux.alibaba.com>,
+        Rob Herring <robh@kernel.org>,
+        Zhang Yunkai <zhang.yunkai@zte.com.cn>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org,
+        uclinux-h8-devel@lists.sourceforge.jp, linux-mips@vger.kernel.org,
+        openrisc@lists.librecores.org, linuxppc-dev@lists.ozlabs.org,
+        linux-riscv@lists.infradead.org, linux-sh@vger.kernel.org,
+        linux-xtensa@linux-xtensa.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] of: reserved_mem: Remove reserved regions count
+ restriction
+Message-ID: <YZd0uEWNH6Def3+8@smile.fi.intel.com>
+References: <20211119075844.2902592-1-calvinzhang.cool@gmail.com>
+ <20211119075844.2902592-3-calvinzhang.cool@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211119075844.2902592-3-calvinzhang.cool@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pm8008 regulators support for sc7280 idp.
+On Fri, Nov 19, 2021 at 03:58:19PM +0800, Calvin Zhang wrote:
+> Change to allocate reserved_mems dynamically. Static reserved regions
+> must be reserved before any memblock allocations. The reserved_mems
+> array couldn't be allocated until memblock and linear mapping are ready.
+> 
+> So move the allocation and initialization of records and reserved memory
+> from early_init_fdt_scan_reserved_mem() to of_reserved_mem_init().
 
-Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
----
-Changes in V2:
- - As per Stephen's comments, replaced '_' with '-' for node names.
+>  arch/arc/mm/init.c                 |  3 ++
+>  arch/arm/kernel/setup.c            |  2 +
+>  arch/arm64/kernel/setup.c          |  3 ++
+>  arch/csky/kernel/setup.c           |  3 ++
+>  arch/h8300/kernel/setup.c          |  2 +
+>  arch/mips/kernel/setup.c           |  3 ++
+>  arch/nds32/kernel/setup.c          |  3 ++
+>  arch/nios2/kernel/setup.c          |  2 +
+>  arch/openrisc/kernel/setup.c       |  3 ++
+>  arch/powerpc/kernel/setup-common.c |  3 ++
+>  arch/riscv/kernel/setup.c          |  2 +
+>  arch/sh/kernel/setup.c             |  3 ++
+>  arch/xtensa/kernel/setup.c         |  2 +
 
-Changes in V3:
- - Changed the regulator node names as l1, l2 etc
- - Changed "pm8008-regulators" to "regulators"
- - Changed "qcom,min-dropout-voltage" to "regulator-min-dropout-voltage-microvolt"
+Isn't x86 missed? Is it on purpose?
+Would be nice to have this in the commit message or fixed accordingly.
 
-Changes in V4:
- - Moved all common stuff to pm8008.dtsi and added board specific configurations here.
-
- arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 73 ++++++++++++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-index d623d71..f86368d 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
-@@ -309,6 +309,69 @@
- 	};
- };
- 
-+&i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	#include "pm8008.dtsi"
-+};
-+
-+&pm8008_chip {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pm8008_active>;
-+};
-+
-+&pm8008_regulators {
-+	vdd_l1_l2-supply = <&vreg_s8b_1p2>;
-+	vdd_l3_l4-supply = <&vreg_s1b_1p8>;
-+	vdd_l5-supply = <&vreg_bob>;
-+	vdd_l6-supply = <&vreg_bob>;
-+	vdd_l7-supply = <&vreg_bob>;
-+};
-+
-+&pm8008_l1 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1300000>;
-+	regulator-min-dropout-voltage-microvolt = <96000>;
-+};
-+
-+&pm8008_l2 {
-+	regulator-min-microvolt = <950000>;
-+	regulator-max-microvolt = <1250000>;
-+	regulator-min-dropout-voltage-microvolt = <24000>;
-+};
-+
-+&pm8008_l3 {
-+	regulator-min-microvolt = <1650000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-min-dropout-voltage-microvolt = <224000>;
-+};
-+
-+&pm8008_l4 {
-+	regulator-min-microvolt = <1504000>;
-+	regulator-max-microvolt = <1600000>;
-+	regulator-min-dropout-voltage-microvolt = <0>;
-+};
-+
-+&pm8008_l5 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-min-dropout-voltage-microvolt = <104000>;
-+};
-+
-+&pm8008_l6 {
-+	regulator-min-microvolt = <2600000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-min-dropout-voltage-microvolt = <112000>;
-+};
-+
-+&pm8008_l7 {
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3544000>;
-+	regulator-min-dropout-voltage-microvolt = <96000>;
-+};
-+
- &qfprom {
- 	vcc-supply = <&vreg_l1c_1p8>;
- };
-@@ -437,6 +500,16 @@
- 	};
- };
- 
-+&pm8350c_gpios {
-+	pm8008_active: pm8008_active {
-+		pins = "gpio4";
-+		function = "normal";
-+		bias-disable;
-+		output-high;
-+		power-source = <0>;
-+	};
-+};
-+
- &qspi_cs0 {
- 	bias-disable;
- };
 -- 
-2.7.4
+With Best Regards,
+Andy Shevchenko
+
 
