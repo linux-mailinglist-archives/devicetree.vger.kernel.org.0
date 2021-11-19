@@ -2,91 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAA1C457024
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 14:57:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5762457064
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 15:12:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234522AbhKSOAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 09:00:01 -0500
-Received: from dvalin.narfation.org ([213.160.73.56]:43910 "EHLO
-        dvalin.narfation.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235626AbhKSN77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 08:59:59 -0500
-X-Greylist: delayed 322 seconds by postgrey-1.27 at vger.kernel.org; Fri, 19 Nov 2021 08:59:58 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
-        s=20121; t=1637330214;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=uDh2Gef57VIrw3JCOhoreOyscn4mWGROcXDUPaTYRHU=;
-        b=1FH3GsiIuqk9MfZBfqTih9QEDTPGeLAuiThZjHfujj6Z0YcJr2eg19OZgVrxyq5co8aqKS
-        XlEQVCTdsNa8ulX2DxfqucUUem4LJobzCLNLPq4LPNyTjdAhmMxpjRowUb9iGPKuQTQq8X
-        CCuYNTUl1qICtwetDDhmyry11QRNJeU=
-From:   Sven Eckelmann <sven@narfation.org>
-To:     ath11k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: Re: [PATH v3 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
-Date:   Fri, 19 Nov 2021 14:56:45 +0100
-Message-ID: <40959183.USSs3XEnCI@sven-l14>
-In-Reply-To: <1637244892-27267-2-git-send-email-akolli@codeaurora.org>
-References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org> <1637244892-27267-2-git-send-email-akolli@codeaurora.org>
+        id S234226AbhKSOP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 09:15:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234551AbhKSOP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 09:15:29 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1A6C061574
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 06:12:27 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id q12so8745538pgh.5
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 06:12:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UgAqbpopy6HklYietNPfXdJKLyBN7yZp/5A4MJwHDTY=;
+        b=CEnYbYaY8rBd1Cif8k8YZBWlBHeTr8pPZsol+HzbDQrXPK/E4j+NS/7uSTu9qqqItA
+         2On7bI0TRuDAVBAKwMmp/c0Ou3YdqgsmNbZs6zsK12njRtpkGd4b81MLNLzrCpItUurk
+         i6m5en2CybWucPpNjfnQ+XB3zctBJP4rISr0zsrxNjS45kjGEWbqjU0215wzs15PVyAL
+         6JFuv2WjRSbcTnHA7Id7/qaKlrraA97HiL0D6o/GrpQrtSbTq39o8Iy9G9HQmCDQJv6t
+         E4Gc7NitF2C75qKmYSt54NOfKCYsfgGU7wYML0cKsUTGgdErHh/GkapONPo2lVZCMQZp
+         5hvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UgAqbpopy6HklYietNPfXdJKLyBN7yZp/5A4MJwHDTY=;
+        b=3VXKIFjG2LkZGiOzIyFtGUoaEQGEpffyKPUYq04kDd4O23ZHY+B0xroCwm3bfxn5Gc
+         VdfTar2Y3nrhCHDgh1saPf6zTPfBCC4maovIGZbAp0khH4drWNSzl7e6ZxDJxLvvViTG
+         1TZmpqxBKGCcLd+4+YdvnwsYIdsIpjWSJxpndrIFU7vXgyHI3hCIIC0lpxXIYRZblxba
+         HnmmpORHVVjMPCXUP7PIxThawr6dUwZ1itON/e/cHoU4eyrs6MFEnsbx3o73c+5TrQTD
+         t6dPDMKFlq69ky/LyzuaN23Izs/AyYaD3ka9YR1+bxDy+PkYJPcIVoDApg46rbJp9nih
+         2n8g==
+X-Gm-Message-State: AOAM531vSCaBKY8UzTICd+0Mbq6r7e4CH/2eH6gOBGje/QDH5yCeJRew
+        Lm52kiYFLpLOwtA9d78RjASeJNb7o8jwY1hdrDgGrmoOZcpF7g==
+X-Google-Smtp-Source: ABdhPJz1hwMPGGN4/nlVyGD+fO+dHHNAi/WPWrzoLWlJ/hnc5Yu87VoDBBCzIB/CWsfpcbrD9oqWIftLk7Q6tGO9mSs=
+X-Received: by 2002:a05:6122:1813:: with SMTP id ay19mr119204327vkb.24.1637331135963;
+ Fri, 19 Nov 2021 06:12:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart4088782.isi6uL5OL7"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
+ <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
+ <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
+ <001401d7da86$f7ebd660$e7c38320$@samsung.com> <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
+ <CAPLW+4kS-pzROC5oyAjW1aJp5cb1e3XK+40HsKwgPdCziSp1ZQ@mail.gmail.com> <773110c9-fc74-6cab-68c0-1c771a3be104@canonical.com>
+In-Reply-To: <773110c9-fc74-6cab-68c0-1c771a3be104@canonical.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 19 Nov 2021 16:12:04 +0200
+Message-ID: <CAPLW+4n+JKOQjbLriu6frB+c4nt6efTrURcbw9ZWZB-+a6Ruiw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
+To:     Jaewon Kim <jaewon02.kim@samsung.com>
+Cc:     Chanho Park <chanho61.park@samsung.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---nextPart4088782.isi6uL5OL7
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-From: Sven Eckelmann <sven@narfation.org>
-To: ath11k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: Re: [PATH v3 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
-Date: Fri, 19 Nov 2021 14:56:45 +0100
-Message-ID: <40959183.USSs3XEnCI@sven-l14>
-In-Reply-To: <1637244892-27267-2-git-send-email-akolli@codeaurora.org>
-References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org> <1637244892-27267-2-git-send-email-akolli@codeaurora.org>
+On Fri, 19 Nov 2021 at 10:54, Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> On 18/11/2021 20:59, Sam Protsenko wrote:
+> > On Tue, 16 Nov 2021 at 11:32, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@canonical.com> wrote:
+> >>
+> >> On 16/11/2021 02:12, Chanho Park wrote:
+> >>>> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
+> >>>> from my side (just a food for thought): do we want to configure USI
+> >>>> related config inside of particular drivers (SPI, I2C, UART)? Or it would
+> >>>> be better design to implement some platform driver for that, so we can
+> >>>> choose USI configuration (SPI/I2C/UART) in device tree? I think this
+> >>>> series is good to be merged as is, but we should probably consider all
+> >>>> upsides and downsides of each option, for the future work.
+> >>>
+> >>> I'm also considering how to support this USI configuration gracefully.
+> >>> Current version of USI is v2 which means there is a v1 version as well. It might be a non-upstream SoC so we don't need to consider it so far.
+> >>> But, there is a possibility that the USI hw version can be bumped for future SoCs.
+> >>>
+> >>> As you probably know, earlier version of the product kernel has a USI SoC driver[1] and it was designed to be configured the USI settings by device tree.
+> >>>
+> >>> Option1) Make a USI driver under soc/samsung/ like [1].
+> >>> Option2) Use more generic driver such as "reset driver"? This might be required to extend the reset core driver.
+> >>> Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respectively and expose some configurations which can be variable as device tree.
+> >>>
+> >>> [1]: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi_v2.c
+> >>
+> >> I don't have user manuals, so all my knowledge here is based on
+> >> Exynos9825 vendor source code, therefore it is quite limited. In
+> >> devicetree the USI devices have their own nodes - but does it mean it's
+> >> separate SFR range dedicated to USI? Looks like that, especially that
+> >> address space is just for one register (4 bytes).
+> >>
+> >> In such case having separate dedicated driver makes sense and you would
+> >> only have to care about driver ordering (e.g. via device links or phandles).
+> >>
+> >> Option 2 looks interesting - reusing reset framework to set proper USI
+> >> mode, however this looks more like a hack. As you said Chanho, if there
+> >> is a USI version 3, this reset framework might not be sufficient.
+> >>
+> >> In option 3 each driver (UART/I2C/SPI) would need to receive second IO
+> >> range and toggle some registers, which could be done via shared
+> >> function. If USI v3 is coming, all such drivers could get more complicated.
+> >>
+> >> I think option 1 is the cleanest and extendable in future. It's easy to
+> >> add usi-v3 or whatever without modifying the UART/I2C/SPI drivers. It
+> >> also nicely encapsulates USI-related stuff in separate driver. Probe
+> >> ordering should not be a problem now.
+> >>
+> >> But as I said, I don't have even the big picture here, so I rely on your
+> >> opinions more.
+> >>
+> >
+> > Hi Krzysztof,
+> >
+> > Can you please let me know if you're going to apply this series as is,
+> > or if you want me to submit USIv2 driver first, and then rework this
+> > patch on top of it? I'm working on some HSI2C related patches right
+> > now, and thus it'd nice to know about your decision on this series
+> > beforehand, as some of my patches (like bindings doc patches) might
+> > depend on it. Basically I'd like to base my patches on the proper
+> > baseline, so we don't have to rebase those later.
+>
+> This set won't go via my tree anyway, but I am against it. David pointed
+> out that his USIv1 is a little bit different and embedding in each of
+> I2C/UART/SPI drivers the logic of controlling USIv1 and USIv2 looks too
+> big. The solution with a dedicated driver looks to me more flexible and
+> encapsulated/cleaner.
+>
+> Therefore after the discussions I am against this solution, so a
+> soft-NAK from my side.
+>
 
-On Thursday, 18 November 2021 15:14:52 CET Anilkumar Kolli wrote:
-> +                       if (of_property_read_u32_array(hremote_node, "reg", reg, 4)) {
-> +                               ath11k_dbg(ab, ATH11K_DBG_QMI,
-> +                                          "qmi fail to get reg from hremote\n");
-> +                               return 0;
-> +                       }
-> +
-> +                       start = reg[0] + reg[1];
-> +                       size = reg[2] + reg[3];
+Hi Jaewon,
 
-That cannot be correct. Since when can upper 32 bit and lower 32 bit of an u64 
-be combined with a simple "+" and no shifting? And why can you operate on the
-reg without getting the address + size cell count?
+I'm going to submit USI driver soon, and also some more HSI2C patches.
+Do you mind if I rework your patches to rely on USI drver (instead of
+modifying System Register in HSI2C driver), and include those in my
+patch series? Of course, I'll preserve your authorship. Just think
+that would be easier and faster this way.
 
-Kind regards,
-	Sven
---nextPart4088782.isi6uL5OL7
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
+Thanks!
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAmGXrR0ACgkQXYcKB8Em
-e0YWphAAoi8XgHm6HgBiHPw5kiqY+4Y+gqOXmJ+wdBpNEgosjJTQTNMC63+cR3+G
-d1sIxFo3PDESFnM+1ECTEOQhYbJcG3AFtEwX06vYgtnaifR099MtW5cvLxyEfD3G
-2updTMGLyYDCcrRHUpCrpe+JTuHLMZQBgbmMFtb//hs5YYtRP0DXObULwYStBMQS
-Qsa2mqzSvzqmP7cUCVDPS1ERRSsUl61POTRi66c4x3vZH6B303OF9Al3eWbQ5VP5
-sltJLngIIrHrl96LTb50ETEYsFbTFORed2tY0AKDVwL7LgEy6ZmUj4xypDVktxV6
-gRgn64ccfXvUr3OWtCjLGp6yMNQokpHNJuazuLsQ4DbzdMzVuARWlBgfpn2o8XwQ
-FqY7c/GJAUUmM7P2RT8hjnXnheZxnFdU+XYwqXBYfDi2AwLpFwL7se8FsR7UwU1H
-C3gxOgU+UFSGEvNITubPl+qdxVEjzzUaKKz3arwqnzNmI84HgKNTlw6Ih8ypyl8g
-1xjrioaQodhkQx75ZJuhQWzOgi9H+6hJrQck9k1czQZnCEA9ftzIWaTlGnJe03Ch
-tYLbjnGh4Vx4SbIeHAWVuv7f7se04HjhgM0VsG3PtvxbA6ID2JAOxxNrkOD4Lb4J
-KqbWQrF/5b5PkWo+duFcn8S4dehVJDOVg/z2RAPs3gHFgd9iO5w=
-=ahX6
------END PGP SIGNATURE-----
-
---nextPart4088782.isi6uL5OL7--
-
-
-
+>
+> Best regards,
+> Krzysztof
