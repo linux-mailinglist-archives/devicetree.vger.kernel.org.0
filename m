@@ -2,104 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419DF45754A
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 18:19:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6F9457700
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 20:28:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236573AbhKSRWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 12:22:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
+        id S235305AbhKSTbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 14:31:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236512AbhKSRWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 12:22:05 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C823C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 09:19:03 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id d24so19378251wra.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 09:19:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HpL2qzn8s1pMxSKPVy6BFQOEtm3mwh6KOgnbIGnoQRw=;
-        b=BS2Q7zU4V9BqYkMwfKbF71WrJNfRD8dSX+M2CI/qIDQLw0WG6qygNhan4A78uDhxKb
-         O9rs1MSC5I5ObTyZP8bg5NCKRxLkqUrP9S2Lvq+X6Tigs57Jp/bpqxyKBc+TGO6+YvYa
-         6OwtGO3N8Z7btb7qzw7Adufr88pK+TgR4+xHzhMTkQ6Q+1uVQFDUTftWDUGV14SUi4nN
-         dPiHqYk/qU4PFnBgHs6LV80OsEq41pzqAqtX1jq2IYksvNZaGpSHKMrzsIZwuORx9pV3
-         WXe3Crem2qEoj3au8XRFyi29FKBmruaAHbPuFhUiFM60PW+0xVXmAzoi4x4vzEbzw+h2
-         G1WQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HpL2qzn8s1pMxSKPVy6BFQOEtm3mwh6KOgnbIGnoQRw=;
-        b=Dc/fQEfjd2D3ldobrm8MqhZvh31EQvENZ1Jz4veQYn75L1hnsPe0mnUS0lUTxGOowH
-         7+uQRTSqDRwTg49O7iaGtqgPzcbPqK0wsVtj5Ijjh5IDTFNrTsUisTleKe/xq1OdEl6w
-         x5BKtZVrxQiBO2n2YR6O741MbN0DNjH3j5bSq3eco+68LshKiInHZzZffe2maP2kh7dt
-         8CQnhJiv4IpbXwy+wMmix189Bk/fTM7kClFY5PJFriQ1TPDsq7VplmVuZZGiHlmODouW
-         dXvFK4+6CTaukl0jZQgZrWxBFmk/eneaHdnLK2ILqVq6lsehqlEJZT9m7H4dyHj+GE4K
-         gFxQ==
-X-Gm-Message-State: AOAM532t1B/OFYCvxBZn6lD2ZhbNwJG83FkoD53hY4PdpcamwXEBCJ7a
-        M+8lw6fr/xapBJsOx4npiO9P6A==
-X-Google-Smtp-Source: ABdhPJy2URfxT8KlUV/UQ4ChP+6mnancHBoU5VMuPGKRmQUQKwehJR4L0S9VQPWrBN+3Ks+JmJMObA==
-X-Received: by 2002:adf:b34f:: with SMTP id k15mr9377107wrd.125.1637342341594;
-        Fri, 19 Nov 2021 09:19:01 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id n1sm332340wmq.6.2021.11.19.09.19.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Nov 2021 09:19:01 -0800 (PST)
-Subject: Re: [PATCH 2/6] dt-bindings: nvmem: mediatek: add support for mt8195
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yz Wu <yz.wu@mediatek.com>
-References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
- <20211107075646.4366-2-chunfeng.yun@mediatek.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <6aacd28e-346a-68e6-7a76-d7337e0480a2@linaro.org>
-Date:   Fri, 19 Nov 2021 17:18:59 +0000
+        with ESMTP id S230127AbhKSTbC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 14:31:02 -0500
+X-Greylist: delayed 1102 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 19 Nov 2021 11:28:00 PST
+Received: from wp175.webpack.hosteurope.de (wp175.webpack.hosteurope.de [IPv6:2a01:488:42:1000:50ed:84b6::])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD2AC061574;
+        Fri, 19 Nov 2021 11:27:59 -0800 (PST)
+Received: from p54bc6060.dip0.t-ipconnect.de ([84.188.96.96] helo=[192.168.1.169]); authenticated
+        by wp175.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        id 1mo9GQ-0002Bb-I1; Fri, 19 Nov 2021 20:09:34 +0100
+Subject: Re: realtek,rtl-intc IRQ mapping broken on 5.16-rc1
+To:     Marc Zyngier <maz@kernel.org>,
+        Sander Vanheule <sander@svanheule.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>
+References: <bbe5506a2458b2d6049bd22a5fda77ae6175ddec.camel@svanheule.net>
+ <87ilwp6zm6.wl-maz@kernel.org>
+ <fdfe6615a0ec0d4a770b04a437922956e8586078.camel@svanheule.net>
+ <877dd46w2b.wl-maz@kernel.org>
+From:   Birger Koblitz <mail@birger-koblitz.de>
+Message-ID: <da4965eb-715f-ad50-7281-00b28dd64a66@birger-koblitz.de>
+Date:   Fri, 19 Nov 2021 20:09:34 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <20211107075646.4366-2-chunfeng.yun@mediatek.com>
+In-Reply-To: <877dd46w2b.wl-maz@kernel.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;mail@birger-koblitz.de;1637350080;b84fad9f;
+X-HE-SMSGID: 1mo9GQ-0002Bb-I1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+I would vote for (2), the somewhat dirty fix, at least for now.
+We are working on an updated version of this driver for newer Realtek
+SoCs (RTL839x, RTL930x), which support VSMP and where there are
+multiple instances of this controller to support per-cpu IRQs.
+However, this is not ready for prime-time yet. But at that
+time we would also fix the IRQ map.
 
-On 07/11/2021 07:56, Chunfeng Yun wrote:
-> Add compatible for mt8195
+Cheers,
+   Birger
+
+On 19/11/2021 15:48, Marc Zyngier wrote:
+> On Thu, 18 Nov 2021 19:45:26 +0000,
+> Sander Vanheule <sander@svanheule.net> wrote:
+>>
+>> Hi Marc,
+>>
+>> On Thu, 2021-11-18 at 19:19 +0000, Marc Zyngier wrote:
+>>> Hi Sander,
+>>>
+>>> On Thu, 18 Nov 2021 15:56:06 +0000,
+>>> Sander Vanheule <sander@svanheule.net> wrote:
+>>>>
+>>>> Hi everyone,
+>>>>
+>>>> On 5.16-rc1, the realtek,rtl-intc interrupt controller driver for
+>>>> Realtek RTL8380 SoCs (and related) appears broken. When booting, I
+>>>> don't get a tty on the serial port, although serial output works.
+>>>
+>>> Thanks for the heads up.
+>>>
+>>>> The watchdog (currently under review) also cannot acquire the
+>>>> required phase1 interrupt, and produces the following output:
+>>>
+>>>> [    1.968228] realtek-otto-watchdog 18003150.watchdog: error -EINVAL: Failed to get
+>>>> IRQ 4
+>>>> for phase1
+>>>> [    1.978404] realtek-otto-watchdog: probe of 18003150.watchdog failed with error -22
+>>>>
+>>>> A bisects points to commit 041284181226 ("of/irq: Allow matching of
+>>>> an interrupt-map local to an interrupt controller"). Reverting this
+>>>> above commit and follow-up commit 10a20b34d735 ("of/irq: Don't
+>>>> ignore interrupt-controller when interrupt-map failed") restores the
+>>>> functionality from v5.15.
+>>>
+>>> OK, back to square one, we need to debug this one.
+>>>
+>>> [...]
+>>>
+>>>>          cpuintc: cpuintc {
+>>>>                  compatible = "mti,cpu-interrupt-controller";
+>>>>                  #address-cells = <0>;
+>>>>                  #interrupt-cells = <1>;
+>>>>                  interrupt-controller;
+>>>>          };
+>>>>
+>>>
+>>> [...]
+>>>
+>>>>
+>>>>                  intc: interrupt-controller@3000 {
+>>>>                          compatible = "realtek,rtl-intc";
+>>>>                          reg = <0x3000 0x20>;
+>>>>                          interrupt-controller;
+>>>>                          #interrupt-cells = <1>;
+>>>>
+>>>>                          #address-cells = <0>;
+>>>>                          interrupt-map =
+>>>>                                  <31 &cpuintc 2>, /* UART0 */
+>>>>                                  <20 &cpuintc 3>, /* SWCORE */
+>>>>                                  <19 &cpuintc 4>, /* WDT IP1 */
+>>>>                                  <18 &cpuintc 5>; /* WDT IP2 */
+>>>>                  };
+>>>
+>>> Something looks pretty odd. With 5.15, this interrupt-map would be
+>>> completely ignored. With 5.16-rc1, we should actually honour it.
+>>>
+>>> /me digs...
+>>>
+>>> Gah, I see. This driver has its own interrupt-map parser and invents
+>>> something out of thin air. I will bang my own head on the wall for
+>>> having merged this horror.
+>>>
+>>> Can you try applying the patch below and rename the interrupt-map
+>>> property in your DT to "silly-interrupt-map" and let me know if that
+>>> helps?
+>>
+>> I've dropped the aforementioned reverts, and applied your suggested
+>> changes to the DTS and irq-realtek-rtl. Interrupts now appear to
+>> work like before; UART console and watchdog work as expected.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-
-Applied thanks,
-
---srini
-
-> ---
->   Documentation/devicetree/bindings/nvmem/mtk-efuse.txt | 1 +
->   1 file changed, 1 insertion(+)
+> Right. So here's the problem: what this interrupt-map property means
+> is "an interrupt descriptor with value 31 really is interrupt 2 on
+> cpuintc, and nothing else matters(tm)". Up to 5.15, the kernel would
+> simply ignore such directive. It now honours it.
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> index ec70c5b7a340..39d529599444 100644
-> --- a/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> +++ b/Documentation/devicetree/bindings/nvmem/mtk-efuse.txt
-> @@ -8,6 +8,7 @@ Required properties:
->   	      "mediatek,mt7623-efuse", "mediatek,efuse": for MT7623
->   	      "mediatek,mt8173-efuse" or "mediatek,efuse": for MT8173
->   	      "mediatek,mt8192-efuse", "mediatek,efuse": for MT8192
-> +	      "mediatek,mt8195-efuse", "mediatek,efuse": for MT8195
->   	      "mediatek,mt8516-efuse", "mediatek,efuse": for MT8516
->   - reg: Should contain registers location and length
->   - bits: contain the bits range by offset and size
+> There are only three solution to this:
+> 
+> (1) we change the DT and the driver so that it actually describes the
+> HW rather than some crazy interpretation. This means breaking backward
+> compatibility with older kernels on new DT, as well as new kernels on
+> old DTs.
+> 
+> (2) we add a quirk to the core DT parsing code to ignore an
+> interrupt-map property placed in a "realtek,rtl-intc" node.
+> 
+> (3) we revert the change and break the Apple M1.
+> 
+> I'm obviously not keen on (3). I can (sort of) deal with (2), but I'd
+> rather do (1) because what currently is in the DT doesn't describe the
+> HW in any shape or form.
+> 
+> Rob, what do you think?
+> 
+> 	M.
 > 
