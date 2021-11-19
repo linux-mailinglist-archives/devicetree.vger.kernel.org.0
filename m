@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CE71456787
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 02:42:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EACB45679D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 02:49:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233330AbhKSBp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 20:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56364 "EHLO
+        id S233443AbhKSBw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 20:52:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbhKSBp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 20:45:57 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D4CC061748
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:42:56 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id t23so18564477oiw.3
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:42:56 -0800 (PST)
+        with ESMTP id S233439AbhKSBw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 20:52:29 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A4DC061574
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:49:28 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id b5-20020a9d60c5000000b0055c6349ff22so14279264otk.13
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:49:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=X+4PtbwP22GNL58EB2Kn0kBSekJZJrlBoC1EpDbCbXg=;
-        b=IVpsHQisSXq61n+KCFmaFVTIZs1m7P8sptH88Rs2nCWyy05xN3D5zLggCYBoSoA+0l
-         u7fcIUffkGErYpwi8Y3XHROuyUIsWALMQr5rqYfomny0130g5jsmqlK2y1NvQ2SMD9gQ
-         ZWCyuZF6T+AUUWS/dQpyOovCAMnpSDbrezyWD2zyo5Eh3qjK/7Bl/65Y73GuXE0LngfN
-         wdih7bwfGmPzfsEkdR5CQSc7llv9dtBiDwvvW8+9A3TUTvREyPh4+6iciM9Gpt/BXr2C
-         d2R9FHaiAMfDTOUN6iEDX6lC8sX7K3olLhiiRDKeX/1I9SbrKt/1ceST/AfOyhCSB32R
-         ECbA==
+        bh=p/yB12Lwz7EzvGfdERVvlnwuUIvVBmwlt8u3SLltb74=;
+        b=LBGGkZ/6Lag+yjHnf6Xyt1g2QfNYRv0mCun5+qxjty42nWhtn2KKlXp0zXt2kpDgdd
+         +W6wzpPPwVy7vpASA/IWmbQpjOuuzyI4fodo0rLkf06tY5eeFeoYk91mX6PeJQHHO1Nq
+         gJUQ9qtyXWdg1vTiRAuUbfhiyV1RdJ7tJ6eWjWeAjhi1651n5709+dEVe1ASPsbk4n8K
+         b9AGCS92Y80nCmONEfnIl0VbMMtBHux5oOdtxZ249EVCJ5YZ5H72nJqWZLAQGiAy+8Ug
+         VThMbutyzfyJ0oKIfP+k18Ha6QPRSdjrEVBz123C9mO1S62raSYPHzvUkb1qLSRhYasO
+         4vIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=X+4PtbwP22GNL58EB2Kn0kBSekJZJrlBoC1EpDbCbXg=;
-        b=VSTQgU3bsv5QvFE3daufYhqqw+zxuymcSsrBR+MO/pfKOm9snYH831u7q1RxyooYFN
-         znObrGVYtdJRa37OwE7DY+fUYg/rd54fwImOPSLnm9oBfubh8QUnqOzDXzOobAyNUJI5
-         q96HrTIJzOKzrrwFI306Vcbd7MAXb086kZ/jdoWpYtYB08GUEDOBbAGmnxtj+4DuXdH6
-         neJtAhNW3PyGy7DUHjqazyiwGSXlPHSly+/RyLXnHsBBSqvJceKi8DwFmvON6xcPZ333
-         0/jlWJI3SzztHldBzpJd0PJq0dy91LKRz2v8AIzacQwKrDb8CJL4O7ckwfnhvXT55gvH
-         AhpQ==
-X-Gm-Message-State: AOAM533qAl8hTaQqw53t6sAXcn/QA/lsEIzDuBt2/JPlF8SUdTTZ+VJI
-        5G4CKTZa5GdAAGzD6YznYomQC25qhAm6lRTXsNTTxw==
-X-Google-Smtp-Source: ABdhPJyivwAYVdXUPMbQ2Y5VnZ8qk/PZC4e3Bk2bhJcLGXxX5foQprxJzFpUAszMwIztcuhdwXgdbO39GFXWDz6eZ7Y=
-X-Received: by 2002:a54:4791:: with SMTP id o17mr1587886oic.114.1637286175950;
- Thu, 18 Nov 2021 17:42:55 -0800 (PST)
+        bh=p/yB12Lwz7EzvGfdERVvlnwuUIvVBmwlt8u3SLltb74=;
+        b=7u2jVbio6UTKMjTbRVrg88xQxZ4BVkblie2cx1eCuwWu1JcBRjbrype2LIlzPeB3Wy
+         a6yxesiq4FMk3gYeJgGM+65522vvvuxOlJ0EbBmZXhiv8xn4hdO3bt+9ixEPsw5ZPh4q
+         WejhY+S9mdC8OVNrG9/Q5nIKEUoFp/C6ks4wqKe43ZKuDQTUvF2+hLVRTIb+48wyVA1D
+         bDWfaC+HY3LwPmKIOWgVchnrbiunTMkekSbfxKSeghaW8e62e7fbWPWKOgbMBL/wQWCi
+         w0icSsTO2km1S5zoZrRbVwxa1UU4ep+KZ0G3qSRlOMAvNI9YvdDJfsEbr3iFm+WAUNTV
+         +uzg==
+X-Gm-Message-State: AOAM531Bko5JGDaWmD25xmrbSVZ64r13kIXMZlYlAfrnjxPH/9uLvfFu
+        csDDRkWaLLRErojShE40RssG7pGwwPUiiBIX/esdSw==
+X-Google-Smtp-Source: ABdhPJw6Jo5EKLi4h1LH7kdp+MaUuceje5OBNlQRaAoBgEVhDH/nsZroQkkQPqsdlu6RHeJkx54/yTg/O7KbnMDbuwI=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr1487939otj.35.1637286567370;
+ Thu, 18 Nov 2021 17:49:27 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com> <6645a55c05cf12954f97347ade1cf47ddf62bb86.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
-In-Reply-To: <6645a55c05cf12954f97347ade1cf47ddf62bb86.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com> <392c7aa891d466bc4df06a076090150319e0e7dc.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <392c7aa891d466bc4df06a076090150319e0e7dc.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 19 Nov 2021 02:42:44 +0100
-Message-ID: <CACRpkda5YunVXZWp7dnY0qiKMXHSs4qviYuLVh1uc0jB9aaY9A@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 4/9] power: supply: Add batinfo getters usable
- prior supply registration
+Date:   Fri, 19 Nov 2021 02:49:15 +0100
+Message-ID: <CACRpkdZ4HvgYyssNw_bfWR-7YQXEe_nPOtZChY_ZPUpz_Ga7jA@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 6/9] power: supply: Add batinfo functions for OCV
+ to SOC with 0.1% accuracy
 To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
         Sebastian Reichel <sre@kernel.org>,
@@ -64,19 +64,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 1:26 PM Matti Vaittinen
+On Tue, Nov 16, 2021 at 1:27 PM Matti Vaittinen
 <matti.vaittinen@fi.rohmeurope.com> wrote:
 
-> In some cases it is beneficial to be able to query the static battery
-> node properties prior power_supply registration. The device-tree
-> parsing does not really depend on psy so add APIs which can
-> be used without the power-supply. Also, convert APIs to operate on
-> fwnode while at it.
+> The battery info functions computing the state-of-charge (SOC) based
+> on open-circuit-voltage (OCV) are returning SOC using units of 1%.
+>
+> Some capacity estimation computations require higher accuracy. Add
+> functions that return SOC using units of 0.1% to reduce rounding error.
 >
 > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 
-This looks quite useful!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+That sounds useful.
+
+> +int power_supply_ocv2dcap_simple(struct power_supply_battery_ocv_table *table,
+> +                               int table_len, int ocv)
+> +{
+> +       int i, cap, tmp;
+
+Why a whole new function? Just rename the original power_supply_ocv2cap_simple()
+to power_supply_ocv2dcap_simple and patch it to return the finegrained value,
+then add a wrapper that use that function but drops it down by one order
+of magnitude.
+
+> +int power_supply_batinfo_ocv2dcap(struct power_supply_battery_info *info,
+> +                                 int ocv, int temp)
+
+Same with this, saves a lot of code!
+
+(Also will use my new interpolation routines since you refactor
+on top of that.)
 
 Yours,
 Linus Walleij
