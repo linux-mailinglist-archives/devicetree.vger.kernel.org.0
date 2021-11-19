@@ -2,122 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3800445687F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 04:15:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78C7145689B
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 04:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232742AbhKSDS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 22:18:27 -0500
-Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:56585 "EHLO
-        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231129AbhKSDS0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Nov 2021 22:18:26 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.west.internal (Postfix) with ESMTP id 3BA3E2B00BDE;
-        Thu, 18 Nov 2021 22:15:24 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 18 Nov 2021 22:15:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=h3Hk7f2yCSyGf
-        a4CWbT3bM125byZdGI9jFEAsPjrUwQ=; b=AxLhODWqienBU8Do+yo3CcUcBJMPM
-        V9OqhuvQNJL7vrum6akxrmQtxtCGu+xcm8rv1mVgwIOI0EDGi3ZznGsU2kkxaMK4
-        +WAlppjRlRkhxgPkoZxx4/1uAtml/Zs5vDVIOEgqLJy46CseiMlhUs5nW3OhVsly
-        Itu5PGaXleD5nlg5kC09oIcX7JV93cvwwIEgVkvrc+89BhzZ31dQXQal4g9zVf/P
-        zsYWNC1GKO7X7zDh1feW9BolfIxb77cnsxbGCCoA6vFtElFSw7FCE1KSE1zLwYZO
-        xTRGI6L+KUX/tdW1PYYnt+bw+B4nh3QbLagnryT+daLW4ezz/2lie955A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=h3Hk7f2yCSyGfa4CWbT3bM125byZdGI9jFEAsPjrUwQ=; b=a18hLt/8
-        FDtoWwMqL0CVOaUonM77tS0iE2MWRCJHfq6c6xqH28qiL0MPBM9cxMdvc9CpwRTy
-        EZNkz4Yy8icloqT0TdY0g13nMVvIbGZaYSUbaT8Cwt2Go3JBAgjveyTK561xb1Eq
-        bc8RyMOT7cwOIkP1MEtw/Uzy6jOqXztZ2t8sx4AuuGRJTpoAnH+kmPFdul1GmYh/
-        Ym+VzXOK0VfsbYiN0WanBowiLWIDYDOgT3rtbXgu1XTxP9BfJ7E4wcTfmMEXtbg6
-        jX/fufl6HgWbPU5lgjQLIE3dpa9abrH9IADaNq5c69ZZ4UkUaK1Grm9gmaz2qlu3
-        uTNYbyb36/g0pQ==
-X-ME-Sender: <xms:yxaXYX0g1TolDVBhEp7dyXJ4p3rZOhwujk9_RKnaFXx6e1gU7RFAPA>
-    <xme:yxaXYWE_ISmQbVe12PiM2-6Cta_exn_pBkkWrIjMX6QJWufwNG5aVejT4YizKOlfk
-    t2-_bLDYlAeytnXqA>
-X-ME-Received: <xmr:yxaXYX565eR4F0zm02SDbMHUbnjNXiYLM4JFGS0tCgbANhv-P7UdIf-gf9ADfHuBr7Wy3E-445d5TOKvCzhMgrfN2o8oXQ8-x0xu84HF15K8NV0LLKpfuCr6hS_tstANN6G1LQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeejgdehhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheejvdfg
-    jeehueeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:yxaXYc3HzRZRK5lIcD_hgggUZyEhAswXF1efdZMxWVIG2RAuOcNt4g>
-    <xmx:yxaXYaEEYMrTxMXo5Nn2XN1Zj20rgOYhLtrceSzHAe76PeKxP4zGhg>
-    <xmx:yxaXYd86XdK1EOrpbR3uJ5apiGbWTD-3giZA0WOTFFijBfexOc1PJw>
-    <xmx:yxaXYRcNQB7D4Xsjlmnoy0Fg2yQtk6ZLnx2a_QK5t7CGoa0QBS2m0Uo4GlQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 18 Nov 2021 22:15:22 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Samuel Holland <samuel@sholland.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-staging@lists.linux.dev
-Subject: [PATCH 2/2] media: cedrus: Add support for the D1 variant
-Date:   Thu, 18 Nov 2021 21:15:18 -0600
-Message-Id: <20211119031519.23430-2-samuel@sholland.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211119031519.23430-1-samuel@sholland.org>
-References: <20211119031519.23430-1-samuel@sholland.org>
+        id S233147AbhKSDbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 22:31:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51832 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232977AbhKSDbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 22:31:47 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFB9FC061574
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 19:28:46 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id t19so19137954oij.1
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 19:28:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=p1xy63IUl/Zv0PIf7COklDb5zOeRlbnYu9be+9CWGNk=;
+        b=NhmhbluVJs6Q/MrYeRAGnfV+aZfk5hz5blLNcJjb+u83bIjcKfqAk9EbgGWKI/FaQi
+         Ctra+xHwl6/iw18TobZFuDcGWHNUBLdvWY77LNw7Ty8wh6keFf7t4gJianKTEsQO8+AG
+         BPT1/SDAi6r+3uoG2AgWQmBBbIx13w4Mz1jWMBj1UcmmrbpwLVgR3YYjfsmC8ROvUN2s
+         Ih7l9rz9W//T7Gjg5oLoc++Ci2zcHUuCROFCEXem+6Cu+h/EEuqGpTYjYht+thM5GsSg
+         oKnQP9TejCubjrrKzgPl/CxccMmEwfrssSlk+PA/AOSWn+ovyCDM40oDPp8rR80tMjLU
+         LVOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=p1xy63IUl/Zv0PIf7COklDb5zOeRlbnYu9be+9CWGNk=;
+        b=HNCZF1wA2C7XTwL+IZaasmelcxvqufAxuj/ANQhzTMneK10KsyhnTDgpQvZ+6imxQ+
+         heQ/cVIRfGGv4XfNFf6VsGF+OREw/cr5tR1uoJXZQmyOb7r92isjqwdZ40v13j5FzOjX
+         CDe1NhkQHEB0JvOaCRsAnuL5QwetZbGdCh1SVW3B3vntrdrMaeYOeR0TKnw52y9ekweI
+         67ID95ZX4dVXJ0hcWzEDkCV94GfOAxy3T5GkHTjRjlYMh5u03iWY6LnjxVCJtYbkioeh
+         TgTIdF27B96O5e2M2eHbtFYjAPaSxIbKkXEfbjVQJnZE5yU4g8azi6PPZmfu6koD3FEm
+         XLLg==
+X-Gm-Message-State: AOAM530ErtFW9rs4hq3y62U69R2OxhBXMOX9qiUR3jAjIbKgTg3Evj7M
+        1Agf0/I83iOYoQQHYRx8YtnJeA==
+X-Google-Smtp-Source: ABdhPJwtN2UQEZzwjWTNFXV41e43OT3M+FUOxZ10yafWkd4x+SkxkOM2f1tFpQzAQ9LoiwOIYsZmOw==
+X-Received: by 2002:a05:6808:2392:: with SMTP id bp18mr2054511oib.89.1637292526174;
+        Thu, 18 Nov 2021 19:28:46 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r23sm341825ooj.37.2021.11.18.19.28.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 19:28:45 -0800 (PST)
+Date:   Thu, 18 Nov 2021 21:28:40 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Prasad Malisetty <pmaliset@codeaurora.org>
+Cc:     swboyd@chromium.org, agross@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org, robh+dt@kernel.org,
+        mka@chromium.org, lorenzo.pieralisi@arm.com, svarbanov@mm-sol.com,
+        bhelgaas@google.com
+Subject: Re: [PATCH v3 1/3] arm64: dts: qcom: sc7280: Fix incorrect clock name
+Message-ID: <YZcZ6O4DxUUNothC@builder.lan>
+References: <1637060508-30375-1-git-send-email-pmaliset@codeaurora.org>
+ <1637060508-30375-2-git-send-email-pmaliset@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1637060508-30375-2-git-send-email-pmaliset@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-D1 has a unique variant of the video engine, which appears to drop the
-VP8 support found on most earlier variants.
+On Tue 16 Nov 05:01 CST 2021, Prasad Malisetty wrote:
 
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+> Replace pcie_1_pipe-clk clock name with pcie_1_pipe_clk
+> To match with dt binding.
+> 
+> Fixes: ab7772de8612 ("arm64: dts: qcom: SC7280: Add rpmhcc clock controller node")
+> 
+> Signed-off-by: Prasad Malisetty <pmaliset@codeaurora.org>
+> Reported-by: kernel test robot <lkp@intel.com>
 
- drivers/staging/media/sunxi/cedrus/cedrus.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+This says "lkp reported an issue and this patch fixes that issue", but
+looking back I think you picked up this tag because lkp had problems
+building v1 of this patch.
 
-diff --git a/drivers/staging/media/sunxi/cedrus/cedrus.c b/drivers/staging/media/sunxi/cedrus/cedrus.c
-index c76fc97d97a0..4a4b714b0f26 100644
---- a/drivers/staging/media/sunxi/cedrus/cedrus.c
-+++ b/drivers/staging/media/sunxi/cedrus/cedrus.c
-@@ -580,6 +580,14 @@ static const struct cedrus_variant sun8i_r40_cedrus_variant = {
- 	.mod_rate	= 297000000,
- };
- 
-+static const struct cedrus_variant sun20i_d1_cedrus_variant = {
-+	.capabilities	= CEDRUS_CAPABILITY_UNTILED |
-+			  CEDRUS_CAPABILITY_MPEG2_DEC |
-+			  CEDRUS_CAPABILITY_H264_DEC |
-+			  CEDRUS_CAPABILITY_H265_DEC,
-+	.mod_rate	= 432000000,
-+};
-+
- static const struct cedrus_variant sun50i_a64_cedrus_variant = {
- 	.capabilities	= CEDRUS_CAPABILITY_UNTILED |
- 			  CEDRUS_CAPABILITY_MPEG2_DEC |
-@@ -637,6 +645,10 @@ static const struct of_device_id cedrus_dt_match[] = {
- 		.compatible = "allwinner,sun8i-r40-video-engine",
- 		.data = &sun8i_r40_cedrus_variant,
- 	},
-+	{
-+		.compatible = "allwinner,sun20i-d1-video-engine",
-+		.data = &sun20i_d1_cedrus_variant,
-+	},
- 	{
- 		.compatible = "allwinner,sun50i-a64-video-engine",
- 		.data = &sun50i_a64_cedrus_variant,
--- 
-2.32.0
+I will drop it while applying the patch and I will remove the empty line
+between Fixes and your S-o-b.
 
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 365a2e0..cb94b87 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -576,7 +576,7 @@
+>  				 <&rpmhcc RPMH_CXO_CLK_A>, <&sleep_clk>,
+>  				 <0>, <0>, <0>, <0>, <0>, <0>;
+>  			clock-names = "bi_tcxo", "bi_tcxo_ao", "sleep_clk",
+> -				      "pcie_0_pipe_clk", "pcie_1_pipe-clk",
+> +				      "pcie_0_pipe_clk", "pcie_1_pipe_clk",
+>  				      "ufs_phy_rx_symbol_0_clk", "ufs_phy_rx_symbol_1_clk",
+>  				      "ufs_phy_tx_symbol_0_clk",
+>  				      "usb3_phy_wrapper_gcc_usb30_pipe_clk";
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
