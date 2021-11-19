@@ -2,135 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4B3457914
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 23:49:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32F8145792C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 23:56:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbhKSWw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 17:52:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60082 "EHLO
+        id S234568AbhKSW7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 17:59:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231736AbhKSWw0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 17:52:26 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2AB4C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 14:49:24 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D30A1C19;
-        Fri, 19 Nov 2021 23:49:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1637362161;
-        bh=yI2MGDEezdScvWFcZ3GAH2GaCDd4JUn1Ex56peHijdQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=X5y+WEFstWVSZmIKcxfz7m+i+V60He0fU7BVV4/uAXkhJBREJzfKb9EYX9YZ+7AoD
-         r0eqLP2x2WvkRssNNyb10ITLF0Aeu4IDTMbZn7vTsEv6zCyzH65I9ZWNNVIDwx/mvq
-         uttN/kl/2gQR6NQJtzIGyU/1AvWpK3Wo5HugIV+4=
-Date:   Sat, 20 Nov 2021 00:48:58 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] dt-bindings: panel: Introduce a panel-lvds binding
-Message-ID: <YZgp2tN55XDfkJJ6@pendragon.ideasonboard.com>
-References: <20211116143503.385807-1-maxime@cerno.tech>
- <20211116143503.385807-2-maxime@cerno.tech>
+        with ESMTP id S234188AbhKSW7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 17:59:00 -0500
+Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C9AC061574;
+        Fri, 19 Nov 2021 14:55:57 -0800 (PST)
+Received: by mail-pj1-x1030.google.com with SMTP id gt5so8995643pjb.1;
+        Fri, 19 Nov 2021 14:55:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jZmwgkqEaqsNB6eacHx7jGF/Uov9dTZSX+ljfrl1HKM=;
+        b=V/IOvaCPhLruyYv/u2Pwu2NAOOo24zKaeNHGVUHXALOkFK9Pwu8No8GbinVvdCrgTP
+         ug4Vi0nd4UzDVYnYLpI4WJmWOrNw/nkJrXv1T82n5t3XfkPIP2jTpRAXSZjDliM+5Bbc
+         QuOYAJ5EVj+AOyTmdF18djuKSKaC3+NTMOq+2WFMXWZd+Ej4bSlyuobr5YZtKY1Sojcp
+         nE7sjHSQ362M9iksil66vUXNXsosL2nd53i4/KQfJD6MEcWdQYjUlrnt1xFCfl91dRfA
+         /lkRUxljcAmAr9f2sKAuShrXFsKGgglbIrG7lSPdhgx1cgWbEf6huX/7mDzt7FN0ontm
+         TuAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jZmwgkqEaqsNB6eacHx7jGF/Uov9dTZSX+ljfrl1HKM=;
+        b=tM1JHGUIzhcyzOV/gtFdOlYZcsdWW4yK9SqGT6ZbffR9d8EoL3WUHAbKkBRr02KNLK
+         ZT2novdtOwA5xACn27UPMkLmqjdIOAZRL/luzGmY5a4i8rf3/mAfLMHMq2jPZ8zM/XvA
+         B3QdicbwPZaKTVBiktMt7I0iudbk0J5LfuXULdTJDnt324qxFgdsUCjg5aU3TQEb2X8k
+         RCvWnFvXBa/3RGF/OqPr5/OC+lwHqop2e85vRqiHXVAsH/eVtmSQeKpdPWbps8eNuZ/y
+         iqCcfYV9pyQDnqcAudcUQU12GHzzwoylCTxu+XICi14U70LAwpPefEYtnVCOw/HxzqVy
+         W6Mg==
+X-Gm-Message-State: AOAM531DxnNIaQajJbqPIJsaQHkoorAT5hQmsEqgS7CiOxLRRcMCNJVa
+        bqdL6HPmefip6KofvcI2Knw=
+X-Google-Smtp-Source: ABdhPJz95l/urJMhGxpdaJPNfeHFnuLnqGtNyiFrtqE2iDlD9RvfTthWn9SEdWafPaD5FVqbnhABhg==
+X-Received: by 2002:a17:90a:7004:: with SMTP id f4mr4103477pjk.156.1637362557584;
+        Fri, 19 Nov 2021 14:55:57 -0800 (PST)
+Received: from localhost.lan (p4857108-ipngn27301marunouchi.tokyo.ocn.ne.jp. [114.164.215.108])
+        by smtp.gmail.com with ESMTPSA id f21sm658610pfc.191.2021.11.19.14.55.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Nov 2021 14:55:57 -0800 (PST)
+Received: from x2.lan (localhost [127.0.0.1])
+        by localhost.lan (Postfix) with ESMTPSA id 1B297900921;
+        Fri, 19 Nov 2021 22:55:55 +0000 (GMT)
+From:   Vincent Pelletier <plr.vincent@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Qiu Wenbo <qiuwenbo@kylinos.com.cn>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        David Abdurachmanov <david.abdurachmanov@sifive.com>
+Subject: [PATCH v3 1/6] riscv: dts: sifive unmatched: Name gpio lines
+Date:   Fri, 19 Nov 2021 22:55:37 +0000
+Message-Id: <378c64fb868b595430b0068a9af10fdbeceb8e12.1637362542.git.plr.vincent@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211116143503.385807-2-maxime@cerno.tech>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Follow the pin descriptions given in the version 3 of the board schematics.
 
-Thank you for the patch.
+Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
 
-On Tue, Nov 16, 2021 at 03:35:03PM +0100, Maxime Ripard wrote:
-> Following the previous patch, let's introduce a generic panel-lvds
-> binding that documents the panels that don't have any particular
-> constraint documented.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  .../bindings/display/panel/panel-lvds.yaml    | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> new file mode 100644
-> index 000000000000..f6ce8e29391e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic LVDS Display Panel Device Tree Bindings
-> +
-> +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +  - $ref: lvds.yaml#
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: panel-lvds
-> +
-> +  not:
-> +    properties:
-> +      compatible:
-> +        contains:
-> +          enum:
-> +              - advantech,idk-1110wr
-> +              - innolux,ee101ia-01d
-> +              - mitsubishi,aa104xd12
-> +              - mitsubishi,aa121td01
-> +              - sgd,gktw70sdae4se
+---
+Changes since v2:
+- Fix end-of-commit-message separator so change lists do not end up in them.
+Changes since v1:
+- Remove trailing "." on subject line.
+---
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-This will be annoying to maintain, I'm pretty sure authors will forget
-to update this file when adding bindings for other panels. Is there any
-way we could select this binding with a positive rule instead of a
-negative rule ?
-
-> +
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - auo,b101ew05
-> +          - tbs,a711-panel
-> +
-> +      - const: panel-lvds
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - data-mapping
-> +  - width-mm
-> +  - height-mm
-> +  - panel-timing
-> +  - port
-> +
-> +...
-
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index 4f66919215f6..305a086e5207 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -245,4 +245,8 @@ &pwm1 {
+ 
+ &gpio {
+ 	status = "okay";
++	gpio-line-names = "J29.1", "PMICNTB", "PMICSHDN", "J8.1", "J8.3",
++		"PCIe_PWREN", "THERM", "UBRDG_RSTN", "PCIe_PERSTN",
++		"ULPI_RSTN", "J8.2", "UHUB_RSTN", "GEMGXL_RST", "J8.4",
++		"EN_VDD_SD", "SD_CD";
+ };
 -- 
-Regards,
+2.33.1
 
-Laurent Pinchart
