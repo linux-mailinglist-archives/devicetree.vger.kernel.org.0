@@ -2,366 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44E6B456E2B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 12:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2A3B456E34
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 12:30:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235027AbhKSL2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 06:28:55 -0500
-Received: from sibelius.xs4all.nl ([83.163.83.176]:61911 "EHLO
-        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234531AbhKSL2y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 06:28:54 -0500
-Received: from localhost (bloch.sibelius.xs4all.nl [local])
-        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id c4d4f740;
-        Fri, 19 Nov 2021 12:25:51 +0100 (CET)
-Date:   Fri, 19 Nov 2021 12:25:51 +0100 (CET)
-From:   Mark Kettenis <mark.kettenis@xs4all.nl>
-To:     Janne Grunau <j@jannau.net>
-Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20211116215315.22528-3-j@jannau.net> (message from Janne Grunau
-        on Tue, 16 Nov 2021 22:53:15 +0100)
-Subject: Re: [PATCH 2/2] arm64: dts: apple: Add missing M1 (t8103) devices
-References: <20211116215315.22528-1-j@jannau.net> <20211116215315.22528-3-j@jannau.net>
-Message-ID: <d3cae936e9f6668e@bloch.sibelius.xs4all.nl>
+        id S235071AbhKSLdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 06:33:09 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:46464 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235042AbhKSLdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Nov 2021 06:33:09 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AJ21JFf025301;
+        Fri, 19 Nov 2021 06:30:07 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cd5u5ufw8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 Nov 2021 06:30:07 -0500
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1AJBU5Ch037582
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Nov 2021 06:30:05 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Fri, 19 Nov 2021
+ 06:30:04 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
+ Transport; Fri, 19 Nov 2021 06:30:04 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1AJBU3KL014813;
+        Fri, 19 Nov 2021 06:30:03 -0500
+From:   Cristian Pop <cristian.pop@analog.com>
+To:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <robh+dt@kernel.org>, Cristian Pop <cristian.pop@analog.com>
+Subject: [PATCH v1 1/2] dt:bindings:iio:frequency: Add ADMV4420 doc
+Date:   Fri, 19 Nov 2021 13:40:10 +0200
+Message-ID: <20211119114011.75406-1-cristian.pop@analog.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: HrqxNphhdytz2HLTt5WKXs88GlnwRJwW
+X-Proofpoint-ORIG-GUID: HrqxNphhdytz2HLTt5WKXs88GlnwRJwW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-19_09,2021-11-17_01,2020-04-07_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ adultscore=0 clxscore=1011 bulkscore=0 mlxlogscore=999 impostorscore=0
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 mlxscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
+ definitions=main-2111190064
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> From: Janne Grunau <j@jannau.net>
-> Cc: Mark Kettenis <mark.kettenis@xs4all.nl>,
->         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
->         linux-kernel@vger.kernel.org
-> Date: Tue, 16 Nov 2021 22:53:15 +0100
-> 
-> This adds support for following Apple M1 devices:
->  - MacBook Pro (13-inch, M1, 2020)
->  - MacBook Air (M1, 2020)
->  - iMac (24-inch 2021)
-> 
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> ---
->  arch/arm64/boot/dts/apple/Makefile        |  4 ++
->  arch/arm64/boot/dts/apple/t8103-j274.dts  | 29 +-------------
->  arch/arm64/boot/dts/apple/t8103-j293.dts  | 33 +++++++++++++++
->  arch/arm64/boot/dts/apple/t8103-j313.dts  | 33 +++++++++++++++
->  arch/arm64/boot/dts/apple/t8103-j456.dts  | 41 +++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8103-j457.dts  | 47 ++++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 49 +++++++++++++++++++++++
->  7 files changed, 208 insertions(+), 28 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/apple/t8103-j293.dts
->  create mode 100644 arch/arm64/boot/dts/apple/t8103-j313.dts
->  create mode 100644 arch/arm64/boot/dts/apple/t8103-j456.dts
->  create mode 100644 arch/arm64/boot/dts/apple/t8103-j457.dts
->  create mode 100644 arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
+Add device tree bindings for the ADMV4420 K band downconverter.
 
-There are multiple ways to skin this cat.  But I think this is a
-reasonable way to do things and this should work fine for U-Boot and
-OpenBSD.
+Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+---
+ .../bindings/iio/frequency/adi,admv4420.yaml  | 100 ++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
 
-Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+diff --git a/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml b/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
+new file mode 100644
+index 000000000000..69f1b4a41c5c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/frequency/adi,admv4420.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ADMV4420 K Band Downconverter
++
++maintainers:
++- Cristian Pop <cristian.pop@analog.com>
++
++description: |
++    The ADMV4420 is a highly integrated, double balanced, active
++    mixer with an integrated fractional-N synthesizer, ideally suited
++    for next generation K band satellite communications
++
++properties:
++  compatible:
++    enum:
++      - adi,admv4420
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 1000000
++
++  adi,ref_single_ended:
++    description: Reference clock type.
++    type: boolean
++
++  adi,ref_freq_hz:
++    description: Reference clock frequency.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  adi,ref_doubler_en:
++    description: Reference multiplied by 2.
++    type: boolean
++
++  adi,ref_divide_by_2_en:
++    description: Reference divided by 2.
++    type: boolean
++
++  adi,ref_divider:
++    description: Reference divider value.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  adi,N_counter_int_val:
++    description: N counted int val.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  adi,N_counter_frac_val:
++    description: N counted frac val.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  adi,N_counter_mod_val:
++    description: N counted mod val.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++  adi,mux_sel:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 4, 5, 8]
++    description: |
++      Multiplexer output allows access to various internal signals:
++      0: Output Logic Low
++      1: Digital Lock Detect
++      4: RDiv-by-2 to Mux Out, Frequency = REFIN/(2 x R)
++      5: NDiv-by-2 to Mux Out, Frequency = VCO/(2 x N)
++      8: Output Logic High.
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      admv4420@0 {
++        compatible = "adi,admv4420";
++        reg = <0>;
++        spi-max-frequency = <1000000>;
++
++        /* reference block config */
++        adi,ref_freq_hz = <50000000>;
++        adi,ref_single_ended = <0>;
++        adi,ref_divider = <1>;
++
++        /* N counter config*/
++        adi,N_counter_int_val = <0xA7>;
++        adi,N_counter_frac_val = <0x02>;
++        adi,N_counter_mod_val = <0x04>;
++
++        adi,mux_sel = <1>;
++      };
++    };
++...
+-- 
+2.17.1
 
-> diff --git a/arch/arm64/boot/dts/apple/Makefile b/arch/arm64/boot/dts/apple/Makefile
-> index cbbd701ebf05..c0510c25ca6a 100644
-> --- a/arch/arm64/boot/dts/apple/Makefile
-> +++ b/arch/arm64/boot/dts/apple/Makefile
-> @@ -1,2 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_ARCH_APPLE) += t8103-j274.dtb
-> +dtb-$(CONFIG_ARCH_APPLE) += t8103-j293.dtb
-> +dtb-$(CONFIG_ARCH_APPLE) += t8103-j313.dtb
-> +dtb-$(CONFIG_ARCH_APPLE) += t8103-j456.dtb
-> +dtb-$(CONFIG_ARCH_APPLE) += t8103-j457.dtb
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j274.dts b/arch/arm64/boot/dts/apple/t8103-j274.dts
-> index 02c36301e985..9e01ef70039d 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-j274.dts
-> +++ b/arch/arm64/boot/dts/apple/t8103-j274.dts
-> @@ -10,39 +10,15 @@
->  /dts-v1/;
->  
->  #include "t8103.dtsi"
-> +#include "t8103-jxxx.dtsi"
->  
->  / {
->  	compatible = "apple,j274", "apple,t8103", "apple,arm-platform";
->  	model = "Apple Mac mini (M1, 2020)";
->  
->  	aliases {
-> -		serial0 = &serial0;
->  		ethernet0 = &ethernet0;
->  	};
-> -
-> -	chosen {
-> -		#address-cells = <2>;
-> -		#size-cells = <2>;
-> -		ranges;
-> -
-> -		stdout-path = "serial0";
-> -
-> -		framebuffer0: framebuffer@0 {
-> -			compatible = "apple,simple-framebuffer", "simple-framebuffer";
-> -			reg = <0 0 0 0>; /* To be filled by loader */
-> -			/* Format properties will be added by loader */
-> -			status = "disabled";
-> -		};
-> -	};
-> -
-> -	memory@800000000 {
-> -		device_type = "memory";
-> -		reg = <0x8 0 0x2 0>; /* To be filled by loader */
-> -	};
-> -};
-> -
-> -&serial0 {
-> -	status = "okay";
->  };
->  
->  /*
-> @@ -50,9 +26,6 @@ &serial0 {
->   * on-board devices and properties that are populated by the bootloader
->   * (such as MAC addresses).
->   */
-> -&port00 {
-> -	bus-range = <1 1>;
-> -};
->  
->  &port01 {
->  	bus-range = <2 2>;
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> new file mode 100644
-> index 000000000000..466035f00b69
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> @@ -0,0 +1,33 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Apple MacBook Pro (13-inch, M1, 2020)
-> + *
-> + * target-type: J293
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "t8103.dtsi"
-> +#include "t8103-jxxx.dtsi"
-> +
-> +/ {
-> +	compatible = "apple,j293", "apple,t8103", "apple,arm-platform";
-> +	model = "Apple MacBook Pro (13-inch, M1, 2020)";
-> +};
-> +
-> +/*
-> + * Remove unused PCIe ports and disable the associated DARTs.
-> + */
-> +
-> +&pcie0_dart_1 {
-> +	status = "disabled";
-> +};
-> +
-> +&pcie0_dart_2 {
-> +	status = "disabled";
-> +};
-> +
-> +/delete-node/ &port01;
-> +/delete-node/ &port02;
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j313.dts b/arch/arm64/boot/dts/apple/t8103-j313.dts
-> new file mode 100644
-> index 000000000000..b0ebb45bdb6f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/t8103-j313.dts
-> @@ -0,0 +1,33 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Apple MacBook Air (M1, 2020)
-> + *
-> + * target-type: J313
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "t8103.dtsi"
-> +#include "t8103-jxxx.dtsi"
-> +
-> +/ {
-> +	compatible = "apple,j313", "apple,t8103", "apple,arm-platform";
-> +	model = "Apple MacBook Air (M1, 2020)";
-> +};
-> +
-> +/*
-> + * Remove unused PCIe ports and disable the associated DARTs.
-> + */
-> +
-> +&pcie0_dart_1 {
-> +	status = "disabled";
-> +};
-> +
-> +&pcie0_dart_2 {
-> +	status = "disabled";
-> +};
-> +
-> +/delete-node/ &port01;
-> +/delete-node/ &port02;
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j456.dts b/arch/arm64/boot/dts/apple/t8103-j456.dts
-> new file mode 100644
-> index 000000000000..7267e069355b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/t8103-j456.dts
-> @@ -0,0 +1,41 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Apple iMac (24-inch, 4x USB-C, M1, 2020)
-> + *
-> + * target-type: J456
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "t8103.dtsi"
-> +#include "t8103-jxxx.dtsi"
-> +
-> +/ {
-> +	compatible = "apple,j456", "apple,t8103", "apple,arm-platform";
-> +	model = "Apple iMac (24-inch, 4x USB-C, M1, 2020)";
-> +
-> +	aliases {
-> +		ethernet0 = &ethernet0;
-> +	};
-> +};
-> +
-> +/*
-> + * Force the bus number assignments so that we can declare some of the
-> + * on-board devices and properties that are populated by the bootloader
-> + * (such as MAC addresses).
-> + */
-> +
-> +&port01 {
-> +	bus-range = <2 2>;
-> +};
-> +
-> +&port02 {
-> +	bus-range = <3 3>;
-> +	ethernet0: ethernet@0,0 {
-> +		reg = <0x30000 0x0 0x0 0x0 0x0>;
-> +		/* To be filled by the loader */
-> +		local-mac-address = [00 10 18 00 00 00];
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j457.dts b/arch/arm64/boot/dts/apple/t8103-j457.dts
-> new file mode 100644
-> index 000000000000..d7c622931627
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/t8103-j457.dts
-> @@ -0,0 +1,47 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Apple iMac (24-inch, 2x USB-C, M1, 2020)
-> + *
-> + * target-type: J457
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "t8103.dtsi"
-> +#include "t8103-jxxx.dtsi"
-> +
-> +/ {
-> +	compatible = "apple,j457", "apple,t8103", "apple,arm-platform";
-> +	model = "Apple iMac (24-inch, 2x USB-C, M1, 2020)";
-> +
-> +	aliases {
-> +		ethernet0 = &ethernet0;
-> +	};
-> +};
-> +
-> +/*
-> + * Force the bus number assignments so that we can declare some of the
-> + * on-board devices and properties that are populated by the bootloader
-> + * (such as MAC addresses).
-> + */
-> +
-> +&port02 {
-> +	bus-range = <3 3>;
-> +	ethernet0: ethernet@0,0 {
-> +		reg = <0x30000 0x0 0x0 0x0 0x0>;
-> +		/* To be filled by the loader */
-> +		local-mac-address = [00 10 18 00 00 00];
-> +	};
-> +};
-> +
-> +/*
-> + * Remove unused PCIe port and disable the associated DART.
-> + */
-> +
-> +&pcie0_dart_1 {
-> +	status = "disabled";
-> +};
-> +
-> +/delete-node/ &port01;
-> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> new file mode 100644
-> index 000000000000..53d22b434d76
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> @@ -0,0 +1,49 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
-> +/*
-> + * Apple M1 Mac mini, MacBook Air/Pro, iMac 24" (M1, 2020/2021)
-> + *
-> + * This file contains parts common to all Apple M1 devices using the t8103.
-> + *
-> + * target-type: J274, J293, J313, J456, J457
-> + *
-> + * Copyright The Asahi Linux Contributors
-> + */
-> +
-> +/ {
-> +	aliases {
-> +		serial0 = &serial0;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		stdout-path = "serial0";
-> +
-> +		framebuffer0: framebuffer@0 {
-> +			compatible = "apple,simple-framebuffer", "simple-framebuffer";
-> +			reg = <0 0 0 0>; /* To be filled by loader */
-> +			/* Format properties will be added by loader */
-> +			status = "disabled";
-> +		};
-> +	};
-> +
-> +	memory@800000000 {
-> +		device_type = "memory";
-> +		reg = <0x8 0 0x2 0>; /* To be filled by loader */
-> +	};
-> +};
-> +
-> +&serial0 {
-> +	status = "okay";
-> +};
-> +
-> +/*
-> + * Force the bus number assignments so that we can declare some of the
-> + * on-board devices and properties that are populated by the bootloader
-> + * (such as MAC addresses).
-> + */
-> +&port00 {
-> +	bus-range = <1 1>;
-> +};
-> -- 
-> 2.33.1
-> 
-> 
