@@ -2,181 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C05294577BD
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 21:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE5514577BF
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 21:30:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235201AbhKSUdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 15:33:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57138 "EHLO
+        id S235297AbhKSUdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 15:33:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbhKSUdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 15:33:16 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56EE1C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 12:30:14 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso18532484otj.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 12:30:14 -0800 (PST)
+        with ESMTP id S229879AbhKSUdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 15:33:31 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3672AC061574
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 12:30:29 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id v23so14313346iom.12
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 12:30:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=cPoYe8aIyzyhlKwK81Muc84iR48wZ+akWzIz4+rkufk=;
-        b=ZqGnt41eO2WzMy5Q+Zdw+0jQj0hf8Aa+Pjhu/RtVodWNCiuG8RUWeE8B6xmBLVzeE/
-         cqsCNr2XAe8nNCr1SWABQgkokdmuKUBALiCCwAidyKETFngpVzRVh25X3D0J7k12velF
-         36oVh/28Hu8C24XhiCeKHZKikJZOKyE3hCUFx2+Yf2iWKqUnuFnbxxIYS7EAEqJ3vH7u
-         jWyNTwGSND2hJZh3f9PB+JW7eM313wBW4lmkz9LADIJsIt1V76aLB4zbMuF7BzdQ5Y0+
-         wZDMyixMSQQd9fadVoKpOTZENeX1LlysRXgd4QNV4zhZIuILp4uIylO2EAblf75htG7F
-         Nsyw==
+        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zAUhIBP078fnIpfNsctFVU/hIbI+oiA9NYL1Zz+yQsw=;
+        b=GxclxbCO0fuX0oi91XcP3Pl1KNE+8CRC8A4FL2DIUPEaKiGU1P2NA3jBFHTEK7zXWK
+         iijmezPGMjyeTZSKEgNGokRdBN45M49o2N2nYj5UXX+0wKrBgb7K8cNvxVug//mKGeaN
+         L4fkvewxJcwrSOlHd/LbR2THiPKofb0h5v7aSi1kvL1CbAmHRg+xX4m0DwvS5kn5gk8C
+         3h4R6VFMUDtSt7g+lLpQ15VlsMzy338u/CSK7q06PhO6Mjj/4ZIDh6sM7PfQ28z/eo1U
+         jMdlesLRXwS233sVBK1P/V7MPeojsMiLEiZ+4VJ40knz0/G88/+5wWow86l1Df/D7awn
+         0Ueg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=cPoYe8aIyzyhlKwK81Muc84iR48wZ+akWzIz4+rkufk=;
-        b=5CzXTdQxdkkIlRPh9bFJEcUuBMiXYbUKF/vW5xNXiAsiiKK17ZLx8UVmP3zzhlrGrF
-         ry97Icg514lX+0Is0ZoWUGAdO5ZmDaRhbYzR756sW66Fp4J4c+HEdrSFKZudUpPf0KIP
-         T/b+JqhwUUEwlCIKXETCg3JwOyWabk+jt3rvW4wjcCO3PcHDehIVSaY9xk+gOVpGlk92
-         olomj1LbFyIrm7Y1MhdqIurZdLyqeA65OACzyGKi8Hed02hlFwzD92XfAlD4GYxAIBCf
-         jZqN05vEL4vGVj5e5UItAuzWN5Mmz4AVtFTeit69yKvaVwmtxwpwjf+F4khuQuX+ktjP
-         uuSQ==
-X-Gm-Message-State: AOAM532GnYhRYfx9XPpQ+zBZDXltAaOwOsaFwTGRnEy4f5GSxLuRzhc3
-        xlePvHA/lYUcZP63+dH9QWc=
-X-Google-Smtp-Source: ABdhPJzORnmnSzCqTZjp18gEqUk/SIbf89EQiB3go8g6bV09sEmJTi/LuvJhWgrvKNGVxu4EaZPXdw==
-X-Received: by 2002:a9d:4d90:: with SMTP id u16mr3176785otk.86.1637353813572;
-        Fri, 19 Nov 2021 12:30:13 -0800 (PST)
-Received: from smtpclient.apple ([2600:1700:19e0:3310:8485:90d0:671b:cafe])
-        by smtp.gmail.com with ESMTPSA id x197sm188601oix.32.2021.11.19.12.30.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 19 Nov 2021 12:30:13 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO VEGMAN
- BMC
-From:   Andrew Geissler <geissonator@gmail.com>
-In-Reply-To: <20211119120057.12118-3-a.kartashev@yadro.com>
-Date:   Fri, 19 Nov 2021 14:30:12 -0600
-Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
-References: <20211119120057.12118-1-a.kartashev@yadro.com>
- <20211119120057.12118-3-a.kartashev@yadro.com>
-To:     Andrei Kartashev <a.kartashev@yadro.com>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zAUhIBP078fnIpfNsctFVU/hIbI+oiA9NYL1Zz+yQsw=;
+        b=FGYbgRfsl13C7BpCUCxI68XXixzZCxAzA5fV60nuTzV13NMUeS2QXJ1+C3tKXaHG3v
+         Z/7qdDCxEbE1/10IsBmG52BwmEvtC+PmhWXifFwUy8a0f1LlziK/2urxLBegrGERNu1g
+         J/Gizk8viDgfTZal7xkB8EqKfQOid4WmHF0DY9pDkLeMDToZqpYy1Z554m5UKDaFeJ9+
+         XjYlKO3TbEVXrjbVkj5FVwo9ede1d7twx8gGIT0D8aRWqapyXT/Sa+YTQPpOHTj1BUl9
+         5JizyaD5KLT61j+BoGB+TMSAjn2pog5AE0mOn2EhQVRs/LqN70eu7RKvhW7NvR0Rkbfy
+         tggA==
+X-Gm-Message-State: AOAM530i8RgVpvB4xswiykPDxu4kenAkXHOSHyhm8jErbUuRInuyFrIW
+        bdxLeyDU7UEw3nnHyYphbXnq0RLNBDa78h9bzd4TLw==
+X-Google-Smtp-Source: ABdhPJyXZBD0JDC6Qq4qjwy7plo96K5M0kw0/AhMvJlvY+btEXI4JX4JkpMfWsC5rzTMkivw/gUPe7i64OcLM0Xin60=
+X-Received: by 2002:a5d:994f:: with SMTP id v15mr7909635ios.88.1637353828625;
+ Fri, 19 Nov 2021 12:30:28 -0800 (PST)
+MIME-Version: 1.0
+References: <20211109113239.93493-1-robert.marko@sartura.hr> <20211109113239.93493-2-robert.marko@sartura.hr>
+In-Reply-To: <20211109113239.93493-2-robert.marko@sartura.hr>
+From:   Robert Marko <robert.marko@sartura.hr>
+Date:   Fri, 19 Nov 2021 21:30:18 +0100
+Message-ID: <CA+HBbNFyrLTxuSf8Wt0D5eK5YAW3AK2U_u0uB_2EWyHWrSfR-A@mail.gmail.com>
+Subject: Re: [PATCH v9 2/6] gpio: Add Delta TN48M CPLD GPIO driver
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>
+Cc:     Luka Perkov <luka.perkov@sartura.hr>,
+        Bruno Banelli <bruno.banelli@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> On Nov 19, 2021, at 6:00 AM, Andrei Kartashev <a.kartashev@yadro.com> =
-wrote:
->=20
-> YADRO VEGMAN is x86 based servers family with ASPEED AST2500-based =
-BMC.
-> Currently there are three models:
-> * VEGMAN N110
-> * VEGMAN S220/320
-> * VEGMAN R120/220
->=20
-> The dts files provides configuration for BMC system.
->=20
-> Signed-off-by: Andrei Kartashev <a.kartashev@yadro.com>
+On Tue, Nov 9, 2021 at 12:32 PM Robert Marko <robert.marko@sartura.hr> wrote:
+>
+> Delta TN48M switch has an onboard Lattice CPLD that is used as a GPIO
+> expander.
+>
+> The CPLD provides 12 pins in total on the TN48M, but on more advanced
+> switch models it provides up to 192 pins, so the driver is extendable
+> to support more switches.
+>
+> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Reviewed-by: Michael Walle <michael@walle.cc>
 > ---
-> arch/arm/boot/dts/Makefile                   |   5 +-
-> arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts | 149 +++++++++
-> arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts | 255 +++++++++++++++
-> arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts | 154 +++++++++
-> arch/arm/boot/dts/aspeed-bmc-vegman.dtsi     | 311 +++++++++++++++++++
-> 5 files changed, 873 insertions(+), 1 deletion(-)
-> create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts
-> create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-rx20.dts
-> create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman-sx20.dts
-> create mode 100644 arch/arm/boot/dts/aspeed-bmc-vegman.dtsi
->=20
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 0de64f237cd8..78b71e02624c 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1519,4 +1519,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
-> 	aspeed-bmc-quanta-q71l.dtb \
-> 	aspeed-bmc-supermicro-x11spi.dtb \
-> 	aspeed-bmc-inventec-transformers.dtb \
-> -	aspeed-bmc-tyan-s7106.dtb
-> +	aspeed-bmc-tyan-s7106.dtb \
-> +	aspeed-bmc-vegman-n110.dtb \
-> +	aspeed-bmc-vegman-rx20.dtb \
-> +	aspeed-bmc-vegman-sx20.dtb
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts =
-b/arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts
+> Changes in v9:
+> * Use {} instead of {0} for initialising the regmap config per Andys
+> comment
+> * Fix spelling mistake in KConfig
+>
+> Changes in v8:
+> * No need to assing NULL to gpio_config per Andys comment
+>
+> Changes in v7:
+> * Change compatibles, reduce their number
+> * Rework the driver to be easily extendible to support more devices
+> * Use match data to populate configuration
+> * Drop reviews and ACK-s as the driver changed
+>
+> Changes in v6:
+> * Drop unused header
+> * Return the return value of device_property_read_u32()
+> instead of a hardcoded return
+>
+> Changes in v2:
+> * Rewrite to use simple I2C MFD and GPIO regmap
+> * Drop DT bindings for pin numbering
+> ---
+>  drivers/gpio/Kconfig      |  12 +++++
+>  drivers/gpio/Makefile     |   1 +
+>  drivers/gpio/gpio-tn48m.c | 100 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 113 insertions(+)
+>  create mode 100644 drivers/gpio/gpio-tn48m.c
+>
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index fab571016adf..8f7dd207bd16 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -1344,6 +1344,18 @@ config GPIO_TIMBERDALE
+>         help
+>         Add support for the GPIO IP in the timberdale FPGA.
+>
+> +config GPIO_TN48M_CPLD
+> +       tristate "Delta Networks TN48M switch CPLD GPIO driver"
+> +       depends on MFD_TN48M_CPLD
+> +       select GPIO_REGMAP
+> +       help
+> +         This enables support for the GPIOs found on the Delta
+> +         Networks TN48M switch Lattice CPLD. It provides 12 pins in total,
+> +         they are input-only or output-only type.
+> +
+> +         This driver can also be built as a module. If so, the
+> +         module will be called gpio-tn48m.
+> +
+>  config GPIO_TPS65086
+>         tristate "TI TPS65086 GPO"
+>         depends on MFD_TPS65086
+> diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
+> index 32a32659866a..93abc7461e45 100644
+> --- a/drivers/gpio/Makefile
+> +++ b/drivers/gpio/Makefile
+> @@ -148,6 +148,7 @@ obj-$(CONFIG_GPIO_TEGRA186)         += gpio-tegra186.o
+>  obj-$(CONFIG_GPIO_TEGRA)               += gpio-tegra.o
+>  obj-$(CONFIG_GPIO_THUNDERX)            += gpio-thunderx.o
+>  obj-$(CONFIG_GPIO_TIMBERDALE)          += gpio-timberdale.o
+> +obj-$(CONFIG_GPIO_TN48M_CPLD)          += gpio-tn48m.o
+>  obj-$(CONFIG_GPIO_TPIC2810)            += gpio-tpic2810.o
+>  obj-$(CONFIG_GPIO_TPS65086)            += gpio-tps65086.o
+>  obj-$(CONFIG_GPIO_TPS65218)            += gpio-tps65218.o
+> diff --git a/drivers/gpio/gpio-tn48m.c b/drivers/gpio/gpio-tn48m.c
 > new file mode 100644
-> index 000000000000..24319267d550
+> index 000000000000..cd4a80b22794
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-vegman-n110.dts
-> @@ -0,0 +1,149 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (C) 2021 YADRO
-> +/dts-v1/;
+> +++ b/drivers/gpio/gpio-tn48m.c
+> @@ -0,0 +1,100 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Delta TN48M CPLD GPIO driver
+> + *
+> + * Copyright (C) 2021 Sartura Ltd.
+> + *
+> + * Author: Robert Marko <robert.marko@sartura.hr>
+> + */
 > +
-> +#include "aspeed-bmc-vegman.dtsi"
+> +#include <linux/device.h>
+> +#include <linux/gpio/driver.h>
+> +#include <linux/gpio/regmap.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
 > +
-> +/ {
-> +	model =3D "YADRO VEGMAN N110 BMC";
-> +	compatible =3D "yadro,vegman-n110-bmc", "aspeed,ast2500";
+> +enum tn48m_gpio_type {
+> +       TN48M_GP0 = 1,
+> +       TN48M_GPI,
 > +};
 > +
-> +&gpio {
-> +	status =3D "okay";
-> +	gpio-line-names =3D
-> +	/*A0-A7*/	=
-"CHASSIS_INTRUSION","CASE_OPEN_FAULT_RST","","","SPEAKER_BMC","FM_FORCE_BM=
-C_UPDATE","","",
-> +	/*B0-B7*/	"","","","","","","","",
-> +	/*C0-C7*/	"","","","","","","","",
-> +	/*D0-D7*/	"","","","","","","","",
-> +	/*E0-E7*/	=
-"RESET_BUTTON","RESET_OUT","POWER_BUTTON","POWER_OUT","","","","",
-> +	/*F0-F7*/	=
-"NMI_OUT","PCIE_NIC_ALERT","","","SKT0_FAULT_LED","","RST_RGMII_PHYRST_DNP=
-","",
-> +	/*G0-G7*/	=
-"CPU_ERR2","CPU_CATERR","PCH_BMC_THERMTRIP","","IRQ_NMI_EVENT","","","",
-> +	/*H0-H7*/	=
-"PWRGD_P3V3_RISER1","PWRGD_P3V3_RISER2","PWRGD_P3V3_RISER3","","MIO_BIOS_S=
-EL","_SPI_FLASH_HOLD","_SPI_FLASH_WP","FM_240VA_STATUS",
-> +	/*I0-I7*/	"","","","","","","","",
-> +	/*J0-J7*/	"","","","","","","","",
-> +	/*K0-K7*/	"","","","","","","","",
-> +	/*L0-L7*/	"","","","","","","","",
-> +	/*M0-M7*/	"","","","","","","","",
-> +	/*N0-N7*/	"","","","","","","","",
-> +	/*O0-O7*/	"","","","","","","","_SPI2_BMC_CS_SEL",
-> +	/*P0-P7*/	"","","","","","","","",
-> +	/*Q0-Q7*/	"","","","","","","","",
-> +	/*R0-R7*/	"_SPI_RMM4_LITE_CS","","","","","","","",
-> +	/*S0-S7*/	=
-"_SPI2_BMC_CS1","","","IRQ_SML0_ALERT_MUX","FP_LED_STATUS_GREEN","FP_LED_S=
-TATUS_AMBER","FP_ID_LED","",
-> +	/*T0-T7*/	"","","","","","","","",
-> +	/*U0-U7*/	"","","","","","","","",
-> +	/*V0-V7*/	"","","","","","","","",
-> +	/*W0-W7*/	"","","","","","","","",
-> +	/*X0-X7*/	"","","","","","","","",
-> +	/*Y0-Y7*/	=
-"SIO_S3","SIO_S5","","SIO_ONCONTROL","","","","",
-> +	/*Z0-Z7*/	=
-"FM_BMC_PWR_BTN","SIO_POWER_GOOD","FM_BMC_PWRBTN_OUT","FM_BMC_PCH_SCI_LPC"=
-,"","","","",
-> +	/*AA0-AA7*/	=
-"","IRQ_SML1_PMBUS_ALERT","FM_PVCCIN_CPU0_PWR_IN_ALERT","FM_PVCCIN_CPU1_PW=
-R_IN_ALERT","BMC_SYS_PWR_FAULT","BMC_SYS_PWR_OK","SMI","POST_COMPLETE",
-> +	/*AB0-AB7*/	=
-"FM_CPU_BMCINIT","NMI_BUTTON","ID_BUTTON","PS_PWROK","","","","",
-> +	/*AC0-AC7*/	"","","","","","","","";
+> +struct tn48m_gpio_config {
+> +       int ngpio;
+> +       int ngpio_per_reg;
+> +       enum tn48m_gpio_type type;
 > +};
+> +
+> +static const struct tn48m_gpio_config tn48m_gpo_config = {
+> +       .ngpio = 4,
+> +       .ngpio_per_reg = 4,
+> +       .type = TN48M_GP0,
+> +};
+> +
+> +static const struct tn48m_gpio_config tn48m_gpi_config = {
+> +       .ngpio = 4,
+> +       .ngpio_per_reg = 4,
+> +       .type = TN48M_GPI,
+> +};
+> +
+> +static int tn48m_gpio_probe(struct platform_device *pdev)
+> +{
+> +       const struct tn48m_gpio_config *gpio_config;
+> +       struct gpio_regmap_config config = {};
+> +       struct regmap *regmap;
+> +       u32 base;
+> +       int ret;
+> +
+> +       if (!pdev->dev.parent)
+> +               return -ENODEV;
+> +
+> +       gpio_config = device_get_match_data(&pdev->dev);
+> +       if (!gpio_config)
+> +               return -ENODEV;
+> +
+> +       ret = device_property_read_u32(&pdev->dev, "reg", &base);
+> +       if (ret)
+> +               return ret;
+> +
+> +       regmap = dev_get_regmap(pdev->dev.parent, NULL);
+> +       if (!regmap)
+> +               return -ENODEV;
+> +
+> +       config.regmap = regmap;
+> +       config.parent = &pdev->dev;
+> +       config.ngpio = gpio_config->ngpio;
+> +       config.ngpio_per_reg = gpio_config->ngpio_per_reg;
+> +       switch (gpio_config->type) {
+> +       case TN48M_GP0:
+> +               config.reg_set_base = base;
+> +               break;
+> +       case TN48M_GPI:
+> +               config.reg_dat_base = base;
+> +               break;
+> +       default:
+> +               return -EINVAL;
+> +       }
+> +
+> +       return PTR_ERR_OR_ZERO(devm_gpio_regmap_register(&pdev->dev, &config));
+> +}
+> +
+> +static const struct of_device_id tn48m_gpio_of_match[] = {
+> +       { .compatible = "delta,tn48m-gpo", .data = &tn48m_gpo_config },
+> +       { .compatible = "delta,tn48m-gpi", .data = &tn48m_gpi_config },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, tn48m_gpio_of_match);
+> +
+> +static struct platform_driver tn48m_gpio_driver = {
+> +       .driver = {
+> +               .name = "delta-tn48m-gpio",
+> +               .of_match_table = tn48m_gpio_of_match,
+> +       },
+> +       .probe = tn48m_gpio_probe,
+> +};
+> +module_platform_driver(tn48m_gpio_driver);
+> +
+> +MODULE_AUTHOR("Robert Marko <robert.marko@sartura.hr>");
+> +MODULE_DESCRIPTION("Delta TN48M CPLD GPIO driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.33.1
+>
 
-Can we utilize =
-https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-namin=
-g.md to get some consistent naming across the GPIO=E2=80=99s on OpenBMC =
-machines?
+Bartosz and Linus,
+do you have any comments on the patch series?
 
+I would like to start working on support for the more complex switch models
+so that we finally have some L3 switches with upstream support.
+
+Regards,
+Robert
+-- 
+Robert Marko
+Staff Embedded Linux Engineer
+Sartura Ltd.
+Lendavska ulica 16a
+10000 Zagreb, Croatia
+Email: robert.marko@sartura.hr
+Web: www.sartura.hr
