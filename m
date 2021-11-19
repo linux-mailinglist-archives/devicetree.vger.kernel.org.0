@@ -2,110 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF4C456705
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 01:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB38D456710
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 01:54:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233753AbhKSAye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 19:54:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbhKSAye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 19:54:34 -0500
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6AFC061574
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 16:51:33 -0800 (PST)
-Received: by mail-oi1-x22b.google.com with SMTP id o4so18248126oia.10
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 16:51:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=8cnZgiwj9XJw4naygCZKbqiNR9D8VICQZJ/k+OihQ6c=;
-        b=ndKyn010qoO+1qpay+R1q/8TvFa7FXwoCZ5otYd7548pRDEtEpizZEyeBTiEL2qlaM
-         a0Tr6InVcaAaanlYGPMJii+j1Y8JsfEARiTy1EeEyhssCZ66U15Iusrt4nWVGNoWU+Tx
-         bFZ50xdSC9oypEdJgHpiDUc+qKPkL+gonsDL8=
+        id S233717AbhKSA5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 19:57:39 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:43749 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229851AbhKSA5i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 19:57:38 -0500
+Received: by mail-oi1-f169.google.com with SMTP id o4so18266035oia.10;
+        Thu, 18 Nov 2021 16:54:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=8cnZgiwj9XJw4naygCZKbqiNR9D8VICQZJ/k+OihQ6c=;
-        b=tJChVMLQ7KF5oaBI5mI1ybsbIq17RH95/ny9I2I/orpFvYDQHZVhn3JSzYNHvEzpr5
-         IUdfwj8dgFx9acd+/2zEywsfoI6fhqwpnoKwpCkzbHRNfY24/BXyEdydSCGjY2OHgKQp
-         nkFUrYLmKhiHrUI8jzz7WROSx7iluGGu7OTFWwvK0l1k+QTmeIfgVmAf0vA0I+G1WIUL
-         BOFnHPGHkAC8B2q4WNSiUxsLICKuBmbcTHJf0vCBQdsOFY9rzFto2hmAl9yaBk0zi/sX
-         YA4YC+tyiTZMtU3DHaUyfWjWW2q1mZB1dqdvi00RebHkd+w0++JHQ5JpPqqyo1xXnTaC
-         OgXw==
-X-Gm-Message-State: AOAM532ALzMPvkkzI849Izvm2iyAUxatlj3LYekqf0MR9CXgUdo78j/N
-        YUXunB8U1z2IeWnyQN9C13kGHEYg8XjVVCuvnLUazg==
-X-Google-Smtp-Source: ABdhPJzUlN8XM485ZkLTeetA/FYunzmdsJriYPUX3FQapC8fqcv/xBQkkQPI7XgpwgN+jEcRvsIXhYUgOrZn4c4JnKQ=
-X-Received: by 2002:a54:4506:: with SMTP id l6mr1274844oil.32.1637283092931;
- Thu, 18 Nov 2021 16:51:32 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 19 Nov 2021 01:51:32 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NJ9HnG2UMCEE4biBm5ej/tJE9ReBS+RZcFUyPPeYoTY=;
+        b=eRGN8v9Q14nixr42468lPZ9n9Pdf2iWXsyWhoo1gmVFuSoMdED3Weu4fMLwTiR0R9t
+         zUk9aS/JN3Cb05bsjwjggeMY7pCBM8OVqH7bDoc8qApSk//I1a2Ss8k1+V8fK/xAyUUW
+         wQSFtr5fqnm0PKZLG9pblriVBR7KzEEmOr+Z0VfUTqhqN9PkqMKioFVXL2bjyRQyAZzp
+         8FPg+OEds/EhvE/mvEopEhC798aktxuhnY586oU+uxv7sLrFhzQcMMMWfgjK3UumCAga
+         IVYDDUY7ghoC1RJt4x3iXpUQiG4i29L7kR2wdN+cG362Snn1S8AhWG6yK5ayOGGP5Od0
+         GFCg==
+X-Gm-Message-State: AOAM531h8DE4EL8XIbVAc7JgFjfBwbl5utWlPIkA65SnJpLMGnHREf4M
+        1tAkD81xHYwtrJRvLDWeDA==
+X-Google-Smtp-Source: ABdhPJxY4T9LF2F11iACJ3TIzLy6vgQ/UROqzyeIhb7PVJmARYDeMS8HZCif76ujP4ztygxu18BiBw==
+X-Received: by 2002:a05:6808:11c8:: with SMTP id p8mr1273757oiv.72.1637283277541;
+        Thu, 18 Nov 2021 16:54:37 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id b26sm256384oti.56.2021.11.18.16.54.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 18 Nov 2021 16:54:36 -0800 (PST)
+Received: (nullmailer pid 2126530 invoked by uid 1000);
+        Fri, 19 Nov 2021 00:54:35 -0000
+Date:   Thu, 18 Nov 2021 18:54:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linux-i2c@vger.kernel.org, linux-imx@nxp.com,
+        linux-watchdog@vger.kernel.org, linux@rempel-privat.de,
+        linux-kernel@vger.kernel.org, aisheng.dong@nxp.com,
+        linux-spi@vger.kernel.org, kernel@pengutronix.de,
+        linux-serial@vger.kernel.org, robh+dt@kernel.org,
+        linux-mmc@vger.kernel.org, festevam@gmail.com, shawnguo@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux@roeck-us.net, ulf.hansson@linaro.org,
+        daniel.lezcano@linaro.org, Peng Fan <peng.fan@nxp.com>,
+        wim@linux-watchdog.org, Jacky Bai <ping.bai@nxp.com>,
+        s.hauer@pengutronix.de, broonie@kernel.org
+Subject: Re: [PATCH V5 8/9] arm64: dts: imx8ulp: Add the basic dtsi file for
+ imx8ulp
+Message-ID: <YZb1y5GpI7XPb/Ji@robh.at.kernel.org>
+References: <20211112082930.3809351-1-peng.fan@oss.nxp.com>
+ <20211112082930.3809351-9-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <1637251016-21923-1-git-send-email-pillair@codeaurora.org>
-References: <1637251016-21923-1-git-send-email-pillair@codeaurora.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.9.1
-Date:   Fri, 19 Nov 2021 01:51:32 +0100
-Message-ID: <CAE-0n51Z7qimY3k5qCYO5vAJ6o_skfUZL8xYpWN8a+2ThNVUGw@mail.gmail.com>
-Subject: Re: [PATCH v6] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
-To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
-        mpubbise@codeaurora.org, kuabhs@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211112082930.3809351-9-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rakesh Pillai (2021-11-18 07:56:56)
-> Add the WPSS remoteproc node in dts for
-> PIL loading.
->
-> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+On Fri, 12 Nov 2021 16:29:29 +0800, Peng Fan (OSS) wrote:
+> From: Jacky Bai <ping.bai@nxp.com>
+> 
+> Add the basic dtsi support for i.MX8ULP.
+> 
+> i.MX 8ULP is part of the ULP family with emphasis on extreme
+> low-power techniques using the 28 nm fully depleted silicon on
+> insulator process. Like i.MX 7ULP, i.MX 8ULP continues to be
+> based on asymmetric architecture, however will add a third DSP
+> domain for advanced voice/audio capability and a Graphics domain
+> where it is possible to access graphics resources from the
+> application side or the realtime side.
+> 
+> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
-> Changes from v5:
-> - Update the clock names
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 56 +++++++++++++++++++++++++++++++++
->  2 files changed, 60 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> index 9b991ba..ddab150 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
-> @@ -80,3 +80,7 @@
->                 qcom,pre-scaling = <1 1>;
->         };
->  };
-> +
-> +&remoteproc_wpss {
-> +       status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 365a2e0..76c2a90 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -134,6 +134,11 @@
->                         no-map;
->                 };
->
-> +               wpss_mem: memory@9ae00000 {
-> +                       no-map;
-> +                       reg = <0x0 0x9ae00000 0x0 0x1900000>;
+> 
+>   - v4
+>    Fix build error after rebase
+>    Drop usb nodes and alias, drop fec node
+> 
+>   - v3 changes:
+>     no
+> 
+>   - v2 changes:
+>     update the license
+>     update the compatible property for usb related node
+> 
+>  .../boot/dts/freescale/imx8ulp-pinfunc.h      | 978 ++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8ulp.dtsi    | 396 +++++++
+>  2 files changed, 1374 insertions(+)
+>  create mode 100755 arch/arm64/boot/dts/freescale/imx8ulp-pinfunc.h
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8ulp.dtsi
+> 
 
-Almost always reg comes first. Please swap the order of these two
-properties.
-
-> +               };
-> +
->                 rmtfs_mem: memory@9c900000 {
->                         compatible = "qcom,rmtfs-mem";
->                         reg = <0x0 0x9c900000 0x0 0x280000>;
-
-Otherwise
-
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
