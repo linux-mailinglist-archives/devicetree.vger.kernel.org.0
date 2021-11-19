@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9C1456BDB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:51:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 838AE456BE9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:54:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231686AbhKSIyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 03:54:21 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:38616
+        id S233029AbhKSI5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 03:57:40 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:39084
         "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229554AbhKSIyV (ORCPT
+        by vger.kernel.org with ESMTP id S230027AbhKSI5j (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 03:54:21 -0500
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com [209.85.167.71])
+        Fri, 19 Nov 2021 03:57:39 -0500
+Received: from mail-lf1-f72.google.com (mail-lf1-f72.google.com [209.85.167.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6E7EC3F197
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 08:51:16 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A90933F197
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 08:54:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637311876;
-        bh=ruWD3Wl39Eqs8sRNy3uOmfu7ln2HYc2tNhOSYl6noSE=;
+        s=20210705; t=1637312076;
+        bh=yVGRl+Nb0p3e6hVqNaBBVXHJCaTivPKnMw6vIRM7mQc=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=JQXV4Rf4hcCzPgxUOsdVpZqDZvPuNRlnRmSpKzwEnbNXkt6vOM9r9XgKyToTj6mzm
-         1Yjw/IGTLMW++m+PXVOigRvCZplXGsO6eA79bu5USZtbMh/4Rl1pi/q5u95l6kjFui
-         NZ2bonvwZ7s+MtWE5W0q0YYBioLlk9bBJJUiviG5Ewkgh7fOrlxrvBgOlPSqVeE/It
-         YH0T6xYYsZc/2tuv1jjT+XDx4/23TB1T3OLSaYpRTIKrKgPGegwGMmIfqLFVQb+JpI
-         fgpkn9C/++643L+5kMhu/4YK6Z+xqlezzI0YBHJN0/dNJjYJgVoTVt1lFesmOpoj9G
-         22c2UqBOCU4jw==
-Received: by mail-lf1-f71.google.com with SMTP id y40-20020a0565123f2800b003fded085638so6103095lfa.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 00:51:16 -0800 (PST)
+        b=dLbHYplwXxObCZ0eoq0qw/qDz+JgsZ2Q95AVMS5DBtYwiIsPaKEq2gx9jd5QcjSLP
+         oBPIWTCSylOctTSPx8qz2RpJG8X+xZMsrRSbWjq0WWQ33mnTjbF2oIgFFRfzlDsb9Z
+         VFo4ot80CSOJE2CfFURogXHyk+r7HBvqiT/WYU/kreCIT2pilplCY4K73Tio8Gp06v
+         VtdQyGbR2m97QduzX5QsK+ZQLQpeWLu+q2rWXX6KtnWyiUpcoqH8s197/8+7C1XvlH
+         J4Djccbn4bpH77lElQjnfQnwu1RG3mSHkUhK76J1xm1pGKmCVKLIPdLTgVTNz/DGV4
+         ZXXSIY8fOPr/A==
+Received: by mail-lf1-f72.google.com with SMTP id c15-20020a05651200cf00b0040524451deeso6069880lfp.20
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 00:54:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=ruWD3Wl39Eqs8sRNy3uOmfu7ln2HYc2tNhOSYl6noSE=;
-        b=VWC7HzrysSVmc7TsB6RZ8ocRioL6S6bxPyEapXTVRF19Vyv0JLP5RBQfkQh5qDYyZX
-         hN2efn6Qb0dDrF/A6w6LiYTFZ7bUxzkwhy5gywuh+iJ4yZUNUHC7c1Eas/Mu5oVBRWOn
-         /J/C6LpbEeAYI/KyKC4UVRkiJv3ikIY6PUbi8wN2+JWMbS1x9Sn7cPbCUtawIjfB9FaL
-         8RkTWEZUzS/KGmlr92n9VsHk6DJRPIacKn1ZAUVr7h98wzkZoORpMuSDhQacQvpyvyKm
-         jAODdk32wO8217jxPgFk4oDNC47bsWPYV+qO2rlKeDlQMZTj1XQ6Lz0PrTQmLslY+DKM
-         RqwQ==
-X-Gm-Message-State: AOAM530MOWAWIJPhx68caCqS6GFq2v25Q3b7zIntquT7PSZzokBe71hw
-        QFYrfyaxSOPlUGeW3LyL+lgK7EBmMrGbCZ8t8TN+n37+oubJnfgkssFh3nkpaRE6ecpi/VsqP5Z
-        Q/apIe96HTwV7K5sNJnbZHbt/VXxnlAXYWCX+S90=
-X-Received: by 2002:a05:6512:12c4:: with SMTP id p4mr30587569lfg.278.1637311875759;
-        Fri, 19 Nov 2021 00:51:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw+iEh/iZtWU1gI+foH3w3Hp3x+lsgB/cHQqt6q8Cw5Axi/8v3Ctkkj7xHHxnTJ4a8Jj0tsug==
-X-Received: by 2002:a05:6512:12c4:: with SMTP id p4mr30587544lfg.278.1637311875517;
-        Fri, 19 Nov 2021 00:51:15 -0800 (PST)
+        bh=yVGRl+Nb0p3e6hVqNaBBVXHJCaTivPKnMw6vIRM7mQc=;
+        b=Mec980A3UCbYiV3vDt6VsQGcRMFdav0qq5XQWMOuFvz2r0NKLi6iTVJxPqsEM+jqjq
+         RJfOANs1+QW43OYRvX0YLwlfinYRzQiekPYEDeFKeGNhkSsRsVl9h7YGJPyyOk4cdHbS
+         zi6wC4EFp94uF0G5MbE5JieKSVVb9H8HWZ2XzDEknQZ/ruKNiLVkiNd61mxyVljMwq/S
+         vXDlbPnsfSTisrv2pR5uzygwXWZKcKFAviF0D7OcuBkfPU4tRmcsLRc0n1Y9F+IlgGcZ
+         B+Lzaymf3Rt0gku8b82OxtA6CjpnjC3QIisw6032FWS8DleOtpA7155wENP9whoYO63w
+         Kpbg==
+X-Gm-Message-State: AOAM530FXUE6su7F9PB2gGHYhBUqTWIdjHs9I0VJDYoJxSnGaIEayAEF
+        Qlwo4epVQjPvHGSE27mYhpLcFyX4t4v0poVeZAN1XVAEDh7YTyfh9bXBxY4xYOvbAl7xw30BK2k
+        VWA7qlVdTextJxIF6F+E0EoC7rtsRNnWxQalPNrA=
+X-Received: by 2002:a05:6512:3501:: with SMTP id h1mr30314359lfs.513.1637312076085;
+        Fri, 19 Nov 2021 00:54:36 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwcOvUw9aIEuLVwNctO+vGGjyodK0pCY5hjBM2Wki3lDR+ToIprH/h++eG34SLwM2fbSlbnoA==
+X-Received: by 2002:a05:6512:3501:: with SMTP id h1mr30314339lfs.513.1637312075914;
+        Fri, 19 Nov 2021 00:54:35 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id r3sm299007lfc.114.2021.11.19.00.51.14
+        by smtp.gmail.com with ESMTPSA id br35sm223668lfb.39.2021.11.19.00.54.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Nov 2021 00:51:14 -0800 (PST)
-Message-ID: <a2854a71-6a6e-5ad6-4e4c-050c15126797@canonical.com>
-Date:   Fri, 19 Nov 2021 09:51:13 +0100
+        Fri, 19 Nov 2021 00:54:35 -0800 (PST)
+Message-ID: <773110c9-fc74-6cab-68c0-1c771a3be104@canonical.com>
+Date:   Fri, 19 Nov 2021 09:54:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.1
@@ -76,16 +76,16 @@ References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3
  <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
  <001401d7da86$f7ebd660$e7c38320$@samsung.com>
  <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
- <CAPLW+4n2hZ1c9BuOo4JtKLZp48fH81xUr0GSaJoc21=ad2vv1Q@mail.gmail.com>
+ <CAPLW+4kS-pzROC5oyAjW1aJp5cb1e3XK+40HsKwgPdCziSp1ZQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAPLW+4n2hZ1c9BuOo4JtKLZp48fH81xUr0GSaJoc21=ad2vv1Q@mail.gmail.com>
+In-Reply-To: <CAPLW+4kS-pzROC5oyAjW1aJp5cb1e3XK+40HsKwgPdCziSp1ZQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2021 16:31, Sam Protsenko wrote:
+On 18/11/2021 20:59, Sam Protsenko wrote:
 > On Tue, 16 Nov 2021 at 11:32, Krzysztof Kozlowski
 > <krzysztof.kozlowski@canonical.com> wrote:
 >>
@@ -136,59 +136,24 @@ On 16/11/2021 16:31, Sam Protsenko wrote:
 >> opinions more.
 >>
 > 
-> To provide more context, USI registers are split across two different
-> register maps:
+> Hi Krzysztof,
 > 
->     - USI protocol configuration (where we choose which protocol to
-> use: HSI2C, SPI or UART) is done via *_SW_CONF registers, from System
-> Register SFR range. To access those SW_CONF registers we need to
-> either:
->         (Option 3) pass System Register registers to corresponding
-> driver (HSI2C/SPI/UART) via syscon
->         (Option 1) or implement separate USI driver, so we can choose
-> desired protocol in device tree; in that case I guess System Register
-> registers should be passed via syscon to USI driver
->     - USI registers (like USI_CON register, which contains USI_RESET
-> bit) are contained in the same SFR range as corresponding
-> HSI2C/SPI/UART IP-core. Or rather HSI2C/SPI/UART IP-cores are
-> encapsulated within USI block(s). So to access registers like USI_CON
-> we only need to use memory already passed to corresponding
-> HSI2C/SPI/UART driver via "reg" property.
-> 
-> So I'd say ideally we should do next:
->   - modify USI registers (like USI_CON) in corresponding
-> HSI2C/SPI/UART drivers; but because all HSI2C/SPI/UART drivers share
-> the same USI registers, we might want to pull USI register offsets and
-> bits to some common header file, for example (to not duplicate that
-> code in drivers)
->   - implement separate USI driver to control SW_CONF registers from
-> System Register module (Option 1), so we can choose desired protocol
-> in device tree (in some USI node, not in HSI2C node)
->   - also, it probably makes sense to group all USI related nodes in
-> some separate *-usi.dtsi file; that would reduce confusion, given that
-> we have even more encapsulation in Exynos850 thanks to CMGP (Common
-> GPIO) block
-> 
-> My suggestion is to take this patch as is, and then we can work on USI
-> driver implementation/upstreaming. 
+> Can you please let me know if you're going to apply this series as is,
+> or if you want me to submit USIv2 driver first, and then rework this
+> patch on top of it? I'm working on some HSI2C related patches right
+> now, and thus it'd nice to know about your decision on this series
+> beforehand, as some of my patches (like bindings doc patches) might
+> depend on it. Basically I'd like to base my patches on the proper
+> baseline, so we don't have to rebase those later.
 
-No, you cannot later rework it. It becomes a binding which you need to
-support.
+This set won't go via my tree anyway, but I am against it. David pointed
+out that his USIv1 is a little bit different and embedding in each of
+I2C/UART/SPI drivers the logic of controlling USIv1 and USIv2 looks too
+big. The solution with a dedicated driver looks to me more flexible and
+encapsulated/cleaner.
 
-> Right now we don't have much of
-> device tree files that use USI HSI2C driver, so it'll be fairly easy
-> to fix those dts's once we implemented USI driver. 
-
-Once sysreg solution is accepted, it's removal would be ABI break.
-Please do not rush with incomplete solutions.
-
-> That will also
-> unblock me with submitting dev board support (dts files) I'm working
-> on right now. Krzysztof, please let me know if I'm wrong and if we
-> shouldn't change dts API too much, so it's mandatory to implement USI
-> driver before accepting this patch.
-
-David's point of USIv1 points me to the separate driver solution.
+Therefore after the discussions I am against this solution, so a
+soft-NAK from my side.
 
 
 Best regards,
