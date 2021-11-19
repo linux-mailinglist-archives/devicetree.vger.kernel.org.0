@@ -2,152 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9688D456967
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 06:10:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A4F5456979
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 06:19:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229826AbhKSFNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 00:13:36 -0500
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:36941 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229675AbhKSFNe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 00:13:34 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.west.internal (Postfix) with ESMTP id 6B1092B01143;
-        Fri, 19 Nov 2021 00:10:32 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute1.internal (MEProxy); Fri, 19 Nov 2021 00:10:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=958dHVlrtoqnp
-        /Is71jDQ6iJUv3oa+p7GUL7loCPVBk=; b=RBqKS3zUFnqRpg6Gnh9wsyg4Zb21r
-        uJojl9pmATjalSNUxDI0RHt+oYUAdJe1zFVEw2j48z7m0aUPrGjP+Y0URCm9Fd0Q
-        RsDK+TVwu9fgwrXAAj0raNYsO5dTQ6tDS1SfyAvm2YHWIUbk0XCp0uQgLyWO6NEE
-        2oCJYMUNTAm6CarYNZzEDOiO4FYQ2I48Uk3WGrXYT9fFFAoA+1c+RJvDNYYtA34M
-        WgJ6jwAg6pcKRL6mbf0pf3ABOkWLN/SjpsFOCWAtKjPhRJ5A9zfAFrTplaDU8rlK
-        63SJWLzgQS62NwxvlQVKNoIeypNmhEj7TTBdknYImWz2+Kz2corfEFgQg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=958dHVlrtoqnp/Is71jDQ6iJUv3oa+p7GUL7loCPVBk=; b=YONPrywN
-        v2hI2LsgbO7JOWWEF0Snp2LEumDr5/upUTvJliu3AQaC02Mv+q0flJCnz5l8KkY/
-        NK5c8leAGVY6KnFVXenZ4C1vMkB6Ld16eQZOZHTpQ0xO3VDLS4yt+1bv4ydDXwlO
-        EOa2dLIgb1c24cOQjF9n4BYsuzBI5lrYMF+XgmjozXB4omHyhAQx0TXg8H1M1P/h
-        +PTSaxLknuLHtf4wN01LlaQEf1zQvD80k6R2tOuOhP6DKePKxNVc1TOKj9Ex/MJg
-        w3nl7uElcLkqMnamvt7LDFo0b7EDLzigXVAmi1WGtxgoqzQnXwqvI3nes2Ytpdh1
-        17xsC/4LQCxcmA==
-X-ME-Sender: <xms:xzGXYY-F566_eTJpfU7_jSNXdyYMnvXc3B14mq9OcYcYVEm7scdP-A>
-    <xme:xzGXYQt0XOR-VO-sad2uDiF1i2G7i8GXK3zD4dr_6zHphWL51ILt-6x67ptUnhm3K
-    tVgrxb317AmBNIYWA>
-X-ME-Received: <xmr:xzGXYeCiI8eqfWKWLNqyeykBJ6RbDkDIjXAZBAVURebmsIEiWW_9uP8u0Hf19N4m7Sl1XX7_VN0HAMR29ltwFxJ_e5c_eOVDf1iOPx8AmWxC_Yx5W_LPRDp7EnQk-OV1LFHVDg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeejgdejlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghl
-    ucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrf
-    grthhtvghrnhepudfhjeefvdfhgfefheetgffhieeigfefhefgvddvveefgeejheejvdfg
-    jeehueeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:xzGXYYcF5XlCSAxr-xM6PsmP3juriKsu9FUMAU5fvzjWTEYi1JOUHw>
-    <xmx:xzGXYdNoMhAXrwZlyCoa8Mu0KUI_tPjTkVzfXE5gW88WMmhfI1-VJw>
-    <xmx:xzGXYSnQDk37zgSac3pbyfNaxBZObso3aA9c7aQXs8JIkKlD9holaQ>
-    <xmx:yDGXYQqWcvu4G1aNR8AHdaAs1mIpqZEfTddBrz5GUj3GPkWsaMW0vEUjpLA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 19 Nov 2021 00:10:30 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-crypto@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, Samuel Holland <samuel@sholland.org>
-Subject: [PATCH 2/2] crypto: sun8i-ce: Add support for the D1 variant
-Date:   Thu, 18 Nov 2021 23:10:25 -0600
-Message-Id: <20211119051026.13049-2-samuel@sholland.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211119051026.13049-1-samuel@sholland.org>
-References: <20211119051026.13049-1-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S231191AbhKSFW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 00:22:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229675AbhKSFW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 00:22:29 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C885DC061574;
+        Thu, 18 Nov 2021 21:19:27 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id iq11so7033230pjb.3;
+        Thu, 18 Nov 2021 21:19:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=KISB2UCF9N58Kzcwx4fmrlziVOKyZyEUixevjaxGGE0=;
+        b=JKUz/CuszSp9DlKTjWM5AUNoEZuIIS1ZjZtoR/10gKpq8/g6Zsjp8KAoH2axkEAcON
+         iutq6EQJp2PlFSUFiyg52DdfkP88sb9o0OOGMDksLp3Uy9/2YmW+KvTi9bRtto9yvjsH
+         BcyznVbJfSsQPbiZxpoOHB0IQk7MKQ9zfkNsL9/vGIev3/MXbBYNHWqyWRLzv3wCzpwU
+         022VrfLwlbCpBF9QJKyNSvOgOGnp1CzJ/eZWDSNDyH8GS/tUjUOeiWXjkRcJzo2SPfuQ
+         1xzrmjmCxUBmrEfBI6UddydAVgd7k7SOeovB2NF2njmPbQUFW3ydHlpdMl9p0/+qa4WY
+         xEXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=KISB2UCF9N58Kzcwx4fmrlziVOKyZyEUixevjaxGGE0=;
+        b=L2Nzjm7fr+w/mg8Db2YfE44i5ZEPQcuxNkLpUUpjXRQ+aSSJb+x1S6LxitL0hpt8Ii
+         MJBPGl3n65EdIGhxIk5BUM62KxYlOpFL+/NoXR3uRACwmGmvBuBFs65h5lYChsqoJO6S
+         aZP+OPZKvOUnxoOy12CYOjCqiPZKg9T3p75i+7oYITtaRZ3YGNczs5C3fZ5kpcR72vMh
+         K1ODqYJ0bB2FnEat7gUuBUA7lPZThuojVbAK0JUtUAjD0pZTR7bXw4pbsh2IwDZjlesp
+         285K1ffzfX4PjwKQT4nQcB0OdVleH9CFXWCJzkX+ILx/Wv4cUF4qahuKD+9w+YB22j4u
+         LS3g==
+X-Gm-Message-State: AOAM531lu9x+D/Cgse18Ys/G8dJQfzmmlRTmss61iyZ5pmOqDTcOXCvk
+        wlTJD/Yi+YeoQp3orlMG+IY=
+X-Google-Smtp-Source: ABdhPJySDJY5YyW+4BpjmBL1dlXWoGgjG3ZTcFf6EcfL0HjjWRi9TZ9XXBwD6h9e4s4asmXnebHC7Q==
+X-Received: by 2002:a17:90a:2843:: with SMTP id p3mr1367783pjf.176.1637299167425;
+        Thu, 18 Nov 2021 21:19:27 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id c2sm1332935pfv.112.2021.11.18.21.19.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 18 Nov 2021 21:19:26 -0800 (PST)
+From:   Hammer Hsieh <hammerh0314@gmail.com>
+X-Google-Original-From: Hammer Hsieh <hammer.hsieh@sunplus.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jirislaby@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     tony.huang@sunplus.com, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
+Subject: [PATCH v3 0/2] Add UART driver for Suplus SP7021 SoC
+Date:   Fri, 19 Nov 2021 13:19:21 +0800
+Message-Id: <1637299163-6460-1-git-send-email-hammer.hsieh@sunplus.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1635752903-14968-1-git-send-email-hammer.hsieh@sunplus.com>
+References: <1635752903-14968-1-git-send-email-hammer.hsieh@sunplus.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Corentin Labbe <clabbe.montjoie@gmail.com>
+This is a patch series for UART driver for Suplus SP7021 SoC.
 
-The Allwinner D1 SoC has a crypto engine compatible with sun8i-ce.
-Add support for it.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
- .../crypto/allwinner/sun8i-ce/sun8i-ce-core.c | 21 +++++++++++++++++++
- drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h  |  1 +
- 2 files changed, 22 insertions(+)
+Hammer Hsieh (2):
+  dt-bindings:serial:Add bindings doc for Sunplus SoC UART Driver
+  serial:sunplus-uart:Add Sunplus SoC UART Driver
 
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-index 00194d1d9ae6..d8623c7e0d1d 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce-core.c
-@@ -106,6 +106,24 @@ static const struct ce_variant ce_a64_variant = {
- 	.trng = CE_ID_NOTSUPP,
- };
- 
-+static const struct ce_variant ce_d1_variant = {
-+	.alg_cipher = { CE_ALG_AES, CE_ALG_DES, CE_ALG_3DES,
-+	},
-+	.alg_hash = { CE_ALG_MD5, CE_ALG_SHA1, CE_ALG_SHA224, CE_ALG_SHA256,
-+		CE_ALG_SHA384, CE_ALG_SHA512
-+	},
-+	.op_mode = { CE_OP_ECB, CE_OP_CBC
-+	},
-+	.ce_clks = {
-+		{ "bus", 0, 200000000 },
-+		{ "mod", 300000000, 0 },
-+		{ "ram", 0, 400000000 },
-+		},
-+	.esr = ESR_D1,
-+	.prng = CE_ALG_PRNG,
-+	.trng = CE_ALG_TRNG,
-+};
-+
- static const struct ce_variant ce_r40_variant = {
- 	.alg_cipher = { CE_ALG_AES, CE_ALG_DES, CE_ALG_3DES,
- 	},
-@@ -192,6 +210,7 @@ int sun8i_ce_run_task(struct sun8i_ce_dev *ce, int flow, const char *name)
- 			dev_err(ce->dev, "CE ERROR: keysram access error for AES\n");
- 		break;
- 	case ESR_A64:
-+	case ESR_D1:
- 	case ESR_H5:
- 	case ESR_R40:
- 		v >>= (flow * 4);
-@@ -990,6 +1009,8 @@ static const struct of_device_id sun8i_ce_crypto_of_match_table[] = {
- 	  .data = &ce_h3_variant },
- 	{ .compatible = "allwinner,sun8i-r40-crypto",
- 	  .data = &ce_r40_variant },
-+	{ .compatible = "allwinner,sun20i-d1-crypto",
-+	  .data = &ce_d1_variant },
- 	{ .compatible = "allwinner,sun50i-a64-crypto",
- 	  .data = &ce_a64_variant },
- 	{ .compatible = "allwinner,sun50i-h5-crypto",
-diff --git a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-index cec781d5063c..624a5926f21f 100644
---- a/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-+++ b/drivers/crypto/allwinner/sun8i-ce/sun8i-ce.h
-@@ -94,6 +94,7 @@
- #define ESR_R40	2
- #define ESR_H5	3
- #define ESR_H6	4
-+#define ESR_D1	5
- 
- #define PRNG_DATA_SIZE (160 / 8)
- #define PRNG_SEED_SIZE DIV_ROUND_UP(175, 8)
+ .../bindings/serial/sunplus,sp7021-uart.yaml       |  58 ++
+ MAINTAINERS                                        |   7 +
+ drivers/tty/serial/Kconfig                         |  23 +
+ drivers/tty/serial/Makefile                        |   1 +
+ drivers/tty/serial/sunplus-uart.c                  | 903 +++++++++++++++++++++
+ include/soc/sunplus/sp_uart.h                      |  93 +++
+ 6 files changed, 1085 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+ create mode 100644 drivers/tty/serial/sunplus-uart.c
+ create mode 100644 include/soc/sunplus/sp_uart.h
+
 -- 
-2.32.0
+2.7.4
 
