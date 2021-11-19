@@ -2,68 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB624566B2
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 00:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DF4C456705
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 01:51:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbhKSABA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 19:01:00 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:43789 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233355AbhKSAA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 19:00:58 -0500
-Received: by mail-ot1-f43.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so13904512otm.10;
-        Thu, 18 Nov 2021 15:57:58 -0800 (PST)
+        id S233753AbhKSAye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 19:54:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44846 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229879AbhKSAye (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 19:54:34 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F6AFC061574
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 16:51:33 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id o4so18248126oia.10
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 16:51:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=8cnZgiwj9XJw4naygCZKbqiNR9D8VICQZJ/k+OihQ6c=;
+        b=ndKyn010qoO+1qpay+R1q/8TvFa7FXwoCZ5otYd7548pRDEtEpizZEyeBTiEL2qlaM
+         a0Tr6InVcaAaanlYGPMJii+j1Y8JsfEARiTy1EeEyhssCZ66U15Iusrt4nWVGNoWU+Tx
+         bFZ50xdSC9oypEdJgHpiDUc+qKPkL+gonsDL8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qQyw+OaTCyqoQUmDfKtk9AzuInHEGGF+maVbryFDHIA=;
-        b=FUWQ2HrKYAUya1JJ60bxWoT4aCepSIT5J9TDGqNw10+bY5aL6L+66qq+h1m/MBSFW0
-         4qUXKxhZSKJNx4GQBzZyLAVem+Eq+SZk5xxg/YTCqjxwQJuP2g6u02pJ3jekNuiRS9Pi
-         OpUqULm5qAItthOlqtr9j6CthMXHcJkn2BVED9OHbR6VuXD0xYCr+ewiWyvFWxyMjZMc
-         m7fRtzHjyPNVMMSCGiQJX/rbTkmjBsaBYuz1LAc2yZ+hkmYEimN9D4kSiL79Eq1l+Yhx
-         0AH0Wj29E+vPxlwWywXpov6ukBNk3pZbKLecu8kGGodpU5IGRHhwHuWUzObDm1TYm7BD
-         17Ng==
-X-Gm-Message-State: AOAM531L6ydSZbu/gvmSEhCkyRSMP6MuWzXwRFz50jJaRZl+z+wjZyvN
-        jcsAEl6TBOBaeOs+qwQJ+g==
-X-Google-Smtp-Source: ABdhPJwh+xGuBd+uVwlGIC3te+m2L839boD/FFHCle5bUHDD9E0Ar8ETMfzGYzg5H/s9IF895MwqhA==
-X-Received: by 2002:a9d:7758:: with SMTP id t24mr1025364otl.264.1637279877876;
-        Thu, 18 Nov 2021 15:57:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id k94sm253141otk.40.2021.11.18.15.57.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 15:57:57 -0800 (PST)
-Received: (nullmailer pid 2028838 invoked by uid 1000);
-        Thu, 18 Nov 2021 23:57:56 -0000
-Date:   Thu, 18 Nov 2021 17:57:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tinghan Shen <tinghan.shen@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bgolaszewski@baylibre.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        matthias.bgg@gmail.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: mediatek: add mt8195 pericfg
- compatible
-Message-ID: <YZbohHqctULU4Qu4@robh.at.kernel.org>
-References: <20211112050811.21202-1-tinghan.shen@mediatek.com>
- <20211112050811.21202-2-tinghan.shen@mediatek.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=8cnZgiwj9XJw4naygCZKbqiNR9D8VICQZJ/k+OihQ6c=;
+        b=tJChVMLQ7KF5oaBI5mI1ybsbIq17RH95/ny9I2I/orpFvYDQHZVhn3JSzYNHvEzpr5
+         IUdfwj8dgFx9acd+/2zEywsfoI6fhqwpnoKwpCkzbHRNfY24/BXyEdydSCGjY2OHgKQp
+         nkFUrYLmKhiHrUI8jzz7WROSx7iluGGu7OTFWwvK0l1k+QTmeIfgVmAf0vA0I+G1WIUL
+         BOFnHPGHkAC8B2q4WNSiUxsLICKuBmbcTHJf0vCBQdsOFY9rzFto2hmAl9yaBk0zi/sX
+         YA4YC+tyiTZMtU3DHaUyfWjWW2q1mZB1dqdvi00RebHkd+w0++JHQ5JpPqqyo1xXnTaC
+         OgXw==
+X-Gm-Message-State: AOAM532ALzMPvkkzI849Izvm2iyAUxatlj3LYekqf0MR9CXgUdo78j/N
+        YUXunB8U1z2IeWnyQN9C13kGHEYg8XjVVCuvnLUazg==
+X-Google-Smtp-Source: ABdhPJzUlN8XM485ZkLTeetA/FYunzmdsJriYPUX3FQapC8fqcv/xBQkkQPI7XgpwgN+jEcRvsIXhYUgOrZn4c4JnKQ=
+X-Received: by 2002:a54:4506:: with SMTP id l6mr1274844oil.32.1637283092931;
+ Thu, 18 Nov 2021 16:51:32 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 19 Nov 2021 01:51:32 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112050811.21202-2-tinghan.shen@mediatek.com>
+In-Reply-To: <1637251016-21923-1-git-send-email-pillair@codeaurora.org>
+References: <1637251016-21923-1-git-send-email-pillair@codeaurora.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Fri, 19 Nov 2021 01:51:32 +0100
+Message-ID: <CAE-0n51Z7qimY3k5qCYO5vAJ6o_skfUZL8xYpWN8a+2ThNVUGw@mail.gmail.com>
+Subject: Re: [PATCH v6] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
+To:     Rakesh Pillai <pillair@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sibis@codeaurora.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Nov 2021 13:08:10 +0800, Tinghan Shen wrote:
-> add mt8195 pericfg compatible to binding document.
-> 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+Quoting Rakesh Pillai (2021-11-18 07:56:56)
+> Add the WPSS remoteproc node in dts for
+> PIL loading.
+>
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
 > ---
->  .../devicetree/bindings/arm/mediatek/mediatek,pericfg.yaml       | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> Changes from v5:
+> - Update the clock names
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 56 +++++++++++++++++++++++++++++++++
+>  2 files changed, 60 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 9b991ba..ddab150 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -80,3 +80,7 @@
+>                 qcom,pre-scaling = <1 1>;
+>         };
+>  };
+> +
+> +&remoteproc_wpss {
+> +       status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 365a2e0..76c2a90 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -134,6 +134,11 @@
+>                         no-map;
+>                 };
+>
+> +               wpss_mem: memory@9ae00000 {
+> +                       no-map;
+> +                       reg = <0x0 0x9ae00000 0x0 0x1900000>;
 
-Acked-by: Rob Herring <robh@kernel.org>
+Almost always reg comes first. Please swap the order of these two
+properties.
+
+> +               };
+> +
+>                 rmtfs_mem: memory@9c900000 {
+>                         compatible = "qcom,rmtfs-mem";
+>                         reg = <0x0 0x9c900000 0x0 0x280000>;
+
+Otherwise
+
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
