@@ -2,137 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F009456F56
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 14:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5E4456F5C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 14:12:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235310AbhKSNL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 08:11:26 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:17141 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234542AbhKSNLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 08:11:25 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637327304; h=Content-Type: MIME-Version: Message-ID:
- In-Reply-To: Date: References: Subject: Cc: To: From: Sender;
- bh=peudzCRJza4nfYgRJiGKF6At1OyLtmPHdPcnrXolSWU=; b=peKDKu8D0S6JrOGkONkJk2nN6wlGqmvo47UDoccYhd76QwFyz7EbUp6UuhcQA++95qpYlZnQ
- snfdtdAl53PaBSLPuEdiJiJoIp25BO/V4R/2E0yv0WdwwOjHjksTpm373PKTD82r0IWWfo/l
- 1t1BLYxbT6Eqg9jJtIm5mu/kJw4=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 6197a1c75bbbed1f705bf82b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 13:08:23
- GMT
-Sender: kvalo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0F320C43616; Fri, 19 Nov 2021 13:08:23 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from tykki (tynnyri.adurom.net [51.15.11.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 16162C4338F;
-        Fri, 19 Nov 2021 13:08:20 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 16162C4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Anilkumar Kolli <akolli@codeaurora.org>
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v2 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
-References: <1637082058-6398-1-git-send-email-akolli@codeaurora.org>
-        <1637082058-6398-2-git-send-email-akolli@codeaurora.org>
-        <87wnl7dx69.fsf@codeaurora.org>
-        <b1617fc74da2d65d663a82e4a4f538e2@codeaurora.org>
-Date:   Fri, 19 Nov 2021 15:08:17 +0200
-In-Reply-To: <b1617fc74da2d65d663a82e4a4f538e2@codeaurora.org> (Anilkumar
-        Kolli's message of "Thu, 18 Nov 2021 16:05:21 +0530")
-Message-ID: <878rxkcmym.fsf@codeaurora.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S235376AbhKSNPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 08:15:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235325AbhKSNPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 08:15:06 -0500
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90899C06173E
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 05:12:04 -0800 (PST)
+Received: by mail-ua1-x936.google.com with SMTP id p2so21040900uad.11
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 05:12:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YM8iEZkWj09QdZV0IaAS62/GEXCOf5MjgxwudLjy2dY=;
+        b=cAE33cfo/0N63eGgp8XbsF1lNvSCLdfZ1+2RAHHG4RaBBsTG0gitWfyd/tOn+UlXeK
+         q0fSYiClNmlpIxW80wl8/1ziXRzBUdaZ6/JDoFb8RP4KfycfDQIdQvvNBvHrqVTYNaXW
+         KT+I/Khok9hk9K03fe9/iYTO36bYC08uzLHs4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YM8iEZkWj09QdZV0IaAS62/GEXCOf5MjgxwudLjy2dY=;
+        b=hcczw3uOCGuQdNx5UMovw061yED/w4LCMakcwb9nEFOyNqgV/C6J9t6Oo+nl33YCzl
+         oGiN342NVgUvuF90lxBuWYsiO/VWnENe/iOnPIqdorKkamFZXPEp0K8KGUgvjGrdD2RB
+         vyHU82CtVuGronR4618ZIciEVIJH+WxEIixNHDfBuY1Zo4RfQzlILbF920zeOOT1o4Ae
+         yXup9+9I6HJhOWD98maD0QrFOlgYmH1L+YVx75l1Du2wh5pSaMRC+YUI3rr2+PwPgu7v
+         3yMRZ3VAJA5B2fjDqRhgNWrTZ80QmJPIaFS/zCrMafZP1FGhaoEUkWuzWW0mIpQSGDIK
+         zEgg==
+X-Gm-Message-State: AOAM531geg2UCD6N0Kd5IfXyqbWeTK3sZevFaJ3iEVVXsC+LGHyMZrNn
+        4mJtmtRkRr7zVEK9RdoH+UbCnDQO1ZnR43SeIgXLKVNl3SU=
+X-Google-Smtp-Source: ABdhPJx8ZxQW/Y4NgqCFDWKYKJOnuOnviKck4eVR5XbNzsqnkFWtVWE2YsNzXL/5+5sd4UipCMXMaZBVMVKVdagJ3lo=
+X-Received: by 2002:a05:6102:38c7:: with SMTP id k7mr87839688vst.45.1637327522660;
+ Fri, 19 Nov 2021 05:12:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20210923065500.2284347-1-daniel@0x0f.com>
+In-Reply-To: <20210923065500.2284347-1-daniel@0x0f.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Fri, 19 Nov 2021 22:11:52 +0900
+Message-ID: <CAFr9PXmPE_vRcHgPkJp3o=d5HnAV52TFuBe-2hf=hKY8y2=BhA@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] gpio: msc313: Add gpio support for ssd20xd
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        pavel@ucw.cz, DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-leds@vger.kernel.org, Romain Perier <romain.perier@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Anilkumar Kolli <akolli@codeaurora.org> writes:
+Hi Bartosz,
 
-> On 2021-11-17 13:35, Kalle Valo wrote:
->> Anilkumar Kolli <akolli@codeaurora.org> writes:
->>
->>> Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
->>> is reserved through DT entries for firmware usage. Send the base
->>> address and size from DT entries.
->>>
->>> If DT entry is available, PCI devices work with
->>> fixed_mem_region else host allocates multiple segments.
->>>
->>> IPQ8074 on HK10 board supports multiple PCI devices.
->>> IPQ8074 + QCN9074 is tested with this patch.
->>>
->>> Tested-on: QCN9074 hw1.0 PCI
->>> WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+On Thu, 23 Sept 2021 at 15:55, Daniel Palmer <daniel@0x0f.com> wrote:
 
-[...]
+> Daniel Palmer (11):
+>   dt-bindings: gpio: msc313: Add compatible for ssd20xd
+>   dt-bindings: gpio: msc313: Add offsets for ssd20xd
+>   gpio: msc313: Code clean ups
+>   gpio: msc313: Add support for SSD201 and SSD202D
 
->>> +		goto no_dt_entry;
->>> +	}
->>> +
->>> +	reg_end = reg + len / (aw * sw);
->>> +
->>> +	do {
->>> +		start = of_read_number(reg, aw);
->>> +		reg += aw;
->>> +		size = of_read_number(reg, sw);
->>
->> of_read_number() takes 'const __be32 *cell' but reg is 'u32 *'?
->>
-> Yes.
+Would it be possible to get some comment on these commits and/or get
+them picked up?
+We (Romain and I) have a few bits that are blocked on this.
 
-My point here was that doesn't this mixing of __be32 and u32 when cause
-a sparse warning?
+Thanks,
 
->
->>> +		reg += sw;
->>> +	} while (reg < reg_end);
->>> +
->>> +no_dt_entry:
->>> +	if (no_dt_entry) {
->>> +		mhi_ctrl->iova_start = 0;
->>> +		mhi_ctrl->iova_stop = 0xFFFFFFFF;
->>> +	} else {
->>> +		mhi_ctrl->iova_start = (dma_addr_t)(start + 0x1000000);
->>> +		mhi_ctrl->iova_stop = (dma_addr_t)(start + size);
->>
->> I don't like casts, they hide bugs like the const issue above. Is there
->> any way to do this without casts?
->>
->
-> u64 start, size;
->
->     if (of_property_read_u32_array(np, "reg", reg, 4)) {
->          ath11k_dbg(ab, ATH11K_DBG_QMI,
->                     "qmi fail to get reg from hremote\n");
->          return 0;
->     }
->     start = reg[0] + reg[1];
->     size = reg[2] + reg[3];
->
-> I will this code in next patch. still needs typecast form u64 to
-> dma_addr_t. no ?
-
-I suspect that a cast is not needed, but not sure. No time to check either.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Daniel
