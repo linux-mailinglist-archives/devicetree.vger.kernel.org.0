@@ -2,141 +2,350 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBB9A456CDF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 10:59:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB26A456CD8
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 10:56:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232274AbhKSKBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 05:01:49 -0500
-Received: from mga04.intel.com ([192.55.52.120]:17003 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229974AbhKSKBs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 05:01:48 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10172"; a="233110022"
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; 
-   d="scan'208";a="233110022"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2021 01:58:47 -0800
-X-IronPort-AV: E=Sophos;i="5.87,247,1631602800"; 
-   d="scan'208";a="568845492"
-Received: from smile.fi.intel.com ([10.237.72.184])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Nov 2021 01:58:31 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1mo0cr-008Uqj-60;
-        Fri, 19 Nov 2021 11:56:09 +0200
-Date:   Fri, 19 Nov 2021 11:56:08 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Calvin Zhang <calvinzhang.cool@gmail.com>
-Cc:     Vineet Gupta <vgupta@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
-        Yoshinori Sato <ysato@users.sourceforge.jp>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Nick Hu <nickhu@andestech.com>,
-        Greentime Hu <green.hu@gmail.com>,
-        Vincent Chen <deanbo422@gmail.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Jonas Bonn <jonas@southpole.se>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        Stafford Horne <shorne@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Rich Felker <dalias@libc.org>, Chris Zankel <chris@zankel.net>,
-        Max Filippov <jcmvbkbc@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mike Rapoport <rppt@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        David Hildenbrand <david@redhat.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Vladimir Isaev <isaev@synopsys.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Marc Zyngier <maz@kernel.org>,
-        David Brazdil <dbrazdil@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrey Konovalov <andreyknvl@gmail.com>,
-        Anshuman Khandual <anshuman.khandual@arm.com>,
-        Souptick Joarder <jrdr.linux@gmail.com>,
-        Jinyang He <hejinyang@loongson.cn>,
-        Mauri Sandberg <sandberg@mailfence.com>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Alexander Sverdlin <alexander.sverdlin@nokia.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Ley Foon Tan <ley.foon.tan@intel.com>,
-        Andreas Oetken <andreas.oetken@siemens.com>,
-        Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Ganesh Goudar <ganeshgr@linux.ibm.com>,
-        Markus Elfring <elfring@users.sourceforge.net>,
-        "Aneesh Kumar K.V" <aneesh.kumar@linux.ibm.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Alexandre Ghiti <alex@ghiti.fr>,
-        Vitaly Wool <vitaly.wool@konsulko.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Guo Ren <guoren@linux.alibaba.com>,
-        Rob Herring <robh@kernel.org>,
-        Zhang Yunkai <zhang.yunkai@zte.com.cn>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        linux-snps-arc@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org,
-        uclinux-h8-devel@lists.sourceforge.jp, linux-mips@vger.kernel.org,
-        openrisc@lists.librecores.org, linuxppc-dev@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org, linux-sh@vger.kernel.org,
-        linux-xtensa@linux-xtensa.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] of: reserved_mem: Remove reserved regions count
- restriction
-Message-ID: <YZd0uEWNH6Def3+8@smile.fi.intel.com>
-References: <20211119075844.2902592-1-calvinzhang.cool@gmail.com>
- <20211119075844.2902592-3-calvinzhang.cool@gmail.com>
+        id S232006AbhKSJ7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 04:59:47 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:28696 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229457AbhKSJ7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 04:59:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637315801;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=+ZbK7aHRev3BXeBFj0UD0Yz7+yqaSMYEHhl6wwftxps=;
+    b=qokiRNVg6ZQLyOdGsW8PuiJZY9eyVHRu2MBYMwegCEYB1iAYyRMDyziUfGtbVsAeSc
+    hiMV+WGbCX2lvqdrMe0WPXowNlox566NrxNIDBuDjGn5AIrWBFti0ldP+donPInQu8tN
+    SBLYV6V1lyBfQK/Effy519Zs42NN0lgXZOAiZ1TBt5MUdo6gNBPKyXVGBgwo/pmXAfUh
+    UM0SMNium6bpx24aI7MpF7AIkJC5ehyoBLXzAtGoY1VetG9byz4BvUqj8o42YCuafj1d
+    2itohBUFuCXki2uIyhrrIIZDw5Cv3oB1vU1hwltpWNvQofJVbN1vTqrtSRZ6J1xOFlsS
+    BT3w==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK09lg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.34.5 AUTH)
+    with ESMTPSA id j05669xAJ9ucxzp
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 19 Nov 2021 10:56:38 +0100 (CET)
+Date:   Fri, 19 Nov 2021 10:56:31 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Julian Ribbeck <julian.ribbeck@gmx.de>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH] arm64: dts: qcom: Add device tree for Samsung J5 2015
+ (samsung-j5)
+Message-ID: <YZd0zzzuxgk2+x2b@gerhold.net>
+References: <20211116200734.73920-1-julian.ribbeck@gmx.de>
+ <YZcam/pnh0CBjMIx@builder.lan>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211119075844.2902592-3-calvinzhang.cool@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <YZcam/pnh0CBjMIx@builder.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 19, 2021 at 03:58:19PM +0800, Calvin Zhang wrote:
-> Change to allocate reserved_mems dynamically. Static reserved regions
-> must be reserved before any memblock allocations. The reserved_mems
-> array couldn't be allocated until memblock and linear mapping are ready.
+Hi Bjorn,
+
+Thanks a lot for your review!
+
+On Thu, Nov 18, 2021 at 09:31:39PM -0600, Bjorn Andersson wrote:
+> On Tue 16 Nov 14:07 CST 2021, Julian Ribbeck wrote:
 > 
-> So move the allocation and initialization of records and reserved memory
-> from early_init_fdt_scan_reserved_mem() to of_reserved_mem_init().
+> > Samsung J5 2015 is a MSM8916 based Smartphone. It is similar to some of the
+> > other MSM8916 devices, especially the Samsung ones.
+> > 
+> > With this patch initial support for the following is added:
+> >   - eMMC/SD card
+> >   - Buttons
+> >   - USB (although no suiting MUIC driver currently)
+> >   - UART (untested for lack of equipment)
+> >   - WiFi/Bluetooth (WCNSS)
+> > 
+> > It is worth noting that Samsung J5 with MSM8916 exists in different
+> > generations (e.g Samsung J5 2015 and Samsung J5 2016) which each have
+> > different models (e.g. samsung-j5nlte, samsung-j5xnlte, etc). This patch
+> > is only regarding the 2015 generation, but should work with all of it's
+> > models, as far as we could test.
+> > 
+> > Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> > Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../boot/dts/qcom/msm8916-samsung-j5.dts      | 209 ++++++++++++++++++
+> >  2 files changed, 210 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 6b816eb33309..08bfccb0daeb 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -15,6 +15,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-longcheer-l8910.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a3u-eur.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-a5u-eur.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-j5.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-samsung-serranove.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> > new file mode 100644
+> > index 000000000000..687bea438a57
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-j5.dts
+> > @@ -0,0 +1,209 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> 
+> If you authored this, could we please get it under BSD license?
+> 
 
->  arch/arc/mm/init.c                 |  3 ++
->  arch/arm/kernel/setup.c            |  2 +
->  arch/arm64/kernel/setup.c          |  3 ++
->  arch/csky/kernel/setup.c           |  3 ++
->  arch/h8300/kernel/setup.c          |  2 +
->  arch/mips/kernel/setup.c           |  3 ++
->  arch/nds32/kernel/setup.c          |  3 ++
->  arch/nios2/kernel/setup.c          |  2 +
->  arch/openrisc/kernel/setup.c       |  3 ++
->  arch/powerpc/kernel/setup-common.c |  3 ++
->  arch/riscv/kernel/setup.c          |  2 +
->  arch/sh/kernel/setup.c             |  3 ++
->  arch/xtensa/kernel/setup.c         |  2 +
+I'm afraid the same problem applies to all MSM8916-related device trees:
+https://lore.kernel.org/linux-arm-msm/YMIznk4scPv1qOzP@gerhold.net/
 
-Isn't x86 missed? Is it on purpose?
-Would be nice to have this in the commit message or fixed accordingly.
+Given the similarities between the devices it's easiest to take portions
+from existing device trees and just change some properties. But this
+means that many people were involved and I'm not sure if it is
+appropriate to apply a different license without asking all of them.
 
--- 
-With Best Regards,
-Andy Shevchenko
+It's an unfortunate situation that will likely also apply to more
+MSM8916 device trees submitted in the future. I hope it's still
+acceptable even with the GPL-2.0-only license. :)
 
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "msm8916-pm8916.dtsi"
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > +	model = "Samsung Galaxy J5 (2015)";
+> > +	compatible = "samsung,j5", "qcom,msm8916";
+> > +	chassis-type = "handset";
+> > +
+> > +	aliases {
+> > +		serial0 = &blsp1_uart2;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = "serial0";
+> > +	};
+> > +
+> > +	reserved-memory {
+> > +		/* Additional memory used by Samsung firmware modifications */
+> > +		tz-apps@85500000 {
+> > +			reg = <0x0 0x85500000 0x0 0xb00000>;
+> > +			no-map;
+> > +		};
+> > +	};
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +
+> > +		pinctrl-names = "default";
+> > +		pinctrl-0 = <&gpio_keys_default>;
+> > +
+> > +		label = "GPIO Buttons";
+> > +
+> > +		volume-up {
+> > +			label = "Volume Up";
+> > +			gpios = <&msmgpio 107 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_VOLUMEUP>;
+> > +		};
+> > +
+> > +		home-key {
+> > +			lable = "Home Key";
+> > +			gpios = <&msmgpio 109 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_HOMEPAGE>;
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&blsp1_uart2 {
+> 
+> Can you please sort these nodes alphabetically?
+> 
 
+It looks mostly alphabetically ordered to me, could you clarify which
+nodes you are referring to exactly?
+
+The exceptions are &smd_rpm_regulators and &msmgpio, which are explicitly
+at the end of the file (consistent with all other MSM8916 device trees).
+I think it's easier to focus on the main interesting part of the device
+tree that way (the device definitions). If you prefer to have strict
+alphebtical order I can prepare a bulk patch that changes the order in
+all the existing MSM8916 device trees. The most important thing for me
+is that they are consistent.
+
+Thanks,
+Stephan
+
+> 
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pm8916_resin {
+> > +	status = "okay";
+> > +	linux,code = <KEY_VOLUMEDOWN>;
+> > +};
+> > +
+> > +/* FIXME: Replace with SM5703 MUIC when driver is available */
+> > +&pm8916_usbin {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pronto {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&sdhc_1 {
+> > +	status = "okay";
+> > +
+> > +	pinctrl-names = "default", "sleep";
+> > +	pinctrl-0 = <&sdc1_clk_on &sdc1_cmd_on &sdc1_data_on>;
+> > +	pinctrl-1 = <&sdc1_clk_off &sdc1_cmd_off &sdc1_data_off>;
+> > +};
+> > +
+> > +&sdhc_2 {
+> > +	status = "okay";
+> > +
+> > +	pinctrl-names = "default", "sleep";
+> > +	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+> > +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+> > +
+> > +	cd-gpios = <&msmgpio 38 GPIO_ACTIVE_LOW>;
+> > +};
+> > +
+> > +&usb {
+> > +	status = "okay";
+> > +	dr_mode = "peripheral";
+> > +	extcon = <&pm8916_usbin>;
+> > +};
+> > +
+> > +&usb_hs_phy {
+> > +	extcon = <&pm8916_usbin>;
+> > +	qcom,init-seq = /bits/ 8 <0x1 0x19 0x2 0x0b>;
+> > +};
+> > +
+> > +&smd_rpm_regulators {
+> > +	vdd_l1_l2_l3-supply = <&pm8916_s3>;
+> > +	vdd_l4_l5_l6-supply = <&pm8916_s4>;
+> > +	vdd_l7-supply = <&pm8916_s4>;
+> > +
+> > +	s3 {
+> > +		regulator-min-microvolt = <1200000>;
+> > +		regulator-max-microvolt = <1300000>;
+> > +	};
+> > +
+> > +	s4 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <2100000>;
+> > +	};
+> > +
+> > +	l1 {
+> > +		regulator-min-microvolt = <1225000>;
+> > +		regulator-max-microvolt = <1225000>;
+> > +	};
+> > +
+> > +	l2 {
+> > +		regulator-min-microvolt = <1200000>;
+> > +		regulator-max-microvolt = <1200000>;
+> > +	};
+> > +
+> > +	l4 {
+> > +		regulator-min-microvolt = <2050000>;
+> > +		regulator-max-microvolt = <2050000>;
+> > +	};
+> > +
+> > +	l5 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +	};
+> > +
+> > +	l6 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +	};
+> > +
+> > +	l7 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <1800000>;
+> > +	};
+> > +
+> > +	l8 {
+> > +		regulator-min-microvolt = <2850000>;
+> > +		regulator-max-microvolt = <2900000>;
+> > +	};
+> > +
+> > +	l9 {
+> > +		regulator-min-microvolt = <3300000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +	};
+> > +
+> > +	l10 {
+> > +		regulator-min-microvolt = <2700000>;
+> > +		regulator-max-microvolt = <2800000>;
+> > +	};
+> > +
+> > +	l11 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <2950000>;
+> > +		regulator-allow-set-load;
+> > +		regulator-system-load = <200000>;
+> > +	};
+> > +
+> > +	l12 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <2950000>;
+> > +	};
+> > +
+> > +	l13 {
+> > +		regulator-min-microvolt = <3075000>;
+> > +		regulator-max-microvolt = <3075000>;
+> > +	};
+> > +
+> > +	l14 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +	};
+> > +
+> > +	l15 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +	};
+> > +
+> > +	l16 {
+> > +		regulator-min-microvolt = <1800000>;
+> > +		regulator-max-microvolt = <3300000>;
+> > +	};
+> > +
+> > +	l17 {
+> > +		regulator-min-microvolt = <3000000>;
+> > +		regulator-max-microvolt = <3000000>;
+> > +	};
+> > +
+> > +	l18 {
+> > +		regulator-min-microvolt = <2700000>;
+> > +		regulator-max-microvolt = <2700000>;
+> > +	};
+> > +};
+> > +
+> > +&msmgpio {
+> > +	gpio_keys_default: gpio-keys-default {
+> > +		pins = "gpio107", "gpio109";
+> > +		function = "gpio";
+> > +
+> > +		drive-strength = <2>;
+> > +		bias-pull-up;
+> > +	};
+> > +};
+> > --
+> > 2.33.1
+> > 
