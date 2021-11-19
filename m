@@ -2,62 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 831EC45728B
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:13:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25BF74572BA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:19:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236282AbhKSQQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 11:16:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231173AbhKSQQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 11:16:10 -0500
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5981C061574;
-        Fri, 19 Nov 2021 08:13:08 -0800 (PST)
-Received: by mail-yb1-xb2e.google.com with SMTP id v7so29873800ybq.0;
-        Fri, 19 Nov 2021 08:13:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8t14HGrnLIPpNfLXRwGJimMPguzE1C5wdqxN7ZDgODk=;
-        b=YiXPw93lcAEhsf289DUuTbTUMwHqhRtcNEU2Xc3E01GNcGaRaRQf+hBVjwpzS6JqI5
-         88LNIRRCStMlO1i+NXTsvWB82eaTirc3xM/eikVw6WKtGIbjD3Jot2d/DNePM9T0ka6D
-         E3ISZYv6m+Hj95gfeUu/Cos1FksDhXJx54BcukJj2WTPZLhIY+CdAcLZeGA10W8z+a60
-         5zMUEhuJsTz1lvqMxI18KprMM86TeFK0Vo+ah11RrAy/8q0+3ES6ffMPPTWSCmoCid8g
-         fNAI44qy2KdbIiffBRP0EmFtdLmg/+QCeeMgc0SDeOmrrq/cLXDFFsryaj1cStFQE536
-         cVMw==
+        id S236002AbhKSQWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 11:22:40 -0500
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:34355 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234650AbhKSQWk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 11:22:40 -0500
+Received: by mail-ua1-f42.google.com with SMTP id n6so22367339uak.1;
+        Fri, 19 Nov 2021 08:19:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=8t14HGrnLIPpNfLXRwGJimMPguzE1C5wdqxN7ZDgODk=;
-        b=dAOT9Rn+h01RpHTVwgtGv30jG/ZLUqVjzTh4WGwlhlkHWGBshvpR2EJa/CmDX5bBho
-         R2wCva517b2gEDhsHHFz00wWqLh0QIdG8zfa4M0miKNOppWQZ/+ED4gcafB/VxNooCS/
-         MIb09LSozGZejmsixfQUllkpNiDm8CMKYIg12FTd7vdlw1ImV0gET92ySsdV3rFwBud2
-         Ol0UY19sVtGiBsEQWD95MCgG9l5G7VG6h6RSyBuMHrdRKKxdRiad5xN+OUR34Zi6sQH9
-         dlXVjvowu9+XmtlYsER80RDHuyzvCSC97pPlvJvZ2ol5VDociwNI2bvT5+rYvS5RMK9T
-         Z05Q==
-X-Gm-Message-State: AOAM5324Tpa8RVoG4+zq9saitVRGjz9kXLXNOnReEtih4XkHhprbpxQE
-        5usa+CBjdsY8ecXQB39JKrtiaRSMTCKaD/pGmfXxogoZsb2pfQ==
-X-Google-Smtp-Source: ABdhPJzx3whsvlXZbTQqfQri0g7E29EXGkoOUA216ui7dyt+wCbF97v/17XTOMsDI7RQ7XpE/L2YehNthuku0uDrkuU=
-X-Received: by 2002:a25:b7c6:: with SMTP id u6mr37849989ybj.16.1637338387868;
- Fri, 19 Nov 2021 08:13:07 -0800 (PST)
+        bh=oXJ8b4UJXP3bxjRNXZDIaiKXPClCEL/4bLUcBV0dHUU=;
+        b=AoTBCL1/5aAyx0k8rWF8L1SMK7ch87wV1E14Ms+qpq+mX/AU9+FoNabEi/ya6ofmsS
+         qj2NK0oMI0rRcFvi0U9plsXmPIK19mo/+SERaxxJhJeEvd2VqH0LJXG/U8LtVwejb689
+         smGCSfNnI2q79Uwa5q+kK8iiS+75DCxeoAohzA1PrhHa6cBJ42PlI9nOfyLVv5IbdV5b
+         nDTGhDXkL3JPWcTSYQW9tVDodjRmoLz0vPiuq0GwrcWpN54bXf3Uay02GbUfIKBhQN8l
+         nlwC4wGzeYWxikvPYNa9lFvE1qfKpjeEYG+nrA05XV6As3Tim9BCzgwAR/XcTTANWa3N
+         1gWA==
+X-Gm-Message-State: AOAM530zuNURTi01uS5RFmyM0PlOm/xX0ReVisXURnuK4HUT2SSVFybt
+        r6HSQq9c7J5cf9C9SUJTV6yOOphuzARxlQ==
+X-Google-Smtp-Source: ABdhPJxQTx9QIPIyV1pu17c5wbPF0DBlaSbIh9mEiESRSOHDrVC520jFtFtWjyl8cdJhA0P55ypaEw==
+X-Received: by 2002:a67:c982:: with SMTP id y2mr93749063vsk.15.1637338777384;
+        Fri, 19 Nov 2021 08:19:37 -0800 (PST)
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
+        by smtp.gmail.com with ESMTPSA id e7sm113819vkn.20.2021.11.19.08.19.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 19 Nov 2021 08:19:37 -0800 (PST)
+Received: by mail-vk1-f178.google.com with SMTP id 84so6184281vkc.6;
+        Fri, 19 Nov 2021 08:19:36 -0800 (PST)
+X-Received: by 2002:a05:6122:50e:: with SMTP id x14mr120320183vko.7.1637338776791;
+ Fri, 19 Nov 2021 08:19:36 -0800 (PST)
 MIME-Version: 1.0
 References: <20211119123710.31575-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <e51e2a73-1fd4-d3cd-8973-f7e94ae5027f@omp.ru>
 In-Reply-To: <e51e2a73-1fd4-d3cd-8973-f7e94ae5027f@omp.ru>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Fri, 19 Nov 2021 16:12:41 +0000
-Message-ID: <CA+V-a8s6_bx86FiqkZ+79TVm4ymS=M+DEh4Y=RG9o+SnxiLCHg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 19 Nov 2021 17:19:25 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV7EhGyfSYYvZTd-HE+5_wuesH5P8zD6Hakkf8W1F2FyA@mail.gmail.com>
+Message-ID: <CAMuHMdV7EhGyfSYYvZTd-HE+5_wuesH5P8zD6Hakkf8W1F2FyA@mail.gmail.com>
 Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc-som: Enable serial NOR flash
 To:     Sergey Shtylyov <s.shtylyov@omp.ru>
 Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
         Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
         Biju Das <biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
@@ -66,14 +62,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Sergey,
 
-Thank you for the review.
-
-On Fri, Nov 19, 2021 at 4:10 PM Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
->
-> Hello!
->
+On Fri, Nov 19, 2021 at 5:10 PM Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
 > On 19.11.2021 15:37, Lad Prabhakar wrote:
->
 > > Enable mt25qu512a flash connected to QSPI0.
 > >
 > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
@@ -93,12 +83,17 @@ On Fri, Nov 19, 2021 at 4:10 PM Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
 > > +     qspi_pins0: qspi0 {
 >
 >     Not qspi0_pins:?
->
-good catch, will fix that and send a v2.
 
-Cheers,
-Prabhakar
+It's a subnode of "pfc", and all other subnodes don't have a "_pins"
+suffix. Same for the other boards.
 
-> [...]
->
-> MBR, Sergey
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
