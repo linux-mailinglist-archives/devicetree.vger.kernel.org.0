@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA7A2456775
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 02:28:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CE71456787
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 02:42:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233957AbhKSBbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 20:31:38 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:45647 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229754AbhKSBbh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 20:31:37 -0500
-Received: by mail-ot1-f51.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso14207097otf.12;
-        Thu, 18 Nov 2021 17:28:36 -0800 (PST)
+        id S233330AbhKSBp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 20:45:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56364 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230232AbhKSBp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 20:45:57 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8D4CC061748
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:42:56 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id t23so18564477oiw.3
+        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:42:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X+4PtbwP22GNL58EB2Kn0kBSekJZJrlBoC1EpDbCbXg=;
+        b=IVpsHQisSXq61n+KCFmaFVTIZs1m7P8sptH88Rs2nCWyy05xN3D5zLggCYBoSoA+0l
+         u7fcIUffkGErYpwi8Y3XHROuyUIsWALMQr5rqYfomny0130g5jsmqlK2y1NvQ2SMD9gQ
+         ZWCyuZF6T+AUUWS/dQpyOovCAMnpSDbrezyWD2zyo5Eh3qjK/7Bl/65Y73GuXE0LngfN
+         wdih7bwfGmPzfsEkdR5CQSc7llv9dtBiDwvvW8+9A3TUTvREyPh4+6iciM9Gpt/BXr2C
+         d2R9FHaiAMfDTOUN6iEDX6lC8sX7K3olLhiiRDKeX/1I9SbrKt/1ceST/AfOyhCSB32R
+         ECbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fR1VJ/80szE87lgDNoz3DRsA8IUgZ2yjTGFOwsF+19Q=;
-        b=rXJFIxFjmbnKc+I1h4BDwSuIVX49ksnQOxkRNVOP4nWLX41KYMGeFOImDd2JsMssaA
-         COpGSvxrFDYEbYy9uGrYdQkusfJGbb08iBfvzromu5I7trgAwqfWp4ABYDVFg/XLZCD1
-         N0cW6nlI2npaxuSlWbdTeDG++iVoxZlxEl6LXGWZR9LwWWjDBG4rJdHet972+FmPiHZy
-         2CvTbdwerqaLcBKW5PFL3/jnmptxbxmk8Q7SfIkaFD86xGQMiKRxdNWZA6koPpOuLVls
-         yK3n0W8ILXzNda9IA+ln85KGxJVKlnn4SiZUYbxDcZhD6fFMqUEZXm0RDJsJUzrn2afj
-         hoAw==
-X-Gm-Message-State: AOAM533v1m+EylwMRjZC4NxMIrh5dIBMJP/4hWS0QzdAmpAz1bAbLw/p
-        1usFQeecvk45vcWItEalfQ==
-X-Google-Smtp-Source: ABdhPJyZcjtKi5Q9Eiyg8OMNrHwgUkBHtBi1oBatMrpiGEMRVgwYftBXoXQyz3wsrf2Pxao+JMemiw==
-X-Received: by 2002:a05:6830:34a0:: with SMTP id c32mr1425800otu.379.1637285316373;
-        Thu, 18 Nov 2021 17:28:36 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f25sm286166oog.44.2021.11.18.17.28.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 17:28:35 -0800 (PST)
-Received: (nullmailer pid 2185444 invoked by uid 1000);
-        Fri, 19 Nov 2021 01:28:34 -0000
-Date:   Thu, 18 Nov 2021 19:28:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: pinctrl: uniphier: Add child node
- definitions to describe pin mux and configuration
-Message-ID: <YZb9wqhoxTPiS2QW@robh.at.kernel.org>
-References: <1636416699-21033-1-git-send-email-hayashi.kunihiko@socionext.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X+4PtbwP22GNL58EB2Kn0kBSekJZJrlBoC1EpDbCbXg=;
+        b=VSTQgU3bsv5QvFE3daufYhqqw+zxuymcSsrBR+MO/pfKOm9snYH831u7q1RxyooYFN
+         znObrGVYtdJRa37OwE7DY+fUYg/rd54fwImOPSLnm9oBfubh8QUnqOzDXzOobAyNUJI5
+         q96HrTIJzOKzrrwFI306Vcbd7MAXb086kZ/jdoWpYtYB08GUEDOBbAGmnxtj+4DuXdH6
+         neJtAhNW3PyGy7DUHjqazyiwGSXlPHSly+/RyLXnHsBBSqvJceKi8DwFmvON6xcPZ333
+         0/jlWJI3SzztHldBzpJd0PJq0dy91LKRz2v8AIzacQwKrDb8CJL4O7ckwfnhvXT55gvH
+         AhpQ==
+X-Gm-Message-State: AOAM533qAl8hTaQqw53t6sAXcn/QA/lsEIzDuBt2/JPlF8SUdTTZ+VJI
+        5G4CKTZa5GdAAGzD6YznYomQC25qhAm6lRTXsNTTxw==
+X-Google-Smtp-Source: ABdhPJyivwAYVdXUPMbQ2Y5VnZ8qk/PZC4e3Bk2bhJcLGXxX5foQprxJzFpUAszMwIztcuhdwXgdbO39GFXWDz6eZ7Y=
+X-Received: by 2002:a54:4791:: with SMTP id o17mr1587886oic.114.1637286175950;
+ Thu, 18 Nov 2021 17:42:55 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1636416699-21033-1-git-send-email-hayashi.kunihiko@socionext.com>
+References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com> <6645a55c05cf12954f97347ade1cf47ddf62bb86.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <6645a55c05cf12954f97347ade1cf47ddf62bb86.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 19 Nov 2021 02:42:44 +0100
+Message-ID: <CACRpkda5YunVXZWp7dnY0qiKMXHSs4qviYuLVh1uc0jB9aaY9A@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 4/9] power: supply: Add batinfo getters usable
+ prior supply registration
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, rostokus@gmail.com,
+        fan.chen@mediatek.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 09 Nov 2021 09:11:39 +0900, Kunihiko Hayashi wrote:
-> In arch/arm/boot/dts/uniphier-pinctrl.dtsi, there are child nodes of
-> pinctrl that defines pinmux and pincfg, however, there are no rules about
-> that in dt-bindings.
-> 
-> 'make dtbs_check' results an error with the following message:
-> 
->    pinctrl: 'ain1', 'ain2', 'ainiec1', 'aout', 'aout1', 'aout2', ...
->    ... 'usb2', 'usb3' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> To avoid the issue, add the rules of pinmux and pincfg in each child node
-> and grandchild node.
-> 
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
-> Changes since v2:
-> - Describe additionalProperties directly instead of patternProperties
-> - Remove unnecessary unevaluatedProperties
-> 
-> Changes since v1:
-> - Replace additionalProperties with unevaluatedProperties
-> - Add additionalProperties for child and grandchild nodes
-> 
-> .../pinctrl/socionext,uniphier-pinctrl.yaml        | 38 ++++++++++++++++++++--
->  1 file changed, 36 insertions(+), 2 deletions(-)
-> 
+On Tue, Nov 16, 2021 at 1:26 PM Matti Vaittinen
+<matti.vaittinen@fi.rohmeurope.com> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> In some cases it is beneficial to be able to query the static battery
+> node properties prior power_supply registration. The device-tree
+> parsing does not really depend on psy so add APIs which can
+> be used without the power-supply. Also, convert APIs to operate on
+> fwnode while at it.
+>
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+
+This looks quite useful!
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
