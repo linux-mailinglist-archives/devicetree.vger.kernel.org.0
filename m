@@ -2,98 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BF74572BA
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD344572F3
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:29:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236002AbhKSQWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 11:22:40 -0500
-Received: from mail-ua1-f42.google.com ([209.85.222.42]:34355 "EHLO
-        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234650AbhKSQWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 11:22:40 -0500
-Received: by mail-ua1-f42.google.com with SMTP id n6so22367339uak.1;
-        Fri, 19 Nov 2021 08:19:37 -0800 (PST)
+        id S232695AbhKSQcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 11:32:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59076 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233602AbhKSQcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 11:32:54 -0500
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7EAC061748
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 08:29:52 -0800 (PST)
+Received: by mail-il1-x129.google.com with SMTP id m5so2361550ilh.11
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 08:29:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=NA+2l6X3VrlJxsJamfaAblN1iQr9G5GeyeDjrzqWldE=;
+        b=pWYGr8brYDg2I9xcuGuhurThossAPr1q87fBQPqCiM2BAja4C7uFnX65Fix38gLbMR
+         at4/FYFXGd1o9zn1i0YRa4Hl3P62bx1s2GsXPKOGSzrVsAT1Xw8HlYNWbORdzoDIOeqe
+         0qslCNUJ66VzbM5OECQeydfyhNNqUWwGP6afEEwmpoOMoNIZnNaZfchouPoszwNYzV1v
+         y1bimltU6qqxfdJSKgW6NjHgo6foggqrexAHaTR5BhNExaTs0kreVzSvKeiuvCJBGMM5
+         4hhlHH8MqKp2ss3LA9dpdsxQOKHOGkUr880PDTOgcILg0r5nps7M4Bb//54zUt1tJBXH
+         UXjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oXJ8b4UJXP3bxjRNXZDIaiKXPClCEL/4bLUcBV0dHUU=;
-        b=AoTBCL1/5aAyx0k8rWF8L1SMK7ch87wV1E14Ms+qpq+mX/AU9+FoNabEi/ya6ofmsS
-         qj2NK0oMI0rRcFvi0U9plsXmPIK19mo/+SERaxxJhJeEvd2VqH0LJXG/U8LtVwejb689
-         smGCSfNnI2q79Uwa5q+kK8iiS+75DCxeoAohzA1PrhHa6cBJ42PlI9nOfyLVv5IbdV5b
-         nDTGhDXkL3JPWcTSYQW9tVDodjRmoLz0vPiuq0GwrcWpN54bXf3Uay02GbUfIKBhQN8l
-         nlwC4wGzeYWxikvPYNa9lFvE1qfKpjeEYG+nrA05XV6As3Tim9BCzgwAR/XcTTANWa3N
-         1gWA==
-X-Gm-Message-State: AOAM530zuNURTi01uS5RFmyM0PlOm/xX0ReVisXURnuK4HUT2SSVFybt
-        r6HSQq9c7J5cf9C9SUJTV6yOOphuzARxlQ==
-X-Google-Smtp-Source: ABdhPJxQTx9QIPIyV1pu17c5wbPF0DBlaSbIh9mEiESRSOHDrVC520jFtFtWjyl8cdJhA0P55ypaEw==
-X-Received: by 2002:a67:c982:: with SMTP id y2mr93749063vsk.15.1637338777384;
-        Fri, 19 Nov 2021 08:19:37 -0800 (PST)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id e7sm113819vkn.20.2021.11.19.08.19.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 19 Nov 2021 08:19:37 -0800 (PST)
-Received: by mail-vk1-f178.google.com with SMTP id 84so6184281vkc.6;
-        Fri, 19 Nov 2021 08:19:36 -0800 (PST)
-X-Received: by 2002:a05:6122:50e:: with SMTP id x14mr120320183vko.7.1637338776791;
- Fri, 19 Nov 2021 08:19:36 -0800 (PST)
-MIME-Version: 1.0
-References: <20211119123710.31575-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <e51e2a73-1fd4-d3cd-8973-f7e94ae5027f@omp.ru>
-In-Reply-To: <e51e2a73-1fd4-d3cd-8973-f7e94ae5027f@omp.ru>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 19 Nov 2021 17:19:25 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV7EhGyfSYYvZTd-HE+5_wuesH5P8zD6Hakkf8W1F2FyA@mail.gmail.com>
-Message-ID: <CAMuHMdV7EhGyfSYYvZTd-HE+5_wuesH5P8zD6Hakkf8W1F2FyA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2l-smarc-som: Enable serial NOR flash
-To:     Sergey Shtylyov <s.shtylyov@omp.ru>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=NA+2l6X3VrlJxsJamfaAblN1iQr9G5GeyeDjrzqWldE=;
+        b=qCUmFLYgKZ28X01daAGNo1V6j5jrmwsdrJvSwZh6IGYm2j5zuqI0gJgIfPwSfKJIsv
+         7n76PY1CO8vt3A139C4+fjk8VUYXOXL4Da7n7r02ak56eGsoqkNB92zshyOsXWzCLRag
+         CAfuvSJf3vHJZ9sbmvzyPUuck0N+Glb3Owxu2UiVryCrpT6g4meq4sIeAXkbq4N64rLz
+         kh5s0nto1hNCZfLJJpTDrgN7PaBy4LZczLwaSkD++ZK6SHnegfNBl8U6QA5ueoyiCugc
+         YA7yrAs54wJv+1bt45/OMozY5fDQqudiVKecYVM4yPkOBXfI87H0FYFFCWiotDj/wCvf
+         7tBw==
+X-Gm-Message-State: AOAM532xenDVCn8ak5bD+F/Sd3D9PU8OPaMLdkLvQqAhjVDsof1RjiAQ
+        3VQEsmO1E2Ww0TnvSilLuvdaAA==
+X-Google-Smtp-Source: ABdhPJy9+PK69iHyuVZcAK9TkCljtUM0G3YiAMHQdYjwnsW/n1HgnSVsWmM0mEP/36cqcfaj9/5ecQ==
+X-Received: by 2002:a92:d343:: with SMTP id a3mr5688828ilh.136.1637339392190;
+        Fri, 19 Nov 2021 08:29:52 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
+        by smtp.gmail.com with ESMTPSA id c7sm108143iob.28.2021.11.19.08.29.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Nov 2021 08:29:51 -0800 (PST)
+Message-ID: <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Adam Ford <aford173@gmail.com>, Tim Harvey <tharvey@gateworks.com>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Date:   Fri, 19 Nov 2021 11:29:48 -0500
+In-Reply-To: <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
+References: <20211106183802.893285-1-aford173@gmail.com>
+         <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+         <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
+         <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+         <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
+         <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
+         <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
+         <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergey,
+Hi Adam, Tim,
 
-On Fri, Nov 19, 2021 at 5:10 PM Sergey Shtylyov <s.shtylyov@omp.ru> wrote:
-> On 19.11.2021 15:37, Lad Prabhakar wrote:
-> > Enable mt25qu512a flash connected to QSPI0.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> >   .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 40 +++++++++++++++++++
-> >   1 file changed, 40 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> > index 7e84a29dddfa..e53c17954566 100644
-> > --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-> > @@ -178,6 +178,18 @@
-> >               line-name = "gpio_sd0_pwr_en";
-> >       };
-> >
-> > +     qspi_pins0: qspi0 {
->
->     Not qspi0_pins:?
+[...]
+> > > > Nicolas and Adam,
+> > > > 
+> > > > For the H1 patches in this series: I've been able to test the IMX8MM
+> > > > H1 JPEG encode using GStreamer 1.18.5:
+> > > > $ gst-inspect-1.0 | grep -e "v4l2.*enc"
+> > > > video4linux2:  v4l2jpegenc: V4L2 JPEG Encoder
+> > > > $ gst-launch-1.0 videotestsrc ! jpegenc ! rtpjpegpay ! udpsink
+> > >                                   ^ v4l2jpegenc
+> > > 
+> > > This is just a transcript error ?
+> > 
+> > Nicolas,
+> > 
+> > No! Thanks for catching my mistake. I was testing with software encode... ooops!
+> > 
+> > 'gst-launch-1.0 videotestsrc ! v4l2jpegenc ! fakesink' actually hangs
+> > the board so likely a power-domain issue there?
+> 
+> The v4l2-compliance tests fail on the h1 decoder with a hang, but I
+> think we're writing to registers which are not documented in the Mini
+> TRM.  The Mini TRM doesn't explicitly show the JPEG encoding as a
+> feature, but some of the registers state JPEG, but because some of the
+> registers written for the H1 are not documented in the TRM.  If those
+> registers are restricted or not in this SoC, I am concerned that it
+> might be related.  I'll try to run some more tests this weekend to
+> check on the status of the power-domain stuff.
 
-It's a subnode of "pfc", and all other subnodes don't have a "_pins"
-suffix. Same for the other boards.
+To verify if the HW support JPEG encoding you can read SWREG63 bit 25. This is
+in the TRM, just not labelled properly. To mimic the decoding side, would be "HW
+synthesis config register X" with the bit labelled SW_ENC_JPEG_PROF (but
+PROF/profile is on or off). If your board hang while reading this, you likely
+didn't get the power bit right.
 
-Gr{oetje,eeting}s,
+IMX8 has an undocumented control block thing that we have been fighting with in
+imx8q,  perhaps that's your issue. Few driver was proposed, we are still pending
+on NXP solution to be submitted (they asked us to wait, still waiting =)).
 
-                        Geert
+> > 
+> > > 
+> > > > host=192.168.1.146 port=5000
+> > > > viewed on client@192.168.1.146 via:
+> > > > $ gst-launch-1.0 udpsrc port=5000 ! application/x-rtp,payload=96 !
+> > > > rtpjpegdepay ! jpegdec ! autovideosink
+> > > > 
+> > > > For the G1/G2 patches in the series I don't see any Gstreamer
+> > > > 'v4l2.*dec' elements. Perhaps I need a newer version of Gstreamer.
+> > > 
+> > > Most likely yes, I suggest building gstreamer/ branch "main", GStreamer has now
+> > > a single repository. We are very close to 1.20, which will include stable API
+> > > support of H264, MPEG2 and VP8 decoding.
+> > > 
+> > 
+> > Ok, let me see if I can navigate through the build process and I'll
+> > get back to you.
+> > 
+> > Thanks,
+> > 
+> > Tim
+> > 
+> > > > 
+> > > > I have CSI capture and DSI display currently working on
+> > > > imx8mm-venice-gw73xx-0x that I can play with. The CSI sensor only
+> > > > supports RAW8/RAW10 (and gstreamer currently only supports RAW8) and I
+> > > > can't efficiently convert to something the JPEG encoder likes without
+> > > > bayer2rgbneon (a libneon version).
+> > > > 
+> > > > I see from the IMX8MMRM that the 2D GPU supports scaling etc with a
+> > > > wide range of data formats but I'm not sure how to tap into this as
+> > > > that hardware is managed by the vivante driver. On the IMX6QDL there
+> > > > is a separate IPU block that Philipp Zabel wrote a nice mem2mem
+> > > > csc/scaler driver for but I don't see any equivalent currently for
+> > > > IMX8MM.
+> > > > 
+> > > > Best regards,
+> > > > 
+> > > > Tim
+> > > 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
