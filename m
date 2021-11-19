@@ -2,348 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A164568E8
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 05:05:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6E43456935
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 05:35:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232600AbhKSEIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 23:08:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232098AbhKSEIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 23:08:54 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3418C061748
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 20:05:52 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so14805237otm.10
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 20:05:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=va1rat0GrfgBWrdhlc4u3bg8V9PW2k58vGn2hMTXv1Q=;
-        b=P+UWQq3u8a7iJXHjxIUFQmJJosShdhe54SSLan51A4o72Wf9lypack0ubaHhCqGPWx
-         SYEYiDQjbwCKiju3jwvLHnFAVajsk0vsqYGsQ57eo5+cE+2M2EudGyNx4PWonQ8sg/50
-         q9rbfiKECZS0ZDQz4F4ozJVyi02CThaTFV6Q4gZfbrADqKBYF85cOi1rzKoVvZ/5X7f9
-         kutaokNH5hS0+adjsmVOqtaV1JoAw4uwMZwSIAX6FCnICuqCVcFL2IqQTWM5AqXeWvD1
-         jsQPcYvLO4f0IKnhc+5U6J2gBA0zDxTrfElje0gXRForfisulqbWImsrrglhTRybYq3l
-         EB+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=va1rat0GrfgBWrdhlc4u3bg8V9PW2k58vGn2hMTXv1Q=;
-        b=zLEyYH2p/MAlaQL3iJRXoTicTcAELNDRyWu6RJZdejsnRbUaKC6eyLSGGsidHgok7D
-         odQYw7PDBKNhs2crXXmePIXwLm6pVVvRRx8fd87sornUSgJq/LahJaPyOcr6ic9+uJGe
-         gqtTy8F9grVUkXsOMquf6nKDrkA1hxFuQeWDRADZ8DDnRJNxgcC60P+ollB56v3rLfPd
-         KwoSeXcfcR8Y+wG/F73UyAvH5NSim0BguMCwVzpgtEJf7jyw4YC8SrYB9cXbQDGr2wpj
-         Awrk835GcRCjfEfZVW7bPmd4/rX4on45bVwwjS3B94KQMqlg438FulP2Xdr/hKhRJc/x
-         MY7Q==
-X-Gm-Message-State: AOAM531IqVqCHgiElfA7+1JGfvOkk8SHDVMR4Su5Rwn7oQ626BZXFl5H
-        SZak+oGeS1XFWt2Bp5ssC8zoyg==
-X-Google-Smtp-Source: ABdhPJxrCNnJf4KaXgOkL8IZC/Lwi3eaZT111mFx7rir6XsE8dxIfbN3gDKtogB4iF+vAGDwlqlQtg==
-X-Received: by 2002:a05:6830:1392:: with SMTP id d18mr1992695otq.374.1637294752031;
-        Thu, 18 Nov 2021 20:05:52 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id m12sm525701oiw.23.2021.11.18.20.05.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Nov 2021 20:05:51 -0800 (PST)
-Date:   Thu, 18 Nov 2021 22:05:46 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     agross@kernel.org, todor.too@gmail.com, mchehab@kernel.org,
-        robh+dt@kernel.org, angelogioacchino.delregno@somainline.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Andrey Konovalov <andrey.konovalov@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v3 2/4] media: dt-bindings: media: camss: Remove
- clock-lane property
-Message-ID: <YZcimsckJmDVk6mE@builder.lan>
-References: <20211118124819.1902427-1-robert.foss@linaro.org>
- <20211118124819.1902427-3-robert.foss@linaro.org>
+        id S233465AbhKSEit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 23:38:49 -0500
+Received: from wnew2-smtp.messagingengine.com ([64.147.123.27]:41669 "EHLO
+        wnew2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232711AbhKSEit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 23:38:49 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.west.internal (Postfix) with ESMTP id 6A2482B01172;
+        Thu, 18 Nov 2021 23:35:47 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Thu, 18 Nov 2021 23:35:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=Zvs4MCJ98Fz17uPtCXjFsuRAA9
+        39RHkh+WYtVtWQ9+8=; b=VWpDU9gwj6NFr/5Z20MLEj27itZGsiFBKvQxytHaRE
+        TfPVltN26ApVfHWTFsgM9x2tc3P6/p1ASWwwiZEK6/cCTgCvFxVe10LrigLrBenL
+        DhWJ2IweVx/Ce4vivU8vI+iCGD5wcRkPuleWKFwuBVZSyrPRnCzbTWdB1oW9yP03
+        JgMf+6cFufwiIZOEQW7+UMsYG8QRZGum8IS3yYpHyl37WuefJo6d87PbvUgWrBqH
+        nVGC7/MOS3ni0Jvwb2l+mIe9k2QNjRa/M5RQHq2F61C35OGM9leVBFLCUyk2wuik
+        DMTUuQ3J6w9axTojmv3B3wsQu2MTp/y5e15rk6gX6eOw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Zvs4MCJ98Fz17uPtC
+        XjFsuRAA939RHkh+WYtVtWQ9+8=; b=msbNmSG5DOazfdADWSXqOArLjd++n8tyb
+        D965eVstvyPZmzOudi0eWz5qNvUuQURTf1xZaspGpC2Oy3CwYNIDlRUOfa4yS4wi
+        LUNUz8pVROt6LMvESVEngA93E93a8JLYc1qkhvybUqHJUEOIBhwBoKsaU0SQWlcp
+        iEe3K0xpGcD7mCQ5muInI6TK4eVke9TjXkwT0e8g9GoKMxFIeNlIR/fnr0YWUi+E
+        7fwVAggZpUSzWjQQTXTEM0GXBlWIc6HRz6wafHwfXMXy0vQX5CXGa1KOqmKgnczX
+        G3H8s0GffkgqhoE58AOq1+rfiir6GYSzose4Uc76jtT6KjLoDTQ0A==
+X-ME-Sender: <xms:oimXYZ-odGd0jYgpHl-q_TBcdku-FMsNoXnYMsIHHyI0WaZhnu4_lw>
+    <xme:oimXYdvBtHgHU7snPcghrRJHTiW1z49TG13Sx-UMsNDAEbZFGAaG5wQtt6LctJTZG
+    qiUVgFno9_PGIQBJQ>
+X-ME-Received: <xmr:oimXYXCkZWLQpXHoM6P-eaM8F7XLHxQdGt5gElwMxFesUpAGLY-nu3_Rnb8VXA4j9Ue9VQKgrnRrxXf2CwRgzhv-RDDrqRx82X7hxOIb7boW2qebD-TkucTjiyGoa5Qos4inrA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeejgdejudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufgrmhhuvghlucfj
+    ohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecuggftrfgrth
+    htvghrnhepieetkefhheduudfgledtudefjeejfeegveehkeeufffhhfejkeehiefftdev
+    tdevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    grmhhuvghlsehshhholhhlrghnugdrohhrgh
+X-ME-Proxy: <xmx:oimXYdcPJzOMWtJzEWdtnt_6i6xA9mAX2PcgjskIjSsBZcxXdlKT2w>
+    <xmx:oimXYeOsVCgDVRO-8rYoahigvkjBFBouJzrghnnJ2bgR_Jsgeys3mA>
+    <xmx:oimXYfkqjPtd5Gb-W_PppooZhc45wf6DGGA8lIUBI-41TAHZxFtThQ>
+    <xmx:oymXYfE9HO5CrZn8zu2osOsC1CXLw0MsYc9XbRbzSCW4-jepGgaRXc4ELhc>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 18 Nov 2021 23:35:46 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v1 0/6] clk: sunxi-ng: Allwinner D1 clock support
+Date:   Thu, 18 Nov 2021 22:35:38 -0600
+Message-Id: <20211119043545.4010-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211118124819.1902427-3-robert.foss@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 18 Nov 06:48 CST 2021, Robert Foss wrote:
+This series adds support for the D1's CCU and R_CCU.
 
-> The clock-lanes property is not programmable by the hardware,
-> and as such it should not be exposed in the dt-binding.
-> 
-> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+I attempted to hook up clock parents the "right" way, not using global
+names. To accomplish that, I added several new macros. I am open to
+comments on this approach. It looks a bit messier, but seems like it
+could be less prone to errors.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Regards,
-Bjorn
+Samuel Holland (6):
+  dt-bindings: clk: Add compatibles for D1 CCUs
+  clk: sunxi-ng: div: Add macros using clk_parent_data and clk_hw
+  clk: sunxi-ng: mp: Add macros using clk_parent_data and clk_hw
+  clk: sunxi-ng: mux: Add macros using clk_parent_data and clk_hw
+  clk: sunxi-ng: gate: Add macros for gates with fixed dividers
+  clk: sunxi-ng: Add support for the D1 SoC clocks
 
-> ---
->  .../bindings/media/qcom,msm8916-camss.yaml    | 10 ----------
->  .../bindings/media/qcom,msm8996-camss.yaml    | 20 -------------------
->  .../bindings/media/qcom,sdm660-camss.yaml     | 20 -------------------
->  .../bindings/media/qcom,sdm845-camss.yaml     | 17 ----------------
->  4 files changed, 67 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-> index 304908072d72..12ec3e1ea869 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8916-camss.yaml
-> @@ -83,10 +83,6 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 1
-> -
->                data-lanes:
->                  description:
->                    An array of physical data lanes indexes.
-> @@ -99,7 +95,6 @@ properties:
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@1:
-> @@ -114,16 +109,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 1
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->    reg:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> index 38be41e932f0..6aeb3d6d02d5 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,msm8996-camss.yaml
-> @@ -105,10 +105,6 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  description:
->                    An array of physical data lanes indexes.
-> @@ -121,7 +117,6 @@ properties:
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@1:
-> @@ -136,16 +131,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@2:
-> @@ -160,16 +150,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@3:
-> @@ -184,16 +169,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->    reg:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> index 841a1aafdd13..338ab28d5f3b 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm660-camss.yaml
-> @@ -111,16 +111,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@1:
-> @@ -135,16 +130,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@2:
-> @@ -159,16 +149,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@3:
-> @@ -183,16 +168,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->    reg:
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> index 9ca5dfa7f226..9404d6b9db54 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sdm845-camss.yaml
-> @@ -105,15 +105,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                maxItems: 1
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@1:
-> @@ -128,16 +124,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                items:
-> -                  - const: 7
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@2:
-> @@ -152,15 +143,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                maxItems: 1
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->        port@3:
-> @@ -175,15 +162,11 @@ properties:
->              unevaluatedProperties: false
->  
->              properties:
-> -              clock-lanes:
-> -                maxItems: 1
-> -
->                data-lanes:
->                  minItems: 1
->                  maxItems: 4
->  
->              required:
-> -              - clock-lanes
->                - data-lanes
->  
->    reg:
-> -- 
-> 2.32.0
-> 
+ .../clock/allwinner,sun4i-a10-ccu.yaml        |    4 +
+ drivers/clk/sunxi-ng/Kconfig                  |   10 +
+ drivers/clk/sunxi-ng/Makefile                 |    4 +
+ drivers/clk/sunxi-ng/ccu-sun20i-d1-r.c        |  140 ++
+ drivers/clk/sunxi-ng/ccu-sun20i-d1-r.h        |   17 +
+ drivers/clk/sunxi-ng/ccu-sun20i-d1.c          | 1390 +++++++++++++++++
+ drivers/clk/sunxi-ng/ccu-sun20i-d1.h          |   15 +
+ drivers/clk/sunxi-ng/ccu_div.h                |   78 +
+ drivers/clk/sunxi-ng/ccu_gate.h               |   32 +-
+ drivers/clk/sunxi-ng/ccu_mp.h                 |   49 +
+ drivers/clk/sunxi-ng/ccu_mux.h                |   33 +
+ include/dt-bindings/clock/sun20i-d1-ccu.h     |  156 ++
+ include/dt-bindings/clock/sun20i-d1-r-ccu.h   |   19 +
+ include/dt-bindings/reset/sun20i-d1-ccu.h     |   77 +
+ include/dt-bindings/reset/sun20i-d1-r-ccu.h   |   16 +
+ 15 files changed, 2039 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun20i-d1-r.c
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun20i-d1-r.h
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun20i-d1.c
+ create mode 100644 drivers/clk/sunxi-ng/ccu-sun20i-d1.h
+ create mode 100644 include/dt-bindings/clock/sun20i-d1-ccu.h
+ create mode 100644 include/dt-bindings/clock/sun20i-d1-r-ccu.h
+ create mode 100644 include/dt-bindings/reset/sun20i-d1-ccu.h
+ create mode 100644 include/dt-bindings/reset/sun20i-d1-r-ccu.h
+
+-- 
+2.32.0
+
