@@ -2,106 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C539456BB0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:30:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FCB3456BC6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:41:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231439AbhKSIcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 03:32:23 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:33963 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231271AbhKSIcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 03:32:23 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 76BAE5C0103;
-        Fri, 19 Nov 2021 03:29:21 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Fri, 19 Nov 2021 03:29:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=LW/p0wyoCcIJog59YYQV//3Akj0
-        rWF+oNpGoc/GozLo=; b=gIispYTY6e+7QaxE5wpdCJnEYr/NIkLBOjnK1D/0p0U
-        mUWvYkXRXnOsj/dG2e5vbJ5t4z3xSRKC6ac4unew1aBioOAtcOJQlun6/Wh30ls6
-        a9Y66DR6y8IJ/z5C2WYPMmztF7SmQgCtOnB1ks8w//BG3JXQE6qEskJh2TJy+/UP
-        5Z86fWuiHUirauZUQZC0qASsOi8xtg6215eoD20mEIfWJmtfAScv5VTp7EQ10RcW
-        etp22l5UMs6f22giprSZZh/YQ/bDDPyzIXCE+DFOx1SAvixX1RzPk7rlrF7tkNeW
-        rnEFLZbYU50IKWIxZ+U4KKZ1Wewoihd+qE+dVGiBm3g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=LW/p0w
-        yoCcIJog59YYQV//3Akj0rWF+oNpGoc/GozLo=; b=hwI+NaioJIwamB4b5IZrCi
-        XRId1VIy9G7gP3O6C43GC+Q2dVW+0JRzI/Pij/LWogvDqjb7uxgDFIU3K6SSU7ND
-        qcjuorXbc7hoxPVFSZrFWnjG5d8wx0Lg1yosG2ztmU9AQoaCD3cE2GNsp/sGlbys
-        Gv9Xq/AD4SWdJqUy/cUQ+f2cBc+ZKzj4JIA7J1UO17rfMpt0l17ipFPSJh915rx6
-        M049RDPUuhIZTXhrQNInhwB7LWHBQUwJsnqqn1n2HStGpfWCN0RGNMiFkSm0U0ou
-        qO+ghkKC846MA5WdbIv+FXyOtH7ov/oCgY39YTWrOCf+Jhum87Nb/tP3m65pgBBQ
-        ==
-X-ME-Sender: <xms:YGCXYRcT8UvME9qz4tK6yFVQy3PtDhnggv1pxEDG1DtQ6Z0WiMi44A>
-    <xme:YGCXYfPm9b8CO1EylbabEBj5uTX4IsYdnpMT7oOPwNSwD6C265TCfyhxKhRvaadPa
-    b7S5NNR0kk2Nc3cap8>
-X-ME-Received: <xmr:YGCXYaj_lUIZIFF99s1vm_PMvpCM_aWSJgAoPROfrDUC4d93hALSWltaKSIeXaq8umkZwLUriM8JX7dDKBKAQ8hgrKFYKp5vJf2cgJ-E4JU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeejgdduudekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:YGCXYa82UsGR1WsrywHQucvPPwIT6DT6zY3sKuME4tgtyy56KVKVyg>
-    <xmx:YGCXYdtGupRHGCTYWfTaMwINBJrq3fO-JhaCrAFTQlYIJmnbkHR6SQ>
-    <xmx:YGCXYZGJw2uhm5nAIVQIxH9mqBF6xazB8Ed36ZZn1pzUkm0T-4ZcVw>
-    <xmx:YWCXYTAi5COVehX8pG2sv6FyJdRdzS25DoGpC935sP4mu7t30r3EQw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 19 Nov 2021 03:29:20 -0500 (EST)
-Date:   Fri, 19 Nov 2021 09:29:19 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        linux-crypto@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: sun8i-ce: Add compatible for D1
-Message-ID: <20211119082919.k4r7ln4jfseqblcr@gilmour>
-References: <20211119051026.13049-1-samuel@sholland.org>
+        id S231577AbhKSIoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 03:44:30 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:36170 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230169AbhKSIoa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 03:44:30 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637311288; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=TJDfJQzNs0P8ZTjwfGv8Cr99h3avRBPf0A8lWovZM4o=;
+ b=uFK0SbXcQb43WDTrNsF5NWolOSWdHCMOvyhQFVRra481Aqu62yJPW4L/0bWKLcbfNEtiBmWF
+ PQAoBD9RHABQCyBM1xv/PtMZX30O+y4EWngCOuWdbpQH/FtFExK8sZpOv8GgiQDHo6/SLRpa
+ QObY2upj3HABXi/bWpHF366vEkc=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 61976338665450d43aefceec (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 08:41:28
+ GMT
+Sender: akolli=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 99EF1C4360C; Fri, 19 Nov 2021 08:41:27 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: akolli)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D2BEAC4338F;
+        Fri, 19 Nov 2021 08:41:26 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lmxak3wlnqlumgug"
-Content-Disposition: inline
-In-Reply-To: <20211119051026.13049-1-samuel@sholland.org>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 19 Nov 2021 14:11:26 +0530
+From:   Anilkumar Kolli <akolli@codeaurora.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI
+ device support
+In-Reply-To: <YZbds1DgmwbFPQdM@robh.at.kernel.org>
+References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
+ <YZbds1DgmwbFPQdM@robh.at.kernel.org>
+Message-ID: <f71ed4a924adcc026c6b0f29809f3b7d@codeaurora.org>
+X-Sender: akolli@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2021-11-19 04:41, Rob Herring wrote:
+> On Thu, Nov 18, 2021 at 07:44:51PM +0530, Anilkumar Kolli wrote:
+>> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+>> Ath11k firmware uses host DDR memory, DT entry is used to reserve
+>> these host DDR memory regions, send these memory base
+>> addresses using DT entries.
+>> 
+>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+>> ---
+>> V2:
+>>   - Use reserved-memory (Rob)
+>> 
+>>  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 
+>> ++++++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+>> 
+>> diff --git 
+>> a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml 
+>> b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> index 85c2f699d602..5a8994f6cb10 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> @@ -150,6 +150,12 @@ properties:
+>>        string to uniquely identify variant of the calibration data in 
+>> the
+>>        board-2.bin for designs with colliding bus and device specific 
+>> ids
+>> 
+>> +  memory-region:
+>> +    maxItems: 1
+>> +    description:
+>> +      phandle to a node describing reserved memory (System RAM 
+>> memory)
+>> +      used by ath11k firmware (see 
+>> bindings/reserved-memory/reserved-memory.txt)
+>> +
+>>  required:
+>>    - compatible
+>>    - reg
+>> @@ -279,3 +285,45 @@ examples:
+>>                            "tcl2host-status-ring";
+>>          qcom,rproc = <&q6v5_wcss>;
+>>      };
+>> +
+> 
+> This looks like a separate example. Please split to its own entry.
+> 
+>> +    memory {
+>> +        device_type = "memory";
+>> +        reg = <0x0 0x40000000 0x0 0x20000000>;
+>> +    };
+> 
+> Outside the scope of what's needed in the example.
+> 
+Yes, memory entry is available in 
+"arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi"
+Since its used in ath11k patch, added example.
+I will remove in next version.
 
---lmxak3wlnqlumgug
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>> +
+>> +    reserved-memory {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges;
+>> +
+>> +        qcn9074_pcie0: qcn9074_pcie0@51100000 {
+>> +            no-map;
+>> +            reg = <0x0 0x51100000 0x0 0x03500000>;
+>> +        };
+>> +
+>> +        qcn9074_pcie1: qcn9074_pcie1@54600000 {
+>> +            no-map;
+>> +            reg = <0x0 0x54600000 0x0 0x03500000>;
+>> +        };
+>> +    };
+> 
+> As is this really.
+> 
+ipq8074-hk10.dtsi board supports two PCI bus and QCN9074 on each PCI.
+So added two separate entries to reserves memory for each QCN9074.
 
-On Thu, Nov 18, 2021 at 11:10:24PM -0600, Samuel Holland wrote:
-> D1 has a crypto engine similar to the one in other Allwinner SoCs.
-> Like H6, it has a separate MBUS clock gate.
->=20
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
+>> +
+>> +    pcie0_rp: pcie0_rp {
+>> +        reg = <0 0 0 0 0>;
+> 
+> This isn't a valid PCI bus binding.
+> 
+Got it, let me rework in next patch.
 
-Acked-by: Maxime Ripard <maxime@cerno.tech>
+>> +
+>> +        status = "ok";
+> 
+> Don't need status.
 
-Maxime
+Sure, will remove in next patch.
 
---lmxak3wlnqlumgug
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>> +        ath11k_0: ath11k@0 {
+> 
+> wifi@0
+> 
+>> +            reg = <0 0 0 0 0 >;
+>> +            memory-region = <&qcn9074_pcie0>;
+>> +        };
+>> +    };
+>> +
+>> +    pcie1_rp: pcie1_rp {
+>> +        reg = <0 0 0 0 0>;
+>> +
+>> +        status = "ok";
+>> +        ath11k_1: ath11k@1 {
+>> +            reg = <0 0 0 0 0 >;
+> 
+> unit-address and reg don't match.
+> 
+will update in next patch.
 
------BEGIN PGP SIGNATURE-----
+> Why do we need 2 nodes in the first place?
+> 
+ipq8074-hk10.dtsi board supports two PCI bus and QCN9074 on each PCI.
+So added two separate entries to reserves memory for each QCN9074.
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZdgXgAKCRDj7w1vZxhR
-xaDTAP9Y0zp+1nrtorIbXYFgevtVz8+kCmHvzv6r4091HP92twEAyCcQwpl3NTQe
-Rb74BF/TcPGlUR07Tyzg2LurLRFpRgw=
-=GvEZ
------END PGP SIGNATURE-----
+Since its example, Shall I remove one ?
 
---lmxak3wlnqlumgug--
+>> +            memory-region = <&qcn9074_pcie1>;
+>> +        };
+>> +    };
+>> +
+>> --
+>> 2.7.4
+>> 
+
+- Anil.
