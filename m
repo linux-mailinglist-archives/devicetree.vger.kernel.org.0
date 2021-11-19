@@ -2,63 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA607456EBF
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 13:17:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 360C4456EEC
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 13:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233106AbhKSMUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 07:20:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234843AbhKSMUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 07:20:14 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2BD3C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 04:17:12 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id j14so10995473uan.10
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 04:17:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=pA4LOyU1ITW9Ybka/nY8oF+Z+zeR3qpDd/7rUrPksqk=;
-        b=cf51vJZMFGx4tz4om1XwTYgHVF8NOYa5wQplrcDdqGanYfWgi58tVhCvLT/TQzh4A9
-         DxWeglKOfdNDRDwgj2SaoWRKHSNanGKh1f2mL0Zth+ukqD5f9zsG72bhqEAvfttAK/15
-         tXJxlZkVrZmmDlAhYnk5oTeLR0ul6Lw6O0llkxSWhAXJ7qDYrtgZ3nIbgJE0ZME6kvQB
-         nchGUl1s8yuZkJix/K3njqyUJxWcXxrJKl28M41wBvExnFgEvLaOf9zpWstOYqhQ3N2x
-         M9UYS8MBnPsLz8+OORZ/mJ2MeTyHqoQkjb8n5umRwibdaVIdq7vFuFtcG598uKaBpY9b
-         PWxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=pA4LOyU1ITW9Ybka/nY8oF+Z+zeR3qpDd/7rUrPksqk=;
-        b=MAtNhSFAAGkbXnhYpPyiMudzKciL1DUQA6GKDz1hIPPrEMKYKFX/bfCXDRuFk3gnOk
-         8t5o4YEG8bbZCkLT5NEThabuKl0gz54WYs5FSfiClCHK10unOi98NKwaz2w/+9Wa4Vzn
-         dDfNbgBS6Fn5ptcTq6g4yP+otXOHnHUMhW70QRTiLCN3WuRA7xxgoAB138XAWhOcWbp3
-         w4Wpaeuj9LNusAxoi1g70uxmEsi83gK4j/ittxa1QxiVHb02T+rFkym4LMYtBkjkiIl7
-         Uf9MklLkedhl3AQ+p5QklLUbmBSM+gFce0gRQPvIBb6n2l8BbHcbv9yE+JES2B7m2tCe
-         iZSw==
-X-Gm-Message-State: AOAM532G2iL6R2BYRELjJuKjXZiajSHzHtN1cyknCjr6vDz9/0TsQRPO
-        YL4v4QdCpBfXPGZAylXXN/ZXbVt3YeT40s25VPA=
-X-Google-Smtp-Source: ABdhPJw8ZFZG8bOUdwa8w/HMJfN638HunjqlK7j0R5DcyvXwETizId4W8w/Sbif3vTzs3fbHlVYxNwrpqUprjpKgbgM=
-X-Received: by 2002:a67:b005:: with SMTP id z5mr94698416vse.59.1637324232230;
- Fri, 19 Nov 2021 04:17:12 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:a59:a732:0:b0:260:4760:210d with HTTP; Fri, 19 Nov 2021
- 04:17:12 -0800 (PST)
-Reply-To: egomihnyemihdavidegomih02@gmail.com
-From:   Davids Nyemih <florencesenoua1986@gmail.com>
-Date:   Fri, 19 Nov 2021 13:17:12 +0100
-Message-ID: <CANYbtVPaqnf9DV0yZsXJLejUaMqwzhxFpX4CyhvQyvg_agLxMA@mail.gmail.com>
-Subject: Re
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+        id S235016AbhKSMkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 07:40:39 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:59276 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S230385AbhKSMkj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Nov 2021 07:40:39 -0500
+X-IronPort-AV: E=Sophos;i="5.87,247,1631545200"; 
+   d="scan'208";a="100832770"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 19 Nov 2021 21:37:36 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7961540061A3;
+        Fri, 19 Nov 2021 21:37:34 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzg2l-smarc-som: Enable serial NOR flash
+Date:   Fri, 19 Nov 2021 12:37:10 +0000
+Message-Id: <20211119123710.31575-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI,
-Good day.
-Kindly confirm to me if this is your correct email Address and get
-back to me for our interest.
-Sincerely,
-Davids
+Enable mt25qu512a flash connected to QSPI0.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+index 7e84a29dddfa..e53c17954566 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+@@ -178,6 +178,18 @@
+ 		line-name = "gpio_sd0_pwr_en";
+ 	};
+ 
++	qspi_pins0: qspi0 {
++		qspi0-data {
++			pins = "QSPI0_IO0", "QSPI0_IO1", "QSPI0_IO2", "QSPI0_IO3";
++			power-source  = <1800>;
++		};
++
++		qspi0-ctrl {
++			pins = "QSPI0_SPCLK", "QSPI0_SSL", "QSPI_RESET#";
++			power-source  = <1800>;
++		};
++	};
++
+ 	/*
+ 	 * SD0 device selection is XOR between GPIO_SD0_DEV_SEL and SW1[2]
+ 	 * The below switch logic can be used to select the device between
+@@ -243,6 +255,34 @@
+ 	};
+ };
+ 
++&sbc {
++	pinctrl-0 = <&qspi_pins0>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	flash@0 {
++		compatible = "micron,mt25qu512a", "jedec,spi-nor";
++		reg = <0>;
++		m25p,fast-read;
++		spi-max-frequency = <50000000>;
++		spi-rx-bus-width = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			boot@0 {
++				reg = <0x00000000 0x2000000>;
++				read-only;
++			};
++			user@2000000 {
++				reg = <0x2000000 0x2000000>;
++			};
++		};
++	};
++};
++
+ #if SDHI
+ &sdhi0 {
+ 	pinctrl-0 = <&sdhi0_pins>;
+-- 
+2.17.1
+
