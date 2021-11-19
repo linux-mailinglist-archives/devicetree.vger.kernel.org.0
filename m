@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A0CF4570EB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 15:39:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4283C4570FA
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 15:46:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235991AbhKSOm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 09:42:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33594 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233963AbhKSOm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 09:42:29 -0500
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C59DC061574;
-        Fri, 19 Nov 2021 06:39:27 -0800 (PST)
-Received: by mail-wr1-x436.google.com with SMTP id u1so18505769wru.13;
-        Fri, 19 Nov 2021 06:39:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=zeKFXDCOK1JKP/WgTGfGZCqCINDxzG0cnQHN+HuP6jE=;
-        b=e/hYgUINDWKWu+hunJDTboMvSEFWzMucP05H+3J9UZq9X5Uz5h1ZZZH6KacL07Kev/
-         2F7LnONvLEZMytV2wkduOfzkVac8mFokfMuZRH29qM676ACVYV/bEmtIS060f0m8VB9E
-         3yx7aXPCcpZC1TOBh70yUgeIg+TfFbWmaYJTKjBMu2elhgVvl+kbiHKDhbEM4AxpC6/n
-         QdlamVxZPdqe4DXgiMYurm7Lt6CWcPvrHel18yMJ8Bhob0K7rRuzh0TPLlVDuZgkKc2F
-         7EUM8hZvFPCbHjUroIAHcklJGqBHEHahT4MuUAInwEWIcfZfWrthNkJs+P61uTbrqmDZ
-         5r8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=zeKFXDCOK1JKP/WgTGfGZCqCINDxzG0cnQHN+HuP6jE=;
-        b=pNICT+Mo/bTKf8vOEAc9zT+O2P8qYWobi/EAWjZ1MfUZZrR5ucq86i6tfwo5NWSTFZ
-         zV4xclef5Rt+pGlIR555JZyvLq90bl8QpEZMAtgpg92nUDfEGSM96adpBB/zeMJcr/MG
-         oMENYMF0hXQM5yjmHRoBeAg6cxxfF/ufqrIdPH3rVtEd0DdkTrdJ0DHMlzKyOmUVy3uU
-         TO4+KWZ7ovgyuSzElnrB+pSwafnimZ1hPD/P1nWfomvSI6Kuaj1MayZ31rIpGtR9fLap
-         389KxAqUts6meCGSUFmhu37PAJFRU71pVvM/L2YVxA6twRS8fCACKtAtezA+lZRcYV0I
-         tuDg==
-X-Gm-Message-State: AOAM532jiomoMz3H5WREP2ZaXtmwlDObYUKVGNmNNi/qOeREX84CpSjN
-        himdbEP2J7I3wAc8dauH51k=
-X-Google-Smtp-Source: ABdhPJyYTRYl13JhHgXfELFbTAtF7IJlLsIIuP26yEa72zdkGK8O1XtC0z8IUQqcw0DadVfuZdZfMA==
-X-Received: by 2002:adf:a194:: with SMTP id u20mr7790281wru.153.1637332766134;
-        Fri, 19 Nov 2021 06:39:26 -0800 (PST)
-Received: from localhost ([193.209.96.43])
-        by smtp.gmail.com with ESMTPSA id d7sm3031770wrw.87.2021.11.19.06.39.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Nov 2021 06:39:25 -0800 (PST)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH v2 16/16] dt-bindings: serial: Document Tegra234 TCU
-Date:   Fri, 19 Nov 2021 15:38:39 +0100
-Message-Id: <20211119143839.1950739-17-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211119143839.1950739-1-thierry.reding@gmail.com>
-References: <20211119143839.1950739-1-thierry.reding@gmail.com>
+        id S236014AbhKSOt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 09:49:56 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:34542 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S235924AbhKSOtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Nov 2021 09:49:55 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AJ9Rxvf001985;
+        Fri, 19 Nov 2021 15:46:42 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=selector1;
+ bh=VyawpOikAjal+OntL+ZK7zDW8TQF0Oiu89Xcyi2QlCc=;
+ b=cKLiIjc4RMe13oiXJtZ9CfR3wfH5vIG+0LFBXczpnPE1vkIuy4iG6BoKPkXGVZK6mSn8
+ mc1MyLNNhadbeONjSUEevd9GMtuizkflJBYTBC27rrlY8lQaQp3F5F3JDByjwWuUFncJ
+ 6z1HK6zcMpT8w6We4zuW8khJ70GxVc1k3zj/OwWbTUe1LrXxAXKdE7pWDioKjTP3OykJ
+ H5WM3xjSL+0MkcjrEg3MjUnOx9borJIdZfWyuxWoDJmqHGY5WDULvvC8koFVe02mGq7Z
+ 5SghnQpRG6SLdcvRoGVOjmn3lvSh9EVb3bJaqMkkS7ejHOImMGWEYjogmq8eRKzqqlya yg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ce1knc8jj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 19 Nov 2021 15:46:42 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8343910002A;
+        Fri, 19 Nov 2021 15:46:41 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7B371231DF0;
+        Fri, 19 Nov 2021 15:46:41 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG2NODE2.st.com (10.75.127.5)
+ with Microsoft SMTP Server (TLS) id 15.0.1497.26; Fri, 19 Nov 2021 15:46:40
+ +0100
+From:   Olivier Moysan <olivier.moysan@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <arnaud.pouliquen@foss.st.com>, <fabrice.gasnier@foss.st.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>
+Subject: [PATCH 0/9] ARM: dts: stm32: merge spi and i2s nodes
+Date:   Fri, 19 Nov 2021 15:45:42 +0100
+Message-ID: <20211119144551.7577-1-olivier.moysan@foss.st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-19_09,2021-11-17_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+When a STM32 SPI instance offers I2S feature, two nodes are defined
+in STM32 SoC device tree to support both SPI and I2S.
+Merge SPI node and I2S nodes into a single node, to avoid
+hardware description duplication and compilation warnings.
 
-Add the compatible string for the TCU found on the Tegra234 SoC.
+Olivier Moysan (9):
+  ASoC: dt-bindings: stm32: i2s: update example
+  ASoC: dt-bindings: stm32: i2s: add audio-graph-card port
+  ASoC: dt-bindings: stm32: i2s: allow additional properties.
+  ARM: dts: stm32: merge spi and i2s nodes
+  ARM: dts: stm32: rename i2s node on stm32mp15xx-dkx boards
+  ARM: dts: stm32: rename spi node on stm32mp15xx-dhcor-avenger96 boards
+  ARM: dts: stm32: rename spi node on stm32mp15xx-dhcom-drc02 boards
+  ARM: dts: stm32: rename spi node on stm32mp157c-ev1 board
+  ARM: dts: stm32: adapt i2s node to spi binding on stm32mp15xx-dk
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
----
- .../devicetree/bindings/serial/nvidia,tegra194-tcu.yaml    | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ .../bindings/sound/st,stm32-i2s.yaml          |  9 ++++-
+ arch/arm/boot/dts/stm32mp151.dtsi             | 39 ++-----------------
+ arch/arm/boot/dts/stm32mp157c-ev1.dts         |  2 +-
+ .../arm/boot/dts/stm32mp15xx-dhcom-drc02.dtsi |  2 +-
+ .../boot/dts/stm32mp15xx-dhcor-avenger96.dtsi |  2 +-
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        |  7 +++-
+ 6 files changed, 18 insertions(+), 43 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-index 7987eca0bb52..e2d111b3e0b0 100644
---- a/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-+++ b/Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
-@@ -22,7 +22,12 @@ properties:
-     pattern: "^serial(@.*)?$"
- 
-   compatible:
--    const: nvidia,tegra194-tcu
-+    oneOf:
-+      - const: nvidia,tegra194-tcu
-+      - items:
-+          - enum:
-+              - nvidia,tegra234-tcu
-+          - const: nvidia,tegra194-tcu
- 
-   mbox-names:
-     items:
 -- 
-2.33.1
+2.17.1
 
