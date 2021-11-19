@@ -2,179 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BD344572F3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:29:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB5AB457373
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 17:52:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232695AbhKSQcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 11:32:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59076 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233602AbhKSQcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 11:32:54 -0500
-Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7EAC061748
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 08:29:52 -0800 (PST)
-Received: by mail-il1-x129.google.com with SMTP id m5so2361550ilh.11
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 08:29:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=NA+2l6X3VrlJxsJamfaAblN1iQr9G5GeyeDjrzqWldE=;
-        b=pWYGr8brYDg2I9xcuGuhurThossAPr1q87fBQPqCiM2BAja4C7uFnX65Fix38gLbMR
-         at4/FYFXGd1o9zn1i0YRa4Hl3P62bx1s2GsXPKOGSzrVsAT1Xw8HlYNWbORdzoDIOeqe
-         0qslCNUJ66VzbM5OECQeydfyhNNqUWwGP6afEEwmpoOMoNIZnNaZfchouPoszwNYzV1v
-         y1bimltU6qqxfdJSKgW6NjHgo6foggqrexAHaTR5BhNExaTs0kreVzSvKeiuvCJBGMM5
-         4hhlHH8MqKp2ss3LA9dpdsxQOKHOGkUr880PDTOgcILg0r5nps7M4Bb//54zUt1tJBXH
-         UXjw==
+        id S233522AbhKSQzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 11:55:10 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:34704 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231490AbhKSQzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 11:55:09 -0500
+Received: by mail-ot1-f45.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso17710653otj.1;
+        Fri, 19 Nov 2021 08:52:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=NA+2l6X3VrlJxsJamfaAblN1iQr9G5GeyeDjrzqWldE=;
-        b=qCUmFLYgKZ28X01daAGNo1V6j5jrmwsdrJvSwZh6IGYm2j5zuqI0gJgIfPwSfKJIsv
-         7n76PY1CO8vt3A139C4+fjk8VUYXOXL4Da7n7r02ak56eGsoqkNB92zshyOsXWzCLRag
-         CAfuvSJf3vHJZ9sbmvzyPUuck0N+Glb3Owxu2UiVryCrpT6g4meq4sIeAXkbq4N64rLz
-         kh5s0nto1hNCZfLJJpTDrgN7PaBy4LZczLwaSkD++ZK6SHnegfNBl8U6QA5ueoyiCugc
-         YA7yrAs54wJv+1bt45/OMozY5fDQqudiVKecYVM4yPkOBXfI87H0FYFFCWiotDj/wCvf
-         7tBw==
-X-Gm-Message-State: AOAM532xenDVCn8ak5bD+F/Sd3D9PU8OPaMLdkLvQqAhjVDsof1RjiAQ
-        3VQEsmO1E2Ww0TnvSilLuvdaAA==
-X-Google-Smtp-Source: ABdhPJy9+PK69iHyuVZcAK9TkCljtUM0G3YiAMHQdYjwnsW/n1HgnSVsWmM0mEP/36cqcfaj9/5ecQ==
-X-Received: by 2002:a92:d343:: with SMTP id a3mr5688828ilh.136.1637339392190;
-        Fri, 19 Nov 2021 08:29:52 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
-        by smtp.gmail.com with ESMTPSA id c7sm108143iob.28.2021.11.19.08.29.49
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=m6dOJqza024zxJcObHIg6hHGrGnAwml5A1GNDr9O/Yw=;
+        b=0Do91YQS5nD/kKdJROO1/Ck7klGn9nzO9wE7/U/yTrWLxjGkcVRelE/lTtk3QxuZqQ
+         O2AZBfK1QW9XxroVnUa0yB2VgjbW7ZVqVkhGGbJ0Vf9jA9qZNVfhY5eNjxwVSLRMXl1V
+         0PdTRhKriq2kvcS8jTiXy7wrQa78Cju1dX+su4byOvgfL1nQlSGWPC8hCZ7z2Nw3tILM
+         XLwoaeWic5Xanv9Zu7dZJ+PS47kkiNoSv4XfKgw0uFTNYtkH9Ape8cZqvLdvlADE6q4Z
+         tIi4tI5Jw+q9Lc3LokfU4b9kdChC/sG0d4F4chSk5oWC7A5VmEf5DpH5sbofIhDVH7Wp
+         w4bw==
+X-Gm-Message-State: AOAM532Hd+QH7ogZfBirUCniYuEEpEUKgTJKUkP3JCVensvSv7k/Zply
+        TqVLPVaqSFErCiQLnfCP5A==
+X-Google-Smtp-Source: ABdhPJxnOLr2iVeUXAhtu2Pkwy7lHu/BG9dVEemniRDcwDU4UbzTISoEVqaeUF4fD47wo/MRoGRqLg==
+X-Received: by 2002:a9d:4e97:: with SMTP id v23mr5926644otk.315.1637340727184;
+        Fri, 19 Nov 2021 08:52:07 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 70sm65010otn.74.2021.11.19.08.52.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Nov 2021 08:29:51 -0800 (PST)
-Message-ID: <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Adam Ford <aford173@gmail.com>, Tim Harvey <tharvey@gateworks.com>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Fri, 19 Nov 2021 08:52:06 -0800 (PST)
+Received: (nullmailer pid 4011827 invoked by uid 1000);
+        Fri, 19 Nov 2021 16:52:04 -0000
+Date:   Fri, 19 Nov 2021 10:52:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Date:   Fri, 19 Nov 2021 11:29:48 -0500
-In-Reply-To: <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
-References: <20211106183802.893285-1-aford173@gmail.com>
-         <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
-         <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
-         <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
-         <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
-         <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
-         <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
-         <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH v3 1/7] dt-bindings: interrupt-controller: Add
+ Renesas RZ/G2L Interrupt Controller
+Message-ID: <YZfWNNkO1Kcghona@robh.at.kernel.org>
+References: <20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20211110225808.16388-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211110225808.16388-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam, Tim,
-
-[...]
-> > > > Nicolas and Adam,
-> > > > 
-> > > > For the H1 patches in this series: I've been able to test the IMX8MM
-> > > > H1 JPEG encode using GStreamer 1.18.5:
-> > > > $ gst-inspect-1.0 | grep -e "v4l2.*enc"
-> > > > video4linux2:  v4l2jpegenc: V4L2 JPEG Encoder
-> > > > $ gst-launch-1.0 videotestsrc ! jpegenc ! rtpjpegpay ! udpsink
-> > >                                   ^ v4l2jpegenc
-> > > 
-> > > This is just a transcript error ?
-> > 
-> > Nicolas,
-> > 
-> > No! Thanks for catching my mistake. I was testing with software encode... ooops!
-> > 
-> > 'gst-launch-1.0 videotestsrc ! v4l2jpegenc ! fakesink' actually hangs
-> > the board so likely a power-domain issue there?
+On Wed, Nov 10, 2021 at 10:58:02PM +0000, Lad Prabhakar wrote:
+> Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
 > 
-> The v4l2-compliance tests fail on the h1 decoder with a hang, but I
-> think we're writing to registers which are not documented in the Mini
-> TRM.  The Mini TRM doesn't explicitly show the JPEG encoding as a
-> feature, but some of the registers state JPEG, but because some of the
-> registers written for the H1 are not documented in the TRM.  If those
-> registers are restricted or not in this SoC, I am concerned that it
-> might be related.  I'll try to run some more tests this weekend to
-> check on the status of the power-domain stuff.
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  .../renesas,rzg2l-irqc.yaml                   | 137 ++++++++++++++++++
+>  1 file changed, 137 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> new file mode 100644
+> index 000000000000..ebe318fe336b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+> @@ -0,0 +1,137 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas RZ/G2L Interrupt Controller
+> +
+> +maintainers:
+> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +description: |
+> +  The RZ/G2L Interrupt Controller is a front-end for the GIC found on Renesas RZ/G2L SoC's
+> +    - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+> +    - GPIO pins used as external interrupt input pins, mapped to 32 GIC SPI interrupts
+> +    - NMI edge select (NMI is not treated as NMI exception and supports fall edge and
+> +      stand-up edge detection interrupts)
+> +
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r9a07g044-irqc # RZ/G2L
+> +      - const: renesas,rzg2l-irqc
+> +
+> +  '#interrupt-cells':
+> +    const: 2
+> +
+> +  '#address-cells':
+> +    const: 0
+> +
+> +  interrupt-controller: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupt-map:
+> +    maxItems: 41
+> +    description: Specifies the mapping from external interrupts to GIC interrupts.
+> +
+> +  interrupt-map-mask:
+> +    items:
+> +      - const: 40
+> +      - const: 0
 
-To verify if the HW support JPEG encoding you can read SWREG63 bit 25. This is
-in the TRM, just not labelled properly. To mimic the decoding side, would be "HW
-synthesis config register X" with the bit labelled SW_ENC_JPEG_PROF (but
-PROF/profile is on or off). If your board hang while reading this, you likely
-didn't get the power bit right.
+Are you sure this is what you want? I'd expect <0xff 0x0> here.
 
-IMX8 has an undocumented control block thing that we have been fighting with in
-imx8q,  perhaps that's your issue. Few driver was proposed, we are still pending
-on NXP solution to be submitted (they asked us to wait, still waiting =)).
+Otherwise, it's kind of pointless to list out 41 interrupt-map entries.
 
-> > 
-> > > 
-> > > > host=192.168.1.146 port=5000
-> > > > viewed on client@192.168.1.146 via:
-> > > > $ gst-launch-1.0 udpsrc port=5000 ! application/x-rtp,payload=96 !
-> > > > rtpjpegdepay ! jpegdec ! autovideosink
-> > > > 
-> > > > For the G1/G2 patches in the series I don't see any Gstreamer
-> > > > 'v4l2.*dec' elements. Perhaps I need a newer version of Gstreamer.
-> > > 
-> > > Most likely yes, I suggest building gstreamer/ branch "main", GStreamer has now
-> > > a single repository. We are very close to 1.20, which will include stable API
-> > > support of H264, MPEG2 and VP8 decoding.
-> > > 
-> > 
-> > Ok, let me see if I can navigate through the build process and I'll
-> > get back to you.
-> > 
-> > Thanks,
-> > 
-> > Tim
-> > 
-> > > > 
-> > > > I have CSI capture and DSI display currently working on
-> > > > imx8mm-venice-gw73xx-0x that I can play with. The CSI sensor only
-> > > > supports RAW8/RAW10 (and gstreamer currently only supports RAW8) and I
-> > > > can't efficiently convert to something the JPEG encoder likes without
-> > > > bayer2rgbneon (a libneon version).
-> > > > 
-> > > > I see from the IMX8MMRM that the 2D GPU supports scaling etc with a
-> > > > wide range of data formats but I'm not sure how to tap into this as
-> > > > that hardware is managed by the vivante driver. On the IMX6QDL there
-> > > > is a separate IPU block that Philipp Zabel wrote a nice mem2mem
-> > > > csc/scaler driver for but I don't see any equivalent currently for
-> > > > IMX8MM.
-> > > > 
-> > > > Best regards,
-> > > > 
-> > > > Tim
-> > > 
-
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: clk
+> +      - const: pclk
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#interrupt-cells'
+> +  - '#address-cells'
+> +  - interrupt-controller
+> +  - reg
+> +  - interrupt-map
+> +  - interrupt-map-mask
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> +
+> +    irqc: interrupt-controller@110a0000 {
+> +            compatible = "renesas,r9a07g044-irqc", "renesas,rzg2l-irqc";
+> +            #interrupt-cells = <2>;
+> +            #address-cells = <0>;
+> +            interrupt-controller;
+> +            reg = <0x110a0000 0x10000>;
+> +            interrupt-map = <0 0 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <1 0 &gic GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <2 0 &gic GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <3 0 &gic GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <4 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <5 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <6 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <7 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <8 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <9 0 &gic GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <10 0 &gic GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <11 0 &gic GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <12 0 &gic GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <13 0 &gic GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <14 0 &gic GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <15 0 &gic GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <16 0 &gic GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <17 0 &gic GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <18 0 &gic GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <19 0 &gic GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <20 0 &gic GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <21 0 &gic GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <22 0 &gic GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <23 0 &gic GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <24 0 &gic GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <25 0 &gic GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <26 0 &gic GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <27 0 &gic GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <28 0 &gic GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <29 0 &gic GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <30 0 &gic GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <31 0 &gic GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <32 0 &gic GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <33 0 &gic GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <34 0 &gic GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <35 0 &gic GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <36 0 &gic GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <37 0 &gic GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <38 0 &gic GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <39 0 &gic GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
+> +                            <40 0 &gic GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
+> +                        interrupt-map-mask = <40 0>;
+> +                        clocks = <&cpg CPG_MOD R9A07G044_IA55_CLK>,
+> +                                 <&cpg CPG_MOD R9A07G044_IA55_PCLK>;
+> +                        clock-names = "clk", "pclk";
+> +                        power-domains = <&cpg>;
+> +                        resets = <&cpg R9A07G044_IA55_RESETN>;
+> +    };
+> -- 
+> 2.17.1
+> 
+> 
