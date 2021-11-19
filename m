@@ -2,214 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA02F45799E
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 00:37:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED3594579BC
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 00:51:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235974AbhKSXke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 18:40:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42670 "EHLO
+        id S234728AbhKSXy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 18:54:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235960AbhKSXke (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 18:40:34 -0500
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A44C1C061574;
-        Fri, 19 Nov 2021 15:37:31 -0800 (PST)
-Received: by mail-ed1-x52f.google.com with SMTP id z5so49105197edd.3;
-        Fri, 19 Nov 2021 15:37:31 -0800 (PST)
+        with ESMTP id S229553AbhKSXy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 18:54:56 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A3D8C061574
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 15:51:54 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id m15so9890693pgu.11
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 15:51:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=YElH7fDjQntk4O6oWmKV9CpChk3+XDAXIgAyTvCwk/o=;
-        b=MlsqkbYesK3dxd/H4c0ua70hxauFyFyOCcRN5R8BahVc9rkz7EKCbkgh9DoHnzX6f3
-         4Rq90CarVs+RHB3Qjju2KTkWd8uC/K2+dYVRUbrYu5hWfKUsZXOVFtRHtRNqUUHnSA1M
-         6EqTn0Ss0QP644yqbYejA0R0XYFbp6rNvgoQLYfHf1R8EIkrHdYeeuS60u6PuEpQFrCo
-         875VZ6fxaf4K8ORy5gKLTjj1AGeG4ItoIG0jdfSkm43YAwfpfWbN5h3fXd5ghLI0mFuv
-         KK9yltBMGW5yyQ0q3ULUM6L48L/1YrR4kKSwQliD2EBf293zd84Uw6h56rm/7S4NyAwo
-         KpbQ==
+        bh=BODgI+WH9LDVPfnVoZrz8d3kpc2ZwF9HgTMT9m1WMDQ=;
+        b=6oYTnLaHwy9ijpC6lNTNV6Qkj2pZqSmjviJstsVZsZP0/+D50bGRVCOSNcnlrcLvw+
+         QAGdsMcr/2GxGj2l/vnyThoZA/kAPTn5SbqVqvzihWfmVGHn25aUwLc1xJ56lp5/r1gs
+         FWqjp4e1lqvWB5XA2xe8CTiL7HltqlnWrQf7FGjhksEohu1BJ04N3OYL0Cm9IO+C6bOE
+         K8+NnUheB0nFJRCcC0JAdX02mc+xgVC7A7uTQP8o2aJ5ljJpH751/Vw9JwX5tvvFTF6a
+         RDNRdfg6YJTKJWiucUhEEDK8nCA5psGA1aNS53szgd3vHFfFH6COAlsB0mcbIUhbtSqk
+         tIGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=YElH7fDjQntk4O6oWmKV9CpChk3+XDAXIgAyTvCwk/o=;
-        b=Rb/tDdGteZuAOBHXcZlv+TIv3PVvhAyoMCL9DbMMVKdyr9Eoe3Vc8pCSJsH6ratdzR
-         SoYYSNpoQr19r8vYbaymhP22ZkkB3O7dZS7zH4nipblGKZlrmxhl1s/90mmZ/eVTJkUv
-         cUijsBOtQu81HO5YYQ3ntriW90XE2qHsCaDZhxZt3D3YLTJWNzvILP+gm1OEcVsyi2rF
-         rvrJWpdhx05pSe3baFKc7snJ4P855vlo8xrnbBeYzsJCBMLTkTcZyU4iXDrgMoMGWEsG
-         RHVnqgUEWOMX4pR3CXc15diBMpoh24eCAXmUvzQvLlAo/HGpu2xrwANHCBTFibzFvzn4
-         f/mQ==
-X-Gm-Message-State: AOAM533pROrWFhvKhx51J1upgYqQpxJXSTnAYjDTaFYGrjlgkvdYseZe
-        mUaVKO7j7TE88HhWiwXqgIWNCAPug6gi2VwJui0=
-X-Google-Smtp-Source: ABdhPJxJ4ZWYivE0w4Q4WW7YZS7F/iJXk9r+NIHyQvxAUA774a966nD2JYYjEnuNp/44x3wmF0FV7AD6YohoamlMQzg=
-X-Received: by 2002:a17:907:94c2:: with SMTP id dn2mr717004ejc.325.1637365049993;
- Fri, 19 Nov 2021 15:37:29 -0800 (PST)
+        bh=BODgI+WH9LDVPfnVoZrz8d3kpc2ZwF9HgTMT9m1WMDQ=;
+        b=RodW4bRH0zmcDJ24SdJbFwSC+tcXHX7aC6PPl8CZDDCdJr1gpDpjBFBpYJzZdjrX7l
+         MlLE4LJHnEMPH+5jPuSq3FlDrBRTCrf0nqjRliv2k1eXNlkHu5G/W6qTdmpgSYTD9pyB
+         dp0WuJQBOLbPac2kwlr1YMW8KXhLSxb8AYGhtaJZzGyegK/WkvPSBqCuDVmMuqakf7WU
+         0HESqamatgqrLlUVn20nQQk5RSD1OCaOLYqr64AXnUEf0k32wqg60WeOH68Pgu59bJRd
+         JA19PnuZbBfsKQ4bQ0Ls7tKo8tMsbZGBH666cO6Q9IlzZNvf/hqS2SUs5vl1RsHYs3wO
+         xdLA==
+X-Gm-Message-State: AOAM531wCyt16PUfQ+tE/8iRLUe8NIfBGBdBC1UILiGqEz6B1xTc6nt1
+        muIdwEdRmwPi3AcOKnT6sitSHT7nU/OjAwSs9lOxDQ==
+X-Google-Smtp-Source: ABdhPJzMB8p8ddmaSy56jyawOAPXfj6DxYfYBB3H9qwDBj8andYHK6U8EliK1jklUWV3cYAdwsMq1nvEqhbR6YkBIqk=
+X-Received: by 2002:aa7:8149:0:b0:44c:916c:1fdb with SMTP id
+ d9-20020aa78149000000b0044c916c1fdbmr26820650pfn.34.1637365913491; Fri, 19
+ Nov 2021 15:51:53 -0800 (PST)
 MIME-Version: 1.0
-References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
- <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
- <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
- <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
- <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
- <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
- <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com> <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
-In-Reply-To: <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Fri, 19 Nov 2021 17:37:18 -0600
-Message-ID: <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
-Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        linux-media <linux-media@vger.kernel.org>,
+References: <20211106155427.753197-1-aford173@gmail.com> <CAMty3ZDi+FMLBooi2jt=dPKVC8PhaBWLgtjoe3m=GHCNiqDqQw@mail.gmail.com>
+In-Reply-To: <CAMty3ZDi+FMLBooi2jt=dPKVC8PhaBWLgtjoe3m=GHCNiqDqQw@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 19 Nov 2021 15:51:42 -0800
+Message-ID: <CAJ+vNU3sCk2r2TX0=-N76wWxWNna7qnYnruxVxPTGD8L6yVtug@mail.gmail.com>
+Subject: Re: [PATCH V2 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Adam Ford <aford173@gmail.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
         Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Jagan Teki <jagan@amarulasolutions.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Adam Ford-BE <aford@beaconembedded.com>,
-        cstevens@beaconembedded.com,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        cstevens@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Heiko Stuebner <heiko@sntech.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
         Lucas Stach <l.stach@pengutronix.de>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
         open list <linux-kernel@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+        Marek Vasut <marex@denx.de>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 19, 2021 at 10:29 AM Nicolas Dufresne <nicolas@ndufresne.ca> wrote:
+On Thu, Nov 11, 2021 at 10:55 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> Hi Adam, Tim,
->
-> [...]
-> > > > > Nicolas and Adam,
-> > > > >
-> > > > > For the H1 patches in this series: I've been able to test the IMX8MM
-> > > > > H1 JPEG encode using GStreamer 1.18.5:
-> > > > > $ gst-inspect-1.0 | grep -e "v4l2.*enc"
-> > > > > video4linux2:  v4l2jpegenc: V4L2 JPEG Encoder
-> > > > > $ gst-launch-1.0 videotestsrc ! jpegenc ! rtpjpegpay ! udpsink
-> > > >                                   ^ v4l2jpegenc
-> > > >
-> > > > This is just a transcript error ?
-> > >
-> > > Nicolas,
-> > >
-> > > No! Thanks for catching my mistake. I was testing with software encode... ooops!
-> > >
-> > > 'gst-launch-1.0 videotestsrc ! v4l2jpegenc ! fakesink' actually hangs
-> > > the board so likely a power-domain issue there?
+> On Sat, Nov 6, 2021 at 9:24 PM Adam Ford <aford173@gmail.com> wrote:
 > >
-> > The v4l2-compliance tests fail on the h1 decoder with a hang, but I
-> > think we're writing to registers which are not documented in the Mini
-> > TRM.  The Mini TRM doesn't explicitly show the JPEG encoding as a
-> > feature, but some of the registers state JPEG, but because some of the
-> > registers written for the H1 are not documented in the TRM.  If those
-> > registers are restricted or not in this SoC, I am concerned that it
-> > might be related.  I'll try to run some more tests this weekend to
-> > check on the status of the power-domain stuff.
+> > Most of the blk-ctrl reset bits are found in one register, however
+> > there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+> > and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+> > out of reset or the MIPI_CSI hangs.
+> >
+> > Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> >
+> > V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
+> >      Rename the new register to mipi_phy_rst_mask
+> >      Encapsulate the edits to this register with an if-statement
 >
-> To verify if the HW support JPEG encoding you can read SWREG63 bit 25. This is
-> in the TRM, just not labelled properly. To mimic the decoding side, would be "HW
-> synthesis config register X" with the bit labelled SW_ENC_JPEG_PROF (but
-> PROF/profile is on or off). If your board hang while reading this, you likely
-> didn't get the power bit right.
+> This is DPHY reset mask, not sure we can handle this via blk-ctrl.
+> Marek has similar patch to support this [1]. we need to phandle the
+> phy in host node in order to work this.
 >
-> IMX8 has an undocumented control block thing that we have been fighting with in
-> imx8q,  perhaps that's your issue. Few driver was proposed, we are still pending
-> on NXP solution to be submitted (they asked us to wait, still waiting =)).
-
-Nicolas,
-
-Thanks for the suggestion to read offset FC.  There was an attempt
-made by Lucas Stach to develop a VPU blk-ctrl driver to coordinate the
-power-domains with the GPC driver. Unfortunately, it does appear to
-hang, so it might not be operating correctly.
-
-Lucas,
-
-Do you have any idea of stuff I can try to see if the power domain is
-coming online correctly?
-
-[   10.434727] imx-pgc imx-pgc-domain.6: request the vpumix domain to power up
-[   10.463647] imx-pgc imx-pgc-domain.6: request the vpumix ADB400 to power up
-[   10.517155] imx-pgc imx-pgc-domain.6: genpd vpumix success
-[   10.728927] vpu: set fuse bits to enable
-[   10.825500] imx8m-blk-ctrl 38330000.blk-ctrl: power vpublk-g1 GPC domain
-[   10.878986] imx-pgc imx-pgc-domain.7: request the vpu-g1 domain to power up
-[   10.932429] imx-pgc imx-pgc-domain.7: genpd vpu-g1 success
-[   10.971988] imx8m-blk-ctrl 38330000.blk-ctrl: genpd vpublk-g1 success
-[   11.004726] hantro-vpu 38300000.video-codec: registered
-nxp,imx8mm-vpu-dec as /dev/video0
-[   11.040760] imx8m-blk-ctrl 38330000.blk-ctrl: power vpublk-g2 GPC domain
-[   11.066181] imx-pgc imx-pgc-domain.8: request the vpu-g2 domain to power up
-[   11.087887] imx-pgc imx-pgc-domain.8: genpd vpu-g2 success
-[   11.113808] imx8m-blk-ctrl 38330000.blk-ctrl: genpd vpublk-g2 success
-[   11.139634] hantro-vpu 38310000.video-codec: registered
-nxp,imx8mm-vpu-g2-dec as /dev/video1
-[   11.156463] imx8m-blk-ctrl 38330000.blk-ctrl: power vpublk-h1 GPC domain
-[   11.170817] imx-pgc imx-pgc-domain.9: request the vpu-h1 domain to power up
-[   11.232990] imx-pgc imx-pgc-domain.9: genpd vpu-h1 success
-[   11.252546] imx8m-blk-ctrl 38330000.blk-ctrl: genpd vpublk-h1 success
-[   11.266152] hantro-vpu 38320000.video-codec: Checking vpu->enc_base + 0xfc
-
-<hang>
-
-adam
-
+> However this current patch change seems directly handling dphy reset
+> which indeed fine me as well.
 >
-> > >
-> > > >
-> > > > > host=192.168.1.146 port=5000
-> > > > > viewed on client@192.168.1.146 via:
-> > > > > $ gst-launch-1.0 udpsrc port=5000 ! application/x-rtp,payload=96 !
-> > > > > rtpjpegdepay ! jpegdec ! autovideosink
-> > > > >
-> > > > > For the G1/G2 patches in the series I don't see any Gstreamer
-> > > > > 'v4l2.*dec' elements. Perhaps I need a newer version of Gstreamer.
-> > > >
-> > > > Most likely yes, I suggest building gstreamer/ branch "main", GStreamer has now
-> > > > a single repository. We are very close to 1.20, which will include stable API
-> > > > support of H264, MPEG2 and VP8 decoding.
-> > > >
-> > >
-> > > Ok, let me see if I can navigate through the build process and I'll
-> > > get back to you.
-> > >
-> > > Thanks,
-> > >
-> > > Tim
-> > >
-> > > > >
-> > > > > I have CSI capture and DSI display currently working on
-> > > > > imx8mm-venice-gw73xx-0x that I can play with. The CSI sensor only
-> > > > > supports RAW8/RAW10 (and gstreamer currently only supports RAW8) and I
-> > > > > can't efficiently convert to something the JPEG encoder likes without
-> > > > > bayer2rgbneon (a libneon version).
-> > > > >
-> > > > > I see from the IMX8MMRM that the 2D GPU supports scaling etc with a
-> > > > > wide range of data formats but I'm not sure how to tap into this as
-> > > > > that hardware is managed by the vivante driver. On the IMX6QDL there
-> > > > > is a separate IPU block that Philipp Zabel wrote a nice mem2mem
-> > > > > csc/scaler driver for but I don't see any equivalent currently for
-> > > > > IMX8MM.
-> > > > >
-> > > > > Best regards,
-> > > > >
-> > > > > Tim
-> > > >
+> >
+> >  drivers/soc/imx/imx8m-blk-ctrl.c | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> >
+> > diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> > index 519b3651d1d9..581eb4bc7f7d 100644
+> > --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> > +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> > @@ -17,6 +17,7 @@
+> >
+> >  #define BLK_SFT_RSTN   0x0
+> >  #define BLK_CLK_EN     0x4
+> > +#define BLK_MIPI_RESET_DIV     0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
+> >
+> >  struct imx8m_blk_ctrl_domain;
+> >
+> > @@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
+> >         const char *gpc_name;
+> >         u32 rst_mask;
+> >         u32 clk_mask;
+> > +
+> > +       /*
+> > +        * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
+> > +        * which is used to control the reset for the MIPI Phy.
+> > +        * Since it's only present in certain circumstances,
+> > +        * an if-statement should be used before setting and clearing this
+> > +        * register.
+> > +        */
+> > +       u32 mipi_phy_rst_mask;
 >
+> May be dphy_rst_mask (above comment may not be required, as it
+> understand directly with commit message).
+>
+> >  };
+> >
+> >  #define DOMAIN_MAX_CLKS 3
+> > @@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+> >
+> >         /* put devices into reset */
+> >         regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > +       if (data->mipi_phy_rst_mask)
+> > +               regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> >
+> >         /* enable upstream and blk-ctrl clocks to allow reset to propagate */
+> >         ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+> > @@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+> >
+> >         /* release reset */
+> >         regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > +       if (data->mipi_phy_rst_mask)
+> > +               regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> >
+> >         /* disable upstream clocks */
+> >         clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+> > @@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+> >         struct imx8m_blk_ctrl *bc = domain->bc;
+> >
+> >         /* put devices into reset and disable clocks */
+> > +       if (data->mipi_phy_rst_mask)
+> > +               regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> > +
+> >         regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> >         regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
+> >
+> > @@ -488,6 +505,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+> >                 .gpc_name = "mipi-csi",
+> >                 .rst_mask = BIT(3) | BIT(4),
+> >                 .clk_mask = BIT(10) | BIT(11),
+> > +               .mipi_phy_rst_mask = BIT(16) | BIT(17),
+>
+> DPHY has BIT(17) for Master reset and BIT(16) for Slave reset. I think
+> we just need master reset to enable. I've tested only BIT(17) on
+> mipi-dsi gpc and it is working.
+>
+
+Jagan,
+
+In my testing I had to use BIT(16) | BIT(17) in order to capture via CSI.
+
+Best regards,
+
+Tim
