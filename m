@@ -2,114 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C415C4567A3
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 02:54:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB6A4567E6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 03:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233192AbhKSB5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Nov 2021 20:57:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58938 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231176AbhKSB5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Nov 2021 20:57:23 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26E94C061748
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:54:22 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id 7so18521041oip.12
-        for <devicetree@vger.kernel.org>; Thu, 18 Nov 2021 17:54:22 -0800 (PST)
+        id S232656AbhKSCRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Nov 2021 21:17:46 -0500
+Received: from mail-os0jpn01on2111.outbound.protection.outlook.com ([40.107.113.111]:35970
+        "EHLO JPN01-OS0-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229830AbhKSCRp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Nov 2021 21:17:45 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YMMOQ6yisLOXPS0aG2Wz/ESfcjpibHbte9CETiBt02seEH7aiYYu62jlZ9+P+4iH3RqUy7XiMguIQzk2BfLvr5JpSJE/aYLqj1UPuB/7JnaHYFHzngo1QC8A9zi91M96+0ffQNUI9+E8s7sdZTiwgU9QMzSZN0Kbq9MG7ezKHJtND6LICv3uJcda9XYlZA5bt/GWuQC0tXL75dDlhDV3dp8dTDN/04t57/FwJ/hVBjU06ov7eQlQTj3Fj3I+kZDOTF0m7dJXD/uvQAvvqOGELnUQJUPe9YKPrKOdGm4njps5cUhW1rvbPYXSFt8HWdmZ+ZRsLeRKjVwqzbfHxuiskw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4yZ5XA7euknQ1xO7EwQ/X+scv9zw5q1+afelY2F2E48=;
+ b=P/FE1P/DDZElvvMRfXWx9v8Un3v8XuCi/fqIt06Qi3Uf1IjU1syXwjO5Cwa/6HeGRV31dQ8CiawY2UY62Y5XuqIG9G4c1Iotl29GDO34Dh7NnRDmZQHPxjr6j+PYUt6REsNCihVKhArt4Xi5+oChaQDYFP7RNyJKV0f5IWbhfpYvE702o/UQWqvMzFvWoIbsYQy03IExidnE9AxGTT+M1doi5sOYBFW0dob/y9wRS0+9/NkogeqEovwiqtL36RBYrIqlLV/237yaXf7ICMkF7qJ/bHlUiB4zw0zXn1ju8HZroS6y0mol1QjfMbsbdZncYSoBuTOqidT3PyGT6HkDhQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2FxdMMSYOAYAU9KFKnHB4GkxuBsvinpK2Vc/6yFivGc=;
-        b=vYmxSd/nIldGJ+S4HR2cLPVGy8eMrqBT2xU1PpQ7aEnwTN6bJZXJDAt45aaAZ1gPOx
-         dy4yOi0bpRShwlw5JX1lGwWwByxgRyXI53vM0fhy/O7rk2wMWufVFGML1OIgxFO+psi+
-         KVkwcjFf8ynREOddSsWjZSq19sDR053lCZa5A6hwRQ41JIsRYwOE4fEbg/6gfA5/9g+B
-         oC1MdqllqoEZMNN9Di7nkaoFqxmCjXqZqaZYoykS6EKY+sFtOvKWK5UyiNC0qFR3rJMt
-         aeoIDBKwK7X7w0C9w+MRHhNs5Mmsa7LI+H+wMQi5Cx0VoyFYKUp6gtoWyVkWRzrVbPKA
-         cP5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2FxdMMSYOAYAU9KFKnHB4GkxuBsvinpK2Vc/6yFivGc=;
-        b=CJ9V4AFlKwNYXM56D7vFs4BYDaLpnSMWxttj3WE85utsrWC5GDfO9DY0WrMTJfl8h0
-         ik9cq1VJ0O7ARXuWaxeL6lB1hkoUTgPwDaJNsuAsyDi8/sl/qoZcTsbHFzsL+O9c/xC3
-         ymUD8yUF990vH0uVVTrqku70IoA7W0xYc/edhjQhzj30ShuHr0BSmCEg8WP8YSKwTfDK
-         p6KY0Bf4aseE8QDDTlq4BoJTjjcxquG+rdzWlTTx/L8SziEy8YpgSa29YUrbVKaA95/N
-         Z1+vbZpDsoT2wv+3NOAM1pk/k0LAcRRbWd86E9IJ5x7jDUTypkoSLtZ+8HPElvc4PUNC
-         UNMA==
-X-Gm-Message-State: AOAM530lz52JyN+8KbfFAV4a3VmTyXreJcYpQdejSP2xEoKtBFdO4dbo
-        AnD3iWXrHehgjaEeXr7B5n0rN4xZ0E23OVoaeJtBWQ==
-X-Google-Smtp-Source: ABdhPJyRBm0fzRDLcJlXEbvREg/ZNXV/7Xm5j6CDTdCOubs2VBCxDSWSKHMSzaj9Lth9V9uE7GejuszIMIjni8F5a6E=
-X-Received: by 2002:a05:6808:60e:: with SMTP id y14mr1561686oih.162.1637286861422;
- Thu, 18 Nov 2021 17:54:21 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com> <26a80d9081382976cec58f9c3bc0ecb181c5836e.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
-In-Reply-To: <26a80d9081382976cec58f9c3bc0ecb181c5836e.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 19 Nov 2021 02:54:09 +0100
-Message-ID: <CACRpkdYLTvBm4OP+VLKaPDOGzem1fakBBqOF1ZVqXBHCzB6Jyg@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 7/9] power: supply: add simple-gauge for SOC
- estimation and CC correction
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4yZ5XA7euknQ1xO7EwQ/X+scv9zw5q1+afelY2F2E48=;
+ b=JMHCr+Y2tZbiCZXmVfmUj/6fopcK92PTp1dzap9WABz+YGCBtVay/XQN6b51RDkY7QZkC3uZmL34mQIP4DCoYYMUy4aDtL337tH37hvjHmcn2M4x+6NX6AS2zjZEWGau/CCLrIKTgfBlInicUlDrvRJ75HeMBG/9h1irAjUqZzo=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TYYPR01MB6911.jpnprd01.prod.outlook.com (2603:1096:400:d4::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22; Fri, 19 Nov
+ 2021 02:14:42 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::b0dd:ed1e:5cfc:f408]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::b0dd:ed1e:5cfc:f408%3]) with mapi id 15.20.4713.022; Fri, 19 Nov 2021
+ 02:14:41 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, rostokus@gmail.com,
-        fan.chen@mediatek.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Content-Type: text/plain; charset="UTF-8"
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Subject: RE: [PATCH 02/16] dt-bindings: arm: renesas: Document Renesas Spider
+ boards
+Thread-Topic: [PATCH 02/16] dt-bindings: arm: renesas: Document Renesas Spider
+ boards
+Thread-Index: AQHX2r2H6ti4Kpv0IUG4c5XK55lyiawJlQeAgACLCRA=
+Date:   Fri, 19 Nov 2021 02:14:41 +0000
+Message-ID: <TY2PR01MB36926B3538CA179890C662DDD89C9@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com>
+ <20211116074130.107554-3-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdUK5gaBh0O5kmOpB+YN6S6OsLSC_J_KmmSMxRTtu6LPNg@mail.gmail.com>
+In-Reply-To: <CAMuHMdUK5gaBh0O5kmOpB+YN6S6OsLSC_J_KmmSMxRTtu6LPNg@mail.gmail.com>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 637fc1bb-b1bc-4079-d354-08d9ab0258de
+x-ms-traffictypediagnostic: TYYPR01MB6911:
+x-microsoft-antispam-prvs: <TYYPR01MB69118B36F74C84DB5AFA7078D89C9@TYYPR01MB6911.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3968;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /1ZCLj9V3+y/SR90oTwQ+fyVuyy+Y65yz4zPuDRIsKxa27CLmCG6MT4tlCav3vuoHygzYAQnOw7aPXVl0B3KSg7wucS2xs7g1qoPSrfd9/t+iNYxbUzM4wKxpv1TVk8kS009g1X8SXtMuT6MIEXsdFZiNJ0vE282z8dXKaVbAgoO4VJa5TnzLiFQyuBtZPysIXW66LTXqh6UtigMQMGJPphJ+lf+dQfC8wPM+jngBp8ujlwO3XuI9lfmF5BG7CpANtcd9bnDGaSZH8Y1fV4LC7FZ16tmI34bgXH8hxunPyqpQv8Xqqteyv+T+qvo9ojcPi62cLAZ5ev6QNegeVnIDbICmmOqLpvyEeyK0ECzBkmUM80ypv3N2aXpU9JEdsVoNSbAic4Yt0JjM8OGALUl/0GBNN8ItqfPFoydLtcUJd76YeqFsC1aQHZA1HhflStgizRP0MIVuC7jVu74WfjIoph7w5bHQf/3AlehMk+ZmfdxRgrrd8o2B+YcYSzYgmUz7BYY9QCVP6Tlv5NteNj9hlLldRQXh736dim50/VR6aeuYD7wwH9/J32YGF6TGiAbQK/O2c5rQb6ufMh5qZHVmeC5WehPAR4riomocwIrkwWamkeK/uM/HBnj4Puod+myE/lneYzBRWsgf1CGYA5MYnDnJ2D1tcXCWXm99GHqW5T/4eoyZ63oG1jHekwY+PPtvGUNWtmDPV6suZgHvYz57Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(9686003)(76116006)(186003)(316002)(7696005)(26005)(52536014)(8676002)(66946007)(508600001)(5660300002)(53546011)(66446008)(64756008)(66476007)(8936002)(55016002)(86362001)(66556008)(6916009)(122000001)(6506007)(71200400001)(4326008)(2906002)(54906003)(33656002)(38070700005)(38100700002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?kbscBR14jEREHKyrWA5iHIDkTZd2P5ajwkpSdGugo2LV4wtjvTXRj+2hHVX1?=
+ =?us-ascii?Q?t0rzsrSiiesr5Ob+TkJLNbcqfXjcWnoM9hF8M7/sB0fcJlXtNOQT/0gatME7?=
+ =?us-ascii?Q?ZVF91JjgmEFkxTF1hkao0OpgzA0HORne59M967aL3OmlIVQuyj5MHvBFovHs?=
+ =?us-ascii?Q?GJnFFR7+6A/oT21odPrbs7kGee+znMyFPMgE1+GJmD5/7/S6771NAeWYna6I?=
+ =?us-ascii?Q?wKbMt/0zIHGOs78KxrZO6Ctu2X0Tu2cjD9fvR/433ivx7qK1rT1sAATt98/W?=
+ =?us-ascii?Q?Sq1z7fY6zO2LWJQvDe0PzCa0J4xdWCrJE5UZrbX/Eiws8UE/tQyIpWfI1dZd?=
+ =?us-ascii?Q?YURcXhA7aqI9LrSExN/BYCv+CeTZ76eOXjXuRGQNUGuq3WyO+F9GrOac6+JS?=
+ =?us-ascii?Q?e4E6ZVRUOrHRSRd9JbWG8z25iGwtOJs04P/epSb4uYsWIztS3VA33EZMfv+S?=
+ =?us-ascii?Q?6lgabEzGADizwmtSQ9KJWya2cU3kFGwB/aIn2NUNmzuuRuQETXKpTiIKzkPR?=
+ =?us-ascii?Q?sK0qeSEBpwZZoK5dFKF7k9TDHKmd6EnA5p3e1HayntjpR/KiATOOJMzZ/iVd?=
+ =?us-ascii?Q?ethUSajwPanZ6GTyN2SC6gvoiQ+MXy+ENmTZX4UIpTUpAm1qNyt/dFMfLK9K?=
+ =?us-ascii?Q?NwEGcMx5ylXDjpfhoGrmaGWpun/Q9cBVtB5ByXvG5Fpkl0/eEElXLhhTpH9+?=
+ =?us-ascii?Q?JJ5eWHcNaljeCPaTYXGdmPX7kTjSQLuKqmVjNj4+sl8tI610SY8sKO9WGfw7?=
+ =?us-ascii?Q?X7tDQzaSiHKaD9ku+sLn8Rd5MLw9+5vYCNrxLPX23Hp2gzG/uqXgxZn1eEov?=
+ =?us-ascii?Q?gYp9pOJxjrYrRQWcRoV/F6eK5wMCbGf5bUmJ7hqEP/MpvndKe0r27Yy5c9Bo?=
+ =?us-ascii?Q?QVdh2yLRn9SNk5STf6yk5lO4IeweIeapyNlEnAEWRe/PewwO1D7icGsesLSk?=
+ =?us-ascii?Q?qFxmn1DI6qGzmOWFQwMdcsmLjeFbuWlD7/FI2NLTotsdnkqVsEowM+cEy5YM?=
+ =?us-ascii?Q?uahk975h8X0sIr7qKrh5dhXGZRm9UnYhN5HpQEvqLrKay0Ghi3pbam/u07QX?=
+ =?us-ascii?Q?8crtJKC95/00CzQvzqIsYrPnrJGTQ32dBudZy582q/HnelBWxqsNLRBovGt2?=
+ =?us-ascii?Q?gmYHQlmkuMumuKtp+Vh79mB4kOvBPcotZmvy/bB9g59CZYk1Ot+aOa+ovHEU?=
+ =?us-ascii?Q?22DEFCiILRuFlHkWZb4nGH+OmKXaZNs6kmjamwyWX+3UMz6AsyvAULCrHC8U?=
+ =?us-ascii?Q?F+j8qjk+EDlcJ67GutEq3Y8T+FUxAgwvU+V/Ea+OquYzhl1AxBsWuQN8TDfn?=
+ =?us-ascii?Q?NEekPyrRhbSed4OIy4PkD5DpUlmtZ9GM1dhA5fTJwNvXzKG+URH01w0YHYfd?=
+ =?us-ascii?Q?itReBglSdZcsAn0w1dohpS+9R5xPgD0oHcZXvR4CdwYLn9F/8PvpXzR3k5eq?=
+ =?us-ascii?Q?U8K3BIM9KApg9reCTdB0B/vVV2SSsONkyBU4+0BQ24tG42edwLcCpJoLV3fI?=
+ =?us-ascii?Q?RhQEhrypVOSD7OUTlYr4vqeQ+Y4ouQ8OUW4AMuMs+Tl9DChldohi65dyDGeq?=
+ =?us-ascii?Q?00RBM56++fHP6U4/oYDEhd2GiE4hosK2OYJ5f0BWFW2o3ks2MRy+zPB1RVpT?=
+ =?us-ascii?Q?iI2KQLubR+jcx5G5sOUsu+BUwS5Ad6mg7pjFpNYFJ0qPRBrlYABsXZ5zhkaA?=
+ =?us-ascii?Q?2nvXcvfGPqjNLDD06ZyvSV/agGPhHcMzdgpPxxpm0/6KhsTR?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 637fc1bb-b1bc-4079-d354-08d9ab0258de
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2021 02:14:41.7439
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wRJyVC851hdONop52BHShM7lDha06XP22UQRj55BKUUF3X9q7313VASlPoZBhDjL8ZsEkC2M0+AvfajqfohVHLKrdqcjQBfa3E8k4/LADyGV0WjYRQNCoFDXxyWZVZWl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB6911
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 1:28 PM Matti Vaittinen
-<matti.vaittinen@fi.rohmeurope.com> wrote:
+Hi Geert-san,
 
-> Add generic 'simple gauge' helper for performing iterative SOC estimation
-> and coulomb counter correction for devices with a (drifting) coulomb
-> counter. This should allow few charger/fuel-gauge drivers to use generic
-> loop instead of implementing their own.
->
-> Charger/fuel-gauge drivers can register 'simple-gauge' which does
-> periodically poll the driver and:
->  - get battery state
->  - adjust coulomb counter value (to fix drifting caused for example by ADC
->    offset) if:
->      - Battery is relaxed and OCV<=>SOC table is given
->      - Battery is full charged
->  - get battery age (cycles) from driver
->  - get battery temperature
->  - do battery capacity correction
->      - by battery temperature
->      - by battery age
->      - by computed Vbat/OCV difference at low-battery condition if
->        low-limit is set and OCV table given
->      - by IC specific low-battery correction if provided
->  - compute current State Of Charge (SOC)
->  - do periodical calibration if IC supports that. (Many ICs do calibration
->    of CC by shorting the ADC pins and getting the offset).
->  - provide the user-space a consistent interface for getting/setting the
->    battery-cycle information for ICs which can't store the battery aging
->    information. Uses POWER_SUPPLY_PROP_CYCLE_COUNT for this.
->
-> The simple gauge provides the last computed SOC as
-> POWER_SUPPLY_PROP_CAPACITY to power_supply_class when requested.
->
-> Things that should/could be added but are missing from this commit:
->  - Support starting calibration in HW when entering to suspend. This
->    is useful for ICs supporting delayed calibration to mitigate CC error
->    during suspend - and to make periodical wake-up less critical.
->  - periodical wake-up for performing SOC estimation computation (RTC
->    integration)
->
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Thank you for your review!
 
-This is the right ambition, I haven't looked close at it but the way
-you use it seem to be what you need, so:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-(and the rest of the patches to the Rohm chips)
+> From: Geert Uytterhoeven, Sent: Friday, November 19, 2021 2:54 AM
+>=20
+> On Tue, Nov 16, 2021 at 8:42 AM Yoshihiro Shimoda
+> <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > Add device tree bindings documentation for Renesas R-Car S4-8
+> > Spider CPU and BreakOut boards.
+> >
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>=20
+> Thanks for your patch!
+>=20
+> > --- a/Documentation/devicetree/bindings/arm/renesas.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/renesas.yaml
+> > @@ -317,6 +317,14 @@ properties:
+> >
+> >        - description: R-Car S4-8 (R8A779F0)
+> >          items:
+> > +          - enum:
+> > +              - renesas,spider-cpu # Spider CPU board (RTP8A779FASKB0S=
+C2S)
 
-Yours,
-Linus Walleij
+I realized that the part number should be RTP8A779F0ASKB0SC2S.
+                                                   ~
+I'll fix it in v2.
+
+> > +          - const: renesas,r8a779f0
+> > +
+> > +        items:
+>=20
+> Missing "-" in front of "items:".
+
+Oops. I'll fix it.
+
+> > +          - enum:
+> > +              - renesas,spider-breakout # Spider BreakOut board (RTP8A=
+779F0ASKB0SB0S)
+> > +          - const: renesas,spider-cpu
+> >            - const: renesas,r8a779f0
+> >
+> >        - description: R-Car H3e (R8A779M0)
+>=20
+> The rest LGTM.
+> Reading[1], I assume "RTP8A779F0ASKB0SP2S" is the part number of the
+> full kit?
+
+Yes, your assumption is correct.
+
+Best regards,
+Yoshihiro Shimoda
+
