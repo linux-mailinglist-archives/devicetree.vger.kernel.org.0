@@ -2,195 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FCB3456BC6
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 679A6456BD0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231577AbhKSIoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 03:44:30 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:36170 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbhKSIoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 03:44:30 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637311288; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=TJDfJQzNs0P8ZTjwfGv8Cr99h3avRBPf0A8lWovZM4o=;
- b=uFK0SbXcQb43WDTrNsF5NWolOSWdHCMOvyhQFVRra481Aqu62yJPW4L/0bWKLcbfNEtiBmWF
- PQAoBD9RHABQCyBM1xv/PtMZX30O+y4EWngCOuWdbpQH/FtFExK8sZpOv8GgiQDHo6/SLRpa
- QObY2upj3HABXi/bWpHF366vEkc=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 61976338665450d43aefceec (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 19 Nov 2021 08:41:28
- GMT
-Sender: akolli=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 99EF1C4360C; Fri, 19 Nov 2021 08:41:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
-        autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: akolli)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D2BEAC4338F;
-        Fri, 19 Nov 2021 08:41:26 +0000 (UTC)
+        id S233003AbhKSIrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 03:47:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232969AbhKSIrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 03:47:00 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A340C061574
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 00:43:59 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mnzUv-0006Rg-Rl; Fri, 19 Nov 2021 09:43:53 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mnzUu-000Qv7-RB; Fri, 19 Nov 2021 09:43:52 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1mnzUt-0004nv-SX; Fri, 19 Nov 2021 09:43:51 +0100
+Date:   Fri, 19 Nov 2021 09:43:51 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Alvaro Gamez <alvaro.gamez@hazent.com>,
+        linux-kernel@vger.kernel.org, michal.simek@xilinx.com
+Subject: Re: [PATCH v10 3/3] pwm: Add support for Xilinx AXI Timer
+Message-ID: <20211119084351.hhk4omumje45hpge@pengutronix.de>
+References: <20211112185504.1921780-1-sean.anderson@seco.com>
+ <20211112185504.1921780-3-sean.anderson@seco.com>
+ <20211118092813.xhulsyy5l36ukngw@pengutronix.de>
+ <e826e68c-d725-79ef-2140-365383eaf0e0@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 19 Nov 2021 14:11:26 +0530
-From:   Anilkumar Kolli <akolli@codeaurora.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATH v3 1/2] dt: bindings: add new DT entry for ath11k PCI
- device support
-In-Reply-To: <YZbds1DgmwbFPQdM@robh.at.kernel.org>
-References: <1637244892-27267-1-git-send-email-akolli@codeaurora.org>
- <YZbds1DgmwbFPQdM@robh.at.kernel.org>
-Message-ID: <f71ed4a924adcc026c6b0f29809f3b7d@codeaurora.org>
-X-Sender: akolli@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="jjoutxsjvw4quph7"
+Content-Disposition: inline
+In-Reply-To: <e826e68c-d725-79ef-2140-365383eaf0e0@seco.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-19 04:41, Rob Herring wrote:
-> On Thu, Nov 18, 2021 at 07:44:51PM +0530, Anilkumar Kolli wrote:
->> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
->> Ath11k firmware uses host DDR memory, DT entry is used to reserve
->> these host DDR memory regions, send these memory base
->> addresses using DT entries.
->> 
->> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
->> ---
->> V2:
->>   - Use reserved-memory (Rob)
->> 
->>  .../bindings/net/wireless/qcom,ath11k.yaml         | 48 
->> ++++++++++++++++++++++
->>  1 file changed, 48 insertions(+)
->> 
->> diff --git 
->> a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml 
->> b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> index 85c2f699d602..5a8994f6cb10 100644
->> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
->> @@ -150,6 +150,12 @@ properties:
->>        string to uniquely identify variant of the calibration data in 
->> the
->>        board-2.bin for designs with colliding bus and device specific 
->> ids
->> 
->> +  memory-region:
->> +    maxItems: 1
->> +    description:
->> +      phandle to a node describing reserved memory (System RAM 
->> memory)
->> +      used by ath11k firmware (see 
->> bindings/reserved-memory/reserved-memory.txt)
->> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -279,3 +285,45 @@ examples:
->>                            "tcl2host-status-ring";
->>          qcom,rproc = <&q6v5_wcss>;
->>      };
->> +
-> 
-> This looks like a separate example. Please split to its own entry.
-> 
->> +    memory {
->> +        device_type = "memory";
->> +        reg = <0x0 0x40000000 0x0 0x20000000>;
->> +    };
-> 
-> Outside the scope of what's needed in the example.
-> 
-Yes, memory entry is available in 
-"arch/arm64/boot/dts/qcom/ipq8074-hk10.dtsi"
-Since its used in ath11k patch, added example.
-I will remove in next version.
 
->> +
->> +    reserved-memory {
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +        ranges;
->> +
->> +        qcn9074_pcie0: qcn9074_pcie0@51100000 {
->> +            no-map;
->> +            reg = <0x0 0x51100000 0x0 0x03500000>;
->> +        };
->> +
->> +        qcn9074_pcie1: qcn9074_pcie1@54600000 {
->> +            no-map;
->> +            reg = <0x0 0x54600000 0x0 0x03500000>;
->> +        };
->> +    };
-> 
-> As is this really.
-> 
-ipq8074-hk10.dtsi board supports two PCI bus and QCN9074 on each PCI.
-So added two separate entries to reserves memory for each QCN9074.
+--jjoutxsjvw4quph7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> +
->> +    pcie0_rp: pcie0_rp {
->> +        reg = <0 0 0 0 0>;
-> 
-> This isn't a valid PCI bus binding.
-> 
-Got it, let me rework in next patch.
+Hello Sean,
 
->> +
->> +        status = "ok";
-> 
-> Don't need status.
+On Thu, Nov 18, 2021 at 04:08:45PM -0500, Sean Anderson wrote:
+> On 11/18/21 4:28 AM, Uwe Kleine-K=C3=B6nig wrote:
+> > On Fri, Nov 12, 2021 at 01:55:04PM -0500, Sean Anderson wrote:
+> > > [...]
+> > > +	/* cycles has a max of 2^32 + 2 */
+> > > +	return DIV64_U64_ROUND_CLOSEST(cycles * NSEC_PER_SEC,
+> > > +				       clk_get_rate(priv->clk));
+> >=20
+> > Please round up here.
+>=20
+> Please document the correct rounding mode you expect. The last time we
+> discussed this (3 months ago), you only said that rounding down was
+> incorrect...
 
-Sure, will remove in next patch.
+I think you refer to
+https://lore.kernel.org/linux-pwm/20210817180407.ru4prwu344dxpynu@pengutron=
+ix.de
+here, right? I agree that I could have been a bit more explicit here.
 
-> 
->> +        ath11k_0: ath11k@0 {
-> 
-> wifi@0
-> 
->> +            reg = <0 0 0 0 0 >;
->> +            memory-region = <&qcn9074_pcie0>;
->> +        };
->> +    };
->> +
->> +    pcie1_rp: pcie1_rp {
->> +        reg = <0 0 0 0 0>;
->> +
->> +        status = "ok";
->> +        ath11k_1: ath11k@1 {
->> +            reg = <0 0 0 0 0 >;
-> 
-> unit-address and reg don't match.
-> 
-will update in next patch.
+=2Eapply should first round down .period to the next achievable setting
+and then .duty_cycle should be round down to the next achievable setting
+(in combination with the chosen period).
 
-> Why do we need 2 nodes in the first place?
-> 
-ipq8074-hk10.dtsi board supports two PCI bus and QCN9074 on each PCI.
-So added two separate entries to reserves memory for each QCN9074.
+To get .apply =E2=88=98 .get_state idempotent (i.e. if I apply the result f=
+rom
+get_state there are no changes), .get_state has to round up.
 
-Since its example, Shall I remove one ?
+After our longer discussion about v4 I would have expected that this was
+already obvious. There you wrote[1]:
 
->> +            memory-region = <&qcn9074_pcie1>;
->> +        };
->> +    };
->> +
->> --
->> 2.7.4
->> 
+> * The apply_state function shall only round the requested period down, and
+>    may do so by no more than one unit cycle. If the requested period is
+>    unrepresentable by the PWM, the apply_state function shall return
+>    -ERANGE.
+> * The apply_state function shall only round the requested duty cycle
+>    down. The apply_state function shall not return an error unless there
+>    is no duty cycle less than the requested duty cycle which is
+>    representable by the PWM.
+> * After applying a state returned by round_state with apply_state,
+>    get_state must return that state.
 
-- Anil.
+The requirement to round up is a direct consequence of these three
+points, which I confirmed (apart from some wording issues).
+
+[1] https://lore.kernel.org/linux-pwm/ddd2ad0c-1dff-c437-17a6-4c7be72c2fce@=
+seco.com
+
+> > > +	period_cycles =3D min_t(u64, state->period, ULONG_MAX * NSEC_PER_SE=
+C);
+> > > +	period_cycles =3D mul_u64_u32_div(period_cycles, rate, NSEC_PER_SEC=
+);
+> > > +	if (period_cycles < 2 || period_cycles - 2 > priv->max)
+> > > +		return -ERANGE;
+> >=20
+> > if period_cycles - 2 > priv->max the right reaction is to do
+> >=20
+> > 	period_cycles =3D priv->max + 2
+>=20
+> It has been 5 months since we last talked about this, and yet you have
+> not submitted any patches for a "pwm_round_rate" function. Forgive me if
+> I am reticent to implement forward compatibility for an API which shows
+> no signs of appearing.
+
+This requirement is not only for round_state. It's also to get some
+common behaviour for at least new drivers. The primary goal here is to
+make the result for pwm_apply more predictable.
+
+> > > +static int xilinx_timer_probe(struct platform_device *pdev)
+> > > +{
+> > > +	int ret;
+> > > +	struct device *dev =3D &pdev->dev;
+> > > +	struct device_node *np =3D dev->of_node;
+> > > +	struct xilinx_timer_priv *priv;
+> > > +	struct xilinx_pwm_device *pwm;
+> >=20
+> > The name "pwm" is usually reserved for struct pwm_device pointers. A
+> > typical name for this would be xlnxpwm or ddata.
+>=20
+> I suppose. However, no variables of struct pwm_device are used in
+> this driver.
+
+Still it provokes wrong expectations when reading
+
+	platform_set_drvdata(pdev, pwm);
+
+in a pwm driver.
+
+> > > +	u32 pwm_cells, one_timer, width;
+> > > +	void __iomem *regs;
+> > > +
+> > > +	ret =3D of_property_read_u32(np, "#pwm-cells", &pwm_cells);
+> > > +	if (ret =3D=3D -EINVAL)
+> > > +		return -ENODEV;
+> >=20
+> > A comment about why this is done would be great.
+>=20
+> OK. How about:
+>=20
+> /* If there are no #pwm-cells, this binding is for a timer and not a PWM =
+*/
+
+Fine. Does that mean the timer driver won't bind in the presence of the
+#pwm-cells property, and the timer driver uses the same compatible?
+Sounds a bit strange to me.
+
+> > > +	/*
+> > > +	 * The polarity of the generate outputs must be active high for PWM
+> >=20
+> > s/generate/generated/
+>=20
+> The signals I am referring to are called "GenerateOut0" and
+> "GenerateOut1".
+
+Then maybe:
+
+	The polarity of the outputs "GenerateOut0" and "GenerateOut1"
+	...
+
+?
+
+> > > +static struct platform_driver xilinx_timer_driver =3D {
+> > > +	.probe =3D xilinx_timer_probe,
+> > > +	.remove =3D xilinx_timer_remove,
+> > > +	.driver =3D {
+> > > +		.name =3D "xilinx-timer",
+> >=20
+> > Doesn't this give a wrong impression as this is a PWM driver, not a
+> > timer driver?
+
+This directly relates to the fact that the timer driver and the pwm
+driver (seem to) bind on the same compatible as already mentioned above.
+The dt people didn't agree to this yet, did they?
+
+> Perhaps. Though this is the PWM driver for the Xilinx AXI timer, not the
+> Xilinx AXI PWM.
+
+I would be happier with "xilinx-timer-pwm" then.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
+   |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--jjoutxsjvw4quph7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmGXY8MACgkQwfwUeK3K
+7Ami0Qf/XojQGupME2R59XL954UP3h1Mvkt4lm0+lwyIsNWvCKgciys1iPkwTSPi
+1o2DQYQInawTy/r0+6WqQ1CECPY6eTt4I00/tAqjGu+8aomH6srl6lvc5wSVVB1n
+v0HNo7FHYNTUpXO0bnYw8U8eDl7o+jxzn/ufY/fUNVTQH/aMT/PvrLGROoYXLtIr
+iJE6z8u/iSNbZCjfPHSJUmfuXlanllDj2wuGjbblCWBZOG1eyeEemoy0Q+yuloen
+x8zBGZIfX+mLx2lqwJi2Tc+jdmYZayGBTm/jIYYZoc/R4I/iSiA41jHhYsznIJwd
++jShC+o6iF/0R0NaG8RzfNS/Yf0aYw==
+=gzPZ
+-----END PGP SIGNATURE-----
+
+--jjoutxsjvw4quph7--
