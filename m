@@ -2,155 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5762457064
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 15:12:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1BC04570C9
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 15:38:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234226AbhKSOP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 09:15:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55604 "EHLO
+        id S235191AbhKSOlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 09:41:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234551AbhKSOP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 09:15:29 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1A6C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 06:12:27 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id q12so8745538pgh.5
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 06:12:27 -0800 (PST)
+        with ESMTP id S231646AbhKSOls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 09:41:48 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA792C061574;
+        Fri, 19 Nov 2021 06:38:46 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id 133so8755111wme.0;
+        Fri, 19 Nov 2021 06:38:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UgAqbpopy6HklYietNPfXdJKLyBN7yZp/5A4MJwHDTY=;
-        b=CEnYbYaY8rBd1Cif8k8YZBWlBHeTr8pPZsol+HzbDQrXPK/E4j+NS/7uSTu9qqqItA
-         2On7bI0TRuDAVBAKwMmp/c0Ou3YdqgsmNbZs6zsK12njRtpkGd4b81MLNLzrCpItUurk
-         i6m5en2CybWucPpNjfnQ+XB3zctBJP4rISr0zsrxNjS45kjGEWbqjU0215wzs15PVyAL
-         6JFuv2WjRSbcTnHA7Id7/qaKlrraA97HiL0D6o/GrpQrtSbTq39o8Iy9G9HQmCDQJv6t
-         E4Gc7NitF2C75qKmYSt54NOfKCYsfgGU7wYML0cKsUTGgdErHh/GkapONPo2lVZCMQZp
-         5hvQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YpcMcFQPixvPDguNb8KvgCn82+FeyaLs6RtchRVFI0A=;
+        b=HoZ2pfn55yoa4f/v1AqGMAP0dKILZYmst8qI65JvsB/HB8JTtheO3BTNzgsw8OfTKO
+         QHyRiD4yYHWZElL5fcaVBFwgHyE0yvPB/Fw1XUfDV0KhiWLHHvYEFPA14rXDf8vn/VL0
+         NMDP55ak+IEJEqMrxuEZVM54yRCRhA3Fe3R8MCzaGGPBNToeq8okq8l/KsBWUxO/PQFA
+         saGlNfhX13q4mffv1S6p5OmEftGdPP5PPDa67ZLx9yKncGuj1kv+Megv4WA0fEOcuWP0
+         /3oV9fjepOyoXqLn73iOrei/gz9UJFkQ2d9nWVrGBZVid4HapRvYZ4HLl0IZk8NI4Uwc
+         z2eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UgAqbpopy6HklYietNPfXdJKLyBN7yZp/5A4MJwHDTY=;
-        b=3VXKIFjG2LkZGiOzIyFtGUoaEQGEpffyKPUYq04kDd4O23ZHY+B0xroCwm3bfxn5Gc
-         VdfTar2Y3nrhCHDgh1saPf6zTPfBCC4maovIGZbAp0khH4drWNSzl7e6ZxDJxLvvViTG
-         1TZmpqxBKGCcLd+4+YdvnwsYIdsIpjWSJxpndrIFU7vXgyHI3hCIIC0lpxXIYRZblxba
-         HnmmpORHVVjMPCXUP7PIxThawr6dUwZ1itON/e/cHoU4eyrs6MFEnsbx3o73c+5TrQTD
-         t6dPDMKFlq69ky/LyzuaN23Izs/AyYaD3ka9YR1+bxDy+PkYJPcIVoDApg46rbJp9nih
-         2n8g==
-X-Gm-Message-State: AOAM531vSCaBKY8UzTICd+0Mbq6r7e4CH/2eH6gOBGje/QDH5yCeJRew
-        Lm52kiYFLpLOwtA9d78RjASeJNb7o8jwY1hdrDgGrmoOZcpF7g==
-X-Google-Smtp-Source: ABdhPJz1hwMPGGN4/nlVyGD+fO+dHHNAi/WPWrzoLWlJ/hnc5Yu87VoDBBCzIB/CWsfpcbrD9oqWIftLk7Q6tGO9mSs=
-X-Received: by 2002:a05:6122:1813:: with SMTP id ay19mr119204327vkb.24.1637331135963;
- Fri, 19 Nov 2021 06:12:15 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YpcMcFQPixvPDguNb8KvgCn82+FeyaLs6RtchRVFI0A=;
+        b=MsyBI5jtIBIBovMQ1ora9/CjrLOyTxYJHAET/kly7z+ilO5eO3vBy+8C56QA7NI4qO
+         rP1uM2NTIRaZA6INMEAbeDhdS0807yiD+uxU6BU1Q6zcbPMYP7c8RbMt2F7uDtIMfuMH
+         qskH1sYO5CsABOBkWrSCRKb8ugqhNnI88LoSdHabeD4XK9V2kuFZHn0LeokjB//RpfED
+         ChlCyaqT/5qKTYCCZE0yzamuCBNeMY86YGMBQXMMIfDCP1BEahahwAE7K3+Fk00XwrGZ
+         yO9E2UzwfJwfCMfOanVXBMxNZm106pZr9V0l/KSoS1tL5KGPp6smuxLdRISGKbQQNmWS
+         wWrQ==
+X-Gm-Message-State: AOAM533Lf2nBPNfkSFZkln2Bme+fOlV9ESjze0iyPoW5rRemjvH6oyJ5
+        wDvY4KtbfQ1ezouAC7OumeY=
+X-Google-Smtp-Source: ABdhPJxKC/+Nb+XQfPl3Su1mJ2g1LtrLmZQ9o4FFhPctXSafAMj1w0HlxVl+GaJp1bMSUhBk5m914g==
+X-Received: by 2002:a1c:f219:: with SMTP id s25mr126910wmc.31.1637332725384;
+        Fri, 19 Nov 2021 06:38:45 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id a141sm11732540wme.37.2021.11.19.06.38.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Nov 2021 06:38:44 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v2 00/16] dt-bindings: Convert Tegra DT bindings to json-schema
+Date:   Fri, 19 Nov 2021 15:38:23 +0100
+Message-Id: <20211119143839.1950739-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <CGME20211112010603epcas2p339d1a6ef3df7cdbe61c87c8afa541fd0@epcas2p3.samsung.com>
- <20211112010137.149174-1-jaewon02.kim@samsung.com> <20211112010137.149174-3-jaewon02.kim@samsung.com>
- <CAPLW+4==X+irRBKHiDfgJeAb0oDKkzbcWERFs7Y3=PSOg0+qAw@mail.gmail.com>
- <001401d7da86$f7ebd660$e7c38320$@samsung.com> <da9bd8cc-9415-6db7-024e-8d50b5f666f7@canonical.com>
- <CAPLW+4kS-pzROC5oyAjW1aJp5cb1e3XK+40HsKwgPdCziSp1ZQ@mail.gmail.com> <773110c9-fc74-6cab-68c0-1c771a3be104@canonical.com>
-In-Reply-To: <773110c9-fc74-6cab-68c0-1c771a3be104@canonical.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 19 Nov 2021 16:12:04 +0200
-Message-ID: <CAPLW+4n+JKOQjbLriu6frB+c4nt6efTrURcbw9ZWZB-+a6Ruiw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] i2c: exynos5: add support for ExynosAutov9 SoC
-To:     Jaewon Kim <jaewon02.kim@samsung.com>
-Cc:     Chanho Park <chanho61.park@samsung.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021 at 10:54, Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 18/11/2021 20:59, Sam Protsenko wrote:
-> > On Tue, 16 Nov 2021 at 11:32, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@canonical.com> wrote:
-> >>
-> >> On 16/11/2021 02:12, Chanho Park wrote:
-> >>>> With this patch the Exynos850 HSI2C becomes functional. The only nit-pick
-> >>>> from my side (just a food for thought): do we want to configure USI
-> >>>> related config inside of particular drivers (SPI, I2C, UART)? Or it would
-> >>>> be better design to implement some platform driver for that, so we can
-> >>>> choose USI configuration (SPI/I2C/UART) in device tree? I think this
-> >>>> series is good to be merged as is, but we should probably consider all
-> >>>> upsides and downsides of each option, for the future work.
-> >>>
-> >>> I'm also considering how to support this USI configuration gracefully.
-> >>> Current version of USI is v2 which means there is a v1 version as well. It might be a non-upstream SoC so we don't need to consider it so far.
-> >>> But, there is a possibility that the USI hw version can be bumped for future SoCs.
-> >>>
-> >>> As you probably know, earlier version of the product kernel has a USI SoC driver[1] and it was designed to be configured the USI settings by device tree.
-> >>>
-> >>> Option1) Make a USI driver under soc/samsung/ like [1].
-> >>> Option2) Use more generic driver such as "reset driver"? This might be required to extend the reset core driver.
-> >>> Option3) Each USI driver(uart/i2c/spi) has its own USI configurations respectively and expose some configurations which can be variable as device tree.
-> >>>
-> >>> [1]: https://github.com/ianmacd/d2s/blob/master/drivers/soc/samsung/usi_v2.c
-> >>
-> >> I don't have user manuals, so all my knowledge here is based on
-> >> Exynos9825 vendor source code, therefore it is quite limited. In
-> >> devicetree the USI devices have their own nodes - but does it mean it's
-> >> separate SFR range dedicated to USI? Looks like that, especially that
-> >> address space is just for one register (4 bytes).
-> >>
-> >> In such case having separate dedicated driver makes sense and you would
-> >> only have to care about driver ordering (e.g. via device links or phandles).
-> >>
-> >> Option 2 looks interesting - reusing reset framework to set proper USI
-> >> mode, however this looks more like a hack. As you said Chanho, if there
-> >> is a USI version 3, this reset framework might not be sufficient.
-> >>
-> >> In option 3 each driver (UART/I2C/SPI) would need to receive second IO
-> >> range and toggle some registers, which could be done via shared
-> >> function. If USI v3 is coming, all such drivers could get more complicated.
-> >>
-> >> I think option 1 is the cleanest and extendable in future. It's easy to
-> >> add usi-v3 or whatever without modifying the UART/I2C/SPI drivers. It
-> >> also nicely encapsulates USI-related stuff in separate driver. Probe
-> >> ordering should not be a problem now.
-> >>
-> >> But as I said, I don't have even the big picture here, so I rely on your
-> >> opinions more.
-> >>
-> >
-> > Hi Krzysztof,
-> >
-> > Can you please let me know if you're going to apply this series as is,
-> > or if you want me to submit USIv2 driver first, and then rework this
-> > patch on top of it? I'm working on some HSI2C related patches right
-> > now, and thus it'd nice to know about your decision on this series
-> > beforehand, as some of my patches (like bindings doc patches) might
-> > depend on it. Basically I'd like to base my patches on the proper
-> > baseline, so we don't have to rebase those later.
->
-> This set won't go via my tree anyway, but I am against it. David pointed
-> out that his USIv1 is a little bit different and embedding in each of
-> I2C/UART/SPI drivers the logic of controlling USIv1 and USIv2 looks too
-> big. The solution with a dedicated driver looks to me more flexible and
-> encapsulated/cleaner.
->
-> Therefore after the discussions I am against this solution, so a
-> soft-NAK from my side.
->
+From: Thierry Reding <treding@nvidia.com>
 
-Hi Jaewon,
+Hi,
 
-I'm going to submit USI driver soon, and also some more HSI2C patches.
-Do you mind if I rework your patches to rely on USI drver (instead of
-modifying System Register in HSI2C driver), and include those in my
-patch series? Of course, I'll preserve your authorship. Just think
-that would be easier and faster this way.
+this set of patches converts some Tegra-specific DT bindings to
+json-schema and, where appropriate, adds Tegra234 compatible strings.
+The goal is to prepare existing schemas to allow validation of the
+existing Tegra234 device tree files.
 
-Thanks!
+I've got a follow-up series that adds more Tegra234 support and will
+extend/convert bindings along the way to keep things validatable.
 
->
-> Best regards,
-> Krzysztof
+Rob, since all of these are Tegra-specific and given that I have some
+follow-up work based on these, I think it'd be best if I picked these
+up into the Tegra tree once you're happy with them.
+
+Changes in v2:
+- address various linting and validation warnings
+- add patch for BPMP thermal bindings
+
+Thierry
+
+Thierry Reding (16):
+  dt-bindings: misc: Convert Tegra MISC to json-schema
+  dt-bindings: mmc: tegra: Convert to json-schema
+  dt-bindings: mailbox: tegra: Convert to json-schema
+  dt-bindings: mailbox: tegra: Document Tegra234 HSP
+  dt-bindings: rtc: tegra: Convert to json-schema
+  dt-bindings: rtc: tegra: Document Tegra234 RTC
+  dt-bindings: fuse: tegra: Convert to json-schema
+  dt-bindings: fuse: tegra: Document Tegra234 FUSE
+  dt-bindings: mmc: tegra: Document Tegra234 SDHCI
+  dt-bindings: serial: 8250: Document Tegra234 UART
+  dt-bindings: tegra: pmc: Convert to json-schema
+  dt-bindings: firmware: tegra: Convert to json-schema
+  dt-bindings: i2c: tegra-bpmp: Convert to json-schema
+  dt-bindings: thermal: tegra186-bpmp: Convert to json-schema
+  dt-bindings: serial: tegra-tcu: Convert to json-schema
+  dt-bindings: serial: Document Tegra234 TCU
+
+ .../arm/tegra/nvidia,tegra186-pmc.txt         | 133 --------
+ .../arm/tegra/nvidia,tegra186-pmc.yaml        | 199 ++++++++++++
+ .../firmware/nvidia,tegra186-bpmp.txt         | 107 -------
+ .../firmware/nvidia,tegra186-bpmp.yaml        | 186 +++++++++++
+ .../bindings/fuse/nvidia,tegra20-fuse.txt     |  42 ---
+ .../bindings/fuse/nvidia,tegra20-fuse.yaml    |  82 +++++
+ .../bindings/i2c/nvidia,tegra186-bpmp-i2c.txt |  42 ---
+ .../i2c/nvidia,tegra186-bpmp-i2c.yaml         |  42 +++
+ .../bindings/mailbox/nvidia,tegra186-hsp.txt  |  72 -----
+ .../bindings/mailbox/nvidia,tegra186-hsp.yaml | 114 +++++++
+ .../bindings/misc/nvidia,tegra186-misc.txt    |  14 -
+ .../bindings/misc/nvidia,tegra186-misc.yaml   |  43 +++
+ .../bindings/misc/nvidia,tegra20-apbmisc.txt  |  17 -
+ .../bindings/misc/nvidia,tegra20-apbmisc.yaml |  51 +++
+ .../bindings/mmc/nvidia,tegra20-sdhci.txt     | 143 ---------
+ .../bindings/mmc/nvidia,tegra20-sdhci.yaml    | 300 ++++++++++++++++++
+ .../bindings/rtc/nvidia,tegra20-rtc.txt       |  24 --
+ .../bindings/rtc/nvidia,tegra20-rtc.yaml      |  61 ++++
+ .../devicetree/bindings/serial/8250.yaml      |   3 +-
+ .../bindings/serial/nvidia,tegra194-tcu.txt   |  35 --
+ .../bindings/serial/nvidia,tegra194-tcu.yaml  |  61 ++++
+ .../thermal/nvidia,tegra186-bpmp-thermal.txt  |  33 --
+ .../thermal/nvidia,tegra186-bpmp-thermal.yaml |  42 +++
+ 23 files changed, 1183 insertions(+), 663 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra186-pmc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.txt
+ create mode 100644 Documentation/devicetree/bindings/firmware/nvidia,tegra186-bpmp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/fuse/nvidia,tegra20-fuse.txt
+ create mode 100644 Documentation/devicetree/bindings/fuse/nvidia,tegra20-fuse.yaml
+ delete mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2c.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/nvidia,tegra186-hsp.yaml
+ delete mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra186-misc.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra186-misc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra20-apbmisc.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra20-apbmisc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mmc/nvidia,tegra20-sdhci.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/nvidia,tegra20-sdhci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rtc/nvidia,tegra20-rtc.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/nvidia,tegra20-rtc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra194-tcu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/thermal/nvidia,tegra186-bpmp-thermal.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/nvidia,tegra186-bpmp-thermal.yaml
+
+-- 
+2.33.1
+
