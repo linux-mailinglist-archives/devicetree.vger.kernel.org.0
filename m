@@ -2,60 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B96456E43
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 12:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59EAA456E29
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 12:23:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234773AbhKSLhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 06:37:12 -0500
-Received: from mx08-00227901.pphosted.com ([91.207.212.184]:50152 "EHLO
-        mx08-00227901.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231271AbhKSLhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 06:37:12 -0500
-X-Greylist: delayed 13371 seconds by postgrey-1.27 at vger.kernel.org; Fri, 19 Nov 2021 06:37:12 EST
-Received: from pps.filterd (m0097674.ppops.net [127.0.0.1])
-        by mx08-.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AJ6tNVM008159;
-        Fri, 19 Nov 2021 08:42:14 +0100
-Received: from zbw2k16ex03.bardusch.net ([185.80.186.174])
-        by mx08-.pphosted.com (PPS) with ESMTPS id 3cdmdm102p-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 19 Nov 2021 08:42:13 +0100
-Received: from ZBW2K16EX01.bardusch.net (172.25.1.1) by
- zbw2k16ex03.bardusch.net (172.25.1.3) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.1.2308.20;
- Fri, 19 Nov 2021 08:41:54 +0100
-Received: from User (172.25.1.131) by ZBW2K16EX01.bardusch.net (172.25.1.1)
- with Microsoft SMTP Server id 15.1.2308.20 via Frontend Transport; Fri, 19
- Nov 2021 08:41:43 +0100
-Reply-To: <josechoondak@gmail.com>
-From:   Joseph Choondak <info@ndd.co.mz>
-Subject: I hope this email finds you well.
-Date:   Thu, 18 Nov 2021 23:41:57 -0800
-MIME-Version: 1.0
-Content-Type: text/plain; charset="Windows-1251"
-Content-Transfer-Encoding: 7bit
-X-Priority: 3
-X-MSMail-Priority: Normal
-X-Mailer: Microsoft Outlook Express 6.00.2600.0000
-X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
-Message-ID: <d7dfe166-948b-402b-acd7-b7ffcaa9e042@ZBW2K16EX01.bardusch.net>
-To:     Undisclosed recipients:;
-X-Proofpoint-GUID: 2wrt-wAXuixFJV_J0KJVlXW7ceFSsD6G
-X-Proofpoint-ORIG-GUID: 2wrt-wAXuixFJV_J0KJVlXW7ceFSsD6G
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-19_07,2021-11-17_01,2020-04-07_01
-X-Proofpoint-Spam-Reason: orgsafe
+        id S234776AbhKSLZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 06:25:23 -0500
+Received: from sibelius.xs4all.nl ([83.163.83.176]:62593 "EHLO
+        sibelius.xs4all.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234531AbhKSLZX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 06:25:23 -0500
+Received: from localhost (bloch.sibelius.xs4all.nl [local])
+        by bloch.sibelius.xs4all.nl (OpenSMTPD) with ESMTPA id ad7541a7;
+        Fri, 19 Nov 2021 12:22:19 +0100 (CET)
+Date:   Fri, 19 Nov 2021 12:22:19 +0100 (CET)
+From:   Mark Kettenis <mark.kettenis@xs4all.nl>
+To:     Janne Grunau <j@jannau.net>
+Cc:     marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io,
+        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20211116215315.22528-2-j@jannau.net> (message from Janne Grunau
+        on Tue, 16 Nov 2021 22:53:14 +0100)
+Subject: Re: [PATCH 1/2] dt-bindings: arm: apple: Add iMac (24-inch 2021) to Apple bindings
+References: <20211116215315.22528-1-j@jannau.net> <20211116215315.22528-2-j@jannau.net>
+Message-ID: <d3cae91e2229c404@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-May I please ask with considerable urgency for your kind assistance with the following matter.
-I'm a financial person, I think  I have something huge you might be interested in.
+> From: Janne Grunau <j@jannau.net>
+> Date: Tue, 16 Nov 2021 22:53:14 +0100
+> 
+> This introduces compatible strings for both 2021 Apple iMac M1 devices:
+> 
+> * apple,j456 - iMac (24-inch, 4x USB-C, M1, 2021)
+> * apple,j457 - iMac (24-inch, 2x USB-C, M1, 2021)
+> 
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
+>  Documentation/devicetree/bindings/arm/apple.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 
-Looking forward to hearing from you.
+Minor nit below.  Maybe not even worth respinning this series for.
 
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
 
-Respectfully!!
-Joseph Choondak
-Account Executive.
+> diff --git a/Documentation/devicetree/bindings/arm/apple.yaml b/Documentation/devicetree/bindings/arm/apple.yaml
+> index 1e772c85206c..1416ed3a5623 100644
+> --- a/Documentation/devicetree/bindings/arm/apple.yaml
+> +++ b/Documentation/devicetree/bindings/arm/apple.yaml
+> @@ -12,12 +12,12 @@ maintainers:
+>  description: |
+>    ARM platforms using SoCs designed by Apple Inc., branded "Apple Silicon".
+>  
+> -  This currently includes devices based on the "M1" SoC, starting with the
+> -  three Mac models released in late 2020:
+> +  This currently includes devices based on the "M1" SoC:
+>  
+>    - Mac mini (M1, 2020)
+>    - MacBook Pro (13-inch, M1, 2020)
+>    - MacBook Air (M1, 2020)
+> +  - iMac (24-inch 2021)
+
+iMac (24-inch, M1, 2021)
+
+>    The compatible property should follow this format:
+>  
+> @@ -56,6 +56,8 @@ properties:
+>                - apple,j274 # Mac mini (M1, 2020)
+>                - apple,j293 # MacBook Pro (13-inch, M1, 2020)
+>                - apple,j313 # MacBook Air (M1, 2020)
+> +              - apple,j456 # iMac (24-inch, 4x USB-C, M1, 2021)
+> +              - apple,j457 # iMac (24-inch, 2x USB-C, M1, 2021)
+>            - const: apple,t8103
+>            - const: apple,arm-platform
+>  
+> -- 
+> 2.33.1
+> 
+> 
