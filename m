@@ -2,226 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 679A6456BD0
-	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:44:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4366C456BD6
+	for <lists+devicetree@lfdr.de>; Fri, 19 Nov 2021 09:47:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233003AbhKSIrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 03:47:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232969AbhKSIrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 03:47:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A340C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 00:43:59 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mnzUv-0006Rg-Rl; Fri, 19 Nov 2021 09:43:53 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mnzUu-000Qv7-RB; Fri, 19 Nov 2021 09:43:52 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1mnzUt-0004nv-SX; Fri, 19 Nov 2021 09:43:51 +0100
-Date:   Fri, 19 Nov 2021 09:43:51 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+        id S234450AbhKSIuX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 03:50:23 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:17487 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229843AbhKSIuU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 03:50:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1637311639; x=1668847639;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=5kcHApZk+ywaaFYN2hC9iqX8vhCmRFBvCWl222E/+FI=;
+  b=F10xWAt7SU83JX9A0d+8kdbKs1OkhOCYUCR9ZT2komF7tsOSElvIzcTJ
+   CM7O2eCwL7AaJPWjfMC12AvJ+RxNIFGFj/D5IJM4xZT04zZIYvFaObIEe
+   UnR9K+5w4n2zQG7H5Gm5PIlm34LGpw/fwLdKP0eWUADkDVs56yTeH3CfH
+   o9O4oBCATrgmbsscmjTIL0FrUyBU0NzLfnU1ck2VkSfFZpnftxuRZiw21
+   s3SD03ZThFo2E58JVOyBxG5utVG9n2qi7XxeLcsyz1aQVZU25/CxYvnly
+   4U+Sb6AAZ/er2Gd0+RV25pQVRkdDw5LPteFvj3RjqEN5/N+411Eov0SB0
+   A==;
+IronPort-SDR: 4ew9yvnm78cp96fbZS5lwNOtBh72D/9gAnM5hCZ64EeOSVb3JocUndm2rmeYaG6OZTl4pL4HQY
+ XEuVaWx2FYiCbZ/8Hj2RGpXrNmbOBgc9a2ZvVz/+KA51LR+W1+auHxTEiC5W3aW9rFKbc2Esma
+ oftKYTAMR/1OTSrEx4EUcxg4HKNNCTkl5AAna1fxJxpn1w+vMBS3ee9cx3SqtYZSn3qOatcXW8
+ /PV2Z+Up4sZrtEhrYQDShMi3pHSvVloXSfVb1UTOlz0ithpRcIbVWueC/JQ4dBKSMJWRCeGWlx
+ ZnRAX0eOZCGAxOHJ7fsyHiW8
+X-IronPort-AV: E=Sophos;i="5.87,246,1631602800"; 
+   d="scan'208";a="139692921"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2021 01:47:18 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 19 Nov 2021 01:47:17 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Fri, 19 Nov 2021 01:47:17 -0700
+Date:   Fri, 19 Nov 2021 09:49:05 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
 To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        linux-kernel@vger.kernel.org, michal.simek@xilinx.com
-Subject: Re: [PATCH v10 3/3] pwm: Add support for Xilinx AXI Timer
-Message-ID: <20211119084351.hhk4omumje45hpge@pengutronix.de>
-References: <20211112185504.1921780-1-sean.anderson@seco.com>
- <20211112185504.1921780-3-sean.anderson@seco.com>
- <20211118092813.xhulsyy5l36ukngw@pengutronix.de>
- <e826e68c-d725-79ef-2140-365383eaf0e0@seco.com>
+CC:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 3/5] net: lan966x: add port module support
+Message-ID: <20211119084905.u2orewcwuge6oani@soft-dev3-1.localhost>
+References: <20211117091858.1971414-1-horatiu.vultur@microchip.com>
+ <20211117091858.1971414-4-horatiu.vultur@microchip.com>
+ <YZTRUfvPPu5qf7mE@shell.armlinux.org.uk>
+ <20211118095703.owsb2nen5hb5vjz2@soft-dev3-1.localhost>
+ <YZYj9fwCeWdIZJOt@shell.armlinux.org.uk>
+ <20211118125928.tav7k5xlbnhrgp3o@soft-dev3-1.localhost>
+ <YZZVn6jve4BvSqyX@shell.armlinux.org.uk>
+ <e973b8e6-f8ca-eec9-f5ac-9ae401deea81@seco.com>
+ <YZZ7KwKw8i6EPcFL@shell.armlinux.org.uk>
+ <5768b2bb-b417-0ea8-5d80-3e8872ee9ad3@seco.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jjoutxsjvw4quph7"
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <e826e68c-d725-79ef-2140-365383eaf0e0@seco.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <5768b2bb-b417-0ea8-5d80-3e8872ee9ad3@seco.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sean,
 
---jjoutxsjvw4quph7
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The 11/18/2021 11:18, Sean Anderson wrote:
+> 
+> On 11/18/21 11:11 AM, Russell King (Oracle) wrote:
+> > On Thu, Nov 18, 2021 at 10:36:58AM -0500, Sean Anderson wrote:
+> > > Hi Russell,
+> > > 
+> > > On 11/18/21 8:31 AM, Russell King (Oracle) wrote:
+> > > > On Thu, Nov 18, 2021 at 01:59:28PM +0100, Horatiu Vultur wrote:
+> > > > > The 11/18/2021 09:59, Russell King (Oracle) wrote:
+> > > > > > Another approach would be to split phylink_mii_c22_pcs_decode_state()
+> > > > > > so that the appropriate decode function is selected depending on the
+> > > > > > interface state, which may be a better idea.
+> > > > >
+> > > > > I have tried to look for phylink_mii_c22_pcs_decode_state() and I
+> > > > > have found it only here [1], and seems that it depends on [2]. But not
+> > > > > much activity happened to these series since October.
+> > > > > Do you think they will still get in?
+> > > >
+> > > > I don't see any reason the first two patches should not be sent. I'm
+> > > > carrying the second one locally because I use it in some changes I've
+> > > > made to the mv88e6xxx code - as I mentioned in the patchwork entry you
+> > > > linked to. See:
+> > > >
+> > > >   http://git.armlinux.org.uk/cgit/linux-arm.git/log/?h=net-queue
+> > > >
+> > > >   "net: phylink: Add helpers for c22 registers without MDIO"
+> > > >
+> > > > Although I notice I committed it to my tree with the wrong author. :(
+> > > >
+> > > > Sean, please can you submit the mdiodev patch and this patch for
+> > > > net-next as they have general utility? Thanks.
+> > > 
+> > > The mdiodev patch is already in the tree as 0ebecb2644c8 ("net: mdio:
+> > > Add helper functions for accessing MDIO devices"). The c22 patch is
+> > > submitted as [1].
+> > > 
+> > > --Sean
+> > > 
+> > > [1] https://lore.kernel.org/netdev/20211022160959.3350916-1-sean.anderson@seco.com/
+> > 
+> > Patchwork says its deferrred:
+> > 
+> > https://patchwork.kernel.org/project/netdevbpf/patch/20211022160959.3350916-1-sean.anderson@seco.com/
+> > 
+> > However, it does apply to current net-next, but Jakub did ask for
+> > it to be resubmitted.
+> 
+> Well, he suggested that I would have to resubmit it. But I ordered the
+> patches such that they would apply cleanly in what I thought was the
+> most likely scenario (which indeed come to pass). So I didn't think it
+> was necessary to resend.
+> 
+> > Given that patches are being quickly applied to net-next, I suggest
+> > resubmission may be just what's neeeded!
+> 
+> Resent.
 
-Hello Sean,
+Thanks for resubmission the patch!
+Unfortunately, your patch introduced a new warning, so it got in
+the state "Changes Required". So I think you will need to send a new
+version.
 
-On Thu, Nov 18, 2021 at 04:08:45PM -0500, Sean Anderson wrote:
-> On 11/18/21 4:28 AM, Uwe Kleine-K=C3=B6nig wrote:
-> > On Fri, Nov 12, 2021 at 01:55:04PM -0500, Sean Anderson wrote:
-> > > [...]
-> > > +	/* cycles has a max of 2^32 + 2 */
-> > > +	return DIV64_U64_ROUND_CLOSEST(cycles * NSEC_PER_SEC,
-> > > +				       clk_get_rate(priv->clk));
-> >=20
-> > Please round up here.
->=20
-> Please document the correct rounding mode you expect. The last time we
-> discussed this (3 months ago), you only said that rounding down was
-> incorrect...
+[1] https://patchwork.kernel.org/project/netdevbpf/patch/20211118161430.2547168-1-sean.anderson@seco.com/
 
-I think you refer to
-https://lore.kernel.org/linux-pwm/20210817180407.ru4prwu344dxpynu@pengutron=
-ix.de
-here, right? I agree that I could have been a bit more explicit here.
+> 
+> --Sean
 
-=2Eapply should first round down .period to the next achievable setting
-and then .duty_cycle should be round down to the next achievable setting
-(in combination with the chosen period).
-
-To get .apply =E2=88=98 .get_state idempotent (i.e. if I apply the result f=
-rom
-get_state there are no changes), .get_state has to round up.
-
-After our longer discussion about v4 I would have expected that this was
-already obvious. There you wrote[1]:
-
-> * The apply_state function shall only round the requested period down, and
->    may do so by no more than one unit cycle. If the requested period is
->    unrepresentable by the PWM, the apply_state function shall return
->    -ERANGE.
-> * The apply_state function shall only round the requested duty cycle
->    down. The apply_state function shall not return an error unless there
->    is no duty cycle less than the requested duty cycle which is
->    representable by the PWM.
-> * After applying a state returned by round_state with apply_state,
->    get_state must return that state.
-
-The requirement to round up is a direct consequence of these three
-points, which I confirmed (apart from some wording issues).
-
-[1] https://lore.kernel.org/linux-pwm/ddd2ad0c-1dff-c437-17a6-4c7be72c2fce@=
-seco.com
-
-> > > +	period_cycles =3D min_t(u64, state->period, ULONG_MAX * NSEC_PER_SE=
-C);
-> > > +	period_cycles =3D mul_u64_u32_div(period_cycles, rate, NSEC_PER_SEC=
-);
-> > > +	if (period_cycles < 2 || period_cycles - 2 > priv->max)
-> > > +		return -ERANGE;
-> >=20
-> > if period_cycles - 2 > priv->max the right reaction is to do
-> >=20
-> > 	period_cycles =3D priv->max + 2
->=20
-> It has been 5 months since we last talked about this, and yet you have
-> not submitted any patches for a "pwm_round_rate" function. Forgive me if
-> I am reticent to implement forward compatibility for an API which shows
-> no signs of appearing.
-
-This requirement is not only for round_state. It's also to get some
-common behaviour for at least new drivers. The primary goal here is to
-make the result for pwm_apply more predictable.
-
-> > > +static int xilinx_timer_probe(struct platform_device *pdev)
-> > > +{
-> > > +	int ret;
-> > > +	struct device *dev =3D &pdev->dev;
-> > > +	struct device_node *np =3D dev->of_node;
-> > > +	struct xilinx_timer_priv *priv;
-> > > +	struct xilinx_pwm_device *pwm;
-> >=20
-> > The name "pwm" is usually reserved for struct pwm_device pointers. A
-> > typical name for this would be xlnxpwm or ddata.
->=20
-> I suppose. However, no variables of struct pwm_device are used in
-> this driver.
-
-Still it provokes wrong expectations when reading
-
-	platform_set_drvdata(pdev, pwm);
-
-in a pwm driver.
-
-> > > +	u32 pwm_cells, one_timer, width;
-> > > +	void __iomem *regs;
-> > > +
-> > > +	ret =3D of_property_read_u32(np, "#pwm-cells", &pwm_cells);
-> > > +	if (ret =3D=3D -EINVAL)
-> > > +		return -ENODEV;
-> >=20
-> > A comment about why this is done would be great.
->=20
-> OK. How about:
->=20
-> /* If there are no #pwm-cells, this binding is for a timer and not a PWM =
-*/
-
-Fine. Does that mean the timer driver won't bind in the presence of the
-#pwm-cells property, and the timer driver uses the same compatible?
-Sounds a bit strange to me.
-
-> > > +	/*
-> > > +	 * The polarity of the generate outputs must be active high for PWM
-> >=20
-> > s/generate/generated/
->=20
-> The signals I am referring to are called "GenerateOut0" and
-> "GenerateOut1".
-
-Then maybe:
-
-	The polarity of the outputs "GenerateOut0" and "GenerateOut1"
-	...
-
-?
-
-> > > +static struct platform_driver xilinx_timer_driver =3D {
-> > > +	.probe =3D xilinx_timer_probe,
-> > > +	.remove =3D xilinx_timer_remove,
-> > > +	.driver =3D {
-> > > +		.name =3D "xilinx-timer",
-> >=20
-> > Doesn't this give a wrong impression as this is a PWM driver, not a
-> > timer driver?
-
-This directly relates to the fact that the timer driver and the pwm
-driver (seem to) bind on the same compatible as already mentioned above.
-The dt people didn't agree to this yet, did they?
-
-> Perhaps. Though this is the PWM driver for the Xilinx AXI timer, not the
-> Xilinx AXI PWM.
-
-I would be happier with "xilinx-timer-pwm" then.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---jjoutxsjvw4quph7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmGXY8MACgkQwfwUeK3K
-7Ami0Qf/XojQGupME2R59XL954UP3h1Mvkt4lm0+lwyIsNWvCKgciys1iPkwTSPi
-1o2DQYQInawTy/r0+6WqQ1CECPY6eTt4I00/tAqjGu+8aomH6srl6lvc5wSVVB1n
-v0HNo7FHYNTUpXO0bnYw8U8eDl7o+jxzn/ufY/fUNVTQH/aMT/PvrLGROoYXLtIr
-iJE6z8u/iSNbZCjfPHSJUmfuXlanllDj2wuGjbblCWBZOG1eyeEemoy0Q+yuloen
-x8zBGZIfX+mLx2lqwJi2Tc+jdmYZayGBTm/jIYYZoc/R4I/iSiA41jHhYsznIJwd
-+jShC+o6iF/0R0NaG8RzfNS/Yf0aYw==
-=gzPZ
------END PGP SIGNATURE-----
-
---jjoutxsjvw4quph7--
+-- 
+/Horatiu
