@@ -2,83 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C65457C84
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 09:10:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD77457CCA
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 11:14:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236619AbhKTINd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 03:13:33 -0500
-Received: from ptr.189.cn ([183.61.185.103]:11447 "EHLO 189.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230207AbhKTINd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Nov 2021 03:13:33 -0500
-X-Greylist: delayed 644 seconds by postgrey-1.27 at vger.kernel.org; Sat, 20 Nov 2021 03:13:32 EST
-HMM_SOURCE_IP: 10.64.8.43:38516.358279549
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
-        by 189.cn (HERMES) with SMTP id 45F32100236;
-        Sat, 20 Nov 2021 15:59:55 +0800 (CST)
-Received: from  ([14.17.101.177])
-        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id 28a34372b2fb4701b66133de36518d6a for l.stach@pengutronix.de;
-        Sat, 20 Nov 2021 15:59:57 CST
-X-Transaction-ID: 28a34372b2fb4701b66133de36518d6a
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 14.17.101.177
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-From:   Sui Jingfeng <15330273260@189.cn>
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Tiezhu Yang <yangtiezhu@loongson.cn>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        Jinyang He <hejinyang@loongson.cn>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Xiaochuan Mao <maoxiaochuan@loongson.cn>,
-        zhaoxiao <zhaoxiao@uniontech.com>,
-        suijingfeng <suijingfeng@loongson.cn>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/4] loongson2_defconfig: enable etnaviv drm driver on default
-Date:   Sat, 20 Nov 2021 15:59:26 +0800
-Message-Id: <20211120075926.2671-5-15330273260@189.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211120075926.2671-1-15330273260@189.cn>
-References: <20211120075926.2671-1-15330273260@189.cn>
+        id S237250AbhKTKRH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 05:17:07 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55764 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231133AbhKTKRG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 05:17:06 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8C0306008E;
+        Sat, 20 Nov 2021 10:14:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637403242;
+        bh=p8lvv0uMUg2IIWA7VgSF5vRjXpzRznQaMfH/9LDbzn4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WHnDXOiB4aqq5Yhc6RZ4CA+75emu6gHisSS3WmbqOHmaqcpiRNY03RXvpO3fNqurT
+         SFP7kEkRxfPZqr/nV0CV0e8cSD6f2n+Bxd5jvUxEs8i8021M0teijhSI1C/PrzBXDH
+         Ng4LdKYFlD8c8cTDSYr3qVwltZzMbCqwBAe++XfvEl5zImwQTA4fIbfn16lLv5axdQ
+         sqJoTHBfrg1zrrq/lDJPB2xL6ecCFR4UoU+CJaqo+LN5/MtMkOgY8ck7V/5wQry3j3
+         6bGCCicItMohwBH2je7nElTwKy3sTqcJ+04QojStBfjETAU2xifTcJOpqrWL7ieQWN
+         WnR4L4yx0KUEw==
+Date:   Sat, 20 Nov 2021 18:13:57 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>
+Subject: Re: [PATCH V5] dt-bindings: soc: imx: Add binding doc for spba bus
+Message-ID: <20211120101354.GA31998@dragon>
+References: <20201118230414.121316-1-aford173@gmail.com>
+ <20201130220249.GA3109751@robh.at.kernel.org>
+ <CAHCN7x+om4W5jqnuAW4-nMkZLc5nrYu7NUsbM36r0wyFSYa4-g@mail.gmail.com>
+ <CAHCN7xKEkpq07AfMbpPfEcz0x=XvVjST==8gYRyrbW+Cjs3ONg@mail.gmail.com>
+ <CAHCN7xJK-iMMNMOtJCn9a2T2Jox=3LK3ANPGgZAC645wJw=3JQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xJK-iMMNMOtJCn9a2T2Jox=3LK3ANPGgZAC645wJw=3JQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: suijingfeng <suijingfeng@loongson.cn>
+On Wed, Nov 03, 2021 at 09:36:59AM -0500, Adam Ford wrote:
+> On Sat, Oct 16, 2021 at 3:11 PM Adam Ford <aford173@gmail.com> wrote:
+> >
+> > On Thu, Apr 1, 2021 at 4:19 PM Adam Ford <aford173@gmail.com> wrote:
+> > >
+> > > On Mon, Nov 30, 2020 at 4:02 PM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Wed, 18 Nov 2020 17:04:14 -0600, Adam Ford wrote:
+> > > > > Add binding doc for fsl,spba-bus.
+> > > > >
+> > > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > > ---
+> > > > > make dt_binding_check -j8 |grep spba
+> > > > >   DTEX    Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dts
+> > > > >   DTC     Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml
+> > > > >   CHECK   Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml
+> > > > >
+> > > > > V5:  Rebase on 5.10-rc2 to be able to check yaml
+> > > > >      Add Reg entry
+> > > > >
+> > > > > V4:  Remove an accidental makefile change
+> > > > >      Move type:object under additional properties
+> > > > >
+> > > > > V3:  Rebase sample from aips-bus example
+> > > > >      Split off from series adding i.MX8M Nano functions to reduce noise
+> > > > >
+> > > > > V2:  Attempted to update yaml from feedback
+> > > > >
+> > > >
+> > > > Applied, thanks!
+> > >
+> > > Rob,
+> > >
+> > > I am not seeing this anywhere.  Can you tell me where this was
+> > > applied?  It's not appearing in Linux-next
+> >
+> > Rob,
+> >
+> > Patchwork shows this has been accepted [1], however I don't see that
+> > it's still applied.
+> >
+> >
+> > [1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201118230414.121316-1-aford173@gmail.com/
+> >
+> > Can you apply it?  It looks like building the device tree is throwing
+> > messages because this is missing.
+> >
+> 
+> Shawn,
+> 
+> Since you're the maintainer for the IMX stuff, can I update the
+> MAINTAINERS file to add this yaml file under the IMX section?  When
+> building device trees, it throws a bunch of splat because this patch
+> was never applied, and checkpatch is showing it wants a maintainer.
 
-Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
-Signed-off-by: Sui Jingfeng <15330273260@189.cn>
----
- arch/mips/configs/loongson2k_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+checkpatch warning on maintainer shouldn't be a problem.  We don't
+really want to bloat IMX entry in MAINTAINERS.
 
-diff --git a/arch/mips/configs/loongson2k_defconfig b/arch/mips/configs/loongson2k_defconfig
-index e948ca487e2d..194f39d07332 100644
---- a/arch/mips/configs/loongson2k_defconfig
-+++ b/arch/mips/configs/loongson2k_defconfig
-@@ -243,6 +243,7 @@ CONFIG_MEDIA_USB_SUPPORT=y
- CONFIG_USB_VIDEO_CLASS=m
- CONFIG_DRM=y
- CONFIG_DRM_RADEON=y
-+CONFIG_DRM_ETNAVIV=m
- CONFIG_FB_RADEON=y
- CONFIG_LCD_CLASS_DEVICE=y
- CONFIG_LCD_PLATFORM=m
--- 
-2.20.1
-
+Shawn
