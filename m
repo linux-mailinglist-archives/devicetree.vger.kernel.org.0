@@ -2,364 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5B67457F7F
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 17:27:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C05D2457F97
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 17:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230100AbhKTQaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 11:30:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56464 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229861AbhKTQaE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Nov 2021 11:30:04 -0500
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 125F76056B;
-        Sat, 20 Nov 2021 16:26:58 +0000 (UTC)
-Date:   Sat, 20 Nov 2021 16:31:50 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH v1 2/2] iio:frequency:admv4420.c: Add support for
- ADMV4420
-Message-ID: <20211120163150.4e208061@jic23-huawei>
-In-Reply-To: <20211119114011.75406-2-cristian.pop@analog.com>
-References: <20211119114011.75406-1-cristian.pop@analog.com>
-        <20211119114011.75406-2-cristian.pop@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S229845AbhKTQuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 11:50:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41382 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231144AbhKTQuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 11:50:40 -0500
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9124BC061748
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 08:47:36 -0800 (PST)
+Received: by mail-ua1-x931.google.com with SMTP id j14so17827905uan.10
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 08:47:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LcCNsIIRQmi9fqIEvnMibk8k3koK5l2JssJUcrk+fw4=;
+        b=jMk5slXa/4KsCJddpQLCmcV5tk5cSqKLefCLDfjzI/NDwf1rfs467yGH8LzJI13EnG
+         ou24tQkfC8FUptGLaI7Mv0/gS+5lrhA0lwpRXZvBp+6B2GDkypFjqhvrMdeMHvxb0pf0
+         wmI+uGEOJ6J1gkZrHuHMrhLQ7Jo41cT0Ur7Hmh1O7grj68xAG1iuOvg8542unhEcOcXT
+         sIRSn0rjUDcWzdjWIi0MPtUq9rXWthBb435o6cw8lBiYO+59j5blge+qFHQFNkODtyLK
+         CHKmkFpAu/bsVOLVx99VhHrzBqSzEOYi0mHhByEGx6uTUYTX1QWZ0IEtznKUTDCdKOCn
+         rjog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LcCNsIIRQmi9fqIEvnMibk8k3koK5l2JssJUcrk+fw4=;
+        b=aj4SNChTPlwfcRYORaZXqYYEBwtvP6nVBrfurw5vjwwvMn6egAgRga3TII2ThFFSQ8
+         xCyJJi6KQQtKZWZ4HwhZcdcie3RlQsF3i2Tj2KtFn7RNjI2TaoylThCavjfmLasB8tVC
+         urJFeJswDefXJEhjjAfDoMIA0UZF8fPuN4NfCm/2tOqGIKD6RB+ThwuSAI8zrrKKJ7wi
+         ikCPTp4Unb++TiXrSVrQY/Ff8HhgQ5EKaSaiUI3AnXkj2wgRTuilhH9wPaGqb+xG0pjy
+         ZRyBpw8yhTrCY3ENJ8EowWWxi2rF9poSqBpnpN2QpJvFFPInHjeo0rsh0DkyBuDdd1Vz
+         10Zw==
+X-Gm-Message-State: AOAM530y2WwrH6vEnBqc4vaIfvCrtUEBCroYV8AY+dq246Hy5AENZYpB
+        R4v88l2/jrRIYSfQrAnJhBBfS37gBjLjw1YGECVfHg==
+X-Google-Smtp-Source: ABdhPJxDXdWLh4LgDoWZMOBx3ThJIN505varR1lJarijd9Ge+2680HEjBOkIgO6Pe4uBcHT+uXO6sYbVvra2L+6tbq0=
+X-Received: by 2002:a05:6102:4192:: with SMTP id cd18mr109091338vsb.35.1637426854968;
+ Sat, 20 Nov 2021 08:47:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <CGME20211025161302eucas1p2f50ef29a0bba69c13deaf1ad31a8439c@eucas1p2.samsung.com>
+ <20211025161254.5575-1-semen.protsenko@linaro.org> <fcc939e6-50b4-1847-c738-db940d0c5bd4@samsung.com>
+In-Reply-To: <fcc939e6-50b4-1847-c738-db940d0c5bd4@samsung.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sat, 20 Nov 2021 18:47:23 +0200
+Message-ID: <CAPLW+4nnyPAMRcAzDjJ-uygm8bjncNp_rTLKdY5cywcpf5vg=w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/1] clk: samsung: exynos850: Register clocks early
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021 13:40:11 +0200
-Cristian Pop <cristian.pop@analog.com> wrote:
+On Sat, 20 Nov 2021 at 14:49, Sylwester Nawrocki <s.nawrocki@samsung.com> wrote:
+>
+> On 25.10.2021 18:12, Sam Protsenko wrote:
+> > Some clocks must be registered before init calls. For example MCT clock
+> > (from CMU_PERI) is needed for MCT timer driver, which is registered
+> > with TIMER_OF_DECLARE(). By the time we get to core_initcall() used for
+> > clk-exynos850 platform driver init, it's already too late. Inability to
+> > get "mct" clock in MCT driver leads to kernel panic, as functions
+> > registered with *_OF_DECLARE() can't do deferred calls. MCT timer driver
+> > can't be fixed either, as it's acting as a clock source and it's
+> > essential to register it in start_kernel() -> time_init().
+> >
+> > Let's register CMU_PERI clocks early, using CLK_OF_DECLARE_DRIVER(), and
+> > do all stuff relying on "struct dev" object (like runtime PM and
+> > enabling bus clock) later in platform driver probe. Basically
+> > CLK_OF_DECLARE_DRIVER() matches CMU compatible, but clears OF_POPULATED
+> > flag, which allows the same device to be matched again later.
+>
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+>
+> >  drivers/clk/samsung/clk-exynos850.c | 17 +++++++++++++++--
+> >  1 file changed, 15 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
+> > index 95e373d17b42..ecffa5c7a081 100644
+> > --- a/drivers/clk/samsung/clk-exynos850.c
+> > +++ b/drivers/clk/samsung/clk-exynos850.c
+> > @@ -753,6 +753,15 @@ static const struct samsung_cmu_info peri_cmu_info __initconst = {
+> >       .clk_name               = "dout_peri_bus",
+> >  };
+> >
+> > +static void __init exynos850_cmu_peri_init(struct device_node *np)
+> > +{
+> > +     exynos850_init_clocks(np, peri_clk_regs, ARRAY_SIZE(peri_clk_regs));
+> > +     samsung_cmu_register_one(np, &peri_cmu_info);
+> > +}
+> > +
+> > +CLK_OF_DECLARE_DRIVER(exynos850_cmu_peri, "samsung,exynos850-cmu-peri",
+> > +                   exynos850_cmu_peri_init);
+> > +
+> >  /* ---- CMU_CORE ------------------------------------------------------------ */
+> >
+> >  /* Register Offset definitions for CMU_CORE (0x12000000) */
+> > @@ -920,8 +929,12 @@ static int __init exynos850_cmu_probe(struct platform_device *pdev)
+> >       struct device_node *np = dev->of_node;
+> >
+> >       info = of_device_get_match_data(dev);
+> > -     exynos850_init_clocks(np, info->clk_regs, info->nr_clk_regs);
+> > -     samsung_cmu_register_one(np, info);
+> > +
+> > +     /* Early clocks are already registered using CLK_OF_DECLARE_DRIVER() */
+> > +     if (info != &peri_cmu_info) {
+> > +             exynos850_init_clocks(np, info->clk_regs, info->nr_clk_regs);
+> > +             samsung_cmu_register_one(np, info);
+> > +     }
+>
+> Don't you also need to register early CMU_TOP, which provides clocks
+> for CMU_PERI? I'm afraid it might not work properly when you register
+> CMU_PERI clocks early and only later in probe() you enable parent clock
+> required for the already registered clocks to be usable.
 
-> Add support for K Band Downconverter with Integrated
-> Fractional-N PLL and VCO.
-> More info:
-> https://www.analog.com/en/products/admv4420.html
+Good point, I'll do that in v2. Not sure how I missed that dependency
+point, but thank you for noticing that. Guess it only works for me
+because clocks are already enabled in bootloader, and I'm using
+"clk_ignore_unused" param for now.
 
-Datasheet: https://www.analog.com/en/products/admv4420.html
+> How about registering also CMU_TOP early and enabling parent clock
+> also in OF_CLK_DECLARE init callback, i.e. using either OF_CLK_DECLARE
+> or platform driver for a CMU?
+>
 
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+If you mean doing clk_prepare_enable() for "dout_peri_bus" clock in
+exynos850_cmu_peri_init(), I don't think it's possible. clk_get()
+needs "struct device *dev", and we only have that in platform driver
+probe. Trying to pass dev=NULL won't work, so that's why I'm enabling
+parent clocks in platform driver probe.
 
-Having looked at the datasheet I'm not sure how we can realistically fit this
-into a remotely standard ABI.  A user would care about controlling the tuning
-frequency and that's not going to be trivial to describe.
+I'm going to submit new patch series soon. It'll include all my recent
+patches, addressing all your comments. We can continue discussion
+there, in case I misunderstood you and those patches are still not
+correct.
 
-So having read this I'm not sure I understand why the IIO part of the driver
-is useful.  If the only interest is in fixed frequency operation why expose
-any standard(ish) userspace?
+Thanks!
 
-Thanks,
-
-Jonathan
-
-
-> ---
->  drivers/iio/frequency/Kconfig    |  10 +
->  drivers/iio/frequency/Makefile   |   1 +
->  drivers/iio/frequency/admv4420.c | 413 +++++++++++++++++++++++++++++++
->  3 files changed, 424 insertions(+)
->  create mode 100644 drivers/iio/frequency/admv4420.c
-...
-
-> +#include <linux/bitfield.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/sysfs.h>
-
-Why this include?
-
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/spi/spi.h>
-> +
-> +
-> +#define ADMV4420_REFERENCE_IN_MODE(x)		(x << 1)
-
-Prefer to see these specified as masks and then defines for the values
-followed by use of FIELD_PREP to set the actual bits.
-
-> +#define ADMV4420_REFERENCE_DOUBLER(x)		(x << 2)
-> +#define ADMV4420_REFERENCE_DIVIDE_BY_2_MASK	BIT(0)
-> +#define ADMV4420_REFERENCE_MODE_MASK		BIT(1)
-> +#define ADMV4420_REFERENCE_DOUBLER_MASK		BIT(2)
-
-
-> +
-> +struct admv4420_reference_block {
-> +	bool doubler_en;
-> +	bool divide_by_2_en;
-> +	bool ref_single_ended;
-> +	u32 freq_hz;
-> +	u32 divider;
-> +};
-> +
-> +struct admv4420_n_counter {
-> +	u32 int_val;
-> +	u32 frac_val;
-> +	u32 mod_val;
-> +	u32 n_counter;
-> +};
-> +
-
-> +
-> +static void admv4420_calc_vco_freq(struct admv4420_state *st)
-> +{
-> +	u64 tmp;
-> +
-> +	tmp = div_u64((st->pfd_freq_hz * st->n_counter.frac_val), st->n_counter.mod_val);
-> +	tmp += st->pfd_freq_hz * st->n_counter.int_val;
-> +	st->vco_freq_hz = tmp;
-> +}
-> +
-> +static void admv4420_calc_pfd_freq(struct admv4420_state *st)
-> +{
-> +	u32 tmp;
-> +
-> +	tmp = st->ref_block.freq_hz * (st->ref_block.doubler_en ? 2 : 1);
-> +	tmp = DIV_ROUND_CLOSEST(tmp, st->ref_block.divider *
-> +				(st->ref_block.divide_by_2_en ? 2 : 1));
-> +	st->pfd_freq_hz = tmp;
-> +
-> +	admv4420_calc_vco_freq(st);
-> +	st->lo_freq_hz = st->vco_freq_hz * 2;
-> +}
-> +
-> +static int admv4420_set_n_counter(struct admv4420_state *st, u32 int_val, u32 frac_val, u32 mod_val)
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_FRAC_H, FIELD_GET(ADMV4420_FRAC_H_MASK, frac_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_FRAC_M, FIELD_GET(ADMV4420_FRAC_M_MASK, frac_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_FRAC_L, FIELD_GET(ADMV4420_FRAC_L_MASK, frac_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_MOD_H, FIELD_GET(ADMV4420_MOD_H_MASK, mod_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_MOD_M, FIELD_GET(ADMV4420_MOD_M_MASK, mod_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_MOD_L, FIELD_GET(ADMV4420_MOD_L_MASK, mod_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_INT_H, FIELD_GET(ADMV4420_H_MASK, int_val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(st->regmap, ADMV4420_INT_L, FIELD_GET(ADMV4420_L_MASK, int_val));
-> +}
-> +
-> +static int admv4420_read_raw(struct iio_dev *indio_dev,
-> +			     struct iio_chan_spec const *chan,
-> +			     int *val, int *val2, long info)
-> +{
-> +	struct admv4420_state *st = iio_priv(indio_dev);
-> +
-> +	switch (info) {
-> +	case IIO_CHAN_INFO_FREQUENCY:
-> +		*val = div_u64(st->lo_freq_hz, 1000000);
-> +		div_u64_rem(st->lo_freq_hz, 1000000, val2);
-
-Why is it useful to describe a fixed frequency via an IIO device?
-
-
-
-> +
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static const struct iio_info admv4420_info = {
-> +	.read_raw = admv4420_read_raw,
-> +	.debugfs_reg_access = &admv4420_reg_access,
-> +};
-> +
-> +#define ADMV4420_CHAN_LO(_channel) {				\
-> +	.type = IIO_ALTVOLTAGE,					\
-> +	.output = 0,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_FREQUENCY)	\
-> +}
-> +
-> +static const struct iio_chan_spec admv4420_channels[] = {
-> +	ADMV4420_CHAN_LO(0),
-> +};
-> +
-> +static void admv4420_dt_parse(struct admv4420_state *st)
-> +{
-> +	struct spi_device *spi = st->spi;
-> +
-> +	st->ref_block.ref_single_ended = of_property_read_bool(spi->dev.of_node,
-> +							       "adi,ref_single_ended");
-> +	st->ref_block.doubler_en = of_property_read_bool(spi->dev.of_node, "adi,ref_doubler_en");
-> +	st->ref_block.divide_by_2_en = of_property_read_bool(spi->dev.of_node,
-> +							     "adi,ref_divide_by_2_en");
-> +	device_property_read_u32(&spi->dev, "adi,ref_freq_hz", &st->ref_block.freq_hz);
-> +	device_property_read_u32(&spi->dev, "adi,ref_divider", &st->ref_block.divider);
-> +	device_property_read_u32(&spi->dev, "adi,N_counter_int_val", &st->n_counter.int_val);
-> +	device_property_read_u32(&spi->dev, "adi,N_counter_frac_val", &st->n_counter.frac_val);
-> +	device_property_read_u32(&spi->dev, "adi,N_counter_mod_val", &st->n_counter.mod_val);
-> +	device_property_read_u32(&spi->dev, "adi,mux_sel", &st->mux_sel);
-> +}
-> +
-> +static int admv4420_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct admv4420_state *st = iio_priv(indio_dev);
-> +	u32 val = 0;
-> +	int ret;
-> +
-> +	/* Software reset and activate SDO */
-> +	ret = regmap_write(st->regmap, ADMV4420_SPI_CONFIG_1,
-> +			   ADMV4420_SPI_CONFIG_1_SOFTRESET_ | ADMV4420_SPI_CONFIG_1_SOFTRESET);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_SCRATCHPAD, ADAR1000_SCRATCH_PAD_VAL_1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(st->regmap, ADMV4420_SCRATCHPAD, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val != ADAR1000_SCRATCH_PAD_VAL_1) {
-> +		dev_err(indio_dev->dev.parent, "Failed ADMV4420 to read/write scratchpad %x ", val);
-
-Try to keep lines under 80 chars unless it hurts readability.  Breaking this one before
-the string doesn't hurt readability so please do so.
-
-> +		return -EIO;
-> +	}
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_SCRATCHPAD, ADAR1000_SCRATCH_PAD_VAL_2);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(st->regmap, ADMV4420_SCRATCHPAD, &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (val != ADAR1000_SCRATCH_PAD_VAL_2) {
-> +		dev_err(indio_dev->dev.parent, "Failed ADMV4420 to read/write scratchpad %x ", val);
-> +		return -EIO;
-> +	}
-> +
-> +	st->ref_block.freq_hz = ADMV4420_DEF_REF_HZ;
-> +	st->ref_block.ref_single_ended = false;
-> +	st->ref_block.doubler_en = false;
-> +	st->ref_block.divide_by_2_en = false;
-> +	st->ref_block.divider = ADMV4420_DEF_REF_DIVIDER;
-> +
-> +	st->n_counter.int_val = ADMV4420_DEF_NC_INT;
-> +	st->n_counter.frac_val = ADMV4420_DEF_NC_FRAC;
-> +	st->n_counter.mod_val = ADMV4420_DEF_NC_MOD;
-> +
-> +	st->mux_sel = ADMV4420_LOCK_DTCT;
-> +
-> +	admv4420_dt_parse(st);
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_R_DIV_L,
-> +			   FIELD_GET(ADMV4420_L_MASK, st->ref_block.divider));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_R_DIV_H,
-> +			   FIELD_GET(ADMV4420_H_MASK, st->ref_block.divider));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_REFERENCE,
-> +			   st->ref_block.divide_by_2_en |
-> +			   ADMV4420_REFERENCE_IN_MODE(st->ref_block.ref_single_ended) |
-> +			   ADMV4420_REFERENCE_DOUBLER(st->ref_block.doubler_en));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = admv4420_set_n_counter(st, st->n_counter.int_val, st->n_counter.frac_val,
-> +				     st->n_counter.mod_val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_PLL_MUX_SEL, st->mux_sel);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(st->regmap, ADMV4420_ENABLES, ENABLE_PLL | ENABLE_LO | ENABLE_VCO |
-> +			   ENABLE_IFAMP | ENABLE_MIXER | ENABLE_LNA);
-> +	if (ret)
-> +		return ret;
-> +
-> +	admv4420_calc_pfd_freq(st);
-> +
-> +	return 0;
-> +}
-> +
-> +static int admv4420_probe(struct spi_device *spi)
-> +{
-> +	struct iio_dev *indio_dev;
-> +	struct admv4420_state *st;
-> +	struct regmap *regmap;
-> +	int ret;
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	regmap = devm_regmap_init_spi(spi, &admv4420_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&spi->dev, "Error  ADMV4420 initializing spi regmap: %ld\n",
-> +			PTR_ERR(regmap));
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	st = iio_priv(indio_dev);
-> +	st->spi = spi;
-> +	st->regmap = regmap;
-> +	mutex_init(&st->lock);
-> +
-> +	indio_dev->dev.parent = &spi->dev;
-
-The IIO core should set that for you.
-
-> +	indio_dev->name = "admv4420";
-> +	indio_dev->info = &admv4420_info;
-> +	indio_dev->channels = admv4420_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(admv4420_channels);
-> +
-> +	ret = admv4420_setup(indio_dev);
-> +	if (ret) {
-> +		dev_err(&spi->dev, "Setup ADMV4420 failed (%d)\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return devm_iio_device_register(&spi->dev, indio_dev);
-> +}
-> +
-
-> +
-> +MODULE_AUTHOR("Cristian Pop <cristian.pop@analog.com>");
-> +MODULE_DESCRIPTION("Analog Devices ADMV44200 K Band Downconverter");
-> +MODULE_LICENSE("Dual BSD/GPL");
-
-
-
+> --
+> Regards,
+> Sylwester
