@@ -2,112 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 68677457C27
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 08:34:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4246457C88
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 09:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236707AbhKTHh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 02:37:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33822 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236578AbhKTHh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 02:37:59 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47030C061748;
-        Fri, 19 Nov 2021 23:34:56 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id 77-20020a1c0450000000b0033123de3425so12251809wme.0;
-        Fri, 19 Nov 2021 23:34:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OM2Q2y6CgmId2R4mi5bkqpR+tR4JTdqKcUf7G8xj6co=;
-        b=jKs3FDya/Z9bazr9ZhSJ0Rgg6S+9NH4+HyfOx+9ft1ecocbFvoI+UtITN0//G9LuRp
-         DuQ4Q2AlQZKArwDuJT7opw6uBHRDxU63pOAsbzsmtLh6MGUtHKRHyZdP6Y1OI8tPObSk
-         ULRStBmJ5EF0zvi3FuiX2u3HVfOWEfmdx4zobd2qbg15yoQCTlzScPvq5Hr7YeL218GP
-         hZtCTHXdM68ZACyttsJnq5wWpavb+WvSU6mhKFNTBdydj/Gozq13slrTgWPPb/RqLafj
-         wyZCwVtNVwWIPEU13DwnfQ2D3vMyyw0+rdPoc+2Pje4DFJEXgikUPTybkIvGLTlZ6cgF
-         LfBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OM2Q2y6CgmId2R4mi5bkqpR+tR4JTdqKcUf7G8xj6co=;
-        b=ddmeaoPNlV5sPXK/nrQ//VDe1WI9n9SeRCPGnVeKTZs1esKdvm2d4wuYikYhQOgGTn
-         4/akxtprmW0rc9pLA9qbiFImtHUA4mdo+20FCXSZZlSy778kqM3Q4NqJhDSbFBawovqE
-         ymp68qM2wS4eGj1gaK9qXYhGcqGF8nPw2Dwrh522AOlqDU4/5yayvt3QuvH/RWOIigAQ
-         rmgZ1Fq0mWR0rLdaUXX/1Mgu2Zm1u9AX2l7LZMkBqcvg3LOG+GLVmkuXaG4IoE6QkPSp
-         NymewhFTaYqkXUsttGSslB+RZ89cOO8YC1myzxyuqGCFaxTTMq8CY6PCukJZpjBz+o5g
-         LaVg==
-X-Gm-Message-State: AOAM533PcEAEMnB74JbyROSPp8SS0/I38sUKmB3Ic082IJMk0v1oqkuJ
-        RDXUCGC4sHUKga38osb18qThMZzRnpWxkg==
-X-Google-Smtp-Source: ABdhPJx6qjUexfTH0BphOvHctVVn/Kt/mw75BqIG0yjsu3k9x9MB0iSsIdkwPFhECEC7ZShYtKCarA==
-X-Received: by 2002:a05:600c:2205:: with SMTP id z5mr7674255wml.40.1637393694855;
-        Fri, 19 Nov 2021 23:34:54 -0800 (PST)
-Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id a141sm13776345wme.37.2021.11.19.23.34.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 19 Nov 2021 23:34:54 -0800 (PST)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH 2/2] ARM: dts: sunxi: Add CEC clock to DW-HDMI
-Date:   Sat, 20 Nov 2021 08:34:48 +0100
-Message-Id: <20211120073448.32480-3-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211120073448.32480-1-jernej.skrabec@gmail.com>
-References: <20211120073448.32480-1-jernej.skrabec@gmail.com>
+        id S235213AbhKTINe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 03:13:34 -0500
+Received: from ptr.189.cn ([183.61.185.103]:11449 "EHLO 189.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S236615AbhKTINd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 03:13:33 -0500
+HMM_SOURCE_IP: 10.64.8.43:38516.358279549
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+        by 189.cn (HERMES) with SMTP id 8086D1001F1;
+        Sat, 20 Nov 2021 15:59:28 +0800 (CST)
+Received: from  ([14.17.101.177])
+        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id e7ae1f5f468b4f0e85c4a5c90e49ab27 for l.stach@pengutronix.de;
+        Sat, 20 Nov 2021 15:59:30 CST
+X-Transaction-ID: e7ae1f5f468b4f0e85c4a5c90e49ab27
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 14.17.101.177
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        Jinyang He <hejinyang@loongson.cn>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Xiaochuan Mao <maoxiaochuan@loongson.cn>,
+        zhaoxiao <zhaoxiao@uniontech.com>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: drm/etnaviv: add pci device driver support for gpu in LS7A1000 and LS2K1000
+Date:   Sat, 20 Nov 2021 15:59:22 +0800
+Message-Id: <20211120075926.2671-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Experimentation determined that HDMI CEC controller inside DW HDMI block
-depends on 32k clock from RTC. If this clock is tampered with, HDMI CEC
-communication starts or stops working, depending on situation.
+  There is a Vivante GC1000 V5037 in LS2K1000 and LS7A1000,
+  the gpu is a PCI device and it have 2D and 3D in the same core.
+  Therefore, this patch try to provide PCI device driver wrapper
+  for it by mimic the platform counterpart.
 
-SoC user manual doesn't say anything about CEC, so this was overlooked.
-Fix this by adding dependency to RTC 32k clock.
+  LS7A1000 is a bridge chip, this bridge chip typically use
+  with LS3A4000 (4 core 1.8gHz, Mips64r5) and LS3A5000 (4 core
+  loongarch 2.5Ghz). While LS2K1000 is a double core 1.0Ghz
+  Mips64r2 SoC.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm/boot/dts/sun8i-r40.dtsi   | 4 ++--
- arch/arm/boot/dts/sunxi-h3-h5.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+  loongson CPU's cache coherency is maintained by the hardware.
 
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 1d87fc0c24ee..f10436b7869c 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -1212,8 +1212,8 @@ hdmi: hdmi@1ee0000 {
- 			reg-io-width = <1>;
- 			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_HDMI0>, <&ccu CLK_HDMI_SLOW>,
--				 <&ccu CLK_HDMI>;
--			clock-names = "iahb", "isfr", "tmds";
-+				 <&ccu CLK_HDMI>, <&rtc 0>;
-+			clock-names = "iahb", "isfr", "tmds", "cec";
- 			resets = <&ccu RST_BUS_HDMI1>;
- 			reset-names = "ctrl";
- 			phys = <&hdmi_phy>;
-diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-index c7428df9469e..d1e974886fdf 100644
---- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-+++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-@@ -813,8 +813,8 @@ hdmi: hdmi@1ee0000 {
- 			reg-io-width = <1>;
- 			interrupts = <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&ccu CLK_BUS_HDMI>, <&ccu CLK_HDMI_DDC>,
--				 <&ccu CLK_HDMI>;
--			clock-names = "iahb", "isfr", "tmds";
-+				 <&ccu CLK_HDMI>, <&rtc 0>;
-+			clock-names = "iahb", "isfr", "tmds", "cec";
- 			resets = <&ccu RST_BUS_HDMI1>;
- 			reset-names = "ctrl";
- 			phys = <&hdmi_phy>;
+  Both LS7A1000 and LS2K1000 have a display controller integrated,
+  named lsdc. The drm driver of this display controller is not
+  upstream yet, but we have a demo version and it works.
+  By using KMS-RO framework, lsdc and gc1000 made a compatible pair.
+
+suijingfeng (4):
+  dt-bindings: ls2k1000: add gpu device node
+  drm/etnaviv: add pci device driver support
+  loongson3_defconfig: enable etnaviv drm driver on default
+  loongson2_defconfig: enable etnaviv drm driver on default
+
+ .../boot/dts/loongson/loongson64-2k1000.dtsi  |  11 +
+ arch/mips/configs/loongson2k_defconfig        |   1 +
+ arch/mips/configs/loongson3_defconfig         |   1 +
+ drivers/gpu/drm/etnaviv/Kconfig               |  12 ++
+ drivers/gpu/drm/etnaviv/Makefile              |   2 +
+ drivers/gpu/drm/etnaviv/etnaviv_drv.c         | 113 +++++++---
+ drivers/gpu/drm/etnaviv/etnaviv_drv.h         |   8 +
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c         |  28 ++-
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |  94 +++++---
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.h         |   6 +
+ drivers/gpu/drm/etnaviv/etnaviv_pci_drv.c     | 203 ++++++++++++++++++
+ include/uapi/drm/etnaviv_drm.h                |  11 +-
+ 12 files changed, 422 insertions(+), 68 deletions(-)
+ create mode 100644 drivers/gpu/drm/etnaviv/etnaviv_pci_drv.c
+
 -- 
-2.34.0
+2.20.1
 
