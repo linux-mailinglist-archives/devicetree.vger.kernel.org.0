@@ -2,144 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0579F457DD0
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 13:20:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED01D457DD5
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 13:26:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232750AbhKTMXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 07:23:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbhKTMXf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 07:23:35 -0500
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810FBC061574;
-        Sat, 20 Nov 2021 04:20:32 -0800 (PST)
-Received: by mail-io1-xd2f.google.com with SMTP id v23so16375288iom.12;
-        Sat, 20 Nov 2021 04:20:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7v/1LM3YhmWD/58/4APk/JcjWa5gVRYO7ANhdBBhJfg=;
-        b=PDCnAlWpIt9M30Q0uyMNd88iWm9OhFqoMU9EWjaj7ZzaTmwevgAcXlG1iO967cTHdY
-         spbBR8jSg2fNhAsKfCc4M3SS/pco1JGp6u6b856JU5vZyZVqrMFv+YGTKwKydWfFvGK2
-         fBlgp2oXEwkrJ1ooXutrugu32VQ4haykxwfuf8W+P+7gp+W995iXV3sYvNCLFv4Blel6
-         xrjXnwEU/UDApVQTxOANPApSA4mbc5h9ItqEeFpg6KO8ib6CJd7KEzqYTHPMXysdCFsG
-         c2xQl8Z0bcKnW4xYkJw+e283JnT6qWBNnDWPWmGF/xAfFIIsHqUrvHz0fDWKS5XBXy0C
-         aiSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7v/1LM3YhmWD/58/4APk/JcjWa5gVRYO7ANhdBBhJfg=;
-        b=D/oNyAVVVIyY1+7ZnH2IAfm8XgAZS1AJR8vOBYXrbX5XOBCqGJpEjiUlN0ZSjqmDr6
-         4qtOn3D6RN0XBLD5LR3tmGdbBinsothuLkLjkz5qsxFTGeRSHUckcWD8VF2P/H3dTXlP
-         lrbl75E1KN8L++0fbZfyD2OjTSnhXsN6KF1ZzVPVaC20scP8WgCB/3bRfe0LkAjy6gk8
-         +MEHWlNRwX5A+r/9Zgq71D52rO0knM7Wyj0mxTLqWosGoZpcRSTDlu3SInO08bpHwejC
-         a0aFShHohfsrBz+4lJammnKnLbn3DWi7dsjBWcsqxtKfYoVmOP3YHgrR605DpkuSH8/+
-         A6sQ==
-X-Gm-Message-State: AOAM530s907PFg6EVaAwkqKPwy/Ayaw8XxMYjOb+qXxxvoz1ta/+OYKs
-        dJI2JUfJ75GsZ82vtuHTu92DQ3AiNxGtKQ==
-X-Google-Smtp-Source: ABdhPJydtOs5bKEne0N8GnBoZk4fVBejd/LHjHgM8gk9qXKfda1TOLYm7na4JnA3vOpq5okd3wUxig==
-X-Received: by 2002:a02:ba8b:: with SMTP id g11mr34245775jao.128.1637410830037;
-        Sat, 20 Nov 2021 04:20:30 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:48a3:a74f:1d99:b7f])
-        by smtp.gmail.com with ESMTPSA id n12sm1984259ilk.80.2021.11.20.04.20.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Nov 2021 04:20:29 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, linux-kernel@vger.kernel.org,
-        aford@beaconembedded.com, Adam Ford <aford173@gmail.com>
-Subject: [RESEND PATCH V5] dt-bindings: soc: imx: Add binding doc for spba bus
-Date:   Sat, 20 Nov 2021 06:20:22 -0600
-Message-Id: <20211120122022.1052768-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.32.0
+        id S237230AbhKTM3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 07:29:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36002 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230381AbhKTM3F (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 07:29:05 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 74BD8608FB;
+        Sat, 20 Nov 2021 12:25:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637411162;
+        bh=+Cg/ChDv6w5RRzS8L9XSBzK3sY88urlsvhE0zaxTxuU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=nHsmtUhjGeKMj9pXOjZ1asOeLgF1aXppH3EQHq4rk0GN3MBceYJQ+9ygU9zNQjZMP
+         2ueYS2TYcp93LQGg4O5FdpjTrqBS5+2BnhSpD19sfC7I6x62lzfwlp0jDDVxXKBh/O
+         vQDfO0RLbFqZU1tcZKdH6X3Ywf5rBHM1MQER4rTVQhyz7/TxiXw9gvW1VVAo0ftNq6
+         QkJFTJ0ak5sQOMlvlb5QzTpTFB20+UwgwlrhdhHc459GqFFSQSOqixb8ReDVWzWcJi
+         CGQioupS5AJUAB7JGGPhAjpvFre8WQ69dgqSv3lJqydYQXpNmt7dFM3JAoe6K5BuDI
+         Y6M7Yx0dkjcAw==
+Subject: Re: [PATCH v2 2/2] clk: samsung: exynos850: Implement CMU_APM domain
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+References: <20211022224556.18742-1-semen.protsenko@linaro.org>
+ <20211022224556.18742-2-semen.protsenko@linaro.org>
+From:   Sylwester Nawrocki <snawrocki@kernel.org>
+Message-ID: <81df1c60-36b7-7b42-3bc8-2c3c7cc02c33@kernel.org>
+Date:   Sat, 20 Nov 2021 13:25:57 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211022224556.18742-2-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add binding doc for fsl,spba-bus.
+On 23.10.2021 00:45, Sam Protsenko wrote:
+> CMU_APM clock domain provides clocks for APM IP-core (Active Power
+> Management). According to Exynos850 TRM, CMU_APM generates I3C, Mailbox,
+> Speedy, Timer, WDT, RTC and PMU clocks for BLK_ALIVE.
+> 
+> This patch adds next clocks:
+>    - bus clocks in CMU_TOP needed for CMU_APM
+>    - all internal CMU_APM clocks
+>    - leaf clocks for I3C, Speedy and RTC IP-cores
+>    - bus clocks for CMU_CMGP and CMU_CHUB
+> 
+> CMU_APM doesn't belong to Power Domains, but platform driver is used for
+> its registration to keep its bus clock always running. Otherwise rtc-s3c
+> driver disables that clock and system freezes.
+> 
+> Signed-off-by: Sam Protsenko<semen.protsenko@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski<krzysztof.kozlowski@canonical.com>
+> ---
+> Changes in v2:
+>    - Reworked clock IDs to be contiguous (don't break ABI)
+>    - Added R-b tag by Krzysztof Kozlowski
+> 
+>   drivers/clk/samsung/clk-exynos850.c   | 142 +++++++++++++++++++++++++-
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+>   include/dt-bindings/clock/exynos850.h |  29 +++++-
 
-diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-new file mode 100644
-index 000000000000..e9f77ecae3d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bus/fsl,spba-bus.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Shared Peripherals Bus Interface
-+
-+maintainers:
-+  - Shawn Guo <shawnguo@kernel.org>
-+
-+description: |
-+  A simple bus enabling access to shared peripherals.
-+
-+  The "spba-bus" follows the "simple-bus" set of properties, as
-+  specified in the Devicetree Specification.  It is an extension of
-+  "simple-bus" because the SDMA controller uses this compatible flag to
-+  determine which peripherals are available to it and the range over which
-+  the SDMA can access.  There are no special clocks for the bus, because
-+  the SDMA controller itself has its interrupt, and clock assignments.
-+
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        const: fsl,spba-bus
-+  required:
-+    - compatible
-+
-+properties:
-+  $nodename:
-+    pattern: "^bus(@[0-9a-f]+)?$"
-+
-+  compatible:
-+    items:
-+      - const: fsl,spba-bus
-+      - const: simple-bus
-+
-+  '#address-cells':
-+    enum: [ 1, 2 ]
-+
-+  '#size-cells':
-+    enum: [ 1, 2 ]
-+
-+  reg:
-+    maxItems: 1
-+
-+  ranges: true
-+
-+required:
-+  - compatible
-+  - '#address-cells'
-+  - '#size-cells'
-+  - reg
-+  - ranges
-+
-+additionalProperties:
-+  type: object
-+
-+examples:
-+  - |
-+    bus@30000000 {
-+        compatible = "fsl,spba-bus", "simple-bus";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        reg = <0x30000000 0x100000>;
-+        ranges;
-+    };
--- 
-2.32.0
+Looks good, could you just resend with the DT binding header changes moved
+to the first patch?
 
+Regards,
+Sylwester
