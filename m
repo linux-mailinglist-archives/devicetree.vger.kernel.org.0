@@ -2,121 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47BA94580BD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 22:56:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8893C458100
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:55:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232094AbhKTV7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 16:59:44 -0500
-Received: from mail-4022.proton.ch ([185.70.40.22]:22140 "EHLO
-        mail-4022.proton.ch" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229880AbhKTV7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 16:59:44 -0500
-Date:   Sat, 20 Nov 2021 21:56:33 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
-        s=protonmail; t=1637445398;
-        bh=NE69VuQ2AFtUVf1PAPgUv1e/DDEsYZGhxd6gfXS2xA0=;
-        h=Date:To:From:Cc:Reply-To:Subject:In-Reply-To:References:From;
-        b=qNRF84xg4A7HQgG5h6IBlJGpAzCaiQi71+vcHdOOKcqWuT5nlYaaBN6/jhwYx4vzL
-         lB4iIHEaNoJZDwuGFX/dqqJJy7HbWsdVwtNr9eWI0A8fG4+S+ygAhrvZlVKCCBOWof
-         FviOseVygl4aWXT01vQw1PpDLjVWsMRDV3PgKW2g=
+        id S237561AbhKTX6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 18:58:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48978 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237546AbhKTX6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 18:58:45 -0500
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C294FC061574
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:41 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so22717430otj.7
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=310NDScFW6koVVwnBBR/SZYRsmuPmyb4NVfHlHwUxd8=;
+        b=WUFGV+Ga1egmhENUuveeeIPobNHlUV/ZDNfDRANAWWF57pVzgqwH7k5gg2vw+L0UpG
+         1dhlB3AnB32bQk8YIBb4xkA8xd1kCkCQwqHAyBxNMzDBVqkgBt77crtdV0rJkx7981dY
+         TDdYwuj0aHxmQK9+clIjFAhrKx5hoyjO522T6kaplT2dTMgJ53d7pf3gQ6JJe4lqr52l
+         XeLwCd/O99F0H88UtJ3LZlKQYsotDaF8/9xRWVpY/tbzAczHgOsEJoMJ8pUeHk7wV/06
+         R45kK9K9RbIKvM4urj1JIM3FPx3oecEwoEJBRbiz/VWDs2IG+C4VDprBIis3aNotvKI5
+         1rOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=310NDScFW6koVVwnBBR/SZYRsmuPmyb4NVfHlHwUxd8=;
+        b=FHheiIwAt8xLldWlOEoQzVVjo5f8Of7wksKIJ5EHhhO04lgslUl+Rnb9aJ9YfTjlw/
+         B2Ca5pIm115mH1BPgJSUEEfcdOM7LC+f9SmAtmA2lFdZB3NRQM6BRv1ZPqySpgW1hepe
+         hFbFPP/54RGY51CFLBECqSa74G1w2HN85OXSSNETRhV38zvNN78ynw5LfVK3kHCYMyPr
+         Q13DAuK8Qttr+YM5e+WlMQLUIvBh7RWaMOzEEoeNjoPsuqXQB5UU7QVzy2bck+6Fj49l
+         6EqtBxJn01y28DIzWEUWSP6UG6X9b/HQtznut0m7PwGpdKzNOG9dLbPuMjdRWdwuL28A
+         wMJQ==
+X-Gm-Message-State: AOAM532OWF2mFe58iZu5BCSssRrnjkMaqNNLr3wB/Jt17N8coY4r/dqg
+        kyBePVqqrAJXHcun0DxhPw2VlQ==
+X-Google-Smtp-Source: ABdhPJyBwN8rpmgu8hWSQd+Fo404/brFni65IVk5afvk51wbMqUfAs37TFtDKAnNHrmrLk7odfN1bw==
+X-Received: by 2002:a05:6830:2a8f:: with SMTP id s15mr14615463otu.33.1637452541081;
+        Sat, 20 Nov 2021 15:55:41 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id o26sm828474otj.14.2021.11.20.15.55.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Nov 2021 15:55:40 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Dang Huynh <danct12@riseup.net>
-From:   Caleb Connolly <caleb@connolly.tech>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Alexey Min <alexey.min@gmail.com>,
-        Martin Botka <martin.botka@somainline.org>,
+Cc:     linux-arm-msm@vger.kernel.org,
+        Caleb Connolly <caleb@connolly.tech>,
         Konrad Dybcio <konradybcio@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Reply-To: Caleb Connolly <caleb@connolly.tech>
-Subject: Re: [PATCH v4 8/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Add USB
-Message-ID: <7431c057-7e56-e38b-eb3a-66971c5c5dbb@connolly.tech>
-In-Reply-To: <20211120214227.779742-9-danct12@riseup.net>
-References: <20211120214227.779742-1-danct12@riseup.net> <20211120214227.779742-9-danct12@riseup.net>
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexey Min <alexey.min@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>
+Subject: Re: (subset) [PATCH v4 0/8] Improve support for Xiaomi Redmi Note 7
+Date:   Sat, 20 Nov 2021 17:55:17 -0600
+Message-Id: <163745250542.1078332.9553619559826505747.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211120214227.779742-1-danct12@riseup.net>
+References: <20211120214227.779742-1-danct12@riseup.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 21 Nov 2021 04:42:19 +0700, Dang Huynh wrote:
+> This series expand the Redmi Note 7 device port to support:
+>  + Regulators
+>  + Volume keys
+>  + eMMC and SD card slot
+>  + Framebuffer display
+>  + USB
+> 
+> [...]
 
+Applied, thanks!
 
-On 20/11/2021 21:42, Dang Huynh wrote:
-> From: Alexey Min <alexey.min@gmail.com>
->
-> Enable and configure DWC3 and QUSB2 PHY to enable USB
-> functionality on the Redmi Note 7.
->
-> Signed-off-by: Alexey Min <alexey.min@gmail.com>
-> Co-developed-by: Dang Huynh <danct12@riseup.net>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
->   .../boot/dts/qcom/sdm660-xiaomi-lavender.dts  | 25 +++++++++++++++++++
->   1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/a=
-rm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> index 45e58714af71..6cdd9f7c864b 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> @@ -79,6 +79,15 @@ framebuffer_mem: memory@9d400000 {
->   =09=09=09no-map;
->   =09=09};
->   =09};
-> +
-> +=09/*
-> +=09 * Until we hook up type-c detection, we
-> +=09 * have to stick with this. But it works.
-> +=09 */
-> +=09extcon_usb: extcon-usb {
-> +=09=09compatible =3D "linux,extcon-usb-gpio";
-> +=09=09id-gpio =3D <&tlmm 58 GPIO_ACTIVE_HIGH>;
-> +=09};
->   };
->
->   &blsp1_uart2 {
-> @@ -95,6 +104,13 @@ &pon_resin {
->   =09linux,code =3D <KEY_VOLUMEDOWN>;
->   };
->
-> +&qusb2phy {
-> +=09status =3D "okay";
-> +
-> +=09vdd-supply =3D <&vreg_l1b_0p925>;
-> +=09vdda-phy-dpdm-supply =3D <&vreg_l7b_3p125>;
-> +};
-> +
->   &rpm_requests {
->   =09pm660l-regulators {
->   =09=09compatible =3D "qcom,rpm-pm660l-regulators";
-> @@ -370,3 +386,12 @@ &sdhc_2 {
->   &tlmm {
->   =09gpio-reserved-ranges =3D <8 4>;
->   };
-> +
-> +&usb3 {
-> +=09status =3D "okay";
-> +};
-> +
-> +&usb3_dwc3 {
-> +=09dr_mode =3D "peripheral";
-> +=09extcon =3D <&extcon_usb>;
-> +};
-> --
-> 2.33.1
->
+[1/8] arm64: dts: qcom: sdm630: Assign numbers to eMMC and SD
+      commit: b139425115b801e56fe2d6dbcd2e798be87e2e06
+[2/8] arm64: dts: qcom: sdm630-pm660: Move RESIN to pm660 dtsi
+      commit: 9f6cbe37a72fc9dafe8f560e557c93209cc100e7
+[3/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Add RPM and fixed regulators
+      commit: 262a8ad19cdfd8e177d32bfbec1691a2069951b1
+[4/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Add PWRKEY and RESIN
+      commit: 4c420a0449ce0882f225e6e7ae3edc87becd2e85
+[6/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Add eMMC and SD
+      commit: cf85e9aee210fefd7a85c1ced0a73382e5edcfd0
+[7/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Enable Simple Framebuffer
+      commit: e631e904e1d89650e3c8facdfb37cfca3491a52d
+[8/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Add USB
+      commit: e5d3e752b050e03d2046011a3865721a3f200216
 
-Reviewed-by: Caleb Connolly <caleb@connolly>
-
---
-Kind Regards,
-Caleb
-
+Best regards,
+-- 
+Bjorn Andersson <bjorn.andersson@linaro.org>
