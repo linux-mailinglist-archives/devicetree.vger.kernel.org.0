@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34A4D458121
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:56:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F31C6458137
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:56:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237783AbhKTX7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 18:59:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49070 "EHLO
+        id S235830AbhKTX7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 18:59:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237712AbhKTX6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 18:58:54 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6538C061574
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:50 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so4274382otv.9
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:50 -0800 (PST)
+        with ESMTP id S237720AbhKTX6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 18:58:55 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85E4DC061756
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:51 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id n66so29517728oia.9
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=IOFbLS+tlnuwpxBC/Anao1n6jAiiiYf01VjyY7baQVc=;
-        b=JWCri2ESDJG8NEamRgLSD/z5L3hCxUjT0obKNUBskL+77P7ifCph7pusrWCE+8Hc6m
-         OfZ1/w4pPZtGiL2kJOaWogCg+whfWlKp41z2djNGfIiQaptMtKKCBiQumGYYV5wzmqZW
-         RjICN3SfhQYwJxHT86epRYIvHhf3OcxCVHWLW/wOPiYkAGLo2FIzIamq9Vf6BvDShC2W
-         oJuZah45Dc7GbI1UpMkYBmzWRp42C1jSPt9F5dJDc2QRNH6qs88aZfTeTeSNF2ZLRX76
-         nG+bHDTOxr4xebaf3P+iT6PfXgp7QyHEiY9/B45iViU380+nB3yPloC75i/fPMALS7uk
-         jhLw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=QT/9LakYvmo4oV8kwdCxJLgdKPL3jqMBknkwoE9YCYE=;
+        b=O2RjbCqc8QPrXAyKcorBw9sG7E40QkQmzPh5kWvJW5LyTGziUR76ey2lXlXiEpLBOx
+         5YKgp+8KRpaq3TfAzwu7qlQdH43+7hvw/9/YXp5JsgzhaY3ZjATKZObgtRnqtsTu6vuJ
+         FDAU58VpbT5Yn/9vXzL5DyeZrDmY8eVGJ7trH2W7gtSgu/LNwTinFq7DyaYTYk/Upx2e
+         irrFsDc5i/oMFiIQwdOrJKlSDbQh3Igm3/ENBVGN8QVinlP/ZKmDp6+4HKDa93qXHLXo
+         q3PnTN6t8+AnPJ7Day5EuynSVcxT9zl1cew2ysucbyejXoD2LiWUrD0jllw0lEKjAk8p
+         bqxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=IOFbLS+tlnuwpxBC/Anao1n6jAiiiYf01VjyY7baQVc=;
-        b=Q/9TUHdVW5Xt5O7R54nEZOZp6YXtxWSA23w2tK94jbZ2cDnJlX8Wz/Jr9V10+F9KJP
-         Pz6tuOibIqs8mqJdPvFzHi1U+sgoCLStzjV5ZUAtQ9BR2f4Zf2SwNzYzqcb7c5bU4pOu
-         9R/R+VmrLwyv4Reo/GOgdENdf5mfZFd6iEoKB0JQ0xmaJZ+5DAoML0fcDCti5osek7VR
-         Qny3HQoFtJ7Kn7MBdD9yWUPOH06dgQZCK/Hh7+EVSYNNgst2v681T1E3hQKModWgkd+R
-         ceg7bAelvDn5PBgf07I+e5i68IkuylDDsWdEEjOPSgO54DZAYQ1m/je6qgJDj74G/nQD
-         Mxyw==
-X-Gm-Message-State: AOAM532JU01IsG8cILvlAbI2IxLr81dZjTa2TSozblI+NWXdN4ZIQigk
-        qWUa36Q/HeifUUuR26R4Wr0A2g==
-X-Google-Smtp-Source: ABdhPJylwRvipTUt6BI9zBKhjQ8/NaQiQF0SlRXcizh08WHYEw3vLpEKuRONupEuq2VnlfnLcmOwxA==
-X-Received: by 2002:a05:6830:3486:: with SMTP id c6mr14606076otu.19.1637452549848;
-        Sat, 20 Nov 2021 15:55:49 -0800 (PST)
+        bh=QT/9LakYvmo4oV8kwdCxJLgdKPL3jqMBknkwoE9YCYE=;
+        b=kWKl/XkTUcYo9y3M/GHliklihJuqzfiCfcLPZ/CIG9q3YWMEmiq4OS6g9+Rn9cLtBV
+         AZ3YhgpGnfZV+pXoonI/M8OxbRjVqD+0VKzIDJJuVudMMinxu7uzlLHmofcGkbXY2Vw8
+         pdDoJ4UVsSpDfMRqm+UXBQQ9cvTiDigp/yXkj+681PvTHChk+JY49E6bediSPoHdnJlL
+         6kpiK9AF8G2yC0qfMgMmAwRJP/w/lYDUlFx1difioLwnCT6ZKe6/44gUw5ZWT+wM8XRn
+         2XKOYpTIcDxwePcgpMmGPVtJCf062u6Kxig1xI+jtofMDDdxM1XotaG1OnQD9Kt5+vNu
+         o0Kg==
+X-Gm-Message-State: AOAM533cpy+TELprRj4MLIe9zEFDfcj1PhUPDazWL8YyJv3p3AoOD1Nu
+        g6oG3faWqkgk25DqFpxtrCTbfg==
+X-Google-Smtp-Source: ABdhPJwCLy/Cl846Jg9EVSgQcb4RkktPIuKRCnx26gUQVcLOmrVyYLO5J6txySDtVJQzBcljv4RrOg==
+X-Received: by 2002:a05:6808:228c:: with SMTP id bo12mr10183181oib.93.1637452550977;
+        Sat, 20 Nov 2021 15:55:50 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o26sm828474otj.14.2021.11.20.15.55.48
+        by smtp.gmail.com with ESMTPSA id o26sm828474otj.14.2021.11.20.15.55.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Nov 2021 15:55:49 -0800 (PST)
+        Sat, 20 Nov 2021 15:55:50 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     linux-arm-msm@vger.kernel.org,
-        Prasad Malisetty <pmaliset@codeaurora.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, robh+dt@kernel.org, bhelgaas@google.com,
-        manivannan.sadhasivam@linaro.org, swboyd@chromium.org,
-        svarbanov@mm-sol.com, agross@kernel.org, mka@chromium.org
-Subject: Re: [PATCH v3 0/2] Add PCIe clock DT entries for SC7280
-Date:   Sat, 20 Nov 2021 17:55:26 -0600
-Message-Id: <163745250542.1078332.11094455988934878724.b4-ty@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        robh+dt@kernel.org, agross@kernel.org, mchehab@kernel.org
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stanimir.varbanov@linaro.org, vgarodia@codeaurora.org,
+        Dikshita Agarwal <dikshita@codeaurora.org>,
+        Mansur Alisha Shaik <mansur@codeaurora.org>
+Subject: Re: (subset) [PATCH v7] arm64: dts: qcom: sc7280: Add venus DT node
+Date:   Sat, 20 Nov 2021 17:55:27 -0600
+Message-Id: <163745250541.1078332.8582779710145477282.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1637060508-30375-1-git-send-email-pmaliset@codeaurora.org>
-References: <1637060508-30375-1-git-send-email-pmaliset@codeaurora.org>
+In-Reply-To: <1635259922-25378-1-git-send-email-quic_dikshita@quicinc.com>
+References: <1635259922-25378-1-git-send-email-quic_dikshita@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -67,26 +68,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Nov 2021 16:31:45 +0530, Prasad Malisetty wrote:
-> Changes Added in v3:
+On Tue, 26 Oct 2021 20:22:02 +0530, Dikshita Agarwal wrote:
+> From: Dikshita Agarwal <dikshita@codeaurora.org>
 > 
-> 	* Seperated v2 patch as two patches. One patch is for
-> 	  Fixing incorrect clock name and another patch is for
-> 	  Adding PCIe clock handle for SC7280.
+> Add DT entries for the sc7280 venus encoder/decoder.
 > 
-> 	* Added fixes patch for interrup-map parent address cells
-> 	  For SC7280.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sc7280: Fix incorrect clock name
-      commit: fa09b2248714c64644576d8064e9bd292a504a0e
-[2/3] arm64: dts: qcom: sc7280: Add pcie clock support
-      commit: bd7d507935ca73fba6b6f0f52a3d08d77b143c58
-[3/3] arm64: dts: qcom: Fix 'interrupt-map' parent address cells
-      commit: 66b788133030f0c69a0ecc7f72f7939b119c9a69
+[1/1] arm64: dts: qcom: sc7280: Add venus DT node
+      commit: 37613aee217928dddf62d91d3db831827f860833
 
 Best regards,
 -- 
