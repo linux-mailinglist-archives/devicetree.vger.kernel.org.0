@@ -2,85 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FF0A45813A
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB319458141
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:57:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237797AbhKTX72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 18:59:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49208 "EHLO
+        id S235201AbhKUAAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 19:00:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237914AbhKTX7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 18:59:06 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63DCDC061574
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:56:02 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso22820332otr.2
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:56:02 -0800 (PST)
+        with ESMTP id S236566AbhKUAAp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 19:00:45 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA428C0613F2
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:57:23 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id s139so29450815oie.13
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:57:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=yHRqBu3iNfib8VJ+q/4D44COg4vM90Zt6pdL+4iHmTs=;
-        b=Lynz+OPEqMhPkbpidiVrZmhMmZZabB6seSsCr6tSFxh4DxpjMHAkJRAQwV/BidSJzH
-         y1Mc3XN93j+/usemWQXo7Y7ZNBJCNkgJcPYY7ZwRD4X7ypA/yKFyrTWCpZ7v25SMYXVA
-         tJFBk18C3ePNVynRPjzcPtqJqrcCMrjT5eMslEe83Lq+BvlKbKcAbh42cnYIxT7ClzCi
-         20929prcKQhHetKESNnjlCf6y3fgumIgOGhUPqXn6Kzc8B3kKmz0DO6JTvvfCdvWcHDm
-         6R3KEGwof+yDZmNUhTzJG7PCMOapjyH1misotAvX0NvIGFyZyUUSfJ1TcCNATmOMX7um
-         zgYw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4EATv+FwODOuV+ZRABVg9/1CC2ykd4xp59vZNvIXH9E=;
+        b=ifIntxF6LyuBffRnPfXgOKWqFgH4WvmRP3WWC6D+7ap/7S7DhiUcHzSLfZ73ncYGM9
+         gppVaRD/j5QjQWkyepHbA7UTXlGxxOv5zUSjso7EviPU40bru07cYtq3xwFwpsMMucyo
+         mEXfXKmVrN32iGENW1RZ7K/QUSzeXJmKBEFOK/v0eSQ2c6bgKfgRYYeATDgHvdM3XSdD
+         dx2+AGjfBuwmJznEGGGibcRn6zIh8mV6rMePa+M/hGIThZl5dTdxLiDjS5m4RqdJusSu
+         OJHlXWz6uRdKKldwTNYQB41r33AOgaGLQrZnIxX3DSKz1WcD0Vln1rwaOdB5psKTCl6u
+         qrWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yHRqBu3iNfib8VJ+q/4D44COg4vM90Zt6pdL+4iHmTs=;
-        b=3EzL6qS73urgoDlKqh18SzxiEeyiLkFdoSshWLSUa+o0e0lkri0x0roaRyVGVqja2j
-         mdZujcjy3FUQwduhUM5P8tFpMJ34Im2wV3yEN0YrMBU4UZR/7+ZvMnru8sFfkL4gRDoj
-         PfdZmQ38sKqHeYFS6fUOdgt8E4/w0GGaxrom0xmnvDgHOdTgPwODh4PvmP5HCBy/u3H4
-         qRPKBasm2NoDqzGj9txX6pDmj6cVOprLllOqhRwxy20cYu2qLTon7GPMdGh29CmJnmgk
-         difZx0d4rTyU9XCan16Dywb8DDcU4i74XDFmxKwLOFvzQ7KWkdKjTfqOv1Cq+wCrdH5d
-         VZxQ==
-X-Gm-Message-State: AOAM5307KTjJ04xEQwM3ebd8S3G/CLfI9UUVnSGq+ZE0YlU5CrfWhr6F
-        B0Q96x+Zec/4wnZRyXnbqFjYppHGrgqJTA==
-X-Google-Smtp-Source: ABdhPJxN/zrJhAUPU3zpVuxYAxflXifJs6n2O/RbEfw6Rlch7lvT4A+hWRf7cOovQT6TdM7oPTW1ng==
-X-Received: by 2002:a05:6830:2b25:: with SMTP id l37mr14368131otv.298.1637452561808;
-        Sat, 20 Nov 2021 15:56:01 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4EATv+FwODOuV+ZRABVg9/1CC2ykd4xp59vZNvIXH9E=;
+        b=6BsK3jovPXlIzPyxcO115fiG0lRCNyOJanRwRZp4iNlewn6VrjVbTwFxQtn9XuHmFS
+         yKBJ5Pe90DW44vkZPuQb36DFUMzUGXKCCwkrwCjgEWtxDVNfk/P6Ez8jhtyb/lyefUaQ
+         f5XK7aymWa0p1nUupmpCrpr6TaCOFo1J7RwDA6kh+SdnnZXXTOXRfgD8UTz9OEoNSwfO
+         vToU4MEOOHrYKsdoQJDQ7Dq8KlgqlJNMpIZvaIJlCOXLc4QTHCfSHYfISOgQFNXOOi2F
+         LoMisGHs9QoAsMuAYreH39a1X36sNk3vstN+12g2B3RwJ1a96XTGZXp0qX1Tzp9p3Z/N
+         uYNg==
+X-Gm-Message-State: AOAM5320VXlebfyYcgUiGRAc9/qNnHgEDa5p1L1LnlS9Ofgklke0lWFa
+        RN6SjkO5cvYkB/kBiHo0F7u0Sx8UJv5dHQ==
+X-Google-Smtp-Source: ABdhPJzHkQD78j6D98A9tJ4kAlGW8ylSPUToqFiXbMsGu6yZQNpzYn9P4F+T+hDJ8MwVkAR0ryWAlg==
+X-Received: by 2002:aca:3e8a:: with SMTP id l132mr9808969oia.95.1637452643175;
+        Sat, 20 Nov 2021 15:57:23 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o26sm828474otj.14.2021.11.20.15.56.01
+        by smtp.gmail.com with ESMTPSA id s13sm856669otv.34.2021.11.20.15.57.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Nov 2021 15:56:01 -0800 (PST)
+        Sat, 20 Nov 2021 15:57:22 -0800 (PST)
+Date:   Sat, 20 Nov 2021 17:57:18 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>,
-        robh+dt@kernel.org, dianders@chromium.org, agross@kernel.org,
-        philipchen@chromium.org, swboyd@chromium.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: (subset) [PATCH] arm64: dts: sc7180: Fix ps8640 power sequence for Homestar rev4
-Date:   Sat, 20 Nov 2021 17:55:38 -0600
-Message-Id: <163745250542.1078332.13345331446027178006.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211115030155.9395-1-yangcong5@huaqin.corp-partner.google.com>
-References: <20211115030155.9395-1-yangcong5@huaqin.corp-partner.google.com>
+To:     Caleb Connolly <caleb@connolly.tech>,
+        Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Alexey Min <alexey.min@gmail.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Subject: Re: [PATCH v4 5/8] arm64: dts: qcom: sdm660-xiaomi-lavender: Add
+ volume up button
+Message-ID: <YZmLXtvxH57/Cv43@builder.lan>
+References: <20211120214227.779742-1-danct12@riseup.net>
+ <20211120214227.779742-6-danct12@riseup.net>
+ <5ecda386-0ae3-cf46-9f91-1f54c3b4f89d@connolly.tech>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5ecda386-0ae3-cf46-9f91-1f54c3b4f89d@connolly.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Nov 2021 11:01:55 +0800, yangcong wrote:
-> When powering up the ps8640, we need to deassert PD right
-> after we turn on the vdd33 regulator. Unfortunately, the vdd33
-> regulator takes some time (~4ms) to turn on. Add in the delay
-> for the vdd33 regulator so that when the driver deasserts PD
-> that the regulator has had time to ramp.
+On Sat 20 Nov 15:51 CST 2021, Caleb Connolly wrote:
+
 > 
 > 
-> [...]
+> On 20/11/2021 21:42, Dang Huynh wrote:
+> > This enables the volume up key.
+> >
+> > Signed-off-by: Dang Huynh <danct12@riseup.net>
+> > ---
+> >   .../arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts | 14 ++++++++++++++
+> >   1 file changed, 14 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> > index 9a6684922804..c7bdf4c28be4 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> > @@ -9,6 +9,8 @@
+> >   #include "sdm660.dtsi"
+> >   #include "pm660.dtsi"
+> >   #include "pm660l.dtsi"
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/input/gpio-keys.h>
+> >
+> >   / {
+> >   	model = "Xiaomi Redmi Note 7";
+> > @@ -33,6 +35,18 @@ vph_pwr: vph-pwr-regulator {
+> >   		regulator-boot-on;
+> >   	};
+> >
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +		input-name = "gpio-keys";
+> I don't think input-name is used anymore.
 
-Applied, thanks!
+It seems you're correct, we have it in a number of dts files, but I
+don't see it in the binding document or the Linux implementation.
 
-[1/1] arm64: dts: sc7180: Fix ps8640 power sequence for Homestar rev4
-      commit: 96e1e3a15273a99d89b1389e4487e734c7d37d8e
+I've applied the rest of the patches in the series for now.
 
-Best regards,
--- 
-Bjorn Andersson <bjorn.andersson@linaro.org>
+Thanks,
+Bjorn
+
+> > +
+> > +		volup {
+> > +			label = "Volume Up";
+> > +			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
+> > +			linux,code = <KEY_VOLUMEUP>;
+> > +			debounce-interval = <15>;
+> > +		};
+> > +	};
+> > +
+> >   	reserved-memory {
+> >   		#address-cells = <2>;
+> >   		#size-cells = <2>;
+> > --
+> > 2.33.1
+> >
+> 
+> --
+> Kind Regards,
+> Caleb
+> 
