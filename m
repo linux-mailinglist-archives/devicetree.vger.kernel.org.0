@@ -2,84 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED01D457DD5
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 13:26:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48868457DF7
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 13:32:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237230AbhKTM3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 07:29:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36002 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230381AbhKTM3F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Nov 2021 07:29:05 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 74BD8608FB;
-        Sat, 20 Nov 2021 12:25:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637411162;
-        bh=+Cg/ChDv6w5RRzS8L9XSBzK3sY88urlsvhE0zaxTxuU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=nHsmtUhjGeKMj9pXOjZ1asOeLgF1aXppH3EQHq4rk0GN3MBceYJQ+9ygU9zNQjZMP
-         2ueYS2TYcp93LQGg4O5FdpjTrqBS5+2BnhSpD19sfC7I6x62lzfwlp0jDDVxXKBh/O
-         vQDfO0RLbFqZU1tcZKdH6X3Ywf5rBHM1MQER4rTVQhyz7/TxiXw9gvW1VVAo0ftNq6
-         QkJFTJ0ak5sQOMlvlb5QzTpTFB20+UwgwlrhdhHc459GqFFSQSOqixb8ReDVWzWcJi
-         CGQioupS5AJUAB7JGGPhAjpvFre8WQ69dgqSv3lJqydYQXpNmt7dFM3JAoe6K5BuDI
-         Y6M7Yx0dkjcAw==
-Subject: Re: [PATCH v2 2/2] clk: samsung: exynos850: Implement CMU_APM domain
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-References: <20211022224556.18742-1-semen.protsenko@linaro.org>
- <20211022224556.18742-2-semen.protsenko@linaro.org>
-From:   Sylwester Nawrocki <snawrocki@kernel.org>
-Message-ID: <81df1c60-36b7-7b42-3bc8-2c3c7cc02c33@kernel.org>
-Date:   Sat, 20 Nov 2021 13:25:57 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S237520AbhKTMfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 07:35:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237542AbhKTMfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 07:35:38 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A405BC0613E0
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 04:32:34 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id i5so23145465wrb.2
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 04:32:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=w2dLnl5hsLVKZTBAdcVFnDnMtM7+guW1LU+8LG4nir0=;
+        b=cQ4sa0RLmxPwPFn1iQHtDPNnu3wxt85tlCuJmDnpCjgmGMxx8i/oateruVYQAvti5I
+         A5qE92dvGm+x1YP+CbK5Tq5OhtXE6vNimcHv6le77OfesyWmtCYZNXHE5+IG0f8L2bT0
+         Lci51QRfH33/4FHSDCeiE4klj7YMLnup6Z9AxKwmd8q2vBCk3OtwmaYj1bSnn6G8m6GQ
+         mxOZ3RS8pA3iEAA55aU8/EBq9h3Po0DLytgYovDVsFfbT36OHdQaUGwPLJ3lG01hFOha
+         WpkBpT9gzq2iO8UbGhiS6xFhyGI26B7QXEWnQJX1hxeVH8W2rTVUYcpRy/W1U7h8dL8Y
+         peJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=w2dLnl5hsLVKZTBAdcVFnDnMtM7+guW1LU+8LG4nir0=;
+        b=UJ4IDlpiSzNw7pWuNZ01olWZEvWpNoXIl1UoRvqCGjiPWsgORe3xaE/gvDpn5VBHtt
+         5SfQEQs7mhfJ4BHehrllBBs1on2x+wyivsRcD16E3feaTagzvveTsE0K+fDDLfwgiasI
+         Ui4tOIB5zyrWc7wJgzL4DtiNbMPzk7/0XH7gLuKWajWMAFqPG86KUyoayA0cvyctbAYn
+         EB1/dRPZDen1NnTB2OEN7fX18IU2B53XO2DY9F9dHqjlnkN88pK1hXukMdFhRLsnFl0a
+         GUoNrhsy2YTcuJ1BJP0kphKExbT6X4MjQMaggc+gsEtSscVJ3rIxiUF91qg2WvdZNyPL
+         VVLg==
+X-Gm-Message-State: AOAM5333KmLRubjeDSH+/M6sTFW5Q+XcsnmxBNpCsM73X9hkJEd5IBfR
+        cC4uMp0l/2nL4T+SSH32ZkVRp2MAYWpeUDp0HO0=
+X-Google-Smtp-Source: ABdhPJx6LRHkcC/2nzZUXHHyWAv8qwOLcVanyMaZO5SAGCaEWZSePdj6KgMnXbsAIfz8H/8CWMAmDV2d6TwcaPqmMOI=
+X-Received: by 2002:a05:6000:144a:: with SMTP id v10mr18155356wrx.315.1637411552709;
+ Sat, 20 Nov 2021 04:32:32 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211022224556.18742-2-semen.protsenko@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:adf:f989:0:0:0:0:0 with HTTP; Sat, 20 Nov 2021 04:32:32
+ -0800 (PST)
+Reply-To: mitchellvivian01@gamil.com
+From:   Mitchell Vivian <duplanmartine36@gmail.com>
+Date:   Sat, 20 Nov 2021 12:32:32 +0000
+Message-ID: <CAO-XXH5BAMnqsibuyWBB1vSqWFvEU_Fm4N1zBDf2pLptoHQP0A@mail.gmail.com>
+Subject: Hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.10.2021 00:45, Sam Protsenko wrote:
-> CMU_APM clock domain provides clocks for APM IP-core (Active Power
-> Management). According to Exynos850 TRM, CMU_APM generates I3C, Mailbox,
-> Speedy, Timer, WDT, RTC and PMU clocks for BLK_ALIVE.
-> 
-> This patch adds next clocks:
->    - bus clocks in CMU_TOP needed for CMU_APM
->    - all internal CMU_APM clocks
->    - leaf clocks for I3C, Speedy and RTC IP-cores
->    - bus clocks for CMU_CMGP and CMU_CHUB
-> 
-> CMU_APM doesn't belong to Power Domains, but platform driver is used for
-> its registration to keep its bus clock always running. Otherwise rtc-s3c
-> driver disables that clock and system freezes.
-> 
-> Signed-off-by: Sam Protsenko<semen.protsenko@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski<krzysztof.kozlowski@canonical.com>
-> ---
-> Changes in v2:
->    - Reworked clock IDs to be contiguous (don't break ABI)
->    - Added R-b tag by Krzysztof Kozlowski
-> 
->   drivers/clk/samsung/clk-exynos850.c   | 142 +++++++++++++++++++++++++-
+Hello
 
->   include/dt-bindings/clock/exynos850.h |  29 +++++-
+My name is Miss Vivian Mitchell. I want to donate my fund $ 4.5
+million USD to you on a charity name to help the poor People.
 
-Looks good, could you just resend with the DT binding header changes moved
-to the first patch?
+As soon as I read from you I will give you more details on how to
+achieve this goal and get this fund transferred into your bank
+account.
 
-Regards,
-Sylwester
+Thanks have a nice day,
+Miss.vivian
