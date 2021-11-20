@@ -2,178 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1F39457FB1
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 17:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 541B5457FDF
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 18:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231938AbhKTQ7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 11:59:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38474 "EHLO mail.kernel.org"
+        id S230248AbhKTRlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 12:41:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48354 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230248AbhKTQ7O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Nov 2021 11:59:14 -0500
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 85FCC60ED5;
-        Sat, 20 Nov 2021 16:56:08 +0000 (UTC)
-Date:   Sat, 20 Nov 2021 17:01:01 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Iain Hunter <drhunter95@gmail.com>
-Cc:     iain@hunterembedded.co.uk, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] Add binding for IIO ADS1018
-Message-ID: <20211120170101.68d3fd08@jic23-huawei>
-In-Reply-To: <20211117094109.402397-1-drhunter95@gmail.com>
-References: <20211117094109.402397-1-drhunter95@gmail.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S230190AbhKTRlW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 12:41:22 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E54AF60E9C;
+        Sat, 20 Nov 2021 17:38:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637429898;
+        bh=DJSZbPQnZbwd2WMtdienM58036xGViO7g+aTcGftKeI=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=ij/1yDQcdlKUSKM1H8ayOJ/NvPGBUdIxKJeNyVarsxGdAYhx+3v76Px/H1/3g/EEW
+         4mXlQ6AvqfrehgbZJKRAZVC1nYdC360Od70A0ZLoLdKxarrT4gIqxc8k1D/jszy+oc
+         ZEsZweJ5FO37763k8ef+KNiNPf2TfcpCliBve4nQQD9r3AVzOfyuLHgw8U/Kin5bkp
+         7cHNRsr3JkStorMI9pMKMI2p3KRbUM6m5rHcQ9su9ac7XqjJ358BiWW02CRGzeZFDo
+         0MxhKxxdu6LetUNVFLNg64Ewgigi3Lh77Co/Kwq2JamPvNHu/tjZ5VR1d3OTmBI9ST
+         F0R+Fl3Pzb/Sg==
+Subject: Re: [PATCH v2 1/1] clk: samsung: exynos850: Register clocks early
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Sumit Semwal <sumit.semwal@linaro.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+References: <CGME20211025161302eucas1p2f50ef29a0bba69c13deaf1ad31a8439c@eucas1p2.samsung.com>
+ <20211025161254.5575-1-semen.protsenko@linaro.org>
+ <fcc939e6-50b4-1847-c738-db940d0c5bd4@samsung.com>
+ <CAPLW+4nnyPAMRcAzDjJ-uygm8bjncNp_rTLKdY5cywcpf5vg=w@mail.gmail.com>
+From:   Sylwester Nawrocki <snawrocki@kernel.org>
+Message-ID: <b5ac9e36-235c-906c-9f95-80dabd971be5@kernel.org>
+Date:   Sat, 20 Nov 2021 18:38:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <CAPLW+4nnyPAMRcAzDjJ-uygm8bjncNp_rTLKdY5cywcpf5vg=w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Nov 2021 09:40:48 +0000
-Iain Hunter <drhunter95@gmail.com> wrote:
+On 20.11.2021 17:47, Sam Protsenko wrote:
+>>> @@ -920,8 +929,12 @@ static int __init exynos850_cmu_probe(struct platform_device *pdev)
+>>>        struct device_node *np = dev->of_node;
+>>>
+>>>        info = of_device_get_match_data(dev);
+>>> -     exynos850_init_clocks(np, info->clk_regs, info->nr_clk_regs);
+>>> -     samsung_cmu_register_one(np, info);
+>>> +
+>>> +     /* Early clocks are already registered using CLK_OF_DECLARE_DRIVER() */
+>>> +     if (info != &peri_cmu_info) {
+>>> +             exynos850_init_clocks(np, info->clk_regs, info->nr_clk_regs);
+>>> +             samsung_cmu_register_one(np, info);
+>>> +     }
+>> Don't you also need to register early CMU_TOP, which provides clocks
+>> for CMU_PERI? I'm afraid it might not work properly when you register
+>> CMU_PERI clocks early and only later in probe() you enable parent clock
+>> required for the already registered clocks to be usable.
 
-> v3 has me as suggested maintainer per Daniel's feedback and corrected id
+> Good point, I'll do that in v2. Not sure how I missed that dependency
+> point, but thank you for noticing that. Guess it only works for me
+> because clocks are already enabled in bootloader, and I'm using
+> "clk_ignore_unused" param for now.
 > 
-> Signed-off-by: Iain Hunter <drhunter95@gmail.com>
-Hi Iain,
+>> How about registering also CMU_TOP early and enabling parent clock
+>> also in OF_CLK_DECLARE init callback, i.e. using either OF_CLK_DECLARE
+>> or platform driver for a CMU?
+>>
+> If you mean doing clk_prepare_enable() for "dout_peri_bus" clock in
+> exynos850_cmu_peri_init(), I don't think it's possible. clk_get()
+> needs "struct device *dev", and we only have that in platform driver
+> probe. Trying to pass dev=NULL won't work, so that's why I'm enabling
+> parent clocks in platform driver probe.
 
-Please resend whole series and not just a single patch.
-This had me confused when I saw a binding without a driver.
+Sorry, I didn't notice it earlier, actually CMU_TOP is already being
+initialized with OF_CLK_DECLARE.
 
-Also, I'm guessing you missed my email that asked you to do quite
-a bit of this differently...
+You could use of_clk_get() to get the clock, the consumer clock indexes
+are fixed and defined in the DT binding. There is also
+of_clk_get_by_name() which works similarly to clk_get().
 
-https://lore.kernel.org/all/20211113180916.66b6864b@jic23-huawei/
-
-Please address those comments in v4.
-
-Thanks
-
-Jonathan
-
-> ---
->  .../bindings/iio/adc/ti,ads1018.yaml          | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-> new file mode 100644
-> index 000000000000..14345bfb71dc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1018.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,ads1018.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI ADS1018 4 channel I2C analog to digital converter
-> +
-> +maintainers:
-> +  - Iain Hunter <iain@hunterembedded.co.uk>
-> +
-> +description: |
-> +  Datasheet at: https://www.ti.com/lit/gpn/ads1018
-> +  Supports both single ended and differential channels.
-> +
-> +properties:
-> +  compatible:
-> +    const: ti,ads1018
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +additionalProperties: false
-> +
-> +patternProperties:
-> +  "^channel@[0-7]+$":
-> +    type: object
-> +    description:
-> +      Child nodes needed for each channel that the platform uses.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          0: Voltage over AIN0 and AIN1.
-> +          1: Voltage over AIN0 and AIN3.
-> +          2: Voltage over AIN1 and AIN3.
-> +          3: Voltage over AIN2 and AIN3.
-> +          4: Voltage over AIN0 and GND.
-> +          5: Voltage over AIN1 and GND.
-> +          6: Voltage over AIN2 and GND.
-> +          7: Voltage over AIN3 and GND.
-> +        items:
-> +          - minimum: 0
-> +            maximum: 7
-> +
-> +      ti,gain:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 5
-> +        description: |
-> +          pga is the programmable gain amplifier (values are full scale)
-> +          0: +/- 6.144 V
-> +          1: +/- 4.096 V
-> +          2: +/- 2.048 V (default)
-> +          3: +/- 1.024 V
-> +          4: +/- 0.512 V
-> +          5: +/- 0.256 V
-> +
-> +      ti,datarate:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 0
-> +        maximum: 6
-> +        description: |
-> +          Data acquisition rate in samples per second
-> +          0: 128
-> +          1: 250
-> +          2: 490
-> +          3: 920
-> +          4: 1600 (default)
-> +          5: 2400
-> +          6: 3300
-> +
-> +    required:
-> +      - reg
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        adc@1 {
-> +            compatible = "ti,ads1018";
-> +            reg = <0x1>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            channel@4 {
-> +              reg = <4>;
-> +              ti,gain = <3>;
-> +              ti,datarate = <5>;
-> +            };
-> +        };
-> +    };
-> +...
 
