@@ -2,84 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 36F7E457F14
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 16:51:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC4F2457F2D
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 16:57:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237552AbhKTPyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 10:54:40 -0500
-Received: from mta-02.yadro.com ([89.207.88.252]:50106 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237548AbhKTPyk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Nov 2021 10:54:40 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id A740144953;
-        Sat, 20 Nov 2021 15:51:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-transfer-encoding:mime-version:user-agent:content-type
-        :content-type:organization:references:in-reply-to:date:date:from
-        :from:subject:subject:message-id:received:received:received; s=
-        mta-01; t=1637423494; x=1639237895; bh=1wKxDDgGWsRFRHXp71LDHk+mG
-        8Xfb9h3L9/g9D3lC9U=; b=FUtRlNN/Q8Idh8jYCiyiXLHlFB9mv8Zz3ZDJbcrVb
-        wDKrqF2qvKS3N8UTLm057w7rGlQIKCEFY2EYW9wS11Z0rSkwCD0Nx0mUTYhB/diP
-        1V+gFqUujgPtWwg5JxUKkg4r6Ts/z046ZTxyARhm+IaTNLtjouJhlMctkEDHfhp+
-        M0=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id PTekAli5ztyk; Sat, 20 Nov 2021 18:51:34 +0300 (MSK)
-Received: from T-EXCH-04.corp.yadro.com (t-exch-04.corp.yadro.com [172.17.100.104])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 25DCC41FAA;
-        Sat, 20 Nov 2021 18:51:33 +0300 (MSK)
-Received: from [10.199.10.105] (10.199.10.105) by T-EXCH-04.corp.yadro.com
- (172.17.100.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Sat, 20
- Nov 2021 18:51:32 +0300
-Message-ID: <368313b889cbadc267b053cd808b080e9f6470a0.camel@yadro.com>
-Subject: Re: [PATCH v2 2/2] ARM: dts: aspeed: add device tree for YADRO
- VEGMAN BMC
-From:   Andrei Kartashev <a.kartashev@yadro.com>
-To:     Andrew Geissler <geissonator@gmail.com>
-CC:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        <openbmc@lists.ozlabs.org>, <devicetree@vger.kernel.org>
-Date:   Sat, 20 Nov 2021 18:51:31 +0300
-In-Reply-To: <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
-References: <20211119120057.12118-1-a.kartashev@yadro.com>
-         <20211119120057.12118-3-a.kartashev@yadro.com>
-         <FA1B4FAF-387D-4D71-952A-D44B493FC67B@gmail.com>
-Organization: YADRO
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 
+        id S237283AbhKTQA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 11:00:29 -0500
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:44942 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S236636AbhKTQA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 11:00:28 -0500
+Received: from [77.244.183.192] (port=64374 helo=melee.fritz.box)
+        by hostingweb31.netsons.net with esmtpa (Exim 4.94.2)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1moSjy-000Dxh-VF; Sat, 20 Nov 2021 16:57:23 +0100
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Chiwoong Byun <woong.byun@samsung.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
+        Randy Dunlap <rdunlap@infradead.org>
+Subject: [PATCH v4 0/9] Add MAX77714 PMIC minimal driver (RTC and watchdog only)
+Date:   Sat, 20 Nov 2021 16:56:58 +0100
+Message-Id: <20211120155707.4019487-1-luca@lucaceresoli.net>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.199.10.105]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-04.corp.yadro.com (172.17.100.104)
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> 
-> Can we utilize
-> https://github.com/openbmc/docs/blob/master/designs/device-tree-gpio-naming.md
->  to get some consistent naming across the GPIO’s on OpenBMC machines?
-> 
+Hi,
 
-Some names here are standard for Intel daemons like x86-power-control,
-host-error-monitor, pfr-manager, IntrusionSensor and so on. Other lines
-just called same as in schematics to make it easy for our engineers to
-understand what does it refer to. BTW, most of the lines there not used
-by software and appeared just because dts files are supposed to be
-hardware description and thus we describe all we have in schematics.
+this series adds minimal drivers for the Maxim Semiconductor MAX77714
+(https://www.maximintegrated.com/en/products/power/power-management-ics/MAX77714.html).
+Only RTC and watchdog are implemented by these patches.
 
-We can rename all this according to guide you mention, but are you
-sure, there is any sense to do so?
-Keep in mind, currently there are lot of dts files which also don't
-follow convention, so I believe, it is unnecessary work. 
+All implemented functionality is tested and working: RTC read/write,
+watchdog start/stop/ping/set_timeout.
+
+Patches 1-3 + 6 are trivial cleanups to the max77686 drivers and Kconfig
+indentation and can probably be applied easily.
+
+Patches 4, 5, 7, 8 and 9 add: dt bindings, mfd driver, watchdog driver and
+rtc driver.
+
+Changes in v4:
+ - do not add a new wdog driver for MAX77714, extend the MAX77620 wdog
+   driver; this means removing v3 patch 7, now replaced by patches 7+8
+ - added review tags
+
+Changes in v3:
+ - fixed all issues reported on v1 patches
+ - removed patch 1 of v2, already applied
+   ("mfd: max77686: Correct tab-based alignment of register addresses")
+
+Changes in v2:
+ - fixed all issues reported on v1 patches
+ - added patch 7 ("watchdog: Kconfig: fix help text indentation")
+ - additional minor improvements
+
+Luca
+
+Luca Ceresoli (9):
+  rtc: max77686: convert comments to kernel-doc format
+  rtc: max77686: rename day-of-month defines
+  rtc: max77686: remove unused code to read in 12-hour mode
+  dt-bindings: mfd: add Maxim MAX77714 PMIC
+  mfd: max77714: Add driver for Maxim MAX77714 PMIC
+  watchdog: Kconfig: fix help text indentation
+  watchdog: max77620: add support for the max77714 variant
+  watchdog: max77620: add comment to clarify set_timeout procedure
+  rtc: max77686: add MAX77714 support
+
+ .../bindings/mfd/maxim,max77714.yaml          |  68 ++++++++
+ MAINTAINERS                                   |   7 +
+ drivers/mfd/Kconfig                           |  14 ++
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/max77686.c                        |   2 +-
+ drivers/mfd/max77714.c                        | 152 ++++++++++++++++++
+ drivers/rtc/Kconfig                           |   2 +-
+ drivers/rtc/rtc-max77686.c                    |  75 +++++----
+ drivers/watchdog/Kconfig                      |  50 +++---
+ drivers/watchdog/max77620_wdt.c               | 101 +++++++++---
+ include/linux/mfd/max77686-private.h          |   4 +-
+ include/linux/mfd/max77714.h                  |  60 +++++++
+ 12 files changed, 455 insertions(+), 81 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77714.yaml
+ create mode 100644 drivers/mfd/max77714.c
+ create mode 100644 include/linux/mfd/max77714.h
 
 -- 
-Best regards,
-Andrei Kartashev
-
+2.25.1
 
