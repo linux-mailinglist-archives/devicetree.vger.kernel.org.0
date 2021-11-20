@@ -2,63 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 598D8458138
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:56:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C57458131
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 00:56:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237720AbhKTX70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 18:59:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49170 "EHLO
+        id S237702AbhKTX7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 18:59:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237866AbhKTX7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 18:59:03 -0500
-Received: from mail-ot1-x32c.google.com (mail-ot1-x32c.google.com [IPv6:2607:f8b0:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32037C061574
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:59 -0800 (PST)
-Received: by mail-ot1-x32c.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so22759049otm.10
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:55:59 -0800 (PST)
+        with ESMTP id S237896AbhKTX7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 18:59:04 -0500
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF243C06173E
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:56:00 -0800 (PST)
+Received: by mail-ot1-x332.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so22771824otg.4
+        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 15:56:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=oRs8pcHKzOwFtwPnpI03F+5/gUi86PgkdSbR6nGBFkM=;
-        b=CxagGW5ZekzTojU1lIx3gTcSghwkqNe9lzfiWL2UWcrNsgOUurdc5XVSl+oN8myGqh
-         eP75utnqLpcAtLva25ixq78/4bdfVWyHFkS9f6kVlJmAwIvIsmHrnwENj2E6XU59aZUc
-         6vJJgMA9OmC8LxQBJk7iYvi4mq1DuCbJMnMMm6+2ghrv2c2OKB7wyl5poUhplqnt1ewL
-         JCChqnODMho7hBcL9lgaFohMQWGtj934EoxWluPO2m0JjZ/u90Wt5k8OFrr+lt47Qm4x
-         mqD0/9XOQCXJVRxNQaifizboJb86U8qRxIi7zDu7G4MJEQ3u8J4OhR1EYmsFSEl6bfEA
-         d5FA==
+        bh=4copcHXbsneyrgq1YuVzWaw1X/a0wnxrGicEVJDXfPY=;
+        b=dEQktSa7vGkdP4ZYlMFOIRvthBRanJdmS3DccJBbSD8/+jpkYnMMS4U552kNhIedUO
+         eXMHF+oo6ruhN5fscCJpsBv0I7gdypeCzL8PMGGheXhhNb5RbgGgjuxn/uDVGpD5htft
+         4klFGt21l0mMbhvMCJgkHk0hlAYkxDubXoMpHEeGPxFDUG3A2ieeFqRkO5EmGX4qfIDq
+         rWIQdLK/3gbG2ZO0oTKZ66k8OTHxWRsRzq544nXZRcPaV+oo8b3j9dmPlGyHuOideNh+
+         zdm9GZkb0bBcmMuZI/L65h9ndQeYY7CaPTCWeLv5Ix7Vbt8sYncjbWADNSSHeMU+nb9o
+         w3Aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=oRs8pcHKzOwFtwPnpI03F+5/gUi86PgkdSbR6nGBFkM=;
-        b=xhYS7bBv6sKFdppo+7ls9j1luVbU/Vu3SJxrQaUylDgxkJWhEuAqkrNdNEyMVVQqk3
-         CpbwgsQg1mkgaiytHks4zUdsNAtZcmPPA96fMwcUAo9WssmGM3nL5MBPxkgxph6ljLs0
-         DwErlWn57VDdDNQnAVpu3UOhPQhq6Qul193XpZeIW6Jt/N99yHfmSGNY+62TMZUBthRu
-         S+Jgz2+H0ga4vK3V9WksI1r27MwDe/GDPhN41ZjQfx5T6pCGREBaGDb6M0ZN5IQ9CNlm
-         vCqxjNIKH0T4i+a8g4VV/ItKUO73YCAZSLnVngDbkF4l6e3mlgZiLvnLxvR3ql0Duku3
-         G62Q==
-X-Gm-Message-State: AOAM533p/j8+vpasDm9JN6BLO63djZTpkV5sOrYmaBTlrBz0Z9OrxUUo
-        JLKQBn8D2JM9bD2uRDQPwuJnZQ==
-X-Google-Smtp-Source: ABdhPJyYeQOEFimNkd2oZh4dMcyaHGWumvrwEDBmumnooECIxqBGJOs+UHcpSCDrUmYfZ+l17V4ahQ==
-X-Received: by 2002:a9d:6b81:: with SMTP id b1mr14468443otq.12.1637452558607;
-        Sat, 20 Nov 2021 15:55:58 -0800 (PST)
+        bh=4copcHXbsneyrgq1YuVzWaw1X/a0wnxrGicEVJDXfPY=;
+        b=JiHebq6w986HQIdaVGwErlrGQeINmrkFVYKzBU0xa9NGvDsjQrb4QZygi1NHH2Ope8
+         b8InAIjcwUd1fMkq63anG2U3EmD5R//bcPL7vhwn5LCJx+8bQ/WUIIDhMuZbbry1u9Ya
+         LxJjAYQuKHx+XZAdcCTJzVPR60rAxgv752aOvAhGXrEXUgVmEnLYfUMKeIjLi3t2Wdxu
+         LlJIRO++lMPBS/C4JfPm/7Td2ZcftTuNQMyN6VbdxU3Emv2Q3ogcMkbBm7k8oYf50Gbd
+         lof9rEWpk9NZp09X6rj2XDL7FcCxSfA2sZOrk61tefgGlBVinb4nivP1xjtEjc/FEhb5
+         vqHw==
+X-Gm-Message-State: AOAM53216FCZlqd8HgWMPvZK11kAXkzG9oIqB/b5dh3H6YaaFYA8be0Y
+        LsZ8FjIYc18lpBgtRxJDOORzDQ==
+X-Google-Smtp-Source: ABdhPJxh1VZurLxmfWPkmxcWUjKmLzuJopiTBiz2OhKjzE4r7YyWpiVJDeiXuqBHd3eTJ4oWPb/J5Q==
+X-Received: by 2002:a9d:6a84:: with SMTP id l4mr5169832otq.216.1637452560169;
+        Sat, 20 Nov 2021 15:56:00 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o26sm828474otj.14.2021.11.20.15.55.57
+        by smtp.gmail.com with ESMTPSA id o26sm828474otj.14.2021.11.20.15.55.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Nov 2021 15:55:58 -0800 (PST)
+        Sat, 20 Nov 2021 15:55:59 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Yassine Oudjana <y.oudjana@protonmail.com>,
+        Andy Gross <agross@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        Arnaud Ferraris <arnaud.ferraris@collabora.com>,
-        Andy Gross <agross@kernel.org>, Luca Weiss <luca@z3ntu.xyz>
-Subject: Re: (subset) [PATCH] arm64: dts: qcom: Add missing 'chassis-type's
-Date:   Sat, 20 Nov 2021 17:55:34 -0600
-Message-Id: <163745250541.1078332.12455510280552513237.b4-ty@linaro.org>
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org
+Subject: Re: (subset) [PATCH] arm64: dts: qcom: msm8996-xiaomi-common: Change TUSB320 to TUSB320L
+Date:   Sat, 20 Nov 2021 17:55:36 -0600
+Message-Id: <163745250541.1078332.11199106407698362608.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211025102224.23746-1-stephan@gerhold.net>
-References: <20211025102224.23746-1-stephan@gerhold.net>
+In-Reply-To: <20211104111454.105875-1-y.oudjana@protonmail.com>
+References: <20211104111454.105875-1-y.oudjana@protonmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -66,21 +68,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 25 Oct 2021 12:22:24 +0200, Stephan Gerhold wrote:
-> Add the "chassis-type" to msm8916-samsung-serranove and
-> sm7225-fairphone-fp4 that were posted before the patch that added the
-> chassis-type to existing device trees, but merged after it.
-> 
-> Also, looks like sdm636-sony-xperia-ganges-mermaid was missing in
-> commit eaa744b1c101 ("arm64: dts: qcom: add 'chassis-type' property")
-> so add it there as well.
+On Thu, 04 Nov 2021 11:15:18 +0000, Yassine Oudjana wrote:
+> This platform actually doesn't have TUSB320, but rather TUSB320L.
+> The TUSB320 compatible string was used due to lack of support for
+> TUSB320L, and it was close enough to detect cable plug-in and
+> direction, but it was limited to upstream facing port mode only.
+> Now that support for TUSB320L is added[1], change node name and
+> compatible to match and allow it to be properly reset and have
+> its mode set to dual-role port.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: Add missing 'chassis-type's
-      commit: 0112b06fde557d407c0d477ee7ed973e44e65c75
+[1/1] arm64: dts: qcom: msm8996-xiaomi-common: Change TUSB320 to TUSB320L
+      commit: de0a2ae359ef9ccbaab86cce44d442cd0ca36985
 
 Best regards,
 -- 
