@@ -2,84 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A370C457DBD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 13:00:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0579F457DD0
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 13:20:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237391AbhKTMDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 07:03:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35012 "EHLO
+        id S232750AbhKTMXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 07:23:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237450AbhKTMDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 07:03:15 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB570C061574
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 04:00:12 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id y7so10235320plp.0
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 04:00:12 -0800 (PST)
+        with ESMTP id S230381AbhKTMXf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 07:23:35 -0500
+Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 810FBC061574;
+        Sat, 20 Nov 2021 04:20:32 -0800 (PST)
+Received: by mail-io1-xd2f.google.com with SMTP id v23so16375288iom.12;
+        Sat, 20 Nov 2021 04:20:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=U4UJWCc7Lb3qzQtXtnLQ190m0/rl1kUfwQ+2kmW2zMs=;
-        b=J6eYjjBAWtMD4cudPbmAk+3T5AT8QYqcsVNa9mP1wCW1Y2OF2OziWXYBr5OJKQcgfF
-         8MczKDH58iyAozYS6qP4xXT4epu4tOiS7vQdEwupPO/OK4JvCElDZxXwN5kVLmo/Fo30
-         NFHBsGds+s3KacjJeuTQ/a2TzhDXVC5rTRG1H6tp/tq15IwszOG1HaQG+knlXo0MgyZa
-         xbDL9CtwD+ZeMywUCa6TvSITJT+hgsqKRpuW6zprKz4NnFkkagn9NqMRtZwYxTwMdhY7
-         oUl+ipJQSvGKvaOv2+3tFDCvTS1P/LFUnMxKCB5cnEzfEekHt0/yaka+ERgGGQvlDwwN
-         xCYg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7v/1LM3YhmWD/58/4APk/JcjWa5gVRYO7ANhdBBhJfg=;
+        b=PDCnAlWpIt9M30Q0uyMNd88iWm9OhFqoMU9EWjaj7ZzaTmwevgAcXlG1iO967cTHdY
+         spbBR8jSg2fNhAsKfCc4M3SS/pco1JGp6u6b856JU5vZyZVqrMFv+YGTKwKydWfFvGK2
+         fBlgp2oXEwkrJ1ooXutrugu32VQ4haykxwfuf8W+P+7gp+W995iXV3sYvNCLFv4Blel6
+         xrjXnwEU/UDApVQTxOANPApSA4mbc5h9ItqEeFpg6KO8ib6CJd7KEzqYTHPMXysdCFsG
+         c2xQl8Z0bcKnW4xYkJw+e283JnT6qWBNnDWPWmGF/xAfFIIsHqUrvHz0fDWKS5XBXy0C
+         aiSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=U4UJWCc7Lb3qzQtXtnLQ190m0/rl1kUfwQ+2kmW2zMs=;
-        b=Io/mSdJXHEx28nJQOpdRNCa3pHXKagro/ygVutw2/wmvbQsawKBfJQBj3OPewfo8uy
-         1pJNqY8z6xtigT3Glpbj050ebefdA89fm1V2tygSYFv8CYUQgA4SYbrfAUN4R5z0k1C0
-         YCvmGM8jSn4G+RM1F8atLuuPHhrbbXbHFf9iCdF8bUBlmkeordP2iMTtP0FGwMXrYWkD
-         gKZCCzh0r7nBNOsvxF2UdJKCnGRc+T8nNRxgS7F+vqUMnwCL0Rdn9lJ0r4eGyUdcngWV
-         9Vlm/AmoqmyfVYzx6CvbFC41Z5Wb6iegOv3S6yrqLEHUIW3aifIOTUIVZyq65PjGqNlk
-         TPqg==
-X-Gm-Message-State: AOAM533EVcViPH/is+FeDplz1hGsglSi5leaFNJNKhoBW4nncen68aSo
-        JnvMZ2N/vuK8B+a6dE3tZaxRl1XmKpIkrPty9qI=
-X-Google-Smtp-Source: ABdhPJwHTZxbfEgCzf+uuJTxAbYJS5h6DG09AlUdl3WIR49tWYPwKwYjVK+ZJxN1r20UTIbvLHBqbUpia3e4Wt6uwo0=
-X-Received: by 2002:a17:90a:8c0a:: with SMTP id a10mr9575225pjo.58.1637409612356;
- Sat, 20 Nov 2021 04:00:12 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7v/1LM3YhmWD/58/4APk/JcjWa5gVRYO7ANhdBBhJfg=;
+        b=D/oNyAVVVIyY1+7ZnH2IAfm8XgAZS1AJR8vOBYXrbX5XOBCqGJpEjiUlN0ZSjqmDr6
+         4qtOn3D6RN0XBLD5LR3tmGdbBinsothuLkLjkz5qsxFTGeRSHUckcWD8VF2P/H3dTXlP
+         lrbl75E1KN8L++0fbZfyD2OjTSnhXsN6KF1ZzVPVaC20scP8WgCB/3bRfe0LkAjy6gk8
+         +MEHWlNRwX5A+r/9Zgq71D52rO0knM7Wyj0mxTLqWosGoZpcRSTDlu3SInO08bpHwejC
+         a0aFShHohfsrBz+4lJammnKnLbn3DWi7dsjBWcsqxtKfYoVmOP3YHgrR605DpkuSH8/+
+         A6sQ==
+X-Gm-Message-State: AOAM530s907PFg6EVaAwkqKPwy/Ayaw8XxMYjOb+qXxxvoz1ta/+OYKs
+        dJI2JUfJ75GsZ82vtuHTu92DQ3AiNxGtKQ==
+X-Google-Smtp-Source: ABdhPJydtOs5bKEne0N8GnBoZk4fVBejd/LHjHgM8gk9qXKfda1TOLYm7na4JnA3vOpq5okd3wUxig==
+X-Received: by 2002:a02:ba8b:: with SMTP id g11mr34245775jao.128.1637410830037;
+        Sat, 20 Nov 2021 04:20:30 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:48a3:a74f:1d99:b7f])
+        by smtp.gmail.com with ESMTPSA id n12sm1984259ilk.80.2021.11.20.04.20.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 20 Nov 2021 04:20:29 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, linux-kernel@vger.kernel.org,
+        aford@beaconembedded.com, Adam Ford <aford173@gmail.com>
+Subject: [RESEND PATCH V5] dt-bindings: soc: imx: Add binding doc for spba bus
+Date:   Sat, 20 Nov 2021 06:20:22 -0600
+Message-Id: <20211120122022.1052768-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Received: by 2002:a05:6a10:cac2:0:0:0:0 with HTTP; Sat, 20 Nov 2021 04:00:11
- -0800 (PST)
-Reply-To: salemchantal@mail.ee
-From:   MRS Salem Chantal Lawrence <westernunionheadoffice544@gmail.com>
-Date:   Sat, 20 Nov 2021 04:00:11 -0800
-Message-ID: <CAA8cJM-0BEx6Q1tshsmWfhSdv_Yz0wdn0OsZ4cpkHiDAEKv-qQ@mail.gmail.com>
-Subject: Dear Friend
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Attention
+Add binding doc for fsl,spba-bus.
 
-You have been compensated with the sum of 4.6 million dollars in this
-united nation the payment will be issue into Atm Visa Card and send to you
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-from the santander bank of Spain we need your Personal Information.
+diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+new file mode 100644
+index 000000000000..e9f77ecae3d3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/bus/fsl,spba-bus.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Shared Peripherals Bus Interface
++
++maintainers:
++  - Shawn Guo <shawnguo@kernel.org>
++
++description: |
++  A simple bus enabling access to shared peripherals.
++
++  The "spba-bus" follows the "simple-bus" set of properties, as
++  specified in the Devicetree Specification.  It is an extension of
++  "simple-bus" because the SDMA controller uses this compatible flag to
++  determine which peripherals are available to it and the range over which
++  the SDMA can access.  There are no special clocks for the bus, because
++  the SDMA controller itself has its interrupt, and clock assignments.
++
++select:
++  properties:
++    compatible:
++      contains:
++        const: fsl,spba-bus
++  required:
++    - compatible
++
++properties:
++  $nodename:
++    pattern: "^bus(@[0-9a-f]+)?$"
++
++  compatible:
++    items:
++      - const: fsl,spba-bus
++      - const: simple-bus
++
++  '#address-cells':
++    enum: [ 1, 2 ]
++
++  '#size-cells':
++    enum: [ 1, 2 ]
++
++  reg:
++    maxItems: 1
++
++  ranges: true
++
++required:
++  - compatible
++  - '#address-cells'
++  - '#size-cells'
++  - reg
++  - ranges
++
++additionalProperties:
++  type: object
++
++examples:
++  - |
++    bus@30000000 {
++        compatible = "fsl,spba-bus", "simple-bus";
++        #address-cells = <1>;
++        #size-cells = <1>;
++        reg = <0x30000000 0x100000>;
++        ranges;
++    };
+-- 
+2.32.0
 
-1...HOME ADDRESS
-
-2...YOUR COUNTRY
-
-3...YOUR PASSPORT
-
-4...YOUR PRIVATE TELEPHONE NUMBER
-
-5...OCCUPATION...
-
-6...AGE ..
-
-7 MARITAL STATUS.
-
-Director of International Payment
-E-mail: salemchantal@mail.ee
-Telephone: +1 (201)308-2233
-
-UNITED NATIONS
-MRS Salem Chantal Lawrence
