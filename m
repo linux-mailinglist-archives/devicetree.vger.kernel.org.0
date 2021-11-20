@@ -2,296 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E13F74579C5
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 00:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 702414579F6
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 01:04:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230405AbhKTAAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 19:00:06 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:49983 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230361AbhKTAAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Nov 2021 19:00:06 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 654155C00F8;
-        Fri, 19 Nov 2021 18:57:03 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Fri, 19 Nov 2021 18:57:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=4
-        r1TwomY0SX8SoZkyJ6j+G4eQP4mIUCD9MxFGJHWyAY=; b=Kq9t69W0IKmCaZAy/
-        pvaaq39QhMdb+V+zHEcR5O/90CYkXtGtnSssf1UKYha+MzTfEnVds+8EzXUD3EGW
-        yg9A6H4/4yDaGVSOQdj4VrkZWQeLmabx9pOij/wiOfW83N3NGjAX2lo5/zZM/+0f
-        uS+LYADdoDTn35mHC23WofhzUDKMy1JDrAHtLwEtZuyl+TFA4w6c9jNKtAJxbOxZ
-        iNYf39yaoTBwRYvuQITsaj4dHOTwJC1J/gUqAfUCsp0UvDAG9tobyXMUK0I7yfjg
-        MMdpV334i3S+RmXZbL8xOzdXynye3UdUYsWQdAZPBJA5p7emPD4D038OD9X8rs/I
-        jSrug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=4r1TwomY0SX8SoZkyJ6j+G4eQP4mIUCD9MxFGJHWy
-        AY=; b=DTjtD0dC2LYC6sgWef8NHsiiSe3T+3xkmgSD8XIcE25tnMHGGXGMhCndU
-        IoS3kQQhde24WomjynK9exSjyjzFh2CkA3BpPWw2C3CTvBL/0e+LL3xyRgx/lunN
-        M7j229uVXDeLzsgaVq/Y9UEXyDWEGdueqF3ZL2H8n+rBUU62u14m7kU8RuxDMId4
-        W9IkYJuEMtEyXYfzqD1L3j39sAwKvMFpxdjpKX5MetcVKsa4TxCL0r9mR2NvTjcn
-        HYpML/1LFqb5KOgf1xE4QW6G/xeh5JLZUxZGjSaLIaNh3/grTZB5Ahy6HoRYira7
-        ZNxGZRQ4il4jIN7+1YkC47rm3I5OQ==
-X-ME-Sender: <xms:zjmYYaxbKi0MS-lDtaOIYJ7yg1GPF8QEYUma1lcvtSW8Dq6121aWeA>
-    <xme:zjmYYWSs6zuAEQWiGPQWzZgtOmIKo8hPr7ODjq92Fb0k3bAf-0GkAWpDn4dSMQTU-
-    iC6NJOVVmTev1oxlA>
-X-ME-Received: <xmr:zjmYYcWWytsAzsFHLSLo4fYb3zGilJfkpZCLTQOqVuC9gobCOu4thDGUklxvICwDiwAviasJVh6mWeXWdddPEV8Dfe7ABM2zxzKwTcuhldIUJU7tfO8c1EUfew>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrfeelgdduudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeehnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeehjeeghfdufeefteelieeggfehteevieetueffhefhffekuedvffev
-    ffevtedufeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
-    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
-X-ME-Proxy: <xmx:zjmYYQicNrGpXsrweQ-qG9zr_hgQg37N6AGuKjAY7B98gvzxCPqB7Q>
-    <xmx:zjmYYcBjE4hcWgRHYsRJ9PaeU9pA0WEgt0krkXyO1bwNzmNj9f2jWQ>
-    <xmx:zjmYYRKVxlFcxUXFTalXntujFXNZM76l9lnFh_gEbFT5_TY4JObZSw>
-    <xmx:zzmYYY26kMzGU2-cjpqCKf6Gn-8uexvmQmeZ8Oo0rGp8JpJeoAKt4A>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 19 Nov 2021 18:57:02 -0500 (EST)
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211119054044.16286-1-samuel@sholland.org>
- <20211119054044.16286-2-samuel@sholland.org>
- <20211119082850.lrfq2wuyzhyvczdi@gilmour>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v3 2/2] leds: sun50i-r329: New driver for the R329/D1 LED
- controller
-Message-ID: <fd4d08ee-3048-a54a-58d2-9510413c166f@sholland.org>
-Date:   Fri, 19 Nov 2021 17:57:01 -0600
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S234248AbhKTAHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 19:07:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48758 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234413AbhKTAHI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 19:07:08 -0500
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E33EC061748
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 16:04:06 -0800 (PST)
+Received: by mail-oo1-xc2d.google.com with SMTP id p2-20020a4adfc2000000b002c2676904fdso4233020ood.13
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 16:04:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=q7R5V5xOtnBYIQaiuSLeufcMXlFx5YeIS9CdSglzYhs=;
+        b=IbV3/2/z5+xoMYJgf7+Qcw2w5TRwXbjPpzGjJlnHqPUeew5UTh4vDxcxhAmMOXTeL4
+         makCt10vyjsmj8A/brrmm4XkdWX9J1M4UIhZmRl4/g1rTmsQdso4/k7yWw+Hld9rFlmc
+         y2hsBEP7ziLFSQ/BZFAEIoyT546X5zB4hRdj4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=q7R5V5xOtnBYIQaiuSLeufcMXlFx5YeIS9CdSglzYhs=;
+        b=mYcNgzBH0VCtgCfO0tUTeapPy2FW/1tg1II418K7Ze6mi2F88wQI5ZmVFT2GKN/Ibu
+         Rd0NDJB+Jun75VDxyWlmbCdWGHtB2E/NF76rwn5FOKgvJghZeloDkOJKdMNX7pjXQNRW
+         ISadSKCTmpTqmn84ICILwAKkuq3kS/JemujV1s5KdioPnrJbOCFxNfQYMa3wWxZRL8to
+         fv0LBYYMa3Sx6w4JtVafql3MT1ckU4mnfD3getHws/CUyLXeUYVR2jqQeIS4mKI7JvHQ
+         N7CdhHdlilQpht99NTQ4A3ihlohTppAYY6y/TQPtF+PoQ2Etfk6972qaq+D8itvyxAk/
+         fGRA==
+X-Gm-Message-State: AOAM532pOBqhEBoTtetdNPDfkRKFNjHMgu8DXhv1mFEBqePYOirV75DW
+        dEsgXvJj2CY5jLU9IxczGRG0ENXeuFMkPA==
+X-Google-Smtp-Source: ABdhPJzULBdAXe62VY+s0mTxFr6r1+fdutBEanildm1aEkfZhcCPdLMiEqP1zgbUKL3yC4THlYrWfQ==
+X-Received: by 2002:a4a:2705:: with SMTP id l5mr20097549oof.51.1637366645349;
+        Fri, 19 Nov 2021 16:04:05 -0800 (PST)
+Received: from kiwi.bld.corp.google.com (c-67-190-101-114.hsd1.co.comcast.net. [67.190.101.114])
+        by smtp.gmail.com with ESMTPSA id g7sm274768oon.27.2021.11.19.16.04.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Nov 2021 16:04:04 -0800 (PST)
+From:   Simon Glass <sjg@chromium.org>
+To:     devicetree@vger.kernel.org
+Cc:     Tom Rini <trini@konsulko.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Simon Glass <sjg@chromium.org>
+Subject: [PATCH] dt-bindings: u-boot: Add a few more options bindings
+Date:   Fri, 19 Nov 2021 17:03:56 -0700
+Message-Id: <20211120000356.1850639-1-sjg@chromium.org>
+X-Mailer: git-send-email 2.34.0.rc2.393.gf8c9666880-goog
 MIME-Version: 1.0
-In-Reply-To: <20211119082850.lrfq2wuyzhyvczdi@gilmour>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+This adds three new options with varying degree of interest / precedent.
 
-On 11/19/21 2:28 AM, Maxime Ripard wrote:
-> Hi,
-> 
-> On Thu, Nov 18, 2021 at 11:40:43PM -0600, Samuel Holland wrote:
->> +static const struct sun50i_r329_ledc_timing sun50i_r329_ledc_default_timing = {
->> +	.t0h_ns = 336,
->> +	.t0l_ns = 840,
->> +	.t1h_ns = 882,
->> +	.t1l_ns = 294,
->> +	.treset_ns = 300000,
->> +};
-> 
-> This should be mentioned in the binding as well (using the default keyword)
+This being sent to the mailing list since it might attract more review.
+A PR will be sent when this has had some review. That is why the file
+path is set up for https://github.com/devicetree-org/dt-schema rather
+than the Linux kernel.
 
-Ok, I'll do this for v4.
+Signed-off-by: Simon Glass <sjg@chromium.org>
+---
 
->> +static int sun50i_r329_ledc_parse_timing(const struct device_node *np,
->> +					 struct sun50i_r329_ledc *priv)
->> +{
->> +	struct sun50i_r329_ledc_timing *timing = &priv->timing;
->> +
->> +	*timing = sun50i_r329_ledc_default_timing;
->> +
->> +	of_property_read_u32(np, "allwinner,t0h-ns", &timing->t0h_ns);
->> +	of_property_read_u32(np, "allwinner,t0l-ns", &timing->t0l_ns);
->> +	of_property_read_u32(np, "allwinner,t1h-ns", &timing->t1h_ns);
->> +	of_property_read_u32(np, "allwinner,t1l-ns", &timing->t1l_ns);
->> +	of_property_read_u32(np, "allwinner,treset-ns", &timing->treset_ns);
->> +
->> +	return 0;
->> +}
->> +
->> +static void sun50i_r329_ledc_set_timing(struct sun50i_r329_ledc *priv)
->> +{
->> +	const struct sun50i_r329_ledc_timing *timing = &priv->timing;
->> +	unsigned long mod_freq = clk_get_rate(priv->mod_clk);
->> +	u32 cycle_ns = NSEC_PER_SEC / mod_freq;
->> +	u32 val;
->> +
->> +	val = (timing->t1h_ns / cycle_ns) << 21 |
->> +	      (timing->t1l_ns / cycle_ns) << 16 |
->> +	      (timing->t0h_ns / cycle_ns) <<  6 |
->> +	      (timing->t0l_ns / cycle_ns);
->> +	writel(val, priv->base + LEDC_T01_TIMING_CTRL_REG);
->> +
->> +	val = (timing->treset_ns / cycle_ns) << 16 |
->> +	      (priv->num_leds - 1);
->> +	writel(val, priv->base + LEDC_RESET_TIMING_CTRL_REG);
->> +}
->> +
->> +static int sun50i_r329_ledc_resume(struct device *dev)
->> +{
->> +	struct sun50i_r329_ledc *priv = dev_get_drvdata(dev);
->> +	u32 val;
->> +	int ret;
->> +
->> +	ret = reset_control_deassert(priv->reset);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = clk_prepare_enable(priv->bus_clk);
->> +	if (ret)
->> +		goto err_assert_reset;
->> +
->> +	ret = clk_prepare_enable(priv->mod_clk);
->> +	if (ret)
->> +		goto err_disable_bus_clk;
->> +
->> +	sun50i_r329_ledc_set_format(priv);
->> +	sun50i_r329_ledc_set_timing(priv);
->> +
->> +	/* The trigger level must be at least the burst length. */
->> +	val = readl(priv->base + LEDC_DMA_CTRL_REG);
->> +	val &= ~LEDC_DMA_CTRL_REG_FIFO_TRIG_LEVEL;
->> +	val |= LEDC_FIFO_DEPTH / 2;
->> +	writel(val, priv->base + LEDC_DMA_CTRL_REG);
->> +
->> +	val = LEDC_INT_CTRL_REG_GLOBAL_INT_EN |
->> +	      LEDC_INT_CTRL_REG_TRANS_FINISH_INT_EN;
->> +	writel(val, priv->base + LEDC_INT_CTRL_REG);
->> +
->> +	return 0;
->> +
->> +err_disable_bus_clk:
->> +	clk_disable_unprepare(priv->bus_clk);
->> +err_assert_reset:
->> +	reset_control_assert(priv->reset);
->> +
->> +	return ret;
->> +}
->> +
->> +static int sun50i_r329_ledc_suspend(struct device *dev)
->> +{
->> +	struct sun50i_r329_ledc *priv = dev_get_drvdata(dev);
->> +
->> +	clk_disable_unprepare(priv->mod_clk);
->> +	clk_disable_unprepare(priv->bus_clk);
->> +	reset_control_assert(priv->reset);
->> +
->> +	return 0;
->> +}
->> +
->> +static void sun50i_r329_ledc_dma_cleanup(void *data)
->> +{
->> +	struct sun50i_r329_ledc *priv = data;
->> +	struct device *dma_dev = dmaengine_get_dma_device(priv->dma_chan);
->> +
->> +	if (priv->buffer)
->> +		dma_free_wc(dma_dev, LEDS_TO_BYTES(priv->num_leds),
->> +			    priv->buffer, priv->dma_handle);
->> +	dma_release_channel(priv->dma_chan);
->> +}
->> +
->> +static int sun50i_r329_ledc_probe(struct platform_device *pdev)
->> +{
->> +	const struct device_node *np = pdev->dev.of_node;
->> +	struct dma_slave_config dma_cfg = {};
->> +	struct led_init_data init_data = {};
->> +	struct device *dev = &pdev->dev;
->> +	struct device_node *child;
->> +	struct sun50i_r329_ledc *priv;
->> +	struct resource *mem;
->> +	int count, irq, ret;
->> +
->> +	count = of_get_available_child_count(np);
->> +	if (!count)
->> +		return -ENODEV;
->> +	if (count > LEDC_MAX_LEDS) {
->> +		dev_err(dev, "Too many LEDs! (max is %d)\n", LEDC_MAX_LEDS);
->> +		return -EINVAL;
->> +	}
->> +
->> +	priv = devm_kzalloc(dev, struct_size(priv, leds, count), GFP_KERNEL);
->> +	if (!priv)
->> +		return -ENOMEM;
->> +
->> +	priv->dev = dev;
->> +	priv->num_leds = count;
->> +	spin_lock_init(&priv->lock);
->> +	dev_set_drvdata(dev, priv);
->> +
->> +	ret = sun50i_r329_ledc_parse_format(np, priv);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = sun50i_r329_ledc_parse_timing(np, priv);
->> +	if (ret)
->> +		return ret;
->> +
->> +	priv->base = devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
->> +	if (IS_ERR(priv->base))
->> +		return PTR_ERR(priv->base);
->> +
->> +	priv->bus_clk = devm_clk_get(dev, "bus");
->> +	if (IS_ERR(priv->bus_clk))
->> +		return PTR_ERR(priv->bus_clk);
->> +
->> +	priv->mod_clk = devm_clk_get(dev, "mod");
->> +	if (IS_ERR(priv->mod_clk))
->> +		return PTR_ERR(priv->mod_clk);
->> +
->> +	priv->reset = devm_reset_control_get_exclusive(dev, NULL);
->> +	if (IS_ERR(priv->reset))
->> +		return PTR_ERR(priv->reset);
->> +
->> +	priv->dma_chan = dma_request_chan(dev, "tx");
->> +	if (IS_ERR(priv->dma_chan))
->> +		return PTR_ERR(priv->dma_chan);
->> +
->> +	ret = devm_add_action_or_reset(dev, sun50i_r329_ledc_dma_cleanup, priv);
->> +	if (ret)
->> +		return ret;
->> +
->> +	dma_cfg.dst_addr	= mem->start + LEDC_DATA_REG;
->> +	dma_cfg.dst_addr_width	= DMA_SLAVE_BUSWIDTH_4_BYTES;
->> +	dma_cfg.dst_maxburst	= LEDC_FIFO_DEPTH / 2;
->> +	ret = dmaengine_slave_config(priv->dma_chan, &dma_cfg);
->> +	if (ret)
->> +		return ret;
->> +
->> +	priv->buffer = dma_alloc_wc(dmaengine_get_dma_device(priv->dma_chan),
->> +				    LEDS_TO_BYTES(priv->num_leds),
->> +				    &priv->dma_handle, GFP_KERNEL);
->> +	if (!priv->buffer)
->> +		return -ENOMEM;
->> +
->> +	irq = platform_get_irq(pdev, 0);
->> +	if (irq < 0)
->> +		return irq;
->> +
->> +	ret = devm_request_irq(dev, irq, sun50i_r329_ledc_irq,
->> +			       0, dev_name(dev), priv);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = sun50i_r329_ledc_resume(dev);
->> +	if (ret)
->> +		return ret;
-> 
-> You seem to fill the runtime_pm hooks, but only call them directly and
-> never enable runtime_pm on that device, is that intentional?
+ schemas/options/u-boot.yaml | 51 +++++++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
-Yes. I did not want to delay the initial version by adding runtime PM
-(and debugging the refcounts) when the driver already works now.
-However, I had runtime/system PM in mind while writing the driver.
+diff --git a/schemas/options/u-boot.yaml b/schemas/options/u-boot.yaml
+index 71dfda7..b8bdec1 100644
+--- a/schemas/options/u-boot.yaml
++++ b/schemas/options/u-boot.yaml
+@@ -71,6 +71,37 @@ properties:
+       2: use simplified command line (e.g. avoid hush)
+       3... reserved
+ 
++  load-environment:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 1
++    maximum: 1
++    description: |
++      This allows control over whether U-Boot loads its environment after
++      relocation. This normally happens automatically, but can pose a security
++      risk, so disabling it in certain situations is useful.
++
++      Note: This could be a boolean. It is defined as an integer since that
++      allows changing the value without resizing the devicetree. I'm not sure
++      how ugly that is, but IMO the fact that 'false' boolean values are
++      represented by being missing is a bit of a pain. One must either add or
++      delete the property.
++
++      Values:
++
++      0: don't load the environment
++      1: do load the environment
++
++  no-apm-final:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: |
++      For devices running on coreboot, this tells U-Boot not to lock down the
++      Intel Management Engine (ME) registers. This allows U-Boot to access the
++      hardware more fully for platforms that need it.
++
++      Absence of this property indicates that the ME registers should be locked
++      down as part of U-Boot's start-up sequence and before the command line is
++      available.
++
+   silent-console:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     default: 0
+@@ -88,6 +119,23 @@ properties:
+         enabled)
+       2: console output is suppressed and not recorded
+ 
++  spl-payload-offset:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 0
++    description: |
++      If present (and SPL is controlled by the devicetree), this allows the
++      offset of the SPL payload (typically U-Boot) to be specified. The offset
++      is in bytes from the start of the media (typically SPI flash).
++
++      Note: This is quite widely used in U-Boot, but since v2018.01 it is
++      possible to use Binman instead, to provide this offset (and various
++      others) to SPL, or even to U-Boot proper. So far I have not tried sending
++      the Binman bindings upstream, but perhaps that should be done instead.
++
++      See here for details:
++
++      https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
++
+ required:
+   - compatible
+ 
+@@ -101,6 +149,9 @@ examples:
+         bootcmd = "vboot go auto";
+         bootdelay-sec = <(-1)>;
+         bootsecure = <1>;
++        load-environment = <0>;
++        no-apm-final;
+         silent-console = <1>;
++        spl-payload-offset = <0x40000>;   /* 256K */
+       };
+     };
+-- 
+2.34.0.rc2.393.gf8c9666880-goog
 
-If you think it is too confusing, I could rename the functions to
-something like sun50i_r329_ledc_hw_init / sun50i_r329_ledc_hw_exit.
-
-Regards,
-Samuel
