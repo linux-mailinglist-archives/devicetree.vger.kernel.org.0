@@ -2,154 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6256F4579FD
-	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 01:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BFFF457A00
+	for <lists+devicetree@lfdr.de>; Sat, 20 Nov 2021 01:14:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233909AbhKTARE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Nov 2021 19:17:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50904 "EHLO
+        id S236431AbhKTARw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Nov 2021 19:17:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233135AbhKTARE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 19:17:04 -0500
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA32C061574
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 16:14:01 -0800 (PST)
-Received: by mail-ua1-x92d.google.com with SMTP id b17so24682090uas.0
-        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 16:14:01 -0800 (PST)
+        with ESMTP id S233135AbhKTARw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Nov 2021 19:17:52 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B596C061574
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 16:14:50 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso19219356otj.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Nov 2021 16:14:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jVrFLLT7t7iXERj2bUTMJYNTY4WZmty9hYe4xU9Zct4=;
-        b=VeMchRhdE/cEIMKW389APtPX5jOG59f8KnwAysrR7AiUQosMXcTdX7IKm/VZtpAYO/
-         LVXFSgA7xcuLvGJHclGvXSKYtMNcwLdbN0erboRx6M8XwlxbTkMtRbxWUFqPYBJwNxcS
-         KeZraSLSzuM+gwSG5Icpj96Avv0V6G7nGE4mY=
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=GD0aySu3SnLtPfPurGLGTrA4SK5u/VwrAiKx2VQvjf0=;
+        b=K4KJ4AEdJALGn/LkS00xSrJaTOF2RtxpUxOjoZBrlXIVXFnZWwMn+y5fIzrOYCwV2J
+         Rs1q0umcHGwogxEHX4T7ElsLnIutdsmnbWNQO7C8jf/QtTF89tI5HZTAHH25Yvl/u/LD
+         hYTRZ86B0W3l4liyoGN6qpQ0VdVLP3DStEPFbId+1keqnDCztK6Nsqz0g71+aslwM5om
+         yrZ0O3J3orUFE58nXr+hV2RnG6I7F3/MMf9OWs2qwCZDfnSoPGpjrMopsPh+3rxRlMKf
+         Bp4fKN2z3ASe+O9KDw155j0udgJ6iPXCNDIDHJjQqhJYQ59BWmSbNv9O88HLv0d+77R1
+         9Bug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jVrFLLT7t7iXERj2bUTMJYNTY4WZmty9hYe4xU9Zct4=;
-        b=E02h9GSGER7sp2OHm+E79lnCX+udyds6OMmq2ZdbRKmOVLlV6sC89ELMMFFRUgRnuL
-         TOpEQ4EjJNdllI+2yRqFf/vglgzaNiUX6UkE/aU+KSWUyqvBdskzUH74+0wivoekGP5V
-         97wMtJOeJ09BswcUFQPW1FsifwPIbCHRMgvb9KEelFrg6iYo6cwrCdQ2YxRNXhh9bG0P
-         Ti4QKugwpUwZaGZcS9Tx4q4UVcSohQ4FOgDtp+ekTJFmHKwSp+p8a2LRc2WnASgNmu/q
-         6LMJ7HlSGw3JHSGJJS7Jw9sxiiW09WWYu8hRIWMSRuRCi1dodsaZeWfrrEelZO9ALHnG
-         6v9w==
-X-Gm-Message-State: AOAM532HvK04IEw5qY/FC2v5ztQRY6IkAlgTQeSwR++QVcbmE6xzb1Z7
-        hH2zcvqt4X4pdDtUP75X6Qh8zwXxHXlIyhUcTQ/bD7TGQKc=
-X-Google-Smtp-Source: ABdhPJxqHZmJLNFCH6uO4zxq3L9kOgvRYggNtwWR/IQXNGk6YBpqdNoZlyA1SYVnU74zUan3+mLhAI2KXvj5tSHKOrQ=
-X-Received: by 2002:ab0:66cd:: with SMTP id d13mr55318206uaq.140.1637367240150;
- Fri, 19 Nov 2021 16:14:00 -0800 (PST)
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=GD0aySu3SnLtPfPurGLGTrA4SK5u/VwrAiKx2VQvjf0=;
+        b=bV80c/cDbd9q5lOkZ+Us1wzf+vvZntRi03ptFtgd6PtjcxxqRVqJW6JXm5hFeeJryr
+         nC68LgqmwbnZYifx+alcrrItOAEjR/EbqPVG/eUyxLL2rI5mqgnkWuWK9ijA84BYZehn
+         CFs3cQUG3OrLtgYwJUQTXiLIZupcfGSM/43EuxfadHGaeYb+HqCibu491G3lcN+7Jg0V
+         OU4MSkhFlJrZDyUhno203GuPGrypX/eIhEAY7huuyv/UCHfydzrBszTpBJlGM0SQe5jI
+         jIjpvT5hvYKIs8pUzzCv2FIhMLAE3mC2eBUDu8KooDdKEUizoeQsLx7jr3gz9tMhXHyY
+         Yhpw==
+X-Gm-Message-State: AOAM532vd4Jso/yaUDYsmblAF7+XGgv5Jx4WLC3wXIxfzC7RGKpf6Dvn
+        Alvl4XMRVIoSCEJ81qSEMML89beC6yX+6lgecI4=
+X-Google-Smtp-Source: ABdhPJxWSwyw+NYXsa9/7V2PbnbuVLWNWw/isVZisFKsiXltrzdB9406Rxvq5Zj5OWpJL9bZTxmQRWu9/lnRvxIuTHE=
+X-Received: by 2002:a9d:63d6:: with SMTP id e22mr8126668otl.49.1637367289499;
+ Fri, 19 Nov 2021 16:14:49 -0800 (PST)
 MIME-Version: 1.0
-References: <20211120000356.1850639-1-sjg@chromium.org>
-In-Reply-To: <20211120000356.1850639-1-sjg@chromium.org>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Fri, 19 Nov 2021 17:13:48 -0700
-Message-ID: <CAPnjgZ0JpmK+8VpYCfwaZC=GUBSWLvdVzxcugT5S=884n6qbpA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: u-boot: Add a few more options bindings
-To:     Devicetree Discuss <devicetree@vger.kernel.org>
-Cc:     Tom Rini <trini@konsulko.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Rob Herring <robh@kernel.org>
+Sender: gaddafiayesha532@gmail.com
+Received: by 2002:a05:6820:1693:0:0:0:0 with HTTP; Fri, 19 Nov 2021 16:14:49
+ -0800 (PST)
+From:   Anderson Thereza <anderson.thereza24@gmail.com>
+Date:   Fri, 19 Nov 2021 16:14:49 -0800
+X-Google-Sender-Auth: lrSA3e3J_Hh3jRRb0IMYm9qn7eU
+Message-ID: <CALeZTretfbJEPE0G=Pft3o2G4vYgd8z_GNib5LEgey0wEFkhAA@mail.gmail.com>
+Subject: Re: Greetings My Dear,
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Rob Herring oops
+Greetings,
 
+I sent this mail praying it will find you in a good condition, since I
+myself am in a very critical health condition in which I sleep every
+night without knowing if I may be alive to see the next day. I am
+Mrs.theresa anderson, a widow suffering from a long time illness. I
+have some funds I inherited from my late husband, the sum of
+($11,000,000.00, Eleven Million Dollars) my Doctor told me recently
+that I have serious sickness which is a cancer problem. What disturbs
+me most is my stroke sickness. Having known my condition, I decided to
+donate this fund to a good person that will utilize it the way I am
+going to instruct herein. I need a very honest God.
 
-On Fri, 19 Nov 2021 at 17:04, Simon Glass <sjg@chromium.org> wrote:
->
-> This adds three new options with varying degree of interest / precedent.
->
-> This being sent to the mailing list since it might attract more review.
-> A PR will be sent when this has had some review. That is why the file
-> path is set up for https://github.com/devicetree-org/dt-schema rather
-> than the Linux kernel.
->
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
->
->  schemas/options/u-boot.yaml | 51 +++++++++++++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->
-> diff --git a/schemas/options/u-boot.yaml b/schemas/options/u-boot.yaml
-> index 71dfda7..b8bdec1 100644
-> --- a/schemas/options/u-boot.yaml
-> +++ b/schemas/options/u-boot.yaml
-> @@ -71,6 +71,37 @@ properties:
->        2: use simplified command line (e.g. avoid hush)
->        3... reserved
->
-> +  load-environment:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 1
-> +    maximum: 1
-> +    description: |
-> +      This allows control over whether U-Boot loads its environment after
-> +      relocation. This normally happens automatically, but can pose a security
-> +      risk, so disabling it in certain situations is useful.
-> +
-> +      Note: This could be a boolean. It is defined as an integer since that
-> +      allows changing the value without resizing the devicetree. I'm not sure
-> +      how ugly that is, but IMO the fact that 'false' boolean values are
-> +      represented by being missing is a bit of a pain. One must either add or
-> +      delete the property.
-> +
-> +      Values:
-> +
-> +      0: don't load the environment
-> +      1: do load the environment
-> +
-> +  no-apm-final:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: |
-> +      For devices running on coreboot, this tells U-Boot not to lock down the
-> +      Intel Management Engine (ME) registers. This allows U-Boot to access the
-> +      hardware more fully for platforms that need it.
-> +
-> +      Absence of this property indicates that the ME registers should be locked
-> +      down as part of U-Boot's start-up sequence and before the command line is
-> +      available.
-> +
->    silent-console:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      default: 0
-> @@ -88,6 +119,23 @@ properties:
->          enabled)
->        2: console output is suppressed and not recorded
->
-> +  spl-payload-offset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    description: |
-> +      If present (and SPL is controlled by the devicetree), this allows the
-> +      offset of the SPL payload (typically U-Boot) to be specified. The offset
-> +      is in bytes from the start of the media (typically SPI flash).
-> +
-> +      Note: This is quite widely used in U-Boot, but since v2018.01 it is
-> +      possible to use Binman instead, to provide this offset (and various
-> +      others) to SPL, or even to U-Boot proper. So far I have not tried sending
-> +      the Binman bindings upstream, but perhaps that should be done instead.
-> +
-> +      See here for details:
-> +
-> +      https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
-> +
->  required:
->    - compatible
->
-> @@ -101,6 +149,9 @@ examples:
->          bootcmd = "vboot go auto";
->          bootdelay-sec = <(-1)>;
->          bootsecure = <1>;
-> +        load-environment = <0>;
-> +        no-apm-final;
->          silent-console = <1>;
-> +        spl-payload-offset = <0x40000>;   /* 256K */
->        };
->      };
-> --
-> 2.34.0.rc2.393.gf8c9666880-goog
->
+fearing a person who can claim this money and use it for Charity
+works, for orphanages, widows and also build schools for less
+privileges that will be named after my late husband if possible and to
+promote the word of God and the effort that the house of God is
+maintained. I do not want a situation where this money will be used in
+an ungodly manner. That's why I' making this decision. I'm not afraid
+of death so I know where I'm going. I accept this decision because I
+do not have any child who will inherit this money after I die. Please
+I want your sincere and urgent answer to know if you will be able to
+execute this project, and I will give you more information on how the
+fund will be transferred to your bank account. I am waiting for your
+reply.
+
+May God Bless you,
+Mrs.theresa anderson.
