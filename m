@@ -2,77 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99DEB458179
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 03:21:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 126FF458183
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 03:27:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233126AbhKUCYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 21:24:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38692 "EHLO mail.kernel.org"
+        id S236461AbhKUCaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 21:30:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39882 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231827AbhKUCYM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Nov 2021 21:24:12 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 69B466008E;
-        Sun, 21 Nov 2021 02:21:01 +0000 (UTC)
+        id S232500AbhKUCaO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 21:30:14 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id DA6DA608FE;
+        Sun, 21 Nov 2021 02:27:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637461266;
-        bh=UCzrbM2fD+0HR8OTJ7bvKM6jrnWGIk1QV2RUx+6+AcA=;
+        s=k20201202; t=1637461630;
+        bh=5B1tygrNXNV2A61CLamHESeJzyho+jTUiZ+gyVHVWpI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FfnIEeglJ9iE1+Wx5hFdSxZpOkvthyDqWEDkBw4C1Vd6ZtaZf+8fR4cr43d08z7dA
-         qcRRdvOY8CW8F17K4HbW6cJjr16Txh7jeyBnYADlO1yuTRhW0R/weewwrnJ68hFKG7
-         jPeEveZVC6QAPjyRgxVmvfgUyx1q35NqXxgHciXYmvpu9L06qqEQ+XoDO8oJihks9W
-         +8rtWRYyyz7ni5kVSl8g1CbBxxaN8lGlCMnJaZ+z3kikfg30k036wL3o35OFuP6WK0
-         /65KBwUqpvJcx5cC5FCxVyLAhw3OHPbBdaFRj+Gn+30cLlYG2Ln2ElZ3A8vAAvechV
-         IWP+EDosvx0XA==
-Date:   Sun, 21 Nov 2021 10:20:57 +0800
+        b=VUzwKFp86nAlK71IbLniCYP89vvzsMV6E10zFllboFOa0bb9tNs2vCa2ap3LX2bTK
+         e6REB7M6xS5aWrBAXPI5XNFr3B0LZ1A1fbT1CpxsPfZMgQ9PvmdGmzyelK/6yAm0iB
+         PiQgYUJ7Lwjo7iYH3VfYtyepzJTLdCfiEMWgBfX8s61fXOrKDdo+Plm6i4yTuZ9DcA
+         n2IzQCIuw+FsUeWEHldQMOrYZLKA9/G4zfCS1KmXbhnrIR6edTuqpTLOsx4LffpehB
+         aar/+hpZsHZf81VBSJuvXcj2QVkldV5iYyA2NiXY5tY7G27H51pdAwKWoo0ybcp96J
+         RkAxd0eZlbaZA==
+Date:   Sun, 21 Nov 2021 10:27:04 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Arnaud Ferraris <arnaud.ferraris@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Martin Kepplinger <martink@posteo.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lucas Stach <dev@lynxeye.de>, Angus Ainslie <angus@akkea.ca>,
-        Guido Gunther <agx@sigxcpu.org>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Eddie Cai <eddie.cai.linux@gmail.com>,
-        Shunqian Zheng <zhengsq@rock-chips.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Dan Johansen <strit@manjaro.org>,
-        Simon South <simon@simonsouth.net>,
-        Matthias Brugger <mbrugger@suse.com>
-Subject: Re: [PATCH 2/4] arm64: dts: freescale: add 'chassis-type' property
-Message-ID: <20211121022056.GD31998@dragon>
-References: <20211016102025.23346-1-arnaud.ferraris@collabora.com>
- <20211016102025.23346-3-arnaud.ferraris@collabora.com>
+        Adam Ford <aford173@gmail.com>, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] arm64: dts: imx: imx8mn-beacon: Drop undocumented
+ clock-names reference
+Message-ID: <20211121022704.GF31998@dragon>
+References: <cover.1634565154.git.geert+renesas@glider.be>
+ <16af1bd2847da8b2a265e2a4389942ae11dea7c5.1634565154.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211016102025.23346-3-arnaud.ferraris@collabora.com>
+In-Reply-To: <16af1bd2847da8b2a265e2a4389942ae11dea7c5.1634565154.git.geert+renesas@glider.be>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 16, 2021 at 12:20:23PM +0200, Arnaud Ferraris wrote:
-> A new 'chassis-type' root node property has recently been approved for
-> the device-tree specification, in order to provide a simple way for
-> userspace to detect the device form factor and adjust their behavior
-> accordingly.
+On Mon, Oct 18, 2021 at 03:59:02PM +0200, Geert Uytterhoeven wrote:
+> The wlf,wm8962 Device Tree bindings do not specify a clock-names
+> property.  Drop it.
 > 
-> This patch fills in this property for end-user devices (such as laptops,
-> smartphones and tablets) based on NXP ARM64 processors.
-> 
-> Signed-off-by: Arnaud Ferraris <arnaud.ferraris@collabora.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
 Applied, thanks.
