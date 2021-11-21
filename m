@@ -2,91 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB7C45873E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 00:53:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A743458743
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 00:56:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231294AbhKUX4d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 18:56:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48974 "EHLO
+        id S231533AbhKVAAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 19:00:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbhKUX4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 18:56:33 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CD7C061574
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 15:53:27 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so26246104otg.4
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 15:53:27 -0800 (PST)
+        with ESMTP id S230090AbhKVAAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 19:00:01 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CBA3C061714
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 15:56:55 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id bk14so34375855oib.7
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 15:56:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9W5p5whI+4F47zRQnYifWlZJ6t8BWUsimLLZTEAtvPQ=;
-        b=lRikxVHQ88YEq8tuytQtGEQs05tnJVDB5dLU5JhLaNAi/aansTa1hZNmO8dikHspd5
-         bzuk3mcmRmOhaQ5/liTLA8AGizNaOKC5kGYw9eCVLzInwKEWraYE1DyUp849Op2sa45w
-         awlFi9zpxqH5DUzerjZ1/gupff81F+r9IbpVlqNOGEoj+jMk7XlUq0qDQlGrzvCHfnzd
-         2F9lidZnvBudxRQzQn4Qu7wyaTTy4UNFb5Wd3OAu/goMqC8g8TM9/k51GJScqp9FVDfx
-         gU7u+fT/bLUDOfo/YQ445hDJIEOgDvfHOaKAEo+qL8rwL0kex/QGu0M/fIHAmirF6S0L
-         wK+A==
+         :cc;
+        bh=tzbEXCra2fLzuFHKeeSSwMjHfMOaWeE3atUdu+3gu8o=;
+        b=vLMLN1XgfZQV7YTTPrqfEm7QvqYJCmTgDtjWXHU91XFSFL7oQHT0m/IeS26DlKGw7F
+         RAceTekpWZ2aNVpUEhvlcpgNKBZPE5AhE5yQ5+Nmi65EdKgpT/y7a3i7YWQSFRDx5qyX
+         roc/g++HNEEB0Brux8dNCe8RI+EJ30CfsESBs3+VL/yNKlEMtW+cPQCOPk1isEp1rX6g
+         OBivQzKtsxw0kFODQf1Lmy3g0rO//GZlEcM6rnAun/zcTlMqKQP04OOZ+ywqqMer0DGT
+         wPlA0NPMpsAxwqFY2EogDIn4Uf5MIB32WDk6rYFRF0TwljaF8HqR0OipC2wcglfseKqq
+         jViA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9W5p5whI+4F47zRQnYifWlZJ6t8BWUsimLLZTEAtvPQ=;
-        b=ShWP/3bRjGHeX6cEXHUOL9OASviLmXqpHaHjWZscM0abmdKt6oX3+V4LjW5zhI509p
-         spnxQb9Em1EYCCREvpgHVGH3HDdlwc4kImmVydMlgao7pJnw0JcHVAxTR91laXFkbEzx
-         vvfChy4v28aKIQ3aNqL8PhA5BnU4gkXy2evWSnUVhDQMEiB1KNMnAuyUI4UFZ1vQoIxG
-         6DSRJ7G2IuE1vPfl3dndEwDrXjlmYootsuiW11DtsM4cV1Ifulv3o8lD/nSrAiuMu3xI
-         6wZ5YxTScexll8mjY7aFHXEX/VxLkDapAK7tRV6FlsvCDbnL30LDfkANVgT1ouroqTQe
-         5Wsg==
-X-Gm-Message-State: AOAM530SkG0FWNM1gAtVrG/iDBEuXBjn5kZOa68Y760+55ThVxC94a7T
-        2etJ5UBJdMZheVvcuWPVZSz7zlAyathAVdo8paM2ZQ==
-X-Google-Smtp-Source: ABdhPJykKhLtTLKNimMjTZRcY38XOoC/BlDR/rJ2BTxQTORvnZe8Q7rHMq9A7oVL57trNbpFc7GGxbcL8TbxAm0XDfw=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr21551880otg.179.1637538807056;
- Sun, 21 Nov 2021 15:53:27 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=tzbEXCra2fLzuFHKeeSSwMjHfMOaWeE3atUdu+3gu8o=;
+        b=VmGMu7+5WKuz5xOiIOR3/7utwPWS86zxYuPBBJ1rC9RpgUjaK0fQlaYG66sgwDCCO6
+         lBUXGdkjYViPajM8PBsTByuveaDIJWoYnIl3SmG302HqeEqR0u4aRdVaa3t4DD0vKXjb
+         cMwHv0Aivr66lFNOPCM8mHNqSuTFCaVMujRm5v6Zu6omvbuTE81cISCASNOhVDNoIXdh
+         O+FgHqLC5boOTHu45jqDD9KvxlX5doeVKd8XMBR1aX7iWWhpdQY1AiCY6BgioOufp1MW
+         GnwP6mdfCEc/E3Pnxyte7awek8Nlq8B1k4R4cglfp0//FLqmTfmSFgm6Tureir3zoY8Y
+         6cCQ==
+X-Gm-Message-State: AOAM532bZO4hQOrvIsQAGUYak+R+kxNw++cpaGEMxQvMtS56VSEjkqs2
+        sO5TyGsznNP2TbXbbOIjzQ3DLbEDNRZynhq6sAmDkw==
+X-Google-Smtp-Source: ABdhPJyTGoImZ9uJlXTMO6yPH+6/gwlRYX16UVj6ftXnbOgSxuJ1Q+oBW6tiPI7CgPtEk6VZnIA12irHDbjoqu1iPOs=
+X-Received: by 2002:aca:120f:: with SMTP id 15mr17321547ois.132.1637539014756;
+ Sun, 21 Nov 2021 15:56:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20211118132152.15722-1-zajec5@gmail.com> <20211118132152.15722-4-zajec5@gmail.com>
- <CAHp75VebQKsSJYxK9Fi0wEhGfpR=1HZfDsVuqV8BCG-UrZDtVg@mail.gmail.com>
-In-Reply-To: <CAHp75VebQKsSJYxK9Fi0wEhGfpR=1HZfDsVuqV8BCG-UrZDtVg@mail.gmail.com>
+References: <1636416699-21033-1-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1636416699-21033-1-git-send-email-hayashi.kunihiko@socionext.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 22 Nov 2021 00:53:15 +0100
-Message-ID: <CACRpkdbQ8fEfWqkb+R0xDPAdeenWQKmXqtO49Hfh7V84Zqospg@mail.gmail.com>
-Subject: Re: [PATCH 3/5] pinctrl: add helpers reading pins, groups & functions
- from DT
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Date:   Mon, 22 Nov 2021 00:56:43 +0100
+Message-ID: <CACRpkdY=2X4ntwGpbQ70iUc4cfQMqsjZK9PWR+Qo5e9oijc3ag@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: pinctrl: uniphier: Add child node
+ definitions to describe pin mux and configuration
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Masami Hiramatsu <mhiramat@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 18, 2021 at 2:58 PM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Thu, Nov 18, 2021 at 3:22 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com=
-> wrote:
+On Tue, Nov 9, 2021 at 1:11 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
 
-> > +#include <linux/of.h>
+> In arch/arm/boot/dts/uniphier-pinctrl.dtsi, there are child nodes of
+> pinctrl that defines pinmux and pincfg, however, there are no rules about
+> that in dt-bindings.
 >
-> I don't like this. This shows not thought through the design of the serie=
-s.
+> 'make dtbs_check' results an error with the following message:
 >
-> What I rather expect is a proper interfacing layer that you fill with
-> options that can be provided by corresponding underlying
-> implementation, e.g. DT.
+>    pinctrl: 'ain1', 'ain2', 'ainiec1', 'aout', 'aout1', 'aout2', ...
+>    ... 'usb2', 'usb3' do not match any of the regexes: 'pinctrl-[0-9]+'
+>
+> To avoid the issue, add the rules of pinmux and pincfg in each child node
+> and grandchild node.
+>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 
-I agree, the DT parts should land in pinctrl/devicetree.c in the
-end with an opt-in for ACPI & board files. I don't know if we
-can use software nodes fully instead of board file-specific
-helpers at this point, it seems to have
-grown pretty competent.
+Patch applied.
 
 Yours,
 Linus Walleij
