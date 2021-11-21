@@ -2,128 +2,541 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4750A458166
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 01:38:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 508C8458174
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 03:06:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235478AbhKUAlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Nov 2021 19:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58406 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231908AbhKUAlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Nov 2021 19:41:16 -0500
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85619C061574
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 16:38:10 -0800 (PST)
-Received: by mail-oo1-xc2e.google.com with SMTP id d1-20020a4a3c01000000b002c2612c8e1eso5077051ooa.6
-        for <devicetree@vger.kernel.org>; Sat, 20 Nov 2021 16:38:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Tn9dMzIKu+ibK/KdrE/W8IVEn4E4fjI9mXQYWJsCk88=;
-        b=iF1PX9ZgYCiyA3YNcueQeuDUmHPZ474YKh7mUqa7JDoaO/GyGC09M66xoPBO0VZ+ij
-         iv+pF4gZPnp8qwcO148FMNRM03ZZPwWuZfL+0P3QXEmczFUhzB63H8/iENu5KMG8hA/k
-         /SdU8m5Fl0fthrBmhtzUB24ws3NZ/UHBogM4LNRRkREzbk/HecZjuxD4FjeuzEQB1Zgt
-         NL9UC4TODH10SWcGL0H5H5lvndaAedg16u0+azDLJyhsDHtc4hI8Ht1tEhY4F+fX4p3j
-         qTr1t42D35QNq9k5Y8NpcRXmowo7s7GmFstiQLVKXzbFQNgam/VLMMOaQsUb5URbRc77
-         5aXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Tn9dMzIKu+ibK/KdrE/W8IVEn4E4fjI9mXQYWJsCk88=;
-        b=6YhRCMuWgAXsb//OoZykaBy8sWZzYSQPjqNofMmHCzrsKC42gpy6vr0/Lk41t6R16U
-         LvNgN7MNzogBL3SFEV8u2gt9FkVbQ0b109e9u4QPsuJXTo3grU7ffqeG8uWS/NHvYEj6
-         xaplqV+YMy/pFTJQxaY0lrTM4W7ZQYxSfD76K3kfIYae4A9isGk4M9xx0dXdXfhn5VoC
-         c+pgNAbSNn6x9BgJnedV/PMV3izp7yzZMCClDxUqm4QWmbuLn3DmIhJwoQMe7tc3451k
-         oTAo391qf1uVg3i1taPRnZVbs3CPm/WGfT33rRpgBKW/j+grfay2swFQc+AyoMiPTKFe
-         KOng==
-X-Gm-Message-State: AOAM533Jc0rfhL9slW08QQ3/8hWIzz0SEcud0tfI4YvBv7fFttgyqa4Z
-        jnXrGoHgka3HDGEZcO3AFCh4sg==
-X-Google-Smtp-Source: ABdhPJxIoHejU0c8j1lIrQZztowra82H18yHBeXtKud/4RL6yZ4W5TyMj/ZPNmdbNupeaFPxnbSBMQ==
-X-Received: by 2002:a4a:e7c3:: with SMTP id y3mr24837489oov.75.1637455089886;
-        Sat, 20 Nov 2021 16:38:09 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c3sm1023639oiw.8.2021.11.20.16.38.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Nov 2021 16:38:09 -0800 (PST)
-Date:   Sat, 20 Nov 2021 16:39:55 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Maulik Shah <mkshah@codeaurora.org>
-Subject: Re: [PATCH v2 2/3] soc: qcom: stats: Add fixed sleep stats offset
- for older RPM firmwares
-Message-ID: <YZmVW9zqgsycfd+F@ripper>
-References: <20211119213953.31970-1-stephan@gerhold.net>
- <20211119213953.31970-3-stephan@gerhold.net>
+        id S237709AbhKUCJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Nov 2021 21:09:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35000 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S237562AbhKUCJk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 20 Nov 2021 21:09:40 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 2A4ED604DA;
+        Sun, 21 Nov 2021 02:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637460396;
+        bh=8vLWuYI1d6pWOjLyq9bjJ9l4ci9MzvqkifYIuYPvZcY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iD1jmvVyTo7GlIvI9Bmujmg3pZ/y7cmIS2C3Jhhu3opnO3h8KRlS3k5rsqTxp3L34
+         B4H8ve4yTrRdDF0rPNHvOT5xQq39HVPTqpItOeyfmzAMCpP80+MWx4LvR9LymE49wM
+         /Dr9zUeQdgyQif3QOxL1aDXJ5GmFdAsDgdJ45vEJkgbkpbKdVpineHhyDxkZlpJ6pf
+         fon+tjp2Z6F0qTYq4rJ/EsHZXXjlFiNeC726VaZclqfKuf/m2EeQ5k2UHJttyKASZf
+         fNdrovlWH3hd3qSBbEX8zay+1gGT5IpEepsiJ2B0TKMTAGUmLKTvbKdf64xW3et2Gi
+         55VUFAVdKiAbQ==
+Date:   Sun, 21 Nov 2021 10:06:30 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: Re: [PATCH v1 3/3] ARM: dts: add JOZ Access Point
+Message-ID: <20211121020629.GC31998@dragon>
+References: <20211014083313.26671-1-o.rempel@pengutronix.de>
+ <20211014083313.26671-3-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211119213953.31970-3-stephan@gerhold.net>
+In-Reply-To: <20211014083313.26671-3-o.rempel@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 19 Nov 13:39 PST 2021, Stephan Gerhold wrote:
-
-> Not all RPM firmware versions have the dynamic sleep stats offset
-> available. Most older versions use a fixed offset of 0xdba0.
-> Add support for this using new SoC-specific compatibles for APQ8084,
-> MSM8226, MSM8916 and MSM8974.
+On Thu, Oct 14, 2021 at 10:33:13AM +0200, Oleksij Rempel wrote:
+> JOZ Access Point is imx6ull based device designed for agricultural
+> cleaning machines.
 > 
-> Even older SoCs seem to use a different offset and stats format.
-> If needed those could be supported in the future by adding separate
-> compatibles for those with a different stats_config.
-> 
-> Cc: Maulik Shah <mkshah@codeaurora.org>
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
-> Changes in v2:
->   - Use SoC-specific compatibles instead of qcom,rpm-legacy-stats
-> ---
->  drivers/soc/qcom/qcom_stats.c | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  arch/arm/boot/dts/Makefile           |   1 +
+>  arch/arm/boot/dts/imx6ull-jozacp.dts | 457 +++++++++++++++++++++++++++
+>  2 files changed, 458 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ull-jozacp.dts
 > 
-> diff --git a/drivers/soc/qcom/qcom_stats.c b/drivers/soc/qcom/qcom_stats.c
-> index 131d24caabf8..d6bfd1bbdc2a 100644
-> --- a/drivers/soc/qcom/qcom_stats.c
-> +++ b/drivers/soc/qcom/qcom_stats.c
-> @@ -237,6 +237,15 @@ static const struct stats_config rpm_data = {
->  	.subsystem_stats_in_smem = false,
->  };
->  
-> +/* Older RPM firmwares have the stats at a fixed offset instead */
-> +static const struct stats_config rpm_data_dba0 = {
-> +	.stats_offset = 0xdba0,
-> +	.num_records = 2,
-> +	.appended_stats_avail = true,
-> +	.dynamic_offset = false,
-> +	.subsystem_stats_in_smem = false,
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 936aa3e65ce7..1f73806b99c2 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -676,6 +676,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>  	imx6ull-colibri-emmc-eval-v3.dtb \
+>  	imx6ull-colibri-eval-v3.dtb \
+>  	imx6ull-colibri-wifi-eval-v3.dtb \
+> +	imx6ull-jozacp.dtb \
+>  	imx6ull-myir-mys-6ulx-eval.dtb \
+>  	imx6ull-opos6uldev.dtb \
+>  	imx6ull-phytec-segin-ff-rdk-nand.dtb \
+> diff --git a/arch/arm/boot/dts/imx6ull-jozacp.dts b/arch/arm/boot/dts/imx6ull-jozacp.dts
+> new file mode 100644
+> index 000000000000..1d779440b609
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ull-jozacp.dts
+> @@ -0,0 +1,457 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +/*
+> + * Copyright (c) 2020 Protonic Holland
+> + * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include "imx6ull.dtsi"
+> +
+> +/ {
+> +	model = "JOZ Access Point";
+> +	compatible = "joz,jozacp", "fsl,imx6ull";
+> +
+> +	chosen {
+> +		stdout-path = &uart1;
+> +	};
+> +
+> +	/* On board name LED_RGB1 */
+> +	led-controller-1 {
+> +		compatible = "pwm-leds";
+> +
+> +		led-0 {
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			function-enumerator = <0>;
+> +			pwms = <&pwm1 0 10000000 0>;
+> +			max-brightness = <255>;
+> +		};
+> +
+> +		led-1 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			function-enumerator = <1>;
+> +			pwms = <&pwm3 0 10000000 0>;
+> +			max-brightness = <255>;
+> +		};
+> +
+> +		led-2 {
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			function-enumerator = <2>;
+> +			pwms = <&pwm5 0 10000000 0>;
+> +			max-brightness = <255>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	/* On board name LED_RGB2 */
+> +	led-controller-2 {
+> +		compatible = "pwm-leds";
+> +
+> +		led-3 {
+> +			color = <LED_COLOR_ID_RED>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			function-enumerator = <3>;
+> +			pwms = <&pwm2 0 10000000 0>;
+> +			max-brightness = <255>;
+> +		};
+> +
+> +		led-4 {
+> +			color = <LED_COLOR_ID_GREEN>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			function-enumerator = <4>;
+> +			pwms = <&pwm4 0 10000000 0>;
+> +			max-brightness = <255>;
+> +		};
+> +
+> +		led-5 {
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			function = LED_FUNCTION_INDICATOR;
+> +			function-enumerator = <5>;
+> +			pwms = <&pwm6 0 10000000 0>;
+> +			max-brightness = <255>;
+> +		};
+> +	};
+> +
+> +	reg_3v3: regulator-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		vin-supply = <&reg_5v0>;
+> +	};
+> +
+> +	reg_5v0: regulator-5v0 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "5v0";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +	};
+> +
+> +	reg_vbus: regulator-vbus {
+> +		compatible = "regulator-fixed";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_vbus>;
+> +		regulator-name = "vbus";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&reg_5v0>;
+> +		gpio = <&gpio1 2 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+> +	usdhc2_wifi_pwrseq: usdhc2-wifi-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_wifi_npd>;
+> +		reset-gpios = <&gpio4 25 GPIO_ACTIVE_LOW>;
+> +	};
 > +};
 > +
->  static const struct stats_config rpmh_data = {
->  	.stats_offset = 0x48,
->  	.num_records = 3,
-> @@ -246,6 +255,10 @@ static const struct stats_config rpmh_data = {
->  };
->  
->  static const struct of_device_id qcom_stats_table[] = {
-> +	{ .compatible = "qcom,apq8084-rpm-stats", .data = &rpm_data_dba0 },
-> +	{ .compatible = "qcom,msm8226-rpm-stats", .data = &rpm_data_dba0 },
-> +	{ .compatible = "qcom,msm8916-rpm-stats", .data = &rpm_data_dba0 },
-> +	{ .compatible = "qcom,msm8974-rpm-stats", .data = &rpm_data_dba0 },
->  	{ .compatible = "qcom,rpm-stats", .data = &rpm_data },
->  	{ .compatible = "qcom,rpmh-stats", .data = &rpmh_data },
->  	{ }
+> +&can1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_can1>;
+> +	status = "okay";
+> +};
+> +
+> +&cpu0 {
+> +	clock-frequency = <792000000>;
+> +};
+> +
+> +&fec1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_enet1>;
+> +	phy-mode = "rmii";
+> +	phy-handle = <&ethphy0>;
+> +	status = "okay";
+> +
+> +	mdio {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		ethphy0: ethernet-phy@0 {
+> +			reg = <0>;
+> +			clocks = <&clks IMX6UL_CLK_ENET_REF>;
+> +			clock-names = "rmii-ref";
+> +			interrupts-extended = <&gpio1 29 IRQ_TYPE_LEVEL_LOW>;
+> +			reset-gpios = <&gpio1 28 GPIO_ACTIVE_LOW>;
+> +			reset-assert-us = <10000>;
+> +			reset-deassert-us = <300>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c1>;
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	clock-frequency = <100000>;
+> +	status = "okay";
+> +
+> +	rtc@51 {
+> +		compatible = "nxp,pcf8563";
+> +		reg = <0x51>;
+> +	};
+> +};
+> +
+> +&pwm1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm1>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm2>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm3 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm3>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm4>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm5 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm5>;
+> +	status = "okay";
+> +};
+> +
+> +&pwm6 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm6>;
+> +	status = "okay";
+> +};
+> +
+> +&snvs_rtc {
+> +	status = "disabled";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart1>;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_uart4>;
+> +	dtr-gpios = <&gpio3 4 GPIO_ACTIVE_LOW>;
+> +	uart-has-rtscts;
+> +	status = "okay";
+> +};
+> +
+> +&usbotg1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usbotg1>;
+> +	vbus-supply = <&reg_vbus>;
+> +	dr_mode = "host";
+> +	over-current-active-low;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usdhc1>;
+> +	vmmc-supply = <&reg_3v3>;
+> +	bus-width = <8>;
+> +	no-1-8-v;
+> +	non-removable;
+> +	cap-mmc-hw-reset;
+> +	no-sd;
+> +	no-sdio;
+> +	status = "okay";
+> +};
+> +
+> +&usdhc2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_usdhc2>;
+> +	mmc-pwrseq = <&usdhc2_wifi_pwrseq>;
+> +	bus-width = <4>;
+> +	no-1-8-v;
+> +	no-mmc;
+> +	no-sd;
+> +	non-removable;
+> +	pm-ignore-notify;
+
+Not sure what this property is.
+
+Shawn
+
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	status = "okay";
+> +
+> +	wifi@1 {
+> +		compatible = "brcm,bcm4329-fmac";
+> +		reg = <1>;
+> +	};
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_hog>;
+> +
+> +	pinctrl_can1: can1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x1b0b0
+> +			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x1b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_enet1: enet1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO07__ENET1_MDC	 0x1b0b0
+> +			MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
+> +			MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x1b0b0
+> +			MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x1b0b0
+> +			MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x1b0b0
+> +			MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01	0x1b0b0
+> +			MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN	0x1b0b0
+> +			MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00	0x1b0b0
+> +			MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01	0x1b0b0
+> +			MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1	0x4001b031
+> +
+> +			MX6UL_PAD_UART4_TX_DATA__GPIO1_IO28	0x038b0
+> +			MX6UL_PAD_UART4_RX_DATA__GPIO1_IO29	0x170b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_hog: hoggrp {
+> +		fsl,pins = <
+> +			/* HW Revision */
+> +			MX6UL_PAD_ENET2_RX_DATA0__GPIO2_IO08	0x1b0b0
+> +			MX6UL_PAD_ENET2_RX_DATA1__GPIO2_IO09	0x1b0b0
+> +			MX6UL_PAD_ENET2_RX_EN__GPIO2_IO10	0x1b0b0
+> +
+> +			/* HW ID */
+> +			MX6UL_PAD_ENET2_TX_DATA0__GPIO2_IO11	0x1b0b0
+> +			MX6UL_PAD_ENET2_TX_DATA1__GPIO2_IO12	0x1b0b0
+> +			MX6UL_PAD_ENET2_TX_EN__GPIO2_IO13	0x1b0b0
+> +			MX6UL_PAD_ENET2_TX_CLK__GPIO2_IO14	0x1b0b0
+> +			MX6UL_PAD_ENET2_RX_ER__GPIO2_IO15	0x1b0b0
+> +
+> +			/* Digital inputs */
+> +			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03	0x11000
+> +			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04	0x11000
+> +			MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x11000
+> +			MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x11000
+> +			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09	0x11000
+> +
+> +			/* Isolated outputs */
+> +			MX6UL_PAD_UART2_TX_DATA__GPIO1_IO20	0x01020
+> +			MX6UL_PAD_UART2_RX_DATA__GPIO1_IO21	0x01020
+> +			MX6UL_PAD_UART2_RTS_B__GPIO1_IO23	0x01020
+> +			MX6UL_PAD_UART3_TX_DATA__GPIO1_IO24	0x01020
+> +			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x01020
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c1: i2c1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001f8b1
+> +			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001f8b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_i2c2: i2c2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART5_RX_DATA__I2C2_SDA	0x4001f8b1
+> +			MX6UL_PAD_UART5_TX_DATA__I2C2_SCL	0x4001f8b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm1: pwm1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA00__PWM1_OUT		0x01010
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm2: pwm2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA01__PWM2_OUT		0x01010
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm3: pwm3grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA02__PWM3_OUT		0x01010
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm4: pwm4grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA03__PWM4_OUT		0x01010
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm5: pwm5grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA18__PWM5_OUT		0x01010
+> +		>;
+> +	};
+> +
+> +	pinctrl_pwm6: pwm6grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_DATA19__PWM6_OUT		0x01010
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart1: uart1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
+> +			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
+> +		>;
+> +	};
+> +
+> +	pinctrl_uart4: uart4grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_LCD_CLK__UART4_DCE_TX		0x1b0b0
+> +			MX6UL_PAD_LCD_ENABLE__UART4_DCE_RX	0x1b0b0
+> +			MX6UL_PAD_LCD_HSYNC__UART4_DCE_CTS	0x1b0b0
+> +			MX6UL_PAD_LCD_VSYNC__UART4_DCE_RTS	0x1b0b0
+> +			MX6UL_PAD_LCD_RESET__GPIO3_IO04		0x1b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_usbotg1: usbotg1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO01__USB_OTG1_OC	0x1b0b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc1: usdhc1grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_NAND_WP_B__USDHC1_RESET_B	0x17099
+> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x1f099
+> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10099
+> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17099
+> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17099
+> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17099
+> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17099
+> +			MX6UL_PAD_NAND_READY_B__USDHC1_DATA4	0x17099
+> +			MX6UL_PAD_NAND_CE0_B__USDHC1_DATA5	0x17099
+> +			MX6UL_PAD_NAND_CE1_B__USDHC1_DATA6	0x17099
+> +			MX6UL_PAD_NAND_CLE__USDHC1_DATA7	0x17099
+> +		>;
+> +	};
+> +
+> +	pinctrl_usdhc2: usdhc2grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_CSI_VSYNC__USDHC2_CLK		0x100b9
+> +			MX6UL_PAD_CSI_HSYNC__USDHC2_CMD		0x170b9
+> +			MX6UL_PAD_CSI_DATA00__USDHC2_DATA0	0x170b9
+> +			MX6UL_PAD_CSI_DATA01__USDHC2_DATA1	0x170b9
+> +			MX6UL_PAD_CSI_DATA02__USDHC2_DATA2	0x170b9
+> +			MX6UL_PAD_CSI_DATA03__USDHC2_DATA3	0x170b9
+> +		>;
+> +	};
+> +
+> +	pinctrl_vbus: vbus0grp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02	0x030b0
+> +		>;
+> +	};
+> +
+> +	pinctrl_wifi_npd: wifigrp {
+> +		fsl,pins = <
+> +			/* WL_REG_ON */
+> +			MX6UL_PAD_CSI_DATA04__GPIO4_IO25	0x03020
+> +		>;
+> +	};
+> +};
+> +
+> +&iomuxc_snvs {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_snvs_hog>;
+> +
+> +	pinctrl_snvs_hog: snvs-hog-grp {
+> +		fsl,pins = <
+> +			/* Digital outputs */
+> +			MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x00020
+> +			MX6ULL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x00020
+> +			MX6ULL_PAD_SNVS_TAMPER4__GPIO5_IO04	0x00020
+> +			MX6ULL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x00020
+> +			MX6ULL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x00020
+> +
+> +			/* Digital outputs fault feedback */
+> +			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x17000
+> +			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x17000
+> +			MX6ULL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x17000
+> +			MX6ULL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x17000
+> +			MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x17000
+> +		>;
+> +	};
+> +};
 > -- 
-> 2.34.0
+> 2.30.2
 > 
