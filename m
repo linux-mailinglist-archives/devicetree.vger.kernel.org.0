@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26677458644
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 21:17:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 047AB45864A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 21:23:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231463AbhKUUUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 15:20:09 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:55629 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231347AbhKUUUJ (ORCPT
+        id S231347AbhKUU0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 15:26:14 -0500
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:38419 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229441AbhKUU0N (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Nov 2021 15:20:09 -0500
+        Sun, 21 Nov 2021 15:26:13 -0500
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 91BB75C00FB;
-        Sun, 21 Nov 2021 15:17:03 -0500 (EST)
+        by mailnew.nyi.internal (Postfix) with ESMTP id 93C00580788;
+        Sun, 21 Nov 2021 15:23:07 -0500 (EST)
 Received: from imap47 ([10.202.2.97])
-  by compute3.internal (MEProxy); Sun, 21 Nov 2021 15:17:03 -0500
+  by compute3.internal (MEProxy); Sun, 21 Nov 2021 15:23:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
          h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm3; bh=y8ljUZIDaYJs8wCxLlCkyDpCokhi
-        6fOAzyABQKgphx4=; b=D5n2pLksMEKQKdT6D9ppiRW+8MdLmzPWza32y9G6FWHa
-        iYE2ldhBrClqvd/iWCh/JjRaNdBhmnPGrI/4RK6i4dLJ/FfflhGnAlLi9ANAxdf7
-        l7VPgwWMaozlH9GhNaIZARAA06UeJJnwCoBp86feMJzJYYQH2Okc9qPEF3WVlLb7
-        59dTi6Yppy8NTncCWThILlbiitFR4r3bbHiYOM7l1CIiFI967XgW3O5Aa8sQas1G
-        d7NfmFhomqVau73XERDV4LhjknQ7tXigB2MjS6/tqIECwMnG1R8rc18kn/1LtaBj
-        u3PO7ERtqiN8JL9SHQPhkZDQoTmbOzeybQcdPhJ+mA==
+        :cc:subject:content-type; s=fm3; bh=Lwf/LrY/vE+XfQ2/Z92KIftl2TmX
+        RB7ZTlFzeqJGXNQ=; b=XOuHG3LQgih+VPL0zEycQIAQS4SH+cqYCG/qlQPF9YAS
+        burGyn8RjULH0IKt+evegCRWlwmUMP41QCoQ1z7yfEkA/qukZ4XE1MPGZsnjXUmi
+        FTrumL76+A4D6GbvzI5AnyU0CDB038GbhcjQY1FrOYVibBhmycoDJplGnROL4ouA
+        Er28FhLapOt2+qxs6ooo11ePEzzBWo0FlcgXqFFs8XYsfhSQWbrScqb8vmYQhruJ
+        UIw6gwCZFsLUxb57jjgUnmTB2QYGyl0pqTl+df1kiJ8jn4ytZ72nk0/uTfbCA+Jt
+        uSzY5amJ3U3vPl3C1FLY2VM4u8c/ullKw0DqMP2U9A==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=y8ljUZ
-        IDaYJs8wCxLlCkyDpCokhi6fOAzyABQKgphx4=; b=PDgrKFPkXHoTs37jsViGnO
-        9j9CoufsBMdfkGO3eDDFFE3Ctd57p35P7cuLZe1uBLaI22tm8v1SjjwkGhpJdnhF
-        niYEXZQJs2nm5MdrB6plB3QVM0KQLow3Oc8uIdimTRA774aZ3pvlhYe8ZQDxg2sV
-        PeCkJInXSQ9OVIUn/wdvC2hE+CTOIHTom5Sn87+/VUYMqMAomKZVTicWhykxIgo1
-        Gcy8c8UNUfn2xavSEr2MgYTGszqiQuB0Hqf+HaB9BFhPJYVktMB76lILxi0h8b+u
-        +UpLLFLH9+DGSuvpQSH24iVd+ivBJZa4jnhYYUIhc16y/Af7kCA3+83GMI29OBVw
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Lwf/Lr
+        Y/vE+XfQ2/Z92KIftl2TmXRB7ZTlFzeqJGXNQ=; b=UJ3HwRgtmw7K+DpeuWDEOx
+        rFazcoVi5aZu5uHJF5leS6+/BP4fK+ghav+SelaocCvlzN0cZJV/bDkY3rXrV4ZN
+        iRn7fLv9bhh8mRjdKnXDgKYnq1VFZnBu29v/ah8Z06hYWf8Hmv16LFWZIY7eiurm
+        SfBq2cry3mCyZi4RQGi4QphIn/wXQlq03LAO9zcTshrkLxyXhfG1cXiqvvL/5C+X
+        LzjP157yO7QDBfuFeAY6kZ2DKgSOy4AQVODq4Gal66fmuWbx+QCG7a6H9pICXJh2
+        yjA0X7N2Fl+9WbCLn5NdX4sclCpU4/8lN/6XiEXfvD5THcJqs6kz7Uah9nNmAcTg
         ==
-X-ME-Sender: <xms:P6maYfgSqMXxeBycBuNg8zD9uWCgrMeVXy7N__Z3cr3gnwKvNskMBQ>
-    <xme:P6maYcD_MP6wbn1rI-FpSoE0kc1kUKayB8u7MLGYZiKVdtrQkNIBcpPLy8zr1KQYF
-    ZckP1nA_X-ObKwQK7Y>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgedvgddufeekucetufdoteggodetrfdotf
+X-ME-Sender: <xms:q6qaYUNcT_AofxWkRAiZBJVh5JWEF0j58dmKLGKM_G4XGuQQWHvPYA>
+    <xme:q6qaYa-WaA5J_sv4SRcLfhSB0LE_q2qYaKV1b37OKIeUOm0iLDzzEtnNS0i5iPmt4
+    dmS8hBFRX2AKoxYRPE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgedvgddufeelucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
@@ -48,28 +48,31 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgedvgddufeekucetufdoteggod
     htthgvrhhnpefgieegieffuefhtedtjefgteejteefleefgfefgfdvvddtgffhffduhedv
     feekffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
     hsvhgvnhesshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:P6maYfG8A3061NimDm8l_gZh8lBeIPjZkD9PRnHtNfq_7IRBtOtdew>
-    <xmx:P6maYcRkZwfNCErPY4L2QnlLcTy7B20_U6JiW4js7oJMnsSgueuBtA>
-    <xmx:P6maYczDgSQg4C147o82w8G1qHSTZEOpLyBxSlxQTI3wBapWmcFp8w>
-    <xmx:P6maYbr6IFF_zXrlm8s_ydFqvTzS2_6y-rJMKMMFZlvBcXgUAVd0GA>
+X-ME-Proxy: <xmx:q6qaYbS6nbxT-X9KYwWt8IiskYv6fJPo7O6I5q3eyEzOEopUU1mWGg>
+    <xmx:q6qaYcuiuX_CAawIrVN_AzVO62BBB76-tQ9UByW3gfi5AFBj6LuQzA>
+    <xmx:q6qaYcd2tIN1PuwJ5QIW_ma6GBY_NPNC30Pkfyqrq-bOUYYF4Du11g>
+    <xmx:q6qaYdVIUtzooA9FK0zaQSKQE-j1rNWxz1SVz5EJLpa7Fu9SvLpz6w>
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0BB2F274055A; Sun, 21 Nov 2021 15:17:02 -0500 (EST)
+        id 54102274055F; Sun, 21 Nov 2021 15:23:07 -0500 (EST)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.5.0-alpha0-1371-g2296cc3491-fm-20211109.003-g2296cc34
 Mime-Version: 1.0
-Message-Id: <3bfce993-2535-4301-b5da-e2c7f9b48511@www.fastmail.com>
-In-Reply-To: <20211121180758.29477-4-j@jannau.net>
-References: <20211121180758.29477-1-j@jannau.net>
- <20211121180758.29477-4-j@jannau.net>
-Date:   Sun, 21 Nov 2021 21:16:21 +0100
+Message-Id: <2baebbe6-0080-4cff-86de-a00f23aea95e@www.fastmail.com>
+In-Reply-To: <20211121171545.27402-3-j@jannau.net>
+References: <20211121171545.27402-1-j@jannau.net>
+ <20211121171545.27402-3-j@jannau.net>
+Date:   Sun, 21 Nov 2021 21:22:47 +0100
 From:   "Sven Peter" <sven@svenpeter.dev>
 To:     "Janne Grunau" <j@jannau.net>, "Hector Martin" <marcan@marcan.st>,
         "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Rob Herring" <robh+dt@kernel.org>
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Wolfram Sang" <wsa@kernel.org>, "Olof Johansson" <olof@lixom.net>,
+        "Arnd Bergmann" <arnd@arndb.de>
 Cc:     "Mark Kettenis" <kettenis@openbsd.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] arm64: dts: apple: t8103: Add i2c and cd321x nodes
+        "Rob Herring" <robh@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: i2c: apple,i2c: allow multiple compatibles
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -77,176 +80,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Sun, Nov 21, 2021, at 19:07, Janne Grunau wrote:
-> i2c0, i2c1 and i2c3 are used on all M1 devices, i2c2 is only used on
-> the 2020 Mac Mini and 13-inch MacBook Pro. All devices have identical
-> i2c addresses for the cd321x' and use the same i2c bus.
-
-This should really be two commits: One for the i2c nodes and the other
-one to add the cd321x nodes.
-
+On Sun, Nov 21, 2021, at 18:15, Janne Grunau wrote:
+> The intention was to have a SoC-specific and base compatible string
+> to allow forward compatibility and SoC specific quirks,
 >
+> Fixes: df7c4a8c1b47 ("dt-bindings: i2c: Add Apple I2C controller bindings")
 > Signed-off-by: Janne Grunau <j@jannau.net>
+> Cc: Mark Kettenis <kettenis@openbsd.org>
 > ---
->  arch/arm64/boot/dts/apple/t8103-j274.dts  |  4 ++
->  arch/arm64/boot/dts/apple/t8103-j293.dts  |  4 ++
->  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 18 ++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi      | 73 +++++++++++++++++++++++
->  4 files changed, 99 insertions(+)
+
+Yeah, this should've been "apple,t8103-i2c", "apple,i2c" all along :/
+Given that we have no i2c nodes in the dts yet and that this binding was
+only added for -rc1 I think it's fine to just drop "apple,t8103-i2c"
+here instead of marking it as deprecated and keeping it around forever
+if Mark Kettenis also agrees.
+
+>  Documentation/devicetree/bindings/i2c/apple,i2c.yaml | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j274.dts 
-> b/arch/arm64/boot/dts/apple/t8103-j274.dts
-> index 9e01ef70039d..2cd429efba5b 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-j274.dts
-> +++ b/arch/arm64/boot/dts/apple/t8103-j274.dts
-> @@ -39,3 +39,7 @@ ethernet0: ethernet@0,0 {
->  		local-mac-address = [00 10 18 00 00 00];
->  	};
->  };
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts 
-> b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> index 466035f00b69..a3b084d50da3 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-> +++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-> @@ -31,3 +31,7 @@ &pcie0_dart_2 {
+> diff --git a/Documentation/devicetree/bindings/i2c/apple,i2c.yaml 
+> b/Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+> index 22fc8483256f..f1cb96c08212 100644
+> --- a/Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+> @@ -20,9 +20,10 @@ allOf:
 > 
->  /delete-node/ &port01;
->  /delete-node/ &port02;
-> +
-> +&i2c2 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi 
-> b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> index 53d22b434d76..5f748f3f60d2 100644
-> --- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-> @@ -39,6 +39,24 @@ &serial0 {
->  	status = "okay";
->  };
-> 
-> +&i2c0 {
-> +	hpm0: tps6598x@38 {
-> +		compatible = "apple,cd321x";
-> +		reg = <0x38>;
-> +		interrupt-parent = <&pinctrl_ap>;
-> +		interrupts = <106 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-names = "irq";
-> +	};
-> +
-> +	hpm1: tps6598x@3f {
-> +		compatible = "apple,cd321x";
-> +		reg = <0x3f>;
-> +		interrupt-parent = <&pinctrl_ap>;
-> +		interrupts = <106 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-names = "irq";
-> +	};
-> +};
-> +
->  /*
->   * Force the bus number assignments so that we can declare some of the
->   * on-board devices and properties that are populated by the bootloader
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi 
-> b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index c320c8baeb41..6c6dd988bd60 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -126,6 +126,59 @@ serial0: serial@235200000 {
->  			status = "disabled";
->  		};
-> 
-> +		i2c0: i2c@235010000 {
-> +			compatible = "apple,t8103-i2c", "apple,i2c";
-> +			reg = <0x2 0x35010000 0x0 0x4000>;
-> +			clocks = <&clk24>;
-> +			clock-names = "ref";
+>  properties:
+>    compatible:
+> -    enum:
+> -      - apple,t8103-i2c
+> -      - apple,i2c
+> +    items:
+> +      - enum:
+> +        - apple,t8103-i2c
+> +      - const: apple,i2c
 
-I don't think we need the clock name here.
+Nit: the enum makes sense once we add t6000-i2c but right now
 
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 627 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-0 = <&i2c0_pins>;
-> +			pinctrl-names = "default";
-> +			#address-cells = <0x1>;
-> +			#size-cells = <0x0>;
-> +		};
-> +
-> +		i2c1: i2c@235014000 {
-> +			compatible = "apple,t8103-i2c", "apple,i2c";
-> +			reg = <0x2 0x35014000 0x0 0x4000>;
-> +			clocks = <&clk24>;
-> +			clock-names = "ref";
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 628 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-0 = <&i2c1_pins>;
-> +			pinctrl-names = "default";
-> +			#address-cells = <0x1>;
-> +			#size-cells = <0x0>;
-> +		};
-> +
-> +		i2c2: i2c@235018000 {
-> +			compatible = "apple,t8103-i2c", "apple,i2c";
-> +			reg = <0x2 0x35018000 0x0 0x4000>;
-> +			clocks = <&clk24>;
-> +			clock-names = "ref";
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 628 IRQ_TYPE_LEVEL_HIGH>;
+properties:
+  compatible:
+    items:
+      - const: apple,t8103-i2c
+      - const: apple,i2c
 
-Shouldn't this be 629? 628 is already used for i2c1.
+also works and look a bit less weird.
 
-> +			pinctrl-0 = <&i2c2_pins>;
-> +			pinctrl-names = "default";
-> +			#address-cells = <0x1>;
-> +			#size-cells = <0x0>;
-> +			status = "disabled"; /* not used in all devices */
-> +		};
-> +
-> +		i2c3: i2c@23501c000 {
-> +			compatible = "apple,t8103-i2c", "apple,i2c";
-> +			reg = <0x2 0x3501c000 0x0 0x4000>;
-> +			clocks = <&clk24>;
-> +			clock-names = "ref";
-> +			interrupt-parent = <&aic>;
-> +			interrupts = <AIC_IRQ 630 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-0 = <&i2c3_pins>;
-> +			pinctrl-names = "default";
-> +			#address-cells = <0x1>;
-> +			#size-cells = <0x0>;
-> +		};
-> +
->  		aic: interrupt-controller@23b100000 {
->  			compatible = "apple,t8103-aic", "apple,aic";
->  			#interrupt-cells = <3>;
-> @@ -153,6 +206,26 @@ pinctrl_ap: pinctrl@23c100000 {
->  				     <AIC_IRQ 195 IRQ_TYPE_LEVEL_HIGH>,
->  				     <AIC_IRQ 196 IRQ_TYPE_LEVEL_HIGH>;
-> 
-> +			i2c0_pins: i2c0-pins {
-> +				pinmux = <APPLE_PINMUX(192, 1)>,
-> +					 <APPLE_PINMUX(188, 1)>;
-> +			};
-> +
-> +			i2c1_pins: i2c1-pins {
-> +				pinmux = <APPLE_PINMUX(201, 1)>,
-> +					 <APPLE_PINMUX(199, 1)>;
-> +			};
-> +
-> +			i2c2_pins: i2c2-pins {
-> +				pinmux = <APPLE_PINMUX(163, 1)>,
-> +					 <APPLE_PINMUX(162, 1)>;
-> +			};
-> +
-> +			i2c3_pins: i2c3-pins {
-> +				pinmux = <APPLE_PINMUX(73, 1)>,
-> +					 <APPLE_PINMUX(72, 1)>;
-> +			};
-> +
->  			pcie_pins: pcie-pins {
->  				pinmux = <APPLE_PINMUX(150, 1)>,
->  					 <APPLE_PINMUX(151, 1)>,
-> -- 
-> 2.34.0
+Either way,
+
+Reviewed-by: Sven Peter <sven@svenpeter.dev>
+
+
+Sven
