@@ -2,94 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 295A145853B
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 18:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF6045854A
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 18:15:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231708AbhKURIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 12:08:11 -0500
-Received: from mx1.riseup.net ([198.252.153.129]:52992 "EHLO mx1.riseup.net"
+        id S238400AbhKURSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 12:18:53 -0500
+Received: from soltyk.jannau.net ([144.76.91.90]:53114 "EHLO soltyk.jannau.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230330AbhKURIK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Nov 2021 12:08:10 -0500
-Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
-         client-signature RSA-PSS (2048 bits) client-digest SHA256)
-        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
-        by mx1.riseup.net (Postfix) with ESMTPS id 4Hxxbj2pjGzF4fK;
-        Sun, 21 Nov 2021 09:05:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
-        t=1637514305; bh=frwbpAYFFyKxiux4VNiRv0JHmchfOJHIwVueKmJ/N54=;
-        h=From:To:Cc:Subject:Date:From;
-        b=DnHJEzAVmCFcssJOve8Nh0CbFmDU0roR2UzNfT3yraEmQK+TyHnwRqSsXGFLo9gdJ
-         7NECBJRzia4vHfpGaBbIr/wXcO5i69uswe3uPlPfzWJq/UhZsCP7Bdfpir/8ClyQGy
-         iu6Y//EsHDek+CWkN27lknZe7to8LImA3zMlInF0=
-X-Riseup-User-ID: 54A1B4C10A7C74CEF85107746A15AE74BD9BA5C629997227E12ADA846B3E1C0F
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-         by fews1.riseup.net (Postfix) with ESMTPSA id 4Hxxbf6rfkz5vV4;
-        Sun, 21 Nov 2021 09:05:02 -0800 (PST)
-From:   Dang Huynh <danct12@riseup.net>
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S229770AbhKURSx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Nov 2021 12:18:53 -0500
+Received: from coburn.home.jannau.net (p579ad520.dip0.t-ipconnect.de [87.154.213.32])
+        by soltyk.jannau.net (Postfix) with ESMTPSA id 1F562261B2B;
+        Sun, 21 Nov 2021 18:15:46 +0100 (CET)
+From:   Janne Grunau <j@jannau.net>
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>
-Subject: [PATCH] arm64: dts: qcom: sdm660-xiaomi-lavender: Add volume up button
-Date:   Mon, 22 Nov 2021 00:04:49 +0700
-Message-Id: <20211121170449.1124048-1-danct12@riseup.net>
+        Marc Zyngier <maz@kernel.org>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Olof Johansson <olof@lixom.net>, Wolfram Sang <wsa@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] Apple Arm patform device tree and bindings fixes
+Date:   Sun, 21 Nov 2021 18:15:42 +0100
+Message-Id: <20211121171545.27402-1-j@jannau.net>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the volume up key.
+Hej All,
 
-Signed-off-by: Dang Huynh <danct12@riseup.net>
----
-This patch is a continuation of this series [1]. The other patches in
-the series have been applied and remains this. 
+this series fixes small issues in the device tree bindings and files
+for the Apple Arm platform in v5.16-rc1. The fixes are non-critical
+but make things easier moving forward.
 
-Changes in v5:
-- Remove deprecated input-name property.
+Patch 1/3 was previously sent, annotated with a "Fixes" tag and Mark's
+"Reviewed-by".
 
-[1]: https://patchwork.kernel.org/cover/12630601/
+Thanks
+Janne
 
- arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Janne Grunau (3):
+  arm64: dts: apple: change ethernet0 device type to ethernet
+  dt-bindings: i2c: apple,i2c: allow multiple compatibles
+  arm64: dts: apple: add #interrupt-cells property to pinctrl nodes
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-index 9a6684922804..6586b8e47483 100644
---- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-@@ -9,6 +9,8 @@
- #include "sdm660.dtsi"
- #include "pm660.dtsi"
- #include "pm660l.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/input/gpio-keys.h>
- 
- / {
- 	model = "Xiaomi Redmi Note 7";
-@@ -33,6 +35,17 @@ vph_pwr: vph-pwr-regulator {
- 		regulator-boot-on;
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		volup {
-+			label = "Volume Up";
-+			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
+ Documentation/devicetree/bindings/i2c/apple,i2c.yaml | 9 +++++----
+ arch/arm64/boot/dts/apple/t8103-j274.dts             | 2 +-
+ arch/arm64/boot/dts/apple/t8103.dtsi                 | 4 ++++
+ 3 files changed, 10 insertions(+), 5 deletions(-)
+
 -- 
-2.34.0
+2.33.1
 
