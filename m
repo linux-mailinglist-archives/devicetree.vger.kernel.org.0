@@ -2,114 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 700E745872D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 00:35:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5B3245873A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 00:49:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230199AbhKUXio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 18:38:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45142 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbhKUXio (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 18:38:44 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0416C06173E
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 15:35:38 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso26199758ots.6
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 15:35:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BaBwOZhHd4DxX6OyrXmhy1nl2ZJax3QUSfV+91vGF7M=;
-        b=K+j7e9qBhUAibBOZEuR3+OvgRRz5+9kXuJpfy7hOrCUUI5mVAVvfPjVaSaQWagEtmD
-         VaQjSDZvZCKKfl/PaO0UdwCeIlqMJ7eJooO6eT7GjoXW1uvDDryVqntBnxqhbhpAdjE3
-         CmxKLcWB9dGg5+uW12IGRoofHXHVRV9TegwAW6qUaX/HiDYCvGQYSP2/TGLWo1eJk41q
-         HLONx6bHVQumcQ5Vy4Z+6fD/ZgNYF7VwvELj9YticGsmN4Q2lcnFiWT5fPI5W1ugXnAY
-         wRaew207TxZ9kuepimcJjzsp7th6vntEkiki7IDzihCyEVwhCSWDlcpKyzXN5bcdu5J+
-         tDSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BaBwOZhHd4DxX6OyrXmhy1nl2ZJax3QUSfV+91vGF7M=;
-        b=8QggCWCpKDl4JOcAZNvKuSWy3chqP6pWsco4DshYRr9lESCH1DDW4VKd3OwEEXrnmj
-         qG346tGQiF5+MLIMeWfC+McrRudcd/68NboKERIbZYe7i+e3namfP478CUI1HmLaloqO
-         oT/Pd3B8+DC5YKuVltWY+gElPWAsW2I1EjVs4IeAqSYAF8hsDV0Etfm1EM9DEYbM6wBJ
-         qF9x3gM2Ch2dAkfOQ2gzleVG5YTYojRQ6wgEeV4ZOrfPNW0ki5LbWQ4/IrZYBQgjLxNw
-         fmeFHp2bVHjH36dhhxoGalNyD0C7iYSVsAu8fcZFzyhqcLwEzVionFOjuweKiahhHtx2
-         kP3w==
-X-Gm-Message-State: AOAM531GeZy+bbtjmuXShJrxxZR5HNJ8Ph+fkTn7EfztBiK+2LK1rPpn
-        YXBFPKUbVUAhJtJAOsL5CLZdATtk9nUJ3DNr4oC7dg==
-X-Google-Smtp-Source: ABdhPJxP1hm4dAk3hP5iwxGTmVS5kCY5d1BVX1iWfJPo1f0KYbx3q9C2qhLGJ7JQjety/S6BZHEqWcsnr8krInQwy+4=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr21475101otg.179.1637537737964;
- Sun, 21 Nov 2021 15:35:37 -0800 (PST)
-MIME-Version: 1.0
-References: <20211116150119.2171-1-kernel@esmil.dk> <20211116150119.2171-13-kernel@esmil.dk>
-In-Reply-To: <20211116150119.2171-13-kernel@esmil.dk>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 22 Nov 2021 00:35:26 +0100
-Message-ID: <CACRpkdbsRg3KB=xvhUPF3gVjE92pTwsbV+1SOJ=DXSE7c9VNHw@mail.gmail.com>
-Subject: Re: [PATCH v4 12/16] pinctrl: starfive: Add pinctrl driver for
- StarFive SoCs
-To:     Emil Renner Berthing <kernel@esmil.dk>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        id S231614AbhKUXwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 18:52:23 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:42605 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S229735AbhKUXwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Nov 2021 18:52:22 -0500
+X-IronPort-AV: E=Sophos;i="5.87,253,1631545200"; 
+   d="scan'208";a="101341780"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 22 Nov 2021 08:49:15 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 99B4C4129A30;
+        Mon, 22 Nov 2021 08:49:13 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Michael Zhu <michael.zhu@starfivetech.com>,
-        Fu Wei <tekkamanninja@gmail.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Atish Patra <atish.patra@wdc.com>,
-        Matteo Croce <mcroce@microsoft.com>,
-        Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
-        Huan Feng <huan.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-renesas-soc@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: rzg2l-smarc-som: Enable serial NOR flash
+Date:   Sun, 21 Nov 2021 23:49:06 +0000
+Message-Id: <20211121234906.9602-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 4:02 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+Enable mt25qu512a flash connected to QSPI0.
 
-> Add a combined pinctrl and GPIO driver for the JH7100 RISC-V SoC by
-> StarFive Ltd. This is a test chip for their upcoming JH7110 SoC, which
-> is said to feature only minor changes to these pinctrl/GPIO parts.
->
-> For each "GPIO" there are two registers for configuring the output and
-> output enable signals which may come from other peripherals. Among these
-> are two special signals that are constant 0 and constant 1 respectively.
-> Controlling the GPIOs from software is done by choosing one of these
-> signals. In other words the same registers are used for both pin muxing
-> and controlling the GPIOs, which makes it easier to combine the pinctrl
-> and GPIO driver in one.
->
-> I wrote the pinconf and pinmux parts, but the GPIO part of the code is
-> based on the GPIO driver in the vendor tree written by Huan Feng with
-> cleanups and fixes by Drew and me.
->
-> Datasheet: https://github.com/starfive-tech/JH7100_Docs/blob/main/JH7100%20Data%20Sheet%20V01.01.04-EN%20(4-21-2021).pdf
-> Co-developed-by: Huan Feng <huan.feng@starfivetech.com>
-> Signed-off-by: Huan Feng <huan.feng@starfivetech.com>
-> Signed-off-by: Emil Renner Berthing <kernel@esmil.dk>
-> Co-developed-by: Drew Fustini <drew@beagleboard.org>
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v1->v2
+-> Renamed qspi_pins0 to qspi0_pins
+---
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 40 +++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-Overall there is nothing wrong with this, and it is in nice shape.
-Let's merge it:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+index 7e84a29dddfa..aef1b8736732 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+@@ -178,6 +178,18 @@
+ 		line-name = "gpio_sd0_pwr_en";
+ 	};
+ 
++	qspi0_pins: qspi0 {
++		qspi0-data {
++			pins = "QSPI0_IO0", "QSPI0_IO1", "QSPI0_IO2", "QSPI0_IO3";
++			power-source  = <1800>;
++		};
++
++		qspi0-ctrl {
++			pins = "QSPI0_SPCLK", "QSPI0_SSL", "QSPI_RESET#";
++			power-source  = <1800>;
++		};
++	};
++
+ 	/*
+ 	 * SD0 device selection is XOR between GPIO_SD0_DEV_SEL and SW1[2]
+ 	 * The below switch logic can be used to select the device between
+@@ -243,6 +255,34 @@
+ 	};
+ };
+ 
++&sbc {
++	pinctrl-0 = <&qspi0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	flash@0 {
++		compatible = "micron,mt25qu512a", "jedec,spi-nor";
++		reg = <0>;
++		m25p,fast-read;
++		spi-max-frequency = <50000000>;
++		spi-rx-bus-width = <4>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			boot@0 {
++				reg = <0x00000000 0x2000000>;
++				read-only;
++			};
++			user@2000000 {
++				reg = <0x2000000 0x2000000>;
++			};
++		};
++	};
++};
++
+ #if SDHI
+ &sdhi0 {
+ 	pinctrl-0 = <&sdhi0_pins>;
+-- 
+2.17.1
 
-Yours,
-Linus Walleij
