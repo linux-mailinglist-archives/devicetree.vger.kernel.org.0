@@ -2,79 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECF284584A5
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 17:18:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F78F4584B4
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 17:25:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232416AbhKUQVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 11:21:47 -0500
-Received: from o1.ptr2625.egauge.net ([167.89.112.53]:39720 "EHLO
-        o1.ptr2625.egauge.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229742AbhKUQVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 11:21:47 -0500
-X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Sun, 21 Nov 2021 11:21:47 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=egauge.net;
-        h=from:subject:mime-version:to:cc:content-transfer-encoding:
-        content-type;
-        s=sgd; bh=0m8oub9Sqbg42DmQixWK/323NaRfv+ybWQ1cHvrIgqQ=;
-        b=PuNI8kvtIzVk6YOaGiH1KRzwP4fB6SSwsEMtdGjENDIBH/Ereoaixqvaz0zgOQTnojGv
-        lUXnh7jV48f26P9q8t9I//dp0STMDcZNgWgTdKvnVXppkoAE0AMtU7utEk0qIipZ2UaIHc
-        51BAgByw/jwmw80OkFLmOpADrzETUayAGBceH73ylt1tRSPfCipvKww6QeHRvk3hRVx8SR
-        A3y5yqyJ+WHrtyWizmeaFUkpz0oCCsiEjl85sP3N/v+lFXdEzXLO3iZ5UAewMX4/hV0idO
-        FvNsuWXXpT3p0/r9DiXgdc2u6mRkAO5qkZKr6mf+vofaBDlqGpLGtdEro0kOFOGA==
-Received: by filterdrecv-656998cfdd-phncc with SMTP id filterdrecv-656998cfdd-phncc-1-619A7034-1D
-        2021-11-21 16:13:40.544532967 +0000 UTC m=+5244381.730779738
-Received: from pearl.egauge.net (unknown)
-        by geopod-ismtpd-6-0 (SG)
-        with ESMTP
-        id Cw5TBdvfRU6QLFIHqCUgHg
-        Sun, 21 Nov 2021 16:13:40.381 +0000 (UTC)
-Received: by pearl.egauge.net (Postfix, from userid 1000)
-        id A2C78700479; Sun, 21 Nov 2021 09:13:39 -0700 (MST)
-From:   David Mosberger-Tang <davidm@egauge.net>
-Subject: [PATCH] Update trivial-devices.yaml with Sensirion,sht4x
-Date:   Sun, 21 Nov 2021 16:13:40 +0000 (UTC)
-Message-Id: <20211121161320.2312393-1-davidm@egauge.net>
-X-Mailer: git-send-email 2.25.1
+        id S238481AbhKUQ2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 11:28:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238478AbhKUQ2b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 11:28:31 -0500
+Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D222C061748
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:25:26 -0800 (PST)
+Received: by mail-ua1-x935.google.com with SMTP id l24so31749363uak.2
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:25:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lyWVrwoC5gH3Towkzk80K7hVwLuSw7kjiF0rQebdy+8=;
+        b=gTYBxDOoMtEHSvOHP4PPRHLfeh7NFe0mU90SdM91np1JWQDSoFwyqKF+iwyK4W+kTO
+         yUkM/gzcXk0w8D/LyOYg6fJz4wR6bmVMTdfpmkj2ZDdQvSUKYU5EVxmK8cdctqq1LWdA
+         +W8SLVEYdFCQGlyijJfo822IGP+P/WXfcPfuWNAv49nGwhJsKNFtLk8QRNbZ4aDD1qH/
+         Y3GcMyegoFgcMlvej+P3iYEd8NA82EnNj4qi//76aCWnaRMz9JHPtZnaBMU7iQmq2VW3
+         yuuQ6epti1GKQ70j8w1NPQz2Vc+o1iyz4aWlmy5kIAunb3xI2qaItbnjv6fvsagHLOSb
+         1TfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lyWVrwoC5gH3Towkzk80K7hVwLuSw7kjiF0rQebdy+8=;
+        b=wA8ntku920knd/rgi5daH6IwKMLhsP0bmnVBcu1o/FUKox8hE22nPJk1xckQp2FkOc
+         RX2FRahxKRQAsBz3SGv/tPAsKmP9AnRH32y5PS5s7GcXP0PSQxaJRQRGfXokn+MsayhB
+         GFWiciV9tJa40pgBQyvCXwryBoVcsATDgEj8WIanH24LRvVPo9602wzKEjvvsdk+w0wr
+         erpRWdIE9d/EY5cNKHlv3NzPuItLn/iggsIuxi68lfLx4bIg1dBmot2sza7UqcGhOYAH
+         RSGr8FKhIZzhk2HzaSITvAGIhXS1RZdfN07yeqp6wYx8LtESUtXV57sjNvHAYpwQwKsN
+         85Jg==
+X-Gm-Message-State: AOAM531c8b9pHZ8TeShA1QV8LUuK/BkvcvaJoTOYUBj3xjMNqVonKwS2
+        mvoOiJqZYKQsJBgHXTEd0hxMyg58lqi4E2/3EmdU1g==
+X-Google-Smtp-Source: ABdhPJyOCVZWZ9dT1IZQS+yhLWWTW8zTyfIHH1f+CrFME+pLCGJh1pGLyOvJJcDLXeeBhraFl79zuExeBHpFFoUmHe0=
+X-Received: by 2002:a05:6102:ac3:: with SMTP id m3mr104759337vsh.1.1637511925245;
+ Sun, 21 Nov 2021 08:25:25 -0800 (PST)
 MIME-Version: 1.0
-X-SG-EID: =?us-ascii?Q?+kMxBqj35EdRUKoy8diX1j4AXmPtd302oan+iXZuF8m2Nw4HRW2irNspffT=2Fkh?=
- =?us-ascii?Q?ET6RJF6+Prbl0h=2FEtF1rRLvAeiqsadiSQ8w=2FuBS?=
- =?us-ascii?Q?BMnK0k2GmOJBAl=2FRrGN7842LA4GasdWthoSPZHY?=
- =?us-ascii?Q?3tlR4fYpfB0VqglU1i4=2FHaEFMUjw=2FL2iwQCcwwv?=
- =?us-ascii?Q?3C3zPADLLfigeKVPmZGl=2FllefAhNxK9DwpYIv5D?=
- =?us-ascii?Q?6oSbkmP820y0q3T0kuqSHZkzru8gbwpc7UW+AwX?=
- =?us-ascii?Q?sjUsH0+7KT3DRQOO7hVsg=3D=3D?=
+References: <20211107202943.8859-1-semen.protsenko@linaro.org>
+ <20211107202943.8859-13-semen.protsenko@linaro.org> <2c0e5b23-92c5-70c9-3460-e9748f8a869e@roeck-us.net>
+In-Reply-To: <2c0e5b23-92c5-70c9-3460-e9748f8a869e@roeck-us.net>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Sun, 21 Nov 2021 18:25:13 +0200
+Message-ID: <CAPLW+4mJYBhrYo58oF7hYXi+5Nt2ROvqDXB_=zezJsuExW6oBA@mail.gmail.com>
+Subject: Re: [PATCH v3 12/12] watchdog: s3c2410: Add Exynos850 support
 To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Jiri Kosina <trivial@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        David Mosberger-Tang <davidm@egauge.net>
-X-Entity-ID: Xg4JGAcGrJFIz2kDG9eoaQ==
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=us-ascii
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Sensirion SHT4x, a precision temperature and humidity sensor, to
-trivial-devices.yaml.
+On Sat, 20 Nov 2021 at 22:29, Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 11/7/21 12:29 PM, Sam Protsenko wrote:
+> > Exynos850 is a bit different from SoCs already supported in WDT driver:
+> >    - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
+> >      always 0; .disable_auto_reset callback is not set for that reason
+> >    - MASK_WDT_RESET_REQUEST register is replaced with
+> >      CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
+> >      reset interrupt it's now enabled with the same value; .mask_reset
+> >      callback is reused for that functionality though
+> >    - To make WDT functional, WDT counter needs to be enabled in
+> >      CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
+> >      callback
+> >
+> > Also Exynos850 has two CPU clusters, each has its own dedicated WDT
+> > instance. Different PMU registers and bits are used for each cluster. So
+> > driver data is now modified in probe, adding needed info depending on
+> > cluster index passed from device tree.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v3:
+> >    - Renamed "samsung,index" property to more descriptive
+> >      "samsung,cluster-index"
+> >    - Used pre-defined and completely set driver data for cluster0 and
+> >      cluster1
+> >
+> > Changes in v2:
+> >    - Used single compatible for Exynos850, populating missing driver data
+> >      in probe
+> >    - Added "index" property to specify CPU cluster index
+> >
+> >   drivers/watchdog/s3c2410_wdt.c | 62 +++++++++++++++++++++++++++++++++-
+> >   1 file changed, 61 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+> > index 96aa5d9c6ed4..1456201f27de 100644
+> > --- a/drivers/watchdog/s3c2410_wdt.c
+> > +++ b/drivers/watchdog/s3c2410_wdt.c
+> > @@ -56,6 +56,13 @@
+> >   #define EXYNOS5_RST_STAT_REG_OFFSET         0x0404
+> >   #define EXYNOS5_WDT_DISABLE_REG_OFFSET              0x0408
+> >   #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET   0x040c
+> > +#define EXYNOS850_CLUSTER0_NONCPU_OUT                0x1220
+> > +#define EXYNOS850_CLUSTER0_NONCPU_INT_EN     0x1244
+> > +#define EXYNOS850_CLUSTER1_NONCPU_OUT                0x1620
+> > +#define EXYNOS850_CLUSTER1_NONCPU_INT_EN     0x1644
+> > +
+> > +#define EXYNOS850_CLUSTER0_WDTRESET_BIT              24
+> > +#define EXYNOS850_CLUSTER1_WDTRESET_BIT              23
+> >
+> >   /**
+> >    * Quirk flags for different Samsung watchdog IP-cores.
+> > @@ -205,6 +212,30 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
+> >                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
+> >   };
+> >
+> > +static const struct s3c2410_wdt_variant drv_data_exynos850_cl0 = {
+> > +     .mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN,
+> > +     .mask_bit = 2,
+> > +     .mask_reset_inv = true,
+> > +     .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+> > +     .rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT,
+> > +     .cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT,
+> > +     .cnt_en_bit = 7,
+> > +     .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
+> > +               QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
+> > +};
+> > +
+> > +static const struct s3c2410_wdt_variant drv_data_exynos850_cl1 = {
+> > +     .mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN,
+> > +     .mask_bit = 2,
+> > +     .mask_reset_inv = true,
+> > +     .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+> > +     .rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT,
+> > +     .cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT,
+> > +     .cnt_en_bit = 7,
+> > +     .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
+> > +               QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
+> > +};
+> > +
+> >   static const struct of_device_id s3c2410_wdt_match[] = {
+> >       { .compatible = "samsung,s3c2410-wdt",
+> >         .data = &drv_data_s3c2410 },
+> > @@ -216,6 +247,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
+> >         .data = &drv_data_exynos5420 },
+> >       { .compatible = "samsung,exynos7-wdt",
+> >         .data = &drv_data_exynos7 },
+> > +     { .compatible = "samsung,exynos850-wdt",
+> > +       .data = &drv_data_exynos850_cl0 },
+> >       {},
+> >   };
+> >   MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
+> > @@ -587,14 +620,38 @@ static inline const struct s3c2410_wdt_variant *
+> >   s3c2410_get_wdt_drv_data(struct platform_device *pdev)
+> >   {
+> >       const struct s3c2410_wdt_variant *variant;
+> > +     struct device *dev = &pdev->dev;
+> >
+> > -     variant = of_device_get_match_data(&pdev->dev);
+> > +     variant = of_device_get_match_data(dev);
+> >       if (!variant) {
+> >               /* Device matched by platform_device_id */
+> >               variant = (struct s3c2410_wdt_variant *)
+> >                          platform_get_device_id(pdev)->driver_data;
+> >       }
+> >
+> > +     /* Choose Exynos850 driver data w.r.t. cluster index */
+> > +     if (variant == &drv_data_exynos850_cl0) {
+>
+> 0-day has a point here. drv_data_exynos850_cl0 is declared inside a CONFIG_OF
+> conditional, causing compile failure if CONFIG_OF is not enabled.
+>
+> Please fix and resubmit.
+>
 
-Signed-off-by: David Mosberger-Tang <davidm@egauge.net>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Right. I missed that this driver has also platform device table. Will
+send v4 soon.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 1e4b3464d734..bbd1f49faa88 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -277,6 +277,8 @@ properties:
-           - sensirion,sgp30
-             # Sensirion gas sensor with I2C interface
-           - sensirion,sgp40
-+            # Sensirion temperature & humidity sensor with I2C interface
-+          - sensirion,sht4x
-             # Sensortek 3 axis accelerometer
-           - sensortek,stk8312
-             # Sensortek 3 axis accelerometer
--- 
-2.25.1
-
+> Guenter
