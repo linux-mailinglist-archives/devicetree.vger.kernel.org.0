@@ -2,122 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F14C45826C
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 08:03:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C2A458284
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 09:17:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229729AbhKUHGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 02:06:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55778 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbhKUHGc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 02:06:32 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F8EAC061574;
-        Sat, 20 Nov 2021 23:03:27 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso13970902wml.1;
-        Sat, 20 Nov 2021 23:03:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5wISGq2t2SDmY1fBi1n88KuPv1Mb+rVK+4uwhokCpSE=;
-        b=cUn0+vQeVAB6Up16OIJRP5NyDruX7H2Yk/ZJ/kn9X0V8SxWGSGWmBRRcmJNF7cDZ4N
-         rnGE/btBqG82tezCe3l1x/nVtOwCI8mH2jtbnYDwKQocVroae5Ncbh2Co2hdv+KEaD9C
-         UakkMvh4pX/tG7CyL2GUqi6s01OnXTb8yQ5BNxOrHw0fZosXfrBLPJwcYxmzX43fEcbN
-         NzrDuvFlRQ9Cy8gBf/I7xJWdBny4XmrgBtVz7Rb1xU6j9x1rCptI5GJMLij9D1wCSc4u
-         sS5hA15CKV/aduifqxcneKJZzyMs9tzCw3iBQ5xGi79TKxvfz8wLeZEZzV9hEhuQGOOo
-         3JjQ==
+        id S232739AbhKUIUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 03:20:47 -0500
+Received: from mail-vk1-f181.google.com ([209.85.221.181]:35682 "EHLO
+        mail-vk1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229792AbhKUIUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 03:20:46 -0500
+Received: by mail-vk1-f181.google.com with SMTP id q21so8388073vkn.2;
+        Sun, 21 Nov 2021 00:17:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5wISGq2t2SDmY1fBi1n88KuPv1Mb+rVK+4uwhokCpSE=;
-        b=IuQPZDPI+22oY3qUezyIqH9Rppb9+JWGXeLWa8ZGNGbcO9z5rhu5LG9lmnkjvP7Io0
-         DQhSYwqK+GX3YnSkJPhJQnLA+Ctk4P7Kw+jPvU1fOwnu4wBuSVzEKo4UWGu/ER33r2XK
-         dnUoUJOiXjysT7WgIMsOZ6B0jg3W633VTde4MChVZcwXtVkXlGVhHrSswc8YKfOvJ4GL
-         /goK2eszQjAJH4lNdOzK5uDEu3HXBl2RagjLMpYqroFJF8mR4lBjoDzXGGjKf3A29S3S
-         6r0qm0w99JSw/wB0yG0ed8ZrHEOXyJC0PByOZPpfb6erfGckIYEEDcGFzLsY2qgr+FaI
-         TdvQ==
-X-Gm-Message-State: AOAM531akx0Nj79QhXr+CPTCQ94dHYD9X7ZtERI8yGHeJrv4uusk2UK8
-        7KTp2AekwWXW2cdCocWwdIA=
-X-Google-Smtp-Source: ABdhPJzLvfJDsRut5KiPWWiiRTblRiQR4SJ5SdmjWPKji8bryNV+1aYeFMsm5cenajTowWn9FuY8ow==
-X-Received: by 2002:a7b:c084:: with SMTP id r4mr17706610wmh.117.1637478205554;
-        Sat, 20 Nov 2021 23:03:25 -0800 (PST)
-Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id d6sm4886620wrx.60.2021.11.20.23.03.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 20 Nov 2021 23:03:24 -0800 (PST)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH] ARM: dts: sun8i: h3: beelink-x2: Sort nodes
-Date:   Sun, 21 Nov 2021 08:03:21 +0100
-Message-Id: <20211121070321.601659-1-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.34.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc;
+        bh=YPdHw4igg7YGQnROWzeeN0m+U3heN/q62UEOUxqqzSU=;
+        b=19iLz+Tfx5W3CrhGjwKwUCFPtO7Xy8ke5rwypina3eFBy1uiJ03dF+p+XTyZl7mVMC
+         DZVq3EsIKJfsqzkUs1SGO2UR2fQ5hyYPCkVbX4G0THJ1SPpEij7xVziUTD7gPBawB3VA
+         ECsfxWSLIw23HdXOCjfs/y19DHoiWa5MUHdBq4QienFYXc/GkaK3r/L8OBhG2rgOwkfc
+         jiXr/CBqG4uIo8t95kd+ydwPST0/DXZJ89xEqSWJ3dG6C7XPMSnMfl3XPtYyPsN7oFSK
+         aQQdJ9K2olioOjpUtzfhRPqDZwGKLPh7IRpk7rekVFiE+fvIl7WEP3BArCu1XLLDjLau
+         VqIQ==
+X-Gm-Message-State: AOAM5317EDQ/SqRJK4wbfKby0R/uunSgRzBWEC0E3/O1yMRjSW+RIlBG
+        WIm33Dmln3LiuyH/oKZtoalYCc9EcOpN8w==
+X-Google-Smtp-Source: ABdhPJxLAQMjHhEzGuxaFek8uZ0VDoqJalO8OMwjd4YbQXG5xKPw1UD46akVTFUY7VWdr+0WVFKORQ==
+X-Received: by 2002:ac5:c55a:: with SMTP id d26mr144537344vkl.25.1637482661476;
+        Sun, 21 Nov 2021 00:17:41 -0800 (PST)
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com. [209.85.222.44])
+        by smtp.gmail.com with ESMTPSA id y24sm2902118uaq.17.2021.11.21.00.17.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 21 Nov 2021 00:17:41 -0800 (PST)
+Received: by mail-ua1-f44.google.com with SMTP id p37so30165174uae.8;
+        Sun, 21 Nov 2021 00:17:41 -0800 (PST)
+X-Received: by 2002:ab0:4324:: with SMTP id k33mr71136243uak.43.1637482660900;
+ Sun, 21 Nov 2021 00:17:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211121070321.601659-1-jernej.skrabec@gmail.com>
+In-Reply-To: <20211121070321.601659-1-jernej.skrabec@gmail.com>
+Reply-To: wens@csie.org
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Sun, 21 Nov 2021 16:17:29 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65KpiW7s4BVTfiBRp1o=wM+CS5SBH1RT+2ZJP-ymtT4CQ@mail.gmail.com>
+Message-ID: <CAGb2v65KpiW7s4BVTfiBRp1o=wM+CS5SBH1RT+2ZJP-ymtT4CQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: sun8i: h3: beelink-x2: Sort nodes
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nodes are not sorted alphabetically. Do it.
+On Sun, Nov 21, 2021 at 3:03 PM Jernej Skrabec <jernej.skrabec@gmail.com> wrote:
+>
+> Nodes are not sorted alphabetically. Do it.
+>
+> There is no functional change.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-There is no functional change.
-
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm/boot/dts/sun8i-h3-beelink-x2.dts | 28 +++++++++++------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
-
-diff --git a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-index 4ab4bbf001ba..cd9f655e4f92 100644
---- a/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-+++ b/arch/arm/boot/dts/sun8i-h3-beelink-x2.dts
-@@ -93,11 +93,15 @@ led-1 {
- 		};
- 	};
- 
--	wifi_pwrseq: wifi_pwrseq {
--		compatible = "mmc-pwrseq-simple";
--		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
--		clocks = <&rtc 1>;
--		clock-names = "ext_clock";
-+	r-gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		power {
-+			label = "power";
-+			linux,code = <KEY_POWER>;
-+			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
- 	};
- 
- 	sound_spdif {
-@@ -118,15 +122,11 @@ spdif_out: spdif-out {
- 		compatible = "linux,spdif-dit";
- 	};
- 
--	r-gpio-keys {
--		compatible = "gpio-keys";
--
--		power {
--			label = "power";
--			linux,code = <KEY_POWER>;
--			gpios = <&r_pio 0 3 GPIO_ACTIVE_LOW>;
--			wakeup-source;
--		};
-+	wifi_pwrseq: wifi_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
-+		clocks = <&rtc 1>;
-+		clock-names = "ext_clock";
- 	};
- };
- 
--- 
-2.34.0
-
+Acked-by: Chen-Yu Tsai <wens@csie.org>
