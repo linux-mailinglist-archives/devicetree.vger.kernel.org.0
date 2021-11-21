@@ -2,220 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CB1D458520
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 17:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E21B9458535
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 18:01:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238622AbhKURAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 12:00:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43092 "EHLO
+        id S238245AbhKUREH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 12:04:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238633AbhKURAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 12:00:18 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C115C0613E0
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:57:10 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id n12so69328827lfe.1
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:57:10 -0800 (PST)
+        with ESMTP id S238243AbhKUREH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 12:04:07 -0500
+Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01B8EC061574;
+        Sun, 21 Nov 2021 09:01:01 -0800 (PST)
+Received: by mail-qv1-xf29.google.com with SMTP id s9so10801724qvk.12;
+        Sun, 21 Nov 2021 09:01:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mZgxr5VWcKzaOese34CdY82dfHZfhVgGZXKjQ6A5UTA=;
-        b=ThPBptw5FVZvd0ax7ZISjqsp4n/h95JFxBmvbZUOrUehNfGjrD2zGTT2nJnyu6g1Bo
-         1a38Z0AFmei8eEwiisuDW0Rll1Y/ikX3Rt9j/XskeulD0rgTB0tCgPvwq5b7SbrTssIY
-         U6Ppb0qp2bWnkianF5gNk9tIBBHNQDIoO8cgakXS3D0WQXn81R6ajzcF/sbGwnnrpd+R
-         qQbf3fXk3a4lFNEmSZok+4DyT8s3bDMMZ6zxgQz0vKQ9aC07wfIRRoKrVbx0NN+0km8K
-         OGAyJDqldFTymhbzk+whTfgVwGUhUdSbf2EtiipLnysSKHwB3WZZI/+YlIBWCOt4zyFN
-         RqSw==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=KVKeVqvg/ApiNDdJUzme5McRscnsPRuaYUkAW77wSrU=;
+        b=EC+tOmSQTYbiM8GxNEKGwAYNEQT7ULUpueu+n1AI5gHFcoK9whqaWd74htXslRJEpW
+         z0C1pL+mGTX9gQpLBLd4bRvWOGkG+WHmGCY1QM50LA/mdz6E7jevqFC2PzLLN+UdDxTc
+         Gvtpvg86NC5DPHWkX6YJPbMj5pM0iQdFt67XHg6449iRusUAcBdBp8RhLmNXOV/DGT5q
+         1bNXD18HwTISh8Kpy3y//SIsfj6thROtvpJucqaDUXv5ZGakIq+7pwc1bxHBDXc6Jcyj
+         RIuYLIPZ8PJ4Vkpa5ozgqYIdtkzY+0yT6VN8LlZgHnVzlPo6FY3q0D2o2y1XKHss0dII
+         287Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mZgxr5VWcKzaOese34CdY82dfHZfhVgGZXKjQ6A5UTA=;
-        b=auTD/fQbvklNnJHySf1xUaVCkGAUduCWWxrlgVoNy5WM2Ttq+RJcILONnElmqXkJmf
-         ubp2BtYhqrSHlIUsI7cwfSsf0NIVy5HNihBTzpEVtAMi8ZpLMKPmHUXeWvTwoaQ83cDq
-         Soa2tvYiquIxbL1tRZGw6SEs/BLpCpYqH912D46AX4nWvqbO7eZII7NpRf68zdvPNE3y
-         mEdv+ynbOPKjHSvuii4sgA3K0oyAV7TWO4wAbQo7DXruG2yTIu8KVJ5AOB51zYiYd488
-         MFUwrLSdFcj2E7GwiTg/dwTEqrknWugk/t38qUbFKaUkZmqAhv3ZXIk2+N5R0jVDKVSS
-         4/tw==
-X-Gm-Message-State: AOAM533fsF3U6/EZ5Nkqv8w1paO9oiplHPTcS4ioOYTlzqyCiMS/JBxD
-        3coR+bzhri/yRAZMixiEGMZIMQ==
-X-Google-Smtp-Source: ABdhPJyU682mJ5O2LiJiCidyP7BqjcYSRFpzAWaMKbqJLrmF5XMdKWkauBsf7zI7TgoaeSLm8gs23w==
-X-Received: by 2002:a05:6512:3404:: with SMTP id i4mr50002428lfr.689.1637513828927;
-        Sun, 21 Nov 2021 08:57:08 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id e5sm695726lfs.51.2021.11.21.08.57.08
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=KVKeVqvg/ApiNDdJUzme5McRscnsPRuaYUkAW77wSrU=;
+        b=zZ4Bzp5ugmd8/6qoCUY8GApgFtpHDC+m4hr9+FOVjVB3b3YR0ugbJ59lj/TQI8bjWK
+         7Fgd1+gIkS0YvUObe9NL5kjthq2lkhBOQDxkWHtNl+T27t2okU0nFLOu6gwY8htVAVyn
+         qotP14S7Ay45KL6HlLCZ3h9Zjppn55hKyHy3c9tPnH6RNsIq5k/6WDI2NmYkpDxOiQ8Y
+         e/4Rn59STIJ0YvEHKdmaXV8tj1xWwE99K8N897tFHLVjIMyjwWS5simiXSHEq7EW/bmH
+         a5AlyvxLhTkJE+yCLKXqTno4f9GkgMH8KRlPkWyyAz33kSbM9fKb8hmjmTb8p3dAvFbW
+         99bg==
+X-Gm-Message-State: AOAM530g3kraZFxUbxfwJLKNaGXsoXP7gkxjNmFiqc3uFlxp4Lfazr+J
+        G/67l537riVarmzA2m6aaD4=
+X-Google-Smtp-Source: ABdhPJzw2dIrZh2m/XonrGyX/J6dnSLBgKLsAQMeZmS+ngIGTLZcnF19b9vJwGMY9L55qAmQ6zy8wA==
+X-Received: by 2002:a05:6214:2589:: with SMTP id fq9mr91860977qvb.38.1637514061033;
+        Sun, 21 Nov 2021 09:01:01 -0800 (PST)
+Received: from shaak (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id i23sm3101803qkl.101.2021.11.21.09.01.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Nov 2021 08:57:08 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v4 12/12] watchdog: s3c2410: Add Exynos850 support
-Date:   Sun, 21 Nov 2021 18:56:47 +0200
-Message-Id: <20211121165647.26706-13-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211121165647.26706-1-semen.protsenko@linaro.org>
-References: <20211121165647.26706-1-semen.protsenko@linaro.org>
+        Sun, 21 Nov 2021 09:01:00 -0800 (PST)
+Date:   Sun, 21 Nov 2021 12:00:58 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     kernel test robot <lkp@intel.com>, peda@axentia.se,
+        lars@metafoo.de, kbuild-all@lists.01.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v9 10/14] iio: test: add basic tests for the iio-rescale
+ driver
+Message-ID: <YZp7SsdvQDr0WmDT@shaak>
+References: <20211115034334.1713050-11-liambeguin@gmail.com>
+ <202111172344.tSkzL3S5-lkp@intel.com>
+ <20211121111958.3ed740dc@jic23-huawei>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211121111958.3ed740dc@jic23-huawei>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exynos850 is a bit different from SoCs already supported in WDT driver:
-  - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
-    always 0; .disable_auto_reset callback is not set for that reason
-  - MASK_WDT_RESET_REQUEST register is replaced with
-    CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
-    reset interrupt it's now enabled with the same value; .mask_reset
-    callback is reused for that functionality though
-  - To make WDT functional, WDT counter needs to be enabled in
-    CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
-    callback
+On Sun, Nov 21, 2021 at 11:19:58AM +0000, Jonathan Cameron wrote:
+> On Wed, 17 Nov 2021 23:03:24 +0800
+> kernel test robot <lkp@intel.com> wrote:
+> 
+> > Hi Liam,
+> > 
+> > Thank you for the patch! Yet something to improve:
+> > 
+> > [auto build test ERROR on 2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1]
+> > 
+> > url:    https://github.com/0day-ci/linux/commits/Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211115-114729
+> > base:   2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1
+> > config: nds32-randconfig-r003-20211115 (attached as .config)
+> > compiler: nds32le-linux-gcc (GCC) 11.2.0
+> > reproduce (this is a W=1 build):
+> >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+> >         chmod +x ~/bin/make.cross
+> >         # https://github.com/0day-ci/linux/commit/bef63a2e36c2ceccc6f5954ab7e7cbb178c08fd8
+> >         git remote add linux-review https://github.com/0day-ci/linux
+> >         git fetch --no-tags linux-review Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211115-114729
+> >         git checkout bef63a2e36c2ceccc6f5954ab7e7cbb178c08fd8
+> >         # save the attached .config to linux build tree
+> >         mkdir build_dir
+> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nds32 SHELL=/bin/bash
+> > 
+> > If you fix the issue, kindly add following tag as appropriate
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > 
+> 
+> This one has me stumped.  The new tests have a depends on KUNIT and that should result in these
+> functions being built.
+>  
 
-Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-instance. Different PMU registers and bits are used for each cluster. So
-driver data is now modified in probe, adding needed info depending on
-cluster index passed from device tree.
+I only took a quick look at this, but was quite puzzled too.
+I'll try to find more time to investigate.
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
-Changes in v4:
-  - Fixed build error when CONFIG_OF is disabled (found by 0-day):
-    added #ifdef CONFIG_OF guard in s3c2410_get_wdt_drv_data()
-  - Added R-b tag by Guenter Roeck
+Cheers,
+Liam
 
-Changes in v3:
-  - Renamed "samsung,index" property to more descriptive
-    "samsung,cluster-index"
-  - Used pre-defined and completely set driver data for cluster0 and
-    cluster1
-
-Changes in v2:
-  - Used single compatible for Exynos850, populating missing driver data
-    in probe
-  - Added "index" property to specify CPU cluster index
-
- drivers/watchdog/s3c2410_wdt.c | 64 +++++++++++++++++++++++++++++++++-
- 1 file changed, 63 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-index 96aa5d9c6ed4..115a6fe7da57 100644
---- a/drivers/watchdog/s3c2410_wdt.c
-+++ b/drivers/watchdog/s3c2410_wdt.c
-@@ -56,6 +56,13 @@
- #define EXYNOS5_RST_STAT_REG_OFFSET		0x0404
- #define EXYNOS5_WDT_DISABLE_REG_OFFSET		0x0408
- #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET	0x040c
-+#define EXYNOS850_CLUSTER0_NONCPU_OUT		0x1220
-+#define EXYNOS850_CLUSTER0_NONCPU_INT_EN	0x1244
-+#define EXYNOS850_CLUSTER1_NONCPU_OUT		0x1620
-+#define EXYNOS850_CLUSTER1_NONCPU_INT_EN	0x1644
-+
-+#define EXYNOS850_CLUSTER0_WDTRESET_BIT		24
-+#define EXYNOS850_CLUSTER1_WDTRESET_BIT		23
- 
- /**
-  * Quirk flags for different Samsung watchdog IP-cores.
-@@ -205,6 +212,30 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
- 		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
- };
- 
-+static const struct s3c2410_wdt_variant drv_data_exynos850_cl0 = {
-+	.mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN,
-+	.mask_bit = 2,
-+	.mask_reset_inv = true,
-+	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-+	.rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT,
-+	.cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT,
-+	.cnt_en_bit = 7,
-+	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-+		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-+};
-+
-+static const struct s3c2410_wdt_variant drv_data_exynos850_cl1 = {
-+	.mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN,
-+	.mask_bit = 2,
-+	.mask_reset_inv = true,
-+	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-+	.rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT,
-+	.cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT,
-+	.cnt_en_bit = 7,
-+	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-+		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-+};
-+
- static const struct of_device_id s3c2410_wdt_match[] = {
- 	{ .compatible = "samsung,s3c2410-wdt",
- 	  .data = &drv_data_s3c2410 },
-@@ -216,6 +247,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
- 	  .data = &drv_data_exynos5420 },
- 	{ .compatible = "samsung,exynos7-wdt",
- 	  .data = &drv_data_exynos7 },
-+	{ .compatible = "samsung,exynos850-wdt",
-+	  .data = &drv_data_exynos850_cl0 },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
-@@ -587,14 +620,40 @@ static inline const struct s3c2410_wdt_variant *
- s3c2410_get_wdt_drv_data(struct platform_device *pdev)
- {
- 	const struct s3c2410_wdt_variant *variant;
-+	struct device *dev = &pdev->dev;
- 
--	variant = of_device_get_match_data(&pdev->dev);
-+	variant = of_device_get_match_data(dev);
- 	if (!variant) {
- 		/* Device matched by platform_device_id */
- 		variant = (struct s3c2410_wdt_variant *)
- 			   platform_get_device_id(pdev)->driver_data;
- 	}
- 
-+#ifdef CONFIG_OF
-+	/* Choose Exynos850 driver data w.r.t. cluster index */
-+	if (variant == &drv_data_exynos850_cl0) {
-+		u32 index;
-+		int err;
-+
-+		err = of_property_read_u32(dev->of_node,
-+					   "samsung,cluster-index", &index);
-+		if (err) {
-+			dev_err(dev, "failed to get cluster index\n");
-+			return NULL;
-+		}
-+
-+		switch (index) {
-+		case 0:
-+			return &drv_data_exynos850_cl0;
-+		case 1:
-+			return &drv_data_exynos850_cl1;
-+		default:
-+			dev_err(dev, "wrong cluster index: %u\n", index);
-+			return NULL;
-+		}
-+	}
-+#endif
-+
- 	return variant;
- }
- 
-@@ -615,6 +674,9 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
- 	wdt->wdt_device = s3c2410_wdd;
- 
- 	wdt->drv_data = s3c2410_get_wdt_drv_data(pdev);
-+	if (!wdt->drv_data)
-+		return -EINVAL;
-+
- 	if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
- 		wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
- 						"samsung,syscon-phandle");
--- 
-2.30.2
-
+> Anyone know what might have caused these?
+> 
+> Jonathan
+> 
+> 
+> > All errors (new ones prefixed by >>):
+> > 
+> >    nds32le-linux-ld: drivers/iio/test/iio-test-rescale.o: in function `iio_rescale_test_offset':
+> > >> iio-test-rescale.c:(.text+0x16): undefined reference to `kunit_kmalloc_array'
+> > >> nds32le-linux-ld: iio-test-rescale.c:(.text+0x1a): undefined reference to `kunit_kmalloc_array'
+> > >> nds32le-linux-ld: iio-test-rescale.c:(.text+0x80): undefined reference to `kunit_binary_assert_format'  
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x84): undefined reference to `kunit_binary_assert_format'
+> > >> nds32le-linux-ld: iio-test-rescale.c:(.text+0xe0): undefined reference to `kunit_do_assertion'  
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0xe4): undefined reference to `kunit_do_assertion'
+> > >> nds32le-linux-ld: iio-test-rescale.c:(.text+0x104): undefined reference to `kunit_binary_str_assert_format'  
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x108): undefined reference to `kunit_binary_str_assert_format'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x158): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x15c): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: drivers/iio/test/iio-test-rescale.o: in function `iio_rescale_test_scale':
+> >    iio-test-rescale.c:(.text+0x236): undefined reference to `kunit_kmalloc_array'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x23a): undefined reference to `kunit_kmalloc_array'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x2d8): undefined reference to `kunit_binary_assert_format'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x2dc): undefined reference to `kunit_binary_assert_format'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x30a): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x30e): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x476): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x47a): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: iio-test-rescale.c:(.text+0x4d8): undefined reference to `kunit_do_assertion'
+> >    nds32le-linux-ld: drivers/iio/test/iio-test-rescale.o:iio-test-rescale.c:(.text+0x4dc): more undefined references to `kunit_do_assertion' follow
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_set_suspend':
+> >    (.text+0x330): undefined reference to `fb_set_suspend'
+> >    nds32le-linux-ld: (.text+0x334): undefined reference to `fb_set_suspend'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_resume_worker':
+> >    drm_fb_helper.c:(.text+0x35c): undefined reference to `fb_set_suspend'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x360): undefined reference to `fb_set_suspend'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_unregister_fbi':
+> >    (.text+0x3c4): undefined reference to `unregister_framebuffer'
+> >    nds32le-linux-ld: (.text+0x3c8): undefined reference to `unregister_framebuffer'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_fini':
+> >    (.text+0x424): undefined reference to `fb_dealloc_cmap'
+> >    nds32le-linux-ld: (.text+0x428): undefined reference to `fb_dealloc_cmap'
+> >    nds32le-linux-ld: (.text+0x432): undefined reference to `framebuffer_release'
+> >    nds32le-linux-ld: (.text+0x436): undefined reference to `framebuffer_release'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_read':
+> >    (.text+0x4fc): undefined reference to `fb_sys_read'
+> >    nds32le-linux-ld: (.text+0x500): undefined reference to `fb_sys_read'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_alloc_fbi':
+> >    (.text+0xec2): undefined reference to `framebuffer_alloc'
+> >    nds32le-linux-ld: (.text+0xec6): undefined reference to `framebuffer_alloc'
+> >    nds32le-linux-ld: (.text+0xede): undefined reference to `fb_alloc_cmap'
+> >    nds32le-linux-ld: (.text+0xee2): undefined reference to `fb_alloc_cmap'
+> >    nds32le-linux-ld: (.text+0xf08): undefined reference to `fb_dealloc_cmap'
+> >    nds32le-linux-ld: (.text+0xf0c): undefined reference to `fb_dealloc_cmap'
+> >    nds32le-linux-ld: (.text+0xf2e): undefined reference to `framebuffer_release'
+> >    nds32le-linux-ld: (.text+0xf32): undefined reference to `framebuffer_release'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_generic_probe':
+> >    drm_fb_helper.c:(.text+0x102a): undefined reference to `fb_deferred_io_init'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x102e): undefined reference to `fb_deferred_io_init'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `__drm_fb_helper_initial_config_and_unlock':
+> >    drm_fb_helper.c:(.text+0x1118): undefined reference to `register_framebuffer'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x111c): undefined reference to `register_framebuffer'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_set_suspend_unlocked':
+> >    (.text+0x1680): undefined reference to `fb_set_suspend'
+> >    nds32le-linux-ld: (.text+0x1684): undefined reference to `fb_set_suspend'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_write':
+> >    (.text+0x1b96): undefined reference to `fb_sys_write'
+> >    nds32le-linux-ld: (.text+0x1b9a): undefined reference to `fb_sys_write'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_fillrect':
+> >    (.text+0x1bdc): undefined reference to `sys_fillrect'
+> >    nds32le-linux-ld: (.text+0x1be0): undefined reference to `sys_fillrect'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_copyarea':
+> >    (.text+0x1c0c): undefined reference to `sys_copyarea'
+> >    nds32le-linux-ld: (.text+0x1c10): undefined reference to `sys_copyarea'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_sys_imageblit':
+> >    (.text+0x1c3c): undefined reference to `sys_imageblit'
+> >    nds32le-linux-ld: (.text+0x1c40): undefined reference to `sys_imageblit'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_cfb_fillrect':
+> >    (.text+0x1c6c): undefined reference to `cfb_fillrect'
+> >    nds32le-linux-ld: (.text+0x1c70): undefined reference to `cfb_fillrect'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_cfb_copyarea':
+> >    (.text+0x1c9c): undefined reference to `cfb_copyarea'
+> >    nds32le-linux-ld: (.text+0x1ca0): undefined reference to `cfb_copyarea'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fb_helper_cfb_imageblit':
+> >    (.text+0x1ccc): undefined reference to `cfb_imageblit'
+> >    nds32le-linux-ld: (.text+0x1cd0): undefined reference to `cfb_imageblit'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_fb_copyarea':
+> >    drm_fb_helper.c:(.text+0x1f3e): undefined reference to `cfb_copyarea'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1f42): undefined reference to `cfb_copyarea'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1f4e): undefined reference to `sys_copyarea'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1f52): undefined reference to `sys_copyarea'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_fb_fillrect':
+> >    drm_fb_helper.c:(.text+0x1f8e): undefined reference to `cfb_fillrect'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1f92): undefined reference to `cfb_fillrect'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1f9e): undefined reference to `sys_fillrect'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1fa2): undefined reference to `sys_fillrect'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_fb_imageblit':
+> >    drm_fb_helper.c:(.text+0x1fde): undefined reference to `cfb_imageblit'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1fe2): undefined reference to `cfb_imageblit'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1fee): undefined reference to `sys_imageblit'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x1ff2): undefined reference to `sys_imageblit'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_cleanup':
+> >    drm_fb_helper.c:(.text+0x2040): undefined reference to `fb_deferred_io_cleanup'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x2044): undefined reference to `fb_deferred_io_cleanup'
+> >    nds32le-linux-ld: drivers/gpu/drm/drm_fb_helper.o: in function `drm_fbdev_client_unregister':
+> >    drm_fb_helper.c:(.text+0x20dc): undefined reference to `unregister_framebuffer'
+> >    nds32le-linux-ld: drm_fb_helper.c:(.text+0x20e0): undefined reference to `unregister_framebuffer'
+> > 
+> > ---
+> > 0-DAY CI Kernel Test Service, Intel Corporation
+> > https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> 
