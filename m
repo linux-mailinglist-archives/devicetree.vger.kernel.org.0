@@ -2,148 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA5D84585AD
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 18:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D2FE4585C7
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 19:08:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238490AbhKURxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 12:53:52 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:37578 "EHLO gloria.sntech.de"
+        id S238307AbhKUSLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 13:11:05 -0500
+Received: from soltyk.jannau.net ([144.76.91.90]:55020 "EHLO soltyk.jannau.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238796AbhKURxo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Nov 2021 12:53:44 -0500
-Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1moqz1-0007ug-8K; Sun, 21 Nov 2021 18:50:31 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     linux-rockchip@lists.infradead.org,
-        Dennis Gilmore <dgilmore@redhat.com>
-Cc:     dgilmore@redhat.com, Rob Herring <robh+dt@kernel.org>,
-        Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <uwe@kleine-koenig.org>,
-        Florian Klink <flokli@flokli.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: rockchip: helios64: define usb hub and 2.5GbE nic
-Date:   Sun, 21 Nov 2021 18:50:30 +0100
-Message-ID: <2865185.A8ACM6KOrL@diego>
-In-Reply-To: <20211026150751.70115-1-dgilmore@redhat.com>
-References: <20211026150751.70115-1-dgilmore@redhat.com>
+        id S230454AbhKUSLF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Nov 2021 13:11:05 -0500
+Received: from coburn.home.jannau.net (p579ad520.dip0.t-ipconnect.de [87.154.213.32])
+        by soltyk.jannau.net (Postfix) with ESMTPSA id C5F98261B33;
+        Sun, 21 Nov 2021 19:07:58 +0100 (CET)
+From:   Janne Grunau <j@jannau.net>
+To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Add DTs for all Apple M1 (t8103) devices
+Date:   Sun, 21 Nov 2021 19:07:55 +0100
+Message-Id: <20211121180758.29477-1-j@jannau.net>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dennis,
+Hej All,
 
-Am Dienstag, 26. Oktober 2021, 17:07:47 CET schrieb Dennis Gilmore:
-> Add the 4 ports on the internal hub and define and turn on the 2.5GbE
-> nic.
-> 
-> Signed-off-by: Dennis Gilmore <dgilmore@redhat.com>
-> ---
->  .../dts/rockchip/rk3399-kobol-helios64.dts    | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-> index 26d45cf7ce00..1ffddf860375 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts
-> @@ -125,6 +125,18 @@ pcie_power: pcie-power {
->  		vin-supply = <&vcc5v0_perdev>;
->  	};
->  
-> +	usblan_power: usblan-power {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio1 RK_PC7 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_lan_en>;
-> +		regulator-name = "usblan_power";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		vin-supply = <&vcc5v0_usb>;
-> +	};
-> +
->  	vcc1v8_sys_s0: vcc1v8-sys-s0 {
->  		compatible = "regulator-fixed";
->  		regulator-name = "vcc1v8_sys_s0";
-> @@ -465,6 +477,11 @@ hdd_b_power_en: hdd-b-power-en {
->  		vcc5v0_usb_en: vcc5v0-usb-en {
->  			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
->  		};
-> +
-> +		usb_lan_en: usb-lan-en {
-> +			rockchip,pins = <1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>;
-> +		};
-> +
->  	};
->  
->  	vcc3v0-sd {
-> @@ -563,5 +580,43 @@ &usbdrd3_1 {
->  	usb@fe900000 {
->  		dr_mode = "host";
->  		status = "okay";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		hub@1 {
-> +			compatible = "usb2109,0815";
-> +			reg = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@1 {
+this series extends the device tree files and bindings to all current
+Apple M1 devices. Specifically it adds DTs for following devices:
+- MacBook Air (M1, 2020)
+- Macbook Pro (13-inch, M1, 2020)
+- iMac (24-inch, M1, 2021)
 
-port@ nodes are not defined in the dt-bindings.
+It also adds i2c and cd321x devices nodes those support was merged for
+5.16 without adding devices to the device tree. [PATCH 3/3] is included
+in this series since it depends on PATCH 2/3.
 
-Are you really sure these are needed, as I guess only defining the
-device@4 should be enough and leaving the rest to be allocated
-dynamically?
+Changes since v1:
+ - fixed the nit pointed out in the bindings change
+ - add Reviewed-By
+ - adds [PATCH 3/3] arm64: dts: apple: t8103: Add i2c and cd321x nodes
 
-The binding at least contains the line
-	Usually, we only use device tree for hard wired USB device.
+For [PATCH 3/3] depends for functionality and dtbs verification on
+"[PATCH 0/3] Apple Arm patform device tree and bindings fixes".
 
+thanks,
+Janne
 
-Heiko
+The series is available as branch from:
+    https://github.com/jannau/linux/tree/apple_m1/dt-for-5.17
+ 
+Janne Grunau (3):
+  dt-bindings: arm: apple: Add iMac (24-inch 2021) to Apple bindings
+  arm64: dts: apple: Add missing M1 (t8103) devices
+  arm64: dts: apple: t8103: Add i2c and cd321x nodes
 
-> +				reg = <1>;
-> +				#trigger-source-cells = <0>;
-> +			};
-> +
-> +			port@2 {
-> +				reg = <2>;
-> +				#trigger-source-cells = <0>;
-> +			};
-> +
-> +			port@3 {
-> +				reg = <3>;
-> +				#trigger-source-cells = <0>;
-> +			};
-> +
-> +			device@4 {
-> +				compatible = "usbbda,8156";
-> +				reg = <4>;
-> +
-> +				#address-cells = <2>;
-> +				#size-cells = <0>;
-> +
-> +				interface@0 {	/* interface 0 of configuration 1 */
-> +					compatible = "usbbda,8156.config1.0";
-> +					reg = <0 1>;
-> +				};
-> +			};
-> +		};
->  	};
->  };
-> 
+ .../devicetree/bindings/arm/apple.yaml        |  6 +-
+ arch/arm64/boot/dts/apple/Makefile            |  4 +
+ arch/arm64/boot/dts/apple/t8103-j274.dts      | 33 ++-------
+ arch/arm64/boot/dts/apple/t8103-j293.dts      | 37 ++++++++++
+ arch/arm64/boot/dts/apple/t8103-j313.dts      | 33 +++++++++
+ arch/arm64/boot/dts/apple/t8103-j456.dts      | 41 +++++++++++
+ arch/arm64/boot/dts/apple/t8103-j457.dts      | 47 ++++++++++++
+ arch/arm64/boot/dts/apple/t8103-jxxx.dtsi     | 67 +++++++++++++++++
+ arch/arm64/boot/dts/apple/t8103.dtsi          | 73 +++++++++++++++++++
+ 9 files changed, 311 insertions(+), 30 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/apple/t8103-j293.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t8103-j313.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t8103-j456.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t8103-j457.dts
+ create mode 100644 arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
 
-
-
+-- 
+2.34.0
 
