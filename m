@@ -2,94 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 466224586DD
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 23:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 875984586E0
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 23:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232253AbhKUW6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 17:58:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36298 "EHLO
+        id S231237AbhKUXAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 18:00:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbhKUW6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 17:58:47 -0500
-Received: from mail-ua1-x932.google.com (mail-ua1-x932.google.com [IPv6:2607:f8b0:4864:20::932])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD5BC061714
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 14:55:41 -0800 (PST)
-Received: by mail-ua1-x932.google.com with SMTP id l24so32938718uak.2
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 14:55:41 -0800 (PST)
+        with ESMTP id S230138AbhKUXAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 18:00:15 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F111C06173E
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 14:57:10 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso26112691ots.6
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 14:57:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S438G+utz8pjDkvXqx18EM21msuvfiLmqt/53NycU20=;
-        b=zF4VuhMkOvolYehi5B/JWkTO1dRxbjNScex3BHFGl5I82XST22YzhAWj5ykjWWb1Eo
-         X1SmjNqdH/CeStdilN4MB9awVlBKEudQ0oaI4rkKrZEcjDyGoDT+6tlJlzLHrispfEsK
-         qSfaSsn6TIlcsAw6AqEetnZZXf2YxO6GvYphbP4/fLNYRd+HDRPL6IoCdiO50rvHCgCD
-         ErDkX1+6ann6fiQH/lsRxQvPIz99xsbQBb1PRPkfOwsI43WL5vCRcUfpy8lzxm+XbxSH
-         sWaEPZX2Sd8g4EaPYeB42Flkmlm/IQ3A6GFBwQ1T0xJERsfale5p6LuhlPFFPU455Rxo
-         QqUQ==
+         :cc:content-transfer-encoding;
+        bh=9XpcC2OzJKUPIULTfHPzivkbHxJbmpO+PtuVvED5p2I=;
+        b=mVoyODWPGJCR+2Aba02Adr7LwF8b5MfaDHuieArmPUpfYS778GnhgKQAbvpVFoNWTM
+         BFf/+vNPQfOSWaZiNcYF7XwGuGJgnYy6RnCa/9sljFofJACgWpichxq9pTbJUyjkgmKW
+         ulkzWJm5Qck6BKKVyVHxNZzis2Lz1BPBL2eTPruicv/xWAwkV4Q9vwPwgS093JrilN4o
+         Nv5IslpCAjs9AKKA2NMiCsNAUzwtx+5Z757VFEvIIp8uvjprc1boLADUzpC+O0yexslY
+         RnEW7OJwhiOR09CkfYGoKfkNTbbJDjQW8g4aojgo64VOhyI/pFySTWwaEiZ3RP6mJI2j
+         ShZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S438G+utz8pjDkvXqx18EM21msuvfiLmqt/53NycU20=;
-        b=dcefmNuYUzauLgXWvG17ap5DCusiF7gqu9fLI54nYl6CKCNbdCa7bWj09TVrdehfPd
-         SV12wUm+6E5rC3U1e/Rg24XPCtVZCvbaJTmv4YtGVQCGdZKaSyODjL/toWKp+oYNkRi+
-         fNquJI5RFk/z8g/FiHvM07gmKpVHY94pZF4uRi69KyIwf1Md4/ydHnu48rp5Z+Ggv0l/
-         +wGsZ2u+7281Mjxz9tWb5p7UmoCCRx0cHvc9W7HfJ0EclGJkPioe8a8zojmxjFy4Vp/f
-         m26cl3Xdi473mtzP7cyD7AHZooNfO6SIZvEAjPEr9uvpp9cnyW2y4XauTh+R2TPJs3DI
-         ILYA==
-X-Gm-Message-State: AOAM5302s2AF+qRWWgeh46tfjAb51KgceVAN4VsU0QeYeeT1UeRUGvAf
-        7Er95RekwjzITOh6m9+lti/swI8v2DX+zya7nARbCA==
-X-Google-Smtp-Source: ABdhPJwgf46PvVFqRlUS2culzCgQuSh0I0XL196ZF7cYR8TmgHwR+Gs2ynsMw9ktq+ZcHsUQSvUH0wfBjwF/ur2ckbw=
-X-Received: by 2002:a05:6102:4192:: with SMTP id cd18mr123860031vsb.35.1637535340797;
- Sun, 21 Nov 2021 14:55:40 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=9XpcC2OzJKUPIULTfHPzivkbHxJbmpO+PtuVvED5p2I=;
+        b=kXaNCoq2zV8128VQJgH79FP6ZqfDOcg6S6RXk9N14UwC5eGesryNcOIxQHStvqN1ts
+         EBqdHP+cM92Zdcx3TfTXWbkM5apWGp9J9dR2q3lMdGchwjQ22uSCggZTQbs/s8UF3DH9
+         l5A57LFduZ6KxSiHM2/VcUSJTTSaY63GLvD8M9DpYF3fexs4wgkzSffGCMgrjTiIi7sp
+         04jaqg2rmEV6kzru8b2x3gtS1dwC2BZIgYXMLrO5MscyRC27t70OWc6EzhTs9l/jlmid
+         a2ewMYErJ9orBpyGpoGBEsIm9euDGw89Dd3UfHxRKI1MOejqgCzx3t7itlc2uqJCK/4+
+         yMYA==
+X-Gm-Message-State: AOAM530ieIQy2E8hzKPR0rffAU6JdpRUIktke97s41MRuKlW0E5t/XuR
+        N92NBQ3VthwJJ14rDMRY6u9lTGrV6V1dRF3zq4XJKA==
+X-Google-Smtp-Source: ABdhPJxzNFh6C9N+oywTSQc3Tu6q4zZFkC2s7yr/nmKU6Lmxipg1uw0WFkxVFR5of0PSyTxufTbf5CuuXzrFU4AEA5w=
+X-Received: by 2002:a9d:a42:: with SMTP id 60mr21295623otg.179.1637535429674;
+ Sun, 21 Nov 2021 14:57:09 -0800 (PST)
 MIME-Version: 1.0
-References: <20211022224556.18742-1-semen.protsenko@linaro.org> <YXtVS1YrZqE5kW32@robh.at.kernel.org>
-In-Reply-To: <YXtVS1YrZqE5kW32@robh.at.kernel.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 22 Nov 2021 00:55:29 +0200
-Message-ID: <CAPLW+4kgQ8CVS6eNXxwePiATHT41E2EhhAP3AbxgFTCnjyO-VQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: samsung: Document Exynos850 CMU_APM
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>
+References: <20211110165720.30242-1-zajec5@gmail.com>
+In-Reply-To: <20211110165720.30242-1-zajec5@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 21 Nov 2021 23:56:58 +0100
+Message-ID: <CACRpkdbQVJTnVH8LBKAY3eCXvZLRnXXEMdgNtGwWVb0Zhk94sA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: convert controller description
+ to the json-schema
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 29 Oct 2021 at 04:58, Rob Herring <robh@kernel.org> wrote:
+On Wed, Nov 10, 2021 at 5:57 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
+
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 >
-> On Sat, 23 Oct 2021 01:45:55 +0300, Sam Protsenko wrote:
-> > CMU_APM generates clocks for APM IP-core (Active Power Management). In
-> > particular it generates RTC clocks, which are needed to enable rtc-s3c
-> > driver on Exynos850 SoC.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> > ---
-> > Changes in v2:
-> >   - Added R-b tag by Krzysztof Kozlowski
-> >   - Added Ack by Chanwoo Choi
-> >
-> >  .../clock/samsung,exynos850-clock.yaml        | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >
+> This helps validating DTS and writing YAML files.
 >
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 
-This patch series is superseded by:
+This looks good to my eyes but I definitely need Rob to look at this before
+merging!
 
-    [PATCH 0/6] clk: samsung: exynos850: Clock driver improvements
-
-(going to submit that soon).
+Yours,
+Linus Walleij
