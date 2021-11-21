@@ -2,97 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FFB7458332
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 12:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95D57458346
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 13:20:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233599AbhKULxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 06:53:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60626 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233571AbhKULxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 06:53:12 -0500
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A656C061574;
-        Sun, 21 Nov 2021 03:50:07 -0800 (PST)
-Received: by mail-wm1-x329.google.com with SMTP id g191-20020a1c9dc8000000b0032fbf912885so11225974wme.4;
-        Sun, 21 Nov 2021 03:50:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AQmd9SukAAF43qeHe/hCA71TFxm5LvRKe4XmZtcUxKc=;
-        b=RDBLjNI76TODJM5qgyUj027n20BGoY1WOj3Sk4nSnC6FBvtLMT33IwaMDmdfTDYFk2
-         5gZrxAkjvuSPuGCqJOWY5SMu0IqlALluQyjPAehA5A1MXs9pSrbScBUDV05crA0YqeLp
-         yJHH2utY3c7U/Mlrf347VYeNpa11wGoCGqA/jY7c8nWwAc2gM5Nmc1pyKXzRGgSn9Z0w
-         YiyniT8plYjOUsC1pjJWPW1KgxJ8am5hcXNIg/IRA87P0vwOtpDbGNVsWfsgVO1c4OpL
-         Z4Tji7oXKQoGU7+/Ky+YIiquaU1bNobwpqc0LwP75b8qeI5w35E3L13iGnr49J6u3UdC
-         p9lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=AQmd9SukAAF43qeHe/hCA71TFxm5LvRKe4XmZtcUxKc=;
-        b=CyQ1ojCAtHQLby3iFH4fL2AevHzw/cj7VE6/7v78BdujajVnttERje8JcQw2iMJfB2
-         l6Uz6W2q5hzO7LFEkKvLdqY+n3aY35CiliH/y1EMB+CS2wWbCB5p4woPO5A8c25+Rsg5
-         8xnsTs9A4hnEQn4q2VulyEblaDP2T/axU3344xCBOyZ75dLazt8aRkIQXOp+GDPQWk0V
-         GhNCmC0I072T46Ql7NockYcO3v5oUw0UdNIK8Ja6FFpHX2e+O3Nj0qsjLe93iye2aUUK
-         9Bp0Ez7KCtkysBHk1gZoMs3PMM6OOO15psN/XcfAdZBqEh0tL0tVHwmg5UyggEhazqdB
-         uKhA==
-X-Gm-Message-State: AOAM532BSV5KxP2OVNM6cd4a5Mp20sxesuh+J/GHVagwUWKCM5P2X+M2
-        wQBXZPZMABhbpPZx1wmekXRX5aWkN6Y=
-X-Google-Smtp-Source: ABdhPJzkhFF5ybtUoDP7TCWR73DLqGOFVRq0CK/YuNI+VJs8DFIFv3aOv6EVyx43I5Ml2MGHzwWBtA==
-X-Received: by 2002:a1c:488:: with SMTP id 130mr19311234wme.157.1637495405798;
-        Sun, 21 Nov 2021 03:50:05 -0800 (PST)
-Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id m36sm6575118wms.25.2021.11.21.03.50.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Nov 2021 03:50:05 -0800 (PST)
-From:   Jernej Skrabec <jernej.skrabec@gmail.com>
-To:     mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH] arm64: dts: allwinner: h6: tanix-tx6: Add I2C node
-Date:   Sun, 21 Nov 2021 12:50:02 +0100
-Message-Id: <20211121115002.693329-1-jernej.skrabec@gmail.com>
-X-Mailer: git-send-email 2.34.0
+        id S238178AbhKUMXG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 21 Nov 2021 07:23:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42462 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238114AbhKUMXF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Nov 2021 07:23:05 -0500
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6010160E54;
+        Sun, 21 Nov 2021 12:19:58 +0000 (UTC)
+Date:   Sun, 21 Nov 2021 12:24:51 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/4] dt-bindings:iio:filter: add admv8818 doc
+Message-ID: <20211121122451.569e41f5@jic23-huawei>
+In-Reply-To: <CY4PR03MB339956D5EAA5D20C9D6579419B999@CY4PR03MB3399.namprd03.prod.outlook.com>
+References: <20211109123127.96399-1-antoniu.miclaus@analog.com>
+        <20211109123127.96399-4-antoniu.miclaus@analog.com>
+        <20211112174601.3c1f6b4b@jic23-huawei>
+        <CY4PR03MB339956D5EAA5D20C9D6579419B999@CY4PR03MB3399.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tanix TX6 has a LED display driven by FD650.
+On Tue, 16 Nov 2021 14:43:14 +0000
+"Miclaus, Antoniu" <Antoniu.Miclaus@analog.com> wrote:
 
-Currently there is no Linux driver nor any binding for it. However, we
-can at least provide I2C node in DT, so user space scripts or programs
-can manually control it.
+> Hello Jonathan,
+> 
+> --
+> Antoniu Miclăuş
+> 
+> > -----Original Message-----
+> > From: Jonathan Cameron <jic23@kernel.org>
+> > Sent: Friday, November 12, 2021 7:46 PM
+> > To: Miclaus, Antoniu <Antoniu.Miclaus@analog.com>
+> > Cc: robh+dt@kernel.org; linux-iio@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH 3/4] dt-bindings:iio:filter: add admv8818 doc
+> > 
+> > [External]
+> > 
+> > On Tue, 9 Nov 2021 14:31:26 +0200
+> > Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+> >   
+> > > Add device tree bindings for the ADMV8818 Filter.
+> > >
+> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > > ---
+> > >  .../bindings/iio/filter/adi,admv8818.yaml     | 78 +++++++++++++++++++
+> > >  1 file changed, 78 insertions(+)
+> > >  create mode 100644  
+> > Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml  
+> > >
+> > > diff --git  
+> > a/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> > b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml  
+> > > new file mode 100644
+> > > index 000000000000..d581e236dbdc
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/filter/adi,admv8818.yaml
+> > > @@ -0,0 +1,78 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id:  
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/iio/filter/adi,a
+> > dmv8818.yaml*__;Iw!!A3Ni8CS0y2Y!qkKokhmcgS0YEIy3uC6OfOOF7Bq3yE_r
+> > Ny91yIkDRTXFe54x-cHq_BtsyzDOedLohB5D$  
+> > > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-  
+> > schemas/core.yaml*__;Iw!!A3Ni8CS0y2Y!qkKokhmcgS0YEIy3uC6OfOOF7Bq3
+> > yE_rNy91yIkDRTXFe54x-cHq_BtsyzDOeYdHtx0a$  
+> > > +
+> > > +title: ADMV8818 Digitally Tunable, High-Pass and Low-Pass Filter
+> > > +
+> > > +maintainers:
+> > > +  - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > > +
+> > > +description: |
+> > > +    Fully monolithic microwave integrated circuit (MMIC) that
+> > > +    features a digitally selectable frequency of operation.
+> > > +    The device features four independently controlled high-pass
+> > > +    filters (HPFs) and four independently controlled low-pass filters
+> > > +    (LPFs) that span the 2 GHz to 18 GHz frequency range.
+> > > +
+> > > +    https://www.analog.com/en/products/admv8818.html
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - adi,admv8818
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  spi-max-frequency:
+> > > +    maximum: 10000000
+> > > +
+> > > +  clocks:
+> > > +    description:
+> > > +      Definition of the external clock.
+> > > +    minItems: 1
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: "rf_in"  
+> > 
+> > Is this what we'd normally think of as a clock signal?  I'd not expect
+> > a nice squarewave on that pin for example so this seems an odd way to
+> > define it.
+> >   
+> The only actual use of this part, until now, was to filter the output of the following part:
+> https://www.analog.com/en/products/adf5610.html
+> This is the reason of using the clock framework in the driver. Moreover, the clock input is
+> optional inside the driver.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+OK, so in theory that part is generating a sinusoid. I guess the clk framework works for
+handling such devices, even if it's not typically what people expect from a clk.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-index 6c10ff7f4b1c..7c37aa4c60cb 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts
-@@ -32,6 +32,14 @@ hdmi_con_in: endpoint {
- 		};
- 	};
- 
-+	/* used for FD650 LED display driver */
-+	i2c {
-+		compatible = "i2c-gpio";
-+		sda-gpios = <&pio 7 6 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>; /* PH6 */
-+		scl-gpios = <&pio 7 5 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>; /* PH5 */
-+		i2c-gpio,delay-us = <5>;
-+	};
-+
- 	reg_vcc1v8: regulator-vcc1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc1v8";
--- 
-2.34.0
+> > > +
+> > > +  clock-output-names:
+> > > +    maxItems: 1
+> > > +
+> > > +  adi,bw-hz:
+> > > +    description:
+> > > +      Allows the user to increase the Bandpass Filter (BPF) bandwidth
+> > > +      in Hz. Normally when invoked by the clk notifier, the driver
+> > > +      sets the HPF cutoff close below the frequency and the LPF cutoff
+> > > +      close above the frequency, and thus creating a BPF.  
+> > 
+> > I don't understand this item at all.  Why do we need a control to
+> > basically change how the other filter parameters are expressed?
+> >   
+> 
+> Indeed, this property was requested by the users of the application in which this part was involved.
+> Same goes for the filter modes and the bandwidth in the ABI documentation.
+> 
+> If you think these attributes/properties are way too custom, I can drop them.
+
+It's interesting.  I guess the point here is people want a nice autonomous system to
+keep the filter set appropriately for cleaning up a generated sine wave.
+
+It could be argued that is a hardware related thing so makes sense in DT.
+
+We are sort of 'emulating' a bandpass filter in the driver if we use this, but
+I guess if that's the main use case then this is perhaps a reasonable decision.
+> 
+> Let me know your thoughts.
+> > > +    $ref: /schemas/types.yaml#/definitions/uint64
+> > > +
+> > > +  '#clock-cells':
+> > > +    const: 0
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    spi {
+> > > +      #address-cells = <1>;
+> > > +      #size-cells = <0>;
+> > > +      admv8818@0 {
+> > > +        compatible = "adi,admv8818";
+> > > +        reg = <0>;
+> > > +        spi-max-frequency = <10000000>;
+> > > +        clocks = <&admv8818_rfin>;
+> > > +        clock-names = "rf_in";
+> > > +        adi,bw-hz = /bits/ 64 <600000000>;
+> > > +      };
+> > > +    };
+> > > +...
+> > > +  
+> 
 
