@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9AD458635
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 20:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30910458636
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 20:54:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229779AbhKUT5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229798AbhKUT5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 21 Nov 2021 14:57:10 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229798AbhKUT5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 14:57:08 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5316BC06173E
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 11:54:03 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id u3so70507688lfl.2
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 11:54:03 -0800 (PST)
+        with ESMTP id S229753AbhKUT5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 14:57:10 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A236BC06173E
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 11:54:04 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id l22so70345368lfg.7
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 11:54:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=alj45tjzXeDfJ+7cslBZpCEeF9lcTvjC9KNxaxcnO9E=;
-        b=1qZOxMA0fSJ7ozLQEbF8wX2dMGDkXUKzVIRteiG/npVKNS4C8tfWPDWEGmcHfx8gXz
-         8enTc2tv8DeYMmBU03pg0FjlL7hbmxhpU4COs7EM5dNP8AL5xPfCRgt/Qq1XxgBFwnop
-         c0niKq5r7lMiv43OriZkDmvYzwp4ozLE4gVC8dFXWJUmjjguxnVEOygKo6x+XdwY/VzE
-         PhjuOwm3teHdkt6yrJs4fOIiFIwe1lnyzgcF7Vrii8R3cFRnOp24hPE35Xca4Olsg5UV
-         yyeoKHjP9InhFpBQfIOH3DJXnD/iKi3h9NhZfABMNybxZW4mxGmwmrdEDKAZTZv/oIk0
-         fsUA==
+        bh=gkETZgyxLCY3o9a3tZ61sgO6O+YAt+suAi+pGxqWqDY=;
+        b=BNZUjnnWTCnm7u8qVG8rdE9BXMaJkjKRsu/8h1GipaXuzMyM+toqh9JM0mZoqHWQBo
+         H4jLvJxOmViIK/bqBnWgu0yh+OqFQfWE/OKviXxf3sM8Rk+N2JH3Hnrcn3mqQem5nkGn
+         9xm9kGvi1AD5c8Ja1x808ULKAo6LRMsERl2VosX/4GM/rw4ijMyaeoBLK0mQ0zoHfM16
+         riqW3COY1nT3tG9x46cau0DOzeoo45eFmi23OaSW4bAUmaaT/4ExlBGhfk60xQP4niSS
+         gL/PAh0V1Ond6fadi7IQtX+Rmm1/N+TTQptMgvn36D64O+mu3jWQQ4Ju/BZgXxZMHI59
+         vjmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=alj45tjzXeDfJ+7cslBZpCEeF9lcTvjC9KNxaxcnO9E=;
-        b=RXvK7FQwS7LDlDEJdESBPkKSJeEBjwCmC7/7r23h8ZFOckf/AAx9QtbOV5/5G4p4WV
-         80oaA+RB7RBC7ANJYsi+175lQZ7auy8vYiLuZqBShH2XzEk9ivwyiIRGsaRMlsZh16Ik
-         +gLfK0pX8OwPObcLYwXJMogcOtkWzC29Bc6272FfYaDTFujteMv/25xSEkLzsPXh5Rnz
-         6WYR8th/wTeGbpwvjj7BGCA28Q5V0Oilb4/4LD0JbhwUgclrkRbLuMrwnTOw2olqDswX
-         Dvd0CyEuDtmX9vXe19HvKRm8j8S/rVpFeGSIv4+WHekntHBo7uiVt8mGr9aK63PhU31p
-         WagQ==
-X-Gm-Message-State: AOAM532v4iJiYLSsJVl26GM3ZcHIW+kTNUuKqRCzROIyBDiwm7PmVyXj
-        IA2H3YOA4MdV+cOaId6LujuZsg==
-X-Google-Smtp-Source: ABdhPJyErcj/LDk+DJUfMBNW1gxvSi2lolzFq6sZthh1OnsHxTynUFegI7y5Nw5wlm11RsMwq3vr1A==
-X-Received: by 2002:a05:6512:16a8:: with SMTP id bu40mr23795710lfb.483.1637524441671;
-        Sun, 21 Nov 2021 11:54:01 -0800 (PST)
+        bh=gkETZgyxLCY3o9a3tZ61sgO6O+YAt+suAi+pGxqWqDY=;
+        b=bCPdIIsc7Ufw0BJTMZ2hYb9AvLqU/7m9qVPQhIb2ve0NsFwGTNywV1dYDCc54mPTgm
+         xqAafH9JWOKpCSd4hk6Wf3u2S7rbKbwSSHJUkkGX6UezMusE/v1WkxXwcE0uUlfNALRv
+         jbjI0+1CqgXYN7tjMavBx5PsEesxB4xdUq0OgPWIow/U4iDwLZ/4lxQqcly4ssmS1wZn
+         50L7AeD0dNysi9QFfZ0tYKpiPHSqHGOQ5icGOO8Kz4fyzq+uVqom+EvB735PYpsbrO61
+         AyNAag9R7meblysq7jmE/JUaeF29UyCQlmNnA8e7QyGHPwvrNNn0S8iswkP3TGTZJHYN
+         +7uQ==
+X-Gm-Message-State: AOAM530TIvWjMatntxiEu+RySMXdS+jX2U+9AcectX3iA3M76DfCZdq6
+        6LhN9sMOIRxUOJRFZN4ftFuXYg==
+X-Google-Smtp-Source: ABdhPJzQCCzuisHdFb2CLsfbM7uHhh84OKJ7As3BTkdw/n6nTZGoeg07+LPbdUJFkpE+GRJ7m1USJQ==
+X-Received: by 2002:a05:6512:12c4:: with SMTP id p4mr50559707lfg.274.1637524443033;
+        Sun, 21 Nov 2021 11:54:03 -0800 (PST)
 Received: from boger-laptop.lan (81.5.99.121.dhcp.mipt-telecom.ru. [81.5.99.121])
-        by smtp.gmail.com with ESMTPSA id a24sm768987ljq.18.2021.11.21.11.54.00
+        by smtp.gmail.com with ESMTPSA id a24sm768987ljq.18.2021.11.21.11.54.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Nov 2021 11:54:01 -0800 (PST)
+        Sun, 21 Nov 2021 11:54:02 -0800 (PST)
 From:   Evgeny Boger <boger@wirenboard.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         linux-arm-kernel@lists.infradead.org
 Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>, linux-sunxi@lists.linux.dev
-Subject: [PATCH v3 2/3] dt-bindings: net: support for Allwinner R40 EMAC controller
-Date:   Sun, 21 Nov 2021 22:53:36 +0300
-Message-Id: <20211121195337.230475-3-boger@wirenboard.com>
+Subject: [PATCH v3 3/3] dts: r40: add second ethernet support
+Date:   Sun, 21 Nov 2021 22:53:37 +0300
+Message-Id: <20211121195337.230475-4-boger@wirenboard.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20211121195337.230475-1-boger@wirenboard.com>
 References: <20211121195337.230475-1-boger@wirenboard.com>
@@ -64,65 +64,96 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R40 and A10/A20 share the same EMAC IP.
-However, on R40 the EMAC is gated by default, so reset
-property is required.
+R40 (aka V40, A40i, T3) has two different Ethernet IP
+called EMAC and GMAC.
+EMAC only support 10/100 Mbit in MII mode,
+while GMAC support both 10/100 (MII) and 10/100/1000 (RGMII).
+
+In contrast to A10/A20 where GMAC and EMAC share the same pins
+making EMAC somewhat pointless, on R40 EMAC can be routed to port H.
+Both EMAC (on port H) and GMAC (on port A)
+ can be then enabled at the same time, allowing for two ethernet ports.
 
 Signed-off-by: Evgeny Boger <boger@wirenboard.com>
 ---
- .../net/allwinner,sun4i-a10-emac.yaml         | 20 ++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/sun8i-r40.dtsi | 50 ++++++++++++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
-index 8d8560a67abf..cbb297c38daa 100644
---- a/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
-+++ b/Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
-@@ -15,7 +15,9 @@ maintainers:
+diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
+index 1d87fc0c24ee..19ea33421c63 100644
+--- a/arch/arm/boot/dts/sun8i-r40.dtsi
++++ b/arch/arm/boot/dts/sun8i-r40.dtsi
+@@ -217,6 +217,20 @@ syscon: system-control@1c00000 {
+ 			#size-cells = <1>;
+ 			ranges;
  
- properties:
-   compatible:
--    const: allwinner,sun4i-a10-emac
-+    enum:
-+      - allwinner,sun4i-a10-emac
-+      - allwinner,sun4i-r40-emac
++			sram_a: sram@0 {
++				compatible = "mmio-sram";
++				reg = <0x00000000 0xc000>;
++				#address-cells = <1>;
++				#size-cells = <1>;
++				ranges = <0 0x00000000 0xc000>;
++
++				emac_sram: sram-section@8000 {
++					compatible = "allwinner,sun4i-a10-sram-a3-a4";
++					reg = <0x8000 0x4000>;
++					status = "okay";
++				};
++			};
++
+ 			sram_c: sram@1d00000 {
+ 				compatible = "mmio-sram";
+ 				reg = <0x01d00000 0xd0000>;
+@@ -543,6 +557,24 @@ gmac_rgmii_pins: gmac-rgmii-pins {
+ 				drive-strength = <40>;
+ 			};
  
-   reg:
-     maxItems: 1
-@@ -30,6 +32,19 @@ properties:
-     description: Phandle to the device SRAM
-     $ref: /schemas/types.yaml#/definitions/phandle-array
++			emac_pa_pins: emac-pa-pins {
++				pins = "PA0", "PA1", "PA2",
++				       "PA3", "PA4", "PA5", "PA6",
++				       "PA7", "PA8", "PA9", "PA10",
++				       "PA11", "PA12", "PA13", "PA14",
++				       "PA15", "PA16";
++				function = "emac";
++			};
++
++			emac_ph_pins: emac-ph-pins {
++				pins = "PH8", "PH9", "PH10", "PH11",
++				       "PH14", "PH15", "PH16", "PH17",
++				       "PH18","PH19", "PH20", "PH21",
++				       "PH22", "PH23", "PH24", "PH25",
++				       "PH26", "PH27";
++				function = "emac";
++			};
++
+ 			i2c0_pins: i2c0-pins {
+ 				pins = "PB0", "PB1";
+ 				function = "i2c0";
+@@ -980,6 +1012,24 @@ gmac_mdio: mdio {
+ 			};
+ 		};
  
-+  resets:
-+    maxItems: 1
++		emac: ethernet@1c0b000 {
++			compatible = "allwinner,sun4i-r40-emac";
++			reg = <0x01c0b000 0x1000>;
++			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_EMAC>;
++			resets = <&ccu RST_BUS_EMAC>;
++			allwinner,sram = <&emac_sram 1>;
++			status = "disabled";
++		};
 +
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: allwinner,sun4i-r40-emac
++		emac_mdio: mdio@1c0b080 {
++			compatible = "allwinner,sun4i-a10-mdio";
++			reg = <0x01c0b080 0x14>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
 +
-+then:
-+  required:
-+    - resets
-+
- required:
-   - compatible
-   - reg
-@@ -42,11 +57,14 @@ unevaluatedProperties: false
- 
- examples:
-   - |
-+    #define RST_BUS_EMAC		14
-+
-     emac: ethernet@1c0b000 {
-         compatible = "allwinner,sun4i-a10-emac";
-         reg = <0x01c0b000 0x1000>;
-         interrupts = <55>;
-         clocks = <&ahb_gates 17>;
-+        resets = <&ccu RST_BUS_EMAC>;
-         phy-handle = <&phy0>;
-         allwinner,sram = <&emac_sram 1>;
-     };
+ 		mbus: dram-controller@1c62000 {
+ 			compatible = "allwinner,sun8i-r40-mbus";
+ 			reg = <0x01c62000 0x1000>;
 -- 
 2.25.1
 
