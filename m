@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 553BC4583FE
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 15:12:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C34C458409
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 15:17:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236473AbhKUOPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 09:15:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35158 "EHLO
+        id S236405AbhKUOU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 09:20:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236405AbhKUOPF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 09:15:05 -0500
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5AA3C061574;
-        Sun, 21 Nov 2021 06:12:00 -0800 (PST)
-Received: by mail-ua1-x933.google.com with SMTP id b17so31307421uas.0;
-        Sun, 21 Nov 2021 06:12:00 -0800 (PST)
+        with ESMTP id S234993AbhKUOU3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 09:20:29 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6223EC061574;
+        Sun, 21 Nov 2021 06:17:24 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id g14so64937683edb.8;
+        Sun, 21 Nov 2021 06:17:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Ekq5nYIICzg5NIjoLxX2n2oDnL+G6sOR9vxyDeRhzUM=;
-        b=WTt3G4WMYmY0iRBD+80UqNFoPQKEdmcYTe8VGuFTmahv4O+B+jVy06eePdGfjWcXCZ
-         k7Scxoe4NoN7wOHtE9iMjCzcpGAzK4uJE9pYkoTMLAjJecv0NRczgRRXSsC+ksEDttKV
-         t5ZxtmfSh3CAQpJ3CoiEsoWh6POHxswn489nR8svXCG0H9fQMl0FfRY8eUwB5h7vQihs
-         KeDv0hfG/JEkJAtYHnqw0tvf1+ZDxoRTpBTGlDu0pFuMVtnzl6Ql/Knhr4L6YG7/zuI9
-         4/3bgQeR11UHwaoK+BRmmJspMF2B8hFzjY9QK14lnfsNRDFkNOlMTNhYFPfJy+SiRoae
-         VWyg==
+        bh=ShHRmCcVEJj0a/nM7y9KPmoK+HrmonPdTpFQaYkAuHI=;
+        b=AO9D4Sh+oAdGVEZIirqgA0SnjwAsXeqsTtm6X0ZIj/A1xvGAkqVAUZ7/NuBnsFzrr6
+         1ChH3NHfNMV9gflhu/RkKG0GQ3IvdZGfxPoiemA2Xqj7H/xvmBILl2nbtyrezj1cW11/
+         aQlY/QwL+G/Dt6ZcpVFtL5m+HSeeCi1k7sK1hJOEuqaYtPoX9ikYSavV1AQpKE8ZHRAT
+         8I9Tz2hU+XrTnSV2gnM7+H3Dwo72h3PxLOrCRNbO8H4Fza5/JYLZomRwLavk53r6sYtm
+         oD6w8LfTsCdewa6/s2kZ8u91vkvCwcqnjZ4wfLARX5IF2+WcSQ3ESqCtE/dnUyNP1XET
+         vPtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ekq5nYIICzg5NIjoLxX2n2oDnL+G6sOR9vxyDeRhzUM=;
-        b=czMLJQgTzYaipQPXR7LFQXYO53Rdqf8r4kOPk+X6tRNaDvVRZMlxs6CpAegvMfKCFO
-         e2mJ5lN112DqFt3ZvbVpS+LQ/VgR/1wzKwtWseyvGki28XI+5O3XLXEAb9VDI1hi9q8g
-         gHudYFydi2eb8e7eIiWspwOYs+NLBK8zp6uRSgoo4XmdMjuJtXzFTkyFA9Bzx7c2oc1Z
-         oBY8rUHuYVkUEBP1Edr+aQMlcPaF5td1RwMaKVhnSrc8/NgU0URHsr97LSm4YLGz1m90
-         8u+JePVu+Z4cmp3ad3BDPXL3eDwGVy+HMKKvxkzAhxbIhEkuWyV/7qiq3H5F9KArST1U
-         0kqw==
-X-Gm-Message-State: AOAM532HbLeRJn6OfYiVUeCiqNVYsmLAmDe4IvzGw4Fiqrksz7CEsbag
-        2QvamaoleU51dviXmjnGcwJCRyzJ63HcPKSN1gY=
-X-Google-Smtp-Source: ABdhPJzbFG6H2qloDUjJhgEiV0ZggzLG3OhnovVTs6t1Lv+tULfU1/SIrI40NftSMr1h2p/Go5T6lU29Ukmf9kXZrjg=
-X-Received: by 2002:a67:f988:: with SMTP id b8mr116392725vsq.51.1637503919575;
- Sun, 21 Nov 2021 06:11:59 -0800 (PST)
+        bh=ShHRmCcVEJj0a/nM7y9KPmoK+HrmonPdTpFQaYkAuHI=;
+        b=rLyBH8PPm+sHUIrjIaDP3HcwORV+KAZVEPwu/puvyfAK8YWEvC4aPvu6RziKcxUc3f
+         FzmWCHgiqFK9kCIu/NU6/27hqbNv+mePGbKrjEy7Nu5egbvOCwVNxrwWB1gh+oPpgY8e
+         RTSko5PLs1NuFgyNp8kJKjDNtgD9XQTCehFIWlVFiWS4GCwZb4/HiVG4NBNucqH5ca1L
+         4gZUxvbnPze3GWRBDqSyyhvuSRRfkb3GEQ3NzguyhKnSuUMe7GXEKb6lLpCYZYmfGsxU
+         3hmegr6n/VDbduYr7m2JlrJpNNE8OE8JN7dAetmu6E49DGUrxZCyOvNRR35VTY27krZp
+         s/SA==
+X-Gm-Message-State: AOAM532bPwlY3I6FAvJCKevKuSqVx7D8gg3quh7vfz/J0TjzhIlp5NvD
+        frR2pFDlzGgczvwv99btbQz/HGxz7tS/GtAWKsk=
+X-Google-Smtp-Source: ABdhPJyuDJKc4E27+YhUM6jyOtARE7XCkMgCzB55cTNlmZJgOi5aBJFLYdzOVKMPTRQX4C7CWQBoV1Ul18t7CPcL1fI=
+X-Received: by 2002:a17:907:160b:: with SMTP id hb11mr31645885ejc.336.1637504242305;
+ Sun, 21 Nov 2021 06:17:22 -0800 (PST)
 MIME-Version: 1.0
 References: <20211104161804.587250-1-aford173@gmail.com> <CAJ+vNU2jcWyCm3UyiOnvknS0t+mSdpaB+CgGWYO3jxXTa3LhRA@mail.gmail.com>
  <CAHCN7xJrnZMQgXVMJg7MZdFMWyesf6Ph7HnfMH7-9bm1qODHFw@mail.gmail.com>
- <CAJ+vNU32GXtbKWGQXoE7pkXU8FcKh+HQJJduwRbRJ0tC-d6GoA@mail.gmail.com> <CAHCN7xLAm21zUJQ8s4s--+ygmeVY0qyo0WSLp7ZM9bT9R3sjxw@mail.gmail.com>
-In-Reply-To: <CAHCN7xLAm21zUJQ8s4s--+ygmeVY0qyo0WSLp7ZM9bT9R3sjxw@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 21 Nov 2021 11:11:49 -0300
-Message-ID: <CAOMZO5Am4P17mOXWrPs0ns9AwOXM_ZpBdzbYTYJfv_48Ea=BHg@mail.gmail.com>
+ <CAJ+vNU32GXtbKWGQXoE7pkXU8FcKh+HQJJduwRbRJ0tC-d6GoA@mail.gmail.com>
+ <CAHCN7xLAm21zUJQ8s4s--+ygmeVY0qyo0WSLp7ZM9bT9R3sjxw@mail.gmail.com> <CAOMZO5Am4P17mOXWrPs0ns9AwOXM_ZpBdzbYTYJfv_48Ea=BHg@mail.gmail.com>
+In-Reply-To: <CAOMZO5Am4P17mOXWrPs0ns9AwOXM_ZpBdzbYTYJfv_48Ea=BHg@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Sun, 21 Nov 2021 08:17:11 -0600
+Message-ID: <CAHCN7xLzR5LqqydC7uydsXQPFVn=nyqKD8ZEH3EjcPuwQky5WA@mail.gmail.com>
 Subject: Re: [PATCH V3 0/9] arm64: imx8mn: Enable more imx8m Nano functions
-To:     Adam Ford <aford173@gmail.com>
+To:     Fabio Estevam <festevam@gmail.com>
 Cc:     Tim Harvey <tharvey@gateworks.com>,
         Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
         Adam Ford-BE <aford@beaconembedded.com>,
@@ -70,16 +71,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adam,
+On Sun, Nov 21, 2021 at 8:12 AM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> Hi Adam,
+>
+> On Sun, Nov 21, 2021 at 10:07 AM Adam Ford <aford173@gmail.com> wrote:
+>
+> > I cannot replicate your issue.  I applied the patch series to
+> > 5.16-rc1, and it's still working for me.
+>
+> Could the different behavior be caused by different TF-A versions that
+> you and Tim used?
+>
+> Which ATF version do you use? Is it TF-A v2.5?
 
-On Sun, Nov 21, 2021 at 10:07 AM Adam Ford <aford173@gmail.com> wrote:
+I am using https://source.codeaurora.org/external/imx/imx-atf/log/?h=lf_v2.4
 
-> I cannot replicate your issue.  I applied the patch series to
-> 5.16-rc1, and it's still working for me.
+Since the driver sending SMCC commands to ATF isn't doing that, I
+assume it's safe to use the linux power-domain drivers with the ATF
+from NXP's kernel.
 
-Could the different behavior be caused by different TF-A versions that
-you and Tim used?
+If you can point me to the repo you think I should be using, I'll give it a try.
 
-Which ATF version do you use? Is it TF-A v2.5?
+thanks,
 
-Thanks
+adam
+
+>
+> Thanks
