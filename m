@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD9294584EB
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 17:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B15A64584F0
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 17:57:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238030AbhKUQ74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 11:59:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42898 "EHLO
+        id S238387AbhKURAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 12:00:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230330AbhKUQ74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 11:59:56 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8ECC061574
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:56:51 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id bu18so69408245lfb.0
-        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:56:50 -0800 (PST)
+        with ESMTP id S238307AbhKUQ75 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 11:59:57 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82102C061714
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:56:52 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id m27so68909669lfj.12
+        for <devicetree@vger.kernel.org>; Sun, 21 Nov 2021 08:56:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7osbeXL+1CyqsigAAd8jmW1+rCcPt1AGKsERDXyK0YI=;
-        b=WUPLA7RjKT3xPKZygE2w3taTSB5twgC2eq9PDKRSfa1PPRPzL8+MkrBce6yGyEQAF3
-         mch1OD1BCukVhN6aLSfIVkkcG0gMVKtrHW1pG6CDGBi6xuiUvY10g5mkWODWvIxjtDT/
-         CqWkbj/89y2AA5AqjgVj1mgOKlVbu06qKpMHEATr0ktsCsf7EYNtlAReE76UNjnUF+0V
-         g5sZTk9B5EisOc+ijKVqOct9b8Z8atujfDodfxJ4G3YyvUiLbcIaH5EPLFLw/soSbG9U
-         VPkHAdl8YpHZg/PfDSsksahOIPDbJEJpSv4JTwE8r9wF3tU5HMIC0bfe0A7CZ+cc87qR
-         2wcQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=B7xe7ejeuIGEwCH9PIhTk0vWdr6HZ3Wf0VU2/9Zm6Dk=;
+        b=zbl6sQX5C2dkHBwnnygq5NvpqE+eB530j/9pzxHLIKdNQruZijsSeZZffHtt8EtEYa
+         K68sDGJqxN4H5Co2rIMIXlkSSBY4rWt33dknqwu2jtaHqnGQzVGm2KNjonz/d/SsZZrG
+         kX+TviwyQcB7BoAAUCwH/IiOQG3E+ZbGTuwNGK/Ni8YvwZeav84qze3I8hvQ4/ruOD6R
+         FvVWzAm32NnKhdE4ub33ocDtt2SNzElp/lUbZGc6W9nIfvwweCWxS+9zLKg4G+LAD94b
+         N3oXMsPLJvO4zeqvvJkSMNo3Hf/t3EEEj9gygrFmUwuhEhYvigiXSgnXOZSS8j1H16nE
+         SY2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7osbeXL+1CyqsigAAd8jmW1+rCcPt1AGKsERDXyK0YI=;
-        b=GY7hB+ATsw/cJsMoszmyQy3MH8Y8XuXt06RKxrgKuVgfoC1yjX4+1rhNtt5cXBuy2V
-         nMOKXlh5wQH4WC/ujPtDM/Sxbx+nMib4jl8SJmDlmzHbD4y/mVj4DRpeiSF8SB5QJkjM
-         8/E4diVfWLWmE5Q8NKl1HNDIns1s3NhQH26HtlAW+zg4eY2oHwtS4xumYCOrsxmSmnRb
-         ECxcX6hLWCkIPbRkN9ONOpG9zuKDNQ7O41FRyl6+sSaXcxClMB3R0kq8G2pIgdUcd1nd
-         iwVhpeHKv7/nndoBwjrt8u5N2we6M5ZScwzc/fm7EyW+er3+W43oTA8AoqI1Tao4GCwM
-         ag9g==
-X-Gm-Message-State: AOAM532Aq5YaohsnvivV25TVYjP9UYfb/DHjHw8hG3mV6jSdjvj3EBhp
-        Oyw0W8cu0AeCm0Xe6+gT5oQr+Phu6ZJ+j+OO
-X-Google-Smtp-Source: ABdhPJzKRvqwD4Q6Xp7gSwZpW/mjFpjkrELigO8PKAoLdpnI45QpaFepdc7bJOl5p9prPFM6xBC0eA==
-X-Received: by 2002:a2e:a593:: with SMTP id m19mr46616034ljp.407.1637513809310;
-        Sun, 21 Nov 2021 08:56:49 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=B7xe7ejeuIGEwCH9PIhTk0vWdr6HZ3Wf0VU2/9Zm6Dk=;
+        b=NiZAYfydumxtXDmTelkPyBhov2A30DXarAMg7df2whchX/LsEPDyrWAOHWqamiCYfz
+         Vj0GpdNAURs4b6zS7s9rjKLN7qpZoi0mj4UuR4OSREJNnN/Q8t9GabakVSkZP86IgBTk
+         iAnS5+/1t0iRQipwZGsQ2jvrdzy/rWNrCYpa7JoUtVRd+Mjpel62/rZgCNhMrIWRL68f
+         +jtCQPWkCddF5PIr2Fr7a1P7Y+EvlO4dr1v4pbSgNBsZnn9Jc17dm3oFK9Y64VgjD+aq
+         IpJwlpsQZb0zZHnFZBK3JMzmI2K3VA/5U7fqND/H89Wb9NGCL092jItYchaTZF47ziUY
+         cfOA==
+X-Gm-Message-State: AOAM530s9LTMrE5GyrEibipdhXfLDlYqFLeOqlTeauu6nLXa8zdi2hJb
+        Oh2n6oJ8eOf5BgeWBhgsH7rw+w==
+X-Google-Smtp-Source: ABdhPJzghj3Kx+HzhIzyf2GmhjhBt4dWAhgLyGaVp1SN1lqRgtJLfgif380+kLk4FJg4qGmMoQo6Rw==
+X-Received: by 2002:a05:6512:16aa:: with SMTP id bu42mr51785744lfb.477.1637513810856;
+        Sun, 21 Nov 2021 08:56:50 -0800 (PST)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id g30sm614429lja.22.2021.11.21.08.56.48
+        by smtp.gmail.com with ESMTPSA id z2sm690096lfd.301.2021.11.21.08.56.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 21 Nov 2021 08:56:48 -0800 (PST)
+        Sun, 21 Nov 2021 08:56:50 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Guenter Roeck <linux@roeck-us.net>,
         Wim Van Sebroeck <wim@linux-watchdog.org>
@@ -55,74 +55,63 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v4 00/12] watchdog: s3c2410: Add Exynos850 support
-Date:   Sun, 21 Nov 2021 18:56:35 +0200
-Message-Id: <20211121165647.26706-1-semen.protsenko@linaro.org>
+Subject: [PATCH v4 01/12] dt-bindings: watchdog: Require samsung,syscon-phandle for Exynos7
+Date:   Sun, 21 Nov 2021 18:56:36 +0200
+Message-Id: <20211121165647.26706-2-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211121165647.26706-1-semen.protsenko@linaro.org>
+References: <20211121165647.26706-1-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Exynos850 WDT IP-core differs a bit from existing platforms:
-  - Another set of PMU registers
-  - Separate WDT instance for each CPU cluster, having different PMU
-    registers/bits
-  - Source clock is different from PCLK
+Exynos7 watchdog driver is clearly indicating that its dts node must
+define syscon phandle property. That was probably forgotten, so add it.
 
-Implement all missing features above and enable Exynos850 WDT support.
-While at it, do a bit of cleaning up.
-
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+Fixes: 2b9366b66967 ("watchdog: s3c2410_wdt: Add support for Watchdog device on Exynos7")
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+---
 Changes in v4:
-  - Fixed build error when CONFIG_OF is disabled (found by 0-day)
-  - Added R-b tag by Guenter Roeck to all patches
+  - Added R-b tag by Guenter Roeck
 
 Changes in v3:
-  - Renamed "samsung,index" property to more descriptive
-    "samsung,cluster-index"
-  - bindings: Disabled "samsung,cluster-index" property for SoCs other
-    than Exynos850
-  - Added quirks documentation
-  - Removed has_src_clk field: clk framework can handle NULL clk; added
-    s3c2410wdt_get_freq() function instead, to figure out which clock to
-    use for getting the rate
-  - Used pre-defined and completely set driver data for cluster0 and
-    cluster1
-  - Coding style changes
-  - Added R-b tags
+  - Added R-b tag by Rob Herring
 
 Changes in v2:
-  - Added patch to fail probe if no valid timeout was found, as
-    suggested by Guenter Roeck (03/12)
-  - Extracted code for separating disable/mask functions into separate
-    patch (06/12)
-  - Added patch for inverting mask register value (07/12)
-  - Extracted PMU cleanup code to separate patch, to ease the review and
-    porting (09/12)
-  - Added patch for removing not needed 'err' label in probe function
-    (11/12)
-  - Addressed all outstanding review comments on mailing list
+  - Added R-b tag by Krzysztof Kozlowski
+  - Added "Fixes" tag
 
-Sam Protsenko (12):
-  dt-bindings: watchdog: Require samsung,syscon-phandle for Exynos7
-  dt-bindings: watchdog: Document Exynos850 watchdog bindings
-  watchdog: s3c2410: Fail probe if can't find valid timeout
-  watchdog: s3c2410: Let kernel kick watchdog
-  watchdog: s3c2410: Make reset disable register optional
-  watchdog: s3c2410: Extract disable and mask code into separate
-    functions
-  watchdog: s3c2410: Implement a way to invert mask reg value
-  watchdog: s3c2410: Add support for WDT counter enable register
-  watchdog: s3c2410: Cleanup PMU related code
-  watchdog: s3c2410: Support separate source clock
-  watchdog: s3c2410: Remove superfluous err label
-  watchdog: s3c2410: Add Exynos850 support
+ Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
- .../bindings/watchdog/samsung-wdt.yaml        |  48 ++-
- drivers/watchdog/s3c2410_wdt.c                | 324 +++++++++++++-----
- 2 files changed, 289 insertions(+), 83 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+index 76cb9586ee00..93cd77a6e92c 100644
+--- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
+@@ -39,8 +39,8 @@ properties:
+   samsung,syscon-phandle:
+     $ref: /schemas/types.yaml#/definitions/phandle
+     description:
+-      Phandle to the PMU system controller node (in case of Exynos5250
+-      and Exynos5420).
++      Phandle to the PMU system controller node (in case of Exynos5250,
++      Exynos5420 and Exynos7).
+ 
+ required:
+   - compatible
+@@ -58,6 +58,7 @@ allOf:
+             enum:
+               - samsung,exynos5250-wdt
+               - samsung,exynos5420-wdt
++              - samsung,exynos7-wdt
+     then:
+       required:
+         - samsung,syscon-phandle
 -- 
 2.30.2
 
