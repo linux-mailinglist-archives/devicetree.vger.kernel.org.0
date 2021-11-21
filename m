@@ -2,326 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40BC5458411
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 15:22:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF575458419
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 15:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236478AbhKUOZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 09:25:20 -0500
-Received: from so254-9.mailgun.net ([198.61.254.9]:38071 "EHLO
-        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237304AbhKUOZU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Nov 2021 09:25:20 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637504535; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=Koiy3fcon7p4PWOBWCzwXEv49LwowcWR0Zk8VivWxF4=; b=vJpq8DfvWsaEjKqB0SQBD/283oqFG5YSzY7lRWONFOQOGEdy07DNT8N3pP4k8dXirbUtdr68
- gQl2w5Ykg/3ATgMI8ZTbKWTVevg+N3QLYERCgVLIHmJi5eSoHhpzgA79GhhO7jM2TzQyErZi
- KI6TDOWZSpgnDvZXmpynHSusJwY=
-X-Mailgun-Sending-Ip: 198.61.254.9
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
- 619a56161487d2e40560fe3f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 21 Nov 2021 14:22:14
- GMT
-Sender: akolli=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 48333C43616; Sun, 21 Nov 2021 14:22:14 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from akolli-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akolli)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id DC925C43617;
-        Sun, 21 Nov 2021 14:22:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org DC925C43617
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Anilkumar Kolli <akolli@codeaurora.org>
-To:     ath11k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v4 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
-Date:   Sun, 21 Nov 2021 19:52:01 +0530
-Message-Id: <1637504521-30997-2-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637504521-30997-1-git-send-email-akolli@codeaurora.org>
-References: <1637504521-30997-1-git-send-email-akolli@codeaurora.org>
+        id S238112AbhKUOeB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 09:34:01 -0500
+Received: from mail-vi1eur05on2139.outbound.protection.outlook.com ([40.107.21.139]:49888
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238093AbhKUOeB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Nov 2021 09:34:01 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nBJjSShtfAtDuKD9Ofn3pV7G0SzxN7Xfh4VsAnjgwJBlyD+xryTGam3/o7dbCwh7bUXngKdOpetRdzvbym0qAGCD52/PMrDUgnIlEu7T8wQdTSbSY7RUGLT+sdqzg/myTiu+7HfdHXQ3IgCFKzfaSd9J8ADf9uBJfP+Ue4V+wQ1yuk2HV/e2BdkNRBP+XaQzUnGbGWd03jxeJHvaeRcI+vVGxrGxQc2U7I+w+KzTKRReh60n2u03Wue5HCZGsQXJ52bYixiI9U04NZm8MNiXgYq5sQDIMfLMcZLXoxhrPEiH/nsPkrcTdWrdMHLlab4URuA4HZfv4Qk4V095JiTiXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fPbZWMoTCf711vlJhRtuRsOm2w5nM+ebzHw2uyu9Zbc=;
+ b=lCKIQ6eY+kIQqjuyUzUA8hKb+JLe4luvNx39AFCwW/AgB23ZYRuvu89D0CctI61/u36yGXr991AU0+yngvHw79Cyywu6aleYD2SsOZWOn85P7TNTnLChpjwlaDvSM2e8z2mJQA9xEsPxcOzj2Y5h5aJQ7DxUH39g2uf7UaA7HaphfWf+ArSxac4maySUmXpMViQFfX7CRKcThytbi6izz2U/MvxW5bpqHbCPgVyZ+8QdDXFlLAXisHBlAhHe9+IZfOeKe3tVjz7/DWCCEjYpcs8YZQxTbk0nM+R3YLUFck+3zP7gSm8iRK/MIcwJS8t4TFzPMFzQd0la3utwh+elaQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fPbZWMoTCf711vlJhRtuRsOm2w5nM+ebzHw2uyu9Zbc=;
+ b=MSnPdKNUm2Y58RyYjMdIGIcskiKIUZ2Lh2I0h3+Y4CMJPGx0QjFrxe6lE62+wyUW9osAdxUL/57/vCLXlkk4Y4Y63DmgzVsa7LtS8VEHkU1/ft6Uzd3kUniJJ2JkrmuyKToNCkQYGEr07twQCQwUT/VZBpjF1//iNopMXUX/3bE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (10.255.18.221) by
+ DB8PR02MB5482.eurprd02.prod.outlook.com (10.255.18.221) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4713.24; Sun, 21 Nov 2021 14:30:52 +0000
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::7519:c72c:98b1:a39]) by DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::7519:c72c:98b1:a39%4]) with mapi id 15.20.4713.024; Sun, 21 Nov 2021
+ 14:30:52 +0000
+Message-ID: <476eef37-8d92-651b-37c6-e11b51511d0c@axentia.se>
+Date:   Sun, 21 Nov 2021 15:30:50 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH v9 10/14] iio: test: add basic tests for the iio-rescale
+ driver
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>,
+        kernel test robot <lkp@intel.com>
+Cc:     Liam Beguin <liambeguin@gmail.com>, lars@metafoo.de,
+        kbuild-all@lists.01.org, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20211115034334.1713050-11-liambeguin@gmail.com>
+ <202111172344.tSkzL3S5-lkp@intel.com> <20211121111958.3ed740dc@jic23-huawei>
+From:   Peter Rosin <peda@axentia.se>
+Organization: Axentia Technologies AB
+In-Reply-To: <20211121111958.3ed740dc@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS9PR06CA0120.eurprd06.prod.outlook.com
+ (2603:10a6:20b:465::18) To DB8PR02MB5482.eurprd02.prod.outlook.com
+ (2603:10a6:10:eb::29)
+MIME-Version: 1.0
+Received: from [192.168.13.3] (185.178.140.238) by AS9PR06CA0120.eurprd06.prod.outlook.com (2603:10a6:20b:465::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend Transport; Sun, 21 Nov 2021 14:30:51 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9491fc85-9930-4b86-0ac7-08d9acfb8559
+X-MS-TrafficTypeDiagnostic: DB8PR02MB5482:
+X-Microsoft-Antispam-PRVS: <DB8PR02MB54820BA726EB32291AA433D3BC9E9@DB8PR02MB5482.eurprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: U9Ny94hRvrQq5JThhjkDNxas+y8HTX+K2BY272egtzJn0UTJz1jW7AJnMTLKRr7DzZDTgTuaD0hGfFFuvgUSxq2aZQJN8oIsLgSyENJ8ySVYfI137QCVMtg/7yMPJKA6nCqYGkA1O/9p77a56/yz67p3ccs/d5P3RsY68+MoP++d6d3o4tYPK2BKHtokYNVk7hoHi4PWLdF7NhMlDyGTVSz0/r9usoFPVo22IZkBRQ95mjrYPMuTIPu/Pwcx4IRgE26e538H9GZobjn9GXy9leUBEok8nVkOb11zPNWmcobTkJpekM5Cm0mVHSSp9Kvui5AjfFcJgNK8doktE16lBcTEBPfyPtFV0y3GVx+9QuOPu2rJcGFLY/8ZRdvbsXFsRuYNyNcxP7oB2TtK39GUkO5EXQ6eO/JOL8PBbBELzmJGDjEFTBXfpgdsJDVGhpiv2J7HSsH3U/Wbap08TM9F6GvScm9/Ut/TXEmcmNrTDkWKT7N9873QZMnr/yKlmENcZn1f9M31ck+bbm2w5b0quRWpX6SXC3B9CiGt11ZycMeO7NzFjv9aHNsrqhlvNIHyctfZPASdRKpdWiuwEs18WOBpNP3jZNsItF8ONpYrSRM5wX0hwI17O5pgxe723GYsixtBCiJ2DpFo6SILr5yw/b7QYu+GYaf88nZhslN+tAussaRkmxLNN4JQ64DT8M3W+uaMpQV5AWrw6pnMlItULblJ3Znu0y8Nr0gWDzgCMAcQBhgwEQYfGGFL3r97HdWKtxVQCXm7C83JmLAgJfndidP8rhS3JimiMTHqsVAXcgkpn2pdnfBkz0oNAlpaN+fV
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(136003)(376002)(346002)(39830400003)(6486002)(53546011)(5660300002)(2616005)(86362001)(4001150100001)(4326008)(66946007)(31686004)(38100700002)(8676002)(26005)(956004)(66556008)(186003)(16576012)(31696002)(316002)(2906002)(36756003)(110136005)(36916002)(966005)(508600001)(66476007)(8936002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1E3MUtnMkNsNThDU3o0Q1MzRFB1WHFFVGZOOFRzUkFWMGs2WW9raFZySVJG?=
+ =?utf-8?B?endyaEdPNDZPVmgwa2pBQkdEMFM1Yk5CT1BLd1dqZURndStZb3hxUThhRCs4?=
+ =?utf-8?B?RnVBeG9xUFpTZG5IcGN6VUFvU0gzUkp6NGJieHV4NHc0RnBzcFFJZitFOXNF?=
+ =?utf-8?B?UDNaMTRsUjc5Tm5HWW1NKzkrRStiYmo3OWxwT2RXZDdMWEZiVlk5OGFvUDhZ?=
+ =?utf-8?B?UTFYOU8ySEVYcm44dXBLRGUzTnlBVkg3Q0c4eldrdHRMMHU1ZFpsdm1rQjk2?=
+ =?utf-8?B?bUhtbm1JMkQ4UUVKdm1wUkgzYVRURDFPYnA3S0xhYVNHTzgwNUhZQlVaYzh5?=
+ =?utf-8?B?ZjY3cFhNdzV4dGRkWG1hR3lpOXhUdXFRSTNRR0p3VWxZVlJ5c1ZDclFaRzFh?=
+ =?utf-8?B?NjZNeHZKV2luUzYzTEVjRnhvamFjUnA4QVhPbnBSclIrVUVBNUhLM3FhbEtY?=
+ =?utf-8?B?WDZENkVicHZQazNFVjNkd3FiV21nOE1FcG1PUE81cjhXN2RQMUNpM2NEUFh6?=
+ =?utf-8?B?cXVUdytRMnhhdHpDaFkrRk9hMWM1b0lCWXRwVzdmV0tDU0dQcmVqMjNMaGhs?=
+ =?utf-8?B?TDNhdE1rK1VFNEVteHV0Rnk5WTRGRFVXNWQycXRSQVl4NEoxNXg4YkdXN0Jn?=
+ =?utf-8?B?ODc3NVh5QW1iM2psMFlCNlNJQ3ZaTExidTcwVWJ6THkrcEIraDVzTnJQdEcr?=
+ =?utf-8?B?aXNZOFN3b0tmVDFEQTJTS05IWlg1bjZzWXFDQTFoVzcybEtRWXkzdU01bVFw?=
+ =?utf-8?B?VWtkaXJFK1Y2bVp4d2krcW1PVGlUeXlvTEVGZFZnaVVqb2MvMDIzcVJhVWV6?=
+ =?utf-8?B?N3p1eHIzWkIwTXFjSW93L3BqK2hjZXRyWjBEb0xGL0RPTDU3aGFsS0FXRW54?=
+ =?utf-8?B?bmhmUFRmV1lJeTkyNFRSTlZZSUlCOUtaY1Jaemk2MlJ3VnBheXlsZStsMXcw?=
+ =?utf-8?B?ZUR3MGxEQXpXakUrZVlhRnpzT3lnQUg5emNqVlJDdSsxcW5udHdxR0FtQnA3?=
+ =?utf-8?B?TlJDUE5wbUdzRkRVV3hyWHg5emYzSTNNTTlOdzVOUk9ZOExEQ1FLQ1llVEdH?=
+ =?utf-8?B?QlAvcjk3SjJjcHpwd0dmNzJaWWxqREV2a051dGJNMis5a3pMVi9pYlJoU1A2?=
+ =?utf-8?B?K0t0K2k4aUVSSGs0YjMrZWFDazRrd0xIV0JMWmlrczZCUTduRDBiQ3JnMDVF?=
+ =?utf-8?B?WXVDMC80ZjdmSVpmSVFUQ2xtM2I3OUxuNmw4T0cyNmt3ZlJRQk45YnVwUS9q?=
+ =?utf-8?B?M0dnM0xSdHlSYWxSaWhRV2xUdkd6NlIxMVNlc0E5RzBVczkranF5OWJ5OHhL?=
+ =?utf-8?B?MS9hSWlzYURRemw3d0JIdkdZM3d1UGxuazdVWUQxRGdKbWhQVCtCaFhSdmJZ?=
+ =?utf-8?B?Y2VnVG9Sby8zeHh0NlRTTEFEV1RUSGVTVDA0UThpZHlxdDIwd0N6MlNlVS9j?=
+ =?utf-8?B?M3hUTDV4bE1TWUU4eGZNNFVHamdXZ1ZGR2ZTMWxCSmlBbUx1V0t2WDhiaUZm?=
+ =?utf-8?B?cXFRd1NRV3JRQ0xsdlhNckVRdGdmSllZS0dLR3RNSVJ4SzdZYVphNERzOWRu?=
+ =?utf-8?B?bGZRdHpKRWJSdHcrd3NpWlNmcnI1QlNkZ1R5VXlpZjVhdUpUY3Y2Zkh1L21l?=
+ =?utf-8?B?VzNxTzIyMTVqaUV1SE5tczg2VnV4UXRlT0xsRnM2RlBBQjFhbkxJR1NQcjdz?=
+ =?utf-8?B?eG5tZW9pb1p4N2l3ZUNnN25vQ3paRDlCWkdlMi9jR3JjWmY3VjVSUEN2alRS?=
+ =?utf-8?B?bWx6VGpQN0ttcVZVNUlHNTJzaW00UUpjYzY3VTZiOERsZ0NYdW1vTlFoanF6?=
+ =?utf-8?B?VEVTaWNDVm5RaW01SjlDK3N2SVFTRnlyQUpYWnZkTHN4Y0UxOXZWVnc4VWc3?=
+ =?utf-8?B?QVFBODZpb1R6ZThldmFMMVpzeDFnWUlNWXlaRDM3UTNLd212cTN5c3YyVFZs?=
+ =?utf-8?B?K1lFNURRYktzR1RRSlVjYlRST1JwcVBCd2VKVCttQ0pqd0VNN2YzVnJ3NG5p?=
+ =?utf-8?B?aklZUVVIeWVWYWc4Yzh1RzJXaXRiejZmQnprMnBaSUwwaHVnNVFKWnpyKy94?=
+ =?utf-8?B?em1BOWhRSncyUGtsRGRIMjVZYVJQaEhnaCtGalhuUzY2ZzN1Sk0wWjF2KzdJ?=
+ =?utf-8?Q?FdcI=3D?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9491fc85-9930-4b86-0ac7-08d9acfb8559
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2021 14:30:52.5738
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t0+Sql8hNxDu2W2EQzabmVooIhODdIUWpHQemzqI1ICSZ4xV3SvJSHfRwpL856wG
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR02MB5482
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
-is reserved through DT entries for firmware usage. Send the base
-address from DT entries.
-If DT entry is available, PCI device will work with
-fixed_mem_region else host allocates multiple segments.
+On 2021-11-21 12:19, Jonathan Cameron wrote:
+> On Wed, 17 Nov 2021 23:03:24 +0800
+> kernel test robot <lkp@intel.com> wrote:
+> 
+>> Hi Liam,
+>>
+>> Thank you for the patch! Yet something to improve:
+>>
+>> [auto build test ERROR on 2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1]
+>>
+>> url:    https://github.com/0day-ci/linux/commits/Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211115-114729
+>> base:   2b6bff0b122785f09cfbdc34b1aa9edceea6e4c1
+>> config: nds32-randconfig-r003-20211115 (attached as .config)
+>> compiler: nds32le-linux-gcc (GCC) 11.2.0
+>> reproduce (this is a W=1 build):
+>>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>>         chmod +x ~/bin/make.cross
+>>         # https://github.com/0day-ci/linux/commit/bef63a2e36c2ceccc6f5954ab7e7cbb178c08fd8
+>>         git remote add linux-review https://github.com/0day-ci/linux
+>>         git fetch --no-tags linux-review Liam-Beguin/iio-afe-add-temperature-rescaling-support/20211115-114729
+>>         git checkout bef63a2e36c2ceccc6f5954ab7e7cbb178c08fd8
+>>         # save the attached .config to linux build tree
+>>         mkdir build_dir
+>>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nds32 SHELL=/bin/bash
+>>
+>> If you fix the issue, kindly add following tag as appropriate
+>> Reported-by: kernel test robot <lkp@intel.com>
+>>
+> 
+> This one has me stumped.  The new tests have a depends on KUNIT and that should result in these
+> functions being built.
+>  
+> Anyone know what might have caused these?
 
-IPQ8074 on HK10 board supports multiple PCI devices.
-IPQ8074 + QCN9074 is tested with this patch.
+I didn't grok that either. My best guess is that the arch in question
+(nds32) has some other config thingy that makes kunit build in some
+weird way (or maybe not at all). But that's just a very wild guess
+indeed.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+I'll try to get to reviewing this new version, but I'm swamped at $-job
+at the moment...
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
-V4:
-  - Update code review comments to handle return (Kalle)
-V3:
-  - remove type cast and use of_property_read_u32_array() (Kalle)
-V2:
-  - Use of_ API to read from dt node (Rob)
-
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mhi.c  | 34 ++++++++++++++-
- drivers/net/wireless/ath/ath11k/pci.c  | 11 ++++-
- drivers/net/wireless/ath/ath11k/qmi.c  | 77 +++++++++++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/qmi.h  |  1 +
- 5 files changed, 111 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 2f1e10b7cc17..8492ca7efb92 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -194,6 +194,7 @@ enum ath11k_dev_flags {
- 	ATH11K_FLAG_REGISTERED,
- 	ATH11K_FLAG_QMI_FAIL,
- 	ATH11K_FLAG_HTC_SUSPEND_COMPLETE,
-+	ATH11K_FLAG_FIXED_MEM_RGN,
- };
- 
- enum ath11k_monitor_flags {
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 26c7ae242db6..16d0934b1836 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -3,6 +3,7 @@
- 
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
- 
- #include "core.h"
- #include "debug.h"
-@@ -311,6 +312,28 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
- 	writel(val, addr);
- }
- 
-+static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
-+{
-+	struct device_node *np;
-+	dma_addr_t start;
-+	u32 reg[4];
-+	int ret;
-+
-+	np = of_find_node_by_type(NULL, "memory");
-+	if (!np)
-+		return -ENOENT;
-+
-+	ret = of_property_read_u32_array(np, "reg", reg, 4);
-+	if (ret)
-+		return ret;
-+
-+	start = reg[0] + reg[1];
-+	mhi_ctrl->iova_start = start + 0x1000000;
-+	mhi_ctrl->iova_stop = start + reg[2] + reg[3];
-+
-+	return 0;
-+}
-+
- int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- {
- 	struct ath11k_base *ab = ab_pci->ab;
-@@ -339,8 +362,15 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 		return ret;
- 	}
- 
--	mhi_ctrl->iova_start = 0;
--	mhi_ctrl->iova_stop = 0xffffffff;
-+	if ((test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags))) {
-+		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		mhi_ctrl->iova_start = 0;
-+		mhi_ctrl->iova_stop = 0xFFFFFFFF;
-+	}
-+
- 	mhi_ctrl->sbl_size = SZ_512K;
- 	mhi_ctrl->seg_len = SZ_512K;
- 	mhi_ctrl->fbc_download = true;
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 3d353e7c9d5c..e12d9753f113 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -6,6 +6,7 @@
- #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -1225,7 +1226,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- {
- 	struct ath11k_base *ab;
- 	struct ath11k_pci *ab_pci;
--	u32 soc_hw_version_major, soc_hw_version_minor;
-+	u32 soc_hw_version_major, soc_hw_version_minor, addr;
- 	int ret;
- 
- 	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI,
-@@ -1245,6 +1246,14 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 	pci_set_drvdata(pdev, ab);
- 	spin_lock_init(&ab_pci->window_lock);
- 
-+	/* Set fixed_mem_region to true for platforms support reserved memory
-+	 * from DT. If memory is reserved from DT for FW, ath11k driver need not
-+	 * allocate memory.
-+	 */
-+	ret = of_property_read_u32(ab->dev->of_node, "memory-region", &addr);
-+	if (!ret)
-+		set_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags);
-+
- 	ret = ath11k_pci_claim(ab_pci, pdev);
- 	if (ret) {
- 		ath11k_err(ab, "failed to claim device: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index fa73118de6db..2dc6368d6577 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -1749,7 +1749,9 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
- 	 * failure to FW and FW will then request mulitple blocks of small
- 	 * chunk size memory.
- 	 */
--	if (!ab->bus_params.fixed_mem_region && ab->qmi.target_mem_delayed) {
-+	if (!(ab->bus_params.fixed_mem_region ||
-+	      test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+	      ab->qmi.target_mem_delayed) {
- 		delayed = true;
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi delays mem_request %d\n",
- 			   ab->qmi.mem_seg_count);
-@@ -1815,10 +1817,12 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
- {
- 	int i;
- 
--	if (ab->bus_params.fixed_mem_region)
--		return;
--
- 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+		if ((ab->bus_params.fixed_mem_region ||
-+		     test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+		     ab->qmi.target_mem[i].iaddr)
-+			iounmap(ab->qmi.target_mem[i].iaddr);
-+
- 		if (!ab->qmi.target_mem[i].vaddr)
- 			continue;
- 
-@@ -1866,10 +1870,56 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 
- static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- {
--	int i, idx;
-+	struct device *dev = ab->dev;
-+	struct device_node *hremote_node = NULL;
-+	phandle hremote_phandle;
-+	dma_addr_t start;
-+	u32 reg[4], size, host_ddr_sz;
-+	int i, idx, ret;
- 
- 	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
- 		switch (ab->qmi.target_mem[i].type) {
-+		case HOST_DDR_REGION_TYPE:
-+			ret = of_property_read_u32(dev->of_node, "memory-region",
-+						   &hremote_phandle);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote phandle\n");
-+				return ret;
-+			}
-+
-+			hremote_node = of_find_node_by_phandle(hremote_phandle);
-+			if (!hremote_node) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote_node\n");
-+				return ret;
-+			}
-+
-+			ret = of_property_read_u32_array(hremote_node, "reg", reg, 4);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get reg from hremote\n");
-+				return ret;
-+			}
-+
-+			start = reg[0] + reg[1];
-+			size = reg[2] + reg[3];
-+
-+			if (size < ab->qmi.target_mem[i].size) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to assign memory of sz %u\n", size);
-+				return -EINVAL;
-+			}
-+
-+			ab->qmi.target_mem[idx].paddr = start;
-+			ab->qmi.target_mem[idx].iaddr =
-+				ioremap(ab->qmi.target_mem[idx].paddr,
-+					ab->qmi.target_mem[i].size);
-+			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
-+			host_ddr_sz = ab->qmi.target_mem[i].size;
-+			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
-+			idx++;
-+			break;
- 		case BDF_MEM_REGION_TYPE:
- 			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
- 			ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -1884,10 +1934,16 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 			}
- 
- 			if (ath11k_cold_boot_cal && ab->hw_params.cold_boot_calib) {
--				ab->qmi.target_mem[idx].paddr =
--						     ATH11K_QMI_CALDB_ADDRESS;
--				ab->qmi.target_mem[idx].vaddr =
--						     (void *)ATH11K_QMI_CALDB_ADDRESS;
-+				if (hremote_node) {
-+					ab->qmi.target_mem[idx].paddr =
-+							start + host_ddr_sz;
-+					ab->qmi.target_mem[idx].iaddr =
-+						ioremap(ab->qmi.target_mem[idx].paddr,
-+							ab->qmi.target_mem[i].size);
-+				} else {
-+					ab->qmi.target_mem[idx].paddr =
-+						ATH11K_QMI_CALDB_ADDRESS;
-+				}
- 			} else {
- 				ab->qmi.target_mem[idx].paddr = 0;
- 				ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -2614,7 +2670,8 @@ static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
- 			   msg->mem_seg[i].type, msg->mem_seg[i].size);
- 	}
- 
--	if (ab->bus_params.fixed_mem_region) {
-+	if (ab->bus_params.fixed_mem_region ||
-+	    test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
- 		ret = ath11k_qmi_assign_target_mem_chunk(ab);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to assign qmi target memory: %d\n",
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 3bb0f9ef7996..f8d45b7dc821 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -95,6 +95,7 @@ struct target_mem_chunk {
- 	u32 type;
- 	dma_addr_t paddr;
- 	u32 *vaddr;
-+	void __iomem *iaddr;
- };
- 
- struct target_info {
--- 
-2.7.4
-
+Cheers,
+Peter
