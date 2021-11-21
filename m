@@ -2,193 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A4124585CC
-	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 19:08:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0007458604
+	for <lists+devicetree@lfdr.de>; Sun, 21 Nov 2021 19:52:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238657AbhKUSLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Nov 2021 13:11:09 -0500
-Received: from soltyk.jannau.net ([144.76.91.90]:55066 "EHLO soltyk.jannau.net"
+        id S238369AbhKUSz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Nov 2021 13:55:28 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:38062 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S238625AbhKUSLI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Nov 2021 13:11:08 -0500
-Received: from coburn.home.jannau.net (p579ad520.dip0.t-ipconnect.de [87.154.213.32])
-        by soltyk.jannau.net (Postfix) with ESMTPSA id E41DA261B36;
-        Sun, 21 Nov 2021 19:08:01 +0100 (CET)
-From:   Janne Grunau <j@jannau.net>
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Kettenis <kettenis@openbsd.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: apple: t8103: Add i2c and cd321x nodes
-Date:   Sun, 21 Nov 2021 19:07:58 +0100
-Message-Id: <20211121180758.29477-4-j@jannau.net>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211121180758.29477-1-j@jannau.net>
-References: <20211121180758.29477-1-j@jannau.net>
+        id S238771AbhKUSzW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 21 Nov 2021 13:55:22 -0500
+Received: from ip5f5a6e92.dynamic.kabel-deutschland.de ([95.90.110.146] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1morwi-00086u-DW; Sun, 21 Nov 2021 19:52:12 +0100
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Dennis Gilmore <dgilmore@redhat.com>,
+        linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Florian Klink <flokli@flokli.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: helios64: add variables for pcie completion
+Date:   Sun, 21 Nov 2021 19:52:05 +0100
+Message-Id: <163752071860.2241976.17406214616552247687.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20211029005323.144652-1-dgilmore@redhat.com>
+References: <20211029005323.144652-1-dgilmore@redhat.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i2c0, i2c1 and i2c3 are used on all M1 devices, i2c2 is only used on
-the 2020 Mac Mini and 13-inch MacBook Pro. All devices have identical
-i2c addresses for the cd321x' and use the same i2c bus.
+On Thu, 28 Oct 2021 19:53:19 -0500, Dennis Gilmore wrote:
+> without ep-gpios defined u-boot does not initialise PCIe
+> rockchip_pcie pcie@f8000000: failed to find ep-gpios property
+> 
+> additionally set max-link-speed and pinctrl-names for completeness
+> 
+> with this patch and the ones from Florian Klink applied to the dts
+> file in u-boot sata drives show up in both u-boot and linux
 
-Signed-off-by: Janne Grunau <j@jannau.net>
----
- arch/arm64/boot/dts/apple/t8103-j274.dts  |  4 ++
- arch/arm64/boot/dts/apple/t8103-j293.dts  |  4 ++
- arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 18 ++++++
- arch/arm64/boot/dts/apple/t8103.dtsi      | 73 +++++++++++++++++++++++
- 4 files changed, 99 insertions(+)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/apple/t8103-j274.dts b/arch/arm64/boot/dts/apple/t8103-j274.dts
-index 9e01ef70039d..2cd429efba5b 100644
---- a/arch/arm64/boot/dts/apple/t8103-j274.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j274.dts
-@@ -39,3 +39,7 @@ ethernet0: ethernet@0,0 {
- 		local-mac-address = [00 10 18 00 00 00];
- 	};
- };
-+
-+&i2c2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/apple/t8103-j293.dts b/arch/arm64/boot/dts/apple/t8103-j293.dts
-index 466035f00b69..a3b084d50da3 100644
---- a/arch/arm64/boot/dts/apple/t8103-j293.dts
-+++ b/arch/arm64/boot/dts/apple/t8103-j293.dts
-@@ -31,3 +31,7 @@ &pcie0_dart_2 {
- 
- /delete-node/ &port01;
- /delete-node/ &port02;
-+
-+&i2c2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-index 53d22b434d76..5f748f3f60d2 100644
---- a/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103-jxxx.dtsi
-@@ -39,6 +39,24 @@ &serial0 {
- 	status = "okay";
- };
- 
-+&i2c0 {
-+	hpm0: tps6598x@38 {
-+		compatible = "apple,cd321x";
-+		reg = <0x38>;
-+		interrupt-parent = <&pinctrl_ap>;
-+		interrupts = <106 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "irq";
-+	};
-+
-+	hpm1: tps6598x@3f {
-+		compatible = "apple,cd321x";
-+		reg = <0x3f>;
-+		interrupt-parent = <&pinctrl_ap>;
-+		interrupts = <106 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "irq";
-+	};
-+};
-+
- /*
-  * Force the bus number assignments so that we can declare some of the
-  * on-board devices and properties that are populated by the bootloader
-diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-index c320c8baeb41..6c6dd988bd60 100644
---- a/arch/arm64/boot/dts/apple/t8103.dtsi
-+++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-@@ -126,6 +126,59 @@ serial0: serial@235200000 {
- 			status = "disabled";
- 		};
- 
-+		i2c0: i2c@235010000 {
-+			compatible = "apple,t8103-i2c", "apple,i2c";
-+			reg = <0x2 0x35010000 0x0 0x4000>;
-+			clocks = <&clk24>;
-+			clock-names = "ref";
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 627 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c0_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <0x1>;
-+			#size-cells = <0x0>;
-+		};
-+
-+		i2c1: i2c@235014000 {
-+			compatible = "apple,t8103-i2c", "apple,i2c";
-+			reg = <0x2 0x35014000 0x0 0x4000>;
-+			clocks = <&clk24>;
-+			clock-names = "ref";
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 628 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c1_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <0x1>;
-+			#size-cells = <0x0>;
-+		};
-+
-+		i2c2: i2c@235018000 {
-+			compatible = "apple,t8103-i2c", "apple,i2c";
-+			reg = <0x2 0x35018000 0x0 0x4000>;
-+			clocks = <&clk24>;
-+			clock-names = "ref";
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 628 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c2_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <0x1>;
-+			#size-cells = <0x0>;
-+			status = "disabled"; /* not used in all devices */
-+		};
-+
-+		i2c3: i2c@23501c000 {
-+			compatible = "apple,t8103-i2c", "apple,i2c";
-+			reg = <0x2 0x3501c000 0x0 0x4000>;
-+			clocks = <&clk24>;
-+			clock-names = "ref";
-+			interrupt-parent = <&aic>;
-+			interrupts = <AIC_IRQ 630 IRQ_TYPE_LEVEL_HIGH>;
-+			pinctrl-0 = <&i2c3_pins>;
-+			pinctrl-names = "default";
-+			#address-cells = <0x1>;
-+			#size-cells = <0x0>;
-+		};
-+
- 		aic: interrupt-controller@23b100000 {
- 			compatible = "apple,t8103-aic", "apple,aic";
- 			#interrupt-cells = <3>;
-@@ -153,6 +206,26 @@ pinctrl_ap: pinctrl@23c100000 {
- 				     <AIC_IRQ 195 IRQ_TYPE_LEVEL_HIGH>,
- 				     <AIC_IRQ 196 IRQ_TYPE_LEVEL_HIGH>;
- 
-+			i2c0_pins: i2c0-pins {
-+				pinmux = <APPLE_PINMUX(192, 1)>,
-+					 <APPLE_PINMUX(188, 1)>;
-+			};
-+
-+			i2c1_pins: i2c1-pins {
-+				pinmux = <APPLE_PINMUX(201, 1)>,
-+					 <APPLE_PINMUX(199, 1)>;
-+			};
-+
-+			i2c2_pins: i2c2-pins {
-+				pinmux = <APPLE_PINMUX(163, 1)>,
-+					 <APPLE_PINMUX(162, 1)>;
-+			};
-+
-+			i2c3_pins: i2c3-pins {
-+				pinmux = <APPLE_PINMUX(73, 1)>,
-+					 <APPLE_PINMUX(72, 1)>;
-+			};
-+
- 			pcie_pins: pcie-pins {
- 				pinmux = <APPLE_PINMUX(150, 1)>,
- 					 <APPLE_PINMUX(151, 1)>,
+[1/1] arm64: dts: rockchip: helios64: add variables for pcie completion
+      commit: 755fff528b1b760c700dbf39928ff3dda825f748
+
+Best regards,
 -- 
-2.34.0
-
+Heiko Stuebner <heiko@sntech.de>
