@@ -2,225 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02BDD459116
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 16:14:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70E0B45915A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 16:25:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239620AbhKVPRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 10:17:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56366 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238762AbhKVPRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 10:17:54 -0500
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBB1C061746
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 07:14:48 -0800 (PST)
-Received: by mail-ua1-x92b.google.com with SMTP id y5so37211944ual.7
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 07:14:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=poS5/ZkkPxvtzD22F0lVSI3r9e0b9RG+7VJETyoPoIg=;
-        b=TywNwI4xVcUHaTxzzNsfna40gripLivuJ7MFTK83mECnSR4WEvMLG4GGh/WxqLhgSQ
-         iVNbugZvKmwY34OT7zb+LLIevaJIMtjOXZbQLsVQEV72+tmu2G3E/x2v7aIrcu318Pnh
-         LKurfoWikwicl+phNM17yy1abyVKwWOmz56eASAScq5NSXcZfZBkmDcT5MgqIofw0dA2
-         knCYy+4qh1KV15oU/bG3fVjj3zwQY/ZZ3cNevac5AT+TzKwCBKYg1J2NOwpGK53yZmKk
-         0Hj/314aubMIvQhOxEjydfa9oKJPmY20KcwEz/WGVLtg1aHKb2EZ4+9tpfDK7vSt9C1Q
-         1tJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=poS5/ZkkPxvtzD22F0lVSI3r9e0b9RG+7VJETyoPoIg=;
-        b=12QrI/3XqBnCa7+jQPpaQcUHgJblobMhpKDMW1xV7Ug+gzEU5Q2eusm6piECBKZ3Dz
-         MJIFZ5Ui9P3Zjt3bDzVVSyAT955SQcI1Y3g8OfNV08+7zPWsRkVleRiQmUZgw3ZKe3wh
-         HGuPS8eG5zJ4u3ouHLrzz//rMqufC7Dv8TxTgvGorcV2DHqrY/gbgEZjIckmm6tMHByT
-         hpL/onkIeLnGvyR66g/hEc9apDR8BuHT12ZNg/BukktmQEYbsigBV7/Su0FGKGaDmItj
-         n0YA1dXjfPFPBBnw373Knatxo7Ze7XX+sHUNDJn3c/34yeUI+QqG9w/BqFBzyzNl0LrE
-         qIag==
-X-Gm-Message-State: AOAM5336/sMZgbsHBMR1G8cOh6riZxea7KHA8jeCPsfZEWz6UP1ftqWN
-        wR/raXdT/qnt7K8SYxbwh5a/QuKt0FKqerX+0ZtWCd1CXMeInA==
-X-Google-Smtp-Source: ABdhPJw1wNxRm9yPXD1GQ+f/A1NtWJ2Stf4A605YHIA5GbkNnFK9OsunsY4bFzRgCO2pMCIgmqkZo9kmM3qJVwwLmhY=
-X-Received: by 2002:a05:6102:4192:: with SMTP id cd18mr132128250vsb.35.1637594086878;
- Mon, 22 Nov 2021 07:14:46 -0800 (PST)
+        id S238837AbhKVP2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 10:28:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56758 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239771AbhKVP2j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 10:28:39 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D35B60F48;
+        Mon, 22 Nov 2021 15:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637594733;
+        bh=Dvp+HhTrhkQyvZ3Oi3ekjS9nvlbLN+xCqwLYoQL7qw4=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=InyxsYWEW1pg35ixtAQ384nfnPcSgAE/Gv+4653Phc2tHKb30qPEHMNIO94mqf+yQ
+         wm1KHNOuqhGxyuNuMGdVX3Ny8Ztg/5Ssjg8QGsANYmHj4qR56Uq3SlAm7NQH/no1gg
+         diNdvMYTMLWpORufL+xgtu26JbW9mKYJah+dM0Psk24BVHEUdvdbTCynsniinpEPA9
+         y1EyT/tGTc6OPo2HIXah5owTpZEulRlO7GDsOcYFF/0/WDBzN6M5Bt6+BsyhJap6CZ
+         utzChOYz80M72kCfLQx0F7dKx+EhuYVk5ZfY/rJXiaIY+2OQXOAQun8b+76DKGoGgc
+         /ZDYHAr2pY1ug==
+Message-ID: <68544192-0c4f-ed64-27a2-0bfe2d7805b5@kernel.org>
+Date:   Mon, 22 Nov 2021 17:25:27 +0200
 MIME-Version: 1.0
-References: <20211121165647.26706-1-semen.protsenko@linaro.org> <20211121165647.26706-13-semen.protsenko@linaro.org>
-In-Reply-To: <20211121165647.26706-13-semen.protsenko@linaro.org>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 22 Nov 2021 17:14:35 +0200
-Message-ID: <CAPLW+4myd2JDEKmv+E1HsxK_yNaLC+iUWSo99+Lqujof3MGpCg@mail.gmail.com>
-Subject: Re: [PATCH v4 12/12] watchdog: s3c2410: Add Exynos850 support
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [v8 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
+ provider
+Content-Language: en-US
+To:     bjorn.andersson@linaro.org,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        georgi.djakov@linaro.org, evgreen@google.com,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     sboyd@kernel.org, mdtipton@codeaurora.org, sibis@codeaurora.org,
+        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
+References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
+ <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 21 Nov 2021 at 18:57, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->
-> Exynos850 is a bit different from SoCs already supported in WDT driver:
->   - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
->     always 0; .disable_auto_reset callback is not set for that reason
->   - MASK_WDT_RESET_REQUEST register is replaced with
->     CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
->     reset interrupt it's now enabled with the same value; .mask_reset
->     callback is reused for that functionality though
->   - To make WDT functional, WDT counter needs to be enabled in
->     CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
->     callback
->
-> Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-> instance. Different PMU registers and bits are used for each cluster. So
-> driver data is now modified in probe, adding needed info depending on
-> cluster index passed from device tree.
->
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+On 21.10.21 13:40, Odelu Kukatla wrote:
+> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
+> SoCs.
+> 
+> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+
+Acked-by: Georgi Djakov <djakov@kernel.org>
+
 > ---
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index d74a4c8..0b55742 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -3687,6 +3687,14 @@
+>   			};
+>   		};
+>   
+> +		epss_l3: interconnect@18590000 {
+> +			compatible = "qcom,sc7280-epss-l3";
+> +			reg = <0 0x18590000 0 0x1000>;
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
+> +			clock-names = "xo", "alternate";
+> +			#interconnect-cells = <1>;
+> +		};
+> +
+>   		cpufreq_hw: cpufreq@18591000 {
+>   			compatible = "qcom,cpufreq-epss";
+>   			reg = <0 0x18591000 0 0x1000>,
+> 
 
-Hi Guenter,
-
-I've resent the whole series, but I can see you already applied my
-previous series to your watchdog-next branch. So this patch is the
-only one that actually changed in the whole series (with fixes for
-0-day warning).
-
-> Changes in v4:
->   - Fixed build error when CONFIG_OF is disabled (found by 0-day):
->     added #ifdef CONFIG_OF guard in s3c2410_get_wdt_drv_data()
->   - Added R-b tag by Guenter Roeck
->
-> Changes in v3:
->   - Renamed "samsung,index" property to more descriptive
->     "samsung,cluster-index"
->   - Used pre-defined and completely set driver data for cluster0 and
->     cluster1
->
-> Changes in v2:
->   - Used single compatible for Exynos850, populating missing driver data
->     in probe
->   - Added "index" property to specify CPU cluster index
->
->  drivers/watchdog/s3c2410_wdt.c | 64 +++++++++++++++++++++++++++++++++-
->  1 file changed, 63 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> index 96aa5d9c6ed4..115a6fe7da57 100644
-> --- a/drivers/watchdog/s3c2410_wdt.c
-> +++ b/drivers/watchdog/s3c2410_wdt.c
-> @@ -56,6 +56,13 @@
->  #define EXYNOS5_RST_STAT_REG_OFFSET            0x0404
->  #define EXYNOS5_WDT_DISABLE_REG_OFFSET         0x0408
->  #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET      0x040c
-> +#define EXYNOS850_CLUSTER0_NONCPU_OUT          0x1220
-> +#define EXYNOS850_CLUSTER0_NONCPU_INT_EN       0x1244
-> +#define EXYNOS850_CLUSTER1_NONCPU_OUT          0x1620
-> +#define EXYNOS850_CLUSTER1_NONCPU_INT_EN       0x1644
-> +
-> +#define EXYNOS850_CLUSTER0_WDTRESET_BIT                24
-> +#define EXYNOS850_CLUSTER1_WDTRESET_BIT                23
->
->  /**
->   * Quirk flags for different Samsung watchdog IP-cores.
-> @@ -205,6 +212,30 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
->                   QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
->  };
->
-> +static const struct s3c2410_wdt_variant drv_data_exynos850_cl0 = {
-> +       .mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN,
-> +       .mask_bit = 2,
-> +       .mask_reset_inv = true,
-> +       .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-> +       .rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT,
-> +       .cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT,
-> +       .cnt_en_bit = 7,
-> +       .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-> +                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-> +};
-> +
-> +static const struct s3c2410_wdt_variant drv_data_exynos850_cl1 = {
-> +       .mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN,
-> +       .mask_bit = 2,
-> +       .mask_reset_inv = true,
-> +       .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-> +       .rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT,
-> +       .cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT,
-> +       .cnt_en_bit = 7,
-> +       .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
-> +                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
-> +};
-> +
->  static const struct of_device_id s3c2410_wdt_match[] = {
->         { .compatible = "samsung,s3c2410-wdt",
->           .data = &drv_data_s3c2410 },
-> @@ -216,6 +247,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
->           .data = &drv_data_exynos5420 },
->         { .compatible = "samsung,exynos7-wdt",
->           .data = &drv_data_exynos7 },
-> +       { .compatible = "samsung,exynos850-wdt",
-> +         .data = &drv_data_exynos850_cl0 },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
-> @@ -587,14 +620,40 @@ static inline const struct s3c2410_wdt_variant *
->  s3c2410_get_wdt_drv_data(struct platform_device *pdev)
->  {
->         const struct s3c2410_wdt_variant *variant;
-> +       struct device *dev = &pdev->dev;
->
-> -       variant = of_device_get_match_data(&pdev->dev);
-> +       variant = of_device_get_match_data(dev);
->         if (!variant) {
->                 /* Device matched by platform_device_id */
->                 variant = (struct s3c2410_wdt_variant *)
->                            platform_get_device_id(pdev)->driver_data;
->         }
->
-> +#ifdef CONFIG_OF
-> +       /* Choose Exynos850 driver data w.r.t. cluster index */
-> +       if (variant == &drv_data_exynos850_cl0) {
-> +               u32 index;
-> +               int err;
-> +
-> +               err = of_property_read_u32(dev->of_node,
-> +                                          "samsung,cluster-index", &index);
-> +               if (err) {
-> +                       dev_err(dev, "failed to get cluster index\n");
-> +                       return NULL;
-> +               }
-> +
-> +               switch (index) {
-> +               case 0:
-> +                       return &drv_data_exynos850_cl0;
-> +               case 1:
-> +                       return &drv_data_exynos850_cl1;
-> +               default:
-> +                       dev_err(dev, "wrong cluster index: %u\n", index);
-> +                       return NULL;
-> +               }
-> +       }
-> +#endif
-> +
->         return variant;
->  }
->
-> @@ -615,6 +674,9 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
->         wdt->wdt_device = s3c2410_wdd;
->
->         wdt->drv_data = s3c2410_get_wdt_drv_data(pdev);
-> +       if (!wdt->drv_data)
-> +               return -EINVAL;
-> +
->         if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
->                 wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
->                                                 "samsung,syscon-phandle");
-> --
-> 2.30.2
->
