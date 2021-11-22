@@ -2,83 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E0B45915A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 16:25:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC1A4592A2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:04:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238837AbhKVP2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 10:28:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56758 "EHLO mail.kernel.org"
+        id S240152AbhKVQHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 11:07:42 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55104 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239771AbhKVP2j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 10:28:39 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8D35B60F48;
-        Mon, 22 Nov 2021 15:25:29 +0000 (UTC)
+        id S240150AbhKVQHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 11:07:41 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 11632604DA;
+        Mon, 22 Nov 2021 16:04:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637594733;
-        bh=Dvp+HhTrhkQyvZ3Oi3ekjS9nvlbLN+xCqwLYoQL7qw4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=InyxsYWEW1pg35ixtAQ384nfnPcSgAE/Gv+4653Phc2tHKb30qPEHMNIO94mqf+yQ
-         wm1KHNOuqhGxyuNuMGdVX3Ny8Ztg/5Ssjg8QGsANYmHj4qR56Uq3SlAm7NQH/no1gg
-         diNdvMYTMLWpORufL+xgtu26JbW9mKYJah+dM0Psk24BVHEUdvdbTCynsniinpEPA9
-         y1EyT/tGTc6OPo2HIXah5owTpZEulRlO7GDsOcYFF/0/WDBzN6M5Bt6+BsyhJap6CZ
-         utzChOYz80M72kCfLQx0F7dKx+EhuYVk5ZfY/rJXiaIY+2OQXOAQun8b+76DKGoGgc
-         /ZDYHAr2pY1ug==
-Message-ID: <68544192-0c4f-ed64-27a2-0bfe2d7805b5@kernel.org>
-Date:   Mon, 22 Nov 2021 17:25:27 +0200
+        s=k20201202; t=1637597074;
+        bh=oIlj4AL4IkCRUuzrCaLfIWpzkAppKN5eC4wr2r2aMik=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Mi64BkkKrOi9QplUhK0D+jtOhf2QRDjjlICR/A4WI/6ZBFozME24+EFD4wdjIYYKU
+         2vv0nsQRtAg7VX7V/Hjtjaiw+4vUPgU5bNIeFeDDtdGZE/S52Zd4d5h4D/hyft4lGL
+         YCxf2dYGCa5z7YUHVVEgexBUmBHYZG1VtPFZUM7mOtEIyFM4GJI8ir3C7k+9uDKWl/
+         9cRc/NYND8AJI7VpOYSkjbA3BNv1/rttM+GJgq+3LW6AIyDgp6LCi1REyHDN15Y7Dl
+         QQkBVSPVP7AME+BZ16StMinl/m+/Fn/TydZhK5wbYojwwRNtgWh40W/F4wxnyAKyFZ
+         i69c0phr/2ouQ==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     broonie@kernel.org
+Cc:     dinguyen@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] ARM: dts: socfpga: change qspi to "intel,socfpga-qspi"
+Date:   Mon, 22 Nov 2021 10:04:26 -0600
+Message-Id: <20211122160427.2808342-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [v8 3/3] arm64: dts: qcom: sc7280: Add EPSS L3 interconnect
- provider
-Content-Language: en-US
-To:     bjorn.andersson@linaro.org,
-        Odelu Kukatla <okukatla@codeaurora.org>,
-        georgi.djakov@linaro.org, evgreen@google.com,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     sboyd@kernel.org, mdtipton@codeaurora.org, sibis@codeaurora.org,
-        saravanak@google.com, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-pm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org
-References: <1634812857-10676-1-git-send-email-okukatla@codeaurora.org>
- <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
-From:   Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <1634812857-10676-4-git-send-email-okukatla@codeaurora.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.10.21 13:40, Odelu Kukatla wrote:
-> Add Epoch Subsystem (EPSS) L3 interconnect provider node on SC7280
-> SoCs.
-> 
-> Signed-off-by: Odelu Kukatla <okukatla@codeaurora.org>
+Because of commit 9cb2ff111712 ("spi: cadence-quadspi: Disable Auto-HW polling"),
+which does a write to the CQSPI_REG_WR_COMPLETION_CTRL register
+regardless of any condition. Well, the Cadence QuadSPI controller on
+Intel's SoCFPGA platforms does not implement the
+CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
+results in a crash!
 
-Acked-by: Georgi Djakov <djakov@kernel.org>
+So starting with v5.16, I introduced the patch
+98d948eb833 ("spi: cadence-quadspi: fix write completion support"),
+which adds the dts property "intel,socfpga-qspi" that is specific for
+the QSPI on SoCFPGA that doesn't have the CQSPI_REG_WR_COMPLETION_CTRL
+register implemented.
 
-> ---
->   arch/arm64/boot/dts/qcom/sc7280.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index d74a4c8..0b55742 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -3687,6 +3687,14 @@
->   			};
->   		};
->   
-> +		epss_l3: interconnect@18590000 {
-> +			compatible = "qcom,sc7280-epss-l3";
-> +			reg = <0 0x18590000 0 0x1000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
-> +			clock-names = "xo", "alternate";
-> +			#interconnect-cells = <1>;
-> +		};
-> +
->   		cpufreq_hw: cpufreq@18591000 {
->   			compatible = "qcom,cpufreq-epss";
->   			reg = <0 0x18591000 0 0x1000>,
-> 
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+ arch/arm/boot/dts/socfpga.dtsi                    | 2 +-
+ arch/arm/boot/dts/socfpga_arria10.dtsi            | 2 +-
+ arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi | 2 +-
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi     | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
+index 0b021eef0b53..108c3610bf52 100644
+--- a/arch/arm/boot/dts/socfpga.dtsi
++++ b/arch/arm/boot/dts/socfpga.dtsi
+@@ -782,7 +782,7 @@ ocram: sram@ffff0000 {
+ 		};
+ 
+ 		qspi: spi@ff705000 {
+-			compatible = "cdns,qspi-nor";
++			compatible = "intel,socfpga-qpsi";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <0xff705000 0x1000>,
+diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
+index a574ea91d9d3..e1a70f3a641d 100644
+--- a/arch/arm/boot/dts/socfpga_arria10.dtsi
++++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
+@@ -756,7 +756,7 @@ usb0-ecc@ff8c8800 {
+ 		};
+ 
+ 		qspi: spi@ff809000 {
+-			compatible = "cdns,qspi-nor";
++			compatible = "intel,socfpga-qspi";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <0xff809000 0x100>,
+diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+index d301ac0d406b..d391153c9e6d 100644
+--- a/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
++++ b/arch/arm64/boot/dts/altera/socfpga_stratix10.dtsi
+@@ -594,7 +594,7 @@ emac0-tx-ecc@ff8c0400 {
+ 		};
+ 
+ 		qspi: spi@ff8d2000 {
+-			compatible = "cdns,qspi-nor";
++			compatible = "intel,socfpga-qspi";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <0xff8d2000 0x100>,
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+index 163f33b46e4f..de6dd2189e74 100644
+--- a/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex.dtsi
+@@ -628,7 +628,7 @@ sdmmca-ecc@ff8c8c00 {
+ 		};
+ 
+ 		qspi: spi@ff8d2000 {
+-			compatible = "cdns,qspi-nor";
++			compatible = "intel,socfpga-qspi";
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <0xff8d2000 0x100>,
+-- 
+2.25.1
 
