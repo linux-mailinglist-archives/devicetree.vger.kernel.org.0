@@ -2,83 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AE964596F6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 22:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30D744596FD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 22:52:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236004AbhKVVyX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 16:54:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34082 "EHLO
+        id S236067AbhKVVzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 16:55:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235323AbhKVVyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 16:54:23 -0500
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50983C061574;
-        Mon, 22 Nov 2021 13:51:16 -0800 (PST)
-Received: by mail-pj1-x1036.google.com with SMTP id p18-20020a17090ad31200b001a78bb52876so376316pju.3;
-        Mon, 22 Nov 2021 13:51:16 -0800 (PST)
+        with ESMTP id S235323AbhKVVzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 16:55:20 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C60C061714
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 13:52:13 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id n15-20020a17090a160f00b001a75089daa3so396947pja.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 13:52:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=26gO4rRgJIBEdzZw2oVChYsgDct9/VSdGDhlMAGLtjI=;
-        b=IkvHVxmDeCAsmUbQ25FnndY+L7HfxheUUHj+l+ty4yESlG9hMc5LxTC9T6MAj78j9o
-         4UDiSEKtuA9WM+IBlvE3Ijnkui+2htIqQ+XIFbxOcv4nLfopC7U6aeykO0WGP2LL9n3h
-         0Ux/WaF0vamZ/aIgWO1wP3O4a053z415+LOaOq1lCpy2oCbRJzQ71ZWPW6sbnMblbg4k
-         DWF1oyn/bpx3bBm5YLv+IZXTbtzni4BwWcm6Z0XK6aaVMQtCmPRkOT7Ssm6RDSl+1rbf
-         JlAQK4UZNlxrbp9QZJRulUFFfp/w/5jQYAAlclMK2EouKFLhqpsu14l9KxHtfGMYKyun
-         sXbA==
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xDUfFz1oSczs4hG0W6xWlrBrLcObFf0PliF2gOASseM=;
+        b=vh3UhTyI7AcmGEJgal+CGgBKA0NRzF474DhIyVYRtdPefzQlQ32C9Xe8++0ig0sRnc
+         rL1VFGXSpQm/Y2gYaxzAdOI4u6xC0LalhTfLXU9CUfgu5sv3ym2aT76zwAN9/GYygMmK
+         xcwlSMRoLbQfj4as02OodP+hgmLkXpsr9h/OIgNOSPlbPVrwTBWP+K+H0LmZq4kE50vC
+         j78nD3a9BVhNkrwedLAQaxnfD2woSLzKbUSxd378pUA3Rowb7vlHz1D3a43MRAEW4eS5
+         9wzA0zOPEjb3DGj5ZBwwGO9+FyOrqPl24aBp29jwtMNEyyRZ5awC+G9dPNFMZTMjXsxE
+         iWgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=26gO4rRgJIBEdzZw2oVChYsgDct9/VSdGDhlMAGLtjI=;
-        b=xQK35bJtN0lmyr3iqx/Q4fQPrUfvcMeAw8fikCLKju+vXEMPZ47hCoQTtrWUcXyqDs
-         iQdafYg5en/s/j+387PC9VketMW5gSPX9jhSKHMrKCqZG17SuRB7ajPiqsXYzagVPLKE
-         oGoS96sGQ8Ag+NE8oTOY7n9tc5QfzK8u6PVErLykzQbS3GEWMoJTaifeStgvB8YHAKMY
-         4Yww2QAF/Orfar3z/2BMwZB2+MJYqSzvQYBZvqh0B57gh8JXg3G9+QHpnFdLBSPtMcri
-         IJ1ufMQ1+8Dw0gzb52SXL+78Rkt2ijO9DmiBkz+q5j6rKKPywM1QehcNSrQ1mquW6Yun
-         UcfA==
-X-Gm-Message-State: AOAM531RPeDuOv30H1hUyW+V8wvYz0h7OrT1FFvFARc0S8IlwsTtH5VV
-        Fu5CXurduOR2uB7TFTB/BVs=
-X-Google-Smtp-Source: ABdhPJw4BGVSRa8DlvDnpA+bkr0fZ+DgZdHR07JVLNHw3veJoIGgAl1zYxY1F8ynQIq9/VRV9CImaA==
-X-Received: by 2002:a17:90b:1643:: with SMTP id il3mr35040028pjb.182.1637617875873;
-        Mon, 22 Nov 2021 13:51:15 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id fs21sm15728962pjb.1.2021.11.22.13.51.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Nov 2021 13:51:15 -0800 (PST)
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add Broadcom's BCM63xxx controller
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211115091107.11737-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <495a94ce-984e-f5c5-f5a2-74dc1b61e345@gmail.com>
-Date:   Mon, 22 Nov 2021 13:51:12 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xDUfFz1oSczs4hG0W6xWlrBrLcObFf0PliF2gOASseM=;
+        b=c8igT4aGTyJnIDvrr/ACyT9itZFoYHIqY/EBV4EgNYhHHIBANH/qN6q0steuWlwJ+l
+         sgQZD5Y+9GRE4TTgUyNzKaYbz8GvXHb+p8LC22moE/Tho6yweppsIUnkA/KkECuUZCni
+         VVEWq776vyZdq2BihOkP0D41aLnw/+Bx5o+ueLiDPXT8a03LF1qZLI33tqc8Ux/9aCSv
+         rjE3J76bMrf0A9ni7V/m6bbjhRQMKH/8a/Rm0mU6JWTZvnmGO0VDOlmoddhZLCyi35Sh
+         C1u1iR/xhLRD5lGTujPLmStVmcfcbUN3BVTDIgOOa7bvHz0DzJtq8e/jHyU/qI50H+DK
+         u3KA==
+X-Gm-Message-State: AOAM530ogdGGUOmtnBsW4VyqH9TqKhkZ6qU6OTCC5zSEpGFJTWVhJnnk
+        ir2OOXluXGPpEY3GaVAnMpxOgDiawajmEta8B5/W0g==
+X-Google-Smtp-Source: ABdhPJyUc1d9MsMxbBqRSnshOvX1pfQR0ym8en/MPl4TSjphXaxSRSwhxkfqn6M0N6pneIWABqtAJluLGGTNAaEd1VY=
+X-Received: by 2002:a17:90b:33d0:: with SMTP id lk16mr95803pjb.66.1637617932882;
+ Mon, 22 Nov 2021 13:52:12 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211115091107.11737-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20211104161804.587250-1-aford173@gmail.com> <CAJ+vNU2jcWyCm3UyiOnvknS0t+mSdpaB+CgGWYO3jxXTa3LhRA@mail.gmail.com>
+ <CAHCN7xJrnZMQgXVMJg7MZdFMWyesf6Ph7HnfMH7-9bm1qODHFw@mail.gmail.com>
+ <CAJ+vNU32GXtbKWGQXoE7pkXU8FcKh+HQJJduwRbRJ0tC-d6GoA@mail.gmail.com>
+ <CAHCN7xLAm21zUJQ8s4s--+ygmeVY0qyo0WSLp7ZM9bT9R3sjxw@mail.gmail.com>
+ <CAOMZO5Am4P17mOXWrPs0ns9AwOXM_ZpBdzbYTYJfv_48Ea=BHg@mail.gmail.com>
+ <CAHCN7xLzR5LqqydC7uydsXQPFVn=nyqKD8ZEH3EjcPuwQky5WA@mail.gmail.com>
+ <CAOMZO5AnXDV3jdR6hP_+uqyss4KftzjahcrGq1XA37nGsfQedw@mail.gmail.com>
+ <CAHCN7xKJBHY1o94VDkBaXXFjMUm=5WoshddT4DVWD04aiPV8MA@mail.gmail.com>
+ <CAHCN7xKpjVWiTvXpYH11kaHX=0Figh=ALQS4qnUroGCu-q3NNA@mail.gmail.com>
+ <CAJ+vNU37=qPuuNaSsvRntKU5wbVZoOtS_tAx7En6EMGfKN=QLg@mail.gmail.com> <82c5da8862abaa430ee52b57e15d29a67106d61f.camel@pengutronix.de>
+In-Reply-To: <82c5da8862abaa430ee52b57e15d29a67106d61f.camel@pengutronix.de>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Mon, 22 Nov 2021 13:52:01 -0800
+Message-ID: <CAJ+vNU0ce1TTAHzT-ZE303ikmmwghutyObSQMJeHN8D0R8Gcdw@mail.gmail.com>
+Subject: Re: [PATCH V3 0/9] arm64: imx8mn: Enable more imx8m Nano functions
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Adam Ford <aford173@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/15/21 1:11 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
-> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
-> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
+On Mon, Nov 22, 2021 at 10:20 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Am Montag, dem 22.11.2021 um 09:59 -0800 schrieb Tim Harvey:
+> > On Sun, Nov 21, 2021 at 7:25 AM Adam Ford <aford173@gmail.com> wrote:
+> > >
+> > > On Sun, Nov 21, 2021 at 8:34 AM Adam Ford <aford173@gmail.com> wrote:
+> > > >
+> > > > On Sun, Nov 21, 2021 at 8:21 AM Fabio Estevam <festevam@gmail.com> wrote:
+> > > > >
+> > > > > Hi Adam,
+> > > > >
+> > > > > On Sun, Nov 21, 2021 at 11:17 AM Adam Ford <aford173@gmail.com> wrote:
+> > > > >
+> > > > > > I am using https://source.codeaurora.org/external/imx/imx-atf/log/?h=lf_v2.4
+> > > > > >
+> > > > > > Since the driver sending SMCC commands to ATF isn't doing that, I
+> > > > > > assume it's safe to use the linux power-domain drivers with the ATF
+> > > > > > from NXP's kernel.
+> > > > > >
+> > > > > > If you can point me to the repo you think I should be using, I'll give it a try.
+> > > > >
+> > > > > Do you know if the mainline TF-A repo v2.5 works too?
+> > > > > https://github.com/ARM-software/arm-trusted-firmware/tree/v2.5
+> > > >
+> > > > That's good to know.
+> > > >
+> > > > I just built it into U-Boot:
+> > > >
+> > > > NOTICE:  BL31: v2.5(release):v2.5
+> > > > NOTICE:  BL31: Built : 08:24:13, Nov 21 2021
+> > > >
+> > > > The Etnaviv driver is still loading without hanging
+> > > >
+> > > > root@beacon-imx8mn-kit:~# dmesg |grep -i etna
+> > > > [   12.393936] etnaviv etnaviv: bound 38000000.gpu (ops gpu_ops [etnaviv])
+> > > > [   12.400676] etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
+> > > > [   12.641297] [drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
+> > > >
+> > > >
+> > >
+> > > Tim,
+> > >
+> > > Which version of Nano do you have?  Not all Nano SoC's have a GPU from
+> > > looking at the datasheet [1] .  I am using MIMX8MN2CVTIZAA (Nano Solo)
+> > >
+> > > [1] - https://www.nxp.com/docs/en/data-sheet/IMX8MNIEC.pdf
+> > >
+> >
+> > Adam,
+> >
+> > The board I have here has MIMX8MN5CVTIZAA so i.MX 8M Nano QuadLite
+> > with 'No GPU' as you expected.
+> >
+> > So I have to add the following to keep my board from hanging after your series:
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > index 236f425e1570..0d256a607b7c 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > @@ -251,6 +251,10 @@
+> >         };
+> >  };
+> >
+> > +&gpu {
+> > +       status = "disabled";
+> > +};
+> > +
+> >  &i2c1 {
+> >         clock-frequency = <100000>;
+> >         pinctrl-names = "default";
+> >
+> > This situation is similar to the one I encountered with the
+> > imx8mm-venice-gw7901 where adding the GPC node caused my board (which
+> > did not power the GPU) to hang until I added disables to the
+> > device-tree with commit 7973009235e2 ("arm64: dts:
+> > imx8mm-venice-gw7901.dts: disable pgc_gpumix"). It feels painful to
+> > have to add patches to keep things from hanging after additional
+> > functionality is added to dt but perhaps that is more common than I
+> > think esp for SoC's like IMX8M which have a lot of lingering support
+> > still coming in.
+> >
+> Yea, it's unfortunate that those patches break your board, but I guess
+> we need to accept this, while there is still a lot of feature work
+> going on.
+>
+> > I don't mind at all submitting the above patch to fix my board after
+> > your series is accepted as I think that having an IMX8MN with 'no gpu'
+> > is perhaps less likely than having one with a GPU and thus we probably
+> > shouldn't mark the node as disabled and force everyone that has a GPU
+> > to go and enable it.
+> >
+> > I wonder however if we should think about adding something to etnaviv
+> > to check the capability so that the same dt could be used with both
+> > CPU variants?
+>
+> etnaviv or really the kernel at all is not the place to handle this.
+> The DT is supposed to describe the hardware and the kernel should be
+> able to trust this description.
+>
+> If there is some way to read the chip capabilities and avoid having too
+> much DT variants in the kernel, the right place to handle this is the
+> software running before the kernel is started, i.e. your bootloader.
+> Barebox for example reads the SCU fuses on i.MX6 and removes the DT
+> nodes for the fused off CPU cores on i.MX6S and i.MX6D.
+>
 
-Just so the existing pattern/regexps continue to work, I would be naming
-this "bcm63xx" to be consistent with the rest of existing code-base.
--- 
-Florian
+Lucas,
+
+I agree - the boot firmware is an appropriate place for this. I
+believe the correct course of action in the case of the IMX8M Nano
+would be to do the following for no GPU:
+- disable disp_blk_ctrl node
+- disable gpu node
+- disable pgc_gpumix node
+
+What would you propose to do for detection of this in boot firmware?
+The DIGPROG register is currently used in U-Boot to determine IMX8M
+variants including Nano
+Qad/Dual/Solo/QaudLite/DualLite/SoloLite/UltraLite Quad/UltraLite
+Dual/UltraLite Solo. It would appear all the 'Lite' and 'UltraLite'
+variants have no GPU.
+
+Best regards,
+
+Tim
