@@ -2,110 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90878458D36
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:17:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3A64458D54
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:26:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237668AbhKVLUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 06:20:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58620 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237583AbhKVLUr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 06:20:47 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C84E3C061714
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:17:40 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id l22so78737739lfg.7
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:17:40 -0800 (PST)
+        id S238645AbhKVL3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:29:35 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:30343 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232808AbhKVL3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 06:29:34 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=Dkx0MUSWm0/HiS+F3NFCxyYWLWk3gc8tkuA/thO1Wts=;
-        b=zsuyJqBsCCRI+kyI+cAlne1apGSUoTSjcpRwrQzjGYOxcS2V6z7Ajlw5r7C50qVPtk
-         twb1Lfrkj7Txe7EQK5BfuKcw/O7gTyF0YMqZvO62vQTIrZR0tXkDeDVgmretFZ7wwmcO
-         8ZhhaTx9PdHwuVR8ZcIBXzFiBPUmxfszkWtoXtajlP75b/KzULEMUOe2SkmbESy8dFpa
-         IHejibuhFJw6e8B/UDEVMax1UGbfmHxdQFuiCXwHoTdCVQ4IMdz234pVkRITl1V1B69W
-         0v/Wg+cVWdpE7gvSPQkEngBwduBCKLsf6OTIYcOWDEnOsc6S0jj8ra0RNqrvALOHv1sP
-         QKFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=Dkx0MUSWm0/HiS+F3NFCxyYWLWk3gc8tkuA/thO1Wts=;
-        b=vhr8kZ1MAAJtfrvlaa2eqftX14a9TJdLIm8RhNKRmBVwdb6NBL5iWjoAQNSa5+9Abm
-         qTyyNCZ5lHkWqIHGqydHmkp8Vb8NNRXWoDpqa5FUYErjH9iitnZtQ1WbMdVX7yYnHgl6
-         asDgMhiPsjF2xZPtcx01QXgGn4Wy8L0mI5IPJcImln3W/daudjENMDvBEJjG0NMbM1cf
-         RcO4rAUPo1TxfnGzlaMzgEqmt7PdxgeMa42VKmZYOg99bjMaSIHfTm8RVIN3DDen2bN0
-         VViS0dViB2me8Avo85XPFkXnSDMs3kVxVEWj1IV0zU8mr/SnScthVmh4Aho7owx5lKRn
-         2zZA==
-X-Gm-Message-State: AOAM530DQ4xHVd9oXQ9CpDh1z5sskoYk30zTb3g3eCBfOnf+N6O+GVIL
-        dTsguncKp9ORGIvHZorg7tLNTw==
-X-Google-Smtp-Source: ABdhPJy8WK37v2EIorSjH7f5lkHs9whG2eHW5P4949bVrxmWUE0NBaA3HsSGEh3j0H/xK0co6ai4KA==
-X-Received: by 2002:a2e:9107:: with SMTP id m7mr49560782ljg.209.1637579858969;
-        Mon, 22 Nov 2021 03:17:38 -0800 (PST)
-Received: from [192.168.1.213] (81.5.99.121.dhcp.mipt-telecom.ru. [81.5.99.121])
-        by smtp.googlemail.com with ESMTPSA id x133sm929333lff.282.2021.11.22.03.17.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Nov 2021 03:17:38 -0800 (PST)
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: document TS voltage in AXP
- PMICs
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Quentin Schulz <foss@0leil.net>, linux-sunxi@lists.linux.dev
-References: <20211118141233.247907-1-boger@wirenboard.com>
- <20211118141233.247907-3-boger@wirenboard.com>
- <20211122104915.zism6uadgwxjz5d2@gilmour>
-From:   Evgeny Boger <boger@wirenboard.com>
-Message-ID: <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
-Date:   Mon, 22 Nov 2021 14:17:37 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637580388; x=1669116388;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Q/TuVl/jsHeWlfk7rfUtILL1334D8Dnlm2a8SNLaBhs=;
+  b=HGMYa/uxplY+xQX9PynNvj4/EiW6NRfm8bgDYj2B+/6iyMDbT0g1McIU
+   sY1PiiGxH0OpNKv4w/q8N+nS/UUrZIwja5DWPWWRkjTXoMbPmo6rKVMb1
+   mGnXWKPSKKeS6PaTiLvZXSt7e5kxkr84/FJqpZt3/GGGofrTADebJ8Zf4
+   8=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Nov 2021 03:26:28 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2021 03:26:27 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 22 Nov 2021 03:26:27 -0800
+Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 22 Nov 2021 03:26:22 -0800
+From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
+CC:     Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        <robdclark@gmail.com>, <seanpaul@chromium.org>,
+        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
+        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
+        <quic_khsieh@quicinc.com>, <quic_sbillaka@quicinc.com>
+Subject: [PATCH v4 1/4] arm64: dts: qcom: sc7280: add display dt nodes
+Date:   Mon, 22 Nov 2021 16:56:06 +0530
+Message-ID: <1637580369-876-1-git-send-email-quic_sbillaka@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20211122104915.zism6uadgwxjz5d2@gilmour>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-GB
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-22.11.2021 13:49, Maxime Ripard пишет:
-> On Thu, Nov 18, 2021 at 05:12:33PM +0300, Evgeny Boger wrote:
->> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
->> TS pin. axp20x IIO driver now report the voltage of this pin via
->> additional IIO channel. Add new "ts_v" channel to the channel description.
->>
->> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> Would it make sense to put the resistance in the DT as well or is it
-> made mandatory by Allwinner?
->
-> Maxime
-Well, I don't think so. Basically, by default AXP20x injects 80uA current
-into the TS pin and measure the voltage. Then, there are voltage thresholds
-to stop charging if the battery is too hot or too cold. The default 
-thresholds
-were calculated by the manufacturer for default 10k resistance and 80uA 
-current.
-Finally, if TS pin isshorted to GND, the AXP2xx will detect it and won't 
-shut
+From: Krishna Manikandan <quic_mkrishn@quicinc.com>
 
-down charging.
-Note that AXP2xx doesn't convert the measured voltage to temperature.
+Add mdss and mdp DT nodes for sc7280.
 
-So while it's possible to use AXP2xx with resistance other than 10k, it will
-require us to override these protection thresholds. Moreover, if one 
-want to
-put the actual resistance in DT, then the driver would need to calculate 
-these
-protection thresholds based on NTC parameters and injection current.
-I think we better keep things simple and let DT followthe hardware, 
-which only
-operates in terms of voltage, not temperature and resistance.
+Signed-off-by: Krishna Manikandan <quic_mkrishn@quicinc.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+---
 
+Changes in v4:
+    None
+
+Changes in v3:
+    None
+
+Changes in v2:
+    - Rename display dt nodes (Stephen Boyd)
+    - Add clock names one per line for readability (Stephen Boyd)
+
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 90 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 90 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 365a2e0..a4536b6 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2704,6 +2704,96 @@
+ 			#power-domain-cells = <1>;
+ 		};
+ 
++		mdss: display-subsystem@ae00000 {
++			compatible = "qcom,sc7280-mdss";
++			reg = <0 0x0ae00000 0 0x1000>;
++			reg-names = "mdss";
++
++			power-domains = <&dispcc DISP_CC_MDSS_CORE_GDSC>;
++
++			clocks = <&gcc GCC_DISP_AHB_CLK>,
++				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++				<&dispcc DISP_CC_MDSS_MDP_CLK>;
++			clock-names = "iface",
++				      "ahb",
++				      "core";
++
++			assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
++			assigned-clock-rates = <300000000>;
++
++			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++
++			interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>;
++			interconnect-names = "mdp0-mem";
++
++			iommus = <&apps_smmu 0x900 0x402>;
++
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			status = "disabled";
++
++			mdp: display-controller@ae01000 {
++				compatible = "qcom,sc7280-dpu";
++				reg = <0 0x0ae01000 0 0x8f030>,
++					<0 0x0aeb0000 0 0x2008>;
++				reg-names = "mdp", "vbif";
++
++				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
++					<&gcc GCC_DISP_SF_AXI_CLK>,
++					<&dispcc DISP_CC_MDSS_AHB_CLK>,
++					<&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
++					<&dispcc DISP_CC_MDSS_MDP_CLK>,
++					<&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++				clock-names = "bus",
++					      "nrt_bus",
++					      "iface",
++					      "lut",
++					      "core",
++					      "vsync";
++				assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
++						<&dispcc DISP_CC_MDSS_VSYNC_CLK>,
++						<&dispcc DISP_CC_MDSS_AHB_CLK>;
++				assigned-clock-rates = <300000000>,
++							<19200000>,
++							<19200000>;
++				operating-points-v2 = <&mdp_opp_table>;
++				power-domains = <&rpmhpd SC7280_CX>;
++
++				interrupt-parent = <&mdss>;
++				interrupts = <0>;
++
++				status = "disabled";
++
++				mdp_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-200000000 {
++						opp-hz = /bits/ 64 <200000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-300000000 {
++						opp-hz = /bits/ 64 <300000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-380000000 {
++						opp-hz = /bits/ 64 <380000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-506666667 {
++						opp-hz = /bits/ 64 <506666667>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
++		};
++
+ 		pdc: interrupt-controller@b220000 {
+ 			compatible = "qcom,sc7280-pdc", "qcom,pdc";
+ 			reg = <0 0x0b220000 0 0x30000>;
 -- 
+2.7.4
 
