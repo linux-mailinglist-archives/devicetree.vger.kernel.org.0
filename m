@@ -2,86 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1DF4458C6F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31400458C7C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:42:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239279AbhKVKmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 05:42:40 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:41407 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S235098AbhKVKmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 05:42:36 -0500
-X-IronPort-AV: E=Sophos;i="5.87,254,1631545200"; 
-   d="scan'208";a="101057625"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 22 Nov 2021 19:39:30 +0900
-Received: from localhost.localdomain (unknown [10.226.92.178])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 60BC24001962;
-        Mon, 22 Nov 2021 19:39:28 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 2/2] arm64: dts: renesas: r9a07g044: Rename SDHI clocks
-Date:   Mon, 22 Nov 2021 10:39:05 +0000
-Message-Id: <20211122103905.14439-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
-References: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
+        id S239166AbhKVKpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 05:45:12 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33290 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229806AbhKVKpL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 05:45:11 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id A735060E0B;
+        Mon, 22 Nov 2021 10:42:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637577725;
+        bh=/4UzQCwmhU8u63jfuGSa1E3xiQu/uGrLlTEgn+sJm24=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DM+OSsvThiwhqM/wCXCjcCFzNWRzd2GSI3wS2K88JUFR4OufaOWNP+3JF1gSzVtGu
+         i8DFMzKT7W4zuh73FtsMAp6fbMVJjaWvd3Qsu8tlmQj0pBUPhixSFec8Qrpv/23tKs
+         f1j0Q+fBwNaO6l17R7JlcgpUQqD15Prc4xEG4sCNJQrL/Kki56PmFTtvz+B8dEm1R2
+         2TKBJl559NHpUjXLDLW6wKZfSqri3PRQMNfAXKyQaUCOwhixlMYqLl6DTeA07iue/M
+         mdzDt153rOvJ5ofv9vQphIPIe/X0HgUxkC5ZvwP9hTx34x9vpvbnW87nnoAFvvl43b
+         TBi9T8Tvl2Trg==
+Date:   Mon, 22 Nov 2021 16:12:00 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     quic_vamslank@quicinc.com
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, manivannan.sadhasivam@linaro.org
+Subject: Re: [PATCH v5 1/6] dt-bindings: clock: Add SDX65 GCC clock bindings
+Message-ID: <YZtz+PAWMBLGw0Dx@matsya>
+References: <cover.1637302009.git.quic_vamslank@quicinc.com>
+ <e20b452994bbd410411a631ef96091031c2fc039.1637302009.git.quic_vamslank@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e20b452994bbd410411a631ef96091031c2fc039.1637302009.git.quic_vamslank@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename the below SDHI clocks to match with the clocks used in driver.
+On 18-11-21, 22:11, quic_vamslank@quicinc.com wrote:
+> From: Vamsi krishna Lanka <quic_vamslank@quicinc.com>
+> 
+> Add device tree bindings for global clock controller on SDX65 SOCs.
 
-     imclk->core
-     clk_hs->clkh
-     imclk2->cd
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Also re-arrange the clocks to match with the sorting order used in the
-binding document.
-
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 2dd6eff471cb..6d7dc4785161 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -613,10 +613,10 @@
- 			interrupts = <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD R9A07G044_SDHI0_IMCLK>,
--				 <&cpg CPG_MOD R9A07G044_SDHI0_IMCLK2>,
- 				 <&cpg CPG_MOD R9A07G044_SDHI0_CLK_HS>,
-+				 <&cpg CPG_MOD R9A07G044_SDHI0_IMCLK2>,
- 				 <&cpg CPG_MOD R9A07G044_SDHI0_ACLK>;
--			clock-names = "imclk", "imclk2", "clk_hs", "aclk";
-+			clock-names = "core", "clkh", "cd", "aclk";
- 			resets = <&cpg R9A07G044_SDHI0_IXRST>;
- 			power-domains = <&cpg>;
- 			status = "disabled";
-@@ -629,10 +629,10 @@
- 			interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&cpg CPG_MOD R9A07G044_SDHI1_IMCLK>,
--				 <&cpg CPG_MOD R9A07G044_SDHI1_IMCLK2>,
- 				 <&cpg CPG_MOD R9A07G044_SDHI1_CLK_HS>,
-+				 <&cpg CPG_MOD R9A07G044_SDHI1_IMCLK2>,
- 				 <&cpg CPG_MOD R9A07G044_SDHI1_ACLK>;
--			clock-names = "imclk", "imclk2", "clk_hs", "aclk";
-+			clock-names = "core", "clkh", "cd", "aclk";
- 			resets = <&cpg R9A07G044_SDHI1_IXRST>;
- 			power-domains = <&cpg>;
- 			status = "disabled";
 -- 
-2.17.1
-
+~Vinod
