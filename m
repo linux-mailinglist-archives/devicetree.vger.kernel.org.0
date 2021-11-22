@@ -2,148 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E055F458FA6
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 14:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C09458FCD
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 14:54:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237430AbhKVNr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 08:47:59 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59490 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230322AbhKVNr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 08:47:59 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AMDifip101911;
-        Mon, 22 Nov 2021 07:44:41 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637588681;
-        bh=4aEDuUEwwhUks1YMR682x5k41bzpSbH1JYgjk2P31Dw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=WYnW3qAUdQPcffmBypxU+4/ypn5NPYrEzdwzzecNs75Ba6t4a8+9bYPlcFFgnhtIn
-         g0zwwaNJx5dU8HIfPnJzXJ/h+4p0Np4/KDetfuf1f5Z+Kg2HZOlRidBi9gX5ffBOGi
-         VW4FF41anIgnK6+kLeRATj4u0yh+AbT5dcgQGN1A=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AMDifb3053455
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Nov 2021 07:44:41 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 22
- Nov 2021 07:44:41 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 22 Nov 2021 07:44:41 -0600
-Received: from [10.250.233.118] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AMDibMa029183;
-        Mon, 22 Nov 2021 07:44:37 -0600
-Subject: Re: [PATCH RFC v2 4/4] phy: phy-can-transceiver: Add support for
- setting mux
-To:     Aswath Govindraju <a-govindraju@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Peter Rosin <peda@axentia.se>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-can@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20211122125624.6431-1-a-govindraju@ti.com>
- <20211122125624.6431-5-a-govindraju@ti.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <cc28796e-2ebc-4aad-ffc2-4fe570b269db@ti.com>
-Date:   Mon, 22 Nov 2021 19:14:36 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
-MIME-Version: 1.0
-In-Reply-To: <20211122125624.6431-5-a-govindraju@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S231918AbhKVN5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 08:57:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39838 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229984AbhKVN5b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 08:57:31 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C59B160C3F;
+        Mon, 22 Nov 2021 13:54:24 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mp9m2-00749T-Hd; Mon, 22 Nov 2021 13:54:22 +0000
+Date:   Mon, 22 Nov 2021 13:54:22 +0000
+Message-ID: <8735no70tt.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel-team@android.com, Rob Herring <robh@kernel.org>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own definition of interrupt-map
+In-Reply-To: <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+References: <20211122103032.517923-1-maz@kernel.org>
+        <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: geert@linux-m68k.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel-team@android.com, robh@kernel.org, john@phrozen.org, biwen.li@nxp.com, chris.brandt@renesas.com, linux-renesas-soc@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Aswath,
-
-On 22/11/21 6:26 pm, Aswath Govindraju wrote:
-> On some boards, for routing CAN signals from controller to transceiver,
-> muxes might need to be set. Therefore, add support for setting the mux by
-> reading the mux-controls property from the device tree node.
+On Mon, 22 Nov 2021 13:10:32 +0000,
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 > 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  drivers/phy/phy-can-transceiver.c | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
+> Hi Marc,
 > 
-> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
-> index 6f3fe37dee0e..15056b9d68ba 100644
-> --- a/drivers/phy/phy-can-transceiver.c
-> +++ b/drivers/phy/phy-can-transceiver.c
-> @@ -10,6 +10,7 @@
->  #include<linux/module.h>
->  #include<linux/gpio.h>
->  #include<linux/gpio/consumer.h>
-> +#include <linux/mux/consumer.h>
->  
->  struct can_transceiver_data {
->  	u32 flags;
-> @@ -21,13 +22,23 @@ struct can_transceiver_phy {
->  	struct phy *generic_phy;
->  	struct gpio_desc *standby_gpio;
->  	struct gpio_desc *enable_gpio;
-> +	struct mux_control *mux_ctrl;
->  };
->  
->  /* Power on function */
->  static int can_transceiver_phy_power_on(struct phy *phy)
->  {
-> +	int ret;
->  	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
->  
-> +	if (can_transceiver_phy->mux_ctrl) {
-> +		ret = mux_control_select(can_transceiver_phy->mux_ctrl,
-> +					 mux_control_enable_state(can_transceiver_phy->mux_ctrl));
+> On Mon, Nov 22, 2021 at 11:30 AM Marc Zyngier <maz@kernel.org> wrote:
+> > Since 041284181226 ("of/irq: Allow matching of an interrupt-map local
+> > to an interrupt controller"), a handful of interrupt controllers have
+> > stopped working correctly. This is due to the DT exposing a non-sensical
+> > interrupt-map property, and their drivers relying on the kernel ignoring
+> > this property.
+> >
+> > Since we cannot realistically fix this terrible behaviour, add a quirk
+> > for the limited set of devices that have implemented this monster,
+> > and document that this is a pretty bad practice.
+> >
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: John Crispin <john@phrozen.org>
+> > Cc: Biwen Li <biwen.li@nxp.com>
+> > Cc: Chris Brandt <chris.brandt@renesas.com>
+> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+> 
+> Thanks for your patch!
+> 
+> > --- a/drivers/of/irq.c
+> > +++ b/drivers/of/irq.c
+> > @@ -76,6 +76,36 @@ struct device_node *of_irq_find_parent(struct device_node *child)
+> >  }
+> >  EXPORT_SYMBOL_GPL(of_irq_find_parent);
+> >
+> > +/*
+> > + * These interrupt controllers abuse interrupt-map for unspeakable
+> > + * reasons and rely on the core code to *ignore* it (the drivers do
+> > + * their own parsing of the property).
+> > + *
+> > + * If you think of adding to the list for something *new*, think
+> > + * again. There is a high chance that you will be sent back to the
+> > + * drawing board.
+> > + */
+> > +static const char * const of_irq_imap_abusers[] = {
+> > +       "CBEA,platform-spider-pic",
+> > +       "sti,platform-spider-pic",
+> > +       "realtek,rtl-intc",
+> > +       "fsl,ls1021a-extirq",
+> > +       "fsl,ls1043a-extirq",
+> > +       "fsl,ls1088a-extirq",
+> > +       "renesas,rza1-irqc",
+> > +};
+> 
+> Are you sure "renesas,rza1-irqc" handles this wrong? How should it
+> be handled instead? I read the other thread[1], but didn't became
+> any wiser: interrupts are mapped one-to-one with the RZ/A1 IRQC.
+> 
+> In both v5.15 and v5.16-rc1, interrupts seem to work fine on RSK+RZA1
+> and RZA2MEVB, both with gpio-keys and when used as a wake-up interrupt.
 
-Would need 'select MULTIPLEXER' in Kconfig.
+This is odd. 5.16-rc1 should actively breaks the behaviour, as each
+interrupt is directly routed to the GIC. Here's an extract of the DT
+for r7s9210:
+
+    interrupt-map = <0 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+                    <1 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+                    <2 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+                    <3 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+                    <4 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+                    <5 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+                    <6 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+                    <7 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+
+I expect v5.16-rc1 to honour the routing described here and not
+involve rza1-irqc, because that's what the DT says.
+
+> With this patch applied, I see double keypresses with evtest: when
+> pressing a key, I get a key-down event, immediately followed by a
+> key-up event. When releasing the key, I again get two events.
+> 
+> Good (v5.15 or v5.16-rc1):
+> 
+>     Event: time 1637585631.288990, type 1 (EV_KEY), code 2 (KEY_1), value 1
+>     Event: time 1637585631.288990, -------------- SYN_REPORT ------------
+>     Event: time 1637585631.499924, type 1 (EV_KEY), code 2 (KEY_1), value 0
+>     Event: time 1637585631.499924, -------------- SYN_REPORT ------------
+> 
+> Bad (v5.16-rc1 + this patch):
+> 
+>     Event: time 1637585341.946647, type 1 (EV_KEY), code 2 (KEY_1), value 1
+>     Event: time 1637585341.946647, -------------- SYN_REPORT ------------
+>     Event: time 1637585341.960256, type 1 (EV_KEY), code 2 (KEY_1), value 0
+>     Event: time 1637585341.960256, -------------- SYN_REPORT ------------
+>     Event: time 1637585342.146775, type 1 (EV_KEY), code 2 (KEY_1), value 1
+>     Event: time 1637585342.146775, -------------- SYN_REPORT ------------
+>     Event: time 1637585342.160092, type 1 (EV_KEY), code 2 (KEY_1), value 0
+>     Event: time 1637585342.160092, -------------- SYN_REPORT ------------
+
+Is there any chance you could trace whether rza1-irqc gets called at
+all when setting up and handling the interrupt?
 
 Thanks,
-Kishon
-> +		if (ret) {
-> +			dev_err(&phy->dev, "Failed to select CAN mux: %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
->  	if (can_transceiver_phy->standby_gpio)
->  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
->  	if (can_transceiver_phy->enable_gpio)
-> @@ -45,6 +56,8 @@ static int can_transceiver_phy_power_off(struct phy *phy)
->  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
->  	if (can_transceiver_phy->enable_gpio)
->  		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
-> +	if (can_transceiver_phy->mux_ctrl)
-> +		mux_control_deselect(can_transceiver_phy->mux_ctrl);
->  
->  	return 0;
->  }
-> @@ -95,6 +108,19 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
->  	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
->  	drvdata = match->data;
->  
-> +	if (of_property_read_bool(dev->of_node, "mux-controls")) {
-> +		struct mux_control *control;
-> +		int ret;
-> +
-> +		control = devm_mux_control_get(dev, NULL);
-> +		if (IS_ERR(control)) {
-> +			ret = PTR_ERR(control);
-> +			dev_err_probe(&pdev->dev, ret, "failed to get mux\n");
-> +			return PTR_ERR(control);
-> +		}
-> +		can_transceiver_phy->mux_ctrl = control;
-> +	}
-> +
->  	phy = devm_phy_create(dev, dev->of_node,
->  			      &can_transceiver_phy_ops);
->  	if (IS_ERR(phy)) {
-> 
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
