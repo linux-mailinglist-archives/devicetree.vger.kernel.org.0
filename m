@@ -2,121 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54841458CA2
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A17458CA5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:47:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239353AbhKVKtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 05:49:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239067AbhKVKty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 05:49:54 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23494C061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 02:46:48 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id f18so78759914lfv.6
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 02:46:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=311GWPIXU+cwXxA7Ckz/STalbmM5HGKI3ZPI+zF+AxU=;
-        b=C2vLaC6sb735/pasDKME38R6Mdg/XwVypZnM92+kTdhnoTIIwD6NID8mfskzt3zY4i
-         tQVD7SoCmSHxZzczPBWXFwxxQZQ/CJXB6Krrn5wtGZ7X/6fJLsMp4fubBdtyzlajuy67
-         +Xb1Tonjg9CEbTEFd9Mz8cAbZGK06Q3ogCWH6OFkPS6SH5WyhgyCcIRBuXIZiYCg9iXz
-         a/43nYsG/gm79Zeo7kLp3dZ/5m/ez+DSw0ZF5E0cJ1xj18ebuP9LbjqJOvkOm4tWzfQm
-         4djhqZSQLiSM9tWsfUpNIrBSIb85dMYx1QkRxn5Vp+jDMwliidA2azAJxTmZc7S8MRnf
-         yE5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=311GWPIXU+cwXxA7Ckz/STalbmM5HGKI3ZPI+zF+AxU=;
-        b=VM/f6duF/sQHHDr58bDVNG/yozIZkWEYXTUKHen5KNuvDtJ25YN+e2hWGO6CN9IAde
-         uuK7Mb1Nb/eJxOmzmvTgppcl+mNdhokk+A4WSX/U68UmOTsXNEY9uBnicYVNUZEk2WMK
-         6aELpmV28e4XZX33brTdeyRwAULbYIOURGKRMHaRl0YXtE22WUcUI6puBRTw3/JesEdP
-         1CO5usDOgXQWlfjNh65AYi4IdCTDg+lEWhp/uRN8Z/SvqQgUtBYhkCDOZMlyITB5RaZi
-         xPiTLUE+mGrWPBp0L+AeQD+/0BZoc2Kjh+mzEvZigFi6mufLsDb4NHkwWauUhUViiPvv
-         4J2Q==
-X-Gm-Message-State: AOAM532r1DUefLQdKliu1vepmCa/p8GLJtBk4e3F3SBMg6yCGWOQGatu
-        yD+OG3ilg2hAqqdHxD3QQ2VRIw==
-X-Google-Smtp-Source: ABdhPJwJHm4/CL7dIRX3Q10ViHuUVbbGK/y0BysXvqEG1YX0vYPX8lTD4tzA8QuiDlgZJiU/X6NPOw==
-X-Received: by 2002:a2e:9b01:: with SMTP id u1mr51418465lji.379.1637578006428;
-        Mon, 22 Nov 2021 02:46:46 -0800 (PST)
-Received: from boger-laptop.lan (81.5.99.121.dhcp.mipt-telecom.ru. [81.5.99.121])
-        by smtp.gmail.com with ESMTPSA id bi24sm923538lfb.49.2021.11.22.02.46.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Nov 2021 02:46:46 -0800 (PST)
-From:   Evgeny Boger <boger@wirenboard.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Evgeny Boger <boger@wirenboard.com>, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-can@vger.kernel.org,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jeroen Hofstee <jhofstee@victronenergy.com>,
-        Gerhard Bertelsmann <info@gerhard-bertelsmann.de>
-Subject: [PATCH 3/3] ARM: dts: sun8i: r40: add node for CAN controller
-Date:   Mon, 22 Nov 2021 13:46:16 +0300
-Message-Id: <20211122104616.537156-4-boger@wirenboard.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211122104616.537156-1-boger@wirenboard.com>
-References: <20211122104616.537156-1-boger@wirenboard.com>
+        id S239368AbhKVKuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 05:50:06 -0500
+Received: from www.zeus03.de ([194.117.254.33]:52440 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239067AbhKVKuF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 05:50:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=oghwl1qnDj75n7yfdlvKbT8CzK4L
+        du0DzUS85sTtTRw=; b=yBmUWFyrHEQfyPvHSFMC7c6EXnJAXtJs06UYTrr6HVvs
+        LN9i9NQ+Tc08o38ChAMHXo5SAPKn2u49Tr/JPloGv+vtiP74h8ADr8/MTRrsbwP0
+        LFKA+lpwhrAcqrupb5XeV6HzvYEBLKHt5ote8ZosqKkRp1gpG4DxHYx/AF+GYeE=
+Received: (qmail 761530 invoked from network); 22 Nov 2021 11:46:57 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 22 Nov 2021 11:46:57 +0100
+X-UD-Smtp-Session: l3s3148p1@PMIBWF7RetsgAwDPXwnCAFkDAkP2hjT7
+Date:   Mon, 22 Nov 2021 11:46:56 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: renesas,sdhi: Rename RZ/G2L clocks
+Message-ID: <YZt1IGvXr8sO3Rvc@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
+ <20211122103905.14439-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zm34zFuq44kjVJ62"
+Content-Disposition: inline
+In-Reply-To: <20211122103905.14439-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner R40 (also known as A40i, T3, V40) has a CAN controller. The
-controller is the same as in earlier A10 and A20 SoCs, but needs reset
-line to be deasserted before use.
 
-This patch adds a CAN node and the corresponding pinctrl descriptions.
+--zm34zFuq44kjVJ62
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Evgeny Boger <boger@wirenboard.com>
----
- arch/arm/boot/dts/sun8i-r40.dtsi | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+On Mon, Nov 22, 2021 at 10:39:04AM +0000, Biju Das wrote:
+> Rename the below RZ/G2L clocks to match with the clock names used in
+> R-Car Gen2 and later generations.
+>=20
+>  imclk->core
+>  clk_hs->clkh
+>  imclk2->cd
+>=20
+> This changes will avoid using fallback for RZ/G2L high speed clock,
+> if "clkh" is not used in device tree and also the code changes in
+> driver related to this clocks.
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index 1d87fc0c24ee..c99c92f008a0 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -511,6 +511,16 @@ pio: pinctrl@1c20800 {
- 			#interrupt-cells = <3>;
- 			#gpio-cells = <3>;
- 
-+			can_ph_pins: can-ph-pins {
-+				pins = "PH20", "PH21";
-+				function = "can";
-+			};
-+
-+			can_pa_pins: can-pa-pins {
-+				pins = "PA16", "PA17";
-+				function = "can";
-+			};
-+
- 			clk_out_a_pin: clk-out-a-pin {
- 				pins = "PI12";
- 				function = "clk_out_a";
-@@ -926,6 +936,15 @@ i2c3: i2c@1c2b800 {
- 			#size-cells = <0>;
- 		};
- 
-+		can0: can@1c2bc00 {
-+			compatible = "allwinner,sun8i-r40-can";
-+			reg = <0x01c2bc00 0x400>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_CAN>;
-+			resets = <&ccu RST_BUS_CAN>;
-+			status = "disabled";
-+		};
-+
- 		i2c4: i2c@1c2c000 {
- 			compatible = "allwinner,sun6i-a31-i2c";
- 			reg = <0x01c2c000 0x400>;
--- 
-2.25.1
+The bindings match what we discussed. Thanks!
 
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+
+
+--zm34zFuq44kjVJ62
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGbdR0ACgkQFA3kzBSg
+KbYq9w/+PwY4hCRYAXEb6Rt9RLvUzYi379L2WM8FXggj4EtpN4NkjITBaF6xPsw4
+aLMvieOhk7PO9kd5+5b/T6YMzNnMV+bDqwtNBQPza30sQlh06vO8dnFzJnI4/3cA
+mUKNu/tC0W0ZZGiCvtGEA9UvMK+KV+fdxSHlbleEYFiY9vsfoX61/IC+DmkgwFxI
+iANui2BbmB5c7MtS5EwmTOxsZ13ayR4QgMLKrdnHvnfcyvWjkTYHflVj94jkSJpU
+bz4HNjrFmrRG2/q5nRUUDtirqs2bvwz45F7GM0kzxGiJaAaLZEQ0CsXOxmbcIVb6
+wWZ7dXjnxYn0Q9Y4wJ7VVfBIbhneTCsXhCg/o+7nzvp/8jBSmkmf4UEZ3r6fiwOw
+5smdLqP3pFfkiOomMYIzVA2pY/qN/rUUs/mXeOKs+5vxlWF1ns9jwUp+MeqsyQQN
+vg0O0t0rnetrT6GFot4UF1OlJWKwyGMEpul4x7pnX2/c+oEGxRv7gmIdBGVQHqfW
+7Y8pmC2IChg9k5lIpRArIet1SuvXGRI4Bf+ufIBBkLqMt+NkN0EkDnK4y8hHP0n5
+rwLqaxDIR+LIPjSaaSVHbb4QySzweBOeHVO3HdJ91LD1yV3isI+PIere4QMYEzj/
+/ceILluQT6QXfY8PZtxa6D0gEFPskex6k53xBg205thjY48ZSqQ=
+=Bz4w
+-----END PGP SIGNATURE-----
+
+--zm34zFuq44kjVJ62--
