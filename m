@@ -2,327 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CBC4458C82
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E68DD458CA9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:48:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239288AbhKVKpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 05:45:33 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33482 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239256AbhKVKpd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 05:45:33 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id EEE3060E0B;
-        Mon, 22 Nov 2021 10:42:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637577747;
-        bh=sDzHHTXAilFmGEfHXu4g1asuLWZ3E7TXcTzEGZUzU5w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=G49sCuhZJjPuNRBuvQnTKTvPzctHFQZEg2cVRdvuByKtcDj2jPrvFKptqacqcL+GR
-         AUvkp9yUz3auS0HueYxq8QfvTF5iIuFow3T0rnTvd+7AeOXEaycEub30KgeqgHvDTd
-         Vj3KuS+NA4+oWxu6CCx1RY5rIWFRpqplsf1+RHnKeISvgmiirX6ExxbrEJ5K0/CDGd
-         sml76Be3dQEa1wuxB96mVFMD+sqWM47WAK/1ayCsDlB0LfzDUIPtAj3P1w2RWXYj5Z
-         LtdvuhLBi7z39+bZIHWwgY51Iun7GWjrAXTjDtlUjBHMRVz97J+baRZ38CliXqmnGt
-         74aLzAJnqfEAA==
-Date:   Mon, 22 Nov 2021 16:12:22 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     quic_vamslank@quicinc.com
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, manivannan.sadhasivam@linaro.org
-Subject: Re: [PATCH v5 2/6] clk: qcom: Add LUCID_EVO PLL type for SDX65
-Message-ID: <YZt0DtLZiFR0aV4N@matsya>
-References: <cover.1637302009.git.quic_vamslank@quicinc.com>
- <a0b04869a20a0afef99dd457ebb6474f50591210.1637302009.git.quic_vamslank@quicinc.com>
+        id S239322AbhKVKvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 05:51:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239253AbhKVKvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 05:51:21 -0500
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66F1C061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 02:48:14 -0800 (PST)
+Received: by mail-lf1-x12d.google.com with SMTP id bu18so78867907lfb.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 02:48:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=veznNCWfyEZatqAmzPb848b91WavKwcPqROvRUIiq/E=;
+        b=VyUy2BcC7S7ke5VLz2u9hpx5jVU8FimXWlUrEJhIGE/jmMMTEpGuWbzoQojp4N8Ta+
+         Fj6VOXKPcQ/X7YhQPKGzpNgVstlSe+815DyGc7YmaXIJWChdSpwbIwukbGWHEGRzTLyz
+         gtyE9Qik/Q2N7ur/IaGk/I2Da7R/I6kMqfZhRGePtXgAGESpKln8zudjdsAiG57OEINT
+         HZz6xWhpiEV3RndkA5OMmjnMXULTcTESdPEaSBsvM0+aMdIY+jZA/jSlFdCbQXrX6pmv
+         oWm7oOXzezHW1WMnGnsZ1rVkQWEgH8sNJvvXNOoI0n0OXs4FqerD2Si24hBBrHgFsMrj
+         xIVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=veznNCWfyEZatqAmzPb848b91WavKwcPqROvRUIiq/E=;
+        b=guQpcKbxPhAU4AEg6LYhL+RvNCsHP7VJ6vDFmmfrNc7nfEpDGZOWfB8Sd0FL8sm4e4
+         /vJIxgSjwaiQdwzv13PxARghCX4DHCdZwLIgKNtByCMGXIJfoMCpHDhYDe7T2zulf+Bp
+         zIKz6jseAcC7yLvWqZdUUfOnp3ypb+xOzQLL6v/+Xi9U8i5pLhwaOtooPwHizIwgverp
+         EkPsFzkQj8v47pIjAXyULkeGdYb/lH9SO/72FvRqKQo+uCiJ6iNnIq9J0zN/8ddX2DeN
+         943i4Bg3QQ7JMam03bNj79ZLI/rVs5DF+8NS8h0wFEGFdDKFyfYyx6hGsB52aWs0EcB0
+         Stfw==
+X-Gm-Message-State: AOAM530zVZgybK9LEi6LKNviLArd6byp1aTHYTm2w3I/FlAs+T674p31
+        neXDHaPYadVVXX76nd1AIr81sw==
+X-Google-Smtp-Source: ABdhPJzBG9VJN0ecW1c7aafMOaF08g++9o5g53U+9cDb7MEYbLkTp1wkBetnN2ix3DyRO8wF9+n8uw==
+X-Received: by 2002:a2e:7801:: with SMTP id t1mr52527022ljc.253.1637578093130;
+        Mon, 22 Nov 2021 02:48:13 -0800 (PST)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id o11sm882648ljc.100.2021.11.22.02.48.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Nov 2021 02:48:12 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH net-next v2] dt-bindings: net: Add bindings for IXP4xx V.35 WAN HSS
+Date:   Mon, 22 Nov 2021 11:46:07 +0100
+Message-Id: <20211122104607.3145732-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a0b04869a20a0afef99dd457ebb6474f50591210.1637302009.git.quic_vamslank@quicinc.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-11-21, 22:11, quic_vamslank@quicinc.com wrote:
-> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> 
-> Add a LUCID_EVO PLL type for SDX65 SoC from Qualcomm.
+This adds device tree bindings for the IXP4xx V.35 WAN high
+speed serial (HSS) link.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+An example is added to the NPE example where the HSS appears
+as a child.
 
-> 
-> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> ---
->  drivers/clk/qcom/clk-alpha-pll.c | 204 +++++++++++++++++++++++++++----
->  drivers/clk/qcom/clk-alpha-pll.h |   3 +
->  2 files changed, 181 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
-> index eaedcceb766f..e0c67b76d8ac 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.c
-> +++ b/drivers/clk/qcom/clk-alpha-pll.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0
->  /*
->   * Copyright (c) 2015, 2018, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2021, Qualcomm Innovation Center, Inc. All rights reserved.
->   */
->  
->  #include <linux/kernel.h>
-> @@ -139,6 +140,20 @@ const u8 clk_alpha_pll_regs[][PLL_OFF_MAX_REGS] = {
->  		[PLL_OFF_OPMODE] = 0x28,
->  		[PLL_OFF_STATUS] = 0x38,
->  	},
-> +	[CLK_ALPHA_PLL_TYPE_LUCID_EVO] = {
-> +		[PLL_OFF_OPMODE] = 0x04,
-> +		[PLL_OFF_STATUS] = 0x0c,
-> +		[PLL_OFF_L_VAL] = 0x10,
-> +		[PLL_OFF_ALPHA_VAL] = 0x14,
-> +		[PLL_OFF_USER_CTL] = 0x18,
-> +		[PLL_OFF_USER_CTL_U] = 0x1c,
-> +		[PLL_OFF_CONFIG_CTL] = 0x20,
-> +		[PLL_OFF_CONFIG_CTL_U] = 0x24,
-> +		[PLL_OFF_CONFIG_CTL_U1] = 0x28,
-> +		[PLL_OFF_TEST_CTL] = 0x2c,
-> +		[PLL_OFF_TEST_CTL_U] = 0x30,
-> +		[PLL_OFF_TEST_CTL_U1] = 0x34,
-> +        },
->  };
->  EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->  
-> @@ -175,6 +190,10 @@ EXPORT_SYMBOL_GPL(clk_alpha_pll_regs);
->  #define LUCID_5LPE_PLL_LATCH_INPUT	BIT(14)
->  #define LUCID_5LPE_ENABLE_VOTE_RUN	BIT(21)
->  
-> +/* LUCID EVO PLL specific settings and offsets */
-> +#define LUCID_EVO_ENABLE_VOTE_RUN       BIT(25)
-> +#define LUCID_EVO_PLL_L_VAL_MASK        GENMASK(15, 0)
-> +
->  /* ZONDA PLL specific */
->  #define ZONDA_PLL_OUT_MASK	0xf
->  #define ZONDA_STAY_IN_CFA	BIT(16)
-> @@ -1741,35 +1760,47 @@ static int alpha_pll_lucid_5lpe_set_rate(struct clk_hw *hw, unsigned long rate,
->  					  LUCID_5LPE_ALPHA_PLL_ACK_LATCH);
->  }
->  
-> +static int __clk_lucid_pll_postdiv_set_rate(struct clk_hw *hw, unsigned long rate,
-> +                                            unsigned long parent_rate, unsigned long enable_vote_run)
-> +{
-> +        struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +        int i, val = 0, div, ret;
-> +        u32 mask;
-> +
-> +        /*
-> +         * If the PLL is in FSM mode, then treat set_rate callback as a
-> +         * no-operation.
-> +         */
-> +        ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> +        if (ret)
-> +                return ret;
-> +
-> +        if (val & enable_vote_run)
-> +                return 0;
-> +
-> +        if (!pll->post_div_table) {
-> +                pr_err("Missing the post_div_table for the PLL\n");
-> +                return -EINVAL;
-> +        }
-> +
-> +        div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
-> +        for (i = 0; i < pll->num_post_div; i++) {
-> +                if (pll->post_div_table[i].div == div) {
-> +                        val = pll->post_div_table[i].val;
-> +                        break;
-> +                }
-> +        }
-> +
-> +        mask = GENMASK(pll->width + pll->post_div_shift - 1, pll->post_div_shift);
-> +        return regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
-> +                                  mask, val << pll->post_div_shift);
-> +}
-> +
->  static int clk_lucid_5lpe_pll_postdiv_set_rate(struct clk_hw *hw, unsigned long rate,
->  					       unsigned long parent_rate)
->  {
-> -	struct clk_alpha_pll_postdiv *pll = to_clk_alpha_pll_postdiv(hw);
-> -	int i, val = 0, div, ret;
-> -	u32 mask;
-> -
-> -	/*
-> -	 * If the PLL is in FSM mode, then treat set_rate callback as a
-> -	 * no-operation.
-> -	 */
-> -	ret = regmap_read(pll->clkr.regmap, PLL_USER_CTL(pll), &val);
-> -	if (ret)
-> -		return ret;
-> -
-> -	if (val & LUCID_5LPE_ENABLE_VOTE_RUN)
-> -		return 0;
-> -
-> -	div = DIV_ROUND_UP_ULL((u64)parent_rate, rate);
-> -	for (i = 0; i < pll->num_post_div; i++) {
-> -		if (pll->post_div_table[i].div == div) {
-> -			val = pll->post_div_table[i].val;
-> -			break;
-> -		}
-> -	}
-> -
-> -	mask = GENMASK(pll->width + pll->post_div_shift - 1, pll->post_div_shift);
-> -	return regmap_update_bits(pll->clkr.regmap, PLL_USER_CTL(pll),
-> -				  mask, val << pll->post_div_shift);
-> +	return __clk_lucid_pll_postdiv_set_rate(hw, rate, parent_rate, LUCID_5LPE_ENABLE_VOTE_RUN);
->  }
->  
->  const struct clk_ops clk_alpha_pll_lucid_5lpe_ops = {
-> @@ -1951,3 +1982,124 @@ const struct clk_ops clk_alpha_pll_zonda_ops = {
->  	.set_rate = clk_zonda_pll_set_rate,
->  };
->  EXPORT_SYMBOL(clk_alpha_pll_zonda_ops);
-> +
-> +static int alpha_pll_lucid_evo_enable(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* If in FSM mode, just vote for it */
-> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
-> +		ret = clk_enable_regmap(hw);
-> +		if (ret)
-> +			return ret;
-> +		return wait_for_pll_enable_lock(pll);
-> +	}
-> +
-> +	/* Check if PLL is already enabled */
-> +	ret = trion_pll_is_enabled(pll, regmap);
-> +	if (ret < 0)
-> +		return ret;
-> +	else if (ret) {
-> +		pr_warn("%s PLL is already enabled\n", clk_hw_get_name(&pll->clkr.hw));
-> +		return 0;
-> +	}
-> +
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_RESET_N, PLL_RESET_N);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Set operation mode to RUN */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_RUN);
-> +
-> +	ret = wait_for_pll_enable_lock(pll);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Enable the PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, PLL_OUT_MASK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Enable the global PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, PLL_OUTCTRL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Ensure that the write above goes through before returning. */
-> +	mb();
-> +	return ret;
-> +}
-> +
-> +static void alpha_pll_lucid_evo_disable(struct clk_hw *hw)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = regmap_read(regmap, PLL_USER_CTL(pll), &val);
-> +	if (ret)
-> +		return;
-> +
-> +	/* If in FSM mode, just unvote it */
-> +	if (val & LUCID_EVO_ENABLE_VOTE_RUN) {
-> +		clk_disable_regmap(hw);
-> +		return;
-> +	}
-> +
-> +	/* Disable the global PLL output */
-> +	ret = regmap_update_bits(regmap, PLL_MODE(pll), PLL_OUTCTRL, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	/* Disable the PLL outputs */
-> +	ret = regmap_update_bits(regmap, PLL_USER_CTL(pll), PLL_OUT_MASK, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	/* Place the PLL mode in STANDBY */
-> +	regmap_write(regmap, PLL_OPMODE(pll), PLL_STANDBY);
-> +}
-> +
-> +static unsigned long alpha_pll_lucid_evo_recalc_rate(struct clk_hw *hw,
-> +						     unsigned long parent_rate)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	struct regmap *regmap = pll->clkr.regmap;
-> +	u32 l, frac;
-> +
-> +	regmap_read(regmap, PLL_L_VAL(pll), &l);
-> +	l &= LUCID_EVO_PLL_L_VAL_MASK;
-> +	regmap_read(regmap, PLL_ALPHA_VAL(pll), &frac);
-> +
-> +	return alpha_pll_calc_rate(parent_rate, l, frac, pll_alpha_width(pll));
-> +}
-> +
-> +static int clk_lucid_evo_pll_postdiv_set_rate(struct clk_hw *hw, unsigned long rate,
-> +					      unsigned long parent_rate)
-> +{
-> +	return __clk_lucid_pll_postdiv_set_rate(hw, rate, parent_rate, LUCID_EVO_ENABLE_VOTE_RUN);
-> +}
-> +
-> +const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops = {
-> +	.enable = alpha_pll_lucid_evo_enable,
-> +	.disable = alpha_pll_lucid_evo_disable,
-> +	.is_enabled = clk_trion_pll_is_enabled,
-> +	.recalc_rate = alpha_pll_lucid_evo_recalc_rate,
-> +	.round_rate = clk_alpha_pll_round_rate,
-> +};
-> +EXPORT_SYMBOL_GPL(clk_alpha_pll_fixed_lucid_evo_ops);
-> +
-> +const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops = {
-> +	.recalc_rate = clk_alpha_pll_postdiv_fabia_recalc_rate,
-> +	.round_rate = clk_alpha_pll_postdiv_fabia_round_rate,
-> +	.set_rate = clk_lucid_evo_pll_postdiv_set_rate,
-> +};
-> +EXPORT_SYMBOL_GPL(clk_alpha_pll_postdiv_lucid_evo_ops);
-> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
-> index 55e4fa47912f..6e9907deaf30 100644
-> --- a/drivers/clk/qcom/clk-alpha-pll.h
-> +++ b/drivers/clk/qcom/clk-alpha-pll.h
-> @@ -17,6 +17,7 @@ enum {
->  	CLK_ALPHA_PLL_TYPE_LUCID = CLK_ALPHA_PLL_TYPE_TRION,
->  	CLK_ALPHA_PLL_TYPE_AGERA,
->  	CLK_ALPHA_PLL_TYPE_ZONDA,
-> +	CLK_ALPHA_PLL_TYPE_LUCID_EVO,
->  	CLK_ALPHA_PLL_TYPE_MAX,
->  };
->  
-> @@ -151,6 +152,8 @@ extern const struct clk_ops clk_alpha_pll_postdiv_lucid_5lpe_ops;
->  
->  extern const struct clk_ops clk_alpha_pll_zonda_ops;
->  #define clk_alpha_pll_postdiv_zonda_ops clk_alpha_pll_postdiv_fabia_ops
-> +extern const struct clk_ops clk_alpha_pll_fixed_lucid_evo_ops;
-> +extern const struct clk_ops clk_alpha_pll_postdiv_lucid_evo_ops;
->  
->  void clk_alpha_pll_configure(struct clk_alpha_pll *pll, struct regmap *regmap,
->  			     const struct alpha_pll_config *config);
-> -- 
-> 2.33.1
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Add intel vendor prefix on custom queue handle bindings.
+- Make the pkt-tx and pkt-rxfree into arrays of handles.
 
+Currently only adding these bindings so we can describe the
+hardware in device trees.
+---
+ ...ntel,ixp4xx-network-processing-engine.yaml | 20 ++++
+ .../bindings/net/intel,ixp4xx-hss.yaml        | 94 +++++++++++++++++++
+ 2 files changed, 114 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+
+diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+index c435c9f369a4..14de9e3d5fab 100644
+--- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
++++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
+@@ -45,9 +45,29 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/gpio/gpio.h>
++
+     npe: npe@c8006000 {
+          compatible = "intel,ixp4xx-network-processing-engine";
+          reg = <0xc8006000 0x1000>, <0xc8007000 0x1000>, <0xc8008000 0x1000>;
++         #address-cells = <1>;
++         #size-cells = <0>;
++
++         hss@0 {
++             compatible = "intel,ixp4xx-hss";
++             reg = <0>;
++             intel,npe-handle = <&npe 0>;
++             intel,queue-chl-rxtrig = <&qmgr 12>;
++             intel,queue-pkt-rx = <&qmgr 13>;
++             intel,queue-pkt-tx = <&qmgr 14>, <&qmgr 15>, <&qmgr 16>, <&qmgr 17>;
++             intel,queue-pkt-rxfree = <&qmgr 18>, <&qmgr 19>, <&qmgr 20>, <&qmgr 21>;
++             intel,queue-pkt-txdone = <&qmgr 22>;
++             cts-gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
++             rts-gpios = <&gpio0 14 GPIO_ACTIVE_LOW>;
++             dcd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
++             dtr-gpios = <&gpio_74 2 GPIO_ACTIVE_LOW>;
++             clk-internal-gpios = <&gpio_74 0 GPIO_ACTIVE_HIGH>;
++         };
+ 
+          crypto {
+              compatible = "intel,ixp4xx-crypto";
+diff --git a/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+new file mode 100644
+index 000000000000..93d88dbb2073
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/intel,ixp4xx-hss.yaml
+@@ -0,0 +1,94 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2021 Linaro Ltd.
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/net/intel,ixp4xx-hss.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Intel IXP4xx V.35 WAN High Speed Serial Link (HSS)
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Intel IXP4xx HSS makes use of the IXP4xx NPE (Network
++  Processing Engine) and the IXP4xx Queue Manager to process
++  V.35 Wideband Modem (WAN) links.
++
++properties:
++  compatible:
++    const: intel,ixp4xx-hss
++
++  reg:
++    maxItems: 1
++    description: The HSS instance
++
++  intel,npe-handle:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the NPE this HSS instance is using
++      and the instance to use in the second cell
++
++  intel,queue-chl-rxtrig:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the RX trigger queue on the NPE
++
++  intel,queue-pkt-rx:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet RX queue on the NPE
++
++  intel,queue-pkt-tx:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 4
++    description: phandle to the packet TX0, TX1, TX2 and TX3 queues on the NPE
++
++  intel,queue-pkt-rxfree:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 4
++    description: phandle to the packet RXFREE0, RXFREE1, RXFREE2 and
++      RXFREE3 queues on the NPE
++
++  intel,queue-pkt-txdone:
++    $ref: '/schemas/types.yaml#/definitions/phandle-array'
++    maxItems: 1
++    description: phandle to the packet TXDONE queue on the NPE
++
++  cts-gpios:
++    maxItems: 1
++    description: Clear To Send (CTS) GPIO line
++
++  rts-gpios:
++    maxItems: 1
++    description: Ready To Send (RTS) GPIO line
++
++  dcd-gpios:
++    maxItems: 1
++    description: Data Carrier Detect (DCD) GPIO line
++
++  dtr-gpios:
++    maxItems: 1
++    description: Data Terminal Ready (DTR) GPIO line
++
++  clk-internal-gpios:
++    maxItems: 1
++    description: Clock internal GPIO line, driving this high will make the HSS
++      use internal clocking as opposed to external clocking
++
++required:
++  - compatible
++  - reg
++  - intel,npe-handle
++  - intel,queue-chl-rxtrig
++  - intel,queue-pkt-rx
++  - intel,queue-pkt-tx
++  - intel,queue-pkt-rxfree
++  - intel,queue-pkt-txdone
++  - cts-gpios
++  - rts-gpios
++  - dcd-gpios
++  - dtr-gpios
++  - clk-internal-gpios
++
++additionalProperties: false
 -- 
-~Vinod
+2.31.1
+
