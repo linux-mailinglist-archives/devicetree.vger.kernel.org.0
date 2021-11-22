@@ -2,145 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9367A458DB1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:45:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225B1458DB7
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:47:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239140AbhKVLtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 06:49:01 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:64615 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233849AbhKVLtA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 06:49:00 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637581554; x=1669117554;
-  h=from:to:cc:subject:date:message-id;
-  bh=3JJZDUu1j9baszZ4dgxQHmWH6Y7rD/2UOc8z4zphYxg=;
-  b=hx/ump2QVi+DOtYGw3U6dSrJmK0VUil4Iriv5JPRryKXEwFmxcJpPKfd
-   28Ouf3N88Wpvfx73HAzyAJZnJyRjsuysmGKQVcpz2p0XmFH5UuuBvldmD
-   UOFM/tEjrsJIcFyJY4k3fASLvjNDux4ENmJ/13bGQDfpBqznKPlI3rHpO
-   KnDm9O/CurgLtyWbF5gLOFirtSoMkVdP0S25C+beItiLfLMMRTxgnOn0d
-   XXsRWfzB0z1aFSfVkwgIppxEKozYHjOpNrquM88u+Rhw96qx6eyaYRZuS
-   NSdoTNtoZmnB7mtRyh2RxTqSTAfbZTDP7UD8QDk92EmZYrIuzqmqULNPm
-   w==;
-X-IronPort-AV: E=Sophos;i="5.87,254,1631570400"; 
-   d="scan'208";a="20594175"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 22 Nov 2021 12:45:52 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 22 Nov 2021 12:45:52 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 22 Nov 2021 12:45:52 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637581552; x=1669117552;
-  h=from:to:cc:subject:date:message-id;
-  bh=3JJZDUu1j9baszZ4dgxQHmWH6Y7rD/2UOc8z4zphYxg=;
-  b=Iq0BZkl4eYPaUoUIUm0sqMbhvbI76MMjqb/D1AhznWhQJtyiFxbA4cJG
-   RxlVkqfvD815NmBW+GOpltMJTfSOs9KGUwYsEximANzecsNoDfw2S3M2X
-   R+NEpXLtjzicqRVG/giBPUyVWvdNOOvrwte8HyqmZTgiHMDgWzZ8TcPFK
-   0WcbCUHZca8eXLvyTwkDcYBwnSQHWyTk7FT9qq5Ynl7tKiIiVe2LR8n63
-   usPsvB0aam70DQ3UfUt0gTES7w17zpQPWwH/fsm8H3sGrYrqLTMDPfzKQ
-   w9rIcOxC6yBBXsEe9uGtJWY3PtHlMYIGZUYx8/2ewY8aibBDVSHPanMS0
-   g==;
-X-IronPort-AV: E=Sophos;i="5.87,254,1631570400"; 
-   d="scan'208";a="20594174"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 22 Nov 2021 12:45:52 +0100
-Received: from schifferm-ubuntu4.tq-net.de (schifferm-ubuntu4.tq-net.de [10.121.48.12])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id AF12C280065;
-        Mon, 22 Nov 2021 12:45:52 +0100 (CET)
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: [PATCH v2] of: base: Skip CPU nodes with "fail"/"fail-..." status
-Date:   Mon, 22 Nov 2021 12:45:36 +0100
-Message-Id: <20211122114536.2981-1-matthias.schiffer@ew.tq-group.com>
-X-Mailer: git-send-email 2.17.1
+        id S239299AbhKVLuH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:50:07 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:48631 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233849AbhKVLuG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 06:50:06 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637581620; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ZUDvFPbBnLqQUOEhZHSfxSn7mRT8gBANa7FnKL+byww=; b=doHftuPICf+hlVf90VkXj+9IN8+fy6I/ZPApFB2m7Lig1CCC5RoyxOuef7GPSipcEa+3Q8uy
+ OH65J9Y9lq+ooLXjHI472VmOxnAQk3nmDvpOCeiaHTOQHAr0AWjtc0SPllkbHMhGENrIYCG3
+ BJqtvpdm27JLoBjnQ3UK5TePsII=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
+ 619b83316bacc185a557e046 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Nov 2021 11:46:57
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id C9080C43635; Mon, 22 Nov 2021 11:46:56 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 996A8C4338F;
+        Mon, 22 Nov 2021 11:46:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 996A8C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: [PATCH v5 05/10] ASoC: qcom: Add helper function to get dma control and lpaif handle
+Date:   Mon, 22 Nov 2021 17:16:34 +0530
+Message-Id: <1637581599-24120-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow fully disabling CPU nodes using status = "fail".
+Add support function to get dma control and lpaif handle to avoid
+repeated code in platform driver
 
-This allows a bootloader to change the number of available CPUs (for
-example when a common DTS is used for SoC variants with different numbers
-of cores) without deleting the nodes altogether, which could require
-additional fixups to avoid dangling phandle references.
-
-Unknown status values (everything that is not "okay"/"ok", "disabled" or
-"fail"/"fail-...") will continue to be interpreted like "disabled",
-meaning that the CPU can be enabled during boot.
-
-References:
-- https://www.lkml.org/lkml/2020/8/26/1237
-- https://www.spinics.net/lists/devicetree-spec/msg01007.html
-- https://github.com/devicetree-org/dt-schema/pull/61
-
-Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 ---
+ sound/soc/qcom/lpass-platform.c | 90 ++++++++++++++++++++---------------------
+ 1 file changed, 43 insertions(+), 47 deletions(-)
 
-v2: Treat unknown status values like "disabled", not like "fail"
-
-
- drivers/of/base.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
-
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index 61de453b885c..5b907600f5b0 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -650,6 +650,28 @@ bool of_device_is_available(const struct device_node *device)
+diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+index a44162c..59c0884 100644
+--- a/sound/soc/qcom/lpass-platform.c
++++ b/sound/soc/qcom/lpass-platform.c
+@@ -177,6 +177,44 @@ static int lpass_platform_pcmops_close(struct snd_soc_component *component,
+ 	return 0;
  }
- EXPORT_SYMBOL(of_device_is_available);
  
-+/**
-+ *  __of_device_is_fail - check if a device has status "fail" or "fail-..."
-+ *
-+ *  @device: Node to check status for, with locks already held
-+ *
-+ *  Return: True if the status property is set to "fail" or "fail-..." (for any
-+ *  error code suffix), false otherwise
-+ */
-+static bool __of_device_is_fail(const struct device_node *device)
++static void __get_lpaif_handle(struct snd_pcm_substream *substream,
++				struct snd_soc_component *component,
++				struct lpaif_dmactl **dmactl, int *id, struct regmap **map)
 +{
-+	const char *status;
++	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
++	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
++	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
++	struct snd_pcm_runtime *rt = substream->runtime;
++	struct lpass_pcm_data *pcm_data = rt->private_data;
++	struct lpass_variant *v = drvdata->variant;
++	int dir = substream->stream;
++	unsigned int dai_id = cpu_dai->driver->id;
++	struct lpaif_dmactl *l_dmactl;
++	struct regmap *l_map;
++	int l_id;
 +
-+	if (!device)
-+		return false;
-+
-+	status = __of_get_property(device, "status", NULL);
-+	if (status == NULL)
-+		return false;
-+
-+	return !strcmp(status, "fail") || !strncmp(status, "fail-", 5);
++	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
++		l_id = pcm_data->dma_ch;
++		if (dai_id == LPASS_DP_RX) {
++			l_dmactl = drvdata->hdmi_rd_dmactl;
++			l_map = drvdata->hdmiif_map;
++		} else {
++			l_dmactl = drvdata->rd_dmactl;
++			l_map = drvdata->lpaif_map;
++		}
++	} else {
++		l_dmactl = drvdata->wr_dmactl;
++		l_id = pcm_data->dma_ch - v->wrdma_channel_start;
++		l_map = drvdata->lpaif_map;
++	}
++	if (dmactl)
++		*dmactl = l_dmactl;
++	if (id)
++		*id = l_id;
++	if (map)
++		*map = l_map;
 +}
 +
- /**
-  *  of_device_is_big_endian - check if a device has BE registers
-  *
-@@ -796,6 +818,9 @@ EXPORT_SYMBOL(of_get_next_available_child);
-  * of_get_next_cpu_node - Iterate on cpu nodes
-  * @prev:	previous child of the /cpus node, or NULL to get first
-  *
-+ * Unusable CPUs (those with the status property set to "fail" or "fail-...")
-+ * will be skipped.
-+ *
-  * Return: A cpu node pointer with refcount incremented, use of_node_put()
-  * on it when done. Returns NULL when prev is the last child. Decrements
-  * the refcount of prev.
-@@ -817,6 +842,8 @@ struct device_node *of_get_next_cpu_node(struct device_node *prev)
- 		of_node_put(node);
- 	}
- 	for (; next; next = next->sibling) {
-+		if (__of_device_is_fail(next))
-+			continue;
- 		if (!(of_node_name_eq(next, "cpu") ||
- 		      __of_node_is_type(next, "cpu")))
- 			continue;
+ static int lpass_platform_pcmops_hw_params(struct snd_soc_component *component,
+ 					   struct snd_pcm_substream *substream,
+ 					   struct snd_pcm_hw_params *params)
+@@ -191,22 +229,12 @@ static int lpass_platform_pcmops_hw_params(struct snd_soc_component *component,
+ 	unsigned int channels = params_channels(params);
+ 	unsigned int regval;
+ 	struct lpaif_dmactl *dmactl;
+-	int id, dir = substream->stream;
++	int id;
+ 	int bitwidth;
+ 	int ret, dma_port = pcm_data->i2s_port + v->dmactl_audif_start;
+ 	unsigned int dai_id = cpu_dai->driver->id;
+ 
+-	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+-		id = pcm_data->dma_ch;
+-		if (dai_id == LPASS_DP_RX)
+-			dmactl = drvdata->hdmi_rd_dmactl;
+-		else
+-			dmactl = drvdata->rd_dmactl;
+-
+-	} else {
+-		dmactl = drvdata->wr_dmactl;
+-		id = pcm_data->dma_ch - v->wrdma_channel_start;
+-	}
++	__get_lpaif_handle(substream, component, &dmactl, &id, NULL);
+ 
+ 	bitwidth = snd_pcm_format_width(format);
+ 	if (bitwidth < 0) {
+@@ -379,24 +407,9 @@ static int lpass_platform_pcmops_prepare(struct snd_soc_component *component,
+ 	int ret, id, ch, dir = substream->stream;
+ 	unsigned int dai_id = cpu_dai->driver->id;
+ 
+-
+ 	ch = pcm_data->dma_ch;
+-	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+-		if (dai_id == LPASS_DP_RX) {
+-			dmactl = drvdata->hdmi_rd_dmactl;
+-			map = drvdata->hdmiif_map;
+-		} else {
+-			dmactl = drvdata->rd_dmactl;
+-			map = drvdata->lpaif_map;
+-		}
+-
+-		id = pcm_data->dma_ch;
+-	} else {
+-		dmactl = drvdata->wr_dmactl;
+-		id = pcm_data->dma_ch - v->wrdma_channel_start;
+-		map = drvdata->lpaif_map;
+-	}
+ 
++	__get_lpaif_handle(substream, component, &dmactl, &id, &map);
+ 	ret = regmap_write(map, LPAIF_DMABASE_REG(v, ch, dir, dai_id),
+ 				runtime->dma_addr);
+ 	if (ret) {
+@@ -444,26 +457,12 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+ 	struct lpaif_dmactl *dmactl;
+ 	struct regmap *map;
+ 	int ret, ch, id;
+-	int dir = substream->stream;
+ 	unsigned int reg_irqclr = 0, val_irqclr = 0;
+ 	unsigned int  reg_irqen = 0, val_irqen = 0, val_mask = 0;
+ 	unsigned int dai_id = cpu_dai->driver->id;
+ 
+ 	ch = pcm_data->dma_ch;
+-	if (dir ==  SNDRV_PCM_STREAM_PLAYBACK) {
+-		id = pcm_data->dma_ch;
+-		if (dai_id == LPASS_DP_RX) {
+-			dmactl = drvdata->hdmi_rd_dmactl;
+-			map = drvdata->hdmiif_map;
+-		} else {
+-			dmactl = drvdata->rd_dmactl;
+-			map = drvdata->lpaif_map;
+-		}
+-	} else {
+-		dmactl = drvdata->wr_dmactl;
+-		id = pcm_data->dma_ch - v->wrdma_channel_start;
+-		map = drvdata->lpaif_map;
+-	}
++	__get_lpaif_handle(substream, component, &dmactl, &id, &map);
+ 
+ 	switch (cmd) {
+ 	case SNDRV_PCM_TRIGGER_START:
+@@ -597,10 +596,7 @@ static snd_pcm_uframes_t lpass_platform_pcmops_pointer(
+ 	struct regmap *map;
+ 	unsigned int dai_id = cpu_dai->driver->id;
+ 
+-	if (dai_id == LPASS_DP_RX)
+-		map = drvdata->hdmiif_map;
+-	else
+-		map = drvdata->lpaif_map;
++	__get_lpaif_handle(substream, component, NULL, NULL, &map);
+ 
+ 	ch = pcm_data->dma_ch;
+ 
 -- 
-2.17.1
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
