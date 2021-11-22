@@ -2,246 +2,333 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4410D458B2C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 10:13:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C39458B30
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 10:15:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231656AbhKVJQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 04:16:20 -0500
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:58217 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230215AbhKVJQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 04:16:19 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 1D04D32010F5;
-        Mon, 22 Nov 2021 04:13:13 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 22 Nov 2021 04:13:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=vgUk5Jj/Tfof1XTgk+Z9aI3LyqK
-        sWU0UARkwuwIu5/I=; b=Z2Qo059kOVX4UkyPLF38MTGxOeQY51u6PGqryOzr22g
-        fA+IflZOmVVsZgZ5UDUKwfB7jgPAVWe5b/BRyHAczR/1YDEBhYTBCp83rnrdomSQ
-        F/MkLhjlX4p6SWGW+DttqaJYfM44NH3rEb7Gs/nAruLJJD94XJ41wyxyVesDeVMu
-        7ASbvz6vtuDjTJxvDPG6j25VT2nhn3frKXsH2IYlhec56QH3y4hz2uMHQpnCiugs
-        ZQ08PSRgEiwKyRwblR/Mzqai5oQQK4b5b4S4J/NtUYy5tyEMSRYOTThTWwuEvn1t
-        Nd/Zln7VJLXbRLjH9B0bVQKzlgRhb90b8JsuUCJzeww==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=vgUk5J
-        j/Tfof1XTgk+Z9aI3LyqKsWU0UARkwuwIu5/I=; b=nTkCmpizZs4rzPHZBzFfCq
-        dcP4Ytxw+Dmm6nuof9FDMcMhxufMXmrWQ+wDMMtco7MKZt5qqdmh0EUz7/3zmPrH
-        QEFQRrXKiFYfiiifTdnnhxiX7TGPd4I5LwBZCGpJMIJha/xv3SetR4ySf/3NjQ5f
-        tlHvgxfixsvLCCj0wDQWJAwEqXv9frBfxjSP/GI9IdtG0gnN8Htx873XpUDbGj2P
-        GzHmzQjbd4+28xI92q84R5pFrBN24J2mePlxtYYSL6Zf3Y9SBdaVOkGf7aoL/ihm
-        ZAFswlmcvZtIdeilkAA2CJY+Z+zJ1vVWNt40jWV0253YzlvC3lj3ozbjK3cE6++w
-        ==
-X-ME-Sender: <xms:KF-bYaPJ8bzOVcOtdVF8k57FmiBIXC1CukBjrBHNDhMHQBkZazUo7A>
-    <xme:KF-bYY9oVTI6Ecm0rKb5tb_bb81yhUNmp44afxnzllmA849cwywIycGYT3PIotdbq
-    WmpROT5uXnykYUHU-0>
-X-ME-Received: <xmr:KF-bYRRXgoecNUZh-U4su2kr-vtDSi0lD1iPE4toxf_qUD9VFPgbgCHtjO7bzIWKISQLJLN73FU2r2RtoEWA7yUVBpXnty0cGAE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeggddtudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:KF-bYat3DrCF6k1z2ZB4OPo07o7yw0IBiIowWyZ4hbvsl3yhbk_YFQ>
-    <xmx:KF-bYSdalM3T8LvmvFADqt4WklP8UBOvz4L6pSTxwljsuIsHI9ZqPA>
-    <xmx:KF-bYe0IBECcn6LKodEH4ME7GmJ4GXvd4JM42PfVgEMSxikru8z4XA>
-    <xmx:KF-bYR5aFRvlq5P-Drh-mHrd9HlVCfCtJ3h7cI_yyzEVgQh51WQdKg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 22 Nov 2021 04:13:12 -0500 (EST)
-Date:   Mon, 22 Nov 2021 10:13:10 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 1/3] net: allwinner: reset control support
-Message-ID: <20211122091310.zldofuinep2nzpiy@gilmour>
-References: <20211121195337.230475-1-boger@wirenboard.com>
- <20211121195337.230475-2-boger@wirenboard.com>
+        id S230487AbhKVJSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 04:18:39 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:47312 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229906AbhKVJSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 04:18:39 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AM9FQx3015496;
+        Mon, 22 Nov 2021 03:15:26 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637572526;
+        bh=w6bI98aJlLZh4Jv2PuTgPXkfvTVLpF8g8Stm+HPHMhQ=;
+        h=From:To:CC:Subject:Date;
+        b=givdP6Dmy8QJeLHdsW/UEia23rHKNPFPlLKVzm1Ijl2dzG64KmrahvGbUsBrBaq+S
+         WLdaEgCZQejOO3jsbybkxjHycKvWWJfMWjGuGsTwMASqdBROagQy5lHwReUePC01Oh
+         Zqeh4Bml3Mu2ljCkgK7ZFKqodQhq2v2+zceNWZtA=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AM9FQ48026471
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Nov 2021 03:15:26 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 22
+ Nov 2021 03:15:26 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 22 Nov 2021 03:15:26 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AM9FPPe114115;
+        Mon, 22 Nov 2021 03:15:26 -0600
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <j-choudhary@ti.com>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
+Date:   Mon, 22 Nov 2021 14:45:25 +0530
+Message-ID: <20211122091525.2290-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5a2e7pemerpscpgb"
-Content-Disposition: inline
-In-Reply-To: <20211121195337.230475-2-boger@wirenboard.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert the bindings for McASP controllers for TI SOCs
+from txt to YAML schema.
 
---5a2e7pemerpscpgb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Adds additional properties 'clocks', 'clock-names', 'power-domains'
+and '#sound-dai-cells' which were not there in txt file.
+Adds 'dmas' and 'dma-names' in the example which were not there in
+txt file.
+Changes 'interrupts' and 'interrupt-names' from optional to
+required properties.
 
-Hi
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
+ .../bindings/sound/davinci-mcasp-audio.txt    |  86 ----------
+ .../bindings/sound/davinci-mcasp-audio.yaml   | 161 ++++++++++++++++++
+ 2 files changed, 161 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
 
-On Sun, Nov 21, 2021 at 10:53:35PM +0300, Evgeny Boger wrote:
-> R40 (aka V40/A40i/T3) and A10/A20 share the same EMAC IP.
-> However, on R40 the EMAC is gated by default.
+diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+deleted file mode 100644
+index bd863bd69501..000000000000
+--- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
++++ /dev/null
+@@ -1,86 +0,0 @@
+-Texas Instruments McASP controller
+-
+-Required properties:
+-- compatible :
+-	"ti,dm646x-mcasp-audio"	: for DM646x platforms
+-	"ti,da830-mcasp-audio"	: for both DA830 & DA850 platforms
+-	"ti,am33xx-mcasp-audio"	: for AM33xx platforms (AM33xx, AM43xx, TI81xx)
+-	"ti,dra7-mcasp-audio"	: for DRA7xx platforms
+-	"ti,omap4-mcasp-audio"	: for OMAP4
+-
+-- reg : Should contain reg specifiers for the entries in the reg-names property.
+-- reg-names : Should contain:
+-         * "mpu" for the main registers (required). For compatibility with
+-           existing software, it is recommended this is the first entry.
+-         * "dat" for separate data port register access (optional).
+-- op-mode : I2S/DIT ops mode. 0 for I2S mode. 1 for DIT mode used for S/PDIF,
+-  	    IEC60958-1, and AES-3 formats.
+-- tdm-slots : Slots for TDM operation. Indicates number of channels transmitted
+-  	      or received over one serializer.
+-- serial-dir : A list of serializer configuration. Each entry is a number
+-               indication for serializer pin direction.
+-               (0 - INACTIVE, 1 - TX, 2 - RX)
+-- dmas: two element list of DMA controller phandles and DMA request line
+-        ordered pairs.
+-- dma-names: identifier string for each DMA request line in the dmas property.
+-	     These strings correspond 1:1 with the ordered pairs in dmas. The dma
+-	     identifiers must be "rx" and "tx".
+-
+-Optional properties:
+-
+-- ti,hwmods : Must be "mcasp<n>", n is controller instance starting 0
+-- tx-num-evt : FIFO levels.
+-- rx-num-evt : FIFO levels.
+-- dismod : Specify the drive on TX pin during inactive slots
+-	0 : 3-state
+-	2 : logic low
+-	3 : logic high
+-	Defaults to 'logic low' when the property is not present
+-- sram-size-playback : size of sram to be allocated during playback
+-- sram-size-capture  : size of sram to be allocated during capture
+-- interrupts : Interrupt numbers for McASP
+-- interrupt-names : Known interrupt names are "tx" and "rx"
+-- pinctrl-0: Should specify pin control group used for this controller.
+-- pinctrl-names: Should contain only one value - "default", for more details
+-  		 please refer to pinctrl-bindings.txt
+-- fck_parent : Should contain a valid clock name which will be used as parent
+-	       for the McASP fck
+-- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
+-		   and FS rate if applicable:
+-		   AUCLK rate = auxclk-fs-ratio * FS rate
+-
+-Optional GPIO support:
+-If any McASP pin need to be used as GPIO then the McASP node must have:
+-...
+-  gpio-controller
+-  #gpio-cells = <2>;
+-...
+-
+-When requesting a GPIO, the first parameter is the PIN index in McASP_P*
+-registers.
+-For example to request the AXR2 pin of mcasp8:
+-function-gpios = <&mcasp8 2 0>;
+-
+-Or to request the ACLKR pin of mcasp8:
+-function-gpios = <&mcasp8 29 0>;
+-
+-For generic gpio information, please refer to bindings/gpio/gpio.txt
+-
+-Example:
+-
+-mcasp0: mcasp0@1d00000 {
+-	compatible = "ti,da830-mcasp-audio";
+-	reg = <0x100000 0x3000>;
+-	reg-names "mpu";
+-	interrupts = <82>, <83>;
+-	interrupt-names = "tx", "rx";
+-	op-mode = <0>;		/* MCASP_IIS_MODE */
+-	tdm-slots = <2>;
+-	serial-dir = <
+-			0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
+-			0 0 0 0
+-			0 0 0 1
+-			2 0 0 0 >;
+-	tx-num-evt = <1>;
+-	rx-num-evt = <1>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+new file mode 100644
+index 000000000000..ce1bd02decd3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+@@ -0,0 +1,161 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/davinci-mcasp-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: McASP Controller for TI SoCs
++
++maintainers:
++  - Jayesh Choudhary <j-choudhary@ti.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,dm646x-mcasp-audio
++      - ti,da830-mcasp-audio
++      - ti,am33xx-mcasp-audio
++      - ti,dra7-mcasp-audio
++      - ti,omap4-mcasp-audio
++
++  reg:
++    minItems: 1
++    items:
++      - description: main registers
++      - description: data port register
++
++  reg-names:
++    minItems: 1
++    items:
++      - const: mpu
++      - const: dat
++
++  op-mode:
++    description: I2S - 0 or DIT - 1 mode
++    enum:
++      - 0
++      - 1
++
++  tdm-slots:
++    maxItems: 1
++
++  serial-dir:
++    description:
++      A list of serializer configuration
++      Entry is indication for serializer pin direction
++      0 - Inactive, 1 - TX, 2 - RX
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 16
++    items:
++      minimum: 0
++      maximum: 2
++      default: 0
++
++  dmas:
++    items:
++      - description: transmission DMA channel
++      - description: reception DMA channel
++
++  dma-names:
++    items:
++      - const: tx
++      - const: rx
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: Name of hwmod associated with McASP
++    maxItems: 1
++    deprecated: true
++
++  tx-num-evt:
++    maxItems: 1
++
++  rx-num-evt:
++    maxItems: 1
++
++  dismod:
++    enum:
++      - 0
++      - 2
++      - 3
++    default: 2
++
++  sram-size-playback:
++    maxItems: 1
++
++  sram-size-capture:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: TX FIFO interrupt
++      - description: RX FIFO interrupt
++
++  interrupt-names:
++    items:
++      - const: tx
++      - const: rx
++
++  fck_parent:
++    description: parent clock for McASP fck
++    maxItems: 1
++
++  auxclk-fs-ratio:
++    description: ratio of AUCLK and FS if applicable
++    maxItems: 1
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  function-gpios:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: fck
++
++  power-domains:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - dmas
++  - dma-names
++  - interrupts
++  - interrupt-names
++  - serial-dir
++  - op-mode
++  - tdm-slots
++
++additionalProperties: false
++
++examples:
++  - |
++    mcasp0: mcasp0@1d00000 {
++      compatible = "ti,da830-mcasp-audio";
++      reg = <0x100000 0x3000>;
++      reg-names = "mpu";
++      interrupts = <82>, <83>;
++      interrupt-names = "tx", "rx";
++      op-mode = <0>;		/* MCASP_IIS_MODE */
++      tdm-slots = <2>;
++      dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
++      dma-names = "tx", "rx";
++      serial-dir = <
++          0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
++          0 0 0 0
++          0 0 0 1
++          2 0 0 0 >;
++      tx-num-evt = <1>;
++      rx-num-evt = <1>;
++    };
+-- 
+2.17.1
 
-Gated is usually used for clocks, not reset lines, which would usually
-be asserted instead.
-
-> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> ---
->  drivers/net/ethernet/allwinner/sun4i-emac.c | 64 +++++++++++++++++++--
->  1 file changed, 59 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/net/ethernet/allwinner/sun4i-emac.c b/drivers/net/et=
-hernet/allwinner/sun4i-emac.c
-> index 800ee022388f..16039784f2c6 100644
-> --- a/drivers/net/ethernet/allwinner/sun4i-emac.c
-> +++ b/drivers/net/ethernet/allwinner/sun4i-emac.c
-> @@ -28,6 +28,7 @@
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy.h>
-> +#include <linux/reset.h>
->  #include <linux/soc/sunxi/sunxi_sram.h>
-> =20
->  #include "sun4i-emac.h"
-> @@ -68,6 +69,15 @@ MODULE_PARM_DESC(watchdog, "transmit timeout in millis=
-econds");
->   * devices, EMACA and EMACB.
->   */
-> =20
-> +/**
-> + * struct emac_quirks - Differences between SoC variants.
-> + *
-> + * @has_reset: SoC needs reset deasserted.
-> + */
-> +struct emac_quirks {
-> +	bool		has_reset;
-> +};
-> +
->  struct emac_board_info {
->  	struct clk		*clk;
->  	struct device		*dev;
-> @@ -85,6 +95,7 @@ struct emac_board_info {
->  	unsigned int		link;
->  	unsigned int		speed;
->  	unsigned int		duplex;
-> +	struct reset_control	*reset;
-> =20
->  	phy_interface_t		phy_interface;
->  };
-> @@ -790,6 +801,7 @@ static int emac_probe(struct platform_device *pdev)
->  	struct emac_board_info *db;
->  	struct net_device *ndev;
->  	int ret =3D 0;
-> +	const struct emac_quirks *quirks;
-> =20
->  	ndev =3D alloc_etherdev(sizeof(struct emac_board_info));
->  	if (!ndev) {
-> @@ -808,6 +820,13 @@ static int emac_probe(struct platform_device *pdev)
-> =20
->  	spin_lock_init(&db->lock);
-> =20
-> +	quirks =3D of_device_get_match_data(&pdev->dev);
-> +	if (!quirks) {
-> +		dev_err(&pdev->dev, "Failed to determine the quirks to use\n");
-> +		ret =3D -ENODEV;
-> +		goto out;
-> +	}
-> +
->  	db->membase =3D of_iomap(np, 0);
->  	if (!db->membase) {
->  		dev_err(&pdev->dev, "failed to remap registers\n");
-> @@ -824,16 +843,31 @@ static int emac_probe(struct platform_device *pdev)
->  		goto out_iounmap;
->  	}
-> =20
-> +	if (quirks->has_reset) {
-> +		db->reset =3D devm_reset_control_get_exclusive(&pdev->dev, NULL);
-> +		if (IS_ERR(db->reset)) {
-> +			dev_err(&pdev->dev, "unable to request reset\n");
-> +			ret =3D PTR_ERR(db->reset);
-> +			goto out_dispose_mapping;
-> +		}
-> +
-> +		ret =3D reset_control_deassert(db->reset);
-> +		if (ret) {
-> +			dev_err(&pdev->dev, "could not deassert EMAC reset\n");
-> +			goto out_dispose_mapping;
-> +		}
-> +	}
-> +
->  	db->clk =3D devm_clk_get(&pdev->dev, NULL);
->  	if (IS_ERR(db->clk)) {
->  		ret =3D PTR_ERR(db->clk);
-> -		goto out_dispose_mapping;
-> +		goto out_assert_reset;
->  	}
-> =20
->  	ret =3D clk_prepare_enable(db->clk);
->  	if (ret) {
->  		dev_err(&pdev->dev, "Error couldn't enable clock (%d)\n", ret);
-> -		goto out_dispose_mapping;
-> +		goto out_assert_reset;
->  	}
-> =20
->  	ret =3D sunxi_sram_claim(&pdev->dev);
-> @@ -889,6 +923,8 @@ static int emac_probe(struct platform_device *pdev)
->  	sunxi_sram_release(&pdev->dev);
->  out_clk_disable_unprepare:
->  	clk_disable_unprepare(db->clk);
-> +out_assert_reset:
-> +	reset_control_assert(db->reset);
->  out_dispose_mapping:
->  	irq_dispose_mapping(ndev->irq);
->  out_iounmap:
-> @@ -909,6 +945,7 @@ static int emac_remove(struct platform_device *pdev)
->  	unregister_netdev(ndev);
->  	sunxi_sram_release(&pdev->dev);
->  	clk_disable_unprepare(db->clk);
-> +	reset_control_assert(db->reset);
->  	irq_dispose_mapping(ndev->irq);
->  	iounmap(db->membase);
->  	free_netdev(ndev);
-> @@ -940,11 +977,28 @@ static int emac_resume(struct platform_device *dev)
->  	return 0;
->  }
-> =20
-> -static const struct of_device_id emac_of_match[] =3D {
-> -	{.compatible =3D "allwinner,sun4i-a10-emac",},
-> +static const struct emac_quirks sun4i_a10_emac_quirks =3D {
-> +	.has_reset =3D false,
-> +};
-> +
-> +static const struct emac_quirks sun4i_r40_emac_quirks =3D {
-> +	.has_reset =3D true,
-> +};
-> =20
-> +static const struct of_device_id emac_of_match[] =3D {
-> +	{
-> +		.compatible =3D "allwinner,sun4i-a10-emac",
-> +		.data =3D &sun4i_a10_emac_quirks
-> +	},
-> +	{
-> +		.compatible =3D "allwinner,sun4i-r40-emac",
-
-The R40 is part of the sun8i family
-
-This needs to be updated in your binding and DT patch as well.
-
-Maxime
-
---5a2e7pemerpscpgb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZtfJgAKCRDj7w1vZxhR
-xbqSAP98d/rVfrrXE3om7UCuvuy+hJy/YdkCyUChZaAz/rH8WQEAk+bisxl72Igq
-EzwC2ELmB+HnCLLYkxPD5+m8IrhbNA8=
-=Vn4d
------END PGP SIGNATURE-----
-
---5a2e7pemerpscpgb--
