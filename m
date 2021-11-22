@@ -2,169 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24345459351
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:46:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37B38459389
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:58:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240353AbhKVQtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 11:49:05 -0500
-Received: from mail-eopbgr150087.outbound.protection.outlook.com ([40.107.15.87]:10990
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S238465AbhKVQtD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 11:49:03 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MGO9PXPKH5wR5SZKgEXyZCX/A5DLAnU+SsvwbaPnlGy5Q77s8RMjxLhKX+QgsT11uqn2IxKVh6ayFyfk/1nHH1NnbCj3eIZWMPrprCc6LZ/eJMnxrOBhJ08OzRI6cWf3cAGKIJx58SSIA9twRL//yek75p6224JpCl//ed2n0qDC34teORNF2A28m91hbyYSbmQzyy5Ml6Ji6i+NeeARbUa7I1SGUuvrQI7nbHekpqLvqJGxF3q6i3VlJG8LKsimvz7oGojJ0SZRXj8ZrAIWv47nW/IDvmdVSfootO/IIvrpvtJGD67NRccKGn/2dNcvSk4rXSEK8/2Ti5rs+drlMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f/lC1fR2uNKOYvXNE/PaO6x1eV6eIgNAfVhhRa4s5Rw=;
- b=KlyUpJDA8CPGj7kC7ENfVAuIht+OCPGpslY96Rdlu7ilH6uUcFC8hYPMiYPj88BX/qRxxDrTA+OQZQ54GCsORPh5VGnPoKOlWiAaAobCin09AeK9OFuNNPvfI/HTUzb4SaI0sALVCht+FU16RwtbR6qdQWsT5usvST3nw9WTvvdwe1+VP5br79j27eoGTYGpNR95A26KTvuDivaoYwM8Qr1MEoKSoQT7Ja5RU7N9E+sCGq/XLN4ci8DwkmXvcJnVQSpr071efB+3Zslwk8fK04alcH0vfYnZ7o9VcBLOl18HEfxYHSDe0gHNdd7uZrF5ibIZUYQ/trlRXn/pzeSaJw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f/lC1fR2uNKOYvXNE/PaO6x1eV6eIgNAfVhhRa4s5Rw=;
- b=mXJU0jCSqkACwFgGZG8w3Y4R/p36mpdNlKZ3dXtZ9hDbthuEMM55CyBiBsRjiqHC2iUE54Wq7MZqouZCMGxTBhw2Tivq4meQjeIkkr1e/HKQkJrNoTPr+U7s4hHMRBvZ8VH5lhM9JLuEzFHq2OX64AXV6bO7SGqA3pvSCzpIf2M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
- by VI1PR04MB5294.eurprd04.prod.outlook.com (2603:10a6:803:5a::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.24; Mon, 22 Nov
- 2021 16:45:54 +0000
-Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
- ([fe80::d0eb:49aa:2a9:9fc4]) by VI1PR04MB4688.eurprd04.prod.outlook.com
- ([fe80::d0eb:49aa:2a9:9fc4%4]) with mapi id 15.20.4713.025; Mon, 22 Nov 2021
- 16:45:54 +0000
-Date:   Mon, 22 Nov 2021 18:45:51 +0200
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: (EXT) Re: [PATCH v4 12/12] dt-bindings: serial: fsl-lpuart: Add
- i.MX8DXL compatible
-Message-ID: <YZvJP2ISfc/zyK+4@ryzen>
-References: <1636566415-22750-1-git-send-email-abel.vesa@nxp.com>
- <1636566415-22750-13-git-send-email-abel.vesa@nxp.com>
- <YZb4BClv4fXU65yz@robh.at.kernel.org>
- <000f8f724ef9a8c2652e9cab0a5bb1f7768869c3.camel@ew.tq-group.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <000f8f724ef9a8c2652e9cab0a5bb1f7768869c3.camel@ew.tq-group.com>
-X-ClientProxiedBy: VI1PR08CA0203.eurprd08.prod.outlook.com
- (2603:10a6:800:d2::33) To VI1PR04MB4688.eurprd04.prod.outlook.com
- (2603:10a6:803:6a::30)
+        id S231967AbhKVRBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 12:01:48 -0500
+Received: from mail-ua1-f51.google.com ([209.85.222.51]:35479 "EHLO
+        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230370AbhKVRBs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 12:01:48 -0500
+Received: by mail-ua1-f51.google.com with SMTP id l24so38024736uak.2;
+        Mon, 22 Nov 2021 08:58:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4M0T7ckgmVhoofb9RK8C1z/dXuSi67WWd/fJ+aPYWIU=;
+        b=nu5GTIBFo+sSMpXwOqtYIDm6zCZQ3eUdkhGTO27wzyFr8yV39Jnww01sUWXu62mfS0
+         faqdbNze/IznjTt0Wc+tlLxpNqYM2CrKLOuk8DQA+kN/h9KEElLAMt8I/fR0+hoMAD5P
+         xXeVHFzLHrqzoDxTeqKf0KH/+V2gBomuCallWIYfOOZwrc1A++8mR/x8LCha3uUsLpw+
+         w6Dwg/OLTVk3/jLCX1Q/3ZKDsNvKewHGIrSJVWs3TPsZA08AFTtUwY2g3fsyyXfsc4Ol
+         sua1/z02pQTx8w1jkSNqaVXygwF1gBHFM6LIAuXgOjOi3xxNv/BzC2UNC65J20lVyT8f
+         pfug==
+X-Gm-Message-State: AOAM533qtBEWTxTtGSny+Z8m6WWwTgtGdQa8CF1JO+2lDlKJNXWo9QyJ
+        4RyrGhYNiuh2ptoO+TtCdQ+m/go73cm3Aw==
+X-Google-Smtp-Source: ABdhPJxEK10JujsHVTprDxAMLWUCiU1GDgvuLK9oo6X0eqXDHJmNzoU8jz5y26vihMgJrmvG5S9oMw==
+X-Received: by 2002:a67:dc86:: with SMTP id g6mr131829147vsk.8.1637600320434;
+        Mon, 22 Nov 2021 08:58:40 -0800 (PST)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
+        by smtp.gmail.com with ESMTPSA id c23sm4786931vko.8.2021.11.22.08.58.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Nov 2021 08:58:40 -0800 (PST)
+Received: by mail-vk1-f180.google.com with SMTP id b125so10647924vkb.9;
+        Mon, 22 Nov 2021 08:58:39 -0800 (PST)
+X-Received: by 2002:a05:6122:50e:: with SMTP id x14mr164191641vko.7.1637600319327;
+ Mon, 22 Nov 2021 08:58:39 -0800 (PST)
 MIME-Version: 1.0
-Received: from ryzen (5.12.226.136) by VI1PR08CA0203.eurprd08.prod.outlook.com (2603:10a6:800:d2::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22 via Frontend Transport; Mon, 22 Nov 2021 16:45:53 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 63929ca7-95da-42af-3a27-08d9add78c87
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5294:
-X-Microsoft-Antispam-PRVS: <VI1PR04MB5294BBF779F49CFAE33168DBF69F9@VI1PR04MB5294.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:5797;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: VC1xHMaddZOUx1GW62H+jBeXHXIvZ37smZG2Z3ygPTEdBi0g5My8/jveCHHDbWB0SAJr95OLyRlanqw9mb/Kcm2MQNroq2iPp4ukcIxgQhPh7zqMqNy7lInoiYbk/TfOeacuW1ZNd8mI3aK/MKfeNXzmWvvIMlJuX99q+NndK9y6jWQ0QIcBdPllCUP32UnAPoyJLL0X/YJVgCdccPZ4T1z+OHMk1MGs20gyOQQ1tC4Fqkztx0NQtCl0HxHYiW2IRUtHZrjRUpcjBiYg7I0U8isaUZWnWKTSPvSW9BR0rfNq3TK9lpkUTpF2i5CzKSGywSlOtaJL4foBF5o6Ve6N8mGsqboTk2aP8Cel2DHGWQRbgfUvkKQBVuujD3xPpefsGtypPKjDMU3l6DpVZ/DT9C2yISSfVyPNVlIEmopPpyXndLsae/hxJq9wJXO4dnmLyo0OS+BRaN3XKdO0eJbwo8qdoH+n5avZNMkKGXLtgTs8y/f22xdm7vGy9131tJghd2YwW22MtjD1q6bxvxT8UcCmgJOuJHx0705zpipZuEmL16qThlwbJoSue8eD9yZ06QgnhP2sgjDoMHM0G26swXb74RjL36oA+9W1/NX8J/enG9C5LW14YTQakjGt96S3Llwyhi4KdP1SOI4kegaJtxB/F6Ca7U00b+72I3Se6r1AFmzhSgm0cfi+fbKE5IvsnMWdE70C5/0xGV140nUiircvuKB9UGshqfGWaSi2HdCnKl2O5z9HhcnpoMNr+qvRgH+fIrfDUxlNnHKJ3jmLDjRDbuFWTOoeXhRAGyf/1eUip+EGAQntGaRxm4dFLJ9bIRBpQ1BuLeSO6HbO1Xz8Xg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(52116002)(9576002)(6496006)(5660300002)(55016002)(6916009)(956004)(44832011)(186003)(33716001)(86362001)(54906003)(7416002)(2906002)(38350700002)(38100700002)(4326008)(8936002)(53546011)(8676002)(966005)(66556008)(66946007)(316002)(66476007)(83380400001)(9686003)(26005)(508600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0+locVuYcSzdFud+NmTmkDhvpwNa8pAO26VnuhoT4dVdGDC3eP/HXtfSGyzz?=
- =?us-ascii?Q?dxMOmio9mDw1HCL72yMdajBStEF1x6fAgO0oLnXVM+auAhu05XaaWHVyFE76?=
- =?us-ascii?Q?LTRKOalspWM3h5TYdg+LMhHsAM1A1ZLbV9Ar5kF3MuoaxUpUsYUbf0MJ3V8e?=
- =?us-ascii?Q?SAzp/ytevWTu+FHrRisbj2gUBMvf1jjFcWxCO230zDJLHh+Bvg9lqfhrnCWp?=
- =?us-ascii?Q?aDuDq0NDTEqeuvFNorRr8Q0XrlgPKarXekvO8lreU4mL64htkf7ppW7kVukr?=
- =?us-ascii?Q?U0a2q8SresHU1GceW4z3bobBQqeruINAjHRjU1nPjgSXS9umh/EyHfDqp4BF?=
- =?us-ascii?Q?x8jDvxjhMqvfTLxzbo6E3ck0Xx2Ex1V948pJrUBps1zXDuIAcTDVJbaCNVbP?=
- =?us-ascii?Q?mBNSqQpw/gng7QRB24N0K5MvS+9ohxXJAwLZWsiyhfkhAruHhRwR6ZavKTuV?=
- =?us-ascii?Q?g3VuM6pQ3DvUsKmZTvLF9gzejbkiqvBxYRVPX5lBQohzsIcGS/T4QGPvN/CT?=
- =?us-ascii?Q?nYoqlHOmG+Pl5YCxZAO44vWctH2Oh41UU5WQhxEyP3SXUeSQ2YIer/lQEJLg?=
- =?us-ascii?Q?hJoWypY0NKWeELCwBY80lhnfd/MXXdZDk3sMGpzicFD0uCBaSdoUWlPc9i2F?=
- =?us-ascii?Q?l/eENftX/KKHMKugygDOYXJctdyjzVdFELBG65FK3gSvpKaCmNKsQATYSuG+?=
- =?us-ascii?Q?jJlEE0XpeSVKxRM2PNOIGNy9OyD6gd0rvP0anseavhYVRyqwF0EDxafWX54Q?=
- =?us-ascii?Q?W4PaBMiw0Cdd9u/teuKKBS6n3xtes9FQOM4CAe4q0VjzJJFj/e/i7ONJ4tGS?=
- =?us-ascii?Q?eg+ug/2+L2CcEP5SCxWo+FFAi0QFimRByJMIW2ZoWZaDGDOUgYeeScdKSp3x?=
- =?us-ascii?Q?i08STjH6BjwamYWyyIM8T42uZMlQIgiAGLTcQw0UmYpmEt36gulvmSpC20un?=
- =?us-ascii?Q?x3C3+M/P6bnw2d1eeL84AyTIJNhNIqfpXmSF/DkNdPgoHxUYjYkUQX6vE+dG?=
- =?us-ascii?Q?Hvr8YieaGHncN0Yke9EC/M5G3sykou8S/OAb1uMdJ7AsUdgLudqxRT+qvMpw?=
- =?us-ascii?Q?iJOnQGNq/cDVVJIbJCDCqTz4ZwfMcIHqKOgK1+rgmHLaUhsspZdlhPeiIi5v?=
- =?us-ascii?Q?vPtEGDT2hNse+tlU05klzIGjcv3WJeKeqhVGmrNb7rAfsGnNo7k20MV6GZy0?=
- =?us-ascii?Q?/Vg9D3k3vDhVD1pZAP6PL+aDUfG1Y8Tq0HBmY05sMcNA96hZmxYvLbs1lkKm?=
- =?us-ascii?Q?Q2ew9v80PwLr77Ej6P1K71tLJmYantT+BKj/S1L4LUBkeZvSkrUQWmqyWyf3?=
- =?us-ascii?Q?QrtzVE67tDQufbrVKxZDi//fPQ85tjfhBukdy5t6Q1fXY+7+xBre+cbYRvJM?=
- =?us-ascii?Q?C6SLWN+uilqOGwEI0yHR+hDalYnzgYiAqaLELcMJFWmvX5g5OvPr9NTRjqC4?=
- =?us-ascii?Q?kwaFIthExRpB6lUuUe3lPlGwYzA9LizcU4uodlVCRqhiv/8dZp10sAluYgAY?=
- =?us-ascii?Q?tvl73st9FWE54gX45gEjiJu5AhlFJ1wJ/6NlZxf4Qq6dM5udKXNMl/kz4fPd?=
- =?us-ascii?Q?AnE/eEqOXSvcs6TXwLgoIDWIEYKAHFi9YiDcU5U2WFtwG7EC40QlMUHvdRWg?=
- =?us-ascii?Q?UkWu46ojxv/dUyDRTd0HuqI=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 63929ca7-95da-42af-3a27-08d9add78c87
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2021 16:45:53.9600
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ld66k29Y7bC+44wVTejRFTmPXfUHoEM4fst4Hi/Tt8JvcHDvnh2pp9x7W5GLcM4IZh0+eAsrAghZKCreeGMlWA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5294
+References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+ <8735no70tt.wl-maz@kernel.org>
+In-Reply-To: <8735no70tt.wl-maz@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 22 Nov 2021 17:58:27 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+Message-ID: <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
+ definition of interrupt-map
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel-team@android.com, Rob Herring <robh@kernel.org>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-11-19 08:17:11, Alexander Stein wrote:
-> Am Donnerstag, dem 18.11.2021 um 19:04 -0600 schrieb Rob Herring:
-> > On Wed, Nov 10, 2021 at 07:46:55PM +0200, Abel Vesa wrote:
-> > > Add i.MX8DXL lpuart compatible to the bindings documentation.
-> > > 
-> > > Signed-off-by: Abel Vesa <
-> > > abel.vesa@nxp.com
-> > > >
-> > > ---
-> > >  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/serial/fsl-
-> > > lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-
-> > > lpuart.yaml
-> > > index dc1f0e07cbd4..fa8a602ccb22 100644
-> > > --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> > > +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
-> > > @@ -27,6 +27,10 @@ properties:
-> > >        - items:
-> > >            - const: fsl,imx8qm-lpuart
-> > >            - const: fsl,imx8qxp-lpuart
-> > > +      - items:
-> > > +          - const: fsl,imx8dxl-lpuart
-> > > +          - const: fsl,imx8qxp-lpuart
-> > > +          - const: fsl,imx7ulp-lpuart
-> > 
-> > I'm confused why 8dxl is compatible with 7ulp, but 8qm is not? From
-> > the 
-> > driver, it looks like the difference is clocks.
-> 
-> There is a difference between 8qm and 7ulp regarding the clocks. Are
-> they still considered compatible? Depending on the answer [1] might not
-> be the correct solution for earlycon regression on 8qm.
-> 
+Hi Marc,
 
-In NXP's tree, they are not compatible.
+On Mon, Nov 22, 2021 at 2:54 PM Marc Zyngier <maz@kernel.org> wrote:
+> On Mon, 22 Nov 2021 13:10:32 +0000,
+> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Mon, Nov 22, 2021 at 11:30 AM Marc Zyngier <maz@kernel.org> wrote:
+> > > Since 041284181226 ("of/irq: Allow matching of an interrupt-map local
+> > > to an interrupt controller"), a handful of interrupt controllers have
+> > > stopped working correctly. This is due to the DT exposing a non-sensical
+> > > interrupt-map property, and their drivers relying on the kernel ignoring
+> > > this property.
+> > >
+> > > Since we cannot realistically fix this terrible behaviour, add a quirk
+> > > for the limited set of devices that have implemented this monster,
+> > > and document that this is a pretty bad practice.
 
-See here:
+> > > --- a/drivers/of/irq.c
+> > > +++ b/drivers/of/irq.c
+> > > @@ -76,6 +76,36 @@ struct device_node *of_irq_find_parent(struct device_node *child)
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(of_irq_find_parent);
+> > >
+> > > +/*
+> > > + * These interrupt controllers abuse interrupt-map for unspeakable
+> > > + * reasons and rely on the core code to *ignore* it (the drivers do
+> > > + * their own parsing of the property).
+> > > + *
+> > > + * If you think of adding to the list for something *new*, think
+> > > + * again. There is a high chance that you will be sent back to the
+> > > + * drawing board.
+> > > + */
+> > > +static const char * const of_irq_imap_abusers[] = {
+> > > +       "CBEA,platform-spider-pic",
+> > > +       "sti,platform-spider-pic",
+> > > +       "realtek,rtl-intc",
+> > > +       "fsl,ls1021a-extirq",
+> > > +       "fsl,ls1043a-extirq",
+> > > +       "fsl,ls1088a-extirq",
+> > > +       "renesas,rza1-irqc",
+> > > +};
+> >
+> > Are you sure "renesas,rza1-irqc" handles this wrong? How should it
+> > be handled instead? I read the other thread[1], but didn't became
+> > any wiser: interrupts are mapped one-to-one with the RZ/A1 IRQC.
+> >
+> > In both v5.15 and v5.16-rc1, interrupts seem to work fine on RSK+RZA1
+> > and RZA2MEVB, both with gpio-keys and when used as a wake-up interrupt.
 
-https://source.codeaurora.org/external/imx/linux-imx/tree/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi?h=lf-5.10.y#n9
+Oops, it turned out my "v5.15" tree was not plain v5.15, but v5.15 with
+some parts of next, including an older version of commit 041284181226.
 
-> Best regards,
-> Alexander
-> 
-> [1] 
-> http://lists.infradead.org/pipermail/linux-arm-kernel/2021-November/696770.html
-> 
+> This is odd. 5.16-rc1 should actively breaks the behaviour, as each
+> interrupt is directly routed to the GIC. Here's an extract of the DT
+> for r7s9210:
 >
+>     interrupt-map = <0 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+>                     <1 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+>                     <2 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+>                     <3 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+>                     <4 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+>                     <5 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+>                     <6 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+>                     <7 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+>
+> I expect v5.16-rc1 to honour the routing described here and not
+> involve rza1-irqc, because that's what the DT says.
+>
+> > With this patch applied, I see double keypresses with evtest: when
+> > pressing a key, I get a key-down event, immediately followed by a
+> > key-up event. When releasing the key, I again get two events.
+> >
+> > Good (v5.15 or v5.16-rc1):
+> >
+> >     Event: time 1637585631.288990, type 1 (EV_KEY), code 2 (KEY_1), value 1
+> >     Event: time 1637585631.288990, -------------- SYN_REPORT ------------
+> >     Event: time 1637585631.499924, type 1 (EV_KEY), code 2 (KEY_1), value 0
+> >     Event: time 1637585631.499924, -------------- SYN_REPORT ------------
+> >
+> > Bad (v5.16-rc1 + this patch):
+> >
+> >     Event: time 1637585341.946647, type 1 (EV_KEY), code 2 (KEY_1), value 1
+> >     Event: time 1637585341.946647, -------------- SYN_REPORT ------------
+> >     Event: time 1637585341.960256, type 1 (EV_KEY), code 2 (KEY_1), value 0
+> >     Event: time 1637585341.960256, -------------- SYN_REPORT ------------
+> >     Event: time 1637585342.146775, type 1 (EV_KEY), code 2 (KEY_1), value 1
+> >     Event: time 1637585342.146775, -------------- SYN_REPORT ------------
+> >     Event: time 1637585342.160092, type 1 (EV_KEY), code 2 (KEY_1), value 0
+> >     Event: time 1637585342.160092, -------------- SYN_REPORT ------------
+>
+> Is there any chance you could trace whether rza1-irqc gets called at
+> all when setting up and handling the interrupt?
+
+I reran my tests ([A] pristine v5.15, [B] my current tree based on v5.16-rc1,
+[C] my tree plus your patch).
+
+[A] and [B] behave the same:
+
+  Boot:
+
+    rza1_irqc_translate:152: domain :soc:interrupt-controller@fcfef800
+hwirq 3 type 3
+    rza1_irqc_alloc:115: domain :soc:interrupt-controller@fcfef800
+virq 41 nr_irqs 1
+    rza1_irqc_alloc:127: param[0] = 0
+    rza1_irqc_alloc:127: param[1] = 3
+    rza1_irqc_alloc:127: param[2] = 4
+    rza1_irqc_translate:152: domain :soc:interrupt-controller@fcfef800
+hwirq 2 type 3
+    rza1_irqc_alloc:115: domain :soc:interrupt-controller@fcfef800
+virq 42 nr_irqs 1
+    rza1_irqc_alloc:127: param[0] = 0
+    rza1_irqc_alloc:127: param[1] = 2
+    rza1_irqc_alloc:127: param[2] = 4
+    rza1_irqc_translate:152: domain :soc:interrupt-controller@fcfef800
+hwirq 5 type 3
+    rza1_irqc_alloc:115: domain :soc:interrupt-controller@fcfef800
+virq 43 nr_irqs 1
+    rza1_irqc_alloc:127: param[0] = 0
+    rza1_irqc_alloc:127: param[1] = 5
+    rza1_irqc_alloc:127: param[2] = 4
+    rza1_irqc_set_type:76: hwirq 3 type 3
+    rza1_irqc_set_type:76: hwirq 2 type 3
+    rza1_irqc_set_type:76: hwirq 5 type 3
+
+  Pressing all 3 keys on RSK+RZA1:
+
+    rza1_irqc_eoi:62: hw_irq 3 IRQRR 0x8
+    rza1_irqc_eoi:62: hw_irq 3 IRQRR 0x8
+    rza1_irqc_eoi:62: hw_irq 2 IRQRR 0x4
+    rza1_irqc_eoi:62: hw_irq 2 IRQRR 0x4
+    rza1_irqc_eoi:62: hw_irq 5 IRQRR 0x20
+    rza1_irqc_eoi:62: hw_irq 5 IRQRR 0x20
+
+  /proc/interrupts:
+
+    41:          2  rza1-irqc   3 Edge      SW1
+    42:          2  rza1-irqc   2 Edge      SW2
+    43:          2  rza1-irqc   5 Edge      SW3
+
+  evtest:
+
+    Event: time 1637597938.224621, type 1 (EV_KEY), code 2 (KEY_1), value 1
+    Event: time 1637597938.224621, -------------- SYN_REPORT ------------
+    Event: time 1637597938.232198, type 1 (EV_KEY), code 2 (KEY_1), value 0
+    Event: time 1637597938.232198, -------------- SYN_REPORT ------------
+    Event: time 1637597938.532939, type 1 (EV_KEY), code 2 (KEY_1), value 1
+    Event: time 1637597938.532939, -------------- SYN_REPORT ------------
+    Event: time 1637597938.542304, type 1 (EV_KEY), code 2 (KEY_1), value 0
+    Event: time 1637597938.542304, -------------- SYN_REPORT ------------
+    Event: time 1637597941.772467, type 1 (EV_KEY), code 3 (KEY_2), value 1
+    Event: time 1637597941.772467, -------------- SYN_REPORT ------------
+    Event: time 1637597941.782309, type 1 (EV_KEY), code 3 (KEY_2), value 0
+    Event: time 1637597941.782309, -------------- SYN_REPORT ------------
+    Event: time 1637597942.110321, type 1 (EV_KEY), code 3 (KEY_2), value 1
+    Event: time 1637597942.110321, -------------- SYN_REPORT ------------
+    Event: time 1637597942.122303, type 1 (EV_KEY), code 3 (KEY_2), value 0
+    Event: time 1637597942.122303, -------------- SYN_REPORT ------------
+    Event: time 1637597945.256109, type 1 (EV_KEY), code 4 (KEY_3), value 1
+    Event: time 1637597945.256109, -------------- SYN_REPORT ------------
+    Event: time 1637597945.262132, type 1 (EV_KEY), code 4 (KEY_3), value 0
+    Event: time 1637597945.262132, -------------- SYN_REPORT ------------
+    Event: time 1637597945.630469, type 1 (EV_KEY), code 4 (KEY_3), value 1
+    Event: time 1637597945.630469, -------------- SYN_REPORT ------------
+    Event: time 1637597945.642299, type 1 (EV_KEY), code 4 (KEY_3), value 0
+    Event: time 1637597945.642299, -------------- SYN_REPORT ------------
+
+So despite seeing only 2 interrupts per key, gpio-keys generates
+4 events per key.
+
+With my v5.16-rc1-based tree, rza1_irqc_translate(), rza1_irqc_alloc(),
+rza1_irqc_set_type(), and rza1_irqc_eoi() are indeed not called.
+
+  /proc/interrupts:
+
+    41:     242419     GIC-0  35 Level     SW1
+    42:     142771     GIC-0  34 Level     SW2
+    43:     136355     GIC-0  37 Level     SW3
+            ^^^^^^
+            Oops
+
+  evtest:
+
+    Event: time 1637598499.076306, type 1 (EV_KEY), code 2 (KEY_1), value 1
+    Event: time 1637598499.076306, -------------- SYN_REPORT ------------
+    Event: time 1637598499.350985, type 1 (EV_KEY), code 2 (KEY_1), value 0
+    Event: time 1637598499.350985, -------------- SYN_REPORT ------------
+    Event: time 1637598501.979770, type 1 (EV_KEY), code 3 (KEY_2), value 1
+    Event: time 1637598501.979770, -------------- SYN_REPORT ------------
+    Event: time 1637598502.370948, type 1 (EV_KEY), code 3 (KEY_2), value 0
+    Event: time 1637598502.370948, -------------- SYN_REPORT ------------
+    Event: time 1637598504.660146, type 1 (EV_KEY), code 4 (KEY_3), value 1
+    Event: time 1637598504.660146, -------------- SYN_REPORT ------------
+    Event: time 1637598505.030947, type 1 (EV_KEY), code 4 (KEY_3), value 0
+    Event: time 1637598505.030947, -------------- SYN_REPORT ------------
+
+So despite receiving an interrupt storm, gpio-keys behaves as expected.
+
+I will retest tomorrow with an old kernel, as I do not remember seeing such
+behavior when I wrote the rza1-irqc driver.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
