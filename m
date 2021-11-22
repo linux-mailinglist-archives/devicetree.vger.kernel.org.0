@@ -2,171 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1ED458A5A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 09:10:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C648458AA2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 09:45:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230253AbhKVIN3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 03:13:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44478 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230058AbhKVIN2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 03:13:28 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4DFFC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 00:10:21 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mp4Oz-0003KK-S0; Mon, 22 Nov 2021 09:10:13 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mp4Ou-0005pL-HP; Mon, 22 Nov 2021 09:10:08 +0100
-Date:   Mon, 22 Nov 2021 09:10:08 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Alex Bee <knaerzche@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-Message-ID: <20211122081008.GR6556@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <73c57643-a0db-e7e7-174d-3cb6a978d98a@gmail.com>
+        id S238819AbhKVIsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 03:48:17 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:34659 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238847AbhKVIsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 03:48:16 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id B51DC3200E91;
+        Mon, 22 Nov 2021 03:45:08 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Mon, 22 Nov 2021 03:45:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=IEQFLYmwMPm+QnJiU4zImMcu/1U
+        6t6+5t6Sfxd7594o=; b=Z3DT7q7a1nfcJhugd+NnEVHYsagN45ODpa6vPQAlJ9R
+        AwX8yvPSpgqTKp+wGtQk85oSO9XyiumqqBBYqIJj5zK8XltBcytKch/jE5hNmbqL
+        GZLk5elidg7zvV47tRGBmRrUKqjK/huqkUlSmZ7vJT0HATmq4tXBPM1utwN8utkb
+        gzMlt42xodx1+ErnTuCmrIIfcif24P/u51Od85bbbQVIQGTGr3xn3a26rp7d2+OV
+        h35WyXeFm9UfgPvf2iL/SW/vgA2KaKtmKidj3cZGvQ4rO/mRIje39OrqZ3RiCryj
+        qkL7uQfJjndShgu69Da8DeWoQ35lHUoPT02jsaqyELw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=IEQFLY
+        mwMPm+QnJiU4zImMcu/1U6t6+5t6Sfxd7594o=; b=F13FPfU93S1oq3hZ3JRXDj
+        u9OgxmQ0bANgLDzF4pGSqYTAbjDuqAEkoKfqPfAF+kInTQLSjZqc0y7Y0y3KSFoP
+        PZlnlf1EeZ7JDLhS6cWXtDTyMxmCunLF1F4elRiaqvGCyJzBj/DhV57AtJZZCbJp
+        EPam/ZWrzNZswMSVbimbiRj1FlJ3rJ2/vzQuCmItN7IfscP7Z8rerFJ/bXl5/L/K
+        BG+xKetb8/JpUnpjRkcvAxRzqTLyBReee5YclSNSZ2fK8qXJL0jeOLwrcRknk3Wy
+        evRPAVj1Rdz2UaFiF1uv/Osi2qE9quzTtoOLinz9DUBYY+QrVoEJKup8dh5X1Lrg
+        ==
+X-ME-Sender: <xms:k1ibYaIgMPEz0bSgchnu15xWm_EtRQ_F-gc6hbEysFW3PFzuvjMQ9A>
+    <xme:k1ibYSKNHciI1tPTn13vueDIF2Hr8q3PUW-YYK6Cquev_XQIsiRVjmIA-TfvMauAK
+    aOoqvwqlhhxualGeNM>
+X-ME-Received: <xmr:k1ibYav7GVDlqgR-Gy8yae0tfEqhZwZrNs1l5RkkU0QWgVVUNwogwIf_d9vQ0V7-LP5snZMtk258ZvQXJFzdDmDYFCPLEEUtUro>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeefgdduvdehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:k1ibYfY1swP51FYp9KgqukI-vCDZnbS3x_AULgSXEGwnBlDQVF_JVA>
+    <xmx:k1ibYRbC1OT00tC7WSQcSJUyW_7dj6aFJc39uf9zzGGNMWTC38zlfg>
+    <xmx:k1ibYbADJRZjtYtYi1q0okSGVMzaI9FSL1kzuW5stxsr_ykU9LBsqg>
+    <xmx:lFibYWPyTtLyLc5BtSUf3TC3UNDEQ6m_nPK3LBCoG_gzWbhT0XbfAA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 22 Nov 2021 03:45:07 -0500 (EST)
+Date:   Mon, 22 Nov 2021 09:45:04 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/4] dmaengine: sun6i: Add support for 34-bit physical
+ addresses
+Message-ID: <20211122084504.5picqz6xxaiup6tf@gilmour>
+References: <20211119052702.14392-1-samuel@sholland.org>
+ <20211119052702.14392-4-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7inek6mjn4muxwl4"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <73c57643-a0db-e7e7-174d-3cb6a978d98a@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:45:58 up 277 days, 11:09, 111 users,  load average: 0.11, 0.10,
- 0.09
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20211119052702.14392-4-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alex,
 
-On Mon, Nov 22, 2021 at 12:18:47AM +0100, Alex Bee wrote:
-> Hi Sascha,
-> 
-> Am 17.11.21 um 15:33 schrieb Sascha Hauer:
-> > This series adds initial graphics support for the Rockchip RK356[68]
-> > SoCs.  Graphics support is based around the VOP2 controller which
-> > replaces the VOP controller found on earlier Rockchip SoCs. The driver
-> > has been tested with HDMI support included in this series and MIPI-DSI
-> > which is not included because it needs some more work. The driver is
-> > taken from the downstream Rockchip kernel and heavily polished, most non
-> > standard features have been removed for now. I tested the driver with
-> > the libdrm modetest utility and also with weston with both pixman and
-> > panfrost driver support. Michael Riesch reported the driver to work on
-> > the RK3566 as well, but device tree support for this SoC is not yet
-> > included in this series.
-> >
-> > The HDMI changes are based on patches from Benjamin Gaignard, but
-> > modified a bit as I found out that the HDMI port on the RK3568 only
-> > needs one additional clock, not two. Also I added regulator support
-> > which is needed to get the HDMI up on the rk3568-EVB board.
-> >
-> > All review and testing feedback welcome
-> 
-> 
-> thanks for working on that - it's very (very,very) much appreciated.
-> 
-> It took me some time to figure it out: It seems rk3568-iommu driver s
-> broken - I did only get "white noise" when using it alongside vop
-> (similar like it was reported here before). However: removing the
-> iommu-property from vop makes it working for me with HDMI output on
-> quartz64 as well. Could you check if you have the iommu driver in kernel
-> enabled if it works for you, if the property is present in DT? (I used
-> 5.16-rc1 + this series + [0]).
+--7inek6mjn4muxwl4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I have the iommu driver enabled and it works for me. I get this during
-boot:
+Hi,
 
-[0.263287] rockchip-vop2 fe040000.vop: Adding to iommu group 0
+On Thu, Nov 18, 2021 at 11:27:00PM -0600, Samuel Holland wrote:
+> @@ -645,7 +660,7 @@ static struct dma_async_tx_descriptor *sun6i_dma_prep=
+_dma_memcpy(
+>  	if (!txd)
+>  		return NULL;
+> =20
+> -	v_lli =3D dma_pool_alloc(sdev->pool, GFP_NOWAIT, &p_lli);
+> +	v_lli =3D dma_pool_alloc(sdev->pool, GFP_DMA32|GFP_NOWAIT, &p_lli);
 
-So I expect it is indeed used.
+This raises a checkpatch --strict warning since we're supposed to have
+spaces around the pipe.
 
-> Also vop mmu seems to have the
-> power-domain missing in your series (same as downstream) - however
-> adding that doesn't help much currently.
+Maxime
 
-Probably the power domain gets enabled anyway when the VOP is activated,
-so adding it to the iommu won't help anything. Nevertheless it seems
-correct to add the property, I'll do so in the next round.
+--7inek6mjn4muxwl4
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> As a sidenote: I verfied this with using Ezequiel's vpu addtion for
-> RK356x: It did only work when removing the iommu there as well (getting
-> tons of page faults otherwise) - so iommu driver really seems to broken,
-> at least for RK3566. (Or I'm a missing a option in kernel config, which
-> wasn't required for the older iommu version?)
+-----BEGIN PGP SIGNATURE-----
 
-I don't think so. I started from defconfig and disabled other
-architectures and unneeded drivers, but I did not enable anything
-specific to iommu.
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZtYkAAKCRDj7w1vZxhR
+xXcRAP0S6BzQLRMjoeNCFMCmHaQ8A9vR83TuAg85HtLWJIrgrwEA1GUWojfLx+Ns
+NRB9aejX7t2F8h/xA5GDox29cy3gIAU=
+=L02M
+-----END PGP SIGNATURE-----
 
->  
-> But as reported before: For HDMI this does currently only work for pixel
-> clock rates, which are integer-divisable with hpll clock rate (which is
-> the hardcoded parent of vop0's dclk)
-> As discussed in Benjamin's initial submission of the addition of
-> RK3568's hdmi controller [1] same as with RK3288's and RK3399's hdmi phy
-> needs a reference clock (it's called vpll there) which needs to get
-> switched before the vop switches the mode (since phy rate switching is
-> done before) - it's HPLL in case of RK356x. For whatever reason it's
-> called "ref" for RK356x only downstream [2] - so you should add another
-> clock "vpll" (renaming it to "ref" for _ALL_ SoCs which have it would be
-> a _GREAT_ idea) which is <&pmucru PLL_HPLL>.
-
-Yeah, a consumer clock should be named after the usage in the consumer,
-not after the provider name. I also stumbled over this and naming it
-"ref" makes much more sense. We'll likely have to keep supporting "vpll"
-as well for compatibility to old device trees.
-
-> What brings us to the "real" clock problem and the reason, why
-> non-integer divisable pixel clock rates are not possible ATM: This is a
-> long standing issue for RK3288 and RK3399 as well (and one of the main
-> reasons why 4k modes are not possible for those older SoCs currently):
-> Upstream all PLL rates are controlled with those PLL rate tables in the
-> clock driver and they have to be _exactly_ defined as they are used
-> (HDMI sinks are very picky).
-> You will not see any additional rates downstream for RK3568: they have a
-> mechanism there to automatically calculate the PLL settings if the rate
-> doesn't exist in these tables (IIRC this was submitted upstream also:
-> but it was rejected/ignored by maintainers).
-
-Looks like we have to try harder to get it upstream. Do you have a
-pointer to this patch?
-
-> As a quick hackarround (for
-> testing): You could use this table [3] we are using in LibreElec for
-> RK3399 to get 4k modes working and assign it to HPLL in RK3568's clock
-> driver (I tested it and it works great). It might be possible to just
-> add those rates (some also without frac dividers) to the common PLL
-> table for RK3568.
-
-Thanks for noting. This could also explain why currently only 1080p is
-working.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+--7inek6mjn4muxwl4--
