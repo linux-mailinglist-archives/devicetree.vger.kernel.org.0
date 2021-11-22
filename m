@@ -2,234 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79B1B458EA0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 13:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD09458EC9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 13:56:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232527AbhKVMuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 07:50:01 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:39852 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S229797AbhKVMuB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 07:50:01 -0500
-X-UUID: 4e36668dcf5244cfa05fa69adace636f-20211122
-X-UUID: 4e36668dcf5244cfa05fa69adace636f-20211122
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1208133963; Mon, 22 Nov 2021 20:46:50 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 22 Nov 2021 20:46:49 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 22 Nov
- 2021 20:46:49 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 22 Nov 2021 20:46:49 +0800
-Message-ID: <cc6e73ba980ee13f8ab29862140d0bfe44ed9d7f.camel@mediatek.com>
-Subject: Re: [PATCH v7 2/3] arm64: dts: mediatek: add basic mt7986a support
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        id S239518AbhKVM7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 07:59:55 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42372 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239507AbhKVM7z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 07:59:55 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AMCuVHm107907;
+        Mon, 22 Nov 2021 06:56:31 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637585791;
+        bh=86PCuAHCF1E3Rn+MR0ZWMSwqRPl+D80wX/tnx0rh1cA=;
+        h=From:To:CC:Subject:Date;
+        b=h+12N1QM0Mdro5c0JGHp4oJ7YDV+664DkeHgePiv9nwVY+ntALl4gQW2v3+7foanZ
+         JNCM3Sw+zJqB5zBMWxDKWasT/kFnaISIKGLOtB/DZeOjty4BgXCwgH+PxUHY2aQwqP
+         /ONeYWJydnMg6y5/KRJAxbsLrVmFq7J5DWVy0/k0=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AMCuV5w019714
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 22 Nov 2021 06:56:31 -0600
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 22
+ Nov 2021 06:56:30 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 22 Nov 2021 06:56:30 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AMCuQhx109786;
+        Mon, 22 Nov 2021 06:56:27 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>,
+        Peter Rosin <peda@axentia.se>,
         Rob Herring <robh+dt@kernel.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Seiya Wang <seiya.wang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
-Date:   Mon, 22 Nov 2021 20:46:49 +0800
-In-Reply-To: <a4605e32-3af3-5636-6682-475bef8448d1@gmail.com>
-References: <20211018114009.13350-1-sam.shih@mediatek.com>
-         <20211018114009.13350-3-sam.shih@mediatek.com>
-         <d411aec5-efa8-c71d-8179-54ff52c17039@gmail.com>
-         <d299493d8fec0f34f527942f2cdedf15f2136c9a.camel@mediatek.com>
-         <c5c0849d-a95a-25a0-11f8-9156770afc10@gmail.com>
-         <59963509ec833009f5c10f0a1aee91670224c6c7.camel@mediatek.com>
-         <a4605e32-3af3-5636-6682-475bef8448d1@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: [PATCH RFC v2 0/4] MUX: Add support for reading enable state from DT
+Date:   Mon, 22 Nov 2021 18:26:20 +0530
+Message-ID: <20211122125624.6431-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+- The following series of patches add support for reading the state of the
+  mux to be set for enabling given device.
+- As these are RFC patches I have combined them into a single series for
+  better understanding of the reason behind making this change.
 
-On Fri, 2021-11-19 at 11:31 +0100, Matthias Brugger wrote:
-> 	
-> 
-> On 18/11/2021 04:48, Sam Shih wrote:
-> > Hi
-> > 
-> > On Tue, 2021-11-16 at 12:18 +0100, Matthias Brugger wrote:
-> > > 
-> > > On 16/11/2021 02:39, Sam Shih wrote:
-> > > > Hi,
-> > > > 
-> > > > On Mon, 2021-11-15 at 17:27 +0100, Matthias Brugger wrote:
-> > > > > Hi,
-> > > > > 
-> > > > > On 18/10/2021 13:40, Sam Shih wrote:
-> > > > > > Add basic chip support for Mediatek mt7986a, include
-> > > > > > basic uart nodes, rng node and watchdog node.
-> > > > > > 
-> > > > > > Add cpu node, timer node, gic node, psci and reserved-
-> > > > > > memory
-> > > > > > node
-> > > > > > for ARM Trusted Firmware.
-> > > > > > 
-> > > > > 
-> > > > > What is the exact difference between mt7986a and mt7986b?
-> > > > > Right
-> > > > > now,
-> > > > > it's only
-> > > > > the compatible, for that it makes no sense to split them.
-> > > > > 
-> > > > 
-> > > > The difference between mt7986a and mt7986b is pinout which
-> > > > described
-> > > > in our pinctrl patch series
-> > > > 
-> > 
-> > 
-https://urldefense.com/v3/__https://lore.kernel.org/all/20211022124036.5291-3-sam.shih@mediatek.com/__;!!CTRNKA9wMg0ARbw!0kseU8x1KnHHXDErh6Yj6MKqecufPEfGyeumtTBism47e99UFO2Gs-HfWjL1_jUv$
-> > > >   
-> > > > 
-> > > > You are right, in this "basic SoC support" patch series, only
-> > > > show
-> > > > compatible differences
-> > > > 
-> > > > > It would be good to see what the exact differences are, so
-> > > > > that
-> > > > > we
-> > > > > can see if it
-> > > > > makes sense to have one of the alternatives:
-> > > > > 1) use a common mt7986.dtsi which get included by
-> > > > > mt7986[a,b].dtsi
-> > > > > 2) Use on mt7986.dtsi and only add one mt7986a.dtsi or
-> > > > > mt7986b.dtsi
-> > > > > which has
-> > > > > add-ons.
-> > > > > 
-> > > > 
-> > > > In this case, can we use solution (1) to create a generic
-> > > > mt7986.dtsi
-> > > > in this patch series, and add mt7986[a,b].dtsi to the dts part
-> > > > of
-> > > > the
-> > > > pinctrl patch series to separate the difference nodes?
-> > > > 
-> > > 
-> > > If the only difference is the GPIO controller then why not go
-> > > with
-> > > solution 2.
-> > > Create a mt7986.dtsi which holds e.g. the node for pincontroller
-> > > mt7986a and
-> > > then create a mt7986b.dtsi that just changes compatible and gpio-
-> > > ranges:
-> > > 
-> > > &pio {
-> > >      compatible = "mediatek,mt7986b-pinctrl";
-> > >      gpio-ranges = <&pio 0 0 41>, <&pio 66 66 35>;
-> > > }
-> > > 
-> > > What do you think?
-> > 
-> > Ok,
-> > 
-> > For this basic patch series DTS, I will send the next version:
-> > - Use "mt7986.dtsi" instead of "mt7986[a,b].dtsi",
-> >    And make"mt7986.dtsi" get included by "mt7986[a,b]-rfb.dts"
-> >    (No dedicated uart1/uart2 pinout for mt7986b-rfb, status of dts
-> > node
-> > shoud be set to "disabled")
-> > 
-> > 
-> > For the pinctrl patch series DTS, I will send th next version:
-> > - Add "mt7986b.dtsi" according to your suggestion,
-> >    the new include
-> > chain will be:
-> >    mt7986a-rfb.dts <-- mt7986.dtsi (mt7986a pinctrl)
-> >   
-> > mt7986b-rfb.dts <-- mt7986b.dtsi (mt7986b pinctrl) <-- mt7986.dtsi
-> > (mt7986a pinctrl)
-> > 
-> > Do you agree above proposal?
-> > 
-> 
-> I mean something like this:
-> mt7986a.dtsi:
-> pio: pinctrl@1001f000 {
-> 	compatible = "mediatek,mt7986a-pinctrl";
-> 	reg = <0 0x1001f000 0 0x1000>,
-> 	      <0 0x11c30000 0 0x1000>,
-> 	      <0 0x11c40000 0 0x1000>,
-> 	      <0 0x11e20000 0 0x1000>,
-> 	      <0 0x11e30000 0 0x1000>,
-> 	      <0 0x11f00000 0 0x1000>,
-> 	      <0 0x11f10000 0 0x1000>,
-> 	      <0 0x1000b000 0 0x1000>;
-> 	reg-names = "gpio", "iocfg_rt", "iocfg_rb", "iocfg_lt",
-> 		    "iocfg_lb", "iocfg_tr", "iocfg_tl", "eint";
-> 	gpio-controller;
-> 	#gpio-cells = <2>;
-> 	gpio-ranges = <&pio 0 0 100>;
-> 	interrupt-controller;
-> 	interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-> 	interrupt-parent = <&gic>;
-> 	#interrupt-cells = <2>;
-> };
-> 
-> mt7986b.dtsi:
-> #include "mt7986a.dtsi"
-> 
-> &pio {
->       compatible = "mediatek,mt7986b-pinctrl";
->       gpio-ranges = <&pio 0 0 41>, <&pio 66 66 35>;
-> }
-> 
-> mt7986b-rfb.dts:
-> #include "mt7986b.dtsi"
-> 
-> &pio {
-> 	uart1_pins: uart1-pins {
-> 		mux { [...]
-> 
-> 
-> mt7986a-rfb.dts:
-> #include "mt7986a.dtsi"
-> 
-> &pio {
-> 	uart1_pins: uart1-pins {
-> 		mux { [...]
-> 
-> 
-> Makes sense?
-> 
+Changes since v1:
+- Added support for reading the enable state from DT instead of hardcoding
+  the state to be set to 1.
+- Made relavent changes in the bindings
 
-Okay,
+Link to v1,
+- https://patchwork.kernel.org/project/linux-phy/list/?series=578863&state=*
 
-I have sent new patch set based on your suggestion,
+Aswath Govindraju (4):
+  dt-bindings: mux: Increase the number of arguments in mux-controls
+  dt-bindings: phy: ti,tcan104x-can: Document mux-controls property
+  mux: Add support for reading mux enable state from DT
+  phy: phy-can-transceiver: Add support for setting mux
 
-Basic Part:
+ .../devicetree/bindings/mux/gpio-mux.yaml     |  2 +-
+ .../bindings/mux/mux-controller.yaml          |  2 +-
+ .../bindings/phy/ti,tcan104x-can.yaml         |  8 ++++++
+ drivers/mux/core.c                            | 20 ++++++++++++--
+ drivers/phy/phy-can-transceiver.c             | 26 +++++++++++++++++++
+ include/linux/mux/consumer.h                  |  1 +
+ include/linux/mux/driver.h                    |  1 +
+ 7 files changed, 56 insertions(+), 4 deletions(-)
 
-https://lore.kernel.org/all/20211122123222.8016-1-sam.shih@mediatek.com/
-
-Pinctrl:
-
-https://lore.kernel.org/all/20211122123552.8218-1-sam.shih@mediatek.com/
-
-Please take a look at those patches when you are free.
-
-Regards,
-Sam
-
-> Regards,
-> Matthias
-> 
+-- 
+2.17.1
 
