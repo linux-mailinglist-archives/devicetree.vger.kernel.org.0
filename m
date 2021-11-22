@@ -2,267 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6575645909A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 15:53:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02BDD459116
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 16:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239817AbhKVO4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 09:56:55 -0500
-Received: from out2-smtp.messagingengine.com ([66.111.4.26]:54507 "EHLO
-        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238762AbhKVO4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 09:56:55 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id BFFDB5C0221;
-        Mon, 22 Nov 2021 09:53:47 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Mon, 22 Nov 2021 09:53:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=m
-        vUrGpuD+JbSX9Ep04tSMhLcVf+WU9pfKE8IAeg6MKQ=; b=luveJAbTxz6poeVdg
-        Qs/OzwsCwT/7VahsK7wR9TuAL2cRsb6xRM1gIG1u7EJK+RmU2XWEs0oatLDsSARq
-        pf+My71lFPHGfQq8XfjcPqQEy0gxvuooPbXSfhyQtZlBXB5T8iD25MLQHsIiWzvd
-        vnGKCBsf2ewurKWxKGxUyRMJWX0c6JzvIeIhq+lAGNWAaeGEP1+x7oJm8hOM7zfu
-        jQJNf0k895nfM3wBQAg6/H85hTHe5biHi4QlhjpF2zz0gORuBCSta6zfdLoW/BwR
-        5d5RCkZrwpYUp6S5wIcV62MLC9YEnCy40pjJPAYW6ydy6OYFBC2V+53Jl5jdW00K
-        zy+HA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=mvUrGpuD+JbSX9Ep04tSMhLcVf+WU9pfKE8IAeg6M
-        KQ=; b=g1JOPgcV+XpOKoo7+WvZsgTZgHeeFj14CPcU05M0uupjT9V14INgcd01j
-        29AfAFAy3gQ9sVBAfEQgdXw/5uh+G802nVIs7kYcTlD446ByF8RELst4GAkjnDuL
-        Y3Nf+vyX8PUm9thep2jezO1ZtYMISsCvLuQ+v4t5N5xnCOZJCFNgrkcos56mKXQY
-        2smsQCeNYenlrML0L8MGoikZlLUa1HtF9h0mYtuqTiSV2Q8tyumLGQ6lkHFcKqyC
-        5e3vcKUnup9WmF8QVMUYS/VCoJrvhqFxlWnmk31nTaDr1BSFHulAug4uJInNx1tL
-        U4UioA+6c5DPKlsPy2Y43G2fHmZqg==
-X-ME-Sender: <xms:-66bYVmtZEETkmw9fW-dHEeY5UAMv4xmWq-r6jkOnnswg5RjAaP8Cw>
-    <xme:-66bYQ3hnY99qDXazpt2q_zPJ3VP8tbykhb0GguGsCC1_Am8fXXcnS61Th5P2gHT7
-    noENcN1HpMHj3k6piU>
-X-ME-Received: <xmr:-66bYbrYxrPf83jtCJaFOf0bgFOwZULCVJLRywSCs6mGDy1uBq5WleVoXiE-D9bo5EvQRF5-yxAurlHVjI9rz-E6Ns7qdIRjnZ8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeggdejudcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepgfegvdelgfeuveevueekvedtjefguddvveffhedukeejjeejgfejfedtvdei
-    tdegnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
-    thgvtghh
-X-ME-Proxy: <xmx:-66bYVnPvI7i9YoWGnsfl5aVRWigpvfO7TtOnjjMe97iIrpVxIWHHw>
-    <xmx:-66bYT0D_viI41YWh53foMMi-L1Pf_rxXUV-ngBiSqWlwIeCvsbzGw>
-    <xmx:-66bYUvLMp6ZvXCVFZT19XAKYOApm0K64nraDoHpIZMNu4w3VIqTPw>
-    <xmx:-66bYYnIJX--m9k2kpWNwTtszsh_sbZKj1QlqJe8TJ7eyqCRd0fFHg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 22 Nov 2021 09:53:46 -0500 (EST)
-Date:   Mon, 22 Nov 2021 15:53:44 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: Turn lvds.yaml into a generic
- schema
-Message-ID: <20211122145344.47lnihd7hfbo45ne@gilmour>
-References: <20211116143503.385807-1-maxime@cerno.tech>
- <YZgpSWVXjKr9secH@pendragon.ideasonboard.com>
+        id S239620AbhKVPRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 10:17:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238762AbhKVPRy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 10:17:54 -0500
+Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBB1C061746
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 07:14:48 -0800 (PST)
+Received: by mail-ua1-x92b.google.com with SMTP id y5so37211944ual.7
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 07:14:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=poS5/ZkkPxvtzD22F0lVSI3r9e0b9RG+7VJETyoPoIg=;
+        b=TywNwI4xVcUHaTxzzNsfna40gripLivuJ7MFTK83mECnSR4WEvMLG4GGh/WxqLhgSQ
+         iVNbugZvKmwY34OT7zb+LLIevaJIMtjOXZbQLsVQEV72+tmu2G3E/x2v7aIrcu318Pnh
+         LKurfoWikwicl+phNM17yy1abyVKwWOmz56eASAScq5NSXcZfZBkmDcT5MgqIofw0dA2
+         knCYy+4qh1KV15oU/bG3fVjj3zwQY/ZZ3cNevac5AT+TzKwCBKYg1J2NOwpGK53yZmKk
+         0Hj/314aubMIvQhOxEjydfa9oKJPmY20KcwEz/WGVLtg1aHKb2EZ4+9tpfDK7vSt9C1Q
+         1tJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=poS5/ZkkPxvtzD22F0lVSI3r9e0b9RG+7VJETyoPoIg=;
+        b=12QrI/3XqBnCa7+jQPpaQcUHgJblobMhpKDMW1xV7Ug+gzEU5Q2eusm6piECBKZ3Dz
+         MJIFZ5Ui9P3Zjt3bDzVVSyAT955SQcI1Y3g8OfNV08+7zPWsRkVleRiQmUZgw3ZKe3wh
+         HGuPS8eG5zJ4u3ouHLrzz//rMqufC7Dv8TxTgvGorcV2DHqrY/gbgEZjIckmm6tMHByT
+         hpL/onkIeLnGvyR66g/hEc9apDR8BuHT12ZNg/BukktmQEYbsigBV7/Su0FGKGaDmItj
+         n0YA1dXjfPFPBBnw373Knatxo7Ze7XX+sHUNDJn3c/34yeUI+QqG9w/BqFBzyzNl0LrE
+         qIag==
+X-Gm-Message-State: AOAM5336/sMZgbsHBMR1G8cOh6riZxea7KHA8jeCPsfZEWz6UP1ftqWN
+        wR/raXdT/qnt7K8SYxbwh5a/QuKt0FKqerX+0ZtWCd1CXMeInA==
+X-Google-Smtp-Source: ABdhPJw1wNxRm9yPXD1GQ+f/A1NtWJ2Stf4A605YHIA5GbkNnFK9OsunsY4bFzRgCO2pMCIgmqkZo9kmM3qJVwwLmhY=
+X-Received: by 2002:a05:6102:4192:: with SMTP id cd18mr132128250vsb.35.1637594086878;
+ Mon, 22 Nov 2021 07:14:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <YZgpSWVXjKr9secH@pendragon.ideasonboard.com>
+References: <20211121165647.26706-1-semen.protsenko@linaro.org> <20211121165647.26706-13-semen.protsenko@linaro.org>
+In-Reply-To: <20211121165647.26706-13-semen.protsenko@linaro.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 22 Nov 2021 17:14:35 +0200
+Message-ID: <CAPLW+4myd2JDEKmv+E1HsxK_yNaLC+iUWSo99+Lqujof3MGpCg@mail.gmail.com>
+Subject: Re: [PATCH v4 12/12] watchdog: s3c2410: Add Exynos850 support
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sun, 21 Nov 2021 at 18:57, Sam Protsenko <semen.protsenko@linaro.org> wrote:
+>
+> Exynos850 is a bit different from SoCs already supported in WDT driver:
+>   - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
+>     always 0; .disable_auto_reset callback is not set for that reason
+>   - MASK_WDT_RESET_REQUEST register is replaced with
+>     CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
+>     reset interrupt it's now enabled with the same value; .mask_reset
+>     callback is reused for that functionality though
+>   - To make WDT functional, WDT counter needs to be enabled in
+>     CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
+>     callback
+>
+> Also Exynos850 has two CPU clusters, each has its own dedicated WDT
+> instance. Different PMU registers and bits are used for each cluster. So
+> driver data is now modified in probe, adding needed info depending on
+> cluster index passed from device tree.
+>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> ---
 
-On Sat, Nov 20, 2021 at 12:46:33AM +0200, Laurent Pinchart wrote:
-> On Tue, Nov 16, 2021 at 03:35:02PM +0100, Maxime Ripard wrote:
-> > The lvds.yaml file so far was both defining the generic LVDS properties
-> > (such as data-mapping) that could be used for any LVDS sink, but also
-> > the panel-lvds binding.
-> >=20
-> > That last binding was to describe LVDS panels simple enough, and had a
-> > number of other bindings using it as a base to specialise it further.
-> >=20
-> > However, this situation makes it fairly hard to extend and reuse both
-> > the generic parts, and the panel-lvds itself.
-> >=20
-> > Let's remove the panel-lvds parts and leave only the generic LVDS
-> > properties.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >  .../display/panel/advantech,idk-1110wr.yaml   | 17 ++++++++++-
-> >  .../display/panel/innolux,ee101ia-01d.yaml    | 21 +++++++++++++-
-> >  .../bindings/display/panel/lvds.yaml          | 29 +------------------
-> >  .../display/panel/mitsubishi,aa104xd12.yaml   | 17 ++++++++++-
-> >  .../display/panel/mitsubishi,aa121td01.yaml   | 17 ++++++++++-
-> >  .../display/panel/sgd,gktw70sdae4se.yaml      | 17 ++++++++++-
-> >  6 files changed, 85 insertions(+), 33 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/panel/advantech,=
-idk-1110wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech=
-,idk-1110wr.yaml
-> > index 93878c2cd370..f27cd2038636 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/advantech,idk-111=
-0wr.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-111=
-0wr.yaml
-> > @@ -11,13 +11,23 @@ maintainers:
-> >    - Thierry Reding <thierry.reding@gmail.com>
-> > =20
-> >  allOf:
-> > +  - $ref: panel-common.yaml#
-> >    - $ref: lvds.yaml#
-> > =20
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: advantech,idk-1110wr
-> > +
-> > +  required:
-> > +    - compatible
->=20
-> I've never encountered this before, what does it do ?
+Hi Guenter,
 
-select dictates if the schema is applied to a node or not.
+I've resent the whole series, but I can see you already applied my
+previous series to your watchdog-next branch. So this patch is the
+only one that actually changed in the whole series (with fixes for
+0-day warning).
 
-It takes a schema, and if this schema is valid, the rest of the schema
-will be applied to the current node.
-
-It's mostly unused in the kernel because the dt-validate tool will add a
-select clause from the compatible list in most case that would expand in
-this case to:
-
-select:
-  properties:
-    contains:
-      enum:
-        - advantech,idk-1110wr
-	- panel-lvds
-
-  required:
-    - compatible
-
-ie, it tries to validate with this schema any node that has either the
-panel compatible or the generic compatible.
-
-That means we would have that schema applied to all the nodes that have
-panel-lvds, including the ones with a different compatible than the
-advantech one.
-
-With this clause, we make sure that we ignore the other panels, while
-ensuring that the compatible list for the advantech compatible is
-correct.
-
-> > +
-> >  properties:
-> >    compatible:
-> >      items:
-> >        - const: advantech,idk-1110wr
-> > -      - {} # panel-lvds, but not listed here to avoid false select
-> > +      - const: panel-lvds
-> > =20
-> >    data-mapping:
-> >      const: jeida-24
-> > @@ -35,6 +45,11 @@ additionalProperties: false
-> > =20
-> >  required:
-> >    - compatible
-> > +  - data-mapping
-> > +  - width-mm
-> > +  - height-mm
-> > +  - panel-timing
-> > +  - port
-> > =20
-> >  examples:
-> >    - |+
-> > diff --git a/Documentation/devicetree/bindings/display/panel/innolux,ee=
-101ia-01d.yaml b/Documentation/devicetree/bindings/display/panel/innolux,ee=
-101ia-01d.yaml
-> > index a69681e724cb..6e06eecac14e 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-0=
-1d.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-0=
-1d.yaml
-> > @@ -11,15 +11,26 @@ maintainers:
-> >    - Thierry Reding <thierry.reding@gmail.com>
-> > =20
-> >  allOf:
-> > +  - $ref: panel-common.yaml#
-> >    - $ref: lvds.yaml#
-> > =20
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        const: innolux,ee101ia-01d
-> > +
-> > +  required:
-> > +    - compatible
-> > +
-> >  properties:
-> >    compatible:
-> >      items:
-> >        - const: innolux,ee101ia-01d
-> > -      - {} # panel-lvds, but not listed here to avoid false select
-> > +      - const: panel-lvds
-> > =20
-> >    backlight: true
-> > +  data-mapping: true
-> >    enable-gpios: true
-> >    power-supply: true
-> >    width-mm: true
-> > @@ -27,5 +38,13 @@ properties:
-> >    panel-timing: true
-> >    port: true
-> > =20
-> > +required:
-> > +  - compatible
-> > +  - data-mapping
-> > +  - width-mm
-> > +  - height-mm
-> > +  - panel-timing
-> > +  - port
-> > +
-> >  additionalProperties: false
-> >  ...
-> > diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml =
-b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > index 49460c9dceea..5281a75c8bb5 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
-> > @@ -4,7 +4,7 @@
-> >  $id: http://devicetree.org/schemas/display/panel/lvds.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> > =20
-> > -title: LVDS Display Panel
-> > +title: LVDS Display Common Properties
->=20
-> Maybe
->=20
-> title: LVDS Display Panel Common Properties
->=20
-> or do you foresee this being useful for non-panel LBDS sinks too ? In
-> that case the title is fine, but the file could be moved in the parent
-> directory.
->=20
-> I'm also wondering what we should do with the data-mapping and
-> data-mirror properties. For an LVDS panel they're fine at the device
-> level, but for an LVDS sink, they may be better placed at the port or
-> endpoint level.
-
-That was my intent, but it might not be relevant indeed. Honestly at
-this point I just want to have the tbs,a711-panel compatible documented
-somewhere :)
-
-Maxime
+> Changes in v4:
+>   - Fixed build error when CONFIG_OF is disabled (found by 0-day):
+>     added #ifdef CONFIG_OF guard in s3c2410_get_wdt_drv_data()
+>   - Added R-b tag by Guenter Roeck
+>
+> Changes in v3:
+>   - Renamed "samsung,index" property to more descriptive
+>     "samsung,cluster-index"
+>   - Used pre-defined and completely set driver data for cluster0 and
+>     cluster1
+>
+> Changes in v2:
+>   - Used single compatible for Exynos850, populating missing driver data
+>     in probe
+>   - Added "index" property to specify CPU cluster index
+>
+>  drivers/watchdog/s3c2410_wdt.c | 64 +++++++++++++++++++++++++++++++++-
+>  1 file changed, 63 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+> index 96aa5d9c6ed4..115a6fe7da57 100644
+> --- a/drivers/watchdog/s3c2410_wdt.c
+> +++ b/drivers/watchdog/s3c2410_wdt.c
+> @@ -56,6 +56,13 @@
+>  #define EXYNOS5_RST_STAT_REG_OFFSET            0x0404
+>  #define EXYNOS5_WDT_DISABLE_REG_OFFSET         0x0408
+>  #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET      0x040c
+> +#define EXYNOS850_CLUSTER0_NONCPU_OUT          0x1220
+> +#define EXYNOS850_CLUSTER0_NONCPU_INT_EN       0x1244
+> +#define EXYNOS850_CLUSTER1_NONCPU_OUT          0x1620
+> +#define EXYNOS850_CLUSTER1_NONCPU_INT_EN       0x1644
+> +
+> +#define EXYNOS850_CLUSTER0_WDTRESET_BIT                24
+> +#define EXYNOS850_CLUSTER1_WDTRESET_BIT                23
+>
+>  /**
+>   * Quirk flags for different Samsung watchdog IP-cores.
+> @@ -205,6 +212,30 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
+>                   QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
+>  };
+>
+> +static const struct s3c2410_wdt_variant drv_data_exynos850_cl0 = {
+> +       .mask_reset_reg = EXYNOS850_CLUSTER0_NONCPU_INT_EN,
+> +       .mask_bit = 2,
+> +       .mask_reset_inv = true,
+> +       .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+> +       .rst_stat_bit = EXYNOS850_CLUSTER0_WDTRESET_BIT,
+> +       .cnt_en_reg = EXYNOS850_CLUSTER0_NONCPU_OUT,
+> +       .cnt_en_bit = 7,
+> +       .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
+> +                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
+> +};
+> +
+> +static const struct s3c2410_wdt_variant drv_data_exynos850_cl1 = {
+> +       .mask_reset_reg = EXYNOS850_CLUSTER1_NONCPU_INT_EN,
+> +       .mask_bit = 2,
+> +       .mask_reset_inv = true,
+> +       .rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+> +       .rst_stat_bit = EXYNOS850_CLUSTER1_WDTRESET_BIT,
+> +       .cnt_en_reg = EXYNOS850_CLUSTER1_NONCPU_OUT,
+> +       .cnt_en_bit = 7,
+> +       .quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
+> +                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN,
+> +};
+> +
+>  static const struct of_device_id s3c2410_wdt_match[] = {
+>         { .compatible = "samsung,s3c2410-wdt",
+>           .data = &drv_data_s3c2410 },
+> @@ -216,6 +247,8 @@ static const struct of_device_id s3c2410_wdt_match[] = {
+>           .data = &drv_data_exynos5420 },
+>         { .compatible = "samsung,exynos7-wdt",
+>           .data = &drv_data_exynos7 },
+> +       { .compatible = "samsung,exynos850-wdt",
+> +         .data = &drv_data_exynos850_cl0 },
+>         {},
+>  };
+>  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
+> @@ -587,14 +620,40 @@ static inline const struct s3c2410_wdt_variant *
+>  s3c2410_get_wdt_drv_data(struct platform_device *pdev)
+>  {
+>         const struct s3c2410_wdt_variant *variant;
+> +       struct device *dev = &pdev->dev;
+>
+> -       variant = of_device_get_match_data(&pdev->dev);
+> +       variant = of_device_get_match_data(dev);
+>         if (!variant) {
+>                 /* Device matched by platform_device_id */
+>                 variant = (struct s3c2410_wdt_variant *)
+>                            platform_get_device_id(pdev)->driver_data;
+>         }
+>
+> +#ifdef CONFIG_OF
+> +       /* Choose Exynos850 driver data w.r.t. cluster index */
+> +       if (variant == &drv_data_exynos850_cl0) {
+> +               u32 index;
+> +               int err;
+> +
+> +               err = of_property_read_u32(dev->of_node,
+> +                                          "samsung,cluster-index", &index);
+> +               if (err) {
+> +                       dev_err(dev, "failed to get cluster index\n");
+> +                       return NULL;
+> +               }
+> +
+> +               switch (index) {
+> +               case 0:
+> +                       return &drv_data_exynos850_cl0;
+> +               case 1:
+> +                       return &drv_data_exynos850_cl1;
+> +               default:
+> +                       dev_err(dev, "wrong cluster index: %u\n", index);
+> +                       return NULL;
+> +               }
+> +       }
+> +#endif
+> +
+>         return variant;
+>  }
+>
+> @@ -615,6 +674,9 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+>         wdt->wdt_device = s3c2410_wdd;
+>
+>         wdt->drv_data = s3c2410_get_wdt_drv_data(pdev);
+> +       if (!wdt->drv_data)
+> +               return -EINVAL;
+> +
+>         if (wdt->drv_data->quirks & QUIRKS_HAVE_PMUREG) {
+>                 wdt->pmureg = syscon_regmap_lookup_by_phandle(dev->of_node,
+>                                                 "samsung,syscon-phandle");
+> --
+> 2.30.2
+>
