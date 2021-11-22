@@ -2,197 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08C91458D6C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:29:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3F5458D81
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:35:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235098AbhKVLcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 06:32:41 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:17899 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233849AbhKVLck (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 06:32:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637580574; x=1669116574;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=nSu5tgaREMa9CS+SE9DuIqXG3zrVziZoM1K1+YEFTlM=;
-  b=b/SPkKs+NV+Q37ArRlpN2sA+no97KZbUF1l8fWNi5Ol5byUL8ZdwRyFr
-   1JcHYGQ96fhWxlEDkuZqdM5sKtZFkQ3r/62aF9sXGdMloMjE/b1WTcCa1
-   x1DEnSolNP5QkUXC3Qkr4VHW13ZGVQ/KfANSJRCwByeEQFP7+NzpN8eh/
-   k=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Nov 2021 03:29:34 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2021 03:29:33 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 22 Nov 2021 03:29:33 -0800
-Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 22 Nov 2021 03:29:27 -0800
-From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
-CC:     Kuogee Hsieh <khsieh@codeaurora.org>, <robdclark@gmail.com>,
-        <seanpaul@chromium.org>, <swboyd@chromium.org>,
-        <quic_kalyant@quicinc.com>, <quic_abhinavk@quicinc.com>,
-        <dianders@chromium.org>, <quic_khsieh@quicinc.com>,
-        <quic_mkrishn@quicinc.com>, <quic_sbillaka@quicinc.com>
-Subject: [PATCH v4 4/4] arm64: dts: qcom: sc7280: Add Display Port node
-Date:   Mon, 22 Nov 2021 16:59:15 +0530
-Message-ID: <1637580555-1079-1-git-send-email-quic_sbillaka@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        id S234723AbhKVLiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:38:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52236 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230173AbhKVLiQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 06:38:16 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 38D5360C4A;
+        Mon, 22 Nov 2021 11:35:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637580910;
+        bh=fsxiu5OtiKvVSGwLIQuhcHrreWPtheesRrgoLqEG4iI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dlqPWe0KLZL/veZDmsa4GPtvRis/6V0euE04fmcoB83vRtaf6/AWGZ6q+XGgKIFO9
+         ucddsnwjto28/ctMGqFWyqKikkv3vsvhiJL0ucmwYvZ7HqcgHEF6uxxqsxaRCBGEPM
+         7/GLJ5DRco3cARJEsotBBnkDKpbFHO02OwHerB/YWgJH1GA9Ts//Z/635BgC7KzOBp
+         +EwqE3544TUpMWpOWo/PaHMVLeufcypvGbrhxmF8juXfOfrWhWq181CuttTEtS+o0Z
+         +QCC+bTDkvSRNgC3Lrs7SG+7EqIw4YEfXK8/ig/RfdghDHKujiF3q3fYRCEP3gCUWm
+         3BzkQ9oXYCbPQ==
+Date:   Mon, 22 Nov 2021 17:05:05 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yz Wu <yz.wu@mediatek.com>
+Subject: Re: [PATCH 5/6] phy: phy-mtk-tphy: add support efuse setting
+Message-ID: <YZuAab3j+flr1xXj@matsya>
+References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
+ <20211107075646.4366-5-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211107075646.4366-5-chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kuogee Hsieh <khsieh@codeaurora.org>
+On 07-11-21, 15:56, Chunfeng Yun wrote:
+> Due to some SoCs have a bit shift issue that will drop a bit for usb3
+> phy or pcie phy, fix it by adding software efuse reading and setting,
+> but only support it optionally for versoin 2/3.
 
-Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
----
+s/versoin/version
 
-Changes in v4:
-    - Add the patch to display DT change series (Bjorn Andersson)
-    - Remove the trailing whitespaces
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  drivers/phy/mediatek/phy-mtk-tphy.c | 162 ++++++++++++++++++++++++++++
+>  1 file changed, 162 insertions(+)
+> 
+> diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
+> index cdcef865fe9e..3b5b1c266595 100644
+> --- a/drivers/phy/mediatek/phy-mtk-tphy.c
+> +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/iopoll.h>
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/module.h>
+> +#include <linux/nvmem-consumer.h>
+>  #include <linux/of_address.h>
+>  #include <linux/of_device.h>
+>  #include <linux/phy/phy.h>
+> @@ -41,6 +42,9 @@
+>  #define SSUSB_SIFSLV_V2_U3PHYD		0x200
+>  #define SSUSB_SIFSLV_V2_U3PHYA		0x400
+>  
+> +#define U3P_MISC_REG1		0x04
+> +#define MR1_EFUSE_AUTO_LOAD_DIS		BIT(6)
+> +
+>  #define U3P_USBPHYACR0		0x000
+>  #define PA0_RG_U2PLL_FORCE_ON		BIT(15)
+>  #define PA0_USB20_PLL_PREDIV		GENMASK(7, 6)
+> @@ -133,6 +137,8 @@
+>  #define P3C_RG_SWRST_U3_PHYD_FORCE_EN	BIT(24)
+>  
+>  #define U3P_U3_PHYA_REG0	0x000
+> +#define P3A_RG_IEXT_INTR		GENMASK(15, 10)
+> +#define P3A_RG_IEXT_INTR_VAL(x)		((0x3f & (x)) << 10)
+>  #define P3A_RG_CLKDRV_OFF		GENMASK(3, 2)
+>  #define P3A_RG_CLKDRV_OFF_VAL(x)	((0x3 & (x)) << 2)
+>  
+> @@ -187,6 +193,19 @@
+>  #define P3D_RG_FWAKE_TH		GENMASK(21, 16)
+>  #define P3D_RG_FWAKE_TH_VAL(x)	((0x3f & (x)) << 16)
+>  
+> +#define U3P_U3_PHYD_IMPCAL0		0x010
+> +#define P3D_RG_FORCE_TX_IMPEL		BIT(31)
+> +#define P3D_RG_TX_IMPEL			GENMASK(28, 24)
+> +#define P3D_RG_TX_IMPEL_VAL(x)		((0x1f & (x)) << 24)
+> +
+> +#define U3P_U3_PHYD_IMPCAL1		0x014
+> +#define P3D_RG_FORCE_RX_IMPEL		BIT(31)
+> +#define P3D_RG_RX_IMPEL			GENMASK(28, 24)
+> +#define P3D_RG_RX_IMPEL_VAL(x)		((0x1f & (x)) << 24)
+> +
+> +#define U3P_U3_PHYD_RSV			0x054
+> +#define P3D_RG_EFUSE_AUTO_LOAD_DIS	BIT(12)
+> +
+>  #define U3P_U3_PHYD_CDR1		0x05c
+>  #define P3D_RG_CDR_BIR_LTD1		GENMASK(28, 24)
+>  #define P3D_RG_CDR_BIR_LTD1_VAL(x)	((0x1f & (x)) << 24)
+> @@ -307,6 +326,11 @@ struct mtk_phy_pdata {
+>  	 * 48M PLL, fix it by switching PLL to 26M from default 48M
+>  	 */
+>  	bool sw_pll_48m_to_26m;
+> +	/*
+> +	 * Some SoCs (e.g. mt8195) drop a bit when use auto load efuse,
+> +	 * support sw way, also support it for v2/v3 optionally.
+> +	 */
+> +	bool sw_efuse_supported;
+>  	enum mtk_phy_version version;
+>  };
+>  
+> @@ -336,6 +360,10 @@ struct mtk_phy_instance {
+>  	struct regmap *type_sw;
+>  	u32 type_sw_reg;
+>  	u32 type_sw_index;
+> +	u32 efuse_sw_en;
+> +	u32 efuse_intr;
+> +	u32 efuse_tx_imp;
+> +	u32 efuse_rx_imp;
+>  	int eye_src;
+>  	int eye_vrt;
+>  	int eye_term;
+> @@ -1040,6 +1068,130 @@ static int phy_type_set(struct mtk_phy_instance *instance)
+>  	return 0;
+>  }
+>  
+> +static int phy_efuse_get(struct mtk_tphy *tphy, struct mtk_phy_instance *instance)
+> +{
+> +	struct device *dev = &instance->phy->dev;
+> +	int ret = 0;
+> +
+> +	/* tphy v1 doesn't support sw efuse, skip it */
+> +	if (!tphy->pdata->sw_efuse_supported) {
+> +		instance->efuse_sw_en = 0;
+> +		return 0;
+> +	}
+> +
+> +	/* software efuse is optional */
+> +	instance->efuse_sw_en = device_property_read_bool(dev, "nvmem-cells");
+> +	if (!instance->efuse_sw_en)
+> +		return 0;
+> +
+> +	switch (instance->type) {
+> +	case PHY_TYPE_USB2:
+> +		ret = nvmem_cell_read_variable_le_u32(dev, "intr", &instance->efuse_intr);
+> +		if (ret) {
+> +			dev_err(dev, "fail to get u2 intr efuse, %d\n", ret);
+> +			break;
+> +		}
+> +
+> +		/* no efuse, ignore it */
+> +		if (!instance->efuse_intr) {
+> +			dev_warn(dev, "no u2 intr efuse, but dts enable it\n");
+> +			instance->efuse_sw_en = 0;
+> +			break;
+> +		}
 
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 90 +++++++++++++++++++++++++++++++++++-
- 1 file changed, 88 insertions(+), 2 deletions(-)
+What does this check do...? so a zero value is not valid..?
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 5ad500e..0b2ffd5 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2693,8 +2693,8 @@
- 				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
- 				 <&dsi_phy 0>,
- 				 <&dsi_phy 1>,
--				 <0>,
--				 <0>,
-+				 <&dp_phy 0>,
-+				 <&dp_phy 1>,
- 				 <&edp_phy 0>,
- 				 <&edp_phy 1>;
- 			clock-names = "bi_tcxo",
-@@ -2791,6 +2791,13 @@
- 							remote-endpoint = <&edp_in>;
- 						};
- 					};
-+
-+					port@2 {
-+                                                reg = <2>;
-+                                                dpu_intf0_out: endpoint {
-+                                                        remote-endpoint = <&dp_in>;
-+                                                };
-+                                        };
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -3002,6 +3009,79 @@
- 
- 				status = "disabled";
- 			};
-+
-+			msm_dp: displayport-controller@ae90000 {
-+				compatible = "qcom,sc7280-dp";
-+
-+				reg = <0 0x0ae90000 0 0x1400>;
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <12>;
-+
-+				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
-+				clock-names =	"core_iface",
-+						"core_aux",
-+						"ctrl_link",
-+						"ctrl_link_iface",
-+						"stream_pixel";
-+				#clock-cells = <1>;
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
-+				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
-+				phys = <&dp_phy>;
-+				phy-names = "dp";
-+
-+				operating-points-v2 = <&dp_opp_table>;
-+				power-domains = <&rpmhpd SC7280_CX>;
-+
-+				#sound-dai-cells = <0>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					port@0 {
-+						reg = <0>;
-+						dp_in: endpoint {
-+							remote-endpoint = <&dpu_intf0_out>;
-+						};
-+					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dp_out: endpoint { };
-+					};
-+				};
-+
-+				dp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-160000000 {
-+						opp-hz = /bits/ 64 <160000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
- 		};
- 
- 		pdc: interrupt-controller@b220000 {
-@@ -3104,6 +3184,12 @@
- 				bias-pull-up;
- 			};
- 
-+			dp_hot_plug_det: dp-hot-plug-det {
-+				pins = "gpio47";
-+				function = "dp_hot";
-+				bias-disable;
-+                        };
-+
- 			qspi_clk: qspi-clk {
- 				pins = "gpio14";
- 				function = "qspi_clk";
+> +
+> +		dev_info(dev, "u2 efuse - intr %x\n", instance->efuse_intr);
+
+dev_dbg()?
+
+> +		break;
+
+empty line after break improves readability, pls add
+
+> +	case PHY_TYPE_USB3:
+> +	case PHY_TYPE_PCIE:
+> +		ret = nvmem_cell_read_variable_le_u32(dev, "intr", &instance->efuse_intr);
+> +		if (ret) {
+> +			dev_err(dev, "fail to get u3 intr efuse, %d\n", ret);
+> +			break;
+> +		}
+
+This seems to be common, why not read this before switch?
+
+> +
+> +		ret = nvmem_cell_read_variable_le_u32(dev, "rx_imp", &instance->efuse_rx_imp);
+> +		if (ret) {
+> +			dev_err(dev, "fail to get u3 rx_imp efuse, %d\n", ret);
+> +			break;
+> +		}
+> +
+> +		ret = nvmem_cell_read_variable_le_u32(dev, "tx_imp", &instance->efuse_tx_imp);
+> +		if (ret) {
+> +			dev_err(dev, "fail to get u3 tx_imp efuse, %d\n", ret);
+> +			break;
+> +		}
+> +
+> +		/* no efuse, ignore it */
+> +		if (!instance->efuse_intr &&
+> +		    !instance->efuse_rx_imp &&
+> +		    !instance->efuse_rx_imp) {
+> +			dev_warn(dev, "no u3 intr efuse, but dts enable it\n");
+> +			instance->efuse_sw_en = 0;
+> +			break;
+> +		}
+
+again, zero values are not valid?
+
+> +
+> +		dev_info(dev, "u3 efuse - intr %x, rx_imp %x, tx_imp %x\n",
+> +			 instance->efuse_intr, instance->efuse_rx_imp,
+> +			 instance->efuse_tx_imp);
+
+dbg pls
+
+> +		break;
+> +	default:
+> +		dev_err(dev, "no sw efuse for type %d\n", instance->type);
+> +		ret = -EINVAL;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static void phy_efuse_set(struct mtk_phy_instance *instance)
+> +{
+> +	struct device *dev = &instance->phy->dev;
+> +	struct u2phy_banks *u2_banks = &instance->u2_banks;
+> +	struct u3phy_banks *u3_banks = &instance->u3_banks;
+> +	u32 tmp;
+> +
+> +	if (!instance->efuse_sw_en)
+> +		return;
+> +
+> +	switch (instance->type) {
+> +	case PHY_TYPE_USB2:
+> +		tmp = readl(u2_banks->misc + U3P_MISC_REG1);
+> +		tmp |= MR1_EFUSE_AUTO_LOAD_DIS;
+> +		writel(tmp, u2_banks->misc + U3P_MISC_REG1);
+> +
+> +		tmp = readl(u2_banks->com + U3P_USBPHYACR1);
+> +		tmp &= ~PA1_RG_INTR_CAL;
+> +		tmp |= PA1_RG_INTR_CAL_VAL(instance->efuse_intr);
+> +		writel(tmp, u2_banks->com + U3P_USBPHYACR1);
+> +		break;
+> +	case PHY_TYPE_USB3:
+> +	case PHY_TYPE_PCIE:
+> +		tmp = readl(u3_banks->phyd + U3P_U3_PHYD_RSV);
+> +		tmp |= P3D_RG_EFUSE_AUTO_LOAD_DIS;
+> +		writel(tmp, u3_banks->phyd + U3P_U3_PHYD_RSV);
+
+add a updatel() macro and use this here and other places?
+
 -- 
-2.7.4
-
+~Vinod
