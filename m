@@ -2,120 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7555459579
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 20:21:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8185D459590
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 20:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233850AbhKVTY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 14:24:28 -0500
-Received: from foss.arm.com ([217.140.110.172]:44550 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230159AbhKVTY1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 14:24:27 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B096BED1;
-        Mon, 22 Nov 2021 11:21:20 -0800 (PST)
-Received: from [10.57.56.56] (unknown [10.57.56.56])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E26303F73B;
-        Mon, 22 Nov 2021 11:21:18 -0800 (PST)
-Message-ID: <ef51bd05-0a83-0097-19ac-9df6591451ac@arm.com>
-Date:   Mon, 22 Nov 2021 19:21:13 +0000
+        id S239626AbhKVT3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 14:29:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58012 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235437AbhKVT3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 14:29:12 -0500
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97649C061574;
+        Mon, 22 Nov 2021 11:26:05 -0800 (PST)
+Received: by mail-yb1-xb36.google.com with SMTP id f9so19261408ybq.10;
+        Mon, 22 Nov 2021 11:26:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WpBoJPtGwHRtTtDojsGvn1YkzSgQm2uWABhA3YSA9bw=;
+        b=SJovytGp4NL+yPZphvXCdD+lewOJspuDRy5H2ntsTssq50KcQQKAk3rINy9HTZa/ho
+         X+Hx6BqAa+fFPLdqXIUhLLjje6ItCdaB5oZ/SakQRah/+UjG20aM7NtKLFfHoyOF3nBl
+         L+lmGxkUQLWP2GasZjyqou+gX2M4jrgqsr6jNXc1JPQ4RolfUvDp0yaKohhpn5jUfgHW
+         zrO5JcHgZ4S+yL4yIIzoIBNuiLIC8EXcYHUiCByrAoSI7N5DQ38dE3BNGuJ7hMV+BIvF
+         GoQ70JY8LQ4nsl5qHSodV3+vZcfcw3/4zBEFJsBMJO6m97q5LskuJ8EVWtpJJUjp9u2l
+         G+vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WpBoJPtGwHRtTtDojsGvn1YkzSgQm2uWABhA3YSA9bw=;
+        b=3II7O6aY6JTx2EpzM5LA6A6HFrHTKQqv/Uc1i1fLliIzOpqZb15luzc3cs6pb0krny
+         rTFkCFFq2CuDTVTQ0Tjfa5R2WSwIqKJh2r1NvPL5UmOCp1xqcNgQuVl5Op3z4TeCE5uC
+         axDi7Z3VKLfjbOGt0bAhRceBXw9V5p9b6vEXLdGXxOVm7auJOyH8rbyuLmv4R2kg4LdN
+         dlUv4RUVgjaY+v9HSZAO4cUVMVmgy7WZ/KwWdAeyVxy8FVOHCJ/PROQZmuj1OOsFNVFW
+         CCBdqM+BvlMG/8Bq30+weiktoEtIHCb9x7qqo4OqRbuibubAXIUVVdNMJJ94JvHj0/G3
+         4M+Q==
+X-Gm-Message-State: AOAM531Njvg2jdng1AcD56tnDD4TvNj7L2bBPu/ByIZKogSjDi79D1cX
+        LAThMOWELl/epPBlrpb8B+3pdszH316qZooDAis=
+X-Google-Smtp-Source: ABdhPJyBIhHpbKRY6y13jTZj3IQvtHmKRzJhaoIGLDVcNciLfU3zrJJc6L/dnoy1S/ui2GroLB+tejEtTBQmeQ13VdY=
+X-Received: by 2002:a25:f502:: with SMTP id a2mr67034073ybe.254.1637609164770;
+ Mon, 22 Nov 2021 11:26:04 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH v1 00/12] drm/rockchip: RK356x VOP2 support
-Content-Language: en-GB
-To:     Alex Bee <knaerzche@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <73c57643-a0db-e7e7-174d-3cb6a978d98a@gmail.com>
- <20211122081008.GR6556@pengutronix.de>
- <0f975419-f3a6-8c5d-f700-904957eea3e6@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <0f975419-f3a6-8c5d-f700-904957eea3e6@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 22 Nov 2021 19:25:38 +0000
+Message-ID: <CA+V-a8sCVkbwYeVGsQpv2q0OjwUSB_jqmjPptHN-ENSdU+pT1Q@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 0/7] Renesas RZ/G2L IRQC support
+To:     Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-22 17:47, Alex Bee wrote:
-> Am 22.11.21 um 09:10 schrieb Sascha Hauer:
->> Hi Alex,
->>
->> On Mon, Nov 22, 2021 at 12:18:47AM +0100, Alex Bee wrote:
->>> Hi Sascha,
->>>
->>> Am 17.11.21 um 15:33 schrieb Sascha Hauer:
->>>> This series adds initial graphics support for the Rockchip RK356[68]
->>>> SoCs.  Graphics support is based around the VOP2 controller which
->>>> replaces the VOP controller found on earlier Rockchip SoCs. The driver
->>>> has been tested with HDMI support included in this series and MIPI-DSI
->>>> which is not included because it needs some more work. The driver is
->>>> taken from the downstream Rockchip kernel and heavily polished, most non
->>>> standard features have been removed for now. I tested the driver with
->>>> the libdrm modetest utility and also with weston with both pixman and
->>>> panfrost driver support. Michael Riesch reported the driver to work on
->>>> the RK3566 as well, but device tree support for this SoC is not yet
->>>> included in this series.
->>>>
->>>> The HDMI changes are based on patches from Benjamin Gaignard, but
->>>> modified a bit as I found out that the HDMI port on the RK3568 only
->>>> needs one additional clock, not two. Also I added regulator support
->>>> which is needed to get the HDMI up on the rk3568-EVB board.
->>>>
->>>> All review and testing feedback welcome
->>>
->>> thanks for working on that - it's very (very,very) much appreciated.
->>>
->>> It took me some time to figure it out: It seems rk3568-iommu driver s
->>> broken - I did only get "white noise" when using it alongside vop
->>> (similar like it was reported here before). However: removing the
->>> iommu-property from vop makes it working for me with HDMI output on
->>> quartz64 as well. Could you check if you have the iommu driver in kernel
->>> enabled if it works for you, if the property is present in DT? (I used
->>> 5.16-rc1 + this series + [0]).
->> I have the iommu driver enabled and it works for me. I get this during
->> boot:
->>
->> [0.263287] rockchip-vop2 fe040000.vop: Adding to iommu group 0
->>
->> So I expect it is indeed used.
->>
->>> Also vop mmu seems to have the
->>> power-domain missing in your series (same as downstream) - however
->>> adding that doesn't help much currently.
->> Probably the power domain gets enabled anyway when the VOP is activated,
->> so adding it to the iommu won't help anything. Nevertheless it seems
->> correct to add the property, I'll do so in the next round.
->>
->>> As a sidenote: I verfied this with using Ezequiel's vpu addtion for
->>> RK356x: It did only work when removing the iommu there as well (getting
->>> tons of page faults otherwise) - so iommu driver really seems to broken,
->>> at least for RK3566. (Or I'm a missing a option in kernel config, which
->>> wasn't required for the older iommu version?)
->> I don't think so. I started from defconfig and disabled other
->> architectures and unneeded drivers, but I did not enable anything
->> specific to iommu.
-> 
-> I've found out now that I can make it work with iommu, by limiting the
-> available memory to something below 4G (I have a 8G board). So there is
-> something wrong in the driver or somewhere in memory mapping, iommu api
-> (since it works when using CMA), ... however: it does clearly not relate
-> to your patch.
+Hi Marc and Linus,
 
-FWIW it doesn't surprise me that there might still be bugs lurking in 
-the IOMMU driver's relatively recent changes for packing 40-bit physical 
-addresses into 32-bit pagetable entries and registers - that sort of 
-thing is always tricky to get right. You're correct that that's 
-something that wants debugging in its own right, though.
+On Wed, Nov 10, 2021 at 10:58 PM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+>
+> Hi All,
+>
+> The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+> Renesas RZ/G2L SoC's with below pins:
+> - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+> - GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+>   maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+> - NMI edge select.
+>
+>                                                                 _____________
+>                                                                 |    GIC     |
+>                                                                 |  ________  |
+>                                          ____________           | |        | |
+> NMI ------------------------------------>|          |  SPI0-479 | | GIC-600| |
+>                 _______                  |          |------------>|        | |
+>                 |      |                 |          |  PPI16-31 | |        | |
+>                 |      | IRQ0-IRQ8       |   IRQC   |------------>|        | |
+> P0_P48_4 ------>| GPIO |---------------->|          |           | |________| |
+>                 |      |GPIOINT0-122     |          |           |            |
+>                 |      |---------------->| TINT0-31 |           |            |
+>                 |______|                 |__________|           |____________|
+>
+> The proposed RFC patches, add the IRQ domains in GPIO (pinctrl driver) and the
+> IRQC driver. The IRQC domain handles the actual SPI interrupt and upon reception
+> of the interrupt it propagates to the GPIO IRQ domain to handle virq.
+> Out of GPIOINT0-122 only 32 can be mapped to GIC SPI, this mapping is handled by
+> the IRQC driver.
+>
+> Cheers,
+> Prabhakar
+>
+> Changes for v3:
+> -> Re-structured the driver as a hierarchical irq domain instead of chained
+> -> made use of IRQCHIP_* macros
+> -> dropped locking
+> -> Added support for IRQ0-7 interrupts
+> -> Introduced 2 new patches for GPIOLIB
+> -> Switched to using GPIOLIB for irqdomains in pinctrl
+>
+Gentle ping.
 
-Robin.
+Cheers,
+Prabhakar
+
+> RFC v2: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+> 20210921193028.13099-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> RFC v1: https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+> 20210803175109.1729-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+>
+> Lad Prabhakar (7):
+>   dt-bindings: interrupt-controller: Add Renesas RZ/G2L Interrupt
+>     Controller
+>   irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+>   soc: renesas: Enable IRQC driver for RZ/G2L
+>   gpio: gpiolib: Allow free() callback to be overridden
+>   gpio: gpiolib: Add ngirq member to struct gpio_irq_chip
+>   pinctrl: renesas: pinctrl-rzg2l: Add IRQ domain to handle GPIO
+>     interrupt
+>   arm64: dts: renesas: r9a07g044: Add IRQC node to SoC DTSI
+>
+>  .../renesas,rzg2l-irqc.yaml                   | 137 ++++++
+>  arch/arm64/boot/dts/renesas/r9a07g044.dtsi    |  60 +++
+>  drivers/gpio/gpiolib.c                        |  13 +-
+>  drivers/irqchip/Kconfig                       |   8 +
+>  drivers/irqchip/Makefile                      |   1 +
+>  drivers/irqchip/irq-renesas-rzg2l.c           | 465 ++++++++++++++++++
+>  drivers/pinctrl/renesas/pinctrl-rzg2l.c       | 197 ++++++++
+>  drivers/soc/renesas/Kconfig                   |   1 +
+>  include/linux/gpio/driver.h                   |   8 +
+>  9 files changed, 885 insertions(+), 5 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+>  create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
+>
+> --
+> 2.17.1
+>
