@@ -2,143 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 308AE458DC9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:47:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FC96458DDB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:51:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239419AbhKVLuy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 06:50:54 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:39021 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239407AbhKVLuy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 06:50:54 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637581668; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=MJwZJ3OEoSx/UEzz4I6UpbekU4tmkDT/CDTq/oZWL5M=; b=va6NQP5Tussupf5SVqe+QBAPS3rrUf0RbgCrbSCn4N+T3N1PmZ9fn5L13emYv0YDN2I96eLx
- BqAPd9PWhFnlp7ATwGOnsNf8Jx/ocyWbk+j/ny95KTaSSn5+p2X6ETYXxqX6kJdGBpqniZiq
- WCk8Jv1fp9Y7/+D37jLB6LhW7jA=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 619b8350db3ac5552a2b7a9d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 22 Nov 2021 11:47:28
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 0285DC4361C; Mon, 22 Nov 2021 11:47:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id EE78CC4361C;
-        Mon, 22 Nov 2021 11:47:19 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org EE78CC4361C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        swboyd@chromium.org, judyhsiao@chromium.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-Subject: [PATCH v5 10/10] ASoC: qcom: SC7280: Update config for building codec dma drivers
-Date:   Mon, 22 Nov 2021 17:16:39 +0530
-Message-Id: <1637581599-24120-6-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637581599-24120-1-git-send-email-srivasam@codeaurora.org>
-References: <1637581599-24120-1-git-send-email-srivasam@codeaurora.org>
+        id S234451AbhKVLyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:54:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239175AbhKVLyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 06:54:13 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F688C061714
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:51:06 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id m27so79109595lfj.12
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:51:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=WIbKikh1dqK6JN+AMVPzHPldM9x6cOQ7YPxIcREs9sg=;
+        b=3++M5Ja9ZtzByipn/0v7lU8I3UcmVjsOIIWQTAIcoBIgVKPBTzDfvRGXq24tKWYOKu
+         WHLeOITaOXwgxaj5Qxiwnm1C3BhhxiGoULRWts75V4wz05nITlzBN1XEqgEsnNdP+xtZ
+         3uqSOsE86Zr3oC+pfyuQhEr+/lxtrTapG3TT8V9ApQvqbVIV4VTqWVKjkZSTb5vAtfXW
+         np9hnP+ZHakp0vACo0JFO14VPK0ovogjGb8BEwuQYW0j6Iva3O6sSAaNPlx2jwWYvmjh
+         YDfRugKzGqtjqqlIFrm8WqPiCkziNIu/ULJP6h+RbAKi5gGabUAxss9egPSMz03zuQVh
+         WvWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=WIbKikh1dqK6JN+AMVPzHPldM9x6cOQ7YPxIcREs9sg=;
+        b=yT8IUHZ71+pLxSCNcXnucK9repyWLyo6uSTZoxFEXM2M2wN1Kha6HAJAUYXA4+GuWj
+         5fwcuxPicY8v8MnJWHFxdkZ6U1oAUjd8CEkwkIOWB4NGOvmYasclCiLeyt8LPgGrubnn
+         ShRMB/jzR8KZlT+JpkDG5/RpxSQlLdkiiTshIfflBObH88Plbne24nmBxf/pGuf3S7va
+         UNksAkBF58olJ90RduneYzscDSX8zRdWabfYcqdR3rYLC3hrDD8Pde4q7PWhtrBH4Hkv
+         eDZVBkvr1R4VU+FWNKi2YHNABY0dzGJideb+RN3y0cjIlEn750vhZ7aDMb/ro3L3PDCN
+         UnFw==
+X-Gm-Message-State: AOAM533jKI0QI46X4iOKDD5JN9lwV4lu6aacIlj/Lyh6doIBFXT7zGoj
+        HmDmNloW3lb5CQ26/+ShwFhSHw==
+X-Google-Smtp-Source: ABdhPJyVZHjFiwaN4fzFrRJPbJRE11FvJlBs9AT3WzNGLHjXQdCcZa8nhawp643sQc+HEBAZcEIB0g==
+X-Received: by 2002:a2e:96c1:: with SMTP id d1mr52506115ljj.226.1637581864013;
+        Mon, 22 Nov 2021 03:51:04 -0800 (PST)
+Received: from [192.168.1.213] (81.5.99.121.dhcp.mipt-telecom.ru. [81.5.99.121])
+        by smtp.googlemail.com with ESMTPSA id b4sm936260lfq.128.2021.11.22.03.51.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Nov 2021 03:51:03 -0800 (PST)
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: document TS voltage in AXP
+ PMICs
+To:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Quentin Schulz <foss@0leil.net>, linux-sunxi@lists.linux.dev
+References: <20211118141233.247907-1-boger@wirenboard.com>
+ <20211118141233.247907-3-boger@wirenboard.com>
+ <20211122104915.zism6uadgwxjz5d2@gilmour>
+ <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
+ <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org>
+From:   Evgeny Boger <boger@wirenboard.com>
+Message-ID: <86e6c742-e0ff-8f67-cacf-43a716a69a7b@wirenboard.com>
+Date:   Mon, 22 Nov 2021 14:51:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add configuration for building SC7280 audio codec dma drivers.
+22.11.2021 14:35, Samuel Holland пишет:
+> On 11/22/21 5:17 AM, Evgeny Boger wrote:
+>> 22.11.2021 13:49, Maxime Ripard пишет:
+>>> On Thu, Nov 18, 2021 at 05:12:33PM +0300, Evgeny Boger wrote:
+>>>> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
+>>>> TS pin. axp20x IIO driver now report the voltage of this pin via
+>>>> additional IIO channel. Add new "ts_v" channel to the channel
+>>>> description.
+>>>>
+>>>> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+>>> Would it make sense to put the resistance in the DT as well or is it
+>>> made mandatory by Allwinner?
+>>>
+>>> Maxime
+>> Well, I don't think so. Basically, by default AXP20x injects 80uA
+>> current into the TS pin and measure the voltage. Then, there are
+>> voltage thresholds to stop charging if the battery is too hot or too
+>> cold. The default thresholds were calculated by the manufacturer for
+>> default 10k resistance and 80uA current. Finally, if TS pin is
+>> shorted to GND, the AXP2xx will detect it and won't shut down
+>> charging. Note that AXP2xx doesn't convert the measured voltage to
+>> temperature.
+> Agreed, since the ADC driver only works with voltages, the resistance is
+> not relevant to it, so a resistance property does not belong here.
+>
+>> So while it's possible to use AXP2xx with resistance other than 10k,
+>> it will require us to override these protection thresholds.
+>> Moreover, if one want to put the actual resistance in DT, then the
+>> driver would need to calculate these protection thresholds based on
+>> NTC parameters and injection current.
+> That means we do need a resistance property for the battery charger
+> driver, because it does need to calculate temperature.
+Right now the charger driver just doesn't touch the default voltage 
+thresholds at all.
+> Regardless of the reference design, the resistance is variable in
+> practice. At least some early v1.0 PinePhones shipped with batteries
+> containing a 3 kOhm NTC. And the battery is removable, with an
+> off-the-shelf form factor, so users could install aftermarket batteries
+> with any NTC resistance.
+I think we can easily expose *voltage* thresholds as DT properties.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
----
- sound/soc/qcom/Kconfig  | 13 +++++++++++++
- sound/soc/qcom/Makefile |  4 ++++
- 2 files changed, 17 insertions(+)
+>
+> Right now, people with these batteries are disabling the TS; otherwise
+> the PMIC refuses to charge them. It would be good to re-enable the TS by
+> coming up with the proper voltages for the min/max thresholds. And there
+> are power supply properties we can use to expose the current temperature
+> and those thresholds to userspace (at least as read-only).
+So my idea was to convert voltage to temperature elsewhere. Again, I 
+personally
+think that it makes sense, because the hardware itself (including 
+charger) doesn't
+deal with temperature at all, only with threshold voltages and injection 
+current.
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index 530d01f..b46a2e7 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -20,6 +20,10 @@ config SND_SOC_LPASS_PLATFORM
- 	tristate
- 	select REGMAP_MMIO
- 
-+config SND_SOC_LPASS_CDC_DMA
-+	tristate
-+	select REGMAP_MMIO
-+
- config SND_SOC_LPASS_IPQ806X
- 	tristate
- 	select SND_SOC_LPASS_CPU
-@@ -36,6 +40,13 @@ config SND_SOC_LPASS_SC7180
- 	select SND_SOC_LPASS_PLATFORM
- 	select SND_SOC_LPASS_HDMI
- 
-+config SND_SOC_LPASS_SC7280
-+	tristate
-+	select SND_SOC_LPASS_CPU
-+	select SND_SOC_LPASS_PLATFORM
-+	select SND_SOC_LPASS_HDMI
-+	select SND_SOC_LPASS_CDC_DMA
-+
- config SND_SOC_STORM
- 	tristate "ASoC I2S support for Storm boards"
- 	select SND_SOC_LPASS_IPQ806X
-@@ -156,7 +167,9 @@ config SND_SOC_SC7280
- 	tristate "SoC Machine driver for SC7280 boards"
- 	depends on I2C && SOUNDWIRE || COMPILE_TEST
- 	select SND_SOC_QCOM_COMMON
-+	select SND_SOC_LPASS_SC7280
- 	select SND_SOC_MAX98357A
-+	select SND_SOC_WCD938X
- 	select SND_SOC_LPASS_RX_MACRO
- 	select SND_SOC_LPASS_TX_MACRO
- 	help
-diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-index 625aec6..8b7b876 100644
---- a/sound/soc/qcom/Makefile
-+++ b/sound/soc/qcom/Makefile
-@@ -1,18 +1,22 @@
- # SPDX-License-Identifier: GPL-2.0
- # Platform
- snd-soc-lpass-cpu-objs := lpass-cpu.o
-+snd-soc-lpass-cdc-dma-objs := lpass-cdc-dma.o
- snd-soc-lpass-hdmi-objs := lpass-hdmi.o
- snd-soc-lpass-platform-objs := lpass-platform.o
- snd-soc-lpass-ipq806x-objs := lpass-ipq806x.o
- snd-soc-lpass-apq8016-objs := lpass-apq8016.o
- snd-soc-lpass-sc7180-objs := lpass-sc7180.o
-+snd-soc-lpass-sc7280-objs := lpass-sc7280.o
- 
- obj-$(CONFIG_SND_SOC_LPASS_CPU) += snd-soc-lpass-cpu.o
-+obj-$(CONFIG_SND_SOC_LPASS_CDC_DMA) += snd-soc-lpass-cdc-dma.o
- obj-$(CONFIG_SND_SOC_LPASS_HDMI) += snd-soc-lpass-hdmi.o
- obj-$(CONFIG_SND_SOC_LPASS_PLATFORM) += snd-soc-lpass-platform.o
- obj-$(CONFIG_SND_SOC_LPASS_IPQ806X) += snd-soc-lpass-ipq806x.o
- obj-$(CONFIG_SND_SOC_LPASS_APQ8016) += snd-soc-lpass-apq8016.o
- obj-$(CONFIG_SND_SOC_LPASS_SC7180) += snd-soc-lpass-sc7180.o
-+obj-$(CONFIG_SND_SOC_LPASS_SC7280) += snd-soc-lpass-sc7280.o
- 
- # Machine
- snd-soc-storm-objs := storm.o
+For instance, in  our board we now use hwmon NTC driver, like this:
+
+     /* Huge pullup voltage is here to emulate constant current */
+     bat-temp {
+         compatible = "murata,ncp15xh103";
+         pullup-uv = <1000000000>; // 1E9 uV
+         pullup-ohm = <12500000>; // pullup_uv/80
+         pulldown-ohm = <0>;
+         io-channels = <&axp_adc 4>;
+     };
+
+As far as I know, there are IIO AFE patch set under review, which also add
+voltage to temperature conversion.
+
+If we indeed want the axp20x charger driver to convert voltage to 
+temperature
+(and vice versa, for computing charging thresholds), then all that logic 
+will need to
+be reimplemented in driver. Note that there wouldn't be a single 
+"resistance" property,
+instead there are huge resistance vs voltage tables which are slightly 
+different for
+different vendors.
+
+In principle, having temperature reported by power supply driver would 
+be great. But
+I don't see how it can be implemented without a massive effort.
+
+
+>
+> Regards,
+> Samuel
+
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+С уважением,
+     Евгений Богер / Evgeny Boger
+     CTO, Wiren Board Team
+     https://wirenboard.com/ru
+     +7 495 150 66 19 (# 33)
 
