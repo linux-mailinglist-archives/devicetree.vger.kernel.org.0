@@ -2,224 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C0EF458D5D
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60FB0458D68
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:28:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232726AbhKVLaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 06:30:18 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:30457 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234228AbhKVLaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 06:30:17 -0500
+        id S232948AbhKVLb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:31:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32804 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239110AbhKVLb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 06:31:26 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912C9C061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:28:19 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id f18so79269452lfv.6
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:28:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1637580431; x=1669116431;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=bMVmUWQ51SZd9qjPQ9qrpklwVwUhuV3V91EQW47KAFQ=;
-  b=l+0tBIVhxGbcr2xW0mHzfM0OpGcm6dwwGJjss5YiaSeTz7MXK5R/GgRb
-   0A01xj7kBSANPOHPDd39yexAXjS1Op3bgEj9DWlYmCdXRj/AbR7prM4+E
-   7Y1FgQ8ea4giftmWOLTcYSIg8/7CR69t3HYWKySWDhwFzmGPtyNt9jerS
-   U=;
-Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Nov 2021 03:27:11 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2021 03:27:10 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 22 Nov 2021 03:27:10 -0800
-Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Mon, 22 Nov 2021 03:27:05 -0800
-From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <agross@kernel.org>,
-        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
-CC:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        <robdclark@gmail.com>, <seanpaul@chromium.org>,
-        <swboyd@chromium.org>, <quic_kalyant@quicinc.com>,
-        <quic_abhinavk@quicinc.com>, <dianders@chromium.org>,
-        <quic_khsieh@quicinc.com>, <quic_mkrishn@quicinc.com>
-Subject: [PATCH v4 3/4] arm64: dts: qcom: sc7280: add edp display dt nodes
-Date:   Mon, 22 Nov 2021 16:56:08 +0530
-Message-ID: <1637580369-876-3-git-send-email-quic_sbillaka@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637580369-876-1-git-send-email-quic_sbillaka@quicinc.com>
-References: <1637580369-876-1-git-send-email-quic_sbillaka@quicinc.com>
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IagQM63R+rDjhJUw1VMPJDDpFazIAHieWAnQRQyFphA=;
+        b=PFAOxEbUA29b30rxhBtR8jpeMFz07/eFFDDQJAnKfBtRCskpZSpEbXpH0xchxq1vX6
+         ObDxcAJdeilTRvGEDpDffya6n9VnUGLW/jItJ0gK3pigN1UpiYMpaqpgSoJudZjtUBCE
+         FH4yJ9f2n9A+mQ+y0WJkrxjJk9Cbrj+nCvr9ECf9q1DfbOBIGzzx2uOqesFUOzl7MD5P
+         HPTfRtw+XQEbqYzgpL/eYbVxlVikndmIEZ+ApJfNT2S9VDjiR6cq6LCcQ/0O8jVxCi2A
+         I9fcmoC3xOdgA+zfvZMnX7rZZefpEQUQOWDDgCUu63ND6vGFsoeAc10oxDb7x4Fn77bW
+         97wA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IagQM63R+rDjhJUw1VMPJDDpFazIAHieWAnQRQyFphA=;
+        b=M5LpbzMr/t0jAMkoEimw0N/SeZKvt2uJcmW3lQC2Xi497btewEPKAVKK+nJFKwk6W1
+         NixUi6Z1fSDKos4r7nQq05x6dnzghagpKlsvts/K52acdQsnkBdMh590ZiiVXbHyIUud
+         K8dHCZecGNXfJrnl5mT04mBYs6qouoboRgwam3+acKltluMAqgkWEg+gMR912soRBnz8
+         ZGr3ZlKvbpvP7haW/kdnvmFBL4SeYtVEg9TsejfH/Hwc5dGLRFhuDbS7G8N8HJAL1JrH
+         5rQc8UANZQDfgIP2wBZYdHcpzbmcLT9PPlU0x0WF5d0cXgDbly4YmNNSxUmZC3tXkZ85
+         7nXA==
+X-Gm-Message-State: AOAM5302FFqNUkwyMEdLyigVLpHEJD4knPw1cdmBXoDNBMzBrJIWGbcX
+        /oXAa5zBRnrvBT0HEjQFbbM3R2kpB1rV0IXlDdxw6A==
+X-Google-Smtp-Source: ABdhPJy3c024rax53YED/h5qShT7smb1J1xSLFa5vpqATOSqXWQ6zzjj3kRnEy9P+bc+FTkRM8LPPqCdRz857mHRdrY=
+X-Received: by 2002:ac2:4bc1:: with SMTP id o1mr57271385lfq.254.1637580497906;
+ Mon, 22 Nov 2021 03:28:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+References: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 22 Nov 2021 12:27:42 +0100
+Message-ID: <CAPDyKFrcCHBrh9JUDXkMyuURgnnh8uxjcGp_DLKMDz7zw0pWWQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Rename RZ/G2L SDHI clocks
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <chris.paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add edp controller and phy DT nodes for sc7280.
+On Mon, 22 Nov 2021 at 11:39, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>
+> RZ/G2L SDHI has 4 clocks which is controlled by PM frame work and is using
+> Gen3 compatible string. Now the clock factorisation happened on highspeed
+> clock handling and it changes to fallback by getting parent clock, if
+> "clkh" is not specified in device tree.
+>
+> This path series rename the clocks to match with the clock names used in
+> R-Car Gen2 and later generations. This will avoid driver changes related
+> to clock names.
+>
+> This patch series based on renesas-devel
 
-Signed-off-by: Krishna Manikandan <quic_mkrishn@quicinc.com>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
----
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Changes in v4:
-    None
+Kind regards
+Uffe
 
-Changes in v3:
-    - Add one clock cell per line (Stephen Boyd)
-    - Unit address should match first reg property (Stephen Boyd)
-    - Remove new line (Stephen Boyd)
-    - Add the dsi_phy clocks in dispcc (Kuogee Hsieh)
-
-Changes in v2:
-    - Move regulator definitions to board file (Matthias Kaehlcke)
-    - Move the gpio definitions to board file (Matthias Kaehlcke)
-    - Move the pinconf to board file (Matthias Kaehlcke)
-    - Move status property (Stephen Boyd)
-    - Drop flags from interrupts (Stephen Boyd)
-    - Add clock names one per line for readability (Stephen Boyd)
-    - Rename edp-opp-table (Stephen Boyd)
-
- arch/arm64/boot/dts/qcom/sc7280.dtsi | 107 ++++++++++++++++++++++++++++++++++-
- 1 file changed, 105 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-index 12c4d32..5ad500e 100644
---- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-@@ -2695,8 +2695,8 @@
- 				 <&dsi_phy 1>,
- 				 <0>,
- 				 <0>,
--				 <0>,
--				 <0>;
-+				 <&edp_phy 0>,
-+				 <&edp_phy 1>;
- 			clock-names = "bi_tcxo",
- 				      "gcc_disp_gpll0_clk",
- 				      "dsi0_phy_pll_out_byteclk",
-@@ -2784,6 +2784,13 @@
- 							remote-endpoint = <&dsi0_in>;
- 						};
- 					};
-+
-+					port@1 {
-+						reg = <1>;
-+						dpu_intf5_out: endpoint {
-+							remote-endpoint = <&edp_in>;
-+						};
-+					};
- 				};
- 
- 				mdp_opp_table: opp-table {
-@@ -2899,6 +2906,102 @@
- 
- 				status = "disabled";
- 			};
-+
-+			msm_edp: edp@aea0000 {
-+				compatible = "qcom,sc7280-edp";
-+
-+				reg = <0 0xaea0000 0 0x200>,
-+				      <0 0xaea0200 0 0x200>,
-+				      <0 0xaea0400 0 0xc00>,
-+				      <0 0xaea1000 0 0x400>;
-+
-+				interrupt-parent = <&mdss>;
-+				interrupts = <14>;
-+
-+				clocks = <&rpmhcc RPMH_CXO_CLK>,
-+					 <&gcc GCC_EDP_CLKREF_EN>,
-+					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_AUX_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_LINK_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_LINK_INTF_CLK>,
-+					 <&dispcc DISP_CC_MDSS_EDP_PIXEL_CLK>;
-+				clock-names = "core_xo",
-+					      "core_ref",
-+					      "core_iface",
-+					      "core_aux",
-+					      "ctrl_link",
-+					      "ctrl_link_iface",
-+					      "stream_pixel";
-+				#clock-cells = <1>;
-+				assigned-clocks = <&dispcc DISP_CC_MDSS_EDP_LINK_CLK_SRC>,
-+						  <&dispcc DISP_CC_MDSS_EDP_PIXEL_CLK_SRC>;
-+				assigned-clock-parents = <&edp_phy 0>, <&edp_phy 1>;
-+
-+				phys = <&edp_phy>;
-+				phy-names = "dp";
-+
-+				operating-points-v2 = <&edp_opp_table>;
-+				power-domains = <&rpmhpd SC7280_CX>;
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				status = "disabled";
-+
-+				ports {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					port@0 {
-+						reg = <0>;
-+						edp_in: endpoint {
-+							remote-endpoint = <&dpu_intf5_out>;
-+						};
-+					};
-+				};
-+
-+				edp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-160000000 {
-+						opp-hz = /bits/ 64 <160000000>;
-+						required-opps = <&rpmhpd_opp_low_svs>;
-+					};
-+
-+					opp-270000000 {
-+						opp-hz = /bits/ 64 <270000000>;
-+						required-opps = <&rpmhpd_opp_svs>;
-+					};
-+
-+					opp-540000000 {
-+						opp-hz = /bits/ 64 <540000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+
-+					opp-810000000 {
-+						opp-hz = /bits/ 64 <810000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+				};
-+			};
-+
-+			edp_phy: phy@aec2a00 {
-+				compatible = "qcom,sc7280-edp-phy";
-+
-+				reg = <0 0xaec2a00 0 0x19c>,
-+				      <0 0xaec2200 0 0xa0>,
-+				      <0 0xaec2600 0 0xa0>,
-+				      <0 0xaec2000 0 0x1c0>;
-+
-+				clocks = <&rpmhcc RPMH_CXO_CLK>,
-+					 <&gcc GCC_EDP_CLKREF_EN>;
-+				clock-names = "aux",
-+					      "cfg_ahb";
-+
-+				#clock-cells = <1>;
-+				#phy-cells = <0>;
-+
-+				status = "disabled";
-+			};
- 		};
- 
- 		pdc: interrupt-controller@b220000 {
--- 
-2.7.4
-
+>
+> Biju Das (2):
+>   dt-bindings: mmc: renesas,sdhi: Rename RZ/G2L clocks
+>   arm64: dts: renesas: r9a07g044: Rename SDHI clocks
+>
+>  .../devicetree/bindings/mmc/renesas,sdhi.yaml          | 10 +++++-----
+>  arch/arm64/boot/dts/renesas/r9a07g044.dtsi             |  8 ++++----
+>  2 files changed, 9 insertions(+), 9 deletions(-)
+>
+> --
+> 2.17.1
+>
