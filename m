@@ -2,95 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60FB0458D68
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08C91458D6C
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:29:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232948AbhKVLb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 06:31:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32804 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239110AbhKVLb0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 06:31:26 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912C9C061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:28:19 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id f18so79269452lfv.6
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 03:28:19 -0800 (PST)
+        id S235098AbhKVLcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:32:41 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:17899 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233849AbhKVLck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 06:32:40 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IagQM63R+rDjhJUw1VMPJDDpFazIAHieWAnQRQyFphA=;
-        b=PFAOxEbUA29b30rxhBtR8jpeMFz07/eFFDDQJAnKfBtRCskpZSpEbXpH0xchxq1vX6
-         ObDxcAJdeilTRvGEDpDffya6n9VnUGLW/jItJ0gK3pigN1UpiYMpaqpgSoJudZjtUBCE
-         FH4yJ9f2n9A+mQ+y0WJkrxjJk9Cbrj+nCvr9ECf9q1DfbOBIGzzx2uOqesFUOzl7MD5P
-         HPTfRtw+XQEbqYzgpL/eYbVxlVikndmIEZ+ApJfNT2S9VDjiR6cq6LCcQ/0O8jVxCi2A
-         I9fcmoC3xOdgA+zfvZMnX7rZZefpEQUQOWDDgCUu63ND6vGFsoeAc10oxDb7x4Fn77bW
-         97wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IagQM63R+rDjhJUw1VMPJDDpFazIAHieWAnQRQyFphA=;
-        b=M5LpbzMr/t0jAMkoEimw0N/SeZKvt2uJcmW3lQC2Xi497btewEPKAVKK+nJFKwk6W1
-         NixUi6Z1fSDKos4r7nQq05x6dnzghagpKlsvts/K52acdQsnkBdMh590ZiiVXbHyIUud
-         K8dHCZecGNXfJrnl5mT04mBYs6qouoboRgwam3+acKltluMAqgkWEg+gMR912soRBnz8
-         ZGr3ZlKvbpvP7haW/kdnvmFBL4SeYtVEg9TsejfH/Hwc5dGLRFhuDbS7G8N8HJAL1JrH
-         5rQc8UANZQDfgIP2wBZYdHcpzbmcLT9PPlU0x0WF5d0cXgDbly4YmNNSxUmZC3tXkZ85
-         7nXA==
-X-Gm-Message-State: AOAM5302FFqNUkwyMEdLyigVLpHEJD4knPw1cdmBXoDNBMzBrJIWGbcX
-        /oXAa5zBRnrvBT0HEjQFbbM3R2kpB1rV0IXlDdxw6A==
-X-Google-Smtp-Source: ABdhPJy3c024rax53YED/h5qShT7smb1J1xSLFa5vpqATOSqXWQ6zzjj3kRnEy9P+bc+FTkRM8LPPqCdRz857mHRdrY=
-X-Received: by 2002:ac2:4bc1:: with SMTP id o1mr57271385lfq.254.1637580497906;
- Mon, 22 Nov 2021 03:28:17 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637580574; x=1669116574;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=nSu5tgaREMa9CS+SE9DuIqXG3zrVziZoM1K1+YEFTlM=;
+  b=b/SPkKs+NV+Q37ArRlpN2sA+no97KZbUF1l8fWNi5Ol5byUL8ZdwRyFr
+   1JcHYGQ96fhWxlEDkuZqdM5sKtZFkQ3r/62aF9sXGdMloMjE/b1WTcCa1
+   x1DEnSolNP5QkUXC3Qkr4VHW13ZGVQ/KfANSJRCwByeEQFP7+NzpN8eh/
+   k=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Nov 2021 03:29:34 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2021 03:29:33 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 22 Nov 2021 03:29:33 -0800
+Received: from sbillaka-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 22 Nov 2021 03:29:27 -0800
+From:   Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+To:     <dri-devel@lists.freedesktop.org>, <linux-arm-msm@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <agross@kernel.org>,
+        <bjorn.andersson@linaro.org>, <robh+dt@kernel.org>
+CC:     Kuogee Hsieh <khsieh@codeaurora.org>, <robdclark@gmail.com>,
+        <seanpaul@chromium.org>, <swboyd@chromium.org>,
+        <quic_kalyant@quicinc.com>, <quic_abhinavk@quicinc.com>,
+        <dianders@chromium.org>, <quic_khsieh@quicinc.com>,
+        <quic_mkrishn@quicinc.com>, <quic_sbillaka@quicinc.com>
+Subject: [PATCH v4 4/4] arm64: dts: qcom: sc7280: Add Display Port node
+Date:   Mon, 22 Nov 2021 16:59:15 +0530
+Message-ID: <1637580555-1079-1-git-send-email-quic_sbillaka@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 22 Nov 2021 12:27:42 +0100
-Message-ID: <CAPDyKFrcCHBrh9JUDXkMyuURgnnh8uxjcGp_DLKMDz7zw0pWWQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Rename RZ/G2L SDHI clocks
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <chris.paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Nov 2021 at 11:39, Biju Das <biju.das.jz@bp.renesas.com> wrote:
->
-> RZ/G2L SDHI has 4 clocks which is controlled by PM frame work and is using
-> Gen3 compatible string. Now the clock factorisation happened on highspeed
-> clock handling and it changes to fallback by getting parent clock, if
-> "clkh" is not specified in device tree.
->
-> This path series rename the clocks to match with the clock names used in
-> R-Car Gen2 and later generations. This will avoid driver changes related
-> to clock names.
->
-> This patch series based on renesas-devel
+From: Kuogee Hsieh <khsieh@codeaurora.org>
 
-Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Kuogee Hsieh <quic_khsieh@quicinc.com>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+---
 
-Kind regards
-Uffe
+Changes in v4:
+    - Add the patch to display DT change series (Bjorn Andersson)
+    - Remove the trailing whitespaces
 
->
-> Biju Das (2):
->   dt-bindings: mmc: renesas,sdhi: Rename RZ/G2L clocks
->   arm64: dts: renesas: r9a07g044: Rename SDHI clocks
->
->  .../devicetree/bindings/mmc/renesas,sdhi.yaml          | 10 +++++-----
->  arch/arm64/boot/dts/renesas/r9a07g044.dtsi             |  8 ++++----
->  2 files changed, 9 insertions(+), 9 deletions(-)
->
-> --
-> 2.17.1
->
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 90 +++++++++++++++++++++++++++++++++++-
+ 1 file changed, 88 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 5ad500e..0b2ffd5 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -2693,8 +2693,8 @@
+ 				 <&gcc GCC_DISP_GPLL0_CLK_SRC>,
+ 				 <&dsi_phy 0>,
+ 				 <&dsi_phy 1>,
+-				 <0>,
+-				 <0>,
++				 <&dp_phy 0>,
++				 <&dp_phy 1>,
+ 				 <&edp_phy 0>,
+ 				 <&edp_phy 1>;
+ 			clock-names = "bi_tcxo",
+@@ -2791,6 +2791,13 @@
+ 							remote-endpoint = <&edp_in>;
+ 						};
+ 					};
++
++					port@2 {
++                                                reg = <2>;
++                                                dpu_intf0_out: endpoint {
++                                                        remote-endpoint = <&dp_in>;
++                                                };
++                                        };
+ 				};
+ 
+ 				mdp_opp_table: opp-table {
+@@ -3002,6 +3009,79 @@
+ 
+ 				status = "disabled";
+ 			};
++
++			msm_dp: displayport-controller@ae90000 {
++				compatible = "qcom,sc7280-dp";
++
++				reg = <0 0x0ae90000 0 0x1400>;
++
++				interrupt-parent = <&mdss>;
++				interrupts = <12>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
++				clock-names =	"core_iface",
++						"core_aux",
++						"ctrl_link",
++						"ctrl_link_iface",
++						"stream_pixel";
++				#clock-cells = <1>;
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
++				assigned-clock-parents = <&dp_phy 0>, <&dp_phy 1>;
++				phys = <&dp_phy>;
++				phy-names = "dp";
++
++				operating-points-v2 = <&dp_opp_table>;
++				power-domains = <&rpmhpd SC7280_CX>;
++
++				#sound-dai-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					port@0 {
++						reg = <0>;
++						dp_in: endpoint {
++							remote-endpoint = <&dpu_intf0_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++						dp_out: endpoint { };
++					};
++				};
++
++				dp_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-160000000 {
++						opp-hz = /bits/ 64 <160000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-270000000 {
++						opp-hz = /bits/ 64 <270000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-540000000 {
++						opp-hz = /bits/ 64 <540000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-810000000 {
++						opp-hz = /bits/ 64 <810000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
+ 		};
+ 
+ 		pdc: interrupt-controller@b220000 {
+@@ -3104,6 +3184,12 @@
+ 				bias-pull-up;
+ 			};
+ 
++			dp_hot_plug_det: dp-hot-plug-det {
++				pins = "gpio47";
++				function = "dp_hot";
++				bias-disable;
++                        };
++
+ 			qspi_clk: qspi-clk {
+ 				pins = "gpio14";
+ 				function = "qspi_clk";
+-- 
+2.7.4
+
