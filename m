@@ -2,292 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2388459712
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 23:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5BC9459715
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 23:04:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232667AbhKVWHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 17:07:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239472AbhKVWHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 17:07:20 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAFF5C061714
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 14:04:13 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id g18so17357028pfk.5
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 14:04:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=sb3qeA3OUUf+WI7E6Y7mAh/xH8uwOycgMNP4JhLZK+M=;
-        b=WTC5lWv3e6+/hYbl8Ive0S7QZIRoP0p76yp+Frisq+/HHzyfuHgwPievgCBlN2qQI8
-         6KzuvzmvcatbGpQBa1zUw9U8Socd/Z0yKk9oKQZ47NE10LQjN3c0XeonrZvuoKm1v+dm
-         80w2MZKzWmpBQjqvcHglhFVQPnr6bN7UwQIFM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=sb3qeA3OUUf+WI7E6Y7mAh/xH8uwOycgMNP4JhLZK+M=;
-        b=WUwRHvhauQJXcWOyDkCUcFwknIn/Q9NEIYNDOPA1hGH4JAzU63LAnzai1l9D0b0GKv
-         8EmvFwA9320YRfZyfpUY4eouv2I+LC+7tH1GbM1rpjYrsFoJGZfJfkQIRet/mJpayJmt
-         vkGKMwI55a91EVQewd+fLOLnZWYecMLpVQDikcixNNBScFhOyBCZ4eGbBB4qHuxeWnq2
-         pu0pYnF/q67Cd2SBM6L5+A8IvGJGe9VGLCdrMMPVorsdPLMt6uB4YWtsjV/wcPcDEJPS
-         nfqxaEIqNFT6xFu6wHAH6RMfFKTEG987RFnSkSVrrC8ju6a/pgj+pV8+f5Qk8IXD7CVc
-         cJrQ==
-X-Gm-Message-State: AOAM531qgYs2tg5TrqmcEE8WkFwUgLnoiE/lQ+fqKyHnIImTqfrbSpXF
-        Lhb32Cp+/PmfOPw4Ltn+2HfL2w==
-X-Google-Smtp-Source: ABdhPJwA4I5uVZ7PdhNN7MaXf21QMPCY0DZif2Su/O3UNO1jI5Fd8YR1gvKh72S2Dbp0kVbS8AoXKg==
-X-Received: by 2002:a63:8449:: with SMTP id k70mr172964pgd.27.1637618653131;
-        Mon, 22 Nov 2021 14:04:13 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d2sm9866297pfu.203.2021.11.22.14.04.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Nov 2021 14:04:12 -0800 (PST)
-Subject: Re: [PATCH 2/2] leds: bcm63xxx: add support for BCM63xxx controller
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211115091107.11737-1-zajec5@gmail.com>
- <20211115091107.11737-2-zajec5@gmail.com>
-From:   Florian Fainelli <florian.fainelli@broadcom.com>
-Message-ID: <02a2dbb7-6ae0-af28-e852-ee66bb3d66f1@broadcom.com>
-Date:   Mon, 22 Nov 2021 14:04:10 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S239723AbhKVWH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 17:07:27 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:49277 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239573AbhKVWHZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 17:07:25 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20211122220416euoutp02c414f018d597bcae2659e335fbf35c13~5-X3QKPEI3269132691euoutp02b
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 22:04:16 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20211122220416euoutp02c414f018d597bcae2659e335fbf35c13~5-X3QKPEI3269132691euoutp02b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1637618656;
+        bh=ynjXecPy+x67xYtTl2zbxpDhdENHt074ow1WT4E9cBU=;
+        h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+        b=OawMEl5As2nOSeQqux2L/uF4pLlxegHJhPp4DzXNXUUankmL4e4JIfTssqBXH5wgK
+         c8ViAGt016gtOUz4XIRcBM3fVN4pvaX/hMgZTMRqedmd5HZxFlzt3MBLf3xkswSTLY
+         25epVBwnbJNMm7B2rOQajfOo7t03CB8VmcymDpLg=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20211122220415eucas1p228be94b02883e594aa747b4808d1ba11~5-X2W2yAI2755827558eucas1p20;
+        Mon, 22 Nov 2021 22:04:15 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id F6.2B.10260.FD31C916; Mon, 22
+        Nov 2021 22:04:15 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20211122220414eucas1p2aed07333fea9caccf343404365a8a0f5~5-X1tGKi32755827558eucas1p2x;
+        Mon, 22 Nov 2021 22:04:14 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20211122220414eusmtrp25b1be8ede9a482596ccfef5ecb53d3ef~5-X1sL7y11106011060eusmtrp2J;
+        Mon, 22 Nov 2021 22:04:14 +0000 (GMT)
+X-AuditID: cbfec7f5-bddff70000002814-5c-619c13dfae7b
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id D1.69.09522.ED31C916; Mon, 22
+        Nov 2021 22:04:14 +0000 (GMT)
+Received: from [106.210.134.141] (unknown [106.210.134.141]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20211122220413eusmtip183fbf441f0a72e3fa73503374721a174~5-X1AhJ9u1648416484eusmtip1D;
+        Mon, 22 Nov 2021 22:04:13 +0000 (GMT)
+Message-ID: <95864889-e80b-e627-7b63-1079caa0fa12@samsung.com>
+Date:   Mon, 22 Nov 2021 23:04:13 +0100
 MIME-Version: 1.0
-In-Reply-To: <20211115091107.11737-2-zajec5@gmail.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000001e859605d167ce64"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0)
+        Gecko/20100101 Thunderbird/91.3.1
+Subject: Re: [PATCH v2 1/1] clk: samsung: exynos850: Register clocks early
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Cc:     David Virag <virag.david003@gmail.com>,
+        =?UTF-8?Q?Pawe=c5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+In-Reply-To: <20211122144206.23134-1-semen.protsenko@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHKsWRmVeSWpSXmKPExsWy7djP87r3heckGix7xGtx/ctzVov5R86x
+        Wmx8+4PJYtPja6wWH3vusVpc3jWHzWLG+X1MFhdPuVr8ON7HbNG69wi7xb9rG1ksnvcBxVft
+        +sNocfz9Y0YHPo/3N1rZPWY19LJ57Jx1l91j06pONo871/aweWxeUu/Rt2UVo8fnTXIBHFFc
+        NimpOZllqUX6dglcGe3f/zEXrGKvOHhlDVMDYyNbFyMHh4SAicT19QZdjFwcQgIrGCWmNp1m
+        hXC+MEqcvP2FCcL5zCjx/uc0oAwnWMepowsYIRLLGSUWLTzHBuF8BGp5tJsJpIpXwE5i1e7P
+        YDaLgKpE/9JHLBBxQYmTM5+A2aICSRKnWycxg9jCAl4S3Tfvg8WZBcQlbj2ZD9YrIhAuseTT
+        fmaQBcwCb5klbmx4wA6SYBMwlOg92scIYnMKOEhsWNTLDNEsL7H97RywBgmB5ZwSXx+sYIG4
+        20Wib8dNZghbWOLV8S3sELaMxP+d85kgGpoZJXp232aHcCYwStw/voARospa4s65X+AwYxbQ
+        lFi/Sx8SfI4SE17kQph8EjfeCkLcwCcxadt0Zogwr0RHmxDEDBWJ36umM0HYUhLdT/6zTGBU
+        moUULLOQvD8LyTezENYuYGRZxSieWlqcm55abJyXWq5XnJhbXJqXrpecn7uJEZjkTv87/nUH
+        44pXH/UOMTJxMB5ilOBgVhLhvbZkdqIQb0piZVVqUX58UWlOavEhRmkOFiVxXpE/DYlCAumJ
+        JanZqakFqUUwWSYOTqkGJsN7X65e95kiYbRwxYLsnMRjPx71fr8o9d5MddVm880zSxRXy26V
+        PecoKZPh2nJL0vDNep74XtsqpfQwR43so/+2XIiIkTwSw6AQqfSrK7PV82CExuXnJlsLciJO
+        7+Rp1eDcvalUNohJcc21m4tnfI9fUxbHM2HWop06YSIMO9eIO9bflmR8E8zr89VkpnXWkuCY
+        h/FBh67d1JjQ8MJ1sbJbc0fV+/vlj8VOpKzf+mlhg9NCBdbbxXdLV5w1M12ZkcXTE2i4ZQ9T
+        SZJGgyaP+co1yxn6El9WJ+zI19X7m5QYlJlu2ivzRXDKHt2v/CZtTO8WLPU/qvh3YcLp23o/
+        G+bn/Qm/LLRAIz2cNcZbiaU4I9FQi7moOBEA3Qxlh+EDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrLIsWRmVeSWpSXmKPExsVy+t/xu7r3hOckGmy7LWNx/ctzVov5R86x
+        Wmx8+4PJYtPja6wWH3vusVpc3jWHzWLG+X1MFhdPuVr8ON7HbNG69wi7xb9rG1ksnvcBxVft
+        +sNocfz9Y0YHPo/3N1rZPWY19LJ57Jx1l91j06pONo871/aweWxeUu/Rt2UVo8fnTXIBHFF6
+        NkX5pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6Ge3f/zEX
+        rGKvOHhlDVMDYyNbFyMnh4SAicSpowsYQWwhgaWMEr87C7oYOYDiUhLzW5QgSoQl/lzrAirn
+        Aip5zyjxaftisF5eATuJVbs/M4HYLAKqEv1LH7FAxAUlTs58AmaLCiRJ9H/fxQxiCwt4SXTf
+        vA8WZxYQl7j1ZD4TyC4RgXCJxft0QeYzC7xnlpjc+ZYVYtlkRokZR9rAlrEJGEr0Hu0DO5RT
+        wEFiw6JeZpBmZgF1ifXzhCBmyktsfzuHeQKj0CwkZ8xCsm4WQscsJB0LGFlWMYqklhbnpucW
+        G+oVJ+YWl+al6yXn525iBMbztmM/N+9gnPfqo94hRiYOxkOMEhzMSiK815bMThTiTUmsrEot
+        yo8vKs1JLT7EaAoMionMUqLJ+cCEklcSb2hmYGpoYmZpYGppZqwkzutZ0JEoJJCeWJKanZpa
+        kFoE08fEwSnVwNS2NOXMz+kM9kUVK/dfmtc+f3Hb5w+PfO0tPeT4pspe4amd1prQHO1cNzGf
+        xT0o+eui3Wsst5f5ZsYYJT9NnnXX6HHGPAXvp+Wsj6TUWl9f91+/ak3NdE6XL2Vz6z59WTX1
+        3bof5UeTk4ycfHoWTt63fuKOOXzNjZlT5vXemvT0X9LNmj+1jpeiZ3e+MIr7fKgjMLz7ebBt
+        xsM39ifEBJPEC58Xh0YxaNvqqkw2YV+78DTjg4qIH2uF5aesnHFg/2YvFxOBZfkbL75vPTyr
+        qGpr4skvlTwFz97q2Z/8NrXsR+h7jql8Ec9v/H1WdKHiQa5d6jmmtPmerh9jyp1kJX4dcJ9a
+        PHEa/3rPCZYTNLKVWIozEg21mIuKEwE5jDC+cAMAAA==
+X-CMS-MailID: 20211122220414eucas1p2aed07333fea9caccf343404365a8a0f5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20211122144217eucas1p21c5f4930563ee051d625bb8e3a932a4a
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20211122144217eucas1p21c5f4930563ee051d625bb8e3a932a4a
+References: <CGME20211122144217eucas1p21c5f4930563ee051d625bb8e3a932a4a@eucas1p2.samsung.com>
+        <20211122144206.23134-1-semen.protsenko@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000001e859605d167ce64
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-
-On 11/15/21 1:11 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 22.11.2021 15:42, Sam Protsenko wrote:
+> Some clocks must be registered before init calls. For example MCT clock
+> (from CMU_PERI) is needed for MCT timer driver, which is registered
+> with TIMER_OF_DECLARE(). By the time we get to core_initcall() used for
+> clk-exynos850 platform driver init, it's already too late. Inability to
+> get "mct" clock in MCT driver leads to kernel panic, as functions
+> registered with *_OF_DECLARE() can't do deferred calls. MCT timer driver
+> can't be fixed either, as it's acting as a clock source and it's
+> essential to register it in start_kernel() -> time_init().
 > 
-> It's a new controller used on BCM4908, some BCM68xx and some BCM63xxx
-> SoCs.
+> Let's register CMU_PERI clocks early, using CLK_OF_DECLARE(). CMU_TOP
+> generates clocks needed for CMU_PERI, but it's already registered early.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> While at it, let's cleanup the code a bit, by extracting everything
+> related to CMU initialization and registration to the separate function.
 
-Same comment as the binding, please s/bcm63xxx/bcm63xx/ for matchign
-existing drivers/patterns.
-
-[snip]
-
-> +
-> +#define BCM63XXX_MAX_LEDS			32> +
-> +#define BCM63XXX_GLB_CTRL			0x00
-> +#define BCM63XXX_MASK				0x04
-
-This define appears unused.
-
-> +#define BCM63XXX_HW_LED_EN			0x08
-> +#define BCM63XXX_SERIAL_LED_SHIFT_SEL		0x0c
-> +#define BCM63XXX_FLASH_RATE_CTRL1		0x10
-> +#define BCM63XXX_FLASH_RATE_CTRL2		0x14
-> +#define BCM63XXX_FLASH_RATE_CTRL3		0x18
-> +#define BCM63XXX_FLASH_RATE_CTRL4		0x1c
-> +#define BCM63XXX_BRIGHT_CTRL1			0x20
-> +#define BCM63XXX_BRIGHT_CTRL2			0x24
-> +#define BCM63XXX_BRIGHT_CTRL3			0x28
-> +#define BCM63XXX_BRIGHT_CTRL4			0x2c
-> +#define BCM63XXX_POWER_LED_CFG			0x30
-> +#define BCM63XXX_HW_POLARITY			0xb4
-> +#define BCM63XXX_SW_DATA			0xb8
-
-This is called SW_LED_IP in the register but I guess this name is a bit
-clearer.
-
-> +#define BCM63XXX_SW_POLARITY			0xbc
-> +#define BCM63XXX_PARALLEL_LED_POLARITY		0xc0
-> +#define BCM63XXX_SERIAL_LED_POLARITY		0xc4
-> +#define BCM63XXX_HW_LED_STATUS			0xc8
-> +#define BCM63XXX_FLASH_CTRL_STATUS		0xcc
-> +#define BCM63XXX_FLASH_BRT_CTRL			0xd0
-> +#define BCM63XXX_FLASH_P_LED_OUT_STATUS		0xd4
-> +#define BCM63XXX_FLASH_S_LED_OUT_STATUS		0xd8
-> +
-> +struct bcm63xxx_leds {
-> +	struct device *dev;
-> +	void __iomem *base;
-> +	spinlock_t lock;
-> +};
-> +
-> +struct bcm63xxx_led {
-> +	struct bcm63xxx_leds *leds;
-> +	struct led_classdev cdev;
-> +	u32 pin;
-> +	bool active_low;
-> +};
-> +
-> +/*
-> + * I/O access
-> + */
-> +
-> +static void bcm63xxx_leds_write(struct bcm63xxx_leds *leds, unsigned int reg,
-> +				u32 data)
-> +{
-> +	writel(data, leds->base + reg);
-> +}
-> +
-> +static unsigned long bcm63xxx_leds_read(struct bcm63xxx_leds *leds,
-> +					unsigned int reg)
-> +{
-> +	return readl(leds->base + reg);
-> +}
-> +
-> +static void bcm63xxx_leds_update_bits(struct bcm63xxx_leds *leds,
-> +				      unsigned int reg, u32 mask, u32 val)
-> +{
-> +	WARN_ON(val & ~mask);
-> +
-> +	bcm63xxx_leds_write(leds, reg, (bcm63xxx_leds_read(leds, reg) & ~mask) | (val & mask));
-> +}
-> +
-> +/*
-> + * Helpers
-> + */
-> +
-> +static void bcm63xxx_leds_set_flash_rate(struct bcm63xxx_leds *leds,
-> +					 struct bcm63xxx_led *led,
-> +					 u8 value)
-> +{
-> +	int reg_offset = (led->pin >> 3) * 4;
-
-Maybe add some definitions here, like LEDS_PER_WORD and LED_SHIFT and
-LED_MASK?
-
-[snip]
-
-> +static int bcm63xxx_leds_create_led(struct bcm63xxx_leds *leds, struct device_node *np)
-> +{
-
-You are not checking the return value of this function, make it void?
-
-[snip]
-
-> +static int bcm63xxx_leds_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np = dev_of_node(&pdev->dev);
-> +	struct device *dev = &pdev->dev;
-> +	struct bcm63xxx_leds *leds;
-> +	struct device_node *child;
-> +
-> +	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
-> +	if (!leds)
-> +		return -ENOMEM;
-> +
-> +	leds->dev = dev;
-> +
-> +	leds->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(leds->base))
-> +		return PTR_ERR(leds->base);
-> +
-> +	spin_lock_init(&leds->lock);
-> +
-> +	bcm63xxx_leds_write(leds, BCM63XXX_GLB_CTRL, 0xa);
-
-We would need a define for that:
-
-0x2 -> SERIAL_LED_DATA_PPOL
-0x8 -> SERIAL_LED_EN_POL
-
-> +	bcm63xxx_leds_write(leds, BCM63XXX_BRIGHT_CTRL1, 0x88888888);
-
-Cannot we let the LED subsystem change the default brightness?
--- 
-Florian
-
---0000000000001e859605d167ce64
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-riBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti+w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGj
-QjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5N
-UPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEAS0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigH
-M8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9ubG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmU
-Y/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaMld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V
-14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcy
-a5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/fhO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/
-XzCCBVgwggRAoAMCAQICDHG7gDNoanCGtqaNhjANBgkqhkiG9w0BAQsFADBbMQswCQYDVQQGEwJC
-RTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UEAxMoR2xvYmFsU2lnbiBHQ0MgUjMg
-UGVyc29uYWxTaWduIDIgQ0EgMjAyMDAeFw0yMTAyMjIwNjU3MTBaFw0yMjA5MDUwNzA3MjNaMIGW
-MQswCQYDVQQGEwJJTjESMBAGA1UECBMJS2FybmF0YWthMRIwEAYDVQQHEwlCYW5nYWxvcmUxFjAU
-BgNVBAoTDUJyb2FkY29tIEluYy4xGTAXBgNVBAMTEEZsb3JpYW4gRmFpbmVsbGkxLDAqBgkqhkiG
-9w0BCQEWHWZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-AQ8AMIIBCgKCAQEAu10WSl35INx8Ma97NH54zM3XKzx8Lo/KErWP5HPBtIxzYjBL20TDg9Jmnnbs
-rZjwEVNKY30HiBRJcooDpalBATQpdw3kdYEgojrrXjVz4a+YaWhLbV0OwQ54QAkwKsdYTnuUX0B4
-YLYGuUBDXYkcFWZv5BiAF4L97ClbTnUUCry8bhV9SP8b/tbivOhWUSjHLsQ9gEjuLhVId3Xgs9dA
-TtoyOTJVs6HDth0+/13gxSrB3BwSY4wtw7EPHshswD1fzSV1fZf7QUQedadjH8BMBaKKseIieb6M
-bhjsippX2btWEJOuUFS5RkK5HFFkzcGtIQd+gltZHQHohAcopF+cSwIDAQABo4IB3jCCAdowDgYD
-VR0PAQH/BAQDAgWgMIGjBggrBgEFBQcBAQSBljCBkzBOBggrBgEFBQcwAoZCaHR0cDovL3NlY3Vy
-ZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3J0MEEG
-CCsGAQUFBzABhjVodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWdu
-MmNhMjAyMDBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYmaHR0cHM6Ly93
-d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBJBgNVHR8EQjBAMD6gPKA6
-hjhodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNy
-bDAoBgNVHREEITAfgR1mbG9yaWFuLmZhaW5lbGxpQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggr
-BgEFBQcDBDAfBgNVHSMEGDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIDZLMN77
-IWw6rnhSvGm2V4nv3AowDQYJKoZIhvcNAQELBQADggEBADVdzyh3BQZiABHSdL7LQPNr6/6OQwg7
-65j9Ggyr2Rdl2RnQIifKtGGodVlJ8e9XCYt5rCNU8PriYstIk4jlMJp6SziSN0CLE+A+FujmTqZJ
-X8vEct7sdLXqdlBvR23TLvnkxbS3RwED7FDDTxpIv5j87o78e+wrZOPvDskdrYXVWGUu23xmd2IS
-kYMLAXNeGrVe6HovEKCJPw07+B35iJvwdpZBXiti5hFa3q1L0+K5nGMpceIrj4dOOkSNB2ipHR6H
-Q5HbB0UbWMkRv1PYpxf5eMjyDqxNigsE2JIFa1nk8ckA8hoTKbypCoALjcSuNqdZZyOnMBSKguHJ
-Zz4bBBwxggJtMIICaQIBATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52
-LXNhMTEwLwYDVQQDEyhHbG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgxx
-u4AzaGpwhramjYYwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIEQWPRGXYAgpKw07
-Jnr0jUnovH7wOoIi4DO5RV9+oy7tMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcN
-AQkFMQ8XDTIxMTEyMjIyMDQxM1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZI
-AWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEH
-MAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQAqyBXHaAPqer15uTBzkT4V13lhxUH6nkao
-dqPDa3z8ShMq3+l45hTUOxxUK41pn9ooTvKDN2Q+W561zGgJO1qUVQ+XfyP/2eiBEJYTJFcScIhw
-GveM01lHhBWXYynzEyhtpSdmmdX1IGUQxT04/YjOcugrhvU2SKgt4Ugna+BNTIf+x3At6Cad9+l/
-gV8N6YszEikigNp+KYw0X3e62vCKEcHgD0pw6MUX0yxVBpK5C/uecof4k5mi5cCKrbiuggJ83Z2W
-3uWCTG57erF3NDJJUzMsGoRt3hhPIqWnT0zPbMVZ/TzOcosymgJf/AOqQxiUyx3Ca6EldQ9anRRl
-nj1s
---0000000000001e859605d167ce64--
+Applied, thanks.
