@@ -2,86 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFE4E458C38
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:24:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BD0A458C41
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 11:30:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239046AbhKVK10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 05:27:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46422 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229983AbhKVK1Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 05:27:24 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB27AC061714
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 02:24:17 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id k37so78556016lfv.3
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 02:24:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NlnKYCaiVTlC+mtrTi+BnSPdg787Fabhf2grE4cGhVg=;
-        b=OgWmfhNGtb6Qto7L7mtREOBGCa6VfSMb9t1XoyWeYqarLppiFO0jj/77NYgfG6aSbC
-         OFwphu7ZYT1AnxN/a3aIXUWHAxsh7HkAaXfEE1EFNczPFqnm0n5ht1b6DY7sBM2QJFuZ
-         cP2mW7nrJzXdpOuUFuM/4peLmLgwSTIDDJG7T2nO3YdxGfARvKEACVjJP2xcuQhmTQ1D
-         a2oLoRLKJiho8CDTFVWBXOJ8Xg8Lc6YTCXCqHSFAV/TnRDJ8+PYooQv8j9N3VPyPKdhI
-         EtHD/MKRDu9XIX6WQFiAi5BuV5uXEQjRAXQtJXsxox0jzfi/uyK8xG8K7LZ+YwXyzbN3
-         L6yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=NlnKYCaiVTlC+mtrTi+BnSPdg787Fabhf2grE4cGhVg=;
-        b=dcYi0DrjDavvjbNtdtGHUuN3Lj4+xWNoYjIegXn2Xs73o0L79F1I9ekGn5TeOWdN0y
-         EC8Uaf5YHXNYChnhlG8Lo59hSeq5FNcKwLs9rftOuWJSAv+u46hdI1KoYoMGw3PJer+u
-         JFm8BCb5C0OkTvB9j4bkM434Ythpj6jpMyluRgQ7SPzBMi28G/N5DIndiD77VdQk13F6
-         flnYLwQHgVDZPDVQOATqnWBWWmviaIu1+NIYsVZ6heklAmJ9lhvrUuObryrVtZdPX8nC
-         477/aWCoM+bvR2lcrP5aS9cQmv+u21GCTejRsVW2ly8wRUbp35w9rJrH6ByX2wJ39Rh5
-         6p1Q==
-X-Gm-Message-State: AOAM5311iPKDFIZCtCxreiFnbDK4byA5qzJBAo7iWuPmeNMBe5D7ukBT
-        sVQIuTgnZorU06JyvaQhUHY65g==
-X-Google-Smtp-Source: ABdhPJxAxet09sS6Z7UrpaJdUHYGz6eXBH4R5AcTQwwKI7Jew0AneRXrW7gCxxyXMS/BfN+lSNQWwg==
-X-Received: by 2002:a05:6512:3083:: with SMTP id z3mr54909586lfd.626.1637576656153;
-        Mon, 22 Nov 2021 02:24:16 -0800 (PST)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id y20sm913223lfk.231.2021.11.22.02.24.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Nov 2021 02:24:15 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: Add Freecom system controller
-Date:   Mon, 22 Nov 2021 11:22:10 +0100
-Message-Id: <20211122102210.3137559-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.31.1
+        id S236203AbhKVKdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 05:33:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59794 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236184AbhKVKdx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 05:33:53 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C186660F6B;
+        Mon, 22 Nov 2021 10:30:40 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=hot-poop.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mp6as-0071pT-Gp; Mon, 22 Nov 2021 10:30:38 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kernel-team@android.com, Rob Herring <robh@kernel.org>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] of/irq: Add a quirk for controllers with their own definition of interrupt-map
+Date:   Mon, 22 Nov 2021 10:30:32 +0000
+Message-Id: <20211122103032.517923-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel-team@android.com, robh@kernel.org, john@phrozen.org, biwen.li@nxp.com, chris.brandt@renesas.com, geert+renesas@glider.be
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds a DT binding for the Freecom FSG3 system controller
-found at CS2 in the Freecom FSG3 Intel IXP42x-based router.
+Since 041284181226 ("of/irq: Allow matching of an interrupt-map local
+to an interrupt controller"), a handful of interrupt controllers have
+stopped working correctly. This is due to the DT exposing a non-sensical
+interrupt-map property, and their drivers relying on the kernel ignoring
+this property.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Since we cannot realistically fix this terrible behaviour, add a quirk
+for the limited set of devices that have implemented this monster,
+and document that this is a pretty bad practice.
+
+Cc: Rob Herring <robh@kernel.org>
+Cc: John Crispin <john@phrozen.org>
+Cc: Biwen Li <biwen.li@nxp.com>
+Cc: Chris Brandt <chris.brandt@renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/of/irq.c | 37 +++++++++++++++++++++++++++++++++++--
+ 1 file changed, 35 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index 5de16388a089..b62e1e299d31 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -39,6 +39,7 @@ properties:
-               - allwinner,sun8i-v3s-system-controller
-               - allwinner,sun50i-a64-system-controller
-               - brcm,cru-clkset
-+              - freecom,fsg-cs2-system-controller
-               - hisilicon,dsa-subctrl
-               - hisilicon,hi6220-sramctrl
-               - hisilicon,pcie-sas-subctrl
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index b10f015b2e37..27a5173c813c 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -76,6 +76,36 @@ struct device_node *of_irq_find_parent(struct device_node *child)
+ }
+ EXPORT_SYMBOL_GPL(of_irq_find_parent);
+ 
++/*
++ * These interrupt controllers abuse interrupt-map for unspeakable
++ * reasons and rely on the core code to *ignore* it (the drivers do
++ * their own parsing of the property).
++ *
++ * If you think of adding to the list for something *new*, think
++ * again. There is a high chance that you will be sent back to the
++ * drawing board.
++ */
++static const char * const of_irq_imap_abusers[] = {
++	"CBEA,platform-spider-pic",
++	"sti,platform-spider-pic",
++	"realtek,rtl-intc",
++	"fsl,ls1021a-extirq",
++	"fsl,ls1043a-extirq",
++	"fsl,ls1088a-extirq",
++	"renesas,rza1-irqc",
++};
++
++static bool of_irq_abuses_interrupt_map(struct device_node *np)
++{
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(of_irq_imap_abusers); i++)
++		if (of_device_is_compatible(np, of_irq_imap_abusers[i]))
++			return true;
++
++	return false;
++}
++
+ /**
+  * of_irq_parse_raw - Low level interrupt tree parsing
+  * @addr:	address specifier (start of "reg" property of the device) in be32 format
+@@ -159,12 +189,15 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+ 		/*
+ 		 * Now check if cursor is an interrupt-controller and
+ 		 * if it is then we are done, unless there is an
+-		 * interrupt-map which takes precedence.
++		 * interrupt-map which takes precedence if we're not
++		 * in presence of once of these broken platform that
++		 * want to parse interrupt-map themselves for $reason.
+ 		 */
+ 		bool intc = of_property_read_bool(ipar, "interrupt-controller");
+ 
+ 		imap = of_get_property(ipar, "interrupt-map", &imaplen);
+-		if (imap == NULL && intc) {
++		if (intc && (imap == NULL ||
++			     (imap && of_irq_abuses_interrupt_map(ipar)))) {
+ 			pr_debug(" -> got it !\n");
+ 			return 0;
+ 		}
 -- 
-2.31.1
+2.30.2
 
