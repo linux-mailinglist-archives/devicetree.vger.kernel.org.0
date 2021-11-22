@@ -2,223 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA00E45906B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 15:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6575645909A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 15:53:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233247AbhKVOpU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 09:45:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48890 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239255AbhKVOpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 09:45:17 -0500
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50CC5C06173E
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 06:42:10 -0800 (PST)
-Received: by mail-lf1-x133.google.com with SMTP id c32so81932262lfv.4
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 06:42:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JY9o9Qw6OAmM2h7GF5DXcC1VsO28vOcpSP4iXZPByYc=;
-        b=UHDbtxGzA/5hiFwXBixij0WHcZACiUNY6U5OUIqC4pMhb/7nls3bOLzuU9mPEAQ7h/
-         iV6nS/1dxSQSdCk1k9VNfjLBjJnAJ4dFpmMcBVlzybOuJqOZPXdQ8HKbILGAtAPCv+oU
-         khBui81vf01KJaujHuCNxJ679lrQJ3bzRq3uxOjimkOIt6t+rFc+BjmGN+X5Avkg3JxD
-         yodg2ybtR2ixMT2O+OdCuWsnDhM4phmWc5cDVhskI5HRFAWe4pjIBUTU5IorGkXY8ZMp
-         sh5qyVjwD70a+DOcNGb0m9ek3IeXUPEFHu9nS2QtFZkTIv+3SF08AFXm8rgZou6T4EBu
-         Pr1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JY9o9Qw6OAmM2h7GF5DXcC1VsO28vOcpSP4iXZPByYc=;
-        b=Qehi6rZzKw9IXATvmvg0Ezivapn6geSTZDos0AbuiiVwEVFurLnr414nkY1UzPkMuM
-         hZqDEc9FT7RC9jB941LPrfL2t+3cMZ2EcKCMtCMcmf0VvsZppkFCuFenKQEiXz23tkZ7
-         7wI4VO8mimC5z+u1P66s/tK7QoP13n7/i1ndOb731W/iiZs9ltKnKzJ7kaMiWvGuB4HJ
-         0pfthndRFPeExypLJuy0npQgjpL1L1fTvATRx7afLkXm62+wr2QMswhfo5ASEcDiHyAH
-         +/m48XZe1NQHyTmHVWd3b8Dqot0blbZe/xFqxfT2dyF3LqlaFfENrsgUrUd8yFjFIfZc
-         bHSQ==
-X-Gm-Message-State: AOAM533PD/3g8nrxIBwjp3GMFfJYno9/IswW4E9butVNxJ42C25nfbJX
-        n+SL3cE8VXrIxG/Bmkw8e1+jIg==
-X-Google-Smtp-Source: ABdhPJxMdHB47e9WyBvRhkaCVvTJFHk1GZPxZIy4C6Igcqz3WurfOJOB7T0ZdbmuMdgykSdyQR7Pbg==
-X-Received: by 2002:a2e:b7d4:: with SMTP id p20mr51346402ljo.248.1637592128216;
-        Mon, 22 Nov 2021 06:42:08 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id f9sm614684lfu.10.2021.11.22.06.42.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Nov 2021 06:42:07 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
+        id S239817AbhKVO4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 09:56:55 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:54507 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238762AbhKVO4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 09:56:55 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id BFFDB5C0221;
+        Mon, 22 Nov 2021 09:53:47 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 22 Nov 2021 09:53:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=m
+        vUrGpuD+JbSX9Ep04tSMhLcVf+WU9pfKE8IAeg6MKQ=; b=luveJAbTxz6poeVdg
+        Qs/OzwsCwT/7VahsK7wR9TuAL2cRsb6xRM1gIG1u7EJK+RmU2XWEs0oatLDsSARq
+        pf+My71lFPHGfQq8XfjcPqQEy0gxvuooPbXSfhyQtZlBXB5T8iD25MLQHsIiWzvd
+        vnGKCBsf2ewurKWxKGxUyRMJWX0c6JzvIeIhq+lAGNWAaeGEP1+x7oJm8hOM7zfu
+        jQJNf0k895nfM3wBQAg6/H85hTHe5biHi4QlhjpF2zz0gORuBCSta6zfdLoW/BwR
+        5d5RCkZrwpYUp6S5wIcV62MLC9YEnCy40pjJPAYW6ydy6OYFBC2V+53Jl5jdW00K
+        zy+HA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=mvUrGpuD+JbSX9Ep04tSMhLcVf+WU9pfKE8IAeg6M
+        KQ=; b=g1JOPgcV+XpOKoo7+WvZsgTZgHeeFj14CPcU05M0uupjT9V14INgcd01j
+        29AfAFAy3gQ9sVBAfEQgdXw/5uh+G802nVIs7kYcTlD446ByF8RELst4GAkjnDuL
+        Y3Nf+vyX8PUm9thep2jezO1ZtYMISsCvLuQ+v4t5N5xnCOZJCFNgrkcos56mKXQY
+        2smsQCeNYenlrML0L8MGoikZlLUa1HtF9h0mYtuqTiSV2Q8tyumLGQ6lkHFcKqyC
+        5e3vcKUnup9WmF8QVMUYS/VCoJrvhqFxlWnmk31nTaDr1BSFHulAug4uJInNx1tL
+        U4UioA+6c5DPKlsPy2Y43G2fHmZqg==
+X-ME-Sender: <xms:-66bYVmtZEETkmw9fW-dHEeY5UAMv4xmWq-r6jkOnnswg5RjAaP8Cw>
+    <xme:-66bYQ3hnY99qDXazpt2q_zPJ3VP8tbykhb0GguGsCC1_Am8fXXcnS61Th5P2gHT7
+    noENcN1HpMHj3k6piU>
+X-ME-Received: <xmr:-66bYbrYxrPf83jtCJaFOf0bgFOwZULCVJLRywSCs6mGDy1uBq5WleVoXiE-D9bo5EvQRF5-yxAurlHVjI9rz-E6Ns7qdIRjnZ8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeggdejudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepgfegvdelgfeuveevueekvedtjefguddvveffhedukeejjeejgfejfedtvdei
+    tdegnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdr
+    thgvtghh
+X-ME-Proxy: <xmx:-66bYVnPvI7i9YoWGnsfl5aVRWigpvfO7TtOnjjMe97iIrpVxIWHHw>
+    <xmx:-66bYT0D_viI41YWh53foMMi-L1Pf_rxXUV-ngBiSqWlwIeCvsbzGw>
+    <xmx:-66bYUvLMp6ZvXCVFZT19XAKYOApm0K64nraDoHpIZMNu4w3VIqTPw>
+    <xmx:-66bYYnIJX--m9k2kpWNwTtszsh_sbZKj1QlqJe8TJ7eyqCRd0fFHg>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 22 Nov 2021 09:53:46 -0500 (EST)
+Date:   Mon, 22 Nov 2021 15:53:44 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     David Virag <virag.david003@gmail.com>,
-        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 1/1] clk: samsung: exynos850: Register clocks early
-Date:   Mon, 22 Nov 2021 16:42:06 +0200
-Message-Id: <20211122144206.23134-1-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] dt-bindings: display: Turn lvds.yaml into a generic
+ schema
+Message-ID: <20211122145344.47lnihd7hfbo45ne@gilmour>
+References: <20211116143503.385807-1-maxime@cerno.tech>
+ <YZgpSWVXjKr9secH@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YZgpSWVXjKr9secH@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some clocks must be registered before init calls. For example MCT clock
-(from CMU_PERI) is needed for MCT timer driver, which is registered
-with TIMER_OF_DECLARE(). By the time we get to core_initcall() used for
-clk-exynos850 platform driver init, it's already too late. Inability to
-get "mct" clock in MCT driver leads to kernel panic, as functions
-registered with *_OF_DECLARE() can't do deferred calls. MCT timer driver
-can't be fixed either, as it's acting as a clock source and it's
-essential to register it in start_kernel() -> time_init().
+Hi,
 
-Let's register CMU_PERI clocks early, using CLK_OF_DECLARE(). CMU_TOP
-generates clocks needed for CMU_PERI, but it's already registered early.
+On Sat, Nov 20, 2021 at 12:46:33AM +0200, Laurent Pinchart wrote:
+> On Tue, Nov 16, 2021 at 03:35:02PM +0100, Maxime Ripard wrote:
+> > The lvds.yaml file so far was both defining the generic LVDS properties
+> > (such as data-mapping) that could be used for any LVDS sink, but also
+> > the panel-lvds binding.
+> >=20
+> > That last binding was to describe LVDS panels simple enough, and had a
+> > number of other bindings using it as a base to specialise it further.
+> >=20
+> > However, this situation makes it fairly hard to extend and reuse both
+> > the generic parts, and the panel-lvds itself.
+> >=20
+> > Let's remove the panel-lvds parts and leave only the generic LVDS
+> > properties.
+> >=20
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >  .../display/panel/advantech,idk-1110wr.yaml   | 17 ++++++++++-
+> >  .../display/panel/innolux,ee101ia-01d.yaml    | 21 +++++++++++++-
+> >  .../bindings/display/panel/lvds.yaml          | 29 +------------------
+> >  .../display/panel/mitsubishi,aa104xd12.yaml   | 17 ++++++++++-
+> >  .../display/panel/mitsubishi,aa121td01.yaml   | 17 ++++++++++-
+> >  .../display/panel/sgd,gktw70sdae4se.yaml      | 17 ++++++++++-
+> >  6 files changed, 85 insertions(+), 33 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/display/panel/advantech,=
+idk-1110wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech=
+,idk-1110wr.yaml
+> > index 93878c2cd370..f27cd2038636 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/advantech,idk-111=
+0wr.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-111=
+0wr.yaml
+> > @@ -11,13 +11,23 @@ maintainers:
+> >    - Thierry Reding <thierry.reding@gmail.com>
+> > =20
+> >  allOf:
+> > +  - $ref: panel-common.yaml#
+> >    - $ref: lvds.yaml#
+> > =20
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: advantech,idk-1110wr
+> > +
+> > +  required:
+> > +    - compatible
+>=20
+> I've never encountered this before, what does it do ?
 
-While at it, let's cleanup the code a bit, by extracting everything
-related to CMU initialization and registration to the separate function.
+select dictates if the schema is applied to a node or not.
 
-Similar issue was discussed at [1] and addressed in commit 1f7db7bbf031
-("clk: renesas: cpg-mssr: Add early clock support"), as well as in
-drivers/clk/mediatek/clk-mt2712.c.
+It takes a schema, and if this schema is valid, the rest of the schema
+will be applied to the current node.
 
-[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20180829132954.64862-2-chris.brandt@renesas.com/
+It's mostly unused in the kernel because the dt-validate tool will add a
+select clause from the compatible list in most case that would expand in
+this case to:
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
-Changes in v2:
-  - Use of_clk_get_by_name() API to get parent clock when registering
-    CMU early (as suggested by Sylwester Nawrocki)
-  - Extracted CMU registration code to separate routine
-  - Use CLK_OF_DECLARE() for CMU_PERI init, instead of
-    CLK_OF_DECLARE_DRIVER(), as parent clock now can be enabled early
-  - Remove "samsung,exynos850-cmu-peri" from exynos850_cmu_of_match[]
-  - Add some comments for early domains
+select:
+  properties:
+    contains:
+      enum:
+        - advantech,idk-1110wr
+	- panel-lvds
 
- drivers/clk/samsung/clk-exynos850.c | 70 ++++++++++++++++++++---------
- 1 file changed, 49 insertions(+), 21 deletions(-)
+  required:
+    - compatible
 
-diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-index 04a8d202c939..568ac97c8120 100644
---- a/drivers/clk/samsung/clk-exynos850.c
-+++ b/drivers/clk/samsung/clk-exynos850.c
-@@ -60,6 +60,43 @@ static void __init exynos850_init_clocks(struct device_node *np,
- 	iounmap(reg_base);
- }
- 
-+/**
-+ * exynos850_register_cmu - Register specified Exynos850 CMU domain
-+ * @dev:	Device object; may be NULL if this function is not being
-+ *		called from platform driver probe function
-+ * @np:		CMU device tree node
-+ * @cmu:	CMU data
-+ *
-+ * Register specified CMU domain, which includes next steps:
-+ *
-+ * 1. Enable parent clock of @cmu CMU
-+ * 2. Set initial registers configuration for @cmu CMU clocks
-+ * 3. Register @cmu CMU clocks using Samsung clock framework API
-+ */
-+static void __init exynos850_register_cmu(struct device *dev,
-+		struct device_node *np, const struct samsung_cmu_info *cmu)
-+{
-+	/* Keep CMU parent clock running (needed for CMU registers access) */
-+	if (cmu->clk_name) {
-+		struct clk *parent_clk;
-+
-+		if (dev)
-+			parent_clk = clk_get(dev, cmu->clk_name);
-+		else
-+			parent_clk = of_clk_get_by_name(np, cmu->clk_name);
-+
-+		if (IS_ERR(parent_clk)) {
-+			pr_err("%s: could not find bus clock %s; err = %ld\n",
-+			       __func__, cmu->clk_name, PTR_ERR(parent_clk));
-+		} else {
-+			clk_prepare_enable(parent_clk);
-+		}
-+	}
-+
-+	exynos850_init_clocks(np, cmu->clk_regs, cmu->nr_clk_regs);
-+	samsung_cmu_register_one(np, cmu);
-+}
-+
- /* ---- CMU_TOP ------------------------------------------------------------- */
- 
- /* Register Offset definitions for CMU_TOP (0x120e0000) */
-@@ -367,10 +404,10 @@ static const struct samsung_cmu_info top_cmu_info __initconst = {
- 
- static void __init exynos850_cmu_top_init(struct device_node *np)
- {
--	exynos850_init_clocks(np, top_clk_regs, ARRAY_SIZE(top_clk_regs));
--	samsung_cmu_register_one(np, &top_cmu_info);
-+	exynos850_register_cmu(NULL, np, &top_cmu_info);
- }
- 
-+/* Register CMU_TOP early, as it's a dependency for other early domains */
- CLK_OF_DECLARE(exynos850_cmu_top, "samsung,exynos850-cmu-top",
- 	       exynos850_cmu_top_init);
- 
-@@ -853,6 +890,15 @@ static const struct samsung_cmu_info peri_cmu_info __initconst = {
- 	.clk_name		= "dout_peri_bus",
- };
- 
-+static void __init exynos850_cmu_peri_init(struct device_node *np)
-+{
-+	exynos850_register_cmu(NULL, np, &peri_cmu_info);
-+}
-+
-+/* Register CMU_PERI early, as it's needed for MCT timer */
-+CLK_OF_DECLARE(exynos850_cmu_peri, "samsung,exynos850-cmu-peri",
-+	       exynos850_cmu_peri_init);
-+
- /* ---- CMU_CORE ------------------------------------------------------------ */
- 
- /* Register Offset definitions for CMU_CORE (0x12000000) */
-@@ -1021,24 +1067,9 @@ static int __init exynos850_cmu_probe(struct platform_device *pdev)
- {
- 	const struct samsung_cmu_info *info;
- 	struct device *dev = &pdev->dev;
--	struct device_node *np = dev->of_node;
- 
- 	info = of_device_get_match_data(dev);
--	exynos850_init_clocks(np, info->clk_regs, info->nr_clk_regs);
--	samsung_cmu_register_one(np, info);
--
--	/* Keep bus clock running, so it's possible to access CMU registers */
--	if (info->clk_name) {
--		struct clk *bus_clk;
--
--		bus_clk = clk_get(dev, info->clk_name);
--		if (IS_ERR(bus_clk)) {
--			pr_err("%s: could not find bus clock %s; err = %ld\n",
--			       __func__, info->clk_name, PTR_ERR(bus_clk));
--		} else {
--			clk_prepare_enable(bus_clk);
--		}
--	}
-+	exynos850_register_cmu(dev, dev->of_node, info);
- 
- 	return 0;
- }
-@@ -1053,9 +1084,6 @@ static const struct of_device_id exynos850_cmu_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos850-cmu-hsi",
- 		.data = &hsi_cmu_info,
--	}, {
--		.compatible = "samsung,exynos850-cmu-peri",
--		.data = &peri_cmu_info,
- 	}, {
- 		.compatible = "samsung,exynos850-cmu-core",
- 		.data = &core_cmu_info,
--- 
-2.30.2
+ie, it tries to validate with this schema any node that has either the
+panel compatible or the generic compatible.
 
+That means we would have that schema applied to all the nodes that have
+panel-lvds, including the ones with a different compatible than the
+advantech one.
+
+With this clause, we make sure that we ignore the other panels, while
+ensuring that the compatible list for the advantech compatible is
+correct.
+
+> > +
+> >  properties:
+> >    compatible:
+> >      items:
+> >        - const: advantech,idk-1110wr
+> > -      - {} # panel-lvds, but not listed here to avoid false select
+> > +      - const: panel-lvds
+> > =20
+> >    data-mapping:
+> >      const: jeida-24
+> > @@ -35,6 +45,11 @@ additionalProperties: false
+> > =20
+> >  required:
+> >    - compatible
+> > +  - data-mapping
+> > +  - width-mm
+> > +  - height-mm
+> > +  - panel-timing
+> > +  - port
+> > =20
+> >  examples:
+> >    - |+
+> > diff --git a/Documentation/devicetree/bindings/display/panel/innolux,ee=
+101ia-01d.yaml b/Documentation/devicetree/bindings/display/panel/innolux,ee=
+101ia-01d.yaml
+> > index a69681e724cb..6e06eecac14e 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-0=
+1d.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/innolux,ee101ia-0=
+1d.yaml
+> > @@ -11,15 +11,26 @@ maintainers:
+> >    - Thierry Reding <thierry.reding@gmail.com>
+> > =20
+> >  allOf:
+> > +  - $ref: panel-common.yaml#
+> >    - $ref: lvds.yaml#
+> > =20
+> > +select:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        const: innolux,ee101ia-01d
+> > +
+> > +  required:
+> > +    - compatible
+> > +
+> >  properties:
+> >    compatible:
+> >      items:
+> >        - const: innolux,ee101ia-01d
+> > -      - {} # panel-lvds, but not listed here to avoid false select
+> > +      - const: panel-lvds
+> > =20
+> >    backlight: true
+> > +  data-mapping: true
+> >    enable-gpios: true
+> >    power-supply: true
+> >    width-mm: true
+> > @@ -27,5 +38,13 @@ properties:
+> >    panel-timing: true
+> >    port: true
+> > =20
+> > +required:
+> > +  - compatible
+> > +  - data-mapping
+> > +  - width-mm
+> > +  - height-mm
+> > +  - panel-timing
+> > +  - port
+> > +
+> >  additionalProperties: false
+> >  ...
+> > diff --git a/Documentation/devicetree/bindings/display/panel/lvds.yaml =
+b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> > index 49460c9dceea..5281a75c8bb5 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/lvds.yaml
+> > @@ -4,7 +4,7 @@
+> >  $id: http://devicetree.org/schemas/display/panel/lvds.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> > =20
+> > -title: LVDS Display Panel
+> > +title: LVDS Display Common Properties
+>=20
+> Maybe
+>=20
+> title: LVDS Display Panel Common Properties
+>=20
+> or do you foresee this being useful for non-panel LBDS sinks too ? In
+> that case the title is fine, but the file could be moved in the parent
+> directory.
+>=20
+> I'm also wondering what we should do with the data-mapping and
+> data-mirror properties. For an LVDS panel they're fine at the device
+> level, but for an LVDS sink, they may be better placed at the port or
+> endpoint level.
+
+That was my intent, but it might not be relevant indeed. Honestly at
+this point I just want to have the tbs,a711-panel compatible documented
+somewhere :)
+
+Maxime
