@@ -2,156 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BCDED458FA1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 14:44:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E055F458FA6
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 14:44:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233056AbhKVNrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 08:47:12 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59200 "EHLO
+        id S237430AbhKVNr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 08:47:59 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59490 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239559AbhKVNpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 08:45:44 -0500
+        with ESMTP id S230322AbhKVNr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 08:47:59 -0500
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AMDgWbl101506;
-        Mon, 22 Nov 2021 07:42:32 -0600
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AMDifip101911;
+        Mon, 22 Nov 2021 07:44:41 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637588552;
-        bh=gwmy1g7upSs451Tvms0rbChOLQpMToAcL1SFZbrXNh0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=VrGtK/6MjhvEpbcleg11dFmPK7mavHfGboSMjVuxhGs0cl4Cpb6Q6vhVYD0wvlmom
-         mve3xuRFO54BdDlSZDa3r+JfsvFBAsXaK52cRbHbGpTKJMO7P3e8OLUjtq1M5ludNU
-         KrStlsJoDQL1cXNC0qEUIYSHbsM9NNWld/0E3bSI=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AMDgWI7050757
+        s=ti-com-17Q1; t=1637588681;
+        bh=4aEDuUEwwhUks1YMR682x5k41bzpSbH1JYgjk2P31Dw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=WYnW3qAUdQPcffmBypxU+4/ypn5NPYrEzdwzzecNs75Ba6t4a8+9bYPlcFFgnhtIn
+         g0zwwaNJx5dU8HIfPnJzXJ/h+4p0Np4/KDetfuf1f5Z+Kg2HZOlRidBi9gX5ffBOGi
+         VW4FF41anIgnK6+kLeRATj4u0yh+AbT5dcgQGN1A=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AMDifb3053455
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Nov 2021 07:42:32 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 22 Nov 2021 07:44:41 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 22
- Nov 2021 07:42:32 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2021 07:44:41 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 22 Nov 2021 07:42:32 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AMDg04x023508;
-        Mon, 22 Nov 2021 07:42:29 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+ Frontend Transport; Mon, 22 Nov 2021 07:44:41 -0600
+Received: from [10.250.233.118] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AMDibMa029183;
+        Mon, 22 Nov 2021 07:44:37 -0600
+Subject: Re: [PATCH RFC v2 4/4] phy: phy-can-transceiver: Add support for
+ setting mux
+To:     Aswath Govindraju <a-govindraju@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Peter Rosin <peda@axentia.se>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v5 6/6] arm64: dts: ti: k3-am642-evm/sk: Add support for main domain mcan nodes in EVM and disable them on SK
-Date:   Mon, 22 Nov 2021 19:11:58 +0530
-Message-ID: <20211122134159.29936-7-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211122134159.29936-1-a-govindraju@ti.com>
-References: <20211122134159.29936-1-a-govindraju@ti.com>
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20211122125624.6431-1-a-govindraju@ti.com>
+ <20211122125624.6431-5-a-govindraju@ti.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <cc28796e-2ebc-4aad-ffc2-4fe570b269db@ti.com>
+Date:   Mon, 22 Nov 2021 19:14:36 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20211122125624.6431-5-a-govindraju@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AM642 EVM has two CAN connecters brought out from the two MCAN instances in
-the main domain through transceivers. Add device tree nodes for
-transceivers and set the required properties in the mcan device tree nodes,
-in EVM device tree file.
+Hi Aswath,
 
-On AM642 SK there are no connectors brought out for CAN. Therefore, disable
-the mcan device tree nodes in the SK device tree file.
+On 22/11/21 6:26 pm, Aswath Govindraju wrote:
+> On some boards, for routing CAN signals from controller to transceiver,
+> muxes might need to be set. Therefore, add support for setting the mux by
+> reading the mux-controls property from the device tree node.
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  drivers/phy/phy-can-transceiver.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
+> index 6f3fe37dee0e..15056b9d68ba 100644
+> --- a/drivers/phy/phy-can-transceiver.c
+> +++ b/drivers/phy/phy-can-transceiver.c
+> @@ -10,6 +10,7 @@
+>  #include<linux/module.h>
+>  #include<linux/gpio.h>
+>  #include<linux/gpio/consumer.h>
+> +#include <linux/mux/consumer.h>
+>  
+>  struct can_transceiver_data {
+>  	u32 flags;
+> @@ -21,13 +22,23 @@ struct can_transceiver_phy {
+>  	struct phy *generic_phy;
+>  	struct gpio_desc *standby_gpio;
+>  	struct gpio_desc *enable_gpio;
+> +	struct mux_control *mux_ctrl;
+>  };
+>  
+>  /* Power on function */
+>  static int can_transceiver_phy_power_on(struct phy *phy)
+>  {
+> +	int ret;
+>  	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
+>  
+> +	if (can_transceiver_phy->mux_ctrl) {
+> +		ret = mux_control_select(can_transceiver_phy->mux_ctrl,
+> +					 mux_control_enable_state(can_transceiver_phy->mux_ctrl));
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 40 +++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-sk.dts  |  8 +++++
- 2 files changed, 48 insertions(+)
+Would need 'select MULTIPLEXER' in Kconfig.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 6726c4c7c28c..e94ae178b1ae 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -184,6 +184,20 @@
- 			};
- 		};
- 	};
-+
-+	transceiver1: can-phy0 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp1 8 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	transceiver2: can-phy1 {
-+		compatible = "ti,tcan1042";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		standby-gpios = <&exp1 9 GPIO_ACTIVE_HIGH>;
-+	};
- };
- 
- &main_pmx0 {
-@@ -294,6 +308,20 @@
- 			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
- 		>;
- 	};
-+
-+	main_mcan0_pins_default: main-mcan0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0254, PIN_INPUT, 0) /* (B17) MCAN0_RX */
-+			AM64X_IOPAD(0x0250, PIN_OUTPUT, 0) /* (A17) MCAN0_TX */
-+		>;
-+	};
-+
-+	main_mcan1_pins_default: main-mcan1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x025c, PIN_INPUT, 0) /* (D17) MCAN1_RX */
-+			AM64X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (C17) MCAN1_TX */
-+		>;
-+	};
- };
- 
- &main_uart0 {
-@@ -638,3 +666,15 @@
- &icssg1_mdio {
- 	status = "disabled";
- };
-+
-+&main_mcan0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan0_pins_default>;
-+	phys = <&transceiver1>;
-+};
-+
-+&main_mcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_mcan1_pins_default>;
-+	phys = <&transceiver2>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-index 6b04745147be..a9785bec12df 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
-@@ -525,3 +525,11 @@
- &icssg1_mdio {
- 	status = "disabled";
- };
-+
-+&main_mcan0 {
-+	status = "disabled";
-+};
-+
-+&main_mcan1 {
-+	status = "disabled";
-+};
--- 
-2.17.1
-
+Thanks,
+Kishon
+> +		if (ret) {
+> +			dev_err(&phy->dev, "Failed to select CAN mux: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+>  	if (can_transceiver_phy->standby_gpio)
+>  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
+>  	if (can_transceiver_phy->enable_gpio)
+> @@ -45,6 +56,8 @@ static int can_transceiver_phy_power_off(struct phy *phy)
+>  		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
+>  	if (can_transceiver_phy->enable_gpio)
+>  		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
+> +	if (can_transceiver_phy->mux_ctrl)
+> +		mux_control_deselect(can_transceiver_phy->mux_ctrl);
+>  
+>  	return 0;
+>  }
+> @@ -95,6 +108,19 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
+>  	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
+>  	drvdata = match->data;
+>  
+> +	if (of_property_read_bool(dev->of_node, "mux-controls")) {
+> +		struct mux_control *control;
+> +		int ret;
+> +
+> +		control = devm_mux_control_get(dev, NULL);
+> +		if (IS_ERR(control)) {
+> +			ret = PTR_ERR(control);
+> +			dev_err_probe(&pdev->dev, ret, "failed to get mux\n");
+> +			return PTR_ERR(control);
+> +		}
+> +		can_transceiver_phy->mux_ctrl = control;
+> +	}
+> +
+>  	phy = devm_phy_create(dev, dev->of_node,
+>  			      &can_transceiver_phy_ops);
+>  	if (IS_ERR(phy)) {
+> 
