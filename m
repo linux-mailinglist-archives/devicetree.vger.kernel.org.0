@@ -2,242 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92705459316
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:31:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDFCE459301
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:29:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240282AbhKVQe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 11:34:58 -0500
-Received: from uho.ysoft.cz ([81.19.3.130]:39740 "EHLO uho.ysoft.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240278AbhKVQe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 11:34:56 -0500
-Received: from vokac-Latitude-7410.ysoft.local (unknown [10.0.29.92])
-        by uho.ysoft.cz (Postfix) with ESMTP id 0A282A8BE7;
-        Mon, 22 Nov 2021 17:26:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1637598393;
-        bh=h3L3yz0u9AF8xOpPtOAkT6BALAtDnhQo4wc/zCFulFE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fyLAl4Cy3OHKYmYrdBaslhCtnuzWVs3504lOiioWkCfEH9MlakylvnEEM6BEheRKQ
-         tneSb7bjE8M6cB4JaICF7KSTkp+/w+sF0JxRK5FPz5pGhf8BXlVhrnj/sHOva4j9WR
-         rv6d/d1+BEKeg632ufMINoMw0rU8Elbir2c21Sxw=
-From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
+        id S240246AbhKVQc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 11:32:29 -0500
+Received: from mail-vi1eur05on2084.outbound.protection.outlook.com ([40.107.21.84]:37665
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S239597AbhKVQc3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 11:32:29 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f1DN9P70UuHxpKPfQbYndCrznoUDbLuQUoNBGeKjT6Xux6DXbnQUh1QKRDibbhbTHKqlqJcWWqwGR97jpbweW/MpCIFv2cEQZpjltLnsyorX+FIn+SbqXngh2IyIa0m75MeMXM7/IJwwP2eW7Y2TFLAjaUsQ6yBR79ZrsWg4OPyJv/CWCQJOi3PNN/wd1bf9NRhpv2RKmJ88n7mj8Ig85T5aelaaKpNNlZnXh4i6M1NM4/aw21+vzhQW46x21gk0u03xkTQ+0V501KZRSrgaQYrnWxIKMPsVIHPYpEydMQgSR9eUrLosW2UGy6BA1uhirEypyaRjZ/bazJqa7x9dKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eoL3CQJWTOcfVexwhtBZVMLUIsslue+cd2XrKW/mdfg=;
+ b=e8nBnFEm14qOfyF9Wq3GC/W/ya6nI5RWJrq2pEQ1hNzkLeF+7Fz6jdZ3qWYtZVP++rzgVV1XB0e/p1kWcUBlhzkctlpyPjSxshFFYRB4ogb4uqEjkBnX5PsTKK3A8K2NIZno38PnYDbWz6xmp5cY4F0K7kTl5tgIWVIFIsa27ItcQDgOauENv5AUbdDI8nMmXum0cg2xoEDlzKrJuTVL5t3GnA1D1KWRaIFxfmnHOrxlt6ZkdAqIRBKXuJ4c4NZWZbyQaudNxPDdAC0TT9BJw4t5Bjz5aCgELInvGcXcXv29Yk3oi25peHxKDBcL45FfPpIbGdnFtfEG+7Nzq8k21w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eoL3CQJWTOcfVexwhtBZVMLUIsslue+cd2XrKW/mdfg=;
+ b=LS03lNDi9hcfl28yI0EPWgcEjxikAaDVvySQCYw1KHBI+RbYGwxupnI1TuMLQb7kqwjyvcFqVWtCNHm9IXu2tUqFBQyNQq1b9KMPbO9/D546PmStA5UjAnGow99xC1gYrLNT39WqNwWONWr691wd5umjCLic0vJe0sZcT0/eF2I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com (2603:10a6:803:6a::30)
+ by VI1PR04MB4912.eurprd04.prod.outlook.com (2603:10a6:803:5b::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22; Mon, 22 Nov
+ 2021 16:29:19 +0000
+Received: from VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::d0eb:49aa:2a9:9fc4]) by VI1PR04MB4688.eurprd04.prod.outlook.com
+ ([fe80::d0eb:49aa:2a9:9fc4%4]) with mapi id 15.20.4713.025; Mon, 22 Nov 2021
+ 16:29:19 +0000
+Date:   Mon, 22 Nov 2021 18:29:16 +0200
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
-Subject: [PATCH 2/2] ARM: dts: imx6dl-yapp4: Add Y Soft IOTA Crux/Crux+ board
-Date:   Mon, 22 Nov 2021 17:25:20 +0100
-Message-Id: <20211122162520.90211-2-michal.vokac@ysoft.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211122162520.90211-1-michal.vokac@ysoft.com>
-References: <20211122162520.90211-1-michal.vokac@ysoft.com>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 12/12] dt-bindings: serial: fsl-lpuart: Add i.MX8DXL
+ compatible
+Message-ID: <YZvFXBhZT68Nj6Uj@ryzen>
+References: <1636566415-22750-1-git-send-email-abel.vesa@nxp.com>
+ <1636566415-22750-13-git-send-email-abel.vesa@nxp.com>
+ <YZb4BClv4fXU65yz@robh.at.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YZb4BClv4fXU65yz@robh.at.kernel.org>
+X-ClientProxiedBy: VI1PR04CA0108.eurprd04.prod.outlook.com
+ (2603:10a6:803:64::43) To VI1PR04MB4688.eurprd04.prod.outlook.com
+ (2603:10a6:803:6a::30)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Received: from ryzen (5.12.226.136) by VI1PR04CA0108.eurprd04.prod.outlook.com (2603:10a6:803:64::43) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19 via Frontend Transport; Mon, 22 Nov 2021 16:29:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 498298c2-d2e0-4399-fc1d-08d9add53b5f
+X-MS-TrafficTypeDiagnostic: VI1PR04MB4912:
+X-Microsoft-Antispam-PRVS: <VI1PR04MB4912D118A70962B2FD88A556F69F9@VI1PR04MB4912.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XYqUtOWjCwYyK/oQxegbEAIG+CSGpR208KkTqBL8UpUOOq1Aakt0M5GfMsp+K3KRVqhWhBwFPLvCA/Ge3xjpen7wLGZqhlOfOt7+RVQ86zx6TMe36Z4OzW1YTi7NRAlcyAfAmXbYLuHWK2mVJCqCnzBMsgfiQE1FfNX+HuCvbR8F5HS7DaQZATT2JelF1tJBGOrKhOiumMmfjwjjsPlJVkZlFylpTgGsMGqsDllL//GrDConBx+m3SNSOJEn1pXQtNv+jDNegSDbZ+KmTjYR0uUy7/HtswZnFghYUg5RqujsrGJxwprEDQo5OkX4vdVS8PAOiNS+l9gxBgPNSqiA6WClATdEXjJABfct5ccyeczvz0Q7VMbDsbJKJMhLwxXhboYWCerVjfciCMhgCTrh7bEfJF0UqRTSCWpdpyHXlSpd5IOWSeOdAFuZrA63O3cH1jSzcn4KtYDfJunQBX1NDirh+yAejY10nbEpLUYecQN+BYqLdZ9DsmaPs+aOU4zPp2TbryamgUQRY47hhx8lbJSVGeZoeSvNq+XE8HN9jaI8GCBofncTDd2yBZUZyCmFqwG2JOXqygMxlazOVrJjbZ5N7Fht/SzSvTv0KoUmVsmDPyySUNst6yywqglQej+IX/8Jsjys7Dlm2+bS41k6jW3ewVdI0/zdPWDsPjKCi/4vkkJy7J00JGAW725V8rgOvTM+B7TBQJ6sh30LLgqZtTZBYZ//x7UEc35kN5gGpM8hq9/7hJKjUxS8l7cKCbIKX3v0lCNL55fMd7XnOxNMCSyKoZkmF2Z5oLR++vx2eW4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB4688.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(508600001)(38100700002)(8676002)(66476007)(66556008)(33716001)(8936002)(5660300002)(966005)(54906003)(7416002)(53546011)(44832011)(66946007)(86362001)(6496006)(52116002)(956004)(26005)(83380400001)(9576002)(55016002)(186003)(316002)(4326008)(9686003)(38350700002)(6916009)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ah9GBOBL2UF41/01k1yo0+w5YNwp7EuIk0a5DCZchec7YD0pvEiJHxji/PHU?=
+ =?us-ascii?Q?c1/sFHzWq1MJ9vSokHM8ODBWpVw4EucwjlhxpgaWc5yiF40Kz2qDUEJYcjkn?=
+ =?us-ascii?Q?mAgL7c9bIGNfLEDeS/38v34sGy04j5EQk4AfPoJaLyRwfQiWRo4HXcTs4UJv?=
+ =?us-ascii?Q?6u7ZV/XMCB3ZQAaWfdwNZ57Frv3X0V2QZCtLgK2rjZaXilb2xJ43cBMTlh7B?=
+ =?us-ascii?Q?OE1jlIVM38fo8qGWG+N/n6DPmHD8UEZmzFiyEQUctqth8z8nt1Cnccb56ATl?=
+ =?us-ascii?Q?fWzyAkCb9vOd8qmBSFuG+GUOTNS6OvVjU7sLvJ1Gv+iYFraF59CbZZLl5R77?=
+ =?us-ascii?Q?KsfqxUxB7BVVPHfvbSVOUc5lf98AiVJG2atbc34xIPNI2QPGx8M8fy0HRICI?=
+ =?us-ascii?Q?GuLnmtm+/KfLXPbSp0FJ6ShkOwe8Wc+XICBT6U/tMwi8e3ZyQqGuwJqznSNz?=
+ =?us-ascii?Q?lY+dGKeM22EKcwckYVSkVWkcuBYEHgVYIYrakiSA2ni/nkKanJ1J1arU6tP5?=
+ =?us-ascii?Q?ushSFtcxWzh2gtMqwVooBBdsgZG5Pp45MNyyKzzes6zECUxkwHiVRnaJaCDx?=
+ =?us-ascii?Q?mdzYD7wp0dDLvJWRCYBqb0+VyzgYBq/jDl6C9C9X9XXDnth8gYE1l6HF6+FG?=
+ =?us-ascii?Q?d+ilT4XRt+M4W2RYZu0BGxO5VCo1BSXOZdAz/tzRa1SghzS7R37Jw2LshmTd?=
+ =?us-ascii?Q?onyndVn56QulI1CceDI6VajVu7PArHwuxuzN5Jy7kIJEfQ7sBz1xOA5gFJBv?=
+ =?us-ascii?Q?KMYZcHndkP9WkHDccJGNMcx/bSoNirC2Hqarg1rfP5k5PrXh2TOprlg73VCm?=
+ =?us-ascii?Q?/43SbmMp01NSGBAUq9llk+tH40/F42H7ugPSlyAPJE90MMV+a0TlWrWPZT14?=
+ =?us-ascii?Q?vSKYVKCXfE72XsON/4IZYbp8my5V+GOClJ9njhgGltXiMZ0ec2Zit3+pTh8Q?=
+ =?us-ascii?Q?Vc8tpblgj9vvPxlUy1CfLxl7qfN4CWU4pO5+yixAwdQGyiQiVYBl3Vk1S4fh?=
+ =?us-ascii?Q?/J/EhcjRmLFFTryWt3gdkyXF44N9OI0rhw4oXIhr2cwM1FjaMySt0oPwX4m0?=
+ =?us-ascii?Q?6wGnJ0Jnw4YipDrIFHRRl3SASHmi0qTo27Ke3JDWsL8vHy2TwEWAvyR15uH3?=
+ =?us-ascii?Q?JwhPOKb20deESBigmR0is3ebss29OrTVIxBgzVr1mRI2SLwx71MewBI6QtTE?=
+ =?us-ascii?Q?bMKtP/5VVcJQqVtp0Sp3pt1rvTOZ4xzwd5sQNkuYEHDSBWZ5K5W645t3g48t?=
+ =?us-ascii?Q?WgVDTnWoYN8WtmC0bqEukbBoGaGYHhSec9oqu0mAu3TMf3af+VCVzoj6Uv/3?=
+ =?us-ascii?Q?bweeNR/txzOdmuDglBT30ky6k0DOqfTPgiT28log8nziOE5MWWijlX3/NyRd?=
+ =?us-ascii?Q?KWZJAOYJ2mwnE+/Dji0mhLkyEJVt4LxjPTyN5UoCmBFE2/SC12sQKXdP4PbU?=
+ =?us-ascii?Q?dvchFU0nD4bBEPevptiT4IAPMIKxWqrmkzIvIqE0heSkXdwqQwD+HA8MGbR6?=
+ =?us-ascii?Q?liwEb4UpMo09FP/DCLl+YvHrfrrAlOa1IIO5mXIb2wY5SW5PS2Lg75F8kwc9?=
+ =?us-ascii?Q?Mnmojjl5nOYCG8Sva0nlR5oSTtstM6hEnyDS8r2TuUZv6n/2zJ2sd4tSP/e2?=
+ =?us-ascii?Q?23kHOt3r19in4j49uiH3z+U=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 498298c2-d2e0-4399-fc1d-08d9add53b5f
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB4688.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2021 16:29:19.8044
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TDGxiT3g4UrIP29JfAKvVrH1LDXgYAfoJiGzUWfNeToJ2nkJTnBDVZqW7iwsTyWlDlOGAHCPnmWZ9Pg9jHc9Hg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4912
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetrees for the new boards in the Y Soft IOTA family.
-These boards are based on Orion but use Quad/QuadPlus SoC
-instead of DualLite.
+On 21-11-18 19:04:04, Rob Herring wrote:
+> On Wed, Nov 10, 2021 at 07:46:55PM +0200, Abel Vesa wrote:
+> > Add i.MX8DXL lpuart compatible to the bindings documentation.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> > ---
+> >  Documentation/devicetree/bindings/serial/fsl-lpuart.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > index dc1f0e07cbd4..fa8a602ccb22 100644
+> > --- a/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.yaml
+> > @@ -27,6 +27,10 @@ properties:
+> >        - items:
+> >            - const: fsl,imx8qm-lpuart
+> >            - const: fsl,imx8qxp-lpuart
+> > +      - items:
+> > +          - const: fsl,imx8dxl-lpuart
+> > +          - const: fsl,imx8qxp-lpuart
+> > +          - const: fsl,imx7ulp-lpuart
+> 
+> I'm confused why 8dxl is compatible with 7ulp, but 8qm is not? From the 
+> driver, it looks like the difference is clocks.
+> 
 
-Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
----
- arch/arm/boot/dts/Makefile                   |  2 +
- arch/arm/boot/dts/imx6q-yapp4-crux.dts       | 76 ++++++++++++++++++++
- arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts | 76 ++++++++++++++++++++
- 3 files changed, 154 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6q-yapp4-crux.dts
- create mode 100644 arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
+There are still things to be upstreamed for the fsl-lpuart driver.
+Looking at the NXP's tree, 7ulp has some specific fixup that the
+8qm doesn't need.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..94c64551a970 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -628,6 +628,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6q-wandboard.dtb \
- 	imx6q-wandboard-revb1.dtb \
- 	imx6q-wandboard-revd1.dtb \
-+	imx6q-yapp4-crux.dtb \
- 	imx6q-zii-rdu2.dtb \
- 	imx6qp-nitrogen6_max.dtb \
- 	imx6qp-nitrogen6_som2.dtb \
-@@ -641,6 +642,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6qp-tx6qp-8137-mb7.dtb \
- 	imx6qp-vicutp.dtb \
- 	imx6qp-wandboard-revd1.dtb \
-+	imx6qp-yapp4-crux-plus.dtb \
- 	imx6qp-zii-rdu2.dtb \
- 	imx6s-dhcom-drc02.dtb
- dtb-$(CONFIG_SOC_IMX6SL) += \
-diff --git a/arch/arm/boot/dts/imx6q-yapp4-crux.dts b/arch/arm/boot/dts/imx6q-yapp4-crux.dts
-new file mode 100644
-index 000000000000..deb18c57cf18
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6q-yapp4-crux.dts
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+/dts-v1/;
-+
-+#include "imx6q.dtsi"
-+#include "imx6dl-yapp4-common.dtsi"
-+
-+/ {
-+	model = "Y Soft IOTA Crux i.MX6Quad board";
-+	compatible = "ysoft,imx6q-yapp4-crux", "fsl,imx6q";
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0xf0000000>;
-+	};
-+};
-+
-+&audmux {
-+	status = "okay";
-+};
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&gpio_oled {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&leds {
-+	status = "okay";
-+};
-+
-+&oled_1305 {
-+	status = "okay";
-+};
-+
-+&oled_1309 {
-+	status = "okay";
-+};
-+
-+&reg_usb_h1_vbus {
-+	status = "okay";
-+};
-+
-+&sound {
-+	audio-routing =
-+		   "Ext Spk", "LSOUT";
-+	status = "okay";
-+};
-+
-+&ssi2 {
-+	status = "okay";
-+};
-+
-+&touchkeys {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "disabled";
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts b/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
-new file mode 100644
-index 000000000000..a450a77f920f
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6qp-yapp4-crux-plus.dts
-@@ -0,0 +1,76 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// Copyright (C) 2021 Y Soft Corporation, a.s.
-+
-+/dts-v1/;
-+
-+#include "imx6qp.dtsi"
-+#include "imx6dl-yapp4-common.dtsi"
-+
-+/ {
-+	model = "Y Soft IOTA Crux+ i.MX6QuadPlus board";
-+	compatible = "ysoft,imx6qp-yapp4-crux-plus", "fsl,imx6qp";
-+
-+	memory@10000000 {
-+		device_type = "memory";
-+		reg = <0x10000000 0xf0000000>;
-+	};
-+};
-+
-+&audmux {
-+	status = "okay";
-+};
-+
-+&codec {
-+	status = "okay";
-+};
-+
-+&gpio_oled {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&leds {
-+	status = "okay";
-+};
-+
-+&oled_1305 {
-+	status = "okay";
-+};
-+
-+&oled_1309 {
-+	status = "okay";
-+};
-+
-+&reg_usb_h1_vbus {
-+	status = "okay";
-+};
-+
-+&sound {
-+	audio-routing =
-+		   "Ext Spk", "LSOUT";
-+	status = "okay";
-+};
-+
-+&ssi2 {
-+	status = "okay";
-+};
-+
-+&touchkeys {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "disabled";
-+};
-+
-+&usbh1 {
-+	status = "okay";
-+};
-+
-+&usbphy2 {
-+	status = "okay";
-+};
--- 
-2.25.1
+Have a look here:
 
+https://source.codeaurora.org/external/imx/linux-imx/tree/drivers/tty/serial/fsl_lpuart.c?h=lf-5.10.y#n3242
+
+> >  
+> >    reg:
+> >      maxItems: 1
+> > -- 
+> > 2.31.1
+> > 
+> >
