@@ -2,164 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7678F45898A
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 08:02:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F40D34589AB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 08:11:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbhKVHFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 02:05:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38210 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231159AbhKVHFR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 02:05:17 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C80E860F24;
-        Mon, 22 Nov 2021 07:02:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1637564531;
-        bh=HqHzOX2x8A2bBW7j4cgfMHOEsSLbe+uOkjnMuhTI+7I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eP+MjYVGoB7A8398EUpB5BXTK3hUdwfjYG8WRVv0uml1gOmLyeo1H8vc/6xMB1VYx
-         OZM6O0bVuIsyFXEdVoBqlYPMrbi5dj1jPyhw2fnInbApzPyD9q7faaxtcjlcXhTPTw
-         QoHGi4ayYRlS7MOLNqSVCuAxCRuXqnBHx5TyMoZ8=
-Date:   Mon, 22 Nov 2021 08:02:07 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Piyush Mehta <piyush.mehta@xilinx.com>
-Cc:     robh+dt@kernel.org, mka@chromium.org, ravisadineni@chromium.org,
-        stern@rowland.harvard.edu, alcooperx@gmail.com,
-        michal.simek@xilinx.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        git@xilinx.com, sgoud@xilinx.com
-Subject: Re: [PATCH V2 2/2] usb: misc: usb244: add support for USB2 ultra
- fast sd controller
-Message-ID: <YZtAb9lz8WLnWu7E@kroah.com>
-References: <20211122062834.1812005-1-piyush.mehta@xilinx.com>
- <20211122062834.1812005-3-piyush.mehta@xilinx.com>
+        id S231645AbhKVHOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 02:14:22 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59648 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229806AbhKVHOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 02:14:20 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dafna)
+        with ESMTPSA id 7DE871F445DF
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1637565072; bh=fj0upe47ki7p3rwgkuOlhq1xjjDXM7SwrTixcO7uR2w=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=WkQAX4s6nppi755Nf6cRc2IByLZPXwFyt2J4LDfjvrUOQAiycE2SN1/jcomCn5IE4
+         bJJyyCDANK2Z5WwcrLkjNzmqLhZ4VytLYKOVC2qU/5mzXD33/3KLp7R7jnld5ONolt
+         TF7QUSKxaWIyeqhdnn5ltfVWqYpLpJS995g3o0sUqNEi3GZsafEomP70gG4C0IrA+4
+         GAj4701tvXvG2e+H/UbcTwT3hSK9qLM6OpU9h02ECXeidmJi5GrBm2Wikrb8srqmLH
+         5IQD6AwTXVnhY9p5iBWdTIIfJGcBCHrX9JqBfXoV7Cxe6ZhSvMQM0XV6S1IgJ6md3i
+         TrrpXH0r1TI4A==
+Subject: Re: [PATCH v3] media: mtk-vcodec: Align width and height to 64 bytes
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Steve Cho <stevecho@google.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Steve Cho <stevecho@chromium.org>
+References: <20211104122426.9597-1-yunfei.dong@mediatek.com>
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Message-ID: <725024c7-b605-2de6-0a9e-e3e044ae5b3f@collabora.com>
+Date:   Mon, 22 Nov 2021 09:11:06 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211122062834.1812005-3-piyush.mehta@xilinx.com>
+In-Reply-To: <20211104122426.9597-1-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 22, 2021 at 11:58:34AM +0530, Piyush Mehta wrote:
-> Microchip's USB224x family of Hi-Speed USB 2.0 flash media card controllers
-> provides an ultra-fast interface between a USB host controller and flash
-> media cards.
+
+
+On 04.11.21 14:24, Yunfei Dong wrote:
+> Width and height need to 64 bytes aligned when setting the format.
+> Need to make sure all is 64 bytes align when use width and height to
+> calculate buffer size.
 > 
-> This patch adds a GPIO based usb-sd reset for USB2244 USB2 ultra fast
-> SD controller. This usb2244 driver trigger sd reset signal after soft
-> reset or core Reset. The SD needs to be resetted after completion of
-> phy initialization. After the toggling of gpio, controller gets out
-> form reset. USB2244 is a simple platform device driver.
-> 
-> As part of the reset, sets the direction of the pin to output before
-> toggling the pin. Delay of microseconds is added in between high and
-> low to meet the setup and hold time requirement of the reset.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Acked-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> Tested-by: Steve Cho <stevecho@chromium.org>
 > ---
-> Changes for V2:
-> - Update reset polarity, make reset ACTIVE LOW in the usb2244 driver.
-> - Fix WARNING: msleep < 20ms can sleep for up to 20ms by changing msleep to
->   usleep_range()
-> ---
->  drivers/usb/misc/Kconfig   | 10 +++++++
->  drivers/usb/misc/Makefile  |  1 +
->  drivers/usb/misc/usb2244.c | 69 ++++++++++++++++++++++++++++++++++++++++++++++
-
-This isn't really a USB driver, so maybe drivers/misc/ instead?
-
->  3 files changed, 80 insertions(+)
->  create mode 100644 drivers/usb/misc/usb2244.c
+>   drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h        | 1 +
+>   drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c | 4 ++--
+>   2 files changed, 3 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
-> index 8f11443..e1c66a2 100644
-> --- a/drivers/usb/misc/Kconfig
-> +++ b/drivers/usb/misc/Kconfig
-> @@ -215,6 +215,16 @@ config USB_ISIGHTFW
->  	  driver beforehand. Tools for doing so are available at
->  	  http://bersace03.free.fr
->  
-> +config USB_USB2244
-> +	tristate "Microchip USB2244 Ultra Fast USB 2.0 SD driver"
-> +	depends on GPIOLIB
-> +	help
-> +	  Say Y or M here if you want to reset Microchip USB2244 Ultra Fast
-> +	  USB 2.0 SD controller.
-> +	  This option enables support for Microchip USB2244 Ultra Fast USB 2.0
-> +	  SD controller. This driver reset the gpio pin makes controller out of
-> +	  reset.
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
+> index e30806c1faea..66cd6d2242c3 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.h
+> @@ -11,6 +11,7 @@
+>   #include <media/videobuf2-core.h>
+>   #include <media/v4l2-mem2mem.h>
+>   
+> +#define VCODEC_DEC_ALIGNED_64 64
 
-Module name?
+This define is a bit useless, it doesn't improve readability,
+if you do ALIGN(x, 64) it is already clear enough.
 
-> +
->  config USB_YUREX
->  	tristate "USB YUREX driver support"
->  	help
-> diff --git a/drivers/usb/misc/Makefile b/drivers/usb/misc/Makefile
-> index 5f4e598..5b4af7d 100644
-> --- a/drivers/usb/misc/Makefile
-> +++ b/drivers/usb/misc/Makefile
-> @@ -21,6 +21,7 @@ obj-$(CONFIG_USB_LEGOTOWER)		+= legousbtower.o
->  obj-$(CONFIG_USB_TEST)			+= usbtest.o
->  obj-$(CONFIG_USB_EHSET_TEST_FIXTURE)    += ehset.o
->  obj-$(CONFIG_USB_TRANCEVIBRATOR)	+= trancevibrator.o
-> +obj-$(CONFIG_USB_USB2244)		+= usb2244.o
->  obj-$(CONFIG_USB_USS720)		+= uss720.o
->  obj-$(CONFIG_USB_SEVSEG)		+= usbsevseg.o
->  obj-$(CONFIG_USB_YUREX)			+= yurex.o
-> diff --git a/drivers/usb/misc/usb2244.c b/drivers/usb/misc/usb2244.c
-> new file mode 100644
-> index 0000000..5a868c2
-> --- /dev/null
-> +++ b/drivers/usb/misc/usb2244.c
-> @@ -0,0 +1,69 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for the Microchip USB2244 Ultra Fast USB 2.0 Multi-Format,
-> + * SD/MMC, and MS Flash Media Controllers
-> + *
-> + * Copyright (c) 2021 Xilinx, Inc.
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/platform_device.h>
-> +
-> +struct usb2244 {
-> +	struct gpio_desc *reset_gpio;
-> +};
+Thank,
+Dafna
 
-Why is this structure needed?
-
-> +
-> +static int usb2244_init_hw(struct device *dev, struct usb2244 *data)
-> +{
-> +	data = devm_kzalloc(dev, sizeof(struct usb2244), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> +	if (IS_ERR(data->reset_gpio)) {
-> +		dev_err_probe(dev, PTR_ERR(data->reset_gpio),
-> +			      "Failed to request reset GPIO %ld, errcode",
-> +			      PTR_ERR(data->reset_gpio));
-> +		return PTR_ERR(data->reset_gpio);
-> +	}
-> +
-> +	/* Toggle RESET_N to reset the hub. */
-> +	gpiod_set_value_cansleep(data->reset_gpio, 1);
-> +	usleep_range(5, 10);
-> +	gpiod_set_value_cansleep(data->reset_gpio, 0);
-> +	usleep_range(5000, 6000);
-
-Why do you need a kernel driver for this at all?  Why not just toggle
-the pin from userspace?
-
-thanks,
-
-greg k-h
+>   #define VCODEC_CAPABILITY_4K_DISABLED	0x10
+>   #define VCODEC_DEC_4K_CODED_WIDTH	4096U
+>   #define VCODEC_DEC_4K_CODED_HEIGHT	2304U
+> diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+> index d402fc4bda69..e1a3011772a9 100644
+> --- a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+> +++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_req_if.c
+> @@ -562,8 +562,8 @@ static void get_pic_info(struct vdec_h264_slice_inst *inst,
+>   {
+>   	struct mtk_vcodec_ctx *ctx = inst->ctx;
+>   
+> -	ctx->picinfo.buf_w = (ctx->picinfo.pic_w + 15) & 0xFFFFFFF0;
+> -	ctx->picinfo.buf_h = (ctx->picinfo.pic_h + 31) & 0xFFFFFFE0;
+> +	ctx->picinfo.buf_w = ALIGN(ctx->picinfo.pic_w, VCODEC_DEC_ALIGNED_64);
+> +	ctx->picinfo.buf_h = ALIGN(ctx->picinfo.pic_h, VCODEC_DEC_ALIGNED_64);
+>   	ctx->picinfo.fb_sz[0] = ctx->picinfo.buf_w * ctx->picinfo.buf_h;
+>   	ctx->picinfo.fb_sz[1] = ctx->picinfo.fb_sz[0] >> 1;
+>   	inst->vsi_ctx.dec.cap_num_planes =
+> 
