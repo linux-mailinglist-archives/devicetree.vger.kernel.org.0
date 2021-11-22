@@ -2,333 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89C39458B30
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 10:15:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47080458B3B
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 10:21:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbhKVJSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 04:18:39 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:47312 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbhKVJSj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 04:18:39 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AM9FQx3015496;
-        Mon, 22 Nov 2021 03:15:26 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637572526;
-        bh=w6bI98aJlLZh4Jv2PuTgPXkfvTVLpF8g8Stm+HPHMhQ=;
-        h=From:To:CC:Subject:Date;
-        b=givdP6Dmy8QJeLHdsW/UEia23rHKNPFPlLKVzm1Ijl2dzG64KmrahvGbUsBrBaq+S
-         WLdaEgCZQejOO3jsbybkxjHycKvWWJfMWjGuGsTwMASqdBROagQy5lHwReUePC01Oh
-         Zqeh4Bml3Mu2ljCkgK7ZFKqodQhq2v2+zceNWZtA=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AM9FQ48026471
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Nov 2021 03:15:26 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 22
- Nov 2021 03:15:26 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 22 Nov 2021 03:15:26 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AM9FPPe114115;
-        Mon, 22 Nov 2021 03:15:26 -0600
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <devicetree@vger.kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <j-choudhary@ti.com>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
-Date:   Mon, 22 Nov 2021 14:45:25 +0530
-Message-ID: <20211122091525.2290-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S238927AbhKVJYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 04:24:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229906AbhKVJYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 04:24:20 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9FBC061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 01:21:14 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id o29so14592579wms.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 01:21:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1r1P3CAQVJMR7iqI1mfq36qxIjfrbAJB49dCsJeHrQc=;
+        b=XFYR7Voix/vCKrhxk72LU+Pe1QjOfUmDJHanELv54kHxwnW0d+Zp9UKEgSMeGPY0Tw
+         4dCdu3BE5U6uuF0wSPMdW4Siq6LPxPr380Mc7wfrekKhMxrfkCaa0ZIYN9FpNFWeHF+7
+         cxrT8u813G/13dKOKd2BjqpFf8EbsY09uCiHpWznUyeUqvSFeJb1J6jZCU/yWpJV7gvg
+         rCFBQmGuhPAlgnW7vjz8YxAqAw8+QZV/G8log8ZIpwiYtQIXlYys38HFezmnAmejA5UV
+         hBPJBtcJXpbEyCtuXQtTEVN+nTja4bhY6NB3fHRfuNXw+hRc1m36kry7Z4VCoovrSKWX
+         G4DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1r1P3CAQVJMR7iqI1mfq36qxIjfrbAJB49dCsJeHrQc=;
+        b=Wsoe7Og9u4crVjlTk9bMNXkiZb0OY3pyJIRKcStLzrEONJHvr6RK/TT1GyD3oBb/W7
+         pL9s92y8EVeCvRnvI7qrc+GSxsuwWVrakehNF0B5fe72QYXVniuRjdpyo2FsPGVSYV1j
+         LOOKwI7SP7JZrUbOzwuxUkPDmJ148vhduQVQycCjubA7tyf9wjz/U2WbtxNLPZhDHpPp
+         2rE0zYMMDe37BsfClF+wPmw/4deKbFKq+XY8PYCSXlNZayuabOjDeaiGzGIQJjNCjmOc
+         Kvv7c04UZDQv20K+RsJv17yCvCUBIBVin8J5PJ+FYcPrv2ttcvlI8Ch5fwXXbaltHO16
+         9n0Q==
+X-Gm-Message-State: AOAM530fPsi1l+hemj07WIRnIK0ADAy0qy3P2JgumcF8G1fTbTd8lI+s
+        WkMKyhB+acrz7Kmp26/SDbItEQ==
+X-Google-Smtp-Source: ABdhPJzAgAkGcitf6tL+qV9XGDPaOQenjEwCFISt3azUoTKx6X/370/Jy4Dtghj84pOdr6LWuSSa4g==
+X-Received: by 2002:a1c:4d13:: with SMTP id o19mr27315815wmh.164.1637572872541;
+        Mon, 22 Nov 2021 01:21:12 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id 8sm19977788wmg.24.2021.11.22.01.21.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Nov 2021 01:21:12 -0800 (PST)
+Subject: Re: [PATCH 4/6] dt-bindings: phy: mediatek: tphy: support software
+ efuse load
+To:     Chen-Yu Tsai <wenst@chromium.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Yz Wu <yz.wu@mediatek.com>
+References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
+ <20211107075646.4366-4-chunfeng.yun@mediatek.com>
+ <71f83770-b12f-2452-d24b-ae1be9b5b075@linaro.org>
+ <CAGXv+5GzP1SXi2ihhifK_Ui8Rt04UgeFyjivzHc532yvPFo3OA@mail.gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <8aa7adbf-7367-1b3a-4d63-f9fe83e72117@linaro.org>
+Date:   Mon, 22 Nov 2021 09:21:08 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAGXv+5GzP1SXi2ihhifK_Ui8Rt04UgeFyjivzHc532yvPFo3OA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the bindings for McASP controllers for TI SOCs
-from txt to YAML schema.
 
-Adds additional properties 'clocks', 'clock-names', 'power-domains'
-and '#sound-dai-cells' which were not there in txt file.
-Adds 'dmas' and 'dma-names' in the example which were not there in
-txt file.
-Changes 'interrupts' and 'interrupt-names' from optional to
-required properties.
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
- .../bindings/sound/davinci-mcasp-audio.txt    |  86 ----------
- .../bindings/sound/davinci-mcasp-audio.yaml   | 161 ++++++++++++++++++
- 2 files changed, 161 insertions(+), 86 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
- create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+On 22/11/2021 04:05, Chen-Yu Tsai wrote:
+> On Sat, Nov 20, 2021 at 1:19 AM Srinivas Kandagatla
+> <srinivas.kandagatla@linaro.org> wrote:
+>> On 07/11/2021 07:56, Chunfeng Yun wrote:
+>>> Add optional property nvmem-cells and nvmem-cell-names to support
+>>> software efuse load, this helps to fix the efuse bit shift issue
+>>> on mt8195 etc.
+>>>
+>>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+>>
+>> Applied thanks,
+> 
+> This is a PHY DT binding change. Shouldn't it go in with patch 5, the
+> phy driver patch, through the PHY tree instead?
 
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-deleted file mode 100644
-index bd863bd69501..000000000000
---- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-+++ /dev/null
-@@ -1,86 +0,0 @@
--Texas Instruments McASP controller
--
--Required properties:
--- compatible :
--	"ti,dm646x-mcasp-audio"	: for DM646x platforms
--	"ti,da830-mcasp-audio"	: for both DA830 & DA850 platforms
--	"ti,am33xx-mcasp-audio"	: for AM33xx platforms (AM33xx, AM43xx, TI81xx)
--	"ti,dra7-mcasp-audio"	: for DRA7xx platforms
--	"ti,omap4-mcasp-audio"	: for OMAP4
--
--- reg : Should contain reg specifiers for the entries in the reg-names property.
--- reg-names : Should contain:
--         * "mpu" for the main registers (required). For compatibility with
--           existing software, it is recommended this is the first entry.
--         * "dat" for separate data port register access (optional).
--- op-mode : I2S/DIT ops mode. 0 for I2S mode. 1 for DIT mode used for S/PDIF,
--  	    IEC60958-1, and AES-3 formats.
--- tdm-slots : Slots for TDM operation. Indicates number of channels transmitted
--  	      or received over one serializer.
--- serial-dir : A list of serializer configuration. Each entry is a number
--               indication for serializer pin direction.
--               (0 - INACTIVE, 1 - TX, 2 - RX)
--- dmas: two element list of DMA controller phandles and DMA request line
--        ordered pairs.
--- dma-names: identifier string for each DMA request line in the dmas property.
--	     These strings correspond 1:1 with the ordered pairs in dmas. The dma
--	     identifiers must be "rx" and "tx".
--
--Optional properties:
--
--- ti,hwmods : Must be "mcasp<n>", n is controller instance starting 0
--- tx-num-evt : FIFO levels.
--- rx-num-evt : FIFO levels.
--- dismod : Specify the drive on TX pin during inactive slots
--	0 : 3-state
--	2 : logic low
--	3 : logic high
--	Defaults to 'logic low' when the property is not present
--- sram-size-playback : size of sram to be allocated during playback
--- sram-size-capture  : size of sram to be allocated during capture
--- interrupts : Interrupt numbers for McASP
--- interrupt-names : Known interrupt names are "tx" and "rx"
--- pinctrl-0: Should specify pin control group used for this controller.
--- pinctrl-names: Should contain only one value - "default", for more details
--  		 please refer to pinctrl-bindings.txt
--- fck_parent : Should contain a valid clock name which will be used as parent
--	       for the McASP fck
--- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
--		   and FS rate if applicable:
--		   AUCLK rate = auxclk-fs-ratio * FS rate
--
--Optional GPIO support:
--If any McASP pin need to be used as GPIO then the McASP node must have:
--...
--  gpio-controller
--  #gpio-cells = <2>;
--...
--
--When requesting a GPIO, the first parameter is the PIN index in McASP_P*
--registers.
--For example to request the AXR2 pin of mcasp8:
--function-gpios = <&mcasp8 2 0>;
--
--Or to request the ACLKR pin of mcasp8:
--function-gpios = <&mcasp8 29 0>;
--
--For generic gpio information, please refer to bindings/gpio/gpio.txt
--
--Example:
--
--mcasp0: mcasp0@1d00000 {
--	compatible = "ti,da830-mcasp-audio";
--	reg = <0x100000 0x3000>;
--	reg-names "mpu";
--	interrupts = <82>, <83>;
--	interrupt-names = "tx", "rx";
--	op-mode = <0>;		/* MCASP_IIS_MODE */
--	tdm-slots = <2>;
--	serial-dir = <
--			0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
--			0 0 0 0
--			0 0 0 1
--			2 0 0 0 >;
--	tx-num-evt = <1>;
--	rx-num-evt = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-new file mode 100644
-index 000000000000..ce1bd02decd3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-@@ -0,0 +1,161 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/davinci-mcasp-audio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: McASP Controller for TI SoCs
-+
-+maintainers:
-+  - Jayesh Choudhary <j-choudhary@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,dm646x-mcasp-audio
-+      - ti,da830-mcasp-audio
-+      - ti,am33xx-mcasp-audio
-+      - ti,dra7-mcasp-audio
-+      - ti,omap4-mcasp-audio
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description: main registers
-+      - description: data port register
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: mpu
-+      - const: dat
-+
-+  op-mode:
-+    description: I2S - 0 or DIT - 1 mode
-+    enum:
-+      - 0
-+      - 1
-+
-+  tdm-slots:
-+    maxItems: 1
-+
-+  serial-dir:
-+    description:
-+      A list of serializer configuration
-+      Entry is indication for serializer pin direction
-+      0 - Inactive, 1 - TX, 2 - RX
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 16
-+    items:
-+      minimum: 0
-+      maximum: 2
-+      default: 0
-+
-+  dmas:
-+    items:
-+      - description: transmission DMA channel
-+      - description: reception DMA channel
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of hwmod associated with McASP
-+    maxItems: 1
-+    deprecated: true
-+
-+  tx-num-evt:
-+    maxItems: 1
-+
-+  rx-num-evt:
-+    maxItems: 1
-+
-+  dismod:
-+    enum:
-+      - 0
-+      - 2
-+      - 3
-+    default: 2
-+
-+  sram-size-playback:
-+    maxItems: 1
-+
-+  sram-size-capture:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: TX FIFO interrupt
-+      - description: RX FIFO interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  fck_parent:
-+    description: parent clock for McASP fck
-+    maxItems: 1
-+
-+  auxclk-fs-ratio:
-+    description: ratio of AUCLK and FS if applicable
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  function-gpios:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: fck
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - dmas
-+  - dma-names
-+  - interrupts
-+  - interrupt-names
-+  - serial-dir
-+  - op-mode
-+  - tdm-slots
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mcasp0: mcasp0@1d00000 {
-+      compatible = "ti,da830-mcasp-audio";
-+      reg = <0x100000 0x3000>;
-+      reg-names = "mpu";
-+      interrupts = <82>, <83>;
-+      interrupt-names = "tx", "rx";
-+      op-mode = <0>;		/* MCASP_IIS_MODE */
-+      tdm-slots = <2>;
-+      dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
-+      dma-names = "tx", "rx";
-+      serial-dir = <
-+          0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
-+          0 0 0 0
-+          0 0 0 1
-+          2 0 0 0 >;
-+      tx-num-evt = <1>;
-+      rx-num-evt = <1>;
-+    };
--- 
-2.17.1
+That's true, this is dropped from nvmem tree now!
 
+--srini
+> 
+> ChenYu
+> 
+>> --srini
+>>
+>>> ---
+>>>    .../devicetree/bindings/phy/mediatek,tphy.yaml | 18 ++++++++++++++++++
+>>>    1 file changed, 18 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>>> index 9e6c0f43f1c6..05ee274b4b71 100644
+>>> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
+>>> @@ -160,6 +160,24 @@ patternProperties:
+>>>                    - PHY_TYPE_PCIE
+>>>                    - PHY_TYPE_SATA
+>>>
+>>> +      nvmem-cells:
+>>> +        items:
+>>> +          - description: internal R efuse for U2 PHY or U3/PCIe PHY
+>>> +          - description: rx_imp_sel efuse for U3/PCIe PHY
+>>> +          - description: tx_imp_sel efuse for U3/PCIe PHY
+>>> +        description: |
+>>> +          Phandles to nvmem cell that contains the efuse data;
+>>> +          Available only for U2 PHY or U3/PCIe PHY of version 2/3, these
+>>> +          three items should be provided at the same time for U3/PCIe PHY,
+>>> +          when use software to load efuse;
+>>> +          If unspecified, will use hardware auto-load efuse.
+>>> +
+>>> +      nvmem-cell-names:
+>>> +        items:
+>>> +          - const: intr
+>>> +          - const: rx_imp
+>>> +          - const: tx_imp
+>>> +
+>>>          # The following optional vendor properties are only for debug or HQA test
+>>>          mediatek,eye-src:
+>>>            description:
+>>>
+>>
+>> _______________________________________________
+>> Linux-mediatek mailing list
+>> Linux-mediatek@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-mediatek
