@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D40864592A4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:04:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E02459317
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 17:32:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240070AbhKVQHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 11:07:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55122 "EHLO mail.kernel.org"
+        id S240278AbhKVQfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 11:35:01 -0500
+Received: from uho.ysoft.cz ([81.19.3.130]:44261 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239994AbhKVQHm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 11:07:42 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C9EE160524;
-        Mon, 22 Nov 2021 16:04:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637597075;
-        bh=7su5gVKoU6LxfqwsdkPAzegniwM93fqsZvNA4Sk4ACw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UOX6ARW1xXFQRPRHt2euwA7dN4QMa97W+iQQPNdZrrMjPJx+aiRXglxfyYITn8+cy
-         /w4Q3iUJIGAvzZ63GbBvi3MG9bw5xqm1t4jyk2hco3/3E0Nkbgtx8L0DxUTh7tQcG8
-         fs5Y3y73XrfEbAeUMSrfvd2wucc9afLF0F1gbjlVUCTv2GXgtmyDa1nQ0IXctX11id
-         6XXbf9lMGCIEEKYVi+fnkn7dhUu15B5m8+ozzXVG5kXr0QgKNpvndA4dNkiwHF4lcT
-         XQO1C5WLiuuvJUD8jWG/FKaTEW+mQWy3L4lyMM4bHYS8rxXv1uJaHf0gQsDizVi49e
-         47D3ZAgllcifg==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     broonie@kernel.org
-Cc:     dinguyen@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: spi: cadence-quadspi: document "intel,socfpga-qspi"
-Date:   Mon, 22 Nov 2021 10:04:27 -0600
-Message-Id: <20211122160427.2808342-2-dinguyen@kernel.org>
+        id S240277AbhKVQe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 11:34:56 -0500
+X-Greylist: delayed 314 seconds by postgrey-1.27 at vger.kernel.org; Mon, 22 Nov 2021 11:34:55 EST
+Received: from vokac-Latitude-7410.ysoft.local (unknown [10.0.29.92])
+        by uho.ysoft.cz (Postfix) with ESMTP id C1932A8BE4;
+        Mon, 22 Nov 2021 17:26:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1637598392;
+        bh=OcDmR1BoAZa+eN19EndyCBQXXPz0sieOuuQ9l8VO0Oo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=UQVtjQLI8YvjhxysnB29eLRYs/YnWa46YhTpZTLM2QdB4lbe+tRDdj9NGqpfvs+yB
+         iKL6Zytcc1tT2HeehIF+wNLuVDhccPMUAKHgz3sOBBW7/pwOSIAh5e7a8OebxMpPZr
+         1COLBazxoUWvYlNycv2yiXuMZGf8Yza1FTMpAiKU=
+From:   =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>, kernel@pengutronix.de,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Michal=20Vok=C3=A1=C4=8D?= <michal.vokac@ysoft.com>
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: Add Y Soft IOTA Crux/Crux+ boards
+Date:   Mon, 22 Nov 2021 17:25:19 +0100
+Message-Id: <20211122162520.90211-1-michal.vokac@ysoft.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211122160427.2808342-1-dinguyen@kernel.org>
-References: <20211122160427.2808342-1-dinguyen@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QSPI controller on Intel's SoCFPGA platform does not implement the
-CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
-results in a crash.
+Add devicetree binding for Crux/Crux+ boards from the IOTA family.
+These boards have the very same HW configuration as the Orion board
+except the usage of Quad/QuadPlus SoC.
 
-Introduce the dts binding "intel,socfpga-qspi" to differentiate the
-hardware.
-
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
 ---
- Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-index ca155abbda7a..037f41f58503 100644
---- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-+++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
-@@ -29,6 +29,7 @@ properties:
-               - ti,am654-ospi
-               - intel,lgm-qspi
-               - xlnx,versal-ospi-1.0
-+              - intel,socfpga-qspi
-           - const: cdns,qspi-nor
-       - const: cdns,qspi-nor
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 0b595b26061f..d68e8e23703e 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -240,6 +240,7 @@ properties:
+               - uniwest,imx6q-evi         # Uniwest Evi
+               - variscite,dt6customboard
+               - wand,imx6q-wandboard      # Wandboard i.MX6 Quad Board
++              - ysoft,imx6q-yapp4-crux    # i.MX6 Quad Y Soft IOTA Crux board
+               - zealz,imx6q-gk802         # Zealz GK802
+               - zii,imx6q-zii-rdu2        # ZII RDU2 Board
+           - const: fsl,imx6q
+@@ -334,6 +335,7 @@ properties:
+               - kvg,vicutp                # Kverneland UT1P board
+               - prt,prtwd3                # Protonic WD3 board
+               - wand,imx6qp-wandboard     # Wandboard i.MX6 QuadPlus Board
++              - ysoft,imx6qp-yapp4-crux-plus  # i.MX6 Quad Plus Y Soft IOTA Crux+ board
+               - zii,imx6qp-zii-rdu2       # ZII RDU2+ Board
+           - const: fsl,imx6qp
  
 -- 
 2.25.1
