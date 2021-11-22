@@ -2,320 +2,486 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3361D459536
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 20:00:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4545045953F
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 20:02:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238476AbhKVTDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 14:03:04 -0500
-Received: from mail-eopbgr70120.outbound.protection.outlook.com ([40.107.7.120]:32334
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230159AbhKVTDC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 14:03:02 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dt3v9rIskasUqaGI1KMzES8R/1qUv6WypQvyE2cPaFj/8tGf2YbaaL3xDfSQUgHdQW+qXTxy2CXUbr8EyVROY4ov2kxJFtVtQt8eCTbelGT2DC9eaYi9sNA8Wo8MsE1tqxMZWrTw2U5CFq0WzDy+bkZ/bvPCB3JYWf/DDWbFxUOam0YmG2JbumgqkCKxZhJT5msGOjBVmE6bcHP0ylGwb/2+XefDOvpz5yu1R8iCWC6h59y3wX6lbsjxI/GlHlSY4ZnVAcvoY7nWO+BaVdKQSkw2RT9Jnv48nirJ8bQOPs/8/oofwA5dGnACdzcsiwEjPznhf1IFn02Tdvh4A+Hxag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SBanGxPDxJF75Dt7rFZ/YICjdn98tXLubcOrlJXxzOs=;
- b=OQ/V3HD0BX5oDwpkFn15ublFfeOkShIATrNgN56J1isUt+0PwvXUVAr/usAl+AAx+EhOJxHIzavzqfvuqQKA9w9Z73cK5YcYKsYleoHu8Tx1j1+HNCyHpkqU88nlDsf2KWvLd0EF2Eq+J7pKKgHl+YyqMmB5gK9tQu5mnK7coeR9A/wepPjyNU80/WTdTcos2wWQyMzw4YZIgPN0jzm7zmxV3D/cRVEn72qhEh1BIAxD/QiBp0Ae5ngVj3GeeskUbEBw/ipM1Ui3tjfKQDz1HcGETkwnYdipDKmuidGWJevz93qkaRllg4V+iW7CLLxjmFeqOq/U6AO7lfFsKK+2Kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SBanGxPDxJF75Dt7rFZ/YICjdn98tXLubcOrlJXxzOs=;
- b=NKtJfDp3wdyOt10JpvImizBciTyzCKflhwz/evkPXsk5Fb3atnVFHRaN48c6xd43v6kPuwpkx9W9GG+0RYCrafa5mRJ0zt9b8AgyaaujdqC1GwJ4BabPdvY7YpdUCHe7srHhX+r4UrjBuyp17mIKvlf9DLz4Xo8vrM1IR6Xmwbg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB9PR02MB7051.eurprd02.prod.outlook.com (2603:10a6:10:225::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Mon, 22 Nov
- 2021 18:59:52 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39%4]) with mapi id 15.20.4713.024; Mon, 22 Nov 2021
- 18:59:52 +0000
-Message-ID: <69f73f64-6424-4e3f-9068-195e959b9762@axentia.se>
-Date:   Mon, 22 Nov 2021 19:59:48 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH RFC v2 3/4] mux: Add support for reading mux enable state
- from DT
-Content-Language: en-US
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <20211122125624.6431-1-a-govindraju@ti.com>
- <20211122125624.6431-4-a-govindraju@ti.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-In-Reply-To: <20211122125624.6431-4-a-govindraju@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0033.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:9::26) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+        id S233587AbhKVTFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 14:05:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230406AbhKVTFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 14:05:41 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E22DC061574
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 11:02:34 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id t34so17507172qtc.7
+        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 11:02:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kBpXytAzQOrR99XHaH1+0ENKC++IaMvvkd2HL9FLmDM=;
+        b=v4W7QOGy8F2YhyeuUeOPOePlsyW9AUPUc+OG+/EFR1YBVqvGfmpMJFIsPLMEndCtVI
+         YGda/bGcwaUcyI0JWsM4rKcubyDgi4I0iyQBMsWGKBXLNBliRr8iIWXvz5DgvnOVc6AO
+         N9nurGC8AIEHlRZKjqWi/tRgLw3iFy3ObbyR47QydRuQ564Kzw7FSMzupo+JtHYBQeCV
+         /l85kO9G1yvlik2h4emwGGNzpPjaPspD5BiOmiiMW/1vBvU5Rh6Ab594iaeC8xDACDD1
+         ptNT4ZP0jyPMI/J9qEbgkTb1nMF8K9HMxvdAY/oX+wdooZj6o5NSDMsahgAHlykYgTm5
+         P1OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kBpXytAzQOrR99XHaH1+0ENKC++IaMvvkd2HL9FLmDM=;
+        b=fIT6DMzPBEftpBBy54OFZ4QGc2PXC5q2krTecf/+WQAy+aiiokkaICL6/l7urSOpKR
+         oCP+k1BTTKuDfvdenFQvrmCnmQ+iR/ebCnBSIvNp8ZQWLymL/Kmsh5WM2P1VKF12teEp
+         XlzqD3XDMaclziFwKPSLURsORmlY3RyR6NEH2FvP16snSQB6Hz0v1MdPfloELVext3Bg
+         Q+GdtPJo6ak7IRABxkDUmwwCultyVt2lCjZzUgoo5dKrq1iekZS1V0n8B5Kf1EU08OYh
+         MzUhUNppS0OGmGxPTndXG1Hg7vkolTBPjUVBGdkgRR4RE59aUSMm8tWixI5fBERUEBS0
+         0k2g==
+X-Gm-Message-State: AOAM532I7P5jxVYQ5XpYQ5QtDQ9nvpdUvhijMawoEnHHekrw7t4/Artb
+        R4QtJZ8sJ2NVqpi79gXHVENcUuwQ38QZLQ==
+X-Google-Smtp-Source: ABdhPJwcZtekkNIUs+HfPqaFBu7jzNmcir8UQo38Go9pn5lmznRdmIK3c8wP6+K/OuiqwqmnWNOBXA==
+X-Received: by 2002:ac8:7e83:: with SMTP id w3mr34592572qtj.160.1637607753338;
+        Mon, 22 Nov 2021 11:02:33 -0800 (PST)
+Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
+        by smtp.gmail.com with ESMTPSA id x4sm4988078qtw.44.2021.11.22.11.02.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Nov 2021 11:02:32 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Add CPU opp tables
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211110215330.74257-1-thara.gopinath@linaro.org>
+ <9bb87351-9a1f-6171-5788-92c41075869b@linaro.org>
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+Message-ID: <033ff218-bdae-0759-2837-38863341f62a@linaro.org>
+Date:   Mon, 22 Nov 2021 14:02:32 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Received: from [192.168.13.3] (185.178.140.238) by GV3P280CA0033.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:9::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.21 via Frontend Transport; Mon, 22 Nov 2021 18:59:50 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a896df19-2fd7-40ae-8d5d-08d9adea43fe
-X-MS-TrafficTypeDiagnostic: DB9PR02MB7051:
-X-Microsoft-Antispam-PRVS: <DB9PR02MB705105C2908FB86B8C53F439BC9F9@DB9PR02MB7051.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5pktnjQ8ddvUMlKtVFkic4gSVWrSLhP9tId+2dPjCMG14eW4YVqzamuRuP70TXEj1X+DkrC499/R2sd76F5WpebrJ+ChZUx7tAdT3f3ziSiQB+hpzYIM+FzfS3scRR4VMFnWnvrWMSxR3j7Zkgg9D4Z46AjcIivbPE2PnF83RFhuoljIZ9M4tuJyGD94F0lMVfx3cP/tkrxdBe1BLhYgdaeSU5sZ9Zruxg1ewpFxUYntDoYeA1hccajAhCBOkNdQmlUxZWLDb8VcJgWKvypTM0j0dCJ23xgL4NCACm/RDzjp7xYpjpFmblLmNz02/ARD1dwmYRCCLdklxqS54jrKL6K+tXdzqlLjHVxxWdFMdEdDcZQG3oH0D3kvdLLgwzDrRJOp157idjqJg102gLhCTUWVqyzGHVP9DWnspPqX42Dz5PV172aKhSSCMPTBAgGQ53bBFowtOUl89Z78FeuCZ70SCN8Qwrk4Zu5bqtSKNBX21JXo+TC4cqnHS7DhXZ5rV7bcK/upLcusOQz3wv4U7McLmV/8/6VxWDYeEhJjhiB0aEA7OK+nzHw//Fx5ayY88neiYf0ywfSDwoTWddg8PhXqv4jkTe3JZOBTrlAPcZH9wuVtogWL0G6Dr1w00+f56Ak4EhZ0jr4/Ck7qB7GV/8DWkGZaPpDOYBDw1y5RaAp4u5F9g9d/7m/ynl3lc1F1ZRUOEZaBt4dPgF4jefTVuSIXyIzZJF0tu8ubbRB5U4A=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(136003)(396003)(346002)(39840400004)(376002)(36756003)(7416002)(956004)(66476007)(2616005)(2906002)(508600001)(38100700002)(66946007)(36916002)(26005)(5660300002)(53546011)(31686004)(6486002)(66556008)(186003)(6916009)(31696002)(16576012)(8936002)(54906003)(83380400001)(8676002)(316002)(4001150100001)(4326008)(86362001)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjlJdDk4YytNQ1llODltVlFKM0N5dXUvcnhYclVBamI3d2NkSVJ5Z1AwWVdU?=
- =?utf-8?B?cXhZcFB6dVhwOGI0dW14KzRib3pyUUUvcW1JRitrbWJGY1hkZ05yNHUrQjN5?=
- =?utf-8?B?Mk04NXF1SWt2aWlIT1RJV3NrY2Rmb28xbDFVTWZLZ3dHbndLOTNCYThSK24y?=
- =?utf-8?B?bTFSYzd5TEQ1ek0wdERzQ2xVL2VVQzJNMGZINVdscFJnOWZsb1hyWGdMYk5h?=
- =?utf-8?B?NzltdlBOZGFXTFFKN09jWHEyUTRSU295eWxXR2RFSGJxOThJeDRlVUc0R2dr?=
- =?utf-8?B?TlUwU05ISjJZaktsVXo5UWI5Y1VybGREOEJCeHpFRHIycGQ5djNieC9nYlpH?=
- =?utf-8?B?SGxLcWcyQ0FESk8ybW14clJ5Rm83ZEFXcUhNL0Z4SXptRi9sU05vN0YxN1B0?=
- =?utf-8?B?N21LZXZpUzlTQkNEOTNFZ255YmdqVVVpcmN1OHFKaTRLZ1hwdjdjRVExOURX?=
- =?utf-8?B?cVBaRFJDU1JkaUNHdnNPUnVTSm5BZFRSZkR5YnBmd09LeS9MUk9LWEJOR0Vj?=
- =?utf-8?B?OHVjU1k2bnN2VExLcm9TVXFyWkZ3T3RQTzNtblhFK0F4OTE2RFpOblY4blVR?=
- =?utf-8?B?ZURxdUh0RTllN1BtYzlTbFQzcmVqcG5xM3FkQTZtTUsxMHVCbU5wYjlFZyt0?=
- =?utf-8?B?OFRDNXI3bnQ4Zjh3enJjK1RKa0FUQ2ZXMURheTdWbURxaHUrYTliMHZjbFFt?=
- =?utf-8?B?SVRQY2x3elRIRjA5b2ZEdGFZYlc0QzlUUUZyQVExcVNrWTgyMXFOZW5abGdD?=
- =?utf-8?B?ckRoSmVYZFhQNExtM3ArVyt3ZTd4aVlwbnZLR2l4QnFBL0JWRUo0ak1GalE4?=
- =?utf-8?B?alRDa290bzg1MmdlN2tTd0xweHlKRGFJemJ0NDNzOG5NMEw5REc4RDNxZTNW?=
- =?utf-8?B?QzNWai9MYUJLWXZMSHFvU2VsL2FTMGtMQ1ZkWEhuNWhkekhqTkNNdUc4OE5N?=
- =?utf-8?B?V1ZoNHpOdkYxQ3NQeUcxTEhubkFuVEdVZktlVnNSTStqZ1Y5WW1oclU2ejVN?=
- =?utf-8?B?bTR4UHVpa3J5dlFqVitEeXhIWW5YUTBnWEdjVzhnVlFxOERuV2djTDJEQXNW?=
- =?utf-8?B?dTQvRmJXbnJPOUNERG1hYXpjUkJobWQ1cEYxVU5HZjJUM0NJRG9KOENPbEpJ?=
- =?utf-8?B?TTJMR29aQ3RFVVk0Nmw4U2VVaFFwazZhK3kwMVBSclV4K3ZqZk5FKzVRYU5I?=
- =?utf-8?B?TFFDT1lldmIvaVZIUVdQeloxOWROeTQzcW9ZMzdTckFqRFJiNUJqTFJFNUhr?=
- =?utf-8?B?aWJkeE5qSXdzQ1hydGpUK3FPYmJEK0VBa244SGhrNVlBU1E5amlrTjg1MFIx?=
- =?utf-8?B?dzJmREt4TjF4TkFTK3IrRUY1ZnI1aE0wSW9xKzJ0bVpBaXlFcThaemV6TS9F?=
- =?utf-8?B?bm1DcGJ4a0RDQm5Id0dOcFV5RXdFbGhpeU4weE16YzlWbkY2MDNtTnNaeGRC?=
- =?utf-8?B?bnk2NXp2WVpRSjNhZlBYeXpqdUU5U0syN2x3ZHNneG14bUdVVHl3WUs5dFdJ?=
- =?utf-8?B?Wk4xK0p6MVdxRUZtTEp1ellEL2orNDBHYThodXVTZFNpbnZXVFBWNzc2VFJh?=
- =?utf-8?B?LzdtMjVybXpyN1M3dE9GbTlkelphN0JyMjNTOGtyMEhGNzlZR28ySFo2RDNT?=
- =?utf-8?B?aU05bm1pNnZkNnBxMmZBVXhFcmdzY0ZaZy96SUx5WjY1TWdGdVhrN25pSW5y?=
- =?utf-8?B?cW8xU3o5dTgxU05oYlBqdWVlTjJuTUNWbHNWWjBTL0lVV2lJZlh4UEF0MFZI?=
- =?utf-8?B?Y1VLNHl6MnBlVDVKeEo1L2JIZ3FEL0lWR1JQeEYyNXA4WnA1OTRDYmpkbEJw?=
- =?utf-8?B?bGZWeERnUW9DckxuTUNUaDl6WFo3a211NTJEdHBtVHQyUEZEV1JzcWdzNmJQ?=
- =?utf-8?B?cy9TQUhkVHNVVTRKNjJkbHdpbHpmdkxBVjJkd2VMZUprci9ieWs1NG80S29l?=
- =?utf-8?B?ZGFzZ2RRb0I3T2hNMHM0c25qTnU1cmR0QkV3b3p4S0lvYWQ4T2dUTWNIeU5l?=
- =?utf-8?B?SkhWQW0wb25zNmZLOVhIbkRDLzI2U0lxZHJEWVVRbGQ3TWUreEdhVGcwa3BX?=
- =?utf-8?B?UEJ4UEJXR1JGM01BMG1zclo4RDNpRUUvSS9EUVRIZExQZnc2STdKVm9NZ2dQ?=
- =?utf-8?Q?P9Qc=3D?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: a896df19-2fd7-40ae-8d5d-08d9adea43fe
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2021 18:59:52.6852
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: r33A8LlhO8C0DmlEDCFSQEzyo+9Lf/E8hUa1tgQ5NyyZ3kvAJealLPPsUg955zs3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB7051
+In-Reply-To: <9bb87351-9a1f-6171-5788-92c41075869b@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
 
-On 2021-11-22 13:56, Aswath Govindraju wrote:
-> In some cases, we might need to provide the state of the mux to be set for
-> the operation of a given peripheral. Therefore, pass this information using
-> the second argument of the mux-controls property.
+
+On 11/19/21 8:23 PM, Dmitry Baryshkov wrote:
+> On 11/11/2021 00:53, Thara Gopinath wrote:
+>> Add OPP tables to scale DDR and L3 with CPUs for SM8250 SoCs.
+>>
+>> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 > 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Thanks!
+
+-- 
+Warm Regards
+Thara (She/Her/Hers)
 > 
-> Notes:
-> - The function mux_control_get() always return the mux_control for a single
->   line. So, control for mutiple lines cannot be represented in the
->   mux-controls property.
-> - For representing multiple lines of control, multiple entries need to be
->   used along with mux-names for reading them.
-> - If a device uses both the states of the mux line then #mux-control-cells
->   can be set to 1 and enable_state will not be set in this case.
 > 
->  drivers/mux/core.c           | 20 ++++++++++++++++++--
->  include/linux/mux/consumer.h |  1 +
->  include/linux/mux/driver.h   |  1 +
->  3 files changed, 20 insertions(+), 2 deletions(-)
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 314 +++++++++++++++++++++++++++
+>>   1 file changed, 314 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> index d12e4cbfc852..7c35415a05be 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+>> @@ -100,6 +100,9 @@ CPU0: cpu@0 {
+>>               dynamic-power-coefficient = <205>;
+>>               next-level-cache = <&L2_0>;
+>>               qcom,freq-domain = <&cpufreq_hw 0>;
+>> +            operating-points-v2 = <&cpu0_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_0: l2-cache {
+>>                   compatible = "cache";
+>> @@ -119,6 +122,9 @@ CPU1: cpu@100 {
+>>               dynamic-power-coefficient = <205>;
+>>               next-level-cache = <&L2_100>;
+>>               qcom,freq-domain = <&cpufreq_hw 0>;
+>> +            operating-points-v2 = <&cpu0_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_100: l2-cache {
+>>                   compatible = "cache";
+>> @@ -135,6 +141,9 @@ CPU2: cpu@200 {
+>>               dynamic-power-coefficient = <205>;
+>>               next-level-cache = <&L2_200>;
+>>               qcom,freq-domain = <&cpufreq_hw 0>;
+>> +            operating-points-v2 = <&cpu0_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_200: l2-cache {
+>>                   compatible = "cache";
+>> @@ -151,6 +160,9 @@ CPU3: cpu@300 {
+>>               dynamic-power-coefficient = <205>;
+>>               next-level-cache = <&L2_300>;
+>>               qcom,freq-domain = <&cpufreq_hw 0>;
+>> +            operating-points-v2 = <&cpu0_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_300: l2-cache {
+>>                   compatible = "cache";
+>> @@ -167,6 +179,9 @@ CPU4: cpu@400 {
+>>               dynamic-power-coefficient = <379>;
+>>               next-level-cache = <&L2_400>;
+>>               qcom,freq-domain = <&cpufreq_hw 1>;
+>> +            operating-points-v2 = <&cpu4_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_400: l2-cache {
+>>                   compatible = "cache";
+>> @@ -183,6 +198,9 @@ CPU5: cpu@500 {
+>>               dynamic-power-coefficient = <379>;
+>>               next-level-cache = <&L2_500>;
+>>               qcom,freq-domain = <&cpufreq_hw 1>;
+>> +            operating-points-v2 = <&cpu4_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_500: l2-cache {
+>>                   compatible = "cache";
+>> @@ -200,6 +218,9 @@ CPU6: cpu@600 {
+>>               dynamic-power-coefficient = <379>;
+>>               next-level-cache = <&L2_600>;
+>>               qcom,freq-domain = <&cpufreq_hw 1>;
+>> +            operating-points-v2 = <&cpu4_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_600: l2-cache {
+>>                   compatible = "cache";
+>> @@ -216,6 +237,9 @@ CPU7: cpu@700 {
+>>               dynamic-power-coefficient = <444>;
+>>               next-level-cache = <&L2_700>;
+>>               qcom,freq-domain = <&cpufreq_hw 2>;
+>> +            operating-points-v2 = <&cpu7_opp_table>;
+>> +            interconnects = <&gem_noc MASTER_AMPSS_M0 &mc_virt 
+>> SLAVE_EBI_CH0>,
+>> +                    <&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
+>>               #cooling-cells = <2>;
+>>               L2_700: l2-cache {
+>>                   compatible = "cache";
+>> @@ -260,6 +284,296 @@ core7 {
+>>           };
+>>       };
+>> +    cpu0_opp_table: cpu0_opp_table {
+>> +        compatible = "operating-points-v2";
+>> +        opp-shared;
+>> +
+>> +        cpu0_opp1: opp-300000000 {
+>> +            opp-hz = /bits/ 64 <300000000>;
+>> +            opp-peak-kBps = <800000 9600000>;
+>> +        };
+>> +
+>> +        cpu0_opp2: opp-403200000 {
+>> +            opp-hz = /bits/ 64 <403200000>;
+>> +            opp-peak-kBps = <800000 9600000>;
+>> +        };
+>> +
+>> +        cpu0_opp3: opp-518400000 {
+>> +            opp-hz = /bits/ 64 <518400000>;
+>> +            opp-peak-kBps = <800000 16588800>;
+>> +        };
+>> +
+>> +        cpu0_opp4: opp-614400000 {
+>> +            opp-hz = /bits/ 64 <614400000>;
+>> +            opp-peak-kBps = <800000 16588800>;
+>> +        };
+>> +
+>> +        cpu0_opp5: opp-691200000 {
+>> +            opp-hz = /bits/ 64 <691200000>;
+>> +            opp-peak-kBps = <800000 19660800>;
+>> +        };
+>> +
+>> +        cpu0_opp6: opp-787200000 {
+>> +            opp-hz = /bits/ 64 <787200000>;
+>> +            opp-peak-kBps = <1804000 19660800>;
+>> +        };
+>> +
+>> +        cpu0_opp7: opp-883200000 {
+>> +            opp-hz = /bits/ 64 <883200000>;
+>> +            opp-peak-kBps = <1804000 23347200>;
+>> +        };
+>> +
+>> +        cpu0_opp8: opp-979200000 {
+>> +            opp-hz = /bits/ 64 <979200000>;
+>> +            opp-peak-kBps = <1804000 26419200>;
+>> +        };
+>> +
+>> +        cpu0_opp9: opp-1075200000 {
+>> +            opp-hz = /bits/ 64 <1075200000>;
+>> +            opp-peak-kBps = <1804000 29491200>;
+>> +        };
+>> +
+>> +        cpu0_opp10: opp-1171200000 {
+>> +            opp-hz = /bits/ 64 <1171200000>;
+>> +            opp-peak-kBps = <1804000 32563200>;
+>> +        };
+>> +
+>> +        cpu0_opp11: opp-1248000000 {
+>> +            opp-hz = /bits/ 64 <1248000000>;
+>> +            opp-peak-kBps = <1804000 36249600>;
+>> +        };
+>> +
+>> +        cpu0_opp12: opp-1344000000 {
+>> +            opp-hz = /bits/ 64 <1344000000>;
+>> +            opp-peak-kBps = <2188000 36249600>;
+>> +        };
+>> +
+>> +        cpu0_opp13: opp-1420800000 {
+>> +            opp-hz = /bits/ 64 <1420800000>;
+>> +            opp-peak-kBps = <2188000 39321600>;
+>> +        };
+>> +
+>> +        cpu0_opp14: opp-1516800000 {
+>> +            opp-hz = /bits/ 64 <1516800000>;
+>> +            opp-peak-kBps = <3072000 42393600>;
+>> +        };
+>> +
+>> +        cpu0_opp15: opp-1612800000 {
+>> +            opp-hz = /bits/ 64 <1612800000>;
+>> +            opp-peak-kBps = <3072000 42393600>;
+>> +        };
+>> +
+>> +        cpu0_opp16: opp-1708800000 {
+>> +            opp-hz = /bits/ 64 <1708800000>;
+>> +            opp-peak-kBps = <4068000 42393600>;
+>> +        };
+>> +
+>> +        cpu0_opp17: opp-1804800000 {
+>> +            opp-hz = /bits/ 64 <1804800000>;
+>> +            opp-peak-kBps = <4068000 42393600>;
+>> +        };
+>> +    };
+>> +
+>> +    cpu4_opp_table: cpu4_opp_table {
+>> +        compatible = "operating-points-v2";
+>> +        opp-shared;
+>> +
+>> +        cpu4_opp1: opp-710400000 {
+>> +            opp-hz = /bits/ 64 <710400000>;
+>> +            opp-peak-kBps = <1804000 19660800>;
+>> +        };
+>> +
+>> +        cpu4_opp2: opp-825600000 {
+>> +            opp-hz = /bits/ 64 <825600000>;
+>> +            opp-peak-kBps = <2188000 23347200>;
+>> +        };
+>> +
+>> +        cpu4_opp3: opp-940800000 {
+>> +            opp-hz = /bits/ 64 <940800000>;
+>> +            opp-peak-kBps = <2188000 26419200>;
+>> +        };
+>> +
+>> +        cpu4_opp4: opp-1056000000 {
+>> +            opp-hz = /bits/ 64 <1056000000>;
+>> +            opp-peak-kBps = <3072000 26419200>;
+>> +        };
+>> +
+>> +        cpu4_opp5: opp-1171200000 {
+>> +            opp-hz = /bits/ 64 <1171200000>;
+>> +            opp-peak-kBps = <3072000 29491200>;
+>> +        };
+>> +
+>> +        cpu4_opp6: opp-1286400000 {
+>> +            opp-hz = /bits/ 64 <1286400000>;
+>> +            opp-peak-kBps = <4068000 29491200>;
+>> +        };
+>> +
+>> +        cpu4_opp7: opp-1382400000 {
+>> +            opp-hz = /bits/ 64 <1382400000>;
+>> +            opp-peak-kBps = <4068000 32563200>;
+>> +        };
+>> +
+>> +        cpu4_opp8: opp-1478400000 {
+>> +            opp-hz = /bits/ 64 <1478400000>;
+>> +            opp-peak-kBps = <4068000 32563200>;
+>> +        };
+>> +
+>> +        cpu4_opp9: opp-1574400000 {
+>> +            opp-hz = /bits/ 64 <1574400000>;
+>> +            opp-peak-kBps = <5412000 39321600>;
+>> +        };
+>> +
+>> +        cpu4_opp10: opp-1670400000 {
+>> +            opp-hz = /bits/ 64 <1670400000>;
+>> +            opp-peak-kBps = <5412000 42393600>;
+>> +        };
+>> +
+>> +        cpu4_opp11: opp-1766400000 {
+>> +            opp-hz = /bits/ 64 <1766400000>;
+>> +            opp-peak-kBps = <5412000 45465600>;
+>> +        };
+>> +
+>> +        cpu4_opp12: opp-1862400000 {
+>> +            opp-hz = /bits/ 64 <1862400000>;
+>> +            opp-peak-kBps = <6220000 45465600>;
+>> +        };
+>> +
+>> +        cpu4_opp13: opp-1958400000 {
+>> +            opp-hz = /bits/ 64 <1958400000>;
+>> +            opp-peak-kBps = <6220000 48537600>;
+>> +        };
+>> +
+>> +        cpu4_opp14: opp-2054400000 {
+>> +            opp-hz = /bits/ 64 <2054400000>;
+>> +            opp-peak-kBps = <7216000 48537600>;
+>> +        };
+>> +
+>> +        cpu4_opp15: opp-2150400000 {
+>> +            opp-hz = /bits/ 64 <2150400000>;
+>> +            opp-peak-kBps = <7216000 51609600>;
+>> +        };
+>> +
+>> +        cpu4_opp16: opp-2246400000 {
+>> +            opp-hz = /bits/ 64 <2246400000>;
+>> +            opp-peak-kBps = <7216000 51609600>;
+>> +        };
+>> +
+>> +        cpu4_opp17: opp-2342400000 {
+>> +            opp-hz = /bits/ 64 <2342400000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +
+>> +        cpu4_opp18: opp-2419200000 {
+>> +            opp-hz = /bits/ 64 <2419200000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +    };
+>> +
+>> +    cpu7_opp_table: cpu7_opp_table {
+>> +        compatible = "operating-points-v2";
+>> +        opp-shared;
+>> +
+>> +        cpu7_opp1: opp-844800000 {
+>> +            opp-hz = /bits/ 64 <844800000>;
+>> +            opp-peak-kBps = <2188000 19660800>;
+>> +        };
+>> +
+>> +        cpu7_opp2: opp-960000000 {
+>> +            opp-hz = /bits/ 64 <960000000>;
+>> +            opp-peak-kBps = <2188000 26419200>;
+>> +        };
+>> +
+>> +        cpu7_opp3: opp-1075200000 {
+>> +            opp-hz = /bits/ 64 <1075200000>;
+>> +            opp-peak-kBps = <3072000 26419200>;
+>> +        };
+>> +
+>> +        cpu7_opp4: opp-1190400000 {
+>> +            opp-hz = /bits/ 64 <1190400000>;
+>> +            opp-peak-kBps = <3072000 29491200>;
+>> +        };
+>> +
+>> +        cpu7_opp5: opp-1305600000 {
+>> +            opp-hz = /bits/ 64 <1305600000>;
+>> +            opp-peak-kBps = <4068000 32563200>;
+>> +        };
+>> +
+>> +        cpu7_opp6: opp-1401600000 {
+>> +            opp-hz = /bits/ 64 <1401600000>;
+>> +            opp-peak-kBps = <4068000 32563200>;
+>> +        };
+>> +
+>> +        cpu7_opp7: opp-1516800000 {
+>> +            opp-hz = /bits/ 64 <1516800000>;
+>> +            opp-peak-kBps = <4068000 36249600>;
+>> +        };
+>> +
+>> +        cpu7_opp8: opp-1632000000 {
+>> +            opp-hz = /bits/ 64 <1632000000>;
+>> +            opp-peak-kBps = <5412000 39321600>;
+>> +        };
+>> +
+>> +        cpu7_opp9: opp-1747200000 {
+>> +            opp-hz = /bits/ 64 <1708800000>;
+>> +            opp-peak-kBps = <5412000 42393600>;
+>> +        };
+>> +
+>> +        cpu7_opp10: opp-1862400000 {
+>> +            opp-hz = /bits/ 64 <1862400000>;
+>> +            opp-peak-kBps = <6220000 45465600>;
+>> +        };
+>> +
+>> +        cpu7_opp11: opp-1977600000 {
+>> +            opp-hz = /bits/ 64 <1977600000>;
+>> +            opp-peak-kBps = <6220000 48537600>;
+>> +        };
+>> +
+>> +        cpu7_opp12: opp-2073600000 {
+>> +            opp-hz = /bits/ 64 <2073600000>;
+>> +            opp-peak-kBps = <7216000 48537600>;
+>> +        };
+>> +
+>> +        cpu7_opp13: opp-2169600000 {
+>> +            opp-hz = /bits/ 64 <2169600000>;
+>> +            opp-peak-kBps = <7216000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp14: opp-2265600000 {
+>> +            opp-hz = /bits/ 64 <2265600000>;
+>> +            opp-peak-kBps = <7216000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp15: opp-2361600000 {
+>> +            opp-hz = /bits/ 64 <2361600000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp16: opp-2457600000 {
+>> +            opp-hz = /bits/ 64 <2457600000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp17: opp-2553600000 {
+>> +            opp-hz = /bits/ 64 <2553600000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp18: opp-2649600000 {
+>> +            opp-hz = /bits/ 64 <2649600000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp19: opp-2745600000 {
+>> +            opp-hz = /bits/ 64 <2745600000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +
+>> +        cpu7_opp20: opp-2841600000 {
+>> +            opp-hz = /bits/ 64 <2841600000>;
+>> +            opp-peak-kBps = <8368000 51609600>;
+>> +        };
+>> +    };
+>> +
+>>       firmware {
+>>           scm: scm {
+>>               compatible = "qcom,scm";
+>>
 > 
-> diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-> index 22f4709768d1..51140748d2d6 100644
-> --- a/drivers/mux/core.c
-> +++ b/drivers/mux/core.c
-> @@ -294,6 +294,18 @@ unsigned int mux_control_states(struct mux_control *mux)
->  }
->  EXPORT_SYMBOL_GPL(mux_control_states);
->  
-> +/**
-> + * mux_control_enable_state() - Query for the enable state.
-> + * @mux: The mux-control to query.
-> + *
-> + * Return: State to be set in the mux to enable a given device
-> + */
-> +unsigned int mux_control_enable_state(struct mux_control *mux)
-> +{
-> +	return mux->enable_state;
-> +}
-> +EXPORT_SYMBOL_GPL(mux_control_enable_state);
-> +
->  /*
->   * The mux->lock must be down when calling this function.
->   */
-> @@ -481,8 +493,7 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
->  	if (!mux_chip)
->  		return ERR_PTR(-EPROBE_DEFER);
->  
-> -	if (args.args_count > 1 ||
-> -	    (!args.args_count && (mux_chip->controllers > 1))) {
-> +	if (!args.args_count && mux_chip->controllers > 1) {
->  		dev_err(dev, "%pOF: wrong #mux-control-cells for %pOF\n",
->  			np, args.np);
->  		put_device(&mux_chip->dev);
-> @@ -500,6 +511,11 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
->  		return ERR_PTR(-EINVAL);
->  	}
->  
-> +	if (args.args_count == 2) {
-> +		mux_chip->mux[controller].enable_state = args.args[1];
-> +		mux_chip->mux[controller].idle_state = !args.args[1];
-
-Please leave the idle state alone. The idle state is a property of
-the mux-control itself, and not the business of any particular
-consumer. Consumers can only say what state the mux control should
-have when they have selected the mux-control, and have no say about
-what state the mux-control has when they do not have it selected.
-There is no conflict with having the same idle state as the state the
-mux would normally have. That could even be seen as an optimization,
-since then there might be no need to operate the mux for most
-accesses.
-
-> +	}
-> +
->  	return &mux_chip->mux[controller];
->  }
->  EXPORT_SYMBOL_GPL(mux_control_get);
-> diff --git a/include/linux/mux/consumer.h b/include/linux/mux/consumer.h
-> index 7a09b040ac39..cb861eab8aad 100644
-> --- a/include/linux/mux/consumer.h
-> +++ b/include/linux/mux/consumer.h
-> @@ -16,6 +16,7 @@ struct device;
->  struct mux_control;
->  
->  unsigned int mux_control_states(struct mux_control *mux);
-> +unsigned int mux_control_enable_state(struct mux_control *mux);
->  int __must_check mux_control_select_delay(struct mux_control *mux,
->  					  unsigned int state,
->  					  unsigned int delay_us);
-> diff --git a/include/linux/mux/driver.h b/include/linux/mux/driver.h
-> index 18824064f8c0..7db378dabdb2 100644
-> --- a/include/linux/mux/driver.h
-> +++ b/include/linux/mux/driver.h
-> @@ -48,6 +48,7 @@ struct mux_control {
->  	int cached_state;
->  
->  	unsigned int states;
-> +	unsigned int enable_state;
-
-This is the wrong place to store the state you need. The mux_control
-is a shared resource and can have many consumers. Storing the needed
-value for exactly one consumer in the mux control is therefore
-broken. It would get overwritten when consumer #2 (and 3 etc etc)
-wants to use some other state from the same shared mux control.
-
-Doing this properly means that you need a new struct tying together
-a mux-control and a state. With an API looking something like this:
-
-struct mux_state {
-	struct mux_control *mux;
-	unsigned int state;
-};
-
-struct mux_state *mux_state_get(struct device *dev, const char *mux_name)
-{
-	struct mux_state *mux_state = kzalloc(sizeof(*mux_state), GFP_KERNEL);
-
-	if (!mux_state)
-		return ERR_PTR(-ENOMEM);
-
-	mux_state->mux = ...; /* mux_control_get(...) perhaps? */
-	/* error checking and recovery, etc etc etc */
-	mux_state->state = ...;
-
-	return mux_state;
-}
-
-void mux_state_put(struct mux_state *mux_state)
-{
-	mux_control_put(mux_state->mux);
-	free(mux_state);
-}
-
-int mux_state_select_delay(struct mux_state *mux_state,
- 			   unsigned int delay_us)
-{
-	return mux_control_select_delay(mux_state->mux, mux_state->state,
-					delay_us);
-}
-
-int mux_state_select(struct mux_state *mux_state)
-{
-	return mux_state_select_delay(mux_state, 0);
-}
-
-int mux_state_try_select_delay(struct mux_state *mux_state)
-			       unsigned int delay_us);
-{
-	return mux_control_try_select_delay(mux_state->mux, mux_state->state,
-					    delay_us);
-}
-
-int mux_state_try_select(struct mux_state *mux_state)
-{
-	return mux_state_try_select_delay(mux_state, 0);
-}
-
-int mux_state_deselect(struct mux_control *mux)
-{
-	return mux_control_deselect(mux_state->mux);
-}
-
-(written directly in the mail client, never compiled, here be dragons)
-
-mux_state_get is obviously the difficult function to write, and
-the above call to mux_control_get is not appropriate as-is. I
-think mux_control_get perhaps needs to be refactored into a
-flexible helper that takes a couple of extra arguments that
-indicate if you want an optional get and/or a particular state.
-And then mux_control_get can just be a wrapper around that helper.
-Adding mux_control_get_optional would be a matter of adding a new
-wrapper. And the mux_state->mux assignment above would need yet
-another wrapper for the flexible helper, one that also make the
-flexible helper return the requested state from the mux-control
-property.
-
-I realize that this might be a big piece to chew, but you want to
-do something new here, and I think it is best to do it right from
-the start instead of having weird code that only makes it harder
-to do it right later. Ad it's not that complicated.
-
-Cheers,
-Peter
-
->  	int idle_state;
->  
->  	ktime_t last_change;
 > 
+
+
