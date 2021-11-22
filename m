@@ -2,144 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47080458B3B
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 10:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E6E458B62
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 10:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238927AbhKVJYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 04:24:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbhKVJYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 04:24:20 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B9FBC061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 01:21:14 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id o29so14592579wms.2
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 01:21:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1r1P3CAQVJMR7iqI1mfq36qxIjfrbAJB49dCsJeHrQc=;
-        b=XFYR7Voix/vCKrhxk72LU+Pe1QjOfUmDJHanELv54kHxwnW0d+Zp9UKEgSMeGPY0Tw
-         4dCdu3BE5U6uuF0wSPMdW4Siq6LPxPr380Mc7wfrekKhMxrfkCaa0ZIYN9FpNFWeHF+7
-         cxrT8u813G/13dKOKd2BjqpFf8EbsY09uCiHpWznUyeUqvSFeJb1J6jZCU/yWpJV7gvg
-         rCFBQmGuhPAlgnW7vjz8YxAqAw8+QZV/G8log8ZIpwiYtQIXlYys38HFezmnAmejA5UV
-         hBPJBtcJXpbEyCtuXQtTEVN+nTja4bhY6NB3fHRfuNXw+hRc1m36kry7Z4VCoovrSKWX
-         G4DQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1r1P3CAQVJMR7iqI1mfq36qxIjfrbAJB49dCsJeHrQc=;
-        b=Wsoe7Og9u4crVjlTk9bMNXkiZb0OY3pyJIRKcStLzrEONJHvr6RK/TT1GyD3oBb/W7
-         pL9s92y8EVeCvRnvI7qrc+GSxsuwWVrakehNF0B5fe72QYXVniuRjdpyo2FsPGVSYV1j
-         LOOKwI7SP7JZrUbOzwuxUkPDmJ148vhduQVQycCjubA7tyf9wjz/U2WbtxNLPZhDHpPp
-         2rE0zYMMDe37BsfClF+wPmw/4deKbFKq+XY8PYCSXlNZayuabOjDeaiGzGIQJjNCjmOc
-         Kvv7c04UZDQv20K+RsJv17yCvCUBIBVin8J5PJ+FYcPrv2ttcvlI8Ch5fwXXbaltHO16
-         9n0Q==
-X-Gm-Message-State: AOAM530fPsi1l+hemj07WIRnIK0ADAy0qy3P2JgumcF8G1fTbTd8lI+s
-        WkMKyhB+acrz7Kmp26/SDbItEQ==
-X-Google-Smtp-Source: ABdhPJzAgAkGcitf6tL+qV9XGDPaOQenjEwCFISt3azUoTKx6X/370/Jy4Dtghj84pOdr6LWuSSa4g==
-X-Received: by 2002:a1c:4d13:: with SMTP id o19mr27315815wmh.164.1637572872541;
-        Mon, 22 Nov 2021 01:21:12 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id 8sm19977788wmg.24.2021.11.22.01.21.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 22 Nov 2021 01:21:12 -0800 (PST)
-Subject: Re: [PATCH 4/6] dt-bindings: phy: mediatek: tphy: support software
- efuse load
-To:     Chen-Yu Tsai <wenst@chromium.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yz Wu <yz.wu@mediatek.com>
-References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
- <20211107075646.4366-4-chunfeng.yun@mediatek.com>
- <71f83770-b12f-2452-d24b-ae1be9b5b075@linaro.org>
- <CAGXv+5GzP1SXi2ihhifK_Ui8Rt04UgeFyjivzHc532yvPFo3OA@mail.gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <8aa7adbf-7367-1b3a-4d63-f9fe83e72117@linaro.org>
-Date:   Mon, 22 Nov 2021 09:21:08 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S230215AbhKVJbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 04:31:23 -0500
+Received: from mail-co1nam11on2087.outbound.protection.outlook.com ([40.107.220.87]:26208
+        "EHLO NAM11-CO1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229806AbhKVJbV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 04:31:21 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j0LkOz61/rcVcxw7P1XzbZo6u7/uV3me6HpJuJFWuQlWf+t0LeaSR1te1/L3lSOvLSHv5SFuZHkzpoGLEYzL4d3510D30e9qjrGXitBkQ5hW5lQztd22A1+MqaMD2IfABEo7pw+twK/osw8ziR++BvZ03O4VmWMeAOLmvNJ6G5IsaHAcSP+2k+XAV3TQfAxLE97pdhxpG0FdTtCL3YXZDw3UgYQjiIXjFsVZ3+Ze/ZP19/YvlwSdcOF6MBVA9ZT85BYEda7zT0VbFDhRqYAeJmQGAcMnt9xAoxLgT3PtTUMd5bayLbM58R2dEhy/EIuUMoP60B17arlQv5OzJSIFWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H0uwj3VkeQtQ2KXjoi56tvmxMLsY2FKOLGgmp+X+3H8=;
+ b=B4GkrES8DE8FUpsnQDSjUhuYgQAp+xc8s6l4ImDaC2PSOoyegoeyvJAPsaBFScMfYlWcmMVF8lthfuPDzvj6TULmELF6uv7e0VPgoG8jW/VHvmwHzdeCGQaBBjzGUyiKuUeWq0pQEbpgIeFsKvNXxgi9aPZbWH4q0MS4qdN3bAT8S2HI60K4w+0t5nvWCUOi5oaugipUjTGursF2s9ojfyqqY1QTUmx0a7GZ8ihqZEmI+1I/wOxTvSbLQnNiwCKkEYqFoZzohsGLGOkIKjlubpwF2RKBTU1ayDYe0IahVjPBuxvlE7G8VyiVI3MLJ6uV1lhrQnZvKaYWZdqVNEU2Kg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.112.36) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nvidia.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H0uwj3VkeQtQ2KXjoi56tvmxMLsY2FKOLGgmp+X+3H8=;
+ b=H5dBwfafs9JxrMXWHSktn+WEsn2fxGlYA72b7MTe60On1P4Hx0op4vWRiCK3VtZhnHQBXZJ+YlYZkVpwuQyhJrgQBFjf2YcHkBCrixuweVgoYQFiIAnk7LVlB+zKqli6LS3F6MApNiawxZJFHk8yCGb1e1EHvSwe3yYpITWUuFkBu1CaagE0FT7A9Rmz+T/yNc41j1AIrLRWHAGialsc0GVWup3hrLv3nw1Fzt+b4PTMGzH4/vymHx8FQGP4qub7CDyEEeMSVGShq4Ge1eG/wkiQ6CTkNxb7cTJ9rGkwA0uVZ8rINcEtuFJEcbDvxhqGcWtHhrQE6xgw1NjiY/yKHA==
+Received: from DS7PR06CA0028.namprd06.prod.outlook.com (2603:10b6:8:54::33) by
+ DM5PR12MB1260.namprd12.prod.outlook.com (2603:10b6:3:78::11) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.4713.22; Mon, 22 Nov 2021 09:28:13 +0000
+Received: from DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:8:54:cafe::f0) by DS7PR06CA0028.outlook.office365.com
+ (2603:10b6:8:54::33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.20 via Frontend
+ Transport; Mon, 22 Nov 2021 09:28:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.36)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.112.36 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.112.36; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (216.228.112.36) by
+ DM6NAM11FT020.mail.protection.outlook.com (10.13.172.224) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.4713.20 via Frontend Transport; Mon, 22 Nov 2021 09:28:13 +0000
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Mon, 22 Nov
+ 2021 09:28:12 +0000
+Received: from kyarlagadda-linux.nvidia.com (172.20.187.5) by mail.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
+ Transport; Mon, 22 Nov 2021 01:28:08 -0800
+From:   Akhil R <akhilrajeev@nvidia.com>
+To:     <dan.j.williams@intel.com>, <devicetree@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <jonathanh@nvidia.com>,
+        <kyarlagadda@nvidia.com>, <ldewangan@nvidia.com>,
+        <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <p.zabel@pengutronix.de>, <rgumasta@nvidia.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <vkoul@kernel.org>
+CC:     Akhil R <akhilrajeev@nvidia.com>
+Subject: [PATCH v13 0/4] Add NVIDIA Tegra GPC-DMA driver
+Date:   Mon, 22 Nov 2021 14:58:08 +0530
+Message-ID: <1637573292-13214-1-git-send-email-akhilrajeev@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <CAGXv+5GzP1SXi2ihhifK_Ui8Rt04UgeFyjivzHc532yvPFo3OA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a0efa620-a3e2-4399-736d-08d9ad9a6804
+X-MS-TrafficTypeDiagnostic: DM5PR12MB1260:
+X-Microsoft-Antispam-PRVS: <DM5PR12MB1260B4A281FE9D13B5EBFD1DC09F9@DM5PR12MB1260.namprd12.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XG2l8T65lZ4w+wr7wIP1IxReAjD8vrUaRyCN2RJUrTOMbs0wWIa6GLJaDyCIjO0kxnl4OJxP3o9quGvV0xOc/7XMVBgUpTW+EE4Ifchml7iEX4ESE8F1lAyktIc8aerVnGk80BtX+VbDgfYMue/5FVXlEahZQcUuTmx7aF3wa/XnKeRFIn2Nkf+lupypA3ZlatDFdfEgc+Sf6jKjWIrAdzMubmnPWdQ8DcbkO7WSGamK3onVnJiuatd238Uv87mYSdfCEHVN95t2wVn4TNwkq7qn4oGWovzLRMHWFIOGtK5D69IZh5uxl/5VMFR6Q9Fjaxf3UFLrQGgoDq1jTwGlQSqTafyBEFI/W5Kn3XMJqKHUbPXSzcL7lZd6+Ru2ChMKYPzgwi2fT5A7UHZiSJILLnuvrZRCNPq021pJ9YJTegaa018se/FwBbxzvsvPy5U9SdubQk0+mopZblhSXRvMjea5vo9sRJpByYVB9Sb/NOn+1H/oTD0Hcj3+agRjWr2/ureO9awZeWGjvKxuIsPPYuUz1ndWIlACjLTUp5tRM45tIARI8cTd5/nKRTvlCbawZQU//brKuMSnH5bvd2lDgLJX7mpe97RvxOXSp2ivgCK0opEYDOiLSSrayrYyNcEJAnWvBweJWkx1BN6i0Ua+bw4sgPubIDkg8hqO6n+LLYgjxG7ZGxoTbTV+tiJZ3ilsvVms/fsIJ67z1WWVebnbvM5xnTtQoC+J+Adr2hgGqQQZmMox+et4BhN8VOb7aFuV3vhLZWQgR2E4YPrN8ERSf1ORRRbY9La+L7dA/dff4VhwvRbRh+NwyZGO+UcTcGhTctb5Tap9gyK4w6C9UVUT3flUA21T/8XZ9lpeXRqMGQs=
+X-Forefront-Antispam-Report: CIP:216.228.112.36;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid05.nvidia.com;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(336012)(426003)(70586007)(921005)(186003)(966005)(36860700001)(36756003)(8676002)(86362001)(36906005)(508600001)(316002)(107886003)(2616005)(82310400003)(70206006)(4744005)(110136005)(8936002)(2906002)(4326008)(356005)(7636003)(47076005)(26005)(5660300002)(7696005)(2101003)(83996005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2021 09:28:13.0117
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0efa620-a3e2-4399-736d-08d9ad9a6804
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.36];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT020.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR12MB1260
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for NVIDIA Tegra general purpose DMA driver for
+Tegra186 and Tegra194 platform.
 
+Changes in patch v13:
+	* corrections in dt-binding doc
 
-On 22/11/2021 04:05, Chen-Yu Tsai wrote:
-> On Sat, Nov 20, 2021 at 1:19 AM Srinivas Kandagatla
-> <srinivas.kandagatla@linaro.org> wrote:
->> On 07/11/2021 07:56, Chunfeng Yun wrote:
->>> Add optional property nvmem-cells and nvmem-cell-names to support
->>> software efuse load, this helps to fix the efuse bit shift issue
->>> on mt8195 etc.
->>>
->>> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
->>
->> Applied thanks,
-> 
-> This is a PHY DT binding change. Shouldn't it go in with patch 5, the
-> phy driver patch, through the PHY tree instead?
+v12- https://lkml.org/lkml/2021/11/9/533
 
-That's true, this is dropped from nvmem tree now!
+Akhil R (4):
+  dt-bindings: dmaengine: Add doc for tegra gpcdma
+  dmaengine: tegra: Add tegra gpcdma driver
+  arm64: defconfig: tegra: Enable GPCDMA
+  arm64: tegra: Add GPCDMA node for tegra186 and tegra194
 
---srini
-> 
-> ChenYu
-> 
->> --srini
->>
->>> ---
->>>    .../devicetree/bindings/phy/mediatek,tphy.yaml | 18 ++++++++++++++++++
->>>    1 file changed, 18 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
->>> index 9e6c0f43f1c6..05ee274b4b71 100644
->>> --- a/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
->>> @@ -160,6 +160,24 @@ patternProperties:
->>>                    - PHY_TYPE_PCIE
->>>                    - PHY_TYPE_SATA
->>>
->>> +      nvmem-cells:
->>> +        items:
->>> +          - description: internal R efuse for U2 PHY or U3/PCIe PHY
->>> +          - description: rx_imp_sel efuse for U3/PCIe PHY
->>> +          - description: tx_imp_sel efuse for U3/PCIe PHY
->>> +        description: |
->>> +          Phandles to nvmem cell that contains the efuse data;
->>> +          Available only for U2 PHY or U3/PCIe PHY of version 2/3, these
->>> +          three items should be provided at the same time for U3/PCIe PHY,
->>> +          when use software to load efuse;
->>> +          If unspecified, will use hardware auto-load efuse.
->>> +
->>> +      nvmem-cell-names:
->>> +        items:
->>> +          - const: intr
->>> +          - const: rx_imp
->>> +          - const: tx_imp
->>> +
->>>          # The following optional vendor properties are only for debug or HQA test
->>>          mediatek,eye-src:
->>>            description:
->>>
->>
->> _______________________________________________
->> Linux-mediatek mailing list
->> Linux-mediatek@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+ .../bindings/dma/nvidia,tegra186-gpc-dma.yaml      |  111 ++
+ arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi     |    4 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi           |   44 +
+ arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi     |    4 +
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi           |   44 +
+ arch/arm64/configs/defconfig                       |    1 +
+ drivers/dma/Kconfig                                |   12 +
+ drivers/dma/Makefile                               |    1 +
+ drivers/dma/tegra186-gpc-dma.c                     | 1285 ++++++++++++++++++++
+ 9 files changed, 1506 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+ create mode 100644 drivers/dma/tegra186-gpc-dma.c
+
+-- 
+2.7.4
+
