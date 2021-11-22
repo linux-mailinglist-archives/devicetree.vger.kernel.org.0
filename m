@@ -2,263 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C3F5458D81
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:35:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0893458D84
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 12:35:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234723AbhKVLiR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S230173AbhKVLiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 06:38:18 -0500
+Received: from wout3-smtp.messagingengine.com ([64.147.123.19]:57697 "EHLO
+        wout3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S238137AbhKVLiR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
         Mon, 22 Nov 2021 06:38:17 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52236 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230173AbhKVLiQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 06:38:16 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 38D5360C4A;
-        Mon, 22 Nov 2021 11:35:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637580910;
-        bh=fsxiu5OtiKvVSGwLIQuhcHrreWPtheesRrgoLqEG4iI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dlqPWe0KLZL/veZDmsa4GPtvRis/6V0euE04fmcoB83vRtaf6/AWGZ6q+XGgKIFO9
-         ucddsnwjto28/ctMGqFWyqKikkv3vsvhiJL0ucmwYvZ7HqcgHEF6uxxqsxaRCBGEPM
-         7/GLJ5DRco3cARJEsotBBnkDKpbFHO02OwHerB/YWgJH1GA9Ts//Z/635BgC7KzOBp
-         +EwqE3544TUpMWpOWo/PaHMVLeufcypvGbrhxmF8juXfOfrWhWq181CuttTEtS+o0Z
-         +QCC+bTDkvSRNgC3Lrs7SG+7EqIw4YEfXK8/ig/RfdghDHKujiF3q3fYRCEP3gCUWm
-         3BzkQ9oXYCbPQ==
-Date:   Mon, 22 Nov 2021 17:05:05 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yz Wu <yz.wu@mediatek.com>
-Subject: Re: [PATCH 5/6] phy: phy-mtk-tphy: add support efuse setting
-Message-ID: <YZuAab3j+flr1xXj@matsya>
-References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
- <20211107075646.4366-5-chunfeng.yun@mediatek.com>
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id D06FC3201C39;
+        Mon, 22 Nov 2021 06:35:10 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 22 Nov 2021 06:35:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=v
+        TleVrIcuSL31T2y2V9IamY8CU7ElbphPCwqQMlCxGg=; b=iiN2SzjRXh8eyhgSv
+        qE2zogdfN6zcME5dNJD8z+8NDG3S8obWRR0wZiqd8Sx4CDPz0lYxt7fOPF1AvMlM
+        Qm2HrI4I+Tl+n9f3Pnl9cjYvB8WXJRhg8ZnE+xAGrkLIOTwHgkBE5YBD/Hfg+roR
+        TSGakXf18I5fHBOs8uhJnk84R2m2oheBCvapfv9WgjO5gK/GRtDWlZhot7BYSn+K
+        DrWn2L9crC873vB/h5a/UrFPddNQBxwe1fwRYYnGx2fA1N0DotWmK5hrQYhPOUZh
+        6VioEYHWObGqabJWsdIjJC4e+2t1s9Ngrsm/j8t2oA4mps/Zgfxv+owaK7XVH45Q
+        /NERQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=vTleVrIcuSL31T2y2V9IamY8CU7ElbphPCwqQMlCx
+        Gg=; b=C671RfbnX3vGp+Hb+d636Oq8ELeCIeDOCrlZWdZWBOq/xawfLI4IS09wX
+        Wz+d4oWb2BtZnIlwHrHqCTKBkSiCjmmNUcA3748dKb78iWlFBW6IoJzQaeuVMq15
+        a07YD78G1vguRQ3e54XeDIvNwAmeatridemlpwKKXxFnitGUurQqHCKL4ATgbY3m
+        8fcqPf+omYpWZBPENard7J4NhDYgZTL4ASG1JzfY6W7/g2FXmp3AH0+4m1FBLEy0
+        UMW7b+Yq1lxvwO7/+5ZOfj/mCryftkhagFc9cTnKiQiWrp7kxwZklIBc/3c+XC5+
+        4TJfNYi7tLMsNbDjpthoTYl31VoOw==
+X-ME-Sender: <xms:bYCbYRURhtqM9C24vd7v9wKlK8IOj1djstYcmsN4jlH4jK2kLLW-7w>
+    <xme:bYCbYRlAwLvFr5XD2sJLD8wax27QYfJdLFmSWKFolrAf6ER28MT9oKPuMQQhxVwTn
+    wrf1obT-i_3D7WRbw>
+X-ME-Received: <xmr:bYCbYdYY3mZ4sVB7tg4gewUpgW0ouGSEXgJjZmIofCE-OGL3Gybbt5xr5_WqldbzBTJdf11-dX_gs3eWWsgme9CBQJb1CyjOnHFlvUAZQTDDf9t8t_VWTcMO-w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeggdeftdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefvfhfhuffkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefurghmuhgv
+    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
+    frrghtthgvrhhnpedvtddtjeeiuddugfffveetkeffgeffgedutdfgfeekudevudekffeh
+    tdefveeuvdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhg
+X-ME-Proxy: <xmx:bYCbYUVDDBW0oNmQ3KhC2dnjpjsTcU4a4dvBhl_Fl_VMzWXZOqUzIw>
+    <xmx:bYCbYblmiBCaHSLTUvvH14I2v6F66maRPrKZIekXzI7blN7pKFM-Qw>
+    <xmx:bYCbYReP0DcogwPqCC1u9IwQcU5-NCSMb_HpyhzgLO8IYjnWFWwoiw>
+    <xmx:boCbYd7iPJNttDMP4F5mu2knBGWz6Rd2FKRHTKPre2uVfDMwmuYeKQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 22 Nov 2021 06:35:09 -0500 (EST)
+To:     Evgeny Boger <boger@wirenboard.com>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Quentin Schulz <foss@0leil.net>, linux-sunxi@lists.linux.dev
+References: <20211118141233.247907-1-boger@wirenboard.com>
+ <20211118141233.247907-3-boger@wirenboard.com>
+ <20211122104915.zism6uadgwxjz5d2@gilmour>
+ <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: document TS voltage in AXP
+ PMICs
+Message-ID: <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org>
+Date:   Mon, 22 Nov 2021 05:35:08 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211107075646.4366-5-chunfeng.yun@mediatek.com>
+In-Reply-To: <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-11-21, 15:56, Chunfeng Yun wrote:
-> Due to some SoCs have a bit shift issue that will drop a bit for usb3
-> phy or pcie phy, fix it by adding software efuse reading and setting,
-> but only support it optionally for versoin 2/3.
+On 11/22/21 5:17 AM, Evgeny Boger wrote:
+> 22.11.2021 13:49, Maxime Ripard пишет:
+>> On Thu, Nov 18, 2021 at 05:12:33PM +0300, Evgeny Boger wrote:
+>>> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
+>>> TS pin. axp20x IIO driver now report the voltage of this pin via
+>>> additional IIO channel. Add new "ts_v" channel to the channel
+>>> description.
+>>>
+>>> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+>> Would it make sense to put the resistance in the DT as well or is it
+>> made mandatory by Allwinner?
+>>
+>> Maxime
+> Well, I don't think so. Basically, by default AXP20x injects 80uA 
+> current into the TS pin and measure the voltage. Then, there are 
+> voltage thresholds to stop charging if the battery is too hot or too 
+> cold. The default thresholds were calculated by the manufacturer for 
+> default 10k resistance and 80uA current. Finally, if TS pin is
+> shorted to GND, the AXP2xx will detect it and won't shut down 
+> charging. Note that AXP2xx doesn't convert the measured voltage to 
+> temperature.
 
-s/versoin/version
+Agreed, since the ADC driver only works with voltages, the resistance is
+not relevant to it, so a resistance property does not belong here.
 
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  drivers/phy/mediatek/phy-mtk-tphy.c | 162 ++++++++++++++++++++++++++++
->  1 file changed, 162 insertions(+)
-> 
-> diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c b/drivers/phy/mediatek/phy-mtk-tphy.c
-> index cdcef865fe9e..3b5b1c266595 100644
-> --- a/drivers/phy/mediatek/phy-mtk-tphy.c
-> +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
-> @@ -12,6 +12,7 @@
->  #include <linux/iopoll.h>
->  #include <linux/mfd/syscon.h>
->  #include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
->  #include <linux/of_address.h>
->  #include <linux/of_device.h>
->  #include <linux/phy/phy.h>
-> @@ -41,6 +42,9 @@
->  #define SSUSB_SIFSLV_V2_U3PHYD		0x200
->  #define SSUSB_SIFSLV_V2_U3PHYA		0x400
->  
-> +#define U3P_MISC_REG1		0x04
-> +#define MR1_EFUSE_AUTO_LOAD_DIS		BIT(6)
-> +
->  #define U3P_USBPHYACR0		0x000
->  #define PA0_RG_U2PLL_FORCE_ON		BIT(15)
->  #define PA0_USB20_PLL_PREDIV		GENMASK(7, 6)
-> @@ -133,6 +137,8 @@
->  #define P3C_RG_SWRST_U3_PHYD_FORCE_EN	BIT(24)
->  
->  #define U3P_U3_PHYA_REG0	0x000
-> +#define P3A_RG_IEXT_INTR		GENMASK(15, 10)
-> +#define P3A_RG_IEXT_INTR_VAL(x)		((0x3f & (x)) << 10)
->  #define P3A_RG_CLKDRV_OFF		GENMASK(3, 2)
->  #define P3A_RG_CLKDRV_OFF_VAL(x)	((0x3 & (x)) << 2)
->  
-> @@ -187,6 +193,19 @@
->  #define P3D_RG_FWAKE_TH		GENMASK(21, 16)
->  #define P3D_RG_FWAKE_TH_VAL(x)	((0x3f & (x)) << 16)
->  
-> +#define U3P_U3_PHYD_IMPCAL0		0x010
-> +#define P3D_RG_FORCE_TX_IMPEL		BIT(31)
-> +#define P3D_RG_TX_IMPEL			GENMASK(28, 24)
-> +#define P3D_RG_TX_IMPEL_VAL(x)		((0x1f & (x)) << 24)
-> +
-> +#define U3P_U3_PHYD_IMPCAL1		0x014
-> +#define P3D_RG_FORCE_RX_IMPEL		BIT(31)
-> +#define P3D_RG_RX_IMPEL			GENMASK(28, 24)
-> +#define P3D_RG_RX_IMPEL_VAL(x)		((0x1f & (x)) << 24)
-> +
-> +#define U3P_U3_PHYD_RSV			0x054
-> +#define P3D_RG_EFUSE_AUTO_LOAD_DIS	BIT(12)
-> +
->  #define U3P_U3_PHYD_CDR1		0x05c
->  #define P3D_RG_CDR_BIR_LTD1		GENMASK(28, 24)
->  #define P3D_RG_CDR_BIR_LTD1_VAL(x)	((0x1f & (x)) << 24)
-> @@ -307,6 +326,11 @@ struct mtk_phy_pdata {
->  	 * 48M PLL, fix it by switching PLL to 26M from default 48M
->  	 */
->  	bool sw_pll_48m_to_26m;
-> +	/*
-> +	 * Some SoCs (e.g. mt8195) drop a bit when use auto load efuse,
-> +	 * support sw way, also support it for v2/v3 optionally.
-> +	 */
-> +	bool sw_efuse_supported;
->  	enum mtk_phy_version version;
->  };
->  
-> @@ -336,6 +360,10 @@ struct mtk_phy_instance {
->  	struct regmap *type_sw;
->  	u32 type_sw_reg;
->  	u32 type_sw_index;
-> +	u32 efuse_sw_en;
-> +	u32 efuse_intr;
-> +	u32 efuse_tx_imp;
-> +	u32 efuse_rx_imp;
->  	int eye_src;
->  	int eye_vrt;
->  	int eye_term;
-> @@ -1040,6 +1068,130 @@ static int phy_type_set(struct mtk_phy_instance *instance)
->  	return 0;
->  }
->  
-> +static int phy_efuse_get(struct mtk_tphy *tphy, struct mtk_phy_instance *instance)
-> +{
-> +	struct device *dev = &instance->phy->dev;
-> +	int ret = 0;
-> +
-> +	/* tphy v1 doesn't support sw efuse, skip it */
-> +	if (!tphy->pdata->sw_efuse_supported) {
-> +		instance->efuse_sw_en = 0;
-> +		return 0;
-> +	}
-> +
-> +	/* software efuse is optional */
-> +	instance->efuse_sw_en = device_property_read_bool(dev, "nvmem-cells");
-> +	if (!instance->efuse_sw_en)
-> +		return 0;
-> +
-> +	switch (instance->type) {
-> +	case PHY_TYPE_USB2:
-> +		ret = nvmem_cell_read_variable_le_u32(dev, "intr", &instance->efuse_intr);
-> +		if (ret) {
-> +			dev_err(dev, "fail to get u2 intr efuse, %d\n", ret);
-> +			break;
-> +		}
-> +
-> +		/* no efuse, ignore it */
-> +		if (!instance->efuse_intr) {
-> +			dev_warn(dev, "no u2 intr efuse, but dts enable it\n");
-> +			instance->efuse_sw_en = 0;
-> +			break;
-> +		}
+> So while it's possible to use AXP2xx with resistance other than 10k, 
+> it will require us to override these protection thresholds.
+> Moreover, if one want to put the actual resistance in DT, then the
+> driver would need to calculate these protection thresholds based on
+> NTC parameters and injection current.
+That means we do need a resistance property for the battery charger
+driver, because it does need to calculate temperature.
 
-What does this check do...? so a zero value is not valid..?
+Regardless of the reference design, the resistance is variable in
+practice. At least some early v1.0 PinePhones shipped with batteries
+containing a 3 kOhm NTC. And the battery is removable, with an
+off-the-shelf form factor, so users could install aftermarket batteries
+with any NTC resistance.
 
-> +
-> +		dev_info(dev, "u2 efuse - intr %x\n", instance->efuse_intr);
+Right now, people with these batteries are disabling the TS; otherwise
+the PMIC refuses to charge them. It would be good to re-enable the TS by
+coming up with the proper voltages for the min/max thresholds. And there
+are power supply properties we can use to expose the current temperature
+and those thresholds to userspace (at least as read-only).
 
-dev_dbg()?
-
-> +		break;
-
-empty line after break improves readability, pls add
-
-> +	case PHY_TYPE_USB3:
-> +	case PHY_TYPE_PCIE:
-> +		ret = nvmem_cell_read_variable_le_u32(dev, "intr", &instance->efuse_intr);
-> +		if (ret) {
-> +			dev_err(dev, "fail to get u3 intr efuse, %d\n", ret);
-> +			break;
-> +		}
-
-This seems to be common, why not read this before switch?
-
-> +
-> +		ret = nvmem_cell_read_variable_le_u32(dev, "rx_imp", &instance->efuse_rx_imp);
-> +		if (ret) {
-> +			dev_err(dev, "fail to get u3 rx_imp efuse, %d\n", ret);
-> +			break;
-> +		}
-> +
-> +		ret = nvmem_cell_read_variable_le_u32(dev, "tx_imp", &instance->efuse_tx_imp);
-> +		if (ret) {
-> +			dev_err(dev, "fail to get u3 tx_imp efuse, %d\n", ret);
-> +			break;
-> +		}
-> +
-> +		/* no efuse, ignore it */
-> +		if (!instance->efuse_intr &&
-> +		    !instance->efuse_rx_imp &&
-> +		    !instance->efuse_rx_imp) {
-> +			dev_warn(dev, "no u3 intr efuse, but dts enable it\n");
-> +			instance->efuse_sw_en = 0;
-> +			break;
-> +		}
-
-again, zero values are not valid?
-
-> +
-> +		dev_info(dev, "u3 efuse - intr %x, rx_imp %x, tx_imp %x\n",
-> +			 instance->efuse_intr, instance->efuse_rx_imp,
-> +			 instance->efuse_tx_imp);
-
-dbg pls
-
-> +		break;
-> +	default:
-> +		dev_err(dev, "no sw efuse for type %d\n", instance->type);
-> +		ret = -EINVAL;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static void phy_efuse_set(struct mtk_phy_instance *instance)
-> +{
-> +	struct device *dev = &instance->phy->dev;
-> +	struct u2phy_banks *u2_banks = &instance->u2_banks;
-> +	struct u3phy_banks *u3_banks = &instance->u3_banks;
-> +	u32 tmp;
-> +
-> +	if (!instance->efuse_sw_en)
-> +		return;
-> +
-> +	switch (instance->type) {
-> +	case PHY_TYPE_USB2:
-> +		tmp = readl(u2_banks->misc + U3P_MISC_REG1);
-> +		tmp |= MR1_EFUSE_AUTO_LOAD_DIS;
-> +		writel(tmp, u2_banks->misc + U3P_MISC_REG1);
-> +
-> +		tmp = readl(u2_banks->com + U3P_USBPHYACR1);
-> +		tmp &= ~PA1_RG_INTR_CAL;
-> +		tmp |= PA1_RG_INTR_CAL_VAL(instance->efuse_intr);
-> +		writel(tmp, u2_banks->com + U3P_USBPHYACR1);
-> +		break;
-> +	case PHY_TYPE_USB3:
-> +	case PHY_TYPE_PCIE:
-> +		tmp = readl(u3_banks->phyd + U3P_U3_PHYD_RSV);
-> +		tmp |= P3D_RG_EFUSE_AUTO_LOAD_DIS;
-> +		writel(tmp, u3_banks->phyd + U3P_U3_PHYD_RSV);
-
-add a updatel() macro and use this here and other places?
-
--- 
-~Vinod
+Regards,
+Samuel
