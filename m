@@ -2,297 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79A6458E98
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 13:43:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 79B1B458EA0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 13:46:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239661AbhKVMqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 07:46:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239649AbhKVMqw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 07:46:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF243C061714
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 04:43:45 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mp8fD-0006T4-NM; Mon, 22 Nov 2021 13:43:15 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ore@pengutronix.de>)
-        id 1mp8fC-00BjXr-0O; Mon, 22 Nov 2021 13:43:14 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
+        id S232527AbhKVMuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 07:50:01 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:39852 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229797AbhKVMuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 07:50:01 -0500
+X-UUID: 4e36668dcf5244cfa05fa69adace636f-20211122
+X-UUID: 4e36668dcf5244cfa05fa69adace636f-20211122
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1208133963; Mon, 22 Nov 2021 20:46:50 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 22 Nov 2021 20:46:49 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 22 Nov
+ 2021 20:46:49 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 22 Nov 2021 20:46:49 +0800
+Message-ID: <cc6e73ba980ee13f8ab29862140d0bfe44ed9d7f.camel@mediatek.com>
+Subject: Re: [PATCH v7 2/3] arm64: dts: mediatek: add basic mt7986a support
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Robin van der Gracht <robin@protonic.nl>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v1 4/4] ARM: dts: imx6dl: plym2m, prtvt7, victgo:  make use of new resistive-adc-touch driver
-Date:   Mon, 22 Nov 2021 13:43:10 +0100
-Message-Id: <20211122124310.2796505-4-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211122124310.2796505-1-o.rempel@pengutronix.de>
-References: <20211122124310.2796505-1-o.rempel@pengutronix.de>
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "Enric Balletbo i Serra" <enric.balletbo@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Seiya Wang <seiya.wang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     John Crispin <john@phrozen.org>, Ryder Lee <Ryder.Lee@mediatek.com>
+Date:   Mon, 22 Nov 2021 20:46:49 +0800
+In-Reply-To: <a4605e32-3af3-5636-6682-475bef8448d1@gmail.com>
+References: <20211018114009.13350-1-sam.shih@mediatek.com>
+         <20211018114009.13350-3-sam.shih@mediatek.com>
+         <d411aec5-efa8-c71d-8179-54ff52c17039@gmail.com>
+         <d299493d8fec0f34f527942f2cdedf15f2136c9a.camel@mediatek.com>
+         <c5c0849d-a95a-25a0-11f8-9156770afc10@gmail.com>
+         <59963509ec833009f5c10f0a1aee91670224c6c7.camel@mediatek.com>
+         <a4605e32-3af3-5636-6682-475bef8448d1@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The tsc2046 is an ADC used as touchscreen controller. To share as mach
-code as possible, we should use it as actual ADC + virtual tochscreen
-controller.
-With this patch we make use of the new kernel IIO and HID infrastructure.
+Hi,
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/imx6dl-plym2m.dts | 55 ++++++++++++++++++++---------
- arch/arm/boot/dts/imx6dl-prtvt7.dts | 53 ++++++++++++++++++++-------
- arch/arm/boot/dts/imx6dl-victgo.dts | 55 +++++++++++++++++++++--------
- 3 files changed, 120 insertions(+), 43 deletions(-)
+On Fri, 2021-11-19 at 11:31 +0100, Matthias Brugger wrote:
+> 	
+> 
+> On 18/11/2021 04:48, Sam Shih wrote:
+> > Hi
+> > 
+> > On Tue, 2021-11-16 at 12:18 +0100, Matthias Brugger wrote:
+> > > 
+> > > On 16/11/2021 02:39, Sam Shih wrote:
+> > > > Hi,
+> > > > 
+> > > > On Mon, 2021-11-15 at 17:27 +0100, Matthias Brugger wrote:
+> > > > > Hi,
+> > > > > 
+> > > > > On 18/10/2021 13:40, Sam Shih wrote:
+> > > > > > Add basic chip support for Mediatek mt7986a, include
+> > > > > > basic uart nodes, rng node and watchdog node.
+> > > > > > 
+> > > > > > Add cpu node, timer node, gic node, psci and reserved-
+> > > > > > memory
+> > > > > > node
+> > > > > > for ARM Trusted Firmware.
+> > > > > > 
+> > > > > 
+> > > > > What is the exact difference between mt7986a and mt7986b?
+> > > > > Right
+> > > > > now,
+> > > > > it's only
+> > > > > the compatible, for that it makes no sense to split them.
+> > > > > 
+> > > > 
+> > > > The difference between mt7986a and mt7986b is pinout which
+> > > > described
+> > > > in our pinctrl patch series
+> > > > 
+> > 
+> > 
+https://urldefense.com/v3/__https://lore.kernel.org/all/20211022124036.5291-3-sam.shih@mediatek.com/__;!!CTRNKA9wMg0ARbw!0kseU8x1KnHHXDErh6Yj6MKqecufPEfGyeumtTBism47e99UFO2Gs-HfWjL1_jUv$
+> > > >   
+> > > > 
+> > > > You are right, in this "basic SoC support" patch series, only
+> > > > show
+> > > > compatible differences
+> > > > 
+> > > > > It would be good to see what the exact differences are, so
+> > > > > that
+> > > > > we
+> > > > > can see if it
+> > > > > makes sense to have one of the alternatives:
+> > > > > 1) use a common mt7986.dtsi which get included by
+> > > > > mt7986[a,b].dtsi
+> > > > > 2) Use on mt7986.dtsi and only add one mt7986a.dtsi or
+> > > > > mt7986b.dtsi
+> > > > > which has
+> > > > > add-ons.
+> > > > > 
+> > > > 
+> > > > In this case, can we use solution (1) to create a generic
+> > > > mt7986.dtsi
+> > > > in this patch series, and add mt7986[a,b].dtsi to the dts part
+> > > > of
+> > > > the
+> > > > pinctrl patch series to separate the difference nodes?
+> > > > 
+> > > 
+> > > If the only difference is the GPIO controller then why not go
+> > > with
+> > > solution 2.
+> > > Create a mt7986.dtsi which holds e.g. the node for pincontroller
+> > > mt7986a and
+> > > then create a mt7986b.dtsi that just changes compatible and gpio-
+> > > ranges:
+> > > 
+> > > &pio {
+> > >      compatible = "mediatek,mt7986b-pinctrl";
+> > >      gpio-ranges = <&pio 0 0 41>, <&pio 66 66 35>;
+> > > }
+> > > 
+> > > What do you think?
+> > 
+> > Ok,
+> > 
+> > For this basic patch series DTS, I will send the next version:
+> > - Use "mt7986.dtsi" instead of "mt7986[a,b].dtsi",
+> >    And make"mt7986.dtsi" get included by "mt7986[a,b]-rfb.dts"
+> >    (No dedicated uart1/uart2 pinout for mt7986b-rfb, status of dts
+> > node
+> > shoud be set to "disabled")
+> > 
+> > 
+> > For the pinctrl patch series DTS, I will send th next version:
+> > - Add "mt7986b.dtsi" according to your suggestion,
+> >    the new include
+> > chain will be:
+> >    mt7986a-rfb.dts <-- mt7986.dtsi (mt7986a pinctrl)
+> >   
+> > mt7986b-rfb.dts <-- mt7986b.dtsi (mt7986b pinctrl) <-- mt7986.dtsi
+> > (mt7986a pinctrl)
+> > 
+> > Do you agree above proposal?
+> > 
+> 
+> I mean something like this:
+> mt7986a.dtsi:
+> pio: pinctrl@1001f000 {
+> 	compatible = "mediatek,mt7986a-pinctrl";
+> 	reg = <0 0x1001f000 0 0x1000>,
+> 	      <0 0x11c30000 0 0x1000>,
+> 	      <0 0x11c40000 0 0x1000>,
+> 	      <0 0x11e20000 0 0x1000>,
+> 	      <0 0x11e30000 0 0x1000>,
+> 	      <0 0x11f00000 0 0x1000>,
+> 	      <0 0x11f10000 0 0x1000>,
+> 	      <0 0x1000b000 0 0x1000>;
+> 	reg-names = "gpio", "iocfg_rt", "iocfg_rb", "iocfg_lt",
+> 		    "iocfg_lb", "iocfg_tr", "iocfg_tl", "eint";
+> 	gpio-controller;
+> 	#gpio-cells = <2>;
+> 	gpio-ranges = <&pio 0 0 100>;
+> 	interrupt-controller;
+> 	interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
+> 	interrupt-parent = <&gic>;
+> 	#interrupt-cells = <2>;
+> };
+> 
+> mt7986b.dtsi:
+> #include "mt7986a.dtsi"
+> 
+> &pio {
+>       compatible = "mediatek,mt7986b-pinctrl";
+>       gpio-ranges = <&pio 0 0 41>, <&pio 66 66 35>;
+> }
+> 
+> mt7986b-rfb.dts:
+> #include "mt7986b.dtsi"
+> 
+> &pio {
+> 	uart1_pins: uart1-pins {
+> 		mux { [...]
+> 
+> 
+> mt7986a-rfb.dts:
+> #include "mt7986a.dtsi"
+> 
+> &pio {
+> 	uart1_pins: uart1-pins {
+> 		mux { [...]
+> 
+> 
+> Makes sense?
+> 
 
-diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
-index 60fe5f14666e..e2afedae85cb 100644
---- a/arch/arm/boot/dts/imx6dl-plym2m.dts
-+++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-@@ -101,6 +101,17 @@ reg_12v0: regulator-12v0 {
- 		regulator-min-microvolt = <12000000>;
- 		regulator-max-microvolt = <12000000>;
- 	};
-+
-+	touchscreen {
-+		compatible = "resistive-adc-touch";
-+		io-channels = <&adc 1>, <&adc 3>, <&adc 4>, <&adc 5>;
-+		io-channel-names = "y", "z1", "z2", "x";
-+		touchscreen-min-pressure = <64687>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		touchscreen-x-plate-ohms = <300>;
-+		touchscreen-y-plate-ohms = <800>;
-+	};
- };
- 
- &can1 {
-@@ -129,26 +140,38 @@ &ecspi2 {
- 	pinctrl-0 = <&pinctrl_ecspi2>;
- 	status = "okay";
- 
--	touchscreen@0 {
--		compatible = "ti,tsc2046";
-+	adc: adc@0 {
-+		compatible = "ti,tsc2046e-adc";
- 		reg = <0>;
- 		pinctrl-0 = <&pinctrl_tsc2046>;
- 		pinctrl-names ="default";
--		spi-max-frequency = <100000>;
--		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
--		pendown-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
-+		spi-max-frequency = <1000000>;
-+		interrupts-extended = <&gpio3 20 IRQ_TYPE_LEVEL_LOW>;
-+		#io-channel-cells = <1>;
- 
--		touchscreen-inverted-x;
--		touchscreen-inverted-y;
--		touchscreen-max-pressure = <4095>;
--
--		ti,vref-delay-usecs = /bits/ 16 <100>;
--		ti,x-plate-ohms = /bits/ 16 <800>;
--		ti,y-plate-ohms = /bits/ 16 <300>;
--		ti,debounce-max = /bits/ 16 <3>;
--		ti,debounce-tol = /bits/ 16 <70>;
--		ti,debounce-rep = /bits/ 16 <3>;
--		wakeup-source;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@1 {
-+			reg = <1>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@3 {
-+			reg = <3>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@4 {
-+			reg = <4>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@5 {
-+			reg = <5>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/imx6dl-prtvt7.dts b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-index 02b53df03e6f..c361e0683973 100644
---- a/arch/arm/boot/dts/imx6dl-prtvt7.dts
-+++ b/arch/arm/boot/dts/imx6dl-prtvt7.dts
-@@ -235,6 +235,17 @@ simple-audio-card,codec {
- 			frame-master;
- 		};
- 	};
-+
-+	touchscreen {
-+		compatible = "resistive-adc-touch";
-+		io-channels = <&adc 1>, <&adc 3>, <&adc 4>, <&adc 5>;
-+		io-channel-names = "y", "z1", "z2", "x";
-+		touchscreen-min-pressure = <64687>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		touchscreen-x-plate-ohms = <300>;
-+		touchscreen-y-plate-ohms = <800>;
-+	};
- };
- 
- &audmux {
-@@ -277,22 +288,38 @@ &ecspi2 {
- 	pinctrl-0 = <&pinctrl_ecspi2>;
- 	status = "okay";
- 
--	touchscreen@0 {
--		compatible = "ti,tsc2046";
-+	adc: adc@0 {
-+		compatible = "ti,tsc2046e-adc";
- 		reg = <0>;
- 		pinctrl-0 = <&pinctrl_tsc>;
- 		pinctrl-names ="default";
--		spi-max-frequency = <100000>;
--		interrupts-extended = <&gpio3 20 IRQ_TYPE_EDGE_FALLING>;
--		pendown-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
--		touchscreen-max-pressure = <4095>;
--		ti,vref-delay-usecs = /bits/ 16 <100>;
--		ti,x-plate-ohms = /bits/ 16 <800>;
--		ti,y-plate-ohms = /bits/ 16 <300>;
--		ti,debounce-max = /bits/ 16 <3>;
--		ti,debounce-tol = /bits/ 16 <70>;
--		ti,debounce-rep = /bits/ 16 <3>;
--		wakeup-source;
-+		spi-max-frequency = <1000000>;
-+		interrupts-extended = <&gpio3 20 IRQ_TYPE_LEVEL_LOW>;
-+		#io-channel-cells = <1>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@1 {
-+			reg = <1>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@3 {
-+			reg = <3>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@4 {
-+			reg = <4>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@5 {
-+			reg = <5>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
- 	};
- };
- 
-diff --git a/arch/arm/boot/dts/imx6dl-victgo.dts b/arch/arm/boot/dts/imx6dl-victgo.dts
-index d37ba4ed847d..b5004b322d44 100644
---- a/arch/arm/boot/dts/imx6dl-victgo.dts
-+++ b/arch/arm/boot/dts/imx6dl-victgo.dts
-@@ -181,6 +181,17 @@ simple-audio-card,codec {
- 			frame-master;
- 		};
- 	};
-+
-+	touchscreen {
-+		compatible = "resistive-adc-touch";
-+		io-channels = <&adc 1>, <&adc 3>, <&adc 4>, <&adc 5>;
-+		io-channel-names = "y", "z1", "z2", "x";
-+		touchscreen-min-pressure = <64687>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		touchscreen-x-plate-ohms = <300>;
-+		touchscreen-y-plate-ohms = <800>;
-+	};
- };
- 
- &audmux {
-@@ -244,22 +255,38 @@ &ecspi2 {
- 	pinctrl-0 = <&pinctrl_ecspi2>;
- 	status = "okay";
- 
--	touchscreen@0 {
--		compatible = "ti,tsc2046";
-+	adc: adc@0 {
-+		compatible = "ti,tsc2046e-adc";
- 		reg = <0>;
--		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_touchscreen>;
--		spi-max-frequency = <200000>;
--		interrupts-extended = <&gpio5 8 IRQ_TYPE_EDGE_FALLING>;
--		pendown-gpio = <&gpio5 8 GPIO_ACTIVE_LOW>;
--		touchscreen-size-x = <800>;
--		touchscreen-size-y = <480>;
--		touchscreen-inverted-y;
--		touchscreen-max-pressure = <4095>;
--		ti,vref-delay-usecs = /bits/ 16 <100>;
--		ti,x-plate-ohms = /bits/ 16 <800>;
--		ti,y-plate-ohms = /bits/ 16 <300>;
--		wakeup-source;
-+		pinctrl-names ="default";
-+		spi-max-frequency = <1000000>;
-+		interrupts-extended = <&gpio5 8 IRQ_TYPE_LEVEL_LOW>;
-+		#io-channel-cells = <1>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@1 {
-+			reg = <1>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@3 {
-+			reg = <3>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@4 {
-+			reg = <4>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
-+		channel@5 {
-+			reg = <5>;
-+			settling-time-us = <700>;
-+			oversampling-ratio = <5>;
-+		};
- 	};
- };
- 
--- 
-2.30.2
+Okay,
+
+I have sent new patch set based on your suggestion,
+
+Basic Part:
+
+https://lore.kernel.org/all/20211122123222.8016-1-sam.shih@mediatek.com/
+
+Pinctrl:
+
+https://lore.kernel.org/all/20211122123552.8218-1-sam.shih@mediatek.com/
+
+Please take a look at those patches when you are free.
+
+Regards,
+Sam
+
+> Regards,
+> Matthias
+> 
 
