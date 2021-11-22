@@ -2,67 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 873954589B8
-	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 08:17:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37204589CA
+	for <lists+devicetree@lfdr.de>; Mon, 22 Nov 2021 08:27:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238655AbhKVHUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 02:20:36 -0500
-Received: from mxout70.expurgate.net ([91.198.224.70]:15816 "EHLO
-        mxout70.expurgate.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229806AbhKVHUf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Nov 2021 02:20:35 -0500
-Received: from [127.0.0.1] (helo=localhost)
-        by relay.expurgate.net with smtp (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1mp3Zt-000RBB-Ie; Mon, 22 Nov 2021 08:17:25 +0100
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-        by relay.expurgate.net with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1mp3Zs-000NSM-Uc; Mon, 22 Nov 2021 08:17:24 +0100
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-        by securemail.tdt.de (Postfix) with ESMTP id AA3E2240041;
-        Mon, 22 Nov 2021 08:17:24 +0100 (CET)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-        by securemail.tdt.de (Postfix) with ESMTP id 2F450240040;
-        Mon, 22 Nov 2021 08:17:24 +0100 (CET)
-Received: from mail.dev.tdt.de (localhost [IPv6:::1])
-        by mail.dev.tdt.de (Postfix) with ESMTP id DE44B20281;
-        Mon, 22 Nov 2021 08:17:23 +0100 (CET)
+        id S238710AbhKVHa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 02:30:28 -0500
+Received: from comms.puri.sm ([159.203.221.185]:58866 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233435AbhKVHa2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 02:30:28 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id C06B7E139C;
+        Sun, 21 Nov 2021 23:27:21 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 436LXCLEsQLl; Sun, 21 Nov 2021 23:27:20 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     martin.kepplinger@puri.sm, laurent.pinchart@ideasonboard.com,
+        mchehab@kernel.org, rmfrfs@gmail.com
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de, kernel@puri.sm,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        robh@kernel.org, shawnguo@kernel.org
+Subject: [PATCH v3 1/2] media: imx: imx7-media-csi: add support for imx8mq
+Date:   Mon, 22 Nov 2021 08:27:07 +0100
+Message-Id: <20211122072708.95269-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 22 Nov 2021 08:17:23 +0100
-From:   Florian Eckert <fe@dev.tdt.de>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     robh+dt@kernel.org, Eckert.Florian@googlemail.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] leds: Add KTD20xx RGB LEDs driver from Kinetic
-In-Reply-To: <20211109232917.GA26764@amd>
-References: <20211109100822.5412-1-fe@dev.tdt.de>
- <20211109232917.GA26764@amd>
-Message-ID: <05d2a86e292d6ff42b9734073899f278@dev.tdt.de>
-X-Sender: fe@dev.tdt.de
-User-Agent: Roundcube Webmail/1.3.16
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
-        autolearn_force=no version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.dev.tdt.de
-X-purgate-ID: 151534::1637565445-0000FA27-416ED97F/0/0
-X-purgate: clean
-X-purgate-type: clean
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
+Modeled after the NXP driver mx6s_capture.c that this driver is based on,
+imx8mq needs different settings for the baseaddr_switch mechanism. Define
+the needed bits and set that for imx8mq.
 
-> If this uses non-standard interface, it will need to be
-> documented. But I would like to understand the limitations first.
+Without these settings, the system will "sometimes" hang completely when
+starting to stream (the interrupt will never be called).
 
-I have already sent you an explanation and the register description.
-Did you get it? Do you need anything else?
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+Acked-by: Rui Miguel Silva <rmfrfs@gmail.com>
+---
 
-Best regards,
-Florian
+revision history
+----------------
+v3:
+ * fix compiler warning when assigning a 64 bit (void *) to an int
+ * add Ruis' Acked-by tag
+
+v2: (thank you Rui and Laurent)
+ * rename function and enum
+ * remove unrealted newline
+ * add Laurents reviewed tag to the bindings patch
+ https://lore.kernel.org/linux-media/20211118063347.3370678-1-martin.kepplinger@puri.sm/
+
+v1:
+https://lore.kernel.org/linux-media/20211117092710.3084034-1-martin.kepplinger@puri.sm/T/#t
+
+
+
+ drivers/staging/media/imx/imx7-media-csi.c | 32 ++++++++++++++++++++--
+ 1 file changed, 30 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging/media/imx/imx7-media-csi.c
+index 2288dadb2683..32311fc0e2a4 100644
+--- a/drivers/staging/media/imx/imx7-media-csi.c
++++ b/drivers/staging/media/imx/imx7-media-csi.c
+@@ -12,6 +12,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/mfd/syscon.h>
+ #include <linux/module.h>
++#include <linux/of_device.h>
+ #include <linux/of_graph.h>
+ #include <linux/pinctrl/consumer.h>
+ #include <linux/platform_device.h>
+@@ -122,6 +123,10 @@
+ #define BIT_DATA_FROM_MIPI		BIT(22)
+ #define BIT_MIPI_YU_SWAP		BIT(21)
+ #define BIT_MIPI_DOUBLE_CMPNT		BIT(20)
++#define BIT_MASK_OPTION_FIRST_FRAME	(0 << 18)
++#define BIT_MASK_OPTION_CSI_EN		(1 << 18)
++#define BIT_MASK_OPTION_SECOND_FRAME	(2 << 18)
++#define BIT_MASK_OPTION_ON_DATA		(3 << 18)
+ #define BIT_BASEADDR_CHG_ERR_EN		BIT(9)
+ #define BIT_BASEADDR_SWITCH_SEL		BIT(5)
+ #define BIT_BASEADDR_SWITCH_EN		BIT(4)
+@@ -154,6 +159,11 @@
+ #define CSI_CSICR18			0x48
+ #define CSI_CSICR19			0x4c
+ 
++enum imx_csi_model {
++	IMX7_CSI_IMX7 = 0,
++	IMX7_CSI_IMX8MQ,
++};
++
+ struct imx7_csi {
+ 	struct device *dev;
+ 	struct v4l2_subdev sd;
+@@ -189,6 +199,8 @@ struct imx7_csi {
+ 	bool is_csi2;
+ 
+ 	struct completion last_eof_completion;
++
++	enum imx_csi_model model;
+ };
+ 
+ static struct imx7_csi *
+@@ -537,6 +549,16 @@ static void imx7_csi_deinit(struct imx7_csi *csi,
+ 	clk_disable_unprepare(csi->mclk);
+ }
+ 
++static void imx7_csi_baseaddr_switch_on_second_frame(struct imx7_csi *csi)
++{
++	u32 cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
++
++	cr18 |= BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
++		BIT_BASEADDR_CHG_ERR_EN;
++	cr18 |= BIT_MASK_OPTION_SECOND_FRAME;
++	imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
++}
++
+ static void imx7_csi_enable(struct imx7_csi *csi)
+ {
+ 	/* Clear the Rx FIFO and reflash the DMA controller. */
+@@ -552,6 +574,9 @@ static void imx7_csi_enable(struct imx7_csi *csi)
+ 	/* Enable the RxFIFO DMA and the CSI. */
+ 	imx7_csi_dmareq_rff_enable(csi);
+ 	imx7_csi_hw_enable(csi);
++
++	if (csi->model == IMX7_CSI_IMX8MQ)
++		imx7_csi_baseaddr_switch_on_second_frame(csi);
+ }
+ 
+ static void imx7_csi_disable(struct imx7_csi *csi)
+@@ -1155,6 +1180,8 @@ static int imx7_csi_probe(struct platform_device *pdev)
+ 	if (IS_ERR(csi->regbase))
+ 		return PTR_ERR(csi->regbase);
+ 
++	csi->model = (enum imx_csi_model)(uintptr_t)of_device_get_match_data(&pdev->dev);
++
+ 	spin_lock_init(&csi->irqlock);
+ 	mutex_init(&csi->lock);
+ 
+@@ -1249,8 +1276,9 @@ static int imx7_csi_remove(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id imx7_csi_of_match[] = {
+-	{ .compatible = "fsl,imx7-csi" },
+-	{ .compatible = "fsl,imx6ul-csi" },
++	{ .compatible = "fsl,imx8mq-csi", .data = (void *)IMX7_CSI_IMX8MQ },
++	{ .compatible = "fsl,imx7-csi", .data = (void *)IMX7_CSI_IMX7 },
++	{ .compatible = "fsl,imx6ul-csi", .data = (void *)IMX7_CSI_IMX7 },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
+-- 
+2.30.2
+
