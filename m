@@ -2,142 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 841AA45ACCD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 20:48:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E8C545ACE3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 20:53:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232746AbhKWTvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 14:51:09 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:34752
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231966AbhKWTvJ (ORCPT
+        id S236114AbhKWT5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 14:57:03 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:51490
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S230491AbhKWT5A (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 14:51:09 -0500
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        Tue, 23 Nov 2021 14:57:00 -0500
+Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com [209.85.208.200])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CBDB540749
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 19:47:59 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 910833F32D
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 19:53:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1637696879;
-        bh=awbGKqFJMvM06q00ru2W6cjtSUOX907qfBZEpTNwf+o=;
+        s=20210705; t=1637697231;
+        bh=4Zq6MbMn9LAKCplJdBRxuSWyKxaV4rsKVk4jv6quK5c=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=Yv1f7i8iEC9TXOJ/UFUQjSR+GgUTyD3l6Os/s7Nnn84jxX0mDz6rdQR6AqGrjFX0k
-         4ndR3dkxLe04fCG5L5f4EkS9TqgB0F/Y2gNTb2mq92HBH0jN3g4Y6WNS81yjCGVrPm
-         9J/7l0w+9C9wicnzbH+W5wSsq1wfI/foX2egLJc3sH6Ku9WWGRfCDCay81AMShFjir
-         L981SXuMhlCCHHS3t2TMlJ+4cUwj9FVC9YF/enPSVHenkXQtdRsp0ETE1LEqJZcYxG
-         OCXk0Qy/1qVr+KqnVD0r9c2KxAGgZo++qOZhVsmTVZHWbb+6qNSKlQ6E32DdvIQ9++
-         ot6kh82fBm1rA==
-Received: by mail-lf1-f69.google.com with SMTP id k5-20020a05651210c500b0040934a07fbdso126539lfg.22
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 11:47:59 -0800 (PST)
+        b=gnCMy4xpQXoPLkz6J172mbFSDUjqv6YFpogCpfr1BewGuUk75liw8sKOORshx2m+n
+         fjKiIrtN0ZTXx2ZrW+mx1khkicB7FyqgdMUGp3GKUq2fbaD42gtpaHp242uhs1zURF
+         Gk/Di4V6OUUzKZkZmr+uFzjktndVP1o7zcaYTQRHbv1cSboW9QWcvSyrPcwShjkHxg
+         T1Rh2zQvlYABJZASRhV7Kj5Ly8prQSP1nXEncK5yZEJy8sGRBwAraPOVLszGGff5ox
+         Kd0LyND1bPlnoCIRCyBp8kiPxmVRL4WymouCWIBl3Erg3jSVM2Yw2ixVfJnCGqZSXY
+         n9hT1BDtFJq1Q==
+Received: by mail-lj1-f200.google.com with SMTP id i14-20020a2e864e000000b00218a2c57df8so71629ljj.20
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 11:53:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=awbGKqFJMvM06q00ru2W6cjtSUOX907qfBZEpTNwf+o=;
-        b=2Q/p+xUPbeLatJWvbafiGCUuIBh4awUo8zl+DrBL6BRmDqhSSSPFANmkCwX0fCF7BL
-         f9LHGKnfMTV2BNXH95oxxyGLKkfOOYxRZZ4ogH+J8vjQ3FFE3q6S7ABdHEOCYMn80fEQ
-         KRIiq96VGr+3TMVLgfGfBhqxUB4iB7Tj3AB0PiI9DxdN37cmMR85AriQ0W/BZR/WYmMw
-         NNej5eb0eK9e2Z4FIXJBv3g/VvAKynZCJSYET5sxeNZbePfPK7vBmNvIh7lIxwVIirgJ
-         5D5625rod4FaQkPAGMylDOyIX67F55AxiRjMbbAJ8MfWupsuMF3GfX6q4p9W1nN5bMRS
-         JuZQ==
-X-Gm-Message-State: AOAM531RpBKBgnIZFBpT8l0yskEnVx2MCB81waCK4aqRZ+Phf/5tt4k3
-        24mUfdwGivf37s5L8cVIWcim0o81J67iCB63OHxyvi3sVUSJDVNi0cjBinVX2s6+fhe+LVzMMhs
-        zGeFKGt6kEknWwyJRyGKuPgSpK2UmdZsRPCfdp8A=
-X-Received: by 2002:a2e:9acf:: with SMTP id p15mr8706078ljj.213.1637696879212;
-        Tue, 23 Nov 2021 11:47:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw5DSe7GPue3q18G0oImIITmr9qz4TwOJH/oHfODp8pgS8jydQV278sOB6lv9XS+71ur7RsjA==
-X-Received: by 2002:a2e:9acf:: with SMTP id p15mr8706051ljj.213.1637696879047;
-        Tue, 23 Nov 2021 11:47:59 -0800 (PST)
+        bh=4Zq6MbMn9LAKCplJdBRxuSWyKxaV4rsKVk4jv6quK5c=;
+        b=MBkAQMdqUsUoC9aYv18OjJCFJ/WevjLOo0dFn7riq8aEBFqMxng7qKZgxEaKcx7yox
+         T6kTAuko991+lH07odo3aQF8l2px7o9QwDh4zt+Nq6uIC977yfdR+ouM1XsJpHg65GcK
+         xCqrTnfY4hf16NR0oxWCwHZ6jNMQ8b4xDZHvDG+PV4Zyqc7aspBPD4mpqdZPegVYgdfZ
+         N5ZHiHeobYA06IsknKBQv2BpcQBYh9n8430Q1Twb6riv80F+KtvmcfZddObLaSOAGUC5
+         3SRfUk82Voa8vzyPlXLk5/Loc5Id8TtkG4MuV+GZGvlCup+2Z0HJ6S2DtkW/sR7QsrMg
+         2a3w==
+X-Gm-Message-State: AOAM530Nlm/8A4jwoMrpmx7O1K6m/oFuvmF+82JXnNqcpOwrFVEGUqMU
+        iXBp1c1++SIQqt1Gy1VvGcgHTMZuxpQA0uTN/Ph5JaTREaXhkx3gXWrzYCLnKZrEja6DOJm/bH1
+        qDqe5krQnZylfgNIE8jfpkKg/v/mNFayv5PQ7cbs=
+X-Received: by 2002:a05:651c:112e:: with SMTP id e14mr8194459ljo.466.1637697230902;
+        Tue, 23 Nov 2021 11:53:50 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwjemlMI5EI99fhPJ9HY1rGImyRQTf2YT7NsQhHh6pN6UU71Nlm9uSU8jk1Fwr3K+pMROZHYQ==
+X-Received: by 2002:a05:651c:112e:: with SMTP id e14mr8194441ljo.466.1637697230737;
+        Tue, 23 Nov 2021 11:53:50 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id z14sm362478lfg.173.2021.11.23.11.47.58
+        by smtp.gmail.com with ESMTPSA id c34sm1389638lfv.83.2021.11.23.11.53.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 11:47:58 -0800 (PST)
-Message-ID: <a28532b1-bfa0-031b-91cc-070cad557599@canonical.com>
-Date:   Tue, 23 Nov 2021 20:47:57 +0100
+        Tue, 23 Nov 2021 11:53:50 -0800 (PST)
+Message-ID: <3ccecc07-5e76-125a-8bcb-12219af5983c@canonical.com>
+Date:   Tue, 23 Nov 2021 20:53:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.2.1
-Subject: Re: [PATCH 1/4] dt-bindings: memory-controllers: ti,gpmc: Add
- compatible for AM64
+Subject: Re: [PATCH 1/5] dt-bindings: memory: tegra: Document
+ #interconnect-cells property
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, tony@atomide.com
-Cc:     kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-References: <20211123102607.13002-1-rogerq@kernel.org>
- <20211123102607.13002-2-rogerq@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, linux-tegra@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211112130627.3682795-1-thierry.reding@gmail.com>
+ <20211112130627.3682795-2-thierry.reding@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211123102607.13002-2-rogerq@kernel.org>
+In-Reply-To: <20211112130627.3682795-2-thierry.reding@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2021 11:26, Roger Quadros wrote:
-> AM64 SoC contains the GPMC module. Add compatible for it.
+On 12/11/2021 14:06, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Newer SoCs don't necessarily map GPMC data region at the same place
-> as legacy SoCs. Add reg-names "data", to provide this information to
-> the device driver.
+> The #interconnect-cells properties are required to hook up memory
+> clients to the MC/EMC in interconnects properties. Add a description for
+> these properties.
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+> Also, allow multiple reg and interrupt entries required by Tegra194 and
+> later.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../bindings/memory-controllers/ti,gpmc.yaml         | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+>  .../memory-controllers/nvidia,tegra186-mc.yaml       | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
-> index 25b42d68f9b3..1869cc6f949b 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
-> @@ -23,13 +23,20 @@ properties:
->      items:
->        - enum:
->            - ti,am3352-gpmc
-> +          - ti,am64-gpmc
->            - ti,omap2420-gpmc
->            - ti,omap2430-gpmc
->            - ti,omap3430-gpmc
->            - ti,omap4430-gpmc
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+> index 611bda38d187..f6e4af4e86cf 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
+> @@ -33,10 +33,10 @@ properties:
+>            - nvidia,tegra194-mc
 >  
 >    reg:
 > -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: cfg
-> +      - const: data
-
-I see your driver handles cases with only one reg item, but I have other
-question - is it correct to have older (ARMv7) platform with two reg
-items? Or can am64-gpmc come with only one reg?
-IOW, I am surprised there is no if-else case precising this minItems
-requirement for different SocS.
-
+> +    maxItems: 3
 >  
 >    interrupts:
->      maxItems: 1
-> @@ -44,6 +51,9 @@ properties:
->      items:
->        - const: fck
+> -    maxItems: 1
+> +    maxItems: 2
+
+All these here and reg below might need if-else to define when one item
+is allowed, when not. For example - can nvidia,tegra234-mc come with
+only one reg?
+
+Except this and Rob's DT-checker-bot rest of patches look ok to me.
+
+
+Best regards,
+Krzysztof
+
 >  
-> +  power-domains:
-> +    maxItems: 1
-
-Similar, but looks like a weaker requirement - could an older SoC define
-power-domain?
-
+>    "#address-cells":
+>      const: 2
+> @@ -48,6 +48,9 @@ properties:
+>  
+>    dma-ranges: true
+>  
+> +  "#interconnect-cells":
+> +    const: 1
 > +
->    dmas:
->      items:
->        - description: DMA channel for GPMC NAND prefetch
-> 
+>  patternProperties:
+>    "^external-memory-controller@[0-9a-f]+$":
+>      description:
+> @@ -65,7 +68,7 @@ patternProperties:
+>                - nvidia,tegra194-emc
+>  
+>        reg:
+> -        maxItems: 1
+> +        maxItems: 2
+>  
+>        interrupts:
+>          maxItems: 1
+> @@ -78,6 +81,9 @@ patternProperties:
+>          items:
+>            - const: emc
 
 
 Best regards,
