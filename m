@@ -2,75 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34E3945A77A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:21:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B1D45A7A2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:25:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235988AbhKWQYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:24:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40494 "EHLO mail.kernel.org"
+        id S232163AbhKWQ2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:28:18 -0500
+Received: from mx1.riseup.net ([198.252.153.129]:51210 "EHLO mx1.riseup.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235718AbhKWQYU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 11:24:20 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id F289E60F45;
-        Tue, 23 Nov 2021 16:21:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637684472;
-        bh=bJYjfg3uF8xpjDJDnVOnd9oh4bBoBvzobz3Nkp3BsQ0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L2ik+NS/T8/u/VUDLTMx8c3Xi2fWxkrsX4zTLF+0abK/WRFhogX2KFZ0yJ1diguJz
-         Z5ZTHYsSXb3VYOdg/WROi0NNLhtyhJFcLPMXVWxbrPHn+wEIleMnzQWpIL4+oDr2T5
-         wtOUM/rN/rivWBscFjOfCTqUQZLjhjCraLXp9TeTlG6VKCxtj2DZusOxIJUi+OerHe
-         tjsdPhbkUrubDnvXqi348bGpH1BTjhjXSMT1ZYMk64xNaW471DkdPadvGUpsLP+lA5
-         /f+KC7Z+LAkNcu9o3Kogn5CcMJ0Kwc3r+NaARwoWfB1RYwJ9vwpTWnO0ME14+Mhljb
-         /L4R+UaLGRMww==
-Date:   Tue, 23 Nov 2021 16:21:07 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Support Opensource <support.opensource@diasemi.com>
-Subject: Re: [PATCH V2 3/3] DA9121: add DA914x support
-Message-ID: <YZ0U81fNDD8DyNTS@sirena.org.uk>
-References: <cover.1637679551.git.Adam.Ward.opensource@diasemi.com>
- <c633042a3bac4e8a6e522222c4b9eeced961c184.1637679551.git.Adam.Ward.opensource@diasemi.com>
+        id S231216AbhKWQ2S (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 11:28:18 -0500
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+         client-signature RSA-PSS (2048 bits) client-digest SHA256)
+        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+        by mx1.riseup.net (Postfix) with ESMTPS id 4Hz8ck1mDDzF4hK;
+        Tue, 23 Nov 2021 08:25:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+        t=1637684710; bh=XXHHfy3PIsnPkeTFzRP46/bHk0xpdkwwxYrG490tGrU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=mxWmBnkQ1fSJqmqqCDelaG+Fh6pQ8CBzCkDNM7kFmXymE6NWyYjp2hhCcegqSic9X
+         ki+cP+4Rx+eAgvRPGJ+2RoW3/8ATVZeNOVDIt7i3QhLc2qy3ZLhXF35QMGTOPBYACV
+         pB25cg7HQEN3xdtPABwgforA7vXlTiKXCyvo6FU0=
+X-Riseup-User-ID: F7D6CDABEBB6CDF0966A8AD74D892355AD8F4081111D8A41F833EF70850E1741
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+         by fews1.riseup.net (Postfix) with ESMTPSA id 4Hz8ch0WZHz5vLq;
+        Tue, 23 Nov 2021 08:25:07 -0800 (PST)
+From:   Dang Huynh <danct12@riseup.net>
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: Drop input-name property
+Date:   Tue, 23 Nov 2021 23:24:37 +0700
+Message-Id: <20211123162436.1507341-1-danct12@riseup.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dPSfVzQQljMNqUpw"
-Content-Disposition: inline
-In-Reply-To: <c633042a3bac4e8a6e522222c4b9eeced961c184.1637679551.git.Adam.Ward.opensource@diasemi.com>
-X-Cookie: A closed mouth gathers no foot.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This property doesn't seem to exist in the documentation nor
+in source code, but for some reason it is defined in a bunch
+of device trees.
 
---dPSfVzQQljMNqUpw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Dang Huynh <danct12@riseup.net>
+---
+This patch is a split of this treewide patch [1] to ease the 
+maintainers. 
 
-On Tue, Nov 23, 2021 at 03:09:26PM +0000, Adam Ward wrote:
-> Signed-off-by: Adam Ward <Adam.Ward.opensource@diasemi.com>
+[1]: https://patchwork.kernel.org/patch/12633497/
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+ arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts            | 1 -
+ arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi     | 1 -
+ arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi   | 1 -
+ arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts              | 3 ---
+ arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi    | 2 --
+ arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi        | 1 -
+ arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts | 1 -
+ 7 files changed, 10 deletions(-)
 
---dPSfVzQQljMNqUpw
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+index 69fcb6b0398d..84558ab5fe86 100644
+--- a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
++++ b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+@@ -42,7 +42,6 @@ framebuffer0: framebuffer@3404000 {
+ 
+ 	gpio_keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		autorepeat;
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+index 3a3790a52a2c..cc038f9b641f 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+@@ -62,7 +62,6 @@ divclk4: divclk4 {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		autorepeat;
+ 
+ 		volupkey {
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+index 7cc564d8ca7c..dde7ed159c4d 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+@@ -29,7 +29,6 @@ / {
+ 
+ 	gpio_keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		autorepeat;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+index 3d495ce3f46a..dc5b9b274df3 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
++++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+@@ -29,7 +29,6 @@ extcon_usb: extcon-usb {
+ 
+ 	gpio-hall-sensors {
+ 		compatible = "gpio-keys";
+-		input-name = "hall-sensors";
+ 		label = "Hall sensors";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hall_sensor1_default>;
+@@ -46,7 +45,6 @@ hall-sensor1 {
+ 
+ 	gpio-kb-extra-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "extra-kb-keys";
+ 		label = "Keyboard extra keys";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_kb_pins_extra>;
+@@ -102,7 +100,6 @@ alt {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "side-buttons";
+ 		label = "Side buttons";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+index 91e391282181..47488a1aecae 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+@@ -93,7 +93,6 @@ vph_pwr: vph-pwr-regulator {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		label = "Side buttons";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vol_down_pin_a>, <&cam_focus_pin_a>,
+@@ -126,7 +125,6 @@ camera-focus {
+ 
+ 	gpio-hall-sensor {
+ 		compatible = "gpio-keys";
+-		input-name = "hall-sensors";
+ 		label = "Hall sensors";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hall_sensor0_default>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+index e90c9ec84675..42af1fade461 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+@@ -90,7 +90,6 @@ cam_vana_rear_vreg: cam_vana_rear_vreg {
+ 	gpio_keys {
+ 		status = "okay";
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+index 45eab0235d66..871ccbba445b 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+@@ -42,7 +42,6 @@ extcon_usb: extcon-usb {
+ 	gpio-keys {
+ 		status = "okay";
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 		autorepeat;
+-- 
+2.34.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGdFPMACgkQJNaLcl1U
-h9BGDgf+KyKasZpbEU1/GRgqZfPoF9TBE/1Io24xqXt4d2+S/PU6qpSdn1/9cGqK
-NXMUMuxNMXrxHie/Lc8Zl5ionB8OOpSkDEBhyDgaXrfn+dXTSJjcH45dHbmSoEl7
-L51znnhZq5Eda3rJcw3lzU/Hd8svCYxKuH4TQzEvF1waaSUjFGRLN3Dh9Z8MFMOp
-b+YWtVWSEMCBNmg+sLVSpCoF8CQ7sThLRQeTUrUFY0cOkmRYuDspGDSD+Oqfbvcs
-HGeUvjKLy6+c5o1bhBS4rQqWoYDnr2sK7kUEmNfMpjL9nkjjGlqjx3VZeXyzGc7O
-zTq2OkZue5G9DFNT/29fLJldGYwEZg==
-=YUaT
------END PGP SIGNATURE-----
-
---dPSfVzQQljMNqUpw--
