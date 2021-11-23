@@ -2,68 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C1DC45A7FC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A05D45A7F4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237584AbhKWQiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:38:00 -0500
-Received: from mail-il1-f179.google.com ([209.85.166.179]:36621 "EHLO
-        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234126AbhKWQh7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:37:59 -0500
-Received: by mail-il1-f179.google.com with SMTP id l8so22338750ilv.3;
-        Tue, 23 Nov 2021 08:34:51 -0800 (PST)
+        id S235586AbhKWQhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:37:46 -0500
+Received: from mail-io1-f48.google.com ([209.85.166.48]:39845 "EHLO
+        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236667AbhKWQho (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:37:44 -0500
+Received: by mail-io1-f48.google.com with SMTP id c3so28779244iob.6;
+        Tue, 23 Nov 2021 08:34:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=0QKOHJ1OnKbL2a6U5UE9Sczj0KIVJUirLPHUpzoIxpE=;
-        b=MvLgR1UL8n4xRGABtD9fpVDoy7W9zBLTJ3m4pLwW20e2/NMMap2HHAdNA5KK7PH3EK
-         M3w7zaP06DbPiYczgisssPSA35X6l4Zt46Dvh9IeUvGirBGAxBkjZGSbiCPQBajx+HOb
-         vWn1uHjMUgLTyuVHus8BguwIt1IZRZNttCNBIBTwdwIsuiBMgJHY/XqmVII8un71Cpsx
-         ptSeS728cTvcjEp5J5+5jn6WVln1pCvvRNm0/jYVyVtLleXfLSnsSJPqG8MXbYEfean0
-         4uaQm6ySv3wTR7c7p3UvVzO/UZ/fNR7hkKQnRKjXgb6tyjFHphlVZAwq5Qkgo1lF4UA5
-         RA2A==
-X-Gm-Message-State: AOAM53236VJNBJNjnQm9iOlEOZ4/FEcCqoAm301keeSV5p+QSold1tMn
-        EMmw5ffwpxEtqyHuhfR83Q==
-X-Google-Smtp-Source: ABdhPJwQbkkEsFEy5w9HCPyrvpKMWIAbN2aSLLV6mqx3Fn4hAA6t624FH30/QNlmaqLWwBm4sVG8Ow==
-X-Received: by 2002:a92:c5ad:: with SMTP id r13mr2636828ilt.53.1637685290562;
-        Tue, 23 Nov 2021 08:34:50 -0800 (PST)
+        bh=PB+xT0TMFF7Vgq2hOtXEqa1orCQHRnKwixtptPam+5g=;
+        b=6VUaWAMjk+Z8NAH7yuo8afw41Fx+eWkdj2iohyxq/d3XgdQlKHELAF5VQ++AZPAeKN
+         f2zoagoKdKEnfQwwTKZT72Kh27gnT89oF/xrl4p1Wdgda5U2pJM+TK6mPVPoaAdbE1wG
+         UJDSgAtjKk6GVLl8z/2sEkmRbwtNNvVAB+c8vb6rCn+GqON5b/7xmCzJGQi8sqK8Vm1M
+         cIqtdi0jmDCDwJJoIBXm69737MbZzjl648WaeXXCLcrNawtipNciRhM6cruow1J5MzxP
+         hGeatIv16peP0oQr9VoAYxLjvQBDEQmo+Omliz2KdC7o+JPGLrJUbqs2pTVibNZj94Mr
+         pWRQ==
+X-Gm-Message-State: AOAM532E2s9VX8a6/ody6zasnB8KBUq+40bwMt4+fYZ9tNILNdULhaKY
+        kYyalPaDUu8WLPD49XsfQNhihgmtBA==
+X-Google-Smtp-Source: ABdhPJzDjVVFHi2OQZyyVfUWw1AlgL0K6Xxs22c6U1HgjifWhwUYgDmo9TFylFJqdQ1+kp3bASnM/g==
+X-Received: by 2002:a05:6602:1654:: with SMTP id y20mr7301813iow.108.1637685275406;
+        Tue, 23 Nov 2021 08:34:35 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id t6sm3992225ios.13.2021.11.23.08.34.48
+        by smtp.gmail.com with ESMTPSA id v23sm7250265ioj.4.2021.11.23.08.34.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 08:34:49 -0800 (PST)
-Received: (nullmailer pid 3442924 invoked by uid 1000);
+        Tue, 23 Nov 2021 08:34:34 -0800 (PST)
+Received: (nullmailer pid 3442922 invoked by uid 1000);
         Tue, 23 Nov 2021 16:34:29 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Olivier Moysan <olivier.moysan@foss.st.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        fabrice.gasnier@foss.st.com, devicetree@vger.kernel.org,
-        arnaud.pouliquen@foss.st.com, Rob Herring <robh+dt@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-In-Reply-To: <20211119144551.7577-2-olivier.moysan@foss.st.com>
-References: <20211119144551.7577-1-olivier.moysan@foss.st.com> <20211119144551.7577-2-olivier.moysan@foss.st.com>
-Subject: Re: [PATCH 1/9] ASoC: dt-bindings: stm32: i2s: update example
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, linux-tegra@vger.kernel.org
+In-Reply-To: <20211119143839.1950739-17-thierry.reding@gmail.com>
+References: <20211119143839.1950739-1-thierry.reding@gmail.com> <20211119143839.1950739-17-thierry.reding@gmail.com>
+Subject: Re: [PATCH v2 16/16] dt-bindings: serial: Document Tegra234 TCU
 Date:   Tue, 23 Nov 2021 09:34:29 -0700
-Message-Id: <1637685269.713393.3442923.nullmailer@robh.at.kernel.org>
+Message-Id: <1637685269.704293.3442921.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021 15:45:43 +0100, Olivier Moysan wrote:
-> Some STM32 SPI peripheral instances support I2S for audio.
-> SPI and I2S features were initially described through two separated
-> nodes in the SoC Device Tree. In the next SoC Device Trees
-> a single node is used to describe SPI peripheral, leading
-> to a change in node name for I2S.
-> Change example in STM32 DT binding example to match this change.
+On Fri, 19 Nov 2021 15:38:39 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> Add the compatible string for the TCU found on the Tegra234 SoC.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/serial/nvidia,tegra194-tcu.yaml    | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
 
 Running 'make dtbs_check' with the schema in this patch gives the
@@ -73,10 +66,11 @@ incorrect. These may not be new warnings.
 Note that it is not yet a requirement to have 0 warnings for dtbs_check.
 This will change in the future.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1557188
+Full log is available here: https://patchwork.ozlabs.org/patch/1557183
 
 
-audio-controller@4000b000: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
-	arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
+tcu: $nodename:0: 'tcu' does not match '^serial(@.*)?$'
+	arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dt.yaml
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0000.dt.yaml
+	arch/arm64/boot/dts/nvidia/tegra194-p3509-0000+p3668-0001.dt.yaml
 
