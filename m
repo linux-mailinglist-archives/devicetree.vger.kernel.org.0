@@ -2,145 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B041845A331
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 13:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33CE645A30E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 13:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237243AbhKWMwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 07:52:46 -0500
-Received: from szxga02-in.huawei.com ([45.249.212.188]:15855 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237162AbhKWMwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 07:52:43 -0500
-Received: from dggpemm500020.china.huawei.com (unknown [172.30.72.56])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4Hz3qS0P0sz91CY;
-        Tue, 23 Nov 2021 20:49:08 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500020.china.huawei.com (7.185.36.49) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 23 Nov 2021 20:49:34 +0800
-Received: from thunder-town.china.huawei.com (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Tue, 23 Nov 2021 20:49:33 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-Subject: [PATCH v16 11/11] kdump: update Documentation about crashkernel
-Date:   Tue, 23 Nov 2021 20:46:46 +0800
-Message-ID: <20211123124646.1995-12-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20211123124646.1995-1-thunder.leizhen@huawei.com>
-References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
+        id S236135AbhKWMu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 07:50:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39322 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233097AbhKWMu6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 07:50:58 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24881C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 04:47:50 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id o29so18633172wms.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 04:47:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DPKVXrNzYgoC2uUoh98bh1nz52kdWi1et/X5YOSDFR0=;
+        b=M5FlyGfjXy9+OX326j20Q4mvrjdeDsQP4V3g7zOdGnmRtJPdYwFo0KEOJbr/471hcc
+         I2OHgcSYf5nwp5qUh7ktXgF/HxLgOwy8FTrb/KvBDdyKpTQmERn0nXC6fEGXeeP+gBfC
+         NqUwMEPtKKeCmMbJK0Xev5pYcJVPAhoLP7WAhopmFHNGE+OjEAcCBL9+NU53+corZZ//
+         IF3S5+X2eYroGwxnfkLyNj4m+umeAbbHoK6XrEBMXvegjW0m0SdEHMURCE9E3dG6WfGv
+         /rDqUcyMjkB2U8/wIauIOQnXGlimkytFfesLieKq7rOdGlPgIT5KC7lbJ3EX7aTiRDFC
+         oHvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=DPKVXrNzYgoC2uUoh98bh1nz52kdWi1et/X5YOSDFR0=;
+        b=xyOcUbE4oXUICe1nBl8PyRCrskRsdyrY+D1O7hqphHB/3lqcOfhpmJsQtDzUOMHhUx
+         wuBu6BocBsNzdgUjJD9aJNCONm+Hzv/+mmgxfct/RWulLgITuM36T4yjM5dRDJNlolJp
+         UoMbXe2agmvzJQdabiX96mqspzXUhG60WJ96B/VEiiWLkEy+4YwGL4VkkQcpdEBVpPc8
+         rS/sJKTq5MH4gc43yS20hRCmNKyooWek6tNqnniWFpsA+IseYZ9Z/O0OWFY62fEVhIeN
+         rLas3aWsnKtgQGBcG+U0w772Qj/uOUoJpjlHmjwqGy0N8LgynLDZ0NMKIS4nHy7crL7R
+         zx6g==
+X-Gm-Message-State: AOAM532DGAZ2xWE3z+/iG7UF4PaHrBz4CUfRltw+QhEk84sUsn51gvbW
+        HYydmlJg0iWQAjc3nuSxxB6VcV6gYiX0IbnM
+X-Google-Smtp-Source: ABdhPJzQpbHrFm1utephBQ6K5SDC+8s8G+Ss4Ug6gsmSHFZu+z10jpesHg8TLDzbFid/APB/mcCyCQ==
+X-Received: by 2002:a05:600c:4fcd:: with SMTP id o13mr2697797wmq.175.1637671668496;
+        Tue, 23 Nov 2021 04:47:48 -0800 (PST)
+Received: from ?IPv6:2001:861:44c0:66c0:5732:d3c2:58d8:3499? ([2001:861:44c0:66c0:5732:d3c2:58d8:3499])
+        by smtp.gmail.com with ESMTPSA id g5sm17562891wri.45.2021.11.23.04.47.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 04:47:47 -0800 (PST)
+Subject: Re: [PATCH v2 1/1] ARM: dts: dra7: add entry for bb2d module
+To:     Yongqin Liu <yongqin.liu@linaro.org>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Gowtham Tammana <g-tammana@ti.com>,
+        Jyri Sarha <jsarha@ti.com>
+References: <20210921071807.30978-1-narmstrong@baylibre.com>
+ <20210921071807.30978-2-narmstrong@baylibre.com>
+ <YV1UdSVOrZ3B9pq/@atomide.com>
+ <CAMSo37UN78k=WE0CwRyNNV3P9kau+JzVZ7mHOMMvh5Bn=+=jAQ@mail.gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+Message-ID: <78b51650-0e32-e81f-0191-2222580e7343@baylibre.com>
+Date:   Tue, 23 Nov 2021 13:47:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+In-Reply-To: <CAMSo37UN78k=WE0CwRyNNV3P9kau+JzVZ7mHOMMvh5Bn=+=jAQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen Zhou <chenzhou10@huawei.com>
+Hi,
 
-For arm64, the behavior of crashkernel=X has been changed, which
-tries low allocation in DMA zone and fall back to high allocation
-if it fails.
+On 23/11/2021 13:17, Yongqin Liu wrote:
+> Hi, Neil, Tony
+> 
+> # sorry for the confusion if you have received the mail which I sent
+> before, which is not in plain text mode.
+> 
+> We have one out of tree change to enable the SGX544 gpu for the
+> beagleboard-X15 Android build,
+>     https://android-review.linaro.org/c/kernel/common/+/20521/11/arch/arm/boot/dts/dra7.dtsi
+> 
+> and that seems to conflict with this BB2D enabling change,
+> Could you please help give some suggestions on how we should update our patch
+> to make it work with BB2D, without the revert of this change?
 
-We can also use "crashkernel=X,high" to select a high region above
-DMA zone, which also tries to allocate at least 256M low memory in
-DMA zone automatically and "crashkernel=Y,low" can be used to allocate
-specified size low memory.
+This BB2D patch alters the target-module@59000000 while your SGX
+change alters the target-module@56000000.
 
-So update the Documentation.
+Please rebase your patches.
 
-Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
----
- Documentation/admin-guide/kdump/kdump.rst       | 11 +++++++++--
- Documentation/admin-guide/kernel-parameters.txt | 11 +++++++++--
- 2 files changed, 18 insertions(+), 4 deletions(-)
+Neil
 
-diff --git a/Documentation/admin-guide/kdump/kdump.rst b/Documentation/admin-guide/kdump/kdump.rst
-index cb30ca3df27c9b2..d4c287044be0c70 100644
---- a/Documentation/admin-guide/kdump/kdump.rst
-+++ b/Documentation/admin-guide/kdump/kdump.rst
-@@ -361,8 +361,15 @@ Boot into System Kernel
-    kernel will automatically locate the crash kernel image within the
-    first 512MB of RAM if X is not given.
- 
--   On arm64, use "crashkernel=Y[@X]".  Note that the start address of
--   the kernel, X if explicitly specified, must be aligned to 2MiB (0x200000).
-+   On arm64, use "crashkernel=X" to try low allocation in DMA zone and
-+   fall back to high allocation if it fails.
-+   We can also use "crashkernel=X,high" to select a high region above
-+   DMA zone, which also tries to allocate at least 256M low memory in
-+   DMA zone automatically.
-+   "crashkernel=Y,low" can be used to allocate specified size low memory.
-+   Use "crashkernel=Y@X" if you really have to reserve memory from
-+   specified start address X. Note that the start address of the kernel,
-+   X if explicitly specified, must be aligned to 2MiB (0x200000).
- 
- Load the Dump-capture Kernel
- ============================
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index 9725c546a0d46db..91f3a8dc537d404 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -783,6 +783,9 @@
- 			[KNL, X86-64] Select a region under 4G first, and
- 			fall back to reserve region above 4G when '@offset'
- 			hasn't been specified.
-+			[KNL, ARM64] Try low allocation in DMA zone and fall back
-+			to high allocation if it fails when '@offset' hasn't been
-+			specified.
- 			See Documentation/admin-guide/kdump/kdump.rst for further details.
- 
- 	crashkernel=range1:size1[,range2:size2,...][@offset]
-@@ -799,6 +802,8 @@
- 			Otherwise memory region will be allocated below 4G, if
- 			available.
- 			It will be ignored if crashkernel=X is specified.
-+			[KNL, ARM64] range in high memory.
-+			Allow kernel to allocate physical memory region from top.
- 	crashkernel=size[KMG],low
- 			[KNL, X86-64] range under 4G. When crashkernel=X,high
- 			is passed, kernel could allocate physical memory region
-@@ -807,13 +812,15 @@
- 			requires at least 64M+32K low memory, also enough extra
- 			low memory is needed to make sure DMA buffers for 32-bit
- 			devices won't run out. Kernel would try to allocate at
--			at least 256M below 4G automatically.
-+			least 256M below 4G automatically.
- 			This one let user to specify own low range under 4G
- 			for second kernel instead.
- 			0: to disable low allocation.
- 			It will be ignored when crashkernel=X,high is not used
- 			or memory reserved is below 4G.
--
-+			[KNL, ARM64] range in low memory.
-+			This one let user to specify a low range in DMA zone for
-+			crash dump kernel.
- 	cryptomgr.notests
- 			[KNL] Disable crypto self-tests
- 
--- 
-2.25.1
+> 
+> On Wed, 6 Oct 2021 at 15:47, Tony Lindgren <tony@atomide.com> wrote:
+>>
+>> * Neil Armstrong <narmstrong@baylibre.com> [210921 10:18]:
+>>> From: Gowtham Tammana <g-tammana@ti.com>
+>>>
+>>> BB2D is a Vivante GC 2D Accelerator.
+>>> This adds the node to the dts file within a target module node.
+>>> Crossbar index number is used for interrupt mapping.
+>>
+>> Thanks applying into omap-for-v5.16/dt.
+>>
+>> Tony
+> 
 
