@@ -2,92 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F280645A08E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 11:40:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ED0245A0D8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:02:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235780AbhKWKny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 05:43:54 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:53595 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235766AbhKWKns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 05:43:48 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D8FB95806FD;
-        Tue, 23 Nov 2021 05:40:39 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 23 Nov 2021 05:40:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
-        jHqBa28rn0MiiSXkTCsCMYCgTGVsLvmpc1gU9q4ZI7w=; b=e/FJypxlBwtIruv1
-        giNDF2yNqbdBEmI6S+1VTycjsO7BCKqadvvZDcu4T+GvxQvxrYVFg5JE7CpRrwwW
-        5C6dif7cCQjOzYamaoJiFFHNOzrm8oGEsGoLu+vFkb4zey08qQAjITHe2y5GrQXq
-        E0bTRQbZUteb9OU5fOnrkIGyhNjVIgA8YKXfUVtI67Wa4omxGp1ue0U4AN1szW8+
-        4WFk77bjNwL/F6Blv18qdOuH9s5PEGrUqICtV16Rt4bC3SJAcQAjkNTRa/5lTrQ1
-        BMjdQLOP3KI9Hb1iLl0PB6NIYSZpUrrQpLdAlZb/cu0AXJStAeWR2Ky0dsyYLX7F
-        7CBrBw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=jHqBa28rn0MiiSXkTCsCMYCgTGVsLvmpc1gU9q4ZI
-        7w=; b=GYzx/cRQg9ot4vBajGs7ecBeuirTIjeqmgZy7XcAkufCuHCeY3bZLC9Mn
-        ujwXLhtSvf9feMHeB77HTYy7ZJ4VtTK5Nmp3HUBNWNe25c7FFuPSciMO/WAIB9oC
-        zNViUtE2EnyxuzCpFeKqyYJqXvwjE0bQW/TZwpFxNDRxjHmn+Bo2LTOHVM48U+fs
-        ZhrfLSknGCiMFs6p6NvEig17sNaekiGqOOrr9Am/3D28HqLPbGoX98J/4QxnTkVz
-        qyuoQaDKG53p1Nuz/2ja0733xSmErtc004EwG+KNWkxfPBO2UgTG/KY/DnMU8Cr3
-        LRCYFWkiR6y03c+cVR1l7vyLaTy5w==
-X-ME-Sender: <xms:J8WcYeQyyBmtsOuPcGH6rWf_WBhTOKhktwq_SLCVOuWIFs7r4JXU6Q>
-    <xme:J8WcYTyfHMKYTKwcpaNuJnuq1usu1lpV4HPRAWgaIndZ01Lb5FnzcnAa9I1Lvtri3
-    phXEHsy9R_ErqdHrFg>
-X-ME-Received: <xmr:J8WcYb0M8CdkGa5JmCSTFxEMYO2Hbsk7n_gjyvXuMKmoKx-_FiXi7X6nXa3-tjw_vuGRlUyqYv5KNdsbseHi_yZsHizM1hLd25Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeigddulecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
-    keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:J8WcYaCmxpX4nNti5EcnJcNIefx-e7R6qCS6BfE0q9MI79AwEyj5vw>
-    <xmx:J8WcYXh2DNcgTLCO38RGBYMpDuRJp7YWbu4ehI4JJ9n1eOPfLiYR_w>
-    <xmx:J8WcYWrdRIpbprKcdruRSAnRDbeXgRI2uZBt1yQztcSDtGDkAooJJQ>
-    <xmx:J8WcYQZOzZhE32lb3QdYaoMKI2YDDHLlDTjt5JOBYuYj2dr91cYXWA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 23 Nov 2021 05:40:39 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@csie.org>, Maxime Ripard <mripard@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Samuel Holland <samuel@sholland.org>
-Cc:     Maxime Ripard <maxime@cerno.tech>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v3 5/6] arm64: dts: allwinner: a64: Update MBUS node
-Date:   Tue, 23 Nov 2021 11:40:28 +0100
-Message-Id: <163766402024.90163.13990616546329316010.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211118031841.42315-6-samuel@sholland.org>
-References: <20211118031841.42315-1-samuel@sholland.org> <20211118031841.42315-6-samuel@sholland.org>
+        id S232629AbhKWLFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 06:05:51 -0500
+Received: from mail-vk1-f173.google.com ([209.85.221.173]:40858 "EHLO
+        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234813AbhKWLFt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 06:05:49 -0500
+Received: by mail-vk1-f173.google.com with SMTP id 70so3729365vkx.7;
+        Tue, 23 Nov 2021 03:02:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=3vpTNg4M2uZL1VyLDRhqbPlkPZMl8jY+kogUQeT7PgU=;
+        b=zjV9ODhHo3Y4F2aslt1Q2qJj7opAjGVFQecuczgdYxzHvGXV2N/uoErnAgqhnxVHre
+         9JhLB3QdwxmImsrLIIdMY76jTeQr8f8hYF47kBSpmh+Zhf8HwNNHfkDIcsXPkH4Fi07g
+         NxjANoi3oA3jgv55mE9TFTrMWCya1BIfMszhrEc1uMy/lb8ycjW2th9sO1BvGeM7cCAB
+         JOMMf6SoFd+CDqJuTzxRrrYKGkP4muCQT26U36NLv7J122p57LiBAaQXOLmlwSIK/0xC
+         k+UP3SNWBpOA7Wq+KS7npw2wUv1WaZ3doMSvrZluNkgEshaDi3YcjScCMoMa6N6NZOxt
+         pjBw==
+X-Gm-Message-State: AOAM531phVI+ExKQ+gO63Agr84PxG1DIJcdInR/RTMJeaoMnAqyG2lv1
+        yfp858fjYvKCdyjcNpZKc+mxPuC+cZh6pA==
+X-Google-Smtp-Source: ABdhPJy1vuskKRcukoPoAA08HXDc+XZdYeizyUzEiU34uEeruYcSvP5Pi4dlsh4d0i5oMVEOpzhIqA==
+X-Received: by 2002:a05:6122:889:: with SMTP id 9mr8263126vkf.21.1637665360958;
+        Tue, 23 Nov 2021 03:02:40 -0800 (PST)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
+        by smtp.gmail.com with ESMTPSA id i1sm5958199vkn.55.2021.11.23.03.02.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 03:02:40 -0800 (PST)
+Received: by mail-ua1-f49.google.com with SMTP id x14so2289718uao.0;
+        Tue, 23 Nov 2021 03:02:40 -0800 (PST)
+X-Received: by 2002:a05:6102:e82:: with SMTP id l2mr7938046vst.37.1637665360432;
+ Tue, 23 Nov 2021 03:02:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+ <8735no70tt.wl-maz@kernel.org> <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+ <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com> <87tug3clvc.wl-maz@kernel.org>
+In-Reply-To: <87tug3clvc.wl-maz@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 23 Nov 2021 12:02:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdU5UAYONbT26e2Ttd7FmoXR8SxCO86bfLLmX9VDeQ2UVg@mail.gmail.com>
+Message-ID: <CAMuHMdU5UAYONbT26e2Ttd7FmoXR8SxCO86bfLLmX9VDeQ2UVg@mail.gmail.com>
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
+ definition of interrupt-map
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>, John Crispin <john@phrozen.org>,
+        Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Nov 2021 21:18:40 -0600, Samuel Holland wrote:
-> In order to support memory dynamic frequency scaling (MDFS), the MBUS
-> binding now requires enumerating more resources. Provide them in the
-> device tree.
-> 
-> 
+Hi Marc,
 
-Applied to sunxi/linux.git (sunxi/dt-for-5.17).
+On Tue, Nov 23, 2021 at 9:33 AM Marc Zyngier <maz@kernel.org> wrote:
+> On Tue, 23 Nov 2021 07:57:48 +0000,
+> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > Summarized:
+> >   - Before the bad commit, and after your fix, irqc-rza1 is invoked,
+> >     and the number of interrupts seen is correct, but input events
+> >     are doubled.
+> >   - After the bad commit, irqc-rza1 is not invoked, and there is an
+> >     interrupt storm, but input events are OK.
+>
+> OK, that's reassuring, even if the "twice the events" stuff isn't what
+> you'd expect. We at least know this is a separate issue, and that this
+> patch on top of -rc1 brings you back to the 5.15 behaviour.
 
-Thanks!
-Maxime
+So the "twice the events" stuff did happen before, and is caused by
+gpio-keys always fabricating timer-based auto-"up" events when using
+"interrupts" instead of "gpios".
+
+arch/arm/boot/dts/r7s72100-rskrza1.dts has IRQ_TYPE_EDGE_BOTH to
+detect the real "up", which becomes a second set of "down"/"up" events.
+Using IRQ_TYPE_EDGE_FALLING gets rid of the dupe by only detecting
+the real "down" event.  Similar for IRQ_TYPE_LEVEL_LOW, but then
+there's a temporary interrupt storm until the key is released.
+
+Seems like gpio-keys needs to be fixed for IRQ_TYPE_EDGE_BOTH.
+When using "gpios" instead of "interrupts", it does pass
+IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING, and handles that case
+correctly.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
