@@ -2,272 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D669145AA2D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:40:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75C4A45AA5E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:46:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234143AbhKWRnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 12:43:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237881AbhKWRnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:43:52 -0500
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B247EC06173E
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:40:44 -0800 (PST)
-Received: by mail-pg1-x52f.google.com with SMTP id m15so18941129pgu.11
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:40:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CdO3e2pDhMNJ+/pMA6Znc3yR1BY8F0IUwXILZu7t3/g=;
-        b=oVFTPn/YH2jTuPO2rvZ+bni4tcXtnBMXdNR2m3bx8ldO3dZEs97CiwZT15EpcQdIw5
-         CHJxX2qEi+3nJ9dj5kISe86jLAzHVWGVOLGAPvE4npPJghtMEOv3rDU70yEexawgs7WX
-         xnspRZEUUXaxP7YACnmStBcyCsl17/gyQCLF4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CdO3e2pDhMNJ+/pMA6Znc3yR1BY8F0IUwXILZu7t3/g=;
-        b=gTdYB6x9bLtlDEZWNjf57pdLCygoQZfSFEOzO35joFR84b8+2dYLBVk/XyGRXpZ5lt
-         dCRzCIA6bokzLmYRUSZ6BngKjKRTB03elejiFf47OaOFfwY/577BJSG91mowLunG7fGz
-         X23FWKwC7FHZGZL3m6V2hHzvTakAPTTop+OfqUmr5Pbo2onYd7Iujn6u4rZE1AVva5FA
-         NNh1qdXPqznkh8sG4jFz9Ym6T4eiYTSHv1q8x+JnawLVZQUJlW//I4bKSVW7UoHyJVNh
-         pYLf8nAagUmEVb/PQ6XAJwQYfr3UTu+KyDfxXg+ESjccIcOUN1CeHKaEYVipkTbceFMX
-         k1Uw==
-X-Gm-Message-State: AOAM533fRBOU3rydhUQHrIvIRJK7Ck6yKJ3eIJryzJRyH8PefRx4va5a
-        lvkV745BuPu4iBoVW8X+8RNZ9A==
-X-Google-Smtp-Source: ABdhPJyHfEZlhram/t4364Twny6+kpl7aix7nHDqV8ZCLTjEJS/craA9npwH1mwvP0JxjD3EK7lt2Q==
-X-Received: by 2002:a63:414:: with SMTP id 20mr5067331pge.178.1637689244184;
-        Tue, 23 Nov 2021 09:40:44 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:5fa5:d920:9d68:9c16])
-        by smtp.gmail.com with UTF8SMTPSA id i2sm13864246pfg.90.2021.11.23.09.40.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 09:40:43 -0800 (PST)
-Date:   Tue, 23 Nov 2021 09:40:42 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
-        dianders@chromium.org, kgodara@codeaurora.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7280: Define EC and H1 nodes
-Message-ID: <YZ0nmrGHwIMdN2v6@google.com>
-References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
- <1637650813-16654-4-git-send-email-rnayak@codeaurora.org>
+        id S239427AbhKWRtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 12:49:52 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.169]:31890 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233738AbhKWRtu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:49:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637689585;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=1kp1WMmPJZcNEz9qw8dDhEvO5OWqK1xcrr8tx9qQAO0=;
+    b=HQmYyrSce61xwPA/v1fZixLCDtBRBlRJP0YHcG2Tfin/ohVQ813HWdgxMs7CimJEKa
+    9KuFO+TuPJOuowA3wBSVCkDCFrPxxR+3ZtqQMa5QLlPJSCwF6UzsRWK+n//nJuzB0s0U
+    FFpoW84ZPEuQLDmE7xibLiSaKBrk/NIWaftQUQyXPhtF5zyKFlraCeNy+HtAYFLNOn02
+    I6G9UDpxap0CuTW5owyomQN8bE+1BR7QCH9QpI1A02LKxLCCJCk9BmC9TxpbUXSpIDOv
+    +Ybk6N+F6sBGyWhCgt5urO3fNqNZj0xyFUAVLWlB5YuFRJudDM6YD0EHvRNU31foTHiE
+    8nKw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lByOdcKVX0"
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+    by smtp.strato.de (RZmta 47.34.6 DYNA|AUTH)
+    with ESMTPSA id g09b5fxANHkO7fl
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 23 Nov 2021 18:46:24 +0100 (CET)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>
+Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
+        Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH v7 0/8] MIPS: JZ4780 and CI20 HDMI
+Date:   Tue, 23 Nov 2021 18:46:15 +0100
+Message-Id: <cover.1637689583.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1637650813-16654-4-git-send-email-rnayak@codeaurora.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 12:30:12PM +0530, Rajendra Nayak wrote:
+PATCH V7 2021-11-23 18:46:23:
+- changed gpio polarity of hdmi_power to 0 (suggested by paul@crapouillou.net)
+- fixed LCD1 irq number (bug found by paul@crapouillou.net)
+- removed "- 4" for calculating max_register (suggested by paul@crapouillou.net)
+- use unevaluatedPropertes instead of additionalProperties (suggested by robh@kernel.org)
+- moved and renamed ingenic,jz4780-hdmi.yaml (suggested by robh@kernel.org)
+- adjusted assigned-clocks changes to upstream which added some for SSI (by hns@goldelico.com)
+- rebased and tested with v5.16-rc2 + patch set drm/ingenic by paul@crapouillou.net (by hns@goldelico.com)
 
-> Subject: arm64: dts: qcom: sc7280: Define EC and H1 nodes
+PATCH V6 2021-11-10 20:43:33:
+- changed CONFIG_DRM_INGENIC_DW_HDMI to "m" (by hns@goldelico.com)
+- made ingenic-dw-hdmi an independent platform driver which can be compiled as module
+  and removed error patch fixes for IPU (suggested by paul@crapouillou.net)
+- moved assigned-clocks from jz4780.dtsi to ci20.dts (suggested by paul@crapouillou.net)
+- fixed reg property in jz4780.dtsi to cover all registers incl. gamma and vee (by hns@goldelico.com)
+- added a base patch to calculate regmap size from DTS reg property (requested by paul@crapouillou.net)
+- restored resetting all bits except one in LCDOSDC (requested by paul@crapouillou.net)
+- clarified setting of cpos (suggested by paul@crapouillou.net)
+- moved bindings definition for ddc-i2c-bus (suggested by paul@crapouillou.net)
+- simplified mask definitions for JZ_LCD_DESSIZE (requested by paul@crapouillou.net)
+- removed setting alpha premultiplication (suggested by paul@crapouillou.net)
+- removed some comments (suggested by paul@crapouillou.net)
 
-that seems to suggest that EC and H1 nodes are something generic of the
-sc7280, however these two chips are only present on systems that target
-Chrome OS, and the specific nodes are added are only used by the QCA
-sc7280 IDP and CRD, not other sc7280 boards using Chrome OS, like
-herobrine. I suggest to change it to "arm64: dts: qcom: sc7280: Define
-EC and H1 nodes for IDP/CRD".
+PATCH V5 2021-10-05 14:28:44:
+- dropped mode_fixup and timings support in dw-hdmi as it is no longer needed in this V5 (by hns@goldelico.com)
+- dropped "drm/ingenic: add some jz4780 specific features" (stimulated by paul@crapouillou.net)
+- fixed typo in commit subject: "synopsis" -> "synopsys" (by hns@goldelico.com)
+- swapped clocks in jz4780.dtsi to match synopsys,dw-hdmi.yaml (by hns@goldelico.com)
+- improved, simplified, fixed, dtbschecked ingenic-jz4780-hdmi.yaml and made dependent of bridge/synopsys,dw-hdmi.yaml (based on suggestions by maxime@cerno.tech)
+- fixed binding vs. driver&DTS use of hdmi-5v regulator (suggested by maxime@cerno.tech)
+- dropped "drm/bridge: synopsis: Fix to properly handle HPD" - was a no longer needed workaround for a previous version
+  (suggested by maxime@cerno.tech)
 
-> From: Kshitiz Godara <kgodara@codeaurora.org>
-> 
-> The IDP2 and CRD boards share the EC and H1 parts, so define
-> all related device nodes into a common file and include them
-> in the idp2 and crd dts files to avoid duplication.
-> 
-> Signed-off-by: Kshitiz Godara <kgodara@codeaurora.org>
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts    |   1 +
->  arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi | 110 +++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280-idp2.dts   |   1 +
->  3 files changed, 112 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> index 09d02c2..8c2aee6 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -8,6 +8,7 @@
->  /dts-v1/;
->  
->  #include "sc7280-idp.dtsi"
-> +#include "sc7280-ec-h1.dtsi"
->  
->  / {
->  	model = "Qualcomm Technologies, Inc. sc7280 CRD platform";
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi
-> new file mode 100644
-> index 0000000..78fb5eb
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi
+PATCH V4 2021-09-27 18:44:38:
+- fix setting output_port = 1 (issue found by paul@crapouillou.net)
+- ci20.dts: convert to use hdmi-connector (by hns@goldelico.com)
+- add a hdmi-regulator to control +5V power (by hns@goldelico.com)
+- added a fix to dw-hdmi to call drm_kms_helper_hotplug_event on plugin event detection (by hns@goldelico.com)
+- always allocate extended descriptor but initialize only for jz4780 (by hns@goldelico.com)
+- updated to work on top of "[PATCH v3 0/6] drm/ingenic: Various improvements v3" (by paul@crapouillou.net)
+- rebased to v5.13-rc3
 
-Similar comment as for the subject, the file name seems to imply
-that the include could be useful for any board with an EC and H1,
-however it will be only used by the IDP and CRD. Maybe name it
-'sc7280-idp-ec-h1.dtsi', from the CRD DT file it is alreay clear
-that it is related with the IDP, so it shouldn't be too confusing
-that the file name only says IDP.
+PATCH V3 2021-08-08 07:10:50:
+This series adds HDMI support for JZ4780 and CI20 board (and fixes one IPU related issue in registration error path)
+- [patch 1/8] switched from mode_fixup to atomic_check (suggested by robert.foss@linaro.org)
+  - the call to the dw-hdmi specialization is still called mode_fixup
+- [patch 3/8] diverse fixes for ingenic-drm-drv (suggested by paul@crapouillou.net)
+  - factor out some non-HDMI features of the jz4780 into a separate patch
+  - multiple fixes around max height
+  - do not change regmap config but a copy on stack
+  - define some constants
+  - factor out fixing of drm_init error path for IPU into separate patch
+  - use FIELD_PREP()
+- [patch 8/8] conversion to component framework dropped (suggested by Laurent.pinchart@ideasonboard.com and paul@crapouillou.net)
 
-Also a birdie told me that the EC and H1 configuration is going to
-change in future revisions of the CRD, which is another reason for
-being more specific with the file name (a sc7280-crd-ec-h1.dtsi
-might be needed at that point, or the new not-any-longer-shared
-config goes directly into the sc7280-crd-revN.dts.
+PATCH V2 2021-08-05 16:08:05:
+- code and commit messages revisited for checkpatch warnings
+- rebased on v5.14-rc4
+- include (failed, hence RFC 8/8) attempt to convert to component framework
+  (was suggested by Paul Cercueil <paul@crapouillou.net> a while ago)
 
-> @@ -0,0 +1,110 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * sc7280 EC/H1 over SPI (common between IDP2 and CRD)
-> + *
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +ap_ec_spi: &spi10 {
-> +	status = "okay";
-> +
-> +	pinctrl-0 = <&qup_spi10_cs_gpio_init_high>, <&qup_spi10_cs_gpio>;
+This series adds HDMI support for JZ4780 and CI20 board
 
-Shouldn't this also have <&qup_spi10_data_clk>?
 
-> +	cs-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
-> +
-> +	cros_ec: ec@0 {
-> +		compatible = "google,cros-ec-spi";
-> +		reg = <0>;
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <18 IRQ_TYPE_LEVEL_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ap_ec_int_l>;
-> +		spi-max-frequency = <3000000>;
-> +
-> +		cros_ec_pwm: ec-pwm {
-> +			compatible = "google,cros-ec-pwm";
-> +			#pwm-cells = <1>;
-> +		};
-> +
-> +		i2c_tunnel: i2c-tunnel {
-> +			compatible = "google,cros-ec-i2c-tunnel";
-> +			google,remote-bus = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +
-> +		typec {
-> +			compatible = "google,cros-ec-typec";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			usb_c0: connector@0 {
-> +				compatible = "usb-c-connector";
-> +				reg = <0>;
-> +				label = "left";
-> +				power-role = "dual";
-> +				data-role = "host";
-> +				try-power-role = "source";
-> +			};
-> +
-> +			usb_c1: connector@1 {
-> +				compatible = "usb-c-connector";
-> +				reg = <1>;
-> +				label = "right";
-> +				power-role = "dual";
-> +				data-role = "host";
-> +				try-power-role = "source";
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +#include <arm/cros-ec-keyboard.dtsi>
-> +#include <arm/cros-ec-sbs.dtsi>
-> +
-> +ap_h1_spi: &spi14 {
-> +	status = "okay";
-> +
-> +	pinctrl-0 = <&qup_spi14_cs_gpio_init_high>, <&qup_spi14_cs_gpio>;
 
-<&qup_spi14_data_clk> missing?
+H. Nikolaus Schaller (3):
+  drm/ingenic: prepare ingenic drm for later addition of JZ4780
+  MIPS: defconfig: CI20: configure for DRM_DW_HDMI_JZ4780
+  [RFC] MIPS: DTS: Ingenic: adjust register size to available registers
 
-> +	cs-gpios = <&tlmm 59 GPIO_ACTIVE_LOW>;
-> +
-> +	cr50: tpm@0 {
-> +		compatible = "google,cr50";
-> +		reg = <0>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&h1_ap_int_odl>;
-> +		spi-max-frequency = <800000>;
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <104 IRQ_TYPE_EDGE_RISING>;
-> +	};
-> +};
-> +
-> +&tlmm {
-> +	ap_ec_int_l: ap-ec-int-l {
-> +		pins = "gpio18";
-> +		function = "gpio";
-> +		input-enable;
-> +		bias-pull-up;
-> +		drive-strength = <2>;
+Paul Boddie (4):
+  drm/ingenic: Add support for JZ4780 and HDMI output
+  drm/ingenic: Add dw-hdmi driver for jz4780
+  MIPS: DTS: jz4780: Account for Synopsys HDMI driver and LCD
+    controllers
+  MIPS: DTS: CI20: Add DT nodes for HDMI setup
 
-Is the explicit drive-strength setting actually needed?
+Sam Ravnborg (1):
+  dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
 
-Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml:
+ .../display/bridge/ingenic,jz4780-hdmi.yaml   |  76 +++++++++++
+ .../display/bridge/synopsys,dw-hdmi.yaml      |   3 +
+ arch/mips/boot/dts/ingenic/ci20.dts           |  83 ++++++++++-
+ arch/mips/boot/dts/ingenic/jz4725b.dtsi       |   2 +-
+ arch/mips/boot/dts/ingenic/jz4740.dtsi        |   2 +-
+ arch/mips/boot/dts/ingenic/jz4770.dtsi        |   2 +-
+ arch/mips/boot/dts/ingenic/jz4780.dtsi        |  40 ++++++
+ arch/mips/configs/ci20_defconfig              |   6 +
+ drivers/gpu/drm/ingenic/Kconfig               |   9 ++
+ drivers/gpu/drm/ingenic/Makefile              |   1 +
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  62 ++++++++-
+ drivers/gpu/drm/ingenic/ingenic-drm.h         |  38 ++++++
+ drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     | 129 ++++++++++++++++++
+ 13 files changed, 444 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+ create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
 
-  drive-strength:
-    enum: [2, 4, 6, 8, 10, 12, 14, 16]
-    default: 2 <=
-    description:
-      Selects the drive strength for the specified pins, in mA.
+-- 
+2.33.0
 
-The default is 2, hence it shouldn't be necessary it set it explicitly.
-
-> +	};
-> +
-> +	h1_ap_int_odl: h1-ap-int-odl {
-> +		pins = "gpio104";
-> +		function = "gpio";
-> +		input-enable;
-> +		bias-pull-up;
-> +		drive-strength = <2>;
-
-see above
-
-> +	};
-> +
-> +	qup_spi10_cs_gpio_init_high: qup-spi10-cs-gpio-init-high {
-> +		pins = "gpio43";
-> +		output-high;
-> +		drive-strength = <2>;
-
-see above
-
-> +	};
-> +
-> +	qup_spi14_cs_gpio_init_high: qup-spi14-cs-gpio-init-high {
-> +		pins = "gpio59";
-> +		output-high;
-> +		drive-strength = <2>;
-
-see above
-
-> +	};
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
-> index 3ae9969..208ca69 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
-> @@ -8,6 +8,7 @@
->  /dts-v1/;
->  
->  #include "sc7280-idp.dtsi"
-> +#include "sc7280-ec-h1.dtsi"
->  
->  / {
->  	model = "Qualcomm Technologies, Inc. sc7280 IDP SKU2 platform";
