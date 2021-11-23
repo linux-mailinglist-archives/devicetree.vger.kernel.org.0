@@ -2,118 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62311459ECF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45ED5459EE2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:07:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230416AbhKWJHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 04:07:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43906 "EHLO
+        id S230307AbhKWJK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 04:10:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232432AbhKWJHC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 04:07:02 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DE8C061714
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 01:03:54 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id k23so9769791lje.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 01:03:54 -0800 (PST)
+        with ESMTP id S234242AbhKWJK1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 04:10:27 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1ADC061574;
+        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id 71so2310304pgb.4;
+        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=M/z5Vz69s5nr1kpYYcK91ofPakub5omF5cpfR8mSR/M=;
-        b=B1ecVDUzzaXMXC6qlS5eBs47/M+Cc6LxYBLeiU+jckbbZJu/dHNydItqweNvjvH/Iz
-         QUF6CIRCny9AnO2FYfKVrJ+gOJ6I4iExcL7B+Gju5HRdBfAkGR2Y1AzKe6enj+oCxBan
-         sHvhYYHhF9I3ofCOJbWTpZnEBRwxZWs/RBlg+ePH8ePQ0cyDGWpQZDjBAQQvd5ZAgz9J
-         AXK11L3eg3HpL+PaEouA/PC1znwEUOUAUylu5PzsJRfdWVwiPqgNnxQCkFBdNBV5Otcv
-         UttmpdgIH6hmd2k+QdXNsvQ7h2tIqffVgfV853aJSOH8/01Zwb7Ay+orZfUV4Nkm+a1+
-         5thQ==
+        bh=IUHBLf5vNSlEiUHIVpm7uW2Kv1mivoocEqGi35UzJDo=;
+        b=E9Njrw0uX2NtO/86NxIMhkIFZpYymPmae0/0ncowoV1DigjBKTp8KE7VrlXbUgVbMb
+         p655JEdYujbN610Z7gb2rNJyDLX6V3rvbFf45fC4wfvZIxYEyOTiNvTdmyePw9SDpECY
+         c0suK9yqIdEhNZl+XLPPbv4vX4rF/JEi7x815O0F+MncTwrSRe7A35dZzGf0lKNuQHOF
+         JZ55u5SCzAcPTFKX1bcX03u3EemINfdIq1OXWlsbF1io0pjAtzI2+kXSVxWxs0zJb8WN
+         RYl9Op0olCnDsjdEHvsDf4dWJVqUVcIi7Akj0NET42ytdlvqNsHDIOpp1qNZYT4CvjzO
+         KhSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=M/z5Vz69s5nr1kpYYcK91ofPakub5omF5cpfR8mSR/M=;
-        b=xZmc6E3YJfMW18AzkfoV5WLYVc8iB2u/5JoLFDNnp12AqwcfoAXBftZ8yKMVGfgFCl
-         8zyopRFDE12fI6EEzbYwL5HUnxZ21J8Fs5FDJ8fMDeNRnhuYhLnGJQ4OJN1Xo86gAKrp
-         h1O0sKQk+tvubK3LCKxxd1aqsUm1IDGcSmvLPl9hHrMRS3j7g7GHtUvx6xxIKvHSpa54
-         vYLpG4/tkFRBvonkNDZS1SGqL8X+V5Zv9ajS9zs7VSm4J5YkTcSDghAOE+H3cKOoKdiC
-         AJUSg1qy/Fky4+/KOlm+9W6eSpMRKGaAypJVNMaB4Q1zjwLPU1wNT5lqPdjjHH8mrsJD
-         2U3w==
-X-Gm-Message-State: AOAM533BTEkAfFQkURGwcmadxEb5Iekgl0nv8ouRVz18QflcVRw9DxaV
-        XxP2dR35IfxUFkY5sSpYijE=
-X-Google-Smtp-Source: ABdhPJybeK1dsDyG/9wDTJHXWMYUeeycpQJ1ks0+W5ygyb5bT4N5ITQobpofdxvOpg/dv0Zrvi03Jg==
-X-Received: by 2002:a2e:3012:: with SMTP id w18mr3136484ljw.217.1637658232863;
-        Tue, 23 Nov 2021 01:03:52 -0800 (PST)
-Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id e29sm1226060lfb.111.2021.11.23.01.03.52
+        bh=IUHBLf5vNSlEiUHIVpm7uW2Kv1mivoocEqGi35UzJDo=;
+        b=zf7VKTBv3iE+ztYzDLjb6wId5bGobDwjvXbnSBPOkchAlN4mfmSujFrUVGtXjpX90A
+         y3nE2xGNvhQdefMagFbBuNVTAhra6h0oQiU8Nl7uueKaWXaz6oj+e3SpOTzVgBjeY4K0
+         tJ9KCOIH71ivZqMl3SPvA8xhfd8WHyh9FbBf67olUMyrXBQlSQMPIxW6d5GyrZ1ARwgD
+         /CHcFP/WPtqV8M4VDRHQYmC1pX4rwf4XH7KAEpB0+7Na4azWmLPnAGe6tzVmw8ZAs2S5
+         mGvn19p+iHos0oLyhmJjPH1mgQnnhMPuAb3u36Tg5ImlVpi4mzUi4CEQsBAWhCzO3hZ9
+         SenA==
+X-Gm-Message-State: AOAM531fv/+Gagmgck62RC94l0Q8/ZiJL/aaq/8sDHjOPmDEC/dEZQcs
+        /lSlZifqFyR48g5acHcH+go=
+X-Google-Smtp-Source: ABdhPJyzeM1ZaQ0CZXGAIYfYbVQfDPp5pR8xK+fJZr7hkv5S6N/IyRP9kjmT3yrvPx7/bI9pBnW+gA==
+X-Received: by 2002:a05:6a00:1945:b0:44c:a955:35ea with SMTP id s5-20020a056a00194500b0044ca95535eamr3849851pfk.85.1637658439294;
+        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
+Received: from localhost.localdomain ([103.99.179.247])
+        by smtp.gmail.com with ESMTPSA id u13sm8751242pgp.27.2021.11.23.01.07.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 01:03:52 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: BCM5301X: use non-deprecated USB 2.0 PHY binding
-Date:   Tue, 23 Nov 2021 10:03:33 +0100
-Message-Id: <20211123090333.11597-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.31.1
+        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
+From:   Calvin Zhang <calvinzhang.cool@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, Calvin Zhang <calvinzhang.cool@gmail.com>
+Subject: [PATCH] mm: kmemleak: alloc gray object for reserved region with direct map.
+Date:   Tue, 23 Nov 2021 17:06:41 +0800
+Message-Id: <20211123090641.3654006-1-calvinzhang.cool@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Reserved regions with direct mapping may contain references to other
+regions. CMA region with fixed location is reserved without creating
+kmemleak_object for it.
 
-The new binding covers a single reg and uses syscon to reference shared
-register.
+So add them as gray kmemleak objects.
 
-References: 55b9b741712d ("dt-bindings: phy: brcm,ns-usb2-phy: bind just a PHY block")
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
 ---
- arch/arm/boot/dts/bcm5301x.dtsi | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/of/fdt.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
-index e1cffef4935a..588e57db6859 100644
---- a/arch/arm/boot/dts/bcm5301x.dtsi
-+++ b/arch/arm/boot/dts/bcm5301x.dtsi
-@@ -148,15 +148,6 @@ periph_clk: periph_clk {
- 		};
- 	};
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index bdca35284ceb..116c582fea7a 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -26,6 +26,7 @@
+ #include <linux/serial_core.h>
+ #include <linux/sysfs.h>
+ #include <linux/random.h>
++#include <linux/kmemleak.h>
  
--	usb2_phy: usb2-phy@1800c000 {
--		compatible = "brcm,ns-usb2-phy";
--		reg = <0x1800c000 0x1000>;
--		reg-names = "dmu";
--		#phy-cells = <0>;
--		clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
--		clock-names = "phy-ref-clk";
--	};
--
- 	axi@18000000 {
- 		compatible = "brcm,bus-axi";
- 		reg = <0x18000000 0x1000>;
-@@ -448,7 +439,16 @@ genpll: clock-controller@140 {
- 						     "sata1", "sata2";
- 			};
+ #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+ #include <asm/page.h>
+@@ -522,9 +523,12 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
+ 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
  
--			syscon@180 {
-+			usb2_phy: phy@164 {
-+				compatible = "brcm,ns-usb2-phy";
-+				reg = <0x164 0x4>;
-+				brcm,syscon-clkset = <&cru_clkset>;
-+				clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
-+				clock-names = "phy-ref-clk";
-+				#phy-cells = <0>;
-+			};
-+
-+			cru_clkset: syscon@180 {
- 				compatible = "brcm,cru-clkset", "syscon";
- 				reg = <0x180 0x4>;
- 			};
+ 		if (size &&
+-		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0)
++		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0) {
+ 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
+ 				uname, &base, (unsigned long)(size / SZ_1M));
++			if (!nomap)
++				kmemleak_alloc_phys(base, size, 0, 0);
++		}
+ 		else
+ 			pr_info("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
+ 				uname, &base, (unsigned long)(size / SZ_1M));
 -- 
-2.31.1
+2.30.2
 
