@@ -2,126 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB6A459F42
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:30:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F70C459F79
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:47:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234948AbhKWJdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 04:33:19 -0500
-Received: from mout02.posteo.de ([185.67.36.66]:41759 "EHLO mout02.posteo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235052AbhKWJdS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 04:33:18 -0500
-Received: from submission (posteo.de [89.146.220.130]) 
-        by mout02.posteo.de (Postfix) with ESMTPS id 67B69240108
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 10:30:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
-        t=1637659808; bh=Lpz92Y5P37IX2vYM57a1J6CDi46ceuRnVsDwtJDVzcA=;
-        h=Subject:From:To:Cc:Date:From;
-        b=hCnzNSCK00+wRmCZBKWXs9vYbJ7pcqGBbvP+ToYfiUQy2iSj0XHIoK0PacY8ArVU9
-         16d0MeezPnPU7rzPmUE5TSnTlqfH/Iqjp/gJCic9UaXCH9sMixPfY71H9pUXT4jgQe
-         /Q8lPZBh7N/ZqavNKx1M3HynmCfThqYDh17CoFekv3gQZgBIYlmetIMgC8H4aCi0nn
-         sV1Aqivcm2fBYK80QFUwwi+3XmScf/dk99ywUHxJoF2Gt9cgKqvNtLwfwamifkbK7C
-         0ZXqn+OywN+YBFbYT4HvNzjQ7OH2oDEhCploNQBVZf4urvuagR8UgcNzauZ0/E2XkM
-         z5K5fwokvHvsg==
-Received: from customer (localhost [127.0.0.1])
-        by submission (posteo.de) with ESMTPSA id 4HyzPl1Ywdz6tn4;
-        Tue, 23 Nov 2021 10:30:03 +0100 (CET)
-Message-ID: <c139110dc0b2096a51d1b3c344c3d597cf24093b.camel@posteo.de>
-Subject: Re: [PATCH] arm64: dts: freescale: imx8mq: Disable noc dts node
-From:   Martin Kepplinger <martink@posteo.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
+        id S234049AbhKWJuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 04:50:40 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:59886 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234136AbhKWJuk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 04:50:40 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0797BA1B;
+        Tue, 23 Nov 2021 10:47:30 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1637660851;
+        bh=6vADgbssraBLDOIKrkf2AvmyACKPaDSUjAS9OI3rwS4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Tdu54CA0m5zh7iSTvLL1iDk438RVN2zDGwnKwD0rXHizm4DX4KrttwZts3F5zLPIS
+         JqEiHWI2P1NnRU5RvoJ58La8ZDOHC4p82/qNF+D2hAWl6vvtByinARTDjaB2i+O18+
+         +nYco/ONNigFh1Q8bCZUvQWJwnzTKSb9QLBJ2V/Y=
+Date:   Tue, 23 Nov 2021 11:47:08 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Adam Ford <aford173@gmail.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Date:   Tue, 23 Nov 2021 09:30:02 +0000
-In-Reply-To: <20211123092430.GY31998@dragon>
-References: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
-         <20211123085841.GX31998@dragon>
-         <9b9fe3a5b04179870d6ca0ece754fee9abb306b4.camel@posteo.de>
-         <20211123092430.GY31998@dragon>
-Content-Type: text/plain; charset="UTF-8"
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: (EXT) Re: [PATCH V2 4/5] arm64: dts: imx8mm-beacon: Enable
+ OV5640 Camera
+Message-ID: <YZy4nFgkIyNXpIo3@pendragon.ideasonboard.com>
+References: <20211106155427.753197-1-aford173@gmail.com>
+ <20211106155427.753197-4-aford173@gmail.com>
+ <YZrTyVJR8VN6dQAf@pendragon.ideasonboard.com>
+ <CAHCN7xK=SNgiC2kRzX4gftjkZX4Ms8PVbL69n7+eR-EAe68xag@mail.gmail.com>
+ <YZwyhWPJVlC0JmpK@pendragon.ideasonboard.com>
+ <0c3b4cdd075919ca5cc27c56e792f510e3b76cd7.camel@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <0c3b4cdd075919ca5cc27c56e792f510e3b76cd7.camel@ew.tq-group.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 23.11.2021 um 17:24 +0800 schrieb Shawn Guo:
-> On Tue, Nov 23, 2021 at 09:15:57AM +0000, Martin Kepplinger wrote:
-> > Am Dienstag, dem 23.11.2021 um 16:58 +0800 schrieb Shawn Guo:
-> > > On Thu, Nov 11, 2021 at 01:16:09PM +0200, Abel Vesa wrote:
-> > > > Adding interconnect properties to the consumer nodes creates
-> > > > a dependency on noc device. The imx-bus devfreq driver is not
-> > > > usable
-> > > > without the full interconnect support. The interconnect is not
-> > > > yet
-> > > > working on i.MX platforms. The devlink created on device_add
-> > > > makes
-> > > > the lcdif and other nodes that have the interconnect properties
-> > > > wait for the noc (imx-bus driver) to probe first.
+Hi Alexander,
+
+On Tue, Nov 23, 2021 at 08:38:47AM +0100, Alexander Stein wrote:
+> Am Dienstag, dem 23.11.2021 um 02:15 +0200 schrieb Laurent Pinchart:
+> > On Sun, Nov 21, 2021 at 09:07:26PM -0600, Adam Ford wrote:
+> > > On Sun, Nov 21, 2021 at 5:18 PM Laurent Pinchart wrote:
+> > > > On Sat, Nov 06, 2021 at 10:54:26AM -0500, Adam Ford wrote:
+> > > > > The baseboard has support for a TDNext 5640 Camera which
+> > > > > uses an OV5640 connected to a 2-lane CSI2 interface.
+> > > > > 
+> > > > > With the CSI and mipi_csi2 drivers pointing to an OV5640 camera, the media
+> > > > > pipeline can be configured with the following:
+> > > > > 
+> > > > >     media-ctl --links "'ov5640 1-003c':0->'imx7-mipi-csis.0':0[1]"
+> > > > > 
+> > > > > The camera and various nodes in the pipeline can be configured for UYVY:
+> > > > >     media-ctl -v -V "'ov5640 1-003c':0 [fmt:UYVY8_1X16/640x480 field:none]"
+> > > > >     media-ctl -v -V "'csi':0 [fmt:UYVY8_1X16/640x480 field:none]"
+> > > > > 
+> > > > > Signed-off-by: Adam Ford <aford173@gmail.com>
 > > > > 
-> > > > To make sure the interconnect consumers (nodes that have
-> > > > interconnect
-> > > > properties already added) will still probe, lets disable the
-> > > > noc
-> > > > node
-> > > > for now. Once the interconnect on i.MX platforms is fully
-> > > > functional,
-> > > > the status of the noc node can be changed.
-> > > > 
-> > > > Fixes: ad1abc8a03fdbc05b ("arm64: dts: imx8mq: Add interconnect
-> > > > for
-> > > > lcdif")
+> > > > As the ov5640 is on an add-on module, would a DT overlay be better ?
 > > > 
-> > > Martin,
-> > > 
-> > > Do you have any comment?  So your commit added something
-> > > untested?
-> > > 
-> > > Shawn
+> > > At least for the Beacon / LogicPD boards, I would prefer to avoid the
+> > > overlays.  We have an i.M6Q and an OMAP3 board with cameras enabled in
+> > > our development kit device trees.  If the cameras are not connected,
+> > > they just display a message that the cameras are not communicating and
+> > > move on.  I'm OK with that.
 > > 
-> > hi Shawn,
-> > 
-> > well, for imx8mq the only missing piece is the mxsfb icc bandwidth
-> > request. I posted a first version a year ago but that didn't make
-> > it
-> > in:
-> > https://lore.kernel.org/linux-arm-kernel/20201201103757.32165-1-martin.kepplinger@puri.sm/
-> > 
-> > So this should create a working state until the real fix in mxsfb
-> > is
-> > there (although I'd revert commit ad1abc8a03fd ("arm64: dts:
-> > imx8mq:
-> > Add interconnect for lcdif") instead).
+> > You know the board better than I do, so I won't push against this, but I
+> > still think it may not lead to the best user experience, especially if a
+> > user wanted to connect a different sensor to the development board.
 > 
-> Besides lcdif, the mipi-csi devices have interconnects property too. 
-> Are
-> they already working?  If so, it makes more sense to revert
-> ad1abc8a03fd
-> instead.
+> I see the advantages of overlays compared to "stacked" .dts files. But
+> is there any general supported interface how to actually apply an overlay?
+> Documentation/devicetree/overlay-notes.rst
+> states of_overlay_fdt_apply() but there is only exactly one user in-
+> kernel (rcar-du). Is it expected that the bootloader like u-boot shall
+> apply the .dtbo files?
 
-imx8mq-mipi-csi.c request the bandwidth, yes. we use that and the
-preliminary mxsfb request above so that works.
+I believe the boot loader is expected to apply overlays nowadays, yes.
+That's my personal workflow.
 
-do you want me to send the revert?
+-- 
+Regards,
 
-                     martin
-
-> 
-> Shawn
-> 
-> > I am indeed to blame for this
-> > and I'm sorry I haven't yet taken the time to work on mxsfb again.
-> > 
-> > I can say I plan to do so soon, but without promise that I quickly
-> > find
-> > a solution that'll be merged...
-> > 
-> > If you merge this (or revert ad1abc8a03fd), I'll remember to revert
-> > with said update.
-
-
+Laurent Pinchart
