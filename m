@@ -2,144 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00AFD45A037
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 11:28:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BCD245A047
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 11:32:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235341AbhKWKbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 05:31:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46604 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235146AbhKWKbc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 05:31:32 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id A1B3960ED4;
-        Tue, 23 Nov 2021 10:28:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637663304;
-        bh=82zLsD1/kJ0fI0M0BCmFm0SsC1r/oUVVvTaESdHggQI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=jAXnTfLxhCKUoWGUOOPGCF0sYl+pSPeGH5gDVSGUZQychTNFS4yaef5npL6q2R4q0
-         pKgSoDOQfwBJYqbvltuas50YOhr3JTIkPkX3Y3idDlJ1OLaPID9ceN2JyjTY4I8V7x
-         lRzfOFWqQewXazehJ+C1ay0hKqLhVNC+NGFWoWXVGqG+dvGmM1oJagyhapIYa5TvUN
-         XKyoIzBXvlhX9to7S07zYiCiZ17ZIo6nvEc1rT6UQioVaRSTwF3AZTju1AOmlYqXdW
-         +Q1kD4gZw9NNNElGltWUTrkN1whZDg3vJdXSlx+p/uHgAGT7KWlgFC86Z+dfKNleRI
-         xQ1aN0pwTOA3g==
-Subject: Re: [PATCH 3/4] memory: omap-gpmc: memory: omap-gpmc: Add support for
- GPMC on AM64 SoC
-To:     krzysztof.kozlowski@canonical.com, tony@atomide.com
-Cc:     kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211123102607.13002-1-rogerq@kernel.org>
- <20211123102607.13002-6-rogerq@kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <a9043d7e-20ca-5a53-c54f-825d94c79689@kernel.org>
-Date:   Tue, 23 Nov 2021 12:28:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235407AbhKWKfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 05:35:32 -0500
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:54183 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235390AbhKWKfb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 05:35:31 -0500
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+        by mailout.nyi.internal (Postfix) with ESMTP id 2643C5C00AB;
+        Tue, 23 Nov 2021 05:32:23 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Tue, 23 Nov 2021 05:32:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=6IfWMMDl+t69qUQ48i3QLGGYzk4
+        LV3KqBczbW/8Jm1s=; b=ASQ4J6wMYMN2s3SZtIROykl+wFe8rje3dHUQk0M3Ikl
+        ab+WO2YbkxC8jKKIXrUubdKpKXFk8sTtl4B+VB5F44gDm+Ev3Hukinc+YhAaqLQZ
+        aCMOFzu2IGMGBmnsWeGDppYLqdRngRlVNZrv3PlZZB6u/v+KJEqap/VeGmYEMzwX
+        ecoizaQgnhCHuaPvoIM5cOYEKE63+bI/ljPiOouJ86NYcufliB0XAB+We3yX7U0w
+        UHVHrr28SRJn/sK/c1Sf87i0nEZTtG55dXqoQTYij4EuumN5qXNKS6ei2dpYKnwL
+        tQ5ao1VeRmV6AQvHc7EyCTDOnVn2U0XUDNf9uBlFL1Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6IfWMM
+        Dl+t69qUQ48i3QLGGYzk4LV3KqBczbW/8Jm1s=; b=nIgZTPIiHAxaS8vhnKjJ2m
+        0B8WoTIjxVVDU8CJc6MnTNzTbsg3lwRYceOgaGz5jzop3Dna2PF0ix6SjPLh+TpC
+        XVU7CneC1qvkr9kxqENTUqZvqpjECM5TNmHaDcuWjwJrjAv+jNAtiR/pJJJhLG40
+        9v7m8YAwPbHbQ/EnYt5pe9O/om7+OmSHAJ5kC5tNOu4XMVFFAq+k0cp2F5TU0DRT
+        VkR9IOf0bghdJq/jULoAQP6ShLBTxnadS8biLfcJQkZN2cFRFaExr28DaXCUh/wM
+        lE03VfvdaSJNCCYj6hlGYAum7Vs9n3XTuj4bnasJMZxwqa32dZ8rKr6jh8pRwptw
+        ==
+X-ME-Sender: <xms:NsOcYcTJZ6HXzPVOfx4J2GjRXVh438wRZbfmEwrrxw9w5dGQ4oqlDg>
+    <xme:NsOcYZwcHTnvhYmfIl923CZZwZ6f6GHAzTrRLIg13jijCH4H6VZaTA9G59C0_dmqX
+    X1w99Us54bNn_zQ4Sc>
+X-ME-Received: <xmr:NsOcYZ2uSRjiiTulU8KGLa90Euu_0_0PJ8M7dJSfk05BVVp3pp3NBk8Agp2Yhh-8ER8jkAOy375pP5kzodomhRWVJE6R2anAm_w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeigddujecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:NsOcYQDT3-3MHbtlbixyMgBNwkRbR-Awib3I1dt3wvZoLT6VbZNDhA>
+    <xmx:NsOcYVibIiCXpEWYGAogpYN4HVEX0QHFVqb1j9llWEJOwzJd0561EA>
+    <xmx:NsOcYcrQU8yse-aPxGvY6-xmEMQ6QlSe4pdV2etLmu2AyHZRNv_FZA>
+    <xmx:N8OcYQUoK2Pcp_bM8GV5l_xIqSBDZuTMVjoZnqPZ62kFy416Ru25oQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 23 Nov 2021 05:32:22 -0500 (EST)
+Date:   Tue, 23 Nov 2021 11:32:19 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, Michael Klein <michael@fossekall.de>
+Subject: Re: [PATCH] ARM: dts: sun8i: Adjust power key nodes
+Message-ID: <20211123103219.4y2pjywt2uxunc5s@gilmour>
+References: <20211122213637.922088-1-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211123102607.13002-6-rogerq@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fsk3ur76aps57kb4"
+Content-Disposition: inline
+In-Reply-To: <20211122213637.922088-1-jernej.skrabec@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please ignore this one as well.
 
-On 23/11/2021 12:26, Roger Quadros wrote:
-> The TI's AM64 SoC has the GPMC module. Add compatible for it.
-> 
-> Traditionally GPMC external addresses have always been mapped to first
-> 1GB physical address. However newer platforms, can have it mapped
-> at different locations. Support this address provision via device tree.
-> 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  drivers/memory/omap-gpmc.c | 40 ++++++++++++++++++++++++++++----------
->  1 file changed, 30 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/memory/omap-gpmc.c b/drivers/memory/omap-gpmc.c
-> index be0858bff4d3..624153048182 100644
-> --- a/drivers/memory/omap-gpmc.c
-> +++ b/drivers/memory/omap-gpmc.c
-> @@ -237,6 +237,7 @@ struct gpmc_device {
->  	struct omap3_gpmc_regs context;
->  	int nirqs;
->  	unsigned int is_suspended:1;
-> +	struct resource *data;
->  };
->  
->  static struct irq_domain *gpmc_irq_domain;
-> @@ -1456,12 +1457,18 @@ static void gpmc_mem_exit(void)
->  	}
->  }
->  
-> -static void gpmc_mem_init(void)
-> +static void gpmc_mem_init(struct gpmc_device *gpmc)
->  {
->  	int cs;
->  
-> -	gpmc_mem_root.start = GPMC_MEM_START;
-> -	gpmc_mem_root.end = GPMC_MEM_END;
-> +	if (!gpmc->data) {
-> +		/* All legacy devices have same data IO window */
-> +		gpmc_mem_root.start = GPMC_MEM_START;
-> +		gpmc_mem_root.end = GPMC_MEM_END;
-> +	} else {
-> +		gpmc_mem_root.start = gpmc->data->start;
-> +		gpmc_mem_root.end = gpmc->data->end;
-> +	}
->  
->  	/* Reserve all regions that has been set up by bootloader */
->  	for (cs = 0; cs < gpmc_cs_num; cs++) {
-> @@ -1888,6 +1895,7 @@ static const struct of_device_id gpmc_dt_ids[] = {
->  	{ .compatible = "ti,omap3430-gpmc" },	/* omap3430 & omap3630 */
->  	{ .compatible = "ti,omap4430-gpmc" },	/* omap4430 & omap4460 & omap543x */
->  	{ .compatible = "ti,am3352-gpmc" },	/* am335x devices */
-> +	{ .compatible = "ti,am64-gpmc" },
->  	{ }
->  };
->  
-> @@ -2502,13 +2510,25 @@ static int gpmc_probe(struct platform_device *pdev)
->  	gpmc->dev = &pdev->dev;
->  	platform_set_drvdata(pdev, gpmc);
->  
-> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> -	if (!res)
-> -		return -ENOENT;
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "cfg");
-> +	if (!res) {
-> +		/* legacy DT */
-> +		gpmc_base = devm_platform_ioremap_resource(pdev, 0);
-> +		if (IS_ERR(gpmc_base))
-> +			return PTR_ERR(gpmc_base);
-> +	} else {
-> +		gpmc_base = devm_ioremap_resource(&pdev->dev, res);
-> +		if (IS_ERR(gpmc_base))
-> +			return PTR_ERR(gpmc_base);
-> +
-> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "data");
-> +		if (!res) {
-> +			dev_err(&pdev->dev, "couldn't get data reg resource\n");
-> +			return -ENOENT;
-> +		}
->  
-> -	gpmc_base = devm_ioremap_resource(&pdev->dev, res);
-> -	if (IS_ERR(gpmc_base))
-> -		return PTR_ERR(gpmc_base);
-> +		gpmc->data = res;
-> +	}
->  
->  	res = platform_get_resource(pdev, IORESOURCE_IRQ, 0);
->  	if (!res) {
-> @@ -2562,7 +2582,7 @@ static int gpmc_probe(struct platform_device *pdev)
->  	dev_info(gpmc->dev, "GPMC revision %d.%d\n", GPMC_REVISION_MAJOR(l),
->  		 GPMC_REVISION_MINOR(l));
->  
-> -	gpmc_mem_init();
-> +	gpmc_mem_init(gpmc);
->  	rc = gpmc_gpio_init(gpmc);
->  	if (rc)
->  		goto gpio_init_failed;
-> 
+--fsk3ur76aps57kb4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Mon, Nov 22, 2021 at 10:36:37PM +0100, Jernej Skrabec wrote:
+> Several H3 and one H2+ board have power key nodes, which are slightly
+> off. Some are missing wakeup-source property and some have BTN_0 code
+> assigned instead of KEY_POWER.
+>=20
+> Adjust them, so they can function as intended by designer.
+>=20
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> [BananaPi M2 Zero changes]
+> Signed-off-by: Michael Klein <michael@fossekall.de>
+
+This looks a bit weird. If Michael is the author, then his SoB should be
+here first and mentioned either in From or Co-developed-by.
+
+If you are, I'm not sure why he's mentioned?
+
+Maxime
+
+--fsk3ur76aps57kb4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZzDMwAKCRDj7w1vZxhR
+xeYRAQCN2a8TqQdMa5RmUXLYjQVlY5s4zcCu2QmCColXWwKPOwEAxxBhHi3yPRMS
+6b1XvR8ir9A3uMZty7+rh1L8k4BH+QI=
+=jUHJ
+-----END PGP SIGNATURE-----
+
+--fsk3ur76aps57kb4--
