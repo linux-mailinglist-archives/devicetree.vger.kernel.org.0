@@ -2,123 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD22C45A7FB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:34:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C1DC45A7FC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:34:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237991AbhKWQh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:37:59 -0500
-Received: from mail-io1-f48.google.com ([209.85.166.48]:42980 "EHLO
-        mail-io1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236559AbhKWQh4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:37:56 -0500
-Received: by mail-io1-f48.google.com with SMTP id x10so28720736ioj.9;
-        Tue, 23 Nov 2021 08:34:48 -0800 (PST)
+        id S237584AbhKWQiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:38:00 -0500
+Received: from mail-il1-f179.google.com ([209.85.166.179]:36621 "EHLO
+        mail-il1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234126AbhKWQh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:37:59 -0500
+Received: by mail-il1-f179.google.com with SMTP id l8so22338750ilv.3;
+        Tue, 23 Nov 2021 08:34:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=slqXKFhgdTYySkX9nZNHik88KwfWlzq8wG1ZkB3HnKE=;
-        b=uX82T8MQtzAVcoGwzhtNxo49nfA2W5MZm6hnnOwkiqKOvFrVNNgL3jC8jGz2/tDaeo
-         lfU8Z4Zez8j5rN63f4RQOc2D4EiuS3lXe+p5i60beLC+gsQSBLHHNBUaG9NhBNZ2t9ay
-         JZSuqSHIzGFtNPqNGjh+hnAUmKb+eQrrVND2EdwDNZiScNQ/bRAT7Tp+iaJE0+2EXMZR
-         KzhxWFOtADdtKs1VwD3XAR0qD9LpL/+sS0V5RZaKl1itHWZ6gQymoKc3iieCNLF25UDr
-         pwj4WSax8MWVj6apnlGRKzNBqqV+okmhftf8O4T8SC4wGJAZbwcsa/X4GKguY/UnFNjj
-         wk1w==
-X-Gm-Message-State: AOAM533O5e5rDh/vP9CUIUOtUGrNEC3laDHU3u8npGMsK4RawJpIq6em
-        0qF8t5Dr5Hm0iMishbAPZg==
-X-Google-Smtp-Source: ABdhPJzA8ris3g/X5WP3kZdrctnemUsTCOcqWH9f6MvH8q8UdrjPL/tSfm4rUj6xrAAROn2uoOnh0g==
-X-Received: by 2002:a05:6638:2728:: with SMTP id m40mr7891072jav.111.1637685287905;
-        Tue, 23 Nov 2021 08:34:47 -0800 (PST)
+        bh=0QKOHJ1OnKbL2a6U5UE9Sczj0KIVJUirLPHUpzoIxpE=;
+        b=MvLgR1UL8n4xRGABtD9fpVDoy7W9zBLTJ3m4pLwW20e2/NMMap2HHAdNA5KK7PH3EK
+         M3w7zaP06DbPiYczgisssPSA35X6l4Zt46Dvh9IeUvGirBGAxBkjZGSbiCPQBajx+HOb
+         vWn1uHjMUgLTyuVHus8BguwIt1IZRZNttCNBIBTwdwIsuiBMgJHY/XqmVII8un71Cpsx
+         ptSeS728cTvcjEp5J5+5jn6WVln1pCvvRNm0/jYVyVtLleXfLSnsSJPqG8MXbYEfean0
+         4uaQm6ySv3wTR7c7p3UvVzO/UZ/fNR7hkKQnRKjXgb6tyjFHphlVZAwq5Qkgo1lF4UA5
+         RA2A==
+X-Gm-Message-State: AOAM53236VJNBJNjnQm9iOlEOZ4/FEcCqoAm301keeSV5p+QSold1tMn
+        EMmw5ffwpxEtqyHuhfR83Q==
+X-Google-Smtp-Source: ABdhPJwQbkkEsFEy5w9HCPyrvpKMWIAbN2aSLLV6mqx3Fn4hAA6t624FH30/QNlmaqLWwBm4sVG8Ow==
+X-Received: by 2002:a92:c5ad:: with SMTP id r13mr2636828ilt.53.1637685290562;
+        Tue, 23 Nov 2021 08:34:50 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id h14sm7403051ils.75.2021.11.23.08.34.45
+        by smtp.gmail.com with ESMTPSA id t6sm3992225ios.13.2021.11.23.08.34.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 08:34:47 -0800 (PST)
-Received: (nullmailer pid 3442910 invoked by uid 1000);
+        Tue, 23 Nov 2021 08:34:49 -0800 (PST)
+Received: (nullmailer pid 3442924 invoked by uid 1000);
         Tue, 23 Nov 2021 16:34:29 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Ian Arkver <ian.arkver.dev@gmail.com>,
-        linux-media@vger.kernel.org, kernel@pengutronix.de,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, p.zabel@pengutronix.de
-In-Reply-To: <20211123101517.3656935-3-m.tretter@pengutronix.de>
-References: <20211123101517.3656935-1-m.tretter@pengutronix.de> <20211123101517.3656935-3-m.tretter@pengutronix.de>
-Subject: Re: [PATCH v8 2/3] media: dt-bindings: Add Intersil ISL79987 DT bindings
+To:     Olivier Moysan <olivier.moysan@foss.st.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        fabrice.gasnier@foss.st.com, devicetree@vger.kernel.org,
+        arnaud.pouliquen@foss.st.com, Rob Herring <robh+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+In-Reply-To: <20211119144551.7577-2-olivier.moysan@foss.st.com>
+References: <20211119144551.7577-1-olivier.moysan@foss.st.com> <20211119144551.7577-2-olivier.moysan@foss.st.com>
+Subject: Re: [PATCH 1/9] ASoC: dt-bindings: stm32: i2s: update example
 Date:   Tue, 23 Nov 2021 09:34:29 -0700
-Message-Id: <1637685269.649925.3442909.nullmailer@robh.at.kernel.org>
+Message-Id: <1637685269.713393.3442923.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Nov 2021 11:15:16 +0100, Michael Tretter wrote:
-> From: Marek Vasut <marex@denx.de>
+On Fri, 19 Nov 2021 15:45:43 +0100, Olivier Moysan wrote:
+> Some STM32 SPI peripheral instances support I2S for audio.
+> SPI and I2S features were initially described through two separated
+> nodes in the SoC Device Tree. In the next SoC Device Trees
+> a single node is used to describe SPI peripheral, leading
+> to a change in node name for I2S.
+> Change example in STM32 DT binding example to match this change.
 > 
-> Add bindings for the Intersil ISL79987 analog to MIPI CSI-2 decoder.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-media@vger.kernel.org
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
 > ---
-> Changelog:
-> 
-> v8: none
-> 
-> v7: none
-> 
-> v6: none
-> 
-> v5: none
-> 
-> v4: none
-> 
-> v3:
-> 
-> - rename pd-gpios property to powerdown-gpios
-> - reference graph.yaml for ports/port properties
-> - remove reference to video-interfaces.txt
-> - remove unnecessary description of ports property
-> 
-> v2:
-> 
-> - convert binding to yaml
-> - change description to match only isl79987
-> - replace num-inputs property with multiple ports
-> - add reset gpio
-> ---
->  .../bindings/media/i2c/isil,isl79987.yaml     | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+>  Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/isil,isl79987.example.dt.yaml: isl7998x_mipi@44: ports:port@0:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+Full log is available here: https://patchwork.ozlabs.org/patch/1557188
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1558453
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+audio-controller@4000b000: 'port' does not match any of the regexes: 'pinctrl-[0-9]+'
+	arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
+	arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
 
