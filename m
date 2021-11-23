@@ -2,716 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D70D045B008
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:26:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B42F45B00D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:26:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238817AbhKWX3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 18:29:13 -0500
-Received: from mail-eopbgr70088.outbound.protection.outlook.com ([40.107.7.88]:58279
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231343AbhKWX3L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 18:29:11 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hlarFEl5fJd5tqmdwDeCERJgbxlmd3y6OCawfi97mP7YrfVjrd2KIUuKweKCD11ckqg4vFg+CqFv5rzx7JYh+FJDMdh3/U9UUiw5kcSn/APFSmg0GihigMgjDJ7IwNy3dBDZGDHcy0Nwoh1Uiz02ZleM0ilwyTwfAhiDa8V/zZGPz1t0amDRemxBbO71e524HU7IwZdulbxawYrCue9vBk3FdUqTwuVoqEIPs6JjMbqmw2l4zy/1f0QlDw2xZPzvpFpP8V3UfF3NmY88F96QlnSW9QxZPj++QkX1aOKJhMJlXSF6318rIdzam5Yx6h3W6vOsUvSJ0l+AghFdsklFtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YaqfOLVdZDXSrJj+r4PB8pg77+Y1zEoMZzSIx4jpJeg=;
- b=UKL+h5FufupPN0OidMiz1lAaSj8qxYJqon4JDfSCed1fQ+gQfPjO22MtIiPi4n+AXPLTYuJBSuz8qn3jgfp5ICZwMNFEF3ekgHJ5QKkx2/ZU0TQdublTqjbagILTMFUZaZj4nr+ylIQfEc6S+1bp4hVeUwklVNyVJePH8xpNV+pWztbuypFvWwxD+a0in596O1mQAjTviK+7TVqomLxi+2HZAlfxusjbvLPbFnJSHtz3cuY9s5qUzc5FYUKKWUgerQSkwxFed9s408tIuhsYEAU9/lZdp4HqLvGg6vzXjSmhAemj7ghcf6ldQsQJp8WShcgmwiVxwL/9sd2qy7XQLg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
+        id S231693AbhKWX32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 18:29:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240156AbhKWX30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 18:29:26 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE1DCC06175E
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:26:16 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id l25so1745615eda.11
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:26:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=secospa.onmicrosoft.com; s=selector2-secospa-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YaqfOLVdZDXSrJj+r4PB8pg77+Y1zEoMZzSIx4jpJeg=;
- b=Rfh86ynZ5qFJl/LGxUFgjO2SYoYd5ixzTWOQY/sZwIQlwLgrgU7p/WCQsXk0zovzajUJnFJC+krJLZeEgqL3bCxcg3DbJxYL0foa0NFOIGWuvFFEUFlFIb4i1ifwOxHcqvH3h54hXiqNH4w3agNoS2062nQS94NQ2zSyGnx4xoQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from AM6PR03MB4518.eurprd03.prod.outlook.com (2603:10a6:20b:8::17)
- by AM6PR03MB3942.eurprd03.prod.outlook.com (2603:10a6:20b:19::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.24; Tue, 23 Nov
- 2021 23:25:51 +0000
-Received: from AM6PR03MB4518.eurprd03.prod.outlook.com
- ([fe80::64b7:6a0e:6f2a:424c]) by AM6PR03MB4518.eurprd03.prod.outlook.com
- ([fe80::64b7:6a0e:6f2a:424c%3]) with mapi id 15.20.4734.020; Tue, 23 Nov 2021
- 23:25:51 +0000
-From:   Sean Anderson <sean.anderson@seco.com>
-To:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, michal.simek@xilinx.com,
-        linux-kernel@vger.kernel.org,
-        Sean Anderson <sean.anderson@seco.com>
-Subject: [PATCH v11 2/2] pwm: Add support for Xilinx AXI Timer
-Date:   Tue, 23 Nov 2021 18:25:36 -0500
-Message-Id: <20211123232536.3909773-2-sean.anderson@seco.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211123232536.3909773-1-sean.anderson@seco.com>
-References: <20211123232536.3909773-1-sean.anderson@seco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL0PR02CA0134.namprd02.prod.outlook.com
- (2603:10b6:208:35::39) To AM6PR03MB4518.eurprd03.prod.outlook.com
- (2603:10a6:20b:8::17)
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J91ef6ClOxLkhgdynRLXg1cUtnaaNCDQKEsCKUFI5kI=;
+        b=vsWBO6CJ0fqh0GoaTABuf1mspnUIgJa3bl7wMA49W54lXo4MX3KE/McdabCNB8KL0U
+         Gve6Ih+3HnaeomxYOIgOdzDgooNAIKtOCGojUh0f1Q7PAm9HpISfKn0NCXVz+f9/3Ugt
+         DW9Jow71LLrqzn7wTXF9qYXfWWT+u/ose8cdXQhuXYui0GdZPJCCdwQT0nmGVNaHylz4
+         CIfbgL955RN5RWnC8sy9zwvy1MSiUJN4t76Ee2zPfknqudbGbG/49UUzR/N0UNlITaEA
+         xnAJ5qXwRRvzuwfOqVDQNs5qmX1PZZP/gKATO6YuYr2iM9PmEAgxhWmkatNCqIyBR+E/
+         /xOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J91ef6ClOxLkhgdynRLXg1cUtnaaNCDQKEsCKUFI5kI=;
+        b=mUdkcOQTlQRDUrY9Ex2ersUg4pgTcUzNT1ABmvSXSJ8Vjj4onb5sLFyiyuanK38BME
+         7jWW9vJTuTpKFg2V3NuJYFrop+i7hEsaQsIK2SOulBw7Xch16Lpr1W1b6+uHGdMpz34P
+         zBPydQVFZYTbqTP3ty7rsccPb+yjEhKn0jyXT4KvPP6Fw3wZzbheKphk42HrzZs7duGJ
+         rFCpeYE2EZFb8S+5YZFzC14/5jZb/5cVVubNt6YdsWPteb0pAv7CzjxMcWSk0gxovqcE
+         Zjlz1cs+LFi0zdR0dKofdjanWrI/qtyIvXWwwmyxfXZ3A3nhGfHVu+od6mXATYQsFkrb
+         cx0g==
+X-Gm-Message-State: AOAM5304yRV6CAP40lze78JM548RTutJwq9rZeLFdrQbgVVAmwB/7oVu
+        xUs5IggNuScXoNoXXK2nxexN1A==
+X-Google-Smtp-Source: ABdhPJxZywRV7urkECjjRMa9vBJdtkpXbQbiW5G+qNS2XzWJ+pL7I1ssgbwaUIB/tq1CDB98sauSDg==
+X-Received: by 2002:a50:d710:: with SMTP id t16mr16170577edi.50.1637709975273;
+        Tue, 23 Nov 2021 15:26:15 -0800 (PST)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id b11sm6987894ede.62.2021.11.23.15.26.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 15:26:14 -0800 (PST)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v5] watchdog: s3c2410: Cleanup PMU related code
+Date:   Wed, 24 Nov 2021 01:26:13 +0200
+Message-Id: <20211123232613.22438-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Received: from plantagenet.inhand.com (50.195.82.171) by BL0PR02CA0134.namprd02.prod.outlook.com (2603:10b6:208:35::39) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.20 via Frontend Transport; Tue, 23 Nov 2021 23:25:49 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5ff11e7c-42d6-4e51-826c-08d9aed8962d
-X-MS-TrafficTypeDiagnostic: AM6PR03MB3942:
-X-Microsoft-Antispam-PRVS: <AM6PR03MB3942FBA52FAD42B5DA68617796609@AM6PR03MB3942.eurprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XTqxEYzOG9vHPDHd0TGn1Ba1NElI6kClr6Rh8Dx7c5Kdo28T+eu3GNIxUN5Rrr09fP8zc610WhoLB9N8jZny4Jzju4gfZENuTid9QokhyyyLUN9kKus8i4kGFF0rrTQS+kaqcSvPZAIIiCMTrmZv73FwyGlWzMPXbCMlQp6y0KTSuPRvtA8jTDfymhA5FJJmZmYZL1KxqNvxxLBJ1dUdyzdQX6/QGt8dB7tMwsJ+Fe9q3vo03l8Vh9vjR6fcP8z81OsgC8gvUWUVU2ke4kkNchhh0i6x/m/RnPCwm9VK1pTIwLeQpEjr8NM9QvbjtwoVewG5QAVR9GOGzvFiBvBS1sEGC+vYaxMcCoBRTeRp8rm+XzghkZkr3ARNKmQuSlUsxdYkGo5g/+xRzKx42zDQGrq2HRbGfgiZrNX8MYtFiZkKFDQ9CzUWRQCdiAvNyHdcocsYGhjsRtUMkKWUAdTvULiwKxQlOy+IRSDBFc0xxrKYA9OafdcCe+83Bx9LyegVLDGl5la2Kw/thE8S/tz698oBTKrVXYs+7T9UWMNQDP2JYbrvaQSu62RUZgKmcMzBB/BCwAcTRdCfLpa9aXgCX9VXRjqaMYMGCwh9rvLgqD095brcygKUCqJgc1qTNROIKZ92JCW+cBB7EoOv6YSG2T9f5bN61Sfxbb2w0ySJY1HALX+zw/nh4qTbKrp6PR51fJKasI/d9dLD80PkbxK0Z3TNAfIdiAwPhk7Fj1+iPTe0hS8Fk0gHrVIRIhE61JwyJS5gcClSsAzN7VXbRsSNH+5ZctkPvqc4hibNnvo3xLM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR03MB4518.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(52116002)(6486002)(4326008)(508600001)(966005)(316002)(6916009)(2906002)(66556008)(86362001)(8676002)(30864003)(66476007)(6666004)(44832011)(5660300002)(8936002)(107886003)(66946007)(54906003)(38350700002)(956004)(1076003)(83380400001)(36756003)(26005)(6512007)(6506007)(186003)(2616005)(38100700002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1E2VnpHdWx2clJaMUVXQlRVcU14V1VzeWRmUGR6amxDWVIzWE5vbkJjaHlJ?=
- =?utf-8?B?ZUIwM21QY3Y4a3ZrUDBZMk15QXVmNkFHazZjVzJlZkpmS1RQdjZUWG5kL2Rl?=
- =?utf-8?B?ampKbnJjSk5GNmVEcVBBa2YwNzRWaVVTMzBRNWhNOFZ0SmFHcGo1cWlXRDJ5?=
- =?utf-8?B?bkRnRktwd3VBRXZwOHdERVVJdVFIWlZLVnJaWklnUXlIS09pNnpVK2NjK3ZF?=
- =?utf-8?B?WmdiRnlENWEzYUM2cGYxVWxkREIvZVIzdVE2cXRqWko1WlJXeHMyY2orSHhy?=
- =?utf-8?B?Ri9CQVpSNTFRLzVabVRsOFd5TTNzSU9RR3Ziei80UW93NWh3Q21Vb1E1SEJH?=
- =?utf-8?B?VnZ2cStnb09vRWdWcy9QbzF6WVQrYzBlS2pXUDlTcGZBRjdyNjJEVG1yTGQ4?=
- =?utf-8?B?T0FIc0tZeDFXQWs5RmJOSFlzZXkxYUtoc0c3UGt0eEpOZjgvN0FOb3ZSbE0w?=
- =?utf-8?B?dVFWd3lmd2crakVjQVNPYkpWU09WeHR4S3Zlcnp0SmZqdi9iN2JHTGRHUGpm?=
- =?utf-8?B?bWJPbThkcWMzZnNTUSsyWmltYlF2aVh1ZFpnWDRMenorL3Ezb1ZYaENXRndD?=
- =?utf-8?B?SXI4cnNoa1hYTXZhUVl0bnU3amc2aDBtSENYVm9RMjJnUjUwbkp5M05rOVNa?=
- =?utf-8?B?aXZhWkI4c3hraDM1cTgvamtDV0U4YWIzN1JJd3ZHaDJ5ZlpyQWRMdUd5eEVQ?=
- =?utf-8?B?WHRPRHUxSGgwaWdvV2Z3Zm8yVWx6ZHBqY1M4RC9idVNKeTBHY0lVcEFCNGRj?=
- =?utf-8?B?Zm96TDg2UmRVc0prSURscFN3NTM1K1BKU2dTbFgyWkp2ZS9ydEJPUlNabytj?=
- =?utf-8?B?RU1aNzN5WXNTaVZzUnBSa0ZwWmpGZGxQODFmTU9jV0NzRDNnTlJ0SFBuK2pN?=
- =?utf-8?B?cEVQcVk1MmhITzNsd09Ma2h0eVl4KzRyU2k2ZnBpL1JlMmtDU2VTbStFMWR3?=
- =?utf-8?B?OW81VEw4OXp2WDVKeHBsQ2c2U3loY3J6c1I4WlR1MDgyS3pwZ0F2S3ZNKzBC?=
- =?utf-8?B?cGJDdXRacWRTODVJSGNGelBjVW56a25GSlRvZE9LQnlkRG1ZNVJNR3oyckFC?=
- =?utf-8?B?WHhwVmZDeldLbHFZYkJ1b2VoK3R2eThiZy8zZ1hQcGpwRlluSFA3cU54Vk5o?=
- =?utf-8?B?RG1Ebk1ld0psZWxqam0vMmcrb0lHVFNhTWprZlRNd3VEMmJ6bVAzR2xZSHNl?=
- =?utf-8?B?YVB1N2s4SjA0RzU5T3c0RS9ZeW01TWNaUnVib0RIWll4NUh1QjJKZlFzN1d5?=
- =?utf-8?B?TC9YT0lUenl1UmhwUnZaSzhwRzdQQlpVSFQ0V0laMEFCekZKYXhTUkgreVdn?=
- =?utf-8?B?OGlqSUdSaGI5OWpweWVQVWI4WTRBTGJVSmEzaUI4Q3ZsQ3kzV1VJSCtoNElR?=
- =?utf-8?B?RjI1OVA1ZC93RmpvWUpmWDFHbHNJRDgrVVJ4SG43bXRBa0dnYW9JbW51QkpZ?=
- =?utf-8?B?Q04rZXIxbWVLWHl6NmtBNzc4d2d4OEQxUXJvVVhyMU5TSDVHRnRtYnYxN0tB?=
- =?utf-8?B?bHptQS83ckxDMmUvY3U0Mnp2T3hKNDY1RHU3YncyY3JCWWlrdi8yYmo4LzFk?=
- =?utf-8?B?VG1qNXo2dExqS201dm1FcnlzTVQvZmZ3NElHOXdIRWVmc1pJUzNWY1ZDbzZa?=
- =?utf-8?B?c3pKOHZVY3M3Tk0vc0FTYzA0TFVYZlArQUZXa0FHTUZveGZycTc3RER6a21x?=
- =?utf-8?B?STY2dmNnMkNmQW9QUVZmK2JDNFZRV2thQjJGY1Vkb0pHa2xTbUswK2dIZDh5?=
- =?utf-8?B?TTlMUCs3UmxkN1oxcENRc3QwZ3hwV0FJL2hLbm1PRGg3YmU3eGhzVFRTN3Nj?=
- =?utf-8?B?NnF3NVBURVlJeEFFelJ4cEJYZ09lT2pIWkZFQ2ZuWkVlQk5mOW90a050TlVX?=
- =?utf-8?B?NEs5dDh3S1ladVp0dzYrNzAya3F2Wmx0UXN4YkFoMDZDZEYwVTkycDVaUHVy?=
- =?utf-8?B?bjNlVVd5ZFd1UXpFUXBhN3lHbE5WMFFsd3U3SlVrQ25JVjNiNDN6WEh3NjNn?=
- =?utf-8?B?M2FrcFFPbUtRN1drRytjb0paa3daZUtNS0owQzUwSDVBejRLOEdab1l2ZHRo?=
- =?utf-8?B?RklHSFB6RVQrWXpIQWVob1JEb0NhNXFkcWNrTlEvMXc2MDRPT0VBc2pzcmZS?=
- =?utf-8?B?emMrVGtycitGekEvbGVnSTVONTFScFVNdWVSQXplaUNPTFlGYnkwcmlVTHpG?=
- =?utf-8?Q?Tj4w1JNc2mvybXz6uI67+Hc=3D?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5ff11e7c-42d6-4e51-826c-08d9aed8962d
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR03MB4518.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2021 23:25:50.9477
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sdGRHW0NRS9+x9tfHsOGGJYm/fVvWiiv6UCKsCnAfHoVgYv2hf26UArjuLBeGT6LVAT/vAz7dlqvQT3t8wxWcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR03MB3942
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
-found on Xilinx FPGAs. At the moment clock control is very basic: we
-just enable the clock during probe and pin the frequency. In the future,
-someone could add support for disabling the clock when not in use.
+Now that PMU enablement code was extended for new Exynos SoCs, it
+doesn't look very cohesive and consistent anymore. Do a bit of renaming,
+grouping and style changes, to make it look good again. While at it, add
+quirks documentation as well.
 
-Some common code has been specially demarcated. While currently only
-used by the PWM driver, it is anticipated that it may be split off in
-the future to be used by the timer driver as well.
+No functional change, just a refactoring commit.
 
-This driver was written with reference to Xilinx DS764 for v1.03.a [1].
-
-[1] https://www.xilinx.com/support/documentation/ip_documentation/axi_timer/v1_03_a/axi_timer_ds764.pdf
-
-Signed-off-by: Sean Anderson <sean.anderson@seco.com>
-Acked-by: Michal Simek <michal.simek@xilinx.com>
+Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 ---
-
-Changes in v11:
-- Add comment about why we test for #pwm-cells
-- Clarify comment on generate out signal
-- Rename pwm variables to xilinx_pwm
-- Round like Uwe wants...
-- s/xilinx_timer/xilinx_pwm/ for non-common functions
-
-Changes in v10:
-- Fix compilation error in timer driver
-
-Changes in v9:
-- Refactor "if { return } else if { }" to "if { return } if { }"
-- Remove drivers/clocksource/timer-xilinx-common.c from MAINTAINERS
-- Remove xilinx_timer_common_init and integrate it into xilinx_timer_probe
-
-Changes in v8:
-- Drop new timer driver; it has been deferred for future series
-
-Changes in v7:
-- Add dependency on OF_ADDRESS
-- Fix period_cycles calculation
-- Fix typo in limitations
-
-Changes in v6:
-- Capitalize error messages
-- Don't disable regmap locking to allow inspection of registers via
-  debugfs
-- Prevent overflow when calculating period_cycles
-- Remove enabled variable from xilinx_pwm_apply
-- Swap order of period_cycle range comparisons
-
 Changes in v5:
-- Allow non-zero #pwm-cells
-- Correctly set duty_cycle in get_state when TLR0=TLR1
-- Elaborate on limitation section
-- Perform some additional checks/rounding in apply_state
-- Remove xlnx,axi-timer-2.0 compatible string
-- Rework duty-cycle and period calculations with feedback from Uwe
-- Switch to regmap to abstract endianness issues
-- Use more verbose error messages
+  - Fixed kernel-doc comment by adding "DOC:" part
 
 Changes in v4:
-- Don't use volatile in read/write replacements. Some arches have it and
-  some don't.
-- Put common timer properties into their own struct to better reuse
-  code.
-- Remove references to properties which are not good enough for Linux.
+  - Added R-b tag by Guenter Roeck
 
 Changes in v3:
-- Add clockevent and clocksource support
-- Remove old microblaze driver
-- Rewrite probe to only use a device_node, since timers may need to be
-  initialized before we have proper devices. This does bloat the code a bit
-  since we can no longer rely on helpers such as dev_err_probe. We also
-  cannot rely on device resources being free'd on failure, so we must free
-  them manually.
-- We now access registers through xilinx_timer_(read|write). This allows us
-  to deal with endianness issues, as originally seen in the microblaze
-  driver. CAVEAT EMPTOR: I have not tested this on big-endian!
+  - Added quirks documentation
+  - Added R-b tag by Krzysztof Kozlowski
 
 Changes in v2:
-- Add comment describing device
-- Add comment explaining why we depend on !MICROBLAZE
-- Add dependencies on COMMON_CLK and HAS_IOMEM
-- Cast dividends to u64 to avoid overflow
-- Check for over- and underflow when calculating TLR
-- Check range of xlnx,count-width
-- Don't compile this module by default for arm64
-- Don't set pwmchip.base to -1
-- Ensure the clock is always running when the pwm is registered
-- Remove debugfs file :l
-- Rename TCSR_(SET|CLEAR) to TCSR_RUN_(SET|CLEAR)
-- Report errors with dev_error_probe
-- Set xilinx_pwm_ops.owner
-- Use NSEC_TO_SEC instead of defining our own
-- Use TCSR_RUN_MASK to check if the PWM is enabled, as suggested by Uwe
+  - (none): it's a new patch
 
- MAINTAINERS                        |   6 +
- arch/microblaze/kernel/timer.c     |   3 +
- drivers/pwm/Kconfig                |  14 ++
- drivers/pwm/Makefile               |   1 +
- drivers/pwm/pwm-xilinx.c           | 318 +++++++++++++++++++++++++++++
- include/clocksource/timer-xilinx.h |  91 +++++++++
- 6 files changed, 433 insertions(+)
- create mode 100644 drivers/pwm/pwm-xilinx.c
- create mode 100644 include/clocksource/timer-xilinx.h
+ drivers/watchdog/s3c2410_wdt.c | 83 ++++++++++++++++++++++++----------
+ 1 file changed, 58 insertions(+), 25 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5250298d2817..b2b3ce106e99 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20897,6 +20897,12 @@ F:	drivers/misc/Makefile
- F:	drivers/misc/xilinx_sdfec.c
- F:	include/uapi/misc/xilinx_sdfec.h
- 
-+XILINX PWM DRIVER
-+M:	Sean Anderson <sean.anderson@seco.com>
-+S:	Maintained
-+F:	drivers/pwm/pwm-xilinx.c
-+F:	include/clocksource/timer-xilinx.h
+diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
+index ec341c876225..df67d57ea7e4 100644
+--- a/drivers/watchdog/s3c2410_wdt.c
++++ b/drivers/watchdog/s3c2410_wdt.c
+@@ -56,17 +56,51 @@
+ #define EXYNOS5_RST_STAT_REG_OFFSET		0x0404
+ #define EXYNOS5_WDT_DISABLE_REG_OFFSET		0x0408
+ #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET	0x040c
+-#define QUIRK_HAS_PMU_CONFIG			(1 << 0)
+-#define QUIRK_HAS_RST_STAT			(1 << 1)
+-#define QUIRK_HAS_WTCLRINT_REG			(1 << 2)
 +
- XILINX UARTLITE SERIAL DRIVER
- M:	Peter Korsgaard <jacmet@sunsite.dk>
- L:	linux-serial@vger.kernel.org
-diff --git a/arch/microblaze/kernel/timer.c b/arch/microblaze/kernel/timer.c
-index f8832cf49384..dea34a3d4aa4 100644
---- a/arch/microblaze/kernel/timer.c
-+++ b/arch/microblaze/kernel/timer.c
-@@ -251,6 +251,9 @@ static int __init xilinx_timer_init(struct device_node *timer)
- 	u32 timer_num = 1;
++/**
++ * DOC: Quirk flags for different Samsung watchdog IP-cores
++ *
++ * This driver supports multiple Samsung SoCs, each of which might have
++ * different set of registers and features supported. As watchdog block
++ * sometimes requires modifying PMU registers for proper functioning, register
++ * differences in both watchdog and PMU IP-cores should be accounted for. Quirk
++ * flags described below serve the purpose of telling the driver about mentioned
++ * SoC traits, and can be specified in driver data for each particular supported
++ * device.
++ *
++ * %QUIRK_HAS_WTCLRINT_REG: Watchdog block has WTCLRINT register. It's used to
++ * clear the interrupt once the interrupt service routine is complete. It's
++ * write-only, writing any values to this register clears the interrupt, but
++ * reading is not permitted.
++ *
++ * %QUIRK_HAS_PMU_MASK_RESET: PMU block has the register for disabling/enabling
++ * WDT reset request. On old SoCs it's usually called MASK_WDT_RESET_REQUEST,
++ * new SoCs have CLUSTERx_NONCPU_INT_EN register, which 'mask_bit' value is
++ * inverted compared to the former one.
++ *
++ * %QUIRK_HAS_PMU_RST_STAT: PMU block has RST_STAT (reset status) register,
++ * which contains bits indicating the reason for most recent CPU reset. If
++ * present, driver will use this register to check if previous reboot was due to
++ * watchdog timer reset.
++ *
++ * %QUIRK_HAS_PMU_AUTO_DISABLE: PMU block has AUTOMATIC_WDT_RESET_DISABLE
++ * register. If 'mask_bit' bit is set, PMU will disable WDT reset when
++ * corresponding processor is in reset state.
++ *
++ * %QUIRK_HAS_PMU_CNT_EN: PMU block has some register (e.g. CLUSTERx_NONCPU_OUT)
++ * with "watchdog counter enable" bit. That bit should be set to make watchdog
++ * counter running.
++ */
++#define QUIRK_HAS_WTCLRINT_REG			(1 << 0)
++#define QUIRK_HAS_PMU_MASK_RESET		(1 << 1)
++#define QUIRK_HAS_PMU_RST_STAT			(1 << 2)
+ #define QUIRK_HAS_PMU_AUTO_DISABLE		(1 << 3)
+ #define QUIRK_HAS_PMU_CNT_EN			(1 << 4)
+ 
+ /* These quirks require that we have a PMU register map */
+-#define QUIRKS_HAVE_PMUREG			(QUIRK_HAS_PMU_CONFIG | \
+-						 QUIRK_HAS_RST_STAT | \
+-						 QUIRK_HAS_PMU_AUTO_DISABLE | \
+-						 QUIRK_HAS_PMU_CNT_EN)
++#define QUIRKS_HAVE_PMUREG \
++	(QUIRK_HAS_PMU_MASK_RESET | QUIRK_HAS_PMU_RST_STAT | \
++	 QUIRK_HAS_PMU_AUTO_DISABLE | QUIRK_HAS_PMU_CNT_EN)
+ 
+ static bool nowayout	= WATCHDOG_NOWAYOUT;
+ static int tmr_margin;
+@@ -146,8 +180,8 @@ static const struct s3c2410_wdt_variant drv_data_exynos5250  = {
+ 	.mask_bit = 20,
+ 	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+ 	.rst_stat_bit = 20,
+-	.quirks = QUIRK_HAS_PMU_CONFIG | QUIRK_HAS_RST_STAT \
+-		  | QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_AUTO_DISABLE,
++	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
++		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
+ };
+ 
+ static const struct s3c2410_wdt_variant drv_data_exynos5420 = {
+@@ -156,8 +190,8 @@ static const struct s3c2410_wdt_variant drv_data_exynos5420 = {
+ 	.mask_bit = 0,
+ 	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+ 	.rst_stat_bit = 9,
+-	.quirks = QUIRK_HAS_PMU_CONFIG | QUIRK_HAS_RST_STAT \
+-		  | QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_AUTO_DISABLE,
++	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
++		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
+ };
+ 
+ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
+@@ -166,8 +200,8 @@ static const struct s3c2410_wdt_variant drv_data_exynos7 = {
+ 	.mask_bit = 23,
+ 	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+ 	.rst_stat_bit = 23,	/* A57 WDTRESET */
+-	.quirks = QUIRK_HAS_PMU_CONFIG | QUIRK_HAS_RST_STAT \
+-		  | QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_AUTO_DISABLE,
++	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET | \
++		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_AUTO_DISABLE,
+ };
+ 
+ static const struct of_device_id s3c2410_wdt_match[] = {
+@@ -253,24 +287,24 @@ static int s3c2410wdt_enable_counter(struct s3c2410_wdt *wdt, bool en)
+ 	return ret;
+ }
+ 
+-static int s3c2410wdt_mask_and_disable_reset(struct s3c2410_wdt *wdt, bool mask)
++static int s3c2410wdt_enable(struct s3c2410_wdt *wdt, bool en)
+ {
  	int ret;
  
-+	if (of_property_read_bool(timer, "#pwm-cells"))
-+		return 0;
-+
- 	if (initialized)
- 		return -EINVAL;
+ 	if (wdt->drv_data->quirks & QUIRK_HAS_PMU_AUTO_DISABLE) {
+-		ret = s3c2410wdt_disable_wdt_reset(wdt, mask);
++		ret = s3c2410wdt_disable_wdt_reset(wdt, !en);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
  
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 21e3b05a5153..cefbf00b4c7e 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -640,4 +640,18 @@ config PWM_VT8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-vt8500.
+-	if (wdt->drv_data->quirks & QUIRK_HAS_PMU_CONFIG) {
+-		ret = s3c2410wdt_mask_wdt_reset(wdt, mask);
++	if (wdt->drv_data->quirks & QUIRK_HAS_PMU_MASK_RESET) {
++		ret = s3c2410wdt_mask_wdt_reset(wdt, !en);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
  
-+config PWM_XILINX
-+	tristate "Xilinx AXI Timer PWM support"
-+	depends on OF_ADDRESS
-+	depends on COMMON_CLK
-+	select REGMAP_MMIO
-+	help
-+	  PWM driver for Xilinx LogiCORE IP AXI timers. This timer is
-+	  typically a soft core which may be present in Xilinx FPGAs.
-+	  This device may also be present in Microblaze soft processors.
-+	  If you don't have this IP in your design, choose N.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-xilinx.
-+
- endif
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 708840b7fba8..ea785480359b 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -60,3 +60,4 @@ obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
- obj-$(CONFIG_PWM_TWL_LED)	+= pwm-twl-led.o
- obj-$(CONFIG_PWM_VISCONTI)	+= pwm-visconti.o
- obj-$(CONFIG_PWM_VT8500)	+= pwm-vt8500.o
-+obj-$(CONFIG_PWM_XILINX)	+= pwm-xilinx.o
-diff --git a/drivers/pwm/pwm-xilinx.c b/drivers/pwm/pwm-xilinx.c
-new file mode 100644
-index 000000000000..b64735880c4c
---- /dev/null
-+++ b/drivers/pwm/pwm-xilinx.c
-@@ -0,0 +1,318 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2021 Sean Anderson <sean.anderson@seco.com>
-+ *
-+ * Limitations:
-+ * - When changing both duty cycle and period, we may end up with one cycle
-+ *   with the old duty cycle and the new period. This is because the counters
-+ *   may only be reloaded by first stopping them, or by letting them be
-+ *   automatically reloaded at the end of a cycle. If this automatic reload
-+ *   happens after we set TLR0 but before we set TLR1 then we will have a
-+ *   bad cycle. This could probably be fixed by reading TCR0 just before
-+ *   reprogramming, but I think it would add complexity for little gain.
-+ * - Cannot produce 100% duty cycle by configuring the TLRs. This might be
-+ *   possible by stopping the counters at an appropriate point in the cycle,
-+ *   but this is not (yet) implemented.
-+ * - Only produces "normal" output.
-+ * - Always produces low output if disabled.
-+ */
-+
-+#include <clocksource/timer-xilinx.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+#include <linux/regmap.h>
-+
-+/*
-+ * The following functions are "common" to drivers for this device, and may be
-+ * exported at a future date.
-+ */
-+u32 xilinx_timer_tlr_cycles(struct xilinx_timer_priv *priv, u32 tcsr,
-+			    u64 cycles)
-+{
-+	WARN_ON(cycles < 2 || cycles - 2 > priv->max);
-+
-+	if (tcsr & TCSR_UDT)
-+		return cycles - 2;
-+	return priv->max - cycles + 2;
-+}
-+
-+unsigned int xilinx_timer_get_period(struct xilinx_timer_priv *priv,
-+				     u32 tlr, u32 tcsr)
-+{
-+	u64 cycles;
-+
-+	if (tcsr & TCSR_UDT)
-+		cycles = tlr + 2;
-+	else
-+		cycles = (u64)priv->max - tlr + 2;
-+
-+	/* cycles has a max of 2^32 + 2 */
-+	return DIV64_U64_ROUND_UP(cycles * NSEC_PER_SEC,
-+				  clk_get_rate(priv->clk));
-+}
-+
-+/*
-+ * The idea here is to capture whether the PWM is actually running (e.g.
-+ * because we or the bootloader set it up) and we need to be careful to ensure
-+ * we don't cause a glitch. According to the data sheet, to enable the PWM we
-+ * need to
-+ *
-+ * - Set both timers to generate mode (MDT=1)
-+ * - Set both timers to PWM mode (PWMA=1)
-+ * - Enable the generate out signals (GENT=1)
-+ *
-+ * In addition,
-+ *
-+ * - The timer must be running (ENT=1)
-+ * - The timer must auto-reload TLR into TCR (ARHT=1)
-+ * - We must not be in the process of loading TLR into TCR (LOAD=0)
-+ * - Cascade mode must be disabled (CASC=0)
-+ *
-+ * If any of these differ from usual, then the PWM is either disabled, or is
-+ * running in a mode that this driver does not support.
-+ */
-+#define TCSR_PWM_SET (TCSR_GENT | TCSR_ARHT | TCSR_ENT | TCSR_PWMA)
-+#define TCSR_PWM_CLEAR (TCSR_MDT | TCSR_LOAD)
-+#define TCSR_PWM_MASK (TCSR_PWM_SET | TCSR_PWM_CLEAR)
-+
-+struct xilinx_pwm_device {
-+	struct pwm_chip chip;
-+	struct xilinx_timer_priv priv;
-+};
-+
-+static inline struct xilinx_timer_priv
-+*xilinx_pwm_chip_to_priv(struct pwm_chip *chip)
-+{
-+	return &container_of(chip, struct xilinx_pwm_device, chip)->priv;
-+}
-+
-+static bool xilinx_timer_pwm_enabled(u32 tcsr0, u32 tcsr1)
-+{
-+	return ((TCSR_PWM_MASK | TCSR_CASC) & tcsr0) == TCSR_PWM_SET &&
-+		(TCSR_PWM_MASK & tcsr1) == TCSR_PWM_SET;
-+}
-+
-+static int xilinx_pwm_apply(struct pwm_chip *chip, struct pwm_device *unused,
-+			    const struct pwm_state *state)
-+{
-+	struct xilinx_timer_priv *priv = xilinx_pwm_chip_to_priv(chip);
-+	u32 tlr0, tlr1, tcsr0, tcsr1;
-+	u64 period_cycles, duty_cycles;
-+	unsigned long rate;
-+
-+	if (state->polarity != PWM_POLARITY_NORMAL)
-+		return -EINVAL;
-+
-+	/*
-+	 * To be representable by TLR, cycles must be between 2 and
-+	 * priv->max + 2. To enforce this we can reduce the duty
-+	 * cycle, but we may not increase it.
-+	 */
-+	rate = clk_get_rate(priv->clk);
-+	/* Avoid overflow */
-+	period_cycles = min_t(u64, state->period, ULONG_MAX * NSEC_PER_SEC);
-+	period_cycles = mul_u64_u32_div(period_cycles, rate, NSEC_PER_SEC);
-+	/* Clamp it for Uwe */
-+	period_cycles = min_t(u64, period_cycles, priv->max + 2);
-+	if (period_cycles < 2)
-+		return -ERANGE;
-+
-+	/* Same thing for duty cycles */
-+	duty_cycles = min_t(u64, state->duty_cycle, ULONG_MAX * NSEC_PER_SEC);
-+	duty_cycles = mul_u64_u32_div(duty_cycles, rate, NSEC_PER_SEC);
-+	duty_cycles = min_t(u64, duty_cycles, priv->max + 2);
-+
-+	/*
-+	 * If we specify 100% duty cycle, we will get 0% instead, so decrease
-+	 * the duty cycle count by one.
-+	 */
-+	if (duty_cycles >= period_cycles)
-+		duty_cycles = period_cycles - 1;
-+
-+	/* Round down to 0% duty cycle for unrepresentable duty cycles */
-+	if (duty_cycles < 2)
-+		duty_cycles = period_cycles;
-+
-+	regmap_read(priv->map, TCSR0, &tcsr0);
-+	regmap_read(priv->map, TCSR1, &tcsr1);
-+	tlr0 = xilinx_timer_tlr_cycles(priv, tcsr0, period_cycles);
-+	tlr1 = xilinx_timer_tlr_cycles(priv, tcsr1, duty_cycles);
-+	regmap_write(priv->map, TLR0, tlr0);
-+	regmap_write(priv->map, TLR1, tlr1);
-+
-+	if (state->enabled) {
-+		/*
-+		 * If the PWM is already running, then the counters will be
-+		 * reloaded at the end of the current cycle.
-+		 */
-+		if (!xilinx_timer_pwm_enabled(tcsr0, tcsr1)) {
-+			/* Load TLR into TCR */
-+			regmap_write(priv->map, TCSR0, tcsr0 | TCSR_LOAD);
-+			regmap_write(priv->map, TCSR1, tcsr1 | TCSR_LOAD);
-+			/* Enable timers all at once with ENALL */
-+			tcsr0 = (TCSR_PWM_SET & ~TCSR_ENT) | (tcsr0 & TCSR_UDT);
-+			tcsr1 = TCSR_PWM_SET | TCSR_ENALL | (tcsr1 & TCSR_UDT);
-+			regmap_write(priv->map, TCSR0, tcsr0);
-+			regmap_write(priv->map, TCSR1, tcsr1);
-+		}
-+	} else {
-+		regmap_write(priv->map, TCSR0, 0);
-+		regmap_write(priv->map, TCSR1, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static void xilinx_pwm_get_state(struct pwm_chip *chip,
-+				 struct pwm_device *unused,
-+				 struct pwm_state *state)
-+{
-+	struct xilinx_timer_priv *priv = xilinx_pwm_chip_to_priv(chip);
-+	u32 tlr0, tlr1, tcsr0, tcsr1;
-+
-+	regmap_read(priv->map, TLR0, &tlr0);
-+	regmap_read(priv->map, TLR1, &tlr1);
-+	regmap_read(priv->map, TCSR0, &tcsr0);
-+	regmap_read(priv->map, TCSR1, &tcsr1);
-+	state->period = xilinx_timer_get_period(priv, tlr0, tcsr0);
-+	state->duty_cycle = xilinx_timer_get_period(priv, tlr1, tcsr1);
-+	state->enabled = xilinx_timer_pwm_enabled(tcsr0, tcsr1);
-+	state->polarity = PWM_POLARITY_NORMAL;
-+
-+	/* 100% duty cycle results in constant low output */
-+	if (state->period == state->duty_cycle)
-+		state->duty_cycle = 0;
-+}
-+
-+static const struct pwm_ops xilinx_pwm_ops = {
-+	.apply = xilinx_pwm_apply,
-+	.get_state = xilinx_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct regmap_config xilinx_pwm_regmap_config = {
-+	.reg_bits = 32,
-+	.reg_stride = 4,
-+	.val_bits = 32,
-+	.val_format_endian = REGMAP_ENDIAN_LITTLE,
-+	.max_register = TCR1,
-+};
-+
-+static int xilinx_pwm_probe(struct platform_device *pdev)
-+{
-+	int ret;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *np = dev->of_node;
-+	struct xilinx_timer_priv *priv;
-+	struct xilinx_pwm_device *xilinx_pwm;
-+	u32 pwm_cells, one_timer, width;
-+	void __iomem *regs;
-+
-+	/* If there are no PWM cells, this binding is for a timer */
-+	ret = of_property_read_u32(np, "#pwm-cells", &pwm_cells);
-+	if (ret == -EINVAL)
-+		return -ENODEV;
-+	if (ret)
-+		return dev_err_probe(dev, ret, "could not read #pwm-cells\n");
-+
-+	xilinx_pwm = devm_kzalloc(dev, sizeof(*xilinx_pwm), GFP_KERNEL);
-+	if (!xilinx_pwm)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, xilinx_pwm);
-+	priv = &xilinx_pwm->priv;
-+
-+	regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	priv->map = devm_regmap_init_mmio(dev, regs,
-+					  &xilinx_pwm_regmap_config);
-+	if (IS_ERR(priv->map))
-+		return dev_err_probe(dev, PTR_ERR(priv->map),
-+				     "Could not create regmap\n");
-+
-+	ret = of_property_read_u32(np, "xlnx,one-timer-only", &one_timer);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Could not read xlnx,one-timer-only\n");
-+
-+	if (one_timer)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Two timers required for PWM mode\n");
-+
-+
-+	ret = of_property_read_u32(np, "xlnx,count-width", &width);
-+	if (ret == -EINVAL)
-+		width = 32;
-+	else if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "Could not read xlnx,count-width\n");
-+
-+	if (width != 8 && width != 16 && width != 32)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Invalid counter width %d\n", width);
-+	priv->max = BIT_ULL(width) - 1;
-+
-+	/*
-+	 * The polarity of the Generate Out signals must be active high for PWM
-+	 * mode to work. We could determine this from the device tree, but
-+	 * alas, such properties are not allowed to be used.
-+	 */
-+
-+	priv->clk = devm_clk_get(dev, "s_axi_aclk");
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "Could not get clock\n");
-+
-+	ret = clk_prepare_enable(priv->clk);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Clock enable failed\n");
-+	clk_rate_exclusive_get(priv->clk);
-+
-+	xilinx_pwm->chip.dev = dev;
-+	xilinx_pwm->chip.ops = &xilinx_pwm_ops;
-+	xilinx_pwm->chip.npwm = 1;
-+	ret = pwmchip_add(&xilinx_pwm->chip);
-+	if (ret) {
-+		clk_rate_exclusive_put(priv->clk);
-+		clk_disable_unprepare(priv->clk);
-+		return dev_err_probe(dev, ret, "Could not register PWM chip\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int xilinx_pwm_remove(struct platform_device *pdev)
-+{
-+	struct xilinx_pwm_device *xilinx_pwm = platform_get_drvdata(pdev);
-+
-+	pwmchip_remove(&xilinx_pwm->chip);
-+	clk_rate_exclusive_put(xilinx_pwm->priv.clk);
-+	clk_disable_unprepare(xilinx_pwm->priv.clk);
-+	return 0;
-+}
-+
-+static const struct of_device_id xilinx_pwm_of_match[] = {
-+	{ .compatible = "xlnx,xps-timer-1.00.a", },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, xilinx_pwm_of_match);
-+
-+static struct platform_driver xilinx_pwm_driver = {
-+	.probe = xilinx_pwm_probe,
-+	.remove = xilinx_pwm_remove,
-+	.driver = {
-+		.name = "xilinx-pwm",
-+		.of_match_table = of_match_ptr(xilinx_pwm_of_match),
-+	},
-+};
-+module_platform_driver(xilinx_pwm_driver);
-+
-+MODULE_ALIAS("platform:xilinx-pwm");
-+MODULE_DESCRIPTION("PWM driver for Xilinx LogiCORE IP AXI Timer");
-+MODULE_LICENSE("GPL v2");
-diff --git a/include/clocksource/timer-xilinx.h b/include/clocksource/timer-xilinx.h
-new file mode 100644
-index 000000000000..1f7757b84a5e
---- /dev/null
-+++ b/include/clocksource/timer-xilinx.h
-@@ -0,0 +1,91 @@
-+/* SPDX-License-Identifier: GPL-2.0+ */
-+/*
-+ * Copyright (C) 2021 Sean Anderson <sean.anderson@seco.com>
-+ */
-+
-+#ifndef XILINX_TIMER_H
-+#define XILINX_TIMER_H
-+
-+#include <linux/compiler.h>
-+
-+#define TCSR0	0x00
-+#define TLR0	0x04
-+#define TCR0	0x08
-+#define TCSR1	0x10
-+#define TLR1	0x14
-+#define TCR1	0x18
-+
-+#define TCSR_MDT	BIT(0)
-+#define TCSR_UDT	BIT(1)
-+#define TCSR_GENT	BIT(2)
-+#define TCSR_CAPT	BIT(3)
-+#define TCSR_ARHT	BIT(4)
-+#define TCSR_LOAD	BIT(5)
-+#define TCSR_ENIT	BIT(6)
-+#define TCSR_ENT	BIT(7)
-+#define TCSR_TINT	BIT(8)
-+#define TCSR_PWMA	BIT(9)
-+#define TCSR_ENALL	BIT(10)
-+#define TCSR_CASC	BIT(11)
-+
-+struct clk;
-+struct device_node;
-+struct regmap;
-+
-+/**
-+ * struct xilinx_timer_priv - Private data for Xilinx AXI timer drivers
-+ * @map: Regmap of the device, possibly with an offset
-+ * @clk: Parent clock
-+ * @max: Maximum value of the counters
-+ */
-+struct xilinx_timer_priv {
-+	struct regmap *map;
-+	struct clk *clk;
-+	u32 max;
-+};
-+
-+/**
-+ * xilinx_timer_tlr_cycles() - Calculate the TLR for a period specified
-+ *                             in clock cycles
-+ * @priv: The timer's private data
-+ * @tcsr: The value of the TCSR register for this counter
-+ * @cycles: The number of cycles in this period
-+ *
-+ * Callers of this function MUST ensure that @cycles is representable as
-+ * a TLR.
-+ *
-+ * Return: The calculated value for TLR
-+ */
-+u32 xilinx_timer_tlr_cycles(struct xilinx_timer_priv *priv, u32 tcsr,
-+			    u64 cycles);
-+
-+/**
-+ * xilinx_timer_get_period() - Get the current period of a counter
-+ * @priv: The timer's private data
-+ * @tlr: The value of TLR for this counter
-+ * @tcsr: The value of TCSR for this counter
-+ *
-+ * Return: The period, in ns
-+ */
-+unsigned int xilinx_timer_get_period(struct xilinx_timer_priv *priv,
-+				     u32 tlr, u32 tcsr);
-+
-+/**
-+ * xilinx_timer_common_init() - Perform common initialization for Xilinx
-+ *                              AXI timer drivers.
-+ * @priv: The timer's private data
-+ * @np: The devicetree node for the timer
-+ * @one_timer: Set to %1 if there is only one timer
-+ *
-+ * This performs common initialization, such as detecting endianness,
-+ * and parsing devicetree properties. @priv->regs must be initialized
-+ * before calling this function. This function initializes @priv->read,
-+ * @priv->write, and @priv->width.
-+ *
-+ * Return: 0, or negative errno
-+ */
-+int xilinx_timer_common_init(struct device_node *np,
-+			     struct xilinx_timer_priv *priv,
-+			     u32 *one_timer);
-+
-+#endif /* XILINX_TIMER_H */
+ 	if (wdt->drv_data->quirks & QUIRK_HAS_PMU_CNT_EN) {
+-		ret = s3c2410wdt_enable_counter(wdt, !mask);
++		ret = s3c2410wdt_enable_counter(wdt, en);
+ 		if (ret < 0)
+ 			return ret;
+ 	}
+@@ -531,7 +565,7 @@ static inline unsigned int s3c2410wdt_get_bootstatus(struct s3c2410_wdt *wdt)
+ 	unsigned int rst_stat;
+ 	int ret;
+ 
+-	if (!(wdt->drv_data->quirks & QUIRK_HAS_RST_STAT))
++	if (!(wdt->drv_data->quirks & QUIRK_HAS_PMU_RST_STAT))
+ 		return 0;
+ 
+ 	ret = regmap_read(wdt->pmureg, wdt->drv_data->rst_stat_reg, &rst_stat);
+@@ -672,7 +706,7 @@ static int s3c2410wdt_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		goto err_cpufreq;
+ 
+-	ret = s3c2410wdt_mask_and_disable_reset(wdt, false);
++	ret = s3c2410wdt_enable(wdt, true);
+ 	if (ret < 0)
+ 		goto err_unregister;
+ 
+@@ -707,7 +741,7 @@ static int s3c2410wdt_remove(struct platform_device *dev)
+ 	int ret;
+ 	struct s3c2410_wdt *wdt = platform_get_drvdata(dev);
+ 
+-	ret = s3c2410wdt_mask_and_disable_reset(wdt, true);
++	ret = s3c2410wdt_enable(wdt, false);
+ 	if (ret < 0)
+ 		return ret;
+ 
+@@ -724,8 +758,7 @@ static void s3c2410wdt_shutdown(struct platform_device *dev)
+ {
+ 	struct s3c2410_wdt *wdt = platform_get_drvdata(dev);
+ 
+-	s3c2410wdt_mask_and_disable_reset(wdt, true);
+-
++	s3c2410wdt_enable(wdt, false);
+ 	s3c2410wdt_stop(&wdt->wdt_device);
+ }
+ 
+@@ -740,7 +773,7 @@ static int s3c2410wdt_suspend(struct device *dev)
+ 	wdt->wtcon_save = readl(wdt->reg_base + S3C2410_WTCON);
+ 	wdt->wtdat_save = readl(wdt->reg_base + S3C2410_WTDAT);
+ 
+-	ret = s3c2410wdt_mask_and_disable_reset(wdt, true);
++	ret = s3c2410wdt_enable(wdt, false);
+ 	if (ret < 0)
+ 		return ret;
+ 
+@@ -760,7 +793,7 @@ static int s3c2410wdt_resume(struct device *dev)
+ 	writel(wdt->wtdat_save, wdt->reg_base + S3C2410_WTCNT);/* Reset count */
+ 	writel(wdt->wtcon_save, wdt->reg_base + S3C2410_WTCON);
+ 
+-	ret = s3c2410wdt_mask_and_disable_reset(wdt, false);
++	ret = s3c2410wdt_enable(wdt, true);
+ 	if (ret < 0)
+ 		return ret;
+ 
 -- 
-2.25.1
+2.30.2
 
