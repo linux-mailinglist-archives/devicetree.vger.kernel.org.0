@@ -2,59 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F615459B50
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 05:53:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC725459B62
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 06:10:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231977AbhKWE4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 23:56:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51724 "EHLO mail.kernel.org"
+        id S230110AbhKWFNq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 00:13:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54568 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231246AbhKWE4W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 23:56:22 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C715A6023E;
-        Tue, 23 Nov 2021 04:53:13 +0000 (UTC)
+        id S229468AbhKWFNp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 00:13:45 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 45A8B6056B;
+        Tue, 23 Nov 2021 05:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637643194;
-        bh=+a1Vb/tWBDONDpB1b5iyeETknv9Hb5W8f50YlA1hl6k=;
+        s=k20201202; t=1637644238;
+        bh=Rpx9dU9uGnI5Tr8daUSRruJAR8SV1hZNZuYPOlZ31Ig=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kqdZ5UZ8ZSgXuDcoTgVIhxlyvC9YsLVW0cnIu7bjQTj6eMzaRIGBtGrZVKFt5OwO5
-         WCKrFtxr7zNROaCACSiBAuqJ88xcpppF8UOmeW6FIZ3En1Uj9yZ+UPJd4TTVQh0kUo
-         aXwjCHwU7X8TUFYn/1N6r/9EV/R9h4M6HxSv6hB/8nLUOWc5vhSfRfQuKzvqp3YZqi
-         lSPe0JBFpTkUs5JacAjimWJtbH3KyFAMChQfc3j6g7Rz//46dtx0eZ3bGCmFHZh4xp
-         ZHc1m3qX3sVk5Y5NxbBObaeypUhVo6Dxs2HyE+EIYUU1GKwaCIX3j7sYsdPyXXAtsb
-         wDzecZU8/FQ7w==
-Date:   Tue, 23 Nov 2021 10:23:09 +0530
+        b=WbR1eSstZWm3zEGjkxa6EfI+E6ur/2hRAL4RiPmwflfHvHbPCu/z1BR3wbouKOkqQ
+         uGNDOwHPAYO9fo3gecS+04EMWk1jZV/7BbGCuxKnEUbUZ75sNbVcdmoeCac59Lx4aU
+         rKuVVXyGgOoBn8L8XmZOI3uUKNuN+a+wOMKllFefA5hcp75asewgRAR7QxGVk9+ZlI
+         yQARh1VD7SyPwOe9Yrq4RQu/BkFYWJz060EWd58wHIPtJwYZ3hMubGdYO7lKr2JmCA
+         UlnIdHqQiEdhsMgbXkxwAtUu/PSvyRjxLeaWBt56N53hZxyx/QRSaE67oVfZ9eayTu
+         geum2ledSTMsg==
+Date:   Tue, 23 Nov 2021 10:40:33 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH RESEND] phy: bcm-ns-usb2: support updated DT binding with
- PHY reg space
-Message-ID: <YZxztfprgicGUYr1@matsya>
-References: <20211026093716.5567-1-zajec5@gmail.com>
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: Introduce Qualcomm eDP PHY
+ binding
+Message-ID: <YZx3yfl8lXVTib68@matsya>
+References: <20211103234410.1352424-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211026093716.5567-1-zajec5@gmail.com>
+In-Reply-To: <20211103234410.1352424-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26-10-21, 11:37, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Updated DT binding maps just a PHY's register space instead of the whole
-> DMU block. Accessing a common CRU reg is handled using syscon &
-> regmap.
-> 
-> The old binding has been deprecated and remains supported as a fallback
-> method.
+On 03-11-21, 16:44, Bjorn Andersson wrote:
+> Introduce a binding for the eDP PHY hardware block found in several
+> different Qualcomm platforms.
 
-Applied, thanks
+Applied all, thanks
 
 -- 
 ~Vinod
