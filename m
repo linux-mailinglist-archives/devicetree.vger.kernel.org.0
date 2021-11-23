@@ -2,72 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80AB845A5F2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D5DD45A5FF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:44:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236295AbhKWOo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 09:44:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37768 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234213AbhKWOo2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 09:44:28 -0500
-Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3399C061574;
-        Tue, 23 Nov 2021 06:41:19 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id 23F32419B4;
-        Tue, 23 Nov 2021 14:41:15 +0000 (UTC)
-Subject: Re: [PATCH v3 3/4] arm64: dts: apple: t8103: Add i2c nodes
-From:   Hector Martin <marcan@marcan.st>
-To:     Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211122225807.8105-1-j@jannau.net>
- <20211122225807.8105-4-j@jannau.net>
- <5f16c962-72a1-21ec-9651-744053f74365@marcan.st>
-Message-ID: <d48d2e85-42f1-570a-bd8f-e3834147c8b8@marcan.st>
-Date:   Tue, 23 Nov 2021 23:41:12 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S233939AbhKWOsA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Nov 2021 09:48:00 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:36709 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234844AbhKWOr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 09:47:59 -0500
+Received: by mail-ua1-f53.google.com with SMTP id r15so44287459uao.3;
+        Tue, 23 Nov 2021 06:44:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=TA8xlkjkBTwOrtSVFopYo1RZrjhebZ+Gv93fs+HGNgE=;
+        b=74N/iFLNAnRH2k3ltAKMUDzG+HmDGkQs7xjFYmP6OpVYYT9SVPaGbbVQv7bd64S0rQ
+         mM9uDwF7TNkZEJ897mBCUR0ZLp6tXewUcByqDRbcU+yLgdXqKe+AwIPI1wnoLMj53qja
+         RXCUSnovF5vX0ZCATVTSFz2O4g/bf0ANurJPVzhDrjGMdHnBVWJismyJIE3Q3MuS3Lha
+         OB2yC9fjGeDK7HhHaf51+sQ//NTTBGoSmet3cdTcQvpG03hmwN3aqN8erAIEQqzzZglp
+         XlWF87nAvds4RKzFmWEUNwBLo3r8XKl8FoGFiG5n1ZdtkNSnneiNg06DIYXQ59nxIpdC
+         dKMg==
+X-Gm-Message-State: AOAM530ZNIy7Vt7k20uGx/bo8e2AeAJydJtug9TN3rHFdL1tdUWXmKfM
+        xBqjllJCaaCwwv7Y5+20AMLm/ZBLs/OHPg==
+X-Google-Smtp-Source: ABdhPJw2b9xla90+hQLalkzNqW5vXJ9isHCd/LX+JDMLUFf+hFCt2wDDgtQSOpSyA+FxpryQ/fvQBg==
+X-Received: by 2002:ab0:6f0a:: with SMTP id r10mr9903107uah.106.1637678690523;
+        Tue, 23 Nov 2021 06:44:50 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id l28sm6402399vkn.45.2021.11.23.06.44.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 06:44:50 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id o1so44250613uap.4;
+        Tue, 23 Nov 2021 06:44:49 -0800 (PST)
+X-Received: by 2002:a9f:2431:: with SMTP id 46mr9496496uaq.114.1637678689612;
+ Tue, 23 Nov 2021 06:44:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5f16c962-72a1-21ec-9651-744053f74365@marcan.st>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: es-ES
-Content-Transfer-Encoding: 7bit
+References: <20211121235808.10167-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20211121235808.10167-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 23 Nov 2021 15:44:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXvehNc5yRxO4cS=n_ZaDWCKq2iaKhs+b3uj2beYsdWVg@mail.gmail.com>
+Message-ID: <CAMuHMdXvehNc5yRxO4cS=n_ZaDWCKq2iaKhs+b3uj2beYsdWVg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: hihope-rzg2-ex-lvds: Add power-supply and
+ enable-gpios to backlight node
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2021 14.41, Hector Martin wrote:
-> On 23/11/2021 07.58, Janne Grunau wrote:
->> Apple M1 has at least 5 i2c controllers. i2c0, i2c1 and i2c3 are used
->> on all M1 Mac devices. The 2020 Mac Mini uses i2c2 and the 13-inch
->> MacBook Pro uses i2c2 and i2c4.
-> 
-> On further testing: i2c3 is not used on the 1GbE variant of j274. iBoot
-> actually kills the node entirely. The interesting thing is it doesn't
-> work; it times out probe transactions. I suspect iBoot does not enable
-> its clock or something like that.
-> 
-> I'll poke around this on IRC, but a priori we probably need m1n1 code to
-> kill this node when the ADT doesn't have it. Maybe I should generalize
-> the dwc3 killing code...
+Hi Prabhakar,
 
-Did that as of m1n1 be7ff3a, so we're good now :)
+On Mon, Nov 22, 2021 at 12:58 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> This patch adds missing power-supply and enable-gpios property to
+> backlight node. This fixes the warning "pwm-backlight backlight:
+> backlight supply power not found, using dummy regulator".
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-For those following along in the list: the reason why i2c3 was getting 
-stuck is because it seems the unused bus is weakly pulled low on these 
-machines, which jams it. Setting the GPIO pull mode to pull-up makes it 
-work as an empty bus, but let's just not instantiate at all in this 
-case. m1n1 now checks the Apple DT and sets any FDT i2c devices that are 
-not present in it to disabled.
+Thanks for your patch!
 
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+> --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
+> @@ -12,6 +12,17 @@
+>
+>                 brightness-levels = <0 2 8 16 32 64 128 255>;
+>                 default-brightness-level = <6>;
+> +               power-supply = <&reg_12v>;
+> +               enable-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
+
+According to the schematics (up to Rev. 4.00), GP6_07 is not connected?
+
+> +       };
+> +
+> +       reg_12v: regulator2 {
+
+Using "regulatorN" as a node name is error-prone, and may lead to
+accidental clashes. Please use a more appropriate name.
+
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "fixed-12V";
+> +               regulator-min-microvolt = <12000000>;
+> +               regulator-max-microvolt = <12000000>;
+
+Hmm, the AT1316A is a constant-current source, not a constant-voltage
+source? The -02 variant has a 0.2V Low Reference Voltage. Combined
+with the 1.1Ω resistor, that should give 181818 microamp.
+
+> +               regulator-boot-on;
+> +               regulator-always-on;
+>         };
+>  };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
