@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10FFC45A802
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:35:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2475745A80B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:35:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238229AbhKWQiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:38:03 -0500
-Received: from mail-io1-f43.google.com ([209.85.166.43]:43922 "EHLO
-        mail-io1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234894AbhKWQiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:38:02 -0500
-Received: by mail-io1-f43.google.com with SMTP id z26so28656739iod.10;
-        Tue, 23 Nov 2021 08:34:54 -0800 (PST)
+        id S238844AbhKWQiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:38:19 -0500
+Received: from mail-io1-f50.google.com ([209.85.166.50]:40604 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238988AbhKWQiP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:38:15 -0500
+Received: by mail-io1-f50.google.com with SMTP id p23so28738045iod.7;
+        Tue, 23 Nov 2021 08:35:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=tTDqJqEpn3lJVr9hvHIdnLnM0QZTa6cWxZTxlXqyveI=;
-        b=k7LHsX6aQ2eCWCZZfFAgueDjw/g6pwpeBHA0RRogSlpBJYnjXpGZlU1we7qdN3PQ5+
-         MBm5TLreto7pzWemVA8GD6F31MGI6RKGLZo6qkg163Fp7mOrG5CxmLiKpvoRvFBMq9tE
-         zb+ODZGOV0zyLIAXTCNdiqyLibXZjIAfva1WSGL2k+FD+kWg3qelwdhRBEv7xG9/3Afu
-         rcHit2zaxdyDK0/7anSww/ug+ThmCuhqDL47cP7BcBWR12SsTa22nfKZ+azSsA7e9Hc7
-         PHL8JBtUz8ZbHyIcCaqkGwNwqwot/I/IfzjMfoDCqH4YWJ6lbM0XVjz45XnPBT/c677C
-         nh3A==
-X-Gm-Message-State: AOAM530/0jkfJZxj9uS44+dDy5L0j6nEVrrDy8haCJjp8sdX8gXhZScT
-        KdCLA8o1sYW7KFU01giRkA==
-X-Google-Smtp-Source: ABdhPJzpKxUJnoCa0cAVi7P8tqEKN9cFnfuz6QPVzyOgjxBNvvRZQNUJPZWW6WEKX50SRbXuuf9lzg==
-X-Received: by 2002:a02:cc29:: with SMTP id o9mr7751315jap.116.1637685293477;
-        Tue, 23 Nov 2021 08:34:53 -0800 (PST)
+        bh=bgBtIYtL7cZLwHi0L+w9re6YrEvFyB7ccly3PyNrDyU=;
+        b=yK6F8heBpkKxPZu7A30Qh3Lq8PoAL8uArECSP0nVuQ0py1usHQIBtxTXhRzJ6jBphu
+         gtRnAziPrKx3k0uPSZzieG1dVc5XRZ64h2t7kXG40w2hE7BdUY+Ofh5ZI2N5E9h8l4WM
+         4wxndeyVxIKTt1u+s78aDkDQN0E+oQURDOFog2GujqNBqVBPsv2ytguLT0OqmQjhlD3M
+         DAfAwXd4t6YQzOeqmusKa7ivTmoRbrW9m9JT0XkhwpoPsIC//IoesSYuJkm5ZMqsYNKs
+         erweMtSZK4m5Jn1F71cSM7LN+5nQ8j6QU9Zl6vSMG2ZrgSBShlLRo9UKOBT5kF32sDc2
+         j7MA==
+X-Gm-Message-State: AOAM530/beRlPZJF9kf5iu8nuA5QeyP0rB9E2xHjCHFevYOdIaVvrTfi
+        gkiLK5CIH001ZnnCQ3o1kg==
+X-Google-Smtp-Source: ABdhPJyP64Phebi0pVUPZ/k/nTCv7LmrCcljL5544fGi89PXitfCOjUCM83X7GDD0NIiKnJEGGvAxQ==
+X-Received: by 2002:a05:6638:25c8:: with SMTP id u8mr8081813jat.23.1637685306186;
+        Tue, 23 Nov 2021 08:35:06 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id o22sm8929890iow.52.2021.11.23.08.34.51
+        by smtp.gmail.com with ESMTPSA id n12sm9272035ilk.80.2021.11.23.08.35.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 08:34:52 -0800 (PST)
-Received: (nullmailer pid 3442912 invoked by uid 1000);
+        Tue, 23 Nov 2021 08:35:05 -0800 (PST)
+Received: (nullmailer pid 3442906 invoked by uid 1000);
         Tue, 23 Nov 2021 16:34:29 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     tfiga@chromium.org, - <devicetree-spec@vger.kernel.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>, senozhatsky@chromium.org,
-        iommu@lists.linux-foundation.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-In-Reply-To: <20211123112104.3530135-3-hsinyi@chromium.org>
-References: <20211123112104.3530135-1-hsinyi@chromium.org> <20211123112104.3530135-3-hsinyi@chromium.org>
-Subject: Re: [PATCH 2/3] dt-bindings: Add io-tlb-segsize property for restricted-dma-pool
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        srinivas.kandagatla@linaro.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, rohitkr@codeaurora.org,
+        judyhsiao@chromium.org, bjorn.andersson@linaro.org,
+        plai@codeaurora.org, tiwai@suse.com, agross@kernel.org,
+        broonie@kernel.org, linux-arm-msm@vger.kernel.org,
+        swboyd@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, perex@perex.cz
+In-Reply-To: <1637581599-24120-4-git-send-email-srivasam@codeaurora.org>
+References: <1637581599-24120-1-git-send-email-srivasam@codeaurora.org> <1637581599-24120-4-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v5 08/10] ASoC: dt-bindings: Add SC7280 sound card bindings
 Date:   Tue, 23 Nov 2021 09:34:29 -0700
-Message-Id: <1637685269.659918.3442911.nullmailer@robh.at.kernel.org>
+Message-Id: <1637685269.630368.3442905.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Nov 2021 19:21:03 +0800, Hsin-Yi Wang wrote:
-> Add a io-tlb-segsize property that each restricted-dma-pool can set its
-> own io_tlb_segsize since some use cases require slabs larger than default
-> value (128).
+On Mon, 22 Nov 2021 17:16:37 +0530, Srinivasa Rao Mandadapu wrote:
+> Add bindings for lpass sc7280 based soundcards which supports
+> audio over i2s based speaker, soundwire based headset, msm dmics
+> and HDMI Port.
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > ---
->  .../bindings/reserved-memory/shared-dma-pool.yaml         | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 69 +++++++++++++++++++---
+>  1 file changed, 61 insertions(+), 8 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -74,26 +74,20 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml: properties:io-tlb-segsize:type: 'anyOf' conditional failed, one must be fixed:
-	'u32' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'u32' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml: properties:io-tlb-segsize:type: 'u32' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml: ignoring, error in schema: properties: io-tlb-segsize: type
-warning: no schema found in file: ./Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.yaml
-Documentation/devicetree/bindings/display/msm/gpu.example.dt.yaml:0:0: /example-1/reserved-memory/gpu@8f200000: failed to match any schema with compatible: ['shared-dma-pool']
-Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.example.dt.yaml:0:0: /example-0/reserved-memory/linux,cma: failed to match any schema with compatible: ['shared-dma-pool']
-Documentation/devicetree/bindings/reserved-memory/shared-dma-pool.example.dt.yaml:0:0: /example-0/reserved-memory/restricted-dma-pool@50000000: failed to match any schema with compatible: ['restricted-dma-pool']
-Documentation/devicetree/bindings/dsp/fsl,dsp.example.dt.yaml:0:0: /example-1/vdev0buffer@94300000: failed to match any schema with compatible: ['shared-dma-pool']
-Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.example.dt.yaml:0:0: /example-0/reserved-memory/dsp-memory@98000000: failed to match any schema with compatible: ['shared-dma-pool']
-Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.example.dt.yaml:0:0: /example-1/reserved-memory/ipu-memory@95800000: failed to match any schema with compatible: ['shared-dma-pool']
-Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.example.dt.yaml:0:0: /example-2/reserved-memory/dsp1-memory@99000000: failed to match any schema with compatible: ['shared-dma-pool']
-Documentation/devicetree/bindings/sound/google,cros-ec-codec.example.dt.yaml:0:0: /example-0/reserved-mem@52800000: failed to match any schema with compatible: ['shared-dma-pool']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg: [[0, 1658351616, 0, 425984], [0, 1659895808, 0, 167936]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg-names: ['lpass-hdmiif', 'lpass-lpaif'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupts: [[0, 160, 1], [0, 268, 1]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupt-names: ['lpass-irq-lpaif', 'lpass-irq-hdmi'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: iommus: [[4294967295, 4128, 0], [4294967295, 4146, 0]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1558503
+See https://patchwork.ozlabs.org/patch/1558044
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
