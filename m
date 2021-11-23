@@ -2,116 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D5DD45A5FF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2134C45A616
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:53:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233939AbhKWOsA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Nov 2021 09:48:00 -0500
-Received: from mail-ua1-f53.google.com ([209.85.222.53]:36709 "EHLO
-        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234844AbhKWOr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 09:47:59 -0500
-Received: by mail-ua1-f53.google.com with SMTP id r15so44287459uao.3;
-        Tue, 23 Nov 2021 06:44:51 -0800 (PST)
+        id S238285AbhKWO4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 09:56:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40540 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238310AbhKWO4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 09:56:34 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02873C061746
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 06:53:27 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id j6-20020a17090a588600b001a78a5ce46aso2330909pji.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 06:53:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=maDqwh1X8f7cSN0fnXGtc0hBKQIUGOLhEANsObWEWYQ=;
+        b=j7P+vUaj6aapj1yh5efgw2hxrBEpwYJQ/NIyhVl5ysZ50e7lmC8FnMm402n/fHYemt
+         R7wna6zNxRo1dJCDMhLhwWXF9qU1DcmK9Of9R54tC9qRtduLv9HnKPl4B7Yvy6yzkvHw
+         14Ioc8TcdAM230smUcxAXob7ulehMN/1vIsdc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TA8xlkjkBTwOrtSVFopYo1RZrjhebZ+Gv93fs+HGNgE=;
-        b=74N/iFLNAnRH2k3ltAKMUDzG+HmDGkQs7xjFYmP6OpVYYT9SVPaGbbVQv7bd64S0rQ
-         mM9uDwF7TNkZEJ897mBCUR0ZLp6tXewUcByqDRbcU+yLgdXqKe+AwIPI1wnoLMj53qja
-         RXCUSnovF5vX0ZCATVTSFz2O4g/bf0ANurJPVzhDrjGMdHnBVWJismyJIE3Q3MuS3Lha
-         OB2yC9fjGeDK7HhHaf51+sQ//NTTBGoSmet3cdTcQvpG03hmwN3aqN8erAIEQqzzZglp
-         XlWF87nAvds4RKzFmWEUNwBLo3r8XKl8FoGFiG5n1ZdtkNSnneiNg06DIYXQ59nxIpdC
-         dKMg==
-X-Gm-Message-State: AOAM530ZNIy7Vt7k20uGx/bo8e2AeAJydJtug9TN3rHFdL1tdUWXmKfM
-        xBqjllJCaaCwwv7Y5+20AMLm/ZBLs/OHPg==
-X-Google-Smtp-Source: ABdhPJw2b9xla90+hQLalkzNqW5vXJ9isHCd/LX+JDMLUFf+hFCt2wDDgtQSOpSyA+FxpryQ/fvQBg==
-X-Received: by 2002:ab0:6f0a:: with SMTP id r10mr9903107uah.106.1637678690523;
-        Tue, 23 Nov 2021 06:44:50 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id l28sm6402399vkn.45.2021.11.23.06.44.49
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=maDqwh1X8f7cSN0fnXGtc0hBKQIUGOLhEANsObWEWYQ=;
+        b=keXmqAuGcP8H9VHGdwBh8f3oaznF2mY1aYnPo+W/FjegZ3zQX/WZGp9IbDc2NVGCVN
+         F2wokFqTvxvTlfJUg8wLYxKi+h3GydyfOAnvcRn87Li+tssKuENLFyWJruNuY0Gj1J63
+         +5Co1jm5KQG9Fk9Ac/lbajb2+kMl8zzxOxpHdUFQRpkFAO7RKRZ7KCmWJyCC7e6TlIDT
+         icW66wIPxeNOgEGPVXzDfhPUeRyOWoqa65EbIL0Mt6IyssAr77SFh7qT69dA/1XOeOyG
+         0J9LKpGWmFmbRdBOlvwz1A13rL1xV4TWupStJT6uiQFQ29+xXcP29dtqBoOylOte+Mf+
+         ftjg==
+X-Gm-Message-State: AOAM532OiwE4v/Ju2/ys0hIn7IDfyogWoQHiPAfLOiSuJnUyLs4X++aI
+        VA1yAXbdpTDLiaX1J4PQPIAQ1g==
+X-Google-Smtp-Source: ABdhPJzgy0vfyZ/bqcSxJYg6gCR8GQcLKZassfIXV5fVSVKubGoI/Dp6S2mc9J2JGpncofFsDCDpkg==
+X-Received: by 2002:a17:90b:4c89:: with SMTP id my9mr3585722pjb.229.1637679206572;
+        Tue, 23 Nov 2021 06:53:26 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:5fa5:d920:9d68:9c16])
+        by smtp.gmail.com with UTF8SMTPSA id p188sm12693118pfg.102.2021.11.23.06.53.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 06:44:50 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id o1so44250613uap.4;
-        Tue, 23 Nov 2021 06:44:49 -0800 (PST)
-X-Received: by 2002:a9f:2431:: with SMTP id 46mr9496496uaq.114.1637678689612;
- Tue, 23 Nov 2021 06:44:49 -0800 (PST)
+        Tue, 23 Nov 2021 06:53:26 -0800 (PST)
+Date:   Tue, 23 Nov 2021 06:53:25 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
+        dianders@chromium.org, kgodara@codeaurora.org
+Subject: Re: [PATCH 1/4] dt-bindings: arm: qcom: Document qcom,sc7280-crd
+ board
+Message-ID: <YZ0AZQDB6VPUAt8s@google.com>
+References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
+ <1637650813-16654-2-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-References: <20211121235808.10167-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20211121235808.10167-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 23 Nov 2021 15:44:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXvehNc5yRxO4cS=n_ZaDWCKq2iaKhs+b3uj2beYsdWVg@mail.gmail.com>
-Message-ID: <CAMuHMdXvehNc5yRxO4cS=n_ZaDWCKq2iaKhs+b3uj2beYsdWVg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: hihope-rzg2-ex-lvds: Add power-supply and
- enable-gpios to backlight node
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1637650813-16654-2-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On Tue, Nov 23, 2021 at 12:30:10PM +0530, Rajendra Nayak wrote:
+> Document the qcom,sc7280-crd board based off sc7280 SoC,
+> The board is also known as hoglin in the Chrome OS builds,
+> and given there would be multiple (at least one more) rev
+> of this board document the google,hoglin-rev0 compatible as well.
+> 
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index c8808e0..2abfd28 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -203,6 +203,8 @@ properties:
+>            - enum:
+>                - qcom,sc7280-idp
+>                - qcom,sc7280-idp2
+> +              - qcom,sc7280-crd
+> +              - google,hoglin-rev0
 
-On Mon, Nov 22, 2021 at 12:58 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> This patch adds missing power-supply and enable-gpios property to
-> backlight node. This fixes the warning "pwm-backlight backlight:
-> backlight supply power not found, using dummy regulator".
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+I think we also want the generic 'google,hoglin' compatible string, analogous to
+for example 'google,lazor' and 'google,lazor-revN'. For lazor there are no
+explicit compatible entries for rev3 and above, there were no DT relevant
+hardware changes for rev > 3, hence the 'google,lazor' compatible string is
+used, without the need to modify the DT for each new HW revision.
 
-Thanks for your patch!
+Also on my CRD the bootloader thinks it is running on a rev4:
 
-> --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
-> @@ -12,6 +12,17 @@
->
->                 brightness-levels = <0 2 8 16 32 64 128 255>;
->                 default-brightness-level = <6>;
-> +               power-supply = <&reg_12v>;
-> +               enable-gpios = <&gpio6 7 GPIO_ACTIVE_HIGH>;
+  Compat preference: google,hoglin-rev4 google,hoglin
 
-According to the schematics (up to Rev. 4.00), GP6_07 is not connected?
-
-> +       };
-> +
-> +       reg_12v: regulator2 {
-
-Using "regulatorN" as a node name is error-prone, and may lead to
-accidental clashes. Please use a more appropriate name.
-
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "fixed-12V";
-> +               regulator-min-microvolt = <12000000>;
-> +               regulator-max-microvolt = <12000000>;
-
-Hmm, the AT1316A is a constant-current source, not a constant-voltage
-source? The -02 variant has a 0.2V Low Reference Voltage. Combined
-with the 1.1Ω resistor, that should give 181818 microamp.
-
-> +               regulator-boot-on;
-> +               regulator-always-on;
->         };
->  };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+The board still boots thanks to the 'google,hoglin' entry in my device tree,
+but it seems you need to add more revN entries, or start with rev4 if you
+don't really care about supporting older revisions. In the later case you
+coul only have 'google,hoglin' for now, and add 'rev4' when you add support
+for the next revision (supposing it has DT relevant hardware changes). The
+sc7180-trogdor boards can serve as an example on how to deal with board
+revisions.
