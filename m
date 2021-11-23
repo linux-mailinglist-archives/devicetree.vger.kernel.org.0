@@ -2,89 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B38A5459EC1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62311459ECF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:03:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbhKWJE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 04:04:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53718 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235743AbhKWJBz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 04:01:55 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 50F0960187;
-        Tue, 23 Nov 2021 08:58:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637657928;
-        bh=J7kwUKVNN/3CJzDlKIPH1Apy8xKg2S6cz4ypVO1LfSI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Y6ThtLd6By+yo0589CRi3GyKLYS/z3CcFbZrVqf6f4qZDTbt4t+NGdM/WE9pyEZBP
-         Oe+nsJaHFTuQnJCOhe1Vwtrm1nq1bdcK3ciiRZhlVWn/6qQ48OFSK9GCCHqM2Hu5ku
-         hDlPys25WtcZ4DVjrztqSgP48LZqFVF6tSzPeSbQr3obgFB/KzEVz4eBhX8Ucki6I3
-         FGaC04z3XHYQat5e2KOJEB6daWCZpj7245EqmKdHwafAyveGhUlpQ++5QvBfsopSEf
-         Mm1RjmdzbFMcRe83j+U/mwqAejkv+TX1h12a5kkrXZ3DWo1Ba+SNqtlqxDRNSq5BRB
-         HuhnwZ5ZyadAw==
-Date:   Tue, 23 Nov 2021 16:58:42 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     Martin Kepplinger <martink@posteo.de>,
-        Rob Herring <robh@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: freescale: imx8mq: Disable noc dts node
-Message-ID: <20211123085841.GX31998@dragon>
-References: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
+        id S230416AbhKWJHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 04:07:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43906 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232432AbhKWJHC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 04:07:02 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89DE8C061714
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 01:03:54 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id k23so9769791lje.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 01:03:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M/z5Vz69s5nr1kpYYcK91ofPakub5omF5cpfR8mSR/M=;
+        b=B1ecVDUzzaXMXC6qlS5eBs47/M+Cc6LxYBLeiU+jckbbZJu/dHNydItqweNvjvH/Iz
+         QUF6CIRCny9AnO2FYfKVrJ+gOJ6I4iExcL7B+Gju5HRdBfAkGR2Y1AzKe6enj+oCxBan
+         sHvhYYHhF9I3ofCOJbWTpZnEBRwxZWs/RBlg+ePH8ePQ0cyDGWpQZDjBAQQvd5ZAgz9J
+         AXK11L3eg3HpL+PaEouA/PC1znwEUOUAUylu5PzsJRfdWVwiPqgNnxQCkFBdNBV5Otcv
+         UttmpdgIH6hmd2k+QdXNsvQ7h2tIqffVgfV853aJSOH8/01Zwb7Ay+orZfUV4Nkm+a1+
+         5thQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=M/z5Vz69s5nr1kpYYcK91ofPakub5omF5cpfR8mSR/M=;
+        b=xZmc6E3YJfMW18AzkfoV5WLYVc8iB2u/5JoLFDNnp12AqwcfoAXBftZ8yKMVGfgFCl
+         8zyopRFDE12fI6EEzbYwL5HUnxZ21J8Fs5FDJ8fMDeNRnhuYhLnGJQ4OJN1Xo86gAKrp
+         h1O0sKQk+tvubK3LCKxxd1aqsUm1IDGcSmvLPl9hHrMRS3j7g7GHtUvx6xxIKvHSpa54
+         vYLpG4/tkFRBvonkNDZS1SGqL8X+V5Zv9ajS9zs7VSm4J5YkTcSDghAOE+H3cKOoKdiC
+         AJUSg1qy/Fky4+/KOlm+9W6eSpMRKGaAypJVNMaB4Q1zjwLPU1wNT5lqPdjjHH8mrsJD
+         2U3w==
+X-Gm-Message-State: AOAM533BTEkAfFQkURGwcmadxEb5Iekgl0nv8ouRVz18QflcVRw9DxaV
+        XxP2dR35IfxUFkY5sSpYijE=
+X-Google-Smtp-Source: ABdhPJybeK1dsDyG/9wDTJHXWMYUeeycpQJ1ks0+W5ygyb5bT4N5ITQobpofdxvOpg/dv0Zrvi03Jg==
+X-Received: by 2002:a2e:3012:: with SMTP id w18mr3136484ljw.217.1637658232863;
+        Tue, 23 Nov 2021 01:03:52 -0800 (PST)
+Received: from localhost.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id e29sm1226060lfb.111.2021.11.23.01.03.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 01:03:52 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: use non-deprecated USB 2.0 PHY binding
+Date:   Tue, 23 Nov 2021 10:03:33 +0100
+Message-Id: <20211123090333.11597-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 11, 2021 at 01:16:09PM +0200, Abel Vesa wrote:
-> Adding interconnect properties to the consumer nodes creates
-> a dependency on noc device. The imx-bus devfreq driver is not usable
-> without the full interconnect support. The interconnect is not yet
-> working on i.MX platforms. The devlink created on device_add makes
-> the lcdif and other nodes that have the interconnect properties
-> wait for the noc (imx-bus driver) to probe first.
-> 
-> To make sure the interconnect consumers (nodes that have interconnect
-> properties already added) will still probe, lets disable the noc node
-> for now. Once the interconnect on i.MX platforms is fully functional,
-> the status of the noc node can be changed.
-> 
-> Fixes: ad1abc8a03fdbc05b ("arm64: dts: imx8mq: Add interconnect for lcdif")
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Martin,
+The new binding covers a single reg and uses syscon to reference shared
+register.
 
-Do you have any comment?  So your commit added something untested?
+References: 55b9b741712d ("dt-bindings: phy: brcm,ns-usb2-phy: bind just a PHY block")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm5301x.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-Shawn
+diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+index e1cffef4935a..588e57db6859 100644
+--- a/arch/arm/boot/dts/bcm5301x.dtsi
++++ b/arch/arm/boot/dts/bcm5301x.dtsi
+@@ -148,15 +148,6 @@ periph_clk: periph_clk {
+ 		};
+ 	};
+ 
+-	usb2_phy: usb2-phy@1800c000 {
+-		compatible = "brcm,ns-usb2-phy";
+-		reg = <0x1800c000 0x1000>;
+-		reg-names = "dmu";
+-		#phy-cells = <0>;
+-		clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
+-		clock-names = "phy-ref-clk";
+-	};
+-
+ 	axi@18000000 {
+ 		compatible = "brcm,bus-axi";
+ 		reg = <0x18000000 0x1000>;
+@@ -448,7 +439,16 @@ genpll: clock-controller@140 {
+ 						     "sata1", "sata2";
+ 			};
+ 
+-			syscon@180 {
++			usb2_phy: phy@164 {
++				compatible = "brcm,ns-usb2-phy";
++				reg = <0x164 0x4>;
++				brcm,syscon-clkset = <&cru_clkset>;
++				clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
++				clock-names = "phy-ref-clk";
++				#phy-cells = <0>;
++			};
++
++			cru_clkset: syscon@180 {
+ 				compatible = "brcm,cru-clkset", "syscon";
+ 				reg = <0x180 0x4>;
+ 			};
+-- 
+2.31.1
 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 972766b67a15..f3182878f596 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -1305,6 +1305,7 @@ noc: interconnect@32700000 {
->  			fsl,ddrc = <&ddrc>;
->  			#interconnect-cells = <1>;
->  			operating-points-v2 = <&noc_opp_table>;
-> +			status = "disabled";
->  
->  			noc_opp_table: opp-table {
->  				compatible = "operating-points-v2";
-> -- 
-> 2.31.1
-> 
