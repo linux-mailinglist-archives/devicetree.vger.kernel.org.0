@@ -2,139 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3989945A752
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:14:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FCE945A762
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:17:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237416AbhKWQRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:17:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59172 "EHLO
+        id S237859AbhKWQUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:20:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235451AbhKWQRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:17:11 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0131C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 08:14:03 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id y7so17538035plp.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 08:14:03 -0800 (PST)
+        with ESMTP id S231683AbhKWQUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:20:12 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81610C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 08:17:03 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id v15so12317310ljc.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 08:17:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8inpYltOn+CuOSRy1TzQ0Ih132g9z81+D5QmyV6ts9Y=;
-        b=i9rVupQl92AqsGZLGbAOub7zhj7/6WU2T4Pko8hrZl+IA44g+22VPUoU63MjKamPOx
-         EHUzvltfq2WdgtS5LQBEMIGi21/vWiEau8TliotzO6fF7bNhY5S3tCaumCmUW+FrWHhz
-         gb3X4g4L/SaQNGJBiJsxy92tlcqsfy3MpeS70=
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2Kqm2DTjWqf3+P2JqlqtbKR09dLEFPNogTBJfvpiSZk=;
+        b=RdAE2Oe0NvubfRfuy+ZW1olv2kTIDbRQloRzAA0QFd6R52D4zihLwN1wyC0trtNqZf
+         crfB/JK63sIL6dJvLGKmXTmwk3KliFlCiqT0vPxJwysVvcZrVTi8FtPSeU9pvF0tUcNS
+         4ZIcOG2iMe59/3dQ+Ikn8Uq3yw+1QaYMo7d21fpNzcRSBxcqkRDT6kxHoJiEPR4fvNFa
+         a4lmCF5IixhCvmNuggrKjnXbqlBoemIXlu+D4DIV5o0mUvWR7dN0ep1NCXAzhPocp6u3
+         gUtJ9HDdT1g4SSw8+jGX8yiNh1hOW2J9bFpTzS4ugbcSbk+ObYWHXd1Gi/4hofo6EdBk
+         3cIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8inpYltOn+CuOSRy1TzQ0Ih132g9z81+D5QmyV6ts9Y=;
-        b=BD6hDL/WFZ+b7eAoWVsOtr1MYcwF7t41XwFXEs0m8lcLc7cVd2UhYkVmcqvQ6eZlI/
-         /hLKJXqRejLKejJuCQ0BGDV3s5Yumu9P3wnjuQsPhuDvjzF6/EexOdP2xRUaj291hloK
-         xvVvEvSmyewiD8GtVLxeqa+fYO0kevXG+ryI0wr798jC0Jh5cEXshhNJqIWFzxmy4iZt
-         fQ0bAgrZxuTKNEDK1dlT7deUvkkyPZ7wWu30MIlzpgH3CHyNihzLtUliTVQ6PTOPM/PL
-         urMLy4t4ettTU9aa8m4TLcFKjj9FldKBGnr4KcRqYXJJK4AB2LUF9AAbH8iyyWRd2HTZ
-         Tifw==
-X-Gm-Message-State: AOAM530oktYLiKSIlFluJ+uvEuq4/uJHDbrwjvoLjSXMHMET88jT1N7U
-        QGAffCOAZ2jOGJ8bqWxaB9aPZw==
-X-Google-Smtp-Source: ABdhPJwMfxC2wTbN/wG3x9FjFcU7i8b+6ZPx2ERHXd9Jk5kD6A1sd4h6hQVvjeYdILoZg1ualPJaSw==
-X-Received: by 2002:a17:90a:e40f:: with SMTP id hv15mr4231148pjb.5.1637684043171;
-        Tue, 23 Nov 2021 08:14:03 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:5fa5:d920:9d68:9c16])
-        by smtp.gmail.com with UTF8SMTPSA id s2sm14576950pfg.124.2021.11.23.08.14.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 08:14:02 -0800 (PST)
-Date:   Tue, 23 Nov 2021 08:14:01 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
-        dianders@chromium.org, kgodara@codeaurora.org
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc7280-crd: Add device tree files
- for CRD
-Message-ID: <YZ0TSeXddm+qGJ0/@google.com>
-References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
- <1637650813-16654-3-git-send-email-rnayak@codeaurora.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Kqm2DTjWqf3+P2JqlqtbKR09dLEFPNogTBJfvpiSZk=;
+        b=No4s+piQG3Laq9ZqWVOu6djMoUuW019UVRaI0Xxhw3HIVEOOLett/0Cb3Q7nx+oCVn
+         Tf93YSiWGBTOmp75J4cC2auFl/wxsqlENMUTo8grAg2DF9S8tncsYhpmvx6knrzY1Esi
+         671/7apqWJv7+HmrJe4F1QvVdwt4C/HTWeV6nZNAodeyo5rKX6+07y0xzlnjszkbaaDZ
+         co1mA9BkTKrmfkqQtb0VrHQSHTsX3RBqpwORjcDwIULPcg8fcsFsP6YneDxZeslgy65P
+         W+szzt4Fg5z0ytdw/jXuNjCacuZMKGNwPsRfZ8/DVaXX98lJbTwt3KLf/ZwQOsrZakbx
+         U2Aw==
+X-Gm-Message-State: AOAM533X0481D2VgTHgOq+B8HAiyJvOkvjLMcaQRIOJQFaS4D6E1NK/0
+        NtTrxKEsXDyGbR6iKCHQK2PaEHMP1eyR6/d2X3ukXA==
+X-Google-Smtp-Source: ABdhPJwC75fU59j/quBfR/x4FD+1qdMIsqCzGTKco/XIrZuXKuQjoXEF9i//qIJjHIdatGIZqu8T2StxZtTpr/QeGIY=
+X-Received: by 2002:a2e:80c3:: with SMTP id r3mr6815654ljg.4.1637684221852;
+ Tue, 23 Nov 2021 08:17:01 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1637650813-16654-3-git-send-email-rnayak@codeaurora.org>
+References: <20211122103905.14439-1-biju.das.jz@bp.renesas.com>
+ <20211122103905.14439-2-biju.das.jz@bp.renesas.com> <CAMuHMdV5c-1wjhWN1kBbbgp7RMZR4NFTg2btyJ1JSxuGhxq9vw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV5c-1wjhWN1kBbbgp7RMZR4NFTg2btyJ1JSxuGhxq9vw@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 23 Nov 2021 17:16:25 +0100
+Message-ID: <CAPDyKFrxjO2q=pd4TP+4qAUBhdd-e5Lwe3WFMOGmXn7ONQP-Ww@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: renesas,sdhi: Rename RZ/G2L clocks
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <chris.paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 12:30:11PM +0530, Rajendra Nayak wrote:
-> CRD (Compute Reference Design) is a sc7280 based board, largely
-> derived from the existing IDP board design with some key deltas
-> 1. has EC and H1 over SPI similar to IDP2
-> 2. touchscreen and trackpad support
-> 3. eDP display
-> 
-> We just add the barebones dts file here, subsequent patches will
-> add support for EC/H1 and other components.
-> 
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile       |  1 +
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 31 +++++++++++++++++++++++++++++++
->  2 files changed, 32 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6b816eb..b18708c 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> new file mode 100644
-> index 0000000..09d02c2
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -0,0 +1,31 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * sc7280 CRD board device tree source
-> + *
-> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "sc7280-idp.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. sc7280 CRD platform";
-> +	compatible = "qcom,sc7280-crd", "google,hoglin-rev0", "qcom,sc7280";
+On Tue, 23 Nov 2021 at 14:38, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> On Mon, Nov 22, 2021 at 11:39 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Rename the below RZ/G2L clocks to match with the clock names used in
+> > R-Car Gen2 and later generations.
+> >
+> >  imclk->core
+> >  clk_hs->clkh
+> >  imclk2->cd
+> >
+> > This changes will avoid using fallback for RZ/G2L high speed clock,
+> > if "clkh" is not used in device tree and also the code changes in
+> > driver related to this clocks.
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v5.17 if Ulf is happy.
 
-As per my comment on the binding there should also be a "google,hoglin"
-without a revision suffix, also it seems there are already CRDs with higher
-rev numbers.
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-> +
-> +	aliases {
-> +		serial0 = &uart5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&nvme_pwren {
-> +	pins = "gpio51";
-> +};
-> +
-> +&nvme_3v3_regulator {
-> +	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
-> +};
-
-uber-nit: 'nvme_3v3_regulator' should be before 'nvme_pwren', assuming
-alphabetical/ASCII ordering is used.
+Kind regards
+Uffe
