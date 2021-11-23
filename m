@@ -2,196 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D549445AD35
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 21:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D688145AD87
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 21:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238933AbhKWU0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 15:26:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46010 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235541AbhKWU0t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 15:26:49 -0500
-Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 56BB760F5A;
-        Tue, 23 Nov 2021 20:23:39 +0000 (UTC)
-Date:   Tue, 23 Nov 2021 20:28:35 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Peter Rosin <peda@axentia.se>
-Cc:     Liam Beguin <liambeguin@gmail.com>, lars@metafoo.de,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v9 00/14] iio: afe: add temperature rescaling support
-Message-ID: <20211123202835.71e57e41@jic23-huawei>
-In-Reply-To: <156bc2fa-6754-2350-4a12-ff25b23ae8a2@axentia.se>
-References: <20211115034334.1713050-1-liambeguin@gmail.com>
-        <156bc2fa-6754-2350-4a12-ff25b23ae8a2@axentia.se>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S232900AbhKWUre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 15:47:34 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:11095 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231317AbhKWUrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 15:47:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637700250;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=lx2cJbI8GrOX2KSveTwWrflXhk1U0xk/ZzWu+iZs7Ak=;
+    b=PjW1E4lbGzoW6qeYk56MrIQ0PpOEOGMHjrbKJYHUGWu+DlyLcK737iHE1lo8lEIdhD
+    VeOiyhOnrpPxyaOhMDFVH+/orjnkoXmkg5wq49Qz05ZjYWA2v1ek+kPE/42zYOyaUhC2
+    fXcbj4YaRs97LQys/LKPxsDLwBhYB3A6R0qW4vzRzbOA5yyGg45JpaN7pHWRB9W9Ohm7
+    Vp79ba+a8doCEXiAvwBRGe3j8yQFAtyTJJ9i2ZuLLtWuK6dKQitQ/CMGx9IMdl+TuO9N
+    y3X4eF2hpkrxsQ9SCDh5+ubraDN3agE5WprNjf/9/czCav/IDAhAu9aLhgqSvcTdmXR/
+    6Vxw==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43u3mM="
+X-RZG-CLASS-ID: mo00
+Received: from mbp-13-nikolaus.fritz.box
+    by smtp.strato.de (RZmta 47.34.6 DYNA|AUTH)
+    with ESMTPSA id g09b5fxANKi885e
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 23 Nov 2021 21:44:08 +0100 (CET)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v8 0/8] MIPS: JZ4780 and CI20 HDMI
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <J4K13R.CGVJ0IY95LC51@crapouillou.net>
+Date:   Tue, 23 Nov 2021 21:44:07 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B6B358E8-4395-442F-A353-396D8DC54C66@goldelico.com>
+References: <cover.1637691240.git.hns@goldelico.com>
+ <J4K13R.CGVJ0IY95LC51@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Nov 2021 01:53:44 +0100
-Peter Rosin <peda@axentia.se> wrote:
+Hi Paul,
 
-> Hi Liam!
-> 
-> On 2021-11-15 04:43, Liam Beguin wrote:
-> > Hi Jonathan, Peter,
-> > 
-> > Apologies for not getting back to you sooner. I got caught up on other
-> > work and wasn't able to dedicate time to this earlier. Hopefully, this
-> > time around, I'll be able to get this to the finish line :-)
-> > 
-> > I left out IIO_VAL_INT overflows for now, so that I can focus on getting
-> > the rest of these changes pulled in, but I don't mind adding a patch for
-> > that later on.
-> > 
-> > This series focuses on adding temperature rescaling support to the IIO
-> > Analog Front End (AFE) driver.
-> > 
-> > The first few patches address minor bugs in IIO inkernel functions, and
-> > prepare the AFE driver for the additional features.
-> > 
-> > The main changes to the AFE driver include an initial Kunit test suite,
-> > support for IIO_VAL_INT_PLUS_{NANO,MICRO} scales, and support for RTDs
-> > and temperature transducer sensors.
-> > 
-> > Thanks for your time,  
-> 
-> And thanks for yours!
-> 
-> > Liam
-> > 
-> > Changes since v8:
-> > - reword comment
-> > - fix erroneous 64-bit division
-> > - optimize and use 32-bit divisions when values are know to not overflow
-> > - keep IIO_VAL_FRACTIONAL scale when possible, if not default to fixed
-> >   point  
-> 
-> This is not what is going on. Patch 9/14 will convert all fractional
-> scales to fixed point. But I would really like if you in the "reduce
-> risk of integer overflow" patch (8/14) would hold true to the above
-> and keep the fractional scale when possible and only fall back to
-> the less precise fractional-log case if any of the multiplications
-> needed for an exact fractional scale causes overflow.
-> 
-> The v8 discussion concluded that this was a valid approach, right?
-> 
-> I know you also said that the core exposes the scale with nano
-> precision in sysfs anyway, but that is not true for in-kernel
-> consumers. They have an easier time reading the "real" scale value
-> compared to going via the string representation of fixed point
-> returned from iio_format_value. At least the rescaler itself does so,
-> which means that chaining rescalers might suffer needless accuracy
-> degradation.
-> 
-> So, please add the overflow fallback thingy right away, it would make
-> me feel much better.
-> 
-> > - add test cases
-> > - use nano precision in test cases
-> > - simplify offset calculation in rtd_props()
-> > 
-> > Changes since v7:
-> > - drop gcd() logic in rescale_process_scale()
-> > - use div_s64() instead of do_div() for signed 64-bit divisions
-> > - combine IIO_VAL_FRACTIONAL and IIO_VAL_FRACTIONAL_LOG2 scale cases
-> > - switch to INT_PLUS_NANO when accuracy is lost with FRACTIONAL scales
-> > - rework test logic to allow for small relative error
-> > - rename test variables to align error output messages
-> > 
-> > Changes since v6:
-> > - rework IIO_VAL_INT_PLUS_{NANO,MICRO} based on Peter's suggestion
-> > - combine IIO_VAL_INT_PLUS_{NANO,MICRO} cases
-> > - add test cases for negative IIO_VAL_INT_PLUS_{NANO,MICRO} corner cases
-> > - force use of positive integers with gcd()
-> > - reduce risk of integer overflow in IIO_VAL_FRACTIONAL_LOG2
-> > - fix duplicate symbol build error
-> > - apply Reviewed-by
-> > 
-> > Changes since v5:
-> > - add include/linux/iio/afe/rescale.h
-> > - expose functions use to process scale and offset
-> > - add basic iio-rescale kunit test cases
-> > - fix integer overflow case
-> > - improve precision for IIO_VAL_FRACTIONAL_LOG2
-> > 
-> > Changes since v4:
-> > - only use gcd() when necessary in overflow mitigation
-> > - fix INT_PLUS_{MICRO,NANO} support
-> > - apply Reviewed-by
-> > - fix temperature-transducer bindings
-> > 
-> > Changes since v3:
-> > - drop unnecessary fallthrough statements
-> > - drop redundant local variables in some calculations
-> > - fix s64 divisions on 32bit platforms by using do_div
-> > - add comment describing iio-rescaler offset calculation
-> > - drop unnecessary MAINTAINERS entry
-> > 
-> > Changes since v2:
-> > - don't break implicit offset truncations
-> > - make a best effort to get a valid value for fractional types
-> > - drop return value change in iio_convert_raw_to_processed_unlocked()
-> > - don't rely on processed value for offset calculation
-> > - add INT_PLUS_{MICRO,NANO} support in iio-rescale
-> > - revert generic implementation in favor of temperature-sense-rtd and
-> >   temperature-transducer
-> > - add separate section to MAINTAINERS file
-> > 
-> > Changes since v1:
-> > - rebase on latest iio `testing` branch
-> > - also apply consumer scale on integer channel scale types
-> > - don't break implicit truncation in processed channel offset
-> >   calculation
-> > - drop temperature AFE flavors in favor of a simpler generic
-> >   implementation
-> > 
-> > Liam Beguin (14):
-> >   iio: inkern: apply consumer scale on IIO_VAL_INT cases
-> >   iio: inkern: apply consumer scale when no channel scale is available
-> >   iio: inkern: make a best effort on offset calculation
-> >   iio: afe: rescale: expose scale processing function
-> >   iio: afe: rescale: add INT_PLUS_{MICRO,NANO} support
-> >   iio: afe: rescale: add offset support
-> >   iio: afe: rescale: use s64 for temporary scale calculations
-> >   iio: afe: rescale: reduce risk of integer overflow
-> >   iio: afe: rescale: fix accuracy for small fractional scales  
-> 
-> Can you please swap the order of these two patches? (i.e. "reduce
-> risk..." and "fix accuracy...")
-> 
-> Basically, I think the accuracy of the IIO_VAL_FRACTIONAL_LOG2
-> case should be improved before the IIO_VAL_FRACTIONAL case is
-> joined with it. I.e. swap the order of 8/14 and 9/14 (or almost,
-> you need to also move the addition of the
-> scale_type == IIO_VAL_FRACTIONAL condition to the other patch in
-> order for it to make sense).
-> 
-> That's all I'm finding. But then again, I don't know what to do
-> about the 0day report on 10/14. It does say that it's a W=1
-> build, maybe we need not worry about it?
+> Am 23.11.2021 um 21:12 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi Nikolaus,
+>=20
+> I think if you can fix the last few things I commented on, and I get =
+an ACK from Rob for the Device Tree related patches, then it will be =
+ready to merge.
 
-W=1 won't affect that undefined symbols error.
+Fine! Especially for finding the NULL regulator risk.
 
-I'd be cynical and assume it's a random issue, post a v10 perhaps
-with a note in the cover letter on this.
+Will do in the next days.
+For the unwedge pinmux I have to check if we need it at all.
 
-Jonathan
-> 
+BR and thanks,
+Nikolaus
+
+>=20
 > Cheers,
-> Peter
-> 
-> >   iio: test: add basic tests for the iio-rescale driver
-> >   iio: afe: rescale: add RTD temperature sensor support
-> >   iio: afe: rescale: add temperature transducers
-> >   dt-bindings: iio: afe: add bindings for temperature-sense-rtd
-> >   dt-bindings: iio: afe: add bindings for temperature transducers  
-> 
+> -Paul
+>=20
+>=20
+> Le mar., nov. 23 2021 at 19:13:53 +0100, H. Nikolaus Schaller =
+<hns@goldelico.com> a =C3=A9crit :
+>> PATCH V8 2021-11-23 19:14:00:
+>> - fix a bad editing result from patch 2/8 (found by =
+paul@crapouillou.net)
+>> PATCH V7 2021-11-23 18:46:23:
+>> - changed gpio polarity of hdmi_power to 0 (suggested by =
+paul@crapouillou.net)
+>> - fixed LCD1 irq number (bug found by paul@crapouillou.net)
+>> - removed "- 4" for calculating max_register (suggested by =
+paul@crapouillou.net)
+>> - use unevaluatedPropertes instead of additionalProperties (suggested =
+by robh@kernel.org)
+>> - moved and renamed ingenic,jz4780-hdmi.yaml (suggested by =
+robh@kernel.org)
+>> - adjusted assigned-clocks changes to upstream which added some for =
+SSI (by hns@goldelico.com)
+>> - rebased and tested with v5.16-rc2 + patch set drm/ingenic by =
+paul@crapouillou.net (by hns@goldelico.com)
+>> PATCH V6 2021-11-10 20:43:33:
+>> - changed CONFIG_DRM_INGENIC_DW_HDMI to "m" (by hns@goldelico.com)
+>> - made ingenic-dw-hdmi an independent platform driver which can be =
+compiled as module
+>>  and removed error patch fixes for IPU (suggested by =
+paul@crapouillou.net)
+>> - moved assigned-clocks from jz4780.dtsi to ci20.dts (suggested by =
+paul@crapouillou.net)
+>> - fixed reg property in jz4780.dtsi to cover all registers incl. =
+gamma and vee (by hns@goldelico.com)
+>> - added a base patch to calculate regmap size from DTS reg property =
+(requested by paul@crapouillou.net)
+>> - restored resetting all bits except one in LCDOSDC (requested by =
+paul@crapouillou.net)
+>> - clarified setting of cpos (suggested by paul@crapouillou.net)
+>> - moved bindings definition for ddc-i2c-bus (suggested by =
+paul@crapouillou.net)
+>> - simplified mask definitions for JZ_LCD_DESSIZE (requested by =
+paul@crapouillou.net)
+>> - removed setting alpha premultiplication (suggested by =
+paul@crapouillou.net)
+>> - removed some comments (suggested by paul@crapouillou.net)
+>> PATCH V5 2021-10-05 14:28:44:
+>> - dropped mode_fixup and timings support in dw-hdmi as it is no =
+longer needed in this V5 (by hns@goldelico.com)
+>> - dropped "drm/ingenic: add some jz4780 specific features" =
+(stimulated by paul@crapouillou.net)
+>> - fixed typo in commit subject: "synopsis" -> "synopsys" (by =
+hns@goldelico.com)
+>> - swapped clocks in jz4780.dtsi to match synopsys,dw-hdmi.yaml (by =
+hns@goldelico.com)
+>> - improved, simplified, fixed, dtbschecked ingenic-jz4780-hdmi.yaml =
+and made dependent of bridge/synopsys,dw-hdmi.yaml (based on suggestions =
+by maxime@cerno.tech)
+>> - fixed binding vs. driver&DTS use of hdmi-5v regulator (suggested by =
+maxime@cerno.tech)
+>> - dropped "drm/bridge: synopsis: Fix to properly handle HPD" - was a =
+no longer needed workaround for a previous version
+>>  (suggested by maxime@cerno.tech)
+>> PATCH V4 2021-09-27 18:44:38:
+>> - fix setting output_port =3D 1 (issue found by paul@crapouillou.net)
+>> - ci20.dts: convert to use hdmi-connector (by hns@goldelico.com)
+>> - add a hdmi-regulator to control +5V power (by hns@goldelico.com)
+>> - added a fix to dw-hdmi to call drm_kms_helper_hotplug_event on =
+plugin event detection (by hns@goldelico.com)
+>> - always allocate extended descriptor but initialize only for jz4780 =
+(by hns@goldelico.com)
+>> - updated to work on top of "[PATCH v3 0/6] drm/ingenic: Various =
+improvements v3" (by paul@crapouillou.net)
+>> - rebased to v5.13-rc3
+>> PATCH V3 2021-08-08 07:10:50:
+>> This series adds HDMI support for JZ4780 and CI20 board (and fixes =
+one IPU related issue in registration error path)
+>> - [patch 1/8] switched from mode_fixup to atomic_check (suggested by =
+robert.foss@linaro.org)
+>>  - the call to the dw-hdmi specialization is still called mode_fixup
+>> - [patch 3/8] diverse fixes for ingenic-drm-drv (suggested by =
+paul@crapouillou.net)
+>>  - factor out some non-HDMI features of the jz4780 into a separate =
+patch
+>>  - multiple fixes around max height
+>>  - do not change regmap config but a copy on stack
+>>  - define some constants
+>>  - factor out fixing of drm_init error path for IPU into separate =
+patch
+>>  - use FIELD_PREP()
+>> - [patch 8/8] conversion to component framework dropped (suggested by =
+Laurent.pinchart@ideasonboard.com and paul@crapouillou.net)
+>> PATCH V2 2021-08-05 16:08:05:
+>> - code and commit messages revisited for checkpatch warnings
+>> - rebased on v5.14-rc4
+>> - include (failed, hence RFC 8/8) attempt to convert to component =
+framework
+>>  (was suggested by Paul Cercueil <paul@crapouillou.net> a while ago)
+>> This series adds HDMI support for JZ4780 and CI20 board
+>> H. Nikolaus Schaller (3):
+>>  drm/ingenic: prepare ingenic drm for later addition of JZ4780
+>>  MIPS: defconfig: CI20: configure for DRM_DW_HDMI_JZ4780
+>>  [RFC] MIPS: DTS: Ingenic: adjust register size to available =
+registers
+>> Paul Boddie (4):
+>>  drm/ingenic: Add support for JZ4780 and HDMI output
+>>  drm/ingenic: Add dw-hdmi driver for jz4780
+>>  MIPS: DTS: jz4780: Account for Synopsys HDMI driver and LCD
+>>    controllers
+>>  MIPS: DTS: CI20: Add DT nodes for HDMI setup
+>> Sam Ravnborg (1):
+>>  dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
+>> .../display/bridge/ingenic,jz4780-hdmi.yaml   |  76 +++++++++++
+>> .../display/bridge/synopsys,dw-hdmi.yaml      |   3 +
+>> arch/mips/boot/dts/ingenic/ci20.dts           |  83 ++++++++++-
+>> arch/mips/boot/dts/ingenic/jz4725b.dtsi       |   2 +-
+>> arch/mips/boot/dts/ingenic/jz4740.dtsi        |   2 +-
+>> arch/mips/boot/dts/ingenic/jz4770.dtsi        |   2 +-
+>> arch/mips/boot/dts/ingenic/jz4780.dtsi        |  40 ++++++
+>> arch/mips/configs/ci20_defconfig              |   6 +
+>> drivers/gpu/drm/ingenic/Kconfig               |   9 ++
+>> drivers/gpu/drm/ingenic/Makefile              |   1 +
+>> drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  62 ++++++++-
+>> drivers/gpu/drm/ingenic/ingenic-drm.h         |  38 ++++++
+>> drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     | 129 =
+++++++++++++++++++
+>> 13 files changed, 444 insertions(+), 9 deletions(-)
+>> create mode 100644 =
+Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+>> create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+>> --
+>> 2.33.0
+>=20
+>=20
 
