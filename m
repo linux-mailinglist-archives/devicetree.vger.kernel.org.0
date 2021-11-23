@@ -2,234 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A79E745A9B7
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A8D2A45A9BD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239039AbhKWRON (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 12:14:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45024 "EHLO
+        id S233906AbhKWRPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 12:15:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239022AbhKWRON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:14:13 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DFCBC061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:11:05 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mpZJp-0004jt-LP; Tue, 23 Nov 2021 18:10:57 +0100
-Message-ID: <f251be2a2ad9596bd11c84945747ffe68116c7cd.camel@pengutronix.de>
-Subject: Re: [PATCH V3 0/9] arm64: imx8mn: Enable more imx8m Nano functions
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        open list <linux-kernel@vger.kernel.org>
-Date:   Tue, 23 Nov 2021 18:10:55 +0100
-In-Reply-To: <CAHCN7xKtakudWne1ZK8n3o4bVnnR02TLzsJ_Qgo8GnHed_sfTA@mail.gmail.com>
-References: <20211104161804.587250-1-aford173@gmail.com>
-         <CAJ+vNU2jcWyCm3UyiOnvknS0t+mSdpaB+CgGWYO3jxXTa3LhRA@mail.gmail.com>
-         <CAHCN7xJrnZMQgXVMJg7MZdFMWyesf6Ph7HnfMH7-9bm1qODHFw@mail.gmail.com>
-         <CAJ+vNU32GXtbKWGQXoE7pkXU8FcKh+HQJJduwRbRJ0tC-d6GoA@mail.gmail.com>
-         <CAHCN7xLAm21zUJQ8s4s--+ygmeVY0qyo0WSLp7ZM9bT9R3sjxw@mail.gmail.com>
-         <CAOMZO5Am4P17mOXWrPs0ns9AwOXM_ZpBdzbYTYJfv_48Ea=BHg@mail.gmail.com>
-         <CAHCN7xLzR5LqqydC7uydsXQPFVn=nyqKD8ZEH3EjcPuwQky5WA@mail.gmail.com>
-         <CAOMZO5AnXDV3jdR6hP_+uqyss4KftzjahcrGq1XA37nGsfQedw@mail.gmail.com>
-         <CAHCN7xKJBHY1o94VDkBaXXFjMUm=5WoshddT4DVWD04aiPV8MA@mail.gmail.com>
-         <CAHCN7xKpjVWiTvXpYH11kaHX=0Figh=ALQS4qnUroGCu-q3NNA@mail.gmail.com>
-         <CAJ+vNU37=qPuuNaSsvRntKU5wbVZoOtS_tAx7En6EMGfKN=QLg@mail.gmail.com>
-         <82c5da8862abaa430ee52b57e15d29a67106d61f.camel@pengutronix.de>
-         <CAJ+vNU0ce1TTAHzT-ZE303ikmmwghutyObSQMJeHN8D0R8Gcdw@mail.gmail.com>
-         <CAHCN7x+k=C=fxFZYJK6qpUFNDSddVGvfYPPLZ_LNOvhW6RNxmg@mail.gmail.com>
-         <129460de1d6b02ad16fdac16a1437c5b2cbb3975.camel@pengutronix.de>
-         <CAHCN7x+yt_-mQ14A+xw1-Qd2ucSniUqT_wPyp-0OedwUp8UDjA@mail.gmail.com>
-         <CAHCN7xKtakudWne1ZK8n3o4bVnnR02TLzsJ_Qgo8GnHed_sfTA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S231177AbhKWRPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:15:04 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6974C061574;
+        Tue, 23 Nov 2021 09:11:55 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id r25so58170268edq.7;
+        Tue, 23 Nov 2021 09:11:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hWSy0mKk/NHigQIkeCuN/Jyx9lrqfoIjKQgE35svo8I=;
+        b=I2pzPwKQLkf4ChqTCWng5/ECX4Adh11oXAsjKJgwlgyKwRZikrBHBdKOtI8ofm4TaQ
+         varsTinvv1aMmkvL+ElErm1AdjfsN4PObxItYitGrT2LGsgd57oyKnM005k8CEm/VOfs
+         HhbtIkbzhNr2OaEelV1J57dlfzekygQYTRCx/b+hgtkhHElCrltbi4q48g55+0r8tNvh
+         BgqAZMy692GBUdhT3FXKgiQEjkuycdEJ9D+xESdvaUqLySLa3kj6wwEjY08pB+1XVL6G
+         S+uHNsRany7EjGA9OU/aj1KPn1OW8Yma1QJQQoGGR6BQie/fvsrCGR3TyMPlqvggfZTd
+         DR0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hWSy0mKk/NHigQIkeCuN/Jyx9lrqfoIjKQgE35svo8I=;
+        b=zZxuha4iT3naIOc4SVZCItqQDGBXySpz+px4DnMi0X0oMz6ebR9zUWoTJiFOWYCFUl
+         McQeJEn4QtYiupH94TjEtdY8tM9huWBACPRrqKo8ekY1AwRTcRiWO/+DvnKmTVD+EdNA
+         bRoOBukN3bX+q+fgbI+WjY9Vl/RQRG/9o2G4vKJ5k7Ay73FdXl4QzymDOWGq5tlpZrx5
+         O3sU5j9RKd0OX0uNUjGVRoMvnjsB670msEjxTSwJ2GJDypPm+DkhlW/Tw/gc3cKBaEaK
+         ZBjPh+hMWfQqoCi689YUid3XQI1QXkXV+nInACfiLgGEkXBCAM9jxT1tAME0Z06Pl5JU
+         /sGg==
+X-Gm-Message-State: AOAM530d+S/97HY+7nFP8LdeaQOk4/GBdU86dhIkwQspEJ2r4PUO/6aX
+        +pfJmb2jBYsLoEH5v8ylbWC6B8bHJFXCmIu7PdpIolfRSV/WWQ==
+X-Google-Smtp-Source: ABdhPJxVdjjvDH2b+sWvW8DkC9v6WajXnhcf/Zx4ovHgPWxWbyErVTEyKnQx7rFLDWqLFZUN4NuK37lMPGYkwlRsyAE=
+X-Received: by 2002:a17:906:ecac:: with SMTP id qh12mr9358799ejb.377.1637687514297;
+ Tue, 23 Nov 2021 09:11:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+ <cover.1637547799.git.lh.kuo@sunplus.com> <e5f2549224cf875d81306ef5f6e98db1cfd81c2e.1637547799.git.lh.kuo@sunplus.com>
+ <CAHp75Vd2=OHbrpGtsU8AMXdtNfvSPhpc7vhzkWnahaV48XbfUQ@mail.gmail.com> <YZz0n6Mpjl3tKmMe@sirena.org.uk>
+In-Reply-To: <YZz0n6Mpjl3tKmMe@sirena.org.uk>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 23 Nov 2021 19:11:17 +0200
+Message-ID: <CAHp75Vf6+monqu4Hq-yoFSohD9tNFqZTuKjqDDKAJE3Om2BUYQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] SPI: Add SPI driver for Sunplus SP7021
+To:     Mark Brown <broonie@kernel.org>
+Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dvorkin@tibbo.com, qinjian@cqplus1.com, wells.lu@sunplus.com,
+        "LH.Kuo" <lh.kuo@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 23.11.2021 um 10:40 -0600 schrieb Adam Ford:
-> On Tue, Nov 23, 2021 at 8:30 AM Adam Ford <aford173@gmail.com> wrote:
-> > 
-> > On Tue, Nov 23, 2021 at 8:24 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > 
-> > > Am Dienstag, dem 23.11.2021 um 08:08 -0600 schrieb Adam Ford:
-> > > > On Mon, Nov 22, 2021 at 3:52 PM Tim Harvey <tharvey@gateworks.com> wrote:
-> > > > > 
-> > > > > On Mon, Nov 22, 2021 at 10:20 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > > > > 
-> > > > > > Am Montag, dem 22.11.2021 um 09:59 -0800 schrieb Tim Harvey:
-> > > > > > > On Sun, Nov 21, 2021 at 7:25 AM Adam Ford <aford173@gmail.com> wrote:
-> > > > > > > > 
-> > > > > > > > On Sun, Nov 21, 2021 at 8:34 AM Adam Ford <aford173@gmail.com> wrote:
-> > > > > > > > > 
-> > > > > > > > > On Sun, Nov 21, 2021 at 8:21 AM Fabio Estevam <festevam@gmail.com> wrote:
-> > > > > > > > > > 
-> > > > > > > > > > Hi Adam,
-> > > > > > > > > > 
-> > > > > > > > > > On Sun, Nov 21, 2021 at 11:17 AM Adam Ford <aford173@gmail.com> wrote:
-> > > > > > > > > > 
-> > > > > > > > > > > I am using https://source.codeaurora.org/external/imx/imx-atf/log/?h=lf_v2.4
-> > > > > > > > > > > 
-> > > > > > > > > > > Since the driver sending SMCC commands to ATF isn't doing that, I
-> > > > > > > > > > > assume it's safe to use the linux power-domain drivers with the ATF
-> > > > > > > > > > > from NXP's kernel.
-> > > > > > > > > > > 
-> > > > > > > > > > > If you can point me to the repo you think I should be using, I'll give it a try.
-> > > > > > > > > > 
-> > > > > > > > > > Do you know if the mainline TF-A repo v2.5 works too?
-> > > > > > > > > > https://github.com/ARM-software/arm-trusted-firmware/tree/v2.5
-> > > > > > > > > 
-> > > > > > > > > That's good to know.
-> > > > > > > > > 
-> > > > > > > > > I just built it into U-Boot:
-> > > > > > > > > 
-> > > > > > > > > NOTICE:  BL31: v2.5(release):v2.5
-> > > > > > > > > NOTICE:  BL31: Built : 08:24:13, Nov 21 2021
-> > > > > > > > > 
-> > > > > > > > > The Etnaviv driver is still loading without hanging
-> > > > > > > > > 
-> > > > > > > > > root@beacon-imx8mn-kit:~# dmesg |grep -i etna
-> > > > > > > > > [   12.393936] etnaviv etnaviv: bound 38000000.gpu (ops gpu_ops [etnaviv])
-> > > > > > > > > [   12.400676] etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
-> > > > > > > > > [   12.641297] [drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
-> > > > > > > > > 
-> > > > > > > > > 
-> > > > > > > > 
-> > > > > > > > Tim,
-> > > > > > > > 
-> > > > > > > > Which version of Nano do you have?  Not all Nano SoC's have a GPU from
-> > > > > > > > looking at the datasheet [1] .  I am using MIMX8MN2CVTIZAA (Nano Solo)
-> > > > > > > > 
-> > > > > > > > [1] - https://www.nxp.com/docs/en/data-sheet/IMX8MNIEC.pdf
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > Adam,
-> > > > > > > 
-> > > > > > > The board I have here has MIMX8MN5CVTIZAA so i.MX 8M Nano QuadLite
-> > > > > > > with 'No GPU' as you expected.
-> > > > > > > 
-> > > > > > > So I have to add the following to keep my board from hanging after your series:
-> > > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> > > > > > > b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> > > > > > > index 236f425e1570..0d256a607b7c 100644
-> > > > > > > --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> > > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
-> > > > > > > @@ -251,6 +251,10 @@
-> > > > > > >         };
-> > > > > > >  };
-> > > > > > > 
-> > > > > > > +&gpu {
-> > > > > > > +       status = "disabled";
-> > > > > > > +};
-> > > > > > > +
-> > > > > > >  &i2c1 {
-> > > > > > >         clock-frequency = <100000>;
-> > > > > > >         pinctrl-names = "default";
-> > > > > > > 
-> > > > > > > This situation is similar to the one I encountered with the
-> > > > > > > imx8mm-venice-gw7901 where adding the GPC node caused my board (which
-> > > > > > > did not power the GPU) to hang until I added disables to the
-> > > > > > > device-tree with commit 7973009235e2 ("arm64: dts:
-> > > > > > > imx8mm-venice-gw7901.dts: disable pgc_gpumix"). It feels painful to
-> > > > > > > have to add patches to keep things from hanging after additional
-> > > > > > > functionality is added to dt but perhaps that is more common than I
-> > > > > > > think esp for SoC's like IMX8M which have a lot of lingering support
-> > > > > > > still coming in.
-> > > > > > > 
-> > > > > > Yea, it's unfortunate that those patches break your board, but I guess
-> > > > > > we need to accept this, while there is still a lot of feature work
-> > > > > > going on.
-> > > > 
-> > > > There are a significant number of peripherals which are defined and
-> > > > marked as 'disabled' by default, so I don't think it's unreasonable to
-> > > > do that here.
-> > > > I'd like to propose we keep the default disabled and people who
-> > > > need/want the GPU enabled can turn it on.  Why waste the power if it's
-> > > > not needed?
-> > > > 
-> > > Sure, if a significant number of chips has the GPU disabled, we might
-> > > want to keep it disabled in the base dtsi. With those variants it's
-> > > always a tradeoff, for example there are SKUs of the i.MX6 that had the
-> > > VPU disabled, but very few of those were in the field, so the VPUs are
-> > > enabled in the SoC base dtsi and only users of those special SKUs would
-> > > need to disable them in the board DT.
-> > > 
-> > > The power argument isn't valid, as the kernel driver will suspend the
-> > > device when not needed, so there is no wasted power (aside from the
-> > > sort moment while the driver probes) with the GPU enabled.
-> > > 
-> > > The rule of thumb for when a device is default enabled in the SoC dsti
-> > > has always been (at least for i.MX) that the peripheral must not have a
-> > > board level dependency. While a i2c controller obviously needs a i2c
-> > > bus connected on the board to fulfill its purpose, a GPU can be used as
-> > > color space converter or something like that with no board level
-> > > interaction. Now the line is a bit blurred by having multiple power
-> > > rails into the SoC, so one could argue that the GPUs and VPUs now have
-> > > some board level dependency on the i.MX8M*.
-> > 
-> > That makes sense.
-> > 
-> > Do we defer to Shawn as the final arbiter as to whether or not it's
-> > enabled/disabled?  It would be nice to get Nano caught up in
-> > functionality as much as possible.
-> 
-> We could add two more device trees, one for 8mnl (lite) and 8mnul (ulta-lite)
-> 
-> imx8mnl:
-> 
-> #include imx8mn.dtsi
-> 
-> &gpu {
->     status = "disabled";
-> };
-> 
-> 
-> imx8mnul:
-> 
-> #include imx8mnl
-> 
-> &dsi {
->     status = "disabled";
-> };
-> 
-> Then the boards using either lite or ultralite just include their
-> respective SoC.dtsi instead of imx8mn.dtsi.  This is similar to what
-> we do with the plethora of i.mx6 options.
-> 
-Yes, that's an option but it quickly blows up in a combinatorial
-explosion. As the chips are pin compatible there is a high probability
-that hardware makers will start to offer boards with different feature
-sets and then you need to have a number of board DTs just to include
-the right dtsi for the chip.
+On Tue, Nov 23, 2021 at 4:03 PM Mark Brown <broonie@kernel.org> wrote:
+> On Tue, Nov 23, 2021 at 12:09:54AM +0200, Andy Shevchenko wrote:
+> > On Mon, Nov 22, 2021 at 4:34 AM LH.Kuo <lhjeff911@gmail.com> wrote:
+>
+> > > +// slave only. usually called on driver remove
+>
+> > Why is it so?
+> > Also find use of proper English grammar (capitalization, periods, etc.
+> > Ditto for all your comments.
+>
+> Please don't go overboard on changes you're requesting, the important
+> thing with comments is that they're intelligible.  People have different
+> levels of skill with English and that's totally fine, it's much better
+> that people feel able to write comments than that they stop doing so
+> because they are concerned about issues with their foreign language
+> skills.
 
-> Just a thought.  Although, I really like the idea of the bootloader
-> disabling the unavailable nodes.
+Shame on me! I'm also bad at English (okay, sometimes).
 
-Yea, it seems there are even fuses that allow to check those
-capabilities, see my reply to Tim. So I think relying on the boot
-firmware to fix things up would be the best option, as it allows to
-keep the number of DTs small and does not place a big burden on the
-boot firmware implementation.
+...
 
-Regards,
-Lucas
+> > > +       unsigned long flags;
+> > > +       struct sp7021_spi_ctlr *pspim = dev;
+> > > +       u32 fd_status = 0;
+> > > +       unsigned int tx_len, rx_cnt, tx_cnt, total_len;
+> > > +       bool isrdone = false;
+>
+> > Reversed xmas tree order here and everywhere else.
+>
+> Again, please don't go overboard - this isn't a general requirement for
+> kernel code, some parts of the kernel do want it but outside of those
+> areas it's not something that we should be asking for (and TBH even when
+> it is required you should explain what it is, it's not as easy to search
+> for as it could be).  I certainly don't care.
 
+Here it is. The "reversed xmas tree order" implies that longer lines
+in the definition block, where one puts all variables that are being
+used locally in the given function, are going first followed by
+shorter ones. This makes it a bit easier to read the code. There are
+also additional rules that may be applied, such as defines with
+assignments _usually_ go before anything else, error code variable
+separately and last. That said, the above might look better in the
+following form:
+
+       struct sp7021_spi_ctlr *pspim = dev;
+       unsigned int tx_len, total_len;
+       unsigned int rx_cnt, tx_cnt;
+       unsigned long flags;
+       bool isrdone = false;
+       u32 fd_status = 0;
+
+...
+
+> > > +               if (of_property_read_bool(pdev->dev.of_node, "spi-slave"))
+> > > +                       mode = SP7021_SLAVE_MODE;
+>
+> > There is no need to check of_node for this call.
+>
+> OTOH if we are checking it anyway it doesn't hurt to have all the
+> property reads in the check for of_node.
+
+I assumed that previous comment against SPI ID potentially will be
+addressed by removing that code which in the result gives unnecessary
+use of the of_node check above. So that's why I pointed this out.
+
+>  Either way it doesn't
+> fundamentally matter.
+
+True!
+
+-- 
+With Best Regards,
+Andy Shevchenko
