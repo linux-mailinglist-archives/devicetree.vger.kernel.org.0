@@ -2,140 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2733C45A41B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 460FE45A42A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231324AbhKWNyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 08:54:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230015AbhKWNyb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 08:54:31 -0500
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B72C061574;
-        Tue, 23 Nov 2021 05:51:23 -0800 (PST)
-Received: by mail-lf1-x130.google.com with SMTP id b1so90708217lfs.13;
-        Tue, 23 Nov 2021 05:51:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=mqptCX+502+mx6/wZxLi7LpP5N5dapcrK2a1j1LK8cQ=;
-        b=IllgtvhxFASFCMtRpE1WL6MnoONv+z2DcgDLseoBlwJkiPnf9yfyxqhWKvhdlI2SOx
-         uJacMi8Vos879q8zZjIdhyl9LIjRoyej+GN2agWXp0DIng2OWdcsJ/p7mRJI8Cvdo/Jy
-         4FWGmYRTmY+Art33LXfdlbL7M3OY8nQxkMGEaJzcGX0jV59DWq/cZq3elJNNVJW8+utk
-         mpcqK2au3Dz3YPeB0d19QQjp7pV1dun9rcyi5yfQyzgSIzXFf3QdCV3lN8W6tsPKJ4p4
-         3ctTN0gnl6C8nNOYNPsS7ZodNpzg0SoOp3rBLWkd+epG4zauPMElhO9gQbNDA0W4itai
-         MUaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=mqptCX+502+mx6/wZxLi7LpP5N5dapcrK2a1j1LK8cQ=;
-        b=F5lo5JnqIQxs9a6nNTpD5L99WRi5OnkZDDM3ufKpD/uo4g94RBsRoS6tflSrIwtRhz
-         AdQXTfHAHAgYnOHSL0VhZkJgcBqTbmB5ZbRprgaQW2tiaEWuG+3sGvIo7luJDUW5qTFI
-         IOtwodaKdDLK+cfSdbh/QQTYI+ZXyuk8d/S4cywFEBL6Dg6cc4DBEosttnrLx/csBlYL
-         5LoMRZmXp1UXZJbgr++vXJkIlznpNAqYYcf98KzDO644RuXkzhWuIUKv17pO/wJs2W3A
-         a66oAExgRXxP3BtyCGQhtbxNbRaGkk6P7PfHxlGWOh99B9xyCqyUxFmKkzynCeBSH8lP
-         gP5g==
-X-Gm-Message-State: AOAM532WlbAu2535UYpGwNIg6qgB6CuYMp3tOC8Ra7qLxLkmpEAQVBp5
-        HVKcO8lppU+gFd1LqaWhP6g=
-X-Google-Smtp-Source: ABdhPJxt5imPZWnFv7AIgYdK1TCp7y2MzUMhS4MDwdLStIpWDAFBkAOHdSWJ+qvI/InaAVcHVfumrA==
-X-Received: by 2002:a19:c34a:: with SMTP id t71mr4946142lff.146.1637675481263;
-        Tue, 23 Nov 2021 05:51:21 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id e17sm1296602lfr.296.2021.11.23.05.51.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 05:51:20 -0800 (PST)
-Message-ID: <505c6616-2953-8301-8721-9d6c003a40fd@gmail.com>
-Date:   Tue, 23 Nov 2021 14:51:19 +0100
+        id S229853AbhKWN6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 08:58:48 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:61026 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229751AbhKWN6s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 08:58:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1637675739; x=1669211739;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=SDj1J2644xrzfk6WUAevIlbr/Wz8DgYG54FJrFRTNDg=;
+  b=k/qIVmWW8Jo5Xmm42jzULpPdmANQz/owfYYzsoADuVhpDXw7o7ogb0ZH
+   XVqNlSC4yDfFV0dwE9ajU57PxqD4y5bUm91aN7n0T5Gobz7W1BzVpHaDI
+   r835B89V+kl775E1rgwNJi2ptXZUyN/+o1H3GEc0ANaode9/aW28Dvsny
+   eBcYCJ+ND4FsxQrN7OnGJekdDZWFQ/3CKBXs6ZybLoMP1J2cJ312l/Fic
+   dFaPJgd125XvbTZy4O+RpCORLgOtE8ZdQ82qpagXEpP/cW3ok0EJcunQn
+   3hZSbum2UYymrcVNgOcBmE+hk4u+ylv61R1wiG1pO8QCsTA4ga3YvOyMr
+   w==;
+IronPort-SDR: 6arYVt1PNEHhxMBd5GDSFygHpyUnGa3249iNXLsZtfsP8uWuisr4es607mJdjMkBQ2X6shSKfA
+ 9byUThhYaF13X+GAm/YhqDjnJE/IUruzCDcUgPWn1Y+5NtRhUL9g8Uzf8t30Ewnb3VzQ0Ipzgk
+ NC2M1OoPQjCWIqWZ0Yn9ky2/4TeC7nTfPXCtDZ7bAvCSn8tetOq0pC8O+8oAxqC37Q2/lRALo3
+ eO6FP2AUZjzLPDhu3nh0Llb9ZKqaOc4Pxy13CshaAucmPU05BZlKg9Ye5orh40tGrPfklYLMXF
+ FGJvm081MvqJO7U2Rrg6JmoI
+X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; 
+   d="scan'208";a="137464836"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2021 06:55:39 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Tue, 23 Nov 2021 06:55:39 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Tue, 23 Nov 2021 06:55:35 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH net-next v2 0/6] net: lan966x: Add lan966x switch driver
+Date:   Tue, 23 Nov 2021 14:55:11 +0100
+Message-ID: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
- Thunderbird/95.0
-Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: brcm,ns-pinmux: extend example
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20211118132152.15722-1-zajec5@gmail.com>
- <20211118132152.15722-3-zajec5@gmail.com> <YZyahbYwMFz7baTu@atomide.com>
- <2fb0593a-208f-a732-843b-b6723633e208@gmail.com>
- <YZyxPdBYl/yWYyoT@atomide.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <YZyxPdBYl/yWYyoT@atomide.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.11.2021 10:15, Tony Lindgren wrote:
-> * Rafał Miłecki <zajec5@gmail.com> [211123 07:56]:
->> Does it mean above "reg" usages are all incorrect and binding "reg" in
->> such way is deprecated? This is something totally new to me, can you
->> confirm that, please?
-> 
-> Here you have a device with multiple control register instances at
-> various register offsets. Using index here makes as much sense as
-> the old interrupt number defines we used to have but got rid of.
-> 
-> Please don't use an index to address them. Index makes sense when
-> there is no real offset to use, like a SPI chip select, or a bit
-> offset inside the register like a GPIO instance bit.
+This patch series add support for Microchip lan966x driver
 
-I think I'll simply trust you on this as there seems to be some thin
-line I can't really see. It may be however worth documenting somehwere
-what's the rule for changing "reg" context. So that in future less
-experienced developers (like me) don't bother maintainers with such
-bad concepts.
+The lan966x switch is a multi-port Gigabit AVB/TSN Ethernet Switch with
+two integrated 10/100/1000Base-T PHYs. In addition to the integrated PHYs,
+it supports up to 2RGMII/RMII, up to 3BASE-X/SERDES/2.5GBASE-X and up to
+2 Quad-SGMII/Quad-USGMII interfaces.
 
-What I understood from your e-mail is that it's a matter of "reg" usage
-in a hardware block binding. If reg contains "multiple control register
-instances" (I understand it as reg space size > 0x4) then children nodes
-may use "reg" only as address in that register space.
+Intially it adds support only for the ports to behave as simple
+NIC cards. In the future patches it would be extended with other
+functionality like Switchdev, PTP, Frame DMA, VCAP, etc.
 
-My above understanding doesn't fit however what I see in various
-controllers.
+v1->v2:
+- add new patch for MAINTAINERS
+- add functions lan966x_mac_cpu_learn/forget
+- fix build issues with second patch
+- fix the reset of the switch, return error if there is no reset controller
+- start to use phylink_mii_c22_pcs_decode_state and
+  phylink_mii_c22_pcs_encode_advertisement do remove duplicate code
 
-*****
+Horatiu Vultur (6):
+  dt-bindings: net: lan966x: Add lan966x-switch bindings
+  net: lan966x: add the basic lan966x driver
+  net: lan966x: add port module support
+  net: lan966x: add mactable support
+  net: lan966x: add ethtool configuration and statistics
+  net: lan966x: Update MAINTAINERS to include lan966x driver
 
-Example 1:
+ .../net/microchip,lan966x-switch.yaml         | 149 +++
+ MAINTAINERS                                   |   7 +
+ drivers/net/ethernet/microchip/Kconfig        |   1 +
+ drivers/net/ethernet/microchip/Makefile       |   1 +
+ .../net/ethernet/microchip/lan966x/Kconfig    |   7 +
+ .../net/ethernet/microchip/lan966x/Makefile   |   9 +
+ .../microchip/lan966x/lan966x_ethtool.c       | 664 ++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_ifh.h  | 173 ++++
+ .../ethernet/microchip/lan966x/lan966x_mac.c  | 101 ++
+ .../ethernet/microchip/lan966x/lan966x_main.c | 944 ++++++++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_main.h | 201 ++++
+ .../microchip/lan966x/lan966x_phylink.c       |  96 ++
+ .../ethernet/microchip/lan966x/lan966x_port.c | 422 ++++++++
+ .../ethernet/microchip/lan966x/lan966x_regs.h | 730 ++++++++++++++
+ 14 files changed, 3505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/Kconfig
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/Makefile
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_ethtool.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_ifh.h
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_mac.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_port.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
 
-usb/generic-xhci.yaml / usb/usb-xhci.yaml
+-- 
+2.33.0
 
-That block binding covers *multiple* registers, see:
-reg = <0xf0931000 0x8c8>;
-
-However its children nodes are indexed and use "reg", see:
-hub@1 {
-     compatible = "usb5e3,610";
-     reg = <1>;
-};
-
-*****
-
-Example 2:
-
-spi/spi-controller.yaml
-
-That binding uses "fsl,imx28-spi" as example. Its binding covers
-*multiple* registers, see:
-reg = <0x80010000 0x2000>;
-
-However its children nodes are indexed and use "reg", see:
-display@0 {
-     compatible = "lg,lg4573";
-     spi-max-frequency = <1000000>;
-     reg = <0>;
-};
-
-*****
-
-So it appears my understanding is wrong somewhere. It seems to be a bit
-tricky to get things right so I'd really appreciate some documentation
-on that.
