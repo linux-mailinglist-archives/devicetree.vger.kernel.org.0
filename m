@@ -2,83 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB31B45A384
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15B5C45A389
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:17:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235806AbhKWNTV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 08:19:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50278 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235664AbhKWNTV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 08:19:21 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E178860FE7;
-        Tue, 23 Nov 2021 13:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637673373;
-        bh=q5aZR96jnTB2l0bMhRdAixmuwxPR6NrPz6OV1iqoeDA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sqqby0l8iIJ+KPPE3VrACpPiqzWJyc0lB6JH6e6q2w4jA4tWOalQL2Ifm6u2+oNCl
-         NU2HXpPxAhK95CoEmUSkPCm2VO9LLk4UBXLNV0BDn/BO17WxXe7NdukUwAdCCMZky+
-         y5EOyGiMYctY53lznnjuNtKUrfDSkqv724qI6jiDIjJ9pBjEBj4Yz0U7YrpNnGy5ld
-         Z69DmzwbOOx3yYvIrDY/k5oprxgFrrbPRbCt5n2ZD4QeklQ3WtDZUKu0CHJ+3KOlZ9
-         ce50fuzQId+WbOHlsFNZh4y6wpmwvOjQnpEj6M/JaGNciqNMmBh5HdQswkafbqp1ik
-         w01qBqasCnReA==
-Date:   Tue, 23 Nov 2021 13:16:08 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Support Opensource <Support.Opensource@diasemi.com>
-Subject: Re: [PATCH 1/2] DA9121: add DA914x binding info
-Message-ID: <YZzpmPfnZ/I2ZdZk@sirena.org.uk>
-References: <cover.1637669927.git.Adam.Ward.opensource@diasemi.com>
- <49e5f47c79c0fc1d2b52ffdf7f5872f0adfa5ba5.1637669927.git.Adam.Ward.opensource@diasemi.com>
- <YZze1uynsB+d1YWx@sirena.org.uk>
- <VI1PR10MB316716A5C73693A95EE120F3EC609@VI1PR10MB3167.EURPRD10.PROD.OUTLOOK.COM>
+        id S235571AbhKWNU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 08:20:57 -0500
+Received: from mail-vk1-f173.google.com ([209.85.221.173]:41626 "EHLO
+        mail-vk1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235412AbhKWNU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 08:20:57 -0500
+Received: by mail-vk1-f173.google.com with SMTP id 188so9410708vku.8;
+        Tue, 23 Nov 2021 05:17:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=M8K9GN/oaS924xTtn+p8naXBl/UNbxTzzkuFDkkYLH8=;
+        b=ROjg79FmEmilngsYR1274FzTqqQU5EpsNY8cslcI2a0OM/yqeUYmUna7VmWFAGqJfE
+         D0HI3YX8Lp1WYVqJgMggaYv40nyCZI5uF5yNH1ALw1wRUcJnRHIZtbqx/1XcowdRNDJ3
+         RU4qHeLe5a/iox1waLdWvzqrWm2slbyEIff1HDQ4aRO4RzUd4Vn/+ovewarkH30A9WGy
+         i/UE4QV8fsASzSYq/01JvivPe2hPiyM6IT8Vm+sLdTV/on7rEu22Z54+aczr0t7vdlsz
+         ojNui4C2tFPyTq7KEyL3OAid5U3wpQpmwEmcwedRJoes4I9/2cVt2NpdWtiSNJnbHhfP
+         H0mw==
+X-Gm-Message-State: AOAM533lzM3hFDYgpA5iymRZqPzt7F+aERsgxMA+aVog/Lgu9EvVHD6A
+        rnTKzha3MfuQD41ZKUgzRKYqq//Ra6rm9g==
+X-Google-Smtp-Source: ABdhPJyyec5KuED/H9T65N5LYvXNLNDacrvptOdqf/RwRTi9i1/LNVrLCKgrW/LnRKBNzyKgaPxC0w==
+X-Received: by 2002:a05:6122:1782:: with SMTP id o2mr10831798vkf.3.1637673468360;
+        Tue, 23 Nov 2021 05:17:48 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id q26sm6795730vsp.23.2021.11.23.05.17.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 05:17:47 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id p2so43598452uad.11;
+        Tue, 23 Nov 2021 05:17:47 -0800 (PST)
+X-Received: by 2002:ab0:15a1:: with SMTP id i30mr8827372uae.122.1637673466803;
+ Tue, 23 Nov 2021 05:17:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8lYysKkgiV4LEiCQ"
-Content-Disposition: inline
-In-Reply-To: <VI1PR10MB316716A5C73693A95EE120F3EC609@VI1PR10MB3167.EURPRD10.PROD.OUTLOOK.COM>
-X-Cookie: A closed mouth gathers no foot.
+References: <20211118191826.2026-1-biju.das.jz@bp.renesas.com> <20211118191826.2026-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211118191826.2026-2-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 23 Nov 2021 14:17:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVR4u2neQ5u4hQM93GDF-=TWr9WJ9OPJux4hXo_agR13w@mail.gmail.com>
+Message-ID: <CAMuHMdVR4u2neQ5u4hQM93GDF-=TWr9WJ9OPJux4hXo_agR13w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: r9a07g044: Add OSTM nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 18, 2021 at 8:18 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add OSTM{0,1,2} nodes to RZ/G2L SoC DTSI.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
---8lYysKkgiV4LEiCQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.17.
 
-On Tue, Nov 23, 2021 at 01:06:23PM +0000, Adam Ward wrote:
-> > On Tue, Nov 23, 2021 at 12:30PM +0000, Mark Brown wrote:
+Gr{oetje,eeting}s,
 
-> > This is removing the existing DA9140 compatible?
+                        Geert
 
-> No. It's never been recognised in the driver itself and shouldn't have been there.
-> Detritus from an obsolete test.
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-So by "no" you mean "yes" then?  In any case you shouldn't be putting a
-change like this in the middle of an unrelated commit without mentioning
-it in the commit log, if you feel the need to remove this compatible you
-should make a commit doing so.  Please see submitting-patches.rst for
-details on splitting changes up.
-
---8lYysKkgiV4LEiCQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGc6ZcACgkQJNaLcl1U
-h9CDXwf/Qy02pcVJe5qcNOHJPPhiIYoYythiM6O3Z7eu/5tH2Ln5hraZabNbVq6w
-JndWc9OsYSg3k3W5evxxIUfxRxAt/c978i9HOh+5JfCTtZ9BkPuJKgDSZzFS7zFO
-XBsuLcSfcnkR7Pf/9PdT8TjNxq2j3nDYGRpyO9flp3xd+cjhG1hJ4DJZPGgqnDoI
-4LvxmL1esoxgNLmWvQH3lbqZ44vEEJ0tBWBkfy48f4m9G49YSHjGWrjY+RhyGSsU
-RTmItMtDN8N7HoXvd3c2S5P0EeIOFEXL8cBaaNAOPHeIfF1axE3ZxHsBZn97EpWo
-qaKko1Vwc3Q17mjRHjSVt/tm7UJzIg==
-=AArH
------END PGP SIGNATURE-----
-
---8lYysKkgiV4LEiCQ--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
