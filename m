@@ -2,227 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D688145AD87
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 21:44:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9155545AE6D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 22:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232900AbhKWUre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 15:47:34 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:11095 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231317AbhKWUrd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 15:47:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637700250;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=lx2cJbI8GrOX2KSveTwWrflXhk1U0xk/ZzWu+iZs7Ak=;
-    b=PjW1E4lbGzoW6qeYk56MrIQ0PpOEOGMHjrbKJYHUGWu+DlyLcK737iHE1lo8lEIdhD
-    VeOiyhOnrpPxyaOhMDFVH+/orjnkoXmkg5wq49Qz05ZjYWA2v1ek+kPE/42zYOyaUhC2
-    fXcbj4YaRs97LQys/LKPxsDLwBhYB3A6R0qW4vzRzbOA5yyGg45JpaN7pHWRB9W9Ohm7
-    Vp79ba+a8doCEXiAvwBRGe3j8yQFAtyTJJ9i2ZuLLtWuK6dKQitQ/CMGx9IMdl+TuO9N
-    y3X4eF2hpkrxsQ9SCDh5+ubraDN3agE5WprNjf/9/czCav/IDAhAu9aLhgqSvcTdmXR/
-    6Vxw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43u3mM="
-X-RZG-CLASS-ID: mo00
-Received: from mbp-13-nikolaus.fritz.box
-    by smtp.strato.de (RZmta 47.34.6 DYNA|AUTH)
-    with ESMTPSA id g09b5fxANKi885e
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Tue, 23 Nov 2021 21:44:08 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v8 0/8] MIPS: JZ4780 and CI20 HDMI
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <J4K13R.CGVJ0IY95LC51@crapouillou.net>
-Date:   Tue, 23 Nov 2021 21:44:07 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B6B358E8-4395-442F-A353-396D8DC54C66@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
- <J4K13R.CGVJ0IY95LC51@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S232326AbhKWV1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 16:27:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47400 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229838AbhKWV1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 16:27:53 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0DFC061574;
+        Tue, 23 Nov 2021 13:24:44 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id x6so816925edr.5;
+        Tue, 23 Nov 2021 13:24:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=444QMqDjsr/4IdpE/tLDY4FNQjqFzhOwAAsJFthSU7c=;
+        b=YzhL55wMTenJtwWRQwCReF84Xaz46sqAtLJk0GkBEFxZjM8/iIUYxxt4oBaViYSh0x
+         W+hl6lN/O2XxwE/wdWpBIdiXHWFkScL/8fPSkYYSlqUxQcuayIQ43zMoOhzySJuga7YH
+         TLioJ7hmu/pds9Gi5ubGeLfwyhB4ekrJBS0cL1cQrdGMn0Uy2Zm4kN7dn1vlpuOHpQ0l
+         DY615KiX2d1ww+fsiQv/aZnaCMh2PdDJBI2De8Yb/jpd+pnnNBMbEpBxFc60Tie62/oH
+         c50iLWsH9XWMJQrKUOfRjqgWy/FbA3jMxPIi9OntmrIta31E2zLKZmIjm4Qa3A12kik6
+         StlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=444QMqDjsr/4IdpE/tLDY4FNQjqFzhOwAAsJFthSU7c=;
+        b=fO0Be2o6wmY8UgK2d59GkvK5QEvrIGhiqy3tJQmIf4ElLxNXinYJp5p16XrLJwC2Gw
+         Yem3yXY5eqP2dntpZ68JqrngjRi2e/wcEUwfyQsYE15tImYUD32XLZE8Uu0qz0ADvOmy
+         Aj76p3Ay8flvJxWsJF92LeAimixJ6xHd6pKABeUuyGWSENxKYFK4zMktC9i0awrFT2KZ
+         CytG+61/meBmya2kmjSOxFw3h6JQycHnjxS1aOTMu3YOG65eq8IF3CG9C4eFG6pbZ1t4
+         +vWEr28P9bW68mIJ/kucXFsx2H6v3MuCxpQbDtmTDPuhcHCyEwX1id+IN8cJGmS+d5Os
+         tAog==
+X-Gm-Message-State: AOAM532bT8HjaHzu2PxXiOMENbQ16IC1iHePIZ5u8HNp0jfqEwz+BTIF
+        KMAA30DIuzLNRRCJ8SIfw6c=
+X-Google-Smtp-Source: ABdhPJz7PXRbMHZ8Nm7RBp4N2lsgP5cds9YsGiYdhgK0Nh9B9tsHWmMJ5A/lYTJY60dZ+VXlhzWCmw==
+X-Received: by 2002:a50:8d47:: with SMTP id t7mr14669800edt.14.1637702683110;
+        Tue, 23 Nov 2021 13:24:43 -0800 (PST)
+Received: from skbuf ([188.25.163.189])
+        by smtp.gmail.com with ESMTPSA id p26sm5719999edt.94.2021.11.23.13.24.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 13:24:42 -0800 (PST)
+Date:   Tue, 23 Nov 2021 23:24:41 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
+Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
+ supported_interfaces with modes from fwnode
+Message-ID: <20211123212441.qwgqaad74zciw6wj@skbuf>
+References: <20211123164027.15618-1-kabel@kernel.org>
+ <20211123164027.15618-5-kabel@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211123164027.15618-5-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Tue, Nov 23, 2021 at 05:40:23PM +0100, Marek Behún wrote:
+> Now that the 'phy-mode' property can be a string array containing more
+> PHY modes (all that are supported by the board), update the bitmap of
+> interfaces supported by the MAC with this property.
+> 
+> Normally this would be a simple intersection (of interfaces supported by
+> the current implementation of the driver and interfaces supported by the
+> board), but we need to keep being backwards compatible with older DTs,
+> which may only define one mode, since, as Russell King says,
+>   conventionally phy-mode has meant "this is the mode we want to operate
+>   the PHY interface in" which was fine when PHYs didn't change their
+>   mode depending on the media speed
+> 
+> An example is DT defining
+>   phy-mode = "sgmii";
+> but the board supporting also 1000base-x and 2500base-x.
+> 
+> Add the following logic to keep this backwards compatiblity:
+> - if more PHY modes are defined, do a simple intersection
+> - if one PHY mode is defined:
+>   - if it is sgmii, 1000base-x or 2500base-x, add all three and then do
+>     the intersection
+>   - if it is 10gbase-r or usxgmii, add both, and also 5gbase-r,
+>     2500base-x, 1000base-x and sgmii, and then do the intersection
+> 
+> This is simple enough and should work for all boards.
+> 
+> Nonetheless it is possible (although extremely unlikely, in my opinion)
+> that a board will be found that (for example) defines
+>   phy-mode = "sgmii";
+> and the MAC drivers supports sgmii, 1000base-x and 2500base-x, but the
+> board DOESN'T support 2500base-x, because of electrical reasons (since
+> the frequency is 2.5x of sgmii).
+> Our code will in this case incorrectly infer also support for
+> 2500base-x. To avoid this, the board maintainer should either change DTS
+> to
+>   phy-mode = "sgmii", "1000base-x";
+> and update device tree on all boards, or, if that is impossible, add a
+> fix into the function we are introducing in this commit.
+> 
+> Another example would be a board with device-tree defining
+>   phy-mode = "10gbase-r";
+> We infer from this all other modes (sgmii, 1000base-x, 2500base-x,
+> 5gbase-r, usxgmii), and these then get filtered by those supported by
+> the driver. But it is possible that a driver supports all of these
+> modes, and yet not all are supported because the board has an older
+> version of the TF-A firmware, which implements changing of PHY modes via
+> SMC calls. For this case, the board maintainer should either provide all
+> supported modes in the phy-mode property, or add a fix into this
+> function that somehow checks for this situation. But this is a really
+> unprobable scenario, in my opinion.
+> 
+> Signed-off-by: Marek Behún <kabel@kernel.org>
+> ---
+> Changes since v1:
+> - added 10gbase-r example scenario to commit message
+> - changed phylink_update_phy_modes() so that if supported_interfaces is
+>   empty (an unconverted driver that doesn't fill up this member), we
+>   leave it empty
+> - rewritten phylink_update_phy_modes() according to Sean Anderson's
+>   comment: use phy_interface_and/or() instead of several
+>   if (test_bit) set_bit
+> ---
+>  drivers/net/phy/phylink.c | 70 +++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+> 
+> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+> index 3603c024109a..d2300a3a60ec 100644
+> --- a/drivers/net/phy/phylink.c
+> +++ b/drivers/net/phy/phylink.c
+> @@ -564,6 +564,74 @@ static int phylink_parse_fixedlink(struct phylink *pl,
+>  	return 0;
+>  }
+>  
+> +static void phylink_update_phy_modes(struct phylink *pl,
+> +				     struct fwnode_handle *fwnode)
+> +{
+> +	unsigned long *supported = pl->config->supported_interfaces;
+> +	DECLARE_PHY_INTERFACE_MASK(modes);
+> +
+> +	/* FIXME: If supported is empty, leave it as it is. This happens for
+> +	 * unconverted drivers that don't fill up supported_interfaces. Once all
+> +	 * such drivers are converted, we can drop this.
+> +	 */
+> +	if (phy_interface_empty(supported))
+> +		return;
+> +
+> +	if (fwnode_get_phy_modes(fwnode, modes) < 0)
+> +		return;
+> +
+> +	/* If no modes are defined in fwnode, interpret it as all modes
+> +	 * supported by the MAC are supported by the board.
+> +	 */
+> +	if (phy_interface_empty(modes))
+> +		return;
+> +
+> +	/* We want the intersection of given supported modes with those defined
+> +	 * in DT.
+> +	 *
+> +	 * Some older device-trees mention only one of `sgmii`, `1000base-x` or
+> +	 * `2500base-x`, while supporting all three. Other mention `10gbase-r`
+> +	 * or `usxgmii`, while supporting both, and also `sgmii`, `1000base-x`,
+> +	 * `2500base-x` and `5gbase-r`.
+> +	 * For backwards compatibility with these older DTs, make it so that if
+> +	 * one of these modes is mentioned in DT and MAC supports more of them,
+> +	 * keep all that are supported according to the logic above.
+> +	 *
+> +	 * Nonetheless it is possible that a device may support only one mode,
+> +	 * for example 1000base-x, due to strapping pins or some other reasons.
+> +	 * If a specific device supports only the mode mentioned in DT, the
+> +	 * exception should be made here with of_machine_is_compatible().
+> +	 */
+> +	if (bitmap_weight(modes, PHY_INTERFACE_MODE_MAX) == 1) {
 
-> Am 23.11.2021 um 21:12 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi Nikolaus,
->=20
-> I think if you can fix the last few things I commented on, and I get =
-an ACK from Rob for the Device Tree related patches, then it will be =
-ready to merge.
+I like the idea of extending the mask of phy_modes based on the
+phylink_config.supported_interfaces bitmap that the driver populates
+(assuming, of course, that it's converted correctly to this new format,
+and I looked through the implementations and just found a bug). I think
+it might just work with old device trees, too. In fact, it may work so
+well, that I would even be tempted to ask "can we defer for a while
+updating the device trees and bindings documents with an array, just
+keep the phy modes as an array internally inside the kernel?"
 
-Fine! Especially for finding the NULL regulator risk.
+On the Marvell boards that you're working with, do you have an example
+board on which not all the PHY modes supported by the driver might be
+available? Do you also know the reason why? You give an example in the
+comments about 1000base-X and strapping, can you expand on that?
 
-Will do in the next days.
-For the unwedge pinmux I have to check if we need it at all.
+Because I think it's a bit strange to create a framework for fixups now,
+when we don't even know what kind of stuff may be broken. The PHY modes
+(effectively SERDES protocols) might not be what you actually want to restrict.
+I mean, restricting the PHY modes is like saying: "the MAC supports
+USXGMII and 10GBase-R, the PHY supports USXGMII and 10GBase-R, I know
+how to configure both of them in each mode, but on this board, USXGMII
+works and 10GBase-R doesn't".
 
-BR and thanks,
-Nikolaus
+?!
 
->=20
-> Cheers,
-> -Paul
->=20
->=20
-> Le mar., nov. 23 2021 at 19:13:53 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->> PATCH V8 2021-11-23 19:14:00:
->> - fix a bad editing result from patch 2/8 (found by =
-paul@crapouillou.net)
->> PATCH V7 2021-11-23 18:46:23:
->> - changed gpio polarity of hdmi_power to 0 (suggested by =
-paul@crapouillou.net)
->> - fixed LCD1 irq number (bug found by paul@crapouillou.net)
->> - removed "- 4" for calculating max_register (suggested by =
-paul@crapouillou.net)
->> - use unevaluatedPropertes instead of additionalProperties (suggested =
-by robh@kernel.org)
->> - moved and renamed ingenic,jz4780-hdmi.yaml (suggested by =
-robh@kernel.org)
->> - adjusted assigned-clocks changes to upstream which added some for =
-SSI (by hns@goldelico.com)
->> - rebased and tested with v5.16-rc2 + patch set drm/ingenic by =
-paul@crapouillou.net (by hns@goldelico.com)
->> PATCH V6 2021-11-10 20:43:33:
->> - changed CONFIG_DRM_INGENIC_DW_HDMI to "m" (by hns@goldelico.com)
->> - made ingenic-dw-hdmi an independent platform driver which can be =
-compiled as module
->>  and removed error patch fixes for IPU (suggested by =
-paul@crapouillou.net)
->> - moved assigned-clocks from jz4780.dtsi to ci20.dts (suggested by =
-paul@crapouillou.net)
->> - fixed reg property in jz4780.dtsi to cover all registers incl. =
-gamma and vee (by hns@goldelico.com)
->> - added a base patch to calculate regmap size from DTS reg property =
-(requested by paul@crapouillou.net)
->> - restored resetting all bits except one in LCDOSDC (requested by =
-paul@crapouillou.net)
->> - clarified setting of cpos (suggested by paul@crapouillou.net)
->> - moved bindings definition for ddc-i2c-bus (suggested by =
-paul@crapouillou.net)
->> - simplified mask definitions for JZ_LCD_DESSIZE (requested by =
-paul@crapouillou.net)
->> - removed setting alpha premultiplication (suggested by =
-paul@crapouillou.net)
->> - removed some comments (suggested by paul@crapouillou.net)
->> PATCH V5 2021-10-05 14:28:44:
->> - dropped mode_fixup and timings support in dw-hdmi as it is no =
-longer needed in this V5 (by hns@goldelico.com)
->> - dropped "drm/ingenic: add some jz4780 specific features" =
-(stimulated by paul@crapouillou.net)
->> - fixed typo in commit subject: "synopsis" -> "synopsys" (by =
-hns@goldelico.com)
->> - swapped clocks in jz4780.dtsi to match synopsys,dw-hdmi.yaml (by =
-hns@goldelico.com)
->> - improved, simplified, fixed, dtbschecked ingenic-jz4780-hdmi.yaml =
-and made dependent of bridge/synopsys,dw-hdmi.yaml (based on suggestions =
-by maxime@cerno.tech)
->> - fixed binding vs. driver&DTS use of hdmi-5v regulator (suggested by =
-maxime@cerno.tech)
->> - dropped "drm/bridge: synopsis: Fix to properly handle HPD" - was a =
-no longer needed workaround for a previous version
->>  (suggested by maxime@cerno.tech)
->> PATCH V4 2021-09-27 18:44:38:
->> - fix setting output_port =3D 1 (issue found by paul@crapouillou.net)
->> - ci20.dts: convert to use hdmi-connector (by hns@goldelico.com)
->> - add a hdmi-regulator to control +5V power (by hns@goldelico.com)
->> - added a fix to dw-hdmi to call drm_kms_helper_hotplug_event on =
-plugin event detection (by hns@goldelico.com)
->> - always allocate extended descriptor but initialize only for jz4780 =
-(by hns@goldelico.com)
->> - updated to work on top of "[PATCH v3 0/6] drm/ingenic: Various =
-improvements v3" (by paul@crapouillou.net)
->> - rebased to v5.13-rc3
->> PATCH V3 2021-08-08 07:10:50:
->> This series adds HDMI support for JZ4780 and CI20 board (and fixes =
-one IPU related issue in registration error path)
->> - [patch 1/8] switched from mode_fixup to atomic_check (suggested by =
-robert.foss@linaro.org)
->>  - the call to the dw-hdmi specialization is still called mode_fixup
->> - [patch 3/8] diverse fixes for ingenic-drm-drv (suggested by =
-paul@crapouillou.net)
->>  - factor out some non-HDMI features of the jz4780 into a separate =
-patch
->>  - multiple fixes around max height
->>  - do not change regmap config but a copy on stack
->>  - define some constants
->>  - factor out fixing of drm_init error path for IPU into separate =
-patch
->>  - use FIELD_PREP()
->> - [patch 8/8] conversion to component framework dropped (suggested by =
-Laurent.pinchart@ideasonboard.com and paul@crapouillou.net)
->> PATCH V2 2021-08-05 16:08:05:
->> - code and commit messages revisited for checkpatch warnings
->> - rebased on v5.14-rc4
->> - include (failed, hence RFC 8/8) attempt to convert to component =
-framework
->>  (was suggested by Paul Cercueil <paul@crapouillou.net> a while ago)
->> This series adds HDMI support for JZ4780 and CI20 board
->> H. Nikolaus Schaller (3):
->>  drm/ingenic: prepare ingenic drm for later addition of JZ4780
->>  MIPS: defconfig: CI20: configure for DRM_DW_HDMI_JZ4780
->>  [RFC] MIPS: DTS: Ingenic: adjust register size to available =
-registers
->> Paul Boddie (4):
->>  drm/ingenic: Add support for JZ4780 and HDMI output
->>  drm/ingenic: Add dw-hdmi driver for jz4780
->>  MIPS: DTS: jz4780: Account for Synopsys HDMI driver and LCD
->>    controllers
->>  MIPS: DTS: CI20: Add DT nodes for HDMI setup
->> Sam Ravnborg (1):
->>  dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
->> .../display/bridge/ingenic,jz4780-hdmi.yaml   |  76 +++++++++++
->> .../display/bridge/synopsys,dw-hdmi.yaml      |   3 +
->> arch/mips/boot/dts/ingenic/ci20.dts           |  83 ++++++++++-
->> arch/mips/boot/dts/ingenic/jz4725b.dtsi       |   2 +-
->> arch/mips/boot/dts/ingenic/jz4740.dtsi        |   2 +-
->> arch/mips/boot/dts/ingenic/jz4770.dtsi        |   2 +-
->> arch/mips/boot/dts/ingenic/jz4780.dtsi        |  40 ++++++
->> arch/mips/configs/ci20_defconfig              |   6 +
->> drivers/gpu/drm/ingenic/Kconfig               |   9 ++
->> drivers/gpu/drm/ingenic/Makefile              |   1 +
->> drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  62 ++++++++-
->> drivers/gpu/drm/ingenic/ingenic-drm.h         |  38 ++++++
->> drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     | 129 =
-++++++++++++++++++
->> 13 files changed, 444 insertions(+), 9 deletions(-)
->> create mode 100644 =
-Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->> create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
->> --
->> 2.33.0
->=20
->=20
+It may make more sense, when the time comes for the first fixup, to put
+a cap on the maximum gross data rate attainable on that particular lane
+(including stuff such as USXGMII symbol repetition), instead of having
+to list out all the PHY modes that a driver might or might not support
+right now. Imagine what pain it will be to update device trees each time
+a driver gains software support for a SERDES protocol it didn't support
+before. But if you cap the lane frequency, you can make phylink_update_phy_modes()
+deduce what isn't acceptable using simple logic.
 
+Also, if there's something to be broken by this change, why would we put
+an of_machine_is_compatible() here, and why wouldn't we instead update
+the phylink_config.supported_interfaces directly in the driver? I think
+it's the driver's responsibility for passing a valid mask of supported
+interfaces.
+
+> +		DECLARE_PHY_INTERFACE_MASK(mask);
+> +		bool lower = false;
+> +
+> +		if (test_bit(PHY_INTERFACE_MODE_10GBASER, modes) ||
+> +		    test_bit(PHY_INTERFACE_MODE_USXGMII, modes)) {
+> +			phy_interface_zero(mask);
+> +			__set_bit(PHY_INTERFACE_MODE_5GBASER, mask);
+> +			__set_bit(PHY_INTERFACE_MODE_10GBASER, mask);
+> +			__set_bit(PHY_INTERFACE_MODE_USXGMII, mask);
+> +			phy_interface_and(mask, supported, mask);
+> +			phy_interface_or(modes, modes, mask);
+> +			lower = true;
+> +		}
+> +
+> +		if (lower || (test_bit(PHY_INTERFACE_MODE_SGMII, modes) ||
+> +			      test_bit(PHY_INTERFACE_MODE_1000BASEX, modes) ||
+> +			      test_bit(PHY_INTERFACE_MODE_2500BASEX, modes))) {
+> +			phy_interface_zero(mask);
+> +			__set_bit(PHY_INTERFACE_MODE_SGMII, mask);
+> +			__set_bit(PHY_INTERFACE_MODE_1000BASEX, mask);
+> +			__set_bit(PHY_INTERFACE_MODE_2500BASEX, mask);
+> +			phy_interface_and(mask, supported, mask);
+> +			phy_interface_or(modes, modes, mask);
+> +		}
+> +	}
+> +
+> +	phy_interface_and(supported, supported, modes);
+> +}
+> +
+>  static int phylink_parse_mode(struct phylink *pl, struct fwnode_handle *fwnode)
+>  {
+>  	struct fwnode_handle *dn;
+> @@ -1157,6 +1225,8 @@ struct phylink *phylink_create(struct phylink_config *config,
+>  	__set_bit(PHYLINK_DISABLE_STOPPED, &pl->phylink_disable_state);
+>  	timer_setup(&pl->link_poll, phylink_fixed_poll, 0);
+>  
+> +	phylink_update_phy_modes(pl, fwnode);
+> +
+>  	bitmap_fill(pl->supported, __ETHTOOL_LINK_MODE_MASK_NBITS);
+>  	linkmode_copy(pl->link_config.advertising, pl->supported);
+>  	phylink_validate(pl, pl->supported, &pl->link_config);
+> -- 
+> 2.32.0
+> 
