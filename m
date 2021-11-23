@@ -2,106 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F15145A74D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:12:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3989945A752
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:14:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238821AbhKWQP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:15:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58884 "EHLO
+        id S237416AbhKWQRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:17:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238814AbhKWQP6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:15:58 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51675C061714;
-        Tue, 23 Nov 2021 08:12:50 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id a11-20020a4ad1cb000000b002c2657270a0so7618147oos.8;
-        Tue, 23 Nov 2021 08:12:50 -0800 (PST)
+        with ESMTP id S235451AbhKWQRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:17:11 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0131C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 08:14:03 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id y7so17538035plp.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 08:14:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=x3pTkMBRWPoucw3+uv5s5/MdfOus2wzreQRdSu6RUN4=;
-        b=U43BWquqfx/uZQbwONDvjORG8korIBBfnaSmgwhWZER0df4erdqd2WUO14hrrL+LVZ
-         nne+eiPmoHu7vkIPtp9pT5wELn45FCLFl/2uSdKgSbmHaCFVA3kRhUgZ8PFgP+cvLC0k
-         FBNxCxDtfdKQ3B09CwKCPNS7vAwCY4v23PC5+GBaLPVKQqzLVTT0FGsi7bIaZQVB+I2J
-         +/togf0OrDDREM26Ur+gNpfPy+x4UbTlLLWTcXiSZUVe1X9u0AFJcongFsPWeobVV3as
-         v/o9zw+Bo2cooPp2+yzI7BCJbLNNz8smS5ZAVwZDTf48n6z2fyFPHz+5/BtYSaJgdB+s
-         +8lQ==
+        bh=8inpYltOn+CuOSRy1TzQ0Ih132g9z81+D5QmyV6ts9Y=;
+        b=i9rVupQl92AqsGZLGbAOub7zhj7/6WU2T4Pko8hrZl+IA44g+22VPUoU63MjKamPOx
+         EHUzvltfq2WdgtS5LQBEMIGi21/vWiEau8TliotzO6fF7bNhY5S3tCaumCmUW+FrWHhz
+         gb3X4g4L/SaQNGJBiJsxy92tlcqsfy3MpeS70=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=x3pTkMBRWPoucw3+uv5s5/MdfOus2wzreQRdSu6RUN4=;
-        b=auQz0BEqruaJkkwGl6aMTC/SM81kS/3CHFNphoJIEXDsTXYqLkEpILs0On2YNjD5Yv
-         TUbzEq1LnMZSdkgEPOCozf6tEf+IBYTkmFKFXdF5NPTUdbG4TvGcdmBNnyZd5eW2yTSX
-         bs03fwTzdij7khy6jK6oatV1mJPugbEFlJblhwatXRsHa5U6lnCdKdVhQgBqDquCteGV
-         U0qBJoHRAJ06hINjkl56m65sNQVEdAGGEIi4Edy/SA2/sH0sJbWFUvjU3gQT3JmIm2V6
-         7RAsUejuT7E1U1Q5HkQrbVsb5jDetz2jLSwNSujz5GuRZs4oRHJLvCGv4q71WqvKoQLU
-         Y+3A==
-X-Gm-Message-State: AOAM530YniNIf10iTyPfq3dmV5FtdTAOun3tCgZ1DtD5lvfwYXe5ZWA6
-        x/Fh7gBTEDVRdkboTKnxM/E=
-X-Google-Smtp-Source: ABdhPJzQ+A5xkRFntGL8OIIeSLsQm6w+7XJ5uSFNKkNcGEMxsD4xykQ2eK6ajrbS3Vjr1bK4xnlEVQ==
-X-Received: by 2002:a4a:a88d:: with SMTP id q13mr3854364oom.5.1637683969719;
-        Tue, 23 Nov 2021 08:12:49 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id b22sm2630760oib.41.2021.11.23.08.12.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 08:12:49 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Tue, 23 Nov 2021 08:12:47 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Subject: Re: [PATCH v4 12/12] watchdog: s3c2410: Add Exynos850 support
-Message-ID: <20211123161247.GD2326185@roeck-us.net>
-References: <20211121165647.26706-1-semen.protsenko@linaro.org>
- <20211121165647.26706-13-semen.protsenko@linaro.org>
- <CAPLW+4myd2JDEKmv+E1HsxK_yNaLC+iUWSo99+Lqujof3MGpCg@mail.gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8inpYltOn+CuOSRy1TzQ0Ih132g9z81+D5QmyV6ts9Y=;
+        b=BD6hDL/WFZ+b7eAoWVsOtr1MYcwF7t41XwFXEs0m8lcLc7cVd2UhYkVmcqvQ6eZlI/
+         /hLKJXqRejLKejJuCQ0BGDV3s5Yumu9P3wnjuQsPhuDvjzF6/EexOdP2xRUaj291hloK
+         xvVvEvSmyewiD8GtVLxeqa+fYO0kevXG+ryI0wr798jC0Jh5cEXshhNJqIWFzxmy4iZt
+         fQ0bAgrZxuTKNEDK1dlT7deUvkkyPZ7wWu30MIlzpgH3CHyNihzLtUliTVQ6PTOPM/PL
+         urMLy4t4ettTU9aa8m4TLcFKjj9FldKBGnr4KcRqYXJJK4AB2LUF9AAbH8iyyWRd2HTZ
+         Tifw==
+X-Gm-Message-State: AOAM530oktYLiKSIlFluJ+uvEuq4/uJHDbrwjvoLjSXMHMET88jT1N7U
+        QGAffCOAZ2jOGJ8bqWxaB9aPZw==
+X-Google-Smtp-Source: ABdhPJwMfxC2wTbN/wG3x9FjFcU7i8b+6ZPx2ERHXd9Jk5kD6A1sd4h6hQVvjeYdILoZg1ualPJaSw==
+X-Received: by 2002:a17:90a:e40f:: with SMTP id hv15mr4231148pjb.5.1637684043171;
+        Tue, 23 Nov 2021 08:14:03 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:5fa5:d920:9d68:9c16])
+        by smtp.gmail.com with UTF8SMTPSA id s2sm14576950pfg.124.2021.11.23.08.14.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 08:14:02 -0800 (PST)
+Date:   Tue, 23 Nov 2021 08:14:01 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
+        dianders@chromium.org, kgodara@codeaurora.org
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sc7280-crd: Add device tree files
+ for CRD
+Message-ID: <YZ0TSeXddm+qGJ0/@google.com>
+References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
+ <1637650813-16654-3-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAPLW+4myd2JDEKmv+E1HsxK_yNaLC+iUWSo99+Lqujof3MGpCg@mail.gmail.com>
+In-Reply-To: <1637650813-16654-3-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 22, 2021 at 05:14:35PM +0200, Sam Protsenko wrote:
-> On Sun, 21 Nov 2021 at 18:57, Sam Protsenko <semen.protsenko@linaro.org> wrote:
-> >
-> > Exynos850 is a bit different from SoCs already supported in WDT driver:
-> >   - AUTOMATIC_WDT_RESET_DISABLE register is removed, so its value is
-> >     always 0; .disable_auto_reset callback is not set for that reason
-> >   - MASK_WDT_RESET_REQUEST register is replaced with
-> >     CLUSTERx_NONCPU_IN_EN register; instead of masking (disabling) WDT
-> >     reset interrupt it's now enabled with the same value; .mask_reset
-> >     callback is reused for that functionality though
-> >   - To make WDT functional, WDT counter needs to be enabled in
-> >     CLUSTERx_NONCPU_OUT register; it's done using .enable_counter
-> >     callback
-> >
-> > Also Exynos850 has two CPU clusters, each has its own dedicated WDT
-> > instance. Different PMU registers and bits are used for each cluster. So
-> > driver data is now modified in probe, adding needed info depending on
-> > cluster index passed from device tree.
-> >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> > ---
+On Tue, Nov 23, 2021 at 12:30:11PM +0530, Rajendra Nayak wrote:
+> CRD (Compute Reference Design) is a sc7280 based board, largely
+> derived from the existing IDP board design with some key deltas
+> 1. has EC and H1 over SPI similar to IDP2
+> 2. touchscreen and trackpad support
+> 3. eDP display
 > 
-> Hi Guenter,
+> We just add the barebones dts file here, subsequent patches will
+> add support for EC/H1 and other components.
 > 
-> I've resent the whole series, but I can see you already applied my
-> previous series to your watchdog-next branch. So this patch is the
-> only one that actually changed in the whole series (with fixes for
-> 0-day warning).
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile       |  1 +
+>  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 31 +++++++++++++++++++++++++++++++
+>  2 files changed, 32 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-crd.dts
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 6b816eb..b18708c 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-herobrine.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-idp2.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= sc7280-crd.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-discovery.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-nile-pioneer.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> new file mode 100644
+> index 0000000..09d02c2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> @@ -0,0 +1,31 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * sc7280 CRD board device tree source
+> + *
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sc7280-idp.dtsi"
+> +
+> +/ {
+> +	model = "Qualcomm Technologies, Inc. sc7280 CRD platform";
+> +	compatible = "qcom,sc7280-crd", "google,hoglin-rev0", "qcom,sc7280";
 
-No worries. What you did is ok.
+As per my comment on the binding there should also be a "google,hoglin"
+without a revision suffix, also it seems there are already CRDs with higher
+rev numbers.
 
-Guenter
+> +
+> +	aliases {
+> +		serial0 = &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +};
+> +
+> +&nvme_pwren {
+> +	pins = "gpio51";
+> +};
+> +
+> +&nvme_3v3_regulator {
+> +	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+> +};
+
+uber-nit: 'nvme_3v3_regulator' should be before 'nvme_pwren', assuming
+alphabetical/ASCII ordering is used.
