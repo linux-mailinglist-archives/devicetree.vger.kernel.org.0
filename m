@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 684AA45AFA6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:01:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2D6845AFC1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231842AbhKWXEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 18:04:12 -0500
-Received: from mga01.intel.com ([192.55.52.88]:54470 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231368AbhKWXEJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 18:04:09 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="259032785"
-X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; 
-   d="scan'208";a="259032785"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2021 15:01:00 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; 
-   d="scan'208";a="456854084"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 23 Nov 2021 15:00:55 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mpemU-0002PQ-Sw; Tue, 23 Nov 2021 23:00:54 +0000
-Date:   Wed, 24 Nov 2021 07:00:38 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Akhil R <akhilrajeev@nvidia.com>, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        jonathanh@nvidia.com, kyarlagadda@nvidia.com, ldewangan@nvidia.com,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        p.zabel@pengutronix.de, rgumasta@nvidia.com
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org
-Subject: Re: [PATCH v13 2/4] dmaengine: tegra: Add tegra gpcdma driver
-Message-ID: <202111240616.WWuSKq38-lkp@intel.com>
-References: <1637573292-13214-3-git-send-email-akhilrajeev@nvidia.com>
+        id S232714AbhKWXIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 18:08:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41502 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231683AbhKWXIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 18:08:35 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C022C061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:05:26 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id u18so658113wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:05:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=Rpgt1bJx8K373EVrKSGqHg1nd3sdDbwlVU3RtQXZzCo=;
+        b=ouxnRHvAigMwn8ki0kwjySl9sCCJ4o8dJhZTvyDxa17usgThQpUdNu9lrXJU24UaSA
+         ZqqDV+FbavicPwNY0vODKIvKsFmwttNTgXKeyZEjdKbQNQKq5KAXhTSK1z1MrQ43NKP6
+         MC/MRDXJ42T82SZ5deyJtzXKH5sbuKLp9wLPNc7LxjGKXTzFSwZDmWRM+eJeDQIWSwwu
+         NHQ/JQVo+Pwu/t+u25iepAsbAquUv1qGLlXB1wv+1CikOnpb1p74NUH6px6GdtJCWni5
+         KB6oP81LY1Lorx6s2M9XQvQ1cpftNO5Z+AhfWpYnza41w5T2ampZpHoBuDyy5fL5vXpD
+         qdhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:content-transfer-encoding;
+        bh=Rpgt1bJx8K373EVrKSGqHg1nd3sdDbwlVU3RtQXZzCo=;
+        b=skfd5tcCb6VfbAnRqdSNzcJ5Q9xlDWCxGM/ym2XUOgHove3OBdsEUBXHG5YX9/KPyU
+         l7VPTew5Bk48tRw1/4r9djeS6O5VGIH47sD7CeSgEKHPlgT6fmWwDAcAvNFX8rDd+TBr
+         kzPMvb7b7aP8vY6QcERUABovyR4pIB57BFip2OTGL2FF+kCQl4oqyEK2T16X9nTqSMH1
+         2EgearPK1d2St6cRSrVS/7wfwcN66dc3rsHTRXaYkQK6JMNk5ogEq5L2whk4YFRgyzgX
+         ezPyrEAWhsXd4pNdI5jU50/JczW8JTGKxjQ4jKf4kScfcJjOaSVvIoWl8PxSY3RSROgi
+         E65A==
+X-Gm-Message-State: AOAM530StE8KIcbnZ9i7Fc8SCVgBJ/P7FPdfYxFVFjJe4hxZv7kNGjLQ
+        GfS197cbBakku7zs8034QasjrxupDkL4uZu616I=
+X-Google-Smtp-Source: ABdhPJwlkndrTdGiOLtnTel3iBJAMaYxEjPYw4JOZRSMXHUrvIZU9wtdrj//TZgcI4I2SpEsGGkwat9CXS6YWGe/KXw=
+X-Received: by 2002:a5d:5651:: with SMTP id j17mr12282950wrw.166.1637708724932;
+ Tue, 23 Nov 2021 15:05:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1637573292-13214-3-git-send-email-akhilrajeev@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: mrs.kimhongyeoh055@gmail.com
+Received: by 2002:a1c:a58c:0:0:0:0:0 with HTTP; Tue, 23 Nov 2021 15:05:24
+ -0800 (PST)
+From:   Ms Nadia Emaan <mrsnadiaemaan52@gmail.com>
+Date:   Tue, 23 Nov 2021 23:05:24 +0000
+X-Google-Sender-Auth: NNOSfa-SFMf2MqXQjQIMgnJxluY
+Message-ID: <CA+gskbf6p403X1KOhojhkP8tc9=GYiTNe8ydcyD9fWMPjeU+oQ@mail.gmail.com>
+Subject: May the peace of God be with You.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Akhil,
+May God Bless you Beloved =E2=80=8BFriend,
 
-Thank you for the patch! Perhaps something to improve:
-
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on vkoul-dmaengine/next arm64/for-next/core v5.16-rc2 next-20211123]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Akhil-R/Add-NVIDIA-Tegra-GPC-DMA-driver/20211122-173019
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: riscv-randconfig-c006-20211123 (https://download.01.org/0day-ci/archive/20211124/202111240616.WWuSKq38-lkp@intel.com/config.gz)
-compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project c133fb321f7ca6083ce15b6aa5bf89de6600e649)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/7707da9f914433ccc5718dd3431153d3b5bf485d
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Akhil-R/Add-NVIDIA-Tegra-GPC-DMA-driver/20211122-173019
-        git checkout 7707da9f914433ccc5718dd3431153d3b5bf485d
-        # save the config file to linux build tree
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 ARCH=riscv 
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/dma/tegra186-gpc-dma.c:1264:21: warning: attribute declaration must precede definition [-Wignored-attributes]
-   static const struct __maybe_unused dev_pm_ops tegra_dma_dev_pm_ops = {
-                       ^
-   include/linux/compiler_attributes.h:286:56: note: expanded from macro '__maybe_unused'
-   #define __maybe_unused                  __attribute__((__unused__))
-                                                          ^
-   include/linux/pm.h:277:8: note: previous definition is here
-   struct dev_pm_ops {
-          ^
-   1 warning generated.
+I am contacting you through this means because I need your urgent
+assistance and also help me to carry a charity project in your
+country. I found your email address as a true child of God for past
+few days now that I have been praying to know if you are really the
+chosen one for this great charity project, according to God's
+direction, after all prayers I am convinced, and I have decided to
+contact you. Please, i want you use the funds for the Lord's work,
+with confidence, read and respond now.
 
 
-vim +1264 drivers/dma/tegra186-gpc-dma.c
+My name is  Ms. Nadia Emman F., a widow, but currently based in West
+Africa since my life with my late husband, who was a businessman in
+this country before dying some years ago. We were married to many
+years without a child. He died after a brief illness that lasted only
+six days and I myself have been suffering from an ovarian cancer
+disease. At this moment I am about to finish the race in this way
+because the disease has reached a very bad stage, without any family
+member and without children. I hope you do not expose or betray this
+trust and I am sure that I am about to trust you for the mutual
+benefit of orphans and the less privileged. I have some funds that I
+inherited from my late husband, the total sum of ($ 12,500,000.00)
+deposited at a bank here in Burkina Faso. After knowing my current
+state of health, I decided to trust you with this fund, believing that
+you will use it in the way I will instruct here.
 
-  1263	
-> 1264	static const struct __maybe_unused dev_pm_ops tegra_dma_dev_pm_ops = {
-  1265		SET_LATE_SYSTEM_SLEEP_PM_OPS(tegra_dma_pm_suspend, tegra_dma_pm_resume)
-  1266	};
-  1267	
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+you will use this $12.5 Million for public benefit as follows;
+
+1. Establish An Orphanage Home To Help The Orphanages Children.
+2. Build A Hospital To Help The Poor.
+3. Build A Nursing Home For Elderly People Need Care & Meal.
+
+You will named them after my late husband.Therefore, I need you to
+help me and claim this money and use it for charities, for orphanages
+and provide justice and help to the poor, needy and to promote the
+words of God and the effort to maintain the house of God, according to
+the bible in the book of. Jeremiah 22: 15-16, without minding our
+different religions.
+
+It will be a pleasure to compensate with 40% percent of the total
+money for your effort in handling the transaction, while 60% of the
+money will go to charity project.
+
+All I need from you is sincerity and ability to complete the task of
+God without any failure. It will be my pleasure to see that the bank
+has finally released and transferred the fund to your bank account in
+the country, even before I die here in the hospital, due to my current
+state of health, everything must be processed as soon as possible.
+
+I am waiting for your immediate response, if you are only interested
+in obtaining more details about the transaction and execution of this
+humanitarian project for the glory and honor of God.
+
+Sorry if you received this letter in your spam, is due to recent
+connection/network error here in the country.
+
+Please I am waiting for your urgent reply now.
+
+May God Bless you,
+Ms. Nadia Emman F.
