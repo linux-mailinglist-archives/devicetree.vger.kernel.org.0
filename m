@@ -2,56 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5762F459BF4
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 06:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 438CB459C03
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 06:57:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231506AbhKWFzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 00:55:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229690AbhKWFzO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 00:55:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id D0C1660174;
-        Tue, 23 Nov 2021 05:52:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637646726;
-        bh=16r6J8ycJjRHxKmkqPJvCenPNAYddQKOVSL71EK6Rm4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PexDVdjXkD0NTnnv4NY+Rpfx1ny3WXQZZFvS3dKyRKhUNiYhectW2eotKKCqg3qeR
-         MmSTH85ZDd0pIwDuIx2RzZKe3wnuGTUIRDNi5MWvnK/NoWZ30xc+i2jhf7/+3J9e2F
-         xOwbHpFdUhck77jWS8s2bCcmxd0V/eKlJnBi9IM4CCfExPl3yOxi/o9+dBWMGEYXe9
-         nRCzRRKdgIsFzXUb9dhCKV5JViSd6CvfOeE5+tknF0L9AIwOJqUaicjHC0aq0bP05x
-         MPWEGDNJrGsWmapixnP7p4eW6ZZZxuUbb5sTPk2om1pb4DxNv8B35J2WVgkYX+NuDd
-         hlrExXc+uqhYA==
-Date:   Tue, 23 Nov 2021 11:22:02 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/8] phy: socionext: Introduce some features for
- UniPhier SoCs
-Message-ID: <YZyBgtbgKW3w6lqG@matsya>
-References: <1635503947-18250-1-git-send-email-hayashi.kunihiko@socionext.com>
+        id S233232AbhKWGAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 01:00:31 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:11893 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229690AbhKWGAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 01:00:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637647042; x=1669183042;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=3Tbc2nYFxGjvLfzVjRmoZY3g/Bwty5x5o3lfCID1MC8=;
+  b=V4b/bA3cTxmQ86wxYRAX9ePvaXRjv885TZR+ZkxvQv50e2KS6VVqh5oq
+   QJ9NjWoapCzPTbG2JKjqcIcuWHxoDFnE6Ot9cJT0/beaIfnMgUT/4KpBV
+   i4ybQaTgJK0iT9sd7JrvKy+yZZTXyrQmxZ0qvrZ4l1tBSICfQpq50cnm7
+   U=;
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 22 Nov 2021 21:57:22 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Nov 2021 21:57:21 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 22 Nov 2021 21:57:21 -0800
+Received: from jprakash-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Mon, 22 Nov 2021 21:57:14 -0800
+From:   Jishnu Prakash <quic_jprakash@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <mka@chromium.org>,
+        <dmitry.baryshkov@linaro.org>, <robh+dt@kernel.org>,
+        <knaack.h@gmx.de>, <lars@metafoo.de>, <pmeerw@pmeerw.net>,
+        <manivannan.sadhasivam@linaro.org>, <linus.walleij@linaro.org>,
+        <quic_kgunda@quicinc.com>, <quic_aghayal@quicinc.com>,
+        <daniel.lezcano@linaro.org>, <rui.zhang@intel.com>,
+        <quic_subbaram@quicinc.com>, <jic23@kernel.org>, <amitk@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm-owner@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>,
+        Jishnu Prakash <quic_jprakash@quicinc.com>
+Subject: [PATCH V3 0/4] thermal: qcom: Add support for PMIC5 Gen2 ADC_TM
+Date:   Tue, 23 Nov 2021 11:27:00 +0530
+Message-ID: <1637647025-20409-1-git-send-email-quic_jprakash@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1635503947-18250-1-git-send-email-hayashi.kunihiko@socionext.com>
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-10-21, 19:38, Kunihiko Hayashi wrote:
-> This series includes the patches to add the following features:
-> - Add basic support for new UniPhier NX1 SoC to USB3 and PCIe PHY.
->   NX1 SoC also has the same kinds of controls as the other UniPhier SoCs.
-> - Add a PHY parameters to PCIe PHY
-> - Add dual-phy support for the SoCs that has two phys to PCIe PHY
-> - Add basic support for Pro4 SoC to ACHI PHY
+Made following changes in this post:
+Addressed comments given by Jonathan for qcom-spmi-adc-tm5.yaml.
+Addressed comments given by Dmitry and Jonathan for qcom-spmi-adc-tm5.c.
+Split patch for qcom-spmi-adc-tm5.c into two parts, one to refactor
+code to support multiple device generations and the second to add
+actual Gen2 ADC_TM changes.
 
-Applied, thanks
+Jishnu Prakash (4):
+  dt-bindings: thermal: qcom: add PMIC5 Gen2 ADC_TM bindings
+  iio: adc: qcom-vadc-common: add reverse scaling for PMIC5 Gen2 ADC_TM
+  thermal: qcom: Add support for multiple generations of devices
+  thermal: qcom: add support for PMIC5 Gen2 ADCTM
+
+ .../bindings/thermal/qcom-spmi-adc-tm5.yaml        | 110 ++++-
+ drivers/iio/adc/qcom-vadc-common.c                 |  11 +
+ drivers/thermal/qcom/qcom-spmi-adc-tm5.c           | 451 +++++++++++++++++++--
+ include/linux/iio/adc/qcom-vadc-common.h           |   2 +
+ 4 files changed, 541 insertions(+), 33 deletions(-)
 
 -- 
-~Vinod
+2.7.4
+
