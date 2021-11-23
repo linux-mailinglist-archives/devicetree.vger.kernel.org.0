@@ -2,130 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8349245AB20
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 19:14:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 296EB45ABA9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 19:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239837AbhKWSR3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 13:17:29 -0500
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.121]:23218 "EHLO
-        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239829AbhKWSRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 13:17:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637691248;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=15Nkk1H/19ZCPCTvtDzkEK7DIJe2pfI1c9+1syWWzcY=;
-    b=BTlevZE1tJANtz+52ntJUMy8+Urh4eqC/CgiOspzM24fYtT318Baqq0fFHZoC19mri
-    DfKKe02abP89SYPLwyqLRCFKTGvsAcBxy6YOTSpSjjFRCx5TuCiUa8cwp17qkUIPJvC0
-    fhp3HTq+RqhIg4bdnyl7fMYxvAcH7N/CqDQUPst53OHlF8D4hhBhicNYOlJCPL0fYwz1
-    H6ijTFPN/DJmdEWmEESP8Al5SHM82BfI4fKJ5S/VtFMB6oMob0NE3isJCQtNS9e0mW80
-    Gx3TaYg/pQlngzcPzKiofV8QGL93GcWNgzDr/aLRgRvaBO5XIBqA52mlcthV0UIMoKAY
-    25lg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lByOdcKVX0"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 47.34.6 DYNA|AUTH)
-    with ESMTPSA id g09b5fxANIE77me
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 23 Nov 2021 19:14:07 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v8 8/8] [RFC] MIPS: DTS: Ingenic: adjust register size to available registers
-Date:   Tue, 23 Nov 2021 19:14:01 +0100
-Message-Id: <4c0fd1593af9010d45ba1cf7749fb303bf9eb3d6.1637691240.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <cover.1637691240.git.hns@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
+        id S232331AbhKWSy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 13:54:26 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:56980 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230132AbhKWSyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 13:54:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637693477; x=1669229477;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=Aoj5xZMGGsq/OcrM79S2Dp1BTjBbNtteoCDCqtbWL1k=;
+  b=QqaddglfPNHP2JYfCvCyYZaYqv9uRTS641Zm826TifuR7IhIrPtQlwEY
+   2+wZY3ox+zKF4Jo5i84dlk7I5qfed1RuXXYcooKahU6yq6TnPbhqKHqXJ
+   t/u3gq+7nFJVLBzR52Jf9mQYxrFqOxq8ksur3yk3pP+3MIWavaFuOIemm
+   U=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 23 Nov 2021 10:51:17 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2021 10:51:17 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 23 Nov 2021 10:51:16 -0800
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 23 Nov 2021 10:51:14 -0800
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <ath11k@lists.infradead.org>
+CC:     <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <robh@kernel.org>, Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Subject: [PATCH 00/19] add support for WCN6750
+Date:   Wed, 24 Nov 2021 00:20:15 +0530
+Message-ID: <1637693434-15462-1-git-send-email-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After getting the regmap size from the device tree we should
-reduce the ranges to the really available registers. This
-allows to read only existing registers from the debug fs
-and makes the regmap check out-of-bounds access.
+WCN6750 is non-DBS 2x2 11AX chipset. Unlike QCA6390/WCN6855 which
+are DBS (dual band simultaneous) solutions (2 LMACs), WCN6750 has a
+single LMAC supporting 2G, 5G and 6G bands. It can be operated only
+on one band at any given point.
 
-For the jz4780 we have done this already.
+WCN6750 is a PCIe device. Unlike other supported ATH11K PCIe devices
+which are directly attached to APSS (Application Processor SubSystem),
+WCN6750 is not attached to APSS, it is attached to the WPSS
+(Wireless Processor SubSystem) Q6 processor, the FW which runs on the
+Q6 processor will enumerate the PCIe device. Since APSS is unaware of
+such a device, it has to be registered as a platform device(AHB) to the
+kernel for device probing. Like other AHB devices, remoteproc APIs are
+used to boot up or shutdown of WCN6750.
 
-Suggested-for: Paul Cercueil <paul@crapouillou.net>
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/mips/boot/dts/ingenic/jz4725b.dtsi | 2 +-
- arch/mips/boot/dts/ingenic/jz4740.dtsi  | 2 +-
- arch/mips/boot/dts/ingenic/jz4770.dtsi  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+WCN6750 uses both AHB and PCIe ATH11K APIs for it's operation.
+It uses AHB APIs for device probe and booting of the remote processor.
+Once device is booted up, it uses ATH11K PCIe APIs for initialization
+and register access. Hence, it is referred as hybrid bus device in
+the rest of this series.
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4725b.dtsi b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-index 0c6a5a4266f43..e9e48022f6316 100644
---- a/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-@@ -321,7 +321,7 @@ udc: usb@13040000 {
- 
- 	lcd: lcd-controller@13050000 {
- 		compatible = "ingenic,jz4725b-lcd";
--		reg = <0x13050000 0x1000>;
-+		reg = <0x13050000 0x130>; /* tbc */
- 
- 		interrupt-parent = <&intc>;
- 		interrupts = <31>;
-diff --git a/arch/mips/boot/dts/ingenic/jz4740.dtsi b/arch/mips/boot/dts/ingenic/jz4740.dtsi
-index 772542e1f266a..7f76cba03a089 100644
---- a/arch/mips/boot/dts/ingenic/jz4740.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4740.dtsi
-@@ -323,7 +323,7 @@ udc: usb@13040000 {
- 
- 	lcd: lcd-controller@13050000 {
- 		compatible = "ingenic,jz4740-lcd";
--		reg = <0x13050000 0x1000>;
-+		reg = <0x13050000 0x60>; /* LCDCMD1+4 */
- 
- 		interrupt-parent = <&intc>;
- 		interrupts = <30>;
-diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-index dfe74328ae5dc..bda0a3a86ed5f 100644
---- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-@@ -399,7 +399,7 @@ gpu: gpu@13040000 {
- 
- 	lcd: lcd-controller@13050000 {
- 		compatible = "ingenic,jz4770-lcd";
--		reg = <0x13050000 0x300>;
-+		reg = <0x13050000 0x130>; /* tbc */
- 
- 		interrupt-parent = <&intc>;
- 		interrupts = <31>;
+Since the chip is enumerated by WPSS Q6, device information like
+BAR and BAR size is not known to the APSS processor. A new QMI message
+called device info QMI request will be sent to the target for fetching
+these details.
+
+STA and AP modes are supported; Basic connectivity and ping are
+verified in both the modes.
+
+Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+
+Note:
+*	Remoteproc driver changes for WCN6750 which takes care of
+	downloading the FW and booting of Q6 processor are under
+	upstream review.
+	Link: https://patchwork.kernel.org/project/linux-remoteproc/list/?series=582475
+
+Manikanta Pubbisetty (19):
+  ath11k: PCI changes to support WCN6750
+  ath11k: Refactor PCI code to support hybrid bus devices
+  ath11k: Choose MSI config based on HW revision
+  ath11k: Refactor MSI logic
+  ath11k: Remove core PCI references from PCI common code
+  ath11k: Add HW params for WCN6750
+  ath11k: Add bus params for WCN6750
+  ath11k: Add register access logic for WCN6750
+  ath11k: Fetch device information via QMI for WCN6750
+  ath11k: Add QMI changes for WCN6750
+  ath11k: HAL changes to support WCN6750
+  ath11k: Datapath changes to support WCN6750
+  ath11k: Fix RX de-fragmentation issue on WCN6750
+  ath11k: Do not put HW in DBS mode for WCN6750
+  ath11k: WMI changes to support WCN6750
+  ath11k: Update WBM idle ring HP after FW mode on
+  ath11k: Add support for WCN6750 device
+  ath11k: Add support for targets without trustzone
+  dt: bindings: net: add bindings of WCN6750 for ath11k
+
+ .../bindings/net/wireless/qcom,ath11k.yaml         | 333 +++++---
+ drivers/net/wireless/ath/ath11k/Makefile           |   4 +-
+ drivers/net/wireless/ath/ath11k/ahb.c              | 331 +++++++-
+ drivers/net/wireless/ath/ath11k/ahb.h              |  10 +
+ drivers/net/wireless/ath/ath11k/ce.c               |   4 +-
+ drivers/net/wireless/ath/ath11k/core.c             | 104 ++-
+ drivers/net/wireless/ath/ath11k/core.h             |  35 +
+ drivers/net/wireless/ath/ath11k/hal.c              |  15 +-
+ drivers/net/wireless/ath/ath11k/hal.h              |  17 +-
+ drivers/net/wireless/ath/ath11k/hw.c               | 175 +++-
+ drivers/net/wireless/ath/ath11k/hw.h               |  13 +-
+ drivers/net/wireless/ath/ath11k/mhi.c              |  16 +-
+ drivers/net/wireless/ath/ath11k/pci.c              | 893 +++------------------
+ drivers/net/wireless/ath/ath11k/pci.h              |  28 +-
+ drivers/net/wireless/ath/ath11k/pci_cmn.c          | 720 +++++++++++++++++
+ drivers/net/wireless/ath/ath11k/pci_cmn.h          |  47 ++
+ drivers/net/wireless/ath/ath11k/qmi.c              | 215 ++++-
+ drivers/net/wireless/ath/ath11k/qmi.h              |  26 +-
+ drivers/net/wireless/ath/ath11k/wmi.c              |  13 +-
+ 19 files changed, 2007 insertions(+), 992 deletions(-)
+ create mode 100644 drivers/net/wireless/ath/ath11k/pci_cmn.c
+ create mode 100644 drivers/net/wireless/ath/ath11k/pci_cmn.h
+
 -- 
-2.33.0
+2.7.4
 
