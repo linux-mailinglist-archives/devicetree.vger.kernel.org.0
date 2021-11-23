@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D6845AFC1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:05:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3236445AFC8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:07:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232714AbhKWXIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 18:08:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41502 "EHLO
+        id S233816AbhKWXKq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 18:10:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231683AbhKWXIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 18:08:35 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C022C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:05:26 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id u18so658113wrg.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:05:26 -0800 (PST)
+        with ESMTP id S231683AbhKWXKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 18:10:45 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A54BC061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:07:37 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id u18so664912wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:07:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:sender:from:date:message-id:subject:to
          :content-transfer-encoding;
         bh=Rpgt1bJx8K373EVrKSGqHg1nd3sdDbwlVU3RtQXZzCo=;
-        b=ouxnRHvAigMwn8ki0kwjySl9sCCJ4o8dJhZTvyDxa17usgThQpUdNu9lrXJU24UaSA
-         ZqqDV+FbavicPwNY0vODKIvKsFmwttNTgXKeyZEjdKbQNQKq5KAXhTSK1z1MrQ43NKP6
-         MC/MRDXJ42T82SZ5deyJtzXKH5sbuKLp9wLPNc7LxjGKXTzFSwZDmWRM+eJeDQIWSwwu
-         NHQ/JQVo+Pwu/t+u25iepAsbAquUv1qGLlXB1wv+1CikOnpb1p74NUH6px6GdtJCWni5
-         KB6oP81LY1Lorx6s2M9XQvQ1cpftNO5Z+AhfWpYnza41w5T2ampZpHoBuDyy5fL5vXpD
-         qdhQ==
+        b=URbvE1hdnUIUrXOdB5JiUWuiaHr5az/4BPEBEQq1mFIMdgTX/NKDo/bLuvbth7F5cX
+         ulJuYfoWYjGF9fP8aBOv2GRw3FJu11yDB7RithEK3rlDLLMTgCVRa+NVM7udSpWW+2Wn
+         Tvl7ilwXuuPi79k3tNaN1tzOIDtbr2EZBiIyNw4BUyYx1xuHSY+fQZqmTeEbi4bN6kVm
+         RfrwYGm8XSCBwZ1FSXXP2zmKioqEJ/kMQRgZ/xgLpLZHgZPdPWMntmRvJKtM7eWDU5Hy
+         vuTB6vF54YbLGA2zW+e8gvO4NAtLOWWA5go2fEVElOgRom1TiTNcId6gkz8QucmV6JTO
+         rLxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
          :to:content-transfer-encoding;
         bh=Rpgt1bJx8K373EVrKSGqHg1nd3sdDbwlVU3RtQXZzCo=;
-        b=skfd5tcCb6VfbAnRqdSNzcJ5Q9xlDWCxGM/ym2XUOgHove3OBdsEUBXHG5YX9/KPyU
-         l7VPTew5Bk48tRw1/4r9djeS6O5VGIH47sD7CeSgEKHPlgT6fmWwDAcAvNFX8rDd+TBr
-         kzPMvb7b7aP8vY6QcERUABovyR4pIB57BFip2OTGL2FF+kCQl4oqyEK2T16X9nTqSMH1
-         2EgearPK1d2St6cRSrVS/7wfwcN66dc3rsHTRXaYkQK6JMNk5ogEq5L2whk4YFRgyzgX
-         ezPyrEAWhsXd4pNdI5jU50/JczW8JTGKxjQ4jKf4kScfcJjOaSVvIoWl8PxSY3RSROgi
-         E65A==
-X-Gm-Message-State: AOAM530StE8KIcbnZ9i7Fc8SCVgBJ/P7FPdfYxFVFjJe4hxZv7kNGjLQ
-        GfS197cbBakku7zs8034QasjrxupDkL4uZu616I=
-X-Google-Smtp-Source: ABdhPJwlkndrTdGiOLtnTel3iBJAMaYxEjPYw4JOZRSMXHUrvIZU9wtdrj//TZgcI4I2SpEsGGkwat9CXS6YWGe/KXw=
-X-Received: by 2002:a5d:5651:: with SMTP id j17mr12282950wrw.166.1637708724932;
- Tue, 23 Nov 2021 15:05:24 -0800 (PST)
+        b=WhKjVnmdgpojQEDYkfsG7yO7m1Q+oQr+i/HDdvwsYamstxxux9/LmCC5j4WqnP7X3Y
+         MJ1MxBBVIbCrpw9UCTukG9rM9BpBwsqn2SgASETMtY1+vALJ+1XGoI8Fmj41riuoMjPM
+         RHYsDgK/cINEPXLKWMYGg8fRAlTRePcIR90W4LlclC04xTrX1nF2n/DAVjTWMpvsQirf
+         n59yFPnj2pWaCbQ0ZQwcWmqjy4hSYEM9vcGmaFzbu/l0I1+/WixDGsKC25tIMDykUIka
+         VY+oYtgYSc6KFzBe34Z4KBmmAqu0kbvu9BZ3ovtHcLWA9hh7S3vzjvWDP9MEv0brWxOb
+         x1UA==
+X-Gm-Message-State: AOAM5325Aew7/9T+3ff9xwnasMe0W4JxoSjE84Zz5RKz09Dqkzrbx3/3
+        BTBX0zy6r/uK+GTdk1qHEZh+pkZYY6fv8b8KOC8=
+X-Google-Smtp-Source: ABdhPJx7jkd+HJHuWramxH0Q5pLWeBhZJogTBALtxaHwUfRgoTlb8NqF7vku2HYyILfU9/H/ZIVhVEfT75Z7y2LIXy0=
+X-Received: by 2002:a5d:468f:: with SMTP id u15mr12181940wrq.171.1637708855611;
+ Tue, 23 Nov 2021 15:07:35 -0800 (PST)
 MIME-Version: 1.0
 Sender: mrs.kimhongyeoh055@gmail.com
-Received: by 2002:a1c:a58c:0:0:0:0:0 with HTTP; Tue, 23 Nov 2021 15:05:24
+Received: by 2002:a1c:a58c:0:0:0:0:0 with HTTP; Tue, 23 Nov 2021 15:07:35
  -0800 (PST)
 From:   Ms Nadia Emaan <mrsnadiaemaan52@gmail.com>
-Date:   Tue, 23 Nov 2021 23:05:24 +0000
-X-Google-Sender-Auth: NNOSfa-SFMf2MqXQjQIMgnJxluY
-Message-ID: <CA+gskbf6p403X1KOhojhkP8tc9=GYiTNe8ydcyD9fWMPjeU+oQ@mail.gmail.com>
+Date:   Tue, 23 Nov 2021 23:07:35 +0000
+X-Google-Sender-Auth: DaQQt_nR9FUZNLpHPz-vJwffhWM
+Message-ID: <CA+gskbcne8+_aMwYgBohNpbfMz5Aixg56f4fd+v9OE0rjF-TnA@mail.gmail.com>
 Subject: May the peace of God be with You.
 To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
