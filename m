@@ -2,284 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3DDB45A894
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:41:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4192A45A927
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:44:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230006AbhKWQoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:44:11 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47800 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234388AbhKWQn5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 11:43:57 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 68C9B60FC3;
-        Tue, 23 Nov 2021 16:40:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637685649;
-        bh=yeXIxIeywEh1WCGyS0+ZYNprOIvFWZLdVHE/fFNgcyc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ewOOqvWzFvQ6/ZbIavCOZzGkYDOVBoLw9ypqCsfvu4vuXlf14aukRxyQsJXZxfcGj
-         ug/NBtPJb0r8ty8fOOFhOGHy+nMdBCaq/j7My7Yp+msqwE0hzg0u+kgQKR26gn0+E3
-         SBYedDvRHCpU72x03tl+PNMgfzKYUq4ql6R1sESxrFLTwICNmku4UIZe0p8rXSVweI
-         NFSSgoyYEsLw5u6kogViTWhsR8wZKda7j0gKT3F//jHfaE0d1TuylQHqQcKBiZHF9U
-         2OfUSQxdlPkJj0GO9okiX5zYexbtUdhBSDcBEM4dSCePpESmN8+Adm1AZOBhSPPyH2
-         E5PzOmaAc9jpA==
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-Subject: [PATCH net-next v2 8/8] net: phy: marvell10g: select host interface configuration
-Date:   Tue, 23 Nov 2021 17:40:27 +0100
-Message-Id: <20211123164027.15618-9-kabel@kernel.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211123164027.15618-1-kabel@kernel.org>
-References: <20211123164027.15618-1-kabel@kernel.org>
+        id S237382AbhKWQrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:47:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37874 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237376AbhKWQrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:47:33 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89647C06139E;
+        Tue, 23 Nov 2021 08:43:03 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id w1so94880762edc.6;
+        Tue, 23 Nov 2021 08:43:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=MC5epeKImcx3/KQhLYCZ1HLgX1y87eAw5+H5JNQv9sA=;
+        b=lFopLDuY6MPMp7pIgftj6vLLHx6gwKafB2NAA3QebNbR4G8rQoWE+xXn1ZNViGOqPE
+         LBILL9hVz83u8+PUceyxvc5xIeneoZ6NfOHgoHtjbeTfWDHnYy0Ug0gn+KsvcyVXY0Ci
+         GANzc7vFdpFCe+aCCwqtJSxkIZR+uT4nJYlXxzib+9RLLxPTTaBUYHwXNrwf1gwPKnEv
+         sl6oTBhgjLZghpGlIDd0Ztz0iEbRW8HwI7mfY2kcU5yfVWpd6OqqfEuHfYZdzzi7INrn
+         hnDJclq9jNI9Eo2FLSym6dpNL2/kUxi32FxPwjR80F6zFDCNuQcH84OZobb5M6ZFm89E
+         n50Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=MC5epeKImcx3/KQhLYCZ1HLgX1y87eAw5+H5JNQv9sA=;
+        b=n8YmLudPX+/1tMHSBYyNo08TpVGEcqjqw4qykQhSQczhJTW0Ai4TdEP/+EM/Mpp3SG
+         YfRuGekYh6gq2JfUChhRU6IWc8r8KdHGppCHwJZYGQBFpjwQsWqv2Lkx4yf7tk9RxqB/
+         aJ1cjmlrw3FhiLhFi+cFcD/Ar5HI9hkmsT3jDg06me34SoIslF/BIka4uQhtjR0uPen0
+         H82WOCcrluANtQoCUlg87Wj+UwWx0x87iekI30NMfhOHIekSYLwkidhG5MGVRcejPpzf
+         zQEr0QZHu5UVd5J4aCwOZvLmc42y9ZFCS12npduj4fd6zW8LswH6Q58xs5R/4uZrTBtt
+         dKqw==
+X-Gm-Message-State: AOAM530f/AF+WbgtuBcRY/3MBy5XMABLv9bwnCBsFArru/CJDGaJ+SG5
+        bymU5iddtgnv5KFmSpFIgNs=
+X-Google-Smtp-Source: ABdhPJw8TCJCwiaCGpqcYo8YHmkWjG3beYZVJAdIgmxdbcP1nkoBberCXFC9tmHu6n1fgwJ+WIwoqQ==
+X-Received: by 2002:a17:907:7850:: with SMTP id lb16mr9444354ejc.67.1637685782143;
+        Tue, 23 Nov 2021 08:43:02 -0800 (PST)
+Received: from kista.localnet (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id d3sm6074046edx.79.2021.11.23.08.43.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 08:43:01 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     wens@csie.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, Michael Klein <michael@fossekall.de>
+Subject: Re: Re: [PATCH] ARM: dts: sun8i: Adjust power key nodes
+Date:   Tue, 23 Nov 2021 17:42:55 +0100
+Message-ID: <3138437.aeNJFYEL58@kista>
+In-Reply-To: <20211123103219.4y2pjywt2uxunc5s@gilmour>
+References: <20211122213637.922088-1-jernej.skrabec@gmail.com> <20211123103219.4y2pjywt2uxunc5s@gilmour>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Russell King <rmk+kernel@armlinux.org.uk>
+Hi!
 
-Select the host interface configuration according to the capabilities of
-the host.
+Dne torek, 23. november 2021 ob 11:32:19 CET je Maxime Ripard napisal(a):
+> Hi,
+> 
+> On Mon, Nov 22, 2021 at 10:36:37PM +0100, Jernej Skrabec wrote:
+> > Several H3 and one H2+ board have power key nodes, which are slightly
+> > off. Some are missing wakeup-source property and some have BTN_0 code
+> > assigned instead of KEY_POWER.
+> > 
+> > Adjust them, so they can function as intended by designer.
+> > 
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> > [BananaPi M2 Zero changes]
+> > Signed-off-by: Michael Klein <michael@fossekall.de>
+> 
+> This looks a bit weird. If Michael is the author, then his SoB should be
+> here first and mentioned either in From or Co-developed-by.
+> 
+> If you are, I'm not sure why he's mentioned?
 
-The PHY supports several configurations of host communication:
-- always communicate with host in 10gbase-r, even if copper speed is
-  lower (rate matching mode),
-- the same as above but use xaui/rxaui instead of 10gbase-r,
-- switch host SerDes mode between 10gbase-r, 5gbase-r, 2500base-x and
-  sgmii according to copper speed,
-- the same as above but use xaui/rxaui instead of 10gbase-r.
+I'm main author and Michael just adapted BananaPi M2 Zero DT based on my 
+changes. What is preferred way to mark him as co-author?
 
-This mode of host communication, called MACTYPE, is by default selected
-by strapping pins, but it can be changed in software.
+Best regards,
+Jernej
 
-This adds support for selecting this mode according to which modes are
-supported by the host.
+> 
+> Maxime
+> 
 
-This allows the kernel to:
-- support SFP modules with 88X33X0 or 88E21X0 inside them
-- switch interface modes when the PHY is used with the mvpp2 MAC
-  (e.g. on MacchiatoBIN)
-
-Note: we use mv3310_select_mactype() for both 88X3310 and 88X3340,
-although 88X3340 does not support XAUI. This is not a problem because
-88X3340 does not declare XAUI in it's supported_interfaces, and so this
-function will never choose that MACTYPE.
-
-Signed-off-by: Russell King <rmk+kernel@armlinux.org.uk>
-[ rebase, updated, also added support for 88E21X0 ]
-Signed-off-by: Marek Behún <kabel@kernel.org>
----
-Changes since v1:
-- added more explanation to commit message, as per Vladimir Oltean's
-  suggestion
----
- drivers/net/phy/marvell10g.c | 120 +++++++++++++++++++++++++++++++++--
- 1 file changed, 115 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/net/phy/marvell10g.c b/drivers/net/phy/marvell10g.c
-index 0cb9b4ef09c7..94bea1bade6f 100644
---- a/drivers/net/phy/marvell10g.c
-+++ b/drivers/net/phy/marvell10g.c
-@@ -96,6 +96,11 @@ enum {
- 	MV_PCS_PORT_INFO_NPORTS_MASK	= 0x0380,
- 	MV_PCS_PORT_INFO_NPORTS_SHIFT	= 7,
- 
-+	/* SerDes reinitialization 88E21X0 */
-+	MV_AN_21X0_SERDES_CTRL2	= 0x800f,
-+	MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS	= BIT(13),
-+	MV_AN_21X0_SERDES_CTRL2_RUN_INIT	= BIT(15),
-+
- 	/* These registers appear at 0x800X and 0xa00X - the 0xa00X control
- 	 * registers appear to set themselves to the 0x800X when AN is
- 	 * restarted, but status registers appear readable from either.
-@@ -140,6 +145,8 @@ struct mv3310_chip {
- 	bool (*has_downshift)(struct phy_device *phydev);
- 	void (*init_supported_interfaces)(unsigned long *mask);
- 	int (*get_mactype)(struct phy_device *phydev);
-+	int (*set_mactype)(struct phy_device *phydev, int mactype);
-+	int (*select_mactype)(unsigned long *interfaces);
- 	int (*init_interface)(struct phy_device *phydev, int mactype);
- 
- #ifdef CONFIG_HWMON
-@@ -593,6 +600,49 @@ static int mv2110_get_mactype(struct phy_device *phydev)
- 	return mactype & MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK;
- }
- 
-+static int mv2110_set_mactype(struct phy_device *phydev, int mactype)
-+{
-+	int err, val;
-+
-+	mactype &= MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK;
-+	err = phy_modify_mmd(phydev, MDIO_MMD_PMAPMD, MV_PMA_21X0_PORT_CTRL,
-+			     MV_PMA_21X0_PORT_CTRL_SWRST |
-+			     MV_PMA_21X0_PORT_CTRL_MACTYPE_MASK,
-+			     MV_PMA_21X0_PORT_CTRL_SWRST | mactype);
-+	if (err)
-+		return err;
-+
-+	err = phy_set_bits_mmd(phydev, MDIO_MMD_AN, MV_AN_21X0_SERDES_CTRL2,
-+			       MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS |
-+			       MV_AN_21X0_SERDES_CTRL2_RUN_INIT);
-+	if (err)
-+		return err;
-+
-+	err = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_AN,
-+					MV_AN_21X0_SERDES_CTRL2, val,
-+					!(val &
-+					  MV_AN_21X0_SERDES_CTRL2_RUN_INIT),
-+					5000, 100000, true);
-+	if (err)
-+		return err;
-+
-+	return phy_clear_bits_mmd(phydev, MDIO_MMD_AN, MV_AN_21X0_SERDES_CTRL2,
-+				  MV_AN_21X0_SERDES_CTRL2_AUTO_INIT_DIS);
-+}
-+
-+static int mv2110_select_mactype(unsigned long *interfaces)
-+{
-+	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
-+		return MV_PMA_21X0_PORT_CTRL_MACTYPE_USXGMII;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 !test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_PMA_21X0_PORT_CTRL_MACTYPE_5GBASER;
-+	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_PMA_21X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
-+	else
-+		return -1;
-+}
-+
- static int mv3310_get_mactype(struct phy_device *phydev)
- {
- 	int mactype;
-@@ -604,6 +654,46 @@ static int mv3310_get_mactype(struct phy_device *phydev)
- 	return mactype & MV_V2_33X0_PORT_CTRL_MACTYPE_MASK;
- }
- 
-+static int mv3310_set_mactype(struct phy_device *phydev, int mactype)
-+{
-+	int ret;
-+
-+	mactype &= MV_V2_33X0_PORT_CTRL_MACTYPE_MASK;
-+	ret = phy_modify_mmd_changed(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
-+				     MV_V2_33X0_PORT_CTRL_MACTYPE_MASK,
-+				     mactype);
-+	if (ret <= 0)
-+		return ret;
-+
-+	return phy_set_bits_mmd(phydev, MDIO_MMD_VEND2, MV_V2_PORT_CTRL,
-+				MV_V2_33X0_PORT_CTRL_SWRST);
-+}
-+
-+static int mv3310_select_mactype(unsigned long *interfaces)
-+{
-+	if (test_bit(PHY_INTERFACE_MODE_USXGMII, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_USXGMII;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces) &&
-+		 test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
-+		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI;
-+	else if (test_bit(PHY_INTERFACE_MODE_10GBASER, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER_RATE_MATCH;
-+	else if (test_bit(PHY_INTERFACE_MODE_RXAUI, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_RXAUI_RATE_MATCH;
-+	else if (test_bit(PHY_INTERFACE_MODE_XAUI, interfaces))
-+		return MV_V2_3310_PORT_CTRL_MACTYPE_XAUI_RATE_MATCH;
-+	else if (test_bit(PHY_INTERFACE_MODE_SGMII, interfaces))
-+		return MV_V2_33X0_PORT_CTRL_MACTYPE_10GBASER;
-+	else
-+		return -1;
-+}
-+
- static int mv2110_init_interface(struct phy_device *phydev, int mactype)
- {
- 	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
-@@ -674,10 +764,16 @@ static int mv3310_config_init(struct phy_device *phydev)
- {
- 	struct mv3310_priv *priv = dev_get_drvdata(&phydev->mdio.dev);
- 	const struct mv3310_chip *chip = to_mv3310_chip(phydev);
-+	DECLARE_PHY_INTERFACE_MASK(interfaces);
- 	int err, mactype;
- 
--	/* Check that the PHY interface type is compatible */
--	if (!test_bit(phydev->interface, priv->supported_interfaces))
-+	/* In case host didn't provide supported interfaces */
-+	__set_bit(phydev->interface, phydev->host_interfaces);
-+
-+	/* Check that there is at least one compatible PHY interface type */
-+	phy_interface_and(interfaces, phydev->host_interfaces,
-+			  priv->supported_interfaces);
-+	if (phy_interface_empty(interfaces))
- 		return -ENODEV;
- 
- 	phydev->mdix_ctrl = ETH_TP_MDI_AUTO;
-@@ -687,9 +783,15 @@ static int mv3310_config_init(struct phy_device *phydev)
- 	if (err)
- 		return err;
- 
--	mactype = chip->get_mactype(phydev);
--	if (mactype < 0)
--		return mactype;
-+	mactype = chip->select_mactype(interfaces);
-+	if (mactype < 0) {
-+		mactype = chip->get_mactype(phydev);
-+	} else {
-+		phydev_info(phydev, "Changing MACTYPE to %i\n", mactype);
-+		err = chip->set_mactype(phydev, mactype);
-+		if (err)
-+			return err;
-+	}
- 
- 	err = chip->init_interface(phydev, mactype);
- 	if (err) {
-@@ -1049,6 +1151,8 @@ static const struct mv3310_chip mv3310_type = {
- 	.has_downshift = mv3310_has_downshift,
- 	.init_supported_interfaces = mv3310_init_supported_interfaces,
- 	.get_mactype = mv3310_get_mactype,
-+	.set_mactype = mv3310_set_mactype,
-+	.select_mactype = mv3310_select_mactype,
- 	.init_interface = mv3310_init_interface,
- 
- #ifdef CONFIG_HWMON
-@@ -1060,6 +1164,8 @@ static const struct mv3310_chip mv3340_type = {
- 	.has_downshift = mv3310_has_downshift,
- 	.init_supported_interfaces = mv3340_init_supported_interfaces,
- 	.get_mactype = mv3310_get_mactype,
-+	.set_mactype = mv3310_set_mactype,
-+	.select_mactype = mv3310_select_mactype,
- 	.init_interface = mv3340_init_interface,
- 
- #ifdef CONFIG_HWMON
-@@ -1070,6 +1176,8 @@ static const struct mv3310_chip mv3340_type = {
- static const struct mv3310_chip mv2110_type = {
- 	.init_supported_interfaces = mv2110_init_supported_interfaces,
- 	.get_mactype = mv2110_get_mactype,
-+	.set_mactype = mv2110_set_mactype,
-+	.select_mactype = mv2110_select_mactype,
- 	.init_interface = mv2110_init_interface,
- 
- #ifdef CONFIG_HWMON
-@@ -1080,6 +1188,8 @@ static const struct mv3310_chip mv2110_type = {
- static const struct mv3310_chip mv2111_type = {
- 	.init_supported_interfaces = mv2111_init_supported_interfaces,
- 	.get_mactype = mv2110_get_mactype,
-+	.set_mactype = mv2110_set_mactype,
-+	.select_mactype = mv2110_select_mactype,
- 	.init_interface = mv2110_init_interface,
- 
- #ifdef CONFIG_HWMON
--- 
-2.32.0
 
