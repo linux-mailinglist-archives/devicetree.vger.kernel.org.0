@@ -2,326 +2,1350 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0133145A67E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 16:24:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E16945A687
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 16:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236528AbhKWP1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 10:27:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47810 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231337AbhKWP1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 10:27:55 -0500
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205CAC061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 07:24:47 -0800 (PST)
-Received: by mail-ot1-x32d.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso3617431otf.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 07:24:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JpD5WpIhxDUkbt7w6TL55id0u6co4l+62l9b76Ql6yE=;
-        b=NrvF4QqjjfGRaiXEftlCeh5hxtQmd/oBn8N6nYo5xZ61CYUhYy2sp8YjyvMYtf+6r4
-         AMA1D4ejWYPVAjO64DEhhEK/rzT8aAE5SHIZaUzrSOg3Q3xgvYPloH6zeAtO0BLpy7ut
-         AzzshMD452L//bSolQHlO9U3xa76E5tN6NLy+EfBPl1Nykcu+6FggNLRVjOZIN9iE4uu
-         vrhsQwoMyRUq/Bu4yjKl+TjDaM/mwAA66o/oL5cGHWzgDVEItwXjQ5028TCtHPMHMQ1v
-         H/Hra52DAt9DYh+GfPYI2Hg8VXegkaB+6LArISAiq4YClmERQJgXJ+YDJbLECmaocmmk
-         a7DA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JpD5WpIhxDUkbt7w6TL55id0u6co4l+62l9b76Ql6yE=;
-        b=29a5dsKQGThgDhct1U+PaxHxKHmU5WO4v4Tq+Do3DbR6STnIx6umgTlpPvGpKIwYt/
-         tfzjn91pOvYw2ku3GV1SqzuYFd9RSKuXPB7nykrqVrmRjDtaWGG1pd40X3MKFPXPs9hN
-         Q6zhfZ7vHJERLt7FAM/cLuwuaVPtTcilwwXaO1Du5x5vh2LyRTM7Mnda0wgvRp42hY0d
-         XapI9SsWlWshCgTIFLD1oNRY0XMLGrLs0mOF68W/6HNm05zwkn1DBVcN5JdMP0dJrHgU
-         wsDouJiSR2i3oCITkC+uAYbYSlSnvWxASR556STVf4MG/Cc7aYP27/qqj5CLGrKZPa7X
-         xNPA==
-X-Gm-Message-State: AOAM532oOkFquq6lBgXukLufX41r8z/wFj0KYsC/ht75g2ky4aJgL0fF
-        um4bBmR5hKJFUUTTmsgcOck5HQ==
-X-Google-Smtp-Source: ABdhPJxSqKyEA2wbIvfDs5E8BVg1B50eu94EXrlDS3SC+PEBF0OrHZ1r0uSnSUNP25yuwBMFrfZePg==
-X-Received: by 2002:a05:6830:4392:: with SMTP id s18mr5399396otv.168.1637681086407;
-        Tue, 23 Nov 2021 07:24:46 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id r3sm2191435oti.51.2021.11.23.07.24.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 07:24:45 -0800 (PST)
-Date:   Tue, 23 Nov 2021 07:26:28 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH] dts: treewide: Drop input-name property
-Message-ID: <YZ0IJGJwy6O9ATpW@ripper>
-References: <20211123065158.1383182-1-danct12@riseup.net>
+        id S234865AbhKWPee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 10:34:34 -0500
+Received: from smtp-out2.suse.de ([195.135.220.29]:48816 "EHLO
+        smtp-out2.suse.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234837AbhKWPed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 10:34:33 -0500
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 2BA741FD5A;
+        Tue, 23 Nov 2021 15:31:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1637681484; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=K9EexUMFqb7hvmcojgyc6c4UVFd9MkkKrKnRv6hEkSA=;
+        b=dCqPCysywAhvjGjThmybn+CjJ/UMvLAoCejudOLdWTfNuo9IMArQCrC0JL342+Buc1V/Ai
+        JBdNqnZVkWX3EcJ3EGY+gzImpgASVa96GkVR3VT4QuaWqOWOzOc//UoPO+Iur3ECsgN9Sj
+        3WiyFBOB+58fuzuQ1PZoLSLgYKxsk/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1637681484;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=K9EexUMFqb7hvmcojgyc6c4UVFd9MkkKrKnRv6hEkSA=;
+        b=ZjygpohGO8AzhR8whSoB/M+nQzJjW5MK5XoS0fj0f1y3UO/cqy72rXlpTVoycaKa7pBdB1
+        H1ye5Kkgb4UUP7Aw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3945A13E11;
+        Tue, 23 Nov 2021 15:31:23 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id FePGCksJnWFCSwAAMHmgww
+        (envelope-from <dkirjanov@suse.de>); Tue, 23 Nov 2021 15:31:23 +0000
+Subject: Re: [PATCH net-next v2 2/6] net: lan966x: add the basic lan966x
+ driver
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, UNGLinuxDriver@microchip.com,
+        p.zabel@pengutronix.de, linux@armlinux.org.uk,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
+ <20211123135517.4037557-3-horatiu.vultur@microchip.com>
+From:   Denis Kirjanov <dkirjanov@suse.de>
+Message-ID: <16727fc4-4cc7-41de-910d-80b3bca70ef1@suse.de>
+Date:   Tue, 23 Nov 2021 18:31:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123065158.1383182-1-danct12@riseup.net>
+In-Reply-To: <20211123135517.4037557-3-horatiu.vultur@microchip.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: ru
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 22 Nov 22:51 PST 2021, Dang Huynh wrote:
 
-> This property doesn't seem to exist in the documentation nor
-> in source code, but for some reason it is defined in a bunch
-> of device trees.
+
+11/23/21 4:55 PM, Horatiu Vultur пишет:
+> This patch adds basic SwitchDev driver framework for lan966x. It
+> includes only the IO range mapping and probing of the switch.
 > 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-
-Many thanks for the cleanup Dang. Unfortunately 32-bit Qcom, 64-bit
-Qcom, the Mediatek and the sun8i changes goes through different
-maintainer trees.
-
-So if you could split this in 3 different patches that would make it
-easier for us maintainers.
-
-Thanks,
-Bjorn
-
+> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 > ---
->  arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts          | 1 -
->  arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts             | 1 -
->  arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts     | 1 -
->  arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts              | 1 -
->  arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts         | 1 -
->  arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts        | 1 -
->  arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts        | 1 -
->  arch/arm/boot/dts/sun8i-h3-nanopi.dtsi                       | 1 -
->  arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi             | 1 -
->  arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts            | 1 -
->  arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi     | 1 -
->  arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi   | 1 -
->  arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts              | 3 ---
->  arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi    | 2 --
->  arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi        | 1 -
->  arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts | 1 -
->  16 files changed, 19 deletions(-)
+>   drivers/net/ethernet/microchip/Kconfig        |   1 +
+>   drivers/net/ethernet/microchip/Makefile       |   1 +
+>   .../net/ethernet/microchip/lan966x/Kconfig    |   7 +
+>   .../net/ethernet/microchip/lan966x/Makefile   |   8 +
+>   .../ethernet/microchip/lan966x/lan966x_main.c | 356 +++++++++
+>   .../ethernet/microchip/lan966x/lan966x_main.h | 103 +++
+>   .../ethernet/microchip/lan966x/lan966x_regs.h | 730 ++++++++++++++++++
+>   7 files changed, 1206 insertions(+)
+>   create mode 100644 drivers/net/ethernet/microchip/lan966x/Kconfig
+>   create mode 100644 drivers/net/ethernet/microchip/lan966x/Makefile
+>   create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+>   create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+>   create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
 > 
-> diff --git a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
-> index f8c97efc61fc..0cee62c7b8b0 100644
-> --- a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
-> +++ b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
-> @@ -19,7 +19,6 @@ chosen {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
-> index ea15b645b229..6d77e0f8ca4d 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
-> @@ -20,7 +20,6 @@ chosen {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> index 30ee913faae6..069136170198 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
-> @@ -450,7 +450,6 @@ bcrmf@1 {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
-> index 003f0fa9c857..96e1c978b878 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
-> @@ -349,7 +349,6 @@ bluetooth {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
-> index 398a3eaf306b..79e2cfbbb1ba 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
-> @@ -20,7 +20,6 @@ chosen {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
-> index b4dd85bd4faf..e66937e3f7dd 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
-> @@ -20,7 +20,6 @@ chosen {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
-> index 9743beebd84d..a62e5c25b23c 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
-> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
-> @@ -20,7 +20,6 @@ chosen {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_pin_a>;
-> diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi b/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
-> index c7c3e7d8b3c8..1eabc69462d4 100644
-> --- a/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
-> @@ -75,7 +75,6 @@ led-1 {
->  
->  	r_gpio_keys {
->  		compatible = "gpio-keys";
-> -		input-name = "k1";
->  
->  		k1 {
->  			label = "k1";
-> diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-> index fcddec14738d..7a717f926929 100644
-> --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-> @@ -25,7 +25,6 @@ optee: optee@4fd00000 {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_keys_default>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-> index 69fcb6b0398d..84558ab5fe86 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
-> @@ -42,7 +42,6 @@ framebuffer0: framebuffer@3404000 {
->  
->  	gpio_keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  		autorepeat;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-> index 3a3790a52a2c..cc038f9b641f 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
-> @@ -62,7 +62,6 @@ divclk4: divclk4 {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		autorepeat;
->  
->  		volupkey {
-> diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-> index 7cc564d8ca7c..dde7ed159c4d 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-> @@ -29,7 +29,6 @@ / {
->  
->  	gpio_keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  		autorepeat;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-> index 3d495ce3f46a..dc5b9b274df3 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
-> @@ -29,7 +29,6 @@ extcon_usb: extcon-usb {
->  
->  	gpio-hall-sensors {
->  		compatible = "gpio-keys";
-> -		input-name = "hall-sensors";
->  		label = "Hall sensors";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&hall_sensor1_default>;
-> @@ -46,7 +45,6 @@ hall-sensor1 {
->  
->  	gpio-kb-extra-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "extra-kb-keys";
->  		label = "Keyboard extra keys";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&gpio_kb_pins_extra>;
-> @@ -102,7 +100,6 @@ alt {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "side-buttons";
->  		label = "Side buttons";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> index 91e391282181..47488a1aecae 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
-> @@ -93,7 +93,6 @@ vph_pwr: vph-pwr-regulator {
->  
->  	gpio-keys {
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		label = "Side buttons";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&vol_down_pin_a>, <&cam_focus_pin_a>,
-> @@ -126,7 +125,6 @@ camera-focus {
->  
->  	gpio-hall-sensor {
->  		compatible = "gpio-keys";
-> -		input-name = "hall-sensors";
->  		label = "Hall sensors";
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&hall_sensor0_default>;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> index e90c9ec84675..42af1fade461 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> @@ -90,7 +90,6 @@ cam_vana_rear_vreg: cam_vana_rear_vreg {
->  	gpio_keys {
->  		status = "okay";
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> index 45eab0235d66..871ccbba445b 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
-> @@ -42,7 +42,6 @@ extcon_usb: extcon-usb {
->  	gpio-keys {
->  		status = "okay";
->  		compatible = "gpio-keys";
-> -		input-name = "gpio-keys";
->  		#address-cells = <1>;
->  		#size-cells = <0>;
->  		autorepeat;
-> -- 
-> 2.34.0
+> diff --git a/drivers/net/ethernet/microchip/Kconfig b/drivers/net/ethernet/microchip/Kconfig
+> index 735eea1dacf1..ed7a35c3ceac 100644
+> --- a/drivers/net/ethernet/microchip/Kconfig
+> +++ b/drivers/net/ethernet/microchip/Kconfig
+> @@ -55,6 +55,7 @@ config LAN743X
+>   	  To compile this driver as a module, choose M here. The module will be
+>   	  called lan743x.
+>   
+> +source "drivers/net/ethernet/microchip/lan966x/Kconfig"
+>   source "drivers/net/ethernet/microchip/sparx5/Kconfig"
+>   
+>   endif # NET_VENDOR_MICROCHIP
+> diff --git a/drivers/net/ethernet/microchip/Makefile b/drivers/net/ethernet/microchip/Makefile
+> index c77dc0379bfd..9faa41436198 100644
+> --- a/drivers/net/ethernet/microchip/Makefile
+> +++ b/drivers/net/ethernet/microchip/Makefile
+> @@ -9,4 +9,5 @@ obj-$(CONFIG_LAN743X) += lan743x.o
+>   
+>   lan743x-objs := lan743x_main.o lan743x_ethtool.o lan743x_ptp.o
+>   
+> +obj-$(CONFIG_LAN966X_SWITCH) += lan966x/
+>   obj-$(CONFIG_SPARX5_SWITCH) += sparx5/
+> diff --git a/drivers/net/ethernet/microchip/lan966x/Kconfig b/drivers/net/ethernet/microchip/lan966x/Kconfig
+> new file mode 100644
+> index 000000000000..83ac4266b417
+> --- /dev/null
+> +++ b/drivers/net/ethernet/microchip/lan966x/Kconfig
+> @@ -0,0 +1,7 @@
+> +config LAN966X_SWITCH
+> +	tristate "Lan966x switch driver"
+> +	depends on HAS_IOMEM
+> +	depends on OF
+> +	select PHYLINK
+> +	help
+> +	  This driver supports the Lan966x network switch device.
+> diff --git a/drivers/net/ethernet/microchip/lan966x/Makefile b/drivers/net/ethernet/microchip/lan966x/Makefile
+> new file mode 100644
+> index 000000000000..7ea90410a0b2
+> --- /dev/null
+> +++ b/drivers/net/ethernet/microchip/lan966x/Makefile
+> @@ -0,0 +1,8 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# Makefile for the Microchip Lan966x network device drivers.
+> +#
+> +
+> +obj-$(CONFIG_LAN966X_SWITCH) += lan966x-switch.o
+> +
+> +lan966x-switch-objs  := lan966x_main.o
+> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.c b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+> new file mode 100644
+> index 000000000000..c6bdbb065f07
+> --- /dev/null
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+> @@ -0,0 +1,356 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
+> +#include <asm/memory.h>
+> +#include <linux/module.h>
+> +#include <linux/if_bridge.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/of_net.h>
+> +#include <linux/reset.h>
+> +
+> +#include "lan966x_main.h"
+> +
+> +#define READL_SLEEP_US			10
+> +#define READL_TIMEOUT_US		100000000
+> +
+> +#define IO_RANGES 2
+> +
+> +static const struct of_device_id lan966x_match[] = {
+> +	{ .compatible = "microchip,lan966x-switch" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mchp_lan966x_match);
+> +
+> +struct lan966x_main_io_resource {
+> +	enum lan966x_target id;
+> +	phys_addr_t offset;
+> +	int range;
+> +};
+> +
+> +static const struct lan966x_main_io_resource lan966x_main_iomap[] =  {
+> +	{ TARGET_CPU,                   0xc0000, 0 }, /* 0xe00c0000 */
+> +	{ TARGET_ORG,                         0, 1 }, /* 0xe2000000 */
+> +	{ TARGET_GCB,                    0x4000, 1 }, /* 0xe2004000 */
+> +	{ TARGET_QS,                     0x8000, 1 }, /* 0xe2008000 */
+> +	{ TARGET_CHIP_TOP,              0x10000, 1 }, /* 0xe2010000 */
+> +	{ TARGET_REW,                   0x14000, 1 }, /* 0xe2014000 */
+> +	{ TARGET_SYS,                   0x28000, 1 }, /* 0xe2028000 */
+> +	{ TARGET_DEV,                   0x34000, 1 }, /* 0xe2034000 */
+> +	{ TARGET_DEV +  1,              0x38000, 1 }, /* 0xe2038000 */
+> +	{ TARGET_DEV +  2,              0x3c000, 1 }, /* 0xe203c000 */
+> +	{ TARGET_DEV +  3,              0x40000, 1 }, /* 0xe2040000 */
+> +	{ TARGET_DEV +  4,              0x44000, 1 }, /* 0xe2044000 */
+> +	{ TARGET_DEV +  5,              0x48000, 1 }, /* 0xe2048000 */
+> +	{ TARGET_DEV +  6,              0x4c000, 1 }, /* 0xe204c000 */
+> +	{ TARGET_DEV +  7,              0x50000, 1 }, /* 0xe2050000 */
+> +	{ TARGET_QSYS,                 0x100000, 1 }, /* 0xe2100000 */
+> +	{ TARGET_AFI,                  0x120000, 1 }, /* 0xe2120000 */
+> +	{ TARGET_ANA,                  0x140000, 1 }, /* 0xe2140000 */
+> +};
+> +
+> +static int lan966x_create_targets(struct platform_device *pdev,
+> +				  struct lan966x *lan966x)
+> +{
+> +	struct resource *iores[IO_RANGES];
+> +	void __iomem *begin[IO_RANGES];
+> +	int idx;
+> +
+> +	/* Initially map the entire range and after that update each target to
+> +	 * point inside the region at the correct offset. It is possible that
+> +	 * other devices access the same region so don't add any checks about
+> +	 * this.
+> +	 */
+> +	for (idx = 0; idx < IO_RANGES; idx++) {
+> +		iores[idx] = platform_get_resource(pdev, IORESOURCE_MEM,
+> +						   idx);
+> +		if (!iores[idx]) {
+> +			dev_err(&pdev->dev, "Invalid resource\n");
+> +			return -EINVAL;
+> +		}
+> +
+> +		begin[idx] = devm_ioremap(&pdev->dev,
+> +					  iores[idx]->start,
+> +					  resource_size(iores[idx]));
+> +		if (IS_ERR(begin[idx])) {
+> +			dev_err(&pdev->dev, "Unable to get registers: %s\n",
+> +				iores[idx]->name);
+> +			return PTR_ERR(begin[idx]);
+> +		}
+> +	}
+> +
+> +	for (idx = 0; idx < ARRAY_SIZE(lan966x_main_iomap); idx++) {
+> +		const struct lan966x_main_io_resource *iomap =
+> +			&lan966x_main_iomap[idx];
+> +
+> +		lan966x->regs[iomap->id] = begin[iomap->range] + iomap->offset;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int lan966x_probe_port(struct lan966x *lan966x, u32 p,
+> +			      phy_interface_t phy_mode)
+> +{
+> +	struct lan966x_port *port;
+> +
+> +	if (p >= lan966x->num_phys_ports)
+> +		return -EINVAL;
+> +
+> +	port = devm_kzalloc(lan966x->dev, sizeof(*port), GFP_KERNEL);
+ENOMEM?
+> +
+> +	port->lan966x = lan966x;
+> +	port->chip_port = p;
+> +	port->pvid = PORT_PVID;
+> +	lan966x->ports[p] = port;
+> +
+> +	return 0;
+> +}
+> +
+> +static void lan966x_init(struct lan966x *lan966x)
+> +{
+> +	u32 p, i;
+> +
+> +	/* Flush queues */
+> +	lan_wr(lan_rd(lan966x, QS_XTR_FLUSH) |
+> +	       GENMASK(1, 0),
+> +	       lan966x, QS_XTR_FLUSH);
+> +
+> +	/* Allow to drain */
+> +	mdelay(1);
+> +
+> +	/* All Queues normal */
+> +	lan_wr(lan_rd(lan966x, QS_XTR_FLUSH) &
+> +	       ~(GENMASK(1, 0)),
+> +	       lan966x, QS_XTR_FLUSH);
+> +
+> +	/* Set MAC age time to default value, the entry is aged after
+> +	 * 2 * AGE_PERIOD
+> +	 */
+> +	lan_wr(ANA_AUTOAGE_AGE_PERIOD_SET(BR_DEFAULT_AGEING_TIME / 2 / HZ),
+> +	       lan966x, ANA_AUTOAGE);
+> +
+> +	/* Disable learning for frames discarded by VLAN ingress filtering */
+> +	lan_rmw(ANA_ADVLEARN_VLAN_CHK_SET(1),
+> +		ANA_ADVLEARN_VLAN_CHK,
+> +		lan966x, ANA_ADVLEARN);
+> +
+> +	/* Setup frame ageing - "2 sec" - The unit is 6.5 us on lan966x */
+> +	lan_wr(SYS_FRM_AGING_AGE_TX_ENA_SET(1) |
+> +	       (20000000 / 65),
+> +	       lan966x,  SYS_FRM_AGING);
+> +
+> +	/* Map the 8 CPU extraction queues to CPU port */
+> +	lan_wr(0, lan966x, QSYS_CPU_GROUP_MAP);
+> +
+> +	/* Do byte-swap and expect status after last data word
+> +	 * Extraction: Mode: manual extraction) | Byte_swap
+> +	 */
+> +	lan_wr(QS_XTR_GRP_CFG_MODE_SET(1) |
+> +	       QS_XTR_GRP_CFG_BYTE_SWAP_SET(1),
+> +	       lan966x, QS_XTR_GRP_CFG(0));
+> +
+> +	/* Injection: Mode: manual injection | Byte_swap */
+> +	lan_wr(QS_INJ_GRP_CFG_MODE_SET(1) |
+> +	       QS_INJ_GRP_CFG_BYTE_SWAP_SET(1),
+> +	       lan966x, QS_INJ_GRP_CFG(0));
+> +
+> +	lan_rmw(QS_INJ_CTRL_GAP_SIZE_SET(0),
+> +		QS_INJ_CTRL_GAP_SIZE,
+> +		lan966x, QS_INJ_CTRL(0));
+> +
+> +	/* Enable IFH insertion/parsing on CPU ports */
+> +	lan_wr(SYS_PORT_MODE_INCL_INJ_HDR_SET(1) |
+> +	       SYS_PORT_MODE_INCL_XTR_HDR_SET(1),
+> +	       lan966x, SYS_PORT_MODE(CPU_PORT));
+> +
+> +	/* Setup flooding PGIDs */
+> +	lan_wr(ANA_FLOODING_IPMC_FLD_MC4_DATA_SET(PGID_MCIPV4) |
+> +	       ANA_FLOODING_IPMC_FLD_MC4_CTRL_SET(PGID_MC) |
+> +	       ANA_FLOODING_IPMC_FLD_MC6_DATA_SET(PGID_MC) |
+> +	       ANA_FLOODING_IPMC_FLD_MC6_CTRL_SET(PGID_MC),
+> +	       lan966x, ANA_FLOODING_IPMC);
+> +
+> +	/* There are 8 priorities */
+> +	for (i = 0; i < 8; ++i)
+> +		lan_rmw(ANA_FLOODING_FLD_MULTICAST_SET(PGID_MC) |
+> +			ANA_FLOODING_FLD_BROADCAST_SET(PGID_BC),
+> +			ANA_FLOODING_FLD_MULTICAST |
+> +			ANA_FLOODING_FLD_BROADCAST,
+> +			lan966x, ANA_FLOODING(i));
+> +
+> +	for (i = 0; i < PGID_ENTRIES; ++i)
+> +		/* Set all the entries to obey VLAN_VLAN */
+> +		lan_rmw(ANA_PGID_CFG_OBEY_VLAN_SET(1),
+> +			ANA_PGID_CFG_OBEY_VLAN,
+> +			lan966x, ANA_PGID_CFG(i));
+> +
+> +	for (p = 0; p < lan966x->num_phys_ports; p++) {
+> +		/* Disable bridging by default */
+> +		lan_rmw(ANA_PGID_PGID_SET(0x0),
+> +			ANA_PGID_PGID,
+> +			lan966x, ANA_PGID(p + PGID_SRC));
+> +
+> +		/* Do not forward BPDU frames to the front ports and copy them
+> +		 * to CPU
+> +		 */
+> +		lan_wr(0xffff, lan966x, ANA_CPU_FWD_BPDU_CFG(p));
+> +	}
+> +
+> +	/* Set source buffer size for each priority and each port to 1500 bytes */
+> +	for (i = 0; i <= QSYS_Q_RSRV; ++i) {
+> +		lan_wr(1500 / 64, lan966x, QSYS_RES_CFG(i));
+> +		lan_wr(1500 / 64, lan966x, QSYS_RES_CFG(512 + i));
+> +	}
+> +
+> +	/* Enable switching to/from cpu port */
+> +	lan_wr(QSYS_SW_PORT_MODE_PORT_ENA_SET(1) |
+> +	       QSYS_SW_PORT_MODE_SCH_NEXT_CFG_SET(1) |
+> +	       QSYS_SW_PORT_MODE_INGRESS_DROP_MODE_SET(1),
+> +	       lan966x,  QSYS_SW_PORT_MODE(CPU_PORT));
+> +
+> +	/* Configure and enable the CPU port */
+> +	lan_rmw(ANA_PGID_PGID_SET(0),
+> +		ANA_PGID_PGID,
+> +		lan966x, ANA_PGID(CPU_PORT));
+> +	lan_rmw(ANA_PGID_PGID_SET(BIT(CPU_PORT)),
+> +		ANA_PGID_PGID,
+> +		lan966x, ANA_PGID(PGID_CPU));
+> +
+> +	/* Multicast to all other ports */
+> +	lan_rmw(GENMASK(lan966x->num_phys_ports - 1, 0),
+> +		ANA_PGID_PGID,
+> +		lan966x, ANA_PGID(PGID_MC));
+> +
+> +	/* This will be controlled by mrouter ports */
+> +	lan_rmw(GENMASK(lan966x->num_phys_ports - 1, 0),
+> +		ANA_PGID_PGID,
+> +		lan966x, ANA_PGID(PGID_MCIPV4));
+> +
+> +	/* Broadcast to the CPU port and to other ports */
+> +	lan_rmw(ANA_PGID_PGID_SET(BIT(CPU_PORT) | GENMASK(lan966x->num_phys_ports - 1, 0)),
+> +		ANA_PGID_PGID,
+> +		lan966x, ANA_PGID(PGID_BC));
+> +
+> +	lan_wr(REW_PORT_CFG_NO_REWRITE_SET(1),
+> +	       lan966x, REW_PORT_CFG(CPU_PORT));
+> +
+> +	lan_rmw(ANA_ANAINTR_INTR_ENA_SET(1),
+> +		ANA_ANAINTR_INTR_ENA,
+> +		lan966x, ANA_ANAINTR);
+> +}
+> +
+> +static int lan966x_ram_init(struct lan966x *lan966x)
+> +{
+> +	return lan_rd(lan966x, SYS_RAM_INIT);
+> +}
+> +
+> +static int lan966x_reset_switch(struct lan966x *lan966x)
+> +{
+> +	struct reset_control *reset;
+> +	int val = 0;
+> +	int ret;
+> +
+> +	reset = devm_reset_control_get_shared(lan966x->dev, "switch");
+> +	if (IS_ERR(reset))
+> +		return dev_err_probe(lan966x->dev, PTR_ERR(reset),
+> +				     "Could not obtain switch reset");
+> +	reset_control_reset(reset);
+> +
+> +	reset = devm_reset_control_get_shared(lan966x->dev, "phy");
+> +	if (IS_ERR(reset))
+> +		return dev_err_probe(lan966x->dev, PTR_ERR(reset),
+> +				     "Could not obtain phy reset\n");
+> +	reset_control_reset(reset);
+> +
+> +	lan_wr(SYS_RESET_CFG_CORE_ENA_SET(0), lan966x, SYS_RESET_CFG);
+> +	lan_wr(SYS_RAM_INIT_RAM_INIT_SET(1), lan966x, SYS_RAM_INIT);
+> +	ret = readx_poll_timeout(lan966x_ram_init, lan966x,
+> +				 val, (val & BIT(1)) == 0, READL_SLEEP_US,
+> +				 READL_TIMEOUT_US);
+> +	if (ret)
+> +		return ret;
+> +
+> +	lan_wr(SYS_RESET_CFG_CORE_ENA_SET(1), lan966x, SYS_RESET_CFG);
+> +
+> +	return 0;
+> +}
+> +
+> +static int lan966x_probe(struct platform_device *pdev)
+> +{
+> +	struct fwnode_handle *ports, *portnp;
+> +	struct lan966x *lan966x;
+> +	int err, i;
+> +
+> +	lan966x = devm_kzalloc(&pdev->dev, sizeof(*lan966x), GFP_KERNEL);
+> +	if (!lan966x)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, lan966x);
+> +	lan966x->dev = &pdev->dev;
+> +
+> +	ports = device_get_named_child_node(&pdev->dev, "ethernet-ports");
+> +	if (!ports)
+> +		return dev_err_probe(&pdev->dev, -ENODEV,
+> +				     "no ethernet-ports child found\n");
+> +
+> +	err = lan966x_create_targets(pdev, lan966x);
+> +	if (err)
+> +		return dev_err_probe(&pdev->dev, err,
+> +				     "Failed to create targets");
+> +
+> +	err = lan966x_reset_switch(lan966x);
+> +	if (err)
+> +		return dev_err_probe(&pdev->dev, err, "Reset failed");
+> +
+> +	i = 0;
+> +	fwnode_for_each_available_child_node(ports, portnp)
+> +		++i;
+> +
+> +	lan966x->num_phys_ports = i;
+> +	lan966x->ports = devm_kcalloc(&pdev->dev, lan966x->num_phys_ports,
+> +				      sizeof(struct lan966x_port *),
+> +				      GFP_KERNEL);
+> +	if (!lan966x->ports)
+> +		return -ENOMEM;
+> +
+> +	/* There QS system has 32KB of memory */
+> +	lan966x->shared_queue_sz = LAN966X_BUFFER_MEMORY;
+> +
+> +	/* init switch */
+> +	lan966x_init(lan966x);
+> +
+> +	/* go over the child nodes */
+> +	fwnode_for_each_available_child_node(ports, portnp) {
+> +		phy_interface_t phy_mode;
+> +		u32 p;
+> +
+> +		if (fwnode_property_read_u32(portnp, "reg", &p))
+> +			continue;
+> +
+> +		phy_mode = fwnode_get_phy_mode(portnp);
+> +		err = lan966x_probe_port(lan966x, p, phy_mode);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+> +	return 0;
+You have to properly free allocated resource in the error case
+> +}
+> +
+> +static int lan966x_remove(struct platform_device *pdev)
+> +{
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver lan966x_driver = {
+> +	.probe = lan966x_probe,
+> +	.remove = lan966x_remove,
+> +	.driver = {
+> +		.name = "lan966x-switch",
+> +		.of_match_table = lan966x_match,
+> +	},
+> +};
+> +module_platform_driver(lan966x_driver);
+> +
+> +MODULE_DESCRIPTION("Microchip LAN966X switch driver");
+> +MODULE_AUTHOR("Horatiu Vultur <horatiu.vultur@microchip.com>");
+> +MODULE_LICENSE("Dual MIT/GPL");
+> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_main.h b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+> new file mode 100644
+> index 000000000000..7a1ff9d19fbf
+> --- /dev/null
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+> @@ -0,0 +1,103 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +
+> +#ifndef __LAN966X_MAIN_H__
+> +#define __LAN966X_MAIN_H__
+> +
+> +#include "lan966x_regs.h"
+> +
+> +#define LAN966X_BUFFER_CELL_SZ		64
+> +#define LAN966X_BUFFER_MEMORY		(160 * 1024)
+> +#define LAN966X_BUFFER_MIN_SZ		60
+> +
+> +#define PGID_AGGR			64
+> +#define PGID_SRC			80
+> +#define PGID_ENTRIES			89
+> +
+> +#define PORT_PVID			0
+> +
+> +/* Reserved amount for (SRC, PRIO) at index 8*SRC + PRIO */
+> +#define QSYS_Q_RSRV			95
+> +
+> +/* Reserved PGIDs */
+> +#define PGID_CPU			(PGID_AGGR - 6)
+> +#define PGID_UC				(PGID_AGGR - 5)
+> +#define PGID_BC				(PGID_AGGR - 4)
+> +#define PGID_MC				(PGID_AGGR - 3)
+> +#define PGID_MCIPV4			(PGID_AGGR - 2)
+> +#define PGID_MCIPV6			(PGID_AGGR - 1)
+> +
+> +#define LAN966X_SPEED_NONE		0
+> +#define LAN966X_SPEED_1000		1
+> +#define LAN966X_SPEED_100		2
+> +#define LAN966X_SPEED_10		3
+> +
+> +#define CPU_PORT			8
+> +
+> +struct lan966x_port;
+> +
+> +struct lan966x {
+> +	struct device *dev;
+> +
+> +	u8 num_phys_ports;
+> +	struct lan966x_port **ports;
+> +
+> +	void __iomem *regs[NUM_TARGETS];
+> +
+> +	int shared_queue_sz;
+> +};
+> +
+> +struct lan966x_port {
+> +	struct lan966x *lan966x;
+> +
+> +	u8 chip_port;
+> +	u16 pvid;
+> +};
+> +
+> +static inline void __iomem *lan_addr(void __iomem *base[],
+> +				     int id, int tinst, int tcnt,
+> +				     int gbase, int ginst,
+> +				     int gcnt, int gwidth,
+> +				     int raddr, int rinst,
+> +				     int rcnt, int rwidth)
+> +{
+> +	WARN_ON((tinst) >= tcnt);
+> +	WARN_ON((ginst) >= gcnt);
+> +	WARN_ON((rinst) >= rcnt);
+> +	return base[id + (tinst)] +
+> +		gbase + ((ginst) * gwidth) +
+> +		raddr + ((rinst) * rwidth);
+> +}
+> +
+> +static inline u32 lan_rd(struct lan966x *lan966x, int id, int tinst, int tcnt,
+> +			 int gbase, int ginst, int gcnt, int gwidth,
+> +			 int raddr, int rinst, int rcnt, int rwidth)
+> +{
+> +	return readl(lan_addr(lan966x->regs, id, tinst, tcnt, gbase, ginst,
+> +			      gcnt, gwidth, raddr, rinst, rcnt, rwidth));
+> +}
+> +
+> +static inline void lan_wr(u32 val, struct lan966x *lan966x,
+> +			  int id, int tinst, int tcnt,
+> +			  int gbase, int ginst, int gcnt, int gwidth,
+> +			  int raddr, int rinst, int rcnt, int rwidth)
+> +{
+> +	writel(val, lan_addr(lan966x->regs, id, tinst, tcnt,
+> +			     gbase, ginst, gcnt, gwidth,
+> +			     raddr, rinst, rcnt, rwidth));
+> +}
+> +
+> +static inline void lan_rmw(u32 val, u32 mask, struct lan966x *lan966x,
+> +			   int id, int tinst, int tcnt,
+> +			   int gbase, int ginst, int gcnt, int gwidth,
+> +			   int raddr, int rinst, int rcnt, int rwidth)
+> +{
+> +	u32 nval;
+> +
+> +	nval = readl(lan_addr(lan966x->regs, id, tinst, tcnt, gbase, ginst,
+> +			      gcnt, gwidth, raddr, rinst, rcnt, rwidth));
+> +	nval = (nval & ~mask) | (val & mask);
+> +	writel(nval, lan_addr(lan966x->regs, id, tinst, tcnt, gbase, ginst,
+> +			      gcnt, gwidth, raddr, rinst, rcnt, rwidth));
+> +}
+> +
+> +#endif /* __LAN966X_MAIN_H__ */
+> diff --git a/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h b/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
+> new file mode 100644
+> index 000000000000..879dcd807dec
+> --- /dev/null
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
+> @@ -0,0 +1,730 @@
+> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> +
+> +/* This file is autogenerated by cml-utils 2021-10-10 13:25:08 +0200.
+> + * Commit ID: 26db2002924973d36a30b369c94f025a678fe9ea (dirty)
+> + */
+> +
+> +#ifndef _LAN966X_REGS_H_
+> +#define _LAN966X_REGS_H_
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/types.h>
+> +#include <linux/bug.h>
+> +
+> +enum lan966x_target {
+> +	TARGET_AFI = 2,
+> +	TARGET_ANA = 3,
+> +	TARGET_CHIP_TOP = 5,
+> +	TARGET_CPU = 6,
+> +	TARGET_DEV = 13,
+> +	TARGET_GCB = 27,
+> +	TARGET_ORG = 36,
+> +	TARGET_QS = 42,
+> +	TARGET_QSYS = 46,
+> +	TARGET_REW = 47,
+> +	TARGET_SYS = 52,
+> +	NUM_TARGETS = 66
+> +};
+> +
+> +#define __REG(...)    __VA_ARGS__
+> +
+> +/*      AFI:PORT_TBL:PORT_FRM_OUT */
+> +#define AFI_PORT_FRM_OUT(g)       __REG(TARGET_AFI, 0, 1, 98816, g, 10, 8, 0, 0, 1, 4)
+> +
+> +#define AFI_PORT_FRM_OUT_FRM_OUT_CNT             GENMASK(26, 16)
+> +#define AFI_PORT_FRM_OUT_FRM_OUT_CNT_SET(x)\
+> +	FIELD_PREP(AFI_PORT_FRM_OUT_FRM_OUT_CNT, x)
+> +#define AFI_PORT_FRM_OUT_FRM_OUT_CNT_GET(x)\
+> +	FIELD_GET(AFI_PORT_FRM_OUT_FRM_OUT_CNT, x)
+> +
+> +/*      AFI:PORT_TBL:PORT_CFG */
+> +#define AFI_PORT_CFG(g)           __REG(TARGET_AFI, 0, 1, 98816, g, 10, 8, 4, 0, 1, 4)
+> +
+> +#define AFI_PORT_CFG_FC_SKIP_TTI_INJ             BIT(16)
+> +#define AFI_PORT_CFG_FC_SKIP_TTI_INJ_SET(x)\
+> +	FIELD_PREP(AFI_PORT_CFG_FC_SKIP_TTI_INJ, x)
+> +#define AFI_PORT_CFG_FC_SKIP_TTI_INJ_GET(x)\
+> +	FIELD_GET(AFI_PORT_CFG_FC_SKIP_TTI_INJ, x)
+> +
+> +#define AFI_PORT_CFG_FRM_OUT_MAX                 GENMASK(9, 0)
+> +#define AFI_PORT_CFG_FRM_OUT_MAX_SET(x)\
+> +	FIELD_PREP(AFI_PORT_CFG_FRM_OUT_MAX, x)
+> +#define AFI_PORT_CFG_FRM_OUT_MAX_GET(x)\
+> +	FIELD_GET(AFI_PORT_CFG_FRM_OUT_MAX, x)
+> +
+> +/*      ANA:ANA:ADVLEARN */
+> +#define ANA_ADVLEARN              __REG(TARGET_ANA, 0, 1, 29824, 0, 1, 244, 0, 0, 1, 4)
+> +
+> +#define ANA_ADVLEARN_VLAN_CHK                    BIT(0)
+> +#define ANA_ADVLEARN_VLAN_CHK_SET(x)\
+> +	FIELD_PREP(ANA_ADVLEARN_VLAN_CHK, x)
+> +#define ANA_ADVLEARN_VLAN_CHK_GET(x)\
+> +	FIELD_GET(ANA_ADVLEARN_VLAN_CHK, x)
+> +
+> +/*      ANA:ANA:ANAINTR */
+> +#define ANA_ANAINTR               __REG(TARGET_ANA, 0, 1, 29824, 0, 1, 244, 16, 0, 1, 4)
+> +
+> +#define ANA_ANAINTR_INTR                         BIT(1)
+> +#define ANA_ANAINTR_INTR_SET(x)\
+> +	FIELD_PREP(ANA_ANAINTR_INTR, x)
+> +#define ANA_ANAINTR_INTR_GET(x)\
+> +	FIELD_GET(ANA_ANAINTR_INTR, x)
+> +
+> +#define ANA_ANAINTR_INTR_ENA                     BIT(0)
+> +#define ANA_ANAINTR_INTR_ENA_SET(x)\
+> +	FIELD_PREP(ANA_ANAINTR_INTR_ENA, x)
+> +#define ANA_ANAINTR_INTR_ENA_GET(x)\
+> +	FIELD_GET(ANA_ANAINTR_INTR_ENA, x)
+> +
+> +/*      ANA:ANA:AUTOAGE */
+> +#define ANA_AUTOAGE               __REG(TARGET_ANA, 0, 1, 29824, 0, 1, 244, 44, 0, 1, 4)
+> +
+> +#define ANA_AUTOAGE_AGE_PERIOD                   GENMASK(20, 1)
+> +#define ANA_AUTOAGE_AGE_PERIOD_SET(x)\
+> +	FIELD_PREP(ANA_AUTOAGE_AGE_PERIOD, x)
+> +#define ANA_AUTOAGE_AGE_PERIOD_GET(x)\
+> +	FIELD_GET(ANA_AUTOAGE_AGE_PERIOD, x)
+> +
+> +/*      ANA:ANA:FLOODING */
+> +#define ANA_FLOODING(r)           __REG(TARGET_ANA, 0, 1, 29824, 0, 1, 244, 68, r, 8, 4)
+> +
+> +#define ANA_FLOODING_FLD_BROADCAST               GENMASK(11, 6)
+> +#define ANA_FLOODING_FLD_BROADCAST_SET(x)\
+> +	FIELD_PREP(ANA_FLOODING_FLD_BROADCAST, x)
+> +#define ANA_FLOODING_FLD_BROADCAST_GET(x)\
+> +	FIELD_GET(ANA_FLOODING_FLD_BROADCAST, x)
+> +
+> +#define ANA_FLOODING_FLD_MULTICAST               GENMASK(5, 0)
+> +#define ANA_FLOODING_FLD_MULTICAST_SET(x)\
+> +	FIELD_PREP(ANA_FLOODING_FLD_MULTICAST, x)
+> +#define ANA_FLOODING_FLD_MULTICAST_GET(x)\
+> +	FIELD_GET(ANA_FLOODING_FLD_MULTICAST, x)
+> +
+> +/*      ANA:ANA:FLOODING_IPMC */
+> +#define ANA_FLOODING_IPMC         __REG(TARGET_ANA, 0, 1, 29824, 0, 1, 244, 100, 0, 1, 4)
+> +
+> +#define ANA_FLOODING_IPMC_FLD_MC4_CTRL           GENMASK(23, 18)
+> +#define ANA_FLOODING_IPMC_FLD_MC4_CTRL_SET(x)\
+> +	FIELD_PREP(ANA_FLOODING_IPMC_FLD_MC4_CTRL, x)
+> +#define ANA_FLOODING_IPMC_FLD_MC4_CTRL_GET(x)\
+> +	FIELD_GET(ANA_FLOODING_IPMC_FLD_MC4_CTRL, x)
+> +
+> +#define ANA_FLOODING_IPMC_FLD_MC4_DATA           GENMASK(17, 12)
+> +#define ANA_FLOODING_IPMC_FLD_MC4_DATA_SET(x)\
+> +	FIELD_PREP(ANA_FLOODING_IPMC_FLD_MC4_DATA, x)
+> +#define ANA_FLOODING_IPMC_FLD_MC4_DATA_GET(x)\
+> +	FIELD_GET(ANA_FLOODING_IPMC_FLD_MC4_DATA, x)
+> +
+> +#define ANA_FLOODING_IPMC_FLD_MC6_CTRL           GENMASK(11, 6)
+> +#define ANA_FLOODING_IPMC_FLD_MC6_CTRL_SET(x)\
+> +	FIELD_PREP(ANA_FLOODING_IPMC_FLD_MC6_CTRL, x)
+> +#define ANA_FLOODING_IPMC_FLD_MC6_CTRL_GET(x)\
+> +	FIELD_GET(ANA_FLOODING_IPMC_FLD_MC6_CTRL, x)
+> +
+> +#define ANA_FLOODING_IPMC_FLD_MC6_DATA           GENMASK(5, 0)
+> +#define ANA_FLOODING_IPMC_FLD_MC6_DATA_SET(x)\
+> +	FIELD_PREP(ANA_FLOODING_IPMC_FLD_MC6_DATA, x)
+> +#define ANA_FLOODING_IPMC_FLD_MC6_DATA_GET(x)\
+> +	FIELD_GET(ANA_FLOODING_IPMC_FLD_MC6_DATA, x)
+> +
+> +/*      ANA:PGID:PGID */
+> +#define ANA_PGID(g)               __REG(TARGET_ANA, 0, 1, 27648, g, 89, 8, 0, 0, 1, 4)
+> +
+> +#define ANA_PGID_PGID                            GENMASK(8, 0)
+> +#define ANA_PGID_PGID_SET(x)\
+> +	FIELD_PREP(ANA_PGID_PGID, x)
+> +#define ANA_PGID_PGID_GET(x)\
+> +	FIELD_GET(ANA_PGID_PGID, x)
+> +
+> +/*      ANA:PGID:PGID_CFG */
+> +#define ANA_PGID_CFG(g)           __REG(TARGET_ANA, 0, 1, 27648, g, 89, 8, 4, 0, 1, 4)
+> +
+> +#define ANA_PGID_CFG_OBEY_VLAN                   BIT(0)
+> +#define ANA_PGID_CFG_OBEY_VLAN_SET(x)\
+> +	FIELD_PREP(ANA_PGID_CFG_OBEY_VLAN, x)
+> +#define ANA_PGID_CFG_OBEY_VLAN_GET(x)\
+> +	FIELD_GET(ANA_PGID_CFG_OBEY_VLAN, x)
+> +
+> +/*      ANA:ANA_TABLES:MACHDATA */
+> +#define ANA_MACHDATA              __REG(TARGET_ANA, 0, 1, 27520, 0, 1, 128, 40, 0, 1, 4)
+> +
+> +/*      ANA:ANA_TABLES:MACLDATA */
+> +#define ANA_MACLDATA              __REG(TARGET_ANA, 0, 1, 27520, 0, 1, 128, 44, 0, 1, 4)
+> +
+> +/*      ANA:ANA_TABLES:MACACCESS */
+> +#define ANA_MACACCESS             __REG(TARGET_ANA, 0, 1, 27520, 0, 1, 128, 48, 0, 1, 4)
+> +
+> +#define ANA_MACACCESS_CHANGE2SW                  BIT(17)
+> +#define ANA_MACACCESS_CHANGE2SW_SET(x)\
+> +	FIELD_PREP(ANA_MACACCESS_CHANGE2SW, x)
+> +#define ANA_MACACCESS_CHANGE2SW_GET(x)\
+> +	FIELD_GET(ANA_MACACCESS_CHANGE2SW, x)
+> +
+> +#define ANA_MACACCESS_VALID                      BIT(12)
+> +#define ANA_MACACCESS_VALID_SET(x)\
+> +	FIELD_PREP(ANA_MACACCESS_VALID, x)
+> +#define ANA_MACACCESS_VALID_GET(x)\
+> +	FIELD_GET(ANA_MACACCESS_VALID, x)
+> +
+> +#define ANA_MACACCESS_ENTRYTYPE                  GENMASK(11, 10)
+> +#define ANA_MACACCESS_ENTRYTYPE_SET(x)\
+> +	FIELD_PREP(ANA_MACACCESS_ENTRYTYPE, x)
+> +#define ANA_MACACCESS_ENTRYTYPE_GET(x)\
+> +	FIELD_GET(ANA_MACACCESS_ENTRYTYPE, x)
+> +
+> +#define ANA_MACACCESS_DEST_IDX                   GENMASK(9, 4)
+> +#define ANA_MACACCESS_DEST_IDX_SET(x)\
+> +	FIELD_PREP(ANA_MACACCESS_DEST_IDX, x)
+> +#define ANA_MACACCESS_DEST_IDX_GET(x)\
+> +	FIELD_GET(ANA_MACACCESS_DEST_IDX, x)
+> +
+> +#define ANA_MACACCESS_MAC_TABLE_CMD              GENMASK(3, 0)
+> +#define ANA_MACACCESS_MAC_TABLE_CMD_SET(x)\
+> +	FIELD_PREP(ANA_MACACCESS_MAC_TABLE_CMD, x)
+> +#define ANA_MACACCESS_MAC_TABLE_CMD_GET(x)\
+> +	FIELD_GET(ANA_MACACCESS_MAC_TABLE_CMD, x)
+> +
+> +/*      ANA:PORT:CPU_FWD_CFG */
+> +#define ANA_CPU_FWD_CFG(g)        __REG(TARGET_ANA, 0, 1, 28672, g, 9, 128, 96, 0, 1, 4)
+> +
+> +#define ANA_CPU_FWD_CFG_SRC_COPY_ENA             BIT(3)
+> +#define ANA_CPU_FWD_CFG_SRC_COPY_ENA_SET(x)\
+> +	FIELD_PREP(ANA_CPU_FWD_CFG_SRC_COPY_ENA, x)
+> +#define ANA_CPU_FWD_CFG_SRC_COPY_ENA_GET(x)\
+> +	FIELD_GET(ANA_CPU_FWD_CFG_SRC_COPY_ENA, x)
+> +
+> +/*      ANA:PORT:CPU_FWD_BPDU_CFG */
+> +#define ANA_CPU_FWD_BPDU_CFG(g)   __REG(TARGET_ANA, 0, 1, 28672, g, 9, 128, 100, 0, 1, 4)
+> +
+> +/*      ANA:PORT:PORT_CFG */
+> +#define ANA_PORT_CFG(g)           __REG(TARGET_ANA, 0, 1, 28672, g, 9, 128, 112, 0, 1, 4)
+> +
+> +#define ANA_PORT_CFG_LEARNAUTO                   BIT(6)
+> +#define ANA_PORT_CFG_LEARNAUTO_SET(x)\
+> +	FIELD_PREP(ANA_PORT_CFG_LEARNAUTO, x)
+> +#define ANA_PORT_CFG_LEARNAUTO_GET(x)\
+> +	FIELD_GET(ANA_PORT_CFG_LEARNAUTO, x)
+> +
+> +#define ANA_PORT_CFG_LEARN_ENA                   BIT(5)
+> +#define ANA_PORT_CFG_LEARN_ENA_SET(x)\
+> +	FIELD_PREP(ANA_PORT_CFG_LEARN_ENA, x)
+> +#define ANA_PORT_CFG_LEARN_ENA_GET(x)\
+> +	FIELD_GET(ANA_PORT_CFG_LEARN_ENA, x)
+> +
+> +#define ANA_PORT_CFG_RECV_ENA                    BIT(4)
+> +#define ANA_PORT_CFG_RECV_ENA_SET(x)\
+> +	FIELD_PREP(ANA_PORT_CFG_RECV_ENA, x)
+> +#define ANA_PORT_CFG_RECV_ENA_GET(x)\
+> +	FIELD_GET(ANA_PORT_CFG_RECV_ENA, x)
+> +
+> +#define ANA_PORT_CFG_PORTID_VAL                  GENMASK(3, 0)
+> +#define ANA_PORT_CFG_PORTID_VAL_SET(x)\
+> +	FIELD_PREP(ANA_PORT_CFG_PORTID_VAL, x)
+> +#define ANA_PORT_CFG_PORTID_VAL_GET(x)\
+> +	FIELD_GET(ANA_PORT_CFG_PORTID_VAL, x)
+> +
+> +/*      ANA:PFC:PFC_CFG */
+> +#define ANA_PFC_CFG(g)            __REG(TARGET_ANA, 0, 1, 30720, g, 8, 64, 0, 0, 1, 4)
+> +
+> +#define ANA_PFC_CFG_FC_LINK_SPEED                GENMASK(1, 0)
+> +#define ANA_PFC_CFG_FC_LINK_SPEED_SET(x)\
+> +	FIELD_PREP(ANA_PFC_CFG_FC_LINK_SPEED, x)
+> +#define ANA_PFC_CFG_FC_LINK_SPEED_GET(x)\
+> +	FIELD_GET(ANA_PFC_CFG_FC_LINK_SPEED, x)
+> +
+> +/*      CHIP_TOP:CUPHY_CFG:CUPHY_PORT_CFG */
+> +#define CHIP_TOP_CUPHY_PORT_CFG(r) __REG(TARGET_CHIP_TOP, 0, 1, 16, 0, 1, 20, 8, r, 2, 4)
+> +
+> +#define CHIP_TOP_CUPHY_PORT_CFG_GTX_CLK_ENA      BIT(0)
+> +#define CHIP_TOP_CUPHY_PORT_CFG_GTX_CLK_ENA_SET(x)\
+> +	FIELD_PREP(CHIP_TOP_CUPHY_PORT_CFG_GTX_CLK_ENA, x)
+> +#define CHIP_TOP_CUPHY_PORT_CFG_GTX_CLK_ENA_GET(x)\
+> +	FIELD_GET(CHIP_TOP_CUPHY_PORT_CFG_GTX_CLK_ENA, x)
+> +
+> +/*      DEV:PORT_MODE:CLOCK_CFG */
+> +#define DEV_CLOCK_CFG(t)          __REG(TARGET_DEV, t, 8, 0, 0, 1, 28, 0, 0, 1, 4)
+> +
+> +#define DEV_CLOCK_CFG_MAC_TX_RST                 BIT(7)
+> +#define DEV_CLOCK_CFG_MAC_TX_RST_SET(x)\
+> +	FIELD_PREP(DEV_CLOCK_CFG_MAC_TX_RST, x)
+> +#define DEV_CLOCK_CFG_MAC_TX_RST_GET(x)\
+> +	FIELD_GET(DEV_CLOCK_CFG_MAC_TX_RST, x)
+> +
+> +#define DEV_CLOCK_CFG_MAC_RX_RST                 BIT(6)
+> +#define DEV_CLOCK_CFG_MAC_RX_RST_SET(x)\
+> +	FIELD_PREP(DEV_CLOCK_CFG_MAC_RX_RST, x)
+> +#define DEV_CLOCK_CFG_MAC_RX_RST_GET(x)\
+> +	FIELD_GET(DEV_CLOCK_CFG_MAC_RX_RST, x)
+> +
+> +#define DEV_CLOCK_CFG_PCS_TX_RST                 BIT(5)
+> +#define DEV_CLOCK_CFG_PCS_TX_RST_SET(x)\
+> +	FIELD_PREP(DEV_CLOCK_CFG_PCS_TX_RST, x)
+> +#define DEV_CLOCK_CFG_PCS_TX_RST_GET(x)\
+> +	FIELD_GET(DEV_CLOCK_CFG_PCS_TX_RST, x)
+> +
+> +#define DEV_CLOCK_CFG_PCS_RX_RST                 BIT(4)
+> +#define DEV_CLOCK_CFG_PCS_RX_RST_SET(x)\
+> +	FIELD_PREP(DEV_CLOCK_CFG_PCS_RX_RST, x)
+> +#define DEV_CLOCK_CFG_PCS_RX_RST_GET(x)\
+> +	FIELD_GET(DEV_CLOCK_CFG_PCS_RX_RST, x)
+> +
+> +#define DEV_CLOCK_CFG_PORT_RST                   BIT(3)
+> +#define DEV_CLOCK_CFG_PORT_RST_SET(x)\
+> +	FIELD_PREP(DEV_CLOCK_CFG_PORT_RST, x)
+> +#define DEV_CLOCK_CFG_PORT_RST_GET(x)\
+> +	FIELD_GET(DEV_CLOCK_CFG_PORT_RST, x)
+> +
+> +#define DEV_CLOCK_CFG_LINK_SPEED                 GENMASK(1, 0)
+> +#define DEV_CLOCK_CFG_LINK_SPEED_SET(x)\
+> +	FIELD_PREP(DEV_CLOCK_CFG_LINK_SPEED, x)
+> +#define DEV_CLOCK_CFG_LINK_SPEED_GET(x)\
+> +	FIELD_GET(DEV_CLOCK_CFG_LINK_SPEED, x)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_ENA_CFG */
+> +#define DEV_MAC_ENA_CFG(t)        __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 0, 0, 1, 4)
+> +
+> +#define DEV_MAC_ENA_CFG_RX_ENA                   BIT(4)
+> +#define DEV_MAC_ENA_CFG_RX_ENA_SET(x)\
+> +	FIELD_PREP(DEV_MAC_ENA_CFG_RX_ENA, x)
+> +#define DEV_MAC_ENA_CFG_RX_ENA_GET(x)\
+> +	FIELD_GET(DEV_MAC_ENA_CFG_RX_ENA, x)
+> +
+> +#define DEV_MAC_ENA_CFG_TX_ENA                   BIT(0)
+> +#define DEV_MAC_ENA_CFG_TX_ENA_SET(x)\
+> +	FIELD_PREP(DEV_MAC_ENA_CFG_TX_ENA, x)
+> +#define DEV_MAC_ENA_CFG_TX_ENA_GET(x)\
+> +	FIELD_GET(DEV_MAC_ENA_CFG_TX_ENA, x)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_MODE_CFG */
+> +#define DEV_MAC_MODE_CFG(t)       __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 4, 0, 1, 4)
+> +
+> +#define DEV_MAC_MODE_CFG_GIGA_MODE_ENA           BIT(4)
+> +#define DEV_MAC_MODE_CFG_GIGA_MODE_ENA_SET(x)\
+> +	FIELD_PREP(DEV_MAC_MODE_CFG_GIGA_MODE_ENA, x)
+> +#define DEV_MAC_MODE_CFG_GIGA_MODE_ENA_GET(x)\
+> +	FIELD_GET(DEV_MAC_MODE_CFG_GIGA_MODE_ENA, x)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_MAXLEN_CFG */
+> +#define DEV_MAC_MAXLEN_CFG(t)     __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 8, 0, 1, 4)
+> +
+> +#define DEV_MAC_MAXLEN_CFG_MAX_LEN               GENMASK(15, 0)
+> +#define DEV_MAC_MAXLEN_CFG_MAX_LEN_SET(x)\
+> +	FIELD_PREP(DEV_MAC_MAXLEN_CFG_MAX_LEN, x)
+> +#define DEV_MAC_MAXLEN_CFG_MAX_LEN_GET(x)\
+> +	FIELD_GET(DEV_MAC_MAXLEN_CFG_MAX_LEN, x)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_IFG_CFG */
+> +#define DEV_MAC_IFG_CFG(t)        __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 20, 0, 1, 4)
+> +
+> +#define DEV_MAC_IFG_CFG_TX_IFG                   GENMASK(12, 8)
+> +#define DEV_MAC_IFG_CFG_TX_IFG_SET(x)\
+> +	FIELD_PREP(DEV_MAC_IFG_CFG_TX_IFG, x)
+> +#define DEV_MAC_IFG_CFG_TX_IFG_GET(x)\
+> +	FIELD_GET(DEV_MAC_IFG_CFG_TX_IFG, x)
+> +
+> +#define DEV_MAC_IFG_CFG_RX_IFG2                  GENMASK(7, 4)
+> +#define DEV_MAC_IFG_CFG_RX_IFG2_SET(x)\
+> +	FIELD_PREP(DEV_MAC_IFG_CFG_RX_IFG2, x)
+> +#define DEV_MAC_IFG_CFG_RX_IFG2_GET(x)\
+> +	FIELD_GET(DEV_MAC_IFG_CFG_RX_IFG2, x)
+> +
+> +#define DEV_MAC_IFG_CFG_RX_IFG1                  GENMASK(3, 0)
+> +#define DEV_MAC_IFG_CFG_RX_IFG1_SET(x)\
+> +	FIELD_PREP(DEV_MAC_IFG_CFG_RX_IFG1, x)
+> +#define DEV_MAC_IFG_CFG_RX_IFG1_GET(x)\
+> +	FIELD_GET(DEV_MAC_IFG_CFG_RX_IFG1, x)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_HDX_CFG */
+> +#define DEV_MAC_HDX_CFG(t)        __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 24, 0, 1, 4)
+> +
+> +#define DEV_MAC_HDX_CFG_SEED                     GENMASK(23, 16)
+> +#define DEV_MAC_HDX_CFG_SEED_SET(x)\
+> +	FIELD_PREP(DEV_MAC_HDX_CFG_SEED, x)
+> +#define DEV_MAC_HDX_CFG_SEED_GET(x)\
+> +	FIELD_GET(DEV_MAC_HDX_CFG_SEED, x)
+> +
+> +#define DEV_MAC_HDX_CFG_SEED_LOAD                BIT(12)
+> +#define DEV_MAC_HDX_CFG_SEED_LOAD_SET(x)\
+> +	FIELD_PREP(DEV_MAC_HDX_CFG_SEED_LOAD, x)
+> +#define DEV_MAC_HDX_CFG_SEED_LOAD_GET(x)\
+> +	FIELD_GET(DEV_MAC_HDX_CFG_SEED_LOAD, x)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_FC_MAC_LOW_CFG */
+> +#define DEV_FC_MAC_LOW_CFG(t)     __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 32, 0, 1, 4)
+> +
+> +/*      DEV:MAC_CFG_STATUS:MAC_FC_MAC_HIGH_CFG */
+> +#define DEV_FC_MAC_HIGH_CFG(t)    __REG(TARGET_DEV, t, 8, 28, 0, 1, 44, 36, 0, 1, 4)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_CFG */
+> +#define DEV_PCS1G_CFG(t)          __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 0, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_CFG_PCS_ENA                    BIT(0)
+> +#define DEV_PCS1G_CFG_PCS_ENA_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_CFG_PCS_ENA, x)
+> +#define DEV_PCS1G_CFG_PCS_ENA_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_CFG_PCS_ENA, x)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_MODE_CFG */
+> +#define DEV_PCS1G_MODE_CFG(t)     __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 4, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA        BIT(0)
+> +#define DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA, x)
+> +#define DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_MODE_CFG_SGMII_MODE_ENA, x)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_SD_CFG */
+> +#define DEV_PCS1G_SD_CFG(t)       __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 8, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_SD_CFG_SD_ENA                  BIT(0)
+> +#define DEV_PCS1G_SD_CFG_SD_ENA_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_SD_CFG_SD_ENA, x)
+> +#define DEV_PCS1G_SD_CFG_SD_ENA_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_SD_CFG_SD_ENA, x)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_ANEG_CFG */
+> +#define DEV_PCS1G_ANEG_CFG(t)     __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 12, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_ANEG_CFG_ADV_ABILITY           GENMASK(31, 16)
+> +#define DEV_PCS1G_ANEG_CFG_ADV_ABILITY_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_ANEG_CFG_ADV_ABILITY, x)
+> +#define DEV_PCS1G_ANEG_CFG_ADV_ABILITY_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_ANEG_CFG_ADV_ABILITY, x)
+> +
+> +#define DEV_PCS1G_ANEG_CFG_SW_RESOLVE_ENA        BIT(8)
+> +#define DEV_PCS1G_ANEG_CFG_SW_RESOLVE_ENA_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_ANEG_CFG_SW_RESOLVE_ENA, x)
+> +#define DEV_PCS1G_ANEG_CFG_SW_RESOLVE_ENA_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_ANEG_CFG_SW_RESOLVE_ENA, x)
+> +
+> +#define DEV_PCS1G_ANEG_CFG_RESTART_ONE_SHOT      BIT(1)
+> +#define DEV_PCS1G_ANEG_CFG_RESTART_ONE_SHOT_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_ANEG_CFG_RESTART_ONE_SHOT, x)
+> +#define DEV_PCS1G_ANEG_CFG_RESTART_ONE_SHOT_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_ANEG_CFG_RESTART_ONE_SHOT, x)
+> +
+> +#define DEV_PCS1G_ANEG_CFG_ENA                   BIT(0)
+> +#define DEV_PCS1G_ANEG_CFG_ENA_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_ANEG_CFG_ENA, x)
+> +#define DEV_PCS1G_ANEG_CFG_ENA_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_ANEG_CFG_ENA, x)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_ANEG_STATUS */
+> +#define DEV_PCS1G_ANEG_STATUS(t)  __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 32, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_ANEG_STATUS_LP_ADV             GENMASK(31, 16)
+> +#define DEV_PCS1G_ANEG_STATUS_LP_ADV_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_ANEG_STATUS_LP_ADV, x)
+> +#define DEV_PCS1G_ANEG_STATUS_LP_ADV_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_ANEG_STATUS_LP_ADV, x)
+> +
+> +#define DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE      BIT(0)
+> +#define DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE, x)
+> +#define DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE, x)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_LINK_STATUS */
+> +#define DEV_PCS1G_LINK_STATUS(t)  __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 40, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_LINK_STATUS_LINK_STATUS        BIT(4)
+> +#define DEV_PCS1G_LINK_STATUS_LINK_STATUS_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_LINK_STATUS_LINK_STATUS, x)
+> +#define DEV_PCS1G_LINK_STATUS_LINK_STATUS_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_LINK_STATUS_LINK_STATUS, x)
+> +
+> +#define DEV_PCS1G_LINK_STATUS_SYNC_STATUS        BIT(0)
+> +#define DEV_PCS1G_LINK_STATUS_SYNC_STATUS_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_LINK_STATUS_SYNC_STATUS, x)
+> +#define DEV_PCS1G_LINK_STATUS_SYNC_STATUS_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_LINK_STATUS_SYNC_STATUS, x)
+> +
+> +/*      DEV:PCS1G_CFG_STATUS:PCS1G_STICKY */
+> +#define DEV_PCS1G_STICKY(t)       __REG(TARGET_DEV, t, 8, 72, 0, 1, 68, 48, 0, 1, 4)
+> +
+> +#define DEV_PCS1G_STICKY_LINK_DOWN_STICKY        BIT(4)
+> +#define DEV_PCS1G_STICKY_LINK_DOWN_STICKY_SET(x)\
+> +	FIELD_PREP(DEV_PCS1G_STICKY_LINK_DOWN_STICKY, x)
+> +#define DEV_PCS1G_STICKY_LINK_DOWN_STICKY_GET(x)\
+> +	FIELD_GET(DEV_PCS1G_STICKY_LINK_DOWN_STICKY, x)
+> +
+> +/*      DEVCPU_QS:XTR:XTR_GRP_CFG */
+> +#define QS_XTR_GRP_CFG(r)         __REG(TARGET_QS, 0, 1, 0, 0, 1, 36, 0, r, 2, 4)
+> +
+> +#define QS_XTR_GRP_CFG_MODE                      GENMASK(3, 2)
+> +#define QS_XTR_GRP_CFG_MODE_SET(x)\
+> +	FIELD_PREP(QS_XTR_GRP_CFG_MODE, x)
+> +#define QS_XTR_GRP_CFG_MODE_GET(x)\
+> +	FIELD_GET(QS_XTR_GRP_CFG_MODE, x)
+> +
+> +#define QS_XTR_GRP_CFG_BYTE_SWAP                 BIT(0)
+> +#define QS_XTR_GRP_CFG_BYTE_SWAP_SET(x)\
+> +	FIELD_PREP(QS_XTR_GRP_CFG_BYTE_SWAP, x)
+> +#define QS_XTR_GRP_CFG_BYTE_SWAP_GET(x)\
+> +	FIELD_GET(QS_XTR_GRP_CFG_BYTE_SWAP, x)
+> +
+> +/*      DEVCPU_QS:XTR:XTR_RD */
+> +#define QS_XTR_RD(r)              __REG(TARGET_QS, 0, 1, 0, 0, 1, 36, 8, r, 2, 4)
+> +
+> +/*      DEVCPU_QS:XTR:XTR_FLUSH */
+> +#define QS_XTR_FLUSH              __REG(TARGET_QS, 0, 1, 0, 0, 1, 36, 24, 0, 1, 4)
+> +
+> +/*      DEVCPU_QS:XTR:XTR_DATA_PRESENT */
+> +#define QS_XTR_DATA_PRESENT       __REG(TARGET_QS, 0, 1, 0, 0, 1, 36, 28, 0, 1, 4)
+> +
+> +/*      DEVCPU_QS:INJ:INJ_GRP_CFG */
+> +#define QS_INJ_GRP_CFG(r)         __REG(TARGET_QS, 0, 1, 36, 0, 1, 40, 0, r, 2, 4)
+> +
+> +#define QS_INJ_GRP_CFG_MODE                      GENMASK(3, 2)
+> +#define QS_INJ_GRP_CFG_MODE_SET(x)\
+> +	FIELD_PREP(QS_INJ_GRP_CFG_MODE, x)
+> +#define QS_INJ_GRP_CFG_MODE_GET(x)\
+> +	FIELD_GET(QS_INJ_GRP_CFG_MODE, x)
+> +
+> +#define QS_INJ_GRP_CFG_BYTE_SWAP                 BIT(0)
+> +#define QS_INJ_GRP_CFG_BYTE_SWAP_SET(x)\
+> +	FIELD_PREP(QS_INJ_GRP_CFG_BYTE_SWAP, x)
+> +#define QS_INJ_GRP_CFG_BYTE_SWAP_GET(x)\
+> +	FIELD_GET(QS_INJ_GRP_CFG_BYTE_SWAP, x)
+> +
+> +/*      DEVCPU_QS:INJ:INJ_WR */
+> +#define QS_INJ_WR(r)              __REG(TARGET_QS, 0, 1, 36, 0, 1, 40, 8, r, 2, 4)
+> +
+> +/*      DEVCPU_QS:INJ:INJ_CTRL */
+> +#define QS_INJ_CTRL(r)            __REG(TARGET_QS, 0, 1, 36, 0, 1, 40, 16, r, 2, 4)
+> +
+> +#define QS_INJ_CTRL_GAP_SIZE                     GENMASK(24, 21)
+> +#define QS_INJ_CTRL_GAP_SIZE_SET(x)\
+> +	FIELD_PREP(QS_INJ_CTRL_GAP_SIZE, x)
+> +#define QS_INJ_CTRL_GAP_SIZE_GET(x)\
+> +	FIELD_GET(QS_INJ_CTRL_GAP_SIZE, x)
+> +
+> +#define QS_INJ_CTRL_EOF                          BIT(19)
+> +#define QS_INJ_CTRL_EOF_SET(x)\
+> +	FIELD_PREP(QS_INJ_CTRL_EOF, x)
+> +#define QS_INJ_CTRL_EOF_GET(x)\
+> +	FIELD_GET(QS_INJ_CTRL_EOF, x)
+> +
+> +#define QS_INJ_CTRL_SOF                          BIT(18)
+> +#define QS_INJ_CTRL_SOF_SET(x)\
+> +	FIELD_PREP(QS_INJ_CTRL_SOF, x)
+> +#define QS_INJ_CTRL_SOF_GET(x)\
+> +	FIELD_GET(QS_INJ_CTRL_SOF, x)
+> +
+> +#define QS_INJ_CTRL_VLD_BYTES                    GENMASK(17, 16)
+> +#define QS_INJ_CTRL_VLD_BYTES_SET(x)\
+> +	FIELD_PREP(QS_INJ_CTRL_VLD_BYTES, x)
+> +#define QS_INJ_CTRL_VLD_BYTES_GET(x)\
+> +	FIELD_GET(QS_INJ_CTRL_VLD_BYTES, x)
+> +
+> +/*      DEVCPU_QS:INJ:INJ_STATUS */
+> +#define QS_INJ_STATUS             __REG(TARGET_QS, 0, 1, 36, 0, 1, 40, 24, 0, 1, 4)
+> +
+> +#define QS_INJ_STATUS_WMARK_REACHED              GENMASK(5, 4)
+> +#define QS_INJ_STATUS_WMARK_REACHED_SET(x)\
+> +	FIELD_PREP(QS_INJ_STATUS_WMARK_REACHED, x)
+> +#define QS_INJ_STATUS_WMARK_REACHED_GET(x)\
+> +	FIELD_GET(QS_INJ_STATUS_WMARK_REACHED, x)
+> +
+> +#define QS_INJ_STATUS_FIFO_RDY                   GENMASK(3, 2)
+> +#define QS_INJ_STATUS_FIFO_RDY_SET(x)\
+> +	FIELD_PREP(QS_INJ_STATUS_FIFO_RDY, x)
+> +#define QS_INJ_STATUS_FIFO_RDY_GET(x)\
+> +	FIELD_GET(QS_INJ_STATUS_FIFO_RDY, x)
+> +
+> +/*      QSYS:SYSTEM:PORT_MODE */
+> +#define QSYS_PORT_MODE(r)         __REG(TARGET_QSYS, 0, 1, 28008, 0, 1, 216, 0, r, 10, 4)
+> +
+> +#define QSYS_PORT_MODE_DEQUEUE_DIS               BIT(1)
+> +#define QSYS_PORT_MODE_DEQUEUE_DIS_SET(x)\
+> +	FIELD_PREP(QSYS_PORT_MODE_DEQUEUE_DIS, x)
+> +#define QSYS_PORT_MODE_DEQUEUE_DIS_GET(x)\
+> +	FIELD_GET(QSYS_PORT_MODE_DEQUEUE_DIS, x)
+> +
+> +/*      QSYS:SYSTEM:SWITCH_PORT_MODE */
+> +#define QSYS_SW_PORT_MODE(r)      __REG(TARGET_QSYS, 0, 1, 28008, 0, 1, 216, 80, r, 9, 4)
+> +
+> +#define QSYS_SW_PORT_MODE_PORT_ENA               BIT(18)
+> +#define QSYS_SW_PORT_MODE_PORT_ENA_SET(x)\
+> +	FIELD_PREP(QSYS_SW_PORT_MODE_PORT_ENA, x)
+> +#define QSYS_SW_PORT_MODE_PORT_ENA_GET(x)\
+> +	FIELD_GET(QSYS_SW_PORT_MODE_PORT_ENA, x)
+> +
+> +#define QSYS_SW_PORT_MODE_SCH_NEXT_CFG           GENMASK(16, 14)
+> +#define QSYS_SW_PORT_MODE_SCH_NEXT_CFG_SET(x)\
+> +	FIELD_PREP(QSYS_SW_PORT_MODE_SCH_NEXT_CFG, x)
+> +#define QSYS_SW_PORT_MODE_SCH_NEXT_CFG_GET(x)\
+> +	FIELD_GET(QSYS_SW_PORT_MODE_SCH_NEXT_CFG, x)
+> +
+> +#define QSYS_SW_PORT_MODE_INGRESS_DROP_MODE      BIT(12)
+> +#define QSYS_SW_PORT_MODE_INGRESS_DROP_MODE_SET(x)\
+> +	FIELD_PREP(QSYS_SW_PORT_MODE_INGRESS_DROP_MODE, x)
+> +#define QSYS_SW_PORT_MODE_INGRESS_DROP_MODE_GET(x)\
+> +	FIELD_GET(QSYS_SW_PORT_MODE_INGRESS_DROP_MODE, x)
+> +
+> +#define QSYS_SW_PORT_MODE_TX_PFC_ENA             GENMASK(11, 4)
+> +#define QSYS_SW_PORT_MODE_TX_PFC_ENA_SET(x)\
+> +	FIELD_PREP(QSYS_SW_PORT_MODE_TX_PFC_ENA, x)
+> +#define QSYS_SW_PORT_MODE_TX_PFC_ENA_GET(x)\
+> +	FIELD_GET(QSYS_SW_PORT_MODE_TX_PFC_ENA, x)
+> +
+> +#define QSYS_SW_PORT_MODE_AGING_MODE             GENMASK(1, 0)
+> +#define QSYS_SW_PORT_MODE_AGING_MODE_SET(x)\
+> +	FIELD_PREP(QSYS_SW_PORT_MODE_AGING_MODE, x)
+> +#define QSYS_SW_PORT_MODE_AGING_MODE_GET(x)\
+> +	FIELD_GET(QSYS_SW_PORT_MODE_AGING_MODE, x)
+> +
+> +/*      QSYS:SYSTEM:SW_STATUS */
+> +#define QSYS_SW_STATUS(r)         __REG(TARGET_QSYS, 0, 1, 28008, 0, 1, 216, 164, r, 9, 4)
+> +
+> +#define QSYS_SW_STATUS_EQ_AVAIL                  GENMASK(7, 0)
+> +#define QSYS_SW_STATUS_EQ_AVAIL_SET(x)\
+> +	FIELD_PREP(QSYS_SW_STATUS_EQ_AVAIL, x)
+> +#define QSYS_SW_STATUS_EQ_AVAIL_GET(x)\
+> +	FIELD_GET(QSYS_SW_STATUS_EQ_AVAIL, x)
+> +
+> +/*      QSYS:SYSTEM:CPU_GROUP_MAP */
+> +#define QSYS_CPU_GROUP_MAP        __REG(TARGET_QSYS, 0, 1, 28008, 0, 1, 216, 204, 0, 1, 4)
+> +
+> +/*      QSYS:RES_CTRL:RES_CFG */
+> +#define QSYS_RES_CFG(g)           __REG(TARGET_QSYS, 0, 1, 32768, g, 1024, 8, 0, 0, 1, 4)
+> +
+> +/*      REW:PORT:PORT_CFG */
+> +#define REW_PORT_CFG(g)           __REG(TARGET_REW, 0, 1, 0, g, 10, 128, 8, 0, 1, 4)
+> +
+> +#define REW_PORT_CFG_NO_REWRITE                  BIT(0)
+> +#define REW_PORT_CFG_NO_REWRITE_SET(x)\
+> +	FIELD_PREP(REW_PORT_CFG_NO_REWRITE, x)
+> +#define REW_PORT_CFG_NO_REWRITE_GET(x)\
+> +	FIELD_GET(REW_PORT_CFG_NO_REWRITE, x)
+> +
+> +/*      SYS:SYSTEM:RESET_CFG */
+> +#define SYS_RESET_CFG             __REG(TARGET_SYS, 0, 1, 4128, 0, 1, 168, 0, 0, 1, 4)
+> +
+> +#define SYS_RESET_CFG_CORE_ENA                   BIT(0)
+> +#define SYS_RESET_CFG_CORE_ENA_SET(x)\
+> +	FIELD_PREP(SYS_RESET_CFG_CORE_ENA, x)
+> +#define SYS_RESET_CFG_CORE_ENA_GET(x)\
+> +	FIELD_GET(SYS_RESET_CFG_CORE_ENA, x)
+> +
+> +/*      SYS:SYSTEM:PORT_MODE */
+> +#define SYS_PORT_MODE(r)          __REG(TARGET_SYS, 0, 1, 4128, 0, 1, 168, 44, r, 10, 4)
+> +
+> +#define SYS_PORT_MODE_INCL_INJ_HDR               GENMASK(5, 4)
+> +#define SYS_PORT_MODE_INCL_INJ_HDR_SET(x)\
+> +	FIELD_PREP(SYS_PORT_MODE_INCL_INJ_HDR, x)
+> +#define SYS_PORT_MODE_INCL_INJ_HDR_GET(x)\
+> +	FIELD_GET(SYS_PORT_MODE_INCL_INJ_HDR, x)
+> +
+> +#define SYS_PORT_MODE_INCL_XTR_HDR               GENMASK(3, 2)
+> +#define SYS_PORT_MODE_INCL_XTR_HDR_SET(x)\
+> +	FIELD_PREP(SYS_PORT_MODE_INCL_XTR_HDR, x)
+> +#define SYS_PORT_MODE_INCL_XTR_HDR_GET(x)\
+> +	FIELD_GET(SYS_PORT_MODE_INCL_XTR_HDR, x)
+> +
+> +/*      SYS:SYSTEM:FRONT_PORT_MODE */
+> +#define SYS_FRONT_PORT_MODE(r)    __REG(TARGET_SYS, 0, 1, 4128, 0, 1, 168, 84, r, 8, 4)
+> +
+> +#define SYS_FRONT_PORT_MODE_HDX_MODE             BIT(1)
+> +#define SYS_FRONT_PORT_MODE_HDX_MODE_SET(x)\
+> +	FIELD_PREP(SYS_FRONT_PORT_MODE_HDX_MODE, x)
+> +#define SYS_FRONT_PORT_MODE_HDX_MODE_GET(x)\
+> +	FIELD_GET(SYS_FRONT_PORT_MODE_HDX_MODE, x)
+> +
+> +/*      SYS:SYSTEM:FRM_AGING */
+> +#define SYS_FRM_AGING             __REG(TARGET_SYS, 0, 1, 4128, 0, 1, 168, 116, 0, 1, 4)
+> +
+> +#define SYS_FRM_AGING_AGE_TX_ENA                 BIT(20)
+> +#define SYS_FRM_AGING_AGE_TX_ENA_SET(x)\
+> +	FIELD_PREP(SYS_FRM_AGING_AGE_TX_ENA, x)
+> +#define SYS_FRM_AGING_AGE_TX_ENA_GET(x)\
+> +	FIELD_GET(SYS_FRM_AGING_AGE_TX_ENA, x)
+> +
+> +/*      SYS:SYSTEM:STAT_CFG */
+> +#define SYS_STAT_CFG              __REG(TARGET_SYS, 0, 1, 4128, 0, 1, 168, 120, 0, 1, 4)
+> +
+> +#define SYS_STAT_CFG_STAT_VIEW                   GENMASK(9, 0)
+> +#define SYS_STAT_CFG_STAT_VIEW_SET(x)\
+> +	FIELD_PREP(SYS_STAT_CFG_STAT_VIEW, x)
+> +#define SYS_STAT_CFG_STAT_VIEW_GET(x)\
+> +	FIELD_GET(SYS_STAT_CFG_STAT_VIEW, x)
+> +
+> +/*      SYS:PAUSE_CFG:PAUSE_CFG */
+> +#define SYS_PAUSE_CFG(r)          __REG(TARGET_SYS, 0, 1, 4296, 0, 1, 112, 0, r, 9, 4)
+> +
+> +#define SYS_PAUSE_CFG_PAUSE_START                GENMASK(18, 10)
+> +#define SYS_PAUSE_CFG_PAUSE_START_SET(x)\
+> +	FIELD_PREP(SYS_PAUSE_CFG_PAUSE_START, x)
+> +#define SYS_PAUSE_CFG_PAUSE_START_GET(x)\
+> +	FIELD_GET(SYS_PAUSE_CFG_PAUSE_START, x)
+> +
+> +#define SYS_PAUSE_CFG_PAUSE_STOP                 GENMASK(9, 1)
+> +#define SYS_PAUSE_CFG_PAUSE_STOP_SET(x)\
+> +	FIELD_PREP(SYS_PAUSE_CFG_PAUSE_STOP, x)
+> +#define SYS_PAUSE_CFG_PAUSE_STOP_GET(x)\
+> +	FIELD_GET(SYS_PAUSE_CFG_PAUSE_STOP, x)
+> +
+> +#define SYS_PAUSE_CFG_PAUSE_ENA                  BIT(0)
+> +#define SYS_PAUSE_CFG_PAUSE_ENA_SET(x)\
+> +	FIELD_PREP(SYS_PAUSE_CFG_PAUSE_ENA, x)
+> +#define SYS_PAUSE_CFG_PAUSE_ENA_GET(x)\
+> +	FIELD_GET(SYS_PAUSE_CFG_PAUSE_ENA, x)
+> +
+> +/*      SYS:PAUSE_CFG:ATOP */
+> +#define SYS_ATOP(r)               __REG(TARGET_SYS, 0, 1, 4296, 0, 1, 112, 40, r, 9, 4)
+> +
+> +/*      SYS:PAUSE_CFG:ATOP_TOT_CFG */
+> +#define SYS_ATOP_TOT_CFG          __REG(TARGET_SYS, 0, 1, 4296, 0, 1, 112, 76, 0, 1, 4)
+> +
+> +/*      SYS:PAUSE_CFG:MAC_FC_CFG */
+> +#define SYS_MAC_FC_CFG(r)         __REG(TARGET_SYS, 0, 1, 4296, 0, 1, 112, 80, r, 8, 4)
+> +
+> +#define SYS_MAC_FC_CFG_FC_LINK_SPEED             GENMASK(27, 26)
+> +#define SYS_MAC_FC_CFG_FC_LINK_SPEED_SET(x)\
+> +	FIELD_PREP(SYS_MAC_FC_CFG_FC_LINK_SPEED, x)
+> +#define SYS_MAC_FC_CFG_FC_LINK_SPEED_GET(x)\
+> +	FIELD_GET(SYS_MAC_FC_CFG_FC_LINK_SPEED, x)
+> +
+> +#define SYS_MAC_FC_CFG_FC_LATENCY_CFG            GENMASK(25, 20)
+> +#define SYS_MAC_FC_CFG_FC_LATENCY_CFG_SET(x)\
+> +	FIELD_PREP(SYS_MAC_FC_CFG_FC_LATENCY_CFG, x)
+> +#define SYS_MAC_FC_CFG_FC_LATENCY_CFG_GET(x)\
+> +	FIELD_GET(SYS_MAC_FC_CFG_FC_LATENCY_CFG, x)
+> +
+> +#define SYS_MAC_FC_CFG_ZERO_PAUSE_ENA            BIT(18)
+> +#define SYS_MAC_FC_CFG_ZERO_PAUSE_ENA_SET(x)\
+> +	FIELD_PREP(SYS_MAC_FC_CFG_ZERO_PAUSE_ENA, x)
+> +#define SYS_MAC_FC_CFG_ZERO_PAUSE_ENA_GET(x)\
+> +	FIELD_GET(SYS_MAC_FC_CFG_ZERO_PAUSE_ENA, x)
+> +
+> +#define SYS_MAC_FC_CFG_TX_FC_ENA                 BIT(17)
+> +#define SYS_MAC_FC_CFG_TX_FC_ENA_SET(x)\
+> +	FIELD_PREP(SYS_MAC_FC_CFG_TX_FC_ENA, x)
+> +#define SYS_MAC_FC_CFG_TX_FC_ENA_GET(x)\
+> +	FIELD_GET(SYS_MAC_FC_CFG_TX_FC_ENA, x)
+> +
+> +#define SYS_MAC_FC_CFG_RX_FC_ENA                 BIT(16)
+> +#define SYS_MAC_FC_CFG_RX_FC_ENA_SET(x)\
+> +	FIELD_PREP(SYS_MAC_FC_CFG_RX_FC_ENA, x)
+> +#define SYS_MAC_FC_CFG_RX_FC_ENA_GET(x)\
+> +	FIELD_GET(SYS_MAC_FC_CFG_RX_FC_ENA, x)
+> +
+> +#define SYS_MAC_FC_CFG_PAUSE_VAL_CFG             GENMASK(15, 0)
+> +#define SYS_MAC_FC_CFG_PAUSE_VAL_CFG_SET(x)\
+> +	FIELD_PREP(SYS_MAC_FC_CFG_PAUSE_VAL_CFG, x)
+> +#define SYS_MAC_FC_CFG_PAUSE_VAL_CFG_GET(x)\
+> +	FIELD_GET(SYS_MAC_FC_CFG_PAUSE_VAL_CFG, x)
+> +
+> +/*      SYS:STAT:CNT */
+> +#define SYS_CNT(g)                __REG(TARGET_SYS, 0, 1, 0, g, 896, 4, 0, 0, 1, 4)
+> +
+> +/*      SYS:RAM_CTRL:RAM_INIT */
+> +#define SYS_RAM_INIT              __REG(TARGET_SYS, 0, 1, 4432, 0, 1, 4, 0, 0, 1, 4)
+> +
+> +#define SYS_RAM_INIT_RAM_INIT                    BIT(1)
+> +#define SYS_RAM_INIT_RAM_INIT_SET(x)\
+> +	FIELD_PREP(SYS_RAM_INIT_RAM_INIT, x)
+> +#define SYS_RAM_INIT_RAM_INIT_GET(x)\
+> +	FIELD_GET(SYS_RAM_INIT_RAM_INIT, x)
+> +
+> +#endif /* _LAN966X_REGS_H_ */
 > 
