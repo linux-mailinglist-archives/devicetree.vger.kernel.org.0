@@ -2,204 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AEE745AD1E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 21:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3755445AD2C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 21:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238345AbhKWUPs convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Nov 2021 15:15:48 -0500
-Received: from aposti.net ([89.234.176.197]:38310 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S236464AbhKWUPs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 15:15:48 -0500
-Date:   Tue, 23 Nov 2021 20:12:19 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v8 0/8] MIPS: JZ4780 and CI20 HDMI
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <J4K13R.CGVJ0IY95LC51@crapouillou.net>
-In-Reply-To: <cover.1637691240.git.hns@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
+        id S233617AbhKWUWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 15:22:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231249AbhKWUWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 15:22:32 -0500
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E70C6C061574;
+        Tue, 23 Nov 2021 12:19:23 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id y68so819784ybe.1;
+        Tue, 23 Nov 2021 12:19:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=PaD7kDwe/qDuevtgXa7qrJpra71MTs4Z3WEq/u3dKiw=;
+        b=HzIVOqBZpH8a54dI5Zs/JCA3qEoSSQA1bI1ViBqF4HF/ztI/Jr57H12BwJYelnA6h2
+         cq/Xrnb3k/2YQEfoRvrD3jgRKj86otMZTxwH+C5UZaRSv1VNg5raCeKy4BDjgm837c1O
+         I0UcyElivWr9eiDS7u/QHHikORZHPVhOqX5g5ufSfYkmh3i/LC357/JJFKqzN9XTY3Rh
+         EZB7q8ATTDzAwXubVdBowiQ8DORf20sHTxWnV0NZbOS26onnTTB4rOhDIE7UyxTacuBU
+         8DuWVFxv61RZV8LqEB/WrBKOduFVaT5qByFKwbMtnTJH2ODpBf1KYRKkopGtRPC8UJ0T
+         UGrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=PaD7kDwe/qDuevtgXa7qrJpra71MTs4Z3WEq/u3dKiw=;
+        b=jg5x2E5Wz6BdnM2x0KXwIdXPfk1L9zrdoVnsMWMO2/wglL1k18DJZNHrBxOpRpRIWP
+         FyCrG/bBiC2ygyBRk5ZzJQJAxScqk3WNurn8BiEtdyGV13jImbBHzaXPxMdgNa1wfxmQ
+         PnCq26CcIVCQ95M3o2Crh2FU341jX6aKOoR0O4buRHXR9ap0vlpNtRtrhH9fTqWWAfug
+         uOeZaZ62k8hnxg08V8ssQgg00lI+sKZKiwkCf/NTioCRkzea/iXe7aW7S09lCvpcvow5
+         Ud2p2jgc2Yo6Iqc2AND66XGj9zyCQ+dlosTH5O3vX0oCyK6eUO5NtPFGjnBU5UVNqEVO
+         msqA==
+X-Gm-Message-State: AOAM532HCVXLAtEl+d8Cs7PsiYjSXwmHjWxEuozOwtTvp/R5SxGEvnzW
+        54F9LTDru2JQHHeWRH+H1s9aDMc6Wp2YKwpatfQ=
+X-Google-Smtp-Source: ABdhPJxIxu7YWTUTdVIkDdkH48zZL/Y2Tdf4aBHJhz1h9kM9+fOusZdHVXy5HiL7hRvzgH10G2o9gEOBywwndNmWTI0=
+X-Received: by 2002:a5b:783:: with SMTP id b3mr8929493ybq.328.1637698762273;
+ Tue, 23 Nov 2021 12:19:22 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <20211121235808.10167-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXvehNc5yRxO4cS=n_ZaDWCKq2iaKhs+b3uj2beYsdWVg@mail.gmail.com>
+In-Reply-To: <CAMuHMdXvehNc5yRxO4cS=n_ZaDWCKq2iaKhs+b3uj2beYsdWVg@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 23 Nov 2021 20:18:56 +0000
+Message-ID: <CA+V-a8vQyNUkVak-nFN+k9+nnf1icmATQgSW-2yt+Bbf9080Uw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: hihope-rzg2-ex-lvds: Add power-supply and
+ enable-gpios to backlight node
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+Hi Geert,
 
-I think if you can fix the last few things I commented on, and I get an 
-ACK from Rob for the Device Tree related patches, then it will be ready 
-to merge.
+Thank you for the review.
+
+On Tue, Nov 23, 2021 at 2:44 PM Geert Uytterhoeven <geert@linux-m68k.org> w=
+rote:
+>
+> Hi Prabhakar,
+>
+> On Mon, Nov 22, 2021 at 12:58 AM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > This patch adds missing power-supply and enable-gpios property to
+> > backlight node. This fixes the warning "pwm-backlight backlight:
+> > backlight supply power not found, using dummy regulator".
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
+> > @@ -12,6 +12,17 @@
+> >
+> >                 brightness-levels =3D <0 2 8 16 32 64 128 255>;
+> >                 default-brightness-level =3D <6>;
+> > +               power-supply =3D <&reg_12v>;
+> > +               enable-gpios =3D <&gpio6 7 GPIO_ACTIVE_HIGH>;
+>
+> According to the schematics (up to Rev. 4.00), GP6_07 is not connected?
+>
+Ouch sorry about that. When I noticed a warning with the regulator, I
+saw the missing gpio property too and I pulled out the older schematic
+with Rev2 which has GP6_07 :(
+> > +       };
+> > +
+> > +       reg_12v: regulator2 {
+>
+> Using "regulatorN" as a node name is error-prone, and may lead to
+> accidental clashes. Please use a more appropriate name.
+>
+> > +               compatible =3D "regulator-fixed";
+> > +               regulator-name =3D "fixed-12V";
+> > +               regulator-min-microvolt =3D <12000000>;
+> > +               regulator-max-microvolt =3D <12000000>;
+>
+> Hmm, the AT1316A is a constant-current source, not a constant-voltage
+> source? The -02 variant has a 0.2V Low Reference Voltage. Combined
+> with the 1.1=CE=A9 resistor, that should give 181818 microamp.
+>
+Agreed.
 
 Cheers,
--Paul
+Prabhakar
 
-
-Le mar., nov. 23 2021 at 19:13:53 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> PATCH V8 2021-11-23 19:14:00:
-> - fix a bad editing result from patch 2/8 (found by 
-> paul@crapouillou.net)
-> 
-> PATCH V7 2021-11-23 18:46:23:
-> - changed gpio polarity of hdmi_power to 0 (suggested by 
-> paul@crapouillou.net)
-> - fixed LCD1 irq number (bug found by paul@crapouillou.net)
-> - removed "- 4" for calculating max_register (suggested by 
-> paul@crapouillou.net)
-> - use unevaluatedPropertes instead of additionalProperties (suggested 
-> by robh@kernel.org)
-> - moved and renamed ingenic,jz4780-hdmi.yaml (suggested by 
-> robh@kernel.org)
-> - adjusted assigned-clocks changes to upstream which added some for 
-> SSI (by hns@goldelico.com)
-> - rebased and tested with v5.16-rc2 + patch set drm/ingenic by 
-> paul@crapouillou.net (by hns@goldelico.com)
-> 
-> PATCH V6 2021-11-10 20:43:33:
-> - changed CONFIG_DRM_INGENIC_DW_HDMI to "m" (by hns@goldelico.com)
-> - made ingenic-dw-hdmi an independent platform driver which can be 
-> compiled as module
->   and removed error patch fixes for IPU (suggested by 
-> paul@crapouillou.net)
-> - moved assigned-clocks from jz4780.dtsi to ci20.dts (suggested by 
-> paul@crapouillou.net)
-> - fixed reg property in jz4780.dtsi to cover all registers incl. 
-> gamma and vee (by hns@goldelico.com)
-> - added a base patch to calculate regmap size from DTS reg property 
-> (requested by paul@crapouillou.net)
-> - restored resetting all bits except one in LCDOSDC (requested by 
-> paul@crapouillou.net)
-> - clarified setting of cpos (suggested by paul@crapouillou.net)
-> - moved bindings definition for ddc-i2c-bus (suggested by 
-> paul@crapouillou.net)
-> - simplified mask definitions for JZ_LCD_DESSIZE (requested by 
-> paul@crapouillou.net)
-> - removed setting alpha premultiplication (suggested by 
-> paul@crapouillou.net)
-> - removed some comments (suggested by paul@crapouillou.net)
-> 
-> PATCH V5 2021-10-05 14:28:44:
-> - dropped mode_fixup and timings support in dw-hdmi as it is no 
-> longer needed in this V5 (by hns@goldelico.com)
-> - dropped "drm/ingenic: add some jz4780 specific features" 
-> (stimulated by paul@crapouillou.net)
-> - fixed typo in commit subject: "synopsis" -> "synopsys" (by 
-> hns@goldelico.com)
-> - swapped clocks in jz4780.dtsi to match synopsys,dw-hdmi.yaml (by 
-> hns@goldelico.com)
-> - improved, simplified, fixed, dtbschecked ingenic-jz4780-hdmi.yaml 
-> and made dependent of bridge/synopsys,dw-hdmi.yaml (based on 
-> suggestions by maxime@cerno.tech)
-> - fixed binding vs. driver&DTS use of hdmi-5v regulator (suggested by 
-> maxime@cerno.tech)
-> - dropped "drm/bridge: synopsis: Fix to properly handle HPD" - was a 
-> no longer needed workaround for a previous version
->   (suggested by maxime@cerno.tech)
-> 
-> PATCH V4 2021-09-27 18:44:38:
-> - fix setting output_port = 1 (issue found by paul@crapouillou.net)
-> - ci20.dts: convert to use hdmi-connector (by hns@goldelico.com)
-> - add a hdmi-regulator to control +5V power (by hns@goldelico.com)
-> - added a fix to dw-hdmi to call drm_kms_helper_hotplug_event on 
-> plugin event detection (by hns@goldelico.com)
-> - always allocate extended descriptor but initialize only for jz4780 
-> (by hns@goldelico.com)
-> - updated to work on top of "[PATCH v3 0/6] drm/ingenic: Various 
-> improvements v3" (by paul@crapouillou.net)
-> - rebased to v5.13-rc3
-> 
-> PATCH V3 2021-08-08 07:10:50:
-> This series adds HDMI support for JZ4780 and CI20 board (and fixes 
-> one IPU related issue in registration error path)
-> - [patch 1/8] switched from mode_fixup to atomic_check (suggested by 
-> robert.foss@linaro.org)
->   - the call to the dw-hdmi specialization is still called mode_fixup
-> - [patch 3/8] diverse fixes for ingenic-drm-drv (suggested by 
-> paul@crapouillou.net)
->   - factor out some non-HDMI features of the jz4780 into a separate 
-> patch
->   - multiple fixes around max height
->   - do not change regmap config but a copy on stack
->   - define some constants
->   - factor out fixing of drm_init error path for IPU into separate 
-> patch
->   - use FIELD_PREP()
-> - [patch 8/8] conversion to component framework dropped (suggested by 
-> Laurent.pinchart@ideasonboard.com and paul@crapouillou.net)
-> 
-> PATCH V2 2021-08-05 16:08:05:
-> - code and commit messages revisited for checkpatch warnings
-> - rebased on v5.14-rc4
-> - include (failed, hence RFC 8/8) attempt to convert to component 
-> framework
->   (was suggested by Paul Cercueil <paul@crapouillou.net> a while ago)
-> 
-> This series adds HDMI support for JZ4780 and CI20 board
-> 
-> 
-> 
-> H. Nikolaus Schaller (3):
->   drm/ingenic: prepare ingenic drm for later addition of JZ4780
->   MIPS: defconfig: CI20: configure for DRM_DW_HDMI_JZ4780
->   [RFC] MIPS: DTS: Ingenic: adjust register size to available 
-> registers
-> 
-> Paul Boddie (4):
->   drm/ingenic: Add support for JZ4780 and HDMI output
->   drm/ingenic: Add dw-hdmi driver for jz4780
->   MIPS: DTS: jz4780: Account for Synopsys HDMI driver and LCD
->     controllers
->   MIPS: DTS: CI20: Add DT nodes for HDMI setup
-> 
-> Sam Ravnborg (1):
->   dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
-> 
->  .../display/bridge/ingenic,jz4780-hdmi.yaml   |  76 +++++++++++
->  .../display/bridge/synopsys,dw-hdmi.yaml      |   3 +
->  arch/mips/boot/dts/ingenic/ci20.dts           |  83 ++++++++++-
->  arch/mips/boot/dts/ingenic/jz4725b.dtsi       |   2 +-
->  arch/mips/boot/dts/ingenic/jz4740.dtsi        |   2 +-
->  arch/mips/boot/dts/ingenic/jz4770.dtsi        |   2 +-
->  arch/mips/boot/dts/ingenic/jz4780.dtsi        |  40 ++++++
->  arch/mips/configs/ci20_defconfig              |   6 +
->  drivers/gpu/drm/ingenic/Kconfig               |   9 ++
->  drivers/gpu/drm/ingenic/Makefile              |   1 +
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |  62 ++++++++-
->  drivers/gpu/drm/ingenic/ingenic-drm.h         |  38 ++++++
->  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     | 129 
-> ++++++++++++++++++
->  13 files changed, 444 insertions(+), 9 deletions(-)
->  create mode 100644 
-> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->  create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
-> 
+> > +               regulator-boot-on;
+> > +               regulator-always-on;
+> >         };
+> >  };
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
 > --
-> 2.33.0
-> 
-
-
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
