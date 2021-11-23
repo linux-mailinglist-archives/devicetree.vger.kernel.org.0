@@ -2,289 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ED6745AAD3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 19:06:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC4C845AAEC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 19:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239629AbhKWSJ6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Nov 2021 13:09:58 -0500
-Received: from aposti.net ([89.234.176.197]:51664 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239687AbhKWSJ4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 13:09:56 -0500
-Date:   Tue, 23 Nov 2021 18:06:30 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v7 2/8] drm/ingenic: Add support for JZ4780 and HDMI
- output
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Message-Id: <UAE13R.KF1V28VAUAXS3@crapouillou.net>
-In-Reply-To: <af92a37f6c652aedac1782efcf442ad56e38f3ab.1637689583.git.hns@goldelico.com>
-References: <cover.1637689583.git.hns@goldelico.com>
-        <af92a37f6c652aedac1782efcf442ad56e38f3ab.1637689583.git.hns@goldelico.com>
+        id S239557AbhKWSL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 13:11:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239498AbhKWSL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 13:11:56 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E252C061574;
+        Tue, 23 Nov 2021 10:08:48 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id e11so12756639ljo.13;
+        Tue, 23 Nov 2021 10:08:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=56dyo2B5WxLSRjH8dLU5dNlhfoG71/Hfm6ftni52IYk=;
+        b=CR7mbvgSr/cJkFxHEQ+ms+toHQcxH851XqAFwpfJzz543FrfgIc8MQpdwUhXzzYFKl
+         pXCW3vi6SXprCzAHzHVeXJN+yOs7hkyZOPNDX99021nhSF61L6Twl4ck/S3kVGT+bEHU
+         GF/NbWcjnyKmGnVoD0zzGEi8OO8t6Bm95pHTmTCYznQ5E7tKCCRtS0lNjZTyk0x66ulK
+         PybjJTn7CSRs+exbZihltyyqAP+vsIHYIhfhiFeJBGMfM4HxGSYvp1MHuUSz6wulADJq
+         zwS6HgizVuyYE6Cs7ifNG1N5GaGW9viZpcd6ZTHtdKyTf2+D4vN4O+NXz+QD2YT8k6q+
+         Dv2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=56dyo2B5WxLSRjH8dLU5dNlhfoG71/Hfm6ftni52IYk=;
+        b=u4lkkB17NaTjUxkr0a8f03v6n651Q95PagGe+RmpXTThNTPHy+rD+6W/RTJmcrdaub
+         2VMl8pljUeMNck9n60hireMbPqxxldUgBaUNV65Am1bgUbyuawEgJQTRLK2i8Ff4EDsq
+         WVN4nm1IMP8CxoJHV2H48vJSZfyCLnnITkLx+dsAT/VPuwlm4j2VaKFlFMVvmDGh9R2D
+         kX1sCHtJhVEXl/BVvv3h4wzq6ZlYWMkQyqO3YFnfTtPomb8UNeg2Imu0RbA98etCG5Bo
+         ypfMl/Gbfswv/wK8w5wUooZEkgFx2IIJj8TD4mtDyb8YGYBQBTyXeQoKgv3j6VisWi67
+         INvA==
+X-Gm-Message-State: AOAM533rrkdyDVmlK23r4MPBKVTaoMl4av9GcOaIxTkMLWi/Q7U9ehEG
+        K05nJCfGblq2A5IEE6DdE7M=
+X-Google-Smtp-Source: ABdhPJzSLfpSBsiDXgtGymQV5xPGQ2oxpL3HVL4A7epVul9quMnngyVM0xyR9B/ohIxO24hH2VUneg==
+X-Received: by 2002:a2e:a483:: with SMTP id h3mr7641944lji.106.1637690926436;
+        Tue, 23 Nov 2021 10:08:46 -0800 (PST)
+Received: from localhost.localdomain (public-gprs375115.centertel.pl. [37.47.96.140])
+        by smtp.googlemail.com with ESMTPSA id q1sm874981lfh.234.2021.11.23.10.08.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 10:08:46 -0800 (PST)
+From:   Dominik Kobinski <dominikkobinski314@gmail.com>
+To:     agross@kernel.org
+Cc:     bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Dominik Kobinski <dominikkobinski314@gmail.com>,
+        Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Subject: [PATCH 3/4] dt-bindings: regulator: qcom: spmi-regulator: Document pm8226 compatible
+Date:   Tue, 23 Nov 2021 19:08:16 +0100
+Message-Id: <20211123180816.2835-1-dominikkobinski314@gmail.com>
+X-Mailer: git-send-email 2.34.0
+In-Reply-To: <20211123174127.2261-1-dominikkobinski314@gmail.com>
+References: <20211123174127.2261-1-dominikkobinski314@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+Suggested-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Signed-off-by: Dominik Kobinski <dominikkobinski314@gmail.com>
+---
+ .../devicetree/bindings/regulator/qcom,spmi-regulator.txt        | 1 +
+ 1 file changed, 1 insertion(+)
 
-Le mar., nov. 23 2021 at 18:46:17 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> From: Paul Boddie <paul@boddie.org.uk>
-> 
-> Add support for the LCD controller present on JZ4780 SoCs.
-> This SoC uses 8-byte descriptors which extend the current
-> 4-byte descriptors used for other Ingenic SoCs.
-> 
-> Tested on MIPS Creator CI20 board.
-> 
-> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> ---
->  drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 55 
-> ++++++++++++++++++++++-
->  drivers/gpu/drm/ingenic/ingenic-drm.h     | 38 ++++++++++++++++
->  2 files changed, 92 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c 
-> b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> index 0bb590c3910d9..5ff97a4bbcfe5 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> @@ -6,6 +6,7 @@
-> 
->  #include "ingenic-drm.h"
-> 
-> +#include <linux/bitfield.h>
->  #include <linux/component.h>
->  #include <linux/clk.h>
->  #include <linux/dma-mapping.h>
-> @@ -49,6 +50,11 @@ struct ingenic_dma_hwdesc {
->  	u32 addr;
->  	u32 id;
->  	u32 cmd;
-> +	/* extended hw descriptor for jz4780 */
-> +	u32 offsize;
-> +	u32 pagewidth;
-> +	u32 cpos;
-> +	u32 dessize;
->  } __aligned(16);
-> 
->  struct ingenic_dma_hwdescs {
-> @@ -60,6 +66,7 @@ struct jz_soc_info {
->  	bool needs_dev_clk;
->  	bool has_osd;
->  	bool map_noncoherent;
-> +	bool use_extended_hwdesc;
->  	unsigned int max_width, max_height;
->  	const u32 *formats_f0, *formats_f1;
->  	unsigned int num_formats_f0, num_formats_f1;
-> @@ -446,6 +453,9 @@ static int ingenic_drm_plane_atomic_check(struct 
-> drm_plane *plane,
->  	if (!crtc)
->  		return 0;
-> 
-> +	if (plane == &priv->f0)
-> +		return -EINVAL;
-> +
->  	crtc_state = drm_atomic_get_existing_crtc_state(state,
->  							crtc);
->  	if (WARN_ON(!crtc_state))
-> @@ -662,6 +672,33 @@ static void 
-> ingenic_drm_plane_atomic_update(struct drm_plane *plane,
->  		hwdesc->cmd = JZ_LCD_CMD_EOF_IRQ | (width * height * cpp / 4);
->  		hwdesc->next = dma_hwdesc_addr(priv, next_id);
-> 
-> +		if (priv->soc_info->use_extended_hwdesc) {
-> +			hwdesc->cmd |= JZ_LCD_CMD_FRM_ENABLE;
-> +
-> +			/* Extended 8-byte descriptor */
-> +			hwdesc->cpos = 0;
-> +			hwdesc->offsize = 0;
-> +			hwdesc->pagewidth = 0;
-> +
-> +			switch (newstate->fb->format->format) {
-> +			case DRM_FORMAT_XRGB1555:
-> +				hwdesc->cpos |= JZ_LCD_CPOS_RGB555;
-> +				fallthrough;
-> +			case DRM_FORMAT_RGB565:
-> +				hwdesc->cpos |= JZ_LCD_CPOS_BPP_15_16;
-> +				break;
-> +			case DRM_FORMAT_XRGB8888:
-> +				hwdesc->cpos |= JZ_LCD_CPOS_BPP_18_24;
-> +				break;
-> +			}
-> +			hwdesc->cpos |= (JZ_LCD_CPOS_COEFFICIENT_1 <<
-> +					 JZ_LCD_CPOS_COEFFICIENT_OFFSET);
-> +			hwdesc->dessize =
-> +				(0xff << JZ_LCD_DESSIZE_ALPHA_OFFSET) |
-> +				FIELD_PREP(JZ_LCD_DESSIZE_HEIGHT_MASK, height - 1) |
-> +				FIELD_PREP(JZ_LCD_DESSIZE_WIDTH_MASK, width - 1);
-> +		}
-> +
->  		if (drm_atomic_crtc_needs_modeset(crtc_state)) {
->  			fourcc = newstate->fb->format->format;
-> 
-> @@ -693,6 +730,9 @@ static void 
-> ingenic_drm_encoder_atomic_mode_set(struct drm_encoder *encoder,
->  		    | JZ_LCD_CFG_SPL_DISABLE | JZ_LCD_CFG_REV_DISABLE;
->  	}
-> 
-> +	if (priv->soc_info->use_extended_hwdesc)
-> +		cfg |= JZ_LCD_CFG_DESCRIPTOR_8;
-> +
->  	if (mode->flags & DRM_MODE_FLAG_NHSYNC)
->  		cfg |= JZ_LCD_CFG_HSYNC_ACTIVE_LOW;
->  	if (mode->flags & DRM_MODE_FLAG_NVSYNC)
-> @@ -1064,7 +1104,7 @@ static int ingenic_drm_bind(struct device *dev, 
-> bool has_components)
->  	}
-> 
->  	regmap_config = ingenic_drm_regmap_config;
-> -	regmap_config.max_register = res->end - res->start;
-> +	regmap_config.max_register = res->end - res->start - 4;
-
-I think this is wrong :)
-
-Cheers,
--Paul
-
->  	priv->map = devm_regmap_init_mmio(dev, base,
->  					  &regmap_config);
->  	if (IS_ERR(priv->map)) {
-> @@ -1468,10 +1508,23 @@ static const struct jz_soc_info 
-> jz4770_soc_info = {
->  	.num_formats_f0 = ARRAY_SIZE(jz4770_formats_f0),
->  };
-> 
-> +static const struct jz_soc_info jz4780_soc_info = {
-> +	.needs_dev_clk = true,
-> +	.has_osd = true,
-> +	.use_extended_hwdesc = true,
-> +	.max_width = 4096,
-> +	.max_height = 2048,
-> +	.formats_f1 = jz4770_formats_f1,
-> +	.num_formats_f1 = ARRAY_SIZE(jz4770_formats_f1),
-> +	.formats_f0 = jz4770_formats_f0,
-> +	.num_formats_f0 = ARRAY_SIZE(jz4770_formats_f0),
-> +};
-> +
->  static const struct of_device_id ingenic_drm_of_match[] = {
->  	{ .compatible = "ingenic,jz4740-lcd", .data = &jz4740_soc_info },
->  	{ .compatible = "ingenic,jz4725b-lcd", .data = &jz4725b_soc_info },
->  	{ .compatible = "ingenic,jz4770-lcd", .data = &jz4770_soc_info },
-> +	{ .compatible = "ingenic,jz4780-lcd", .data = &jz4780_soc_info },
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, ingenic_drm_of_match);
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm.h 
-> b/drivers/gpu/drm/ingenic/ingenic-drm.h
-> index 22654ac1dde1c..cb1d09b625881 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm.h
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm.h
-> @@ -44,8 +44,11 @@
->  #define JZ_REG_LCD_XYP1				0x124
->  #define JZ_REG_LCD_SIZE0			0x128
->  #define JZ_REG_LCD_SIZE1			0x12c
-> +#define JZ_REG_LCD_PCFG				0x2c0
-> 
->  #define JZ_LCD_CFG_SLCD				BIT(31)
-> +#define JZ_LCD_CFG_DESCRIPTOR_8			BIT(28)
-> +#define JZ_LCD_CFG_RECOVER_FIFO_UNDERRUN	BIT(25)
->  #define JZ_LCD_CFG_PS_DISABLE			BIT(23)
->  #define JZ_LCD_CFG_CLS_DISABLE			BIT(22)
->  #define JZ_LCD_CFG_SPL_DISABLE			BIT(21)
-> @@ -63,6 +66,7 @@
->  #define JZ_LCD_CFG_DE_ACTIVE_LOW		BIT(9)
->  #define JZ_LCD_CFG_VSYNC_ACTIVE_LOW		BIT(8)
->  #define JZ_LCD_CFG_18_BIT			BIT(7)
-> +#define JZ_LCD_CFG_24_BIT			BIT(6)
->  #define JZ_LCD_CFG_PDW				(BIT(5) | BIT(4))
-> 
->  #define JZ_LCD_CFG_MODE_GENERIC_16BIT		0
-> @@ -132,6 +136,7 @@
->  #define JZ_LCD_CMD_SOF_IRQ			BIT(31)
->  #define JZ_LCD_CMD_EOF_IRQ			BIT(30)
->  #define JZ_LCD_CMD_ENABLE_PAL			BIT(28)
-> +#define JZ_LCD_CMD_FRM_ENABLE			BIT(26)
-> 
->  #define JZ_LCD_SYNC_MASK			0x3ff
-> 
-> @@ -153,6 +158,7 @@
->  #define JZ_LCD_RGBC_EVEN_BGR			(0x5 << 0)
-> 
->  #define JZ_LCD_OSDC_OSDEN			BIT(0)
-> +#define JZ_LCD_OSDC_ALPHAEN			BIT(2)
->  #define JZ_LCD_OSDC_F0EN			BIT(3)
->  #define JZ_LCD_OSDC_F1EN			BIT(4)
-> 
-> @@ -176,6 +182,38 @@
->  #define JZ_LCD_SIZE01_WIDTH_LSB			0
->  #define JZ_LCD_SIZE01_HEIGHT_LSB		16
-> 
-> +#define JZ_LCD_DESSIZE_ALPHA_OFFSET		24
-> +#define JZ_LCD_DESSIZE_HEIGHT_MASK		GENMASK(23, 12)
-> +#define JZ_LCD_DESSIZE_WIDTH_MASK		GENMASK(11, 0)
-> +
-> +#define JZ_LCD_CPOS_BPP_15_16			(4 << 27)
-> +#define JZ_LCD_CPOS_BPP_18_24			(5 << 27)
-> +#define JZ_LCD_CPOS_BPP_30			(7 << 27)
-> +#define JZ_LCD_CPOS_RGB555			BIT(30)
-> +#define JZ_LCD_CPOS_PREMULTIPLY_LCD		BIT(26)
-> +#define JZ_LCD_CPOS_COEFFICIENT_OFFSET		24
-> +#define JZ_LCD_CPOS_COEFFICIENT_0		0
-> +#define JZ_LCD_CPOS_COEFFICIENT_1		1
-> +#define JZ_LCD_CPOS_COEFFICIENT_ALPHA1		2
-> +#define JZ_LCD_CPOS_COEFFICIENT_1_ALPHA1	3
-> +
-> +#define JZ_LCD_RGBC_RGB_PADDING			BIT(15)
-> +#define JZ_LCD_RGBC_RGB_PADDING_FIRST		BIT(14)
-> +#define JZ_LCD_RGBC_422				BIT(8)
-> +#define JZ_LCD_RGBC_RGB_FORMAT_ENABLE		BIT(7)
-> +
-> +#define JZ_LCD_PCFG_PRI_MODE			BIT(31)
-> +#define JZ_LCD_PCFG_HP_BST_4			(0 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_8			(1 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_16			(2 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_32			(3 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_64			(4 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_16_CONT		(5 << 28)
-> +#define JZ_LCD_PCFG_HP_BST_DISABLE		(7 << 28)
-> +#define JZ_LCD_PCFG_THRESHOLD2_OFFSET		18
-> +#define JZ_LCD_PCFG_THRESHOLD1_OFFSET		9
-> +#define JZ_LCD_PCFG_THRESHOLD0_OFFSET		0
-> +
->  struct device;
->  struct drm_plane;
->  struct drm_plane_state;
-> --
-> 2.33.0
-> 
-
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
+index 2b544059e029..c2a39b121b1b 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
++++ b/Documentation/devicetree/bindings/regulator/qcom,spmi-regulator.txt
+@@ -6,6 +6,7 @@ Qualcomm SPMI Regulators
+ 	Definition: must be one of:
+ 			"qcom,pm8004-regulators"
+ 			"qcom,pm8005-regulators"
++			"qcom,pm8226-regulators"
+ 			"qcom,pm8841-regulators"
+ 			"qcom,pm8916-regulators"
+ 			"qcom,pm8941-regulators"
+-- 
+2.34.0
 
