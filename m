@@ -2,146 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8656045A238
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 13:09:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBD6545A240
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 13:12:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231661AbhKWMM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 07:12:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58664 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230428AbhKWMM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 07:12:58 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A630C061574;
-        Tue, 23 Nov 2021 04:09:50 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id l9so5425949ljq.5;
-        Tue, 23 Nov 2021 04:09:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:from:to:cc
-         :references:in-reply-to:content-transfer-encoding;
-        bh=jInrbIK2q6UNhLl71Os2qZMGSSIhq1YBVqVqs2WDB0s=;
-        b=UdS46lB4VhqHcLKLzz5PIKsDh/gVbkcvv6ogkyOnoYMT+rUPbyBl6I6A7kh1NP4G5M
-         7ZqiMQjjyVOZEE0q1KzBDveZuhxrYcCaFLZifinDEblM+L4dA7i9hmpgCM13tmLT3nX0
-         RDn5HH/SGT7t8s8e6R6YG2dZr7LvBTCD/CWmB4o4eeyJ6zUxyBZaXlVPbp8bcQw5jDax
-         jE0fADOXGGtKEUxR+Uc2uzhjHsWDmc8OSVfszpy7k4s8XFtPnba+ToQuGWd9z+HJqhun
-         hPsd6iQ4vtO12za87vhIxP3ehgQs4nvE+qMEJ0zp9q1fg5pryRczKnDJNuqTFPhbLeUi
-         xjTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=jInrbIK2q6UNhLl71Os2qZMGSSIhq1YBVqVqs2WDB0s=;
-        b=U86bYAs4WugoydXCZYS5u9ezTXT8vXdx1wcCfh5ueUjrboCmD0a8n3Xw+y2YYpnViD
-         oHa9HtcZDodzZjiA7hQY5BnMFqh8h4w8tHe9RC2pwgWw8afBE/EUW/mvHLGM74M2jTnN
-         hF38mJAyuOY9hD9IQWmS1AtEo9Dc2DHmB1ZTGc9j0a7dqbBS0AqYbt//VE4hE3v+Rpx9
-         r2QIRX/BeaqA79re0HwNCZU6JFoxdZ151WyM8g1PKR6ZI2Okv8dKNdLvVGDwQ0CGkv2a
-         GM5BA/vl+XcXHCwu7maj0VqFrBGZYEuipvWmGU7ncDyuDXID7y6eAQSwIyfoc9HD2MAC
-         xY6Q==
-X-Gm-Message-State: AOAM531zLOOerBMYdqIIklvHhFi/U6T2Tpa2AP9y8o7jImMTrkIDgPY5
-        rNdMgrinZhqMnuI9YMxOGxUufv/BP8I=
-X-Google-Smtp-Source: ABdhPJzEUc1882xH6Ro41Nfgck6vHEnif8CITGXl7OVcg8j5J6ttxYxrE3J4Oa1XE7Kj1n9/5Gu2Bw==
-X-Received: by 2002:a2e:a451:: with SMTP id v17mr4512896ljn.85.1637669388887;
-        Tue, 23 Nov 2021 04:09:48 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id f23sm1464974ljg.90.2021.11.23.04.09.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 04:09:48 -0800 (PST)
-Message-ID: <51926a0e-4d01-7361-8f18-62d56eaaa398@gmail.com>
-Date:   Tue, 23 Nov 2021 13:09:46 +0100
+        id S234799AbhKWMPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 07:15:16 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:42590 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232715AbhKWMPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 07:15:16 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: andrzej.p)
+        with ESMTPSA id 7417D1F44A0C
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1637669527; bh=Or79jjqBJNUaiCRZxQgJN0tuqh1QPWbrzNTllPwYxK0=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=eOE8eITmaFRDfFbJ9YCUOMGM8nQNHNBRlrqI5pjrhIONU3l8YUKGECP6xfhbP98cC
+         MBM/AyzocnoJ054c5kt39t9hbugIxUENfvLFlHVcboHZ7kb/FwzA1Sbdalb4RvVdNP
+         w1VGhHgQg/B7QFS+5bnTcJqWlDjHsZ4nYUETZ/GScV7fg6AGJt9sU5OFwKgdHZpX77
+         QG7NFZ+BLxBc9Vjhl1+nSOHce8j02LtST6EpqKbuanUKKJaOBdn+YGIUWJXL+JpQJ4
+         5lFlTaBFSU1pMEupZgrI8/LhyDo99CcbJjVXW3QeAHQJNjyilPqFGi+KfTdzGoSS7x
+         MOHqwVD9QacQQ==
+Subject: Re: [PATCH 4/7] media: hantro: move postproc enablement for old cores
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-media@vger.kernel.org
+Cc:     ezequiel@vanguardiasur.com.ar, nicolas.dufresne@collabora.com,
+        mchehab@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
+        wens@csie.org, p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+References: <20211122184702.768341-1-jernej.skrabec@gmail.com>
+ <20211122184702.768341-5-jernej.skrabec@gmail.com>
+From:   Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Message-ID: <df868233-552f-ecc3-29e1-4a3a4761cf31@collabora.com>
+Date:   Tue, 23 Nov 2021 13:12:04 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
- Thunderbird/95.0
-Subject: Re: clk & clock-controller@ DT nodes: __clk_core_init: clk
- clock-controller already initialized
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-To:     linux-clk@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>
-References: <5c540797-deee-4ea9-e479-92f3aeb08c7b@gmail.com>
- <67ebc933-3c93-99b1-9dfc-7166cfa1f7a8@gmail.com>
-In-Reply-To: <67ebc933-3c93-99b1-9dfc-7166cfa1f7a8@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <20211122184702.768341-5-jernej.skrabec@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.11.2021 11:20, Rafał Miłecki wrote:
-> On 23.11.2021 11:09, Rafał Miłecki wrote:
->> [    0.000000] __clk_core_init: clk clock-controller already initialized
->> [    0.000000] ------------[ cut here ]------------
->> [    0.000000] WARNING: CPU: 0 PID: 0 at drivers/clk/bcm/clk-iproc-pll.c:802 iproc_pll_clk_setup+0x4c8/0x4f4
->> [    0.000000] Modules linked in:
->> [    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.10.80 #0
->> [    0.000000] Hardware name: BCM5301X
->> [    0.000000] [<c0108410>] (unwind_backtrace) from [<c0104bc4>] (show_stack+0x10/0x14)
->> [    0.000000] [<c0104bc4>] (show_stack) from [<c03dca28>] (dump_stack+0x94/0xa8)
->> [    0.000000] [<c03dca28>] (dump_stack) from [<c0118440>] (__warn+0xb8/0x114)
->> [    0.000000] [<c0118440>] (__warn) from [<c0118504>] (warn_slowpath_fmt+0x68/0x78)
->> [    0.000000] [<c0118504>] (warn_slowpath_fmt) from [<c043281c>] (iproc_pll_clk_setup+0x4c8/0x4f4)
->> [    0.000000] [<c043281c>] (iproc_pll_clk_setup) from [<c0818c04>] (nsp_genpll_clk_init+0x30/0x38)
->> [    0.000000] [<c0818c04>] (nsp_genpll_clk_init) from [<c0818634>] (of_clk_init+0x118/0x1f8)
->> [    0.000000] [<c0818634>] (of_clk_init) from [<c08039b0>] (time_init+0x24/0x30)
->> [    0.000000] [<c08039b0>] (time_init) from [<c0800d14>] (start_kernel+0x398/0x50c)
->> [    0.000000] [<c0800d14>] (start_kernel) from [<00000000>] (0x0)
->> [    0.000000] ---[ end trace fe236bfe9559ee50 ]---
->>
->> It seems that Linux's clock name is derived from DT node. With multiple
->> clock-controller@ nodes there is a name conflict as seen above.
->>
->>  From DT perspective I don't think there is anything wrong in having
->> multiple nodes using the same name prefix.
->>
->> Could clk subsystem be somehow improved to be more /creative/ at picking
->> clock names? ;) Would someone be kind to take a look at this, please?
+Hi Jernej,
+
+W dniu 22.11.2021 o 19:46, Jernej Skrabec pisze:
+> Older G2 cores, like that in Allwinner H6, seem to have issue with
+> latching postproc register values if this is first thing done in job.
+> Moving that to the end solves the issue.
 > 
-> Ah, I've just realized it's not clk subsystem but actually a clk driver
-> that picks up a name based on DT node name.
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>   drivers/staging/media/hantro/hantro_drv.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
 > 
-> iproc_pll_clk_setup() does:
-> init.name = node->name;
+> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> index 8c3de31f51b3..530994ab3024 100644
+> --- a/drivers/staging/media/hantro/hantro_drv.c
+> +++ b/drivers/staging/media/hantro/hantro_drv.c
+> @@ -130,7 +130,7 @@ void hantro_start_prepare_run(struct hantro_ctx *ctx)
+>   	v4l2_ctrl_request_setup(src_buf->vb2_buf.req_obj.req,
+>   				&ctx->ctrl_handler);
+>   
+> -	if (!ctx->is_encoder) {
+> +	if (!ctx->is_encoder && !ctx->dev->variant->legacy_regs) {
+>   		if (hantro_needs_postproc(ctx, ctx->vpu_dst_fmt))
+>   			hantro_postproc_enable(ctx);
+>   		else
+> @@ -142,6 +142,13 @@ void hantro_end_prepare_run(struct hantro_ctx *ctx)
+>   {
+>   	struct vb2_v4l2_buffer *src_buf;
+>   
+> +	if (ctx->dev->variant->legacy_regs && !ctx->is_encoder) {
+
+My personal preference would be to alter the order to match what is
+in hantro_start_prepare_run(), and add a comment:
+
++       /*
++        * Older G2 cores, like that in Allwinner H6, seem to have issue with
++	 * latching postproc register values if this is first thing done in job.
++	 * Moving that to the end solves the issue.
++	 */
++	if (!ctx->is_encoder && ctx->dev->variant->legacy_regs) {
+
+With that changed,
+
+Reviewed-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+
+> +		if (hantro_needs_postproc(ctx, ctx->vpu_dst_fmt))
+> +			hantro_postproc_enable(ctx);
+> +		else
+> +			hantro_postproc_disable(ctx);
+> +	}
+> +
+>   	src_buf = hantro_get_src_buf(ctx);
+>   	v4l2_ctrl_request_complete(src_buf->vb2_buf.req_obj.req,
+>   				   &ctx->ctrl_handler);
 > 
-> I should have double check that before sending my e-mail.
-> 
-> I can't see any helper picking a clock unique name based on DT node.
-> Any advise how to proceed with that?
-
-I've tried a simple patch switching from "name" to "full_name".
-
-That results in registering "clock-controller@100" and
-"clock-controller@160" clocks (I can see them in /sys/kernel/debug/clk/)
-
-They seem to work fine:
-# cat /sys/kernel/debug/clk/clock-controller@140/clk_rate
-2000000000
-# cat /sys/kernel/debug/clk/clock-controller@100/clk_rate
-3200000000
-
-It seems however that output clocks are broken:
-# cat /sys/kernel/debug/clk/usbclk/clk_rate
-0
-
-For some reason iproc_clk_recalc_rate() gets called with "parent_rate"
-argument 0 whenever clocks aren't named "lcpll0" and "genpll". I'm not
-sure why it happens. I don't see any code referencing clocks by
-hardcoded names "lcpll0" and "genpll".
-
-
---- a/drivers/clk/bcm/clk-iproc-pll.c
-+++ b/drivers/clk/bcm/clk-iproc-pll.c
-@@ -783,7 +783,7 @@ void iproc_pll_clk_setup(struct device_n
-  	iclk = &iclk_array[0];
-  	iclk->pll = pll;
-
--	init.name = node->name;
-+	init.name = node->full_name;
-  	init.ops = &iproc_pll_ops;
-  	init.flags = 0;
-  	parent_name = of_clk_get_parent_name(node, 0);
 
