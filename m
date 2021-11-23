@@ -2,130 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 140FD45AA74
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:47:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E81FC45AAA7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:58:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239525AbhKWRuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 12:50:01 -0500
-Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.120]:23442 "EHLO
-        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239397AbhKWRt6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:49:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637689591;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=15Nkk1H/19ZCPCTvtDzkEK7DIJe2pfI1c9+1syWWzcY=;
-    b=PqGYD2OdZulWwyT4bMYtTWb7hYx/lyKDdxvecXuDkMZlmOKnR7pu+sf+lSBgBK+JJh
-    xiOvQ/k6XAfv9GMjc55ghaKnCO6YiqXQ6x7WpH5Tk10CA5dGpuW2kWbACC9ACkf2du7T
-    CAEkLOJt+UAfxijh1h1hXVqgN72ls4FDlvxPVDaJO3wgv2ehLNy6ZhBgT6RyGUWZHmEV
-    NZBB5eD7JtUqteZm1/ll+pzZzQCl3fRO4DL6/617uRZc5UUWpJpuKiE16sfRMosAtW+r
-    2swZP3sjnBwm4H//zixvpSCOZXdzGyeSIOwUY3guzGhtzkUGtLtRLBffALfg3q2AcObi
-    BipQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lByOdcKVX0"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 47.34.6 DYNA|AUTH)
-    with ESMTPSA id g09b5fxANHkU7fu
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 23 Nov 2021 18:46:30 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>
-Cc:     devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v7 8/8] [RFC] MIPS: DTS: Ingenic: adjust register size to available registers
-Date:   Tue, 23 Nov 2021 18:46:23 +0100
-Message-Id: <818b6ffd0ba68324d5a7f4284c278bbe2e1bca7b.1637689583.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <cover.1637689583.git.hns@goldelico.com>
-References: <cover.1637689583.git.hns@goldelico.com>
+        id S239456AbhKWSBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 13:01:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55926 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236778AbhKWSBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 13:01:36 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC39FC061714
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:58:28 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id nh10-20020a17090b364a00b001a69adad5ebso3578568pjb.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:58:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=bbmQ71C4USib8g5VHZ5eqkApHXrc8RLia8DHNhFTyQU=;
+        b=Cov85HUUN0KM4BeG3WFGXEAchQ2VXlVaepCqxKV045fK75ed/5eUpFh1nAvm2cQ7D0
+         KG+EDVGTIf6D0J+XG+Zj0bjRFDH313TxWVKq+nJoxrj1+wJz6rV92MBdKucxrMrPHGnu
+         OV+x6rRmbsKjpNMeu18VxpnipBclEjIA9jOp0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=bbmQ71C4USib8g5VHZ5eqkApHXrc8RLia8DHNhFTyQU=;
+        b=nt8/OkqIeoGMzWMhU7IH/iFxHjK8LQ9z7LLLDEERg1lj0HSDfjAIs2Dw1EGQHyDzgL
+         EGAn/TobaSW9qYM9oFMwrLsTbq1B0F67zGzyqOUly3RNInkS468DQ3UnYVDEoQa7TvU9
+         uZuoSDYq+7TQFXfyfHWcMmqfxtP7JnJnDZKUdG22hlTh9jCRDOInR13tmGBczqnTzqTl
+         soCz3cqwd68ASIegO31A/l6z20L8gJuR564M04yTbqJtnJHWYBogXwYq0u1x9j5U4ZJo
+         uTxiXk+PYZ4A5vsrM2wgHqi3Z2MoJqVvoUwLQYdd+fPQwjyn5T41tPSLV81EY2fYll6/
+         5p3Q==
+X-Gm-Message-State: AOAM530ZWekByXmrY22b28H+5otCbYkMogzhJvPE1/1r0YVXGWXM38L2
+        cG2LxVCZYqxNJYPA/216cUU7cg==
+X-Google-Smtp-Source: ABdhPJw7fi+m3nrYztNvGziyYc7XGj+5DLWEPXnojuB8/xBvoE/zTBv3+WkUhVF9pVLzwAPbYfAvoQ==
+X-Received: by 2002:a17:90b:180d:: with SMTP id lw13mr5176744pjb.225.1637690308371;
+        Tue, 23 Nov 2021 09:58:28 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:5fa5:d920:9d68:9c16])
+        by smtp.gmail.com with UTF8SMTPSA id mu4sm2251712pjb.8.2021.11.23.09.58.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 09:58:28 -0800 (PST)
+Date:   Tue, 23 Nov 2021 09:58:26 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
+        dianders@chromium.org, kgodara@codeaurora.org
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc7280-crd: Add Touchscreen and
+ touchpad support
+Message-ID: <YZ0rwiHuh0OeP0VD@google.com>
+References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
+ <1637650813-16654-5-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1637650813-16654-5-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After getting the regmap size from the device tree we should
-reduce the ranges to the really available registers. This
-allows to read only existing registers from the debug fs
-and makes the regmap check out-of-bounds access.
+On Tue, Nov 23, 2021 at 12:30:13PM +0530, Rajendra Nayak wrote:
+> From: Kshitiz Godara <kgodara@codeaurora.org>
+> 
+> Add Touchscreen and touchpad hid-over-i2c node
 
-For the jz4780 we have done this already.
+to which board(s)?
 
-Suggested-for: Paul Cercueil <paul@crapouillou.net>
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/mips/boot/dts/ingenic/jz4725b.dtsi | 2 +-
- arch/mips/boot/dts/ingenic/jz4740.dtsi  | 2 +-
- arch/mips/boot/dts/ingenic/jz4770.dtsi  | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+> Signed-off-by: Kshitiz Godara <kgodara@codeaurora.org>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 63 +++++++++++++++++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> index 8c2aee6..bef3037 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> @@ -23,6 +23,47 @@
+>  	};
+>  };
+>  
+> +ap_tp_i2c: &i2c0 {
+> +	status = "okay";
+> +	clock-frequency = <400000>;
+> +
+> +	trackpad: trackpad@15 {
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x15>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&tp_int_odl>;
+> +
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +		post-power-on-delay-ms = <20>;
+> +		hid-descr-addr = <0x0001>;
+> +		vdd-supply = <&vreg_l18b_1p8>;
+> +
+> +		wakeup-source;
+> +	};
+> +};
+> +
+> +ap_ts_pen_1v8: &i2c13 {
+> +	status = "okay";
+> +	clock-frequency = <400000>;
+> +
+> +	ap_ts: touchscreen@5c {
+> +		compatible = "hid-over-i2c";
+> +		reg = <0x5C>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
+> +
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		post-power-on-delay-ms = <500>;
+> +		hid-descr-addr = <0x0000>;
+> +
+> +		vdd-supply = <&vreg_l19b_1p8>;
+> +	};
+> +};
+> +
+>  &nvme_pwren {
+>  	pins = "gpio51";
+>  };
+> @@ -30,3 +71,25 @@
+>  &nvme_3v3_regulator {
+>  	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
+>  };
+> +
+> +&tlmm {
+> +	tp_int_odl: tp-int-odl {
+> +		pins = "gpio7";
+> +		function = "gpio";
+> +		input-enable;
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4725b.dtsi b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-index 0c6a5a4266f43..e9e48022f6316 100644
---- a/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-@@ -321,7 +321,7 @@ udc: usb@13040000 {
- 
- 	lcd: lcd-controller@13050000 {
- 		compatible = "ingenic,jz4725b-lcd";
--		reg = <0x13050000 0x1000>;
-+		reg = <0x13050000 0x130>; /* tbc */
- 
- 		interrupt-parent = <&intc>;
- 		interrupts = <31>;
-diff --git a/arch/mips/boot/dts/ingenic/jz4740.dtsi b/arch/mips/boot/dts/ingenic/jz4740.dtsi
-index 772542e1f266a..7f76cba03a089 100644
---- a/arch/mips/boot/dts/ingenic/jz4740.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4740.dtsi
-@@ -323,7 +323,7 @@ udc: usb@13040000 {
- 
- 	lcd: lcd-controller@13050000 {
- 		compatible = "ingenic,jz4740-lcd";
--		reg = <0x13050000 0x1000>;
-+		reg = <0x13050000 0x60>; /* LCDCMD1+4 */
- 
- 		interrupt-parent = <&intc>;
- 		interrupts = <30>;
-diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-index dfe74328ae5dc..bda0a3a86ed5f 100644
---- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-@@ -399,7 +399,7 @@ gpu: gpu@13040000 {
- 
- 	lcd: lcd-controller@13050000 {
- 		compatible = "ingenic,jz4770-lcd";
--		reg = <0x13050000 0x300>;
-+		reg = <0x13050000 0x130>; /* tbc */
- 
- 		interrupt-parent = <&intc>;
- 		interrupts = <31>;
--- 
-2.33.0
+Not sure about this one, is the explicit 'input-enable' actually needed here?
 
+> +		bias-disable;
+> +	};
+> +
+> +	ts_int_l: ts-int-l {
+> +		pins = "gpio55";
+> +		function = "gpio";
+> +		bias-pull-up;
+> +	};
+> +
+> +	ts_reset_l: ts-reset-l {
+> +		pins = "gpio54";
+> +		function = "gpio";
+> +		bias-disable;
+> +		drive-strength = <2>;
+
+As per my comment on "[3/4] arm64: dts: qcom: sc7280: Define EC and H1 nodes" it
+seems setting the drive strength to 2 isn't necessary, since that's the default.
