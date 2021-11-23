@@ -2,334 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2890745A17C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:29:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD6A45A195
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:35:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234166AbhKWLcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 06:32:24 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:25183 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233958AbhKWLcX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 06:32:23 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637666955; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=2XigKEVdFq+ANDrhknH8yojhpb6+T2i0GSFrAfZYOXE=; b=xNZb8KaskQ9qcR4dnqqjlL+bPOFd5XV7qMpCOu3JlvxlFrrANtrxhYvXCgLUyxsg5VBBsuPi
- bUpwjp5j34Wy/MbUNBkHOtuQ0j+t4b3Y9OqrYHh/31i3sF6+Tq2UUaCbkrcgnfIDQvHBAU3d
- 6ISqSjqsoT0ygh9mdWkN+MmMABg=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 619cd08be7d68470af71db9f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 23 Nov 2021 11:29:15
- GMT
-Sender: akolli=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9CD8DC43616; Tue, 23 Nov 2021 11:29:14 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from akolli-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akolli)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 334B9C4360C;
-        Tue, 23 Nov 2021 11:29:11 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 334B9C4360C
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-From:   Anilkumar Kolli <akolli@codeaurora.org>
-To:     ath11k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, Anilkumar Kolli <akolli@codeaurora.org>
-Subject: [PATCH v5 2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
-Date:   Tue, 23 Nov 2021 16:59:00 +0530
-Message-Id: <1637666940-30548-2-git-send-email-akolli@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637666940-30548-1-git-send-email-akolli@codeaurora.org>
-References: <1637666940-30548-1-git-send-email-akolli@codeaurora.org>
+        id S236167AbhKWLjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 06:39:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236190AbhKWLjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 06:39:00 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08499C06174A
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 03:35:52 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso1931572wms.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 03:35:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=eAAW0gxyL3spMyvFzNZU55TiEHcEGOqrLOJJuSa53K4=;
+        b=4DcfipfNqoq+i8lFBnrntKi3GtNw6X6goztOuq6ZWKhQSuytROlnv18WHcqZhYeh7c
+         GVU/3OFgl1BHcS7c/eSK80Hd36UAWzHFaJQ7HvRGjxLRLvpehVgy/qTdPSxdV6jRIKiv
+         KUBmhXNq4YZ4w4kuOliUyM4YnBMkn32OaZgo2ZnT5yRTOGg+SKtgVsnOrk+YNVJYy4lD
+         7TEDEgB7kTo/0ZPFJUO/BGCiAWb/fgXgFHc2FALVFLl/gTQYgATMGes7lqe/uUECmQQU
+         R5HUDVzCCKPG4/3yDD7kX7/tYF3JE3XCuXq1TzyesuDP+b2eYPrk/jOyI/1Nqgi6l4DO
+         DWpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=eAAW0gxyL3spMyvFzNZU55TiEHcEGOqrLOJJuSa53K4=;
+        b=NiN3rmH//VqCfvIqZGFin65eR9cxGDGS1IGli/NfCZS338z2bXCebDhBLnHMTvVwJk
+         B3zivLehrVClO/ojBCA3m0KJ4sc2QOpeZInZ/6UmaQyu+yj1nf1JXIRsHLg6/tU1BMlI
+         RG00WJVsHlk48eQPe315WVqxLw1IbnSohC2jQ4sptcobKIl+Tfd7qsu/4S6bGixuWUSb
+         +fsx6knvfKH6oIvgEoqnrURVFbOYKN7FldVGHcZCrjfoIBmQu4ezu52gwcQZNQiZeuVN
+         +F6vhY4Zh+O/njxMZFfJXRz9gphGMOU+UibkKHXmpAdKICS27Imc1oTsCS9CTyo70tos
+         IWtg==
+X-Gm-Message-State: AOAM531gNMlCR/+pJpDV/ncK+Ypa7RnEztBhoxKsGVmL/M8VpXYECHJx
+        bA5WEyFk7yn5UnNrNTdMvVhK8U1YPiuUe3FWhc8DMQ==
+X-Google-Smtp-Source: ABdhPJyDTgRgvUuV98CyCHfOL5hAURr2qDU4kKqY5aPJ10aLAJMLU+4E45XfCOWPhiTSevTsW28+O1m1n9x86/UMTho=
+X-Received: by 2002:a7b:c017:: with SMTP id c23mr2193327wmb.137.1637667350407;
+ Tue, 23 Nov 2021 03:35:50 -0800 (PST)
+MIME-Version: 1.0
+References: <20211108150554.4457-1-conor.dooley@microchip.com>
+ <20211108150554.4457-2-conor.dooley@microchip.com> <272946671.hFph3VMliC@diego>
+In-Reply-To: <272946671.hFph3VMliC@diego>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 23 Nov 2021 17:05:38 +0530
+Message-ID: <CAAhSdy2yr+a7=7Crk7s3pAVbVcYjTdOtRfAaQXBkTVsUpfG20g@mail.gmail.com>
+Subject: Re: [PATCH 01/13] dt-bindings: interrupt-controller: create a header
+ for RISC-V interrupts
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        bgolaszewski@baylibre.com, Rob Herring <robh+dt@kernel.org>,
+        jassisinghbrar@gmail.com, Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, broonie@kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        lewis.hanly@microchip.com, conor.dooley@microchip.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Atish Patra <atish.patra@wdc.com>, ivan.griffin@microchip.com,
+        linux-gpio@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-i2c@vger.kernel.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
+        krzysztof.kozlowski@canonical.com,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bin Meng <bin.meng@windriver.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Host DDR memory (contiguous 45 MB in mode-0 or 15 MB in mode-2)
-is reserved through DT entries for firmware usage. Send the base
-address from DT entries.
-If DT entry is available, PCI device will work with
-fixed_mem_region else host allocates multiple segments.
+On Tue, Nov 23, 2021 at 4:38 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Am Montag, 8. November 2021, 16:05:42 CET schrieb conor.dooley@microchip.=
+com:
+> > From: Ivan Griffin <ivan.griffin@microchip.com>
+> >
+> > Provide named identifiers for device tree for RISC-V interrupts.
+> >
+> > Licensed under GPL and MIT, as this file may be useful to any OS that
+> > uses device tree.
+> >
+> > Signed-off-by: Ivan Griffin <ivan.griffin@microchip.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  .../interrupt-controller/riscv-hart.h         | 19 +++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >  create mode 100644 include/dt-bindings/interrupt-controller/riscv-hart=
+.h
+> >
+> > diff --git a/include/dt-bindings/interrupt-controller/riscv-hart.h b/in=
+clude/dt-bindings/interrupt-controller/riscv-hart.h
+> > new file mode 100644
+> > index 000000000000..e1c32f6090ac
+> > --- /dev/null
+> > +++ b/include/dt-bindings/interrupt-controller/riscv-hart.h
+> > @@ -0,0 +1,19 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+> > +/*
+> > + * Copyright (C) 2021 Microchip Technology Inc.  All rights reserved.
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_RISCV_HART_H
+> > +#define _DT_BINDINGS_INTERRUPT_CONTROLLER_RISCV_HART_H
+> > +
+> > +#define HART_INT_U_SOFT   0
+> > +#define HART_INT_S_SOFT   1
+> > +#define HART_INT_M_SOFT   3
+> > +#define HART_INT_U_TIMER  4
+> > +#define HART_INT_S_TIMER  5
+> > +#define HART_INT_M_TIMER  7
+> > +#define HART_INT_U_EXT    8
+> > +#define HART_INT_S_EXT    9
+> > +#define HART_INT_M_EXT    11
+>
+> (1) From checking clic doc [0] I see an additional
+>         12   CLIC software interrupt
+> defined.
 
-IPQ8074 on HK10 board supports multiple PCI devices.
-IPQ8074 + QCN9074 is tested with this patch.
+Local IRQ #12 is for S-mode guest external interrupts as-per
+the ratified H-extension specification.
 
-Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.4.0.1-01838-QCAHKSWPL_SILICONZ-1
+I guess CLIC spec needs to be updated.
 
-Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
----
-V5:
-  - Use of_address_to_resource() (Sven)
-V4:
-  - Update code review comments to handle return (Kalle)
-V3:
-  - remove type cast and use of_property_read_u32_array() (Kalle)
-V2:
-  - Use of_ API to read from dt node (Rob)
+Regards,
+Anup
 
- drivers/net/wireless/ath/ath11k/core.h |  1 +
- drivers/net/wireless/ath/ath11k/mhi.c  | 34 ++++++++++++++-
- drivers/net/wireless/ath/ath11k/pci.c  | 11 ++++-
- drivers/net/wireless/ath/ath11k/qmi.c  | 76 +++++++++++++++++++++++++++++-----
- drivers/net/wireless/ath/ath11k/qmi.h  |  1 +
- 5 files changed, 110 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 2f1e10b7cc17..8492ca7efb92 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -194,6 +194,7 @@ enum ath11k_dev_flags {
- 	ATH11K_FLAG_REGISTERED,
- 	ATH11K_FLAG_QMI_FAIL,
- 	ATH11K_FLAG_HTC_SUSPEND_COMPLETE,
-+	ATH11K_FLAG_FIXED_MEM_RGN,
- };
- 
- enum ath11k_monitor_flags {
-diff --git a/drivers/net/wireless/ath/ath11k/mhi.c b/drivers/net/wireless/ath/ath11k/mhi.c
-index 26c7ae242db6..b6003406e2a1 100644
---- a/drivers/net/wireless/ath/ath11k/mhi.c
-+++ b/drivers/net/wireless/ath/ath11k/mhi.c
-@@ -3,6 +3,9 @@
- 
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/ioport.h>
- 
- #include "core.h"
- #include "debug.h"
-@@ -311,6 +314,26 @@ static void ath11k_mhi_op_write_reg(struct mhi_controller *mhi_cntrl,
- 	writel(val, addr);
- }
- 
-+static int ath11k_mhi_read_addr_from_dt(struct mhi_controller *mhi_ctrl)
-+{
-+	struct device_node *np;
-+	struct resource res;
-+	int ret;
-+
-+	np = of_find_node_by_type(NULL, "memory");
-+	if (!np)
-+		return -ENOENT;
-+
-+	ret = of_address_to_resource(np, 0, &res);
-+	if (ret)
-+		return ret;
-+
-+	mhi_ctrl->iova_start = res.start + 0x1000000;
-+	mhi_ctrl->iova_stop = res.end;
-+
-+	return 0;
-+}
-+
- int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- {
- 	struct ath11k_base *ab = ab_pci->ab;
-@@ -339,8 +362,15 @@ int ath11k_mhi_register(struct ath11k_pci *ab_pci)
- 		return ret;
- 	}
- 
--	mhi_ctrl->iova_start = 0;
--	mhi_ctrl->iova_stop = 0xffffffff;
-+	if ((test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags))) {
-+		ret = ath11k_mhi_read_addr_from_dt(mhi_ctrl);
-+		if (ret < 0)
-+			return ret;
-+	} else {
-+		mhi_ctrl->iova_start = 0;
-+		mhi_ctrl->iova_stop = 0xFFFFFFFF;
-+	}
-+
- 	mhi_ctrl->sbl_size = SZ_512K;
- 	mhi_ctrl->seg_len = SZ_512K;
- 	mhi_ctrl->fbc_download = true;
-diff --git a/drivers/net/wireless/ath/ath11k/pci.c b/drivers/net/wireless/ath/ath11k/pci.c
-index 3d353e7c9d5c..e12d9753f113 100644
---- a/drivers/net/wireless/ath/ath11k/pci.c
-+++ b/drivers/net/wireless/ath/ath11k/pci.c
-@@ -6,6 +6,7 @@
- #include <linux/module.h>
- #include <linux/msi.h>
- #include <linux/pci.h>
-+#include <linux/of.h>
- 
- #include "pci.h"
- #include "core.h"
-@@ -1225,7 +1226,7 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- {
- 	struct ath11k_base *ab;
- 	struct ath11k_pci *ab_pci;
--	u32 soc_hw_version_major, soc_hw_version_minor;
-+	u32 soc_hw_version_major, soc_hw_version_minor, addr;
- 	int ret;
- 
- 	ab = ath11k_core_alloc(&pdev->dev, sizeof(*ab_pci), ATH11K_BUS_PCI,
-@@ -1245,6 +1246,14 @@ static int ath11k_pci_probe(struct pci_dev *pdev,
- 	pci_set_drvdata(pdev, ab);
- 	spin_lock_init(&ab_pci->window_lock);
- 
-+	/* Set fixed_mem_region to true for platforms support reserved memory
-+	 * from DT. If memory is reserved from DT for FW, ath11k driver need not
-+	 * allocate memory.
-+	 */
-+	ret = of_property_read_u32(ab->dev->of_node, "memory-region", &addr);
-+	if (!ret)
-+		set_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags);
-+
- 	ret = ath11k_pci_claim(ab_pci, pdev);
- 	if (ret) {
- 		ath11k_err(ab, "failed to claim device: %d\n", ret);
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.c b/drivers/net/wireless/ath/ath11k/qmi.c
-index fa73118de6db..6923bf033726 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.c
-+++ b/drivers/net/wireless/ath/ath11k/qmi.c
-@@ -9,6 +9,8 @@
- #include "core.h"
- #include "debug.h"
- #include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/ioport.h>
- #include <linux/firmware.h>
- 
- #define SLEEP_CLOCK_SELECT_INTERNAL_BIT	0x02
-@@ -1749,7 +1751,9 @@ static int ath11k_qmi_respond_fw_mem_request(struct ath11k_base *ab)
- 	 * failure to FW and FW will then request mulitple blocks of small
- 	 * chunk size memory.
- 	 */
--	if (!ab->bus_params.fixed_mem_region && ab->qmi.target_mem_delayed) {
-+	if (!(ab->bus_params.fixed_mem_region ||
-+	      test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+	      ab->qmi.target_mem_delayed) {
- 		delayed = true;
- 		ath11k_dbg(ab, ATH11K_DBG_QMI, "qmi delays mem_request %d\n",
- 			   ab->qmi.mem_seg_count);
-@@ -1815,10 +1819,12 @@ static void ath11k_qmi_free_target_mem_chunk(struct ath11k_base *ab)
- {
- 	int i;
- 
--	if (ab->bus_params.fixed_mem_region)
--		return;
--
- 	for (i = 0; i < ab->qmi.mem_seg_count; i++) {
-+		if ((ab->bus_params.fixed_mem_region ||
-+		     test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) &&
-+		     ab->qmi.target_mem[i].iaddr)
-+			iounmap(ab->qmi.target_mem[i].iaddr);
-+
- 		if (!ab->qmi.target_mem[i].vaddr)
- 			continue;
- 
-@@ -1866,10 +1872,53 @@ static int ath11k_qmi_alloc_target_mem_chunk(struct ath11k_base *ab)
- 
- static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- {
--	int i, idx;
-+	struct device *dev = ab->dev;
-+	struct device_node *hremote_node = NULL;
-+	struct resource res;
-+	phandle hremote_phandle;
-+	u32 host_ddr_sz;
-+	int i, idx, ret;
- 
- 	for (i = 0, idx = 0; i < ab->qmi.mem_seg_count; i++) {
- 		switch (ab->qmi.target_mem[i].type) {
-+		case HOST_DDR_REGION_TYPE:
-+			ret = of_property_read_u32(dev->of_node, "memory-region",
-+						   &hremote_phandle);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote phandle\n");
-+				return ret;
-+			}
-+
-+			hremote_node = of_find_node_by_phandle(hremote_phandle);
-+			if (!hremote_node) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get hremote_node\n");
-+				return ret;
-+			}
-+
-+			ret = of_address_to_resource(hremote_node, 0, &res);
-+			if (ret) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to get reg from hremote\n");
-+				return ret;
-+			}
-+
-+			if (res.end - res.start + 1 < ab->qmi.target_mem[i].size) {
-+				ath11k_dbg(ab, ATH11K_DBG_QMI,
-+					   "qmi fail to assign memory of sz\n");
-+				return -EINVAL;
-+			}
-+
-+			ab->qmi.target_mem[idx].paddr = res.start;
-+			ab->qmi.target_mem[idx].iaddr =
-+				ioremap(ab->qmi.target_mem[idx].paddr,
-+					ab->qmi.target_mem[i].size);
-+			ab->qmi.target_mem[idx].size = ab->qmi.target_mem[i].size;
-+			host_ddr_sz = ab->qmi.target_mem[i].size;
-+			ab->qmi.target_mem[idx].type = ab->qmi.target_mem[i].type;
-+			idx++;
-+			break;
- 		case BDF_MEM_REGION_TYPE:
- 			ab->qmi.target_mem[idx].paddr = ab->hw_params.bdf_addr;
- 			ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -1884,10 +1933,16 @@ static int ath11k_qmi_assign_target_mem_chunk(struct ath11k_base *ab)
- 			}
- 
- 			if (ath11k_cold_boot_cal && ab->hw_params.cold_boot_calib) {
--				ab->qmi.target_mem[idx].paddr =
--						     ATH11K_QMI_CALDB_ADDRESS;
--				ab->qmi.target_mem[idx].vaddr =
--						     (void *)ATH11K_QMI_CALDB_ADDRESS;
-+				if (hremote_node) {
-+					ab->qmi.target_mem[idx].paddr =
-+							res.start + host_ddr_sz;
-+					ab->qmi.target_mem[idx].iaddr =
-+						ioremap(ab->qmi.target_mem[idx].paddr,
-+							ab->qmi.target_mem[i].size);
-+				} else {
-+					ab->qmi.target_mem[idx].paddr =
-+						ATH11K_QMI_CALDB_ADDRESS;
-+				}
- 			} else {
- 				ab->qmi.target_mem[idx].paddr = 0;
- 				ab->qmi.target_mem[idx].vaddr = NULL;
-@@ -2614,7 +2669,8 @@ static void ath11k_qmi_msg_mem_request_cb(struct qmi_handle *qmi_hdl,
- 			   msg->mem_seg[i].type, msg->mem_seg[i].size);
- 	}
- 
--	if (ab->bus_params.fixed_mem_region) {
-+	if (ab->bus_params.fixed_mem_region ||
-+	    test_bit(ATH11K_FLAG_FIXED_MEM_RGN, &ab->dev_flags)) {
- 		ret = ath11k_qmi_assign_target_mem_chunk(ab);
- 		if (ret) {
- 			ath11k_warn(ab, "failed to assign qmi target memory: %d\n",
-diff --git a/drivers/net/wireless/ath/ath11k/qmi.h b/drivers/net/wireless/ath/ath11k/qmi.h
-index 3bb0f9ef7996..f8d45b7dc821 100644
---- a/drivers/net/wireless/ath/ath11k/qmi.h
-+++ b/drivers/net/wireless/ath/ath11k/qmi.h
-@@ -95,6 +95,7 @@ struct target_mem_chunk {
- 	u32 type;
- 	dma_addr_t paddr;
- 	u32 *vaddr;
-+	void __iomem *iaddr;
- };
- 
- struct target_info {
--- 
-2.7.4
-
+>
+> (2) The doc states that the ordering is a recommendation and
+>         "not mandatory in all incarnations of the CLIC"
+> Is that clarified somewhere else that this more than recommended?
+>
+> Thanks
+> Heiko
+>
+>
+> [0] https://github.com/riscv/riscv-fast-interrupt/blob/master/clic.adoc
+>
+> > +
+> > +#endif /* _DT_BINDINGS_INTERRUPT_CONTROLLER_RISCV_HART_H */
+> >
+>
+>
+>
+>
