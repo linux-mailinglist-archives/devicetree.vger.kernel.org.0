@@ -2,242 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E22B045A24D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 13:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FC8D45A250
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 13:15:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235546AbhKWMRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 07:17:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59772 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233037AbhKWMRw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 07:17:52 -0500
-Received: from mail-il1-x131.google.com (mail-il1-x131.google.com [IPv6:2607:f8b0:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 184D5C061574;
-        Tue, 23 Nov 2021 04:14:45 -0800 (PST)
-Received: by mail-il1-x131.google.com with SMTP id j21so15902009ila.5;
-        Tue, 23 Nov 2021 04:14:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f9GFnRwWoXBmF4GPMU/rzKtvEAldcHlqSbusbFwUFqY=;
-        b=kAiQZnjFCNDdgBwpOztH/CvVmZYXCBl/D7sHJ3yPz8+rgdyavhtsFH/Ib0Q0094Nde
-         Vglw4BrfnMDiiCxXJi0vO/TBeab/PBQeQBq29NMgLU7ndJHIoXEeFPDaJzVTfMHhFh6Y
-         YilASjAv1TzlWksfAaU5hskYljxzA7JJ/DaUoZtzeaPXdr8T1mQ6yvNdFmke12bJ8LCZ
-         aqkB5gp5Ji2JRoE6E94t3IgRhikhtaJ3SKvNOARKDErc9AJqv0dNFGSfOttoCg4MqVql
-         y2rbCCabtBg7EHPQ+ODZmN35SlyR2jW2Q9XVMGgElxcLKKEIXqAVjvKZmcIuKMbSUGui
-         k+PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f9GFnRwWoXBmF4GPMU/rzKtvEAldcHlqSbusbFwUFqY=;
-        b=jR+lAWBOh2z6QDytReuH0iUy/17BhgvpM79UelqLuKiDsKIntO+5agD0UFT0MaboDJ
-         0SysBisvxQ15vrWc6hgcfAf1FDDdhvN2SfSaKFzBmN8QaXeknf26ZaJpyIuFmPSgmmYt
-         EZh0FIVKFI/2MkuCcn3X3jKgI+yo9pr2RFKcsQg5skMmUhm0URHdL/qHiT2Cyzr98wiW
-         aiSOh0yz9N7sM7gtjbkbzuXfOhcWUmPVaaUBDRuuKMxx4O7ybxnkaTIgk7Y/pGjrYgkf
-         LZCYl99XkvPcO3Vn2od6DE8w591Qdiu+25YzLVrBuBYzdiIM9rdvr/IDwtmbsspHpAe2
-         RDBA==
-X-Gm-Message-State: AOAM533dv2Ta+quZcp1mUKxnSuULcBf5llK24sOylq4F/lXxe40lQGkE
-        67nf7/xntwgsZPcP6yxLzFw4Tk585P5vNesVT+c=
-X-Google-Smtp-Source: ABdhPJx9TQeKsP1u1QKlJCOgX7KT/SYyb/hAXIeZLaKSrVvgSCVbY0urc8cCUPV27gN0Gkdbmsq6LFMM5G9/hfkuAH8=
-X-Received: by 2002:a05:6e02:1b08:: with SMTP id i8mr4125997ilv.74.1637669684337;
- Tue, 23 Nov 2021 04:14:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20211110122948.188683-1-alistair@alistair23.me>
- <20211110122948.188683-4-alistair@alistair23.me> <20211116000634.767dcdc0@aktux>
-In-Reply-To: <20211116000634.767dcdc0@aktux>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Tue, 23 Nov 2021 22:14:18 +1000
-Message-ID: <CAKmqyKPFOqWD7t6tC1Act97CVcY+yazrhwMLLr3j_wOyH50GTA@mail.gmail.com>
-Subject: Re: [PATCH v15 3/8] mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>, lgirdwood@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        rui.zhang@intel.com, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        id S233037AbhKWMTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 07:19:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46482 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229939AbhKWMTB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 07:19:01 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id E833060D42;
+        Tue, 23 Nov 2021 12:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637669753;
+        bh=Wth+sVh8/S9qyJ1WmYUOoJConkOt2+OKnDqTUqF3+TM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=taZdQFiKY6D5YoSeRRKtmnUXpRH7zerEchH0JrDI6O8n5Vpdrj2nW3TyDAASMb6R4
+         cmgtCrR6xT+iBTTBfeGrouf6g60btywqMiweYd/6P2lc+Melxpun5D1GxshE08T86q
+         Ry89FoA6i/xtStHanW65HuDC46UQPSMLRqX98Oujr2J0WiGdJ8eoEMsS42wgEx9H0X
+         wTfTkoCymNwVvrt0JTEdWzF4rPK24Eiw7GV4FnlsKitJOAFIHqGh6cB+0ZJB3UBktj
+         ikH9HlFInEbuqrIzCanDqAUBzW2PU16wWIc+j9Pi8AVUfgnSEXUz1punx97h6JKiRe
+         MviERss5MlAmw==
+Date:   Tue, 23 Nov 2021 20:15:47 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-hwmon@vger.kernel.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, dl-linux-imx <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: (EXT) Re: [PATCH v2 1/1] arm64: dts: imx8qm: Add fsl,
+ imx7ulp-lpuart compatible to lpuart
+Message-ID: <20211123121547.GC4216@dragon>
+References: <20211116125814.2674343-1-alexander.stein@ew.tq-group.com>
+ <20211122014314.GV31998@dragon>
+ <c5c16bb09ed704b16e531fd83cf24f140dc2f529.camel@ew.tq-group.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c5c16bb09ed704b16e531fd83cf24f140dc2f529.camel@ew.tq-group.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 16, 2021 at 9:10 AM Andreas Kemnade <andreas@kemnade.info> wrote:
->
-> Hi,
->
-> this all creates a lot of question marks...
-> One of my main question is whether sy7636a = sy7636 (at least the
-> driver in the kobo vendor kernels does not have the "A" at the end,
-> whic does not necessarily mean a difference).
->
-> https://www.silergy.com/products/panel_pmic
-> lists only a SY7636ARMC, so chances are good that the letters were just
-> stripped away by the driver developers. Printing on chip package is
-> cryptic so it is not that helpful. It is just "BWNBDA"
+On Mon, Nov 22, 2021 at 08:38:28AM +0100, Alexander Stein wrote:
+> Am Montag, dem 22.11.2021 um 09:43 +0800 schrieb Shawn Guo:
+> > On Tue, Nov 16, 2021 at 01:58:14PM +0100, Alexander Stein wrote:
+> > > After commit b4b844930f27 ("tty: serial: fsl_lpuart: drop earlycon
+> > > entry
+> > > for i.MX8QXP") earlycon support was essentially removed from
+> > > imx8qm/imx8qxp due to missing compatible.
+> > > The commit message says "i.MX8QXP lpuart is compatible with
+> > > i.MX7ULP" so
+> > > adding a fallback compatible should be fine.
+> > > With this change earlycon is supported again on imx8qm/imx8qxp.
+> > > 
+> > > Signed-off-by: Alexander Stein <
+> > > alexander.stein@ew.tq-group.com
+> > > >
+> > > Reviewed-by: Peng Fan <
+> > > peng.fan@nxp.com
+> > > >
+> > > ---
+> > > Changes in v2:
+> > > * Fix typo in commit message: 'early' -> 'earlycon'
+> > > 
+> > >  arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi | 8 ++++----
+> > >  1 file changed, 4 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > index bbe5f5ecfb92..3486b99ab6eb 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+> > > @@ -19,19 +19,19 @@ uart4_lpcg: clock-controller@5a4a0000 {
+> > >  };
+> > >  
+> > >  &lpuart0 {
+> > > -	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart";
+> > > +	compatible = "fsl,imx8qm-lpuart", "fsl,imx8qxp-lpuart",
+> > > "fsl,imx7ulp-lpuart";
+> > 
+> > Then fsl,imx8qxp-lpuart should be dropped?
+> 
+> If you drop fsl,imx8qxp-lpuart in the compatible list, fsl_lpuart.c
+> needs a new lpuart_soc_data for imx8qm in order to work. "fsl,imx7ulp-
+> lpuart" is not enough for imx8qm, as (among other things) "baud" clk is
+> mising in imx7. IMHO there are 2 ways:
+> 
+> 1st
+> Add both fsl,imx8qxp-lpuart and fsl,imx7ulp-lpuart to the compatible
+> list to get both regular serial support (fsl,imx8qxp-lpuart) as well as
+> earlycon (fsl,imx7ulp-lpuart). In this case the bindings need to get
+> fixed as well, see [1]
+> 
+> 2nd
+> Remove fsl,imx8qxp-lpuart compatible for imx8qm. But in this case
+> everything done for imx8qxp in fsl_lpuart.c has to be duplicated.
+> fsl,imx7ulp-lpuart is still required for earlycon support.
+> 
+> If you want to get rid of fsl,imx7ulp-lpuart compatible for
+> imx8qm/imx8qxp in either case, you need to revert b4b844930f27 ("tty:
+> serial: fsl_lpuart: drop earlycon entry for i.MX8QXP").
 
-I don't have a definite answer for you. But I think it's sy7636a
+It looks to me that commit b4b844930f27 caused a regression for imx8qm,
+so should be reverted.
 
-The page you linked to above lists SY7636ARMC as well as SY7627RMC,
-SY7570RMC. That makes me think that the RMC is a generic suffix and
-this actual IC is the SY7636A.
-
->
->  On Wed, 10 Nov 2021 22:29:43 +1000
-> Alistair Francis <alistair@alistair23.me> wrote:
->
-> [...]
-> > diff --git a/include/linux/mfd/sy7636a.h b/include/linux/mfd/sy7636a.h
-> > new file mode 100644
-> > index 000000000000..2797c22dabc2
-> > --- /dev/null
-> > +++ b/include/linux/mfd/sy7636a.h
-> > @@ -0,0 +1,36 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Functions to access SY3686A power management chip.
->
-> Typo? or is it really a SY3686A? So what we are talking about?
-
-I think it's SY7636A
-
->
-> > + *
-> > + * Copyright (C) 2021 reMarkable AS - http://www.remarkable.com/
-> > + */
-> > +
-> > +#ifndef __MFD_SY7636A_H
-> > +#define __MFD_SY7636A_H
-> > +
-> > +#define SY7636A_REG_OPERATION_MODE_CRL               0x00
-> > +#define SY7636A_OPERATION_MODE_CRL_VCOMCTL   BIT(6)
->
-> hmm, this thing is called VCOM_MANUAL in the 4.1.15-based driver for the
-> Kobos and in the 3.0.35 kernel for the Tolinos it is:
->
-> // 1:controll the vcom by external VCOM_EN pin
-> #define SY7636_REG_OPM_VCOM_EXT_mask    0x1 //
-> #define SY7636_REG_OPM_VCOM_EXT_lsb             6 //
->
-> In both kernels, it is set if a gpio is used to control the regulator.
-> That does not necessarily conflict with your usage. The gpio might just
-> be hardwired to something in your device. Maybe just a comment about
-> that issue.
-
-Ok, I'll add a comment.
-
->
-> > +#define SY7636A_OPERATION_MODE_CRL_ONOFF     BIT(7)
-> > +#define SY7636A_REG_VCOM_ADJUST_CTRL_L               0x01
-> > +#define SY7636A_REG_VCOM_ADJUST_CTRL_H               0x02
-> > +#define SY7636A_REG_VCOM_ADJUST_CTRL_MASK    0x01ff
-> > +#define SY7636A_REG_VLDO_VOLTAGE_ADJULST_CTRL        0x03
-> > +#define SY7636A_REG_POWER_ON_DELAY_TIME              0x06
-> > +#define SY7636A_REG_FAULT_FLAG                       0x07
-> > +#define SY7636A_FAULT_FLAG_PG                        BIT(0)
-> > +#define SY7636A_REG_TERMISTOR_READOUT                0x08
-> > +
-> > +#define SY7636A_REG_MAX                              0x08
-> > +
-> > +#define VCOM_MIN             0
-> > +#define VCOM_MAX             5000
->
-> hmm, what does that maximum mean? What you can set without something
-> freaking out just by setting it? Or the limit where the driver works
-> reliably?
-
-Good question. This is unused so I have just removed it.
-
-> > +
-> > +#define VCOM_ADJUST_CTRL_MASK        0x1ff
-> > +// Used to shift the high byte
-> > +#define VCOM_ADJUST_CTRL_SHIFT       8
-> > +// Used to scale from VCOM_ADJUST_CTRL to mv
-> > +#define VCOM_ADJUST_CTRL_SCAL        10000
-> > +
-> > +#define FAULT_FLAG_SHIFT     1
-> > +
-> > +#endif /* __LINUX_MFD_SY7636A_H */
->
-> Hmm, are that all defines you know about? I am fine with not including
-> unused things now, but I am curious.
-
-Yep, this is all that I currently have information on.
-
-> For comparison, here is my "scratchpad" of all the information I could
-> squeeze out of the sy7636 driver until now:
->
-> OPMODE 0
->   RAILS_ON 7
->   VCOM_MANUAL 6
->   LIGHTNESS 5
->
->   VDDH_DISABLE 4
->   VEE_DISABLE 3
->   VPOS_DISABLE 2
->   VNEG_DISABLE 1
->   VCOM_DISABLE 0
->
->   -> combined as RAILS_DISABLE in code
->
->   VCOM: 10000 uV per step, accepts up to 2.75V (that is a bit contradictory)
-> VCOM_ADJ1 1
->
-> VCOM_ADJ2 2
->   VCOM2_B8 7
->   VDDH_EXT 0..4
->
-> VLDO_ADJ 3
->   VLDO_ADJ = 5..7
->   VPDD_ADJ = 0..4
->
-> VPDD_LEN 4
->   VPPD_LEN 0..4
->
-> VEE_VP_EXT 5
->   VP_EXT 5..6
->   VEE_EXT 0..4
->
-> PWRON_DLY = 6
->   TDLY4 = 6..7
->   TDLY3 = 4..5
->   TDLY2 = 2..3
->   TDLY1 = 0..1
->
-> FAULTFLAGS 7
->   FAULS 1..4: to be read out after interrupt and cleared
->       0  no faults
->       1  UVP at VB rail
->       2  UVP at VN rail
->       3  UVP at VPOS rail
->       4  UVP at VNEG rail
->       5  UVP at VDDH rail
->       6  UVP at VEE rail
->       7  SCP at VB rail
->       8  SCP at VN rail
->       9  SCP at VPOS rail
->       A  SCP at VNEG rail
->       B  SCP at VDDH rail
->       C  SCP at VEE rail
->       D  SCP at VCOM rail
->       E  UVLO
->       F  Thermal shutdown
->
->   PG 0
->
-> THERM 8
-
-Cool!
-
-Alistair
-
->
-> Regards,
-> Andreas
+Shawn
