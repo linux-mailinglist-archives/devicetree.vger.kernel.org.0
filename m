@@ -2,98 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2975459F7D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:48:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E5F6459FC8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 11:09:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233239AbhKWJv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 04:51:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34410 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231828AbhKWJv1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 04:51:27 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 8A0AF61028;
-        Tue, 23 Nov 2021 09:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637660899;
-        bh=qCWbsIdevNTjWleIf0caag9T/nQnlLtg97GAqJswdyg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fuUYbN5yb+i6YwH5mStH1DhE0ZqUTwo5hhXJkGZC5y8i9x7jLG6Jf4E8FaJKDGFII
-         7sFdp7qNk/s/CnBl0Z1zAyPm7laJQ6PHnwV3U6bg/bIgSsgleKif69v69i2xpa5WdH
-         2n0wF+KI1M76jkU7FaOs63TNS5toNIvwnw7WNfIVLITR0vfaxy3c+5Kw0c2HMDu4c8
-         n0eqjp0WayxEyvp11btHL1cYjvsPceub2/yZzTcdsjYglTuy7lBTs2RhS1nuoI8nyG
-         mm+5B5GJ3snB6eqgce9Wg61F0mni6eKU02Vl1lQiNfFmdTPaFTtWbOLGnvNWuN7swN
-         8kDVPXtvgea6g==
-Date:   Tue, 23 Nov 2021 10:48:15 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Janne Grunau <j@jannau.net>
-Cc:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        Mark Kettenis <kettenis@openbsd.org>,
-        Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: i2c: apple,i2c: allow multiple
- compatibles
-Message-ID: <YZy4372NenyYXvuj@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Janne Grunau <j@jannau.net>, Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>, Olof Johansson <olof@lixom.net>,
-        Arnd Bergmann <arnd@arndb.de>, Mark Kettenis <kettenis@openbsd.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-kernel@lists.infradead.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211122222440.21177-1-j@jannau.net>
- <20211122222440.21177-3-j@jannau.net>
+        id S234348AbhKWKMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 05:12:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58764 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231838AbhKWKMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 05:12:49 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E761AC061574;
+        Tue, 23 Nov 2021 02:09:41 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id k37so89953124lfv.3;
+        Tue, 23 Nov 2021 02:09:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:to:cc:from:subject
+         :content-transfer-encoding;
+        bh=gwEBwspvREzZJTFMeBuPWEIoZXwJDVHfgK2gcJ9E8Kg=;
+        b=noNUgpvgAau735AzoU/NkU/3YUIf4gtscZ5R3ly/dYNQbGcHtBY59KThSZWmqCQxQQ
+         nPcGoKHlPFaaZXmLKEvs1A+4wSMbh2XJx4wH476LWB9UzGai8qrxuuwfwfD8NXu54Nn3
+         S3jscg+UFHwpfmv7YsWWf5SHjK/GIeUoXJEoWFcek4weqm67V57E1oOHwsxkHsguCmcZ
+         oJB1BGSFaRHzJVQL0g5s91WX4r5GZI6w2otwpMwBVXWbKJ1yIA5XMcTEaXQt07905CH9
+         g1LtnYqynygjlN5FFoYmr3RZPD9zdtVjYGtHuk+PDUj0mPpGnqD+ONFwy4I5r27XFueJ
+         AT+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:to:cc
+         :from:subject:content-transfer-encoding;
+        bh=gwEBwspvREzZJTFMeBuPWEIoZXwJDVHfgK2gcJ9E8Kg=;
+        b=cXNbKMpI6ytc406a0j4hk6AyNAWve54TzRafwO0+i11fWBg/XkRY5SVgJB9cgKeYhr
+         f0OK4gJhYIL7AItZ8tTMR62CTQs/dgh66s2Z7nSP1yNFVmvlXkily63CmNaiIarTHXCm
+         ORAEtNyjLLmkybbSecgh7gibR8nEELR6CkYN8KyN2fE47ec1bDF1kuFmVxFq9M93vUSM
+         aD+MyGyU3m236Ohnuk1WiDoVUIK0SyaI7Rz5ibEuOnHBCNO7hmOgwp7kUts+CzJ73WrR
+         PWFgiwevMLzjqHv06VnRbssIohFd9W7K4dXNpZi464XWrK2RKTljiwJ7Z54GW0QYivLD
+         7UYw==
+X-Gm-Message-State: AOAM531c1qyT3SSg9ExY5g03ca/fjgiRuL1uSeRN4AkdoeqBTk7l4Oqo
+        iEtu+Moleluf632QTVjK5VlR2t7rKRQ=
+X-Google-Smtp-Source: ABdhPJyk6emSsiVFe4M/f/GxUD/nOEJ9pSh86Xaer47OKeG+AmVU4JHc6vkdhbkaiGthZNBQS+NWbw==
+X-Received: by 2002:a19:4312:: with SMTP id q18mr3550523lfa.299.1637662180271;
+        Tue, 23 Nov 2021 02:09:40 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id v17sm1242914lfd.287.2021.11.23.02.09.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 02:09:39 -0800 (PST)
+Message-ID: <5c540797-deee-4ea9-e479-92f3aeb08c7b@gmail.com>
+Date:   Tue, 23 Nov 2021 11:09:37 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="JuEtsfkU5Xm8WrQJ"
-Content-Disposition: inline
-In-Reply-To: <20211122222440.21177-3-j@jannau.net>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+To:     linux-clk@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Subject: clk & clock-controller@ DT nodes: __clk_core_init: clk
+ clock-controller already initialized
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---JuEtsfkU5Xm8WrQJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm working on Northstar support (ARM platform with multiple clocks
+blocks).
 
-On Mon, Nov 22, 2021 at 11:24:39PM +0100, Janne Grunau wrote:
-> The intention was to have a SoC-specific and base compatible string
-> to allow forward compatibility and SoC specific quirks,
->=20
-> Fixes: df7c4a8c1b47 ("dt-bindings: i2c: Add Apple I2C controller bindings=
-")
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Cc: Mark Kettenis <kettenis@openbsd.org>
-> Reviewed-by: Sven Peter <sven@svenpeter.dev>
+I've just noticed that my clocks don't work anymore after the commit:
+[PATCH] ARM: dts: BCM5301X: update CRU block description
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20211029160523.2812-1-zajec5@gmail.com/
 
-Acked-by: Wolfram Sang <wsa@kernel.org>
+[    0.000000] __clk_core_init: clk clock-controller already initialized
+[    0.000000] ------------[ cut here ]------------
+[    0.000000] WARNING: CPU: 0 PID: 0 at drivers/clk/bcm/clk-iproc-pll.c:802 iproc_pll_clk_setup+0x4c8/0x4f4
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.10.80 #0
+[    0.000000] Hardware name: BCM5301X
+[    0.000000] [<c0108410>] (unwind_backtrace) from [<c0104bc4>] (show_stack+0x10/0x14)
+[    0.000000] [<c0104bc4>] (show_stack) from [<c03dca28>] (dump_stack+0x94/0xa8)
+[    0.000000] [<c03dca28>] (dump_stack) from [<c0118440>] (__warn+0xb8/0x114)
+[    0.000000] [<c0118440>] (__warn) from [<c0118504>] (warn_slowpath_fmt+0x68/0x78)
+[    0.000000] [<c0118504>] (warn_slowpath_fmt) from [<c043281c>] (iproc_pll_clk_setup+0x4c8/0x4f4)
+[    0.000000] [<c043281c>] (iproc_pll_clk_setup) from [<c0818c04>] (nsp_genpll_clk_init+0x30/0x38)
+[    0.000000] [<c0818c04>] (nsp_genpll_clk_init) from [<c0818634>] (of_clk_init+0x118/0x1f8)
+[    0.000000] [<c0818634>] (of_clk_init) from [<c08039b0>] (time_init+0x24/0x30)
+[    0.000000] [<c08039b0>] (time_init) from [<c0800d14>] (start_kernel+0x398/0x50c)
+[    0.000000] [<c0800d14>] (start_kernel) from [<00000000>] (0x0)
+[    0.000000] ---[ end trace fe236bfe9559ee50 ]---
 
+It seems that Linux's clock name is derived from DT node. With multiple
+clock-controller@ nodes there is a name conflict as seen above.
 
---JuEtsfkU5Xm8WrQJ
-Content-Type: application/pgp-signature; name="signature.asc"
+ From DT perspective I don't think there is anything wrong in having
+multiple nodes using the same name prefix.
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGcuN8ACgkQFA3kzBSg
-KbbR5A/5AQ4ZfPeJVcIBLgy7zZKfstlessiJsvQnovjzXTa5Z66cSuaCHo+0rPm9
-fXv7uiJ6baytimZHWFlmL2TzI+5f15VbMDcVJDpiya1fqzjb9Kwcefs6PtRuhAzY
-doAED/IPR7moXusAEZ3NaJjpAAd+GIjAFSCDxYB/pGqDcy7nnp3nauFm5FiXdO9k
-Z+FdJ5+jbNNzvIPeb3cGEpxTvlxtpVCuIml+nv5A1oyu5x97TqYN6llYhg1i3kQZ
-5GvV7MWqD8kXKj8Zw7wUIOcT+a3KRHppa0T/+6z6kUQ++ux/hccPaF45ITW4sR0E
-7sM6b1Npy9keUfDl1GwgMkrCrUS0KEXkz+xmVri/99F3L/nmc8JtaqQDXXADPQ3Z
-R9UpF9pkVDoU2J5Nl+39Zi1+P8YVHeb1CHB5o/HhcLRWYW249j4efL0QTEhScKva
-wwVGMC9u0bWKurxk5ecpcN4OIqh4a8Hc69WJwjvW+OclPw7YXlXwbDq+mdHKheyM
-XE8Zdp9k7TbVvVxMrpT1BdZsjcVWX7xAyR34SjEHBsAVPGtz2mU71GcX2AhEIBX2
-y8KJ/pVpU1E6RRDhP9WDEmtm5OXCuTojeRWQV4Xtc29xxnMSmQOJuqeOfyDKE+Ln
-Y+p8+iJsyOg6IMZlhjmhuBFod+rrLOA/FjA1ntVDOFX+qodMJ4Y=
-=Ws60
------END PGP SIGNATURE-----
-
---JuEtsfkU5Xm8WrQJ--
+Could clk subsystem be somehow improved to be more /creative/ at picking
+clock names? ;) Would someone be kind to take a look at this, please?
