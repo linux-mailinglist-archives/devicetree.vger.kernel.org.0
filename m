@@ -2,63 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6836A459CE5
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 08:39:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6814459CF0
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 08:42:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234078AbhKWHmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 02:42:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54112 "EHLO mail.kernel.org"
+        id S234249AbhKWHpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 02:45:14 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54744 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234161AbhKWHme (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 02:42:34 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id E7B9E60E94;
-        Tue, 23 Nov 2021 07:39:23 +0000 (UTC)
+        id S234063AbhKWHpN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 02:45:13 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 164016008E;
+        Tue, 23 Nov 2021 07:42:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637653164;
-        bh=SyxAeQw9fyWOIjanhRWuVLtPc7UGBdVPN7fyibQE8EM=;
+        s=k20201202; t=1637653326;
+        bh=5YgIFjfpg5vULlmgcdxg7GkWRqrmKmms46EiNLgenCo=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FLns9YHMWZ32JS+1lWSZPCqVHZJS8exzZmtoPNw4L9qM7Wk60R/uU+CrloQ6D5kHp
-         7qdoj0mKTlDXQIMRNh1kPrM8LEDM/2YlBOy0XuC+S/jrcjoLR0P7UbcCylxI4yJkjO
-         xrJ4PlOhM/F7zgNuHwF+IoyPvcf3ARYr1YuCuUkFFlpFP0xTJZRLdRAteSxndu40fq
-         hBJcHejJDyU54WAsXBUP2m4V5XbsQ0enRHOOmqXq3EXmjp+6Eq1A8cTQdp9OihBCXP
-         rzHM3gGI5Zs3UlgQ2DOrQ4DHG+ncgpUsJOz+AFUMres+X+e2AzGF5GOEKy/HrJ58JB
-         Ood0Xz1ZhvKow==
-Date:   Tue, 23 Nov 2021 13:09:19 +0530
+        b=AaQQXBPvoqz7ayuyT/f+LTzFzcOy9HCyQ8qwJpBjYYayUlaSTnFNPMcf9OVsgiaHf
+         yrkZypTtm1wur2ta8jlOK2+JKKweaoEsFsxrz5SHcllS7DXLpoVWBpIS2Axs1ZsjX2
+         lCrHjkhV+xipMK15iSJPwZmdLpoube0n2patE4SAqZzUFMn/a/OYORSoCTZO7qz+V0
+         DyLAF+5LS/CTxxpDk5XCQv/NG7UapgD7eBaKtjszd99Y7mStqYvWV2RDTGs6hrHLm9
+         EwOv9ZbpF3Q7qYNJHKTAewzr/ibIXX5bF88qNL6ba8cuKZqoVLcCOJBxPUEd1aSQu2
+         VWgob7HadgfoQ==
+Date:   Tue, 23 Nov 2021 13:12:01 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     kishon@ti.com, robh+dt@kernel.org, andrew@lunn.ch,
-        alexandre.belloni@bootlin.com, kuba@kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH resend v4 0/3] phy: Add driver for lan966x Serdes driver
-Message-ID: <YZyap7IgY/6WIHEE@matsya>
-References: <20211116100818.1615762-1-horatiu.vultur@microchip.com>
+To:     rashmi.a@intel.com
+Cc:     michal.simek@xilinx.com, ulf.hansson@linaro.org,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com,
+        andriy.shevchenko@linux.intel.com, linux-phy@lists.infradead.org,
+        mgross@linux.intel.com, kris.pan@linux.intel.com,
+        furong.zhou@intel.com, mallikarjunappa.sangannavar@intel.com,
+        adrian.hunter@intel.com, mahesh.r.vaidya@intel.com,
+        nandhini.srikandan@intel.com
+Subject: Re: [RESEND PATCH v2 3/4] dt-bindings: phy: intel: Add Thunder Bay
+ eMMC PHY bindings
+Message-ID: <YZybSTsMRKkOyfC5@matsya>
+References: <20211027115516.4475-1-rashmi.a@intel.com>
+ <20211027115516.4475-4-rashmi.a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211116100818.1615762-1-horatiu.vultur@microchip.com>
+In-Reply-To: <20211027115516.4475-4-rashmi.a@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-11-21, 11:08, Horatiu Vultur wrote:
-> This patch serie adds support for Microchip lan966x serdes. The lan966x
-> device contains 7 interfaces, consisting of 2 copper transceivers,
-> 3 Serdes and 2 RGMII interfaces. Two of the Serdes support QSGMII.
-> The driver also adds the functionality of "muxing" the interfaces to
-> different logical ports.
+On 27-10-21, 17:25, rashmi.a@intel.com wrote:
+> From: Rashmi A <rashmi.a@intel.com>
 > 
-> The following table shows which interfaces can be supported by the port.
-> 
-> PortNumber    Max Speed    Ethernet interface options
->     0            1Gbps       CuPHY, 1G SGMII or QSGMII
->     1            1Gbps       CuPHY, 1G SGMII or QSGMII
->     2          2.5Gbps       2.5G SGMII, QSGMII, RGMII
->     3          2.5Gbps       2.5G SGMII, QSGMII, RGMII
->     4          2.5Gbps       2.5G SGMII, QSGMII
->     5            1Gbps       QSGMII, RGMII
->     6            1Gbps       QSGMII, RGMII
->     7            1Gbps       QSGMII
+> Binding description for Intel Thunder Bay eMMC PHY.
+> Added the newly introduced files into MAINTAINERS file-list
 
 Applied, thanks
 
