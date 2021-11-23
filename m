@@ -2,214 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23B4E459FF2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 11:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2D1459FFF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 11:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235413AbhKWKVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 05:21:47 -0500
-Received: from mxout70.expurgate.net ([194.37.255.70]:44787 "EHLO
-        mxout70.expurgate.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235411AbhKWKVq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 05:21:46 -0500
-Received: from [127.0.0.1] (helo=localhost)
-        by relay.expurgate.net with smtp (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1mpSsk-0003nG-UH; Tue, 23 Nov 2021 11:18:34 +0100
-Received: from [195.243.126.94] (helo=securemail.tdt.de)
-        by relay.expurgate.net with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <fe@dev.tdt.de>)
-        id 1mpSsk-0000IK-AH; Tue, 23 Nov 2021 11:18:34 +0100
-Received: from securemail.tdt.de (localhost [127.0.0.1])
-        by securemail.tdt.de (Postfix) with ESMTP id F3973240041;
-        Tue, 23 Nov 2021 11:18:33 +0100 (CET)
-Received: from mail.dev.tdt.de (unknown [10.2.4.42])
-        by securemail.tdt.de (Postfix) with ESMTP id 8BF60240040;
-        Tue, 23 Nov 2021 11:18:33 +0100 (CET)
-Received: from localhost.localdomain (unknown [10.2.3.40])
-        by mail.dev.tdt.de (Postfix) with ESMTPSA id E3A4C20F00;
-        Tue, 23 Nov 2021 11:18:32 +0100 (CET)
-From:   Florian Eckert <fe@dev.tdt.de>
-To:     pavel@ucw.cz, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] dt: bindings: KTD20xx: Introduce the ktd20xx family of RGB drivers
-Date:   Tue, 23 Nov 2021 11:18:26 +0100
-Message-ID: <20211123101826.9069-3-fe@dev.tdt.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20211123101826.9069-1-fe@dev.tdt.de>
-References: <20211123101826.9069-1-fe@dev.tdt.de>
+        id S233987AbhKWKXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 05:23:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32922 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231221AbhKWKXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 05:23:15 -0500
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E41DC061574;
+        Tue, 23 Nov 2021 02:20:07 -0800 (PST)
+Received: by mail-lj1-x234.google.com with SMTP id t11so10074714ljh.6;
+        Tue, 23 Nov 2021 02:20:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:from:to:cc
+         :references:in-reply-to:content-transfer-encoding;
+        bh=y3KpO1ygUCqvqHIy+xNIjmbrg8t93ar3XkEXGFBoMBM=;
+        b=Yhn4cL/M72rBgdnhT/qOb5OXW0HOX6xFL0jRC4nqtyLrvNWVyXQfsLNBdtHkoCDpDH
+         QzMKADA9GzfIS8CHdlQ4qsJd5oqq39SFkVmFg5XIGWBNb7vNagKFw1M0pKRDirrI5Po1
+         fVKbKp/rOrWp2dfWfcWk8TzoH1YPAsiXQDiZLdcPgu6foVOxxfLBfdTt+JQEMmdF9Dcz
+         ef1N8McnD/5Y21rgvVeLIQHfk4FFbkTshDHv7emBkdo6PHNYjfdwbCzWHrxmpfFCsL8O
+         IsJdabq6LRcZfKEbx6JcCWlWdiwSVhYpanKicdGvuM7brsMxA35cj2e57l9QfwOnXKYI
+         qPjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=y3KpO1ygUCqvqHIy+xNIjmbrg8t93ar3XkEXGFBoMBM=;
+        b=WgIB1S+m0llhLMOw3cdJR5HXas+zqdyXxo9YmioivbaCEtvNlgNz+kZjj1qHSQ4FSi
+         BV2CQUekUsWFwfYyzNnu6hmPlpt4O83Aa/ODMq8ihgAdTFcOmyzdYkXlJXYNnOo/lpjM
+         WcT9+eDbF2hDnGq3oEx5m678geEdWZ3MSGGTaGcKtOWCHjP9hfyTyXfboSE2j71Cqpjy
+         nw79WyxKjYYyue8PNIlxnkbALEE+NPqpy8yN9owgnDlM+TSeH0l805L6c3fTfRBd/xX0
+         SylQ5mnKzqN7CG2esfOZkgnMaasO0IEqsISt5GNIp58hUnSEEb8mo0PLoq4FFhbpZUUG
+         +jRw==
+X-Gm-Message-State: AOAM531SYmLDnFWi05EQoF5GFZiORjaKosPBny0u7tjiz2Hdury1cLQM
+        IF7D6Bj4PpDlrL4znd4jN6WECMn4V0Q=
+X-Google-Smtp-Source: ABdhPJzjdnfZuBWmRhsXQWKm2FPNNBDQxmng5ASPB87+Sz4pV6L5iKS/b0vCgc6gUZUcr6YQqQrpgQ==
+X-Received: by 2002:a2e:9355:: with SMTP id m21mr3782448ljh.419.1637662805915;
+        Tue, 23 Nov 2021 02:20:05 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id p13sm990647lfu.130.2021.11.23.02.20.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 02:20:05 -0800 (PST)
+Message-ID: <67ebc933-3c93-99b1-9dfc-7166cfa1f7a8@gmail.com>
+Date:   Tue, 23 Nov 2021 11:20:04 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.dev.tdt.de
-Content-Transfer-Encoding: quoted-printable
-X-purgate-ID: 151534::1637662714-00000A80-E2D6E2AE/0/0
-X-purgate-type: clean
-X-purgate: clean
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: clk & clock-controller@ DT nodes: __clk_core_init: clk
+ clock-controller already initialized
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+To:     linux-clk@vger.kernel.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+References: <5c540797-deee-4ea9-e479-92f3aeb08c7b@gmail.com>
+In-Reply-To: <5c540797-deee-4ea9-e479-92f3aeb08c7b@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce the bindings for the Kinetic KTD2061/58/59/60RGB LED device
-driver. The KTD20xx can control RGB LEDs individually or as part of a
-control bank group.
+On 23.11.2021 11:09, Rafał Miłecki wrote:
+> [    0.000000] __clk_core_init: clk clock-controller already initialized
+> [    0.000000] ------------[ cut here ]------------
+> [    0.000000] WARNING: CPU: 0 PID: 0 at drivers/clk/bcm/clk-iproc-pll.c:802 iproc_pll_clk_setup+0x4c8/0x4f4
+> [    0.000000] Modules linked in:
+> [    0.000000] CPU: 0 PID: 0 Comm: swapper/0 Not tainted 5.10.80 #0
+> [    0.000000] Hardware name: BCM5301X
+> [    0.000000] [<c0108410>] (unwind_backtrace) from [<c0104bc4>] (show_stack+0x10/0x14)
+> [    0.000000] [<c0104bc4>] (show_stack) from [<c03dca28>] (dump_stack+0x94/0xa8)
+> [    0.000000] [<c03dca28>] (dump_stack) from [<c0118440>] (__warn+0xb8/0x114)
+> [    0.000000] [<c0118440>] (__warn) from [<c0118504>] (warn_slowpath_fmt+0x68/0x78)
+> [    0.000000] [<c0118504>] (warn_slowpath_fmt) from [<c043281c>] (iproc_pll_clk_setup+0x4c8/0x4f4)
+> [    0.000000] [<c043281c>] (iproc_pll_clk_setup) from [<c0818c04>] (nsp_genpll_clk_init+0x30/0x38)
+> [    0.000000] [<c0818c04>] (nsp_genpll_clk_init) from [<c0818634>] (of_clk_init+0x118/0x1f8)
+> [    0.000000] [<c0818634>] (of_clk_init) from [<c08039b0>] (time_init+0x24/0x30)
+> [    0.000000] [<c08039b0>] (time_init) from [<c0800d14>] (start_kernel+0x398/0x50c)
+> [    0.000000] [<c0800d14>] (start_kernel) from [<00000000>] (0x0)
+> [    0.000000] ---[ end trace fe236bfe9559ee50 ]---
+> 
+> It seems that Linux's clock name is derived from DT node. With multiple
+> clock-controller@ nodes there is a name conflict as seen above.
+> 
+>  From DT perspective I don't think there is anything wrong in having
+> multiple nodes using the same name prefix.
+> 
+> Could clk subsystem be somehow improved to be more /creative/ at picking
+> clock names? ;) Would someone be kind to take a look at this, please?
 
-Signed-off-by: Florian Eckert <fe@dev.tdt.de>
----
- .../bindings/leds/leds-ktd20xx.yaml           | 123 ++++++++++++++++++
- MAINTAINERS                                   |   1 +
- 2 files changed, 124 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/leds-ktd20xx.y=
-aml
+Ah, I've just realized it's not clk subsystem but actually a clk driver
+that picks up a name based on DT node name.
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml b/D=
-ocumentation/devicetree/bindings/leds/leds-ktd20xx.yaml
-new file mode 100644
-index 000000000000..b10b5fd507db
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml
-@@ -0,0 +1,123 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/leds-ktd20xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: LED driver for KTD20xx RGB LED from Kinetic.
-+
-+maintainers:
-+  - Florian Eckert <fe@dev.tdt.de>
-+
-+description: |
-+  The KTD20XX is multi-channel, I2C RGB LED Drivers that can group RGB L=
-EDs into
-+  a LED group or control them individually.
-+
-+  The difference in these RGB LED drivers is I2C address number the devi=
-ce is
-+  listen on.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - kinetic,ktd20xx
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      I2C slave address
-+      ktd2061/58/59/60 0x68 0x69 0x6A 0x6B
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  'kinetic,color-current0':
-+    description:
-+      Specifies the current selection for the RGB color0.
-+      Value 1 must be the current value for the color red.
-+      Value 2 must be the current value for the color green.
-+      Value 3 must be the current value for the color blue.
-+      The current setting range is from 0mA to 24mA with 125uA steps.
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    items:
-+      - minItems: 3
-+      - maxItems: 3
-+
-+  'kinetic,color-current1':
-+    description:
-+      Specifies the current selection for the RGB color0.
-+      Value 1 must be the current value for the color red.
-+      Value 2 must be the current value for the color green.
-+      Value 3 must be the current value for the color blue.
-+      The current setting range is from 0mA to 24mA with 125uA steps.
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    items:
-+      - minItems: 3
-+      - maxItems: 3
-+
-+patternProperties:
-+  '^multi-led@[0-9a-f]$':
-+    type: object
-+    allOf:
-+      - $ref: leds-class-multicolor.yaml#
-+    properties:
-+      reg:
-+        minItems: 1
-+        maxItems: 12
-+        description:
-+          This property denotes the LED module number(s) that is used on=
- the
-+          for the child node.
-+      'kinetic,color-selection':
-+        description:
-+          Specifies the color selection for this LED.
-+          Value 1 selects the color register for color red.
-+          Value 2 selects the color register for color green.
-+          Value 3 selects the color register for color blue.
-+          The value can be either 0 or 1. If 0, the current for the colo=
-r
-+          from color register 0 is used. If 1, the current for the color
-+          from color register 1 is used.
-+     $ref: /schemas/types.yaml#/definitions/uint8-array
-+     items:
-+       - minItems: 3
-+       - maxItems: 3
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+   #include <dt-bindings/leds/common.h>
-+
-+   i2c {
-+       #address-cells =3D <1>;
-+       #size-cells =3D <0>;
-+
-+       led-controller@14 {
-+           compatible =3D "ti,lp5009";
-+           reg =3D <0x14>;
-+           #address-cells =3D <1>;
-+           #size-cells =3D <0>;
-+           color-current0 =3D [ 00 00 00 ] // Current for RGB is 0mA
-+           color-current1 =3D [ 28 28 28 ] // Current for RGB is 5mA
-+
-+           multi-led@0 {
-+               reg =3D <0x0>;
-+               color =3D <LED_COLOR_ID_RGB>;
-+               function =3D LED_FUNCTION_CHARGING;
-+                kinetic,color-selection =3D [ 00 01 00 ]; // Red=3D0mA G=
-reen=3D5mA Blue=3D0mA
-+          };
-+
-+          multi-led@2 {
-+            reg =3D <0x2>;
-+            color =3D <LED_COLOR_ID_RGB>;
-+            function =3D LED_FUNCTION_STANDBY;
-+         };
-+       };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 736d564f7e93..125bae48c2d1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10607,6 +10607,7 @@ KTD20XX LED CONTROLLER DRIVER
- M:	Florian Eckert <fe@dev.tdt.de>
- L:	linux-leds@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/leds/leds-ktd20xx.yaml
- F:	drivers/leds/leds-ktd20xx.c
-=20
- KTEST
---=20
-2.20.1
+iproc_pll_clk_setup() does:
+init.name = node->name;
 
+I should have double check that before sending my e-mail.
+
+I can't see any helper picking a clock unique name based on DT node.
+Any advise how to proceed with that?
