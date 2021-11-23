@@ -2,57 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 184EF459F12
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:15:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25AFF459F13
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:16:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234644AbhKWJSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 04:18:51 -0500
-Received: from muru.com ([72.249.23.125]:59266 "EHLO muru.com"
+        id S234780AbhKWJTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 04:19:09 -0500
+Received: from mout01.posteo.de ([185.67.36.65]:49259 "EHLO mout01.posteo.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230306AbhKWJSv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 04:18:51 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 7C1DE80F5;
-        Tue, 23 Nov 2021 09:16:21 +0000 (UTC)
-Date:   Tue, 23 Nov 2021 11:15:41 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        id S230306AbhKWJTJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 04:19:09 -0500
+Received: from submission (posteo.de [89.146.220.130]) 
+        by mout01.posteo.de (Postfix) with ESMTPS id 8A41524002E
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 10:15:59 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+        t=1637658959; bh=Yr9tkx7XywJ1L3ABv15FR7x3R0tOikYobRlp42uOJ3w=;
+        h=Subject:From:To:Cc:Date:From;
+        b=NWgoedMNKEvHNCxMGG2P0kejK9kSsEaJHo8AO5YtF9i1Hsw9qsq1i8HAhgGSoL6dA
+         QTzSLOa9ovnHWDMicnCqdRD1IErku/Otx1hL1InIAbDP68RaUX+gDJDs892iUBQafH
+         b39N8b1WadsnqD135p3ZQRQS7jGZqSisT76orWSOHf8i52JJITYkgTr/s5MtIcxPMZ
+         RYv+O51VME0SFy0199EsmBJvgUHt2RAj4eJ0KE0IhC1Lcq3umj6zzJX+WutASOrivn
+         piLs4Qbg4Q+f+Lhe5/aTdhKYox/mKiDGTWeGnazKz+8pbxbop5Yn0ntI5wg7XtKhyw
+         PrL/DVGsytTEQ==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4Hyz5T4g0Qz9rxF;
+        Tue, 23 Nov 2021 10:15:57 +0100 (CET)
+Message-ID: <9b9fe3a5b04179870d6ca0ece754fee9abb306b4.camel@posteo.de>
+Subject: Re: [PATCH] arm64: dts: freescale: imx8mq: Disable noc dts node
+From:   Martin Kepplinger <martink@posteo.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
         linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: brcm,ns-pinmux: extend example
-Message-ID: <YZyxPdBYl/yWYyoT@atomide.com>
-References: <20211118132152.15722-1-zajec5@gmail.com>
- <20211118132152.15722-3-zajec5@gmail.com>
- <YZyahbYwMFz7baTu@atomide.com>
- <2fb0593a-208f-a732-843b-b6723633e208@gmail.com>
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Date:   Tue, 23 Nov 2021 09:15:57 +0000
+In-Reply-To: <20211123085841.GX31998@dragon>
+References: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
+         <20211123085841.GX31998@dragon>
+Content-Type: text/plain; charset="UTF-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2fb0593a-208f-a732-843b-b6723633e208@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Rafał Miłecki <zajec5@gmail.com> [211123 07:56]:
-> Does it mean above "reg" usages are all incorrect and binding "reg" in
-> such way is deprecated? This is something totally new to me, can you
-> confirm that, please?
+Am Dienstag, dem 23.11.2021 um 16:58 +0800 schrieb Shawn Guo:
+> On Thu, Nov 11, 2021 at 01:16:09PM +0200, Abel Vesa wrote:
+> > Adding interconnect properties to the consumer nodes creates
+> > a dependency on noc device. The imx-bus devfreq driver is not
+> > usable
+> > without the full interconnect support. The interconnect is not yet
+> > working on i.MX platforms. The devlink created on device_add makes
+> > the lcdif and other nodes that have the interconnect properties
+> > wait for the noc (imx-bus driver) to probe first.
+> > 
+> > To make sure the interconnect consumers (nodes that have
+> > interconnect
+> > properties already added) will still probe, lets disable the noc
+> > node
+> > for now. Once the interconnect on i.MX platforms is fully
+> > functional,
+> > the status of the noc node can be changed.
+> > 
+> > Fixes: ad1abc8a03fdbc05b ("arm64: dts: imx8mq: Add interconnect for
+> > lcdif")
+> 
+> Martin,
+> 
+> Do you have any comment?  So your commit added something untested?
+> 
+> Shawn
 
-Here you have a device with multiple control register instances at
-various register offsets. Using index here makes as much sense as
-the old interrupt number defines we used to have but got rid of.
+hi Shawn,
 
-Please don't use an index to address them. Index makes sense when
-there is no real offset to use, like a SPI chip select, or a bit
-offset inside the register like a GPIO instance bit.
+well, for imx8mq the only missing piece is the mxsfb icc bandwidth
+request. I posted a first version a year ago but that didn't make it
+in:
+https://lore.kernel.org/linux-arm-kernel/20201201103757.32165-1-martin.kepplinger@puri.sm/
 
-Regards,
+So this should create a working state until the real fix in mxsfb is
+there (although I'd revert commit ad1abc8a03fd ("arm64: dts: imx8mq:
+Add interconnect for lcdif") instead). I am indeed to blame for this
+and I'm sorry I haven't yet taken the time to work on mxsfb again.
 
-Tony
+I can say I plan to do so soon, but without promise that I quickly find
+a solution that'll be merged...
+
+If you merge this (or revert ad1abc8a03fd), I'll remember to revert
+with said update.
+
+thanks,
+                        martin
+
+> 
+> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > index 972766b67a15..f3182878f596 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> > @@ -1305,6 +1305,7 @@ noc: interconnect@32700000 {
+> >                         fsl,ddrc = <&ddrc>;
+> >                         #interconnect-cells = <1>;
+> >                         operating-points-v2 = <&noc_opp_table>;
+> > +                       status = "disabled";
+> >  
+> >                         noc_opp_table: opp-table {
+> >                                 compatible = "operating-points-v2";
+> > -- 
+> > 2.31.1
+> > 
+
+
