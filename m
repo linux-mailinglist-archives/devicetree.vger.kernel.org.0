@@ -2,174 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B04F945A40E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:44:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2733C45A41B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:51:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233737AbhKWNrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 08:47:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52424 "EHLO
+        id S231324AbhKWNyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 08:54:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229808AbhKWNrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 08:47:48 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DB3C061574;
-        Tue, 23 Nov 2021 05:44:39 -0800 (PST)
-Received: from mwalle01.kontron.local. (unknown [IPv6:2a02:810c:c240:2017:fa59:71ff:fe9b:b851])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id C9A9E22175;
-        Tue, 23 Nov 2021 14:44:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1637675076;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=HtRvcht0aDcjR88YtM14Y1YaKjCCiIhS1+AggGgbTbc=;
-        b=l1whAx+l3jXwRBv+m0TjESqVF4qHK2K7vJId1I0fEbd5cv2fhq4uVeupbmh0uBObTT1LRI
-        iUHRknVgrEcTx4vYKjFU090vNPqwayJi4KMpzVbpZEj8EBYBPS00Y68iIb2O6oRhwJodHa
-        5H4jy/4o0q3MyeMjkG4zykCfFPEDAug=
-From:   Michael Walle <michael@walle.cc>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>, Michael Walle <michael@walle.cc>
-Subject: [RFC PATCH] dt-bindings: nvmem: add transformation support
-Date:   Tue, 23 Nov 2021 14:44:25 +0100
-Message-Id: <20211123134425.3875656-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S230015AbhKWNyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 08:54:31 -0500
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B72C061574;
+        Tue, 23 Nov 2021 05:51:23 -0800 (PST)
+Received: by mail-lf1-x130.google.com with SMTP id b1so90708217lfs.13;
+        Tue, 23 Nov 2021 05:51:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=mqptCX+502+mx6/wZxLi7LpP5N5dapcrK2a1j1LK8cQ=;
+        b=IllgtvhxFASFCMtRpE1WL6MnoONv+z2DcgDLseoBlwJkiPnf9yfyxqhWKvhdlI2SOx
+         uJacMi8Vos879q8zZjIdhyl9LIjRoyej+GN2agWXp0DIng2OWdcsJ/p7mRJI8Cvdo/Jy
+         4FWGmYRTmY+Art33LXfdlbL7M3OY8nQxkMGEaJzcGX0jV59DWq/cZq3elJNNVJW8+utk
+         mpcqK2au3Dz3YPeB0d19QQjp7pV1dun9rcyi5yfQyzgSIzXFf3QdCV3lN8W6tsPKJ4p4
+         3ctTN0gnl6C8nNOYNPsS7ZodNpzg0SoOp3rBLWkd+epG4zauPMElhO9gQbNDA0W4itai
+         MUaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=mqptCX+502+mx6/wZxLi7LpP5N5dapcrK2a1j1LK8cQ=;
+        b=F5lo5JnqIQxs9a6nNTpD5L99WRi5OnkZDDM3ufKpD/uo4g94RBsRoS6tflSrIwtRhz
+         AdQXTfHAHAgYnOHSL0VhZkJgcBqTbmB5ZbRprgaQW2tiaEWuG+3sGvIo7luJDUW5qTFI
+         IOtwodaKdDLK+cfSdbh/QQTYI+ZXyuk8d/S4cywFEBL6Dg6cc4DBEosttnrLx/csBlYL
+         5LoMRZmXp1UXZJbgr++vXJkIlznpNAqYYcf98KzDO644RuXkzhWuIUKv17pO/wJs2W3A
+         a66oAExgRXxP3BtyCGQhtbxNbRaGkk6P7PfHxlGWOh99B9xyCqyUxFmKkzynCeBSH8lP
+         gP5g==
+X-Gm-Message-State: AOAM532WlbAu2535UYpGwNIg6qgB6CuYMp3tOC8Ra7qLxLkmpEAQVBp5
+        HVKcO8lppU+gFd1LqaWhP6g=
+X-Google-Smtp-Source: ABdhPJxt5imPZWnFv7AIgYdK1TCp7y2MzUMhS4MDwdLStIpWDAFBkAOHdSWJ+qvI/InaAVcHVfumrA==
+X-Received: by 2002:a19:c34a:: with SMTP id t71mr4946142lff.146.1637675481263;
+        Tue, 23 Nov 2021 05:51:21 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id e17sm1296602lfr.296.2021.11.23.05.51.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 05:51:20 -0800 (PST)
+Message-ID: <505c6616-2953-8301-8721-9d6c003a40fd@gmail.com>
+Date:   Tue, 23 Nov 2021 14:51:19 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: brcm,ns-pinmux: extend example
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211118132152.15722-1-zajec5@gmail.com>
+ <20211118132152.15722-3-zajec5@gmail.com> <YZyahbYwMFz7baTu@atomide.com>
+ <2fb0593a-208f-a732-843b-b6723633e208@gmail.com>
+ <YZyxPdBYl/yWYyoT@atomide.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <YZyxPdBYl/yWYyoT@atomide.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is my second attempt to solve the use case where there is only the
-base MAC address stored in an EEPROM or similar storage provider. This
-is the case for the Kontron sl28 board and multiple openwrt supported
-boards.
+On 23.11.2021 10:15, Tony Lindgren wrote:
+> * Rafał Miłecki <zajec5@gmail.com> [211123 07:56]:
+>> Does it mean above "reg" usages are all incorrect and binding "reg" in
+>> such way is deprecated? This is something totally new to me, can you
+>> confirm that, please?
+> 
+> Here you have a device with multiple control register instances at
+> various register offsets. Using index here makes as much sense as
+> the old interrupt number defines we used to have but got rid of.
+> 
+> Please don't use an index to address them. Index makes sense when
+> there is no real offset to use, like a SPI chip select, or a bit
+> offset inside the register like a GPIO instance bit.
 
-The first proposal [1] didn't find much appreciation and there wasn't
-any reply to my question or new proposal [2]. So here we are with my new
-proposal, that is more flexible and doesn't fix the ethernet mac only.
-This is just an RFC for the device tree representation for now to see if
-this is the correct way to tackle this.
+I think I'll simply trust you on this as there seems to be some thin
+line I can't really see. It may be however worth documenting somehwere
+what's the rule for changing "reg" context. So that in future less
+experienced developers (like me) don't bother maintainers with such
+bad concepts.
 
-I'm also aware of the latest post process hook support [3]. This doesn't
-fix the base mac address issue, but I think it also doesn't solve the
-case with swapped ethernet addresses in the general case. That hook will
-involve the driver to do the swapping, but how would the driver know
-if that swapping is actually required. Usually the interpretation of the
-content is opaque to the driver, after all it is the user/board
-manufacturer who does program the storage device. We might be lucky in
-the imx-ocotp case because the IMX reference manual actually states
-where and in which format the mac address is programmed.
+What I understood from your e-mail is that it's a matter of "reg" usage
+in a hardware block binding. If reg contains "multiple control register
+instances" (I understand it as reg space size > 0x4) then children nodes
+may use "reg" only as address in that register space.
 
-Introduce a transformation property. This is intended to be just an
-enumeration of operations. If there will be a new operation, support for
-it has to be added to the nvmem core.
+My above understanding doesn't fit however what I see in various
+controllers.
 
-A transformation might have multiple output values, like in the base mac
-address case. It reads the mac address from the nvmem storage and
-generates multiple individual addresses, i.e. on our board we reserve 8
-consecutive addresses. These addresses then can be assigned to different
-network interfaces. To make it possible to reference different values we
-need to introduce an argument to the phandle. This additional argument
-is then an index into a list of values.
+*****
 
-Example:
-  mac_addresses: base-mac-address@10 {
-    #nvmem-cell-cells = <1>;
-    reg = <10 6>;
-    transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
-  }
+Example 1:
 
-  &eth0 {
-    nvmem-cells = <&mac_addresses 0>;
-    nvmem-cell-names = "mac-address";
-  };
+usb/generic-xhci.yaml / usb/usb-xhci.yaml
 
-  &eth1 {
-    nvmem-cells = <&mac_addresses 2>;
-    nvmem-cell-names = "mac-address";
-  };
+That block binding covers *multiple* registers, see:
+reg = <0xf0931000 0x8c8>;
 
-The NVMEM_T_ETH_OFFSET transformation takes N additional (dt) cells and
-will generate N values. In this example BASE_MAC+0, BASE_MAC+1, BASE_MAC+7.
-An nvmem consumer can then reference the nvmem cell with an index. So eth0
-will get BASE_MAC+0 and eth1 will get BASE_MAC+7.
+However its children nodes are indexed and use "reg", see:
+hub@1 {
+     compatible = "usb5e3,610";
+     reg = <1>;
+};
 
-This should be sufficient flexible for many different transformations
-without having to touch the bindings except for adding documentation and
-checks for new transformations.
+*****
 
-I do have one question regarding "#nvmem-cell-cells" (aside from the
-awkward naming): is it allowed to have that property optional if there
-is no additional argument to the phandle?
+Example 2:
 
-[1] https://lore.kernel.org/all/20210414152657.12097-2-michael@walle.cc/
-[2] https://lore.kernel.org/linux-devicetree/362f1c6a8b0ec191b285ac6a604500da@walle.cc/
-[3] https://lore.kernel.org/lkml/20211013131957.30271-1-srinivas.kandagatla@linaro.org/
+spi/spi-controller.yaml
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../devicetree/bindings/nvmem/nvmem.yaml      | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
+That binding uses "fsl,imx28-spi" as example. Its binding covers
+*multiple* registers, see:
+reg = <0x80010000 0x2000>;
 
-diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-index 456fb808100a..8893d045be77 100644
---- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-+++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-@@ -26,11 +26,34 @@ properties:
-   "#size-cells":
-     const: 1
- 
-+  '#nvmem-cell-cells':
-+    enum: [0, 1]
-+    description:
-+      Must be 1 if the transformations has multiple output values.
-+      The argument is then the index into the list of output values.
-+      For example, if the nvmem cell only specify a base ethernet
-+      address the transformation can then create different individual
-+      ethernet addresses.
-+
-   read-only:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description:
-       Mark the provider as read only.
- 
-+  transformation:
-+    description:
-+      Transform the content of a NVMEM cell. Sometimes it is necessary
-+      to preprocess the content of a cell so it is usable by the NVMEM
-+      consumer. There are also cases where one NVMEM cell value can
-+      generate a list of values.
-+
-+      Use one of the NVMEM_T_* prefixed definitions from the header
-+      include/dt-bindings/nvmem/nvmem.h.
-+
-+      Some transformations might have additional arguments.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+
-   wp-gpios:
-     description:
-       GPIO to which the write-protect pin of the chip is connected.
-@@ -98,6 +121,12 @@ examples:
-               reg = <0xc 0x1>;
-               bits = <2 3>;
-           };
-+
-+          ethernet_base_mac: base-mac-address@100 {
-+              #nvmem-cell-cells = <1>;
-+              reg = <0x100 0x6>;
-+              transformation = <NVMEM_T_ETH_OFFSET 0 1 2 7>;
-+          };
-       };
- 
- ...
--- 
-2.30.2
+However its children nodes are indexed and use "reg", see:
+display@0 {
+     compatible = "lg,lg4573";
+     spi-max-frequency = <1000000>;
+     reg = <0>;
+};
 
+*****
+
+So it appears my understanding is wrong somewhere. It seems to be a bit
+tricky to get things right so I'd really appreciate some documentation
+on that.
