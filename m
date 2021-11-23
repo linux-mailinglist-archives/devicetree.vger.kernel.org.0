@@ -2,128 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F9245AA11
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:26:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D669145AA2D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 18:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239310AbhKWR3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 12:29:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
+        id S234143AbhKWRnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 12:43:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239302AbhKWR3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:29:42 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6B98C06173E
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:26:33 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id u11so17672335plf.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:26:33 -0800 (PST)
+        with ESMTP id S237881AbhKWRnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 12:43:52 -0500
+Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B247EC06173E
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:40:44 -0800 (PST)
+Received: by mail-pg1-x52f.google.com with SMTP id m15so18941129pgu.11
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 09:40:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KPed58hFTpRLwDYqt33WLynTmRa2Y0w9rmJh+0dHScs=;
-        b=NsQtJWQHb0i7N75jRXDo1GAfh8tCOwnNO/CY1LBHQ3+k1q+QvHJ8lxNXxFur5/TfxX
-         lKMf6ziPucsto3HP6SMT+fkTlcbNPlDtf+o3rmjOWTHFqZSbXSIwSTu4cCYY3sciqQW/
-         R7uDNf+91nRyHkASh0xFxgYlen0yUmoYQT8rxaQE/mVEsKDDE2ku7aPAALunA65sPwxg
-         CNm651hMUnAEkAoSXU+RlTvItFP/doDb338O5wKv3fkW2xLNkyQgbZvzWBZRqoy3xl0X
-         reLXNosQq9q6WY4J50b/HJOcCH5Q6p5wV5OJCvEGjp5dRJuG6eVc6wHSGVdbUDcJmLEq
-         07oQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CdO3e2pDhMNJ+/pMA6Znc3yR1BY8F0IUwXILZu7t3/g=;
+        b=oVFTPn/YH2jTuPO2rvZ+bni4tcXtnBMXdNR2m3bx8ldO3dZEs97CiwZT15EpcQdIw5
+         CHJxX2qEi+3nJ9dj5kISe86jLAzHVWGVOLGAPvE4npPJghtMEOv3rDU70yEexawgs7WX
+         xnspRZEUUXaxP7YACnmStBcyCsl17/gyQCLF4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KPed58hFTpRLwDYqt33WLynTmRa2Y0w9rmJh+0dHScs=;
-        b=waykJhTj4ctDEm6vbBslXlTSNDe5qw8FiBtOsYsxfWaxe+YKJnoXJQAkMNfqvzJ9A+
-         Kt0v0YGih2xZphIGk81lG+qjFigJ99OqvaAcvRSXTbJyMqBbMdsqmD94WBglntCqA1So
-         YJsg76tjcx4o4rM9uMImMug3B9CKgK120KsUCX+x4HnrMDLpwtQljvuE9jO6wcIcNuM2
-         ub2Bvxjx4qOfOP5ljYDGqb7H6hJj6q7Q49VUfH394/WPWCR8vBnnAaLUGIkH1nyzBKu8
-         jZORYeqgEUwtGUnLW2LHTqkGuYs9+ufiVRdCFQNyDjEMBJ8hUmpsU+XAB3pl/wdnxaUf
-         Bw+Q==
-X-Gm-Message-State: AOAM531Xju+zzaYUXTltPU/OJe5dUVPH3m1sUDibqWj3/dHESygwP2Ys
-        ftXzRydWxcGx5i/EgBLtXU88VHbWw6p5QpM0VPOIdQ==
-X-Google-Smtp-Source: ABdhPJw2jpYc2Lwn/EShV3vG24WLglTCIqgSsDmx5UNLkhvp9W8mUJfbLxP8eGkFhr9vraOm6G/vBX3gZPAZn9uZNGI=
-X-Received: by 2002:a17:90b:4a05:: with SMTP id kk5mr4925971pjb.142.1637688393387;
- Tue, 23 Nov 2021 09:26:33 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CdO3e2pDhMNJ+/pMA6Znc3yR1BY8F0IUwXILZu7t3/g=;
+        b=gTdYB6x9bLtlDEZWNjf57pdLCygoQZfSFEOzO35joFR84b8+2dYLBVk/XyGRXpZ5lt
+         dCRzCIA6bokzLmYRUSZ6BngKjKRTB03elejiFf47OaOFfwY/577BJSG91mowLunG7fGz
+         X23FWKwC7FHZGZL3m6V2hHzvTakAPTTop+OfqUmr5Pbo2onYd7Iujn6u4rZE1AVva5FA
+         NNh1qdXPqznkh8sG4jFz9Ym6T4eiYTSHv1q8x+JnawLVZQUJlW//I4bKSVW7UoHyJVNh
+         pYLf8nAagUmEVb/PQ6XAJwQYfr3UTu+KyDfxXg+ESjccIcOUN1CeHKaEYVipkTbceFMX
+         k1Uw==
+X-Gm-Message-State: AOAM533fRBOU3rydhUQHrIvIRJK7Ck6yKJ3eIJryzJRyH8PefRx4va5a
+        lvkV745BuPu4iBoVW8X+8RNZ9A==
+X-Google-Smtp-Source: ABdhPJyHfEZlhram/t4364Twny6+kpl7aix7nHDqV8ZCLTjEJS/craA9npwH1mwvP0JxjD3EK7lt2Q==
+X-Received: by 2002:a63:414:: with SMTP id 20mr5067331pge.178.1637689244184;
+        Tue, 23 Nov 2021 09:40:44 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:5fa5:d920:9d68:9c16])
+        by smtp.gmail.com with UTF8SMTPSA id i2sm13864246pfg.90.2021.11.23.09.40.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 09:40:43 -0800 (PST)
+Date:   Tue, 23 Nov 2021 09:40:42 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
+        dianders@chromium.org, kgodara@codeaurora.org
+Subject: Re: [PATCH 3/4] arm64: dts: qcom: sc7280: Define EC and H1 nodes
+Message-ID: <YZ0nmrGHwIMdN2v6@google.com>
+References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
+ <1637650813-16654-4-git-send-email-rnayak@codeaurora.org>
 MIME-Version: 1.0
-References: <20210921071807.30978-1-narmstrong@baylibre.com>
- <20210921071807.30978-2-narmstrong@baylibre.com> <YV1UdSVOrZ3B9pq/@atomide.com>
- <CAMSo37UN78k=WE0CwRyNNV3P9kau+JzVZ7mHOMMvh5Bn=+=jAQ@mail.gmail.com> <78b51650-0e32-e81f-0191-2222580e7343@baylibre.com>
-In-Reply-To: <78b51650-0e32-e81f-0191-2222580e7343@baylibre.com>
-From:   Yongqin Liu <yongqin.liu@linaro.org>
-Date:   Wed, 24 Nov 2021 01:26:21 +0800
-Message-ID: <CAMSo37X1BA1cYYxwjWBo_dhjpGYuYD2KK00+3ZWAwNeJq8UfxQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/1] ARM: dts: dra7: add entry for bb2d module
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Gowtham Tammana <g-tammana@ti.com>, Jyri Sarha <jsarha@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1637650813-16654-4-git-send-email-rnayak@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Neil
+On Tue, Nov 23, 2021 at 12:30:12PM +0530, Rajendra Nayak wrote:
 
-On Tue, 23 Nov 2021 at 20:47, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi,
->
-> On 23/11/2021 13:17, Yongqin Liu wrote:
-> > Hi, Neil, Tony
-> >
-> > # sorry for the confusion if you have received the mail which I sent
-> > before, which is not in plain text mode.
-> >
-> > We have one out of tree change to enable the SGX544 gpu for the
-> > beagleboard-X15 Android build,
-> >     https://android-review.linaro.org/c/kernel/common/+/20521/11/arch/arm/boot/dts/dra7.dtsi
-> >
-> > and that seems to conflict with this BB2D enabling change,
-> > Could you please help give some suggestions on how we should update our patch
-> > to make it work with BB2D, without the revert of this change?
->
-> This BB2D patch alters the target-module@59000000 while your SGX
-> change alters the target-module@56000000.
->
-> Please rebase your patches.
-I am sorry if the "conflict" I used previously caused the confusion.
-What I meant with the "conflict" word is the feature conflict, not the
-patch merge conflict.
+> Subject: arm64: dts: qcom: sc7280: Define EC and H1 nodes
 
-I could merge my SGX change with the BB2D change there, but then my
-build could not boot successfully to the homescreen,
-I need to revert the BB2D change to have it boot to the homescreen successfully.
+that seems to suggest that EC and H1 nodes are something generic of the
+sc7280, however these two chips are only present on systems that target
+Chrome OS, and the specific nodes are added are only used by the QCA
+sc7280 IDP and CRD, not other sc7280 boards using Chrome OS, like
+herobrine. I suggest to change it to "arm64: dts: qcom: sc7280: Define
+EC and H1 nodes for IDP/CRD".
 
-Here are the serial console output in case you want to check:
-https://pastebin.com/RY472b96  work with the BB2D change reverted
-https://pastebin.com/aP97r7rJ    does not work with the BB2D change.
+> From: Kshitiz Godara <kgodara@codeaurora.org>
+> 
+> The IDP2 and CRD boards share the EC and H1 parts, so define
+> all related device nodes into a common file and include them
+> in the idp2 and crd dts files to avoid duplication.
+> 
+> Signed-off-by: Kshitiz Godara <kgodara@codeaurora.org>
+> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-crd.dts    |   1 +
+>  arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi | 110 +++++++++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sc7280-idp2.dts   |   1 +
+>  3 files changed, 112 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> index 09d02c2..8c2aee6 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
+>  
+>  #include "sc7280-idp.dtsi"
+> +#include "sc7280-ec-h1.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. sc7280 CRD platform";
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi b/arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi
+> new file mode 100644
+> index 0000000..78fb5eb
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-ec-h1.dtsi
 
-Not sure if you have any idea about the problem.
-Please help give some suggestions on what I could try.
+Similar comment as for the subject, the file name seems to imply
+that the include could be useful for any board with an EC and H1,
+however it will be only used by the IDP and CRD. Maybe name it
+'sc7280-idp-ec-h1.dtsi', from the CRD DT file it is alreay clear
+that it is related with the IDP, so it shouldn't be too confusing
+that the file name only says IDP.
 
-Thanks,
-Yongqin
->
-> >
-> > On Wed, 6 Oct 2021 at 15:47, Tony Lindgren <tony@atomide.com> wrote:
-> >>
-> >> * Neil Armstrong <narmstrong@baylibre.com> [210921 10:18]:
-> >>> From: Gowtham Tammana <g-tammana@ti.com>
-> >>>
-> >>> BB2D is a Vivante GC 2D Accelerator.
-> >>> This adds the node to the dts file within a target module node.
-> >>> Crossbar index number is used for interrupt mapping.
-> >>
-> >> Thanks applying into omap-for-v5.16/dt.
-> >>
-> >> Tony
-> >
->
+Also a birdie told me that the EC and H1 configuration is going to
+change in future revisions of the CRD, which is another reason for
+being more specific with the file name (a sc7280-crd-ec-h1.dtsi
+might be needed at that point, or the new not-any-longer-shared
+config goes directly into the sc7280-crd-revN.dts.
 
+> @@ -0,0 +1,110 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * sc7280 EC/H1 over SPI (common between IDP2 and CRD)
+> + *
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + */
+> +
+> +ap_ec_spi: &spi10 {
+> +	status = "okay";
+> +
+> +	pinctrl-0 = <&qup_spi10_cs_gpio_init_high>, <&qup_spi10_cs_gpio>;
 
--- 
-Best Regards,
-Yongqin Liu
----------------------------------------------------------------
-#mailing list
-linaro-android@lists.linaro.org
-http://lists.linaro.org/mailman/listinfo/linaro-android
+Shouldn't this also have <&qup_spi10_data_clk>?
+
+> +	cs-gpios = <&tlmm 43 GPIO_ACTIVE_LOW>;
+> +
+> +	cros_ec: ec@0 {
+> +		compatible = "google,cros-ec-spi";
+> +		reg = <0>;
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <18 IRQ_TYPE_LEVEL_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ap_ec_int_l>;
+> +		spi-max-frequency = <3000000>;
+> +
+> +		cros_ec_pwm: ec-pwm {
+> +			compatible = "google,cros-ec-pwm";
+> +			#pwm-cells = <1>;
+> +		};
+> +
+> +		i2c_tunnel: i2c-tunnel {
+> +			compatible = "google,cros-ec-i2c-tunnel";
+> +			google,remote-bus = <0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		typec {
+> +			compatible = "google,cros-ec-typec";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			usb_c0: connector@0 {
+> +				compatible = "usb-c-connector";
+> +				reg = <0>;
+> +				label = "left";
+> +				power-role = "dual";
+> +				data-role = "host";
+> +				try-power-role = "source";
+> +			};
+> +
+> +			usb_c1: connector@1 {
+> +				compatible = "usb-c-connector";
+> +				reg = <1>;
+> +				label = "right";
+> +				power-role = "dual";
+> +				data-role = "host";
+> +				try-power-role = "source";
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +#include <arm/cros-ec-keyboard.dtsi>
+> +#include <arm/cros-ec-sbs.dtsi>
+> +
+> +ap_h1_spi: &spi14 {
+> +	status = "okay";
+> +
+> +	pinctrl-0 = <&qup_spi14_cs_gpio_init_high>, <&qup_spi14_cs_gpio>;
+
+<&qup_spi14_data_clk> missing?
+
+> +	cs-gpios = <&tlmm 59 GPIO_ACTIVE_LOW>;
+> +
+> +	cr50: tpm@0 {
+> +		compatible = "google,cr50";
+> +		reg = <0>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&h1_ap_int_odl>;
+> +		spi-max-frequency = <800000>;
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <104 IRQ_TYPE_EDGE_RISING>;
+> +	};
+> +};
+> +
+> +&tlmm {
+> +	ap_ec_int_l: ap-ec-int-l {
+> +		pins = "gpio18";
+> +		function = "gpio";
+> +		input-enable;
+> +		bias-pull-up;
+> +		drive-strength = <2>;
+
+Is the explicit drive-strength setting actually needed?
+
+Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml:
+
+  drive-strength:
+    enum: [2, 4, 6, 8, 10, 12, 14, 16]
+    default: 2 <=
+    description:
+      Selects the drive strength for the specified pins, in mA.
+
+The default is 2, hence it shouldn't be necessary it set it explicitly.
+
+> +	};
+> +
+> +	h1_ap_int_odl: h1-ap-int-odl {
+> +		pins = "gpio104";
+> +		function = "gpio";
+> +		input-enable;
+> +		bias-pull-up;
+> +		drive-strength = <2>;
+
+see above
+
+> +	};
+> +
+> +	qup_spi10_cs_gpio_init_high: qup-spi10-cs-gpio-init-high {
+> +		pins = "gpio43";
+> +		output-high;
+> +		drive-strength = <2>;
+
+see above
+
+> +	};
+> +
+> +	qup_spi14_cs_gpio_init_high: qup-spi14-cs-gpio-init-high {
+> +		pins = "gpio59";
+> +		output-high;
+> +		drive-strength = <2>;
+
+see above
+
+> +	};
+> +};
+> +
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+> index 3ae9969..208ca69 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp2.dts
+> @@ -8,6 +8,7 @@
+>  /dts-v1/;
+>  
+>  #include "sc7280-idp.dtsi"
+> +#include "sc7280-ec-h1.dtsi"
+>  
+>  / {
+>  	model = "Qualcomm Technologies, Inc. sc7280 IDP SKU2 platform";
