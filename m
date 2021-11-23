@@ -2,293 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FB3E459D32
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 08:54:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F04EA459D3B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 08:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234106AbhKWH5N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 02:57:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55392 "EHLO
+        id S234055AbhKWH7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 02:59:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234535AbhKWHzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 02:55:23 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C532C061574
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 23:52:15 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id r130so18639791pfc.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Nov 2021 23:52:15 -0800 (PST)
+        with ESMTP id S233842AbhKWH7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 02:59:13 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D4DC061574;
+        Mon, 22 Nov 2021 23:56:05 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id u3so88722686lfl.2;
+        Mon, 22 Nov 2021 23:56:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lVbU0c9IdrY522BCvsaXslnlPipdbEhVYBOGx1ugzH8=;
-        b=coKfosrUOBKdPeNA4ljSydTj+X1a8hy4cA9eOt3wvP3/kL7WytPoyKmNRYs8h5tF/7
-         2lzGxZW1vbhuFvZviPTdRRZgJCXYpZwsZt19BlPjJF2sR+ukcXufaxeA5gMOEyM5Wufp
-         lRaEUD9ZJTcsM7lxoZGbs9qfWuw5DfiloGGEkW2HYwQqY+H79H/p7U3ZDlFXJtJb+fFL
-         pKkUKiGhxbnqQ/YEOpJnKGzaSm/qAH4c87r00lXG2b03+B62kY5hzDHJDr1Yxf1NigxC
-         OVqKNHTvLrt7kxjVHudmJur21JVGvMBrXEY15vOQJTHiMI08+0yROSPiFlwZaeOa/Hit
-         L4HQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=DjjH7TGlsBg96V5cUpOrwA/evrR4dCMvIcHzMQCBnGY=;
+        b=Eb6Drds8qwOS7naO1X591z9Sn6UnmtldIHb+5Dao2BBOMgJoY4biTy250j40Urh0Dr
+         k34HHzCNVgFHfcZqsYSX/qBJmokHAsqg5g4F+eUM9hmgAYJwl0Id4i/3Xa3oyyZVm6u6
+         8lZZKqS6ZMQlCKVYcbDhkVjhkNHN2w5YLnoq+Y/lLdBCalpqWdP2mOa2jtd1Eyvwvn3Z
+         YZm7UkDbkJVRwEhbpdB/iEvhFtuA2zQew9+/J9iPweKwTsFH8N6gFk4JdYJnSCiibfH6
+         k+g+kPulxAFtXmHrw1WD7f/nMyXGzLoB7qLk9DMhzFydgyXLhCEZ7rKajpvrSFZBgT15
+         jXew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lVbU0c9IdrY522BCvsaXslnlPipdbEhVYBOGx1ugzH8=;
-        b=G5CGYxyzKX/Tf3yoVtUXWdZ+AXeXdlI0IMjE26QgUQw126UaF4A2YR6dcxqCbS1OYl
-         Wp6q7sOgvKipIBC4IuaV/F1DnGtgkmcQ0c1Gu04vkFzwiI8q0Uo8uwAOq0bO5PyFC1wo
-         afwht3pdFznDDUcE8XVV1bwdLOI/F3JGjQvWVtoxcF0cLjpbs5OrgMe7C2XPe4WHHpSc
-         v9ZdD2W9KyVp3mHfrUpR1yoGNSdU6hSdxdCdLP9mLSBVN9ZA2nWNhb0iYQsFEthR37oe
-         8wfd4tb3+7W2Lfc6D0k4PaqBZkUdqmA8TClvrGr+QR6/j1LWRMbFDUgSYIEJ/+R1K+A/
-         wXwA==
-X-Gm-Message-State: AOAM5314CaeK0qxLpstWB4M24gTTO6As8W3NPfHPenMJms0bIlXiqQEG
-        xXwZ50PeBcor03B6UDvRAiLS8A==
-X-Google-Smtp-Source: ABdhPJydv653Cl0dgjExAK5jG9fL4K7gSBhRuO5o8XkFQNGKZ4BmsK1CfyV4j2IfomSBRgd/9/1HgQ==
-X-Received: by 2002:a05:6a00:2405:b0:3e1:9f65:9703 with SMTP id z5-20020a056a00240500b003e19f659703mr3189886pfh.6.1637653935004;
-        Mon, 22 Nov 2021 23:52:15 -0800 (PST)
-Received: from yc.huaqin.com ([101.78.151.213])
-        by smtp.gmail.com with ESMTPSA id l6sm6832692pfc.30.2021.11.22.23.52.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Nov 2021 23:52:14 -0800 (PST)
-From:   yangcong <yangcong5@huaqin.corp-partner.google.com>
-To:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dianders@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        yangcong <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH] drm/panel: Update BOE and INX initial code
-Date:   Tue, 23 Nov 2021 15:52:05 +0800
-Message-Id: <20211123075205.2457975-1-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=DjjH7TGlsBg96V5cUpOrwA/evrR4dCMvIcHzMQCBnGY=;
+        b=6akBmLhvRiv4CWgEaXv6SKLgNFflF+U1hV14z1Auvf6OLKaQRiX2j5hHvw9A4roJgz
+         1HT0R3Qf+7KwrTXuj6MB0Uy+9h02JJTpEhVSo3ewKVxf+2YQdeEPH4dQTkjXcj9NWNYd
+         BNgMELxym6onFQF9lNrAWLYSHTL2d+/Ul5MzJGeAyOYOYj/obmnxQTyGzxK2CM0WVVNT
+         kJn/hKzl1/3eF3DsXhQ53biJcil8m85igXEkNayWhm4hB3mUWMPl8i6bph+qXGGlRcLI
+         +6ChWryjUdxuDeY/MaHWQH2H1XAEXGdcuwYbfFd+cFeFNEo5MAsLGFa5XNUHHYKxyarS
+         vVcQ==
+X-Gm-Message-State: AOAM533mZFclHu1LRLA+piEWCvB5QzS8vtWzGXxYobeKx/2ryuSPYxlE
+        AMEWtYAlkKwB1QMMi+UZGUQ=
+X-Google-Smtp-Source: ABdhPJxcVprN2E+veoq+JcB0mEI4OMFEuGluWS95cFvc1FspoWdXnjAesSc0BFE7gQKJcy6g9oT5yA==
+X-Received: by 2002:ac2:4116:: with SMTP id b22mr2940191lfi.587.1637654163884;
+        Mon, 22 Nov 2021 23:56:03 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id s14sm1401273lfg.230.2021.11.22.23.56.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 22 Nov 2021 23:56:03 -0800 (PST)
+Message-ID: <2fb0593a-208f-a732-843b-b6723633e208@gmail.com>
+Date:   Tue, 23 Nov 2021 08:56:01 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:95.0) Gecko/20100101
+ Thunderbird/95.0
+Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: brcm,ns-pinmux: extend example
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211118132152.15722-1-zajec5@gmail.com>
+ <20211118132152.15722-3-zajec5@gmail.com> <YZyahbYwMFz7baTu@atomide.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <YZyahbYwMFz7baTu@atomide.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-At present, we have enough panel to confirm the effect,
-update the initial code to achieve the best effect.
-such as gamma, Gtp timing. They are all minor modifications
-and doesn't affect the lighting of the panel.
+On 23.11.2021 08:38, Tony Lindgren wrote:
+> 200* Rafał Miłecki <zajec5@gmail.com> [211118 13:30]:
+>> @@ -83,6 +83,33 @@ examples:
+>>           reg = <0x1800c1c0 0x24>;
+>>           reg-names = "cru_gpio_control";
+>>   
+>> +        pins {
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            pin@4 {
+>> +                reg = <4>;
+>> +                label = "i2c_scl";
+>> +            };
+>> +
+>> +            pin@5 {
+>> +                reg = <5>;
+>> +                label = "i2c_sda";
+>> +            };
+>> +        };
+> 
+> The reg property should indicate the hardware offset from the device base
+> address. The reg values above for 4 and 5 seem to be indexed instead :)
+> Please update to use real register offsets from the 0x1800c1c0 base
+> instead. If a reg offset + bit offset are needed, the #address-cells or
+> #pinctrl-cells can be used.
 
-a)Boe panel Optimized touch horizontal grain.
-b)Inx panel Optimized GOP timming and gamma.
+It's true those are "reg"s are PINS indexes and not actual hw registers.
+That concept of changing "reg" context is nothing new here however. It's
+used in many other places.
 
-Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
----
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 108 ++++++++++++------
- 1 file changed, 71 insertions(+), 37 deletions(-)
+Some examples:
 
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index 529561b4fbbc..cc5990dd24a3 100644
---- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -84,8 +84,8 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
- 	_INIT_DCS_CMD(0x0D, 0x63),
- 	_INIT_DCS_CMD(0x0E, 0x91),
- 	_INIT_DCS_CMD(0x0F, 0x73),
--	_INIT_DCS_CMD(0x95, 0xEB),
--	_INIT_DCS_CMD(0x96, 0xEB),
-+	_INIT_DCS_CMD(0x95, 0xE6),
-+	_INIT_DCS_CMD(0x96, 0xF0),
- 	_INIT_DCS_CMD(0x30, 0x11),
- 	_INIT_DCS_CMD(0x6D, 0x66),
- 	_INIT_DCS_CMD(0x75, 0xA2),
-@@ -111,18 +111,16 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
- 	_INIT_DCS_CMD(0xB0, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x45, 0x00, 0x65, 0x00, 0x81, 0x00, 0x99, 0x00, 0xAE, 0x00, 0xC1),
- 	_INIT_DCS_CMD(0xB1, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
- 	_INIT_DCS_CMD(0xB2, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
--	_INIT_DCS_CMD(0xB3, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xF7),
--
-+	_INIT_DCS_CMD(0xB3, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
- 	_INIT_DCS_CMD(0xB4, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x45, 0x00, 0x65, 0x00, 0x81, 0x00, 0x99, 0x00, 0xAE, 0x00, 0xC1),
- 	_INIT_DCS_CMD(0xB5, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
- 	_INIT_DCS_CMD(0xB6, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
--	_INIT_DCS_CMD(0xB7, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xF7),
-+	_INIT_DCS_CMD(0xB7, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
- 
- 	_INIT_DCS_CMD(0xB8, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x45, 0x00, 0x65, 0x00, 0x81, 0x00, 0x99, 0x00, 0xAE, 0x00, 0xC1),
- 	_INIT_DCS_CMD(0xB9, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
- 	_INIT_DCS_CMD(0xBA, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
--	_INIT_DCS_CMD(0xBB, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xF7),
--
-+	_INIT_DCS_CMD(0xBB, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
- 	_INIT_DCS_CMD(0xFF, 0x24),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 
-@@ -332,12 +330,38 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
- 	_INIT_DCS_CMD(0x34, 0x78),
- 	_INIT_DCS_CMD(0x35, 0x16),
- 	_INIT_DCS_CMD(0xC8, 0x04),
--	_INIT_DCS_CMD(0xC9, 0x80),
-+	_INIT_DCS_CMD(0xC9, 0x9E),
- 	_INIT_DCS_CMD(0xCA, 0x4E),
- 	_INIT_DCS_CMD(0xCB, 0x00),
--	_INIT_DCS_CMD(0xA9, 0x4C),
--	_INIT_DCS_CMD(0xAA, 0x47),
--
-+	_INIT_DCS_CMD(0xA9, 0x49),
-+	_INIT_DCS_CMD(0xAA, 0x4B),
-+	_INIT_DCS_CMD(0xAB, 0x48),
-+	_INIT_DCS_CMD(0xAC, 0x43),
-+	_INIT_DCS_CMD(0xAD, 0x40),
-+	_INIT_DCS_CMD(0xAE, 0x50),
-+	_INIT_DCS_CMD(0xAF, 0x44),
-+	_INIT_DCS_CMD(0xB0, 0x54),
-+	_INIT_DCS_CMD(0xB1, 0x4E),
-+	_INIT_DCS_CMD(0xB2, 0x4D),
-+	_INIT_DCS_CMD(0xB3, 0x4C),
-+	_INIT_DCS_CMD(0xB4, 0x41),
-+	_INIT_DCS_CMD(0xB5, 0x47),
-+	_INIT_DCS_CMD(0xB6, 0x53),
-+	_INIT_DCS_CMD(0xB7, 0x3E),
-+	_INIT_DCS_CMD(0xB8, 0x51),
-+	_INIT_DCS_CMD(0xB9, 0x3C),
-+	_INIT_DCS_CMD(0xBA, 0x3B),
-+	_INIT_DCS_CMD(0xBB, 0x46),
-+	_INIT_DCS_CMD(0xBC, 0x45),
-+	_INIT_DCS_CMD(0xBD, 0x55),
-+	_INIT_DCS_CMD(0xBE, 0x3D),
-+	_INIT_DCS_CMD(0xBF, 0x3F),
-+	_INIT_DCS_CMD(0xC0, 0x52),
-+	_INIT_DCS_CMD(0xC1, 0x4A),
-+	_INIT_DCS_CMD(0xC2, 0x39),
-+	_INIT_DCS_CMD(0xC3, 0x4F),
-+	_INIT_DCS_CMD(0xC4, 0x3A),
-+	_INIT_DCS_CMD(0xC5, 0x42),
- 	_INIT_DCS_CMD(0xFF, 0x27),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 
-@@ -428,10 +452,10 @@ static const struct panel_init_cmd inx_init_cmd[] = {
- 	_INIT_DCS_CMD(0x08, 0x4B),
- 	_INIT_DCS_CMD(0x0E, 0x91),
- 	_INIT_DCS_CMD(0x0F, 0x69),
--	_INIT_DCS_CMD(0x95, 0xFF),
--	_INIT_DCS_CMD(0x96, 0xFF),
--	_INIT_DCS_CMD(0x9D, 0x0A),
--	_INIT_DCS_CMD(0x9E, 0x0A),
-+	_INIT_DCS_CMD(0x95, 0xF5),
-+	_INIT_DCS_CMD(0x96, 0xF5),
-+	_INIT_DCS_CMD(0x9D, 0x00),
-+	_INIT_DCS_CMD(0x9E, 0x00),
- 	_INIT_DCS_CMD(0x69, 0x98),
- 	_INIT_DCS_CMD(0x75, 0xA2),
- 	_INIT_DCS_CMD(0x77, 0xB3),
-@@ -493,17 +517,17 @@ static const struct panel_init_cmd inx_init_cmd[] = {
- 	_INIT_DCS_CMD(0x2A, 0x03),
- 	_INIT_DCS_CMD(0x2B, 0x03),
- 
--	_INIT_DCS_CMD(0x2F, 0x06),
-+	_INIT_DCS_CMD(0x2F, 0x05),
- 	_INIT_DCS_CMD(0x30, 0x32),
- 	_INIT_DCS_CMD(0x31, 0x43),
--	_INIT_DCS_CMD(0x33, 0x06),
-+	_INIT_DCS_CMD(0x33, 0x05),
- 	_INIT_DCS_CMD(0x34, 0x32),
- 	_INIT_DCS_CMD(0x35, 0x43),
- 	_INIT_DCS_CMD(0x37, 0x44),
- 	_INIT_DCS_CMD(0x38, 0x40),
- 	_INIT_DCS_CMD(0x39, 0x00),
--	_INIT_DCS_CMD(0x3A, 0x01),
--	_INIT_DCS_CMD(0x3B, 0x48),
-+	_INIT_DCS_CMD(0x3A, 0x18),
-+	_INIT_DCS_CMD(0x3B, 0x00),
- 	_INIT_DCS_CMD(0x3D, 0x93),
- 	_INIT_DCS_CMD(0xAB, 0x44),
- 	_INIT_DCS_CMD(0xAC, 0x40),
-@@ -520,8 +544,8 @@ static const struct panel_init_cmd inx_init_cmd[] = {
- 	_INIT_DCS_CMD(0x56, 0x08),
- 	_INIT_DCS_CMD(0x58, 0x21),
- 	_INIT_DCS_CMD(0x59, 0x40),
--	_INIT_DCS_CMD(0x5A, 0x09),
--	_INIT_DCS_CMD(0x5B, 0x48),
-+	_INIT_DCS_CMD(0x5A, 0x00),
-+	_INIT_DCS_CMD(0x5B, 0x2C),
- 	_INIT_DCS_CMD(0x5E, 0x00, 0x10),
- 	_INIT_DCS_CMD(0x5F, 0x00),
- 
-@@ -557,34 +581,35 @@ static const struct panel_init_cmd inx_init_cmd[] = {
- 	_INIT_DCS_CMD(0xEE, 0x7A),
- 	_INIT_DCS_CMD(0xEF, 0x01),
- 	_INIT_DCS_CMD(0xF0, 0x7A),
--
-+	_INIT_DCS_CMD(0xB6, 0x05, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x05, 0x00, 0x00),
- 	_INIT_DCS_CMD(0xFF, 0x25),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 
- 	_INIT_DCS_CMD(0x05, 0x00),
--
-+	_INIT_DCS_CMD(0x13, 0x02),
-+	_INIT_DCS_CMD(0x14, 0xDF),
- 	_INIT_DCS_CMD(0xF1, 0x10),
- 	_INIT_DCS_CMD(0x1E, 0x00),
--	_INIT_DCS_CMD(0x1F, 0x09),
--	_INIT_DCS_CMD(0x20, 0x46),
-+	_INIT_DCS_CMD(0x1F, 0x00),
-+	_INIT_DCS_CMD(0x20, 0x2C),
- 	_INIT_DCS_CMD(0x25, 0x00),
--	_INIT_DCS_CMD(0x26, 0x09),
--	_INIT_DCS_CMD(0x27, 0x46),
-+	_INIT_DCS_CMD(0x26, 0x00),
-+	_INIT_DCS_CMD(0x27, 0x2C),
- 	_INIT_DCS_CMD(0x3F, 0x80),
- 	_INIT_DCS_CMD(0x40, 0x00),
- 	_INIT_DCS_CMD(0x43, 0x00),
- 
--	_INIT_DCS_CMD(0x44, 0x09),
--	_INIT_DCS_CMD(0x45, 0x46),
-+	_INIT_DCS_CMD(0x44, 0x18),
-+	_INIT_DCS_CMD(0x45, 0x00),
- 
--	_INIT_DCS_CMD(0x48, 0x09),
--	_INIT_DCS_CMD(0x49, 0x46),
-+	_INIT_DCS_CMD(0x48, 0x00),
-+	_INIT_DCS_CMD(0x49, 0x2C),
- 	_INIT_DCS_CMD(0x5B, 0x80),
- 	_INIT_DCS_CMD(0x5C, 0x00),
--	_INIT_DCS_CMD(0x5D, 0x01),
--	_INIT_DCS_CMD(0x5E, 0x46),
--	_INIT_DCS_CMD(0x61, 0x01),
--	_INIT_DCS_CMD(0x62, 0x46),
-+	_INIT_DCS_CMD(0x5D, 0x00),
-+	_INIT_DCS_CMD(0x5E, 0x00),
-+	_INIT_DCS_CMD(0x61, 0x00),
-+	_INIT_DCS_CMD(0x62, 0x2C),
- 	_INIT_DCS_CMD(0x68, 0x10),
- 	_INIT_DCS_CMD(0xFF, 0x26),
- 	_INIT_DCS_CMD(0xFB, 0x01),
-@@ -700,16 +725,22 @@ static const struct panel_init_cmd inx_init_cmd[] = {
- 	_INIT_DCS_CMD(0xA3, 0x30),
- 	_INIT_DCS_CMD(0xA4, 0xC0),
- 	_INIT_DCS_CMD(0xE8, 0x00),
-+	_INIT_DCS_CMD(0x97, 0x3C),
-+	_INIT_DCS_CMD(0x98, 0x02),
-+	_INIT_DCS_CMD(0x99, 0x95),
-+	_INIT_DCS_CMD(0x9A, 0x06),
-+	_INIT_DCS_CMD(0x9B, 0x00),
-+	_INIT_DCS_CMD(0x9C, 0x0B),
-+	_INIT_DCS_CMD(0x9D, 0x0A),
-+	_INIT_DCS_CMD(0x9E, 0x90),
- 	_INIT_DCS_CMD(0xFF, 0xF0),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x3A, 0x08),
- 	_INIT_DCS_CMD(0xFF, 0xD0),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x00, 0x33),
--	_INIT_DCS_CMD(0x02, 0x77),
- 	_INIT_DCS_CMD(0x08, 0x01),
- 	_INIT_DCS_CMD(0x09, 0xBF),
--	_INIT_DCS_CMD(0x28, 0x30),
- 	_INIT_DCS_CMD(0x2F, 0x33),
- 	_INIT_DCS_CMD(0xFF, 0x23),
- 	_INIT_DCS_CMD(0xFB, 0x01),
-@@ -718,6 +749,9 @@ static const struct panel_init_cmd inx_init_cmd[] = {
- 	_INIT_DCS_CMD(0xFF, 0x20),
- 	_INIT_DCS_CMD(0xFB, 0x01),
- 	_INIT_DCS_CMD(0x30, 0x00),
-+	_INIT_DCS_CMD(0xFF, 0x24),
-+	_INIT_DCS_CMD(0x5C, 0x88),
-+	_INIT_DCS_CMD(0x5D, 0x08),
- 	_INIT_DCS_CMD(0xFF, 0x10),
- 	_INIT_DCS_CMD(0xB9, 0x01),
- 	_INIT_DCS_CMD(0xFF, 0x20),
--- 
-2.25.1
+1. net/mdio-mux.yaml
+"reg" is used for "The sub-bus number" (not actual hw register)
 
+2. usb/usb-device.yaml
+"reg" is used for USB port index on USB hub
+
+3. spi/spi-controller.yaml
+"reg" is used for "Chip select used by the device."
+
+4. mtd/partitions/partition.yaml
+"reg" is used for "partition's offset and size within the flash"
+
+Does it mean above "reg" usages are all incorrect and binding "reg" in
+such way is deprecated? This is something totally new to me, can you
+confirm that, please?
+
+
+> The main problem using an index is that you need to keep it in sync
+> between the dts and device driver. And if a new SoC variant adds an entry
+> between the registers, you end up having to renumber the index.
+
+I don't understand that part. That index ("reg" value in above example)
+is actual PIN number. It's expected to match hw datasheets. Order
+doesn't matter there.
+
+If new hw revision adds PIN 2, I could just add pin@2 { ... };
