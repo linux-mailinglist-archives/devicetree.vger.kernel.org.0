@@ -2,77 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46350459B64
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 06:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D89B3459BD3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 06:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231149AbhKWFOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 00:14:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229468AbhKWFOx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 00:14:53 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id CE1E960187;
-        Tue, 23 Nov 2021 05:11:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637644305;
-        bh=pwCsV32PddfqKxDNCQ85J0Dw/5UwXakf4JnoU0OOMUY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PcyE1h4jBIU+Tp4uxwSpOmM48ssx6zW869/ImXd6Il/y9d8BZBBZMSGvE9yJSvekv
-         ZtOHq+cFwi2UNNuuvOm4aFP++h3KtT99rZOZSs/Ch8yOngOgcg4bwtsaWcemBqk3Lg
-         qQ3yZDqrB6+v2ERFCcZAdMm9UJovxPfeMr27AgBBKxyBMYO4EfJW5QIutn8G/NOr89
-         T7agXKRIXin+zee459rS70hovvj3PysssCP3jSrLHAd41/6kDQvOTzPdsFaNBcmH1B
-         3s4Mou4EAPrkr6W2bGfzJ/J7bTwgzmRedPkr9WYU9d+3QzXS/pTNckoZRM0IY6dhUt
-         Viar+uD2q9edA==
-Date:   Tue, 23 Nov 2021 10:41:41 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Liam Beguin <lvb@xiphos.com>, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/1] dt-bindings: phy: zynqmp-psgtr: fix USB phy name
-Message-ID: <YZx4DfXl+OBxwKKD@matsya>
-References: <20211117003841.2030813-1-lvb@xiphos.com>
+        id S231510AbhKWFo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 00:44:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54482 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229569AbhKWFo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 00:44:27 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE77C061574;
+        Mon, 22 Nov 2021 21:41:20 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 6EAEA42404;
+        Tue, 23 Nov 2021 05:41:16 +0000 (UTC)
+To:     Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211122225807.8105-1-j@jannau.net>
+ <20211122225807.8105-4-j@jannau.net>
+From:   Hector Martin <marcan@marcan.st>
+Subject: Re: [PATCH v3 3/4] arm64: dts: apple: t8103: Add i2c nodes
+Message-ID: <5f16c962-72a1-21ec-9651-744053f74365@marcan.st>
+Date:   Tue, 23 Nov 2021 14:41:13 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211117003841.2030813-1-lvb@xiphos.com>
+In-Reply-To: <20211122225807.8105-4-j@jannau.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-11-21, 19:38, Liam Beguin wrote:
-> PHY_TYPE_USB is undefined and was added as PHY_TYPE_USB2 and
-> PHY_TYPE_USB3 in 2fbbc96d1600 (phy: Add PHY header file for DT x Driver
-> defines, 2014-11-04). Fix documentation to avoid misleading users.
+On 23/11/2021 07.58, Janne Grunau wrote:
+> Apple M1 has at least 5 i2c controllers. i2c0, i2c1 and i2c3 are used
+> on all M1 Mac devices. The 2020 Mac Mini uses i2c2 and the 13-inch
+> MacBook Pro uses i2c2 and i2c4.
 
-Applied, thanks
+On further testing: i2c3 is not used on the 1GbE variant of j274. iBoot 
+actually kills the node entirely. The interesting thing is it doesn't 
+work; it times out probe transactions. I suspect iBoot does not enable 
+its clock or something like that.
 
-> 
-> Signed-off-by: Liam Beguin <lvb@xiphos.com>
-> ---
->  Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> index 04d5654efb38..79906519c652 100644
-> --- a/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> +++ b/Documentation/devicetree/bindings/phy/xlnx,zynqmp-psgtr.yaml
-> @@ -29,7 +29,7 @@ properties:
->            - PHY_TYPE_PCIE
->            - PHY_TYPE_SATA
->            - PHY_TYPE_SGMII
-> -          - PHY_TYPE_USB
-> +          - PHY_TYPE_USB3
->        - description: The PHY instance
->          minimum: 0
->          maximum: 1 # for DP, SATA or USB
-> -- 
-> 2.34.0
+I'll poke around this on IRC, but a priori we probably need m1n1 code to 
+kill this node when the ADT doesn't have it. Maybe I should generalize 
+the dwc3 killing code...
 
 -- 
-~Vinod
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
