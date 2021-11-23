@@ -2,153 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DD6A45A195
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:35:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC5B45A1D1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:46:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236167AbhKWLjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 06:39:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236190AbhKWLjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 06:39:00 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08499C06174A
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 03:35:52 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso1931572wms.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 03:35:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=eAAW0gxyL3spMyvFzNZU55TiEHcEGOqrLOJJuSa53K4=;
-        b=4DcfipfNqoq+i8lFBnrntKi3GtNw6X6goztOuq6ZWKhQSuytROlnv18WHcqZhYeh7c
-         GVU/3OFgl1BHcS7c/eSK80Hd36UAWzHFaJQ7HvRGjxLRLvpehVgy/qTdPSxdV6jRIKiv
-         KUBmhXNq4YZ4w4kuOliUyM4YnBMkn32OaZgo2ZnT5yRTOGg+SKtgVsnOrk+YNVJYy4lD
-         7TEDEgB7kTo/0ZPFJUO/BGCiAWb/fgXgFHc2FALVFLl/gTQYgATMGes7lqe/uUECmQQU
-         R5HUDVzCCKPG4/3yDD7kX7/tYF3JE3XCuXq1TzyesuDP+b2eYPrk/jOyI/1Nqgi6l4DO
-         DWpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=eAAW0gxyL3spMyvFzNZU55TiEHcEGOqrLOJJuSa53K4=;
-        b=NiN3rmH//VqCfvIqZGFin65eR9cxGDGS1IGli/NfCZS338z2bXCebDhBLnHMTvVwJk
-         B3zivLehrVClO/ojBCA3m0KJ4sc2QOpeZInZ/6UmaQyu+yj1nf1JXIRsHLg6/tU1BMlI
-         RG00WJVsHlk48eQPe315WVqxLw1IbnSohC2jQ4sptcobKIl+Tfd7qsu/4S6bGixuWUSb
-         +fsx6knvfKH6oIvgEoqnrURVFbOYKN7FldVGHcZCrjfoIBmQu4ezu52gwcQZNQiZeuVN
-         +F6vhY4Zh+O/njxMZFfJXRz9gphGMOU+UibkKHXmpAdKICS27Imc1oTsCS9CTyo70tos
-         IWtg==
-X-Gm-Message-State: AOAM531gNMlCR/+pJpDV/ncK+Ypa7RnEztBhoxKsGVmL/M8VpXYECHJx
-        bA5WEyFk7yn5UnNrNTdMvVhK8U1YPiuUe3FWhc8DMQ==
-X-Google-Smtp-Source: ABdhPJyDTgRgvUuV98CyCHfOL5hAURr2qDU4kKqY5aPJ10aLAJMLU+4E45XfCOWPhiTSevTsW28+O1m1n9x86/UMTho=
-X-Received: by 2002:a7b:c017:: with SMTP id c23mr2193327wmb.137.1637667350407;
- Tue, 23 Nov 2021 03:35:50 -0800 (PST)
+        id S236441AbhKWLtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 06:49:46 -0500
+Received: from comms.puri.sm ([159.203.221.185]:48858 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S236549AbhKWLtp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 06:49:45 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 488A3E1AAB;
+        Tue, 23 Nov 2021 03:46:07 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ROuOYu2hs1Ct; Tue, 23 Nov 2021 03:46:06 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     robh@kernel.org, shawnguo@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com,
+        krzk@kernel.org, kernel@puri.sm, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Subject: [PATCH] Revert "arm64: dts: imx8mq: Add interconnect for lcdif"
+Date:   Tue, 23 Nov 2021 12:45:45 +0100
+Message-Id: <20211123114545.411787-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-References: <20211108150554.4457-1-conor.dooley@microchip.com>
- <20211108150554.4457-2-conor.dooley@microchip.com> <272946671.hFph3VMliC@diego>
-In-Reply-To: <272946671.hFph3VMliC@diego>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 23 Nov 2021 17:05:38 +0530
-Message-ID: <CAAhSdy2yr+a7=7Crk7s3pAVbVcYjTdOtRfAaQXBkTVsUpfG20g@mail.gmail.com>
-Subject: Re: [PATCH 01/13] dt-bindings: interrupt-controller: create a header
- for RISC-V interrupts
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        bgolaszewski@baylibre.com, Rob Herring <robh+dt@kernel.org>,
-        jassisinghbrar@gmail.com, Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, broonie@kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        lewis.hanly@microchip.com, conor.dooley@microchip.com,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Atish Patra <atish.patra@wdc.com>, ivan.griffin@microchip.com,
-        linux-gpio@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-i2c@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-crypto@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-usb@vger.kernel.org,
-        krzysztof.kozlowski@canonical.com,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Bin Meng <bin.meng@windriver.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 4:38 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Am Montag, 8. November 2021, 16:05:42 CET schrieb conor.dooley@microchip.=
-com:
-> > From: Ivan Griffin <ivan.griffin@microchip.com>
-> >
-> > Provide named identifiers for device tree for RISC-V interrupts.
-> >
-> > Licensed under GPL and MIT, as this file may be useful to any OS that
-> > uses device tree.
-> >
-> > Signed-off-by: Ivan Griffin <ivan.griffin@microchip.com>
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  .../interrupt-controller/riscv-hart.h         | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >  create mode 100644 include/dt-bindings/interrupt-controller/riscv-hart=
-.h
-> >
-> > diff --git a/include/dt-bindings/interrupt-controller/riscv-hart.h b/in=
-clude/dt-bindings/interrupt-controller/riscv-hart.h
-> > new file mode 100644
-> > index 000000000000..e1c32f6090ac
-> > --- /dev/null
-> > +++ b/include/dt-bindings/interrupt-controller/riscv-hart.h
-> > @@ -0,0 +1,19 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> > +/*
-> > + * Copyright (C) 2021 Microchip Technology Inc.  All rights reserved.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_INTERRUPT_CONTROLLER_RISCV_HART_H
-> > +#define _DT_BINDINGS_INTERRUPT_CONTROLLER_RISCV_HART_H
-> > +
-> > +#define HART_INT_U_SOFT   0
-> > +#define HART_INT_S_SOFT   1
-> > +#define HART_INT_M_SOFT   3
-> > +#define HART_INT_U_TIMER  4
-> > +#define HART_INT_S_TIMER  5
-> > +#define HART_INT_M_TIMER  7
-> > +#define HART_INT_U_EXT    8
-> > +#define HART_INT_S_EXT    9
-> > +#define HART_INT_M_EXT    11
->
-> (1) From checking clic doc [0] I see an additional
->         12   CLIC software interrupt
-> defined.
+This reverts commit ad1abc8a03fdbc05b3390962b15287d4e7c5db22.
 
-Local IRQ #12 is for S-mode guest external interrupts as-per
-the ratified H-extension specification.
+The mxsfb driver handling imx8mq lcdif doesn't yet request the
+interconnect request that's needed when the description is present
+in the DT node.
 
-I guess CLIC spec needs to be updated.
+So revert that description and bring it back when it's supported.
 
-Regards,
-Anup
+Fixes: ad1abc8a03fd ("arm64: dts: imx8mq: Add interconnect for lcdif")
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 3 ---
+ 1 file changed, 3 deletions(-)
 
->
-> (2) The doc states that the ordering is a recommendation and
->         "not mandatory in all incarnations of the CLIC"
-> Is that clarified somewhere else that this more than recommended?
->
-> Thanks
-> Heiko
->
->
-> [0] https://github.com/riscv/riscv-fast-interrupt/blob/master/clic.adoc
->
-> > +
-> > +#endif /* _DT_BINDINGS_INTERRUPT_CONTROLLER_RISCV_HART_H */
-> >
->
->
->
->
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 972766b67a15..92b47d91e697 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -11,7 +11,6 @@
+ #include "dt-bindings/input/input.h"
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/thermal/thermal.h>
+-#include <dt-bindings/interconnect/imx8mq.h>
+ #include "imx8mq-pinfunc.h"
+ 
+ / {
+@@ -524,8 +523,6 @@ lcdif: lcd-controller@30320000 {
+ 						  <&clk IMX8MQ_VIDEO_PLL1>,
+ 						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
+ 				assigned-clock-rates = <0>, <0>, <0>, <594000000>;
+-				interconnects = <&noc IMX8MQ_ICM_LCDIF &noc IMX8MQ_ICS_DRAM>;
+-				interconnect-names = "dram";
+ 				status = "disabled";
+ 
+ 				port@0 {
+-- 
+2.30.2
+
