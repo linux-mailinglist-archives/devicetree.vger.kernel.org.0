@@ -2,37 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D8574598C1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 01:00:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DB7C4598CE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 01:01:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232617AbhKWADi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Nov 2021 19:03:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44192 "EHLO mail.kernel.org"
+        id S232460AbhKWADy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Nov 2021 19:03:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44224 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S232677AbhKWADg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Nov 2021 19:03:36 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B9C696101A;
-        Tue, 23 Nov 2021 00:00:27 +0000 (UTC)
+        id S232678AbhKWADo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Nov 2021 19:03:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CF3DB61027;
+        Tue, 23 Nov 2021 00:00:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637625628;
-        bh=ARZtdnYVkDDzWubL/eOjshZWqCo06As9GZuYBFAAzv4=;
+        s=k20201202; t=1637625635;
+        bh=01cYwVbEdh0X7Ig5gVg6S/mgZIzXX2UFJSaD0Nf/IgU=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=GVwpYyozHvEFXNb9Yv4RmHp+WxcZwz0xorHsxblUK25gZ1cdMaeZOq9DZ+XBRQxBl
-         NnNQ8ijIqBZGUBqH1NYorolgpCxkQsCg50JwsHGzzyxb2Eswf6nEK538YiuEGbxwKn
-         rlC//oY5m/4xX9DfhD7DI3Lk0u4d4z0QUHx+Ds9ie8f4Bo5EnVtYGIy3masSyWmso8
-         OZeW3HxK0iG2Do5MZ6lOwPbSel/7Ln/uSOGq184iJ1+CVubWoBdhLCtqY5JwtMwKvA
-         q85GdMANA38HcYgnhte6p9jB5Jvi6osXpo6miDj9cUvOdgVkFcCYqrnUvpgTcvMGJa
-         EIsvwsrcAD3zQ==
+        b=U1nmBoWjhnKgcYW1P9S5O0K0Rs11K/69Wj8qIMIwjMYyqTSq9SSAFIvwKX46MCafv
+         bzKXJmvlxQfZ96AyBeB+jN1NZHMYBe1gJ7eNUTWvU7RFnJQFeQsHUNTWr2I2h6zLDs
+         gH6aaEAr75ufBXmH79TfSd8EAGD3NX716TmMcNtk8csTCVWeFZkWmIzJBBp9k7ASdG
+         K2PuMIsmI99E0MK1tlq8fKQ5hQrpmALZjV5BmVplWZXNKDZaIKvK4uNe8TxtotADZv
+         H2Sln2ND0ACs8GbYP6iiLLWccxe9xFzttrBoEXugXv3gYH6EuehNCPKvRhbOQeOHqf
+         Uta6pbTYeOIbA==
 From:   Mark Brown <broonie@kernel.org>
-To:     linux-spi@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-In-Reply-To: <20211120011715.2630873-1-linus.walleij@linaro.org>
-References: <20211120011715.2630873-1-linus.walleij@linaro.org>
-Subject: Re: [PATCH] dt-bindings: spi: Add resets to the PL022 bindings
-Message-Id: <163762562745.2472045.372621212417525202.b4-ty@kernel.org>
-Date:   Tue, 23 Nov 2021 00:00:27 +0000
+To:     robh+dt@kernel.org, aisheng.dong@nxp.com, shawnguo@kernel.org,
+        wim@linux-watchdog.org, s.hauer@pengutronix.de,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, ulf.hansson@linaro.org,
+        linux@rempel-privat.de, linux@roeck-us.net
+Cc:     kernel@pengutronix.de, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, daniel.lezcano@linaro.org,
+        linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        festevam@gmail.com, Peng Fan <peng.fan@nxp.com>,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20211120113454.785997-1-peng.fan@oss.nxp.com>
+References: <20211120113454.785997-1-peng.fan@oss.nxp.com>
+Subject: Re: (subset) [PATCH V5 0/8] dt-bindinds/dts: support i.MX8ULP
+Message-Id: <163762563048.2472045.8052329194047350725.b4-ty@kernel.org>
+Date:   Tue, 23 Nov 2021 00:00:30 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -40,11 +47,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Nov 2021 02:17:15 +0100, Linus Walleij wrote:
-> Some PL022 implementations provide a reset line to the silicon
-> IP block, add a device tree property for this.
+On Sat, 20 Nov 2021 19:34:46 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
 > 
+> V5:
+>  only fix patch 8/8 "arm64: dts: imx8ulp: Add the basic dts for imx8ulp evk board"
+>   - Correct bus-width to 8 for eMMC
+>   - Drop pinctrl enet which no user
+>  Drop patch 1/9 in V4, since in merged in linux-next
+>  Add A-b/R-b tag
+> 
+> [...]
 
 Applied to
 
@@ -52,8 +66,8 @@ Applied to
 
 Thanks!
 
-[1/1] dt-bindings: spi: Add resets to the PL022 bindings
-      commit: d94758b344e3b6f16d31cb5b51b93e3e5a4c3567
+[3/8] dt-bindings: spi: fsl-lpspi: Add imx8ulp compatible string
+      commit: 49cd1eb37b487036f51bd57b591f7b5760a10e02
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
