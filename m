@@ -2,131 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D3A45A3FF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:40:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4658145A408
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 14:41:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236644AbhKWNmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 08:42:32 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:53070 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236433AbhKWNma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 08:42:30 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1ANArOFH009162;
-        Tue, 23 Nov 2021 08:39:21 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cg6mm0kww-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 Nov 2021 08:39:21 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 1ANDdK57007030
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 23 Nov 2021 08:39:20 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 23 Nov 2021 08:39:19 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Tue, 23 Nov 2021 08:39:19 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
- Tue, 23 Nov 2021 08:39:19 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1ANDdETA000435;
-        Tue, 23 Nov 2021 08:39:18 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v2 4/4] iio:filter:admv8818: Add sysfs ABI documentation
-Date:   Tue, 23 Nov 2021 15:39:00 +0200
-Message-ID: <20211123133900.133027-4-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211123133900.133027-1-antoniu.miclaus@analog.com>
-References: <20211123133900.133027-1-antoniu.miclaus@analog.com>
+        id S236694AbhKWNoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 08:44:20 -0500
+Received: from mail-ua1-f47.google.com ([209.85.222.47]:37415 "EHLO
+        mail-ua1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236379AbhKWNoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 08:44:19 -0500
+Received: by mail-ua1-f47.google.com with SMTP id o1so43828940uap.4;
+        Tue, 23 Nov 2021 05:41:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=NhlfaLQBrrV5YPN/kTJU8T6bovxNK4H2QU1+p9lFCmg=;
+        b=PU/SHxtYlj9anwg2ZueF8gNbjFPwlS0pJAEPtxf1XsA23vWF6P+l9BE8w8aK+8D97B
+         NNAxwmYnxb9APG4Ji+xCV7um4qA9QVkAO5pr5xVmwFu21KkSGq9CTi7GUsR+msQthBS2
+         X5O05Zl6DrnEB+wlqVZwMW1pQnkjvPYtFpmMnKHyDs86MCWPz/UwY82tRmGlin8EL/Eg
+         yEC3aPQm82jdGtvrb+COppkcE2cbaARKFo2ouByXlFeSrAascVN8na5+DnX1X6Arfjmb
+         i/WfGwpbQOoF5PjPdIDtv6NBkIRXArjBXjYJPufdC2GwAaCM9iK5c1bNtB6uNKLAlN2T
+         ibeg==
+X-Gm-Message-State: AOAM532e504lOhgq/0W/Di/gPn/fU6fCw8Du3s3Mlb8IBgoyufgzwA6M
+        YKxH8SsV5IgssfxmJEG/msx+XdUZMzEqmA==
+X-Google-Smtp-Source: ABdhPJxRte3mwWfg1ZQviBc/287MRb6mR0OQLXAHH6iNGqAGwM6vye3SgOZhHUDJHO6K0oUNZicjDA==
+X-Received: by 2002:a9f:3e43:: with SMTP id c3mr9023964uaj.29.1637674870943;
+        Tue, 23 Nov 2021 05:41:10 -0800 (PST)
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
+        by smtp.gmail.com with ESMTPSA id e7sm6187702vkn.20.2021.11.23.05.41.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 05:41:10 -0800 (PST)
+Received: by mail-vk1-f171.google.com with SMTP id b125so12403588vkb.9;
+        Tue, 23 Nov 2021 05:41:10 -0800 (PST)
+X-Received: by 2002:a1f:f24f:: with SMTP id q76mr10691871vkh.11.1637674870267;
+ Tue, 23 Nov 2021 05:41:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: kgfb73q7j9_P-d2qsvthYt3TU2aDdlgW
-X-Proofpoint-ORIG-GUID: kgfb73q7j9_P-d2qsvthYt3TU2aDdlgW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-23_04,2021-11-23_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 mlxlogscore=999 impostorscore=0 mlxscore=0 spamscore=0
- bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2111230076
+References: <20211122103905.14439-1-biju.das.jz@bp.renesas.com> <20211122103905.14439-3-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20211122103905.14439-3-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 23 Nov 2021 14:40:59 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWqOhfV3gCb4WcU_4Sg=x0b+CCNU1OU-gEhTmpvZxEzPg@mail.gmail.com>
+Message-ID: <CAMuHMdWqOhfV3gCb4WcU_4Sg=x0b+CCNU1OU-gEhTmpvZxEzPg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r9a07g044: Rename SDHI clocks
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial ABI documentation for admv8818 filter sysfs interfaces.
+On Mon, Nov 22, 2021 at 11:39 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Rename the below SDHI clocks to match with the clocks used in driver.
+>
+>      imclk->core
+>      clk_hs->clkh
+>      imclk2->cd
+>
+> Also re-arrange the clocks to match with the sorting order used in the
+> binding document.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v2:
- - remove bandwidth/center frequency related custom device attributes
- - remove bypass filter mode
- .../ABI/testing/sysfs-bus-iio-filter-admv8818 | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-filter-admv8818
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.17.
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-filter-admv8818 b/Documentation/ABI/testing/sysfs-bus-iio-filter-admv8818
-new file mode 100644
-index 000000000000..7211b5d0daa0
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-filter-admv8818
-@@ -0,0 +1,44 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_filter_high_pass_3db_frequency
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		The cut-off frequency of the ADMV8818 high pass filter. The value is scaled using
-+		the `out_altvoltageY_scale` attribute so that GHz frequencies are valid inputs,
-+		The accepted range of values for the frequencies is between 1.75GHz and 19.9GHz.
-+
-+		The default value for the scale is 1000000, therefore MHz frequency values are
-+		passed as input.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_filter_low_pass_3db_frequency
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		The cut-off frequency of the ADMV8818 low pass filter. The value is scaled using
-+		the `out_altvoltageY_scale` attribute so that GHz frequencies are valid inputs,
-+		The accepted range of values for the frequencies is between 2.05GHz and 18.85GHz.
-+
-+		The default value for the scale is 1000000, therefore MHz frequency values are
-+		passed as input.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/out_altvoltageY_scale
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Scale high pass and lowpass filter frequency values to Hz.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/filter_mode_available
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading this returns the valid values that can be written to the
-+		on_altvoltage0_mode attribute:
-+
-+		- auto -> Adjust bandpass filter to track changes in input clock rate.
-+		- manual -> disable/unregister the clock rate notifier / input clock tracking.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/filter_mode
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		This attribute configures the filter mode.
-+		Reading returns the actual mode.
--- 
-2.34.0
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
