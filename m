@@ -2,132 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D15545A76C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFB0A45A78D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:24:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238081AbhKWQVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:21:42 -0500
-Received: from mail-vk1-f170.google.com ([209.85.221.170]:41647 "EHLO
-        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238824AbhKWQVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:21:39 -0500
-Received: by mail-vk1-f170.google.com with SMTP id 188so9773680vku.8;
-        Tue, 23 Nov 2021 08:18:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=esyW0OAzYg3/RWIR9cYT0r1LL6UkCXN7FUP4GXrGayk=;
-        b=XZUzDsnYJVNcrgneOIbznKsK362tY8/g9SfVU6frC40wpvu9oSRJKBEC0+rOyKuOeS
-         5H6csPMu6fTXMWXTrzwpQuauSJl5tkv7zWXBNNNHa4OxbSfrwF8M9OEg+88fPBb8duIo
-         zsu48DGvHGxNjaEISVi4S+tk92IClCNZlfs8vFzlIWWpVa0FQB51P7dMAVZ+JBwD7URO
-         iOSyLj2ze2LuXWOLcfEY2RHG1y33XW9G3uR7keoZhs1af49KWvgLdZIqIp4A9tbwHUoU
-         B1MaMCe4Bj72TMz2q43BtAjbHdpxu6KPBnW2YYR+A80bwtN92pXWyPpfLh0jWnG3PLgm
-         fSBw==
-X-Gm-Message-State: AOAM531hvm0gHdGNzKbi5qldGAHjvQR61tfd4TCcqEwNAk5n570Qe6BD
-        49hCHdVX5wDHjNoBTvGRSxRlz8jsY9oI0Q==
-X-Google-Smtp-Source: ABdhPJyttauTbJRNlJcCw1ZZ8ZAqRaYOoEUYSRCPT9BbCMn1tgD8ve+9YyUbR7LHKoc9HV8EBeNyrw==
-X-Received: by 2002:a05:6122:2227:: with SMTP id bb39mr12529373vkb.9.1637684310608;
-        Tue, 23 Nov 2021 08:18:30 -0800 (PST)
-Received: from mail-ua1-f48.google.com (mail-ua1-f48.google.com. [209.85.222.48])
-        by smtp.gmail.com with ESMTPSA id i24sm6508017vkk.5.2021.11.23.08.18.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 08:18:30 -0800 (PST)
-Received: by mail-ua1-f48.google.com with SMTP id l24so44945915uak.2;
-        Tue, 23 Nov 2021 08:18:29 -0800 (PST)
-X-Received: by 2002:a05:6102:2910:: with SMTP id cz16mr10672924vsb.9.1637684309252;
- Tue, 23 Nov 2021 08:18:29 -0800 (PST)
-MIME-Version: 1.0
-References: <20211116074130.107554-1-yoshihiro.shimoda.uh@renesas.com> <20211116074130.107554-11-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20211116074130.107554-11-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 23 Nov 2021 17:18:12 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWgDRAMp5nAK2S4QcBXYysupQj+iAdTUN0orxzBLKrOQA@mail.gmail.com>
-Message-ID: <CAMuHMdWgDRAMp5nAK2S4QcBXYysupQj+iAdTUN0orxzBLKrOQA@mail.gmail.com>
-Subject: Re: [PATCH 10/16] soc: renesas: r8a779f0-sysc: Add r8a779f0 support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S229811AbhKWQ1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:27:21 -0500
+Received: from mx1.riseup.net ([198.252.153.129]:33322 "EHLO mx1.riseup.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229490AbhKWQ1V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 11:27:21 -0500
+Received: from fews1.riseup.net (fews1-pn.riseup.net [10.0.1.83])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256
+         client-signature RSA-PSS (2048 bits) client-digest SHA256)
+        (Client CN "mail.riseup.net", Issuer "R3" (not verified))
+        by mx1.riseup.net (Postfix) with ESMTPS id 4Hz8bc6CP6zF4hK;
+        Tue, 23 Nov 2021 08:24:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+        t=1637684652; bh=stNte7d26WnhnXC3ecSubp5EUl7aNu2uiNp1RYROnSI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ghaphtF57LSQFyViP4QhuVeq7ys2Usy+p9Bxo9TvJMfKgKLlxn0TDrGedLgXQbSWi
+         9++cKtQYhmCLeKvdNh5HrIl0y8q9KT5W56TMZLmFXEjd89zLVSmuJhlsfq2CBnSWzB
+         p3W8ZgtngLZGGJopxhhK9LdBR31baqIi1q+QVLfI=
+X-Riseup-User-ID: E0A67B4CE233D505C4916D06E1BFF3FB8359B951C0216D6436397217B9D33A9C
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+         by fews1.riseup.net (Postfix) with ESMTPSA id 4Hz8bZ4Ywjz5vLq;
+        Tue, 23 Nov 2021 08:24:10 -0800 (PST)
+From:   Dang Huynh <danct12@riseup.net>
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: qcom: Drop input-name property
+Date:   Tue, 23 Nov 2021 23:19:22 +0700
+Message-Id: <20211123161919.1506755-1-danct12@riseup.net>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+This property doesn't seem to exist in the documentation nor
+in source code, but for some reason it is defined in a bunch
+of device trees.
 
-Thanks for your patch!
+Signed-off-by: Dang Huynh <danct12@riseup.net>
+---
+This patch is a split of this treewide patch [1] to ease the
+maintainers.
 
-On Tue, Nov 16, 2021 at 8:42 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add support for R-Car S4-8 (R8A779F0) SoC power areas and register
-> access. This register specification is similar with R-Car V3U.
+[1]: https://patchwork.kernel.org/patch/12633497/
 
-similar to
+ arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts      | 1 -
+ arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts         | 1 -
+ arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts | 1 -
+ arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts          | 1 -
+ arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts     | 1 -
+ arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts    | 1 -
+ arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts    | 1 -
+ 7 files changed, 7 deletions(-)
 
-> So, introduces rcar-gen4-sysc.c for both V3U and S4-8.
+diff --git a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+index f8c97efc61fc..0cee62c7b8b0 100644
+--- a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
++++ b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+@@ -19,7 +19,6 @@ chosen {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+index ea15b645b229..6d77e0f8ca4d 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+@@ -20,7 +20,6 @@ chosen {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+index 30ee913faae6..069136170198 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+@@ -450,7 +450,6 @@ bcrmf@1 {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+index 003f0fa9c857..96e1c978b878 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+@@ -349,7 +349,6 @@ bluetooth {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
+index 398a3eaf306b..79e2cfbbb1ba 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
+@@ -20,7 +20,6 @@ chosen {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
+index b4dd85bd4faf..e66937e3f7dd 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
+@@ -20,7 +20,6 @@ chosen {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
+index 9743beebd84d..a62e5c25b23c 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
+@@ -20,7 +20,6 @@ chosen {
+ 
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+-		input-name = "gpio-keys";
+ 
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&gpio_keys_pin_a>;
+-- 
+2.34.0
 
-introduce.
-
-That makes perfect sense, as "the R-Car V3U SoC is based on the R-Car
-Gen 4 architecture".
-(https://www.renesas.com/us/en/products/automotive-products/automotive-system-chips-socs/r-car-v3u-best-class-r-car-v3u-asil-d-system-chip-automated-driving)
-
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-
-> --- a/drivers/soc/renesas/Kconfig
-> +++ b/drivers/soc/renesas/Kconfig
-> @@ -359,6 +359,9 @@ config SYSC_R8A77970
->  config SYSC_R8A779A0
->         bool "System Controller support for R-Car V3U" if COMPILE_TEST
->
-> +config SYSC_R8A779F0
-> +       bool "System Controller support for R-Car S4-8" if COMPILE_TEST
-> +
-
-Please retain sort order (alphabetically).
-
->  config SYSC_RMOBILE
->         bool "System Controller support for R-Mobile" if COMPILE_TEST
->
-> diff --git a/drivers/soc/renesas/Makefile b/drivers/soc/renesas/Makefile
-> index 9b29bed2a597..f6c5f8c3818c 100644
-> --- a/drivers/soc/renesas/Makefile
-> +++ b/drivers/soc/renesas/Makefile
-> @@ -25,11 +25,12 @@ obj-$(CONFIG_SYSC_R8A77980) += r8a77980-sysc.o
->  obj-$(CONFIG_SYSC_R8A77990)    += r8a77990-sysc.o
->  obj-$(CONFIG_SYSC_R8A77995)    += r8a77995-sysc.o
->  obj-$(CONFIG_SYSC_R8A779A0)    += r8a779a0-sysc.o
-> +obj-$(CONFIG_SYSC_R8A779F0)    += r8a779f0-sysc.o
->  ifdef CONFIG_SMP
->  obj-$(CONFIG_ARCH_R9A06G032)   += r9a06g032-smp.o
->  endif
->
->  # Family
->  obj-$(CONFIG_RST_RCAR)         += rcar-rst.o
-> -obj-$(CONFIG_SYSC_RCAR)                += rcar-sysc.o
-> +obj-$(CONFIG_SYSC_RCAR)                += rcar-sysc.o rcar-gen4-sysc.o
-
-This means all R-Car kernels will always include support for both
-R-Car Gen1/2/3 and R-Car Gen4.
-I think this should be split.
-
-The rest looks good to me, but I think it wouldn't hurt to split this
-patch in two parts: one patch to generalize r8a779a0-sysc.c for R-Car
-Gen4, and a second patch to introduce support for R-Car S4-8.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
