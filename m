@@ -2,205 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2739C45A0E6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:07:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3142845A0E4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:07:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230188AbhKWLK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 06:10:27 -0500
-Received: from mga09.intel.com ([134.134.136.24]:43062 "EHLO mga09.intel.com"
+        id S233520AbhKWLKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 06:10:24 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53340 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234722AbhKWLK0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 06:10:26 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10176"; a="234823917"
-X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; 
-   d="scan'208";a="234823917"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2021 03:07:17 -0800
-X-IronPort-AV: E=Sophos;i="5.87,257,1631602800"; 
-   d="scan'208";a="740458952"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2021 03:07:15 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 476C120762;
-        Tue, 23 Nov 2021 13:07:00 +0200 (EET)
-Date:   Tue, 23 Nov 2021 13:07:00 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, Hans Verkuil <hverkuil@xs4all.nl>
-Subject: Re: [PATCH v8 2/3] media: dt-bindings: Add Intersil ISL79987 DT
- bindings
-Message-ID: <YZzLVI2ZUBvXGhkZ@paasikivi.fi.intel.com>
-References: <20211123101517.3656935-1-m.tretter@pengutronix.de>
- <20211123101517.3656935-3-m.tretter@pengutronix.de>
+        id S230188AbhKWLKX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 06:10:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 00BF060F6E;
+        Tue, 23 Nov 2021 11:07:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637665635;
+        bh=Y2aF8NehTeFLD0SRj7EQpJxU1Gt3tByySijjlwPJ1O8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=srbWZ8TZU5kBczOGVecdutu30YShnz+ySbarO2Am3Z8O8DNX+1+cEiPK+2mqcsJC+
+         LGlamASOKwrUJJsEWCfG5mY1GA01XJskd++YF4oYw7Cv8+ZIC262XS7L8pGFtyj3Lx
+         x2pu9J94AI/ZWC+7jUJzrgAUEF60Xg5kyhxYj5H0BLhR/hTmclDEkMgygjdcjTze2h
+         81ycMTTnxGeA3IxQ/fhu43gBWkDgiQVhcATS1dHe3uKM1yLPfGB/K9A7RpuMHbe2ry
+         FjI7Zfs5nH0vAtbGq1c8Ll1bS1pG4zxYkYCZ8cN6+WS/39eQtccPYjGLwOqOfT7aE+
+         X5/9fjPfjTP+A==
+Date:   Tue, 23 Nov 2021 19:07:10 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Martin Kepplinger <martink@posteo.de>
+Cc:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: freescale: imx8mq: Disable noc dts node
+Message-ID: <20211123110709.GA31998@dragon>
+References: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
+ <20211123085841.GX31998@dragon>
+ <9b9fe3a5b04179870d6ca0ece754fee9abb306b4.camel@posteo.de>
+ <20211123092430.GY31998@dragon>
+ <c139110dc0b2096a51d1b3c344c3d597cf24093b.camel@posteo.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20211123101517.3656935-3-m.tretter@pengutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c139110dc0b2096a51d1b3c344c3d597cf24093b.camel@posteo.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+On Tue, Nov 23, 2021 at 09:30:02AM +0000, Martin Kepplinger wrote:
+> Am Dienstag, dem 23.11.2021 um 17:24 +0800 schrieb Shawn Guo:
+> > On Tue, Nov 23, 2021 at 09:15:57AM +0000, Martin Kepplinger wrote:
+> > > Am Dienstag, dem 23.11.2021 um 16:58 +0800 schrieb Shawn Guo:
+> > > > On Thu, Nov 11, 2021 at 01:16:09PM +0200, Abel Vesa wrote:
+> > > > > Adding interconnect properties to the consumer nodes creates
+> > > > > a dependency on noc device. The imx-bus devfreq driver is not
+> > > > > usable
+> > > > > without the full interconnect support. The interconnect is not
+> > > > > yet
+> > > > > working on i.MX platforms. The devlink created on device_add
+> > > > > makes
+> > > > > the lcdif and other nodes that have the interconnect properties
+> > > > > wait for the noc (imx-bus driver) to probe first.
+> > > > > 
+> > > > > To make sure the interconnect consumers (nodes that have
+> > > > > interconnect
+> > > > > properties already added) will still probe, lets disable the
+> > > > > noc
+> > > > > node
+> > > > > for now. Once the interconnect on i.MX platforms is fully
+> > > > > functional,
+> > > > > the status of the noc node can be changed.
+> > > > > 
+> > > > > Fixes: ad1abc8a03fdbc05b ("arm64: dts: imx8mq: Add interconnect
+> > > > > for
+> > > > > lcdif")
+> > > > 
+> > > > Martin,
+> > > > 
+> > > > Do you have any comment?  So your commit added something
+> > > > untested?
+> > > > 
+> > > > Shawn
+> > > 
+> > > hi Shawn,
+> > > 
+> > > well, for imx8mq the only missing piece is the mxsfb icc bandwidth
+> > > request. I posted a first version a year ago but that didn't make
+> > > it
+> > > in:
+> > > https://lore.kernel.org/linux-arm-kernel/20201201103757.32165-1-martin.kepplinger@puri.sm/
+> > > 
+> > > So this should create a working state until the real fix in mxsfb
+> > > is
+> > > there (although I'd revert commit ad1abc8a03fd ("arm64: dts:
+> > > imx8mq:
+> > > Add interconnect for lcdif") instead).
+> > 
+> > Besides lcdif, the mipi-csi devices have interconnects property too. 
+> > Are
+> > they already working?  If so, it makes more sense to revert
+> > ad1abc8a03fd
+> > instead.
+> 
+> imx8mq-mipi-csi.c request the bandwidth, yes. we use that and the
+> preliminary mxsfb request above so that works.
+> 
+> do you want me to send the revert?
 
-On Tue, Nov 23, 2021 at 11:15:16AM +0100, Michael Tretter wrote:
-> From: Marek Vasut <marex@denx.de>
-> 
-> Add bindings for the Intersil ISL79987 analog to MIPI CSI-2 decoder.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-media@vger.kernel.org
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> Changelog:
-> 
-> v8: none
-> 
-> v7: none
-> 
-> v6: none
-> 
-> v5: none
-> 
-> v4: none
-> 
-> v3:
-> 
-> - rename pd-gpios property to powerdown-gpios
-> - reference graph.yaml for ports/port properties
-> - remove reference to video-interfaces.txt
-> - remove unnecessary description of ports property
-> 
-> v2:
-> 
-> - convert binding to yaml
-> - change description to match only isl79987
-> - replace num-inputs property with multiple ports
-> - add reset gpio
-> ---
->  .../bindings/media/i2c/isil,isl79987.yaml     | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> new file mode 100644
-> index 000000000000..aee4a5966df3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> @@ -0,0 +1,100 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/isil,isl79987.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intersil ISL79987 Analog to MIPI CSI-2 decoder
-> +
-> +maintainers:
-> +  - Michael Tretter <m.tretter@pengutronix.de>
-> +  - Marek Vasut <marex@denx.de>
-> +
-> +description:
-> +  The Intersil ISL79987 is an analog to MIPI CSI-2 decoder which is capable of
-> +  receiving up to four analog stream and multiplexing them into up to four MIPI
-> +  CSI-2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - isil,isl79987
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      A GPIO spec for the RSTB pin (active high)
-> +
-> +  powerdown-gpios:
-> +    maxItems: 1
-> +    description:
-> +      A GPIO spec for the Power Down pin (active high)
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output port
+Yes, please.
 
-I think you need need the data-lanes property for endpoints on this port.
-
-> +
-> +    patternProperties:
-> +      "^port@[1-4]$":
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input ports
-> +
-> +    required:
-> +      - port@0
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      isl7998x_mipi@44 {
-> +        compatible = "isil,isl79987";
-> +        reg = <0x44>;
-> +        powerdown-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-> +        reset-gpios = <&gpio3 28 GPIO_ACTIVE_HIGH>;
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@0 {
-> +            reg = <0>;
-> +            isl79987_out: endpoint {
-> +              remote-endpoint = <&mipi_csi2_in>;
-> +              clock-lanes = <0>;
-> +              data-lanes = <1 2>;
-> +            };
-> +          };
-> +
-> +          port@1 {
-> +            reg = <1>;
-> +            endpoint {
-> +              remote-endpoint = <&camera_0>;
-> +            };
-> +          };
-> +
-> +          port@2 {
-> +            reg = <2>;
-> +            endpoint {
-> +              remote-endpoint = <&camera_1>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-
--- 
-Kind regards,
-
-Sakari Ailus
+Shawn
