@@ -2,139 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E98945A20D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 220D945A214
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 12:56:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229955AbhKWL55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 06:57:57 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:29322 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S236690AbhKWL54 (ORCPT
+        id S236723AbhKWL7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 06:59:55 -0500
+Received: from out5-smtp.messagingengine.com ([66.111.4.29]:40715 "EHLO
+        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234881AbhKWL7y (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 06:57:56 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1ANAQJFo009170;
-        Tue, 23 Nov 2021 06:54:48 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cg6mm02wg-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 23 Nov 2021 06:54:47 -0500
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1ANBskPB035315
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 23 Nov 2021 06:54:46 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5; Tue, 23 Nov 2021
- 06:54:45 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
- Tue, 23 Nov 2021 06:54:45 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1ANBsf0i026107;
-        Tue, 23 Nov 2021 06:54:44 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v5 3/3] Documentation:ABI:testing:admv1013: add ABI docs
-Date:   Tue, 23 Nov 2021 13:53:36 +0200
-Message-ID: <20211123115336.65827-3-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211123115336.65827-1-antoniu.miclaus@analog.com>
-References: <20211123115336.65827-1-antoniu.miclaus@analog.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: ynV-WJZ81v6bKh2guvOpsRd31cExjisy
-X-Proofpoint-ORIG-GUID: ynV-WJZ81v6bKh2guvOpsRd31cExjisy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-23_04,2021-11-23_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 mlxlogscore=999 impostorscore=0 mlxscore=0 spamscore=0
- bulkscore=0 suspectscore=0 adultscore=0 malwarescore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2111230066
+        Tue, 23 Nov 2021 06:59:54 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id A40575C0190;
+        Tue, 23 Nov 2021 06:56:46 -0500 (EST)
+Received: from imap47 ([10.202.2.97])
+  by compute3.internal (MEProxy); Tue, 23 Nov 2021 06:56:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=mime-version:message-id:in-reply-to:references:date:from:to
+        :cc:subject:content-type; s=fm3; bh=JPbgvbtJj9eTbsDi9kr3t/yTaBzv
+        KOloHJCm1F/slHc=; b=RJr/98uODB+qsu7zoJ/qli/XMe5ViKA0VMd+uukriHLF
+        fKKNygR4S1Kcdl6I6QKBUbr6MUvRCt4idtGgeHtbMA1yNAse8kPcQnVjQZDGVj4Y
+        nm3m7QWKzylrdVssGyIHbo9GH1M+rLt140br5f/wQ8AoWbc4wJfeMDF2MvlToS8n
+        t+mrV9eW5g/x38/4DOb/ayz+SXPY5R//2D+g+8rFEPmKEvmGClf2OQyPflO0NklG
+        dmI73vdjnSBGL7pQGjEqnCEutL82j/TN5jVMqzNUhR9t5rAPDWEYM47KBN116keE
+        v7ks+nWxDhE5LjcoE5WYhHgI3iks5YGpnLBRSq+Gww==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=JPbgvb
+        tJj9eTbsDi9kr3t/yTaBzvKOloHJCm1F/slHc=; b=dUUKhjhoIZl1MotiW35D0H
+        wvdQAsyQFn8mOExti5L4ifeCBBex9I2regEusYpI0xhd1wTRDea1VyHonSd4XtGe
+        r5kcY0j14NfxUkVWvBtjAB2JMRCY70X5gaB93a1IyA7lcEM6UfI/G1WWoh3iCjI2
+        LmTt5LJEZWepg0pQF9urYVmwJgtcykoFlfjVmcnXzX9XbfUdYzlaAu3wAJTHLTFC
+        CojzIr8riniG1d9pDH/h/NZ6yvWX69vx868ShcolRPChf9Za4LQnNyBt24Auxqwk
+        YvVyJu1SHTLmImi++t1xu/NbvKs1khxmV8sK8wA5311sGMgW+Gl8Rr1ZU53DNr0g
+        ==
+X-ME-Sender: <xms:_tacYYffuEMqXRvUwtZk9v_Mlg2oI9G4ORNwKKBM9_S5gcXSjl0TWg>
+    <xme:_tacYaOS9Fiw_ave2sakeF_oUavFrj4DXTMQ6Tifx-lgGw54eYrXdCije7QQVYe12
+    cknghezaBzPfIejfvw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeigdefgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhvvghn
+    ucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrth
+    htvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudehvdef
+    keffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsh
+    hvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:_tacYZg5hRu8jZdgEe5sWjrOjuPEIto9EiE-y8lQKFOVju85vijs9w>
+    <xmx:_tacYd-Be5aDYzWerrBKNuE_l1aEYIeobwR4V-9cMQdiF3aQFemGBA>
+    <xmx:_tacYUtqHGEn1zuU7AnRVSrko-ejOQe6rhVHbXtZPWga_HG02WdnMg>
+    <xmx:_tacYWL1jTSORaDg71MfueI_dMKCNAYxj8HQ0DnzRtjjx-i7o7RdKA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 75ACE2740616; Tue, 23 Nov 2021 06:56:46 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-1371-g2296cc3491-fm-20211109.003-g2296cc34
+Mime-Version: 1.0
+Message-Id: <f1fefe77-2d19-434b-9fd4-d1c51e46cd5b@www.fastmail.com>
+In-Reply-To: <20211122225807.8105-5-j@jannau.net>
+References: <20211122225807.8105-1-j@jannau.net>
+ <20211122225807.8105-5-j@jannau.net>
+Date:   Tue, 23 Nov 2021 12:56:26 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Janne Grunau" <j@jannau.net>, "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Rob Herring" <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] arm64: dts: apple: t8103: Add cd321x nodes
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for the use of the Local Oscillator Feedthrough Offset
-calibration.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-changes in v5:
- - rework the custom device attributes based on the feedback received in v4
- - add frequency translation modes custom attributes.
- .../testing/sysfs-bus-iio-frequency-admv1013  | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013 b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
-new file mode 100644
-index 000000000000..3ff80909f007
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-bus-iio-frequency-admv1013
-@@ -0,0 +1,55 @@
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0-1_phase_i
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior path quadrature I phase shift.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0-1_phase_q
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior path quadrature Q phase shift.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_calibbias_i
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration I Positive
-+		side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage0_calibbias_q
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration Q Positive
-+		side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage1_calibbias_i
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration I Negative
-+		side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/in_altvoltage1_calibbias_q
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Read/write raw value for the Local Oscillatior Feedthrough Offset Calibration Q Negative
-+		side.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/freq_mode_available
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		Reading this returns the valid values that can be written to the freq_mode attribute.
-+
-+		- if -> Intermediate Frequency
-+		- iq -> Quadrature I/Q mode.
-+
-+What:		/sys/bus/iio/devices/iio:deviceX/freq_mode
-+KernelVersion:
-+Contact:	linux-iio@vger.kernel.org
-+Description:
-+		This attribute configures the frequency mode.
-+		Reading returns the actual mode.
--- 
-2.34.0
+On Mon, Nov 22, 2021, at 23:58, Janne Grunau wrote:
+> All M1 Mac devices have 2 SoC connected USB-C ports and use cd321x USB
+> type C port switch and power deliver controllers. I2c bus and adresses
+> configuration are for all devices equal.
+> The iMac (24-inch, 2021) has a configuration with 2 additional USB-C
+> ports (j456) using two addiotional cd321x controllers.
+>
+> Signed-off-by: Janne Grunau <j@jannau.net>
+> ---
+>  arch/arm64/boot/dts/apple/t8103-j456.dts  | 18 ++++++++++++++++++
+>  arch/arm64/boot/dts/apple/t8103-jxxx.dtsi | 18 ++++++++++++++++++
+>  2 files changed, 36 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/apple/t8103-j456.dts 
+> b/arch/arm64/boot/dts/apple/t8103-j456.dts
+> index 7267e069355b..c6b8c28455f5 100644
+> --- a/arch/arm64/boot/dts/apple/t8103-j456.dts
+> +++ b/arch/arm64/boot/dts/apple/t8103-j456.dts
+> @@ -21,6 +21,24 @@ aliases {
+>  	};
+>  };
+> 
+> +&i2c0 {
+> +	hpm2: tps6598x@3b {
 
+I know that the tps example in the binding uses tps6598x as the node name
+but I think that these names are usually more general. Maybe usb-pd@3b
+instead which is used in arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
+and reflects the function of this device.
+
+With that fixed:
+
+Reviewed-by: Sven Peter <sven@svenpeter.dev>
+
+
+Thanks,
+
+Sven
