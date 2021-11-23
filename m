@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3B7645A5C0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 80AB845A5F2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234867AbhKWOjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 09:39:16 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53688 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233318AbhKWOjP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 09:39:15 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id ADAD360FA0;
-        Tue, 23 Nov 2021 14:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637678167;
-        bh=m4P9JkoC3K8B57wmT+eoRn28ephU3YfVJRGyLvXZ/Zg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cujsitl0Rc5kYpwPjer8WXdeWVU6Nc2nahAozwPS47/0iQuT7jd9ooUU3553IsNgV
-         Ck1t0SQn9Z4ShGHYj9iIouhAveug+HKcAanaNwovgVyLTxPavOU46jyj1V74gV5U0t
-         nM0yye/6W6LyzzFqvP6II83xU4kSwDPST+SHx6v1Aj8TO0BMJznx19pb6ZSqexBIfF
-         k4W13fpIwxdFhGKQ4uoB/dLW0vGsxIrWbap1v3c8whLfx+PbrwX3euXuTbnho8IKlt
-         PHFbWO6Dvmx38l008q5tgC2sFM5oLdKEkpHY7soakjkX502qi/9iQ462bxaK28zmFB
-         hBTufiO5td3PQ==
-Date:   Tue, 23 Nov 2021 14:36:02 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "LH.Kuo" <lhjeff911@gmail.com>
-Cc:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dvorkin@tibbo.com,
-        qinjian@cqplus1.com, wells.lu@sunplus.com,
-        "LH.Kuo" <lh.kuo@sunplus.com>
-Subject: Re: [PATCH v3 0/2] Add SPI control driver for Sunplus SP7021 SoC
-Message-ID: <YZz8UuqtekI103i4@sirena.org.uk>
-References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
- <cover.1637547799.git.lh.kuo@sunplus.com>
+        id S236295AbhKWOo2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 09:44:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37768 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234213AbhKWOo2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 09:44:28 -0500
+Received: from mail.marcansoft.com (marcansoft.com [IPv6:2a01:298:fe:f::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3399C061574;
+        Tue, 23 Nov 2021 06:41:19 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: marcan@marcan.st)
+        by mail.marcansoft.com (Postfix) with ESMTPSA id 23F32419B4;
+        Tue, 23 Nov 2021 14:41:15 +0000 (UTC)
+Subject: Re: [PATCH v3 3/4] arm64: dts: apple: t8103: Add i2c nodes
+From:   Hector Martin <marcan@marcan.st>
+To:     Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211122225807.8105-1-j@jannau.net>
+ <20211122225807.8105-4-j@jannau.net>
+ <5f16c962-72a1-21ec-9651-744053f74365@marcan.st>
+Message-ID: <d48d2e85-42f1-570a-bd8f-e3834147c8b8@marcan.st>
+Date:   Tue, 23 Nov 2021 23:41:12 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0xFm47TvXhXeY2/U"
-Content-Disposition: inline
-In-Reply-To: <cover.1637547799.git.lh.kuo@sunplus.com>
-X-Cookie: A closed mouth gathers no foot.
+In-Reply-To: <5f16c962-72a1-21ec-9651-744053f74365@marcan.st>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: es-ES
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/11/2021 14.41, Hector Martin wrote:
+> On 23/11/2021 07.58, Janne Grunau wrote:
+>> Apple M1 has at least 5 i2c controllers. i2c0, i2c1 and i2c3 are used
+>> on all M1 Mac devices. The 2020 Mac Mini uses i2c2 and the 13-inch
+>> MacBook Pro uses i2c2 and i2c4.
+> 
+> On further testing: i2c3 is not used on the 1GbE variant of j274. iBoot
+> actually kills the node entirely. The interesting thing is it doesn't
+> work; it times out probe transactions. I suspect iBoot does not enable
+> its clock or something like that.
+> 
+> I'll poke around this on IRC, but a priori we probably need m1n1 code to
+> kill this node when the ADT doesn't have it. Maybe I should generalize
+> the dwc3 killing code...
 
---0xFm47TvXhXeY2/U
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Did that as of m1n1 be7ff3a, so we're good now :)
 
-On Mon, Nov 22, 2021 at 10:33:31AM +0800, LH.Kuo wrote:
-> This is a patch series for SPI driver for Sunplus SP7021 SoC.
->=20
-> Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
-> many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
-> etc.) into a single chip. It is designed for industrial control.
+For those following along in the list: the reason why i2c3 was getting 
+stuck is because it seems the unused bus is weakly pulled low on these 
+machines, which jams it. Setting the GPIO pull mode to pull-up makes it 
+work as an empty bus, but let's just not instantiate at all in this 
+case. m1n1 now checks the Apple DT and sets any FDT i2c devices that are 
+not present in it to disabled.
 
-The structure of the driver now looks good, but there are some smaller
-issues remaining - I don't think I saw anything that Andy and Lukas
-didn't already raise.
-
---0xFm47TvXhXeY2/U
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGc/FEACgkQJNaLcl1U
-h9DyzQf9F128u+NblHPkaGwhrC+dTZxz5lebMLdzTD6sPpXyO1wJozTMdsEs1xc1
-7nQ3Mvbp9BVpGg5KmOfg9c3Ofol2zvTscDqaPoMgJcjaveirTVKlJyRba8pfpHrU
-9fTF+5romUKv9uhCCzGNj10QeOtesyReF7DUCl51izswBHusBIAbvmcBj7oKsvKd
-sj+d429SWvIFGlj/ZcP+mmvrtrBbm8bWKyqM7Sf7sqesLgZ4c4lQKhhWyAcIObBJ
-SScxOL+uStzOU4GYdauSIoIpvygaBYlyFYDYmzGG8yjOlKS9bXMEsIMWTNAdgUOT
-DINKUmZY1f1ZCA0P71mtbuvEvJ3mvw==
-=XdF0
------END PGP SIGNATURE-----
-
---0xFm47TvXhXeY2/U--
+-- 
+Hector Martin (marcan@marcan.st)
+Public Key: https://mrcn.st/pub
