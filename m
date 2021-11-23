@@ -2,196 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 865BE45AEAF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 22:49:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F04145AEEB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 23:17:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237066AbhKWVwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 16:52:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52878 "EHLO
+        id S231304AbhKWWUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 17:20:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230132AbhKWVww (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 16:52:52 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8873AC061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 13:49:43 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id u18so399606wrg.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 13:49:43 -0800 (PST)
+        with ESMTP id S229992AbhKWWUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 17:20:54 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEA1EC061574;
+        Tue, 23 Nov 2021 14:17:45 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id g28so340593pgg.3;
+        Tue, 23 Nov 2021 14:17:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Cx/RxGowWJ+ARkenpaoiEAOOeuCHEYaUTm5UxAY6csM=;
-        b=5x1Ij98oK/pne1Z9rEJboic7qMOUJIDV11ltFZCaPVP1z9MEwJZum4mUJNPzdcG9pr
-         giiOp4XDBijKmh5kI+CORs9dyo7H0CcHTX/aL6hZpduR48u1yfwcbPZqji+9hFlLNPu1
-         +yPzYtF/eoeHd/u8NyGN1xlvqdhK6XQCpajmPCKMN4eN/92FLWxa73lZTy+zcv7tbqqV
-         I5NO2tMC+7gzIWN5sCVgQ1AWGltjQO9pAljWnE/HQF8uJGakdjWSCzKCn28zv1XaoRTH
-         Ns0dwi1t2bjMBbjjtZtvfL/qAAcgos+FFzdHtklwrpCdM5OhG6pl/KBqF5ZIlpgwyfh/
-         2TPg==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=riM6n3FKXPnBbZpz8xDj88S9+02ymlAL73plCzbpCUM=;
+        b=UlM8A0aWxK7uD7yPaUWG+PnC0Co4lMl3miYyPkxkSPdv/gO98XQKxpuMcpV37tEA1l
+         nUSMzY1PuuPIiDku689Z0JGG9kY07D965eTuv0wt0YmPXRCCA/0PA2WYK7yz0x2J9HLc
+         L4j9zk72hncwDE6+3d1W8y4DPGsnrDm1MdKn7qEEVviS24CBL9LTzZZxu+KBcre+acQo
+         yUFySFK8eVNYpDdX4QjJqAqIVR+ScY5qCaw/SKcV35+8C9D+py6tXpWKXxUJ/6FJgbdq
+         2LKFYjYEeDjqETwJAFXazrH2M16ibsrw8D3h8c1hlFfnA8RSToGNG7zWTlJdb1XBQMTK
+         1Tlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Cx/RxGowWJ+ARkenpaoiEAOOeuCHEYaUTm5UxAY6csM=;
-        b=xtXybah9wUhusw7smtren2hxS05eqN9RaSucxQlJUA3syOLZC4rMotKm0fxh67Zr5h
-         4Tc8EKrje6vWlBhpFjlq9BeChUmdgSajO4iFY4qB4hPhd2GUE50Rimckw4YaonPY4zd/
-         dswDRzrX5RAWMzD4o7ZyT4Y8cXoIQ0V4pSDzQt/wlTpRSCHii3FYerX97u/nie2fHQw0
-         5/GIlryixaygGqTKZ6z3hBh1TM/1kpZxJr6GuoxjawOcGmr+OhGOLYkN84STlZnDfXL0
-         PzolAj/b8lFTqCsDVbHihffWxxABaC8p/WCEhaJAWqwkVf5nhqe6V8z2YAC5KeOEgt+u
-         +XPw==
-X-Gm-Message-State: AOAM533vRBfVaGtmmk7kmjC/LkgG+c8QM6VueXTY5wBAhfP0I8e4Pat0
-        j6YOg/qCsH022p+M7TOeDey89w==
-X-Google-Smtp-Source: ABdhPJwDytN/PHntpYMCQvQoS2a7fQzgUQ5ar0i50ahvm5shKlLObQaC+93HYMhXE9RrjJT+fpaz+A==
-X-Received: by 2002:a5d:6085:: with SMTP id w5mr10905139wrt.122.1637704182162;
-        Tue, 23 Nov 2021 13:49:42 -0800 (PST)
-Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
-        by smtp.googlemail.com with ESMTPSA id l8sm2520877wmc.40.2021.11.23.13.49.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 13:49:41 -0800 (PST)
-From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH] dt-bindings: staging: media: i2c: Add bindings for Maxim Integrated MAX96712
-Date:   Tue, 23 Nov 2021 22:49:22 +0100
-Message-Id: <20211123214922.3981616-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.34.0
+        bh=riM6n3FKXPnBbZpz8xDj88S9+02ymlAL73plCzbpCUM=;
+        b=2yu5cd8rNli5GP4EtMn39WVMmxM7jEgJClrpQ2kbCGNNHEVEwuW6rsAXJQssvdUZBZ
+         rOZIKO0lDs7be+lRtgiNo46IBcgTHDnmangvVT8G983Trjlvr3dRP/nnfGJZlysF6yUA
+         v7MULPJkJPgMcR8ffPmauCwT6+PUgxl/yoBtyXTBw5XuPxgfS2/D6RMNxxDnKE6g/quI
+         vPUQypdPi9WzToBOJ0SNKELrFdKVwIenPnmM0LEKY4REq7b/RmHdVFBF6te4YYOa6TzV
+         0jtXxIuPz71/PzL4Q6+KvxrDJPlvKGTSl4ZSTuByLoQfa2ghArOSlQeIYqH/ErvwrH3r
+         loSQ==
+X-Gm-Message-State: AOAM532ytPbH/Cl/pHaW1AUqo69+KUcgktewMJqXfOh0doPhazj8b+DQ
+        L+6KxIOYBm/gwmV8lm+ObNY=
+X-Google-Smtp-Source: ABdhPJwRMY1l0h3M7z8ZWH7kogdpeYo1lF8Tns9RZvAtkRkSP1OZ1By6TrNUDPORS0TgbidaE+YNEA==
+X-Received: by 2002:a63:8143:: with SMTP id t64mr6244139pgd.43.1637705865375;
+        Tue, 23 Nov 2021 14:17:45 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id d9sm3192077pjs.2.2021.11.23.14.17.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Nov 2021 14:17:44 -0800 (PST)
+Subject: Re: [PATCH 1/2] dt-bindings: leds: add Broadcom's BCM63xxx controller
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20211115091107.11737-1-zajec5@gmail.com>
+ <495a94ce-984e-f5c5-f5a2-74dc1b61e345@gmail.com>
+ <5113880f-d37d-0835-c140-c3749048c519@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <0795ecb9-f638-bb95-1e97-4c10800eb37c@gmail.com>
+Date:   Tue, 23 Nov 2021 14:17:43 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <5113880f-d37d-0835-c140-c3749048c519@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
-deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
-or C-PHY formatted outputs.
+On 11/22/21 2:00 PM, Rafał Miłecki wrote:
+> On 22.11.2021 22:51, Florian Fainelli wrote:
+>> On 11/15/21 1:11 AM, Rafał Miłecki wrote:
+>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>
+>>> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
+>>> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
+>>> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
+>>
+>> Just so the existing pattern/regexps continue to work, I would be naming
+>> this "bcm63xx" to be consistent with the rest of existing code-base.
+> 
+> The problem I saw with "bcm63xx" is that it seems to match all SoCs:
+> those with old block and those with new block. So I guess both groups
+> have the same right to use that "bcm63xx" based binding.
+> 
+> To avoid favouring old or new block I decided to avoid "bcm63xx".
+> 
+> Given above explanation: do you still prefer using "bcm63xx" based
+> binding for the new block? I'm OK with that, I just want to make sure
+> you're aware of that minor issue. Please let me know :)
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- .../staging/media/i2c/maxim,max96712.yaml     | 111 ++++++++++++++++++
- 1 file changed, 111 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml
+Maybe we use leds-bcm63138.c then since this is the first chip in the
+list that featured that block, similar to how leds-bcm6328.c was
+created? Then my second choice would be leds-bcm63xx.c just so the
+existing patterns match, really and because it's easy to visually not be
+able to tell the difference between two x versus three x.
 
-diff --git a/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml
-new file mode 100644
-index 0000000000000000..978f2c0e5caef567
---- /dev/null
-+++ b/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2021 Renesas Electronics Corp.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/staging/media/i2c/maxim,max96712.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
-+
-+maintainers:
-+  - Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-+
-+description: |
-+  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into MIPI
-+  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
-+  simultaneously transmit bidirectional control-channel data while forward
-+  video transmissions are in progress. The MAX96712 can accommodate as many as
-+  four remotely located sensors using industry-standard coax or STP
-+  interconnects.
-+
-+  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
-+  forward direction and 187.5Mbps in the re- verse direction. In GMSL1 mode, the
-+  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
-+  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 mode.
-+
-+properties:
-+  compatible:
-+    const: maxim,max96712
-+
-+  reg:
-+    description: I2C device address
-+    maxItems: 1
-+
-+  enable-gpios: true
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 0
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 1
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 2
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: GMSL Input 3
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description: CSI-2 Output
-+
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes: true
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@4
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c@e6508000 {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            reg = <0 0xe6508000>;
-+
-+            gmsl0: gmsl-deserializer@49 {
-+                    compatible = "maxim,max96712";
-+                    reg = <0x49>;
-+                    enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
-+
-+                    ports {
-+                            #address-cells = <1>;
-+                            #size-cells = <0>;
-+
-+                            port@4 {
-+                                    reg = <4>;
-+                                    max96712_out0: endpoint {
-+                                            clock-lanes = <0>;
-+                                            data-lanes = <1 2 3 4>;
-+                                            remote-endpoint = <&csi40_in>;
-+                                    };
-+                            };
-+                    };
-+            };
-+    };
+Thanks
 -- 
-2.34.0
-
+Florian
