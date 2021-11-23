@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79485459E9F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 09:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B38A5459EC1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:01:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233204AbhKWI4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 03:56:37 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52738 "EHLO mail.kernel.org"
+        id S229935AbhKWJE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 04:04:28 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53718 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231180AbhKWI4Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 03:56:25 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7422760231;
-        Tue, 23 Nov 2021 08:53:17 +0000 (UTC)
+        id S235743AbhKWJBz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 04:01:55 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 50F0960187;
+        Tue, 23 Nov 2021 08:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637657598;
-        bh=DzcMqbBiB5HTVk6xDoobtMz1OiIR8VRKJKmEiMEeEAU=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=F9Cok9x34uEr0GDnsGeC2OQvWfwCKAgvSS9C+IUdcJU6KSZNiBGqFzQg4x7cRZu7J
-         Z5o5UV695z/ibCQ0oI1tEqwwhWK5ELBeMjHaoV6X75vedHgCoYPJ5kkdByBHKQzpl7
-         fGFs2Mg7FGXhKwxkkwNULoSqLHCYdUrQ5y4xUagsi54A+vRHWCSYcXhEa4CMlwgBj4
-         qfsyeFoUIAaRX2fMVV4M1g1w2+2+hafPYYtXCHyY/WWUgFBDnRR1MptCRLBW6To3xJ
-         IcpVF4pl8AR4cOyXM9DljJwadGLzpAQ+ydPY8K1huavvOKZ+tajd1MTWZrrsfYWIo2
-         02Wlq4hWuuuAg==
-Date:   Tue, 23 Nov 2021 09:53:14 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
+        s=k20201202; t=1637657928;
+        bh=J7kwUKVNN/3CJzDlKIPH1Apy8xKg2S6cz4ypVO1LfSI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Y6ThtLd6By+yo0589CRi3GyKLYS/z3CcFbZrVqf6f4qZDTbt4t+NGdM/WE9pyEZBP
+         Oe+nsJaHFTuQnJCOhe1Vwtrm1nq1bdcK3ciiRZhlVWn/6qQ48OFSK9GCCHqM2Hu5ku
+         hDlPys25WtcZ4DVjrztqSgP48LZqFVF6tSzPeSbQr3obgFB/KzEVz4eBhX8Ucki6I3
+         FGaC04z3XHYQat5e2KOJEB6daWCZpj7245EqmKdHwafAyveGhUlpQ++5QvBfsopSEf
+         Mm1RjmdzbFMcRe83j+U/mwqAejkv+TX1h12a5kkrXZ3DWo1Ba+SNqtlqxDRNSq5BRB
+         HuhnwZ5ZyadAw==
+Date:   Tue, 23 Nov 2021 16:58:42 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Abel Vesa <abel.vesa@nxp.com>,
+        Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     Martin Kepplinger <martink@posteo.de>,
+        Rob Herring <robh@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabio Estevam <festevam@gmail.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
         NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 01/12] dt-bindings: i2c: imx-lpi2c: Fix i.MX 8QM
- compatible matching
-Message-ID: <YZyr+pXtjVPwSJyL@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <1636566415-22750-1-git-send-email-abel.vesa@nxp.com>
- <1636566415-22750-2-git-send-email-abel.vesa@nxp.com>
- <YZyrxvzRUk3jPMnn@kunai>
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: freescale: imx8mq: Disable noc dts node
+Message-ID: <20211123085841.GX31998@dragon>
+References: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ai2j28B/WYaqQFoB"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YZyrxvzRUk3jPMnn@kunai>
+In-Reply-To: <1636629369-23988-1-git-send-email-abel.vesa@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 11, 2021 at 01:16:09PM +0200, Abel Vesa wrote:
+> Adding interconnect properties to the consumer nodes creates
+> a dependency on noc device. The imx-bus devfreq driver is not usable
+> without the full interconnect support. The interconnect is not yet
+> working on i.MX platforms. The devlink created on device_add makes
+> the lcdif and other nodes that have the interconnect properties
+> wait for the noc (imx-bus driver) to probe first.
+> 
+> To make sure the interconnect consumers (nodes that have interconnect
+> properties already added) will still probe, lets disable the noc node
+> for now. Once the interconnect on i.MX platforms is fully functional,
+> the status of the noc node can be changed.
+> 
+> Fixes: ad1abc8a03fdbc05b ("arm64: dts: imx8mq: Add interconnect for lcdif")
 
---ai2j28B/WYaqQFoB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Martin,
 
-On Tue, Nov 23, 2021 at 09:52:22AM +0100, Wolfram Sang wrote:
-> On Wed, Nov 10, 2021 at 07:46:44PM +0200, Abel Vesa wrote:
-> > The i.MX 8QM DTS files use two compatibles, so update the binding to fix
-> > dtbs_check warnings like:
-> >=20
-> >   arch/arm64/boot/dts/freescale/imx8qm-mek.dt.yaml: i2c@5a800000:
-> >     compatible: ['fsl,imx8qm-lpi2c', 'fsl,imx7ulp-lpi2c'] is too long
-> >=20
-> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
->=20
-> Applied to for-next, thanks!
+Do you have any comment?  So your commit added something untested?
 
-Sorry, I meant:
+Shawn
 
-Applied to for-current, thanks!
-
-
-
---ai2j28B/WYaqQFoB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGcq/oACgkQFA3kzBSg
-KbaAshAApPthEVHYUaFUOKk69OzgO5mHmqXphIQWp44fhw39SRRl8B980bcT/HTi
-E4FmUcnAU2kC5CoCVrY2ylkddNxgjjXAuoYQM+Adm9/mnizJOD2ovySuBnMlNdcQ
-7aVMz3kfjjjjupqbRlHuFSGgy90RBFpnZog/cpTdBpHhMqho13M9YOTVxOqKu/gm
-1h0BQ+VaMSmmpWEcrvByGUkcry7OQEyXYhOt67Z11QRDgcGHocc4T3QxzM7UeR0t
-+B7ybtAqRMDI2HsGOe3zLvO2FYnOIY3KO5tX/I7QVYu2qx90xzlqjj+s4zrWWqs8
-uBo84hQXKU9uncwkbolx2dgcjE/aJqMi2MRRIjelpQAeZ2wHTFgYMvp803dtu7V+
-u7Zk9KIHvCSuQmshdiXlw5SMbts4dHI+nBkOmLt5OKudzj303sbc+WIS2I7u4Psk
-dH77wN9VgGMuAoAGZeueb1BAgB3Uo3BUTYR2BGNQSv7y4N/sedS41KcoOE+73Pvc
-7oqcq0dte+JGeXoVpONxl0z8GmPeQhInb6q3+mdf7Yx3P5e46yFUHITa1mM8I4cJ
-PZamtfkfOUA1moZn2ynMyt6CUCxS/FLOIPr2ou3Puyb4AP0UoIGiqAzQJA+rhRCz
-CHAHUq2Wfz3ZGVR3u1T5Gbe4Ne6Xq4eEGVHHym/5Ret9SCY8vPo=
-=7NgS
------END PGP SIGNATURE-----
-
---ai2j28B/WYaqQFoB--
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index 972766b67a15..f3182878f596 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -1305,6 +1305,7 @@ noc: interconnect@32700000 {
+>  			fsl,ddrc = <&ddrc>;
+>  			#interconnect-cells = <1>;
+>  			operating-points-v2 = <&noc_opp_table>;
+> +			status = "disabled";
+>  
+>  			noc_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+> -- 
+> 2.31.1
+> 
