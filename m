@@ -2,243 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F8245A659
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 16:14:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0133145A67E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 16:24:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236874AbhKWPRN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 10:17:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45336 "EHLO
+        id S236528AbhKWP1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 10:27:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238370AbhKWPQy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 10:16:54 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE56C061574;
-        Tue, 23 Nov 2021 07:13:46 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 230131F45691
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1637680425; bh=UdikZm5GFYAaJ/bUnn2Y4uKopT8g2Baosze+FC5T/aI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DywJze0RbRDKtEJE0vWLI9CZrQ6D3jiVz0HKe/3SHytT/jy9VtHqaJi+nuVtpliEk
-         WslLDjmkrBms9zq8r4Sl9IAdWSZz6u0jg9nWCXH2Oc16I9e/Zn/pHdeNx1yIRS9yxO
-         o9Va+BxcVo/HkKYgw9cmVBjtUWQLoHbzpdsqvukGHlmNItxv5T5JlFjiWsl/ybXdap
-         pAU/OeEjfZUzZ//zsZMA1PqFrA2aP7vnIocIh9E1RrCaj20Mu9nt7iGP3BuomBKD3Z
-         JSe37ZsyjlLWP2ggWKPYEKC49FD6ygB+N9y4lxiuT+po2nbUoInqbmjJkBdRZmjDhb
-         wz4eCvSog+8Kg==
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     aisheng.dong@nxp.com, ariel.dalessandro@collabora.com,
-        festevam@gmail.com, ioana.ciornei@nxp.com,
-        jagan@amarulasolutions.com, kernel@pengutronix.de, krzk@kernel.org,
-        linux-imx@nxp.com, matt@traverse.com.au, matteo.lisi@engicam.com,
-        meenakshi.aggarwal@nxp.com, michael@amarulasolutions.com,
-        nathan@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        shawnguo@kernel.org, tharvey@gateworks.com
-Subject: [PATCH v2 5/5] arm: dts: imx8ulz-bsh-smm-m2: Add BSH SMM-M2 IMX6ULZ SystemMaster
-Date:   Tue, 23 Nov 2021 12:12:52 -0300
-Message-Id: <20211123151252.143631-6-ariel.dalessandro@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211123151252.143631-1-ariel.dalessandro@collabora.com>
-References: <20211123151252.143631-1-ariel.dalessandro@collabora.com>
+        with ESMTP id S231337AbhKWP1z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 10:27:55 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205CAC061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 07:24:47 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso3617431otf.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 07:24:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=JpD5WpIhxDUkbt7w6TL55id0u6co4l+62l9b76Ql6yE=;
+        b=NrvF4QqjjfGRaiXEftlCeh5hxtQmd/oBn8N6nYo5xZ61CYUhYy2sp8YjyvMYtf+6r4
+         AMA1D4ejWYPVAjO64DEhhEK/rzT8aAE5SHIZaUzrSOg3Q3xgvYPloH6zeAtO0BLpy7ut
+         AzzshMD452L//bSolQHlO9U3xa76E5tN6NLy+EfBPl1Nykcu+6FggNLRVjOZIN9iE4uu
+         vrhsQwoMyRUq/Bu4yjKl+TjDaM/mwAA66o/oL5cGHWzgDVEItwXjQ5028TCtHPMHMQ1v
+         H/Hra52DAt9DYh+GfPYI2Hg8VXegkaB+6LArISAiq4YClmERQJgXJ+YDJbLECmaocmmk
+         a7DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JpD5WpIhxDUkbt7w6TL55id0u6co4l+62l9b76Ql6yE=;
+        b=29a5dsKQGThgDhct1U+PaxHxKHmU5WO4v4Tq+Do3DbR6STnIx6umgTlpPvGpKIwYt/
+         tfzjn91pOvYw2ku3GV1SqzuYFd9RSKuXPB7nykrqVrmRjDtaWGG1pd40X3MKFPXPs9hN
+         Q6zhfZ7vHJERLt7FAM/cLuwuaVPtTcilwwXaO1Du5x5vh2LyRTM7Mnda0wgvRp42hY0d
+         XapI9SsWlWshCgTIFLD1oNRY0XMLGrLs0mOF68W/6HNm05zwkn1DBVcN5JdMP0dJrHgU
+         wsDouJiSR2i3oCITkC+uAYbYSlSnvWxASR556STVf4MG/Cc7aYP27/qqj5CLGrKZPa7X
+         xNPA==
+X-Gm-Message-State: AOAM532oOkFquq6lBgXukLufX41r8z/wFj0KYsC/ht75g2ky4aJgL0fF
+        um4bBmR5hKJFUUTTmsgcOck5HQ==
+X-Google-Smtp-Source: ABdhPJxSqKyEA2wbIvfDs5E8BVg1B50eu94EXrlDS3SC+PEBF0OrHZ1r0uSnSUNP25yuwBMFrfZePg==
+X-Received: by 2002:a05:6830:4392:: with SMTP id s18mr5399396otv.168.1637681086407;
+        Tue, 23 Nov 2021 07:24:46 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id r3sm2191435oti.51.2021.11.23.07.24.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 07:24:45 -0800 (PST)
+Date:   Tue, 23 Nov 2021 07:26:28 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] dts: treewide: Drop input-name property
+Message-ID: <YZ0IJGJwy6O9ATpW@ripper>
+References: <20211123065158.1383182-1-danct12@riseup.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123065158.1383182-1-danct12@riseup.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Trimarchi <michael@amarulasolutions.com>
+On Mon 22 Nov 22:51 PST 2021, Dang Huynh wrote:
 
-Add DTS of BSH SMM-M2 SystemMaster.
+> This property doesn't seem to exist in the documentation nor
+> in source code, but for some reason it is defined in a bunch
+> of device trees.
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
 
-This version comes with:
-- 128 MiB DDR3 RAM
-- 256 MiB Nand
-- wifi
-- bluetooth
+Many thanks for the cleanup Dang. Unfortunately 32-bit Qcom, 64-bit
+Qcom, the Mediatek and the sun8i changes goes through different
+maintainer trees.
 
-Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
----
- arch/arm/boot/dts/Makefile               |   3 +-
- arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts | 153 +++++++++++++++++++++++
- 2 files changed, 155 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
+So if you could split this in 3 different patches that would make it
+easier for us maintainers.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..e6d4ad497985 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -693,7 +693,8 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ull-phytec-segin-ff-rdk-nand.dtb \
- 	imx6ull-phytec-segin-ff-rdk-emmc.dtb \
- 	imx6ull-phytec-segin-lc-rdk-nand.dtb \
--	imx6ulz-14x14-evk.dtb
-+	imx6ulz-14x14-evk.dtb \
-+	imx6ulz-bsh-smm-m2.dts
- dtb-$(CONFIG_SOC_IMX7D) += \
- 	imx7d-cl-som-imx7.dtb \
- 	imx7d-colibri-aster.dtb \
-diff --git a/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
-new file mode 100644
-index 000000000000..9e82860469e3
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ulz-bsh-smm-m2.dts
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2021 BSH Hausgeraete GmbH
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include "imx6ulz.dtsi"
-+
-+/ {
-+	model = "BSH SMM M2";
-+	compatible = "bsh,imx6ulz-bsh-smm-m2", "fsl,imx6ull";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	usdhc2_pwrseq: usdhc2_pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		reset-gpios = <&gpio2 21 GPIO_ACTIVE_LOW>;
-+		status = "okay";
-+	};
-+
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_bluetooth_uart>;
-+	uart-has-rtscts;
-+
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4330-bt";
-+		max-speed = <3000000>;
-+		shutdown-gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
-+		device-wakeup-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_debug_uart>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "peripheral";
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	status = "okay";
-+};
-+
-+&usbphy1 {
-+	fsl,tx-d-cal = <106>;
-+};
-+
-+&usdhc2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wlan>;
-+	bus-width = <4>;
-+	no-1-8-v;
-+	non-removable;
-+	cap-power-off-card;
-+	pm-ignore-notify;
-+	keep-power-in-suspend;
-+	wifi-host;
-+	cap-sdio-irq;
-+	mmc-pwrseq = <&usdhc2_pwrseq>;
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		reg = <1>;
-+		compatible = "brcm,bcm4329-fmac";
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <18 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wake";
-+	};
-+};
-+
-+&wdog1 {
-+	status = "okay";
-+};
-+
-+&gpmi {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpmi_nand>;
-+	status = "okay";
-+	nand-on-flash-bbt;
-+};
-+
-+&iomuxc {
-+	pinctrl_bluetooth_uart: uart3grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART3_TX_DATA__UART3_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART3_RX_DATA__UART3_DCE_RX	0x1b099
-+			MX6UL_PAD_UART3_RTS_B__UART3_DCE_RTS	0x1b0b1
-+			MX6UL_PAD_UART3_CTS_B__UART3_DCE_CTS	0x1b099
-+
-+			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01	0x79		/* BT_REG_ON */
-+			MX6UL_PAD_SD1_CLK__GPIO2_IO17		0x100b1		/* BT_DEV_WAKE out */
-+			MX6UL_PAD_ENET2_TX_EN__GPIO2_IO13	0x1b0b0		/* BT_HOST_WAKE in */
-+		>;
-+	};
-+
-+	pinctrl_debug_uart: uart4grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART4_TX_DATA__UART4_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART4_RX_DATA__UART4_DCE_RX	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_gpmi_nand: gpmi-nand {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_CLE__RAWNAND_CLE		0xb0b1
-+			MX6UL_PAD_NAND_ALE__RAWNAND_ALE		0xb0b1
-+			MX6UL_PAD_NAND_WP_B__RAWNAND_WP_B	0xb0b1
-+			MX6UL_PAD_NAND_READY_B__RAWNAND_READY_B	0xb000
-+			MX6UL_PAD_NAND_CE0_B__RAWNAND_CE0_B	0xb0b1
-+			MX6UL_PAD_NAND_RE_B__RAWNAND_RE_B	0xb0b1
-+			MX6UL_PAD_NAND_WE_B__RAWNAND_WE_B	0xb0b1
-+			MX6UL_PAD_NAND_DATA00__RAWNAND_DATA00	0xb0b1
-+			MX6UL_PAD_NAND_DATA01__RAWNAND_DATA01	0xb0b1
-+			MX6UL_PAD_NAND_DATA02__RAWNAND_DATA02	0xb0b1
-+			MX6UL_PAD_NAND_DATA03__RAWNAND_DATA03	0xb0b1
-+			MX6UL_PAD_NAND_DATA04__RAWNAND_DATA04	0xb0b1
-+			MX6UL_PAD_NAND_DATA05__RAWNAND_DATA05	0xb0b1
-+			MX6UL_PAD_NAND_DATA06__RAWNAND_DATA06	0xb0b1
-+			MX6UL_PAD_NAND_DATA07__RAWNAND_DATA07	0xb0b1
-+		>;
-+	};
-+
-+	pinctrl_wlan: wlangrp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_HSYNC__USDHC2_CMD		0x17059
-+			MX6UL_PAD_CSI_VSYNC__USDHC2_CLK		0x10059
-+			MX6UL_PAD_CSI_DATA00__USDHC2_DATA0	0x17059
-+			MX6UL_PAD_CSI_DATA01__USDHC2_DATA1	0x17059
-+			MX6UL_PAD_CSI_DATA02__USDHC2_DATA2	0x17059
-+			MX6UL_PAD_CSI_DATA03__USDHC2_DATA3	0x17059
-+
-+			MX6UL_PAD_SD1_DATA3__GPIO2_IO21		0x79		/* WL_REG_ON */
-+			MX6UL_PAD_UART2_CTS_B__GPIO1_IO22	0x100b1		/* WL_DEV_WAKE - WiFi_GPIO_4 - WiFi FW UART */
-+			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x1b0b1		/* WL_HOST_WAKE - WIFI_GPIO_0 - OOB IRQ */
-+			MX6UL_PAD_ENET1_RX_EN__OSC32K_32K_OUT	0x4001b031	/* OSC 32Khz wifi clk in */
-+		>;
-+	};
-+};
--- 
-2.30.2
+Thanks,
+Bjorn
 
+> ---
+>  arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts          | 1 -
+>  arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts             | 1 -
+>  arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts     | 1 -
+>  arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts              | 1 -
+>  arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts         | 1 -
+>  arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts        | 1 -
+>  arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts        | 1 -
+>  arch/arm/boot/dts/sun8i-h3-nanopi.dtsi                       | 1 -
+>  arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi             | 1 -
+>  arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts            | 1 -
+>  arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi     | 1 -
+>  arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi   | 1 -
+>  arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts              | 3 ---
+>  arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi    | 2 --
+>  arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi        | 1 -
+>  arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts | 1 -
+>  16 files changed, 19 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+> index f8c97efc61fc..0cee62c7b8b0 100644
+> --- a/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+> +++ b/arch/arm/boot/dts/qcom-apq8064-sony-xperia-yuga.dts
+> @@ -19,7 +19,6 @@ chosen {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+> index ea15b645b229..6d77e0f8ca4d 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+> @@ -20,7 +20,6 @@ chosen {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+> index 30ee913faae6..069136170198 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-lge-nexus5-hammerhead.dts
+> @@ -450,7 +450,6 @@ bcrmf@1 {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+> index 003f0fa9c857..96e1c978b878 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+> @@ -349,7 +349,6 @@ bluetooth {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
+> index 398a3eaf306b..79e2cfbbb1ba 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-amami.dts
+> @@ -20,7 +20,6 @@ chosen {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
+> index b4dd85bd4faf..e66937e3f7dd 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-castor.dts
+> @@ -20,7 +20,6 @@ chosen {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
+> index 9743beebd84d..a62e5c25b23c 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-sony-xperia-honami.dts
+> @@ -20,7 +20,6 @@ chosen {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_pin_a>;
+> diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi b/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
+> index c7c3e7d8b3c8..1eabc69462d4 100644
+> --- a/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
+> +++ b/arch/arm/boot/dts/sun8i-h3-nanopi.dtsi
+> @@ -75,7 +75,6 @@ led-1 {
+>  
+>  	r_gpio_keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "k1";
+>  
+>  		k1 {
+>  			label = "k1";
+> diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> index fcddec14738d..7a717f926929 100644
+> --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> @@ -25,7 +25,6 @@ optee: optee@4fd00000 {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_keys_default>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+> index 69fcb6b0398d..84558ab5fe86 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8992-xiaomi-libra.dts
+> @@ -42,7 +42,6 @@ framebuffer0: framebuffer@3404000 {
+>  
+>  	gpio_keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  		autorepeat;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+> index 3a3790a52a2c..cc038f9b641f 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8994-msft-lumia-octagon.dtsi
+> @@ -62,7 +62,6 @@ divclk4: divclk4 {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		autorepeat;
+>  
+>  		volupkey {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+> index 7cc564d8ca7c..dde7ed159c4d 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+> @@ -29,7 +29,6 @@ / {
+>  
+>  	gpio_keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  		autorepeat;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+> index 3d495ce3f46a..dc5b9b274df3 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts
+> @@ -29,7 +29,6 @@ extcon_usb: extcon-usb {
+>  
+>  	gpio-hall-sensors {
+>  		compatible = "gpio-keys";
+> -		input-name = "hall-sensors";
+>  		label = "Hall sensors";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&hall_sensor1_default>;
+> @@ -46,7 +45,6 @@ hall-sensor1 {
+>  
+>  	gpio-kb-extra-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "extra-kb-keys";
+>  		label = "Keyboard extra keys";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&gpio_kb_pins_extra>;
+> @@ -102,7 +100,6 @@ alt {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "side-buttons";
+>  		label = "Side buttons";
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+> index 91e391282181..47488a1aecae 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+> @@ -93,7 +93,6 @@ vph_pwr: vph-pwr-regulator {
+>  
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		label = "Side buttons";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&vol_down_pin_a>, <&cam_focus_pin_a>,
+> @@ -126,7 +125,6 @@ camera-focus {
+>  
+>  	gpio-hall-sensor {
+>  		compatible = "gpio-keys";
+> -		input-name = "hall-sensors";
+>  		label = "Hall sensors";
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&hall_sensor0_default>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+> index e90c9ec84675..42af1fade461 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
+> @@ -90,7 +90,6 @@ cam_vana_rear_vreg: cam_vana_rear_vreg {
+>  	gpio_keys {
+>  		status = "okay";
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> index 45eab0235d66..871ccbba445b 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6125-sony-xperia-seine-pdx201.dts
+> @@ -42,7 +42,6 @@ extcon_usb: extcon-usb {
+>  	gpio-keys {
+>  		status = "okay";
+>  		compatible = "gpio-keys";
+> -		input-name = "gpio-keys";
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  		autorepeat;
+> -- 
+> 2.34.0
+> 
