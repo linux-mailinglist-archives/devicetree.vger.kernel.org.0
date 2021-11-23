@@ -2,82 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC1E45A4B3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:10:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B0345A50D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 15:14:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237856AbhKWONv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 09:13:51 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:50322 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237830AbhKWONl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 09:13:41 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1ANEAOfG113384;
-        Tue, 23 Nov 2021 08:10:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637676624;
-        bh=qv1wGUQW2WZVJpfqaD6uoCEXNFoMFEymMrqfwcPcxr8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=x2QeTftA9aQ/DKruRcqgjfESEhmmoDOLHbbeOHLnkp3/YtY6pEVeXVxuMB3HkfPNe
-         5SvOPJG74ynvcQMFxN4gbgJxD98c4rKNti4sFPKIRIpu3RAeG1Oou59aR5JCeVitiM
-         Z7RCFc93tvAFMvzbdhubJ03JXAfAetI14pbw05xo=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1ANEAOQH113058
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 23 Nov 2021 08:10:24 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 23
- Nov 2021 08:10:24 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 23 Nov 2021 08:10:24 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1ANEAOfg082069;
-        Tue, 23 Nov 2021 08:10:24 -0600
-Date:   Tue, 23 Nov 2021 08:10:24 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@kernel.org>
-CC:     <kishon@ti.com>, <vigneshr@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/2] arm64: dts: ti: k3-am64-main: Add GPMC & ELM nodes
-Message-ID: <20211123141024.hv3eruvegkahjeou@nuclear>
-References: <20211123103908.14220-1-rogerq@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20211123103908.14220-1-rogerq@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S235821AbhKWORf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 09:17:35 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:53210 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S237761AbhKWORe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 09:17:34 -0500
+X-IronPort-AV: E=Sophos;i="5.87,257,1631545200"; 
+   d="scan'208";a="101515724"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Nov 2021 23:14:25 +0900
+Received: from localhost.localdomain (unknown [10.226.93.159])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id F3B48400C45E;
+        Tue, 23 Nov 2021 23:14:23 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Enable WDT driver support
+Date:   Tue, 23 Nov 2021 14:14:18 +0000
+Message-Id: <20211123141420.23529-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12:39-20211123, Roger Quadros wrote:
-> Hi Nishanth,
-> 
-> This series adds GPMC and ELM controller nodes.
-> 
-> cheers,
-> -roger
-> 
-> Roger Quadros (2):
->   arm64: dts: ti: k3-am64-main: Add GPMC memory controller node
->   arm64: dts: ti: k3-am64-main: Add ELM (Error Location Module) node
-> 
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 28 ++++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
-> -- 
-> 2.17.1
-> 
+This patch series aims to Enable WDT driver support
+on RZ/G2L SMARC EVK.
 
-Don't we need to disable the nodes in the board dts files, since these
-are only on optional daughter cards for evm?
+This patch series depend upon[1]
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=583861
+
+Biju Das (2):
+  arm64: dts: renesas: r9a07g044: Add WDT nodes
+  arm64: dts: renesas: rzg2l-smarc-som: Enable watchdog
+
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi    | 45 +++++++++++++++++++
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 15 +++++++
+ 2 files changed, 60 insertions(+)
 
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.17.1
+
