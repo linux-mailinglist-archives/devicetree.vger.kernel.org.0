@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4F81459E7A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 09:44:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF3D0459E95
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 09:52:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231737AbhKWIrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 03:47:40 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:39828 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbhKWIrk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 03:47:40 -0500
-Received: by mail-ua1-f51.google.com with SMTP id i6so42148527uae.6;
-        Tue, 23 Nov 2021 00:44:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GB53z3B/gqFRSO4IG+bzDbuA9R2agDBafBoJtXz3z38=;
-        b=M+/S+ON03qZqPXmDKZG6w2ShOC/OxJC0kHts1+lUHlhpW4PrBS/LEF60ns7XtFr+4p
-         EMg+WUrfnECfY51MMmCeciQ3ActY+CwYL6kjrOsGWuEkfTgeYiAtrEs5+y8eh9UQ5RxT
-         TgFxubiepyA0hN9fVXbbpPcogE4w94ujE6E94RoQwTvRXD29HxuPQQUCKqA3MoufnHFG
-         g6w0Q0lllBWDjU2NMNupODllnxsGsL2F5v4W2EDq1z5lVRmzB91mHbpGMSwtyGkzxtF9
-         1rLC+cnr0z9YU1QWWf/SotxhfUxBt1hNqhd+KclSYGhXk+jEOm2I+QsOuCqpKk6nqT6C
-         q1fA==
-X-Gm-Message-State: AOAM532Ft4My+mPtG2sELLYHZ3ab/ffIBMky9h1FvvDTz5dohsDUOW1n
-        L4BeFt58L7fbWsL+/HrwCpPBBA8PgHhVYg==
-X-Google-Smtp-Source: ABdhPJwZtjMZDbrfRR5yq/YRZg0/sBNm4oUuJiEJhPDkzuobl+M9KVSGqsB7UvX4FxmyDK8Vc8YP+A==
-X-Received: by 2002:a05:6102:c4e:: with SMTP id y14mr6443954vss.61.1637657071840;
-        Tue, 23 Nov 2021 00:44:31 -0800 (PST)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id l28sm5911241vkn.45.2021.11.23.00.44.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 00:44:31 -0800 (PST)
-Received: by mail-vk1-f171.google.com with SMTP id s17so11947330vka.5;
-        Tue, 23 Nov 2021 00:44:31 -0800 (PST)
-X-Received: by 2002:a05:6122:7d4:: with SMTP id l20mr7126496vkr.26.1637657070961;
- Tue, 23 Nov 2021 00:44:30 -0800 (PST)
+        id S231559AbhKWIze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 03:55:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52520 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229721AbhKWIzd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 03:55:33 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 588C460FC3;
+        Tue, 23 Nov 2021 08:52:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637657546;
+        bh=T1Wu1HaiPk9IdEr03zo3RO4DOreDPwvBeTvHQ1EkLBo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r2rd/M1ezUu0nUITmFLDdiVBweV+4CLPWrG+R6f6KVdNM+zJ94Ok0OBuun0sltQzl
+         AG49PR1Y/Xk6XLHT15Mq8HALSXsxWv7AUW4XHN6L3bxWXfWcUQYGmXU71V9T7+efh/
+         8J7FCF64xGmZQe2mxd4/IKt6l9mxjEGL/sCTPG3imWfcTluOaOKH4BFf2UHenS1CYv
+         MV7t3txxcAQiSAoNi/sQnX+5Vc++ttUkLtMjU+tKSRUrqtYse5jjx1ItrH2IIk7pQM
+         AgPVM/2TwBpXSgeJITGCojzo//QUrsJfOtw1TuPeVkUZ/A+yPSfqR/LbAejJWcO0EI
+         yB9PEDhKN+Hhw==
+Date:   Tue, 23 Nov 2021 09:52:22 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 01/12] dt-bindings: i2c: imx-lpi2c: Fix i.MX 8QM
+ compatible matching
+Message-ID: <YZyrxvzRUk3jPMnn@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Abel Vesa <abel.vesa@nxp.com>, Rob Herring <robh@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-i2c@vger.kernel.org, linux-serial@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <1636566415-22750-1-git-send-email-abel.vesa@nxp.com>
+ <1636566415-22750-2-git-send-email-abel.vesa@nxp.com>
 MIME-Version: 1.0
-References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
- <8735no70tt.wl-maz@kernel.org> <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
- <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com> <87tug3clvc.wl-maz@kernel.org>
-In-Reply-To: <87tug3clvc.wl-maz@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 23 Nov 2021 09:44:19 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
-Message-ID: <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
-Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
- definition of interrupt-map
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel-team@android.com, Rob Herring <robh@kernel.org>,
-        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BTP02E+ulndgBnjX"
+Content-Disposition: inline
+In-Reply-To: <1636566415-22750-2-git-send-email-abel.vesa@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
 
-On Tue, Nov 23, 2021 at 9:33 AM Marc Zyngier <maz@kernel.org> wrote:
-> On Tue, 23 Nov 2021 07:57:48 +0000,
-> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > Summarized:
-> >   - Before the bad commit, and after your fix, irqc-rza1 is invoked,
-> >     and the number of interrupts seen is correct, but input events
-> >     are doubled.
-> >   - After the bad commit, irqc-rza1 is not invoked, and there is an
-> >     interrupt storm, but input events are OK.
->
-> OK, that's reassuring, even if the "twice the events" stuff isn't what
-> you'd expect. We at least know this is a separate issue, and that this
-> patch on top of -rc1 brings you back to the 5.15 behaviour.
->
-> I'd expect it to be the case for the other platforms as well.
+--BTP02E+ulndgBnjX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-OK.
+On Wed, Nov 10, 2021 at 07:46:44PM +0200, Abel Vesa wrote:
+> The i.MX 8QM DTS files use two compatibles, so update the binding to fix
+> dtbs_check warnings like:
+>=20
+>   arch/arm64/boot/dts/freescale/imx8qm-mek.dt.yaml: i2c@5a800000:
+>     compatible: ['fsl,imx8qm-lpi2c', 'fsl,imx7ulp-lpi2c'] is too long
+>=20
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 
-BTW, what would have been the correct way to do this for irqc-rza1?
-I think we're about to make the same mistake with RZ/G2L IRQC
-support[1]?
+Applied to for-next, thanks!
 
-Thanks!
 
-[1] "[RFC PATCH v3 0/7] Renesas RZ/G2L IRQC support"
-https://lore.kernel.org/all/20211110225808.16388-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+--BTP02E+ulndgBnjX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGcq8YACgkQFA3kzBSg
+KbZvFg/9ExrQHMe1OfU+rbUE7wWiNgJzLodPu1nWHSWQbWkWgaCFDcqFhUDbsXkK
+bGxb7f9/Z8jbJHzlYrlP0tWBwF6LlUkR5XLYmYKvP5WoWp+jufmnZvgYy8ELXMTF
+AbN7gStiC3bS/0lHOgykW3i9uZy7Arpl3lhG4AHBUBp1tw0I3uO9QXLUb7x5Xza7
+cvprVyewQyfddKJprv0bg4LE3XnhyHzPZsYXBtSVYb4QgH38C56xyLD8vKCSbWBA
+ZrS0Mhvfve1r18zZzo8XY/A8nKxzUFiex1UbkmBxI/c39xHz84VWv47b5ocx/6Ws
+n+iWKFJZlVOfjDnBNe+4v1a8QahhlUE5piIahrF1xJyB6rcNtxsQ2BA30VBXYNs0
+A0rs6niUK0RhoSzqjS/TLJ7AK5lOypZg+4rCbEB6hPjIKj49ZF+2UcVDR9/RkD9u
+5EbcB3Zr9i0GOuU9eyrOWaSkntD2lZA8NhjhFAx1BeAAExUFDbudpIEAlLipdiLE
+Npy5tShxgUKFk4Imz1KAuCpot3+U+Iee9Mq1vcg1IoQgcuOEO3vD3HQ1YFjHgN3C
+8hFX4t37r/sHlBHV8UUmOh31NufimYvi0gtOv2JHbUiOZeUWGygAxGu3RyEEsT3s
++V4isn9hx4x/7HKu9l4lO6HnSBS3B5mGAZxf7Tm5oRKg07HIHgs=
+=EjAu
+-----END PGP SIGNATURE-----
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--BTP02E+ulndgBnjX--
