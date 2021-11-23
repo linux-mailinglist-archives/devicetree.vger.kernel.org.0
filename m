@@ -2,145 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74BFB45B038
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 002A245B086
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:58:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232447AbhKWXdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 18:33:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47250 "EHLO
+        id S240206AbhKXABb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 19:01:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbhKWXdo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 18:33:44 -0500
-Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12E0BC061746
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:30:36 -0800 (PST)
-Received: by mail-ua1-x92f.google.com with SMTP id a14so1354339uak.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:30:36 -0800 (PST)
+        with ESMTP id S230491AbhKXABb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 19:01:31 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B20FC061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:58:22 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id i12so832017pfd.6
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:58:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3uH2JEgWqlojJT+gIT9qwTADRtilTdk+WNcpN0oAZvQ=;
-        b=TbsN1JEoVY3coBHtA1QUvJt29+ocfTE4puD82o8SA8CpuYfpew5eojbhBQF0udbQos
-         Ycw5YJSOSkhuDBvAra8mhEJyNReY33YhLiETQEfGpk/VGlDX6FG9jcgI6d9uhqyMdU6j
-         eAM0mbcFOyFgBfLUOWE9V8f/vpQ2NrEU+iwSRaWzUSV9Af6jZ7393a768iA4pPyXiAFJ
-         wi9KRy9lj63AhPHgksco4Qnhm/SConqZrP55CAxZ8vyBYeB0bNaOcCjN90SgWnHzQSFX
-         FuEt2erenHe+XJOziuPoMAlmIZFNFNt8RuDpb5qYpZpTuSANmV2jDRaGEus/VY7aOLIA
-         FmhQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=nJaUM15poWQe89db2PdHN17xsR/T4lr8cbsEU6CgYVE=;
+        b=DWFfC7ocrPjYR1Nuj7NSkhXNkkwGbEKqEJS/lT2MvU71LCAw6vJJYEYLSjxoiObiEE
+         uZTirK1qhstid+DHuAwTKxOn9iTkK5OzJZ4hfxWXwt2Bl1/WEC/RK6oEVtWPAg2T3hx2
+         0sgTh7+kkrmc25IdGBTh07pXlKzA0TEDke9OhvpIj3cOzRgS2LLaE7e+n2eH4k7MBifj
+         2MdoF/4Mb2KhhmWVnU/ED/a7SNqA9FMjBkm3pO1QvKzKPjiYrYAiNEtMw7xdQbB/8I1g
+         b/qLaSIBANOLtEVnUiEhp+7dAQoTKJ5RzEsZH0szrmtbkq3J76ZOzwYfCzgS4Zpw7x8e
+         8Zgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3uH2JEgWqlojJT+gIT9qwTADRtilTdk+WNcpN0oAZvQ=;
-        b=IoPqBF7UheLTPRc2nSi1sbE4DlmdwO2n3Rq7BSqqj/8qsWaIkIIMTdotaATWsywWNr
-         iwZHEmhKa3VyP3ytmictIrQkcqEiqJhoz0r4/ARQcYOPgd60LEOQGlL/xgXpSN1vv+xP
-         KjW4E05L5mN2aXzgE8KZcQzXOG8NgT7rHz9XLmDvXYBjGGejQr9RJEqEfQWyU67i/isn
-         YComzXbXxJDHC7VxkRwG+5KdaAjAmLKYiMlF13wCIcXoxM6h0a8dqLvmZTnjlGJq5OIT
-         5a4w4U0O7dtV2+ict7l7pQXm7dN74Mlu1zVcGW41FqNvZCcyjqfeZqgeyaixRV1qHRJl
-         v5tw==
-X-Gm-Message-State: AOAM531d52GXcJScO3kVuo+dh1mDilXaStjzDIxO8lPa2pLYSPSmgvwp
-        NYxu1VtxmKUsvpnJTqK3KUgTWs8nYriYj94HrBNFGg==
-X-Google-Smtp-Source: ABdhPJz1klqwCzocaTGDtjBLzJU441KZakT44KfwMrLKAtO8PAfpBMoKjJIcO/CPGTx2WiiCI5gOBsKRA8/VomglBtQ=
-X-Received: by 2002:a9f:2431:: with SMTP id 46mr2194379uaq.114.1637710234844;
- Tue, 23 Nov 2021 15:30:34 -0800 (PST)
-MIME-Version: 1.0
-References: <20211121165647.26706-1-semen.protsenko@linaro.org>
- <20211121165647.26706-10-semen.protsenko@linaro.org> <20211123160623.GB2326185@roeck-us.net>
- <CAPLW+4mwhH5C6zSxWDboNucZPvt2c=F7Qaa9V_XJHbJzbFNL3w@mail.gmail.com> <c16afd75-f54c-6c2b-7f61-1f1c7a4b3c46@roeck-us.net>
-In-Reply-To: <c16afd75-f54c-6c2b-7f61-1f1c7a4b3c46@roeck-us.net>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Wed, 24 Nov 2021 01:30:23 +0200
-Message-ID: <CAPLW+4kmUqg=2vYOiWfMhQFqFw1sh0Eo6Yqv8nPEbV_0MObn5A@mail.gmail.com>
-Subject: Re: [PATCH v4 09/12] watchdog: s3c2410: Cleanup PMU related code
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=nJaUM15poWQe89db2PdHN17xsR/T4lr8cbsEU6CgYVE=;
+        b=MjdS64XuPBbhW3ZfnBoJqzOJv10Hb6LS/YoLfD9TNMpunjVXtR4o/mIT3lNSJFgdz0
+         fK2EdQgcvqPoRN8PBkL9/ISlLHsBqu298I7h8fgoYdpbOvZVMB9NRPHZNjb3FTA0lnO2
+         VmCNbmIHCyctl6Hieno+D+7eeldGjbiCCiJnwLzwkYEMrkO2YmWHGHcsTrBfWwTGjkyE
+         YtNpVOesQZ3Cr2VyqagHe4FutlG35bSwK66xJfNtrADrIz0WB6EDlKlal6U3if8d07Px
+         GsYcSMGEkx9IkLPfHgKrPacFPWQQEJBhY+kLz78iDNLPncvEi3Q3oapdcbC8TFwVaWYY
+         zUJQ==
+X-Gm-Message-State: AOAM532AmlJKNoHG2EIVCYVHlL67xjFRvF3NTYBoW1Ft88JnEnfzh7QN
+        nrer8v3JrlRnjZEExN/8bEn8OPslAT4=
+X-Google-Smtp-Source: ABdhPJw1OPLXzCk9gJptLDsh4FEU315Dje1FfwU+FEw9UssNWmH+OfBf8YlwJuHJck+d871AJVf8DQ==
+X-Received: by 2002:a63:6b42:: with SMTP id g63mr6729611pgc.133.1637711901611;
+        Tue, 23 Nov 2021 15:58:21 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id mz7sm2282725pjb.7.2021.11.23.15.58.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Nov 2021 15:58:21 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: use non-deprecated USB 2.0 PHY binding
+Date:   Tue, 23 Nov 2021 15:58:19 -0800
+Message-Id: <20211123235819.3823929-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211123090333.11597-1-zajec5@gmail.com>
+References: <20211123090333.11597-1-zajec5@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021 at 00:33, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 11/23/21 8:17 AM, Sam Protsenko wrote:
-> > On Tue, 23 Nov 2021 at 18:06, Guenter Roeck <linux@roeck-us.net> wrote:
-> >>
-> >> On Sun, Nov 21, 2021 at 06:56:44PM +0200, Sam Protsenko wrote:
-> >>> Now that PMU enablement code was extended for new Exynos SoCs, it
-> >>> doesn't look very cohesive and consistent anymore. Do a bit of renaming,
-> >>> grouping and style changes, to make it look good again. While at it, add
-> >>> quirks documentation as well.
-> >>>
-> >>> No functional change, just a refactoring commit.
-> >>>
-> >>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> >>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> >>> ---
-> >>> Changes in v4:
-> >>>    - Added R-b tag by Guenter Roeck
-> >>>
-> >>> Changes in v3:
-> >>>    - Added quirks documentation
-> >>>    - Added R-b tag by Krzysztof Kozlowski
-> >>>
-> >>> Changes in v2:
-> >>>    - (none): it's a new patch
-> >>>
-> >>>   drivers/watchdog/s3c2410_wdt.c | 83 ++++++++++++++++++++++++----------
-> >>>   1 file changed, 58 insertions(+), 25 deletions(-)
-> >>>
-> >>> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> >>> index ec341c876225..f211be8bf976 100644
-> >>> --- a/drivers/watchdog/s3c2410_wdt.c
-> >>> +++ b/drivers/watchdog/s3c2410_wdt.c
-> >>> @@ -56,17 +56,51 @@
-> >>>   #define EXYNOS5_RST_STAT_REG_OFFSET          0x0404
-> >>>   #define EXYNOS5_WDT_DISABLE_REG_OFFSET               0x0408
-> >>>   #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET    0x040c
-> >>> -#define QUIRK_HAS_PMU_CONFIG                 (1 << 0)
-> >>> -#define QUIRK_HAS_RST_STAT                   (1 << 1)
-> >>> -#define QUIRK_HAS_WTCLRINT_REG                       (1 << 2)
-> >>> +
-> >>> +/**
-> >>
-> >> 0-day complains:
-> >>
-> >> drivers/watchdog/s3c2410_wdt.c:94: warning: expecting prototype for Quirk flags for different Samsung watchdog IP(). Prototype was for QUIRK_HAS_WTCLRINT_REG() instead
-> >>
-> >> It doesn't seem to like the idea of documented bit masks. Not really sure
-> >> what to do here. I am inclined to ignore it, but I don't want to get flooded
-> >> by 0-day complaints until I retire either. Any idea ?
-> >>
-> >
-> > Seems like 0-day thinks this kernel-doc comment is for the first
-> > define only, and thus the comment has wrong format, or something like
-> > that. I tried to follow the same style as GFP_KERNEL and others are
-> > documented.
-> >
-> > Anyway, if you don't like 0-day complaints, can you please just
-> > replace kernel-doc comment (/**) with regular comment (/*), by
-> > removing one asterisk in the patch? Or I can re-send the patch
-> > correspondingly -- then just let me know.
-> >
->
-> Oh, never mind. Let's just hope that 0-day stops complaining at some point.
->
+On Tue, 23 Nov 2021 10:03:33 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> The new binding covers a single reg and uses syscon to reference shared
+> register.
+> 
+> References: 55b9b741712d ("dt-bindings: phy: brcm,ns-usb2-phy: bind just a PHY block")
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-Just sent v5 for this patch, fixing that 0-day warning properly. Found
-info about it here: [1]. So to check that warning, apparently it's
-enough to run "make W=n" build, or dry-run for kernel-doc script like
-this:
-
-    $ scripts/kernel-doc -v -none drivers/watchdog/s3c2410_wdt.c
-
-Anyway, please take v4 series + v5 for this patch. Hope that'll be all
-for 0-day swearing :)
-
-[1] https://github.com/torvalds/linux/blob/master/Documentation/doc-guide/kernel-doc.rst
-
-> Guenter
+Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
+--
+Florian
