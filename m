@@ -2,268 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9155545AE6D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 22:24:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 865BE45AEAF
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 22:49:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232326AbhKWV1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 16:27:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47400 "EHLO
+        id S237066AbhKWVwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 16:52:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbhKWV1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 16:27:53 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E0DFC061574;
-        Tue, 23 Nov 2021 13:24:44 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id x6so816925edr.5;
-        Tue, 23 Nov 2021 13:24:44 -0800 (PST)
+        with ESMTP id S230132AbhKWVww (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 16:52:52 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8873AC061574
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 13:49:43 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id u18so399606wrg.5
+        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 13:49:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=444QMqDjsr/4IdpE/tLDY4FNQjqFzhOwAAsJFthSU7c=;
-        b=YzhL55wMTenJtwWRQwCReF84Xaz46sqAtLJk0GkBEFxZjM8/iIUYxxt4oBaViYSh0x
-         W+hl6lN/O2XxwE/wdWpBIdiXHWFkScL/8fPSkYYSlqUxQcuayIQ43zMoOhzySJuga7YH
-         TLioJ7hmu/pds9Gi5ubGeLfwyhB4ekrJBS0cL1cQrdGMn0Uy2Zm4kN7dn1vlpuOHpQ0l
-         DY615KiX2d1ww+fsiQv/aZnaCMh2PdDJBI2De8Yb/jpd+pnnNBMbEpBxFc60Tie62/oH
-         c50iLWsH9XWMJQrKUOfRjqgWy/FbA3jMxPIi9OntmrIta31E2zLKZmIjm4Qa3A12kik6
-         StlA==
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Cx/RxGowWJ+ARkenpaoiEAOOeuCHEYaUTm5UxAY6csM=;
+        b=5x1Ij98oK/pne1Z9rEJboic7qMOUJIDV11ltFZCaPVP1z9MEwJZum4mUJNPzdcG9pr
+         giiOp4XDBijKmh5kI+CORs9dyo7H0CcHTX/aL6hZpduR48u1yfwcbPZqji+9hFlLNPu1
+         +yPzYtF/eoeHd/u8NyGN1xlvqdhK6XQCpajmPCKMN4eN/92FLWxa73lZTy+zcv7tbqqV
+         I5NO2tMC+7gzIWN5sCVgQ1AWGltjQO9pAljWnE/HQF8uJGakdjWSCzKCn28zv1XaoRTH
+         Ns0dwi1t2bjMBbjjtZtvfL/qAAcgos+FFzdHtklwrpCdM5OhG6pl/KBqF5ZIlpgwyfh/
+         2TPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=444QMqDjsr/4IdpE/tLDY4FNQjqFzhOwAAsJFthSU7c=;
-        b=fO0Be2o6wmY8UgK2d59GkvK5QEvrIGhiqy3tJQmIf4ElLxNXinYJp5p16XrLJwC2Gw
-         Yem3yXY5eqP2dntpZ68JqrngjRi2e/wcEUwfyQsYE15tImYUD32XLZE8Uu0qz0ADvOmy
-         Aj76p3Ay8flvJxWsJF92LeAimixJ6xHd6pKABeUuyGWSENxKYFK4zMktC9i0awrFT2KZ
-         CytG+61/meBmya2kmjSOxFw3h6JQycHnjxS1aOTMu3YOG65eq8IF3CG9C4eFG6pbZ1t4
-         +vWEr28P9bW68mIJ/kucXFsx2H6v3MuCxpQbDtmTDPuhcHCyEwX1id+IN8cJGmS+d5Os
-         tAog==
-X-Gm-Message-State: AOAM532bT8HjaHzu2PxXiOMENbQ16IC1iHePIZ5u8HNp0jfqEwz+BTIF
-        KMAA30DIuzLNRRCJ8SIfw6c=
-X-Google-Smtp-Source: ABdhPJz7PXRbMHZ8Nm7RBp4N2lsgP5cds9YsGiYdhgK0Nh9B9tsHWmMJ5A/lYTJY60dZ+VXlhzWCmw==
-X-Received: by 2002:a50:8d47:: with SMTP id t7mr14669800edt.14.1637702683110;
-        Tue, 23 Nov 2021 13:24:43 -0800 (PST)
-Received: from skbuf ([188.25.163.189])
-        by smtp.gmail.com with ESMTPSA id p26sm5719999edt.94.2021.11.23.13.24.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Cx/RxGowWJ+ARkenpaoiEAOOeuCHEYaUTm5UxAY6csM=;
+        b=xtXybah9wUhusw7smtren2hxS05eqN9RaSucxQlJUA3syOLZC4rMotKm0fxh67Zr5h
+         4Tc8EKrje6vWlBhpFjlq9BeChUmdgSajO4iFY4qB4hPhd2GUE50Rimckw4YaonPY4zd/
+         dswDRzrX5RAWMzD4o7ZyT4Y8cXoIQ0V4pSDzQt/wlTpRSCHii3FYerX97u/nie2fHQw0
+         5/GIlryixaygGqTKZ6z3hBh1TM/1kpZxJr6GuoxjawOcGmr+OhGOLYkN84STlZnDfXL0
+         PzolAj/b8lFTqCsDVbHihffWxxABaC8p/WCEhaJAWqwkVf5nhqe6V8z2YAC5KeOEgt+u
+         +XPw==
+X-Gm-Message-State: AOAM533vRBfVaGtmmk7kmjC/LkgG+c8QM6VueXTY5wBAhfP0I8e4Pat0
+        j6YOg/qCsH022p+M7TOeDey89w==
+X-Google-Smtp-Source: ABdhPJwDytN/PHntpYMCQvQoS2a7fQzgUQ5ar0i50ahvm5shKlLObQaC+93HYMhXE9RrjJT+fpaz+A==
+X-Received: by 2002:a5d:6085:: with SMTP id w5mr10905139wrt.122.1637704182162;
+        Tue, 23 Nov 2021 13:49:42 -0800 (PST)
+Received: from bismarck.berto.se (p54ac5892.dip0.t-ipconnect.de. [84.172.88.146])
+        by smtp.googlemail.com with ESMTPSA id l8sm2520877wmc.40.2021.11.23.13.49.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 13:24:42 -0800 (PST)
-Date:   Tue, 23 Nov 2021 23:24:41 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
-Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
- supported_interfaces with modes from fwnode
-Message-ID: <20211123212441.qwgqaad74zciw6wj@skbuf>
-References: <20211123164027.15618-1-kabel@kernel.org>
- <20211123164027.15618-5-kabel@kernel.org>
+        Tue, 23 Nov 2021 13:49:41 -0800 (PST)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH] dt-bindings: staging: media: i2c: Add bindings for Maxim Integrated MAX96712
+Date:   Tue, 23 Nov 2021 22:49:22 +0100
+Message-Id: <20211123214922.3981616-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211123164027.15618-5-kabel@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 05:40:23PM +0100, Marek Behún wrote:
-> Now that the 'phy-mode' property can be a string array containing more
-> PHY modes (all that are supported by the board), update the bitmap of
-> interfaces supported by the MAC with this property.
-> 
-> Normally this would be a simple intersection (of interfaces supported by
-> the current implementation of the driver and interfaces supported by the
-> board), but we need to keep being backwards compatible with older DTs,
-> which may only define one mode, since, as Russell King says,
->   conventionally phy-mode has meant "this is the mode we want to operate
->   the PHY interface in" which was fine when PHYs didn't change their
->   mode depending on the media speed
-> 
-> An example is DT defining
->   phy-mode = "sgmii";
-> but the board supporting also 1000base-x and 2500base-x.
-> 
-> Add the following logic to keep this backwards compatiblity:
-> - if more PHY modes are defined, do a simple intersection
-> - if one PHY mode is defined:
->   - if it is sgmii, 1000base-x or 2500base-x, add all three and then do
->     the intersection
->   - if it is 10gbase-r or usxgmii, add both, and also 5gbase-r,
->     2500base-x, 1000base-x and sgmii, and then do the intersection
-> 
-> This is simple enough and should work for all boards.
-> 
-> Nonetheless it is possible (although extremely unlikely, in my opinion)
-> that a board will be found that (for example) defines
->   phy-mode = "sgmii";
-> and the MAC drivers supports sgmii, 1000base-x and 2500base-x, but the
-> board DOESN'T support 2500base-x, because of electrical reasons (since
-> the frequency is 2.5x of sgmii).
-> Our code will in this case incorrectly infer also support for
-> 2500base-x. To avoid this, the board maintainer should either change DTS
-> to
->   phy-mode = "sgmii", "1000base-x";
-> and update device tree on all boards, or, if that is impossible, add a
-> fix into the function we are introducing in this commit.
-> 
-> Another example would be a board with device-tree defining
->   phy-mode = "10gbase-r";
-> We infer from this all other modes (sgmii, 1000base-x, 2500base-x,
-> 5gbase-r, usxgmii), and these then get filtered by those supported by
-> the driver. But it is possible that a driver supports all of these
-> modes, and yet not all are supported because the board has an older
-> version of the TF-A firmware, which implements changing of PHY modes via
-> SMC calls. For this case, the board maintainer should either provide all
-> supported modes in the phy-mode property, or add a fix into this
-> function that somehow checks for this situation. But this is a really
-> unprobable scenario, in my opinion.
-> 
-> Signed-off-by: Marek Behún <kabel@kernel.org>
-> ---
-> Changes since v1:
-> - added 10gbase-r example scenario to commit message
-> - changed phylink_update_phy_modes() so that if supported_interfaces is
->   empty (an unconverted driver that doesn't fill up this member), we
->   leave it empty
-> - rewritten phylink_update_phy_modes() according to Sean Anderson's
->   comment: use phy_interface_and/or() instead of several
->   if (test_bit) set_bit
-> ---
->  drivers/net/phy/phylink.c | 70 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 70 insertions(+)
-> 
-> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-> index 3603c024109a..d2300a3a60ec 100644
-> --- a/drivers/net/phy/phylink.c
-> +++ b/drivers/net/phy/phylink.c
-> @@ -564,6 +564,74 @@ static int phylink_parse_fixedlink(struct phylink *pl,
->  	return 0;
->  }
->  
-> +static void phylink_update_phy_modes(struct phylink *pl,
-> +				     struct fwnode_handle *fwnode)
-> +{
-> +	unsigned long *supported = pl->config->supported_interfaces;
-> +	DECLARE_PHY_INTERFACE_MASK(modes);
-> +
-> +	/* FIXME: If supported is empty, leave it as it is. This happens for
-> +	 * unconverted drivers that don't fill up supported_interfaces. Once all
-> +	 * such drivers are converted, we can drop this.
-> +	 */
-> +	if (phy_interface_empty(supported))
-> +		return;
-> +
-> +	if (fwnode_get_phy_modes(fwnode, modes) < 0)
-> +		return;
-> +
-> +	/* If no modes are defined in fwnode, interpret it as all modes
-> +	 * supported by the MAC are supported by the board.
-> +	 */
-> +	if (phy_interface_empty(modes))
-> +		return;
-> +
-> +	/* We want the intersection of given supported modes with those defined
-> +	 * in DT.
-> +	 *
-> +	 * Some older device-trees mention only one of `sgmii`, `1000base-x` or
-> +	 * `2500base-x`, while supporting all three. Other mention `10gbase-r`
-> +	 * or `usxgmii`, while supporting both, and also `sgmii`, `1000base-x`,
-> +	 * `2500base-x` and `5gbase-r`.
-> +	 * For backwards compatibility with these older DTs, make it so that if
-> +	 * one of these modes is mentioned in DT and MAC supports more of them,
-> +	 * keep all that are supported according to the logic above.
-> +	 *
-> +	 * Nonetheless it is possible that a device may support only one mode,
-> +	 * for example 1000base-x, due to strapping pins or some other reasons.
-> +	 * If a specific device supports only the mode mentioned in DT, the
-> +	 * exception should be made here with of_machine_is_compatible().
-> +	 */
-> +	if (bitmap_weight(modes, PHY_INTERFACE_MODE_MAX) == 1) {
+Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
+deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
+or C-PHY formatted outputs.
 
-I like the idea of extending the mask of phy_modes based on the
-phylink_config.supported_interfaces bitmap that the driver populates
-(assuming, of course, that it's converted correctly to this new format,
-and I looked through the implementations and just found a bug). I think
-it might just work with old device trees, too. In fact, it may work so
-well, that I would even be tempted to ask "can we defer for a while
-updating the device trees and bindings documents with an array, just
-keep the phy modes as an array internally inside the kernel?"
+Signed-off-by: Niklas SÃ¶derlund <niklas.soderlund+renesas@ragnatech.se>
+---
+ .../staging/media/i2c/maxim,max96712.yaml     | 111 ++++++++++++++++++
+ 1 file changed, 111 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml
 
-On the Marvell boards that you're working with, do you have an example
-board on which not all the PHY modes supported by the driver might be
-available? Do you also know the reason why? You give an example in the
-comments about 1000base-X and strapping, can you expand on that?
+diff --git a/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml b/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml
+new file mode 100644
+index 0000000000000000..978f2c0e5caef567
+--- /dev/null
++++ b/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.yaml
+@@ -0,0 +1,111 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2021 Renesas Electronics Corp.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/staging/media/i2c/maxim,max96712.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
++
++maintainers:
++  - Niklas SÃ¶derlund <niklas.soderlund+renesas@ragnatech.se>
++
++description: |
++  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into MIPI
++  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
++  simultaneously transmit bidirectional control-channel data while forward
++  video transmissions are in progress. The MAX96712 can accommodate as many as
++  four remotely located sensors using industry-standard coax or STP
++  interconnects.
++
++  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in the
++  forward direction and 187.5Mbps in the re- verse direction. In GMSL1 mode, the
++  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
++  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 mode.
++
++properties:
++  compatible:
++    const: maxim,max96712
++
++  reg:
++    description: I2C device address
++    maxItems: 1
++
++  enable-gpios: true
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 0
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 1
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 2
++
++      port@3:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: GMSL Input 3
++
++      port@4:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: CSI-2 Output
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes: true
++
++            required:
++              - data-lanes
++
++    required:
++      - port@4
++
++required:
++  - compatible
++  - reg
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c@e6508000 {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            reg = <0 0xe6508000>;
++
++            gmsl0: gmsl-deserializer@49 {
++                    compatible = "maxim,max96712";
++                    reg = <0x49>;
++                    enable-gpios = <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
++
++                    ports {
++                            #address-cells = <1>;
++                            #size-cells = <0>;
++
++                            port@4 {
++                                    reg = <4>;
++                                    max96712_out0: endpoint {
++                                            clock-lanes = <0>;
++                                            data-lanes = <1 2 3 4>;
++                                            remote-endpoint = <&csi40_in>;
++                                    };
++                            };
++                    };
++            };
++    };
+-- 
+2.34.0
 
-Because I think it's a bit strange to create a framework for fixups now,
-when we don't even know what kind of stuff may be broken. The PHY modes
-(effectively SERDES protocols) might not be what you actually want to restrict.
-I mean, restricting the PHY modes is like saying: "the MAC supports
-USXGMII and 10GBase-R, the PHY supports USXGMII and 10GBase-R, I know
-how to configure both of them in each mode, but on this board, USXGMII
-works and 10GBase-R doesn't".
-
-?!
-
-It may make more sense, when the time comes for the first fixup, to put
-a cap on the maximum gross data rate attainable on that particular lane
-(including stuff such as USXGMII symbol repetition), instead of having
-to list out all the PHY modes that a driver might or might not support
-right now. Imagine what pain it will be to update device trees each time
-a driver gains software support for a SERDES protocol it didn't support
-before. But if you cap the lane frequency, you can make phylink_update_phy_modes()
-deduce what isn't acceptable using simple logic.
-
-Also, if there's something to be broken by this change, why would we put
-an of_machine_is_compatible() here, and why wouldn't we instead update
-the phylink_config.supported_interfaces directly in the driver? I think
-it's the driver's responsibility for passing a valid mask of supported
-interfaces.
-
-> +		DECLARE_PHY_INTERFACE_MASK(mask);
-> +		bool lower = false;
-> +
-> +		if (test_bit(PHY_INTERFACE_MODE_10GBASER, modes) ||
-> +		    test_bit(PHY_INTERFACE_MODE_USXGMII, modes)) {
-> +			phy_interface_zero(mask);
-> +			__set_bit(PHY_INTERFACE_MODE_5GBASER, mask);
-> +			__set_bit(PHY_INTERFACE_MODE_10GBASER, mask);
-> +			__set_bit(PHY_INTERFACE_MODE_USXGMII, mask);
-> +			phy_interface_and(mask, supported, mask);
-> +			phy_interface_or(modes, modes, mask);
-> +			lower = true;
-> +		}
-> +
-> +		if (lower || (test_bit(PHY_INTERFACE_MODE_SGMII, modes) ||
-> +			      test_bit(PHY_INTERFACE_MODE_1000BASEX, modes) ||
-> +			      test_bit(PHY_INTERFACE_MODE_2500BASEX, modes))) {
-> +			phy_interface_zero(mask);
-> +			__set_bit(PHY_INTERFACE_MODE_SGMII, mask);
-> +			__set_bit(PHY_INTERFACE_MODE_1000BASEX, mask);
-> +			__set_bit(PHY_INTERFACE_MODE_2500BASEX, mask);
-> +			phy_interface_and(mask, supported, mask);
-> +			phy_interface_or(modes, modes, mask);
-> +		}
-> +	}
-> +
-> +	phy_interface_and(supported, supported, modes);
-> +}
-> +
->  static int phylink_parse_mode(struct phylink *pl, struct fwnode_handle *fwnode)
->  {
->  	struct fwnode_handle *dn;
-> @@ -1157,6 +1225,8 @@ struct phylink *phylink_create(struct phylink_config *config,
->  	__set_bit(PHYLINK_DISABLE_STOPPED, &pl->phylink_disable_state);
->  	timer_setup(&pl->link_poll, phylink_fixed_poll, 0);
->  
-> +	phylink_update_phy_modes(pl, fwnode);
-> +
->  	bitmap_fill(pl->supported, __ETHTOOL_LINK_MODE_MASK_NBITS);
->  	linkmode_copy(pl->link_config.advertising, pl->supported);
->  	phylink_validate(pl, pl->supported, &pl->link_config);
-> -- 
-> 2.32.0
-> 
