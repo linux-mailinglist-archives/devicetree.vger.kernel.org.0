@@ -2,325 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 270E345A87E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:39:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11A1C45A881
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 17:40:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229898AbhKWQnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 11:43:00 -0500
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:53103 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229646AbhKWQm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Nov 2021 11:42:57 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.nyi.internal (Postfix) with ESMTP id 251DA5C0183;
-        Tue, 23 Nov 2021 11:39:48 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Tue, 23 Nov 2021 11:39:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=DqKiH80SmKDpWn7GfxtaEYlMlLh
-        8S4gQFuzGT1W1fr8=; b=U/TFpeI7JZvyXBix7hg4DWZUYTAQ4BUFUbRvKcTXl6o
-        Qzij/YrjlvCd6xdQOa8Ro5N1flXZgMhxWanLmsKRwFE0ptqazmCf6bhxGaQ5SHiD
-        R8NNgzynfkuAiuu+Ng9/0mL/+Pxlk6y3pbPs+T+jNaeifXWXTiU+fhzJPC+Hhp1T
-        0ipOZZ39Yvy0aew2XuJw0jwIq4FtH2+caLc8A/iEYA3cLVCQ2IkIJuZjQT9sz4/y
-        6UJc4MgfujBTVZOIFrOYfPI4ApDFkJVqsoIDdCrx9l4iEFIu9+RBlMLhr+6O/u7z
-        XCRzThDAkHzqDgvkJeIa6qgBhtnYvqg45AH/SOM3bhw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=DqKiH8
-        0SmKDpWn7GfxtaEYlMlLh8S4gQFuzGT1W1fr8=; b=Tg7J9d+SjUjiGH3ob7XnO+
-        Uj3sV/mDBX4RNxwWY9ZLgzY764iTN079KeasFhrZGpJTR5dLlShmNxhuTZEF5eVB
-        XHlX9qBursQyrcF6WTpvOY1tlJ1zYvhugz/m8oiS0378+S7W+eUUAl9fVlGLtb1w
-        7ZtbgmuamHPkzRUgiiuYz4cB3UxVA8gXAR58p/oHFJTrattvwVsjpMNy43C51sml
-        PXIC7nQKxdUboOAke+izqb7E0oa6EOqv/kAfk/zjunD+CdH4M6PhIRtagciHz7HZ
-        FaMkIjFhR99+co8skyA5YC3UjIVyRLYyr3j1BQN2Wc1wESRyjDDvyznL4AvXGtcA
-        ==
-X-ME-Sender: <xms:UxmdYUKHsDSSl-Sd9A308saqWVWfTlw-j9yFcIcBDXqmni5JeKGP8A>
-    <xme:UxmdYUL_fD1o1jeRpqA1hrFykUJNiilISW5fiae0iDhw6laVwlnb8FaunK3H8xPjG
-    QZshixdDhmMnMwqNFE>
-X-ME-Received: <xmr:UxmdYUtTxv8qChQjjyEWd_TO3Q2i55mcLo3Wjvl4oVTW_ldHrQbeyaAmMg3kYNQD2tJ5cof79IibNczP5mwhNubkDikrJ2Enw4w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrgeeigdelvdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:UxmdYRZFTi659-YHklB1TryhWd1undaLnMGEI1EMitqorMdNfKmMZQ>
-    <xmx:UxmdYbby8AkfS02hXePbNSluVyMZwt5LKQRFBqscuyR-dzBKLwb_sw>
-    <xmx:UxmdYdB3Vcr1wPl7TQvkDlbvd-3nJJBVK8UQ4NM1WZBualmWTpC8RQ>
-    <xmx:VBmdYZOkrJNLO5dfizTB_OzsJYB8vCiK2YgPUobgXLxqpQqvjegoyA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 23 Nov 2021 11:39:47 -0500 (EST)
-Date:   Tue, 23 Nov 2021 17:39:45 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] leds: sun50i-r329: New driver for the R329/D1 LED
- controller
-Message-ID: <20211123163945.xj2xmqymj3dkba55@gilmour>
-References: <20211119054044.16286-1-samuel@sholland.org>
- <20211119054044.16286-2-samuel@sholland.org>
- <20211119082850.lrfq2wuyzhyvczdi@gilmour>
- <fd4d08ee-3048-a54a-58d2-9510413c166f@sholland.org>
+        id S229490AbhKWQn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 11:43:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37342 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231297AbhKWQn3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 11:43:29 -0500
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB72C061574;
+        Tue, 23 Nov 2021 08:40:20 -0800 (PST)
+Received: by mail-ed1-x52e.google.com with SMTP id z5so94928281edd.3;
+        Tue, 23 Nov 2021 08:40:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kt++ez6DDixr3h0D8q1KSwx4EC+3NJgYtsbI+xf/Eck=;
+        b=pJZJVpTFL4zlPLOVeZ3+4Yd0WIeI6xABA2VuTgYMCbcjUJbhqjXSkLvHGYzStywT5I
+         MYdoQDBeOMdPdcMNEOmCgp97IKBdDtkNZopjiomlu1PKlYIGSZ+Z5J2a5UUg+s8JZ0BP
+         8z510NkAIUGQY+hYepPOUdxo8svelQ84qU0ZmO4jMWngEO84n3nQA2nP+SlLnCaEdg7b
+         URul1E2DpPa/25tfq6pqVFX3H8gAu2u3Ar34dIFD2Z5EZR15PGXcZuRewqBrR9dVaDPS
+         KYv6C4pqSN9SARj0olZbC9rIgiNiTAqAvpaWJSOLl+nkMuJA4cGrdMpYC/n/9t8D9+/U
+         QEtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kt++ez6DDixr3h0D8q1KSwx4EC+3NJgYtsbI+xf/Eck=;
+        b=SvNh9hwCqkrUCkZ6MNXyJFrk4GPwEYQeJVZMTQxkTkgG7taOABLgDWAgXmoPrm+19z
+         uCWHpdmCm78FFILRCTMLlE5B26Tn70okqde8O9USp8kM+jyGzSPa5NY3wQSrS5P7V2eK
+         rmZfzJ5oaO+eCW8JwUc2LyEU7iEToqfo0PG7U2LqzKT6QGtbr6po1+bkXd8ODaUWnQI0
+         b8ic3tN6hSA4grxJCSn872j/Vurbx8Pzer4Q1pbXD3eLBKjz1AP035L69Au5shpqB2i5
+         jPGn3sf7jdMyDPqF8+DEG6WVsC5IhpTWg19KxfsmNuZzM7RCByxsV2NgFIFZ5jqwjuyu
+         o9vA==
+X-Gm-Message-State: AOAM532M9D/cFwQiIEK/vuQalP2OdPi4+ZwJZylNlsH9fmwL295Wmhyq
+        b3ktMorFYn0/37zZHLLC0XkfApxTclDlHjyAOqQ=
+X-Google-Smtp-Source: ABdhPJynbIs3uPn5BBPzSf12stNiPPkl8AB3+oRJ7cjM+zrMJpsY0N9pckPd2pNH7KwurOzHfYCs80wt50dpqXD3Ncw=
+X-Received: by 2002:aa7:cd99:: with SMTP id x25mr10954462edv.249.1637685619021;
+ Tue, 23 Nov 2021 08:40:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="nwidnpvmer74tu3y"
-Content-Disposition: inline
-In-Reply-To: <fd4d08ee-3048-a54a-58d2-9510413c166f@sholland.org>
+References: <20211104161804.587250-1-aford173@gmail.com> <CAJ+vNU2jcWyCm3UyiOnvknS0t+mSdpaB+CgGWYO3jxXTa3LhRA@mail.gmail.com>
+ <CAHCN7xJrnZMQgXVMJg7MZdFMWyesf6Ph7HnfMH7-9bm1qODHFw@mail.gmail.com>
+ <CAJ+vNU32GXtbKWGQXoE7pkXU8FcKh+HQJJduwRbRJ0tC-d6GoA@mail.gmail.com>
+ <CAHCN7xLAm21zUJQ8s4s--+ygmeVY0qyo0WSLp7ZM9bT9R3sjxw@mail.gmail.com>
+ <CAOMZO5Am4P17mOXWrPs0ns9AwOXM_ZpBdzbYTYJfv_48Ea=BHg@mail.gmail.com>
+ <CAHCN7xLzR5LqqydC7uydsXQPFVn=nyqKD8ZEH3EjcPuwQky5WA@mail.gmail.com>
+ <CAOMZO5AnXDV3jdR6hP_+uqyss4KftzjahcrGq1XA37nGsfQedw@mail.gmail.com>
+ <CAHCN7xKJBHY1o94VDkBaXXFjMUm=5WoshddT4DVWD04aiPV8MA@mail.gmail.com>
+ <CAHCN7xKpjVWiTvXpYH11kaHX=0Figh=ALQS4qnUroGCu-q3NNA@mail.gmail.com>
+ <CAJ+vNU37=qPuuNaSsvRntKU5wbVZoOtS_tAx7En6EMGfKN=QLg@mail.gmail.com>
+ <82c5da8862abaa430ee52b57e15d29a67106d61f.camel@pengutronix.de>
+ <CAJ+vNU0ce1TTAHzT-ZE303ikmmwghutyObSQMJeHN8D0R8Gcdw@mail.gmail.com>
+ <CAHCN7x+k=C=fxFZYJK6qpUFNDSddVGvfYPPLZ_LNOvhW6RNxmg@mail.gmail.com>
+ <129460de1d6b02ad16fdac16a1437c5b2cbb3975.camel@pengutronix.de> <CAHCN7x+yt_-mQ14A+xw1-Qd2ucSniUqT_wPyp-0OedwUp8UDjA@mail.gmail.com>
+In-Reply-To: <CAHCN7x+yt_-mQ14A+xw1-Qd2ucSniUqT_wPyp-0OedwUp8UDjA@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 23 Nov 2021 10:40:07 -0600
+Message-ID: <CAHCN7xKtakudWne1ZK8n3o4bVnnR02TLzsJ_Qgo8GnHed_sfTA@mail.gmail.com>
+Subject: Re: [PATCH V3 0/9] arm64: imx8mn: Enable more imx8m Nano functions
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Tim Harvey <tharvey@gateworks.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Nov 23, 2021 at 8:30 AM Adam Ford <aford173@gmail.com> wrote:
+>
+> On Tue, Nov 23, 2021 at 8:24 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> >
+> > Am Dienstag, dem 23.11.2021 um 08:08 -0600 schrieb Adam Ford:
+> > > On Mon, Nov 22, 2021 at 3:52 PM Tim Harvey <tharvey@gateworks.com> wrote:
+> > > >
+> > > > On Mon, Nov 22, 2021 at 10:20 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > > >
+> > > > > Am Montag, dem 22.11.2021 um 09:59 -0800 schrieb Tim Harvey:
+> > > > > > On Sun, Nov 21, 2021 at 7:25 AM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > >
+> > > > > > > On Sun, Nov 21, 2021 at 8:34 AM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > > >
+> > > > > > > > On Sun, Nov 21, 2021 at 8:21 AM Fabio Estevam <festevam@gmail.com> wrote:
+> > > > > > > > >
+> > > > > > > > > Hi Adam,
+> > > > > > > > >
+> > > > > > > > > On Sun, Nov 21, 2021 at 11:17 AM Adam Ford <aford173@gmail.com> wrote:
+> > > > > > > > >
+> > > > > > > > > > I am using https://source.codeaurora.org/external/imx/imx-atf/log/?h=lf_v2.4
+> > > > > > > > > >
+> > > > > > > > > > Since the driver sending SMCC commands to ATF isn't doing that, I
+> > > > > > > > > > assume it's safe to use the linux power-domain drivers with the ATF
+> > > > > > > > > > from NXP's kernel.
+> > > > > > > > > >
+> > > > > > > > > > If you can point me to the repo you think I should be using, I'll give it a try.
+> > > > > > > > >
+> > > > > > > > > Do you know if the mainline TF-A repo v2.5 works too?
+> > > > > > > > > https://github.com/ARM-software/arm-trusted-firmware/tree/v2.5
+> > > > > > > >
+> > > > > > > > That's good to know.
+> > > > > > > >
+> > > > > > > > I just built it into U-Boot:
+> > > > > > > >
+> > > > > > > > NOTICE:  BL31: v2.5(release):v2.5
+> > > > > > > > NOTICE:  BL31: Built : 08:24:13, Nov 21 2021
+> > > > > > > >
+> > > > > > > > The Etnaviv driver is still loading without hanging
+> > > > > > > >
+> > > > > > > > root@beacon-imx8mn-kit:~# dmesg |grep -i etna
+> > > > > > > > [   12.393936] etnaviv etnaviv: bound 38000000.gpu (ops gpu_ops [etnaviv])
+> > > > > > > > [   12.400676] etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
+> > > > > > > > [   12.641297] [drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
+> > > > > > > >
+> > > > > > > >
+> > > > > > >
+> > > > > > > Tim,
+> > > > > > >
+> > > > > > > Which version of Nano do you have?  Not all Nano SoC's have a GPU from
+> > > > > > > looking at the datasheet [1] .  I am using MIMX8MN2CVTIZAA (Nano Solo)
+> > > > > > >
+> > > > > > > [1] - https://www.nxp.com/docs/en/data-sheet/IMX8MNIEC.pdf
+> > > > > > >
+> > > > > >
+> > > > > > Adam,
+> > > > > >
+> > > > > > The board I have here has MIMX8MN5CVTIZAA so i.MX 8M Nano QuadLite
+> > > > > > with 'No GPU' as you expected.
+> > > > > >
+> > > > > > So I have to add the following to keep my board from hanging after your series:
+> > > > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > > > > > b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > > > > > index 236f425e1570..0d256a607b7c 100644
+> > > > > > --- a/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > > > > > +++ b/arch/arm64/boot/dts/freescale/imx8mn-venice-gw7902.dts
+> > > > > > @@ -251,6 +251,10 @@
+> > > > > >         };
+> > > > > >  };
+> > > > > >
+> > > > > > +&gpu {
+> > > > > > +       status = "disabled";
+> > > > > > +};
+> > > > > > +
+> > > > > >  &i2c1 {
+> > > > > >         clock-frequency = <100000>;
+> > > > > >         pinctrl-names = "default";
+> > > > > >
+> > > > > > This situation is similar to the one I encountered with the
+> > > > > > imx8mm-venice-gw7901 where adding the GPC node caused my board (which
+> > > > > > did not power the GPU) to hang until I added disables to the
+> > > > > > device-tree with commit 7973009235e2 ("arm64: dts:
+> > > > > > imx8mm-venice-gw7901.dts: disable pgc_gpumix"). It feels painful to
+> > > > > > have to add patches to keep things from hanging after additional
+> > > > > > functionality is added to dt but perhaps that is more common than I
+> > > > > > think esp for SoC's like IMX8M which have a lot of lingering support
+> > > > > > still coming in.
+> > > > > >
+> > > > > Yea, it's unfortunate that those patches break your board, but I guess
+> > > > > we need to accept this, while there is still a lot of feature work
+> > > > > going on.
+> > >
+> > > There are a significant number of peripherals which are defined and
+> > > marked as 'disabled' by default, so I don't think it's unreasonable to
+> > > do that here.
+> > > I'd like to propose we keep the default disabled and people who
+> > > need/want the GPU enabled can turn it on.  Why waste the power if it's
+> > > not needed?
+> > >
+> > Sure, if a significant number of chips has the GPU disabled, we might
+> > want to keep it disabled in the base dtsi. With those variants it's
+> > always a tradeoff, for example there are SKUs of the i.MX6 that had the
+> > VPU disabled, but very few of those were in the field, so the VPUs are
+> > enabled in the SoC base dtsi and only users of those special SKUs would
+> > need to disable them in the board DT.
+> >
+> > The power argument isn't valid, as the kernel driver will suspend the
+> > device when not needed, so there is no wasted power (aside from the
+> > sort moment while the driver probes) with the GPU enabled.
+> >
+> > The rule of thumb for when a device is default enabled in the SoC dsti
+> > has always been (at least for i.MX) that the peripheral must not have a
+> > board level dependency. While a i2c controller obviously needs a i2c
+> > bus connected on the board to fulfill its purpose, a GPU can be used as
+> > color space converter or something like that with no board level
+> > interaction. Now the line is a bit blurred by having multiple power
+> > rails into the SoC, so one could argue that the GPUs and VPUs now have
+> > some board level dependency on the i.MX8M*.
+>
+> That makes sense.
+>
+> Do we defer to Shawn as the final arbiter as to whether or not it's
+> enabled/disabled?  It would be nice to get Nano caught up in
+> functionality as much as possible.
 
---nwidnpvmer74tu3y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+We could add two more device trees, one for 8mnl (lite) and 8mnul (ulta-lite)
 
-On Fri, Nov 19, 2021 at 05:57:01PM -0600, Samuel Holland wrote:
-> Hi Maxime,
->=20
-> On 11/19/21 2:28 AM, Maxime Ripard wrote:
-> > Hi,
-> >=20
-> > On Thu, Nov 18, 2021 at 11:40:43PM -0600, Samuel Holland wrote:
-> >> +static const struct sun50i_r329_ledc_timing sun50i_r329_ledc_default_=
-timing =3D {
-> >> +	.t0h_ns =3D 336,
-> >> +	.t0l_ns =3D 840,
-> >> +	.t1h_ns =3D 882,
-> >> +	.t1l_ns =3D 294,
-> >> +	.treset_ns =3D 300000,
-> >> +};
-> >=20
-> > This should be mentioned in the binding as well (using the default keyw=
-ord)
->=20
-> Ok, I'll do this for v4.
->=20
-> >> +static int sun50i_r329_ledc_parse_timing(const struct device_node *np,
-> >> +					 struct sun50i_r329_ledc *priv)
-> >> +{
-> >> +	struct sun50i_r329_ledc_timing *timing =3D &priv->timing;
-> >> +
-> >> +	*timing =3D sun50i_r329_ledc_default_timing;
-> >> +
-> >> +	of_property_read_u32(np, "allwinner,t0h-ns", &timing->t0h_ns);
-> >> +	of_property_read_u32(np, "allwinner,t0l-ns", &timing->t0l_ns);
-> >> +	of_property_read_u32(np, "allwinner,t1h-ns", &timing->t1h_ns);
-> >> +	of_property_read_u32(np, "allwinner,t1l-ns", &timing->t1l_ns);
-> >> +	of_property_read_u32(np, "allwinner,treset-ns", &timing->treset_ns);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static void sun50i_r329_ledc_set_timing(struct sun50i_r329_ledc *priv)
-> >> +{
-> >> +	const struct sun50i_r329_ledc_timing *timing =3D &priv->timing;
-> >> +	unsigned long mod_freq =3D clk_get_rate(priv->mod_clk);
-> >> +	u32 cycle_ns =3D NSEC_PER_SEC / mod_freq;
-> >> +	u32 val;
-> >> +
-> >> +	val =3D (timing->t1h_ns / cycle_ns) << 21 |
-> >> +	      (timing->t1l_ns / cycle_ns) << 16 |
-> >> +	      (timing->t0h_ns / cycle_ns) <<  6 |
-> >> +	      (timing->t0l_ns / cycle_ns);
-> >> +	writel(val, priv->base + LEDC_T01_TIMING_CTRL_REG);
-> >> +
-> >> +	val =3D (timing->treset_ns / cycle_ns) << 16 |
-> >> +	      (priv->num_leds - 1);
-> >> +	writel(val, priv->base + LEDC_RESET_TIMING_CTRL_REG);
-> >> +}
-> >> +
-> >> +static int sun50i_r329_ledc_resume(struct device *dev)
-> >> +{
-> >> +	struct sun50i_r329_ledc *priv =3D dev_get_drvdata(dev);
-> >> +	u32 val;
-> >> +	int ret;
-> >> +
-> >> +	ret =3D reset_control_deassert(priv->reset);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	ret =3D clk_prepare_enable(priv->bus_clk);
-> >> +	if (ret)
-> >> +		goto err_assert_reset;
-> >> +
-> >> +	ret =3D clk_prepare_enable(priv->mod_clk);
-> >> +	if (ret)
-> >> +		goto err_disable_bus_clk;
-> >> +
-> >> +	sun50i_r329_ledc_set_format(priv);
-> >> +	sun50i_r329_ledc_set_timing(priv);
-> >> +
-> >> +	/* The trigger level must be at least the burst length. */
-> >> +	val =3D readl(priv->base + LEDC_DMA_CTRL_REG);
-> >> +	val &=3D ~LEDC_DMA_CTRL_REG_FIFO_TRIG_LEVEL;
-> >> +	val |=3D LEDC_FIFO_DEPTH / 2;
-> >> +	writel(val, priv->base + LEDC_DMA_CTRL_REG);
-> >> +
-> >> +	val =3D LEDC_INT_CTRL_REG_GLOBAL_INT_EN |
-> >> +	      LEDC_INT_CTRL_REG_TRANS_FINISH_INT_EN;
-> >> +	writel(val, priv->base + LEDC_INT_CTRL_REG);
-> >> +
-> >> +	return 0;
-> >> +
-> >> +err_disable_bus_clk:
-> >> +	clk_disable_unprepare(priv->bus_clk);
-> >> +err_assert_reset:
-> >> +	reset_control_assert(priv->reset);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >> +static int sun50i_r329_ledc_suspend(struct device *dev)
-> >> +{
-> >> +	struct sun50i_r329_ledc *priv =3D dev_get_drvdata(dev);
-> >> +
-> >> +	clk_disable_unprepare(priv->mod_clk);
-> >> +	clk_disable_unprepare(priv->bus_clk);
-> >> +	reset_control_assert(priv->reset);
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static void sun50i_r329_ledc_dma_cleanup(void *data)
-> >> +{
-> >> +	struct sun50i_r329_ledc *priv =3D data;
-> >> +	struct device *dma_dev =3D dmaengine_get_dma_device(priv->dma_chan);
-> >> +
-> >> +	if (priv->buffer)
-> >> +		dma_free_wc(dma_dev, LEDS_TO_BYTES(priv->num_leds),
-> >> +			    priv->buffer, priv->dma_handle);
-> >> +	dma_release_channel(priv->dma_chan);
-> >> +}
-> >> +
-> >> +static int sun50i_r329_ledc_probe(struct platform_device *pdev)
-> >> +{
-> >> +	const struct device_node *np =3D pdev->dev.of_node;
-> >> +	struct dma_slave_config dma_cfg =3D {};
-> >> +	struct led_init_data init_data =3D {};
-> >> +	struct device *dev =3D &pdev->dev;
-> >> +	struct device_node *child;
-> >> +	struct sun50i_r329_ledc *priv;
-> >> +	struct resource *mem;
-> >> +	int count, irq, ret;
-> >> +
-> >> +	count =3D of_get_available_child_count(np);
-> >> +	if (!count)
-> >> +		return -ENODEV;
-> >> +	if (count > LEDC_MAX_LEDS) {
-> >> +		dev_err(dev, "Too many LEDs! (max is %d)\n", LEDC_MAX_LEDS);
-> >> +		return -EINVAL;
-> >> +	}
-> >> +
-> >> +	priv =3D devm_kzalloc(dev, struct_size(priv, leds, count), GFP_KERNE=
-L);
-> >> +	if (!priv)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	priv->dev =3D dev;
-> >> +	priv->num_leds =3D count;
-> >> +	spin_lock_init(&priv->lock);
-> >> +	dev_set_drvdata(dev, priv);
-> >> +
-> >> +	ret =3D sun50i_r329_ledc_parse_format(np, priv);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	ret =3D sun50i_r329_ledc_parse_timing(np, priv);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	priv->base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
-> >> +	if (IS_ERR(priv->base))
-> >> +		return PTR_ERR(priv->base);
-> >> +
-> >> +	priv->bus_clk =3D devm_clk_get(dev, "bus");
-> >> +	if (IS_ERR(priv->bus_clk))
-> >> +		return PTR_ERR(priv->bus_clk);
-> >> +
-> >> +	priv->mod_clk =3D devm_clk_get(dev, "mod");
-> >> +	if (IS_ERR(priv->mod_clk))
-> >> +		return PTR_ERR(priv->mod_clk);
-> >> +
-> >> +	priv->reset =3D devm_reset_control_get_exclusive(dev, NULL);
-> >> +	if (IS_ERR(priv->reset))
-> >> +		return PTR_ERR(priv->reset);
-> >> +
-> >> +	priv->dma_chan =3D dma_request_chan(dev, "tx");
-> >> +	if (IS_ERR(priv->dma_chan))
-> >> +		return PTR_ERR(priv->dma_chan);
-> >> +
-> >> +	ret =3D devm_add_action_or_reset(dev, sun50i_r329_ledc_dma_cleanup, =
-priv);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	dma_cfg.dst_addr	=3D mem->start + LEDC_DATA_REG;
-> >> +	dma_cfg.dst_addr_width	=3D DMA_SLAVE_BUSWIDTH_4_BYTES;
-> >> +	dma_cfg.dst_maxburst	=3D LEDC_FIFO_DEPTH / 2;
-> >> +	ret =3D dmaengine_slave_config(priv->dma_chan, &dma_cfg);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	priv->buffer =3D dma_alloc_wc(dmaengine_get_dma_device(priv->dma_cha=
-n),
-> >> +				    LEDS_TO_BYTES(priv->num_leds),
-> >> +				    &priv->dma_handle, GFP_KERNEL);
-> >> +	if (!priv->buffer)
-> >> +		return -ENOMEM;
-> >> +
-> >> +	irq =3D platform_get_irq(pdev, 0);
-> >> +	if (irq < 0)
-> >> +		return irq;
-> >> +
-> >> +	ret =3D devm_request_irq(dev, irq, sun50i_r329_ledc_irq,
-> >> +			       0, dev_name(dev), priv);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	ret =3D sun50i_r329_ledc_resume(dev);
-> >> +	if (ret)
-> >> +		return ret;
-> >=20
-> > You seem to fill the runtime_pm hooks, but only call them directly and
-> > never enable runtime_pm on that device, is that intentional?
->=20
-> Yes. I did not want to delay the initial version by adding runtime PM
-> (and debugging the refcounts) when the driver already works now.
-> However, I had runtime/system PM in mind while writing the driver.
->=20
-> If you think it is too confusing, I could rename the functions to
-> something like sun50i_r329_ledc_hw_init / sun50i_r329_ledc_hw_exit.
+imx8mnl:
 
-It's not really the functions themselves that are confusing but rather
-that you set them as runtime_pm hooks.
+#include imx8mn.dtsi
 
-If you plan on submitting it later on, I guess the easiest would just be
-to remove the sun50i_r329_ledc_pm structure, and then you'll just have
-to introduce it back with a call to pm_runtime_enable when it's ready
+&gpu {
+    status = "disabled";
+};
 
-Maxime
 
---nwidnpvmer74tu3y
-Content-Type: application/pgp-signature; name="signature.asc"
+imx8mnul:
 
------BEGIN PGP SIGNATURE-----
+#include imx8mnl
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYZ0ZUAAKCRDj7w1vZxhR
-xcdeAQCvPy9SiSH/Y7VJ6IhQponGjRSkn2R6FQPh8eAiTW9u3wD/X8zFlTD2q7zL
-etZ4zF6mnpnVs18o1Lb0mgI44ClMTg0=
-=/9wd
------END PGP SIGNATURE-----
+&dsi {
+    status = "disabled";
+};
 
---nwidnpvmer74tu3y--
+Then the boards using either lite or ultralite just include their
+respective SoC.dtsi instead of imx8mn.dtsi.  This is similar to what
+we do with the plethora of i.mx6 options.
+
+Just a thought.  Although, I really like the idea of the bootloader
+disabling the unavailable nodes.
+
+adam
+>
+> adam
+>
+> >
+> > Regards,
+> > Lucas
+> >
