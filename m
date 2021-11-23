@@ -2,78 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEF9B45B012
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:27:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5082B45B02A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:28:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233467AbhKWXaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 18:30:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbhKWXaR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 18:30:17 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21F28C061714
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:27:09 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso1256474otj.11
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:27:09 -0800 (PST)
+        id S240550AbhKWXbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 18:31:08 -0500
+Received: from mail-eopbgr80074.outbound.protection.outlook.com ([40.107.8.74]:62029
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S240476AbhKWXbG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 18:31:06 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MUIAsF8on4jgSaM0IJxX2WusAUCUjqg3ZFaBbP7wiPBCd1fTDhapjctLl8wSUNsr8kVD0ey5ELgMr2OFlajmmMb6yaudO9sgZHhGci3Ffu1QVRbvBOeVifRec7A+mTVJkavB/0F1mXPaR4w3FYcBZHd3E3IeZlJdGr0CG7FHkyX12qGy248M34RhnGpD0L3qb3OHIIIXLm1PW7cxAvmMb1TPaw1Zhjsf3q7xEOF0hDH05nZClNgEiNw+OyMOBtv/fTPakMV/O4UQ+D26xvUqLu1pKjUQbYM8Tf8Dlv6fM7yG+vjsaObIZBs/pAfS5f/KeJgthgiXL0L7gwQp4jz9Rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OmuZ1WBrSJyU9SkSNoiAEhkhK6RlIF/fkywqSGEblwQ=;
+ b=FiL6+sOLSTGQRk43ERy1bPybyiiR/nvkRmJvT+QBxDICaa58iFG904e2BT97XIRLeTBSOQBBG7xpe/RnAY23xn7fcvPC8c50gFIEVhibuaoA7ghYsgSHvQzJadpjQJXabeNmNHtxaG11b6Lk1Uejl7YVFQT5QtdzLWhQ1cqQoABysEpvqAxlw43B9KWRj241x2JujXsth1oQpWiXj3nU2FS+LiCkvbFKBHb1Ba0QxZYk+RytLGdtb74wLbFM6v7fwV2YJG6DAd2iqwbPeCHBBHlyt6sWfaKafGSRJhzC2OKk+pII+lm4+z2wLcqEJkHSGBiWQkmUHYDSga/r9zUbeg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 193.240.239.45) smtp.rcpttodomain=gmail.com smtp.mailfrom=diasemi.com;
+ dmarc=none action=none header.from=diasemi.com; dkim=none (message not
+ signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fwR7w/M4Q8qtIzCDcAQVXEmcuIC9wJDRftO6EL4gBoo=;
-        b=mSaZ2VU5+HDgoa/iDnfBfMpzjYzjog8eQcqJClYoBoCNX6T3kcHgQn5eO5nEtySDS0
-         c49yFdabzc8RhTCQOQHvoxPfsWehvF/AWyZKZGq7I27B2fh9n9qrMGwqDSA/VPtlMzcw
-         xK9z/EK716wVZf2WEk4/RsD5T0Yd6qRAErS1PdD7wwRYbGmgwTXun4FcO4nq4HoHGPF9
-         rGXbNjNEIUdRUWPZnYn3cRVhAEOZSDyn06tntY0R9aPNHCtUhwsP04WXsx3BOzwU1+QZ
-         qSFgar3kmDD/UyeTQtnqnpndS3VOAcUV+OMlh2k47TSfxYyfavFl8O3RN/OXZwYxsMKQ
-         AR8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fwR7w/M4Q8qtIzCDcAQVXEmcuIC9wJDRftO6EL4gBoo=;
-        b=n7JVyBc5ywVtan37H74xB0XYooMEOw2AE5QcNeZBo2r57rN024if9YTAfozGeruHe0
-         Snz5Rye5buwvJZRXoP5cOZaFs/ng6oYEWEO4pzE4kBe5P06B9i1FuEqq2mm6sb9mWoWr
-         qDxpRjIy8QfsASzpCWhVo3phaIhjJhiOVrPp54LUt+QMsFIATSAmwYoy5nUmf5veFTCd
-         ckYTkIaalnMiex89gwzoJApMj+ZJOMlOt1BEv0xoDD1kz8MJqKkbEU/hCuYWgyo1/F9o
-         WpeV7Gx0mmclFa5U40NY5AGTwaveNfuLo1vF3f1PZFEIsqYSlqJViNKNuqOcrYr55/ta
-         ZGHA==
-X-Gm-Message-State: AOAM532CIKULBbyUqf14HHxUicGiwjH8v95Y05jYlOHtEKnRWBsdQT8P
-        7XOi8vZqm8e76fjUFpblMIW+NWLpv0V3gNZnc2nlwEk/8RI=
-X-Google-Smtp-Source: ABdhPJyXt8C2HSDSOfsA/RV/93m93YeKUVlAgbSNT20jk3LS6BL0w2h0DLsVZx3fAj2o0+Zx4oRJueGUwfUtiPFyBd4=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr8593599otg.179.1637710028501;
- Tue, 23 Nov 2021 15:27:08 -0800 (PST)
+ d=dialogsemiconductor.onmicrosoft.com;
+ s=selector1-dialogsemiconductor-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OmuZ1WBrSJyU9SkSNoiAEhkhK6RlIF/fkywqSGEblwQ=;
+ b=yDLu4+cwWRecNyL97AqJspH0CucbCxMv2vEsWU4xwYyYRElOJ/2o0e35MN+ZfZQrnqiBpBgNd/o7xsPzOriMs/yVfaN3r871ZjKIeuEcV3Y8m4I5YMLDjjRg8bdPD/3dD2ysc2jhQluXsdmVvVnxuE0lRYdjncFv/1Bp4ruzFw8=
+Received: from AM0PR02CA0152.eurprd02.prod.outlook.com (2603:10a6:20b:28d::19)
+ by PRAPR10MB5251.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:291::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4649.18; Tue, 23 Nov
+ 2021 23:27:56 +0000
+Received: from AM5EUR02FT016.eop-EUR02.prod.protection.outlook.com
+ (2603:10a6:20b:28d:cafe::80) by AM0PR02CA0152.outlook.office365.com
+ (2603:10a6:20b:28d::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.22 via Frontend
+ Transport; Tue, 23 Nov 2021 23:27:56 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
+ 193.240.239.45) smtp.mailfrom=diasemi.com; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=diasemi.com;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ diasemi.com discourages use of 193.240.239.45 as permitted sender)
+Received: from mailrelay1.diasemi.com (193.240.239.45) by
+ AM5EUR02FT016.mail.protection.outlook.com (10.152.8.90) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.4713.22 via Frontend Transport; Tue, 23 Nov 2021 23:27:55 +0000
+Received: from nbsrvex-01v.diasemi.com (10.1.17.243) by
+ nbsrvex-01v.diasemi.com (10.1.17.243) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.2; Wed, 24 Nov 2021 00:27:55 +0100
+Received: from slsrvapps-01.diasemi.com (10.24.28.40) by
+ nbsrvex-01v.diasemi.com (10.1.17.243) with Microsoft SMTP Server id
+ 15.1.2176.2 via Frontend Transport; Wed, 24 Nov 2021 00:27:55 +0100
+Received: by slsrvapps-01.diasemi.com (Postfix, from userid 23378)
+        id 00B7D80007F; Tue, 23 Nov 2021 23:27:54 +0000 (UTC)
+Message-ID: <cover.1637709844.git.Adam.Ward.opensource@diasemi.com>
+From:   Adam Ward <Adam.Ward.opensource@diasemi.com>
+Date:   Tue, 23 Nov 2021 23:27:54 +0000
+Subject: [PATCH V3 0/3] regulator: da9121: add DA914x support
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Support Opensource <support.opensource@diasemi.com>
 MIME-Version: 1.0
-References: <20211122225807.8105-1-j@jannau.net> <20211122225807.8105-4-j@jannau.net>
- <5f16c962-72a1-21ec-9651-744053f74365@marcan.st> <d48d2e85-42f1-570a-bd8f-e3834147c8b8@marcan.st>
-In-Reply-To: <d48d2e85-42f1-570a-bd8f-e3834147c8b8@marcan.st>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 24 Nov 2021 00:26:56 +0100
-Message-ID: <CACRpkdZghfRvox4aY4ROXYwFqiV6mnXZgw+42ZWYisXXgQ5+jQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] arm64: dts: apple: t8103: Add i2c nodes
-To:     Hector Martin <marcan@marcan.st>
-Cc:     Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 01e6041b-9462-4c10-57b9-08d9aed8e0cb
+X-MS-TrafficTypeDiagnostic: PRAPR10MB5251:
+X-Microsoft-Antispam-PRVS: <PRAPR10MB5251D9015B60AC3A519BD47BCB609@PRAPR10MB5251.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ctVVh/doMHyztQLuPATXgWykpvcSaHcj/e3XfYQy8Oq3IaUBFnG6xqO0yBdGf6XygvgfZdP98+5cvZxdjBP8IbmvXZZpiiIz5sZ8c7Lza9hMHpfthouudGa1o4rThJOrSaahAGjpdS6auEpTzSYjtu/CwiRMA/O1dZ6QfYp3oRsPVo5bdjk7Rt6NiHGwK73iayHbUP1/qa2M3Bj0tzYWjlr3atAgL6XhAhkZIlPapfJDjUBqbl95ZKpRJ5fR8575nEKi4MPeE8dDVMhUMWsnaTlvRpZtQctjzblCRdeXR+j0RCZsIS7eNy4GYyS0JhHqqZFRkXst7rk/5yOIV/pAPdXCtyDyRhLWdcocECrAL2MQBqswW2lOhlZTgysKzMcM6Xhs0rlExg6ZHlcV6WA0PRxNciHHrHnShoPIMJTnFlfLtnrDjO0GCefNBCg/PiAm0elhb36GSppJO6KbdiuXGP+Wx1zQAD+4iP47Zh/ZNFCJq7v0ev4N/Ccm4phxex5vzLGtDvVActPB0u8aETjV8JsxUQk5yu3osxeY1QVllc/iES7EJtnuVEbSS5wLiZdsgPkKGpCRhm1GoN2IYZ5gE0r1ukF/rjwQYsT2jvhun3Ql7EG6DAwP4Toeoghg9mnEz/nSZqx8PipiFDG/Awvmuc42DYTA9Co0G9JS5D0Jyb17vosum2UfUKnCrbwvzYhBX+6VbIa2X0SOIhL30plMpaSKVzBpCOne7tBcLUmmqDA=
+X-Forefront-Antispam-Report: CIP:193.240.239.45;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mailrelay1.diasemi.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(36840700001)(46966006)(2906002)(426003)(36860700001)(47076005)(5660300002)(86362001)(356005)(336012)(8676002)(81166007)(110136005)(82310400004)(83380400001)(36756003)(316002)(186003)(42186006)(26005)(4326008)(4744005)(70206006)(6266002)(8936002)(107886003)(70586007)(2616005)(54906003)(508600001)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: diasemi.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2021 23:27:55.6577
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01e6041b-9462-4c10-57b9-08d9aed8e0cb
+X-MS-Exchange-CrossTenant-Id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=511e3c0e-ee96-486e-a2ec-e272ffa37b7c;Ip=[193.240.239.45];Helo=[mailrelay1.diasemi.com]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR02FT016.eop-EUR02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAPR10MB5251
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 3:43 PM Hector Martin <marcan@marcan.st> wrote:
+This series extends the DA9121 driver to add support for related products:
 
-> For those following along in the list: the reason why i2c3 was getting
-> stuck is because it seems the unused bus is weakly pulled low on these
-> machines, which jams it.
+  DA9141, 40A, Quad-Phase
+  DA9142, 20A, Dual-Phase
 
-That looks like some power saving attempt.
+The changing of current limit when active is now prohibited, for the range,
+due to possibility of undefined behaviour during transition
 
-I suppose that means that even i2c buses that are in use
-could be weakly pulled low when suspending the system
-and maybe even inbetween transactions to save some
-leak current.
+V2:
+ - Separate removal of obsolete/unused test compatible from binding
 
-Yours,
-Linus Walleij
+V3:
+ - Fix binding update
+ - Improve patch titles
+
+
+Adam Ward (3):
+  dt-bindings: da9121: Remove erroneous compatible from binding
+  dt-bindings: da9121: Add DA914x binding info
+  regulator: da9121: Add DA914x support
+
+ .../bindings/regulator/dlg,da9121.yaml        |  76 +++++++-----
+ drivers/regulator/da9121-regulator.c          | 113 +++++++++++++++++-
+ drivers/regulator/da9121-regulator.h          |  21 +++-
+ 3 files changed, 173 insertions(+), 37 deletions(-)
+
+-- 
+2.25.1
+
