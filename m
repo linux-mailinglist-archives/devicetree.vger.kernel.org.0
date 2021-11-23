@@ -2,105 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45ED5459EE2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:07:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC631459EED
+	for <lists+devicetree@lfdr.de>; Tue, 23 Nov 2021 10:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230307AbhKWJK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 04:10:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44738 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234242AbhKWJK1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 04:10:27 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1ADC061574;
-        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id 71so2310304pgb.4;
-        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IUHBLf5vNSlEiUHIVpm7uW2Kv1mivoocEqGi35UzJDo=;
-        b=E9Njrw0uX2NtO/86NxIMhkIFZpYymPmae0/0ncowoV1DigjBKTp8KE7VrlXbUgVbMb
-         p655JEdYujbN610Z7gb2rNJyDLX6V3rvbFf45fC4wfvZIxYEyOTiNvTdmyePw9SDpECY
-         c0suK9yqIdEhNZl+XLPPbv4vX4rF/JEi7x815O0F+MncTwrSRe7A35dZzGf0lKNuQHOF
-         JZ55u5SCzAcPTFKX1bcX03u3EemINfdIq1OXWlsbF1io0pjAtzI2+kXSVxWxs0zJb8WN
-         RYl9Op0olCnDsjdEHvsDf4dWJVqUVcIi7Akj0NET42ytdlvqNsHDIOpp1qNZYT4CvjzO
-         KhSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=IUHBLf5vNSlEiUHIVpm7uW2Kv1mivoocEqGi35UzJDo=;
-        b=zf7VKTBv3iE+ztYzDLjb6wId5bGobDwjvXbnSBPOkchAlN4mfmSujFrUVGtXjpX90A
-         y3nE2xGNvhQdefMagFbBuNVTAhra6h0oQiU8Nl7uueKaWXaz6oj+e3SpOTzVgBjeY4K0
-         tJ9KCOIH71ivZqMl3SPvA8xhfd8WHyh9FbBf67olUMyrXBQlSQMPIxW6d5GyrZ1ARwgD
-         /CHcFP/WPtqV8M4VDRHQYmC1pX4rwf4XH7KAEpB0+7Na4azWmLPnAGe6tzVmw8ZAs2S5
-         mGvn19p+iHos0oLyhmJjPH1mgQnnhMPuAb3u36Tg5ImlVpi4mzUi4CEQsBAWhCzO3hZ9
-         SenA==
-X-Gm-Message-State: AOAM531fv/+Gagmgck62RC94l0Q8/ZiJL/aaq/8sDHjOPmDEC/dEZQcs
-        /lSlZifqFyR48g5acHcH+go=
-X-Google-Smtp-Source: ABdhPJyzeM1ZaQ0CZXGAIYfYbVQfDPp5pR8xK+fJZr7hkv5S6N/IyRP9kjmT3yrvPx7/bI9pBnW+gA==
-X-Received: by 2002:a05:6a00:1945:b0:44c:a955:35ea with SMTP id s5-20020a056a00194500b0044ca95535eamr3849851pfk.85.1637658439294;
-        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
-Received: from localhost.localdomain ([103.99.179.247])
-        by smtp.gmail.com with ESMTPSA id u13sm8751242pgp.27.2021.11.23.01.07.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 01:07:19 -0800 (PST)
-From:   Calvin Zhang <calvinzhang.cool@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, Calvin Zhang <calvinzhang.cool@gmail.com>
-Subject: [PATCH] mm: kmemleak: alloc gray object for reserved region with direct map.
-Date:   Tue, 23 Nov 2021 17:06:41 +0800
-Message-Id: <20211123090641.3654006-1-calvinzhang.cool@gmail.com>
-X-Mailer: git-send-email 2.30.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S234535AbhKWJOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 04:14:22 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55456 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234149AbhKWJOV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 04:14:21 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 32C5A60FD7;
+        Tue, 23 Nov 2021 09:11:14 +0000 (UTC)
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mpRpY-007Ei9-2p; Tue, 23 Nov 2021 09:11:12 +0000
+Date:   Tue, 23 Nov 2021 09:11:11 +0000
+Message-ID: <87r1b7ck40.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel-team@android.com, Rob Herring <robh@kernel.org>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own definition of interrupt-map
+In-Reply-To: <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
+References: <20211122103032.517923-1-maz@kernel.org>
+        <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+        <8735no70tt.wl-maz@kernel.org>
+        <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+        <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
+        <87tug3clvc.wl-maz@kernel.org>
+        <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: geert@linux-m68k.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel-team@android.com, robh@kernel.org, john@phrozen.org, biwen.li@nxp.com, chris.brandt@renesas.com, linux-renesas-soc@vger.kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reserved regions with direct mapping may contain references to other
-regions. CMA region with fixed location is reserved without creating
-kmemleak_object for it.
+On Tue, 23 Nov 2021 08:44:19 +0000,
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> 
+> Hi Marc,
+> 
+> On Tue, Nov 23, 2021 at 9:33 AM Marc Zyngier <maz@kernel.org> wrote:
+> > On Tue, 23 Nov 2021 07:57:48 +0000,
+> > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > Summarized:
+> > >   - Before the bad commit, and after your fix, irqc-rza1 is invoked,
+> > >     and the number of interrupts seen is correct, but input events
+> > >     are doubled.
+> > >   - After the bad commit, irqc-rza1 is not invoked, and there is an
+> > >     interrupt storm, but input events are OK.
+> >
+> > OK, that's reassuring, even if the "twice the events" stuff isn't what
+> > you'd expect. We at least know this is a separate issue, and that this
+> > patch on top of -rc1 brings you back to the 5.15 behaviour.
+> >
+> > I'd expect it to be the case for the other platforms as well.
+> 
+> OK.
+> 
+> BTW, what would have been the correct way to do this for irqc-rza1?
+> I think we're about to make the same mistake with RZ/G2L IRQC
+> support[1]?
 
-So add them as gray kmemleak objects.
+Indeed, and I was about to look into it.
 
-Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
----
- drivers/of/fdt.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+There are multiple ways to skin this cat, including renaming
+'interrupt-map' to 'my-own-private-interrupt-map'. Or use something
+akin the new 'msi-range' (which we could call interrupt-range), and
+replace:
 
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index bdca35284ceb..116c582fea7a 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -26,6 +26,7 @@
- #include <linux/serial_core.h>
- #include <linux/sysfs.h>
- #include <linux/random.h>
-+#include <linux/kmemleak.h>
- 
- #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
- #include <asm/page.h>
-@@ -522,9 +523,12 @@ static int __init __reserved_mem_reserve_reg(unsigned long node,
- 		size = dt_mem_next_cell(dt_root_size_cells, &prop);
- 
- 		if (size &&
--		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0)
-+		    early_init_dt_reserve_memory_arch(base, size, nomap) == 0) {
- 			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
- 				uname, &base, (unsigned long)(size / SZ_1M));
-+			if (!nomap)
-+				kmemleak_alloc_phys(base, size, 0, 0);
-+		}
- 		else
- 			pr_info("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
- 				uname, &base, (unsigned long)(size / SZ_1M));
+  interrupt-map = <0 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+                  <1 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+                  <2 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+                  <3 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+                  <4 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+                  <5 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+                  <6 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+                  <7 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+
+with:
+
+  interrupt-range = <&gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH 0 8>;
+
+which reads as "base interrupt spec", "start pin", "count".  This
+gives you almost the same level of information, and doesn't interfere
+with the rest of the DT properties. Parsing it is also much simpler.
+But that's up to you, really.
+
+	M.
+
 -- 
-2.30.2
-
+Without deviation from the norm, progress is not possible.
