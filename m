@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33CD845B656
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 09:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F37345B69D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 09:37:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240712AbhKXIQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 03:16:16 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:22920 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238955AbhKXIQP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 03:16:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637741586; x=1669277586;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bqk5tbm4IZnDwOVzt/oq6oWR1FLYyl4yAvtq9+RMHeQ=;
-  b=QTjwYcgDZVV6nyoVhTiUFT+prhatdNFTAI4BSrRx4KIF5TPRqioYXTma
-   T4AR/iFEoY3n75qaTYF8R4nf6mQvh9ngLwRW+FW1iK+mcDdz7/5VvdKa5
-   2i75ZugvMpKtfz04xqiUVXB7ku4GXwxBjJJKWzkzm6XInTcMltEQ0USlr
-   9GcIlRQV8/9HyYy7fOS7jeot4vjSL8FTQ2AKGBG6+LSZNH1UVe4+L7osF
-   2CYpPKKIS9OBY1OUNN65nsHYulC4U8kLt9sC9OLQ45qATuoMZH9ZD29VS
-   D3WPVDoTXFgrb1dpIbVpG3heMCTT6ysmifbqTfeXmnUKytoqELBJTZVTn
-   w==;
-IronPort-SDR: N/oV9dqAvx9k8nzfwxpRkcEPxkH+btdjXiQWryAxzzOG8mq0MrmsNcy3Vi+6JXmSsohkwD7xKZ
- 6d9/aTTpFMVyDJPGwU+KoOObEQAu3PaIhsTkt/fc3IX655Ft4UMmRXK77w9jEapHe6doXTAbpY
- EY6mJLLu0KUu8AwW7kQwwXPMBsiSbkvC6etS0K72RkJ9iGe33vxGaGgKvCAa+KB4/B4RkxSu0m
- BqqN7RCfJXymATJiytWAu47USdxcbyLVHD0ERDvTkBQdKNZVLT1APpCJ/xizCOL1bHH7vWzX0J
- Q2ccoMIa9lmqAJY+HGCMB2wZ
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
-   d="scan'208";a="140154911"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Nov 2021 01:13:06 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 24 Nov 2021 01:13:05 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Wed, 24 Nov 2021 01:13:05 -0700
-Date:   Wed, 24 Nov 2021 09:14:58 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 2/6] net: lan966x: add the basic lan966x
- driver
-Message-ID: <20211124081458.xwcg7naezbno6igu@soft-dev3-1.localhost>
-References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
- <20211123135517.4037557-3-horatiu.vultur@microchip.com>
- <20211123193011.12cde5da@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        id S241240AbhKXIky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 03:40:54 -0500
+Received: from comms.puri.sm ([159.203.221.185]:42820 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241202AbhKXIkx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 03:40:53 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 15D83E1429;
+        Wed, 24 Nov 2021 00:37:14 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 0HhirIqFwwTD; Wed, 24 Nov 2021 00:37:13 -0800 (PST)
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     martin.kepplinger@puri.sm, shawnguo@kernel.org
+Cc:     devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, kernel@puri.sm, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, robh@kernel.org
+Subject: [PATCH] arm64: dts: imx8mq: remove interconnect property from lcdif
+Date:   Wed, 24 Nov 2021 09:37:03 +0100
+Message-Id: <20211124083703.730243-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20211123193011.12cde5da@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/23/2021 19:30, Jakub Kicinski wrote:
-> 
-> On Tue, 23 Nov 2021 14:55:13 +0100 Horatiu Vultur wrote:
-> > #include <asm/memory.h>
-> 
-> drivers/net/ethernet/microchip/lan966x/lan966x_main.c:3:10: fatal error: 'asm/memory.h' file not found
-> #include <asm/memory.h>
->          ^~~~~~~~~~~~~~
-> 
-> Is this arch-specific? What do you need it for?
+The mxsfb driver handling imx8mq lcdif doesn't yet request the
+interconnect bandwidth that's needed at runtime when the description is
+present in the DT node.
 
-I don't need it.
-I have another mistake with MODULE_DEVICE_TABLE.
+So remove that description and bring it back when it's supported.
 
-Both of these issues will be fixed in the next version.
+Fixes: ad1abc8a03fd ("arm64: dts: imx8mq: Add interconnect for lcdif")
+Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+---
 
+revision history
+----------------
+this patch replaces the wrong 1:1 revert previously sent:
+https://lore.kernel.org/linux-arm-kernel/20211123114545.411787-1-martin.kepplinger@puri.sm/
+
+
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 972766b67a15..71bf497f99c2 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -524,8 +524,6 @@ lcdif: lcd-controller@30320000 {
+ 						  <&clk IMX8MQ_VIDEO_PLL1>,
+ 						  <&clk IMX8MQ_VIDEO_PLL1_OUT>;
+ 				assigned-clock-rates = <0>, <0>, <0>, <594000000>;
+-				interconnects = <&noc IMX8MQ_ICM_LCDIF &noc IMX8MQ_ICS_DRAM>;
+-				interconnect-names = "dram";
+ 				status = "disabled";
+ 
+ 				port@0 {
 -- 
-/Horatiu
+2.30.2
+
