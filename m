@@ -2,206 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28ADC45B71D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E81745B723
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:09:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229681AbhKXJKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 04:10:01 -0500
-Received: from mail-vk1-f179.google.com ([209.85.221.179]:45976 "EHLO
-        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbhKXJKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 04:10:00 -0500
-Received: by mail-vk1-f179.google.com with SMTP id m19so1023580vko.12;
-        Wed, 24 Nov 2021 01:06:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wYsjDsehKErDpqg4qBvaQ2frcS98nKEajTa8vTIyayI=;
-        b=WbO4oEVMaVewHjsLAQeFsEDMLmcBU1BXdC0VjgMR/Viejhmz9o5FOkfB3+iUw+nYH9
-         qgg1+1RTLRpOV+LRNvDa0bN27UlxKHjRmefVp1vt5pQ8ckVLPgtRaWThnEQ3wX6usDTc
-         OZZC6di7yQBnQd5sVtILHJ+VlybQafDnstRqICmr4G9Kr5XL7hXE8ov+nRXf1wH56fnf
-         Ui1ApBH2niFLxnV2okESOld9V7mHKcXw9sDt7aBF2pzO4Ei+FyfD8c+Djn6N+d1aOCMP
-         rC4XdRfnIdEag050nfGYcAYoItNMIX/PtFoggpbQ9cwnBUs9nY8lSQhUGjNM7I92fLO9
-         6GEA==
-X-Gm-Message-State: AOAM533SWtWPWt4aFpy+uUjIlrfyX114t/d9qQA66yuKEi3HVbY1OcQd
-        kyRDSgd8YJK87cjiwzPhxTf30hHZycOOpw==
-X-Google-Smtp-Source: ABdhPJx/1G13S3f6Q15/q7WzCth6RvXzR1X9iiDD02f5K2Qkl8K8cj+1P48QI3VHGtklfFjy5WOFrA==
-X-Received: by 2002:a1f:aa48:: with SMTP id t69mr22506525vke.2.1637744810920;
-        Wed, 24 Nov 2021 01:06:50 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id v68sm7761896vkb.30.2021.11.24.01.06.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 01:06:50 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id ay21so3540775uab.12;
-        Wed, 24 Nov 2021 01:06:49 -0800 (PST)
-X-Received: by 2002:a9f:248b:: with SMTP id 11mr7838182uar.14.1637744809754;
- Wed, 24 Nov 2021 01:06:49 -0800 (PST)
+        id S230527AbhKXJNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 04:13:07 -0500
+Received: from mx24.baidu.com ([111.206.215.185]:56084 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229521AbhKXJNF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 04:13:05 -0500
+Received: from BC-Mail-Ex07.internal.baidu.com (unknown [172.31.51.47])
+        by Forcepoint Email with ESMTPS id C71E0B74B888DD54FDC0;
+        Wed, 24 Nov 2021 17:09:54 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-EX07.internal.baidu.com (172.31.51.47) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 17:09:54 +0800
+Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
+ (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Wed, 24
+ Nov 2021 17:09:54 +0800
+Date:   Wed, 24 Nov 2021 17:09:57 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-staging@lists.linux.dev>
+Subject: Re: [PATCH v2 1/3] staging: zynpu: Add driver support for ARM(China)
+ ZHOUYI AI accelerator
+Message-ID: <20211124090957.GA698@LAPTOP-UKSR4ENP.internal.baidu.com>
+References: <20211124084620.628-1-caihuoqing@baidu.com>
+ <20211124084620.628-2-caihuoqing@baidu.com>
+ <YZ39YqsNTSolEJZ2@kroah.com>
 MIME-Version: 1.0
-References: <4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be>
-In-Reply-To: <4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 24 Nov 2021 10:06:38 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com>
-Message-ID: <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: media: renesas,jpu: Convert to json-schema
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <YZ39YqsNTSolEJZ2@kroah.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex24.internal.baidu.com (172.31.51.18) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro, Sakari,
+On 24 11月 21 09:52:50, Greg Kroah-Hartman wrote:
+> On Wed, Nov 24, 2021 at 04:46:15PM +0800, Cai Huoqing wrote:
+> > ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
+> > such as Allwinner R329 SOC.
+> > Add driver support for this AI accelerator here.
+> > 
+> > This driver is not tandard linux style, there are some clean up works,
+> 
+> "standard"?
+will fix it
+> 
+> > fixing code style, refactorring.
+> > And it only works with a closed source usermode driver, so need to
+> > reverse the libraries, and impelement it, then open source
+> > the usermode driver.
+> 
+> Who will be doing the "reversing" of the usermode driver?
+I will provide the library binary, also try to implement usermode code:)
+> 
+> We can't take this now if there's no actual users of this code that
+> anyone can test.  Why not just change the license of the usermode code
+> now to make this simpler?
+Allwinner R329 board includes this ip core, I have one to test this
+driver.
+The usermode code is close, I just got an library.
 
-On Wed, Jul 14, 2021 at 1:17 PM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> Convert the Renesas JPEG Processing Unit Device Tree binding
-> documentation to json-schema.
->
-> Document missing properties.
-> Update the example to match reality.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
->   - Add Reviewed-by.
+Thanks
 
-Why was the status of this patch changed from "Reviewed" to "Not
-Applicable" in the linux-media patchwork?
-https://patchwork.linuxtv.org/project/linux-media/patch/4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be/
+Cai
 
-Who's gonna take it?
-
-Thanks!
-
-> ---
->  .../devicetree/bindings/media/renesas,jpu.txt | 25 -------
->  .../bindings/media/renesas,jpu.yaml           | 65 +++++++++++++++++++
->  2 files changed, 65 insertions(+), 25 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/renesas,jpu.txt
->  create mode 100644 Documentation/devicetree/bindings/media/renesas,jpu.yaml
->
-> diff --git a/Documentation/devicetree/bindings/media/renesas,jpu.txt b/Documentation/devicetree/bindings/media/renesas,jpu.txt
-> deleted file mode 100644
-> index d3436e5190f9196a..0000000000000000
-> --- a/Documentation/devicetree/bindings/media/renesas,jpu.txt
-> +++ /dev/null
-> @@ -1,25 +0,0 @@
-> -* Renesas JPEG Processing Unit
-> -
-> -The JPEG processing unit (JPU) incorporates the JPEG codec with an encoding
-> -and decoding function conforming to the JPEG baseline process, so that the JPU
-> -can encode image data and decode JPEG data quickly.
-> -
-> -Required properties:
-> -- compatible: "renesas,jpu-<soctype>", "renesas,rcar-gen2-jpu" as fallback.
-> -       Examples with soctypes are:
-> -         - "renesas,jpu-r8a7790" for R-Car H2
-> -         - "renesas,jpu-r8a7791" for R-Car M2-W
-> -         - "renesas,jpu-r8a7792" for R-Car V2H
-> -         - "renesas,jpu-r8a7793" for R-Car M2-N
-> -
-> -  - reg: Base address and length of the registers block for the JPU.
-> -  - interrupts: JPU interrupt specifier.
-> -  - clocks: A phandle + clock-specifier pair for the JPU functional clock.
-> -
-> -Example: R8A7790 (R-Car H2) JPU node
-> -       jpeg-codec@fe980000 {
-> -               compatible = "renesas,jpu-r8a7790", "renesas,rcar-gen2-jpu";
-> -               reg = <0 0xfe980000 0 0x10300>;
-> -               interrupts = <0 272 IRQ_TYPE_LEVEL_HIGH>;
-> -               clocks = <&mstp1_clks R8A7790_CLK_JPU>;
-> -       };
-> diff --git a/Documentation/devicetree/bindings/media/renesas,jpu.yaml b/Documentation/devicetree/bindings/media/renesas,jpu.yaml
-> new file mode 100644
-> index 0000000000000000..2f55968e864fe2f5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/renesas,jpu.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/renesas,jpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas JPEG Processing Unit
-> +
-> +maintainers:
-> +  - Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>
-> +
-> +description:
-> +  The JPEG processing unit (JPU) incorporates the JPEG codec with an encoding
-> +  and decoding function conforming to the JPEG baseline process, so that the
-> +  JPU can encode image data and decode JPEG data quickly.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - renesas,jpu-r8a7790      # R-Car H2
-> +          - renesas,jpu-r8a7791      # R-Car M2-W
-> +          - renesas,jpu-r8a7792      # R-Car V2H
-> +          - renesas,jpu-r8a7793      # R-Car M2-N
-> +      - const: renesas,rcar-gen2-jpu # R-Car Gen2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/r8a7790-sysc.h>
-> +
-> +    jpeg-codec@fe980000 {
-> +            compatible = "renesas,jpu-r8a7790", "renesas,rcar-gen2-jpu";
-> +            reg = <0xfe980000 0x10300>;
-> +            interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&cpg CPG_MOD 106>;
-> +            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
-> +            resets = <&cpg 106>;
-> +    };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> thanks,
+> 
+> greg k-h
