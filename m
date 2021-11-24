@@ -2,92 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F400145C85C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:15:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3662945C89B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:28:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232332AbhKXPSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 10:18:42 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:57104 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S230158AbhKXPSl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 10:18:41 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AO8rHXf003816;
-        Wed, 24 Nov 2021 10:14:58 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3chj9csr87-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 24 Nov 2021 10:14:58 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1AOFEvV9004733
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 24 Nov 2021 10:14:57 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Wed, 24 Nov 2021 10:14:56 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Wed, 24 Nov 2021 10:14:56 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.858.5 via Frontend Transport;
- Wed, 24 Nov 2021 10:14:56 -0500
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1AOFEqcE000856;
-        Wed, 24 Nov 2021 10:14:53 -0500
-From:   <alexandru.tachici@analog.com>
-To:     <o.rempel@pengutronix.de>
-CC:     <alexandru.tachici@analog.com>, <andrew@lunn.ch>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <hkallweit1@gmail.com>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux@armlinux.org.uk>,
-        <netdev@vger.kernel.org>
-Subject: Re: [PATCH v3 3/8] net: phy: Add BaseT1 auto-negotiation registers
-Date:   Wed, 24 Nov 2021 17:24:53 +0200
-Message-ID: <20211124152453.21123-1-alexandru.tachici@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211012071438.GB938@pengutronix.de>
-References: <20211012071438.GB938@pengutronix.de>
+        id S235287AbhKXPbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:31:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235265AbhKXPbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:31:31 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1FFC061574;
+        Wed, 24 Nov 2021 07:28:21 -0800 (PST)
+Received: from Monstersaurus.ksquared.org.uk.beta.tailscale.net (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8F57A92A;
+        Wed, 24 Nov 2021 16:28:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1637767698;
+        bh=xeHGpCfeHP659Mrk09NQ8LS4JBZZlw2+CvqeH+Jh7VM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=vQHAXhCExBN8f1ujtPmuFbIC4XdB68KqdMhHxXuJznQinysadE/B9I0K7nQv9yZSz
+         LPJlcc0+8Qr+aqNV42vjHeJGmXSn0f7VwjQZTVMvMv9Rwv0k1h0GswVAgLz2TcAaPZ
+         1mbpjuF00GqqlDhb9+WYUvF4pmUKEAtgndPOj5Gc=
+From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+To:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Geert Uytterhoeven <geert@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Subject: [PATCH 0/2] arm64: dts: renesas: Merge hdmi0_con
+Date:   Wed, 24 Nov 2021 15:28:13 +0000
+Message-Id: <20211124152815.3926961-1-kieran.bingham+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: F7nQfJ2zPz8HfNaeNym8A094BGhRZ1mf
-X-Proofpoint-GUID: F7nQfJ2zPz8HfNaeNym8A094BGhRZ1mf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-24_04,2021-11-24_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
- spamscore=0 priorityscore=1501 bulkscore=0 lowpriorityscore=0 phishscore=0
- mlxlogscore=276 adultscore=0 mlxscore=0 impostorscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2110150000
- definitions=main-2111240085
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hm.. MDIO_AN_T1_ADV_M_MST is T4 of Link codeword Base Page. The spec says:
-> "Transmitted Nonce Field (T[4:0]) is a 5-bit wide field whose lower 4
-> bits contains a random or pseudorandom number. A new value shall be
-> generated for each entry to the Ability Detect state"
->
-> Should we actually do it?
+These two board files have created a reference to the existing hdmi0_con
+node to update the endpoint.
 
-Managed to get some answears from the HW team:
+I found this extra level of indirection confusing while parsing the
+file, particularly as the node is in the same file.
 
-Bits 7.515.3:0 correspond to the lower 4 bits of the Transmitted Nonce Field. We do not allow users to write these bits as they need to be controlled by the auto-negotiation (AN) sequencers in order to ensure that AN remains robust and reliable. However, the Transmitted Nonce value is readable via register 7.515. So we could call these bits out in the documentation and indicate that they are readonly.
+Remove the reference node, and update the endpoint directly.
 
-Bottom line is that the driver cannot and should not do anything with the lower 4 Transmitted Nonce bits. The PHY controls them.
+Kieran Bingham (2):
+  arm64: dts: renesas: ulcb: Merge hdmi0_con
+  arm64: dts: renesas: salvator-common: Merge hdmi0_con
 
-Also from 802.3 98.2.1.2.3 Transmitted Nonce Field:
-If the device has received a DME page with good CRC16 and the link partner has a Transmitted Nonce Field
-(T[4:0]) that matches the devices generated T[4:0], the device shall invert its T[0] bit and regenerate a new
-random value for T[3:1] and use that as its new T[4:0] value. Since the DME pages are exchanged in a halfduplex manner, it is possible to swap to a new T[4:0] value prior to transmitting the DME page. One device
-will always see a DME page with good CRC16 before the other device hence this swapping will guarantee
-that nonce_match will never be true.
+ arch/arm64/boot/dts/renesas/salvator-common.dtsi | 5 +----
+ arch/arm64/boot/dts/renesas/ulcb.dtsi            | 5 +----
+ 2 files changed, 2 insertions(+), 8 deletions(-)
 
-Seems that there must be hardware to deal with nonce collisions.
+-- 
+2.30.2
 
-Regards,
-Alexandru
