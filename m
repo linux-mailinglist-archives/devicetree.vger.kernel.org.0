@@ -2,120 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78DE145BC7F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 13:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FE4E45BC81
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 13:29:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244168AbhKXMbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S244829AbhKXMbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 24 Nov 2021 07:31:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42106 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245506AbhKXM2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 07:28:19 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 3DA6061269;
-        Wed, 24 Nov 2021 12:17:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637756227;
-        bh=4Bwn5rvzFaQX6/M2Ep7RPrdvX/Thgii4YOdsQ3DDAGs=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=GmhRSa6/MuM56Kz+5NAzjuJN+IAHQHehfqMjrwDF6Nmi3aepqRMFsZJnLxjkCaLZ0
-         875Lh6WjSpmBYpFf9DT1DC4T3KoGBuObUdboOFslbdOtor6+DHCd3AML5pk8c/mFGg
-         pesH0n4e1Z4P8irpmmi+IE5oTUb5iwuXE3VYBY8xEyYZiC/gW7//srJ+WfKARRCQbs
-         MFY10CLu6hSm+n62EeVtgdRLu/AGg6RejjppL2tD7zcElpzHUoYfDgdMrqDi36aU34
-         Nots5+nhir9dunFyzmBOIeqZuUpviycPfbFQZnORxXCoo3rjnzJLSPO0dg8i/N3N7n
-         tTCCAslARt4iQ==
-Date:   Wed, 24 Nov 2021 13:17:03 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
-Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
- supported_interfaces with modes from fwnode
-Message-ID: <20211124131703.30176315@thinkpad>
-In-Reply-To: <20211124120441.i7735czjm5k3mkwh@skbuf>
-References: <20211123164027.15618-1-kabel@kernel.org>
-        <20211123164027.15618-5-kabel@kernel.org>
-        <20211123212441.qwgqaad74zciw6wj@skbuf>
-        <20211123232713.460e3241@thinkpad>
-        <20211123225418.skpnnhnrsdqrwv5f@skbuf>
-        <YZ4cRWkEO+l1W08u@shell.armlinux.org.uk>
-        <20211124120441.i7735czjm5k3mkwh@skbuf>
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Received: from mx24.baidu.com ([111.206.215.185]:44312 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S245674AbhKXM2y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 07:28:54 -0500
+Received: from BC-Mail-Ex05.internal.baidu.com (unknown [172.31.51.45])
+        by Forcepoint Email with ESMTPS id 0944032C172558A683E1;
+        Wed, 24 Nov 2021 20:25:38 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-Ex05.internal.baidu.com (172.31.51.45) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 20:25:37 +0800
+Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
+ (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Wed, 24
+ Nov 2021 20:25:37 +0800
+Date:   Wed, 24 Nov 2021 20:25:40 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-staging@lists.linux.dev>
+Subject: Re: [PATCH v2 1/3] staging: zynpu: Add driver support for ARM(China)
+ ZHOUYI AI accelerator
+Message-ID: <20211124122540.GA761@LAPTOP-UKSR4ENP.internal.baidu.com>
+References: <20211124084620.628-1-caihuoqing@baidu.com>
+ <20211124084620.628-2-caihuoqing@baidu.com>
+ <YZ39YqsNTSolEJZ2@kroah.com>
+ <20211124090957.GA698@LAPTOP-UKSR4ENP.internal.baidu.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211124090957.GA698@LAPTOP-UKSR4ENP.internal.baidu.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex21.internal.baidu.com (172.31.51.15) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021 14:04:41 +0200
-Vladimir Oltean <olteanv@gmail.com> wrote:
-
-> On Wed, Nov 24, 2021 at 11:04:37AM +0000, Russell King (Oracle) wrote:
-> > On Wed, Nov 24, 2021 at 12:54:18AM +0200, Vladimir Oltean wrote:  
-> > > This implies that when you bring up a board and write the device tree
-> > > for it, you know that PHY mode X works without ever testing it. What if
-> > > it doesn't work when you finally add support for it? Now you already
-> > > have one DT blob in circulation. That's why I'm saying that maybe it
-> > > could be better if we could think in terms that are a bit more physical
-> > > and easy to characterize.  
+On 24 11月 21 17:09:57, Cai Huoqing wrote:
+> On 24 11月 21 09:52:50, Greg Kroah-Hartman wrote:
+> > On Wed, Nov 24, 2021 at 04:46:15PM +0800, Cai Huoqing wrote:
+> > > ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
+> > > such as Allwinner R329 SOC.
+> > > Add driver support for this AI accelerator here.
+> > > 
+> > > This driver is not tandard linux style, there are some clean up works,
 > > 
-> > However, it doesn't solve the problem. Let's take an example.
+> > "standard"?
+> will fix it
 > > 
-> > The 3310 supports a mode where it runs in XAUI/5GBASE-R/2500BASE-X/SGMII
-> > depending on the negotiated media parameters.
+> > > fixing code style, refactorring.
+> > > And it only works with a closed source usermode driver, so need to
+> > > reverse the libraries, and impelement it, then open source
+> > > the usermode driver.
 > > 
-> > XAUI is four lanes of 3.125Gbaud.
-> > 5GBASE-R is one lane of 5.15625Gbaud.
+> > Who will be doing the "reversing" of the usermode driver?
+> I will provide the library binary, also try to implement usermode code:)
 > > 
-> > Let's say you're using this, and test the 10G speed using XAUI,
-> > intending the other speeds to work. So you put in DT that you support
-> > four lanes and up to 5.15625Gbaud.  
+> > We can't take this now if there's no actual users of this code that
+> > anyone can test.  Why not just change the license of the usermode code
+> > now to make this simpler?
+> Allwinner R329 board includes this ip core, I have one to test this
+> driver.
+Add the SOC introduce here, many users. this driver can works on it
+https://linux-sunxi.org/R329
+> The usermode code is close, I just got an library.
 > 
-> Yes, see, the blame's on you if you do that.You effectively declared
-> that the lane is able of sustaining a data rate higher than you've
-> actually had proof it does (5.156 vs 3.125).
-
-But the blame is on the DT writer in the same way if they declare
-support for a PHY mode that wasn't tested. (Or at least self-tests with
-PRBS patterns at given frequency.)
-
-> The reason why I'm making this suggestion is because I think it lends
-> itself better to the way in which hardware manufacturers work.
-> A hobbyist like me has no choice than to test the highest data rate when
-> determining what frequency to declare in the DT (it's the same thing for
-> spi-max-frequency and other limilar DT properties, really), but hardware
-> people have simulations based on IBIS-AMI models, they can do SERDES
-> self-tests using PRBS patterns, lots of stuff to characterize what
-> frequency a lane is rated for, without actually speaking any Ethernet
-> protocol on it. In fact there are lots of people who can do this stuff
-> (which I know mostly nothing about) with precision without even knowing
-> how to even type a simple "ls" inside a Linux shell.
->
-> > Later, you discover that 5GBASE-R doesn't work because there's an
-> > electrical issue with the board. You now have DT in circulation
-> > which doesn't match the capabilities of the hardware.
-> > 
-> > How is this any different from the situation you describe above?
-> > To me, it seems to be exactly the same problem.  
+> Thanks
 > 
-> To err is human, of course. But one thing I think we learned from the
-> old implementation of phylink_validate is that it gets very tiring to
-> keep adding PHY modes, and we always seem to miss some. When that array
-> will be described in DT, it could be just a tad more painful to maintain.
-
-The thing is that we will still need the `phy-mode` property, it can't
-be deprecated IMO. There are non-SerDes modes, like rgmii, which may
-use different pins than SerDes modes.
-There may theoretically also be a SoC or PHY where the lanes for XAUI
-do not share pins with the lane of 2500base-x, and this lane may not be
-wired. Tis true that I don't know of any such hardware and it probably
-does not and will not exist, but we don't know that for sure and this is
-a case where your proposal will fail and the phy-mode extension would
-work nicely.
-
-Maybe we need opinions from other people here.
-
-Marek
+> Cai
+> 
+> > 
+> > thanks,
+> > 
+> > greg k-h
