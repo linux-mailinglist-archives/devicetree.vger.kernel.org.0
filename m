@@ -2,136 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6DE445B711
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28ADC45B71D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:06:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241196AbhKXJFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 04:05:51 -0500
-Received: from mail-eopbgr00045.outbound.protection.outlook.com ([40.107.0.45]:20033
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230262AbhKXJFu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 04:05:50 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HLY0g9A6m+gkEkB0F6WUcdR/0WjvhpY1VN70r7qbzcwgVuguWuHIZ90sBI6dm52XHoLm4/h4/MU/uZKnw1LX0wDXqwR8hyLLoCMjz8dICpMwsqiXvDbePCsHpwdtYA/uPFKgq/KKtOXsaiBT3dphRlyvUZFOwWWmGBqaB83hRc6EK2Dpnc/4UkvzIx6IIHGyWAWPRELArd+zn84GFEUN1ZZkswzb5aXw1PmQevpjZVQnAdvwK8TYE7TYcXmyqiCQ8wl3paKUGSivuHrq/EU6/yTmYeB2VggiUog73jwMHF7YrcFTVs7Lec/WqHwXHTkSHw0wmijL4vp3nwgqcBOxPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=94e4wITuPqwFa+S6fMJPAk3ZA77L1/XcstosJqwIb2M=;
- b=Zg+eACBs/kKKvLXh7HMEeF7ssldaqJWVypyEISztphRzdKHYBJhZbIE6KDwa7IB79poOm9RMCR146NRXri0QBP0s/Q9OvITgFns71pH1DypH4oipCpoajxep+uawU4yVwdbJ0a+86Lkaa/uaGxm51Gc6yoMBeuWeMiusGwPV5s8tS+5QznHqwXqBfJXcBSr995Ot8n4YzSlzZnISFgZQdLtmyM59BTUhqd3RDb+TmJ3GujiVuKWuuY8vNkaUmV5O20Apa3A4mw+MZ4Maa9fhyfYFVpWR5FFgfn6I823FnlwpfasxGp/6nmXB087p3MkW4R8GTtiF1qEg94yjdkU0Ww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=94e4wITuPqwFa+S6fMJPAk3ZA77L1/XcstosJqwIb2M=;
- b=fYGel9agbvZF6gsphWXtDW4HCDS4cl7nklv2Kd/1xaATqAesyzlScJS+VGdWY/UxwqH4aZFKdwZz22g2QUET1CUeqKd4uUCD2lkB0j+CtXnq5+kUNCO7SpEQLtBASDpWMd5uca/PNjoweabiouK3HPz+qjckhojboHlGPxuuU7g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS8PR04MB8673.eurprd04.prod.outlook.com (2603:10a6:20b:428::9)
- by AS8PR04MB9061.eurprd04.prod.outlook.com (2603:10a6:20b:444::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Wed, 24 Nov
- 2021 09:02:39 +0000
-Received: from AS8PR04MB8673.eurprd04.prod.outlook.com
- ([fe80::b179:dae8:20d0:5905]) by AS8PR04MB8673.eurprd04.prod.outlook.com
- ([fe80::b179:dae8:20d0:5905%3]) with mapi id 15.20.4713.026; Wed, 24 Nov 2021
- 09:02:39 +0000
-From:   Kuldeep Singh <kuldeep.singh@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Li Yang <leoyang.li@nxp.com>, Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: [PATCH] arm64: dts: lx2162a: Add CAN nodes for LX2162A-QDS
-Date:   Wed, 24 Nov 2021 14:32:14 +0530
-Message-Id: <20211124090214.1475159-1-kuldeep.singh@nxp.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0047.apcprd02.prod.outlook.com
- (2603:1096:4:196::14) To AS8PR04MB8673.eurprd04.prod.outlook.com
- (2603:10a6:20b:428::9)
+        id S229681AbhKXJKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 04:10:01 -0500
+Received: from mail-vk1-f179.google.com ([209.85.221.179]:45976 "EHLO
+        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229645AbhKXJKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 04:10:00 -0500
+Received: by mail-vk1-f179.google.com with SMTP id m19so1023580vko.12;
+        Wed, 24 Nov 2021 01:06:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wYsjDsehKErDpqg4qBvaQ2frcS98nKEajTa8vTIyayI=;
+        b=WbO4oEVMaVewHjsLAQeFsEDMLmcBU1BXdC0VjgMR/Viejhmz9o5FOkfB3+iUw+nYH9
+         qgg1+1RTLRpOV+LRNvDa0bN27UlxKHjRmefVp1vt5pQ8ckVLPgtRaWThnEQ3wX6usDTc
+         OZZC6di7yQBnQd5sVtILHJ+VlybQafDnstRqICmr4G9Kr5XL7hXE8ov+nRXf1wH56fnf
+         Ui1ApBH2niFLxnV2okESOld9V7mHKcXw9sDt7aBF2pzO4Ei+FyfD8c+Djn6N+d1aOCMP
+         rC4XdRfnIdEag050nfGYcAYoItNMIX/PtFoggpbQ9cwnBUs9nY8lSQhUGjNM7I92fLO9
+         6GEA==
+X-Gm-Message-State: AOAM533SWtWPWt4aFpy+uUjIlrfyX114t/d9qQA66yuKEi3HVbY1OcQd
+        kyRDSgd8YJK87cjiwzPhxTf30hHZycOOpw==
+X-Google-Smtp-Source: ABdhPJx/1G13S3f6Q15/q7WzCth6RvXzR1X9iiDD02f5K2Qkl8K8cj+1P48QI3VHGtklfFjy5WOFrA==
+X-Received: by 2002:a1f:aa48:: with SMTP id t69mr22506525vke.2.1637744810920;
+        Wed, 24 Nov 2021 01:06:50 -0800 (PST)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id v68sm7761896vkb.30.2021.11.24.01.06.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 01:06:50 -0800 (PST)
+Received: by mail-ua1-f42.google.com with SMTP id ay21so3540775uab.12;
+        Wed, 24 Nov 2021 01:06:49 -0800 (PST)
+X-Received: by 2002:a9f:248b:: with SMTP id 11mr7838182uar.14.1637744809754;
+ Wed, 24 Nov 2021 01:06:49 -0800 (PST)
 MIME-Version: 1.0
-Received: from lsv03378.swis.in-blr01.nxp.com (14.142.151.118) by SI2PR02CA0047.apcprd02.prod.outlook.com (2603:1096:4:196::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.20 via Frontend Transport; Wed, 24 Nov 2021 09:02:37 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0249f4db-7043-49d8-7164-08d9af292a90
-X-MS-TrafficTypeDiagnostic: AS8PR04MB9061:
-X-Microsoft-Antispam-PRVS: <AS8PR04MB9061CC74AC7D73A775E2EE62E0619@AS8PR04MB9061.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1079;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4yatcXs7NxB9RTgEWqWVanwsH/HzawbE0sEvIocUaOzRivOmUv0gnDrnBCZ7EbIY5v9UOlSauXYcjTsVq8n8uMo745cSDoX7VLI/D3XeNOv8Yg0Z4Wu++FtPcAAKicKuW4kD6mcmsvFGgidUZgYLK5HrDTU7OOfA+XMzB8u9DdtiKV6uV7eOAhgU3t2Kh053gffPC2TBIwT+mPvRYQN7Ny4Reei6+kZFH+L04uokX50m2gk2w44sKKv/jT5Ual19rYKndnUE/EfmzMlLtDudvN28pPCk4NAv/ZFW1nokxtG/HycFHOhBaGshOISnL4+LDRai+rmjXL52iu6hIlfTMIWfU5oskPxkhY6AccXbExAj2ZES7RN8btqskPjlUkhiTfYkvOfxF55O8xGzfDHwb5oXQwJbTt97bbI0SHcNzosDvAUXXeNEvHbrKZYA5z7AT9ViCj+8DGYqFwTWrXkqe8WguEIRezNVZ4YW4mz2qVLkOyFBYSOz1QmYxIwi9DfDNbR21FSuOzukaJYHwNS0kZ9KQk+mv9QwNOMOt0LHV9GHE9vox88ekMTWR0/KcmZnTwKWJV7gupiJHI8Bq0y0lLkO+PdeiVkrlZ7zsnlySEryxWUNKn7+ywy8ab7TMXlTgouN42ebBok1oEegBoe2z4+USa0rCcwUMBtqDk0OIkHO3z3zCo/1w8gONDCFpITGD1FrVgNUP7I2RloY0fVDCuy4bU/qDkyCIHfWeCaI5S+uVmS9tubLUqDWfCzD/o9p
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8673.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(8676002)(44832011)(508600001)(1076003)(66556008)(66476007)(2616005)(5660300002)(38350700002)(4326008)(55236004)(26005)(4744005)(6666004)(1006002)(186003)(66946007)(2906002)(38100700002)(86362001)(54906003)(6486002)(36756003)(52116002)(7696005)(316002)(8936002)(956004)(110426009);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7BKaXYV7BUTs/X+TLpkWknCJrW4Isy942EaDWGI9IN7TspHykI/M4Q57gpIV?=
- =?us-ascii?Q?2ShzSLBiyP1T7Ka2Z2ahf2du/+H3Rk5/HLJ3f/5PHpE4YgGWV5/BrR8tkC+h?=
- =?us-ascii?Q?hBo+FneCpIHqR2Bzib+0xdFeA7Uirn1yBDhMHSvdhz3Vc5Eey2qBlquoFNK/?=
- =?us-ascii?Q?FHWStSuWSAcCznZL5nbPNxrVcGDdxAdQxGOIcMfKWC6crrFqlYa9nfNA4SAZ?=
- =?us-ascii?Q?/YpQp+FwpJReMjjUNqmk+Ae/0AgkMP2YTOoBis2+/P6tNnidZA6Nw9U/6cM3?=
- =?us-ascii?Q?E0qqWeNW9rkZ+OQ0tDqs5gzRQ46LlsE8zfjk0012k5C1LFI+Fq1kWIPPUD11?=
- =?us-ascii?Q?F7yqzhpFuAT7tYsPfzIpdn6QwHviV5xqbFEPK9aJ1wnP5ztf7lZYF3VQsy9h?=
- =?us-ascii?Q?KKGT1LV0Hc3DPuQfaKM2Gz6yTKocpx0JAgU1VcaGIS8LESu8dQCKpGyHrMWv?=
- =?us-ascii?Q?Uc9VPZPvjBx0VN9PzP43UhWeeDviioVEF/sdnJ6LIjAXwHOttXoDjOjoZaUM?=
- =?us-ascii?Q?WJyGARG1eqidQyqct6f5aR0iuy5PQkyZX9VtfewUp05bcgWdwzwZ5vo5HdVZ?=
- =?us-ascii?Q?PxlyvWg9NCbnLw06HxRLvjTXTRlm0ajXpq0x8cAT9uWwHZ5Tomb8HVwK+oJF?=
- =?us-ascii?Q?FdtrnRDRljQ5ga1mRqMWOQrmx5NPqaXsUvqu4a5qo0019XXatVU83D5zBZl9?=
- =?us-ascii?Q?IGaNbI5b6gHPz6uA914TIJhaIlxkD+twFQ6qzsIzliGGprl43CMzwlTHtNi3?=
- =?us-ascii?Q?/O1Q0wxcuGysQj3Wf4bsnn9Xh1EpQRthk2gNbZCERRIjhhx/W27cMgtiYoZz?=
- =?us-ascii?Q?5gJUdBLx2wzc4pivwlbq156u1P1JMnlGLj/azB0n/doMVJriBTGGotwGQcvX?=
- =?us-ascii?Q?r6g3WXUIYcmnv0hkE3PzYXYmTWcq20OLOGlwtRf1r+XwXPVqOSXPWKnW1jr2?=
- =?us-ascii?Q?XfeZb5YUMkWbbJVaLAwrhy8I840+8Yp4gDrq66P13/i/cxxhL/INo50bYAw2?=
- =?us-ascii?Q?Sp7MZB8MQtpr8F1+SgGYihOJG8aVlBzCPdlm/aM/mUGLfVmCmGipJXfs+w7M?=
- =?us-ascii?Q?wq/nCHjkbq31aAno1n1psUkqpKV07fjTLRMFlaZSTMZ0Mg71I7Bvg7OA4Iq8?=
- =?us-ascii?Q?mpzAKqwQJj3hMcNM4EGQOjhCoBAqeJP7YNn22DY8JD3dsnw6eiY1dDd5zRWw?=
- =?us-ascii?Q?NfehkrE5D3ExAw6pIb936MgYZa6yd7LmsN9zlGxiaMNAnwePNTYByB0xWVBc?=
- =?us-ascii?Q?9jPjtbgHXwVQ7VM3JQDPIQkYiXUftV+J8TLJuoMxbnOr8oB+gkW/m2Mh/Pd7?=
- =?us-ascii?Q?nF3cTXCLDA9uQB7VSNuxUTb4DhwDdNgyotjigMFLn2haqzXc+y+wGyIt2Z7x?=
- =?us-ascii?Q?p1uYlojQj66yX/dlMEG+Yd/SybbRtYRljp/HSF3CVgACJ1c/gDYv39qTbfYV?=
- =?us-ascii?Q?0XnLtkhtvc0OmSc2yLraW1dcnvvVQZsIQ9f0yBuXJrF7sDoTUUaKJ42XW8As?=
- =?us-ascii?Q?mpTlF9hyQTbInd+UhjdO3g9adfaMzkYZ15tf1yO5rEdL2Mlk+SLlQvk9NYhN?=
- =?us-ascii?Q?xpkK70XuT9K2gCqyvcHU6MzrRUb/s3xdTa9kQNPzg7DYCi1h9uO76ux4JFJ9?=
- =?us-ascii?Q?pgfiOxnGUV9YK1xTcKw22TI=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0249f4db-7043-49d8-7164-08d9af292a90
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8673.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2021 09:02:39.4893
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OuXQf2ZoeJmArwhV2WFkXp6Py2e2+rUSMPMCqirwiGLRTG06CCdAia+o8pb31gwMTW+sBl0SaLWdvMr3zO9ofw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9061
+References: <4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be>
+In-Reply-To: <4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 24 Nov 2021 10:06:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com>
+Message-ID: <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: media: renesas,jpu: Convert to json-schema
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CAN support for LX2162A-QDS in board dts.
+Hi Mauro, Sakari,
 
-Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Wed, Jul 14, 2021 at 1:17 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> Convert the Renesas JPEG Processing Unit Device Tree binding
+> documentation to json-schema.
+>
+> Document missing properties.
+> Update the example to match reality.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Reviewed-by: Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> v2:
+>   - Add Reviewed-by.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
-index e1defee1ad27..67e07a8a42bd 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
-@@ -167,6 +167,14 @@ mdio@7 { /* Slot #8 (secondary EMI) */
- 	};
- };
- 
-+&can0 {
-+	status = "okay";
-+};
-+
-+&can1 {
-+	status = "okay";
-+};
-+
- &crypto {
- 	status = "okay";
- };
--- 
-2.25.1
+Why was the status of this patch changed from "Reviewed" to "Not
+Applicable" in the linux-media patchwork?
+https://patchwork.linuxtv.org/project/linux-media/patch/4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be/
 
+Who's gonna take it?
+
+Thanks!
+
+> ---
+>  .../devicetree/bindings/media/renesas,jpu.txt | 25 -------
+>  .../bindings/media/renesas,jpu.yaml           | 65 +++++++++++++++++++
+>  2 files changed, 65 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/renesas,jpu.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/renesas,jpu.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/renesas,jpu.txt b/Documentation/devicetree/bindings/media/renesas,jpu.txt
+> deleted file mode 100644
+> index d3436e5190f9196a..0000000000000000
+> --- a/Documentation/devicetree/bindings/media/renesas,jpu.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -* Renesas JPEG Processing Unit
+> -
+> -The JPEG processing unit (JPU) incorporates the JPEG codec with an encoding
+> -and decoding function conforming to the JPEG baseline process, so that the JPU
+> -can encode image data and decode JPEG data quickly.
+> -
+> -Required properties:
+> -- compatible: "renesas,jpu-<soctype>", "renesas,rcar-gen2-jpu" as fallback.
+> -       Examples with soctypes are:
+> -         - "renesas,jpu-r8a7790" for R-Car H2
+> -         - "renesas,jpu-r8a7791" for R-Car M2-W
+> -         - "renesas,jpu-r8a7792" for R-Car V2H
+> -         - "renesas,jpu-r8a7793" for R-Car M2-N
+> -
+> -  - reg: Base address and length of the registers block for the JPU.
+> -  - interrupts: JPU interrupt specifier.
+> -  - clocks: A phandle + clock-specifier pair for the JPU functional clock.
+> -
+> -Example: R8A7790 (R-Car H2) JPU node
+> -       jpeg-codec@fe980000 {
+> -               compatible = "renesas,jpu-r8a7790", "renesas,rcar-gen2-jpu";
+> -               reg = <0 0xfe980000 0 0x10300>;
+> -               interrupts = <0 272 IRQ_TYPE_LEVEL_HIGH>;
+> -               clocks = <&mstp1_clks R8A7790_CLK_JPU>;
+> -       };
+> diff --git a/Documentation/devicetree/bindings/media/renesas,jpu.yaml b/Documentation/devicetree/bindings/media/renesas,jpu.yaml
+> new file mode 100644
+> index 0000000000000000..2f55968e864fe2f5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/renesas,jpu.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/renesas,jpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas JPEG Processing Unit
+> +
+> +maintainers:
+> +  - Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>
+> +
+> +description:
+> +  The JPEG processing unit (JPU) incorporates the JPEG codec with an encoding
+> +  and decoding function conforming to the JPEG baseline process, so that the
+> +  JPU can encode image data and decode JPEG data quickly.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,jpu-r8a7790      # R-Car H2
+> +          - renesas,jpu-r8a7791      # R-Car M2-W
+> +          - renesas,jpu-r8a7792      # R-Car V2H
+> +          - renesas,jpu-r8a7793      # R-Car M2-N
+> +      - const: renesas,rcar-gen2-jpu # R-Car Gen2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - power-domains
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a7790-cpg-mssr.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/r8a7790-sysc.h>
+> +
+> +    jpeg-codec@fe980000 {
+> +            compatible = "renesas,jpu-r8a7790", "renesas,rcar-gen2-jpu";
+> +            reg = <0xfe980000 0x10300>;
+> +            interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&cpg CPG_MOD 106>;
+> +            power-domains = <&sysc R8A7790_PD_ALWAYS_ON>;
+> +            resets = <&cpg 106>;
+> +    };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
