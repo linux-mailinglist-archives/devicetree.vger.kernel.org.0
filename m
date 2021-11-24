@@ -2,179 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3546045CABD
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 18:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5E4C45CAFD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 18:26:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232455AbhKXRVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 12:21:16 -0500
-Received: from mga14.intel.com ([192.55.52.115]:38639 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229509AbhKXRVP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 12:21:15 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="235570024"
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
-   d="scan'208";a="235570024"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2021 09:15:03 -0800
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
-   d="scan'208";a="741273446"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2021 09:15:00 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 8314220165;
-        Wed, 24 Nov 2021 19:14:58 +0200 (EET)
-Date:   Wed, 24 Nov 2021 19:14:58 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, Hans Verkuil <hverkuil@xs4all.nl>
-Subject: Re: [PATCH v8 2/3] media: dt-bindings: Add Intersil ISL79987 DT
- bindings
-Message-ID: <YZ5zEnV9oJPPq24K@paasikivi.fi.intel.com>
-References: <20211123101517.3656935-1-m.tretter@pengutronix.de>
- <20211123101517.3656935-3-m.tretter@pengutronix.de>
- <YZzLVI2ZUBvXGhkZ@paasikivi.fi.intel.com>
- <20211124164907.GD20126@pengutronix.de>
+        id S243077AbhKXR3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 12:29:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33136 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241353AbhKXR3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 12:29:22 -0500
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EAEC061574
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 09:26:12 -0800 (PST)
+Received: by mail-pj1-x1036.google.com with SMTP id np3so3081742pjb.4
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 09:26:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ODX0ZjJmyHGUcMXQPTbTnl3S63FnL3kepW5lX1cGeNY=;
+        b=DHvsXg/+r78mH1qh76abKGzlH/qF19jhs2yZOpILIqAAqOj4DDV9umjGTFITzUU7jB
+         XjKw545y4dkUxA00IrhFSQuVomJn+KmswabcoCsGZglQL32CgCkQzSL3YJcWZ9lY+FGZ
+         TOBnQsguh6LAy6WoQ/yCqhoKtWzmhpHqAgbeM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ODX0ZjJmyHGUcMXQPTbTnl3S63FnL3kepW5lX1cGeNY=;
+        b=0P0Ix/SFR40Sai/Ye6LBabqcNQ1/bQZZXYhtNo8Xxk/qstG6at0/Rv0lryMg519QoQ
+         orzPcLvsa0CyC/QkO8y9xhN36jFARpD0a2WQ53c8TIj2XwFFNFF4DvhfyOGpzVOWqlsA
+         d1dLyyBCbubVeKjllLs5o6x39FppmuKqPBhUL7efXi63emMi1CSZEGCntdDDJnIC2stk
+         2kW95zvD6+eYPPSSdpJreeWUGcWiBkJJ1rgd6OifpdR/rURrDjVRfKDf7bxDsppocmod
+         5bbkFtZ5x+gfZJS4bq9bDOc4gf2+4g9P82wkjXv2ariKaFLunJ2h+2EhnhOIJZYGNmVX
+         tpyQ==
+X-Gm-Message-State: AOAM5313DYoP3pqVyZhXgGe+wyR3hMjtfEp26vneFlWaciyhK31ejYEB
+        6ZqLu5wP2bAyvQ8DlQ7NOBgwTg==
+X-Google-Smtp-Source: ABdhPJzeqt4umbVvn7VbSHx9cMq9BUa8sVx4pV9RIIAAFXfGZ4bjhGirVGeErOuHZhddz512bRW6Zw==
+X-Received: by 2002:a17:902:ec90:b0:142:269:4691 with SMTP id x16-20020a170902ec9000b0014202694691mr20396873plg.48.1637774771908;
+        Wed, 24 Nov 2021 09:26:11 -0800 (PST)
+Received: from localhost.localdomain ([2405:201:c00a:a0a9:d111:e958:d982:546e])
+        by smtp.gmail.com with ESMTPSA id s19sm334618pfu.104.2021.11.24.09.26.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Nov 2021 09:26:11 -0800 (PST)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Christopher Vollo <chris@renewoutreach.org>
+Subject: [PATCH 1/2] dt-bindings: display: bridge: Add TI DLPC3433 bindings
+Date:   Wed, 24 Nov 2021 22:55:52 +0530
+Message-Id: <20211124172553.519309-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211124164907.GD20126@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+TI DLPC3433 is a MIPI DSI based display controller bridge
+for processing high resolution DMD based projectors.
 
-On Wed, Nov 24, 2021 at 05:49:07PM +0100, Michael Tretter wrote:
-> On Tue, 23 Nov 2021 13:07:00 +0200, Sakari Ailus wrote:
-> > On Tue, Nov 23, 2021 at 11:15:16AM +0100, Michael Tretter wrote:
-> > > From: Marek Vasut <marex@denx.de>
-> > > 
-> > > Add bindings for the Intersil ISL79987 analog to MIPI CSI-2 decoder.
-> > > 
-> > > Signed-off-by: Marek Vasut <marex@denx.de>
-> > > Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > > Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > To: linux-media@vger.kernel.org
-> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > > Changelog:
-> > > 
-> > > v8: none
-> > > 
-> > > v7: none
-> > > 
-> > > v6: none
-> > > 
-> > > v5: none
-> > > 
-> > > v4: none
-> > > 
-> > > v3:
-> > > 
-> > > - rename pd-gpios property to powerdown-gpios
-> > > - reference graph.yaml for ports/port properties
-> > > - remove reference to video-interfaces.txt
-> > > - remove unnecessary description of ports property
-> > > 
-> > > v2:
-> > > 
-> > > - convert binding to yaml
-> > > - change description to match only isl79987
-> > > - replace num-inputs property with multiple ports
-> > > - add reset gpio
-> > > ---
-> > >  .../bindings/media/i2c/isil,isl79987.yaml     | 100 ++++++++++++++++++
-> > >  1 file changed, 100 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> > > new file mode 100644
-> > > index 000000000000..aee4a5966df3
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
-> > > @@ -0,0 +1,100 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/isil,isl79987.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Intersil ISL79987 Analog to MIPI CSI-2 decoder
-> > > +
-> > > +maintainers:
-> > > +  - Michael Tretter <m.tretter@pengutronix.de>
-> > > +  - Marek Vasut <marex@denx.de>
-> > > +
-> > > +description:
-> > > +  The Intersil ISL79987 is an analog to MIPI CSI-2 decoder which is capable of
-> > > +  receiving up to four analog stream and multiplexing them into up to four MIPI
-> > > +  CSI-2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - isil,isl79987
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      A GPIO spec for the RSTB pin (active high)
-> > > +
-> > > +  powerdown-gpios:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      A GPIO spec for the Power Down pin (active high)
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: Output port
-> > 
-> > I think you need need the data-lanes property for endpoints on this port.
-> 
-> Thanks. The bot also found that the clock-lanes property is missing, too.
-> 
-> The following specification seems to satisfy the checker, but I'm not
-> completely sure, if it is actually correct:
-> 
-> 	port@0:
-> 	  $ref: /schemas/graph.yaml#/$defs/port-base
-> 	  unevaluatedProperties: false
-> 	  description: Output port
-> 
-> 	  properties:
-> 	    endpoint:
-> 	      $ref: /schemas/media/video-interfaces.yaml#
-> 	      unevaluatedProperties: false
-> 
-> 	      properties:
-> 		clock-lanes:
-> 		  maxItems: 1
-> 
-> 		data-lanes:
-> 		  minItems: 1
-> 		  maxItems: 2
-> 
-> 	      required:
-> 		- clock-lanes
-> 		- data-lanes
-> 
-> Is this how I can correctly add the clock-lanes and data-lanes properties to
-> the endpoint?
+It has a flexible configuration of MIPI DSI signal input
+produces RGB565, RGB666, RGB888 output format with maximum
+of 720p resolution in 60 and 120 Hz refresh rates.
 
-clock-lanes is extra, unless the hardware supports lane remapping.
+Add dt-bingings for it.
 
+Signed-off-by: Christopher Vollo <chris@renewoutreach.org>
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+---
+ .../bindings/display/bridge/ti,dlpc3433.yaml  | 112 ++++++++++++++++++
+ MAINTAINERS                                   |   6 +
+ 2 files changed, 118 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml b/Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
+new file mode 100644
+index 000000000000..3ade3a575c3e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/ti,dlpc3433.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI DLPC3433 Display Controller
++
++maintainers:
++  - Jagan Teki <jagan@amarulasolutions.com>
++  - Christopher Vollo <chris@renewoutreach.org>
++
++description: |
++  The DLPC3433 or DLPC3438 controllers provide a convenient,
++  multi-functional interface between system electronics and
++  the DMD, enabling small form factor, low power, and high
++  resolution HD displays.
++
++properties:
++  compatible:
++    enum:
++      - ti,dlpc3433
++
++  reg:
++    maxItems: 1
++    description: virtual channel number of a DSI peripheral
++
++  enable-gpios:
++    description: PROJ_EN pin, chip powers up PROJ_EN is high.
++
++  vcc_intf-supply:
++    description: A 1.8V/3.3V supply that power the Host I/O.
++
++  vcc_flsh-supply:
++    description: A 1.8V/3.3V supply that power the Flash I/O.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: Video port for MIPI DSI input.
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                description: array of physical DSI data lane indexes.
++                minItems: 1
++                items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Video port for DPI output (DMD Projector).
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - enable-gpios
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        bridge@1d {
++            compatible = "ti,dlpc3433";
++            reg = <0x1d>;
++            enable-gpios = <&gpio2 1 GPIO_ACTIVE_HIGH>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++
++                    bridge_in_dsi: endpoint {
++                        remote-endpoint = <&dsi_out_bridge>;
++                        data-lanes = <1 2 3 4>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++
++                    bridge_out_panel: endpoint {
++                        remote-endpoint = <&panel_out_bridge>;
++                    };
++                };
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f32c7d733255..a3019399dec0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6198,6 +6198,12 @@ DRM DRIVER FOR TDFX VIDEO CARDS
+ S:	Orphan / Obsolete
+ F:	drivers/gpu/drm/tdfx/
+ 
++DRM DRIVER FOR TI DLPC3433 MIPI DSI DISPLAY CONTROLLER BRIDGE
++M:	Jagan Teki <jagan@amarulasolutions.com>
++M:	Christopher Vollo <chris@renewoutreach.org>
++S:	Maintained
++F:	Documentation/devicetree/bindings/display/bridge/ti,dlpc3433.yaml
++
+ DRM DRIVER FOR TPO TPG110 PANELS
+ M:	Linus Walleij <linus.walleij@linaro.org>
+ S:	Maintained
 -- 
-Sakari Ailus
+2.25.1
+
