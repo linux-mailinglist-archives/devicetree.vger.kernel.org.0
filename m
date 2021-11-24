@@ -2,122 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7865345B2E9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 04:55:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8A645B403
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 06:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240234AbhKXD6l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 22:58:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231185AbhKXD6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 22:58:41 -0500
-Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 734C4C061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 19:55:32 -0800 (PST)
-Received: by mail-il1-x133.google.com with SMTP id i9so1207989ilu.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 19:55:32 -0800 (PST)
+        id S232862AbhKXFoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 00:44:05 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:21739 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231421AbhKXFoF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 00:44:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/926FuVicfVC1nK0FVXtvbHMwYM36BbozQFkXoWswMk=;
-        b=baWredfSFOMml8i0WHnqdj/WGSDAxeAgzkAmd1thTn9aNwNroqW+LAEdqtpecxvh+b
-         tCXRUWrN47euOGjLHG7G3uJjFPwytNu/aK/96hIfHSB0xYg3UOLmBcTijw1YMNgbqG93
-         r7Ua1tBOsOazX8ohB69fkXFcgQ1isqMA9u8bE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/926FuVicfVC1nK0FVXtvbHMwYM36BbozQFkXoWswMk=;
-        b=azyww77hHwuRcXGmBZhgRNf3Du+CDdg/CMvvzZfbKDLeN9NYJ2iYdjIaklizHQRm08
-         UGJCmPs9EQ4kwRfFR4NSGbrEWtlFu2HcW1r6wDWbPZtxivV2XbUNwqhJhuoRAHTLfC3F
-         lgyayLm9U38MxmFQJhcd1XgumfNn7q1h4izB4W78fU/Zw/UIG/DmDNouwiu0pd42LAiu
-         X1b1PF8iIK11FKhwWvCrFJmAHgwh9AVckycZZG2TY1r3dLLiOwNOkcOHOKlpF7xeVrdw
-         LHPwlGQXj2JG9B42zqIO8RoQiLKEJQgKOnXWwidhBiJGCYYPXuTwIpPujFdubsTV/zrS
-         V/Rg==
-X-Gm-Message-State: AOAM533MI9OFPUHGeCbs/OIbMVPhzXgXtSh7MCK/uN2m32EOVm8l2xOw
-        WmhwPMY/YIX7InhfMfvYx7zEk/bajUrnVk5+yf+kqw==
-X-Google-Smtp-Source: ABdhPJzWS1uYf8FWo45Cg3tq/AFpg6d/7sMCQWCP67g5+L5DT9Ag8Vsgz85lfPSTKmIcrxXnM+BisytQv2Zb2NcXTnM=
-X-Received: by 2002:a05:6e02:1a63:: with SMTP id w3mr9334649ilv.230.1637726131600;
- Tue, 23 Nov 2021 19:55:31 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637732456; x=1669268456;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=n2ByG1U6a8arle+otb2T4sVUn1mKPtFoPzYZfKwb0B8=;
+  b=PFyvwC7hRq5MOD/L1/MQPsAQHgf1FCGYT4fOY8HjHeCfnu/2IxfrEZfJ
+   mvmWHOhrzYofmCFyzEm/trQF4x5dDPQ0gwmQjrgC//kiLwXCHukmEh8VT
+   Z5eg88DT2XgLhNjGUkwPffbREOGQql8w2flFW3cV+flGwauxbZRhG47Dd
+   A=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 23 Nov 2021 21:40:56 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2021 21:40:56 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 23 Nov 2021 21:40:55 -0800
+Received: from mpubbise-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Tue, 23 Nov 2021 21:40:53 -0800
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        "Manikanta Pubbisetty" <quic_mpubbise@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: sc7280: Add WCN6750 WiFi node
+Date:   Wed, 24 Nov 2021 11:10:38 +0530
+Message-ID: <1637732438-17016-1-git-send-email-quic_mpubbise@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20211123112104.3530135-1-hsinyi@chromium.org> <75ea1026-63e5-165a-9e07-27b5ac4c7579@arm.com>
-In-Reply-To: <75ea1026-63e5-165a-9e07-27b5ac4c7579@arm.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 24 Nov 2021 11:55:05 +0800
-Message-ID: <CAJMQK-gHpmfedbRfR-1ZNLw0LpRDJHYoKLd-k3kvkqFf8vnD4A@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Allow restricted-dma-pool to customize IO_TLB_SEGSIZE
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Christoph Hellwig <hch@infradead.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        - <devicetree-spec@vger.kernel.org>, devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, senozhatsky@chromium.org,
-        tfiga@chromium.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 7:58 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2021-11-23 11:21, Hsin-Yi Wang wrote:
-> > Default IO_TLB_SEGSIZE (128) slabs may be not enough for some use cases.
-> > This series adds support to customize io_tlb_segsize for each
-> > restricted-dma-pool.
-> >
-> > Example use case:
-> >
-> > mtk-isp drivers[1] are controlled by mtk-scp[2] and allocate memory through
-> > mtk-scp. In order to use the noncontiguous DMA API[3], we need to use
-> > the swiotlb pool. mtk-scp needs to allocate memory with 2560 slabs.
-> > mtk-isp drivers also needs to allocate memory with 200+ slabs. Both are
-> > larger than the default IO_TLB_SEGSIZE (128) slabs.
->
-> Are drivers really doing streaming DMA mappings that large? If so, that
-> seems like it might be worth trying to address in its own right for the
-> sake of efficiency - allocating ~5MB of memory twice and copying it back
-> and forth doesn't sound like the ideal thing to do.
->
-> If it's really about coherent DMA buffer allocation, I thought the plan
-> was that devices which expect to use a significant amount and/or size of
-> coherent buffers would continue to use a shared-dma-pool for that? It's
-> still what the binding implies. My understanding was that
-> swiotlb_alloc() is mostly just a fallback for the sake of drivers which
-> mostly do streaming DMA but may allocate a handful of pages worth of
-> coherent buffers here and there. Certainly looking at the mtk_scp
-> driver, that seems like it shouldn't be going anywhere near SWIOTLB at all.
->
-mtk_scp on its own can use the shared-dma-pool, which it currently uses.
-The reason we switched to restricted-dma-pool is that we want to use
-the noncontiguous DMA API for mtk-isp. The noncontiguous DMA API is
-designed for devices with iommu, and if a device doesn't have an
-iommu, it will fallback using swiotlb. But currently noncontiguous DMA
-API doesn't work with the shared-dma-pool.
+Adding DTS node for WCN6750 WiFi chipset.
 
-vb2_dc_alloc() -> dma_alloc_noncontiguous() -> alloc_single_sgt() ->
-__dma_alloc_pages() -> dma_direct_alloc_pages() ->
-__dma_direct_alloc_pages() -> swiotlb_alloc().
+Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+---
+Depends on:
+- https://patchwork.kernel.org/project/linux-arm-msm/patch/1637299488-22336-1-git-send-email-pillair@codeaurora.org/
+- https://patchwork.kernel.org/project/linux-wireless/patch/1637693434-15462-20-git-send-email-quic_mpubbise@quicinc.com/
 
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi |  7 +++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi     | 47 ++++++++++++++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
 
-> Robin.
->
-> > [1] (not in upstream) https://patchwork.kernel.org/project/linux-media/cover/20190611035344.29814-1-jungo.lin@mediatek.com/
-> > [2] https://elixir.bootlin.com/linux/latest/source/drivers/remoteproc/mtk_scp.c
-> > [3] https://patchwork.kernel.org/project/linux-media/cover/20210909112430.61243-1-senozhatsky@chromium.org/
-> >
-> > Hsin-Yi Wang (3):
-> >    dma: swiotlb: Allow restricted-dma-pool to customize IO_TLB_SEGSIZE
-> >    dt-bindings: Add io-tlb-segsize property for restricted-dma-pool
-> >    arm64: dts: mt8183: use restricted swiotlb for scp mem
-> >
-> >   .../reserved-memory/shared-dma-pool.yaml      |  8 +++++
-> >   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  4 +--
-> >   include/linux/swiotlb.h                       |  1 +
-> >   kernel/dma/swiotlb.c                          | 34 ++++++++++++++-----
-> >   4 files changed, 37 insertions(+), 10 deletions(-)
-> >
+diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+index d623d71..ee152b9 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+@@ -598,3 +598,10 @@
+ 		bias-pull-up;
+ 	};
+ };
++
++&wifi {
++	status = "okay";
++	wifi-firmware {
++		iommus = <&apps_smmu 0x1C02 0x1>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 1969e8dfb..eb7106f 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -83,6 +83,11 @@
+ 		#size-cells = <2>;
+ 		ranges;
+ 
++		wlan_ce_mem: memory@4cd000 {
++			no-map;
++			reg = <0x0 0x4cd000 0x0 0x1000>;
++		};
++
+ 		hyp_mem: memory@80000000 {
+ 			reg = <0x0 0x80000000 0x0 0x600000>;
+ 			no-map;
+@@ -1579,6 +1584,48 @@
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
++		wifi: wifi@17a10040 {
++			compatible = "qcom,wcn6750-wifi";
++			reg = <0 0x17A10040 0 0x0>;
++			reg-names = "msi_addr";
++			iommus = <&apps_smmu 0x1C00 0x1>;
++			interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
++			qcom,rproc = <&remoteproc_wpss>;
++			memory-region = <&wlan_fw_mem &wlan_ce_mem>;
++			status = "disabled";
++		};
++
+ 		pcie1: pci@1c08000 {
+ 			compatible = "qcom,pcie-sc7280";
+ 			reg = <0 0x01c08000 0 0x3000>,
+-- 
+2.7.4
+
