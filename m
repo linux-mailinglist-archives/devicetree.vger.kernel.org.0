@@ -2,115 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CEA345C832
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A4AB45C86C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235601AbhKXPHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 10:07:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56238 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235588AbhKXPHQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:07:16 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38BB2C061574;
-        Wed, 24 Nov 2021 07:04:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ApSPonCUp/GG9TGqMr522k7jLaMFyzDlr31PRHF6kBM=; b=HBCUuNaY68/EDTeCXBNjHANIfU
-        NZu16JMgs4FFHDVQaIJ7KrRuijEvzS8YtAV4oV8S69+kssPN8EPYxm1HpYqRoMhMeBV3zvVKrAiZA
-        +gTRLcjMss3JxF/EBSmXVugiaNPAcccd5hIN/RSg750+sYzbjmAfzRGPgdvx7Q+lEFJqraDMQLp4X
-        R+3K3GysmHxO/HoVZy4YbFvl4dlp0DplHHxpMvFdFcXHk9eUNP3czYPtzHGcb9zDpH3sH4dbg2W8O
-        oxLjmAWMyggUagqe8qpfELlkL5LzlqfrWZRvDDtGuLHWtN1SW6tNsJT9Q65QFU0Vx9ilZM7n2/hpN
-        F8K6fOAA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55850)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mptoU-0000l0-Q5; Wed, 24 Nov 2021 15:03:58 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mptoT-0001HC-BO; Wed, 24 Nov 2021 15:03:57 +0000
-Date:   Wed, 24 Nov 2021 15:03:57 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 3/6] net: lan966x: add port module support
-Message-ID: <YZ5UXdiNNf011skU@shell.armlinux.org.uk>
-References: <20211124083915.2223065-1-horatiu.vultur@microchip.com>
- <20211124083915.2223065-4-horatiu.vultur@microchip.com>
- <YZ4SB/wX6UT3zrEV@shell.armlinux.org.uk>
- <20211124145800.my4niep3sifqpg55@soft-dev3-1.localhost>
+        id S233803AbhKXPUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:20:31 -0500
+Received: from asav21.altibox.net ([109.247.116.8]:56774 "EHLO
+        asav21.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229540AbhKXPUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:20:31 -0500
+Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: noralf.tronnes@ebnett.no)
+        by asav21.altibox.net (Postfix) with ESMTPSA id 828228017B;
+        Wed, 24 Nov 2021 16:08:18 +0100 (CET)
+From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+To:     robh+dt@kernel.org, david@lechnology.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
+        dave.stevenson@raspberrypi.com, maxime@cerno.tech,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+Subject: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
+Date:   Wed, 24 Nov 2021 16:07:51 +0100
+Message-Id: <20211124150757.17929-1-noralf@tronnes.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211124145800.my4niep3sifqpg55@soft-dev3-1.localhost>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=ZLv5Z0zb c=1 sm=1 tr=0
+        a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=Q2Zrx5qe7pKZDP6xzOoA:9
+        a=QEXdDO2ut3YA:10
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 24, 2021 at 03:58:00PM +0100, Horatiu Vultur wrote:
-> > This doesn't look like the correct sequence to me. Shouldn't the net
-> > device be unregistered first, which will take the port down by doing
-> > so and make it unavailable to userspace to further manipulate. Then
-> > we should start tearing other stuff down such as destroying phylink
-> > and disabling interrupts (in the caller of this.)
-> 
-> I can change the order as you suggested.
-> Regarding the interrupts, shouldn't they be first disable and then do
-> all the teardown?
+Hi,
 
-Depends if you need them disabled before you do the teardown. However,
-what would be the effect of disabling interrupts while the user still
-has the ability to interact with the port - that is the main point.
+This patchset adds a missing piece for decommissioning the
+staging/fbtft/fb_st7735r.c driver namely a way to configure the
+controller from Device Tree.
 
-Generally the teardown should be the reverse of setup - where it's now
-accepted that all setup should be done prior to user publication. So,
-user interfaces should be removed and then teardown should proceed.
+All fbtft drivers have builtin support for one display panel and all
+other panels using that controller are configured using the Device Tree
+'init' property. This property is supported by all fbtft drivers and
+provides a generic way to set register values or issue commands
+(depending on the type of controller).
 
-> > What is the difference between "portmode" and "phy_mode"? Does it matter
-> > if port->config.phy_mode get zeroed when lan966x_port_pcs_set() is
-> > called from lan966x_pcs_config()? It looks to me like the first call
-> > will clear phy_mode, setting it to PHY_INTERFACE_MODE_NA from that point
-> > on.
-> 
-> The purpose was to use portmode to configure the MAC and the phy_mode
-> to configure the serdes. There are small issues regarding this which
-> will be fix in the next series also I will add some comments just to
-> make it clear.
-> 
-> Actually, port->config.phy_mode will not get zeroed. Because right after
-> the memset it follows: 'config = port->config'.
+It is common for these types of displays to have a datasheet listing the
+necessary controller settings/commands or some example code doing the
+same.
 
-Ah, missed that, thanks. However, why should portmode and phy_mode be
-different?
+This is how the panel directly supported by the fb_st7735r staging
+driver is described using Device Tree with that driver:
 
-> Actually, like you mentioned it needs to be link partner's advertisement
-> so that code can be simplified more:
-> 
->          if (DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE_GET(val)) {
->                  state->an_complete = true;
->  
->                  bmsr |= state->link ? BMSR_LSTATUS : 0;
->                  bmsr |= BMSR_ANEGCOMPLETE;
->  
->                  lp_adv = DEV_PCS1G_ANEG_STATUS_LP_ADV_GET(val);
->                  phylink_mii_c22_pcs_decode_state(state, bmsr, lp_adv);
->          }
-> 
-> Because inside phylink_mii_c22_pcs_decode_state, more precisely in
-> phylink_decode_c37_work, state->advertising will have the local
-> advertising.
+    width = <160>;
+    height = <128>;
 
-Correct.
+    init = <0x1000001
+            0x2000096
+            0x1000011
+            0x20000ff
+            0x10000B1 0x01 0x2C 0x2D
+            0x10000B4 0x07
+            0x10000C0 0xA2 0x02 0x84
+            0x10000C1 0xC5
+            0x10000C2 0x0A 0x00
+            0x10000C5 0x0E
+            0x100003a 0x55
+            0x1000036 0x60
+            0x10000E0 0x0F 0x1A 0x0F 0x18 0x2F 0x28 0x20 0x22
+                      0x1F 0x1B 0x23 0x37 0x00 0x07 0x02 0x10
+            0x10000E1 0x0F 0x1B 0x0F 0x17 0x33 0x2C 0x29 0x2E
+                      0x30 0x30 0x39 0x3F 0x00 0x07 0x03 0x10
+            0x1000029
+            0x2000064>;
+
+
+This is how the same panel is described using the st7735r drm driver and
+this patchset:
+
+    width = <160>;
+    height = <128>;
+
+    frmctr1 = [ 01 2C 2D ];
+    invctr = [ 07 ];
+    pwctr1 = [ A2 02 84 ];
+    pwctr2 = [ C5 ];
+    pwctr3 = [ 0A 00 ];
+    vmctr1 = [ 0E ];
+    madctl = [ 60 ];
+    gamctrp1 = [ 0F 1A 0F 18 2F 28 20 22 1F 1B 23 37 00 07 02 10 ];
+    gamctrn1 = [ 0F 1B 0F 17 33 2C 29 2E 30 30 39 3F 00 07 03 10 ];
+
+
+Back when the fbtft drivers were added to staging I asked on the DT
+mailinglist if it was OK to use the 'init' property but it was turned
+down. In this patchset I'm trying the same approach used by the
+solomon,ssd1307fb.yaml binding in describing the attached panel. That
+binding prefixes the properties with the vendor name, not sure why that
+is and I think it looks strange so I try without it.
+
+Noralf.
+
+
+Noralf Trønnes (6):
+  dt-bindings: display: sitronix,st7735r: Fix backlight in example
+  dt-bindings: display: sitronix,st7735r: Make reset-gpios optional
+  dt-bindings: display: sitronix,st7735r: Remove spi-max-frequency limit
+  dt-bindings: display: sitronix,st7735r: Add initialization properties
+  drm/mipi-dbi: Add device property functions
+  drm: tiny: st7735r: Support DT initialization of controller
+
+ .../bindings/display/sitronix,st7735r.yaml    | 122 ++++++++++++++-
+ drivers/gpu/drm/drm_mipi_dbi.c                | 139 ++++++++++++++++++
+ drivers/gpu/drm/tiny/st7735r.c                |  87 +++++++++--
+ include/drm/drm_mipi_dbi.h                    |   3 +
+ 4 files changed, 334 insertions(+), 17 deletions(-)
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.33.0
+
