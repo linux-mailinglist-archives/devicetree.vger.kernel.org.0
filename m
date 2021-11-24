@@ -2,176 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F3F3D45C709
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:17:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5E9D45C742
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:27:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346422AbhKXOVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 09:21:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44736 "EHLO
+        id S1349513AbhKXObC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 09:31:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353562AbhKXOS7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 09:18:59 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E706C09ECD0;
-        Wed, 24 Nov 2021 04:31:38 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id x15so9733533edv.1;
-        Wed, 24 Nov 2021 04:31:38 -0800 (PST)
+        with ESMTP id S1352221AbhKXOa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 09:30:56 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2414DC127923
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 04:55:17 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id a9so4026442wrr.8
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 04:55:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=X5je2/JyWbZDgEix/0iijJu6E649kdB2MShuic6l19c=;
-        b=glqvVH0ZWNXWeAacsTHEVBLyekrLB3AQ8NtAzGScFKx8xTYwAo335/g7fbQ9cKGP3O
-         165XqgkEwC8PHyswGFuzQwe2QrPCwzQMv+a+nK5BQTsrEG2YdNh1WpiIWO6rErEguu5S
-         iBE9cm+akpQxpc0m0ov/QwMYQ2ODVdrGq5szOAed99bgpBL1UgCwhncyW9ezLG1u4K4y
-         vrC4fY8rpxXk6L+4iqDnqptv4TKHUWfk3uZVngQrFtfrBVYHdxz2OEHEReDcDl6f1/Ly
-         00sMDAn6WIZ6RQu1WSTCmqi5zuzsd3cA79B2U5iK+iDxJSwEnJBnRy9iF9ud3i4R648k
-         5FgQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bcW/auQwhx7EDgaXPPuEkhw9cJVDl6vpI/ai2tX4Qwo=;
+        b=tTKzfWuTuwCkre9gsqU2sIqF551Xaz8JcKCOhq9JUBEbFEB+2G21uW/GpLRjN3DMfz
+         8VupRRQJzBx30JP3IDSUxPXXbvS1/0QHGBDeoIE41I1TNdYh2di6dkl7AHagMZqzPxvb
+         FUmJ1gixwftzrdtQRw58g3uG9Fsjy+Zc++7la8N962VtUWVmweugOaLmazVVW/fLxgtx
+         OJLGWQ5zs6AIMw03hW2LCXqO1NpKi3XZMr4XIstq39cuBe8SsZI3u+6PVr67QuVEx3bh
+         azboOnDk8Hk1yV7kWcr8COu9WGlKIFXx/JyLPo/VMr3Gw54c5cqvCPyWB0opx7U49qXT
+         ov5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=X5je2/JyWbZDgEix/0iijJu6E649kdB2MShuic6l19c=;
-        b=Bwn0fIFb4JI3pjUvs0ipd7IqtoTkKVc4ycvgJLBqwlLfvXFOu0VLJF0PpFKb9+CsEF
-         cxKwXtiXjlZk3ZhZgqY/Qr1nBV5yUsV900bJfrEjerhuHksehTFUDe0DTYnHEXHZ9TYF
-         GgPKXI6vxuwKZk+Cn5NguPHFkPKQ3ZTmtfSkN4graQbNvHN54Ew8zF0Qky6+SBiOGMCG
-         EL68Wdz2csuGcRtNT2X3zDhY7FR+SNBJzbDMCHFn95meXH5AhNLHe5J/3JE8swP0zee4
-         uPLikFZ4mymm0K6YaXzZS03UQQhsuj5OnJJIhKvu6eKj6BNnUS5QSudkBAwR2O34k+11
-         aQmA==
-X-Gm-Message-State: AOAM5325ZTegiUP/Hl1UR0WxkBKiYsepHY/PQLZcR0aAEqf95X51zYJI
-        ACXx9ZxlNltjFrqCIOZ8h8FeDCafaQQ=
-X-Google-Smtp-Source: ABdhPJzQZ14vlyXVA1zbOxCmypxqMjsz6ZV1ngM71Eyx9n3mBvO6PSm4xUpKr6qvFeyKaxz/lgJkrA==
-X-Received: by 2002:a05:6402:3550:: with SMTP id f16mr24332132edd.377.1637757097011;
-        Wed, 24 Nov 2021 04:31:37 -0800 (PST)
-Received: from skbuf ([188.25.163.189])
-        by smtp.gmail.com with ESMTPSA id t5sm8170493edd.68.2021.11.24.04.31.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bcW/auQwhx7EDgaXPPuEkhw9cJVDl6vpI/ai2tX4Qwo=;
+        b=fFOXgfpOcr83PmZ3ciHJYze1YYmk0UnQa+oABwugKSe3J6XUX7lPB0EtCITqI9/lbz
+         6gnr9IZv2SXiusRKvsSzV2gCGk3Q3XmeBZpf+QE1J6zkXfc6ec22xQ/6Nq3XkuFwgGV1
+         rZUtQM7iAgG/sMV4ZCEYUz9xookrRRQuVCJdoFVkbrfPcAZPbExyVTZxQ7Vc4elB7qL8
+         s9fFnNXBrPir77PIE/b3Og/setYW5xTexYPMM03mpGxnr9ZI4D4guGQHE84d3Z8f3AoM
+         9n1Nj0LIjews3ON5DMikEjdS7TL0MO+Xq0v3liyX0hQWOGwNaeNj9yPSZ5xa48Dpt+hp
+         txYA==
+X-Gm-Message-State: AOAM533fO/Lu5R669XoDCmUoHLtdqhBYbYyTFFLn32oKe1mDcqUcBbB/
+        wpQdxn1AJ4Mgm1Ayo/n3pdfnaA==
+X-Google-Smtp-Source: ABdhPJxzkg22K5gANey5i4Q2uPB/dHz/U2rDt3Pth6C79X87w3QfsCIYi8NjqR99oF7BndbrefSacQ==
+X-Received: by 2002:a5d:5303:: with SMTP id e3mr18330457wrv.73.1637758515555;
+        Wed, 24 Nov 2021 04:55:15 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e34:ed2f:f020:3395:9073:b941:501e])
+        by smtp.gmail.com with ESMTPSA id v8sm14916443wrd.84.2021.11.24.04.55.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Nov 2021 04:31:36 -0800 (PST)
-Date:   Wed, 24 Nov 2021 14:31:35 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Marek =?utf-8?B?QmVow7pu?= <kabel@kernel.org>
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
-Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
- supported_interfaces with modes from fwnode
-Message-ID: <20211124123135.wn4lef5iv2k26txb@skbuf>
-References: <20211123164027.15618-1-kabel@kernel.org>
- <20211123164027.15618-5-kabel@kernel.org>
- <20211123212441.qwgqaad74zciw6wj@skbuf>
- <20211123232713.460e3241@thinkpad>
- <20211123225418.skpnnhnrsdqrwv5f@skbuf>
- <YZ4cRWkEO+l1W08u@shell.armlinux.org.uk>
- <20211124120441.i7735czjm5k3mkwh@skbuf>
- <20211124131703.30176315@thinkpad>
+        Wed, 24 Nov 2021 04:55:15 -0800 (PST)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     daniel.lezcano@linaro.org
+Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
+        ulf.hansson@linaro.org, rjw@rjwysocki.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, lukasz.luba@arm.com,
+        Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 1/5] dt-bindings: Powerzone new bindings
+Date:   Wed, 24 Nov 2021 13:55:00 +0100
+Message-Id: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211124131703.30176315@thinkpad>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 24, 2021 at 01:17:03PM +0100, Marek Behún wrote:
-> On Wed, 24 Nov 2021 14:04:41 +0200
-> Vladimir Oltean <olteanv@gmail.com> wrote:
-> 
-> > On Wed, Nov 24, 2021 at 11:04:37AM +0000, Russell King (Oracle) wrote:
-> > > On Wed, Nov 24, 2021 at 12:54:18AM +0200, Vladimir Oltean wrote:  
-> > > > This implies that when you bring up a board and write the device tree
-> > > > for it, you know that PHY mode X works without ever testing it. What if
-> > > > it doesn't work when you finally add support for it? Now you already
-> > > > have one DT blob in circulation. That's why I'm saying that maybe it
-> > > > could be better if we could think in terms that are a bit more physical
-> > > > and easy to characterize.  
-> > > 
-> > > However, it doesn't solve the problem. Let's take an example.
-> > > 
-> > > The 3310 supports a mode where it runs in XAUI/5GBASE-R/2500BASE-X/SGMII
-> > > depending on the negotiated media parameters.
-> > > 
-> > > XAUI is four lanes of 3.125Gbaud.
-> > > 5GBASE-R is one lane of 5.15625Gbaud.
-> > > 
-> > > Let's say you're using this, and test the 10G speed using XAUI,
-> > > intending the other speeds to work. So you put in DT that you support
-> > > four lanes and up to 5.15625Gbaud.  
-> > 
-> > Yes, see, the blame's on you if you do that.You effectively declared
-> > that the lane is able of sustaining a data rate higher than you've
-> > actually had proof it does (5.156 vs 3.125).
-> 
-> But the blame is on the DT writer in the same way if they declare
-> support for a PHY mode that wasn't tested. (Or at least self-tests with
-> PRBS patterns at given frequency.)
+The proposed bindings are describing a set of powerzones.
 
-I think we're running around in circles on this one. I think there's an
-overlap between the supported_interfaces and the phy-mode array in
-device tree. Going back to your example with the SMC calls unsupported
-by ATF, you may run into the surprise that you have a phy-mode in the
-device tree which you need to mask out in Linux, via supported_interfaces.
-You would have needed to mask it out anyway, even with my proposal, so
-you don't gain anything except the extra burden of spelling out 5 lines
-of a phy-mode array in the device tree. It's going to be a nightmare for
-review, it isn't obvious to say that "this phy-mode shouldn't be here"
-or "you're missing this phy-mode".
+A power zone is the logical name for a component which is capable of
+power capping and where we can measure the power consumption.
 
-> > The reason why I'm making this suggestion is because I think it lends
-> > itself better to the way in which hardware manufacturers work.
-> > A hobbyist like me has no choice than to test the highest data rate when
-> > determining what frequency to declare in the DT (it's the same thing for
-> > spi-max-frequency and other limilar DT properties, really), but hardware
-> > people have simulations based on IBIS-AMI models, they can do SERDES
-> > self-tests using PRBS patterns, lots of stuff to characterize what
-> > frequency a lane is rated for, without actually speaking any Ethernet
-> > protocol on it. In fact there are lots of people who can do this stuff
-> > (which I know mostly nothing about) with precision without even knowing
-> > how to even type a simple "ls" inside a Linux shell.
-> >
-> > > Later, you discover that 5GBASE-R doesn't work because there's an
-> > > electrical issue with the board. You now have DT in circulation
-> > > which doesn't match the capabilities of the hardware.
-> > > 
-> > > How is this any different from the situation you describe above?
-> > > To me, it seems to be exactly the same problem.  
-> > 
-> > To err is human, of course. But one thing I think we learned from the
-> > old implementation of phylink_validate is that it gets very tiring to
-> > keep adding PHY modes, and we always seem to miss some. When that array
-> > will be described in DT, it could be just a tad more painful to maintain.
-> 
-> The thing is that we will still need the `phy-mode` property, it can't
-> be deprecated IMO.
+A power zone can aggregate several power zones in terms of power
+measurement and power limitations. That allows to apply power
+constraint to a group of components and let the system balance the
+allocated power in order to comply with the constraint.
 
-Wait a minute, who said anything about deprecating it? I just said
-"let's not make it an array, in the actual device tree". The phy-mode
-was, and will remain, the initial MII-side protocol, which can or cannot
-be changed at runtime.
+The ARM System Control and Management Interface (SCMI) can provide a
+power zone description.
 
-> There are non-SerDes modes, like rgmii, which may use different pins
-> than SerDes modes.
+The powerzone semantic is also found on the Intel platform with the
+RAPL register.
 
-And, as discussed, there is no use case for dynamic switchover between
-RGMII and a SERDES lane.
+The Linux kernel powercap framework deals with the powerzones:
 
-> There may theoretically also be a SoC or PHY where the lanes for XAUI
-> do not share pins with the lane of 2500base-x, and this lane may not be
-> wired. Tis true that I don't know of any such hardware and it probably
-> does not and will not exist, but we don't know that for sure and this is
-> a case where your proposal will fail and the phy-mode extension would
-> work nicely.
+https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
 
-We haven't gotten to discussing any of the details yet, but my proposal
-of course would have been to describe the number of SERDES lanes and max
-frequency in the COMPHY nodes, and have the COMPHY tell you what is
-supported. At least with Layerscape, that would be the model. So when
-you have pinmuxing, you just get the capabilities from the lane in use.
+The powerzone can also represent a group of children powerzones, hence
+the description can result on a hierarchy. Such hierarchy already
+exists with the hardware or can be represented an computed from the
+kernel.
 
-> 
-> Maybe we need opinions from other people here.
+The hierarchical description was initially proposed but not desired
+given there are other descriptions like the power domain proposing
+almost the same description.
 
-Other opinions are welcome of course.
+https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
+
+The description gives the power constraint dependencies to apply on a
+specific group of logically or physically aggregated devices. They do
+not represent the physical location or the power domains of the SoC
+even if the description could be similar.
+
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ .../devicetree/bindings/power/powerzones.yaml | 95 +++++++++++++++++++
+ 1 file changed, 95 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
+
+diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
+new file mode 100644
+index 000000000000..1ae3f82ae29c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/powerzones.yaml
+@@ -0,0 +1,95 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/powerzones.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Power zones description
++
++maintainers:
++  - Daniel Lezcano <daniel.lezcano@linaro.org>
++
++description: |+
++
++  A System on Chip contains a multitude of active components and each
++  of them is a source of heat. Even if a temperature sensor is not
++  present, a source of heat can be controlled by acting on the
++  consumed power via different techniques.
++
++  A powerzone describes a component or a group of components where we
++  can control the maximum power consumption. For instance, a group of
++  CPUs via the performance domain, a LCD screen via the brightness,
++  etc ...
++
++  Different components when they are used together can significantly
++  increase the overall temperature, so the description needs to
++  reflect this dependency in order to assign a power budget for a
++  group of powerzones.
++
++  This description is done via a hierarchy and the DT reflects it. It
++  does not represent the physical location or a topology, eg. on a
++  big.Little system, the little CPUs may not be represented as they do
++  not contribute significantly to the heat, however the GPU can be
++  tied with the big CPUs as they usually have a connection for
++  multimedia or game workloads.
++    
++properties:
++  $nodename:
++    const: powerzones
++      
++  "#powerzone-cells":
++    description:
++      Number of cells in powerzone specifier. Typically 0 for nodes
++      representing but it can be any number in the future to describe
++      parameters of the powerzone.
++
++  powerzone:
++    description:
++      A phandle to a parent powerzone. If no powerzone attribute is set, the
++      described powerzone is the topmost in the hierarchy.
++
++examples:
++  - |
++    powerzones {
++
++      SOC_PZ: soc {
++      };
++
++      PKG_PZ: pkg {
++        #powerzone-cells = <0>;
++        powerzone = <&SOC_PZ>;
++      };
++
++      BIG_PZ: big {
++        #powerzone-cells = <0>;
++        powerzone = <&PKG_PZ>;
++      };
++
++      GPU_PZ: gpu {
++        #powerzone-cells = <0>;
++        powerzone = <&PKG_PZ>;
++      };
++
++      MULTIMEDIA_PZ: multimedia {
++        #powerzone-cells = <0>;
++        powerzone = <&SOC_PZ>;
++      };
++    };
++
++  - |
++    A57_0: big@0 {
++      compatible = "arm,cortex-a57";
++      reg = <0x0 0x0>;
++      device_type = "cpu";
++      #powerzone-cells = <0>;
++      powerzone = <&BIG_PZ>;
++    };
++
++    A57_1: big@1 {
++      compatible = "arm,cortex-a57";
++      reg = <0x0 0x0>;
++      device_type = "cpu";
++      #powerzone-cells = <0>;
++      powerzone = <&BIG_PZ>;
++    };
++...
+-- 
+2.25.1
+
