@@ -2,103 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C23ED45C8BE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:33:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFCDA45C911
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:43:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240051AbhKXPgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 10:36:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34792 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232070AbhKXPgM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:36:12 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE1E9C061574
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 07:33:01 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id o29so2782198wms.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 07:33:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=js+dElCSMTX7Q9ab9rdTN6VQUCoOGsYNSHNvRUS+woE=;
-        b=IeDlxxwdVD2nn9LdcWrTH1KckkvgymSSUD0HgXJzeuI3Ta8JBrHIXX3NwN1h92qcRI
-         +GvB2u+N1u0E/ZMYwSXV8+T5XWbuorwN4Wfdjdh29aZdP+Ry30j7VLkZBOVpbxNdOfY0
-         koB6lIlz8Grsrkj5ZgQ++hRQfb2j395Dv2a1o0VJaVA9Qdu2sPDWNzo7UuofYLtlPnmI
-         AFkXGs6bAATZphx0678pJNf4jvFMRkKfq5LQEwaSgZkuxRBFH0sW8gdSJNjYcReE4Dow
-         AyiANDAcNcsP+XMiKlyXIpcRxHN7bl1ky2F8MyGIVyYDsRNyMFB6fujqSNW5+W1H7Bcr
-         PgLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=js+dElCSMTX7Q9ab9rdTN6VQUCoOGsYNSHNvRUS+woE=;
-        b=YTKP9l4zvFuvEj1ZiKMkGoq9GWTOaxJ5zAtpxlJ3wnjVlBnxbrn7452Klj7tJEiF0G
-         VjBXj8kOLwSIq2+Cg1WtKz1rQ/zP55WroB42KbqYg5p4lUkB4cddgK6orXkyQFb+dAe8
-         wC0JAqATGpOxWMqEGvZxPIi9xWjpAbt9JKZuO7U2q6enWVDM4PkXlTiTaj5oyMH/NCdR
-         Pwx5Ouu5IS0ut5FxR76Il2I3eir/qGEJbA46oU9bcGMZB5wLOUiYHv493NaYwulJXct5
-         8BjbKpnRpf6eRNqZkDDL6C4B5OJI5RniNZSE1tUzfB/GGtuJysGrRnUZcMtLSDpQ0FjM
-         6SOQ==
-X-Gm-Message-State: AOAM530XiDeSNwHaX1gJp8QmNWd7ZY9g+KhKMNmvLzPAiT80sgJ6Zp29
-        MlP2RF6q7U4cRwQSCELxeLTGdw==
-X-Google-Smtp-Source: ABdhPJxCSL294XX2VDzJ7+/6CRPgIiCEJuop+WAiccCtSi+uidF7m5EQdsY9lZCfcw7yL1rhG39D3A==
-X-Received: by 2002:a1c:1f94:: with SMTP id f142mr16695124wmf.192.1637767979747;
-        Wed, 24 Nov 2021 07:32:59 -0800 (PST)
-Received: from google.com ([2.31.167.61])
-        by smtp.gmail.com with ESMTPSA id m9sm75155wmq.1.2021.11.24.07.32.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Nov 2021 07:32:59 -0800 (PST)
-Date:   Wed, 24 Nov 2021 15:32:57 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        id S1345430AbhKXPqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:46:37 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:16955 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1344869AbhKXPqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 10:46:33 -0500
+X-IronPort-AV: E=Sophos;i="5.87,260,1631545200"; 
+   d="scan'208";a="101650560"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 25 Nov 2021 00:43:22 +0900
+Received: from localhost.localdomain (unknown [10.226.92.23])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 8288C401084A;
+        Thu, 25 Nov 2021 00:43:20 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Subject: Re: [PATCH v3] dt-bindings: mfd: bd9571mwv: Convert to json-schema
-Message-ID: <YZ5bKYZ0SF9xZU9F@google.com>
-References: <76fdd209e6a2dada7ff50b8ad03eb14e7f3547a6.1635338031.git.geert+renesas@glider.be>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <76fdd209e6a2dada7ff50b8ad03eb14e7f3547a6.1635338031.git.geert+renesas@glider.be>
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3] arm64: dts: renesas: r9a07g044: Add OPP table
+Date:   Wed, 24 Nov 2021 15:43:16 +0000
+Message-Id: <20211124154316.28365-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 27 Oct 2021, Geert Uytterhoeven wrote:
+Add OPP table for RZ/G2L SoC.
 
-> Convert the ROHM BD9571MWV/BD9574MWF Power Management Integrated Circuit
-> (PMIC) Device Tree binding documentation to json-schema.
-> 
-> Make the "regulators" subnode optional, as not all users describe the
-> regulators.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Acked-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
-> I have listed Marek as the maintainer, as he wrote the original
-> bindings.  Marek: Please scream if this is inappropriate ;-)
-> 
-> v3:
->   - Add Acked-by,
-> 
-> v2:
->   - Add Reviewed-by.
-> ---
->  .../devicetree/bindings/mfd/bd9571mwv.txt     |  69 ----------
->  .../bindings/mfd/rohm,bd9571mwv.yaml          | 127 ++++++++++++++++++
->  2 files changed, 127 insertions(+), 69 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/bd9571mwv.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd9571mwv.yaml
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v2->v3:
+ * Fixed dtbs_check warning. changed node name opp_table->opp-table-0
+ * Added a blank line after opp-shared.
+V1->v2:
+ * Fixed typo cluster1_opp->cluster0_opp
+---
+ arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 31 ++++++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-Applied, thanks.
-
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+index 43a5d359519a..c83a3b7f580f 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
+@@ -42,6 +42,33 @@
+ 		clock-frequency = <0>;
+ 	};
+ 
++	cluster0_opp: opp-table-0 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-150000000 {
++			opp-hz = /bits/ 64 <150000000>;
++			opp-microvolt = <1100000>;
++			clock-latency-ns = <300000>;
++		};
++		opp-300000000 {
++			opp-hz = /bits/ 64 <300000000>;
++			opp-microvolt = <1100000>;
++			clock-latency-ns = <300000>;
++		};
++		opp-600000000 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <1100000>;
++			clock-latency-ns = <300000>;
++		};
++		opp-1200000000 {
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <1100000>;
++			clock-latency-ns = <300000>;
++			opp-suspend;
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -63,6 +90,8 @@
+ 			device_type = "cpu";
+ 			next-level-cache = <&L3_CA55>;
+ 			enable-method = "psci";
++			clocks = <&cpg CPG_CORE R9A07G044_CLK_I>;
++			operating-points-v2 = <&cluster0_opp>;
+ 		};
+ 
+ 		cpu1: cpu@100 {
+@@ -71,6 +100,8 @@
+ 			device_type = "cpu";
+ 			next-level-cache = <&L3_CA55>;
+ 			enable-method = "psci";
++			clocks = <&cpg CPG_CORE R9A07G044_CLK_I>;
++			operating-points-v2 = <&cluster0_opp>;
+ 		};
+ 
+ 		L3_CA55: cache-controller-0 {
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.17.1
+
