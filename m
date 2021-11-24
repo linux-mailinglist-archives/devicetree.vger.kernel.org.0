@@ -2,81 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E81745B723
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:09:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89CAA45B72F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230527AbhKXJNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 04:13:07 -0500
-Received: from mx24.baidu.com ([111.206.215.185]:56084 "EHLO baidu.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229521AbhKXJNF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 04:13:05 -0500
-Received: from BC-Mail-Ex07.internal.baidu.com (unknown [172.31.51.47])
-        by Forcepoint Email with ESMTPS id C71E0B74B888DD54FDC0;
-        Wed, 24 Nov 2021 17:09:54 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BC-Mail-EX07.internal.baidu.com (172.31.51.47) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Wed, 24 Nov 2021 17:09:54 +0800
-Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
- (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Wed, 24
- Nov 2021 17:09:54 +0800
-Date:   Wed, 24 Nov 2021 17:09:57 +0800
-From:   Cai Huoqing <caihuoqing@baidu.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-staging@lists.linux.dev>
-Subject: Re: [PATCH v2 1/3] staging: zynpu: Add driver support for ARM(China)
- ZHOUYI AI accelerator
-Message-ID: <20211124090957.GA698@LAPTOP-UKSR4ENP.internal.baidu.com>
-References: <20211124084620.628-1-caihuoqing@baidu.com>
- <20211124084620.628-2-caihuoqing@baidu.com>
- <YZ39YqsNTSolEJZ2@kroah.com>
+        id S234090AbhKXJSH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 04:18:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35196 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233741AbhKXJSH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 04:18:07 -0500
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [IPv6:2a0b:5c81:1c1::37])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE25EC061574;
+        Wed, 24 Nov 2021 01:14:57 -0800 (PST)
+Received: from hillosipuli.retiisi.eu (89-27-103-169.bb.dnainternet.fi [89.27.103.169])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by lahtoruutu.iki.fi (Postfix) with ESMTPSA id 65E291B0008C;
+        Wed, 24 Nov 2021 11:14:54 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu;
+        t=1637745294;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=mCJ2Iig9MPwustrG6BwgnLsl2WHMERD8JcGdDVVf9Q0=;
+        b=LivBiq/WO5JWG12GaET5i5J/ig8Aqg2ubdqigxGn58t7O9Ua3EN1j2IHqcvgmD+Q5uiF69
+        hhYPj5Oozle1KEuIL2JaRyJ+SF0DaU2ACt4gQm8ckO2a1YzQRoe5nw95MxOR6Yzh26q9GQ
+        3/XUiGX6G84ZEGHmqj53RUOWB65BaQG7RerAj1QLj9RelX2xkLmBRhAeDx2ju+W+0NNh4v
+        poZ+GdAHxJa501Qm3tqKBZ+TN3v6Cwcl8M/B1/OL/8lvrSBULRf1zbWlPzQKxBW8/+Myhj
+        iyJ9X6zzxmTo0wmk1chZFjqKHGd/ig/AtH1mV3EnUkhDSCrBAVNKcy6f5Rx1lQ==
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id EC48D634C90;
+        Wed, 24 Nov 2021 11:14:53 +0200 (EET)
+Date:   Wed, 24 Nov 2021 11:14:53 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: media: renesas,jpu: Convert to
+ json-schema
+Message-ID: <YZ4CjUcWdRt3Dmb0@valkosipuli.retiisi.eu>
+References: <4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be>
+ <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YZ39YqsNTSolEJZ2@kroah.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BC-Mail-Ex24.internal.baidu.com (172.31.51.18) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+In-Reply-To: <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com>
+ARC-Seal: i=1; s=lahtoruutu; d=iki.fi; t=1637745294; a=rsa-sha256;
+        cv=none;
+        b=I+1jQ0iJGwQWSoKapTpHMf815r38t7Te5sMS5ykMO2JWkGwXZ4m1Fga+4EMqBXxkthnjhW
+        mMyE0TTQJng9XWecnh4zpF42w4ws6JHv4mQiiF7TDRsZh/Gwndi6lXKqbnBKH07yHz+Rfr
+        PCEyqCRJNhzP8G7j7OmvahdYeTifpok34gpt+S8QO6kLzBfX9sF3Qe+WJlzPFbNJyLS1o1
+        OoxCF0w4YehZaX0Y4HX+gvNUCuEwfb9V2jtjd424OoJBMgrDBLO+7gPM8FyWRuQygxjQRc
+        YKgnbdQt3ardjZDcS65YCI2ThhUayIUAjBGUJh/nIuDa7wpfxuFf/PiGbT/M+g==
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=lahtoruutu; t=1637745294;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=mCJ2Iig9MPwustrG6BwgnLsl2WHMERD8JcGdDVVf9Q0=;
+        b=FR8kn80cHBOrhyvs60LyO2gbBKoKQGTorlLdpKkvtjy5U2CWQtEfFHqtazIVh1aBGVR0mw
+        /QCDHS2N+fInbQcWQoutf2Z9be588oGVqyaYW2MMQb0RsDDk90hfXgHLlt6H7MLNc9gaik
+        iiQyffgcbtf1c54xHzRnwdhASKJAizCun6+3pwAf2yLZUQuZowECD1HjIs+sl4QV+yMig9
+        ljoxDfur3d1OGqC15hk0L6RHIuA4ELhFdqUq7V93alVLilHESMc3mKd652fN2RqKDEUyJ6
+        spx1BkxxdjiDvZodTgEQ+wwD9bu5n9yZlVIrmEfQYVpH7QxpURRRx0TbqR0XyA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24 11月 21 09:52:50, Greg Kroah-Hartman wrote:
-> On Wed, Nov 24, 2021 at 04:46:15PM +0800, Cai Huoqing wrote:
-> > ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
-> > such as Allwinner R329 SOC.
-> > Add driver support for this AI accelerator here.
-> > 
-> > This driver is not tandard linux style, there are some clean up works,
-> 
-> "standard"?
-will fix it
-> 
-> > fixing code style, refactorring.
-> > And it only works with a closed source usermode driver, so need to
-> > reverse the libraries, and impelement it, then open source
-> > the usermode driver.
-> 
-> Who will be doing the "reversing" of the usermode driver?
-I will provide the library binary, also try to implement usermode code:)
-> 
-> We can't take this now if there's no actual users of this code that
-> anyone can test.  Why not just change the license of the usermode code
-> now to make this simpler?
-Allwinner R329 board includes this ip core, I have one to test this
-driver.
-The usermode code is close, I just got an library.
+Hi Geert,
 
-Thanks
-
-Cai
-
+On Wed, Nov 24, 2021 at 10:06:38AM +0100, Geert Uytterhoeven wrote:
+> Hi Mauro, Sakari,
 > 
-> thanks,
+> On Wed, Jul 14, 2021 at 1:17 PM Geert Uytterhoeven
+> <geert+renesas@glider.be> wrote:
+> > Convert the Renesas JPEG Processing Unit Device Tree binding
+> > documentation to json-schema.
+> >
+> > Document missing properties.
+> > Update the example to match reality.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Reviewed-by: Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> > v2:
+> >   - Add Reviewed-by.
 > 
-> greg k-h
+> Why was the status of this patch changed from "Reviewed" to "Not
+> Applicable" in the linux-media patchwork?
+> https://patchwork.linuxtv.org/project/linux-media/patch/4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be/
+> 
+> Who's gonna take it?
+
+It seems to be assigned to me in Patchwork but I don't remember it. Hmm.
+
+I can take it.
+
+-- 
+Kind regards,
+
+Sakari Ailus
