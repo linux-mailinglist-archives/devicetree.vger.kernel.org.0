@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 002A245B086
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 00:58:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2260745B0C3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 01:34:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240206AbhKXABb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 19:01:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53446 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbhKXABb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 19:01:31 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B20FC061574
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:58:22 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id i12so832017pfd.6
-        for <devicetree@vger.kernel.org>; Tue, 23 Nov 2021 15:58:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nJaUM15poWQe89db2PdHN17xsR/T4lr8cbsEU6CgYVE=;
-        b=DWFfC7ocrPjYR1Nuj7NSkhXNkkwGbEKqEJS/lT2MvU71LCAw6vJJYEYLSjxoiObiEE
-         uZTirK1qhstid+DHuAwTKxOn9iTkK5OzJZ4hfxWXwt2Bl1/WEC/RK6oEVtWPAg2T3hx2
-         0sgTh7+kkrmc25IdGBTh07pXlKzA0TEDke9OhvpIj3cOzRgS2LLaE7e+n2eH4k7MBifj
-         2MdoF/4Mb2KhhmWVnU/ED/a7SNqA9FMjBkm3pO1QvKzKPjiYrYAiNEtMw7xdQbB/8I1g
-         b/qLaSIBANOLtEVnUiEhp+7dAQoTKJ5RzEsZH0szrmtbkq3J76ZOzwYfCzgS4Zpw7x8e
-         8Zgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nJaUM15poWQe89db2PdHN17xsR/T4lr8cbsEU6CgYVE=;
-        b=MjdS64XuPBbhW3ZfnBoJqzOJv10Hb6LS/YoLfD9TNMpunjVXtR4o/mIT3lNSJFgdz0
-         fK2EdQgcvqPoRN8PBkL9/ISlLHsBqu298I7h8fgoYdpbOvZVMB9NRPHZNjb3FTA0lnO2
-         VmCNbmIHCyctl6Hieno+D+7eeldGjbiCCiJnwLzwkYEMrkO2YmWHGHcsTrBfWwTGjkyE
-         YtNpVOesQZ3Cr2VyqagHe4FutlG35bSwK66xJfNtrADrIz0WB6EDlKlal6U3if8d07Px
-         GsYcSMGEkx9IkLPfHgKrPacFPWQQEJBhY+kLz78iDNLPncvEi3Q3oapdcbC8TFwVaWYY
-         zUJQ==
-X-Gm-Message-State: AOAM532AmlJKNoHG2EIVCYVHlL67xjFRvF3NTYBoW1Ft88JnEnfzh7QN
-        nrer8v3JrlRnjZEExN/8bEn8OPslAT4=
-X-Google-Smtp-Source: ABdhPJw1OPLXzCk9gJptLDsh4FEU315Dje1FfwU+FEw9UssNWmH+OfBf8YlwJuHJck+d871AJVf8DQ==
-X-Received: by 2002:a63:6b42:: with SMTP id g63mr6729611pgc.133.1637711901611;
-        Tue, 23 Nov 2021 15:58:21 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id mz7sm2282725pjb.7.2021.11.23.15.58.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 15:58:21 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: use non-deprecated USB 2.0 PHY binding
-Date:   Tue, 23 Nov 2021 15:58:19 -0800
-Message-Id: <20211123235819.3823929-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211123090333.11597-1-zajec5@gmail.com>
-References: <20211123090333.11597-1-zajec5@gmail.com>
+        id S229927AbhKXAhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 19:37:23 -0500
+Received: from mga06.intel.com ([134.134.136.31]:48782 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229926AbhKXAhX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Nov 2021 19:37:23 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="295974434"
+X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; 
+   d="scan'208";a="295974434"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2021 16:34:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,258,1631602800"; 
+   d="scan'208";a="457269373"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga006.jf.intel.com with ESMTP; 23 Nov 2021 16:34:11 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mpgEk-0003I9-9F; Wed, 24 Nov 2021 00:34:10 +0000
+Date:   Wed, 24 Nov 2021 08:33:21 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
+        shawnguo@kernel.org
+Cc:     kbuild-all@lists.01.org, kernel@pengutronix.de, linux-imx@nxp.com,
+        festevam@gmail.com, krzk@kernel.org, kernel@puri.sm,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "arm64: dts: imx8mq: Add interconnect for lcdif"
+Message-ID: <202111240841.CMphNMc6-lkp@intel.com>
+References: <20211123114545.411787-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123114545.411787-1-martin.kepplinger@puri.sm>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Nov 2021 10:03:33 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> The new binding covers a single reg and uses syscon to reference shared
-> register.
-> 
-> References: 55b9b741712d ("dt-bindings: phy: brcm,ns-usb2-phy: bind just a PHY block")
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+Hi Martin,
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on v5.16-rc2 next-20211123]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Martin-Kepplinger/Revert-arm64-dts-imx8mq-Add-interconnect-for-lcdif/20211123-194812
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-randconfig-r006-20211123 (https://download.01.org/0day-ci/archive/20211124/202111240841.CMphNMc6-lkp@intel.com/config.gz)
+compiler: aarch64-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/7c0ba67703bd4e42499c76d0953b46aba38b74af
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Martin-Kepplinger/Revert-arm64-dts-imx8mq-Add-interconnect-for-lcdif/20211123-194812
+        git checkout 7c0ba67703bd4e42499c76d0953b46aba38b74af
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/freescale/imx8mq.dtsi:1117.27-28 syntax error
+   FATAL ERROR: Unable to parse input tree
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
