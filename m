@@ -2,256 +2,336 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B249E45C813
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:55:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D82BB45C820
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:57:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232280AbhKXO6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 09:58:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54102 "EHLO
+        id S1349762AbhKXPAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:00:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346637AbhKXO6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 09:58:09 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACCEBC061574
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:54:59 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id k2so6053512lji.4
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:54:59 -0800 (PST)
+        with ESMTP id S230509AbhKXPAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:00:50 -0500
+Received: from mail-qk1-x734.google.com (mail-qk1-x734.google.com [IPv6:2607:f8b0:4864:20::734])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754A0C06173E
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:57:40 -0800 (PST)
+Received: by mail-qk1-x734.google.com with SMTP id m186so3100830qkb.4
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:57:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=km+HRCa5z0uci/4KhX6h6LEcQDBUlCgOoz3g9Xg5t8k=;
-        b=dOCFo9RPivEWjVmkG4QLLeAK22dHFSXv+3xQd8DPTM/Gg7TfjvJX119AvpHntJp3pQ
-         24tfMNyhLIssVKGB4vxzDdMaXxyg9ljYwLvDDJU2UeO/5X8oNpRxxqrFrasviw0OTsLX
-         UAJou9WNA1wsljV8jXerimi9qesRdY4WVsLhyGYFrf7P74UevCA9Awy2WShRi0mpeVYT
-         Vq2Ifu5yOijstAf8i0OVQ8DzzKxd8fKSvLdhagHtpf9Z9Fl+DRXiAHFthsh72dJ0Wjk3
-         VzMGhz34Y+3ONeLoBgAnWigQrwS+T7a10J/ftyTsihDNsqjb+tYAV1/RqfjOL5S8g+Rd
-         dFKg==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=LU9BEnULj3JGjgT+LMe5HzdnuJsg4eZNYUMoalr+NiQ=;
+        b=aRDviT3wLR3bO1bGkiAK8+cBs71ouZCKV9RXLFc3z3hheI3oGMfzrkzO3oZkD0Q8u+
+         x5wK8nYqKbMC0QeDgtihIRnfGIxD/3TEEHCPm/WUHBABCxU/4NCRm20SuyAAL9qnbmax
+         83+xae7zGiUuv34KnjzMGGU34FWzved74YBmUiw2ZyTe7CwoKalO10BnnvlQi9+u360W
+         OvhOsgp+YmaXyCpsIALXD++nMhaBz5kCRzxZqvPdkUaqI8aDy/VdnKR+7QegkL+8taVI
+         u5/mzjiAy8xrxjTi5zJOJpZ31/MAc+2yC0E8RPDnQUOUcLJX9RRn0vQbFjuNqLRwdMrk
+         3J/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=km+HRCa5z0uci/4KhX6h6LEcQDBUlCgOoz3g9Xg5t8k=;
-        b=HXbb63ZnbvAJJzAirgn7gc1D7+MvL5M7mVs82usTKJAw1GWoM5G4ZCPmblmDnjbiOl
-         yfy43A54wFbUsZ8tew8mqIC8NMtGjR+ZGjF0XXAuCEMO1u523R3I7Ry2bBCkLK0NhOzZ
-         DAkuvJNbMCPzMY093Lk5BQdhlM82maXB2Zfz3PuWvNuvyYo6lm4XdOnwnnMLTJEfVW7+
-         3ulvsJiyGM/wodbmTZYm/CFcbsVcXQj0KqNsG2zWpEIJ0lSRnp9lKkg4T30OXW2VOwCH
-         Uwq1wT2Emy6ppuydSfI2ZfAUkoSiztSLl/qnhgvERrjSv6c86GYcIRfyjNNjggbxJamN
-         D31g==
-X-Gm-Message-State: AOAM533Azf9fdGp+QJrOF/sb7gZx1fZ6FoSISJnztrG9/D8lX/b+cHLU
-        ZAUyTTfT/ynucbX9CfafAIrwI6Dd/qGsBEMRz5Z90Q==
-X-Google-Smtp-Source: ABdhPJxjH3eSh0Yux3Et8YG13JuZrGmPGu4JiUQxhMt2rtPMbHYMWUNckkwzT7dPSFtWpzCrFRSekTyY3n27glQLRas=
-X-Received: by 2002:a2e:a22a:: with SMTP id i10mr16632870ljm.16.1637765697841;
- Wed, 24 Nov 2021 06:54:57 -0800 (PST)
-MIME-Version: 1.0
-References: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
-In-Reply-To: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 24 Nov 2021 15:54:21 +0100
-Message-ID: <CAPDyKFpJHzAxGk=Y52VXcuVbAunwfMo2ErnwXMqnxzHPs6O30g@mail.gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: Powerzone new bindings
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
-        rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=LU9BEnULj3JGjgT+LMe5HzdnuJsg4eZNYUMoalr+NiQ=;
+        b=5/3aEpS1v8ew5baI4adOa4JKLw2Zp82hXRBSCBTKuSFNyZ/fiJAO3OR7SRt964C90Z
+         gZ+pXXGq0GDHulrjEKuQZhJNcuRzdh0tYKuTPfc24QbCNG7QitlM45YyEJ4pvFhXCUgl
+         riobdDlkOB4iBf3JfMVGLhOD40p/G7LHmancE7m98luVmCd+vCujWNqtmqpR3kNgLJsn
+         2JgqesAGZqKiDm5wF4t2+o9FUXDbHN7PLWIuMhVr59YJS+LjIhkib2NWhIvUjDj6JVeN
+         UVutfnhXKRue3ccVL3rghRWwNelZv8TmlR7LCTuTvek7w/ln7iWw3/yoz/n/XaqMsulH
+         c3fQ==
+X-Gm-Message-State: AOAM533Ae+iAgFhd2QMvrq0G/XO0nimvp5SR/ALgcZqDFLO8XdUNeMbq
+        tg64yHJNw/hfHKTEgXh5tafKYg==
+X-Google-Smtp-Source: ABdhPJxBkKscTnspcy2eLh5Z9xgt5hPk+H9d84fbimsVeCf5siq/8P/fdeGFwDMww4ZUzt3DJm1q8A==
+X-Received: by 2002:a37:4050:: with SMTP id n77mr6579024qka.267.1637765859635;
+        Wed, 24 Nov 2021 06:57:39 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id h5sm8446705qkn.62.2021.11.24.06.57.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Nov 2021 06:57:39 -0800 (PST)
+Message-ID: <9b7fd6802c89c5d3bb6a42b44f13a90f6c3caf22.camel@ndufresne.ca>
+Subject: Re: [EXT] Re: [PATCH v12 00/13] amphion video decoder/encoder driver
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Ming Qian <ming.qian@nxp.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 24 Nov 2021 09:57:37 -0500
+In-Reply-To: <AM6PR04MB6341BF1FB2A839961DBADF4EE7619@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1636445575.git.ming.qian@nxp.com>
+         <9947131322e034bb6336802e5afb4b6132ca5071.camel@ndufresne.ca>
+         <AM6PR04MB6341BF1FB2A839961DBADF4EE7619@AM6PR04MB6341.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021 at 13:55, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->
-> The proposed bindings are describing a set of powerzones.
->
-> A power zone is the logical name for a component which is capable of
-> power capping and where we can measure the power consumption.
->
-> A power zone can aggregate several power zones in terms of power
-> measurement and power limitations. That allows to apply power
-> constraint to a group of components and let the system balance the
-> allocated power in order to comply with the constraint.
->
-> The ARM System Control and Management Interface (SCMI) can provide a
-> power zone description.
->
-> The powerzone semantic is also found on the Intel platform with the
-> RAPL register.
->
-> The Linux kernel powercap framework deals with the powerzones:
->
-> https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
->
-> The powerzone can also represent a group of children powerzones, hence
-> the description can result on a hierarchy. Such hierarchy already
-> exists with the hardware or can be represented an computed from the
-> kernel.
->
-> The hierarchical description was initially proposed but not desired
-> given there are other descriptions like the power domain proposing
-> almost the same description.
->
-> https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
->
-> The description gives the power constraint dependencies to apply on a
-> specific group of logically or physically aggregated devices. They do
-> not represent the physical location or the power domains of the SoC
-> even if the description could be similar.
->
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
->  .../devicetree/bindings/power/powerzones.yaml | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
->
-> diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
-> new file mode 100644
-> index 000000000000..1ae3f82ae29c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/powerzones.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/powerzones.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Power zones description
-> +
-> +maintainers:
-> +  - Daniel Lezcano <daniel.lezcano@linaro.org>
-> +
-> +description: |+
-> +
-> +  A System on Chip contains a multitude of active components and each
-> +  of them is a source of heat. Even if a temperature sensor is not
-> +  present, a source of heat can be controlled by acting on the
-> +  consumed power via different techniques.
-> +
-> +  A powerzone describes a component or a group of components where we
-> +  can control the maximum power consumption. For instance, a group of
-> +  CPUs via the performance domain, a LCD screen via the brightness,
-> +  etc ...
-> +
-> +  Different components when they are used together can significantly
-> +  increase the overall temperature, so the description needs to
-> +  reflect this dependency in order to assign a power budget for a
-> +  group of powerzones.
-> +
-> +  This description is done via a hierarchy and the DT reflects it. It
-> +  does not represent the physical location or a topology, eg. on a
-> +  big.Little system, the little CPUs may not be represented as they do
-> +  not contribute significantly to the heat, however the GPU can be
-> +  tied with the big CPUs as they usually have a connection for
-> +  multimedia or game workloads.
-> +
-> +properties:
-> +  $nodename:
-> +    const: powerzones
-> +
+Le mercredi 24 novembre 2021 à 09:00 +0000, Ming Qian a écrit :
+> > -----Original Message-----
+> > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
+> > Sent: Wednesday, November 24, 2021 3:23 AM
+> > To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
+> > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
+> > dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
+> > linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Subject: [EXT] Re: [PATCH v12 00/13] amphion video decoder/encoder driver
+> > 
+> > Caution: EXT Email
+> > 
+> > Hi Ming,
+> > 
+> > For the patchset:
+> > 
+> > Tested-By: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> > 
+> > I've validated encoding manually with GStreamer:
+> > 
+> >   gst-launch-1.0 videotestsrc num-buffers=100 ! v4l2h264enc !
+> > video/x-h264,profile=main,level=\(string\)2 ! h264parse ! qtmux ! filesink
+> > location=test.mov
+> > 
+> > I've also verify the that the number of frames was exactly 100, this is
+> > common
+> > issue with V4L2 encoders. Then I have validated VP8, H.264 and H.265
+> > decoders
+> > using fluster [0] with this PR [1] applied. You can find full summary at the
+> > end
+> > of this email. Markdown report didn't get generated, I will have to check
+> > with
+> > upstream fluster if there is a regression.
+> > 
+> > $> ./fluster.py run -s -so amphion-imx8qxp-conformance.md -d
+> > GStreamer-VP8-V4L2-Gst1.0 GStreamer-H.264-V4L2-Gst1.0
+> > GStreamer-H.265-V4L2-Gst1.0
+> > 
+> > VP8:   Ran 59/61 tests successfully               in 131.788 secs
+> > H.264: Ran 75/135 tests successfully               in 501.206 secs
+> > H.265: Ran 126/147 tests successfully               in 1131.933 secs
+> > 
+> > Note that in mainline, only 1 core get fired and is kept at its lowest
+> > possible
+> > frequency, so perhaps it may cause some of the timeout seen. The driver is
+> > overall functional, and I would like to thank you for this extra work. Also,
+> > note that this very first time I run Fluster over the stateful CODEC
+> > wrappers. I
+> > will need to run this on more platforms to locate the GStreamer specific
+> > fail.
+> > 
+> > VP8 note, conformance vector vp80-03-segmentation-1425 cause a hang but it
+> > then
+> > recover:
+> > 
+> > [ 8264.851841] amphion-vpu-core 2d040000.vpu_core: [0] sync session
+> > timeout
+> > [ 8264.858634] amphion-vpu-core 2d040000.vpu_core: [0] send cmd(0x2) fail
+> > [ 8264.867992] amphion-vpu-core 2d040000.vpu_core: [0] start fail
+> > [ 8264.905173] amphion-vpu-core 2d040000.vpu_core: reset hang core
+> > 
+> 
+> HI Nicolas
+> 
+>     There is a bug in firmware that if send a command to firmware too close
+> after stop cmd,
+> The firmware may enter wfi wrong, and led to hang issue you met in vp80-03-
+> segmentation-1425.
+> I'll add a workaround in driver that add a delay after send stop cmd to
+> firmware in next version.
+> 
+>     Because the amphion's vpu doesn't support to output i420, so the test will
+> convert nv12_8l128 to i420 by videoconvert, it leds to most of timeout
+> failure.
+> 
+>     The FM1_BT_B.h264 can't be decoded by amphion's vpu, the vpu is keeping
+> parse sequence header, and it led to timeout failure.
+> 
+>     I run the test and change the timeout to 300, then most of timeout
+> failures are gone. Besides that, my result is almost as same as yours.
 
-Do we really need a top-node like this? Can't that be left as a
-platform/soc specific thing instead? Along the lines of how the last
-example below looks like? Maybe we can have both options? I guess Rob
-will tell us.
+Oh my bad, I forgot about the short timeout, with a single core on top of all
+this, that makes sense.
 
-Moreover, maybe we should put some constraints on the names of
-subnodes (provider nodes) with a "patternProperties". Something along
-the lines of below.
+> 
+>     The failures of assertion error means that the vpu's output is different
+> from the pattern, I think it should be the vpu's limitation.
 
-patternProperties:
-  "^(powerzone)([@-].*)?$":
-    type: object
-    description:
-      Each node represents a powerzone.
+Most likely, best way to know is to keep the results (--keep) and visually look
+at the result. My expectation with this is that we get decent results and that
+none of the issue render the VPU or the system unusable. Each company is then
+responsible for their CODEC conformance, specially with stateful, there is very
+little that userspace will be responsible with. Though if you do find issue that
+is clearly caused by GStreaner, let me know, I'll be more then happy to fix.
+Most VPU providers will also buy proprietary conformance suite (like Allegro),
+which covers much more then basic conformance.
 
-> +  "#powerzone-cells":
-> +    description:
-> +      Number of cells in powerzone specifier. Typically 0 for nodes
-> +      representing but it can be any number in the future to describe
-> +      parameters of the powerzone.
-> +
-> +  powerzone:
+> 
+> > 
+> > See comments about your GStreamer MR below...
+> > 
+> > [0]
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.
+> > com%2Ffluendo%2Ffluster&amp;data=04%7C01%7Cming.qian%40nxp.com%7
+> > C45d33490bfe546aa8e1408d9aeb6a822%7C686ea1d3bc2b4c6fa92cd99c5c3
+> > 01635%7C0%7C0%7C637732921809373007%7CUnknown%7CTWFpbGZsb3d
+> > 8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3
+> > D%7C3000&amp;sdata=bBqADaZ9ZN00SbCPalQE5fN740hB2bMUxHDL4QEki
+> > mg%3D&amp;reserved=0
+> > [1]
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgithub.
+> > com%2Ffluendo%2Ffluster%2Fpull%2F98&amp;data=04%7C01%7Cming.qian
+> > %40nxp.com%7C45d33490bfe546aa8e1408d9aeb6a822%7C686ea1d3bc2b4c
+> > 6fa92cd99c5c301635%7C0%7C0%7C637732921809382989%7CUnknown%7C
+> > TWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLC
+> > JXVCI6Mn0%3D%7C3000&amp;sdata=90dUC%2FNzK%2BcFNSMwY7bgQ0iD8
+> > ctBwU%2FMhyrLoBBEf4g%3D&amp;reserved=0
+> > 
+> > 
+> > [...]
+> > > encoder is tested with gstreamer
+> > > decoder is tested with gstreamer, but the following patches are required:
+> > 
+> > GStreamer is now a single repo (and using main branch instead of master), I
+> > have
+> > migrated your 3 MRs into 2 MRs.
+> 
+> Thank you very much.
+> > 
+> > > 
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.fr
+> > eedesktop.org%2Fgstreamer%2Fgst-plugins-base%2F-%2Fmerge_requests%2F
+> > 1252&amp;data=04%7C01%7Cming.qian%40nxp.com%7C45d33490bfe546aa
+> > 8e1408d9aeb6a822%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7
+> > C637732921809382989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAw
+> > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sda
+> > ta=G4PnqxRsnPjQtV%2FUcp4dkoz9fAGxkOv%2FzKR47RaHtu0%3D&amp;reser
+> > ved=0
+> > > 
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.fr
+> > eedesktop.org%2Fgstreamer%2Fgst-plugins-good%2F-%2Fmerge_requests%2F
+> > 1098&amp;data=04%7C01%7Cming.qian%40nxp.com%7C45d33490bfe546aa
+> > 8e1408d9aeb6a822%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7
+> > C637732921809382989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAw
+> > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sda
+> > ta=h6nEISAaiG54NPz9Xw0MiSNDx2QxWsNWyG7FLSAaLgI%3D&amp;reserved
+> > =0
+> > 
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.fr
+> > eedesktop.org%2Fgstreamer%2Fgstreamer%2F-%2Fmerge_requests%2F1379&
+> > amp;data=04%7C01%7Cming.qian%40nxp.com%7C45d33490bfe546aa8e140
+> > 8d9aeb6a822%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6377
+> > 32921809382989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiL
+> > CJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=PFe
+> > Db4v%2BmiksgvJ08KgncRjZEt7GdMO7gV8hV0DD0uY%3D&amp;reserved=0
+> > 
+> > > 
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.fr
+> > eedesktop.org%2Fgstreamer%2Fgst-plugins-good%2F-%2Fmerge_requests%2F
+> > 1099&amp;data=04%7C01%7Cming.qian%40nxp.com%7C45d33490bfe546aa
+> > 8e1408d9aeb6a822%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7
+> > C637732921809382989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAw
+> > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sda
+> > ta=e6hSDpiP2scLN5C0f8Fb%2FoMbt8k4zC45qWPrQpG%2Fe5A%3D&amp;rese
+> > rved=0
+> > 
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fgitlab.fr
+> > eedesktop.org%2Fgstreamer%2Fgstreamer%2F-%2Fmerge_requests%2F1381&
+> > amp;data=04%7C01%7Cming.qian%40nxp.com%7C45d33490bfe546aa8e140
+> > 8d9aeb6a822%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C6377
+> > 32921809382989%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiL
+> > CJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=xkX
+> > WjCsgVaLb0wZgfaXDMiBchtbJBNnwtZNhKe42k5o%3D&amp;reserved=0
+> > 
+> > 
+> > regards,
+> > Nicolas
+> > 
+> > [JVT-AVC_V1] (GStreamer-H.264-V4L2-Gst1.0) FM1_BT_B                 ...
+> > Timeout
+> The vpu can't decode this stream.
+> 
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > AMP_D_Hisilicon_3               ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > AMP_E_Hisilicon_3               ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > AMP_F_Hisilicon_3               ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > BUMPING_A_ericsson_1            ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > CONFWIN_A_Sony_1                ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > DELTAQP_A_BRCM_4                ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > MVDL1ZERO_A_docomo_4            ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > NoOutPrior_A_Qualcomm_1         ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > NoOutPrior_B_Qualcomm_1         ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > NUT_A_ericsson_5                ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > PICSIZE_A_Bossen_1              ... Error
+> The size is 1056x8440, vpu doesn't support it
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > PICSIZE_B_Bossen_1              ... Error
+> The size is 8440x1056, vpu doesn't support it
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > PICSIZE_C_Bossen_1              ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > PICSIZE_D_Bossen_1              ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > RAP_B_Bossen_2                  ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > SAODBLK_A_MainConcept_4         ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > SAODBLK_B_MainConcept_4         ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > TILES_A_Cisco_2                 ... Timeout
+> Performance issue of videoconvert
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > TILES_B_Cisco_1                 ... Timeout
+> Performance issue of videoconvert, but assert fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > TSUNEQBD_A_MAIN10_Technicolor_2 ... Fail
+> > [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0)
+> > VPSSPSPPS_A_MainConcept_1       ... Error
+> Gstream report error:
+> ERROR Error from element
+> /GstPlayBin:playbin/GstURIDecodeBin:uridecodebin0/GstDecodeBin:decodebin0/v4l2
+> h265dec:v4l2h265dec0: Could not read from resource.
+> Could not read from resource.
+> ../sys/v4l2/gstv4l2bufferpool.c(1155): gst_v4l2_buffer_pool_poll ():
+> /GstPlayBin:playbin/GstURIDecodeBin:uridecodebin0/GstDecodeBin:decodebin0/v4l2
+> h265dec:v4l2h265dec0:
+> poll error 1: Success (0) for /mnt/fluster/resources/JCT-VC-
+> HEVC_V1/VPSSPSPPS_A_MainConcept_1/VPSSPSPPS_A_MainConcept_1.bin
+>  
+> > [VP8-TEST-VECTORS] (GStreamer-VP8-V4L2-Gst1.0)
+> > vp80-03-segmentation-1425 ... Timeout
+> Firmware bug, after apply driver workaround, assert fail
+> > [VP8-TEST-VECTORS] (GStreamer-VP8-V4L2-Gst1.0)
+> > vp80-03-segmentation-1436 ... Fail
+> > 
+> > 
+> 
 
-Maybe "powerzones" instead of "powerzone". Unless we believe that we
-never need to allow multiple parent-zones for a child-zone.
-
-> +    description:
-> +      A phandle to a parent powerzone. If no powerzone attribute is set, the
-> +      described powerzone is the topmost in the hierarchy.
-> +
-
-We should probably state that the "#powerzone-cells"  are required. Like below:
-
-required:
-  - "#powerzone-cells"
-
-Moreover, we probably need to allow additional properties? At least it
-looks so from the last example below. Then:
-
-additionalProperties: true
-
-> +examples:
-> +  - |
-> +    powerzones {
-> +
-> +      SOC_PZ: soc {
-> +      };
-
-This looks odd to me.
-
-Why do we need an empty node? If this is the topmost power-zone, it
-should still have the #powerzone-cells specifier, I think.
-
-> +
-> +      PKG_PZ: pkg {
-
-As I stated above, I would prefer some kind of common pattern of the
-subnode names. Maybe "pkg-powerzone"?
-
-> +        #powerzone-cells = <0>;
-> +        powerzone = <&SOC_PZ>;
-> +      };
-> +
-> +      BIG_PZ: big {
-> +        #powerzone-cells = <0>;
-> +        powerzone = <&PKG_PZ>;
-> +      };
-> +
-> +      GPU_PZ: gpu {
-> +        #powerzone-cells = <0>;
-> +        powerzone = <&PKG_PZ>;
-> +      };
-> +
-> +      MULTIMEDIA_PZ: multimedia {
-> +        #powerzone-cells = <0>;
-> +        powerzone = <&SOC_PZ>;
-> +      };
-> +    };
-> +
-> +  - |
-> +    A57_0: big@0 {
-> +      compatible = "arm,cortex-a57";
-> +      reg = <0x0 0x0>;
-> +      device_type = "cpu";
-> +      #powerzone-cells = <0>;
-> +      powerzone = <&BIG_PZ>;
-
-Just to make sure I understand correctly. The big@0 node is a
-powerzone provider too? Or did you mean to specify it as a consumer?
-
-> +    };
-> +
-> +    A57_1: big@1 {
-> +      compatible = "arm,cortex-a57";
-> +      reg = <0x0 0x0>;
-> +      device_type = "cpu";
-> +      #powerzone-cells = <0>;
-> +      powerzone = <&BIG_PZ>;
-> +    };
-
-Kind regards
-Uffe
