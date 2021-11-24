@@ -2,179 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2421E45C9EE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:24:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AEB445C9F8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348635AbhKXQ1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 11:27:43 -0500
-Received: from mo4-p03-ob.smtp.rzone.de ([85.215.255.101]:34094 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348560AbhKXQ1m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:27:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637771012;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=WkeyxDnipm2IfCekZmCiKiqZRWn6Vu+Xvk0lvgOQOOQ=;
-    b=hy6ONITjwRwVgJTLrrZp34JxqWMaA09oCd9b7IkvSXvUktenVsJ3wKZBIMnqPSrBmg
-    HcXbOQRrcMegCsdY1PznzlE/hW9KH5FySessqqDSytYraMlMOVFK16NH4+qzjI7CzL7O
-    ohraAk5wSvwNbmZRO1IPYCgOE0ecZbjOusqtcM2CJa35pdnNQZhc6bB5F0f8OGh792j7
-    9qzJqsHv/rtwvg3WLjSkDRDa2Gw9jvh5oeakSsG70woZaurWej1AjP2FYLeglE5c75Gp
-    FyPRzRVOpTcJW60Bx2LXWgXJr4ykpidVMO1nX2OnEWiXNzz2BZulUYyJE6NC6V7eCA/G
-    Sj4w==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3jsN+"
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
-    with ESMTPSA id e05ed8xAOGNV3mf
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Wed, 24 Nov 2021 17:23:31 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v8 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
- DT Schema
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <1637722761.010276.888168.nullmailer@robh.at.kernel.org>
-Date:   Wed, 24 Nov 2021 17:23:30 +0100
-Cc:     linux-mips <linux-mips@vger.kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        letux-kernel@openphoenux.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Kees Cook <keescook@chromium.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <08D49974-2C22-404C-913C-11EB1C53A96A@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
- <f97179a630e7d0fc739a118e2b321e1a6432876b.1637691240.git.hns@goldelico.com>
- <1637722761.010276.888168.nullmailer@robh.at.kernel.org>
-To:     Rob Herring <robh@kernel.org>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S232329AbhKXQ3t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 11:29:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47722 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236126AbhKXQ3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:29:48 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35BF8C061714
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:26:38 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id y196so2948147wmc.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:26:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=RJMSjgjB8SBuw3xGd9DksSxoXrvTi8wJo/B0a8tS7qQ=;
+        b=G6gwTG6Bsn+1T6N/vp3ZSKszg9ljzrkDmE7VZCmk+OCnwxcvDTmVfJchkUzoIMY6zM
+         z+xRcOxqOkJb5x4Jymn76aHKVOptKWpcZq7ZEiNOCGrNQhx4CwGZtZidRnK8fB48sE3K
+         xxT5Ov5YdWm1bu3Y+7d7ivk2iiCja0AMF9rzpcBg05GbVgUtiSM4vYwds7ozySvEK01S
+         p70c0WhuCbU7O74WWxTjhXKv/NXNCkq3Ctx15Vd7fJiDXapDo4ko9yWPsixmqFpM+W98
+         owIbITToYVAo99Lr0tUdl/u7to3+8RF6t1OdYzcswt7Ltp7V+chZjHynzBSMxP2nSkPP
+         pH5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=RJMSjgjB8SBuw3xGd9DksSxoXrvTi8wJo/B0a8tS7qQ=;
+        b=KEAkQM6NJGflImj4zfgfSBuxVAaNrKWulamYkvS4llYEJIQaJtPreYosXnxjW8W8zZ
+         /jBdHfsD39rNf0pSCEwnJaj3LX+HuaFunUaKzN0ul8P6jtmrZZXL2aGqzmdqPLxv9jp2
+         FQeinoqs05CmY9KC8wp3mIwz1LPZIjwXmr6IKUPIrSmKDqsHr0EBOjnw/ukbhxt816no
+         nz54SoWBxJ4dBMX+HG2Ityb6OUfQEJNrN0dkfS81MmqxcSWlGeNHmQ//ZRNU2rO6x2WV
+         qHbJDHXjEmccep5g2ifkwBe02SUhZ7yae+hqusIUyIYZXABvObUV6lnYqutc/gMmYzVm
+         C8BQ==
+X-Gm-Message-State: AOAM533cwjP842J+gXxfqRtpy3MtHyX3t01zSk5TfC0xlUu6HEaOiqFw
+        eUcUk4aGHrDN/I0KJ6GYJGffDA==
+X-Google-Smtp-Source: ABdhPJxqHDTxPmLpPgFDHSzAnT3Ut7UHfpNDugWGWbqgZqCUBEx36A5DbfaNSLBaw8OM2NlHg+bttg==
+X-Received: by 2002:a7b:cc95:: with SMTP id p21mr16997630wma.45.1637771196291;
+        Wed, 24 Nov 2021 08:26:36 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:4839:bd64:93f4:614f? ([2a01:e34:ed2f:f020:4839:bd64:93f4:614f])
+        by smtp.googlemail.com with ESMTPSA id y6sm5010635wma.37.2021.11.24.08.26.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 08:26:35 -0800 (PST)
+Subject: Re: [PATCH 1/5] dt-bindings: Powerzone new bindings
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
+ <CAPDyKFpJHzAxGk=Y52VXcuVbAunwfMo2ErnwXMqnxzHPs6O30g@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <65873f24-46da-07f4-9661-e3f1001a4fa2@linaro.org>
+Date:   Wed, 24 Nov 2021 17:26:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <CAPDyKFpJHzAxGk=Y52VXcuVbAunwfMo2ErnwXMqnxzHPs6O30g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Hi Ulf,
 
-> Am 24.11.2021 um 03:59 schrieb Rob Herring <robh@kernel.org>:
->=20
-> On Tue, 23 Nov 2021 19:13:56 +0100, H. Nikolaus Schaller wrote:
->> From: Sam Ravnborg <sam@ravnborg.org>
->>=20
->> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
->> Based on .txt binding from Zubair Lutfullah Kakakhel
->>=20
->> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
->>=20
->> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> ---
->> .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 =
-+++++++++++++++++++
->> .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
->> 2 files changed, 79 insertions(+)
->> create mode 100644 =
-Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->>=20
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m =
-dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
-> =
-./Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yam=
-l:36:5: [warning] wrong indentation: expected 2 but found 4 =
-(indentation)
+thanks for the review
 
-ok, fixed.
+On 24/11/2021 15:54, Ulf Hansson wrote:
 
->=20
-> dtschema/dtc warnings/errors:
-> =
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/displ=
-ay/bridge/ingenic,jz4780-hdmi.yaml: 'unevaluatedPropertes' is not one of =
-['$id', '$schema', 'title', 'description', 'examples',
+[ ... ]
 
-ah, that is a typo (missing i in ...ties).
+>> +  This description is done via a hierarchy and the DT reflects it. It
+>> +  does not represent the physical location or a topology, eg. on a
+>> +  big.Little system, the little CPUs may not be represented as they do
+>> +  not contribute significantly to the heat, however the GPU can be
+>> +  tied with the big CPUs as they usually have a connection for
+>> +  multimedia or game workloads.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    const: powerzones
+>> +
+> 
+> Do we really need a top-node like this? Can't that be left as a
+> platform/soc specific thing instead? Along the lines of how the last
+> example below looks like? Maybe we can have both options? I guess Rob
+> will tell us.
 
-> 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', =
-'additionalProperties', 'dependencies', 'dependentRequired', =
-'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', =
-'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select']
-> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> =
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/displ=
-ay/bridge/ingenic,jz4780-hdmi.yaml: 'oneOf' conditional failed, one must =
-be fixed:
-> 	'unevaluatedProperties' is a required property
-> 	'additionalProperties' is a required property
-> 	hint: A schema with a "$ref" to another schema either can define =
-all properties used and use "additionalProperties" or can use =
-"unevaluatedProperties"
-> 	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-> Unknown file referenced: [Errno 2] No such file or directory: =
-'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/syn=
-opsys,dw-hdmi.yaml'
-> xargs: dt-doc-validate: exited with status 255; aborting
-> =
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/displ=
-ay/bridge/ingenic,jz4780-hdmi.yaml: ignoring, error in schema:=20
-> warning: no schema found in file: =
-./Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yam=
-l
-> =
-Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.examp=
-le.dts:19:18: fatal error: dt-bindings/clock/jz4780-cgu.h: No such file =
-or directory
->   19 |         #include <dt-bindings/clock/jz4780-cgu.h>
->      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> compilation terminated.
-> make[1]: *** [scripts/Makefile.lib:373: =
-Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.examp=
-le.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1413: dt_binding_check] Error 2
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See https://patchwork.ozlabs.org/patch/1558736
->=20
-> This check can fail if there are any dependencies. The base for a =
-patch
-> series is generally the most recent rc1.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up =
-to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit.
->=20
+Do you mean a compatible string?
 
+> Moreover, maybe we should put some constraints on the names of
+> subnodes (provider nodes) with a "patternProperties". Something along
+> the lines of below.
+> 
+> patternProperties:
+>   "^(powerzone)([@-].*)?$":
+>     type: object
+>     description:
+>       Each node represents a powerzone.
+
+Sure
+
+>> +  "#powerzone-cells":
+>> +    description:
+>> +      Number of cells in powerzone specifier. Typically 0 for nodes
+>> +      representing but it can be any number in the future to describe
+>> +      parameters of the powerzone.
+>> +
+>> +  powerzone:
+> 
+> Maybe "powerzones" instead of "powerzone". Unless we believe that we
+> never need to allow multiple parent-zones for a child-zone.
+
+May be that could be needed in the future. No objection to rename it to
+'powerzones'.
+
+>> +    description:
+>> +      A phandle to a parent powerzone. If no powerzone attribute is set, the
+>> +      described powerzone is the topmost in the hierarchy.
+>> +
+> 
+> We should probably state that the "#powerzone-cells"  are required. Like below:
+> 
+> required:
+>   - "#powerzone-cells"
+
+Ok
+
+> Moreover, we probably need to allow additional properties? At least it
+> looks so from the last example below. Then:
+> 
+> additionalProperties: true
+
+I was unsure about adding it. With the actual description what would be
+the benefit ?
+
+>> +examples:
+>> +  - |
+>> +    powerzones {
+>> +
+>> +      SOC_PZ: soc {
+>> +      };
+> 
+> This looks odd to me.
+> 
+> Why do we need an empty node? If this is the topmost power-zone, 
+
+Yes it is
+
+> it
+> should still have the #powerzone-cells specifier, I think.
+
+Ok, makes sense
+
+>> +
+>> +      PKG_PZ: pkg {
+> 
+> As I stated above, I would prefer some kind of common pattern of the
+> subnode names. Maybe "pkg-powerzone"?
+
+Ok, may be 'powerzone-pkg' to be consistent with the power-domains pattern?
+
+>> +        #powerzone-cells = <0>;
+>> +        powerzone = <&SOC_PZ>;
+>> +      };
+>> +
+>> +      BIG_PZ: big {
+>> +        #powerzone-cells = <0>;
+>> +        powerzone = <&PKG_PZ>;
+>> +      };
+>> +
+>> +      GPU_PZ: gpu {
+>> +        #powerzone-cells = <0>;
+>> +        powerzone = <&PKG_PZ>;
+>> +      };
+>> +
+>> +      MULTIMEDIA_PZ: multimedia {
+>> +        #powerzone-cells = <0>;
+>> +        powerzone = <&SOC_PZ>;
+>> +      };
+>> +    };
+>> +
+>> +  - |
+>> +    A57_0: big@0 {
+>> +      compatible = "arm,cortex-a57";
+>> +      reg = <0x0 0x0>;
+>> +      device_type = "cpu";
+>> +      #powerzone-cells = <0>;
+>> +      powerzone = <&BIG_PZ>;
+> 
+> Just to make sure I understand correctly. The big@0 node is a
+> powerzone provider too? Or did you mean to specify it as a consumer?
+
+I'm not sure 'provider' or 'consumer' make sense in this context.
+
+big@0 is a powerzone we can act on and its parent is the BIG_PZ powerzone.
+
+However this description is correct but confusing.
+
+Given big@0 and big@1 belong to the big 'cluster' and when we act on the
+performance state of big@0, big@1 is also changed, the correct
+description would be:
+
+    A57_0: big@0 {
+      compatible = "arm,cortex-a57";
+      reg = <0x0 0x0>;
+      device_type = "cpu";
+      #powerzone-cells = <0>;
+      powerzone = <&PKG_PZ>;
+    };
+
+    A57_1: big@1 {
+      compatible = "arm,cortex-a57";
+      reg = <0x0 0x0>;
+      device_type = "cpu";
+      #powerzone-cells = <0>;
+      powerzone = <&PKG_PZ>;
+    };
+
+If in the future, there will be a performance domain per core, then the
+former description above would make sense.
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
