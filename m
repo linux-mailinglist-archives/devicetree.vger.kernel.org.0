@@ -2,264 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D74845CA35
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:39:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33F8945CA3C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:41:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242201AbhKXQnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 11:43:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50782 "EHLO
+        id S1349110AbhKXQot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 11:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241579AbhKXQnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:43:00 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64408C061574
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:39:50 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id t26so8767629lfk.9
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:39:50 -0800 (PST)
+        with ESMTP id S236588AbhKXQos (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:44:48 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A05A5C061574
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:41:38 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id a18so5294360wrn.6
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:41:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=AYNjfOVUGsecrjIi5xsDtARh3TxzgOfLgCF2yRehYa0=;
-        b=scq2QI0qZdrjxzMtvMR2HvxTkFaPgthQ0jd2I8GKE8avszQjUEA+F1DJuhaWCVyD6c
-         Bcp5G702RkvnFcmm8YocM9X3DU1H09hGsRF6371mrFVF76Hog8YealFBZqZlD1I78Puq
-         7SOPSj2Nq0aN89oEPlh3jwhkOpp5OM6gfb+2HUAvLzF1Tjhy0dOArzNxUs8SHva/gmUf
-         DMHsPBq2oF0T508CcTNErnCLnPBdl1wLAoBvm6u8lmmFqNlSIbgdZ0DLeqWrQ+YBgFQu
-         33oSnsuAqJt2JS4IKrJrM/q8KRek/CWUQlNTcGAbjnl0X/NXSD0gCAiO7ZHW06UgMn/e
-         y8+A==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GlIs+0Fl00MrHx12eQnM8ThlIZDB4DAAFY0KgD/6Kgc=;
+        b=T3WJ+TQj23IEThTVCJC2Bb41QzXIsQxUhJCk/pOLGO73x/2OE/b2IaDOA+PTTLR//u
+         AsKG20PGqT8f35ykndMIthtiMr8NjSuGkiVoUzTdGPpyUYmhiAwPnYIaoFu56rjz9dIt
+         RFScGtYiNhDovNsG62L1JjR7Oun2K/rqznRmYeHrY8yFHQZhNxwMYJZJUJSU5aREueyn
+         YKJ6samEJzhXDVsTR1uzuhUA0M5trPocDe1MD9ivjJkDP7pf418cKtdVB4rq76GIR42n
+         v0g74ObzkscrKZk2tsFh54mRLN4NLTUhscek6kMjkDUlGKOtpanAPAw+vm7CwVxiXq8J
+         xT3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=AYNjfOVUGsecrjIi5xsDtARh3TxzgOfLgCF2yRehYa0=;
-        b=v4WIOgV1NCcvdPuNE38oqL9VV9jtqCBKj53cwoelqmuiXbSfwA4tZ/Vrge7vO+faBn
-         CWSYHHB/qJcV32oM8EyiYIP1NQXWtfUFhX0BwohP+WRO3bcOYxotlexYNlBfK5BF+Lmj
-         P4fMZrk6mNATg9EJto6k6EwwmVSKNj/uNpoZ+/aWj/hv++pmQhQO6A19db8lTPKozl+B
-         Mp/u3uf47qewC58sb/MY4hKbG0M+PWBIhwTPnIMtCxTJO07gKYR433xZQa0zoxVR42SL
-         PKQd5MwOwBfn1uM9xODAdJCkzvGV60rmIOHJMWXe6dZD2e+EWODoPS9yiwFadvyqsgmP
-         PZVw==
-X-Gm-Message-State: AOAM530MZDQx3QdYOncjKz18TC24yewayPV4IX6NthI6tYIxWhaNU/2F
-        dcAQ6RifJe6RmSHFnHGr6vri9Q==
-X-Google-Smtp-Source: ABdhPJwU46I0hQ1JUXUQPx8S6bBVYSb5u7VN1bgldcCMrl/6AhaOV0Ja4hHkwX+VGfLajYF4qEt2mg==
-X-Received: by 2002:ac2:532f:: with SMTP id f15mr15598398lfh.185.1637771988593;
-        Wed, 24 Nov 2021 08:39:48 -0800 (PST)
-Received: from localhost (h-46-59-88-219.A463.priv.bahnhof.se. [46.59.88.219])
-        by smtp.gmail.com with ESMTPSA id b25sm28144lff.185.2021.11.24.08.39.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Nov 2021 08:39:48 -0800 (PST)
-Date:   Wed, 24 Nov 2021 17:39:46 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: Fix operating point table node names
-Message-ID: <YZ5q0sX3LixD2gx4@oden.dyn.berto.se>
-References: <ac885456ffb00fa4cc4069b9967761df2c98c3d8.1637764588.git.geert+renesas@glider.be>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GlIs+0Fl00MrHx12eQnM8ThlIZDB4DAAFY0KgD/6Kgc=;
+        b=rQcGT9UJCnsLAE6EhprKdYfudr1KIaNBLeUNLeZ8wxVOH2BM3vAzOWSiRAAqiQP9dz
+         ZFTKLStMOrRw1EcFjAJ+g0vikPSwx0fm3MIR6Lq43YaDTTp1Xfo/60M/5d8vj/kee8Lz
+         NDi4CBqX6s8TlKOioMwmqW5gGZJav9wSfeN70TTd9fBcUTWSBYgvA2Ih+71v5DSZV7E7
+         YvV9GwGnoQ2ekmjUPhSlvJSDRMaTN4jHlYL9QOAB9xXWFAPlzB1RGtEVBAgMCrUlMrwQ
+         P8NtDdOuDwy7hreS1VhgFQB9SOcnqsVSgOHWJKuT2gb/uw65dyf0Vnvjd61vXm7r8Wit
+         tiSw==
+X-Gm-Message-State: AOAM531TFpFxsRdCtCJRU8Jb+uf5eTCByLcJZVX4qc9FZgEnBFSHedJv
+        zNO/TEK1CXVenZjZihNaJbtT/g==
+X-Google-Smtp-Source: ABdhPJzJXmbREFsk0CW1REfVF5yqexRPGDtOPeHjmhBrc65DyykD6IBk29gmn1v12rRTswTXEVOJZA==
+X-Received: by 2002:adf:f907:: with SMTP id b7mr21189353wrr.5.1637772097021;
+        Wed, 24 Nov 2021 08:41:37 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:4839:bd64:93f4:614f? ([2a01:e34:ed2f:f020:4839:bd64:93f4:614f])
+        by smtp.googlemail.com with ESMTPSA id d1sm252782wrz.92.2021.11.24.08.41.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 08:41:36 -0800 (PST)
+Subject: Re: [PATCH 2/5] arm64: dts: rockchip: Add powerzones definition for
+ rock960
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
+        ulf.hansson@linaro.org, rjw@rjwysocki.net,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, lukasz.luba@arm.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "moderated list:ARM/Rockchip SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC support" 
+        <linux-rockchip@lists.infradead.org>
+References: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
+ <20211124125506.2971069-2-daniel.lezcano@linaro.org>
+ <bf994aa8-df18-22d0-e718-2c8b406a5cc8@arm.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <f2609d56-f014-3713-8f73-c7ca9c7cba60@linaro.org>
+Date:   Wed, 24 Nov 2021 17:41:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <bf994aa8-df18-22d0-e718-2c8b406a5cc8@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ac885456ffb00fa4cc4069b9967761df2c98c3d8.1637764588.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-Thanks for your work.
-
-On 2021-11-24 15:39:40 +0100, Geert Uytterhoeven wrote:
-> Align the node names of device nodes representing operating point v2
-> tables with the expectations of the DT bindings in
-> Documentation/devicetree/bindings/opp/opp-v2.yaml.
+On 24/11/2021 14:49, Robin Murphy wrote:
+> On 2021-11-24 12:55, Daniel Lezcano wrote:
+>> Add the powerzones description. This first step introduces the big,
+>> the little and the gpu as a powerzone place.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> These look more like SoC-level properties than board-level ones - should
+> they be in rk3399.dtsi?
 
-Reviewed-by: Niklas S�derlund <niklas.soderlund+renesas@ragnatech.se>
+Yes, it makes sense
 
-> ---
-> To be queued in renesas-devel for v5.17.
-> ---
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 4 ++--
->  arch/arm64/boot/dts/renesas/r8a774b1.dtsi | 2 +-
->  arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 2 +-
->  arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 4 ++--
->  arch/arm64/boot/dts/renesas/r8a77951.dtsi | 4 ++--
->  arch/arm64/boot/dts/renesas/r8a77960.dtsi | 4 ++--
->  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 4 ++--
->  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 2 +-
->  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 2 +-
->  9 files changed, 14 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> index 98963bb96a2ceb56..eda6a840371a8c15 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> @@ -58,7 +58,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> @@ -80,7 +80,7 @@ opp-1500000000 {
->  		};
->  	};
->  
-> -	cluster1_opp: opp_table1 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-> index dcd65b1e15ab6a07..44f79fbd75dc9e48 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-> @@ -47,7 +47,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-> index 5e16f6b1771e5c44..b8dcbbbf3db5397f 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-> @@ -44,7 +44,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster1_opp: opp_table10 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  		opp-800000000 {
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-> index 4b1019a0a6cecc0c..e6d8610730a84ab8 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-> @@ -47,7 +47,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> @@ -69,7 +69,7 @@ opp-1500000000 {
->  		};
->  	};
->  
-> -	cluster1_opp: opp_table1 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> index 3be403ca4cd94fc2..9265a5702792c3f2 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-> @@ -62,7 +62,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> @@ -96,7 +96,7 @@ opp-1700000000 {
->  		};
->  	};
->  
-> -	cluster1_opp: opp_table1 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-> index 616f44aaa55b0bec..26f7103d11da5985 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-> @@ -57,7 +57,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> @@ -97,7 +97,7 @@ opp-1800000000 {
->  		};
->  	};
->  
-> -	cluster1_opp: opp_table1 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> index 724a6a09f4579bf7..ac9b587f6fc513c1 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-> @@ -46,7 +46,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> @@ -86,7 +86,7 @@ opp-1800000000 {
->  		};
->  	};
->  
-> -	cluster1_opp: opp_table1 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-> index b625cdd16a92ecc8..f898aad72b9d263c 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-> @@ -62,7 +62,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster0_opp: opp_table0 {
-> +	cluster0_opp: opp-table-0 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-> index 29b2a94d5ab6566d..bc0a4f8f20c337e1 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-> @@ -55,7 +55,7 @@ can_clk: can {
->  		clock-frequency = <0>;
->  	};
->  
-> -	cluster1_opp: opp_table10 {
-> +	cluster1_opp: opp-table-1 {
->  		compatible = "operating-points-v2";
->  		opp-shared;
->  		opp-800000000 {
-> -- 
-> 2.25.1
-> 
+If Heiko is fine with that I can add this description in the rk3399.dtsi
+file
+
+>> ---
+>>   .../boot/dts/rockchip/rk3399-rock960.dts      | 45 +++++++++++++++++++
+>>   1 file changed, 45 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+>> b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+>> index 1a23e8f3cdf6..83540bdb64cd 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
+>> @@ -61,6 +61,51 @@ bt_active_led: led-6 {
+>>           };
+>>       };
+>>   +    powerzones {
+>> +
+>> +        PKG_PZ: pkg {
+>> +            #powerzone-cells = <0>;
+>> +                        powerzone = <&SOC_PZ>;
+>> +        };
+>> +
+>> +        SOC_PZ: soc {
+>> +        };
+>> +    };
+>> +};
+>> +
+>> +&cpu_b0 {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>> +};
+>> +
+>> +&cpu_b1 {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>> +};
+>> +
+>> +&cpu_l0 {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>> +};
+>> +
+>> +&cpu_l1 {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>> +};
+>> +
+>> +&cpu_l2 {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>> +};
+>> +
+>> +&cpu_l3 {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>> +};
+>> +
+>> +&gpu {
+>> +    #powerzone-cells = <0>;
+>> +    powerzone = <&PKG_PZ>;
+>>   };
+>>     &cpu_alert0 {
+>>
+
 
 -- 
-Kind Regards,
-Niklas S�derlund
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
