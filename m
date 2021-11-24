@@ -2,73 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A307C45B4C2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 07:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A87A45B4F2
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 08:09:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229549AbhKXHB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 02:01:27 -0500
-Received: from mx22.baidu.com ([220.181.50.185]:56212 "EHLO baidu.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S239700AbhKXHB1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 02:01:27 -0500
-Received: from BJHW-Mail-Ex06.internal.baidu.com (unknown [10.127.64.16])
-        by Forcepoint Email with ESMTPS id BA2035FABF978EA0ECC0;
-        Wed, 24 Nov 2021 14:58:05 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BJHW-Mail-Ex06.internal.baidu.com (10.127.64.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Wed, 24 Nov 2021 14:58:05 +0800
-Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Wed, 24 Nov 2021 14:58:05 +0800
-From:   Cai Huoqing <caihuoqing@baidu.com>
-To:     <caihuoqing@baidu.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-staging@lists.linux.dev>
-Subject: [PATCH 3/3] MAINTAINERS: Add the driver info of the ZHOUYI AI accelerator
-Date:   Wed, 24 Nov 2021 14:57:40 +0800
-Message-ID: <20211124065743.421-4-caihuoqing@baidu.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211124065743.421-1-caihuoqing@baidu.com>
+        id S240002AbhKXHMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 02:12:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40622 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239430AbhKXHMX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 02:12:23 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id CDB4360555;
+        Wed, 24 Nov 2021 07:09:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1637737754;
+        bh=69kVynZ61jQU4C3rHNZDi3O/Dmiy3PQKhpTzv4RKBX8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=yVBs9ygMqDTl240JGLdj3fUMdEt+OSDD/wco9jtnX0M1g9oLWf+6/HVRMI9nSMmuC
+         3JW6l8JGMauh3KfqA0C2h25AAm9LBkMyWmrloun+U8oZjgh3U1ywLBM8ZoHhZpSlF9
+         iGbRK6mE4jJdpd/wFBAabi2ZLiaSYadIbDXXv/nU=
+Date:   Wed, 24 Nov 2021 08:09:10 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH 1/3] staging: zynpu: Add driver support for ARM(China)
+ ZHOUYI AI accelerator
+Message-ID: <YZ3lFk+7+AqSX6d3@kroah.com>
 References: <20211124065743.421-1-caihuoqing@baidu.com>
+ <20211124065743.421-2-caihuoqing@baidu.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BC-Mail-Ex24.internal.baidu.com (172.31.51.18) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211124065743.421-2-caihuoqing@baidu.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
-such as Allwinner R329 SOC.
-Add the driver info of ZHOUYI NPU to MAINTAINERS file.
+On Wed, Nov 24, 2021 at 02:57:38PM +0800, Cai Huoqing wrote:
+> ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
+> such as Allwinner R329 SOC.
+> Add driver support for this AI accelerator here.
+> 
+> Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
+> ---
+>  drivers/staging/Kconfig                   |   2 +
+>  drivers/staging/Makefile                  |   1 +
+>  drivers/staging/zynpu/Kconfig             |  34 +
+>  drivers/staging/zynpu/Makefile            |   7 +
+>  drivers/staging/zynpu/z1.c                | 233 ++++++
+>  drivers/staging/zynpu/z2.c                | 297 ++++++++
+>  drivers/staging/zynpu/zhouyi.h            |  70 ++
+>  drivers/staging/zynpu/zhouyi_base.c       |  71 ++
+>  drivers/staging/zynpu/zynpu.h             | 252 +++++++
+>  drivers/staging/zynpu/zynpu_core.c        | 254 +++++++
+>  drivers/staging/zynpu/zynpu_drv.c         | 349 +++++++++
+>  drivers/staging/zynpu/zynpu_fops.c        | 245 +++++++
+>  drivers/staging/zynpu/zynpu_io.c          | 133 ++++
+>  drivers/staging/zynpu/zynpu_io.h          | 119 ++++
+>  drivers/staging/zynpu/zynpu_irq.c         | 123 ++++
+>  drivers/staging/zynpu/zynpu_irq.h         |  85 +++
+>  drivers/staging/zynpu/zynpu_job_manager.c | 467 +++++++++++++
+>  drivers/staging/zynpu/zynpu_job_manager.h | 200 ++++++
+>  drivers/staging/zynpu/zynpu_mm.c          | 704 +++++++++++++++++++
+>  drivers/staging/zynpu/zynpu_mm.h          | 142 ++++
+>  drivers/staging/zynpu/zynpu_session.c     | 817 ++++++++++++++++++++++
+>  drivers/staging/zynpu/zynpu_session.h     | 283 ++++++++
+>  drivers/staging/zynpu/zynpu_sysfs.c       | 205 ++++++
 
-Signed-off-by: Cai Huoqing <caihuoqing@baidu.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
+All code added to drivers/staging/ needs a TODO file that lists what
+needs to be done to get it out of the staging directory.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f32c7d733255..5d231aadaa3e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18163,6 +18163,12 @@ M:	Forest Bond <forest@alittletooquiet.net>
- S:	Odd Fixes
- F:	drivers/staging/vt665?/
- 
-+STAGING - ARM ZHOUYI NPU SUPPORT
-+M:	Cai Huoqing <caihuoqing@baidu.com>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	drivers/staging/zynpu/
-+
- STAGING SUBSYSTEM
- M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
- L:	linux-staging@lists.linux.dev
--- 
-2.25.1
+You do not explain in this changelog text why this code needs to go
+here, and why it could just not go into the "real" part of the kernel
+instead.  What is wrong with it that requires it to go here?
 
+thanks,
+
+greg k-h
