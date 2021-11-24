@@ -2,138 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2A4945B600
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 08:55:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA39845B64A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 09:11:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240782AbhKXH6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 02:58:11 -0500
-Received: from mail-ua1-f50.google.com ([209.85.222.50]:45687 "EHLO
-        mail-ua1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240787AbhKXH6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 02:58:10 -0500
-Received: by mail-ua1-f50.google.com with SMTP id ay21so3211352uab.12;
-        Tue, 23 Nov 2021 23:55:00 -0800 (PST)
+        id S241235AbhKXIOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 03:14:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49296 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238955AbhKXIOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 03:14:48 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60332C061574;
+        Wed, 24 Nov 2021 00:11:39 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id m9so2194729iop.0;
+        Wed, 24 Nov 2021 00:11:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2X5/LFLLoXcHwnJiEqimMyAM3gnORo1QfzmyY4+BjE4=;
+        b=npeCSbzYQg6nrUVVZQQ8tgSeTCGq09gYMzHWIG0nLkIXzBo5vgZx6H3/iEUg/F86HW
+         TXWRlrdMfyukSte1IudpCHD3Qs+RqObFVGnEo0PSRcJCdOVDMnfNEn5CrQQ2j9ldGs4m
+         2ycv4mNR6Um+nxdxUFga3qN7G/84kL/MHYOxzf6i4Yhws4gqzOHqlcHg9ZI0jqSLV2kR
+         n57OBWBuVQvVMDbIfM10hp5DLBApDFXngA4DKKZzPQVCnpTXRdfbI+VuZbgw73V5nRdU
+         8Q5S9kQJrihbPG0W1hddydAFBWPjhv2vAOX+YMO0/FYkifW4Rf1yxUAcqowzIHFeoQO8
+         HMtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0LH7GHwypdqECJDJt33mxQUYL2fd1nbGQFpgPpXM1f4=;
-        b=P9ORsKoJ6H0imFki3EVwOyqwCMERvJ5VnD0C1gYJZ/X19ZS4FU92RcC4B2yMa2iNXf
-         vZ78s4HCfYIXfuEnw6LFN9HyiKRXSfcSm0b2vLoEVjjhxOim7xuJEEJOVfvrAmuykqvv
-         ipUxVyOhxli/1Y94s9yCT8PQ5UCOriQV6lMcYjV8YFVBI8Y0Agd8o2xbXksPct2ChdH8
-         +B3I8mrVukWsWdJXNVPww7FB49oaLrfaoi9PG3FHTaYjRUQrw+ni/eonn7ccc8m4MDZ5
-         opXk7fyyaOhreIPAHqyYI8wamW8lrdvD0O/DD975EefVnam0bC2a+7kG66LNccI/GuVl
-         Oy2A==
-X-Gm-Message-State: AOAM531X2dMNvSe3QMK+s72VBaDQ2nBogxH9PsbNeff8lVe5fd9mQOEO
-        Cljreff14atEWUeVmFRfjEuDBepPXIU4Uw==
-X-Google-Smtp-Source: ABdhPJzp6ng2HbJ2pGqyhHv31tPcFARkED9Q2uWFL6sWsE2lB+DG+Ao5sofG1K4hejA088BOSgzWmg==
-X-Received: by 2002:a67:c304:: with SMTP id r4mr20611969vsj.2.1637740500386;
-        Tue, 23 Nov 2021 23:55:00 -0800 (PST)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id i24sm7592785vkk.5.2021.11.23.23.54.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Nov 2021 23:54:59 -0800 (PST)
-Received: by mail-ua1-f45.google.com with SMTP id p2so3205132uad.11;
-        Tue, 23 Nov 2021 23:54:59 -0800 (PST)
-X-Received: by 2002:a9f:3e01:: with SMTP id o1mr7144916uai.89.1637740499142;
- Tue, 23 Nov 2021 23:54:59 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2X5/LFLLoXcHwnJiEqimMyAM3gnORo1QfzmyY4+BjE4=;
+        b=isHaDxOKb9A9RXFXyBHgGXo48HYkzdVyHhb3RDTGM7o5xHk9I5nKesLS3a/RBCaIkZ
+         LND015zHAc2GUlNSCYXRQE8ADWOysgWpoHubKs9M5RfenZsRgQFH1anilze1R+JZ2v0E
+         Y08NZHxlDvq8N1WIecFU+dsUk+O3c2UOnCgBrVnreq7jx/VjM7V/kiSorLP7/4T4mTH+
+         QhBJZslUq/KDIqGI1+qmsvubG856DQvwgfgojEtSLtqjMer461TQkmjoeS3/EyM8mdrU
+         1sYki9zPA3iwaKkifVzxc3MWXGoo2wlfNirfeOGquWTV4I8oGnma5HsxMCGSAyF3baTe
+         BH0Q==
+X-Gm-Message-State: AOAM531izeO/YzssB12zEwKphyIOD/lmIPLm0vdeqECybLDHliUxTp/d
+        XmJKzjG+hyHBU1cabJ0r3VHLOqlA8kjYHYO5YOU=
+X-Google-Smtp-Source: ABdhPJzW+77DXfhD6ZDT96Rg0Qdwq2dVRlgLowhSu0150wCdHrY0rjX6LZy9nWoS6+vd6IY7LS+U9jMgylZH7nxoqfs=
+X-Received: by 2002:a05:6638:32a2:: with SMTP id f34mr12973174jav.63.1637741498831;
+ Wed, 24 Nov 2021 00:11:38 -0800 (PST)
 MIME-Version: 1.0
-References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
- <8735no70tt.wl-maz@kernel.org> <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
- <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
- <87tug3clvc.wl-maz@kernel.org> <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
- <87r1b7ck40.wl-maz@kernel.org>
-In-Reply-To: <87r1b7ck40.wl-maz@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 24 Nov 2021 08:54:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWd9mJe8hGNdH5VR-qJOxgfT4YtFfOmQA=uV4QPsvpqtA@mail.gmail.com>
-Message-ID: <CAMuHMdWd9mJe8hGNdH5VR-qJOxgfT4YtFfOmQA=uV4QPsvpqtA@mail.gmail.com>
-Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
- definition of interrupt-map
-To:     Marc Zyngier <maz@kernel.org>,
-        Chris Brandt <chris.brandt@renesas.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Rob Herring <robh@kernel.org>, John Crispin <john@phrozen.org>,
-        Biwen Li <biwen.li@nxp.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20211110122948.188683-1-alistair@alistair23.me>
+ <20211110122948.188683-4-alistair@alistair23.me> <20211116000634.767dcdc0@aktux>
+ <CAKmqyKPFOqWD7t6tC1Act97CVcY+yazrhwMLLr3j_wOyH50GTA@mail.gmail.com> <00d68181-ad3b-17d2-0150-00029d399f0f@roeck-us.net>
+In-Reply-To: <00d68181-ad3b-17d2-0150-00029d399f0f@roeck-us.net>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Wed, 24 Nov 2021 18:11:00 +1000
+Message-ID: <CAKmqyKNNGA4pOxayG5UZowC7cQj7cFyVJBbWLvFqEizEO7izyg@mail.gmail.com>
+Subject: Re: [PATCH v15 3/8] mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Andreas Kemnade <andreas@kemnade.info>,
+        Alistair Francis <alistair@alistair23.me>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>, lgirdwood@gmail.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        rui.zhang@intel.com, devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-hwmon@vger.kernel.org, amitk@kernel.org,
+        linux-pm@vger.kernel.org, dl-linux-imx <linux-imx@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
-
-On Tue, Nov 23, 2021 at 10:11 AM Marc Zyngier <maz@kernel.org> wrote:
-> On Tue, 23 Nov 2021 08:44:19 +0000,
-> Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > On Tue, Nov 23, 2021 at 9:33 AM Marc Zyngier <maz@kernel.org> wrote:
-> > > On Tue, 23 Nov 2021 07:57:48 +0000,
-> > > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > > > Summarized:
-> > > >   - Before the bad commit, and after your fix, irqc-rza1 is invoked,
-> > > >     and the number of interrupts seen is correct, but input events
-> > > >     are doubled.
-> > > >   - After the bad commit, irqc-rza1 is not invoked, and there is an
-> > > >     interrupt storm, but input events are OK.
-> > >
-> > > OK, that's reassuring, even if the "twice the events" stuff isn't what
-> > > you'd expect. We at least know this is a separate issue, and that this
-> > > patch on top of -rc1 brings you back to the 5.15 behaviour.
-> > >
-> > > I'd expect it to be the case for the other platforms as well.
+On Wed, Nov 24, 2021 at 1:39 AM Guenter Roeck <linux@roeck-us.net> wrote:
+>
+> On 11/23/21 4:14 AM, Alistair Francis wrote:
+> > On Tue, Nov 16, 2021 at 9:10 AM Andreas Kemnade <andreas@kemnade.info> =
+wrote:
+> >>
+> >> Hi,
+> >>
+> >> this all creates a lot of question marks...
+> >> One of my main question is whether sy7636a =3D sy7636 (at least the
+> >> driver in the kobo vendor kernels does not have the "A" at the end,
+> >> whic does not necessarily mean a difference).
+> >>
+> >> https://www.silergy.com/products/panel_pmic
+> >> lists only a SY7636ARMC, so chances are good that the letters were jus=
+t
+> >> stripped away by the driver developers. Printing on chip package is
+> >> cryptic so it is not that helpful. It is just "BWNBDA"
 > >
-> > OK.
+> > I don't have a definite answer for you. But I think it's sy7636a
 > >
-> > BTW, what would have been the correct way to do this for irqc-rza1?
-> > I think we're about to make the same mistake with RZ/G2L IRQC
-> > support[1]?
+> > The page you linked to above lists SY7636ARMC as well as SY7627RMC,
+> > SY7570RMC. That makes me think that the RMC is a generic suffix and
+> > this actual IC is the SY7636A.
+> >
 >
-> Indeed, and I was about to look into it.
+> Almost all chips have an ordering suffix, indicating things like
+> temperature range or packaging. The datasheet says:
 >
-> There are multiple ways to skin this cat, including renaming
-> 'interrupt-map' to 'my-own-private-interrupt-map'. Or use something
-> akin the new 'msi-range' (which we could call interrupt-range), and
-> replace:
-
-"interrupt-ranges" (with trailing "S"), cfr. "msi-ranges"?
-
->   interrupt-map = <0 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
->                   <1 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
->                   <2 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
->                   <3 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
->                   <4 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->                   <5 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
->                   <6 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
->                   <7 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> Ordering Information
+> SY7636 =E2=96=A1(=E2=96=A1=E2=96=A1)=E2=96=A1
+>              | Temperature Code (C)
+>           | Package Code (RM)
+>         | Optional Spec Code (A)
 >
-> with:
+> The datasheet otherwise refers to the chip as SY7636A.
+
+To me this seems like SY7636A is the correct name then.
+
+Alistair
+
 >
->   interrupt-range = <&gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH 0 8>;
->
-> which reads as "base interrupt spec", "start pin", "count".  This
-> gives you almost the same level of information, and doesn't interfere
-> with the rest of the DT properties. Parsing it is also much simpler.
-
-And in the non-consecutive case, you need multiple ranges, right?
-
-> But that's up to you, really.
-
-Chris: do you think we can still do this for RZ/A, or do we have too
-many users in the wild using the upstream code?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Guenter
