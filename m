@@ -2,160 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F8945CA3C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:41:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E95F45CA5D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:48:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349110AbhKXQot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 11:44:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236588AbhKXQos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:44:48 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A05A5C061574
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:41:38 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id a18so5294360wrn.6
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:41:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=GlIs+0Fl00MrHx12eQnM8ThlIZDB4DAAFY0KgD/6Kgc=;
-        b=T3WJ+TQj23IEThTVCJC2Bb41QzXIsQxUhJCk/pOLGO73x/2OE/b2IaDOA+PTTLR//u
-         AsKG20PGqT8f35ykndMIthtiMr8NjSuGkiVoUzTdGPpyUYmhiAwPnYIaoFu56rjz9dIt
-         RFScGtYiNhDovNsG62L1JjR7Oun2K/rqznRmYeHrY8yFHQZhNxwMYJZJUJSU5aREueyn
-         YKJ6samEJzhXDVsTR1uzuhUA0M5trPocDe1MD9ivjJkDP7pf418cKtdVB4rq76GIR42n
-         v0g74ObzkscrKZk2tsFh54mRLN4NLTUhscek6kMjkDUlGKOtpanAPAw+vm7CwVxiXq8J
-         xT3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=GlIs+0Fl00MrHx12eQnM8ThlIZDB4DAAFY0KgD/6Kgc=;
-        b=rQcGT9UJCnsLAE6EhprKdYfudr1KIaNBLeUNLeZ8wxVOH2BM3vAzOWSiRAAqiQP9dz
-         ZFTKLStMOrRw1EcFjAJ+g0vikPSwx0fm3MIR6Lq43YaDTTp1Xfo/60M/5d8vj/kee8Lz
-         NDi4CBqX6s8TlKOioMwmqW5gGZJav9wSfeN70TTd9fBcUTWSBYgvA2Ih+71v5DSZV7E7
-         YvV9GwGnoQ2ekmjUPhSlvJSDRMaTN4jHlYL9QOAB9xXWFAPlzB1RGtEVBAgMCrUlMrwQ
-         P8NtDdOuDwy7hreS1VhgFQB9SOcnqsVSgOHWJKuT2gb/uw65dyf0Vnvjd61vXm7r8Wit
-         tiSw==
-X-Gm-Message-State: AOAM531TFpFxsRdCtCJRU8Jb+uf5eTCByLcJZVX4qc9FZgEnBFSHedJv
-        zNO/TEK1CXVenZjZihNaJbtT/g==
-X-Google-Smtp-Source: ABdhPJzJXmbREFsk0CW1REfVF5yqexRPGDtOPeHjmhBrc65DyykD6IBk29gmn1v12rRTswTXEVOJZA==
-X-Received: by 2002:adf:f907:: with SMTP id b7mr21189353wrr.5.1637772097021;
-        Wed, 24 Nov 2021 08:41:37 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:4839:bd64:93f4:614f? ([2a01:e34:ed2f:f020:4839:bd64:93f4:614f])
-        by smtp.googlemail.com with ESMTPSA id d1sm252782wrz.92.2021.11.24.08.41.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 08:41:36 -0800 (PST)
-Subject: Re: [PATCH 2/5] arm64: dts: rockchip: Add powerzones definition for
- rock960
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
-        ulf.hansson@linaro.org, rjw@rjwysocki.net,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, lukasz.luba@arm.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>
-References: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
- <20211124125506.2971069-2-daniel.lezcano@linaro.org>
- <bf994aa8-df18-22d0-e718-2c8b406a5cc8@arm.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <f2609d56-f014-3713-8f73-c7ca9c7cba60@linaro.org>
-Date:   Wed, 24 Nov 2021 17:41:34 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <bf994aa8-df18-22d0-e718-2c8b406a5cc8@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S242309AbhKXQvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 11:51:35 -0500
+Received: from mo4-p04-ob.smtp.rzone.de ([85.215.255.121]:26100 "EHLO
+        mo4-p04-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238391AbhKXQve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:51:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637772497;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=icc13YC5mHwE0XQvAD6VEy3MsLwt9uSPlxq+Nx/D1H4=;
+    b=YUnGh4OjkMKYt7K5BhVP0dlBbNqMmnci+MORTJkKXQ6y7MlxZrjR9JjuoNqdipnaK9
+    nqemSaP1pvW/Cbw77TFiM5LPFoHXE7mjs2/b9LwrH565ebcmWMWr2qMaGNVKvE1w711S
+    cL0LYlqGbUhunijvOfMhhcxgDtGnHHThxXQvMzVvT98VN5f+NZHBB7AUtRvzOwOWp4oB
+    ewEBmbOCTaJ9iwRyirRd5Ep0V7+ry1cEVl8jZJ3sohImjJw/q5zY+RXR3SG2ErxXD1cR
+    Fj9jVhE6K0ntaf4UqxEVEloyda/mdLwW6rk1XJmmlScC+kDdWtsj2u+sfZiOtVts4pl/
+    8InQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3jsN+"
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
+    with ESMTPSA id e05ed8xAOGmG3vt
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 24 Nov 2021 17:48:16 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v8 0/8] MIPS: JZ4780 and CI20 HDMI
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <B6B358E8-4395-442F-A353-396D8DC54C66@goldelico.com>
+Date:   Wed, 24 Nov 2021 17:48:16 +0100
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A0913ACC-5803-4FF7-AF96-CE8CB3F9F323@goldelico.com>
+References: <cover.1637691240.git.hns@goldelico.com>
+ <J4K13R.CGVJ0IY95LC51@crapouillou.net>
+ <B6B358E8-4395-442F-A353-396D8DC54C66@goldelico.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/11/2021 14:49, Robin Murphy wrote:
-> On 2021-11-24 12:55, Daniel Lezcano wrote:
->> Add the powerzones description. This first step introduces the big,
->> the little and the gpu as a powerzone place.
-> 
-> These look more like SoC-level properties than board-level ones - should
-> they be in rk3399.dtsi?
+Hi Paul,
 
-Yes, it makes sense
+> Am 23.11.2021 um 21:44 schrieb H. Nikolaus Schaller =
+<hns@goldelico.com>:
+>=20
+> Hi Paul,
+>=20
+>> Am 23.11.2021 um 21:12 schrieb Paul Cercueil <paul@crapouillou.net>:
+>>=20
+>> Hi Nikolaus,
+>>=20
+>> I think if you can fix the last few things I commented on, and I get =
+an ACK from Rob for the Device Tree related patches, then it will be =
+ready to merge.
+>=20
+> Fine! Especially for finding the NULL regulator risk.
+>=20
+> Will do in the next days.
+> For the unwedge pinmux I have to check if we need it at all.
 
-If Heiko is fine with that I can add this description in the rk3399.dtsi
-file
+No. It is only needed by the driver to take care of for a special =
+potential hardware hickup.
+The current code does nothing and I have removed it and everything still =
+works as
+before.
 
->> ---
->>   .../boot/dts/rockchip/rk3399-rock960.dts      | 45 +++++++++++++++++++
->>   1 file changed, 45 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
->> b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
->> index 1a23e8f3cdf6..83540bdb64cd 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock960.dts
->> @@ -61,6 +61,51 @@ bt_active_led: led-6 {
->>           };
->>       };
->>   +    powerzones {
->> +
->> +        PKG_PZ: pkg {
->> +            #powerzone-cells = <0>;
->> +                        powerzone = <&SOC_PZ>;
->> +        };
->> +
->> +        SOC_PZ: soc {
->> +        };
->> +    };
->> +};
->> +
->> +&cpu_b0 {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->> +};
->> +
->> +&cpu_b1 {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->> +};
->> +
->> +&cpu_l0 {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->> +};
->> +
->> +&cpu_l1 {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->> +};
->> +
->> +&cpu_l2 {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->> +};
->> +
->> +&cpu_l3 {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->> +};
->> +
->> +&gpu {
->> +    #powerzone-cells = <0>;
->> +    powerzone = <&PKG_PZ>;
->>   };
->>     &cpu_alert0 {
->>
+There remains only one question for a v9: can we store the (single) =
+regulator reference
+in a static variable or should we define a struct and allocate memory in =
+patch 4/8?
 
+BR and thanks,
+Nikolaus
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
