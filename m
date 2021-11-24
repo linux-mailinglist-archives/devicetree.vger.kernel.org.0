@@ -2,99 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FF2A45CBAE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 18:59:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9106F45CC1B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 19:32:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243892AbhKXSCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 13:02:54 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:50598 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243916AbhKXSCx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 13:02:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=OVAQSV4rBJJ+HrJ8mrdZ5C3bcdsdqt2byVv40HAFtaQ=; b=OD++YWK3UCqM7JEyIB8cVtAg/D
-        Q7i1tvUcEWHI7zdP/tfngIL9NHFQ/YvqfyQnS1ygNuyZc/Sb+XedTLn4uHDUspg8exiEWLrrDXLCO
-        rUNzxWzEQ4NQIuHKSIlG/eJXnGmCJsBmNkXUGKhAN/sFKIMUqlNN3GwlGvMqhuy5QK4I=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mpwYQ-00EX3A-Bi; Wed, 24 Nov 2021 18:59:34 +0100
-Date:   Wed, 24 Nov 2021 18:59:34 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
-        linux@armlinux.org.uk, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 3/6] net: lan966x: add port module support
-Message-ID: <YZ59hpDWjNjvx5kP@lunn.ch>
-References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
- <20211123135517.4037557-4-horatiu.vultur@microchip.com>
+        id S243466AbhKXSfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 13:35:40 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:45724
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S242817AbhKXSfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 13:35:38 -0500
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B215540749
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 18:32:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1637778747;
+        bh=Bf1uh3YWXL2H4r1xsTDTAIBjjlx/QrqVMPemALuj4fo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=U8KC0+abP9KtobO1VFeEigAOE4mqsnLeaCZgYkHvMfH5+IFqOPCJEq2gLPchoYSIq
+         oqxCerqdsqjZggxYuCrfGpkA38uSizrj+/RyZkwTb1N8TH5KXZxqxlZqaf5FEeNuHd
+         EysXyT4oEN1OdZQE7aJEKNKhCnRQfuB2TJnV+63M/bcN7jkkSwn2nfxnJxoRnRgMnV
+         TtDXdSrVIEGKlMGL1d3bEXDm3caJlB7NkAKPl7PHmG/u04a+EOU7JppubXbrseUC5K
+         T4ZAVirqiQuJ0zJIp2sB8vBxFM46ljMxYAWHwpBVuKpIe0NRu0gei2xZaV5LuagzVU
+         FVePy+KupU0gA==
+Received: by mail-wr1-f72.google.com with SMTP id q17-20020adfcd91000000b0017bcb12ad4fso694764wrj.12
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 10:32:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Bf1uh3YWXL2H4r1xsTDTAIBjjlx/QrqVMPemALuj4fo=;
+        b=IODTDaFM/tCGNKktE6S9jFwp74wUCF1eOPzz9JJiLDuYwgK7hplgMd+3BS5Cr6ou11
+         cFENVaEayV7QEFANkbpWNMn5ynAqfbf7Hb6h1S69KqJ5wrlBJlbRMDlVS/PBe88XtW1n
+         xa3hxIIlnz+h+CulP4OlPm+pBcSwul5iCU1tAePNz0HZbsTUpfemNMV/KizJ5+BGKnkN
+         tUB9VwmD2ClBEE/Of3ZluXsbBBRW7GDLH+8TT2Z+aPD5XHzoUVDR+xmJ0XVtd4MfNqoK
+         vq35TsUZImWrAxEhrWJ2Rv9Y63ezYx5PrR/EiViHC+8YEcxja0ykH1vFa1z1l/UqlVA6
+         vcDg==
+X-Gm-Message-State: AOAM533JI9sUWi3cFX5zG+n0/eyjfLWF4DqypCMDhiC5zr6TzTRVDbPZ
+        cMHcDJGv7um0es3eIdiK1FnggelHB6SDHckSCWCuRjT98z/7zlLuos138Vl7TZMlCZJD0sVRbJC
+        mLPN51yLMYX3hmL2oGAqocakfXuPamw9UmCvuP3I=
+X-Received: by 2002:a5d:66cd:: with SMTP id k13mr348293wrw.517.1637778747198;
+        Wed, 24 Nov 2021 10:32:27 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxPjesaQytFy9KXRteaHUSEUjaucTMGJcMRDlJ/uL9gDuFjulTL+Etd84c2+ov8BHcBal9YIw==
+X-Received: by 2002:a5d:66cd:: with SMTP id k13mr348262wrw.517.1637778747063;
+        Wed, 24 Nov 2021 10:32:27 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id m3sm523251wrv.95.2021.11.24.10.32.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 10:32:26 -0800 (PST)
+Message-ID: <6fb932ea-3a3b-9a7e-4d72-276c9975eccc@canonical.com>
+Date:   Wed, 24 Nov 2021 19:32:25 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123135517.4037557-4-horatiu.vultur@microchip.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 0/2] mfd/regulator: dt-bindings: max77686: convert to
+ dtschema
+Content-Language: en-US
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211008123552.191384-1-krzysztof.kozlowski@canonical.com>
+ <YZ5ayQBtPYiSconZ@google.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YZ5ayQBtPYiSconZ@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static void lan966x_ifh_inject(u32 *ifh, size_t val, size_t pos, size_t length)
-> +{
-> +	int i;
-> +
-> +	for (i = pos; i < pos + length; ++i) {
-> +		if (val & BIT(i - pos))
-> +			ifh[IFH_LEN - i / 32 - 1] |= BIT(i % 32);
-> +		else
-> +			ifh[IFH_LEN - i / 32 - 1] &= ~(BIT(i % 32));
-> +	}
-> +}
-> +
-> +static void lan966x_gen_ifh(u32 *ifh, struct lan966x_frame_info *info,
-> +			    struct lan966x *lan966x)
-> +{
-> +	lan966x_ifh_inject(ifh, 1, IFH_POS_BYPASS, 1);
-> +	lan966x_ifh_inject(ifh, info->port, IFH_POS_DSTS, IFH_WID_DSTS);
-> +	lan966x_ifh_inject(ifh, info->qos_class, IFH_POS_QOS_CLASS,
-> +			   IFH_WID_QOS_CLASS);
-> +	lan966x_ifh_inject(ifh, info->ipv, IFH_POS_IPV, IFH_WID_IPV);
-> +}
-> +
+On 24/11/2021 16:31, Lee Jones wrote:
+> On Fri, 08 Oct 2021, Krzysztof Kozlowski wrote:
+> 
+>>  MAINTAINERS                                   |   2 +-
+>>  5 files changed, 216 insertions(+), 98 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/mfd/max77686.txt
+>>  create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77686.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/regulator/max77686.txt
+>>  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77686.yaml
+> 
+> Tired to hoover these up, but they do not apply cleanly.  Would you be
+> kind enough to rebase this onto at least v5.16-rc1 and resubmit please?
+> 
 
-> +	/* Write IFH header */
-> +	for (i = 0; i < IFH_LEN; ++i) {
-> +		/* Wait until the fifo is ready */
-> +		while (!(QS_INJ_STATUS_FIFO_RDY_GET(lan_rd(lan966x, QS_INJ_STATUS)) &
-> +			 BIT(grp)))
-> +			;
-> +
-> +		lan_wr((__force u32)cpu_to_be32(ifh[i]), lan966x,
-> +		       QS_INJ_WR(grp));
+Sure, I'll send a rebase.
 
-There is a lot of magic going on here constructing the IFH. Is it
-possible to define the structure using bit fields and __be32. You
-should then be able to skip this cpu_to_be32 and the ugly cast. And
-the actual structure should be a lot clearer.
-
-> +static int lan966x_rx_frame_word(struct lan966x *lan966x, u8 grp, bool ifh,
-> +				 u32 *rval)
-> +{
-> +	u32 bytes_valid;
-> +	u32 val;
-> +
-> +	val = lan_rd(lan966x, QS_XTR_RD(grp));
-> +	if (val == XTR_NOT_READY) {
-> +		if (ifh)
-> +			return -EIO;
-> +
-> +		do {
-> +			val = lan_rd(lan966x, QS_XTR_RD(grp));
-> +		} while (val == XTR_NOT_READY);
-
-I would add some sort of timeout here, just in case the hardware
-breaks. You have quite a few such loops, it would be better to make
-use of the helpers in linux/iopoll.h.
-
+Best regards,
+Krzysztof
