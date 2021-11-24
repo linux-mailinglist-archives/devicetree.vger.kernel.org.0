@@ -2,225 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1516445C7F2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:49:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 213D245C7F7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:49:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355448AbhKXOwW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 09:52:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51796 "EHLO
+        id S1355470AbhKXOw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 09:52:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357737AbhKXOwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 09:52:04 -0500
-Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3EF9C052916
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:39:47 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed20:844e:fa22:e340:cb8c])
-        by andre.telenet-ops.be with bizsmtp
-        id NEfi2600600MmeS01Efi0u; Wed, 24 Nov 2021 15:39:44 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mptQz-00Emf0-P7; Wed, 24 Nov 2021 15:39:41 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mptQz-001PHz-9G; Wed, 24 Nov 2021 15:39:41 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: renesas: Fix operating point table node names
-Date:   Wed, 24 Nov 2021 15:39:40 +0100
-Message-Id: <ac885456ffb00fa4cc4069b9967761df2c98c3d8.1637764588.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S1357737AbhKXOwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 09:52:22 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E42C055286
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:40:14 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id v1so11531031edx.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:40:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=4lBlm4cQeHrxfSN2jOl9EalKvRpO95qe6vNDFkihu8w=;
+        b=iM7aJGyvNsjdjPBEP5AUKbmN59lykLx5dIIvEM0i6S6mwhwJvDfIvGHdCi773n/zOl
+         OJNexSUNSu3a9aMlGpCQ2OfFEii/ArWa64WOaWyC2M2zDhsQg85SSBS/QEvIZRSS9DPy
+         eYTRSUlFfHoF95/983AoN/25kgLpxp8YtJs/rsiku9E7uaALuXjskp/0JyLZRVKKoFBG
+         N2MN2xWo1u1//icfj38w1eny+vnmgAb/Ewb9R44FzLJrlahSjtvSI7xBCMMb3GYbc6mw
+         z+cWVnI//AuRECY9wexGW7pWH5IL2k9e5ZtP7nRb4KaYrkA+24JLx9YdI/7PD7HAkB36
+         u2yQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=4lBlm4cQeHrxfSN2jOl9EalKvRpO95qe6vNDFkihu8w=;
+        b=4ihbKT4emvJyhEQPYXI80QAkFsWqQ/4dg74w/XYNZWaMIzCj85DW3qk5DDtUQH/0Yv
+         ztrZse/1JPSfLChY/RECNZYRL8kDhcdiieBADJOg8QqyMJqAC/tJDYSUGrJPq4xWs/Pa
+         xDR0BOHo5yRSShYHFnkbEEJvSMaFwEbHDvnh3US9wXU+pjd9hmcmVaxW30Hr7y5aeiwU
+         uOfb2IH36H4pdP4PdsbtCPbtp29iB9W8qQddf1fIuoykV21QEgPQL8fW3MFKPJYbXRkS
+         Q5YU08ly8WCWndsVNq7o3hmJH4hGoGd2+N6UoNXHKBraKq/Zplm0DkpdW9oAL5Cy0nRl
+         dbAw==
+X-Gm-Message-State: AOAM530HdM44TGOiKtgoTEDE6OGqBFBc6SH5LUmX46CAWcEOSG0Ol4Br
+        tHCKJ5Z0UOSUMHeMaLBpWVcfKh/6yWW2Otn3Ms0=
+X-Google-Smtp-Source: ABdhPJzz4M7bjuax9lG6pZohYrznvoE6DNi9D6rLMq0otYfkyyZMOEh24CXTFs48aOVTuEwM8iGZUE1tYwD0YT2mgEQ=
+X-Received: by 2002:a17:907:7f8f:: with SMTP id qk15mr20794935ejc.455.1637764809799;
+ Wed, 24 Nov 2021 06:40:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a17:906:6a0b:0:0:0:0 with HTTP; Wed, 24 Nov 2021 06:40:08
+ -0800 (PST)
+Reply-To: rco.ben189@outlook.fr
+From:   "Mrs. Susan Dansuki" <atmpaymentcard14@gmail.com>
+Date:   Wed, 24 Nov 2021 06:40:08 -0800
+Message-ID: <CAO5LRLX7rmx_oaiXP_zB2GhdQj0dLo7bJLjyvk1bdRz1iSnFOw@mail.gmail.com>
+Subject: Re: COVID-19 RELIEF FUND WORTH $1,500,000.00 USD
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Align the node names of device nodes representing operating point v2
-tables with the expectations of the DT bindings in
-Documentation/devicetree/bindings/opp/opp-v2.yaml.
+Dear Beneficiary,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-devel for v5.17.
----
- arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/r8a774b1.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/r8a77951.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/r8a77960.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/r8a77961.dtsi | 4 ++--
- arch/arm64/boot/dts/renesas/r8a77965.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r8a77990.dtsi | 2 +-
- 9 files changed, 14 insertions(+), 14 deletions(-)
+In line with the directive of the United Nations organization on their
+fight to cushion the bad effect of Covid-19 around the world. We wish
+to bring you the good news of hope. The United Nations organization
+department for disaster management in conjunction with IMF, World Bank
+is giving out Covid-19 stimulus package worth $1,500,000.00 USD, and
+you are among the lucky beneficiary selected to receive this stimulus
+package.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-index 98963bb96a2ceb56..eda6a840371a8c15 100644
---- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-@@ -58,7 +58,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -80,7 +80,7 @@ opp-1500000000 {
- 		};
- 	};
- 
--	cluster1_opp: opp_table1 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-index dcd65b1e15ab6a07..44f79fbd75dc9e48 100644
---- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
-@@ -47,7 +47,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-index 5e16f6b1771e5c44..b8dcbbbf3db5397f 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
-@@ -44,7 +44,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster1_opp: opp_table10 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 		opp-800000000 {
-diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-index 4b1019a0a6cecc0c..e6d8610730a84ab8 100644
---- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
-@@ -47,7 +47,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -69,7 +69,7 @@ opp-1500000000 {
- 		};
- 	};
- 
--	cluster1_opp: opp_table1 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-index 3be403ca4cd94fc2..9265a5702792c3f2 100644
---- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
-@@ -62,7 +62,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -96,7 +96,7 @@ opp-1700000000 {
- 		};
- 	};
- 
--	cluster1_opp: opp_table1 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-index 616f44aaa55b0bec..26f7103d11da5985 100644
---- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
-@@ -57,7 +57,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -97,7 +97,7 @@ opp-1800000000 {
- 		};
- 	};
- 
--	cluster1_opp: opp_table1 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-index 724a6a09f4579bf7..ac9b587f6fc513c1 100644
---- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
-@@ -46,7 +46,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -86,7 +86,7 @@ opp-1800000000 {
- 		};
- 	};
- 
--	cluster1_opp: opp_table1 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-index b625cdd16a92ecc8..f898aad72b9d263c 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
-@@ -62,7 +62,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster0_opp: opp_table0 {
-+	cluster0_opp: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-index 29b2a94d5ab6566d..bc0a4f8f20c337e1 100644
---- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-@@ -55,7 +55,7 @@ can_clk: can {
- 		clock-frequency = <0>;
- 	};
- 
--	cluster1_opp: opp_table10 {
-+	cluster1_opp: opp-table-1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 		opp-800000000 {
--- 
-2.25.1
+Therefore, on receipt of this email, you should count yourself as the
+lucky individual. Your email address was chosen online while searching
+at random. Kindly contact our grants manager (Mr. Robert Taiwo) at
+your earliest convenience, with the contacts details listed below,to
+claim your stimulus package worth $1,500,000.00 USD.
 
+Name: Mr.Robert TAIWO
+Email: (   mr.roberttaiwo73@qq.com )
+Telephone: (+229) 96548388 (WhatsApp)
+
+Please confirm the following information to him as soon as possible.
+
+1. Full Name :
+2. Address :
+3. Nationality :
+4. Direct Telephone #:
+
+Congratulations once again.
+
+Yours Sincerely
+Mrs. Susan Dansuki.
+Director of the Centers for Disease Control and Prevention.
