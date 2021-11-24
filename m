@@ -2,73 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C904745B25F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 03:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63E3145B257
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 03:59:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240704AbhKXDCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 22:02:43 -0500
-Received: from mail-io1-f50.google.com ([209.85.166.50]:43752 "EHLO
-        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231450AbhKXDCj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 22:02:39 -0500
-Received: by mail-io1-f50.google.com with SMTP id z26so1294620iod.10;
-        Tue, 23 Nov 2021 18:59:30 -0800 (PST)
+        id S237422AbhKXDCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 22:02:35 -0500
+Received: from mail-il1-f172.google.com ([209.85.166.172]:34408 "EHLO
+        mail-il1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S240073AbhKXDCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 22:02:34 -0500
+Received: by mail-il1-f172.google.com with SMTP id i9so1105210ilu.1;
+        Tue, 23 Nov 2021 18:59:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=hUyB8SMEZEe+wyhi5A4ravu9airL4cafjZQp9SXQVNw=;
-        b=IqVgIVYvlhWY18qCIn+Bzd4n2eHPsFKYqXXm4qnR1hzioaLNOpiMoPxvC7cFOaIWe8
-         APdpIlHrcwmVX+4MWlmecZ0n3wDXBBbC9qDC7peX7lqMGN3+RlCkQdh5Ye+Nrm7rdNcz
-         AoLdUO5oKLIDZSkeNeFzP+7czb0RIL7F1MXhw5h8YHMYPzZSuIkruvrgApb8BQazmyhd
-         7CiYwSEFXexMmPTfShx/cy+UQLQJI22Rsrway2ssWNllC9U+wdeVna0u9phoDayYEx5+
-         D7Pa/8vLi6zK8k+TsvVm/XVo/XIqZP0eZvs5eI1sVmmU5L72uawwXz9ilHkpqlwKLEQc
-         D5Jw==
-X-Gm-Message-State: AOAM531owkokzbNFqydZIZgBoqBHhafFKCKzcI2Cs8VdyQvTbTKl2va1
-        gXSYl8GSNtz1zo4VnChGdMR5/wpoIA==
-X-Google-Smtp-Source: ABdhPJxeQsgBpDAOtsETWCseXbp1sz848Ix20LrL1yEptsj4UjtqyKezE8HZZzhXVSIc9seyIhVb5g==
-X-Received: by 2002:a02:8663:: with SMTP id e90mr11391156jai.14.1637722769739;
-        Tue, 23 Nov 2021 18:59:29 -0800 (PST)
+        bh=+gtitLZL9HaFjBnuPU8p8wXrV+klALlrvYaIvtVGr1Y=;
+        b=cYDJL8G38so23QzibdEquW3xzB3iVnK4+6kTDlhC2TaGwUdbgVPRbPIFEYZ6LVAAwp
+         MuYcnKJU2ZYUTDAYJecAeFhfu929G3+vQ0RjYVYHRR1HJ4U5Bu1+qttAcrS4U0+ShXhZ
+         89UW7l7wAQVBbG6dR3OEdUnRt0Ig4yaT5P55TVkSvQjqkzR1hf/vFlkQ62nChsIjWSG/
+         j+2+ymzB8wN1cdoELyVGJRDLB6HyhrSLAf/GMfcJ2uvsRmML3F2NNB97+xE2U6o5EMzI
+         it1s6PyZR8eaQFuon6RT3A1YeqtiIxRTkuxrBHi8LDcMqgrddzN16ORvPEAlAUDshse0
+         qwuQ==
+X-Gm-Message-State: AOAM531S1UjNZuzM0o6SavjuY2cqap92KMW5nx2SQvlJN4Dq4ocRDIHZ
+        wQUR3qRUZcQKxlLiFiebhw==
+X-Google-Smtp-Source: ABdhPJzWFPJVuLsBwNvWGvgriFboFDA1jNooS4EMQoSZqSMvlnmGGtbVzE1Y5g9KLh7fDXTK9fj/ug==
+X-Received: by 2002:a92:d643:: with SMTP id x3mr10412541ilp.107.1637722765084;
+        Tue, 23 Nov 2021 18:59:25 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id ay13sm9089587iob.37.2021.11.23.18.59.28
+        by smtp.gmail.com with ESMTPSA id l9sm8990629ilh.82.2021.11.23.18.59.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 18:59:29 -0800 (PST)
-Received: (nullmailer pid 888172 invoked by uid 1000);
+        Tue, 23 Nov 2021 18:59:24 -0800 (PST)
+Received: (nullmailer pid 888169 invoked by uid 1000);
         Wed, 24 Nov 2021 02:59:21 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <1637693434-15462-20-git-send-email-quic_mpubbise@quicinc.com>
-References: <1637693434-15462-1-git-send-email-quic_mpubbise@quicinc.com> <1637693434-15462-20-git-send-email-quic_mpubbise@quicinc.com>
-Subject: Re: [PATCH 19/19] dt: bindings: net: add bindings of WCN6750 for ath11k
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     linux-mips@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        letux-kernel@openphoenux.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Kees Cook <keescook@chromium.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org
+In-Reply-To: <f97179a630e7d0fc739a118e2b321e1a6432876b.1637691240.git.hns@goldelico.com>
+References: <cover.1637691240.git.hns@goldelico.com> <f97179a630e7d0fc739a118e2b321e1a6432876b.1637691240.git.hns@goldelico.com>
+Subject: Re: [PATCH v8 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
 Date:   Tue, 23 Nov 2021 19:59:21 -0700
-Message-Id: <1637722761.019285.888171.nullmailer@robh.at.kernel.org>
+Message-Id: <1637722761.010276.888168.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021 00:20:34 +0530, Manikanta Pubbisetty wrote:
-> Add WCN6750 wireless driver support, its based on ath11k driver.
+On Tue, 23 Nov 2021 19:13:56 +0100, H. Nikolaus Schaller wrote:
+> From: Sam Ravnborg <sam@ravnborg.org>
 > 
-> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+> Based on .txt binding from Zubair Lutfullah Kakakhel
+> 
+> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
+> 
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
 > ---
->  .../bindings/net/wireless/qcom,ath11k.yaml         | 333 ++++++++++++++-------
->  1 file changed, 225 insertions(+), 108 deletions(-)
+>  .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 +++++++++++++++++++
+>  .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
+>  2 files changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:57:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+./Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml:36:5: [warning] wrong indentation: expected 2 but found 4 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:0:0: /example-1/remoteproc@8a00000: failed to match any schema with compatible: ['qcom,sc7280-wpss-pil']
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml: 'unevaluatedPropertes' is not one of ['$id', '$schema', 'title', 'description', 'examples', 'required', 'allOf', 'anyOf', 'oneOf', 'definitions', '$defs', 'additionalProperties', 'dependencies', 'dependentRequired', 'dependentSchemas', 'patternProperties', 'properties', 'if', 'then', 'else', 'unevaluatedProperties', 'deprecated', 'maintainers', 'select']
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml: 'oneOf' conditional failed, one must be fixed:
+	'unevaluatedProperties' is a required property
+	'additionalProperties' is a required property
+	hint: A schema with a "$ref" to another schema either can define all properties used and use "additionalProperties" or can use "unevaluatedProperties"
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/synopsys,dw-hdmi.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.example.dts:19:18: fatal error: dt-bindings/clock/jz4780-cgu.h: No such file or directory
+   19 |         #include <dt-bindings/clock/jz4780-cgu.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1558747
+See https://patchwork.ozlabs.org/patch/1558736
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
