@@ -2,177 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBE0B45BB96
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 13:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78DE145BC7F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 13:28:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243754AbhKXMVD convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 24 Nov 2021 07:21:03 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:56861 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243995AbhKXMTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 07:19:05 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 148ED240002;
-        Wed, 24 Nov 2021 12:15:52 +0000 (UTC)
-Date:   Wed, 24 Nov 2021 13:15:52 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, nm@ti.com,
-        tony@atomide.com, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] mtd: nand: omap2: Add support for NAND Controller
- on AM64 SoC
-Message-ID: <20211124131552.6b9bc506@xps13>
-In-Reply-To: <20211123103609.14063-5-rogerq@kernel.org>
-References: <20211123103609.14063-1-rogerq@kernel.org>
-        <20211123103609.14063-5-rogerq@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S244168AbhKXMbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 07:31:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42106 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245506AbhKXM2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 07:28:19 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 3DA6061269;
+        Wed, 24 Nov 2021 12:17:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637756227;
+        bh=4Bwn5rvzFaQX6/M2Ep7RPrdvX/Thgii4YOdsQ3DDAGs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=GmhRSa6/MuM56Kz+5NAzjuJN+IAHQHehfqMjrwDF6Nmi3aepqRMFsZJnLxjkCaLZ0
+         875Lh6WjSpmBYpFf9DT1DC4T3KoGBuObUdboOFslbdOtor6+DHCd3AML5pk8c/mFGg
+         pesH0n4e1Z4P8irpmmi+IE5oTUb5iwuXE3VYBY8xEyYZiC/gW7//srJ+WfKARRCQbs
+         MFY10CLu6hSm+n62EeVtgdRLu/AGg6RejjppL2tD7zcElpzHUoYfDgdMrqDi36aU34
+         Nots5+nhir9dunFyzmBOIeqZuUpviycPfbFQZnORxXCoo3rjnzJLSPO0dg8i/N3N7n
+         tTCCAslARt4iQ==
+Date:   Wed, 24 Nov 2021 13:17:03 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
+Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
+ supported_interfaces with modes from fwnode
+Message-ID: <20211124131703.30176315@thinkpad>
+In-Reply-To: <20211124120441.i7735czjm5k3mkwh@skbuf>
+References: <20211123164027.15618-1-kabel@kernel.org>
+        <20211123164027.15618-5-kabel@kernel.org>
+        <20211123212441.qwgqaad74zciw6wj@skbuf>
+        <20211123232713.460e3241@thinkpad>
+        <20211123225418.skpnnhnrsdqrwv5f@skbuf>
+        <YZ4cRWkEO+l1W08u@shell.armlinux.org.uk>
+        <20211124120441.i7735czjm5k3mkwh@skbuf>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
+On Wed, 24 Nov 2021 14:04:41 +0200
+Vladimir Oltean <olteanv@gmail.com> wrote:
 
-rogerq@kernel.org wrote on Tue, 23 Nov 2021 12:36:09 +0200:
-
-> AM64 SoC has an issue which prevents proper 8-bit and 16-bit
-> reads from GPMC. We are limited to do 32-bit reads only.
-
-First, thanks for this series!
-
-> Force 32-bit only reads on affected platforms.
+> On Wed, Nov 24, 2021 at 11:04:37AM +0000, Russell King (Oracle) wrote:
+> > On Wed, Nov 24, 2021 at 12:54:18AM +0200, Vladimir Oltean wrote:  
+> > > This implies that when you bring up a board and write the device tree
+> > > for it, you know that PHY mode X works without ever testing it. What if
+> > > it doesn't work when you finally add support for it? Now you already
+> > > have one DT blob in circulation. That's why I'm saying that maybe it
+> > > could be better if we could think in terms that are a bit more physical
+> > > and easy to characterize.  
+> > 
+> > However, it doesn't solve the problem. Let's take an example.
+> > 
+> > The 3310 supports a mode where it runs in XAUI/5GBASE-R/2500BASE-X/SGMII
+> > depending on the negotiated media parameters.
+> > 
+> > XAUI is four lanes of 3.125Gbaud.
+> > 5GBASE-R is one lane of 5.15625Gbaud.
+> > 
+> > Let's say you're using this, and test the 10G speed using XAUI,
+> > intending the other speeds to work. So you put in DT that you support
+> > four lanes and up to 5.15625Gbaud.  
 > 
+> Yes, see, the blame's on you if you do that.You effectively declared
+> that the lane is able of sustaining a data rate higher than you've
+> actually had proof it does (5.156 vs 3.125).
 
-Please change the commit title prefix to: "mtd: rawnand: omap2:" in
-patch 2, 3, 4.
- 
-> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> ---
->  drivers/mtd/nand/raw/omap2.c | 35 +++++++++++++++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
+But the blame is on the DT writer in the same way if they declare
+support for a PHY mode that wasn't tested. (Or at least self-tests with
+PRBS patterns at given frequency.)
+
+> The reason why I'm making this suggestion is because I think it lends
+> itself better to the way in which hardware manufacturers work.
+> A hobbyist like me has no choice than to test the highest data rate when
+> determining what frequency to declare in the DT (it's the same thing for
+> spi-max-frequency and other limilar DT properties, really), but hardware
+> people have simulations based on IBIS-AMI models, they can do SERDES
+> self-tests using PRBS patterns, lots of stuff to characterize what
+> frequency a lane is rated for, without actually speaking any Ethernet
+> protocol on it. In fact there are lots of people who can do this stuff
+> (which I know mostly nothing about) with precision without even knowing
+> how to even type a simple "ls" inside a Linux shell.
+>
+> > Later, you discover that 5GBASE-R doesn't work because there's an
+> > electrical issue with the board. You now have DT in circulation
+> > which doesn't match the capabilities of the hardware.
+> > 
+> > How is this any different from the situation you describe above?
+> > To me, it seems to be exactly the same problem.  
 > 
-> diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
-> index f1fc146e09b9..d952de771b35 100644
-> --- a/drivers/mtd/nand/raw/omap2.c
-> +++ b/drivers/mtd/nand/raw/omap2.c
-> @@ -28,6 +28,7 @@
->  
->  #include <linux/omap-gpmc.h>
->  #include <linux/platform_data/mtd-nand-omap2.h>
-> +#include <linux/sys_soc.h>
->  
->  #define	DRIVER_NAME	"omap2-nand"
->  #define	OMAP_NAND_TIMEOUT_MS	5000
-> @@ -181,6 +182,7 @@ struct omap_nand_info {
->  	void (*data_out)(struct nand_chip *chip,
->  			 const void *buf, unsigned int len,
->  			 bool force_8bit);
-> +	bool force_32bit;
+> To err is human, of course. But one thing I think we learned from the
+> old implementation of phylink_validate is that it gets very tiring to
+> keep adding PHY modes, and we always seem to miss some. When that array
+> will be described in DT, it could be just a tad more painful to maintain.
 
-I believe we should have a driver capability instead of something in
-the info structure. You can save the value here as well in the probe if
-you want, but I would like this limitation to be tied to the
-compatible.
+The thing is that we will still need the `phy-mode` property, it can't
+be deprecated IMO. There are non-SerDes modes, like rgmii, which may
+use different pins than SerDes modes.
+There may theoretically also be a SoC or PHY where the lanes for XAUI
+do not share pins with the lane of 2500base-x, and this lane may not be
+wired. Tis true that I don't know of any such hardware and it probably
+does not and will not exist, but we don't know that for sure and this is
+a case where your proposal will fail and the phy-mode extension would
+work nicely.
 
->  };
->  
->  static inline struct omap_nand_info *mtd_to_omap(struct mtd_info *mtd)
-> @@ -2070,6 +2072,25 @@ static void omap_nand_data_in(struct nand_chip *chip, void *buf,
->  	struct omap_nand_info *info = mtd_to_omap(nand_to_mtd(chip));
->  	u32 alignment = ((uintptr_t)buf | len) & 3;
->  
-> +	if (info->force_32bit) {
+Maybe we need opinions from other people here.
 
-I am a little bit bothered by this limitation. The force8_bit flag does
-not require the driver to read only 8-bits of the fifo register, it
-actually requires to use only the first 8-bits of the NAND bus (which
-can also be 16-bit wide). The older implementation just limited the
-number of bits reads to be 8 with ioread8, which seems to be a fine
-solution but would require more accesses than using ioread16 (or
-ioread32) when reading more than 1 byte on platforms with only 8-bit
-busses.
-
-My point here is that:
-1- the limited controllers cannot be used with a 16-bit bus
-2- non-limited controllers can use ioread16 if the bus width is 8-bits
-
-I guess it's fine not to change the logic to avoid breaking boards so
-we can just ignore [2] but I belive we should check chip->options &
-NAND_BUSWIDTH_16 in ->attach_chip() and refuse probing if this flag is
-set.
-
-> +		u32 val;
-> +		int left;
-> +		u8 *ptr;
-> +
-> +		ioread32_rep(info->fifo, buf, len >> 2);
-> +		left = len & 0x3;
-> +		if (left) {
-> +			val = ioread32(info->fifo);
-> +			ptr = (u8 *)(buf + (len - left));
-> +			while (left--) {
-> +				*ptr++ = val & 0xff;
-> +				val >>= 8;
-> +			}
-> +		}
-> +
-> +		return;
-> +	}
-> +
->  	if (force_8bit || (alignment & 1))
->  		ioread8_rep(info->fifo, buf, len);
->  	else if (alignment & 3)
-> @@ -2169,8 +2190,15 @@ static const struct nand_controller_ops omap_nand_controller_ops = {
->  static struct nand_controller omap_gpmc_controller;
->  static bool omap_gpmc_controller_initialized;
->  
-> +static const struct of_device_id omap_nand_ids[];
-> +
-
-I believe this change should be dropped.
-
->  static int omap_nand_probe(struct platform_device *pdev)
->  {
-> +	const struct soc_device_attribute k3_soc_devices[] = {
-> +		{ .family = "AM64X", .revision = "SR1.0" },
-> +		{ /* sentinel */ }
-> +	};
-> +
->  	struct omap_nand_info		*info;
->  	struct mtd_info			*mtd;
->  	struct nand_chip		*nand_chip;
-> @@ -2186,6 +2214,12 @@ static int omap_nand_probe(struct platform_device *pdev)
->  
->  	info->pdev = pdev;
->  
-> +	/* Some SoC's have 32-bit at least, read limitation */
-> +	if (soc_device_match(k3_soc_devices)) {
-> +		dev_info(&pdev->dev, "force 32-bit\n");
-> +		info->force_32bit = true;
-> +	}
-> +
-
-As suggested above, just adding a capability structure tied to the
-compatible string and retrieved with of_device_get_match_data() should
-be enough and replace this manual tree research.
-
->  	err = omap_get_dt_info(dev, info);
->  	if (err)
->  		return err;
-> @@ -2286,6 +2320,7 @@ static int omap_nand_remove(struct platform_device *pdev)
->  
->  static const struct of_device_id omap_nand_ids[] = {
->  	{ .compatible = "ti,omap2-nand", },
-> +	{ .compatible = "ti,am64-nand", },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, omap_nand_ids);
-
-The conversion to exec_op looks fine otherwise :)
-
-Thanks,
-Miquèl
+Marek
