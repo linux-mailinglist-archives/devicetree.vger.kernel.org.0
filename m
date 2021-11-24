@@ -2,188 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63C5B45B4A3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 07:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 16F8045B4BC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 07:57:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239452AbhKXG5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 01:57:22 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:45240 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S239091AbhKXG5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 01:57:21 -0500
-X-UUID: dc1854d3feed443aa8e7ec0b1cff3cbf-20211124
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=OaRtEOGGMmiRn/H3diaADGCQgeom+N8hKNmmNRonjuE=;
-        b=C3EkypPALXr0KI+SwWPYlHk94YwnQ/ez7Sg82+7+2KP7YLW3/CaVJIBBjwMLTbNDM5ZZexo45K+nGNUbMVnRpwtqlif5BQwWOpRPQ6ohupZT/AAQKidjFtiKXMDh/wa4THbBTvYM6Cv+4d4BaUaT2/ES6+6l2SBp6HYz0IOXLv0=;
-X-UUID: dc1854d3feed443aa8e7ec0b1cff3cbf-20211124
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 969233527; Wed, 24 Nov 2021 14:54:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 24 Nov 2021 14:54:08 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 24 Nov 2021 14:54:07 +0800
-Message-ID: <1e51d7bf0e77ddb4d558f0a4407dec5cdc1bc35e.camel@mediatek.com>
-Subject: Re: [PATCH 5/6] phy: phy-mtk-tphy: add support efuse setting
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        "Yz Wu" <yz.wu@mediatek.com>
-Date:   Wed, 24 Nov 2021 14:54:07 +0800
-In-Reply-To: <YZuAab3j+flr1xXj@matsya>
-References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
-         <20211107075646.4366-5-chunfeng.yun@mediatek.com> <YZuAab3j+flr1xXj@matsya>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        id S237694AbhKXHBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 02:01:03 -0500
+Received: from mx24.baidu.com ([111.206.215.185]:55620 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S229549AbhKXHBD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 02:01:03 -0500
+Received: from BC-Mail-Ex17.internal.baidu.com (unknown [172.31.51.11])
+        by Forcepoint Email with ESMTPS id A792F2A0726A6D0228D;
+        Wed, 24 Nov 2021 14:57:49 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-Ex17.internal.baidu.com (172.31.51.11) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 14:57:49 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 14:57:48 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     <caihuoqing@baidu.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-staging@lists.linux.dev>
+Subject: [PATCH 0/3] staging: zynpu: Add driver support for ARM(China) ZHOUYI AI accelerator
+Date:   Wed, 24 Nov 2021 14:57:37 +0800
+Message-ID: <20211124065743.421-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex24.internal.baidu.com (172.31.51.18) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIxLTExLTIyIGF0IDE3OjA1ICswNTMwLCBWaW5vZCBLb3VsIHdyb3RlOg0KPiBP
-biAwNy0xMS0yMSwgMTU6NTYsIENodW5mZW5nIFl1biB3cm90ZToNCj4gPiBEdWUgdG8gc29tZSBT
-b0NzIGhhdmUgYSBiaXQgc2hpZnQgaXNzdWUgdGhhdCB3aWxsIGRyb3AgYSBiaXQgZm9yDQo+ID4g
-dXNiMw0KPiA+IHBoeSBvciBwY2llIHBoeSwgZml4IGl0IGJ5IGFkZGluZyBzb2Z0d2FyZSBlZnVz
-ZSByZWFkaW5nIGFuZA0KPiA+IHNldHRpbmcsDQo+ID4gYnV0IG9ubHkgc3VwcG9ydCBpdCBvcHRp
-b25hbGx5IGZvciB2ZXJzb2luIDIvMy4NCj4gDQo+IHMvdmVyc29pbi92ZXJzaW9uDQpPaw0KPiAN
-Cj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRp
-YXRlay5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvcGh5L21lZGlhdGVrL3BoeS1tdGstdHBo
-eS5jIHwgMTYyDQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUg
-Y2hhbmdlZCwgMTYyIGluc2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9waHkvbWVkaWF0ZWsvcGh5LW10ay10cGh5LmMNCj4gPiBiL2RyaXZlcnMvcGh5L21lZGlhdGVr
-L3BoeS1tdGstdHBoeS5jDQo+ID4gaW5kZXggY2RjZWY4NjVmZTllLi4zYjViMWMyNjY1OTUgMTAw
-NjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9waHkvbWVkaWF0ZWsvcGh5LW10ay10cGh5LmMNCj4gPiAr
-KysgYi9kcml2ZXJzL3BoeS9tZWRpYXRlay9waHktbXRrLXRwaHkuYw0KPiA+IEBAIC0xMiw2ICsx
-Miw3IEBADQo+ID4gICNpbmNsdWRlIDxsaW51eC9pb3BvbGwuaD4NCj4gPiAgI2luY2x1ZGUgPGxp
-bnV4L21mZC9zeXNjb24uaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+ICsj
-aW5jbHVkZSA8bGludXgvbnZtZW0tY29uc3VtZXIuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L29m
-X2FkZHJlc3MuaD4NCj4gPiAgI2luY2x1ZGUgPGxpbnV4L29mX2RldmljZS5oPg0KPiA+ICAjaW5j
-bHVkZSA8bGludXgvcGh5L3BoeS5oPg0KPiA+IEBAIC00MSw2ICs0Miw5IEBADQo+ID4gICNkZWZp
-bmUgU1NVU0JfU0lGU0xWX1YyX1UzUEhZRAkJMHgyMDANCj4gPiAgI2RlZmluZSBTU1VTQl9TSUZT
-TFZfVjJfVTNQSFlBCQkweDQwMA0KPiA+ICANCj4gPiArI2RlZmluZSBVM1BfTUlTQ19SRUcxCQkw
-eDA0DQo+ID4gKyNkZWZpbmUgTVIxX0VGVVNFX0FVVE9fTE9BRF9ESVMJCUJJVCg2KQ0KPiA+ICsN
-Cj4gPiAgI2RlZmluZSBVM1BfVVNCUEhZQUNSMAkJMHgwMDANCj4gPiAgI2RlZmluZSBQQTBfUkdf
-VTJQTExfRk9SQ0VfT04JCUJJVCgxNSkNCj4gPiAgI2RlZmluZSBQQTBfVVNCMjBfUExMX1BSRURJ
-VgkJR0VOTUFTSyg3LCA2KQ0KPiA+IEBAIC0xMzMsNiArMTM3LDggQEANCj4gPiAgI2RlZmluZSBQ
-M0NfUkdfU1dSU1RfVTNfUEhZRF9GT1JDRV9FTglCSVQoMjQpDQo+ID4gIA0KPiA+ICAjZGVmaW5l
-IFUzUF9VM19QSFlBX1JFRzAJMHgwMDANCj4gPiArI2RlZmluZSBQM0FfUkdfSUVYVF9JTlRSCQlH
-RU5NQVNLKDE1LCAxMCkNCj4gPiArI2RlZmluZSBQM0FfUkdfSUVYVF9JTlRSX1ZBTCh4KQkJKCgw
-eDNmICYgKHgpKSA8PCAxMCkNCj4gPiAgI2RlZmluZSBQM0FfUkdfQ0xLRFJWX09GRgkJR0VOTUFT
-SygzLCAyKQ0KPiA+ICAjZGVmaW5lIFAzQV9SR19DTEtEUlZfT0ZGX1ZBTCh4KQkoKDB4MyAmICh4
-KSkgPDwgMikNCj4gPiAgDQo+ID4gQEAgLTE4Nyw2ICsxOTMsMTkgQEANCj4gPiAgI2RlZmluZSBQ
-M0RfUkdfRldBS0VfVEgJCUdFTk1BU0soMjEsIDE2KQ0KPiA+ICAjZGVmaW5lIFAzRF9SR19GV0FL
-RV9USF9WQUwoeCkJKCgweDNmICYgKHgpKSA8PCAxNikNCj4gPiAgDQo+ID4gKyNkZWZpbmUgVTNQ
-X1UzX1BIWURfSU1QQ0FMMAkJMHgwMTANCj4gPiArI2RlZmluZSBQM0RfUkdfRk9SQ0VfVFhfSU1Q
-RUwJCUJJVCgzMSkNCj4gPiArI2RlZmluZSBQM0RfUkdfVFhfSU1QRUwJCQlHRU5NQVNLKDI4LCAy
-NCkNCj4gPiArI2RlZmluZSBQM0RfUkdfVFhfSU1QRUxfVkFMKHgpCQkoKDB4MWYgJiAoeCkpIDw8
-IDI0KQ0KPiA+ICsNCj4gPiArI2RlZmluZSBVM1BfVTNfUEhZRF9JTVBDQUwxCQkweDAxNA0KPiA+
-ICsjZGVmaW5lIFAzRF9SR19GT1JDRV9SWF9JTVBFTAkJQklUKDMxKQ0KPiA+ICsjZGVmaW5lIFAz
-RF9SR19SWF9JTVBFTAkJCUdFTk1BU0soMjgsIDI0KQ0KPiA+ICsjZGVmaW5lIFAzRF9SR19SWF9J
-TVBFTF9WQUwoeCkJCSgoMHgxZiAmICh4KSkgPDwgMjQpDQo+ID4gKw0KPiA+ICsjZGVmaW5lIFUz
-UF9VM19QSFlEX1JTVgkJCTB4MDU0DQo+ID4gKyNkZWZpbmUgUDNEX1JHX0VGVVNFX0FVVE9fTE9B
-RF9ESVMJQklUKDEyKQ0KPiA+ICsNCj4gPiAgI2RlZmluZSBVM1BfVTNfUEhZRF9DRFIxCQkweDA1
-Yw0KPiA+ICAjZGVmaW5lIFAzRF9SR19DRFJfQklSX0xURDEJCUdFTk1BU0soMjgsIDI0KQ0KPiA+
-ICAjZGVmaW5lIFAzRF9SR19DRFJfQklSX0xURDFfVkFMKHgpCSgoMHgxZiAmICh4KSkgPDwgMjQp
-DQo+ID4gQEAgLTMwNyw2ICszMjYsMTEgQEAgc3RydWN0IG10a19waHlfcGRhdGEgew0KPiA+ICAJ
-ICogNDhNIFBMTCwgZml4IGl0IGJ5IHN3aXRjaGluZyBQTEwgdG8gMjZNIGZyb20gZGVmYXVsdCA0
-OE0NCj4gPiAgCSAqLw0KPiA+ICAJYm9vbCBzd19wbGxfNDhtX3RvXzI2bTsNCj4gPiArCS8qDQo+
-ID4gKwkgKiBTb21lIFNvQ3MgKGUuZy4gbXQ4MTk1KSBkcm9wIGEgYml0IHdoZW4gdXNlIGF1dG8g
-bG9hZCBlZnVzZSwNCj4gPiArCSAqIHN1cHBvcnQgc3cgd2F5LCBhbHNvIHN1cHBvcnQgaXQgZm9y
-IHYyL3YzIG9wdGlvbmFsbHkuDQo+ID4gKwkgKi8NCj4gPiArCWJvb2wgc3dfZWZ1c2Vfc3VwcG9y
-dGVkOw0KPiA+ICAJZW51bSBtdGtfcGh5X3ZlcnNpb24gdmVyc2lvbjsNCj4gPiAgfTsNCj4gPiAg
-DQo+ID4gQEAgLTMzNiw2ICszNjAsMTAgQEAgc3RydWN0IG10a19waHlfaW5zdGFuY2Ugew0KPiA+
-ICAJc3RydWN0IHJlZ21hcCAqdHlwZV9zdzsNCj4gPiAgCXUzMiB0eXBlX3N3X3JlZzsNCj4gPiAg
-CXUzMiB0eXBlX3N3X2luZGV4Ow0KPiA+ICsJdTMyIGVmdXNlX3N3X2VuOw0KPiA+ICsJdTMyIGVm
-dXNlX2ludHI7DQo+ID4gKwl1MzIgZWZ1c2VfdHhfaW1wOw0KPiA+ICsJdTMyIGVmdXNlX3J4X2lt
-cDsNCj4gPiAgCWludCBleWVfc3JjOw0KPiA+ICAJaW50IGV5ZV92cnQ7DQo+ID4gIAlpbnQgZXll
-X3Rlcm07DQo+ID4gQEAgLTEwNDAsNiArMTA2OCwxMzAgQEAgc3RhdGljIGludCBwaHlfdHlwZV9z
-ZXQoc3RydWN0DQo+ID4gbXRrX3BoeV9pbnN0YW5jZSAqaW5zdGFuY2UpDQo+ID4gIAlyZXR1cm4g
-MDsNCj4gPiAgfQ0KPiA+ICANCj4gPiArc3RhdGljIGludCBwaHlfZWZ1c2VfZ2V0KHN0cnVjdCBt
-dGtfdHBoeSAqdHBoeSwgc3RydWN0DQo+ID4gbXRrX3BoeV9pbnN0YW5jZSAqaW5zdGFuY2UpDQo+
-ID4gK3sNCj4gPiArCXN0cnVjdCBkZXZpY2UgKmRldiA9ICZpbnN0YW5jZS0+cGh5LT5kZXY7DQo+
-ID4gKwlpbnQgcmV0ID0gMDsNCj4gPiArDQo+ID4gKwkvKiB0cGh5IHYxIGRvZXNuJ3Qgc3VwcG9y
-dCBzdyBlZnVzZSwgc2tpcCBpdCAqLw0KPiA+ICsJaWYgKCF0cGh5LT5wZGF0YS0+c3dfZWZ1c2Vf
-c3VwcG9ydGVkKSB7DQo+ID4gKwkJaW5zdGFuY2UtPmVmdXNlX3N3X2VuID0gMDsNCj4gPiArCQly
-ZXR1cm4gMDsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwkvKiBzb2Z0d2FyZSBlZnVzZSBpcyBvcHRp
-b25hbCAqLw0KPiA+ICsJaW5zdGFuY2UtPmVmdXNlX3N3X2VuID0gZGV2aWNlX3Byb3BlcnR5X3Jl
-YWRfYm9vbChkZXYsICJudm1lbS0NCj4gPiBjZWxscyIpOw0KPiA+ICsJaWYgKCFpbnN0YW5jZS0+
-ZWZ1c2Vfc3dfZW4pDQo+ID4gKwkJcmV0dXJuIDA7DQo+ID4gKw0KPiA+ICsJc3dpdGNoIChpbnN0
-YW5jZS0+dHlwZSkgew0KPiA+ICsJY2FzZSBQSFlfVFlQRV9VU0IyOg0KPiA+ICsJCXJldCA9IG52
-bWVtX2NlbGxfcmVhZF92YXJpYWJsZV9sZV91MzIoZGV2LCAiaW50ciIsDQo+ID4gJmluc3RhbmNl
-LT5lZnVzZV9pbnRyKTsNCj4gPiArCQlpZiAocmV0KSB7DQo+ID4gKwkJCWRldl9lcnIoZGV2LCAi
-ZmFpbCB0byBnZXQgdTIgaW50ciBlZnVzZSwgJWRcbiIsDQo+ID4gcmV0KTsNCj4gPiArCQkJYnJl
-YWs7DQo+ID4gKwkJfQ0KPiA+ICsNCj4gPiArCQkvKiBubyBlZnVzZSwgaWdub3JlIGl0ICovDQo+
-ID4gKwkJaWYgKCFpbnN0YW5jZS0+ZWZ1c2VfaW50cikgew0KPiA+ICsJCQlkZXZfd2FybihkZXYs
-ICJubyB1MiBpbnRyIGVmdXNlLCBidXQgZHRzIGVuYWJsZQ0KPiA+IGl0XG4iKTsNCj4gPiArCQkJ
-aW5zdGFuY2UtPmVmdXNlX3N3X2VuID0gMDsNCj4gPiArCQkJYnJlYWs7DQo+ID4gKwkJfQ0KPiAN
-Cj4gV2hhdCBkb2VzIHRoaXMgY2hlY2sgZG8uLi4/IHNvIGEgemVybyB2YWx1ZSBpcyBub3QgdmFs
-aWQuLj8NClllcywgYmVjYXVzZSBpdCdzIGFsc28gemVybyBmb3IgU29DIHdpdGhvdXQgZWZ1c2Us
-IHByZWZlciB0byB1c2UNCmRlZmF1bHQgdmFsdWUgaW5zdGVhZC4NCg0KPiANCj4gPiArDQo+ID4g
-KwkJZGV2X2luZm8oZGV2LCAidTIgZWZ1c2UgLSBpbnRyICV4XG4iLCBpbnN0YW5jZS0NCj4gPiA+
-ZWZ1c2VfaW50cik7DQo+IA0KPiBkZXZfZGJnKCk/DQpXZSB1c3VhbGx5IHVzZSBIVyBhdXRvIGxv
-YWQgd2F5LCBwcmludCB0aGlzIGxvZyBjYW4gaGVscCB0byBwb2ludCBvdXQNCnRoYXQgaXQncyBz
-cGVjaWZpYyBTb0MuDQoNCj4gDQo+ID4gKwkJYnJlYWs7DQo+IA0KPiBlbXB0eSBsaW5lIGFmdGVy
-IGJyZWFrIGltcHJvdmVzIHJlYWRhYmlsaXR5LCBwbHMgYWRkDQpPaw0KPiANCj4gPiArCWNhc2Ug
-UEhZX1RZUEVfVVNCMzoNCj4gPiArCWNhc2UgUEhZX1RZUEVfUENJRToNCj4gPiArCQlyZXQgPSBu
-dm1lbV9jZWxsX3JlYWRfdmFyaWFibGVfbGVfdTMyKGRldiwgImludHIiLA0KPiA+ICZpbnN0YW5j
-ZS0+ZWZ1c2VfaW50cik7DQo+ID4gKwkJaWYgKHJldCkgew0KPiA+ICsJCQlkZXZfZXJyKGRldiwg
-ImZhaWwgdG8gZ2V0IHUzIGludHIgZWZ1c2UsICVkXG4iLA0KPiA+IHJldCk7DQo+ID4gKwkJCWJy
-ZWFrOw0KPiA+ICsJCX0NCj4gDQo+IFRoaXMgc2VlbXMgdG8gYmUgY29tbW9uLCB3aHkgbm90IHJl
-YWQgdGhpcyBiZWZvcmUgc3dpdGNoPw0KSXQncyBub3QgdXNlZCBmb3IgU0dNSUkgb3IgU0FUQSwg
-YnV0IG5vdCBhcHBsaWVkIHVudGlsIG5vdw0KDQo+IA0KPiA+ICsNCj4gPiArCQlyZXQgPSBudm1l
-bV9jZWxsX3JlYWRfdmFyaWFibGVfbGVfdTMyKGRldiwgInJ4X2ltcCIsDQo+ID4gJmluc3RhbmNl
-LT5lZnVzZV9yeF9pbXApOw0KPiA+ICsJCWlmIChyZXQpIHsNCj4gPiArCQkJZGV2X2VycihkZXYs
-ICJmYWlsIHRvIGdldCB1MyByeF9pbXAgZWZ1c2UsDQo+ID4gJWRcbiIsIHJldCk7DQo+ID4gKwkJ
-CWJyZWFrOw0KPiA+ICsJCX0NCj4gPiArDQo+ID4gKwkJcmV0ID0gbnZtZW1fY2VsbF9yZWFkX3Zh
-cmlhYmxlX2xlX3UzMihkZXYsICJ0eF9pbXAiLA0KPiA+ICZpbnN0YW5jZS0+ZWZ1c2VfdHhfaW1w
-KTsNCj4gPiArCQlpZiAocmV0KSB7DQo+ID4gKwkJCWRldl9lcnIoZGV2LCAiZmFpbCB0byBnZXQg
-dTMgdHhfaW1wIGVmdXNlLA0KPiA+ICVkXG4iLCByZXQpOw0KPiA+ICsJCQlicmVhazsNCj4gPiAr
-CQl9DQo+ID4gKw0KPiA+ICsJCS8qIG5vIGVmdXNlLCBpZ25vcmUgaXQgKi8NCj4gPiArCQlpZiAo
-IWluc3RhbmNlLT5lZnVzZV9pbnRyICYmDQo+ID4gKwkJICAgICFpbnN0YW5jZS0+ZWZ1c2Vfcnhf
-aW1wICYmDQo+ID4gKwkJICAgICFpbnN0YW5jZS0+ZWZ1c2VfcnhfaW1wKSB7DQo+ID4gKwkJCWRl
-dl93YXJuKGRldiwgIm5vIHUzIGludHIgZWZ1c2UsIGJ1dCBkdHMgZW5hYmxlDQo+ID4gaXRcbiIp
-Ow0KPiA+ICsJCQlpbnN0YW5jZS0+ZWZ1c2Vfc3dfZW4gPSAwOw0KPiA+ICsJCQlicmVhazsNCj4g
-PiArCQl9DQo+IA0KPiBhZ2FpbiwgemVybyB2YWx1ZXMgYXJlIG5vdCB2YWxpZD8NCkl0J3MgYWxz
-byB6ZXJvIGZvciBTb0Mgd2l0aG91dCBlZnVzZSwgdHJlYXQgaXQgYXMgaW52YWxpZCB2YWx1ZQ0K
-DQo+IA0KPiA+ICsNCj4gPiArCQlkZXZfaW5mbyhkZXYsICJ1MyBlZnVzZSAtIGludHIgJXgsIHJ4
-X2ltcCAleCwgdHhfaW1wDQo+ID4gJXhcbiIsDQo+ID4gKwkJCSBpbnN0YW5jZS0+ZWZ1c2VfaW50
-ciwgaW5zdGFuY2UtPmVmdXNlX3J4X2ltcCwNCj4gPiArCQkJIGluc3RhbmNlLT5lZnVzZV90eF9p
-bXApOw0KPiANCj4gZGJnIHBscw0KT2sNCj4gDQo+ID4gKwkJYnJlYWs7DQo+ID4gKwlkZWZhdWx0
-Og0KPiA+ICsJCWRldl9lcnIoZGV2LCAibm8gc3cgZWZ1c2UgZm9yIHR5cGUgJWRcbiIsIGluc3Rh
-bmNlLQ0KPiA+ID50eXBlKTsNCj4gPiArCQlyZXQgPSAtRUlOVkFMOw0KPiA+ICsJfQ0KPiA+ICsN
-Cj4gPiArCXJldHVybiByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyB2b2lkIHBoeV9l
-ZnVzZV9zZXQoc3RydWN0IG10a19waHlfaW5zdGFuY2UgKmluc3RhbmNlKQ0KPiA+ICt7DQo+ID4g
-KwlzdHJ1Y3QgZGV2aWNlICpkZXYgPSAmaW5zdGFuY2UtPnBoeS0+ZGV2Ow0KPiA+ICsJc3RydWN0
-IHUycGh5X2JhbmtzICp1Ml9iYW5rcyA9ICZpbnN0YW5jZS0+dTJfYmFua3M7DQo+ID4gKwlzdHJ1
-Y3QgdTNwaHlfYmFua3MgKnUzX2JhbmtzID0gJmluc3RhbmNlLT51M19iYW5rczsNCj4gPiArCXUz
-MiB0bXA7DQo+ID4gKw0KPiA+ICsJaWYgKCFpbnN0YW5jZS0+ZWZ1c2Vfc3dfZW4pDQo+ID4gKwkJ
-cmV0dXJuOw0KPiA+ICsNCj4gPiArCXN3aXRjaCAoaW5zdGFuY2UtPnR5cGUpIHsNCj4gPiArCWNh
-c2UgUEhZX1RZUEVfVVNCMjoNCj4gPiArCQl0bXAgPSByZWFkbCh1Ml9iYW5rcy0+bWlzYyArIFUz
-UF9NSVNDX1JFRzEpOw0KPiA+ICsJCXRtcCB8PSBNUjFfRUZVU0VfQVVUT19MT0FEX0RJUzsNCj4g
-PiArCQl3cml0ZWwodG1wLCB1Ml9iYW5rcy0+bWlzYyArIFUzUF9NSVNDX1JFRzEpOw0KPiA+ICsN
-Cj4gPiArCQl0bXAgPSByZWFkbCh1Ml9iYW5rcy0+Y29tICsgVTNQX1VTQlBIWUFDUjEpOw0KPiA+
-ICsJCXRtcCAmPSB+UEExX1JHX0lOVFJfQ0FMOw0KPiA+ICsJCXRtcCB8PSBQQTFfUkdfSU5UUl9D
-QUxfVkFMKGluc3RhbmNlLT5lZnVzZV9pbnRyKTsNCj4gPiArCQl3cml0ZWwodG1wLCB1Ml9iYW5r
-cy0+Y29tICsgVTNQX1VTQlBIWUFDUjEpOw0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSBQSFlf
-VFlQRV9VU0IzOg0KPiA+ICsJY2FzZSBQSFlfVFlQRV9QQ0lFOg0KPiA+ICsJCXRtcCA9IHJlYWRs
-KHUzX2JhbmtzLT5waHlkICsgVTNQX1UzX1BIWURfUlNWKTsNCj4gPiArCQl0bXAgfD0gUDNEX1JH
-X0VGVVNFX0FVVE9fTE9BRF9ESVM7DQo+ID4gKwkJd3JpdGVsKHRtcCwgdTNfYmFua3MtPnBoeWQg
-KyBVM1BfVTNfUEhZRF9SU1YpOw0KPiANCj4gYWRkIGEgdXBkYXRlbCgpIG1hY3JvIGFuZCB1c2Ug
-dGhpcyBoZXJlIGFuZCBvdGhlciBwbGFjZXM/DQpZb3UgbWVhbiBhZGQgbWFjcm8gdG8gc2V0L2Ns
-ZWFyIGJpdHM/DQpJZiBzbywgSSBuZWVkIHByZXBhcmUgYW5vdGhlciBwYXRjaCBmb3IgdGhpcyBw
-dXJwb3NlDQoNClRoYW5rcyBhIGxvdA0KDQo+IA0K
+ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
+such as Allwinner R329 SOC.
+Add driver support for this AI accelerator here.
+
+Cai Huoqing (3):
+  staging: zynpu: Add driver support for ARM(China) ZHOUYI AI
+    accelerator
+  dt-bindings: staging: Add the binding documentation for ZHOUYI AI
+    accelerator
+  MAINTAINERS: Add the driver info of the ZHOUYI AI accelerator
+
+ .../bindings/staging/arm,zynpu.yaml           |  61 ++
+ MAINTAINERS                                   |   6 +
+ drivers/staging/Kconfig                       |   2 +
+ drivers/staging/Makefile                      |   1 +
+ drivers/staging/zynpu/Kconfig                 |  34 +
+ drivers/staging/zynpu/Makefile                |   7 +
+ drivers/staging/zynpu/z1.c                    | 233 +++++
+ drivers/staging/zynpu/z2.c                    | 297 +++++++
+ drivers/staging/zynpu/zhouyi.h                |  70 ++
+ drivers/staging/zynpu/zhouyi_base.c           |  71 ++
+ drivers/staging/zynpu/zynpu.h                 | 252 ++++++
+ drivers/staging/zynpu/zynpu_core.c            | 254 ++++++
+ drivers/staging/zynpu/zynpu_drv.c             | 349 ++++++++
+ drivers/staging/zynpu/zynpu_fops.c            | 245 ++++++
+ drivers/staging/zynpu/zynpu_io.c              | 133 +++
+ drivers/staging/zynpu/zynpu_io.h              | 119 +++
+ drivers/staging/zynpu/zynpu_irq.c             | 123 +++
+ drivers/staging/zynpu/zynpu_irq.h             |  85 ++
+ drivers/staging/zynpu/zynpu_job_manager.c     | 467 ++++++++++
+ drivers/staging/zynpu/zynpu_job_manager.h     | 200 +++++
+ drivers/staging/zynpu/zynpu_mm.c              | 704 +++++++++++++++
+ drivers/staging/zynpu/zynpu_mm.h              | 142 +++
+ drivers/staging/zynpu/zynpu_session.c         | 817 ++++++++++++++++++
+ drivers/staging/zynpu/zynpu_session.h         | 283 ++++++
+ drivers/staging/zynpu/zynpu_sysfs.c           | 205 +++++
+ 25 files changed, 5160 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/staging/arm,zynpu.yaml
+ create mode 100644 drivers/staging/zynpu/Kconfig
+ create mode 100644 drivers/staging/zynpu/Makefile
+ create mode 100644 drivers/staging/zynpu/z1.c
+ create mode 100644 drivers/staging/zynpu/z2.c
+ create mode 100644 drivers/staging/zynpu/zhouyi.h
+ create mode 100644 drivers/staging/zynpu/zhouyi_base.c
+ create mode 100644 drivers/staging/zynpu/zynpu.h
+ create mode 100644 drivers/staging/zynpu/zynpu_core.c
+ create mode 100644 drivers/staging/zynpu/zynpu_drv.c
+ create mode 100644 drivers/staging/zynpu/zynpu_fops.c
+ create mode 100644 drivers/staging/zynpu/zynpu_io.c
+ create mode 100644 drivers/staging/zynpu/zynpu_io.h
+ create mode 100644 drivers/staging/zynpu/zynpu_irq.c
+ create mode 100644 drivers/staging/zynpu/zynpu_irq.h
+ create mode 100644 drivers/staging/zynpu/zynpu_job_manager.c
+ create mode 100644 drivers/staging/zynpu/zynpu_job_manager.h
+ create mode 100644 drivers/staging/zynpu/zynpu_mm.c
+ create mode 100644 drivers/staging/zynpu/zynpu_mm.h
+ create mode 100644 drivers/staging/zynpu/zynpu_session.c
+ create mode 100644 drivers/staging/zynpu/zynpu_session.h
+ create mode 100644 drivers/staging/zynpu/zynpu_sysfs.c
+
+-- 
+2.25.1
 
