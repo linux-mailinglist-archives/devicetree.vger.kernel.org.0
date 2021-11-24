@@ -2,88 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8EB045B6B6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 09:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65AC345B6DA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 09:46:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241411AbhKXIpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 03:45:14 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:35954 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241410AbhKXIoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 03:44:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637743264; x=1669279264;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UIHMpNXddcd67qrfo49O4jdt/yShSMnZhW80ZeQOW54=;
-  b=iLidyrd0jAoXcztiP4hOXJmBV8qZPinKB57zRBS1ipe3mUHOPvz2oWuI
-   XQAUNCSxapELMDkoyqlQjWxWstJCB+TRbAZkibad+dZIlWWBTYBGU0XK5
-   N4gPr5WXqEpSwty8hjrFDBcrYlTCune1noFq7/b77n9D+xJ3GKT2OID9C
-   ehAnKoyOFBBwyifxRNC7gr0ylGdg4p39db63NK9KxUS+pgRXmjWE3OkCa
-   ka59bLOiwpxwYSoCaOinCFzSqsxz2cSnK51m+Wl9dltRGcuPtW0CfV9V+
-   L6akjqVLSfXJ9m7Cuvu10fxjwQcqiIg1ACVGO8u4EGV1TLZJ9mTc6Lh1L
-   Q==;
-IronPort-SDR: Hm3EhCbm/wvVsHvfi3G1ojrDmXhFFgPBZ1vArAo1qwgx1URL57KPK8PClXB/5uyl4mbQ/llOj3
- JMETNTkkYKLtoVXAtbs2NAT/LoTwmu0xvEYik9riTuPrjeF0QkXXRfeLRtBWo2Wl/GTa8QKi7k
- JXeoqGkvk2zM8WeJDc+Wy75VkWcrCLlfhk9MDqPPyWH8lM7ZbhGSEiZ3H68T1fiQF1CJHjOcPZ
- uKaamx+ROBN0RjvcNS5EY7dwa3EbuOADkMBDA/1r/Ns93uQiX2f7ZStRLpLovuoUYBZe8vFW2K
- 4CNfPjTnE5DnyPeZIbhZLMMJ
-X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
-   d="scan'208";a="153060774"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Nov 2021 01:41:02 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Wed, 24 Nov 2021 01:40:59 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Wed, 24 Nov 2021 01:40:57 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH net-next v3 6/6] net: lan966x: Update MAINTAINERS to include lan966x driver
-Date:   Wed, 24 Nov 2021 09:39:15 +0100
-Message-ID: <20211124083915.2223065-7-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211124083915.2223065-1-horatiu.vultur@microchip.com>
-References: <20211124083915.2223065-1-horatiu.vultur@microchip.com>
+        id S229905AbhKXItg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 03:49:36 -0500
+Received: from mx24.baidu.com ([111.206.215.185]:33848 "EHLO baidu.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230020AbhKXItg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 03:49:36 -0500
+Received: from BJHW-Mail-Ex09.internal.baidu.com (unknown [10.127.64.32])
+        by Forcepoint Email with ESMTPS id C590B89AF8D965F93731;
+        Wed, 24 Nov 2021 16:46:24 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BJHW-Mail-Ex09.internal.baidu.com (10.127.64.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 16:46:24 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Wed, 24 Nov 2021 16:46:24 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     <caihuoqing@baidu.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-staging@lists.linux.dev>
+Subject: [PATCH v2 0/3] staging: zynpu: Add driver support for ARM(China) ZHOUYI AI accelerator
+Date:   Wed, 24 Nov 2021 16:46:14 +0800
+Message-ID: <20211124084620.628-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex25.internal.baidu.com (172.31.51.19) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update MAINTAINERS to include lan966x driver
+ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
+such as Allwinner R329 SOC.
+Add driver support for this AI accelerator here.
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+v1->v2:
+        *Add TODO file
+        *Update changelog to explain why this code is added to staging 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 10c8ae3a8c73..722a00d8df9e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12513,6 +12513,13 @@ L:	netdev@vger.kernel.org
- S:	Maintained
- F:	drivers/net/ethernet/microchip/lan743x_*
- 
-+MICROCHIP LAN966X ETHERNET DRIVER
-+M:	Horatiu Vultur <horatiu.vultur@microchip.com>
-+M:	UNGLinuxDriver@microchip.com
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	drivers/net/ethernet/microchip/lan966x/*
-+
- MICROCHIP LCDFB DRIVER
- M:	Nicolas Ferre <nicolas.ferre@microchip.com>
- L:	linux-fbdev@vger.kernel.org
+Cai Huoqing (3):
+  staging: zynpu: Add driver support for ARM(China) ZHOUYI AI
+    accelerator
+  dt-bindings: staging: Add the binding documentation for ZHOUYI AI
+    accelerator
+  MAINTAINERS: Add the driver info of the ZHOUYI AI accelerator
+
+ .../bindings/staging/arm,zynpu.yaml           |  61 ++
+ MAINTAINERS                                   |   6 +
+ drivers/staging/Kconfig                       |   2 +
+ drivers/staging/Makefile                      |   1 +
+ drivers/staging/zynpu/Kconfig                 |  34 +
+ drivers/staging/zynpu/Makefile                |   7 +
+ drivers/staging/zynpu/TODO                    |  13 +
+ drivers/staging/zynpu/z1.c                    | 233 +++++
+ drivers/staging/zynpu/z2.c                    | 297 +++++++
+ drivers/staging/zynpu/zhouyi.h                |  70 ++
+ drivers/staging/zynpu/zhouyi_base.c           |  71 ++
+ drivers/staging/zynpu/zynpu.h                 | 252 ++++++
+ drivers/staging/zynpu/zynpu_core.c            | 254 ++++++
+ drivers/staging/zynpu/zynpu_drv.c             | 349 ++++++++
+ drivers/staging/zynpu/zynpu_fops.c            | 245 ++++++
+ drivers/staging/zynpu/zynpu_io.c              | 133 +++
+ drivers/staging/zynpu/zynpu_io.h              | 119 +++
+ drivers/staging/zynpu/zynpu_irq.c             | 123 +++
+ drivers/staging/zynpu/zynpu_irq.h             |  85 ++
+ drivers/staging/zynpu/zynpu_job_manager.c     | 467 ++++++++++
+ drivers/staging/zynpu/zynpu_job_manager.h     | 200 +++++
+ drivers/staging/zynpu/zynpu_mm.c              | 704 +++++++++++++++
+ drivers/staging/zynpu/zynpu_mm.h              | 142 +++
+ drivers/staging/zynpu/zynpu_session.c         | 817 ++++++++++++++++++
+ drivers/staging/zynpu/zynpu_session.h         | 283 ++++++
+ drivers/staging/zynpu/zynpu_sysfs.c           | 205 +++++
+ 26 files changed, 5173 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/staging/arm,zynpu.yaml
+ create mode 100644 drivers/staging/zynpu/Kconfig
+ create mode 100644 drivers/staging/zynpu/Makefile
+ create mode 100644 drivers/staging/zynpu/TODO
+ create mode 100644 drivers/staging/zynpu/z1.c
+ create mode 100644 drivers/staging/zynpu/z2.c
+ create mode 100644 drivers/staging/zynpu/zhouyi.h
+ create mode 100644 drivers/staging/zynpu/zhouyi_base.c
+ create mode 100644 drivers/staging/zynpu/zynpu.h
+ create mode 100644 drivers/staging/zynpu/zynpu_core.c
+ create mode 100644 drivers/staging/zynpu/zynpu_drv.c
+ create mode 100644 drivers/staging/zynpu/zynpu_fops.c
+ create mode 100644 drivers/staging/zynpu/zynpu_io.c
+ create mode 100644 drivers/staging/zynpu/zynpu_io.h
+ create mode 100644 drivers/staging/zynpu/zynpu_irq.c
+ create mode 100644 drivers/staging/zynpu/zynpu_irq.h
+ create mode 100644 drivers/staging/zynpu/zynpu_job_manager.c
+ create mode 100644 drivers/staging/zynpu/zynpu_job_manager.h
+ create mode 100644 drivers/staging/zynpu/zynpu_mm.c
+ create mode 100644 drivers/staging/zynpu/zynpu_mm.h
+ create mode 100644 drivers/staging/zynpu/zynpu_session.c
+ create mode 100644 drivers/staging/zynpu/zynpu_session.h
+ create mode 100644 drivers/staging/zynpu/zynpu_sysfs.c
+
 -- 
-2.33.0
+2.25.1
 
