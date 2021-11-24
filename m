@@ -2,139 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D954445B25C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 03:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C904745B25F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 03:59:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231394AbhKXDCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Nov 2021 22:02:37 -0500
-Received: from mail-io1-f50.google.com ([209.85.166.50]:41942 "EHLO
+        id S240704AbhKXDCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Nov 2021 22:02:43 -0500
+Received: from mail-io1-f50.google.com ([209.85.166.50]:43752 "EHLO
         mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240073AbhKXDCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 22:02:37 -0500
-Received: by mail-io1-f50.google.com with SMTP id y16so1308683ioc.8;
-        Tue, 23 Nov 2021 18:59:28 -0800 (PST)
+        with ESMTP id S231450AbhKXDCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Nov 2021 22:02:39 -0500
+Received: by mail-io1-f50.google.com with SMTP id z26so1294620iod.10;
+        Tue, 23 Nov 2021 18:59:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=X5nPMoox8dr33dKVv5jBLnAfhwzYs/fxVGeAdFP9yOI=;
-        b=5XmQ/o7+YMTWZXKzfKqJMozZ6kAJkLFjYjBipT+Z2ZSeAkDuzat5oUhumT39qMrwdp
-         Gcgyr1AxwdXmOrkxrNYtkegr39Yl1z/EMMg4M59fRB0DVXoTomMx7IILy9RD3l4MI6v6
-         q66o1P+pyWTzbHOpgFh/ptkSTEayOfgkNxqxLFiShJ37D67OeCpioIT2bBhgz6fTkYxx
-         qatVLU4JGq1tsf/mvGX8+BWNT2Rq+dVy7TAyePSYYyN+fsTjEcGkOEPiA1Dh4xYX5ygs
-         8isKWQMMgRHDZmshPEmcPj5CxOrJbSFjSFCuwN0CFLwvwt4O/o4HutgCbwoSimdLtlrK
-         Yc9w==
-X-Gm-Message-State: AOAM531Ghcmz4MuVf+Sj+bgnfFnikzksSfG+DYE7ht/wN8lWmZq481j0
-        ujVnU6y1Tut60renIax9qUs/dn3DuA==
-X-Google-Smtp-Source: ABdhPJwE2HXnaR9dFn/GlzP0BHlfzb/nn9RLpSxUfhFyHZGFQ+wMSzAKV3MWABhY8xNs8kY7yzRJ7A==
-X-Received: by 2002:a05:6602:2d07:: with SMTP id c7mr11117707iow.46.1637722767660;
-        Tue, 23 Nov 2021 18:59:27 -0800 (PST)
+        bh=hUyB8SMEZEe+wyhi5A4ravu9airL4cafjZQp9SXQVNw=;
+        b=IqVgIVYvlhWY18qCIn+Bzd4n2eHPsFKYqXXm4qnR1hzioaLNOpiMoPxvC7cFOaIWe8
+         APdpIlHrcwmVX+4MWlmecZ0n3wDXBBbC9qDC7peX7lqMGN3+RlCkQdh5Ye+Nrm7rdNcz
+         AoLdUO5oKLIDZSkeNeFzP+7czb0RIL7F1MXhw5h8YHMYPzZSuIkruvrgApb8BQazmyhd
+         7CiYwSEFXexMmPTfShx/cy+UQLQJI22Rsrway2ssWNllC9U+wdeVna0u9phoDayYEx5+
+         D7Pa/8vLi6zK8k+TsvVm/XVo/XIqZP0eZvs5eI1sVmmU5L72uawwXz9ilHkpqlwKLEQc
+         D5Jw==
+X-Gm-Message-State: AOAM531owkokzbNFqydZIZgBoqBHhafFKCKzcI2Cs8VdyQvTbTKl2va1
+        gXSYl8GSNtz1zo4VnChGdMR5/wpoIA==
+X-Google-Smtp-Source: ABdhPJxeQsgBpDAOtsETWCseXbp1sz848Ix20LrL1yEptsj4UjtqyKezE8HZZzhXVSIc9seyIhVb5g==
+X-Received: by 2002:a02:8663:: with SMTP id e90mr11391156jai.14.1637722769739;
+        Tue, 23 Nov 2021 18:59:29 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id n39sm9615024ioz.7.2021.11.23.18.59.26
+        by smtp.gmail.com with ESMTPSA id ay13sm9089587iob.37.2021.11.23.18.59.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Nov 2021 18:59:27 -0800 (PST)
-Received: (nullmailer pid 888174 invoked by uid 1000);
+        Tue, 23 Nov 2021 18:59:29 -0800 (PST)
+Received: (nullmailer pid 888172 invoked by uid 1000);
         Wed, 24 Nov 2021 02:59:21 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Dipen Patel <dipenp@nvidia.com>
-Cc:     thierry.reding@gmail.com, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        warthog618@gmail.com, jonathanh@nvidia.com,
-        linux-gpio@vger.kernel.org, bgolaszewski@baylibre.com,
-        linus.walleij@linaro.org
-In-Reply-To: <20211123193039.25154-5-dipenp@nvidia.com>
-References: <20211123193039.25154-1-dipenp@nvidia.com> <20211123193039.25154-5-dipenp@nvidia.com>
-Subject: Re: [RFC v3 04/12] dt-bindings: Add HTE bindings
+To:     Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <1637693434-15462-20-git-send-email-quic_mpubbise@quicinc.com>
+References: <1637693434-15462-1-git-send-email-quic_mpubbise@quicinc.com> <1637693434-15462-20-git-send-email-quic_mpubbise@quicinc.com>
+Subject: Re: [PATCH 19/19] dt: bindings: net: add bindings of WCN6750 for ath11k
 Date:   Tue, 23 Nov 2021 19:59:21 -0700
-Message-Id: <1637722761.026321.888173.nullmailer@robh.at.kernel.org>
+Message-Id: <1637722761.019285.888171.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Nov 2021 11:30:31 -0800, Dipen Patel wrote:
-> Introduces HTE devicetree binding details for the HTE subsystem. It
-> includes examples for the consumers, binding details for the providers
-> and specific binding details for the Tegra194 based HTE providers.
+On Wed, 24 Nov 2021 00:20:34 +0530, Manikanta Pubbisetty wrote:
+> Add WCN6750 wireless driver support, its based on ath11k driver.
 > 
-> Signed-off-by: Dipen Patel <dipenp@nvidia.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
 > ---
-> Changes in v2:
-> - Replace hte with hardware-timestamp for property names
-> - Renamed file
-> - Removed example from the common dt binding file.
-> 
-> Changes in v3:
-> - Addressed grammatical errors.
-> - Removed double plural from the respective properties.
-> - Added dual license.
-> - Prefixed "nvidia" in nvidia specific properties.
-> 
->  .../hte/hardware-timestamps-common.yaml       | 29 +++++++
->  .../devicetree/bindings/hte/hte-consumer.yaml | 48 +++++++++++
->  .../bindings/hte/nvidia,tegra194-hte.yaml     | 80 +++++++++++++++++++
->  3 files changed, 157 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hte/hardware-timestamps-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/hte/hte-consumer.yaml
->  create mode 100644 Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml
+>  .../bindings/net/wireless/qcom,ath11k.yaml         | 333 ++++++++++++++-------
+>  1 file changed, 225 insertions(+), 108 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml:57:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,slices:type: 'anyOf' conditional failed, one must be fixed:
-	'int' is not one of ['array', 'boolean', 'integer', 'null', 'number', 'object', 'string']
-	'int' is not of type 'array'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,slices:type: 'int' is not one of ['boolean', 'object']
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,slices: 'oneOf' conditional failed, one must be fixed:
-	Additional properties are not allowed ('enum' was unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('type' was unexpected)
-		hint: A vendor string property with exact values has an implicit type
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,slices: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	3 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	11 is not of type 'string'
-		hint: A vendor string property with exact values has an implicit type
-	'boolean' was expected
-		hint: A vendor boolean property can use "type: boolean"
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,int-threshold: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	Additional properties are not allowed ('minimum', 'maximum' were unexpected)
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,int-threshold: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: properties:nvidia,int-threshold: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml: ignoring, error in schema: properties: nvidia,slices: type
-warning: no schema found in file: ./Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.yaml
-Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.example.dt.yaml:0:0: /example-0/hardware-timestamp@c1e0000: failed to match any schema with compatible: ['nvidia,tegra194-gte-aon']
-Documentation/devicetree/bindings/hte/nvidia,tegra194-hte.example.dt.yaml:0:0: /example-1/hardware-timestamp@3aa0000: failed to match any schema with compatible: ['nvidia,tegra194-gte-lic']
+Documentation/devicetree/bindings/net/wireless/qcom,ath11k.example.dt.yaml:0:0: /example-1/remoteproc@8a00000: failed to match any schema with compatible: ['qcom,sc7280-wpss-pil']
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1558766
+See https://patchwork.ozlabs.org/patch/1558747
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
