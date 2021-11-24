@@ -2,192 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6B5F45B73F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BA5B45B74A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 10:21:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241455AbhKXJVP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 24 Nov 2021 04:21:15 -0500
-Received: from aposti.net ([89.234.176.197]:45226 "EHLO aposti.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229926AbhKXJVP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 04:21:15 -0500
-Date:   Wed, 24 Nov 2021 09:17:50 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH v8 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
- DT Schema
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh@kernel.org>
-Message-Id: <QHK23R.B5XN10D1VV2O1@crapouillou.net>
-In-Reply-To: <f97179a630e7d0fc739a118e2b321e1a6432876b.1637691240.git.hns@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
-        <f97179a630e7d0fc739a118e2b321e1a6432876b.1637691240.git.hns@goldelico.com>
+        id S229724AbhKXJYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 04:24:39 -0500
+Received: from mail-ua1-f53.google.com ([209.85.222.53]:33435 "EHLO
+        mail-ua1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229655AbhKXJYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 04:24:38 -0500
+Received: by mail-ua1-f53.google.com with SMTP id a14so3800498uak.0;
+        Wed, 24 Nov 2021 01:21:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nwaHK+ei8VNQ10NScjkc4peX2dV9WKtVGklq8RmEoEs=;
+        b=KYvKwFpF4bfJ3VOaUKKLsTj1m9bjco1QdNdcXa+PgVzjoDXz8R3Il7ZZ5xTA0L/EPB
+         40JOl36kF80T7163qXTTpwavjCv7i+ZjrdJZs59skcA8LGPmuszOFVMNafVTI8qtS2r1
+         Yw8DXR+EslVatOPsNmVN/xR3PxaW7jJI3Gx7Nx1cshlXt3Sps5oJwNdw1U8qiUTmWV+E
+         3G2yPd8tBQkfYNyaJNedF920kIL2hHr2G/BhH43zc9wTe5JDTuaQH2NHPMESHs7IXzYo
+         o90TdgdADnGOKON+2MxAkzBTYvTzlJdHl/KA8agkblKNFEWrgGo6x42ej5gMnZ5ZHY1c
+         m/BQ==
+X-Gm-Message-State: AOAM533G38Z1S2Q0gClKogoBYNlWzrpFcAsVkvcjpdjRZe+EcRoqxhuX
+        2eN1zfLa6X1ksfpi9M57tJ5qxPi4Xg0gBw==
+X-Google-Smtp-Source: ABdhPJwfEEJKy9hS5BM7LQZx9CynF0ym9fckYkJK87KjoY1mSqH8HGI8g6tt9fxeExJBAjoDTnCDKQ==
+X-Received: by 2002:a67:c11a:: with SMTP id d26mr21373453vsj.29.1637745688957;
+        Wed, 24 Nov 2021 01:21:28 -0800 (PST)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id s16sm7818618uag.14.2021.11.24.01.21.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 01:21:28 -0800 (PST)
+Received: by mail-ua1-f46.google.com with SMTP id a14so3800387uak.0;
+        Wed, 24 Nov 2021 01:21:28 -0800 (PST)
+X-Received: by 2002:a9f:2431:: with SMTP id 46mr7916314uaq.114.1637745688257;
+ Wed, 24 Nov 2021 01:21:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be>
+ <CAMuHMdX3M1ZUBF+fs3LHrx8fdWqJ0Mv9XC3Yb9mTkXRmhctTvQ@mail.gmail.com> <YZ4CjUcWdRt3Dmb0@valkosipuli.retiisi.eu>
+In-Reply-To: <YZ4CjUcWdRt3Dmb0@valkosipuli.retiisi.eu>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 24 Nov 2021 10:21:17 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUQk7gwg8Hfin+1mw=JE5zbvRJr7W75xWzAS-X1rrd12g@mail.gmail.com>
+Message-ID: <CAMuHMdUQk7gwg8Hfin+1mw=JE5zbvRJr7W75xWzAS-X1rrd12g@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: media: renesas,jpu: Convert to json-schema
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nikolaus,
+Hi Sakari,
 
-Le mar., nov. 23 2021 at 19:13:56 +0100, H. Nikolaus Schaller 
-<hns@goldelico.com> a écrit :
-> From: Sam Ravnborg <sam@ravnborg.org>
-> 
-> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
-> Based on .txt binding from Zubair Lutfullah Kakakhel
-> 
-> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
-> 
-> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->  .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 
-> +++++++++++++++++++
->  .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
->  2 files changed, 79 insertions(+)
->  create mode 100644 
-> Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> 
-> diff --git 
-> a/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml 
-> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> new file mode 100644
-> index 0000000000000..190ca4521b1d0
-> --- /dev/null
-> +++ 
-> b/Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bridge/ingenic,jz4780-hdmi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for Ingenic JZ4780 HDMI Transmitter
-> +
-> +maintainers:
-> +  - H. Nikolaus Schaller <hns@goldelico.com>
-> +
-> +description: |
-> +  The HDMI Transmitter in the Ingenic JZ4780 is a Synopsys 
-> DesignWare HDMI 1.4
-> +  TX controller IP with accompanying PHY IP.
-> +
-> +allOf:
-> +  - $ref: bridge/synopsys,dw-hdmi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ingenic,jz4780-dw-hdmi
-> +
-> +  reg-io-width:
-> +    const: 4
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  hdmi-5v-supply:
-> +    description: Optional regulator to provide +5V at the connector
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +required:
-> +    - compatible
-> +    - clocks
-> +    - clock-names
-> +    - ports
-> +    - reg-io-width
-> +
-> +unevaluatedPropertes: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/jz4780-cgu.h>
+On Wed, Nov 24, 2021 at 10:14 AM Sakari Ailus <sakari.ailus@iki.fi> wrote:
+> On Wed, Nov 24, 2021 at 10:06:38AM +0100, Geert Uytterhoeven wrote:
+> > On Wed, Jul 14, 2021 at 1:17 PM Geert Uytterhoeven
+> > <geert+renesas@glider.be> wrote:
+> > > Convert the Renesas JPEG Processing Unit Device Tree binding
+> > > documentation to json-schema.
+> > >
+> > > Document missing properties.
+> > > Update the example to match reality.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Reviewed-by: Mikhail Ulyanov <mikhail.ulyanov@cogentembedded.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > v2:
+> > >   - Add Reviewed-by.
+> >
+> > Why was the status of this patch changed from "Reviewed" to "Not
+> > Applicable" in the linux-media patchwork?
+> > https://patchwork.linuxtv.org/project/linux-media/patch/4f8526dafcd3a88631ef2bc8bd2bb4652368d3cb.1626261172.git.geert+renesas@glider.be/
+> >
+> > Who's gonna take it?
+>
+> It seems to be assigned to me in Patchwork but I don't remember it. Hmm.
 
-This include was moved in 5.16-rc1 to 
-<dt-bindings/clock/ingenic,jz4780-cgu.h>.
+Yes, it was in that state since August 5.
 
-Cheers,
--Paul
+> I can take it.
 
-> +
-> +    hdmi: hdmi@10180000 {
-> +        compatible = "ingenic,jz4780-dw-hdmi";
-> +        reg = <0x10180000 0x8000>;
-> +        reg-io-width = <4>;
-> +        ddc-i2c-bus = <&i2c4>;
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <3>;
-> +        clocks = <&cgu JZ4780_CLK_AHB0>, <&cgu JZ4780_CLK_HDMI>;
-> +        clock-names = "iahb", "isfr";
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            hdmi_in: port@0 {
-> +                reg = <0>;
-> +                dw_hdmi_in: endpoint {
-> +                    remote-endpoint = <&jz4780_lcd_out>;
-> +                };
-> +            };
-> +            hdmi_out: port@1 {
-> +                reg = <1>;
-> +                dw_hdmi_out: endpoint {
-> +                    remote-endpoint = <&hdmi_con>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> diff --git 
-> a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml 
-> b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> index 9be44a682e67a..9cbeabaee0968 100644
-> --- 
-> a/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> +++ 
-> b/Documentation/devicetree/bindings/display/bridge/synopsys,dw-hdmi.yaml
-> @@ -50,6 +50,9 @@ properties:
->    interrupts:
->      maxItems: 1
-> 
-> +  ddc-i2c-bus:
-> +    description: An I2C interface if the internal DDC I2C driver is 
-> not to be used
-> +
->  additionalProperties: true
-> 
->  ...
-> --
-> 2.33.0
-> 
+Thank you, this is one of the few remaining binding conversions for
+Renesas SoC components.
 
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
