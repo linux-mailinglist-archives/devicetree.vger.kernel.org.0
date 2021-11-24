@@ -2,179 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0071B45B97C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 12:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE4945B983
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 12:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241786AbhKXLwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 06:52:33 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:17574 "EHLO m43-7.mailgun.net"
+        id S241420AbhKXLx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 06:53:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55460 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241375AbhKXLwY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 06:52:24 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1637754554; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: From: References: Cc: To: Subject: MIME-Version: Date:
- Message-ID: Sender; bh=b8/GdfKBYbdH1Nrmk6OOayCmRv1WUrLw5qRyD8w0my4=; b=UTUgpTYyQiCf2Sy2BzGrd/2Al9vaUvOOZ3c6mq3YgzBI9blQimROPW/h/EM7x1eLnYOpjTTi
- J2fcL7jiyBUwQs5zYWetkqvlSwUKb1/GuRrwsnyAlytpqeSDD38wDcYJLt6qA85SFzuA+27j
- sBLSCgMKznfPVamsXCReZiWh1KI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 619e26ba6bacc185a5a11088 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 24 Nov 2021 11:49:14
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id AE341C4360D; Wed, 24 Nov 2021 11:49:13 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from [192.168.1.100] (unknown [49.207.214.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7B8EAC4338F;
-        Wed, 24 Nov 2021 11:49:08 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7B8EAC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Message-ID: <ddbef224-b824-648b-ff33-f61e7bf8c345@codeaurora.org>
-Date:   Wed, 24 Nov 2021 17:19:05 +0530
+        id S231772AbhKXLx7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 06:53:59 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0D2F460F45;
+        Wed, 24 Nov 2021 11:50:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637754649;
+        bh=yMN5+UoMt17EBxafVtXi9LE0djhuS8RhjHGePUWBSCY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Xdiqrg4L0Mb/yP0yGPFPn03rcGMu2gZqutMEbEPEH2ltDKgkQNSM1dL41AhtroX93
+         fQTuUS6fFlWwn9UtTXMYcsfe6ipq0zRaDBsY6DW2vDi8Nhg/yty567hzZUx9kbHsko
+         dGgQvOmnylDV4D++pDQqnJ+u0SMye1QxMIeQgOspH35UDXkeLM/Y3Snz/cs3Mm/+E3
+         Iaw/81+B2z1oTlc8ujQ/dpBl/6MxGCsJJMDLfLQ0VU0kMHXLncPI6R1fCETp/9LvD1
+         bXbx+L0WZKAqU3s1SctyIq9hWpMnm4O6sFDXHRvTh7u3TTH3g6cTTK9TtIJAPjjjjw
+         J2kGb96aAbz5w==
+Date:   Wed, 24 Nov 2021 12:50:44 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
+Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
+ supported_interfaces with modes from fwnode
+Message-ID: <20211124125044.10c08485@thinkpad>
+In-Reply-To: <20211123225418.skpnnhnrsdqrwv5f@skbuf>
+References: <20211123164027.15618-1-kabel@kernel.org>
+        <20211123164027.15618-5-kabel@kernel.org>
+        <20211123212441.qwgqaad74zciw6wj@skbuf>
+        <20211123232713.460e3241@thinkpad>
+        <20211123225418.skpnnhnrsdqrwv5f@skbuf>
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: sc7280-crd: Add Touchscreen and
- touchpad support
-Content-Language: en-US
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@codeaurora.org,
-        dianders@chromium.org, kgodara@codeaurora.org
-References: <1637650813-16654-1-git-send-email-rnayak@codeaurora.org>
- <1637650813-16654-5-git-send-email-rnayak@codeaurora.org>
- <YZ0rwiHuh0OeP0VD@google.com>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-In-Reply-To: <YZ0rwiHuh0OeP0VD@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 24 Nov 2021 00:54:18 +0200
+Vladimir Oltean <olteanv@gmail.com> wrote:
 
-
-On 11/23/2021 11:28 PM, Matthias Kaehlcke wrote:
-> On Tue, Nov 23, 2021 at 12:30:13PM +0530, Rajendra Nayak wrote:
->> From: Kshitiz Godara <kgodara@codeaurora.org>
->>
->> Add Touchscreen and touchpad hid-over-i2c node
+> > As I said above, the best example is with SerDeses which use multiple
+> > lanes where not all may be wired. But this backward compatibility code
+> > concerns only one-lane SerDeses: usxgmii, 10gbaser-r, 5gbase-r,
+> > 2500base-x, 1000base-x, sgmii.  
 > 
-> to which board(s)?
+> Right, why so? From phy-mode = "xaui", you could also infer support for
+> single-lane SERDES protocols up to 3.125 GHz, aren't you interested in
+> doing that too?
 
-will update
+OK, this would seem to make sense if I dropped the DT binding change
+for now, and just updated the code to change the supported_interfaces
+member so that marvell10g driver could select appropriate mode.
 
+I will think about it. Thanks.
+
+> > 2) the mode is not supported by the board because the generic PHY
+> >    driver uses SMC calls to the firmware to change the SerDes mode, but
+> >    the board may have old version of firmware which does not support
+> >    SMC call correctly (or at all). This was a real issue with TF-A
+> >    firmware on Macchiatobin, where the 5gbase-r mode was not supported
+> >    in older versions  
 > 
->> Signed-off-by: Kshitiz Godara <kgodara@codeaurora.org>
->> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sc7280-crd.dts | 63 +++++++++++++++++++++++++++++++++
->>   1 file changed, 63 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
->> index 8c2aee6..bef3037 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
->> @@ -23,6 +23,47 @@
->>   	};
->>   };
->>   
->> +ap_tp_i2c: &i2c0 {
->> +	status = "okay";
->> +	clock-frequency = <400000>;
->> +
->> +	trackpad: trackpad@15 {
->> +		compatible = "hid-over-i2c";
->> +		reg = <0x15>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&tp_int_odl>;
->> +
->> +		interrupt-parent = <&tlmm>;
->> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
->> +
->> +		post-power-on-delay-ms = <20>;
->> +		hid-descr-addr = <0x0001>;
->> +		vdd-supply = <&vreg_l18b_1p8>;
->> +
->> +		wakeup-source;
->> +	};
->> +};
->> +
->> +ap_ts_pen_1v8: &i2c13 {
->> +	status = "okay";
->> +	clock-frequency = <400000>;
->> +
->> +	ap_ts: touchscreen@5c {
->> +		compatible = "hid-over-i2c";
->> +		reg = <0x5C>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
->> +
->> +		interrupt-parent = <&tlmm>;
->> +		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
->> +
->> +		post-power-on-delay-ms = <500>;
->> +		hid-descr-addr = <0x0000>;
->> +
->> +		vdd-supply = <&vreg_l19b_1p8>;
->> +	};
->> +};
->> +
->>   &nvme_pwren {
->>   	pins = "gpio51";
->>   };
->> @@ -30,3 +71,25 @@
->>   &nvme_3v3_regulator {
->>   	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
->>   };
->> +
->> +&tlmm {
->> +	tp_int_odl: tp-int-odl {
->> +		pins = "gpio7";
->> +		function = "gpio";
->> +		input-enable;
+> Ok, so in your proposal, U-Boot would have to fix up the device tree
+> based on a certain version of ATF, and remove "5gbase-r" from the
+> phy-mode array. Whereas in my proposal, the mvpp2 driver would need to
+> find out about the ATF version in use, and remove "5gbase-r" from the
+> supported interfaces.
 > 
-> Not sure about this one, is the explicit 'input-enable' actually needed here?
+> As a user, I'd certainly prefer if Linux could figure this one out.
 
-Maybe not, will test it once after I remove it
+You are right here, it would really be better for the mvpp2 driver to
+do this discovering.
 
+> This implies that when you bring up a board and write the device tree
+> for it, you know that PHY mode X works without ever testing it. What if
+> it doesn't work when you finally add support for it? Now you already
+> have one DT blob in circulation. That's why I'm saying that maybe it
+> could be better if we could think in terms that are a bit more physical
+> and easy to characterize.
+
+The thing is that this same could happen with your proposal of
+max-data-rate + number-of-lanes, as Russell explained in his reply.
+
+> > The whole idea of this code is to guarantee backward compatibility with
+> > older device-trees. In my opinion (and I think Russell agrees with me),
+> > this should be at one place, instead of putting various weird
+> > exceptions into various MAC drivers.  
 > 
->> +		bias-disable;
->> +	};
->> +
->> +	ts_int_l: ts-int-l {
->> +		pins = "gpio55";
->> +		function = "gpio";
->> +		bias-pull-up;
->> +	};
->> +
->> +	ts_reset_l: ts-reset-l {
->> +		pins = "gpio54";
->> +		function = "gpio";
->> +		bias-disable;
->> +		drive-strength = <2>;
-> 
-> As per my comment on "[3/4] arm64: dts: qcom: sc7280: Define EC and H1 nodes" it
-> seems setting the drive strength to 2 isn't necessary, since that's the default.
+> Yes, but they're more flexible in the driver... What if the check is not
+> as simple as a machine compatible (think about the ATF firmware example
+> you gave).
 
-right I'll remove it, thanks
+You persuaded me, it makes more sense in the driver.
 
-> 
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Marek
