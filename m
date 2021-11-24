@@ -2,86 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6F045C92B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:50:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8258E45C92C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:51:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242318AbhKXPyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 10:54:08 -0500
-Received: from mail-ua1-f41.google.com ([209.85.222.41]:37796 "EHLO
-        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242021AbhKXPyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:54:07 -0500
-Received: by mail-ua1-f41.google.com with SMTP id o1so6049390uap.4;
-        Wed, 24 Nov 2021 07:50:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AqdjLPevtkpLJ208GAm/lw/k/TcIvnCN7h4y57XOZ6o=;
-        b=Ym0ve3pRmXzYGeWeutp9ln+ep/0484wVuhPSAt8n+zs7+d8cbNWXCH8iyknwM0ZmWK
-         og1E1tM64OCjvg+nSZ+lQvmdS9CSCQiR/IWEeQexhNloAQHKciVHMnvLr1m7J4ldYZxd
-         ftIpMPhUhJLblBki0BYnpqasezDfMl7vZ3U97B0D6jqUXCVpBOpP5UEj0xTMnpj/0sWK
-         uU9T/4UsJL4mloUDK0fshYmCV1HDkmaZZrmZFXXZPv/+n6OS4sD6th3EzbCbqkAKZX6d
-         ZTqvERyNEAx83WEEo3pK9TWQxV4kW9m1x1Gteyx9r6FHWv+m3nWbFZGSb8CoM3QG7Xmi
-         jB7g==
-X-Gm-Message-State: AOAM532j8fOeS9hdRvvukY8UjRymOCyCdHYSU5swyM1JvNzGT8WyZyV9
-        qWqaJPTAo5CeoOXV4RAu5YFJFh/HF8g5Jg==
-X-Google-Smtp-Source: ABdhPJwv/c3uWVtNxh5K+icYPrFl5r4iqoYN1NL4mhiVuF3dfEKgtfkhYbxqo/t0A9D5G8A+DZe4Kw==
-X-Received: by 2002:ab0:2041:: with SMTP id g1mr11875774ual.131.1637769057394;
-        Wed, 24 Nov 2021 07:50:57 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id b11sm147714vsp.6.2021.11.24.07.50.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 07:50:57 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id a14so6179829uak.0;
-        Wed, 24 Nov 2021 07:50:56 -0800 (PST)
-X-Received: by 2002:a05:6102:2910:: with SMTP id cz16mr25048289vsb.9.1637769056684;
- Wed, 24 Nov 2021 07:50:56 -0800 (PST)
+        id S241836AbhKXPyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:54:37 -0500
+Received: from ixit.cz ([94.230.151.217]:34952 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S240826AbhKXPyh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 10:54:37 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 4C34A20064;
+        Wed, 24 Nov 2021 16:51:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1637769083;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=IU5q06TQT1C9vzgb5Uz3GHm36Avlp6WLGrtHyJxiET4=;
+        b=MIAJzKFXWT+bddlCrj3j5q0t8K83XBjdckPE/hJOBahw4KDwUAiZHmISMLgX32ZqTXSPsA
+        M83GTfm7Sqad5USsi9YjW3fet+mXohuIDqTMJmsmyXOS9nOhO/sewovr/QngCLH/ZsIyjg
+        jJ1K4T57qYNJBHrK2ry1Z1vfK8el6sc=
+From:   David Heidelberg <david@ixit.cz>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        - <patches@opensource.cirrus.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        Rob Herring <robh@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: wlf,wm8962: add missing interrupt property
+Date:   Wed, 24 Nov 2021 16:51:01 +0100
+Message-Id: <20211124155101.59694-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-References: <20211124154316.28365-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211124154316.28365-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 24 Nov 2021 16:50:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXNCb6OaQnjuz2PPcDGZ3QPe412v-Sh70HXn6V=a4w9jw@mail.gmail.com>
-Message-ID: <CAMuHMdXNCb6OaQnjuz2PPcDGZ3QPe412v-Sh70HXn6V=a4w9jw@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: renesas: r9a07g044: Add OPP table
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 24, 2021 at 4:43 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add OPP table for RZ/G2L SoC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
->  * Fixed dtbs_check warning. changed node name opp_table->opp-table-0
->  * Added a blank line after opp-shared.
-> V1->v2:
->  * Fixed typo cluster1_opp->cluster0_opp
+Both, hardware and drivers does support interrupts.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.17.
+Fix warnings as:
+arch/arm/boot/dts/tegra30-microsoft-surface-rt-efi.dt.yaml: audio-codec@1a: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /home/runner/work/linux/linux/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
 
-Gr{oetje,eeting}s,
+Fixes: cd51b942f344 ("ASoC: dt-bindings: wlf,wm8962: Convert to json-schema")
 
-                        Geert
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ Documentation/devicetree/bindings/sound/wlf,wm8962.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
+index 0e6249d7c133..5e172e9462b9 100644
+--- a/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
++++ b/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
+@@ -19,6 +19,9 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  interrupts:
++    maxItems: 1
++
+   "#sound-dai-cells":
+     const: 0
+ 
+-- 
+2.33.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
