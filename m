@@ -2,97 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15CE345C82F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:02:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CEA345C832
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:04:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230378AbhKXPGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 10:06:02 -0500
-Received: from mail-vk1-f177.google.com ([209.85.221.177]:45748 "EHLO
-        mail-vk1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229752AbhKXPGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:06:01 -0500
-Received: by mail-vk1-f177.google.com with SMTP id m19so1691158vko.12;
-        Wed, 24 Nov 2021 07:02:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=G6ZMQ9Rz/OPa3hw4pVyjTqe1id7qBK4ax+xJjcP300s=;
-        b=xxwUdPI5BMSWuTOjPaa48ptx5uhS6WXRorGr02v94IxyLDOLJF2th/qsQRzvtNgMTb
-         EI+rU5xWE8okeqengToRvKQMO1rt+Dfc20DddzxGiQCclGWhnZcZyIZDfyJb1BsrXRE3
-         PgsLGUsooWl2HB06baCeQNvniPl0IAhiATvmgHGOSkwDH9V0/kNtFrKBVWtkcCztTzKW
-         ++LDnlhLribfJkxLDLxCVlgk4ZGzG1Eu4eX3jkLGWWQfuUq4PQf2F9Djs179W3jvWlXm
-         5DGw+OAG+HaRVJcvb96RMwqbb4MWnSZAz259VCNqd0gotRZNoYnutC0NWRlr3608PLD/
-         2qgA==
-X-Gm-Message-State: AOAM531CrskLSyf4mplBVZ+uKawUW+BcaluvgRKQCN+fV4DZ0iQ5HnJx
-        iiZWxqevEyFKhK8nsnZZ3MHsAKpEM4PSpQ==
-X-Google-Smtp-Source: ABdhPJw+vzF+7poZQVCgbiw05o1LETLiJoqmrMpICt1FE8ILeQ9R8I8qRqgIQLG76IrY4YnzWmvdIA==
-X-Received: by 2002:a05:6122:16a3:: with SMTP id 35mr28144508vkl.12.1637766170961;
-        Wed, 24 Nov 2021 07:02:50 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id f132sm8213535vkf.18.2021.11.24.07.02.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 07:02:50 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id a14so5862059uak.0;
-        Wed, 24 Nov 2021 07:02:50 -0800 (PST)
-X-Received: by 2002:a67:c38f:: with SMTP id s15mr25221573vsj.50.1637766170369;
- Wed, 24 Nov 2021 07:02:50 -0800 (PST)
+        id S235601AbhKXPHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:07:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235588AbhKXPHQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:07:16 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38BB2C061574;
+        Wed, 24 Nov 2021 07:04:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ApSPonCUp/GG9TGqMr522k7jLaMFyzDlr31PRHF6kBM=; b=HBCUuNaY68/EDTeCXBNjHANIfU
+        NZu16JMgs4FFHDVQaIJ7KrRuijEvzS8YtAV4oV8S69+kssPN8EPYxm1HpYqRoMhMeBV3zvVKrAiZA
+        +gTRLcjMss3JxF/EBSmXVugiaNPAcccd5hIN/RSg750+sYzbjmAfzRGPgdvx7Q+lEFJqraDMQLp4X
+        R+3K3GysmHxO/HoVZy4YbFvl4dlp0DplHHxpMvFdFcXHk9eUNP3czYPtzHGcb9zDpH3sH4dbg2W8O
+        oxLjmAWMyggUagqe8qpfELlkL5LzlqfrWZRvDDtGuLHWtN1SW6tNsJT9Q65QFU0Vx9ilZM7n2/hpN
+        F8K6fOAA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55850)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mptoU-0000l0-Q5; Wed, 24 Nov 2021 15:03:58 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mptoT-0001HC-BO; Wed, 24 Nov 2021 15:03:57 +0000
+Date:   Wed, 24 Nov 2021 15:03:57 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 3/6] net: lan966x: add port module support
+Message-ID: <YZ5UXdiNNf011skU@shell.armlinux.org.uk>
+References: <20211124083915.2223065-1-horatiu.vultur@microchip.com>
+ <20211124083915.2223065-4-horatiu.vultur@microchip.com>
+ <YZ4SB/wX6UT3zrEV@shell.armlinux.org.uk>
+ <20211124145800.my4niep3sifqpg55@soft-dev3-1.localhost>
 MIME-Version: 1.0
-References: <20211112081003.15453-1-biju.das.jz@bp.renesas.com> <20211112081003.15453-5-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20211112081003.15453-5-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 24 Nov 2021 16:02:39 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU5EfhoWRCrEa0qO4q6yAqwGu1SC-9En6xttM8i06g=8A@mail.gmail.com>
-Message-ID: <CAMuHMdU5EfhoWRCrEa0qO4q6yAqwGu1SC-9En6xttM8i06g=8A@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: renesas: r9a07g044: Add OPP table
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211124145800.my4niep3sifqpg55@soft-dev3-1.localhost>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Wed, Nov 24, 2021 at 03:58:00PM +0100, Horatiu Vultur wrote:
+> > This doesn't look like the correct sequence to me. Shouldn't the net
+> > device be unregistered first, which will take the port down by doing
+> > so and make it unavailable to userspace to further manipulate. Then
+> > we should start tearing other stuff down such as destroying phylink
+> > and disabling interrupts (in the caller of this.)
+> 
+> I can change the order as you suggested.
+> Regarding the interrupts, shouldn't they be first disable and then do
+> all the teardown?
 
-On Fri, Nov 12, 2021 at 9:10 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add OPP table for RZ/G2L SoC.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> V1->v2:
->  * Fixed typo cluster1_opp->cluster0_opp
+Depends if you need them disabled before you do the teardown. However,
+what would be the effect of disabling interrupts while the user still
+has the ability to interact with the port - that is the main point.
 
-Thanks for the update!
+Generally the teardown should be the reverse of setup - where it's now
+accepted that all setup should be done prior to user publication. So,
+user interfaces should be removed and then teardown should proceed.
 
-> --- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-> @@ -42,6 +42,32 @@
->                 clock-frequency = <0>;
->         };
->
-> +       cluster0_opp: opp_table {
+> > What is the difference between "portmode" and "phy_mode"? Does it matter
+> > if port->config.phy_mode get zeroed when lan966x_port_pcs_set() is
+> > called from lan966x_pcs_config()? It looks to me like the first call
+> > will clear phy_mode, setting it to PHY_INTERFACE_MODE_NA from that point
+> > on.
+> 
+> The purpose was to use portmode to configure the MAC and the phy_mode
+> to configure the serdes. There are small issues regarding this which
+> will be fix in the next series also I will add some comments just to
+> make it clear.
+> 
+> Actually, port->config.phy_mode will not get zeroed. Because right after
+> the memset it follows: 'config = port->config'.
 
-"make dtbs_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/opp/opp-v2.yaml"
-doesn't like the node name.
+Ah, missed that, thanks. However, why should portmode and phy_mode be
+different?
 
-The rest looks good to me.
+> Actually, like you mentioned it needs to be link partner's advertisement
+> so that code can be simplified more:
+> 
+>          if (DEV_PCS1G_ANEG_STATUS_ANEG_COMPLETE_GET(val)) {
+>                  state->an_complete = true;
+>  
+>                  bmsr |= state->link ? BMSR_LSTATUS : 0;
+>                  bmsr |= BMSR_ANEGCOMPLETE;
+>  
+>                  lp_adv = DEV_PCS1G_ANEG_STATUS_LP_ADV_GET(val);
+>                  phylink_mii_c22_pcs_decode_state(state, bmsr, lp_adv);
+>          }
+> 
+> Because inside phylink_mii_c22_pcs_decode_state, more precisely in
+> phylink_decode_c37_work, state->advertising will have the local
+> advertising.
 
-Gr{oetje,eeting}s,
+Correct.
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
