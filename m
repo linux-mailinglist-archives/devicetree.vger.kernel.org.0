@@ -2,113 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DCF645CE73
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 21:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21E1545CE8D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 22:00:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244537AbhKXU5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 15:57:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        id S239941AbhKXVEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 16:04:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244546AbhKXU5K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 15:57:10 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE44FC061748;
-        Wed, 24 Nov 2021 12:53:59 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id k23so8128617lje.1;
-        Wed, 24 Nov 2021 12:53:59 -0800 (PST)
+        with ESMTP id S236826AbhKXVEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 16:04:06 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53562C061574;
+        Wed, 24 Nov 2021 13:00:56 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id f18so10597051lfv.6;
+        Wed, 24 Nov 2021 13:00:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=4IyNvYikGx/k9tdDU8szk4MiN32bXrdjaPGV4oWEMDs=;
-        b=n18cstBkdjX7c+UShE1M0pp9AYFZa32iOb6HZ8rdrt8352PocjOxC7sjVmfskpFFXJ
-         cP7FvZ6BWua0oznO+XQuZiW0mLUpmRy/h+zuw8dCqT/V+JNfFBCfu/u5oiBnVWhVtKiD
-         R0+SnwDYwNlsoJhw/nYxYgSSU94QG+gmJGIwNvZB7CPivO3tHkuFA7PMxidgOT42knwb
-         8+rQr70H2QlDBFrCqfUR21+P6rOWVBDezxc6r+nKLjN9Sgrj8z8x9gKvTIgM25fwD6pT
-         f/T2ppOTcyjYvVgFEMcfRXKpWsQYSP/Q7CFluriF7V92BmHfr0hnGQmJkYIyOT12Uqji
-         MVwQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qaoJkMeXPkR0BGEoEzEzXJ+WhWde+8pbrmsidqSiUJo=;
+        b=JGYHWs/R8PY5ztykaUrRyRJX9PIgwQHaURxYUoztWB8CUwTI4HllXDDvJuMM6cUp+h
+         cW3QWJhL5YR74XOFA7f2jvdkLzq8uRkbM/GBDCUsj1XspavqLbSKpf3JVIMlMd6Ar8Z4
+         wseUJxSAPLUTl2R7Vhdm87L+ppLcHs6Bggx9Ut6ocqq8u/PnojJ6MzCR6QKuYRLgvRhX
+         AEg487zGQCcU0UJFbeAcpAWAHzZWenx2lsVmjo4OpfmKG5RT83LPsgW0T09tkEwrW/DR
+         f0mlD/I1J1iUcH2gHwTZ0V84wwgfGd3hf+ExeT+irD/3kfDwz/Px3jxH0RDzWEMMRTTp
+         LbDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=4IyNvYikGx/k9tdDU8szk4MiN32bXrdjaPGV4oWEMDs=;
-        b=AWSZuN3I6txED+5x9JVsDApKURKJAGzqPqQS3C35Qcc0PgDcDU0ZFLeXdUUrSQaPm2
-         V4ynaqb04EXiDCT8BrLkyxviBcKspS6d4XInQw3t9SMWGAyybGm5wqjaRgS/8Owr7uzd
-         DLDNMFYu+NEx1z5vUvySFnqkTQuk1fXz/CC66e2IitmxGc96EoOnPrFq9pZJ/JcYn8G2
-         MY2+i7k6pjfTbVPfKyr80niSbPdTJ5y2SvnilM3pwB0ZUnfY3C477dqf0D+5Sw75S4Jd
-         0lUULkvvi6nJOknR/O5RCR2SuLY2bR+4Y6kGpOruANDv8cn5Ru2UGR5uvQ/a3Fu2H5Xb
-         rnNQ==
-X-Gm-Message-State: AOAM5331TA6NpYFWbnpqBhrStfJIWj+wI3HMpAMYSv9o8hlEVFpubRGM
-        e+ilWTE7Q8iZ7Qz05UuXcjc=
-X-Google-Smtp-Source: ABdhPJzbg9X4RTlpGwA/0nX9yg4bi5EiUdsWZuy6cXGIhElPKfsHllDQlnKAQo4feHXv3B9QBwXKpA==
-X-Received: by 2002:a2e:3c0c:: with SMTP id j12mr19053688lja.402.1637787238288;
-        Wed, 24 Nov 2021 12:53:58 -0800 (PST)
-Received: from otyshchenko.router ([212.22.223.21])
-        by smtp.gmail.com with ESMTPSA id j11sm97608ljc.9.2021.11.24.12.53.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 24 Nov 2021 12:53:58 -0800 (PST)
-From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
-To:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>
-Subject: [PATCH V3 6/6] dt-bindings: xen: Clarify "reg" purpose
-Date:   Wed, 24 Nov 2021 22:53:43 +0200
-Message-Id: <1637787223-21129-7-git-send-email-olekstysh@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1637787223-21129-1-git-send-email-olekstysh@gmail.com>
-References: <1637787223-21129-1-git-send-email-olekstysh@gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qaoJkMeXPkR0BGEoEzEzXJ+WhWde+8pbrmsidqSiUJo=;
+        b=1gc2nbiAx33EKaFNAel+S4EcHotQBj0D9G8jcsPtgC7KBAVRNd1ZrQi+ggIhu4NYef
+         IahF2+plvRllvG6hr88hB3ZlCTS0ONDETxp67TyLSv8+LJFzmQ/a5glgYDdns+Na4jWZ
+         pAyTlGdpZnzFotb91WYg1jMZxAvMIt1Hj1JeNAeoLl7rsT1qOdR4NXOqZV/csO99riTW
+         kT889sCftHz58G2QLZ95DxG/jTe/c0Qv4TNxKvBEnuMl/91dcvMw2haYKesyLTfzsprO
+         z75V9gl3WjPTaUnj5BYYx9JHWGvQ4o0uX26h3Vmx2d808/mVXWTDe/sirMchUVFtWq8U
+         2TAQ==
+X-Gm-Message-State: AOAM5335Xuy6XwmGzHIted1vr6eBusknxe7VquPNmvh4id6QfjoQ4QSY
+        jT/n7tJUHocaYqZ8Xz+BKMQ=
+X-Google-Smtp-Source: ABdhPJzm2XueRJMyvOOETL3cKYsehnqw110+VCiQKIIpY/m7d4OcUvEOyqKbp38DkizXnHziQgWjZQ==
+X-Received: by 2002:a05:6512:1104:: with SMTP id l4mr17749271lfg.181.1637787654296;
+        Wed, 24 Nov 2021 13:00:54 -0800 (PST)
+Received: from localhost.localdomain (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
+        by smtp.gmail.com with ESMTPSA id 18sm79939ljr.17.2021.11.24.13.00.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Nov 2021 13:00:53 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Heidelberg <david@ixit.cz>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>,
+        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
+        Nikola Milosavljevic <mnidza@outlook.com>,
+        Ion Agorria <ion@agorria.com>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        Thomas Graichen <thomas.graichen@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/14] NVIDIA Tegra ARM32 device-tree patches for 5.17 (new devices and more)
+Date:   Wed, 24 Nov 2021 23:59:08 +0300
+Message-Id: <20211124205922.11930-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.33.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+In this patchset you will find:
 
-Xen on Arm has gained new support recently to calculate and report
-extended regions (unused address space) safe to use for external
-mappings. These regions are reported via "reg" property under
-"hypervisor" node in the guest device-tree. As region 0 is reserved
-for grant table space (always present), the indexes for extended
-regions are 1...N.
+  - New device-trees of ASUS Transformer and Pegatron Chagall tablets.
 
-No device-tree bindings update is needed (except clarifying the text)
-as guest infers the presence of extended regions from the number
-of regions in "reg" property.
+  - New device-tree of Nyan Big Chromebook variant that has 1080p display
+    panel.
 
-Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
----
-According to the recent update to Xen's guest.txt:
-https://xenbits.xen.org/gitweb/?p=xen.git;a=blob_plain;f=docs/misc/arm/device-tree/guest.txt;hb=refs/heads/master
+  - Enabled video decoder on Tegra114.
 
-Changes V2 -> V3:
-   - new patch
----
- Documentation/devicetree/bindings/arm/xen.txt | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+  - Minor cleanup of Nexus7 device-tree.
 
-diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-index db5c56d..156fe10b 100644
---- a/Documentation/devicetree/bindings/arm/xen.txt
-+++ b/Documentation/devicetree/bindings/arm/xen.txt
-@@ -7,10 +7,14 @@ the following properties:
- 	compatible = "xen,xen-<version>", "xen,xen";
-   where <version> is the version of the Xen ABI of the platform.
- 
--- reg: specifies the base physical address and size of a region in
--  memory where the grant table should be mapped to, using an
--  HYPERVISOR_memory_op hypercall. The memory region is large enough to map
--  the whole grant table (it is larger or equal to gnttab_max_grant_frames()).
-+- reg: specifies the base physical address and size of the regions in memory
-+  where the special resources should be mapped to, using an HYPERVISOR_memory_op
-+  hypercall.
-+  Region 0 is reserved for mapping grant table, it must be always present.
-+  The memory region is large enough to map the whole grant table (it is larger
-+  or equal to gnttab_max_grant_frames()).
-+  Regions 1...N are extended regions (unused address space) for mapping foreign
-+  GFNs and grants, they might be absent if there is nothing to expose.
-   This property is unnecessary when booting Dom0 using ACPI.
- 
- - interrupts: the interrupt used by Xen to inject event notifications.
+  - Renamed clocks and regulator nodes. I'm sending this patch second time
+    because previously there was no good reason given about why not to apply
+    it. Please apply it this time.
+
+Changelog:
+
+v2: - Svyatoslav and Maxim made couple corrections to regulators, comments
+      and default brightness of the device-trees.
+
+    - Added thermtrip node to transformers DT as we now have PMIC fix for
+      it [1], it works properly now.
+
+      [1] https://patchwork.ozlabs.org/project/linux-tegra/patch/20211124190104.23554-1-digetx@gmail.com/
+
+    - Changed sound card model names to make them per-device and consistent
+      with the names that other Tegra DTs already use in upstream. This will
+      prevent potential ABI breakages in the future if we will find that sound
+      of some device needs extra differentiation.
+
+Anton Bambura (3):
+  ARM: tegra: Add labels to tegra114.dtsi
+  ARM: tegra: Add device-tree for ASUS Transformer Pad TF701T
+  ARM: tegra: Enable video decoder on Tegra114
+
+David Heidelberg (3):
+  dt-bindings: ARM: tegra: Document Pegatron Chagall
+  ARM: tegra: Name clock and regulator nodes according to DT-schema
+  ARM: tegra: nexus7: Drop clock-frequency from NFC node
+
+Dmitry Osipenko (1):
+  ARM: tegra: Add device-tree for 1080p version of Nyan Big
+
+Michał Mirosław (1):
+  ARM: tegra: Add device-tree for ASUS Transformer Pad TF300T
+
+Nikola Milosavljevic (1):
+  ARM: tegra: Add device-tree for ASUS Transformer EeePad TF101
+
+Svyatoslav Ryhel (5):
+  dt-bindings: ARM: tegra: Document ASUS Transformers
+  ARM: tegra: Add device-tree for ASUS Transformer Prime TF201
+  ARM: tegra: Add device-tree for ASUS Transformer Pad TF300TG
+  ARM: tegra: Add device-tree for ASUS Transformer Infinity TF700T
+  ARM: tegra: Add device-tree for Pegatron Chagall tablet
+
+ .../devicetree/bindings/arm/tegra.yaml        |   19 +
+ arch/arm/boot/dts/Makefile                    |   10 +-
+ arch/arm/boot/dts/tegra114-asus-tf701t.dts    |  833 +++++
+ arch/arm/boot/dts/tegra114-dalmore.dts        |   16 +-
+ arch/arm/boot/dts/tegra114-roth.dts           |   14 +-
+ arch/arm/boot/dts/tegra114-tn7.dts            |    8 +-
+ arch/arm/boot/dts/tegra114.dtsi               |   90 +-
+ arch/arm/boot/dts/tegra124-jetson-tk1.dts     |   26 +-
+ arch/arm/boot/dts/tegra124-nyan-big-fhd.dts   |   11 +
+ arch/arm/boot/dts/tegra124-nyan.dtsi          |   28 +-
+ arch/arm/boot/dts/tegra124-venice2.dts        |   28 +-
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |   12 +-
+ arch/arm/boot/dts/tegra20-asus-tf101.dts      | 1191 +++++++
+ arch/arm/boot/dts/tegra20-harmony.dts         |   16 +-
+ arch/arm/boot/dts/tegra20-medcom-wide.dts     |    8 +-
+ arch/arm/boot/dts/tegra20-paz00.dts           |    6 +-
+ arch/arm/boot/dts/tegra20-plutux.dts          |    8 +-
+ arch/arm/boot/dts/tegra20-seaboard.dts        |   16 +-
+ arch/arm/boot/dts/tegra20-tamonten.dtsi       |    4 +-
+ arch/arm/boot/dts/tegra20-tec.dts             |    8 +-
+ arch/arm/boot/dts/tegra20-trimslice.dts       |   12 +-
+ arch/arm/boot/dts/tegra20-ventana.dts         |   12 +-
+ .../boot/dts/tegra30-asus-lvds-display.dtsi   |   46 +
+ .../tegra30-asus-nexus7-grouper-common.dtsi   |   10 +-
+ ...egra30-asus-nexus7-grouper-maxim-pmic.dtsi |    4 +-
+ .../tegra30-asus-nexus7-grouper-ti-pmic.dtsi  |    2 +-
+ .../boot/dts/tegra30-asus-nexus7-grouper.dtsi |    1 -
+ .../boot/dts/tegra30-asus-nexus7-tilapia.dtsi |    2 -
+ arch/arm/boot/dts/tegra30-asus-tf201.dts      |  623 ++++
+ arch/arm/boot/dts/tegra30-asus-tf300t.dts     | 1030 ++++++
+ arch/arm/boot/dts/tegra30-asus-tf300tg.dts    | 1072 +++++++
+ arch/arm/boot/dts/tegra30-asus-tf700t.dts     |  807 +++++
+ .../dts/tegra30-asus-transformer-common.dtsi  | 1739 ++++++++++
+ arch/arm/boot/dts/tegra30-beaver.dts          |   20 +-
+ arch/arm/boot/dts/tegra30-cardhu-a02.dts      |   12 +-
+ arch/arm/boot/dts/tegra30-cardhu-a04.dts      |   14 +-
+ arch/arm/boot/dts/tegra30-cardhu.dtsi         |   28 +-
+ .../arm/boot/dts/tegra30-pegatron-chagall.dts | 2806 +++++++++++++++++
+ 38 files changed, 10406 insertions(+), 186 deletions(-)
+ create mode 100644 arch/arm/boot/dts/tegra114-asus-tf701t.dts
+ create mode 100644 arch/arm/boot/dts/tegra124-nyan-big-fhd.dts
+ create mode 100644 arch/arm/boot/dts/tegra20-asus-tf101.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-lvds-display.dtsi
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf201.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf300t.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf300tg.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-tf700t.dts
+ create mode 100644 arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
+ create mode 100644 arch/arm/boot/dts/tegra30-pegatron-chagall.dts
+
 -- 
-2.7.4
+2.33.1
 
