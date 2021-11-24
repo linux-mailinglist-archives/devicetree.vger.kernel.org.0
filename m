@@ -2,116 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C23245B8D0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 12:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D370045B8D6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 12:07:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241060AbhKXLHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 06:07:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240458AbhKXLHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 06:07:51 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2813DC061574;
-        Wed, 24 Nov 2021 03:04:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=pyj1fWtFgdY2SPx+2ToK/2MB/f+/m0IgCdEcwNFLm0U=; b=z3t1ZwUeqNM7SClWfoktPlLOPS
-        fgkGGgRhvhRw7dN77leLW7zhcbQ0sB2+DsSypT1x1Gm2sC2EUjXjJUumw4DkUEI4fkYd2wi7N4JgN
-        4PUyXk+KmC+rIsT2prudxd4HkHyoGl2NzJsFHlc8GhHhJGwBfngW77n/iq2uaZfSpF1QpcM5C37cQ
-        g40LRt1fzk33MmkS7AdEpYXfiEZzizmalLd+zu4EjiC5z0LqIKwHRJGHdr3pQhVYScsmrfS7/3fQ9
-        7v26FsbqnlTc7Uh4GJRKVAARop0U+BDLZODB4lXDU2QTibw3Brkorvaw9AvW0NZXjGLI5hV/RlaJH
-        4ySFI4AA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55836)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mpq4s-0000Uk-Ui; Wed, 24 Nov 2021 11:04:38 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mpq4r-00018T-CF; Wed, 24 Nov 2021 11:04:37 +0000
-Date:   Wed, 24 Nov 2021 11:04:37 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jakub Kicinski <kuba@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>, davem@davemloft.net
-Subject: Re: [PATCH net-next v2 4/8] net: phylink: update
- supported_interfaces with modes from fwnode
-Message-ID: <YZ4cRWkEO+l1W08u@shell.armlinux.org.uk>
-References: <20211123164027.15618-1-kabel@kernel.org>
- <20211123164027.15618-5-kabel@kernel.org>
- <20211123212441.qwgqaad74zciw6wj@skbuf>
- <20211123232713.460e3241@thinkpad>
- <20211123225418.skpnnhnrsdqrwv5f@skbuf>
+        id S232238AbhKXLKZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 06:10:25 -0500
+Received: from mail.iot.bzh ([51.75.236.24]:50514 "EHLO frontal.iot.bzh"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229588AbhKXLKY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 06:10:24 -0500
+Received: from frontal.iot.bzh (localhost [127.0.0.1])
+        by frontal.iot.bzh (Proxmox) with ESMTP id 0C3261A35E;
+        Wed, 24 Nov 2021 12:07:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iot.bzh; h=cc:cc
+        :content-transfer-encoding:content-type:content-type:date:from
+        :from:in-reply-to:message-id:mime-version:references:reply-to
+        :subject:subject:to:to; s=iot.bzh; bh=KVKwBqXwFz0w32vfPqR77cBz/7
+        te34V67c9tICosQJo=; b=W2kLpfLeR8g5F1ji/Pp2YcqRmyPdq34zFsDgYL/Avc
+        EwHqP0qM/bJtUAfokxgpTCPvgQFdXXlEYgZq++UxYCfu69R+CkuY6iTzRUpsltgx
+        UB8Y1T0BLt+bNtuChoMbaj+6yDJN+apBO2giywkXUMpcJAbO7CWqhqz4LuRkzfI3
+        ve0SquZeG9qSJTcguaQgRSl/lKX0VgBUq3oJXGnSf74B5lzo/x+umx1oHBPanmUB
+        MVWOPe+eLKwre4gHUkudruBjeHlN8iPpVLePbGB4sjXmrHiNQoY4KIa4LhQGDx+Q
+        lBFqORzNp/XAuSozrwMtF3DSuwS6T3FAU8we7GlPUlTQ==
+Message-ID: <8f3f6316-f2fd-4762-83ce-ccd9ce223472@iot.bzh>
+Date:   Wed, 24 Nov 2021 12:07:05 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123225418.skpnnhnrsdqrwv5f@skbuf>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH v1 3/3] remoteproc: Add Renesas rcar driver
+Content-Language: en-US
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20211115135032.129227-1-julien.massot@iot.bzh>
+ <20211115135032.129227-4-julien.massot@iot.bzh>
+ <20211122183758.GC2686563@p14s>
+From:   Julien Massot <julien.massot@iot.bzh>
+In-Reply-To: <20211122183758.GC2686563@p14s>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 24, 2021 at 12:54:18AM +0200, Vladimir Oltean wrote:
-> This implies that when you bring up a board and write the device tree
-> for it, you know that PHY mode X works without ever testing it. What if
-> it doesn't work when you finally add support for it? Now you already
-> have one DT blob in circulation. That's why I'm saying that maybe it
-> could be better if we could think in terms that are a bit more physical
-> and easy to characterize.
+Hi Mathieu,
+Thanks for the review !
 
-However, it doesn't solve the problem. Let's take an example.
+>> +config RCAR_REMOTEPROC
+>> +	tristate "Renesas R-CAR Gen3 remoteproc support"
+>> +	depends on ARCH_RENESAS
+>> +	depends on REMOTEPROC
+> 
+> You should be able to remove the dependency on REMOTEPROC since this is already in
+> the "if REMOTEPROC" block.
+Will fix.
 
-The 3310 supports a mode where it runs in XAUI/5GBASE-R/2500BASE-X/SGMII
-depending on the negotiated media parameters.
+...
+> 
+>> +
+>> +	dev_dbg(dev, "map memory: %pa+%lx\n", &mem->dma, mem->len);
+>> +	va = ioremap_wc(mem->dma, mem->len);
+>> +	if (IS_ERR_OR_NULL(va)) {
+>> +		dev_err(dev, "Unable to map memory region: %pa+%lx\n",
+> 
+> The sparse checker doesn't like %lx so probably be better to go with just %x.
+> Apologies for suggesting to use %lx.
 
-XAUI is four lanes of 3.125Gbaud.
-5GBASE-R is one lane of 5.15625Gbaud.
+With %x gcc complains on arm64 build will go back to %zx.
 
-Let's say you're using this, and test the 10G speed using XAUI,
-intending the other speeds to work. So you put in DT that you support
-four lanes and up to 5.15625Gbaud.
+> 
+>> +			&mem->dma, mem->len);
+>> +		return -ENOMEM;
+>> +	}
+>> +
+>> +	/* Update memory entry va */
+>> +	mem->va = va;
+> 
+> Talking about the sparse checker, you will see complaints about @va not being of
+> type "void __iomem *".  You can ignore those as this would likely require to
+> refactor the rproc_mem_entry structure, which is outside the scope of this work.
 
-Later, you discover that 5GBASE-R doesn't work because there's an
-electrical issue with the board. You now have DT in circulation
-which doesn't match the capabilities of the hardware.
+Ok, to be honest, I was not aware of the sparse tool, thanks a lot to point me to
+this tool.
 
-How is this any different from the situation you describe above?
-To me, it seems to be exactly the same problem.
+> 
+> This set is just as clean as the RFC.  If it wasn't for the DTS bindings that
+> need to be ack'ed by Rob, I probably would have made the above modifications and
+> applied this patch.
+> 
+> Thanks,
+> Mathieu
 
-So, I don't think one can get away from these kinds of issues - where
-you create a board, do insufficient testing, publish a DT description,
-and then through further testing discover you have to restrict the
-hardware capabilities in DT. In fact, this is sadly an entirely normal
-process - problems always get found after boards have been sent out
-and initial DT has been created.
+No problem will send a v2.
 
-A good example is the 6th switch port on the original Clearfog boards.
-This was connected to an external PHY at address 0 on the MDIO bus
-behind the switch. However, the 88E6176 switch already has an internal
-PHY at address 0, so the external PHY can't be accessed. Consequently,
-port 6 is unreliable. That only came to light some time later, and
-resulted in the DT needing to be modified.
-
-There are always problems that need DT to be fixed - I don't think it's
-possible to get away from that by changing what or how something is
-described. In fact, I think trying to make that argument actually shows
-a misunderstanding of the process of hardware bringup.
-
-Just like software, hardware is buggy and takes time to be debugged,
-and that process continues after the first version of DT for a board
-has been produced, and there will always be changes required to DT.
-
-I'm not saying that describing the maximum frequency and lanes doesn't
-have merit, I'm merely taking issue with the basis of your argument.
-
+Regards,
+Julien
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Julien Massot [IoT.bzh]
+
