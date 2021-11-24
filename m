@@ -2,77 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8258E45C92C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98CFB45C93D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:54:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241836AbhKXPyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 10:54:37 -0500
-Received: from ixit.cz ([94.230.151.217]:34952 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240826AbhKXPyh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 10:54:37 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 4C34A20064;
-        Wed, 24 Nov 2021 16:51:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1637769083;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=IU5q06TQT1C9vzgb5Uz3GHm36Avlp6WLGrtHyJxiET4=;
-        b=MIAJzKFXWT+bddlCrj3j5q0t8K83XBjdckPE/hJOBahw4KDwUAiZHmISMLgX32ZqTXSPsA
-        M83GTfm7Sqad5USsi9YjW3fet+mXohuIDqTMJmsmyXOS9nOhO/sewovr/QngCLH/ZsIyjg
-        jJ1K4T57qYNJBHrK2ry1Z1vfK8el6sc=
-From:   David Heidelberg <david@ixit.cz>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        - <patches@opensource.cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        Rob Herring <robh@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ASoC: dt-bindings: wlf,wm8962: add missing interrupt property
-Date:   Wed, 24 Nov 2021 16:51:01 +0100
-Message-Id: <20211124155101.59694-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        id S1347027AbhKXP5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 10:57:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346980AbhKXP5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 10:57:10 -0500
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D0AC061574
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 07:54:00 -0800 (PST)
+Received: by mail-wm1-x330.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso5841903wms.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 07:54:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=eaC+aKUbi8/HkerX1h9TN1jJ5dyc1OgjJ03DE7ihVeE=;
+        b=khsoD/AXPGheSlqw/XmU9zZUV9GQXZxsCxruLXYwF5XBfm62jw68XiEimtWYgix7Dm
+         p8HTMKmjYGLF/VIpJusTlReo8X9Gg0ok12oBkYbgaf/738Dp4uRc1MwRuNH3bOy0FeAb
+         cEv+ggEOfJdkrrkPhphgrMRhDf5EIzNd9HKl8N3Ai39D85tbT4KR7VH1FaWXvnx80eBu
+         t97TilsBLPIwX8VGWox35oMmglF6yY3IueGZTxNNDZCjheEiQ8vm5/xkGfu2oOT50ECH
+         J22fFpwR+3JQCx4Lbg3iLeQl/L+MplPZWaKuaAZLRsuU5LLdQ793A9lh7Y+DTfKz9f3t
+         k31Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=eaC+aKUbi8/HkerX1h9TN1jJ5dyc1OgjJ03DE7ihVeE=;
+        b=AzKUEynj1RMEvwq+tIx3NGe+a/C38mfY4OFYd20QtgV6vluyjMOuvEpUObLd9SSkIu
+         9EKrbZu2XQVBQ4jR4nS+p47XRM4Zq19gh8LxbOYtnRKymzdyEGbz0No/Ik00C5KF1Ecq
+         74N2EbdbuDjk1o0HUBpgrHiE5JibnwvH4c8lNH628GaF+7GOneCCUT3Gf+HuIhGCSdzK
+         0gr/Nz758lc+lVBr65jOzlZhkV0akjP55e8zP79WDrr4Lu3zOCrIG7sQpUJLQuIu1VCw
+         nrZr7MFHDI9zMjVUTe0JRr8zUCVt8wgtfP+Q09Ix4m6fGFksYEQyqbtPPkFlyPIfI+AQ
+         CwSA==
+X-Gm-Message-State: AOAM5315bwz4cZJy+4BMp3/XymP1QJhK4ULr269iPAdtZEJPokF8z3ux
+        Nd8WscZ/hLJMKIkMNuqeHosw1w==
+X-Google-Smtp-Source: ABdhPJxZ7kfHnikIP8xAV2AYB9r4JSjXUZZ4mcZKkK0OwW7XCj1SGkLVIJ/75Ywqtv8Pa0s9H+55sw==
+X-Received: by 2002:a05:600c:2246:: with SMTP id a6mr16169424wmm.5.1637769238950;
+        Wed, 24 Nov 2021 07:53:58 -0800 (PST)
+Received: from google.com ([2.31.167.61])
+        by smtp.gmail.com with ESMTPSA id t8sm102076wmq.32.2021.11.24.07.53.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Nov 2021 07:53:58 -0800 (PST)
+Date:   Wed, 24 Nov 2021 15:53:46 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Dario Binacchi <dariobin@libero.it>
+Cc:     linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Rachna Patil <rachna@ti.com>,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RESEND PATCH 0/6] input: touchscreen: am335x: fix and
+ improvements
+Message-ID: <YZ5gCoaHv3Y/wHIk@google.com>
+References: <20211107112236.7969-1-dariobin@libero.it>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211107112236.7969-1-dariobin@libero.it>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Both, hardware and drivers does support interrupts.
+On Sun, 07 Nov 2021, Dario Binacchi wrote:
 
-Fix warnings as:
-arch/arm/boot/dts/tegra30-microsoft-surface-rt-efi.dt.yaml: audio-codec@1a: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /home/runner/work/linux/linux/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
+> 
+> This series grew out of a touchscreen validation activity on a custom
+> board. Oscilloscope measurements and driver source analysis led to these
+> patches.
+> 
+> Added Rob Herring 'Acked-by' tag to commit "dt-bindings: input:
+> ti-tsc-adc: fix tsc node example".
+> 
+> 
+> 
+> Dario Binacchi (6):
+>   input: ti_am335x_tsc: set ADCREFM for X configuration
+>   input: ti_am335x_tsc: fix STEPCONFIG setup for Z2
+>   input: ti_am335x_tsc: lower the X and Y sampling time
+>   dt-bindings: input: ti-tsc-adc: fix tsc node example
+>   mfd: ti_am335x_tscadc: fix reading a tsc property from DT
+>   mfd: ti_am335x_tscadc: drop the CNTRLREG_8WIRE macro
+> 
+>  .../bindings/input/touchscreen/ti-tsc-adc.txt  |  2 +-
+>  drivers/input/touchscreen/ti_am335x_tsc.c      | 18 +++++++++++++-----
+>  drivers/mfd/ti_am335x_tscadc.c                 |  7 ++++++-
+>  include/linux/mfd/ti_am335x_tscadc.h           |  1 -
+>  4 files changed, 20 insertions(+), 8 deletions(-)
 
-Fixes: cd51b942f344 ("ASoC: dt-bindings: wlf,wm8962: Convert to json-schema")
+You're going to need to rebase this set onto v5.16-rc1.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- Documentation/devicetree/bindings/sound/wlf,wm8962.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml b/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
-index 0e6249d7c133..5e172e9462b9 100644
---- a/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
-+++ b/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
-@@ -19,6 +19,9 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  interrupts:
-+    maxItems: 1
-+
-   "#sound-dai-cells":
-     const: 0
- 
 -- 
-2.33.0
-
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
