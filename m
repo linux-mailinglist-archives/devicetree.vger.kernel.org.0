@@ -2,134 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 037E745CA10
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D74845CA35
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:39:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241647AbhKXQdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 11:33:35 -0500
-Received: from mo4-p03-ob.smtp.rzone.de ([81.169.146.172]:20586 "EHLO
-        mo4-p03-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230403AbhKXQde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:33:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637771406;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=x/yheI97VKaHNQMVbMflabvGwLK6kwR6cdJb58J0b+M=;
-    b=X5qgWtSV2Jv39KDkxgjm++dWI+CIo/cr+nLfLTFbLP74KBTp5lE6t/INRuv8CvNwoL
-    HUpmqcyOPyH/UfMRrphBjTwYQsdoK5Ak0haFOIMqh2LfQyUO1J92va/zuFUgEdMIOtRz
-    ZpRr/rUuR98OZX/DV/eHdahBtzI8R/dlmpulgwIxTf2umATJrYIWpbMVBZ2sOw4dcKAC
-    TwbduGyrpLQ01vofifqm6/7Igbopmp+GorjDiBEptOCEGi5204TIk3nijGKYfEkfZb+l
-    cnya5LbSRhx91IEfwEHyBoirO+oKW1V7UzRKBGRgokeNXbjOg6xSx6+wgyJXF1LNEiID
-    fy3A==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3jsN+"
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
-    with ESMTPSA id e05ed8xAOGU53om
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Wed, 24 Nov 2021 17:30:05 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v8 6/8] MIPS: DTS: CI20: Add DT nodes for HDMI setup
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <CAMuHMdWO3yosf5eyTPpydVuT3pwvuw9Q=2BUxq+rxPjE3iSnrw@mail.gmail.com>
-Date:   Wed, 24 Nov 2021 17:30:05 +0100
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        DRI Development <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B622D2B5-D631-43F3-9D50-2B41681C78AB@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
- <d62023e0872e9b393db736f4a0ecf04b3fc1c91b.1637691240.git.hns@goldelico.com>
- <O0K13R.TIL3JBQ5L8TO1@crapouillou.net>
- <04F0ED7C-3D18-4CCF-8F10-E0A36B0E4F4B@goldelico.com>
- <CAMuHMdWO3yosf5eyTPpydVuT3pwvuw9Q=2BUxq+rxPjE3iSnrw@mail.gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S242201AbhKXQnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 11:43:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50782 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241579AbhKXQnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:43:00 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64408C061574
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:39:50 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id t26so8767629lfk.9
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 08:39:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=AYNjfOVUGsecrjIi5xsDtARh3TxzgOfLgCF2yRehYa0=;
+        b=scq2QI0qZdrjxzMtvMR2HvxTkFaPgthQ0jd2I8GKE8avszQjUEA+F1DJuhaWCVyD6c
+         Bcp5G702RkvnFcmm8YocM9X3DU1H09hGsRF6371mrFVF76Hog8YealFBZqZlD1I78Puq
+         7SOPSj2Nq0aN89oEPlh3jwhkOpp5OM6gfb+2HUAvLzF1Tjhy0dOArzNxUs8SHva/gmUf
+         DMHsPBq2oF0T508CcTNErnCLnPBdl1wLAoBvm6u8lmmFqNlSIbgdZ0DLeqWrQ+YBgFQu
+         33oSnsuAqJt2JS4IKrJrM/q8KRek/CWUQlNTcGAbjnl0X/NXSD0gCAiO7ZHW06UgMn/e
+         y8+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=AYNjfOVUGsecrjIi5xsDtARh3TxzgOfLgCF2yRehYa0=;
+        b=v4WIOgV1NCcvdPuNE38oqL9VV9jtqCBKj53cwoelqmuiXbSfwA4tZ/Vrge7vO+faBn
+         CWSYHHB/qJcV32oM8EyiYIP1NQXWtfUFhX0BwohP+WRO3bcOYxotlexYNlBfK5BF+Lmj
+         P4fMZrk6mNATg9EJto6k6EwwmVSKNj/uNpoZ+/aWj/hv++pmQhQO6A19db8lTPKozl+B
+         Mp/u3uf47qewC58sb/MY4hKbG0M+PWBIhwTPnIMtCxTJO07gKYR433xZQa0zoxVR42SL
+         PKQd5MwOwBfn1uM9xODAdJCkzvGV60rmIOHJMWXe6dZD2e+EWODoPS9yiwFadvyqsgmP
+         PZVw==
+X-Gm-Message-State: AOAM530MZDQx3QdYOncjKz18TC24yewayPV4IX6NthI6tYIxWhaNU/2F
+        dcAQ6RifJe6RmSHFnHGr6vri9Q==
+X-Google-Smtp-Source: ABdhPJwU46I0hQ1JUXUQPx8S6bBVYSb5u7VN1bgldcCMrl/6AhaOV0Ja4hHkwX+VGfLajYF4qEt2mg==
+X-Received: by 2002:ac2:532f:: with SMTP id f15mr15598398lfh.185.1637771988593;
+        Wed, 24 Nov 2021 08:39:48 -0800 (PST)
+Received: from localhost (h-46-59-88-219.A463.priv.bahnhof.se. [46.59.88.219])
+        by smtp.gmail.com with ESMTPSA id b25sm28144lff.185.2021.11.24.08.39.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Nov 2021 08:39:48 -0800 (PST)
+Date:   Wed, 24 Nov 2021 17:39:46 +0100
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: Fix operating point table node names
+Message-ID: <YZ5q0sX3LixD2gx4@oden.dyn.berto.se>
+References: <ac885456ffb00fa4cc4069b9967761df2c98c3d8.1637764588.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ac885456ffb00fa4cc4069b9967761df2c98c3d8.1637764588.git.geert+renesas@glider.be>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Geert,
 
-> Am 24.11.2021 um 17:21 schrieb Geert Uytterhoeven =
-<geert@linux-m68k.org>:
->=20
-> Hi Nikolaus,
->=20
-> On Wed, Nov 24, 2021 at 5:19 PM H. Nikolaus Schaller =
-<hns@goldelico.com> wrote:
->>> Am 23.11.2021 um 21:10 schrieb Paul Cercueil <paul@crapouillou.net>:
->>> Le mar., nov. 23 2021 at 19:13:59 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->>>> +    assigned-clock-rates =3D <48000000>, <0>, <54000000>, <0>, =
-<27000000>;
->>>> };
->>>> &tcu {
->>>> @@ -509,6 +534,19 @@ pins_i2c4: i2c4 {
->>>>             bias-disable;
->>>>     };
->>>> +    pins_hdmi_ddc: hdmi_ddc {
->>>> +            function =3D "hdmi-ddc";
->>>> +            groups =3D "hdmi-ddc";
->>>> +            bias-disable;
->>>> +    };
->>>> +
->>>> +    /* switch to PF25 as gpio driving DDC_SDA low */
->>>> +    pins_hdmi_ddc_unwedge: hdmi_ddc {
->>>> +            function =3D "hdmi-ddc";
->>>> +            groups =3D "hdmi-ddc";
->>>> +            bias-disable;
->>>> +    };
->>>=20
->>> Your pins_hdmi_ddc and pins_hdmi_ddc_unwedge are the exact same? You =
-could just use the former and pass it to both pinctrl-0 and pinctrl-1.
->>=20
->> This was forgotten to remove. We do not make use of the unwedge =
-feature because I could not find out how to use pinctrl to switch this =
-to gpio25 and drive it low.
->=20
-> Using gpio-hog?
+Thanks for your work.
 
-well, AFAIR it activates the gpio permanently and is a propery of the =
-gpio controller and not of pinmux.
-The driver assumes it can use pinmux state switching to drive the =
-DDC_SDA line low on demand.
+On 2021-11-24 15:39:40 +0100, Geert Uytterhoeven wrote:
+> Align the node names of device nodes representing operating point v2
+> tables with the expectations of the DT bindings in
+> Documentation/devicetree/bindings/opp/opp-v2.yaml.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Since it is unlikely that we need it at all (and we have no test case =
-that it works) I think we simply can leave
-this driver feature unused unless we get a test case.
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-BR and thanks,
-Nikolaus
+> ---
+> To be queued in renesas-devel for v5.17.
+> ---
+>  arch/arm64/boot/dts/renesas/r8a774a1.dtsi | 4 ++--
+>  arch/arm64/boot/dts/renesas/r8a774b1.dtsi | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a774e1.dtsi | 4 ++--
+>  arch/arm64/boot/dts/renesas/r8a77951.dtsi | 4 ++--
+>  arch/arm64/boot/dts/renesas/r8a77960.dtsi | 4 ++--
+>  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 4 ++--
+>  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 2 +-
+>  9 files changed, 14 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> index 98963bb96a2ceb56..eda6a840371a8c15 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
+> @@ -58,7 +58,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> @@ -80,7 +80,7 @@ opp-1500000000 {
+>  		};
+>  	};
+>  
+> -	cluster1_opp: opp_table1 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
+> index dcd65b1e15ab6a07..44f79fbd75dc9e48 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a774b1.dtsi
+> @@ -47,7 +47,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+> index 5e16f6b1771e5c44..b8dcbbbf3db5397f 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+> @@ -44,7 +44,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster1_opp: opp_table10 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  		opp-800000000 {
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+> index 4b1019a0a6cecc0c..e6d8610730a84ab8 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a774e1.dtsi
+> @@ -47,7 +47,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> @@ -69,7 +69,7 @@ opp-1500000000 {
+>  		};
+>  	};
+>  
+> -	cluster1_opp: opp_table1 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77951.dtsi b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> index 3be403ca4cd94fc2..9265a5702792c3f2 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77951.dtsi
+> @@ -62,7 +62,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> @@ -96,7 +96,7 @@ opp-1700000000 {
+>  		};
+>  	};
+>  
+> -	cluster1_opp: opp_table1 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77960.dtsi b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+> index 616f44aaa55b0bec..26f7103d11da5985 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77960.dtsi
+> @@ -57,7 +57,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> @@ -97,7 +97,7 @@ opp-1800000000 {
+>  		};
+>  	};
+>  
+> -	cluster1_opp: opp_table1 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> index 724a6a09f4579bf7..ac9b587f6fc513c1 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> @@ -46,7 +46,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> @@ -86,7 +86,7 @@ opp-1800000000 {
+>  		};
+>  	};
+>  
+> -	cluster1_opp: opp_table1 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77965.dtsi b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+> index b625cdd16a92ecc8..f898aad72b9d263c 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77965.dtsi
+> @@ -62,7 +62,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster0_opp: opp_table0 {
+> +	cluster0_opp: opp-table-0 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> index 29b2a94d5ab6566d..bc0a4f8f20c337e1 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> @@ -55,7 +55,7 @@ can_clk: can {
+>  		clock-frequency = <0>;
+>  	};
+>  
+> -	cluster1_opp: opp_table10 {
+> +	cluster1_opp: opp-table-1 {
+>  		compatible = "operating-points-v2";
+>  		opp-shared;
+>  		opp-800000000 {
+> -- 
+> 2.25.1
+> 
 
+-- 
+Kind Regards,
+Niklas Söderlund
