@@ -2,89 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 213D245C7F7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:49:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5297C45C7CA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 15:42:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355470AbhKXOw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 09:52:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357737AbhKXOwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 09:52:22 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E42C055286
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:40:14 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id v1so11531031edx.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 06:40:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=4lBlm4cQeHrxfSN2jOl9EalKvRpO95qe6vNDFkihu8w=;
-        b=iM7aJGyvNsjdjPBEP5AUKbmN59lykLx5dIIvEM0i6S6mwhwJvDfIvGHdCi773n/zOl
-         OJNexSUNSu3a9aMlGpCQ2OfFEii/ArWa64WOaWyC2M2zDhsQg85SSBS/QEvIZRSS9DPy
-         eYTRSUlFfHoF95/983AoN/25kgLpxp8YtJs/rsiku9E7uaALuXjskp/0JyLZRVKKoFBG
-         N2MN2xWo1u1//icfj38w1eny+vnmgAb/Ewb9R44FzLJrlahSjtvSI7xBCMMb3GYbc6mw
-         z+cWVnI//AuRECY9wexGW7pWH5IL2k9e5ZtP7nRb4KaYrkA+24JLx9YdI/7PD7HAkB36
-         u2yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=4lBlm4cQeHrxfSN2jOl9EalKvRpO95qe6vNDFkihu8w=;
-        b=4ihbKT4emvJyhEQPYXI80QAkFsWqQ/4dg74w/XYNZWaMIzCj85DW3qk5DDtUQH/0Yv
-         ztrZse/1JPSfLChY/RECNZYRL8kDhcdiieBADJOg8QqyMJqAC/tJDYSUGrJPq4xWs/Pa
-         xDR0BOHo5yRSShYHFnkbEEJvSMaFwEbHDvnh3US9wXU+pjd9hmcmVaxW30Hr7y5aeiwU
-         uOfb2IH36H4pdP4PdsbtCPbtp29iB9W8qQddf1fIuoykV21QEgPQL8fW3MFKPJYbXRkS
-         Q5YU08ly8WCWndsVNq7o3hmJH4hGoGd2+N6UoNXHKBraKq/Zplm0DkpdW9oAL5Cy0nRl
-         dbAw==
-X-Gm-Message-State: AOAM530HdM44TGOiKtgoTEDE6OGqBFBc6SH5LUmX46CAWcEOSG0Ol4Br
-        tHCKJ5Z0UOSUMHeMaLBpWVcfKh/6yWW2Otn3Ms0=
-X-Google-Smtp-Source: ABdhPJzz4M7bjuax9lG6pZohYrznvoE6DNi9D6rLMq0otYfkyyZMOEh24CXTFs48aOVTuEwM8iGZUE1tYwD0YT2mgEQ=
-X-Received: by 2002:a17:907:7f8f:: with SMTP id qk15mr20794935ejc.455.1637764809799;
- Wed, 24 Nov 2021 06:40:09 -0800 (PST)
+        id S1354570AbhKXOpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 09:45:38 -0500
+Received: from mga14.intel.com ([192.55.52.115]:22092 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1351441AbhKXOpW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 09:45:22 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10177"; a="235528376"
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
+   d="scan'208";a="235528376"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2021 06:42:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
+   d="scan'208";a="554200838"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by fmsmga008.fm.intel.com with ESMTP; 24 Nov 2021 06:41:51 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mptT4-0004tx-UI; Wed, 24 Nov 2021 14:41:50 +0000
+Date:   Wed, 24 Nov 2021 22:41:34 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
+        shawnguo@kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, festevam@gmail.com,
+        krzk@kernel.org, kernel@puri.sm, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "arm64: dts: imx8mq: Add interconnect for lcdif"
+Message-ID: <202111242244.TDmKlSFo-lkp@intel.com>
+References: <20211123114545.411787-1-martin.kepplinger@puri.sm>
 MIME-Version: 1.0
-Received: by 2002:a17:906:6a0b:0:0:0:0 with HTTP; Wed, 24 Nov 2021 06:40:08
- -0800 (PST)
-Reply-To: rco.ben189@outlook.fr
-From:   "Mrs. Susan Dansuki" <atmpaymentcard14@gmail.com>
-Date:   Wed, 24 Nov 2021 06:40:08 -0800
-Message-ID: <CAO5LRLX7rmx_oaiXP_zB2GhdQj0dLo7bJLjyvk1bdRz1iSnFOw@mail.gmail.com>
-Subject: Re: COVID-19 RELIEF FUND WORTH $1,500,000.00 USD
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123114545.411787-1-martin.kepplinger@puri.sm>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Beneficiary,
+Hi Martin,
 
-In line with the directive of the United Nations organization on their
-fight to cushion the bad effect of Covid-19 around the world. We wish
-to bring you the good news of hope. The United Nations organization
-department for disaster management in conjunction with IMF, World Bank
-is giving out Covid-19 stimulus package worth $1,500,000.00 USD, and
-you are among the lucky beneficiary selected to receive this stimulus
-package.
+I love your patch! Yet something to improve:
 
-Therefore, on receipt of this email, you should count yourself as the
-lucky individual. Your email address was chosen online while searching
-at random. Kindly contact our grants manager (Mr. Robert Taiwo) at
-your earliest convenience, with the contacts details listed below,to
-claim your stimulus package worth $1,500,000.00 USD.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on v5.16-rc2 next-20211124]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Name: Mr.Robert TAIWO
-Email: (   mr.roberttaiwo73@qq.com )
-Telephone: (+229) 96548388 (WhatsApp)
+url:    https://github.com/0day-ci/linux/commits/Martin-Kepplinger/Revert-arm64-dts-imx8mq-Add-interconnect-for-lcdif/20211123-194812
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: arm64-randconfig-r015-20211123 (https://download.01.org/0day-ci/archive/20211124/202111242244.TDmKlSFo-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 49e3838145dff1ec91c2e67a2cb562775c8d2a08)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install arm64 cross compiling tool for clang build
+        # apt-get install binutils-aarch64-linux-gnu
+        # https://github.com/0day-ci/linux/commit/7c0ba67703bd4e42499c76d0953b46aba38b74af
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Martin-Kepplinger/Revert-arm64-dts-imx8mq-Add-interconnect-for-lcdif/20211123-194812
+        git checkout 7c0ba67703bd4e42499c76d0953b46aba38b74af
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash
 
-Please confirm the following information to him as soon as possible.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-1. Full Name :
-2. Address :
-3. Nationality :
-4. Direct Telephone #:
+All errors (new ones prefixed by >>):
 
-Congratulations once again.
+>> Error: arch/arm64/boot/dts/freescale/imx8mq.dtsi:1117.27-28 syntax error
+   FATAL ERROR: Unable to parse input tree
 
-Yours Sincerely
-Mrs. Susan Dansuki.
-Director of the Centers for Disease Control and Prevention.
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
