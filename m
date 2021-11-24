@@ -2,86 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0809F45C956
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 16:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1304C45C97F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 17:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347499AbhKXQBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 11:01:52 -0500
-Received: from mail-vk1-f182.google.com ([209.85.221.182]:42691 "EHLO
-        mail-vk1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229829AbhKXQBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:01:52 -0500
-Received: by mail-vk1-f182.google.com with SMTP id b125so1830428vkb.9;
-        Wed, 24 Nov 2021 07:58:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ptv6aIhfTWN4MeV+ze8LFVjMsNdx8UNG/X8//1/4PrE=;
-        b=26vOzjTuZC+LLu20QguiW35MAcj1WJdg9IjxrlL/CqIaexGQVRiHN4HR59YypVZq5l
-         SlAPkyn3aZ1D8I3VdakCdOf/JASKER/P9ttIsIpxCImYPLAxoMNc0unM/E7rpg4+dxoB
-         iQ9caG0ww8Gt77gfXUll99dRdSpO5hhADBcD+u/b5Rq3eTxC+JaM34zvLoMSF3XZbLA0
-         WX0cL6J369mBtA9Sb/8zM2cD+M0KmoujHRcmtR1u3GyMxUrC9Az6MlB5eoydmlxl9cmw
-         GWzC1MS3SoZVaj8F2oJms95CZL/nsgyFCSkFn6r5dqlFkHqZ2sP6tDgmthQtow1an/je
-         gjHw==
-X-Gm-Message-State: AOAM531bRd8INWW2YvrFa34oQlo8gDaayie6GywuK8RTSjlFSxSZNyd0
-        sqO7P7UDYEBbUD/++uSUriN7pkBvpyJ/hw==
-X-Google-Smtp-Source: ABdhPJyR0XhmK1/Z4aINbM4rTJFV/XVP9HimDAYcrcwUICC3JyR1I9kHn61VTLPWjKuZXOFe+WFQmA==
-X-Received: by 2002:a1f:ff08:: with SMTP id p8mr1463197vki.33.1637769522023;
-        Wed, 24 Nov 2021 07:58:42 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id f11sm45786vkk.50.2021.11.24.07.58.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 07:58:41 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id o1so6098861uap.4;
-        Wed, 24 Nov 2021 07:58:41 -0800 (PST)
-X-Received: by 2002:a9f:3e01:: with SMTP id o1mr12046695uai.89.1637769521047;
- Wed, 24 Nov 2021 07:58:41 -0800 (PST)
+        id S231391AbhKXQHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 11:07:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42496 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229849AbhKXQHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 11:07:50 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2ABBC061574;
+        Wed, 24 Nov 2021 08:04:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=5ZjtfcVB4wsq2lV3EPnmXCKirI/GyR928eeJPaIdR7Q=; b=xHAUtbKXS2c2yCggLXgbB/5qq8
+        UIXgJJG9Vf4PSj3Ptpd/MOM6RIEflWW/kF7ZOXgUii9aVJwpjMlLs4Z3DKJyQXWUs3jb8IaUDCKnR
+        KiI/FxzxDQAJF7Hfaiudp1Vb1uZ9It1GGwHm/97OeVD/hXZyLEkMLkHyaoZjKAKevCblQXvuR6ueo
+        aU3uwOjh+ytgSp5o8JKwekLXXXPVgv2kuPHJ1S8KiPm/7dbli39MLwJKxmDq5Z2sNzp60QWrjzloJ
+        PwNen3X607QB94fQMC52djGHljVq7zkDARbrvxWv0y/M0Fgyqn0rFBD9BAkX5PRQ4bIUZmAZ/MFjr
+        07XQEOpA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55858)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1mpul8-0000qd-FW; Wed, 24 Nov 2021 16:04:34 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1mpul7-0001Jj-1K; Wed, 24 Nov 2021 16:04:33 +0000
+Date:   Wed, 24 Nov 2021 16:04:33 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 3/6] net: lan966x: add port module support
+Message-ID: <YZ5ikamCVeyGFw3x@shell.armlinux.org.uk>
+References: <20211124083915.2223065-1-horatiu.vultur@microchip.com>
+ <20211124083915.2223065-4-horatiu.vultur@microchip.com>
+ <YZ4SB/wX6UT3zrEV@shell.armlinux.org.uk>
+ <20211124145800.my4niep3sifqpg55@soft-dev3-1.localhost>
+ <YZ5UXdiNNf011skU@shell.armlinux.org.uk>
+ <20211124154323.44liimrwzthsh547@soft-dev3-1.localhost>
 MIME-Version: 1.0
-References: <20211124155101.59694-1-david@ixit.cz>
-In-Reply-To: <20211124155101.59694-1-david@ixit.cz>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 24 Nov 2021 16:58:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdU4c1CMc_GzORTN-j1j3LZ0jui=h2RDVoVVMQmXfOuAmQ@mail.gmail.com>
-Message-ID: <CAMuHMdU4c1CMc_GzORTN-j1j3LZ0jui=h2RDVoVVMQmXfOuAmQ@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: dt-bindings: wlf,wm8962: add missing interrupt property
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        - <patches@opensource.cirrus.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        ~okias/devicetree@lists.sr.ht, Rob Herring <robh@kernel.org>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211124154323.44liimrwzthsh547@soft-dev3-1.localhost>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 24, 2021 at 4:51 PM David Heidelberg <david@ixit.cz> wrote:
-> Both, hardware and drivers does support interrupts.
->
-> Fix warnings as:
-> arch/arm/boot/dts/tegra30-microsoft-surface-rt-efi.dt.yaml: audio-codec@1a: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
->         From schema: /home/runner/work/linux/linux/Documentation/devicetree/bindings/sound/wlf,wm8962.yaml
->
-> Fixes: cd51b942f344 ("ASoC: dt-bindings: wlf,wm8962: Convert to json-schema")
->
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+On Wed, Nov 24, 2021 at 04:43:23PM +0100, Horatiu Vultur wrote:
+> > > Actually, port->config.phy_mode will not get zeroed. Because right after
+> > > the memset it follows: 'config = port->config'.
+> > 
+> > Ah, missed that, thanks. However, why should portmode and phy_mode be
+> > different?
+> 
+> Because the serdes knows only few modes(QSGMII, SGMII, GMII) and this
+> information will come from DT. So I would like to have one variable that
+> will configure the serdes ('phy_mode') and one will configure the MAC
+> ('portmode').
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I don't follow why you need this to be different.
 
-Gr{oetje,eeting}s,
+Isn't the point of interfaces such as phy_set_mode_ext() such that we
+can achieve independence of the details of what is behind that
+interface - so, as it takes a PHY interface mode, if we're operating
+in 1000BASE-X, we pass that to phy_set_mode_ext(). It is then the
+responsibility of the Serdes PHY driver to decide that means "sgmii"
+mode for the Serdes?
 
-                        Geert
+For example, the Marvell CP110 comphy driver does this:
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+        if (submode == PHY_INTERFACE_MODE_1000BASEX)
+                submode = PHY_INTERFACE_MODE_SGMII;
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+because the serdes phy settings for PHY_INTERFACE_MODE_1000BASEX are
+no different from PHY_INTERFACE_MODE_SGMII - and that detail is hidden
+from the network driver.
+
+The next question this brings up is... you're setting all the different
+interface modes in phylink_config.supported_interfaces, which basically
+means you're giving permission for phylink to switch between any of
+those modes. So, what if the serdes is in QSGMII mode but phylink
+requests SGMII mode. Doesn't your driver architecture mean that if
+you're in QSGMII mode you can't use SGMII or GMII mode?
+
+Is there some kind of restriction that you need to split this, or is
+this purely down to the way this driver has been written?
+
+I don't see any other driver in the kernel making this kind of split.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
