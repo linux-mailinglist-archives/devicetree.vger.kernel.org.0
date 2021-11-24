@@ -2,105 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46A9345CA83
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 18:01:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3546045CABD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 18:18:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349374AbhKXREr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 12:04:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55770 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242707AbhKXREq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 12:04:46 -0500
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC6BC061574;
-        Wed, 24 Nov 2021 09:01:36 -0800 (PST)
-Received: by mail-qk1-x72f.google.com with SMTP id 132so3498234qkj.11;
-        Wed, 24 Nov 2021 09:01:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=4l8EHpoHR/MUDumoB/hsOQmLQDeVna4zuNcu6MG7N2Y=;
-        b=oNawTdMVSlhLmOCrDcR19sMj/RztqPP/+Xul1ST0ZdjZqP/GXamlE06D/eZB2NI71+
-         tKrHOxVlG3T5aAXCdaXsBqOpttB7xDhe0zytOjT9XF/Y3kqcM15J6tnRSys3yPlVcfuj
-         8EP1DG66Meqvt2KL14gdwqQ9jbr3N/44XS5CpoXDIWeaEKiqwkaLUHeulZyzxTbsYxOq
-         T6Wi5OfXgyLiFxQ2A14taCw6JYR4yAQ9jvV+sjc9AENZn1PYPL5iPuP5LjAJLWFIOb9y
-         2/kVWUspoQ1F3b/jzWi05rfUah5HK/mQ6U2zRluZPdRWkPa235jsXYLL3mGnRGdQT0aH
-         XKQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4l8EHpoHR/MUDumoB/hsOQmLQDeVna4zuNcu6MG7N2Y=;
-        b=oKt+a3OFza6iWdfZQO0BmiNG9Otjps7U1FInY7cln6i7swnK+R+GhRswIQJ9iaGw1j
-         yH82tyniK3/UqDAImIlb1+gGmJx+qjUiA0XjjgHjWCTrkMxquXiVSdtDBbE98hZc+RTe
-         dUlefd83rqc2rQphbjGvmR8YwIJwRWF9Rafv6okv+/n+oLRTYELCd+6yzHiO3mDcz8n8
-         S8e6vv3PQT70t2H4viD+5KiDV+cTM6KXAKW8QkidSmACbFK57Gu7h+ksgCIjryLK+u8l
-         q3+150ICmh9Y6Gl22eqegP1J2+qiSbiPNe5PwBuaOoR6ILzDt8EWvJ7dUnTl+dgoffRD
-         T68w==
-X-Gm-Message-State: AOAM532M65azHCoDjBaraCZA6KAJMVYbmWpLkyTY0jOqycdjB/YdEmkI
-        wB4s9+58Uh2eLBc2CqzZbko=
-X-Google-Smtp-Source: ABdhPJxMWf3VHGwZdkv0Dz7RlGUGqhel603IxJS5niNv9/50hWXBURFDisFz9q7IqpkQPDpH9JG1hg==
-X-Received: by 2002:ae9:e907:: with SMTP id x7mr7705930qkf.150.1637773295831;
-        Wed, 24 Nov 2021 09:01:35 -0800 (PST)
-Received: from [192.168.1.140] ([65.35.200.237])
-        by smtp.gmail.com with ESMTPSA id x16sm158330qko.15.2021.11.24.09.01.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 09:01:35 -0800 (PST)
-Subject: Re: [PATCH 0/3] of/fdt: Rework early FDT scanning functions
-To:     Rob Herring <robh@kernel.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        John Crispin <john@phrozen.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Paul Mackerras <paulus@samba.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-References: <20211118181213.1433346-1-robh@kernel.org>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <7c3286d4-2da4-b083-b3a4-88d32e475617@gmail.com>
-Date:   Wed, 24 Nov 2021 12:01:33 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S232455AbhKXRVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 12:21:16 -0500
+Received: from mga14.intel.com ([192.55.52.115]:38639 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229509AbhKXRVP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Nov 2021 12:21:15 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="235570024"
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
+   d="scan'208";a="235570024"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2021 09:15:03 -0800
+X-IronPort-AV: E=Sophos;i="5.87,260,1631602800"; 
+   d="scan'208";a="741273446"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Nov 2021 09:15:00 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 8314220165;
+        Wed, 24 Nov 2021 19:14:58 +0200 (EET)
+Date:   Wed, 24 Nov 2021 19:14:58 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Michael Tretter <m.tretter@pengutronix.de>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
+        kernel@pengutronix.de, Hans Verkuil <hverkuil@xs4all.nl>
+Subject: Re: [PATCH v8 2/3] media: dt-bindings: Add Intersil ISL79987 DT
+ bindings
+Message-ID: <YZ5zEnV9oJPPq24K@paasikivi.fi.intel.com>
+References: <20211123101517.3656935-1-m.tretter@pengutronix.de>
+ <20211123101517.3656935-3-m.tretter@pengutronix.de>
+ <YZzLVI2ZUBvXGhkZ@paasikivi.fi.intel.com>
+ <20211124164907.GD20126@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <20211118181213.1433346-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211124164907.GD20126@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/18/21 1:12 PM, Rob Herring wrote:
-> The early FDT scanning functions use of_scan_flat_dt() which implements 
-> its own node walking method. This function predates libfdt and is an 
-> unnecessary indirection. This series reworks 
-> early_init_dt_scan_chosen(), early_init_dt_scan_root(), and 
-> early_init_dt_scan_memory() to be called directly and use libfdt calls.
-> 
-> Ultimately, I want to remove of_scan_flat_dt(). Most of the remaining 
-> of_scan_flat_dt() users are in powerpc.
-> 
-> Rob
-> 
-> 
-> Rob Herring (3):
->   of/fdt: Rework early_init_dt_scan_chosen() to call directly
->   of/fdt: Rework early_init_dt_scan_root() to call directly
->   of/fdt: Rework early_init_dt_scan_memory() to call directly
-> 
->  arch/mips/ralink/of.c                |  16 +---
->  arch/powerpc/kernel/prom.c           |  22 ++---
->  arch/powerpc/mm/nohash/kaslr_booke.c |   4 +-
->  drivers/of/fdt.c                     | 121 ++++++++++++++-------------
->  include/linux/of_fdt.h               |   9 +-
->  5 files changed, 79 insertions(+), 93 deletions(-)
-> 
+Hi Michael,
 
+On Wed, Nov 24, 2021 at 05:49:07PM +0100, Michael Tretter wrote:
+> On Tue, 23 Nov 2021 13:07:00 +0200, Sakari Ailus wrote:
+> > On Tue, Nov 23, 2021 at 11:15:16AM +0100, Michael Tretter wrote:
+> > > From: Marek Vasut <marex@denx.de>
+> > > 
+> > > Add bindings for the Intersil ISL79987 analog to MIPI CSI-2 decoder.
+> > > 
+> > > Signed-off-by: Marek Vasut <marex@denx.de>
+> > > Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> > > Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: devicetree@vger.kernel.org
+> > > To: linux-media@vger.kernel.org
+> > > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > Changelog:
+> > > 
+> > > v8: none
+> > > 
+> > > v7: none
+> > > 
+> > > v6: none
+> > > 
+> > > v5: none
+> > > 
+> > > v4: none
+> > > 
+> > > v3:
+> > > 
+> > > - rename pd-gpios property to powerdown-gpios
+> > > - reference graph.yaml for ports/port properties
+> > > - remove reference to video-interfaces.txt
+> > > - remove unnecessary description of ports property
+> > > 
+> > > v2:
+> > > 
+> > > - convert binding to yaml
+> > > - change description to match only isl79987
+> > > - replace num-inputs property with multiple ports
+> > > - add reset gpio
+> > > ---
+> > >  .../bindings/media/i2c/isil,isl79987.yaml     | 100 ++++++++++++++++++
+> > >  1 file changed, 100 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+> > > new file mode 100644
+> > > index 000000000000..aee4a5966df3
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+> > > @@ -0,0 +1,100 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/isil,isl79987.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Intersil ISL79987 Analog to MIPI CSI-2 decoder
+> > > +
+> > > +maintainers:
+> > > +  - Michael Tretter <m.tretter@pengutronix.de>
+> > > +  - Marek Vasut <marex@denx.de>
+> > > +
+> > > +description:
+> > > +  The Intersil ISL79987 is an analog to MIPI CSI-2 decoder which is capable of
+> > > +  receiving up to four analog stream and multiplexing them into up to four MIPI
+> > > +  CSI-2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - isil,isl79987
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      A GPIO spec for the RSTB pin (active high)
+> > > +
+> > > +  powerdown-gpios:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      A GPIO spec for the Power Down pin (active high)
+> > > +
+> > > +  ports:
+> > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > +    properties:
+> > > +      port@0:
+> > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > +        description: Output port
+> > 
+> > I think you need need the data-lanes property for endpoints on this port.
+> 
+> Thanks. The bot also found that the clock-lanes property is missing, too.
+> 
+> The following specification seems to satisfy the checker, but I'm not
+> completely sure, if it is actually correct:
+> 
+> 	port@0:
+> 	  $ref: /schemas/graph.yaml#/$defs/port-base
+> 	  unevaluatedProperties: false
+> 	  description: Output port
+> 
+> 	  properties:
+> 	    endpoint:
+> 	      $ref: /schemas/media/video-interfaces.yaml#
+> 	      unevaluatedProperties: false
+> 
+> 	      properties:
+> 		clock-lanes:
+> 		  maxItems: 1
+> 
+> 		data-lanes:
+> 		  minItems: 1
+> 		  maxItems: 2
+> 
+> 	      required:
+> 		- clock-lanes
+> 		- data-lanes
+> 
+> Is this how I can correctly add the clock-lanes and data-lanes properties to
+> the endpoint?
 
-"checkpatch --strict" reports some "CHECK" issues, but review of the patches
-for correctness becomes much more difficult if they are addressed, so they
-should be ignored for this series.
+clock-lanes is extra, unless the hardware supports lane remapping.
 
--Frank
+-- 
+Sakari Ailus
