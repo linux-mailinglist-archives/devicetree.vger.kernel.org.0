@@ -2,80 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5FE45CDE3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 21:20:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DCF645CE73
+	for <lists+devicetree@lfdr.de>; Wed, 24 Nov 2021 21:54:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237856AbhKXUYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 15:24:07 -0500
-Received: from ixit.cz ([94.230.151.217]:38654 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237467AbhKXUYG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 15:24:06 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id B5B0220064;
-        Wed, 24 Nov 2021 21:20:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1637785254;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=JOY3hYg/Zi65wbuf+lW3mLve82V3ibAcjofnA7CL8QQ=;
-        b=L3GNPhK6AqeXR4Bpkrf10oJtJMujxolATVkMbzZsnAnA5GKZXIQ31SqbzxQsKUjoH/aXsz
-        AZ/VAz//hVKTIniFu/BqrEsQSnhjuthVvx1LMM3I3oK62qXXxcHvaCfdqTu1Fd2jHyZ7PG
-        BbMc4uX4C0Ahw/GZFBtQ4DRzgymyFCs=
-From:   David Heidelberg <david@ixit.cz>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: ethernet-controller: add 2.5G and 10G speeds
-Date:   Wed, 24 Nov 2021 21:20:46 +0100
-Message-Id: <20211124202046.81136-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S244537AbhKXU5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 15:57:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244546AbhKXU5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 15:57:10 -0500
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE44FC061748;
+        Wed, 24 Nov 2021 12:53:59 -0800 (PST)
+Received: by mail-lj1-x235.google.com with SMTP id k23so8128617lje.1;
+        Wed, 24 Nov 2021 12:53:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=4IyNvYikGx/k9tdDU8szk4MiN32bXrdjaPGV4oWEMDs=;
+        b=n18cstBkdjX7c+UShE1M0pp9AYFZa32iOb6HZ8rdrt8352PocjOxC7sjVmfskpFFXJ
+         cP7FvZ6BWua0oznO+XQuZiW0mLUpmRy/h+zuw8dCqT/V+JNfFBCfu/u5oiBnVWhVtKiD
+         R0+SnwDYwNlsoJhw/nYxYgSSU94QG+gmJGIwNvZB7CPivO3tHkuFA7PMxidgOT42knwb
+         8+rQr70H2QlDBFrCqfUR21+P6rOWVBDezxc6r+nKLjN9Sgrj8z8x9gKvTIgM25fwD6pT
+         f/T2ppOTcyjYvVgFEMcfRXKpWsQYSP/Q7CFluriF7V92BmHfr0hnGQmJkYIyOT12Uqji
+         MVwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=4IyNvYikGx/k9tdDU8szk4MiN32bXrdjaPGV4oWEMDs=;
+        b=AWSZuN3I6txED+5x9JVsDApKURKJAGzqPqQS3C35Qcc0PgDcDU0ZFLeXdUUrSQaPm2
+         V4ynaqb04EXiDCT8BrLkyxviBcKspS6d4XInQw3t9SMWGAyybGm5wqjaRgS/8Owr7uzd
+         DLDNMFYu+NEx1z5vUvySFnqkTQuk1fXz/CC66e2IitmxGc96EoOnPrFq9pZJ/JcYn8G2
+         MY2+i7k6pjfTbVPfKyr80niSbPdTJ5y2SvnilM3pwB0ZUnfY3C477dqf0D+5Sw75S4Jd
+         0lUULkvvi6nJOknR/O5RCR2SuLY2bR+4Y6kGpOruANDv8cn5Ru2UGR5uvQ/a3Fu2H5Xb
+         rnNQ==
+X-Gm-Message-State: AOAM5331TA6NpYFWbnpqBhrStfJIWj+wI3HMpAMYSv9o8hlEVFpubRGM
+        e+ilWTE7Q8iZ7Qz05UuXcjc=
+X-Google-Smtp-Source: ABdhPJzbg9X4RTlpGwA/0nX9yg4bi5EiUdsWZuy6cXGIhElPKfsHllDQlnKAQo4feHXv3B9QBwXKpA==
+X-Received: by 2002:a2e:3c0c:: with SMTP id j12mr19053688lja.402.1637787238288;
+        Wed, 24 Nov 2021 12:53:58 -0800 (PST)
+Received: from otyshchenko.router ([212.22.223.21])
+        by smtp.gmail.com with ESMTPSA id j11sm97608ljc.9.2021.11.24.12.53.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 24 Nov 2021 12:53:58 -0800 (PST)
+From:   Oleksandr Tyshchenko <olekstysh@gmail.com>
+To:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Julien Grall <julien@xen.org>
+Subject: [PATCH V3 6/6] dt-bindings: xen: Clarify "reg" purpose
+Date:   Wed, 24 Nov 2021 22:53:43 +0200
+Message-Id: <1637787223-21129-7-git-send-email-olekstysh@gmail.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1637787223-21129-1-git-send-email-olekstysh@gmail.com>
+References: <1637787223-21129-1-git-send-email-olekstysh@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Both are already used by HW and drivers inside Linux.
+From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 
-Fix warnings as:
-arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dt.yaml: ethernet@0,2: fixed-link:speed:0:0: 2500 is not one of [10, 100, 1000]
-        From schema: Documentation/devicetree/bindings/net/ethernet-controller.yaml
+Xen on Arm has gained new support recently to calculate and report
+extended regions (unused address space) safe to use for external
+mappings. These regions are reported via "reg" property under
+"hypervisor" node in the guest device-tree. As region 0 is reserved
+for grant table space (always present), the indexes for extended
+regions are 1...N.
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
+No device-tree bindings update is needed (except clarifying the text)
+as guest infers the presence of extended regions from the number
+of regions in "reg" property.
+
+Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
 ---
- .../devicetree/bindings/net/ethernet-controller.yaml          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+According to the recent update to Xen's guest.txt:
+https://xenbits.xen.org/gitweb/?p=xen.git;a=blob_plain;f=docs/misc/arm/device-tree/guest.txt;hb=refs/heads/master
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index b0933a8c295a..95b5a3d77421 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -178,7 +178,7 @@ properties:
-                   Duplex configuration. 0 for half duplex or 1 for
-                   full duplex
+Changes V2 -> V3:
+   - new patch
+---
+ Documentation/devicetree/bindings/arm/xen.txt | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
+index db5c56d..156fe10b 100644
+--- a/Documentation/devicetree/bindings/arm/xen.txt
++++ b/Documentation/devicetree/bindings/arm/xen.txt
+@@ -7,10 +7,14 @@ the following properties:
+ 	compatible = "xen,xen-<version>", "xen,xen";
+   where <version> is the version of the Xen ABI of the platform.
  
--              - enum: [10, 100, 1000]
-+              - enum: [10, 100, 1000, 2500, 10000]
-                 description:
-                   Link speed in Mbits/sec.
+-- reg: specifies the base physical address and size of a region in
+-  memory where the grant table should be mapped to, using an
+-  HYPERVISOR_memory_op hypercall. The memory region is large enough to map
+-  the whole grant table (it is larger or equal to gnttab_max_grant_frames()).
++- reg: specifies the base physical address and size of the regions in memory
++  where the special resources should be mapped to, using an HYPERVISOR_memory_op
++  hypercall.
++  Region 0 is reserved for mapping grant table, it must be always present.
++  The memory region is large enough to map the whole grant table (it is larger
++  or equal to gnttab_max_grant_frames()).
++  Regions 1...N are extended regions (unused address space) for mapping foreign
++  GFNs and grants, they might be absent if there is nothing to expose.
+   This property is unnecessary when booting Dom0 using ACPI.
  
-@@ -200,7 +200,7 @@ properties:
-               description:
-                 Link speed.
-               $ref: /schemas/types.yaml#/definitions/uint32
--              enum: [10, 100, 1000]
-+              enum: [10, 100, 1000, 2500, 10000]
- 
-             full-duplex:
-               $ref: /schemas/types.yaml#/definitions/flag
+ - interrupts: the interrupt used by Xen to inject event notifications.
 -- 
-2.33.0
+2.7.4
 
