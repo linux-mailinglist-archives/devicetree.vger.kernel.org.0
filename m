@@ -2,69 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21D3045DCDB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F04BB45DCFE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238994AbhKYPHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 10:07:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39632 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231522AbhKYPFz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 10:05:55 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 135D6C061758
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 07:02:43 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:1511:ffa3:275:45dd])
-        by michel.telenet-ops.be with bizsmtp
-        id Nf2e2600c5CGg7706f2e7S; Thu, 25 Nov 2021 16:02:39 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mqGGk-000DAH-Ak; Thu, 25 Nov 2021 16:02:38 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mqGGj-000g2p-3w; Thu, 25 Nov 2021 16:02:37 +0100
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Green Wan <green.wan@sifive.com>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Debbelt <palmer@sifive.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH] dt-bindings: dma: sifive,fu540-c000-pdma: Group interrupt tuples
-Date:   Thu, 25 Nov 2021 16:02:33 +0100
-Message-Id: <20211125150233.161576-1-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
+        id S239438AbhKYPPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 10:15:08 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:50438 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1349951AbhKYPNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 10:13:07 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1APCh56F016520;
+        Thu, 25 Nov 2021 16:09:46 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=p2HPIi91qpsIIqhOstLvefiBWNtsY55xk3VxDKr+6Yk=;
+ b=J6NHd09bnMmg1ABkV3UdHn1OdaeOyKZBKOUwfXi71bYNWriGDjhCZpSgW3sHFVC2+9Tc
+ FCuqQiNE33xeHmTbKAoHAxMDhcLftdwH758VAzW4uZqEo583Re3SY4bcFoY/bEoDZrwW
+ mM3PZnKWaK22BMTEPQkdlLwlYcToddAhMoJpKSWx2CMwh3gMxRUUA0MyrAPO9Y9MeU7i
+ qFPQiYey4ZX/S19n6aVgvtWhyrV4ppqXwH1pKsRe7Z/ZC/BsSOwHs+1rTD2/bTQKqzYC
+ ldImKflLzfgj3FrXFYtd+uChD8sNVVpe+xPwjVvTNoMirZ/VyiZ07v38jg0wJ5S/VScQ Kg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cjar3gugg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 25 Nov 2021 16:09:46 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 21BE710002A;
+        Thu, 25 Nov 2021 16:09:46 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 18459239FAC;
+        Thu, 25 Nov 2021 16:09:46 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 25 Nov
+ 2021 16:09:45 +0100
+Subject: Re: [PATCH 1/1] ARM: dts: stm32: clean useless spaces in
+ uart4_idle_pins_a node
+To:     Erwan Le Ray <erwan.leray@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
+        Valentin Caron <valentin.caron@foss.st.com>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+References: <20211020150230.9939-1-erwan.leray@foss.st.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Message-ID: <7e5af715-2ab8-670d-74ca-57904c7c90f8@foss.st.com>
+Date:   Thu, 25 Nov 2021 16:09:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211020150230.9939-1-erwan.leray@foss.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
+ definitions=2021-11-25_06,2021-11-25_01,2020-04-07_01
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To improve human readability and enable automatic validation, the tuples
-in "interrupts" properties should be grouped using angle brackets.
+On 10/20/21 5:02 PM, Erwan Le Ray wrote:
+> Clean useless spaces in uart4_idle_pins_a node.
+> 
+> Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> index 5b60ecbd718f..e13c2a9762b8 100644
+> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+> @@ -1737,20 +1737,20 @@
+>   	};
+>   
+>   	uart4_idle_pins_a: uart4-idle-0 {
+> -		   pins1 {
+> -			 pinmux = <STM32_PINMUX('G', 11, ANALOG)>; /* UART4_TX */
+> -		   };
+> -		   pins2 {
+> -			 pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
+> -			 bias-disable;
+> -		   };
+> +		pins1 {
+> +			pinmux = <STM32_PINMUX('G', 11, ANALOG)>; /* UART4_TX */
+> +		};
+> +		pins2 {
+> +			pinmux = <STM32_PINMUX('B', 2, AF8)>; /* UART4_RX */
+> +			bias-disable;
+> +		};
+>   	};
+>   
+>   	uart4_sleep_pins_a: uart4-sleep-0 {
+> -		   pins {
+> +		pins {
+>   			pinmux = <STM32_PINMUX('G', 11, ANALOG)>, /* UART4_TX */
+>   				 <STM32_PINMUX('B', 2, ANALOG)>; /* UART4_RX */
+> -		    };
+> +		};
+>   	};
+>   
+>   	uart4_pins_b: uart4-1 {
+> 
 
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
- .../devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Applied on stm32-next.
 
-diff --git a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-index d32a71b975fe200b..75ad898c59bc493d 100644
---- a/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-+++ b/Documentation/devicetree/bindings/dma/sifive,fu540-c000-pdma.yaml
-@@ -50,7 +50,7 @@ examples:
-     dma@3000000 {
-       compatible = "sifive,fu540-c000-pdma";
-       reg = <0x3000000 0x8000>;
--      interrupts = <23 24 25 26 27 28 29 30>;
-+      interrupts = <23>, <24>, <25>, <26>, <27>, <28>, <29>, <30>;
-       #dma-cells = <1>;
-     };
- 
--- 
-2.25.1
-
+Thanks
+Alex
