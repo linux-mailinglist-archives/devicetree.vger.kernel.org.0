@@ -2,140 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82A6B45D787
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:46:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE3F45D7AA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:52:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349969AbhKYJtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 04:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52624 "EHLO
+        id S1351352AbhKYJze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 04:55:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354245AbhKYJrk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 04:47:40 -0500
-Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15554C0613E0;
-        Thu, 25 Nov 2021 01:44:29 -0800 (PST)
-Received: by mail-il1-x12d.google.com with SMTP id a11so4995981ilj.6;
-        Thu, 25 Nov 2021 01:44:29 -0800 (PST)
+        with ESMTP id S1354334AbhKYJxd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 04:53:33 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85BA0C0613E1;
+        Thu, 25 Nov 2021 01:50:17 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id o20so22822046eds.10;
+        Thu, 25 Nov 2021 01:50:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S9a5bV9LZZFkZgyNbN5tPhqHaUTXaCLITHSR34/CxUg=;
-        b=fS2SBr8H4T8Rng0kmmP8oOh8keqeipk4mrJ7X1y4YFTPofvszHJcTTbwlpHVx8cZgg
-         FKvkZ4RQlATTb41oOSC87PjWCZOrMZT42J1ZyrWAEPxsj68yZR/i53EfB/mJL8eYtQfA
-         x4RSqh/gBp/uvNOsxYQuWaK/Wgzo/tj+soRwEZHp6jBsOfHPLLQHWqxIZo1vf2J7ymnl
-         2oD8trZjTdI2dTSLoIvaSOmwxe5Z27hysI4i0A61TwIZ7LbvM52Ze1kXZCMsFH4cwByO
-         nMQIoq9T0px3uGlFzlKHu/nf25pv753uyQR21mR16JcVQmleMhmdPaAmB4Fx80cA8a1f
-         N9Cg==
+         :cc:content-transfer-encoding;
+        bh=n5Wf9BQyo6FYoctvlwglENI9zvaw7nRwVtTBUMkFJ6Q=;
+        b=NJZRzqryQtbc9EOyrmaVFPS5ff9tWNGZvXhxda518Yuw95cTXMAOepGDSAJMEB0wJR
+         mrIVpWCcnzmuAZekibqfPQAcEUE2XfzJQeRQHH48n4JdzzpJTnWGGa8/K/h6LcFXSeOb
+         FVblfXVcVbsiPJJnnRPwzxftLWK28ggKjdDTZgGpCy6TSpheq042649lkHOUvDm/9W/5
+         121dYQzXb6I6NUo24hQxd5skBoFmWjz/LS0yZy80/Ijhf0n9ch5Vz4EdpslIaymwVI5T
+         L3YDehB/dRwX9j0WQXvSSLK6zj0eecLLaNnKT7NsB/ruvqspBPkoZZSjtIhSQxGRMB3g
+         0ytQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S9a5bV9LZZFkZgyNbN5tPhqHaUTXaCLITHSR34/CxUg=;
-        b=u7T2MXhSzIdn/cYQsuHiXYATpXN57Rp1jdwbaMF1FHki/mJk5O+mPWnCApWgPYKcdE
-         ggkGFNAZ+5qmNwtSU3Kja6b+voQ9QAU7GpXULFQryrluaB7Xd9jCgzpjGJ4EWbZeOxNn
-         Tn7rwgf68ZQdvJ1cvJLXM4oA/p5Uy9OybvirZOHzA/IQvLJS5prBgx/aY9x7RRGLJtDX
-         qktvWdrZrb76myYCjkSAD6noDc+bFS4bFRN/Eg5thVz8CSvxs68FGIwagBVOhEUnkNyS
-         lNZLofzIwKzQMq0vDzPN9zMmpkrap2Ccy9593A5YhHs8krLk+VgBtyhGZSh+5H6dxLh5
-         buEw==
-X-Gm-Message-State: AOAM530xc1WKn8y0xurzz1e7b3ZYm4CiWPieRl7JPsh5fre6cksZuTjk
-        p1giDNYr6GNvh6rwTOuAIM9EPto2n73U4xO4j8A=
-X-Google-Smtp-Source: ABdhPJz2l6LFynD07YfugB6JEhfbDRm1UMwOoQ1vXZYonYtlXIEg+cZFaGDAdOlhbMD4KeV802Iodblv6js9rkcK4VM=
-X-Received: by 2002:a05:6e02:16c9:: with SMTP id 9mr19518396ilx.221.1637833468562;
- Thu, 25 Nov 2021 01:44:28 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=n5Wf9BQyo6FYoctvlwglENI9zvaw7nRwVtTBUMkFJ6Q=;
+        b=mR1Mc0tLtChJauhiS80tcUD9KdDTHUGn1cVXhns4TB5uIpHABa5ZFCQoErLxcsS+lZ
+         MMTQZflejAoK2PDpw0uxxXKmAS5pI2CVt9anYCigbO+5s3gZcdOBeZyVDaKSlISVn8//
+         5FT6JHyRM6aUlllCsNfq+CtT6Hee4Ll7nvucO15XcCZykxcOhzzIoYfmQQx4EJ4jm/wa
+         1R9piFDKS3qn5kggm/2GdVrV439/dbSeKD7fCNEzEPzgLRjvl1OIDLdXUq6rBPMFFHBf
+         HLW7jTbR4W5t3AwCe5AzqXNFa73+eUK/BDeOV1WsTfo4vYMZ16O6VgRUENBCG4ur7zXm
+         91MQ==
+X-Gm-Message-State: AOAM531Bo5F9vLJbNcS3Iae8+MNXN4wMGFtmLk186wdId8Jj8cMV9XgR
+        a7Ca4h7lvCtSwNULpwujTnkIxDcNic4N7DsMkkU=
+X-Google-Smtp-Source: ABdhPJyfZ0exQwQZRq+G5hjG8/AGd5PHsxUAFgNjuxGD4H2PVKsZVU7xYc0D1MrScEOZgpoalpxp0pb/PIdCdcx4nQg=
+X-Received: by 2002:a50:fb09:: with SMTP id d9mr36568200edq.283.1637833815690;
+ Thu, 25 Nov 2021 01:50:15 -0800 (PST)
 MIME-Version: 1.0
-References: <20211103114830.62711-1-alistair@alistair23.me> <20211105155243.7b635651@aktux>
-In-Reply-To: <20211105155243.7b635651@aktux>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 25 Nov 2021 19:44:02 +1000
-Message-ID: <CAKmqyKP2ZXtmGGeoVO13E0pJs+TcnC8GigFiKvrEmNjgsutU-w@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] Add support for the Cypress cyttsp5
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+References: <20211124230439.17531-1-zajec5@gmail.com> <20211124230439.17531-5-zajec5@gmail.com>
+In-Reply-To: <20211124230439.17531-5-zajec5@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 25 Nov 2021 11:49:39 +0200
+Message-ID: <CAHp75Vev-Q+Xod1gcTyK27hpCkSrDRV5nVbnc58-U7KOHLbf+Q@mail.gmail.com>
+Subject: Re: [PATCH V2 4/6] pinctrl: support reading pins, groups & functions
+ from DT
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-input <linux-input@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mylene Josserand <mylene.josserand@free-electrons.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 6, 2021 at 12:52 AM Andreas Kemnade <andreas@kemnade.info> wrote:
+On Thu, Nov 25, 2021 at 1:04 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
 >
-> Hallo Alistair,
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 >
-> my Xorg (debian buster installation) does not like that:
-> [  3112.462] (**) cyttsp5: Applying InputClass "evdev touchscreen catchall"
-> [  3112.462] (**) cyttsp5: Applying InputClass "libinput touchscreen catchall"
-> [  3112.462] (II) Using input driver 'libinput' for 'cyttsp5'
-> [  3112.463] (**) cyttsp5: always reports core events
-> [  3112.463] (**) Option "Device" "/dev/input/event1"
-> [  3112.463] (**) Option "_source" "server/udev"
-> [  3112.496] (II) event1  - cyttsp5: is tagged by udev as: Touchscreen
-> [  3112.498] (EE) event1  - cyttsp5: kernel bug: device has min == max on ABS_X
-> [  3112.498] (II) event1  - cyttsp5: was rejected
-> [  3112.498] (II) event1  - not using input device '/dev/input/event1'.
-> [  3112.499] (EE) libinput: cyttsp5: Failed to create a device for /dev/input/event1
+> DT binding allows specifying pins, groups & functions now. That allows
+> storing them in DT instead of hardcoding in drivers.
 >
-> # evtest /dev/input/event1
-> Input driver version is 1.0.1
-> Input device ID: bus 0x0 vendor 0x0 product 0x0 version 0x0
-> Input device name: "cyttsp5"
-> Supported events:
->   Event type 0 (EV_SYN)
->   Event type 1 (EV_KEY)
->     Event code 330 (BTN_TOUCH)
->   Event type 2 (EV_REL)
->   Event type 3 (EV_ABS)
->     Event code 0 (ABS_X)
->       Value      0
->       Min        0
->       Max        0 <-- upsets xorg
->     Event code 1 (ABS_Y)
->       Value      0
->       Min        0
->       Max        0
->     Event code 47 (ABS_MT_SLOT)
->       Value      0
->       Min        0
->       Max       31
->     Event code 48 (ABS_MT_TOUCH_MAJOR)
->       Value      0
->       Min        0
->       Max      255
->     Event code 49 (ABS_MT_TOUCH_MINOR)
->       Value      0
->       Min        0
->       Max      255
->     Event code 53 (ABS_MT_POSITION_X)
->       Value      0
->       Min        0
->       Max     1447
->     Event code 54 (ABS_MT_POSITION_Y)
->       Value      0
->       Min        0
->       Max     1071
->     Event code 57 (ABS_MT_TRACKING_ID)
->       Value      0
->       Min        0
->       Max    65535
->     Event code 58 (ABS_MT_PRESSURE)
->       Value      0
->       Min        0
->       Max      255
->
-> I specified touchscreen-size-x and touchscreen-size-y in my devicetree.
-> No idea why it is like this yet.
+> This adds support for DT as data source to recently introduced API.
 
-Thanks! I see the same problem on my side as well. I'm not using X so
-I don't see a crash and didn't notice the error.
+a data
+the recently
 
-I'll work on fixing this.
+...
 
-Alistair
+>  int pinctrl_generic_load_pins(struct pinctrl_desc *pctldesc, struct devi=
+ce *dev)
+>  {
+> +       if (dev->of_node)
+
+Again, it's a layering violation.
+
+> +               return pinctrl_generic_dt_load_pins(pctldesc, dev);
+> +
+>         return -ENOENT;
+>  }
+>  EXPORT_SYMBOL_GPL(pinctrl_generic_load_pins);
+
+>  int pinctrl_generic_load_groups(struct pinctrl_dev *pctldev)
+>  {
+> +       if (pctldev->dev->of_node)
+> +               return pinctrl_generic_load_dt_groups(pctldev);
+> +
+>         return -ENOENT;
+>  }
+>  EXPORT_SYMBOL_GPL(pinctrl_generic_load_groups);
+
+>  int pinmux_generic_load_functions(struct pinctrl_dev *pctldev)
+>  {
+> +       if (pctldev->dev->of_node)
+> +               return pinmux_generic_load_dt_functions(pctldev);
+> +
+>         return -ENOENT;
+>  }
+>  EXPORT_SYMBOL_GPL(pinmux_generic_load_functions);
+
+Have you thought about making ops structure (or ops inside existing
+structure) and all above will be something like
+
+  stuct ops *... =3D ...->ops;
+
+  if (ops && ops->METHOD)
+    return ops->METHOD(...);
+
+  return -ERRNO;
+
+--=20
+With Best Regards,
+Andy Shevchenko
