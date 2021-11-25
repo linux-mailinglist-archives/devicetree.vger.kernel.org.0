@@ -2,59 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 361C445DA40
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:43:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2AD245DA98
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 14:00:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354776AbhKYMqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 07:46:54 -0500
-Received: from foss.arm.com ([217.140.110.172]:50412 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1352683AbhKYMoy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 07:44:54 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E9F5B1042;
-        Thu, 25 Nov 2021 04:41:42 -0800 (PST)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C5D2E3F66F;
-        Thu, 25 Nov 2021 04:41:41 -0800 (PST)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-kernel@vger.kernel.org,
-        Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Date:   Thu, 25 Nov 2021 12:41:39 +0000
-Message-Id: <163784401235.134020.969364168870540116.b4-ty@arm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211028140009.23331-1-etienne.carriere@linaro.org>
-References: <20211028140009.23331-1-etienne.carriere@linaro.org>
+        id S1354899AbhKYNDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 08:03:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354989AbhKYNBw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 08:01:52 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BBA4C061756;
+        Thu, 25 Nov 2021 04:53:55 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id m27so16052079lfj.12;
+        Thu, 25 Nov 2021 04:53:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Co+wBZHiOseLu7CK7UphzK0BLsQ6VV5mZ6eGuslWoqo=;
+        b=oktqB96h7vZOItZGklHhm+PkXDcygsJhAUIroFnXj//gvB6OoF/lYcPjatrZAITeRh
+         LKYeWYSWoIrkfV/rENrFvRbHWe/jDYBbFmY8tynbUZLFQksZt1svx9n5zfxC+ZzAn69e
+         ci+aisbhNDgGnXjzLkpWJ/muy4AL/5Ix4ozfVNPdevB0/qeX0AnSPkif/58dlc0LDf1Y
+         TiQX3udryAUjKmlcecArNEm2QqFiXEnALqXo/3XhpCrjg5zk7VT3IAMX0I6TmYfHfdFo
+         Lm9c+BHxz6c3e2fp/xEBvQi87aA2LqkXbRHDtKxPfax3KIH6pOHiA2ik4MQhoEXmo4nW
+         H9Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Co+wBZHiOseLu7CK7UphzK0BLsQ6VV5mZ6eGuslWoqo=;
+        b=zgV3fMTRZJ8VBNfOow/epdq5nElY3sAjmmtTeCYy/RJEwlct3oH4EVmdSvGsm1zMFp
+         jt+WizfR5hDUJvOSGntfMUTs1Uqfdx1C1pONTk9IQAkZ6T8qYwTC6TWqUAyeLtg+TxNa
+         8m/slHNi/0xGkWAN1AADaOXTtaDRAgV6Dkwpi/fdew/cKXvItnsUwVOFRSE4EA5eHtO8
+         lmpzYuevog/53NcgwdTPMH3HgFoszG1cp6l3LCcQWfkCiTk0YKOj+5YKbELNC7f9B2x1
+         FzETjz+Xs5tB2mQAXlEF6Y9ZQARxABvbhcX68sSprGwGVQARYaGs3qsTFbSdrKPWflzN
+         XDcw==
+X-Gm-Message-State: AOAM530cF0bv9r+tZgPWvf7tp6NseH3lpqX+PWAmn8MVtKdI5aNF8dJe
+        O1sr5teWdCsGbPtoeTXxmJlGtVGpdOA=
+X-Google-Smtp-Source: ABdhPJy68jGQks+cI3kMem632OtGqJd3jo9wWEaciMGUlc8Z24BdPeoer1sbsgb8JnhBJSeu3hqFWA==
+X-Received: by 2002:a05:6512:114e:: with SMTP id m14mr22880893lfg.418.1637844833711;
+        Thu, 25 Nov 2021 04:53:53 -0800 (PST)
+Received: from [192.168.2.145] (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
+        by smtp.googlemail.com with ESMTPSA id m9sm233423ljg.80.2021.11.25.04.53.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Nov 2021 04:53:53 -0800 (PST)
+Subject: Re: [PATCH v1 07/20] ASoC: tegra20: spdif: Set FIFO trigger level
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Agneli <poczt@protonmail.ch>, Rob Herring <robh+dt@kernel.org>,
+        linux-tegra@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20211124220057.15763-1-digetx@gmail.com>
+ <20211124220057.15763-8-digetx@gmail.com> <YZ97Qo500CrSmhXu@sirena.org.uk>
+ <5670741a-1517-fc64-e390-b01c53947f25@gmail.com>
+ <YZ+BZRB0sUC08lCs@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <d0748829-5f42-2ab3-5620-6949b4139e59@gmail.com>
+Date:   Thu, 25 Nov 2021 15:53:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <YZ+BZRB0sUC08lCs@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 28 Oct 2021 16:00:08 +0200, Etienne Carriere wrote:
-> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> based on an OP-TEE service invocation. The compatible mandates a
-> channel ID defined with property "linaro,optee-channel-id".
->
->
+25.11.2021 15:28, Mark Brown пишет:
+> On Thu, Nov 25, 2021 at 03:04:35PM +0300, Dmitry Osipenko wrote:
+>> 25.11.2021 15:02, Mark Brown пишет:
+>>> On Thu, Nov 25, 2021 at 01:00:44AM +0300, Dmitry Osipenko wrote:
+>>>> Program FIFO trigger level properly to fix x4 accelerated playback.
+> 
+>>> Fixes like this should really go before any new stuff so they can be
+>>> sent as fixes and backported.
+> 
+>> This driver never worked before this patchset, hence there is nothing to
+>> backport, this is explained in the cover letter. But in general you're
+>> correct.
+> 
+> That's not going to stop the stable people backporting things, and I'd
+> guess it might've worked at some point on some systems - I'm not seeing
+> anything that jumps out as making the driver completely unworkable in
+> your patches.
+> 
 
-Applied to sudeep.holla/linux (for-next/scmi), thanks!
+I can change commit message with the "fix" word removed, this should
+prevent patch from backporting.
 
-[1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-      https://git.kernel.org/sudeep.holla/c/b7d2cf7c81
-[2/2] firmware: arm_scmi: Add optee transport
-      https://git.kernel.org/sudeep.holla/c/5f90f189a0
-
-Sorry for the earlier incomplete message.
-
---
-Regards,
-Sudeep
-
+This driver never worked in mainline because S/PDIF device was never
+created, thus driver was never bound. Driver doesn't work properly
+without this patch. Nobody used this driver as-is before this patchset.
