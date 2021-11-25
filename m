@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C056745E27E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 22:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6CCD45E279
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 22:28:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351113AbhKYVbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 16:31:43 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:46054 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243987AbhKYV3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 16:29:41 -0500
-Received: by mail-ot1-f52.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso11133731otf.12;
-        Thu, 25 Nov 2021 13:26:30 -0800 (PST)
+        id S1350581AbhKYVbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 16:31:36 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:41819 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235734AbhKYV3f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 16:29:35 -0500
+Received: by mail-oi1-f169.google.com with SMTP id u74so14939887oie.8;
+        Thu, 25 Nov 2021 13:26:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=enKrWb01zIUlLDcWec9IsDV9nL4gjphxHjIfLcnFxNM=;
-        b=r+QTI4KYThx9maxZkYcqHI9stnXA1nTj3vyGYVJpxsk21ZRteG1HK880u/RS3aKYLi
-         YcXrRhQrsHRUtKc8EQRfesMvp/begc9Q4OC6Gs5xhtOYAhsheTvsYW8ncKx9Rf0pNm94
-         1ms4QQdlP6EaZQ4Cd4QbswHjGQP0KKza0LFUyW65BJJ8UYnivkZ91fE8a0vjNzVfxU2F
-         thZwgtzOu1/D/tsthYF/fafkTww0RVfU649cabxNFx32riyaG9zdgXElTc/ZMnTqZIM8
-         uy5DUeNcbfs1xbQBvPxESwQXpJHtPmy7IBCp6KvPZCho4nqHVBQFkqOwS1ggW5Hwi3M1
-         Jjfg==
-X-Gm-Message-State: AOAM533wwgLn6vFSKnVI2CJ0L/rwuyTsk8GeTWcSWlHjixXutYslGaRZ
-        izLniblSA2ietm7pPrH2gQ==
-X-Google-Smtp-Source: ABdhPJzC8WF3V4q4Zkszhtmy5n3Ib8vaC3VBok3QPb6dv92gkCyEe7pE4+MBOF2mLf3L8Jo3yfdidQ==
-X-Received: by 2002:a05:6830:25d6:: with SMTP id d22mr24856709otu.87.1637875589845;
-        Thu, 25 Nov 2021 13:26:29 -0800 (PST)
+        bh=B6wyCDAmUSCibSY1414flm92lyIj8FXeL6fX67zL5Jw=;
+        b=F0cWaLGT3UOVMMl0DxupnHSTOlb3Q2TJvcsukldsEwOzzLhH+7+s2L0QBXacsjQzB+
+         bpnHPIU48dKbmaseG04tMbJxcOOI1SvV8O8GRInknjNfH9jqkxNQ6w+lHC324LsZx6GR
+         hauZJEPQ32KRIPFiGOVeLFTy3q8aEmdObFOmVCW0mLT977m0hV2JkMTKqf94RcEUWxNJ
+         LAq2s4Q0qg5HTowVbK6ssOJvW2+LwkVErUC4azsI3f4QTR945Czxil4SPcBkOFwAOOka
+         T75kpmht6yLzmIanl1rgkP9h5UcjCutRgbP4WYtYi5HISUObiyK2lL+Wmbaaq3emTAlr
+         gGIA==
+X-Gm-Message-State: AOAM531edzLSNZWXwfIRuIj5wiy9DokmZNyN9MAQ+rtnXUVmcOQz/Sdn
+        eMalx8w8z4qc2s+Q4XgRKI/c6iNcuQ==
+X-Google-Smtp-Source: ABdhPJy2R9t+40EAgpr2S6XGtSWSnhEPJsptRSXK8jQhEK8v2yhDQATbssIRHRP9tz+jMibWZPuxew==
+X-Received: by 2002:aca:b843:: with SMTP id i64mr18863323oif.109.1637875583352;
+        Thu, 25 Nov 2021 13:26:23 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id z8sm654248oot.7.2021.11.25.13.26.28
+        by smtp.gmail.com with ESMTPSA id be12sm938107oib.50.2021.11.25.13.26.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 13:26:29 -0800 (PST)
-Received: (nullmailer pid 2858315 invoked by uid 1000);
+        Thu, 25 Nov 2021 13:26:22 -0800 (PST)
+Received: (nullmailer pid 2858317 invoked by uid 1000);
         Thu, 25 Nov 2021 21:26:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Jayesh Choudhary <j-choudhary@ti.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-In-Reply-To: <20211125121521.31554-1-j-choudhary@ti.com>
-References: <20211125121521.31554-1-j-choudhary@ti.com>
-Subject: Re: [PATCH v2] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        linux-iio@vger.kernel.org, cosmin.tanislav@analog.com,
+        linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20211125131422.50657-3-demonsingur@gmail.com>
+References: <20211125131422.50657-1-demonsingur@gmail.com> <20211125131422.50657-3-demonsingur@gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: iio: add AD74413R
 Date:   Thu, 25 Nov 2021 14:26:02 -0700
-Message-Id: <1637875562.316639.2858314.nullmailer@robh.at.kernel.org>
+Message-Id: <1637875562.336876.2858316.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Nov 2021 17:45:21 +0530, Jayesh Choudhary wrote:
-> Convert the bindings for McASP controllers for TI SOCs
-> from txt to YAML schema.
+On Thu, 25 Nov 2021 15:14:21 +0200, Cosmin Tanislav wrote:
+> The AD74412R and AD74413R are quad-channel software configurable input/output
+> solutions for building and process control applications. They contain
+> functionality for analog output, analog input, digital input, resistance
+> temperature detector, and thermocouple measurements integrated
+> into a single chip solution with an SPI interface.
+> The devices feature a 16-bit ADC and four configurable 13-bit DACs to provide
+> four configurable input/output channels and a suite of diagnostic functions.
+> The AD74413R differentiates itself from the AD74412R by being HART-compatible.
 > 
-> Adds additional properties 'clocks', 'clock-names', 'power-domains'
-> '#sound-dai-cells', 'num-serializer' and 'port' which were not there
-> in the txt file.
-> Adds 'dmas' and 'dma-names' in the example which were not there in
-> the txt file.
-> Changes 'interrupts' and 'interrupt-names' from optional to
-> required properties.
-> 
-> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 > ---
-> Changelog:
-> v2:
-> - changes the commit message
-> - modifies the properties 'clocks', 'clock-names', 'dma-names',
->   'dmas', 'interrupts' and 'interrupt-names' according to the
->   arm SOCs
-> - adds 'port' and 'num-serializer' as node properties.
-> 
->  .../bindings/sound/davinci-mcasp-audio.txt    |  86 ---------
->  .../bindings/sound/davinci-mcasp-audio.yaml   | 179 ++++++++++++++++++
->  2 files changed, 179 insertions(+), 86 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+>  .../bindings/iio/addac/adi,ad74413r.yaml      | 153 ++++++++++++++++++
+>  include/dt-bindings/iio/addac/adi,ad74413r.h  |  21 +++
+>  2 files changed, 174 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+>  create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -84,16 +78,15 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml: properties:clock-names: {'minItems': 1, 'maxItems': 3, 'items': [{'const': 'fck'}, {'const': 'ahclkx'}, {'const': 'ahclkr'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml: ignoring, error in schema: properties: clock-names
-warning: no schema found in file: ./Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-Documentation/devicetree/bindings/sound/davinci-mcasp-audio.example.dt.yaml:0:0: /example-0/mcasp0@1d00000: failed to match any schema with compatible: ['ti,da830-mcasp-audio']
+Error: Documentation/devicetree/bindings/iio/addac/adi,ad74413r.example.dts:23.32-33 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/iio/addac/adi,ad74413r.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1559662
+See https://patchwork.ozlabs.org/patch/1559714
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
