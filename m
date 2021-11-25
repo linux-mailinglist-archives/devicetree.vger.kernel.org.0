@@ -2,126 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EC7845D860
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:43:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7992345D87E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:55:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354700AbhKYKqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 05:46:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354415AbhKYKox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 05:44:53 -0500
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59458C06174A
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 02:41:42 -0800 (PST)
-Received: by mail-io1-xd42.google.com with SMTP id w22so6946868ioa.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 02:41:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=eibhgHyEnDty6prD7kw2qZTGk1uH223Sz/QXKL+fHLw=;
-        b=BCO7JwdyPeuapvFjwEvsioM/iCW1wXLgG9grAHZ/dgJIBV0hB9cljgPJdgCtET3aqf
-         DF816W5JUr0B0BOEg2eCpKTKNl23rjql08M+syfLilFKFSd7z6wc/jMREMfV6BmGUeqH
-         hQQITE691Q1v/4n2SLyELoPuiwU2EAj0YVEBdLrA+eEOX31Mdv5dXdw7ZnSOESBkAOKX
-         Quwu1HNPGXcnFBFmoQmhe6zlOpBUy0C4lLdSF/xFJM8QhPfwyFl0+tWaAEpf8dh+OF34
-         +L1tC/+HAeWwU7KLoWLawyFS2DESDeRuzdrUpG0uZWkW+ZXR36/o2BwUf4t82oyN1bAR
-         0ukw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=eibhgHyEnDty6prD7kw2qZTGk1uH223Sz/QXKL+fHLw=;
-        b=FXyLEpnN3tuyARlmdmdhZ29fWcxzATFjV1IGT/vZkWdmg2CL1PHhVN3SPFA+OzwQPY
-         aC5NswSrvuJMUE3cX8OtD9Lv5afW1n9JVLrBSGPud3poNiW902pXhS6V6DKzFDwr/Zyu
-         EYQIiuRGwJOT/Tz8Ceh7wLvJLmyTxcyxzZzt6x5dwPd+lk4r3BrLc/pAgjp/qkD+qDvG
-         y29YmDhWZc/tSjxsG29/2Y2/8HNB4U0RDT5Fqq+fngM4q4XDkwYdb60w5hEZAYSgXi/D
-         aiJKDk137vMXn7X0t4VCr0qPtQr8awRJLRVyjycqsjTwklPmPbAmuSU+ThX6tuAYyf7C
-         /nJA==
-X-Gm-Message-State: AOAM532AAR3jeywxHfyXaqhYTrrrV3hE2yQw8aWMYv+Kc10MyUSxNOtS
-        kFh2NOAzXOmfbXszfZ/tZQXfhZ5xzla7T7wA3sg=
-X-Google-Smtp-Source: ABdhPJzjqy1cQJmNeCYSi6eXdXvE1mY/buGxhyG/xKVWMYgo4EdViM1FpAXIHP7XaQfQqIt3xdiAuXTklvN2Vp3IU2A=
-X-Received: by 2002:a02:cb8f:: with SMTP id u15mr29644625jap.131.1637836901777;
- Thu, 25 Nov 2021 02:41:41 -0800 (PST)
+        id S1354785AbhKYK6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 05:58:45 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34602 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350909AbhKYK4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 05:56:42 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1APArSab076934;
+        Thu, 25 Nov 2021 04:53:28 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637837608;
+        bh=hq+jbBY8FwWxm2D0OQwVWEAEKF4FYNiMLiwTnw33f1A=;
+        h=From:To:CC:Subject:Date;
+        b=IAdhgLwK3XqnwjZKPkNOBRExXwlsFQAbuXH+KppFZLcCLoS1Q0uoh38rjn8tLtLC5
+         oFwa2W/0F9+/jROePUiW0FJWz/wafiKVmCBCl/VXAbDRtyf2it0jKt7L7os7NLpXQm
+         k2y6PvNf8rEalrYUXOzLj0VnUdcBpivGe+wH33K8=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1APArS73048719
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 25 Nov 2021 04:53:28 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 25
+ Nov 2021 04:53:27 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 25 Nov 2021 04:53:27 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1APArQTV120557;
+        Thu, 25 Nov 2021 04:53:27 -0600
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <robh+dt@kernel.org>
+CC:     <bcousson@baylibre.com>, <tony@atomide.com>, <j-choudhary@ti.com>,
+        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: dts: am335x-wega: Fix typo in mcasp property rx-num-evt
+Date:   Thu, 25 Nov 2021 16:23:26 +0530
+Message-ID: <20211125105326.17000-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Received: by 2002:a05:6602:2f03:0:0:0:0 with HTTP; Thu, 25 Nov 2021 02:41:41
- -0800 (PST)
-Reply-To: msbelinaya892@gmail.com
-From:   msbelinaya <raymondmicheal919@gmail.com>
-Date:   Thu, 25 Nov 2021 10:41:41 +0000
-Message-ID: <CAM6ZuAN+vwLUApUD0+2BViqO=u27Ohdt13q22JE+NdKzkUjvQw@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ich biete meine Freundschaft an und glaube, dass Sie mich mit gutem
-Herzen akzeptieren werden. Ich wurde gedr=C3=A4ngt, Sie zu kontaktieren und
-zu sehen, wie wir einander am besten unterst=C3=BCtzen k=C3=B6nnen. Ich bin=
- Frau
-Kodjovi Hegbor aus der T=C3=BCrkei und arbeite als Divisionsleiterin f=C3=
-=BCr
-Operationen bei der StandardBNP bank limited Turkey . Ich glaube, es
-ist der Wille Gottes, dass ich Ihnen jetzt begegnen werde. Ich habe
-ein wichtiges gesch=C3=A4ftliches Gespr=C3=A4ch, das ich mit Ihnen teilen
-m=C3=B6chte, von dem ich glaube, dass es Sie interessiert, da es mit Ihrem
-Nachnamen in Verbindung steht und Sie davon profitieren werden.
+Fix the property name 'rx-num-evt'.
 
- Im Jahr 2006 hat ein B=C3=BCrger Ihres Landes ein Nicht-Residentenkonto
-f=C3=BCr 36 Monate des Kalenders im Wert von =C2=A38.400.000,00 bei meiner =
-Bank
-eingerichtet. Das Ablaufdatum f=C3=BCr diesen Einlagenvertrag war der 16.
-Januar 2009. Leider starb er w=C3=A4hrend einer Gesch=C3=A4ftsreise bei ein=
-em
-t=C3=B6dlichen Erdbeben am 12. Mai 2008 in Sichuan, China, bei dem
-mindestens 68.000 Menschen ums Leben kamen.
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
+The modification has not been tested. It needs to be tested
+to ensure that there are no regressions.
 
-Das Management meiner Bank hat noch nichts von seinem Tod erfahren,
-ich wusste davon, weil er mein Freund war und ich sein Kontof=C3=BChrer
-war, als das Konto vor meiner Bef=C3=B6rderung er=C3=B6ffnet wurde. Jedoch =
-Herr
- erw=C3=A4hnte bei der Kontoer=C3=B6ffnung keine n=C3=A4chsten Verwandten/E=
-rben, und
-er war nicht verheiratet und hatte keine Kinder. Letzte Woche hat
-meine Bankdirektion mich gebeten, Anweisungen zu geben, was mit seinen
-Geldern zu tun ist, wenn der Vertrag verl=C3=A4ngert werden soll.
+ arch/arm/boot/dts/am335x-wega.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Ich wei=C3=9F, dass dies passieren wird, und deshalb habe ich nach einem
-Mittel gesucht, um mit der Situation umzugehen, denn wenn meine
-Bankdirektoren wissen, dass sie tot sind und keinen Erben haben,
-werden sie das Geld f=C3=BCr ihren pers=C3=B6nlichen Gebrauch nehmen, also =
-Ich
-m=C3=B6chte nicht, dass so etwas passiert. Das war, als ich Ihren Nachnamen
-sah, ich war gl=C3=BCcklich und suche jetzt Ihre Mitarbeit, um Sie als Next
-of Kin/Erbe des Kontos zu pr=C3=A4sentieren, da Sie den gleichen Nachnamen
-wie er haben und meine Bankzentrale das Konto freigeben wird f=C3=BCr dich.
-Es besteht kein Risiko; die Transaktion wird im Rahmen einer legitimen
-Vereinbarung ausgef=C3=BChrt, die Sie vor Rechtsverletzungen sch=C3=BCtzt.
+diff --git a/arch/arm/boot/dts/am335x-wega.dtsi b/arch/arm/boot/dts/am335x-wega.dtsi
+index 673159d93a6a..f957fea8208e 100644
+--- a/arch/arm/boot/dts/am335x-wega.dtsi
++++ b/arch/arm/boot/dts/am335x-wega.dtsi
+@@ -55,7 +55,7 @@
+ 		2 1 0 0 /* # 0: INACTIVE, 1: TX, 2: RX */
+ 	>;
+ 	tx-num-evt = <16>;
+-	rt-num-evt = <16>;
++	rx-num-evt = <16>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.17.1
 
-Es ist besser, dass wir das Geld beanspruchen, als es den
-Bankdirektoren zu erlauben, es zu nehmen, sie sind bereits reich. Ich
-bin kein gieriger Mensch, daher schlage ich vor, dass wir das Geld zu
-gleichen Teilen teilen, 50/50% auf beide Parteien. Mein Anteil wird
-mir helfen, mein eigenes Unternehmen zu gr=C3=BCnden und den Erl=C3=B6s f=
-=C3=BCr
-wohlt=C3=A4tige Zwecke zu verwenden, was mein Traum war.
-
-Teilen Sie mir Ihre Meinung zu meinem Vorschlag mit, bitte ich brauche
-wirklich Ihre Hilfe bei dieser Transaktion. Ich habe Sie ausgew=C3=A4hlt,
-um mir zu helfen, nicht durch mein eigenes Tun, meine Liebe, sondern
-durch Gott wollte ich, dass Sie wissen, dass ich mir Zeit zum Beten
-genommen habe =C3=BCber diese Mitteilung, bevor ich Sie jemals kontaktiert
-habe, teilen Sie mir Ihre Meinung dazu mit und behandeln Sie diese
-Informationen bitte als STRENG GEHEIM. Nach Erhalt Ihrer Antwort,
-ausschlie=C3=9Flich =C3=BCber meine pers=C3=B6nliche E-Mail-Adresse,
-msbelinaya892@gmail.com
-gibt Ihnen Details zur Transaktion. Und eine Kopie der
-Einlagenbescheinigung des Fonds sowie die Gr=C3=BCndungsurkunde der
-Gesellschaft, die den Fonds erstellt hat.
-Gott segne, in Erwartung Ihrer dringenden Antwort
-Mit freundlichen Gr=C3=BC=C3=9Fen
-Frau Kodjovi Hegbor
-msbelinaya892@gmail.com
