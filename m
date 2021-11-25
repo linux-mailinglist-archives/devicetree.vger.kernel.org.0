@@ -2,147 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F383245D723
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 461ED45D743
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:35:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351173AbhKYJ35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 04:29:57 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:64468 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353293AbhKYJ15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 04:27:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637832285; x=1669368285;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bOgiuiiPcvB4FuclcRHS2sLWtNkNt7ECdbQr0u1l51Q=;
-  b=dtmj9LHQAOihCljanjAKvcrKQMtgXsEETXNIHBDSPd8RPBMAmtaQpBgj
-   1s3/En1sGOTuz4poSTc6V9czQ07RQo8OOgn0xCCGDoLE3oSENy08pZVMl
-   uQkDUtLPNjxRdrtLqVBmPbdg1GogUmn9E3wbKOGU83Hc4BQj6tcvo7dsq
-   +cY7cwRjkDjboPgrFGF9ro5/QCiPO/ey9LhPugPeTOdnj19InBrS7gEjV
-   P8qixJnA6ODYIg+c5er0vDf7lq0n0MScDyy2fuMiT9Vs6gfdcuFoYzsBk
-   q2/CmWouGVVzWkliXTcQbUJHeNH3EWW8MaANKBeksLPFUB8RjjzANOID4
-   A==;
-IronPort-SDR: EUaciTsYnjZNFVDay0nfpQMkWIIKnkcAbe15uniw3nQBuaXxB2CuyKdtOQrIgLLcKdcgPhVlxh
- W9sXpOs6xcjvufB96+VNn/l5IQKuXBYmCfKJPbTSokBTd3Big4u+pX4LI0BoF06CA3GXO7fy39
- PyTasGACNyysAkUJ/swnQxo3epnB1E4AUfbg40inr3i467D/231U98Q3Zw5YYFN8MvU7Drwmnp
- gcXmfwbEooaguMRR36FH22RBOWVLNaT8asr4gfJCK+LzzlinSJkFkTPU06udJDlifF+/rvtGcO
- yiALr4v5jzoiSaeGz+ZoK1TW
-X-IronPort-AV: E=Sophos;i="5.87,262,1631602800"; 
-   d="scan'208";a="137702892"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2021 02:24:45 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Thu, 25 Nov 2021 02:24:45 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Thu, 25 Nov 2021 02:24:44 -0700
-Date:   Thu, 25 Nov 2021 10:26:38 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 3/6] net: lan966x: add port module support
-Message-ID: <20211125092638.7b2u75zdv2ulekmo@soft-dev3-1.localhost>
-References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
- <20211123135517.4037557-4-horatiu.vultur@microchip.com>
- <YZ59hpDWjNjvx5kP@lunn.ch>
+        id S1346753AbhKYJiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 04:38:15 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34420 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1354097AbhKYJgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 04:36:14 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 04266610CF;
+        Thu, 25 Nov 2021 09:33:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637832782;
+        bh=LtCgSeMq4Nj9aV36OofJNPQSpqKGjBfqvw+CtKS+Z6w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NQW4ZkLIde1LF6/Kgj4Y10Q26D1aFtiFkWyIgWlbVVBUyQDsdkZT2krgwUnQ4XKqd
+         qR5r9uqIks2Upg5Ze9MGmeXdyanTMsQUPErkL9WsjCqUm7PIJ3IY3RQqaNz54/hrQP
+         QHDD4zXUFiDEoygsfUIYtW0vpOe+t6JeLy2Wyz3v4jj2Tnq7V3WKG+g16KsrwCEv5c
+         8Y/N/U3cco7PnPgR8W6jhiSP4yql+efFOFLttYP61kKD1bUyuy3bE5L9k7EigkDT/w
+         A+0hpw+Pop1w/NKnHrbDqGchdUorJJw76ES7D28z+g77QTEwDrfWub91q/NheLOVtb
+         F+i3gV7aCMQ8g==
+Date:   Thu, 25 Nov 2021 10:32:58 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@rempel-privat.de" <linux@rempel-privat.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+Subject: Re: [PATCH V5 0/8] dt-bindinds/dts: support i.MX8ULP
+Message-ID: <YZ9YSkdpXIK/LwKh@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux@rempel-privat.de" <linux@rempel-privat.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+References: <20211120113454.785997-1-peng.fan@oss.nxp.com>
+ <DU0PR04MB9417A88AC1808CBEE76A27E188629@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <DU0PR04MB94178AB147B5DA8C32F1531388629@DU0PR04MB9417.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Tsd6oFXSzdI9VGy6"
 Content-Disposition: inline
-In-Reply-To: <YZ59hpDWjNjvx5kP@lunn.ch>
+In-Reply-To: <DU0PR04MB94178AB147B5DA8C32F1531388629@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/24/2021 18:59, Andrew Lunn wrote:
 
-Hi Andrew,
+--Tsd6oFXSzdI9VGy6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> > +static void lan966x_ifh_inject(u32 *ifh, size_t val, size_t pos, size_t length)
-> > +{
-> > +     int i;
-> > +
-> > +     for (i = pos; i < pos + length; ++i) {
-> > +             if (val & BIT(i - pos))
-> > +                     ifh[IFH_LEN - i / 32 - 1] |= BIT(i % 32);
-> > +             else
-> > +                     ifh[IFH_LEN - i / 32 - 1] &= ~(BIT(i % 32));
-> > +     }
-> > +}
-> > +
-> > +static void lan966x_gen_ifh(u32 *ifh, struct lan966x_frame_info *info,
-> > +                         struct lan966x *lan966x)
-> > +{
-> > +     lan966x_ifh_inject(ifh, 1, IFH_POS_BYPASS, 1);
-> > +     lan966x_ifh_inject(ifh, info->port, IFH_POS_DSTS, IFH_WID_DSTS);
-> > +     lan966x_ifh_inject(ifh, info->qos_class, IFH_POS_QOS_CLASS,
-> > +                        IFH_WID_QOS_CLASS);
-> > +     lan966x_ifh_inject(ifh, info->ipv, IFH_POS_IPV, IFH_WID_IPV);
-> > +}
-> > +
-> 
-> > +     /* Write IFH header */
-> > +     for (i = 0; i < IFH_LEN; ++i) {
-> > +             /* Wait until the fifo is ready */
-> > +             while (!(QS_INJ_STATUS_FIFO_RDY_GET(lan_rd(lan966x, QS_INJ_STATUS)) &
-> > +                      BIT(grp)))
-> > +                     ;
-> > +
-> > +             lan_wr((__force u32)cpu_to_be32(ifh[i]), lan966x,
-> > +                    QS_INJ_WR(grp));
-> 
-> There is a lot of magic going on here constructing the IFH. Is it
-> possible to define the structure using bit fields and __be32. You
-> should then be able to skip this cpu_to_be32 and the ugly cast. And
-> the actual structure should be a lot clearer.
 
-If I undestood you correctly I have tried to do the following:
+> Seems there is conflict after Abel's patchset in next tree, I'll rebase.
 
-struct lan966x_ifh {
-    __be32 timestamp;
-    __be32 bypass : 1;
-    __be32 port : 3;
-    ...
-};
+True also for the I2C patch. A rebase would be great!
 
-But then I start to get errors from sparse:
 
-error: invalid bitfield specifier for type restricted __be32.
+--Tsd6oFXSzdI9VGy6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-On thing that I can do is to use packing() instead of
-lan966x_ifh_inject() and declare ifh as __be32.
-I think this will also work and simplify a little bit the code.
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> > +static int lan966x_rx_frame_word(struct lan966x *lan966x, u8 grp, bool ifh,
-> > +                              u32 *rval)
-> > +{
-> > +     u32 bytes_valid;
-> > +     u32 val;
-> > +
-> > +     val = lan_rd(lan966x, QS_XTR_RD(grp));
-> > +     if (val == XTR_NOT_READY) {
-> > +             if (ifh)
-> > +                     return -EIO;
-> > +
-> > +             do {
-> > +                     val = lan_rd(lan966x, QS_XTR_RD(grp));
-> > +             } while (val == XTR_NOT_READY);
-> 
-> I would add some sort of timeout here, just in case the hardware
-> breaks. You have quite a few such loops, it would be better to make
-> use of the helpers in linux/iopoll.h.
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGfWEcACgkQFA3kzBSg
+KbbaCg/+NnWT4wcaSbbzPB7BWeiyRxc347BdDa5okGckaD5+rWvtgMTNQ5/lyOWI
+VjfrLFYmCBLx2rznwcs6nX4ZITripFyIoDe65VMH7zcXLt/2A/LgOq544eCkbu5p
+d+NmSV7O1RhdxpRtJqm3ZtrXWZC6aq6Cbh4DJRSWkFumICD9L1HvhR5rwgLYQKRN
+wrWP4Uh1GVNqm1xZU31sScYqTykNL06Hih1xsJVGN4HFCLRJ1DsB9Bb2944WviN9
+3/NEonimQfP3n7+3jS+xS029y0P40pERJg2riauWtzgUtYaOw+JSFpWRkrIl6gz4
+OAQBeUP3hsePkHP426BJWxOKoNIUmEYkxgqDKYIaq9ahZjJe6E2amd+2rOzOdg+M
+p/fTKPg+zgQ1xKyT31cHqT9fbva0Z+dn0gGhFujWpzEHDTk6GNEeP+0ruwLavtVW
+kYmu5Bjho/ly7VtmZwRQ3/qqW87HdX9rtBQcNFQhCBQVxl+zyI0N03zXRMTmuXYa
+Y5ZhZqHUG5al40IGDPfYG0gp+JPkmyIRby7iUNP9I2VWQPvdiIq8MS7VWUsHZz21
+LINJOQ9/YqEAd3h1ufi2jOYBc0Jgx4EMshxxyFp0VuAsWEzW1TS72nnK30nF4Hl2
+fS+y5rpZkxjIIUTYLGF0m2ypjkvw4ffxFDDsaBkqoM87/DI/i4g=
+=8HuN
+-----END PGP SIGNATURE-----
 
-Yes, I will do that, I will also add sime timeout also for injection.
-
-> 
-
--- 
-/Horatiu
+--Tsd6oFXSzdI9VGy6--
