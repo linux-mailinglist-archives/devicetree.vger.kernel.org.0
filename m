@@ -2,152 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8660845D633
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 09:31:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 283DD45D65F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 09:40:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350177AbhKYIeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 03:34:24 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.170]:15011 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236816AbhKYIcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 03:32:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637828944;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=hNupkB5Ycrs2ep+wM+k9JG7Vx2CZhHli9LlBG3B/zR4=;
-    b=VyZQoxLc3nRIMAK86FuSrQjTZaLeXU8W7jLtfsq5foieszx0qglMxuGCYbPiXRz9r/
-    LYBxc/cvzwJTzX3f0uOL2Zl2o3mE2WfIkpDjBilzpv66DKWeb7iRMuBJDeK/z/AZiDsa
-    6GKnLe4NYfCJ4HKSR2AoNWZUCwfrEX/s5r9tHKxIsNyxZ6K2fSOzKV8CQeSat/oOqirG
-    IfRYTXgzkVqqx8/j8nF1JmrXO94rmxZp9YzWHs9Vp3tY8vSfGAwN0ARYExMCS8rAdn8c
-    wvtZZu6kCKg/K9yu5NmBlj8FEXu+K/sYL9dHp9WsRmF86fhvp9vU9mB4NgzniK/3cT+L
-    n05g==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMMUrw=="
-X-RZG-CLASS-ID: mo00
-Received: from mbp-13-nikolaus.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
-    with ESMTPSA id e05ed8xAP8T26En
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Thu, 25 Nov 2021 09:29:02 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v8 6/8] MIPS: DTS: CI20: Add DT nodes for HDMI setup
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <CAMuHMdV5sjVg6BEm3zgvvsJDHJwKP1A8rh-sama8suCG5SYQyA@mail.gmail.com>
-Date:   Thu, 25 Nov 2021 09:29:02 +0100
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:BROADCOM NVRAM DRIVER" <linux-mips@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        DRI Development <dri-devel@lists.freedesktop.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <DD6EFFDC-EB04-4C39-8A63-3825C3A9C64D@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
- <d62023e0872e9b393db736f4a0ecf04b3fc1c91b.1637691240.git.hns@goldelico.com>
- <O0K13R.TIL3JBQ5L8TO1@crapouillou.net>
- <04F0ED7C-3D18-4CCF-8F10-E0A36B0E4F4B@goldelico.com>
- <CAMuHMdWO3yosf5eyTPpydVuT3pwvuw9Q=2BUxq+rxPjE3iSnrw@mail.gmail.com>
- <B622D2B5-D631-43F3-9D50-2B41681C78AB@goldelico.com>
- <CAMuHMdV5sjVg6BEm3zgvvsJDHJwKP1A8rh-sama8suCG5SYQyA@mail.gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S1353459AbhKYIny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 03:43:54 -0500
+Received: from mga06.intel.com ([134.134.136.31]:12947 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1346771AbhKYIlx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 03:41:53 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10178"; a="296279251"
+X-IronPort-AV: E=Sophos;i="5.87,262,1631602800"; 
+   d="scan'208";a="296279251"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2021 00:38:33 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,262,1631602800"; 
+   d="scan'208";a="510212396"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga008.jf.intel.com with ESMTP; 25 Nov 2021 00:38:29 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mqAGy-00063r-JV; Thu, 25 Nov 2021 08:38:28 +0000
+Date:   Thu, 25 Nov 2021 16:38:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.u>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     kbuild-all@lists.01.org, Ryan Chen <ryan_chen@aspeedtech.com>,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH 3/3] ARM: aspeed: Add secure boot controller support
+Message-ID: <202111251600.hBmyvSD0-lkp@intel.com>
+References: <20211117035106.321454-4-joel@jms.id.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211117035106.321454-4-joel@jms.id.au>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gert,
+Hi Joel,
 
-> Am 25.11.2021 um 08:58 schrieb Geert Uytterhoeven =
-<geert@linux-m68k.org>:
->=20
-> Hi Nikolaus,
->=20
-> On Wed, Nov 24, 2021 at 5:31 PM H. Nikolaus Schaller =
-<hns@goldelico.com> wrote:
->>> Am 24.11.2021 um 17:21 schrieb Geert Uytterhoeven =
-<geert@linux-m68k.org>:
->>> On Wed, Nov 24, 2021 at 5:19 PM H. Nikolaus Schaller =
-<hns@goldelico.com> wrote:
->>>>> Am 23.11.2021 um 21:10 schrieb Paul Cercueil =
-<paul@crapouillou.net>:
->>>>> Le mar., nov. 23 2021 at 19:13:59 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->>>>>> +    assigned-clock-rates =3D <48000000>, <0>, <54000000>, <0>, =
-<27000000>;
->>>>>> };
->>>>>> &tcu {
->>>>>> @@ -509,6 +534,19 @@ pins_i2c4: i2c4 {
->>>>>>            bias-disable;
->>>>>>    };
->>>>>> +    pins_hdmi_ddc: hdmi_ddc {
->>>>>> +            function =3D "hdmi-ddc";
->>>>>> +            groups =3D "hdmi-ddc";
->>>>>> +            bias-disable;
->>>>>> +    };
->>>>>> +
->>>>>> +    /* switch to PF25 as gpio driving DDC_SDA low */
->>>>>> +    pins_hdmi_ddc_unwedge: hdmi_ddc {
->>>>>> +            function =3D "hdmi-ddc";
->>>>>> +            groups =3D "hdmi-ddc";
->>>>>> +            bias-disable;
->>>>>> +    };
->>>>>=20
->>>>> Your pins_hdmi_ddc and pins_hdmi_ddc_unwedge are the exact same? =
-You could just use the former and pass it to both pinctrl-0 and =
-pinctrl-1.
->>>>=20
->>>> This was forgotten to remove. We do not make use of the unwedge =
-feature because I could not find out how to use pinctrl to switch this =
-to gpio25 and drive it low.
->>>=20
->>> Using gpio-hog?
->>=20
->> well, AFAIR it activates the gpio permanently and is a propery of the =
-gpio controller and not of pinmux.
->=20
-> Yes, hogs are permanently (ignoring DT overlay tricks).
->=20
->> The driver assumes it can use pinmux state switching to drive the =
-DDC_SDA line low on demand.
->=20
-> Add an optional wedge-gpios property for switching?
+I love your patch! Perhaps something to improve:
 
-That would touch the synopsys driver core and does not appear to be =
-required for jz4780 operation.
-We just add a separate driver specialisation for some parameters and set =
-up the device tree.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on soc/for-next rockchip/for-next shawnguo/for-next v5.16-rc2 next-20211125]
+[cannot apply to arm/for-next arm64/for-next/core]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-So it is beyond the scope of our work (neither needed, nor can we test =
-it).
-If you want to add that, please go ahead.
+url:    https://github.com/0day-ci/linux/commits/Joel-Stanley/ARM-aspeed-Secure-Boot-Controller-support/20211117-115258
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: sparc64-randconfig-s032-20211118 (https://download.01.org/0day-ci/archive/20211125/202111251600.hBmyvSD0-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 11.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/0day-ci/linux/commit/5057997868102d26f0af9c8d769a4809a3bd60be
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Joel-Stanley/ARM-aspeed-Secure-Boot-Controller-support/20211117-115258
+        git checkout 5057997868102d26f0af9c8d769a4809a3bd60be
+        # save the config file to linux build tree
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' ARCH=sparc64 
 
-BR and thanks,
-Nikolaus
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/soc/aspeed/aspeed-socinfo.c:166:38: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *base @@     got void [noderef] __iomem * @@
+   drivers/soc/aspeed/aspeed-socinfo.c:166:38: sparse:     expected void *base
+   drivers/soc/aspeed/aspeed-socinfo.c:166:38: sparse:     got void [noderef] __iomem *
+>> drivers/soc/aspeed/aspeed-socinfo.c:171:46: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
+   drivers/soc/aspeed/aspeed-socinfo.c:171:46: sparse:     expected void const volatile [noderef] __iomem *addr
+   drivers/soc/aspeed/aspeed-socinfo.c:171:46: sparse:     got void *
+>> drivers/soc/aspeed/aspeed-socinfo.c:173:25: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void *base @@
+   drivers/soc/aspeed/aspeed-socinfo.c:173:25: sparse:     expected void volatile [noderef] __iomem *addr
+   drivers/soc/aspeed/aspeed-socinfo.c:173:25: sparse:     got void *base
+
+vim +166 drivers/soc/aspeed/aspeed-socinfo.c
+
+   126	
+   127	static int __init aspeed_socinfo_init(void)
+   128	{
+   129		struct soc_device_attribute *attrs;
+   130		struct soc_device *soc_dev;
+   131		struct device_node *np;
+   132		void __iomem *reg;
+   133		bool has_chipid = false;
+   134		bool has_sbe = false;
+   135		u32 siliconid;
+   136		u32 chipid[2];
+   137		const char *machine = NULL;
+   138	
+   139		np = of_find_compatible_node(NULL, NULL, "aspeed,silicon-id");
+   140		if (!of_device_is_available(np)) {
+   141			of_node_put(np);
+   142			return -ENODEV;
+   143		}
+   144	
+   145		reg = of_iomap(np, 0);
+   146		if (!reg) {
+   147			of_node_put(np);
+   148			return -ENODEV;
+   149		}
+   150		siliconid = readl(reg);
+   151		iounmap(reg);
+   152	
+   153		/* This is optional, the ast2400 does not have it */
+   154		reg = of_iomap(np, 1);
+   155		if (reg) {
+   156			has_chipid = true;
+   157			chipid[0] = readl(reg);
+   158			chipid[1] = readl(reg + 4);
+   159			iounmap(reg);
+   160		}
+   161		of_node_put(np);
+   162	
+   163		/* AST2600 only */
+   164		np = of_find_compatible_node(NULL, NULL, "aspeed,ast2600-sbc");
+   165		if (of_device_is_available(np)) {
+ > 166			void *base = of_iomap(np, 0);
+   167			if (!base) {
+   168				of_node_put(np);
+   169				return -ENODEV;
+   170			}
+ > 171			security_status = readl(base + SEC_STATUS);
+   172			has_sbe = true;
+ > 173			iounmap(base);
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
