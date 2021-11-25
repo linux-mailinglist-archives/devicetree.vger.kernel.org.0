@@ -2,79 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7992345D87E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:55:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBEE845D88E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:59:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354785AbhKYK6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 05:58:45 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34602 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350909AbhKYK4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 05:56:42 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1APArSab076934;
-        Thu, 25 Nov 2021 04:53:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637837608;
-        bh=hq+jbBY8FwWxm2D0OQwVWEAEKF4FYNiMLiwTnw33f1A=;
-        h=From:To:CC:Subject:Date;
-        b=IAdhgLwK3XqnwjZKPkNOBRExXwlsFQAbuXH+KppFZLcCLoS1Q0uoh38rjn8tLtLC5
-         oFwa2W/0F9+/jROePUiW0FJWz/wafiKVmCBCl/VXAbDRtyf2it0jKt7L7os7NLpXQm
-         k2y6PvNf8rEalrYUXOzLj0VnUdcBpivGe+wH33K8=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1APArS73048719
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Nov 2021 04:53:28 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 25
- Nov 2021 04:53:27 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 25 Nov 2021 04:53:27 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1APArQTV120557;
-        Thu, 25 Nov 2021 04:53:27 -0600
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <robh+dt@kernel.org>
-CC:     <bcousson@baylibre.com>, <tony@atomide.com>, <j-choudhary@ti.com>,
-        <linux-omap@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ARM: dts: am335x-wega: Fix typo in mcasp property rx-num-evt
-Date:   Thu, 25 Nov 2021 16:23:26 +0530
-Message-ID: <20211125105326.17000-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S1349890AbhKYLC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 06:02:26 -0500
+Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:27669 "EHLO
+        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1349870AbhKYLA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 06:00:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637837835; x=1669373835;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=amCIHawtN/pC9ZDAKPBFZV2qD9VS958Y5zjo1xIWmTc=;
+  b=kiqNKO+BF1q2C7iVk2fVFIo+dFrnadovH2FZ+Tjao778TZboJ1WGYcXA
+   dSY1SynrzYaXAicoE6Yns+cPszYsw/P+MZW5aMGEfypy0rgxFsjBWp2iY
+   t2GdwuFRYrceC+RFRzEL3mOVEFuVCbcdFzhoWCrxdgzJh/w97xqTuC+yU
+   E=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 25 Nov 2021 02:57:14 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2021 02:57:14 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 25 Nov 2021 02:57:12 -0800
+Received: from c-sanm-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 25 Nov 2021 02:57:07 -0800
+From:   Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+To:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+CC:     <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_ppratap@quicinc.com>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Subject: [PATCH 0/2] Remove USB2 nodes from SC7280 IDP common dtsi file
+Date:   Thu, 25 Nov 2021 16:26:53 +0530
+Message-ID: <1637837815-8532-1-git-send-email-quic_c_sanm@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the property name 'rx-num-evt'.
+Remove USB2 controller and phy nodes from common dtsi file as it is
+required only for SKU1 board.
+Add these nodes in SKU1 dtsi file.
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
-The modification has not been tested. It needs to be tested
-to ensure that there are no regressions.
+Sandeep Maheswaram (2):
+  arm64: qcom: sc7280: Remove USB2 controller and phy nodes from common
+    dtsi
+  arm64: qcom: sc7280: Add USB2 controller and phy nodes for SKU1 board
 
- arch/arm/boot/dts/am335x-wega.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts  | 16 ++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 16 ----------------
+ 2 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am335x-wega.dtsi b/arch/arm/boot/dts/am335x-wega.dtsi
-index 673159d93a6a..f957fea8208e 100644
---- a/arch/arm/boot/dts/am335x-wega.dtsi
-+++ b/arch/arm/boot/dts/am335x-wega.dtsi
-@@ -55,7 +55,7 @@
- 		2 1 0 0 /* # 0: INACTIVE, 1: TX, 2: RX */
- 	>;
- 	tx-num-evt = <16>;
--	rt-num-evt = <16>;
-+	rx-num-evt = <16>;
- 	status = "okay";
- };
- 
 -- 
-2.17.1
+2.7.4
 
