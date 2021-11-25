@@ -2,77 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2D5045D358
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 03:59:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1B9E45D35F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 04:02:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234192AbhKYDCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 22:02:55 -0500
-Received: from [113.204.237.245] ([113.204.237.245]:37744 "EHLO
-        test.cqplus1.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S234523AbhKYDAz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 22:00:55 -0500
-X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
-        R,40,3)
-Received: from 172.27.96.203
-        by cqmailgates with MailGates ESMTP Server V5.0(1206:0:AUTH_RELAY)
-        (envelope-from <xt.hu@cqplus1.com>); Thu, 25 Nov 2021 10:52:33 +0800 (CST)
-Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
- CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 25 Nov 2021 10:52:28 +0800
-Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
- ([::1]) with mapi id 15.01.2375.017; Thu, 25 Nov 2021 10:52:28 +0800
-From:   =?utf-8?B?eHQuaHVb6IOh5YWI6Z+sXQ==?= <xt.hu@cqplus1.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
-        =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
-Subject: RE: [PATCH v2 0/2] Add watchdog driver for Sunplus SP7021 SoC
-Thread-Topic: [PATCH v2 0/2] Add watchdog driver for Sunplus SP7021 SoC
-Thread-Index: AQHX4SAsaIwYOAFNOkGFl2dRmzd7YKwSM7QAgAFWVBA=
-Date:   Thu, 25 Nov 2021 02:52:28 +0000
-Message-ID: <0d6a4dc2987b41fb8b9a9be2e5598f08@cqplus1.com>
-References: <20211112105952.216280-1-xt.hu@cqplus1.com>
- <20211124104149.361019-1-xt.hu@cqplus1.com>
- <20211124141738.GA3802978@roeck-us.net>
-In-Reply-To: <20211124141738.GA3802978@roeck-us.net>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.28.110.16]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S244812AbhKYDFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 22:05:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238772AbhKYDDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 22:03:38 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7972CC061374;
+        Wed, 24 Nov 2021 18:18:22 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id b1so12162576lfs.13;
+        Wed, 24 Nov 2021 18:18:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=oH9Wf/bCoVOg217LfdMoYUSgPjXtU02E7tSuaqxWMRg=;
+        b=a3PBYNYAAcgi1TZXNVqrpSjlO4HapMS90v4JQNwRGoxgwyRr74YQB0CVRb//bI41pL
+         6pNSCy5wG7I1vVxO0z9X2Bg5gk3NuuvBLRrOotseaFkyLTeiX2JiF1dLA0OeoTcS/RGg
+         Q9H3kzbos5THo5yUaeLm4c7P5AkcERHEYQGNRg8veLS/RsNSrvYi+IjN/7ddv7drxn2o
+         1N4q1Y+XlljgLGbYigdztD7fpRc6TWrK/QVAUrAI7QL3G19yBsiyBqMEZ4DIG6BERcF1
+         o+9jtoDW2zh0WmzYLJeutxGniZY0QYQCfcWyeXtnsD/4Amx8u+tH7pAFRuStmtT4SeV9
+         MN+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oH9Wf/bCoVOg217LfdMoYUSgPjXtU02E7tSuaqxWMRg=;
+        b=mzPi+nu8gk8isLOQxahOmG1mWKtm8zQ7cKMtGQdUcxDobVnCLvS/qkiKDY0MjE5LCu
+         aoN5d3gN3Rzv+OcxXW8XScXiUgfAExcsfJNSNoJLy4Bf305tHEXvtqClWKyTqYo4cCKW
+         TjPGV7ra/jlpFpqDh8Cpp9Q7SfEaQ7CZLn4DRrJOuooYjwGiAg2LDjo3AO2XjtasO4Id
+         lNV2qqHzudPu68ye1ZzBVedVmj/12f3LZxQhg0ix/nRuDjzhLsegNT22bKcIsrd0WXvb
+         aeGF190fHksT0R91R7NH5+o9cgSDCHqUBEoooLGQhvKYaa9yO5zU9YmPTbeqDWZAZWQ9
+         3glg==
+X-Gm-Message-State: AOAM5311EwDTsOwcrG1VItHQTdlJmpTUIyErE90qr0B1pJff2BpV1tol
+        WBqnudZtWTq3lmuOijrKn1SesHZE7Po=
+X-Google-Smtp-Source: ABdhPJwQvFDJcTZLyU54104ekq6m0/v4CmZYU+nu8u1y7IOzZ2X7pM5sbP+It5lOSDCeG4E2gRSy9A==
+X-Received: by 2002:a05:6512:3d8d:: with SMTP id k13mr19266189lfv.672.1637806700554;
+        Wed, 24 Nov 2021 18:18:20 -0800 (PST)
+Received: from [192.168.2.145] (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
+        by smtp.googlemail.com with ESMTPSA id 27sm135095lft.299.2021.11.24.18.18.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 18:18:20 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: sound: nvidia,tegra-audio: Convert multiple
+ txt bindings to yaml
+To:     David Heidelberg <david@ixit.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     ~okias/devicetree@lists.sr.ht, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211025171927.92332-1-david@ixit.cz>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <49fd57aa-05a1-b330-6684-31c80339e56d@gmail.com>
+Date:   Thu, 25 Nov 2021 05:18:19 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <20211025171927.92332-1-david@ixit.cz>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR3VlbnRlciwNCglUaGlzIGlzIG15IHNlY29uZCBzdWJtaXR0aW5nLiBJIGFsc28gcmVmZXIg
-dG8gdGhlIGZvcm1hdCBpbiBvdGhlcnMnIGVtYWlscy4NCglJZiB0aGUgZm9ybWF0IGlzIG5vdCBj
-b3JyZWN0LCBJIHdpbGwgZHJvcCAtLWluLXJlcGx5LXRvIHdoZW4gc3VibWl0IHBhdGhjaCBuZXh0
-IHRpbWUuDQoNCkJlc3QgUmVnYXJkcywNClhpYW50YW8NCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdl
-LS0tLS0NCj4gRnJvbTogR3VlbnRlciBSb2VjayBbbWFpbHRvOmdyb2VjazdAZ21haWwuY29tXSBP
-biBCZWhhbGYgT2YgR3VlbnRlciBSb2Vjaw0KPiBTZW50OiBXZWRuZXNkYXksIE5vdmVtYmVyIDI0
-LCAyMDIxIDEwOjE4IFBNDQo+IFRvOiB4dC5odVvog6HlhYjpn6xdIDx4dC5odUBjcXBsdXMxLmNv
-bT4NCj4gQ2M6IHdpbUBsaW51eC13YXRjaGRvZy5vcmc7IHAuemFiZWxAcGVuZ3V0cm9uaXguZGU7
-IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LXdhdGNoZG9nQHZnZXIua2Vy
-bmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsg
-V2VsbHMgTHUg5ZGC6Iqz6aiwDQo+IDx3ZWxscy5sdUBzdW5wbHVzLmNvbT47IHFpbmppYW5b6KaD
-5YGlXSA8cWluamlhbkBjcXBsdXMxLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiAwLzJd
-IEFkZCB3YXRjaGRvZyBkcml2ZXIgZm9yIFN1bnBsdXMgU1A3MDIxIFNvQw0KPiANCj4gT24gV2Vk
-LCBOb3YgMjQsIDIwMjEgYXQgMDY6NDE6NDdQTSArMDgwMCwgWGlhbnRhbyBIdSB3cm90ZToNCj4g
-PiBUaGlzIGlzIGEgcGF0Y2ggc2VyaWVzIGZvciB3YXRjaGRvZyBkcml2ZXIgZm9yIFN1bnBsdXMg
-U1A3MDIxIFNvQy4NCj4gPg0KPiA+IFN1bnBsdXMgU1A3MDIxIGlzIGFuIEFSTSBDb3J0ZXggQTcg
-KDQgY29yZXMpIGJhc2VkIFNvQy4gSXQgaW50ZWdyYXRlcw0KPiA+IG1hbnkgcGVyaXBoZXJhbHMg
-KGV4OiBVQVJULCBJMkMsIFNQSSwgU0RJTywgZU1NQywgVVNCLCBTRCBjYXJkIGFuZA0KPiA+IGV0
-Yy4pIGludG8gYSBzaW5nbGUgY2hpcC4gSXQgaXMgZGVzaWduZWQgZm9yIGluZHVzdHJpYWwgY29u
-dHJvbC4NCj4gPg0KPiANCj4gV2h5IGFyZSBtb3JlIGFuZCBtb3JlIHBlb3BsZSBzZW5kaW5nIHBh
-dGNoZXMgb3IgcGF0Y2ggc2VyaWVzIGFzIHJlcGx5IHRvDQo+IHByZXZpb3VzIHBhdGNoZXMgPyBU
-aGlzIGFsbCBieSBlbnN1cmVzIHRoYXQgcGF0Y2hlcyBnZXQgbG9zdC4NCj4gDQo+IElzIHRoYXQg
-cHJvbW90ZWQgc29tZXdoZXJlID8NCj4gDQo+IFRoYW5rcywNCj4gR3VlbnRlcg0K
+25.10.2021 20:19, David Heidelberg пишет:
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-alc5632(-[a-z0-9])+'
+> +          - const: nvidia,tegra-audio-alc5632
+> +      - items:
+> +          - enum:
+> +              - nvidia,tegra-audio-max98090-nyan-big
+> +              - nvidia,tegra-audio-max98090-nyan-blaze
+> +          - const: nvidia,tegra-audio-max98090-nyan
+> +          - const: nvidia,tegra-audio-max98090
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-max98090(-[a-z0-9])+'
+> +          - const: nvidia,tegra-audio-max98090
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-rt56(39|40)(-[a-z0-9])+'
+> +          - const: nvidia,tegra-audio-rt5640
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-rt5677(-[a-z0-9])+'
+> +          - const: nvidia,tegra-audio-rt5677
+> +      - items:
+> +          - enum:
+> +              - toradex,tegra-audio-sgtl5000-apalis_t30
+> +              - toradex,tegra-audio-sgtl5000-colibri_t30
+> +              - toradex,tegra-audio-sgtl5000-apalis_tk1
+> +          - const: nvidia,tegra-audio-sgtl5000
+> +      - const: nvidia,tegra-audio-trimslice
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-wm8753(-[a-z0-9])+'
+> +          - const: nvidia,tegra-audio-wm8753
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-(plutux|wm8903(-[a-z0-9])+)'
+> +          - const: nvidia,tegra-audio-wm8903
+> +      - items:
+> +          - pattern: '^[a-z0-9]+,tegra-audio-wm9712(-[a-z0-9])+'
+> +          - const: nvidia,tegra-audio-wm9712
+> +
+
+I'm now wondering whether these patterns need to have the end of string
+"$" mark, for completeness.
