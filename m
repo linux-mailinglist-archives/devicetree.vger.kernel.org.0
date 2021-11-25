@@ -2,87 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5360D45DDCF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:45:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D11E345DDE3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:47:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350356AbhKYPsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 10:48:20 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:45706 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1356146AbhKYPqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 10:46:19 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1APEApQ3029076;
-        Thu, 25 Nov 2021 16:42:57 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=0Iz+5s60sQLr6dSevW6pEwhxuRykpii00GdV0s3IDOk=;
- b=iBNLuo5MreCOWwA86U+bhH6QTU+8LqMGmUUoU/coFT5kAZ94faJjjkEpBLExep1l5nHC
- D08a9rPHsoDDC0lmH4rE6YNT5PXgO4Hs3upbz96KWwKcsC8HnN6gYtaZABFnYog+eJMu
- 7aSP/vMgTpwvLdI5oiQFc4YGJD+AlANW4PxJRaUys9+Bra34Z6RXPcl5A2ujjxhyLBk6
- XSjThNlJTHU4cjikXrj4VScZR406HKiFLxND4Pk/Ncj0H/VkTaiiYBavr96Mdh1eJNPR
- ijX0fCwdXFgix1LL3ELQqCXXCzvWRiCrCBgmKZc4wJVhHxj+hkox/GGsR/AmslKagElw bg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cj24vcm8k-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 Nov 2021 16:42:57 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8AD6610002A;
-        Thu, 25 Nov 2021 16:42:56 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 82CAC23C256;
-        Thu, 25 Nov 2021 16:42:56 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 25 Nov
- 2021 16:42:56 +0100
-Subject: Re: [PATCH 0/2] tune the HS USB PHYs on stm32mp15 eval and disco
- boards
-To:     Fabrice Gasnier <fabrice.gasnier@foss.st.com>
-CC:     <robh+dt@kernel.org>, <amelie.delaunay@foss.st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <1635175070-28722-1-git-send-email-fabrice.gasnier@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <c101d5eb-00e5-7994-d503-f2a5dad61bf9@foss.st.com>
-Date:   Thu, 25 Nov 2021 16:42:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1354021AbhKYPuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 10:50:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59786 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1356190AbhKYPsu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 10:48:50 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id B817E610C8;
+        Thu, 25 Nov 2021 15:45:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637855139;
+        bh=5RgsiEBJ9/rtL8DrXdq8915UIX/Wyea9VvxiwKazdjo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=M5ztynTNl5G/wrvPCKG4Z3lhOi+3zdatMWCZ6EPcvavtXMitANZarcAS2aWA2OrNN
+         WUqarfNji/zHWMcn2YspNFw2WtZ6fNWzBJBQ3Lzu9JZLBsSieZytxMT+ncPQVpyvpc
+         ykfOc1AVJ+gG5kjPZhIqQjsLvpWLmNR9jkRvCVEhQSM038MOg/oftaZxjTD9HQdn/l
+         BNS8gRQP5y5hJhKF9FNpD91NpIJxRBlzclRISvhY+z3heww4A+5+W6wT1vCPcS/b8l
+         VCuwmSGuKRWSMhI+vcuFfpz/EWGC5etQtbKDxPG2x1/S6iP1R7zITLyeDk2Z8Jfv6U
+         7+1M0jshR2qjA==
+Date:   Thu, 25 Nov 2021 15:45:33 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
+        collinsd@codeaurora.org, subbaram@codeaurora.org,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 4/6] regulator: Add a regulator driver for the PM8008
+ PMIC
+Message-ID: <YZ+vnV12gDCtia5S@sirena.org.uk>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-5-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
-In-Reply-To: <1635175070-28722-1-git-send-email-fabrice.gasnier@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-25_06,2021-11-25_01,2020-04-07_01
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yT0yWrM1Hvr0VdiY"
+Content-Disposition: inline
+In-Reply-To: <1637314953-4215-5-git-send-email-quic_c_skakit@quicinc.com>
+X-Cookie: This bag is recyclable.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
 
-On 10/25/21 5:17 PM, Fabrice Gasnier wrote:
-> This series tune the HS USB PHYs on stm32mp15 eval and disco boards, now that
-> dt-bindings and drivers have been merged in [1].
-> 
-> [1] https://lore.kernel.org/all/20211015161427.220784-1-amelie.delaunay@foss.st.com/
-> 
-> Fabrice Gasnier (2):
->    ARM: dts: stm32: tune the HS USB PHYs on stm32mp15xx-dkx
->    ARM: dts: stm32: tune the HS USB PHYs on stm32mp157c-ev1
-> 
->   arch/arm/boot/dts/stm32mp157c-ev1.dts  | 22 ++++++++++++++++++++++
->   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi | 16 ++++++++++++++++
->   2 files changed, 38 insertions(+)
-> 
+--yT0yWrM1Hvr0VdiY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Series applied on stm32-next.
+On Fri, Nov 19, 2021 at 03:12:31PM +0530, Satya Priya wrote:
 
-Thanks!
-Alex
+> +	for (reg = &reg_data[0]; reg->name; reg++) {
+
+Why is this not just iterating from 0 to ARRAY_SIZE() - that's the more
+normal way to write things and doesn't require a terminator on the
+array.
+
+> +		child_node = of_get_child_by_name(parent_node, reg->name);
+> +		if (!child_node) {
+> +			dev_err(dev, "child node %s not found\n", reg->name);
+> +			return -ENODEV;
+> +		}
+
+This could be pulled out of the array.  I think you're also missing an
+of_node_put() on the child_node.
+
+> +		rc = of_property_read_u32(child_node, "reg", &base);
+> +		if (rc < 0) {
+> +			dev_err(dev, "%s: failed to get regulator base rc=%d\n",
+> +						reg->name, rc);
+> +			return rc;
+> +		}
+
+It's not clear to me why this in particular is being read out of the DT
+binding, I'd expect this to be in the array describing the regulator the
+same as everything else?
+
+--yT0yWrM1Hvr0VdiY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGfr5wACgkQJNaLcl1U
+h9Cdpgf/eag5hpAiJ69Ar39sC/0LmSBkI1e5b+DAb2nX7n+0bXjhlVDVG1ybGObj
+nwKjVJQW3ZgrLLhYVMowMdc2m6711Jlxw4Q9DS8WNEOVkao1TXHyzynse0sK2sc0
+A63l4g1X+Xn7Vyd1LdquYgz7G6JhG2gg+/m3vJgpsWQ8N3dCXA2+iSmjL3x7ArFl
+G6r9uEG3xzH9ffxlJO1gYZtb/8kNdKkAXRVARWnQdEAJIWiSrdWT57l5y3Il1nlm
+dX7cAxav81/iIKDIOZYbh7RHzoUzzjnj7LPxZRVxaymUrQFnOuEiPVguh3APHCBQ
+Ogvq8db6lsIA1tJ3ZDpqJSOqkf6nNA==
+=BMhi
+-----END PGP SIGNATURE-----
+
+--yT0yWrM1Hvr0VdiY--
