@@ -2,113 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E5B045D868
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:45:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC7845D860
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:43:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354589AbhKYKsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 05:48:31 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:36951 "EHLO mx1.tq-group.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1354693AbhKYKq2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 05:46:28 -0500
+        id S1354700AbhKYKqx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 05:46:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354415AbhKYKox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 05:44:53 -0500
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59458C06174A
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 02:41:42 -0800 (PST)
+Received: by mail-io1-xd42.google.com with SMTP id w22so6946868ioa.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 02:41:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637836998; x=1669372998;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YoItCbwo7ZkvCEKwkSDRzrwc6XeH0u4uDSjqXGZH0Zo=;
-  b=gU28t0uFk9fPlNnQNu6DouGaAw1qaXGCM8mDJ3jjAPEx1y3jQPUNvCTF
-   ou3SFJ1ta35QjTqijBJLPUMx04zgEHdZreo/oAuyPmXZ8cI5OH0YBHrjY
-   05J309MUdMMMRcrhc+Tv0HSeUd9WW7QUy1rE0I9VFxUJkLcsGk50MXUn2
-   yfa2ax8Lldh7cODps7KFoL/L6dMJjSSebMhAKwUvsF/C0Lb+SXUAjj9Zl
-   kwkjpx+N2FdMTLP8rXZe3OjS4s35x9jX4diAwqfKURsXCWrfthAhKPWEM
-   HnIWxlV4beMcNGy9ulzFie1AtJyK8IojrmFdvSeJ8WWDcpzTzQsV2WKES
-   g==;
-X-IronPort-AV: E=Sophos;i="5.87,263,1631570400"; 
-   d="scan'208";a="20673124"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 25 Nov 2021 11:41:14 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Thu, 25 Nov 2021 11:41:14 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Thu, 25 Nov 2021 11:41:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637836874; x=1669372874;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YoItCbwo7ZkvCEKwkSDRzrwc6XeH0u4uDSjqXGZH0Zo=;
-  b=NFdx/AY7WPslS7XTwVklGs8B6SdiawZfty3JCgosWNiHkDJhk0nXO3LI
-   JiG6Vcb3K5TIQ6PBWCspdQLhsxpbEDsOt5R9bHHCrJUUqT51sIf3kkPiV
-   8PCSjxz6j9uzyDzpELRlNVRp6WZ6PGix/NGtu6M21Qe1a1HlWcInvF5k5
-   hiSZ4ErS8VfSKn56piUtmkl4LdEfPWBM8wNdPpnQWlfGOGkegfQ282yBR
-   dk0W0+IuyuwnuFhqmUIvJ/RkWfdC4b6kU+1F43lNgZ0Yx5yK9JsAPm+Pv
-   HiKwYMGmysg6CmMxW7jOnxVqLsj5wI0AGjO+H9sXM85LMO34Lai+ARnJj
-   g==;
-X-IronPort-AV: E=Sophos;i="5.87,263,1631570400"; 
-   d="scan'208";a="20673123"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 25 Nov 2021 11:41:14 +0100
-Received: from steina-w.tq-net.de (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id F1500280078;
-        Thu, 25 Nov 2021 11:41:13 +0100 (CET)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH 2/2] arm64: dts: imx8mp: Add memory for USB3 glue layer to usb3_phy nodes
-Date:   Thu, 25 Nov 2021 11:41:04 +0100
-Message-Id: <20211125104104.1416523-3-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211125104104.1416523-1-alexander.stein@ew.tq-group.com>
-References: <20211125104104.1416523-1-alexander.stein@ew.tq-group.com>
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=eibhgHyEnDty6prD7kw2qZTGk1uH223Sz/QXKL+fHLw=;
+        b=BCO7JwdyPeuapvFjwEvsioM/iCW1wXLgG9grAHZ/dgJIBV0hB9cljgPJdgCtET3aqf
+         DF816W5JUr0B0BOEg2eCpKTKNl23rjql08M+syfLilFKFSd7z6wc/jMREMfV6BmGUeqH
+         hQQITE691Q1v/4n2SLyELoPuiwU2EAj0YVEBdLrA+eEOX31Mdv5dXdw7ZnSOESBkAOKX
+         Quwu1HNPGXcnFBFmoQmhe6zlOpBUy0C4lLdSF/xFJM8QhPfwyFl0+tWaAEpf8dh+OF34
+         +L1tC/+HAeWwU7KLoWLawyFS2DESDeRuzdrUpG0uZWkW+ZXR36/o2BwUf4t82oyN1bAR
+         0ukw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=eibhgHyEnDty6prD7kw2qZTGk1uH223Sz/QXKL+fHLw=;
+        b=FXyLEpnN3tuyARlmdmdhZ29fWcxzATFjV1IGT/vZkWdmg2CL1PHhVN3SPFA+OzwQPY
+         aC5NswSrvuJMUE3cX8OtD9Lv5afW1n9JVLrBSGPud3poNiW902pXhS6V6DKzFDwr/Zyu
+         EYQIiuRGwJOT/Tz8Ceh7wLvJLmyTxcyxzZzt6x5dwPd+lk4r3BrLc/pAgjp/qkD+qDvG
+         y29YmDhWZc/tSjxsG29/2Y2/8HNB4U0RDT5Fqq+fngM4q4XDkwYdb60w5hEZAYSgXi/D
+         aiJKDk137vMXn7X0t4VCr0qPtQr8awRJLRVyjycqsjTwklPmPbAmuSU+ThX6tuAYyf7C
+         /nJA==
+X-Gm-Message-State: AOAM532AAR3jeywxHfyXaqhYTrrrV3hE2yQw8aWMYv+Kc10MyUSxNOtS
+        kFh2NOAzXOmfbXszfZ/tZQXfhZ5xzla7T7wA3sg=
+X-Google-Smtp-Source: ABdhPJzjqy1cQJmNeCYSi6eXdXvE1mY/buGxhyG/xKVWMYgo4EdViM1FpAXIHP7XaQfQqIt3xdiAuXTklvN2Vp3IU2A=
+X-Received: by 2002:a02:cb8f:: with SMTP id u15mr29644625jap.131.1637836901777;
+ Thu, 25 Nov 2021 02:41:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:6602:2f03:0:0:0:0 with HTTP; Thu, 25 Nov 2021 02:41:41
+ -0800 (PST)
+Reply-To: msbelinaya892@gmail.com
+From:   msbelinaya <raymondmicheal919@gmail.com>
+Date:   Thu, 25 Nov 2021 10:41:41 +0000
+Message-ID: <CAM6ZuAN+vwLUApUD0+2BViqO=u27Ohdt13q22JE+NdKzkUjvQw@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The USB3 glue layer has 2 areas in the register set, see RM Rev.1
-section 11.2.5.2.1 GLUE_usb3 memory map:
-* USB3 control/status
-* PHY control/status
+Ich biete meine Freundschaft an und glaube, dass Sie mich mit gutem
+Herzen akzeptieren werden. Ich wurde gedr=C3=A4ngt, Sie zu kontaktieren und
+zu sehen, wie wir einander am besten unterst=C3=BCtzen k=C3=B6nnen. Ich bin=
+ Frau
+Kodjovi Hegbor aus der T=C3=BCrkei und arbeite als Divisionsleiterin f=C3=
+=BCr
+Operationen bei der StandardBNP bank limited Turkey . Ich glaube, es
+ist der Wille Gottes, dass ich Ihnen jetzt begegnen werde. Ich habe
+ein wichtiges gesch=C3=A4ftliches Gespr=C3=A4ch, das ich mit Ihnen teilen
+m=C3=B6chte, von dem ich glaube, dass es Sie interessiert, da es mit Ihrem
+Nachnamen in Verbindung steht und Sie davon profitieren werden.
 
-Provide the memory area to the usb3_phy nodes for accessing the features
-in the USB3 control area.
+ Im Jahr 2006 hat ein B=C3=BCrger Ihres Landes ein Nicht-Residentenkonto
+f=C3=BCr 36 Monate des Kalenders im Wert von =C2=A38.400.000,00 bei meiner =
+Bank
+eingerichtet. Das Ablaufdatum f=C3=BCr diesen Einlagenvertrag war der 16.
+Januar 2009. Leider starb er w=C3=A4hrend einer Gesch=C3=A4ftsreise bei ein=
+em
+t=C3=B6dlichen Erdbeben am 12. Mai 2008 in Sichuan, China, bei dem
+mindestens 68.000 Menschen ums Leben kamen.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Das Management meiner Bank hat noch nichts von seinem Tod erfahren,
+ich wusste davon, weil er mein Freund war und ich sein Kontof=C3=BChrer
+war, als das Konto vor meiner Bef=C3=B6rderung er=C3=B6ffnet wurde. Jedoch =
+Herr
+ erw=C3=A4hnte bei der Kontoer=C3=B6ffnung keine n=C3=A4chsten Verwandten/E=
+rben, und
+er war nicht verheiratet und hatte keine Kinder. Letzte Woche hat
+meine Bankdirektion mich gebeten, Anweisungen zu geben, was mit seinen
+Geldern zu tun ist, wenn der Vertrag verl=C3=A4ngert werden soll.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 977783784342..143119789bcf 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -905,7 +905,8 @@ ddr-pmu@3d800000 {
- 
- 		usb3_phy0: usb-phy@381f0040 {
- 			compatible = "fsl,imx8mp-usb-phy";
--			reg = <0x381f0040 0x40>;
-+			reg = <0x381f0040 0x40>,
-+			      <0x381f0000 0x20>;
- 			clocks = <&clk IMX8MP_CLK_USB_PHY_ROOT>;
- 			clock-names = "phy";
- 			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
-@@ -947,7 +948,8 @@ usb_dwc3_0: usb@38100000 {
- 
- 		usb3_phy1: usb-phy@382f0040 {
- 			compatible = "fsl,imx8mp-usb-phy";
--			reg = <0x382f0040 0x40>;
-+			reg = <0x382f0040 0x40>,
-+			      <0x382f0000 0x20>;
- 			clocks = <&clk IMX8MP_CLK_USB_PHY_ROOT>;
- 			clock-names = "phy";
- 			assigned-clocks = <&clk IMX8MP_CLK_USB_PHY_REF>;
--- 
-2.25.1
+Ich wei=C3=9F, dass dies passieren wird, und deshalb habe ich nach einem
+Mittel gesucht, um mit der Situation umzugehen, denn wenn meine
+Bankdirektoren wissen, dass sie tot sind und keinen Erben haben,
+werden sie das Geld f=C3=BCr ihren pers=C3=B6nlichen Gebrauch nehmen, also =
+Ich
+m=C3=B6chte nicht, dass so etwas passiert. Das war, als ich Ihren Nachnamen
+sah, ich war gl=C3=BCcklich und suche jetzt Ihre Mitarbeit, um Sie als Next
+of Kin/Erbe des Kontos zu pr=C3=A4sentieren, da Sie den gleichen Nachnamen
+wie er haben und meine Bankzentrale das Konto freigeben wird f=C3=BCr dich.
+Es besteht kein Risiko; die Transaktion wird im Rahmen einer legitimen
+Vereinbarung ausgef=C3=BChrt, die Sie vor Rechtsverletzungen sch=C3=BCtzt.
 
+Es ist besser, dass wir das Geld beanspruchen, als es den
+Bankdirektoren zu erlauben, es zu nehmen, sie sind bereits reich. Ich
+bin kein gieriger Mensch, daher schlage ich vor, dass wir das Geld zu
+gleichen Teilen teilen, 50/50% auf beide Parteien. Mein Anteil wird
+mir helfen, mein eigenes Unternehmen zu gr=C3=BCnden und den Erl=C3=B6s f=
+=C3=BCr
+wohlt=C3=A4tige Zwecke zu verwenden, was mein Traum war.
+
+Teilen Sie mir Ihre Meinung zu meinem Vorschlag mit, bitte ich brauche
+wirklich Ihre Hilfe bei dieser Transaktion. Ich habe Sie ausgew=C3=A4hlt,
+um mir zu helfen, nicht durch mein eigenes Tun, meine Liebe, sondern
+durch Gott wollte ich, dass Sie wissen, dass ich mir Zeit zum Beten
+genommen habe =C3=BCber diese Mitteilung, bevor ich Sie jemals kontaktiert
+habe, teilen Sie mir Ihre Meinung dazu mit und behandeln Sie diese
+Informationen bitte als STRENG GEHEIM. Nach Erhalt Ihrer Antwort,
+ausschlie=C3=9Flich =C3=BCber meine pers=C3=B6nliche E-Mail-Adresse,
+msbelinaya892@gmail.com
+gibt Ihnen Details zur Transaktion. Und eine Kopie der
+Einlagenbescheinigung des Fonds sowie die Gr=C3=BCndungsurkunde der
+Gesellschaft, die den Fonds erstellt hat.
+Gott segne, in Erwartung Ihrer dringenden Antwort
+Mit freundlichen Gr=C3=BC=C3=9Fen
+Frau Kodjovi Hegbor
+msbelinaya892@gmail.com
