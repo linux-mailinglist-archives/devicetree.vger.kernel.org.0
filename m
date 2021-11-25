@@ -2,126 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D49845D988
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 12:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6299745D98C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 12:49:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236838AbhKYLvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 06:51:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50462 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237410AbhKYLtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 06:49:00 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6D5EC0613A5;
-        Thu, 25 Nov 2021 03:43:31 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id t26so15592912lfk.9;
-        Thu, 25 Nov 2021 03:43:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bDXVYx5X81obSGfTLlaLT+GQEL0WeJIjOW6vbyLiEIY=;
-        b=Ds59G03w1Vnbc4r3C/ctDco8l7MllxzeTm8/WKHZSxDwIzMP5jW1DiqINzqP3vD494
-         +FkfeLnUOZqaEVrvi3hEDDSWw5X9AnACaklqj+SAAGPaD655qnmtAI3Xq51MgC6Let37
-         oQ2w48Rdc8hakZcrTRmulpW7v7gHPl5KytSsU/AMiZi1m9I0bEuGuSam9qKjmQ8YWCAK
-         vnuzkguNtGnHektjNtmblraZoMwFkA9Ep1uCl1SYYpoxJaMwBTNQlt54HENkmBSFvN28
-         Hz6TiGOSfE1AYILSBQhQ4WICaXMmdNeALgAFZBx+gWTGdgkMrhqbhBebDiiGYDx3Y14J
-         G1vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bDXVYx5X81obSGfTLlaLT+GQEL0WeJIjOW6vbyLiEIY=;
-        b=TZPXaIemDySyT1VPVOaxW+qanY9Hr0600WHWMO+5EJJsEKyijgH8ffCESRs8ytHLAQ
-         Jjg6NP1leYH5VZ+yQ/kqaffvfUJbcwh5I5HDugfRs6KENRRnZmcNMz6BSvT5IINYDBn3
-         YJSdErHwBNJ3tQ7IbHgbsEUDZEqd2wJtYYRPDeAWbUPjm4sArgE1nYwlUHtqUXnboJb9
-         d+tzFBDFJre4/nWuGTATm1aHMfJNOB2cmXT0G1QQirMv/L0TtbIy11cJl7yp/z2ze9uQ
-         2pbfz6wKdRfaR4jJOfOfkl28r+PO7xMLQY448jgox5UR6xIgxNU36nUehIhFZ+T9dD4U
-         OxLA==
-X-Gm-Message-State: AOAM531awP18LoqHYmqJNzzZ4fPugEjo9WGHo/mCY0wXyCZsLyUtqmEr
-        PuOaBwsy7phzJXhHEZWdMKW3ClkJPEw=
-X-Google-Smtp-Source: ABdhPJyG2BdjoNmTWcafcsMypZIAKd/rFtxtTYdkkGEr8bnVW9y8tdzQ7/Un1LStjvFQVYlQwjMe5g==
-X-Received: by 2002:a05:6512:2246:: with SMTP id i6mr24042132lfu.24.1637840609979;
-        Thu, 25 Nov 2021 03:43:29 -0800 (PST)
-Received: from [192.168.2.145] (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
-        by smtp.googlemail.com with ESMTPSA id v2sm216571ljg.46.2021.11.25.03.43.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Nov 2021 03:43:29 -0800 (PST)
-Subject: Re: [PATCH v1 17/20] ARM: tegra: Add S/PDIF node to Tegra20
- device-tree
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>, Rob Herring <robh+dt@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        id S238703AbhKYLw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 06:52:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57736 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S238867AbhKYLu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 06:50:28 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 63A2D60FBF;
+        Thu, 25 Nov 2021 11:47:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637840837;
+        bh=3No3aHhaKBIBbI6sfTp5IL0mJhrT1nQJUx5S4ytzxhM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=j9FeHPomai+swTgZZk5vF1XaFl9raK+axoQM2ZQr14qBBqBFicD93VkFgVGzpHWQD
+         NAAHTNW7AEdE+scl4FkXZeW685kZez0M/6iHkahTEDzwEgGrTKHWwhCTCtIJb2GNEl
+         o9s60MTGzVwvIqRzwAV92Obejm20uqxa6hOztfLsUlLNkDNSMgi+0kTaH3d3oaPDVv
+         +jck6L670WadupE9i7yx4868ewYEGGeO+Qgzbqmyg60LSdGXz5/ELM0pWTUDcBJkNf
+         p4OEOKL85ToLgAifseHWYbSnrBZ0j777hwct35j31qj6nZGOSpv/THWLtOpq1Zw9K4
+         R8Q3hZYC3UaPA==
+Date:   Thu, 25 Nov 2021 11:47:12 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Jayesh Choudhary <j-choudhary@ti.com>
+Cc:     Rob Herring <robh@kernel.org>, lgirdwood@gmail.com,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211124220057.15763-1-digetx@gmail.com>
- <20211124220057.15763-18-digetx@gmail.com>
-Message-ID: <98072c48-31ca-aec1-b3a5-3d75d6892e9a@gmail.com>
-Date:   Thu, 25 Nov 2021 14:43:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        devicetree@vger.kernel.org, robh+dt@kernel.org, kishon@ti.com
+Subject: Re: [PATCH] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings
+ to yaml schema
+Message-ID: <YZ93wOWfHdLUC6bG@sirena.org.uk>
+References: <20211122091525.2290-1-j-choudhary@ti.com>
+ <1637685269.740254.3442929.nullmailer@robh.at.kernel.org>
+ <d72bac88-8f56-35cd-a953-270a1ed4d34b@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20211124220057.15763-18-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Dh/qz3bmpLmon4Sl"
+Content-Disposition: inline
+In-Reply-To: <d72bac88-8f56-35cd-a953-270a1ed4d34b@ti.com>
+X-Cookie: This bag is recyclable.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-25.11.2021 01:00, Dmitry Osipenko пишет:
-> Add S/PDIF node to Tegra20 device-tree. It's needed for enabling HDMI
-> audio support.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  arch/arm/boot/dts/tegra20.dtsi | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/tegra20.dtsi b/arch/arm/boot/dts/tegra20.dtsi
-> index 63c2c2f8c0ce..799da7dc929b 100644
-> --- a/arch/arm/boot/dts/tegra20.dtsi
-> +++ b/arch/arm/boot/dts/tegra20.dtsi
-> @@ -197,6 +197,7 @@ hdmi@54280000 {
->  			reset-names = "hdmi";
->  			power-domains = <&pd_core>;
->  			operating-points-v2 = <&hdmi_dvfs_opp_table>;
-> +			#sound-dai-cells = <0>;
->  			status = "disabled";
->  		};
->  
-> @@ -396,6 +397,23 @@ tegra_ac97: ac97@70002000 {
->  		status = "disabled";
->  	};
->  
-> +	tegra_spdif: spdif@70002400 {
-> +		compatible = "nvidia,tegra20-spdif";
-> +		reg = <0x70002400 0x200>;
-> +		interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&tegra_car TEGRA20_CLK_SPDIF_OUT>,
-> +			 <&tegra_car TEGRA20_CLK_SPDIF_IN>;
-> +		clock-names = "spdif_out", "spdif_in";
-> +		resets = <&tegra_car 10>;
-> +		dmas = <&apbdma 3>, <&apbdma 3>;
-> +		dma-names = "rx", "tx";
-> +		#sound-dai-cells = <0>;
-> +		status = "disabled";
-> +
-> +		assigned-clocks = <&tegra_car TEGRA20_CLK_SPDIF_OUT>;
-> +		assigned-clock-parents = <&tegra_car TEGRA20_CLK_PLL_A_OUT0>;
-> +	};
-> +
->  	tegra_i2s1: i2s@70002800 {
->  		compatible = "nvidia,tegra20-i2s";
->  		reg = <0x70002800 0x200>;
-> 
 
-@Thierry, this patch is made on top of [1].
+--Dh/qz3bmpLmon4Sl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=271954
+On Thu, Nov 25, 2021 at 03:37:36PM +0530, Jayesh Choudhary wrote:
+>=20
+>=20
+> On 23/11/21 10:04 pm, Rob Herring wrote:
+> > On Mon, 22 Nov 2021 14:45:25 +0530, Jayesh Choudhary wrote:
+> > > Convert the bindings for McASP controllers for TI SOCs
+> > > from txt to YAML schema.
+> > >=20
+> > > Adds additional properties 'clocks', 'clock-names', 'power-domains'
+
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
+
+--Dh/qz3bmpLmon4Sl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGfd78ACgkQJNaLcl1U
+h9CAdQf/Zccr8jpu9GYJ1s1e6SIPLaOTHQ7T/GvnYZZWTgn++xolnkLc/bEPn1Q2
+afzCXD85nhCGUqT1mqoF+FMq1LKR/SBzBebIPpHPh5D2Qj1IeNcyhBf+e5sEaLa1
+H/8tN5igeAPxp/QOtoWhJMrcSLVk7M3kXbza1tfUvZOWud2/gE4IczPzphdhIv7M
+Upu/x6p9wibHL5Qi12J5uRZyVgyaE+3KB7vWMlhHlTW+BTxYx+a9+xJMF49Dja75
+RK9avILPAvpkKfOGXYuB/43AJNVuZswPM5Xf5W28DHk4NkbiwT7NysGI59v7I3pr
+b+VSayQk/BMdqGFX2S317GBUtwBGlA==
+=1ZPR
+-----END PGP SIGNATURE-----
+
+--Dh/qz3bmpLmon4Sl--
