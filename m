@@ -2,114 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 707FD45DCC0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 15:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0833A45DCCA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:01:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355859AbhKYO62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 09:58:28 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:56346 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S245692AbhKYO41 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 09:56:27 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AP9Eljn002619;
-        Thu, 25 Nov 2021 15:52:40 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Ao37UzQm0lh5oIBM+v3zSsBFE77GsNS8cR3GTxHKQ+4=;
- b=V1aBcs+8MppjS7zmCAZVRa62A0L6t5ns/socJxhRcAN3BJd3be+fE4jCGFduVt6FMDSl
- kBrzx8gTlWEpSeqHlUwBeRhyuWOu550XuR15IC7/iitTJ6V4CGn4IGBjZiG8THXTCldZ
- X70FEAQEYx5EgDpCAJSnrLz6uAqq2SCcsACK8bsXyHJpzji9EMBEIx4NgL5LgDfBh0dQ
- 9KQW1aeAGcUvKL/V0HhtrK3Thg2i6gRS4LcHPo204OxHNN3cpDM1b2jt/T8wqz9VePfY
- eHsQiKjCpUIwoOXvnRopebOnhXlZ729xD4xL8Q+SX7ckALi79qa/eXrOtYHpJ4xPGhR/ Ig== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cj3cykw8d-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 Nov 2021 15:52:40 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A54BF10002A;
-        Thu, 25 Nov 2021 15:52:37 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 75988238D87;
-        Thu, 25 Nov 2021 15:52:37 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 25 Nov
- 2021 15:52:36 +0100
-Subject: Re: [PATCH v4 2/3] ARM: dts: stm32: fix dtbs_check warning on ili9341
- dts binding
-To:     <dillon.minfei@gmail.com>, <laurent.pinchart@ideasonboard.com>,
-        <thierry.reding@gmail.com>, <sam@ravnborg.org>, <airlied@linux.ie>,
-        <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <mcoquelin.stm32@gmail.com>,
-        <noralf@tronnes.org>
-CC:     <kbuild-all@lists.01.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1627098243-2742-1-git-send-email-dillon.minfei@gmail.com>
- <1627098243-2742-3-git-send-email-dillon.minfei@gmail.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <9a17b095-48ca-1507-82f9-131b00562c25@foss.st.com>
-Date:   Thu, 25 Nov 2021 15:52:36 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S235326AbhKYPE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 10:04:28 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:52130 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S245692AbhKYPC2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 10:02:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=gqwm+WwSBdhNa5k1gRBsMXc4iKnVFzc7Y348LHychwQ=; b=l6DFNbzi1OgF0eyyCHA2Jl+BT+
+        Dj7hzZY7cIQOmtRjSAzCRNCrAo/MVLjkP25Gd9/mArpepnceU8KbAHpbB/Y9BUM1qlgUeb9wbexPv
+        jdnn5BgA+4Cil8bCyFQ4917ejNf+yvsbX6iP1gBd+zN7zj/F7vc5hANWlwY+Z3KxrbEE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1mqGDO-00EcOp-PF; Thu, 25 Nov 2021 15:59:10 +0100
+Date:   Thu, 25 Nov 2021 15:59:10 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
+        linux@armlinux.org.uk, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 3/6] net: lan966x: add port module support
+Message-ID: <YZ+kvpCmWomKNr9l@lunn.ch>
+References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
+ <20211123135517.4037557-4-horatiu.vultur@microchip.com>
+ <YZ59hpDWjNjvx5kP@lunn.ch>
+ <20211125092638.7b2u75zdv2ulekmo@soft-dev3-1.localhost>
 MIME-Version: 1.0
-In-Reply-To: <1627098243-2742-3-git-send-email-dillon.minfei@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-25_06,2021-11-25_01,2020-04-07_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211125092638.7b2u75zdv2ulekmo@soft-dev3-1.localhost>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dillon
+> If I undestood you correctly I have tried to do the following:
+> 
+> struct lan966x_ifh {
+>     __be32 timestamp;
+>     __be32 bypass : 1;
+>     __be32 port : 3;
+>     ...
+> };
+> 
+> But then I start to get errors from sparse:
+> 
+> error: invalid bitfield specifier for type restricted __be32.
 
-On 7/24/21 5:44 AM, dillon.minfei@gmail.com wrote:
-> From: Dillon Min <dillon.minfei@gmail.com>
-> 
-> Since the compatible string defined from ilitek,ili9341.yaml is
-> "st,sf-tc240t-9370-t", "ilitek,ili9341"
-> 
-> so, append "ilitek,ili9341" to avoid the below dtbs_check warning.
-> 
-> arch/arm/boot/dts/stm32f429-disco.dt.yaml: display@1: compatible:
-> ['st,sf-tc240t-9370-t'] is too short
-> 
-> Fixes: a726e2f000ec ("ARM: dts: stm32: enable ltdc binding with ili9341, gyro l3gd20 on stm32429-disco board")
-> Signed-off-by: Dillon Min <dillon.minfei@gmail.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> ---
-> v4: no change.
-> 
->   arch/arm/boot/dts/stm32f429-disco.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32f429-disco.dts b/arch/arm/boot/dts/stm32f429-disco.dts
-> index 075ac57d0bf4..6435e099c632 100644
-> --- a/arch/arm/boot/dts/stm32f429-disco.dts
-> +++ b/arch/arm/boot/dts/stm32f429-disco.dts
-> @@ -192,7 +192,7 @@
->   
->   	display: display@1{
->   		/* Connect panel-ilitek-9341 to ltdc */
-> -		compatible = "st,sf-tc240t-9370-t";
-> +		compatible = "st,sf-tc240t-9370-t", "ilitek,ili9341";
->   		reg = <1>;
->   		spi-3wire;
->   		spi-max-frequency = <10000000>;
-> 
+Maybe look at struct iphdr. It has bitfields for the header length and
+the IP version.
 
-Patch applied on stm32-next. I updated commit title to indicate targeted 
-board.
-
-regards
-Alex
+    Andrew
