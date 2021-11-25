@@ -2,308 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C54E245D411
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 06:15:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60F6245D44D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 06:27:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234753AbhKYFSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 00:18:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34830 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239517AbhKYFQO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 00:16:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 26ED6610A7;
-        Thu, 25 Nov 2021 05:13:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637817184;
-        bh=IUTVms87b2Lwm37fHSCFddJ6zRnvFeWWfi2unK+Tsio=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QCbHkPG1HoHB/wSP+Nq4KXjyftpSv9Q0RgKOZUinmBILkvv0qIme5tYXyzVACBSB0
-         kfvdA81nzPxCqpIaQrhXIC4am+hIMl2PYTgBkTjpDjoht37Iyhvoo4mSo/DXjvzVgp
-         G5NmmAQZk4GhOCQj/VVIT6fJbPGSiKHRl0SHH1MY5L2kCy01Yjn78X8jPlhZuHPWAJ
-         I+C8uXoZ8whL74YNBShZi3grwal4AcMFOd2wc7FtDVGoIK8bOJu1lmMqfubQD4neEJ
-         qLX7Hf0javowjyd1LPRz0G1OSWzEkylDN0g4gZ3tRoVlQAFmqkpITfdw0oLyLPE4/B
-         zJaQMKjJb+g4w==
-Date:   Thu, 25 Nov 2021 10:42:59 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Yz Wu <yz.wu@mediatek.com>
-Subject: Re: [PATCH 5/6] phy: phy-mtk-tphy: add support efuse setting
-Message-ID: <YZ8bW+bAkxcg2G/U@matsya>
-References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
- <20211107075646.4366-5-chunfeng.yun@mediatek.com>
- <YZuAab3j+flr1xXj@matsya>
- <1e51d7bf0e77ddb4d558f0a4407dec5cdc1bc35e.camel@mediatek.com>
+        id S238444AbhKYFaz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 00:30:55 -0500
+Received: from mail-eopbgr20042.outbound.protection.outlook.com ([40.107.2.42]:20610
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S238940AbhKYF2y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 00:28:54 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=n0/LqL5ZrQXxPKG019Vh5Pf8QgTEszU0OZm4CEawwLxOLr2mbpoIvV6nDSBEY5kw34gxf3LFQu/uKWPcRH9o/c+orMQruvEGL18vWqIQT+qo6QEM3qbPuwBNvNJFKFF/3iixHboT7wLzAeZzMFXuonNMQUKWUlNKhTwfO0U0VWRsh/F9exNQFN9xsNwWC1vofk2MWb+bvyI1rettBPijIWE+t3Sbuq8eb/jd5m1eGeuTFXhhkn382R3XBZpIUTeXVwyDMzK32bmVifGvD0eT+NRBmuFhYNwMTLBRvtukPSmo/2TY4fGNWN4GHsthv1xs12tFx/E5rHrypNRp8IuUEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kljB5bmK5LeFLgYTL4KoBahPJKU65GRYZ9+fzkCIvFo=;
+ b=i6UT3jAfYpGhdgtHm6ClFLFD/sqrMc1hT/Ehj/i+FKiY2XmZzDBbh3WS3NAKpKOStAZTX3KxHv2pe0LYVXdX/8wuLdgEKVP1Q6pJfld8wN6TfslJILBWFyTorInq0qIKa5MMkY7sTqyP5tfno66PE7wndJKjMuOCQfB2VFEIW/z2lZed9nfQ1/VwXLHF5ESXzpLMJLabqaxGgezeBOppYXxN6xUUmDmKfsJ3AFQfYJJ9QyLQmhk9p6WlHk2vGijm6ZIQQ+e7R99VQanlVG6BYmILYGXqsfoImyOxQv9RfW8C8dnXw9Xc0QOYP+2OWpynZuO2sIq+6ZijMVlfKAi4ow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kljB5bmK5LeFLgYTL4KoBahPJKU65GRYZ9+fzkCIvFo=;
+ b=r5B1E0rHTxD3IozgpED5DyFF3iW+/9zADnOUB92UNfsUB4J1d4AouWoYdqsdlE8lwqmuK1nSrJNf3PAYIA04SCr73RmVFn76Rxq/4UdF049glDsMbeR3tCSlrmOLm+1dr1MhioCFjFKEYB8RPa82TZdLAyskH6IyN9SNO6GFeiw=
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM7PR04MB7126.eurprd04.prod.outlook.com (2603:10a6:20b:117::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Thu, 25 Nov
+ 2021 05:25:41 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::fc3a:8aea:2c92:3886]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::fc3a:8aea:2c92:3886%5]) with mapi id 15.20.4713.025; Thu, 25 Nov 2021
+ 05:25:41 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [EXT] Re: [PATCH v12 00/13] amphion video decoder/encoder driver
+Thread-Topic: [EXT] Re: [PATCH v12 00/13] amphion video decoder/encoder driver
+Thread-Index: AQHX1UX9FZgXdhHdu0aj4y6UzYn6WqwRlHeAgADanLCAAG2egIAA8C0g
+Date:   Thu, 25 Nov 2021 05:25:41 +0000
+Message-ID: <AM6PR04MB6341F599A97253C1BA812467E7629@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1636445575.git.ming.qian@nxp.com>
+         <9947131322e034bb6336802e5afb4b6132ca5071.camel@ndufresne.ca>
+         <AM6PR04MB6341BF1FB2A839961DBADF4EE7619@AM6PR04MB6341.eurprd04.prod.outlook.com>
+ <9b7fd6802c89c5d3bb6a42b44f13a90f6c3caf22.camel@ndufresne.ca>
+In-Reply-To: <9b7fd6802c89c5d3bb6a42b44f13a90f6c3caf22.camel@ndufresne.ca>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 772b71a0-6103-45d5-0a52-08d9afd405d6
+x-ms-traffictypediagnostic: AM7PR04MB7126:
+x-microsoft-antispam-prvs: <AM7PR04MB7126C4AFEA6A3C5670495485E7629@AM7PR04MB7126.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Zs5PFuUtkzjj/tTTU2pH0S7ULPnyJz47OA/lEzQJ4hU84Xsot9w1rqqrvs2U2WP6gIAprfJ8UIWXRoPCbHKnSWCpEz9449ELKmD3cGTWYiEvPNzc078lI2fC2IXr68YsIcvcMQqAXk8VvI9ZWigOkpbHrCmTMBaPhu9bMvVQs0Quu0fYDzeB8JPT94IobaXcqXD1BUgXotUhPBWhX83ec5J+scTCt25/QnsyA3+xT/XUDgdDFjw318xt7ZftMhYqQ7WQo7+kNvEQtqcvHKa9G+H0h5RhQQr7PWjA/0ZEDD6kdEUlVNXlQHvne5UbW+cT24h+Red7/QvRPIc7vFLP/aAzjE9sPUaBip8x2wc2MTByMcA6KgTmCI5KpWhdPMGFbGSBoA47Oq72vsBTOfBdz5cq7/a8ZVB90khBMT9pu3xzAw8cb2SzqnLLSsYEE05EFz3cHt+VXzpHZLh+ST0PzxJMWeEMEx29PbMmG/sxtHKop5e6bX1Iupalxktl7i6h0ARehjKw4j/cDOBbG2hk05Qwb+9rY1zX8fpl3WuP3rOtHD8YHi9B8z8WBuHC6BSE+sf39pTrWvisJGjyLQ+IHqiKDBgvlFzu5WgD7d1of0kR8B6zVgmGMUs91NAMNVbZDtnzHuwtBdW1OpsCs00Qt0zgMComtqGzOR/mUPu8yw5NToFF4pUIP7CNrsnzyC2XzxF6wWJ+B/V9f3lcBrXLIg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(7696005)(54906003)(38070700005)(83380400001)(66946007)(55016003)(71200400001)(9686003)(66574015)(2906002)(33656002)(110136005)(6506007)(53546011)(86362001)(316002)(52536014)(44832011)(122000001)(7416002)(186003)(38100700002)(5660300002)(64756008)(66556008)(66476007)(8936002)(66446008)(76116006)(8676002)(4326008)(26005)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?jUXvyzy8BOOWalOrELEd7/8UL8IqUPuIahOtkWkoq5JienWsL/jWv3h18J?=
+ =?iso-8859-1?Q?EaIhM8XSUY+WeM+ZOc/6a8G0Ncx65hbVyQPNC07Vmcs6d0231N7w2RRoRY?=
+ =?iso-8859-1?Q?7lfwQMREVpCxsfz5I8abyhhWY8Hh4TKLDpzVjKCzt6pEksXUwIrUANziUI?=
+ =?iso-8859-1?Q?PJXTBi75IoZtpAbiwkVW7VQXHEo4KjIDdPsBkdhUc1ftvcZliv/3qy1Lft?=
+ =?iso-8859-1?Q?EbWqyeOe1GvJ8ECTpyy+IeNJH2+sYqz+kGpekjTUTpaD4UQqWjzyVToaMq?=
+ =?iso-8859-1?Q?NjgTi8YhH1z1ek+64WdgU0qa7nWsfSa/c8v7tgCQQh5cYnptIkrGNJHsbP?=
+ =?iso-8859-1?Q?Wvxu/JtyWZbf3f1qpJKgqi0CSnbfBwH0f/8x7lyzCn9/vyMQM0lqqrIkUc?=
+ =?iso-8859-1?Q?22TgaA1N/CueunbnjfphYbigCUv40RkYimOEjmig3wbsx2oErjgijdz4+t?=
+ =?iso-8859-1?Q?CblXxBw40XSxVXYIQyIC8sfoj8l5r0L7Tt41tl6TYQ7VJkE4/Urhj3YTtA?=
+ =?iso-8859-1?Q?bBh0FSE9ksvwe7jICT/cGEgYZbwBCRjXHaVZT2PHy0OGYpOWfGXAZSfrDx?=
+ =?iso-8859-1?Q?dxupQxqVVvfH4U8Z/x23opPnUda9Fx3otroDIOdQ+ISaDzGSBx6yFWuPfi?=
+ =?iso-8859-1?Q?Nv8cB8NXM4E5MHEaLu8KiDKcZ8TtcEOviDFO/pLKBVMZed5dMSB78Hy6jp?=
+ =?iso-8859-1?Q?7RBQRf0dgCp4EY/JTSvUstXpqjdOBEyqMUV17Ktpx47L3U12q/0PnggTPB?=
+ =?iso-8859-1?Q?6t1MrpaJjIsy2TfOyl6hqnyFbQnb/QMbibwLAbiDLDD/C88Oi5M5BCFeIX?=
+ =?iso-8859-1?Q?Aywre4h2bKWiPg7GfchSOFdGsXK2bVKwN7/ifcFqEB8/zPnAbYUt1Vgw8z?=
+ =?iso-8859-1?Q?N4bmS6xdPjU8yIiXIh6vKQ+fQFL0znE2kgwjhtg+i8jHMG7BxNhcju4FKX?=
+ =?iso-8859-1?Q?pmhUwelcJmRNvP+EKpRFgWPOuwvxeZGYxKQiwSMcCwnU+x8mGYPQhgiaF3?=
+ =?iso-8859-1?Q?29OBJqPEpH4SYkb3YKFYf0X58FBwl3/P3ZFsZcFAdODf608ndKVJMk0B8X?=
+ =?iso-8859-1?Q?Zq6VH7dbXgxNU9AD6ifT+Kyl5um1LHJsYliNEh7RdU+6gIc8THC2NoWGDv?=
+ =?iso-8859-1?Q?kbD0XQqsd4ffeWnkkMJmKJl6XCHY83xqWMAqm4udszSnDeYW04v876wurk?=
+ =?iso-8859-1?Q?oOyAXzUDIscV4qB9gRXu7Dpl5LTAwTO8qP7o8wwKIHP0PF9WxW+qaqSE/m?=
+ =?iso-8859-1?Q?ylKcT6AeyuN+pduXc87Mq24fZ860v/XR0dMHYi2/SvHNNuzyZZabvRyR5f?=
+ =?iso-8859-1?Q?iuStHqlEq796b+2zx5YpOA8nBhTbYkTPZMWxY6iz+9OEBvvrfjiawCIQ1n?=
+ =?iso-8859-1?Q?gFiTuDMzBdfOmGfmSOVnCSFLdG4MsNGqqXCYt3YsEyyET+JBBIYQZwF4Rg?=
+ =?iso-8859-1?Q?fy1HTykpBuM7jdia6Zb/7eq4cGF0/qCg2qQHtgSl4rnbeChe4S/2w8t7OD?=
+ =?iso-8859-1?Q?6qnPXiXOE6jxg9Jb184fMaBpMNO/cqGekAEcbQHhBbqmWYzL1ISkcm0THN?=
+ =?iso-8859-1?Q?Hj3AHK5f+jOLTjvKIkGzuwKqrr2IUSBAbZ/dpg8y8k2+T78LPSOVxU6Ohm?=
+ =?iso-8859-1?Q?WVHE9KHb9eQOc1CrLRk2kslvKl6LDnyg40gS/4nEfLVTYaZYAGXzbGsQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1e51d7bf0e77ddb4d558f0a4407dec5cdc1bc35e.camel@mediatek.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 772b71a0-6103-45d5-0a52-08d9afd405d6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2021 05:25:41.4847
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 2XRP5m4p8dcMoKoaLhXDpT3yIKQAnj0pK4JgNwuyE66sDj67YRfd1FEtgLfP0/Nk0J6pLc7g7jxloMw1NPdrSg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7126
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-11-21, 14:54, Chunfeng Yun wrote:
-> On Mon, 2021-11-22 at 17:05 +0530, Vinod Koul wrote:
-> > On 07-11-21, 15:56, Chunfeng Yun wrote:
-> > > Due to some SoCs have a bit shift issue that will drop a bit for
-> > > usb3
-> > > phy or pcie phy, fix it by adding software efuse reading and
-> > > setting,
-> > > but only support it optionally for versoin 2/3.
-> > 
-> > s/versoin/version
-> Ok
-> > 
-> > > 
-> > > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > > ---
-> > >  drivers/phy/mediatek/phy-mtk-tphy.c | 162
-> > > ++++++++++++++++++++++++++++
-> > >  1 file changed, 162 insertions(+)
-> > > 
-> > > diff --git a/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > b/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > index cdcef865fe9e..3b5b1c266595 100644
-> > > --- a/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > +++ b/drivers/phy/mediatek/phy-mtk-tphy.c
-> > > @@ -12,6 +12,7 @@
-> > >  #include <linux/iopoll.h>
-> > >  #include <linux/mfd/syscon.h>
-> > >  #include <linux/module.h>
-> > > +#include <linux/nvmem-consumer.h>
-> > >  #include <linux/of_address.h>
-> > >  #include <linux/of_device.h>
-> > >  #include <linux/phy/phy.h>
-> > > @@ -41,6 +42,9 @@
-> > >  #define SSUSB_SIFSLV_V2_U3PHYD		0x200
-> > >  #define SSUSB_SIFSLV_V2_U3PHYA		0x400
-> > >  
-> > > +#define U3P_MISC_REG1		0x04
-> > > +#define MR1_EFUSE_AUTO_LOAD_DIS		BIT(6)
-> > > +
-> > >  #define U3P_USBPHYACR0		0x000
-> > >  #define PA0_RG_U2PLL_FORCE_ON		BIT(15)
-> > >  #define PA0_USB20_PLL_PREDIV		GENMASK(7, 6)
-> > > @@ -133,6 +137,8 @@
-> > >  #define P3C_RG_SWRST_U3_PHYD_FORCE_EN	BIT(24)
-> > >  
-> > >  #define U3P_U3_PHYA_REG0	0x000
-> > > +#define P3A_RG_IEXT_INTR		GENMASK(15, 10)
-> > > +#define P3A_RG_IEXT_INTR_VAL(x)		((0x3f & (x)) << 10)
-> > >  #define P3A_RG_CLKDRV_OFF		GENMASK(3, 2)
-> > >  #define P3A_RG_CLKDRV_OFF_VAL(x)	((0x3 & (x)) << 2)
-> > >  
-> > > @@ -187,6 +193,19 @@
-> > >  #define P3D_RG_FWAKE_TH		GENMASK(21, 16)
-> > >  #define P3D_RG_FWAKE_TH_VAL(x)	((0x3f & (x)) << 16)
-> > >  
-> > > +#define U3P_U3_PHYD_IMPCAL0		0x010
-> > > +#define P3D_RG_FORCE_TX_IMPEL		BIT(31)
-> > > +#define P3D_RG_TX_IMPEL			GENMASK(28, 24)
-> > > +#define P3D_RG_TX_IMPEL_VAL(x)		((0x1f & (x)) << 24)
-> > > +
-> > > +#define U3P_U3_PHYD_IMPCAL1		0x014
-> > > +#define P3D_RG_FORCE_RX_IMPEL		BIT(31)
-> > > +#define P3D_RG_RX_IMPEL			GENMASK(28, 24)
-> > > +#define P3D_RG_RX_IMPEL_VAL(x)		((0x1f & (x)) << 24)
-> > > +
-> > > +#define U3P_U3_PHYD_RSV			0x054
-> > > +#define P3D_RG_EFUSE_AUTO_LOAD_DIS	BIT(12)
-> > > +
-> > >  #define U3P_U3_PHYD_CDR1		0x05c
-> > >  #define P3D_RG_CDR_BIR_LTD1		GENMASK(28, 24)
-> > >  #define P3D_RG_CDR_BIR_LTD1_VAL(x)	((0x1f & (x)) << 24)
-> > > @@ -307,6 +326,11 @@ struct mtk_phy_pdata {
-> > >  	 * 48M PLL, fix it by switching PLL to 26M from default 48M
-> > >  	 */
-> > >  	bool sw_pll_48m_to_26m;
-> > > +	/*
-> > > +	 * Some SoCs (e.g. mt8195) drop a bit when use auto load efuse,
-> > > +	 * support sw way, also support it for v2/v3 optionally.
-> > > +	 */
-> > > +	bool sw_efuse_supported;
-> > >  	enum mtk_phy_version version;
-> > >  };
-> > >  
-> > > @@ -336,6 +360,10 @@ struct mtk_phy_instance {
-> > >  	struct regmap *type_sw;
-> > >  	u32 type_sw_reg;
-> > >  	u32 type_sw_index;
-> > > +	u32 efuse_sw_en;
-> > > +	u32 efuse_intr;
-> > > +	u32 efuse_tx_imp;
-> > > +	u32 efuse_rx_imp;
-> > >  	int eye_src;
-> > >  	int eye_vrt;
-> > >  	int eye_term;
-> > > @@ -1040,6 +1068,130 @@ static int phy_type_set(struct
-> > > mtk_phy_instance *instance)
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static int phy_efuse_get(struct mtk_tphy *tphy, struct
-> > > mtk_phy_instance *instance)
-> > > +{
-> > > +	struct device *dev = &instance->phy->dev;
-> > > +	int ret = 0;
-> > > +
-> > > +	/* tphy v1 doesn't support sw efuse, skip it */
-> > > +	if (!tphy->pdata->sw_efuse_supported) {
-> > > +		instance->efuse_sw_en = 0;
-> > > +		return 0;
-> > > +	}
-> > > +
-> > > +	/* software efuse is optional */
-> > > +	instance->efuse_sw_en = device_property_read_bool(dev, "nvmem-
-> > > cells");
-> > > +	if (!instance->efuse_sw_en)
-> > > +		return 0;
-> > > +
-> > > +	switch (instance->type) {
-> > > +	case PHY_TYPE_USB2:
-> > > +		ret = nvmem_cell_read_variable_le_u32(dev, "intr",
-> > > &instance->efuse_intr);
-> > > +		if (ret) {
-> > > +			dev_err(dev, "fail to get u2 intr efuse, %d\n",
-> > > ret);
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		/* no efuse, ignore it */
-> > > +		if (!instance->efuse_intr) {
-> > > +			dev_warn(dev, "no u2 intr efuse, but dts enable
-> > > it\n");
-> > > +			instance->efuse_sw_en = 0;
-> > > +			break;
-> > > +		}
-> > 
-> > What does this check do...? so a zero value is not valid..?
-> Yes, because it's also zero for SoC without efuse, prefer to use
-> default value instead.
-> 
-> > 
-> > > +
-> > > +		dev_info(dev, "u2 efuse - intr %x\n", instance-
-> > > >efuse_intr);
-> > 
-> > dev_dbg()?
-> We usually use HW auto load way, print this log can help to point out
-> that it's specific SoC.
+> -----Original Message-----
+> From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
+> Sent: Wednesday, November 24, 2021 10:58 PM
+> To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
+> shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
+> dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
+> linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> Subject: Re: [EXT] Re: [PATCH v12 00/13] amphion video decoder/encoder
+> driver
+>=20
+> Caution: EXT Email
+>=20
+> Le mercredi 24 novembre 2021 =E0 09:00 +0000, Ming Qian a =E9crit :
+> > > -----Original Message-----
+> > > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
+> > > Sent: Wednesday, November 24, 2021 3:23 AM
+> > > To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
+> > > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> > > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de;
+> > > festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong
+> > > <aisheng.dong@nxp.com>; linux-media@vger.kernel.org;
+> > > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > > linux-arm-kernel@lists.infradead.org
+> > > Subject: [EXT] Re: [PATCH v12 00/13] amphion video decoder/encoder
+> > > driver
+> > >
+> > > Caution: EXT Email
+> > >
+> > > Hi Ming,
+> > >
+> > > For the patchset:
+> > >
+> > > Tested-By: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+> > >
+> > > I've validated encoding manually with GStreamer:
+> > >
+> > >   gst-launch-1.0 videotestsrc num-buffers=3D100 ! v4l2h264enc !
+> > > video/x-h264,profile=3Dmain,level=3D\(string\)2 ! h264parse ! qtmux !
+> > > filesink location=3Dtest.mov
+> > >
+> > > I've also verify the that the number of frames was exactly 100, this
+> > > is common issue with V4L2 encoders. Then I have validated VP8, H.264
+> > > and H.265 decoders using fluster [0] with this PR [1] applied. You
+> > > can find full summary at the end of this email. Markdown report
+> > > didn't get generated, I will have to check with upstream fluster if
+> > > there is a regression.
+> > >
+> > > $> ./fluster.py run -s -so amphion-imx8qxp-conformance.md -d
+> > > GStreamer-VP8-V4L2-Gst1.0 GStreamer-H.264-V4L2-Gst1.0
+> > > GStreamer-H.265-V4L2-Gst1.0
+> > >
+> > > VP8:   Ran 59/61 tests successfully               in 131.788 secs
+> > > H.264: Ran 75/135 tests successfully               in 501.206 secs
+> > > H.265: Ran 126/147 tests successfully               in 1131.933 secs
+> > >
+> > > Note that in mainline, only 1 core get fired and is kept at its
+> > > lowest possible frequency, so perhaps it may cause some of the
+> > > timeout seen. The driver is overall functional, and I would like to
+> > > thank you for this extra work. Also, note that this very first time
+> > > I run Fluster over the stateful CODEC wrappers. I will need to run
+> > > this on more platforms to locate the GStreamer specific fail.
+> > >
+> > > VP8 note, conformance vector vp80-03-segmentation-1425 cause a hang
+> > > but it then
+> > > recover:
+> > >
+> > > [ 8264.851841] amphion-vpu-core 2d040000.vpu_core: [0] sync session
+> > > timeout [ 8264.858634] amphion-vpu-core 2d040000.vpu_core: [0] send
+> > > cmd(0x2) fail [ 8264.867992] amphion-vpu-core 2d040000.vpu_core: [0]
+> > > start fail [ 8264.905173] amphion-vpu-core 2d040000.vpu_core: reset
+> > > hang core
+> > >
+> >
+> > HI Nicolas
+> >
+> >     There is a bug in firmware that if send a command to firmware too
+> > close after stop cmd, The firmware may enter wfi wrong, and led to
+> > hang issue you met in vp80-03- segmentation-1425.
+> > I'll add a workaround in driver that add a delay after send stop cmd
+> > to firmware in next version.
+> >
+> >     Because the amphion's vpu doesn't support to output i420, so the
+> > test will convert nv12_8l128 to i420 by videoconvert, it leds to most
+> > of timeout failure.
+> >
+> >     The FM1_BT_B.h264 can't be decoded by amphion's vpu, the vpu is
+> > keeping parse sequence header, and it led to timeout failure.
+> >
+> >     I run the test and change the timeout to 300, then most of timeout
+> > failures are gone. Besides that, my result is almost as same as yours.
+>=20
+> Oh my bad, I forgot about the short timeout, with a single core on top of=
+ all
+> this, that makes sense.
+>=20
+> >
+> >     The failures of assertion error means that the vpu's output is
+> > different from the pattern, I think it should be the vpu's limitation.
+>=20
+> Most likely, best way to know is to keep the results (--keep) and visuall=
+y look at
+> the result. My expectation with this is that we get decent results and th=
+at none
+> of the issue render the VPU or the system unusable. Each company is then
+> responsible for their CODEC conformance, specially with stateful, there i=
+s very
+> little that userspace will be responsible with. Though if you do find iss=
+ue that is
+> clearly caused by GStreaner, let me know, I'll be more then happy to fix.
+> Most VPU providers will also buy proprietary conformance suite (like Alle=
+gro),
+> which covers much more then basic conformance.
+>=20
 
-You can enable this print thru dynamic debug or enable debug prints when
-debugging, let us not spam message log
+For test [JCT-VC-HEVC_V1] (GStreamer-H.265-V4L2-Gst1.0) VPSSPSPPS_A_MainCon=
+cept_1,
+The vpu report an unsupported message to driver, so driver report pollerr t=
+o gstreamer.
+But this stream can be decoded using the amphion vpu when I test it using o=
+ur unit test,
+I checked the difference, there are many vps, sps and pps at the beginning,=
+=20
+gstreamer will skip the first vpu and two pps, totally skip 56 bytes. It le=
+ds to vpu can't decode
+And our unit test won't skip anthing, so the vpu can decode the stream.
 
-> 
-> > 
-> > > +		break;
-> > 
-> > empty line after break improves readability, pls add
-> Ok
-> > 
-> > > +	case PHY_TYPE_USB3:
-> > > +	case PHY_TYPE_PCIE:
-> > > +		ret = nvmem_cell_read_variable_le_u32(dev, "intr",
-> > > &instance->efuse_intr);
-> > > +		if (ret) {
-> > > +			dev_err(dev, "fail to get u3 intr efuse, %d\n",
-> > > ret);
-> > > +			break;
-> > > +		}
-> > 
-> > This seems to be common, why not read this before switch?
-> It's not used for SGMII or SATA, but not applied until now
-> 
-> > 
-> > > +
-> > > +		ret = nvmem_cell_read_variable_le_u32(dev, "rx_imp",
-> > > &instance->efuse_rx_imp);
-> > > +		if (ret) {
-> > > +			dev_err(dev, "fail to get u3 rx_imp efuse,
-> > > %d\n", ret);
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		ret = nvmem_cell_read_variable_le_u32(dev, "tx_imp",
-> > > &instance->efuse_tx_imp);
-> > > +		if (ret) {
-> > > +			dev_err(dev, "fail to get u3 tx_imp efuse,
-> > > %d\n", ret);
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		/* no efuse, ignore it */
-> > > +		if (!instance->efuse_intr &&
-> > > +		    !instance->efuse_rx_imp &&
-> > > +		    !instance->efuse_rx_imp) {
-> > > +			dev_warn(dev, "no u3 intr efuse, but dts enable
-> > > it\n");
-> > > +			instance->efuse_sw_en = 0;
-> > > +			break;
-> > > +		}
-> > 
-> > again, zero values are not valid?
-> It's also zero for SoC without efuse, treat it as invalid value
-> 
-> > 
-> > > +
-> > > +		dev_info(dev, "u3 efuse - intr %x, rx_imp %x, tx_imp
-> > > %x\n",
-> > > +			 instance->efuse_intr, instance->efuse_rx_imp,
-> > > +			 instance->efuse_tx_imp);
-> > 
-> > dbg pls
-> Ok
-> > 
-> > > +		break;
-> > > +	default:
-> > > +		dev_err(dev, "no sw efuse for type %d\n", instance-
-> > > >type);
-> > > +		ret = -EINVAL;
-> > > +	}
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static void phy_efuse_set(struct mtk_phy_instance *instance)
-> > > +{
-> > > +	struct device *dev = &instance->phy->dev;
-> > > +	struct u2phy_banks *u2_banks = &instance->u2_banks;
-> > > +	struct u3phy_banks *u3_banks = &instance->u3_banks;
-> > > +	u32 tmp;
-> > > +
-> > > +	if (!instance->efuse_sw_en)
-> > > +		return;
-> > > +
-> > > +	switch (instance->type) {
-> > > +	case PHY_TYPE_USB2:
-> > > +		tmp = readl(u2_banks->misc + U3P_MISC_REG1);
-> > > +		tmp |= MR1_EFUSE_AUTO_LOAD_DIS;
-> > > +		writel(tmp, u2_banks->misc + U3P_MISC_REG1);
-> > > +
-> > > +		tmp = readl(u2_banks->com + U3P_USBPHYACR1);
-> > > +		tmp &= ~PA1_RG_INTR_CAL;
-> > > +		tmp |= PA1_RG_INTR_CAL_VAL(instance->efuse_intr);
-> > > +		writel(tmp, u2_banks->com + U3P_USBPHYACR1);
-> > > +		break;
-> > > +	case PHY_TYPE_USB3:
-> > > +	case PHY_TYPE_PCIE:
-> > > +		tmp = readl(u3_banks->phyd + U3P_U3_PHYD_RSV);
-> > > +		tmp |= P3D_RG_EFUSE_AUTO_LOAD_DIS;
-> > > +		writel(tmp, u3_banks->phyd + U3P_U3_PHYD_RSV);
-> > 
-> > add a updatel() macro and use this here and other places?
-> You mean add macro to set/clear bits?
-> If so, I need prepare another patch for this purpose
-
-Sure, that would be nice
-
--- 
-~Vinod
