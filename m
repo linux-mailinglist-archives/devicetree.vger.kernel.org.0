@@ -2,103 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E901245D804
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:12:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3228B45D81E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 11:19:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354563AbhKYKPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 05:15:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57822 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbhKYKNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 05:13:19 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 728DAC0613F4;
-        Thu, 25 Nov 2021 02:09:32 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id r8so10382786wra.7;
-        Thu, 25 Nov 2021 02:09:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=sonVc1z4s9yp3qxr+30Ehdj21m5HXG+GbXci1EkRyd0=;
-        b=hwSRl65sCjY5p6Ah68cgEhOn5lyv3p5q0Ihu2PGJCQ8QQLD1TREGoM9k4Vod5IpK4+
-         v4UurAfVX/1ESHnGkeiZ0juIiGePZJD0cUCRHOCsVlDJOwGnJNyVA7yc9MX/MFE0vf+d
-         1Z+n8TCef3/M2CVpLTqQEK5gz+0sfaB2/sFq/vmu8aOK+k+FKP++udq/wgg11dbe1N7J
-         kzPOkbaRuOdBTYvNtgqT2Q1kdWArEUSZWbPyjpd9WScUz6nNRypAmeoy2CmzT0WBj2gG
-         FvqwmSWeFqLiOtIdCCfPBZ+IXz9eHUGR9bkJarMRJInpsA1Wf43QZ28Rh1y6D74gEkio
-         BWdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=sonVc1z4s9yp3qxr+30Ehdj21m5HXG+GbXci1EkRyd0=;
-        b=JBbnFY4AcS4mGwAO93V5txT6lzCVHZ9E2PlGyy7jTWGArWrq0R05bvcwERXSXRPafk
-         i0Ij+ynVapP37qE+UWpzOM0lUQoSXKWjDpi5JgtqBkdBvwmc6MTuXUT1Q9Btzeks+P2S
-         8wnSq67CJJ0VVl0LsJIo8CWz95oA+LPMUzpGQGBrHxKerDIThcpPb30+Oao3oOawtK+o
-         b+L5lT8SgJD5DRFCMoMEc6Y0KJartghZBvcf7FJ4BuY3BIOkxMrsjGsM3sFgcONHa3Xr
-         /r6CXB+mWjEldMkV5+6rPyfCBVsO3eHVFlVRN/z65dB4KijxSIoqVbcizXSUevCc8V1O
-         fMJw==
-X-Gm-Message-State: AOAM533HLfLH2UzEXKBaWB6XR3xT0fw0fFnPcIEHpsxkgQLrmmleUoU6
-        dZRvFPMZQahp/RJAqebj+vA=
-X-Google-Smtp-Source: ABdhPJz7Sq1cO0e4VX/vnA//UUtpVjsWfZx/+npu6v564qfgpY05nOs4hhGcU62Dfts5NH7unWsh+Q==
-X-Received: by 2002:adf:ee0c:: with SMTP id y12mr5105453wrn.82.1637834971101;
-        Thu, 25 Nov 2021 02:09:31 -0800 (PST)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id l7sm2903533wry.86.2021.11.25.02.09.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 02:09:30 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: rockchip: Enable HDMI audio on Quartz64 A
-Date:   Thu, 25 Nov 2021 11:08:35 +0100
-Message-Id: <20211125100836.423808-3-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211125100836.423808-1-frattaroli.nicolas@gmail.com>
-References: <20211125100836.423808-1-frattaroli.nicolas@gmail.com>
+        id S1349974AbhKYKWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 05:22:36 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:37290 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351998AbhKYKUf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 05:20:35 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 6EE071F45F43
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1637835442; bh=kU/MZYNKaO3dvvsRN6JtzRQ0r5zNYRD15c2pxK8A1Ok=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=JGFhrwntMATS6G/uRNt2zAPnUTAA3+pGem015A7Lx36duECl7zqipbC+UMi9omJG0
+         Iszu+AW61a7QT8TII0Bb54NsOG4GccMZvVi2maKuZk5NcVgx5zT7+Fr1keXmOj0j4m
+         S4C6Hb9EJpkLL/XtT93AH0Z/R6NQ1H0h0WwLjDTVksPPb7BM/hxUf5Wq1j6zjhCi1Q
+         J2EEXTfyMrsGHkdrZKnqnd1CSn2VNUgp8DQXs7whKpgQnY2FkrEl4JC7FbOw1FvHDN
+         g2TeRJtCr37bJEBoP5AcItesIOCFas3KRMjZ6lgHdm3IF+T/A1gQmA9CXsLb1Y6QSK
+         2Ht57sVCAfBlg==
+Subject: Re: [PATCH 0/9] Enable two H264 encoder cores on MT8195
+To:     Irui Wang <irui.wang@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20210816105934.28265-1-irui.wang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <50a44f71-b39e-6f5c-dfc6-67377ecb4364@collabora.com>
+Date:   Thu, 25 Nov 2021 11:17:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20210816105934.28265-1-irui.wang@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This enables the i2s0 controller and the hdmi-sound node on
-the PINE64 Quartz64 Model A single-board computer.
+Il 16/08/21 12:59, Irui Wang ha scritto:
+> MT8195 has two H264 encoder cores, they have their own power-domains,
+> clocks, interrupts, register base. The two H264 encoder cores can work
+> together to achieve higher performance.
+> 
+> This series of patches is to use enable two h264 encoder cores.
+> path[1..2]: use linux component framework to manage encoder hardware,
+> user call "mt8195-vcodec-enc" driver can get the encoder master device,
+> the encoding work is done by the two encoder core device. The hw_mode
+> variable is added to distinguish from old platform, two encoder cores
+> called "FRAME_RACING_MODE".
+> 
+> The hardware mode of two encoder cores work together(overlap, another
+> word called) on MT8195 called "frame_racing_mode", the two encoder
+> power-domains should be power on together while encoding, the encoding
+> process look like this:
+> 
+>      VENC Core0 frm#0....frm#2....frm#4
+>      VENC Core1  .frm#1....frm#3....frm#5
+> 
+> patch[3..5]: due to the component device, the master device has no
+> power-domains/clocks properties in dtsi, so the power/clock init function
+> can't use for "frame_racing_mode" device in master device probe process,
+> it should be called in component device probe process. Power on the
+> hardware power and clock on demand.
+> 
+> patch[6]: "frame_racing_mode" encoding need a new set of memory buffer
+> for two encoder cores. For compatibility, we should new a encoder driver
+> interface.
+> 
+> patch[7..9]: add "frame_racing_mode" encoding process:
+> As-Is: Synchronous
+> VIDIOC_QBUF#0 --> device_run(triger encoder) --> wait encoder IRQ -->
+> encode done with result --> job_finish
+> 
+> VIDIOC_QBUF#1 --> device_run(triger encoder) --> wait encoder IRQ -->
+> encode done with result --> job_finish
+> ...
+> 
+> To-Be: Asynchronous
+> VIDIOC_QBUF#0 --> device_run(triger encoder core0) --> job_finish
+> ..VIDIOC_QBUF#1 --> device_run(triger encoder core1) --> job_finish
+> (core0 may encode done here, return encode result to client)
+> VIDIOC_QBUF#2 --> device_run(triger encoder core0) --> job_finish
+> 
+> Thers is no "wait encoder IRQ" synchronous call during "frame_racing_mode"
+> encoding process, which can full use the two encoder cores to achieve
+> higher performance.
+> 
+> Irui Wang (9):
+>    dt-bindings: media: mtk-vcodec: Add binding for MT8195 two venc cores
+>    media: mtk-vcodec: Use component framework to manage encoder hardware
+>    media: mtk-vcodec: Rewrite venc power manage interface
+>    media: mtk-vcodec: Add venc power on/off interface
+>    media: mtk-vcodec: Rewrite venc clock interface
+>    media: mtk-vcodec: Add new venc drv interface for frame_racing mode
+>    media: mtk-vcodec: Add frame racing mode encode process
+>    media: mtk-vcodec: Return encode result to client
+>    media: mtk-vcodec: Add delayed worker for encode timeout
+> 
+>   .../bindings/media/mediatek-vcodec.txt        |   2 +
+>   drivers/media/platform/mtk-vcodec/Makefile    |   2 +
+>   .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  34 +-
+>   .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 120 +++-
+>   .../platform/mtk-vcodec/mtk_vcodec_enc.h      |  10 +-
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  | 204 +++++-
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_hw.c   | 253 +++++++
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_hw.h   |  38 +
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 213 ++++--
+>   .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |  13 +-
+>   .../platform/mtk-vcodec/mtk_vcodec_util.c     |  19 +
+>   .../platform/mtk-vcodec/mtk_vcodec_util.h     |   5 +
+>   .../platform/mtk-vcodec/venc/venc_common_if.c | 675 ++++++++++++++++++
+>   .../platform/mtk-vcodec/venc/venc_h264_if.c   |   6 +-
+>   .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   2 +-
+>   .../media/platform/mtk-vcodec/venc_drv_if.c   |  96 ++-
+>   .../media/platform/mtk-vcodec/venc_drv_if.h   |   7 +
+>   .../media/platform/mtk-vcodec/venc_vpu_if.c   |  11 +-
+>   .../media/platform/mtk-vcodec/venc_vpu_if.h   |   3 +-
+>   19 files changed, 1564 insertions(+), 149 deletions(-)
+>   create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_hw.c
+>   create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_hw.h
+>   create mode 100644 drivers/media/platform/mtk-vcodec/venc/venc_common_if.c
+> 
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Hello Irui,
+we have some interest in this series; can you please rebase it over the latest
+changes that were sent in series [1] [2]?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index a4453c82b03d..0598510dce58 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -215,6 +215,10 @@ &hdmi_in_vp0 {
- 	status = "okay";
- };
- 
-+&hdmi_sound {
-+	status = "okay";
-+};
-+
- &gpu {
- 	mali-supply = <&vdd_gpu>;
- 	status = "okay";
-@@ -444,6 +448,10 @@ regulator-state-mem {
- 	};
- };
- 
-+&i2s0_8ch {
-+	status = "okay";
-+};
-+
- &i2s1_8ch {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2s1m0_sclktx
--- 
-2.34.0
+Also, please follow [2], where of_platform_populate was used in place of the
+component framework (where applicable and where possible) on this series, as well.
 
+Thanks!
+- Angelo
+
+[1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=579201
+[2]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=578467
