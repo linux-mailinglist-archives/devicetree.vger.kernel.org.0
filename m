@@ -2,95 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DB6945DD8C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:35:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82FAB45DDBC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:41:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244960AbhKYPik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 10:38:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46394 "EHLO
+        id S1356047AbhKYPow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 10:44:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235626AbhKYPgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 10:36:40 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41E2C0613FF;
-        Thu, 25 Nov 2021 07:27:01 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id A3F5E3F748;
-        Thu, 25 Nov 2021 16:26:53 +0100 (CET)
-Subject: Re: [PATCH 3/3] dt-bindings: display: msm: Add binding for msm8998
- dpu
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     robdclark@gmail.com, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, abhinavk@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        devicetree@vger.kernel.org
-References: <20210901181138.1052653-1-angelogioacchino.delregno@somainline.org>
- <20210901181138.1052653-3-angelogioacchino.delregno@somainline.org>
- <YTexaJuQSNazh9sn@robh.at.kernel.org>
- <d9ad36f5-1913-2cb3-d4be-125ed2d29041@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <fca60152-7f35-e38d-8a51-c9cd74e20674@somainline.org>
-Date:   Thu, 25 Nov 2021 16:26:53 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S1356050AbhKYPmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 10:42:52 -0500
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B843CC0613F1
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 07:31:39 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:1511:ffa3:275:45dd])
+        by baptiste.telenet-ops.be with bizsmtp
+        id NfXZ2600Q5CGg7701fXZr7; Thu, 25 Nov 2021 16:31:36 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mqGii-000DSL-VJ; Thu, 25 Nov 2021 16:31:32 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mqGii-000gYX-Gn; Thu, 25 Nov 2021 16:31:32 +0100
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+Subject: [PATCH 0/9] riscv: dts: Miscellaneous fixes
+Date:   Thu, 25 Nov 2021 16:31:22 +0100
+Message-Id: <20211125153131.163533-1-geert@linux-m68k.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <d9ad36f5-1913-2cb3-d4be-125ed2d29041@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 25/11/21 12:53, Dmitry Baryshkov ha scritto:
-> On 07/09/2021 21:37, Rob Herring wrote:
->> On Wed, Sep 01, 2021 at 08:11:38PM +0200, AngeloGioacchino Del Regno wrote:
->>> Add yaml binding for msm8998 dpu1 support.
->>>
->>> Signed-off-by: AngeloGioacchino Del Regno 
->>> <angelogioacchino.delregno@somainline.org>
->>> ---
->>>   .../bindings/display/msm/dpu-msm8998.yaml     | 220 ++++++++++++++++++
->>>   1 file changed, 220 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml 
->>> b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
->>> new file mode 100644
->>> index 000000000000..db435342ecbf
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
->>> @@ -0,0 +1,220 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->>> +%YAML 1.2
->>> +---
+	Hi all,
 
-<snip>
+This patch series contains miscellaneous fixes for the DTS files for
+RISC-V platforms.
 
->>> +
->>> +        power-domains = <&mmcc MDSS_GDSC>;
->>> +        ranges;
->>> +        status = "disabled";
->>
->> Drop. Why disable an example?
-> 
-> AngeloGioacchino, could you please update and repost this patch series? I'd like to 
-> get it merged.
-> 
+Thanks!
 
-Hey Dmitry,
+Geert Uytterhoeven (9):
+  riscv: dts: canaan: Fix SPI FLASH node names
+  riscv: dts: canaan: Group tuples in interrupt properties
+  riscv: dts: microchip: mpfs: Drop empty chosen node
+  riscv: dts: microchip: Group tuples in interrupt properties
+  riscv: dts: microchip: mpfs: Fix PLIC node
+  riscv: dts: microchip: mpfs: Fix reference clock node
+  riscv: dts: sifive: Group tuples in register properties
+  riscv: dts: sifive: Group tuples in interrupt properties
+  riscv: dts: sifive: fu540-c000: Drop bogus soc node compatible values
 
-Sure I can!
-Will update/rebase/fix as soon as I find some spare time around.
+ arch/riscv/boot/dts/canaan/k210.dtsi          | 23 ++++----
+ .../riscv/boot/dts/canaan/sipeed_maix_bit.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maix_dock.dts      |  2 +-
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts |  2 +-
+ .../boot/dts/canaan/sipeed_maixduino.dts      |  2 +-
+ .../boot/dts/microchip/microchip-mpfs.dtsi    | 52 +++++++++----------
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    | 35 +++++++------
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    | 14 ++---
+ 8 files changed, 66 insertions(+), 66 deletions(-)
 
-Thanks,
-- Angelo
+-- 
+2.25.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
