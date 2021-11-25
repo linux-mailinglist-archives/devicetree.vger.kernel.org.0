@@ -2,208 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E5E045DFCD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 18:33:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E48CB45DFE5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 18:40:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345836AbhKYRgj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 12:36:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348779AbhKYRej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 12:34:39 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A22C0619D5;
-        Thu, 25 Nov 2021 09:22:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202012; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=u8aXYOsL/gv9/ysyGSMs9eRZRUpowRI2RZmsAFCisIM=; b=VxxtE7uY/kk8ES7pmV5EynZ0OZ
-        ZncaP0rsa7gmcUNcSO/DSx707Bo1JOIJRPgpvxpoqR5cK8CtlLMxQE4ZQOUonA/WV/URGilwK7OM6
-        41bwu0AhkqkeLDfKIXDbH/AFSwJ2R8UuH1qEiWi1Ndc/QKHqc1aJq+Ja4NgecQSKKF5Z6NSmFN+4Q
-        ZeeKwuwFqf9cSw5i+9rWHXfY49I1QBeziE7fCSm6iuPXBgHFrcg1c6EuWKIewAASLVv+bbiHyJwUm
-        5zAl/e6JB3Iyx8B83fZ2WfZ6hC5i7hV1YIQd/XB90ijgur/Jw5Kt6a1OM47d0Q8Sqfvn3NOfijbEn
-        pT4uA5sA==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:49492 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1mqIRb-00018B-7K; Thu, 25 Nov 2021 18:21:59 +0100
-Message-ID: <7fb7cb73-40b1-9408-5c19-fe420bd0ee5f@tronnes.org>
-Date:   Thu, 25 Nov 2021 18:21:55 +0100
+        id S1343531AbhKYRmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 12:42:45 -0500
+Received: from mga07.intel.com ([134.134.136.100]:63767 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345423AbhKYRkm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 12:40:42 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10179"; a="298952590"
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; 
+   d="scan'208";a="298952590"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2021 09:29:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; 
+   d="scan'208";a="675317870"
+Received: from fmsmsx605.amr.corp.intel.com ([10.18.126.85])
+  by orsmga005.jf.intel.com with ESMTP; 25 Nov 2021 09:29:29 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12; Thu, 25 Nov 2021 09:29:29 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2242.12 via Frontend Transport; Thu, 25 Nov 2021 09:29:29 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2242.12; Thu, 25 Nov 2021 09:29:29 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TocKbF4DE0R+PeSrIYlHDpNBKgACp71iQJlVEmoFWn8xwePHP67/HMP0rRaFWwDI2+XVn2271FMy1+sHHU0k7ME2D1U8cxwqZxCEOQ05Wa+7kq+VqDUwFR+uvS/hFtgvYzgUzv1/F5EWLZ/OVlVYcGQVELFADFNmzZqf/gKspqY58nKjGCWnWhTNf8ajWo80a5hznUJevbI/a3CZpO6X0XBy+u0veiud5OFZW+FQiy4AMyOyV5QBq2OhRGag5kGfTMRMb+ZbFadvf0pY6lePDXhMS+L6S65YYbY0IzTlhHqagRFFXsvPWEOeTzOMNaeuf6qzhD7LiQgP5gY572JW6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EqqGMZ1jw2jcJRsIYLUMtzpXuEehbLL34C36dGYlLEw=;
+ b=AiERzEu+5l8k+pER0uoTnw1a/reuKf+GUhqF9swSmDtxBlpFgR90YQUQs9WSxsbzFleCPJ83v86Pn0kvEK5Er0MnsbvlNzMsGv38K/oTnuO7oLofAmLLEXP+mlwXVvhTCiYNn08oM7KhMsyUvksKA6RBfF8iz9N02Wb4CqJKWdNSQm0KCYf3gem3nZEJpQMxSYm5fyfZovq8ByouP356KYGWXlwH3qcJrfVOIBcsvOP/NvJLV3HEU4QidN5leideAioPxIOgi1Amk3zAeeWCJQcFbJB9DkuBIy59Jt2+kh6UBbmpcjGtcBQ8uVEE/xpFA78CMcZvO7ztUuU07TWaZQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EqqGMZ1jw2jcJRsIYLUMtzpXuEehbLL34C36dGYlLEw=;
+ b=dBy5mpO6lTxDMQdW8oSY7QkK4rCy/sROhPnC3nkO3VbNmfxcycR8poX+WwiJUcNC2THQDV4F1xvHLfW1SRC5IEzmJ6h6bsWJE0JFlBXaPkrglooiz7b9nSaMRXVDYt7PTqcQxNI1uzaojlIOZnGHSB8kDf9+eFmnqY03IRAQKOM=
+Received: from BN9PR11MB5545.namprd11.prod.outlook.com (2603:10b6:408:102::19)
+ by BN8PR11MB3715.namprd11.prod.outlook.com (2603:10b6:408:85::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4713.19; Thu, 25 Nov
+ 2021 17:29:28 +0000
+Received: from BN9PR11MB5545.namprd11.prod.outlook.com
+ ([fe80::6533:7d95:6f60:aafd]) by BN9PR11MB5545.namprd11.prod.outlook.com
+ ([fe80::6533:7d95:6f60:aafd%7]) with mapi id 15.20.4713.024; Thu, 25 Nov 2021
+ 17:29:28 +0000
+From:   "Sanil, Shruthi" <shruthi.sanil@intel.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "kris.pan@linux.intel.com" <kris.pan@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+Subject: RE: [PATCH v6 2/2] clocksource: Add Intel Keem Bay timer support
+Thread-Topic: [PATCH v6 2/2] clocksource: Add Intel Keem Bay timer support
+Thread-Index: AQHXo04llJrmCe8xQUyA5dZSwoZB/Ku29+AAgEeN80CAFncjYA==
+Date:   Thu, 25 Nov 2021 17:29:27 +0000
+Message-ID: <BN9PR11MB5545B71113E29434FB5EA96FF1629@BN9PR11MB5545.namprd11.prod.outlook.com>
+References: <20210906183621.21075-1-shruthi.sanil@intel.com>
+ <20210906183621.21075-3-shruthi.sanil@intel.com> <87lf3jaubj.ffs@tglx> 
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.6.200.16
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3ec9716b-6a4c-4e90-81c9-08d9b039222a
+x-ms-traffictypediagnostic: BN8PR11MB3715:
+x-microsoft-antispam-prvs: <BN8PR11MB3715F327BA4BDDAA6ECD7547F1629@BN8PR11MB3715.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: EfbxablQA0+Y2NrBGLWRE+errgJ05DHnammQDoXxqb3Dc7m1/G8ElT3r8OKNpNUa5uMo56qla27eXupn5+5F8+5NZBegfwdeguvk/gvcf+7KIp/bQmyvIlfqDKwgr1rOlifWRLi1BVx1gTpygqriCXQ/dy9mhOneherBcqVSLxfbyT75pR9vpZgrdUH/W8YcRLhClrJqXnAuQE7Ez4oAEvVc0mW/+2FAeqtbpqMFcuqULIZQukZUysaiu3kOKUuq/KfBOgqBpmMl3Dd+yqQP0Sw/g6YYbek0MVO5m42J9d7P5K8EdfsJgyiZ3P92y8F22SPnpwXcB9HXVPXyL6pslFZBeucufovzj1QHwzkYvjuB3Cmz+DKqQ9e5yGPHoY2VE2WnRpFTYi0Ah+oTT83eVGqQWtwcWu8PuVzVDebU8xMYqXBslbRk6P+XGRaf0gVWNVUai1ODQGEVsmZq11ZGOOHgaIRE29dsb9beZg8TEA6/kut0Rjzg/0ZwfhW7iu6AHRtmZTCNy5MXR8X+vTbFOV/RX9lLhJ4AbIxbhqWrD9QaLx0HQSN8OkMveIydh/HIpNPG/i3xBOp+ZeszmPFWqhUjb4QGp5AWExgmrYigVbxl0ysR5gg1nLq7VLo42dUMPsx9RjHiu9emkhHaFWnmdfG/VPiwPINW1PJ7HSdFrYn+nm112xDaGhUIssNIY0c1rWxB8b+zp6F1WbKly2IRMQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR11MB5545.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(33656002)(38070700005)(2906002)(55016003)(26005)(110136005)(7696005)(54906003)(4326008)(186003)(6506007)(86362001)(53546011)(122000001)(82960400001)(83380400001)(9686003)(5660300002)(38100700002)(316002)(66476007)(64756008)(66946007)(8936002)(66556008)(8676002)(66446008)(52536014)(76116006)(508600001)(71200400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?9AD1wY90bX7Ocn8rdgB4nSjgF/bN1K6Kf6kOCHtSQtOjhdXOprFIT3M/U+U4?=
+ =?us-ascii?Q?h/rzI0PpfdxJRGlUY3VeM3fNONHXegr19zE8aYQyR1AV5bc2tobpmaTY4Gfv?=
+ =?us-ascii?Q?bobQSaOQhD2E0gWL/YE0nHNkM3Znt3JQ/EzVKDWWWFRJv3p4y8C31ysXK0BO?=
+ =?us-ascii?Q?teyKpOPwyZmQSpAZlt9U5C+AimyEef9CziXURZdXZoxxVnnY4PjnW9cZnyix?=
+ =?us-ascii?Q?pfE0De4RNO8WPIqHBSalWShV6STgTZi7FBlSporzuSsULLMsxNRowFlBu66o?=
+ =?us-ascii?Q?FqOonzAjLn8UNxbuLCp4FdymJEHb6D5+ArzZaoQDP1/jtQURQukP//hza8as?=
+ =?us-ascii?Q?fA5+d54W4fFjV6PXhVvjvhUiphE9skb1L0mrWBLuLnrUkhKz043/dZ94vYh5?=
+ =?us-ascii?Q?mPI7hwfZaCfCkrr7+6GWh7zngNKFls2M0NxkK1eWNQthqN//QVWNx6znUz4I?=
+ =?us-ascii?Q?0XkL73nmSBMr9ThHN+zlvCt774Z+eqWldFR197v0rRoFw7aV7Od2n/Bfd0Pf?=
+ =?us-ascii?Q?2T46awMGENuGd6t4kPcW9IV+3OhxkKh91Jf2b/01NH+uY37qNWHJeelbGbRH?=
+ =?us-ascii?Q?ArG3hRgLj0KZp/FLLlebh/QUvoYMqoTAz9saRPt9HO7QjgiPGK082QFo1mez?=
+ =?us-ascii?Q?nH6nkzmyXAstsjN1sx/hF6zEzbowPe9lVOxQxZ+CK9vkvdMlbPRLVcInCjZC?=
+ =?us-ascii?Q?dSwc7lB6BNRMWv4DEbdg0yMm1jI/+S8pwmoMhH381x8KKV2BTk9caEAMzOGQ?=
+ =?us-ascii?Q?miTWTvXsqq67ShoCQvpqBKAD6pXC8tDgHtYXeDEg5ld6uXcvF4BmosLLXfJt?=
+ =?us-ascii?Q?EcbM+lH3h2B75YSrfxVCwGVKW+sTwX5VoCxyHxVfwUuXWp08TxS4xMkvO24m?=
+ =?us-ascii?Q?bCTHVY2Pz2by9kEqdUUNElnRALVnPyxDfqmn0aeS5nwatqQ5YLBFkTz90+g9?=
+ =?us-ascii?Q?Iqs3nFILRVWmDDG6n2LG25r0oKsyWfztdicNtcIrxCq7EsZpbLg6Xtp1Tf36?=
+ =?us-ascii?Q?BTq/I8FnRvgLnsYfmb38N6C2QBsoWKa7g+XP7RkgU3nKeKJpBne82/uHm0dx?=
+ =?us-ascii?Q?e6STtsgjr6tgri2KUZ7tcjZ/O7PGlL5r8nfgpfm5foXzUbK4pbKAiABRxCoy?=
+ =?us-ascii?Q?KXef88BCBN/2I/eJ0+Y6OjZBnj20KJeJWYHFN9eTj6cyCfIW4FXwiKmXusgu?=
+ =?us-ascii?Q?PPzwaExZb2948V8U4Izf9lRlNjCfP8frS7aTCWbMUekFCsXmnJKqZwgoViCS?=
+ =?us-ascii?Q?AdrbqrCGjUfXZlnrxtOalNLkY5KfrWkSnBL/Ijx2+FqreJWPzr8uCW+hvZwS?=
+ =?us-ascii?Q?vh1XjrrcULOry2hkS38oXn0J6C3SDxhoc+5JOPBoXBfanz4bgTzMVaVq0c5p?=
+ =?us-ascii?Q?FcIvOozDpOfUknPe37ySdWLrymba6O9tefTI3rNq77uV+MkgleQoHXcVqchH?=
+ =?us-ascii?Q?Nntuo2bKfcq8J/DZzv4l5bCKIlhys12UOqsr12GLMOsaoffvVZbTa0sUKclS?=
+ =?us-ascii?Q?S6SSZQRpKq2EU94FerSBQUT0I6OqzPpfAdD6ASJW99KZNfvIQdyoZnXBqPyD?=
+ =?us-ascii?Q?LvJs0dAytzEuJT7FbhYp4o9+gUaAconaUuiQ1F6ts/IGVzyXlohfwGQ9zMDg?=
+ =?us-ascii?Q?YXi0sADlC+2pe/jznDum9Yk=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
-To:     David Lechner <david@lechnology.com>, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
-        dave.stevenson@raspberrypi.com, maxime@cerno.tech
-References: <20211124150757.17929-1-noralf@tronnes.org>
- <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5545.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ec9716b-6a4c-4e90-81c9-08d9b039222a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2021 17:29:28.0609
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Ild0oYKhkSxyJEEY2GGJvvYM5x/tB9Gk5/VtzPLzaKAPHB8P0RZXlNqcq0JzCBYeiQlrzZraStP99mRgi3HnDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR11MB3715
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Thomas
 
+> -----Original Message-----
+> From: Sanil, Shruthi
+> Sent: Thursday, November 11, 2021 4:12 PM
+> To: Thomas Gleixner <tglx@linutronix.de>; daniel.lezcano@linaro.org;
+> robh+dt@kernel.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org
+> Cc: andriy.shevchenko@linux.intel.com; kris.pan@linux.intel.com;
+> mgross@linux.intel.com; Thokala, Srikanth <srikanth.thokala@intel.com>;
+> Raja Subramanian, Lakshmi Bai <lakshmi.bai.raja.subramanian@intel.com>;
+> Sangannavar, Mallikarjunappa <mallikarjunappa.sangannavar@intel.com>
+> Subject: RE: [PATCH v6 2/2] clocksource: Add Intel Keem Bay timer support
+>=20
+> > -----Original Message-----
+> > From: Thomas Gleixner <tglx@linutronix.de>
+> > Sent: Monday, September 27, 2021 3:11 AM
+> > To: Sanil, Shruthi <shruthi.sanil@intel.com>;
+> > daniel.lezcano@linaro.org;
+> > robh+dt@kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org
+> > Cc: andriy.shevchenko@linux.intel.com; kris.pan@linux.intel.com;
+> > mgross@linux.intel.com; Thokala, Srikanth
+> > <srikanth.thokala@intel.com>; Raja Subramanian, Lakshmi Bai
+> > <lakshmi.bai.raja.subramanian@intel.com>;
+> > Sangannavar, Mallikarjunappa <mallikarjunappa.sangannavar@intel.com>;
+> > Sanil, Shruthi <shruthi.sanil@intel.com>
+> > Subject: Re: [PATCH v6 2/2] clocksource: Add Intel Keem Bay timer
+> > support
+> >
+> > On Tue, Sep 07 2021 at 00:06, shruthi sanil wrote:
+> > > +
+> > > +/* Provides a unique ID for each timer */ static
+> > > +DEFINE_IDA(keembay_timer_ida);
+> >
+> > > +
+> > > +	timer_id =3D ida_alloc(&keembay_timer_ida, GFP_KERNEL);
+> > > +	if (timer_id < 0) {
+> > > +		ret =3D timer_id;
+> > > +		goto err_keembay_ce_to_free;
+> > > +	}
+> >
+> > May I ask what the purpose of the IDA, which is backed by a full blown
+> > xarray, is here?
+> >
+> > AFAICT all you want is a unique number for the timer name for up to 8
+> > timers.
+> >
+> > > +	timer_name =3D kasprintf(GFP_KERNEL, "keembay_timer%d",
+> > timer_id);
+> >
+> > So what's wrong about:
+> >
+> > static unsigned int keembay_timer_id;
+> >
+> > 	timer_name =3D kasprintf(GFP_KERNEL, "keembay_timer%d",
+> > keembay_timer_id++);
+> >
+> > Hmm?
+>=20
+> Yes, we had initially implemented it in the similar way, but in the cours=
+e of
+> review it got changed to use IDA.
+>=20
+> >
+> > > +
+> > > +	clockevents_config_and_register(&keembay_ce_to->clkevt,
+> > > +					timer_of_rate(keembay_ce_to),
+> > > +					1,
+> > > +					U32_MAX);
+> >
+> > Aside of that what's the point of registering more than one of those
+> > timers as clock event? The core will only use one and the rest is just
+> > going to use memory for no value.
+>=20
+> Instead of
+> keembay_ce_to->clkevt.cpumask =3D cpumask_of(0); can I update it as
+> keembay_ce_to->clkevt.cpumask =3D cpu_possible_mask; so that each timer
+> would be associated with different cores?
+>=20
 
-Den 24.11.2021 23.03, skrev David Lechner:
-> On 11/24/21 9:07 AM, Noralf Trønnes wrote:
->> Hi,
->>
->> This patchset adds a missing piece for decommissioning the
->> staging/fbtft/fb_st7735r.c driver namely a way to configure the
->> controller from Device Tree.
->>
->> All fbtft drivers have builtin support for one display panel and all
->> other panels using that controller are configured using the Device Tree
->> 'init' property. This property is supported by all fbtft drivers and
->> provides a generic way to set register values or issue commands
->> (depending on the type of controller).
->>
->> It is common for these types of displays to have a datasheet listing the
->> necessary controller settings/commands or some example code doing the
->> same.
->>
->> This is how the panel directly supported by the fb_st7735r staging
->> driver is described using Device Tree with that driver:
->>
->>      width = <160>;
->>      height = <128>;
->>
->>      init = <0x1000001
->>              0x2000096
->>              0x1000011
->>              0x20000ff
->>              0x10000B1 0x01 0x2C 0x2D
->>              0x10000B4 0x07
->>              0x10000C0 0xA2 0x02 0x84
->>              0x10000C1 0xC5
->>              0x10000C2 0x0A 0x00
->>              0x10000C5 0x0E
->>              0x100003a 0x55
->>              0x1000036 0x60
->>              0x10000E0 0x0F 0x1A 0x0F 0x18 0x2F 0x28 0x20 0x22
->>                        0x1F 0x1B 0x23 0x37 0x00 0x07 0x02 0x10
->>              0x10000E1 0x0F 0x1B 0x0F 0x17 0x33 0x2C 0x29 0x2E
->>                        0x30 0x30 0x39 0x3F 0x00 0x07 0x03 0x10
->>              0x1000029
->>              0x2000064>;
->>
->>
->> This is how the same panel is described using the st7735r drm driver and
->> this patchset:
->>
->>      width = <160>;
->>      height = <128>;
->>
->>      frmctr1 = [ 01 2C 2D ];
->>      invctr = [ 07 ];
->>      pwctr1 = [ A2 02 84 ];
->>      pwctr2 = [ C5 ];
->>      pwctr3 = [ 0A 00 ];
->>      vmctr1 = [ 0E ];
->>      madctl = [ 60 ];
->>      gamctrp1 = [ 0F 1A 0F 18 2F 28 20 22 1F 1B 23 37 00 07 02 10 ];
->>      gamctrn1 = [ 0F 1B 0F 17 33 2C 29 2E 30 30 39 3F 00 07 03 10 ];
-> 
-> Do these setting correspond to actual physical properties of the display?
-> 
+Could you please help me with the above query?
 
-Apart from width, height, porches, freq and gamma, no not directly, they
-configure voltage levels, op-amps (charge pumps?), dividers and such.
+Thanks,
+Shruthi
 
-> What is the advantage of this compared to just adding a new compatible
-> string if a new display requires different settings? (Other than being
-> able to use a new display without compiling a new kernel/module.)
-> 
-
-There is no other reason, the purpose is simplicity for the end user,
-which is one of the reasons for fbtft's success.
-
-> It is nice for the driver implementation to be able to use the byte
-> arrays from the binding directly, but it doesn't really make sense from
-> a "device tree describes the hardware" point of view.
-> 
-> For example, looking at the data sheet, frmctr1 looks like it is actually
-> multiple properties, the 1-line period, front porch and back porch.
-> 
-
-Yes, one command can have several 8-bit parameters and often configures
-multiple things even within one parameter.
-
->>
->>
->> Back when the fbtft drivers were added to staging I asked on the DT
->> mailinglist if it was OK to use the 'init' property but it was turned
->> down. In this patchset I'm trying the same approach used by the
->> solomon,ssd1307fb.yaml binding in describing the attached panel. That
->> binding prefixes the properties with the vendor name, not sure why that
->> is and I think it looks strange so I try without it.
-> 
-> Because [1] says so?
-> 
-> "DO use a vendor prefix on device-specific property names. Consider if
-> properties could be common among devices of the same class. Check other
-> existing bindings for similar devices."
-> 
-
-That's a good reason :)
-
-> Do all displays have "frmctr1" or only sitronix displays?
-> 
-
-ILI9341 also has that command but with only 2 parameters.
-ST7789V calls it FRCTRL2 but has only one parameter.
-The FPA and BPA fields from "frmctr1" looks like they're set using other
-commands on ILI9341 and ST7789v.
-
-I looked at several datasheets some years back to see if I could see
-some kind of pattern, but I couldn't back then at least. Someone with
-initimate hw knowledge of these controllers could probably describe a
-controller using more generic properties.
-This would defeat the purpose of this exercise which is to make it easy
-to use any panel. Generic properties would require a set of formulas in
-order to go from the init sequence provided by the display manufcaturer
-to the generic properties.
-
-The whole point of this patchset is to see if something like the ssd1307
-binding can still be done in mainline making it easy for users.
-
-If this doesn't work out, we can start removing drivers from
-staging/fbtft since some of them haven't been removed even if the native
-panel is supported in drm because they can support any panel through the
-init property.
-
-Noralf.
-
-> 
-> [1]:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/writing-bindings.html
-> 
-> 
->>
->> Noralf.
->>
->>
->> Noralf Trønnes (6):
->>    dt-bindings: display: sitronix,st7735r: Fix backlight in example
->>    dt-bindings: display: sitronix,st7735r: Make reset-gpios optional
->>    dt-bindings: display: sitronix,st7735r: Remove spi-max-frequency limit
->>    dt-bindings: display: sitronix,st7735r: Add initialization properties
->>    drm/mipi-dbi: Add device property functions
->>    drm: tiny: st7735r: Support DT initialization of controller
->>
->>   .../bindings/display/sitronix,st7735r.yaml    | 122 ++++++++++++++-
->>   drivers/gpu/drm/drm_mipi_dbi.c                | 139 ++++++++++++++++++
->>   drivers/gpu/drm/tiny/st7735r.c                |  87 +++++++++--
->>   include/drm/drm_mipi_dbi.h                    |   3 +
->>   4 files changed, 334 insertions(+), 17 deletions(-)
->>
-> 
+> Thanks,
+> Shruthi
+>=20
+> >
+> > Thanks,
+> >
+> >         tglx
