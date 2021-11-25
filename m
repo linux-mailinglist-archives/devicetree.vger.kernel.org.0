@@ -2,98 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D11E345DDE3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:47:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF9E45DE3A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 17:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354021AbhKYPuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 10:50:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59786 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1356190AbhKYPsu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 10:48:50 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id B817E610C8;
-        Thu, 25 Nov 2021 15:45:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637855139;
-        bh=5RgsiEBJ9/rtL8DrXdq8915UIX/Wyea9VvxiwKazdjo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=M5ztynTNl5G/wrvPCKG4Z3lhOi+3zdatMWCZ6EPcvavtXMitANZarcAS2aWA2OrNN
-         WUqarfNji/zHWMcn2YspNFw2WtZ6fNWzBJBQ3Lzu9JZLBsSieZytxMT+ncPQVpyvpc
-         ykfOc1AVJ+gG5kjPZhIqQjsLvpWLmNR9jkRvCVEhQSM038MOg/oftaZxjTD9HQdn/l
-         BNS8gRQP5y5hJhKF9FNpD91NpIJxRBlzclRISvhY+z3heww4A+5+W6wT1vCPcS/b8l
-         VCuwmSGuKRWSMhI+vcuFfpz/EWGC5etQtbKDxPG2x1/S6iP1R7zITLyeDk2Z8Jfv6U
-         7+1M0jshR2qjA==
-Date:   Thu, 25 Nov 2021 15:45:33 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Satya Priya <quic_c_skakit@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
-        collinsd@codeaurora.org, subbaram@codeaurora.org,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 4/6] regulator: Add a regulator driver for the PM8008
- PMIC
-Message-ID: <YZ+vnV12gDCtia5S@sirena.org.uk>
-References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
- <1637314953-4215-5-git-send-email-quic_c_skakit@quicinc.com>
+        id S1356387AbhKYQGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 11:06:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52120 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232650AbhKYQEo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 11:04:44 -0500
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E266AC061A11
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 07:50:42 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id v19-20020a4a2453000000b002bb88bfb594so2197063oov.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 07:50:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AVHFn4pvQ57s87RuMlHiBuxgtL5CNCcNeKT5ib6MEyo=;
+        b=GhBkYeXA78uyXC+yLqbJwX4KtwqiJeflNGNTb/z7Ijhhe4s9VdcI5z6K/puS7Rw2mb
+         ankYD0w70SeM4FxjAtubHAWXg9v8WcePaAm4d95tYLRSZrSKqUW1iIwNXvP/emqmQzXY
+         352LFlC/eloskssNo83XTqHgPVaZ3Q7vG1oUp+uTNV5QmOnhNvBgARrrRsvvUXDLYNuu
+         WPaghyLOmvkUoj5mIZ3KbjYPQVgfqSWXLJXrq1jeYFX59JoBcfaLIreDDCYDrMGS/ays
+         Dh6vwsslt4DVdHGnG3WmUiuWqsvhZZv+NKU6KHF1CofF3UoGgGN4imGDbXGzwV6/uK2m
+         pang==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AVHFn4pvQ57s87RuMlHiBuxgtL5CNCcNeKT5ib6MEyo=;
+        b=JS6vkOkx34YKjQFfYwPqoYx1IAZ/KIji5GNtywjtnclKp7PGgwFeXMBNLx/UVGL2Ax
+         CYmBXm1fzuHTBGnn5cWI6ysJtysVaPCJMWVdiCQuv+HnkWzjbapSKhKXXiCubGQSOSX2
+         aAbEgWSPrKVrZ5ETa5Rl8ckT8bVlwd3vtwS4ovhJv05D8zBdd1o6GKqxFOCWDeoqlGVB
+         nD3C9uvF1k47odJzdt9qqN9BlpIKC2dshloix7yIXy1o2sMZXyQ2eiPEGaWlXOYRb9Fl
+         qZ2L2ygxmZRYuh8zOtyC4bZq7oIRQpVjh3A8Y91aomXkPPc2eVDklY6roRlBg1I4gDuT
+         8Myw==
+X-Gm-Message-State: AOAM531dmQCqgBm7LtFxvbOx8/KAkrx5cEcMPvqbV2MbiLF+meFZpjgL
+        ZfawrLv3H/CrCJPp2JGoCnClCXiBkH7Pzmq/bjnfi/n74JM=
+X-Google-Smtp-Source: ABdhPJwnrU63IwJ0IC0mJHOP3P2NLtbrILPch0ESN77ylPQ03yg5iGgYl9R7ewbzrCsd7+wghhdlMusSvKDBb5cKx8s=
+X-Received: by 2002:a4a:e155:: with SMTP id p21mr2600093oot.84.1637855439972;
+ Thu, 25 Nov 2021 07:50:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="yT0yWrM1Hvr0VdiY"
-Content-Disposition: inline
-In-Reply-To: <1637314953-4215-5-git-send-email-quic_c_skakit@quicinc.com>
-X-Cookie: This bag is recyclable.
+References: <20211122225807.8105-1-j@jannau.net> <20211122225807.8105-4-j@jannau.net>
+ <5f16c962-72a1-21ec-9651-744053f74365@marcan.st> <d48d2e85-42f1-570a-bd8f-e3834147c8b8@marcan.st>
+ <CACRpkdZghfRvox4aY4ROXYwFqiV6mnXZgw+42ZWYisXXgQ5+jQ@mail.gmail.com> <f13b54bd-d776-0d06-113a-5ca2bcbccfcd@marcan.st>
+In-Reply-To: <f13b54bd-d776-0d06-113a-5ca2bcbccfcd@marcan.st>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 25 Nov 2021 16:50:28 +0100
+Message-ID: <CACRpkdZ4==HvMYrJe2jQMzeYqh65OKLEo9WEWDGZAZ8u7jkxFw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] arm64: dts: apple: t8103: Add i2c nodes
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Janne Grunau <j@jannau.net>, Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 24, 2021 at 6:42 AM Hector Martin <marcan@marcan.st> wrote:
 
---yT0yWrM1Hvr0VdiY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> Pulling down an I2C bus between transactions is not legal; the idle
+> state has to be high.
 
-On Fri, Nov 19, 2021 at 03:12:31PM +0530, Satya Priya wrote:
+Oh right.
 
-> +	for (reg = &reg_data[0]; reg->name; reg++) {
+> Apple are actually not very good at configuring GPIOs for power saving;
+> e.g. the I/Os for that unused i2c bus still have their input buffers
+> turned on, which is a waste of power. If they wanted to save the
+> smallest drop of power they'd turn that off. But the effect of this is
+> so trivial it probably makes no difference in the context of a laptop,
+> nevermind a desktop like the Mac Mini.
 
-Why is this not just iterating from 0 to ARRAY_SIZE() - that's the more
-normal way to write things and doesn't require a terminator on the
-array.
+Hm that's true. The saying is that 99% is the backlight, the remaining 1% isn't
+so significant after that.
 
-> +		child_node = of_get_child_by_name(parent_node, reg->name);
-> +		if (!child_node) {
-> +			dev_err(dev, "child node %s not found\n", reg->name);
-> +			return -ENODEV;
-> +		}
-
-This could be pulled out of the array.  I think you're also missing an
-of_node_put() on the child_node.
-
-> +		rc = of_property_read_u32(child_node, "reg", &base);
-> +		if (rc < 0) {
-> +			dev_err(dev, "%s: failed to get regulator base rc=%d\n",
-> +						reg->name, rc);
-> +			return rc;
-> +		}
-
-It's not clear to me why this in particular is being read out of the DT
-binding, I'd expect this to be in the array describing the regulator the
-same as everything else?
-
---yT0yWrM1Hvr0VdiY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGfr5wACgkQJNaLcl1U
-h9Cdpgf/eag5hpAiJ69Ar39sC/0LmSBkI1e5b+DAb2nX7n+0bXjhlVDVG1ybGObj
-nwKjVJQW3ZgrLLhYVMowMdc2m6711Jlxw4Q9DS8WNEOVkao1TXHyzynse0sK2sc0
-A63l4g1X+Xn7Vyd1LdquYgz7G6JhG2gg+/m3vJgpsWQ8N3dCXA2+iSmjL3x7ArFl
-G6r9uEG3xzH9ffxlJO1gYZtb/8kNdKkAXRVARWnQdEAJIWiSrdWT57l5y3Il1nlm
-dX7cAxav81/iIKDIOZYbh7RHzoUzzjnj7LPxZRVxaymUrQFnOuEiPVguh3APHCBQ
-Ogvq8db6lsIA1tJ3ZDpqJSOqkf6nNA==
-=BMhi
------END PGP SIGNATURE-----
-
---yT0yWrM1Hvr0VdiY--
+Yours,
+Linus Walleij
