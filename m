@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E35845DD62
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:27:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 219E245DD72
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:29:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234525AbhKYPaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 10:30:19 -0500
+        id S1356104AbhKYPcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 10:32:20 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234727AbhKYP2T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 10:28:19 -0500
+        with ESMTP id S234280AbhKYPaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 10:30:19 -0500
 Received: from andre.telenet-ops.be (andre.telenet-ops.be [IPv6:2a02:1800:120:4::f00:15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB06C06179F
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 07:21:58 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BCB7C0613B4
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 07:22:43 -0800 (PST)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:1511:ffa3:275:45dd])
         by andre.telenet-ops.be with bizsmtp
-        id NfMw260045CGg7701fMwz6; Thu, 25 Nov 2021 16:21:56 +0100
+        id NfNd260055CGg7701fNd9B; Thu, 25 Nov 2021 16:22:43 +0100
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1mqGZP-000DKm-NA; Thu, 25 Nov 2021 16:21:55 +0100
+        id 1mqGa4-000DL1-NC; Thu, 25 Nov 2021 16:22:36 +0100
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1mqGZP-000gMF-AO; Thu, 25 Nov 2021 16:21:55 +0100
+        id 1mqGa4-000gNf-8D; Thu, 25 Nov 2021 16:22:36 +0100
 From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
         Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH] dt-bindings: iio: adc: exynos-adc: Fix node name in example
-Date:   Thu, 25 Nov 2021 16:21:54 +0100
-Message-Id: <20211125152154.162780-1-geert@linux-m68k.org>
+Subject: [PATCH] dt-bindings: interrupt-controller: sifive,plic: Fix number of interrupts
+Date:   Thu, 25 Nov 2021 16:22:33 +0100
+Message-Id: <20211125152233.162868-1-geert@linux-m68k.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -44,29 +45,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"make dt_binding_check":
+To improve human readability and enable automatic validation, the tuples
+in "interrupts-extended" properties should be grouped using angle
+brackets.  As the DT bindings lack an upper bound on the number of
+interrupts, thus assuming one, proper grouping is currently flagged as
+an error.
 
-    Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.example.dt.yaml: ncp15wb473: $nodename:0: 'ncp15wb473' does not match '^thermistor(.*)?$'
-	    From schema: Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
+Fix this by adding the missing "maxItems", limiting it to 9 interrupts
+(one interrupt for a system management core, and two interrupts per core
+for other cores), which should be sufficient for now.
+
+Group the tuples in the example.
 
 Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 ---
- .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml         | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../interrupt-controller/sifive,plic-1.0.0.yaml      | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-index c65921e66dc1f4d0..81c87295912cec04 100644
---- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.yaml
-@@ -136,7 +136,7 @@ examples:
-         samsung,syscon-phandle = <&pmu_system_controller>;
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+index 08d5a57ce00ff446..198b373f984f3438 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+@@ -61,6 +61,7 @@ properties:
  
-         /* NTC thermistor is a hwmon device */
--        ncp15wb473 {
-+        thermistor {
-             compatible = "murata,ncp15wb473";
-             pullup-uv = <1800000>;
-             pullup-ohm = <47000>;
+   interrupts-extended:
+     minItems: 1
++    maxItems: 9
+     description:
+       Specifies which contexts are connected to the PLIC, with "-1" specifying
+       that a context is not present. Each node pointed to should be a
+@@ -89,12 +90,11 @@ examples:
+       #interrupt-cells = <1>;
+       compatible = "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
+       interrupt-controller;
+-      interrupts-extended = <
+-        &cpu0_intc 11
+-        &cpu1_intc 11 &cpu1_intc 9
+-        &cpu2_intc 11 &cpu2_intc 9
+-        &cpu3_intc 11 &cpu3_intc 9
+-        &cpu4_intc 11 &cpu4_intc 9>;
++      interrupts-extended = <&cpu0_intc 11>,
++                            <&cpu1_intc 11>, <&cpu1_intc 9>,
++                            <&cpu2_intc 11>, <&cpu2_intc 9>,
++                            <&cpu3_intc 11>, <&cpu3_intc 9>,
++                            <&cpu4_intc 11>, <&cpu4_intc 9>;
+       reg = <0xc000000 0x4000000>;
+       riscv,ndev = <10>;
+     };
 -- 
 2.25.1
 
