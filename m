@@ -2,143 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDEB45DD04
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D944445DD30
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 16:19:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355870AbhKYPP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 10:15:59 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:38898 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1352143AbhKYPN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 10:13:59 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AP9GKwf002630;
-        Thu, 25 Nov 2021 16:10:39 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=ZNpw/wEl79xLxGfptoydRS3NBKjqN1tzwe8TzZvAg5g=;
- b=YXm8SP6htVEqYHadkROkvqRar4Nmf45yosi0uj5v1/qEqefkGbQ5KnvoTPqjZCF7AprG
- mCgR+RVLZO4ud1WoxxMVKgjXtCuEcn1LnAbofmXf/djAXkDgDvEf3UNd544GoiTQA698
- kjRg+/S7owgH2Bmki65f5u4BQyYmXznzRLIl610QIo/+Es3NzavrcruadT3/RvaCCula
- 37SZnO3z2dYPKQpnSkH41W33Qs1XplZ5/Zigjm3kaI0B/285oTh+B4UzE4nyZiXHwKaD
- w1tpQtkh1/rzQpLHgAV/gVPiVVd9hN59tdnLFriXaKx4bJYXqBfZMxRNSd4f5LsdG1ZW DA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cj3cym0bs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 25 Nov 2021 16:10:39 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D1BDC10002A;
-        Thu, 25 Nov 2021 16:10:38 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C8791234542;
-        Thu, 25 Nov 2021 16:10:38 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 25 Nov
- 2021 16:10:38 +0100
-Subject: Re: [PATCH 1/1] ARM: dts: stm32: add pull-up to USART3 and UART7 RX
- pins on DKx boards
-To:     Erwan Le Ray <erwan.leray@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Fabrice Gasnier <fabrice.gasnier@foss.st.com>,
-        Valentin Caron <valentin.caron@foss.st.com>,
-        Amelie Delaunay <amelie.delaunay@foss.st.com>
-References: <20211020150311.10101-1-erwan.leray@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-Message-ID: <40ff7701-7911-28e1-a217-0f1a3448df8e@foss.st.com>
-Date:   Thu, 25 Nov 2021 16:10:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1354272AbhKYPW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 10:22:28 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54002 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1349951AbhKYPU1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 10:20:27 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 0140C610A2;
+        Thu, 25 Nov 2021 15:17:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637853436;
+        bh=dPEIAEOMHWLuakIY3MSI1QOJric9yi6N226AolqdLhc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BbfxYCTks975D+rUrXPjf9YX0oLMt7qAHYr8RzD9jEpd+oimqulPV/c72KsnGRXOy
+         zbdbJ9Umn2UL5a2DHuG9lkmOw9Gs+uljky4Lzfms0JjzQBVHd+URgDrZLT0EjPJR1G
+         elfqalS5EQIEq3KBmTOeWOSH+ZXDCXs6mKGUUxPwzO8YVOdvAncGtmAJ7QEuVap3DJ
+         y60xQ6eKDikir0Ne1QjJvdXyoytDVQgmyP60lE24tqQIQVOki5b9rkP12ejw5GhhqM
+         JGYkEYneXwpsAeVSS8TOx2+UrjGliSp7SOqpQsEb81ALSrug1pzvPSiWmzjTvL/Fy1
+         X0lkVzkSvutsQ==
+Date:   Thu, 25 Nov 2021 15:17:10 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, swboyd@chromium.org,
+        collinsd@codeaurora.org, subbaram@codeaurora.org,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V4 1/6] dt-bindings: regulator: Add
+ "regulator-min-dropout-voltage-microvolt"
+Message-ID: <YZ+o9sQpECZSrieN@sirena.org.uk>
+References: <1637314953-4215-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1637314953-4215-2-git-send-email-quic_c_skakit@quicinc.com>
 MIME-Version: 1.0
-In-Reply-To: <20211020150311.10101-1-erwan.leray@foss.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-25_06,2021-11-25_01,2020-04-07_01
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="AUvJVmE/Uq40jQZU"
+Content-Disposition: inline
+In-Reply-To: <1637314953-4215-2-git-send-email-quic_c_skakit@quicinc.com>
+X-Cookie: This bag is recyclable.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/20/21 5:03 PM, Erwan Le Ray wrote:
-> Add pull-up to USART3 and UART7 RX pins to allow loop tests between USART3
-> and UART7 on stm32mp15 DKx boards.
-> 
-> Signed-off-by: Erwan Le Ray <erwan.leray@foss.st.com>
 
-Applied on stm32-next.
+--AUvJVmE/Uq40jQZU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-thanks
-Alex
+On Fri, Nov 19, 2021 at 03:12:28PM +0530, Satya Priya wrote:
 
+> +  regulator-min-dropout-voltage-microvolt:
+> +    description: Specifies the minimum voltage in microvolts that the
+> +      parent supply regulator must output, above the output of this regulator.
 
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> index e13c2a9762b8..fe6e6f50151d 100644
-> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> @@ -1816,7 +1816,7 @@
->   		};
->   		pins2 {
->   			pinmux = <STM32_PINMUX('E', 7, AF7)>; /* UART7_RX */
-> -			bias-disable;
-> +			bias-pull-up;
->   		};
->   	};
->   
-> @@ -1826,7 +1826,7 @@
->   		};
->   		pins2 {
->   			pinmux = <STM32_PINMUX('E', 7, AF7)>; /* UART7_RX */
-> -			bias-disable;
-> +			bias-pull-up;
->   		};
->   	};
->   
-> @@ -1971,7 +1971,7 @@
->   		pins2 {
->   			pinmux = <STM32_PINMUX('B', 12, AF8)>, /* USART3_RX */
->   				 <STM32_PINMUX('I', 10, AF8)>; /* USART3_CTS_NSS */
-> -			bias-disable;
-> +			bias-pull-up;
->   		};
->   	};
->   
-> @@ -1988,7 +1988,7 @@
->   		};
->   		pins3 {
->   			pinmux = <STM32_PINMUX('B', 12, AF8)>; /* USART3_RX */
-> -			bias-disable;
-> +			bias-pull-up;
->   		};
->   	};
->   
-> @@ -2012,7 +2012,7 @@
->   		pins2 {
->   			pinmux = <STM32_PINMUX('B', 12, AF8)>, /* USART3_RX */
->   				 <STM32_PINMUX('B', 13, AF7)>; /* USART3_CTS_NSS */
-> -			bias-disable;
-> +			bias-pull-up;
->   		};
->   	};
->   
-> @@ -2029,7 +2029,7 @@
->   		};
->   		pins3 {
->   			pinmux = <STM32_PINMUX('B', 12, AF8)>; /* USART3_RX */
-> -			bias-disable;
-> +			bias-pull-up;
->   		};
->   	};
->   
-> 
+Usually this is a fixed property of the regulator rather than something
+that varies per board - why have a DT property?
 
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--AUvJVmE/Uq40jQZU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGfqPYACgkQJNaLcl1U
+h9BnqQf/fCkxEFpBspvrs1Dfz0082VE2JMwJWaaczK5HOcvbmDy2TLz9ndOllyOO
+D2KWB2le9tlimmNIxJgo+qNvNWr+TXcXo85B3JKHMDUW48EohvKwX/lRAeYvoc2C
+Lxadrz73Gq1tEkWRKEpoggxmrTt+VABH8mPpSkwVQggkTONHhL4GREzyq+7pspLp
+EBh1EDmFH8diqjVhs8FIqsUtWH0RHJick9+Bb7iaHSd21cpv+hPVRjVEQk5/Nheh
+tQHRaVZyMySIt6G8kJgD9oS84+YpCb/mkMGCqKW/U+OwFY8rxAb6xPSlmlBeg7+Y
+mA/Qurh2uMnWDKgQo/+EWkAvGr2zDw==
+=L6I5
+-----END PGP SIGNATURE-----
+
+--AUvJVmE/Uq40jQZU--
