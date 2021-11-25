@@ -2,258 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B83345E255
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 22:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E1645E26F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 22:28:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357506AbhKYVVl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 16:21:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231940AbhKYVTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 16:19:41 -0500
-Received: from mail-qv1-xf31.google.com (mail-qv1-xf31.google.com [IPv6:2607:f8b0:4864:20::f31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A53C4C06175C;
-        Thu, 25 Nov 2021 13:15:11 -0800 (PST)
-Received: by mail-qv1-xf31.google.com with SMTP id jo22so5568368qvb.13;
-        Thu, 25 Nov 2021 13:15:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=4AThbRggRLPCMV/N3nL2kC8vnyLVdQodJCWqkQnV+Eo=;
-        b=Ub/vxMgIEXLhLZHnJdj9JsRdUIPuagf8JYVXMKz1LOifK/6NyGSAr2ZxDwlZ0bKS9W
-         JBnYWF8bJSw63RfpZUJqj5lll4ByVEjraZn/XO1pDeLbghvMkFe6S7Upd1bavoNSweJN
-         y6fulW7JdzLwvoagHw7jMylYHTF3vPHF4z6fUcWLFG8HgPUag0RX0rQnjcdx+STPBcso
-         7gJwMQB2LKGTrPwhZbdp9LtZg1OStE9ZDfSdvwAe8kMjpEOWV3JJVijI8HWH7Pga43Ja
-         +IkFlphIQA/UDC6mZVKL79MEwJYxVeI9Z/xT0vL9ac9EJWs0eFP6Xgyuo2cCEi10RFxR
-         Vsog==
+        id S244781AbhKYVbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 16:31:24 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:46025 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235874AbhKYV3Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 16:29:24 -0500
+Received: by mail-ot1-f49.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso11132896otf.12;
+        Thu, 25 Nov 2021 13:26:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4AThbRggRLPCMV/N3nL2kC8vnyLVdQodJCWqkQnV+Eo=;
-        b=z0sJ7Fjz39On574aSV+7HJQIi80H9MMhTAZpxZXmO5R2nWo7aRX7NcOteXWi9Y4fo+
-         WoDw9QPwDpfO4RODOeJcWSRb5j69y6QJoE/GeETW0uL45hQqnmVE1c1k6FiBWOdvU9z+
-         kzEVyJZ6qDuzgE1pUiSVo9bX/oe0O/9w/E8Cm1Z4uWba9iSGYn5B51368ztQyg9Bw990
-         vhTrgF3WrBmJ4vvf1S5mwIWvzYWpY3nOjjeuUUN7N0cyHmW3QJeTa7PBWHZyQWzsxxcT
-         7XAmZfUXs8PykF/d8TjkderrwSLVjLpXbYc9kymClIQYfSxeNAWUlGf4x6pZ/0HUqZ1r
-         DM0g==
-X-Gm-Message-State: AOAM5328v5DjEfLsLXVEXCzHnPQNpPZPpB7xtTqtvv488zyC5qtbvMvP
-        t1LcXty0b4tkguHkTnvoJWA=
-X-Google-Smtp-Source: ABdhPJzD95rpVLiPB9eW9vNdZIvkEDDkYezGCoL70Zp28wCOaWTU2zJdh1O4HXYuJJeHDx5Rp43MOQ==
-X-Received: by 2002:a05:6214:c6f:: with SMTP id t15mr21402121qvj.6.1637874910829;
-        Thu, 25 Nov 2021 13:15:10 -0800 (PST)
-Received: from jesse-desktop.jtp-bos.lab (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id j22sm2068175qko.68.2021.11.25.13.15.08
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=K9sBfhhvh3TyySdJ4+kH3HFS2nUgK5mo6oF+b8evIIw=;
+        b=ABG0AYWQQR6yg6fARRndhQ3NlQwfj5b5BxfrdzzKRzZm04xH6zCbGCYTTYX9ZvOQ60
+         DVdr0uPOwTm/906YDJLsEglwcRa4S24iMV3D+Tsjg6P6hURK3SD1SSyzVwKbM3T/iCD8
+         cVIxW7JF1jHNZazrVrqQ0Zqcwf7J2Rl04ILtKXk+B+utuvyC/JubBS4Pqdb58WBqq6Fb
+         nMu7pgWbS7MaGYbi3iZDc91sihmjhqDnPyU9RgRCFOwo2XIx5fDYYzfZoiIy7z1MHGR9
+         3hAef/lFmASxJnBfKnXJpvY4tJ3Wz3KkesTpcLAOK6Pw9m0WEd5QcLMzD+q3IVrUY0N6
+         0TiA==
+X-Gm-Message-State: AOAM531A+/UbBD+5tGbbPaXxC4+klpkSp6cXH555djTqcrzZgtXLNyWo
+        Z/dnHfSpcEjlkFMZ5r5Dsw==
+X-Google-Smtp-Source: ABdhPJzzt0Csr7okspWgSLe+I1n4SZvDhCX1LyaO2Mr9NAGUFau59mr2FaZq2piH3W6tpFyYwBeH1w==
+X-Received: by 2002:a9d:6c54:: with SMTP id g20mr24876267otq.30.1637875571987;
+        Thu, 25 Nov 2021 13:26:11 -0800 (PST)
+Received: from robh.at.kernel.org ([64.188.179.248])
+        by smtp.gmail.com with ESMTPSA id w19sm870433oih.44.2021.11.25.13.26.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 13:15:09 -0800 (PST)
-From:   Jesse Taube <mr.bossman075@gmail.com>
-X-Google-Original-From: Jesse Taube <Mr.Bossman075@gmail.com>
-To:     linux-imx@nxp.com
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, Mr.Bossman075@gmail.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-serial@vger.kernel.org
-Subject: [PATCH v3 13/13] ARM: imxrt_defconfig: add i.MXRT family defconfig
-Date:   Thu, 25 Nov 2021 16:14:43 -0500
-Message-Id: <20211125211443.1150135-14-Mr.Bossman075@gmail.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
-References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Thu, 25 Nov 2021 13:26:11 -0800 (PST)
+Received: (nullmailer pid 2858311 invoked by uid 1000);
+        Thu, 25 Nov 2021 21:26:02 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     alsa-devel@alsa-project.org, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Agneli <poczt@protonmail.ch>, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+In-Reply-To: <20211124220057.15763-3-digetx@gmail.com>
+References: <20211124220057.15763-1-digetx@gmail.com> <20211124220057.15763-3-digetx@gmail.com>
+Subject: Re: [PATCH v1 02/20] ASoC: dt-bindings: tegra20-i2s: Convert to schema
+Date:   Thu, 25 Nov 2021 14:26:02 -0700
+Message-Id: <1637875562.276093.2858310.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+On Thu, 25 Nov 2021 01:00:39 +0300, Dmitry Osipenko wrote:
+> Convert NVIDIA Tegra20 I2S binding to schema.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  .../bindings/sound/nvidia,tegra20-i2s.txt     | 30 --------
+>  .../bindings/sound/nvidia,tegra20-i2s.yaml    | 71 +++++++++++++++++++
+>  2 files changed, 71 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
+> 
 
-Add generic i.MXRT family defconfig.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
----
-V1->V2:
-* Nothing done
-V2->V3:
-* Nothing done
----
- arch/arm/configs/imxrt_defconfig | 157 +++++++++++++++++++++++++++++++
- 1 file changed, 157 insertions(+)
- create mode 100644 arch/arm/configs/imxrt_defconfig
+yamllint warnings/errors:
 
-diff --git a/arch/arm/configs/imxrt_defconfig b/arch/arm/configs/imxrt_defconfig
-new file mode 100644
-index 000000000000..d673745a5462
---- /dev/null
-+++ b/arch/arm/configs/imxrt_defconfig
-@@ -0,0 +1,157 @@
-+# CONFIG_LOCALVERSION_AUTO is not set
-+CONFIG_SYSVIPC=y
-+CONFIG_USELIB=y
-+CONFIG_NO_HZ=y
-+CONFIG_HIGH_RES_TIMERS=y
-+CONFIG_BPF_SYSCALL=y
-+CONFIG_PREEMPT_VOLUNTARY=y
-+CONFIG_BSD_PROCESS_ACCT=y
-+CONFIG_BSD_PROCESS_ACCT_V3=y
-+CONFIG_PSI=y
-+CONFIG_IKCONFIG=y
-+CONFIG_IKCONFIG_PROC=y
-+CONFIG_LOG_BUF_SHIFT=18
-+CONFIG_MEMCG=y
-+CONFIG_BLK_CGROUP=y
-+CONFIG_CFS_BANDWIDTH=y
-+CONFIG_CGROUP_PIDS=y
-+CONFIG_CGROUP_RDMA=y
-+CONFIG_CGROUP_FREEZER=y
-+CONFIG_CGROUP_DEVICE=y
-+CONFIG_CGROUP_CPUACCT=y
-+CONFIG_CGROUP_PERF=y
-+CONFIG_CGROUP_BPF=y
-+CONFIG_NAMESPACES=y
-+CONFIG_USER_NS=y
-+CONFIG_CHECKPOINT_RESTORE=y
-+CONFIG_SCHED_AUTOGROUP=y
-+CONFIG_RELAY=y
-+CONFIG_BLK_DEV_INITRD=y
-+CONFIG_EXPERT=y
-+CONFIG_SGETMASK_SYSCALL=y
-+# CONFIG_FUTEX is not set
-+CONFIG_KALLSYMS_ALL=y
-+CONFIG_PC104=y
-+# CONFIG_SLUB_DEBUG is not set
-+# CONFIG_COMPAT_BRK is not set
-+CONFIG_SLAB_FREELIST_RANDOM=y
-+CONFIG_SLAB_FREELIST_HARDENED=y
-+CONFIG_PROFILING=y
-+# CONFIG_MMU is not set
-+CONFIG_ARCH_MXC=y
-+CONFIG_SOC_IMXRT=y
-+# CONFIG_ARM_DMA_MEM_BUFFERABLE is not set
-+CONFIG_SET_MEM_PARAM=y
-+CONFIG_DRAM_BASE=0x80000000
-+CONFIG_DRAM_SIZE=0x02000000
-+CONFIG_HZ_250=y
-+CONFIG_FORCE_MAX_ZONEORDER=14
-+CONFIG_PARAVIRT=y
-+# CONFIG_ATAGS is not set
-+CONFIG_CMDLINE="console=ttyS0 root=/dev/mmcblk0p2 rw earlycon rootwait"
-+CONFIG_BLK_DEV_BSGLIB=y
-+CONFIG_BLK_DEV_INTEGRITY=y
-+CONFIG_BLK_DEV_ZONED=y
-+CONFIG_BLK_DEV_THROTTLING=y
-+CONFIG_BLK_WBT=y
-+CONFIG_BLK_SED_OPAL=y
-+CONFIG_PARTITION_ADVANCED=y
-+CONFIG_BSD_DISKLABEL=y
-+CONFIG_MINIX_SUBPARTITION=y
-+CONFIG_SOLARIS_X86_PARTITION=y
-+CONFIG_UNIXWARE_DISKLABEL=y
-+CONFIG_LDM_PARTITION=y
-+CONFIG_CMDLINE_PARTITION=y
-+# CONFIG_MQ_IOSCHED_KYBER is not set
-+CONFIG_BINFMT_FLAT=y
-+CONFIG_CLEANCACHE=y
-+CONFIG_ZPOOL=y
-+CONFIG_ZBUD=y
-+CONFIG_Z3FOLD=y
-+CONFIG_UEVENT_HELPER=y
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+# CONFIG_STANDALONE is not set
-+CONFIG_FW_LOADER_USER_HELPER=y
-+CONFIG_FW_LOADER_USER_HELPER_FALLBACK=y
-+CONFIG_IMX_WEIM=y
-+CONFIG_BLK_DEV_LOOP=y
-+CONFIG_BLK_DEV_RAM=y
-+CONFIG_BLK_DEV_RAM_COUNT=1
-+CONFIG_BLK_DEV_RAM_SIZE=65536
-+# CONFIG_INPUT_KEYBOARD is not set
-+# CONFIG_INPUT_MOUSE is not set
-+# CONFIG_SERIO is not set
-+CONFIG_LEGACY_PTY_COUNT=2
-+CONFIG_SERIAL_FSL_LPUART=y
-+CONFIG_SERIAL_FSL_LPUART_CONSOLE=y
-+CONFIG_SERIAL_NONSTANDARD=y
-+CONFIG_SERIAL_DEV_BUS=y
-+CONFIG_TTY_PRINTK=y
-+CONFIG_TTY_PRINTK_LEVEL=7
-+CONFIG_PINCTRL_IMXRT1050=y
-+CONFIG_GPIO_SYSFS=y
-+CONFIG_GPIO_MXC=y
-+# CONFIG_HWMON is not set
-+# CONFIG_HID is not set
-+# CONFIG_USB_SUPPORT is not set
-+CONFIG_MMC=y
-+CONFIG_MMC_SDHCI=y
-+CONFIG_MMC_SDHCI_PLTFM=y
-+CONFIG_MMC_SDHCI_ESDHC_IMX=y
-+CONFIG_DMADEVICES=y
-+CONFIG_FSL_EDMA=y
-+# CONFIG_MX3_IPU is not set
-+# CONFIG_VIRTIO_MENU is not set
-+# CONFIG_VHOST_MENU is not set
-+CONFIG_MEMORY=y
-+CONFIG_EXT2_FS=y
-+CONFIG_EXT2_FS_XATTR=y
-+CONFIG_EXT2_FS_POSIX_ACL=y
-+CONFIG_EXT2_FS_SECURITY=y
-+CONFIG_EXT3_FS=y
-+CONFIG_EXT3_FS_POSIX_ACL=y
-+CONFIG_EXT3_FS_SECURITY=y
-+# CONFIG_FILE_LOCKING is not set
-+# CONFIG_DNOTIFY is not set
-+CONFIG_QUOTA=y
-+# CONFIG_PRINT_QUOTA_WARNING is not set
-+CONFIG_AUTOFS4_FS=y
-+CONFIG_VFAT_FS=y
-+CONFIG_FAT_DEFAULT_UTF8=y
-+CONFIG_EXFAT_FS=y
-+CONFIG_CONFIGFS_FS=y
-+# CONFIG_MISC_FILESYSTEMS is not set
-+CONFIG_NLS_DEFAULT="cp437"
-+CONFIG_NLS_CODEPAGE_437=y
-+CONFIG_NLS_ASCII=y
-+CONFIG_NLS_ISO8859_1=y
-+CONFIG_NLS_UTF8=y
-+CONFIG_LSM="yama,loadpin,integrity,apparmor"
-+# CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
-+# CONFIG_CRYPTO_HW is not set
-+CONFIG_PRINTK_TIME=y
-+CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
-+CONFIG_CONSOLE_LOGLEVEL_QUIET=15
-+CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
-+CONFIG_DYNAMIC_DEBUG=y
-+# CONFIG_DEBUG_BUGVERBOSE is not set
-+CONFIG_DEBUG_INFO=y
-+CONFIG_DEBUG_INFO_DWARF4=y
-+CONFIG_GDB_SCRIPTS=y
-+CONFIG_MAGIC_SYSRQ=y
-+CONFIG_MAGIC_SYSRQ_DEFAULT_ENABLE=0x01b6
-+CONFIG_DEBUG_FS=y
-+CONFIG_PAGE_POISONING=y
-+CONFIG_SCHED_STACK_END_CHECK=y
-+CONFIG_SOFTLOCKUP_DETECTOR=y
-+CONFIG_DEFAULT_HUNG_TASK_TIMEOUT=1
-+# CONFIG_SCHED_DEBUG is not set
-+CONFIG_SCHEDSTATS=y
-+CONFIG_STACKTRACE=y
-+CONFIG_DEBUG_USER=y
-+CONFIG_DEBUG_LL=y
-+CONFIG_DEBUG_UNCOMPRESS=y
-+CONFIG_EARLY_PRINTK=y
-+# CONFIG_RUNTIME_TESTING_MENU is not set
-+CONFIG_MEMTEST=y
--- 
-2.34.0
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.example.dt.yaml: i2s@70002800: 'clock-names' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1559387
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
