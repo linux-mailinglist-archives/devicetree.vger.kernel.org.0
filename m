@@ -2,97 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A5E245D25B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 02:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7092845D35C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 04:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347549AbhKYBPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 20:15:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56796 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1347737AbhKYBNE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Nov 2021 20:13:04 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 7391260EB5;
-        Thu, 25 Nov 2021 01:09:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637802593;
-        bh=W6nLin1+LvBCgJkpYXar9Oqp+/QHlRQYFRxdQA/dIjo=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=Ka5imFAgS53mPJWlrVRyDatvOeLWfpQWUYakqO9s0gOpjC/l1M3/SVntiV1zJ2XBL
-         T9AUvvgEwnJC1qIt2ZkRsN+QTgZVE++SbWy16Qp/6W83gPCAQ3MOuVIVF2cqMRVb5p
-         nqqyN52DYXUa3tD0T3FyYmBEwJmo0Sk1BZO6grgrx0V7nDPNJQuezDM3mkNRlvuRXd
-         +/d2nT1SMocHLfJOFIH37nUBR6DaIAVzpc7SarEDXh6CpZjQU8Z0bozSDvF24zjMns
-         cov5Slx/hqPf1gmMOKwSHQu1Dp7aEcm3brzS6deAWmYDW1xoVPvDWjI2HBifUzpvuB
-         iPglqefMTPz+Q==
-Date:   Wed, 24 Nov 2021 17:09:52 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksandr Tyshchenko <olekstysh@gmail.com>
-cc:     xen-devel@lists.xenproject.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Julien Grall <julien@xen.org>
-Subject: Re: [PATCH V3 6/6] dt-bindings: xen: Clarify "reg" purpose
-In-Reply-To: <1637787223-21129-7-git-send-email-olekstysh@gmail.com>
-Message-ID: <alpine.DEB.2.22.394.2111241708170.1412361@ubuntu-linux-20-04-desktop>
-References: <1637787223-21129-1-git-send-email-olekstysh@gmail.com> <1637787223-21129-7-git-send-email-olekstysh@gmail.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        id S238798AbhKYDDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 22:03:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48856 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232102AbhKYDBi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 22:01:38 -0500
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786A6C061395;
+        Wed, 24 Nov 2021 18:15:24 -0800 (PST)
+Received: by mail-lj1-x229.google.com with SMTP id u22so9382016lju.7;
+        Wed, 24 Nov 2021 18:15:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Lj/upQN23hUbS3GkdrQq0qv4Yn6ZPxec0EiWH+iqMEA=;
+        b=DLca4MslZlWfLY/LW/Le4nXm0Lum7JkUH2e/qN4ovD8bOQ+kz9mypepqtDwtvBoaTa
+         mKlIhR4I4RdGakqb+PuA9BCZhIPzlsjxmU6hS2jOpVkSDyOEyJwf9nzw+sVzN0v961pb
+         kcjhP48xKzax/6HW6UTL9lOMbHhSLCyM3sy/D8tzTu2ZFfjNvBm0pRO1dBVsecX5Bv0+
+         uVB2/LA4JMvrvkQuDI7dFIEASY5dy7A1FdEswK5yqjMf9+BWmirrXVyxKuvNOLpv8G5W
+         jSgvK2+Ei0SaCozS+BHconKlU2PczXRL7HkGrJ+94JZ3Tb0XxK0branHuIvp1xn8N3+C
+         xR7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Lj/upQN23hUbS3GkdrQq0qv4Yn6ZPxec0EiWH+iqMEA=;
+        b=Zcqn6jV+jcgUNd2PyOypXueMY9vWjGuO+CvmeCxpSfmkU8ApmuoMps9IwgSoPu72gN
+         GDD3TZca3pNmN+pBEDwf834duCsW73egFyUzdJEkdcoyI574PBdidujoI8o//gIO4yhI
+         ZRWQ24eOkr5X42p9a8sSwW2q/oYdZQI7EYR5jw2f1LAbHhD0cqXwdWxrVtODNtGQT9lI
+         btOEQJGYBK7Pix2Anqx1F3dWO/PyIVHfqfi24yLGlOWPu3YmPrjiw3n12GHOb3cnHuld
+         hvRQ2Li2X8SMnTOm6On7SWbT6/I9IHMFvAoZilCkK6uciuXeDwSvZWNzj99GkEzy6ljl
+         wwzA==
+X-Gm-Message-State: AOAM530j7E9/K+3JKYSqBLEfbLtjdxVPeGgPTYhvM1oX8Oe4JFt0u91r
+        CiOfT3oISGaKuUGuYKg7sJ2V7u52U7k=
+X-Google-Smtp-Source: ABdhPJwAyB2heTKPgBeg1gEb9wBYyvxbBdHgV9Gy/aBPiZUAIjZAMyEG1ecw4TwMScq4tOcwaSfJ7g==
+X-Received: by 2002:a2e:b907:: with SMTP id b7mr21347657ljb.214.1637806522563;
+        Wed, 24 Nov 2021 18:15:22 -0800 (PST)
+Received: from [192.168.2.145] (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
+        by smtp.googlemail.com with ESMTPSA id b43sm128479ljr.64.2021.11.24.18.15.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Nov 2021 18:15:22 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: sound: nvidia,tegra-audio: Convert multiple
+ txt bindings to yaml
+To:     Rob Herring <robh@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        ~okias/devicetree@lists.sr.ht, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211025171927.92332-1-david@ixit.cz>
+ <YYBRTK9KGglu/s9m@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <59a8095b-fa80-258f-f2d7-dc241bfae24a@gmail.com>
+Date:   Thu, 25 Nov 2021 05:15:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <YYBRTK9KGglu/s9m@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021, Oleksandr Tyshchenko wrote:
-> From: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
+01.11.2021 23:42, Rob Herring пишет:
+>> Convert Tegra audio complex with the
+>>  * ALC5632
+>>  * MAX98090
+>>  * RT5640
+>>  * RT5677
+>>  * SGTL5000
+>>  * TrimSlice
+>>  * WM8753
+>>  * WM8903
+>>  * WM9712
+>> codec to the YAML format.
+> Perhaps say why they can all be combined.
 > 
-> Xen on Arm has gained new support recently to calculate and report
-> extended regions (unused address space) safe to use for external
-> mappings. These regions are reported via "reg" property under
-> "hypervisor" node in the guest device-tree. As region 0 is reserved
-> for grant table space (always present), the indexes for extended
-> regions are 1...N.
+> I don't think that really works because the properties which are valid 
+> varies. Specifically, the GPIO lines vary.
 > 
-> No device-tree bindings update is needed (except clarifying the text)
-> as guest infers the presence of extended regions from the number
-> of regions in "reg" property.
+> Instead, define a schema with all the common properties and then 
+> reference it.
 > 
-> Signed-off-by: Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>
-> ---
-> According to the recent update to Xen's guest.txt:
-> https://xenbits.xen.org/gitweb/?p=xen.git;a=blob_plain;f=docs/misc/arm/device-tree/guest.txt;hb=refs/heads/master
-> 
-> Changes V2 -> V3:
->    - new patch
-> ---
->  Documentation/devicetree/bindings/arm/xen.txt | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/xen.txt b/Documentation/devicetree/bindings/arm/xen.txt
-> index db5c56d..156fe10b 100644
-> --- a/Documentation/devicetree/bindings/arm/xen.txt
-> +++ b/Documentation/devicetree/bindings/arm/xen.txt
-> @@ -7,10 +7,14 @@ the following properties:
->  	compatible = "xen,xen-<version>", "xen,xen";
->    where <version> is the version of the Xen ABI of the platform.
->  
-> -- reg: specifies the base physical address and size of a region in
-> -  memory where the grant table should be mapped to, using an
-> -  HYPERVISOR_memory_op hypercall. The memory region is large enough to map
-> -  the whole grant table (it is larger or equal to gnttab_max_grant_frames()).
-> +- reg: specifies the base physical address and size of the regions in memory
-> +  where the special resources should be mapped to, using an HYPERVISOR_memory_op
-> +  hypercall.
-> +  Region 0 is reserved for mapping grant table, it must be always present.
-> +  The memory region is large enough to map the whole grant table (it is larger
-> +  or equal to gnttab_max_grant_frames()).
-> +  Regions 1...N are extended regions (unused address space) for mapping foreign
-> +  GFNs and grants, they might be absent if there is nothing to expose.
->    This property is unnecessary when booting Dom0 using ACPI.
 
-I would remove the last sentence about ACPI as the initialization is not
-done via the xen,xen device tree node in that case anyway.
+Those GPIO lines should be more board-specific, rather than
+CODEC-specific. Yes, some of GPIO lines may be unrelated to a specific
+CODEC, but practically it's not worth the effort to split this binding
+because of a couple optional GPIOs, IMO. We actually considered the
+variant with the reference that you're suggesting and decided that it
+should be unnecessary.
 
-With that change:
-
-Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
+Are you insisting that the binding needs to be split?
