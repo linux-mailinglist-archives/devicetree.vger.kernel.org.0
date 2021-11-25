@@ -2,153 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADA5D45DE93
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 17:21:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C97145DF85
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 18:20:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356407AbhKYQY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 11:24:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234517AbhKYQW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 11:22:56 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9DFC0619D5
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 08:08:05 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id i5so12717929wrb.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 08:08:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=BBIjRQcQTe/p8MPuV8+84d+JQi/ynOVnTogY5pdUch4=;
-        b=U5U0b+/ziFIlFc/ux3ZoOEDrb8zzXm42loeB46lAIDLcsnt8g6LWZdNab9N8LgYlBs
-         L2mRETMzguDlzF40i7NiRt7NjZuiBifM2pDWQRDEHu/u6BhpIYjfFvSPeGIPTvoe6JBC
-         MksqgkSQoO3GHgQTEW4TYyslTwW6c2ieEypd6eiUTfOaAJsQotX2Ec6VSsM0qH9g0sDq
-         dA2AbPP3uBCQRuL5gelcz6ZFqlqJgVbKAnIeQZX2KkK7uqcclGI6+bPHg7ItfYie/Gf9
-         3yq6kV28i+vJ4C8D1fR+x82AGaUYttYQOL1pBf19OiLJE6pGTrtxUY61ixIQIfnZI8bU
-         BoCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=BBIjRQcQTe/p8MPuV8+84d+JQi/ynOVnTogY5pdUch4=;
-        b=h5c60X8BBKP3qJOU5EcfhezzosiWvQIoXnC3yAZ5lFsmMX5lHPtwF0EgvtMF+bC9bJ
-         kffj0jSp6X5eGn0kwnw3OGiy+iM/zMIwhxWILSaVkyu8xUVZi5MaPYXursFKAzu8b7by
-         ZOmCtU3GTecuQXgCLiP/YIjJlbN5KbfqYVZ3nVhrngajtZeNFfnTYOJKVUcjufUgQgPd
-         GBmmJPzywg3EzUcvQQM7iwXyGwjWo789obi5d5JkplUytPDAxN6HjWxlUI4MxXLJdmlc
-         39Hd7TBy4tM9puDugAKQAWgzZVSzqMYTQ5Xk46SYMe1FIh79rQ4nXL8sTQxAgEiFEt6O
-         ggYQ==
-X-Gm-Message-State: AOAM533W3yNY31KHb9Ap3YBDrf+3AyUZVKezWzQnIa44SEV+/c/uZdpn
-        UM0u580fIdZAYEujUpC0L2/EQA==
-X-Google-Smtp-Source: ABdhPJxkfPB4Sn6d4awiD0RuzY3zDfpzeOlG0sL9DlrmFmkTSBbPNNh9f/BRCMQorDtbL8Bv6xl9lA==
-X-Received: by 2002:adf:ea8c:: with SMTP id s12mr7622120wrm.535.1637856484276;
-        Thu, 25 Nov 2021 08:08:04 -0800 (PST)
-Received: from smtpclient.apple (global-5-141.nat-2.net.cam.ac.uk. [131.111.5.141])
-        by smtp.gmail.com with ESMTPSA id l15sm3313235wme.47.2021.11.25.08.08.03
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Nov 2021 08:08:04 -0800 (PST)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 14.0 \(3654.120.0.1.13\))
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: sifive, plic: Fix
- number of interrupts
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20211125152233.162868-1-geert@linux-m68k.org>
-Date:   Thu, 25 Nov 2021 16:08:03 +0000
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <161F972E-7972-4001-BE19-C88F81EF8047@jrtc27.com>
-References: <20211125152233.162868-1-geert@linux-m68k.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-X-Mailer: Apple Mail (2.3654.120.0.1.13)
+        id S241151AbhKYRXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 12:23:10 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50432 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241288AbhKYRVJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 12:21:09 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 45FDE61059;
+        Thu, 25 Nov 2021 17:17:56 +0000 (UTC)
+Date:   Thu, 25 Nov 2021 17:17:53 +0000
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Calvin Zhang <calvinzhang.cool@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org
+Subject: Re: [PATCH] mm: kmemleak: alloc gray object for reserved region with
+ direct map.
+Message-ID: <YZ/FQXS3gWZ2xfEy@arm.com>
+References: <20211123090641.3654006-1-calvinzhang.cool@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123090641.3654006-1-calvinzhang.cool@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25 Nov 2021, at 15:22, Geert Uytterhoeven <geert@linux-m68k.org> =
-wrote:
->=20
-> To improve human readability and enable automatic validation, the =
-tuples
-> in "interrupts-extended" properties should be grouped using angle
-> brackets.  As the DT bindings lack an upper bound on the number of
-> interrupts, thus assuming one, proper grouping is currently flagged as
-> an error.
->=20
-> Fix this by adding the missing "maxItems", limiting it to 9 interrupts
-> (one interrupt for a system management core, and two interrupts per =
-core
-> for other cores), which should be sufficient for now.
+On Tue, Nov 23, 2021 at 05:06:41PM +0800, Calvin Zhang wrote:
+> Reserved regions with direct mapping may contain references to other
+> regions. CMA region with fixed location is reserved without creating
+> kmemleak_object for it.
+> 
+> So add them as gray kmemleak objects.
 
-This is SiFive=E2=80=99s IP, so is this actually true? I would imagine =
-it=E2=80=99s
-just parameterised and could be generated with as many targets as fit
-in the MMIO space, and that this is thus inaccurate. Besides, such a
-function change should be made separately from the grouping change.
+Do you get any kmemleak false positives without this patch? It would be
+good to include them in the commit message.
 
-The same goes for your equivalent sifive,clint0 patch.
+Without seeing a false positive caused by this, I'm not convinced it is
+the right approach. You mentioned CMA but telling kmemleak about the
+whole CMA region is a pretty big hammer. I'd rather add individual
+kmemleak_alloc_*() calls in cma_alloc().
 
-Jess
-
-> Group the tuples in the example.
->=20
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> ---
-> .../interrupt-controller/sifive,plic-1.0.0.yaml      | 12 ++++++------
-> 1 file changed, 6 insertions(+), 6 deletions(-)
->=20
-> diff --git =
-a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0=
-.yaml =
-b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0=
-.yaml
-> index 08d5a57ce00ff446..198b373f984f3438 100644
-> --- =
-a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0=
-.yaml
-> +++ =
-b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0=
-.yaml
-> @@ -61,6 +61,7 @@ properties:
->=20
->   interrupts-extended:
->     minItems: 1
-> +    maxItems: 9
->     description:
->       Specifies which contexts are connected to the PLIC, with "-1" =
-specifying
->       that a context is not present. Each node pointed to should be a
-> @@ -89,12 +90,11 @@ examples:
->       #interrupt-cells =3D <1>;
->       compatible =3D "sifive,fu540-c000-plic", "sifive,plic-1.0.0";
->       interrupt-controller;
-> -      interrupts-extended =3D <
-> -        &cpu0_intc 11
-> -        &cpu1_intc 11 &cpu1_intc 9
-> -        &cpu2_intc 11 &cpu2_intc 9
-> -        &cpu3_intc 11 &cpu3_intc 9
-> -        &cpu4_intc 11 &cpu4_intc 9>;
-> +      interrupts-extended =3D <&cpu0_intc 11>,
-> +                            <&cpu1_intc 11>, <&cpu1_intc 9>,
-> +                            <&cpu2_intc 11>, <&cpu2_intc 9>,
-> +                            <&cpu3_intc 11>, <&cpu3_intc 9>,
-> +                            <&cpu4_intc 11>, <&cpu4_intc 9>;
->       reg =3D <0xc000000 0x4000000>;
->       riscv,ndev =3D <10>;
->     };
-> --=20
-> 2.25.1
->=20
->=20
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
-
+-- 
+Catalin
