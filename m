@@ -2,69 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6C745D9CB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:11:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A69DF45D9D9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:17:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240293AbhKYMPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 07:15:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34110 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240957AbhKYMNI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 07:13:08 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 67C4461057;
-        Thu, 25 Nov 2021 12:09:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637842196;
-        bh=4J4WHQF4+ox4W0Ntb6+xSi9bzNckSv0hkcp0qiE5qJc=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=PuHwJC2PsB458gARqRKmm221wadaTEprtzFQQ+RYG4bBo1TFrvlhOZT/3boMZTcdq
-         8Ch4YiMX7NpIdM9Fmd+Br82f7zNoK9ejxUeHGsSP10/+cOY6we57M9iC69QrFP9kte
-         fWK/p/y2/1y7fTMSUfr6PtmEpKLZ1saWSWg/5lJlqzb7j0Jfqb93dWnudyoKKSyDz6
-         wZtTFospYqDY7AZfh/YHlbjsl0zT7cVOiUvLpCU2Z/OPcZtEV+DduKTT4yOEfdRn2y
-         HA9uNQtmYWKAb512JrnkDSfSdAzX5Z96Dp2BwVubnsvQsMED6Wd0YcO0FcMrWg3+nw
-         uRfRbNd/E77fw==
-Subject: Re: [PATCH 2/4] memory: omap-gpmc: Fix menuconfig visibility
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        tony@atomide.com
-Cc:     kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20211123102607.13002-1-rogerq@kernel.org>
- <20211123102607.13002-4-rogerq@kernel.org>
- <6a8f93a4-7390-1f1e-6ba0-601859c21ac0@canonical.com>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <15a58477-5a8b-6236-be15-ce1d8226fdc8@kernel.org>
-Date:   Thu, 25 Nov 2021 14:09:53 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S239778AbhKYMU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 07:20:27 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42192 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S239350AbhKYMS1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 07:18:27 -0500
+X-UUID: 03107496eb0f4250a40eceae39071db7-20211125
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=XNa56ptSVW/PBObhWFXTIZ22GAfC+uM5uwwEbvv6o/M=;
+        b=nHIEfA3DaVVfdCd8h/Bi4AlcPB95vpZffM6B2xWRkW+1JuIIw+E/dMIWJu5a0K5mRGOAfEz3a7paWQbhgQ5G91lvR/BUnlkltRdGSJfVGXPPWT9vnCkTl0sSrFcV8ceGaED+STcGxpgIMzjkN0sNwqz/Ff2Lm7GQewaAIO9FZeM=;
+X-UUID: 03107496eb0f4250a40eceae39071db7-20211125
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1041156523; Thu, 25 Nov 2021 20:15:13 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 25 Nov 2021 20:15:12 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 25 Nov 2021 20:15:11 +0800
+Message-ID: <926a0bb2ec2ad64ba579d38e761e1e97ba5bba3f.camel@mediatek.com>
+Subject: Re: [PATCH v4 10/12] ARM: dts: Add PCIe support for Airoha EN7523
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Felix Fietkau <nbd@nbd.name>,
+        <linux-arm-kernel@lists.infradead.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     <john@phrozen.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Thu, 25 Nov 2021 20:15:11 +0800
+In-Reply-To: <20211125110738.41028-11-nbd@nbd.name>
+References: <20211125110738.41028-1-nbd@nbd.name>
+         <20211125110738.41028-11-nbd@nbd.name>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <6a8f93a4-7390-1f1e-6ba0-601859c21ac0@canonical.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+SGkgRmVsaXgsDQoNCk9uIFRodSwgMjAyMS0xMS0yNSBhdCAxMjowNyArMDEwMCwgRmVsaXggRmll
+dGthdSB3cm90ZToNCj4gVGhpcyB1c2VzIHRoZSBNZWRpYVRlayBNVDc2MjIgUENJZSBkcml2ZXIs
+IHNpbmNlIHRoZSBQQ0llIElQIGJsb2NrIGlzDQo+IG5lYXJseQ0KPiBpZGVudGljYWwgdG8gdGhl
+IG9uZSBpbiBNVDc2MjINCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEZlbGl4IEZpZXRrYXUgPG5iZEBu
+YmQubmFtZT4NCj4gLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9lbjc1MjMtZXZiLmR0cyB8IDEy
+ICsrKysrKysNCj4gIGFyY2gvYXJtL2Jvb3QvZHRzL2VuNzUyMy5kdHNpICAgIHwgNjANCj4gKysr
+KysrKysrKysrKysrKysrKysrKysrKysrKysrKysNCj4gIDIgZmlsZXMgY2hhbmdlZCwgNzIgaW5z
+ZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2VuNzUyMy1l
+dmIuZHRzDQo+IGIvYXJjaC9hcm0vYm9vdC9kdHMvZW43NTIzLWV2Yi5kdHMNCj4gaW5kZXggZThl
+NWMwMzRjZWU3Li5hZjFhOGRkNDBhNDEgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRz
+L2VuNzUyMy1ldmIuZHRzDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2VuNzUyMy1ldmIuZHRz
+DQo+IEBAIC0yNSwzICsyNSwxNSBAQCBtZW1vcnlAODAwMDAwMDAgew0KPiAgCQlyZWcgPSA8MHg4
+MDAwMDAwMCAweDIwMDAwMDAwPjsNCj4gIAl9Ow0KPiAgfTsNCj4gKw0KPiArJnBjaWUgew0KPiAr
+CXN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZwY2llMCB7DQo+ICsJc3RhdHVzID0g
+Im9rYXkiOw0KPiArfTsNCj4gKw0KPiArJnBjaWUxIHsNCj4gKwlzdGF0dXMgPSAib2theSI7DQo+
+ICt9Ow0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvZW43NTIzLmR0c2kNCj4gYi9h
+cmNoL2FybS9ib290L2R0cy9lbjc1MjMuZHRzaQ0KPiBpbmRleCBlYWJmM2ZkYjNkNTIuLmQ5YmRi
+NTE2MTRiNSAxMDA2NDQNCj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvZW43NTIzLmR0c2kNCj4g
+KysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvZW43NTIzLmR0c2kNCj4gQEAgLTExOSw0ICsxMTksNjQg
+QEAgdWFydDE6IHNlcmlhbEAxZmJmMDAwMCB7DQo+ICAJCWNsb2NrLWZyZXF1ZW5jeSA9IDwxODQz
+MjAwPjsNCj4gIAkJc3RhdHVzID0gIm9rYXkiOw0KPiAgCX07DQo+ICsNCj4gKwlwY2llOiBwY2ll
+QDFhMTQwMDAwIHsNCj4gKwkJY29tcGF0aWJsZSA9ICJhaXJvaGEsZW43NTIzLXBjaWUiLCAibWVk
+aWF0ZWssbXQ3NjIyLQ0KPiBwY2llIjsNCj4gKwkJZGV2aWNlX3R5cGUgPSAicGNpIjsNCj4gKwkJ
+cmVnID0gPDB4MWZhOTEwMDAgMHgxMDAwPiwNCj4gKwkJICAgICAgPDB4MWZhOTIwMDAgMHgxMDAw
+PjsNCj4gKwkJcmVnLW5hbWVzID0gInBvcnQwIiwgInBvcnQxIjsNCj4gKwkJI2FkZHJlc3MtY2Vs
+bHMgPSA8Mz47DQo+ICsJCSNzaXplLWNlbGxzID0gPDI+Ow0KPiArCQlpbnRlcnJ1cHRzID0gPEdJ
+Q19TUEkgMzkgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ICsJCQkgICAgIDxHSUNfU1BJIDQwIElS
+UV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiArCQljbG9ja3MgPSA8JnNjdSBFTjc1MjNfQ0xLX1BDSUU+
+LA0KPiArCQkJIDwmc2N1IEVONzUyM19DTEtfUENJRT47DQo+ICsJCWNsb2NrLW5hbWVzID0gInN5
+c19jazAiLCAic3lzX2NrMSI7DQo+ICsJCWJ1cy1yYW5nZSA9IDwweDAwIDB4ZmY+Ow0KPiArCQly
+YW5nZXMgPSA8MHg4MjAwMDAwMCAwIDB4MjAwMDAwMDAgIDB4MjAwMDAwMDAgIDANCj4gMHgxMDAw
+MDAwMD47DQo+ICsJCXN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ICsNCj4gKwkJcGNpZTA6IHBjaWVA
+MCwwIHsNCj4gKwkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ICsJCQlyZWcgPSA8MHgwMDAwIDAg
+MCAwIDA+Ow0KPiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+ICsJCQkjc2l6ZS1jZWxscyA9
+IDwyPjsNCj4gKwkJCSNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQo+ICsJCQlyYW5nZXM7DQo+ICsJ
+CQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiArDQo+ICsJCQlpbnRlcnJ1cHQtbWFwLW1hc2sgPSA8
+MCAwIDAgNz47DQo+ICsJCQlpbnRlcnJ1cHQtbWFwID0gPDAgMCAwIDEgJnBjaWVfaW50YzAgMD4s
+DQo+ICsJCQkJCTwwIDAgMCAyICZwY2llX2ludGMwIDE+LA0KPiArCQkJCQk8MCAwIDAgMyAmcGNp
+ZV9pbnRjMCAyPiwNCj4gKwkJCQkJPDAgMCAwIDQgJnBjaWVfaW50YzAgMz47DQo+ICsJCQlwY2ll
+X2ludGMwOiBpbnRlcnJ1cHQtY29udHJvbGxlciB7DQo+ICsJCQkJaW50ZXJydXB0LWNvbnRyb2xs
+ZXI7DQo+ICsJCQkJI2FkZHJlc3MtY2VsbHMgPSA8MD47DQo+ICsJCQkJI2ludGVycnVwdC1jZWxs
+cyA9IDwxPjsNCj4gKwkJCX07DQo+ICsJCX07DQo+ICsNCj4gKwkJcGNpZTE6IHBjaWVAMSwwIHsN
+Cj4gKwkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ICsJCQlyZWcgPSA8MHgwODAwIDAgMCAwIDA+
+Ow0KPiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+ICsJCQkjc2l6ZS1jZWxscyA9IDwyPjsN
+Cj4gKwkJCSNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQo+ICsJCQlyYW5nZXM7DQo+ICsJCQlzdGF0
+dXMgPSAiZGlzYWJsZWQiOw0KPiArDQo+ICsJCQlpbnRlcnJ1cHQtbWFwLW1hc2sgPSA8MCAwIDAg
+Nz47DQo+ICsJCQlpbnRlcnJ1cHQtbWFwID0gPDAgMCAwIDEgJnBjaWVfaW50YzEgMD4sDQo+ICsJ
+CQkJCTwwIDAgMCAyICZwY2llX2ludGMxIDE+LA0KPiArCQkJCQk8MCAwIDAgMyAmcGNpZV9pbnRj
+MSAyPiwNCj4gKwkJCQkJPDAgMCAwIDQgJnBjaWVfaW50YzEgMz47DQo+ICsJCQlwY2llX2ludGMx
+OiBpbnRlcnJ1cHQtY29udHJvbGxlciB7DQo+ICsJCQkJaW50ZXJydXB0LWNvbnRyb2xsZXI7DQo+
+ICsJCQkJI2FkZHJlc3MtY2VsbHMgPSA8MD47DQo+ICsJCQkJI2ludGVycnVwdC1jZWxscyA9IDwx
+PjsNCj4gKwkJCX07DQo+ICsJCX07DQo+ICsJfTsNCg0KVGhlcmUgYXJlIHNvbWUga25vd24gaXNz
+dWVzIHdpdGggdGhpcyBkZXZpY2Ugbm9kZSBzdHlsZSwgcGxlYXNlIHNwbGl0DQp0aGUgUENJZSBu
+b2RlIGludG8gdHdvIGluZGVwZW5kZW50IG5vZGVzIHRvIGNvbXBseSB3aXRoIHRoZSBoYXJkd2Fy
+ZQ0KZGVzaWduLg0KDQpIZXJlIGlzIHRoZSBmaXggcGF0Y2ggd2Ugc2VudCBiZWZvcmU6DQoNCmh0
+dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xpbnV4LXBjaS8yMDIxMDgyMzAzMjgwMC4xNjYwLTYtY2h1
+YW5qaWEubGl1QG1lZGlhdGVrLmNvbS8NCg0KVGhhbmtzLg0KDQo+ICB9Ow0K
 
-
-On 23/11/2021 21:43, Krzysztof Kozlowski wrote:
-> On 23/11/2021 11:26, Roger Quadros wrote:
->> GPMC was not being visible if COMPILE_TEST is not enabled.
->>
->> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->> ---
->>  drivers/memory/Kconfig | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
-> 
-> ... which was probably on purpose, similarly to many other SoC drivers
-> which are selected by platform. Therefore there is no bug to fix here -
-> lack of visibility is not a problem. Please document instead why you
-> want to change it, e.g. why this is a problem or unwanted behavior.
-> 
-
-No strong enough reason. I'll drop this patch.
-
-cheers,
--roger
