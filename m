@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2414E45E274
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 22:28:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B232045E272
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 22:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343497AbhKYVbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 16:31:33 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:42654 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241687AbhKYV3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 16:29:32 -0500
-Received: by mail-oi1-f179.google.com with SMTP id n66so14913242oia.9;
-        Thu, 25 Nov 2021 13:26:20 -0800 (PST)
+        id S245091AbhKYVba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 16:31:30 -0500
+Received: from mail-oi1-f174.google.com ([209.85.167.174]:33636 "EHLO
+        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239140AbhKYV33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 16:29:29 -0500
+Received: by mail-oi1-f174.google.com with SMTP id q25so15040301oiw.0;
+        Thu, 25 Nov 2021 13:26:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=G/HOoCkE7F4KtFddRguEHWeaPLGWRwjij7xDaewa9ig=;
-        b=cjKAjTBisuU4TabmtFy9doiPZ66PP9oF/tHPiZ7BzEVdfbt/spwhB67k1d/f0GuZqT
-         AAP2wsvR3oSH4BspI29vTMawDMhiI0fGrv/dZLWlC4lyXCcnPME9lWXNLTg0RaXrHYxp
-         m4mteMEmb2sOEoPTMaEIEqFzu3yDTuQppwpcBD8aN4QbB2zQ0zerovPZO09Osjh0pYNP
-         NkXKPgbpwIfiw/McNmWynEydGF8/dpEYeokavkcpTzRkuo1j+7yUNcE3Bu8s5B2If2Se
-         HefgsHY8H9AmlJ6AjGpRqGxkMYekI0atWwABU4h1P0SMZ7N7uQUiYPCQlhbFoNsEe34Z
-         phWg==
-X-Gm-Message-State: AOAM532O/oJ7Tfh3oKCo3UXHGQQ5JnLW9zIPNyBUvqLgOOonre5LIq6t
-        H0OwPDi5U0OM4vuY/dTUUzvxyQgb9A==
-X-Google-Smtp-Source: ABdhPJzppe2WKUD4k7V69gomdFEgKeo+K1tcz1FiRDpp4KvwAgBEkEW8CrnaQh4FKneeTrN151vVVA==
-X-Received: by 2002:a05:6808:1392:: with SMTP id c18mr18839736oiw.53.1637875580250;
-        Thu, 25 Nov 2021 13:26:20 -0800 (PST)
+        bh=ATQGc9kY+JyWouwzNMT+5eMUiqUTPfsc2py8BE07UUU=;
+        b=VmA0E8Q6aYSEoMl42Szarzh8brIt4SGgMMcFZHUE93NyO9fUcJc96+i3PiAytaJidB
+         85QsXrkTuc+J6r1ONAkAbgRfr+YPAMENnagI0Oz1/ILdy00ez6PBmT2w0nD2dnVwWZDF
+         mvSBQtYWAhErlF5OmyObR7+nd209JsfaiF05Y6zwLjA1HZe9zNhyKiG0XEgwofN5vslR
+         Zm44PHq9NCtExA25pmWNDge4FZ7if7OOdTmEpssPrQiDls1Xz7C6m8o/y7pWTdG+4vfs
+         +2yiGKN74e8oIKY3LEKGynGPIYX7JzTYzhdh7t+YqbjO/FAVcJnSEfAIRru2AFudtqJ1
+         iKrQ==
+X-Gm-Message-State: AOAM5304DY9im8G/sQeuY2dW3CpRq/RjuCowH7lw7RKO/IvChcP8BadM
+        xFtPS7LtMGJGeJx62nHx7A==
+X-Google-Smtp-Source: ABdhPJzoE1mjv1m+nj0OMQrJ0pG7JCaWF1N2WspnzxdZpkiI3QMzNDqnQA1Na6SgHhWlX8psmy9F2w==
+X-Received: by 2002:a05:6808:f8e:: with SMTP id o14mr18906207oiw.33.1637875576978;
+        Thu, 25 Nov 2021 13:26:16 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id s1sm650568ooo.11.2021.11.25.13.26.18
+        by smtp.gmail.com with ESMTPSA id s26sm931393oiw.19.2021.11.25.13.26.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 13:26:19 -0800 (PST)
-Received: (nullmailer pid 2858307 invoked by uid 1000);
+        Thu, 25 Nov 2021 13:26:15 -0800 (PST)
+Received: (nullmailer pid 2858309 invoked by uid 1000);
         Thu, 25 Nov 2021 21:26:02 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, lukasz.luba@arm.com,
-        ulf.hansson@linaro.org, arnd@linaro.org,
-        linux-kernel@vger.kernel.org, heiko@sntech.de,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, rjw@rjwysocki.net
-In-Reply-To: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
-References: <20211124125506.2971069-1-daniel.lezcano@linaro.org>
-Subject: Re: [PATCH 1/5] dt-bindings: Powerzone new bindings
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Kees Cook <keescook@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>,
+        David Airlie <airlied@linux.ie>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        dri-devel@lists.freedesktop.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Mark Brown <broonie@kernel.org>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <d678e785d95487202ac0660eb66796e9fb5beb50.1637789354.git.hns@goldelico.com>
+References: <cover.1637789354.git.hns@goldelico.com> <d678e785d95487202ac0660eb66796e9fb5beb50.1637789354.git.hns@goldelico.com>
+Subject: Re: [PATCH v9 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi DT Schema
 Date:   Thu, 25 Nov 2021 14:26:02 -0700
-Message-Id: <1637875562.234693.2858306.nullmailer@robh.at.kernel.org>
+Message-Id: <1637875562.255498.2858308.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021 13:55:00 +0100, Daniel Lezcano wrote:
-> The proposed bindings are describing a set of powerzones.
+On Wed, 24 Nov 2021 22:29:09 +0100, H. Nikolaus Schaller wrote:
+> From: Sam Ravnborg <sam@ravnborg.org>
 > 
-> A power zone is the logical name for a component which is capable of
-> power capping and where we can measure the power consumption.
+> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+> Based on .txt binding from Zubair Lutfullah Kakakhel
 > 
-> A power zone can aggregate several power zones in terms of power
-> measurement and power limitations. That allows to apply power
-> constraint to a group of components and let the system balance the
-> allocated power in order to comply with the constraint.
+> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
 > 
-> The ARM System Control and Management Interface (SCMI) can provide a
-> power zone description.
-> 
-> The powerzone semantic is also found on the Intel platform with the
-> RAPL register.
-> 
-> The Linux kernel powercap framework deals with the powerzones:
-> 
-> https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
-> 
-> The powerzone can also represent a group of children powerzones, hence
-> the description can result on a hierarchy. Such hierarchy already
-> exists with the hardware or can be represented an computed from the
-> kernel.
-> 
-> The hierarchical description was initially proposed but not desired
-> given there are other descriptions like the power domain proposing
-> almost the same description.
-> 
-> https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
-> 
-> The description gives the power constraint dependencies to apply on a
-> specific group of logically or physically aggregated devices. They do
-> not represent the physical location or the power domains of the SoC
-> even if the description could be similar.
-> 
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
 > ---
->  .../devicetree/bindings/power/powerzones.yaml | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
+>  .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 +++++++++++++++++++
+>  .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
+>  2 files changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -103,15 +97,17 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/powerzones.yaml: 'additionalProperties' is a required property
-	hint: A schema without a "$ref" to another schema must define all properties and use "additionalProperties"
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/powerzones.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/power/powerzones.yaml
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/synopsys,dw-hdmi.yaml'
+xargs: dt-doc-validate: exited with status 255; aborting
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.example.dt.yaml'
+Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/synopsys,dw-hdmi.yaml'
+make[1]: *** [scripts/Makefile.lib:373: Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.example.dt.yaml] Error 255
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1413: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1559118
+See https://patchwork.ozlabs.org/patch/1559375
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
