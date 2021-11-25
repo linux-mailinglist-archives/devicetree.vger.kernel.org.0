@@ -2,117 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1B9E45D35F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 04:02:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C36045D3B6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 04:44:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244812AbhKYDFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Nov 2021 22:05:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48862 "EHLO
+        id S1345237AbhKYDr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Nov 2021 22:47:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238772AbhKYDDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 22:03:38 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7972CC061374;
-        Wed, 24 Nov 2021 18:18:22 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id b1so12162576lfs.13;
-        Wed, 24 Nov 2021 18:18:22 -0800 (PST)
+        with ESMTP id S239860AbhKYDp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Nov 2021 22:45:26 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D96C8C061756
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 19:42:15 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id b16so9687325ljf.12
+        for <devicetree@vger.kernel.org>; Wed, 24 Nov 2021 19:42:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oH9Wf/bCoVOg217LfdMoYUSgPjXtU02E7tSuaqxWMRg=;
-        b=a3PBYNYAAcgi1TZXNVqrpSjlO4HapMS90v4JQNwRGoxgwyRr74YQB0CVRb//bI41pL
-         6pNSCy5wG7I1vVxO0z9X2Bg5gk3NuuvBLRrOotseaFkyLTeiX2JiF1dLA0OeoTcS/RGg
-         Q9H3kzbos5THo5yUaeLm4c7P5AkcERHEYQGNRg8veLS/RsNSrvYi+IjN/7ddv7drxn2o
-         1N4q1Y+XlljgLGbYigdztD7fpRc6TWrK/QVAUrAI7QL3G19yBsiyBqMEZ4DIG6BERcF1
-         o+9jtoDW2zh0WmzYLJeutxGniZY0QYQCfcWyeXtnsD/4Amx8u+tH7pAFRuStmtT4SeV9
-         MN+Q==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=YMrhOIl8HoNRb8UK9oz7IZwbnC4/TM+2ttuSVPr6seY=;
+        b=QP3baR2c09O3n6364boLqwV7FSlkJ4vBU8I2Wyac+ku9KA8zZVAbAp6kIEBY8kDisP
+         Rr1LXMvG31KAkj30m1WSi6xid1h1oVqXgpvcWM9MxB6QRPhE4EiL0z5zG2py8AqA10HY
+         BTtJlliYiRFZRCsusUgTqok1D0afXuEa+oG6ZjSbkPpD+40/ATJ4Vl1Nf5p3DKxxB2sn
+         khNcfC6D/RfYnQ/Zae0nX/YkNA5VQ+a5JyeU1O+rmBvgdQD9+bccRdtLil1zaDky/jvI
+         snEHyJxP1uxIUqH0JzNVe7Lycb9uWl3YMSkIItve8tcBmNiWPPH4KxExL/2Gtrusn97q
+         Z4qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oH9Wf/bCoVOg217LfdMoYUSgPjXtU02E7tSuaqxWMRg=;
-        b=mzPi+nu8gk8isLOQxahOmG1mWKtm8zQ7cKMtGQdUcxDobVnCLvS/qkiKDY0MjE5LCu
-         aoN5d3gN3Rzv+OcxXW8XScXiUgfAExcsfJNSNoJLy4Bf305tHEXvtqClWKyTqYo4cCKW
-         TjPGV7ra/jlpFpqDh8Cpp9Q7SfEaQ7CZLn4DRrJOuooYjwGiAg2LDjo3AO2XjtasO4Id
-         lNV2qqHzudPu68ye1ZzBVedVmj/12f3LZxQhg0ix/nRuDjzhLsegNT22bKcIsrd0WXvb
-         aeGF190fHksT0R91R7NH5+o9cgSDCHqUBEoooLGQhvKYaa9yO5zU9YmPTbeqDWZAZWQ9
-         3glg==
-X-Gm-Message-State: AOAM5311EwDTsOwcrG1VItHQTdlJmpTUIyErE90qr0B1pJff2BpV1tol
-        WBqnudZtWTq3lmuOijrKn1SesHZE7Po=
-X-Google-Smtp-Source: ABdhPJwQvFDJcTZLyU54104ekq6m0/v4CmZYU+nu8u1y7IOzZ2X7pM5sbP+It5lOSDCeG4E2gRSy9A==
-X-Received: by 2002:a05:6512:3d8d:: with SMTP id k13mr19266189lfv.672.1637806700554;
-        Wed, 24 Nov 2021 18:18:20 -0800 (PST)
-Received: from [192.168.2.145] (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
-        by smtp.googlemail.com with ESMTPSA id 27sm135095lft.299.2021.11.24.18.18.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Nov 2021 18:18:20 -0800 (PST)
-Subject: Re: [PATCH] dt-bindings: sound: nvidia,tegra-audio: Convert multiple
- txt bindings to yaml
-To:     David Heidelberg <david@ixit.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>
-Cc:     ~okias/devicetree@lists.sr.ht, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211025171927.92332-1-david@ixit.cz>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <49fd57aa-05a1-b330-6684-31c80339e56d@gmail.com>
-Date:   Thu, 25 Nov 2021 05:18:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=YMrhOIl8HoNRb8UK9oz7IZwbnC4/TM+2ttuSVPr6seY=;
+        b=UwMGjUqBR+a8NH0SpxwwWPUbM4VGW90GyaKoldIQAsvZfcXjceRWLCBd6JUyA6GqmH
+         Fy8DNbJRtQgx3zuE0jiizslDiVnCzwyJJg3sSrhxGa3BqfgRq75WXQvlFi1lDURJ9fFA
+         hvZuQU9I14qULVMEv1Q7lFGX8nPRL7P9H9wmgYMlQhtibVJnrmXn3iSOeg3UeOYBJiRs
+         kyric13JI9XMpBnl9OmDZeUn1fl3aRB0rMleRx1aWWLki900b96uis6yZQjPajyBPj28
+         iVKs6o3Hp9fAceYQmbjOLAsgmNljEKT7yDysWE1Z183CTkF8IvdmeXRdXM3FUE/X6/fN
+         j0VQ==
+X-Gm-Message-State: AOAM531z5nm6UKRrVVy0A37+jeY86lKVtpey4mCL5zaJL+J9Qf3Xwosq
+        wkyPzdLVicfRSa8AVE3Cp9AHd8uNFJNx6oxezwc=
+X-Google-Smtp-Source: ABdhPJxsoVZNmX+GyWwoa14B4wZtWuRgFMhqjNwZBEg+DhhjW8BFyKVOYFVmRAYitmE8u2aqs8FB8WBcl67mNWXQeeo=
+X-Received: by 2002:a2e:918e:: with SMTP id f14mr21248805ljg.109.1637811734157;
+ Wed, 24 Nov 2021 19:42:14 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211025171927.92332-1-david@ixit.cz>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Received: by 2002:ac2:4199:0:0:0:0:0 with HTTP; Wed, 24 Nov 2021 19:42:13
+ -0800 (PST)
+From:   "Mr.James Gomez" <adamsrobinson2019@gmail.com>
+Date:   Thu, 25 Nov 2021 04:42:13 +0100
+Message-ID: <CA+gMR=eoWCROHHqsHDgo1qxKKtXCqX+ZuGqJNcwbjKb3gyzf6Q@mail.gmail.com>
+Subject: We need your Urgent Reply
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-25.10.2021 20:19, David Heidelberg пишет:
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-alc5632(-[a-z0-9])+'
-> +          - const: nvidia,tegra-audio-alc5632
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra-audio-max98090-nyan-big
-> +              - nvidia,tegra-audio-max98090-nyan-blaze
-> +          - const: nvidia,tegra-audio-max98090-nyan
-> +          - const: nvidia,tegra-audio-max98090
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-max98090(-[a-z0-9])+'
-> +          - const: nvidia,tegra-audio-max98090
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-rt56(39|40)(-[a-z0-9])+'
-> +          - const: nvidia,tegra-audio-rt5640
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-rt5677(-[a-z0-9])+'
-> +          - const: nvidia,tegra-audio-rt5677
-> +      - items:
-> +          - enum:
-> +              - toradex,tegra-audio-sgtl5000-apalis_t30
-> +              - toradex,tegra-audio-sgtl5000-colibri_t30
-> +              - toradex,tegra-audio-sgtl5000-apalis_tk1
-> +          - const: nvidia,tegra-audio-sgtl5000
-> +      - const: nvidia,tegra-audio-trimslice
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-wm8753(-[a-z0-9])+'
-> +          - const: nvidia,tegra-audio-wm8753
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-(plutux|wm8903(-[a-z0-9])+)'
-> +          - const: nvidia,tegra-audio-wm8903
-> +      - items:
-> +          - pattern: '^[a-z0-9]+,tegra-audio-wm9712(-[a-z0-9])+'
-> +          - const: nvidia,tegra-audio-wm9712
-> +
+-- 
 
-I'm now wondering whether these patterns need to have the end of string
-"$" mark, for completeness.
+Attention:Sir,
+
+RE: GOOD NEWS AS YOU WILL RECEIVE YOUR FUNDS THIS LAST QUARTER OF THE
+FISCAL YEAR 2021.
+I write to inform you that your name is among the beneficiaries that
+will receive their funds of usd$883,000=Only,(eight hundred and eight
+three thousand us doll Dollars Only).has been approved being for the
+draws the United Nation Secretary General {Antnio Guterres} organized
+on his visit to your country to help individuals/Internet Scam
+victims) this second quarter of the fiscal  year 2021.
+In view of this good news, I am pleased to inform you that your total
+Payment Compensation Entitlement of usd$883,000=Only has been cleared
+and approved to be released to you finally through our Offshore
+Payment Centers in two different countries which will be disclosed to
+you as soon as you respond to my proposal.
+
+I need your urgent verification in this Home office email: aaaa2293@outlook.com
+
+Your Full Names.
+Your Full Address.
+Your Mobile Tel. No./Whats app Tel. No.
+Your Occupation.
+
+Kindly contact me on my private email address thus:aaaa2293@outlook.com
+Await your urgent reply.
+
+Mr.James Gomez
