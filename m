@@ -2,360 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F7745D9DB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:17:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0DE45D9EC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:20:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348333AbhKYMUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 07:20:42 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:46464 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240188AbhKYMSm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 07:18:42 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1APCFNJI108601;
-        Thu, 25 Nov 2021 06:15:23 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637842523;
-        bh=B56SSf3OI5ndesdzCgGnMjaerg8TnEWV2iLDM5eRd90=;
-        h=From:To:CC:Subject:Date;
-        b=Gnei533leSNBKur56XU/rdh9q2bM8qjF4LVmv3KfKU6tVtmmtq0BEHH1nOop5kXbf
-         cPofoVVwb1+ljlal1bITFAFHuXoK4pnZD54hY2yjbIyaedOvHX7Kl6VxcJL9sYKrQw
-         9QhDp7ILVOfl1C5whuVg26duh0U6C45HncCXb4p8=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1APCFNXQ028429
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Nov 2021 06:15:23 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 25
- Nov 2021 06:15:22 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 25 Nov 2021 06:15:22 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1APCFMoq005975;
-        Thu, 25 Nov 2021 06:15:22 -0600
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <robh+dt@kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <j-choudhary@ti.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
-Date:   Thu, 25 Nov 2021 17:45:21 +0530
-Message-ID: <20211125121521.31554-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S1347956AbhKYMYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 07:24:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35188 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S239650AbhKYMWF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 07:22:05 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 6E7A6603E5;
+        Thu, 25 Nov 2021 12:18:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637842732;
+        bh=lFfGKss/qS/TiL5sYYjPBk2n1JD8OdsKZA9q69hDafk=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=d87xb1Quc+VVnWKM5scF8rWdA3RTXV2VEC96LbiwAVHbQ4NaAU7PPgDHBV6VKGqLz
+         aZ1+H8hLVO+rwadc/0x73JA55atNsXNm85FCV+bHc3Cq1+pOxGxAI+a7B9uAIf7egi
+         ZJkycrnbyMY9gq8VQhnfqOFQJOc/gb42uePPq3diI2fNrWuhaNWaVKH+t1ESZMq6kJ
+         r2J9DOcCqODvF9d4juG4rd6WzBSvwfOSWAKv+3Pf6JT52WtC4KMerpfyhaVZ0vG9BF
+         3Gn9X53HEQe1ILSqKOik68P4IlasoLGtlP8brbECKrR6vPjFEuGM2kNrHd1zMVF9J5
+         6bMTddrsrQQXQ==
+Subject: Re: [PATCH 1/4] dt-bindings: memory-controllers: ti,gpmc: Add
+ compatible for AM64
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        tony@atomide.com
+Cc:     kishon@ti.com, nm@ti.com, vigneshr@ti.com,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+References: <20211123102607.13002-1-rogerq@kernel.org>
+ <20211123102607.13002-2-rogerq@kernel.org>
+ <a28532b1-bfa0-031b-91cc-070cad557599@canonical.com>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <782c626b-bbe5-38a0-85ea-1e34bd8b887d@kernel.org>
+Date:   Thu, 25 Nov 2021 14:18:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <a28532b1-bfa0-031b-91cc-070cad557599@canonical.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the bindings for McASP controllers for TI SOCs
-from txt to YAML schema.
 
-Adds additional properties 'clocks', 'clock-names', 'power-domains'
-'#sound-dai-cells', 'num-serializer' and 'port' which were not there
-in the txt file.
-Adds 'dmas' and 'dma-names' in the example which were not there in
-the txt file.
-Changes 'interrupts' and 'interrupt-names' from optional to
-required properties.
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
-Changelog:
-v2:
-- changes the commit message
-- modifies the properties 'clocks', 'clock-names', 'dma-names',
-  'dmas', 'interrupts' and 'interrupt-names' according to the 
-  arm SOCs
-- adds 'port' and 'num-serializer' as node properties.
+On 23/11/2021 21:47, Krzysztof Kozlowski wrote:
+> On 23/11/2021 11:26, Roger Quadros wrote:
+>> AM64 SoC contains the GPMC module. Add compatible for it.
+>>
+>> Newer SoCs don't necessarily map GPMC data region at the same place
+>> as legacy SoCs. Add reg-names "data", to provide this information to
+>> the device driver.
+>>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>> ---
+>>  .../bindings/memory-controllers/ti,gpmc.yaml         | 12 +++++++++++-
+>>  1 file changed, 11 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+>> index 25b42d68f9b3..1869cc6f949b 100644
+>> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
+>> @@ -23,13 +23,20 @@ properties:
+>>      items:
+>>        - enum:
+>>            - ti,am3352-gpmc
+>> +          - ti,am64-gpmc
+>>            - ti,omap2420-gpmc
+>>            - ti,omap2430-gpmc
+>>            - ti,omap3430-gpmc
+>>            - ti,omap4430-gpmc
+>>  
+>>    reg:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: cfg
+>> +      - const: data
+> 
+> I see your driver handles cases with only one reg item, but I have other
 
- .../bindings/sound/davinci-mcasp-audio.txt    |  86 ---------
- .../bindings/sound/davinci-mcasp-audio.yaml   | 179 ++++++++++++++++++
- 2 files changed, 179 insertions(+), 86 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
- create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+The support for these two items is added in patch 3 of this series "memory: omap-gpmc: Add support for GPMC on AM64 SoC"
 
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-deleted file mode 100644
-index bd863bd69501..000000000000
---- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-+++ /dev/null
-@@ -1,86 +0,0 @@
--Texas Instruments McASP controller
--
--Required properties:
--- compatible :
--	"ti,dm646x-mcasp-audio"	: for DM646x platforms
--	"ti,da830-mcasp-audio"	: for both DA830 & DA850 platforms
--	"ti,am33xx-mcasp-audio"	: for AM33xx platforms (AM33xx, AM43xx, TI81xx)
--	"ti,dra7-mcasp-audio"	: for DRA7xx platforms
--	"ti,omap4-mcasp-audio"	: for OMAP4
--
--- reg : Should contain reg specifiers for the entries in the reg-names property.
--- reg-names : Should contain:
--         * "mpu" for the main registers (required). For compatibility with
--           existing software, it is recommended this is the first entry.
--         * "dat" for separate data port register access (optional).
--- op-mode : I2S/DIT ops mode. 0 for I2S mode. 1 for DIT mode used for S/PDIF,
--  	    IEC60958-1, and AES-3 formats.
--- tdm-slots : Slots for TDM operation. Indicates number of channels transmitted
--  	      or received over one serializer.
--- serial-dir : A list of serializer configuration. Each entry is a number
--               indication for serializer pin direction.
--               (0 - INACTIVE, 1 - TX, 2 - RX)
--- dmas: two element list of DMA controller phandles and DMA request line
--        ordered pairs.
--- dma-names: identifier string for each DMA request line in the dmas property.
--	     These strings correspond 1:1 with the ordered pairs in dmas. The dma
--	     identifiers must be "rx" and "tx".
--
--Optional properties:
--
--- ti,hwmods : Must be "mcasp<n>", n is controller instance starting 0
--- tx-num-evt : FIFO levels.
--- rx-num-evt : FIFO levels.
--- dismod : Specify the drive on TX pin during inactive slots
--	0 : 3-state
--	2 : logic low
--	3 : logic high
--	Defaults to 'logic low' when the property is not present
--- sram-size-playback : size of sram to be allocated during playback
--- sram-size-capture  : size of sram to be allocated during capture
--- interrupts : Interrupt numbers for McASP
--- interrupt-names : Known interrupt names are "tx" and "rx"
--- pinctrl-0: Should specify pin control group used for this controller.
--- pinctrl-names: Should contain only one value - "default", for more details
--  		 please refer to pinctrl-bindings.txt
--- fck_parent : Should contain a valid clock name which will be used as parent
--	       for the McASP fck
--- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
--		   and FS rate if applicable:
--		   AUCLK rate = auxclk-fs-ratio * FS rate
--
--Optional GPIO support:
--If any McASP pin need to be used as GPIO then the McASP node must have:
--...
--  gpio-controller
--  #gpio-cells = <2>;
--...
--
--When requesting a GPIO, the first parameter is the PIN index in McASP_P*
--registers.
--For example to request the AXR2 pin of mcasp8:
--function-gpios = <&mcasp8 2 0>;
--
--Or to request the ACLKR pin of mcasp8:
--function-gpios = <&mcasp8 29 0>;
--
--For generic gpio information, please refer to bindings/gpio/gpio.txt
--
--Example:
--
--mcasp0: mcasp0@1d00000 {
--	compatible = "ti,da830-mcasp-audio";
--	reg = <0x100000 0x3000>;
--	reg-names "mpu";
--	interrupts = <82>, <83>;
--	interrupt-names = "tx", "rx";
--	op-mode = <0>;		/* MCASP_IIS_MODE */
--	tdm-slots = <2>;
--	serial-dir = <
--			0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
--			0 0 0 0
--			0 0 0 1
--			2 0 0 0 >;
--	tx-num-evt = <1>;
--	rx-num-evt = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-new file mode 100644
-index 000000000000..2f8b2aca8c34
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-@@ -0,0 +1,179 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/davinci-mcasp-audio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: McASP Controller for TI SoCs
-+
-+maintainers:
-+  - Jayesh Choudhary <j-choudhary@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,dm646x-mcasp-audio
-+      - ti,da830-mcasp-audio
-+      - ti,am33xx-mcasp-audio
-+      - ti,dra7-mcasp-audio
-+      - ti,omap4-mcasp-audio
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description: main registers
-+      - description: data port register
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: mpu
-+      - const: dat
-+
-+  op-mode:
-+    description: I2S - 0 or DIT - 1 mode
-+    enum:
-+      - 0
-+      - 1
-+
-+  tdm-slots:
-+    maxItems: 1
-+
-+  serial-dir:
-+    description:
-+      A list of serializer configuration
-+      Entry is indication for serializer pin direction
-+      0 - Inactive, 1 - TX, 2 - RX
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 16
-+    items:
-+      minimum: 0
-+      maximum: 2
-+      default: 0
-+
-+  dmas:
-+    minItems: 1
-+    items:
-+      - description: transmission DMA channel
-+      - description: reception DMA channel
-+
-+  dma-names:
-+    minItems: 1
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of hwmod associated with McASP
-+    maxItems: 1
-+    deprecated: true
-+
-+  tx-num-evt:
-+    maxItems: 1
-+
-+  rx-num-evt:
-+    maxItems: 1
-+
-+  dismod:
-+    enum:
-+      - 0
-+      - 2
-+      - 3
-+    default: 2
-+
-+  sram-size-playback:
-+    maxItems: 1
-+
-+  sram-size-capture:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: TX FIFO interrupt
-+      - description: RX FIFO interrupt
-+
-+  interrupt-names:
-+    oneOf:
-+      - minItems: 1
-+        items:
-+          - const: tx
-+          - const: rx
-+      - const: common
-+
-+  fck_parent:
-+    description: parent clock for McASP fck
-+    maxItems: 1
-+
-+  auxclk-fs-ratio:
-+    description: ratio of AUCLK and FS if applicable
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  function-gpios:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+    items:
-+      - const: fck
-+      - const: ahclkx
-+      - const: ahclkr
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  num-serializer:
-+    maxItems: 1
-+
-+  port:
-+    type: object
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - dmas
-+  - dma-names
-+  - interrupts
-+  - interrupt-names
-+  - serial-dir
-+  - op-mode
-+  - tdm-slots
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mcasp0: mcasp0@1d00000 {
-+      compatible = "ti,da830-mcasp-audio";
-+      reg = <0x100000 0x3000>;
-+      reg-names = "mpu";
-+      interrupts = <82>, <83>;
-+      interrupt-names = "tx", "rx";
-+      op-mode = <0>;		/* MCASP_IIS_MODE */
-+      tdm-slots = <2>;
-+      dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
-+      dma-names = "tx", "rx";
-+      serial-dir = <
-+          0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
-+          0 0 0 0
-+          0 0 0 1
-+          2 0 0 0 >;
-+      tx-num-evt = <1>;
-+      rx-num-evt = <1>;
-+    };
--- 
-2.17.1
+> question - is it correct to have older (ARMv7) platform with two reg
+> items? Or can am64-gpmc come with only one reg?
 
+Older platforms currently have only one reg, but they can be updated to come with two without breaking functionality.
+am64-gpmc cannot come with one reg as the defaults for data window are not suitable for AM64.
+
+All legacy platforms were using a fixed Data IO window (first 1 GB) but from AM64 this was moved elsewhere, so the need for this change.
+
+> IOW, I am surprised there is no if-else case precising this minItems
+> requirement for different SocS.
+> 
+
+OK. I will add this.
+
+>>  
+>>    interrupts:
+>>      maxItems: 1
+>> @@ -44,6 +51,9 @@ properties:
+>>      items:
+>>        - const: fck
+>>  
+>> +  power-domains:
+>> +    maxItems: 1
+> 
+> Similar, but looks like a weaker requirement - could an older SoC define
+> power-domain?
+
+No. Will add SoC specific constraint for this as well.
+
+> 
+>> +
+>>    dmas:
+>>      items:
+>>        - description: DMA channel for GPMC NAND prefetch
+>>
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+cheers,
+-roger
