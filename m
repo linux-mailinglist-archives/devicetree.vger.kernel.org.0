@@ -2,109 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF78245D722
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:25:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F383245D723
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:26:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346850AbhKYJ2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 04:28:16 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:30411 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346547AbhKYJ0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 04:26:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1637832179;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=cz15fjBpoV7Mb0S4w4OSoYvu8nNREJnKNkzmm7UNS+8=;
-    b=aKEfnt4rXCy/AWgHeCQhbE89PfLB8/zhhOYLRoHbcuWnPCXlsyldXQQSR23avgeP2e
-    46kg0VRBlxx4p9HI1quw/oEueD4TX4ESJikB/Fo1QMWTXdBDI0Sh2e+/ftHSCuZuY6yW
-    vE463asxlnONh5g7bG2c2Se8txXm63juQadgPRXlNOT0eHMgy3uyaUnDtVyyZ99rvGwL
-    jkhCBIh7ymIkUhIZ47pa3fT0ugiZl+lLhavO8EoxbgHwRFOeg03kJ59+2cZXuqg1kibU
-    Vy7YeWVpx2HDt+RHpRnh74JUmUfOMoJ/RgNf8KsrvKJMolkULEbHvnYiAfPX/AuC5KbQ
-    dLoQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMMUrw=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
-    with ESMTPSA id e05ed8xAP9Mw6Vn
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Thu, 25 Nov 2021 10:22:58 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v8 6/8] MIPS: DTS: CI20: Add DT nodes for HDMI setup
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <CAMuHMdU8v+pu0faQ8U-=9HAwwOfOh97O8AXv3Rp_VaZ+LiyzxQ@mail.gmail.com>
-Date:   Thu, 25 Nov 2021 10:22:57 +0100
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <62DB39B7-8390-4BD8-9EA8-3CD16D9C4BA1@goldelico.com>
-References: <cover.1637691240.git.hns@goldelico.com>
- <d62023e0872e9b393db736f4a0ecf04b3fc1c91b.1637691240.git.hns@goldelico.com>
- <O0K13R.TIL3JBQ5L8TO1@crapouillou.net>
- <04F0ED7C-3D18-4CCF-8F10-E0A36B0E4F4B@goldelico.com>
- <CAMuHMdWO3yosf5eyTPpydVuT3pwvuw9Q=2BUxq+rxPjE3iSnrw@mail.gmail.com>
- <B622D2B5-D631-43F3-9D50-2B41681C78AB@goldelico.com>
- <CAMuHMdV5sjVg6BEm3zgvvsJDHJwKP1A8rh-sama8suCG5SYQyA@mail.gmail.com>
- <CFE43R.SM1CDEX6QKEB3@crapouillou.net>
- <CAMuHMdU8v+pu0faQ8U-=9HAwwOfOh97O8AXv3Rp_VaZ+LiyzxQ@mail.gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S1351173AbhKYJ35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 04:29:57 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:64468 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353293AbhKYJ15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 04:27:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1637832285; x=1669368285;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bOgiuiiPcvB4FuclcRHS2sLWtNkNt7ECdbQr0u1l51Q=;
+  b=dtmj9LHQAOihCljanjAKvcrKQMtgXsEETXNIHBDSPd8RPBMAmtaQpBgj
+   1s3/En1sGOTuz4poSTc6V9czQ07RQo8OOgn0xCCGDoLE3oSENy08pZVMl
+   uQkDUtLPNjxRdrtLqVBmPbdg1GogUmn9E3wbKOGU83Hc4BQj6tcvo7dsq
+   +cY7cwRjkDjboPgrFGF9ro5/QCiPO/ey9LhPugPeTOdnj19InBrS7gEjV
+   P8qixJnA6ODYIg+c5er0vDf7lq0n0MScDyy2fuMiT9Vs6gfdcuFoYzsBk
+   q2/CmWouGVVzWkliXTcQbUJHeNH3EWW8MaANKBeksLPFUB8RjjzANOID4
+   A==;
+IronPort-SDR: EUaciTsYnjZNFVDay0nfpQMkWIIKnkcAbe15uniw3nQBuaXxB2CuyKdtOQrIgLLcKdcgPhVlxh
+ W9sXpOs6xcjvufB96+VNn/l5IQKuXBYmCfKJPbTSokBTd3Big4u+pX4LI0BoF06CA3GXO7fy39
+ PyTasGACNyysAkUJ/swnQxo3epnB1E4AUfbg40inr3i467D/231U98Q3Zw5YYFN8MvU7Drwmnp
+ gcXmfwbEooaguMRR36FH22RBOWVLNaT8asr4gfJCK+LzzlinSJkFkTPU06udJDlifF+/rvtGcO
+ yiALr4v5jzoiSaeGz+ZoK1TW
+X-IronPort-AV: E=Sophos;i="5.87,262,1631602800"; 
+   d="scan'208";a="137702892"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2021 02:24:45 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 25 Nov 2021 02:24:45 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Thu, 25 Nov 2021 02:24:44 -0700
+Date:   Thu, 25 Nov 2021 10:26:38 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 3/6] net: lan966x: add port module support
+Message-ID: <20211125092638.7b2u75zdv2ulekmo@soft-dev3-1.localhost>
+References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
+ <20211123135517.4037557-4-horatiu.vultur@microchip.com>
+ <YZ59hpDWjNjvx5kP@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YZ59hpDWjNjvx5kP@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+The 11/24/2021 18:59, Andrew Lunn wrote:
 
-> Am 25.11.2021 um 10:13 schrieb Geert Uytterhoeven =
-<geert@linux-m68k.org>:
->=20
->>=20
->> I think you can use a pinctrl state as well, specifying the pin and =
-the
->> 'output-low' property.
->=20
-> Yes, if the pin controller supports that.  =46rom Niklaus' emails, I =
-was
-> under the impression it doesn't.
+Hi Andrew,
 
-Well, it look as as if ingenic,pinctrl.yaml does support output-low but =
-I
-wasn't aware of that. Haven't seen before...
+> 
+> > +static void lan966x_ifh_inject(u32 *ifh, size_t val, size_t pos, size_t length)
+> > +{
+> > +     int i;
+> > +
+> > +     for (i = pos; i < pos + length; ++i) {
+> > +             if (val & BIT(i - pos))
+> > +                     ifh[IFH_LEN - i / 32 - 1] |= BIT(i % 32);
+> > +             else
+> > +                     ifh[IFH_LEN - i / 32 - 1] &= ~(BIT(i % 32));
+> > +     }
+> > +}
+> > +
+> > +static void lan966x_gen_ifh(u32 *ifh, struct lan966x_frame_info *info,
+> > +                         struct lan966x *lan966x)
+> > +{
+> > +     lan966x_ifh_inject(ifh, 1, IFH_POS_BYPASS, 1);
+> > +     lan966x_ifh_inject(ifh, info->port, IFH_POS_DSTS, IFH_WID_DSTS);
+> > +     lan966x_ifh_inject(ifh, info->qos_class, IFH_POS_QOS_CLASS,
+> > +                        IFH_WID_QOS_CLASS);
+> > +     lan966x_ifh_inject(ifh, info->ipv, IFH_POS_IPV, IFH_WID_IPV);
+> > +}
+> > +
+> 
+> > +     /* Write IFH header */
+> > +     for (i = 0; i < IFH_LEN; ++i) {
+> > +             /* Wait until the fifo is ready */
+> > +             while (!(QS_INJ_STATUS_FIFO_RDY_GET(lan_rd(lan966x, QS_INJ_STATUS)) &
+> > +                      BIT(grp)))
+> > +                     ;
+> > +
+> > +             lan_wr((__force u32)cpu_to_be32(ifh[i]), lan966x,
+> > +                    QS_INJ_WR(grp));
+> 
+> There is a lot of magic going on here constructing the IFH. Is it
+> possible to define the structure using bit fields and __be32. You
+> should then be able to skip this cpu_to_be32 and the ugly cast. And
+> the actual structure should be a lot clearer.
 
-So it might be possible to add it, but IMHO this can be left for future =
-study (by
-someone with spare time to find and build a test scenario - it might =
-involve adding
-hardware to tap the DDC signals between CI20 board and monitor with an =
-oscilloscope).
+If I undestood you correctly I have tried to do the following:
 
-BR and thanks,
-Nikolaus
+struct lan966x_ifh {
+    __be32 timestamp;
+    __be32 bypass : 1;
+    __be32 port : 3;
+    ...
+};
 
+But then I start to get errors from sparse:
+
+error: invalid bitfield specifier for type restricted __be32.
+
+On thing that I can do is to use packing() instead of
+lan966x_ifh_inject() and declare ifh as __be32.
+I think this will also work and simplify a little bit the code.
+
+> 
+> > +static int lan966x_rx_frame_word(struct lan966x *lan966x, u8 grp, bool ifh,
+> > +                              u32 *rval)
+> > +{
+> > +     u32 bytes_valid;
+> > +     u32 val;
+> > +
+> > +     val = lan_rd(lan966x, QS_XTR_RD(grp));
+> > +     if (val == XTR_NOT_READY) {
+> > +             if (ifh)
+> > +                     return -EIO;
+> > +
+> > +             do {
+> > +                     val = lan_rd(lan966x, QS_XTR_RD(grp));
+> > +             } while (val == XTR_NOT_READY);
+> 
+> I would add some sort of timeout here, just in case the hardware
+> breaks. You have quite a few such loops, it would be better to make
+> use of the helpers in linux/iopoll.h.
+
+Yes, I will do that, I will also add sime timeout also for injection.
+
+> 
+
+-- 
+/Horatiu
