@@ -2,120 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 461ED45D743
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82A6B45D787
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 10:46:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346753AbhKYJiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 04:38:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34420 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1354097AbhKYJgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 04:36:14 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 04266610CF;
-        Thu, 25 Nov 2021 09:33:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637832782;
-        bh=LtCgSeMq4Nj9aV36OofJNPQSpqKGjBfqvw+CtKS+Z6w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NQW4ZkLIde1LF6/Kgj4Y10Q26D1aFtiFkWyIgWlbVVBUyQDsdkZT2krgwUnQ4XKqd
-         qR5r9uqIks2Upg5Ze9MGmeXdyanTMsQUPErkL9WsjCqUm7PIJ3IY3RQqaNz54/hrQP
-         QHDD4zXUFiDEoygsfUIYtW0vpOe+t6JeLy2Wyz3v4jj2Tnq7V3WKG+g16KsrwCEv5c
-         8Y/N/U3cco7PnPgR8W6jhiSP4yql+efFOFLttYP61kKD1bUyuy3bE5L9k7EigkDT/w
-         A+0hpw+Pop1w/NKnHrbDqGchdUorJJw76ES7D28z+g77QTEwDrfWub91q/NheLOVtb
-         F+i3gV7aCMQ8g==
-Date:   Thu, 25 Nov 2021 10:32:58 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@rempel-privat.de" <linux@rempel-privat.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-Subject: Re: [PATCH V5 0/8] dt-bindinds/dts: support i.MX8ULP
-Message-ID: <YZ9YSkdpXIK/LwKh@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux@rempel-privat.de" <linux@rempel-privat.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-References: <20211120113454.785997-1-peng.fan@oss.nxp.com>
- <DU0PR04MB9417A88AC1808CBEE76A27E188629@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <DU0PR04MB94178AB147B5DA8C32F1531388629@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        id S1349969AbhKYJtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 04:49:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354245AbhKYJrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 04:47:40 -0500
+Received: from mail-il1-x12d.google.com (mail-il1-x12d.google.com [IPv6:2607:f8b0:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15554C0613E0;
+        Thu, 25 Nov 2021 01:44:29 -0800 (PST)
+Received: by mail-il1-x12d.google.com with SMTP id a11so4995981ilj.6;
+        Thu, 25 Nov 2021 01:44:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=S9a5bV9LZZFkZgyNbN5tPhqHaUTXaCLITHSR34/CxUg=;
+        b=fS2SBr8H4T8Rng0kmmP8oOh8keqeipk4mrJ7X1y4YFTPofvszHJcTTbwlpHVx8cZgg
+         FKvkZ4RQlATTb41oOSC87PjWCZOrMZT42J1ZyrWAEPxsj68yZR/i53EfB/mJL8eYtQfA
+         x4RSqh/gBp/uvNOsxYQuWaK/Wgzo/tj+soRwEZHp6jBsOfHPLLQHWqxIZo1vf2J7ymnl
+         2oD8trZjTdI2dTSLoIvaSOmwxe5Z27hysI4i0A61TwIZ7LbvM52Ze1kXZCMsFH4cwByO
+         nMQIoq9T0px3uGlFzlKHu/nf25pv753uyQR21mR16JcVQmleMhmdPaAmB4Fx80cA8a1f
+         N9Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=S9a5bV9LZZFkZgyNbN5tPhqHaUTXaCLITHSR34/CxUg=;
+        b=u7T2MXhSzIdn/cYQsuHiXYATpXN57Rp1jdwbaMF1FHki/mJk5O+mPWnCApWgPYKcdE
+         ggkGFNAZ+5qmNwtSU3Kja6b+voQ9QAU7GpXULFQryrluaB7Xd9jCgzpjGJ4EWbZeOxNn
+         Tn7rwgf68ZQdvJ1cvJLXM4oA/p5Uy9OybvirZOHzA/IQvLJS5prBgx/aY9x7RRGLJtDX
+         qktvWdrZrb76myYCjkSAD6noDc+bFS4bFRN/Eg5thVz8CSvxs68FGIwagBVOhEUnkNyS
+         lNZLofzIwKzQMq0vDzPN9zMmpkrap2Ccy9593A5YhHs8krLk+VgBtyhGZSh+5H6dxLh5
+         buEw==
+X-Gm-Message-State: AOAM530xc1WKn8y0xurzz1e7b3ZYm4CiWPieRl7JPsh5fre6cksZuTjk
+        p1giDNYr6GNvh6rwTOuAIM9EPto2n73U4xO4j8A=
+X-Google-Smtp-Source: ABdhPJz2l6LFynD07YfugB6JEhfbDRm1UMwOoQ1vXZYonYtlXIEg+cZFaGDAdOlhbMD4KeV802Iodblv6js9rkcK4VM=
+X-Received: by 2002:a05:6e02:16c9:: with SMTP id 9mr19518396ilx.221.1637833468562;
+ Thu, 25 Nov 2021 01:44:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="Tsd6oFXSzdI9VGy6"
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB94178AB147B5DA8C32F1531388629@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20211103114830.62711-1-alistair@alistair23.me> <20211105155243.7b635651@aktux>
+In-Reply-To: <20211105155243.7b635651@aktux>
+From:   Alistair Francis <alistair23@gmail.com>
+Date:   Thu, 25 Nov 2021 19:44:02 +1000
+Message-ID: <CAKmqyKP2ZXtmGGeoVO13E0pJs+TcnC8GigFiKvrEmNjgsutU-w@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] Add support for the Cypress cyttsp5
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-input <linux-input@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mylene Josserand <mylene.josserand@free-electrons.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Nov 6, 2021 at 12:52 AM Andreas Kemnade <andreas@kemnade.info> wrote:
+>
+> Hallo Alistair,
+>
+> my Xorg (debian buster installation) does not like that:
+> [  3112.462] (**) cyttsp5: Applying InputClass "evdev touchscreen catchall"
+> [  3112.462] (**) cyttsp5: Applying InputClass "libinput touchscreen catchall"
+> [  3112.462] (II) Using input driver 'libinput' for 'cyttsp5'
+> [  3112.463] (**) cyttsp5: always reports core events
+> [  3112.463] (**) Option "Device" "/dev/input/event1"
+> [  3112.463] (**) Option "_source" "server/udev"
+> [  3112.496] (II) event1  - cyttsp5: is tagged by udev as: Touchscreen
+> [  3112.498] (EE) event1  - cyttsp5: kernel bug: device has min == max on ABS_X
+> [  3112.498] (II) event1  - cyttsp5: was rejected
+> [  3112.498] (II) event1  - not using input device '/dev/input/event1'.
+> [  3112.499] (EE) libinput: cyttsp5: Failed to create a device for /dev/input/event1
+>
+> # evtest /dev/input/event1
+> Input driver version is 1.0.1
+> Input device ID: bus 0x0 vendor 0x0 product 0x0 version 0x0
+> Input device name: "cyttsp5"
+> Supported events:
+>   Event type 0 (EV_SYN)
+>   Event type 1 (EV_KEY)
+>     Event code 330 (BTN_TOUCH)
+>   Event type 2 (EV_REL)
+>   Event type 3 (EV_ABS)
+>     Event code 0 (ABS_X)
+>       Value      0
+>       Min        0
+>       Max        0 <-- upsets xorg
+>     Event code 1 (ABS_Y)
+>       Value      0
+>       Min        0
+>       Max        0
+>     Event code 47 (ABS_MT_SLOT)
+>       Value      0
+>       Min        0
+>       Max       31
+>     Event code 48 (ABS_MT_TOUCH_MAJOR)
+>       Value      0
+>       Min        0
+>       Max      255
+>     Event code 49 (ABS_MT_TOUCH_MINOR)
+>       Value      0
+>       Min        0
+>       Max      255
+>     Event code 53 (ABS_MT_POSITION_X)
+>       Value      0
+>       Min        0
+>       Max     1447
+>     Event code 54 (ABS_MT_POSITION_Y)
+>       Value      0
+>       Min        0
+>       Max     1071
+>     Event code 57 (ABS_MT_TRACKING_ID)
+>       Value      0
+>       Min        0
+>       Max    65535
+>     Event code 58 (ABS_MT_PRESSURE)
+>       Value      0
+>       Min        0
+>       Max      255
+>
+> I specified touchscreen-size-x and touchscreen-size-y in my devicetree.
+> No idea why it is like this yet.
 
---Tsd6oFXSzdI9VGy6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thanks! I see the same problem on my side as well. I'm not using X so
+I don't see a crash and didn't notice the error.
 
+I'll work on fixing this.
 
-> Seems there is conflict after Abel's patchset in next tree, I'll rebase.
-
-True also for the I2C patch. A rebase would be great!
-
-
---Tsd6oFXSzdI9VGy6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGfWEcACgkQFA3kzBSg
-KbbaCg/+NnWT4wcaSbbzPB7BWeiyRxc347BdDa5okGckaD5+rWvtgMTNQ5/lyOWI
-VjfrLFYmCBLx2rznwcs6nX4ZITripFyIoDe65VMH7zcXLt/2A/LgOq544eCkbu5p
-d+NmSV7O1RhdxpRtJqm3ZtrXWZC6aq6Cbh4DJRSWkFumICD9L1HvhR5rwgLYQKRN
-wrWP4Uh1GVNqm1xZU31sScYqTykNL06Hih1xsJVGN4HFCLRJ1DsB9Bb2944WviN9
-3/NEonimQfP3n7+3jS+xS029y0P40pERJg2riauWtzgUtYaOw+JSFpWRkrIl6gz4
-OAQBeUP3hsePkHP426BJWxOKoNIUmEYkxgqDKYIaq9ahZjJe6E2amd+2rOzOdg+M
-p/fTKPg+zgQ1xKyT31cHqT9fbva0Z+dn0gGhFujWpzEHDTk6GNEeP+0ruwLavtVW
-kYmu5Bjho/ly7VtmZwRQ3/qqW87HdX9rtBQcNFQhCBQVxl+zyI0N03zXRMTmuXYa
-Y5ZhZqHUG5al40IGDPfYG0gp+JPkmyIRby7iUNP9I2VWQPvdiIq8MS7VWUsHZz21
-LINJOQ9/YqEAd3h1ufi2jOYBc0Jgx4EMshxxyFp0VuAsWEzW1TS72nnK30nF4Hl2
-fS+y5rpZkxjIIUTYLGF0m2ypjkvw4ffxFDDsaBkqoM87/DI/i4g=
-=8HuN
------END PGP SIGNATURE-----
-
---Tsd6oFXSzdI9VGy6--
+Alistair
