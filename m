@@ -2,91 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70FEB45DA16
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:30:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 361C445DA40
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:43:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354840AbhKYMdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 07:33:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38934 "EHLO mail.kernel.org"
+        id S1354776AbhKYMqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 07:46:54 -0500
+Received: from foss.arm.com ([217.140.110.172]:50412 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1353014AbhKYMbi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 07:31:38 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id C5B65610A7;
-        Thu, 25 Nov 2021 12:28:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637843307;
-        bh=u7wd6cZ5BU5UDz9AwuipntBqps4d7LfwvFZarA34cEs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=quk/3Oc2Gm7g0B/lK7g7JyX7XKIAAvgXetbV1/g7GP5zMM1B6yVZ1XgRSlRzSKHby
-         L/EdkgPxUL98AsU1G/57wlcEGmWEMJrQYcxNP1z5cdN6kkGY5rlosPu6R6j9QhYWZC
-         F14HqUY7h0LYt/WM/lWDIqlzcpysZiBxu6qmMXqq2W9JfGvvSe7KHdMiMUP/O+M9zJ
-         49eGI2D1iL3nSunLWZXi4fUqUL9BbdEP731Vltf79sxRNyyqnvLbeqXPvzzqtCoZUO
-         PEPLd9DHu4vx3aryYT9kbEJsQnJXvBdIiLmRQNzAwrDLAursr2tiGzYxGt+ofpj+sx
-         ktLWZ5TG47htA==
-Date:   Thu, 25 Nov 2021 12:28:21 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>, Rob Herring <robh+dt@kernel.org>,
-        linux-tegra@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 07/20] ASoC: tegra20: spdif: Set FIFO trigger level
-Message-ID: <YZ+BZRB0sUC08lCs@sirena.org.uk>
-References: <20211124220057.15763-1-digetx@gmail.com>
- <20211124220057.15763-8-digetx@gmail.com>
- <YZ97Qo500CrSmhXu@sirena.org.uk>
- <5670741a-1517-fc64-e390-b01c53947f25@gmail.com>
+        id S1352683AbhKYMoy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 07:44:54 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E9F5B1042;
+        Thu, 25 Nov 2021 04:41:42 -0800 (PST)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id C5D2E3F66F;
+        Thu, 25 Nov 2021 04:41:41 -0800 (PST)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     linux-kernel@vger.kernel.org,
+        Etienne Carriere <etienne.carriere@linaro.org>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+Date:   Thu, 25 Nov 2021 12:41:39 +0000
+Message-Id: <163784401235.134020.969364168870540116.b4-ty@arm.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211028140009.23331-1-etienne.carriere@linaro.org>
+References: <20211028140009.23331-1-etienne.carriere@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PdAaWwVcI9TPi3M0"
-Content-Disposition: inline
-In-Reply-To: <5670741a-1517-fc64-e390-b01c53947f25@gmail.com>
-X-Cookie: This bag is recyclable.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 28 Oct 2021 16:00:08 +0200, Etienne Carriere wrote:
+> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+> based on an OP-TEE service invocation. The compatible mandates a
+> channel ID defined with property "linaro,optee-channel-id".
+>
+>
 
---PdAaWwVcI9TPi3M0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to sudeep.holla/linux (for-next/scmi), thanks!
 
-On Thu, Nov 25, 2021 at 03:04:35PM +0300, Dmitry Osipenko wrote:
-> 25.11.2021 15:02, Mark Brown =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > On Thu, Nov 25, 2021 at 01:00:44AM +0300, Dmitry Osipenko wrote:
-> >> Program FIFO trigger level properly to fix x4 accelerated playback.
+[1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+      https://git.kernel.org/sudeep.holla/c/b7d2cf7c81
+[2/2] firmware: arm_scmi: Add optee transport
+      https://git.kernel.org/sudeep.holla/c/5f90f189a0
 
-> > Fixes like this should really go before any new stuff so they can be
-> > sent as fixes and backported.
+Sorry for the earlier incomplete message.
 
-> This driver never worked before this patchset, hence there is nothing to
-> backport, this is explained in the cover letter. But in general you're
-> correct.
+--
+Regards,
+Sudeep
 
-That's not going to stop the stable people backporting things, and I'd
-guess it might've worked at some point on some systems - I'm not seeing
-anything that jumps out as making the driver completely unworkable in
-your patches.
-
---PdAaWwVcI9TPi3M0
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGfgWQACgkQJNaLcl1U
-h9C1FQf7BiHdMJId6Nyk58krgd7Aqzia9D0StBtbH6BZowb/5L9+OOyeWAuRaTGV
-S5sF9XpfA67YuvZG9gKRvjUJR4dPeMfdau6zK/I0hrh4YKINnwwA7wV3EnjlPsnl
-k8q4HNiynmcqW4/P4qe7tG4q5GzlNvl+jArcaNZ2VdDft3zh+oGkb9P6i6pvYrDt
-AWjc2yClreO3lBC5VIa9H9Cu5m0E9y/pM6NJLvfexSnPPZZFxDQ6aQACrqNfbsTD
-dRVh7TZzDXy2v8vDYgrNWfVSh7TIl9SYNzeh8KlMCE/3NLUFPQvqMFl7S3cyrr5a
-mkLgh0QEBzrN+0BU2OdvQZwpIdOhvA==
-=JNh3
------END PGP SIGNATURE-----
-
---PdAaWwVcI9TPi3M0--
