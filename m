@@ -2,331 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3306B45D99F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 12:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C4F45D9B1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Nov 2021 13:03:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236186AbhKYMBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 07:01:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53062 "EHLO
+        id S235551AbhKYMG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 07:06:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238867AbhKYL65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 06:58:57 -0500
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978A4C0613F7
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 03:53:46 -0800 (PST)
-Received: by mail-lf1-x131.google.com with SMTP id r26so15673863lfn.8
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 03:53:46 -0800 (PST)
+        with ESMTP id S235600AbhKYME4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 07:04:56 -0500
+Received: from mail-vk1-xa2c.google.com (mail-vk1-xa2c.google.com [IPv6:2607:f8b0:4864:20::a2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF393C061748
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 04:00:32 -0800 (PST)
+Received: by mail-vk1-xa2c.google.com with SMTP id b192so3716835vkf.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 04:00:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6lxqjduOQsYJ4wgkh2NWvC8MrkYVQVCzgFR0CAGA8Ww=;
-        b=sUGZIk9K0mM1wk5DOXHNsUlYXDpofTH1LP1GKIheRdkDgaVf83g6av3Ac84p0o4ujT
-         rRrvUUt44GLZX3qs8T1eeLJuI0R1J70X5XJxf3PdEDmEtvRBhjmUkz1Ke5/Uv+hd5mBD
-         waYXhJ2+R+JIHyamskFUcUU/nHujaEtAzHo2fc3uIufdiI4vjvKlkvfxal7dTlzDdza2
-         E8jL16sJksSHNw+hE2nDNIFwZmScZgX5f+QOkrkI5Ib2k0BnXospPoLiJYazM0pnPpKw
-         ossadcE0kNb9JmWjoze4+bOH9MnOAR1wFiAmAWvNQ7j05u5/Y6u/HZly9PVz97NVgQa6
-         gLEg==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6Lylh8DR+450t+VKD+Wrn7i+Xuwy9BF3AUDecTVOK4g=;
+        b=erksV85QXm/bqtxQPmB7msXlbNBDCVOQLjiysuFCaDkVczzFvYyAl5dXhwb+8YbvxT
+         yYfptkjAO28P25RNMRp7yU2utcDxwTtprCmykjLrDjlwBXc+xEXFM03rSibA7KbedEpP
+         Z4tEpYadJa01M2Ewa2YfPP0S+CIEP7EDKn+vc1o3jAuGRqF6ucXS4hC9ZTURS8fm2GwZ
+         AMhr8TAKYcvFsrQUlRtTGtPVu/3nW1h5xGvbd79S22JduH8vIEZDlT0gKFOtiwU+JybA
+         JkVte1dr+fEhRJ19HCwBFy3luCv+Aa+nIQm8NWdS+NN/a1+vHezBFoJ1lkIVnEjat7Ka
+         o1RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=6lxqjduOQsYJ4wgkh2NWvC8MrkYVQVCzgFR0CAGA8Ww=;
-        b=qcnowg3Q6A3T+94y/5yL4qoy4Z3oMpILVc5PthwOEUyDkAwfiInuVDXJGo7oYNvZN5
-         QLGau6rGvHtn0lMiDUvd2EA5T+FodCp/jxsYn5nosxtZUyknOlv/WYUbUGXR1+22Bm8E
-         RC+8hq1fcT80V9NIsF2hkCWEHbyGa9IdRD8tvsNLqIW6nTAUNPuMO8QAn0m0bQV2L1LZ
-         A7Al7UxFF0O3ozB2iZj/OFApX7Ux35JPFXmbOK6B+3RY4M9betlT6884vE3hC2ZbJsh0
-         gW9bjUzVi/pwFkeVnD+2iElqv+gq8f7PO9QUG0VyzSKkAc+U4L1sINTTIIVrV6+p/91y
-         Skcw==
-X-Gm-Message-State: AOAM531804InrxGcvUVSJH3sW9OIUS7zK6p1PBFAkug5ojB8jiL6INBu
-        SpzrCHXFWLkSZwINWHNR1BPKm1vG8q2fAw==
-X-Google-Smtp-Source: ABdhPJzymMghDkNOoD4FkGfhSdZUue3ZBbWuy26eOuzMCx56yiodyEaYBxQMs6t3+CqcVM8TjEaC0Q==
-X-Received: by 2002:a05:6512:3a8d:: with SMTP id q13mr21969447lfu.73.1637841224624;
-        Thu, 25 Nov 2021 03:53:44 -0800 (PST)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id u23sm219901lji.56.2021.11.25.03.53.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Nov 2021 03:53:44 -0800 (PST)
-Subject: Re: [PATCH 3/3] dt-bindings: display: msm: Add binding for msm8998
- dpu
-To:     Rob Herring <robh@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Cc:     robdclark@gmail.com, sean@poorly.run, airlied@linux.ie,
-        daniel@ffwll.ch, abhinavk@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@somainline.org, marijn.suijten@somainline.org,
-        martin.botka@somainline.org, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, paul.bouchara@somainline.org,
-        devicetree@vger.kernel.org
-References: <20210901181138.1052653-1-angelogioacchino.delregno@somainline.org>
- <20210901181138.1052653-3-angelogioacchino.delregno@somainline.org>
- <YTexaJuQSNazh9sn@robh.at.kernel.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <d9ad36f5-1913-2cb3-d4be-125ed2d29041@linaro.org>
-Date:   Thu, 25 Nov 2021 14:53:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6Lylh8DR+450t+VKD+Wrn7i+Xuwy9BF3AUDecTVOK4g=;
+        b=gyCWWZagH27RlTGrbZ37HbwlyCXGluMiJO69s85qj2MuEGXu5mkWhriP4d3f5FE4bm
+         JeUhlBBOKtbpt3H10/yz1J+sFO0VPLOeu2ysE01+0DwZwrx0Msaj4dxm4FjMBrxduNXl
+         ng5FCp/eGguSQC3vXVWxoQ7QPVudCiMrCd0ZjW6dU1pGltNE+FjZPq4qkmFZRQA6Syr8
+         NHjHOW5CrxPJRapltFo8yWtUXFmheEWirc8Z6+NpRUqqpJZ0x/blIjXlxC3AJwLxrkGZ
+         Oe+FdIpWwmNuwHIGRny2PNUiz6IGNpMeHRKHtsTkCr8FBgCmBETB127zjZUmt7HXL+I4
+         gexQ==
+X-Gm-Message-State: AOAM532QH5xCXbsxA0I7D20UK7cg6DY9dwkxqs8i8NwOpJrnD938uduP
+        O4M33Z54zgsRlXhrTERiREtKKdo47Ysxsg==
+X-Google-Smtp-Source: ABdhPJygr6uthtUgThXM0nJKXNt/5LsubRRa0ZItKbmNtKp+p8GFTBFPOJp05+fRHPe/w8EB24DpCg==
+X-Received: by 2002:a05:6122:d08:: with SMTP id az8mr9774743vkb.15.1637841631793;
+        Thu, 25 Nov 2021 04:00:31 -0800 (PST)
+Received: from eze-laptop (host208.201-253-22.telecom.net.ar. [201.253.22.208])
+        by smtp.gmail.com with ESMTPSA id c9sm1710140uaf.12.2021.11.25.04.00.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Nov 2021 04:00:30 -0800 (PST)
+Date:   Thu, 25 Nov 2021 09:00:24 -0300
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     linux-media@vger.kernel.org, nicolas.dufresne@collabora.com,
+        mchehab@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
+        wens@csie.org, p.zabel@pengutronix.de, andrzej.p@collabora.com,
+        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH 4/7] media: hantro: move postproc enablement for old cores
+Message-ID: <YZ962CvUbKoiIGyZ@eze-laptop>
+References: <20211122184702.768341-1-jernej.skrabec@gmail.com>
+ <20211122184702.768341-5-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <YTexaJuQSNazh9sn@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211122184702.768341-5-jernej.skrabec@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2021 21:37, Rob Herring wrote:
-> On Wed, Sep 01, 2021 at 08:11:38PM +0200, AngeloGioacchino Del Regno wrote:
->> Add yaml binding for msm8998 dpu1 support.
->>
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> ---
->>   .../bindings/display/msm/dpu-msm8998.yaml     | 220 ++++++++++++++++++
->>   1 file changed, 220 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
->> new file mode 100644
->> index 000000000000..db435342ecbf
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
->> @@ -0,0 +1,220 @@
->> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/msm/dpu-msm8998.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Display DPU dt properties for MSM8998 target
->> +
->> +maintainers:
->> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->> +
->> +description: |
->> +  Device tree bindings for MSM Mobile Display Subsystem(MDSS) that encapsulates
->> +  sub-blocks like DPU display controller, DSI and DP interfaces etc. Device tree
->> +  bindings of MDSS and DPU are mentioned for MSM8998 target.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: qcom,msm8998-mdss
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  reg-names:
->> +    const: mdss
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: Display AHB clock
->> +      - description: Display AXI clock
->> +      - description: Display core clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: iface
->> +      - const: bus
->> +      - const: core
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  interrupt-controller: true
->> +
->> +  "#address-cells": true
->> +
->> +  "#size-cells": true
->> +
->> +  "#interrupt-cells":
->> +    const: 1
->> +
->> +  iommus:
->> +    items:
->> +      - description: Phandle to apps_smmu node with SID mask for Hard-Fail port0
->> +
->> +  ranges: true
->> +
->> +patternProperties:
->> +  "^display-controller@[0-9a-f]+$":
->> +    type: object
->> +    description: Node containing the properties of DPU.
->> +
->> +    properties:
->> +      compatible:
->> +        items:
->> +          - const: qcom,msm8998-dpu
->> +
->> +      reg:
->> +        items:
->> +          - description: Address offset and size for mdp register set
->> +          - description: Address offset and size for regdma register set
->> +          - description: Address offset and size for vbif register set
->> +          - description: Address offset and size for non-realtime vbif register set
->> +
->> +      reg-names:
->> +        items:
->> +          - const: mdp
->> +          - const: regdma
->> +          - const: vbif
->> +          - const: vbif_nrt
->> +
->> +      clocks:
->> +        items:
->> +          - description: Display ahb clock
->> +          - description: Display axi clock
->> +          - description: Display mem-noc clock
->> +          - description: Display core clock
->> +          - description: Display vsync clock
->> +
->> +      clock-names:
->> +        items:
->> +          - const: iface
->> +          - const: bus
->> +          - const: mnoc
->> +          - const: core
->> +          - const: vsync
->> +
->> +      interrupts:
->> +        maxItems: 1
->> +
->> +      power-domains:
->> +        maxItems: 1
->> +
->> +      operating-points-v2: true
->> +      ports:
->> +        $ref: /schemas/graph.yaml#/properties/ports
->> +        description: |
->> +          Contains the list of output ports from DPU device. These ports
->> +          connect to interfaces that are external to the DPU hardware,
->> +          such as DSI, DP etc. Each output port contains an endpoint that
->> +          describes how it is connected to an external interface.
->> +
->> +        properties:
->> +          port@0:
->> +            $ref: /schemas/graph.yaml#/properties/port
->> +            description: DPU_INTF1 (DSI1)
->> +
->> +          port@1:
->> +            $ref: /schemas/graph.yaml#/properties/port
->> +            description: DPU_INTF2 (DSI2)
->> +
->> +        required:
->> +          - port@0
->> +          - port@1
->> +
->> +    required:
->> +      - compatible
->> +      - reg
->> +      - reg-names
->> +      - clocks
->> +      - interrupts
->> +      - power-domains
->> +      - operating-points-v2
->> +      - ports
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - power-domains
->> +  - clocks
->> +  - interrupts
->> +  - interrupt-controller
->> +  - iommus
->> +  - ranges
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/qcom,mmcc-msm8998.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/power/qcom-rpmpd.h>
->> +
->> +    display-subsystem@c900000 {
->> +        compatible = "qcom,msm8998-mdss";
->> +        reg = <0x0c900000 0x1000>;
->> +        reg-names = "mdss";
->> +
->> +        clocks = <&mmcc MDSS_AHB_CLK>,
->> +                 <&mmcc MDSS_AXI_CLK>,
->> +                 <&mmcc MDSS_MDP_CLK>;
->> +        clock-names = "iface", "bus", "core";
->> +
->> +        #address-cells = <1>;
->> +        #interrupt-cells = <1>;
->> +        #size-cells = <1>;
->> +
->> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
->> +        interrupt-controller;
->> +        iommus = <&mmss_smmu 0>;
->> +
->> +        power-domains = <&mmcc MDSS_GDSC>;
->> +        ranges;
->> +        status = "disabled";
+Hi Jernej,
+
+On Mon, Nov 22, 2021 at 07:46:59PM +0100, Jernej Skrabec wrote:
+> Older G2 cores, like that in Allwinner H6, seem to have issue with
+> latching postproc register values if this is first thing done in job.
+> Moving that to the end solves the issue.
 > 
-> Drop. Why disable an example?
 
-AngeloGioacchino, could you please update and repost this patch series? 
-I'd like to get it merged.
+Any idea what exact register should be written before the post-processor
+is enabled, for H6 to work? Also, which of the PP registers need
+to be written "at the end"?
 
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> ---
+>  drivers/staging/media/hantro/hantro_drv.c | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
 > 
->> +
->> +        display-controller@c901000 {
->> +            compatible = "qcom,msm8998-dpu";
->> +            reg = <0x0c901000 0x8f000>,
->> +                  <0x0c9a8e00 0xf0>,
->> +                  <0x0c9b0000 0x2008>,
->> +                  <0x0c9b8000 0x1040>;
->> +            reg-names = "mdp", "regdma", "vbif", "vbif_nrt";
->> +
->> +            clocks = <&mmcc MDSS_AHB_CLK>,
->> +                     <&mmcc MDSS_AXI_CLK>,
->> +                     <&mmcc MNOC_AHB_CLK>,
->> +                     <&mmcc MDSS_MDP_CLK>,
->> +                     <&mmcc MDSS_VSYNC_CLK>;
->> +            clock-names = "iface", "bus", "mnoc", "core", "vsync";
->> +
->> +            interrupt-parent = <&mdss>;
->> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
->> +            operating-points-v2 = <&mdp_opp_table>;
->> +            power-domains = <&rpmpd MSM8998_VDDMX>;
->> +
->> +            ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@0 {
->> +                    reg = <0>;
->> +                    dpu_intf1_out: endpoint {
->> +                        remote-endpoint = <&dsi0_in>;
->> +                    };
->> +                };
->> +
->> +                port@1 {
->> +                    reg = <1>;
->> +                    dpu_intf2_out: endpoint {
->> +                        remote-endpoint = <&dsi1_in>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
->> +...
->> -- 
->> 2.32.0
->>
->>
+> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> index 8c3de31f51b3..530994ab3024 100644
+> --- a/drivers/staging/media/hantro/hantro_drv.c
+> +++ b/drivers/staging/media/hantro/hantro_drv.c
+> @@ -130,7 +130,7 @@ void hantro_start_prepare_run(struct hantro_ctx *ctx)
+>  	v4l2_ctrl_request_setup(src_buf->vb2_buf.req_obj.req,
+>  				&ctx->ctrl_handler);
+>  
+> -	if (!ctx->is_encoder) {
+> +	if (!ctx->is_encoder && !ctx->dev->variant->legacy_regs) {
 
+To make this less fragile, do you think it would make sense to
+have a dedicated quirk flag, something like "legacy_post_proc",
+instead of overloading the meaning of legacy_regs.
 
--- 
-With best wishes
-Dmitry
+What do you think?
+
+Thanks,
+Ezequiel
+
+>  		if (hantro_needs_postproc(ctx, ctx->vpu_dst_fmt))
+>  			hantro_postproc_enable(ctx);
+>  		else
+> @@ -142,6 +142,13 @@ void hantro_end_prepare_run(struct hantro_ctx *ctx)
+>  {
+>  	struct vb2_v4l2_buffer *src_buf;
+>  
+> +	if (ctx->dev->variant->legacy_regs && !ctx->is_encoder) {
+> +		if (hantro_needs_postproc(ctx, ctx->vpu_dst_fmt))
+> +			hantro_postproc_enable(ctx);
+> +		else
+> +			hantro_postproc_disable(ctx);
+> +	}
+> +
+>  	src_buf = hantro_get_src_buf(ctx);
+>  	v4l2_ctrl_request_complete(src_buf->vb2_buf.req_obj.req,
+>  				   &ctx->ctrl_handler);
+> -- 
+> 2.34.0
+> 
