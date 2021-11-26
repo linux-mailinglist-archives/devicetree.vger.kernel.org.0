@@ -2,197 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E19BF45EC7A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 12:22:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A08D45EC2A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 12:05:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239919AbhKZLZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 06:25:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240519AbhKZLXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 06:23:25 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E7DC08EC23;
-        Fri, 26 Nov 2021 02:36:46 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 15A131F467C2
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1637923005; bh=p544riZzn0zdZeLNWHq9SL3/SLvcyH1A0FpJe0Rsn+0=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=hjtQtps9kXNuPLBmlY2WeaWZATca4V3B6fIKceWVsKTCWNsruDy5Oysk3SGd0tIMq
-         G1/tIKNrUy1kjGdscl7zaxgTsHv/1JCQkkZn2/oBFnSpaiIVHpJQE0Xog/vbubM6mi
-         +b2548o880QSYR+qBBGicZT0dAoFxfKe6VoXASBgCQPJG2MMVWEfTnda53DDkrAB6s
-         h3IMCa41Asvauoym98hreN7JIr2go+Ip7BFaWIDHyC9yN78J9W7sejMNRZ4hF7V9OF
-         H4/e1y+6pHJ8vKAS8zESl1TLlyn1UTlCxoupKazp/sfTtk8Zl3oEjKG4b0pMWfETNI
-         DijXYTGWQ/bCg==
-Subject: Re: [PATCH 3/3] arm64: dts: mediatek: Add USB xHCI controller for
- mt8195
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211102060049.1843-1-chunfeng.yun@mediatek.com>
- <20211102060049.1843-3-chunfeng.yun@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Message-ID: <9db3cb96-ac67-151d-5674-b56c5abbe348@collabora.com>
-Date:   Fri, 26 Nov 2021 11:36:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S231375AbhKZLIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 06:08:44 -0500
+Received: from mx.socionext.com ([202.248.49.38]:29987 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230336AbhKZLGo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 06:06:44 -0500
+Received: from unknown (HELO iyokan2-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 26 Nov 2021 20:03:30 +0900
+Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
+        by iyokan2-ex.css.socionext.com (Postfix) with ESMTP id 78AD8206E701;
+        Fri, 26 Nov 2021 20:03:30 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 26 Nov 2021 20:03:30 +0900
+Received: from yuzu2.css.socionext.com (yuzu2 [172.31.9.57])
+        by kinkan2.css.socionext.com (Postfix) with ESMTP id 37D02B62E0;
+        Fri, 26 Nov 2021 20:03:30 +0900 (JST)
+Received: from [10.212.1.68] (unknown [10.212.1.68])
+        by yuzu2.css.socionext.com (Postfix) with ESMTP id 121EF10D20;
+        Fri, 26 Nov 2021 20:03:30 +0900 (JST)
+Message-ID: <5729f6e6-983a-f8b2-c5f3-ff07d8f43650@socionext.com>
+Date:   Fri, 26 Nov 2021 20:03:29 +0900
 MIME-Version: 1.0
-In-Reply-To: <20211102060049.1843-3-chunfeng.yun@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.2.1
+Subject: Re: [PATCH v3 2/2] dt-bindings: pinctrl: add bindings for Milbeaut
+ pin controller
 Content-Language: en-US
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        orito.takao@socionext.com,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+References: <1637834276-10466-1-git-send-email-sugaya.taichi@socionext.com>
+ <1637834276-10466-3-git-send-email-sugaya.taichi@socionext.com>
+ <CACRpkdbgMMKJwS0cUi3D2swHYbbBH6ofSeOhyXy6qiMFrU5a8Q@mail.gmail.com>
+From:   Sugaya Taichi <sugaya.taichi@socionext.com>
+In-Reply-To: <CACRpkdbgMMKJwS0cUi3D2swHYbbBH6ofSeOhyXy6qiMFrU5a8Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 02/11/21 07:00, Chunfeng Yun ha scritto:
-> Add all four USB xHCI controllers for MT8195
+
+
+On 2021/11/26 10:14, Linus Walleij wrote:
+> On Thu, Nov 25, 2021 at 10:58 AM Sugaya Taichi
+> <sugaya.taichi@socionext.com> wrote:
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 79 ++++++++++++++++++++++++
->   1 file changed, 79 insertions(+)
+>> Add Device Tree bindings documentation for pin controller of
+>> the Milbeaut SoCs.
+>>
+>> Signed-off-by: Sugaya Taichi <sugaya.taichi@socionext.com>
 > 
-
-Hello!
-Thanks for the patch! However, there is something to improve...
-
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> index a59c0e9d1fc2..263eebfd2ea1 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-> @@ -8,6 +8,7 @@
->   #include <dt-bindings/clock/mt8195-clk.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
->   #include <dt-bindings/power/mt8195-power.h>
->   
->   / {
-> @@ -823,6 +824,26 @@
->   			status = "disabled";
->   		};
->   
-> +		xhci0: usb@11200000 {
-> +			compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +			reg = <0 0x11200000 0 0x1000>, <0 0x11203e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>;
-
-Here, and on the other xhci nodes (from what I know, xhci{0,1,3}), you should use
-interrupts-extended and declare the wakeup interrupt on pio.
-
-			interrupts-extended = <&gic GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH 0>,
-
-					      <&pio 219 IRQ_TYPE_LEVEL_LOW>;
-
-			interrupt-names = "host", "wakeup";
-
-
-> +			phys = <&u2port0 PHY_TYPE_USB2>, <&u3port0 PHY_TYPE_USB3>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP>,
-> +					  <&topckgen CLK_TOP_SSUSB_XHCI>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			clocks = <&infracfg_ao CLK_INFRA_AO_SSUSB>,
-> +				 <&infracfg_ao CLK_INFRA_AO_SSUSB_XHCI>,
-> +				 <&topckgen CLK_TOP_SSUSB_REF>,
-> +				 <&apmixedsys CLK_APMIXED_USB1PLL>;
-> +			clock-names = "sys_ck", "xhci_ck", "ref_ck", "mcu_ck";
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 103>;
-> +			wakeup-source;
-> +			status = "disabled";
-> +		};
-> +
->   		mmc0: mmc@11230000 {
->   			compatible = "mediatek,mt8195-mmc", "mediatek,mt8192-mmc";
->   			reg = <0 0x11230000 0 0x10000>,
-> @@ -843,6 +864,64 @@
->   			status = "disabled";
->   		};
->   
-> +		xhci1: usb@11290000 {
-> +			compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +			reg = <0 0x11290000 0 0x1000>, <0 0x11293e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH 0>;
-
-			interrupts-extended = <&gic GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH 0>,
-
-					      <&pio 218 IRQ_TYPE_LEVEL_LOW>;
-
-> +			phys = <&u2port1 PHY_TYPE_USB2>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_1P>,
-> +					  <&topckgen CLK_TOP_SSUSB_XHCI_1P>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_1P_BUS>,
-> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_1P_XHCI>,
-> +				 <&topckgen CLK_TOP_SSUSB_P1_REF>,
-> +				 <&apmixedsys CLK_APMIXED_USB1PLL>;
-> +			clock-names = "sys_ck", "xhci_ck", "ref_ck", "mcu_ck";
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 104>;
-> +			wakeup-source;
-> +			status = "disabled";
-> +		};
-> +
-> +		xhci2: usb@112a0000 {
-> +			compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +			reg = <0 0x112a0000 0 0x1000>, <0 0x112a3e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 533 IRQ_TYPE_LEVEL_HIGH 0>;
-> +			phys = <&u2port2 PHY_TYPE_USB2>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_2P>,
-> +					  <&topckgen CLK_TOP_SSUSB_XHCI_2P>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_2P_BUS>,
-> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_2P_XHCI>,
-> +				 <&topckgen CLK_TOP_SSUSB_P2_REF>;
-> +			clock-names = "sys_ck", "xhci_ck", "ref_ck";
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 105>;
-> +			status = "disabled";
-> +		};
-> +
-> +		xhci3: usb@112b0000 {
-> +			compatible = "mediatek,mt8195-xhci", "mediatek,mtk-xhci";
-> +			reg = <0 0x112b0000 0 0x1000>, <0 0x112b3e00 0 0x0100>;
-> +			reg-names = "mac", "ippc";
-> +			interrupts = <GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>;
-
-			interrupts-extended = <&gic GIC_SPI 536 IRQ_TYPE_LEVEL_HIGH 0>,
-
-					      <&pio 221 IRQ_TYPE_LEVEL_LOW>;
-
-			interrupts-names = "host", "wakeup";
-
-> +			phys = <&u2port3 PHY_TYPE_USB2>;
-> +			assigned-clocks = <&topckgen CLK_TOP_USB_TOP_3P>,
-> +					  <&topckgen CLK_TOP_SSUSB_XHCI_3P>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_UNIVPLL_D5_D4>,
-> +						 <&topckgen CLK_TOP_UNIVPLL_D5_D4>;
-> +			clocks = <&pericfg_ao CLK_PERI_AO_SSUSB_3P_BUS>,
-> +				 <&pericfg_ao CLK_PERI_AO_SSUSB_3P_XHCI>,
-> +				 <&topckgen CLK_TOP_SSUSB_P3_REF>;
-> +			clock-names = "sys_ck", "xhci_ck", "ref_ck";
-> +			mediatek,syscon-wakeup = <&pericfg 0x400 106>;
-> +			wakeup-source;
-> +			usb2-lpm-disable;
-> +			status = "disabled";
-> +		};
-> +
->   		nor_flash: nor@1132c000 {
->   			compatible = "mediatek,mt8195-nor", "mediatek,mt8173-nor";
->   			reg = <0 0x1132c000 0 0x1000>;
+> What is weird about this binding is what is not there:
+> this is just GPIO, where are the pin mux and config
+> nodes? The driver surely tries to use them.
+> 
+> Please use the existing standard bindings for functions
+> and groups etc, check the other bindings.
+> 
+> Yours,
+> Linus Walleij
 > 
 
-Regards,
-- Angelo
+Thank you for comments.
+
+I realized this is just GPIO by your comment.
+OK I check them more.
+
+Thanks,
+Taichi Sugaya
+
+>> ---
+>>   .../pinctrl/socionext,milbeaut-pinctrl.yaml        | 51 ++++++++++++++++++++++
+>>   1 file changed, 51 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml
+>> new file mode 100644
+>> index 0000000..78bc2d4
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml
+>> @@ -0,0 +1,51 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/socionext,milbeaut-pinctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Milbeaut SoCs pin controller
+>> +
+>> +maintainers:
+>> +  - Taichi Sugaya <sugaya.taichi@socionext.com>
+>> +
+>> +description: |
+>> +  Bindings for memory-mapped pin controller of the Milbeaut SoCs.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "pinctrl"
+>> +
+>> +  compatible:
+>> +    enum:
+>> +      - socionext,milbeaut-m10v-pinctrl
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  reg-names:
+>> +    const: "pinctrl"
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  "#gpio-cells":
+>> +    const: 2
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - gpio-controller
+>> +  - "#gpio-cells"
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    pinctrl: pinctrl@1d022000 {
+>> +        compatible = "socionext,milbeaut-m10v-pinctrl";
+>> +        reg = <0x1d022000 0x1000>;
+>> +        reg-names = "pinctrl";
+>> +        gpio-controller;
+>> +        #gpio-cells = <2>;
+>> +    };
+>> --
+>> 2.7.4
+>>
