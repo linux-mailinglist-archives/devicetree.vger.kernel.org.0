@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1372845E9F0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8889C45EA13
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353385AbhKZJJ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 04:09:26 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:53208 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353708AbhKZJHZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:07:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637917453; x=1669453453;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=UIHMpNXddcd67qrfo49O4jdt/yShSMnZhW80ZeQOW54=;
-  b=2SRNoek9REOkYjzjr3BGQ/dW5txAzmxWoQzqQsuCNzexcATEyNHQR0pp
-   +1jaw9ocqZk8Lkdb7B0A9M9mBPHwahAN+wzs2NrKlGNpe2EclOA2/P5us
-   MFeLMu5VaWUBxna1ry32YYd780wTQBbqMpX4QgTxUl7G8QFyBQAd3bwSb
-   aYQgmzE8O9MpwC9P9c20CecKhEz0bzbneh9k7zqlQGlNnoMc3cJGZofKx
-   yukXHUfzF703qbtR0Cwybd+uoM4LGnMMGedGbfVVsiGnrUUSpCG8Ipfwi
-   6ThbDL+TA/A3FbT+buYB8JTRHAHY6OlZtMq+UUUxPrwJRJQL6Geu/5V0n
-   A==;
-IronPort-SDR: b5bNLm994v4U3Ri71JCUmrhtMsDXJ/K/gTmwzLI01R1ZAjVraTywacqqJfrKFjTc4uVm9jX6M3
- w0E+s+S5jwIXRooTrxwYoGD6oqqwTDEZqa+OAUzvdnHKOP/NlUH3xACZB3JmQFMpklItSudCaQ
- +gByivvQd1T/yZAJdFfEdwq4PCyA+nut9XYbW1FnX6zXG2su7b8NdXPbqgsu6KoQRvjYFAkJ2E
- HGE/TSJNdszGm+Y3LktSXTmGjIknLdx6cilxAbhM6r2BF3sLxEgN6/VnXqp+k5pQRePCX72XrM
- V1HhDxJteBSYEIr35itRusI9
-X-IronPort-AV: E=Sophos;i="5.87,265,1631602800"; 
-   d="scan'208";a="77659900"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Nov 2021 02:04:12 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 26 Nov 2021 02:04:11 -0700
-Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 26 Nov 2021 02:04:09 -0700
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <andrew@lunn.ch>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Subject: [PATCH net-next v4 6/6] net: lan966x: Update MAINTAINERS to include lan966x driver
-Date:   Fri, 26 Nov 2021 10:05:40 +0100
-Message-ID: <20211126090540.3550913-7-horatiu.vultur@microchip.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211126090540.3550913-1-horatiu.vultur@microchip.com>
-References: <20211126090540.3550913-1-horatiu.vultur@microchip.com>
+        id S238548AbhKZJRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 04:17:46 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:56911 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359869AbhKZJPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:15:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1637917953; x=1669453953;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=PS2FXnoKIrtw2yYqfrIdjlvWzIezv/Lw3Ha7Y6u0dfk=;
+  b=YvRwGgLEdvMOUQVFd5ONmuLhYp5Mi7vQbGL0EWPLbqYUdkcX2Sr3KWn7
+   sWTw+jUBh/+gpcbZhy6bfxe3GjEfOG3khOWuqy+KASsEU8gkf7pjMsh3q
+   kKwavERdfVyipp0MVQwYZWhFy+BsmX6aRr5wZNbrbzmzcBMDrCksj0UAE
+   A=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 26 Nov 2021 01:12:32 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 01:12:31 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 26 Nov 2021 01:12:31 -0800
+Received: from c-skakit-linux.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Fri, 26 Nov 2021 01:12:28 -0800
+From:   Satya Priya <quic_c_skakit@quicinc.com>
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        "Bjorn Andersson" <bjorn.andersson@linaro.org>
+CC:     Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, <quic_tsoni@quicinc.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Subject: [RESEND PATCH V3 0/4] Add PM8350C PMIC PWM support for backlight
+Date:   Fri, 26 Nov 2021 14:41:56 +0530
+Message-ID: <1637917920-22041-1-git-send-email-quic_c_skakit@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update MAINTAINERS to include lan966x driver
+Hi,
 
-Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+I'm resending this version after correcting SOB.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 10c8ae3a8c73..722a00d8df9e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12513,6 +12513,13 @@ L:	netdev@vger.kernel.org
- S:	Maintained
- F:	drivers/net/ethernet/microchip/lan743x_*
- 
-+MICROCHIP LAN966X ETHERNET DRIVER
-+M:	Horatiu Vultur <horatiu.vultur@microchip.com>
-+M:	UNGLinuxDriver@microchip.com
-+L:	netdev@vger.kernel.org
-+S:	Maintained
-+F:	drivers/net/ethernet/microchip/lan966x/*
-+
- MICROCHIP LCDFB DRIVER
- M:	Nicolas Ferre <nicolas.ferre@microchip.com>
- L:	linux-fbdev@vger.kernel.org
+This series depends on [1], which adds driver for Qualcomm LPG.
+
+[1] https://patchwork.kernel.org/project/linux-arm-msm/list/?series=560587&state=%2A&archive=both
+
+Satya Priya (1):
+  arm64: dts: qcom: Enable pm8350c pwm for sc7280-idp2
+  dt-bindings: leds: Add pm8350c pmic support
+  leds: Add pm8350c support to Qualcomm LPG driver
+  arm64: dts: qcom: pm8350c: Add pwm support
+
+ Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml |  1 +
+ arch/arm64/boot/dts/qcom/pm8350c.dtsi                     |  7 +++++++
+ arch/arm64/boot/dts/qcom/sc7280-idp2.dts                  |  4 ++++
+ drivers/leds/rgb/leds-qcom-lpg.c                          | 13 +++++++++++++
+ 4 files changed, 25 insertions(+)
+
 -- 
-2.33.0
+2.7.4
 
