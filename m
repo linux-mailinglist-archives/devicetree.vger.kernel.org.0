@@ -2,129 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 462DA45F2B0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 18:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C14A45F2DC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 18:27:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235118AbhKZRPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 12:15:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
+        id S231520AbhKZRam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 12:30:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231993AbhKZRNy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 12:13:54 -0500
-Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7534C0613F2
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 08:47:10 -0800 (PST)
-Received: by mail-io1-xd33.google.com with SMTP id x10so12130214ioj.9
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 08:47:10 -0800 (PST)
+        with ESMTP id S231339AbhKZR2l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 12:28:41 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7421C061D6A;
+        Fri, 26 Nov 2021 08:58:23 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id w1so41514336edc.6;
+        Fri, 26 Nov 2021 08:58:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=F8mAaNfSp1B2qpckgrUmaGov90eY6709B/lnYmhCEIU=;
-        b=azGt6t+pjBx6IuRsPFGdWXRBi44e5LMfX/Ecs8RX6xmLU9O3+ADeQ6tzEgzYZH5/yz
-         2Ll0ITVnw3/HOLBjDXGU6NQ/zx8+iVMNIMf2o/5vuKAjOPI9Sw5ExkJh9IvU17hdPHNA
-         2q/CsMI0pJwvXw9+qnI2IYolvdkO3LClJJubFbaB597WQ3TNGHLD55SchR9LwaTcv0lh
-         x/53UgeImL9iDKpHcrEF1ziM80Jnpxc3IQq+UejL8gGBtCLAkU90aStlRVOjsz6F4d9d
-         iKb65m89LohTXhvyzOJ1Q3dBOLFYAfdM6sFNUasoZ4kwasdMZU2H65mdz4FVJZEpXYPQ
-         0rfQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/cj12yNx+8MhDFy03xDOyf1KZM8MF6fnUqCuiicwspE=;
+        b=FiYTkTldngnj2AjjXPfuese/k1KOh0xkon21keGZ2+iQlc6m/MPpNcHq4fD3AuxCXS
+         9YIX0CvigSmnvYWKzYmWmFekWlPUpYWWoUczWKucPb1efzx42aYvFUpz6dlozkKJPlOt
+         JYR3kv2fNkMpVsOklKCOgml+TiDIxevfofGUzsu8dOkxf/DW/1PmxcsGdbnRz6VwrvPP
+         tKEXbnynEqHxIp/dDwvQf1Pkoglx/kPSzrn/EK5FWD3y/Tb3WHreIg124EiDkQAlb+YP
+         ai9iwsCj/SNtcVfbWolFbvp3vvNQClvkrDqIPJPyrjkpI0mx8KAB+MGZWhU3o5Z/IuMm
+         tQqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=F8mAaNfSp1B2qpckgrUmaGov90eY6709B/lnYmhCEIU=;
-        b=zM2IfY0hMdxccTeIu3fBda39LGXnPyyZ6g9E2UHiXf4ntEH0wm4qNIwR368WZxqEA2
-         HGwaeGEEnAJQQYxeXSnq2a+zITOCR6xuId/5mIovmUMIciGj+GFH9DDui+2YSkybMbum
-         6Jv2MgBlcATL0UIunnCctRWrWtfjvu9t/hZM6K2mJ7PDwXsog2iefmBx73BlselJAXIO
-         DKUq+/HCq/2bTR9C6rZlg+6GIU6ulRjXekMZT6L56IfZnT5avem1N5M9t2xoASdO1U3Q
-         KFHNjiGZQZjV4B5JHB7sagyOBNiHQK1/Qh7Ja5xI1Ai3my8N1h2VV+QynO+ziOn1cAOJ
-         nTUg==
-X-Gm-Message-State: AOAM531cEsI5N1q2xbMT3IltYXzH0Uv1Yn+RtD4MShmgNxM0xAEzhfWd
-        knu1E/xE2UMmciDTIKgtnYorww6K4jboP+n3zWg=
-X-Google-Smtp-Source: ABdhPJxXvC89HePYJxskmQO+mi/2Nl2F0GDwaQ2b2u6pnRJDhSAxBRw9MY5GUFkCje4m3czLp4H5FkL6kV+bMfO4NuM=
-X-Received: by 2002:a05:6638:dd5:: with SMTP id m21mr41965955jaj.44.1637945230295;
- Fri, 26 Nov 2021 08:47:10 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/cj12yNx+8MhDFy03xDOyf1KZM8MF6fnUqCuiicwspE=;
+        b=N5kmritKc/i5hpJCQag3bkobbkP32N/OkIdwWxWkKV2XcL/lftBbE+gNqgjr0nfyJe
+         M6xFK6CjV/UhcB2Om36/dgVpDfIt8tU2IPteEuCp1y6l/zlv7PEhmlVzyfu6eJxqaUrB
+         iDwu3fPyouHfOWjfJ7BzKRecP6qj85VtxC5iYRdRS/LsK5G+qJxNHaKpGjesHsr+1oVs
+         YRjGgPsRNiZBQzByrwY1Rgqrp+Z6AgQ2FiePc7/35pFJ4lzg3w+02P4NTAPIZm0YWMk6
+         7pSky2ruQaqlY0J8faR3669SgMQFg5KIlB6zHiZOABYFwSRJjAOMRnXv986rs5Ismlpj
+         nH8Q==
+X-Gm-Message-State: AOAM5305J9XCuwqgZHOIovN0aNQ0165MH8QFe/2uzfruuDDUjVptK7uv
+        SWIfYATHW7MKwpa9ipiTubaBQefRqzjJi28u/9c=
+X-Google-Smtp-Source: ABdhPJw2HiWX3hnwC3PefguvXtotwxycD8rkwoWSKOFfmIWSx0TtwRCADA82IHWFv2/GurbsAEEeFKgSAdXrll7+FYE=
+X-Received: by 2002:a17:907:60d0:: with SMTP id hv16mr39403459ejc.425.1637945902315;
+ Fri, 26 Nov 2021 08:58:22 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a05:6602:2f03:0:0:0:0 with HTTP; Fri, 26 Nov 2021 08:47:09
- -0800 (PST)
-Reply-To: msbelinaya892@gmail.com
-From:   msbelinaya <raymondmicheal919@gmail.com>
-Date:   Fri, 26 Nov 2021 16:47:09 +0000
-Message-ID: <CAM6ZuAND80WMJpRm1zRpG0tTsTnxT7xaXxyxkwoHsK5UYajOgA@mail.gmail.com>
-Subject: 
-To:     undisclosed-recipients:;
+References: <20211125110738.41028-1-nbd@nbd.name> <20211125110738.41028-13-nbd@nbd.name>
+ <CAMRc=MfEO-kvOq2aELO6LMSTTHykG8DxdJOf_zUdJSaz8tB8wA@mail.gmail.com>
+In-Reply-To: <CAMRc=MfEO-kvOq2aELO6LMSTTHykG8DxdJOf_zUdJSaz8tB8wA@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 26 Nov 2021 18:57:47 +0200
+Message-ID: <CAHp75VcofiOE4LKqTjnXco26Yd5a4VWYkQE3gNU8Z3zr70woVA@mail.gmail.com>
+Subject: Re: [PATCH v4 12/12] gpio: Add support for Airoha EN7523 GPIO controller
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Felix Fietkau <nbd@nbd.name>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        John Crispin <john@phrozen.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ich biete meine Freundschaft an und glaube, dass Sie mich mit einem
-guten Herzen annehmen werden. Ich wurde gedr=C3=A4ngt, Sie zu kontaktieren
-und zu sehen, wie wir uns am besten unterst=C3=BCtzen k=C3=B6nnen. Ich bin =
-Frau
-Kodjovi Hegbor aus der T=C3=BCrkei und arbeite als Operations Division
-Manager bei der StandardBNP bank limited Turkey. Ich glaube, es ist
-Gottes Wille, dass ich Sie jetzt treffen werde. Ich habe ein wichtiges
-gesch=C3=A4ftliches Gespr=C3=A4ch, das ich mit Ihnen teilen m=C3=B6chte, vo=
-n dem ich
-glaube, dass es Sie interessiert, da es mit Ihrem Nachnamen
-zusammenh=C3=A4ngt und Sie davon profitieren wird.
+On Fri, Nov 26, 2021 at 6:40 PM Bartosz Golaszewski <brgl@bgdev.pl> wrote:
+> On Thu, Nov 25, 2021 at 12:24 PM Felix Fietkau <nbd@nbd.name> wrote:
+> >
+> > From: John Crispin <john@phrozen.org>
+> >
+> > Airoha's GPIO controller on their ARM EN7523 SoCs consists of two banks of 32
+> > GPIOs. Each instance in DT is for an single bank.
 
- Im Jahr 2006 er=C3=B6ffnete ein B=C3=BCrger Ihres Landes bei meiner Bank e=
-in
-36-monatiges Nicht-Residentenkonto im Wert von =C2=A3 8.400.000,00. Das
-Ablaufdatum f=C3=BCr diese Hinterlegungsvereinbarung war der 16. Januar
-2009. Leider starb er am 12. Mai 2008 in Sichuan, China, bei einem
-t=C3=B6dlichen Erdbeben, bei dem auf einer Gesch=C3=A4ftsreise mindestens 6=
-8.000
-Menschen ums Leben kamen.
+a single
 
-Die Gesch=C3=A4ftsleitung meiner Bank hat noch nichts von seinem Tod
-geh=C3=B6rt, ich wusste davon, weil er mein Freund war und ich sein
-Kontoverwalter war, als das Konto vor meiner Bef=C3=B6rderung er=C3=B6ffnet
-wurde. Aber Herr
-bei der Kontoer=C3=B6ffnung keine n=C3=A4chsten Verwandten/Erben erw=C3=A4h=
-nt hat und
-er nicht verheiratet war oder keine Kinder hatte. Letzte Woche bat
-mich meine Bankdirektion, Anweisungen zu geben, was mit seinem Geld zu
-tun sei, wenn der Vertrag verl=C3=A4ngert werden sollte.
+...
 
-Ich wei=C3=9F, dass dies passieren wird, und deshalb habe ich nach einem
-Mittel gesucht, um mit der Situation umzugehen, denn wenn meine
-Bankdirektoren wissen, dass sie tot sind und keinen Erben haben,
-nehmen sie das Geld f=C3=BCr ihren pers=C3=B6nlichen Gebrauch, also tue ich=
- es
-nicht Ich m=C3=B6chte nicht, dass so etwas passiert. Da habe ich deinen
-Nachnamen gesehen, habe mich gefreut und suche nun deine Mitarbeit, um
-dich als n=C3=A4chsten Verwandten/Erben des Kontos zu pr=C3=A4sentieren, da=
- du
-den gleichen Nachnamen wie er hast und meine Bankzentrale das Konto
-freigeben wird f=C3=BCr dich. Es besteht kein Risiko; die Transaktion
-erfolgt im Rahmen einer legitimen Vereinbarung, die Sie vor
-Rechtsverletzungen sch=C3=BCtzt.
+> > +       err = bgpio_init(&ctrl->gc, dev, 4, ctrl->data, NULL,
+> > +                        NULL, NULL, NULL, 0);
+> > +       if (err) {
+> > +               dev_err(dev, "unable to init generic GPIO");
+> > +               return err;
+> > +       }
 
-Es ist besser f=C3=BCr uns, das Geld zu beanspruchen, als es den
-Bankdirektoren zu =C3=BCberlassen, sie sind bereits reich. Ich bin kein
-gieriger Mensch, also schlage ich vor, dass wir das Geld gleichm=C3=A4=C3=
-=9Fig
-aufteilen, 50/50% auf beide Parteien. Mein Anteil wird mir helfen,
-mein eigenes Unternehmen zu gr=C3=BCnden und den Erl=C3=B6s f=C3=BCr wohlt=
-=C3=A4tige
-Zwecke zu verwenden, was mein Traum war.
+Since it will be a new version you may have a chance to replace this with
 
-Bitte teilen Sie mir Ihre Meinung zu meinem Vorschlag mit, ich brauche
-wirklich Ihre Hilfe bei dieser Transaktion. Ich habe dich auserw=C3=A4hlt,
-mir zu helfen, nicht durch mein eigenes Tun, meine Liebe, sondern bei
-Gott, ich wollte, dass du wei=C3=9Ft, dass ich mir die Zeit genommen habe,
-f=C3=BCr diese Nachricht zu beten, bevor ich dich jemals kontaktiert habe,
-um deine Meinung mitzuteilen und bitte zu behandeln diese
-Informationen als STRENG GEHEIM. Nach Erhalt Ihrer Antwort
-ausschlie=C3=9Flich =C3=BCber meine pers=C3=B6nliche E-Mail-Adresse
-msbelinaya892@gmail.com
-gibt Ihnen Details zur Transaktion. Und eine Kopie der
-Einlagenbescheinigung des Fonds und der Gr=C3=BCndungsurkunde der
-Gesellschaft, die den Fonds gegr=C3=BCndet hat.
-Gott segne in Erwartung Ihrer dringenden Antwort
-Mit freundlichen Gr=C3=BC=C3=9Fen
-Frau Kodjovi Hegbor
-msbelinaya892@gmail.com
+  return dev_err_probe(dev, err, ...);
+
+-- 
+With Best Regards,
+Andy Shevchenko
