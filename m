@@ -2,108 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D1A45E434
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:54:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9485045E453
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 03:21:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357504AbhKZB5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 20:57:45 -0500
-Received: from mail.loongson.cn ([114.242.206.163]:35570 "EHLO loongson.cn"
+        id S1357474AbhKZCYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 21:24:24 -0500
+Received: from mx24.baidu.com ([111.206.215.185]:52426 "EHLO baidu.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1357502AbhKZBzn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 20:55:43 -0500
-Received: from localhost.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dx_9PSPaBh1ooBAA--.6419S4;
-        Fri, 26 Nov 2021 09:52:19 +0800 (CST)
-From:   Qing Zhang <zhangqing@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 3/3] dt-bindings: mips: Add Loongson-2K1000 reset support
-Date:   Fri, 26 Nov 2021 09:52:16 +0800
-Message-Id: <20211126015216.26605-3-zhangqing@loongson.cn>
-X-Mailer: git-send-email 2.31.0
-In-Reply-To: <20211126015216.26605-1-zhangqing@loongson.cn>
-References: <20211126015216.26605-1-zhangqing@loongson.cn>
+        id S1357545AbhKZCWY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 21:22:24 -0500
+Received: from BC-Mail-Ex05.internal.baidu.com (unknown [172.31.51.45])
+        by Forcepoint Email with ESMTPS id 10D62BAB587FCEAC3DD2;
+        Fri, 26 Nov 2021 10:19:08 +0800 (CST)
+Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
+ BC-Mail-Ex05.internal.baidu.com (172.31.51.45) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Fri, 26 Nov 2021 10:19:07 +0800
+Received: from LAPTOP-UKSR4ENP.internal.baidu.com (172.31.63.8) by
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2308.20; Fri, 26 Nov 2021 10:19:07 +0800
+From:   Cai Huoqing <caihuoqing@baidu.com>
+To:     <caihuoqing@baidu.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-staging@lists.linux.dev>
+Subject: [PATCH v3 0/3] staging: zynpu: Add driver support for ARM(China) ZHOUYI AI accelerator
+Date:   Fri, 26 Nov 2021 10:18:58 +0800
+Message-ID: <20211126021904.32325-1-caihuoqing@baidu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf9Dx_9PSPaBh1ooBAA--.6419S4
-X-Coremail-Antispam: 1UD129KBjvJXoWxJF15Xw13Zr1rtF1kCr1xXwb_yoW8XF4rpF
-        nxC3W7Kr4F9F13uws3KFy8Aw1rZr9aya4xXF47tr1Dtwn8Ga1Yvw1ak3Z8ZF17GF18XFWU
-        XFZ7urWUKa42kw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUB2b7Iv0xC_Zr1lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI
-        8067AKxVWUXwA2048vs2IY020Ec7CjxVAFwI0_Gr0_Xr1l8cAvFVAK0II2c7xJM28CjxkF
-        64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcV
-        CY1x0267AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2
-        jsIEc7CjxVAFwI0_Cr1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64
-        kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm
-        72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc2xSY4AK67AK6w4l42xK82IYc2
-        Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s02
-        6x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r126r1DMIIYrxkI7VAKI48JMIIF0x
-        vE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE
-        42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6x
-        kF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUIg18DUUUU
-X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
+Content-Type: text/plain
+X-Originating-IP: [172.31.63.8]
+X-ClientProxiedBy: BC-Mail-Ex10.internal.baidu.com (172.31.51.50) To
+ BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT binding to a YAML schema to enable the DT validation.
+ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
+such as Allwinner R329 SOC.
+Add driver support for this AI accelerator here.
 
-Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
----
-v8-v9:
-only modify 'make DT_CHECKER_FLAGS=-m dt_binding_check' warnings/errors
----
- .../bindings/mips/loongson/ls2k-reset.yaml    | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
+v1->v2:
+        *Add TODO file.
+        *Update changelog to explain why this code is added to staging.
+v2->v3:
+        *Fix unit_address_format in dt-binding, avoid leading 0s.
+        *Fix typo in changelog, 'tandard'->'standard'.
 
-diff --git a/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml b/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
-new file mode 100644
-index 0000000000000..20b5836efd90a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mips/loongson/ls2k-reset.yaml
-@@ -0,0 +1,38 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/mips/loongson/ls2k-reset.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Loongson 2K1000 PM Controller
-+
-+maintainers:
-+  - Qing Zhang <zhangqing@loongson.cn>
-+
-+description: |
-+  This controller can be found in Loongson-2K1000 Soc systems.
-+
-+properties:
-+  compatible:
-+    const: loongson,ls2k-pm
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+        pm: reset-controller@1fe07000 {
-+            compatible = "loongson,ls2k-pm";
-+            reg = <0 0x1fe07000 0 0x422>;
-+        };
-+    };
-+...
+Cai Huoqing (3):
+  staging: zynpu: Add driver support for ARM(China) ZHOUYI AI
+    accelerator
+  dt-bindings: staging: Add the binding documentation for ZHOUYI AI
+    accelerator
+  MAINTAINERS: Add the driver info of the ZHOUYI AI accelerator
+
+ .../bindings/staging/arm,zynpu.yaml           |  61 ++
+ MAINTAINERS                                   |   6 +
+ drivers/staging/Kconfig                       |   2 +
+ drivers/staging/Makefile                      |   1 +
+ drivers/staging/zynpu/Kconfig                 |  34 +
+ drivers/staging/zynpu/Makefile                |   7 +
+ drivers/staging/zynpu/TODO                    |  13 +
+ drivers/staging/zynpu/z1.c                    | 233 +++++
+ drivers/staging/zynpu/z2.c                    | 297 +++++++
+ drivers/staging/zynpu/zhouyi.h                |  70 ++
+ drivers/staging/zynpu/zhouyi_base.c           |  71 ++
+ drivers/staging/zynpu/zynpu.h                 | 252 ++++++
+ drivers/staging/zynpu/zynpu_core.c            | 254 ++++++
+ drivers/staging/zynpu/zynpu_drv.c             | 349 ++++++++
+ drivers/staging/zynpu/zynpu_fops.c            | 245 ++++++
+ drivers/staging/zynpu/zynpu_io.c              | 133 +++
+ drivers/staging/zynpu/zynpu_io.h              | 119 +++
+ drivers/staging/zynpu/zynpu_irq.c             | 123 +++
+ drivers/staging/zynpu/zynpu_irq.h             |  85 ++
+ drivers/staging/zynpu/zynpu_job_manager.c     | 467 ++++++++++
+ drivers/staging/zynpu/zynpu_job_manager.h     | 200 +++++
+ drivers/staging/zynpu/zynpu_mm.c              | 704 +++++++++++++++
+ drivers/staging/zynpu/zynpu_mm.h              | 142 +++
+ drivers/staging/zynpu/zynpu_session.c         | 817 ++++++++++++++++++
+ drivers/staging/zynpu/zynpu_session.h         | 283 ++++++
+ drivers/staging/zynpu/zynpu_sysfs.c           | 205 +++++
+ 26 files changed, 5173 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/staging/arm,zynpu.yaml
+ create mode 100644 drivers/staging/zynpu/Kconfig
+ create mode 100644 drivers/staging/zynpu/Makefile
+ create mode 100644 drivers/staging/zynpu/TODO
+ create mode 100644 drivers/staging/zynpu/z1.c
+ create mode 100644 drivers/staging/zynpu/z2.c
+ create mode 100644 drivers/staging/zynpu/zhouyi.h
+ create mode 100644 drivers/staging/zynpu/zhouyi_base.c
+ create mode 100644 drivers/staging/zynpu/zynpu.h
+ create mode 100644 drivers/staging/zynpu/zynpu_core.c
+ create mode 100644 drivers/staging/zynpu/zynpu_drv.c
+ create mode 100644 drivers/staging/zynpu/zynpu_fops.c
+ create mode 100644 drivers/staging/zynpu/zynpu_io.c
+ create mode 100644 drivers/staging/zynpu/zynpu_io.h
+ create mode 100644 drivers/staging/zynpu/zynpu_irq.c
+ create mode 100644 drivers/staging/zynpu/zynpu_irq.h
+ create mode 100644 drivers/staging/zynpu/zynpu_job_manager.c
+ create mode 100644 drivers/staging/zynpu/zynpu_job_manager.h
+ create mode 100644 drivers/staging/zynpu/zynpu_mm.c
+ create mode 100644 drivers/staging/zynpu/zynpu_mm.h
+ create mode 100644 drivers/staging/zynpu/zynpu_session.c
+ create mode 100644 drivers/staging/zynpu/zynpu_session.h
+ create mode 100644 drivers/staging/zynpu/zynpu_sysfs.c
+
 -- 
-2.31.0
+2.25.1
 
