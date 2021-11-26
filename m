@@ -2,105 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6915E45E907
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 09:10:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48E6845E915
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 09:17:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352934AbhKZIN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 03:13:58 -0500
-Received: from mx1.tq-group.com ([93.104.207.81]:7422 "EHLO mx1.tq-group.com"
+        id S243206AbhKZIVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 03:21:02 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:49520 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245061AbhKZIL6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Nov 2021 03:11:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637914126; x=1669450126;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=97gLkgXeYlaK2OpAV4Xz1qY15WHBrv3NecRUnypRXiU=;
-  b=qbly4NKxgim64ft0Qsb5ObO9IfG6GjgyiY1LXKHnFPj2gjj7XJjFjRxl
-   w57JXC1lEs0q+CrvDoPL2ikWjyipsW3Fb+6UMMkxVWMVZfgOMakZzv3dc
-   mWSYUOdKG2g02UNEY4ADRyeyFLdqV4NwXHx1b0ELi89YjbxbAt8UGjAOm
-   1HCihDIbXho1wF8QpSFhka0dt+KycoRn23d7KiRO4lQDzwGqjqz7uZGZU
-   8t6tUs+1kiUlrJc0BwULLpru8qHG/FhJcIIyrttnS3iYSM1EswewQueAR
-   EtYXKFubwvXqDhd/HB5w7VYDu/q/XqI1rq0oaPCRL2nusndb2RwSBeT7O
-   w==;
-X-IronPort-AV: E=Sophos;i="5.87,265,1631570400"; 
-   d="scan'208";a="20691896"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 26 Nov 2021 09:08:44 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Fri, 26 Nov 2021 09:08:44 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Fri, 26 Nov 2021 09:08:44 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1637914124; x=1669450124;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=97gLkgXeYlaK2OpAV4Xz1qY15WHBrv3NecRUnypRXiU=;
-  b=hOCIVkOYfcSpKiJ2pSjKBYCUSLAJlJaoVZ68fdywdeEvwAVx814u0P+4
-   aw6IDHEyopPHBh3P11TEN6lPaZzc0pC+ycauImVJDQOMXHt6ah+g+kXMD
-   BXBmfft+P1eqiV1zuD448FyWoHJCBWFGYjCamH1h3p6pjwB4fOKES3gef
-   YXwWryfuiTcKDEbW91MjoSdFqMqkST+WBnz3O0vGsZBSRW11t7yrlfPc5
-   Bvo9VAK0AjKnfG/sDO2KJ9TU34dHzeXOYLqQo3yo9lN5YVqS+irKChT+b
-   NjT5ZXbZo2ppzjEwXqablexlhf/Q2A/lw/9FRRz9UQEDvZfrkCVuXwOWW
-   w==;
-X-IronPort-AV: E=Sophos;i="5.87,265,1631570400"; 
-   d="scan'208";a="20691895"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 26 Nov 2021 09:08:44 +0100
-Received: from steina-w (unknown [10.123.49.12])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B572D280065;
-        Fri, 26 Nov 2021 09:08:44 +0100 (CET)
-Message-ID: <2a81452f15ab9a4bf3a56b6d4f24efa8a8e0891c.camel@ew.tq-group.com>
-Subject: Re: [RFC PATCH 1/2] phy: fsl-imx8mq-usb: Add support for setting
- fsl specific flags
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
+        id S1359404AbhKZITC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 03:19:02 -0500
+Received: from ip5f5b2004.dynamic.kabel-deutschland.de ([95.91.32.4] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1mqWOX-0008Mz-Bs; Fri, 26 Nov 2021 09:15:45 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Johan Jonker <jbx6244@gmail.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Date:   Fri, 26 Nov 2021 09:08:42 +0100
-In-Reply-To: <20211125104104.1416523-2-alexander.stein@ew.tq-group.com>
-References: <20211125104104.1416523-1-alexander.stein@ew.tq-group.com>
-         <20211125104104.1416523-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5-0ubuntu1 
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 08/12] arm64: dts: rockchip: rk356x: Add VOP2 nodes
+Date:   Fri, 26 Nov 2021 09:15:44 +0100
+Message-ID: <2143457.uCsENmBeE3@diego>
+In-Reply-To: <20211126074021.GH28260@pengutronix.de>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de> <8451aeb1-03c9-6c90-c95e-c4a76e2159b8@gmail.com> <20211126074021.GH28260@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 25.11.2021 um 11:41 +0100 schrieb Alexander Stein:
-> The i.MX8MP glue layer has support for the following flags:
-> * over-current polarity
-> * PWR pad polarity
-> * controlling PPC flag in HCCPARAMS register
-> * parmanent port attach for usb2 & usb3 port
+Am Freitag, 26. November 2021, 08:40:21 CET schrieb Sascha Hauer:
+> On Thu, Nov 25, 2021 at 09:25:28PM +0100, Johan Jonker wrote:
+> > Hi Sascha,
+> > 
+> > 
+> > On 11/17/21 3:33 PM, Sascha Hauer wrote:
+> > > The VOP2 is the display output controller on the RK3568. Add the node
+> > > for it to the dtsi file along with the required display-subsystem node
+> > > and the iommu node.
+> > > 
+> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > ---
+> > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 52 ++++++++++++++++++++++++
+> > >  1 file changed, 52 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > index 46d9552f60284..6ebf7c14e096a 100644
+> > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > > @@ -447,6 +447,58 @@ gmac1_mtl_tx_setup: tx-queues-config {
+> > >  		};
+> > >  	};
+> > >  
+> > 
+> > > +	display_subsystem: display-subsystem {
+> > > +		compatible = "rockchip,display-subsystem";
+> > > +		ports = <&vop_out>;
+> > > +	};
+> > 
+> > Some DT sort rules:
+> > 
+> > For nodes:
+> > Sort things without reg alphabetical first,
+> > then sort the rest by reg address.
+> > 
+> > > +
+> > > +	vop: vop@fe040000 {
+> > 
+> > > +		compatible = "rockchip,rk3568-vop";
+> > 
+> > From rockchip-vop2.yaml:
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > 
+> > +      - rockchip,rk3568-vop
+> > +      - rockchip,rk3566-vop
+> > 
+> > Maybe sort yaml compatibles in alphabetical order.
+> > 
+> > rockchip,rk3566-vop is not used in the dtsi I think.
+> > 
+> > Comment by Andy Yan:
+> > > 
+> > > But take care that the vop on rk3566 has a special limitation: there are 
+> > > three
+> > > 
+> > > windows(Cluster1/Esmart1/Smart1) that have a mirror lock, that means they
+> > > 
+> > > can't be programed framebuffer address independently , they can only
+> > > 
+> > > share framebuffer address with Cluster0/Esmart0/Smart0.
+> > 
+> > Question:
+> > Given Andy's comment could someone explain weather the vop and hdmi
+> > nodes should be in rk3566.dtsi and rk3568.dtsi with an extra
+> > rockchip,rk3566-dw-hdmi compatible?
 > 
-> Allow setting these flags by supporting specific flags in the glue
-> node.
-> In order to get this to work an additional IORESOURCE_MEM is
-> necessary
-> actually pointing to the glue layer. For backward compatibility this
-> is
-> purely optional.
-> 
-> Signed-off-by: Alexander Stein <
-> alexander.stein@ew.tq-group.com
-> >
-> ---
->  drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 60
-> ++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
+> We could put the vop/hdmi nodes into rk356x.dtsi and just add the
+> compatible properties to rk3566.dtsi and rk3568.dtsi.
 
-Please ignore the build error in this patch for now. Will be fixed in
-next iteration. The discussion about the approach is still possible.
+sounds about right. We have similar solutions in place in other socs.
 
-Best regards,
-Alexander
+Heiko
+
 
 
