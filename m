@@ -2,85 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84CB145EB36
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 11:21:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CEC45EB39
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 11:22:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353277AbhKZKYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 05:24:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37494 "EHLO
+        id S235782AbhKZKZV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 Nov 2021 05:25:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376537AbhKZKWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 05:22:18 -0500
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21394C06174A
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 02:09:05 -0800 (PST)
-Received: by mail-pf1-x429.google.com with SMTP id o4so8435874pfp.13
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 02:09:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4W2I5kuwpM2lqQ0SftJKxJYAD53bRmdrJ6iZIfgDzkg=;
-        b=IPkErYmmP/MP79xguXU0HZSMDDIrG2wd7US1TxW/lxQfYNasxnfDdJc1Fqr8E9aXxS
-         vszY6dfUJQzI0hMkvNQpjC4t/XTiL7rEQ1JWt8ontYmbu+VFFU0dqE2uCBFL0zRXjsU2
-         rG5AsTcwffVpz2uKA55Ef79HwxOOeQnMuQC0jyaY2tbHSZ2w9NN0133sDpmaDdv2+kXC
-         OGjnyPpGKdF6gl6JZVoaijU5R6+Dt+laQixKm9HgeAwTd6mQ2XXp2GpTSGXaC9CI9dtE
-         9GEFFGI9Y6P498ovhEiNrHBGxLZ8P+pXgGG9wWOsDtlPdUBnTQovSuLGpW1SUzq3KHDj
-         lV5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4W2I5kuwpM2lqQ0SftJKxJYAD53bRmdrJ6iZIfgDzkg=;
-        b=KSButAWqHGY/nZkpsPXlcH+MhjjFc3Qcdd1NGG3pbaQDOB+Ztag1gADz8MQ+hogivs
-         y5AflDdCypKaT3zdUa3ipFTFm923/OQlp9/sl9GhNMvsksqBwW+Op8X4hQqHTHENmjQW
-         sH0Xy8Rc4yVQAfhGoBulgab8vxFmgfJLxQD1w1DXZEqrYS2+42YZjqLMG0mxjKM9Utk5
-         FpeBEyWU1EY/22Ga7U5AqSHoLFPc7U4fheJZv5C39bOaFJgKBP88nQ/RX1wlLyDix3Ha
-         5qhC0LgVZWsDD9HRs3m5WUmXM3f0ywiEFJtmys/Fp1vbR7XCwlS/OnotUtabb4A2b6cW
-         lWlw==
-X-Gm-Message-State: AOAM5325uiBqSR+VznQPdeZCaVD+51XCvyh7QXHTm/w1utfMh1mrYSgs
-        uOZi+kbaoIbOuu5ReRdP01vLs5UD7bawRg==
-X-Google-Smtp-Source: ABdhPJxVejTdV/NyrWHwGiaTysIUv3zOhCVavwvpUaitec33azBmmuhOyA8uIgkTF6FDl0OeFLILPw==
-X-Received: by 2002:a05:6a00:2349:b0:49f:db1d:c378 with SMTP id j9-20020a056a00234900b0049fdb1dc378mr19747281pfj.53.1637921344428;
-        Fri, 26 Nov 2021 02:09:04 -0800 (PST)
-Received: from google.com ([2401:fa00:1:10:5eda:d984:1426:91ca])
-        by smtp.gmail.com with ESMTPSA id lj15sm5238017pjb.12.2021.11.26.02.09.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Nov 2021 02:09:04 -0800 (PST)
-Date:   Fri, 26 Nov 2021 18:08:59 +0800
-From:   Tzung-Bi Shih <tzungbi@google.com>
-To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        devicetree@vger.kernel.org,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
-        Liam Girdwood <lgirdwood@gmail.com>, cujomalainey@google.com,
-        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        sound-open-firmware@alsa-project.org
-Subject: Re: [PATCH v6 2/3] firmware: mediatek: add adsp ipc protocol
- interface
-Message-ID: <YaCyO9kKWJ8oog/h@google.com>
-References: <20211126093021.25462-1-allen-kh.cheng@mediatek.com>
- <20211126093021.25462-3-allen-kh.cheng@mediatek.com>
+        with ESMTP id S235835AbhKZKXU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 05:23:20 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C318C06175E
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 02:11:10 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mqYBz-000796-FL; Fri, 26 Nov 2021 11:10:55 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1mqYBw-0005NW-IR; Fri, 26 Nov 2021 11:10:52 +0100
+Message-ID: <727777874f925c0d862887589a868859a95d3649.camel@pengutronix.de>
+Subject: Re: [v12 2/2] pwm: Add Aspeed ast2600 PWM support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>, lee.jones@linaro.org,
+        robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Cc:     BMC-SW@aspeedtech.com
+Date:   Fri, 26 Nov 2021 11:10:52 +0100
+In-Reply-To: <20210906024339.21124-3-billy_tsai@aspeedtech.com>
+References: <20210906024339.21124-1-billy_tsai@aspeedtech.com>
+         <20210906024339.21124-3-billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211126093021.25462-3-allen-kh.cheng@mediatek.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 26, 2021 at 05:30:20PM +0800, allen-kh.cheng wrote:
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+Hi Billy,
 
-Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+On Mon, 2021-09-06 at 10:43 +0800, Billy Tsai wrote:
+[...]
+> +static int aspeed_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +	struct aspeed_pwm_data *priv;
+> +	struct device_node *np;
+> +	struct platform_device *parent_dev;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	np = pdev->dev.parent->of_node;
+> +	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
+> +		return dev_err_probe(dev, -ENODEV,
+> +				     "Unsupported pwm device binding\n");
+> +
+> +	priv->regmap = syscon_node_to_regmap(np);
+> +	if (IS_ERR(priv->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
+> +				     "Couldn't get regmap\n");
+> +
+> +	parent_dev = of_find_device_by_node(np);
+> +	priv->clk = devm_clk_get(&parent_dev->dev, 0);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk),
+> +				     "Couldn't get clock\n");
+> +
+> +	priv->reset = devm_reset_control_get_shared(&parent_dev->dev, NULL);
+> +	if (IS_ERR(priv->reset)) {
+> +		return dev_err_probe(dev, PTR_ERR(priv->reset),
+> +				     "Couldn't get reset control\n");
+> +	}
 
-I have provided the tag in v5.  If your have no major updates for the newer patches, you should carry the tags in the commit message.
+I'd remove these curly braces for consistency with the code above.
+
+regards
+Philipp
