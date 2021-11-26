@@ -2,87 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E64B45F183
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 17:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3F245F1F4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 17:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345470AbhKZQSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 11:18:11 -0500
-Received: from mswedge1.sunplus.com ([60.248.182.113]:52112 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1378396AbhKZQQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 11:16:11 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(15732:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Sat, 27 Nov 2021 00:12:50 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Sat, 27 Nov 2021 00:12:47 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Sat, 27 Nov
- 2021 00:12:47 +0800
-From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?utf-8?B?VmluY2VudCBTaGloIOaWvemMlem0uw==?= 
-        <vincent.shih@sunplus.com>
-Subject: RE: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Topic: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Thread-Index: AQHX1ttDZ0jKVsi7r0auZS2tEQF+d6wADq2AgAXn1uCADjVYcP//wFkAgAFNSvCAADlOgIAAnUMA
-Date:   Fri, 26 Nov 2021 16:12:46 +0000
-Message-ID: <38e40bc4c0de409ca959bcb847c1fc96@sphcmbx02.sunplus.com.tw>
-References: <cover.1636620754.git.wells.lu@sunplus.com>
- <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
- <YY7/v1msiaqJF3Uy@lunn.ch>
- <7cccf9f79363416ca8115a7ed9b1b7fd@sphcmbx02.sunplus.com.tw>
- <YZ+pzFRCB0faDikb@lunn.ch>
- <6c1ce569d2dd46eba8d4b0be84d6159b@sphcmbx02.sunplus.com.tw>
- <YaDxc2+HKUYxsmX4@lunn.ch>
-In-Reply-To: <YaDxc2+HKUYxsmX4@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S239694AbhKZQhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 11:37:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1378577AbhKZQfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 11:35:52 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB5FBC0613F4;
+        Fri, 26 Nov 2021 08:19:39 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id m27so25435317lfj.12;
+        Fri, 26 Nov 2021 08:19:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EGYE2SKnVy6XUO3gt4QOJrl2h2mMOuvQupKJEmx7wLw=;
+        b=OYSb5CZ4d1koa2NEof02FCy0m/8Pzku84dP7KlxAAaL1z9g0oj2oIe1VfZiNN1hjTF
+         OqluiqoStReFLEqyvoExriqN4FH3ufQdWygygGL7iWOeiiRz8hoymkowjD0dd9Wjoz3I
+         E/uiTDUNCR0o81UOvHeUJpVBQ1BuHmhpA8+ey+6cYP+iVDHago8k20TqSI7q9cV7obnT
+         Lipxb9hreF6XSJz3g5CPqoMM4WVlDn3BDdyYtOQ6j0nRa2ne6oXNI+6ThC4KsLcjY3jC
+         HXxTIySKUmSSnk3TEtABsKSPVHFJakJXmxVOatvKGb0Mk6StCf8vE9Yv/CZxDtY/g80K
+         Q/zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=EGYE2SKnVy6XUO3gt4QOJrl2h2mMOuvQupKJEmx7wLw=;
+        b=dXvb27gcqBRQCm0Dj/u0FGRACXwxASYUawJFGIbdLmEZ2W3riTZvdn+j7vLXvwS2yb
+         yqCQzZoOoRTjSEiOsJSb+6V2BD5kLqy16MqG4ux2Wn+m5FB2I0wgV7e15r7JX5nOTuho
+         Qmw79B9g6wtvI1+hzzYhdScId7LOGZZKiB4jSHoiF4p3f29Mpil9VprQHbkJUalXT6nD
+         5sBo+SuYMBroQclIBimgd1aq4Bt1NckkELHpYG+vhpUszkzhPuvC1YR/CnUnjNl6xsUQ
+         JnjGO4u0KHv0OoC7IF0FpZuK5DLsZI3DkgkyXAV0HjPD+Nuk90TxtQTx3YOqJoL95P43
+         ExtA==
+X-Gm-Message-State: AOAM5332cdayOCEwgqO4KVz2dgNAz8QCz1iA8S/Tcqe0wSZ0VCTs7Sd+
+        rz0IbJo/hDjfvMqTHurhHQGHfUJi4sM=
+X-Google-Smtp-Source: ABdhPJz7sHkXXKiLMg6G6JYpkIDopsTF9YR51ddFr0iMm6PJXFjDhx6d8/yGFAbyVwklgAtFwtUs0A==
+X-Received: by 2002:a05:6512:c0c:: with SMTP id z12mr12452241lfu.591.1637943578165;
+        Fri, 26 Nov 2021 08:19:38 -0800 (PST)
+Received: from localhost.localdomain (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
+        by smtp.gmail.com with ESMTPSA id t7sm613381lfl.260.2021.11.26.08.19.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Nov 2021 08:19:37 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Agneli <poczt@protonmail.ch>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 00/20] Support HDMI audio on NVIDIA Tegra20
+Date:   Fri, 26 Nov 2021 19:17:47 +0300
+Message-Id: <20211126161807.15776-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQoNCkZyb20gZGF0YSBwcm92aWRlZCBieSBBU0lDIGVuZ2luZWVyLCBNQUMg
-b2YgU1A3MDIxIG9ubHkNCnJlYWRzIHRoZSA0IHJlZ2lzdGVycyBvZiBQSFk6DQowOiBDb250cm9s
-IHJlZ2lzdGVyDQoxOiBTdGF0dXMgcmVnaXN0ZXINCjQ6IEF1dG8tbmVnb3RpYXRpb24gYWR2ZXJ0
-aXNlbWVudCByZWdpc3Rlcg0KNTogQXV0by1uZWdvdGlhdGlvbiBsaW5rIHBhcnRuZXIgYWJpbGl0
-eSByZWdpc3Rlcg0KDQpJdCBkb2VzIG5vdCByZWFkIGFueSBvdGhlciByZWdpc3RlcnMgb2YgUEhZ
-Lg0KDQoNCkJlc3QgcmVnYXJkcywNCldlbGxzIEx1DQoNCg0KPiA+IEhpIEFuZHJldywNCj4gPg0K
-PiA+IEkgc2V0IHBoeS1pZCByZWdpc3RlcnMgdG8gMzAgYW5kIDMxIGFuZCBmb3VuZCB0aGUgcmVh
-ZC1iYWNrIHZhbHVlcyBvZg0KPiA+IG1kaW8gcmVhZCBjb21tYW5kcyBmcm9tIENQVSBhcmUgYWxs
-IDB4MDAwMC4NCj4gPg0KPiA+IEkgY29uc3VsdGVkIHdpdGggYW4gQVNJQyBlbmdpbmVlci4gU2hl
-IGNvbmZpcm1lZCB0aGF0IGlmIHBoeS1pZCBvZiBhDQo+ID4gbWRpbyBjb21tYW5kIGZyb20gQ1BV
-IGRvZXMgbm90IG1hdGNoIGFueSBwaHktaWQgcmVnaXN0ZXJzLCB0aGUgbWRpbw0KPiA+IGNvbW1h
-bmQgd2lsbCBub3QgYmUgc2VudCBvdXQuDQo+ID4NCj4gPiBTaGUgZXhwbGFpbmVkIGlmIHBoeS1p
-ZCBvZiBhIG1kaW8gY29tbWFuZCBkb2VzIG5vdCBtYXRjaCBhbnkgcGh5LWlkDQo+ID4gcmVnaXN0
-ZXJzIChyZXByZXNlbnQgYWRkcmVzc2VzIG9mIGV4dGVybmFsIFBIWXMpLCB3aHkgTUFDIG5lZWRz
-IHRvDQo+ID4gc2VuZCBhIGNvbW1hbmQgdG8gbm9uLWV4aXN0aW5nIFBIWT8NCj4gDQo+IFJlYWRz
-IG9yIHdyaXRlcyBvbiBhIHJlYWwgUEhZIHdoaWNoIExpbnV4IGlzIGRyaXZpbmcgY2FuIGhhdmUg
-c2lkZSBlZmZlY3RzLiBUaGVyZSBpcyBhDQo+IGxpbmsgc3RhdHVlIHJlZ2lzdGVyIHdoaWNoIGxh
-dGNoZXMuIFJlYWQgaXQgb25jZSwgeW91IGdldCB0aGUgbGFzdCBzdGF0dXMsIHJlYWQgaXQgYWdh
-aW4sDQo+IHlvdSBnZXQgdGhlIGN1cnJlbnQgc3RhdHVzLiBJZiB0aGUgTUFDIGhhcmR3YXJlIGlz
-IHJlYWRpbmcgdGhpcyByZWdpc3RlciBhcyB3ZWxsIGEgTGludXgsDQo+IGJhZCB0aGluZ3Mgd2ls
-bCBoYXBwZW4uIEEgcmVhZCBvbiB0aGUgaW50ZXJydXB0IHN0YXR1cyByZWdpc3RlciBvZnRlbiBj
-bGVhcnMgdGhlIGludGVycnVwdHMuDQo+IFNvIExpbnV4IHdpbGwgbm90IHNlZSB0aGUgaW50ZXJy
-dXB0cy4NCj4gDQo+IFNvIHlvdSBuZWVkIHRvIG1ha2Ugc3VyZSB5b3UgaGFyZHdhcmUgaXMgbm90
-IHRvdWNoaW5nIGEgUEhZIHdoaWNoIExpbnV4IHVzZXMuIFdoaWNoIGlzDQo+IHdoeSBpIHN1Z2dl
-c3RlZCB1c2luZyBNRElPIGJ1cyBhZGRyZXNzIDMxLCB3aGljaCBnZW5lcmFsbHkgZG9lcyBub3Qg
-aGF2ZSBhIFBIWSBhdCB0aGF0DQo+IGFkZHJlc3MuDQo+IA0KPiAJICBBbmRyZXcNCg==
+This series revives Tegra20 S/PDIF driver which was upstreamed long time
+ago, but never was used. It also turns Tegra DRM HDMI driver into HDMI
+audio CODEC provider. Finally, HDMI audio is enabled in device-trees.
+For now the audio is enable only for Acer A500 tablet and Toshiba AC100
+netbook because they're already supported by upstream, later on ASUS TF101
+tablet will join them.
+
+I based S/PDIF patches on Arnd's Bergmann patch from a separate series [1]
+that removes obsolete slave_id. This eases merging of the patches by
+removing the merge conflict.
+
+[1] https://patchwork.ozlabs.org/project/linux-tegra/list/?submitter=80402
+
+Changelog:
+
+v1: - Corrected I2S yaml problem that was reported by the DT bot for v1
+      by removing the non-existent required clock-names property.
+
+    - Removed assigned-clocks property from S/PDIF yaml since this property
+      is now inherited from the clocks property.
+
+    - Reordered the "tegra20: spdif: Set FIFO trigger level" patch, making
+      it the first sound/soc patch in the series, like it was suggested by
+      Mark Brown in the comment to v1. Also reworded commit message of this
+      patch to *not* make it looks like it should be backported to stable
+      kernels.
+
+Arnd Bergmann (1):
+  ASoC: tegra20-spdif: stop setting slave_id
+
+Dmitry Osipenko (19):
+  ASoC: dt-bindings: Add binding for Tegra20 S/PDIF
+  ASoC: dt-bindings: tegra20-i2s: Convert to schema
+  ASoC: dt-bindings: tegra20-i2s: Document new nvidia,fixed-parent-rate
+    property
+  dt-bindings: host1x: Document optional HDMI sound-dai-cells
+  ASoC: tegra20: spdif: Set FIFO trigger level
+  ASoC: tegra20: spdif: Support device-tree
+  ASoC: tegra20: spdif: Improve driver's code
+  ASoC: tegra20: spdif: Use more resource-managed helpers
+  ASoC: tegra20: spdif: Reset hardware
+  ASoC: tegra20: spdif: Support system suspend
+  ASoC: tegra20: spdif: Filter out unsupported rates
+  ASoC: tegra20: i2s: Filter out unsupported rates
+  drm/tegra: hdmi: Unwind tegra_hdmi_init() errors
+  drm/tegra: hdmi: Register audio CODEC on Tegra20
+  ARM: tegra_defconfig: Enable S/PDIF driver
+  ARM: tegra: Add S/PDIF node to Tegra20 device-tree
+  ARM: tegra: Add HDMI audio graph to Tegra20 device-tree
+  ARM: tegra: acer-a500: Enable S/PDIF and HDMI audio
+  ARM: tegra: paz00: Enable S/PDIF and HDMI audio
+
+ .../display/tegra/nvidia,tegra20-host1x.txt   |   1 +
+ .../bindings/sound/nvidia,tegra20-i2s.txt     |  30 ---
+ .../bindings/sound/nvidia,tegra20-i2s.yaml    |  77 +++++++
+ .../bindings/sound/nvidia,tegra20-spdif.yaml  |  85 ++++++++
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |   8 +
+ arch/arm/boot/dts/tegra20-paz00.dts           |   8 +
+ arch/arm/boot/dts/tegra20.dtsi                |  40 +++-
+ arch/arm/configs/tegra_defconfig              |   1 +
+ drivers/gpu/drm/tegra/Kconfig                 |   3 +
+ drivers/gpu/drm/tegra/hdmi.c                  | 168 +++++++++++++--
+ sound/soc/tegra/tegra20_i2s.c                 |  49 +++++
+ sound/soc/tegra/tegra20_spdif.c               | 195 +++++++++++++-----
+ sound/soc/tegra/tegra20_spdif.h               |   1 +
+ sound/soc/tegra/tegra_pcm.c                   |   6 +
+ sound/soc/tegra/tegra_pcm.h                   |   1 +
+ 15 files changed, 571 insertions(+), 102 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-spdif.yaml
+
+-- 
+2.33.1
+
