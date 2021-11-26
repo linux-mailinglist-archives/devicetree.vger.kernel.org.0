@@ -2,140 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC5245EEF9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 14:18:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE7AB45EE8A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 14:05:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243994AbhKZNVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 08:21:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47468 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235464AbhKZNTb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 08:19:31 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EDEFC08E897;
-        Fri, 26 Nov 2021 04:35:23 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id c32so24005277lfv.4;
-        Fri, 26 Nov 2021 04:35:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=jqeuCZHzeT66ujUYaqAxXooaJuks6pu0YjEfTL9/Z7c=;
-        b=BTcgSMd6YVmVcYLI28V7t1qPSaE77PJuacsBKncVV2l+O+OqB2BxcVjK6eLHQxxVJb
-         YSgltEogTQfdqN84xc7P68wde1lzAjWxEuDLXDq5a5LQbL/nSy/XQFrHr15ImIbBzNnh
-         B+ggVsywLJfepddvhblS9KXXKWzx+igsO7W1JrNTpL0Jg1PY/lW/JS+a+puPn89XSBfu
-         e2aDD3TjMHcDwqw6D8ES6nEqZ/lb4HrnZFAptSEfSOrTP4p0KJs4jSBnQ4C5FJ0KHoR7
-         ov9/N96ySXVseIRAtg+XfCGPpp2JreItc7qxjVbxQCmfw0wLeAhWwmX7NQjCgbrfDot8
-         qn5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=jqeuCZHzeT66ujUYaqAxXooaJuks6pu0YjEfTL9/Z7c=;
-        b=n3xrorW0x5i1iQy2GxL3GkbnqOiJpWW1G1tMKkWmxQDQ2Mj1Y3s5aGgBeJqjBLQDHR
-         jSog9Gfy2nynmHNiNyy1WFZRtw5X3iE11jbAtfqH/EzqHkgtr2ATHpy8r4SdvwCDFGSn
-         Uopf+TNZPpkB1hfz3veh3QYhUs7Hx+QPGNG+BuvVb3+HA2BhklUAL6kmfHVpsGk6ffNn
-         K/6BokEf8irUmcLTxP+QgOeipEFr4Egrunpxu3K+DqYHbCk8qYA04MK0A04f3gBKYp+c
-         DxVMAV84VZh1tBroQ12eVYwqbFckR2T1Gj26VW0kZahkJOpK8aixZD06aCjI7vSlFusn
-         nYkg==
-X-Gm-Message-State: AOAM532ib8JuEKQiCVr2h/kRnpQftkFfc5eKV5FVKQWDT1I3JfbBxfn3
-        amHlKXne/5ltUfQJRle5P1E=
-X-Google-Smtp-Source: ABdhPJwO6IDiKlprHADj4orVmMF5Vnpj3QD/0XIGqV0vnGOhn3o4aDHxhVIQX5G6/NALqpAv6VkPqA==
-X-Received: by 2002:a05:6512:2618:: with SMTP id bt24mr28715100lfb.46.1637930121494;
-        Fri, 26 Nov 2021 04:35:21 -0800 (PST)
-Received: from ?IPV6:2001:14ba:16ee:fa00::4? (dc73szyyyyyyyyyyyyycy-3.rev.dnainternet.fi. [2001:14ba:16ee:fa00::4])
-        by smtp.gmail.com with ESMTPSA id n7sm495101lfu.116.2021.11.26.04.35.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Nov 2021 04:35:20 -0800 (PST)
-Message-ID: <28df4678-345b-78e0-06f0-1fdcbaff455d@gmail.com>
-Date:   Fri, 26 Nov 2021 14:35:18 +0200
+        id S231538AbhKZNIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 08:08:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46134 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S232653AbhKZNGo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 08:06:44 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id ED3506112D;
+        Fri, 26 Nov 2021 13:03:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637931811;
+        bh=QAD0fqmVf1jw+Lf34IzKs9qrKK0uHS/qI3FqYFyGPUA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QKANirDWpF/myNR5ipSftGhbDebfwA7La+sx0YQlzbe2cPhCC19xPhAgrwGFO8kvR
+         wQbuX/mhjxpj39j9KBsZeY+OzDWuuqpxsIFRVJKoUUMbi2RFWEdtnlNAyfRn3gUQZS
+         DouWfymP4T1+Vk65IW29q02hXY3jDiRor0ts5Qlkxcd4gIp8/XbCjNZfVUNUIV9PjU
+         g+vmI08PxT3ABDVegyJGE1DgEPQQw0OG/KGM9jdbYtRcrjW1GMVQXb2J7oG7f7GZDv
+         rvmKa7IngxRhbwZeVxprBzfH8TIHtZjbn6C1cv6imSClWISvOrV7oXMjLlxYjkxGJV
+         XF3zO5TdMkJRg==
+Date:   Fri, 26 Nov 2021 13:03:25 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Lh Kuo =?utf-8?B?6YOt5Yqb6LGq?= <lh.Kuo@sunplus.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        "LH.Kuo" <lhjeff911@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "dvorkin@tibbo.com" <dvorkin@tibbo.com>,
+        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
+        Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Subject: Re: [PATCH v3 1/2] SPI: Add SPI driver for Sunplus SP7021
+Message-ID: <YaDbHe+COa3pke+s@sirena.org.uk>
+References: <1635747525-31243-1-git-send-email-lh.kuo@sunplus.com>
+ <cover.1637547799.git.lh.kuo@sunplus.com>
+ <e5f2549224cf875d81306ef5f6e98db1cfd81c2e.1637547799.git.lh.kuo@sunplus.com>
+ <CAHp75Vd2=OHbrpGtsU8AMXdtNfvSPhpc7vhzkWnahaV48XbfUQ@mail.gmail.com>
+ <YZz0n6Mpjl3tKmMe@sirena.org.uk>
+ <CAHp75Vf6+monqu4Hq-yoFSohD9tNFqZTuKjqDDKAJE3Om2BUYQ@mail.gmail.com>
+ <6eb68a8153ba46c48862d00f7aa6e0fe@sphcmbx02.sunplus.com.tw>
+ <CAHp75VftSORts5cbDxvfyHgqhxmb7K74BfPd=mST+75C+Ch9dQ@mail.gmail.com>
+ <33d50e94059b4734939db60b5c531bc9@sphcmbx02.sunplus.com.tw>
+ <63a467164c985cadce0e28e50508363a8d2f6622.camel@pengutronix.de>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.1.0
-Content-Language: en-US
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        "rostokus@gmail.com" <rostokus@gmail.com>,
-        "fan.chen@mediatek.com" <fan.chen@mediatek.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "Mutanen, Mikko" <Mikko.Mutanen@fi.rohmeurope.com>
-References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
- <6123f62ac44e6513a498d15034a4b6b22abe5f5b.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
- <CACRpkdbKeW+pJ8SZ0fPD+9kEtgHgi2A9U=f6XyKTHogKU-9F9g@mail.gmail.com>
- <7b34e88f-54f3-6d0a-293e-b2b411d1c5c2@fi.rohmeurope.com>
- <676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-Subject: Re: [RFC PATCH v3 3/9] power: supply: Support DT originated
- temperature-capacity tables
-In-Reply-To: <676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ljQ879YUAyNrToFD"
+Content-Disposition: inline
+In-Reply-To: <63a467164c985cadce0e28e50508363a8d2f6622.camel@pengutronix.de>
+X-Cookie: You fill a much-needed gap.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/26/21 13:56, Vaittinen, Matti wrote:
-> Hi dee Ho again,
-> 
-> On 11/18/21 08:11, Matti Vaittinen wrote:
->> Hi Linus,
->>
->> On 11/18/21 04:10, Linus Walleij wrote:
->>> On Tue, Nov 16, 2021 at 1:26 PM Matti Vaittinen
->>> <matti.vaittinen@fi.rohmeurope.com> wrote:
->>>
->>>> Support obtaining the "capacity degradation by temperature" - tables
->>>> from device-tree to batinfo.
->>>>
->>>> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->>>
->>> Same questions as on the binding patch.
->>>
->>> If we already support different degradation by temperature tables,
->>> why do we need a second mechanism for the same thing?
->>
->> Thanks for bringing this up. As I said, I didn't notice that we could
->> indeed use the CAP-OCV tables for different temperatures to bring in
->> this information :) I see certain benefit from the possibility of not
->> requiring to measure the OCV at different temperatures - but it may not
->> be meaningful. As I replied to your patch 1/9 review - I need to (try
->> to) do some more research...
-> 
-> 
-> I don't see providing OCV tables at different temperature gives the
-> degradation of battery capacity. Whoah. A big thought for Friday.
-> 
-> We get the OCV => SOC correspondance at different temperatures. I
-> however don't see how this gives the OCV => energy relation.
 
-After reading what I wrote even I didn't know what I tried to say. Well, 
-I think I tried to explain that I don't see how we can use this 
-information to do any estimation what the Coulomb Counter reading 
-represent at the given temperature. This is what the 
-temperature-degradation tables aim to give us.
+--ljQ879YUAyNrToFD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-  As far as I
-> know both the OCV and the 'amount of uAhs battery is able to store' are
-> impacted by temperature change. This means, seeing the OCV => SOC at
-> different temperatures does not tell us what is the impact of
-> temperature to the OCV, and what is the impact to SOC.
+On Fri, Nov 26, 2021 at 11:36:29AM +0100, Philipp Zabel wrote:
 
-I think I tried to say that these curves don't help us to tell how many 
-uAhs we have in battery with different temperatures when battery is 
-empty, or half full or, ... Again, what we would like to know is what 
-SOC our CC value represents - and use OCV to just adjust this further 
-(or in some cases to correct the CC value using OCV - if we can trust 
-the battery to be properly relaxed).
+> > 	pm_runtime_disable(&pdev->dev);
 
-Hope this did clarify. Afraid it didn't :)
+> I'm not sure if the SPI framework requires the spi_controller to be
+> unregistered before hardware is powered off, maybe it is enough to call
+> spi_controller_suspend() in the right place?
 
-Best Regards
-	-- Matti Vaittinen
+It would *probably* do the right thing but the expectation really is
+that you'll unregister before making the controller stop working, that
+should be much more robust..
 
+--ljQ879YUAyNrToFD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGg2x0ACgkQJNaLcl1U
+h9Cxlwf/XZs/9xTqiksXDYhiMOpt6+eD4gpanC5q5BSuqZkuUFHjGzpqL/v/s/+V
+edvkwQJDwb82Y2oKRhw/hZc4xA395j9lKmeJSWLyzCklvYlSIOAt4CPZx9w91Qsz
+NNONWU+zLwo/tt1ZM09eIclf6fQ0ef04cmjNxgpv0cq/VhmlrbjsjKGj3ViRU0p5
+Bz+ODOy0weYPH0VS9NDJlq2yzy7/M6dDN1vae/vApUDGUcSgiYr3+tZ/9LOugTTv
+D+SUjWC/L8Wv0/TAbwBVpRwj0hyaWCkaPAkzT5nZxIvk7TKFprjOWvl3JHYqXBkB
+/dyYP4Y8jc47Ya55wbhIZ+rpOExJ4g==
+=ZANf
+-----END PGP SIGNATURE-----
+
+--ljQ879YUAyNrToFD--
