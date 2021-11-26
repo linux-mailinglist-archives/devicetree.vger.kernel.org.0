@@ -2,87 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6023545E3E6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A778545E3EA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:10:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357389AbhKZBIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 20:08:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57714 "EHLO
+        id S237855AbhKZBNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 20:13:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244362AbhKZBGi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 20:06:38 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34EEC061746
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 17:03:26 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so11685697otv.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 17:03:26 -0800 (PST)
+        with ESMTP id S230476AbhKZBLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 20:11:40 -0500
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F45C061574;
+        Thu, 25 Nov 2021 17:08:27 -0800 (PST)
+Received: by mail-lj1-x22d.google.com with SMTP id v15so15650569ljc.0;
+        Thu, 25 Nov 2021 17:08:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Lq2I4/4/5ACYz2sGwNZgqqOmgm68d0IFzDiUN/SOAfw=;
-        b=l/RZk1bQ9tYCgfBYkzadv/mLRJ6uzvJDu7yeTQmw6H7+LNvVUxNaAw6Ejifwulo5+C
-         z2H+rXIZn9V19l8tzxoPHpDzk2V9hH3aolHS90IIUbGgDaVvfsytk2QGNI73EOwr+epQ
-         eg/9tRAAZLx/8VmEltbP6UhvkruvWf12KICdJ0JnNe8aH4FBZrzSW512uVQLSgqkq1Qe
-         JhwD1XNt7KWOAX8fNQ4r9Gh50KXYekTq4JnmEw96fwHNol6eJjguPwRVyeIj1Q/ZYZ0t
-         krEPrRUNwETjh/OYdpLSc9KcBR/H02HI/pWmhdYrJP9LUf1HUMbFu0kmZdt/6gVUjIEC
-         ivaA==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UGO6rN17miNJTMO6kEKzbLFRfLfEsZ5XOCr8ahzcsGE=;
+        b=HK1690ATF2nVNKaPt4pcQ/SDRvwvKGIyUie/R+Ts0aO0XKAnxrlKyp4NTqDOxuYs4M
+         9L4pDu9CaYXbl8S1JvKp7yAT/Zbu/BECeB9F4k/8i1ftew3HsHmb93PTSP6+uMXwIX1z
+         UoZWxjOytY6YLF6cfmuc7jfVmVFuLSr8hQ4xoZDuhYBZ+0OUvDczc/6ERD8GYlBz6v1Q
+         +QlX0NKojruA72vchivpj5Ws2QKiXfwTl1z0/cJJCNIXLWYdtbIOgw2UdT7/9+VxiANA
+         G/DaPjjWEH3WVuEHymvrWcWs2ifI4mdK2KU6DZQSt5svH3wpVQr3DcODzIrWlXzYt9JE
+         AL9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Lq2I4/4/5ACYz2sGwNZgqqOmgm68d0IFzDiUN/SOAfw=;
-        b=LJK4A9pRe+sEipcQcghIx2G8QeNSDBwFAGaogCHG3w9YBWK9DJiwU3hVeFtCocFOlH
-         guXQu684k+KDD8Dyl4mX8pJEVCU9MWalj5aaK9UBZSHcxKdmSd00exp60iv9fL+lttvd
-         qezukbgJfLnwR5WPyJvYnK37aO5hD2WdHA2okx7mLdtUpOzCbYMiijS5qSKsar9dh2dk
-         KCQcAkByBga3G655i+dFu1BTQwaPBLTImDkLMkNB3/cXXRRW+O0CccsDzG/ufZ01J9po
-         c6SttyGpCogmTpdaN/donFFIB22yQ4mE3Zecj+53/yWnsYnbI1ZGYB2Ik9R64rmocUON
-         bt/A==
-X-Gm-Message-State: AOAM5314stdLtUlM31Kx9ODvvVZEHfoQBaF6RfCWTI5d9r9vQMY0naHb
-        vNEoHGLz5BeszWSE3ZhIjfVtkgBOb7dzCypzzUyOJepT6Rw=
-X-Google-Smtp-Source: ABdhPJwxAlB2qiGOlrcv+g+QZNQD/JUyT9Jl2snvfySftlMWND1NVIRL/EctyLrrhDtRDSPZ7nSdOW3oLVfor1op/hQ=
-X-Received: by 2002:a9d:74d0:: with SMTP id a16mr24132510otl.237.1637888606115;
- Thu, 25 Nov 2021 17:03:26 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UGO6rN17miNJTMO6kEKzbLFRfLfEsZ5XOCr8ahzcsGE=;
+        b=CmoPyzVXa3B482Q2yheCf7SDoTn4vaj7zvMNvkbmjpFXZZ5vPQLPUWkZN7XC4JgLKS
+         5iqTkUbmIru62ekFP5TWwo0iJ4XPGjR4xk38VoS92YAU8Py9AuxS7GEWjCiTr7JLcPWp
+         Gog0aQPz8gCOJzJl78XFbBqGHVFw4su5skVMv/jBfJwht+4nUmJf+ql+B+S5vNlOBQ37
+         ylgXBb9zBsOAw/LrubNeY+z1gvpuSmefG/QOPWNvypxPL6klx3krD413Ng1gNUSI6QV/
+         4ERlc2NHYQa3hTcG0delyWVijjN3SA/CLUfqt6HjskMAfQPb9SxEutY5NqA/+z15/yUH
+         Bitg==
+X-Gm-Message-State: AOAM532oBWU6gn/BoLw2M4y/Tosdpi6kk/B4/D+ok19fXyXDVmxUSsrj
+        DaRlPwmC+G5n8IJsEX7RlrtCr1DT6dw=
+X-Google-Smtp-Source: ABdhPJw5u/B8ZH1YuKd4akVumwownmSG11mUWnxsExAZ8MTck+K+I3tFpmYsTmIOkMfN8rDKfnoapQ==
+X-Received: by 2002:a2e:e09:: with SMTP id 9mr20584527ljo.172.1637888906336;
+        Thu, 25 Nov 2021 17:08:26 -0800 (PST)
+Received: from [192.168.2.145] (94-29-48-99.dynamic.spd-mgts.ru. [94.29.48.99])
+        by smtp.googlemail.com with ESMTPSA id z4sm372582ljj.26.2021.11.25.17.08.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Nov 2021 17:08:25 -0800 (PST)
+Subject: Re: [PATCH v1 02/20] ASoC: dt-bindings: tegra20-i2s: Convert to
+ schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     alsa-devel@alsa-project.org, Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Agneli <poczt@protonmail.ch>, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+References: <20211124220057.15763-1-digetx@gmail.com>
+ <20211124220057.15763-3-digetx@gmail.com>
+ <1637875562.276093.2858310.nullmailer@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <d12b0e75-4605-b65a-2f87-a4c4d363fc90@gmail.com>
+Date:   Fri, 26 Nov 2021 04:08:25 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211124230439.17531-1-zajec5@gmail.com> <20211124230439.17531-2-zajec5@gmail.com>
- <YZ9OAC/swfCbBXFt@atomide.com> <3acea66e-c5e1-ff6c-aedb-d9ee61dcf8ab@gmail.com>
-In-Reply-To: <3acea66e-c5e1-ff6c-aedb-d9ee61dcf8ab@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Nov 2021 02:03:13 +0100
-Message-ID: <CACRpkda9kMQ4EwroCsBKCiLWZZsHth+uLWtdQOQT2DZ4bO=V3A@mail.gmail.com>
-Subject: Re: [PATCH V2 1/6] dt-bindings: pinctrl: support specifying pins,
- groups & functions
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1637875562.276093.2858310.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 1:28 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
-wrote:
+26.11.2021 00:26, Rob Herring пишет:
+> On Thu, 25 Nov 2021 01:00:39 +0300, Dmitry Osipenko wrote:
+>> Convert NVIDIA Tegra20 I2S binding to schema.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../bindings/sound/nvidia,tegra20-i2s.txt     | 30 --------
+>>  .../bindings/sound/nvidia,tegra20-i2s.yaml    | 71 +++++++++++++++++++
+>>  2 files changed, 71 insertions(+), 30 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.txt
+>>  create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.example.dt.yaml: i2s@70002800: 'clock-names' is a required property
+> 	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/nvidia,tegra20-i2s.yaml
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/patch/1559387
+> 
+> This check can fail if there are any dependencies. The base for a patch
+> series is generally the most recent rc1.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+> 
 
-> This is a new bit to me and the reason why I got this binding that way.
->
-> I had no idea pin numbering is system specific thing. I always thought
-> pin numbers are present in every chip datasheets and that is just a part
-> of hardware.
+Indeed, I missed to re-check the I2S binding after last minute changes.
+That's compelling reason to make v2.
 
-It's this way because some chips do not even have numbers on the
-pins, just names, like "UARTTX" or so.
-
-The numbering is often not numeral, more like a chessboard
-at least for BGAs. So "C14" is a typical pin number.
-
-If the datasheet had numbers we just include it in the string naming
-that pin like "UARTTX_C14" or so.
-
-Yours,
-Linus Walleij
+Then I'll also remove the now-unnecessary assigned-clocks property from
+the S/PDIF binding.
