@@ -2,202 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D290545F604
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 21:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4924D45F63A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 22:18:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241024AbhKZUp7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 15:45:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59654 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235177AbhKZUn7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 15:43:59 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5285C06139C
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 12:36:46 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id c32so26941392lfv.4
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 12:36:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=wXz38UBl4taXBcxLfhRFr3N5sn1Ic9G7nbmmnBUwKPc=;
-        b=Yll4BFOZU6wveYNMEqZf6KhJb45QvubE2UeAcwVGG0IvNvsMQlXh9qYbKm/Xp43M9O
-         mqEqxX/Y/FpJAmcxLPoTqL4gV4HxwkYUw2TTVxjt8et7kkddHK5bi1+SseoLTaCBvpRW
-         PG/WUVaoX7/Y7xXM5gKnS8zDZzx09HBGztlNtIYWpnCBahaylExdwD6TBeHeDDlmQcsJ
-         HKsQ4bp0njINWgNxAWOIBTKQ18+k96O8GY9GW6tmW6joTYS8nrNqb3Opy85/04aZ132E
-         vtKFdYuZusPIG+3RGY/X1LXSYSRHlVRfB66NbBquwocp++4fzmvhd6B05OAoYEZzOY8Q
-         EEzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=wXz38UBl4taXBcxLfhRFr3N5sn1Ic9G7nbmmnBUwKPc=;
-        b=ySau4OR80oojR+meIqp4ge4GKnvbmqPuiVV9teLhUXa1K2BR33pfiEuunI90O2//81
-         mq13z7UGlAEK8SqCma8201U/6+vX9h/wAqcbCqg+kNXcTcKvKRkCAZG/q8a2MkSpG/tS
-         F9fpmxoMftDPptJx62z7NthtBk2GWlWFYuzbG0xOlvJnRiTjX0sgFgmFRWyusLVZEo1N
-         PNod+tmTBF7HKU5TP96SzEiTshbWo824OmezwngItADhLgbX+tlXovPYj3qM0KaOgxG+
-         k8wjFHWkMWo/X4FFTTxAZNVSFYAV7TOZK53Iik0Mkpcqd3EwlVPJCuFBsZe5Lwjg+eEg
-         13vQ==
-X-Gm-Message-State: AOAM531RlpOaspCXJZQH2KjOHV55Vmydw/QMZEucNfnhBljn7D5WYd7s
-        RIUYreR8o6CEkIKXcRS7UuoZ0A==
-X-Google-Smtp-Source: ABdhPJw/ggQdTEk+Uf17oMRSdF14ZNH0lQKo7mH1JzAzo3pUloMI7vi4gFLaNWwWcPJK+9RaAXL0rw==
-X-Received: by 2002:a05:6512:2809:: with SMTP id cf9mr30903637lfb.429.1637959004914;
-        Fri, 26 Nov 2021 12:36:44 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id q9sm577432lfu.232.2021.11.26.12.36.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Nov 2021 12:36:44 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        David Virag <virag.david003@gmail.com>,
-        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 2/2] clk: samsung: exynos850: Add missing sysreg clocks
-Date:   Fri, 26 Nov 2021 22:36:41 +0200
-Message-Id: <20211126203641.24005-2-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211126203641.24005-1-semen.protsenko@linaro.org>
-References: <20211126203641.24005-1-semen.protsenko@linaro.org>
+        id S242152AbhKZVVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 16:21:34 -0500
+Received: from mga05.intel.com ([192.55.52.43]:47388 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S241148AbhKZVTe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 16:19:34 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10180"; a="321950626"
+X-IronPort-AV: E=Sophos;i="5.87,266,1631602800"; 
+   d="scan'208";a="321950626"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 13:16:20 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,266,1631602800"; 
+   d="scan'208";a="498561992"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 26 Nov 2021 13:16:17 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mqiZs-0008cJ-82; Fri, 26 Nov 2021 21:16:16 +0000
+Date:   Sat, 27 Nov 2021 05:15:59 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 20/20] spi: mxic: Add support for pipelined ECC
+ operations
+Message-ID: <202111270526.T8x5Nyq1-lkp@intel.com>
+References: <20211126113924.310459-21-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211126113924.310459-21-miquel.raynal@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-System Register is used to configure system behavior, like USI protocol,
-etc. SYSREG clocks should be provided to corresponding syscon nodes, to
-make it possible to modify SYSREG registers.
+Hi Miquel,
 
-While at it, add also missing PMU and GPIO clocks, which looks necessary
-and might be needed for corresponding Exynos850 features soon.
+I love your patch! Perhaps something to improve:
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+[auto build test WARNING on mtd/nand/next]
+[also build test WARNING on broonie-spi/for-next mtd/mtd/next mtd/mtd/fixes v5.16-rc2 next-20211126]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/External-ECC-engines-Macronix-support/20211126-195956
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+config: xtensa-buildonly-randconfig-r006-20211125 (https://download.01.org/0day-ci/archive/20211127/202111270526.T8x5Nyq1-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/0804d6ccdf15e7a65743d048d01d876a54070b6b
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Miquel-Raynal/External-ECC-engines-Macronix-support/20211126-195956
+        git checkout 0804d6ccdf15e7a65743d048d01d876a54070b6b
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=xtensa SHELL=/bin/bash drivers/spi/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   In file included from drivers/spi/spi-mxic.c:16:
+>> include/linux/mtd/nand-ecc-mxic.h:34:1: warning: no previous prototype for 'mxic_ecc_get_pipelined_engine' [-Wmissing-prototypes]
+      34 | mxic_ecc_get_pipelined_engine(struct platform_device *spi_pdev)
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> include/linux/mtd/nand-ecc-mxic.h:39:6: warning: no previous prototype for 'mxic_ecc_put_pipelined_engine' [-Wmissing-prototypes]
+      39 | void mxic_ecc_put_pipelined_engine(struct nand_ecc_engine *eng) {}
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/mxic_ecc_get_pipelined_engine +34 include/linux/mtd/nand-ecc-mxic.h
+
+a19f28121341b52 Miquel Raynal 2021-11-26  32  
+a19f28121341b52 Miquel Raynal 2021-11-26  33  struct nand_ecc_engine *
+a19f28121341b52 Miquel Raynal 2021-11-26 @34  mxic_ecc_get_pipelined_engine(struct platform_device *spi_pdev)
+a19f28121341b52 Miquel Raynal 2021-11-26  35  {
+a19f28121341b52 Miquel Raynal 2021-11-26  36  	return ERR_PTR(-EOPNOTSUPP);
+a19f28121341b52 Miquel Raynal 2021-11-26  37  }
+a19f28121341b52 Miquel Raynal 2021-11-26  38  
+a19f28121341b52 Miquel Raynal 2021-11-26 @39  void mxic_ecc_put_pipelined_engine(struct nand_ecc_engine *eng) {}
+a19f28121341b52 Miquel Raynal 2021-11-26  40  
+
 ---
- drivers/clk/samsung/clk-exynos850.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/drivers/clk/samsung/clk-exynos850.c b/drivers/clk/samsung/clk-exynos850.c
-index 5d83388d8c8e..b644bc3d0de1 100644
---- a/drivers/clk/samsung/clk-exynos850.c
-+++ b/drivers/clk/samsung/clk-exynos850.c
-@@ -426,11 +426,14 @@ CLK_OF_DECLARE(exynos850_cmu_top, "samsung,exynos850-cmu-top",
- #define CLK_CON_DIV_DIV_CLK_APM_I3C			0x1808
- #define CLK_CON_GAT_CLKCMU_CMGP_BUS			0x2000
- #define CLK_CON_GAT_GATE_CLKCMU_CHUB_BUS		0x2014
-+#define CLK_CON_GAT_GOUT_APM_APBIF_GPIO_ALIVE_PCLK	0x2018
-+#define CLK_CON_GAT_GOUT_APM_APBIF_PMU_ALIVE_PCLK	0x2020
- #define CLK_CON_GAT_GOUT_APM_APBIF_RTC_PCLK		0x2024
- #define CLK_CON_GAT_GOUT_APM_APBIF_TOP_RTC_PCLK		0x2028
- #define CLK_CON_GAT_GOUT_APM_I3C_APM_PMIC_I_PCLK	0x2034
- #define CLK_CON_GAT_GOUT_APM_I3C_APM_PMIC_I_SCLK	0x2038
- #define CLK_CON_GAT_GOUT_APM_SPEEDY_APM_PCLK		0x20bc
-+#define CLK_CON_GAT_GOUT_APM_SYSREG_APM_PCLK		0x20c0
- 
- static const unsigned long apm_clk_regs[] __initconst = {
- 	PLL_CON0_MUX_CLKCMU_APM_BUS_USER,
-@@ -445,11 +448,14 @@ static const unsigned long apm_clk_regs[] __initconst = {
- 	CLK_CON_DIV_DIV_CLK_APM_I3C,
- 	CLK_CON_GAT_CLKCMU_CMGP_BUS,
- 	CLK_CON_GAT_GATE_CLKCMU_CHUB_BUS,
-+	CLK_CON_GAT_GOUT_APM_APBIF_GPIO_ALIVE_PCLK,
-+	CLK_CON_GAT_GOUT_APM_APBIF_PMU_ALIVE_PCLK,
- 	CLK_CON_GAT_GOUT_APM_APBIF_RTC_PCLK,
- 	CLK_CON_GAT_GOUT_APM_APBIF_TOP_RTC_PCLK,
- 	CLK_CON_GAT_GOUT_APM_I3C_APM_PMIC_I_PCLK,
- 	CLK_CON_GAT_GOUT_APM_I3C_APM_PMIC_I_SCLK,
- 	CLK_CON_GAT_GOUT_APM_SPEEDY_APM_PCLK,
-+	CLK_CON_GAT_GOUT_APM_SYSREG_APM_PCLK,
- };
- 
- /* List of parent clocks for Muxes in CMU_APM */
-@@ -512,6 +518,14 @@ static const struct samsung_gate_clock apm_gate_clks[] __initconst = {
- 	     CLK_CON_GAT_GOUT_APM_I3C_APM_PMIC_I_SCLK, 21, 0, 0),
- 	GATE(CLK_GOUT_SPEEDY_PCLK, "gout_speedy_pclk", "dout_apm_bus",
- 	     CLK_CON_GAT_GOUT_APM_SPEEDY_APM_PCLK, 21, 0, 0),
-+	/* TODO: Should be enabled in GPIO driver (or made CLK_IS_CRITICAL) */
-+	GATE(CLK_GOUT_GPIO_ALIVE_PCLK, "gout_gpio_alive_pclk", "dout_apm_bus",
-+	     CLK_CON_GAT_GOUT_APM_APBIF_GPIO_ALIVE_PCLK, 21, CLK_IGNORE_UNUSED,
-+	     0),
-+	GATE(CLK_GOUT_PMU_ALIVE_PCLK, "gout_pmu_alive_pclk", "dout_apm_bus",
-+	     CLK_CON_GAT_GOUT_APM_APBIF_PMU_ALIVE_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_SYSREG_APM_PCLK, "gout_sysreg_apm_pclk", "dout_apm_bus",
-+	     CLK_CON_GAT_GOUT_APM_SYSREG_APM_PCLK, 21, 0, 0),
- };
- 
- static const struct samsung_cmu_info apm_cmu_info __initconst = {
-@@ -541,6 +555,7 @@ static const struct samsung_cmu_info apm_cmu_info __initconst = {
- #define CLK_CON_GAT_GOUT_CMGP_ADC_PCLK_S0	0x200c
- #define CLK_CON_GAT_GOUT_CMGP_ADC_PCLK_S1	0x2010
- #define CLK_CON_GAT_GOUT_CMGP_GPIO_PCLK		0x2018
-+#define CLK_CON_GAT_GOUT_CMGP_SYSREG_CMGP_PCLK	0x2040
- #define CLK_CON_GAT_GOUT_CMGP_USI_CMGP0_IPCLK	0x2044
- #define CLK_CON_GAT_GOUT_CMGP_USI_CMGP0_PCLK	0x2048
- #define CLK_CON_GAT_GOUT_CMGP_USI_CMGP1_IPCLK	0x204c
-@@ -556,6 +571,7 @@ static const unsigned long cmgp_clk_regs[] __initconst = {
- 	CLK_CON_GAT_GOUT_CMGP_ADC_PCLK_S0,
- 	CLK_CON_GAT_GOUT_CMGP_ADC_PCLK_S1,
- 	CLK_CON_GAT_GOUT_CMGP_GPIO_PCLK,
-+	CLK_CON_GAT_GOUT_CMGP_SYSREG_CMGP_PCLK,
- 	CLK_CON_GAT_GOUT_CMGP_USI_CMGP0_IPCLK,
- 	CLK_CON_GAT_GOUT_CMGP_USI_CMGP0_PCLK,
- 	CLK_CON_GAT_GOUT_CMGP_USI_CMGP1_IPCLK,
-@@ -610,6 +626,9 @@ static const struct samsung_gate_clock cmgp_gate_clks[] __initconst = {
- 	GATE(CLK_GOUT_CMGP_USI1_PCLK, "gout_cmgp_usi1_pclk",
- 	     "gout_clkcmu_cmgp_bus",
- 	     CLK_CON_GAT_GOUT_CMGP_USI_CMGP1_PCLK, 21, 0, 0),
-+	GATE(CLK_GOUT_SYSREG_CMGP_PCLK, "gout_sysreg_cmgp_pclk",
-+	     "gout_clkcmu_cmgp_bus",
-+	     CLK_CON_GAT_GOUT_CMGP_SYSREG_CMGP_PCLK, 21, 0, 0),
- };
- 
- static const struct samsung_cmu_info cmgp_cmu_info __initconst = {
-@@ -910,10 +929,12 @@ CLK_OF_DECLARE(exynos850_cmu_peri, "samsung,exynos850-cmu-peri",
- #define CLK_CON_DIV_DIV_CLK_CORE_BUSP		0x1800
- #define CLK_CON_GAT_GOUT_CORE_CCI_550_ACLK	0x2038
- #define CLK_CON_GAT_GOUT_CORE_GIC_CLK		0x2040
-+#define CLK_CON_GAT_GOUT_CORE_GPIO_CORE_PCLK	0x2044
- #define CLK_CON_GAT_GOUT_CORE_MMC_EMBD_I_ACLK	0x20e8
- #define CLK_CON_GAT_GOUT_CORE_MMC_EMBD_SDCLKIN	0x20ec
- #define CLK_CON_GAT_GOUT_CORE_SSS_I_ACLK	0x2128
- #define CLK_CON_GAT_GOUT_CORE_SSS_I_PCLK	0x212c
-+#define CLK_CON_GAT_GOUT_CORE_SYSREG_CORE_PCLK	0x2130
- 
- static const unsigned long core_clk_regs[] __initconst = {
- 	PLL_CON0_MUX_CLKCMU_CORE_BUS_USER,
-@@ -924,10 +945,12 @@ static const unsigned long core_clk_regs[] __initconst = {
- 	CLK_CON_DIV_DIV_CLK_CORE_BUSP,
- 	CLK_CON_GAT_GOUT_CORE_CCI_550_ACLK,
- 	CLK_CON_GAT_GOUT_CORE_GIC_CLK,
-+	CLK_CON_GAT_GOUT_CORE_GPIO_CORE_PCLK,
- 	CLK_CON_GAT_GOUT_CORE_MMC_EMBD_I_ACLK,
- 	CLK_CON_GAT_GOUT_CORE_MMC_EMBD_SDCLKIN,
- 	CLK_CON_GAT_GOUT_CORE_SSS_I_ACLK,
- 	CLK_CON_GAT_GOUT_CORE_SSS_I_PCLK,
-+	CLK_CON_GAT_GOUT_CORE_SYSREG_CORE_PCLK,
- };
- 
- /* List of parent clocks for Muxes in CMU_CORE */
-@@ -972,6 +995,12 @@ static const struct samsung_gate_clock core_gate_clks[] __initconst = {
- 	     CLK_CON_GAT_GOUT_CORE_SSS_I_ACLK, 21, 0, 0),
- 	GATE(CLK_GOUT_SSS_PCLK, "gout_sss_pclk", "dout_core_busp",
- 	     CLK_CON_GAT_GOUT_CORE_SSS_I_PCLK, 21, 0, 0),
-+	/* TODO: Should be enabled in GPIO driver (or made CLK_IS_CRITICAL) */
-+	GATE(CLK_GOUT_GPIO_CORE_PCLK, "gout_gpio_core_pclk", "dout_core_busp",
-+	     CLK_CON_GAT_GOUT_CORE_GPIO_CORE_PCLK, 21, CLK_IGNORE_UNUSED, 0),
-+	GATE(CLK_GOUT_SYSREG_CORE_PCLK, "gout_sysreg_core_pclk",
-+	     "dout_core_busp",
-+	     CLK_CON_GAT_GOUT_CORE_SYSREG_CORE_PCLK, 21, 0, 0),
- };
- 
- static const struct samsung_cmu_info core_cmu_info __initconst = {
--- 
-2.30.2
-
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
