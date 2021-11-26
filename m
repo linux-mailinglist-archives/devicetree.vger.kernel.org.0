@@ -2,94 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 768F945EE51
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 13:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC48445EEDB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 14:10:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbhKZM4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 07:56:41 -0500
-Received: from mail-ua1-f51.google.com ([209.85.222.51]:35338 "EHLO
-        mail-ua1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232097AbhKZMyk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 07:54:40 -0500
-Received: by mail-ua1-f51.google.com with SMTP id l24so18435608uak.2;
-        Fri, 26 Nov 2021 04:51:27 -0800 (PST)
+        id S243984AbhKZNNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 08:13:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46152 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236270AbhKZNLa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 08:11:30 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA684C06139E;
+        Fri, 26 Nov 2021 04:27:35 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id a18so18293613wrn.6;
+        Fri, 26 Nov 2021 04:27:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WveCJzDdl0l4mujHAZT0CFJQL1dFWMtBRgbLVlZUP+I=;
+        b=IzyJSpDdodNAlKNmlR90BQJ5l4tpvEZ0kwc43qEk93WVIkE+efu5gBF+jsRPDOClqf
+         U2xBWJN13j3yAUqeTXy38pv8zF0hlifdBpo53iFycnZ9Xm54T1j/X3jjSAfGbXH8YWof
+         D/qrMQxUnIsSLbBF6XhjsnkshP0b5DpZ23bJC6+2jRQLgvDKuTrmOy9zVwRcXRqDzSzl
+         i7TbAPwcgxlf4XkbH/R6q/RQfCeNVudCW0GNYjhoeuuo62k+9+r4WqbuskJ+c0+Ob4SF
+         DmSzWyoFI37FDqnTT0yjIX3FcyFrV57nIXb6c1vb4lkqttde4LnxzkrxOaiM17SPD+3Q
+         K0bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/rnmb/InE6v1bIFF6J5KRBRwGAqDw2ehlGBUgCeFUDc=;
-        b=1k7pUOEKzjIN2nRqVSMPYSC/Bg5hEf9M8ELmyM+eiYKYo4dB5/2f1Ej73OvjE8PRiv
-         FtzkgEC6irUMSjttKt4NOr3W2QxaJmh78sR+b3owQmvzi1dyGJqf+PlWi7HLBMuiXa34
-         wAVTnATBW0kV4CREnVayyg/2jRz2bAcIsv9mmEqPvGIwW8WhKSYHQb7T6pUVSuOMsgQu
-         S5gVO7aa7DS8w98MkSOVy6zTaOcheVEOQBcGrjbJ/amTXoPA9IaYgHijnuXMujOYMgIj
-         eSmz2aXPN52+pzuu2EMoiRrH3klhodDdPHCkQIqOfLU+udpq+I9w7a9wpq3+U+G8MV8w
-         wEvA==
-X-Gm-Message-State: AOAM533jId2bDRKLx99SpMXkwKS6Zb24of690a/HlC6pNneReAGyQvEs
-        lKZIVkRvI/gPtqxvl72cx1WSvizlDAKfuQ==
-X-Google-Smtp-Source: ABdhPJxX23i/NyZFkE70IqAsrDhRCzePF03JRVgsqO2NK8NajZNudPiTljaSKmGoyjVwD9muBg0q6Q==
-X-Received: by 2002:a67:7247:: with SMTP id n68mr15610559vsc.6.1637931087191;
-        Fri, 26 Nov 2021 04:51:27 -0800 (PST)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id r20sm3402885vkq.15.2021.11.26.04.51.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Nov 2021 04:51:26 -0800 (PST)
-Received: by mail-ua1-f54.google.com with SMTP id n6so18414590uak.1;
-        Fri, 26 Nov 2021 04:51:26 -0800 (PST)
-X-Received: by 2002:ab0:7354:: with SMTP id k20mr33348196uap.78.1637931086446;
- Fri, 26 Nov 2021 04:51:26 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WveCJzDdl0l4mujHAZT0CFJQL1dFWMtBRgbLVlZUP+I=;
+        b=0/mdbVxpEVQhJrufl74CXMQF4uTo5nkvQjaiu2TasOt8LdLbGeDBLxShcyL7296xbN
+         5YH6sljsnz/a+wJqVUJnDqmsGb98jSo9QYpFEmsQYUTRXf7WoODKMBShlIIXMFkwmWym
+         BYxw+zddGfWvTkIO/9DdqFr0Jz0dMPcws68kW3GAx3webXRGuyhGBwqjRp0SbAukO0JQ
+         7OrNarwEcbwL8wjf7OM6vK3yyPjWTkOXrl8pyHLfFLkdhbNG4wXt1mW/r3TD5PElPS7a
+         Y8bO7tUO9ealGJ2CDgxPRRx7HrqLhP4csEe8xvylFpB7oClSwgYxIR4ztOfc89o+up2u
+         yMfA==
+X-Gm-Message-State: AOAM530STkOT+XCFT2jI+Bv6+6Lm+dOCaw2g1hINpBeat0J3PtKPCGna
+        oOLKex527iyVs4T+iNhi1Ls=
+X-Google-Smtp-Source: ABdhPJx54lWgxLYEUOC+es5kBFdEmvYdXvy16mln+hQlaUlaFl31L6MyfZMZLsAIUBBva9tq6zuH2A==
+X-Received: by 2002:a05:6000:18ad:: with SMTP id b13mr14244388wri.195.1637929654549;
+        Fri, 26 Nov 2021 04:27:34 -0800 (PST)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id l7sm6821130wry.86.2021.11.26.04.27.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Nov 2021 04:27:33 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] HDMI Audio on RK356x/Quartz64 Model A
+Date:   Fri, 26 Nov 2021 13:27:16 +0100
+Message-Id: <20211126122718.631506-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-References: <20211126095445.932930-1-kieran.bingham+renesas@ideasonboard.com> <20211126095445.932930-2-kieran.bingham+renesas@ideasonboard.com>
-In-Reply-To: <20211126095445.932930-2-kieran.bingham+renesas@ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 26 Nov 2021 13:51:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXv_XcGX3N5iC3zN=sYNEnxHLzgM4BnsWyrnA9OErXVdg@mail.gmail.com>
-Message-ID: <CAMuHMdXv_XcGX3N5iC3zN=sYNEnxHLzgM4BnsWyrnA9OErXVdg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] arm64: dts: renesas: r8a779a0: Add DU support
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
+This enables HDMI audio on Quartz64 Model A, and the RK356x SoC in
+general. The patches require the VOP2 patchset[1] and my I2S/TDM
+controller fix[2] to work.
 
-On Fri, Nov 26, 2021 at 10:54 AM Kieran Bingham
-<kieran.bingham+renesas@ideasonboard.com> wrote:
-> Provide the device nodes for the DU on the V3U platforms.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> ---
-> v2
->  - Use a single clock specification for the whole DU.
->
-> v3:
->  - Use 'du.0' clock name instead of 'du'
->
-> v4:
->  - Add in missing reset-names
->  - Use full renesas,vsps
+i2s0 on the RK356x is connected to HDMI, and only has one DMA. I've
+confirmed this with the TRM. With [2] the driver now handles this
+properly, and does not try to register a capture PCM in this case.
 
-Thanks for the update!
-Will queue in renesas-devel for v5.17, with the du-node relocated to its
-final resting place.
+To test this, one needs a video clock, i.e. there is no audio if your
+screen is off. I've found that running kmscube momentarily is enough
+to make the VOP2 keep the screen turned on indefinitely, which is
+a pleasant quirk in this case.
 
-Gr{oetje,eeting}s,
+Changes in v2:
+ - reordered nodes in rk356x.dtsi to conform
+ - reordered properties in rk356x.dtsi to conform
+ - add Michael Riesch's Tested-by to rk356x.dtsi
 
-                        Geert
+Nicolas Frattaroli (2):
+  arm64: dts: rockchip: rk356x: Add HDMI audio nodes
+  arm64: dts: rockchip: Enable HDMI audio on Quartz64 A
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  8 +++++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 33 +++++++++++++++++++
+ 2 files changed, 41 insertions(+)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+2.34.0
+
