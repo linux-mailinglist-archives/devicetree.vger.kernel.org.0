@@ -2,241 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E640045EAA2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43CF345EAA9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:48:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359378AbhKZJru convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 Nov 2021 04:47:50 -0500
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:49451 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376270AbhKZJpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:45:49 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 600F0240012;
-        Fri, 26 Nov 2021 09:42:32 +0000 (UTC)
-Date:   Fri, 26 Nov 2021 10:42:31 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Roger Quadros <rogerq@kernel.org>
-Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, nm@ti.com,
-        tony@atomide.com, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/4] mtd: nand: omap2: Add support for NAND Controller
- on AM64 SoC
-Message-ID: <20211126104231.7cc43149@xps13>
-In-Reply-To: <e52141a6-96fc-97d6-95d7-3e26276fbac3@kernel.org>
-References: <20211123103609.14063-1-rogerq@kernel.org>
-        <20211123103609.14063-5-rogerq@kernel.org>
-        <20211124131552.6b9bc506@xps13>
-        <e52141a6-96fc-97d6-95d7-3e26276fbac3@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1376415AbhKZJva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 04:51:30 -0500
+Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:44536
+        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231484AbhKZJt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 04:49:29 -0500
+Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4AEF140A35
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 09:46:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1637919976;
+        bh=PD2apBschJDaO+kzSdE0OsITDKBWNi5rIvaDGRk0lAg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=DjtfGSPmI9fCdF16aD0CsEF9Xqct1AsMcW+M7dUIrYLKOaGDbwNV7P2HBRj2dUKDo
+         sl7KfzCjNaiwKkFqX36K9K1yJDGi6GMOxsHsj20zFtW6OUz9k0CvPzLOoqGoi0lVDN
+         U1Uz5XVXRBtJWOatBRj1F3XNPhnpJn/djSbrJFzM5RVi96DrYXnGYwJ21gE2lk4lrT
+         mqYRBGy8AziC2Oi34VAs57w7bOKM1OPXi38YusrsDTtLRB431WVwIcuGsbSBcvm4gJ
+         Lf1Ds/625G3kv/cDwh1X0/ffgg4/GqkGlsVIr9XXP0ULkC1OuJ3v7LnT3nRQT0pdNQ
+         te2bZt6W5aQhg==
+Received: by mail-lj1-f197.google.com with SMTP id a7-20020a05651c210700b00219132ab503so2998079ljq.12
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 01:46:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PD2apBschJDaO+kzSdE0OsITDKBWNi5rIvaDGRk0lAg=;
+        b=CICEbbkktbNLKeBa2j/D3BeGv2CFL/chYXuJW3jf8RwxYvhB3OphDTrSoUZ4p/y6OG
+         faYbG9yp98cdwNX6Jq4jjOmzOZKYCWLTtA3ImfxksKaLOnTphAfMgjttmB6+sVCBOMul
+         Q3XRSFg7yUbOfrONAJSHfUQ3QDp5e67vy1/AgWVRLdi+epOEj5O/gTAM63QXtPIT2s5w
+         mk82JeJjCQK6rZUFqsw4FTF+4X6mVGY1yLhsWkGVFCcqA+JSqdFrJjC/alUS7qI06VcK
+         k1PnHjQrZ35yunIV3Y6/LT0yJzYITNSLx7QtQaFSgll2/NR7YESOyC77TczhFFrB3kG9
+         zXUw==
+X-Gm-Message-State: AOAM532D/BCeZsNA3l1uGJN+uCrN503S4a31FXTOOzMfRpGtxfHZuyW7
+        sUwsx0mFD062FNJhfmD1N7cf8ZO+/LLG5C8HzP+WpaHRwIs1YSg3/gUYIkRsER3JkoANHXW3tQQ
+        ldaN8dwQeyw8BrZ7u8JL7uUhDMl9AbQBe5IeFKPo=
+X-Received: by 2002:a05:651c:112e:: with SMTP id e14mr29454773ljo.466.1637919975678;
+        Fri, 26 Nov 2021 01:46:15 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzm5eX5c7jP2V75wFfuBpaqVzfprayBlyEwb5h3GH5D0e2xCpsSAd56ykLJnm4w7JR6n3LUog==
+X-Received: by 2002:a05:651c:112e:: with SMTP id e14mr29454765ljo.466.1637919975528;
+        Fri, 26 Nov 2021 01:46:15 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id a29sm458536lfi.302.2021.11.26.01.46.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Nov 2021 01:46:15 -0800 (PST)
+Message-ID: <8022b8fa-e636-144d-4e9e-7a0d23e354a5@canonical.com>
+Date:   Fri, 26 Nov 2021 10:46:14 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH 9/9] riscv: dts: sifive: fu540-c000: Drop bogus soc node
+ compatible values
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Lewis Hanly <lewis.hanly@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20211125153131.163533-1-geert@linux-m68k.org>
+ <20211125153131.163533-10-geert@linux-m68k.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211125153131.163533-10-geert@linux-m68k.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Roger,
-
-rogerq@kernel.org wrote on Thu, 25 Nov 2021 16:12:01 +0200:
-
-> Hi Miquel,
+On 25/11/2021 16:31, Geert Uytterhoeven wrote:
+> "make dtbs_check":
 > 
-> On 24/11/2021 14:15, Miquel Raynal wrote:
-> > Hi Roger,
-> > 
-> > rogerq@kernel.org wrote on Tue, 23 Nov 2021 12:36:09 +0200:
-> >   
-> >> AM64 SoC has an issue which prevents proper 8-bit and 16-bit
-> >> reads from GPMC. We are limited to do 32-bit reads only.  
-> > 
-> > First, thanks for this series!  
+>     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml: soc: $nodename:0: '/' was expected
+>     	From schema: Documentation/devicetree/bindings/riscv/sifive.yaml
+>     arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dt.yaml: soc: compatible: 'oneOf' conditional failed, one must be fixed:
+>     	'sifive,fu540-c000' is not one of ['sifive,hifive-unleashed-a00']
+>     	'sifive,fu540-c000' is not one of ['sifive,hifive-unmatched-a00']
+>     	'sifive,fu540-c000' was expected
+>     	'sifive,fu740-c000' was expected
+>     	'sifive,fu540' was expected
+>     	'sifive,fu740' was expected
+>     	From schema: Documentation/devicetree/bindings/riscv/sifive.yaml
 > 
-> No problem. Just my job :)
+> This happens because the "soc" subnode declares compatibility with
+> "sifive,fu540-c000" and "sifive,fu540", while these are only intended
+> for the root node.
 > 
-> >   
-> >> Force 32-bit only reads on affected platforms.
-> >>  
-> > 
-> > Please change the commit title prefix to: "mtd: rawnand: omap2:" in
-> > patch 2, 3, 4.  
+> Fix this by removing the bogus compatible values from the "soc" node.
 > 
-> OK.
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> ---
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> >    
-> >> Signed-off-by: Roger Quadros <rogerq@kernel.org>
-> >> ---
-> >>  drivers/mtd/nand/raw/omap2.c | 35 +++++++++++++++++++++++++++++++++++
-> >>  1 file changed, 35 insertions(+)
-> >>
-> >> diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
-> >> index f1fc146e09b9..d952de771b35 100644
-> >> --- a/drivers/mtd/nand/raw/omap2.c
-> >> +++ b/drivers/mtd/nand/raw/omap2.c
-> >> @@ -28,6 +28,7 @@
-> >>  
-> >>  #include <linux/omap-gpmc.h>
-> >>  #include <linux/platform_data/mtd-nand-omap2.h>
-> >> +#include <linux/sys_soc.h>
-> >>  
-> >>  #define	DRIVER_NAME	"omap2-nand"
-> >>  #define	OMAP_NAND_TIMEOUT_MS	5000
-> >> @@ -181,6 +182,7 @@ struct omap_nand_info {
-> >>  	void (*data_out)(struct nand_chip *chip,
-> >>  			 const void *buf, unsigned int len,
-> >>  			 bool force_8bit);
-> >> +	bool force_32bit;  
-> > 
-> > I believe we should have a driver capability instead of something in
-> > the info structure. You can save the value here as well in the probe if
-> > you want, but I would like this limitation to be tied to the
-> > compatible.  
-> 
-> I will discuss about this at the end.
-> >   
-> >>  };
-> >>  
-> >>  static inline struct omap_nand_info *mtd_to_omap(struct mtd_info *mtd)
-> >> @@ -2070,6 +2072,25 @@ static void omap_nand_data_in(struct nand_chip *chip, void *buf,
-> >>  	struct omap_nand_info *info = mtd_to_omap(nand_to_mtd(chip));
-> >>  	u32 alignment = ((uintptr_t)buf | len) & 3;
-> >>  
-> >> +	if (info->force_32bit) {  
-> > 
-> > I am a little bit bothered by this limitation. The force8_bit flag does
-> > not require the driver to read only 8-bits of the fifo register, it
-> > actually requires to use only the first 8-bits of the NAND bus (which
-> > can also be 16-bit wide). The older implementation just limited the
-> > number of bits reads to be 8 with ioread8, which seems to be a fine
-> > solution but would require more accesses than using ioread16 (or
-> > ioread32) when reading more than 1 byte on platforms with only 8-bit
-> > busses.  
-> 
-> I didn't understand the purpose of force8_bit flag. 
-
-Only access the lowest byte on the bus. This is only needed for
-meta-data reads (like status reads or ids) where the upper byte would
-be a duplicate.
-
-> How should the driver/controller behave if we get a data_in() call with len 8 and force8_bit flag set?
-> 
-> e.g. if 16-bit NAND ID area contains (little-endian) 2c d3 d0 a6 66 45 67 a3 4f 4e 46 49 ab ef 90 d3
-> what should data_in(len = 8, force_8_bit = 1) return in buffer?
-> 
-> Based on what you said earlier my guess is it should return 2c d0 66 67 4f 46 ab 90?
-
-If on a 16-bit bus, you would receive 2c 2c d3 d3 d0 d0 a6 a6 etc and
-of course that's not what you want.
-
-> > My point here is that:
-> > 1- the limited controllers cannot be used with a 16-bit bus
-> > 2- non-limited controllers can use ioread16 if the bus width is 8-bits  
-> 
-> Sorry, I did not understand this either. The TI GPMC controller has a configuration setting where we
-> set the NAND device bus width (8-bit or 16-bit). Then it automatically converts ioread16 or
-> ioread32 to appropriate number of 8-bit accesses or 16-bit accesses to the NAND chip.
-
-Ok great, in this case you should configure the bus width depending
-on the actual used width (8 or 16 bits). When an 8-bit access is
-requested with force_8bit, you should ensure the buswidth is changed
-to 8 and then use ioread8/16/32 as you wish and then return the bus
-back into its default state.
-
-> 
-> > 
-> > I guess it's fine not to change the logic to avoid breaking boards so
-> > we can just ignore [2] but I belive we should check chip->options &
-> > NAND_BUSWIDTH_16 in ->attach_chip() and refuse probing if this flag is
-> > set.
-> >   
-> >> +		u32 val;
-> >> +		int left;
-> >> +		u8 *ptr;
-> >> +
-> >> +		ioread32_rep(info->fifo, buf, len >> 2);
-> >> +		left = len & 0x3;
-> >> +		if (left) {
-> >> +			val = ioread32(info->fifo);
-> >> +			ptr = (u8 *)(buf + (len - left));
-> >> +			while (left--) {
-> >> +				*ptr++ = val & 0xff;
-> >> +				val >>= 8;
-> >> +			}
-> >> +		}
-> >> +
-> >> +		return;
-> >> +	}
-> >> +
-> >>  	if (force_8bit || (alignment & 1))
-> >>  		ioread8_rep(info->fifo, buf, len);
-> >>  	else if (alignment & 3)
-> >> @@ -2169,8 +2190,15 @@ static const struct nand_controller_ops omap_nand_controller_ops = {
-> >>  static struct nand_controller omap_gpmc_controller;
-> >>  static bool omap_gpmc_controller_initialized;
-> >>  
-> >> +static const struct of_device_id omap_nand_ids[];
-> >> +  
-> > 
-> > I believe this change should be dropped.
-> >   
-> >>  static int omap_nand_probe(struct platform_device *pdev)
-> >>  {
-> >> +	const struct soc_device_attribute k3_soc_devices[] = {
-> >> +		{ .family = "AM64X", .revision = "SR1.0" },
-> >> +		{ /* sentinel */ }
-> >> +	};
-> >> +
-> >>  	struct omap_nand_info		*info;
-> >>  	struct mtd_info			*mtd;
-> >>  	struct nand_chip		*nand_chip;
-> >> @@ -2186,6 +2214,12 @@ static int omap_nand_probe(struct platform_device *pdev)
-> >>  
-> >>  	info->pdev = pdev;
-> >>  
-> >> +	/* Some SoC's have 32-bit at least, read limitation */
-> >> +	if (soc_device_match(k3_soc_devices)) {
-> >> +		dev_info(&pdev->dev, "force 32-bit\n");
-> >> +		info->force_32bit = true;
-> >> +	}
-> >> +  
-> > 
-> > As suggested above, just adding a capability structure tied to the
-> > compatible string and retrieved with of_device_get_match_data() should
-> > be enough and replace this manual tree research.  
-> 
-> The trouble comes when TI updates the silicon revision to "SR2.0" and that has the issue fixed
-> but still uses the same compatible. So compatible string by itself is not sufficient to identify
-> the troubled devices. soc_device_match() was the easiest way to address this.
-
-This is precisely what compatibles are for, I believe we should declare
-the necessary additional compatibles and fix the device trees that are
-wrong.
-
-> >>  	err = omap_get_dt_info(dev, info);
-> >>  	if (err)
-> >>  		return err;
-> >> @@ -2286,6 +2320,7 @@ static int omap_nand_remove(struct platform_device *pdev)
-> >>  
-> >>  static const struct of_device_id omap_nand_ids[] = {
-> >>  	{ .compatible = "ti,omap2-nand", },
-> >> +	{ .compatible = "ti,am64-nand", },
-> >>  	{},
-> >>  };
-> >>  MODULE_DEVICE_TABLE(of, omap_nand_ids);  
-> > 
-> > The conversion to exec_op looks fine otherwise :)  
-> 
-> Thanks :)
-> 
-> > 
-> > Thanks,
-> > Miquèl
-> >   
-> 
-> cheers,
-> -roger
 
 
-Thanks,
-Miquèl
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+
+Best regards,
+Krzysztof
