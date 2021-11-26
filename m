@@ -2,146 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C34645E3EE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:16:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87C3245E3F7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:22:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243507AbhKZBUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 20:20:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60182 "EHLO
+        id S230443AbhKZB0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 20:26:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244099AbhKZBSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 20:18:02 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8289AC06173E
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 17:14:50 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id n17-20020a9d64d1000000b00579cf677301so11732051otl.8
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 17:14:50 -0800 (PST)
+        with ESMTP id S244064AbhKZBYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 20:24:06 -0500
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B870C061746
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 17:20:00 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so11757350otg.4
+        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 17:20:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=mHC9ppagTm7NImXiQs+2uZpgzdRA1KRSenhFtTzEGb4=;
-        b=tuOzZ5S+mCLY/AGkCNfNfTvDGpzt/VA7ynFdgPalTQZo/p2a0jtutBdjGcuJFQPFWO
-         91ymrNALmy2Bk8eXeWyislh+OsjZVedjgKdhsoRWWsPE39sw4gmyIXvtzRhxmQWXmm5/
-         jqKOR+CQJdkw5ZVNbUktrzXGH2Beo4LjHk02yJiPzXK4Kiz+zDOs4gDfZ1qdM9VbFUzr
-         86WwB+GsugP+UfTtDl8cp74pG9/Uj3gQ4bmyWhurUynwuPQ5hhY85MHD6nc+8PTImgC4
-         eNKl0BxZuP5quLcA3Zq2vQncqQjIyKa/BLXXoOaCDd4tHAcz2rTG+vRGv0bDy0agxofX
-         1f1A==
+        bh=zILAUlaIV7aJ9HFemhTNtCeWWoQYbbBLgLgu6h13jJk=;
+        b=Ne84rEXT6LgY8hLs1tsqHhAGKAzOdSYdH9m/Bn9AsTcVFUb9Bl/IZHYD9Y75k4VcDV
+         3xyZWkm7j9D66lId/n/wpI5mu8L8/kGcL9VFdibeEy5GJNFTDECCbob6yMKykFv8Jhbz
+         xe5/Abf3IUGBI4hSABwG4KfZCYQNa0gJyiaEqvgsgLaQEJFlrrlrpZnPCMJh8NcwWeUc
+         O5KiPKRhDc2Zb1UYxeMMahrVmyeeZDePSuLWU2bLnGMc57CCe0NZrEfoVTv9OVeI+iXP
+         VLEFNhoUkY/n8GS0td7nOcD5iyYKHwn9qStfCzZi6c05q2pWmBp4A4RC6DI800uaVMia
+         /neA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mHC9ppagTm7NImXiQs+2uZpgzdRA1KRSenhFtTzEGb4=;
-        b=V2X27QrsrZ+a+vPHQZ7dfj/TXj3KLLgbq2Nz7n+4DE6cBqu8ePD1skEWXFuMVPDzsM
-         kJqr4xeOUUJoCGhBmcTmm+YogzMEUQlrTBgmlLfZTwUcW3OnzrukmNMvmYPRcYwWtfLm
-         z4ZQ0e0GHXjiIeEbWw1MuFd7bPhvRhrLwNfTUb1vJtian1plJyQZba4fOEutkHA6YVpC
-         dkxxoni5LXmHWpEduOxm3ZiQ9A90xGaXk/jzBUS6hQG/3k/4y6pxJJAKULgGn0BG4Weo
-         OwOKWjA+FTBwLa69+g1Roy8o32NZPIQbkxcvyAg1hw2Uz+7z+xtQClb6O+TAS60kTFjx
-         82YQ==
-X-Gm-Message-State: AOAM532HEYdClw8TJs+kgOwQg5wFo1ea2jLe9yGbPVkIsVey6uNYB5ux
-        gJ1hc+rMDiYj7ZK+CAG/xWeAAedyBSNoSAaC+j3UNQ==
-X-Google-Smtp-Source: ABdhPJzKMXqySnntDR1x0DX+w3CHJ4WW1btKlW2suMdV3Yxh6M4KwRmE179J94pvhVuCM7pYOZZPp8KV3lcO6NEJ5Ro=
-X-Received: by 2002:a9d:a42:: with SMTP id 60mr25991905otg.179.1637889289852;
- Thu, 25 Nov 2021 17:14:49 -0800 (PST)
+        bh=zILAUlaIV7aJ9HFemhTNtCeWWoQYbbBLgLgu6h13jJk=;
+        b=AhYFhy2Rv1KcOQWe/u15BXaQPh6R3oyh/DrECPYTe/XLCjtXdvD17pOcODhdBPklWR
+         8qmHldOGiKpAs9OGTAC0DZViKYcbmOtFWJz180I+y8cdk+qgXGpnIHOUYBpU4O5fAS1C
+         89T1ERWJZ37v8KFjTl4kdqYHKDYW/vvvq09S1YGXT7IUDRbluRfbfkWCm+k5fArrS07X
+         ANiP8xvK+X+jE/Uh2TuVHMPHHLpYcokQY/uPspkpXMjYeqMCeBfBIZHwCOeCFC/6wVjG
+         Z2mT7C6ykgFdnnRmJZjeHzCPaFmBWgqFdbtL2FvAd4zY6ClrAwtmBZBs6KyQJlmdOqLQ
+         j7+g==
+X-Gm-Message-State: AOAM531dkxBfgfAWTexDPZorLfazeOrWRB2oxETpFEldDGRE6alLNbVT
+        9j+RTP5uVEbuTmj06SP9TFrTquD8XE9UNSDVsWJNfg==
+X-Google-Smtp-Source: ABdhPJxojQc96RItplcp2VCiVFKzTqltdfg//P6PiEk+RYErk3zmLvkafoq7gdusGDFuVF3QKLtkPoxug/1AkUykhMs=
+X-Received: by 2002:a9d:a42:: with SMTP id 60mr26012881otg.179.1637889599621;
+ Thu, 25 Nov 2021 17:19:59 -0800 (PST)
 MIME-Version: 1.0
-References: <1637834276-10466-1-git-send-email-sugaya.taichi@socionext.com> <1637834276-10466-3-git-send-email-sugaya.taichi@socionext.com>
-In-Reply-To: <1637834276-10466-3-git-send-email-sugaya.taichi@socionext.com>
+References: <20211125110738.41028-1-nbd@nbd.name> <20211125110738.41028-12-nbd@nbd.name>
+In-Reply-To: <20211125110738.41028-12-nbd@nbd.name>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 26 Nov 2021 02:14:38 +0100
-Message-ID: <CACRpkdbgMMKJwS0cUi3D2swHYbbBH6ofSeOhyXy6qiMFrU5a8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: pinctrl: add bindings for Milbeaut
- pin controller
-To:     Sugaya Taichi <sugaya.taichi@socionext.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        orito.takao@socionext.com,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
+Date:   Fri, 26 Nov 2021 02:19:48 +0100
+Message-ID: <CACRpkdYVqk0JzVipvg_2oqg86A2enba_GyhPgXPxdKp-brxTGw@mail.gmail.com>
+Subject: Re: [PATCH v4 11/12] dt-bindings: arm: airoha: Add binding for Airoha
+ GPIO controller
+To:     Felix Fietkau <nbd@nbd.name>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        John Crispin <john@phrozen.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 10:58 AM Sugaya Taichi
-<sugaya.taichi@socionext.com> wrote:
+Hi Felix,
 
-> Add Device Tree bindings documentation for pin controller of
-> the Milbeaut SoCs.
+thanks for your patch!
+
+On Thu, Nov 25, 2021 at 12:24 PM Felix Fietkau <nbd@nbd.name> wrote:
+
+> From: John Crispin <john@phrozen.org>
 >
-> Signed-off-by: Sugaya Taichi <sugaya.taichi@socionext.com>
+> Airoha's GPIO controller on their ARM EN7523 SoCs consists of two banks of 32
+> GPIOs
+>
+> Signed-off-by: John Crispin <john@phrozen.org>
 
-What is weird about this binding is what is not there:
-this is just GPIO, where are the pin mux and config
-nodes? The driver surely tries to use them.
+(...)
 
-Please use the existing standard bindings for functions
-and groups etc, check the other bindings.
+> +  reg:
+> +    maxItems: 4
+
+Can we write some short description on what the four different regs
+are?
+
+With that fixed:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
-
-> ---
->  .../pinctrl/socionext,milbeaut-pinctrl.yaml        | 51 ++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml
-> new file mode 100644
-> index 0000000..78bc2d4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/socionext,milbeaut-pinctrl.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/socionext,milbeaut-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Milbeaut SoCs pin controller
-> +
-> +maintainers:
-> +  - Taichi Sugaya <sugaya.taichi@socionext.com>
-> +
-> +description: |
-> +  Bindings for memory-mapped pin controller of the Milbeaut SoCs.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "pinctrl"
-> +
-> +  compatible:
-> +    enum:
-> +      - socionext,milbeaut-m10v-pinctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    const: "pinctrl"
-> +
-> +  gpio-controller: true
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - gpio-controller
-> +  - "#gpio-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pinctrl: pinctrl@1d022000 {
-> +        compatible = "socionext,milbeaut-m10v-pinctrl";
-> +        reg = <0x1d022000 0x1000>;
-> +        reg-names = "pinctrl";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +    };
-> --
-> 2.7.4
->
