@@ -2,128 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A4845EB88
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 11:28:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B42A045EB91
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 11:29:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbhKZKbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 05:31:16 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:35062 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1377229AbhKZK3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Nov 2021 05:29:16 -0500
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1AQALNMb003409;
-        Fri, 26 Nov 2021 11:25:31 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=dbwGfIwnUU/8KIQMSbt8DZOHk6GsjPaWZ736Ald/Wn8=;
- b=Z8HoQGniG4HFI+CncknYRDT1NE32SATiqwbJ9fiZToFiMRRCkGNjUK08Cyd55X+Qdl13
- rC2YuJy0WHbJKk2WjAT2IJGIDxbqhXPEM+U+Ae7BUxqkHoegh/O9cStSfNQjJozxsNZ2
- qArwUdqAkr4gpVTOXfxl+1J7Mqwg6RCiwDu+g7VJRI5FZRLPzDBE2I8sMqwtv4XVKvY4
- bv5yaKMJOsKoV7hLa8wpd2hF7sktJQ58aaXEhrmcN3A339xFPklnQrlU7BBXCTu/KrX7
- WomZvZxPYEc9ULWqkzwdt5hGPVatG9OZXcRiL4r3Hab949H7OkNeYULb894UAphueMqm Jw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3cjqsk9ywf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 26 Nov 2021 11:25:31 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6F18710002A;
-        Fri, 26 Nov 2021 11:25:30 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 1EEEB222C80;
-        Fri, 26 Nov 2021 11:25:30 +0100 (CET)
-Received: from lmecxl0577.lme.st.com (10.75.127.47) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Fri, 26 Nov
- 2021 11:25:28 +0100
-Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: stm32: i2s: add
- audio-graph-card port
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        <fabrice.gasnier@foss.st.com>, <alain.volmat@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <amelie.delaunay@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <devicetree@vger.kernel.org>, <arnaud.pouliquen@foss.st.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211125144053.774-1-olivier.moysan@foss.st.com>
- <20211125144053.774-2-olivier.moysan@foss.st.com>
- <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
-From:   Olivier MOYSAN <olivier.moysan@foss.st.com>
-Message-ID: <237f56b3-0597-2526-a182-f1fbdd327338@foss.st.com>
-Date:   Fri, 26 Nov 2021 11:25:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1377066AbhKZKcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 05:32:07 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:34645 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377105AbhKZKaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 05:30:07 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1637922415; h=Date: Message-ID: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=D36i+TEzYvAfF+8CwLgTruoyqqi5b/grJJSwC8YVulc=;
+ b=vlvG2/+uQTJ1H7aKtcGVs4EDyhMaaMCzwGpdwVCKcC13XRFXUlBWBQ/JxShUyNYC+EjZSiWP
+ FVYgwamAJ4ColJzhKTCSWJN3drRD29i9CF8wkiEUePySOI6/fCfygWK3NbjzJDepSYaLidTy
+ 1OhXo6pR0P/3xnzHrQEYFsCqJyc=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 61a0b66e465c4a723bef9615 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 26 Nov 2021 10:26:54
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 24338C4363B; Fri, 26 Nov 2021 10:26:54 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        MISSING_DATE,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from tykki.adurom.net (tynnyri.adurom.net [51.15.11.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C7042C4363B;
+        Fri, 26 Nov 2021 10:26:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org C7042C4363B
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <1637875562.357461.2858318.nullmailer@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG1NODE3.st.com (10.75.127.3) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-11-26_03,2021-11-25_02,2020-04-07_01
+Subject: Re: [PATCH v6 1/2] dt: bindings: add new DT entry for ath11k PCI
+ device
+ support
+From:   Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
+References: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
+To:     Anilkumar Kolli <akolli@codeaurora.org>
+Cc:     ath11k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Anilkumar Kolli <akolli@codeaurora.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
+Message-ID: <163792240626.28516.5997258436480035214.kvalo@codeaurora.org>
+Date:   Fri, 26 Nov 2021 10:26:54 +0000 (UTC)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Anilkumar Kolli <akolli@codeaurora.org> wrote:
 
-On 11/25/21 10:26 PM, Rob Herring wrote:
-> On Thu, 25 Nov 2021 15:40:50 +0100, Olivier Moysan wrote:
->> The STM2 I2S DAI can be connected via the audio-graph-card.
->> Add port entry into the bindings.
->>
->> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
->> ---
->>   Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
+> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+> Ath11k firmware uses host DDR memory, DT entry is used to
+> reserve host DDR memory regions, send these memory base
+> addresses using DT entries.
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1559750
-> 
-> 
-> audio-controller@4000b000: 'port' does not match any of the regexes: '^port@[0-9]', 'pinctrl-[0-9]+'
-> 	arch/arm/boot/dts/stm32mp157a-dk1.dt.yaml
-> 	arch/arm/boot/dts/stm32mp157c-dk2.dt.yaml
-> 
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 
-This warning is not a new one.
+Failed to apply, remember to use ath.git master branch as the baseline.
 
-The i2s2 node in stm32mp15xx-dkx.dtsi would require the following binding:
-port:
-	$ref: audio-graph-port.yaml#
-	unevaluatedProperties: false
+error: patch failed: drivers/net/wireless/ath/ath11k/core.h:194
+error: drivers/net/wireless/ath/ath11k/core.h: patch does not apply
+error: patch failed: drivers/net/wireless/ath/ath11k/mhi.c:339
+error: drivers/net/wireless/ath/ath11k/mhi.c: patch does not apply
+stg import: Diff does not apply cleanly
 
-However the spi binding requires to introduce a unit address:
-patternProperties:
-   '^port@[0-9]':
-     $ref: audio-graph-port.yaml#
-     unevaluatedProperties: false
+2 patches set to Changes Requested.
 
-The warning can be removed by re-ordering the bindings patches in the 
-serie, as "additionalProperties: true" makes the check more tolerant on 
-extra properties.
-The patch "ASoC: dt-bindings: stm32: i2s: add audio-graph-card port" can 
-even be merely dropped.
-So, I suggest to resend the serie without audio-graph-card patch.
+12638957 [v6,1/2] dt: bindings: add new DT entry for ath11k PCI device support
+12638955 [v6,2/2] ath11k: Use reserved host DDR addresses from DT for PCI devices
 
-Does it sound too permissive to you ?
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/1637839211-1503-1-git-send-email-akolli@codeaurora.org/
 
-Thanks
-Olivier
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
