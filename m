@@ -2,100 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADFE45F124
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 16:54:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA58B45F14C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 17:07:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378309AbhKZP5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 10:57:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354276AbhKZPzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 10:55:49 -0500
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674E2C0619EC;
-        Fri, 26 Nov 2021 07:44:09 -0800 (PST)
-Received: by mail-wm1-x32d.google.com with SMTP id y196so8469576wmc.3;
-        Fri, 26 Nov 2021 07:44:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pX4j/3IbsfRWpBbXodLKp3Ooot7rXdkPhrMGrMwdyWc=;
-        b=AgA6dlVN8+MxCY69yDgWXVIwfqwHDmubESbFeUHARnLUW5T0CicoqzKNAP+DzoA0+/
-         hOAsQyxPmKrVMYF299xM2CLHKkw6CvUfXZgdzb2MsXLv8GEhGuqrkaio6Pn76HakeaGg
-         yNWMrF8/me7pQRRnSbAQrXzBuLeOrnmZa0fCe1yrcdUH/Yv/8V8YQcaABXJ4Zdy5toJA
-         1CUsw6cZhQa3VQfGethcCDMFZBC3GxL65BrqucrncGXwD+T8Mz1hNw5ocGBTcpBvJTKF
-         ojfbV68Z190Z0sGcxHrbVPOXWjvY2FX/M07/WYxvyUqwYdJOC9CaqvSbd+n1OAzV+gxl
-         i7TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pX4j/3IbsfRWpBbXodLKp3Ooot7rXdkPhrMGrMwdyWc=;
-        b=UFdTKrIfyKke4zs6I7TMMZ4xgwo5EYcO7BxGSN+rUj4gMf8+YEgSRdkCtyTxgutNFp
-         i2IbDZUmTq07Uv7b3+NwXsP1gPre0JWi+CtHRwMIsPOgMsxvF6B+vOuYAZ37cRg8hgu1
-         L8xopTQMTtAa29utvLkP52WTHXC5mADDi5FmNHalpb9YfmTCC2jPpcyvk1hHRiaJ2gjT
-         jZou1CozNTEeAJ9MRcLckPNkQWy/GQuottDuYNQTCcFE5TESblm7UIxcPAPu2goTt/BH
-         eIKguXy4Im0EKyWKPohm1/ynmXRrcyf7fPvQY568tuHGQKgqyC0Dd9/XB9qdq7dhSzFi
-         16bQ==
-X-Gm-Message-State: AOAM532G19P2vlxuGM5nI3LbeicLGFLG/+SJypgRacUbxmFXQkkNBiVv
-        107gmjnjbslOqRdeS6Wa6SU=
-X-Google-Smtp-Source: ABdhPJxy5WZeJkCDxGPpJ20fBso/4CEHRxiGR3BRtJynzdR1LTnPQwXFPtils/lZCoP0kz2L/m9zSw==
-X-Received: by 2002:a7b:cc8f:: with SMTP id p15mr16274799wma.129.1637941448071;
-        Fri, 26 Nov 2021 07:44:08 -0800 (PST)
-Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id p13sm11372400wmi.0.2021.11.26.07.44.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Nov 2021 07:44:07 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: rockchip: Add spi1 pins on Quartz64 A
-Date:   Fri, 26 Nov 2021 16:43:44 +0100
-Message-Id: <20211126154344.724316-4-frattaroli.nicolas@gmail.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211126154344.724316-1-frattaroli.nicolas@gmail.com>
-References: <20211126154344.724316-1-frattaroli.nicolas@gmail.com>
+        id S1377924AbhKZQKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 11:10:52 -0500
+Received: from mail2-relais-roc.national.inria.fr ([192.134.164.83]:14339 "EHLO
+        mail2-relais-roc.national.inria.fr" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1350876AbhKZQIw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 11:08:52 -0500
+X-Greylist: delayed 429 seconds by postgrey-1.27 at vger.kernel.org; Fri, 26 Nov 2021 11:08:51 EST
+IronPort-Data: =?us-ascii?q?A9a23=3A4Fb3CKMmEU7sQsvvrR10lsFynXyQoLVcMsFnjC/?=
+ =?us-ascii?q?WdVXvhmkrgWYBnTRMD2HXPvePNDSnLdh1OYSyp0ICuZTUm99gGjLY11k9FiMQ8?=
+ =?us-ascii?q?ZKt6fexdxqrYXvKdqUvdK/WhiknQoGowPscEzmM+X9BDpC79SMljPjSGOKmYAL?=
+ =?us-ascii?q?5EnsZqTFMGX5JZS1Ly7ZRbr5A2bBVMivV0T/Ai5W31GyNh1aYBlkpB5er83uDi?=
+ =?us-ascii?q?hhdVAQw5TTSbdgT1LPXeuJ84Jg3fcldJFOgKmVY83LTegrN8F251juxExYFAde?=
+ =?us-ascii?q?51++hIghbGfuLYlbL0CIMHba6hF5DoDYz2+A1LpLwa28O0WXPzos3kYoT88boE?=
+ =?us-ascii?q?2/FPYWV8AgZextFFyB3e6lP57bDJVC+t9aSxgvIaRMAxt0wVxBuZtNCkgpwKSQ?=
+ =?us-ascii?q?UnRACExgEbRCCg/i/wr+2VMFqmMUvLcCtN4Qa0lljxyzYCfpjSJTHa6HL/sNDm?=
+ =?us-ascii?q?m9pwMdUEp72a8MfLzgpcxXEZxxGP0w/CZQikePujX76GxVUpUyUrqcr+WXe5BJ?=
+ =?us-ascii?q?+3aKrM9fPfNGOA8JPkS6wqmfP8mL2AxcXHMKQxCDD8X+2gOLL2yThV+o6Frq+/?=
+ =?us-ascii?q?+JqiVuT7moNCREXXB2wpvzRok2vUshbIkMd9iYnha4s9UCqR5/2WBjQiHqIswE?=
+ =?us-ascii?q?VXdVZFcU89gCBy6OS6AGcbkAATzhceJkludUwSDgCyFCEhZXqCCZpvbnTTmiSn?=
+ =?us-ascii?q?p+QrDWvKW0JIGAYbAcaQgYfpdruuoc+ilTIVNkLOLbznNT/FDXY2z2MozUinbI?=
+ =?us-ascii?q?VjN5N26jT1UrInjelvYTAZggr5wnWVySu6QYRWWIPT+RE8nDQ6eoFddzJCwja+?=
+ =?us-ascii?q?SFbxY3EtLpIE4mL0i2LWuQEWr+zj8tp+Qb02TZHd6TNPRz0k5J7Qb1t3Q=3D?=
+ =?us-ascii?q?=3D?=
+IronPort-HdrOrdr: =?us-ascii?q?A9a23=3A8gdBXqN1feC728BcTtSjsMiBIKoaSvp037Dk?=
+ =?us-ascii?q?7SxMoHtuA6mlfqGV7ZYmPHDP4wr5NEtMpTniAtjifZq/z/9ICOAqVN+ftW/d11?=
+ =?us-ascii?q?dAR7sN0WKN+Vfd8lXFltJg6Q=3D=3D?=
+X-IronPort-AV: E=Sophos;i="5.87,266,1631570400"; 
+   d="scan'208";a="6390362"
+Received: from clt-128-93-176-202.vpn.inria.fr ([128.93.176.202])
+  by mail2-relais-roc.national.inria.fr with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 16:58:25 +0100
+Date:   Fri, 26 Nov 2021 16:58:22 +0100 (CET)
+From:   Julia Lawall <julia.lawall@inria.fr>
+X-X-Sender: jll@hadrien
+To:     Akhil R <akhilrajeev@nvidia.com>
+cc:     kbuild-all@lists.01.org, dan.j.williams@intel.com,
+        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        jonathanh@nvidia.com, kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com
+Subject: [PATCH] dmaengine: tegra: fix platform_no_drv_owner.cocci warnings
+Message-ID: <alpine.DEB.2.22.394.2111261655450.18994@hadrien>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Quartz64 Model A has the SPI pins broken out on its pin
-header. The actual pins being used though are not the m0
-variant, but the m1 variant, which also lacks the cs1 pin.
+From: kernel test robot <lkp@intel.com>
 
-This commit overrides pinctrl-0 accordingly for this board.
+No need to set .owner here. The core will do it.
 
-spi1 is intentionally left disabled, as anyone wishing to add
-SPI devices needs to edit the dts anyway, and the pins are more
-useful as GPIOs for the rest of the users.
+Generated by: scripts/coccinelle/api/platform_no_drv_owner.cocci
 
-Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+CC: Akhil R <akhilrajeev@nvidia.com>
+Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Julia Lawall <julia.lawall@inria.fr>
 ---
- arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 5 +++++
- 1 file changed, 5 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 4d4b2a301b1a..166399b7f13f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -509,6 +509,11 @@ &spdif {
- 	status = "okay";
- };
- 
-+&spi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi1m1_cs0 &spi1m1_pins>;
-+};
-+
- &tsadc {
- 	/* tshut mode 0:CRU 1:GPIO */
- 	rockchip,hw-tshut-mode = <1>;
--- 
-2.34.0
+url:    https://github.com/0day-ci/linux/commits/Akhil-R/Add-NVIDIA-Tegra-GPC-DMA-driver/20211122-173019
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+:::::: branch date: 29 hours ago
+:::::: commit date: 29 hours ago
 
+ tegra186-gpc-dma.c |    1 -
+ 1 file changed, 1 deletion(-)
+
+--- a/drivers/dma/tegra186-gpc-dma.c
++++ b/drivers/dma/tegra186-gpc-dma.c
+@@ -1268,7 +1268,6 @@ static const struct __maybe_unused dev_p
+ static struct platform_driver tegra_dmac_driver = {
+ 	.driver = {
+ 		.name	= "tegra-gpcdma",
+-		.owner = THIS_MODULE,
+ 		.pm	= &tegra_dma_dev_pm_ops,
+ 		.of_match_table = tegra_dma_of_match,
+ 	},
