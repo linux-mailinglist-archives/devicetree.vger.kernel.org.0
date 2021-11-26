@@ -2,362 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1197645E702
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 06:05:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9CAD45E70D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 06:11:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbhKZFIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 00:08:06 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:48182 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbhKZFGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 00:06:06 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AQ52UWd001938;
-        Thu, 25 Nov 2021 23:02:30 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1637902950;
-        bh=vtLihy6KXBLz/x9adiVbfPw9OpRQBLTNDsKEKIlGduc=;
-        h=From:To:CC:Subject:Date;
-        b=QNjRt3FtOH7/CokUQT4itPeC6R/W1tZoBA7gDoeS2g8Ub5YHtpDwiOy97IMOKXirj
-         wCEi+AKUnAO98PByTsE49wg4qGm1xletxhnva8+MocxY3CCh+Re3El8uqf73uh7e7v
-         H0X7ovhFaToIFtIhI7PoGHHPn78//1O5l+ThJCnU=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AQ52UI2054195
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 25 Nov 2021 23:02:30 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 25
- Nov 2021 23:02:29 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 25 Nov 2021 23:02:29 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AQ52T3i031059;
-        Thu, 25 Nov 2021 23:02:29 -0600
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-To:     <robh+dt@kernel.org>
-CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <j-choudhary@ti.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
-Date:   Fri, 26 Nov 2021 10:32:28 +0530
-Message-ID: <20211126050228.6257-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S229639AbhKZFPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 00:15:03 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:36897 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245677AbhKZFNC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 00:13:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1637903390; x=1669439390;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=c6/WKTAVFbanUy9hYu5jX8t7Z0OQ12vts/AwtvTajxI=;
+  b=cutV7lvjG8OMdDcKdVmKsEe5a+y49m+hwn2Y08HevrhjGUYXvEwRIHMd
+   TAUJU2ml927++cGsLLDkL55p9E3U1wlzLXHufw3pUm4/bOLBqNu5+gJoI
+   L5tBpzNPf1JitfFqJSUgxbedu08fnAWCaR/BihmlscIpPC8SyZdb2/lRi
+   JofVmLYsbx8j5SXu4U3aTo3yluCVG1yeiZBzWDLf9EAYkMCAFzQGzSd5X
+   TyF6ah2uIlhKuc2FY2nNC6jBIw2qfBWPOSzwiiaztHvFrUIMavzbRM9GJ
+   qAhLrzdsxWkwm8YYLWQP4aHXD/aIpV9y6jmWD98Jnxn5ngtisg8G+JRRz
+   g==;
+IronPort-SDR: fPJRbeCm4C7GI3dXi6tXrjt79sANP80jl5F7R2lu78HeoFJUK98Z7cuw22k998o+byuFu66Vna
+ Hu2WP3EvZ2GzLUekErg/Pd5vdsCCe2SpUE+WamnvdcnadOEBYWpof70w8o1juORRpMUOgRnP6d
+ 0CKUvTSzkOPM/wL/IQL9z6b0gyoWuxNwRsou+p/ge1qKh0BsvVpLHcLJZqvwTB64deLWHdsoeR
+ xxkqd6r5YpRRuPRgZS+8HUMu1fTiRPGX1AKkWpfXhF9nBT8uZdNROoKf+ss71A6I8J3zsF8OzX
+ MQlADNo18vlmI6IKsbs+g+m2
+X-IronPort-AV: E=Sophos;i="5.87,263,1631602800"; 
+   d="scan'208";a="153300619"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Nov 2021 22:09:49 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 25 Nov 2021 22:09:49 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14 via Frontend Transport; Thu, 25 Nov 2021 22:09:49 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TirvchWfxSWHYKGVCayc7iw5hdcZYYypU5AaZdpz9Zx14k7E18oIIRbxn+kj6Vk7j+ojF0Y/y3zKceN9z8pE8S0LP+KzWQm/SngEsZ7EYdu4osZIYf6GSqF1ojJ5GLy3lu+9M4GpQALn2xW0/CXrJwYoKDBZ483B3W70MF0rXqHmnXdEhswLPDPGXASbrc4lAqQoPxLp2wshJQa0l5FpBRmafFnZScZ+HGd/k7mRjJ8kuBQWSM00+yeUAbxG9Y5mXThytEVVFljJPbMlTwuzYj95SkxG9G4bt05tQspsfU7HmotdPPtY9RHQ3E7a2j+EtYszbgM2JRnmvxOv0Jzlig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bYt2vwg5aQ1AUTqcSPOoDZ7W3i17/6jfeskkPa0dDKw=;
+ b=kmMf+W9ChfGgQhnr201U3B1JKvLb6VVf0Qw2U+2bO96VC7pM1k4XRpK8d86VPMrJnlIL1DIpp88neF9lfLn0Sw7KNsFA1qyVY4DGYqvxyGmA5vI8ZO5UWjjane2KhOirEqnkIV6opbzSl4nrm/gZ8olDOuET3F0S+E5HFVRFY8m0+EP31Hsi+WsnScsyvr6kcs8iGJeP0ceAxVxX3QagybQpjrTlgQXBOMmCCcYBqm581wVepOMZ6FhN3vZZ6IaiaufC7GcjCPiHxgOycuxsY8SjdeoCKVJjPudPFxhreaDg5pI3eGgMTtsZwnaet45ocdV85rPNLUhwkZPKq/ljsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=bYt2vwg5aQ1AUTqcSPOoDZ7W3i17/6jfeskkPa0dDKw=;
+ b=sKw7oaLMRBh+TID8pN0DuSwJbBZHIBYPTuBvq4o5wplNT4X0fJoJQc0k/PTjQRY0JaFXCb+7gYT2ONRgqPSSUr1arUjF+I2+0lyMkq3OfPama8Z4gxCaiSC3fM9PbENyldGR5Ki5dcYU7FbPsc/ww+BzwgqUyIdwp7dF51Vkm1w=
+Received: from CO1PR11MB4865.namprd11.prod.outlook.com (2603:10b6:303:9c::9)
+ by MW3PR11MB4588.namprd11.prod.outlook.com (2603:10b6:303:54::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4690.26; Fri, 26 Nov
+ 2021 05:09:46 +0000
+Received: from CO1PR11MB4865.namprd11.prod.outlook.com
+ ([fe80::9c2c:29bd:3533:c0b6]) by CO1PR11MB4865.namprd11.prod.outlook.com
+ ([fe80::9c2c:29bd:3533:c0b6%6]) with mapi id 15.20.4690.027; Fri, 26 Nov 2021
+ 05:09:46 +0000
+From:   <Kavyasree.Kotagiri@microchip.com>
+To:     <sboyd@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Nicolas.Ferre@microchip.com>, <Eugen.Hristev@microchip.com>,
+        <Manohar.Puri@microchip.com>, <robh+dt@kernel.org>,
+        <mturquette@baylibre.com>
+Subject: RE: [PATCH v10 0/3] Add driver for lan966x Generic Clock Controller
+Thread-Topic: [PATCH v10 0/3] Add driver for lan966x Generic Clock Controller
+Thread-Index: AQHX0HrODaqCiC7TlE2x8wXpDPfd1av5G8/ggBxJ7/A=
+Date:   Fri, 26 Nov 2021 05:09:46 +0000
+Message-ID: <CO1PR11MB486550115951B586DC078FE892639@CO1PR11MB4865.namprd11.prod.outlook.com>
+References: <20211103061935.25677-1-kavyasree.kotagiri@microchip.com>
+ <CO1PR11MB486571940F4F7037A08EDA9A92919@CO1PR11MB4865.namprd11.prod.outlook.com>
+In-Reply-To: <CO1PR11MB486571940F4F7037A08EDA9A92919@CO1PR11MB4865.namprd11.prod.outlook.com>
+Accept-Language: en-IN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 571cc449-3f80-4c59-48ba-08d9b09af6fe
+x-ms-traffictypediagnostic: MW3PR11MB4588:
+x-microsoft-antispam-prvs: <MW3PR11MB458809C76B2B32137D45228192639@MW3PR11MB4588.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DEOmNp+SpA5Yi2YeC8eceK4VeDu49Rt3DZvc8pRL96TN5sZP5QMTKHUnWGvbgDUoYWYF5G2s2MiBBoXZWq7zb5Oum8Pjfcgi1K1les5cnANqYSvg9MoKBq732b5jdtiNM/GfdLK15BCpXNebFlGeWBMM+rezu19Q2Cy9H6MzWZ3ZjVYP7nAvz9QaPCcm9j+dXCz9tBQHoAvopgi509wZIWaOlefm0KOFJTMjc1a0aecPg6loASSUZH/khYxKz+7Cg6PDA2z3N+WEFz8UU/7S/IConS47U3V5NpR45yN/KYIkhs6n0ngFiXpu7xN9VxLeHcEYX6oukSePqJp91SOMbsAhbGoo/rTdGUxB/ZboqpIXBCqPOHBmTiJxwbgFEWUJ5IHmVnyT6qo57HuYjtTgt9Qf+WVJ7hYOT/bxiSX/06k+3uJSrh3Plt0mF/iDtrZn/uFj46WbR+1+lHeqAVsAbXUfpJ3oF8rgmVs2BCY+da9u7yuiZEU5t1DXXjzFw+4swfeqLkb/G2XhfopqLeTws7xHinnTI1cEXSqP6jkJ1I3hWItdXDh+Sr2pS+8ULoLiLMLG0xDGM+fLkag3pRevSoJoZ1W+pWBahFPIrcIqoALhvtlW28riN4fAMVZuZuh7XG7jTpSc9u+8X68kE+3zgsjfnemAjDb45/goIHbjGlUFnpA71+4J003fT03UYRdsPAZ1DGjb5tfpIsznwYN9n4l7C1hQ7VK5AtLUvd4VTr4yvKM4bdcTGAqrTeCQoMXX
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4865.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(9686003)(122000001)(76116006)(7696005)(54906003)(66946007)(316002)(6506007)(6916009)(52536014)(5660300002)(38100700002)(64756008)(66446008)(66476007)(66556008)(33656002)(186003)(8936002)(8676002)(53546011)(86362001)(38070700005)(4326008)(508600001)(2906002)(71200400001)(83380400001)(55016003)(26005)(41533002)(491001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?HOhESS0dLN81A3LAy5K6zq+KjKY+qN8W3HXKToyL6RFvdzlHEkOLBjB8rEYn?=
+ =?us-ascii?Q?vHNyJmrEtER51TRdRfhcVE+6RTunF4myTG+PykuQRfkt2+RkypzgyPlDT4KA?=
+ =?us-ascii?Q?JfOO9kDpu1R/HkzrPv7pUDVRnVF7Z2k/UAtcJ0K7AQQgFM8CO1gr4zmIrjnt?=
+ =?us-ascii?Q?ERCcA6Lb/7wCOCfK7LCDe0JWuoSkT16sXXjaybxHURU3B4IJ8aBHqLRv8TSH?=
+ =?us-ascii?Q?sTrhZWkPOHXQ6Gb6c1SIwnIUc5U6iQIjKqyYTt0Ct5xFfnetuyDIEgPgIUXL?=
+ =?us-ascii?Q?jB1hv+aPyNMeKr2l89YbrQutEAgWsY2Nd9ms0BBqGVQFBMgTdb5d9cvyg93s?=
+ =?us-ascii?Q?XK0tS9xcPGjLj2VHxBxdgQWokSgVKJB1pKj9CQL71yTDwcVsSjQLynWg7AwE?=
+ =?us-ascii?Q?9oQlNr77FdHyjcw/LA1kddAZysUgvPBx7bETZoWbs9CSjW9LDUXlJh+lBXfW?=
+ =?us-ascii?Q?kIQja461BsaLtWYSpmCVIaxUK8Xb5/luu5XHuYb2lbO5yMVpX6pgivBjSh1u?=
+ =?us-ascii?Q?yeJ/5VKjZxmFKuBRtpi7TXNx8EzJAdfqsALpKOcxHSsR6c9fMK95NaenhimC?=
+ =?us-ascii?Q?n7tuIjeWuZD6xDwoCwcbZ4W5wChl9ZHWmJyjK6qy5TRWg6ZzCKDpV6fZQyqV?=
+ =?us-ascii?Q?gtEmuloLQD+30UU4oZA9ImrDO7QOLrA2+OcZSB95qLWZHyh/uCeOQys01Gfe?=
+ =?us-ascii?Q?gq2SnM4tfE0lMp1qN/4xWmj8lOTBoxFUu21UVteZlj/kTJ2/Q8qmnwYOzgyM?=
+ =?us-ascii?Q?NpidA/Lm96GMBKZcmHJRrAHC/KlrzkkiE20YT02ZQSZ5bd8ok3KII61dfmzK?=
+ =?us-ascii?Q?QgWqFgl06xEUECKSzUCFKzIC0gkwHul5xE2UJq297dlnhvK9jtkHGEzxr71N?=
+ =?us-ascii?Q?i2V2vA8rzKgd7PCFpMpogoeWg7TS7j3cYAG8LJwO1aEI1U3DRNej4rqYfxRG?=
+ =?us-ascii?Q?d1bRdYZo/tbWpr2XTKehK2phegVkNOLG1CfEwjxi8h9PzwLmMr6CmDiugi6y?=
+ =?us-ascii?Q?mUGM9VD1Y5zUBhd0RpyeZZaqrMcfyQNUaprnteWzpp5sPnMEzk+pJCepui2B?=
+ =?us-ascii?Q?Rfhr6nzzPgUJBY5HVFY4bqdO4rh51Mgpf3gJCGK5IXDHyPmM0V4qWy5TZofa?=
+ =?us-ascii?Q?WjXNH8JnYsEqdBuUcgrgDcRCRGCf0wt0kD5D85MYbtvDX3GLu6Xksw/L0Rwt?=
+ =?us-ascii?Q?frN79+tVEZls7vHiDskd0Al04YFWaFubvOURjLbA5UHwfFWRN9eCB97Zkvnv?=
+ =?us-ascii?Q?OeP5GJWpxKPMP7UEHIj5bNMoZzeaRW8V3DPcXlOOphYD79ke4HoV72FmZ1S1?=
+ =?us-ascii?Q?eG4sP/Ihbk9N8OdHi4LDYKeiiAqcDJuzB2Ne1qstZQqSOvdlHH2bwASJ6DHK?=
+ =?us-ascii?Q?ZayEsOzvb3+fQkEItrRoFPfuCzVU4sH26lA/2d9kUviNt9TptMYUFQ0DHq3/?=
+ =?us-ascii?Q?14Fgo2ZEnlSWhtAXrdz5ITIV5hH289rVpBvEB6eO3u99nCfPtE3z3qlCDYkd?=
+ =?us-ascii?Q?wcvt55ov8eoGQWQZ9cZJIQAfLWCq++/PKxC+v9Z70NQGSdBnzVPTXNUpyTfm?=
+ =?us-ascii?Q?v8vVils3znFPNVXvIodjDMRQVNADSfdQd5vU3vJpahW4uPO6xGpcxwMNRjgP?=
+ =?us-ascii?Q?mt0CEgWrz8QbWZEFdb9JYHBS3b6ot/R//qfprn7e/NKpEp20pYJucpCmo6pB?=
+ =?us-ascii?Q?1MgrJf+aCD2xMW2i2m2ypJetwPzsk3amPc2UJlDjyHhksOfL?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4865.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 571cc449-3f80-4c59-48ba-08d9b09af6fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Nov 2021 05:09:46.3723
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lIySq9mfWHb/EsDjeE3jpeAGtP2dpk9iKmOYFcpIGRwGdoe1dG7ndr5AQlOPjcmf13mOy2qc+vp2pfTy0eXeh0Kce3TFwMM03g83eODijHYtvQnulWSWKrHx73t/s6oF
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4588
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the bindings for McASP controllers for TI SOCs
-from txt to YAML schema.
+Hi Stephen,
 
-Adds additional properties 'clocks', 'clock-names', 'power-domains',
-'#sound-dai-cells', 'num-serializer' and 'port' which were not there
-in the txt file.
-Adds 'dmas' and 'dma-names' in the example which were not there in
-the txt file.
-Changes 'interrupts' and 'interrupt-names' from optional to
-required properties.
+Please provide your comments on this. I am waiting for the response on this=
+ patch series so that I can submit further lan966x code which have dependen=
+cies on this gck driver.
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
-Changelog:
-v3:
-- removes maxItems from 'clock-names'
+Thanks,
+Kavya
 
-v2:
-- changes the commit message
-- modifies the properties 'clocks', 'clock-names', 'dma-names',
-  'dmas', 'interrupts' and 'interrupt-names' according to the
-  arm SOCs
-- adds 'port' and 'num-serializer' as node properties
- 
- .../bindings/sound/davinci-mcasp-audio.txt    |  86 ---------
- .../bindings/sound/davinci-mcasp-audio.yaml   | 178 ++++++++++++++++++
- 2 files changed, 178 insertions(+), 86 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
- create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-deleted file mode 100644
-index bd863bd69501..000000000000
---- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
-+++ /dev/null
-@@ -1,86 +0,0 @@
--Texas Instruments McASP controller
--
--Required properties:
--- compatible :
--	"ti,dm646x-mcasp-audio"	: for DM646x platforms
--	"ti,da830-mcasp-audio"	: for both DA830 & DA850 platforms
--	"ti,am33xx-mcasp-audio"	: for AM33xx platforms (AM33xx, AM43xx, TI81xx)
--	"ti,dra7-mcasp-audio"	: for DRA7xx platforms
--	"ti,omap4-mcasp-audio"	: for OMAP4
--
--- reg : Should contain reg specifiers for the entries in the reg-names property.
--- reg-names : Should contain:
--         * "mpu" for the main registers (required). For compatibility with
--           existing software, it is recommended this is the first entry.
--         * "dat" for separate data port register access (optional).
--- op-mode : I2S/DIT ops mode. 0 for I2S mode. 1 for DIT mode used for S/PDIF,
--  	    IEC60958-1, and AES-3 formats.
--- tdm-slots : Slots for TDM operation. Indicates number of channels transmitted
--  	      or received over one serializer.
--- serial-dir : A list of serializer configuration. Each entry is a number
--               indication for serializer pin direction.
--               (0 - INACTIVE, 1 - TX, 2 - RX)
--- dmas: two element list of DMA controller phandles and DMA request line
--        ordered pairs.
--- dma-names: identifier string for each DMA request line in the dmas property.
--	     These strings correspond 1:1 with the ordered pairs in dmas. The dma
--	     identifiers must be "rx" and "tx".
--
--Optional properties:
--
--- ti,hwmods : Must be "mcasp<n>", n is controller instance starting 0
--- tx-num-evt : FIFO levels.
--- rx-num-evt : FIFO levels.
--- dismod : Specify the drive on TX pin during inactive slots
--	0 : 3-state
--	2 : logic low
--	3 : logic high
--	Defaults to 'logic low' when the property is not present
--- sram-size-playback : size of sram to be allocated during playback
--- sram-size-capture  : size of sram to be allocated during capture
--- interrupts : Interrupt numbers for McASP
--- interrupt-names : Known interrupt names are "tx" and "rx"
--- pinctrl-0: Should specify pin control group used for this controller.
--- pinctrl-names: Should contain only one value - "default", for more details
--  		 please refer to pinctrl-bindings.txt
--- fck_parent : Should contain a valid clock name which will be used as parent
--	       for the McASP fck
--- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
--		   and FS rate if applicable:
--		   AUCLK rate = auxclk-fs-ratio * FS rate
--
--Optional GPIO support:
--If any McASP pin need to be used as GPIO then the McASP node must have:
--...
--  gpio-controller
--  #gpio-cells = <2>;
--...
--
--When requesting a GPIO, the first parameter is the PIN index in McASP_P*
--registers.
--For example to request the AXR2 pin of mcasp8:
--function-gpios = <&mcasp8 2 0>;
--
--Or to request the ACLKR pin of mcasp8:
--function-gpios = <&mcasp8 29 0>;
--
--For generic gpio information, please refer to bindings/gpio/gpio.txt
--
--Example:
--
--mcasp0: mcasp0@1d00000 {
--	compatible = "ti,da830-mcasp-audio";
--	reg = <0x100000 0x3000>;
--	reg-names "mpu";
--	interrupts = <82>, <83>;
--	interrupt-names = "tx", "rx";
--	op-mode = <0>;		/* MCASP_IIS_MODE */
--	tdm-slots = <2>;
--	serial-dir = <
--			0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
--			0 0 0 0
--			0 0 0 1
--			2 0 0 0 >;
--	tx-num-evt = <1>;
--	rx-num-evt = <1>;
--};
-diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-new file mode 100644
-index 000000000000..c4d3f56470bf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
-@@ -0,0 +1,178 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/davinci-mcasp-audio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: McASP Controller for TI SoCs
-+
-+maintainers:
-+  - Jayesh Choudhary <j-choudhary@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,dm646x-mcasp-audio
-+      - ti,da830-mcasp-audio
-+      - ti,am33xx-mcasp-audio
-+      - ti,dra7-mcasp-audio
-+      - ti,omap4-mcasp-audio
-+
-+  reg:
-+    minItems: 1
-+    items:
-+      - description: main registers
-+      - description: data port register
-+
-+  reg-names:
-+    minItems: 1
-+    items:
-+      - const: mpu
-+      - const: dat
-+
-+  op-mode:
-+    description: I2S - 0 or DIT - 1 mode
-+    enum:
-+      - 0
-+      - 1
-+
-+  tdm-slots:
-+    maxItems: 1
-+
-+  serial-dir:
-+    description:
-+      A list of serializer configuration
-+      Entry is indication for serializer pin direction
-+      0 - Inactive, 1 - TX, 2 - RX
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 1
-+    maxItems: 16
-+    items:
-+      minimum: 0
-+      maximum: 2
-+      default: 0
-+
-+  dmas:
-+    minItems: 1
-+    items:
-+      - description: transmission DMA channel
-+      - description: reception DMA channel
-+
-+  dma-names:
-+    minItems: 1
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  ti,hwmods:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description: Name of hwmod associated with McASP
-+    maxItems: 1
-+    deprecated: true
-+
-+  tx-num-evt:
-+    maxItems: 1
-+
-+  rx-num-evt:
-+    maxItems: 1
-+
-+  dismod:
-+    enum:
-+      - 0
-+      - 2
-+      - 3
-+    default: 2
-+
-+  sram-size-playback:
-+    maxItems: 1
-+
-+  sram-size-capture:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: TX FIFO interrupt
-+      - description: RX FIFO interrupt
-+
-+  interrupt-names:
-+    oneOf:
-+      - minItems: 1
-+        items:
-+          - const: tx
-+          - const: rx
-+      - const: common
-+
-+  fck_parent:
-+    description: parent clock for McASP fck
-+    maxItems: 1
-+
-+  auxclk-fs-ratio:
-+    description: ratio of AUCLK and FS if applicable
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  function-gpios:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: fck
-+      - const: ahclkx
-+      - const: ahclkr
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  num-serializer:
-+    maxItems: 1
-+
-+  port:
-+    type: object
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - dmas
-+  - dma-names
-+  - interrupts
-+  - interrupt-names
-+  - serial-dir
-+  - op-mode
-+  - tdm-slots
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    mcasp0: mcasp0@1d00000 {
-+      compatible = "ti,da830-mcasp-audio";
-+      reg = <0x100000 0x3000>;
-+      reg-names = "mpu";
-+      interrupts = <82>, <83>;
-+      interrupt-names = "tx", "rx";
-+      op-mode = <0>;		/* MCASP_IIS_MODE */
-+      tdm-slots = <2>;
-+      dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
-+      dma-names = "tx", "rx";
-+      serial-dir = <
-+          0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
-+          0 0 0 0
-+          0 0 0 1
-+          2 0 0 0 >;
-+      tx-num-evt = <1>;
-+      rx-num-evt = <1>;
-+    };
--- 
-2.17.1
+> -----Original Message-----
+> From: Kavyasree Kotagiri - I30978
+> Sent: Monday, November 8, 2021 10:42 AM
+> To: sboyd@kernel.org
+> Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> clk@vger.kernel.org; UNGLinuxDriver <UNGLinuxDriver@microchip.com>;
+> Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>; Eugen Hristev -
+> M18282 <Eugen.Hristev@microchip.com>; Manohar Puri - I30488
+> <Manohar.Puri@microchip.com>; robh+dt@kernel.org;
+> mturquette@baylibre.com; Kavyasree Kotagiri - I30978
+> <Kavyasree.Kotagiri@microchip.com>
+> Subject: RE: [PATCH v10 0/3] Add driver for lan966x Generic Clock Control=
+ler
+>=20
+> Hi Stephen,
+>=20
+> Addressed your comments in v10 patch series.
+> Please let me know when you include my patches into PR.
+>=20
+> Thanks,
+> Kavya
+> > -----Original Message-----
+> > From: Kavyasree Kotagiri [mailto:kavyasree.kotagiri@microchip.com]
+> > Sent: Wednesday, November 3, 2021 11:50 AM
+> > To: robh+dt@kernel.org; mturquette@baylibre.com; sboyd@kernel.org
+> > Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > clk@vger.kernel.org; UNGLinuxDriver <UNGLinuxDriver@microchip.com>;
+> > Nicolas Ferre - M43238 <Nicolas.Ferre@microchip.com>; Eugen Hristev -
+> > M18282 <Eugen.Hristev@microchip.com>; Kavyasree Kotagiri - I30978
+> > <Kavyasree.Kotagiri@microchip.com>; Manohar Puri - I30488
+> > <Manohar.Puri@microchip.com>
+> > Subject: [PATCH v10 0/3] Add driver for lan966x Generic Clock Controlle=
+r
+> >
+> > This patch series adds a device driver for Generic Clock Controller
+> > of lan966x SoC.
+> >
+> > v9 -> v10:
+> > - Removed .name from lan966x_gck_pdata struct.
+> > - Removed "_clk" in fw_names like used in bindings
+> >
+> > v8 -> v9:
+> > - Added Acked-by to dt-bindings and Documentation file.
+> > - Changed clk_name "timer" to "timer1"
+> > - Updated devm_kzalloc in probe function.
+> >
+> > v7 -> v8:
+> > - Defined new constant DIV_MAX.
+> > - Corrected and updated prescaler divider condition check.
+> > - Added Acked-by.
+> >
+> > v6 -> v7:
+> > - Added Kconfig and Makefile entires for lan966x clock driver.
+> >
+> > v5 -> v6:
+> > - Added Acked-by to dt-bindings file.
+> > - Removed "_clk" in clock-names.
+> > - Added Reviewed-by to Documentation file.
+> >
+> > v4 -> v5:
+> > - In v4 dt-bindings, missed adding "clock-names" in required
+> >   properties and example. So, added them.
+> > - Returning proper error - PTR_ERR.
+> > - Removed unused variable "ret" in probe function.
+> >
+> > v3 -> v4:
+> > - Updated "clocks" and added "clock-names" in dt-bindings.
+> > - Used clk_parent_data instead of of_clk_get_parent_name().
+> >
+> > v2 -> v3:
+> > - Fixed dt_binding_check errors.
+> >
+> > v1 -> v2:
+> > - Updated license in dt-bindings.
+> > - Updated example provided for clock controller node.
+> >
+> > Kavyasree Kotagiri (3):
+> >   dt-bindings: clock: lan966x: Add binding includes for lan966x SoC
+> >     clock IDs
+> >   dt-bindings: clock: lan966x: Add LAN966X Clock Controller
+> >   clk: lan966x: Add lan966x SoC clock driver
+> >
+> >  .../bindings/clock/microchip,lan966x-gck.yaml |  57 +++++
+> >  drivers/clk/Kconfig                           |   7 +
+> >  drivers/clk/Makefile                          |   1 +
+> >  drivers/clk/clk-lan966x.c                     | 240 ++++++++++++++++++
+> >  include/dt-bindings/clock/microchip,lan966x.h |  28 ++
+> >  5 files changed, 333 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/clock/microchip,lan966x-gck.yaml
+> >  create mode 100644 drivers/clk/clk-lan966x.c
+> >  create mode 100644 include/dt-bindings/clock/microchip,lan966x.h
+> >
+> > --
+> > 2.17.1
 
