@@ -2,66 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6A345F235
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 17:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 462DA45F2B0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 18:12:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233916AbhKZQki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 11:40:38 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:58751 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234023AbhKZQii (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 11:38:38 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id A5886E001D;
-        Fri, 26 Nov 2021 16:35:23 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        <linux-mtd@lists.infradead.org>, Mark Brown <broonie@kernel.org>,
-        <linux-spi@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michal Simek <monstr@monstr.eu>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 5/5] spi: dt-bindings: Add an example with two stacked flashes
-Date:   Fri, 26 Nov 2021 17:34:50 +0100
-Message-Id: <20211126163450.394861-6-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20211126163450.394861-1-miquel.raynal@bootlin.com>
-References: <20211126163450.394861-1-miquel.raynal@bootlin.com>
+        id S235118AbhKZRPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 12:15:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231993AbhKZRNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 12:13:54 -0500
+Received: from mail-io1-xd33.google.com (mail-io1-xd33.google.com [IPv6:2607:f8b0:4864:20::d33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7534C0613F2
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 08:47:10 -0800 (PST)
+Received: by mail-io1-xd33.google.com with SMTP id x10so12130214ioj.9
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 08:47:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=F8mAaNfSp1B2qpckgrUmaGov90eY6709B/lnYmhCEIU=;
+        b=azGt6t+pjBx6IuRsPFGdWXRBi44e5LMfX/Ecs8RX6xmLU9O3+ADeQ6tzEgzYZH5/yz
+         2Ll0ITVnw3/HOLBjDXGU6NQ/zx8+iVMNIMf2o/5vuKAjOPI9Sw5ExkJh9IvU17hdPHNA
+         2q/CsMI0pJwvXw9+qnI2IYolvdkO3LClJJubFbaB597WQ3TNGHLD55SchR9LwaTcv0lh
+         x/53UgeImL9iDKpHcrEF1ziM80Jnpxc3IQq+UejL8gGBtCLAkU90aStlRVOjsz6F4d9d
+         iKb65m89LohTXhvyzOJ1Q3dBOLFYAfdM6sFNUasoZ4kwasdMZU2H65mdz4FVJZEpXYPQ
+         0rfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=F8mAaNfSp1B2qpckgrUmaGov90eY6709B/lnYmhCEIU=;
+        b=zM2IfY0hMdxccTeIu3fBda39LGXnPyyZ6g9E2UHiXf4ntEH0wm4qNIwR368WZxqEA2
+         HGwaeGEEnAJQQYxeXSnq2a+zITOCR6xuId/5mIovmUMIciGj+GFH9DDui+2YSkybMbum
+         6Jv2MgBlcATL0UIunnCctRWrWtfjvu9t/hZM6K2mJ7PDwXsog2iefmBx73BlselJAXIO
+         DKUq+/HCq/2bTR9C6rZlg+6GIU6ulRjXekMZT6L56IfZnT5avem1N5M9t2xoASdO1U3Q
+         KFHNjiGZQZjV4B5JHB7sagyOBNiHQK1/Qh7Ja5xI1Ai3my8N1h2VV+QynO+ziOn1cAOJ
+         nTUg==
+X-Gm-Message-State: AOAM531cEsI5N1q2xbMT3IltYXzH0Uv1Yn+RtD4MShmgNxM0xAEzhfWd
+        knu1E/xE2UMmciDTIKgtnYorww6K4jboP+n3zWg=
+X-Google-Smtp-Source: ABdhPJxXvC89HePYJxskmQO+mi/2Nl2F0GDwaQ2b2u6pnRJDhSAxBRw9MY5GUFkCje4m3czLp4H5FkL6kV+bMfO4NuM=
+X-Received: by 2002:a05:6638:dd5:: with SMTP id m21mr41965955jaj.44.1637945230295;
+ Fri, 26 Nov 2021 08:47:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a05:6602:2f03:0:0:0:0 with HTTP; Fri, 26 Nov 2021 08:47:09
+ -0800 (PST)
+Reply-To: msbelinaya892@gmail.com
+From:   msbelinaya <raymondmicheal919@gmail.com>
+Date:   Fri, 26 Nov 2021 16:47:09 +0000
+Message-ID: <CAM6ZuAND80WMJpRm1zRpG0tTsTnxT7xaXxyxkwoHsK5UYajOgA@mail.gmail.com>
+Subject: 
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Provide an example of how to describe two flashes in eg. stacked mode.
+Ich biete meine Freundschaft an und glaube, dass Sie mich mit einem
+guten Herzen annehmen werden. Ich wurde gedr=C3=A4ngt, Sie zu kontaktieren
+und zu sehen, wie wir uns am besten unterst=C3=BCtzen k=C3=B6nnen. Ich bin =
+Frau
+Kodjovi Hegbor aus der T=C3=BCrkei und arbeite als Operations Division
+Manager bei der StandardBNP bank limited Turkey. Ich glaube, es ist
+Gottes Wille, dass ich Sie jetzt treffen werde. Ich habe ein wichtiges
+gesch=C3=A4ftliches Gespr=C3=A4ch, das ich mit Ihnen teilen m=C3=B6chte, vo=
+n dem ich
+glaube, dass es Sie interessiert, da es mit Ihrem Nachnamen
+zusammenh=C3=A4ngt und Sie davon profitieren wird.
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+ Im Jahr 2006 er=C3=B6ffnete ein B=C3=BCrger Ihres Landes bei meiner Bank e=
+in
+36-monatiges Nicht-Residentenkonto im Wert von =C2=A3 8.400.000,00. Das
+Ablaufdatum f=C3=BCr diese Hinterlegungsvereinbarung war der 16. Januar
+2009. Leider starb er am 12. Mai 2008 in Sichuan, China, bei einem
+t=C3=B6dlichen Erdbeben, bei dem auf einer Gesch=C3=A4ftsreise mindestens 6=
+8.000
+Menschen ums Leben kamen.
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-index 1ceba6c7430d..7a3fb237830a 100644
---- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-@@ -225,4 +225,11 @@ examples:
-             spi-max-frequency = <100000>;
-             reg = <1>;
-         };
-+
-+        flash@2,3 {
-+          compatible = "jedec,spi-nor";
-+          spi-max-frequency = <50000000>;
-+          reg = <2>, <3>;
-+          stacked-memories;
-+        };
-     };
--- 
-2.27.0
+Die Gesch=C3=A4ftsleitung meiner Bank hat noch nichts von seinem Tod
+geh=C3=B6rt, ich wusste davon, weil er mein Freund war und ich sein
+Kontoverwalter war, als das Konto vor meiner Bef=C3=B6rderung er=C3=B6ffnet
+wurde. Aber Herr
+bei der Kontoer=C3=B6ffnung keine n=C3=A4chsten Verwandten/Erben erw=C3=A4h=
+nt hat und
+er nicht verheiratet war oder keine Kinder hatte. Letzte Woche bat
+mich meine Bankdirektion, Anweisungen zu geben, was mit seinem Geld zu
+tun sei, wenn der Vertrag verl=C3=A4ngert werden sollte.
 
+Ich wei=C3=9F, dass dies passieren wird, und deshalb habe ich nach einem
+Mittel gesucht, um mit der Situation umzugehen, denn wenn meine
+Bankdirektoren wissen, dass sie tot sind und keinen Erben haben,
+nehmen sie das Geld f=C3=BCr ihren pers=C3=B6nlichen Gebrauch, also tue ich=
+ es
+nicht Ich m=C3=B6chte nicht, dass so etwas passiert. Da habe ich deinen
+Nachnamen gesehen, habe mich gefreut und suche nun deine Mitarbeit, um
+dich als n=C3=A4chsten Verwandten/Erben des Kontos zu pr=C3=A4sentieren, da=
+ du
+den gleichen Nachnamen wie er hast und meine Bankzentrale das Konto
+freigeben wird f=C3=BCr dich. Es besteht kein Risiko; die Transaktion
+erfolgt im Rahmen einer legitimen Vereinbarung, die Sie vor
+Rechtsverletzungen sch=C3=BCtzt.
+
+Es ist besser f=C3=BCr uns, das Geld zu beanspruchen, als es den
+Bankdirektoren zu =C3=BCberlassen, sie sind bereits reich. Ich bin kein
+gieriger Mensch, also schlage ich vor, dass wir das Geld gleichm=C3=A4=C3=
+=9Fig
+aufteilen, 50/50% auf beide Parteien. Mein Anteil wird mir helfen,
+mein eigenes Unternehmen zu gr=C3=BCnden und den Erl=C3=B6s f=C3=BCr wohlt=
+=C3=A4tige
+Zwecke zu verwenden, was mein Traum war.
+
+Bitte teilen Sie mir Ihre Meinung zu meinem Vorschlag mit, ich brauche
+wirklich Ihre Hilfe bei dieser Transaktion. Ich habe dich auserw=C3=A4hlt,
+mir zu helfen, nicht durch mein eigenes Tun, meine Liebe, sondern bei
+Gott, ich wollte, dass du wei=C3=9Ft, dass ich mir die Zeit genommen habe,
+f=C3=BCr diese Nachricht zu beten, bevor ich dich jemals kontaktiert habe,
+um deine Meinung mitzuteilen und bitte zu behandeln diese
+Informationen als STRENG GEHEIM. Nach Erhalt Ihrer Antwort
+ausschlie=C3=9Flich =C3=BCber meine pers=C3=B6nliche E-Mail-Adresse
+msbelinaya892@gmail.com
+gibt Ihnen Details zur Transaktion. Und eine Kopie der
+Einlagenbescheinigung des Fonds und der Gr=C3=BCndungsurkunde der
+Gesellschaft, die den Fonds gegr=C3=BCndet hat.
+Gott segne in Erwartung Ihrer dringenden Antwort
+Mit freundlichen Gr=C3=BC=C3=9Fen
+Frau Kodjovi Hegbor
+msbelinaya892@gmail.com
