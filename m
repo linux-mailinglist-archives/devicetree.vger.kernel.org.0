@@ -2,94 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CA3845E419
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:37:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F8145E436
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 02:54:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244892AbhKZBkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 20:40:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343810AbhKZBix (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 20:38:53 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90667C061574;
-        Thu, 25 Nov 2021 17:35:41 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id x131so7337347pfc.12;
-        Thu, 25 Nov 2021 17:35:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BC6SGqll2uc/Zv/S1kgQ3STL+1ZHDPjKpDU0asoxWCM=;
-        b=TnDzylDFZtfPCO+3RZNOIlB4jX60ZxezOab4G01BceqytfGO0wR2P54JICIVdeIPXa
-         qCU3gY7aynOiJuPmybr/4VnDE7oHFSktcMjW0hg0k5cngqDeBCi10XOJCEtITFk/Y1uy
-         jl33CWtTi2Ek1Y760ObcfgxljT14/crK2Q4J33MpAvRo9ccy9sM97vIkXEf6P5jTOEyT
-         n7o4Idjsf4x1a3m0MDtEIX2/lHosYXN8lbXU0gSbhPeqEsoA2SI9JwXsMgRn0mzjph7D
-         gU8NwYofoEYaaNIcV5fiH6q7XkJa+7o9F75Y6255tUplTCGVy82OiE+Hd2T1hZwjU1o1
-         rEcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BC6SGqll2uc/Zv/S1kgQ3STL+1ZHDPjKpDU0asoxWCM=;
-        b=eRt77qRkTS/RSCsjjwL98B4KRRTr+lRvqX4sUF7OoqY6AsnkCawzSoPKyho/BiwY3s
-         qiUcCDDvz4ydevh8kVH9qaHbk6wH37INJySR/GFoqjz6NkLJATciKer9tw6rc63RY55U
-         mAli++XWhCHl0A7HujsIcgvvBpo10kG3/GSugGMO2c/q0FgnYfaXAE13T2NImQQhfiiZ
-         yehYYxOc3zm7cg2Or54MbqGe3Z6olTnNKU5vOGyjtfCbXpaNb1kaR6IXsCfe16zG2A6m
-         XT1abgr4OgwphdMZZ9s/1ZihXbt8NR/ufxzxFjumCfPGoHt4nAcSTGYbBpSKz3HaXLgQ
-         +44w==
-X-Gm-Message-State: AOAM5324OgK5cfdAZpdbQNKpjhXaOI1CZ3/yOHko+/RaPN/Hq/uRRPmP
-        O0qQ5bNZi9dj4XJEj+DdgmjY3ay2e2g=
-X-Google-Smtp-Source: ABdhPJxxhoRPWvSi7qP2HqlGcwQFPXdVX9wsMvQJG2frSrOtm2O9eiZy7JM9XwabCs3MJc/F9lkLkw==
-X-Received: by 2002:a63:145d:: with SMTP id 29mr18972313pgu.264.1637890541142;
-        Thu, 25 Nov 2021 17:35:41 -0800 (PST)
-Received: from localhost ([103.99.179.247])
-        by smtp.gmail.com with ESMTPSA id d10sm4772832pfl.139.2021.11.25.17.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 17:35:40 -0800 (PST)
-Date:   Fri, 26 Nov 2021 09:35:36 +0800
-From:   Calvin Zhang <calvinzhang.cool@gmail.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org
-Subject: Re: [PATCH] mm: kmemleak: alloc gray object for reserved region with
- direct map.
-Message-ID: <YaA56JVYPfzCsawG@debian>
-References: <20211123090641.3654006-1-calvinzhang.cool@gmail.com>
- <YZ/FQXS3gWZ2xfEy@arm.com>
+        id S1357606AbhKZB5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 20:57:46 -0500
+Received: from mail.loongson.cn ([114.242.206.163]:35568 "EHLO loongson.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1349802AbhKZBzn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Nov 2021 20:55:43 -0500
+Received: from localhost.localdomain (unknown [113.200.148.30])
+        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dx_9PSPaBh1ooBAA--.6419S2;
+        Fri, 26 Nov 2021 09:52:18 +0800 (CST)
+From:   Qing Zhang <zhangqing@loongson.cn>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v9 1/3] MIPS: Loongson64: Add Loongson-2K1000 reset platform driver
+Date:   Fri, 26 Nov 2021 09:52:14 +0800
+Message-Id: <20211126015216.26605-1-zhangqing@loongson.cn>
+X-Mailer: git-send-email 2.31.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YZ/FQXS3gWZ2xfEy@arm.com>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf9Dx_9PSPaBh1ooBAA--.6419S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxAFW3tw4fAFyfGFy5Kr4Uurg_yoW5Wr1fpF
+        Z8Cw43Ar4rXa17Ka1fJFyUuFW5ZwnayFWj9Fy2v34UZas8WFZ5J3Zrta4FvF9rWr1xJFWa
+        qFsYqFW5CF4ruw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+        9KBjDU0xBIdaVrnRJUUUkab7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I2
+        0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+        A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
+        jxv20xvEc7CjxVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjc
+        xK6I8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40E
+        FcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Gr
+        0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkIecxEwVAFwVWkMxAI
+        w28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr
+        4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUAVWUtwCIc40Y0x0EwIxG
+        rwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8Jw
+        CI42IY6xAIw20EY4v20xvaj40_WFyUJVCq3wCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY
+        6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07bOWl9UUUUU=
+X-CM-SenderInfo: x2kd0wptlqwqxorr0wxvrqhubq/
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 05:17:53PM +0000, Catalin Marinas wrote:
->On Tue, Nov 23, 2021 at 05:06:41PM +0800, Calvin Zhang wrote:
->> Reserved regions with direct mapping may contain references to other
->> regions. CMA region with fixed location is reserved without creating
->> kmemleak_object for it.
->> 
->> So add them as gray kmemleak objects.
->
->Do you get any kmemleak false positives without this patch? It would be
->good to include them in the commit message.
+Add power management register operations to support reboot and poweroff.
 
-Sorry, no. I thought it was possible before I saw this commit:
-620951e27457 ("mm/cma: make kmemleak ignore CMA regions"). 
+Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+---
+v8-v9:
+No change
+---
+ drivers/platform/mips/Kconfig      |  6 ++++
+ drivers/platform/mips/Makefile     |  1 +
+ drivers/platform/mips/ls2k-reset.c | 53 ++++++++++++++++++++++++++++++
+ 3 files changed, 60 insertions(+)
+ create mode 100644 drivers/platform/mips/ls2k-reset.c
 
->
->Without seeing a false positive caused by this, I'm not convinced it is
->the right approach. You mentioned CMA but telling kmemleak about the
->whole CMA region is a pretty big hammer. I'd rather add individual
->kmemleak_alloc_*() calls in cma_alloc().
-
-Yeah, I agree.
-
---
-Calvin
+diff --git a/drivers/platform/mips/Kconfig b/drivers/platform/mips/Kconfig
+index 8ac149173c64b..d421e14823957 100644
+--- a/drivers/platform/mips/Kconfig
++++ b/drivers/platform/mips/Kconfig
+@@ -30,4 +30,10 @@ config RS780E_ACPI
+ 	help
+ 	  Loongson RS780E PCH ACPI Controller driver.
+ 
++config LS2K_RESET
++	bool "Loongson-2K1000 Reset Controller"
++	depends on MACH_LOONGSON64 || COMPILE_TEST
++	help
++	  Loongson-2K1000 Reset Controller driver.
++
+ endif # MIPS_PLATFORM_DEVICES
+diff --git a/drivers/platform/mips/Makefile b/drivers/platform/mips/Makefile
+index 1781490987773..4c71444e453a6 100644
+--- a/drivers/platform/mips/Makefile
++++ b/drivers/platform/mips/Makefile
+@@ -1,3 +1,4 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ obj-$(CONFIG_CPU_HWMON) += cpu_hwmon.o
+ obj-$(CONFIG_RS780E_ACPI) += rs780e-acpi.o
++obj-$(CONFIG_LS2K_RESET) += ls2k-reset.o
+diff --git a/drivers/platform/mips/ls2k-reset.c b/drivers/platform/mips/ls2k-reset.c
+new file mode 100644
+index 0000000000000..b70e7b8a092c2
+--- /dev/null
++++ b/drivers/platform/mips/ls2k-reset.c
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ *  Copyright (C) 2021, Qing Zhang <zhangqing@loongson.cn>
++ *  Loongson-2K1000 reset support
++ */
++
++#include <linux/of_address.h>
++#include <linux/pm.h>
++#include <asm/reboot.h>
++
++#define	PM1_STS		0x0c /* Power Management 1 Status Register */
++#define	PM1_CNT		0x14 /* Power Management 1 Control Register */
++#define	RST_CNT		0x30 /* Reset Control Register */
++
++static void __iomem *base;
++
++static void ls2k_restart(char *command)
++{
++	writel(0x1, base + RST_CNT);
++}
++
++static void ls2k_poweroff(void)
++{
++	/* Clear */
++	writel((readl(base + PM1_STS) & 0xffffffff), base + PM1_STS);
++	/* Sleep Enable | Soft Off*/
++	writel(GENMASK(12, 10) | BIT(13), base + PM1_CNT);
++}
++
++static int ls2k_reset_init(void)
++{
++	struct device_node *np;
++
++	np = of_find_compatible_node(NULL, NULL, "loongson,ls2k-pm");
++	if (!np) {
++		pr_info("Failed to get PM node\n");
++		return -ENODEV;
++	}
++
++	base = of_iomap(np, 0);
++	if (!base) {
++		pr_info("Failed to map PM register base address\n");
++		return -ENOMEM;
++	}
++
++	_machine_restart = ls2k_restart;
++	pm_power_off = ls2k_poweroff;
++
++	of_node_put(np);
++	return 0;
++}
++
++arch_initcall(ls2k_reset_init);
+-- 
+2.31.0
 
