@@ -2,141 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F5C45E49D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 03:33:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7F545E6A2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 04:50:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357707AbhKZCfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 21:35:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47828 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1357646AbhKZCdl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Nov 2021 21:33:41 -0500
-Received: by mail.kernel.org (Postfix) with ESMTPSA id 4482761153;
-        Fri, 26 Nov 2021 02:30:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1637893829;
-        bh=1ckL1UOukGatH9rWkaaEsSmMeMXtaRnOe1jHyjUlYkU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HR37TroxYgrn8xjJm7VpeEBOZZfVkIoUWkBPIjk2il/VF6PMPZpAGVn1DGuuA/apo
-         2Pb8HFfsiEWgqr56yAAuH5c24zTLHXxJnrQH426jV+UrQuw4U4XCAiN9BlEQzXEeob
-         wFqLw3uwROfi9anGpKPL9mFYO4x22u/zw0kITxewNw5M3Z/sEKChdZzXpTyR8L1xln
-         Fp1BgeDuAp5Q/02I5jBVMJc78jdQcX7Naluspeimvp+tJ0AWQciYJijZzxDz1+B12P
-         FIDctFksxKknxUC+6Feo4bsIEiUveUy5x5L7gLqJabpz/3aWpiA8Q3tqfBbKWYj6s9
-         88AUFPATiSBMA==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        conor.dooley@microchip.com, bin.meng@windriver.com,
-        atish.patra@wdc.com, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 4/7] riscv: dts: microchip: drop duplicated MMC/SDHC node
-Date:   Thu, 25 Nov 2021 21:30:03 -0500
-Message-Id: <20211126023006.440839-4-sashal@kernel.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211126023006.440839-1-sashal@kernel.org>
-References: <20211126023006.440839-1-sashal@kernel.org>
+        id S1343750AbhKZDxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 22:53:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344500AbhKZDvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 22:51:51 -0500
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44336C09B114;
+        Thu, 25 Nov 2021 18:47:41 -0800 (PST)
+Received: by mail-pl1-x62c.google.com with SMTP id n8so5744715plf.4;
+        Thu, 25 Nov 2021 18:47:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N2rR2M205RaoXv2F1eYgORsUa0WkEJokTNFyh0m1jbQ=;
+        b=G2bPd47mof2kPWU7wel0/tp2qN5l0O1ock7AVXOCjPcUgfdz+VGKWkXiYcX9y1PbIN
+         Uvx3tGvdiFsjdWcDUHq3iDhH1az6OWWLRddAnuGMRXuAQjASQdHm0ixSfecMUpL9le/f
+         eTADybm0qsmMMNVCByp9gq7imYV3VqBKjQnhY0tHT+6qwCx8XaUXkvRuey9ymCNi0yau
+         WoLtDhIwjwasn2UdJ3wxPeYWjNgn2rqVtt87k79XaOwIYg6V+MpeZQfne8XEZGhAs8qK
+         uIbwyrBUBzoVG2kLvZH+NxhP6qMXM6q23hqGf/n2i4+UUUlxzn35ojINybmpkkIdY6PH
+         B+cA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N2rR2M205RaoXv2F1eYgORsUa0WkEJokTNFyh0m1jbQ=;
+        b=mjkTn2zxXbZupHVT7O375PPEKBfr3gHINgE/PSZVOKEgIUPV1W9KhZ/XEAlL87dd1Z
+         c0RdOB10IQYGAZKj7diO9pKPAHyz1n12BiaR8fBijbSJVpr2aqyf2EJNrBxh7MQnA1Ex
+         SpACqq7WsOIEMV9ZorhtVvWVKM2n/Ep0qTP5+OjWl+o85HzgvDRMEYo5nDiTxE3B/Tpu
+         KX5oXU79FUSH2R5OAyTAuxPnZ78IKnDsLSQ7FG7fwk9Hy20ZwInPwpZa289ZC12G0LdR
+         NF+eVVzNdjysrRxYioqBG8OMicM0LfKo6wDuF+JPcWwqgNxugwFgYyJTpp/nZh5jj0fW
+         zV9g==
+X-Gm-Message-State: AOAM533DQnub7cyBmc4bUnmkZuODwLowZRUDnSGgIcFv+i2mkrwv3d55
+        MufkaffnVWHX25Hzua2kB88=
+X-Google-Smtp-Source: ABdhPJx1btLLTBXEFgpXDPhTCJScji/umzB55h96FNh8lq7mlIt4d/IQDK9YMn2EtbU9mBvwLvrqGg==
+X-Received: by 2002:a17:902:ab94:b0:143:beb5:b6a7 with SMTP id f20-20020a170902ab9400b00143beb5b6a7mr36447789plr.30.1637894860877;
+        Thu, 25 Nov 2021 18:47:40 -0800 (PST)
+Received: from localhost.localdomain ([103.99.179.247])
+        by smtp.gmail.com with ESMTPSA id k14sm4814513pff.6.2021.11.25.18.47.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Nov 2021 18:47:40 -0800 (PST)
+From:   Calvin Zhang <calvinzhang.cool@gmail.com>
+To:     Christoph Hellwig <hch@lst.de>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux-foundation.org,
+        Calvin Zhang <calvinzhang.cool@gmail.com>
+Subject: [PATCH] mm: kmemleak: Ignore kmemleak scanning on CMA regions
+Date:   Fri, 26 Nov 2021 10:47:11 +0800
+Message-Id: <20211126024711.54937-1-calvinzhang.cool@gmail.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Just like this:
+commit 620951e27457 ("mm/cma: make kmemleak ignore CMA regions").
 
-[ Upstream commit 42a57a47bb0c0f531321a7001972a3ca121409bd ]
+Add kmemleak_ignore_phys() for CMA created from of reserved node.
 
-Devicetree source is a description of hardware and hardware has only one
-block @20008000 which can be configured either as eMMC or SDHC.  Having
-two node for different modes is an obscure, unusual and confusing way to
-configure it.  Instead the board file is supposed to customize the block
-to its needs, e.g. to SDHC mode.
-
-This fixes dtbs_check warning:
-  arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: sdhc@20008000: $nodename:0: 'sdhc@20008000' does not match '^mmc(@.*)?$'
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
 ---
- .../microchip/microchip-mpfs-icicle-kit.dts   | 11 ++++++-
- .../boot/dts/microchip/microchip-mpfs.dtsi    | 29 ++-----------------
- 2 files changed, 12 insertions(+), 28 deletions(-)
+ kernel/dma/contiguous.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-index be0d77624cf53..cce5eca31f257 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-@@ -56,8 +56,17 @@ &serial3 {
- 	status = "okay";
- };
+diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
+index 3d63d91cba5c..66bd9a59615e 100644
+--- a/kernel/dma/contiguous.c
++++ b/kernel/dma/contiguous.c
+@@ -50,6 +50,7 @@
+ #include <linux/sizes.h>
+ #include <linux/dma-map-ops.h>
+ #include <linux/cma.h>
++#include <linux/kmemleak.h>
  
--&sdcard {
-+&mmc {
- 	status = "okay";
+ #ifdef CONFIG_CMA_SIZE_MBYTES
+ #define CMA_SIZE_MBYTES CONFIG_CMA_SIZE_MBYTES
+@@ -426,6 +427,9 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
+ 		pr_err("Reserved memory: unable to setup CMA region\n");
+ 		return err;
+ 	}
 +
-+	bus-width = <4>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	card-detect-delay = <200>;
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
- };
++	kmemleak_ignore_phys(rmem->base);
++
+ 	/* Architecture specific contiguous memory fixup. */
+ 	dma_contiguous_early_fixup(rmem->base, rmem->size);
  
- &emac0 {
-diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-index 446f41d6a87e9..b12fd594e7172 100644
---- a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-@@ -262,39 +262,14 @@ serial3: serial@20104000 {
- 			status = "disabled";
- 		};
- 
--		emmc: mmc@20008000 {
-+		/* Common node entry for emmc/sd */
-+		mmc: mmc@20008000 {
- 			compatible = "cdns,sd4hc";
- 			reg = <0x0 0x20008000 0x0 0x1000>;
- 			interrupt-parent = <&plic>;
- 			interrupts = <88 89>;
- 			pinctrl-names = "default";
- 			clocks = <&clkcfg 6>;
--			bus-width = <4>;
--			cap-mmc-highspeed;
--			mmc-ddr-3_3v;
--			max-frequency = <200000000>;
--			non-removable;
--			no-sd;
--			no-sdio;
--			voltage-ranges = <3300 3300>;
--			status = "disabled";
--		};
--
--		sdcard: sdhc@20008000 {
--			compatible = "cdns,sd4hc";
--			reg = <0x0 0x20008000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
--			interrupts = <88>;
--			pinctrl-names = "default";
--			clocks = <&clkcfg 6>;
--			bus-width = <4>;
--			disable-wp;
--			cap-sd-highspeed;
--			card-detect-delay = <200>;
--			sd-uhs-sdr12;
--			sd-uhs-sdr25;
--			sd-uhs-sdr50;
--			sd-uhs-sdr104;
- 			max-frequency = <200000000>;
- 			status = "disabled";
- 		};
 -- 
-2.33.0
+2.30.2
 
