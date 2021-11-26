@@ -2,55 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B416645EA4C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:24:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1832145EA55
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:25:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344985AbhKZJ1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 04:27:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52880 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359748AbhKZJZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:25:16 -0500
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB89FC0619DA
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 01:14:59 -0800 (PST)
-Received: by mail-wm1-x32e.google.com with SMTP id c6-20020a05600c0ac600b0033c3aedd30aso6316330wmr.5
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 01:14:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0RIa0tC4q8Mnplv7In8ruGkJCIcDpzXyFfkRNTnI/gU=;
-        b=htVKZXcK7jnZggEM+44KEeJ5RS4R61e6LoW/7Ovf4aKoMyh0D2rehHg/92Myo0LSfT
-         oGaBJ98mXkJxqsu1B32J4FzHHC+djXhtbqnFx9rcq123+aMwxgk6LjVjGd4FdwQa+tFs
-         wdYhW+I7+9jSBkVBmXnMytE6zvCHWd4x2g286RkS6xWQ0qo2A1qzwIIoM7lGNrb5N4TQ
-         o+o/uoPrM8xEnLf7Vw+bcES5+aSi5RAjXaDTAqRFIj8Kn6ta63UmcD+oj7WiMA7Tky0x
-         MeAQxygYR/HTtB9pt7w4rQeJnJGCo3UUK7Bq5fX3bNkktp9xI+uTD3cqQn6SLxVBuNSE
-         pXmw==
+        id S240405AbhKZJ3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 04:29:05 -0500
+Received: from mail-ua1-f43.google.com ([209.85.222.43]:40791 "EHLO
+        mail-ua1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232227AbhKZJ1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:27:05 -0500
+Received: by mail-ua1-f43.google.com with SMTP id y5so17326759ual.7;
+        Fri, 26 Nov 2021 01:23:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0RIa0tC4q8Mnplv7In8ruGkJCIcDpzXyFfkRNTnI/gU=;
-        b=hbR++7uEQbAP9US4VK8THGQzl4lN7SfbmIYvj4Cmv97ZRQpAYNBXpDDD6LjXEo6lIP
-         0KKEii3HnwMaBdG305C3pN2Hg8xC5DD59A/noM22cpHML6ze2b9KUcsWCGuL7KQd1mD2
-         2Rn/0qRUQxMuNwF1aLr8gpMbyCFeJ0TjWUsom14CCKrlzp9dDnbDNDs4mA2LqCShne1c
-         qcL1k7WOERZixT63SQp/yGEAnNA5GIzyBLTZVVV0rudi2xlapu4jZvIMhXaeF5P3wx3P
-         SOeF5V8Dw0OyY/luRwHaQbfht2qdQnKd6pC703LuwyA3SfaD7PbPB/Pts31ILmVDX7wd
-         BUzA==
-X-Gm-Message-State: AOAM533PjsSFslFTlbFRJpf3rdGtGxg6bdiOJI8+k4LEw4NVBT4dGb6a
-        B27BhTbCXXiisFmjlLwPx5gD4m2DFkON9jBDmhSd7w==
-X-Google-Smtp-Source: ABdhPJwC+do93NOFr9ub+o9kEAa0iBiw1ZnHGEoh33mkwVEbddlO34ojqOj2q4LxPp++TXTkSBu7/PkyFknSPRJbZ/c=
-X-Received: by 2002:a1c:7201:: with SMTP id n1mr14095206wmc.176.1637918098323;
- Fri, 26 Nov 2021 01:14:58 -0800 (PST)
+        bh=SktczEZvO7fymdakFqebWM/pQEoSmTkh1E0WAx6R/E0=;
+        b=bbSy814SJk5bKDaZd91igWSvMxNKfDib6wGMVo2reJhT+WMTNgLYUt2/1QFEb2tSAL
+         RYVA/1Y0QTpUcOE6lYXBWXJ/uJ9vgya83BlSRdYoDf/zj81R63kCS4GtMwBXubz8iMih
+         VwTjLp7lMnZVpqYdQjpXROUDz2ASikIS97+4l3a/a8uyIoTEE4icpclof3h3dnZGYLx5
+         SuLwp9vnHzM4ilz3HvKBNPvrhR0d2ndvfXdb3Pr9anSmyITeeL4Rn0YZb4kNWTH6Nb4b
+         A+p52LZbWOI+fgoLLOyf6btnktY+Yfv1cx0NrTYDHAU/hsDyOjnPfIADIqBb4s2l8OIP
+         aUZQ==
+X-Gm-Message-State: AOAM530kGRukOIg3DXIc+BA1uqkE2wYRL+5Ox0s5Fx77+nqPSJKE6hmu
+        KPcSktdWsPKUIQSiELj5KI8FsjWKHBgUCA==
+X-Google-Smtp-Source: ABdhPJy5l+TohySFU8s2yMgmxgZD8qod85TL2weGNOS6U1E/NUhejWnnSFIs8KWn9nM5s04UcqSpSQ==
+X-Received: by 2002:ab0:6c44:: with SMTP id q4mr33877854uas.72.1637918631782;
+        Fri, 26 Nov 2021 01:23:51 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id n10sm3663811uaj.20.2021.11.26.01.23.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Nov 2021 01:23:51 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id w23so17340073uao.5;
+        Fri, 26 Nov 2021 01:23:50 -0800 (PST)
+X-Received: by 2002:a05:6102:3232:: with SMTP id x18mr15892154vsf.38.1637918630521;
+ Fri, 26 Nov 2021 01:23:50 -0800 (PST)
 MIME-Version: 1.0
 References: <20211125152317.162958-1-geert@linux-m68k.org> <CAMuHMdVg-r3P_SPqDK7K4rYLzLP+=Wy9KatiNrpK7ebKJSx-Tg@mail.gmail.com>
-In-Reply-To: <CAMuHMdVg-r3P_SPqDK7K4rYLzLP+=Wy9KatiNrpK7ebKJSx-Tg@mail.gmail.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Fri, 26 Nov 2021 14:44:47 +0530
-Message-ID: <CAAhSdy2WEAkVBh9Za-w4nzpEiVT17RNFOAKJEHFce+rsYiaCQQ@mail.gmail.com>
+ <CAAhSdy2WEAkVBh9Za-w4nzpEiVT17RNFOAKJEHFce+rsYiaCQQ@mail.gmail.com>
+In-Reply-To: <CAAhSdy2WEAkVBh9Za-w4nzpEiVT17RNFOAKJEHFce+rsYiaCQQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 26 Nov 2021 10:23:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWAHW-RF-RrMbH=AsVmSRw=JEsUot0PaMzDdve70JfXQQ@mail.gmail.com>
+Message-ID: <CAMuHMdWAHW-RF-RrMbH=AsVmSRw=JEsUot0PaMzDdve70JfXQQ@mail.gmail.com>
 Subject: Re: [PATCH] dt-bindings: timer: sifive, clint: Fix number of interrupts
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
+To:     Anup Patel <anup@brainfault.org>
 Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
@@ -67,66 +63,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 26, 2021 at 2:34 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> On Thu, Nov 25, 2021 at 4:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> > To improve human readability and enable automatic validation, the tuples
-> > in "interrupts-extended" properties should be grouped using angle
-> > brackets.  As the DT bindings lack an upper bound on the number of
-> > interrupts, thus assuming one, proper grouping is currently flagged as
-> > an error.
-> >
-> > Fix this by adding the missing "maxItems", limiting it to 10 interrupts
-> > (two interrupts for a system management core, and two interrupts per
-> > core for other cores), which should be sufficient for now.
-> >
-> > Group the tuples in the example.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > ---
-> >  .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> > index a35952f487426988..55bec2d059807c48 100644
-> > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
-> > @@ -43,6 +43,7 @@ properties:
-> >
-> >    interrupts-extended:
-> >      minItems: 1
-> > +    maxItems: 10
->
-> Cfr. Jessica's comment on my PLIC patch:
->
-> The maximum supported by the CLINT memory map is 8192.
-> Device-specific limits would be 4 for k210 and jh7100, and 10 for
-> fu540.
+Hi Anup,
 
-As-per CLINT chapter of SiFive FU740 manual:
-1) Offset 0x0000 to 0x3fff is MSIPx registers (up to 4096 registers)
-2) Offset 0x4000 to 0xbff7 is MTIMECMPx registers (up to 4095 registers)
-3) Offset 0xbff8 to 0xc000 is MTIME register
-(Refer, https://sifive.cdn.prismic.io/sifive/28560457-c5a4-4f88-866c-8098d02afea1_FU740-C000-Manual-v1p0.pdf)
+On Fri, Nov 26, 2021 at 10:15 AM Anup Patel <anup@brainfault.org> wrote:
+> On Fri, Nov 26, 2021 at 2:34 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Thu, Nov 25, 2021 at 4:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > To improve human readability and enable automatic validation, the tuples
+> > > in "interrupts-extended" properties should be grouped using angle
+> > > brackets.  As the DT bindings lack an upper bound on the number of
+> > > interrupts, thus assuming one, proper grouping is currently flagged as
+> > > an error.
+> > >
+> > > Fix this by adding the missing "maxItems", limiting it to 10 interrupts
+> > > (two interrupts for a system management core, and two interrupts per
+> > > core for other cores), which should be sufficient for now.
+> > >
+> > > Group the tuples in the example.
+> > >
+> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > > ---
+> > >  .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
+> > >  1 file changed, 5 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > index a35952f487426988..55bec2d059807c48 100644
+> > > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > > @@ -43,6 +43,7 @@ properties:
+> > >
+> > >    interrupts-extended:
+> > >      minItems: 1
+> > > +    maxItems: 10
+> >
+> > Cfr. Jessica's comment on my PLIC patch:
+> >
+> > The maximum supported by the CLINT memory map is 8192.
+> > Device-specific limits would be 4 for k210 and jh7100, and 10 for
+> > fu540.
+>
+> As-per CLINT chapter of SiFive FU740 manual:
+> 1) Offset 0x0000 to 0x3fff is MSIPx registers (up to 4096 registers)
+> 2) Offset 0x4000 to 0xbff7 is MTIMECMPx registers (up to 4095 registers)
 
-The "maxItems" for SiFive CLINT should be 4095.
+Thanks, I had missed these are 64-bit (and did wonder about the extra
+space ;-)
 
-Regards,
-Anup
+> 3) Offset 0xbff8 to 0xc000 is MTIME register
+> (Refer, https://sifive.cdn.prismic.io/sifive/28560457-c5a4-4f88-866c-8098d02afea1_FU740-C000-Manual-v1p0.pdf)
+>
+> The "maxItems" for SiFive CLINT should be 4095.
 
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+OK.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
