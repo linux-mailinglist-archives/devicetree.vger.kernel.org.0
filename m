@@ -2,237 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BADD645EB04
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 11:05:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84CB145EB36
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 11:21:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240268AbhKZKIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 05:08:23 -0500
-Received: from comms.puri.sm ([159.203.221.185]:36684 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1376699AbhKZKGX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Nov 2021 05:06:23 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id EB6E1DF80A;
-        Fri, 26 Nov 2021 02:02:39 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id FTwc4evxQriD; Fri, 26 Nov 2021 02:02:38 -0800 (PST)
-Message-ID: <d5e0fe8f8a5445c9c2d2b90fcf454829daf393e8.camel@puri.sm>
-Subject: Re: [PATCH v9 2/4] dt-bindings: media: document SK Hynix Hi-846
- MIPI CSI-2 8M pixel sensor
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, kernel@puri.sm,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        phone-devel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        shawnx.tu@intel.com
-Date:   Fri, 26 Nov 2021 11:02:31 +0100
-In-Reply-To: <CAMuHMdVVNhLa2p-ywmpcEj-sw+NyRNp2z9jsVqsXEDrKphivCQ@mail.gmail.com>
-References: <20210906102837.2190387-1-martin.kepplinger@puri.sm>
-         <20210906102837.2190387-3-martin.kepplinger@puri.sm>
-         <CAMuHMdVVNhLa2p-ywmpcEj-sw+NyRNp2z9jsVqsXEDrKphivCQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S1353277AbhKZKYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 05:24:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37494 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1376537AbhKZKWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 05:22:18 -0500
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21394C06174A
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 02:09:05 -0800 (PST)
+Received: by mail-pf1-x429.google.com with SMTP id o4so8435874pfp.13
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 02:09:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4W2I5kuwpM2lqQ0SftJKxJYAD53bRmdrJ6iZIfgDzkg=;
+        b=IPkErYmmP/MP79xguXU0HZSMDDIrG2wd7US1TxW/lxQfYNasxnfDdJc1Fqr8E9aXxS
+         vszY6dfUJQzI0hMkvNQpjC4t/XTiL7rEQ1JWt8ontYmbu+VFFU0dqE2uCBFL0zRXjsU2
+         rG5AsTcwffVpz2uKA55Ef79HwxOOeQnMuQC0jyaY2tbHSZ2w9NN0133sDpmaDdv2+kXC
+         OGjnyPpGKdF6gl6JZVoaijU5R6+Dt+laQixKm9HgeAwTd6mQ2XXp2GpTSGXaC9CI9dtE
+         9GEFFGI9Y6P498ovhEiNrHBGxLZ8P+pXgGG9wWOsDtlPdUBnTQovSuLGpW1SUzq3KHDj
+         lV5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4W2I5kuwpM2lqQ0SftJKxJYAD53bRmdrJ6iZIfgDzkg=;
+        b=KSButAWqHGY/nZkpsPXlcH+MhjjFc3Qcdd1NGG3pbaQDOB+Ztag1gADz8MQ+hogivs
+         y5AflDdCypKaT3zdUa3ipFTFm923/OQlp9/sl9GhNMvsksqBwW+Op8X4hQqHTHENmjQW
+         sH0Xy8Rc4yVQAfhGoBulgab8vxFmgfJLxQD1w1DXZEqrYS2+42YZjqLMG0mxjKM9Utk5
+         FpeBEyWU1EY/22Ga7U5AqSHoLFPc7U4fheJZv5C39bOaFJgKBP88nQ/RX1wlLyDix3Ha
+         5qhC0LgVZWsDD9HRs3m5WUmXM3f0ywiEFJtmys/Fp1vbR7XCwlS/OnotUtabb4A2b6cW
+         lWlw==
+X-Gm-Message-State: AOAM5325uiBqSR+VznQPdeZCaVD+51XCvyh7QXHTm/w1utfMh1mrYSgs
+        uOZi+kbaoIbOuu5ReRdP01vLs5UD7bawRg==
+X-Google-Smtp-Source: ABdhPJxVejTdV/NyrWHwGiaTysIUv3zOhCVavwvpUaitec33azBmmuhOyA8uIgkTF6FDl0OeFLILPw==
+X-Received: by 2002:a05:6a00:2349:b0:49f:db1d:c378 with SMTP id j9-20020a056a00234900b0049fdb1dc378mr19747281pfj.53.1637921344428;
+        Fri, 26 Nov 2021 02:09:04 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:5eda:d984:1426:91ca])
+        by smtp.gmail.com with ESMTPSA id lj15sm5238017pjb.12.2021.11.26.02.09.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Nov 2021 02:09:04 -0800 (PST)
+Date:   Fri, 26 Nov 2021 18:08:59 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        devicetree@vger.kernel.org,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, cujomalainey@google.com,
+        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        linux-arm-kernel@lists.infradead.org,
+        sound-open-firmware@alsa-project.org
+Subject: Re: [PATCH v6 2/3] firmware: mediatek: add adsp ipc protocol
+ interface
+Message-ID: <YaCyO9kKWJ8oog/h@google.com>
+References: <20211126093021.25462-1-allen-kh.cheng@mediatek.com>
+ <20211126093021.25462-3-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211126093021.25462-3-allen-kh.cheng@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 25.11.2021 um 12:15 +0100 schrieb Geert
-Uytterhoeven:
-> On Mon, Sep 6, 2021 at 12:30 PM Martin Kepplinger
-> <martin.kepplinger@puri.sm> wrote:
-> > Document the bindings used for the SK Hynix Hi-846 CMOS camera
-> > driver.
-> > 
-> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../bindings/media/i2c/hynix,hi846.yaml       | 120
-> > ++++++++++++++++++
-> >  1 file changed, 120 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > new file mode 100644
-> > index 000000000000..85a8877c2f38
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > @@ -0,0 +1,120 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
-> > +
-> > +maintainers:
-> > +  - Martin Kepplinger <martin.kepplinger@puri.sm>
-> > +
-> > +description: |-
-> > +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image data
-> > +  interface and CCI (I2C compatible) control bus. The output
-> > format
-> > +  is raw Bayer.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: hynix,hi846
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Reference to the mclk clock.
-> > +
-> > +  assigned-clocks:
-> > +    maxItems: 1
-> > +
-> > +  assigned-clock-rates:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    description: Reference to the GPIO connected to the RESETB
-> > pin. Active low.
-> > +    maxItems: 1
-> > +
-> > +  shutdown-gpios:
-> > +    description: Reference to the GPIO connected to the XSHUTDOWN
-> > pin. Active low.
-> > +    maxItems: 1
-> > +
-> > +  vddio-supply:
-> > +    description: Definition of the regulator used for the VDDIO
-> > power supply.
-> > +
-> > +  vdda-supply:
-> > +    description: Definition of the regulator used for the VDDA
-> > power supply.
-> > +
-> > +  vddd-supply:
-> > +    description: Definition of the regulator used for the VDDD
-> > power supply.
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/properties/port
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            oneOf:
-> > +              - items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +                  - const: 3
-> > +                  - const: 4
-> > +              - items:
-> > +                  - const: 1
-> > +                  - const: 2
-> > +
-> > +        required:
-> > +          - data-lanes
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - assigned-clocks
-> > +  - assigned-clock-rates
-> > +  - vddio-supply
-> > +  - vdda-supply
-> > +  - vddd-supply
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        hi846: camera@20 {
-> > +            compatible = "hynix,hi846";
-> > +            reg = <0x20>;
-> > +            pinctrl-names = "default";
-> > +            pinctrl-0 = <&pinctrl_csi1>;
-> > +            clocks = <&clk 0>;
-> > +            assigned-clocks = <&clk 0>;
-> > +            assigned-clock-rates = <25000000>;
-> > +            vdda-supply = <&reg_camera_vdda>;
-> > +            vddd-supply = <&reg_camera_vddd>;
-> > +            vddio-supply = <&reg_camera_vddio>;
-> > +            reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
-> > +            shutdown-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
-> > +
-> > +            port {
-> > +                camera_out: endpoint {
-> > +                    remote-endpoint = <&csi1_ep1>;
-> > +                    link-frequencies = /bits/ 64
-> > +                        <80000000 200000000>;
-> > +                    data-lanes = <1 2>;
-> 
-> "make dt_binding_check":
-> 
->    
-> Documentation/devicetree/bindings/media/i2c/hynix,hi846.example.dt.ya
-> ml:
-> camera@20: port:endpoint: Unevaluated properties are not allowed
-> ('link-frequencies', 'data-lanes' were unexpected)
->     From schema:
-> Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> 
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
+On Fri, Nov 26, 2021 at 05:30:20PM +0800, allen-kh.cheng wrote:
+> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 
+Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
 
-thanks a lot Geert, but I can't reproduce this on linux-next. Which
-tree did you run it against?
-
-What I *do* see is the following during dtbs_check, so I guess I could
-remove "orientation" and "rotation" from the example, which would be
-kind of sad because these useful properties are not yet too wide know
-anyway in the media device driver world...
-
-/home/martin/dev/purism-forks/linux-
-next/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
-camera-front@20: 'orientation', 'rotation' do not match any of the
-regexes: 'pinctrl-[0-9]+'
-	From schema: /home/martin/dev/purism-forks/linux-
-next/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-
-
-if you can be more speicific I'll definitely try to reproduce again
-though.
-
-thanks,
-                             martin
-
-
+I have provided the tag in v5.  If your have no major updates for the newer patches, you should carry the tags in the commit message.
