@@ -2,82 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B5E045F53F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 20:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DCEF545F5C2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 21:24:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230446AbhKZTh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 14:37:59 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:54010 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230376AbhKZTf7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Nov 2021 14:35:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=c/8sOzv020CXclteJsgS2hcB1lLfRSyiK7Dp8TTyBFM=; b=AK
-        BRunmA97gXuEtGZM7SGnlyp7ZhSW5LIX4NMqmK6mjLqQiDCoVCoUIaNKHrU/DnqlS/ykVjisHpKgB
-        hqK65SgWwm9pWxWcnS2Dpre5FKZN0CQyJbAow5SHbTEP7U/grsf+t1KDrqas0BnmXZF0HdlOhRGRl
-        TsC57zxbglUcYco=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1mqgxc-00Eivm-FB; Fri, 26 Nov 2021 20:32:40 +0100
-Date:   Fri, 26 Nov 2021 20:32:40 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Vincent Shih =?utf-8?B?5pa96YyV6bS7?= 
-        <vincent.shih@sunplus.com>
-Subject: Re: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
-Message-ID: <YaE2WJibNCQAHBwz@lunn.ch>
-References: <cover.1636620754.git.wells.lu@sunplus.com>
- <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
- <YY7/v1msiaqJF3Uy@lunn.ch>
- <7cccf9f79363416ca8115a7ed9b1b7fd@sphcmbx02.sunplus.com.tw>
- <YZ+pzFRCB0faDikb@lunn.ch>
- <6c1ce569d2dd46eba8d4b0be84d6159b@sphcmbx02.sunplus.com.tw>
- <YaDxc2+HKUYxsmX4@lunn.ch>
- <38e40bc4c0de409ca959bcb847c1fc96@sphcmbx02.sunplus.com.tw>
- <YaEiRt+vqt1Ix8xb@lunn.ch>
- <b41b754050a14c598b723825ab277322@sphcmbx02.sunplus.com.tw>
+        id S240312AbhKZU2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 15:28:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55762 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233176AbhKZU0E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 15:26:04 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80318C061746;
+        Fri, 26 Nov 2021 12:22:02 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id g191-20020a1c9dc8000000b0032fbf912885so7516090wme.4;
+        Fri, 26 Nov 2021 12:22:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=myHy6GLiOK3ibzQLkLpcI8h/6EY48s1TeorO1MCwIX4=;
+        b=c4k3bRxnQpMARzx+IZLBccZsBgrqtmPRdRyKGaZen4az311dDPDxXzkto7esYUPQlM
+         VgKP+nVfJpU9K+y+J7uMKpfzjSCMjJkoGnPX+F8gQ+iCTFbBt1GPoe22OyihK8JPssEi
+         D/USbvUjFJEQNXHENhA8Q3pCViJcyPZ6bsDE+gN+p6TozhCvBCHJRweIFqDq1BP+jPp1
+         jbp5gfLBzaUgrEAgjB6Nu/O/eBcI/s70HVjA3UwBFgG0+PISZZs/dhcCRIHjpY90VqGi
+         Dqp12hYAbFt+DcbtTQk+t04DQdh60nTHPn6wtqBbYdgiEW9eHU3kOQRgARcZdSwtM0R8
+         Uugg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=myHy6GLiOK3ibzQLkLpcI8h/6EY48s1TeorO1MCwIX4=;
+        b=DUTBTjqlr+wigYfUqXrBpgCLFcLY/2GoSlcNdPzUl9MRhRHw4QeVPpreLgmHYhyhUe
+         W1qdH0s3ScuB0mNyAKgtESw9YmdEKn+1nYbCgzYE4rbSq59SnnIE67edUJgA7I/talbw
+         BgeuzEOt45I4ILK7nRcrUGCQwsAISnc+1ZzZ7Q7Vfib50c4h1Sm1iJdQ6b2QTh0s0Lvy
+         PGK3uO8gJ9eQ9tD4yuh2MkAsTD4ITkjJa0jIl/BWpEYThKZqBxg9crNC4wzJGRKvLkvm
+         H0kBOpf0LjxyDQQkwxExTp5qt+nSnLqyyGBcOWtvLr2Rhp3enJIY8SYdglKv0rHVReGq
+         sgQw==
+X-Gm-Message-State: AOAM532N39xNVk/zyjt5r1VLpVyp0J0rz54JWd3U/ejbeKVg1QmHlDw8
+        M8BXB+I27+RCCaCr4Hg2mb/sZ81hRIc=
+X-Google-Smtp-Source: ABdhPJxXtG16uT6Js4XqYueslPcGYisW3DO1kwAsafgLw0RUODk+SqvwbGEgJg0ikAe615oY7HT2Jg==
+X-Received: by 2002:a05:600c:2052:: with SMTP id p18mr18782406wmg.3.1637958120861;
+        Fri, 26 Nov 2021 12:22:00 -0800 (PST)
+Received: from debby ([2a01:e0a:a6d:a8d0:7ff4:8f61:5574:9f95])
+        by smtp.gmail.com with ESMTPSA id l7sm8118383wry.86.2021.11.26.12.22.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Nov 2021 12:22:00 -0800 (PST)
+From:   Romain Perier <romain.perier@gmail.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Romain Perier <romain.perier@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] Add timers for Mstar SoCs
+Date:   Fri, 26 Nov 2021 21:21:38 +0100
+Message-Id: <20211126202144.72936-1-romain.perier@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <b41b754050a14c598b723825ab277322@sphcmbx02.sunplus.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 26, 2021 at 07:13:23PM +0000, Wells Lu 呂芳騰 wrote:
-> Hi Andrew,
-> 
-> I read specification of ICPlus IP101G (10M/100M PHY).
-> Bits of register 0 (control) and register 1 (status) 
-> are R/W or RO type. They will not be cleared after 
-> read. No matter how many times they are read, the 
-> read-back value is the same.
+This patches series adds a new driver for the timers found in the Mstar
+MSC313e SoCs and newer. It adds a basic clocksource driver, the
+corresponding devicetree bindings and its documentation.
 
-Please read 802.3,
+Romain Perier (5):
+  clocksource: Add MStar MSC313e timer support
+  clocksource: msc313e: Add support for ssd20xd-based platforms
+  dt-bindings: timer: Add Mstar MSC313e timer devicetree bindings
+    documentation
+  ARM: dts: mstar: Add timers device nodes
+  ARM: dts: mstar: Switch to compatible "mstar,ssd20xd-timer" on ssd20xd
 
-Section 22.2.4.2: Status register (Register 1)
+ .../bindings/timer/mstar,msc313e-timer.yaml   |  48 ++++
+ MAINTAINERS                                   |   1 +
+ .../boot/dts/mstar-infinity2m-ssd20xd.dtsi    |  18 ++
+ arch/arm/boot/dts/mstar-v7.dtsi               |  20 ++
+ drivers/clocksource/Kconfig                   |  10 +
+ drivers/clocksource/Makefile                  |   1 +
+ drivers/clocksource/timer-msc313e.c           | 237 ++++++++++++++++++
+ 7 files changed, 335 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/timer/mstar,msc313e-timer.yaml
+ create mode 100644 drivers/clocksource/timer-msc313e.c
 
-Table 22-8 Status register bit definitions
+-- 
+2.33.0
 
-Bit 1.2 Link Status is marked as RO/LL, meaning read only Latching
-low.
-
-> Can we go with this approach?
-
-You need to not make any read on the PHY which Linux is driving.
-Configure the hardware to read on an address where there is no PHY.
-
-	Andrew
