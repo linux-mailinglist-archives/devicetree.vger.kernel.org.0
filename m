@@ -2,198 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5987945E3AB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 01:28:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2329F45E3C1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 01:40:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235455AbhKZAb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 19:31:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49636 "EHLO
+        id S239674AbhKZAnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 19:43:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350183AbhKZA31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 19:29:27 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D70C061746
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 16:26:15 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id c32so20005205lfv.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 16:26:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ULEeSU3LKj9dHbNjZ+wW9dIVHqv9jNyz7Kz7dNf303A=;
-        b=Bxstt1Brj1xbiFXm44anso8UKf/3bGvcXySWRwsd9O31iFprDihzA2t7Oj7lb6rTma
-         G8ezVsVdZ1K9dJnaC+gRNTAvUexHfNt/vfRUI9ocfMwCgqxQW4rHtosswL3Usv7zSEje
-         5n40Cp0AghDKBIT+lgQHl/qIONlqi7GLNbBJWQsB+4a5WjmDk9cKGrnOu39a7R9jLjgb
-         i8x3byUm5fnt+Q5wdyfyG3uBz++6mw55NJyjCER/tfnMZh6aFyseNsCveppJ5NA2hxly
-         GzzGMiHVlftrY0vUx74OXcWho7ZOt2SYhPF7ge9y5Hs4RR2taHroIsoK/SBykrrzjiAh
-         0PRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ULEeSU3LKj9dHbNjZ+wW9dIVHqv9jNyz7Kz7dNf303A=;
-        b=7zpYVoY2JYHgP8UlH3neo5iWnxzdHiDfgcIlpOBNHOFFuzuuPQ3drsOm7CzkmU79Q5
-         P3BkmIbudflTdz07l8hDr6uLlv3X17vPVMWvn0bz9UTH6rx5IKoXXpVj5xzzQY7uH/3Q
-         9Ti7gJKkR7VRzmB3diTqN1WM2cBtuz6oB/mVTsevveiCEJozxJKKfZrtIdy+UenAnl6a
-         7nVhSKeNpFkdWzkn948NVzQMl8JdobbYnJXVxp0aKWqYtxrOQF8VVkq7+oEtPqHnGsLx
-         u2epox+r7SF1Zc/ieQWB8WvmL1i4Ur7TU8h5MdP0ypUzE+3SX4JBkG2eqjZVVtKML7LJ
-         XGaA==
-X-Gm-Message-State: AOAM531AAlZO1UwntfNLSJeT2bFIYfp7OvDEEB2p74n8dRFhtm2iLLgM
-        UdnvD4PGnS5rj3/RvrHzIiodhQ==
-X-Google-Smtp-Source: ABdhPJy/5TtyvNOPAR5phFf4AC3qB6IyLlAGCnrkbtWmL85ISfkfv3NCVYz/Cyvixuzx44V2qSlLSw==
-X-Received: by 2002:a05:6512:374b:: with SMTP id a11mr27016850lfs.48.1637886373517;
-        Thu, 25 Nov 2021 16:26:13 -0800 (PST)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id 3sm375880lfr.77.2021.11.25.16.26.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 16:26:12 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Saravana Kannan <saravanak@google.com>
-Subject: [PATCH] of: property: stop parsing remote-endpoint graph properties
-Date:   Fri, 26 Nov 2021 03:26:12 +0300
-Message-Id: <20211126002612.1030246-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.33.0
+        with ESMTP id S239272AbhKZAln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 19:41:43 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1566C06179C;
+        Thu, 25 Nov 2021 16:34:16 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5C885340;
+        Fri, 26 Nov 2021 01:34:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1637886854;
+        bh=IQlS4zD0Lmpf+4T9mXO6OvUhU1RhlaEEHq1LHhUCqVw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dMy/BfxRM5/p+RbTKYZzRE1yuEjWE7KTrdYlFscwxThWFnaVUIzfVwYCN/7kJSuGt
+         2WPm+8Sunsh7yQYdmZqeRwRJ//RU9pzSZ1YuGiepMCrzVRNn5G3cyJpklp7u+u/coT
+         YLYD2K36b80qa+C2MFD1rcF7ywjjCpSS/XmBR6tE=
+Date:   Fri, 26 Nov 2021 02:33:51 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Jagan Teki <jagan@amarulasolutions.com>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH V2 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+Message-ID: <YaArb/4QH3IyPFYe@pendragon.ideasonboard.com>
+References: <20211106155427.753197-1-aford173@gmail.com>
+ <YZrHWkbYkrILP9oo@pendragon.ideasonboard.com>
+ <CAHCN7xLwYcS55N7SNT4k3NqF=Lgdjfe92nJHSVMKkhCuSAPaYw@mail.gmail.com>
+ <CAMty3ZDCCRXLvHaoW=8gqq+3B0j4uQvAk72YjXKr=cxuf7GAkg@mail.gmail.com>
+ <CAHCN7xLrg-7CALY9Gre3OLfwAUed3veF1oZpvLvyE+aw7is_TQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAHCN7xLrg-7CALY9Gre3OLfwAUed3veF1oZpvLvyE+aw7is_TQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When parsing remote-endpoint properties, two counter devlinks will be
-created, resulting in the circular dependency, which is later broken. In
-most of the cases, the order in which depency is broken does not matter
-(or is correct). However lately I stumbled upon the following
-configuration.
+Hi Adam,
 
-In this case for some reason devlink code decided to break the loop by
-making panel depend on the bridge driver, enforcing that bridge is
-probed before the panel.
+On Thu, Nov 25, 2021 at 09:18:24AM -0600, Adam Ford wrote:
+> On Wed, Nov 24, 2021 at 11:42 PM Jagan Teki wrote:
+> > On Tue, Nov 23, 2021 at 7:29 PM Adam Ford wrote:
+> > > On Sun, Nov 21, 2021 at 4:25 PM Laurent Pinchart wrote:
+> > > > On Sat, Nov 06, 2021 at 10:54:23AM -0500, Adam Ford wrote:
+> > > > > Most of the blk-ctrl reset bits are found in one register, however
+> > > > > there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+> > > > > and these need to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+> > > > > out of reset or the MIPI_CSI hangs.
+> > > > >
+> > > > > Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+> > > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > > ---
+> > > > >
+> > > > > V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
+> > > > >      Rename the new register to mipi_phy_rst_mask
+> > > > >      Encapsulate the edits to this register with an if-statement
+> > > > >
+> > > > >  drivers/soc/imx/imx8m-blk-ctrl.c | 18 ++++++++++++++++++
+> > > > >  1 file changed, 18 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> > > > > index 519b3651d1d9..581eb4bc7f7d 100644
+> > > > > --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> > > > > +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> > > > > @@ -17,6 +17,7 @@
+> > > > >
+> > > > >  #define BLK_SFT_RSTN 0x0
+> > > > >  #define BLK_CLK_EN   0x4
+> > > > > +#define BLK_MIPI_RESET_DIV   0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
+> > > > >
+> > > > >  struct imx8m_blk_ctrl_domain;
+> > > > >
+> > > > > @@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
+> > > > >       const char *gpc_name;
+> > > > >       u32 rst_mask;
+> > > > >       u32 clk_mask;
+> > > > > +
+> > > > > +     /*
+> > > > > +      * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
+> > > > > +      * which is used to control the reset for the MIPI Phy.
+> > > > > +      * Since it's only present in certain circumstances,
+> > > > > +      * an if-statement should be used before setting and clearing this
+> > > > > +      * register.
+> > > > > +      */
+> > > > > +     u32 mipi_phy_rst_mask;
+> > > > >  };
+> > > > >
+> > > > >  #define DOMAIN_MAX_CLKS 3
+> > > > > @@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+> > > > >
+> > > > >       /* put devices into reset */
+> > > > >       regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > > > > +     if (data->mipi_phy_rst_mask)
+> > > > > +             regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> > > > >
+> > > > >       /* enable upstream and blk-ctrl clocks to allow reset to propagate */
+> > > > >       ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+> > > > > @@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+> > > > >
+> > > > >       /* release reset */
+> > > > >       regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> > > > > +     if (data->mipi_phy_rst_mask)
+> > > > > +             regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> > > > >
+> > > > >       /* disable upstream clocks */
+> > > > >       clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+> > > > > @@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+> > > > >       struct imx8m_blk_ctrl *bc = domain->bc;
+> > > > >
+> > > > >       /* put devices into reset and disable clocks */
+> > > > > +     if (data->mipi_phy_rst_mask)
+> > > > > +             regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> > > > > +
+> > > >
+> > > > Is it the best option to enable/disable both the master and slave MIPI
+> > > > DPHY, regardless of whether they're used or not ? Or would it be better
+> > > > to implement a reset controller to expose the two resets independently,
+> > > > and acquire them from the corresponding display and camera drivers ?
+> > >
+> > > In some early attempts to implement the blk-ctrl driver, there was an
+> > > attempt to enable a reset controller, but it caused some hanging and
+> > > issues with suspend-resume due to chicken-egg issues where some items
+> > > were coming up in the wrong order.  I think the decision was made to
+> > > make the resets part of the power domain so it's very clear that the
+> > > order of operations.  Lucas might be able to elaborate more on this.
+> >
+> > I think supporting via phy driver make sense to me since this resent
+> > is DPHY specific and nothing related to blk-ctrl.
+> 
+> I would disagree that isn't not blk-ctrl.  The blk-ctrl controls the
+> reset lines for the CSI and enables clocks.  The additional register
+> does the same thing to the MIPI CSI and DSI.  The imx7-mipi-csis
+> driver configures the dphy already, but this reset bit is not part of
+> its IP block.  It seems weird to me that a phy driver would reference
+> a phy driver.
+> 
+> > > If bits 16 and 17 can act independently and bit 16 only impacts the
+> > > CSI  and doesn't require bit 17, it seems reasonable to me to have the
+> > > power-domain part of  the CSI, since this would only be enabled when
+> > > the CSI is active.  The power domain is idled when the CSI is idled
+> > > which would effectively place the phy in and out of reset only
+> > > depending on the state of the CSI.  I am guessing this reset bit
+> > > should be assigned to DISPBLK_PD_MIPI_CSI and not
+> > > DISPBLK_PD_CSI_BRIDGE, but I can run some more tests.
+> > >
+> > > AFAIK, there is no phy driver for the CSI like there is the DSI, so
+> > > adding that would require additional work to the CSI driver to work
+> > > around this quirk.  We don't have an acceptable DSI driver yet, so I'd
+> > > like to push a V3 with just the corresponding bit enabled for MIPI_CSI
+> > > after some testing.  FWICT, NXP set both bits 16 and 17 in their ATF
+> > > gpc code, and it never gets cleared, so I think having the bit set and
+> > > cleared on demand is an improvement.
+> >
+> > How about using the previous one that Marek sent. Add it via CSI
+> > pipeline and i think it would directly.
+> 
+> That driver specifically addresses the DSI phy and bringing it out of
+> reset is just one small part of what that driver does.  I don't think
+> adding CSI functionality to it would be appropriate for that driver as
+> they are separate IP blocks.
+> 
+> If people don't want the blk-ctl to control this bit, I would advocate
+> we should do a separate reset controller to be referenced byt the
+> mipi-csis driver, but that was proposed before and declined.  Since
+> blt-ctrl already is pulling seemingly unrelated IP blocks by
+> controlling their clocks and resets.  The fact that NXP included it in
+> their ATF power-domain controller tells me they considered it related
+> to power domains and/or resets and not an explicit phy driver.
 
-However in such cases the bridge will lookup next bridge or panel using
-drm_of_find_panel_or_bridge() in the probe callback. Thus we have a
-deadlock: panel is waiting for the bridge because of the devlink
-dependency and bridge probe() expects the panel to be available and thus
-returns -EPROBE_DEFER.
+I think it's a bit more complicated than that, unfortunately. The
+BLK_CTRL is a mix of miscellaneous configuration bits thrown together.
+It contains enable/disable bits for clocks and resets, but also D-PHY
+configuration parameters (GPR_MIPI_[MS]_DPDN_SWAP_{CLK,DAT} in
+GPR_MIPI_RESET_DIV, and all the fields of the GPR_MIPI_M_PLL* and
+GPR_MIPI_[BMS]_DPHYCTL* registers). The latter should be controlled by
+PHY drivers, but we may be able to control get away with hardcoded
+values (possibly even hardware reset default values).
 
-To prevent such deadlocks, stop parsing the remote-endpoint property and
-let drivers decide their probe order using standard -EPROBE_DEFER
-returns.
+For the resets and clocks, reset and clock controllers could have been
+nice. I'm not sure if controlling them through a power domain could
+count as a bit of an abuse, as the power domain doesn't control power
+rails, but looking at the imx8m-blk-ctrl driver the on/off sequences
+required by the clocks and resets would be difficult to handle if clocks
+and resets were exposed separately. I'd say that in the worst case it's
+probably an acceptable hack.
 
-DTS except follows:
+For the D-PHY resets, exposing them through a reset controller would
+also be (in my opinion) the most pedantic approach, bus as we have power
+domains for the CSI and DSI controllers, controlling the corresponding
+D-PHY resets from there is in no case worse that what we have already.
 
-/ {
-        panel0 {
-                compatible = "powertip,ph800480t013-idf02";
-                power-supply = <&vreg_l11c_3p3>;
-                backlight = <&lcd0_reg>;
-                port {
-                        panel0_in: endpoint {
-                                remote-endpoint = <&bridge0_out>;
-                        };
-                };
-        };
-};
+The only part that bothers me is the control of the master D-PHY, used
+for MIPI DSI, from the MIPI CSI power domain. I've received feedback
+from NXP today that those two GPR reset signals are connected directly
+to the corresponding D-PHY, without any special combinatorial logic
+in-between. I think it would be worth a try to control bit 16 from the
+MIPI CSI power domain and bit 17 from the MIPI DSI power domain,
+especially given that bit 17 didn't make any difference in my camera
+tests on the i.MX8MM (I couldn't test display as my board doesn't use
+the DSI output). If we then run into any issue, we can try to figure it
+out.
 
-&dsi0 {
-        #address-cells = <1>;
-        #size-cells = <0>;
-        status = "okay";
+> > https://www.spinics.net/lists/devicetree/msg381691.html
 
-        bridge@0 {
-                reg = <0>;
-                compatible = "toshiba,tc358762";
-
-                ports {
-                        #address-cells = <1>;
-                        #size-cells = <0>;
-
-                        port@0 {
-                                reg = <0>;
-                                bridge0_in: endpoint {
-                                        remote-endpoint = <&dsi0_out>;
-                                };
-                        };
-
-                        port@1 {
-                                reg = <1>;
-                                bridge0_out: endpoint {
-                                        remote-endpoint = <&panel0_in>;
-                                };
-                        };
-                };
-        };
-        ports {
-                port@1 {
-                        endpoint {
-                                remote-endpoint = <&bridge0_in>;
-                                data-lanes = <0 1 2 3>;
-                        };
-                };
-        };
-
-};
-
-Fixes: f7514a663016 ("of: property: fw_devlink: Add support for remote-endpoint")
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Stephen Boyd <swboyd@chromium.org>
-Cc: Saravana Kannan <saravanak@google.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/of/property.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
-
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index f7229e4030e3..83548076ee63 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1249,7 +1249,6 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
-  * @parse_prop.index: For properties holding a list of phandles, this is the
-  *		      index into the list
-  * @optional: Describes whether a supplier is mandatory or not
-- * @node_not_dev: The consumer node containing the property is never a device.
-  *
-  * Returns:
-  * parse_prop() return values are
-@@ -1261,7 +1260,6 @@ struct supplier_bindings {
- 	struct device_node *(*parse_prop)(struct device_node *np,
- 					  const char *prop_name, int index);
- 	bool optional;
--	bool node_not_dev;
- };
- 
- DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
-@@ -1285,7 +1283,6 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
- DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
- DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
- DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
--DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
- DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
- DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
- DEFINE_SIMPLE_PROP(leds, "leds", NULL)
-@@ -1388,7 +1385,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_pinctrl6, },
- 	{ .parse_prop = parse_pinctrl7, },
- 	{ .parse_prop = parse_pinctrl8, },
--	{ .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
- 	{ .parse_prop = parse_pwms, },
- 	{ .parse_prop = parse_resets, },
- 	{ .parse_prop = parse_leds, },
-@@ -1437,9 +1433,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 		while ((phandle = s->parse_prop(con_np, prop_name, i))) {
- 			struct device_node *con_dev_np;
- 
--			con_dev_np = s->node_not_dev
--					? of_get_compat_node(con_np)
--					: of_node_get(con_np);
-+			con_dev_np = of_node_get(con_np);
- 			matched = true;
- 			i++;
- 			of_link_to_phandle(con_dev_np, phandle);
 -- 
-2.33.0
+Regards,
 
+Laurent Pinchart
