@@ -2,96 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F2A45EA09
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B416645EA4C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 10:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359843AbhKZJPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 04:15:40 -0500
-Received: from esa.microchip.iphmx.com ([68.232.153.233]:36981 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238592AbhKZJNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:13:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1637917827; x=1669453827;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ru+c9z1oNlyIiQwDj3KxFHyHp3VS1yhZ8W7J+7bnaBo=;
-  b=GtZtKkOUhhl5OVBMJILGEP+tDQ0Xhxiuxlm1RrAamI4t3aenqj3+RSbb
-   4FsTBHLqe4/0FT9bWIPxSlkG74+6WnFLsbdvopArTzhanSB7wYNUKMWGA
-   h9VzpFFs1xHNYbf8gevPtTaR4kwwY863bE5DzdLxCM6A6azQo/bZLSURu
-   5Vq8tDb8ju51PN/jKApcbBRBZZPNPjdAx/aenfV3/UsQqZYfGgS6reavB
-   WIkZAi4Vb+2Ke4ro1qmYK4xqa3czVcGr39HwTEECtqe+SMS4EiHDzk2cR
-   dMq6LVASarA+qOglV4sllzcS5TXBbBzdVOPH45ruNwAz6AbIp3fRYmkbq
-   w==;
-IronPort-SDR: xw72zawMbrjhpLX6vr0whCXdh/U3N16Oey1brVEYT9kTvjcNfYn5y+Kj3u+BtWkkiRr/eDdLo7
- svoo2ou2MVZrvu/rerouXWD8H73I3/z0Pjn9YVFPxjAHRMso9wujcLwNQXofE9HE9aO/EJjD/W
- wOXeXuf0N4BqMr3Ugae026LoOGa6ObONzRZLh5QcpCwzbCoe/g0xLwnJRp/NZMpkuHDB32hcPZ
- Uq/5SLxK7kSZdQ88H8BBqkJdTbm7hNcBI6PIxbvIEoPveMi6iVoQtxfwiU3fvaofvliCCR5sPH
- V9MC7xcRZqbSq1l5kLub8Hg1
-X-IronPort-AV: E=Sophos;i="5.87,265,1631602800"; 
-   d="scan'208";a="153320083"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Nov 2021 02:10:27 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 26 Nov 2021 02:10:27 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Fri, 26 Nov 2021 02:10:26 -0700
-Date:   Fri, 26 Nov 2021 10:12:21 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 3/6] net: lan966x: add port module support
-Message-ID: <20211126091221.tzrqsgawavlzitp5@soft-dev3-1.localhost>
-References: <20211123135517.4037557-1-horatiu.vultur@microchip.com>
- <20211123135517.4037557-4-horatiu.vultur@microchip.com>
- <YZ59hpDWjNjvx5kP@lunn.ch>
- <20211125092638.7b2u75zdv2ulekmo@soft-dev3-1.localhost>
- <YZ+kvpCmWomKNr9l@lunn.ch>
+        id S1344985AbhKZJ1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 04:27:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359748AbhKZJZQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 04:25:16 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB89FC0619DA
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 01:14:59 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id c6-20020a05600c0ac600b0033c3aedd30aso6316330wmr.5
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 01:14:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0RIa0tC4q8Mnplv7In8ruGkJCIcDpzXyFfkRNTnI/gU=;
+        b=htVKZXcK7jnZggEM+44KEeJ5RS4R61e6LoW/7Ovf4aKoMyh0D2rehHg/92Myo0LSfT
+         oGaBJ98mXkJxqsu1B32J4FzHHC+djXhtbqnFx9rcq123+aMwxgk6LjVjGd4FdwQa+tFs
+         wdYhW+I7+9jSBkVBmXnMytE6zvCHWd4x2g286RkS6xWQ0qo2A1qzwIIoM7lGNrb5N4TQ
+         o+o/uoPrM8xEnLf7Vw+bcES5+aSi5RAjXaDTAqRFIj8Kn6ta63UmcD+oj7WiMA7Tky0x
+         MeAQxygYR/HTtB9pt7w4rQeJnJGCo3UUK7Bq5fX3bNkktp9xI+uTD3cqQn6SLxVBuNSE
+         pXmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0RIa0tC4q8Mnplv7In8ruGkJCIcDpzXyFfkRNTnI/gU=;
+        b=hbR++7uEQbAP9US4VK8THGQzl4lN7SfbmIYvj4Cmv97ZRQpAYNBXpDDD6LjXEo6lIP
+         0KKEii3HnwMaBdG305C3pN2Hg8xC5DD59A/noM22cpHML6ze2b9KUcsWCGuL7KQd1mD2
+         2Rn/0qRUQxMuNwF1aLr8gpMbyCFeJ0TjWUsom14CCKrlzp9dDnbDNDs4mA2LqCShne1c
+         qcL1k7WOERZixT63SQp/yGEAnNA5GIzyBLTZVVV0rudi2xlapu4jZvIMhXaeF5P3wx3P
+         SOeF5V8Dw0OyY/luRwHaQbfht2qdQnKd6pC703LuwyA3SfaD7PbPB/Pts31ILmVDX7wd
+         BUzA==
+X-Gm-Message-State: AOAM533PjsSFslFTlbFRJpf3rdGtGxg6bdiOJI8+k4LEw4NVBT4dGb6a
+        B27BhTbCXXiisFmjlLwPx5gD4m2DFkON9jBDmhSd7w==
+X-Google-Smtp-Source: ABdhPJwC+do93NOFr9ub+o9kEAa0iBiw1ZnHGEoh33mkwVEbddlO34ojqOj2q4LxPp++TXTkSBu7/PkyFknSPRJbZ/c=
+X-Received: by 2002:a1c:7201:: with SMTP id n1mr14095206wmc.176.1637918098323;
+ Fri, 26 Nov 2021 01:14:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <YZ+kvpCmWomKNr9l@lunn.ch>
+References: <20211125152317.162958-1-geert@linux-m68k.org> <CAMuHMdVg-r3P_SPqDK7K4rYLzLP+=Wy9KatiNrpK7ebKJSx-Tg@mail.gmail.com>
+In-Reply-To: <CAMuHMdVg-r3P_SPqDK7K4rYLzLP+=Wy9KatiNrpK7ebKJSx-Tg@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 26 Nov 2021 14:44:47 +0530
+Message-ID: <CAAhSdy2WEAkVBh9Za-w4nzpEiVT17RNFOAKJEHFce+rsYiaCQQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: timer: sifive, clint: Fix number of interrupts
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Jessica Clarke <jrtc27@jrtc27.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <anup.patel@wdc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/25/2021 15:59, Andrew Lunn wrote:
-
-Hi Andrew,
-
-> 
-> > If I undestood you correctly I have tried to do the following:
+On Fri, Nov 26, 2021 at 2:34 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> On Thu, Nov 25, 2021 at 4:23 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > To improve human readability and enable automatic validation, the tuples
+> > in "interrupts-extended" properties should be grouped using angle
+> > brackets.  As the DT bindings lack an upper bound on the number of
+> > interrupts, thus assuming one, proper grouping is currently flagged as
+> > an error.
 > >
-> > struct lan966x_ifh {
-> >     __be32 timestamp;
-> >     __be32 bypass : 1;
-> >     __be32 port : 3;
-> >     ...
-> > };
+> > Fix this by adding the missing "maxItems", limiting it to 10 interrupts
+> > (two interrupts for a system management core, and two interrupts per
+> > core for other cores), which should be sufficient for now.
 > >
-> > But then I start to get errors from sparse:
+> > Group the tuples in the example.
 > >
-> > error: invalid bitfield specifier for type restricted __be32.
-> 
-> Maybe look at struct iphdr. It has bitfields for the header length and
-> the IP version.
+> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> > ---
+> >  .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
+> >  1 file changed, 5 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/timer/sifive,clint.yaml b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > index a35952f487426988..55bec2d059807c48 100644
+> > --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
+> > @@ -43,6 +43,7 @@ properties:
+> >
+> >    interrupts-extended:
+> >      minItems: 1
+> > +    maxItems: 10
+>
+> Cfr. Jessica's comment on my PLIC patch:
+>
+> The maximum supported by the CLINT memory map is 8192.
+> Device-specific limits would be 4 for k210 and jh7100, and 10 for
+> fu540.
 
-I think it would get pretty messy to add all these defines in the
-lan966x_ifh struct. One reason is that the IFH contains 38 fields.
+As-per CLINT chapter of SiFive FU740 manual:
+1) Offset 0x0000 to 0x3fff is MSIPx registers (up to 4096 registers)
+2) Offset 0x4000 to 0xbff7 is MTIMECMPx registers (up to 4095 registers)
+3) Offset 0xbff8 to 0xc000 is MTIME register
+(Refer, https://sifive.cdn.prismic.io/sifive/28560457-c5a4-4f88-866c-8098d02afea1_FU740-C000-Manual-v1p0.pdf)
 
-I have send another version(v4) where I think I have simplified it a little
-bit more. If you think is still not clear enough, I will try again the
-approach that you proposed.
+The "maxItems" for SiFive CLINT should be 4095.
 
-> 
->     Andrew
+Regards,
+Anup
 
--- 
-/Horatiu
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+>
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
