@@ -2,139 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C9B45E89B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 08:42:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C972545E8DE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 08:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359337AbhKZHpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 02:45:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59440 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353285AbhKZHnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 02:43:46 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43352C06175F
-        for <devicetree@vger.kernel.org>; Thu, 25 Nov 2021 23:40:34 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mqVqL-00055I-Gi; Fri, 26 Nov 2021 08:40:25 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mqVqH-0003zL-Jk; Fri, 26 Nov 2021 08:40:21 +0100
-Date:   Fri, 26 Nov 2021 08:40:21 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 08/12] arm64: dts: rockchip: rk356x: Add VOP2 nodes
-Message-ID: <20211126074021.GH28260@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <20211117143347.314294-9-s.hauer@pengutronix.de>
- <8451aeb1-03c9-6c90-c95e-c4a76e2159b8@gmail.com>
+        id S243009AbhKZHxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 02:53:25 -0500
+Received: from mail-ua1-f41.google.com ([209.85.222.41]:37589 "EHLO
+        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244165AbhKZHvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 02:51:20 -0500
+Received: by mail-ua1-f41.google.com with SMTP id o1so16941605uap.4;
+        Thu, 25 Nov 2021 23:48:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=C+WB98uVMoTfL9kTGPdtgqlO5TacGgYCY8mjvq5BMMc=;
+        b=6GW42FgWv/SRNrHIXez+fp7gdKRYwpxonAkRcyVhHMynMKQdy2afIa1n6vdxe+Nedp
+         9sFjQZPTyfSHZ88mXrpB3UxvXAmOLGqMtcoYVWvZogSRjcecHOMevYyhXnTbUtsRitzu
+         zwk47DqqS4eyF5myrMwTayeFE9Tcrlbf2xvT1IrMllnjA79TfJq2yXg5ydxG0bIGpD1j
+         6sHmNcc0+wD/sB5iYdvTUpgRruviRbYVTFOyUccYMx/JAFxuQ1TBDfUI/4Tqb6hed+fH
+         CO9WJTz5Mwxe12WBaTSRF8Ddw1IRkeAwOKH7L+12MQa+Gjv4JdIMZrJeUyfRquXOSkwT
+         3iJQ==
+X-Gm-Message-State: AOAM53353rAd4pzS9O2AeXjSp1Mc+dyrsDZPquSe4arykJm2/AaocHq+
+        Cg3d/yJA80FxQYMmuCx82PDVJAAKuMjq0A==
+X-Google-Smtp-Source: ABdhPJw79oK6QjZMavEgkcUbGU1uolbLyl7qbjakwUYOAnHHFcRNjPLNYuwiswZxowTCzNEnMtwkww==
+X-Received: by 2002:a67:63c4:: with SMTP id x187mr14052939vsb.69.1637912887080;
+        Thu, 25 Nov 2021 23:48:07 -0800 (PST)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
+        by smtp.gmail.com with ESMTPSA id a128sm3139529vki.11.2021.11.25.23.48.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Nov 2021 23:48:06 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id o1so16941517uap.4;
+        Thu, 25 Nov 2021 23:48:06 -0800 (PST)
+X-Received: by 2002:a9f:248b:: with SMTP id 11mr32201048uar.14.1637912886319;
+ Thu, 25 Nov 2021 23:48:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8451aeb1-03c9-6c90-c95e-c4a76e2159b8@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:33:04 up 281 days, 10:56, 123 users,  load average: 0.11, 0.15,
- 0.14
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211125152043.162655-1-geert@linux-m68k.org> <CACRpkdaFBOq4-Pok3au+Q8uAXe5QscO81JYAhXwMS9B2FjuUiw@mail.gmail.com>
+In-Reply-To: <CACRpkdaFBOq4-Pok3au+Q8uAXe5QscO81JYAhXwMS9B2FjuUiw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 26 Nov 2021 08:47:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX0awdFCB+vWyy5TZMUeKoii8_Y8NaZO77sMaOniaOy1g@mail.gmail.com>
+Message-ID: <CAMuHMdX0awdFCB+vWyy5TZMUeKoii8_Y8NaZO77sMaOniaOy1g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: sifive,gpio: Group interrupt tuples
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 09:25:28PM +0100, Johan Jonker wrote:
-> Hi Sascha,
-> 
-> 
-> On 11/17/21 3:33 PM, Sascha Hauer wrote:
-> > The VOP2 is the display output controller on the RK3568. Add the node
-> > for it to the dtsi file along with the required display-subsystem node
-> > and the iommu node.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 52 ++++++++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > index 46d9552f60284..6ebf7c14e096a 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > @@ -447,6 +447,58 @@ gmac1_mtl_tx_setup: tx-queues-config {
-> >  		};
-> >  	};
-> >  
-> 
-> > +	display_subsystem: display-subsystem {
-> > +		compatible = "rockchip,display-subsystem";
-> > +		ports = <&vop_out>;
-> > +	};
-> 
-> Some DT sort rules:
-> 
-> For nodes:
-> Sort things without reg alphabetical first,
-> then sort the rest by reg address.
-> 
-> > +
-> > +	vop: vop@fe040000 {
-> 
-> > +		compatible = "rockchip,rk3568-vop";
-> 
-> From rockchip-vop2.yaml:
-> +properties:
-> +  compatible:
-> +    enum:
-> 
-> +      - rockchip,rk3568-vop
-> +      - rockchip,rk3566-vop
-> 
-> Maybe sort yaml compatibles in alphabetical order.
-> 
-> rockchip,rk3566-vop is not used in the dtsi I think.
-> 
-> Comment by Andy Yan:
-> > 
-> > But take care that the vop on rk3566 has a special limitation: there are 
-> > three
-> > 
-> > windows(Cluster1/Esmart1/Smart1) that have a mirror lock, that means they
-> > 
-> > can't be programed framebuffer address independently , they can only
-> > 
-> > share framebuffer address with Cluster0/Esmart0/Smart0.
-> 
-> Question:
-> Given Andy's comment could someone explain weather the vop and hdmi
-> nodes should be in rk3566.dtsi and rk3568.dtsi with an extra
-> rockchip,rk3566-dw-hdmi compatible?
+Hi Linus,
 
-We could put the vop/hdmi nodes into rk356x.dtsi and just add the
-compatible properties to rk3566.dtsi and rk3568.dtsi.
-We'll need the exact SoC type, besides the mirror lock thingy there are a
-few other minor differences between the SoCs.
+On Fri, Nov 26, 2021 at 2:22 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Thu, Nov 25, 2021 at 4:20 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > To improve human readability and enable automatic validation, the tuples
+> > in "interrupts" properties should be grouped using angle brackets.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>
+> (...)
+> > -        interrupts = <7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22>;
+> > +        interrupts = <7>, <8>, <9>, <10>, <11>, <12>, <13>, <14>, <15>, <16>,
+> > +                     <17>, <18>, <19>, <20>, <21>, <22>;
+>
+> Tuples? Hm they look single. Like singletons?
 
-Sascha
+Yeah, plic has #interrupt-cells = <1>.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> Anyway:
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
