@@ -2,111 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D4345ECD2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 12:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7417E45EC44
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 12:12:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345779AbhKZLox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 06:44:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231490AbhKZLmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 06:42:53 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6E64C07E5E7;
-        Fri, 26 Nov 2021 03:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=LMb0rklF0FhVxidjDs0zJKE7sk6toKA4FBFMBdMwhPE=; b=ilVo3g6YYkO50ZXaIB1f0xNad1
-        AR0bmIzUIzw6LdFMI5erbTHy91hEn0cP3ZvhXiS8OaZ2YuIXphuZdk6Am15JOc3Eo7M3iLokEygnd
-        i8cQuAVsceiO0+K3tA2+hZCteRIsyL4IkqXI9W4vopo6zA+8KxBrbVHGlwv+eTXi72S3QZoB6eLxa
-        ZNfM0BtXzI3lSAM1GT7gWLtx3xBBeHr05rXP/zywk8HQ7QuWC3ZttqBkxAqLSiqx3XiYbchhGg8lO
-        MlJTjZrNXIrGWxANvOceOlUCLblw8NUVPKskyCXfNYZQAILlRtBvQ0gh21vd0l8Ha4P1JYerGuDt4
-        ArlB/89Q==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55912)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mqZ1m-0002yu-7J; Fri, 26 Nov 2021 11:04:26 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mqZ1l-0003Da-Do; Fri, 26 Nov 2021 11:04:25 +0000
-Date:   Fri, 26 Nov 2021 11:04:25 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
-        andrew@lunn.ch, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v4 3/6] net: lan966x: add port module support
-Message-ID: <YaC/OT0f2JKBPMOb@shell.armlinux.org.uk>
-References: <20211126090540.3550913-1-horatiu.vultur@microchip.com>
- <20211126090540.3550913-4-horatiu.vultur@microchip.com>
+        id S237523AbhKZLPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 06:15:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47254 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233163AbhKZLNe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 06:13:34 -0500
+Received: by mail.kernel.org (Postfix) with ESMTPSA id 75FD56108E;
+        Fri, 26 Nov 2021 11:10:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637925021;
+        bh=lGsIf27IbHfcOgsGFIGU9JUA1H2hVkUBJnwjrWuszu8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=CGJORNk3tOcKW3OSKYXXsCb83LlB9glF+QxujQNEmvNZjMdpOiIS7tvfweSO/Tjp+
+         Oe6XMTHki2nZnufKvxr0xPeHuyiRZ3wdHp0DZX8FP506/mbtiCPjza/Geylmc9F7Dd
+         +iDBb3fBHwNyEviNGJEIFuVSiQ+VuJeZ9IAPNsnkqMXB0jchFhui3WPlS47CI4ZPvo
+         +Lfep70oohklOzR/QK/JRdz4ZjfpkTbcMOrtdIlgtQahcVfWajzdYIaXt+a1X4gQOG
+         q5m/Aq/Wx8FyJk+2heiqXkRZqxG8whieXmZnRNDdq2/JY3A+MavZ7NJwGVLh2X8UI1
+         0jwheky+kKaaQ==
+Subject: Re: [PATCH 4/4] mtd: nand: omap2: Add support for NAND Controller on
+ AM64 SoC
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Nishanth Menon <nm@ti.com>
+Cc:     richard@nod.at, vigneshr@ti.com, kishon@ti.com, tony@atomide.com,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20211123103609.14063-1-rogerq@kernel.org>
+ <20211123103609.14063-5-rogerq@kernel.org> <20211124131552.6b9bc506@xps13>
+ <e52141a6-96fc-97d6-95d7-3e26276fbac3@kernel.org>
+ <20211126104231.7cc43149@xps13>
+From:   Roger Quadros <rogerq@kernel.org>
+Message-ID: <917ac002-9d4b-237d-94f3-bcd05f481f39@kernel.org>
+Date:   Fri, 26 Nov 2021 13:10:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211126090540.3550913-4-horatiu.vultur@microchip.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20211126104231.7cc43149@xps13>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 26, 2021 at 10:05:37AM +0100, Horatiu Vultur wrote:
-> This patch adds support for netdev and phylink in the switch. The
-> injection + extraction is register based. This will be replaced with DMA
-> accees.
++Rob and DT list
+
+Miques & Nishanth,
+
+On 26/11/2021 11:42, Miquel Raynal wrote:
+> Hi Roger,
 > 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> rogerq@kernel.org wrote on Thu, 25 Nov 2021 16:12:01 +0200:
+> 
+>> Hi Miquel,
+>>
+>> On 24/11/2021 14:15, Miquel Raynal wrote:
+>>> Hi Roger,
+>>>
+>>> rogerq@kernel.org wrote on Tue, 23 Nov 2021 12:36:09 +0200:
+>>>   
+>>>> AM64 SoC has an issue which prevents proper 8-bit and 16-bit
+>>>> reads from GPMC. We are limited to do 32-bit reads only.  
+>>>
+>>> First, thanks for this series!  
+>>
+>> No problem. Just my job :)
+>>
+>>>   
+>>>> Force 32-bit only reads on affected platforms.
+>>>>  
+>>>
+>>> Please change the commit title prefix to: "mtd: rawnand: omap2:" in
+>>> patch 2, 3, 4.  
+>>
+>> OK.
+>>
+>>>    
+>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>> ---
+>>>>  drivers/mtd/nand/raw/omap2.c | 35 +++++++++++++++++++++++++++++++++++
+>>>>  1 file changed, 35 insertions(+)
+>>>>
+>>>> diff --git a/drivers/mtd/nand/raw/omap2.c b/drivers/mtd/nand/raw/omap2.c
+>>>> index f1fc146e09b9..d952de771b35 100644
+>>>> --- a/drivers/mtd/nand/raw/omap2.c
+>>>> +++ b/drivers/mtd/nand/raw/omap2.c
+>>>> @@ -28,6 +28,7 @@
+>>>>  
+>>>>  #include <linux/omap-gpmc.h>
+>>>>  #include <linux/platform_data/mtd-nand-omap2.h>
+>>>> +#include <linux/sys_soc.h>
+>>>>  
+>>>>  #define	DRIVER_NAME	"omap2-nand"
+>>>>  #define	OMAP_NAND_TIMEOUT_MS	5000
+>>>> @@ -181,6 +182,7 @@ struct omap_nand_info {
+>>>>  	void (*data_out)(struct nand_chip *chip,
+>>>>  			 const void *buf, unsigned int len,
+>>>>  			 bool force_8bit);
+>>>> +	bool force_32bit;  
+>>>
+>>> I believe we should have a driver capability instead of something in
+>>> the info structure. You can save the value here as well in the probe if
+>>> you want, but I would like this limitation to be tied to the
+>>> compatible.  
+>>
+>> I will discuss about this at the end.
+>>>   
+>>>>  };
+>>>>  
+>>>>  static inline struct omap_nand_info *mtd_to_omap(struct mtd_info *mtd)
+>>>> @@ -2070,6 +2072,25 @@ static void omap_nand_data_in(struct nand_chip *chip, void *buf,
+>>>>  	struct omap_nand_info *info = mtd_to_omap(nand_to_mtd(chip));
+>>>>  	u32 alignment = ((uintptr_t)buf | len) & 3;
+>>>>  
+>>>> +	if (info->force_32bit) {  
+>>>
+>>> I am a little bit bothered by this limitation. The force8_bit flag does
+>>> not require the driver to read only 8-bits of the fifo register, it
+>>> actually requires to use only the first 8-bits of the NAND bus (which
+>>> can also be 16-bit wide). The older implementation just limited the
+>>> number of bits reads to be 8 with ioread8, which seems to be a fine
+>>> solution but would require more accesses than using ioread16 (or
+>>> ioread32) when reading more than 1 byte on platforms with only 8-bit
+>>> busses.  
+>>
+>> I didn't understand the purpose of force8_bit flag. 
+> 
+> Only access the lowest byte on the bus. This is only needed for
+> meta-data reads (like status reads or ids) where the upper byte would
+> be a duplicate.
+> 
+>> How should the driver/controller behave if we get a data_in() call with len 8 and force8_bit flag set?
+>>
+>> e.g. if 16-bit NAND ID area contains (little-endian) 2c d3 d0 a6 66 45 67 a3 4f 4e 46 49 ab ef 90 d3
+>> what should data_in(len = 8, force_8_bit = 1) return in buffer?
+>>
+>> Based on what you said earlier my guess is it should return 2c d0 66 67 4f 46 ab 90?
+> 
+> If on a 16-bit bus, you would receive 2c 2c d3 d3 d0 d0 a6 a6 etc and
+> of course that's not what you want.
+> 
+>>> My point here is that:
+>>> 1- the limited controllers cannot be used with a 16-bit bus
+>>> 2- non-limited controllers can use ioread16 if the bus width is 8-bits  
+>>
+>> Sorry, I did not understand this either. The TI GPMC controller has a configuration setting where we
+>> set the NAND device bus width (8-bit or 16-bit). Then it automatically converts ioread16 or
+>> ioread32 to appropriate number of 8-bit accesses or 16-bit accesses to the NAND chip.
+> 
+> Ok great, in this case you should configure the bus width depending
+> on the actual used width (8 or 16 bits). When an 8-bit access is
+> requested with force_8bit, you should ensure the buswidth is changed
+> to 8 and then use ioread8/16/32 as you wish and then return the bus
+> back into its default state.
+> 
 
-This looks mostly good now, thanks. There's one remaining issue:
+OK. I will try this out. Thanks for the tip.
 
-> +int lan966x_port_pcs_set(struct lan966x_port *port,
-> +			 struct lan966x_port_config *config)
-> +{
-> +	struct lan966x *lan966x = port->lan966x;
-> +	bool inband_aneg = false;
-> +	bool outband;
-> +	int err;
-> +
-> +	lan966x_port_link_down(port);
+>>
+>>>
+>>> I guess it's fine not to change the logic to avoid breaking boards so
+>>> we can just ignore [2] but I belive we should check chip->options &
+>>> NAND_BUSWIDTH_16 in ->attach_chip() and refuse probing if this flag is
+>>> set.
+>>>   
+>>>> +		u32 val;
+>>>> +		int left;
+>>>> +		u8 *ptr;
+>>>> +
+>>>> +		ioread32_rep(info->fifo, buf, len >> 2);
+>>>> +		left = len & 0x3;
+>>>> +		if (left) {
+>>>> +			val = ioread32(info->fifo);
+>>>> +			ptr = (u8 *)(buf + (len - left));
+>>>> +			while (left--) {
+>>>> +				*ptr++ = val & 0xff;
+>>>> +				val >>= 8;
+>>>> +			}
+>>>> +		}
+>>>> +
+>>>> +		return;
+>>>> +	}
+>>>> +
+>>>>  	if (force_8bit || (alignment & 1))
+>>>>  		ioread8_rep(info->fifo, buf, len);
+>>>>  	else if (alignment & 3)
+>>>> @@ -2169,8 +2190,15 @@ static const struct nand_controller_ops omap_nand_controller_ops = {
+>>>>  static struct nand_controller omap_gpmc_controller;
+>>>>  static bool omap_gpmc_controller_initialized;
+>>>>  
+>>>> +static const struct of_device_id omap_nand_ids[];
+>>>> +  
+>>>
+>>> I believe this change should be dropped.
+>>>   
+>>>>  static int omap_nand_probe(struct platform_device *pdev)
+>>>>  {
+>>>> +	const struct soc_device_attribute k3_soc_devices[] = {
+>>>> +		{ .family = "AM64X", .revision = "SR1.0" },
+>>>> +		{ /* sentinel */ }
+>>>> +	};
+>>>> +
+>>>>  	struct omap_nand_info		*info;
+>>>>  	struct mtd_info			*mtd;
+>>>>  	struct nand_chip		*nand_chip;
+>>>> @@ -2186,6 +2214,12 @@ static int omap_nand_probe(struct platform_device *pdev)
+>>>>  
+>>>>  	info->pdev = pdev;
+>>>>  
+>>>> +	/* Some SoC's have 32-bit at least, read limitation */
+>>>> +	if (soc_device_match(k3_soc_devices)) {
+>>>> +		dev_info(&pdev->dev, "force 32-bit\n");
+>>>> +		info->force_32bit = true;
+>>>> +	}
+>>>> +  
+>>>
+>>> As suggested above, just adding a capability structure tied to the
+>>> compatible string and retrieved with of_device_get_match_data() should
+>>> be enough and replace this manual tree research.  
+>>
+>> The trouble comes when TI updates the silicon revision to "SR2.0" and that has the issue fixed
+>> but still uses the same compatible. So compatible string by itself is not sufficient to identify
+>> the troubled devices. soc_device_match() was the easiest way to address this.
+> 
+> This is precisely what compatibles are for, I believe we should declare
+> the necessary additional compatibles and fix the device trees that are
+> wrong.
 
-This looks like something the MAC layer should be doing. Phylink won't
-change the interface mode by just calling the PCS - it will do this
-sequence, known as a major reconfiguration:
+AFAIK TI SoCs don't have different compatibles for different revisions of the same SoC.
+My understanding is that the SoC is the same so compatible shouldn't change. Just that there were some
+hardware fixes and some quirks may not be needed anymore.
 
-mac_link_down() (if the link was previously up)
-mac_prepare()
-mac_config()
-if (pcs_config() > 0)
-  pcs_an_restart()
-mac_finish()
+Nishanth,
 
-pcs_config() will also be called thusly:
+Could you please chime in on why SoC revisions can't use different compatibles?
 
-if (pcs_config() > 0)
-  pcs_an_restart()
+> 
+>>>>  	err = omap_get_dt_info(dev, info);
+>>>>  	if (err)
+>>>>  		return err;
+>>>> @@ -2286,6 +2320,7 @@ static int omap_nand_remove(struct platform_device *pdev)
+>>>>  
+>>>>  static const struct of_device_id omap_nand_ids[] = {
+>>>>  	{ .compatible = "ti,omap2-nand", },
+>>>> +	{ .compatible = "ti,am64-nand", },
+>>>>  	{},
+>>>>  };
+>>>>  MODULE_DEVICE_TABLE(of, omap_nand_ids);  
+>>>
+>>> The conversion to exec_op looks fine otherwise :)  
+>>
+>> Thanks :)
+>>
 
-to change the ethtool advertising mask which changes the inband advert
-or the Autoneg bit, which has an effect only on your DEV_PCS1G_ANEG_CFG()
-register, and this may be called with the link up or down.
+<snip>
 
-Also, pcs_config() is supposed to return 0 if the inband advert has not
-changed, or positive if it has (so pcs_an_restart() is called to cause
-in-band negotiation to be restarted.)
-
-Note also that pcs_an_restart() may  also be called when ethtool
-requests negotiation restart when we're operating in 802.3z modes.
-
-So, my question is - do you need to be so heavy weight with the call to
-lan966x_port_link_down() to take everything down when pcs_config() is
-called, and is it really in the right place through the sequence for
-a major reconfiguration?
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+cheers,
+-roger
