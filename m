@@ -2,113 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0326845EF77
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 14:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B74745EFE8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 15:30:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348210AbhKZN4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 08:56:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55146 "EHLO
+        id S1377665AbhKZOdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 09:33:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348251AbhKZNyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 08:54:51 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE34C0619D9;
-        Fri, 26 Nov 2021 05:08:53 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 78966E2C;
-        Fri, 26 Nov 2021 14:08:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1637932130;
-        bh=lBWps+1UEJGn3hJNoN8UqjEY0CiXCLE4uMcvm/nlteo=;
+        with ESMTP id S1353906AbhKZObm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 09:31:42 -0500
+X-Greylist: delayed 544 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 26 Nov 2021 05:46:32 PST
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18A8FC0613FB;
+        Fri, 26 Nov 2021 05:46:29 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5E1EF6228E;
+        Fri, 26 Nov 2021 13:37:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEE3CC93056;
+        Fri, 26 Nov 2021 13:37:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1637933844;
+        bh=wmRpkJwoC1cyFGYIO+kPPQaZo8nlGwIQSJGcblGlXbk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S77t3JagQVvjHOR4kU+6boeJuaylh/JISbFxXS+ktWFfKgtr2vjDVE1QPoQXX1tyD
-         IBM0JODRhafFXAYyjPZMDINu2sLrXEg5LF/OqZDtuucAC4ZdpVSDyRWvpJOVsTEBas
-         C/fxuKQ6Bv8+79JHXLrHIbZksHB0sq/5jnA0cNo4=
-Date:   Fri, 26 Nov 2021 15:08:27 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Geert Uytterhoeven <geert@glider.be>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: r8a779a0: Provide default
- DSI data-lanes
-Message-ID: <YaDcS8BQd9rrMLHh@pendragon.ideasonboard.com>
-References: <20211126095445.932930-1-kieran.bingham+renesas@ideasonboard.com>
- <20211126095445.932930-5-kieran.bingham+renesas@ideasonboard.com>
+        b=h8h1jObK6rIUOSXx/thIsAk5LFusjEwq+UEptv2AdzEUNC1FE3EQtlKXF+DCB0aH8
+         dmY11g0gPUJqFRbKv90SPGyQDhlHsm+FvCYuSroX/U1wXkmQhAalVB4dOEfyV0933W
+         aCfx1XAymB9XB8x9tRkKTVf/V6wabXgJvgmIgfCQX84VwEpoU4E6qJcFDwjCCwaomm
+         beDcznGrLYqmiJ62RHswrHW6uKWjOEz/Ca+VKZxJRkiDZLQ7QsLtJbjdqYueV08f09
+         0dPaaF/I6DJfuTFnn3rO12aIaGsOgih6/n63Smvc8XnanG1vnp9hYas3laRxwdWWFL
+         Toct/ksCkBNHw==
+Date:   Fri, 26 Nov 2021 13:37:18 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
+        Julien Su <juliensu@mxic.com.tw>,
+        Jaime Liao <jaimeliao@mxic.com.tw>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 00/20] External ECC engines & Macronix support
+Message-ID: <YaDjDhOhpHMdxiqA@sirena.org.uk>
+References: <20211126113924.310459-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aWPUUvSEFHncPtMR"
 Content-Disposition: inline
-In-Reply-To: <20211126095445.932930-5-kieran.bingham+renesas@ideasonboard.com>
+In-Reply-To: <20211126113924.310459-1-miquel.raynal@bootlin.com>
+X-Cookie: You fill a much-needed gap.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
 
-Thank you for the patch.
+--aWPUUvSEFHncPtMR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Fri, Nov 26, 2021 at 09:54:45AM +0000, Kieran Bingham wrote:
-> The data-lanes is a mandatory property for the endpoints.
-> Provide a default when not connected that represents the maximum
-> lanes supported by the device.
-> 
-> A connected device should override the data-lanes if it uses a lower
-> number of lanes.
-> 
-> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> ---
-> 
-> This patch is split from 2/4 to keep it's change for distinct review.
-> The data-lanes is marked as a mandatory property in the DSI bindings
-> (which are out of tree, most recent posting at [0])
-> 
-> [0] https://lore.kernel.org/all/YQGFP%2FcFoSksPyn+@pendragon.ideasonboard.com/
-> 
-> The data-lanes property is marked as mandatory, which means it needs to
-> be provided even when supplying the port templates which get overridden
-> later. Is this expected behaviour?
-> 
-> Does this have sufficient meaning? Or will it always have to be
-> specified by any node overriding anyway...?
+On Fri, Nov 26, 2021 at 12:39:04PM +0100, Miquel Raynal wrote:
 
-Isn't the remote-endpoint also mandatory ?
+> As a first example, Macronix ECC engine can be used as an
+> external engine (takes the data, proceeds to the calculations, writes
+> back the ECC bytes) or as a pipelined engine doing on-the-fly
+> calculations (which is very common in the raw NAND world).
 
-Given that there's no real good default value for data-lanes that is
-significantly more likely than others, I'd prefer dropping the endpoints
-from r8a779a0.dtsi and adding them in board files.
+The SPI bits of this look fine (most of the smarts are in the MTD
+code!), what's the plan for getting this merged?
 
->  arch/arm64/boot/dts/renesas/r8a779a0.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> index fdad8bc4a069..7322c4628e2b 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> @@ -2661,6 +2661,7 @@ dsi0_in: endpoint {
->  				port@1 {
->  					reg = <1>;
->  					dsi0_out: endpoint {
-> +						data-lanes = <1 2 3 4>;
->  					};
->  				};
->  			};
-> @@ -2691,7 +2692,9 @@ dsi1_in: endpoint {
->  
->  				port@1 {
->  					reg = <1>;
-> +
->  					dsi1_out: endpoint {
-> +						data-lanes = <1 2 3 4>;
->  					};
->  				};
->  			};
+--aWPUUvSEFHncPtMR
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Regards,
+-----BEGIN PGP SIGNATURE-----
 
-Laurent Pinchart
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGg4w0ACgkQJNaLcl1U
+h9Cn+Af/Voj2W+6G7O2v0NYD8QDbEakNiY0wg5+Y2TRtpK6/td/VfoamnCvD6Eyx
+YjS75XB3sAkV/UlEzfZLxaeMu8+6zaW0VCuCweXEv1V/19kMc4dLPgW61Q0Mu8Ma
+D3vMoZEzPXvIpk7wGVuCBoZ8L7R1X3jhTX3au0XEdhRgW642bY5ryBS19BIvFwpI
+XNdiJiVqJ9STtYQT8kXu49IRPfFfzlsd36f36mT6V3mXoh8b+Y3ofnrM66I7BVMJ
+G70LrsAkF64YqU9kuD4ywVOsul5KofTUjaFprS53qUQEJvNF69iWoCYWOCv/uhNU
+VEjZgMVgnTLJQ+Olsji6Ymo7ilbUeg==
+=O5UE
+-----END PGP SIGNATURE-----
+
+--aWPUUvSEFHncPtMR--
