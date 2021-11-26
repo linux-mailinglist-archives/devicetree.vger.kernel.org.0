@@ -2,55 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABCA45F0BF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 16:33:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DDFE45F11F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 16:54:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351660AbhKZPgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 10:36:43 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:43850 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378099AbhKZPen (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 10:34:43 -0500
-X-Greylist: delayed 458 seconds by postgrey-1.27 at vger.kernel.org; Fri, 26 Nov 2021 10:34:42 EST
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C9F76622B7;
-        Fri, 26 Nov 2021 15:23:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8885DC93056;
-        Fri, 26 Nov 2021 15:23:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1637940230;
-        bh=lzIuBUVHSRheLgKjp2iAmDpqP8z3z3dOQmo6cQC7aaM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VV3aQTyFms4Mx030/6p6yJP8LJ1VYKc9aZT2ZJG47IzcbZvBhhzXVIvXAe93ypdWg
-         XaYVeKfhId1rtJw+b9zcQehOrSDOzGljo3w5sx7iSdIB0raNLFw6HidryF2S1CgkVQ
-         d0Gv2hOs1V1aHEudwCsMS4WX7Su9LbZQl+ORHUUg=
-Date:   Fri, 26 Nov 2021 16:23:47 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-serial@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Add resets to the PL011 bindings
-Message-ID: <YaD8A+ZN8ic5IJLM@kroah.com>
-References: <20211120011418.2630449-1-linus.walleij@linaro.org>
+        id S1348640AbhKZP5t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 10:57:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53298 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352017AbhKZPzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 10:55:48 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7342CC06179B;
+        Fri, 26 Nov 2021 07:44:00 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id d24so19606780wra.0;
+        Fri, 26 Nov 2021 07:44:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GLkyoLUKpRjZnUdDc279znKmoge1lvnkGD50/gVexkQ=;
+        b=OqVKngMbKLP1DHv9TsYenjFQef9cX6K7kJey9mSlOp6MZOzu3usOtwBL0qb2SNi4EK
+         ffP1HlR1pHpOe7MCNiKzCLNi/xllzf8RTz6nNXz4Ujt3LAOaN6OLa7vnaZb7XvQFGXPF
+         btNKgwianGoMtkWVm7adowHH4JIvmWOGvnzXBPija5qvt9p8cdv12LiLl3M1Lmfvi+cg
+         tEM5Svnk6RyH9iHSCwTb8TWGt1YCB9XSU78W7pamTXnBNDyEkCt3x3+QevXjCso/2Wpi
+         ydRzASYt1K/q3legxeFrgeQYmFHYGCJIjFyNqC8DckkEMt1RMRrNhrU1Ib2hJR3i/uDO
+         W26Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GLkyoLUKpRjZnUdDc279znKmoge1lvnkGD50/gVexkQ=;
+        b=M5jpD0/p4wu/GwrS3a/tJDS5oDp68a6Fe/lbrvMtbMDQXQNsyQRwfed6DNH00IQB6X
+         EQ33xvevXYEsb52NzCNwIEKUjIdEqAlTLWTQS65VjSHQRIQY7AKzSy/8sTot29iwvlvw
+         JJ3j+F2roZ6n7QDO+IIW169UTMIFTcy0fA0wdnVaC5GExRfsBRB7PHujfxZcH0fSTI0W
+         AoJSJH63p6mZG0uDf9gowNmtaoeq22t8G3P+g3Lxh6SyqQ8CQxV9BJ50CFlqxYJx29PP
+         ViMlnoZyJVYBF3xga4miiM626lK7qcbRJZTSLKBwwqII/ZYSWu9Hhl/2zBvYOCuPn1mn
+         Ch4A==
+X-Gm-Message-State: AOAM532lmQ5FooTvGo/YgJBFKbdes4xK34s4oAk1xENxfxnD4OYJ7TXl
+        bUsjRG9KbFOEetzEdhaDA0Y=
+X-Google-Smtp-Source: ABdhPJz32axiOIaYWuL5xgqmPKeOpKTpr4MPYCFIT4SmwfpsM90/cnVDf90UkxFLZUgJBM6pUasxug==
+X-Received: by 2002:adf:fa4b:: with SMTP id y11mr15142087wrr.460.1637941439074;
+        Fri, 26 Nov 2021 07:43:59 -0800 (PST)
+Received: from localhost.localdomain (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id p13sm11372400wmi.0.2021.11.26.07.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Nov 2021 07:43:58 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc:     Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] RK356x/Quartz64 Model A SPI
+Date:   Fri, 26 Nov 2021 16:43:41 +0100
+Message-Id: <20211126154344.724316-1-frattaroli.nicolas@gmail.com>
+X-Mailer: git-send-email 2.34.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211120011418.2630449-1-linus.walleij@linaro.org>
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 20, 2021 at 02:14:18AM +0100, Linus Walleij wrote:
-> Some PL011 implementations provide a reset line to the silicon
-> IP block, add a device tree property for this.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> Probably it's easiest to apply this to the DT tree.
+The first patch of this series adds a compatible for rk3568-spi
+to the DT bindings.
 
-Fine with me, if the DT maintainers do not mind:
+The second adds the SPI nodes for RK3566 and RK3568 SoCs. The nodes
+were lifted from the downstream vendor kernel's devicetree, and were
+double-checked for correctness.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+The third patch sets up the broken-out SPI pins on the Quartz64
+Model A; they use the "m1" set of the pins, not the "m0" set. I
+assume the "m" stands for "mux".
+
+I've tested both patches by connecting an MCP2515 SPI CAN bus
+controller to the spi pins, which initialised fine.
+
+Regards,
+Nicolas Frattaroli
+
+Nicolas Frattaroli (3):
+  dt-bindings: spi: spi-rockchip: Add rk3568-spi compatible
+  arm64: dts: rockchip: Add spi nodes on rk356x
+  arm64: dts: rockchip: Add spi1 pins on Quartz64 A
+
+ .../devicetree/bindings/spi/spi-rockchip.yaml |  1 +
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   |  5 ++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 68 +++++++++++++++++++
+ 3 files changed, 74 insertions(+)
+
+-- 
+2.34.0
+
