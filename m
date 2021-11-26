@@ -2,117 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48E6845E915
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 09:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17BA745E963
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 09:33:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243206AbhKZIVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 03:21:02 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:49520 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1359404AbhKZITC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Nov 2021 03:19:02 -0500
-Received: from ip5f5b2004.dynamic.kabel-deutschland.de ([95.91.32.4] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1mqWOX-0008Mz-Bs; Fri, 26 Nov 2021 09:15:45 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Johan Jonker <jbx6244@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 08/12] arm64: dts: rockchip: rk356x: Add VOP2 nodes
-Date:   Fri, 26 Nov 2021 09:15:44 +0100
-Message-ID: <2143457.uCsENmBeE3@diego>
-In-Reply-To: <20211126074021.GH28260@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de> <8451aeb1-03c9-6c90-c95e-c4a76e2159b8@gmail.com> <20211126074021.GH28260@pengutronix.de>
+        id S1353045AbhKZIgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 03:36:51 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44040 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359451AbhKZIev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 03:34:51 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AQ8VOQm038054;
+        Fri, 26 Nov 2021 02:31:24 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1637915484;
+        bh=FDa1+Ibk21gyEv8jq7C266SXuVB5FFuGZ5AmU0gqT7k=;
+        h=From:To:CC:Subject:Date;
+        b=oyiCcaWO4rG5TG4M/kPNIIfoueHlB3thOLvJ64XgtfiCIJuzo4fzCfEyedE3rxwQD
+         uLWiOTZpDcbHM0abfYuI2YstKFPzbPN/rXDIrKyA0TmEVqOPR0/4gXzwlJg9utKf8X
+         72cLNp5THs/Rbl6qAQEHhu7Ik1fIlX3DWPz05DFk=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AQ8VOGr074470
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 26 Nov 2021 02:31:24 -0600
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 26
+ Nov 2021 02:31:24 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 26 Nov 2021 02:31:24 -0600
+Received: from a0393678-lt.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AQ8VKEk127547;
+        Fri, 26 Nov 2021 02:31:21 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+CC:     <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/5] PCI: Keystone: Misc fixes for TI's AM65x PCIe
+Date:   Fri, 26 Nov 2021 14:01:14 +0530
+Message-ID: <20211126083119.16570-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, 26. November 2021, 08:40:21 CET schrieb Sascha Hauer:
-> On Thu, Nov 25, 2021 at 09:25:28PM +0100, Johan Jonker wrote:
-> > Hi Sascha,
-> > 
-> > 
-> > On 11/17/21 3:33 PM, Sascha Hauer wrote:
-> > > The VOP2 is the display output controller on the RK3568. Add the node
-> > > for it to the dtsi file along with the required display-subsystem node
-> > > and the iommu node.
-> > > 
-> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > ---
-> > >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 52 ++++++++++++++++++++++++
-> > >  1 file changed, 52 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > index 46d9552f60284..6ebf7c14e096a 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > > @@ -447,6 +447,58 @@ gmac1_mtl_tx_setup: tx-queues-config {
-> > >  		};
-> > >  	};
-> > >  
-> > 
-> > > +	display_subsystem: display-subsystem {
-> > > +		compatible = "rockchip,display-subsystem";
-> > > +		ports = <&vop_out>;
-> > > +	};
-> > 
-> > Some DT sort rules:
-> > 
-> > For nodes:
-> > Sort things without reg alphabetical first,
-> > then sort the rest by reg address.
-> > 
-> > > +
-> > > +	vop: vop@fe040000 {
-> > 
-> > > +		compatible = "rockchip,rk3568-vop";
-> > 
-> > From rockchip-vop2.yaml:
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > 
-> > +      - rockchip,rk3568-vop
-> > +      - rockchip,rk3566-vop
-> > 
-> > Maybe sort yaml compatibles in alphabetical order.
-> > 
-> > rockchip,rk3566-vop is not used in the dtsi I think.
-> > 
-> > Comment by Andy Yan:
-> > > 
-> > > But take care that the vop on rk3566 has a special limitation: there are 
-> > > three
-> > > 
-> > > windows(Cluster1/Esmart1/Smart1) that have a mirror lock, that means they
-> > > 
-> > > can't be programed framebuffer address independently , they can only
-> > > 
-> > > share framebuffer address with Cluster0/Esmart0/Smart0.
-> > 
-> > Question:
-> > Given Andy's comment could someone explain weather the vop and hdmi
-> > nodes should be in rk3566.dtsi and rk3568.dtsi with an extra
-> > rockchip,rk3566-dw-hdmi compatible?
-> 
-> We could put the vop/hdmi nodes into rk356x.dtsi and just add the
-> compatible properties to rk3566.dtsi and rk3568.dtsi.
+Patch series includes miscellaneous fixes for TI's AM65x SoC
+"PCI: keystone: Add workaround for Errata #i2037 (AM65x SR 1.0)"  has
+already been sent before [1]
 
-sounds about right. We have similar solutions in place in other socs.
+The other patch is to prevent PCIEPORTBUS driver to write to
+MSI-X table (which is not mapped) leading to ~10sec delay
+due to msix_mask_all().
 
-Heiko
+v1 if the patch series is @ [2]
 
+Changes from v1:
+1) Added two patches to fix 'dtbs_check'; a DT binding documentation
+update and a driver update.
+2) Remove falling back to smaller DMA mask as suggested by Christoph.
 
+[1] -> https://lore.kernel.org/r/20210325090026.8843-7-kishon@ti.com
+[2] -> https://lore.kernel.org/r/20211110073343.12396-1-kishon@ti.com
+
+Kishon Vijay Abraham I (5):
+  dt-bindings: PCI: ti,am65: Fix
+    "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
+  PCI: keystone: Use phandle argument from
+    "ti,syscon-pcie-id"/"ti,syscon-pcie-mode"
+  PCI: keystone: Add workaround for Errata #i2037 (AM65x SR 1.0)
+  PCI: keystone: Add quirk to mark AM654 RC BAR flag as IORESOURCE_UNSET
+  PCI: keystone: Set DMA mask and coherent DMA mask
+
+ .../bindings/pci/ti,am65-pci-ep.yaml          |  8 +-
+ .../bindings/pci/ti,am65-pci-host.yaml        | 16 +++-
+ drivers/pci/controller/dwc/pci-keystone.c     | 82 ++++++++++++++++++-
+ 3 files changed, 96 insertions(+), 10 deletions(-)
+
+-- 
+2.17.1
 
