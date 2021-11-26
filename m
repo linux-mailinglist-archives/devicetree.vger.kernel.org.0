@@ -2,104 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB7F545E6A2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 04:50:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 648A845E6AF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Nov 2021 04:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343750AbhKZDxv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Nov 2021 22:53:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36328 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344500AbhKZDvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 22:51:51 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44336C09B114;
-        Thu, 25 Nov 2021 18:47:41 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id n8so5744715plf.4;
-        Thu, 25 Nov 2021 18:47:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=N2rR2M205RaoXv2F1eYgORsUa0WkEJokTNFyh0m1jbQ=;
-        b=G2bPd47mof2kPWU7wel0/tp2qN5l0O1ock7AVXOCjPcUgfdz+VGKWkXiYcX9y1PbIN
-         Uvx3tGvdiFsjdWcDUHq3iDhH1az6OWWLRddAnuGMRXuAQjASQdHm0ixSfecMUpL9le/f
-         eTADybm0qsmMMNVCByp9gq7imYV3VqBKjQnhY0tHT+6qwCx8XaUXkvRuey9ymCNi0yau
-         WoLtDhIwjwasn2UdJ3wxPeYWjNgn2rqVtt87k79XaOwIYg6V+MpeZQfne8XEZGhAs8qK
-         uIbwyrBUBzoVG2kLvZH+NxhP6qMXM6q23hqGf/n2i4+UUUlxzn35ojINybmpkkIdY6PH
-         B+cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=N2rR2M205RaoXv2F1eYgORsUa0WkEJokTNFyh0m1jbQ=;
-        b=mjkTn2zxXbZupHVT7O375PPEKBfr3gHINgE/PSZVOKEgIUPV1W9KhZ/XEAlL87dd1Z
-         c0RdOB10IQYGAZKj7diO9pKPAHyz1n12BiaR8fBijbSJVpr2aqyf2EJNrBxh7MQnA1Ex
-         SpACqq7WsOIEMV9ZorhtVvWVKM2n/Ep0qTP5+OjWl+o85HzgvDRMEYo5nDiTxE3B/Tpu
-         KX5oXU79FUSH2R5OAyTAuxPnZ78IKnDsLSQ7FG7fwk9Hy20ZwInPwpZa289ZC12G0LdR
-         NF+eVVzNdjysrRxYioqBG8OMicM0LfKo6wDuF+JPcWwqgNxugwFgYyJTpp/nZh5jj0fW
-         zV9g==
-X-Gm-Message-State: AOAM533DQnub7cyBmc4bUnmkZuODwLowZRUDnSGgIcFv+i2mkrwv3d55
-        MufkaffnVWHX25Hzua2kB88=
-X-Google-Smtp-Source: ABdhPJx1btLLTBXEFgpXDPhTCJScji/umzB55h96FNh8lq7mlIt4d/IQDK9YMn2EtbU9mBvwLvrqGg==
-X-Received: by 2002:a17:902:ab94:b0:143:beb5:b6a7 with SMTP id f20-20020a170902ab9400b00143beb5b6a7mr36447789plr.30.1637894860877;
-        Thu, 25 Nov 2021 18:47:40 -0800 (PST)
-Received: from localhost.localdomain ([103.99.179.247])
-        by smtp.gmail.com with ESMTPSA id k14sm4814513pff.6.2021.11.25.18.47.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Nov 2021 18:47:40 -0800 (PST)
-From:   Calvin Zhang <calvinzhang.cool@gmail.com>
-To:     Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, iommu@lists.linux-foundation.org,
-        Calvin Zhang <calvinzhang.cool@gmail.com>
-Subject: [PATCH] mm: kmemleak: Ignore kmemleak scanning on CMA regions
-Date:   Fri, 26 Nov 2021 10:47:11 +0800
-Message-Id: <20211126024711.54937-1-calvinzhang.cool@gmail.com>
-X-Mailer: git-send-email 2.30.2
+        id S1357943AbhKZEB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Nov 2021 23:01:57 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:39896 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S245314AbhKZD74 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Nov 2021 22:59:56 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.112
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(27483:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Fri, 26 Nov 2021 11:56:34 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Fri, 26 Nov 2021 11:56:28 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 26 Nov
+ 2021 11:56:28 +0800
+From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
+Subject: RE: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Topic: [PATCH v2 2/2] net: ethernet: Add driver for Sunplus SP7021
+Thread-Index: AQHX1ttDZ0jKVsi7r0auZS2tEQF+d6wADq2AgAXn1uCADjVYcP//wFkAgAFNSvA=
+Date:   Fri, 26 Nov 2021 03:56:28 +0000
+Message-ID: <6c1ce569d2dd46eba8d4b0be84d6159b@sphcmbx02.sunplus.com.tw>
+References: <cover.1636620754.git.wells.lu@sunplus.com>
+ <519b61af544f4c6920012d44afd35a0f8761b24f.1636620754.git.wells.lu@sunplus.com>
+ <YY7/v1msiaqJF3Uy@lunn.ch>
+ <7cccf9f79363416ca8115a7ed9b1b7fd@sphcmbx02.sunplus.com.tw>
+ <YZ+pzFRCB0faDikb@lunn.ch>
+In-Reply-To: <YZ+pzFRCB0faDikb@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just like this:
-commit 620951e27457 ("mm/cma: make kmemleak ignore CMA regions").
-
-Add kmemleak_ignore_phys() for CMA created from of reserved node.
-
-Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
----
- kernel/dma/contiguous.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/kernel/dma/contiguous.c b/kernel/dma/contiguous.c
-index 3d63d91cba5c..66bd9a59615e 100644
---- a/kernel/dma/contiguous.c
-+++ b/kernel/dma/contiguous.c
-@@ -50,6 +50,7 @@
- #include <linux/sizes.h>
- #include <linux/dma-map-ops.h>
- #include <linux/cma.h>
-+#include <linux/kmemleak.h>
- 
- #ifdef CONFIG_CMA_SIZE_MBYTES
- #define CMA_SIZE_MBYTES CONFIG_CMA_SIZE_MBYTES
-@@ -426,6 +427,9 @@ static int __init rmem_cma_setup(struct reserved_mem *rmem)
- 		pr_err("Reserved memory: unable to setup CMA region\n");
- 		return err;
- 	}
-+
-+	kmemleak_ignore_phys(rmem->base);
-+
- 	/* Architecture specific contiguous memory fixup. */
- 	dma_contiguous_early_fixup(rmem->base, rmem->size);
- 
--- 
-2.30.2
-
+SGkgQW5kcmV3LA0KDQpJIHNldCBwaHktaWQgcmVnaXN0ZXJzIHRvIDMwIGFuZCAzMSBhbmQgZm91
+bmQgdGhlIHJlYWQtYmFjaw0KdmFsdWVzIG9mIG1kaW8gcmVhZCBjb21tYW5kcyBmcm9tIENQVSBh
+cmUgYWxsIDB4MDAwMC4NCg0KSSBjb25zdWx0ZWQgd2l0aCBhbiBBU0lDIGVuZ2luZWVyLiBTaGUg
+Y29uZmlybWVkIHRoYXQgaWYNCnBoeS1pZCBvZiBhIG1kaW8gY29tbWFuZCBmcm9tIENQVSBkb2Vz
+IG5vdCBtYXRjaCBhbnkgDQpwaHktaWQgcmVnaXN0ZXJzLCB0aGUgbWRpbyBjb21tYW5kIHdpbGwg
+bm90IGJlIHNlbnQgb3V0Lg0KDQpTaGUgZXhwbGFpbmVkIGlmIHBoeS1pZCBvZiBhIG1kaW8gY29t
+bWFuZCBkb2VzIG5vdCBtYXRjaCANCmFueSBwaHktaWQgcmVnaXN0ZXJzIChyZXByZXNlbnQgYWRk
+cmVzc2VzIG9mIGV4dGVybmFsIFBIWXMpLA0Kd2h5IE1BQyBuZWVkcyB0byBzZW5kIGEgY29tbWFu
+ZCB0byBub24tZXhpc3RpbmcgUEhZPw0KDQoNCkJlc3QgcmVnYXJkcywNCg0KV2VsbHMgTHUNCqdm
+qtrEyw0KDQq0vK/guUK64rFNrtcvU21hcnQgQ29tcHV0aW5nIFByb2dyYW0NCq5hrnilraV4qMa3
+frhzL0hvbWUgRW50ZXJ0YWlubWVudCBCdXNpbmVzcyBVbml0DQqt4ranrOyn3i9TdW5wbHVzIFRl
+Y2hub2xvZ3kgQ28uLCBMdGQuDQqmYad9oUczMDC3c6bLrOy+x7bpsM+z0LdzpEC49DE5uLkNCjE5
+LCBJbm5vdmF0aW9uIDFzdCBSb2FkLA0KU2NpZW5jZS1iYXNlZCBJbmR1c3RyaWFsIFBhcmsNCkhz
+aW4tQ2h1LCBUYWl3YW4gMzAwDQpURUyhRzg4Ni0zLTU3ODYwMDUgZXh0LiAyNTgwDQoNCj4gLS0t
+LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmV3IEx1bm4gPGFuZHJld0BsdW5u
+LmNoPg0KPiBTZW50OiBUaHVyc2RheSwgTm92ZW1iZXIgMjUsIDIwMjEgMTE6MjEgUE0NCj4gVG86
+IFdlbGxzIEx1IKdmqtrEyyA8d2VsbHMubHVAc3VucGx1cy5jb20+DQo+IENjOiBXZWxscyBMdSA8
+d2VsbHNsdXR3QGdtYWlsLmNvbT47IGRhdmVtQGRhdmVtbG9mdC5uZXQ7IGt1YmFAa2VybmVsLm9y
+ZzsNCj4gcm9iaCtkdEBrZXJuZWwub3JnOyBuZXRkZXZAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0
+cmVlQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgcC56
+YWJlbEBwZW5ndXRyb25peC5kZTsgVmluY2VudCBTaGloIKxJwEPCRQ0KPiA8dmluY2VudC5zaGlo
+QHN1bnBsdXMuY29tPg0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYyIDIvMl0gbmV0OiBldGhlcm5l
+dDogQWRkIGRyaXZlciBmb3IgU3VucGx1cyBTUDcwMjENCj4gDQo+ID4gRHVlIHRvIGhhcmR3YXJl
+IGRlc2lnbiwgd2Ugc3RpbGwgbmVlZCB0byBzZXQgUEhZIGFkZHJlc3MsIGJlY2F1c2UgTURJTw0K
+PiA+IGNvbnRyb2xsZXIgb2YgU1A3MDIxIG9ubHkgc2VuZHMgb3V0IE1ESU8gY29tbWFuZHMgd2l0
+aCB0aGUgc2FtZQ0KPiA+IGFkZHJlc3MgbGlzdGVkIGluIFBIWSBhZGRyZXNzIHJlZ2lzdGVycy4g
+VGhlIGZ1bmN0aW9uIGJlbG93IG5lZWRzIHRvDQo+ID4gYmUga2VwdC4NCj4gDQo+IEkgc3VnZ2Vz
+dCB5b3UgYWN0dWFsbHkgc2V0IGl0IHRvIHNvbWUgb3RoZXIgYWRkcmVzcy4gT25lIG9mIHRoZSBn
+b29kL2JhZCB0aGluZ3MgYWJvdXQgTURJTw0KPiBpcyB5b3UgaGF2ZSBubyBpZGVhIGlmIHRoZSBk
+ZXZpY2UgaXMgdGhlcmUuIEEgcmVhZCB0byBhIGRldmljZSB3aGljaCBkb2VzIG5vdCBleGlzdCBq
+dXN0DQo+IHJldHVybnMgMHhmZmZmLCBub3QgYW4gZXJyb3IuIFNvIGkgd291bGQgc2V0IHRoZSBh
+ZGRyZXNzIG9mIDB4MWYuIEkndmUgbmV2ZXIgc2VlbiBhIFBIWQ0KPiBhY3R1YWxseSB1c2UgdGhh
+dCBhZGRyZXNzLg0KPiANCj4gICAgIEFuZHJldw0K
