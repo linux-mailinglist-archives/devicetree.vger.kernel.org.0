@@ -2,42 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BDA345FEB7
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 14:03:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FA9645FEBE
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 14:11:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242466AbhK0NGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 08:06:39 -0500
-Received: from ixit.cz ([94.230.151.217]:58522 "EHLO ixit.cz"
+        id S1354756AbhK0NPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 08:15:02 -0500
+Received: from ixit.cz ([94.230.151.217]:58576 "EHLO ixit.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234018AbhK0NEj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Nov 2021 08:04:39 -0500
+        id S239495AbhK0NM7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Nov 2021 08:12:59 -0500
 Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 1D0EB20064;
-        Sat, 27 Nov 2021 14:01:22 +0100 (CET)
+        by ixit.cz (Postfix) with ESMTPSA id 7473C20064;
+        Sat, 27 Nov 2021 14:09:43 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1638018082;
+        t=1638018583;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding;
-        bh=TL5Z0v3ROjL1VN0kk5T9RzyinmEmWC4BFheAFJjFzNM=;
-        b=PVuxMRDBWOG6/Pyw8AxqLdlVD6yNjLKsnza21sk3xFphm0ZWND+BJGuWPN8bcYGlTf7hT3
-        eXif+8lNXdD0H102lV4eVwYsVpLTH9ORrIM1q3u6e6KSD/ftZeeVxg7eLaAdBnt4oc8Tb4
-        SVHGHXNnL/O6Hi4+pmwPDJG5tNO+7UE=
+        bh=US+PlJt5YuBn+f6zl65VjL2KEdtWIGuDQwqGvr+BSqk=;
+        b=C03XU15udkdTbf1mtk64f8XDQ9LsyfeKw1plCkHHQ3csM0DfNyI4tBXpzGdkh1xA5A4Joo
+        vhr5p8mNhn6aEahgsS+D3vRRomijXRFjCeDT+ii9JOHexTWbpTZyvzymx/jTVTk1IH2y2R
+        lnqVmCsshHXfKUlcpY/9iVKpGJYSzd4=
 From:   David Heidelberg <david@ixit.cz>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>
 Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: imx8mq: fix the schema check errors for fsl,tmu-calibration
-Date:   Sat, 27 Nov 2021 14:01:18 +0100
-Message-Id: <20211127130118.37525-1-david@ixit.cz>
+Subject: [PATCH] dt-bindings: input: pwm-vibrator: Convert txt bindings to yaml
+Date:   Sat, 27 Nov 2021 14:09:40 +0100
+Message-Id: <20211127130941.38684-1-david@ixit.cz>
 X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -45,116 +43,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fsl,tmu-calibration is in u32-matrix. Use matching property syntax.
-No functional changes. Fixes warnings as:
-$ make dtbs_check
-...
-arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml: tmu@30260000: fsl,tmu-calibration:0: Additional items are not allowed (1, 41, 2, 47, 3, 53, 4, 61, 5, 67, 6, 75, 7, 81, 8, 87, 9, 95, 10, 103, 11, 111, 65536, 27, 65537, 35, 65538, 43, 65539, 51, 65540, 59, 65541, 67, 65542, 75, 65543, 85, 65544, 93, 65545, 103, 65546, 112, 131072, 23, 131073, 35, 131074, 45, 131075, 55, 131076, 65, 131077, 75, 131078, 87, 131079, 99, 131080, 111, 196608, 21, 196609, 33, 196610, 45, 196611, 57, 196612, 69, 196613, 83, 196614, 95, 196615, 113 were unexpected)
-        From schema: /home/ubuntu/projects_remote/linux/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-...
+Converts txt binding to new YAML format and simplify example.
 
 Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 86 +++++++++++------------
- 1 file changed, 43 insertions(+), 43 deletions(-)
+ .../bindings/input/pwm-vibrator.txt           | 66 -------------------
+ .../bindings/input/pwm-vibrator.yaml          | 59 +++++++++++++++++
+ 2 files changed, 59 insertions(+), 66 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/pwm-vibrator.txt
+ create mode 100644 Documentation/devicetree/bindings/input/pwm-vibrator.yaml
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 95d8b95d6120..c90a8befdd95 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -457,49 +457,49 @@ tmu: tmu@30260000 {
- 				clocks = <&clk IMX8MQ_CLK_TMU_ROOT>;
- 				little-endian;
- 				fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x70061>;
--				fsl,tmu-calibration = <0x00000000 0x00000023
--						       0x00000001 0x00000029
--						       0x00000002 0x0000002f
--						       0x00000003 0x00000035
--						       0x00000004 0x0000003d
--						       0x00000005 0x00000043
--						       0x00000006 0x0000004b
--						       0x00000007 0x00000051
--						       0x00000008 0x00000057
--						       0x00000009 0x0000005f
--						       0x0000000a 0x00000067
--						       0x0000000b 0x0000006f
+diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.txt b/Documentation/devicetree/bindings/input/pwm-vibrator.txt
+deleted file mode 100644
+index 88c775a3fe21..000000000000
+--- a/Documentation/devicetree/bindings/input/pwm-vibrator.txt
++++ /dev/null
+@@ -1,66 +0,0 @@
+-* PWM vibrator device tree bindings
 -
--						       0x00010000 0x0000001b
--						       0x00010001 0x00000023
--						       0x00010002 0x0000002b
--						       0x00010003 0x00000033
--						       0x00010004 0x0000003b
--						       0x00010005 0x00000043
--						       0x00010006 0x0000004b
--						       0x00010007 0x00000055
--						       0x00010008 0x0000005d
--						       0x00010009 0x00000067
--						       0x0001000a 0x00000070
+-Registers a PWM device as vibrator. It is expected, that the vibrator's
+-strength increases based on the duty cycle of the enable PWM channel
+-(100% duty cycle meaning strongest vibration, 0% meaning no vibration).
 -
--						       0x00020000 0x00000017
--						       0x00020001 0x00000023
--						       0x00020002 0x0000002d
--						       0x00020003 0x00000037
--						       0x00020004 0x00000041
--						       0x00020005 0x0000004b
--						       0x00020006 0x00000057
--						       0x00020007 0x00000063
--						       0x00020008 0x0000006f
+-The binding supports an optional direction PWM channel, that can be
+-driven at fixed duty cycle. If available this is can be used to increase
+-the vibration effect of some devices.
 -
--						       0x00030000 0x00000015
--						       0x00030001 0x00000021
--						       0x00030002 0x0000002d
--						       0x00030003 0x00000039
--						       0x00030004 0x00000045
--						       0x00030005 0x00000053
--						       0x00030006 0x0000005f
--						       0x00030007 0x00000071>;
-+				fsl,tmu-calibration = <0x00000000 0x00000023>,
-+						<0x00000001 0x00000029>,
-+						<0x00000002 0x0000002f>,
-+						<0x00000003 0x00000035>,
-+						<0x00000004 0x0000003d>,
-+						<0x00000005 0x00000043>,
-+						<0x00000006 0x0000004b>,
-+						<0x00000007 0x00000051>,
-+						<0x00000008 0x00000057>,
-+						<0x00000009 0x0000005f>,
-+						<0x0000000a 0x00000067>,
-+						<0x0000000b 0x0000006f>,
+-Required properties:
+-- compatible: should contain "pwm-vibrator"
+-- pwm-names: Should contain "enable" and optionally "direction"
+-- pwms: Should contain a PWM handle for each entry in pwm-names
+-
+-Optional properties:
+-- vcc-supply: Phandle for the regulator supplying power
+-- direction-duty-cycle-ns: Duty cycle of the direction PWM channel in
+-                           nanoseconds, defaults to 50% of the channel's
+-			   period.
+-
+-Example from Motorola Droid 4:
+-
+-&omap4_pmx_core {
+-	vibrator_direction_pin: pinmux_vibrator_direction_pin {
+-		pinctrl-single,pins = <
+-		OMAP4_IOPAD(0x1ce, PIN_OUTPUT | MUX_MODE1) /* dmtimer8_pwm_evt (gpio_27) */
+-		>;
+-	};
+-
+-	vibrator_enable_pin: pinmux_vibrator_enable_pin {
+-		pinctrl-single,pins = <
+-		OMAP4_IOPAD(0X1d0, PIN_OUTPUT | MUX_MODE1) /* dmtimer9_pwm_evt (gpio_28) */
+-		>;
+-	};
+-};
+-
+-/ {
+-	pwm8: dmtimer-pwm {
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&vibrator_direction_pin>;
+-
+-		compatible = "ti,omap-dmtimer-pwm";
+-		#pwm-cells = <3>;
+-		ti,timers = <&timer8>;
+-		ti,clock-source = <0x01>;
+-	};
+-
+-	pwm9: dmtimer-pwm {
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&vibrator_enable_pin>;
+-
+-		compatible = "ti,omap-dmtimer-pwm";
+-		#pwm-cells = <3>;
+-		ti,timers = <&timer9>;
+-		ti,clock-source = <0x01>;
+-	};
+-
+-	vibrator {
+-		compatible = "pwm-vibrator";
+-		pwms = <&pwm9 0 1000000000 0>,
+-                       <&pwm8 0 1000000000 0>;
+-		pwm-names = "enable", "direction";
+-		direction-duty-cycle-ns = <1000000000>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+new file mode 100644
+index 000000000000..ec2466c63fe6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/input/pwm-vibrator.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+						<0x00010000 0x0000001b>,
-+						<0x00010001 0x00000023>,
-+						<0x00010002 0x0000002b>,
-+						<0x00010003 0x00000033>,
-+						<0x00010004 0x0000003b>,
-+						<0x00010005 0x00000043>,
-+						<0x00010006 0x0000004b>,
-+						<0x00010007 0x00000055>,
-+						<0x00010008 0x0000005d>,
-+						<0x00010009 0x00000067>,
-+						<0x0001000a 0x00000070>,
++title: PWM vibrator
 +
-+						<0x00020000 0x00000017>,
-+						<0x00020001 0x00000023>,
-+						<0x00020002 0x0000002d>,
-+						<0x00020003 0x00000037>,
-+						<0x00020004 0x00000041>,
-+						<0x00020005 0x0000004b>,
-+						<0x00020006 0x00000057>,
-+						<0x00020007 0x00000063>,
-+						<0x00020008 0x0000006f>,
++maintainers:
++  - Sebastian Reichel <sre@kernel.org>
 +
-+						<0x00030000 0x00000015>,
-+						<0x00030001 0x00000021>,
-+						<0x00030002 0x0000002d>,
-+						<0x00030003 0x00000039>,
-+						<0x00030004 0x00000045>,
-+						<0x00030005 0x00000053>,
-+						<0x00030006 0x0000005f>,
-+						<0x00030007 0x00000071>;
- 				#thermal-sensor-cells =  <1>;
- 			};
- 
++description: >
++  Registers a PWM device as vibrator. It is expected, that the vibrator's
++  strength increases based on the duty cycle of the enable PWM channel
++  (100% duty cycle meaning strongest vibration, 0% meaning no vibration).
++
++  The binding supports an optional direction PWM channel, that can be
++  driven at fixed duty cycle. If available this is can be used to increase
++  the vibration effect of some devices.
++
++properties:
++  compatible:
++    const: pwm-vibrator
++
++  pwm-names:
++    anyOf:
++      - items:
++          - const: enable
++      - items:
++          - const: enable
++          - const: direction
++
++  pwms:
++    minItems: 1
++    maxItems: 2
++
++  vcc-supply: true
++
++  direction-duty-cycle-ns:
++    description: >
++      Duty cycle of the direction PWM channel in nanoseconds,
++      defaults to 50% of the channel's period.
++
++required:
++  - compatible
++  - pwm-names
++  - pwms
++
++additionalProperties: false
++
++examples:
++  - |
++    vibrator {
++        compatible = "pwm-vibrator";
++        pwms = <&pwm9 0 1000000000 0>,
++               <&pwm8 0 1000000000 0>;
++        pwm-names = "enable", "direction";
++        direction-duty-cycle-ns = <1000000000>;
++    };
 -- 
 2.33.0
 
