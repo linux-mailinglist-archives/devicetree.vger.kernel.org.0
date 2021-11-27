@@ -2,127 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7579746008E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 18:34:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B88F460094
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 18:38:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237555AbhK0Rh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 12:37:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47580 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238708AbhK0Rf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 12:35:26 -0500
-X-Greylist: delayed 533 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 27 Nov 2021 09:32:11 PST
-Received: from balrog.mythic-beasts.com (balrog.mythic-beasts.com [IPv6:2a00:1098:0:82:1000:0:2:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718E1C061574;
-        Sat, 27 Nov 2021 09:32:11 -0800 (PST)
-Received: from [81.101.6.87] (port=48008 helo=jic23-huawei)
-        by balrog.mythic-beasts.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <jic23@jic23.retrosnub.co.uk>)
-        id 1mr1Q3-000560-5D; Sat, 27 Nov 2021 17:23:27 +0000
-Date:   Sat, 27 Nov 2021 17:28:09 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 1/3] iio: frequency: admv1013: add support for
- ADMV1013
-Message-ID: <20211127172646.22848575@jic23-huawei>
-In-Reply-To: <20211123115336.65827-1-antoniu.miclaus@analog.com>
-References: <20211123115336.65827-1-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
+        id S233987AbhK0Rlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 12:41:55 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:33833 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234563AbhK0Rjz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 12:39:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638034590;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=Xzv17N3CDQDDrbPVHlU8qZQIuDU6u6Dr5h5Df6SE3wA=;
+    b=B9rXyFw8uHwexIUdODY87ISEyGmWSrdi5PPnVJ4qqlP8y+aNEgvaLMBljoN4uwaVCL
+    T7HfDYzPFUCcsYDe6Q/n1X1A4xhCSqdVnYhTetRmRU48XXG6x/ydlHnFRqfNtY3P2DoY
+    Fv3B4G1lWoc3BSXKuqlrh2EJffSWCVmLV4Nxn7Qq4hNc8dO4hsW/RUT6SZp9fEW7dwl6
+    kk37etvM3Q43LJvQduG/1WjECmkN5q+2HiYsVVXJ4mn876bt9n/2KlbQFVL4YH7q4+lH
+    SbeqJdUrLb8DGMvjbJyW5zirOpdcdJKRgVMGLri+pCMsNnQ7RoG9V/2W1z9CCJp1/ByG
+    Qflg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fiL/b+s="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.34.10 AUTH)
+    with ESMTPSA id j03bcbxARHaTFuH
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Sat, 27 Nov 2021 18:36:29 +0100 (CET)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Sergey Ryazanov <ryazanov.s.a@gmail.com>,
+        Johannes Berg <johannes@sipsolutions.net>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Aleksander Morgado <aleksander@aleksander.es>,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH net-next v3 0/2] net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
+Date:   Sat, 27 Nov 2021 18:31:06 +0100
+Message-Id: <20211127173108.3992-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-BlackCat-Spam-Score: 19
-X-Spam-Status: No, score=1.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Nov 2021 13:53:34 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+The BAM Data Multiplexer provides access to the network data channels
+of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
+or MSM8974. This series adds a driver that allows using it.
 
-> The ADMV1013 is a wideband, microwave upconverter optimized
-> for point to point microwave radio designs operating in the
-> 24 GHz to 44 GHz radio frequency (RF) range.
-> 
-> Datasheet:
-> https://www.analog.com/media/en/technical-documentation/data-sheets/ADMV1013.pdf
-> 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+All the changes in this patch series are based on a quite complicated
+driver from Qualcomm [1]. The driver has been used in postmarketOS [2]
+on various smartphones/tablets based on Qualcomm MSM8916 and MSM8974
+for more than a year now with no reported problems. It works out of
+the box with open-source WWAN userspace such as ModemManager.
 
-Hi Antoniu,
+[1]: https://source.codeaurora.org/quic/la/kernel/msm-3.10/tree/drivers/soc/qcom/bam_dmux.c?h=LA.BR.1.2.9.1-02310-8x16.0
+[2]: https://postmarketos.org/
 
-Clearly you are exploring new territory here so thanks for persisting and
-I think we are getting close to where we want to be with this.
+---
+Changes in v3:
+  - Clarify DT schema based on discussion
+  - Drop bam_dma/dmaengine patches since they already landed in 5.16
+  - Rebase on net-next
+  - Simplify cover letter and commit messages
 
+Changes in v2:
+  - Rename "qcom,remote-power-collapse" -> "qcom,powered-remotely"
+  - Rebase on net-next and fix conflicts
+  - Rename network interfaces from "rmnet%d" -> "wwan%d"
+  - Fix wrong file name in MAINTAINERS entry
 
-Other than one question over whether the generated ABI using
-extinfo matches what you have in the docs, the remaining changes are all ABI
-/ dt binding review related which will have impacts in here as well.
+Stephan Gerhold (2):
+  dt-bindings: net: Add schema for Qualcomm BAM-DMUX
+  net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
 
-hmm. Side note, my kernel.org email is blocking for some reason so sending
-using a different account. Hopefully it will make it!
+ .../bindings/net/qcom,bam-dmux.yaml           |  92 ++
+ MAINTAINERS                                   |   8 +
+ drivers/net/wwan/Kconfig                      |  13 +
+ drivers/net/wwan/Makefile                     |   1 +
+ drivers/net/wwan/qcom_bam_dmux.c              | 907 ++++++++++++++++++
+ 5 files changed, 1021 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/qcom,bam-dmux.yaml
+ create mode 100644 drivers/net/wwan/qcom_bam_dmux.c
 
-> +
-> +#define _ADMV1013_EXT_INFO(_name, _shared, _ident) { \
-> +		.name = _name, \
-> +		.read = admv1013_read, \
-> +		.write = admv1013_write, \
-> +		.private = _ident, \
-> +		.shared = _shared, \
-> +}
-> +
-> +static const struct iio_enum admv1013_mode_enum = {
-> +	.items = admv1013_modes,
-> +	.num_items = ARRAY_SIZE(admv1013_modes),
-> +	.get = admv1013_get_mode,
-> +	.set = admv1013_set_mode,
-> +};
-> +
-> +static const struct iio_chan_spec_ext_info admv1013_ext_info[] = {
-> +	_ADMV1013_EXT_INFO("i", IIO_SEPARATE, ADMV1013_RFMOD_I),
-> +	_ADMV1013_EXT_INFO("q", IIO_SEPARATE, ADMV1013_RFMOD_Q),
-> +	IIO_ENUM("freq_mode", IIO_SHARED_BY_ALL, &admv1013_mode_enum),
-> +	IIO_ENUM_AVAILABLE("freq_mode", IIO_SHARED_BY_ALL, &admv1013_mode_enum),
-> +	{ },
-> +};
-> +
-> +#define ADMV1013_CHAN_PHASE(_channel, _channel2, _admv1013_ext_info) {		\
-> +	.type = IIO_ALTVOLTAGE,					\
-> +	.output = 0,						\
-> +	.indexed = 1,						\
-> +	.channel2 = _channel2,					\
-> +	.channel = _channel,					\
-> +	.differential = 1,					\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_PHASE),		\
-> +	.ext_info = _admv1013_ext_info,				\
-> +	}
-> +
-> +#define ADMV1013_CHAN_CALIB(_channel, _admv1013_ext_info) {\
-> +	.type = IIO_ALTVOLTAGE,					\
-> +	.output = 0,						\
-> +	.indexed = 1,						\
-> +	.channel = _channel,					\
-> +	.info_mask_separate = BIT(IIO_CHAN_INFO_PHASE),		\
-
-This has me a little confused.  How do these map to the
-0-1_phase_i etc that you have in the ABI docs?
-Unless I'm completely forgetting how this works this will give us
-one attribute for phase and another one for _i
-
-Perhaps it's worth providing a sysfs directory listing for this one
-given it's rather unusual.
-
-> +	.ext_info = _admv1013_ext_info,				\
-> +	}
-> +
-> +static const struct iio_chan_spec admv1013_channels[] = {
-> +	ADMV1013_CHAN_PHASE(0, 1, admv1013_ext_info),
-> +	ADMV1013_CHAN_CALIB(0, admv1013_ext_info),
-> +	ADMV1013_CHAN_CALIB(1, admv1013_ext_info),
-> +};
-> +
-
+-- 
+2.34.1
 
