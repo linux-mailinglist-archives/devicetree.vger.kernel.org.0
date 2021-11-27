@@ -2,194 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FA9645FEBE
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 14:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3282345FECF
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 14:19:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354756AbhK0NPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 08:15:02 -0500
-Received: from ixit.cz ([94.230.151.217]:58576 "EHLO ixit.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S239495AbhK0NM7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Nov 2021 08:12:59 -0500
-Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        id S1355035AbhK0NWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 08:22:15 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:33588
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1351310AbhK0NUJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Nov 2021 08:20:09 -0500
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ixit.cz (Postfix) with ESMTPSA id 7473C20064;
-        Sat, 27 Nov 2021 14:09:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-        t=1638018583;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=US+PlJt5YuBn+f6zl65VjL2KEdtWIGuDQwqGvr+BSqk=;
-        b=C03XU15udkdTbf1mtk64f8XDQ9LsyfeKw1plCkHHQ3csM0DfNyI4tBXpzGdkh1xA5A4Joo
-        vhr5p8mNhn6aEahgsS+D3vRRomijXRFjCeDT+ii9JOHexTWbpTZyvzymx/jTVTk1IH2y2R
-        lnqVmCsshHXfKUlcpY/9iVKpGJYSzd4=
-From:   David Heidelberg <david@ixit.cz>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>
-Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: input: pwm-vibrator: Convert txt bindings to yaml
-Date:   Sat, 27 Nov 2021 14:09:40 +0100
-Message-Id: <20211127130941.38684-1-david@ixit.cz>
-X-Mailer: git-send-email 2.33.0
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0CAC54000A
+        for <devicetree@vger.kernel.org>; Sat, 27 Nov 2021 13:16:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1638019010;
+        bh=10khrOkDRFrb05P6nLD9gkd+H3zR9nJydcfwDdRxNVo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=VpWwMbV+EWLIQNQJviMwLdexb4AuRW2aYeh9pnKYj+BqWwZNGONiC7l6Hq+vCpffq
+         TS+aRcgi4ZOCknobwcqyfiBXPUbOv/T0Gn/vvUQQEHGtcevxV+bzLc9eLJ9lKRloFQ
+         IZOBXmWtidG3ItgVMLU4W8ahHketv7ZZj3rn9u4Z59pvnUxjdFSpatPoqOGupcur1X
+         91PXMVNT8+2q49jVmnfQ8NvdubR1q9OFQH2VQ1NwFHeNU2BJlZDLoCakUlq4KjFyiP
+         mUTe1L0KIGt6Tt2Sf2zhd3S5ejM2c6JULi5xTMHV7ZpYK9ao7HZ9S5V9bWguOcC2jo
+         27sg6vdEzKpeg==
+Received: by mail-wm1-f69.google.com with SMTP id b142-20020a1c8094000000b0033f27b76819so3840671wmd.4
+        for <devicetree@vger.kernel.org>; Sat, 27 Nov 2021 05:16:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=10khrOkDRFrb05P6nLD9gkd+H3zR9nJydcfwDdRxNVo=;
+        b=Zu5GSSWOHiWt226lDaySZ2/Gmrvj1kZbDbiwSTs1QoO3qV+2llQ6bCTMQy4n4Q+Xyr
+         PCXB0QFOSZrqmhONkm3gaP1g17RNr8X4Nygj0xZgoTK/n12HfJQsWOShw+gAJX0kyWJ6
+         QkEr603R+7GkW6Gv4nse+/kCqb7h4tq4nfAKew2CQEMjJ3s9GXbfPYLYb/+uwWks6dhM
+         gJDfsJV2Q19iOR1hJbzWaZ+7znsHJbM2wZ0nzrdOVLKWlJUMB654bT8FxhD6vt35Ezwe
+         IUZGbHiSSp1J7stXIsPvir0DPyudhj5nwUTvAFiy9t1uG4wHcpCZne+35JF6GjMjiICZ
+         BjiQ==
+X-Gm-Message-State: AOAM531EKXbdF3Zwi72aKg7qrBP5CKIfsaJa/uHTBVrBFNR/tNMrlx0Z
+        4ii+IlI92jbV8K9YcpmVQfeW7QxJ92Mw5GPubrpQk9VjVBlJpl2y0JI09KbkyQOxl1py+LYvqaH
+        qO/Z9k2ogf8B7W/+RnR2XmB8y6709i6lQJHHEisA=
+X-Received: by 2002:a7b:c194:: with SMTP id y20mr22743940wmi.2.1638019009686;
+        Sat, 27 Nov 2021 05:16:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyGUd2gGv1OUXpilzjJLYuIzPpTgbhBIbefbQ+L9Gl9/2mmcpBMwOifMOdYLSnbeH1GCdk5fQ==
+X-Received: by 2002:a7b:c194:: with SMTP id y20mr22743923wmi.2.1638019009534;
+        Sat, 27 Nov 2021 05:16:49 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id g13sm9031989wmk.37.2021.11.27.05.16.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 27 Nov 2021 05:16:48 -0800 (PST)
+Message-ID: <d8d6527d-1bdd-1a3f-f3ba-c97890d4ddd0@canonical.com>
+Date:   Sat, 27 Nov 2021 14:16:47 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add samsung,exynos850-sysreg
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20211126230620.478-1-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211126230620.478-1-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts txt binding to new YAML format and simplify example.
+On 27/11/2021 00:06, Sam Protsenko wrote:
+> Document Samsung Exynos850 compatible for system registers.
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../bindings/input/pwm-vibrator.txt           | 66 -------------------
- .../bindings/input/pwm-vibrator.yaml          | 59 +++++++++++++++++
- 2 files changed, 59 insertions(+), 66 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/pwm-vibrator.txt
- create mode 100644 Documentation/devicetree/bindings/input/pwm-vibrator.yaml
 
-diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.txt b/Documentation/devicetree/bindings/input/pwm-vibrator.txt
-deleted file mode 100644
-index 88c775a3fe21..000000000000
---- a/Documentation/devicetree/bindings/input/pwm-vibrator.txt
-+++ /dev/null
-@@ -1,66 +0,0 @@
--* PWM vibrator device tree bindings
--
--Registers a PWM device as vibrator. It is expected, that the vibrator's
--strength increases based on the duty cycle of the enable PWM channel
--(100% duty cycle meaning strongest vibration, 0% meaning no vibration).
--
--The binding supports an optional direction PWM channel, that can be
--driven at fixed duty cycle. If available this is can be used to increase
--the vibration effect of some devices.
--
--Required properties:
--- compatible: should contain "pwm-vibrator"
--- pwm-names: Should contain "enable" and optionally "direction"
--- pwms: Should contain a PWM handle for each entry in pwm-names
--
--Optional properties:
--- vcc-supply: Phandle for the regulator supplying power
--- direction-duty-cycle-ns: Duty cycle of the direction PWM channel in
--                           nanoseconds, defaults to 50% of the channel's
--			   period.
--
--Example from Motorola Droid 4:
--
--&omap4_pmx_core {
--	vibrator_direction_pin: pinmux_vibrator_direction_pin {
--		pinctrl-single,pins = <
--		OMAP4_IOPAD(0x1ce, PIN_OUTPUT | MUX_MODE1) /* dmtimer8_pwm_evt (gpio_27) */
--		>;
--	};
--
--	vibrator_enable_pin: pinmux_vibrator_enable_pin {
--		pinctrl-single,pins = <
--		OMAP4_IOPAD(0X1d0, PIN_OUTPUT | MUX_MODE1) /* dmtimer9_pwm_evt (gpio_28) */
--		>;
--	};
--};
--
--/ {
--	pwm8: dmtimer-pwm {
--		pinctrl-names = "default";
--		pinctrl-0 = <&vibrator_direction_pin>;
--
--		compatible = "ti,omap-dmtimer-pwm";
--		#pwm-cells = <3>;
--		ti,timers = <&timer8>;
--		ti,clock-source = <0x01>;
--	};
--
--	pwm9: dmtimer-pwm {
--		pinctrl-names = "default";
--		pinctrl-0 = <&vibrator_enable_pin>;
--
--		compatible = "ti,omap-dmtimer-pwm";
--		#pwm-cells = <3>;
--		ti,timers = <&timer9>;
--		ti,clock-source = <0x01>;
--	};
--
--	vibrator {
--		compatible = "pwm-vibrator";
--		pwms = <&pwm9 0 1000000000 0>,
--                       <&pwm8 0 1000000000 0>;
--		pwm-names = "enable", "direction";
--		direction-duty-cycle-ns = <1000000000>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/input/pwm-vibrator.yaml b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-new file mode 100644
-index 000000000000..ec2466c63fe6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/pwm-vibrator.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/input/pwm-vibrator.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: PWM vibrator
-+
-+maintainers:
-+  - Sebastian Reichel <sre@kernel.org>
-+
-+description: >
-+  Registers a PWM device as vibrator. It is expected, that the vibrator's
-+  strength increases based on the duty cycle of the enable PWM channel
-+  (100% duty cycle meaning strongest vibration, 0% meaning no vibration).
-+
-+  The binding supports an optional direction PWM channel, that can be
-+  driven at fixed duty cycle. If available this is can be used to increase
-+  the vibration effect of some devices.
-+
-+properties:
-+  compatible:
-+    const: pwm-vibrator
-+
-+  pwm-names:
-+    anyOf:
-+      - items:
-+          - const: enable
-+      - items:
-+          - const: enable
-+          - const: direction
-+
-+  pwms:
-+    minItems: 1
-+    maxItems: 2
-+
-+  vcc-supply: true
-+
-+  direction-duty-cycle-ns:
-+    description: >
-+      Duty cycle of the direction PWM channel in nanoseconds,
-+      defaults to 50% of the channel's period.
-+
-+required:
-+  - compatible
-+  - pwm-names
-+  - pwms
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    vibrator {
-+        compatible = "pwm-vibrator";
-+        pwms = <&pwm9 0 1000000000 0>,
-+               <&pwm8 0 1000000000 0>;
-+        pwm-names = "enable", "direction";
-+        direction-duty-cycle-ns = <1000000000>;
-+    };
--- 
-2.33.0
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+
+Best regards,
+Krzysztof
