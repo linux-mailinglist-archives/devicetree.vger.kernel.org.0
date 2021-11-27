@@ -2,134 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C492345FC1B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 03:37:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A4EC45FC2D
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 03:45:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348939AbhK0CkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 21:40:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51816 "EHLO
+        id S229943AbhK0CsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 21:48:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348058AbhK0CiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 21:38:16 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2A06C061A18
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 17:36:19 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id bk14so21990174oib.7
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 17:36:19 -0800 (PST)
+        with ESMTP id S231511AbhK0CqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 21:46:13 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97788C061D7F
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 17:43:57 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so16329821otg.4
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 17:43:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=rEMAgFe1xF4hp22LENWc/j6FIq+ETQTSR6aU0f7r36o=;
-        b=tjtWbMgGWuTrP5zCPfw2SeFF2ANp/JlXdUyAn+MuI808Dr8uagTwNpDVG2cPjUUpjs
-         kkoWblWb40HPkRBPNhqtPag9Z+NbsfzMqBIspVrzgRFXPj2/CJ6R+lJ0HB+xNRRoXUke
-         cjDFJpDuDoGSwaCz0LpcN7tzIChNVMUC+uElQ6HXrQY3x1ExhQHcQB5qMRKnOEyuEHcA
-         Ey8fOw2C1GosodK7JLKwQ1y1Wpa22r3c3coLMvsMpQ4BBPsq4d7xOjkpVAwJWq2s4vtG
-         zugFCeG7kIjPbp5lHcAxMjrVOkXmwKN+6va0lEahet0oTI5AKsVF7ENlm0a5gMN8F2h7
-         2tDQ==
+        bh=GeK4HqT/e1fsu13zkPU3IkJgtVeOhkfl5fSuGo1DHZQ=;
+        b=qjLR5eTJSJaMo0ZSTUaBFBSGHI8nrLplXVuWtlCvohacrdV5/VJanyfb6He9KQ9pob
+         k3CiZkYVdqEnxPQ/9mk3fScPbrwJJ7UNhePze4FuVXq2XBnOMgOQixfV+6Gz0Q+b16hW
+         5aAM5CecwMN3xGteRRD6GOLbLe/X8bh9vGAMYQ2Vl5fKDrmHfFmsLi0N8FwwHW0YG0HM
+         SKL5xqf1GWiWTCVyQMwm1gX/GD2Kp00RI2WXFporHY04CsZ2HdH1o1BN1xd7i+WLvz5T
+         ZTUqJ16/Yue3RT05FTsStDTQu8lr+P48rNfr4cK8L/zrgv5tAni8VwPwK4/C4bNTgzyC
+         +Kqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rEMAgFe1xF4hp22LENWc/j6FIq+ETQTSR6aU0f7r36o=;
-        b=kswIfK/iWzbMCgng47pjwgHEJiclawZQ3rlo+VuG/EUZBQwrFgS/SQlUZS76GFQU6I
-         i+LqxF78WfKlouMryN2vcEYRQqS8CE5WhUnf93kXTdBoZSuowCGtzdQCWhm343VkSYNM
-         ZmmYn8EfB+N+WcXsc3fdyYUHo15AovnYniwtu+o+dYI+p/bqiXH9fwrJRFqmru+YTrO+
-         6x42zmcdng5p2cHKoWApiYBBf2ZnHTP9o2HnZ1A05i3QEOuSq2pCMqM1vHrIQ9ntlgTL
-         fAIsuR6tv3aaMXMGfZJKk2wLiH8sOTv0VWYcvQObuFZrwuaNDvoxBB4bGpvjpYZ6p6Oc
-         vadA==
-X-Gm-Message-State: AOAM532f4FuTdyH2u8IJHy15NmxMrS73/5Z2bYWmZqk17mAyLCLhExPv
-        c6hSKl8tIh0ORQFpT2Ul9h8T71iYBndUyGMgTNubzuZKypN+Vg==
-X-Google-Smtp-Source: ABdhPJwSs5s2sLCzpFnvMDUBE0FB/x7d32Nh2tYWwrvGI9v+b6rBjLQ+IcD3ohO6BwPg0fhdCSc0bEDKfkUUuDbBNIU=
-X-Received: by 2002:a54:4791:: with SMTP id o17mr27768305oic.114.1637976978838;
- Fri, 26 Nov 2021 17:36:18 -0800 (PST)
+        bh=GeK4HqT/e1fsu13zkPU3IkJgtVeOhkfl5fSuGo1DHZQ=;
+        b=mkALxxJQbTnNOrpdElSxzIN7YmfJzobiDb97oQnmN7DxzrcXTP27RtJ99bcUqSZnWj
+         VCPouSzgouMbs9KJzh/bJhfqw00LUPZC0TXW/d8RDrhdVVw5QV/PhjevN+smZQCE1awI
+         Gmk6qfHOQAlMHdbCJuW3HlApOkmaHdXQEHjpNHfwQfX937aoXmjroJLCbIriCL/zaXhS
+         6n2/bDa9ekHzu1U/4Xfzk/e4CrumIl+j8mpxarbnMZ/+wpmp/DhfVGGWO54KsbDRWXST
+         HHO1sthgDWm9IyBXp97Qlt76rb0NCkJDbd4+Fo8aRm5oAUxywB9n9xALfIi2Gr6Gf8fj
+         AnRw==
+X-Gm-Message-State: AOAM530mi3ZYQnikOciraQ7BVeksTChfy1NEMsfxJzooCCfpToVnglf3
+        QSjWBd8RI6a/haS4rEbl2o6p8/E4tMaIe5Hl8prQIQ==
+X-Google-Smtp-Source: ABdhPJyTlLOzBIZDBtBqbPekB83he0Wo6ZiqdSb7UFzeK3WWORy7nuj2f1/Qlo8XTqr792YAu5+oqYOGKdxlpC0Ganw=
+X-Received: by 2002:a9d:74d0:: with SMTP id a16mr30467451otl.237.1637977436884;
+ Fri, 26 Nov 2021 17:43:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20211126160219.674665-1-demonsingur@gmail.com> <20211126160219.674665-4-demonsingur@gmail.com>
-In-Reply-To: <20211126160219.674665-4-demonsingur@gmail.com>
+References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com> <20211125211443.1150135-5-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211125211443.1150135-5-Mr.Bossman075@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 27 Nov 2021 02:36:06 +0100
-Message-ID: <CACRpkdawb_WWdjg0J-AmXBk3N2JZUb1yptrqD4sOnh_+unwR1Q@mail.gmail.com>
-Subject: Re: [PATCH v6 3/3] iio: addac: add AD74413R driver
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        linux-gpio@vger.kernel.org, Michael Walle <michael@walle.cc>
+Date:   Sat, 27 Nov 2021 02:43:45 +0100
+Message-ID: <CACRpkdaf9EoR15fOMXipr-z0zqwdDNtS_j9n7_M0QvxGYi2Gdg@mail.gmail.com>
+Subject: Re: [PATCH v3 04/13] pinctrl: freescale: Add i.MXRT1050 pinctrl
+ driver support
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, ulf.hansson@linaro.org,
+        aisheng.dong@nxp.com, stefan@agner.ch, gregkh@linuxfoundation.org,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, abel.vesa@nxp.com, adrian.hunter@intel.com,
+        jirislaby@kernel.org, giulio.benetti@benettiengineering.com,
+        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cosmin,
+On Thu, Nov 25, 2021 at 10:14 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
 
-thanks for your patch!
+> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>
+> Add the pinctrl driver support for i.MXRT1050.
+>
+> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+> ---
+> V1->V2:
+> * Nothing done
+> V2->V3:
+> * Nothing done
 
-I noticed this has a GPIO chip inside of it :)
-
-On Fri, Nov 26, 2021 at 5:03 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
-
-These:
-
-> +static void ad74413r_gpio_set(struct gpio_chip *chip,
-> +                             unsigned int offset, int val)
-> +static void ad74413r_gpio_set_multiple(struct gpio_chip *chip,
-> +                                      unsigned long *mask,
-> +                                      unsigned long *bits)
-> +static int ad74413r_gpio_get(struct gpio_chip *chip, unsigned int offset)
-> +static int ad74413r_gpio_get_multiple(struct gpio_chip *chip,
-> +                                     unsigned long *mask,
-> +                                     unsigned long *bits)
-
-(...)
-> +       if (st->num_gpo_gpios) {
-> +               st->gpo_gpiochip.owner = THIS_MODULE;
-> +               st->gpo_gpiochip.label = st->chip_info->name;
-> +               st->gpo_gpiochip.base = -1;
-> +               st->gpo_gpiochip.ngpio = st->num_gpo_gpios;
-> +               st->gpo_gpiochip.parent = st->dev;
-> +               st->gpo_gpiochip.can_sleep = true;
-> +               st->gpo_gpiochip.set = ad74413r_gpio_set;
-> +               st->gpo_gpiochip.set_multiple = ad74413r_gpio_set_multiple;
-> +               st->gpo_gpiochip.set_config = ad74413r_gpio_set_gpo_config;
-> +               st->gpo_gpiochip.get_direction =
-> +                       ad74413r_gpio_get_gpo_direction;
-> +
-> +               ret = devm_gpiochip_add_data(st->dev, &st->gpo_gpiochip, st);
-> +               if (ret)
-> +                       return ret;
-> +       }
-> +
-> +       if (st->num_comparator_gpios) {
-> +               st->comp_gpiochip.owner = THIS_MODULE;
-> +               st->comp_gpiochip.label = st->chip_info->name;
-> +               st->comp_gpiochip.base = -1;
-> +               st->comp_gpiochip.ngpio = st->num_comparator_gpios;
-> +               st->comp_gpiochip.parent = st->dev;
-> +               st->comp_gpiochip.can_sleep = true;
-> +               st->comp_gpiochip.get = ad74413r_gpio_get;
-> +               st->comp_gpiochip.get_multiple = ad74413r_gpio_get_multiple;
-> +               st->comp_gpiochip.set_config = ad74413r_gpio_set_comp_config;
-> +               st->comp_gpiochip.get_direction =
-> +                       ad74413r_gpio_get_comp_direction;
-
-Look a bit like the generic drivers/gpio/gpio-regmap.c
-GPIO_REGMAP.
-
-Example:
-drivers/gpio/gpio-sl28cpld.c
-drivers/pinctrl/bcm/pinctrl-bcm63xx.c
-
-Or is it too particular for this?
-
-I don't know if the regmap gpio can deal with adding a few functions
-like a custom .set_config() on top of the templates to be honest, maybe
-that is something we can fix in that case?
-
-Cc:ing Michael Walle so he can pitch in if I'm onto something here or not.
-
-Anyways the GPIO portions look good otherwise.
+I need a review from one of the Freescale pinctrl driver maintainers for this
+patch.
 
 Yours,
 Linus Walleij
