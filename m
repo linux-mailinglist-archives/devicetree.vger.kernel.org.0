@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C46FC45FC65
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 04:41:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9073B45FC67
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 04:41:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351858AbhK0DmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 22:42:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37166 "EHLO
+        id S1352097AbhK0DoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 22:44:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351574AbhK0DkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 22:40:24 -0500
-Received: from mail-vk1-xa2d.google.com (mail-vk1-xa2d.google.com [IPv6:2607:f8b0:4864:20::a2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C45A7C08ECA5
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 18:23:44 -0800 (PST)
-Received: by mail-vk1-xa2d.google.com with SMTP id f7so7077352vkf.10
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 18:23:44 -0800 (PST)
+        with ESMTP id S1351826AbhK0DmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 22:42:24 -0500
+Received: from mail-ua1-x936.google.com (mail-ua1-x936.google.com [IPv6:2607:f8b0:4864:20::936])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB949C08ECAA
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 18:34:18 -0800 (PST)
+Received: by mail-ua1-x936.google.com with SMTP id p2so22012864uad.11
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 18:34:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=0x0f.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ven33Yb2pguWuvssw/AGyslALQS0DpWB86lUymG/icY=;
-        b=wdv7YIuPe1YgQn6DtbnGiFpQPssIsX84DeJlK1tcrFBdk/IroRaSui6KIjdOhAiC7o
-         pXztHbc3tBaGc3WRn28tp9aSZy0vZLT8KqXjcfuvjbZ9X+SF/RW8CMndatjeNGwgvlM3
-         K/oETGslseqBjq/6VNUbt6KqgNCjzxxtIfcDg=
+        bh=dpQGXJhVIwX0gwIpTzFahdNafoYQEESgJnvmgOoG9fg=;
+        b=kAlKlfDrql3rvtriijNM6bBE/407Nc+wmCu55KsL1ISPV2OXzkPLNV35VyfCCmCfZ1
+         N/6fA42FPZwSyv4MV4G1/mMjs+3djIL2Eswbc56uYcKIGgycamvS4PKzQ3Q0kHS17bG9
+         GZQtqIcumi6UhFMzpp+7UOgogJVh1CYL1N0Uc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ven33Yb2pguWuvssw/AGyslALQS0DpWB86lUymG/icY=;
-        b=mxfdodm7MaAJazpwLWA7TpbLiAkV5trjbfmx8drmuYYAXL5wBwjT8MhQZpUbEf6bgO
-         BitP+B0czbG+AYhEce/xT7G+2Yfn87FjWdqnhYxHI8nzKMqoitBIW9eI23d9vUuuMmcR
-         GpG9nStZXIaqexv7EMqz7BkqzGPAm1emxM8RtatD0BusB9DDe4VHOk0+GXBwvQNcEqeP
-         opEZGdF7jXwxdbAoxfiNOTIZxR7YLNorQC7C6p53nWyf/5uOzetUKQC222STpXZLOiBb
-         z8at5uQ55QmoBOaqUE0ANpgedRjcGEm7OfDU/L8VhqfEUtilcQTIfvQ2v0ggQ16KdcZv
-         knYg==
-X-Gm-Message-State: AOAM5331pVfEDnJfT0o58L07WvWUfc5knmS+ksnZxQ5v1Uz3IqDyJovJ
-        FGMA7LcHbLfDPUkBxSy/mS7KGbmeboQgcJZgcM9ljA==
-X-Google-Smtp-Source: ABdhPJzCmaPPPLCzCTjWtZ6aHeB7EX3WpyPaE0fVpTKNt9hdY0c+eBWZ14qEu91SHMtyRKaqQSCiwaeuslwmnCo1F18=
-X-Received: by 2002:a05:6122:237:: with SMTP id e23mr19764905vko.41.1637979823919;
- Fri, 26 Nov 2021 18:23:43 -0800 (PST)
+        bh=dpQGXJhVIwX0gwIpTzFahdNafoYQEESgJnvmgOoG9fg=;
+        b=4tdzXXfV++o14f7Y4H0raeUgjISiZfAswi4TFnpm/mw3BRewwsFE7ct33lAT/Yvpk7
+         5hkQWyyi3r+jk0dmD7zTuRiVemK7TqgvNcE2lzUfGn+4v2pPhWZO/As3Khk/EFmRrNKh
+         2weSQAHrtYCNBaAA3yiOC7BLKYcWiWuUGrbjfQfULXlWUdtwfdhMDMNFJXcCZQwlDCPz
+         dAJZEVz3bRUnSfmKX6O7/e9macvVveq9v5UsQKwlVM18XS0++Nbv0IMcK1qmRA3KeuJI
+         a6ZVEgjyzMnmMS0Taev+CBBJxiqf0ADXYlUl526twpioc1wW3Qf1NAc03IY7WVjZNxIt
+         fwIg==
+X-Gm-Message-State: AOAM533lMAqPV0JfmHWB1UUAZdGyT5XS2aV0I3er9g5bGY2B8PWvvQD5
+        sUVJEvKdfnG3ezyK7gYUmHapDYgcauQ+aFDw75CUEw==
+X-Google-Smtp-Source: ABdhPJxOk7lokQuNKrZuS0620+Eh3b5Ej+MJYQIMJJQybsdScOLDP6Y+hsCCAZyRQwEV/6ymjzeyyPb0lrUsYy55Jeo=
+X-Received: by 2002:a05:6102:389:: with SMTP id m9mr22018476vsq.43.1637980457972;
+ Fri, 26 Nov 2021 18:34:17 -0800 (PST)
 MIME-Version: 1.0
-References: <20211126202144.72936-1-romain.perier@gmail.com> <20211126202144.72936-5-romain.perier@gmail.com>
-In-Reply-To: <20211126202144.72936-5-romain.perier@gmail.com>
+References: <20211126202144.72936-1-romain.perier@gmail.com> <20211126202144.72936-7-romain.perier@gmail.com>
+In-Reply-To: <20211126202144.72936-7-romain.perier@gmail.com>
 From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Sat, 27 Nov 2021 11:23:33 +0900
-Message-ID: <CAFr9PXm76vvUVVt8gfhfJwx3RcDUcuusZmY231euGr6RHo0CdQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] dt-bindings: timer: Add Mstar MSC313e timer
- devicetree bindings documentation
+Date:   Sat, 27 Nov 2021 11:34:07 +0900
+Message-ID: <CAFr9PXmVkcxFUAg-Z11hu5vqXJm7b8=DGJ_hnwkONhnEW_GdGw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] ARM: dts: mstar: Switch to compatible
+ "mstar,ssd20xd-timer" on ssd20xd
 To:     Romain Perier <romain.perier@gmail.com>
 Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
@@ -64,42 +64,67 @@ Hi Romain,
 
 On Sat, 27 Nov 2021 at 05:22, Romain Perier <romain.perier@gmail.com> wrote:
 >
-> This adds the documentation for the devicetree bindings of the Mstar
-> MSC313e timer driver, found from MSC313e SoCs and newer.
+> This defines the real oscillators as input of timer1 and timer2 and
+> switch to "mstar,ssd20xd-timer".
 >
 > Signed-off-by: Romain Perier <romain.perier@gmail.com>
 > ---
->  .../bindings/timer/mstar,msc313e-timer.yaml   | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/mstar,msc313e-timer.yaml
+>  .../arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/timer/mstar,msc313e-timer.yaml b/Documentation/devicetree/bindings/timer/mstar,msc313e-timer.yaml
-> new file mode 100644
-> index 000000000000..f4d43e141dd0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/mstar,msc313e-timer.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/mstar,msc313e-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mstar MSC313e Timer Device Tree Bindings
-> +
-> +maintainers:
-> +  - Daniel Palmer <daniel@0x0f.com>
-> +  - Romain Perier <romain.perier@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mstar,msc313e-timer
-> +      - mstar,ssd20xd-timer
+> diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi b/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
+> index 6f067da61ba3..6ff1f02e00a0 100644
+> --- a/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
+> +++ b/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
+> @@ -6,6 +6,14 @@
+>
+>  #include "mstar-infinity2m.dtsi"
+>
+> +/ {
+> +       xtal_timer: timer_xtal {
+> +               #clock-cells = <0>;
+> +               compatible = "fixed-clock";
+> +               clock-frequency = <432000000>;
+> +       };
+> +};
 
-I think s/mstar,ssd20xd-timer/sstar-ssd20xd-timer/ as the SSD201 and
-SSD202D were never MStar parts.
-The SigmaStar prefix is already in the vendor prefixes.
+mm I think xtal is a bit confusing here. This isn't an external
+crystal but a fixed clock because we can't find where the clock is
+coming from yet.
+So maybe this should be s/xtal/clk/ or something?
+Maybe a comment about why we need this like "A header in the vendor
+kernel says the timers clk comes from XIU clock but we don't know
+what/where XIU clock is yet".
+
+>  &gpio {
+>         compatible = "sstar,ssd20xd-gpio";
+>         status = "okay";
+> @@ -15,3 +23,13 @@ &smpctrl {
+>         compatible = "sstar,ssd201-smpctrl", "mstar,smpctrl";
+>         status = "okay";
+>  };
+> +
+> +&timer1 {
+> +       compatible = "mstar,ssd20xd-timer";
+> +       clocks = <&xtal_timer>;
+> +};
+
+I think we should do this for timer0 too. As the below hunk in the
+driver will change the clock divider (For others reading this: The
+boot ROM in the chip sets a divider for timer0 to get something ~12MHz
+to stay compatible with their u-boot that expects 12MHz)) and timer0
+will have the right clock rate instead of the roughly 12MHz but not
+really 12MHz frequency it has from boot and we don't need to rely on
+the divider value for timer0 being correct on boot.
+
++       if (of_device_is_compatible(np, "mstar,ssd20xd-timer")) {
++               to->of_clk.rate = clk_get_rate(to->of_clk.clk) /
+MSC313E_CLK_DIVIDER;
++               to->of_clk.period = DIV_ROUND_UP(to->of_clk.rate, HZ);
++               writew(MSC313E_CLK_DIVIDER - 1, timer_of_base(to) +
+MSC313E_REG_TIMER_DIVIDE);
++       }
++
 
 Cheers,
 
