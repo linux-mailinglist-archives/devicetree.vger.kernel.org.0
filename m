@@ -2,109 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA0B45FFEC
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 16:42:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1337460025
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 17:20:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbhK0Ppu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 10:45:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52476 "EHLO
+        id S240401AbhK0QYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 11:24:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234853AbhK0Pnu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 10:43:50 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EB16C061748;
-        Sat, 27 Nov 2021 07:40:35 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id i12so10631524wmq.4;
-        Sat, 27 Nov 2021 07:40:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IC/TlGTWkhJl4qcceepZ/CYaq+BBm6DPEjqCKhmnCsw=;
-        b=GmzyqzXEbqYqGI9eVUKMe0UNzDtUmA4nqzsKU6AV+sLw89kJG9jR3U/d/MPyhkDBo4
-         Sa86RIC0VNB2qn+yThFmo8sXr9mLmrrTLlhbNH1y3FJjf1LfdmwZ5Ddn1orqYsQrqLMt
-         L1d3d1car9BsTzbz+4v01BwSPjrGkoz4ywbWyEJ/GnOddX94typXdtSK4QBfGUXOeadV
-         bj+9OfmJZ1ZtAq9gcVXuvhiF9T2tTQIeEwarADNst5nx0++Ew1ob4d7yRRrWqfl92KbD
-         +XYqw3mpJyMpTFpDEiN25SFMWsD1bUGTSEaqqHppMMqm42JTfZp+VsV/mb94P6qyAKbs
-         E4tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IC/TlGTWkhJl4qcceepZ/CYaq+BBm6DPEjqCKhmnCsw=;
-        b=jA+/THVGyO0LrK1rLEcIys4nbjXmUV0LJvKg/0YbM2vKWqIH5xmevgIjTmxhCvOjEU
-         BBlQBa+7wzKVAZ4AXxY+AfiVX29f9kUd/svjjx5lfOH68oWzWMSBeFIcHlq1oKqzj332
-         BMsWeJ14r9/OVYypuTvYpseIacGrxtUa6PLHMKL+mjVymrrj7YSI4eERx5SHuME6Wp89
-         e9+7HWH7oQ6LXDxUindqHYrq0b0k9YQZnknHnkGwKcgUjSGUXtAQEQlLIzTb3StXewh2
-         3zRi3u3AVWrDwH8k+d9fKMveRgmAUgfc7lGqao0WJvPsftyE5vXfaazMrPq+aaE4Nexd
-         VFjA==
-X-Gm-Message-State: AOAM530z2ro8i97BakXMbOmS1G6D/GY2zWAiC/t9ZmQDAqalwT43B5r+
-        uyUe7JQs17GqezINGWySswo=
-X-Google-Smtp-Source: ABdhPJwHt9yyL6r5ZW3SqBbrC/vI1dL2cN7oRt6Sg68+OORzJCNZKs6/mZOH3anYctkkZTctKwGblg==
-X-Received: by 2002:a05:600c:3b27:: with SMTP id m39mr24321389wms.132.1638027634111;
-        Sat, 27 Nov 2021 07:40:34 -0800 (PST)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id u23sm9200634wmc.7.2021.11.27.07.40.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Nov 2021 07:40:32 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Johan Jonker <jbx6244@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add spi1 pins on Quartz64 A
-Date:   Sat, 27 Nov 2021 16:40:26 +0100
-Message-ID: <3750380.Q3bl6Pheio@archbook>
-In-Reply-To: <acbd0e0a-b194-7b17-148d-49fdd348077e@gmail.com>
-References: <20211127141910.12649-1-frattaroli.nicolas@gmail.com> <20211127141910.12649-4-frattaroli.nicolas@gmail.com> <acbd0e0a-b194-7b17-148d-49fdd348077e@gmail.com>
+        with ESMTP id S234435AbhK0QWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 11:22:01 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68BABC06173E;
+        Sat, 27 Nov 2021 08:18:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 06BEC60EC0;
+        Sat, 27 Nov 2021 16:18:47 +0000 (UTC)
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.kernel.org (Postfix) with ESMTPSA id 20B5EC53FAD;
+        Sat, 27 Nov 2021 16:18:43 +0000 (UTC)
+Date:   Sat, 27 Nov 2021 16:23:45 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     <robh+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] iio:amplifiers:ad7293: add support for AD7293
+Message-ID: <20211127162345.66f5526f@jic23-huawei>
+In-Reply-To: <20211122133639.132972-1-antoniu.miclaus@analog.com>
+References: <20211122133639.132972-1-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Samstag, 27. November 2021 16:29:33 CET Johan Jonker wrote:
+On Mon, 22 Nov 2021 15:36:38 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+
+> The AD7293 is a Power Amplifier drain current controller
+> containing functionality for general-purpose monitoring
+> and control of current, voltage, and temperature, integrated
+> into a single chip solution with an SPI-compatible interface.
 > 
-> On 11/27/21 3:19 PM, Nicolas Frattaroli wrote:
-> > The Quartz64 Model A has the SPI pins broken out on its pin
-> > header. The actual pins being used though are not the m0
-> > variant, but the m1 variant, which also lacks the cs1 pin.
-> > 
-> > This commit overrides pinctrl-0 accordingly for this board.
-> > 
-> > spi1 is intentionally left disabled, as anyone wishing to add
-> > SPI devices needs to edit the dts anyway, and the pins are more
-> > useful as GPIOs for the rest of the users.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> > index 4d4b2a301b1a..166399b7f13f 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-> > @@ -509,6 +509,11 @@ &spdif {
-> >  	status = "okay";
-> >  };
-> >  
-> > +&spi1 {
+> Datasheet:
+> https://www.analog.com/media/en/technical-documentation/data-sheets/AD7293.pdf
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v4:
+>  - move driver to DAC directory, as suggested
+>  - use local variable `length` where FIELD_GET is used multiple times
+>  - return `IIO_AVAIL_LIST` directly, instead of break
+>  - reduce number of lines in the channel definitions section
+>  drivers/iio/dac/Kconfig  |  11 +
+>  drivers/iio/dac/Makefile |   1 +
+>  drivers/iio/dac/ad7293.c | 892 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 904 insertions(+)
+>  create mode 100644 drivers/iio/dac/ad7293.c
 > 
-> > +	pinctrl-names = "default";
-> 
-> With the removal off pinctrl-1 the pinctrl-names property is already
-> correctly defined.
-> 
+New day, new things spotted, but they are all very minor so assuming
+the dt patch gets a tag from Rob and no one else raises any concerns
+I can tidy these up whilst applying.
 
-If it ever gets re-added in the future, it no longer is, so it's better
-to be explicit right now than to risk one board breaking in the future
-when the SoC's definition changes.
-
-Regards,
-Nicolas Frattaroli
+Obviously if you do happen to do a v5 then handle these as well.
 
 
+...
+
+> +
+> +static int ad7293_set_offset(struct ad7293_state *st, unsigned int ch, u16 offset)
+> +{
+> +	if (ch < AD7293_TSENSE_MIN_OFFSET_CH)
+> +		return ad7293_spi_write(st, AD7293_REG_VIN0_OFFSET + ch, offset);
+> +	else if (ch < AD7293_ISENSE_MIN_OFFSET_CH)
+> +		return ad7293_spi_write(st, AD7293_REG_TSENSE_INT_OFFSET + (ch - AD7293_TSENSE_MIN_OFFSET_CH), offset);
+
+These are 'very' long lines. I'll tweak this whilst applying if you don't end up doing a v5 for any other reason.
 
 
+> +	else if (ch < AD7293_VOUT_MIN_OFFSET_CH)
+> +		return ad7293_spi_write(st, AD7293_REG_ISENSE0_OFFSET + (ch - AD7293_ISENSE_MIN_OFFSET_CH), offset);
+> +	else if (ch <= AD7293_VOUT_MAX_OFFSET_CH)
+> +		return ad7293_spi_update_bits(st, AD7293_REG_UNI_VOUT0_OFFSET + (ch - AD7293_VOUT_MIN_OFFSET_CH),
+> +						AD7293_REG_VOUT_OFFSET_MSK,
+> +						FIELD_PREP(AD7293_REG_VOUT_OFFSET_MSK, offset));
+> +
+> +	return -EINVAL;
+> +}
+> +
+
+...
+
+> +
+> +static int ad7293_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int val, int val2, long info)
+> +{
+> +	struct ad7293_state *st = iio_priv(indio_dev);
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (!chan->output)
+> +				return -EINVAL;
+> +
+> +			return ad7293_dac_write_raw(st, chan->channel, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (chan->output)
+> +				return ad7293_set_offset(st, chan->channel + AD7293_VOUT_MIN_OFFSET_CH, val);
+
+More long lines. I'll add some line breaks if I end up tidying this up whilst applying.
+Ideally we should still stay under 80 chars where it doesn't hurt readability and under
+100 in any case other than possibly a very long string that we don't want to break 
+because it will make it hard to grep for.
+
+
+> +			else
+> +				return ad7293_set_offset(st, chan->channel, val);
+> +		case IIO_CURRENT:
+> +			return ad7293_set_offset(st, chan->channel + AD7293_ISENSE_MIN_OFFSET_CH, val);
+> +		case IIO_TEMP:
+> +			return ad7293_set_offset(st, chan->channel + AD7293_TSENSE_MIN_OFFSET_CH, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			return ad7293_adc_set_scale(st, chan->channel, val);
+> +		case IIO_CURRENT:
+> +			return ad7293_isense_set_scale(st, chan->channel, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+...
+
+> +
+> +static int ad7293_init(struct ad7293_state *st)
+> +{
+> +	int ret;
+> +	u16 chip_id;
+> +	struct spi_device *spi = st->spi;
+> +	unsigned int supply;
+> +
+> +	ret = ad7293_properties_parse(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7293_reset(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regulator_enable(st->reg_avdd);
+> +	if (ret) {
+> +		dev_err(&spi->dev, "Failed to enable specified AVDD Voltage!\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(&spi->dev, ad7293_reg_disable,
+> +				       st->reg_avdd);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regulator_enable(st->reg_vdrive);
+> +	if (ret) {
+> +		dev_err(&spi->dev, "Failed to enable specified VDRIVE Voltage!\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(&spi->dev, ad7293_reg_disable,
+> +				       st->reg_vdrive);
+> +	if (ret)
+> +		return ret;
+> +
+> +	supply = regulator_get_voltage(st->reg_avdd);
+
+Missed this before, but regulator_get_voltage() returns a signed int
+and it can be an error code.  If that happens we should return that error
+rather than replacing it with -EINVAL.
+
+
+> +	if (supply > 5500000 || supply < 4500000)
+> +		return -EINVAL;
+> +
+> +	supply = regulator_get_voltage(st->reg_vdrive);
+> +	if (supply > 5500000 || supply < 1700000)
+> +		return -EINVAL;
+> +
+> +	/* Check Chip ID */
+> +	ret = __ad7293_spi_read(st, AD7293_REG_DEVICE_ID, &chip_id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (chip_id != AD7293_CHIP_ID) {
+> +		dev_err(&spi->dev, "Invalid Chip ID.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
