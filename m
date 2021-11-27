@@ -2,118 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3B145F758
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 01:06:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E923E45F77D
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 01:38:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234209AbhK0AJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 19:09:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48256 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245619AbhK0AHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 19:07:52 -0500
-Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DD0AC06173E
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 16:04:39 -0800 (PST)
-Received: by mail-ot1-x32e.google.com with SMTP id h16-20020a9d7990000000b0055c7ae44dd2so16028066otm.10
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 16:04:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qagjaLe0+mgZO/dqxZIxDY3IaXwjOkrK58v2KkFmB+E=;
-        b=NtshkIQf4BLSevm2Yiyyd3GPdcEsmfV5UHfYF42Pii3KFGU/oZFrvASS2zfW71mwR/
-         O7t7z27ok8o3+n8cuDNuDdYwy0BEpLfiUzOardasMOCtWNBaUsoDFseASuGoRMoDe9bi
-         kUVfpNMjtpWZS7tDcOeopCYWERrS7twJYUFxIZY2ELZS70p5yfo5G/BRwx7jZsqekpN8
-         p6deXwlFxUjgnpU4fAN6yAReU+zbhHu2KHtT8stXKJYTROF1w/f8K+ecT5eYlMV4Z3Ob
-         /2xpdJP9eZB1QmjjMoPUUwRLasQLOOxNvOlTgxh7N1gokKp6/tcOCdz9mgGHiNd6dPzy
-         C5pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qagjaLe0+mgZO/dqxZIxDY3IaXwjOkrK58v2KkFmB+E=;
-        b=xvCRltzdpNoIgyrs9J1HOgTZ4OaU+sjaF4mLstO/u/hyQE8CpfN8WDd/B3AF006zOF
-         wuJf87DZ766RYENks2i+B44oKtOMl1IBIqzSkrNSOyBVGrZq8mJd/1lrN7+OTu6hD9+F
-         NvoLAX4UGEtr3YlFR+/A3YBsqLb20oL9kJIxrKz8jjo+lu4DCkwdU+bz8kWz5/JU871R
-         acU2HY6xCN4C/tvao3lqcVPChi9nIFfObqsa4F0VB6d1VDeq4PtbwaU8q/9qJCNu2Mhh
-         lNI6H2xSwEOHExL+dO7znwdb3FLZrHyf3WnbvNWlRs28+K7F8ne5aoeYFIYIlr5vYk4W
-         LTYw==
-X-Gm-Message-State: AOAM531bpTYAs5/yPhoF7xUfJ87gtbMek6PN2dkGgwFA9IxetMp207GB
-        B5ASO108oJbZDNgn/X+pfYnMZw==
-X-Google-Smtp-Source: ABdhPJxhjKRHR64gxjRhzOzzkGtqHAmp6E6c2FEHyxEKL8Zb6sJShF+NfMB1QByLUYGVFdLBWxaChQ==
-X-Received: by 2002:a05:6830:2a8f:: with SMTP id s15mr31316764otu.33.1637971478610;
-        Fri, 26 Nov 2021 16:04:38 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c3sm1602135oiw.8.2021.11.26.16.04.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Nov 2021 16:04:38 -0800 (PST)
-Date:   Fri, 26 Nov 2021 16:06:16 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     quic_vamslank@quicinc.com
-Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, tglx@linutronix.de, maz@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org, Rob Herring <robh@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v5 6/6] dt-bindings: clock: Introduce pdc bindings for
- SDX65
-Message-ID: <YaF2eBKMkIvGapCY@ripper>
-References: <cover.1637302009.git.quic_vamslank@quicinc.com>
- <538438f41153587043741747db5218e9f575c0f5.1637302009.git.quic_vamslank@quicinc.com>
+        id S1343972AbhK0Ali (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 19:41:38 -0500
+Received: from mga05.intel.com ([192.55.52.43]:24536 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1343547AbhK0Ajh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 19:39:37 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10180"; a="321961944"
+X-IronPort-AV: E=Sophos;i="5.87,267,1631602800"; 
+   d="scan'208";a="321961944"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 16:34:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,267,1631602800"; 
+   d="scan'208";a="476030681"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga002.jf.intel.com with ESMTP; 26 Nov 2021 16:34:22 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mqlfZ-0008pD-MA; Sat, 27 Nov 2021 00:34:21 +0000
+Date:   Sat, 27 Nov 2021 08:34:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Cai Huoqing <caihuoqing@baidu.com>
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-staging@lists.linux.dev
+Subject: Re: [PATCH v2 1/3] staging: zynpu: Add driver support for ARM(China)
+ ZHOUYI AI accelerator
+Message-ID: <202111270828.tUBxzc9e-lkp@intel.com>
+References: <20211124084620.628-2-caihuoqing@baidu.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <538438f41153587043741747db5218e9f575c0f5.1637302009.git.quic_vamslank@quicinc.com>
+In-Reply-To: <20211124084620.628-2-caihuoqing@baidu.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 18 Nov 22:11 PST 2021, quic_vamslank@quicinc.com wrote:
+Hi Cai,
 
-> From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> 
-> Add compatible for SDX65 pdc.
-> 
-> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+I love your patch! Yet something to improve:
 
-Sorry for not spotting this before, but as you can tell from the path of
-the file you're changing, this has nothing to do with "clocks".
+[auto build test ERROR on staging/staging-testing]
 
-git log on qcom,pdc.txt shows that $subject should be:
+url:    https://github.com/0day-ci/linux/commits/Cai-Huoqing/staging-zynpu-Add-driver-support-for-ARM-China-ZHOUYI-AI-accelerator/20211124-164741
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git 1189d2fb15a4b09b2e8dd01d60a0817d985d933d
+config: csky-buildonly-randconfig-r004-20211126 (https://download.01.org/0day-ci/archive/20211127/202111270828.tUBxzc9e-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/95965c589ea2e279e082e3c9aa18c2ddd8494d64
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Cai-Huoqing/staging-zynpu-Add-driver-support-for-ARM-China-ZHOUYI-AI-accelerator/20211124-164741
+        git checkout 95965c589ea2e279e082e3c9aa18c2ddd8494d64
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=csky SHELL=/bin/bash
 
-  dt-bindings: qcom,pdc: Add compatible for SDX65
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Also, as this is unrelated to clocks, Stephen is not going to merge this
-patch. You will have to repost it, with Marc Zyngier as recipient to get
-it merged; per get_maintainer.
+All errors (new ones prefixed by >>):
 
+>> csky-linux-ld: drivers/staging/zynpu/zynpu_drv.o:(.rodata+0xc0): undefined reference to `z2_platform_priv'
 
-I think it's fine to keep the reviews and acks while adjusting $subject
-and reposting this patch  - separate from the other 5 patches.
-
-Thanks,
-Bjorn
-
-> ---
->  .../devicetree/bindings/interrupt-controller/qcom,pdc.txt        | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> index 98d89e53013d..ce631d853db4 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> @@ -23,6 +23,7 @@ Properties:
->  		    - "qcom,sdm845-pdc": For SDM845
->  		    - "qcom,sdm8250-pdc": For SM8250
->  		    - "qcom,sdm8350-pdc": For SM8350
-> +		    - "qcom,sdx65-pdc": For SDX65
->  
->  - reg:
->  	Usage: required
-> -- 
-> 2.33.1
-> 
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
