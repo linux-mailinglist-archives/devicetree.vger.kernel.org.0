@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8F0C460255
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 00:15:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0324A460249
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 00:15:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243890AbhK0XS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 18:18:56 -0500
-Received: from mail-oi1-f169.google.com ([209.85.167.169]:36457 "EHLO
-        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244171AbhK0XQw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 18:16:52 -0500
-Received: by mail-oi1-f169.google.com with SMTP id t23so26447177oiw.3;
-        Sat, 27 Nov 2021 15:13:37 -0800 (PST)
+        id S234065AbhK0XSl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 18:18:41 -0500
+Received: from mail-oi1-f182.google.com ([209.85.167.182]:37473 "EHLO
+        mail-oi1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230343AbhK0XQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 18:16:41 -0500
+Received: by mail-oi1-f182.google.com with SMTP id bj13so26457861oib.4;
+        Sat, 27 Nov 2021 15:13:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=NHj7bPxI6fq1N93RbHviuq859RaSpvvAa3Q1mOwEKtc=;
-        b=4XSTZN5AcQSsihudhAH+rMuCw4w9+azPTklfkJg4xd9CKRJpeyIvkP16UYDMnMaUG7
-         JERTnPLWlHB4qQvhynS7HHFppgCvQVomm4ImK6srUKVjc19xpl5QznC/uwyxxQiDgYW/
-         r+ZfQQjwpcFE1lfLr0bXpfAeqevxnNIBmrOcxwvshpaFUX/RJ2bajWjidiy9MW75F9V8
-         rIgWACp4IahzHmMZd62eRElyQ6TyjZs1htu5ega7JVq0zurLkReV+D5nCXerQ4Taap9U
-         UXXICCiSjexVQg2vyUrttOMsiEiybYAKbtStGMpcCThw6gyvGrPXmyNMOE3jVQogOkaz
-         0rqw==
-X-Gm-Message-State: AOAM531x5LgDT6ptQJlwnONJaYEaVK+3CacuHnizYvkOVd2eXTwyOlKh
-        iELHwT7Mlm5Ef/QIkq76RA==
-X-Google-Smtp-Source: ABdhPJwAYQLRS1w5wIjJjByV/RMDaS4Nmwr980kCT4ajWNcu05VSEMfU6uzQlEU5RDZEhtt577Vmkg==
-X-Received: by 2002:a05:6808:44:: with SMTP id v4mr31905725oic.123.1638054817351;
-        Sat, 27 Nov 2021 15:13:37 -0800 (PST)
+        bh=F1dfF+UJik1r5mhkv4NnnGU7zXHuMkitsnrdy1AJCzk=;
+        b=4qEeKDsOPm2C5GQG8DvvFKMNWi8wtaCPTJoc/RI8V7mzG1NYbLFUmIQ+zM/9EddpEw
+         4TYiykekcfmb5NEyXBJgnOgtQPeBXDALTpWzM4UhgsarX/e5rf/WOGKHgPZCWYEAqWBk
+         Xxc5fzywWREGAz2aTozgzyIHgnmRRP2S2Ow8eP8NLYRQ7s3ZFlmUxB42pMgmJrQx6GpC
+         7ppXFoKUgAzyK7jYeVItOExfhUX22EEfARA8+Zv6AyR71S9UW2gvHIUW/an8zwncIKdu
+         D9FByyNwOt+qtXIR1awSmGYhJcZZCWrI4ApTXFh4+KZWBcM56ytXq3/kfOdHmV6oBO+l
+         iaiQ==
+X-Gm-Message-State: AOAM532fu1jvNNKfn5VqX6TovJDEfWGfgrnrGev58rxppdIJgpnBCq/3
+        YAlae2ki+WRTc9Z+JcitsQ==
+X-Google-Smtp-Source: ABdhPJzSuBiE1CXj2mVuQFmgrkkEOv1pSaWpzMY01SDv891PvCWQIDXhfY9y6KbhhAbeIgqglSZc1g==
+X-Received: by 2002:a05:6808:dc5:: with SMTP id g5mr31799706oic.58.1638054805572;
+        Sat, 27 Nov 2021 15:13:25 -0800 (PST)
 Received: from robh.at.kernel.org ([64.188.179.248])
-        by smtp.gmail.com with ESMTPSA id e14sm1696635oow.3.2021.11.27.15.13.35
+        by smtp.gmail.com with ESMTPSA id i29sm1854687ots.49.2021.11.27.15.13.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Nov 2021 15:13:36 -0800 (PST)
-Received: (nullmailer pid 1973543 invoked by uid 1000);
+        Sat, 27 Nov 2021 15:13:24 -0800 (PST)
+Received: (nullmailer pid 1973540 invoked by uid 1000);
         Sat, 27 Nov 2021 23:13:22 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-spi@vger.kernel.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        Michal Simek <monstr@monstr.eu>, linux-mtd@lists.infradead.org,
-        Pratyush Yadav <p.yadav@ti.com>
-In-Reply-To: <20211126163450.394861-6-miquel.raynal@bootlin.com>
-References: <20211126163450.394861-1-miquel.raynal@bootlin.com> <20211126163450.394861-6-miquel.raynal@bootlin.com>
-Subject: Re: [PATCH v2 5/5] spi: dt-bindings: Add an example with two stacked flashes
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, judyhsiao@chromium.org,
+        agross@kernel.org, plai@codeaurora.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, tiwai@suse.com, rohitkr@codeaurora.org,
+        devicetree@vger.kernel.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>,
+        linux-kernel@vger.kernel.org, bgoswami@codeaurora.org,
+        alsa-devel@alsa-project.org, broonie@kernel.org,
+        srinivas.kandagatla@linaro.org, perex@perex.cz,
+        swboyd@chromium.org, lgirdwood@gmail.com
+In-Reply-To: <1637928282-2819-9-git-send-email-srivasam@codeaurora.org>
+References: <1637928282-2819-1-git-send-email-srivasam@codeaurora.org> <1637928282-2819-9-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v6 08/10] ASoC: dt-bindings: Add SC7280 lpass cpu bindings
 Date:   Sat, 27 Nov 2021 16:13:22 -0700
-Message-Id: <1638054802.100671.1973542.nullmailer@robh.at.kernel.org>
+Message-Id: <1638054802.081809.1973539.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Nov 2021 17:34:50 +0100, Miquel Raynal wrote:
-> Provide an example of how to describe two flashes in eg. stacked mode.
+On Fri, 26 Nov 2021 17:34:40 +0530, Srinivasa Rao Mandadapu wrote:
+> Add bindings for sc7280 lpass cpu driver which supports
+> audio over i2s based speaker, soundwire based headset, msm dmics
+> and HDMI Port.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 69 +++++++++++++++++++---
+>  1 file changed, 61 insertions(+), 8 deletions(-)
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -71,11 +74,20 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/spi/spi-controller.example.dts:40.23-45.15: Warning (spi_bus_reg): /example-0/spi@80010000/flash@2,3: SPI bus unit address format error, expected "2"
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg: [[0, 1658351616, 0, 425984], [0, 1659895808, 0, 167936]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg-names: ['lpass-hdmiif', 'lpass-lpaif'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupts: [[0, 160, 1], [0, 268, 1]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupt-names: ['lpass-irq-lpaif', 'lpass-irq-hdmi'] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: iommus: [[4294967295, 4128, 0], [4294967295, 4146, 0]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1560255
+See https://patchwork.ozlabs.org/patch/1560102
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
