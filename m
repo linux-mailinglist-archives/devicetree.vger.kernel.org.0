@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD2445F7CA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 02:07:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A64C745F90E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 02:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbhK0BKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 20:10:39 -0500
-Received: from mga17.intel.com ([192.55.52.151]:46776 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S243404AbhK0BIj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Nov 2021 20:08:39 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10180"; a="216438093"
-X-IronPort-AV: E=Sophos;i="5.87,267,1631602800"; 
-   d="scan'208";a="216438093"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 17:05:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,267,1631602800"; 
-   d="scan'208";a="555675152"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by fmsmga008.fm.intel.com with ESMTP; 26 Nov 2021 17:05:23 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mqm9a-0008rT-HM; Sat, 27 Nov 2021 01:05:22 +0000
-Date:   Sat, 27 Nov 2021 09:04:26 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Cai Huoqing <caihuoqing@baidu.com>
-Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 1/3] staging: zynpu: Add driver support for ARM(China)
- ZHOUYI AI accelerator
-Message-ID: <202111270803.ZnISXirc-lkp@intel.com>
-References: <20211124084620.628-2-caihuoqing@baidu.com>
+        id S1345342AbhK0B0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 20:26:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344519AbhK0BYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 20:24:05 -0500
+Received: from mail-vk1-xa2a.google.com (mail-vk1-xa2a.google.com [IPv6:2607:f8b0:4864:20::a2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC17C0613F3
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 17:19:26 -0800 (PST)
+Received: by mail-vk1-xa2a.google.com with SMTP id s17so7022758vka.5
+        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 17:19:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=a8k8YIl0KwxKAbv7lkp1/Z1CPAjwJPHGhn37WWS+cww=;
+        b=pAsmF4AZe+zj7BVgqLeISZmMILka+uPd6s6bh5BGMJbBV137R21fLSn6wnMCCJUBKw
+         95s7resYPHBMAwnfgP6NXtH9NKDSxlNqSvWJYGVOPKGwaK6rcyr1yfutS9XdMi57bPJJ
+         hfmwXKEOk/wXaTZM7hMs3wP/D0Jlb+DaoHKKc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=a8k8YIl0KwxKAbv7lkp1/Z1CPAjwJPHGhn37WWS+cww=;
+        b=MTZtMecyOxklLormLDHvC4cIbNF1zoo5nGbH0V2nyevb0/QBqNOHfL8nuU9sRgE+iN
+         JuPOAlhKUpVJsCeRPUDBHHP/qOCx6y11hgsQPyTqdiqydrkW59HLXqFmqwXOgtDad/tj
+         yoqBu1facZSNJ+M5uy0p+WIyqIUg7+1cXpeZ+qUgsm1nMZWab7ZGxbOMioGvrVPUFpiI
+         F/8GiLJcJrEces0gd/WxPLRRkdqF7Ra7hIAMgQ9H3OMp0pboWuUDCArY8VNNyv7t8wOC
+         LwYHFP5qPr0cPklU8f5x7m4XwHDmVWGrIG42fzo7RSHPHm8A/h0MfJcYNu680BKr2CBl
+         SBFg==
+X-Gm-Message-State: AOAM5326X+KKOoIKaWNAqyeNJBkSs77yAt6tFanAz+ZhCuP/yuD/b2Fm
+        nPT9dJ2mAkb+t/kvLHC0VJCoTxdtz8PXLAP2LU2tpg==
+X-Google-Smtp-Source: ABdhPJxRgc3fAgj4dzNgKTVTLJ/FU1/6MfnUJ6e2LyF0pw0WKfhsJzGdYT06JFaQrPnCg2sqUg2R+rJ0BQZG4DlTojU=
+X-Received: by 2002:a05:6122:2ca:: with SMTP id k10mr19238644vki.39.1637975965759;
+ Fri, 26 Nov 2021 17:19:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211124084620.628-2-caihuoqing@baidu.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20211126202144.72936-1-romain.perier@gmail.com> <20211126202144.72936-3-romain.perier@gmail.com>
+In-Reply-To: <20211126202144.72936-3-romain.perier@gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Sat, 27 Nov 2021 10:22:14 +0900
+Message-ID: <CAFr9PXntRoxcJJThtxUGs-_URXr_LHwC8-FPDBzWehRKfuC5zQ@mail.gmail.com>
+Subject: Re: [PATCH 2/4] ARM: dts: mstar: Remove unused rtc_xtal
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cai,
+Hi Romain,
 
-I love your patch! Yet something to improve:
+On Sat, 27 Nov 2021 at 05:22, Romain Perier <romain.perier@gmail.com> wrote:
+>
+> The rtc device node use an oscillator @12Mhz right now, namely
+> xtal_div2. rtc_xtal is no longer used, remove it.
 
-[auto build test ERROR on staging/staging-testing]
+Drop this one. We will use rtc_xtal eventually.
 
-url:    https://github.com/0day-ci/linux/commits/Cai-Huoqing/staging-zynpu-Add-driver-support-for-ARM-China-ZHOUYI-AI-accelerator/20211124-164741
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git 1189d2fb15a4b09b2e8dd01d60a0817d985d933d
-config: x86_64-randconfig-r013-20211126 (https://download.01.org/0day-ci/archive/20211127/202111270803.ZnISXirc-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce (this is a W=1 build):
-        # https://github.com/0day-ci/linux/commit/95965c589ea2e279e082e3c9aa18c2ddd8494d64
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Cai-Huoqing/staging-zynpu-Add-driver-support-for-ARM-China-ZHOUYI-AI-accelerator/20211124-164741
-        git checkout 95965c589ea2e279e082e3c9aa18c2ddd8494d64
-        # save the config file to linux build tree
-        mkdir build_dir
-        make W=1 O=build_dir ARCH=x86_64 SHELL=/bin/bash
+Cheers,
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "z2_platform_priv" [drivers/staging/zynpu/zhouyi_npu.ko] undefined!
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Daniel
