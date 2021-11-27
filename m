@@ -2,164 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4DA745FC6D
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 04:44:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 723BC45FC45
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 04:06:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351872AbhK0DsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Nov 2021 22:48:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38382 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352360AbhK0DqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Nov 2021 22:46:03 -0500
-Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D66C0613F1
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 18:41:52 -0800 (PST)
-Received: by mail-ua1-x92d.google.com with SMTP id i6so22080048uae.6
-        for <devicetree@vger.kernel.org>; Fri, 26 Nov 2021 18:41:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JUTz9r6cQOlxlu3tXjp2/meDLVET9zcm7JMPcTh5e3U=;
-        b=Pbdm6ltCM1oaPOHRTxqZgUS7IiEdjyGgQUIenVmcD1RgQ0NlBefHLjn/McStBDqAG4
-         D5pmhyb6/6+D72FoeskkxXZr1QOETa6fKkayyX3973wqHu2mOEPWIpxT33rq7va1bLEY
-         okzn4J83p/jnvp+SDd57XtydcS8K2fEYA03js=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JUTz9r6cQOlxlu3tXjp2/meDLVET9zcm7JMPcTh5e3U=;
-        b=x2FJlkg0Crg7v0qXSivmO2fyYE0Zum2Df7NJf2yMFGNjD8h3tFuO1Hajmg2SaEyEAH
-         bfLnWJr5/qvI6PPDIdF/XU3qGMs1w3eelBYRR1zCeALp0d68A0Q5cjmdCrYIxrMQPUwz
-         6V6bcoR+B/pafYXg6aaxgetqWOJ8kkqidAekAkpxLppUcP6PMmtF9+W+o9iAAPxGhV7J
-         HAbyOdZWSiWtqJxtz+bg2VnZm/lzere64M2qZsQ7ok47HWH3u18Er/3yE8YVpme99BLH
-         nvJJp0tFWJ4GEcTd7fq8rc1AnPDh8rh+8DpbMLXSgvyW0jPjbCuNyyYH7m0uG5pLafd7
-         ZKqQ==
-X-Gm-Message-State: AOAM5315/mbgiFRAf++9hOf9FmKxiKa/8ItDXUQNJsVlNsdfyEjhQNwT
-        QW/IHRZMfxMV+fwaNLkpGw+0lr2VCN9hGrfmxNBAMI47FD0=
-X-Google-Smtp-Source: ABdhPJzxUa4J19bW94AhJDUynNSXZxtuE3PwmI+nAZKwsrj/TRWk00H6VBcbXFg0E0rCUpdyxilLjWZFf9AHCwgSBDk=
-X-Received: by 2002:ab0:14a7:: with SMTP id d36mr38072285uae.96.1637980911133;
- Fri, 26 Nov 2021 18:41:51 -0800 (PST)
+        id S1351389AbhK0DJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Nov 2021 22:09:51 -0500
+Received: from mga12.intel.com ([192.55.52.136]:35416 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1351627AbhK0DHs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Nov 2021 22:07:48 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10180"; a="215760198"
+X-IronPort-AV: E=Sophos;i="5.87,267,1631602800"; 
+   d="scan'208";a="215760198"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 19:04:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,267,1631602800"; 
+   d="scan'208";a="458428702"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga006.jf.intel.com with ESMTP; 26 Nov 2021 19:04:31 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mqo0s-0008yu-Sn; Sat, 27 Nov 2021 03:04:30 +0000
+Date:   Sat, 27 Nov 2021 11:03:51 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Adam Ward <Adam.Ward.opensource@diasemi.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     kbuild-all@lists.01.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Support Opensource <support.opensource@diasemi.com>
+Subject: Re: [PATCH V3 3/3] regulator: da9121: Add DA914x support
+Message-ID: <202111271151.bdZw3D77-lkp@intel.com>
+References: <31d387d0a364eef9d5ef72f0adf6d213197a4dfb.1637709844.git.Adam.Ward.opensource@diasemi.com>
 MIME-Version: 1.0
-References: <20211120000356.1850639-1-sjg@chromium.org> <CAPnjgZ0JpmK+8VpYCfwaZC=GUBSWLvdVzxcugT5S=884n6qbpA@mail.gmail.com>
-In-Reply-To: <CAPnjgZ0JpmK+8VpYCfwaZC=GUBSWLvdVzxcugT5S=884n6qbpA@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Fri, 26 Nov 2021 19:41:39 -0700
-Message-ID: <CAPnjgZ3E=c6ObCKHjs+SGkCStYsSPBu5sSTXnjcN7BB_rTd7Cw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: u-boot: Add a few more options bindings
-To:     Devicetree Discuss <devicetree@vger.kernel.org>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>
-Cc:     Tom Rini <trini@konsulko.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Rob Herring <robh@kernel.org>,
-        lk <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <31d387d0a364eef9d5ef72f0adf6d213197a4dfb.1637709844.git.Adam.Ward.opensource@diasemi.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ others
+Hi Adam,
 
-Are there no comments on this?
+Thank you for the patch! Yet something to improve:
 
-- Simon
+[auto build test ERROR on broonie-regulator/for-next]
+[also build test ERROR on robh/for-next linux/master linus/master v5.16-rc2 next-20211126]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-On Fri, 19 Nov 2021 at 17:13, Simon Glass <sjg@chromium.org> wrote:
->
-> +Rob Herring oops
->
->
-> On Fri, 19 Nov 2021 at 17:04, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > This adds three new options with varying degree of interest / precedent.
-> >
-> > This being sent to the mailing list since it might attract more review.
-> > A PR will be sent when this has had some review. That is why the file
-> > path is set up for https://github.com/devicetree-org/dt-schema rather
-> > than the Linux kernel.
-> >
-> > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > ---
-> >
-> >  schemas/options/u-boot.yaml | 51 +++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 51 insertions(+)
-> >
-> > diff --git a/schemas/options/u-boot.yaml b/schemas/options/u-boot.yaml
-> > index 71dfda7..b8bdec1 100644
-> > --- a/schemas/options/u-boot.yaml
-> > +++ b/schemas/options/u-boot.yaml
-> > @@ -71,6 +71,37 @@ properties:
-> >        2: use simplified command line (e.g. avoid hush)
-> >        3... reserved
-> >
-> > +  load-environment:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 1
-> > +    maximum: 1
-> > +    description: |
-> > +      This allows control over whether U-Boot loads its environment after
-> > +      relocation. This normally happens automatically, but can pose a security
-> > +      risk, so disabling it in certain situations is useful.
-> > +
-> > +      Note: This could be a boolean. It is defined as an integer since that
-> > +      allows changing the value without resizing the devicetree. I'm not sure
-> > +      how ugly that is, but IMO the fact that 'false' boolean values are
-> > +      represented by being missing is a bit of a pain. One must either add or
-> > +      delete the property.
-> > +
-> > +      Values:
-> > +
-> > +      0: don't load the environment
-> > +      1: do load the environment
-> > +
-> > +  no-apm-final:
-> > +    $ref: /schemas/types.yaml#/definitions/flag
-> > +    description: |
-> > +      For devices running on coreboot, this tells U-Boot not to lock down the
-> > +      Intel Management Engine (ME) registers. This allows U-Boot to access the
-> > +      hardware more fully for platforms that need it.
-> > +
-> > +      Absence of this property indicates that the ME registers should be locked
-> > +      down as part of U-Boot's start-up sequence and before the command line is
-> > +      available.
-> > +
-> >    silent-console:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      default: 0
-> > @@ -88,6 +119,23 @@ properties:
-> >          enabled)
-> >        2: console output is suppressed and not recorded
-> >
-> > +  spl-payload-offset:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0
-> > +    description: |
-> > +      If present (and SPL is controlled by the devicetree), this allows the
-> > +      offset of the SPL payload (typically U-Boot) to be specified. The offset
-> > +      is in bytes from the start of the media (typically SPI flash).
-> > +
-> > +      Note: This is quite widely used in U-Boot, but since v2018.01 it is
-> > +      possible to use Binman instead, to provide this offset (and various
-> > +      others) to SPL, or even to U-Boot proper. So far I have not tried sending
-> > +      the Binman bindings upstream, but perhaps that should be done instead.
-> > +
-> > +      See here for details:
-> > +
-> > +      https://u-boot.readthedocs.io/en/latest/develop/package/binman.html#image-description-format
-> > +
-> >  required:
-> >    - compatible
-> >
-> > @@ -101,6 +149,9 @@ examples:
-> >          bootcmd = "vboot go auto";
-> >          bootdelay-sec = <(-1)>;
-> >          bootsecure = <1>;
-> > +        load-environment = <0>;
-> > +        no-apm-final;
-> >          silent-console = <1>;
-> > +        spl-payload-offset = <0x40000>;   /* 256K */
-> >        };
-> >      };
-> > --
-> > 2.34.0.rc2.393.gf8c9666880-goog
-> >
+url:    https://github.com/0day-ci/linux/commits/Adam-Ward/regulator-da9121-add-DA914x-support/20211124-072849
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+config: nds32-randconfig-r003-20211126 (https://download.01.org/0day-ci/archive/20211127/202111271151.bdZw3D77-lkp@intel.com/config)
+compiler: nds32le-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/623a92b6a8e3ca66e0792b1cb7dfa5b4bd769b81
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Adam-Ward/regulator-da9121-add-DA914x-support/20211124-072849
+        git checkout 623a92b6a8e3ca66e0792b1cb7dfa5b4bd769b81
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=nds32 SHELL=/bin/bash drivers/regulator/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   drivers/regulator/da9121-regulator.c:571:15: error: 'DA9141_IDX_BUCK1' undeclared here (not in a function); did you mean 'DA9121_IDX_BUCK1'?
+     571 |         .id = DA9141_IDX_BUCK1,
+         |               ^~~~~~~~~~~~~~~~
+         |               DA9121_IDX_BUCK1
+   drivers/regulator/da9121-regulator.c:595:15: error: 'DA914X_IDX_BUCK1' undeclared here (not in a function); did you mean 'DA9121_IDX_BUCK1'?
+     595 |         .id = DA914X_IDX_BUCK1,
+         |               ^~~~~~~~~~~~~~~~
+         |               DA9121_IDX_BUCK1
+   drivers/regulator/da9121-regulator.c: In function 'da9121_check_device_type':
+>> drivers/regulator/da9121-regulator.c:1210:26: error: unterminated argument list invoking macro "if"
+    1210 | MODULE_LICENSE("GPL v2");
+         |                          ^
+>> drivers/regulator/da9121-regulator.c:1211: error: expected '(' at end of input
+   drivers/regulator/da9121-regulator.c:915:9: note: '-Wmisleading-indentation' is disabled from this point onwards, since column-tracking was disabled due to the size of the code/headers
+     915 |         if ((device_id != DA9121_DEVICE_ID) && (device_id != DA914X_DEVICE_ID) {
+         |         ^~
+   drivers/regulator/da9121-regulator.c:915:9: note: adding '-flarge-source-files' will allow for more column-tracking support, at the expense of compilation time and memory
+>> drivers/regulator/da9121-regulator.c:915:9: error: expected declaration or statement at end of input
+   drivers/regulator/da9121-regulator.c:912:17: error: label 'error' used but not defined
+     912 |                 goto error;
+         |                 ^~~~
+   drivers/regulator/da9121-regulator.c:900:14: warning: unused variable 'config_match' [-Wunused-variable]
+     900 |         bool config_match = false;
+         |              ^~~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:899:15: warning: unused variable 'type' [-Wunused-variable]
+     899 |         char *type;
+         |               ^~~~
+   drivers/regulator/da9121-regulator.c:898:25: warning: unused variable 'variant_vrc' [-Wunused-variable]
+     898 |         u8 variant_mrc, variant_vrc;
+         |                         ^~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:898:12: warning: unused variable 'variant_mrc' [-Wunused-variable]
+     898 |         u8 variant_mrc, variant_vrc;
+         |            ^~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:915:9: error: no return statement in function returning non-void [-Werror=return-type]
+     915 |         if ((device_id != DA9121_DEVICE_ID) && (device_id != DA914X_DEVICE_ID) {
+         |         ^~
+   At top level:
+   drivers/regulator/da9121-regulator.c:894:12: warning: 'da9121_check_device_type' defined but not used [-Wunused-function]
+     894 | static int da9121_check_device_type(struct i2c_client *i2c, struct da9121 *chip)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:884:29: warning: 'da9121_2ch_regmap_config' defined but not used [-Wunused-variable]
+     884 | static struct regmap_config da9121_2ch_regmap_config = {
+         |                             ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:873:29: warning: 'da9121_1ch_regmap_config' defined but not used [-Wunused-variable]
+     873 | static struct regmap_config da9121_1ch_regmap_config = {
+         |                             ^~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:775:12: warning: 'da9121_set_regulator_config' defined but not used [-Wunused-function]
+     775 | static int da9121_set_regulator_config(struct da9121 *chip)
+         |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:682:20: warning: 'da9121_irq_handler' defined but not used [-Wunused-function]
+     682 | static irqreturn_t da9121_irq_handler(int irq, void *data)
+         |                    ^~~~~~~~~~~~~~~~~~
+   drivers/regulator/da9121-regulator.c:624:13: warning: 'da9121_status_poll_on' defined but not used [-Wunused-function]
+     624 | static void da9121_status_poll_on(struct work_struct *work)
+         |             ^~~~~~~~~~~~~~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/if +1210 drivers/regulator/da9121-regulator.c
+
+e6ff10f24c587c1 Vincent Whitchurch 2020-11-03  1209  
+e6ff10f24c587c1 Vincent Whitchurch 2020-11-03 @1210  MODULE_LICENSE("GPL v2");
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
