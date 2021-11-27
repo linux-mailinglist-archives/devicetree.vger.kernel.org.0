@@ -2,67 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A19D645FD33
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 08:15:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59C2545FD4E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 08:52:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352371AbhK0HS4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 27 Nov 2021 02:18:56 -0500
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:48099 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352639AbhK0HQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 02:16:56 -0500
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id CD32860006;
-        Sat, 27 Nov 2021 07:13:39 +0000 (UTC)
-Date:   Sat, 27 Nov 2021 08:13:30 +0100
-From:   =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Denis Kirjanov <dkirjanov@suse.de>,
-        Julian Wiedmann <jwi@linux.ibm.com>
-Subject: Re: [PATCH net-next v3 1/4] dt-bindings: net: mscc,vsc7514-switch:
- convert txt bindings to yaml
-Message-ID: <20211127081330.0eff57f9@fixe.home>
-In-Reply-To: <YaFiljIjC6gkScSi@lunn.ch>
-References: <20211126172739.329098-1-clement.leger@bootlin.com>
-        <20211126172739.329098-2-clement.leger@bootlin.com>
-        <YaFiljIjC6gkScSi@lunn.ch>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        id S1352638AbhK0H4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 02:56:01 -0500
+Received: from mga01.intel.com ([192.55.52.88]:29208 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233469AbhK0HyB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Nov 2021 02:54:01 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10180"; a="259654566"
+X-IronPort-AV: E=Sophos;i="5.87,268,1631602800"; 
+   d="scan'208";a="259654566"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2021 23:50:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,268,1631602800"; 
+   d="scan'208";a="498676067"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga007.jf.intel.com with ESMTP; 26 Nov 2021 23:50:43 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mqsTr-0009E3-7b; Sat, 27 Nov 2021 07:50:43 +0000
+Date:   Sat, 27 Nov 2021 15:49:50 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org
+Subject: Re: [PATCH v2 20/20] spi: mxic: Add support for pipelined ECC
+ operations
+Message-ID: <202111271552.AOgIHVI2-lkp@intel.com>
+References: <20211126113924.310459-21-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211126113924.310459-21-miquel.raynal@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Fri, 26 Nov 2021 23:41:26 +0100,
-Andrew Lunn <andrew@lunn.ch> a écrit :
+Hi Miquel,
 
-> On Fri, Nov 26, 2021 at 06:27:36PM +0100, Clément Léger wrote:
-> > Convert existing txt bindings to yaml format. Additionally, add bindings
-> > for FDMA support and phy-mode property.  
-> 
-> Whenever i see 'additionally' i think a patch is doing two things, and
-> it should probably be two or more patches. Do these needs to be
-> combined into one patch?
-> 
->     Andrew
+I love your patch! Yet something to improve:
 
-Hi Andrew,
+[auto build test ERROR on mtd/nand/next]
+[also build test ERROR on broonie-spi/for-next mtd/mtd/next mtd/mtd/fixes v5.16-rc2 next-20211126]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-You are right, actually, only the FDMA support should be in this patch.
-I'll resubmit a series only for this support.
+url:    https://github.com/0day-ci/linux/commits/Miquel-Raynal/External-ECC-engines-Macronix-support/20211126-195956
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
+config: csky-buildonly-randconfig-r004-20211126 (https://download.01.org/0day-ci/archive/20211127/202111271552.AOgIHVI2-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/0804d6ccdf15e7a65743d048d01d876a54070b6b
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Miquel-Raynal/External-ECC-engines-Macronix-support/20211126-195956
+        git checkout 0804d6ccdf15e7a65743d048d01d876a54070b6b
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=csky SHELL=/bin/bash
 
--- 
-Clément Léger,
-Embedded Linux and Kernel engineer at Bootlin
-https://bootlin.com
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   csky-linux-ld: drivers/spi/spi-mxic.o: in function `mxic_spi_remove':
+>> spi-mxic.c:(.text+0xba4): undefined reference to `nand_ecc_unregister_on_host_hw_engine'
+   csky-linux-ld: drivers/spi/spi-mxic.o: in function `mxic_ecc_put_pipelined_engine':
+   spi-mxic.c:(.text+0xbc8): undefined reference to `nand_ecc_unregister_on_host_hw_engine'
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
