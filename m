@@ -2,168 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3685145FE49
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 12:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E1D45FE69
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 13:12:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbhK0LaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 06:30:05 -0500
-Received: from mga11.intel.com ([192.55.52.93]:52024 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233200AbhK0L2F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Nov 2021 06:28:05 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10180"; a="233249438"
-X-IronPort-AV: E=Sophos;i="5.87,269,1631602800"; 
-   d="scan'208";a="233249438"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2021 03:24:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,269,1631602800"; 
-   d="scan'208";a="498707234"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga007.jf.intel.com with ESMTP; 27 Nov 2021 03:24:48 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mqvp1-0009Q8-DK; Sat, 27 Nov 2021 11:24:47 +0000
-Date:   Sat, 27 Nov 2021 19:23:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Felix Fietkau <nbd@nbd.name>, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     kbuild-all@lists.01.org, john@phrozen.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v4 07/12] clk: en7523: Add clock driver for Airoha EN7523
- SoC
-Message-ID: <202111271912.FCpB3UGa-lkp@intel.com>
-References: <20211125110738.41028-8-nbd@nbd.name>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211125110738.41028-8-nbd@nbd.name>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S242504AbhK0MPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 07:15:43 -0500
+Received: from mout.kundenserver.de ([212.227.126.131]:39659 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354243AbhK0MNn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 07:13:43 -0500
+Received: from localhost.localdomain ([37.4.249.122]) by
+ mrelayeu.kundenserver.de (mreue011 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MwQCb-1mavoj1X5J-00sKXL; Sat, 27 Nov 2021 13:10:16 +0100
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Stefan Wahren <stefan.wahren@i2se.com>
+Subject: [PATCH] ARM: dts: bcm2711-rpi-400: Fix GPIO expander labels
+Date:   Sat, 27 Nov 2021 13:09:42 +0100
+Message-Id: <1638014982-4878-1-git-send-email-stefan.wahren@i2se.com>
+X-Mailer: git-send-email 2.7.4
+X-Provags-ID: V03:K1:uQqM6d0BB68FYa0lHKhX0wIPpb69pYOP8KFWBf5nyTLHPnjr3ub
+ zb9NlnUo/y0IDGvsSbGYbqqr1bH1LJh/AjtXXxQTDIvl3G8XC0NXEMG13kg3XmGAwOPatfY
+ rL04e6GAKIG00pq3P22em0fYUjnMgdPQ/ic3N4mvsOVyNl3e0JK3k/DaFutxsrisnR8sBUH
+ 82Rv5+wix/bSMk2hKZEMw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rCMYXyRFLXk=:R4mbl6ScX9HiXXP9HIGtEG
+ wsr/JX4qOu0IaVCl3JqylL9ivA6RzMdlkeBEja2s3774PLKaTzOoU5j+AcB9bMlWCXRunf6ku
+ GgfbqZrMBM8vV/XbQuBOVxmsp6+7y/7wZWMsftzSmUG8xgqkMxuN9uK8B6P3OZ1tURF/0tgKa
+ dWmunYcC+vam0lnclTTOK6GKploCalz8b7a1L89q0SI3vRH5gCcVCGjlC3RkEYDO/qZSj1pxD
+ SDTt0am/3s2ZJxnPBx4OEdn6Sahz6/W4UykEJuquYrD3p6vY9yLihEt9IL6F9pC4nkpvZGmqg
+ jT9Pwp+G0EikWHgcg25t95fcjU5flEk8HwoNtxplH1c4uTJ2RPgvXZV/ALSIxhcHkZrgVWByF
+ zuiTEpSmAR7BMycKsgeApA/WnYRF9EoRY8OtDJTvgI6NTqa05bu35vZ6MCcVGwnGrMZXL9cUX
+ r8RXBcbM3ajugK4o9v+jgHKPJ2Qwh7T1om0jZO/cawdoCzLxfzqn89uv4vOWwWF+Ibc/WPkSj
+ hK7nrTvgLO5WzZRALd4VF/KRPL34YwSS/5PmhyE314PjLUXVzwLkNc0RP73nOoe/9qSH0EzFG
+ /mk/Z6YVldqiRg0BYQlhzQOReQGXyZw4qkUwb1TOa9wRdq6k0DOuZBGFZkwCmIXSUlQcM9Yzz
+ xUCcANieiVUm0KosF/cj0h3MvMiFzlNABAz33CEyg8HJnvZFegWq2mgbt4LyigMXS82eOknCu
+ npAqRo/aHIp+OUpJ
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felix,
+From: Phil Elwell <phil@raspberrypi.com>
 
-I love your patch! Perhaps something to improve:
+Recently 2 labels of the RPi 400 GPIO expander has been fixed in
+the vendor tree. So upstream this change to be in sync.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on clk/clk-next v5.16-rc2 next-20211126]
-[cannot apply to linusw-gpio/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Felix-Fietkau/dt-bindings-Add-vendor-prefix-for-Airoha/20211125-200806
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: powerpc64-randconfig-s032-20211126 (https://download.01.org/0day-ci/archive/20211127/202111271912.FCpB3UGa-lkp@intel.com/config)
-compiler: powerpc64-linux-gcc (GCC) 11.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-dirty
-        # https://github.com/0day-ci/linux/commit/ff9f74e46043aecee2d7373f978a99ce9a3f1e27
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Felix-Fietkau/dt-bindings-Add-vendor-prefix-for-Airoha/20211125-200806
-        git checkout ff9f74e46043aecee2d7373f978a99ce9a3f1e27
-        # save the config file to linux build tree
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=powerpc SHELL=/bin/bash drivers/clk/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/clk/clk-en7523.c:202:27: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *np_base @@     got void [noderef] __iomem *base @@
-   drivers/clk/clk-en7523.c:202:27: sparse:     expected void *np_base
-   drivers/clk/clk-en7523.c:202:27: sparse:     got void [noderef] __iomem *base
->> drivers/clk/clk-en7523.c:206:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:206:29: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:206:29: sparse:     got void *
->> drivers/clk/clk-en7523.c:208:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:208:29: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:208:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:213:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:213:29: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:213:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:217:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:217:29: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:217:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:220:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:220:37: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:220:37: sparse:     got void *
-   drivers/clk/clk-en7523.c:222:36: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:222:36: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:222:36: sparse:     got void *
-   drivers/clk/clk-en7523.c:224:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:224:37: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:224:37: sparse:     got void *
-   drivers/clk/clk-en7523.c:229:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:229:29: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:229:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:230:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:230:37: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:230:37: sparse:     got void *
-   drivers/clk/clk-en7523.c:232:36: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:232:36: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:232:36: sparse:     got void *
-   drivers/clk/clk-en7523.c:241:27: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *np_base @@     got void [noderef] __iomem *base @@
-   drivers/clk/clk-en7523.c:241:27: sparse:     expected void *np_base
-   drivers/clk/clk-en7523.c:241:27: sparse:     got void [noderef] __iomem *base
-   drivers/clk/clk-en7523.c:244:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:244:29: sparse:     expected void const volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:244:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:246:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *addr @@     got void * @@
-   drivers/clk/clk-en7523.c:246:29: sparse:     expected void volatile [noderef] __iomem *addr
-   drivers/clk/clk-en7523.c:246:29: sparse:     got void *
-
-vim +202 drivers/clk/clk-en7523.c
-
-   198	
-   199	static int en7523_pci_enable(struct clk_hw *hw)
-   200	{
-   201		struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
- > 202		void *np_base = cg->base;
-   203		u32 val, mask;
-   204	
-   205		/* Need to pull device low before reset */
- > 206		val = readl(np_base + REG_PCI_CONTROL);
-   207		val &= ~(REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT);
- > 208		writel(val, np_base + REG_PCI_CONTROL);
-   209		usleep_range(1000, 2000);
-   210	
-   211		/* Enable PCIe port 1 */
-   212		val |= REG_PCI_CONTROL_REFCLK_EN1;
-   213		writel(val, np_base + REG_PCI_CONTROL);
-   214		usleep_range(1000, 2000);
-   215	
-   216		/* Reset to default */
-   217		val = readl(np_base + REG_RESET_CONTROL);
-   218		mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
-   219		       REG_RESET_CONTROL_PCIEHB;
-   220		writel(val & ~mask, np_base + REG_RESET_CONTROL);
-   221		usleep_range(1000, 2000);
-   222		writel(val | mask, np_base + REG_RESET_CONTROL);
-   223		msleep(100);
-   224		writel(val & ~mask, np_base + REG_RESET_CONTROL);
-   225		usleep_range(5000, 10000);
-   226	
-   227		/* Release device */
-   228		mask = REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT;
-   229		val = readl(np_base + REG_PCI_CONTROL);
-   230		writel(val & ~mask, np_base + REG_PCI_CONTROL);
-   231		usleep_range(1000, 2000);
-   232		writel(val | mask, np_base + REG_PCI_CONTROL);
-   233		msleep(250);
-   234	
-   235		return 0;
-   236	}
-   237	
-
+Fixes: 1c701accecf2 ("ARM: dts: Add Raspberry Pi 400 support")
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ arch/arm/boot/dts/bcm2711-rpi-400.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/bcm2711-rpi-400.dts b/arch/arm/boot/dts/bcm2711-rpi-400.dts
+index f4d2fc2..82c5ea1 100644
+--- a/arch/arm/boot/dts/bcm2711-rpi-400.dts
++++ b/arch/arm/boot/dts/bcm2711-rpi-400.dts
+@@ -31,9 +31,9 @@
+ 			  "",
+ 			  "GLOBAL_RESET",
+ 			  "VDD_SD_IO_SEL",
+-			  "CAM_GPIO",
++			  "GLOBAL_SHUTDOWN",
+ 			  "SD_PWR_ON",
+-			  "SD_OC_N";
++			  "SHUTDOWN_REQUEST";
+ };
+ 
+ &genet_mdio {
+-- 
+2.7.4
+
