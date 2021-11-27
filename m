@@ -2,98 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C25DF45FEAA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 13:52:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BDA345FEB7
+	for <lists+devicetree@lfdr.de>; Sat, 27 Nov 2021 14:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240075AbhK0Mzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Nov 2021 07:55:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237071AbhK0Mxy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Nov 2021 07:53:54 -0500
-Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24AFFC061756;
-        Sat, 27 Nov 2021 04:49:11 -0800 (PST)
-Received: by mail-vk1-xa33.google.com with SMTP id 84so7701470vkc.6;
-        Sat, 27 Nov 2021 04:49:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AhTTFdq9Ouec2Tp6O3ODQcGsU1dD+1o+XNr7Zcpuux4=;
-        b=aUXDxw+wxuMfK0NN8FA5RBdWoJRuGZruR2eeUtw9vunGcBVFcz6a94bYV7441YRx4J
-         YSDVawbU8r3G2qYRzqCU/7UOrnpDE8jSYZ7BORrxpOkDBiWyXln63uSXVywij0e4oZyE
-         lj1F6POIHIqjc9nkAKgFL5Ma5m+fFnQIEjgGi0gbfV7XrbDHEidWN+hKDpHSjZ/ux/Bo
-         ELw6MphLUtfPiAqSEZgbyU0QC6skids8eW8GsKzyoflJhPXz486/jO7VDkV5ojirizmR
-         i59FBFk+VzAaa9RJ8PILqercKpdsI5QoOJDuBqod72YkgOy8RilIFiZ30bjiOuvWHI1f
-         USIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AhTTFdq9Ouec2Tp6O3ODQcGsU1dD+1o+XNr7Zcpuux4=;
-        b=MmoAd0ux2IeNfTrZelp+6vjTGWCvtWCPLB25tCm2gljLYZIer8iZNzCqfABsd/mzF2
-         wO8gn7eovaVImsIV1pEt8ib0OER31TJUxcmte32peCoGJSHaDCLKc1VfXEagaDzMd4mo
-         b9FY6ogwoViiRaB/NkFmvkMZgXxsnNSfZ9yjYwQpBi2YJel5mQFA6Zf3O6i9TxENSTx7
-         ghcjociKLqzCCz5+xLupx5WFYKh1A3G7hUSFjQEbF23xvsaB204PKrNis5r0ExgAFr4I
-         9LAnJ6iYzA+zR+HdsD+vYsIdlhocvngCR+VHELPLd5p0d11MlSTEgCmJrWZBmVxl5Zba
-         kDzQ==
-X-Gm-Message-State: AOAM530wi0xznPPFu1VJ2BLextHaLAYMn3bn5x8t8QYqYYLy9GzR42yZ
-        CqcjI61sXtq/nTQkfo01EudFHrXXR97iuphWPEeO8zzj
-X-Google-Smtp-Source: ABdhPJwR6Ggz9AFJAtv78Mk3+wpQfGFn/ZWsDVX2sy5m5SBxiY/eT8fXvH489Y2Xkh4JHYdHbxwV7GG3sGXn2rRmx3A=
-X-Received: by 2002:a05:6122:629:: with SMTP id g9mr20722297vkp.36.1638017350280;
- Sat, 27 Nov 2021 04:49:10 -0800 (PST)
-MIME-Version: 1.0
-References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com> <20211125211443.1150135-5-Mr.Bossman075@gmail.com>
-In-Reply-To: <20211125211443.1150135-5-Mr.Bossman075@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sat, 27 Nov 2021 09:48:59 -0300
-Message-ID: <CAOMZO5Az+JJB7pokhOue+DZpKTxu3uQFkDJd7LpLgri5aLv9zg@mail.gmail.com>
-Subject: Re: [PATCH v3 04/13] pinctrl: freescale: Add i.MXRT1050 pinctrl
- driver support
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        id S242466AbhK0NGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Nov 2021 08:06:39 -0500
+Received: from ixit.cz ([94.230.151.217]:58522 "EHLO ixit.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234018AbhK0NEj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Nov 2021 08:04:39 -0500
+Received: from localhost.localdomain (ip-89-176-96-70.net.upcbroadband.cz [89.176.96.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ixit.cz (Postfix) with ESMTPSA id 1D0EB20064;
+        Sat, 27 Nov 2021 14:01:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+        t=1638018082;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=TL5Z0v3ROjL1VN0kk5T9RzyinmEmWC4BFheAFJjFzNM=;
+        b=PVuxMRDBWOG6/Pyw8AxqLdlVD6yNjLKsnza21sk3xFphm0ZWND+BJGuWPN8bcYGlTf7hT3
+        eXif+8lNXdD0H102lV4eVwYsVpLTH9ORrIM1q3u6e6KSD/ftZeeVxg7eLaAdBnt4oc8Tb4
+        SVHGHXNnL/O6Hi4+pmwPDJG5tNO+7UE=
+From:   David Heidelberg <david@ixit.cz>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     ~okias/devicetree@lists.sr.ht, David Heidelberg <david@ixit.cz>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mq: fix the schema check errors for fsl,tmu-calibration
+Date:   Sat, 27 Nov 2021 14:01:18 +0100
+Message-Id: <20211127130118.37525-1-david@ixit.cz>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 6:14 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
->
-> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
->
-> Add the pinctrl driver support for i.MXRT1050.
->
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+fsl,tmu-calibration is in u32-matrix. Use matching property syntax.
+No functional changes. Fixes warnings as:
+$ make dtbs_check
+...
+arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml: tmu@30260000: fsl,tmu-calibration:0: Additional items are not allowed (1, 41, 2, 47, 3, 53, 4, 61, 5, 67, 6, 75, 7, 81, 8, 87, 9, 95, 10, 103, 11, 111, 65536, 27, 65537, 35, 65538, 43, 65539, 51, 65540, 59, 65541, 67, 65542, 75, 65543, 85, 65544, 93, 65545, 103, 65546, 112, 131072, 23, 131073, 35, 131074, 45, 131075, 55, 131076, 65, 131077, 75, 131078, 87, 131079, 99, 131080, 111, 196608, 21, 196609, 33, 196610, 45, 196611, 57, 196612, 69, 196613, 83, 196614, 95, 196615, 113 were unexpected)
+        From schema: /home/ubuntu/projects_remote/linux/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
+...
 
-Looks good:
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 86 +++++++++++------------
+ 1 file changed, 43 insertions(+), 43 deletions(-)
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 95d8b95d6120..c90a8befdd95 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -457,49 +457,49 @@ tmu: tmu@30260000 {
+ 				clocks = <&clk IMX8MQ_CLK_TMU_ROOT>;
+ 				little-endian;
+ 				fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x70061>;
+-				fsl,tmu-calibration = <0x00000000 0x00000023
+-						       0x00000001 0x00000029
+-						       0x00000002 0x0000002f
+-						       0x00000003 0x00000035
+-						       0x00000004 0x0000003d
+-						       0x00000005 0x00000043
+-						       0x00000006 0x0000004b
+-						       0x00000007 0x00000051
+-						       0x00000008 0x00000057
+-						       0x00000009 0x0000005f
+-						       0x0000000a 0x00000067
+-						       0x0000000b 0x0000006f
+-
+-						       0x00010000 0x0000001b
+-						       0x00010001 0x00000023
+-						       0x00010002 0x0000002b
+-						       0x00010003 0x00000033
+-						       0x00010004 0x0000003b
+-						       0x00010005 0x00000043
+-						       0x00010006 0x0000004b
+-						       0x00010007 0x00000055
+-						       0x00010008 0x0000005d
+-						       0x00010009 0x00000067
+-						       0x0001000a 0x00000070
+-
+-						       0x00020000 0x00000017
+-						       0x00020001 0x00000023
+-						       0x00020002 0x0000002d
+-						       0x00020003 0x00000037
+-						       0x00020004 0x00000041
+-						       0x00020005 0x0000004b
+-						       0x00020006 0x00000057
+-						       0x00020007 0x00000063
+-						       0x00020008 0x0000006f
+-
+-						       0x00030000 0x00000015
+-						       0x00030001 0x00000021
+-						       0x00030002 0x0000002d
+-						       0x00030003 0x00000039
+-						       0x00030004 0x00000045
+-						       0x00030005 0x00000053
+-						       0x00030006 0x0000005f
+-						       0x00030007 0x00000071>;
++				fsl,tmu-calibration = <0x00000000 0x00000023>,
++						<0x00000001 0x00000029>,
++						<0x00000002 0x0000002f>,
++						<0x00000003 0x00000035>,
++						<0x00000004 0x0000003d>,
++						<0x00000005 0x00000043>,
++						<0x00000006 0x0000004b>,
++						<0x00000007 0x00000051>,
++						<0x00000008 0x00000057>,
++						<0x00000009 0x0000005f>,
++						<0x0000000a 0x00000067>,
++						<0x0000000b 0x0000006f>,
++
++						<0x00010000 0x0000001b>,
++						<0x00010001 0x00000023>,
++						<0x00010002 0x0000002b>,
++						<0x00010003 0x00000033>,
++						<0x00010004 0x0000003b>,
++						<0x00010005 0x00000043>,
++						<0x00010006 0x0000004b>,
++						<0x00010007 0x00000055>,
++						<0x00010008 0x0000005d>,
++						<0x00010009 0x00000067>,
++						<0x0001000a 0x00000070>,
++
++						<0x00020000 0x00000017>,
++						<0x00020001 0x00000023>,
++						<0x00020002 0x0000002d>,
++						<0x00020003 0x00000037>,
++						<0x00020004 0x00000041>,
++						<0x00020005 0x0000004b>,
++						<0x00020006 0x00000057>,
++						<0x00020007 0x00000063>,
++						<0x00020008 0x0000006f>,
++
++						<0x00030000 0x00000015>,
++						<0x00030001 0x00000021>,
++						<0x00030002 0x0000002d>,
++						<0x00030003 0x00000039>,
++						<0x00030004 0x00000045>,
++						<0x00030005 0x00000053>,
++						<0x00030006 0x0000005f>,
++						<0x00030007 0x00000071>;
+ 				#thermal-sensor-cells =  <1>;
+ 			};
+ 
+-- 
+2.33.0
+
