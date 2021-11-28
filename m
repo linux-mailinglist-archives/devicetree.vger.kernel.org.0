@@ -2,181 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CBE460948
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 20:21:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 011E646097D
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 20:38:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356945AbhK1TYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 14:24:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43176 "EHLO
+        id S1344369AbhK1TmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 14:42:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345044AbhK1TWN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 14:22:13 -0500
-Received: from mail-ua1-x935.google.com (mail-ua1-x935.google.com [IPv6:2607:f8b0:4864:20::935])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A092C06174A
-        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 11:18:57 -0800 (PST)
-Received: by mail-ua1-x935.google.com with SMTP id l24so29554022uak.2
-        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 11:18:57 -0800 (PST)
+        with ESMTP id S1357032AbhK1TkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 14:40:02 -0500
+Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com [IPv6:2607:f8b0:4864:20::a41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9C8C061757
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 11:35:00 -0800 (PST)
+Received: by mail-vk1-xa41.google.com with SMTP id 84so9518159vkc.6
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 11:35:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Qo3PAgy4ecMdw6oNTVpGy0tUmuQCrp/Wiq4eob/mtQI=;
-        b=JrnKf03DFARe/5OgV32WW8Df/++5lQu9a9KwwebrG4F3cENZIR24UM+EnG3UB7JRZs
-         AYtQYtIyGfeXW5sFxNHDLgotN4qeHXWnDApj0AXxdq6X8gSsfhuufDanYFUIF8ISRua0
-         FYengmxYft6soxUVVXF8fdn3fWiB5nyGslBxUaiM5yAoVsVMpph2biWElyMT60LaN7dS
-         Bgl2HkXSjsH7JW2nac2DxJq/87RD5IpUGitYqZNbb30LA7OQbDmhgrTww84ahRk7pv5D
-         /sBrnbWINjMtiUxcK7z7aLBf5ZgehQPpvxd2Vj+xL9OlPxHgpMmcQxA5qm248c+oezWv
-         0uGQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
+        b=GMzU6wWBSt94jyFFJlR2oKYZCPZQqFRV7AMolugiAWDivyZ8R0CUWbnWEzSK0OGn9k
+         fwB4e71KS/+Ks33coJjj1+Uy+d3wm0ys+DresfAZ+lNp3K4ds/I9ssjclJD6VgQOa412
+         UtDBYSqCCIfhD6D52IHTEn/xFsL5jyEWpefnonXK5nl5r8cjsef9SD6IeZi3aVleYE64
+         9k7xguENxV3WzEWt8QaFvI/iIMKvI4mFEfVTA+gIChY8Voh5HfIFzvajPUFl0aPQ4Aso
+         6CZ0HxZD3yJU52ueH58iA73z65NuK8i48cNs3HoJnnysu/TSMEpNDAdbZriCIA4VOJuC
+         BJ9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Qo3PAgy4ecMdw6oNTVpGy0tUmuQCrp/Wiq4eob/mtQI=;
-        b=Lyj+reWoFaWGxTa2RtKT6SYTXt+GiVXdN0aJPUWw8fDAqGYEY0Mk2A/tAwPBrN+dwx
-         9kiGdJGrLoNxxuYW2qrL6BkPlFmzI1w4+pyQXDzkKvgstRGPMaJ/FlvVzwcGY9Q+r1mJ
-         ibzYiEBeeaaBq6L52pqyWWgTgqxsV6Pgs/EOJIV2e4w+yEUDupV/447yLxsardtKGu+O
-         iaSbLgRQsw/hT2Attv1wYMdE030uYKYqJKUi4UFWfjexYpvELkKCKDAU3N+YhGQwFyUw
-         +uPiX7zHkYjAo0iONdInYRwQt/aX2f+zFTalOl0JwtcBZN6Sl11DoDuHjcILDgVlxKsi
-         XKVQ==
-X-Gm-Message-State: AOAM531M7ws7ZoNcXOTcBKK5Q5qKUOeJVqB2UTWuxYgZffACcI7TqvuX
-        tKaAX+Rt8EBz1lAk98UCq3Arfxp7wq3tA/4u4hdvFNWU9ur0aF6w
-X-Google-Smtp-Source: ABdhPJwCaOpHAYtsRrert9di7ZEA+CQ02tXeFDu0XfEynvpdrOa/GFa85qKmLDApqL7maqiBFayRDSykbj0HkujqoXQ=
-X-Received: by 2002:a05:6102:f10:: with SMTP id v16mr29145367vss.86.1638127136273;
- Sun, 28 Nov 2021 11:18:56 -0800 (PST)
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
+        b=2oLfGk3OgQxQpxdy2MIrGv0+s4FtIKz6oqq9sUeXyln7CLtlfMoOhPTIvOHpV2zi0r
+         f8vK3R3rczTOuk+5d4DAGcEvQ9k+V6GWTU4Fm6r9eab98/hLEg4WOe3aOsIksMIPdQdW
+         q0P+HMDFUSh4K7YtaLY7PtFJO6O2QS1a9Qv3R5XvfJeYx/2vgnoyBoNOrbZE9QUr0oFE
+         wY/KTpP8i1ShA71G53Mps7KhmoctNUsC58Vl9h6eQSH8aTdL8E/3Z2fK2VFHOSvgxXAP
+         9Pw3pgvdBawMp+BJMwXo8cMsZkVvVrOLVX3oF6xpJLtyvcalERAYdt8rrI1a4nZ/25vI
+         wJIw==
+X-Gm-Message-State: AOAM533O84JCoA9FcBBIMpD//YMo7g4tpqTn9yNUOp/ko0a7yCyJE09O
+        9Jt1cX026Un47Cwfh8NaU1fYGgN1xoRpCKCS4Zg=
+X-Google-Smtp-Source: ABdhPJyYZjv0McawhXoIAAW1v0yLPrsveLHOcpSmXGgS/PXOagMCXZa5j2AIe6xXX3P6ktIizoPpduzTtJFrrHth1JU=
+X-Received: by 2002:a1f:5f94:: with SMTP id t142mr32025912vkb.34.1638128098880;
+ Sun, 28 Nov 2021 11:34:58 -0800 (PST)
 MIME-Version: 1.0
-References: <20211121165647.26706-1-semen.protsenko@linaro.org>
- <20211121165647.26706-10-semen.protsenko@linaro.org> <20211123160623.GB2326185@roeck-us.net>
- <CAPLW+4mwhH5C6zSxWDboNucZPvt2c=F7Qaa9V_XJHbJzbFNL3w@mail.gmail.com>
- <c16afd75-f54c-6c2b-7f61-1f1c7a4b3c46@roeck-us.net> <CAPLW+4kmUqg=2vYOiWfMhQFqFw1sh0Eo6Yqv8nPEbV_0MObn5A@mail.gmail.com>
- <CAPLW+4=pqZMry-O6_XT=V5AeZ+FfUwZLVp_=QjqudDrbxbZrCg@mail.gmail.com> <037e8534-746d-da0a-24da-a47a9856d689@roeck-us.net>
-In-Reply-To: <037e8534-746d-da0a-24da-a47a9856d689@roeck-us.net>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Sun, 28 Nov 2021 21:18:45 +0200
-Message-ID: <CAPLW+4ny7GO8i4XYJuMxjwkj1kAj=Nbj0+718UWiNk3mx554vw@mail.gmail.com>
-Subject: Re: [PATCH v4 09/12] watchdog: s3c2410: Cleanup PMU related code
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
+Received: by 2002:a59:d847:0:b0:262:8962:9689 with HTTP; Sun, 28 Nov 2021
+ 11:34:58 -0800 (PST)
+Reply-To: christopherdaniel830@gmail.com
+From:   Christopher Daniel <cd601665@gmail.com>
+Date:   Sun, 28 Nov 2021 19:34:58 +0000
+Message-ID: <CAMocZ7Fks-cnmJo3gURLCPwpyBrJ1a=ryVHcYntrL4ZDFOcZmA@mail.gmail.com>
+Subject: Investment Funding
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Nov 2021 at 19:56, Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 11/27/21 2:52 PM, Sam Protsenko wrote:
-> > On Wed, 24 Nov 2021 at 01:30, Sam Protsenko <semen.protsenko@linaro.org> wrote:
-> >>
-> >> On Wed, 24 Nov 2021 at 00:33, Guenter Roeck <linux@roeck-us.net> wrote:
-> >>>
-> >>> On 11/23/21 8:17 AM, Sam Protsenko wrote:
-> >>>> On Tue, 23 Nov 2021 at 18:06, Guenter Roeck <linux@roeck-us.net> wrote:
-> >>>>>
-> >>>>> On Sun, Nov 21, 2021 at 06:56:44PM +0200, Sam Protsenko wrote:
-> >>>>>> Now that PMU enablement code was extended for new Exynos SoCs, it
-> >>>>>> doesn't look very cohesive and consistent anymore. Do a bit of renaming,
-> >>>>>> grouping and style changes, to make it look good again. While at it, add
-> >>>>>> quirks documentation as well.
-> >>>>>>
-> >>>>>> No functional change, just a refactoring commit.
-> >>>>>>
-> >>>>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> >>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>>>>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> >>>>>> ---
-> >>>>>> Changes in v4:
-> >>>>>>     - Added R-b tag by Guenter Roeck
-> >>>>>>
-> >>>>>> Changes in v3:
-> >>>>>>     - Added quirks documentation
-> >>>>>>     - Added R-b tag by Krzysztof Kozlowski
-> >>>>>>
-> >>>>>> Changes in v2:
-> >>>>>>     - (none): it's a new patch
-> >>>>>>
-> >>>>>>    drivers/watchdog/s3c2410_wdt.c | 83 ++++++++++++++++++++++++----------
-> >>>>>>    1 file changed, 58 insertions(+), 25 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
-> >>>>>> index ec341c876225..f211be8bf976 100644
-> >>>>>> --- a/drivers/watchdog/s3c2410_wdt.c
-> >>>>>> +++ b/drivers/watchdog/s3c2410_wdt.c
-> >>>>>> @@ -56,17 +56,51 @@
-> >>>>>>    #define EXYNOS5_RST_STAT_REG_OFFSET          0x0404
-> >>>>>>    #define EXYNOS5_WDT_DISABLE_REG_OFFSET               0x0408
-> >>>>>>    #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET    0x040c
-> >>>>>> -#define QUIRK_HAS_PMU_CONFIG                 (1 << 0)
-> >>>>>> -#define QUIRK_HAS_RST_STAT                   (1 << 1)
-> >>>>>> -#define QUIRK_HAS_WTCLRINT_REG                       (1 << 2)
-> >>>>>> +
-> >>>>>> +/**
-> >>>>>
-> >>>>> 0-day complains:
-> >>>>>
-> >>>>> drivers/watchdog/s3c2410_wdt.c:94: warning: expecting prototype for Quirk flags for different Samsung watchdog IP(). Prototype was for QUIRK_HAS_WTCLRINT_REG() instead
-> >>>>>
-> >>>>> It doesn't seem to like the idea of documented bit masks. Not really sure
-> >>>>> what to do here. I am inclined to ignore it, but I don't want to get flooded
-> >>>>> by 0-day complaints until I retire either. Any idea ?
-> >>>>>
-> >>>>
-> >>>> Seems like 0-day thinks this kernel-doc comment is for the first
-> >>>> define only, and thus the comment has wrong format, or something like
-> >>>> that. I tried to follow the same style as GFP_KERNEL and others are
-> >>>> documented.
-> >>>>
-> >>>> Anyway, if you don't like 0-day complaints, can you please just
-> >>>> replace kernel-doc comment (/**) with regular comment (/*), by
-> >>>> removing one asterisk in the patch? Or I can re-send the patch
-> >>>> correspondingly -- then just let me know.
-> >>>>
-> >>>
-> >>> Oh, never mind. Let's just hope that 0-day stops complaining at some point.
-> >>>
-> >>
-> >> Just sent v5 for this patch, fixing that 0-day warning properly. Found
-> >> info about it here: [1]. So to check that warning, apparently it's
-> >> enough to run "make W=n" build, or dry-run for kernel-doc script like
-> >> this:
-> >>
-> >>      $ scripts/kernel-doc -v -none drivers/watchdog/s3c2410_wdt.c
-> >>
-> >> Anyway, please take v4 series + v5 for this patch. Hope that'll be all
-> >> for 0-day swearing :)
-> >>
-> >> [1] https://github.com/torvalds/linux/blob/master/Documentation/doc-guide/kernel-doc.rst
-> >>
-> >
-> > Hi Guenter,
-> >
-> > Can you please take this patch:
-> >
-> >      [PATCH v4 12/12] watchdog: s3c2410: Add Exynos850 support
-> >
-> > and replace "Cleanup PMU related code" patch you already applied with this one:
-> >
-> >      [PATCH v5] watchdog: s3c2410: Cleanup PMU related code
-> >
-> > I can see you already took most of WDT patches I sent, but those two
-> > seem to be missing.
-> >
->
-> Upstream work is always "time permitting". Done now.
->
+.
+I wish to invite you to participate in our Investment Funding Program,
+get back to me for more details if interested please.
 
-Thank you, Guenter!
-
-> > Also, I can't see my patches (which are already present in your
-> > "watchdog-next" branch) in linux-next/master. Is that expected, or I'm
-> > missing something?
-> >
-> My watchdog-next branch is for 0-day coverage only. It is not made
-> available in linux-next. linux-next pulls watchdog related changes
-> from the official watchdog repository at
-> git://www.linux-watchdog.org/linux-watchdog-next.git#master
->
-> Guenter
+Regards.
+Christopher Daniel.
