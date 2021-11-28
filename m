@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDCAD460811
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 18:32:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0482460815
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 18:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347577AbhK1RfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 12:35:25 -0500
-Received: from mail-qt1-f179.google.com ([209.85.160.179]:36828 "EHLO
-        mail-qt1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231342AbhK1RdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 12:33:24 -0500
-Received: by mail-qt1-f179.google.com with SMTP id t11so14061816qtw.3;
-        Sun, 28 Nov 2021 09:30:07 -0800 (PST)
+        id S1344660AbhK1RgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 12:36:25 -0500
+Received: from mail-qk1-f181.google.com ([209.85.222.181]:35550 "EHLO
+        mail-qk1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346095AbhK1ReX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 12:34:23 -0500
+Received: by mail-qk1-f181.google.com with SMTP id m192so20326344qke.2;
+        Sun, 28 Nov 2021 09:31:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+jKqrj/WwaNlYQiS2d47yOVc+IwZPP/7wtu0i19l0uk=;
-        b=CwN0fS9H1xXmeRDKAOdqtSvAD0b/Xqo4+6eRODFq7Sxa1wq1ioBJOqvjkJYxFmYXv2
-         jxmMKEsZZ3/6I8akCNulihjxvWt3fD1ssB9jAdTqABOowema3dIckG7Nzy5SlCET2CEM
-         F+7kxHGPYe4V9ebhs21rn7n0+wiOXFSjs/llnhhET4D32q53A9CvVZuSCjabU1qjTQrA
-         bvk+iuClrjU4jQ/Jq2Bogym5Xw5Gp9TRxeAweKd+97UkQ7eJxdbu0+ctrDKunZBJVjl0
-         zYdOGnVlOwvq1iWM6dhX9lj/YNHZdxnkhTn+KDcruBBw6qszQGHLRArK1+FuDC8NHtsR
-         smFA==
-X-Gm-Message-State: AOAM530BX3mGI3E0F9tq1Ymi6D/PF3Hie4P4cknrNdoimV/Oxvb4lP8g
-        OBQsTUKDmhtYFl89ZxHK4w==
-X-Google-Smtp-Source: ABdhPJyDAAP/LbwCCL98ISWrUgbzX1/5IkV/c1emeBrdgvZRdiHZDOC4u4wJJGnqZTnJdZGzPeoz3g==
-X-Received: by 2002:a05:622a:1901:: with SMTP id w1mr37564889qtc.134.1638120607335;
-        Sun, 28 Nov 2021 09:30:07 -0800 (PST)
+        bh=HOZnfEPnttr55dyGpAF+JeLswq5rht0r3DHq2CKTKuk=;
+        b=vCpf3eMWJiUxkhHkhreZjNxgtv5z/gN8zCRPUN92bioplJ/trEv/BZvXmIVE0Vd1uc
+         VxUh6I2VyJgWD8PpeJqJIwjA7SuarG86KNq8oAC6DOXt/Q13D2ssXM2Wa4hdbZ80gCq1
+         wmM15R80RHfYx7oFN8HVYSrVwtyqKGxoto0BVAKc9gvxPadpMYb0JmVYLt5AwJzdpdgx
+         vPqvhac+PfAZQmybL3b42ICZQFGDbTSPVbVOft7mWSXS/DajsfzuVeeuUjpc99JHPNdg
+         nJVFjH4LeiknoZfnufaZTWFBqcFEQtOTcOQZwqC/s05qdJD26Nd4clS0UOLf+BK6hypg
+         U0pQ==
+X-Gm-Message-State: AOAM531xMq7tuZBU45nqWCEeBWjkNcyKHkdGRcdHtNIv8yFM15GQ7RQ6
+        MQrXB3Xzy4kQ7388YkUN64HMr2CFxw==
+X-Google-Smtp-Source: ABdhPJw2+ifIMe/CTu4PVjr7v5xnwHL3/1YCQErz+a7uZySRa0cZy8m8hz+QmW2K3pxxRGtHLFXxnw==
+X-Received: by 2002:a05:620a:1a19:: with SMTP id bk25mr33386927qkb.479.1638120666584;
+        Sun, 28 Nov 2021 09:31:06 -0800 (PST)
 Received: from robh.at.kernel.org ([2607:fb90:2edc:4e01:e871:814a:5254:ea69])
-        by smtp.gmail.com with ESMTPSA id y9sm7078746qko.74.2021.11.28.09.30.04
+        by smtp.gmail.com with ESMTPSA id a17sm5824475qkp.108.2021.11.28.09.31.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 09:30:06 -0800 (PST)
-Received: (nullmailer pid 2773123 invoked by uid 1000);
-        Sun, 28 Nov 2021 17:30:02 -0000
-Date:   Sun, 28 Nov 2021 11:30:02 -0600
+        Sun, 28 Nov 2021 09:31:05 -0800 (PST)
+Received: (nullmailer pid 2774543 invoked by uid 1000);
+        Sun, 28 Nov 2021 17:31:03 -0000
+Date:   Sun, 28 Nov 2021 11:31:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     linux-gpio@vger.kernel.org, Bartosz Golaszewski <brgl@bgdev.pl>,
-        cosmin.tanislav@analog.com,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v7 2/3] dt-bindings: iio: add AD74413R
-Message-ID: <YaO8mttxPXP4Fowm@robh.at.kernel.org>
-References: <20211127192510.35723-1-demonsingur@gmail.com>
- <20211127192510.35723-3-demonsingur@gmail.com>
+To:     Anilkumar Kolli <akolli@codeaurora.org>
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH v6 1/2] dt: bindings: add new DT entry for ath11k PCI
+ device support
+Message-ID: <YaO81+V2Mt/ImYxO@robh.at.kernel.org>
+References: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211127192510.35723-3-demonsingur@gmail.com>
+In-Reply-To: <1637839211-1503-1-git-send-email-akolli@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 27 Nov 2021 21:25:09 +0200, Cosmin Tanislav wrote:
-> The AD74412R and AD74413R are quad-channel software configurable input/output
-> solutions for building and process control applications. They contain
-> functionality for analog output, analog input, digital input, resistance
-> temperature detector, and thermocouple measurements integrated
-> into a single chip solution with an SPI interface.
-> The devices feature a 16-bit ADC and four configurable 13-bit DACs to provide
-> four configurable input/output channels and a suite of diagnostic functions.
-> The AD74413R differentiates itself from the AD74412R by being HART-compatible.
+On Thu, 25 Nov 2021 16:50:10 +0530, Anilkumar Kolli wrote:
+> Ath11k driver supports PCI devices such as QCN9074/QCA6390.
+> Ath11k firmware uses host DDR memory, DT entry is used to
+> reserve host DDR memory regions, send these memory base
+> addresses using DT entries.
 > 
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
 > ---
->  .../bindings/iio/addac/adi,ad74413r.yaml      | 158 ++++++++++++++++++
->  include/dt-bindings/iio/addac/adi,ad74413r.h  |  21 +++
->  2 files changed, 179 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
->  create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
+> V4:
+>   - Fix dt_binding_check warnings (Rob)
+> V2:
+>   - Use reserved-memory (Rob)
+> 
+>  .../bindings/net/wireless/qcom,ath11k.yaml         | 30 ++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
