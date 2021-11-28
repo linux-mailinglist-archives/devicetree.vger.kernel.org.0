@@ -2,99 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB9B46091B
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 19:50:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5189D460964
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 20:27:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230350AbhK1SxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 13:53:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36540 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235237AbhK1SvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 13:51:24 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2EEEC061757;
-        Sun, 28 Nov 2021 10:46:22 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id t5so62676815edd.0;
-        Sun, 28 Nov 2021 10:46:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SoVtCz413kfAVrTASvnosHXITKjbPFpV1EpFdoQvcC4=;
-        b=RTooAPLgR0sJ4bCNi47YrjSTcj/Psae+59W3yeV1CHFQTmiAGBTy8L/xp2O5rjHgVI
-         fot2kbPDZF9FKgX97GdMKgvDHc0lRQogjGug0nUykY1CveYSLl7FplLzkRIWgslLRdUz
-         1QMh9BV8zvt04IHUxCWWFTSYjfiDzI+kzQ869CkZd6CGRsvBm0Ehfu3VaF1FDJ2M2fJ2
-         aCXmapBFsFbo1D9icBWrXdS47Oy4h7LeZ2TgiLP8Azkp976vs1dMcNHS5yOZQRbsqUaz
-         EXyDyGfAiTuGxOypV459fhYccQeGgKjI+c0O1Ydy9MLGAX9agWfyLC+GocIPReZqzVg9
-         YdGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SoVtCz413kfAVrTASvnosHXITKjbPFpV1EpFdoQvcC4=;
-        b=1O2X51Gp7srk10VTIuligVb9rGi7yjYDj9VA3DvT0HzXkkm5AuZp3Ct4Bh8J3Low6e
-         jH6Mz5MkyVnK1TOozbiv7/42JTtD4aonYJLbk+SH8v++cJiraNQt9uUGG6YUezaibUAN
-         fqT/BRoCLiIjeQLTmLCUgSZMV2tg1tfW33XjLu0kK5TU/WQvsjVqD9gRQh44CYlkc7Tv
-         MY/hYOXaopzjQlCNFn7dHwRovYUxMMCoSmyWgd8mf1dpeEzI1AFV0xqf0CPfTMhrHQNu
-         DgGdNbv42eqa+RI12eh7Lh/b2VZURNIeN8oB4vk3fitdAHc2d3oql4WZclbY5jHpXDNm
-         gd0A==
-X-Gm-Message-State: AOAM530eWdL/96cbXOUw/qCL9HvqWE99sDBbgcXLNJhzIjHIwWEOYPvc
-        xkRHSA+sn4M7lXCmbNXLMP80pWW4mSLC6dYQAwoD5ZUaTRo=
-X-Google-Smtp-Source: ABdhPJx77owul9Ttufb/7btyttSLplWBRJyVBib5ZhxlO4pTAi9PbPoesK7sSmqnJ8FyZGHrPkhdTXgkynyRV/0emnE=
-X-Received: by 2002:aa7:d288:: with SMTP id w8mr27686252edq.404.1638125181432;
- Sun, 28 Nov 2021 10:46:21 -0800 (PST)
+        id S237510AbhK1Tan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 14:30:43 -0500
+Received: from 49-237-179-185.static.tentacle.fi ([185.179.237.49]:59370 "EHLO
+        bitmer.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1357211AbhK1T2m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Nov 2021 14:28:42 -0500
+X-Greylist: delayed 2513 seconds by postgrey-1.27 at vger.kernel.org; Sun, 28 Nov 2021 14:28:40 EST
+Received: from 88-114-184-140.elisa-laajakaista.fi ([88.114.184.140] helo=[192.168.1.48])
+        by bitmer.com with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <jarkko.nikula@bitmer.com>)
+        id 1mrP8t-0003BD-LO; Sun, 28 Nov 2021 20:43:15 +0200
+Subject: Re: [PATCH] ARM: dts: Fix timer regression for beagleboard revision c
+To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20211125144834.52457-1-tony@atomide.com>
+From:   Jarkko Nikula <jarkko.nikula@bitmer.com>
+Message-ID: <18772611-59f8-57ad-581d-40ea71d3d706@bitmer.com>
+Date:   Sun, 28 Nov 2021 20:43:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211128131853.15125-1-aford173@gmail.com> <20211128131853.15125-4-aford173@gmail.com>
- <YaO5kccgK9rYy6G5@robh.at.kernel.org>
-In-Reply-To: <YaO5kccgK9rYy6G5@robh.at.kernel.org>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Sun, 28 Nov 2021 12:46:10 -0600
-Message-ID: <CAHCN7xLToHQ-N1fJFRhr_UBsXH20GpQ5G2ERGL4K4y_0zAoPNg@mail.gmail.com>
-Subject: Re: [PATCH V4 3/9] dt-bindings: power: imx8mn: add defines for DISP
- blk-ctrl domains
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211125144834.52457-1-tony@atomide.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 28, 2021 at 11:17 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Sun, 28 Nov 2021 07:18:46 -0600, Adam Ford wrote:
-> > This adds the defines for the power domains provided by the DISP
-> > blk-ctrl.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> >  include/dt-bindings/power/imx8mn-power.h | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> >
->
->
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->
+On 25.11.2021 16.48, Tony Lindgren wrote:
+> Commit e428e250fde6 ("ARM: dts: Configure system timers for omap3")
+> caused a timer regression for beagleboard revision c where the system
+> clockevent stops working if omap3isp module is unloaded.
+> 
+> Turns out we still have beagleboard revisions a-b4 capacitor c70 quirks
+> applied that limit the usable timers for no good reason. This also affects
+> the power management as we use the system clock instead of the 32k clock
+> source.
+> 
+> Let's fix the issue by adding a new omap3-beagle-ab4.dts for the old timer
+> quirks. This allows us to remove the timer quirks for later beagleboard
+> revisions. We also need to update the related timer quirk check for the
+> correct compatible property.
+> 
+> Fixes: e428e250fde6 ("ARM: dts: Configure system timers for omap3")
+> Cc: linux-kernel@vger.kernel.org
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: Thomas Gleixner <tglx@linutronix.de>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Reported-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+>  .../devicetree/bindings/arm/omap/omap.txt     |  3 ++
+>  arch/arm/boot/dts/Makefile                    |  1 +
+>  arch/arm/boot/dts/omap3-beagle-ab4.dts        | 47 +++++++++++++++++++
+>  arch/arm/boot/dts/omap3-beagle.dts            | 33 -------------
+>  drivers/clocksource/timer-ti-dm-systimer.c    |  2 +-
+>  5 files changed, 52 insertions(+), 34 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/omap3-beagle-ab4.dts
+> 
+I trust Tony got this working since I lent the board for him to look at
+this regression since our earlier remote attempts didn't find a working fix.
 
-Sorry about that.  I grabbed the patch series from [1], but it appears
-that the patchwork there isn't updating the patches with the
-Acked-by/Reviewed-by tags.
+Jarkko
 
-[1] - https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=575601
-
-
-adam
-> If a tag was not added on purpose, please state why and what changed.
->
