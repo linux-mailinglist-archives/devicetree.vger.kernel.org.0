@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6A374609F1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 22:03:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00F75460A35
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 22:14:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353115AbhK1VHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 16:07:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37252 "EHLO
+        id S1359263AbhK1VRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 16:17:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237186AbhK1VFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 16:05:06 -0500
-Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD600C061756;
-        Sun, 28 Nov 2021 13:01:49 -0800 (PST)
-Received: by mail-ua1-x933.google.com with SMTP id ay21so29739725uab.12;
-        Sun, 28 Nov 2021 13:01:49 -0800 (PST)
+        with ESMTP id S238256AbhK1VPd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 16:15:33 -0500
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C5C1C061756;
+        Sun, 28 Nov 2021 13:12:16 -0800 (PST)
+Received: by mail-lj1-x22c.google.com with SMTP id z8so30605009ljz.9;
+        Sun, 28 Nov 2021 13:12:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4/0Be4YdoJWrG3olK/Rdtkxl4HfF+TWIUQ8musiC5+o=;
-        b=C9ZM6XWOIPWLRDmLnX8iB5K+Q89OAemIRb7G4mdMUTTTyxMxvQ+o9VJ/HI38gRYa68
-         HtjcQXlde0R6vqRDS0Tn++YQiOyrogjVZTN1JRhLECsZGc8bEGgVEWXeaRsR2uc/yTz0
-         0LjxJNv7NGZf6pz1DxGpR1qK1OuOBz8mWhVYQFxjCLDUJ2DHAPjt6yPA5qW13OAQ1054
-         7Xu/tftqW5CTqxgRIcompK+CsA/IBVyeudJVwhCREI/ZG0ptcwbJHGtkrvWf+oj9p1xr
-         lF3l3Becle1LGVz18sjXrPrG0evLCOEZahwMst+jMXqW94aC1Vk6Gid69uXKRfZKRjf+
-         jwcw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=lilqoZy8e6A7KMDRW1iz9itZAyY0GoMETvcZuSaTU0M=;
+        b=dZw6p7rCW1rDkyKoDdOTaNzzZfsR7NWOHR/qfKuR1DAt/RhnCRBRGojOWhDw+3WWoZ
+         p4f+9g8Amvjzxc9xacK4TsRbazRgaCnNFEayYyryT5O8dD/bETbjBPHoG0d2HLBZojWI
+         tfvGrHOLONzGjeZgFSn/y5NBVNUTU/KzfSCjakYMI1W0692v3nts3CLhByjpKsPa3ndg
+         AHy1EWgC/OV2Rkev5MGSjlkuAFndVoyZ8QAh6WyG+Bba9F+IaCCrxdNkWUPyrFRKIdh2
+         VbvLfFgBeMqg2NHVHykH1sElAg9wkWDX/LnGZ1ymx9OSm5nMogboHEBsaIQl5+BDNYDV
+         1lig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4/0Be4YdoJWrG3olK/Rdtkxl4HfF+TWIUQ8musiC5+o=;
-        b=WCmswbt6x/ccJQP3RVRDLo9JjV4AuaUPYoIzLsSP+3qGOF2oiQMMs6pegcpVf7qgo/
-         XZx1AqBQwuitV1jWQBV3yTSHhpSVcCoFlm/xDaWTxSMuC85NizG11pdk1rYAqsSGGLzZ
-         k51GUvhf7UAJ19bw9ODv+SN6JqhTeltGuzXd5IROH5fPwbWoNXfusvqXQc/I9+0AK0TS
-         zFyGA3J0k440IrpAD1KP/XTv63jvbQS8MCdctSiVN0V/sBHNDSYa9R8Kt+FYy8rZEipW
-         p1YhyRE526+1k8wd25V78stn7xLLnn3lAFZY7nkefhdSXV2UKaR86YxqLWGwTXj6Lv8l
-         D4nA==
-X-Gm-Message-State: AOAM533ALOE11fwgEvVtFiiwRRW2LSCPNOdKxlXa0l/RQ7ZHFc2S+SjJ
-        nKcMylu27Zfw+6ZZXSEeDMoJrximaBe3IZt6Cv4=
-X-Google-Smtp-Source: ABdhPJzeuwkeOUNKv1l60vODjiUB+kSjTf1MFzRhiHgoVNc8dglgKZZM06QQhFncdAgmwuqbpybhxNs1g8eVL5sYhsc=
-X-Received: by 2002:a05:6102:3588:: with SMTP id h8mr28485619vsu.7.1638133309000;
- Sun, 28 Nov 2021 13:01:49 -0800 (PST)
-MIME-Version: 1.0
-References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
- <20211125211443.1150135-8-Mr.Bossman075@gmail.com> <CAOMZO5Dqo6c=4nGCOakMKG8fn=V1HA7-O26t3GmwWtD-FbZiPg@mail.gmail.com>
- <dae68360-456e-3db8-57ed-2287dc7cfd57@gmail.com> <CAOMZO5Ca7j6_KOBJ1XVpx0yRvCaAH3i2Wac0jwL8HT8pxso2eA@mail.gmail.com>
- <fca5e8f8-a442-c9ec-27ed-da9c8a8d8ed4@gmail.com>
-In-Reply-To: <fca5e8f8-a442-c9ec-27ed-da9c8a8d8ed4@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 28 Nov 2021 18:01:38 -0300
-Message-ID: <CAOMZO5AP338L_Fus7Bwiq+1-2V3jnMoikef+JvaNjTSRjU=kxw@mail.gmail.com>
-Subject: Re: [PATCH v3 07/13] clk: imx: Add initial support for i.MXRT clock driver
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=lilqoZy8e6A7KMDRW1iz9itZAyY0GoMETvcZuSaTU0M=;
+        b=MRiEq81wqUyu9YGEZxQmghIDj+MSzz0CvCNQGBnCHndPpolkZMgZW2tT8ITz8EDXz6
+         G8k0oF/CP2uxlPueJh+ssgMOWjLi0GqDFbEivXD4Werpu/GErP8hMf0SYSHlydmcYCDr
+         PHX4uP3CeCIvzXQu1AwscThKVql02r4fta2TC/JHonrINkGCpc6IjjPxNsbLyDJbYLcs
+         lsLE061BVh0tXZKKy9pQWteh3aEV9HMjTxPRXW++D8sC+4Bm/Cc4vtqoyikn6EtJViD5
+         iiMC6dsIg3S3abU/Z38Nack3ehZZdspB5fkU5E4+cO7663KQD+4Jq7eUUfaXJ/zbuxE2
+         JiqA==
+X-Gm-Message-State: AOAM530RKGqqSNsxtNNgvOs/nD+Zwe1wdUhLFShH9rl/sYDTk16hGjpH
+        mDGvsTgDBVe/42Up6KkVYqqwdnN27o4=
+X-Google-Smtp-Source: ABdhPJzrsusHafFXTuug+S9e2vr5aXPJIDM8qQwEMHbrAPJ8OQCz1qjxKlIRVbGqagyhp8b1Hbob7A==
+X-Received: by 2002:a2e:a726:: with SMTP id s38mr46575529lje.415.1638133934428;
+        Sun, 28 Nov 2021 13:12:14 -0800 (PST)
+Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
+        by smtp.googlemail.com with ESMTPSA id h18sm1166998ljh.133.2021.11.28.13.12.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Nov 2021 13:12:14 -0800 (PST)
+Subject: Re: [PATCH v3 03/14] ARM: tegra: Add labels to tegra114.dtsi
+To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        David Heidelberg <david@ixit.cz>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Anton Bambura <jenneron@protonmail.com>,
+        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
+        Nikola Milosavljevic <mnidza@outlook.com>,
+        Ion Agorria <ion@agorria.com>,
+        Ihor Didenko <tailormoon@rambler.ru>,
+        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
+        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
+        Jasper Korten <jja2000@gmail.com>,
+        Thomas Graichen <thomas.graichen@gmail.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211127142327.17692-1-digetx@gmail.com>
+ <20211127142327.17692-4-digetx@gmail.com> <YaLcF9PxYUj8v3uj@qmqm.qmqm.pl>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <710f7d45-2e04-9b51-1c2b-7ec4b34e9f8a@gmail.com>
+Date:   Mon, 29 Nov 2021 00:12:06 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <YaLcF9PxYUj8v3uj@qmqm.qmqm.pl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 28, 2021 at 5:59 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+28.11.2021 04:32, Michał Mirosław пишет:
+> On Sat, Nov 27, 2021 at 05:23:16PM +0300, Dmitry Osipenko wrote:
+>> From: Anton Bambura <jenneron@protonmail.com>
+>>
+>> Add more labels in order to use label reference in device-specific
+>> dts files. Labels make device-trees more readable and prevent typos
+>> that are difficult to notice.
+> 
+> I believe that you had also a similar patch for Tegra3 (or my [1]).
+> Could you pull it into this series to make the DT's easier to manage?
+> 
+> [1] https://rere.qmqm.pl/git/?p=linux;a=commitdiff;h=2c3341163b07d94d209680a22286608d0e4d711a
 
-> Uh so i should change it, or can i keep it like 'clk-imx5.c'(how it is now).
-> sry for the confusion
+I had a thought about including it in to this series, but we don't have
+a user for that patch right now, so I decided not to include it.
 
-Please name it drivers/clk/imx/clk-imxrt1050.c
+I'll reconsider to include it into v4, now that you're asking about it.
+It won't hurt to have that patch, but I really would want somebody to
+add a similar patch for T20 and then convert all DTs to use those labels
+uniformly, this will take some time and effort to type these patches.
