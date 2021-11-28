@@ -2,183 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B03460568
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 10:20:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B81A4460640
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 13:52:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234634AbhK1JXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 04:23:14 -0500
-Received: from mail-eopbgr80118.outbound.protection.outlook.com ([40.107.8.118]:47586
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1343737AbhK1JVO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Nov 2021 04:21:14 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=deoIPeuv9tCOgTjqjbXLIAlk8TOcVLAA4A92yPFcgnRPTGEFZAKrQZohiuQa96lh+RkIVO8JmvOyP1hcVpSAof87lbSQLCgxrDmWqdcgj3T+9LYjiuBWWsKZO7epmZ3Il9Nla9DaJQ3IGL9+ES9ohH4govusoZvud2tbmdNGtWK0L9q2Ki7mJNRDmzjfW/NlSFmdFdjnm41n4nmH/OcOfSfU2yKpNeqDWOnb4xd215aeAkovnbP6PYZ1LxWlS0C80QwWWTSNEI6wU84tk0Ls2dlYKhEAl2yCeaJki5Wzg/P9hjtO0GKGZKJKx5b1eVB7KgsNwVs6hitUQQlqGaxAfQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X096dXD9oOmFlXbNdC7Xf24wJccpXsSdkrmj3bfQQc8=;
- b=nbUphHjgMUze3fLrV918ZrbGqr79t+TLjxuevSTIju1clavdSO3zDYczw3jTbeevZd6+Pu22J4aZ8mx6Bin5iyH63Svy/UXnJT7/j8lgNFWbP0TLixuXy0D41iVwzCvANNA4X7UCf4N5c9HRWkq7pZVRbHeIxuAfxd16lPrBeLm9ScbEEXDxIS01/SwtP1dLXBp4n0A5/gpuJPXsRDoimZcoUCnxD8lp7wJ4ixHIqknXMir85GXK1Ca5dpNJjhKkVWsEhYK57VjUY4s3D69tLlsR601yuz339i1KN2Rh3jLYcvo6Faudv6qBQ9Z0K2OOcAmRLkF88lKIPpBn+C5FfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X096dXD9oOmFlXbNdC7Xf24wJccpXsSdkrmj3bfQQc8=;
- b=KqaFNHiMy5u8sVaUM+gfqud1qtDZetgo9D3DOcy4wk0SIqBx9RwUwOTlqNUw2FZZC1LkTUc+b/zpF68m44qYbdPTeK1eL+WBLX10D3oeS/nYegO4mapWkYDbB5VPMtFNL1Dpz2vnN/C0jaWRyz8pnc4eB68seNLLOJlgvFXIEg0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DB9PR02MB7372.eurprd02.prod.outlook.com (2603:10a6:10:240::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Sun, 28 Nov
- 2021 09:17:55 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39%4]) with mapi id 15.20.4734.023; Sun, 28 Nov 2021
- 09:17:55 +0000
-Message-ID: <b9e1e804-fb59-660f-a9b8-ad6e20dd41aa@axentia.se>
-Date:   Sun, 28 Nov 2021 10:17:50 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH v9 00/14] iio: afe: add temperature rescaling support
-Content-Language: en-US
-To:     Liam Beguin <liambeguin@gmail.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-References: <20211115034334.1713050-1-liambeguin@gmail.com>
- <156bc2fa-6754-2350-4a12-ff25b23ae8a2@axentia.se> <YaKUmha11ft6gip2@shaak>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-In-Reply-To: <YaKUmha11ft6gip2@shaak>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0034.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:9::31) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+        id S1345385AbhK1Mzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 07:55:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43750 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345784AbhK1Mxv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 07:53:51 -0500
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C1AC061746;
+        Sun, 28 Nov 2021 04:50:35 -0800 (PST)
+Received: by mail-io1-xd32.google.com with SMTP id z26so17423172iod.10;
+        Sun, 28 Nov 2021 04:50:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wKZWF5gN/dipZUN6w+sfnbsbYZiCC0RMt8cpstFuDYk=;
+        b=P21dv/dqm8upYHm/bOCW7i6n/1K0A7zXWbdZZ3uJ2FWQVg1hjVrtmYxZ4/WT/s+JMq
+         /0zsAF/6HVeHDOqTZv4bOW/KqGpEcTY3LdXrvTn2UdzF9JvLB9WbSkWElQm9qsBNu/w9
+         +9eD3DZSMMGnkHLSEXPPs7TusKLvgbiG8o7o18YnTp2Bx43Fsm+xWZYiJIMndx2OYXV2
+         Y0cG0L8ElSWrethSdB9nnjFZvpVXANhVSBgKPbJLcBYQtBRd9QDHlera/6OcrGiUB8hC
+         PEQz58AElQwP40bGTk6rLLjrYXtFG0Ilx61j5Iu41uU+3bPVGJcI/yLD/PevDq3AGqj8
+         KGuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wKZWF5gN/dipZUN6w+sfnbsbYZiCC0RMt8cpstFuDYk=;
+        b=LZkx/jzpBGoE7BwBV9qm0vh/+V4Aqvo8o5ucm2BdVumYKvU3p8AmLOiT+YFVdssNWH
+         mgTtMEzyrvVwlIq3BfYHIEX3g2VDXFPiSDdq8kw6RGbeiJ/XAmm5wcXXfgJgHpC5MxOc
+         AZA/OlKdNNn6sWy2rSm4DjrtLgL4H66U02BFpwVWa+wdaLEmUauBfGn4SiBHztXwYB7S
+         nEYTM+qAO+RkNAnVPN9QEzCO+cGwhUozJTKS8amjNGTea5uq8PzxkPuB51Bo8D7SCkae
+         y+IX8yTFIw/f1wUvMkf7YD16TxTQXCgynzFjSuP+0WXhMa0FrPYzRMHuVomQRy8HIFDx
+         W+3w==
+X-Gm-Message-State: AOAM533k6HhwgUoYDyJDB0H2r2Fw3DW3LyqtHEOSr6Cg8Hur3NDS87fQ
+        8I07+Bxsip1jyV1+RC2pwF4=
+X-Google-Smtp-Source: ABdhPJyAx9Vhmg4ISue/Uqrz2MHWmExfKbzYQAv9cBQDO+gkW/TaliXI8WH2WGwashQEaqWWaX/Bhw==
+X-Received: by 2002:a6b:7306:: with SMTP id e6mr50335014ioh.25.1638103834952;
+        Sun, 28 Nov 2021 04:50:34 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:2a06:17d2:47df:6c8e])
+        by smtp.gmail.com with ESMTPSA id j21sm6545240ila.6.2021.11.28.04.50.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Nov 2021 04:50:34 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     laurent.pinchart@ideasonboard.com, tharvey@gateworks.com,
+        aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+Date:   Sun, 28 Nov 2021 06:50:07 -0600
+Message-Id: <20211128125011.12817-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Received: from [192.168.13.3] (185.178.140.238) by GV3P280CA0034.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:9::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22 via Frontend Transport; Sun, 28 Nov 2021 09:17:53 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 6fdd42f7-4daf-44d5-301b-08d9b24ff5f0
-X-MS-TrafficTypeDiagnostic: DB9PR02MB7372:
-X-Microsoft-Antispam-PRVS: <DB9PR02MB737223334E57442CB6E54469BC659@DB9PR02MB7372.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uKcfKcEBpEkc4/+mCRrobJFOGWGmfZ5ISnc6FlDim0NLuDcXs4Zm4TqtupDRhtuJ3UFuHsRbnHgHLav/Ysi28CKGooKXwPsWuXYOLrwBxlZFmRHUJEEKt5QbPaxtkuyemO5yopVbvStbt9KPcZtoY75oBjMum4grBKppgqNQWmN0S2ZUWR34j9VK9ui29187P35eX9nlnNK4UYF2zMsI2sTGRcIEM8MpVKvNr3Usou7NiKGA5XRFPEoEf7X4evyDwDWos5sHEWg8iVByQZit2ftS4ANy3JtE3+KE31Fsibm0+bqb2IuxfBBTzKZW4d8mNI+ybGIveW3orVgAHGUkVjVwqpNlAYhaTp84VWjUV6JpDEo5sGu5fzLcYdAoySuobyyaxF4OGKuXue7WHHmQuFhaQFqd82U2GMofJ2YFrKvsGUtugmoGiTeuNrn7KYA7H+gvSDpkBmmvUfnOvwZn8d+r7qQxAcjcMPTqZbg6jQVfXjTmPAcM8JsAOwita6V/GnArBHJFSLM5/Gquo+aXwFfVtwcicMAYUOcQW5XzHmfQPjJgpV50rKlQg4ot7Kvf+HC8MEWOVZTf+aW3IPwEZsPRGYqi5xVPoC4vkwS5Nd0tTug6q1BeSuZiQvinlTlyxhBNz2oYIhhDz1nlCiUzmyB977imIBdx57VfxnQv7CKP3NwyghOp/7v3hLP0fMQWn7Rn5GyGNNIQAejlAYBIbeKKTT031JONoPHOpgTHUq0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(39830400003)(346002)(376002)(366004)(396003)(38100700002)(86362001)(6916009)(2616005)(956004)(36756003)(186003)(508600001)(66476007)(316002)(5660300002)(26005)(31696002)(31686004)(16576012)(66556008)(4001150100001)(66946007)(53546011)(6486002)(83380400001)(36916002)(4326008)(8676002)(8936002)(2906002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MFU0ZS9KSTBxZitZb0N3VzhvYzkwcElwK2NPQ2dPS040Q24wSTlRZS9SM3Fi?=
- =?utf-8?B?cWV2Y2ZiL3pTSzFSd2dwUkdNa2VYRWpUb1prempCZ0tXL0VibjB2ZEpwTUdm?=
- =?utf-8?B?MkFHL1ZlV2VOc3FoZC8vbUUzbTVlcXNNUzdXMGdQd05hTGpVMHl1bElNMTdt?=
- =?utf-8?B?ekZ0c3hQbzF5U20wZHM0aXNkZHBOUnNMRVpId2RYMDgzKytnVHRwVVV6T1Bt?=
- =?utf-8?B?N3hCQys2NmdPVlEzTkxOM2VYMzZCb1djS1lMR20xTzdQdlByUjBId1RmMXlp?=
- =?utf-8?B?ZnVWL3NFS1plaHhyWWxFUG9kYXVuVlZWRm1RTEY0Tko0Q1dLcG4rOGpnUzVp?=
- =?utf-8?B?VjBNQUxxcEFNd09ITXpzM1QydlNHVmMrLzRlZUVUbzRyTExjNjlpZE9pRkYx?=
- =?utf-8?B?d1g3U2ZTNDREV3dOYUhtYlBabkhSQ3o3MnJCOWtMeHh5N3JYZlJEc1FNM3Bs?=
- =?utf-8?B?c3FjWUUwTkpXdmc0R1l3QldoZ2pqcUhuL3hhSUtiemFCSGNjd1lMNzZCQUR0?=
- =?utf-8?B?cm1tMGpEVDJnZWlNQ2xFWFJYTzY1UWNVU3V1WmwrZ2ZWcUJ6eHpVVDFsNW1v?=
- =?utf-8?B?SDArbVlZTll5cC95SzNRcGlySm9kVVZHRjVqSEtEUHErbVpkN0k0TnlDWlZz?=
- =?utf-8?B?U0gvV2wrUkl5dEh1Q1FmeHhVTEF3THc2cUM4T0hLRzRMNFUxTi9XT0JDa3J0?=
- =?utf-8?B?MmxSWnN3d2pEa0dCeFFRL2VLTStjRys1VDRRR1B4MzdqeEpJaWlFWVIzbmdl?=
- =?utf-8?B?aWR5UmhYaWYzZEdlOE9peTJSMVZGUUVkL3pQMWdrY0lFeHJoWWpRZG5CYStv?=
- =?utf-8?B?SFoxYW5OTERRb2k2UG9JTTh0bE0raGdVL1pielFpdGtFNGNLMkRyMjc4RkE1?=
- =?utf-8?B?Z0laM1VjREFTc0ZJbUhXVDNoNkpKM2lQT0RvS1lMZWY5YWhMQ3Jpb2VCQUcw?=
- =?utf-8?B?MFA4b2h0cUpnWWQyZE00d21oeGVrbmNBR0c5TW50bXowSXY1eStZZ0hEbE13?=
- =?utf-8?B?dFJUMVJ2REJRUDVtQng0a1VJSkJKLzZpK0lQZURTUGxDU0RBczdycy80ODRL?=
- =?utf-8?B?ZlIrbEdxNWFDaWV0dmVsSm5LcUdLNlAzOHA0RUpqQ01HZ2RQV01HdU1aeito?=
- =?utf-8?B?VHNRdnpMS29JVW03dXZVbnhHc1c0M1kzMUt1OVpsZjREa2JQNnQ1Nzd6czJF?=
- =?utf-8?B?KzZ1YVBPczZkWnlvR0VlSEFmMmM1RWVrMnA2cUU4RUg5UEIwTkx5eENuM0Rs?=
- =?utf-8?B?d0lyRi9DMkJmcVEzdHErRmlaR1ZYbGNUS1Y3aFV5U1M1MFdzZWlzWENTbTJy?=
- =?utf-8?B?YjVPeVNVNFVQYU9NazN2c05iVFltamV6Q2IrU3FvV3JVWndOUlNJRTd6Z1Nu?=
- =?utf-8?B?MnVkbEhQMWJncWFpVm9lZVFiWUNVWktXbWhjR1h3em9nMWlGblZkT2dUZTRG?=
- =?utf-8?B?ckt6ZDFJd1NJYkliSTVIZ2M3OTRXempKZ0ZpcThBQmtlNTVOTkRQUEJubVFs?=
- =?utf-8?B?TzdJeGFHRHZwMm84Z3dCN29rQkFTRFU4QmFMV0RlSnJzZURyemhKVVJSV3VJ?=
- =?utf-8?B?WjNXY0twMndIL2hvbDJmR3NsWkRZMDhBcnVVV1c5clY2VjRJa1FLUFR2elhW?=
- =?utf-8?B?dFZnbEhZTGFnYkMwVjBJSTdEY2o2SXcrMkNPckh2T0h2SkRYdDlDdDR4V2xl?=
- =?utf-8?B?eE9sQnZYZVU4a3BWSlJwVVJJTlF5NjBMRVhjQ2hZTVNqcFplNE1HVDd6cThK?=
- =?utf-8?B?ZEZ5RnNTNjBwRlNQc25qVTdqK3NIT21SZVlmbjhRVlcwL0pLTWs4U2h2M2hG?=
- =?utf-8?B?TXkxVWpDRDcrTGlNMTBXUXNoc1JBLzVDUlVPd2lCczI0N0NOT0RVT1lzbTNK?=
- =?utf-8?B?eGZMYVhtT1ZjcGd4OTNmYmlxa09Fb1h5OWFPNGt4KytldE5kZUttVFFLNUgr?=
- =?utf-8?B?NDlWNURjR1owVEZVSW1KVVE0ZlFlQmwrZEhLTFAvaW1ZL1ljOVhSdlhIVTVX?=
- =?utf-8?B?VEtuTUdGQ2VuZk45S1hTZ0pnZHJIdmUrdFRtU1R1aFZubFV6dUN3WklDVzVu?=
- =?utf-8?B?bFBpdkQvanc5Y2ZwaFE4MTFlaVNSek82alVmOS91dXJYakJHNW0zY1o2djk2?=
- =?utf-8?Q?l35o=3D?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6fdd42f7-4daf-44d5-301b-08d9b24ff5f0
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2021 09:17:54.9434
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: J1N+NbhnZQ1EGlDKR3nq2mhaLE1p217DCPAZirtTlTopnwDmGkukjuJZ3Wdjtsxl
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB7372
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Most of the blk-ctrl reset bits are found in one register, however
+there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+and one of them needs to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+out of reset or the MIPI_CSI hangs.
 
-On 2021-11-27 21:27, Liam Beguin wrote:
-> Hi Peter,
-> 
-> On Mon, Nov 22, 2021 at 01:53:44AM +0100, Peter Rosin wrote:
->> Hi Liam!
->>
->> On 2021-11-15 04:43, Liam Beguin wrote:
->>> Hi Jonathan, Peter,
+Since MIPI_DSI is impacted, add the additional one for MIPI_DSI too.
 
-snip
+Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+Signed-off-by: Adam Ford <aford173@gmail.com>
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+---
+V3:  Split the  mipi_phy_rst_mask for CSI and DSI into their respective domains.
 
->>> - keep IIO_VAL_FRACTIONAL scale when possible, if not default to fixed
->>>   point
->>
->> This is not what is going on. Patch 9/14 will convert all fractional
->> scales to fixed point. But I would really like if you in the "reduce
->> risk of integer overflow" patch (8/14) would hold true to the above
->> and keep the fractional scale when possible and only fall back to
->> the less precise fractional-log case if any of the multiplications
->> needed for an exact fractional scale causes overflow.
-> 
-> Thanks for looking at these patches again.
-> 
->> The v8 discussion concluded that this was a valid approach, right?
-> 
-> Yes, I remember you saying that you'd be more comfortable keeping the
-> IIO_VAL_FRACTIONAL.
-> 
->> I know you also said that the core exposes the scale with nano
->> precision in sysfs anyway, but that is not true for in-kernel
->> consumers. They have an easier time reading the "real" scale value
->> compared to going via the string representation of fixed point
->> returned from iio_format_value. At least the rescaler itself does so,
->> which means that chaining rescalers might suffer needless accuracy
->> degradation.
-> 
-> Agreed, that makes total sense.
-> 
-> If I'm not mistaken, the first condition in the case, if (!rem), will
-> return IIO_VAL_FRACTIONAL if the division is exact, keeping all the
-> precision. No?
+V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
+     Rename the new register to mipi_phy_rst_mask
+     Encapsulate the edits to this register with an if-statement
+     
+ drivers/soc/imx/imx8m-blk-ctrl.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Only if the resulting scale fits in nine decimals. That's never the
-case if you have primes other than 2 and 5 in the denominator (after
-eliminating gcd of course). Which mean that if you chain one rescaler
-doing 1/3 and one doing 3/1, you would get a combined scale of
-0.999999999 instead of 3/3 if we take the approach of these patches.
+diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+index 519b3651d1d9..c2f076b56e24 100644
+--- a/drivers/soc/imx/imx8m-blk-ctrl.c
++++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+@@ -17,6 +17,7 @@
+ 
+ #define BLK_SFT_RSTN	0x0
+ #define BLK_CLK_EN	0x4
++#define BLK_MIPI_RESET_DIV	0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
+ 
+ struct imx8m_blk_ctrl_domain;
+ 
+@@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
+ 	const char *gpc_name;
+ 	u32 rst_mask;
+ 	u32 clk_mask;
++
++	/*
++	 * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
++	 * which is used to control the reset for the MIPI Phy.
++	 * Since it's only present in certain circumstances,
++	 * an if-statement should be used before setting and clearing this
++	 * register.
++	 */
++	u32 mipi_phy_rst_mask;
+ };
+ 
+ #define DOMAIN_MAX_CLKS 3
+@@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+ 
+ 	/* put devices into reset */
+ 	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
++	if (data->mipi_phy_rst_mask)
++		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+ 
+ 	/* enable upstream and blk-ctrl clocks to allow reset to propagate */
+ 	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+@@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+ 
+ 	/* release reset */
+ 	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
++	if (data->mipi_phy_rst_mask)
++		regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+ 
+ 	/* disable upstream clocks */
+ 	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+@@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+ 	struct imx8m_blk_ctrl *bc = domain->bc;
+ 
+ 	/* put devices into reset and disable clocks */
++	if (data->mipi_phy_rst_mask)
++		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
++
+ 	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+ 	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
+ 
+@@ -480,6 +497,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+ 		.gpc_name = "mipi-dsi",
+ 		.rst_mask = BIT(5),
+ 		.clk_mask = BIT(8) | BIT(9),
++		.mipi_phy_rst_mask = BIT(17),
+ 	},
+ 	[IMX8MM_DISPBLK_PD_MIPI_CSI] = {
+ 		.name = "dispblk-mipi-csi",
+@@ -488,6 +506,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+ 		.gpc_name = "mipi-csi",
+ 		.rst_mask = BIT(3) | BIT(4),
+ 		.clk_mask = BIT(10) | BIT(11),
++		.mipi_phy_rst_mask = BIT(16),
+ 	},
+ };
+ 
+-- 
+2.32.0
 
-So, what I'm after is that - for IIO_VAL_FRACTIONAL - not take the
-multiply-by-1e9 code path /unless/ the existing fractional approach
-overflows in either numerator or denominator (or both).
-
-Side note: The same could be done for IIO_VAL_INT when the numerator
-overflows (since the denominator cannot overflow), but I guess that
-can be done later.
-
-Cheers,
-Peter
