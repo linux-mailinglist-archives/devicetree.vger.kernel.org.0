@@ -2,192 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9136461BEC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 17:41:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D191461FB7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 19:55:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232217AbhK2Qog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 11:44:36 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:38116 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242548AbhK2Qmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 11:42:36 -0500
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8DAD52A5;
-        Mon, 29 Nov 2021 17:39:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1638203957;
-        bh=JmrZZIhIr8JyRc8JbmSMnZNVrCsSNfrkLgqeCBUI7WQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=PUsLzayti/g/y/BmT4i6W86tOwNjWWa2bUfv9HqG7bPWElUq+EveA7+ln7M6ctJ+i
-         JWo48r98+gfict2uaYXRQhJQ/TkTuTPoiz8E1fHY2e4uKZ/P4gz9TYRZFx/ftbcd9U
-         4tKiLvEVAQ2rGBn3hExf9c3RqzxvTYCBhVtFoXMc=
-Content-Type: text/plain; charset="utf-8"
+        id S1379604AbhK2S6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 13:58:48 -0500
+Received: from smtpcmd14161.aruba.it ([62.149.156.161]:57574 "EHLO
+        smtpcmd14161.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1379592AbhK2S4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 13:56:45 -0500
+Received: from [192.168.50.18] ([146.241.138.59])
+        by Aruba Outgoing Smtp  with ESMTPSA
+        id rSUYmwZPnrIRlrSUZmkupp; Sun, 28 Nov 2021 23:17:54 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+        t=1638137874; bh=aXY7K66LArue7ekBfUqC+O3Vdu3DF45DOCQggVHhyRk=;
+        h=Subject:To:From:Date:MIME-Version:Content-Type;
+        b=UWFMkiSsKQ62KY+0ZURyD6NV1IdL1jjXBcAjrqYTEE7wNQN3tR/3plBoFRl5Ymo9R
+         XdqL6804DiwhYuUrxfCjxoLtDxrlexLUjPjMzPphMcHQvejZNlErXgIocjFwb5BveM
+         uKZRBszKtpbKIn99ZaSStwtUV0M4Vn7/SaGIDfbh5TJaEPIxhTOldS1rBY0FcN9jYk
+         vy4iDf7ox+ZK7PCY0a+RqgJi1gRitzGTPBUkS90y5rQ+4tBVARx/tXovG+j5B3l3nh
+         Fb2NKuGqmbVxEcmQN2J18zlZ4+0SGUgvN0BJF64Be+wfqVL8sOov9cVBJ7itP+l8av
+         J/EPoY0WuV66w==
+Subject: Re: [PATCH v3 07/13] clk: imx: Add initial support for i.MXRT clock
+ driver
+To:     Jesse Taube <mr.bossman075@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
+References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
+ <20211125211443.1150135-8-Mr.Bossman075@gmail.com>
+ <CAOMZO5Dqo6c=4nGCOakMKG8fn=V1HA7-O26t3GmwWtD-FbZiPg@mail.gmail.com>
+ <dae68360-456e-3db8-57ed-2287dc7cfd57@gmail.com>
+From:   Giulio Benetti <giulio.benetti@benettiengineering.com>
+Message-ID: <de705094-1b8c-3950-b7f5-f7150b525ea5@benettiengineering.com>
+Date:   Sun, 28 Nov 2021 23:17:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20211123214922.3981616-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20211123214922.3981616-1-niklas.soderlund+renesas@ragnatech.se>
-Subject: Re: [PATCH] dt-bindings: staging: media: i2c: Add bindings for Maxim Integrated MAX96712
-From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        Niklas =?utf-8?q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Niklas =?utf-8?q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org
-Date:   Mon, 29 Nov 2021 16:39:14 +0000
-Message-ID: <163820395480.3059017.6211390059943803938@Monstersaurus>
-User-Agent: alot/0.10
+In-Reply-To: <dae68360-456e-3db8-57ed-2287dc7cfd57@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfC2+WimnYT4jDoL/5Qj39vMuFzShQz7FE/Z8sP1XkxBcrbdPos5MDmBJUX4HG5hh+ebK3KAL0how8VdRfqKsNrF/aWMVS2LsH/RZ6zyMVg9un5zPZZoN
+ XpWsgys9jMAvtyErhZCjCg6c2qhQ+1ryfHitGjvwSIq5/z+GPvn8Trh3JpwusaUYelmuQOw2GUitDYe0RYkp4D3mLVXw0OnHmiwx+4fe8w/7q5wJwvTomNpJ
+ RvxQo74zbj9Agg42zgej+InyJTDpxrNNx/mrojuEwwl4wApu4ST1yBYJnBnay9L9MUd2JBbfZbybNuev6n+VxbA0jqan6TpaUXOZMhe8s6zXc/u8Spgbevwh
+ 9ZrFmJjLHacRXAUklqpbukFqImaltYXulxze8paExwJkEn6GWfP8Ugsf9jQmusZmVhIEQd9+Ec99+fR1zFkK+QkYq6FVavA+WR9oUwBVQlDnMIAQHOZLJjvp
+ otERI3O0iDAgTl5EZdtf7dN4utkZsrZpvLi8k6HhcXHI+PQzJS4Aas31z6ZtCWB3H+IFlnoEXGhgwvOA2WaMwM4E6ftEDDfx4ugg6iQy40iiIU9wRElp/BN+
+ 1L2+DjRbjnQnZYFTnm6f5Bm+PYSmRi2LVrVvuLTLCRtX1gYD58LEPYbY6XKhdwVes39RaJNEhwK4dC0kSU3jWJF6qnrRDnvVPi5GYWDbzXQLqzhCD07w8Cyn
+ mgrkecLsHm8q471VM2FCy03c+/h6WDPublFMtL/ySznu61+FmUMDh4MrgwBY8EOLyvbI3tDnECr0J223wqwHMpLYKCTrvfsPDv5mhiWdg7JJycF0kukdo9WS
+ +d/fkpVfyZe6uh431ToarZWHxPmF3B9FAZdPXfouVHuOBzpV+Pdm/y66C7BACVeSJ7mkyNedf/uG8K5coWzFH6OSWlxKNBAiXqV1qfX6pXrwuhFO+VfyT1ph
+ tK6Xf/dA4Eq5QYjFtXbrPcZUCYJ5drhXeQTIE3Sqx1sFYqrVaI6OfdJKfri3Y/VQBRVuPxC5esevDY0AEBxqnXhbd/OHAy3lNN2ed2wC2Gi7NBglCsPvYTIj
+ wNSHJHBqkWZds8O5IqlT4MxLNfDNRUjkPEDCZTJ3wQ5sIsRQ6G5/LeofgvkQSHRXAcwrPTSqAiUIWl+k2ItjIeC/vfPHKzM0TR4=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Niklas S=C3=B6derlund (2021-11-23 21:49:22)
-> Add bindings for Maxim Integrated MAX96712 deserializer. The MAX96712
-> deserializer converts GMSL2 or GMSL1 serial inputs into MIPI CSI-2 D-PHY
-> or C-PHY formatted outputs.
->=20
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
-> ---
->  .../staging/media/i2c/maxim,max96712.yaml     | 111 ++++++++++++++++++
->  1 file changed, 111 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/staging/media/i2c/m=
-axim,max96712.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/staging/media/i2c/maxim,ma=
-x96712.yaml b/Documentation/devicetree/bindings/staging/media/i2c/maxim,max=
-96712.yaml
-> new file mode 100644
-> index 0000000000000000..978f2c0e5caef567
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/staging/media/i2c/maxim,max96712.=
-yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Renesas Electronics Corp.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/staging/media/i2c/maxim,max96712.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Quad GMSL2 to CSI-2 Deserializer with GMSL1 Compatibility
-> +
-> +maintainers:
-> +  - Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.se>
-> +
-> +description: |
-> +  The MAX96712 deserializer converts GMSL2 or GMSL1 serial inputs into M=
-IPI
-> +  CSI-2 D-PHY or C-PHY formatted outputs. The device allows each link to
-> +  simultaneously transmit bidirectional control-channel data while forwa=
-rd
-> +  video transmissions are in progress. The MAX96712 can accommodate as m=
-any as
-> +  four remotely located sensors using industry-standard coax or STP
-> +  interconnects.
-> +
-> +  Each GMSL2 serial link operates at a fixed rate of 3Gbps or 6Gbps in t=
-he
-> +  forward direction and 187.5Mbps in the re- verse direction. In GMSL1 m=
-ode, the
+Hi Jesse, Fabio,
 
-/re- verse/reverse/
+On 28/11/21 21:52, Jesse Taube wrote:
+> 
+> 
+> On 11/28/21 15:50, Fabio Estevam wrote:
+>> On Thu, Nov 25, 2021 at 6:14 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+>>>
+>>> From: Jesse Taube <mr.bossman075@gmail.com>
+>>>
+>>> This patch adds initial clock driver support for the i.MXRT series.
 
+Also the commit log must be modified according(Summary+body).
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Thank you
+-- 
+Giulio Benetti
+Benetti Engineering sas
 
-> +  MAX96712 can be paired with first-generation 3.12Gbps or 1.5Gbps GMSL1
-> +  serializers or operate up to 3.12Gbps with GMSL2 serializers in GMSL1 =
-mode.
-> +
-> +properties:
-> +  compatible:
-> +    const: maxim,max96712
-> +
-> +  reg:
-> +    description: I2C device address
-> +    maxItems: 1
-> +
-> +  enable-gpios: true
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: GMSL Input 0
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: GMSL Input 1
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: GMSL Input 2
-> +
-> +      port@3:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: GMSL Input 3
-> +
-> +      port@4:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: CSI-2 Output
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes: true
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +    required:
-> +      - port@4
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c@e6508000 {
-> +            #address-cells =3D <1>;
-> +            #size-cells =3D <0>;
-> +
-> +            reg =3D <0 0xe6508000>;
-> +
-> +            gmsl0: gmsl-deserializer@49 {
-> +                    compatible =3D "maxim,max96712";
-> +                    reg =3D <0x49>;
-> +                    enable-gpios =3D <&pca9654_a 0 GPIO_ACTIVE_HIGH>;
-> +
-> +                    ports {
-> +                            #address-cells =3D <1>;
-> +                            #size-cells =3D <0>;
-> +
-> +                            port@4 {
-> +                                    reg =3D <4>;
-> +                                    max96712_out0: endpoint {
-> +                                            clock-lanes =3D <0>;
-> +                                            data-lanes =3D <1 2 3 4>;
-> +                                            remote-endpoint =3D <&csi40_=
-in>;
-> +                                    };
-> +                            };
-> +                    };
-> +            };
-> +    };
-> --=20
-> 2.34.0
->
+>>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+>>> Suggested-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>>> ---
+>>> V1->V2:
+>>> * Kconfig: Add new line
+>>> * clk-imxrt.c: Remove unused const
+>>> * clk-imxrt.c: Remove set parents
+>>> * clk-imxrt.c: Use fsl,imxrt-anatop for anatop base address
+>>> V2->V3:
+>>> * Remove unused ANATOP_BASE_ADDR
+>>> * Move to hw API
+>>> * Add GPT's own clock
+>>> * Add SEMC clocks to set muxing to CRITICAL
+>>> ---
+>>>    drivers/clk/imx/Kconfig     |   4 +
+>>>    drivers/clk/imx/Makefile    |   1 +
+>>>    drivers/clk/imx/clk-imxrt.c | 156 ++++++++++++++++++++++++++++++++++++
+>>
+>> Wouldn't it be better to name it clk-imxrt1050.c instead?
+> we can have multiple imxrt versions in there like the other IMX clk
+> drivers, is this okay?
+>>
+
