@@ -2,70 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A304C460B44
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 00:47:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 598D9460B4D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 00:56:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241517AbhK1Xum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 18:50:42 -0500
-Received: from mail-oo1-f49.google.com ([209.85.161.49]:38807 "EHLO
-        mail-oo1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233560AbhK1Xsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 18:48:42 -0500
-Received: by mail-oo1-f49.google.com with SMTP id w15-20020a4a9d0f000000b002c5cfa80e84so5161212ooj.5;
-        Sun, 28 Nov 2021 15:45:25 -0800 (PST)
+        id S1359733AbhK1X7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 18:59:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344104AbhK1X5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 18:57:48 -0500
+Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D316DC061748
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 15:54:31 -0800 (PST)
+Received: by mail-vk1-xa36.google.com with SMTP id e27so9801604vkd.4
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 15:54:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W6GUPGDBtJn+odYJ5HX9HLZbUxWJ488arHtw5A2QE5I=;
+        b=mAP+xUXoJdAGw+3jgnscKZG1chXc/PKkk929pxX1NBvMUcqxq416PnF1Q9LV+y3IAH
+         12zWR5H/rkQUsU4Ij9XRDMWaJAXtvb8ARK8LY9wX0jSohw630SZ1bmXfflhCNq8dzyXe
+         jHyXLwDdLEFdHXLFa/Zs8bysH52SDcnXQ62X3lUeIGMr3f4NR5dmQh59b79ucjYIrz+6
+         3DOZQwQRfdgU6lZU9gGDWNWh6ssUZAIL4/qevnIc0rZSZGCLS7ePw8Y4ozoKybFD2S2I
+         zx07pvwbYJJvK9oVwWtY6Yst+A2bwCJWTn+2z6N4tfCN6ZpFbmIXWUC6R+4GXH383tS8
+         wH6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=j1bNxGTLKwnOkIQ3OD4aqwYap1kbW7vuiCRU2yUm5aE=;
-        b=wnZuIQIXfy0dhIyCFe8kwsE0dq7tOLAQ336DtHZT7Au8u7/EylwJAFJYQ5oNtwkdk2
-         BlASpD1BKZiPyr5XXyd8kAkuSSZjo7oIQh2EGVli7VaPYM17nGqT4XJec52QuZJ6uiI8
-         pX/mcGGJ5i0WbVxDptJrUC6Zu7zRBGl706YXAu3kVA1+8kkGjZxKlJBg9QYl6ziAPStv
-         MNEc2xioMwEyr1KMnENuPTPjYv4XPxhAc4s72K5+mxyHuX4+wpkay5wFzy9sRKoMATra
-         FDWL4guM3Aa178LRcc4JnMdQf1iQS5DHDS4lqfnJ7IKI9prZMhLMr4u747EJ0dV+/fKs
-         bRRQ==
-X-Gm-Message-State: AOAM531okzdyzfBazkZon48r8OSdO1LRaIgnZ29fDI6CcOfp7xjKOtsN
-        YGIpQuEViYaIcQG5npi45D/Q6Uevew==
-X-Google-Smtp-Source: ABdhPJzclhrek5Yh54TMLe3ygipLJxYxBpq59+BJkrZd1tr2X8PDt2gvWjWXw2eNiqZmzg7v0r99lg==
-X-Received: by 2002:a4a:dd04:: with SMTP id m4mr29583601oou.18.1638143125503;
-        Sun, 28 Nov 2021 15:45:25 -0800 (PST)
-Received: from robh.at.kernel.org ([2607:fb90:5fe7:4487:4f99:dbc0:75d1:3e27])
-        by smtp.gmail.com with ESMTPSA id w71sm2613703oiw.6.2021.11.28.15.45.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 15:45:24 -0800 (PST)
-Received: (nullmailer pid 2837880 invoked by uid 1000);
-        Sun, 28 Nov 2021 23:45:11 -0000
-Date:   Sun, 28 Nov 2021 17:45:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        aford@beaconembedded.com, Fabio Estevam <festevam@gmail.com>,
-        tharvey@gateworks.com, NXP Linux Team <linux-imx@nxp.com>
-Subject: Re: [PATCH V4 4/9] dt-bindings: soc: add binding for i.MX8MN DISP
- blk-ctrl
-Message-ID: <YaQUh9H9isjal6gb@robh.at.kernel.org>
-References: <20211128131853.15125-1-aford173@gmail.com>
- <20211128131853.15125-5-aford173@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W6GUPGDBtJn+odYJ5HX9HLZbUxWJ488arHtw5A2QE5I=;
+        b=glA6c9KPpC+t/x+mghD8YGPLzKnhxOBAX2tKJ2NslaQmiunhf++rEq0bsu4WaJtkhH
+         RmWw9wDuNTQLmkLmelNYdbIdIYSiuXkEgyd66mBBgWTXtt6hBq1yvHAcsHI3PCGA9FuM
+         uKb0UGAMduZiPsnYqZ31Tzl9fYYgyG8rYZgYKal9PwLIXumuF0bL2VdTxZ0MUs6siBFR
+         qBcJCFk99dDPbqM6FbbSAox78Uxh1L5Lob7/TAK2d60NjPDWMrUTUaiELiyIe/nBim4j
+         qsg8zH5UbjzD8+I775ITGnHtgVlXsyogDsFr6g7b8EHhHJEq8XrKX8rIXmrSKHqsl7Pq
+         kgqQ==
+X-Gm-Message-State: AOAM533YK3yI4L//dWno4bYLKPgF9CHURQWrmTbWYmanm+dSLXkn8jFn
+        zF4yIF75rlBp547O/9TokR4xxa7yzsOmboIc+KQCCA==
+X-Google-Smtp-Source: ABdhPJwpbsu1iP889kCFOoQxvKA0CIJwmiMq5+VFnpzr9X3v6KVdGvWK3BRzk6bWKvLGWCwFUfT3lgvPVfWQ4zhRTEY=
+X-Received: by 2002:a05:6122:2158:: with SMTP id m24mr33410783vkd.1.1638143670173;
+ Sun, 28 Nov 2021 15:54:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211128131853.15125-5-aford173@gmail.com>
+References: <20211127223253.19098-1-semen.protsenko@linaro.org>
+ <20211127223253.19098-7-semen.protsenko@linaro.org> <YaORtBO4b9AyFYyd@kroah.com>
+In-Reply-To: <YaORtBO4b9AyFYyd@kroah.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Mon, 29 Nov 2021 01:54:18 +0200
+Message-ID: <CAPLW+4=mL6ZV73zY+AoF6mo8Tka0cO8pst2mBYOoEHpX4nrRbA@mail.gmail.com>
+Subject: Re: [PATCH 6/8] tty: serial: Make SERIAL_SAMSUNG=y impossible when EXYNOS_USI_V2=m
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-i2c@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Nov 2021 07:18:47 -0600, Adam Ford wrote:
-> Add the DT binding for the i.MX8MN DISP blk-ctrl.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
->  .../soc/imx/fsl,imx8mn-disp-blk-ctrl.yaml     | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
-> 
+On Sun, 28 Nov 2021 at 16:27, Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Sun, Nov 28, 2021 at 12:32:51AM +0200, Sam Protsenko wrote:
+> > When UART is encapsulated in USIv2 block (e.g. in Exynos850), USIv2
+> > driver must be loaded first, as it's preparing USI hardware for
+> > particular protocol use. Make it impossible for Samsung serial driver to
+> > be built-in when USIv2 driver is built as a module, to prevent incorrect
+> > booting order for those drivers.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> >  drivers/tty/serial/Kconfig | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
+> > index 0e5ccb25bdb1..47bc24e74041 100644
+> > --- a/drivers/tty/serial/Kconfig
+> > +++ b/drivers/tty/serial/Kconfig
+> > @@ -237,6 +237,7 @@ config SERIAL_CLPS711X_CONSOLE
+> >  config SERIAL_SAMSUNG
+> >       tristate "Samsung SoC serial support"
+> >       depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || ARCH_APPLE || COMPILE_TEST
+> > +     depends on EXYNOS_USI_V2 || !EXYNOS_USI_V2
+>
+> That's odd, and is not going to help if everything is built as a module
+> and loaded that way.
+>
+> This needs to be done properly in code to handle the issues if the
+> "wrong" code is loaded first.  Please trigger off of the hardware type
+> correctly so you don't have to worry about this at all.
+>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+You are right. The only thing that should be done is "__init" should
+be removed from s3c24xx_serial_console_setup() and
+s3c24xx_serial_get_options() functions. Because in case when USIv2
+driver instantiates the serial driver via of_platform_populate(), when
+USI_V2=m and SERIAL_SAMSUNG=y, those symbols will be thrown away
+already. And of course "[PATCH 5/8] tty: serial: samsung: Enable
+console as module" is needed as well. Correct init order (USI vs
+serial) is already ensured by embedding serial node in USI node (as a
+child node).
+
+We'll still have some weird init order in that case (USI_V2=m and
+SERIAL_SAMSUNG=y), like doing serial console init first (and
+earlycon), then registering USI driver as a module (reconfiguring USI
+IP-core), and then doing serial probe. But at least that doesn't crash
+and works fine (only causing some delay once, in the middle of dmesg
+output). But I guess that would be a problem of people who decided to
+go with such weird config.
+
+Bottom line is, this patch is not needed. I'll re-send v2 soon,
+excluding it from there, and will also add that mentioned "__init"
+removal.
+
+Thanks for review!
+
+> thanks,
+>
+> greg k-h
