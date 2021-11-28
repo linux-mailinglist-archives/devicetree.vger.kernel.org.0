@@ -2,188 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A7004460846
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 19:00:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3F44608CD
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 19:21:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358819AbhK1SDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 13:03:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53504 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358823AbhK1SBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 13:01:31 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A14C0613F3;
-        Sun, 28 Nov 2021 09:56:37 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso22188760ots.6;
-        Sun, 28 Nov 2021 09:56:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xPilmmIoPbL/Kyg3qdST0XkTbU51nNs/sJ0o28MWEuQ=;
-        b=PxhJGdCFIKNPITQ+sJJPQrAJogUFW9vyc+YOgjEuvrXkd8thBAg+fZWl1ev9eUtatJ
-         FVWcayoyNtAulvTse139ExkODnTDrcYkCl0OcrAcqnLb3GguTDM3NOyHGu6obU29v6FW
-         Sdek1/ZlY47iNBUG1oGauIAAO6+/ORkJ5NxFjUdVyebW33P0zDd0CfJ/knyeIH7AsLg/
-         Q4qyX+stJBSzdJQMYtWiUJOVQ6vTEONSWgouyHJFEq9p0ZZLYXYqQZudvvMw283x31RE
-         LzKSLDj2DntdGwiWstjN2PVYVuJ8pXYbGD5XSYs/OBCm+9/Di16fHeWRRDZlrTSc2wu9
-         HGWw==
+        id S1359168AbhK1SYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 13:24:49 -0500
+Received: from mail-pj1-f46.google.com ([209.85.216.46]:35535 "EHLO
+        mail-pj1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359174AbhK1SWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 13:22:45 -0500
+Received: by mail-pj1-f46.google.com with SMTP id j6-20020a17090a588600b001a78a5ce46aso13603590pji.0;
+        Sun, 28 Nov 2021 10:19:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xPilmmIoPbL/Kyg3qdST0XkTbU51nNs/sJ0o28MWEuQ=;
-        b=L6dEfiivqOKjbvN2zmvW01rGXMFKJlQobgWXQoZ9qhQNgeIRKL9MO61CCVOc9ajDhH
-         MC+oouiyBfwVTsqv2Sw19F7adLNabx2KkeCfUmAfy2nXRSUHg/VLiPWbgQD74LjZwzMZ
-         oSXKDj4EULGiWak6jt8jALVVkB9Oo9JCjEBgfoY++H57PZ2Yu3cYam2Vww55j/sNlo0k
-         zC1QfPGHkL6w4sq3Ats2Pfd85nPnfG5NbUYdw3mT3HneKU245CkaGJszQ7RdyBqkWx+R
-         vz7ugCH/h0QLk+ZeHATbdU23ZFN+ZxuH/n1STH0PCItzKWh47MTID8bsHqoE+hD0Vmdd
-         T+pw==
-X-Gm-Message-State: AOAM532YucV/lYHTpPsTYrSAmjAxBDN5pB409ZiYkLtGH27EGQsFgQ5C
-        s004wtfZU1CNiRnB8ZGdQfIry1KCoqA=
-X-Google-Smtp-Source: ABdhPJyCJAJxvclb67zl3R1eBIGHCRfvvjbwPuYD0uIlBe3kLh23VXQIxH/fM0kGOhYEQXIzsz7FFA==
-X-Received: by 2002:a9d:200b:: with SMTP id n11mr40754957ota.169.1638122197060;
-        Sun, 28 Nov 2021 09:56:37 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id g4sm1960738oof.40.2021.11.28.09.56.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Nov 2021 09:56:36 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v4 09/12] watchdog: s3c2410: Cleanup PMU related code
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211121165647.26706-1-semen.protsenko@linaro.org>
- <20211121165647.26706-10-semen.protsenko@linaro.org>
- <20211123160623.GB2326185@roeck-us.net>
- <CAPLW+4mwhH5C6zSxWDboNucZPvt2c=F7Qaa9V_XJHbJzbFNL3w@mail.gmail.com>
- <c16afd75-f54c-6c2b-7f61-1f1c7a4b3c46@roeck-us.net>
- <CAPLW+4kmUqg=2vYOiWfMhQFqFw1sh0Eo6Yqv8nPEbV_0MObn5A@mail.gmail.com>
- <CAPLW+4=pqZMry-O6_XT=V5AeZ+FfUwZLVp_=QjqudDrbxbZrCg@mail.gmail.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <037e8534-746d-da0a-24da-a47a9856d689@roeck-us.net>
-Date:   Sun, 28 Nov 2021 09:56:34 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=m5E/2VsB22bAL9LsiGHm8OGiUiuEPFzEndEXLPhvONc=;
+        b=VIPNbJuLtIxw9xbbUcd2dJfN4QTP5hvTEdV1P8cTHWXg9nvc6hyA5zoStDaopyXFLB
+         NsItm3THS9ekC2gIQUzFXeH/GKVqsxCF/hFbRrTRQQ9Al11b7dukYdDjctcd6F1vavmj
+         tiHhEwlOGWhDEUR2MItfPafhL8o8IicHlusQuB3PkdO9LIxuKRAcmNg/QbWteSVaY5aA
+         3qojtRLG9BGL+EU6UeCUf41wFFLme2vU/iTb4YaDj2SrjwGAPOvJ2iSImEQjqik4I32O
+         kl/RBVzf/hH0s1yDTiu6VpQx/SCPAFr862Tfzrm938TqrAqewOUkYDI/oX9PysURM+bY
+         1mlA==
+X-Gm-Message-State: AOAM533MOlPW1I3zuETpSk9/wPkh5ykNzj9p6HJzl1ySqTXnGAu9baLi
+        pTSh3bFn7MeA4bIUNKcTMCzXbPgtEOj37uC6uFc=
+X-Google-Smtp-Source: ABdhPJw/UaRYaYPP7u790TiVEuw+cyKoBT+gz3jjS8ginoOsoo9UsRoKWx6F0Mfo8gbL4qUKLo356lQhYmgTHirR8sQ=
+X-Received: by 2002:a17:90a:ab17:: with SMTP id m23mr32269991pjq.194.1638123569367;
+ Sun, 28 Nov 2021 10:19:29 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAPLW+4=pqZMry-O6_XT=V5AeZ+FfUwZLVp_=QjqudDrbxbZrCg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <CANBLGcykFks+EF2m0bdD+j5w43Qy30LBgVnAYJWU+5-WVJH6PA@mail.gmail.com>
+ <mhng-5fc3ff6b-1f6e-4efb-8578-20759733887a@palmer-ri-x1c9>
+In-Reply-To: <mhng-5fc3ff6b-1f6e-4efb-8578-20759733887a@palmer-ri-x1c9>
+From:   Emil Renner Berthing <kernel@esmil.dk>
+Date:   Sun, 28 Nov 2021 19:19:18 +0100
+Message-ID: <CANBLGcxdvztD+WBCA4jCBBzPRHC0v7RiVgG_p8RdVpXxCWnHig@mail.gmail.com>
+Subject: Re: [PATCH v4 00/16] Basic StarFive JH7100 RISC-V SoC support
+To:     Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Maximilian Luz <luzmaximilian@gmail.com>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Drew Fustini <drew@beagleboard.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Michael Zhu <michael.zhu@starfivetech.com>,
+        Fu Wei <tekkamanninja@gmail.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        Matteo Croce <mcroce@microsoft.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/27/21 2:52 PM, Sam Protsenko wrote:
-> On Wed, 24 Nov 2021 at 01:30, Sam Protsenko <semen.protsenko@linaro.org> wrote:
->>
->> On Wed, 24 Nov 2021 at 00:33, Guenter Roeck <linux@roeck-us.net> wrote:
->>>
->>> On 11/23/21 8:17 AM, Sam Protsenko wrote:
->>>> On Tue, 23 Nov 2021 at 18:06, Guenter Roeck <linux@roeck-us.net> wrote:
->>>>>
->>>>> On Sun, Nov 21, 2021 at 06:56:44PM +0200, Sam Protsenko wrote:
->>>>>> Now that PMU enablement code was extended for new Exynos SoCs, it
->>>>>> doesn't look very cohesive and consistent anymore. Do a bit of renaming,
->>>>>> grouping and style changes, to make it look good again. While at it, add
->>>>>> quirks documentation as well.
->>>>>>
->>>>>> No functional change, just a refactoring commit.
->>>>>>
->>>>>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
->>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->>>>>> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
->>>>>> ---
->>>>>> Changes in v4:
->>>>>>     - Added R-b tag by Guenter Roeck
->>>>>>
->>>>>> Changes in v3:
->>>>>>     - Added quirks documentation
->>>>>>     - Added R-b tag by Krzysztof Kozlowski
->>>>>>
->>>>>> Changes in v2:
->>>>>>     - (none): it's a new patch
->>>>>>
->>>>>>    drivers/watchdog/s3c2410_wdt.c | 83 ++++++++++++++++++++++++----------
->>>>>>    1 file changed, 58 insertions(+), 25 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wdt.c
->>>>>> index ec341c876225..f211be8bf976 100644
->>>>>> --- a/drivers/watchdog/s3c2410_wdt.c
->>>>>> +++ b/drivers/watchdog/s3c2410_wdt.c
->>>>>> @@ -56,17 +56,51 @@
->>>>>>    #define EXYNOS5_RST_STAT_REG_OFFSET          0x0404
->>>>>>    #define EXYNOS5_WDT_DISABLE_REG_OFFSET               0x0408
->>>>>>    #define EXYNOS5_WDT_MASK_RESET_REG_OFFSET    0x040c
->>>>>> -#define QUIRK_HAS_PMU_CONFIG                 (1 << 0)
->>>>>> -#define QUIRK_HAS_RST_STAT                   (1 << 1)
->>>>>> -#define QUIRK_HAS_WTCLRINT_REG                       (1 << 2)
->>>>>> +
->>>>>> +/**
->>>>>
->>>>> 0-day complains:
->>>>>
->>>>> drivers/watchdog/s3c2410_wdt.c:94: warning: expecting prototype for Quirk flags for different Samsung watchdog IP(). Prototype was for QUIRK_HAS_WTCLRINT_REG() instead
->>>>>
->>>>> It doesn't seem to like the idea of documented bit masks. Not really sure
->>>>> what to do here. I am inclined to ignore it, but I don't want to get flooded
->>>>> by 0-day complaints until I retire either. Any idea ?
->>>>>
->>>>
->>>> Seems like 0-day thinks this kernel-doc comment is for the first
->>>> define only, and thus the comment has wrong format, or something like
->>>> that. I tried to follow the same style as GFP_KERNEL and others are
->>>> documented.
->>>>
->>>> Anyway, if you don't like 0-day complaints, can you please just
->>>> replace kernel-doc comment (/**) with regular comment (/*), by
->>>> removing one asterisk in the patch? Or I can re-send the patch
->>>> correspondingly -- then just let me know.
->>>>
->>>
->>> Oh, never mind. Let's just hope that 0-day stops complaining at some point.
->>>
->>
->> Just sent v5 for this patch, fixing that 0-day warning properly. Found
->> info about it here: [1]. So to check that warning, apparently it's
->> enough to run "make W=n" build, or dry-run for kernel-doc script like
->> this:
->>
->>      $ scripts/kernel-doc -v -none drivers/watchdog/s3c2410_wdt.c
->>
->> Anyway, please take v4 series + v5 for this patch. Hope that'll be all
->> for 0-day swearing :)
->>
->> [1] https://github.com/torvalds/linux/blob/master/Documentation/doc-guide/kernel-doc.rst
->>
-> 
-> Hi Guenter,
-> 
-> Can you please take this patch:
-> 
->      [PATCH v4 12/12] watchdog: s3c2410: Add Exynos850 support
-> 
-> and replace "Cleanup PMU related code" patch you already applied with this one:
-> 
->      [PATCH v5] watchdog: s3c2410: Cleanup PMU related code
-> 
-> I can see you already took most of WDT patches I sent, but those two
-> seem to be missing.
-> 
+On Sat, 27 Nov 2021 at 02:30, Palmer Dabbelt <palmer@rivosinc.com> wrote:
+> On Tue, 16 Nov 2021 09:28:41 PST (-0800), kernel@esmil.dk wrote:
+> > On Tue, 16 Nov 2021 at 17:08, Arnd Bergmann <arnd@arndb.de> wrote:
+> >> On Tue, Nov 16, 2021 at 4:01 PM Emil Renner Berthing <kernel@esmil.dk> wrote:
+> >> >
+> >> > This series adds support for the StarFive JH7100 RISC-V SoC. The SoC has
+> >> > many devices that need non-coherent dma operations to work which isn't
+> >> > upstream yet[1], so this just adds basic support to boot up, get a
+> >> > serial console, blink an LED and reboot itself. Unlike the Allwinner D1
+> >> > this chip doesn't use any extra pagetable bits, but instead the DDR RAM
+> >> > appears twice in the memory map, with and without the cache.
+> >> >
+> >> > The JH7100 is a test chip for the upcoming JH7110 and about 300 BeagleV
+> >> > Starlight Beta boards were sent out with them as part of a now cancelled
+> >> > BeagleBoard.org project. However StarFive has produced more of the
+> >> > JH7100s and more boards will be available[2] to buy. I've seen pictures
+> >> > of the new boards now, so hopefully before the end of the year.
+> >> >
+> >> > This series is also available at
+> >> > https://github.com/esmil/linux/commits/starlight-minimal
+> >> > ..but a more complete kernel including drivers for non-coherent
+> >> > peripherals based on this series can be found at
+> >> > https://github.com/starfive-tech/linux/tree/visionfive
+> >> >
+> >> > [1]: https://lore.kernel.org/linux-riscv/20210723214031.3251801-2-atish.patra@wdc.com/
+> >> > [2]: https://www.linkedin.com/pulse/starfive-release-open-source-single-board-platform-q3-2021-starfive/
+> >>
+> >> Thanks for adding me to Cc, I've had a look at the series and didn't
+> >> see anything
+> >> wrong with it, and I'm happy to merge it through the SoC tree for the
+> >> initial support
+> >> in 5.17, provided you get an Ack from the arch/riscv maintainers for it.
+> >
+> > Cool!
+> >
+> > @Palmer, do you mind looking through this? Probably patch 1, 15 and 16
+> > are the most relevant to you.
+> >
+> >> Regarding the coherency issue, it's a bit sad to see yet another hacky
+> >> workaround
+> >> in the hardware, but as you say this is unrelated to the driver
+> >> series. I'd actually
+> >> argue that this one isn't that different from the other hack you
+> >> describe, except
+> >> this steals the pagetable bits from the address instead of the reserved flags...
+> >
+> > Yeah, it's definitely a hack, but at least it's not using bits the
+> > spec said was reserved. Hopefully the JH7110 will be fully coherent or
+> > maybe implement the new Svpbmt extension.
+>
+> Sorry, this had been sitting on top of my inbox because I hadn't had a
+> chance to figure this stuff out.  Emil poked me on IRC about it, but I
+> figured I'd just write it here so everyone can see:
+>
+> IMO there's a huge difference between the StarFive-flavored non-coherent
+> stuff (which relies on physical aliasing) and the T-Head-flavored stuff
+> (which uses page table bits): the PA-aliasing approach is allowed by the
+> ISA, while the page table bits aren't (they're marked as reserved).  IMO
+> we should still figure out a way to take the T-Head stuff, as it's the
+> real-ist hardware we have, but that's a whole different can of worms.
+>
+> My worry with this is I've yet to actually be convinced that either of
+> these approaches work.  Specifically, neither of them prevents M-mode
+> from performing (either directly or as a side effect of something like
+> speculation) accesses that violate the attributes we're ascribing to
+> regions in Linux.  IIRC I pointed that out in the Svpmbt patch set,
+> which has exactly the same set of problems.
+>
+> That said, I don't really care all that much -- having something here is
+> better than nothing, and we've always relied on the HW vendors just
+> producing HW that works when it comes to any of the IO stuff (ie, even
+> on coherent systems).  These are all drivers so it's really up to those
+> folks where the bar is, so as long as everyone's on the page about that
+> you're not going to get any objections from me so
+>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-Upstream work is always "time permitting". Done now.
+Thanks! Yeah, as you say something is better than nothing. I'd think
+it's helpful to have something to build and test the non-coherent dma
+functionality on, and the nice thing about the Starfive-flavour is
+that it will actually boot into an initramfs root and have a working
+serial console even without the non-coherent dmas working.
 
-> Also, I can't see my patches (which are already present in your
-> "watchdog-next" branch) in linux-next/master. Is that expected, or I'm
-> missing something?
-> 
-My watchdog-next branch is for 0-day coverage only. It is not made
-available in linux-next. linux-next pulls watchdog related changes
-from the official watchdog repository at
-git://www.linux-watchdog.org/linux-watchdog-next.git#master
+> The SOC tree works for me.  It'd be great to have a shared tag I where I
+> can pull in at least the Kconfig.socs stuff, but if that's not easy then
+> it's no big deal -- what's in flight there is pretty trivial on my end,
+> so we can just deal with the merge conflicts.
 
-Guenter
+I guess this is for the SoC maintainers to consider. Let me know if
+that's wrong and I need to do anything.
+
+/Emil
