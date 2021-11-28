@@ -2,63 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 011E646097D
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 20:38:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B422A4609BC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 21:49:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344369AbhK1TmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 14:42:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47064 "EHLO
+        id S1355249AbhK1Uwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 15:52:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357032AbhK1TkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 14:40:02 -0500
-Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com [IPv6:2607:f8b0:4864:20::a41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D9C8C061757
-        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 11:35:00 -0800 (PST)
-Received: by mail-vk1-xa41.google.com with SMTP id 84so9518159vkc.6
-        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 11:35:00 -0800 (PST)
+        with ESMTP id S243450AbhK1Uuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 15:50:32 -0500
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71304C061748;
+        Sun, 28 Nov 2021 12:47:16 -0800 (PST)
+Received: by mail-ua1-x92c.google.com with SMTP id o1so29741979uap.4;
+        Sun, 28 Nov 2021 12:47:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
-        b=GMzU6wWBSt94jyFFJlR2oKYZCPZQqFRV7AMolugiAWDivyZ8R0CUWbnWEzSK0OGn9k
-         fwB4e71KS/+Ks33coJjj1+Uy+d3wm0ys+DresfAZ+lNp3K4ds/I9ssjclJD6VgQOa412
-         UtDBYSqCCIfhD6D52IHTEn/xFsL5jyEWpefnonXK5nl5r8cjsef9SD6IeZi3aVleYE64
-         9k7xguENxV3WzEWt8QaFvI/iIMKvI4mFEfVTA+gIChY8Voh5HfIFzvajPUFl0aPQ4Aso
-         6CZ0HxZD3yJU52ueH58iA73z65NuK8i48cNs3HoJnnysu/TSMEpNDAdbZriCIA4VOJuC
-         BJ9w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6Giz1SwY82g/5k3rpig0B1bNAl0T39LLOyvXZ9G7668=;
+        b=j9yVpxlkr92H3j8XogkkFArtyWSLj6On2TPoyYzLdK5KrdoxO2eKd6Z0AvY1ELzIlT
+         Xw6AUlCFQ0qEnCsOsRq/kJXDfqq3WA7pV3WU1FFnVOyvcaX0q/jfQ2ofjQMziZcBsqYr
+         vrzwZmmKmLXRa7zTmsSunVvQkBx+DJbEqHoAnSVqAADrtuCd1t91MP2H0xLFjpSTyPvG
+         woIbpoPisS3x8pVGht9PZTEUWwN16zqsV0AQsGaZWUo+klR1vZc/iTAWjK1O7mrsPYTv
+         ACRnR/ij6Lk4fHbwC77RAbCD2lUeEOUfXze8idiXLataBzvWB6pQjq2uebXQAc1NgngZ
+         /+Dw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=VSEH8Q3Lr+Mcr/0lsL1VFPftJp7ALZ21MKYEz4sry74=;
-        b=2oLfGk3OgQxQpxdy2MIrGv0+s4FtIKz6oqq9sUeXyln7CLtlfMoOhPTIvOHpV2zi0r
-         f8vK3R3rczTOuk+5d4DAGcEvQ9k+V6GWTU4Fm6r9eab98/hLEg4WOe3aOsIksMIPdQdW
-         q0P+HMDFUSh4K7YtaLY7PtFJO6O2QS1a9Qv3R5XvfJeYx/2vgnoyBoNOrbZE9QUr0oFE
-         wY/KTpP8i1ShA71G53Mps7KhmoctNUsC58Vl9h6eQSH8aTdL8E/3Z2fK2VFHOSvgxXAP
-         9Pw3pgvdBawMp+BJMwXo8cMsZkVvVrOLVX3oF6xpJLtyvcalERAYdt8rrI1a4nZ/25vI
-         wJIw==
-X-Gm-Message-State: AOAM533O84JCoA9FcBBIMpD//YMo7g4tpqTn9yNUOp/ko0a7yCyJE09O
-        9Jt1cX026Un47Cwfh8NaU1fYGgN1xoRpCKCS4Zg=
-X-Google-Smtp-Source: ABdhPJyYZjv0McawhXoIAAW1v0yLPrsveLHOcpSmXGgS/PXOagMCXZa5j2AIe6xXX3P6ktIizoPpduzTtJFrrHth1JU=
-X-Received: by 2002:a1f:5f94:: with SMTP id t142mr32025912vkb.34.1638128098880;
- Sun, 28 Nov 2021 11:34:58 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6Giz1SwY82g/5k3rpig0B1bNAl0T39LLOyvXZ9G7668=;
+        b=DlXoT4cWg1LjdGahtHPL7+X3+RspaeVXsql5uLPErrFxeGfzq8Kz/dxA/StCOI4whH
+         u2l2zLNZlyyKnevwvpBsiLptV12eO5xUJNdCKcTUCrRKd94r6HoBMuJC5NwqUff3O7Ee
+         oHC/fe79j8NJkc5L7pCItgJysKl6pu97Us08LAtCiaay/4epL0zF0+PA32gP1LZNWJX0
+         vXmjKvb4Brn4tvLq8N2tvv11B96UGxMu4ZdKv5UO2we4IRW92zIHmBvh8mnBlSa0UHbf
+         5ngKPimCGCC93UvAdIT9sDiuubIVw3FHi1/rdkWU0RlsqA5men53kdo8octWwqj8VjsD
+         3kAA==
+X-Gm-Message-State: AOAM531zqzErrgub0qouL/VS4wLtiLoTw20LzEgCWIhCF8oh2XJ7cuB6
+        MoEAVz73sYg8tuBtDiYz3h5AzPoZMKb2/KGqza4=
+X-Google-Smtp-Source: ABdhPJzzLRgOtej8nLnlEwtProk4Wve2g/tuNbislmc8PlVWD41K7eAX/FIlr4vGfJ4vq0VXhULX8+hk4y1B7/LqQAE=
+X-Received: by 2002:a05:6102:3588:: with SMTP id h8mr28456760vsu.7.1638132435141;
+ Sun, 28 Nov 2021 12:47:15 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:a59:d847:0:b0:262:8962:9689 with HTTP; Sun, 28 Nov 2021
- 11:34:58 -0800 (PST)
-Reply-To: christopherdaniel830@gmail.com
-From:   Christopher Daniel <cd601665@gmail.com>
-Date:   Sun, 28 Nov 2021 19:34:58 +0000
-Message-ID: <CAMocZ7Fks-cnmJo3gURLCPwpyBrJ1a=ryVHcYntrL4ZDFOcZmA@mail.gmail.com>
-Subject: Investment Funding
-To:     undisclosed-recipients:;
+References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com> <20211125211443.1150135-10-Mr.Bossman075@gmail.com>
+In-Reply-To: <20211125211443.1150135-10-Mr.Bossman075@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sun, 28 Nov 2021 17:47:04 -0300
+Message-ID: <CAOMZO5CjpRjBqj_9b17K1q7bw67XqNP5xWh2-MjWq8zMzhJVSg@mail.gmail.com>
+Subject: Re: [PATCH v3 09/13] tty: serial: fsl_lpuart: add i.MXRT support
+To:     Jesse Taube <mr.bossman075@gmail.com>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Russell King - ARM Linux <linux@armlinux.org.uk>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-serial@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-.
-I wish to invite you to participate in our Investment Funding Program,
-get back to me for more details if interested please.
+On Thu, Nov 25, 2021 at 6:15 PM Jesse Taube <mr.bossman075@gmail.com> wrote:
+>
+> From: Jesse Taube <mr.bossman075@gmail.com>
+>
+> Add support for i.MXRT1050's uart.
+>
+> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
 
-Regards.
-Christopher Daniel.
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
