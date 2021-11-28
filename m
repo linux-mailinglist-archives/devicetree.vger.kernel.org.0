@@ -2,65 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AEAC460722
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 16:35:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1095E460760
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 17:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233340AbhK1PiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 10:38:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358063AbhK1PgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 10:36:14 -0500
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0993C06175B
-        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 07:31:58 -0800 (PST)
-Received: by mail-yb1-xb35.google.com with SMTP id v64so34709759ybi.5
-        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 07:31:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=GIGQ9ePzkxCUcjbi9/rdD1tSRBwMDaYNVGxOzijf0a0=;
-        b=LqdsScl/gMHoQR1bKE2+mjRtq+2imL1ou0dKOwHyWWuy+jmewit/ME3FDb8k4pfMZw
-         3xRCcdcaN+XZIOy43+alkwYxG157lFfyT0Q3LOfYPT7cffTRZhF633l4fg8X5Y8r/YAg
-         M3h/n9QYyuV5ZZfRNvTGqOw6M0imLLYz+oG+dDmTnIwmKhFtKfKL6byIAHk7//jjIUwz
-         Y62qmg2XGmikQ18MyZjE64GMhaDHT4pO4MtllYoK1AEY3UwLjd8VQwku5g0qJ4P9W27Z
-         QxAE82TL9TeOTGIdXgFQLeGQILFEz/g64Uj9XkZV7Dx3j2TufAlHnZQBi6yJ/fFarw0W
-         2+RQ==
+        id S236146AbhK1QLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 11:11:40 -0500
+Received: from mail-oi1-f173.google.com ([209.85.167.173]:40798 "EHLO
+        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238569AbhK1QJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 11:09:40 -0500
+Received: by mail-oi1-f173.google.com with SMTP id bk14so29645066oib.7;
+        Sun, 28 Nov 2021 08:06:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=GIGQ9ePzkxCUcjbi9/rdD1tSRBwMDaYNVGxOzijf0a0=;
-        b=kBMVrDx3Zu2qwwKtf6aNeQjLm77Jq2ZYPi6mXjG29j+C1NjSOoaRMzHDbp9in0sAd6
-         UwqEHqGRdx9YEgIFSBV8z4uTMYVNxDbuR9dPeYIPVS1qL3IGQ1Hfj5OT2H7z/wUVfSmF
-         5jKZC7v8ZOvR4Ls7bda/P+on74JI91SlSMQXPJ9mF21Tu9vyavpxkvxTVHYDN5tOuLHC
-         LSvltoJpd5xLQN8O9oahCR8hA+CKDVdwRf4kRYF5j3rpK3ay9xj8qddLt7wUCZQdhIkA
-         rZMtxra02OD/d52dsHdGbL0ivJ8yEA4FjZTqsHkFcrVuYbevXizcSQDRi8PcVTRtvmet
-         gKGw==
-X-Gm-Message-State: AOAM5321CRV1yrrpA/ApUbeBUiaJ1H7f7lgF2QEQ+b8MZeD+pSWDN2kf
-        77VZy5B3+1LqBBphd30ABLUZ6kLygjr7lxqIQbc=
-X-Google-Smtp-Source: ABdhPJwMDvUWls9MDIgP3JH1YnqXHDUHJnkUhaJuDwsxZQdRFqBSKKvG4dolC9Mf3UsxUD4LhgyWRCV3X5vMZOj014Y=
-X-Received: by 2002:a25:830f:: with SMTP id s15mr30373773ybk.262.1638113518137;
- Sun, 28 Nov 2021 07:31:58 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6XcdVLR5T8aEqWDjXmGT4FtJ9lSL6Rm6Y96yhhLDME0=;
+        b=4taXed+QR7SrHztucROx6uelGYy2q0iUcqYS3LBQkVwPhpmVaYT9tAZEWL3R9cQeHt
+         aQdSP0/huV8hw0ihrik92vGsIMf2I14vEHl0KKW2QDwzZpHH2zFb4sD3bulkuspQ8e/K
+         k6pjsZp2eUsD8uZmI0GnG8Y5wpkZwd2THd9fMC5GturI+smrVD+NQrGut5cc5b+Bpi5V
+         k2V2qAqaOWhN9V3tKV3t0Q3hU8OWeOZDF7RXHNG/SL0bX2UUCHTzwdVvaBNaW4q7j70y
+         H//9rO4fb5qAOwuY0fpj6bLW+L3qJXMOydUUxjARYYzwctQzl+gILw754rVguoIMj/IS
+         wslQ==
+X-Gm-Message-State: AOAM530vxLSlS8AnM8U/HdrlODPsg0KLAMfGDTy1KAV/qDHzyFx8fiR9
+        KGCh4+KjnHgfy/NYkYQqTA==
+X-Google-Smtp-Source: ABdhPJwKIwsK+qKc3/WIO+9F/yWvFZR4TMP+v+GAwfhU3SlRfqN972FhHTZlzd0Etz2MduGDNYwiZg==
+X-Received: by 2002:aca:1708:: with SMTP id j8mr34441661oii.62.1638115583942;
+        Sun, 28 Nov 2021 08:06:23 -0800 (PST)
+Received: from robh.at.kernel.org ([2607:fb90:20d6:afc8:f6e9:d57a:3e26:ee41])
+        by smtp.gmail.com with ESMTPSA id y12sm2487710oiv.49.2021.11.28.08.06.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Nov 2021 08:06:23 -0800 (PST)
+Received: (nullmailer pid 2561004 invoked by uid 1000);
+        Sun, 28 Nov 2021 16:06:20 -0000
+Date:   Sun, 28 Nov 2021 10:06:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Akhil R <akhilrajeev@nvidia.com>
+Cc:     dan.j.williams@intel.com, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, jonathanh@nvidia.com,
+        kyarlagadda@nvidia.com, ldewangan@nvidia.com,
+        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        p.zabel@pengutronix.de, rgumasta@nvidia.com,
+        thierry.reding@gmail.com, vkoul@kernel.org
+Subject: Re: [PATCH v13 1/4] dt-bindings: dmaengine: Add doc for tegra gpcdma
+Message-ID: <YaOo/FHKQBAa93hd@robh.at.kernel.org>
+References: <1637573292-13214-1-git-send-email-akhilrajeev@nvidia.com>
+ <1637573292-13214-2-git-send-email-akhilrajeev@nvidia.com>
 MIME-Version: 1.0
-Received: by 2002:a05:7010:6720:b0:1e1:95a9:c602 with HTTP; Sun, 28 Nov 2021
- 07:31:57 -0800 (PST)
-Reply-To: abahgeorge75@gmail.com
-From:   George Abah <issifouaminatta@gmail.com>
-Date:   Sun, 28 Nov 2021 15:31:57 +0000
-Message-ID: <CAEvLkdLh248Dw_U6wxEuoAJxpd6JE6za26vCFTXQ0wGtn=XWxw@mail.gmail.com>
-Subject: hello
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1637573292-13214-2-git-send-email-akhilrajeev@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
-Hello,
-I am George Abah. There is an important issue I need to discuss with
-you concerning our   Late client (Usd$9.2 Million) unclaimed fund left
-in the  bank before it gets confiscated by the bank officials, kindly
-get back to me asap for more details .
-Regards.
-George Abah
+On Mon, Nov 22, 2021 at 02:58:09PM +0530, Akhil R wrote:
+> Add DT binding document for Nvidia Tegra GPCDMA controller.
+> 
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  .../bindings/dma/nvidia,tegra186-gpc-dma.yaml      | 111 +++++++++++++++++++++
+>  1 file changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> new file mode 100644
+> index 0000000..3a5a70d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
+> @@ -0,0 +1,111 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/nvidia,tegra186-gpc-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NVIDIA Tegra GPC DMA Controller Device Tree Bindings
+> +
+> +description: |
+> +  The Tegra General Purpose Central (GPC) DMA controller is used for faster
+> +  data transfers between memory to memory, memory to device and device to
+> +  memory.
+> +
+> +maintainers:
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +  - Rajesh Gumasta <rgumasta@nvidia.com>
+> +
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: nvidia,tegra186-gpcdma
+> +      - items:
+> +         - const: nvidia,tegra186-gpcdma
+> +         - const: nvidia,tegra194-gpcdma
+
+Still not how 'compatible' works nor what I wrote out for you.
+
+Rob
