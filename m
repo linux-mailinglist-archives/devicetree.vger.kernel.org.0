@@ -2,102 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E46460647
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 13:53:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D22FC460665
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 14:19:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357563AbhK1M4A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 07:56:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43784 "EHLO
+        id S1357443AbhK1NWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 08:22:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348515AbhK1Mx7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 07:53:59 -0500
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BA4EC061758;
-        Sun, 28 Nov 2021 04:50:42 -0800 (PST)
-Received: by mail-io1-xd2b.google.com with SMTP id v23so17433505iom.12;
-        Sun, 28 Nov 2021 04:50:42 -0800 (PST)
+        with ESMTP id S242483AbhK1NUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 08:20:44 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE390C061574
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 05:17:27 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id ay21so28296066uab.12
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 05:17:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Z0jKsQjKFBUKwWQ07Nx9t2d16P3k9jPIBzztuqFG6lM=;
-        b=hcVmw5XejyB9QGXWHaC/UgNLFcxQrtiohbazB3oQWq+7doDcfEgF6cib0T3ujvOTdr
-         OQHnNRNBYcBnjUvYVXlhj1HY7U/F1g9unGPl3/G+jFY3Y/rCzi0KYlBCo6Tog/mjjLdc
-         U9zwFKIDVjfyJeCStJzn7cNGI709uPo0d0PLVxDwyd9f6M2ZknPtGT7Qa6C6LWxlJbAp
-         P/7Mbd5HQLy/3t1wrfr0VMlg2iZgihLJG1rf0vd7jEhlDROCjZ4FexZEr2ilTm8eHVbA
-         GdLm41diF6fG+TZkELECGnZ0Xne2N4BU34/QGuAEOmTKIUuJImYKVzTiR4cmkS+YNl3y
-         J9lA==
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7whuhitVqPnZipfah97TIBIyag3vXAwUvYkJpquBSrU=;
+        b=Qut2xFPsrGNP7QzIatUjPh112CGOyBKAFtaiKWt7oknS3e3elMukv8TEerX8+sKXPf
+         mJYzduV+T784qBHP2lLUgIaYzdJSsnKE6BiBPYRknHzOw+qlCKEMpnZrrqde/g6V3ZrI
+         D/NsTx2ampFgtvcjWZLgyhsdxucTEn3IFIGH8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Z0jKsQjKFBUKwWQ07Nx9t2d16P3k9jPIBzztuqFG6lM=;
-        b=SqBrg4ckpOG8AJLv7//TqEN/3trMmO8mg+T4tx7POyiofhq5Ab07UAchfDAuwCk4ce
-         KFiDtzZg3Njm/kGRr5II9PlddqK7InseEZG69MxI/kmescozX9vJlel4Adc34/pGiUro
-         02MB6lldJ/SuoZrcZc5UyGYFDlNG3rSeUcrKpYNjKYfdBMNmmVMdyUmfhF1epW9AWkmY
-         GSndfNQ1OqBdtjj1EcQ4pIhCed8Jzw+4R+Oij0vYxJyRMgx0F/ySPB82dtEYItL5mzSA
-         PTmr9u6eaTN+omvCsCw5IS8fdFekQSZ6k8Yj8ehqXqAkGy2iwFCMRZBHjTi07C6fduNP
-         JDPQ==
-X-Gm-Message-State: AOAM532W5q+Wz2pb9x8pQPfoK6jQKllx9hjmXM3FGVIpkMIaj2teQ7c7
-        C9XCIb5fN9tWoM/lt1Q6+SRGeB7beDYAig==
-X-Google-Smtp-Source: ABdhPJwvEkKgG+lFEce12qfrXrXkBjFzaBKrWIXpRicGusZRyLBUJHbxT2vO8P4X35Mvq0d4ZvumUg==
-X-Received: by 2002:a05:6638:3899:: with SMTP id b25mr63705763jav.39.1638103841977;
-        Sun, 28 Nov 2021 04:50:41 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:2a06:17d2:47df:6c8e])
-        by smtp.gmail.com with ESMTPSA id j21sm6545240ila.6.2021.11.28.04.50.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 04:50:41 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     laurent.pinchart@ideasonboard.com, tharvey@gateworks.com,
-        aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Peng Fan <peng.fan@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH V3 5/5] arm64: defconfig: Enable OV5640
-Date:   Sun, 28 Nov 2021 06:50:11 -0600
-Message-Id: <20211128125011.12817-5-aford173@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211128125011.12817-1-aford173@gmail.com>
-References: <20211128125011.12817-1-aford173@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7whuhitVqPnZipfah97TIBIyag3vXAwUvYkJpquBSrU=;
+        b=AxXXEmX2Mb9SnbaF49/ovxzMcN+o8wMX+iDZc3q/TUbb3v0Qq6oZvnjojb6sh5uUXs
+         imtI1MtT0wrDhfVM4YzCctzv8MIhC7WbURgXQS+2NQhteG1mM01lbr13J5PQsSnb/b00
+         0gOZDO2Z/5eGU61rihu8ckZz+RYGVzwywmCaDhHrpVsxMoP1ubx4dGs52hjQz0huMDrT
+         eAzXz0Wxx9VsExDPutKzZCd95SCTkAiJi5Py8T81ubkllpCO8arU1S8CNShKYLSVBIyc
+         n5l12f+lnbsnR+36ndNBSrQBnPba9pQVV/eNks0MKCC0MktvJkfL7YX83MtdfZxwrzQl
+         xdRg==
+X-Gm-Message-State: AOAM530pNSs4Z18QlaQN534F5CEIcy2qXwUQ2x42tOM5aypJc8JwE34L
+        IiC8SQj8cYKuOgt1HuO7j54uXCslKBcuPlyTBatPOA==
+X-Google-Smtp-Source: ABdhPJyZxe5YIKk6QpWHAe4AORoq3DVeSfu4IYXAhafnMShxVmuFujEF374iQEYwpRHvwBOmiIsTOa1Yeask/tphui0=
+X-Received: by 2002:ab0:6ecf:: with SMTP id c15mr45724445uav.113.1638105446637;
+ Sun, 28 Nov 2021 05:17:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211126202144.72936-1-romain.perier@gmail.com> <20211126202144.72936-7-romain.perier@gmail.com>
+In-Reply-To: <20211126202144.72936-7-romain.perier@gmail.com>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Sun, 28 Nov 2021 22:17:16 +0900
+Message-ID: <CAFr9PXmpKrcPXL=EdL-uGu0X3nZBrAVcBSDqSbaDEvRhE6Abiw@mail.gmail.com>
+Subject: Re: [PATCH 5/5] ARM: dts: mstar: Switch to compatible
+ "mstar,ssd20xd-timer" on ssd20xd
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Beacon EmbeddedWorks imx8mm development kit has a TD Next 5640
-Camera.  Enable the OV5640 driver to use the camera.
+Hi Romain,
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
----
-V3:  No Change
-V2:  No Change
+On Sat, 27 Nov 2021 at 05:22, Romain Perier <romain.perier@gmail.com> wrote:
+>
+> This defines the real oscillators as input of timer1 and timer2 and
+> switch to "mstar,ssd20xd-timer".
+>
+> Signed-off-by: Romain Perier <romain.perier@gmail.com>
+> ---
+>  .../arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi b/arch/arm/boot/dts/mstar-infinity2m-ssd20xd.dtsi
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+I just noticed this during testing. I think we should put this in
+mstar-infinity2m.dts. All of the infinity2m chips use the same die
+from what I can tell so if the ssd201/ssd202d needs this then anything
+else that includes mstar-infinity2m.dtsi will too.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 8df432182275..f7964a405f6a 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -669,6 +669,7 @@ CONFIG_VIDEO_QCOM_VENUS=m
- CONFIG_SDR_PLATFORM_DRIVERS=y
- CONFIG_VIDEO_RCAR_DRIF=m
- CONFIG_VIDEO_IMX219=m
-+CONFIG_VIDEO_OV5640=m
- CONFIG_VIDEO_OV5645=m
- CONFIG_VIDEO_QCOM_CAMSS=m
- CONFIG_DRM=m
--- 
-2.32.0
+Cheers,
 
+Daniel
