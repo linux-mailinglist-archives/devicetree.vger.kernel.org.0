@@ -2,394 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6ED94607AA
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 17:45:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AC0A4607BC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 17:55:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358382AbhK1QtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 11:49:02 -0500
-Received: from mail-ot1-f51.google.com ([209.85.210.51]:36817 "EHLO
-        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244871AbhK1QrB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 11:47:01 -0500
-Received: by mail-ot1-f51.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so22042099otl.3;
-        Sun, 28 Nov 2021 08:43:45 -0800 (PST)
+        id S1358490AbhK1Q7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 11:59:00 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:42850 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230078AbhK1Q47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 11:56:59 -0500
+Received: by mail-oi1-f181.google.com with SMTP id n66so29765201oia.9;
+        Sun, 28 Nov 2021 08:53:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=exfEm/CLDnjt+kLLxdFsw6nuA3iESOHlZBNsxqXkqDs=;
-        b=mBepHrJ18Jbtcn+2XlZDgo9lfkTOHH1QyaKaHIlBmN6ccll6/tpUlrWN9khhwDxE+s
-         o454PR/fxqo/0H9im1Zgyv0AkJsAEMtK5qEEArH2ftFqwtzJMk06KDhY/UmvrrbfFB7l
-         jtnIB9fbyyx4lvQ3dte7PYXvCU23GqXd57JAf9VAEGByETCziICDZE0zZXJnXxj98z3X
-         t4A1L/Bwcm65dy65oCCKt6UiiG2uffA+qhXwUXKNF96b/GKQRRx6lTtzVMumMzCJhMfk
-         d2zf/01P9GPO/JFaF6RnWFAHh/bwC7WcZLf1kfTS0a1lanlIVTaIYQ02s2rThiWOWXU5
-         gPWQ==
-X-Gm-Message-State: AOAM5320JyYawx82sKbyMKWAES1IoBVyW4rlqGFe68z6Spp6AkzJOQu/
-        0DlqgldLSoCBWK2JFB+wTA==
-X-Google-Smtp-Source: ABdhPJxu05dwYTrasRV3VsyayUAv49JLJz/92BJZEMiIkItk4MA22qrHr+kaHw1cYnSNrt8SlPyK8A==
-X-Received: by 2002:a9d:744f:: with SMTP id p15mr39729607otk.314.1638117824974;
-        Sun, 28 Nov 2021 08:43:44 -0800 (PST)
+        bh=45c1gacm72RX4cF7zNnpU51xQn+kJSWSAn4Mo9Q7trc=;
+        b=FW+5dkPJBRq1whp5F9dHlh1DC+ac7EF0rsKqRl3K4KXsJWZsXusLm1V71Sr6ZhxAf/
+         xAm9NwxcbLJUeqoL052CZeOPqwhOHQBEFrjsjqLQCWoroBY+VbZ9R89+AXismgyGgFRG
+         CZeUOQ7adnbltxz8tvtaTCx0eGFxzM9jL+3BnqAZwy1/BXRKJFa6huhcKkguO+VEBCrt
+         P4dbCXSW2DPZA49h4JfzJRs3lAwwCvt1KHfy7kXwN3CU7Fgk1HsUK4HzjhuJrE50Dovl
+         pcJS7CvdZGYacm5B9wVs4hwISFZIkebjNZuA5hOGk6igmduWv/AgzvcQ/S5brD2xTL+u
+         Yp0Q==
+X-Gm-Message-State: AOAM530JUHH4lvzS5s8VP8B7i47IT2ElkPaxAEqeemNYmO/1h6MPOA17
+        UkQDCArXnDn8rKpIyEwKPA==
+X-Google-Smtp-Source: ABdhPJy7pyUbgpVnYnG9saZFi8PYobUToY1xZuAG64h436uSkvorpWBdVmBhJPtgTE5wStLGhyx8Cw==
+X-Received: by 2002:a05:6808:120b:: with SMTP id a11mr36930823oil.128.1638118422790;
+        Sun, 28 Nov 2021 08:53:42 -0800 (PST)
 Received: from robh.at.kernel.org ([2607:fb90:20d6:afc8:f6e9:d57a:3e26:ee41])
-        by smtp.gmail.com with ESMTPSA id c8sm2225126otk.40.2021.11.28.08.43.40
+        by smtp.gmail.com with ESMTPSA id a17sm2437469oiw.43.2021.11.28.08.53.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 08:43:44 -0800 (PST)
-Received: (nullmailer pid 2694540 invoked by uid 1000);
-        Sun, 28 Nov 2021 16:43:39 -0000
-Date:   Sun, 28 Nov 2021 10:43:39 -0600
+        Sun, 28 Nov 2021 08:53:42 -0800 (PST)
+Received: (nullmailer pid 2708024 invoked by uid 1000);
+        Sun, 28 Nov 2021 16:53:37 -0000
+Date:   Sun, 28 Nov 2021 10:53:37 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v3 12/13] ARM: dts: imx: add i.MXRT1050-EVK support
-Message-ID: <YaOxu441l41qPvTj@robh.at.kernel.org>
-References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
- <20211125211443.1150135-13-Mr.Bossman075@gmail.com>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>
+Subject: Re: [PATCH v6 08/10] ASoC: dt-bindings: Add SC7280 lpass cpu bindings
+Message-ID: <YaO0ER2pNIQrvlxM@robh.at.kernel.org>
+References: <1637928282-2819-1-git-send-email-srivasam@codeaurora.org>
+ <1637928282-2819-9-git-send-email-srivasam@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211125211443.1150135-13-Mr.Bossman075@gmail.com>
+In-Reply-To: <1637928282-2819-9-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 04:14:42PM -0500, Jesse Taube wrote:
-> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+On Fri, Nov 26, 2021 at 05:34:40PM +0530, Srinivasa Rao Mandadapu wrote:
+> Add bindings for sc7280 lpass cpu driver which supports
+> audio over i2s based speaker, soundwire based headset, msm dmics
+> and HDMI Port.
 > 
-> The NXP i.MXRT1050 Evaluation Kit (EVK) provides a platform for rapid
-> evaluation of the i.MXRT, which features NXP's implementation of the Arm
-> Cortex-M7 core.
-> 
-> The EVK provides 32 MB SDRAM, 64 MB Quad SPI flash, Micro SD card socket,
-> USB 2.0 OTG.
-> 
-> This patch aims to support the preliminary booting up features
-> as follows:
-> GPIO
-> LPUART
-> SD/MMC
-> 
-> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> [Jesse: Add clock-parents, edma, usdhc, anatop, remove old pinctl]
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > ---
-> V1->V2:
-> * dtsi: Add clock parent definitions
-> * dtsi: Change hex values to lowercase
-> * dtsi: Move anatop definition from driver
-> * dts: Remove unused pin controll (semc)
-> * dts: Use moved pin controll header
-> * Move aliases from dtsi to dts
-> * Change commit description
-> * Change licence to "GPL-2.0+ OR MIT"
-> V2->V3:
-> * Remove bootargs, comments, unused container
-> * Remove unnecessary new lines
-> * Rename imxrt to imxrt1050 for seiral and mmc
-> * GPT uses own clock
-> * fix memory@0
-> * Change GPT compatible handles
-> ---
->  arch/arm/boot/dts/Makefile          |   2 +
->  arch/arm/boot/dts/imxrt1050-evk.dts |  72 ++++++++++++
->  arch/arm/boot/dts/imxrt1050.dtsi    | 165 ++++++++++++++++++++++++++++
->  3 files changed, 239 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imxrt1050-evk.dts
->  create mode 100644 arch/arm/boot/dts/imxrt1050.dtsi
+>  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 69 +++++++++++++++++++---
+>  1 file changed, 61 insertions(+), 8 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 8a2dfdf01ce3..d539bf7daa86 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -723,6 +723,8 @@ dtb-$(CONFIG_SOC_IMX7D) += \
->  dtb-$(CONFIG_SOC_IMX7ULP) += \
->  	imx7ulp-com.dtb \
->  	imx7ulp-evk.dtb
-> +dtb-$(CONFIG_SOC_IMXRT) += \
-> +	imxrt1050-evk.dtb
->  dtb-$(CONFIG_SOC_LS1021A) += \
->  	ls1021a-moxa-uc-8410a.dtb \
->  	ls1021a-qds.dtb \
-> diff --git a/arch/arm/boot/dts/imxrt1050-evk.dts b/arch/arm/boot/dts/imxrt1050-evk.dts
-> new file mode 100644
-> index 000000000000..6a9c10decf52
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imxrt1050-evk.dts
-> @@ -0,0 +1,72 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2019
-> + * Author(s): Giulio Benetti <giulio.benetti@benettiengineering.com>
-> + */
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+> index 1e23c0e..0f5a57c 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+> @@ -22,35 +22,36 @@ properties:
+>        - qcom,lpass-cpu
+>        - qcom,apq8016-lpass-cpu
+>        - qcom,sc7180-lpass-cpu
+> +      - qcom,sc7280-lpass-cpu
+>  
+>    reg:
+> -    maxItems: 2
+> +    maxItems: 5
+>      description: LPAIF core registers
+>  
+>    reg-names:
+> -    maxItems: 2
+> +    maxItems: 5
+>  
+>    clocks:
+>      minItems: 3
+> -    maxItems: 6
+> +    maxItems: 7
+>  
+>    clock-names:
+>      minItems: 3
+> -    maxItems: 6
+> +    maxItems: 7
+>  
+>    interrupts:
+> -    maxItems: 2
+> +    maxItems: 4
+>      description: LPAIF DMA buffer interrupt
+>  
+>    interrupt-names:
+> -    maxItems: 2
+> +    maxItems: 4
+>  
+>    qcom,adsp:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description: Phandle for the audio DSP node
+>  
+>    iommus:
+> -    maxItems: 2
+> +    maxItems: 3
+>      description: Phandle to apps_smmu node with sid mask
+>  
+>    power-domains:
+> @@ -69,7 +70,7 @@ patternProperties:
+>    "^dai-link@[0-9a-f]$":
+>      type: object
+>      description: |
+> -      LPASS CPU dai node for each I2S device. Bindings of each node
+> +      LPASS CPU dai node for each I2S device or Soundwire device. Bindings of each node
+>        depends on the specific driver providing the functionality and
+>        properties.
+>      properties:
+> @@ -174,6 +175,58 @@ allOf:
+>          - iommus
+>          - power-domains
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,sc7280-lpass-cpu
 > +
-> +/dts-v1/;
-> +#include "imxrt1050.dtsi"
-> +#include "imxrt1050-pinfunc.h"
-> +
-> +/ {
-> +	model = "NXP IMXRT1050-evk board";
-> +	compatible = "fsl,imxrt1050-evk", "fsl,imxrt1050";
-> +
-> +	chosen {
-> +		stdout-path = &lpuart1;
-> +	};
-> +
-> +	aliases {
-> +		gpio0 = &gpio1;
-> +		gpio1 = &gpio2;
-> +		gpio2 = &gpio3;
-> +		gpio3 = &gpio4;
-> +		gpio4 = &gpio5;
-> +		mmc0 = &usdhc1;
-> +		serial0 = &lpuart1;
-> +	};
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x2000000>;
-> +	};
-> +};
-> +
-> +&lpuart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_lpuart1>;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl_lpuart1: lpuart1grp {
-> +		fsl,pins = <
-> +			MXRT1050_IOMUXC_GPIO_AD_B0_12_LPUART1_TXD	0xf1
-> +			MXRT1050_IOMUXC_GPIO_AD_B0_13_LPUART1_RXD	0xf1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc0: usdhc0grp {
-> +		fsl,pins = <
-> +			MXRT1050_IOMUXC_GPIO_B1_12_USDHC1_CD_B		0x1B000
-> +			MXRT1050_IOMUXC_GPIO_B1_14_USDHC1_VSELECT	0xB069
-> +			MXRT1050_IOMUXC_GPIO_SD_B0_00_USDHC1_CMD	0x17061
-> +			MXRT1050_IOMUXC_GPIO_SD_B0_01_USDHC1_CLK	0x17061
-> +			MXRT1050_IOMUXC_GPIO_SD_B0_05_USDHC1_DATA3	0x17061
-> +			MXRT1050_IOMUXC_GPIO_SD_B0_04_USDHC1_DATA2	0x17061
-> +			MXRT1050_IOMUXC_GPIO_SD_B0_03_USDHC1_DATA1	0x17061
-> +			MXRT1050_IOMUXC_GPIO_SD_B0_02_USDHC1_DATA0	0x17061
-> +		>;
-> +	};
-> +};
-> +
-> +&usdhc1 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-> +	pinctrl-0 = <&pinctrl_usdhc0>;
-> +	pinctrl-1 = <&pinctrl_usdhc0>;
-> +	pinctrl-2 = <&pinctrl_usdhc0>;
-> +	pinctrl-3 = <&pinctrl_usdhc0>;
-> +	cd-gpios = <&gpio2 28 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm/boot/dts/imxrt1050.dtsi b/arch/arm/boot/dts/imxrt1050.dtsi
-> new file mode 100644
-> index 000000000000..35943a6896fa
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imxrt1050.dtsi
-> @@ -0,0 +1,165 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (C) 2019
-> + * Author(s): Giulio Benetti <giulio.benetti@benettiengineering.com>
-> + */
-> +
-> +#include "armv7-m.dtsi"
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/imxrt1050-clock.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	clocks {
-> +		osc: osc {
-> +			compatible = "fsl,imx-osc", "fixed-clock";
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          oneOf:
+> +            - items:   #for I2S
+> +                - const: lpass_aon_cc_audio_hm_h_clk
+> +                - const: lpass_core_cc_sysnoc_mport_core_clk
+> +                - const: lpass_core_cc_ext_if1_ibit_clk
+> +            - items:   #for Soundwire
+> +                - const: lpass_aon_cc_audio_hm_h_clk
+> +                - const: lpass_audio_cc_codec_mem0_clk
+> +                - const: lpass_audio_cc_codec_mem1_clk
+> +                - const: lpass_audio_cc_codec_mem2_clk
+> +            - items:   #for HDMI
+> +                - const: lpass_aon_cc_audio_hm_h_clk
 
-fsl,imx-osc is not documented. IMO, just drop it.
+'lpass_' and '_clk' are redundant.
 
-> +			#clock-cells = <0>;
-> +			clock-frequency = <24000000>;
-> +		};
-> +	};
 > +
-> +	cpus {
-> +		#address-cells = <0x01>;
-> +		#size-cells = <0x00>;
-> +
-> +		cpu@0 {
-> +			compatible = "arm,cortex-m7";
+> +        reg-names:
+> +          anyOf:
+> +            - items:   #for I2S
+> +                - const: lpass-lpaif
+> +            - items:   #for I2S and HDMI
+> +                - const: lpass-hdmiif
+> +                - const: lpass-lpaif
 
-Not documented.
+Doesn't this apply to other SoCs?
 
-Please run schema validation checks and don't add any new warnings not 
-already present for i.MX.
+> +            - items:   #for I2S, soundwire and HDMI
+> +                - const: lpass-cdc-lpm
+> +                - const: lpass-rxtx-lpaif
+> +                - const: lpass-va-lpaif
+> +                - const: lpass-hdmiif
+> +                - const: lpass-lpaif
 
-> +			device_type = "cpu";
-> +			reg = <0x00>;
-> +		};
-> +	};
-> +
-> +	soc {
-> +		lpuart1: serial@40184000 {
-> +			compatible = "fsl,imxrt1050-lpuart","fsl,imx8mm-uart", "fsl,imx6q-uart";
+'lpass-' is redundant too, but consistency across SoCs is better.
 
-space                                                       ^
+hdmiif and lpaif should be first. (Add new resources on the end.)
 
-> +			reg = <0x40184000 0x4000>;
-> +			interrupts = <20>;
-> +			clocks = <&clks IMXRT1050_CLK_LPUART1>;
-> +			clock-names = "ipg";
-> +			status = "disabled";
-> +		};
-> +
-> +		iomuxc: iomuxc@401f8000 {
+> +        interrupt-names:
+> +          anyOf:
+> +            - items:   #for I2S
+> +                - const: lpass-irq-lpaif
+> +            - items:   #for I2S and HDMI
+> +                - const: lpass-irq-lpaif
+> +                - const: lpass-irq-hdmi
+> +            - items:   #for I2S, soundwire and HDMI
+> +                - const: lpass-irq-lpaif
+> +                - const: lpass-irq-vaif
+> +                - const: lpass-irq-rxtxif
+> +                - const: lpass-irq-hdmi
 
-pinctrl@...
+Again, add new entries to the end.
 
-> +			compatible = "fsl,imxrt1050-iomuxc";
-> +			reg = <0x401f8000 0x4000>;
-> +			fsl,mux_mask = <0x7>;
-> +		};
 > +
-> +		anatop: anatop@400d8000 {
-> +			compatible = "fsl,imxrt-anatop";
-> +			reg = <0x400d8000 0x4000>;
-> +		};
+> +      required:
+> +        - iommus
+> +        - power-domains
 > +
-> +		clks: ccm@400fc000 {
-
-clock-controller@...
-
-> +			compatible = "fsl,imxrt1050-ccm";
-> +			reg = <0x400fc000 0x4000>;
-> +			interrupts = <95>, <96>;
-> +			clocks = <&osc>;
-> +			clock-names = "osc";
-> +			#clock-cells = <1>;
-> +			assigned-clocks = <&clks IMXRT1050_CLK_PLL1_BYPASS>,
-> +				<&clks IMXRT1050_CLK_PLL1_BYPASS>,
-> +				<&clks IMXRT1050_CLK_PLL2_BYPASS>,
-> +				<&clks IMXRT1050_CLK_PLL3_BYPASS>,
-> +				<&clks IMXRT1050_CLK_PLL3_PFD1_664_62M>,
-> +				<&clks IMXRT1050_CLK_PLL2_PFD2_396M>;
-> +			assigned-clock-parents = <&clks IMXRT1050_CLK_PLL1_REF_SEL>,
-> +				<&clks IMXRT1050_CLK_PLL1_ARM>,
-> +				<&clks IMXRT1050_CLK_PLL2_SYS>,
-> +				<&clks IMXRT1050_CLK_PLL3_USB_OTG>,
-> +				<&clks IMXRT1050_CLK_PLL3_USB_OTG>,
-> +				<&clks IMXRT1050_CLK_PLL2_SYS>;
-> +		};
-> +
-> +		edma1: dma-controller@400e8000 {
-> +			#dma-cells = <2>;
-> +			compatible = "fsl,imx7ulp-edma";
-> +			reg = <0x400e8000 0x4000>,
-> +				<0x400ec000 0x4000>;
-> +			dma-channels = <32>;
-> +			interrupts = <0>, <1>, <2>, <3>, <4>, <5>, <6>, <7>, <8>,
-> +				<9>, <10>, <11>, <12>, <13>, <14>, <15>, <16>;
-> +			clock-names = "dma", "dmamux0";
-> +			clocks = <&clks IMXRT1050_CLK_DMA>,
-> +				 <&clks IMXRT1050_CLK_DMA_MUX>;
-> +		};
-> +
-> +		usdhc1: mmc@402c0000 {
-> +			compatible ="fsl,imxrt1050-usdhc";
-> +			reg = <0x402c0000 0x4000>;
-> +			interrupts = <110>;
-> +			clocks = <&clks IMXRT1050_CLK_IPG_PDOF>,
-> +				<&clks IMXRT1050_CLK_OSC>,
-> +				<&clks IMXRT1050_CLK_USDHC1>;
-> +			clock-names = "ipg", "ahb", "per";
-> +			bus-width = <4>;
-> +			fsl,wp-controller;
-> +			no-1-8-v;
-> +			max-frequency = <4000000>;
-> +			fsl,tuning-start-tap = <20>;
-> +			fsl,tuning-step= <2>;
-> +			status = "disabled";
-> +		};
-> +
-> +		gpio1: gpio@401b8000 {
-> +			compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
-
-Not SoC specific?
-
-> +			reg = <0x401b8000 0x4000>;
-> +			interrupts = <80>, <81>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpio2: gpio@401bc000 {
-> +			compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
-> +			reg = <0x401bc000 0x4000>;
-> +			interrupts = <82>, <83>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpio3: gpio@401c0000 {
-> +			compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
-> +			reg = <0x401c0000 0x4000>;
-> +			interrupts = <84>, <85>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpio4: gpio@401c4000 {
-> +			compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
-> +			reg = <0x401c4000 0x4000>;
-> +			interrupts = <86>, <87>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpio5: gpio@400c0000 {
-> +			compatible = "fsl,imxrt-gpio", "fsl,imx35-gpio";
-> +			reg = <0x400c0000 0x4000>;
-> +			interrupts = <88>, <89>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		gpt: timer@401ec000 {
-> +			compatible = "fsl,imxrt1050-gpt", "fsl,imx6dl-gpt", "fsl,imx6sl-gpt";
-> +			reg = <0x401ec000 0x4000>;
-> +			interrupts = <100>;
-> +			clocks = <&clks IMXRT1050_CLK_GPT>;
-> +			clock-names = "per";
-> +		};
-> +	};
-> +};
+>  examples:
+>    - |
+>      #include <dt-bindings/sound/sc7180-lpass.h>
 > -- 
-> 2.34.0
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 > 
 > 
