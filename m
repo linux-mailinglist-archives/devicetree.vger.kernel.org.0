@@ -2,120 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2BAA460678
-	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 14:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C1EE4606E0
+	for <lists+devicetree@lfdr.de>; Sun, 28 Nov 2021 15:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357895AbhK1N0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 08:26:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50472 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357637AbhK1NYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 08:24:36 -0500
-Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D981C06175E;
-        Sun, 28 Nov 2021 05:19:33 -0800 (PST)
-Received: by mail-il1-x12b.google.com with SMTP id m5so14042439ilh.11;
-        Sun, 28 Nov 2021 05:19:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=521EvKI6EbdtF1DZoqUQypBcun81DeM7zYPyPbmkezw=;
-        b=nxDTX1IjHaVGag01lCyyCR24q+bUyiEEly+4te+h9GXJ7/HJ7CtJ/4R+BoGmsR9UT0
-         024fjHfPCX2wU0l4cCUVVTCWnpWeSnoUtFQ7RzqIcXSGJXXf6c5wKLKzRPnR/oanUvM7
-         zLekmgDc6lfrkpXQ3eWMAnzmHKp2M0/ODJe76g5oeoZZWOyxN9I3OIZZed2dtlNwgKk3
-         JMkC7FSm0a0eKakYaZY/Snmg8Lk3ausU8gfJp775DdnwOitLtiAYxnYpSOjfghCDdbIs
-         Q0efCjap63ctsbVY/L0/rTjVH4Yu6K2GhneTt96nhLXx4G0gZ+RyJiArtNdBpzjUSoRv
-         +blw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=521EvKI6EbdtF1DZoqUQypBcun81DeM7zYPyPbmkezw=;
-        b=OjDLz6ACBD0wgw0zpXJr2G49oCMDHNACajYi69l7I3MBsrDYBAgPzSbfqVGe+Z9qxe
-         VVYdOGpzyIXyMz6969DmUBBJckCXTAXLBKzKFCkmj+OsWv5Zb9yoVxEsTWxtyFXLsXYL
-         ctuJDqJzGx6h2Fj2CU34oPv3D2nJg1W99Tplc90Zd5Urdg4uj9zHv3P4yZzFVEXNZvwo
-         VIZXKiZ5QULksh5sQszqdNu98T/kOPgFjuGEDjd3LOiPPR/vJl/qf1hH3r7HAjyRpJaS
-         YNrjApmDHy7mUsyItvQGVv4TZnssL+0qNlmSq47HdlU2ge+TLuZJzRiYqHANl2fshESo
-         hQeg==
-X-Gm-Message-State: AOAM533wTvmSrPMTMr15WSbGuhFy/pzJXZdu4LmIL/ASEYnehPxDYEx1
-        w+AeXVQ2klBPi9mNQ+zQk5U=
-X-Google-Smtp-Source: ABdhPJxqou9qnWhwDUQC35la6Ea1oG44QBG1nFwiJfpH2nb93ileCf5azIlVh1Oxkm4W5I9zUG1pKA==
-X-Received: by 2002:a05:6e02:ca9:: with SMTP id 9mr50659159ilg.60.1638105572777;
-        Sun, 28 Nov 2021 05:19:32 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:2a06:17d2:47df:6c8e])
-        by smtp.gmail.com with ESMTPSA id q12sm6990413ile.77.2021.11.28.05.19.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 05:19:32 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, tharvey@gateworks.com,
-        Adam Ford <aford173@gmail.com>,
+        id S1357842AbhK1Obu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 09:31:50 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:34686 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236781AbhK1O3s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 09:29:48 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5F8F2F1;
+        Sun, 28 Nov 2021 15:26:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1638109589;
+        bh=aDo+KpfazdLA9WVSgQWdRL/jZ1a/ht778m7IQb3iUms=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ABBb2xbKQkX4MJw5ayTonQvxjkTJK8JzYWAjtcJB7RWI8VtV2tqUvhVA/Su0P00YJ
+         AIEs2YdC6n+bnrz425hqpHCy2zMVr/Q5sIOJv8fVpdKi44DaayWl0U8pAut0yqorqI
+         owPF+GcJaVhjEDYkhh82+Q/SG5ucUX6DL6BvTK5s=
+Date:   Sun, 28 Nov 2021 16:26:05 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, tharvey@gateworks.com,
+        aford@beaconembedded.com, Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Peng Fan <peng.fan@nxp.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V4 9/9] arm64: dts: imx8mn: Enable GPU
-Date:   Sun, 28 Nov 2021 07:18:52 -0600
-Message-Id: <20211128131853.15125-10-aford173@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211128131853.15125-1-aford173@gmail.com>
-References: <20211128131853.15125-1-aford173@gmail.com>
+Subject: Re: [PATCH V3 1/5] soc: imx: imx8m-blk-ctrl: Fix imx8mm mipi reset
+Message-ID: <YaORfba924MN9vL+@pendragon.ideasonboard.com>
+References: <20211128125011.12817-1-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20211128125011.12817-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8M-Nano features a GC7000. The Etnaviv driver detects it as:
+Hi Adam,
 
-    etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
+Thank you for the patch.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 25 +++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+On Sun, Nov 28, 2021 at 06:50:07AM -0600, Adam Ford wrote:
+> Most of the blk-ctrl reset bits are found in one register, however
+> there are two bits in offset 8 for pulling the MIPI DPHY out of reset
+> and one of them needs to be set when IMX8MM_DISPBLK_PD_MIPI_CSI is brought
+> out of reset or the MIPI_CSI hangs.
+> 
+> Since MIPI_DSI is impacted, add the additional one for MIPI_DSI too.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index d8726d0ce326..5b8f8488e362 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -1117,6 +1117,31 @@ gpmi: nand-controller@33002000 {
- 			status = "disabled";
- 		};
+The patch looks good to me. I however wonder if we should clear those
+two bits at probe time, in order to start in a known state.
 
-+		gpu: gpu@38000000 {
-+			compatible = "vivante,gc";
-+			reg = <0x38000000 0x8000>;
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
-+				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_SHADER>;
-+			clock-names = "reg", "bus", "core", "shader";
-+			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER>,
-+					  <&clk IMX8MN_CLK_GPU_AXI>,
-+					  <&clk IMX8MN_CLK_GPU_AHB>,
-+					  <&clk IMX8MN_GPU_PLL>,
-+					  <&clk IMX8MN_CLK_GPU_CORE>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER>;
-+			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>;
-+			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
-+				<400000000>, <400000000>;
-+			power-domains = <&pgc_gpumix>;
-+		};
-+
- 		gic: interrupt-controller@38800000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x38800000 0x10000>,
---
-2.32.0
+With or without that,
 
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> Fixes: 926e57c065df ("soc: imx: imx8m-blk-ctrl: add DISP blk-ctrl")
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+> ---
+> V3:  Split the  mipi_phy_rst_mask for CSI and DSI into their respective domains.
+> 
+> V2:  Make a note that the extra register is only for Mini/Nano DISPLAY_BLK_CTRL
+>      Rename the new register to mipi_phy_rst_mask
+>      Encapsulate the edits to this register with an if-statement
+>      
+>  drivers/soc/imx/imx8m-blk-ctrl.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/soc/imx/imx8m-blk-ctrl.c b/drivers/soc/imx/imx8m-blk-ctrl.c
+> index 519b3651d1d9..c2f076b56e24 100644
+> --- a/drivers/soc/imx/imx8m-blk-ctrl.c
+> +++ b/drivers/soc/imx/imx8m-blk-ctrl.c
+> @@ -17,6 +17,7 @@
+>  
+>  #define BLK_SFT_RSTN	0x0
+>  #define BLK_CLK_EN	0x4
+> +#define BLK_MIPI_RESET_DIV	0x8 /* Mini/Nano DISPLAY_BLK_CTRL only */
+>  
+>  struct imx8m_blk_ctrl_domain;
+>  
+> @@ -36,6 +37,15 @@ struct imx8m_blk_ctrl_domain_data {
+>  	const char *gpc_name;
+>  	u32 rst_mask;
+>  	u32 clk_mask;
+> +
+> +	/*
+> +	 * i.MX8M Mini and Nano have a third DISPLAY_BLK_CTRL register
+> +	 * which is used to control the reset for the MIPI Phy.
+> +	 * Since it's only present in certain circumstances,
+> +	 * an if-statement should be used before setting and clearing this
+> +	 * register.
+> +	 */
+> +	u32 mipi_phy_rst_mask;
+>  };
+>  
+>  #define DOMAIN_MAX_CLKS 3
+> @@ -78,6 +88,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+>  
+>  	/* put devices into reset */
+>  	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> +	if (data->mipi_phy_rst_mask)
+> +		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+>  
+>  	/* enable upstream and blk-ctrl clocks to allow reset to propagate */
+>  	ret = clk_bulk_prepare_enable(data->num_clks, domain->clks);
+> @@ -99,6 +111,8 @@ static int imx8m_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+>  
+>  	/* release reset */
+>  	regmap_set_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+> +	if (data->mipi_phy_rst_mask)
+> +		regmap_set_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+>  
+>  	/* disable upstream clocks */
+>  	clk_bulk_disable_unprepare(data->num_clks, domain->clks);
+> @@ -120,6 +134,9 @@ static int imx8m_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+>  	struct imx8m_blk_ctrl *bc = domain->bc;
+>  
+>  	/* put devices into reset and disable clocks */
+> +	if (data->mipi_phy_rst_mask)
+> +		regmap_clear_bits(bc->regmap, BLK_MIPI_RESET_DIV, data->mipi_phy_rst_mask);
+> +
+>  	regmap_clear_bits(bc->regmap, BLK_SFT_RSTN, data->rst_mask);
+>  	regmap_clear_bits(bc->regmap, BLK_CLK_EN, data->clk_mask);
+>  
+> @@ -480,6 +497,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+>  		.gpc_name = "mipi-dsi",
+>  		.rst_mask = BIT(5),
+>  		.clk_mask = BIT(8) | BIT(9),
+> +		.mipi_phy_rst_mask = BIT(17),
+>  	},
+>  	[IMX8MM_DISPBLK_PD_MIPI_CSI] = {
+>  		.name = "dispblk-mipi-csi",
+> @@ -488,6 +506,7 @@ static const struct imx8m_blk_ctrl_domain_data imx8mm_disp_blk_ctl_domain_data[]
+>  		.gpc_name = "mipi-csi",
+>  		.rst_mask = BIT(3) | BIT(4),
+>  		.clk_mask = BIT(10) | BIT(11),
+> +		.mipi_phy_rst_mask = BIT(16),
+>  	},
+>  };
+>  
+
+-- 
+Regards,
+
+Laurent Pinchart
