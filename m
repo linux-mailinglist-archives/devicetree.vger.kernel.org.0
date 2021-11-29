@@ -2,167 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00B5346212D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:57:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9196E4621DC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 21:11:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379849AbhK2UBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 15:01:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
+        id S233656AbhK2UOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 15:14:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237213AbhK2T67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:58:59 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8BDC07CA30;
-        Mon, 29 Nov 2021 08:30:08 -0800 (PST)
+        with ESMTP id S233873AbhK2UMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 15:12:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2A3EC08ECB6;
+        Mon, 29 Nov 2021 08:45:54 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 905CB615A2;
-        Mon, 29 Nov 2021 16:30:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F41E6C53FCD;
-        Mon, 29 Nov 2021 16:30:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 69982B81215;
+        Mon, 29 Nov 2021 16:45:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 337B6C53FAD;
+        Mon, 29 Nov 2021 16:45:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638203408;
-        bh=0nM9Zmi/0tmh4ZVUo4rPDNni8qv7d4dpBNcM+KHsuro=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=CZ0zEE9TX/82bzK6mWwweNQckfEOej/XhUxQ8k0cme0RRBnP0QrDFWmFGE6+tsSTj
-         hCu7cflNmo5g95cbOp+ysjmY8Zh8RYIiQysAkja0ps2EvT5+F0dtYcCM6CxKfKf5aO
-         VNE+niu+eEgcGdSVmQEV5z6vk2m5EWUxAogMuL+JZL0jGsO7mIPkroJ0rFVGvkyZPt
-         +3UhVh2TRG83DQBqMxZPhvwFqW8qJwf8YNB3LXbeUZFTgqqHGaPGAj3MOUhvyHo+Sp
-         Zsmudql/15T/ywV0IqW/tLd1o4WDlqqfbUQtBPSGETCMZ4oWePo8Z9Pofqyxl7tEeS
-         SYfKJPFf25T+A==
-Received: by mail-ed1-f46.google.com with SMTP id z5so9184529edd.3;
-        Mon, 29 Nov 2021 08:30:07 -0800 (PST)
-X-Gm-Message-State: AOAM533oVq4uKMgd0GZEv/PYeCMsp0F0/MXnvicoWby6WrPpZFwF+fsZ
-        6K+MLnqgCDDOkLzZidPXCHvlF7mmzO4MHNfkIg==
-X-Google-Smtp-Source: ABdhPJwdi2obd94NfZySI0D4j9hUUyc1bSXXDIqrRsdfdsaKo0dvxFRXe6oTS5gvFLyxMSrK1FPA3wGf7etLHoFZGRM=
-X-Received: by 2002:a17:906:fcbb:: with SMTP id qw27mr60632167ejb.320.1638203406208;
- Mon, 29 Nov 2021 08:30:06 -0800 (PST)
+        s=k20201202; t=1638204352;
+        bh=4Gqnsc8eJT8RGnAR77WhxngkWMm7XUHlUU4m60Zgkqk=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=W2GRWoPP07J8SXxP4UtGzSceMfq+SFFmEWOgs+mCqdzLOqTtqbvfWKlKh5Bwko5+R
+         ywRQMpIMZms1HpEMF/2Kg9U/jd8KomaS2jAl/gzunKgllYVPWce8SBSYX1jYF1EA9e
+         rtGIA8zYoB6cz+eqdOsbdyFxGVy3DH7Mjosy68Sv4gmtfWm4lqNLTiank7hCQTG6im
+         EvnY7mVKupZfhcri+trkRGfTZ2DSqVf7Q7xGb6RenfozhBYP80vjOsABpOgMfb9qfr
+         v36z8KPTiP6/QOkNg5BqcA1V+wqtaJKqSsCAD3b0Wwri4EjRQpfCrgQEmoi3NDZ9fy
+         biyaVjmYQcAvQ==
+From:   Mark Brown <broonie@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya <quic_c_skakit@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, mka@chromium.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        David Collins <collinsd@codeaurora.org>, swboyd@chromium.org
+In-Reply-To: <1637668167-31325-1-git-send-email-quic_c_skakit@quicinc.com>
+References: <1637668167-31325-1-git-send-email-quic_c_skakit@quicinc.com>
+Subject: Re: (subset) [PATCH 0/3] Add PMG1110(Seco Jr) PMIC support
+Message-Id: <163820434992.1716869.8358627296301312921.b4-ty@kernel.org>
+Date:   Mon, 29 Nov 2021 16:45:49 +0000
 MIME-Version: 1.0
-References: <1635487055-18494-1-git-send-email-lh.kuo@sunplus.com>
- <1636444705-17883-1-git-send-email-lh.kuo@sunplus.com> <1636444705-17883-3-git-send-email-lh.kuo@sunplus.com>
- <YaQu3dCQD4FG7ete@robh.at.kernel.org> <f5607fa7ad9c49a7bfcce02eac834838@sphcmbx02.sunplus.com.tw>
-In-Reply-To: <f5607fa7ad9c49a7bfcce02eac834838@sphcmbx02.sunplus.com.tw>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 29 Nov 2021 10:29:53 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK=7ma_LwMMoW7yfVoBfPN0hBJsPbp4ojtk0kt3k=+O1w@mail.gmail.com>
-Message-ID: <CAL_JsqK=7ma_LwMMoW7yfVoBfPN0hBJsPbp4ojtk0kt3k=+O1w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] devicetree bindings mmc Add bindings doc for
- Sunplus SP7021
-To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
-Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "daniel.thompson@linaro.org" <daniel.thompson@linaro.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
-        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 28, 2021 at 11:30 PM Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=AA <lh.Kuo=
-@sunplus.com> wrote:
->
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - sunplus,sp7021-card1
-> > > +      - sunplus,sp7021-sdio
-> >
-> > What's the difference between these 2 blocks?
-> >
->
-> One for SD card One for SDIO
+On Tue, 23 Nov 2021 17:19:24 +0530, Satya Priya wrote:
+> This series depends on below series which adds the base CRD dts
+> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=584349
+> 
+> Satya Priya (3):
+>   dt-bindings: regulator: Add compatible for pmg1110
+>   regulator: qcom-rpmh: Add PMG1110 regulators
+>   arm64: dts: qcom: sc7280: Add pmg1110 regulators for sc7280-crd
+> 
+> [...]
 
-If the programming model is the same, then it should be the same
-compatible string. We have various properties to handle differences
-like bus width, card detect or not, etc.
+Applied to
 
-> > > +  reg:
-> > > +    items:
-> > > +      - description: Base address and length of the SD/SDIO register=
-s
-> >
-> > Just 'maxItems: 1' is sufficient.
-> >
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +  pinctrl-names:
-> > > +    description:
-> > > +      A pinctrl state named "default" must be defined.
-> > > +    const: default
-> > > +
-> > > +  pinctrl-0:
-> > > +    description:
-> > > +      A phandle to the default pinctrl state.
-> > > +
-> > > +  max-frequency: true
-> > > +
-> > > +allOf:
-> > > +  - $ref: "mmc-controller.yaml"
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - resets
-> > > +  - pinctrl-names
-> > > +  - pinctrl-0
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/sp-sp7021.h>
-> > > +    #include <dt-bindings/reset/sp-sp7021.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    mmc1: mmc@9C003e80 {
-> >
-> > Use lower case hex.
->
-> Do you mean as follows? ?
->
-> mmc1: mmc@3e80 {
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-No, 'mmc@9c003e80 {'
+Thanks!
 
-You also don't need 'mmc1'.
+[1/3] dt-bindings: regulator: Add compatible for pmg1110
+      commit: ac88e9526d68f2532be3b4b439d45c0c8de7e170
+[2/3] regulator: qcom-rpmh: Add PMG1110 regulators
+      commit: 59eadd2af3f717f2ff70dbb6c153757dc1650651
 
-> > > +       compatible =3D "sunplus,sp7021-card1";
-> > > +       reg =3D <0x9c003e80 0x280>;
-> > > +       interrupts =3D <21 IRQ_TYPE_LEVEL_HIGH>;
-> > > +       clocks =3D <&clkc CARD_CTL1>;
-> > > +       resets =3D <&rstc RST_CARD_CTL1>;
-> > > +       pinctrl-names =3D "default";
-> > > +       pinctrl-0 =3D <&mmc1_mux &mmc1_mux_cd>;
-> > > +       max-frequency =3D <52000000>;
-> > > +    };
-> > > +    sdio: mmc@9C008400 {
-> >
->
-> Do you mean as follows? ?
->
-> mmc1: mmc@8400 {
->
->
-> > Use lower case hex.
-> >
-> > > +       compatible =3D "sunplus,sp7021-sdio";
->
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
