@@ -2,68 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4922C4622C1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:01:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9353A4626C2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:54:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230209AbhK2VEw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 16:04:52 -0500
-Received: from mail-oi1-f174.google.com ([209.85.167.174]:40902 "EHLO
-        mail-oi1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231453AbhK2VCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:02:52 -0500
-Received: by mail-oi1-f174.google.com with SMTP id bk14so37033697oib.7;
-        Mon, 29 Nov 2021 12:59:34 -0800 (PST)
+        id S235892AbhK2W5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 17:57:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234029AbhK2W5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 17:57:00 -0500
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A4CC0C20EA;
+        Mon, 29 Nov 2021 09:29:08 -0800 (PST)
+Received: by mail-wm1-x32b.google.com with SMTP id g191-20020a1c9dc8000000b0032fbf912885so12943687wme.4;
+        Mon, 29 Nov 2021 09:29:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=snUyZmX49ru2DxVA1QAuDQ2irOH1QZcg7Kt2R5LKKWA=;
+        b=Y6AcF3jqLTQfik4x4LzAlDhqYQEGVK/QibQuHs0n/w1FmHLhdAIimow51Xk6wvo9Dd
+         +j1Ki3GuabZUY7f0fwMnuMM8SmAomLcMRHXZorpK451L2d1AwLPaPIfVefkyglDvNLQc
+         ANiRYra38Sj9dEAcAFjQeo+yCn73kVy1iutaiq6MvzsOpDQwc4Mud47Br9qBqnr2eg85
+         p8qVMr2pO8dqHem46+AQxYgSPK1ZpnNq2MJiHjDy8r9JYgjpfyQrw4NHTxyi3/sAyNVo
+         Lvy6RyoEyA7su2D185Pz/xkFTv8cDIEbbNzN8wND1uCgf+8+YbZgljL989B+lRYuELHo
+         57FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=I1liDOBlk0WR8WX6PGc+acdLvsVRGQ2JvLOzSluTByg=;
-        b=dAa9unxt7YgnaAYDt/GfC1HVgTleEleH80X7mkw2ZZ3fHq3rxgI6roP3rouA4cKlBs
-         h3eLSpWJIN6CbEnjoaH8N9+O4I3tzUmroGWYglZ33+8cWUsJF4PpGIXxtdwSAoZEb88W
-         xIEBGLVYM8QQDXMM+SU0fogWo02x7PQXCWkPJwGZJ7qNB3wXtq8X0+2w9fzmxyx/OLJA
-         E3vpWNvRQQcm4xLuXm4a0n62biSM7fgZaaPONl6IXIQgybTidlblpYK5gDwfPRyFZU6s
-         fHKqfateLQVEil/575JJazGnlYhCVca1vk1xd3NLeLvHZaWeGRlivYiWTsIA+IDbr++z
-         ZgrQ==
-X-Gm-Message-State: AOAM532V0tcMPLEfMq1O2kQeiSbx2d2HY4OkB8FolSVXEYjiXwIVichY
-        rbskYVk7OqVOGi+7srjiszwK5iLVfw==
-X-Google-Smtp-Source: ABdhPJwERijACevxFONGPVAWMjtIstsqBYohlTTzzs+NXuf/IycKME+ZEiGdXDdnw/iEhNJg5d6GMw==
-X-Received: by 2002:a05:6808:14c2:: with SMTP id f2mr416399oiw.154.1638219574340;
-        Mon, 29 Nov 2021 12:59:34 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g17sm3286564oiy.14.2021.11.29.12.59.33
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=snUyZmX49ru2DxVA1QAuDQ2irOH1QZcg7Kt2R5LKKWA=;
+        b=32/gz+TV2ZPvEpEbNYTbL2QAWgTRN9LzDBfkf3TGNiwDl5Vv1/q2GJO2e5ho3MoYyN
+         zk85v6J+M4EsiXFzc6Xck3Zs39SUgtLZs4iZi/NTHIQE2DJuHWZbP1Sb5LF5gZqwHpOZ
+         loAFx3vGRWqJ1rojOZHTdDexzvsJNudl8XXYX5fBAM4fPiHvx/vhistKN52FkXiYB9r9
+         dWGjF51lrTXOQjD94JoXW+kZTqmoSMyWkHS5N+F633k95cYBacxWi2DFvAs1uyk0vX2t
+         DRlw1jErqiAHyjYiPVntK12Eo990bOIYhq1iq8Z7EJ+e1bb57H2ev93oaI7SrUX2GWgk
+         FJoQ==
+X-Gm-Message-State: AOAM530BI4w5S9m09ULciAtLUaNHjb2s+PZ0SAPcToRb19z8aRtRmESE
+        3EuYLqcZzWIdw2mMT52ESrs=
+X-Google-Smtp-Source: ABdhPJyYfAAl2JWSuMRXT7tjdS//D0XTqPX2pxL3Jw8TBUDKfnIv56MLGMyEa4sMII81Uq6dT3Oubg==
+X-Received: by 2002:a05:600c:19d0:: with SMTP id u16mr37736357wmq.111.1638206947141;
+        Mon, 29 Nov 2021 09:29:07 -0800 (PST)
+Received: from kista.localnet (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id f15sm19025488wmg.30.2021.11.29.09.29.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 12:59:33 -0800 (PST)
-Received: (nullmailer pid 599177 invoked by uid 1000);
-        Mon, 29 Nov 2021 20:59:33 -0000
-Date:   Mon, 29 Nov 2021 14:59:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 03/11] dt-bindings: Update headers for Tegra234
-Message-ID: <YaU/NR+e6CPp9ePL@robh.at.kernel.org>
-References: <20211112123542.3680629-1-thierry.reding@gmail.com>
- <20211112123542.3680629-4-thierry.reding@gmail.com>
+        Mon, 29 Nov 2021 09:29:06 -0800 (PST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     wens@csie.org
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Michael Klein <michael@fossekall.de>
+Subject: Re: Re: [PATCH v2] ARM: dts: sun8i: Adjust power key nodes
+Date:   Mon, 29 Nov 2021 18:29:01 +0100
+Message-ID: <5516984.DvuYhMxLoT@kista>
+In-Reply-To: <CAGb2v67M2Qi5tUq0BNbgahTsY4bbYGQeqzjoH8RZ6fYWzrWsYA@mail.gmail.com>
+References: <20211129165510.370717-1-jernej.skrabec@gmail.com> <CAGb2v67M2Qi5tUq0BNbgahTsY4bbYGQeqzjoH8RZ6fYWzrWsYA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112123542.3680629-4-thierry.reding@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 12 Nov 2021 13:35:34 +0100, Thierry Reding wrote:
-> From: Mikko Perttunen <mperttunen@nvidia.com>
+Dne ponedeljek, 29. november 2021 ob 18:16:31 CET je Chen-Yu Tsai napisal(a):
+> On Tue, Nov 30, 2021 at 12:55 AM Jernej Skrabec
+> <jernej.skrabec@gmail.com> wrote:
+> >
+> > Several H3 and one H2+ board have power key nodes, which are slightly
+> > off. Some are missing wakeup-source property and some have BTN_0 code
+> > assigned instead of KEY_POWER.
 > 
-> Add a few more clocks that will be used in follow-up patches to enable
-> more functionality on Tegra234.
+> It might have been that after shutdown there was really no way to
+> "power on" the board with these GPIO power keys, so we didn't use
+> KEY_POWER for them?
+
+KEY_POWER is actually processed by userspace, so it would still make sense to 
+power down board if power key is pressed. Correct me if I'm wrong, but in 
+combination with wfi it could work before SCP FW was available?
+
 > 
-> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  include/dt-bindings/clock/tegra234-clock.h | 17 ++++++++++++++---
->  include/dt-bindings/reset/tegra234-reset.h | 12 ++++++++++--
->  2 files changed, 24 insertions(+), 5 deletions(-)
+> > Adjust them, so they can function as intended by designer.
+> >
+> > Co-developed-by: Michael Klein <michael@fossekall.de>
+> > Signed-off-by: Michael Klein <michael@fossekall.de>
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> Acked-by: Chen-Yu Tsai <wens@csie.org>
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks!
+
+Best regards,
+Jernej
+
+
