@@ -2,114 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDC9846225B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 21:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B1E74622B3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:00:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234703AbhK2UoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 15:44:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35060 "EHLO
+        id S231810AbhK2VDo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 16:03:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231757AbhK2UmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 15:42:16 -0500
-Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A3AC0C0845
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 09:17:25 -0800 (PST)
-Received: by mail-pf1-x42d.google.com with SMTP id n26so17598853pff.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 09:17:25 -0800 (PST)
+        with ESMTP id S229846AbhK2VBn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:01:43 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF064C11FA2D;
+        Mon, 29 Nov 2021 10:26:38 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id r9-20020a7bc089000000b00332f4abf43fso11437795wmh.0;
+        Mon, 29 Nov 2021 10:26:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=KemDiumlbcxPouh3L3ClUWKSB7PfWKN1Cz/0fv3QOaw=;
-        b=UQv0URHo8nxtKCt7je9Sq9wTHqcHzxkUrRHbShEspIK7Q2+HbT9hOSF9OYliMQixPa
-         J7omcX6U6626oz7bKQIPyuaiAk6pa+MNUMQfd9wVzpqr5CgNkcxkEhLcN8bFupEu3FOV
-         NtsrjAC/343kTFrG6/WiKShdz/bf5AcOVy9dWIxPehQYL+MRRJ8+qR9OTO/3a2L2qaN+
-         bB3jbveAWsbGg8OA9LsO/wrDmelR6CLYifZbdlk/MOeRwLF5oVmjhzcLpfTGmLolLJcI
-         AxwyDax7GFz/ZNTZzg8znPdhuF3iZqXC+fxRxEb33evOP/jZ4NgT4VA//M/L37JGUWYo
-         scDA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GJz9RWbzi9C4eyOJNiBHCtQqCneeiBOlTZyVHZvdTbY=;
+        b=JECIG/4l50bi1AFhIQiQVxZWiGpQP0WWOPoPhAO4/Ycnsrtqml9idfA0/lZWBjVxZB
+         lGDKYV4R4DMiy8nkxFqyWVOffSJEglde8oGi4Z9SM7qmg8VKnHMUSgxa3qjvvac/1dkn
+         cC+Ff3ZOSwFWFFgiZOC7CFf/z44mNMozJHLJqQPAYp3/fD/z6f1EfS9VVvBBntDlFfvj
+         Dq+m5t/Rd+K8NoeoEUSdId8OWXLEhLs/28cSBrf53iEzMlNvoF+CkieMPOAzLggwA9VC
+         CxCsOI5c2KpYsJRRvbDrTjFfpjA6izu1YkWjBulnkQs1kSvIy92EvgR8R7qNivQ9vWWg
+         7WLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=KemDiumlbcxPouh3L3ClUWKSB7PfWKN1Cz/0fv3QOaw=;
-        b=vM0MgeGpkbzjjIIXUXVltvjuDziaiZDzmK8rsLKqkCCsbw75bp7TjxnJlH4BeSy9Vw
-         oyP2TORlGogyTOsTZgmYwCqQyvXiN4NrdYxQO18OxVvNKk1Y7roJSILGHPcysp0DDBgw
-         tNdz7mWUxtGEzA6v29y04tSEx6mXlA8hdc8W+NBjuoDRHcWpI/ouW7iyjhFAP1xCwgl2
-         0o0lbisNuWvmxQfaQ2FQ9W7pnmwZJBXG2SK/KpbyN6gIAn1BTChKUZSAIlIxCHVQ8lvM
-         6YkvVrqmO39dNfbzBzU3uOdffKYtZkGhZfybAdaYcoXqKhZd+l6rRt/dk2Dwr5ds8JXQ
-         q4pQ==
-X-Gm-Message-State: AOAM531RKhrw+DxBja/lOEhgw2sJ5tFyo6fMJUvkdGstvst6C/amL2nH
-        V6JR84COFejf/4jriY3kshwm8A==
-X-Google-Smtp-Source: ABdhPJweaCP3RA/mL6V/zy5lv6zuvs50a2hfob+eURt3NfLVY9uZ16ZmI/IdVVr97/nlSBGArcLYpg==
-X-Received: by 2002:a05:6a00:2188:b0:4a7:ec46:349c with SMTP id h8-20020a056a00218800b004a7ec46349cmr33274369pfi.26.1638206245157;
-        Mon, 29 Nov 2021 09:17:25 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id h3sm18914739pjz.43.2021.11.29.09.17.23
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GJz9RWbzi9C4eyOJNiBHCtQqCneeiBOlTZyVHZvdTbY=;
+        b=n6EGowy5YhLZQ7s3bCc1Vf9G0meJIg3jbJHTGjYbjrUTle7MkbvuKFdJfj36gZdi0j
+         V5m6BExvCGCj74lo96DWhk4x/7LGKKnwnQCgIaDOhvLjo7dn3LzzJbusNiryIqDP+HHT
+         /SnxXIesfuZcZYx3E5xxKKeA2OW5P1lj3n+F9WU6cOZpcgISEAxOb0SzRha8LcSwAAsJ
+         lZ7H+8Ac9Gvn33NeXAW5tvxEkmy+vAS1JzjvkHTxlVKOu04g3TP7SWulaY5sKH/OcvVH
+         lKJw+Csb7ZzJvNloi0hVypiLovk4Tq8lun/YymR8sZIxcsFHLMIyNv+SkOgTSCt3upfZ
+         Y65A==
+X-Gm-Message-State: AOAM533AeWG42QWl1ppOY72YPjCz3RANkr5+PBKG8UyVyFhQwRSMfhi/
+        8Ei8cK0lCqAdoEShTVBLqlK3ONlwF+SXEQ==
+X-Google-Smtp-Source: ABdhPJwVmS0SalFYLz6O8ewhDYaXtBZq+zhgghGAYTbCJPowe7PIeSLDtMw1cE7BD34HcoiBMnH3zw==
+X-Received: by 2002:a05:600c:1549:: with SMTP id f9mr51796wmg.118.1638210397631;
+        Mon, 29 Nov 2021 10:26:37 -0800 (PST)
+Received: from kista.localdomain (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
+        by smtp.gmail.com with ESMTPSA id o12sm85907wmq.12.2021.11.29.10.26.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 09:17:24 -0800 (PST)
-Date:   Mon, 29 Nov 2021 10:17:21 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Hari Nagalla <hnagalla@ti.com>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        a-govindraju@ti.com
-Subject: Re: [PATCH 0/4] TI K3 R5F and C71x support on J721S2
-Message-ID: <20211129171721.GA676889@p14s>
-References: <20211122122726.8532-1-hnagalla@ti.com>
+        Mon, 29 Nov 2021 10:26:37 -0800 (PST)
+From:   Jernej Skrabec <jernej.skrabec@gmail.com>
+To:     linux-media@vger.kernel.org
+Cc:     ezequiel@vanguardiasur.com.ar, nicolas.dufresne@collabora.com,
+        mchehab@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
+        wens@csie.org, p.zabel@pengutronix.de, andrzej.p@collabora.com,
+        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: [PATCH v2 0/9] media: hantro: add Allwinner H6 support
+Date:   Mon, 29 Nov 2021 19:26:24 +0100
+Message-Id: <20211129182633.480021-1-jernej.skrabec@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211122122726.8532-1-hnagalla@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good morning Hari,
+Hi everyone!
 
-On Mon, Nov 22, 2021 at 06:27:22AM -0600, Hari Nagalla wrote:
-> Hi All,
-> 
-> The following series enhances the K3 R5F and DSP remoteproc drivers to
-> add support for the R5F clusters and C71x DSP on the newer TI K3 J721S2
-> SoC family. The J721S2 SoCs have 3 R5FSS clusters, one in MCU voltage
-> domain and the other two in MAIN voltage domain. There are also 2 C71x
-> DSP subsystems in MAIN voltage domain. The R5FSS is similar to the R5FSS
-> in J7200 SoCs, while the C71x DSPs are similar to the C71x DSP on J721e
-> SoCs.
-> 
-> See J721S2 Technical Reference Manual (SPRUJ28 – NOVEMBER 2021)
-> for further details: http://www.ti.com/lit/pdf/spruj28
-> 
-> Regards
-> Hari
-> 
-> Hari Nagalla (4):
->   dt-bindings: remoteproc: k3-r5f: Update bindings for J721S2 SoCs
->   dt-bindings: remoteproc: k3-dsp: Update bindings for J721S2 SoCs
->   remoteproc: k3-dsp: Extend support for C71x DSPs on J721S2 SoCs
->   remoteproc: k3-r5: Extend support for R5F clusters on J721S2 SoCs
-> 
->  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml   | 3 +++
->  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml   | 8 +++++---
->  drivers/remoteproc/ti_k3_dsp_remoteproc.c                 | 1 +
->  drivers/remoteproc/ti_k3_r5_remoteproc.c                  | 5 +++--
+Here is patchset which adds support for Hantro G2 core found in Allwinner
+H6 SoC. It is slightly older core, so it needs few quirks to be
+implemented:
+1. It uses slightly different register layout in some cases. However, those
+   differences are small, so it makes sense only to add quirks.
+2. It doesn't use ring buffer for bitstream as newer variants.
+3. It needs double buffering to be enabled in order to work correctly.
+4. postproc must be enabled at the end of the job. It seems that core has
+   some issues with latching register values if postproc registers are set
+   at the beginning of the job
 
-For all 4 patches:
+legacy_regs quirk could be split into 2, like legacy_regs, ring_buffer, but
+I didn't see the need for that. I examined vendor sources at [1] and it
+suggests that legacy_regs implies no ring buffer.
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+It's also unclear if core supports HEVC decoding or not. This can be
+implemented later. VP9 10-bit decoding support is mentioned in manual, but
+it doesn't work at the moment. This will be addressed later.
 
-It was a holiday last week in the US so I'll give more time for Rob to review this (should
-he want to) before publishing.
+Based on top of:
+https://www.spinics.net/lists/linux-media/msg202448.html
 
-Thanks,
-Mathieu
+Please take a look.
 
+Best regards,
+Jernej
 
->  4 files changed, 12 insertions(+), 5 deletions(-)
-> 
-> -- 
-> 2.17.1
-> 
+[1] https://github.com/CliveLau1990/imx-vpu-hantro
+
+Changes from v1:
+- fixed error path in probe function
+- sorted register defines by bit number and rename some of them
+- added late_postproc quirk and reversed order in condition
+- factor out imx8m_vpu_g2_irq to a helper
+- updated Allwinner platform code
+- collected tags
+
+Jernej Skrabec (9):
+  media: hantro: Fix probe func error path
+  media: hantro: add support for reset lines
+  media: hantro: vp9: use double buffering if needed
+  media: hantro: vp9: add support for legacy register set
+  media: hantro: move postproc enablement for old cores
+  media: hantro: Convert imx8m_vpu_g2_irq to helper
+  media: dt-bindings: allwinner: document H6 Hantro G2 binding
+  media: hantro: Add support for Allwinner H6
+  arm64: dts: allwinner: h6: Add Hantro G2 node
+
+ .../media/allwinner,sun50i-h6-vpu-g2.yaml     | 64 ++++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  9 ++
+ drivers/staging/media/hantro/Kconfig          | 10 ++-
+ drivers/staging/media/hantro/Makefile         |  3 +
+ drivers/staging/media/hantro/hantro.h         |  9 ++
+ drivers/staging/media/hantro/hantro_drv.c     | 28 +++++-
+ drivers/staging/media/hantro/hantro_g2.c      | 18 ++++
+ drivers/staging/media/hantro/hantro_g2_regs.h | 17 ++++
+ .../staging/media/hantro/hantro_g2_vp9_dec.c  | 76 ++++++++++++----
+ drivers/staging/media/hantro/hantro_hw.h      |  2 +
+ drivers/staging/media/hantro/imx8m_vpu_hw.c   | 20 +----
+ drivers/staging/media/hantro/sunxi_vpu_hw.c   | 86 +++++++++++++++++++
+ 12 files changed, 303 insertions(+), 39 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun50i-h6-vpu-g2.yaml
+ create mode 100644 drivers/staging/media/hantro/sunxi_vpu_hw.c
+
+-- 
+2.34.1
+
