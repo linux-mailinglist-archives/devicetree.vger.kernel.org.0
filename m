@@ -2,99 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7920046157D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 13:51:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 362C846159A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 13:58:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234660AbhK2My0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 07:54:26 -0500
-Received: from sauhun.de ([88.99.104.3]:41764 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235038AbhK2Mw0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 07:52:26 -0500
-Received: from localhost (p54b33788.dip0.t-ipconnect.de [84.179.55.136])
-        by pokefinder.org (Postfix) with ESMTPSA id 177802C00AC;
-        Mon, 29 Nov 2021 13:49:06 +0100 (CET)
-Date:   Mon, 29 Nov 2021 13:49:05 +0100
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Kewei Xu <kewei.xu@mediatek.com>, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
-        caiyu.chen@mediatek.com, ot_daolong.zhu@mediatek.com,
-        yuhan.wei@mediatek.com
-Subject: Re: [PATCH v7 6/7] i2c: mediatek: Isolate speed setting via dts for
- special devices
-Message-ID: <YaTMQQhENmJAIUk4@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@the-dreams.de>,
-        Kewei Xu <kewei.xu@mediatek.com>, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
-        caiyu.chen@mediatek.com, ot_daolong.zhu@mediatek.com,
-        yuhan.wei@mediatek.com
-References: <20210917101416.20760-1-kewei.xu@mediatek.com>
- <20210917101416.20760-7-kewei.xu@mediatek.com>
- <YVf+83LdUEPjoLdI@kunai>
- <1891acec7f5c417f62081a8b10249b265df7ea62.camel@mediatek.com>
- <YWQYbaTIhud2QHNP@kunai>
+        id S237293AbhK2NB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 08:01:27 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33958 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230372AbhK2M70 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 07:59:26 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1ATCtnAa110837;
+        Mon, 29 Nov 2021 06:55:49 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638190549;
+        bh=xpfKTadBXPo99vJqrIrr6yNPN/kKtoRw6ZjKzqOo2hI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=aE6aURdqJHi/1iX70+u1w8+uoyaES7cZd+u0IG3x0jORKHp8ckasbN8e6FlbNu27x
+         pnEHdVPyEInGT7FMjXyVUYcJg9Boj8vRLbFTd/XecWh8HilAKii+qMYUZI8XCxJtXK
+         vfr+6PiTOgNWIuiljypMtKczAvr//2qoTnkkKh4E=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1ATCtnjG007961
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 29 Nov 2021 06:55:49 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 29
+ Nov 2021 06:55:48 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 29 Nov 2021 06:55:48 -0600
+Received: from [10.250.232.185] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1ATCth3Q070706;
+        Mon, 29 Nov 2021 06:55:44 -0600
+Subject: Re: [PATCH RFC v3 1/4] dt-bindings: mux: Increase the number of
+ arguments in mux-controls
+To:     Peter Rosin <peda@axentia.se>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20211123081222.27979-1-a-govindraju@ti.com>
+ <20211123081222.27979-2-a-govindraju@ti.com>
+ <24781209-928b-dea4-de0b-b103dac8de82@axentia.se>
+ <5f455c4d-5edb-4382-1193-a519a7a227a5@ti.com>
+ <f6e8cec9-4d74-dda5-d56a-b55ebfadf30a@axentia.se>
+ <46644e9a-a9e9-4cdb-47e3-f42ebf49f805@ti.com>
+ <11e3bb89-d706-28c1-b7a5-e61c5cc99c93@axentia.se>
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Message-ID: <ef93e2e3-32b7-25de-a800-d0d35c2314f2@ti.com>
+Date:   Mon, 29 Nov 2021 18:25:43 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jENikAxoMoLFIwSJ"
-Content-Disposition: inline
-In-Reply-To: <YWQYbaTIhud2QHNP@kunai>
+In-Reply-To: <11e3bb89-d706-28c1-b7a5-e61c5cc99c93@axentia.se>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Peter,
 
---jENikAxoMoLFIwSJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 29/11/21 5:58 pm, Peter Rosin wrote:
+> Hi Aswath,
+> 
+> On 2021-11-29 10:31, Aswath Govindraju wrote:
+>> Hi Peter,
+>>
+>> On 29/11/21 1:45 pm, Peter Rosin wrote:
+>>>
+>>>
+>>> On 2021-11-29 05:36, Aswath Govindraju wrote:
+>>>> Hi Peter,
+>>>>
+>>>> On 25/11/21 7:05 pm, Peter Rosin wrote:
+>>>>> Hi!
+>>>>>
+>>>>> You need to have some description on how #mux-control-cells now work.
+>>>>> The previous description is in mux-consumer.yaml and an update there
+>>>>> is needed.
+>>>>>
+>>>>> However, I have realized that the adg792a binding uses #mux-control-cells
+>>>>> to indicate if it should expose its three muxes with one mux-control
+>>>>> and operate the muxes in parallel, or if it should be expose three
+>>>>> independent mux-controls. So, the approach in this series to always
+>>>>> have the #mux-control-cells property fixed at <2> when indicating a
+>>>>> state will not work for that binding. And I see no fix for that binding
+>>>>> without adding a new property.
+>>>>>
+>>>>> So, I would like a different approach. Since I dislike how mux-controls
+>>>>> -after this series- is not (always) specifying a mux-control like the name
+>>>>> says, but instead optionally a specific state, the new property I would
+>>>>> like to add is #mux-state-cells such that it would always be one more
+>>>>> than #mux-control-cells.
+>>>>>
+>>>>> 	mux: mux-controller {
+>>>>> 		compatible = "gpio-mux";
+>>>>> 		#mux-control-cells = <0>;
+>>>>> 		#mux-state-cells = <1>;
+>>>>>
+>>>>> 		mux-gpios = <...>;
+>>>>> 	};
+>>>>>
+>>>>> 	can-phy {
+>>>>> 		compatible = "ti,tcan1043";
+>>>>> 		...
+>>>>> 		mux-states = <&mux 1>;
+>>>>> 	};
+>>>>>
+>>>>> That solves the naming issue, the unused argument for mux-conrtrollers
+>>>>> that previously had #mux-control-cells = <0>, and the binding for adg792a
+>>>>> need no longer be inconsistent.
+>>>>>
+>>>>> Or, how should this be solved? I'm sure there are other options...
+>>>>>
+>>>>
+>>>>
+>>>> I feel that the new approach using mux-state-cells seems to be
+>>>> overpopulating the device tree nodes, when the state can be represented
+>>>> using the control cells. I understand that the definition for
+>>>> mux-controls is to only specify the control line to be used in a given
+>>>> mux. Can't it now be upgraded to also represent the state at which the
+>>>> control line has to be set to?
+>>>>
+>>>> With respect to adg792a, it is inline with the current implementation
+>>>> and the only change I think would be required in the driver is,
+>>>
+>>> No, that does not work. See below.
+>>>
+>>>>
+>>>> diff --git a/drivers/mux/adg792a.c b/drivers/mux/adg792a.c
+>>>> index e8fc2fc1ab09..2cd3bb8a40d4 100644
+>>>> --- a/drivers/mux/adg792a.c
+>>>> +++ b/drivers/mux/adg792a.c
+>>>> @@ -73,8 +73,6 @@ static int adg792a_probe(struct i2c_client *i2c)
+>>>>         ret = device_property_read_u32(dev, "#mux-control-cells", &cells);
+>>>>         if (ret < 0)
+>>>>                 return ret;
+>>>> -       if (cells >= 2)
+>>>> -               return -EINVAL;
+>>>>
+>>>>         mux_chip = devm_mux_chip_alloc(dev, cells ? 3 : 1, 0);
+>>>
+>>> When you add cell #2 with the state, the cells variable will end up
+>>> as 2 always. Which means that there is no way to alloc one mux
+>>> control since "cells ? 3 : 1" will always end up as "3", with no
+>>> easy fix.
+>>>
+>>> So, your approach does not work for this driver.
+>>>
+>>
+>> Sorry, but how is this different from the case of
+>>
+>> #mux-control-cells = 1
+>>
+>> If #mux-control-cells is equal to 1 it means the consumer will use a
+>> given control line from the mux chip. The same would be the case when we
+>> will be using, #mux-control-cells is equal to 2, except we can also
+>> provide the state.
+>>
+>> If the consumer will use all the lines then #mux-control-cells will be
+>> set to 0. In this condition the state can't be provided from the DT and
+>> the consumer will be controlling the entire mux chip. If
+>> #mux-control-cells is greater than 0 then we will not be able to provide
+>> multiple lines of control using a single mux-controls entry(mux-controls
+>> = <...>;) right? We would have the using multiple mux-controls
+>> entries(mux-controls = <...>, <...>;).
+> 
+> I think you misunderstand. The adg792a driver operates the chip in
+> different modes depending on if you specify 0 or 1 cells. With 0,
+> it's not just that the consumer operates three muxes. It is also, and
+> more importantly, that the three muxes are operated in parallel without
+> the consumer doing anything different with the single mux control it
+> sees (even if there are three muxes operated by that single mux
+> control).
+> 
+> That said, yes, you can make it limp along like you describe above.
+> But why should it not be possible to specify a specific state when
+> the adg792a driver operates the muxes in parallel? And yes, you could
+> add some other flag to indicate this mode, but my point is that it
+> is silly to add special cases like this if you don't need to. Since
+> adding a specific state is the new thing, that is what should be
+> added in a way that fits with the old stuff without imposing new
+> flags on that old stuff.
+> 
+> An example: the three muxes in an adg792a chip could be used as
+> two muxes for some I2C bus (SCL and SDA signals) and the third mux
+> for something unrelated. Suppose that you want to operate the adg792a
+> as three parallel muxes so that you mux SCL and SDA simultaneously
+> (as is expected by the i2c-mux-gpmux binding, it only expects one
+> mux control), and that you want to use the third mux as the enable-
+> state for your phy. With your suggested binding you cannot, unless
+> you add a mechanism to make the adg792a driver operate its muxes in
+> parallel even if there are two cells instead of zero. I.e. without
+> that new flag the i2c-mux-gpmux binding needs to see
+> 
+> 	#mux-control-cells = <0>;
+> 
+> while your new phy binding instead needs to see
+> 
+> 	#mux-control-cells = <2>;
+> 
+> And you obviously can't have it both ways.
+> 
+> (Sure, it would not be possible to mux the I2C bus while the phy
+> is enabled in the above example, but there could be some other
+> limitation in place that makes that invalid anyway. And it's just
+> an example anyway...)
+> 
+> A mux-control is potentially a shared resource, and bindings have
+> to take this into account.
+> 
 
+Understood. Thank you for the explanation. Will correct the
+implementation and post a respin.
 
-> > stretching. But if the slave device stretch the SCL line for too long
-> > time, our design still cannot make tSU,STA/tHD,STA/tSU,STO meet spec.
->=20
-> Isn't the new algorithm broken if it cannot support clock stretching?
-> What was the problem of the old algorithm not meeting the spec?
->=20
-> > However in the old (default) timing algorithm before the commit
-> > be5ce0e97cc7 ("i2c: mediatek: Add i2c ac-timing adjust support"),
-> > tSU,STA/tHD,STA/tSU,STO can meet spec. So we want to define a new
-> > setting "default-adjust-timing" for using the old (default) timing
-> > algorithm."
->=20
-> What I still do not get: the old algorithm was able to handle clock
-> stretching. Why can't you update the new one to handle clock stretching
-> as well. I might be missing something, but what is it?
+Regards,
+Aswath
 
-I am still interested. Especially in the last question. Is the last
-question clear to you? I can explain some more otherwise.
+> Cheers,
+> Peter
+> 
 
-
---jENikAxoMoLFIwSJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGkzD0ACgkQFA3kzBSg
-KbZJ4w/+KijOL+ZUEZ6LpgcHKAXFLv5FFa7WMHqAT6VluNHAVbrHkqyv1Ezlk8fh
-fNYgiB80C3VNLIyuBDiarW4yqIgw3v9HVOSqdpkTnF9uo4QFEmh6k1cmMcsjoVb2
-biNx5LnauS95Prup1NPApFsCX4X/pSyN28AZF9VwCZTkHOGHcXzqZs9sEX3+ztyd
-PnhQZvsn89nBBdwTNY+SqmsIWapYVBeQ+Cii1y88ZTfWCH6PJMBIineUCmRDAYZc
-8uLMnxh1y+RjLIda3KrtfScv/YhpsaXZ6LZjgNBIO5OTsGTrLodgoTLa+AKuZuyw
-fAg55T+gQEtPYW3bFB+Ereu6sA4Nk99QL9588VSowT/A2aiHWCJN0eyNhSBVgFDO
-bgzRgZIaB/bXAC+WdEtNBoH78j4gX+REtgWESTRA1MZdAxFZ7j1m3N19s9TTin78
-CD1ESqS6WkUVUnvrT49uJJtPqE859IPd64N9egpYBASbMniJMImHVdkbpeZVXD4O
-ffYV40aL/frsHqTZGPmoqrVfgUa90OnMExdwfeR1Ei45ptUhxHWiSlw2rUj5/QmA
-fIyXoOBWLaKSfRZDRvQK6mnCWfEipYIZPd3GB1bXGl8OgO09xfELzgVjM4+EQgZy
-qEnZyfpSHw0CeqEOupM7gstslBxmMaw8Ryx88BMfbDQmPcnpQOY=
-=PbfA
------END PGP SIGNATURE-----
-
---jENikAxoMoLFIwSJ--
