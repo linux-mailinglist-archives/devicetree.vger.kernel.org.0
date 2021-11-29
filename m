@@ -2,226 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2033461290
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 11:39:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAE44612F7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 11:55:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345203AbhK2Km7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 05:42:59 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:56691 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S233519AbhK2Kk7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 05:40:59 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1638182261; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=NfRWfQ/kjNZZNKYjAgXr3woDR9TbFsk4RacT+8xIke8=; b=lrgyGjSE9PiYUckDwY6xElgCSo4ZejO56w63xfd/XQcMyqT/P+zSXCurs4e3RWl/GyffZzvP
- qfq+R39ZJljh80hokN9ItXm3DgPozDdY3eBeaAleIGiSPFz2kosX/PbvG7x3PsTfcsUU9q+u
- tdgdYNiqGXsoiJFGAk0RlpRODL4=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n09.prod.us-east-1.postgun.com with SMTP id
- 61a4ad74135a8a9d0e4bcda2 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 29 Nov 2021 10:37:40
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 24951C43616; Mon, 29 Nov 2021 10:37:40 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.0
-Received: from [10.242.143.72] (unknown [202.46.23.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0E59BC4338F;
-        Mon, 29 Nov 2021 10:37:33 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 0E59BC4338F
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
-Subject: Re: [PATCH v6 08/10] ASoC: dt-bindings: Add SC7280 lpass cpu bindings
+        id S1353668AbhK2K7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 05:59:00 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:61171 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1354053AbhK2K47 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 05:56:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1638183222; x=1669719222;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=R9q8ZY+4y741nMzmbZ39VvreAq/x6X3LyAqZ012x52g=;
+  b=vzxyZHdNxuQYXpzaoLJyED8NxeD2B5pNHoTsTZzSLwK2FTtRZ92vmM9O
+   J0sFF5/lHHyl+XecJyA5qTIDfvv44NOISGuQkPQUc0eIcMLyO7KSv/iAm
+   EgusNMugBrCYZbEIS4LH4ThyOlFBr6pcv7nMNYR7uHFHe7YolSB8vrHcy
+   jSIlzd8p/olh3nh01Jnaps22NvqCV1WKmi9XcQqj5Y6yaMfoze5qH8qT+
+   7ZZhXJL/6/F5S8O7DwWmXdVn38tqEQhwhWZgp05ap0LWBwIcn+WhRQqfR
+   4S/S4Mu64oej93CbocbdzDVT41HA18DiZKud2cW6WthKnevHDHP7w2ih9
+   Q==;
+IronPort-SDR: MK7wi5yjSHmP1bE+nIW0rQVbEccW9k9jBa8xPjop6r0EDbg6tuY3b2dt9axMVRM9gnn7mBhnce
+ VYhTO1lEclxv/jcFqEV0lqY8UddkxON4Hi5kfNkHVKbfe8inYd5ip2hHGcnIMbb3E/Aa00g4Bm
+ Pap2dX56C5gfKdCULlohQxPnNSc6ACsxqdhMosVJBBjbZeZvEPyP0YA0tSCL0Xw8q2fxYEBaMY
+ 6A6qcLNomAFUuR8fF4tHNqvFs2HpnEf4jRGl/YdNewEgBt9HnH7+4VIASZUwpBvUT2f6iva79U
+ Ax400hbZKbVURmxT+Iz9JKes
+X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; 
+   d="scan'208";a="145416852"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Nov 2021 03:53:41 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 29 Nov 2021 03:53:41 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Mon, 29 Nov 2021 03:53:41 -0700
+Date:   Mon, 29 Nov 2021 11:55:37 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1637928282-2819-1-git-send-email-srivasam@codeaurora.org>
- <1637928282-2819-9-git-send-email-srivasam@codeaurora.org>
- <YaO0ER2pNIQrvlxM@robh.at.kernel.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited.
-Message-ID: <9c21dc98-6bbb-bf33-361c-a768d185f07a@codeaurora.org>
-Date:   Mon, 29 Nov 2021 16:07:31 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+CC:     <davem@davemloft.net>, <kuba@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <linux@armlinux.org.uk>, <andrew@lunn.ch>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v4 1/6] dt-bindings: net: lan966x: Add
+ lan966x-switch bindings
+Message-ID: <20211129105537.p3elvh5bztyhner2@soft-dev3-1.localhost>
+References: <20211126090540.3550913-1-horatiu.vultur@microchip.com>
+ <20211126090540.3550913-2-horatiu.vultur@microchip.com>
+ <YaQTWG6g8nNP7GGX@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <YaO0ER2pNIQrvlxM@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YaQTWG6g8nNP7GGX@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The 11/28/2021 17:40, Rob Herring wrote:
 
-On 11/28/2021 10:23 PM, Rob Herring wrote:
-Thanks for Your Time Rob!!!
-> On Fri, Nov 26, 2021 at 05:34:40PM +0530, Srinivasa Rao Mandadapu wrote:
->> Add bindings for sc7280 lpass cpu driver which supports
->> audio over i2s based speaker, soundwire based headset, msm dmics
->> and HDMI Port.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
->> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
->> ---
->>   .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 69 +++++++++++++++++++---
->>   1 file changed, 61 insertions(+), 8 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> index 1e23c0e..0f5a57c 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
->> @@ -22,35 +22,36 @@ properties:
->>         - qcom,lpass-cpu
->>         - qcom,apq8016-lpass-cpu
->>         - qcom,sc7180-lpass-cpu
->> +      - qcom,sc7280-lpass-cpu
->>   
->>     reg:
->> -    maxItems: 2
->> +    maxItems: 5
->>       description: LPAIF core registers
->>   
->>     reg-names:
->> -    maxItems: 2
->> +    maxItems: 5
->>   
->>     clocks:
->>       minItems: 3
->> -    maxItems: 6
->> +    maxItems: 7
->>   
->>     clock-names:
->>       minItems: 3
->> -    maxItems: 6
->> +    maxItems: 7
->>   
->>     interrupts:
->> -    maxItems: 2
->> +    maxItems: 4
->>       description: LPAIF DMA buffer interrupt
->>   
->>     interrupt-names:
->> -    maxItems: 2
->> +    maxItems: 4
->>   
->>     qcom,adsp:
->>       $ref: /schemas/types.yaml#/definitions/phandle
->>       description: Phandle for the audio DSP node
->>   
->>     iommus:
->> -    maxItems: 2
->> +    maxItems: 3
->>       description: Phandle to apps_smmu node with sid mask
->>   
->>     power-domains:
->> @@ -69,7 +70,7 @@ patternProperties:
->>     "^dai-link@[0-9a-f]$":
->>       type: object
->>       description: |
->> -      LPASS CPU dai node for each I2S device. Bindings of each node
->> +      LPASS CPU dai node for each I2S device or Soundwire device. Bindings of each node
->>         depends on the specific driver providing the functionality and
->>         properties.
->>       properties:
->> @@ -174,6 +175,58 @@ allOf:
->>           - iommus
->>           - power-domains
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            const: qcom,sc7280-lpass-cpu
->> +
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          oneOf:
->> +            - items:   #for I2S
->> +                - const: lpass_aon_cc_audio_hm_h_clk
->> +                - const: lpass_core_cc_sysnoc_mport_core_clk
->> +                - const: lpass_core_cc_ext_if1_ibit_clk
->> +            - items:   #for Soundwire
->> +                - const: lpass_aon_cc_audio_hm_h_clk
->> +                - const: lpass_audio_cc_codec_mem0_clk
->> +                - const: lpass_audio_cc_codec_mem1_clk
->> +                - const: lpass_audio_cc_codec_mem2_clk
->> +            - items:   #for HDMI
->> +                - const: lpass_aon_cc_audio_hm_h_clk
-> 'lpass_' and '_clk' are redundant.
-Yes. but these clock names are defined by HW design team. clock drivers 
-fallowed the same,  hence in audio drivers.
->
->> +
->> +        reg-names:
->> +          anyOf:
->> +            - items:   #for I2S
->> +                - const: lpass-lpaif
->> +            - items:   #for I2S and HDMI
->> +                - const: lpass-hdmiif
->> +                - const: lpass-lpaif
-> Doesn't this apply to other SoCs?
->
->> +            - items:   #for I2S, soundwire and HDMI
->> +                - const: lpass-cdc-lpm
->> +                - const: lpass-rxtx-lpaif
->> +                - const: lpass-va-lpaif
->> +                - const: lpass-hdmiif
->> +                - const: lpass-lpaif
-> 'lpass-' is redundant too, but consistency across SoCs is better.
->
-> hdmiif and lpaif should be first. (Add new resources on the end.)
-Okay.. order is maintained as per register addresses. if it's okay, even 
-address range is out of order, will change accordingly.
->
->> +        interrupt-names:
->> +          anyOf:
->> +            - items:   #for I2S
->> +                - const: lpass-irq-lpaif
->> +            - items:   #for I2S and HDMI
->> +                - const: lpass-irq-lpaif
->> +                - const: lpass-irq-hdmi
->> +            - items:   #for I2S, soundwire and HDMI
->> +                - const: lpass-irq-lpaif
->> +                - const: lpass-irq-vaif
->> +                - const: lpass-irq-rxtxif
->> +                - const: lpass-irq-hdmi
-> Again, add new entries to the end.
-  Replied above for the same.
->> +
->> +      required:
->> +        - iommus
->> +        - power-domains
->> +
->>   examples:
->>     - |
->>       #include <dt-bindings/sound/sc7180-lpass.h>
->> -- 
->> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
->> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
->>
->>
+Hi Rob,
+
+> 
+> On Fri, Nov 26, 2021 at 10:05:35AM +0100, Horatiu Vultur wrote:
+> > Document the lan966x switch device driver bindings
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  .../net/microchip,lan966x-switch.yaml         | 149 ++++++++++++++++++
+> >  1 file changed, 149 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > new file mode 100644
+> > index 000000000000..9367491dd2d5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > @@ -0,0 +1,149 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/microchip,lan966x-switch.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Microchip Lan966x Ethernet switch controller
+> > +
+> > +maintainers:
+> > +  - Horatiu Vultur <horatiu.vultur@microchip.com>
+> > +
+> > +description: |
+> > +  The lan966x switch is a multi-port Gigabit AVB/TSN Ethernet Switch with
+> > +  two integrated 10/100/1000Base-T PHYs. In addition to the integrated PHYs,
+> > +  it supports up to 2RGMII/RMII, up to 3BASE-X/SERDES/2.5GBASE-X and up to
+> > +  2 Quad-SGMII/Quad-USGMII interfaces.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^switch@[0-9a-f]+$"
+> > +
+> > +  compatible:
+> > +    const: microchip,lan966x-switch
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: cpu target
+> > +      - description: general control block target
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: cpu
+> > +      - const: gcb
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    items:
+> > +      - description: register based extraction
+> > +      - description: frame dma based extraction
+> > +
+> > +  interrupt-names:
+> > +    minItems: 1
+> > +    items:
+> > +      - const: xtr
+> > +      - const: fdma
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: Reset controller used for switch core reset (soft reset)
+> > +      - description: Reset controller used for releasing the phy from reset
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: switch
+> > +      - const: phy
+> > +
+> > +  ethernet-ports:
+> > +    type: object
+> > +    patternProperties:
+> > +      "^port@[0-9a-f]+$":
+> > +        type: object
+> 
+> This needs a reference to ethernet-controller.yaml so that all the
+> properties have a type applied.
+> 
+> See dsa.yaml for an example.
+
+Yes, I will do that in the next version.
+
+> 
+> > +
+> > +        properties:
+> > +          '#address-cells':
+> > +            const: 1
+> > +          '#size-cells':
+> > +            const: 0
+> > +
+> > +          reg:
+> > +            description:
+> > +              Switch port number
+> > +
+> > +          phys:
+> > +            description:
+> > +              Phandle of a Ethernet SerDes PHY
+> > +
+> > +          phy-mode:
+> > +            description:
+> > +              This specifies the interface used by the Ethernet SerDes towards
+> > +              the PHY or SFP.
+> 
+> Presumably only some subset of all defined modes are possible on this
+> h/w?
+
+That is correct, I will add an enum with the supported modes. Something
+like in ethernet-controller.yaml.
+
+> 
+> > +
+> > +          phy-handle:
+> > +            description:
+> > +              Phandle of a Ethernet PHY.
+> > +
+> > +          sfp:
+> > +            description:
+> > +              Phandle of an SFP.
+> > +
+> > +          managed: true
+> > +
+> > +        required:
+> > +          - reg
+> > +          - phys
+> > +          - phy-mode
+> > +
+> > +        oneOf:
+> > +          - required:
+> > +              - phy-handle
+> > +          - required:
+> > +              - sfp
+> > +              - managed
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - resets
+> > +  - reset-names
+> > +  - ethernet-ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    switch: switch@e0000000 {
+> > +      compatible = "microchip,lan966x-switch";
+> > +      reg =  <0xe0000000 0x0100000>,
+> > +             <0xe2000000 0x0800000>;
+> > +      reg-names = "cpu", "gcb";
+> > +      interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+> > +      interrupt-names = "xtr";
+> > +      resets = <&switch_reset 0>, <&phy_reset 0>;
+> > +      reset-names = "switch", "phy";
+> > +      ethernet-ports {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        port0: port@0 {
+> > +          reg = <0>;
+> > +          phy-handle = <&phy0>;
+> > +          phys = <&serdes 0 0>;
+> > +          phy-mode = "gmii";
+> > +        };
+> > +
+> > +        port1: port@1 {
+> > +          reg = <1>;
+> > +          sfp = <&sfp_eth1>;
+> > +          managed = "in-band-status";
+> > +          phys = <&serdes 2 4>;
+> > +          phy-mode = "sgmii";
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.33.0
+> >
+> >
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+/Horatiu
