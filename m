@@ -2,105 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB95D460F4E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 08:25:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BF63460FBA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 09:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239690AbhK2H3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 02:29:05 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:32767 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233486AbhK2H1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 02:27:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1638170628; x=1669706628;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ZlbWCVV/lfOP54IUq+A6kh+sJQ9XzioUfaO5ohBaCec=;
-  b=ezirMwPclZPnhtr/DlfMkda+UbwVRpDAw7cs+iiOQy9nWSSh3DRP7j6D
-   d9httSuycQ+1ElMqSrpF+IoMnIWRfbGpB6ptl3rNbPlJUu4/2Quly3l8N
-   wnr7CtyUTjlO9Dwnh8sZWa8x6GUy289LDczXtiXDSqkKdPA2BdCyJ48Jl
-   s=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Nov 2021 23:23:48 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Nov 2021 23:23:48 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Sun, 28 Nov 2021 23:23:47 -0800
-Received: from [10.216.45.128] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Sun, 28 Nov
- 2021 23:23:43 -0800
-Message-ID: <56a5820e-9cd7-aa49-7ce8-9547f355986e@quicinc.com>
-Date:   Mon, 29 Nov 2021 12:53:39 +0530
+        id S240087AbhK2II5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 03:08:57 -0500
+Received: from [113.204.237.245] ([113.204.237.245]:55246 "EHLO
+        test.cqplus1.com" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S242727AbhK2IG4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 03:06:56 -0500
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by cqmailgates with MailGates ESMTP Server V5.0(21485:0:AUTH_RELAY)
+        (envelope-from <xt.hu@cqplus1.com>); Mon, 29 Nov 2021 15:57:04 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 29 Nov 2021 15:57:03 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.017; Mon, 29 Nov 2021 15:57:03 +0800
+From:   =?utf-8?B?eHQuaHVb6IOh5YWI6Z+sXQ==?= <xt.hu@cqplus1.com>
+To:     Guenter Roeck <linux@roeck-us.net>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+Subject: RE: [PATCH v2 1/2] watchdog: Add watchdog driver for Sunplus SP7021
+Thread-Topic: [PATCH v2 1/2] watchdog: Add watchdog driver for Sunplus SP7021
+Thread-Index: AQHX4SAshE/roTn600ef7AgHipZV4awSNd0AgAE7tVD//68hAIAG+5Kw
+Date:   Mon, 29 Nov 2021 07:57:02 +0000
+Message-ID: <8604284aa38d4ab6bc263d4881107e13@cqplus1.com>
+References: <20211112105952.216280-1-xt.hu@cqplus1.com>
+ <20211124104149.361019-1-xt.hu@cqplus1.com>
+ <20211124104149.361019-2-xt.hu@cqplus1.com>
+ <20211124142522.GA3939252@roeck-us.net>
+ <0024d27919c04c84a3f13ecba86a3c70@cqplus1.com>
+ <f69d663a-982b-5876-08c9-b1a4f35e8098@roeck-us.net>
+In-Reply-To: <f69d663a-982b-5876-08c9-b1a4f35e8098@roeck-us.net>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.16]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH v2 2/2] irqchip: Add Qualcomm MPM controller driver
-To:     Shawn Guo <shawn.guo@linaro.org>, Marc Zyngier <maz@kernel.org>,
-        "Thomas Gleixner" <tglx@linutronix.de>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211126093529.31661-1-shawn.guo@linaro.org>
- <20211126093529.31661-3-shawn.guo@linaro.org>
-From:   Maulik Shah <quic_mkshah@quicinc.com>
-In-Reply-To: <20211126093529.31661-3-shawn.guo@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
-
-On 11/26/2021 3:05 PM, Shawn Guo wrote:
-> +static int __maybe_unused qcom_mpm_suspend_late(struct device *dev)
-
-why maybe unused?
-
-> +{
-> +	struct qcom_mpm_priv *priv = dev_get_drvdata(dev);
-> +	int i, ret;
-> +
-> +	for (i = 0; i < priv->reg_stride; i++)
-> +		qcom_mpm_write(priv, MPM_REG_STATUS, i, 0);
-> +
-> +	/* Notify RPM to write vMPM into HW */
-> +	ret = mbox_send_message(priv->mbox_chan, NULL);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused qcom_mpm_resume_early(struct device *dev)
-> +{
-> +	/* Nothing to do for now */
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops qcom_mpm_pm_ops = {
-> +	SET_LATE_SYSTEM_SLEEP_PM_OPS(qcom_mpm_suspend_late,
-> +				     qcom_mpm_resume_early)
-> +};
-
-This is not limited to suspend, you will need to notify RPM during 
-deepest cpu idle state entry as well, since MPM may be monitoring 
-interrupts in that case too.
-
-This may be handled for both suspend/CPUidle using cpu pm notifications 
-where in last cpu entering deepest idle may notify RPM (something 
-similar to what rpmh-rsc.c does)
-
-Thanks,
-Maulik
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEd1ZW50ZXIgUm9lY2sgW21h
+aWx0bzpncm9lY2s3QGdtYWlsLmNvbV0gT24gQmVoYWxmIE9mIEd1ZW50ZXIgUm9lY2sNCj4gU2Vu
+dDogVGh1cnNkYXksIE5vdmVtYmVyIDI1LCAyMDIxIDEyOjI2IFBNDQo+IFRvOiB4dC5odVvog6Hl
+hYjpn6xdIDx4dC5odUBjcXBsdXMxLmNvbT4NCj4gQ2M6IHdpbUBsaW51eC13YXRjaGRvZy5vcmc7
+IHAuemFiZWxAcGVuZ3V0cm9uaXguZGU7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+
+IGxpbnV4LXdhdGNoZG9nQHZnZXIua2VybmVsLm9yZzsgcm9iaCtkdEBrZXJuZWwub3JnOyBkZXZp
+Y2V0cmVlQHZnZXIua2VybmVsLm9yZzsgV2VsbHMgTHUg5ZGC6Iqz6aiwDQo+IDx3ZWxscy5sdUBz
+dW5wbHVzLmNvbT47IHFpbmppYW5b6KaD5YGlXSA8cWluamlhbkBjcXBsdXMxLmNvbT4NCj4gU3Vi
+amVjdDogUmU6IFtQQVRDSCB2MiAxLzJdIHdhdGNoZG9nOiBBZGQgd2F0Y2hkb2cgZHJpdmVyIGZv
+ciBTdW5wbHVzIFNQNzAyMQ0KPiANCj4gT24gMTEvMjQvMjEgNjo0MiBQTSwgeHQuaHVb6IOh5YWI
+6Z+sXSB3cm90ZToNCj4gPiBIaQ0KPiA+IAlUaGFua3MgZm9yIHlvdXIgcmV2aWV3LiBJIGV4cGxh
+aW4gdGhpcyBpbiBkZXRhaWwgYmVsb3cgdGhlIGNvbW1lbnQuDQo+ID4NCj4gPiBCZXN0IFJlZ2Fy
+ZHMsDQo+ID4gWGlhbnRhbw0KPiA+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+PiBG
+cm9tOiBHdWVudGVyIFJvZWNrIFttYWlsdG86Z3JvZWNrN0BnbWFpbC5jb21dIE9uIEJlaGFsZiBP
+ZiBHdWVudGVyIFJvZWNrDQo+ID4+IFNlbnQ6IFdlZG5lc2RheSwgTm92ZW1iZXIgMjQsIDIwMjEg
+MTA6MjUgUE0NCj4gPj4gVG86IHh0Lmh1W+iDoeWFiOmfrF0gPHh0Lmh1QGNxcGx1czEuY29tPg0K
+PiA+PiBDYzogd2ltQGxpbnV4LXdhdGNoZG9nLm9yZzsgcC56YWJlbEBwZW5ndXRyb25peC5kZTsg
+bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4gPj4gbGludXgtd2F0Y2hkb2dAdmdlci5r
+ZXJuZWwub3JnOyByb2JoK2R0QGtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
+OyBXZWxscyBMdSDlkYLoirMNCj4g6aiwDQo+ID4+IDx3ZWxscy5sdUBzdW5wbHVzLmNvbT47IHFp
+bmppYW5b6KaD5YGlXSA8cWluamlhbkBjcXBsdXMxLmNvbT4NCj4gPj4gU3ViamVjdDogUmU6IFtQ
+QVRDSCB2MiAxLzJdIHdhdGNoZG9nOiBBZGQgd2F0Y2hkb2cgZHJpdmVyIGZvciBTdW5wbHVzIFNQ
+NzAyMQ0KPiA+Pg0KPiA+PiBPbiBXZWQsIE5vdiAyNCwgMjAyMSBhdCAwNjo0MTo0OFBNICswODAw
+LCBYaWFudGFvIEh1IHdyb3RlOg0KPiA+Pj4gU3VucGx1cyBTUDcwMjEgcmVxdWlyZXMgd2F0Y2hk
+b2cgdGltZXIgc3VwcG9ydC4NCj4gPj4+IEFkZCB3YXRjaGRvZyBkcml2ZXIgdG8gZW5hYmxlIHRo
+aXMuDQo+ID4+Pg0KPiA+Pj4gU2lnbmVkLW9mZi1ieTogWGlhbnRhbyBIdSA8eHQuaHVAY3FwbHVz
+MS5jb20+DQo+ID4+PiAtLS0NCj4gPj4+ICsNCj4gPj4+ICsJcHJpdi0+YmFzZSA9IGRldm1fcGxh
+dGZvcm1faW9yZW1hcF9yZXNvdXJjZShwZGV2LCAwKTsNCj4gPj4+ICsJaWYgKElTX0VSUihwcml2
+LT5iYXNlKSkNCj4gPj4+ICsJCXJldHVybiBQVFJfRVJSKHByaXYtPmJhc2UpOw0KPiA+Pj4gKw0K
+PiA+Pj4gKwkvKiBUaGUgcmVnaXN0ZXJzIGFjY2Vzc2VkIGhlcmUgc2hhcmVkIGJ5IG11bHRpcGxl
+IGRyaXZlcnMuICovDQo+ID4+PiArCXdkdF9yZXMgPSBwbGF0Zm9ybV9nZXRfcmVzb3VyY2UocGRl
+diwgSU9SRVNPVVJDRV9NRU0sIDEpOw0KPiA+Pg0KPiA+PiBUaGlzIGlzIHVudXN1YWwuIFdoeSB3
+b3VsZCBvdGhlciBkcml2ZXJzIGFjY2VzcyBXRFRfQ1RSTCBhbmQgV0RUX0NOVCByZWdpc3RlcnMs
+IGFuZCBob3cgaXMgaXQNCj4gPj4gZW5zdXJlZCB0aGF0IHRoZSBvdGhlciBkcml2ZXJzIGRvIG5v
+dCBpbnRlcmZlciB3aXRoIHRoZSBhY2Nlc3NlcyBieSB0aGlzIGRyaXZlciA/DQo+ID4+DQo+ID4+
+IE5vcm1hbGx5IHN1Y2ggYSByZXNvdXJjZSB3b3VsZCBiZSBzaGFyZWQgdGhyb3VnaCBhIHBhcmVu
+dCBkcml2ZXIgd2l0aCBhcHByb3ByaWF0ZSBhY2Nlc3MgZnVuY3Rpb25zDQo+IHRvDQo+ID4+IGVu
+c3VyZSB0aGF0IGFjY2Vzc2VzIGFyZSBzeW5jaHJvbml6ZWQuDQo+ID4+DQo+ID4NCj4gPiBUaGUg
+cmVnaXN0ZXIgdXNlZCBieSB0aGlzIGRyaXZlciBjb25zaXN0cyBvZiB0d28gcGFydHMuIFRoZSBm
+aXJzdCBwYXJ0IHdoaWNoIGNvbnRhaW5zIFdEVF9DVFJMIGFuZA0KPiBXRFRfQ05UDQo+ID4gcmVn
+aXN0ZXJzIGlzIGV4Y2x1c2l2ZSBieSB3YXRjaGRvZy4NCj4gPiBJbiBzcGVjaWFsbHksIHRoZSBz
+ZWNvbmQgcGFydCBpcyBiZWxvbmcgdG8gYSBtdWx0aWZ1bmN0aW9uYWwgcmVnaXN0ZXIgZ3JvdXAg
+d2hpY2ggY29udHJvbCBJUCBhbmQgYnVzLg0KPiBSZWZlciB0bw0KPiA+IHJlZ2lzdGVyIG1hbnVh
+bCBiZWxvdzoNCj4gPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+ID4gTU8xX1NU
+Q19XREdfUlNUX0VOCTQJUlcJCVNUQyBXYXRjaGRvZyBUaW1lb3V0IFRyaWdnZXIgU3lzdGVtIFJl
+c2V0IEVuYWJsZQ0KPiA+IAkJCQkJCQkJCTA6IFNUQyB3YXRjaGRvZyAyIHRpbWVvdXQgd2lsbCBu
+b3QgdHJpZ2dlciBzeXN0ZW0NCj4gcmVzZXQoZGVmYXVsdCkNCj4gPiAJCQkJCQkJCQkxOiBTVEMg
+d2F0Y2hkb2cgMiB0aW1lb3V0IHdpbGwgdHJpZ2dlciBzeXN0ZW0gcmVzZXQNCj4gPiBNTzFfUklf
+V0RHX1JTVF9FTgkJMQlSVwkJUkJVUyBXYXRjaGRvZyBUaW1lb3V0IFRyaWdnZXIgU3lzdGVtIFJl
+c2V0IEVuYWJsZQ0KPiA+IAkJCQkJCQkJCTA6IFJCVVMgd2F0Y2hkb2cgdGltZW91dCB3aWxsIG5v
+dCB0cmlnZ2VyIHN5c3RlbQ0KPiByZXNldChkZWZhdWx0KQ0KPiA+IAkJCQkJCQkJCTE6IFJCVVMg
+d2F0Y2hkb2cgdGltZW91dCB3aWxsIHRyaWdnZXIgc3lzdGVtIHJlc2V0DQo+ID4gTU8xX1RJTUVS
+X1NUQU5EX0JZX0VOCTAJUlcJCVRpbWVyIFN0YW5kYnkgTW9kZSBFbmFibGUNCj4gPiAJCQkJCQkJ
+CQkwOiBEaXNhYmxlIChkZWZhdWx0KQ0KPiA+IAkJCQkJCQkJCTE6IEVuYWJsZSBBY3RpdmUgaGln
+aCB0byBlbnRlciB0aW1lciBzdGFuZGJ5IG1vZGUsDQo+ID4gCQkJCQkJCQkJCQlkZWZhdWx0IG5v
+dCBpbiBzdGFuZGJ5IG1vZGUNCj4gPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+
+ID4gWW91IGNhbiBzZWUgdGhhdCBpbiBhZGRpdGlvbiB0byB0aGUgYml0cyBmb3Igd2F0Y2hkb2cg
+dGhlcmUgYXJlIGJpdCBmaWVsZHMgZm9yIG90aGVyIG1vZHVsZXMuDQo+ID4gSSB1c2UgdGhpcyBy
+ZWdpc3RlciBiaXQ0IGFuZCBiaXQxLiBEZWZhdWx0IHZhbHVlIGlzIDAgdGhhdCB3YXRjaGRvZyBp
+bnRlcm5hbCBpbnRlcnJ1cHQgc2lnbmFsIGNhbid0IHRyaWdnZXINCj4gc3lzdGVtDQo+ID4gYW5k
+IFJCVVMgcmVzZXQuIEkgbmVlZCBzZXQgMSB3aGVuIHdhdGNoZG9nIHByb2JlLiBFYXJseSBJIGlt
+cGxlbWVudCB0aGUgb3BlcmF0aW9uIGluDQo+ID4gYXJjaC9hcm0vbWFjaC1zdW5wbHVzL3NwNzAy
+MS5jIGFuZCBjb25maWd1cmUgYnkgbWFjcm8uIEJ1dCBpbiBhcmNoL2FybTY0LCBkaXJlY3Rvcnkg
+bWFjaC1YWFggaXMNCj4gcmVtb3ZlZC4NCj4gPiBTbyBJIHNvbHZlIGluIHRoaXMgd2F5LiBBbnkg
+YmV0dGVyIHdheT8NCj4gPg0KPiBJZiB0aGUgcmVnaXN0ZXIgYXQgMHg5QzAwMDI3NCBpcyBhY2Nl
+c3NlZCBieSBvdGhlciBkcml2ZXJzLCBhY2Nlc3Nlcw0KPiB0byBpdCBtdXN0IGJlIHByb3RlY3Rl
+ZCBhZ2FpbnN0IGVhY2ggb3RoZXIgdG8gYXZvaWQgcmFjZSBjb25kaXRpb25zLg0KPiBIb3cgdG8g
+ZG8gdGhhdCB3b3VsZCBiZSB1cCB0byB5b3UuDQo+IA0KSGkgR3VlbnRlciwNCg0KRnJvbSB0aGUg
+cGVyc3BlY3RpdmUgb2Ygc29mdHdhcmUsIDB4OUMwMDAyNzQgaXMgb25seSBhY2Nlc3NlZCBkdXJp
+bmcNCmRyaXZlciBwcm9iZS4gSWYgdGhlIGRyaXZlciBpcyBidWlsZC1pbiBhbmQgb25seSBvbmUg
+Y29yZSBpcyBydW5uaW5nIGF0IGtlcm5lbCANCnN0YXJ0dXAuIFRoZXJlIGlzIG5vIGNvbXBldGl0
+aW9uLg0KVGhlIG9ubHkgcG9zc2liaWxpdHkgb2YgYW4gZXJyb3IgaXMgdG8gY29tcGlsZSB0aGUg
+ZHJpdmVyIGludG8gYSBtb2R1bGUuIEluIHRoaXMgDQpjYXNlLCB0aGUgcmVnaXN0ZXIgYXQgMHg5
+QzAwMDI3NCBvZmZlciBNQVNLX0JJVFNbMzE6MTZdIHdoaWNoIHdyaXRlIHZhbGlkIA0KYml0IGZv
+ciBlYWNoIExTQiAxNiBiaXRzLiBSZWZlciB0byB0aGUgZGVmaW5lIGluIGRyaXZlcjoNCiNkZWZp
+bmUgTUFTS19TRVQobWFzaykJCSgobWFzaykgfCAobWFzayA8PCAxNikpDQpFdmVuIGlmIGJvdGgg
+ZHJpdmVycyBhY2Nlc3MgdGhlIHJlZ2lzdGVyIGF0IHRoZSBzYW1lIHRpbWUsIHRoZSBpbnN0cnVj
+dGlvbnMgYXJlIA0KZXhlY3V0ZWQgaW4gb3JkZXIgb24gdGhlIFJCVVMuIFNvIGFzIGxvbmcgYXMg
+dGhlIHNhbWUgYml0IGluIHRoZSBzYW1lIHJlZ2lzdGVyIA0KaXMgbm90IGFjY2Vzc2VkIGF0IHRo
+ZSBzYW1lIHRpbWUsIG5vIGVycm9yIHdpbGwgb2NjdXIuDQoNCkJlc3QgUmVnYXJkcywNClhpYW50
+YW8NCg0KPiBHdWVudGVyDQo=
