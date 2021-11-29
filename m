@@ -2,117 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEB6B461AD6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 16:27:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4625461AFA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 16:32:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245595AbhK2Pat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 10:30:49 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:36022 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343500AbhK2P2t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 10:28:49 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D30361565;
-        Mon, 29 Nov 2021 15:25:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F964C53FCB;
-        Mon, 29 Nov 2021 15:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638199530;
-        bh=+vq3MHsDvipiLoV00ftYjxoi2wc+BhfhHKvogme1oFs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uV5vwLPAc4rEds27VkcqNfeQwjNyY15b7jf8rGqViVuL2hXtNeVdD0BxBNmh6SSQc
-         UCEo/QYMBFom6mVPNgcJhx3CxV9OM4X7hv4sUlzDH+qMgOAh0YGb7ZEi2teSX5gKvA
-         QBn0lKi1USTNm/4slq772Pn/J4jlBufG3OVdDXrjthVdJeXOF/s1Gn/lYKYe0Wj4ZC
-         URvgZpU1pw2qT26NV5MDS01eof2gcxcU1RL8FlX9JPycLEkDcuQksTxqZ+4lJr5uYH
-         WfTfhlfVd1Q5iOxiIv+VK75rVrxRI0LWl43qtguGXdUjLu8T19/+Rn9mm1TQ2dxipU
-         ha7XGwrUCsTWw==
-Date:   Mon, 29 Nov 2021 15:25:26 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Ward <Adam.Ward.opensource@diasemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S1344919AbhK2PgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 10:36:03 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:45824 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229883AbhK2Pd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 10:33:57 -0500
+Received: by mail-oi1-f169.google.com with SMTP id 7so35213391oip.12;
+        Mon, 29 Nov 2021 07:30:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=6THXcIGoLp6QwGKfw0cyj8oia8wwhQE6ljHde1y7tgU=;
+        b=4Lph2TiYqFWRcvLjlRA9QWAVlJyEAr93Epd/zL8ijjFvij0zoQuXXziy63GKYUDzBl
+         BkcdchQCcZILD1W5dGilTgbJHWDY0eavjtXET7H/m9K4pwOpIfWnDUnpWJSauAwPIvZI
+         VBTw9BfylhECkUyS6+Emb9aavajxyDJKD4cLTogVxX/q6Jls1yTQUnyBOjfX5GN3hnXO
+         0IWJXb1yKdt1dP+JPti9nYg6uzXyKx53vj3nZQ5zfDXs328+nlbP0VdbPCo1PLIs1jVJ
+         hW2qVezTSta4fpCuCtvHGkQbWODWK8iFerKuiYkvqhrjt13XXbzj76gNAe7a3EX7ZZt2
+         5J7g==
+X-Gm-Message-State: AOAM530JHdPwAWvhBo8tVbDR9PtFY16KA/0f4sdM/oGL8RzdjQQof6j5
+        OxilTjZFP/KaQkrgjxz51A==
+X-Google-Smtp-Source: ABdhPJzSL0gcqzaakshHOOyWn+i3lg8/UoCkqqvEtyH87CsQRjyrYnvjJR22ShYlDpIIpvfFrqxLDw==
+X-Received: by 2002:a05:6808:1185:: with SMTP id j5mr41185468oil.16.1638199839402;
+        Mon, 29 Nov 2021 07:30:39 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id ay40sm3107794oib.1.2021.11.29.07.30.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 07:30:38 -0800 (PST)
+Received: (nullmailer pid 123617 invoked by uid 1000);
+        Mon, 29 Nov 2021 15:30:31 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>, agross@kernel.org,
+        lgirdwood@gmail.com, bgoswami@codeaurora.org, robh+dt@kernel.org,
+        linux-gpio@vger.kernel.org, judyhsiao@chromium.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Support Opensource <support.opensource@diasemi.com>
-Subject: Re: [PATCH v3 3/3] regulator: da9121: Add DA914x support
-Message-ID: <YaTuUS4GwZ4ON7fz@sirena.org.uk>
-References: <cover.1637709844.git.Adam.Ward.opensource@diasemi.com>
- <31d387d0a364eef9d5ef72f0adf6d213197a4dfb.1637709844.git.Adam.Ward.opensource@diasemi.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MTFxC0I+jVmjt9gj"
-Content-Disposition: inline
-In-Reply-To: <31d387d0a364eef9d5ef72f0adf6d213197a4dfb.1637709844.git.Adam.Ward.opensource@diasemi.com>
-X-Cookie: Pass with care.
+        bjorn.andersson@linaro.org, swboyd@chromium.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com, perex@perex.cz,
+        linux-arm-msm@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>, broonie@kernel.org,
+        plai@codeaurora.org, rohitkr@codeaurora.org,
+        alsa-devel@alsa-project.org
+In-Reply-To: <1638179932-3353-3-git-send-email-srivasam@codeaurora.org>
+References: <1638179932-3353-1-git-send-email-srivasam@codeaurora.org> <1638179932-3353-3-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH v3 2/5] dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi pinctrl bindings
+Date:   Mon, 29 Nov 2021 09:30:31 -0600
+Message-Id: <1638199831.132589.123616.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 29 Nov 2021 15:28:49 +0530, Srinivasa Rao Mandadapu wrote:
+> Add device tree binding Documentation details for Qualcomm SC7280
+> LPASS LPI pinctrl driver.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> ---
+>  .../pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml     | 115 +++++++++++++++++++++
+>  1 file changed, 115 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+> 
 
---MTFxC0I+jVmjt9gj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-On Tue, Nov 23, 2021 at 11:27:58PM +0000, Adam Ward wrote:
-> Signed-off-by: Adam Ward <Adam.Ward.opensource@diasemi.com>
+yamllint warnings/errors:
 
-This doesn't build:
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml: duplicate '$id' value 'http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-pinctrl.yaml#'
 
-/mnt/kernel/drivers/regulator/da9121-regulator.c:571:8: error: 'DA9141_IDX_BUCK1' undeclared here (not in a function); did you mean 'DA9121_IDX_BUCK1'?
-  571 |  .id = DA9141_IDX_BUCK1,
-      |        ^~~~~~~~~~~~~~~~
-      |        DA9121_IDX_BUCK1
-/mnt/kernel/drivers/regulator/da9121-regulator.c:595:8: error: 'DA914X_IDX_BUCK1' undeclared here (not in a function); did you mean 'DA9121_IDX_BUCK1'?
-  595 |  .id = DA914X_IDX_BUCK1,
-      |        ^~~~~~~~~~~~~~~~
-      |        DA9121_IDX_BUCK1
-/mnt/kernel/drivers/regulator/da9121-regulator.c: In function 'da9121_check_device_type':
-/mnt/kernel/drivers/regulator/da9121-regulator.c:915:55: error: 'DA914X_DEVICE_ID' undeclared (first use in this function); did you mean 'DA914x_DEVICE_ID'?
-  915 |  if ((device_id != DA9121_DEVICE_ID) && (device_id != DA914X_DEVICE_ID) {
-      |                                                       ^~~~~~~~~~~~~~~~
-      |                                                       DA914x_DEVICE_ID
-/mnt/kernel/drivers/regulator/da9121-regulator.c:915:55: note: each undeclared identifier is reported only once for each function it appears in
-/mnt/kernel/drivers/regulator/da9121-regulator.c:915:72: error: expected ')' before '{' token
-  915 |  if ((device_id != DA9121_DEVICE_ID) && (device_id != DA914X_DEVICE_ID) {
-      |     ~                                                                  ^~
-      |                                                                        )
-/mnt/kernel/drivers/regulator/da9121-regulator.c:996:1: error: expected expression before '}' token
-  996 | }
-      | ^
-/mnt/kernel/drivers/regulator/da9121-regulator.c:912:3: error: label 'error' used but not defined
-  912 |   goto error;
-      |   ^~~~
-/mnt/kernel/drivers/regulator/da9121-regulator.c:900:7: error: unused variable 'config_match' [-Werror=unused-variable]
-  900 |  bool config_match = false;
-      |       ^~~~~~~~~~~~
-/mnt/kernel/drivers/regulator/da9121-regulator.c:899:8: error: unused variable 'type' [-Werror=unused-variable]
-  899 |  char *type;
-      |        ^~~~
-/mnt/kernel/drivers/regulator/da9121-regulator.c:898:18: error: unused variable 'variant_vrc' [-Werror=unused-variable]
-  898 |  u8 variant_mrc, variant_vrc;
-      |                  ^~~~~~~~~~~
-/mnt/kernel/drivers/regulator/da9121-regulator.c:898:5: error: unused variable 'variant_mrc' [-Werror=unused-variable]
-  898 |  u8 variant_mrc, variant_vrc;
-      |     ^~~~~~~~~~~
-/mnt/kernel/drivers/regulator/da9121-regulator.c:996:1: error: no return statement in function returning non-void [-Werror=return-type]
-  996 | }
-      | ^
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/patch/1561073
 
---MTFxC0I+jVmjt9gj
-Content-Type: application/pgp-signature; name="signature.asc"
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
------BEGIN PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGk8OUACgkQJNaLcl1U
-h9Ba3Qf/fudmMK2mcHcQWxAzzH0ya2kH1BhsxDakJuVhnEpOee/KEbpCmTQl7nBI
-a4ZQmR4N4BVfmNXXXKuohSihLYZlsMFekL8SNCqscIs7Ge4AVYvOkDxfMRDshGJo
-vNZ/fp59gqTVd2qQA1CTg2OsKoad0oT6sMabsN801u53ujipHkshUI9pvKS3HSL7
-fVw+UKcmBd1hsON6GdkO/p86KqlIBEWojUUe9uT8V/cMjRzX7/jkfmO5Y55T0fcE
-/8dB/bvR/0Kr8oDVa5ffWYwraN5JGs4iwnaMEtktkn60EmX/pypXjy4641pKtOWL
-VeeT6TxeYAuoy6DM/XJoSB9Z9JCHCw==
-=M8Nr
------END PGP SIGNATURE-----
+pip3 install dtschema --upgrade
 
---MTFxC0I+jVmjt9gj--
+Please check and re-submit.
+
