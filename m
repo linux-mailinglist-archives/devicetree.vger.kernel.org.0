@@ -2,158 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 292254628A3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 00:53:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E13E94628B9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 00:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229836AbhK2X4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 18:56:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52918 "EHLO
+        id S229878AbhK3ABr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 19:01:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229805AbhK2X4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 18:56:20 -0500
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6BBC061714
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 15:53:01 -0800 (PST)
-Received: by mail-yb1-xb29.google.com with SMTP id f9so47141620ybq.10
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 15:53:01 -0800 (PST)
+        with ESMTP id S229470AbhK3ABq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 19:01:46 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3E8DC061714
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 15:58:27 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id l7so37622139lja.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 15:58:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y/NqQPRNvUZU+0JCCk7H1tIikjeN2hJL0ywpfLSeC3A=;
-        b=TkEax+J0bmDp+JZ1p+gK7Ddy3ukqn5PKlRVbahmc8OO8xw4OygaukebcomL6UBH4zl
-         3zVQ+upp+tk9io+DfWXBOWa66VhPX+yZohE9cfeT2IEclCIeM6LBi2k68JVX0RYqA7YR
-         NLTtvpq+AtgaHw6DChA47rnIMqojcQ/pxgPCs2ai5FYCg9Y8kesYImR++fYtsNbaeWWp
-         nBlUMbrJE4vstivGG+0/mDeHHKaCT9MEDFeETmyG+8VifiOre6xdonXXogLUBKsRmJyu
-         ebXQr3F2T8inIBMTlL6w/eC/Redlxr14icmXGlrBKODijT9jbGT2X8A0+66SEqKVRGSh
-         4xNA==
+        d=wirenboard-com.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=KO5mECkLTd2/Kq731LEEyhx3Wv0rLfRhbeL+5NL+Auw=;
+        b=t/Sk9qoSIpY+D/g0bC75CtVl+X562DwRCB0UBciMfxFRCQTEH2TQBOBSA2BEsqagrt
+         9KsXSwDfN7X5n25KYyCwenAZuhTFacEJqlqVYHGxoRhyUCxJ7CH/rgwU4XUo2sO6+cln
+         y7TcuG7slwdX8vYS62ONJ4rNdfJKjKgyOAafdeKwQ11oTfwwp1dujsmyWFVEz8/byHSv
+         EwN/FBQV0bbSTUQ5jGmdeJSrIaDnbx4THnqDmwR/qzceBF+4MByLBRWY5zE2pxObq/wn
+         t1r20hd51kjCVvKmUxIHBJcNsjjuDW/xuTEGZauzu0zMI5zaWNCXtGr4+p3sTan7iNZK
+         qhog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y/NqQPRNvUZU+0JCCk7H1tIikjeN2hJL0ywpfLSeC3A=;
-        b=khI8Pn2N3D9uP+EpQaudTzR9KgQXl6TOHZAxo4Dsm3VDINwnnUMYVqkH8rMjJejKy9
-         bnqnVcSonptjOUZjJjj2BzMvFYH6I6OtWPFpUlYaNsncCDVRh3JHc+DjmXzbUbw+1zmd
-         yuIb8iXR5yp8Q8dgE9AWGWoXPkO0Xaxx1pnueGguQs1+DxCn3Cl1HqptlVsW3sW8D4A6
-         HDfN5NNHYCas8Ti94F+72QtMvhFvrjOyYpjYRhPIvr4+y8wKam5DsaxdtoKYzgunO5Oa
-         yUG1FSfBn6VDngUVrojvpT7shokAVOovCty1bqTm8F8SV9nj4G//JocnL7GKV5iwMP0g
-         yHtg==
-X-Gm-Message-State: AOAM532NCk/ykO30sVYaHfMRznuo8EAJ363Qxe9J9f+uwg+2uS62DQhO
-        X/xkWR09v9qGhtT/jdJODK+lC3NAGaLxI59gE4MBmA==
-X-Google-Smtp-Source: ABdhPJzLGkscmACsLBxU/CcE3gRHToupkDUY7Fb+tdemWE/3/jA9m+2MAnq/P0ziJocyYBFSLjYNX7809g7ZSqzzpgI=
-X-Received: by 2002:a25:2d67:: with SMTP id s39mr39943320ybe.140.1638229980878;
- Mon, 29 Nov 2021 15:53:00 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=KO5mECkLTd2/Kq731LEEyhx3Wv0rLfRhbeL+5NL+Auw=;
+        b=2j+fWgGKamCWIY3N9knwirDQXE8TnY/0MhxNz8j2aqOKn53KuE+XzizW7JOhbAGmpP
+         w/uq5Rx7dYHq40wQB/TLSo+nCSCmQMmTjdd1MQjyl8JWhv0orr3Fim5tYHtqz3fhc829
+         AVpqBHwfl8xUyReGT3ziUaxU9RyD0zIK/7AiY/07BTvXIcxPwf9mT1sNgmyk3i952c7j
+         h1/TktijqJDdJ7FEmoklmdZe5+DRpTKF/O5vBFORzqmlzm0e2ZafMoByYynWqC3ZLSK1
+         34pOAZFAj1eGryVzBovfVOP8LN55plLA73PLeUYNOuCUC1pPf9mQe5On7ALEzEetjJSX
+         jFjA==
+X-Gm-Message-State: AOAM532mmmpbPGtrAWUyLmOTabou9QsUjUfsrdW4rWpj7VdURCeKYi1k
+        Su0KmQnXIMeUFa6jrx1mKdTmyQ==
+X-Google-Smtp-Source: ABdhPJyvpfx18asoOVpqIvpZYLuiQKQKGgTOPY82cdOcbsWzVcBYMSCSWlYJJDwBObmlgHvBOFVIYg==
+X-Received: by 2002:a05:651c:1503:: with SMTP id e3mr52429897ljf.182.1638230305766;
+        Mon, 29 Nov 2021 15:58:25 -0800 (PST)
+Received: from [192.168.1.213] (81.5.99.121.dhcp.mipt-telecom.ru. [81.5.99.121])
+        by smtp.googlemail.com with ESMTPSA id j16sm1504681lfe.4.2021.11.29.15.58.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Nov 2021 15:58:25 -0800 (PST)
+Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: document TS voltage in AXP
+ PMICs
+To:     Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Quentin Schulz <foss@0leil.net>, linux-sunxi@lists.linux.dev,
+        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
+References: <20211118141233.247907-1-boger@wirenboard.com>
+ <20211118141233.247907-3-boger@wirenboard.com>
+ <20211122104915.zism6uadgwxjz5d2@gilmour>
+ <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
+ <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org>
+From:   Evgeny Boger <boger@wirenboard.com>
+Message-ID: <206c2a66-42b9-7e07-66c3-6007b010c996@wirenboard.com>
+Date:   Tue, 30 Nov 2021 02:58:23 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211125183622.597177-1-dmitry.baryshkov@linaro.org> <CAGETcx-_6OvcJM1nAoX3pxE3Rard5CRxEuEsmhfLANOzOS1BSQ@mail.gmail.com>
-In-Reply-To: <CAGETcx-_6OvcJM1nAoX3pxE3Rard5CRxEuEsmhfLANOzOS1BSQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 29 Nov 2021 15:52:25 -0800
-Message-ID: <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com>
-Subject: Re: [PATCH] of: property: do not create clocks device link for clock controllers
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-GB
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 29, 2021 at 3:48 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Thu, Nov 25, 2021 at 10:36 AM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > Do not create device link for clock controllers.
->
-> Nak.
->
-> > Some of the clocks
-> > provided to the device via OF can be the clocks that are just parents to
-> > the clocks provided by this clock controller. Clock subsystem already
-> > has support for handling missing clock parents correctly (clock
-> > orphans). Later when the parent clock is registered, clocks get
-> > populated properly.
-> >
-> > An example of the system where this matters is the SDM8450 MTP board
-> > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
-> > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
-> > dispcc itself provides clocks to both PHYs, to the PHY parent device,
-> > etc. With just dsi0_phy in place devlink is able to break the
-> > dependency,
->
-> Right, because I wrote code to make sure we handle these clock
-> controller cases properly. If that logic isn't smart enough, let's fix
-> that.
->
-> > but with two PHYs, dispcc doesn't get probed at all, thus
-> > breaking display support.
->
-> Then let's find out why and fix this instead of hiding some
-> dependencies from fw_devlink. You could be breaking other cases/boards
-> with this change you are making.
+(added linux-pm@ list and maintainers)
 
-Btw, forgot to mention. I'll look into this one and try to find the
-reason why it wasn't handled automatically. And then come up with a
-fix.
 
-If you want to find out why fw_devlink didn't notice the cycle
-correctly for the case of 2 PHYs vs 1 PHY, I'd appreciate that too.
+Actually, on second though, I think it might be doable to add voltage to 
+temperature conversion to this driver.
 
-Btw, same comment for remote-endpoint. I'll look into what's going on
-in that case. Btw, I'm assuming all the code and DT you are testing
-this on is already upstream. Can you please confirm that?
+I think since the NTC thermistor belongs to the battery, not charger, 
+the thermistor should be described in monitored battery node.
+So I propose to extend battery node (power/supply/battery.yaml) by 
+adding something like:
 
--Saravana
+thermistor-resistance-temp-table = <25 10000>, <35 6530>, ...;
 
+This driver will then interpolate between points to report temperature.
+
+We can also adjust PMIC voltage thresholds based on this table and 
+"alert-celsius" property already described in battery.yaml.
+
+I think the driver should report raw TS voltage as well, because the TS 
+pin can also be used as general-purpose ADC pin.
+
+
+
+
+22.11.2021 14:35, Samuel Holland пишет:
+> On 11/22/21 5:17 AM, Evgeny Boger wrote:
+>> 22.11.2021 13:49, Maxime Ripard пишет:
+>>> On Thu, Nov 18, 2021 at 05:12:33PM +0300, Evgeny Boger wrote:
+>>>> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
+>>>> TS pin. axp20x IIO driver now report the voltage of this pin via
+>>>> additional IIO channel. Add new "ts_v" channel to the channel
+>>>> description.
+>>>>
+>>>> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+>>> Would it make sense to put the resistance in the DT as well or is it
+>>> made mandatory by Allwinner?
+>>>
+>>> Maxime
+>> Well, I don't think so. Basically, by default AXP20x injects 80uA
+>> current into the TS pin and measure the voltage. Then, there are
+>> voltage thresholds to stop charging if the battery is too hot or too
+>> cold. The default thresholds were calculated by the manufacturer for
+>> default 10k resistance and 80uA current. Finally, if TS pin is
+>> shorted to GND, the AXP2xx will detect it and won't shut down
+>> charging. Note that AXP2xx doesn't convert the measured voltage to
+>> temperature.
+> Agreed, since the ADC driver only works with voltages, the resistance is
+> not relevant to it, so a resistance property does not belong here.
 >
-> -Saravana
+>> So while it's possible to use AXP2xx with resistance other than 10k,
+>> it will require us to override these protection thresholds.
+>> Moreover, if one want to put the actual resistance in DT, then the
+>> driver would need to calculate these protection thresholds based on
+>> NTC parameters and injection current.
+> That means we do need a resistance property for the battery charger
+> driver, because it does need to calculate temperature.
 >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Stephen Boyd <swboyd@chromium.org>
-> > Cc: Saravana Kannan <saravanak@google.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/of/property.c | 16 +++++++++++++++-
-> >  1 file changed, 15 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index a3483484a5a2..f7229e4030e3 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1264,7 +1264,6 @@ struct supplier_bindings {
-> >         bool node_not_dev;
-> >  };
-> >
-> > -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
-> >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
-> >  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
-> >  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
-> > @@ -1294,6 +1293,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
-> >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> >
-> > +static struct device_node *parse_clocks(struct device_node *np,
-> > +                                       const char *prop_name, int index)
-> > +{
-> > +       /*
-> > +        * Do not create clock-related device links for clocks controllers,
-> > +        * clock orphans will handle missing clock parents automatically.
-> > +        */
-> > +       if (!strcmp(prop_name, "clocks") &&
-> > +           of_find_property(np, "#clock-cells", NULL))
-> > +               return NULL;
-> > +
-> > +       return parse_prop_cells(np, prop_name, index, "clocks",
-> > +                                      "#clock-cells");
-> > +}
-> > +
-> >  static struct device_node *parse_gpios(struct device_node *np,
-> >                                        const char *prop_name, int index)
-> >  {
-> > --
-> > 2.33.0
-> >
+> Regardless of the reference design, the resistance is variable in
+> practice. At least some early v1.0 PinePhones shipped with batteries
+> containing a 3 kOhm NTC. And the battery is removable, with an
+> off-the-shelf form factor, so users could install aftermarket batteries
+> with any NTC resistance.
+>
+> Right now, people with these batteries are disabling the TS; otherwise
+> the PMIC refuses to charge them. It would be good to re-enable the TS by
+> coming up with the proper voltages for the min/max thresholds. And there
+> are power supply properties we can use to expose the current temperature
+> and those thresholds to userspace (at least as read-only).
+>
+> Regards,
+> Samuel
+
+
