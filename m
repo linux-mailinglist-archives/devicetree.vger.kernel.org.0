@@ -2,258 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419AD4613D1
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 12:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A562461550
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 13:41:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240199AbhK2L1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 06:27:23 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51266 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241251AbhK2LZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 06:25:23 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1ATBLtEF088375;
-        Mon, 29 Nov 2021 05:21:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638184915;
-        bh=I850Fwk6rJ1lSUMvUiIQorbs6z7UwCYX7CIjOR2dyug=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=v5vpszX2ujnSw96JrkT1pYMol3jXMy+vLaPKOgaiJztWNvkUIXPPJgW2JmYhKJ4Aq
-         J/arWDeepqQ48TlSXeVYOVMadgjJhLo42UExpzfaXjVoHU9XYIkQQApl6a4sV0XeFd
-         8yVmhRKokq2993JjDhowFiiQDaPnqk9rQne4H/1k=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1ATBLtHM061645
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Nov 2021 05:21:55 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 29
- Nov 2021 05:21:54 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 29 Nov 2021 05:21:54 -0600
-Received: from [172.24.145.91] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1ATBLp5O046651;
-        Mon, 29 Nov 2021 05:21:52 -0600
-Subject: Re: [PATCH v3] ASoC: dt-bindings: davinci-mcasp: convert McASP
- bindings to yaml schema
-To:     =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <lgirdwood@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <broonie@kernel.org>,
-        "Yadav, Pratyush" <p.yadav@ti.com>
-References: <20211126050228.6257-1-j-choudhary@ti.com>
- <64426bc9-1160-97c6-4714-4201b8f7a81c@gmail.com>
-From:   Jayesh Choudhary <j-choudhary@ti.com>
-Message-ID: <a7bc460f-abf4-1d64-6416-5b50dc15d184@ti.com>
-Date:   Mon, 29 Nov 2021 16:51:51 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S244282AbhK2MpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 07:45:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42792 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238906AbhK2MnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 07:43:05 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E52C0617A0
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 03:27:12 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mreoQ-0006CW-Nn; Mon, 29 Nov 2021 12:27:10 +0100
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mreoQ-001j1a-5G; Mon, 29 Nov 2021 12:27:09 +0100
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1mreoO-00DVcH-IV; Mon, 29 Nov 2021 12:27:08 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Marek Vasut <marex@denx.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
+        kernel@pengutronix.de, Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>
+Subject: [PATCH v9 0/3] media: i2c: isl7998x: Add driver for Intersil ISL7998x
+Date:   Mon, 29 Nov 2021 12:27:05 +0100
+Message-Id: <20211129112708.3219754-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <64426bc9-1160-97c6-4714-4201b8f7a81c@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is v9 of the series to for adding the isl7998x driver [0].
 
+The isl7998x is an analog video to MIPI CSI-2 or BT.656 converter. The dt
+binding describes only the isl79987 chip, which supports MIPI CSI-2. The
+driver could be extended to handle isl79988 (for BT.656), too, but this isn't
+implemented.
 
-On 29/11/21 12:23 pm, Péter Ujfalusi wrote:
-> 
-> 
-> On 26/11/2021 07:02, Jayesh Choudhary wrote:
->> Convert the bindings for McASP controllers for TI SOCs
->> from txt to YAML schema.
-> 
-> Can you CC the sound/soc/ti/ maintainer next time, I have found this
-> patch in my Spam folder...
+v9 fixes the following warning when running the dt_binding_check, by removing
+the clock-lanes property from the example and adding the data-lanes property
+to the specification.
 
-Okay. Also, I will add this file in the MAINTAINERS file under the 
-heading 'TEXAS INSTRUMENTS ASoC DRIVERS'
+	isl7998x_mipi@44: ports:port@0:endpoint: Unevaluated properties are not allowed ('clock-lanes', 'data-lanes' were unexpected)
 
-> 
->> Adds additional properties 'clocks', 'clock-names', 'power-domains',
->> '#sound-dai-cells',
-> 
->> 'num-serializer'
-> 
-> Which use was removed by 1427e660b49e87cd842dba94158b0fc73030c17e
+Michael
 
-The dts file of arm SOCs is not updated and was generating an error in 
-dtbs_check. I will remove this property.
+[0] https://lore.kernel.org/linux-media/20190520201812.7937-1-marex@denx.de/
 
-> 
->> and 'port'
-> 
-> And what this "port" is?
+Changelog:
 
-The mcasp node in the file 'arch/arm/boot/dts/am335x-sl50.dts' has this 
-as child node.
+v9:
 
-> 
->> which were not there in the txt file.
-> 
-> Most likely for a reason?
-> 
->> Adds 'dmas' and 'dma-names' in the example which were not there in
->> the txt file.
->> Changes 'interrupts' and 'interrupt-names' from optional to
->> required properties.
-> 
-> My biggest problem with the davinci-mcasp-audio.txt is that it was done
-> in a wrong way and it just documented the pdata parameters as DT binding.
-> If we convert it to yaml, this is going to be 'written in stone'.
-> 
->>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
->> ---
+- remove clock-lanes from dt binding example
+- add data-lanes to dt binding example
 
+v8:
 
->> +
->> +  tdm-slots:
-> 
-> description?
+- rebase on v5.16-rc1
+- fix warning about ignored type qualifier
 
-I will add description.
+v7:
 
-> 
->> +    maxItems: 1
->> +
->> +  serial-dir:
->> +    description:
->> +      A list of serializer configuration
->> +      Entry is indication for serializer pin direction
->> +      0 - Inactive, 1 - TX, 2 - RX
-> 
-> You should mention that _all_ AXR pins should be present in the array,
-> even if they are no in use.
-> 
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 1
->> +    maxItems: 16
-> 
-> a McASP could have up to 25 AXR pins...
-> 
+- add reservation and documentation for custom V4L2 controls
+- implement g_input_status, g_tvnorms, querystd, s_std, g_std
+- use v4l2_norm_to_name instead of custom implementation
+- fix off-by-one with 4 inputs
+- fix polling condition for standard detection
 
-Will update the description and the maximum.
+v6:
 
->> +    items:
->> +      minimum: 0
->> +      maximum: 2
->> +      default: 0
->> +
+- incorporate review feedback by Philipp Zabel into isl7998x.c
 
+v5:
 
->> +
->> +  tx-num-evt:
-> 
-> description?
-> 
->> +    maxItems: 1
->> +
->> +  rx-num-evt:
-> 
-> description?
-> 
->> +    maxItems: 1
->> +
->> +  dismod:
-> 
-> description?
-> 
+- ignore -ENOIOCTLCMD of pre_streamon for backwards compatibility
 
-For the above three properties, is the description in the txt file 
-sufficient?
+v4:
 
+- add patch for imx6-mipi-csi2 to request LP-11 mode
+- update isl7998x driver with review feedback on v3
 
+v3:
 
->> +
->> +  sram-size-playback:
->> +    maxItems: 1
-> 
-> should be dropped, not used
-> 
->> +
->> +  sram-size-capture:
->> +    maxItems: 1
-> 
-> not used, please drop
-> 
+- rename pd-gpios property to powerdown-gpios
+- reference graph.yaml for port/ports property
+- remove reference to video-interfaces.txt
 
-Okay.
+v2:
 
->> +
->> +  interrupts:
->> +    minItems: 1
->> +    items:
->> +      - description: TX FIFO interrupt
->> +      - description: RX FIFO interrupt
-> 
-> The 'common' does not deserve a description?
-> 
+- convert dt binding to yaml
+- change binding to ISL79987 only
+- general driver cleanup
+- convert driver to pm_runtime
+- use ports in device tree for specifying inputs
+- add reset gpio
 
-Will add this.
+Marek Vasut (2):
+  media: dt-bindings: Add Intersil ISL79987 DT bindings
+  media: i2c: isl7998x: Add driver for Intersil ISL7998x
 
+Michael Tretter (1):
+  media: imx6-mipi-csi2: use pre_streamon callback to set sensor into
+    LP11
 
->> +  gpio-controller: true
->> +
->> +  "#gpio-cells":
->> +    const: 2
->> +
->> +  function-gpios:
->> +    maxItems: 1
-> 
-> This is not McASP property, it was an example on how to use a pin as
-> GPIO from the outside...
-> 
+ .../bindings/media/i2c/isil,isl79987.yaml     |  113 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/isl7998x.c                  | 1543 +++++++++++++++++
+ drivers/staging/media/imx/imx6-mipi-csi2.c    |    9 +-
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ 7 files changed, 1689 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/isil,isl79987.yaml
+ create mode 100644 drivers/media/i2c/isl7998x.c
 
-Okay. will remove function-gpios.
-
->> +
->> +  clocks:
->> +    minItems: 1
->> +    maxItems: 3
->> +
->> +  clock-names:
->> +    minItems: 1
->> +    items:
->> +      - const: fck
->> +      - const: ahclkx
->> +      - const: ahclkr
-> 
-> I can not find any use in the code for ahclkx/r?
-> 
-
-Some arm SOCs had additional clocks in the DT nodes.
-
-
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - reg-names
->> +  - dmas
->> +  - dma-names
->> +  - interrupts
->> +  - interrupt-names
->> +  - serial-dir
->> +  - op-mode
->> +  - tdm-slots
-> 
-> The last three is not needed if the McASP is used only as GPIO.
-> The dmas and interrupts should not be needed in this case, but I think
-> it is not taken care of atm.
-> 
-> The tdm-slots is ignored for DIT mode
-> 
-
-These were mentioned in txt file as required.
-In light of this new knowledge, I will remove 'serial-dir', 'op-mode' 
-and 'tdm-slots'.
-
-> 
+-- 
+2.30.2
 
