@@ -2,77 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B0E4E46234B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:27:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A499346234E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:28:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229581AbhK2VbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 16:31:07 -0500
-Received: from mail-oo1-f52.google.com ([209.85.161.52]:46868 "EHLO
-        mail-oo1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbhK2V3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:29:07 -0500
-Received: by mail-oo1-f52.google.com with SMTP id p2-20020a4adfc2000000b002c2676904fdso6066907ood.13;
-        Mon, 29 Nov 2021 13:25:49 -0800 (PST)
+        id S230346AbhK2Vbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 16:31:37 -0500
+Received: from mail-oi1-f178.google.com ([209.85.167.178]:36713 "EHLO
+        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231272AbhK2V3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:29:37 -0500
+Received: by mail-oi1-f178.google.com with SMTP id t23so37157066oiw.3;
+        Mon, 29 Nov 2021 13:26:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0tc7H78nHbfwBsabV9v/0HmsrveC5/JQ0wXPnMQogHI=;
-        b=PWDCzo7sLHNBe5klHzrTkHjXnd0cay5kCEn3gw6MHE9D60ckvynTPrJy5oJU2b+hUM
-         b2jTOBsLmaHoOJK0qryha/pBQraJZ95o+ickpb2te39UzKyCnvISaOrgT0Zoa1/+9Xsj
-         luWNZM4eJ2K/R6h8pDxPhrCmIhy6ZGQqvpYDVnIijiN8x71RfjevrBUzn4HdKFhnikxW
-         uwxyCwGvsn7MmrFbBEl7To3BeAjGOtQp9r6l9GNhtKu5UqnjE+d5bFy+WbgHw9IaIi2o
-         l4OMZEZ549rMNxupe9Fz7nsk3c9Z78hIgKlVUJBsJx2V9X4jN/tkWfZRJCs1UpuffCbI
-         JQcw==
-X-Gm-Message-State: AOAM5305UIJgmQ/pZNBB0hTlRwMyqDDVODg2lYNNow3h/1/60k5u1NBv
-        Wua31ENRUl7QWy6QmXghVA==
-X-Google-Smtp-Source: ABdhPJwFUO/KILnFJ9CrAcpEDN/Pf49gr1RpwzHYTKNfTs31MlqPAk5PxWdkZsAnMB8Kg5oXQ8oShg==
-X-Received: by 2002:a4a:2705:: with SMTP id l5mr32292651oof.51.1638221148665;
-        Mon, 29 Nov 2021 13:25:48 -0800 (PST)
+        bh=xCkc+edsnuz578j3nM7LxocCQHXE8TQPUnChXmN1Bfk=;
+        b=AzpvJZWNOcCKykbQi1MGNuu0B1qkdsn2ALrU9P9qvOgW4ex25G6Hqd9VNLP/rW2iXF
+         T272gsZISHGcy6Bs5WgfhZ+9HxkGpskGlpDVnm3D82c7Ria+HKVo+CH7As9px8MECMWq
+         3x+sDFxQPdjYvpP4NwBU80tl/nIHYDneYKWeWWJFL48w2/XW8zVd1Grxyl6Syc9k7mOR
+         JfDrnSB/R4odBEA7g12odFWYkWoz9Fqt3GI0VDc3BEbH116NV8YJhzRskCsnxfNDZY0v
+         hnAXurk+F+pQk9YNBZ3GeqVLHE9XHhsTfhvemnXK+KpWvYBl50hNOMkMCkAdGh30cYXs
+         VMgA==
+X-Gm-Message-State: AOAM531CQCzC8L/qtpUuXJ+sT9AD+FYBIUw2mFK8NoAVosOwxcJfup9A
+        3FSiDqmfO7M5oT9hGf/5GE2WxBK7wQ==
+X-Google-Smtp-Source: ABdhPJxKZSsc0IJcsg3GjgSw0PgzgarXSf2BR/s4hyp+T38G0EdF0/6grP8nUqPDecJJnfdcItLSwg==
+X-Received: by 2002:a54:4486:: with SMTP id v6mr561266oiv.90.1638221178764;
+        Mon, 29 Nov 2021 13:26:18 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r23sm2400395ooj.37.2021.11.29.13.25.47
+        by smtp.gmail.com with ESMTPSA id x17sm2444712oot.30.2021.11.29.13.26.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 13:25:48 -0800 (PST)
-Received: (nullmailer pid 637129 invoked by uid 1000);
-        Mon, 29 Nov 2021 21:25:47 -0000
-Date:   Mon, 29 Nov 2021 15:25:47 -0600
+        Mon, 29 Nov 2021 13:26:18 -0800 (PST)
+Received: (nullmailer pid 637898 invoked by uid 1000);
+        Mon, 29 Nov 2021 21:26:17 -0000
+Date:   Mon, 29 Nov 2021 15:26:17 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hector Martin <marcan@marcan.st>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Sven Peter <sven@svenpeter.dev>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will@kernel.org>
-Subject: Re: [PATCH 2/8] dt-bindings: apple,aic: Add CPU PMU per-cpu
- pseudo-interrupts
-Message-ID: <YaVFWwhHAr+aCE4F@robh.at.kernel.org>
-References: <20211113115429.4027571-1-maz@kernel.org>
- <20211113115429.4027571-3-maz@kernel.org>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     jic23@kernel.org, lorenzo.bianconi@redhat.com,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        mario.tesi@st.com
+Subject: Re: [PATCH v2 2/2] Documentation: dt: iio: st_lsm6dsx: add
+ disable-sensor-hub property
+Message-ID: <YaVFeYsGYVOBS65b@robh.at.kernel.org>
+References: <cover.1636816719.git.lorenzo@kernel.org>
+ <54287a93922ac839501b776d288cc368aa81f0ab.1636816719.git.lorenzo@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211113115429.4027571-3-maz@kernel.org>
+In-Reply-To: <54287a93922ac839501b776d288cc368aa81f0ab.1636816719.git.lorenzo@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 13 Nov 2021 11:54:23 +0000, Marc Zyngier wrote:
-> Advertise the two pseudo-interrupts that tied to the two PMU
-> flavours present in the Apple M1 SoC.
+On Sat, 13 Nov 2021 16:23:15 +0100, Lorenzo Bianconi wrote:
+> Enable/disable internal i2c controller slave autoprobing at bootstrap.
+> Disable sensor-hub is useful if i2c controller clock/data lines are
+> connected through a pull-up with other chip lines (e.g. SDO/SA0).
 > 
-> We choose the expose two different pseudo-interrupts to the OS
-> as the e-core PMU is obviously different from the p-core one,
-> effectively presenting two different devices.
-> 
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  .../devicetree/bindings/interrupt-controller/apple,aic.yaml     | 2 ++
->  include/dt-bindings/interrupt-controller/apple-aic.h            | 2 ++
->  2 files changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
