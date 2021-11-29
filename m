@@ -2,51 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EB84617DE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 15:20:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD0C4615EF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 14:12:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241085AbhK2OXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 09:23:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241453AbhK2OVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 09:21:43 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC500C08EB32;
-        Mon, 29 Nov 2021 05:00:12 -0800 (PST)
+        id S1377663AbhK2NP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 08:15:29 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:56424 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377866AbhK2NN3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 08:13:29 -0500
 Received: from mail.kernel.org (unknown [198.145.29.99])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 1EEF9CE117C;
-        Mon, 29 Nov 2021 13:00:11 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 90CC160E53;
-        Mon, 29 Nov 2021 13:00:09 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4D117614DD;
+        Mon, 29 Nov 2021 13:10:11 +0000 (UTC)
+Received: by mail.kernel.org (Postfix) with ESMTPS id C21136056B;
+        Mon, 29 Nov 2021 13:10:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638190809;
-        bh=Yep6juX3dr70RFGPzR/Jlksgnykb9sOvAdKAVTBJ5gY=;
+        s=k20201202; t=1638191410;
+        bh=4/FUQ6sCWVSNy11waCAPGRKn8mjBgIrzw3mCdbUT5xs=;
         h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=KS+TnMKkDMlgcPs48dQUg3esiv1Z03vh3H0uG35NJknDbp+Q4qv2AUplrcHl83QzW
-         7z5yoXPh4XIWJIFaK/zZMqlWOF/Ji3AUvtIa55E2nSbAzuAHuAZQ02shpqG42fTcCv
-         tPVyMH27NPgIAH2JNOboO0L3YatiyGIGnoQDFveUy9GlNLAYRzrI5TDwh0jITTmq/B
-         WaectOTI7ZOY781Pq89oVMVs0b/2fRLhXvCnq2iuWjXKHLZTsOfKo7LPAcJx8MhviO
-         nrOPM7m9PsmZOhiQWAbyVW971WyBpej9rPSCiO4ia6jwRRuqT501DmxPkZzpmawQNb
-         g5ZvSdvFWqLiA==
+        b=BfGh8VpMRjSOrNn6zY6auyzt/HG88yJinS2PqTX/h4A4ii1eMKCNllDCzkSJMWOTx
+         FHnO4auyxv0WI03KSmuYljdWuoI/+5gT8q3etZIGXvmL8gdhY6dZFHHsHCN4CxcuB7
+         BtnsJLlAeskS3Bl3zrrIxR+K+mO6DG0PurpcDJPOYECO32bFlOlhv7iunivoMD7ULJ
+         +wlfCQwMqnpZXof7XTWuwDlZkY9b74CVgRstkUVlQvs+zVNEe5CPC1LhIz2DB40RTo
+         J9QhFhMxA6yCwNr+V6xmhVl9zraXQsdEwqVAeDBaJ9g1wPQKQA2V+7fDpfsTL3L8T9
+         v6+tLD1F9a+xw==
 Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 7D882609D5;
-        Mon, 29 Nov 2021 13:00:09 +0000 (UTC)
+        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id BBA3A60A4D;
+        Mon, 29 Nov 2021 13:10:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next 1/2 v3] dt-bindings: net: Add bindings for IXP4xx
- V.35 WAN HSS
+Subject: Re: [PATCH net-next v5 0/6] net: lan966x: Add lan966x switch driver
 From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163819080951.6089.4488606400072664861.git-patchwork-notify@kernel.org>
-Date:   Mon, 29 Nov 2021 13:00:09 +0000
-References: <20211122223530.3346264-1-linus.walleij@linaro.org>
-In-Reply-To: <20211122223530.3346264-1-linus.walleij@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, kuba@kernel.org,
-        devicetree@vger.kernel.org
+Message-Id: <163819141076.10588.6077476574401792061.git-patchwork-notify@kernel.org>
+Date:   Mon, 29 Nov 2021 13:10:10 +0000
+References: <20211129124359.4069432-1-horatiu.vultur@microchip.com>
+In-Reply-To: <20211129124359.4069432-1-horatiu.vultur@microchip.com>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, p.zabel@pengutronix.de,
+        linux@armlinux.org.uk, andrew@lunn.ch, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -56,23 +54,29 @@ Hello:
 This series was applied to netdev/net-next.git (master)
 by David S. Miller <davem@davemloft.net>:
 
-On Mon, 22 Nov 2021 23:35:29 +0100 you wrote:
-> This adds device tree bindings for the IXP4xx V.35 WAN high
-> speed serial (HSS) link.
+On Mon, 29 Nov 2021 13:43:53 +0100 you wrote:
+> This patch series add support for Microchip lan966x driver
 > 
-> An example is added to the NPE example where the HSS appears
-> as a child.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> The lan966x switch is a multi-port Gigabit AVB/TSN Ethernet Switch with
+> two integrated 10/100/1000Base-T PHYs. In addition to the integrated PHYs,
+> it supports up to 2RGMII/RMII, up to 3BASE-X/SERDES/2.5GBASE-X and up to
+> 2 Quad-SGMII/Quad-USGMII interfaces.
 > 
 > [...]
 
 Here is the summary with links:
-  - [net-next,1/2,v3] dt-bindings: net: Add bindings for IXP4xx V.35 WAN HSS
-    https://git.kernel.org/netdev/net-next/c/9c37b09d3a9a
-  - [net-next,2/2,v3] net: ixp4xx_hss: Convert to use DT probing
-    https://git.kernel.org/netdev/net-next/c/35aefaad326b
+  - [net-next,v5,1/6] dt-bindings: net: lan966x: Add lan966x-switch bindings
+    https://git.kernel.org/netdev/net-next/c/642fcf53a9ac
+  - [net-next,v5,2/6] net: lan966x: add the basic lan966x driver
+    https://git.kernel.org/netdev/net-next/c/db8bcaad5393
+  - [net-next,v5,3/6] net: lan966x: add port module support
+    https://git.kernel.org/netdev/net-next/c/d28d6d2e37d1
+  - [net-next,v5,4/6] net: lan966x: add mactable support
+    https://git.kernel.org/netdev/net-next/c/e18aba8941b4
+  - [net-next,v5,5/6] net: lan966x: add ethtool configuration and statistics
+    https://git.kernel.org/netdev/net-next/c/12c2d0a5b8e2
+  - [net-next,v5,6/6] net: lan966x: Update MAINTAINERS to include lan966x driver
+    https://git.kernel.org/netdev/net-next/c/813f38bf3b89
 
 You are awesome, thank you!
 -- 
