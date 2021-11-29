@@ -2,68 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A29D646232C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:22:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96B6046233A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:25:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229725AbhK2V0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 16:26:04 -0500
-Received: from mail-oo1-f47.google.com ([209.85.161.47]:46741 "EHLO
-        mail-oo1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229960AbhK2VYE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:24:04 -0500
-Received: by mail-oo1-f47.google.com with SMTP id p2-20020a4adfc2000000b002c2676904fdso6063339ood.13;
-        Mon, 29 Nov 2021 13:20:46 -0800 (PST)
+        id S230131AbhK2V3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 16:29:08 -0500
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:46802 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231269AbhK2V1I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:27:08 -0500
+Received: by mail-ot1-f53.google.com with SMTP id 98-20020a9d086b000000b0057a403bbd4eso2762973oty.13;
+        Mon, 29 Nov 2021 13:23:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=2T9EgPmfc0rNPgsjPNUuNg/QqPEADj/Yw0On3FhXaUI=;
-        b=vC/Uz/3SGcGf7QCrK5NEdWjNplvOz2Dypw3lgS8MEwKR26MVt1fheJ8tBxzZwpQvqR
-         uoMMM5tvG1iXOQ/ro4hhg0geHdpDVWdPyuDXJMffGpQBkh4sK9dC/vyqi0apqOovnGOH
-         UfoCC+OXP4X2sK2CdS1nQ2nUMAEvUaeg33ifLgSN6DwyUDh1dzAd/OebA9I8Vg6pOgGX
-         8ONcGOwr6kHolN1eAOLL7gtG3pYblDI33lVUzMjtIE2pR82ZrdPQBcwE5RXeh1Dr6Dbi
-         qtQMCEcXpu+bOjssI3GACXhD7n4RFBq1Fpv/lL5TaFdHCL6lMFRq4F/kNIR6McvZ+yYn
-         /Kow==
-X-Gm-Message-State: AOAM533X/ucxbM9tLoZ7YsBHtds6x69QsdLiVZ6J59k+EcK64XDEoPuY
-        q0+RojcX93SfPOchYs+HOQ==
-X-Google-Smtp-Source: ABdhPJxhu1Qh5Ryd9R7DQN6WpTcyEVLDn9OZtNuxT5MBjG9L1uKXGq8kU2IQaUG6/fDtCIoB6/Kesw==
-X-Received: by 2002:a4a:a44b:: with SMTP id w11mr14751523ool.66.1638220845673;
-        Mon, 29 Nov 2021 13:20:45 -0800 (PST)
+        bh=dmREQEVCQ41yGFn0gHzS27UhG+OxJeV/G0e6YBc3FUI=;
+        b=1NEi8KsdJNNjbfQXCnrcvk934ZVbZzHee/jEJfz9KPMzobXFtgccQLmNrUobWUOqhc
+         dlN0RxzZmYKT6LBhZz0rM+OvmxpJhEdtF5WianyGRqYmdjuLjGRAWECWuGOzBnPmkCPE
+         nHZplgMZtVXT6s3OGyH+370qrnTSvF4Vd2vz4bhJZOV9+hjaWQjLwkZkdGVk4lwbGaA4
+         AXjmp4EI8Hm+mUxu6vSL3Qc1DoNx8ZssFa4FCrf9L2lDp3EfDWt2mMF1K1Cl8NG035iT
+         7YqtGTyh9iNmZTFucLnGH/ahpKU2ooVzEKJqB5DBhJS8o1MeOXheBSVvSDlkNnR8XNJ2
+         jxaA==
+X-Gm-Message-State: AOAM533Vvy4GvFlh0QNb4Erbc88R9cNeAhvfqzGZts9uMLVP6l6lnEVH
+        bjpMATKtvFWoSBZzznSKp/OIt+e3kA==
+X-Google-Smtp-Source: ABdhPJzhJ81ob8F3Ax4aT7ILoDVlOxASMklkW3tRSMVHdzBd6nW5UiTymt1TntIJM64Ho3oULKmUGQ==
+X-Received: by 2002:a05:6830:19c5:: with SMTP id p5mr45778794otp.195.1638221029526;
+        Mon, 29 Nov 2021 13:23:49 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o26sm2836315otj.14.2021.11.29.13.20.44
+        by smtp.gmail.com with ESMTPSA id r3sm2811284oti.51.2021.11.29.13.23.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 13:20:44 -0800 (PST)
-Received: (nullmailer pid 630005 invoked by uid 1000);
-        Mon, 29 Nov 2021 21:20:43 -0000
-Date:   Mon, 29 Nov 2021 15:20:43 -0600
+        Mon, 29 Nov 2021 13:23:48 -0800 (PST)
+Received: (nullmailer pid 634142 invoked by uid 1000);
+        Mon, 29 Nov 2021 21:23:48 -0000
+Date:   Mon, 29 Nov 2021 15:23:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-Cc:     Andy Gross <agross@kernel.org>, linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Taniya Das <tdas@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, Jeffrey Hugo <jhugo@codeaurora.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Rob Herring <robh+dt@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add support for the MSM8226 mmcc
-Message-ID: <YaVEK0Gyd16sYD/m@robh.at.kernel.org>
-References: <20211113015844.92762-1-bartosz.dudziak@snejp.pl>
+To:     Mark Kettenis <mark.kettenis@xs4all.nl>
+Cc:     Sven Peter <sven@svenpeter.dev>, devicetree@vger.kernel.org,
+        wim@linux-watchdog.org, linux@roeck-us.net, marcan@marcan.st,
+        alyssa@rosenzweig.io, linux-kernel@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: watchdog: Add Apple Watchdog
+Message-ID: <YaVE5IL7oO3Q4u5h@robh.at.kernel.org>
+References: <20211113094732.73889-1-sven@svenpeter.dev>
+ <d3cad37524f7debf@bloch.sibelius.xs4all.nl>
+ <fc541162-928c-4318-bc2a-06da0cbdf5e8@www.fastmail.com>
+ <d3cad4a2f2f05eef@bloch.sibelius.xs4all.nl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211113015844.92762-1-bartosz.dudziak@snejp.pl>
+In-Reply-To: <d3cad4a2f2f05eef@bloch.sibelius.xs4all.nl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 13 Nov 2021 02:58:43 +0100, Bartosz Dudziak wrote:
-> Document the multimedia clock controller found on MSM8226.
+On Sun, Nov 14, 2021 at 12:58:20PM +0100, Mark Kettenis wrote:
+> > Date: Sun, 14 Nov 2021 12:40:48 +0100
+> > From: "Sven Peter" <sven@svenpeter.dev>
+> > 
+> > On Sat, Nov 13, 2021, at 22:07, Mark Kettenis wrote:
+> > >> From: Sven Peter <sven@svenpeter.dev>
+> > >> Date: Sat, 13 Nov 2021 10:47:31 +0100
+> > >> 
+> > >> Apple SoCs come with a simple embedded watchdog. This watchdog is also
+> > >> required in order to reset the SoC.
+> > >> 
+> > >> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> > >> ---
+> > >>  .../bindings/watchdog/apple,wdt.yaml          | 52 +++++++++++++++++++
+> > >>  MAINTAINERS                                   |  1 +
+> > >>  2 files changed, 53 insertions(+)
+> > >>  create mode 100644 Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+> > >> 
+> > >> diff --git a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+> > >> new file mode 100644
+> > >> index 000000000000..e58c56a6fdf6
+> > >> --- /dev/null
+> > >> +++ b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+> > >> @@ -0,0 +1,52 @@
+> > >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > >> +%YAML 1.2
+> > >> +---
+> > >> +$id: http://devicetree.org/schemas/watchdog/apple,wdt.yaml#
+> > >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >> +
+> > >> +title: Apple SoC Watchdog
+> > >> +
+> > >> +allOf:
+> > >> +  - $ref: "watchdog.yaml#"
+> > >
+> > > I believew this should be:
+> > >
+> > >   - $ref: /schemas/watchdog/watchdog.yaml#
+> > >
+> > > with that fixed:
+> > >
+> > > Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+> > >
+> > 
+> > Thanks for the review!
+> > Almost all the other YAML watchdog bindings just use '$ref: "watchdog.yaml#"'.
+> > Only arm,sp805.yaml uses '$ref: /schemas/watchdog/watchdog.yaml#'.
 > 
-> Signed-off-by: Bartosz Dudziak <bartosz.dudziak@snejp.pl>
-> ---
->  Documentation/devicetree/bindings/clock/qcom,mmcc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> Hmm, maybe it is ok since the file can be found in the same directory.
+> Guess it is up to robh then.  Feel free to keep my Reviewed-by
+> regardless.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Either way is fine. It's just ../ paths I want to avoid.
+
+Rob
