@@ -2,96 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E13D4612FE
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 11:59:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E11C461311
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 12:04:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240081AbhK2LC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 06:02:56 -0500
-Received: from esa.microchip.iphmx.com ([68.232.154.123]:23654 "EHLO
-        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354716AbhK2LA4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 06:00:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1638183459; x=1669719459;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sni8GEGNKRIzcmDyxT+3sx8vltkStccv50jQbBQNb9I=;
-  b=QvDMPLAjTlCCnNnZjHTanmr6Ornj5sayYQOaF5Bg843lufgcaP/JDoe7
-   3QGy9RYlciBxeGDbjZPoVP9/Gwy0nfFbKqHBMRLuiCAngx61fPH7qunV6
-   MZvjI7wDSO6eyZ1sB/LLaIQDMo/hzwLM/Bdkx989RTCDXzqQbBGBVf8Qt
-   fhr3quFBybdBJJde1cFXPzp9gr6bgyRg2Bu5v60K8OF1eLjyoqPhj9X5M
-   PrxD08nTwm+jdLQvMlDbWO6hLQRyXeKwHwDCeRsLJ7o0RWnPctdhsoOEj
-   fpeWjBwBCF3CrUXqGAJA9ewZfuTe4eR8xlRBwD+zRqyH13swNUE7dG9Vi
-   w==;
-IronPort-SDR: pC9Mo1j3FSmWnO+dJz+sdo/h8/5YPxGZu/adW1G8JBTs9GQOUA5AIyOTg1I3h6dP4CcPh/+FBK
- 14Ts3BA/nMQlFwRz2GP3LA7Ijf6SYeQRGAc7XWTxS9gFODzdLErHNETvd5PHWNQKHds+A6IU+O
- cvJORXOhzGAFA/JNVu49ctwGxj2KJcHlRZfE96tafhPleIWUEzKcUGcB9z7HnAZuL4NO5WDh3S
- W63evdf8YPbcG9b6t0WEN6n0FJTRoSYYoaDdRQvr2txxITgPKrIJ8SbMYiwuqONcE3JNrYCjij
- 3Y0VkNrK17hU/S8CxHTXSd8U
-X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; 
-   d="scan'208";a="140560457"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Nov 2021 03:57:31 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Mon, 29 Nov 2021 03:57:30 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
- Transport; Mon, 29 Nov 2021 03:57:30 -0700
-Date:   Mon, 29 Nov 2021 11:59:26 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-CC:     <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
-        <linux@armlinux.org.uk>, <andrew@lunn.ch>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v4 3/6] net: lan966x: add port module support
-Message-ID: <20211129105926.4k6itzqakeu7znbw@soft-dev3-1.localhost>
-References: <20211126090540.3550913-1-horatiu.vultur@microchip.com>
- <20211126090540.3550913-4-horatiu.vultur@microchip.com>
- <20211126101251.3dceb6f2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        id S1376583AbhK2LH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 06:07:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230216AbhK2LF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 06:05:57 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ADDFC08E6DF
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 02:19:45 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id d24so35635252wra.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 02:19:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bwSCk0wXrHcMz/Ne5LcNLW8DULwM2fwTr0/wYCbZbNw=;
+        b=TfPZa9b2Gfmja+xE08xKdHPUCAVBrBPkXc15EwzdPUPGX5QfmkK5zsfFVOn0lNwg2F
+         O8e75gE2wIHLt9IWg8od0YWQ69Sg3XiNVUNJEj9JWLyAK9CWJZY+/GGRgHeDZH1LbP3G
+         wUlCi0brMqcF0uvfQ+IgwEyHnEF9eqsmTR6W7/PTwMIf8gLwAf21HmQxBTI06ClpNV52
+         5OiE94DK5RnbAxtvRTF3acy9RSQakMF4FD6Jr0tEMF8SkAWGAiLXE9x4ujeqNeOVbQly
+         nNBqB5aNzOtWCAnRjnFEvtLueJcJZX+GLI6aJqoF1R8ZhiqkFSNCGnp/+oQodUD686zH
+         HuoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bwSCk0wXrHcMz/Ne5LcNLW8DULwM2fwTr0/wYCbZbNw=;
+        b=1jHXfXurJaStvRKy7RfSzYWJ08Pz9GV8R8alubc5pNJks5Xriwq5So0xjcFv6XsA6y
+         K16QJwZ4QQaXSAVKxkEfC6JcA94p2Ka0z+0xXkoxDEf5ZS2ZP0eOAmFV3CcOPInHRy7h
+         L5tmsrTT1Ar2/7nwI+9Hdig1vCdazXskqF61O6cr8Sy0OoJCjQmUN289sl4gIPWdhuw7
+         WiUBUSkjiccuHNdixTb9zr2C7E+QwVIDMxTLWk/mcVvTNruzLsCfsVN3pXj9KCsWMDzL
+         y5lQ1P7PNPw2FfEMTWx/BPiTpCRh0J1Mg2FZi4W+I2I8b258qjt9RDZppxmxEzhvw/Vf
+         SINA==
+X-Gm-Message-State: AOAM5331i3yLQtQ0cvlwZVDjkyJE8ovH0qPxINsTcRRnSPg6POQDwhY2
+        Cz6XHTBQEYNVBaXycLYwf6HQLQ==
+X-Google-Smtp-Source: ABdhPJypnvKfy+kf/FJbr+uN3rHCCx0U4LXPrPEBo44DZLZosm9/D7/09nOVKfxhmKlD9a+7SN9h2g==
+X-Received: by 2002:a05:6000:1868:: with SMTP id d8mr33585975wri.285.1638181183558;
+        Mon, 29 Nov 2021 02:19:43 -0800 (PST)
+Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.gmail.com with ESMTPSA id j11sm13224841wrt.3.2021.11.29.02.19.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 02:19:42 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
+        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2] dt-bindings: misc: fastrpc convert bindings to yaml
+Date:   Mon, 29 Nov 2021 10:19:30 +0000
+Message-Id: <20211129101931.28154-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20211126101251.3dceb6f2@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 11/26/2021 10:12, Jakub Kicinski wrote:
+Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
+dt-entries correctly and any future additions can go into yaml format.
 
-Hi Jakub,
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ .../devicetree/bindings/misc/qcom,fastrpc.txt | 78 ----------------
+ .../bindings/misc/qcom,fastrpc.yaml           | 92 +++++++++++++++++++
+ 2 files changed, 92 insertions(+), 78 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+ create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
 
-> 
-> On Fri, 26 Nov 2021 10:05:37 +0100 Horatiu Vultur wrote:
-> > This patch adds support for netdev and phylink in the switch. The
-> > injection + extraction is register based. This will be replaced with DMA
-> > accees.
-> >
-> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> 
-> Clang sees issues here:
-> 
-> drivers/net/ethernet/microchip/lan966x/lan966x_main.c:409:8: warning: variable 'sz' is used uninitialized whenever 'if' condition is true [-Wsometimes-uninitialized]
->                        if (err != 4)
->                            ^~~~~~~~
-> drivers/net/ethernet/microchip/lan966x/lan966x_main.c:469:7: note: uninitialized use occurs here
->                if (sz < 0 || err)
->                    ^~
-> drivers/net/ethernet/microchip/lan966x/lan966x_main.c:409:4: note: remove the 'if' if its condition is always false
->                        if (err != 4)
->                        ^~~~~~~~~~~~~
-> drivers/net/ethernet/microchip/lan966x/lan966x_main.c:403:9: note: initialize the variable 'sz' to silence this warning
->                int sz, buf_len;
->                      ^
->                       = 0
-
-Thanks for notification.
-I should definitely need to start to build the kernel using Clang.
-
-
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
+deleted file mode 100644
+index 2a1827ab50d2..000000000000
+--- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
++++ /dev/null
+@@ -1,78 +0,0 @@
+-Qualcomm Technologies, Inc. FastRPC Driver
+-
+-The FastRPC implements an IPC (Inter-Processor Communication)
+-mechanism that allows for clients to transparently make remote method
+-invocations across DSP and APPS boundaries. This enables developers
+-to offload tasks to the DSP and free up the application processor for
+-other tasks.
+-
+-- compatible:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "qcom,fastrpc"
+-
+-- label
+-	Usage: required
+-	Value type: <string>
+-	Definition: should specify the dsp domain name this fastrpc
+-	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
+-
+-- #address-cells
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Must be 1
+-
+-- #size-cells
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Must be 0
+-
+-= COMPUTE BANKS
+-Each subnode of the Fastrpc represents compute context banks available
+-on the dsp.
+-- All Compute context banks MUST contain the following properties:
+-
+-- compatible:
+-	Usage: required
+-	Value type: <stringlist>
+-	Definition: must be "qcom,fastrpc-compute-cb"
+-
+-- reg
+-	Usage: required
+-	Value type: <u32>
+-	Definition: Context Bank ID.
+-
+-- qcom,nsessions:
+-	Usage: Optional
+-	Value type: <u32>
+-	Defination: A value indicating how many sessions can share this
+-		    context bank. Defaults to 1 when this property
+-		    is not specified.
+-
+-Example:
+-
+-adsp-pil {
+-	compatible = "qcom,msm8996-adsp-pil";
+-	...
+-	smd-edge {
+-		label = "lpass";
+-		fastrpc {
+-			compatible = "qcom,fastrpc";
+-			qcom,smd-channels = "fastrpcsmd-apps-dsp";
+-			label = "adsp";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			cb@1 {
+-				compatible = "qcom,fastrpc-compute-cb";
+-				reg = <1>;
+-			};
+-
+-			cb@2 {
+-				compatible = "qcom,fastrpc-compute-cb";
+-				reg = <2>;
+-			};
+-			...
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+new file mode 100644
+index 000000000000..9dc8d584ed63
+--- /dev/null
++++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+@@ -0,0 +1,92 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm Technologies, Inc. FastRPC Driver
++
++maintainers:
++  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
++
++description: |
++  This binding describes Qualcomm FastRPC an IPC (Inter-Processor Communication)
++  mechanism that allows for clients to transparently make remote method
++  invocations across DSP and APPS boundaries. This enables developers
++  to offload tasks to the DSP and free up the application processor for
++  other tasks.
++
++properties:
++  compatible:
++    const: qcom,fastrpc
++
++  label:
++    enum:
++      - adsp
++      - mdsp
++      - sdsp
++      - cdsp
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^cb@[0-9a-f]$":
++    type: object
++    description: |
++      Compute context bank
++
++    properties:
++      compatible:
++        const: qcom,fastrpc-compute-cb
++
++      reg:
++        maxItems: 1
++        description: Context Bank ID
++
++      qcom,nsessions:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description: How many sessions can share this context bank.
++                     Defaults to 1 when this property is not specified.
++
++    required:
++      - compatible
++      - reg
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - label
++
++additionalProperties: false
++
++examples:
++  - |
++    adsp-pil {
++        compatible = "qqcom,msm8996-adsp-pil";
++
++        smd-edge {
++            label = "lpass";
++
++            fastrpc {
++                compatible = "qcom,fastrpc";
++                label = "adsp";
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                cb@1 {
++                    compatible = "qcom,fastrpc-compute-cb";
++                    reg = <1>;
++                };
++
++                cb@2 {
++                    compatible = "qcom,fastrpc-compute-cb";
++                    reg = <2>;
++                };
++            };
++        };
++    };
 -- 
-/Horatiu
+2.21.0
+
