@@ -2,130 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A9FD462035
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF934462064
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379554AbhK2TVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 14:21:02 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:38564 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379986AbhK2TTC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:19:02 -0500
+        id S236941AbhK2T14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 14:27:56 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:46308 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351964AbhK2TZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:25:56 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 2139CCE13D7;
-        Mon, 29 Nov 2021 19:15:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B937C56747;
-        Mon, 29 Nov 2021 19:15:41 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E5DD5B815CF;
+        Mon, 29 Nov 2021 19:22:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F090EC53FC7;
+        Mon, 29 Nov 2021 19:22:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638213341;
-        bh=cLhYyBrRQB0hosyW0QLWVWX5+KjE/2DBhOlOgR7mdHQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Map4DPFeMsIUQeTWUbOeEdLYgg0yO4qF0WENTpDU6TCi7PM/eOEM9IFVS4k1m7RfH
-         s7zoxAdRrM4bk8hn0MqPatFqQB3teES8TIxFT1IiQJgM6RU1BlAoZ6s/8zl+Aj6Frj
-         HLBuB8whQU8kYRLsPKtQ/bIHQXl0DcOE1hG+bXO87OA4cMxmX5NPiMF17NUQQiz54G
-         cofvPCnGlqiqKA8C7dm0BB8npJznDSGpln/SjYKI3MF+jWbUBru+5m6u7GGfSCoWUc
-         ll8+cLKcs8gM0OKkWLONAZ4w9rhRqWom+mmwQsSj1Hj15AHmmNCbKWn7sIMONVzz7F
-         lQd8mCMBB5ULg==
-Received: by mail-ed1-f50.google.com with SMTP id t5so76644161edd.0;
-        Mon, 29 Nov 2021 11:15:41 -0800 (PST)
-X-Gm-Message-State: AOAM53245HNAk6Ko3BidHovxCRY9MuSdXzAimwjcojAeNPWtO8q2lri5
-        urKepIiKDyVxBxtq01duZZZcWxjZ+O2rhK21ZQ==
-X-Google-Smtp-Source: ABdhPJyvru20wY8xt2ie70EKFB9XTG0m0lH+wkh3jUIK9Cc16B0RusdG7G9m4gWaOzujb+4DF8VdS8Z4ZXGe8Xd4SDA=
-X-Received: by 2002:a05:6402:440f:: with SMTP id y15mr78883533eda.22.1638213339312;
- Mon, 29 Nov 2021 11:15:39 -0800 (PST)
+        s=k20201202; t=1638213755;
+        bh=Y5NwSlQVKu/RjuujNCewGKGidAPlSFDXVTVyAhtaMd4=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=rP23YM30IC0YD3XcoytOUD3nAaBxVfg9sYjCOZfzb8zunQm8ShvGTG7V8Uvl21RZ2
+         Rtalf+oKhumJ6V0JtMg8w6h8MX4opoA/WJjDnBmKZnRrfEVqYufEewICYKJQKKXTEO
+         +DvO8fzn4CsyDezm+73FMLG6t+IIzG1H5mnXI091jdYsOBDks/YCOqWaHJpKbvAx40
+         kFBtHb48AAMNmcbHjj3Ho2cL4ObwUglELMdgRg/rVxCWIlgkcyN0a54CiicB46tpAW
+         4M9fxbNtupmVZRYkGTcyRZeZsUrMGe1hMmjVmsD/S6dHwNJEH25zKtBoh6FOJX259s
+         xRlhjNUjcuJJw==
+Date:   Mon, 29 Nov 2021 20:22:32 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Quan Nguyen <quan@os.amperecomputing.com>,
+        Corey Minyard <minyard@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: Re: [PATCH v5 1/3] i2c: aspeed: Add slave_enable() to toggle slave
+ mode
+Message-ID: <YaUoeFZn6zLNoGed@kunai>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Quan Nguyen <quan@os.amperecomputing.com>,
+        Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20210714033833.11640-1-quan@os.amperecomputing.com>
+ <20210714033833.11640-2-quan@os.amperecomputing.com>
+ <YRTQP9sX0hkTJMTx@shikoro>
 MIME-Version: 1.0
-References: <20211122103032.517923-1-maz@kernel.org>
-In-Reply-To: <20211122103032.517923-1-maz@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 29 Nov 2021 13:15:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+kLK-277FOSvOCVDdw8_j-6xL-SnHs15Zj4MddsxZqNw@mail.gmail.com>
-Message-ID: <CAL_Jsq+kLK-277FOSvOCVDdw8_j-6xL-SnHs15Zj4MddsxZqNw@mail.gmail.com>
-Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
- definition of interrupt-map
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Android Kernel Team <kernel-team@android.com>,
-        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="d1UpdctGHU2n/12Q"
+Content-Disposition: inline
+In-Reply-To: <YRTQP9sX0hkTJMTx@shikoro>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 22, 2021 at 4:30 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> Since 041284181226 ("of/irq: Allow matching of an interrupt-map local
-> to an interrupt controller"), a handful of interrupt controllers have
-> stopped working correctly. This is due to the DT exposing a non-sensical
-> interrupt-map property, and their drivers relying on the kernel ignoring
-> this property.
->
-> Since we cannot realistically fix this terrible behaviour, add a quirk
-> for the limited set of devices that have implemented this monster,
-> and document that this is a pretty bad practice.
->
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: John Crispin <john@phrozen.org>
-> Cc: Biwen Li <biwen.li@nxp.com>
-> Cc: Chris Brandt <chris.brandt@renesas.com>
-> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/of/irq.c | 37 +++++++++++++++++++++++++++++++++++--
->  1 file changed, 35 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-> index b10f015b2e37..27a5173c813c 100644
-> --- a/drivers/of/irq.c
-> +++ b/drivers/of/irq.c
-> @@ -76,6 +76,36 @@ struct device_node *of_irq_find_parent(struct device_node *child)
->  }
->  EXPORT_SYMBOL_GPL(of_irq_find_parent);
->
-> +/*
-> + * These interrupt controllers abuse interrupt-map for unspeakable
-> + * reasons and rely on the core code to *ignore* it (the drivers do
-> + * their own parsing of the property).
-> + *
-> + * If you think of adding to the list for something *new*, think
-> + * again. There is a high chance that you will be sent back to the
-> + * drawing board.
-> + */
-> +static const char * const of_irq_imap_abusers[] = {
-> +       "CBEA,platform-spider-pic",
-> +       "sti,platform-spider-pic",
-> +       "realtek,rtl-intc",
-> +       "fsl,ls1021a-extirq",
-> +       "fsl,ls1043a-extirq",
-> +       "fsl,ls1088a-extirq",
-> +       "renesas,rza1-irqc",
-> +};
 
-I guess this list was obtained by with a: git grep '"interrupt-map"'
+--d1UpdctGHU2n/12Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I suppose that should be sufficient to find all the cases. I'd like to
-be able to identify this case just from a DT file, but it's not really
-clear
+Hi,
 
-Perhaps a simpler solution to all this is only handle interrupt-map
-with interrupt-controller if it points to its own node. That works for
-Apple and I don't see a need beyond that case.
+I still wonder if we can't get the SSIF BMC driver upstream...
+
+> @all: Plus, I neither like the API (because it doesn't look generic to
+> me but mostly handling one issue needed here) nor do I fully understand
+> the use case. Normally, when a read is requested and the backend needs
+> time to deliver the data, the hardware should stretch the SCL clock
+> until some data register is finally written to. If it doesn't do it for
+> whatever reason, this is a quirky hardware in my book and needs handling
+> in the driver only. So, what is special with this HW? Can't we solve it
+> differently?
+
+... for that, it would be great if somebody could answer my questions
+here :)
+
+Happy hacking,
+
+   Wolfram
 
 
-> +static bool of_irq_abuses_interrupt_map(struct device_node *np)
-> +{
-> +       int i;
-> +
-> +       for (i = 0; i < ARRAY_SIZE(of_irq_imap_abusers); i++)
-> +               if (of_device_is_compatible(np, of_irq_imap_abusers[i]))
-> +                       return true;
-> +
-> +       return false;
+--d1UpdctGHU2n/12Q
+Content-Type: application/pgp-signature; name="signature.asc"
 
-With a NULL terminated list, you can use of_device_compatible_match() instead .
+-----BEGIN PGP SIGNATURE-----
 
-Rob
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmGlKHgACgkQFA3kzBSg
+Kbaj7Q/+K++8yheJLiYAr0liA2UQdfCq+XezGICIbZAVxxsZK8n1//zZg7zn5/im
+iUQ/roCf08jiF7YOvNDErnCyJTNpVvm9JHvNlYf/TvB9zv7Lwxu3ysMUFaiV00dT
+c6MskoCbxYPdDEz3UtYJ6eJE4qaU0prhazQlYqJvJu1W/cN41e23eHWfiRvSPg65
+ui/7bC0mCLia8VUl2OUs6MGedop+JiqmvaKm5cmoZf7Idi5wxyOVbpQ3955ys1Y/
+4FWtD1YvJubfqZW0WBRDzFiesE5QY+ryqVcu4AdbwdT9jdik4t9vz0yJsgpPOQ/+
+2AAnfuvzWdSvQL5+2aGITnOrT2qJDDePA87OaE0egYKyyUfX533Y8Yit1Fc5OQeh
+hgTvVOzuBsaJVcJTEka49RpzuCha9SeOs8oOV1tOx7rO7tL7kLmKmUmWyj1cRm35
+C15QuoyRZ83+l2v+x27L+leKiWlTabVV1/D+gfVSmt1GD/qKoc/h0Lxss1x1VGcW
+YVopBoNqawQLVsX7EhordVwZNjBuU473rFfYxWPW+DDi34WaFIOlf2b0XN8gNymU
+F8tQo20t7Nd2KvwhmTDUT7j5nXbEJbS3/TqeSMpOQi3kjskHWr78o267qqe0kIzT
+xNkLGxWkdF71AbdjUMUJu+pxli9ABhL0OqxhZ4imhrRZBIKo0wQ=
+=qfX/
+-----END PGP SIGNATURE-----
+
+--d1UpdctGHU2n/12Q--
