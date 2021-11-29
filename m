@@ -2,115 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 795F94620A6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:37:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72D9461FFA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:14:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349989AbhK2TlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 14:41:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49826 "EHLO
+        id S1348688AbhK2TRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 14:17:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352339AbhK2TjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:39:01 -0500
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42CD6C08EA3C;
-        Mon, 29 Nov 2021 07:54:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-         s=20160729; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=JvONQWCJsHnDyCyBVeKU/6qlvcXXNWDR5qe13qM8lnM=; b=QrKp3FXyouR3l0d/hTp8GtWXwu
-        S9Gi9y976Lcu3AL1S593bx2nIEdahrQNMmlECneNtCBwxpEYo24eqzAO84hsigzwmudcogIcuJ0yX
-        168OJkL4h46grC6HRpyNUZ43wSnIaEs+sczI4gdMO7kkDmLjbcdKAGUrhXNO1kSoHoj4=;
-Received: from p54ae943f.dip0.t-ipconnect.de ([84.174.148.63] helo=localhost.localdomain)
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <nbd@nbd.name>)
-        id 1mrif3-0000mo-BB; Mon, 29 Nov 2021 16:33:45 +0100
-From:   Felix Fietkau <nbd@nbd.name>
-To:     linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     john@phrozen.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 13/13] ARM: dts: add GPIO support for Airoha EN7523
-Date:   Mon, 29 Nov 2021 16:33:29 +0100
-Message-Id: <20211129153330.37719-14-nbd@nbd.name>
-X-Mailer: git-send-email 2.30.1
-In-Reply-To: <20211129153330.37719-1-nbd@nbd.name>
-References: <20211129153330.37719-1-nbd@nbd.name>
+        with ESMTP id S239442AbhK2TPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:15:41 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464E2C05293C;
+        Mon, 29 Nov 2021 07:33:42 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id q25so35410307oiw.0;
+        Mon, 29 Nov 2021 07:33:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1NpJJxxsLe7XEOagDPhYXJdpe30GL1jTSYvPaf1NHno=;
+        b=Pvb+GdFMFHXzIFzBVOJiFab5YB6C+tg2PsLlaKWNjPI5wHk90R9L8DLfZfLAb1uzv0
+         0cx0EBIafs1RE69OLuybKf4f119+AvWTURSefjOeD/64AuRJCFV+VJ0SKzaEN+yUveBC
+         AtRrV5kXPyfXcOeXiBMLhERB+nVOasDWW24jnrjXQhD73P6Fd9fE8pagNgUU1hu7CNKb
+         oFKZVY/KfWNm+QcsvqBK29oM1b3Lu7AM9iZSqFbv9igs3f3vI9gArFo0Tv67n2t672e8
+         A/kgYPiX94JTinlUNENROlu/Cd6JuBDi0A1elNuZhOctx9/A1uwSGExlRXjLbokqkYby
+         wJlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=1NpJJxxsLe7XEOagDPhYXJdpe30GL1jTSYvPaf1NHno=;
+        b=7sEgiIe6T42JBc/pWlqrpLIkGVHM1KeEW/U4PqqN66TNzqcUQ98rts5f3RE412hHAR
+         FSgtBaO0DQuL6fPA3PREbPj6jiXQrNUH3msXZvD1DNTF0evWm+/+78kcIxaGVLflwyAk
+         KcxuR2nKWnPBwwRVKGWvSKmiNyKTuIpKc0ntfpB7XnHbrvTdT6kYIrAe9809+3wNpkSs
+         JGO1cNgGvp1KP31mHYinlcQBCU+YEED0ZptiZFw0K6dVVDwNjRC67akMET3pouXOhkM1
+         +S+LUX9JUNV2cDjDuT/IG/6f6MzHSuGRWkADlyws0ZaUY8BGl2EaxVZKGguM0G2L17aV
+         /Y8g==
+X-Gm-Message-State: AOAM531o8GQDobzD7P3ut4KpYCnZmq4gM4OdvNI6birw5qoOZ9S1rvDn
+        5u6hkp1Ijy9eP8N+Ix/3MdM=
+X-Google-Smtp-Source: ABdhPJy1uAfkkB2V6N2JphvgmoYK8jnWjNL0FQjdwyD31NLa90UtuuRex27e/8NnH2aGQN4RpCx69Q==
+X-Received: by 2002:a05:6808:210c:: with SMTP id r12mr40118898oiw.104.1638200021658;
+        Mon, 29 Nov 2021 07:33:41 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e3sm2706918otk.71.2021.11.29.07.33.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 07:33:41 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Mon, 29 Nov 2021 07:33:39 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: renesas,wdt: Add support
+ for RZ/G2L
+Message-ID: <20211129153339.GA2661363@roeck-us.net>
+References: <20211122113554.15990-1-biju.das.jz@bp.renesas.com>
+ <20211122113554.15990-2-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211122113554.15990-2-biju.das.jz@bp.renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: John Crispin <john@phrozen.org>
+On Mon, Nov 22, 2021 at 11:35:53AM +0000, Biju Das wrote:
+> Describe the WDT hardware in the RZ/G2L series.
+> 
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Airoha's GPIO controller on their ARM EN7523 SoCs consists of two banks of 32
-GPIOs
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Felix Fietkau <nbd@nbd.name>
----
- arch/arm/boot/dts/en7523-evb.dts |  8 ++++++++
- arch/arm/boot/dts/en7523.dtsi    | 20 ++++++++++++++++++++
- 2 files changed, 28 insertions(+)
-
-diff --git a/arch/arm/boot/dts/en7523-evb.dts b/arch/arm/boot/dts/en7523-evb.dts
-index 0a79f5f6c311..cd9cded5b564 100644
---- a/arch/arm/boot/dts/en7523-evb.dts
-+++ b/arch/arm/boot/dts/en7523-evb.dts
-@@ -33,3 +33,11 @@ &pcie0 {
- &pcie1 {
- 	status = "okay";
- };
-+
-+&gpio0 {
-+	status = "okay";
-+};
-+
-+&gpio1 {
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/en7523.dtsi b/arch/arm/boot/dts/en7523.dtsi
-index 862da104d6f2..d9cc5a1b83b8 100644
---- a/arch/arm/boot/dts/en7523.dtsi
-+++ b/arch/arm/boot/dts/en7523.dtsi
-@@ -3,6 +3,7 @@
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/en7523-clk.h>
-+#include <dt-bindings/gpio/gpio.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -120,6 +121,25 @@ uart1: serial@1fbf0000 {
- 		status = "okay";
- 	};
- 
-+	gpio0: gpio@1fbf0200 {
-+		compatible = "airoha,en7523-gpio";
-+		reg = <0x1fbf0204 0x4>,
-+		      <0x1fbf0200 0x4>,
-+		      <0x1fbf0220 0x4>,
-+		      <0x1fbf0214 0x4>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	gpio1: gpio@1fbf0270 {
-+		compatible = "airoha,en7523-gpio";
-+		reg = <0x1fbf0270 0x4>,
-+		      <0x1fbf0260 0x4>,
-+		      <0x1fbf0264 0x4>,
-+		      <0x1fbf0278 0x4>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
- 
- 	pcie0: pcie@1fa91000 {
- 		compatible = "airoha,en7523-pcie", "mediatek,mt7622-pcie";
--- 
-2.30.1
-
+> ---
+> V2->v3:
+>  * No change.
+> V1->V2:
+>  * No Change
+> RFC->V1:
+>  * Added clock-names and interrupt-names as required properties for RZ/G2L
+>  * Re-order clocknames with internal module clock first
+> ---
+>  .../bindings/watchdog/renesas,wdt.yaml        | 75 ++++++++++++++-----
+>  1 file changed, 57 insertions(+), 18 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> index ab66d3f0c476..91a98ccd4226 100644
+> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
+> @@ -10,9 +10,6 @@ maintainers:
+>    - Wolfram Sang <wsa+renesas@sang-engineering.com>
+>    - Geert Uytterhoeven <geert+renesas@glider.be>
+>  
+> -allOf:
+> -  - $ref: "watchdog.yaml#"
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -22,6 +19,11 @@ properties:
+>                - renesas,r7s9210-wdt      # RZ/A2
+>            - const: renesas,rza-wdt       # RZ/A
+>  
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
+> +          - const: renesas,rzg2l-wdt     # RZ/G2L
+> +
+>        - items:
+>            - enum:
+>                - renesas,r8a7742-wdt      # RZ/G1H
+> @@ -56,11 +58,13 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> -  interrupts:
+> -    maxItems: 1
+> +  interrupts: true
+>  
+> -  clocks:
+> -    maxItems: 1
+> +  interrupt-names: true
+> +
+> +  clocks: true
+> +
+> +  clock-names: true
+>  
+>    power-domains:
+>      maxItems: 1
+> @@ -75,17 +79,52 @@ required:
+>    - reg
+>    - clocks
+>  
+> -if:
+> -  not:
+> -    properties:
+> -      compatible:
+> -        contains:
+> -          enum:
+> -            - renesas,rza-wdt
+> -then:
+> -  required:
+> -    - power-domains
+> -    - resets
+> +allOf:
+> +  - $ref: "watchdog.yaml#"
+> +
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              enum:
+> +                - renesas,rza-wdt
+> +    then:
+> +      required:
+> +        - power-domains
+> +        - resets
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - renesas,rzg2l-wdt
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 2
+> +        interrupt-names:
+> +          items:
+> +            - const: wdt
+> +            - const: perrout
+> +        clocks:
+> +          items:
+> +            - description: Register access clock
+> +            - description: Main clock
+> +        clock-names:
+> +          items:
+> +            - const: pclk
+> +            - const: oscclk
+> +      required:
+> +        - clock-names
+> +        - interrupt-names
+> +    else:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+> +        clocks:
+> +          maxItems: 1
+>  
+>  additionalProperties: false
+>  
+> -- 
+> 2.17.1
+> 
