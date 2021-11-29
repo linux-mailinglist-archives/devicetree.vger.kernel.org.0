@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28CE7460C63
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 02:45:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAA7D460C8A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 03:03:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbhK2Bsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 20:48:41 -0500
-Received: from smtpcmd14162.aruba.it ([62.149.156.162]:40012 "EHLO
+        id S235163AbhK2CGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 21:06:22 -0500
+Received: from smtpcmd14162.aruba.it ([62.149.156.162]:57623 "EHLO
         smtpcmd14162.aruba.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238912AbhK2Bqj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 20:46:39 -0500
+        with ESMTP id S233004AbhK2CEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 21:04:21 -0500
 Received: from [192.168.50.18] ([146.241.138.59])
         by Aruba Outgoing Smtp  with ESMTPSA
         id rVMImypYirIRlrVMImljzA; Mon, 29 Nov 2021 02:21:32 +0100
