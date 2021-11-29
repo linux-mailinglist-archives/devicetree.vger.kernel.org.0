@@ -2,69 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F658462298
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 21:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC7D46229E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 21:57:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233067AbhK2U7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 15:59:01 -0500
-Received: from mail-ot1-f46.google.com ([209.85.210.46]:44714 "EHLO
-        mail-ot1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230077AbhK2U5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 15:57:00 -0500
-Received: by mail-ot1-f46.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso27240585otj.11;
-        Mon, 29 Nov 2021 12:53:42 -0800 (PST)
+        id S229510AbhK2VAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 16:00:05 -0500
+Received: from mail-ot1-f49.google.com ([209.85.210.49]:45762 "EHLO
+        mail-ot1-f49.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234007AbhK2U5x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 15:57:53 -0500
+Received: by mail-ot1-f49.google.com with SMTP id a23-20020a9d4717000000b0056c15d6d0caso27247066otf.12;
+        Mon, 29 Nov 2021 12:54:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=O5phL/jvYeg+hJdzDu+EzloScJKYSqephaKd+f3MqAk=;
-        b=P+S5LnqCJof/7mRHLNzEGv2EwkG1T1EbvELHvwwJUwHW0smckTHtWnieOC+bn+7bPp
-         F0oyBVXzXd58x30fQltyJguxtbgiUXMsH1C02cemawk/S3ztaunU+5ZyrVIPOQvF5Q1A
-         XssY+X7kgj5HGzNnQapTlVt7NH2u3v6CjlaAH6HHJVD2I/FcRqhJEXUSd0QtPnmO1w2m
-         nVb9MwImrELQiGvBxmFlhfmORiJ0nMTRjY9we6IJJXC1qi/wSCqeRDmC140fhTG6KDO/
-         moBt7nukmPwV2QGLyQd7VXEgM9XNGzLviNG2Md5etUWPRU7Cf/trQeHrjHgzlxqNeTPP
-         pQ+g==
-X-Gm-Message-State: AOAM532nKo0T5muKfDklTbwoOT/+iWN9ukOrCME+GlDMJ1x61z4ovDoj
-        xyEkwG9qByweTyrnjuCpJg==
-X-Google-Smtp-Source: ABdhPJz/LyBaEyES+FDgkNvSLTdH7DzsMrDqMgF3cGiLAZDPRWI9Ut0H8bHhZ9f7b3s9/Su4m+kc/g==
-X-Received: by 2002:a05:6830:310c:: with SMTP id b12mr46954142ots.240.1638219222537;
-        Mon, 29 Nov 2021 12:53:42 -0800 (PST)
+        bh=B3hvgTrlRHqGF/IdTVrO9KCViKxMaaGzEVbvcpETaIM=;
+        b=ueqAWUbi0CI20BPaYHBJzblMjXeF8659nXxLxKK655DJET9eLgFJZWOd667OgTh7B3
+         IN8+EnETB72rCm7yJMRh0efOVwofUkP4on9jwLGE73IHcaP/qpZXsTCM+uLxplIylCJk
+         u9OfMrsCxQxCqhaltOhtCO/BKgPl3oWxCtX07gHeBMV2ly9Ub/f0ZNzSctP/56XUV5Mw
+         aMWSRehID6FqhJRrgbmwXwQS68edfmrWYP8xEeAyXcco5ItmTzhd7BlktYT+MqTEiNHF
+         TlNJLxXyvGKMxnTrKVZBg8/CWOeyJ4T9+ykZTLnzO5qLN+sFoB0762hZ1BhWZLlBQUTi
+         E2Ag==
+X-Gm-Message-State: AOAM530GjdmiVvUFOjIFmPR5fqA9Wx0p7V/jjEdKlOwd/xpuJitelomG
+        sfjQsf9TnS4BJ8BmZZ6cFQ==
+X-Google-Smtp-Source: ABdhPJzH+ruZaEt4NU1QvkQa6C6oL5IHatORLHK6E+u8KZSlK6SKMeiCcGpSmlVI69LGgw5aQ3mOWQ==
+X-Received: by 2002:a05:6830:25d4:: with SMTP id d20mr47784301otu.143.1638219274797;
+        Mon, 29 Nov 2021 12:54:34 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t12sm2450270ood.22.2021.11.29.12.53.41
+        by smtp.gmail.com with ESMTPSA id a5sm1872649otd.74.2021.11.29.12.54.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 12:53:42 -0800 (PST)
-Received: (nullmailer pid 590668 invoked by uid 1000);
-        Mon, 29 Nov 2021 20:53:41 -0000
-Date:   Mon, 29 Nov 2021 14:53:41 -0600
+        Mon, 29 Nov 2021 12:54:34 -0800 (PST)
+Received: (nullmailer pid 591965 invoked by uid 1000);
+        Mon, 29 Nov 2021 20:54:33 -0000
+Date:   Mon, 29 Nov 2021 14:54:33 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Li Yang <leoyang.li@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 02/11] dt-bindings: fsl,layerscape-dcfg: add missing
- compatible for lx2160a
-Message-ID: <YaU91SxgAFXtDMyW@robh.at.kernel.org>
-References: <20211110222200.6780-1-leoyang.li@nxp.com>
- <20211110222200.6780-3-leoyang.li@nxp.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 01/11] dt-bindings: tegra: Describe recent developer kits
+ consistently
+Message-ID: <YaU+CY5s6u6hyFNI@robh.at.kernel.org>
+References: <20211112123542.3680629-1-thierry.reding@gmail.com>
+ <20211112123542.3680629-2-thierry.reding@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211110222200.6780-3-leoyang.li@nxp.com>
+In-Reply-To: <20211112123542.3680629-2-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 10, 2021 at 04:21:51PM -0600, Li Yang wrote:
-> The compatbile string is already in use, fix the chip list in binding to
-
-same typo.
-
-> include it.
+On Fri, 12 Nov 2021 13:35:32 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> Add descriptions to entries that were missing one and don't try to
+> combine multiple entries into one to avoid confusion.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt   | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/arm/tegra.yaml        | 20 ++++++++++---------
+>  1 file changed, 11 insertions(+), 9 deletions(-)
+> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
