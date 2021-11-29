@@ -2,83 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7F8460C33
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 02:23:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15ED3460C40
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 02:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376880AbhK2B1J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 20:27:09 -0500
-Received: from mail-oo1-f42.google.com ([209.85.161.42]:37861 "EHLO
-        mail-oo1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240364AbhK2BZI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 20:25:08 -0500
-Received: by mail-oo1-f42.google.com with SMTP id v19-20020a4a2453000000b002bb88bfb594so5213789oov.4;
-        Sun, 28 Nov 2021 17:21:51 -0800 (PST)
+        id S240510AbhK2Bcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 20:32:42 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:44977 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231465AbhK2Bam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 20:30:42 -0500
+Received: by mail-ot1-f45.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso23255768otj.11;
+        Sun, 28 Nov 2021 17:27:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=LW4WjEKRMKNnUNWNFgMkHBQj/K7wWytVhDzInU2NQMo=;
-        b=k4P2m6EDgYrOJLoy59EnJfYuemAOYTg0dQaJGCIx5jXe60KSMvc4S1DgK58/7htstV
-         PMSfR5krga5QeT0UyUr5Ai7YWzRgiZVKxbscSiufLPXdQyqmyeHzme2lvqp7jz4ekAHV
-         2Z8Jgtvjuo/a2TVo+jf0OQEfUqJnSU4sqx8e0uiTxqwOC62RW7LfsIlAX+jVrLm+pCiY
-         KDeMhEqKI6D+sVV3y3Yp2T+63kyOCfk7CF/C0MFod9M6LrQSH6MILxuY6e0pfB9QCn3X
-         Wr0GzHtaR/WFcmiA525NI1OzK6YVmdwNMg+Pybu13olCoLyaNNHcjZ4getxiiBU5fuSK
-         W8eA==
-X-Gm-Message-State: AOAM530/xe31461JwpAllwL5uwub73kIaX8rjOAHLVhklTfV+NzXnfUB
-        fC18bGJNEF4Q8qA1rT8e9w==
-X-Google-Smtp-Source: ABdhPJzFQcwxm7HLcIp9yihozQMM6P/xMY01eYiDVyyZtOzCQBGspO3QAJY8+5jItYuEux+e1QdiwQ==
-X-Received: by 2002:a4a:dbd3:: with SMTP id t19mr30015435oou.8.1638148911432;
-        Sun, 28 Nov 2021 17:21:51 -0800 (PST)
+        bh=Q/CrGecYUeDdR6r8+yA6oPN9sOdPcqSzyh2oQnkTLSY=;
+        b=uEMJkfwYndC//ME2UkvJdAU74efgXNv48Y94FZYU4UNSpXxA+IEvNcN+qNFN1skwbE
+         FvLFYx+0YiA83o8W0upQEP8knx+tWuP9Sgjym+BsohkjhmhluWCORHBvx75Ckw6lY57n
+         N3XFyI/IKd+HkdGaiVvQEQyrE67iwVoEky6wkpJCfHM01zg28E66jaikKiQokR29pZx0
+         8Q0c8FpnIJm5Ln6VuzwbCXxGgQQcrTf9hLI0+WfdmOowc92cGNfwnFVA1szQgFwZkVUL
+         PHH0TRflYgk860I+RdWlX0efdJsO2etja17pXn7fUSsQfz2WLr06IQflVrbSC563D+Oy
+         byYw==
+X-Gm-Message-State: AOAM5316l+XKyLMcQHjkq5mQK71P9LpEd+8YDMgBD3zArW9JBCRLQxUs
+        rvmZoYViXYkedmLWWYStVQ==
+X-Google-Smtp-Source: ABdhPJxtuA+XfiWbawu7ZYKFsEv0Yo/JLTV8PehfvEcgdrBvReHgoIMJZMl5z7pxb0xzUVz0dkYoPA==
+X-Received: by 2002:a9d:75d7:: with SMTP id c23mr43552829otl.181.1638149244994;
+        Sun, 28 Nov 2021 17:27:24 -0800 (PST)
 Received: from robh.at.kernel.org ([172.58.99.229])
-        by smtp.gmail.com with ESMTPSA id u28sm2392930otj.57.2021.11.28.17.21.48
+        by smtp.gmail.com with ESMTPSA id bi20sm2734070oib.29.2021.11.28.17.27.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 17:21:50 -0800 (PST)
-Received: (nullmailer pid 2966117 invoked by uid 1000);
-        Mon, 29 Nov 2021 01:21:47 -0000
-Date:   Sun, 28 Nov 2021 19:21:47 -0600
+        Sun, 28 Nov 2021 17:27:24 -0800 (PST)
+Received: (nullmailer pid 2973705 invoked by uid 1000);
+        Mon, 29 Nov 2021 01:27:20 -0000
+Date:   Sun, 28 Nov 2021 19:27:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     David Heidelberg <david@ixit.cz>,
-        Maxim Schwalm <maxim.schwalm@gmail.com>,
-        Ion Agorria <ion@agorria.com>,
-        Jasper Korten <jja2000@gmail.com>,
-        Andreas Westman Dorcsak <hedmoo@yahoo.com>,
-        Thomas Graichen <thomas.graichen@gmail.com>,
-        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        devicetree@vger.kernel.org,
-        Nikola Milosavljevic <mnidza@outlook.com>,
-        linux-kernel@vger.kernel.org,
-        Svyatoslav Ryhel <clamor95@gmail.com>,
-        Ihor Didenko <tailormoon@rambler.ru>,
-        linux-tegra@vger.kernel.org,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Anton Bambura <jenneron@protonmail.com>,
-        Antoni Aloy Torrens <aaloytorrens@gmail.com>,
-        Raffaele Tranquillini <raffaele.tranquillini@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v3 02/14] dt-bindings: ARM: tegra: Document Pegatron
- Chagall
-Message-ID: <YaQrK5gLlq9yZkvT@robh.at.kernel.org>
-References: <20211127142327.17692-1-digetx@gmail.com>
- <20211127142327.17692-3-digetx@gmail.com>
+To:     Sven Peter <sven@svenpeter.dev>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add Apple dwc3 bindings
+Message-ID: <YaQseO5kF71vABji@robh.at.kernel.org>
+References: <20211108170946.49689-1-sven@svenpeter.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211127142327.17692-3-digetx@gmail.com>
+In-Reply-To: <20211108170946.49689-1-sven@svenpeter.dev>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 27 Nov 2021 17:23:15 +0300, Dmitry Osipenko wrote:
-> From: David Heidelberg <david@ixit.cz>
+On Mon, Nov 08, 2021 at 06:09:45PM +0100, Sven Peter wrote:
+> Apple Silicon SoCs such as the M1 have multiple USB controllers based on
+> the Synopsys DesignWare USB3 controller.
+> References to the ATC PHY required for SuperSpeed are left out for now
+> until support has been upstreamed as well.
 > 
-> Document Pegatron Chagall, which is Tegra30-based tablet device.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
 > ---
->  Documentation/devicetree/bindings/arm/tegra.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+> v1 -> v2:
+>  - added apple,dwc3 bindings instead of a property for the reset quirk
+>    as requested by robh
 > 
+> I think I have to use GPL-2.0 for this binding since it's based
+> on and references snps,dwc3.yaml which is also only GPL-2.0.
+> Otherwise I'd be fine with the usual GPL/BSD dual license as well.
+> 
+>  .../devicetree/bindings/usb/apple,dwc3.yaml   | 64 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/apple,dwc3.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/apple,dwc3.yaml b/Documentation/devicetree/bindings/usb/apple,dwc3.yaml
+> new file mode 100644
+> index 000000000000..fb3b3489e6b2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/apple,dwc3.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Acked-by: Rob Herring <robh@kernel.org>
+Dual license please.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/apple,dwc3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Apple Silicon DWC3 USB controller
+> +
+> +maintainers:
+> +  - Sven Peter <sven@svenpeter.dev>
+> +
+> +description:
+> +  On Apple Silicon SoCs such as the M1 each Type-C port has a corresponding
+> +  USB controller based on the Synopsys DesignWare USB3 controller.
+> +
+> +  The common content of this binding is defined in snps,dwc3.yaml.
+> +
+> +allOf:
+> +  - $ref: snps,dwc3.yaml#
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: apple,dwc3
+
+This needs to list all possible compatibles except snps,dwc3 so the 
+schema is applied for any incorrect mixture of compatibles.
+
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - apple,t8103-dwc3
+> +          - apple,t6000-dwc3
+> +      - const: apple,dwc3
+> +      - const: snps,dwc3
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/apple-aic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    usb@82280000 {
+> +      compatible = "apple,t8103-dwc3", "apple,dwc3", "snps,dwc3";
+> +      reg = <0x82280000 0x10000>;
+> +      interrupts = <AIC_IRQ 777 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +      dr_mode = "otg";
+> +      usb-role-switch;
+> +      role-switch-default-mode = "host";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3b79fd441dde..03e7cc48877a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1724,6 +1724,7 @@ T:	git https://github.com/AsahiLinux/linux.git
+>  F:	Documentation/devicetree/bindings/arm/apple.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+>  F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+> +F:	Documentation/devicetree/bindings/usb/apple,dwc3.yaml
+>  F:	arch/arm64/boot/dts/apple/
+>  F:	drivers/irqchip/irq-apple-aic.c
+>  F:	include/dt-bindings/interrupt-controller/apple-aic.h
+> -- 
+> 2.25.1
+> 
+> 
