@@ -2,67 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CE046116C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 10:52:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB229461179
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 10:57:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238591AbhK2Jzo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Nov 2021 04:55:44 -0500
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:40961 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347390AbhK2Jxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 04:53:42 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 52A52E000D;
-        Mon, 29 Nov 2021 09:50:21 +0000 (UTC)
-Date:   Mon, 29 Nov 2021 10:50:20 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
-        Julien Su <juliensu@mxic.com.tw>,
-        Jaime Liao <jaimeliao@mxic.com.tw>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 00/20] External ECC engines & Macronix support
-Message-ID: <20211129105020.00233264@xps13>
-In-Reply-To: <YaDrjkjfK/y/n+BO@sirena.org.uk>
-References: <20211126113924.310459-1-miquel.raynal@bootlin.com>
-        <YaDjDhOhpHMdxiqA@sirena.org.uk>
-        <20211126151059.10c19ec7@xps13>
-        <YaDrjkjfK/y/n+BO@sirena.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S245711AbhK2KAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 05:00:44 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:64532 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231983AbhK2J6m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Nov 2021 04:58:42 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1638179721; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=rTfcGTR+3GLs3cW3kgd/lC6PwGh1if+M38DrtgJcOGQ=;
+ b=GobgZgVGYADasssy6yD2p1R2D6UOgKzUZ17MzqvsuFdwQNj6SgbXg+YiN3orLLFoCa7ZctBn
+ cxrckYhhL69vb0GYsMjBMo9mFCX18NYHX1Agbco6c2AAYGyhRTvRBiYTZtnnVrvOXrkd1RFD
+ LV1y8DJnyNQXa/PJ7uiE4wagykM=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 61a4a389bebfa3d4d50840ff (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 29 Nov 2021 09:55:21
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 398FEC4360D; Mon, 29 Nov 2021 09:55:21 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5A828C4360C;
+        Mon, 29 Nov 2021 09:55:20 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 29 Nov 2021 15:25:20 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Rakesh Pillai <pillair@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        swboyd@chromium.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mpubbise@codeaurora.org, kuabhs@chromium.org,
+        pillair=codeaurora.org@codeaurora.org
+Subject: Re: [PATCH v7] arm64: dts: qcom: sc7280: Add WPSS remoteproc node
+In-Reply-To: <1637299488-22336-1-git-send-email-pillair@codeaurora.org>
+References: <1637299488-22336-1-git-send-email-pillair@codeaurora.org>
+Message-ID: <14d31c99d8fe258af3fc1f28c787c8cb@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+Hey Rakesh,
 
-broonie@kernel.org wrote on Fri, 26 Nov 2021 14:13:34 +0000:
-
-> On Fri, Nov 26, 2021 at 03:10:59PM +0100, Miquel Raynal wrote:
+On 2021-11-19 10:54, Rakesh Pillai wrote:
+> Add the WPSS remoteproc node in dts for
+> PIL loading.
 > 
-> > If you acknowledge the SPI bits I believe I can carry the entire series
-> > through the MTD tree. If you fear conflicts and need an immutable tag I
-> > can also do that.  
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Rakesh Pillai <pillair@codeaurora.org>
+> ---
+> Changes from v6:
+> - Swap the oder of two properties in wpss_mem reserved memory
 > 
-> It'd be good to have the tag just in case, there's generally a lot of
-> work in this area.
+> Changes from v5:
+> - Update the clock names
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts |  4 +++
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi    | 56 
+> +++++++++++++++++++++++++++++++++
+>  2 files changed, 60 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 9b991ba..ddab150 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -80,3 +80,7 @@
+>  		qcom,pre-scaling = <1 1>;
+>  	};
+>  };
+> +
+> +&remoteproc_wpss {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 365a2e0..dd93f13 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -134,6 +134,11 @@
+>  			no-map;
+>  		};
+> 
+> +		wpss_mem: memory@9ae00000 {
+> +			reg = <0x0 0x9ae00000 0x0 0x1900000>;
+> +			no-map;
+> +		};
+> +
 
-Sure.
+wpss_mem is already part of idp
+board dts. We no longer include
+PIL reserved memory regions in
+the base SoC dtsi since the size
+varies across boards.
 
-> Reviewed-by: Mark Brown <broonie@kernel.org>
+>  		rmtfs_mem: memory@9c900000 {
+>  			compatible = "qcom,rmtfs-mem";
+>  			reg = <0x0 0x9c900000 0x0 0x280000>;
+> @@ -2598,6 +2603,57 @@
+>  			status = "disabled";
+>  		};
+> 
+> +		remoteproc_wpss: remoteproc@8a00000 {
+> +			compatible = "qcom,sc7280-wpss-pil";
+> +			reg = <0 0x08a00000 0 0x10000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+> +					      <&wpss_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "wdog", "fatal", "ready", "handover",
+> +					  "stop-ack", "shutdown-ack";
+> +
+> +			clocks = <&gcc GCC_WPSS_AHB_BDG_MST_CLK>,
+> +				 <&gcc GCC_WPSS_AHB_CLK>,
+> +				 <&gcc GCC_WPSS_RSCP_CLK>,
+> +				 <&rpmhcc RPMH_CXO_CLK>;
+> +			clock-names = "ahb_bdg", "ahb",
+> +				      "rscp", "xo";
+> +
+> +			power-domains = <&rpmhpd SC7280_CX>,
+> +					<&rpmhpd SC7280_MX>;
+> +			power-domain-names = "cx", "mx";
+> +
+> +			memory-region = <&wpss_mem>;
+> +
+> +			qcom,qmp = <&aoss_qmp>;
+> +
+> +			qcom,smem-states = <&wpss_smp2p_out 0>;
+> +			qcom,smem-state-names = "stop";
+> +
+> +			resets = <&aoss_reset AOSS_CC_WCSS_RESTART>,
+> +				 <&pdc_reset PDC_WPSS_SYNC_RESET>;
+> +			reset-names = "restart", "pdc_sync";
+> +
+> +			qcom,halt-regs = <&tcsr_mutex 0x37000>;
+> +
+> +			status = "disabled";
+> +
+> +			glink-edge {
+> +				interrupts-extended = <&ipcc IPCC_CLIENT_WPSS
+> +							     IPCC_MPROC_SIGNAL_GLINK_QMP
+> +							     IRQ_TYPE_EDGE_RISING>;
+> +				mboxes = <&ipcc IPCC_CLIENT_WPSS
+> +						IPCC_MPROC_SIGNAL_GLINK_QMP>;
+> +
+> +				label = "wpss";
+> +				qcom,remote-pid = <13>;
+> +			};
+> +		};
+> +
+>  		dc_noc: interconnect@90e0000 {
+>  			reg = <0 0x090e0000 0 0x5080>;
+>  			compatible = "qcom,sc7280-dc-noc";
 
-I'll need to send a v3, shall I add this tag to all the spi and spi binding changes?
-
-Thanks,
-Miquèl
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
