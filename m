@@ -2,58 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC211460DF3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 05:05:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28780460E15
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 05:39:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236994AbhK2EI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 23:08:57 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:42386 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231312AbhK2EG4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 23:06:56 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AT43Nrb110170;
-        Sun, 28 Nov 2021 22:03:23 -0600
+        id S235756AbhK2EmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 23:42:16 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:46600 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233993AbhK2EkP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 23:40:15 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AT4aZVA103393;
+        Sun, 28 Nov 2021 22:36:35 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638158603;
-        bh=FrGdjPInShzB2+c5CZgij+JjrDs4konXtkz4L7PERYg=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=HiYXygwTe9XulGvCl67DC+QOwjY0dtITt4CSOysANUpioBlKJbNty5DTS+QPmSnj7
-         3Oyd4U7YRCEdUjDwA5CT1+HA7mxgfATTJ2/M6bzJVAtdk39ZuyDxEZYHSEG8eHxAFd
-         9PgKM1vZE3eFGnw8IVrv3GwlKviysLg3JhwTbL1I=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AT43N3Y086345
+        s=ti-com-17Q1; t=1638160595;
+        bh=T5ua16ilPFMaScWb+OoNmTXhxlYu6YduhMgRmagewJU=;
+        h=From:Subject:To:CC:References:Date:In-Reply-To;
+        b=Dql1PpzBGgHWPkere5NpJg6Vl1zEgoP5jH+keEuopHBBoh/cnvRsTQHBkDJKOBnW3
+         SIaBmnUNxTX/R3ssF28leIIXM0XiUDGY6tYBokPdQTNi4TuBU5ZnFCBIpznPwWLGVS
+         rPQgBgzSp21BcQZT3BxxIEjDapCY4eGQDiraEJ94=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AT4aZw6033420
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 28 Nov 2021 22:03:23 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+        Sun, 28 Nov 2021 22:36:35 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sun, 28
- Nov 2021 22:03:23 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2021 22:36:35 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Sun, 28 Nov 2021 22:03:23 -0600
-Received: from [10.250.234.212] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AT43KAY008660;
-        Sun, 28 Nov 2021 22:03:21 -0600
-Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: ti,am65: Fix
- "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
-To:     Rob Herring <robh@kernel.org>
-CC:     =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        <linux-pci@vger.kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20211126083119.16570-1-kishon@ti.com>
- <20211126083119.16570-2-kishon@ti.com>
- <1638054802.141849.1973546.nullmailer@robh.at.kernel.org>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <1d0490fe-9fbe-8ca3-7a27-0bed9aa1eac8@ti.com>
-Date:   Mon, 29 Nov 2021 09:33:19 +0530
+ Frontend Transport; Sun, 28 Nov 2021 22:36:34 -0600
+Received: from [10.250.232.185] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AT4aVaE061174;
+        Sun, 28 Nov 2021 22:36:31 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+Subject: Re: [PATCH RFC v3 1/4] dt-bindings: mux: Increase the number of
+ arguments in mux-controls
+To:     Peter Rosin <peda@axentia.se>
+CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+References: <20211123081222.27979-1-a-govindraju@ti.com>
+ <20211123081222.27979-2-a-govindraju@ti.com>
+ <24781209-928b-dea4-de0b-b103dac8de82@axentia.se>
+Message-ID: <5f455c4d-5edb-4382-1193-a519a7a227a5@ti.com>
+Date:   Mon, 29 Nov 2021 10:06:30 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-In-Reply-To: <1638054802.141849.1973546.nullmailer@robh.at.kernel.org>
+In-Reply-To: <24781209-928b-dea4-de0b-b103dac8de82@axentia.se>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -62,127 +65,124 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Peter,
 
-On 28/11/21 4:43 am, Rob Herring wrote:
-> On Fri, 26 Nov 2021 14:01:15 +0530, Kishon Vijay Abraham I wrote:
->> Fix binding documentation of "ti,syscon-pcie-id" and "ti,syscon-pcie-mode"
->> to take phandle with argument. The argument is the register offset within
->> "syscon" used to configure PCIe controller. Similar change for j721e is
->> discussed in [1]
->>
->> [1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
->>
->> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
->> ---
->>  .../devicetree/bindings/pci/ti,am65-pci-ep.yaml  |  8 ++++++--
->>  .../bindings/pci/ti,am65-pci-host.yaml           | 16 ++++++++++++----
->>  2 files changed, 18 insertions(+), 6 deletions(-)
->>
+On 25/11/21 7:05 pm, Peter Rosin wrote:
+> Hi!
 > 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
+> You need to have some description on how #mux-control-cells now work.
+> The previous description is in mux-consumer.yaml and an update there
+> is needed.
 > 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
+> However, I have realized that the adg792a binding uses #mux-control-cells
+> to indicate if it should expose its three muxes with one mux-control
+> and operate the muxes in parallel, or if it should be expose three
+> independent mux-controls. So, the approach in this series to always
+> have the #mux-control-cells property fixed at <2> when indicating a
+> state will not work for that binding. And I see no fix for that binding
+> without adding a new property.
+> 
+> So, I would like a different approach. Since I dislike how mux-controls
+> -after this series- is not (always) specifying a mux-control like the name
+> says, but instead optionally a specific state, the new property I would
+> like to add is #mux-state-cells such that it would always be one more
+> than #mux-control-cells.
+> 
+> 	mux: mux-controller {
+> 		compatible = "gpio-mux";
+> 		#mux-control-cells = <0>;
+> 		#mux-state-cells = <1>;
+> 
+> 		mux-gpios = <...>;
+> 	};
+> 
+> 	can-phy {
+> 		compatible = "ti,tcan1043";
+> 		...
+> 		mux-states = <&mux 1>;
+> 	};
+> 
+> That solves the naming issue, the unused argument for mux-conrtrollers
+> that previously had #mux-control-cells = <0>, and the binding for adg792a
+> need no longer be inconsistent.
+> 
+> Or, how should this be solved? I'm sure there are other options...
+> 
 
-Once this series is merged, I'll send an update to the device tree files.
-Without the corresponding driver changes, update to DT will break functionality.
+
+I feel that the new approach using mux-state-cells seems to be
+overpopulating the device tree nodes, when the state can be represented
+using the control cells. I understand that the definition for
+mux-controls is to only specify the control line to be used in a given
+mux. Can't it now be upgraded to also represent the state at which the
+control line has to be set to?
+
+With respect to adg792a, it is inline with the current implementation
+and the only change I think would be required in the driver is,
+
+diff --git a/drivers/mux/adg792a.c b/drivers/mux/adg792a.c
+index e8fc2fc1ab09..2cd3bb8a40d4 100644
+--- a/drivers/mux/adg792a.c
++++ b/drivers/mux/adg792a.c
+@@ -73,8 +73,6 @@ static int adg792a_probe(struct i2c_client *i2c)
+        ret = device_property_read_u32(dev, "#mux-control-cells", &cells);
+        if (ret < 0)
+                return ret;
+-       if (cells >= 2)
+-               return -EINVAL;
+
+        mux_chip = devm_mux_chip_alloc(dev, cells ? 3 : 1, 0);
+        if (IS_ERR(mux_chip))
+
+And the following series should be compatible with it. If adg792a driver
+is the only issue then would there be any issue with only changing it
+and using this implementation?
 
 Thanks,
-Kishon
+Aswath
+
+
+
+
+> Cheers,
+> Peter
 > 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1559994
-> 
-> 
-> pcie@21020000: compatible: Additional items are not allowed ('snps,dw-pcie' was unexpected)
-> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
-> 
-> pcie@21020000: compatible: ['ti,keystone-pcie', 'snps,dw-pcie'] is too long
-> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
-> 
-> pcie@21020000: reg: [[553783296, 8192], [553779200, 4096], [39977256, 4]] is too short
-> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
-> 
-> pcie@21800000: compatible: Additional items are not allowed ('snps,dw-pcie' was unexpected)
-> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
-> 	arch/arm/boot/dts/keystone-k2hk-evm.dt.yaml
-> 	arch/arm/boot/dts/keystone-k2l-evm.dt.yaml
-> 
-> pcie@21800000: compatible: ['ti,keystone-pcie', 'snps,dw-pcie'] is too long
-> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
-> 	arch/arm/boot/dts/keystone-k2hk-evm.dt.yaml
-> 	arch/arm/boot/dts/keystone-k2l-evm.dt.yaml
-> 
-> pcie@21800000: reg: [[562040832, 8192], [562036736, 4096], [39977256, 4]] is too short
-> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
-> 	arch/arm/boot/dts/keystone-k2hk-evm.dt.yaml
-> 	arch/arm/boot/dts/keystone-k2l-evm.dt.yaml
-> 
-> pcie@5500000: ti,syscon-pcie-id:0: [52] is too short
-> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> 
-> pcie@5500000: ti,syscon-pcie-id:0: [60] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-> 
-> pcie@5500000: ti,syscon-pcie-id:0: [61] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-> 
-> pcie@5500000: ti,syscon-pcie-mode:0: [53] is too short
-> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> 
-> pcie@5500000: ti,syscon-pcie-mode:0: [61] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-> 
-> pcie@5500000: ti,syscon-pcie-mode:0: [62] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-> 
-> pcie@5600000: ti,syscon-pcie-id:0: [52] is too short
-> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> 
-> pcie@5600000: ti,syscon-pcie-id:0: [60] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-> 
-> pcie@5600000: ti,syscon-pcie-id:0: [61] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-> 
-> pcie@5600000: ti,syscon-pcie-mode:0: [55] is too short
-> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> 
-> pcie@5600000: ti,syscon-pcie-mode:0: [63] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-> 
-> pcie@5600000: ti,syscon-pcie-mode:0: [64] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-> 
-> pcie-ep@5500000: ti,syscon-pcie-mode:0: [53] is too short
-> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> 
-> pcie-ep@5500000: ti,syscon-pcie-mode:0: [61] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-> 
-> pcie-ep@5500000: ti,syscon-pcie-mode:0: [62] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-> 
-> pcie-ep@5600000: ti,syscon-pcie-mode:0: [55] is too short
-> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> 
-> pcie-ep@5600000: ti,syscon-pcie-mode:0: [63] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
-> 
-> pcie-ep@5600000: ti,syscon-pcie-mode:0: [64] is too short
-> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
-> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
-> 
+> On 2021-11-23 09:12, Aswath Govindraju wrote:
+>> Increase the allowed number of arguments in mux-controls to add support for
+>> passing information regarding the state of the mux to be set, for a given
+>> device.
+>>
+>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/mux/gpio-mux.yaml       | 2 +-
+>>  Documentation/devicetree/bindings/mux/mux-controller.yaml | 2 +-
+>>  2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+>> index 0a7c8d64981a..c810b7df39de 100644
+>> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+>> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+>> @@ -26,7 +26,7 @@ properties:
+>>        List of gpios used to control the multiplexer, least significant bit first.
+>>  
+>>    '#mux-control-cells':
+>> -    const: 0
+>> +    enum: [ 0, 1, 2 ]
+>>  
+>>    idle-state:
+>>      default: -1
+>> diff --git a/Documentation/devicetree/bindings/mux/mux-controller.yaml b/Documentation/devicetree/bindings/mux/mux-controller.yaml
+>> index 736a84c3b6a5..0b4b067a97bf 100644
+>> --- a/Documentation/devicetree/bindings/mux/mux-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/mux/mux-controller.yaml
+>> @@ -73,7 +73,7 @@ properties:
+>>      pattern: '^mux-controller(@.*|-[0-9a-f]+)?$'
+>>  
+>>    '#mux-control-cells':
+>> -    enum: [ 0, 1 ]
+>> +    enum: [ 0, 1, 2 ]
+>>  
+>>    idle-state:
+>>      $ref: /schemas/types.yaml#/definitions/int32
+>>
+
