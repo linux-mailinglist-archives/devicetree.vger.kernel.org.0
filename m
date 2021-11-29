@@ -2,93 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 389D0462366
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:34:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07D5B462375
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:39:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230178AbhK2Vh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 16:37:59 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:37409 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbhK2Vf7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:35:59 -0500
-Received: by mail-oi1-f179.google.com with SMTP id bj13so37188021oib.4;
-        Mon, 29 Nov 2021 13:32:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RW7Kic35D09JywoCPiX4Hf5lonYwWJ2pHhLH0p3k1bA=;
-        b=OCwPGqw8XS1lNXKPmJjhr63/2l67blw8ROySVdFJQkZFkOgv4WS/3IOzldJGYyDf12
-         l5CFuz58LIThXB06HGUR0XBa0ZssrwUaUUSD9/3AsIz0zAHjKNCaIxpTPizPqnRI5WYH
-         wqVFwAlj8/uoXzQXJlNYuuBHZiksgu0eUL6NH0uMbvOw+68LyAATE+M31zopaW7z8yF0
-         m9k7vSi8gzzG694cTcVCJFmocR+5VD4jPW78rzIyep+N2wIbPT5FYu3MJosSq6vTJ9h3
-         ZBP/reg8XxFxlmvOJAmqrEGc2P3csenGA13SqPPIVQFvHi6FjulI4NxRj8xXgBgcc8va
-         I0Ug==
-X-Gm-Message-State: AOAM533dSFmlePEKGewKJEusLvLLlwa+sc0aCmAjTy4LJUx1/kEmEuRI
-        67D66WPfYstr6/7kP8tZoqHCMQfM5g==
-X-Google-Smtp-Source: ABdhPJwwr3ACGskcfmkUvbtDgGd1fiaHTmvZ31KfFo5cY7XqvZlbBXtx2LECKeAOzsKoomhOfpBBgA==
-X-Received: by 2002:aca:f20a:: with SMTP id q10mr565923oih.176.1638221560620;
-        Mon, 29 Nov 2021 13:32:40 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id w2sm2404466ooa.26.2021.11.29.13.32.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 13:32:40 -0800 (PST)
-Received: (nullmailer pid 647021 invoked by uid 1000);
-        Mon, 29 Nov 2021 21:32:39 -0000
-Date:   Mon, 29 Nov 2021 15:32:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Anton Bambura <jenneron@protonmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: sharp,lq101r1sx01: Add compatible
- for LQ101R1SX03
-Message-ID: <YaVG93LCF6MQYiSi@robh.at.kernel.org>
-References: <20211114200717.28986-1-digetx@gmail.com>
- <20211114200717.28986-2-digetx@gmail.com>
+        id S231772AbhK2Vmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 16:42:39 -0500
+Received: from meesny.iki.fi ([195.140.195.201]:35944 "EHLO meesny.iki.fi"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229649AbhK2Vkj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Nov 2021 16:40:39 -0500
+Received: from hillosipuli.retiisi.eu (dkvn5pty0gzs3nltj987t-3.rev.dnainternet.fi [IPv6:2001:14ba:4457:9640:1e2d:1f75:a607:ef37])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 70C8720225;
+        Mon, 29 Nov 2021 23:37:19 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1638221839;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=uKKX3vFttQ5v+UXIzen9N9yuqDMc3m8ScyaP2x4aMhw=;
+        b=t4t+YJxbXt/UVDkHTC70AvE72123XPCjYb11CQBuBdFrjXHtx2u0FvyhV2jQ17xMpV29qT
+        NPqD5vosh1fO2Z/Zcu54YHQ081AzLGeLEix6W+qUS1qS6NEok8gwkQIU3r+c2/RDGI19Fz
+        9EC1j5/T+PDX5vII05wxdxWz1dZTFZ0=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id E2313634C90;
+        Mon, 29 Nov 2021 23:37:18 +0200 (EET)
+Date:   Mon, 29 Nov 2021 23:37:18 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Eugen Hristev <eugen.hristev@microchip.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        jacopo@jmondi.org, laurent.pinchart@ideasonboard.com,
+        nicolas.ferre@microchip.com
+Subject: Re: [PATCH v2 02/25] dt-bindings: media: atmel: csi2dc: add bindings
+ for microchip csi2dc
+Message-ID: <YaVIDgn1d2BHv6XZ@valkosipuli.retiisi.eu>
+References: <20211112142509.2230884-1-eugen.hristev@microchip.com>
+ <20211112142509.2230884-3-eugen.hristev@microchip.com>
+ <YaVBwjtEI3xcL551@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211114200717.28986-2-digetx@gmail.com>
+In-Reply-To: <YaVBwjtEI3xcL551@robh.at.kernel.org>
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1638221839; a=rsa-sha256; cv=none;
+        b=uYeGf2vGyBLXQ3U7bSdPwhvq3WEmLGE9ESl89yK2x6/LYQSzVkW7Ya+j0giPxfJxWBC2XZ
+        qMiG6ugoswRz2yjF810ggEJVP6Krm85TdlhWPW8+RBsV9OFgfC+2LP0sF+5IkTZMYmyROX
+        3R+RM+VG0o7pmYqEjPdP16m1QrRaths=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1638221839;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=uKKX3vFttQ5v+UXIzen9N9yuqDMc3m8ScyaP2x4aMhw=;
+        b=JET/nEPi2ZU4kIef16GHzK6YQA8PLL+yLDmzbAaDfYiIsA39g17ar2XzzGfm5hbReRRWHn
+        5S91Ub81+QTvS3Wpq5JpVmRzQiR+jNPh0mih5oCw6QLVeNIq++UYd53EXDpLT5pWKvldaD
+        ytgwTMIphOTB0qHyU1d9rrpvp/xsdpk=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 14, 2021 at 11:07:16PM +0300, Dmitry Osipenko wrote:
-> From: Anton Bambura <jenneron@protonmail.com>
-> 
-> LQ101R1SX03 is compatible with LQ101R1SX01, document it.
+Hi Rob, Eugen,
 
-Then sounds like '"sharp,lq101r1sx03", "sharp,lq101r1sx01"' would be the 
-appropriate compatible value. Do that, and you don't need a driver 
-change.
+On Mon, Nov 29, 2021 at 03:10:26PM -0600, Rob Herring wrote:
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: video-interfaces.yaml#
+> 
+> But what properties from this do you use? It doesn't look like you need 
+> this?
 
-> 
-> Signed-off-by: Anton Bambura <jenneron@protonmail.com>
-> ---
->  .../devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml  | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
-> index a679d3647dbd..f7514eb9ebda 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sharp,lq101r1sx01.yaml
-> @@ -30,7 +30,9 @@ allOf:
->  
->  properties:
->    compatible:
-> -    const: sharp,lq101r1sx01
-> +    enum:
-> +      - sharp,lq101r1sx01
-> +      - sharp,lq101r1sx03
->  
->    reg: true
->    power-supply: true
-> -- 
-> 2.33.1
-> 
-> 
+I'd expect to see data-lanes at least --- unless the number of lanes is
+really fixed.
+
+-- 
+Sakari Ailus
