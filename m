@@ -2,114 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E3A3461432
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 12:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4A0346134F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 12:08:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238363AbhK2LyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 06:54:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60098 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238501AbhK2LwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 06:52:15 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27198C08ED73
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 02:56:14 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id l16so35792326wrp.11
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 02:56:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=ZfEoBbQk9ONECLNrOcF/c65XH6Dj3L7ZBAnd/speD8A=;
-        b=X3pKhf4XzRQ2NeLjZhaNyB8xA/+CokWlcc+WMuKfV8BFqDnLqQlGPD9tJ2i2UpzWiI
-         C6tPIoeDXOAzEj6E08ojGI3Oz1jUSZ94h4mnjVRG2RY4NstoG2Ky5XtG3NoiRE70X16B
-         4/AYzllR2hMpBRHc+jaSM05cI51PGp0b6ovfQItozx5D628yj0JdY74hymYQVlrk4NZV
-         cGYZ1x0Elepo0nZXUzv6S0Mp0nvOhp1C7r7QS/HPo9VH4xXzac6pEiayDMZkM6D0Ok+m
-         ptcNOzFIIbSpZeYIYnk/RDnXRXQTUD02Z7GlDSH+YFASL7bP0aFN7Eo0SC9lE3fTY839
-         iEyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZfEoBbQk9ONECLNrOcF/c65XH6Dj3L7ZBAnd/speD8A=;
-        b=haoURLi2ByvxG2KvyTFOJEWR6vpRf6HYGr5Vg3ljcBgzKyR0R2qwYyi2Xq+n7YUFkS
-         vsOHcG7JTuhwv0shPs2dxbW/n4aK3DY3/FoIHhX+GxwIgrYJwvazUuppBwzpQM6g3/kc
-         UuQ2v8p4XGWBzstrKor9/YPdxjB3QqXRhx/YrNcA1YPftD0cBUqhfOH4U6o2IAT5GjET
-         dsZ/+8TWn4JnEdQvV7LIyHk5bwvzRGJ/3qKobBSc2HXpbOf9Rc8/sW79CQ85mA7+4e+I
-         Js+i2PEzW5/yvrBu2ji0rujV0Yv9VSKb2lcwPl5HdKBxGzQJvQMMtklS1GdgUlzJk8H9
-         fHNQ==
-X-Gm-Message-State: AOAM532DT05lPXuDvf2g14G1V9UrObx/DgzP7UbuAkpuRZtuVbuD+/N/
-        CNHKxG/Qi0p9fTNcbDBElqX5jQ==
-X-Google-Smtp-Source: ABdhPJxHm92jwXsF+QAiagLFH4/A19S6SFKU28ueXRsS9Z0Wr5docJJst8qgOK1ih6T71bj/MZrg4g==
-X-Received: by 2002:adf:dcd0:: with SMTP id x16mr32167464wrm.229.1638183372723;
-        Mon, 29 Nov 2021 02:56:12 -0800 (PST)
-Received: from buildbot.pitowers.org ([2a00:1098:3142:14:ae1f:6bff:fedd:de54])
-        by smtp.gmail.com with ESMTPSA id z15sm13246285wrr.65.2021.11.29.02.56.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 02:56:12 -0800 (PST)
-From:   Phil Elwell <phil@raspberrypi.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: gpio-ranges property is now required
-Date:   Mon, 29 Nov 2021 10:55:56 +0000
-Message-Id: <20211129105556.675235-3-phil@raspberrypi.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211129105556.675235-1-phil@raspberrypi.com>
-References: <20211129105556.675235-1-phil@raspberrypi.com>
+        id S236759AbhK2LL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 06:11:57 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:52874 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233362AbhK2LJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 06:09:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1638184000; x=1669720000;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=px9O/Bq5B4DL5jCTNt3L7dJdnR2fEC1xr8C2iqfLWtU=;
+  b=bwCDp6gNmzMKX5vAgsJe8BqezpB+96n9TBcOrx5vb2EcNSAoZghf6eq/
+   VI/19J+Zk1IHNNZHIE25MphIptaN5KrF01q5PMEP5dqFt1DgG8IPj4IIG
+   iWDvGNGK3Tb/cgGywk4q9AhZqnVzdqLZoFMkDN0cRrRjIg+7rFQXvaolY
+   ea6O3Hu5qokej34ZPhVX4USFs4wq3h8N2P6jMhFZ0T0kbjXj6XQ8CUUME
+   A+Muda6fGIeYYVFtbQuly3UtHZE34PBVJeCtowwRhjqLO9eeyYYYW91Vj
+   T2CKm0u4E9P9frvcGg1Ermr7L1cRRZKzy9vsqDmIdtjfneK8iqnzj2din
+   A==;
+IronPort-SDR: 80zuOpP18NibtUCEZqIRvXSBV++FIA/BG92vVkFxqNwpRKtLQypaupvoZnXrrR3vaWu3v53xUd
+ Rwuu3BoD0zEoHGqPO8TzmBg5TSm8Plskqow4bo44/ev3qxCnPw0AuNr89h62laYd8+x6fIeqg3
+ F6qzvlff3cGRsiGDvuqSfCFmxJoFd6VKtgku1l1dpQwoh/6V1ZK9XE3mrXZlPFQv4Ne40syZGC
+ opn0CJ/I9OSAQQKNB3lq6pNf33Dj438oT5RuItm6+NDvufUk86gSqqRwgUvjKzcIR5wmAgyUyS
+ a3LEb/7jL3qyBTIZIn8Nz6/J
+X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; 
+   d="scan'208";a="140561184"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Nov 2021 04:06:39 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 29 Nov 2021 04:06:39 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2176.14 via Frontend
+ Transport; Mon, 29 Nov 2021 04:06:38 -0700
+Date:   Mon, 29 Nov 2021 12:08:34 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+CC:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <andrew@lunn.ch>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v4 3/6] net: lan966x: add port module support
+Message-ID: <20211129110834.yy6wai63vaftnias@soft-dev3-1.localhost>
+References: <20211126090540.3550913-1-horatiu.vultur@microchip.com>
+ <20211126090540.3550913-4-horatiu.vultur@microchip.com>
+ <YaC/OT0f2JKBPMOb@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YaC/OT0f2JKBPMOb@shell.armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since [1], added in 5.7, the absence of a gpio-ranges property has
-prevented GPIOs from being restored to inputs when released.
-Add those properties for BCM283x and BCM2711 devices.
+The 11/26/2021 11:04, Russell King (Oracle) wrote:
+> 
+> On Fri, Nov 26, 2021 at 10:05:37AM +0100, Horatiu Vultur wrote:
+> > This patch adds support for netdev and phylink in the switch. The
+> > injection + extraction is register based. This will be replaced with DMA
+> > accees.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> 
+> This looks mostly good now, thanks. There's one remaining issue:
 
-[1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without
-    pin-ranges")
+Thanks for the help!
 
-Fixes: 2ab73c6d8323 ("gpio: Support GPIO controllers without
-                      pin-ranges")
-Signed-off-by: Phil Elwell <phil@raspberrypi.com>
----
- arch/arm/boot/dts/bcm2711.dtsi | 2 ++
- arch/arm/boot/dts/bcm283x.dtsi | 2 ++
- 2 files changed, 4 insertions(+)
+> 
+> > +int lan966x_port_pcs_set(struct lan966x_port *port,
+> > +                      struct lan966x_port_config *config)
+> > +{
+> > +     struct lan966x *lan966x = port->lan966x;
+> > +     bool inband_aneg = false;
+> > +     bool outband;
+> > +     int err;
+> > +
+> > +     lan966x_port_link_down(port);
+> 
+> This looks like something the MAC layer should be doing. Phylink won't
+> change the interface mode by just calling the PCS - it will do this
+> sequence, known as a major reconfiguration:
+> 
+> mac_link_down() (if the link was previously up)
+> mac_prepare()
+> mac_config()
+> if (pcs_config() > 0)
+>   pcs_an_restart()
+> mac_finish()
+> 
+> pcs_config() will also be called thusly:
+> 
+> if (pcs_config() > 0)
+>   pcs_an_restart()
+> 
+> to change the ethtool advertising mask which changes the inband advert
+> or the Autoneg bit, which has an effect only on your DEV_PCS1G_ANEG_CFG()
+> register, and this may be called with the link up or down.
+> 
+> Also, pcs_config() is supposed to return 0 if the inband advert has not
+> changed, or positive if it has (so pcs_an_restart() is called to cause
+> in-band negotiation to be restarted.)
+> 
+> Note also that pcs_an_restart() may  also be called when ethtool
+> requests negotiation restart when we're operating in 802.3z modes.
+> 
+> So, my question is - do you need to be so heavy weight with the call to
+> lan966x_port_link_down() to take everything down when pcs_config() is
+> called, and is it really in the right place through the sequence for
+> a major reconfiguration?
 
-diff --git a/arch/arm/boot/dts/bcm2711.dtsi b/arch/arm/boot/dts/bcm2711.dtsi
-index 9e01dbca4a01..dff18fc9a906 100644
---- a/arch/arm/boot/dts/bcm2711.dtsi
-+++ b/arch/arm/boot/dts/bcm2711.dtsi
-@@ -582,6 +582,8 @@ &gpio {
- 		     <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>,
- 		     <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
- 
-+	gpio-ranges = <&gpio 0 0 58>;
-+
- 	gpclk0_gpio49: gpclk0_gpio49 {
- 		pin-gpclk {
- 			pins = "gpio49";
-diff --git a/arch/arm/boot/dts/bcm283x.dtsi b/arch/arm/boot/dts/bcm283x.dtsi
-index a3e06b680947..c113661a6668 100644
---- a/arch/arm/boot/dts/bcm283x.dtsi
-+++ b/arch/arm/boot/dts/bcm283x.dtsi
-@@ -126,6 +126,8 @@ gpio: gpio@7e200000 {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 
-+			gpio-ranges = <&gpio 0 0 54>;
-+
- 			/* Defines common pin muxing groups
- 			 *
- 			 * While each pin can have its mux selected
+Thanks for the detail explanation.
+You are right, it doesn't look like it is needed to call
+lan966x_port_link_down when pcs_config is called.
+I can put the lan966x_port_link_down() inside the mac_link_down() callback.
+
+> 
+> Thanks.
+> 
+> --
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+
 -- 
-2.25.1
-
+/Horatiu
