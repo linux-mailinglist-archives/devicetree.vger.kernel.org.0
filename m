@@ -2,115 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0E8461D62
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 19:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31DC1461F91
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 19:47:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349145AbhK2SPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 13:15:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54720 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349813AbhK2SNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 13:13:13 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1ATI9bdw085910;
-        Mon, 29 Nov 2021 12:09:37 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638209377;
-        bh=7BzZum/wSpr+6OJerze3ARCjTNpCFGTq2Yr+iKCYVE8=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=G3U9OzgzLfAEvnAt1pP25EJH9XgDtuxUrXdMCff3ztCsgMYvYKSvtyoRevrqvGUWH
-         t6Rtyz7SXl2lrdayZk2zjMnphy7bsnNFC/ExVgLhdtdZQZTxzBi0fOoVvfY/HLZbmO
-         LtTYbOEWMqQM2VvqDHM45SGDGZtbnHtxacEHZUlA=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1ATI9bNQ113862
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Nov 2021 12:09:37 -0600
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 29
- Nov 2021 12:09:36 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 29 Nov 2021 12:09:36 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1ATI9ZYm037856;
-        Mon, 29 Nov 2021 12:09:36 -0600
-Date:   Mon, 29 Nov 2021 23:39:35 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Mark Brown <broonie@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] Add bindings for peripheral-specific SPI
- controller properties
-Message-ID: <20211129180935.nmymboy336hllly7@ti.com>
-References: <20211109181911.2251-1-p.yadav@ti.com>
+        id S1380040AbhK2Sun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 13:50:43 -0500
+Received: from vps5.brixit.nl ([192.81.221.234]:53226 "EHLO vps5.brixit.nl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1380792AbhK2Ssm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Nov 2021 13:48:42 -0500
+X-Greylist: delayed 697 seconds by postgrey-1.27 at vger.kernel.org; Mon, 29 Nov 2021 13:48:42 EST
+Received: from [192.168.20.102] (unknown [77.239.252.99])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by vps5.brixit.nl (Postfix) with ESMTPSA id 702A6618B4;
+        Mon, 29 Nov 2021 18:33:44 +0000 (UTC)
+Subject: Re: [PATCH] arm64: dts: qcom: sdm660-xiaomi-lavender: Add volume up
+ button
+To:     Dang Huynh <danct12@riseup.net>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>
+References: <20211121170449.1124048-1-danct12@riseup.net>
+From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
+Message-ID: <ce775ef5-2e88-af2b-264b-da77a2e23007@postmarketos.org>
+Date:   Mon, 29 Nov 2021 21:35:15 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20211109181911.2251-1-p.yadav@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20211121170449.1124048-1-danct12@riseup.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 11/21/21 8:04 PM, Dang Huynh wrote:
+> This enables the volume up key.
+> 
+> Signed-off-by: Dang Huynh <danct12@riseup.net>
+> ---
+> This patch is a continuation of this series [1]. The other patches in
+> the series have been applied and remains this.
+> 
+> Changes in v5:
+> - Remove deprecated input-name property.
+> 
+> [1]: https://patchwork.kernel.org/cover/12630601/
+> 
+>   arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> index 9a6684922804..6586b8e47483 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
+> @@ -9,6 +9,8 @@
+>   #include "sdm660.dtsi"
+>   #include "pm660.dtsi"
+>   #include "pm660l.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/input/gpio-keys.h>
+>   
+>   / {
+>   	model = "Xiaomi Redmi Note 7";
+> @@ -33,6 +35,17 @@ vph_pwr: vph-pwr-regulator {
+>   		regulator-boot-on;
+>   	};
+>   
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		volup {
+> +			label = "Volume Up";
+> +			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			debounce-interval = <15>;
+> +		};
+> +	};
+> +
+>   	reserved-memory {
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+> 
 
-On 09/11/21 11:49PM, Pratyush Yadav wrote:
-> Hi,
-> 
-> This series adds bindings for peripheral-specific SPI controller properties.
-> See patch 1 for more info on the motivations behind this.
-> 
-> This is the best approach that I came up with with my limited knowledge
-> of JSON schema. It has some limitations that are mentioned in patch 1. I
-> don't know of any better ways to model this. Suggestions are welcome!
+Nice, works on my Redmi Note 7.
 
-Do you plan to take this series through your tree or should I poke Mark 
-about it?
-
-> 
-> Changes in v3:
-> - s/slave/peripheral/g
-> - Drop the | on description.
-> - Drop the compatible property.
-> 
-> Changes in v2:
-> - Move other subnode properties listed in spi-controller.yaml to
->   spi-slave-props.yaml
-> - Move the Cadence controller-specific properties out of
->   spi-slave-props.yaml. They will be added in a separate file.
-> - Add a reference to spi-slave-props.yaml in spi-controller.yaml.
-> - Update description.
-> 
-> Pratyush Yadav (3):
->   spi: dt-bindings: add schema listing peripheral-specific properties
->   spi: dt-bindings: cdns,qspi-nor: Move peripheral-specific properties
->     out
->   dt-bindings: mtd: spi-nor: Add a reference to
->     spi-peripheral-props.yaml
-> 
->  .../bindings/mtd/jedec,spi-nor.yaml           |  3 +-
->  .../spi/cdns,qspi-nor-peripheral-props.yaml   | 42 +++++++++
->  .../bindings/spi/cdns,qspi-nor.yaml           | 33 -------
->  .../bindings/spi/spi-controller.yaml          | 69 +-------------
->  .../bindings/spi/spi-peripheral-props.yaml    | 89 +++++++++++++++++++
->  5 files changed, 135 insertions(+), 101 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/cdns,qspi-nor-peripheral-props.yaml
->  create mode 100644 Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
-> 
-> --
-> 2.33.1.835.ge9e5ba39a7
-> 
-
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+Tested-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
