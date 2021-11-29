@@ -2,101 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9353A4626C2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:54:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A757B4625AC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:39:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235892AbhK2W5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 17:57:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37668 "EHLO
+        id S234445AbhK2Wmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 17:42:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234029AbhK2W5A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 17:57:00 -0500
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A4CC0C20EA;
-        Mon, 29 Nov 2021 09:29:08 -0800 (PST)
-Received: by mail-wm1-x32b.google.com with SMTP id g191-20020a1c9dc8000000b0032fbf912885so12943687wme.4;
-        Mon, 29 Nov 2021 09:29:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=snUyZmX49ru2DxVA1QAuDQ2irOH1QZcg7Kt2R5LKKWA=;
-        b=Y6AcF3jqLTQfik4x4LzAlDhqYQEGVK/QibQuHs0n/w1FmHLhdAIimow51Xk6wvo9Dd
-         +j1Ki3GuabZUY7f0fwMnuMM8SmAomLcMRHXZorpK451L2d1AwLPaPIfVefkyglDvNLQc
-         ANiRYra38Sj9dEAcAFjQeo+yCn73kVy1iutaiq6MvzsOpDQwc4Mud47Br9qBqnr2eg85
-         p8qVMr2pO8dqHem46+AQxYgSPK1ZpnNq2MJiHjDy8r9JYgjpfyQrw4NHTxyi3/sAyNVo
-         Lvy6RyoEyA7su2D185Pz/xkFTv8cDIEbbNzN8wND1uCgf+8+YbZgljL989B+lRYuELHo
-         57FA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=snUyZmX49ru2DxVA1QAuDQ2irOH1QZcg7Kt2R5LKKWA=;
-        b=32/gz+TV2ZPvEpEbNYTbL2QAWgTRN9LzDBfkf3TGNiwDl5Vv1/q2GJO2e5ho3MoYyN
-         zk85v6J+M4EsiXFzc6Xck3Zs39SUgtLZs4iZi/NTHIQE2DJuHWZbP1Sb5LF5gZqwHpOZ
-         loAFx3vGRWqJ1rojOZHTdDexzvsJNudl8XXYX5fBAM4fPiHvx/vhistKN52FkXiYB9r9
-         dWGjF51lrTXOQjD94JoXW+kZTqmoSMyWkHS5N+F633k95cYBacxWi2DFvAs1uyk0vX2t
-         DRlw1jErqiAHyjYiPVntK12Eo990bOIYhq1iq8Z7EJ+e1bb57H2ev93oaI7SrUX2GWgk
-         FJoQ==
-X-Gm-Message-State: AOAM530BI4w5S9m09ULciAtLUaNHjb2s+PZ0SAPcToRb19z8aRtRmESE
-        3EuYLqcZzWIdw2mMT52ESrs=
-X-Google-Smtp-Source: ABdhPJyYfAAl2JWSuMRXT7tjdS//D0XTqPX2pxL3Jw8TBUDKfnIv56MLGMyEa4sMII81Uq6dT3Oubg==
-X-Received: by 2002:a05:600c:19d0:: with SMTP id u16mr37736357wmq.111.1638206947141;
-        Mon, 29 Nov 2021 09:29:07 -0800 (PST)
-Received: from kista.localnet (cpe-86-58-29-253.static.triera.net. [86.58.29.253])
-        by smtp.gmail.com with ESMTPSA id f15sm19025488wmg.30.2021.11.29.09.29.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 09:29:06 -0800 (PST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     wens@csie.org
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Michael Klein <michael@fossekall.de>
-Subject: Re: Re: [PATCH v2] ARM: dts: sun8i: Adjust power key nodes
-Date:   Mon, 29 Nov 2021 18:29:01 +0100
-Message-ID: <5516984.DvuYhMxLoT@kista>
-In-Reply-To: <CAGb2v67M2Qi5tUq0BNbgahTsY4bbYGQeqzjoH8RZ6fYWzrWsYA@mail.gmail.com>
-References: <20211129165510.370717-1-jernej.skrabec@gmail.com> <CAGb2v67M2Qi5tUq0BNbgahTsY4bbYGQeqzjoH8RZ6fYWzrWsYA@mail.gmail.com>
+        with ESMTP id S234572AbhK2Wlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 17:41:50 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082E3C0C2348;
+        Mon, 29 Nov 2021 09:43:48 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id A40AF2223B;
+        Mon, 29 Nov 2021 18:43:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1638207826;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=zcBAIJC1gEdwdFwYhBfmFtG4nq+PNV+zj3GqYfXilOM=;
+        b=bBITAg9/diu3gzSDjjVSbwaDvx6Y9xpGylCfdfVejq/X5usbKpbp6+dw6PgN/SlbKMOylm
+        GQU2HldM0qe62TPJFMSy0r2bedLEJAU0sobkh5+cgZ2BvTyjvxU1yURH4hPUzf9WG7etEf
+        9FdXMbhyS1eKvg+EnBWizH9Xr6dAMEk=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 29 Nov 2021 18:43:45 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [RFC PATCH] dt-bindings: nvmem: add transformation support
+In-Reply-To: <7807ac74-5b5c-f0a0-804a-497b67d2c985@linaro.org>
+References: <20211123134425.3875656-1-michael@walle.cc>
+ <7807ac74-5b5c-f0a0-804a-497b67d2c985@linaro.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <31ee8f287bb410fabae11f31c42d5c86@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 29. november 2021 ob 18:16:31 CET je Chen-Yu Tsai napisal(a):
-> On Tue, Nov 30, 2021 at 12:55 AM Jernej Skrabec
-> <jernej.skrabec@gmail.com> wrote:
-> >
-> > Several H3 and one H2+ board have power key nodes, which are slightly
-> > off. Some are missing wakeup-source property and some have BTN_0 code
-> > assigned instead of KEY_POWER.
+Hi Srinivas,
+
+Am 2021-11-29 13:54, schrieb Srinivas Kandagatla:
+> On 23/11/2021 13:44, Michael Walle wrote:
+>> This is my second attempt to solve the use case where there is only 
+>> the
+>> base MAC address stored in an EEPROM or similar storage provider. This
+>> is the case for the Kontron sl28 board and multiple openwrt supported
+>> boards.
+>> 
+>> The first proposal [1] didn't find much appreciation and there wasn't
+>> any reply to my question or new proposal [2]. So here we are with my 
+>> new
+>> proposal, that is more flexible and doesn't fix the ethernet mac only.
+>> This is just an RFC for the device tree representation for now to see 
+>> if
+>> this is the correct way to tackle this.
+>> 
+>> I'm also aware of the latest post process hook support [3]. This 
+>> doesn't
+>> fix the base mac address issue, but I think it also doesn't solve the
+>> case with swapped ethernet addresses in the general case. That hook 
+>> will
+>> involve the driver to do the swapping, but how would the driver know
+>> if that swapping is actually required. Usually the interpretation of 
+>> the
+>> content is opaque to the driver, after all it is the user/board
 > 
-> It might have been that after shutdown there was really no way to
-> "power on" the board with these GPIO power keys, so we didn't use
-> KEY_POWER for them?
+> But this is the path for any post processing hook, which ever
+> direction we endup with(using core helpers or provider specific
+> post-processing).
 
-KEY_POWER is actually processed by userspace, so it would still make sense to 
-power down board if power key is pressed. Correct me if I'm wrong, but in 
-combination with wfi it could work before SCP FW was available?
+Mh? I don't understand. My point was that the driver is unlikely
+to know what it should process. Take the mtd (or the mtd otp)
+nvmem provider for example. If I understand it correctly, it just
+gets the nvmem name, for example, "mac-address". How should
+the post process hook know, what it should do? IMHO that just
+works for very specific drivers, which tied to the content
+they provide.
 
+>> manufacturer who does program the storage device. We might be lucky in
+>> the imx-ocotp case because the IMX reference manual actually states
+>> where and in which format the mac address is programmed.
+>> 
+>> Introduce a transformation property. This is intended to be just an
+>> enumeration of operations. If there will be a new operation, support 
+>> for
+>> it has to be added to the nvmem core.
+>> 
+>> A transformation might have multiple output values, like in the base 
+>> mac
+>> address case. It reads the mac address from the nvmem storage and
+>> generates multiple individual addresses, i.e. on our board we reserve 
+>> 8
+>> consecutive addresses. These addresses then can be assigned to 
+>> different
+>> network interfaces. To make it possible to reference different values 
+>> we
+>> need to introduce an argument to the phandle. This additional argument
+>> is then an index into a list of values.
+>> 
+>> Example:
+>>    mac_addresses: base-mac-address@10 {
+>>      #nvmem-cell-cells = <1>;
+>>      reg = <10 6>;
+>>      transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
 > 
-> > Adjust them, so they can function as intended by designer.
-> >
-> > Co-developed-by: Michael Klein <michael@fossekall.de>
-> > Signed-off-by: Michael Klein <michael@fossekall.de>
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> IMO, this is totally redundant. we could probably encode this info
+> directly in the cell specifiers, something like:
 > 
-> Acked-by: Chen-Yu Tsai <wens@csie.org>
+>>    }
+>> 
+>>    &eth0 {
+>>      nvmem-cells = <&mac_addresses 0>;
 > 
+> nvmem-cells = <&base_mac_addresses NVMEM_T_ETH_OFFSET 0>;
 
-Thanks!
+I had he same idea, but keep in mind, that there could be more
+than just one nvmem cells:
 
-Best regards,
-Jernej
+nvmem-cells = <&phandle1 arg1 &pandle2 arg2 arg3>;
+nvmem-cell-names = "name1", "name2";
 
+So you'd need the #nvmem-cell-cells either way.
 
+> And value of #nvmem-cell-cells is dependent on the first cell 
+> specifier.
+
+What do you mean with first cell specifier? the phandle 
+(base_mac_address
+in the example) or the NVMEM_T_ETH_OFFSET? I guess the latter, because 
+the
+arguments depend on the transformation. But this is not how the
+of_parse_phandle_with_args() works, it will look the '#nvmem-cell-cells'
+property up, to see how many arguments it should expect, which is a
+property to the referenced node. Thus I've come up with the additional
+indirection. The number of arguments for the reference cell is either
+0 or 1 and the transformation is part of the nvmem cell.
+
+> I understand that these 3 bits of info is required for this type of
+> post processing and this can only come from DT and its not possible to
+> determine this at runtime.
+
+ok :)
+
+> Would this address other usecases?
+
+I think so, but see above for why it can't work. Or I am missing
+something.
+
+> Are you in a position to test few of them?
+
+Sure (at least after my vacation). And TBH I think the imxotp mac
+swap should use the same or it will be likely that there are future
+SoCs which will always swap the ethnet
+
+> Lets wait for Rob's opinion on adding #nvmem-cell-cells property with
+> cell specifiers describing the encoding information?
+
++1
+
+Thanks for looking into this,
+-michael
