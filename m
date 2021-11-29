@@ -2,296 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2979461B53
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 16:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 952E2461AD0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 16:26:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245254AbhK2Pwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 10:52:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231803AbhK2Puq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 10:50:46 -0500
-Received: from mail-vk1-xa2b.google.com (mail-vk1-xa2b.google.com [IPv6:2607:f8b0:4864:20::a2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B06C5C061D75
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 05:56:23 -0800 (PST)
-Received: by mail-vk1-xa2b.google.com with SMTP id b192so11108461vkf.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 05:56:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Psq6/38akb6pFI4zFrW/zy31oIimVJgvRRtPizriX/8=;
-        b=iyf2Tu45o61YhmukAkmvRRPXYCN8PD/HwC31Ug/gopXsM2RCmehIxo4Hvfchwq9TSQ
-         qbP6BU7S/J7nG+PVQmSHYE2L1/WDNq269HIOar97HUQA8KS2NZjmU8Zh7n2TOd8S+v/a
-         8RFGSA0/2BM1wgUTEa6UECCiXJC6F7EkwLbkO08oVZtPGuqWTxj9PilPzLcwRn0bUYh0
-         /YGLbscV7LKxd//FB6z+5lIpr3MCwDvGtc9JXye75J0u2tuMZUwTgaqBVIqHkSMTzxyY
-         vCo+TqQUArbWMYdf0my4u5JXp0f11fotKZjHI3k9XAlrj6Q230YroEBZMxDD0acK7YKn
-         ZF9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Psq6/38akb6pFI4zFrW/zy31oIimVJgvRRtPizriX/8=;
-        b=SndG+vzJcuhS7nsZ17f/WI1cWdzAILnacg9Ouv9dWnglcWiZIALtpRY5DAudDlVMzm
-         CdgsfaHNDhfIE0qWK+DKA9PtfpYp2c30Kd27cEgT5eLHV/UXpFtS2yrDR2FboSkoolzB
-         AXVhUgQb0kaRYTjw7WNKWMSd0suENvJgQWFNbqUmk9d9i/va7fRfvQ6SRXxVuz30tryr
-         Ffjt5Xf3k9yXPStwN8q3NZQvp7PnnBzYyTdM/7OVTaf12HJXgsMaBAZ5LVNEcrLwG/Ej
-         xbODjAjB4ayPGC1PE2neKsnrscaRVDlQft+l+txlkmFuyU74QefnEg7V/+ObQAix2VfA
-         Xz2Q==
-X-Gm-Message-State: AOAM532+VAmJrhJtKBSIzTFdhct6IL3I6ezroqt4qKmdlXHimfVeF3JJ
-        P79Aq3KV2+actQCx/iAqdHNX0hpfRGmUKkaCl+uLQA==
-X-Google-Smtp-Source: ABdhPJz2HEiIPCArTkwOkAcHR1Mth6V7WDJcoxwiCj0f+X4ZUcus1I83945wLSi2z05M9/rSGgC4ywY2AEmYZ7h08aI=
-X-Received: by 2002:a05:6122:1306:: with SMTP id e6mr36144108vkp.13.1638194182543;
- Mon, 29 Nov 2021 05:56:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20211127223253.19098-1-semen.protsenko@linaro.org> <b9807fcc69713fb016838958a3df1c4e54309fc4.camel@gmail.com>
-In-Reply-To: <b9807fcc69713fb016838958a3df1c4e54309fc4.camel@gmail.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Mon, 29 Nov 2021 15:56:10 +0200
-Message-ID: <CAPLW+4kkVNSvEQjVnSWA2BjkWJXzV-4n1i+10a9FCNL0sD0n3A@mail.gmail.com>
-Subject: Re: [PATCH 0/8] soc: samsung: Add USIv2 driver
-To:     David Virag <virag.david003@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        id S1343994AbhK2PaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 10:30:03 -0500
+Received: from sin.source.kernel.org ([145.40.73.55]:56362 "EHLO
+        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232856AbhK2P2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 10:28:03 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 190ADCE12EE;
+        Mon, 29 Nov 2021 15:24:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED2D1C53FAD;
+        Mon, 29 Nov 2021 15:24:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638199482;
+        bh=qcB3pv0IJqp6lhDzAmAz3L/SZqJi1rmNXfqERQKDtpA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cHIIgFpevk/ICTIWOL60WnoUL8UkvAFj6APEq9Y/OQmcudCrHOi4n9b8FnwUPK4QZ
+         JZLIt957oznH62L0rRpgzF/xX9cI6PVQoSCHEuFgG5WjHIYEXSICdH1+5CUoe1W2M4
+         vHP6wgZZDyNIBnGdUbwz20NTvx+8b9bn3qd+sJWvw/TYui5fzgLP/y3HAggDBeM6Wj
+         oqXi+opr2xSn2CSEf4QrYg+oN+ZWJc/j6bhhjrgcLBzklymzv2H+wUGwSf4RHCW23I
+         pQuOxVbSziXa382msRu4ccmsnPP+5LILBxdXWsSDaJ4YfkPkvu2u+PeQNl4rJJcfZW
+         ArMjOk5zje2/g==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mriWF-008dKc-Vh; Mon, 29 Nov 2021 15:24:40 +0000
+Date:   Mon, 29 Nov 2021 15:24:39 +0000
+Message-ID: <87pmqjm1c8.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Loic Poulain <loic.poulain@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] irqchip: Add Qualcomm MPM controller driver
+In-Reply-To: <20211129133308.GB10105@dragon>
+References: <20211126093529.31661-1-shawn.guo@linaro.org>
+        <20211126093529.31661-3-shawn.guo@linaro.org>
+        <87czmmbu8k.wl-maz@kernel.org>
+        <20211129133308.GB10105@dragon>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, bjorn.andersson@linaro.org, robh+dt@kernel.org, loic.poulain@linaro.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Nov 2021 at 05:15, David Virag <virag.david003@gmail.com> wrote:
->
-> On Sun, 2021-11-28 at 00:32 +0200, Sam Protsenko wrote:
-> > USIv2 IP-core provides selectable serial protocol (UART, SPI or
-> > High-Speed I2C); only one can be chosen at a time. This series
-> > implements USIv2 driver, which allows one to select particular USI
-> > function in device tree, and also performs USI block initialization.
-> >
-> > With that driver implemented, it's not needed to do USI
-> > initialization
-> > in protocol drivers anymore, so that code is removed from the serial
-> > driver.
-> >
->
-> I think the downstream way of doing this (USI node reg being on the
-> SW_CONF register itself rather than an offset from uart/i2c/spi, the
-> USI driver only controlling the SW_CONF, and the uart/i2c/spi drivers
-> controlling their USI_CON and USI_OPTION regs) is cleaner, better, and
-> easier to adapt to USIv1 too.
->
+On Mon, 29 Nov 2021 13:33:12 +0000,
+Shawn Guo <shawn.guo@linaro.org> wrote:
+> 
+> On Fri, Nov 26, 2021 at 07:19:07PM +0000, Marc Zyngier wrote:
+> > [resending after having sorted my email config...]
+> > 
+> > Hi Shawn,
+> 
+> Hi Marc,
+> 
+> Thanks for all these review comments!
+> 
+> > 
+> > On Fri, 26 Nov 2021 09:35:29 +0000,
+> > Shawn Guo <shawn.guo@linaro.org> wrote:
+> > > 
+> > > Qualcomm SoCs based on the RPM architecture have a MSM Power Manager (MPM)
+> > > in always-on domain. In addition to managing resources during sleep, the
+> > > hardware also has an interrupt controller that monitors the interrupts
+> > > when the system is asleep, wakes up the APSS when one of these interrupts
+> > > occur and replays it to GIC after it becomes operational.
+> > > 
+> > > It adds an irqchip driver for this interrupt controller, and here are
+> > > some notes about it.
+> > > 
+> > > - For given SoC, a fixed number of MPM pins are supported, e.g. 96 pins
+> > >   on QCM2290.  Each of these MPM pins can be either a MPM_GIC pin or
+> > >   a MPM_GPIO pin. The mapping between MPM_GIC pin and GIC interrupt
+> > >   is defined by SoC, as well as the mapping between MPM_GPIO pin and
+> > >   GPIO number.  The former mapping can be found as the SoC data in this
+> > >   MPM driver, while the latter can be found as the msm_gpio_wakeirq_map[]
+> > >   in TLMM driver.
+> > > 
+> > > - Two irq domains are created for a single irq_chip to handle MPM_GIC
+> > >   and MPM_GPIO pins respectively, i.e. MPM_GIC domain and MPM_GPIO domain.
+> > >   The former is a child domain of GIC irq domain, while the latter is
+> > >   a parent domain of TLMM/GPIO irq domain.
+> > > 
+> > > - All the register settings are done by APSS on the an internal memory
+> > >   region called vMPM, and RPM will flush them into hardware after it
+> > >   receives a mailbox/IPC notification from APSS.
+> > > 
+> > > - When SoC gets awake from sleep mode, the driver will receive an
+> > >   interrupt from RPM, so that it can replay interrupt for particular
+> > >   polarity.
+> > > 
+> > > Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
+> > > ---
+> > >  drivers/irqchip/Kconfig    |   8 +
+> > >  drivers/irqchip/Makefile   |   1 +
+> > >  drivers/irqchip/qcom-mpm.c | 487 +++++++++++++++++++++++++++++++++++++
+> > >  3 files changed, 496 insertions(+)
+> > >  create mode 100644 drivers/irqchip/qcom-mpm.c
+> > > 
+> > > diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> > > index 7038957f4a77..e126b19190ef 100644
+> > > --- a/drivers/irqchip/Kconfig
+> > > +++ b/drivers/irqchip/Kconfig
+> > > @@ -430,6 +430,14 @@ config QCOM_PDC
+> > >  	  Power Domain Controller driver to manage and configure wakeup
+> > >  	  IRQs for Qualcomm Technologies Inc (QTI) mobile chips.
+> > >  
+> > > +config QCOM_MPM
+> > > +	bool "QCOM MPM"
+> > 
+> > Can't be built as a module?
+> 
+> The driver is implemented as a builtin_platform_driver().
 
-One reason why I think it's better to provide SW_CONF register via
-syscon node, is that it helps us to avoid possible register access
-conflicts in future, and also conflicts when requesting corresponding
-resources. In other words, the System Register block can be used by
-many consumers (drivers) in future; those consumers might try to
-modify the same registers simultaneously, which might lead to race
-conditions (as RMW operation is not atomic), so some kind of
-serialization should be done (like locking in regmap), which is
-provided by syscon. Also, that wouldn't even come to that: you just
-can't request the same I/O area twice in Linux. So if SW_CONF is
-passed via "reg" property to USI driver, and then we try to map the
-whole System Register (or its portion that includes SW_CONF), that
-request would fail.
+This, on its own, shouldn't preclude the driver from being built as a
+module. However, the config option only allows it to be built in. Why?
 
-Although passing one SW_CONF register via "reg" might look easier to
-implement, it might also bring us all sort of problems later on. And I
-think a good design should account for such pitfalls.
+[...]
 
-As for the USI registers: I really don't think that duplicating the
-code for USI block reset across uart/i2c/spi drivers would help us to
-accomplish anything. Why those drivers should be even aware of USI
-reset? At least in USIv2 block, the USI registers and uart/i2c/spi
-registers are not mixed: they are located at different and always
-fixed addresses. We can benefit from that fact, and provide Device
-Tree structure which reflects the hardware one, separating USI control
-from actual protocol nodes.
+> > > +static inline void
+> > > +qcom_mpm_write(struct qcom_mpm_priv *priv, unsigned int reg,
+> > > +	       unsigned int index, u32 val)
+> > > +{
+> > > +	unsigned int offset = (reg * priv->reg_stride + index + 2) * 4;
+> > > +	u32 r_val;
+> > > +
+> > > +	writel(val, priv->base + offset);
+> > > +
+> > > +	do {
+> > > +		r_val = readl(priv->base + offset);
+> > > +		udelay(5);
+> > > +	} while (r_val != val);
+> > 
+> > What? Is this waiting for a bit to clear? Why isn't this one of the
+> > read*_poll_timeout*() function instead? Surely you can't wait forever
+> > here.
+> 
+> This is taken from downstream, and it seems to double check the written
+> value by reading it back.  But to be honest, I'm not really this is
+> necessary.  I will do some testing with the read-back check dropped.
 
-> For example: I'm sure this is the case on USIv2 devices too, but on
-> Exynos7885, different devices have USI modes configured differently.
-> For example a Samsung Galaxy A8 (2018) has all the USI blocks
-> configured as SPI while a Samsung Galaxy M20 has the first USI
-> configured as dual HSI2C, the second as HSI2C on the first 2 pins and
-> the third as HSI2C on the last 2 pins. With this way of doing
-> everything on USIv2 we'd need 3 disabled USIv2 nodes in the SoC DTSI
-> for one USI block, each for every protocol the USI block can do, all
-> having a single child for their protocol and each referencing the same
-> sysreg (not even sure if that's even supported). Then the board DTS
-> could enable the USI node it needs.
->
+How about asking for specs instead? There are QC people on Cc, and
+many more reading the list. Hopefully they can explain what this is
+all about.
 
-If I'm following you correctly, then it's not like that. I guess
-Krzysztof already replied to that, so I'll probably just repeat his
-words. In that case you'll have something like this in your SoC dtsi
-(for your USIv1 case of course, because dual HSI2C is not present in
-USIv2):
+> > 
+> > > +}
+> > > +
+> > > +static inline void qcom_mpm_enable_irq(struct irq_data *d, bool en)
+> > > +{
+> > > +	struct qcom_mpm_priv *priv = d->domain->host_data;
+> > 
+> > This really should be stored in d->chip_data.
+> 
+> OK.
+> 
+> > 
+> > > +	int pin = d->hwirq;
+> > > +	unsigned int index = pin / 32;
+> > > +	unsigned int shift = pin % 32;
+> > > +	unsigned long flags;
+> > > +	u32 val;
+> > > +
+> > > +	priv->pin_to_irq[pin] = d->irq;
+> > 
+> > This makes no sense. This is only reinventing the very notion of an
+> > irq domain, which is to lookup the Linux interrupt based on a context
+> > and a signal number.
+> 
+> The uniqueness of this driver is that it has two irq domains.  This
+> little lookup table is created to avoid resolving mapping on each of
+> these domains, which is less efficient.  But you think this is really
+> nonsense, I can change.
 
-<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>
-usi1 {
-    spi1 {
-    };
+"efficient"? You are taking an interrupt to... err... reinject some
+other interrupts. I'm sorry, but the efficiency argument sailed once
+someone built this wonderful piece of HW. The first mistake was to
+involve SW here, so let's not optimise for something that really
+doesn't need it.
 
-    hsi2c1_1 {
-    };
+Furthermore, why would you look up anywhere other than the wake-up
+domain? My impression was that only these interrupts would require
+being re-triggered.
 
-    hsi2c1_2 {
-    };
-};
+[...]
 
-usi2 {
-    spi2 {
-    };
+> > > +static inline void
+> > > +mpm_set_type(struct qcom_mpm_priv *priv, bool set, unsigned int reg,
+> > > +	     unsigned int index, unsigned int shift)
+> > > +{
+> > > +	u32 val;
+> > > +
+> > > +	val = qcom_mpm_read(priv, reg, index);
+> > > +	if (set)
+> > > +		val |= 1 << shift;
+> > > +	else
+> > > +		val &= ~(1 << shift);
+> > > +	qcom_mpm_write(priv, reg, index, val);
+> > > +}
+> > > +
+> > > +static int qcom_mpm_set_type(struct irq_data *d, unsigned int type)
+> > > +{
+> > > +	struct qcom_mpm_priv *priv = d->domain->host_data;
+> > > +	int pin = d->hwirq;
+> > > +	unsigned int index = pin / 32;
+> > > +	unsigned int shift = pin % 32;
+> > > +	unsigned long flags;
+> > > +
+> > > +	spin_lock_irqsave(&priv->lock, flags);
+> > > +
+> > > +	mpm_set_type(priv, (type & IRQ_TYPE_EDGE_RISING) ? 1 : 0,
+> > 
+> > You have a bool type as the second parameter. Why the convoluted ?:
+> > operator?
+> 
+> Will change to !!(type & IRQ_TYPE_EDGE_RISING).
+> 
+> > 
+> > > +		     MPM_REG_RISING_EDGE, index, shift);
+> > > +	mpm_set_type(priv, (type & IRQ_TYPE_EDGE_FALLING) ? 1 : 0,
+> > > +		     MPM_REG_FALLING_EDGE, index, shift);
+> > > +	mpm_set_type(priv, (type & IRQ_TYPE_LEVEL_HIGH) ? 1 : 0,
+> > > +		     MPM_REG_POLARITY, index, shift);
+> > 
+> > Why does this mean for an edge interrupt?
+> 
+> Edge polarity is configured above on MPM_REG_RISING_EDGE and
+> MPM_REG_FALLING_EDGE.  So I guess MPM_REG_POLARITY doesn't have an
+> impact on edge interrupt.  I do not have any document or information
+> other than downstream code to be sure though.
 
-    hsi2c2_1 {
-    };
-};
+A well formed 'type' will have that bit clear when any of the EDGE
+flags is set. So this will always be 0. It would also be much better
+if you expressed the whole thing as a switch/case.
 
+[...]
 
-usi3 {
-    spi3 {
-    };
+> > > +static int qcom_mpm_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct irq_domain *parent_domain, *mpm_gic_domain, *mpm_gpio_domain;
+> > > +	struct device *dev = &pdev->dev;
+> > > +	struct device_node *np = dev->of_node;
+> > > +	struct device_node *parent = of_irq_find_parent(np);
+> > > +	struct qcom_mpm_priv *priv;
+> > > +	unsigned int pin_num;
+> > > +	int irq;
+> > > +	int ret;
+> > > +
+> > > +	/* See comments in platform_irqchip_probe() */
+> > > +	if (parent && !irq_find_matching_host(parent, DOMAIN_BUS_ANY))
+> > > +		return -EPROBE_DEFER;
+> > 
+> > So why aren't you using that infrastructure?
+> 
+> Because I need to populate .pm of platform_driver and use match data to
+> pass mpm_data.
 
-    hsi2c2_2 {
-    };
-};
-<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>
+Then I'd rather you improve the existing infrastructure to pass the
+bit of extra data you need, instead than reinventing your own.
 
-and then in your board dts you just have to enable corresponding usi's
-with proper modes, and enable chosen protocol nodes, like this:
+[...]
 
-<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>
-&usi1 {
-    status = "okay"
-    samsung,mode = <USI_V1_DUAL_I2C>;
-};
+> > > +	priv->mbox_client.dev = dev;
+> > > +	priv->mbox_chan = mbox_request_channel(&priv->mbox_client, 0);
+> > > +	if (IS_ERR(priv->mbox_chan)) {
+> > > +		ret = PTR_ERR(priv->mbox_chan);
+> > > +		dev_err(dev, "failed to acquire IPC channel: %d\n", ret);
+> > > +		goto remove_gpio_domain;
+> > 
+> > Why don't you request this first, before all the allocations?
+> 
+> Then I will need to call mbox_free_channel() for any allocation failures
+> afterward.
 
-&hsi2c1_1 {
-    status = "okay"
-};
+Which would be fine. Checking for dependencies before allocating
+resources is good practice, specially when this can result in a probe
+deferral.
 
-&hsi2c1_2 {
-    status = "okay"
-};
-<<<<<<<<<<<<<<<<<<<<<<<<< cut here >>>>>>>>>>>>>>>>>>>>>>>
+Thanks,
 
-> With the downstream way we could have just one USI node and we could
-> add the 3 protocols it can do disabled as seperate or child nodes. This
-> way the board DTS only needs to set the appropriate mode setting and
-> enable the protocol it needs. I'd say much better than having 3 USI
-> nodes for the same USI block.
->
+	M.
 
-Not sure if with downstream USI driver you can actually have protocols
-as sub-nodes in USI node though. It doesn't do anything like
-of_platform_populate().
-
-Also, with this USIv2 driver you can do the same thing you described:
-you can have just one USI node with 3 protocols as sub-nodes (or you
-can even have protocol nodes outside of USI node, but I'd not
-recommend that).
-
-Actually I can see that it's my fault for not describing that case in
-bindings example. I'll make sure to do that in v2. You also got me
-thinking about default mode: sometimes SW_CONF reset value chooses
-some protocol. In that case maybe it'd useful to have something like
-USI_V2_DEFAULT, to tell driver to not touch SW_CONF at all. And also I
-can add USI_V2_NONE while at it, so that driver can write 0x0 to
-SW_CONF: that way no protocol will be selected. Maybe that can be
-beneficial for PM reasons, if some board doesn't use some USI blocks
-at all. Do you think it's feasible to add those two values to
-dt-bindings header? And is it possible to do so in USIv1?
-
-> Also this way is pretty USIv2 centric. Adding USIv1 support to this
-> driver is difficult this way because of the the lack of USI_CON and
-> USI_OPTION registers as a whole (so having nowhere to actually set the
-> reg of the USI node to, as the only thing USIv1 has is the SW_CONF
-> register). In my opinion being able to use the same driver and same
-> device tree layout for USIv1 and USIv2 is a definite plus
->
-
-Well, it's USIv2 driver after all. I never expected it can be extended
-for USIv1 support. If you think it can be reused for USIv1, it's fine
-by me. But we need to consider next things:
-  - rename the driver to just "usi.c" (and also its configuration symbol)
-  - provide different compatible for USIv1 (and maybe corresponding driver data)
-  - rework bindings (header and doc); make sure existing bindings are
-intact (we shouldn't change already introduced interfaces)
-  - in case of USIv1 compatible; don't try to tinker with USIv2 registers
-  - samsung,clkreq-on won't be available in case of USIv1 compatible
-
-Because I don't have USIv1 SoC TRM (and neither do I possess some
-USIv1 board which I can use for test), I don't think it's my place to
-add USIv1 support. But I think it's possible to do so, using my input
-above.
-
-I can see how it might be frustrating having to do some extra work
-(comparing to just using the code existing in downstream). But I guess
-that's the difference: vendor is mostly concerned about competitive
-advantage and getting to market fast, while upstream is more concerned
-about quality, considering all use cases, and having proper design.
-Anyway, we can work together to make it right, and to have both
-IP-cores support. In the worst case, if those are too different, we
-can have two separate drivers for those.
-
-> The only real drawback of that way is having to add code for USIv2
-> inside the UART, HSI2C, and SPI drivers but in my opinion the benefits
-> overweigh the drawbacks greatly. We could even make the uart/spi/hsi2c
-> drivers call a helper function in the USI driver to set their USI_CON
-> and USI_OPTION registers up so that code would be shared and not
-> duplicated. Wether this patch gets applied like this is not my choice
-> though, I'll let the people responsible decide
-> :-)
->
-
-I'd argue that there are a lot of real drawbacks of using downstream
-driver as is. That's why I completely re-designed and re-implemented
-it. Downstream driver can't be built and function as a module, it
-doesn't respect System Register sharing between consumers, it leads to
-USI reset code duplication scattered across protocol drivers (that
-arguably shouldn't even be aware of that), it doesn't reflect HW
-structure clearly, it's not holding clocks needed for registers access
-(btw, sysreg clock can be provided in syscon node, exactly for that
-reason). As Krzysztof said, it also can't handle correct probe order
-and deferred probes. Downstream driver might work fine for some
-particular use-cases the vendor has, but in upstream it's better to
-cover more cases we can expect, as upstream kernel is used on more
-platforms, with more user space variants, etc.
-
-I don't really think protocol drivers should be aware of USI registers
-at all, but if we they do -- we can provide some API from USIv2 driver
-later, with EXPORT_SYMBOL(), referencing corresponding USI instance by
-phandle or using some other mechanism for inter-driver communication.
-
-Of course, it's not my place to decide on patch acceptance too. But I
-was under the impression that maintainers would be ok with this course
-of actions. Also, upstream kernel seems to already follow the same
-design for some similar drivers. See for example
-drivers/soc/qcom/qcom_gsbi.c.
-
-> Anyways, soon enough I can write an USIv1 driver after I submit all the
-> 7885 stuff I'm working on currently. If you want to, you can add USIv2
-> support to that driver, or if an USIv2 driver is already in upstream at
-> that point, if it is written in the downstream way I can add v1 support
-> to that, or if it's like this I'll have to make a whole seperate driver
-> with a whole seperate DT structure.
->
-
-If it's like you said (USIv1 only touches the SW_CONF register), I
-guess USIv2 driver can be extended for USIv1 case. I already provided
-my thoughts on such rework above. It's probably better to consult with
-Krzysztof first. I guess the only way to figure out if it's feasible
-or it's better to have separate exynos-usi-v1.c for USIv1, is to try
-and add USIv1 support into USIv2 driver and see how pretty or ugly it
-is :) Whatever the way you decide to go with, please add me to Cc list
-when sending USIv1 patches.
-
-> Best regards,
-> David
+-- 
+Without deviation from the norm, progress is not possible.
