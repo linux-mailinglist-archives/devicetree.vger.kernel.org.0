@@ -2,84 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F59461521
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 13:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51CD846155D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 13:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241239AbhK2Mfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 07:35:30 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:59322 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244746AbhK2Md3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 07:33:29 -0500
-Received: from mail.kernel.org (unknown [198.145.29.99])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D3B7CB8105A;
-        Mon, 29 Nov 2021 12:30:10 +0000 (UTC)
-Received: by mail.kernel.org (Postfix) with ESMTPS id 717DA60184;
-        Mon, 29 Nov 2021 12:30:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638189009;
-        bh=YumIVWW8v4CgXiygB9D+c81bh6Mc4361zipd22kWrcs=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=bORHPDKpD09HrJC4raYE+/dvcGxogT8lIugWpsBnpDKB9pvomlIRV4hpIjGWWkstE
-         Pi+as2VOZsngMQdk4zvgoQ15yXHKlAkKwhTrvof2/LX/fZIZULuwr6vhm8b9sn76LS
-         cAwKTFh7THT/o8ISjx9MExXVf6AHsLUMq+LCFmYnezWJ0vuS5CYlRczbgHrL3ubeS1
-         owIHCXoBDN+HpZ/NP7NNMBghk/O2v9mEB3bGBGHxf4jxgIiWEngXW1YtKmQkoP9egZ
-         7wFq6gqZhMgWrr7MIdwesYjSptt06Ys2wIv4UStJUcBlMMqXLZXUNbZWypZd7k4xpB
-         93L3tVCostTqA==
-Received: from pdx-korg-docbuild-2.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by pdx-korg-docbuild-2.ci.codeaurora.org (Postfix) with ESMTP id 6066760A45;
-        Mon, 29 Nov 2021 12:30:09 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        id S233137AbhK2Mrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 07:47:42 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:50652 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232123AbhK2Mpm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 07:45:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1638189746; x=1669725746;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=2fF2gdhh81H4IXvZ9AxkXM++9a9tO8/Cf6+Jb+mEg24=;
+  b=A4jhspbKEq/tSse8nlxHaMsRpwPupNFr38q0kQe/CCPxFtX8gCJdSX7u
+   Jl6bN/KaOhC+jY8nj8y4UHITNd484LOKsmWq64slUHw/VHEozg85J+ub5
+   O42bXF9YOMMWi0/XbDlAGG+HjNVroLigjWbdr2Ft34FDx5EDsyf9aKyNG
+   82fWe1OqBL4ETh+Mpoy1tpH9ZYO2N5jCm3fXx6ywR5tQ7j6fnfHYVWLJ9
+   Mh/uSYgji8KQAvrQuTjhDsSdHC1lpftscY6Y5KCJ0uLhPhx3ZOtGj4Yhg
+   fwYIPUx1KS02DWL0mosPTI4H/8mnQWK72lNg4IJ5OGGxX73bg3xXXZIJg
+   g==;
+IronPort-SDR: +dVc8r7rGbqa6u9cAMeqvchDE11Yfcs9/6+P611R9j2gom6Y44jBzpvlnJChFZYo+fsqhrDFik
+ QtnQlVwAttNqEEOmfybGQxKcYDu+EaY6yzy31B52QhOJjfD6LNNFGv5wURxV59UKw9q2DzpcV2
+ MGzK85NNm2aN0r7+Qz5eOm4pNUNpVi+S6jYV+xZGkaXj/P6Yi6isADlY08pdZqqo73BnB7FuiP
+ N1/DpCe3sPxQevhBHXzGCvooUUNfGuKOMwlBP39wdIsyWv6qWKFlIC4VXk/FtR2XKqfvSB23qQ
+ 68HtwDQo3xATdOsgHaQSlaMs
+X-IronPort-AV: E=Sophos;i="5.87,273,1631602800"; 
+   d="scan'208";a="144833693"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Nov 2021 05:42:26 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Mon, 29 Nov 2021 05:42:24 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Mon, 29 Nov 2021 05:42:22 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <p.zabel@pengutronix.de>,
+        <linux@armlinux.org.uk>, <andrew@lunn.ch>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH net-next v5 0/6] net: lan966x: Add lan966x switch driver
+Date:   Mon, 29 Nov 2021 13:43:53 +0100
+Message-ID: <20211129124359.4069432-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/2] net: wwan: Add Qualcomm BAM-DMUX WWAN network
- driver
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <163818900938.24631.13563359260502643872.git-patchwork-notify@kernel.org>
-Date:   Mon, 29 Nov 2021 12:30:09 +0000
-References: <20211127173108.3992-1-stephan@gerhold.net>
-In-Reply-To: <20211127173108.3992-1-stephan@gerhold.net>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     davem@davemloft.net, kuba@kernel.org, loic.poulain@linaro.org,
-        ryazanov.s.a@gmail.com, johannes@sipsolutions.net,
-        bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org,
-        aleksander@aleksander.es, netdev@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, jeffrey.l.hugo@gmail.com
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+This patch series add support for Microchip lan966x driver
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+The lan966x switch is a multi-port Gigabit AVB/TSN Ethernet Switch with
+two integrated 10/100/1000Base-T PHYs. In addition to the integrated PHYs,
+it supports up to 2RGMII/RMII, up to 3BASE-X/SERDES/2.5GBASE-X and up to
+2 Quad-SGMII/Quad-USGMII interfaces.
 
-On Sat, 27 Nov 2021 18:31:06 +0100 you wrote:
-> The BAM Data Multiplexer provides access to the network data channels
-> of modems integrated into many older Qualcomm SoCs, e.g. Qualcomm MSM8916
-> or MSM8974. This series adds a driver that allows using it.
-> 
-> All the changes in this patch series are based on a quite complicated
-> driver from Qualcomm [1]. The driver has been used in postmarketOS [2]
-> on various smartphones/tablets based on Qualcomm MSM8916 and MSM8974
-> for more than a year now with no reported problems. It works out of
-> the box with open-source WWAN userspace such as ModemManager.
-> 
-> [...]
+Initially it adds support only for the ports to behave as simple
+NIC cards. In the future patches it would be extended with other
+functionality like Switchdev, PTP, Frame DMA, VCAP, etc.
 
-Here is the summary with links:
-  - [net-next,v3,1/2] dt-bindings: net: Add schema for Qualcomm BAM-DMUX
-    https://git.kernel.org/netdev/net-next/c/f3aee7c900ed
-  - [net-next,v3,2/2] net: wwan: Add Qualcomm BAM-DMUX WWAN network driver
-    https://git.kernel.org/netdev/net-next/c/21a0ffd9b38c
+v4->v5:
+- more fixes to the reset of the switch, require all resources before
+  activating the hardware
+- fix to lan966x-switch binding
+- implement get/set_pauseparam in ethtool_ops
+- stop calling lan966x_port_link_down when calling lan966x_port_pcs_set and
+  call it in lan966x_phylink_mac_link_down
 
-You are awesome, thank you!
+v3->v4:
+- add timeouts when injecting/extracting frames, in case the HW breaks
+- simplify the creation of the IFH
+- fix the order of operations in lan966x_cleanup_ports
+- fixes to phylink based on Russel review
+
+v2->v3:
+- fix compiling issues for x86
+- fix resource management in first patch
+
+v1->v2:
+- add new patch for MAINTAINERS
+- add functions lan966x_mac_cpu_learn/forget
+- fix build issues with second patch
+- fix the reset of the switch, return error if there is no reset controller
+- start to use phylink_mii_c22_pcs_decode_state and
+  phylink_mii_c22_pcs_encode_advertisement to remove duplicate code
+
+Horatiu Vultur (6):
+  dt-bindings: net: lan966x: Add lan966x-switch bindings
+  net: lan966x: add the basic lan966x driver
+  net: lan966x: add port module support
+  net: lan966x: add mactable support
+  net: lan966x: add ethtool configuration and statistics
+  net: lan966x: Update MAINTAINERS to include lan966x driver
+
+ .../net/microchip,lan966x-switch.yaml         | 158 +++
+ MAINTAINERS                                   |   7 +
+ drivers/net/ethernet/microchip/Kconfig        |   1 +
+ drivers/net/ethernet/microchip/Makefile       |   1 +
+ .../net/ethernet/microchip/lan966x/Kconfig    |   7 +
+ .../net/ethernet/microchip/lan966x/Makefile   |   9 +
+ .../microchip/lan966x/lan966x_ethtool.c       | 682 +++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_ifh.h  | 173 ++++
+ .../ethernet/microchip/lan966x/lan966x_mac.c  | 101 ++
+ .../ethernet/microchip/lan966x/lan966x_main.c | 946 ++++++++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_main.h | 192 ++++
+ .../microchip/lan966x/lan966x_phylink.c       | 127 +++
+ .../ethernet/microchip/lan966x/lan966x_port.c | 412 ++++++++
+ .../ethernet/microchip/lan966x/lan966x_regs.h | 730 ++++++++++++++
+ 14 files changed, 3546 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/Kconfig
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/Makefile
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_ethtool.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_ifh.h
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_mac.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_main.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_main.h
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_phylink.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_port.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_regs.h
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.33.0
 
