@@ -2,162 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A050460DA9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 04:46:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC211460DF3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 05:05:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377342AbhK2Dtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 22:49:40 -0500
-Received: from mailgw01.mediatek.com ([60.244.123.138]:44548 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1376963AbhK2Dre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 22:47:34 -0500
-X-UUID: 3ec5cf5cdd234616816c6821cdde4c9e-20211129
-X-UUID: 3ec5cf5cdd234616816c6821cdde4c9e-20211129
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1134237539; Mon, 29 Nov 2021 11:42:32 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 29 Nov 2021 11:42:30 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkcas10.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Mon, 29 Nov 2021 11:42:29 +0800
-From:   Yunfei Dong <yunfei.dong@mediatek.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v11, 19/19] media: mtk-vcodec: Remove mtk_vcodec_release_enc_pm
-Date:   Mon, 29 Nov 2021 11:42:01 +0800
-Message-ID: <20211129034201.5767-20-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211129034201.5767-1-yunfei.dong@mediatek.com>
-References: <20211129034201.5767-1-yunfei.dong@mediatek.com>
+        id S236994AbhK2EI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 23:08:57 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:42386 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231312AbhK2EG4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 23:06:56 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AT43Nrb110170;
+        Sun, 28 Nov 2021 22:03:23 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638158603;
+        bh=FrGdjPInShzB2+c5CZgij+JjrDs4konXtkz4L7PERYg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=HiYXygwTe9XulGvCl67DC+QOwjY0dtITt4CSOysANUpioBlKJbNty5DTS+QPmSnj7
+         3Oyd4U7YRCEdUjDwA5CT1+HA7mxgfATTJ2/M6bzJVAtdk39ZuyDxEZYHSEG8eHxAFd
+         9PgKM1vZE3eFGnw8IVrv3GwlKviysLg3JhwTbL1I=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AT43N3Y086345
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 28 Nov 2021 22:03:23 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sun, 28
+ Nov 2021 22:03:23 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Sun, 28 Nov 2021 22:03:23 -0600
+Received: from [10.250.234.212] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AT43KAY008660;
+        Sun, 28 Nov 2021 22:03:21 -0600
+Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: ti,am65: Fix
+ "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
+To:     Rob Herring <robh@kernel.org>
+CC:     =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        <linux-pci@vger.kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20211126083119.16570-1-kishon@ti.com>
+ <20211126083119.16570-2-kishon@ti.com>
+ <1638054802.141849.1973546.nullmailer@robh.at.kernel.org>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <1d0490fe-9fbe-8ca3-7a27-0bed9aa1eac8@ti.com>
+Date:   Mon, 29 Nov 2021 09:33:19 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
+In-Reply-To: <1638054802.141849.1973546.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are only two lines in mtk_vcodec_release_enc_pm, using
-pm_runtime_disable and put_device instead directly.
+Hi Rob,
 
-Move pm_runtime_enable outside mtk_vcodec_release_enc_pm to symmetry with
-pm_runtime_disable, after that, rename mtk_vcodec_init_enc_pm to *_clk since
-it only has clock operations now.
+On 28/11/21 4:43 am, Rob Herring wrote:
+> On Fri, 26 Nov 2021 14:01:15 +0530, Kishon Vijay Abraham I wrote:
+>> Fix binding documentation of "ti,syscon-pcie-id" and "ti,syscon-pcie-mode"
+>> to take phandle with argument. The argument is the register offset within
+>> "syscon" used to configure PCIe controller. Similar change for j721e is
+>> discussed in [1]
+>>
+>> [1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../devicetree/bindings/pci/ti,am65-pci-ep.yaml  |  8 ++++++--
+>>  .../bindings/pci/ti,am65-pci-host.yaml           | 16 ++++++++++++----
+>>  2 files changed, 18 insertions(+), 6 deletions(-)
+>>
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Co-developed-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c | 9 ++++++---
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c  | 9 +--------
- drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h  | 3 +--
- 3 files changed, 8 insertions(+), 13 deletions(-)
+Once this series is merged, I'll send an update to the device tree files.
+Without the corresponding driver changes, update to DT will break functionality.
 
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-index 0f326d82dea0..7816efb90cbe 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-@@ -11,6 +11,7 @@
- #include <linux/module.h>
- #include <linux/of_device.h>
- #include <linux/of.h>
-+#include <linux/pm_runtime.h>
- #include <media/v4l2-event.h>
- #include <media/v4l2-mem2mem.h>
- #include <media/videobuf2-dma-contig.h>
-@@ -260,7 +261,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- 		return PTR_ERR(dev->fw_handler);
- 
- 	dev->venc_pdata = of_device_get_match_data(&pdev->dev);
--	ret = mtk_vcodec_init_enc_pm(dev);
-+	ret = mtk_vcodec_init_enc_clk(dev);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "Failed to get mtk vcodec clock source!");
- 		goto err_enc_pm;
-@@ -372,7 +373,8 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
- err_enc_alloc:
- 	v4l2_device_unregister(&dev->v4l2_dev);
- err_res:
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- err_enc_pm:
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return ret;
-@@ -462,7 +464,8 @@ static int mtk_vcodec_enc_remove(struct platform_device *pdev)
- 		video_unregister_device(dev->vfd_enc);
- 
- 	v4l2_device_unregister(&dev->v4l2_dev);
--	mtk_vcodec_release_enc_pm(dev);
-+	pm_runtime_disable(dev->pm.dev);
-+	put_device(dev->pm.larbvenc);
- 	mtk_vcodec_fw_release(dev->fw_handler);
- 	return 0;
- }
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-index 0c8c8f86788c..0825c6ec4eb7 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c
-@@ -13,7 +13,7 @@
- #include "mtk_vcodec_enc_pm.h"
- #include "mtk_vcodec_util.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *mtkdev)
- {
- 	struct device_node *node;
- 	struct platform_device *pdev;
-@@ -86,13 +86,6 @@ int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *mtkdev)
- 	return ret;
- }
- 
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *mtkdev)
--{
--	pm_runtime_disable(mtkdev->pm.dev);
--	put_device(mtkdev->pm.larbvenc);
--}
--
--
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm)
- {
- 	struct mtk_vcodec_clk *enc_clk = &pm->venc_clk;
-diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-index b7ecdfd74823..bc455cefc0cd 100644
---- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-+++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_pm.h
-@@ -9,8 +9,7 @@
- 
- #include "mtk_vcodec_drv.h"
- 
--int mtk_vcodec_init_enc_pm(struct mtk_vcodec_dev *dev);
--void mtk_vcodec_release_enc_pm(struct mtk_vcodec_dev *dev);
-+int mtk_vcodec_init_enc_clk(struct mtk_vcodec_dev *dev);
- 
- void mtk_vcodec_enc_clock_on(struct mtk_vcodec_pm *pm);
- void mtk_vcodec_enc_clock_off(struct mtk_vcodec_pm *pm);
--- 
-2.25.1
-
+Thanks,
+Kishon
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1559994
+> 
+> 
+> pcie@21020000: compatible: Additional items are not allowed ('snps,dw-pcie' was unexpected)
+> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
+> 
+> pcie@21020000: compatible: ['ti,keystone-pcie', 'snps,dw-pcie'] is too long
+> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
+> 
+> pcie@21020000: reg: [[553783296, 8192], [553779200, 4096], [39977256, 4]] is too short
+> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
+> 
+> pcie@21800000: compatible: Additional items are not allowed ('snps,dw-pcie' was unexpected)
+> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
+> 	arch/arm/boot/dts/keystone-k2hk-evm.dt.yaml
+> 	arch/arm/boot/dts/keystone-k2l-evm.dt.yaml
+> 
+> pcie@21800000: compatible: ['ti,keystone-pcie', 'snps,dw-pcie'] is too long
+> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
+> 	arch/arm/boot/dts/keystone-k2hk-evm.dt.yaml
+> 	arch/arm/boot/dts/keystone-k2l-evm.dt.yaml
+> 
+> pcie@21800000: reg: [[562040832, 8192], [562036736, 4096], [39977256, 4]] is too short
+> 	arch/arm/boot/dts/keystone-k2e-evm.dt.yaml
+> 	arch/arm/boot/dts/keystone-k2hk-evm.dt.yaml
+> 	arch/arm/boot/dts/keystone-k2l-evm.dt.yaml
+> 
+> pcie@5500000: ti,syscon-pcie-id:0: [52] is too short
+> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> 
+> pcie@5500000: ti,syscon-pcie-id:0: [60] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
+> 
+> pcie@5500000: ti,syscon-pcie-id:0: [61] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
+> 
+> pcie@5500000: ti,syscon-pcie-mode:0: [53] is too short
+> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> 
+> pcie@5500000: ti,syscon-pcie-mode:0: [61] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
+> 
+> pcie@5500000: ti,syscon-pcie-mode:0: [62] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
+> 
+> pcie@5600000: ti,syscon-pcie-id:0: [52] is too short
+> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> 
+> pcie@5600000: ti,syscon-pcie-id:0: [60] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
+> 
+> pcie@5600000: ti,syscon-pcie-id:0: [61] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
+> 
+> pcie@5600000: ti,syscon-pcie-mode:0: [55] is too short
+> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> 
+> pcie@5600000: ti,syscon-pcie-mode:0: [63] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
+> 
+> pcie@5600000: ti,syscon-pcie-mode:0: [64] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
+> 
+> pcie-ep@5500000: ti,syscon-pcie-mode:0: [53] is too short
+> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> 
+> pcie-ep@5500000: ti,syscon-pcie-mode:0: [61] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
+> 
+> pcie-ep@5500000: ti,syscon-pcie-mode:0: [62] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
+> 
+> pcie-ep@5600000: ti,syscon-pcie-mode:0: [55] is too short
+> 	arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> 
+> pcie-ep@5600000: ti,syscon-pcie-mode:0: [63] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced.dt.yaml
+> 
+> pcie-ep@5600000: ti,syscon-pcie-mode:0: [64] is too short
+> 	arch/arm64/boot/dts/ti/k3-am6528-iot2050-basic-pg2.dt.yaml
+> 	arch/arm64/boot/dts/ti/k3-am6548-iot2050-advanced-pg2.dt.yaml
+> 
