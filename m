@@ -2,120 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0712B461638
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 14:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5119746169E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 14:35:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377772AbhK2N23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 08:28:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53120 "EHLO
+        id S237460AbhK2Nia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 08:38:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377657AbhK2N02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 08:26:28 -0500
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E52FC094247
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 04:06:04 -0800 (PST)
-Received: by mail-wr1-x429.google.com with SMTP id v11so36237098wrw.10
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 04:06:04 -0800 (PST)
+        with ESMTP id S230264AbhK2Ng3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 08:36:29 -0500
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCDA9C09B115;
+        Mon, 29 Nov 2021 04:13:48 -0800 (PST)
+Received: by mail-yb1-xb34.google.com with SMTP id e136so41552316ybc.4;
+        Mon, 29 Nov 2021 04:13:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=r7u55d5JFnfFp6c/l6+nGa0Vwea0Zs3QOYstLDbBOQE=;
-        b=GqN4pz3d2akzrhB/wOpvEkqg0lrRA2BduIUlJcSf134toz9VcvGLDEQbSKbnBAxg6q
-         ucm7GFf7GjZ0/wkhfcSFsbY9mDNOBFyaPcN5HSXrnhPTT8iYUQ3U63Gg6HDEQMgodpEV
-         PJKnIrS7djYC3jRgglQK77Lz6UGck9xl7iqmrK/AVhHbv6owZJC1RgeFK2oom96kGFcL
-         YPgzt4qLPzxHg+EIwVyN4h4hVdUVsMFRzCPcmBV8MWqT/7lJth4V+kYJ73Hv6Bqd/MJB
-         E+UDLak0kJMGFsypAKv5JnsGHo99KKujfupKzhZ8fRvkmu6xLyiOKhpnGeHqMCMYmD0K
-         2HVg==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zvWgEEmp4P0Dmru5AcXSwTmy3R2DbgQle1dL6KFUV5Q=;
+        b=mheknQwzJETTESRyXle/GMJBlalpNtrfwg/kBAz+TsIO3u8AFuxRSgMSCzSZCOiB+X
+         8ItucEPwG6AFQvyz6kswJVpMghQUGnPY39IkeD6YQTiFRp67gU4fkRo2fSTpESnyv8Sl
+         +HQ54IBVWLctIAdpc1QazKO5mCTixeHcvvOsw2qYP8xwyxt+8y9u7xPwFFPv5dh1/MVp
+         hucadXNx3/eXiMomO3xbEGc+icVZcdXemfSsb7fbmIZPYj4AxNxXztjV7srW0jJqyTGd
+         ZFlXK6fLpljlrGkRqMM1CroQvu7t1kV93H0hk+JkPAbX+R44b3u0dzwBKo7W7yH6w+oy
+         ivAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=r7u55d5JFnfFp6c/l6+nGa0Vwea0Zs3QOYstLDbBOQE=;
-        b=qsrILjyD9fgmvNsmvjUCSZzGuARc3B/VMQtb9bDPCkM+JKYb0lX9sDaNXm+k6hJX7u
-         09431muW/P+ur3Bgvn4OJzi2BGNYTpSHEcLgwW1hF8K0VIRR6avOod3GBepB5Gil6vLr
-         xZ8Hgt0MxJ8Iz7nrhq7C3AFKw/CL2bRiV6+jyH31N7JjF00ZbL68Lw7PEfzKyi71RN/+
-         HhxpaOzz+tIVYiDrVjYpsAqsOBRXF/BHDerZ4Nus4FxKSOEVO1YnlBGgv7M+dqSes7AI
-         4IEKNkL/MtXE3YaZiRwtVXN8kxAiABFMDQ5vasF+45rHByfVYIwsHwcm841jaCB4Txrs
-         5yEg==
-X-Gm-Message-State: AOAM530xZ3kiwDOnVwY1G475EZpeY35X4h3jLC8wted5QZnwEGwKmQjk
-        sWGfqgcd9hYU9ogjx7WG9tL1HQ==
-X-Google-Smtp-Source: ABdhPJyoYmVDmT0HI/4DD7ZamTD1t+mvV0dDgv9H58nQ+0B5Q1G+PNFO3zmG1ovl+ETorG/37YAcQg==
-X-Received: by 2002:adf:f1cc:: with SMTP id z12mr24941616wro.395.1638187562744;
-        Mon, 29 Nov 2021 04:06:02 -0800 (PST)
-Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id f7sm16389698wri.74.2021.11.29.04.06.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 04:06:02 -0800 (PST)
-Date:   Mon, 29 Nov 2021 12:06:00 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        lukas.bulwahn@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com
-Subject: [GIT PULL] Immutable branch between MFD, GPIO and Regulator due for
- the v5.17 merge window
-Message-ID: <YaTCKHGd8MHQ/BaF@google.com>
-References: <cover.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zvWgEEmp4P0Dmru5AcXSwTmy3R2DbgQle1dL6KFUV5Q=;
+        b=CJxYKKjNRNW3Ej3UUD0S6C2ebUxG5iz42Nq0kmHwRN8HxDmWoqDqjif5uvuPmdMSi1
+         8UwC9psqqkBgceLU8cEUZVrqwfcfQuhqqb9KBrVJlLobJoqku7jdcQGC+2ljWIfEJ+ky
+         tv1EnRnCUdDt3U7rwEUNFGjXoq36biclrbKHcPou3/vF0uz8YB7/7nZhL3IXwAg8EiFA
+         iTn2zmwxnOuwPrynzBY5eeknX0YtCRG8FPe+2quPTGTXokoQi0A0MV7PPi9npa0IPGsG
+         /S0411bwzgc723RLX8rORQdXoChYEfeTvZaSJfz1gecu69210MSGYfUmoXMWiD/0dC4e
+         cJCQ==
+X-Gm-Message-State: AOAM533a8xDLiC29jwUZYwPNFJdHNXWEUkwHXoQ8Ucy11lZz+Nzma+G2
+        0wWcVo3TLgGL8/3kVb78tE9ZObOFZAcwSYfVIVE=
+X-Google-Smtp-Source: ABdhPJyW8I0OsQuEsS+iKk63xokUZyRnOL5btP3ZmO51jdgo/krQaQVmuV2borBUdhceQ8WtnHuzSADL2Orr0bxc/YA=
+X-Received: by 2002:a25:abe3:: with SMTP id v90mr34471368ybi.315.1638188027913;
+ Mon, 29 Nov 2021 04:13:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
+References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+ <8735no70tt.wl-maz@kernel.org> <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+ <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
+ <87tug3clvc.wl-maz@kernel.org> <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
+ <87r1b7ck40.wl-maz@kernel.org> <OSZPR01MB7019E7DD7119EFF9C994AA62AA649@OSZPR01MB7019.jpnprd01.prod.outlook.com>
+ <87tufvmes9.wl-maz@kernel.org>
+In-Reply-To: <87tufvmes9.wl-maz@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 29 Nov 2021 12:13:22 +0000
+Message-ID: <CA+V-a8siHRjF+bJu88QFwz0a_MZ+kiJEwmER58_feyr8O+WNGA@mail.gmail.com>
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
+ definition of interrupt-map
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel-team@android.com" <kernel-team@android.com>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enjoy!
+On Mon, Nov 29, 2021 at 10:34 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Sat, 27 Nov 2021 00:42:49 +0000,
+> Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> >
+> > Hi Marc,
+> >
+> > > -----Original Message-----
+> > > From: Marc Zyngier <maz@kernel.org>
+> > > Sent: 23 November 2021 09:11
+> > > To: Geert Uytterhoeven <geert@linux-m68k.org>
+> > > Cc: linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; kernel-team@android.com; Rob Herring
+> > > <robh@kernel.org>; John Crispin <john@phrozen.org>; Biwen Li <biwen.li@nxp.com>; Chris Brandt
+> > > <Chris.Brandt@renesas.com>; linux-renesas-soc@vger.kernel.org; Prabhakar Mahadev Lad
+> > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own definition of interrupt-map
+> > >
+> > > On Tue, 23 Nov 2021 08:44:19 +0000,
+> > > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > >
+> > > > Hi Marc,
+> > > >
+> > > > On Tue, Nov 23, 2021 at 9:33 AM Marc Zyngier <maz@kernel.org> wrote:
+> > > > > On Tue, 23 Nov 2021 07:57:48 +0000,
+> > > > > Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > > > > > Summarized:
+> > > > > >   - Before the bad commit, and after your fix, irqc-rza1 is invoked,
+> > > > > >     and the number of interrupts seen is correct, but input events
+> > > > > >     are doubled.
+> > > > > >   - After the bad commit, irqc-rza1 is not invoked, and there is an
+> > > > > >     interrupt storm, but input events are OK.
+> > > > >
+> > > > > OK, that's reassuring, even if the "twice the events" stuff isn't
+> > > > > what you'd expect. We at least know this is a separate issue, and
+> > > > > that this patch on top of -rc1 brings you back to the 5.15 behaviour.
+> > > > >
+> > > > > I'd expect it to be the case for the other platforms as well.
+> > > >
+> > > > OK.
+> > > >
+> > > > BTW, what would have been the correct way to do this for irqc-rza1?
+> > > > I think we're about to make the same mistake with RZ/G2L IRQC
+> > > > support[1]?
+> > >
+> > > Indeed, and I was about to look into it.
+> > >
+> > > There are multiple ways to skin this cat, including renaming 'interrupt-map' to 'my-own-private-
+> > > interrupt-map'. Or use something akin the new 'msi-range' (which we could call interrupt-range), and
+> > > replace:
+> > >
+> > >   interrupt-map = <0 0 &gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <1 0 &gic GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <2 0 &gic GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <3 0 &gic GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <4 0 &gic GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <5 0 &gic GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <6 0 &gic GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> > >                   <7 0 &gic GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> > >
+> > > with:
+> > >
+> > >   interrupt-range = <&gic GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH 0 8>;
+> > >
+> > Just to clarify, do you suggest to add interrupt-range as a generic
+> > DT property or SoC/company specific property?
+>
+> As a generic one. I have no interest in SoC-specific stuff (though you
+> are free to invent your own and run it by Rob).
+>
+OK will go with a generic one.
 
-The following changes since commit fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf:
+> > If you meant to add generic property where would you suggest to
+> > document this property?
+>
+> Ideally collocated with the rest of the interrupt properties.
+>
+OK, I will go with interrupts.txt for now. Is that OK with you Rob?
+(the reason I ask because interrupt-map/mask haven't been documented).
 
-  Linux 5.16-rc1 (2021-11-14 13:56:52 -0800)
+Cheers,
+Prabhakar
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-gpio-regulator-v5.17
-
-for you to fetch changes up to 2f746ea6e6a9036b2f33d80d776ac2464f4cea18:
-
-  MAINTAINERS: bd70528: Drop ROHM BD70528 drivers (2021-11-29 12:04:32 +0000)
-
-----------------------------------------------------------------
-Immutable branch between MFD, GPIO and Regulator due for the v5.17 merge window
-
-----------------------------------------------------------------
-Matti Vaittinen (4):
-      dt-bindings: mfd: regulator: Drop BD70528 support
-      gpio: bd70528 Drop BD70528 support
-      mfd: bd70528: Drop BD70528 support
-      MAINTAINERS: bd70528: Drop ROHM BD70528 drivers
-
- Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt            | 102 ---------
- Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt |  68 ------
- MAINTAINERS                                                            |   8 -
- drivers/gpio/Kconfig                                                   |  11 -
- drivers/gpio/Makefile                                                  |   1 -
- drivers/gpio/gpio-bd70528.c                                            | 230 --------------------
- drivers/mfd/Kconfig                                                    |  17 --
- drivers/mfd/Makefile                                                   |   1 -
- drivers/mfd/rohm-bd70528.c                                             | 314 ---------------------------
- include/linux/mfd/rohm-bd70528.h                                       | 389 ----------------------------------
- include/linux/mfd/rohm-generic.h                                       |   1 -
- 11 files changed, 1142 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
- delete mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
- delete mode 100644 drivers/gpio/gpio-bd70528.c
- delete mode 100644 drivers/mfd/rohm-bd70528.c
- delete mode 100644 include/linux/mfd/rohm-bd70528.h
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> Thanks,
+>
+>         M.
+>
+> --
+> Without deviation from the norm, progress is not possible.
