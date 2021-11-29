@@ -2,154 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 995DC462565
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:37:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDC34625F2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232662AbhK2Wij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 17:38:39 -0500
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:40415 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231501AbhK2WiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 17:38:05 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id E9A495C019E;
-        Mon, 29 Nov 2021 17:34:45 -0500 (EST)
-Received: from imap47 ([10.202.2.97])
-  by compute3.internal (MEProxy); Mon, 29 Nov 2021 17:34:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=mime-version:message-id:in-reply-to:references:date:from:to
-        :cc:subject:content-type; s=fm3; bh=nak5LLj7hhbHiQ3bZxbtQxMEyoqm
-        oK2+u/U9XmUMMoc=; b=THtCY7wkN/LcNfZsiY6qA3Z5wl8SrUNoDQdhre1m32or
-        xXwFlPbIeq4T7sCxkvXWWqLU0wIndzQRo1e3w7X6TPxHrcmbdlN4s9+JP9D+uT+v
-        u5x/ef/5I2XDXd+kkfqh1c8KgGlq/gbEbOCtRFctyliNdfHGxr3kUcgbeGnrx914
-        BzWbLeVdSNNVcE5iAZsZGDCEC0nCMIeVNcctl0Dllk9l36YowjHlHgN5TUqqF1ta
-        ResCWamcVlEQ4k8HTJZLa3MIE3iJlwnmJoiXh8dNKkuMDVq/xW1m+/vhXEhUvJSH
-        jVmeMDwVM/P3a8Tb/2hcaiblzfVnK2V3wcQzW8mpGw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=nak5LL
-        j7hhbHiQ3bZxbtQxMEyoqmoK2+u/U9XmUMMoc=; b=ea2pzyNyhML2wK/z0O8odQ
-        6ude99ahq4hO3z6Kspo4G0O8LWGST+J62JO11HmqUp7CjYjmNFCUjn4Y+sTNJdLn
-        3UjWrq4krZjwSj2Lw1VBrMRloGxNyH3nDYybdfccJ/uYWObptf/OlrTQNimE1JZT
-        EkP1Bru+1a3cGKwBrjVRvIXkVQM4Hzahp651L0hUPTHXrERbGC9zcWjczgMo4T8h
-        nl6Ii051ICABSNgG3jQpj7YLcu71L38xr0Ky7e+LvxmpXbVWZsW79t3am3umfrUF
-        43FhB5ZyBaO0OK3T42FI/blnp8Q+5hdByyiaFBfo9e8OyUzfMnOoaxhGgyvPk4PA
-        ==
-X-ME-Sender: <xms:hVWlYYVr53cB3hUsRMEnoYkT3mph035pFKO1ZloTpfqIZzJTjJjkOQ>
-    <xme:hVWlYclhtLS9EXXK1DDxNQPtCVGB3ytwPjypfL9N_vdIpNlQWuRu6uQ2EaMce2_VK
-    F_THxC0rEAtiG2G77A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrheelgdduieefucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
-    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
-    htthgvrhhnpeehtdffledvffegveejgeegvdeujedtteefgfelffehtdetudekteethfet
-    keeuudenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrh
-    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvght
-    vghrrdguvghv
-X-ME-Proxy: <xmx:hVWlYcaQVGukXnjV1thivnYKbqj2kj_VF9BQWNV4mUBNeBEmi4jgug>
-    <xmx:hVWlYXX0fhxwE5auQvj3nId5W7diEzvBj4LmtcbR1vSb3z9gYdLONw>
-    <xmx:hVWlYSn4zj8upU9tYUZ4DZ1CBy_zfTBJWiy33GC_aZWeByA77_ZIkQ>
-    <xmx:hVWlYQa8SoRKcrKDWlE9VIg3rxbbH8S1CISuiDkLp00MAf7QoVIltQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 407A427407A2; Mon, 29 Nov 2021 17:34:45 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.5.0-alpha0-4409-g12559b250c-fm-20211129.001-g12559b25
-Mime-Version: 1.0
-Message-Id: <78db7a00-93a4-46de-8071-2801c84bc171@www.fastmail.com>
-In-Reply-To: <YaQseO5kF71vABji@robh.at.kernel.org>
-References: <20211108170946.49689-1-sven@svenpeter.dev>
- <YaQseO5kF71vABji@robh.at.kernel.org>
-Date:   Mon, 29 Nov 2021 23:34:24 +0100
-From:   "Sven Peter" <sven@svenpeter.dev>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     "Felipe Balbi" <balbi@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Hector Martin" <marcan@marcan.st>,
-        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
-        "Mark Kettenis" <mark.kettenis@xs4all.nl>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: Add Apple dwc3 bindings
-Content-Type: text/plain
+        id S234011AbhK2Wpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 17:45:36 -0500
+Received: from mail-oi1-f180.google.com ([209.85.167.180]:35399 "EHLO
+        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234899AbhK2Wo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 17:44:29 -0500
+Received: by mail-oi1-f180.google.com with SMTP id m6so37510824oim.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 14:41:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/mVagZKB5sENnWA5/x92h5prjYHHYygiRoEd9UYVS20=;
+        b=sV3s4SkVFsSvhbLd/Cza7G4sQykfG9t+M155Gjvl5FUpnWTWyd40/tv8l8fJ2W9F2B
+         x/ly5vy/tULfa7AoGG/bIvdLQcEQrGATssMaRdd+g2wykfkpW7fn68oGe6ek1m/4JGeC
+         B0fI6ilobK9ZDk2DTo6KaYGWlTtCFwL91prw1DOUtOGB/kdmNt3A/vetumXP/S/ASyOH
+         9ZVCt51ZlY9v5ewB0dF83B5JkDtrTfkDvdQY2qdynqjGSE0jyPTX+HA7qnlrwHiBOD3u
+         IfPQghJ+H2Do1MStKLYwHch4R/+rNVHpDsH3BfiXpFAEt90G/WU29ZJKEordmrNG43Sg
+         Pi1w==
+X-Gm-Message-State: AOAM531Mp9LAAMSMpjGd3bMNYBiJT2szFqbyDsAa6oJeAk6g1b/EMCsK
+        wn46vrH9dMCh4gwoZkABqQ==
+X-Google-Smtp-Source: ABdhPJzPrmQTisKPqX+mcQG21GYX6RJWb/RaFSFgyZkE7/CVaR4iKXleUPZI2cSTY9KS1sSs9GCAbA==
+X-Received: by 2002:a05:6808:1644:: with SMTP id az4mr877879oib.86.1638225671084;
+        Mon, 29 Nov 2021 14:41:11 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q9sm2857314oti.32.2021.11.29.14.41.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 14:41:10 -0800 (PST)
+Received: (nullmailer pid 743486 invoked by uid 1000);
+        Mon, 29 Nov 2021 22:41:09 -0000
+Date:   Mon, 29 Nov 2021 16:41:09 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Andrew Jeffery <andrew@aj.id.u>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Paul Menzel <pmenzel@molgen.mpg.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH 1/3] dt-bindings: aspeed: Add Secure Boot Controller
+ bindings
+Message-ID: <YaVXBZb2QFpjEGtj@robh.at.kernel.org>
+References: <20211117035106.321454-1-joel@jms.id.au>
+ <20211117035106.321454-2-joel@jms.id.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211117035106.321454-2-joel@jms.id.au>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Nov 17, 2021 at 11:51:04AM +0800, Joel Stanley wrote:
+> The secure boot controller was first introduced in the AST2600.
+> 
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  .../bindings/arm/aspeed/aspeed,sbc.yaml       | 37 +++++++++++++++++++
+>  1 file changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
+> new file mode 100644
+> index 000000000000..c72aab706484
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed,sbc.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-2-Clause)
 
-Thanks for the review!
+GPL-2.0-only OR BSD-2-Clause
 
-On Mon, Nov 29, 2021, at 02:27, Rob Herring wrote:
-> On Mon, Nov 08, 2021 at 06:09:45PM +0100, Sven Peter wrote:
->> Apple Silicon SoCs such as the M1 have multiple USB controllers based on
->> the Synopsys DesignWare USB3 controller.
->> References to the ATC PHY required for SuperSpeed are left out for now
->> until support has been upstreamed as well.
->> 
->> Signed-off-by: Sven Peter <sven@svenpeter.dev>
->> ---
->> v1 -> v2:
->>  - added apple,dwc3 bindings instead of a property for the reset quirk
->>    as requested by robh
->> 
->> I think I have to use GPL-2.0 for this binding since it's based
->> on and references snps,dwc3.yaml which is also only GPL-2.0.
->> Otherwise I'd be fine with the usual GPL/BSD dual license as well.
->> 
->>  .../devicetree/bindings/usb/apple,dwc3.yaml   | 64 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  2 files changed, 65 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/usb/apple,dwc3.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/usb/apple,dwc3.yaml b/Documentation/devicetree/bindings/usb/apple,dwc3.yaml
->> new file mode 100644
->> index 000000000000..fb3b3489e6b2
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/usb/apple,dwc3.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: GPL-2.0
->
-> Dual license please.
+> +# Copyright 2021 Joel Stanley, IBM Corp.
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/arm/aspeed/aspeed,sbc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: ASPEED Secure Boot Controller
+> +
+> +maintainers:
+> +  - Joel Stanley <joel@jms.id.au>
+> +  - Andrew Jeffery <andrew@aj.id.au>
+> +
+> +description: |
 
-I'd like to but I'm not sure if I can do that. This binding is based on
-snps,dwc3.yaml and rockchip,dwc3.yaml which are both only GPL-2.0.
+Only need '|' to preserve formatting which you don't have.
 
->
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/usb/apple,dwc3.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Apple Silicon DWC3 USB controller
->> +
->> +maintainers:
->> +  - Sven Peter <sven@svenpeter.dev>
->> +
->> +description:
->> +  On Apple Silicon SoCs such as the M1 each Type-C port has a corresponding
->> +  USB controller based on the Synopsys DesignWare USB3 controller.
->> +
->> +  The common content of this binding is defined in snps,dwc3.yaml.
->> +
->> +allOf:
->> +  - $ref: snps,dwc3.yaml#
->> +
->> +select:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        const: apple,dwc3
->
-> This needs to list all possible compatibles except snps,dwc3 so the 
-> schema is applied for any incorrect mixture of compatibles.
+With those addressed,
 
-Makes sense, will do that for the next version.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-
-
-Thanks,
-
-Sven
+> +  The ASPEED SoCs have a register bank for interacting with the secure boot
+> +  controller.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: aspeed,ast2600-sbc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    sbc: secure-boot-controller@1e6f2000 {
+> +            compatible = "aspeed,ast2600-sbc";
+> +            reg = <0x1e6f2000 0x1000>;
+> +    };
+> -- 
+> 2.33.0
+> 
+> 
