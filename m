@@ -2,428 +2,447 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80FA8460EEF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 07:48:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64AAF460F1C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 07:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232670AbhK2Gvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 01:51:33 -0500
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:18649 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240302AbhK2Gtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 01:49:32 -0500
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 1AT6HdaL024518;
-        Mon, 29 Nov 2021 14:17:39 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from BillyTsai-pc.aspeed.com (192.168.2.149) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 29 Nov
- 2021 14:42:06 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
-        <joel@jms.id.au>, <andrew@aj.id.au>, <lee.jones@linaro.org>,
-        <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <p.zabel@pengutronix.de>, <billy_tsai@aspeedtech.com>,
-        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [v13 2/2] pwm: Add Aspeed ast2600 PWM support
-Date:   Mon, 29 Nov 2021 14:43:29 +0800
-Message-ID: <20211129064329.27006-3-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211129064329.27006-1-billy_tsai@aspeedtech.com>
-References: <20211129064329.27006-1-billy_tsai@aspeedtech.com>
+        id S230512AbhK2HCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 02:02:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230020AbhK2HAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 02:00:05 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E044C061761;
+        Sun, 28 Nov 2021 22:53:21 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id v15so32623076ljc.0;
+        Sun, 28 Nov 2021 22:53:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:content-language:to:cc
+         :references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=sYialmhs/rV7yRCPTKBL2MKiLeWKn0rtCFh7tpB6Nwg=;
+        b=b1mGbslpM5HFkzpAxZzdKRPZnKjAtc/JL27Uf4lSUrd7td53YWziaGb7mUAOPL+uU3
+         2tSjpEaRpLWrq+IIuHPSGshW0VBvW5LggxvS9zOYCAXchbg9mszUxi2X5yg5uJKbbeZT
+         FX9PY1n+7dgIjAsSw3AtWv/ymsrWK8c6kl0tMUxUhDmXjWSqKpn71GwNaFpz4pTX3B+d
+         Dc+Y8HKc+sQvh51VFWiBwEWZ5kbqw0iZbVHGLODn8vrwQzOrQR+Eg1srMJqXdKEbthWL
+         UHUjzi5Mmx2ghHxlyful1KIHTvsXIhZV0i+jRkJVlvoEq8GkwsXzloO9qTO3H3uJwUMv
+         eZqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=sYialmhs/rV7yRCPTKBL2MKiLeWKn0rtCFh7tpB6Nwg=;
+        b=Evm4B059D7c11dEVdeQ1OokE1aR/IxBHc3KIKwxI8c+KOWKcpov3vLpg5BchAdqjfH
+         rg6mAk7bxBgufKJnfq3x+Ja+EnPHAiGcEHhmbUv+eLBPatUawavfcH3Kk3fxKnjoYZPR
+         T/i7mb66QHeNxDpMaflKfSNBkS/BCoM5T3yxt7oscug8bCXJSpCWPq76UyuLpMalXtI+
+         1gi9/sfKgCHbt1nplCU0lZzGqTo6NwILb2YPj+nf87IY3be4uZquHuU+UX3A/dOdUZYi
+         cKBa6VMBwS8mM7WZw9pe2zz96cHE6hGpf6URX1S9Actn1dwZ9r7G376tZzgLd4fTYxI3
+         hRzQ==
+X-Gm-Message-State: AOAM531koUQ9g3cAHhrHoljkgNFHl0Hu1AcZNtKi/qttSoyW43WyA8O/
+        Zradgp2Z30I1R4FyzcSXXxg/tu4YzEo=
+X-Google-Smtp-Source: ABdhPJyqTVQGXMu0J2rlD2XJeXkA9hhB5c/GwC6e6NeL8kftJ4khNTinVQHqy7W5GATGbqZaUhw5zg==
+X-Received: by 2002:a05:651c:1b0:: with SMTP id c16mr46248776ljn.339.1638168799511;
+        Sun, 28 Nov 2021 22:53:19 -0800 (PST)
+Received: from [10.0.0.115] (91-153-170-164.elisa-laajakaista.fi. [91.153.170.164])
+        by smtp.gmail.com with ESMTPSA id i10sm1241091lfv.22.2021.11.28.22.53.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Nov 2021 22:53:18 -0800 (PST)
+Message-ID: <64426bc9-1160-97c6-4714-4201b8f7a81c@gmail.com>
+Date:   Mon, 29 Nov 2021 08:53:46 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.2.149]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 1AT6HdaL024518
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Content-Language: en-US
+To:     Jayesh Choudhary <j-choudhary@ti.com>, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        broonie@kernel.org
+References: <20211126050228.6257-1-j-choudhary@ti.com>
+From:   =?UTF-8?Q?P=c3=a9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+Subject: Re: [PATCH v3] ASoC: dt-bindings: davinci-mcasp: convert McASP
+ bindings to yaml schema
+In-Reply-To: <20211126050228.6257-1-j-choudhary@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add the support of PWM controller which can be found at aspeed
-ast2600 soc. The pwm supoorts up to 16 channels and it's part function
-of multi-function device "pwm-tach controller".
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- drivers/pwm/Kconfig              |  10 +
- drivers/pwm/Makefile             |   1 +
- drivers/pwm/pwm-aspeed-ast2600.c | 327 +++++++++++++++++++++++++++++++
- 3 files changed, 338 insertions(+)
- create mode 100644 drivers/pwm/pwm-aspeed-ast2600.c
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 63be5362fd3a..b0d26f6c2a8f 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -51,6 +51,16 @@ config PWM_AB8500
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-ab8500.
- 
-+config PWM_ASPEED_AST2600
-+	tristate "Aspeed ast2600 PWM support"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	depends on HAVE_CLK && HAS_IOMEM
-+	help
-+	  This driver provides support for Aspeed ast2600 PWM controllers.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-aspeed-ast2600.
-+
- config PWM_ATMEL
- 	tristate "Atmel PWM support"
- 	depends on OF
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index cbdcd55d69ee..ada454f9129a 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -2,6 +2,7 @@
- obj-$(CONFIG_PWM)		+= core.o
- obj-$(CONFIG_PWM_SYSFS)		+= sysfs.o
- obj-$(CONFIG_PWM_AB8500)	+= pwm-ab8500.o
-+obj-$(CONFIG_PWM_ASPEED_AST2600)	+= pwm-aspeed-ast2600.o
- obj-$(CONFIG_PWM_ATMEL)		+= pwm-atmel.o
- obj-$(CONFIG_PWM_ATMEL_HLCDC_PWM)	+= pwm-atmel-hlcdc.o
- obj-$(CONFIG_PWM_ATMEL_TCB)	+= pwm-atmel-tcb.o
-diff --git a/drivers/pwm/pwm-aspeed-ast2600.c b/drivers/pwm/pwm-aspeed-ast2600.c
-new file mode 100644
-index 000000000000..34fa5800db4d
---- /dev/null
-+++ b/drivers/pwm/pwm-aspeed-ast2600.c
-@@ -0,0 +1,327 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2021 Aspeed Technology Inc.
-+ *
-+ * PWM controller driver for Aspeed ast2600 SoCs.
-+ * This drivers doesn't support earlier version of the IP.
-+ *
-+ * The hardware operates in time quantities of length
-+ * Q := (DIV_L + 1) << DIV_H / input-clk
-+ * The length of a PWM period is (DUTY_CYCLE_PERIOD + 1) * Q.
-+ * The maximal value for DUTY_CYCLE_PERIOD is used here to provide
-+ * a fine grained selection for the duty cycle.
-+ *
-+ * This driver uses DUTY_CYCLE_RISING_POINT = 0, so from the start of a
-+ * period the output is active until DUTY_CYCLE_FALLING_POINT * Q. Note
-+ * that if DUTY_CYCLE_RISING_POINT = DUTY_CYCLE_FALLING_POINT the output is
-+ * always active.
-+ *
-+ * Register usage:
-+ * PIN_ENABLE: When it is unset the pwm controller will emit inactive level to the external.
-+ * Use to determine whether the PWM channel is enabled or disabled
-+ * CLK_ENABLE: When it is unset the pwm controller will assert the duty counter reset and
-+ * emit inactive level to the PIN_ENABLE mux after that the driver can still change the pwm period
-+ * and duty and the value will apply when CLK_ENABLE be set again.
-+ * Use to determine whether duty_cycle bigger than 0.
-+ * PWM_ASPEED_CTRL_INVERSE: When it is toggled the output value will inverse immediately.
-+ * PWM_ASPEED_DUTY_CYCLE_FALLING_POINT/PWM_ASPEED_DUTY_CYCLE_RISING_POINT: When these two
-+ * values are equal it means the duty cycle = 100%.
-+ *
-+ * The glitch may generate at:
-+ * - Enabled changing when the duty_cycle bigger than 0% and less than 100%.
-+ * - Polarity changing when the duty_cycle bigger than 0% and less than 100%.
-+ *
-+ * Limitations:
-+ * - When changing both duty cycle and period, we cannot prevent in
-+ *   software that the output might produce a period with mixed
-+ *   settings.
-+ * - Disabling the PWM doesn't complete the current period.
-+ *
-+ * Improvements:
-+ * - When only changing one of duty cycle or period, our pwm controller will not
-+ *   generate the glitch, the configure will change at next cycle of pwm.
-+ *   This improvement can disable/enable through PWM_ASPEED_CTRL_DUTY_SYNC_DISABLE.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/errno.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/sysfs.h>
-+#include <linux/reset.h>
-+#include <linux/regmap.h>
-+#include <linux/bitfield.h>
-+#include <linux/slab.h>
-+#include <linux/pwm.h>
-+#include <linux/math64.h>
-+
-+/* The channel number of Aspeed pwm controller */
-+#define PWM_ASPEED_NR_PWMS 16
-+
-+/* PWM Control Register */
-+#define PWM_ASPEED_CTRL(ch) ((ch) * 0x10 + 0x00)
-+#define PWM_ASPEED_CTRL_LOAD_SEL_RISING_AS_WDT BIT(19)
-+#define PWM_ASPEED_CTRL_DUTY_LOAD_AS_WDT_ENABLE BIT(18)
-+#define PWM_ASPEED_CTRL_DUTY_SYNC_DISABLE BIT(17)
-+#define PWM_ASPEED_CTRL_CLK_ENABLE BIT(16)
-+#define PWM_ASPEED_CTRL_LEVEL_OUTPUT BIT(15)
-+#define PWM_ASPEED_CTRL_INVERSE BIT(14)
-+#define PWM_ASPEED_CTRL_OPEN_DRAIN_ENABLE BIT(13)
-+#define PWM_ASPEED_CTRL_PIN_ENABLE BIT(12)
-+#define PWM_ASPEED_CTRL_CLK_DIV_H GENMASK(11, 8)
-+#define PWM_ASPEED_CTRL_CLK_DIV_L GENMASK(7, 0)
-+
-+/* PWM Duty Cycle Register */
-+#define PWM_ASPEED_DUTY_CYCLE(ch) ((ch) * 0x10 + 0x04)
-+#define PWM_ASPEED_DUTY_CYCLE_PERIOD GENMASK(31, 24)
-+#define PWM_ASPEED_DUTY_CYCLE_POINT_AS_WDT GENMASK(23, 16)
-+#define PWM_ASPEED_DUTY_CYCLE_FALLING_POINT GENMASK(15, 8)
-+#define PWM_ASPEED_DUTY_CYCLE_RISING_POINT GENMASK(7, 0)
-+
-+/* PWM fixed value */
-+#define PWM_ASPEED_FIXED_PERIOD FIELD_MAX(PWM_ASPEED_DUTY_CYCLE_PERIOD)
-+
-+struct aspeed_pwm_data {
-+	struct pwm_chip chip;
-+	struct clk *clk;
-+	struct regmap *regmap;
-+	struct reset_control *reset;
-+};
-+
-+static inline struct aspeed_pwm_data *
-+aspeed_pwm_chip_to_data(struct pwm_chip *chip)
-+{
-+	return container_of(chip, struct aspeed_pwm_data, chip);
-+}
-+
-+static void aspeed_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+				 struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 hwpwm = pwm->hwpwm;
-+	bool polarity,	pin_en, clk_en;
-+	u32 duty_pt, val;
-+	unsigned long rate;
-+	u64 div_h, div_l, duty_cycle_period, dividend;
-+
-+	regmap_read(priv->regmap, PWM_ASPEED_CTRL(hwpwm), &val);
-+	polarity = FIELD_GET(PWM_ASPEED_CTRL_INVERSE, val);
-+	pin_en = FIELD_GET(PWM_ASPEED_CTRL_PIN_ENABLE, val);
-+	clk_en = FIELD_GET(PWM_ASPEED_CTRL_CLK_ENABLE, val);
-+	div_h = FIELD_GET(PWM_ASPEED_CTRL_CLK_DIV_H, val);
-+	div_l = FIELD_GET(PWM_ASPEED_CTRL_CLK_DIV_L, val);
-+	regmap_read(priv->regmap, PWM_ASPEED_DUTY_CYCLE(hwpwm), &val);
-+	duty_pt = FIELD_GET(PWM_ASPEED_DUTY_CYCLE_FALLING_POINT, val);
-+	duty_cycle_period = FIELD_GET(PWM_ASPEED_DUTY_CYCLE_PERIOD, val);
-+
-+	rate = clk_get_rate(priv->clk);
-+
-+	/*
-+	 * This multiplication doesn't overflow, the upper bound is
-+	 * 1000000000 * 256 * 256 << 15 = 0x1dcd650000000000
-+	 */
-+	dividend = (u64)NSEC_PER_SEC * (div_l + 1) * (duty_cycle_period + 1)
-+		       << div_h;
-+	state->period = DIV_ROUND_UP_ULL(dividend, rate);
-+
-+	if (clk_en && duty_pt) {
-+		dividend = (u64)NSEC_PER_SEC * (div_l + 1) * duty_pt
-+				 << div_h;
-+		state->duty_cycle = DIV_ROUND_UP_ULL(dividend, rate);
-+	} else
-+		state->duty_cycle = clk_en ? state->period : 0;
-+	state->polarity = polarity ? PWM_POLARITY_INVERSED : PWM_POLARITY_NORMAL;
-+	state->enabled = pin_en;
-+	dev_dbg(dev, "get period: %lldns, duty_cycle: %lldns", state->period,
-+		state->duty_cycle);
-+}
-+
-+static int aspeed_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-+			    const struct pwm_state *state)
-+{
-+	struct device *dev = chip->dev;
-+	struct aspeed_pwm_data *priv = aspeed_pwm_chip_to_data(chip);
-+	u32 hwpwm = pwm->hwpwm, duty_pt;
-+	unsigned long rate;
-+	u64 div_h, div_l, divisor, expect_period;
-+	bool clk_en;
-+
-+	expect_period = state->period;
-+	dev_dbg(dev, "expect period: %lldns, duty_cycle: %lldns", expect_period,
-+		state->duty_cycle);
-+
-+	rate = clk_get_rate(priv->clk);
-+	if (expect_period > div64_u64(ULLONG_MAX, (u64)rate))
-+		expect_period = div64_u64(ULLONG_MAX, (u64)rate);
-+	/*
-+	 * Pick the smallest value for div_h so that div_l can be the biggest
-+	 * which results in a finer resolution near the target period value.
-+	 */
-+	divisor = (u64)NSEC_PER_SEC * (PWM_ASPEED_FIXED_PERIOD + 1) *
-+		  (FIELD_MAX(PWM_ASPEED_CTRL_CLK_DIV_L) + 1);
-+	div_h = order_base_2(DIV64_U64_ROUND_UP(rate * expect_period, divisor));
-+	if (div_h > 0xf)
-+		div_h = 0xf;
-+
-+	divisor = ((u64)NSEC_PER_SEC * (PWM_ASPEED_FIXED_PERIOD + 1)) << div_h;
-+	div_l = div64_u64(rate * expect_period, divisor);
-+
-+	if (div_l == 0)
-+		return -ERANGE;
-+
-+	div_l -= 1;
-+
-+	if (div_l > 255)
-+		div_l = 255;
-+
-+	dev_dbg(dev, "clk source: %ld div_h %lld, div_l : %lld\n", rate, div_h,
-+		div_l);
-+	/* duty_pt = duty_cycle * (PERIOD + 1) / period */
-+	duty_pt = div64_u64(state->duty_cycle * rate,
-+			    (u64)NSEC_PER_SEC * (div_l + 1) << div_h);
-+	dev_dbg(dev, "duty_cycle = %lld, duty_pt = %d\n", state->duty_cycle,
-+		 duty_pt);
-+
-+	/*
-+	 * Fixed DUTY_CYCLE_PERIOD to its max value to get a
-+	 * fine-grained resolution for duty_cycle at the expense of a
-+	 * coarser period resolution.
-+	 */
-+	regmap_update_bits(priv->regmap, PWM_ASPEED_DUTY_CYCLE(hwpwm),
-+			   PWM_ASPEED_DUTY_CYCLE_PERIOD,
-+			   FIELD_PREP(PWM_ASPEED_DUTY_CYCLE_PERIOD,
-+				      PWM_ASPEED_FIXED_PERIOD));
-+	if (duty_pt == 0)
-+		/* emit inactive level and assert the duty counter reset */
-+		clk_en = 0;
-+	else {
-+		clk_en = 1;
-+		if (duty_pt >= (PWM_ASPEED_FIXED_PERIOD + 1))
-+			duty_pt = 0;
-+		regmap_update_bits(
-+			priv->regmap, PWM_ASPEED_DUTY_CYCLE(hwpwm),
-+			PWM_ASPEED_DUTY_CYCLE_RISING_POINT |
-+				PWM_ASPEED_DUTY_CYCLE_FALLING_POINT,
-+			FIELD_PREP(PWM_ASPEED_DUTY_CYCLE_FALLING_POINT,
-+				   duty_pt));
-+	}
-+
-+	regmap_update_bits(
-+		priv->regmap, PWM_ASPEED_CTRL(hwpwm),
-+		PWM_ASPEED_CTRL_CLK_DIV_H | PWM_ASPEED_CTRL_CLK_DIV_L |
-+			PWM_ASPEED_CTRL_PIN_ENABLE |
-+			PWM_ASPEED_CTRL_CLK_ENABLE | PWM_ASPEED_CTRL_INVERSE,
-+		FIELD_PREP(PWM_ASPEED_CTRL_CLK_DIV_H, div_h) |
-+			FIELD_PREP(PWM_ASPEED_CTRL_CLK_DIV_L, div_l) |
-+			FIELD_PREP(PWM_ASPEED_CTRL_PIN_ENABLE, state->enabled) |
-+			FIELD_PREP(PWM_ASPEED_CTRL_CLK_ENABLE, clk_en) |
-+			FIELD_PREP(PWM_ASPEED_CTRL_INVERSE, state->polarity));
-+	return 0;
-+}
-+
-+static const struct pwm_ops aspeed_pwm_ops = {
-+	.apply = aspeed_pwm_apply,
-+	.get_state = aspeed_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int aspeed_pwm_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	int ret;
-+	struct aspeed_pwm_data *priv;
-+	struct device_node *np;
-+	struct platform_device *parent_dev;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	np = pdev->dev.parent->of_node;
-+	if (!of_device_is_compatible(np, "aspeed,ast2600-pwm-tach"))
-+		return dev_err_probe(dev, -ENODEV,
-+				     "Unsupported pwm device binding\n");
-+
-+	priv->regmap = syscon_node_to_regmap(np);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "Couldn't get regmap\n");
-+
-+	parent_dev = of_find_device_by_node(np);
-+	priv->clk = devm_clk_get(&parent_dev->dev, 0);
-+	if (IS_ERR(priv->clk))
-+		return dev_err_probe(dev, PTR_ERR(priv->clk),
-+				     "Couldn't get clock\n");
-+
-+	priv->reset = devm_reset_control_get_shared(&parent_dev->dev, NULL);
-+	if (IS_ERR(priv->reset))
-+		return dev_err_probe(dev, PTR_ERR(priv->reset),
-+				     "Couldn't get reset control\n");
-+
-+	ret = clk_prepare_enable(priv->clk);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Couldn't enable clock\n");
-+
-+	ret = reset_control_deassert(priv->reset);
-+	if (ret) {
-+		dev_err_probe(dev, ret, "Couldn't deassert reset control\n");
-+		goto err_disable_clk;
-+	}
-+
-+	priv->chip.dev = dev;
-+	priv->chip.ops = &aspeed_pwm_ops;
-+	priv->chip.npwm = PWM_ASPEED_NR_PWMS;
-+
-+	ret = pwmchip_add(&priv->chip);
-+	if (ret < 0) {
-+		dev_err_probe(dev, ret, "Failed to add PWM chip\n");
-+		goto err_assert_reset;
-+	}
-+	dev_set_drvdata(dev, priv);
-+	return 0;
-+err_assert_reset:
-+	reset_control_assert(priv->reset);
-+err_disable_clk:
-+	clk_disable_unprepare(priv->clk);
-+	return ret;
-+}
-+
-+static int aspeed_pwm_remove(struct platform_device *dev)
-+{
-+	struct aspeed_pwm_data *priv = platform_get_drvdata(dev);
-+
-+	pwmchip_remove(&priv->chip);
-+	reset_control_assert(priv->reset);
-+	clk_disable_unprepare(priv->clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_pwm_match_table[] = {
-+	{
-+		.compatible = "aspeed,ast2600-pwm",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, of_pwm_match_table);
-+
-+static struct platform_driver aspeed_pwm_driver = {
-+	.probe = aspeed_pwm_probe,
-+	.remove	= aspeed_pwm_remove,
-+	.driver	= {
-+		.name = "aspeed-pwm",
-+		.of_match_table = of_pwm_match_table,
-+	},
-+};
-+
-+module_platform_driver(aspeed_pwm_driver);
-+
-+MODULE_AUTHOR("Billy Tsai <billy_tsai@aspeedtech.com>");
-+MODULE_DESCRIPTION("Aspeed ast2600 PWM device driver");
-+MODULE_LICENSE("GPL v2");
+On 26/11/2021 07:02, Jayesh Choudhary wrote:
+> Convert the bindings for McASP controllers for TI SOCs
+> from txt to YAML schema.
+
+Can you CC the sound/soc/ti/ maintainer next time, I have found this
+patch in my Spam folder...
+
+> Adds additional properties 'clocks', 'clock-names', 'power-domains',
+> '#sound-dai-cells',
+
+> 'num-serializer'
+
+Which use was removed by 1427e660b49e87cd842dba94158b0fc73030c17e
+
+> and 'port'
+
+And what this "port" is?
+
+> which were not there in the txt file.
+
+Most likely for a reason?
+
+> Adds 'dmas' and 'dma-names' in the example which were not there in
+> the txt file.
+> Changes 'interrupts' and 'interrupt-names' from optional to
+> required properties.
+
+My biggest problem with the davinci-mcasp-audio.txt is that it was done
+in a wrong way and it just documented the pdata parameters as DT binding.
+If we convert it to yaml, this is going to be 'written in stone'.
+
+> 
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> ---
+> Changelog:
+> v3:
+> - removes maxItems from 'clock-names'
+> 
+> v2:
+> - changes the commit message
+> - modifies the properties 'clocks', 'clock-names', 'dma-names',
+>   'dmas', 'interrupts' and 'interrupt-names' according to the
+>   arm SOCs
+> - adds 'port' and 'num-serializer' as node properties
+>  
+>  .../bindings/sound/davinci-mcasp-audio.txt    |  86 ---------
+>  .../bindings/sound/davinci-mcasp-audio.yaml   | 178 ++++++++++++++++++
+>  2 files changed, 178 insertions(+), 86 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+> deleted file mode 100644
+> index bd863bd69501..000000000000
+> --- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+> +++ /dev/null
+> @@ -1,86 +0,0 @@
+> -Texas Instruments McASP controller
+> -
+> -Required properties:
+> -- compatible :
+> -	"ti,dm646x-mcasp-audio"	: for DM646x platforms
+> -	"ti,da830-mcasp-audio"	: for both DA830 & DA850 platforms
+> -	"ti,am33xx-mcasp-audio"	: for AM33xx platforms (AM33xx, AM43xx, TI81xx)
+> -	"ti,dra7-mcasp-audio"	: for DRA7xx platforms
+> -	"ti,omap4-mcasp-audio"	: for OMAP4
+> -
+> -- reg : Should contain reg specifiers for the entries in the reg-names property.
+> -- reg-names : Should contain:
+> -         * "mpu" for the main registers (required). For compatibility with
+> -           existing software, it is recommended this is the first entry.
+> -         * "dat" for separate data port register access (optional).
+> -- op-mode : I2S/DIT ops mode. 0 for I2S mode. 1 for DIT mode used for S/PDIF,
+> -  	    IEC60958-1, and AES-3 formats.
+> -- tdm-slots : Slots for TDM operation. Indicates number of channels transmitted
+> -  	      or received over one serializer.
+> -- serial-dir : A list of serializer configuration. Each entry is a number
+> -               indication for serializer pin direction.
+> -               (0 - INACTIVE, 1 - TX, 2 - RX)
+> -- dmas: two element list of DMA controller phandles and DMA request line
+> -        ordered pairs.
+> -- dma-names: identifier string for each DMA request line in the dmas property.
+> -	     These strings correspond 1:1 with the ordered pairs in dmas. The dma
+> -	     identifiers must be "rx" and "tx".
+> -
+> -Optional properties:
+> -
+> -- ti,hwmods : Must be "mcasp<n>", n is controller instance starting 0
+> -- tx-num-evt : FIFO levels.
+> -- rx-num-evt : FIFO levels.
+> -- dismod : Specify the drive on TX pin during inactive slots
+> -	0 : 3-state
+> -	2 : logic low
+> -	3 : logic high
+> -	Defaults to 'logic low' when the property is not present
+> -- sram-size-playback : size of sram to be allocated during playback
+> -- sram-size-capture  : size of sram to be allocated during capture
+> -- interrupts : Interrupt numbers for McASP
+> -- interrupt-names : Known interrupt names are "tx" and "rx"
+> -- pinctrl-0: Should specify pin control group used for this controller.
+> -- pinctrl-names: Should contain only one value - "default", for more details
+> -  		 please refer to pinctrl-bindings.txt
+> -- fck_parent : Should contain a valid clock name which will be used as parent
+> -	       for the McASP fck
+> -- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
+> -		   and FS rate if applicable:
+> -		   AUCLK rate = auxclk-fs-ratio * FS rate
+> -
+> -Optional GPIO support:
+> -If any McASP pin need to be used as GPIO then the McASP node must have:
+> -...
+> -  gpio-controller
+> -  #gpio-cells = <2>;
+> -...
+> -
+> -When requesting a GPIO, the first parameter is the PIN index in McASP_P*
+> -registers.
+> -For example to request the AXR2 pin of mcasp8:
+> -function-gpios = <&mcasp8 2 0>;
+> -
+> -Or to request the ACLKR pin of mcasp8:
+> -function-gpios = <&mcasp8 29 0>;
+> -
+> -For generic gpio information, please refer to bindings/gpio/gpio.txt
+> -
+> -Example:
+> -
+> -mcasp0: mcasp0@1d00000 {
+> -	compatible = "ti,da830-mcasp-audio";
+> -	reg = <0x100000 0x3000>;
+> -	reg-names "mpu";
+> -	interrupts = <82>, <83>;
+> -	interrupt-names = "tx", "rx";
+> -	op-mode = <0>;		/* MCASP_IIS_MODE */
+> -	tdm-slots = <2>;
+> -	serial-dir = <
+> -			0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
+> -			0 0 0 0
+> -			0 0 0 1
+> -			2 0 0 0 >;
+> -	tx-num-evt = <1>;
+> -	rx-num-evt = <1>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> new file mode 100644
+> index 000000000000..c4d3f56470bf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> @@ -0,0 +1,178 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/davinci-mcasp-audio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: McASP Controller for TI SoCs
+> +
+> +maintainers:
+> +  - Jayesh Choudhary <j-choudhary@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,dm646x-mcasp-audio
+> +      - ti,da830-mcasp-audio
+> +      - ti,am33xx-mcasp-audio
+> +      - ti,dra7-mcasp-audio
+> +      - ti,omap4-mcasp-audio
+> +
+> +  reg:
+> +    minItems: 1
+> +    items:
+> +      - description: main registers
+> +      - description: data port register
+> +
+> +  reg-names:
+> +    minItems: 1
+> +    items:
+> +      - const: mpu
+> +      - const: dat
+> +
+> +  op-mode:
+> +    description: I2S - 0 or DIT - 1 mode
+> +    enum:
+> +      - 0
+> +      - 1
+> +
+> +  tdm-slots:
+
+description?
+
+> +    maxItems: 1
+> +
+> +  serial-dir:
+> +    description:
+> +      A list of serializer configuration
+> +      Entry is indication for serializer pin direction
+> +      0 - Inactive, 1 - TX, 2 - RX
+
+You should mention that _all_ AXR pins should be present in the array,
+even if they are no in use.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 16
+
+a McASP could have up to 25 AXR pins...
+
+> +    items:
+> +      minimum: 0
+> +      maximum: 2
+> +      default: 0
+> +
+> +  dmas:
+> +    minItems: 1
+> +    items:
+> +      - description: transmission DMA channel
+> +      - description: reception DMA channel
+> +
+> +  dma-names:
+> +    minItems: 1
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +
+> +  ti,hwmods:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: Name of hwmod associated with McASP
+> +    maxItems: 1
+> +    deprecated: true
+> +
+> +  tx-num-evt:
+
+description?
+
+> +    maxItems: 1
+> +
+> +  rx-num-evt:
+
+description?
+
+> +    maxItems: 1
+> +
+> +  dismod:
+
+description?
+
+> +    enum:
+> +      - 0
+> +      - 2
+> +      - 3
+> +    default: 2
+> +
+> +  sram-size-playback:
+> +    maxItems: 1
+
+should be dropped, not used
+
+> +
+> +  sram-size-capture:
+> +    maxItems: 1
+
+not used, please drop
+
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: TX FIFO interrupt
+> +      - description: RX FIFO interrupt
+
+The 'common' does not deserve a description?
+
+> +
+> +  interrupt-names:
+> +    oneOf:
+> +      - minItems: 1
+> +        items:
+> +          - const: tx
+> +          - const: rx
+> +      - const: common
+> +
+> +  fck_parent:
+> +    description: parent clock for McASP fck
+> +    maxItems: 1
+> +
+> +  auxclk-fs-ratio:
+> +    description: ratio of AUCLK and FS if applicable
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  function-gpios:
+> +    maxItems: 1
+
+This is not McASP property, it was an example on how to use a pin as
+GPIO from the outside...
+
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: fck
+> +      - const: ahclkx
+> +      - const: ahclkr
+
+I can not find any use in the code for ahclkx/r?
+
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  num-serializer:
+> +    maxItems: 1
+
+Not used, the number of serializers is derived from the serial-dir array
+
+> +  port:
+> +    type: object
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - dmas
+> +  - dma-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - serial-dir
+> +  - op-mode
+> +  - tdm-slots
+
+The last three is not needed if the McASP is used only as GPIO.
+The dmas and interrupts should not be needed in this case, but I think
+it is not taken care of atm.
+
+The tdm-slots is ignored for DIT mode
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    mcasp0: mcasp0@1d00000 {
+> +      compatible = "ti,da830-mcasp-audio";
+> +      reg = <0x100000 0x3000>;
+> +      reg-names = "mpu";
+> +      interrupts = <82>, <83>;
+> +      interrupt-names = "tx", "rx";
+> +      op-mode = <0>;		/* MCASP_IIS_MODE */
+> +      tdm-slots = <2>;
+> +      dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
+> +      dma-names = "tx", "rx";
+> +      serial-dir = <
+> +          0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
+> +          0 0 0 0
+> +          0 0 0 1
+> +          2 0 0 0 >;
+> +      tx-num-evt = <1>;
+> +      rx-num-evt = <1>;
+> +    };
+> 
+
 -- 
-2.25.1
-
+Péter
