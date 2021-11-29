@@ -2,120 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E5F46211D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:54:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00B5346212D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:57:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245497AbhK2T55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 14:57:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52658 "EHLO
+        id S1379849AbhK2UBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 15:01:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232584AbhK2Tz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:55:56 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682FAC07CA20;
-        Mon, 29 Nov 2021 08:18:38 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id m6so35606913oim.2;
-        Mon, 29 Nov 2021 08:18:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=N417LwmoteEpLw0/alZmqR2O+gPqKzTspenGXxKY7N0=;
-        b=m7UHSKLOVjOM7y+LuL9980vJ30xbpJssiYQbA9wU1ShVfCUFv5x4Mjf/icFLXlRZmG
-         r6J/UPYGDM2ZSil1ot3/kvwDwQAnGchI2PWt3aaEih15jT/1Mv+/EPZtClOiTw1CZAnB
-         IVkddThv03/usS+Vob1eXCySU/8PxrQQ86SB4jvWrOx12DM+Eni39ki1FaVUBb2tsneA
-         p3+qe7dBtaY2pPlOFJKb0lIrKM45E58s2S6zO2PNx06xyptJvfXr/a21/v9XmwVm29p7
-         EERDCpBdhvant2AEZrjWzs14QbwqOAcwMYLa5C5Ew5Vj6kJkVkTH6inOvD3IEa6QbX8g
-         X9aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=N417LwmoteEpLw0/alZmqR2O+gPqKzTspenGXxKY7N0=;
-        b=d/9lSZ/o1/jTcC3NoIfg2xCJ/XUs18M/L02KqmTtipnwpQiVdddTDKGAMqe0BpPFkQ
-         7PAPgy75g+ZiOfOlxMdH9YCEGOUv2+2xum6H4ew/bjMRdMYsslDezyjuwVPZqkntP4L1
-         ejkPiGuj6ohiN50CICNGnnp5AsufE4npr+MMfQBVd4f8Hn6vx6vpMUuKQh42IQdi0/on
-         Q4E3GFqGVWbEl9tQayKc8GwdRBSSVIGXmHgmDt6XQI7aye6vjoafDVzvYwkICvG+IzFb
-         6McotW3DGLJ5XdnxVrhTW5j64U9Rhu7cxBEvVqnMmwfdxmL8f6NNtF+NI8D8h75aL3Vj
-         zFPg==
-X-Gm-Message-State: AOAM530GvG71ssz2wwkMdBlCwez2nFQLOJRd7mI67gWi87DuCnUvplHe
-        x4Gkq6ox8Lx1La37UsBo2u72LgRI3Ss=
-X-Google-Smtp-Source: ABdhPJyhS4x1H6+R4piCkf/zaDbqnQlCe+fibbDdsjWk/w+3PrsBMQV8sGAxmuzeSioizHmiqXRPPQ==
-X-Received: by 2002:a05:6808:a03:: with SMTP id n3mr40398231oij.125.1638202717249;
-        Mon, 29 Nov 2021 08:18:37 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id w18sm2706411otm.1.2021.11.29.08.18.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Nov 2021 08:18:36 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v4 8/9] watchdog: max77620: add comment to clarify
- set_timeout procedure
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Chiwoong Byun <woong.byun@samsung.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20211120155707.4019487-1-luca@lucaceresoli.net>
- <20211120155707.4019487-9-luca@lucaceresoli.net>
- <20211129160414.GA3014810@roeck-us.net>
- <0e08d0e0-489c-342b-4fa4-d4457af20a65@lucaceresoli.net>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <f05f33ae-d0be-fcf2-0774-c7d0dbda3d36@roeck-us.net>
-Date:   Mon, 29 Nov 2021 08:18:34 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S237213AbhK2T67 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:58:59 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8BDC07CA30;
+        Mon, 29 Nov 2021 08:30:08 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 905CB615A2;
+        Mon, 29 Nov 2021 16:30:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F41E6C53FCD;
+        Mon, 29 Nov 2021 16:30:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638203408;
+        bh=0nM9Zmi/0tmh4ZVUo4rPDNni8qv7d4dpBNcM+KHsuro=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=CZ0zEE9TX/82bzK6mWwweNQckfEOej/XhUxQ8k0cme0RRBnP0QrDFWmFGE6+tsSTj
+         hCu7cflNmo5g95cbOp+ysjmY8Zh8RYIiQysAkja0ps2EvT5+F0dtYcCM6CxKfKf5aO
+         VNE+niu+eEgcGdSVmQEV5z6vk2m5EWUxAogMuL+JZL0jGsO7mIPkroJ0rFVGvkyZPt
+         +3UhVh2TRG83DQBqMxZPhvwFqW8qJwf8YNB3LXbeUZFTgqqHGaPGAj3MOUhvyHo+Sp
+         Zsmudql/15T/ywV0IqW/tLd1o4WDlqqfbUQtBPSGETCMZ4oWePo8Z9Pofqyxl7tEeS
+         SYfKJPFf25T+A==
+Received: by mail-ed1-f46.google.com with SMTP id z5so9184529edd.3;
+        Mon, 29 Nov 2021 08:30:07 -0800 (PST)
+X-Gm-Message-State: AOAM533oVq4uKMgd0GZEv/PYeCMsp0F0/MXnvicoWby6WrPpZFwF+fsZ
+        6K+MLnqgCDDOkLzZidPXCHvlF7mmzO4MHNfkIg==
+X-Google-Smtp-Source: ABdhPJwdi2obd94NfZySI0D4j9hUUyc1bSXXDIqrRsdfdsaKo0dvxFRXe6oTS5gvFLyxMSrK1FPA3wGf7etLHoFZGRM=
+X-Received: by 2002:a17:906:fcbb:: with SMTP id qw27mr60632167ejb.320.1638203406208;
+ Mon, 29 Nov 2021 08:30:06 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <0e08d0e0-489c-342b-4fa4-d4457af20a65@lucaceresoli.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1635487055-18494-1-git-send-email-lh.kuo@sunplus.com>
+ <1636444705-17883-1-git-send-email-lh.kuo@sunplus.com> <1636444705-17883-3-git-send-email-lh.kuo@sunplus.com>
+ <YaQu3dCQD4FG7ete@robh.at.kernel.org> <f5607fa7ad9c49a7bfcce02eac834838@sphcmbx02.sunplus.com.tw>
+In-Reply-To: <f5607fa7ad9c49a7bfcce02eac834838@sphcmbx02.sunplus.com.tw>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 29 Nov 2021 10:29:53 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK=7ma_LwMMoW7yfVoBfPN0hBJsPbp4ojtk0kt3k=+O1w@mail.gmail.com>
+Message-ID: <CAL_JsqK=7ma_LwMMoW7yfVoBfPN0hBJsPbp4ojtk0kt3k=+O1w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] devicetree bindings mmc Add bindings doc for
+ Sunplus SP7021
+To:     =?UTF-8?B?TGggS3VvIOmDreWKm+ixqg==?= <lh.Kuo@sunplus.com>
+Cc:     "LH.Kuo" <lhjeff911@gmail.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "daniel.thompson@linaro.org" <daniel.thompson@linaro.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "qinjian@cqplus1.com" <qinjian@cqplus1.com>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/29/21 8:08 AM, Luca Ceresoli wrote:
-> Hi Guenter,
-> 
-> On 29/11/21 17:04, Guenter Roeck wrote:
->> On Sat, Nov 20, 2021 at 04:57:06PM +0100, Luca Ceresoli wrote:
->>> Clarify why we need to ping the watchdog before changing the timeout by
->>> quoting the MAX77714 datasheet.
->>>
->>
->> Unless I am missing something, this adds confusion instead of clarifying
->> anything, and it is misleading. The added comment in the code makes it
->> sound like clearing the watchdog timer is only needed for MAX77614.
->> However, the code was in place for MAX77620, suggesting that it was needed
->> for that chip as well and is not MAX77614 specific.
-> 
-> You're right, the comment comes from the max77714-only driver, but now
-> that it is in a multi-chip  driver the confusion started to exist.
-> 
->> Please either drop this patch or rephrase it to clarify that it applies
->> to both chips.
-> 
-> What if I rephrase to:
-> 
-> 	/*
-> 	 * "If the value of TWD needs to be changed, clear the system
-> 	 * watchdog timer first [...], then change the value of TWD."
-> -	 * (MAX77714 datasheet)
-> +	 * (MAX77714 datasheet but applies to MAX77620 too)
-> 	 */
-> 
+On Sun, Nov 28, 2021 at 11:30 PM Lh Kuo =E9=83=AD=E5=8A=9B=E8=B1=AA <lh.Kuo=
+@sunplus.com> wrote:
+>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - sunplus,sp7021-card1
+> > > +      - sunplus,sp7021-sdio
+> >
+> > What's the difference between these 2 blocks?
+> >
+>
+> One for SD card One for SDIO
 
-Sounds good.
+If the programming model is the same, then it should be the same
+compatible string. We have various properties to handle differences
+like bus width, card detect or not, etc.
 
-Guenter
+> > > +  reg:
+> > > +    items:
+> > > +      - description: Base address and length of the SD/SDIO register=
+s
+> >
+> > Just 'maxItems: 1' is sufficient.
+> >
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  resets:
+> > > +    maxItems: 1
+> > > +
+> > > +  pinctrl-names:
+> > > +    description:
+> > > +      A pinctrl state named "default" must be defined.
+> > > +    const: default
+> > > +
+> > > +  pinctrl-0:
+> > > +    description:
+> > > +      A phandle to the default pinctrl state.
+> > > +
+> > > +  max-frequency: true
+> > > +
+> > > +allOf:
+> > > +  - $ref: "mmc-controller.yaml"
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - clocks
+> > > +  - resets
+> > > +  - pinctrl-names
+> > > +  - pinctrl-0
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/sp-sp7021.h>
+> > > +    #include <dt-bindings/reset/sp-sp7021.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    mmc1: mmc@9C003e80 {
+> >
+> > Use lower case hex.
+>
+> Do you mean as follows? ?
+>
+> mmc1: mmc@3e80 {
 
+No, 'mmc@9c003e80 {'
 
+You also don't need 'mmc1'.
+
+> > > +       compatible =3D "sunplus,sp7021-card1";
+> > > +       reg =3D <0x9c003e80 0x280>;
+> > > +       interrupts =3D <21 IRQ_TYPE_LEVEL_HIGH>;
+> > > +       clocks =3D <&clkc CARD_CTL1>;
+> > > +       resets =3D <&rstc RST_CARD_CTL1>;
+> > > +       pinctrl-names =3D "default";
+> > > +       pinctrl-0 =3D <&mmc1_mux &mmc1_mux_cd>;
+> > > +       max-frequency =3D <52000000>;
+> > > +    };
+> > > +    sdio: mmc@9C008400 {
+> >
+>
+> Do you mean as follows? ?
+>
+> mmc1: mmc@8400 {
+>
+>
+> > Use lower case hex.
+> >
+> > > +       compatible =3D "sunplus,sp7021-sdio";
+>
