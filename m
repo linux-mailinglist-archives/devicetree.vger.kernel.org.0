@@ -2,166 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 245A8460C79
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 02:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22FB8460CA6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 03:27:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230405AbhK2CAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 21:00:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
+        id S236507AbhK2CaX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 21:30:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231851AbhK2B6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 20:58:02 -0500
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D50BC061574;
-        Sun, 28 Nov 2021 17:54:45 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id m17so12995999qvx.8;
-        Sun, 28 Nov 2021 17:54:45 -0800 (PST)
+        with ESMTP id S238353AbhK2C2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 21:28:22 -0500
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3637C06174A
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 18:25:05 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id u22so31511767lju.7
+        for <devicetree@vger.kernel.org>; Sun, 28 Nov 2021 18:25:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=7MaKgHWKheFJxrj1uWy9VXOHQvwGLYHTJJDUwnT5qBg=;
-        b=Nw8U4Nh1acnHpjcd3TP0eUKlOTKgUcZahWOSyhCAb3yHOlEdJ17O2gO6qgdEKwTa6Q
-         gSsLL1gEzdyFYBknHxFyuzLyDvRMao53dpLtZuhVNSTzHr/aZRJpNNcEkRU4B/TI4IB1
-         JXVCvtR5DEXpm90y13qPNGMZdDQdyhF3Pbmq495t+xRBOsk7TwUfC9tvV6xL1IUVrsxB
-         D5ExKlsAsKUPMlx5PdLDg3vzEJC6M6pPdPA4HRp33AQM2ZiXHE9/WW9WKbxLs5cgrFsP
-         2uwQ5CMiRz4jHw3LuGRXLXqwvn8S6JQESz2pVvtGz+BV4bGsvo8l76tXEUq2LcNJ5bfo
-         bYHw==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rFDHshpl2dqAGPF3MoHGk3Vso6gtNhODB+79/AogQ9g=;
+        b=XBoonPe1eIrnsHDCUwya0qnIP3hjiEyRPURX47zbUH0f58LGJuVJETenDe+4PXJ14k
+         /bHpX3L8SJgD3IMgcd6mup+YgygXHlovZL2F1iQB8y5+Jq4d3Fe8jAPXcvB00GaGGJRT
+         z2B0nnFYKIjih7idRXWK9YCOmAZv7ewoOG6E1Ez+FMEfDI9c9aTrdWwppa/zRR0yfUme
+         RupkhNrKMioJ0mkKSswG+1Z1IDuL3QqtcJNGep+8MgwGTEXGDy9prqlZyG4bfLYKcqjI
+         JSNg4Me74hl4btPVwq77eBXGI4p+Q5itN5Mjo6LOAxPcxQit4MdY+y9wOGLDoZRyADFR
+         b5Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=7MaKgHWKheFJxrj1uWy9VXOHQvwGLYHTJJDUwnT5qBg=;
-        b=Mxz7xlpfTO8GAM/iPOPEknTZt6Wj0VLAXBqE0QXlsd7tEpAJdH3Ol4IH8HVUccMIEb
-         o3rxR0RfHd1/IDq3qmBdRUviC9cruzAVjKtsiy91orvsnx88DZ4aCM/a8HgVPG5+Kj9a
-         FIpfgU3oU0EbQGdzON6pQmw/2UbkaZdUsMVGj66s9X9EBQhriwu30ueb0TPRcwJXMNg4
-         wajEERcrT7YiWs/0SoAJMZihSl4m+oSvmI5ie+Kv4/z3pS8XtBMfyVgHwpjzI3XdxbPR
-         U/XuTFKyolLNIUgcXMwyFk3PzODa89TvLyYPNNTLuDoiuiZdD+E9FJMcjc1eSEcGB3dg
-         JCug==
-X-Gm-Message-State: AOAM533kstJMbwnfZIrL35etIueD/nNn2pxgvdZX/kSsd+kqxq3Y5Ijq
-        rCfkl0vuiuMgd5iDXvvBhH0=
-X-Google-Smtp-Source: ABdhPJy8P5wGLR5qlwlUnmOoPab1PnL6Y6pKQU9VYozKNDseX9QhhAKbzXifVxoKlDW/T2V8qG2A8g==
-X-Received: by 2002:ad4:5ba7:: with SMTP id 7mr28358496qvq.109.1638150884300;
-        Sun, 28 Nov 2021 17:54:44 -0800 (PST)
-Received: from [10.4.10.5] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
-        by smtp.gmail.com with ESMTPSA id j19sm7580997qkp.28.2021.11.28.17.54.42
+        bh=rFDHshpl2dqAGPF3MoHGk3Vso6gtNhODB+79/AogQ9g=;
+        b=hmKYA4I/i8lOdAEmyZC7oKvFxDmPyGG0YrTrJE4gRFuShnvSfQZtdc5DWnoYu+a9nW
+         uG1WLREtuCX48idiTzkTDPZdOVajWY02kDh+xMcZbhtGV7FccHnZqD57na5SDTUW8plz
+         +pgCjITDPpDwTZHfUDiuHmgM9PuOxdkySVgKWXiAZR/0xQGmBy2AtRr56DkaK8vkrFWv
+         LYmAvsI8rTLeY3BNoAEpWmQAVwodMP/mNwZKGInpR+YLLO0j9TvDMBvDFnEUe97/krEb
+         EiHjWqfTeawKZiktZlCWJ/PBEBZXhMIDMZTslxCOfmhjj4fDbfnV80g5dGNWn8XmtSbw
+         HQMQ==
+X-Gm-Message-State: AOAM533V8CCrrgSGMiAWYLSxJ9ylcuJE8YZef5KCQmlf7EsNWCdpXmsZ
+        7TjW/4Z7xiHuWGNPEfBmuQENRQ==
+X-Google-Smtp-Source: ABdhPJyNWsMZuDlI5sEJ6vas937eCxVotkiqOCL8L/+b7scSUgcDIF51Tfu40fRc9OcwqKFhApin4g==
+X-Received: by 2002:a2e:9197:: with SMTP id f23mr45782387ljg.235.1638152704037;
+        Sun, 28 Nov 2021 18:25:04 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id m20sm1173100lfu.241.2021.11.28.18.25.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Nov 2021 17:54:44 -0800 (PST)
-Message-ID: <f65ac2c7-3f37-3740-fd7a-4d11cabb9892@gmail.com>
-Date:   Sun, 28 Nov 2021 20:54:42 -0500
+        Sun, 28 Nov 2021 18:25:03 -0800 (PST)
+Subject: Re: [PATCH V3 3/4] thermal: qcom: Add support for multiple
+ generations of devices
+To:     Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        mka@chromium.org, robh+dt@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net,
+        manivannan.sadhasivam@linaro.org, linus.walleij@linaro.org,
+        quic_kgunda@quicinc.com, quic_aghayal@quicinc.com,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com,
+        quic_subbaram@quicinc.com, jic23@kernel.org, amitk@kernel.org,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     linux-arm-msm-owner@vger.kernel.org, linux-iio@vger.kernel.org
+References: <1637647025-20409-1-git-send-email-quic_jprakash@quicinc.com>
+ <1637647025-20409-4-git-send-email-quic_jprakash@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <47228209-552e-b148-c93a-4fbb5a36583e@linaro.org>
+Date:   Mon, 29 Nov 2021 05:25:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3 13/13] ARM: imxrt_defconfig: add i.MXRT family
- defconfig
-Content-Language: en-US
-To:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        linux-imx@nxp.com
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
- <20211125211443.1150135-14-Mr.Bossman075@gmail.com>
- <95252a9e-76fc-0770-8e7b-90d8755298eb@benettiengineering.com>
-From:   Jesse Taube <mr.bossman075@gmail.com>
-In-Reply-To: <95252a9e-76fc-0770-8e7b-90d8755298eb@benettiengineering.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <1637647025-20409-4-git-send-email-quic_jprakash@quicinc.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/11/2021 08:57, Jishnu Prakash wrote:
+> Refactor code to support multiple generations of ADC_TM devices
+> by defining gen number, irq name and disable, configure and isr
+> APIs in the individual data structs.
+> 
+> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+Minor question below.
+
+> ---
+>   drivers/thermal/qcom/qcom-spmi-adc-tm5.c | 76 ++++++++++++++++++++------------
+>   1 file changed, 48 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+> index 824671c..fc8cd45 100644
+> --- a/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5.c
+> @@ -78,11 +78,10 @@ enum adc5_timer_select {
+>   	ADC5_TIMER_SEL_NONE,
+>   };
+>   
+> -struct adc_tm5_data {
+> -	const u32	full_scale_code_volt;
+> -	unsigned int	*decimation;
+> -	unsigned int	*hw_settle;
+> -	bool		is_hc;
+> +enum adc5_gen {
+> +	ADC_TM5,
+> +	ADC_TM_HC,
+> +	ADC_TM5_MAX
+>   };
+>   
+>   enum adc_tm5_cal_method {
+> @@ -92,6 +91,18 @@ enum adc_tm5_cal_method {
+>   };
+>   
+>   struct adc_tm5_chip;
+> +struct adc_tm5_channel;
+> +
+> +struct adc_tm5_data {
+> +	const u32 full_scale_code_volt;
+> +	unsigned int *decimation;
+> +	unsigned int *hw_settle;
+> +	int (*disable_channel)(struct adc_tm5_channel *channel);
+> +	int (*configure)(struct adc_tm5_channel *channel, int low, int high);
+> +	irqreturn_t (*isr)(int irq, void *data);
+> +	char *irq_name;
+> +	int gen;
+> +};
+
+Any reason for moving the adc_tm5_data definition? It is still prefix 
+with the adc_tmp5_channel declaration.
+
+>   
+>   /**
+>    * struct adc_tm5_channel - ADC Thermal Monitoring channel data.
+> @@ -139,22 +150,6 @@ struct adc_tm5_chip {
+>   	u16			base;
+>   };
+>   
+> -static const struct adc_tm5_data adc_tm5_data_pmic = {
+> -	.full_scale_code_volt = 0x70e4,
+> -	.decimation = (unsigned int []) { 250, 420, 840 },
+> -	.hw_settle = (unsigned int []) { 15, 100, 200, 300, 400, 500, 600, 700,
+> -					 1000, 2000, 4000, 8000, 16000, 32000,
+> -					 64000, 128000 },
+> -};
+> -
+> -static const struct adc_tm5_data adc_tm_hc_data_pmic = {
+> -	.full_scale_code_volt = 0x70e4,
+> -	.decimation = (unsigned int []) { 256, 512, 1024 },
+> -	.hw_settle = (unsigned int []) { 0, 100, 200, 300, 400, 500, 600, 700,
+> -					 1000, 2000, 4000, 6000, 8000, 10000 },
+> -	.is_hc = true,
+> -};
+> -
+>   static int adc_tm5_read(struct adc_tm5_chip *adc_tm, u16 offset, u8 *data, int len)
+>   {
+>   	return regmap_bulk_read(adc_tm->regmap, adc_tm->base + offset, data, len);
+> @@ -343,14 +338,14 @@ static int adc_tm5_set_trips(void *data, int low, int high)
+>   		channel->channel, low, high);
+>   
+>   	if (high == INT_MAX && low <= -INT_MAX)
+> -		ret = adc_tm5_disable_channel(channel);
+> +		ret = chip->data->disable_channel(channel);
+>   	else
+> -		ret = adc_tm5_configure(channel, low, high);
+> +		ret = chip->data->configure(channel, low, high);
+>   
+>   	return ret;
+>   }
+>   
+> -static struct thermal_zone_of_device_ops adc_tm5_ops = {
+> +static struct thermal_zone_of_device_ops adc_tm5_thermal_ops = {
+>   	.get_temp = adc_tm5_get_temp,
+>   	.set_trips = adc_tm5_set_trips,
+>   };
+> @@ -366,7 +361,7 @@ static int adc_tm5_register_tzd(struct adc_tm5_chip *adc_tm)
+>   		tzd = devm_thermal_zone_of_sensor_register(adc_tm->dev,
+>   							   adc_tm->channels[i].channel,
+>   							   &adc_tm->channels[i],
+> -							   &adc_tm5_ops);
+> +							   &adc_tm5_thermal_ops);
+>   		if (IS_ERR(tzd)) {
+>   			if (PTR_ERR(tzd) == -ENODEV) {
+>   				dev_warn(adc_tm->dev, "thermal sensor on channel %d is not used\n",
+> @@ -526,6 +521,31 @@ static int adc_tm5_get_dt_channel_data(struct adc_tm5_chip *adc_tm,
+>   	return 0;
+>   }
+>   
+> +static const struct adc_tm5_data adc_tm5_data_pmic = {
+> +	.full_scale_code_volt = 0x70e4,
+> +	.decimation = (unsigned int []) { 250, 420, 840 },
+> +	.hw_settle = (unsigned int []) { 15, 100, 200, 300, 400, 500, 600, 700,
+> +					 1000, 2000, 4000, 8000, 16000, 32000,
+> +					 64000, 128000 },
+> +	.disable_channel = adc_tm5_disable_channel,
+> +	.configure = adc_tm5_configure,
+> +	.isr = adc_tm5_isr,
+> +	.irq_name = "pm-adc-tm5",
+> +	.gen = ADC_TM5,
+> +};
+> +
+> +static const struct adc_tm5_data adc_tm_hc_data_pmic = {
+> +	.full_scale_code_volt = 0x70e4,
+> +	.decimation = (unsigned int []) { 256, 512, 1024 },
+> +	.hw_settle = (unsigned int []) { 0, 100, 200, 300, 400, 500, 600, 700,
+> +					 1000, 2000, 4000, 6000, 8000, 10000 },
+> +	.disable_channel = adc_tm5_disable_channel,
+> +	.configure = adc_tm5_configure,
+> +	.isr = adc_tm5_isr,
+> +	.irq_name = "pm-adc-tm5",
+> +	.gen = ADC_TM_HC,
+> +};
+> +
+>   static int adc_tm5_get_dt_data(struct adc_tm5_chip *adc_tm, struct device_node *node)
+>   {
+>   	struct adc_tm5_channel *channels;
+> @@ -623,7 +643,7 @@ static int adc_tm5_probe(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> -	if (adc_tm->data->is_hc)
+> +	if (adc_tm->data->gen == ADC_TM_HC)
+>   		ret = adc_tm_hc_init(adc_tm);
+>   	else
+>   		ret = adc_tm5_init(adc_tm);
+> @@ -638,8 +658,8 @@ static int adc_tm5_probe(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> -	return devm_request_threaded_irq(dev, irq, NULL, adc_tm5_isr,
+> -					 IRQF_ONESHOT, "pm-adc-tm5", adc_tm);
+> +	return devm_request_threaded_irq(dev, irq, NULL, adc_tm->data->isr,
+> +			IRQF_ONESHOT, adc_tm->data->irq_name, adc_tm);
+>   }
+>   
+>   static const struct of_device_id adc_tm5_match_table[] = {
+> 
 
 
-On 11/28/21 20:21, Giulio Benetti wrote:
-> Hi Jesse,
-> 
-> On 25/11/21 22:14, Jesse Taube wrote:
->> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
->>
->> Add generic i.MXRT family defconfig.
->>
->> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
->> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
->> ---
->> V1->V2:
->> * Nothing done
->> V2->V3:
->> * Nothing done
->> ---
->>    arch/arm/configs/imxrt_defconfig | 157 +++++++++++++++++++++++++++++++
->>    1 file changed, 157 insertions(+)
->>    create mode 100644 arch/arm/configs/imxrt_defconfig
->>
->> diff --git a/arch/arm/configs/imxrt_defconfig b/arch/arm/configs/imxrt_defconfig
->> new file mode 100644
->> index 000000000000..d673745a5462
->> --- /dev/null
->> +++ b/arch/arm/configs/imxrt_defconfig
->> @@ -0,0 +1,157 @@
->> +# CONFIG_LOCALVERSION_AUTO is not set
->> +CONFIG_SYSVIPC=y
->> +CONFIG_USELIB=y
->> +CONFIG_NO_HZ=y
->> +CONFIG_HIGH_RES_TIMERS=y
->> +CONFIG_BPF_SYSCALL=y
->> +CONFIG_PREEMPT_VOLUNTARY=y
->> +CONFIG_BSD_PROCESS_ACCT=y
->> +CONFIG_BSD_PROCESS_ACCT_V3=y
->> +CONFIG_PSI=y
->> +CONFIG_IKCONFIG=y
->> +CONFIG_IKCONFIG_PROC=y
->> +CONFIG_LOG_BUF_SHIFT=18
->> +CONFIG_MEMCG=y
->> +CONFIG_BLK_CGROUP=y
->> +CONFIG_CFS_BANDWIDTH=y
->> +CONFIG_CGROUP_PIDS=y
->> +CONFIG_CGROUP_RDMA=y
->> +CONFIG_CGROUP_FREEZER=y
->> +CONFIG_CGROUP_DEVICE=y
->> +CONFIG_CGROUP_CPUACCT=y
->> +CONFIG_CGROUP_PERF=y
->> +CONFIG_CGROUP_BPF=y
->> +CONFIG_NAMESPACES=y
->> +CONFIG_USER_NS=y
->> +CONFIG_CHECKPOINT_RESTORE=y
->> +CONFIG_SCHED_AUTOGROUP=y
->> +CONFIG_RELAY=y
->> +CONFIG_BLK_DEV_INITRD=y
->> +CONFIG_EXPERT=y
->> +CONFIG_SGETMASK_SYSCALL=y
->> +# CONFIG_FUTEX is not set
->> +CONFIG_KALLSYMS_ALL=y
->> +CONFIG_PC104=y
->> +# CONFIG_SLUB_DEBUG is not set
->> +# CONFIG_COMPAT_BRK is not set
->> +CONFIG_SLAB_FREELIST_RANDOM=y
->> +CONFIG_SLAB_FREELIST_HARDENED=y
->> +CONFIG_PROFILING=y
->> +# CONFIG_MMU is not set
->> +CONFIG_ARCH_MXC=y
->> +CONFIG_SOC_IMXRT=y
->> +# CONFIG_ARM_DMA_MEM_BUFFERABLE is not set
->> +CONFIG_SET_MEM_PARAM=y
->> +CONFIG_DRAM_BASE=0x80000000
->> +CONFIG_DRAM_SIZE=0x02000000
-> 
-> While debugging I've found that both CONFIG_DRAM_* get their default
-> value because CONFIG_SET_MEM_PARAM is not enabled. This can work but
-> leads problems while debugging and in any case those 2 options are
-> ignored. So please add on top of them:
-> CONFIG_SET_MEM_PARAM=y
-> 
-oops i accidentally deleted that thx, im confused as to how it still 
-worked...
-> Thank you
-> 
+-- 
+With best wishes
+Dmitry
