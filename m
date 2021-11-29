@@ -2,178 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E16A24610C2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 10:04:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 400A4461107
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 10:25:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240879AbhK2JHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 04:07:33 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:41460
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S240867AbhK2JFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 04:05:33 -0500
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 19A7E4081B
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 09:02:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638176535;
-        bh=+klvKK+faRKLaDg9Hg7NVSa08prt4fM01iOQLi+L9zY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=CHj5nOh2t5RO8o3EeLZ2LM0pL+xjdKU3jI1GFFDguDB5hWDxPH9dRea7jlKXStg9y
-         8YPkytFRM1be7LocQtunzqpyxIdX7cO7BoUd0qPN9XFlv4hZvAoZ8/cVPL8BjNmAzQ
-         PdgmxtGxhDrXeSFCPN+8QBCGbKzwOyutZnFedmKIQ9QylDSdDtAufGQYQcC3eam2S2
-         GSPkZ8BDCdJU347poD8kGW3QS+1lNpfTF5UexNErU9un0KmvvVsk7yCDW6EEZdCryY
-         HSqZgC+ZBPeyFvJff8EsVbfJ6XTzC5xM53kJq/Qi423dReHqGwsvj5qjl4Hh1uiKaT
-         fQEDJgZ8VLjZg==
-Received: by mail-lj1-f197.google.com with SMTP id w16-20020a05651c103000b00218c9d46faeso6536227ljm.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 01:02:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+klvKK+faRKLaDg9Hg7NVSa08prt4fM01iOQLi+L9zY=;
-        b=Nr4KDAGkTHGVlGmEAtww2TlRlzwD2DfLZB2YSj7AkxSsa3HwRi28q8J1mrIGk8gzEP
-         UQQ0uN2gzJToZTAzw+2lLZg6+BihyHcTlP/BH5ebEhPeLgI12S/PorEvmcFpCaHVjFXG
-         o2YexGcjv6BK/K4niWoZF3cj57xjNXhFPS24pFQUybIzE6pqOJplo5hgZJcXc7+XkVPz
-         goZOiB7rxZu+TB80ps5Uf+0IF51t7clrQOLjYf7WhOIo8Whj1kQSy50sr7bNSgUT8/9J
-         k/RFUltjkbZqgeNXB4VMWzQgYoDh3MKw7vo1j159PKQDQjyp95uDJZilFCfNXTl2cIfZ
-         cyZg==
-X-Gm-Message-State: AOAM530ZjTDMQEP6UEfNiJMU2Q57tpChbc0AuE6vmguVnZfD5t4xxNqu
-        CwxTShMRZqn2fcIObO6Jm7cHKoiXrYBxQEbzrpTP91kgm7RKT4RxU3XJ+7nHMvQGkiA1FzmRKM8
-        3cdRKlBkUkq7ok2QCiZfQN/b954u+TS85aKzWwHo=
-X-Received: by 2002:a2e:9c8:: with SMTP id 191mr51057809ljj.262.1638176533937;
-        Mon, 29 Nov 2021 01:02:13 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxfGeBl6B/J9dcWZ1YaA7JAygGQ1hd6YaFyoQjt6umkddkhFy1DycoprioX3nIn6ZG+Rj4h3Q==
-X-Received: by 2002:a2e:9c8:: with SMTP id 191mr51057790ljj.262.1638176533695;
-        Mon, 29 Nov 2021 01:02:13 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id f24sm1266012lfe.247.2021.11.29.01.02.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Nov 2021 01:02:13 -0800 (PST)
-Message-ID: <1b55a6fb-1a23-1f50-9025-1b901ede70a8@canonical.com>
-Date:   Mon, 29 Nov 2021 10:02:12 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 0/8] soc: samsung: Add USIv2 driver
-Content-Language: en-US
-To:     David Virag <virag.david003@gmail.com>,
-        Sam Protsenko <semen.protsenko@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S244321AbhK2J2l convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Nov 2021 04:28:41 -0500
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:59953 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242457AbhK2J0k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 04:26:40 -0500
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id D7499E000B;
+        Mon, 29 Nov 2021 09:23:19 +0000 (UTC)
+Date:   Mon, 29 Nov 2021 10:23:19 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-spi@vger.kernel.org,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-i2c@vger.kernel.org
-References: <20211127223253.19098-1-semen.protsenko@linaro.org>
- <b9807fcc69713fb016838958a3df1c4e54309fc4.camel@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <b9807fcc69713fb016838958a3df1c4e54309fc4.camel@gmail.com>
+        Richard Weinberger <richard@nod.at>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        Michal Simek <monstr@monstr.eu>, linux-mtd@lists.infradead.org,
+        Pratyush Yadav <p.yadav@ti.com>
+Subject: Re: [PATCH v2 5/5] spi: dt-bindings: Add an example with two
+ stacked flashes
+Message-ID: <20211129102319.1efe1841@xps13>
+In-Reply-To: <YaO0ahOhM3XwLqND@robh.at.kernel.org>
+References: <20211126163450.394861-1-miquel.raynal@bootlin.com>
+        <20211126163450.394861-6-miquel.raynal@bootlin.com>
+        <1638054802.100671.1973542.nullmailer@robh.at.kernel.org>
+        <YaO0ahOhM3XwLqND@robh.at.kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/11/2021 04:15, David Virag wrote:
-> On Sun, 2021-11-28 at 00:32 +0200, Sam Protsenko wrote:
->> USIv2 IP-core provides selectable serial protocol (UART, SPI or
->> High-Speed I2C); only one can be chosen at a time. This series
->> implements USIv2 driver, which allows one to select particular USI
->> function in device tree, and also performs USI block initialization.
->>
->> With that driver implemented, it's not needed to do USI
->> initialization
->> in protocol drivers anymore, so that code is removed from the serial
->> driver.
->>
+Hi Rob,
+
+robh@kernel.org wrote on Sun, 28 Nov 2021 10:55:06 -0600:
+
+> On Sat, Nov 27, 2021 at 04:13:22PM -0700, Rob Herring wrote:
+> > On Fri, 26 Nov 2021 17:34:50 +0100, Miquel Raynal wrote:  
+> > > Provide an example of how to describe two flashes in eg. stacked mode.
+> > > 
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
+> > >  1 file changed, 7 insertions(+)
+> > >   
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/spi/spi-controller.example.dts:40.23-45.15: Warning (spi_bus_reg): /example-0/spi@80010000/flash@2,3: SPI bus unit address format error, expected "2"  
 > 
-> I think the downstream way of doing this (USI node reg being on the
-> SW_CONF register itself rather than an offset from uart/i2c/spi, the
-> USI driver only controlling the SW_CONF, and the uart/i2c/spi drivers
-> controlling their USI_CON and USI_OPTION regs) is cleaner, better, and
-> easier to adapt to USIv1 too.
-> 
-> For example: I'm sure this is the case on USIv2 devices too, but on
-> Exynos7885, different devices have USI modes configured differently.
-> For example a Samsung Galaxy A8 (2018) has all the USI blocks
-> configured as SPI while a Samsung Galaxy M20 has the first USI
-> configured as dual HSI2C, the second as HSI2C on the first 2 pins and
-> the third as HSI2C on the last 2 pins. With this way of doing
-> everything on USIv2 we'd need 3 disabled USIv2 nodes in the SoC DTSI
-> for one USI block, each for every protocol the USI block can do, all
-> having a single child for their protocol and each referencing the same
-> sysreg (not even sure if that's even supported). Then the board DTS
-> could enable the USI node it needs.
+> Unit-addresses are based on the first reg entry.
 
-It's not supported (one cannot have three same nodes with same unit
-addresses), so this would be solved by dropping out unused interfaces,
-commenting them out or storing everything under one USI:
+Yes, I believe this error is expected since dtc has not been yet
+updated. Below the patch for adapting dtc to this new situation and
+keep the robots happy.
 
-usi@0x1abcdef0 {
-  serial@.... {
-    status = "okay";
-  }
+How should we proceed?
 
-  i2c@.... {
-    status = "disabled";
-  }
+Thanks,
+Miquèl
 
-  spi@.... {
-    status = "disabled";
-  }
-}
+---
 
-> 
-> With the downstream way we could have just one USI node and we could
-> add the 3 protocols it can do disabled as seperate or child nodes. This
-> way the board DTS only needs to set the appropriate mode setting and
-> enable the protocol it needs. I'd say much better than having 3 USI
-> nodes for the same USI block.
+Author: Miquel Raynal <miquel.raynal@bootlin.com>
+Date:   Fri Nov 26 16:08:27 2021 +0100
 
-Then however you need to handle probe ordering and possible probe deferrals.
+    dtc: checks: spi: Allow describing flashes with two CS
+    
+    The Xilinx QSPI controller has two advanced modes which allow the
+    controller to behave differently and consider two flashes as one single
+    storage.
+    
+    One of these two modes is quite complex to support from a binding point
+    of view and is the dual parallel memories. In this mode, each byte of
+    data is stored in both devices: the even bits in one, the odd bits in
+    the other. The split is automatically handled by the QSPI controller and
+    is transparent for the user.
+    
+    The other mode is simpler to support, it is called dual stacked
+    memories. The controller shares the same SPI bus but each of the devices
+    contain half of the data. Once in this mode, the controller does not
+    follow CS requests but instead internally wires the two CSlevels with
+    the value of the most significant address bit.
+    
+    Supporting these two modes will involve core changes which include the
+    possibility of providing two CS for a single SPI device.
+    
+    Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-> 
-> Also this way is pretty USIv2 centric. Adding USIv1 support to this
-> driver is difficult this way because of the the lack of USI_CON and
-> USI_OPTION registers as a whole (so having nowhere to actually set the
-> reg of the USI node to, as the only thing USIv1 has is the SW_CONF
-> register). 
+diff --git a/scripts/dtc/checks.c b/scripts/dtc/checks.c
+index 781ba1129a8e..4eaa925c3442 100644
+--- a/scripts/dtc/checks.c
++++ b/scripts/dtc/checks.c
+@@ -1094,7 +1094,7 @@ static const struct bus_type spi_bus = {
+ 
+ static void check_spi_bus_bridge(struct check *c, struct dt_info *dti, struct node *node)
+ {
+-       int spi_addr_cells = 1;
++       int spi_addr_cells = 2;
+ 
+        if (strprefixeq(node->name, node->basenamelen, "spi")) {
+                node->bus = &spi_bus;
+@@ -1125,7 +1125,7 @@ static void check_spi_bus_bridge(struct check *c, struct dt_info *dti, struct no
+ 
+        if (get_property(node, "spi-slave"))
+                spi_addr_cells = 0;
+-       if (node_addr_cells(node) != spi_addr_cells)
++       if (node_addr_cells(node) > spi_addr_cells)
+                FAIL(c, dti, node, "incorrect #address-cells for SPI bus");
+        if (node_size_cells(node) != 0)
+                FAIL(c, dti, node, "incorrect #size-cells for SPI bus");
+@@ -1137,8 +1137,8 @@ static void check_spi_bus_reg(struct check *c, struct dt_info *dti, struct node
+ {
+        struct property *prop;
+        const char *unitname = get_unitname(node);
+-       char unit_addr[9];
+-       uint32_t reg = 0;
++       char unit_addr[18];
++       uint32_t reg0 = 0, reg1 = 0;
+        cell_t *cells = NULL;
+ 
+        if (!node->parent || (node->parent->bus != &spi_bus))
+@@ -1156,11 +1156,17 @@ static void check_spi_bus_reg(struct check *c, struct dt_info *dti, struct node
+                return;
+        }
+ 
+-       reg = fdt32_to_cpu(*cells);
+-       snprintf(unit_addr, sizeof(unit_addr), "%x", reg);
+-       if (!streq(unitname, unit_addr))
+-               FAIL(c, dti, node, "SPI bus unit address format error, expected \"%s\"",
+-                    unit_addr);
++       reg0 = fdt32_to_cpu(cells[0]);
++       snprintf(unit_addr, sizeof(unit_addr), "%x", reg0);
++       if (!streq(unitname, unit_addr)) {
++               reg1 = fdt32_to_cpu(cells[1]);
++               snprintf(unit_addr, sizeof(unit_addr), "%x,%x", reg0, reg1);
++               if (!streq(unitname, unit_addr)) {
++                       FAIL(c, dti, node,
++                            "SPI bus unit address format error, expected \"%s\"",
++                            unit_addr);
++               }
++       }
+ }
+ WARNING(spi_bus_reg, check_spi_bus_reg, NULL, &reg_format, &spi_bus_bridge);
+ 
 
-How is it difficult? Not having a register is easy - noop on given platform.
-
-> In my opinion being able to use the same driver and same
-> device tree layout for USIv1 and USIv2 is a definite plus
-> 
-> The only real drawback of that way is having to add code for USIv2
-> inside the UART, HSI2C, and SPI drivers but in my opinion the benefits
-> overweigh the drawbacks greatly. We could even make the uart/spi/hsi2c
-> drivers call a helper function in the USI driver to set their USI_CON
-> and USI_OPTION registers up so that code would be shared and not
-> duplicated. Wether this patch gets applied like this is not my choice
-> though, I'll let the people responsible decide
-> :-)
-> 
-> Anyways, soon enough I can write an USIv1 driver after I submit all the
-> 7885 stuff I'm working on currently. If you want to, you can add USIv2
-> support to that driver, or if an USIv2 driver is already in upstream at
-> that point, if it is written in the downstream way I can add v1 support
-> to that, or if it's like this I'll have to make a whole seperate driver
-> with a whole seperate DT structure.
-> 
-> Best regards,
-> David
-> 
-
-
-Best regards,
-Krzysztof
