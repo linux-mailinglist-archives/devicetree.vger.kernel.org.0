@@ -2,272 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AE9A460C73
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 02:48:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 245A8460C79
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 02:56:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238814AbhK2BwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Nov 2021 20:52:00 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:46949 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239190AbhK2Bt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 20:49:59 -0500
-Received: by mail-oi1-f179.google.com with SMTP id s139so31549753oie.13;
-        Sun, 28 Nov 2021 17:46:43 -0800 (PST)
+        id S230405AbhK2CAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Nov 2021 21:00:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44356 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231851AbhK2B6C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Nov 2021 20:58:02 -0500
+Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D50BC061574;
+        Sun, 28 Nov 2021 17:54:45 -0800 (PST)
+Received: by mail-qv1-xf2f.google.com with SMTP id m17so12995999qvx.8;
+        Sun, 28 Nov 2021 17:54:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=7MaKgHWKheFJxrj1uWy9VXOHQvwGLYHTJJDUwnT5qBg=;
+        b=Nw8U4Nh1acnHpjcd3TP0eUKlOTKgUcZahWOSyhCAb3yHOlEdJ17O2gO6qgdEKwTa6Q
+         gSsLL1gEzdyFYBknHxFyuzLyDvRMao53dpLtZuhVNSTzHr/aZRJpNNcEkRU4B/TI4IB1
+         JXVCvtR5DEXpm90y13qPNGMZdDQdyhF3Pbmq495t+xRBOsk7TwUfC9tvV6xL1IUVrsxB
+         D5ExKlsAsKUPMlx5PdLDg3vzEJC6M6pPdPA4HRp33AQM2ZiXHE9/WW9WKbxLs5cgrFsP
+         2uwQ5CMiRz4jHw3LuGRXLXqwvn8S6JQESz2pVvtGz+BV4bGsvo8l76tXEUq2LcNJ5bfo
+         bYHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YB0lGH1hYtRkq9xeTp6zskQk+3JQFjBsCekcZwVueQo=;
-        b=auQ/6ozgvohqpLYMuigWND1CEgxwq4oML7hGpQ8FEPCDTczEh7K0vom8N6CHdBV5C+
-         D/9vn76C77pU18mQge328h4KwO2bW3Jc+Tz5lTXt+qGx0kqlY7wiPQx6EOMjSpvvn9Y2
-         45Dglr+efbdaNelUfsQvzSz4kTEisPse/HoEeR9Ago63B/lahujANOCf9ImX+i9YQYyr
-         UoqZuDU0AV1RP8WTmTOBH07hRiGSkP5mARLDRFpf5Wpdy+hLRW+mwRz8PoCVjq/ZsVqw
-         CuI7vg1CxEcLYZ3/6BqAPkxRCDYYWYuOOiELA0i5O1WG9CSS3UN3xhZCXsbzNRqsLsz3
-         ljow==
-X-Gm-Message-State: AOAM530n13WrR8BKVcsfMjsH3vrpHB0dhF3+ARnHV66k6xgKIzyl6kiD
-        45lVST+3LeDpeZu8qhGqYsIDfm6Ffg==
-X-Google-Smtp-Source: ABdhPJyxai8Uf7tZPqPrdnE2jg0SGF1y64khLGGyzMF28kr6gm4DtVyLI6KNiVwFakoN9d+aT52CYA==
-X-Received: by 2002:aca:30c5:: with SMTP id w188mr37002376oiw.35.1638150402704;
-        Sun, 28 Nov 2021 17:46:42 -0800 (PST)
-Received: from robh.at.kernel.org ([172.58.99.229])
-        by smtp.gmail.com with ESMTPSA id k16sm2419831otp.21.2021.11.28.17.46.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Nov 2021 17:46:42 -0800 (PST)
-Received: (nullmailer pid 3000141 invoked by uid 1000);
-        Mon, 29 Nov 2021 01:46:40 -0000
-Date:   Sun, 28 Nov 2021 19:46:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        michal.simek@xilinx.com
-Subject: Re: [PATCH v2] dt-bindings: mailbox: zynqmp_ipi: convert to yaml
-Message-ID: <YaQxAH6hru20cVTl@robh.at.kernel.org>
-References: <20211112084605.230253-1-shubhrajyoti.datta@xilinx.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7MaKgHWKheFJxrj1uWy9VXOHQvwGLYHTJJDUwnT5qBg=;
+        b=Mxz7xlpfTO8GAM/iPOPEknTZt6Wj0VLAXBqE0QXlsd7tEpAJdH3Ol4IH8HVUccMIEb
+         o3rxR0RfHd1/IDq3qmBdRUviC9cruzAVjKtsiy91orvsnx88DZ4aCM/a8HgVPG5+Kj9a
+         FIpfgU3oU0EbQGdzON6pQmw/2UbkaZdUsMVGj66s9X9EBQhriwu30ueb0TPRcwJXMNg4
+         wajEERcrT7YiWs/0SoAJMZihSl4m+oSvmI5ie+Kv4/z3pS8XtBMfyVgHwpjzI3XdxbPR
+         U/XuTFKyolLNIUgcXMwyFk3PzODa89TvLyYPNNTLuDoiuiZdD+E9FJMcjc1eSEcGB3dg
+         JCug==
+X-Gm-Message-State: AOAM533kstJMbwnfZIrL35etIueD/nNn2pxgvdZX/kSsd+kqxq3Y5Ijq
+        rCfkl0vuiuMgd5iDXvvBhH0=
+X-Google-Smtp-Source: ABdhPJy8P5wGLR5qlwlUnmOoPab1PnL6Y6pKQU9VYozKNDseX9QhhAKbzXifVxoKlDW/T2V8qG2A8g==
+X-Received: by 2002:ad4:5ba7:: with SMTP id 7mr28358496qvq.109.1638150884300;
+        Sun, 28 Nov 2021 17:54:44 -0800 (PST)
+Received: from [10.4.10.5] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id j19sm7580997qkp.28.2021.11.28.17.54.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 28 Nov 2021 17:54:44 -0800 (PST)
+Message-ID: <f65ac2c7-3f37-3740-fd7a-4d11cabb9892@gmail.com>
+Date:   Sun, 28 Nov 2021 20:54:42 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211112084605.230253-1-shubhrajyoti.datta@xilinx.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v3 13/13] ARM: imxrt_defconfig: add i.MXRT family
+ defconfig
+Content-Language: en-US
+To:     Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        linux-imx@nxp.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, ulf.hansson@linaro.org, aisheng.dong@nxp.com,
+        stefan@agner.ch, linus.walleij@linaro.org,
+        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
+        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
+        adrian.hunter@intel.com, jirislaby@kernel.org,
+        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com>
+ <20211125211443.1150135-14-Mr.Bossman075@gmail.com>
+ <95252a9e-76fc-0770-8e7b-90d8755298eb@benettiengineering.com>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <95252a9e-76fc-0770-8e7b-90d8755298eb@benettiengineering.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 12, 2021 at 02:16:05PM +0530, Shubhrajyoti Datta wrote:
-> Convert the ipi doc to yaml.
-> 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> ---
-> v2:
-> Fix the warnings reported by Rob
-> 
->  .../mailbox/xlnx,zynqmp-ipi-mailbox.txt       | 127 ------------------
->  .../mailbox/xlnx,zynqmp-ipi-mailbox.yaml      |  63 +++++++++
->  2 files changed, 63 insertions(+), 127 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
->  create mode 100644 Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
-> deleted file mode 100644
-> index ad76edccf881..000000000000
-> --- a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.txt
-> +++ /dev/null
-> @@ -1,127 +0,0 @@
-> -Xilinx IPI Mailbox Controller
-> -========================================
-> -
-> -The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
-> -messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
-> -agent owns registers used for notification and buffers for message.
-> -
-> -               +-------------------------------------+
-> -               | Xilinx ZynqMP IPI Controller        |
-> -               +-------------------------------------+
-> -    +--------------------------------------------------+
-> -ATF                    |                     |
-> -                       |                     |
-> -                       |                     |
-> -    +--------------------------+             |
-> -                       |                     |
-> -                       |                     |
-> -    +--------------------------------------------------+
-> -            +------------------------------------------+
-> -            |  +----------------+   +----------------+ |
-> -Hardware    |  |  IPI Agent     |   |  IPI Buffers   | |
-> -            |  |  Registers     |   |                | |
-> -            |  |                |   |                | |
-> -            |  +----------------+   +----------------+ |
-> -            |                                          |
-> -            | Xilinx IPI Agent Block                   |
-> -            +------------------------------------------+
-> -
-> -
-> -Controller Device Node:
-> -===========================
-> -Required properties:
-> ---------------------
-> -IPI agent node:
-> -- compatible:		Shall be: "xlnx,zynqmp-ipi-mailbox"
-> -- interrupt-parent:	Phandle for the interrupt controller
-> -- interrupts:		Interrupt information corresponding to the
-> -			interrupt-names property.
-> -- xlnx,ipi-id:		local Xilinx IPI agent ID
-> -- #address-cells:	number of address cells of internal IPI mailbox nodes
-> -- #size-cells:		number of size cells of internal IPI mailbox nodes
-> -
-> -Internal IPI mailbox node:
-> -- reg:			IPI buffers address ranges
-> -- reg-names:		Names of the reg resources. It should have:
-> -			* local_request_region
-> -			  - IPI request msg buffer written by local and read
-> -			    by remote
-> -			* local_response_region
-> -			  - IPI response msg buffer written by local and read
-> -			    by remote
-> -			* remote_request_region
-> -			  - IPI request msg buffer written by remote and read
-> -			    by local
-> -			* remote_response_region
-> -			  - IPI response msg buffer written by remote and read
-> -			    by local
-> -- #mbox-cells:		Shall be 1. It contains:
-> -			* tx(0) or rx(1) channel
-> -- xlnx,ipi-id:		remote Xilinx IPI agent ID of which the mailbox is
-> -			connected to.
-> -
-> -Optional properties:
-> ---------------------
-> -- method:              The method of accessing the IPI agent registers.
-> -                       Permitted values are: "smc" and "hvc". Default is
-> -                       "smc".
-> -
-> -Client Device Node:
-> -===========================
-> -Required properties:
-> ---------------------
-> -- mboxes:		Standard property to specify a mailbox
-> -			(See ./mailbox.txt)
-> -- mbox-names:		List of identifier  strings for each mailbox
-> -			channel.
-> -
-> -Example:
-> -===========================
-> -	zynqmp_ipi {
-> -		compatible = "xlnx,zynqmp-ipi-mailbox";
-> -		interrupt-parent = <&gic>;
-> -		interrupts = <0 29 4>;
-> -		xlnx,ipi-id = <0>;
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		ranges;
-> -
-> -		/* APU<->RPU0 IPI mailbox controller */
-> -		ipi_mailbox_rpu0: mailbox@ff990400 {
-> -			reg = <0xff990400 0x20>,
-> -			      <0xff990420 0x20>,
-> -			      <0xff990080 0x20>,
-> -			      <0xff9900a0 0x20>;
-> -			reg-names = "local_request_region",
-> -				    "local_response_region",
-> -				    "remote_request_region",
-> -				    "remote_response_region";
-> -			#mbox-cells = <1>;
-> -			xlnx,ipi-id = <1>;
-> -		};
-> -		/* APU<->RPU1 IPI mailbox controller */
-> -		ipi_mailbox_rpu1: mailbox@ff990440 {
-> -			reg = <0xff990440 0x20>,
-> -			      <0xff990460 0x20>,
-> -			      <0xff990280 0x20>,
-> -			      <0xff9902a0 0x20>;
-> -			reg-names = "local_request_region",
-> -				    "local_response_region",
-> -				    "remote_request_region",
-> -				    "remote_response_region";
-> -			#mbox-cells = <1>;
-> -			xlnx,ipi-id = <2>;
-> -		};
-> -	};
-> -	rpu0 {
-> -		...
-> -		mboxes = <&ipi_mailbox_rpu0 0>,
-> -			 <&ipi_mailbox_rpu0 1>;
-> -		mbox-names = "tx", "rx";
-> -	};
-> -	rpu1 {
-> -		...
-> -		mboxes = <&ipi_mailbox_rpu1 0>,
-> -			 <&ipi_mailbox_rpu1 1>;
-> -		mbox-names = "tx", "rx";
-> -	};
-> diff --git a/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-> new file mode 100644
-> index 000000000000..8019a7b294ef
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/xlnx,zynqmp-ipi-mailbox.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/mailbox/xlnx,zynqmp-ipi-mailbox.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Xilinx IPI Mailbox controller bindings
-> +
-> +description:
-> +  The Xilinx IPI(Inter Processor Interrupt) mailbox controller is to manage
-> +  messaging between two Xilinx Zynq UltraScale+ MPSoC IPI agents. Each IPI
-> +  agent owns registers used for notification and buffers for message.
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,zynqmp-ipi-mailbox
-> +
-> +  reg:
-> +    maxItems: 4
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +
-> +  xlnx,ipi-id:
-> +    description: Xilinx IPI agent id
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - compatible
-> +  - xlnx,ipi-id
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +     zynqmp_ipi {
-> +          compatible = "xlnx,zynqmp-ipi-mailbox";
-> +          interrupt-parent = <&gic>;
-> +          interrupts = <0 29 4>;
-> +          xlnx,ipi-id = <0>;
-> +     };
-> +
-> +          /* Client node APU<->RPU0 IPI mailbox controller */
-> +          ipi_mailbox_rpu0: mailbox@ff990400 {
-> +               reg = <0xff990400 0x20>,
-> +                     <0xff990420 0x20>,
-> +                     <0xff990080 0x20>,
-> +                     <0xff9900a0 0x20>;
-> +               reg-names = "local_request_region",
-> +                        "local_response_region",
-> +                        "remote_request_region",
-> +                        "remote_response_region";
-> +               #mbox-cells = <1>;
-> +               xlnx,ipi-id = <1>;
-> +          };
 
-This doesn't match the original example nor the schema. And also the 
-actual dts files based on dtbs_check...
 
-Rob
+On 11/28/21 20:21, Giulio Benetti wrote:
+> Hi Jesse,
+> 
+> On 25/11/21 22:14, Jesse Taube wrote:
+>> From: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>>
+>> Add generic i.MXRT family defconfig.
+>>
+>> Signed-off-by: Giulio Benetti <giulio.benetti@benettiengineering.com>
+>> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+>> ---
+>> V1->V2:
+>> * Nothing done
+>> V2->V3:
+>> * Nothing done
+>> ---
+>>    arch/arm/configs/imxrt_defconfig | 157 +++++++++++++++++++++++++++++++
+>>    1 file changed, 157 insertions(+)
+>>    create mode 100644 arch/arm/configs/imxrt_defconfig
+>>
+>> diff --git a/arch/arm/configs/imxrt_defconfig b/arch/arm/configs/imxrt_defconfig
+>> new file mode 100644
+>> index 000000000000..d673745a5462
+>> --- /dev/null
+>> +++ b/arch/arm/configs/imxrt_defconfig
+>> @@ -0,0 +1,157 @@
+>> +# CONFIG_LOCALVERSION_AUTO is not set
+>> +CONFIG_SYSVIPC=y
+>> +CONFIG_USELIB=y
+>> +CONFIG_NO_HZ=y
+>> +CONFIG_HIGH_RES_TIMERS=y
+>> +CONFIG_BPF_SYSCALL=y
+>> +CONFIG_PREEMPT_VOLUNTARY=y
+>> +CONFIG_BSD_PROCESS_ACCT=y
+>> +CONFIG_BSD_PROCESS_ACCT_V3=y
+>> +CONFIG_PSI=y
+>> +CONFIG_IKCONFIG=y
+>> +CONFIG_IKCONFIG_PROC=y
+>> +CONFIG_LOG_BUF_SHIFT=18
+>> +CONFIG_MEMCG=y
+>> +CONFIG_BLK_CGROUP=y
+>> +CONFIG_CFS_BANDWIDTH=y
+>> +CONFIG_CGROUP_PIDS=y
+>> +CONFIG_CGROUP_RDMA=y
+>> +CONFIG_CGROUP_FREEZER=y
+>> +CONFIG_CGROUP_DEVICE=y
+>> +CONFIG_CGROUP_CPUACCT=y
+>> +CONFIG_CGROUP_PERF=y
+>> +CONFIG_CGROUP_BPF=y
+>> +CONFIG_NAMESPACES=y
+>> +CONFIG_USER_NS=y
+>> +CONFIG_CHECKPOINT_RESTORE=y
+>> +CONFIG_SCHED_AUTOGROUP=y
+>> +CONFIG_RELAY=y
+>> +CONFIG_BLK_DEV_INITRD=y
+>> +CONFIG_EXPERT=y
+>> +CONFIG_SGETMASK_SYSCALL=y
+>> +# CONFIG_FUTEX is not set
+>> +CONFIG_KALLSYMS_ALL=y
+>> +CONFIG_PC104=y
+>> +# CONFIG_SLUB_DEBUG is not set
+>> +# CONFIG_COMPAT_BRK is not set
+>> +CONFIG_SLAB_FREELIST_RANDOM=y
+>> +CONFIG_SLAB_FREELIST_HARDENED=y
+>> +CONFIG_PROFILING=y
+>> +# CONFIG_MMU is not set
+>> +CONFIG_ARCH_MXC=y
+>> +CONFIG_SOC_IMXRT=y
+>> +# CONFIG_ARM_DMA_MEM_BUFFERABLE is not set
+>> +CONFIG_SET_MEM_PARAM=y
+>> +CONFIG_DRAM_BASE=0x80000000
+>> +CONFIG_DRAM_SIZE=0x02000000
+> 
+> While debugging I've found that both CONFIG_DRAM_* get their default
+> value because CONFIG_SET_MEM_PARAM is not enabled. This can work but
+> leads problems while debugging and in any case those 2 options are
+> ignored. So please add on top of them:
+> CONFIG_SET_MEM_PARAM=y
+> 
+oops i accidentally deleted that thx, im confused as to how it still 
+worked...
+> Thank you
+> 
