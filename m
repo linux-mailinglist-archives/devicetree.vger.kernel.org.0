@@ -2,248 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EF71461260
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 11:24:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9981461194
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 11:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344770AbhK2K1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 05:27:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229623AbhK2KZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 05:25:52 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A087CC061375
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 01:56:26 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id p18so14034447wmq.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 01:56:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JoYsHU+XJpC5AlXMYy6dlFDTBWZmry/p4RloOev9FFw=;
-        b=sS+elfRruvzi6wtAMsU/s+WNTxXW1bfySN8LfJ8IUQMovxXGfHp9ghpNCYglOmE0Hu
-         xk1H8EfBzfdEBJiqAydhcxEQ6tJrUEJzefpPyEfZHcP1BVxp3BaMW1wFf67lzKa8CMXT
-         5GGMta5RdyaT9oVWaKWF4X0e/AjTRIcbjku5JEJqOvFHkxeydPm9VllvVPBHARsKFwLl
-         1pNe1UuiL82xffXYJybUDewoFZFQWd/dlEVKNNWBRDQ7fgYHwUz9YbWh2069Oflv9Qz/
-         AcQL0olLD980D9eQsZqTG61PYVjCgw3BPx4h+5f0AEyHedPS7SVZirBysQtqzQWXmsIp
-         Ldyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JoYsHU+XJpC5AlXMYy6dlFDTBWZmry/p4RloOev9FFw=;
-        b=2dsarSRJ6YX1ruUv9m8A/EBh2PijG9YsBOD0GBUEqYpXgaksgBjX1fENV7HL+3+eoW
-         ckw5A+ztYEdkVf4GDV8812KwFgXzBRnAzjcmLUBwBW0xyFvnw4TU05fCcKIaKp3sNVq8
-         80Iy8kFDDwgjk+6H7/IvXkx1rOqvoTkNPLuwQt8/en1+CP+8xo0V+BwxfaAsRrLydp8j
-         aPHhffUFpkUU4G25O8GvNUDI8DGWmgeD5BudwRFp8tM+Zuy8j22wGB/Xf3jdK5pPcHt8
-         TBWmJ7t6RABDmNHYYh5DSNKhKpoe6GFJNDD8y736Nxvu2vmbJs+SeGclMjm8A7I1vPm/
-         5zLg==
-X-Gm-Message-State: AOAM530J5zCAOQLcxdGt7sbV/zpnYm/sLcQTo7yEtdW6J0YbhDaLCQ61
-        Wfr1zKtYvRDQyxgL/uTrzdlI4w==
-X-Google-Smtp-Source: ABdhPJx/wqUhMKyU8qOU/313Add1TM/BvSiew6HbDgIqgaQwkq+sPRs6LA2xh9cQDneaokaPe1CSbA==
-X-Received: by 2002:a05:600c:3489:: with SMTP id a9mr35644457wmq.53.1638179784955;
-        Mon, 29 Nov 2021 01:56:24 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:8236:a2e5:8d62:e9cd? ([2a01:e34:ed2f:f020:8236:a2e5:8d62:e9cd])
-        by smtp.googlemail.com with ESMTPSA id h13sm13642392wrx.82.2021.11.29.01.56.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Nov 2021 01:56:24 -0800 (PST)
-Subject: Re: [PATCH] ARM: dts: Fix timer regression for beagleboard revision c
-To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
-Cc:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        id S245748AbhK2KE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 05:04:29 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:21740 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345195AbhK2KC2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Nov 2021 05:02:28 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1638179951; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=JbZ6qYrIdMbs43FeU6Vwl7zE58GS4284/ICeuacW9sI=; b=H9yW+3S1TItC7de6y9iV/JtDl+tDamPJ1sbPXnCQFvjuvXZ5a0xNO9rR/EN0gBAOvznSXoEa
+ F9s9vi42EFQQjpN4Uk0+gLc2AUn26+QeYVvVtksvXSOP9CMm3cI7+2J4gL9JxleLeBuYrwDN
+ lZdt02L00XIcXz8igqdor3iYPaU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 61a4a46f5daaeec79760cd91 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 29 Nov 2021 09:59:10
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DC668C4338F; Mon, 29 Nov 2021 09:59:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7812AC4338F;
+        Mon, 29 Nov 2021 09:59:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7812AC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jarkko Nikula <jarkko.nikula@bitmer.com>
-References: <20211125144834.52457-1-tony@atomide.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <6ce29c03-03ce-8e65-76e1-40fe2bf23caa@linaro.org>
-Date:   Mon, 29 Nov 2021 10:56:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
-MIME-Version: 1.0
-In-Reply-To: <20211125144834.52457-1-tony@atomide.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        swboyd@chromium.org, judyhsiao@chromium.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v3 0/5] Add pin control support for lpass sc7280
+Date:   Mon, 29 Nov 2021 15:28:47 +0530
+Message-Id: <1638179932-3353-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series is to split lpass variant common pin control
+functions and SoC specific functions and to add lpass sc7280 pincontrol support.
+It also Adds dt-bindings for lpass sc7280 lpass lpi pincontrol.
 
-Hi Tony,
+Changes Since V2:
+    -- Add new dt-bindings for sc7280 lpi driver.
+    -- Make clock voting change as separate patch.
+    -- Split existing pincontrol driver and make common functions 
+       as part of separate file.
+    -- Rename lpass pincontrol lpi dt-bindings to sm8250 specific dt-bindings
+		
+Changes Since V1:
+    -- Make lpi pinctrl variant data structure as constant
+    -- Add appropriate commit message
+    -- Change signedoff by sequence.
 
-On 25/11/2021 15:48, Tony Lindgren wrote:
-> Commit e428e250fde6 ("ARM: dts: Configure system timers for omap3")
-> caused a timer regression for beagleboard revision c where the system
-> clockevent stops working if omap3isp module is unloaded.
-> 
-> Turns out we still have beagleboard revisions a-b4 capacitor c70 quirks
-> applied that limit the usable timers for no good reason. This also affects
-> the power management as we use the system clock instead of the 32k clock
-> source.
-> 
-> Let's fix the issue by adding a new omap3-beagle-ab4.dts for the old timer
-> quirks. This allows us to remove the timer quirks for later beagleboard
-> revisions. We also need to update the related timer quirk check for the
-> correct compatible property.
-> 
-> Fixes: e428e250fde6 ("ARM: dts: Configure system timers for omap3")
-> Cc: linux-kernel@vger.kernel.org
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: Thomas Gleixner <tglx@linutronix.de>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Reported-by: Jarkko Nikula <jarkko.nikula@bitmer.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->  .../devicetree/bindings/arm/omap/omap.txt     |  3 ++
->  arch/arm/boot/dts/Makefile                    |  1 +
->  arch/arm/boot/dts/omap3-beagle-ab4.dts        | 47 +++++++++++++++++++
->  arch/arm/boot/dts/omap3-beagle.dts            | 33 -------------
->  drivers/clocksource/timer-ti-dm-systimer.c    |  2 +-
->  5 files changed, 52 insertions(+), 34 deletions(-)
->  create mode 100644 arch/arm/boot/dts/omap3-beagle-ab4.dts
+Srinivasa Rao Mandadapu (5):
+  dt-bindings: pinctrl: qcom: Update lpass lpi file name to SoC specific
+  dt-bindings: pinctrl: qcom: Add sc7280 lpass lpi pinctrl bindings
+  pinctrl: qcom: Move chip specific functions to right files
+  pinctrl: qcom: Update clock voting as optional
+  pinctrl: qcom: Add SC7280 lpass pin configuration
 
-Usually, bindings DT and driver changes are separate patches
-
-
-> diff --git a/Documentation/devicetree/bindings/arm/omap/omap.txt b/Documentation/devicetree/bindings/arm/omap/omap.txt
-> --- a/Documentation/devicetree/bindings/arm/omap/omap.txt
-> +++ b/Documentation/devicetree/bindings/arm/omap/omap.txt
-> @@ -119,6 +119,9 @@ Boards (incomplete list of examples):
->  - OMAP3 BeagleBoard : Low cost community board
->    compatible = "ti,omap3-beagle", "ti,omap3430", "ti,omap3"
->  
-> +- OMAP3 BeagleBoard A to B4 : Early BeagleBoard revisions A to B4 with a timer quirk
-> +  compatible = "ti,omap3-beagle-ab4", "ti,omap3-beagle", "ti,omap3430", "ti,omap3"
-> +
->  - OMAP3 Tobi with Overo : Commercial expansion board with daughter board
->    compatible = "gumstix,omap3-overo-tobi", "gumstix,omap3-overo", "ti,omap3430", "ti,omap3"
->  
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -794,6 +794,7 @@ dtb-$(CONFIG_ARCH_OMAP3) += \
->  	logicpd-som-lv-37xx-devkit.dtb \
->  	omap3430-sdp.dtb \
->  	omap3-beagle.dtb \
-> +	omap3-beagle-ab4.dtb \
->  	omap3-beagle-xm.dtb \
->  	omap3-beagle-xm-ab.dtb \
->  	omap3-cm-t3517.dtb \
-> diff --git a/arch/arm/boot/dts/omap3-beagle-ab4.dts b/arch/arm/boot/dts/omap3-beagle-ab4.dts
-> new file mode 100644
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/omap3-beagle-ab4.dts
-> @@ -0,0 +1,47 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/dts-v1/;
-> +
-> +#include "omap3-beagle.dts"
-> +
-> +/ {
-> +	model = "TI OMAP3 BeagleBoard A to B4";
-> +	compatible = "ti,omap3-beagle-ab4", "ti,omap3-beagle", "ti,omap3430", "ti,omap3";
-> +};
-> +
-> +/*
-> + * Workaround for capacitor C70 issue, see "Boards revision A and < B5"
-> + * section at https://elinux.org/BeagleBoard_Community
-> + */
-> +
-> +/* Unusable as clocksource because of unreliable oscillator */
-> +&counter32k {
-> +	status = "disabled";
-> +};
-> +
-> +/* Unusable as clockevent because of unreliable oscillator, allow to idle */
-> +&timer1_target {
-> +	/delete-property/ti,no-reset-on-init;
-> +	/delete-property/ti,no-idle;
-> +	timer@0 {
-> +		/delete-property/ti,timer-alwon;
-> +	};
-> +};
-> +
-> +/* Preferred always-on timer for clocksource */
-> +&timer12_target {
-> +	ti,no-reset-on-init;
-> +	ti,no-idle;
-> +	timer@0 {
-> +		/* Always clocked by secure_32k_fck */
-> +	};
-> +};
-> +
-> +/* Preferred timer for clockevent */
-> +&timer2_target {
-> +	ti,no-reset-on-init;
-> +	ti,no-idle;
-> +	timer@0 {
-> +		assigned-clocks = <&gpt2_fck>;
-> +		assigned-clock-parents = <&sys_ck>;
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/omap3-beagle.dts b/arch/arm/boot/dts/omap3-beagle.dts
-> --- a/arch/arm/boot/dts/omap3-beagle.dts
-> +++ b/arch/arm/boot/dts/omap3-beagle.dts
-> @@ -308,39 +308,6 @@ &usbhsehci {
->  	phys = <0 &hsusb2_phy>;
->  };
->  
-> -/* Unusable as clocksource because of unreliable oscillator */
-> -&counter32k {
-> -	status = "disabled";
-> -};
-> -
-> -/* Unusable as clockevent because if unreliable oscillator, allow to idle */
-> -&timer1_target {
-> -	/delete-property/ti,no-reset-on-init;
-> -	/delete-property/ti,no-idle;
-> -	timer@0 {
-> -		/delete-property/ti,timer-alwon;
-> -	};
-> -};
-> -
-> -/* Preferred always-on timer for clocksource */
-> -&timer12_target {
-> -	ti,no-reset-on-init;
-> -	ti,no-idle;
-> -	timer@0 {
-> -		/* Always clocked by secure_32k_fck */
-> -	};
-> -};
-> -
-> -/* Preferred timer for clockevent */
-> -&timer2_target {
-> -	ti,no-reset-on-init;
-> -	ti,no-idle;
-> -	timer@0 {
-> -		assigned-clocks = <&gpt2_fck>;
-> -		assigned-clock-parents = <&sys_ck>;
-> -	};
-> -};
-> -
->  &twl_gpio {
->  	ti,use-leds;
->  	/* pullups: BIT(1) */
-> diff --git a/drivers/clocksource/timer-ti-dm-systimer.c b/drivers/clocksource/timer-ti-dm-systimer.c
-> --- a/drivers/clocksource/timer-ti-dm-systimer.c
-> +++ b/drivers/clocksource/timer-ti-dm-systimer.c
-> @@ -241,7 +241,7 @@ static void __init dmtimer_systimer_assign_alwon(void)
->  	bool quirk_unreliable_oscillator = false;
->  
->  	/* Quirk unreliable 32 KiHz oscillator with incomplete dts */
-> -	if (of_machine_is_compatible("ti,omap3-beagle") ||
-> +	if (of_machine_is_compatible("ti,omap3-beagle-ab4") ||
->  	    of_machine_is_compatible("timll,omap3-devkit8000")) {
->  		quirk_unreliable_oscillator = true;
->  		counter_32k = -ENODEV;
-> 
-
+ .../bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml   | 130 -----------
+ .../pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml     | 115 ++++++++++
+ .../pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 130 +++++++++++
+ drivers/pinctrl/qcom/Makefile                      |   2 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c           | 253 +--------------------
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.h           | 140 ++++++++++++
+ drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c    | 127 +++++++++++
+ drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c    | 125 ++++++++++
+ 8 files changed, 646 insertions(+), 376 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7280-lpass-lpi-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
