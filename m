@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D5CB4627F7
+	by mail.lfdr.de (Postfix) with ESMTP id E079B4627F9
 	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 00:14:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbhK2XQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 18:16:44 -0500
-Received: from mail-oo1-f50.google.com ([209.85.161.50]:35514 "EHLO
-        mail-oo1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232984AbhK2XQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 18:16:25 -0500
-Received: by mail-oo1-f50.google.com with SMTP id e17-20020a4a8291000000b002c5ee0645e7so6158745oog.2;
-        Mon, 29 Nov 2021 15:13:07 -0800 (PST)
+        id S234518AbhK2XRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 18:17:09 -0500
+Received: from mail-ot1-f45.google.com ([209.85.210.45]:35727 "EHLO
+        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231878AbhK2XRC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 18:17:02 -0500
+Received: by mail-ot1-f45.google.com with SMTP id x43-20020a056830246b00b00570d09d34ebso27735619otr.2;
+        Mon, 29 Nov 2021 15:13:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1TBDeg2T2HpF/0tP7YSfqKZCkBkx3aRwdW2nUjrKDvg=;
-        b=PIAX14yOxmA9Q9j37utr168R02jdBfN9Hx91VoAInEpzdg2dao7q978ZBU86F+5hJk
-         6dqVUcBo+THqaDPRElBmPz4r9r8noNZPAGhG8uAw0wbTHlDXMTdlQrz/3RjTj4DAZMJ+
-         f1tc+4uW2uD4EtpMU0CSlkEQVN9it3I5ChtfuNFDv0E+3ChVCLdRfVNX7sm/+pBndFbE
-         aXQv2ZhKo8sbHMWn0lxRa+5Xlh3K+ZsY7HyRGIBf5kdHvyVnWwSfs1lgSlCeYg0OP/bj
-         D5YuyQwcvvQHYov75fAXscSgoz4qTBrIJmU9iqdkiR6ad5ocrn9PMXzUJXLGyCHGAtak
-         JrYA==
-X-Gm-Message-State: AOAM530iVuEc8D7uT8qgTguJsUm3jBC+k/kXydTH289u5SquvRJJXHO/
-        BT55qV7LYS/Qbj5x3tmjUvnpJJSnfA==
-X-Google-Smtp-Source: ABdhPJwyRuiVmmJZmpoOnClCvsvidYVMOdIq281b10vxbTOqfPqs0KeSY+luLvimvVIvdrBtL7D5ag==
-X-Received: by 2002:a4a:6852:: with SMTP id a18mr33373429oof.92.1638227587108;
-        Mon, 29 Nov 2021 15:13:07 -0800 (PST)
+        bh=zdZYPJcMdD8wr28rd+KcGV1ImyttgAJtTmto0qzfN9I=;
+        b=KpwqtOc8ZsM5K1bNqvETXBNVY2tvsS1ioIal6tHUms6HjHSAYOdOEtA/8JWpCVC26q
+         bMF1wPfAYjjjYz2qjqT6kiNlUq0pHx+J6eRFHP1oob7XDqq1tm7ukJ+mwaHrJSbdIlaO
+         jg1iZfChcmjZUwsHAPkSDV5jamRK9aXzOdG925jWjoNt96DHBuO6r84QN3rz6Vx0FL+H
+         PD/6Vs1SoNJJB12EJQBMyKcoWyeQW7v7GHxhlawvRUUNCGkdrgZDdoQDrBJWQObvkvmp
+         nKIPfJlA4rXD800Q8dXT3/s4kOdeb+e7QxZI6YnyAk2CN8tu0SYEg5CaHjCkRdmRXLEc
+         yfAQ==
+X-Gm-Message-State: AOAM533+oTPovTq9ONA/j2A1GN3GQZD7C0s2kwyl55cn5tKtmppa+dgp
+        2UIp4agPYVQT/YH2ALiFww==
+X-Google-Smtp-Source: ABdhPJwlOcBLipQCR0h3G80bR+R1jXN6jbmi9p1p3ZtXNEWw+UVg4SLmgYXTJ+malU/zYNbk3+JiPA==
+X-Received: by 2002:a9d:750c:: with SMTP id r12mr46401373otk.273.1638227623991;
+        Mon, 29 Nov 2021 15:13:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id j10sm2467950ooq.5.2021.11.29.15.13.06
+        by smtp.gmail.com with ESMTPSA id u40sm3496985oiw.56.2021.11.29.15.13.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 15:13:06 -0800 (PST)
-Received: (nullmailer pid 788867 invoked by uid 1000);
-        Mon, 29 Nov 2021 23:13:05 -0000
-Date:   Mon, 29 Nov 2021 17:13:05 -0600
+        Mon, 29 Nov 2021 15:13:43 -0800 (PST)
+Received: (nullmailer pid 789766 invoked by uid 1000);
+        Mon, 29 Nov 2021 23:13:42 -0000
+Date:   Mon, 29 Nov 2021 17:13:42 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Samuel Holland <samuel@sholland.org>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-crypto@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        linux-sunxi@lists.linux.dev, Chen-Yu Tsai <wens@csie.org>,
-        "David S . Miller" <davem@davemloft.net>,
+Cc:     Maxime Ripard <mripard@kernel.org>, dmaengine@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-sunxi@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: sun8i-ce: Add compatible for D1
-Message-ID: <YaVegSGB+7W7Ulsc@robh.at.kernel.org>
-References: <20211119051026.13049-1-samuel@sholland.org>
+Subject: Re: [PATCH 1/4] dt-bindings: dma: sun50i-a64: Add compatible for D1
+Message-ID: <YaVepmEInHXCPvQA@robh.at.kernel.org>
+References: <20211119052702.14392-1-samuel@sholland.org>
+ <20211119052702.14392-2-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211119051026.13049-1-samuel@sholland.org>
+In-Reply-To: <20211119052702.14392-2-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 18 Nov 2021 23:10:24 -0600, Samuel Holland wrote:
-> D1 has a crypto engine similar to the one in other Allwinner SoCs.
-> Like H6, it has a separate MBUS clock gate.
+On Thu, 18 Nov 2021 23:26:58 -0600, Samuel Holland wrote:
+> D1 has a DMA controller similar to the one in other Allwinner SoCs.
+> Add its compatible, and include it in the list of variants with a
+> separate MBUS clock gate.
 > 
 > Signed-off-by: Samuel Holland <samuel@sholland.org>
 > ---
 > 
->  .../devicetree/bindings/crypto/allwinner,sun8i-ce.yaml      | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  .../bindings/dma/allwinner,sun50i-a64-dma.yaml           | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
