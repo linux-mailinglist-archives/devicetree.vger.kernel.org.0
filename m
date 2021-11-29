@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A400461616
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 14:19:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B254461619
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 14:19:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377467AbhK2NWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 08:22:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51756 "EHLO
+        id S1377708AbhK2NW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 08:22:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232443AbhK2NUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 08:20:13 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B700C07E5EC
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 04:01:55 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id j140-20020a1c2392000000b003399ae48f58so16598974wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 04:01:55 -0800 (PST)
+        with ESMTP id S233851AbhK2NU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 08:20:27 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F394C07E5F2
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 04:02:27 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id d72-20020a1c1d4b000000b00331140f3dc8so12226321wmd.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 04:02:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=uweCsg8C2SBajHvm8AKg9aw0vkXPXn6fvcrsFtDM/+w=;
-        b=YDOYhJjX7Iyna0jxiHtNazzA4BmzwsZsC7W7ng3gatT/L2TEbmtLfbCTJhYuovBKg2
-         fAUpKRfKUazhiJHtlhU4s1wHkfGi5f8vFJQvo7eDKRFSKm6IpbmiQqHAKt+TbRH7ct9k
-         exngdcFibxw+jMswHcayjjDpy9Rb28kyS0IuwgZOFKieBg3mtkApPXc/1ydq3a3nZZmz
-         1MiF6mEAh5/GMwCXdOilE5FvtqpLqy8REDLkelXXJxkv3IbuxmxWgThtv7b8pUBxCCts
-         4ukaGcV7eC2ls6IR2N7Ub5d9SIZ0oDTwUBf0McON4me8azRzH6kZXWPohGFv0cxzchUM
-         jckg==
+        bh=rtEoyHU+/P8SW0Ay3UVQL/1+5D3lNahwv8JalMTUQRo=;
+        b=ePOH7sc2vXzIFbRqfF2nhZlyiC/qsWm6Bkph3nHYyWG5dOaeZ6en3EMmmJ/PFMduhR
+         FSD92+TFDqs0N9hwVRmM+cMKD+rSBYckqVKZMcouRxTW+5YJ/zjhshUKAMGxfGmk4oZa
+         kdaDFdFCzmhJfEGfgWPmPn+BWUDbZqXqh3EtNzmSg+ltcgGxY05jBLbo66g5N5ObRhDk
+         8dJF/6ZaGwo1aZsJ6RZxQliH4jCfbi5kgSjNr4YGKO0STXOMhBKn+ORAd/CvQyVN0xL9
+         q7YU/xNDWXOzVPK6aS4dLx4ytyN5sz96l4+sJeOaH72yeDBcUDzMcdVD7Jwk4bWX40VQ
+         cdnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=uweCsg8C2SBajHvm8AKg9aw0vkXPXn6fvcrsFtDM/+w=;
-        b=BleRmxMwDgzDfxn93PdCWnDPZhOwsfJVzzej+V/mRmnf/ubU+H0kEDWEzh3gWR6SgK
-         AU5jFBDXDII4cg+86BY0pc6/1OeUJLp8/pYi5gfdWULb2VnT6BcIAthkc9Sw3xowms3m
-         6j89GfpZgJDWUfv9ziANq+fl2JFDf/CObij1+GZ/kjjPak+Ccc1i1FcqVsE8Z0KHhuWn
-         eEDNJQrIWDfGE5SYc/pVXraGtK1k4d7XXUqDSoOfARSoC25vWPLaXK6xZwMYzW6lXtvn
-         Gdzo1zqQH91Lc270WkY2gE2fOXRoN+UUXydt6XL2hGbAJfom6IfhCwx0SONRN7Y8jHIr
-         thSQ==
-X-Gm-Message-State: AOAM5312xLzqLYXAgVfsYH6ENvU0H0caD6sp2Zi83bkvZr66taCxTIyZ
-        uvaiEjptLNNY3s7VRLbihaa9Qw==
-X-Google-Smtp-Source: ABdhPJxXeOaBN84ZRyNW+2b2TC2uaI9IKgTsh1VIFHIDU0HmrPmSRUwo7d3GSAEeroFnvTIiojTdqw==
-X-Received: by 2002:a1c:a905:: with SMTP id s5mr36902877wme.150.1638187313932;
-        Mon, 29 Nov 2021 04:01:53 -0800 (PST)
+        bh=rtEoyHU+/P8SW0Ay3UVQL/1+5D3lNahwv8JalMTUQRo=;
+        b=c9zj9hDzdXrA8lXVbnaAAOOth7cS2F2I0cNQQnCxFUQGhOr1zB7hs1I10EWxkEYEh/
+         RDxwRVuAZHUZpGlaVlbPuLweuJHJAmXgkXcU/v9/YjxQ2T2qJWCzfqfkEozYRMwLcb4G
+         Z15ImDi/NUblXfOz+GlIx4PCsN1GP33tiT9HXdt4Da3fwOH/VtPSbgT642+YRnTVbbXW
+         m/DCN/WW5GZKPlzXBypKXFHJ0e3sOB6K+JApAulK3WpKAG8YU/s6NsNurfxONXPboJj6
+         c6vIUDnc1hHR2BR88fQ/FJA4lIUFPcoiJHM6Tlx5GFyIWoTSnmCo9xB/rgsEbwZ93Nyg
+         T/rg==
+X-Gm-Message-State: AOAM532Zo6rj7D03uFADIbSD5TCsXvncfwgPEFi/BoDtiD4uLB8j/LG1
+        9lxh3ND/fpBm/s6ixge02TYWCA==
+X-Google-Smtp-Source: ABdhPJwR1tF8O7hzEzJcCJ4jcEWa/yiocIO1Vw5sOOlTt/PvUI1C5xUpKAVswc1ff/cHUwZwDdtkIw==
+X-Received: by 2002:a05:600c:2149:: with SMTP id v9mr36895221wml.59.1638187346038;
+        Mon, 29 Nov 2021 04:02:26 -0800 (PST)
 Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id 10sm17624629wrb.75.2021.11.29.04.01.53
+        by smtp.gmail.com with ESMTPSA id n7sm13279389wro.68.2021.11.29.04.02.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 04:01:53 -0800 (PST)
-Date:   Mon, 29 Nov 2021 12:01:51 +0000
+        Mon, 29 Nov 2021 04:02:25 -0800 (PST)
+Date:   Mon, 29 Nov 2021 12:02:23 +0000
 From:   Lee Jones <lee.jones@linaro.org>
 To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
@@ -59,15 +59,16 @@ Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
         Bartosz Golaszewski <brgl@bgdev.pl>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-gpio@vger.kernel.org, linux-power@fi.rohmeurope.com
-Subject: Re: [PATCH RESEND 3/4] mfd: bd70528: Drop BD70528 support
-Message-ID: <YaTBL6Vtaxrnjhgb@google.com>
+Subject: Re: [PATCH RESEND 1/4] dt-bindings: mfd: regulator: Drop BD70528
+ support
+Message-ID: <YaTBTwvK0LDetdP+@google.com>
 References: <cover.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
- <cf7dfd98b3403ad363b2b48b57bdbfd57a6416cb.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
+ <64c88990270d9a22508446ef2fe3b6a2622a0b01.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <cf7dfd98b3403ad363b2b48b57bdbfd57a6416cb.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <64c88990270d9a22508446ef2fe3b6a2622a0b01.1637066805.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,17 +81,15 @@ On Tue, 16 Nov 2021, Matti Vaittinen wrote:
 > this IC. Let's ease the maintenance burden and drop the driver. We can
 > always add it back if there is sudden need for it.
 > 
+> Acked-by: Rob Herring <robh@kernel.org>
 > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> Acked-by: Lee Jones <lee.jones@linaro.org>
+> 
 > ---
->  drivers/mfd/Kconfig              |  17 --
->  drivers/mfd/Makefile             |   1 -
->  drivers/mfd/rohm-bd70528.c       | 314 -------------------------
->  include/linux/mfd/rohm-bd70528.h | 389 -------------------------------
->  include/linux/mfd/rohm-generic.h |   1 -
->  5 files changed, 722 deletions(-)
->  delete mode 100644 drivers/mfd/rohm-bd70528.c
->  delete mode 100644 include/linux/mfd/rohm-bd70528.h
+>  .../bindings/mfd/rohm,bd70528-pmic.txt        | 102 ------------------
+>  .../regulator/rohm,bd70528-regulator.txt      |  68 ------------
+>  2 files changed, 170 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/rohm,bd70528-regulator.txt
 
 Applied, thanks.
 
