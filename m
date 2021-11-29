@@ -2,232 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C180A461129
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 10:33:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A7C8346113F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 10:41:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231634AbhK2JhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 04:37:12 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:34680 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232833AbhK2JfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 04:35:12 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AT9Vak1073788;
-        Mon, 29 Nov 2021 03:31:36 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638178296;
-        bh=TFnaxx1p3b3jfLvM4I/bNr5MSWAF81cwkl7uHkZMNmI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=bfhoHolUJlYY3rBn2+qjm4+NrGm0VTn5/q6dKF/Egim5D3EBiPqg8UjanITuT1pZH
-         lLrlsbRZMfV4XPOdCVaIA2LudZBVhZF42vqwP+0VA0S5mb01OPvhkz12X2myEdsBFd
-         O+xSfyLHtTLi5s8dE19vcshC8NQ+DZn5+g5s2CfE=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AT9VaPA069033
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 29 Nov 2021 03:31:36 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 29
- Nov 2021 03:31:36 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 29 Nov 2021 03:31:35 -0600
-Received: from [10.250.232.185] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AT9VWOu109337;
-        Mon, 29 Nov 2021 03:31:32 -0600
-Subject: Re: [PATCH RFC v3 1/4] dt-bindings: mux: Increase the number of
- arguments in mux-controls
-To:     Peter Rosin <peda@axentia.se>
-CC:     Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-can@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-References: <20211123081222.27979-1-a-govindraju@ti.com>
- <20211123081222.27979-2-a-govindraju@ti.com>
- <24781209-928b-dea4-de0b-b103dac8de82@axentia.se>
- <5f455c4d-5edb-4382-1193-a519a7a227a5@ti.com>
- <f6e8cec9-4d74-dda5-d56a-b55ebfadf30a@axentia.se>
-From:   Aswath Govindraju <a-govindraju@ti.com>
-Message-ID: <46644e9a-a9e9-4cdb-47e3-f42ebf49f805@ti.com>
-Date:   Mon, 29 Nov 2021 15:01:31 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S241884AbhK2JpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 04:45:09 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:54917 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231709AbhK2JnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Nov 2021 04:43:09 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 4425B320090C;
+        Mon, 29 Nov 2021 04:39:49 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Mon, 29 Nov 2021 04:39:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=ZVe3zv6UjeXTO4kI5ekvbwjSUuS
+        cZzV/LGwknVJuSo0=; b=Pds3adz1oVXE53sq4XjyUyu6lzUi/f448XazotAUmYh
+        K869KeuEaVKUO0zOzIQOZcOw9dJfTp0zbwSA7G1hfToUjgRnMPqQsoMZJqJcQCd1
+        0pNQYbr0us4vS472e6+Z3vvpZ4txGq2ojRkchd7UQpJkiz4pVXMsZSOGK+KAL+px
+        QSbQJIPtANuxrMrneXU4FxU2qRodnCemRz7VYK5TYDN0vVUoGGHtMDGPIVS6dWuy
+        XIfZVAjg0P84FEkTgisaWRrAGRrLeRlWgmVuseG4PjUht9jBSF585Bc7kO9ImrU0
+        GVDraCWPjky2v/kJZknLPgXMeH2idYxvjfxJO0gKS4g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=ZVe3zv
+        6UjeXTO4kI5ekvbwjSUuScZzV/LGwknVJuSo0=; b=SLWdi2ti1LrHE2t5yr0zRe
+        WItwLzeLlNSX+XTdwonPISbPF9AsTSExUglBdqZJNgfc5z1OB8ATCL84ww33sW2i
+        OK0q9Zwd71Vrgg9JCVTchkmBNycHjFqJEgTH0kI5ST4Di0LzHuekXZuRFdkzFtNX
+        ZjLRd8EijmrRqYEv12DBAneinA6PyqzEVk/kzKVT9pbVwyxxU5A5XxD5Sjx5yhG/
+        a0IQp6HSrYkNjFuBnRohs1tRG+LgW0wZS5bUOEfPRhzNBD3FtrbDqIGumxoepfkg
+        EbgLCPYLunhy37qeMb9IKF/BGmCw+g7+fVzHRK/KQsWQHD0iCVI0YVMsVtoeyyfA
+        ==
+X-ME-Sender: <xms:5J-kYQaBfiks2cDlnqHQPbXtJq3SVe3FTW1VG4b1fNEGO775D4XOEw>
+    <xme:5J-kYbZvRsDveG49_f6_a1r0U-ll4xo90G07pnXiJjKfwjO2jSeap3uM_snhiie3E
+    rXuuSfD3CWtApqbaGM>
+X-ME-Received: <xmr:5J-kYa9sg-1WizFIA16Mk-063FH0jWBivL72hcQ9ZB3s5i-3CtNG40tTZGJE1-TZ7ORiq8EIhB2hbK1saz4-_OXRjxjYYHjE2ws>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrheelgddtjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:5J-kYars0WzYhb4-Mjh8N5ACricvFItBk9lW76BxjhDWJuuZCjq-SQ>
+    <xmx:5J-kYbpE_sTihnUl_gislrCh-z3Eo2CMw_ELmnzZnUYEvOtVlkMd2w>
+    <xmx:5J-kYYT7YHqLNMCorD1JlG7XEjrtZa8vhuOMaxKkgrmjZQc1UodnBw>
+    <xmx:5J-kYcczRujADtS_XtCzOKmQ8qZXHshagl_QuHlHk1__SAbpQUdzgQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 29 Nov 2021 04:39:47 -0500 (EST)
+Date:   Mon, 29 Nov 2021 10:39:46 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     David Lechner <david@lechnology.com>
+Cc:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        linux-staging@lists.linux.dev, dave.stevenson@raspberrypi.com
+Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
+Message-ID: <20211129093946.xhp22mvdut3m67sc@houat>
+References: <20211124150757.17929-1-noralf@tronnes.org>
+ <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
 MIME-Version: 1.0
-In-Reply-To: <f6e8cec9-4d74-dda5-d56a-b55ebfadf30a@axentia.se>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mmhz6zluj3pfxhwm"
+Content-Disposition: inline
+In-Reply-To: <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
 
-On 29/11/21 1:45 pm, Peter Rosin wrote:
-> 
-> 
-> On 2021-11-29 05:36, Aswath Govindraju wrote:
->> Hi Peter,
->>
->> On 25/11/21 7:05 pm, Peter Rosin wrote:
->>> Hi!
->>>
->>> You need to have some description on how #mux-control-cells now work.
->>> The previous description is in mux-consumer.yaml and an update there
->>> is needed.
->>>
->>> However, I have realized that the adg792a binding uses #mux-control-cells
->>> to indicate if it should expose its three muxes with one mux-control
->>> and operate the muxes in parallel, or if it should be expose three
->>> independent mux-controls. So, the approach in this series to always
->>> have the #mux-control-cells property fixed at <2> when indicating a
->>> state will not work for that binding. And I see no fix for that binding
->>> without adding a new property.
->>>
->>> So, I would like a different approach. Since I dislike how mux-controls
->>> -after this series- is not (always) specifying a mux-control like the name
->>> says, but instead optionally a specific state, the new property I would
->>> like to add is #mux-state-cells such that it would always be one more
->>> than #mux-control-cells.
->>>
->>> 	mux: mux-controller {
->>> 		compatible = "gpio-mux";
->>> 		#mux-control-cells = <0>;
->>> 		#mux-state-cells = <1>;
->>>
->>> 		mux-gpios = <...>;
->>> 	};
->>>
->>> 	can-phy {
->>> 		compatible = "ti,tcan1043";
->>> 		...
->>> 		mux-states = <&mux 1>;
->>> 	};
->>>
->>> That solves the naming issue, the unused argument for mux-conrtrollers
->>> that previously had #mux-control-cells = <0>, and the binding for adg792a
->>> need no longer be inconsistent.
->>>
->>> Or, how should this be solved? I'm sure there are other options...
->>>
->>
->>
->> I feel that the new approach using mux-state-cells seems to be
->> overpopulating the device tree nodes, when the state can be represented
->> using the control cells. I understand that the definition for
->> mux-controls is to only specify the control line to be used in a given
->> mux. Can't it now be upgraded to also represent the state at which the
->> control line has to be set to?
->>
->> With respect to adg792a, it is inline with the current implementation
->> and the only change I think would be required in the driver is,
-> 
-> No, that does not work. See below.
-> 
->>
->> diff --git a/drivers/mux/adg792a.c b/drivers/mux/adg792a.c
->> index e8fc2fc1ab09..2cd3bb8a40d4 100644
->> --- a/drivers/mux/adg792a.c
->> +++ b/drivers/mux/adg792a.c
->> @@ -73,8 +73,6 @@ static int adg792a_probe(struct i2c_client *i2c)
->>         ret = device_property_read_u32(dev, "#mux-control-cells", &cells);
->>         if (ret < 0)
->>                 return ret;
->> -       if (cells >= 2)
->> -               return -EINVAL;
->>
->>         mux_chip = devm_mux_chip_alloc(dev, cells ? 3 : 1, 0);
-> 
-> When you add cell #2 with the state, the cells variable will end up
-> as 2 always. Which means that there is no way to alloc one mux
-> control since "cells ? 3 : 1" will always end up as "3", with no
-> easy fix.
-> 
-> So, your approach does not work for this driver.
-> 
+--mmhz6zluj3pfxhwm
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Sorry, but how is this different from the case of
+Hi,
 
-#mux-control-cells = 1
+On Wed, Nov 24, 2021 at 04:03:07PM -0600, David Lechner wrote:
+> On 11/24/21 9:07 AM, Noralf Tr=F8nnes wrote:
+> > This patchset adds a missing piece for decommissioning the
+> > staging/fbtft/fb_st7735r.c driver namely a way to configure the
+> > controller from Device Tree.
+> >=20
+> > All fbtft drivers have builtin support for one display panel and all
+> > other panels using that controller are configured using the Device Tree
+> > 'init' property. This property is supported by all fbtft drivers and
+> > provides a generic way to set register values or issue commands
+> > (depending on the type of controller).
+> >=20
+> > It is common for these types of displays to have a datasheet listing the
+> > necessary controller settings/commands or some example code doing the
+> > same.
+> >=20
+> > This is how the panel directly supported by the fb_st7735r staging
+> > driver is described using Device Tree with that driver:
+> >=20
+> >      width =3D <160>;
+> >      height =3D <128>;
+> >=20
+> >      init =3D <0x1000001
+> >              0x2000096
+> >              0x1000011
+> >              0x20000ff
+> >              0x10000B1 0x01 0x2C 0x2D
+> >              0x10000B4 0x07
+> >              0x10000C0 0xA2 0x02 0x84
+> >              0x10000C1 0xC5
+> >              0x10000C2 0x0A 0x00
+> >              0x10000C5 0x0E
+> >              0x100003a 0x55
+> >              0x1000036 0x60
+> >              0x10000E0 0x0F 0x1A 0x0F 0x18 0x2F 0x28 0x20 0x22
+> >                        0x1F 0x1B 0x23 0x37 0x00 0x07 0x02 0x10
+> >              0x10000E1 0x0F 0x1B 0x0F 0x17 0x33 0x2C 0x29 0x2E
+> >                        0x30 0x30 0x39 0x3F 0x00 0x07 0x03 0x10
+> >              0x1000029
+> >              0x2000064>;
+> >=20
+> >=20
+> > This is how the same panel is described using the st7735r drm driver and
+> > this patchset:
+> >=20
+> >      width =3D <160>;
+> >      height =3D <128>;
+> >=20
+> >      frmctr1 =3D [ 01 2C 2D ];
+> >      invctr =3D [ 07 ];
+> >      pwctr1 =3D [ A2 02 84 ];
+> >      pwctr2 =3D [ C5 ];
+> >      pwctr3 =3D [ 0A 00 ];
+> >      vmctr1 =3D [ 0E ];
+> >      madctl =3D [ 60 ];
+> >      gamctrp1 =3D [ 0F 1A 0F 18 2F 28 20 22 1F 1B 23 37 00 07 02 10 ];
+> >      gamctrn1 =3D [ 0F 1B 0F 17 33 2C 29 2E 30 30 39 3F 00 07 03 10 ];
+>=20
+> Do these setting correspond to actual physical properties of the display?
+>=20
+> What is the advantage of this compared to just adding a new compatible
+> string if a new display requires different settings? (Other than being
+> able to use a new display without compiling a new kernel/module.)
+>
+> It is nice for the driver implementation to be able to use the byte
+> arrays from the binding directly, but it doesn't really make sense from
+> a "device tree describes the hardware" point of view.
+>=20
+> For example, looking at the data sheet, frmctr1 looks like it is actually
+> multiple properties, the 1-line period, front porch and back porch.
 
-If #mux-control-cells is equal to 1 it means the consumer will use a
-given control line from the mux chip. The same would be the case when we
-will be using, #mux-control-cells is equal to 2, except we can also
-provide the state.
+You're right, but we have two sets of problems that we want to solve,
+and so far the discussion has only been to address one while ignoring
+the other.
 
-If the consumer will use all the lines then #mux-control-cells will be
-set to 0. In this condition the state can't be provided from the DT and
-the consumer will be controlling the entire mux chip. If
-#mux-control-cells is greater than 0 then we will not be able to provide
-multiple lines of control using a single mux-controls entry(mux-controls
-= <...>;) right? We would have the using multiple mux-controls
-entries(mux-controls = <...>, <...>;).
+The solution you suggested works great for the problem the kernel is
+facing: we want a solution that is easy to maintain over the long run,
+while being reliable. Thus, we want to introduce a compatible for each
+panel, that will allow us to describe the panel in the DT without
+exposing too much data, the data being in the kernel.
 
-Thanks,
-Aswath
+This works great over the long run because we can update and fix any
+problem we might have had, send them to stable, etc. It's awesome, but
+it's mostly centered on us, the developers and maintainers.
 
-> Cheers,
-> Peter
-> 
->>         if (IS_ERR(mux_chip))
->>
->> And the following series should be compatible with it. If adg792a driver
->> is the only issue then would there be any issue with only changing it
->> and using this implementation?
->>
->> Thanks,
->> Aswath
->>
->>
->>
->>
->>> Cheers,
->>> Peter
->>>
->>> On 2021-11-23 09:12, Aswath Govindraju wrote:
->>>> Increase the allowed number of arguments in mux-controls to add support for
->>>> passing information regarding the state of the mux to be set, for a given
->>>> device.
->>>>
->>>> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
->>>> ---
->>>>  Documentation/devicetree/bindings/mux/gpio-mux.yaml       | 2 +-
->>>>  Documentation/devicetree/bindings/mux/mux-controller.yaml | 2 +-
->>>>  2 files changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
->>>> index 0a7c8d64981a..c810b7df39de 100644
->>>> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
->>>> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
->>>> @@ -26,7 +26,7 @@ properties:
->>>>        List of gpios used to control the multiplexer, least significant bit first.
->>>>  
->>>>    '#mux-control-cells':
->>>> -    const: 0
->>>> +    enum: [ 0, 1, 2 ]
->>>>  
->>>>    idle-state:
->>>>      default: -1
->>>> diff --git a/Documentation/devicetree/bindings/mux/mux-controller.yaml b/Documentation/devicetree/bindings/mux/mux-controller.yaml
->>>> index 736a84c3b6a5..0b4b067a97bf 100644
->>>> --- a/Documentation/devicetree/bindings/mux/mux-controller.yaml
->>>> +++ b/Documentation/devicetree/bindings/mux/mux-controller.yaml
->>>> @@ -73,7 +73,7 @@ properties:
->>>>      pattern: '^mux-controller(@.*|-[0-9a-f]+)?$'
->>>>  
->>>>    '#mux-control-cells':
->>>> -    enum: [ 0, 1 ]
->>>> +    enum: [ 0, 1, 2 ]
->>>>  
->>>>    idle-state:
->>>>      $ref: /schemas/types.yaml#/definitions/int32
->>>>
->>
-> 
 
+The problem that fbtft (and this series) wants to fix is completely
+different though: it wants to address the issue the users are facing.
+Namely, you get a cheap display from wherever, connect it to your shiny
+new SBC and wants to get something on the display.
+
+In this situation, the user probably doesn't have the knowledge to
+introduce the compatible in the kernel in the first place. But there's
+also some technical barriers there: if they use secure boot, they can't
+change the kernel (well, at least the knowledge required is far above
+what we can expect from the average user). If the platform doesn't allow
+access to the DT, you can't change the DT either.
+
+Let's set aside those constraints for a moment though. For most of these
+devices, you wouldn't even be able to come up with a proper compatible.
+All of those displays are typically a panel and a controller glued
+together, and the exact initialization sequence depends on both. The
+panel is never really mentioned, neither is its manufacturer, or its
+exact product id. In other words, we wouldn't be able to come up with a
+good compatible for them.
+
+Let's now assume we do have access to all those info and can come up
+with a good, upstreamable, compatible. We now require the user to
+contribute it upstream, and then expect them to wait for 1-2 years for
+that patch to show up in their distribution of choice.
+
+And then, if we were to get those patches, chances are we don't really
+want them anyway since we would be drowning in those small patches
+no-one really wants to review.
+
+
+So yeah, the solution we have is probably a good solution for "real"
+panels, glued to a device (and even then, the recent discussion around
+panel-edp shows that it has a few shortcomings). But it's a *terrible*
+solution for all parties involved when it comes to those kind of
+displays.
+
+
+I agree that it doesn't really fit in the DT either though. Noralf, what
+kind of data do we need to setup a display in fbtft? The init sequence,
+and maybe some enable/reset GPIO, plus some timing duration maybe?
+
+There's one similar situation I can think of: wifi chips. Those also
+need a few infos from the DT (like what bus it's connected to, enable
+GPIO, etc) and a different sequence (firmware), sometimes different from
+one board to the other.
+
+Could we have a binding that would be something like:
+
+panel@42 {
+	 compatible =3D "panel-spi";
+	 model =3D "panel-from-random-place-42";
+	 enable-gpios =3D <&...>;
+}
+
+And then, the driver would request the init sequence through the
+firmware mechanism using a name generated from the model property.
+
+It allows to support multiple devices in a given system, since the
+firmware name wouldn't conflict, it makes a decent binding, and users
+can adjust the init sequence easily (maybe with a bit of tooling)
+
+Would that work?
+
+Maxime
+
+--mmhz6zluj3pfxhwm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaSf4gAKCRDj7w1vZxhR
+xUDzAP9EGlPTaekn1uaS4vTMRgFJN8qnFDuwOynuzJzTH7awcgD+MSy/uhv9ZeLI
+wz31+R3wJaJVlZw1OT2crqqOE3VKEQU=
+=/HKs
+-----END PGP SIGNATURE-----
+
+--mmhz6zluj3pfxhwm--
