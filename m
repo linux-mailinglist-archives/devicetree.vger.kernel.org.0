@@ -2,66 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F9454621EB
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 21:12:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1997462216
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 21:21:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232952AbhK2UPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 15:15:49 -0500
-Received: from mail-ot1-f44.google.com ([209.85.210.44]:47004 "EHLO
-        mail-ot1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234524AbhK2UNt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 15:13:49 -0500
-Received: by mail-ot1-f44.google.com with SMTP id 98-20020a9d086b000000b0057a403bbd4eso2521828oty.13;
-        Mon, 29 Nov 2021 12:10:31 -0800 (PST)
+        id S229992AbhK2UY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 15:24:27 -0500
+Received: from mail-ot1-f52.google.com ([209.85.210.52]:33768 "EHLO
+        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233628AbhK2UWB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 15:22:01 -0500
+Received: by mail-ot1-f52.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso27274080otf.0;
+        Mon, 29 Nov 2021 12:18:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AZAXsJSUQjYW1ESouOH/jYv3V0TFgwXgT2iRk93eZU8=;
-        b=3X9ZCVnCWpbwg31PoLYS+k1qQ2RouGlEPYibn9DEs/Mqdh+54elA8sUnjY/onpGaeX
-         /ePiFNYYQ1MewcVMKiSzajqgaPtF7onHYs3ts3+Q+l7gQIeJrohWMW3+ZfKpmbJ2alSZ
-         rwRob1t2uCZ0QTPOQc8hE8QpqvEN1SICjHDGxQ5OxkBgDLwF9NLsXcnyHZLriQbxizSR
-         fQGq8ytbexcz+JZYZByjJ4UmhBhdYIuLEGiV2RyCOIdLGtGeUezNY0OpcHy/uS9Yp0WA
-         qhanj0JKY0qIm2HqRvLtBBSLBiVFLLoAVsVoVxs2FFoD08CwrIYjTcTXE0LSAmpQ+Wao
-         yeoA==
-X-Gm-Message-State: AOAM530qLvAJBnLcvdCENPgc9CC9+3LuXEfX8Ifwyn/KgvuSpujC4zrt
-        BNXqRQvW7N6yskbneXsIWw==
-X-Google-Smtp-Source: ABdhPJzuHSkT6aK0MzKQ+XdJKL442IfwmKnd73aDsFA/r4KNla6O+3VTcXB/4IPqG8A+cIv3BXl2Rg==
-X-Received: by 2002:a05:6830:169a:: with SMTP id k26mr47154935otr.64.1638216630690;
-        Mon, 29 Nov 2021 12:10:30 -0800 (PST)
+        bh=AKx0UYp+W8zlORh/hAYHKyH5CFDH7qwJghIGPlkX1y4=;
+        b=KWFmWZpBFj2ZTcuOk0wL8BNrDTKitu1nbN45mb/ookWH2fvaiBMJSlHFLnCqlMgnSX
+         bQJlCICOEAzb7MTVMYFOxZEafUDYTSR1IbD8Cl0A+NsiGTKZ/ShXTtY6oGN2RC9p/56q
+         Viws++XMtsPD8jvTl+i8+4C04DeyKkBE+oRz0In+zrn/Fz6DA7AZ5ntaxDWUfctr2G1o
+         ZfxgeLor6PpuFbLydYU3dXRsOa5bk/+DbvW2ZPdhwPzqfFNIwrx/rMl5uOaFb7OJ7j4Y
+         ExmvgGMe8nhaAcoL6/QYEEL2puXwAlQAS9eD/vVOlf6ey0Fi3a/COdc40azAPVYtSurL
+         Y1eQ==
+X-Gm-Message-State: AOAM530mXl/y+shWnOAZznNiNFJo19RhkaPwQRKN31T89R2leZ7Sw5cJ
+        u1rvN8Bv+0yZQhZmlh+Ntg==
+X-Google-Smtp-Source: ABdhPJzEO4tezry+DcDXNejiaC6V+voG6IAskVfPvrOgWmqcp2NdJc3t8aNfv9fiiM/5wwFXk9QbAw==
+X-Received: by 2002:a05:6830:2704:: with SMTP id j4mr47148179otu.184.1638217123238;
+        Mon, 29 Nov 2021 12:18:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v12sm2827187ote.9.2021.11.29.12.10.29
+        by smtp.gmail.com with ESMTPSA id x13sm2813714otr.58.2021.11.29.12.18.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 12:10:30 -0800 (PST)
-Received: (nullmailer pid 522769 invoked by uid 1000);
-        Mon, 29 Nov 2021 20:10:29 -0000
-Date:   Mon, 29 Nov 2021 14:10:29 -0600
+        Mon, 29 Nov 2021 12:18:42 -0800 (PST)
+Received: (nullmailer pid 534139 invoked by uid 1000);
+        Mon, 29 Nov 2021 20:18:41 -0000
+Date:   Mon, 29 Nov 2021 14:18:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     David Heidelberg <david@ixit.cz>
-Cc:     dri-devel@lists.freedesktop.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        ~okias/devicetree@lists.sr.ht, Hans de Goede <hdegoede@redhat.com>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>
-Subject: Re: [PATCH] dt-bindings: display: sync formats with simplefb.h
-Message-ID: <YaUztTzXSRaK9dOB@robh.at.kernel.org>
-References: <20211108183322.68192-1-david@ixit.cz>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-clk@vger.kernel.org,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: Re: [PATCH] [RFC] dt-bindings: clk: Introduce 'critical-clocks'
+ property
+Message-ID: <YaU1oThMxsBJj+re@robh.at.kernel.org>
+References: <20211108224242.278128-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211108183322.68192-1-david@ixit.cz>
+In-Reply-To: <20211108224242.278128-1-marex@denx.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 08 Nov 2021 19:33:22 +0100, David Heidelberg wrote:
-> Sync all formats from simplefb.h into documentation.
+On Mon, Nov 08, 2021 at 11:42:42PM +0100, Marek Vasut wrote:
+> NOTE: This is an RFC patch showing how this mechanism might be workable.
 > 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Some platforms require clock to be always running, e.g. because those clock
+> supply devices which are not otherwise attached to the system. One example
+> is a system where the SoC serves as a crystal oscillator replacement for a
+> programmable logic device. The critical-clock property of a clock controller
+> allows listing clock which must never be turned off.
+> 
+> The implementation here is similar to "protected-clock", except protected
+> clock property is currently driver specific. This patch attempts to make
+> a generic implementation of "critical-clock" instead.
+> 
+> Unlike "assigned-clocks", the "critical-clock" must be parsed much earlier
+> in __clk_register() to assign CLK_IS_CRITICAL flag to clk_init_data .flags
+> field. The parsing code obviously need to be cleaned up and factor out into
+> separate function.
+> 
+> The new match_clkspec() callback is used to determine whether struct clk_hw
+> that is currently being registered matches the clock specifier in the DT
+> "critical-clock" property, and if so, then the CLK_IS_CRITICAL is added to
+> these newly registered clock. This callback is currently driver specific,
+> although I suspect a common and/or generic version of the callback could
+> be added. Also, this new callback could possibly be used to replace (*get)
+> argument of of_clk_add_hw_provider() later on too.
+> 
+> Thoughts (on the overall design, not code quality or patch splitting) ?
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-power@fi.rohmeurope.com
+> To: linux-clk@vger.kernel.org
 > ---
->  .../bindings/display/simple-framebuffer.yaml         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  .../bindings/clock/clock-bindings.txt         | 16 ++++++++++++
+>  drivers/clk/clk-bd718x7.c                     | 15 +++++++++++
+>  drivers/clk/clk.c                             | 25 +++++++++++++++++++
+>  include/linux/clk-provider.h                  |  2 ++
+>  4 files changed, 58 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> index f2ea53832ac63..d9a783c35c5a1 100644
+> --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> @@ -169,6 +169,22 @@ a shared clock is forbidden.
+>  Configuration of common clocks, which affect multiple consumer devices can
+>  be similarly specified in the clock provider node.
+>  
+> +==Critical clocks==
+> +
+> +Some platforms require clock to be always running, e.g. because those clock
+> +supply devices which are not otherwise attached to the system. One example
+> +is a system where the SoC serves as a crystal oscillator replacement for a
+> +programmable logic device. The critical-clock property of a clock controller
+> +allows listing clock which must never be turned off.
+> +
+> +   clock-controller@a000f000 {
+> +        compatible = "vendor,clk95;
+> +        reg = <0xa000f000 0x1000>
+> +        #clocks-cells = <1>;
+> +        ...
+> +        critical-clocks = <UART3_CLK>, <SPI5_CLK>;
 
-Applied, thanks!
+This will need a schema definition in dtschema.
+
+Otherwise, the concept is fine for me. 
+
+Rob
