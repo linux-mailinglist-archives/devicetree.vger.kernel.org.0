@@ -2,101 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60E53461A5A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 15:53:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B1E1461A6E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 15:55:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237644AbhK2O4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 09:56:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43262 "EHLO
+        id S243761AbhK2O6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 09:58:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240085AbhK2Oy2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 09:54:28 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C56FCC06175A
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 05:16:31 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id u1so36670895wru.13
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 05:16:31 -0800 (PST)
+        with ESMTP id S233429AbhK2O4W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 09:56:22 -0500
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11AB5C07E5E2
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 05:17:54 -0800 (PST)
+Received: by mail-wr1-x42b.google.com with SMTP id i5so36754883wrb.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 05:17:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=D9hb8ArcwSF5+l+4/7GlEzMkRJEdF2V8j8hWtJdo/N4=;
-        b=GH8rhxB4nc2We8eEaVUt6CIrsHX1ALvK7mHLTzRymQGJnCNJFVLzjumwmv9RGrVDpz
-         JiSoHww9JW2dHPxd7c6LUBHILLrSZp3Uw9Kt7SYi1VaY4Yez8hRnu6dNI6qY1lfcD25N
-         /gyyU9ZsQJy52DLXgssjmLU8amht8emxx4BMIig+4CNh9cNPx6SubRru8Em1jcSc99cM
-         0NcIVgKesYU8/8jvDRACs07L166TMOzdi0FcxDI6AYwmbgVOVF8ykEd1JZuFqLwdkrq2
-         A7ttHByDX7qk8ml/4zSp5S6HizJqcahEPk6OSLzhg+WKiGSLdCqzQdHHPMD1e3MGGAG+
-         muEw==
+        bh=TufeQEGFPXdPqZUewAvDpIDz7hRA8J+tU2fgiZwFK3s=;
+        b=Rh2nwXPnvA9iuBIYM2mJCjDkGte7jZWqfXb9ApWOfiwSTUSNP4dZhoUcy0FCOmAPaZ
+         s6IQvCVpoVJaWJ39WB8qGbG/FjaZ69p9XhFOCS0ht+5ZEQxi+6s7I4ODu7ZK06UJH2QB
+         CXVwCr//Ow7inoB7iR4FEcxRs+ivyRHCoygZkEYp2YcTSeIqCXYhs1Gv1reHegc6/nK5
+         DuQXq/N4zm+SWqL7eAhzZyOKECQ6uiYgg3rTdQIBiQLfJSFx9Pjsh0Cb9/XHLwxn8f8+
+         R95wIhtjdkUCp38WVAZbV7jLAy1OzJBfu6FovdPuvZs/46vT5hLXdzL2ACwX4LLfaCP9
+         f8Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=D9hb8ArcwSF5+l+4/7GlEzMkRJEdF2V8j8hWtJdo/N4=;
-        b=k28vP48gbsToVePsunqTMvM5pZR9ZVGKFI2DIUAB8KcVIfaKLlRW+p+4dVKIXedVBS
-         2vDKC+loh1Js6OWENyo7RqPKQMtVZZY6Bjf2EBjQJsYVEJI9z3qaaA1qVfaE0+Xtd85u
-         Sqxk4GbACHZvtrTM5EDirvVm0dDhCJIe4+NbAA3tBvDd8+OEJfBOJDlGXa+MxrjprhPt
-         KqkWw/x1fJwDGGTFydfrk8XDthEUl4ou0YB8nUtqWWgYxkW2yFdbJwGmq2mnDFbctAFd
-         /Og8ejWYGPht3DrWIxcWbE7QqnWu6T4dUY1G/trlyrfwKPe2utPDkSi/giSh07QgjkZq
-         UR+A==
-X-Gm-Message-State: AOAM530DIbr51AQpZnNIEsVHw+6TwDx6T2CFd/ao0QRmAQgso8ctdXXL
-        MI5xZvlR13oBMImh0MYtERMFyg==
-X-Google-Smtp-Source: ABdhPJzXIFYcO4sU5Nv6WKWg9fU5wORe5on5+K4t3PjWq3unoujLZjIQpWVT6wU5fO64n3ia7JzI1w==
-X-Received: by 2002:adf:bc89:: with SMTP id g9mr33793200wrh.578.1638191790352;
-        Mon, 29 Nov 2021 05:16:30 -0800 (PST)
+        bh=TufeQEGFPXdPqZUewAvDpIDz7hRA8J+tU2fgiZwFK3s=;
+        b=OdXtQF9Iyyqo4Rxk/tWaosW7DhhffXZvYh8YwOF6o4W1OviGtK74G3ifd/ZOXkjEzf
+         6p2nkJVegOWA7fniLoVpMPC/k4J1H8daoxMAtgyAjQq66IGbLckd7ODXjiRrXlfT0t3d
+         N79JiyqsvUSWbrQ/h8tF/pj4NiKHGqbEIFnfAJk7vOgsnlZytZVTBYIVZRQml5AKsZVt
+         Yrg/DT7kGgnAtoZ/QdVB9xRXS/8GRAlFWNY2Q+rGnzFr7TN5THG70FP0ua0G3YoXQXF/
+         4R6xg5O/A0iuGTlP9XSJSLWeb0f7vsXGNrpa3q11tlwa5lG8j2x+EoTSvaEM34R+bU7R
+         NYOg==
+X-Gm-Message-State: AOAM530O77SQGmFNQfU6moCYJ0bPOnzpVytaEcesfvmT9fMYdq4W0BnF
+        LRwnqSwV0skaw0mnwLSSZwM3FQ==
+X-Google-Smtp-Source: ABdhPJxQTo38KGVz5QhFkfSjcXgQk7w89OcRlvyUQzIvM0KWq9+nkcNGUHA3aegfkb82x2rH9FY91A==
+X-Received: by 2002:adf:fbc5:: with SMTP id d5mr36439746wrs.291.1638191872656;
+        Mon, 29 Nov 2021 05:17:52 -0800 (PST)
 Received: from google.com ([2.31.167.18])
-        by smtp.gmail.com with ESMTPSA id d8sm13765942wrm.76.2021.11.29.05.16.29
+        by smtp.gmail.com with ESMTPSA id l15sm14438472wme.47.2021.11.29.05.17.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 05:16:29 -0800 (PST)
-Date:   Mon, 29 Nov 2021 13:16:28 +0000
+        Mon, 29 Nov 2021 05:17:52 -0800 (PST)
+Date:   Mon, 29 Nov 2021 13:17:50 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] regulator: dt-bindings: maxim,max77686: convert
- to dtschema
-Message-ID: <YaTSrABZIbqqJ6p5@google.com>
-References: <20211125074826.7947-1-krzysztof.kozlowski@canonical.com>
- <20211125074826.7947-2-krzysztof.kozlowski@canonical.com>
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: syscon: Add samsung,exynos850-sysreg
+Message-ID: <YaTS/l1wYV892JSn@google.com>
+References: <20211126230620.478-1-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211125074826.7947-2-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20211126230620.478-1-semen.protsenko@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Nov 2021, Krzysztof Kozlowski wrote:
+On Sat, 27 Nov 2021, Sam Protsenko wrote:
 
-> Convert the regulators of Maxim MAX77686 PMIC to DT schema format.
+> Document Samsung Exynos850 compatible for system registers.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Acked-by: Mark Brown <broonie@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
-> 
-> Changes since v2:
-> 1. Rebased.
-> 2. Add Rob's tag.
-> 
-> Changes since v1:
-> 1. Split regulator nodes pattern on those supporting ena-gpios and those
->    don't.
-> 2. Drop regulator-name from properties.
-> 3. Add Mark's tag.
-> ---
->  .../bindings/regulator/max77686.txt           | 71 ----------------
->  .../bindings/regulator/maxim,max77686.yaml    | 83 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  3 files changed, 84 insertions(+), 71 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/regulator/max77686.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77686.yaml
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Applied, thanks.
 
