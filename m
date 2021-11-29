@@ -2,151 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6179346283D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 00:28:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15975462885
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 00:45:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbhK2Xbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 18:31:52 -0500
-Received: from mail-db8eur05on2071.outbound.protection.outlook.com ([40.107.20.71]:39584
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S229558AbhK2Xbs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 18:31:48 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=axiCyfR7ynh5pvwppmzTNvc4SOJxLxbbLtCsdkj+5pg7IQylDx3qO5bDr5c6oUiuLPBxD/6zvaaWocmNawz7dmuiZpLJc2uf4qF4h+DIxpLUeOXi0vt1xOM/DZ+x/6dUHfq7TjpArOgX9puv7xXzbgEIeKVzloZ1GawMFiZsvpAB6xLQIYSBBE5YykRVrtQchyI6p5QojGKEB44+QmYnIJdLIQSl+704BUfCfqSKt2s/6phekvTP3L/yVdGi1kVGRVhdVhleSJws2JdYzNGigXaHmA7ISk0eZeEJzrOSImvVS8tNiDWLKCUIINQp1rA3Q/r1XN9knCHIgumIRFplyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=szeaF5C1IEXblw1y8NHpz21eGAwojgP6lzo9wFP7Ec8=;
- b=P5n+d11C3RXzPWqx+e9eiOwcCQ6K8yn6sVy0mlD5DyOsjFbMjx/B2jJ8TrPT6hZ994lDkdyCsX/DMOy1ecbraKDO1o6WrmqYKCsQQ9/oJ1H2WKLnG8G1b1YU7ywDuDyYZIFhmR4sHmkl0EhpwxDDj1Ni86PVjAo9EOHBv1Ka17t15CfobV+fnXOfkQKKQm3PCwM5kH1J3wCXigUnN78qyLvEbYwnqBsDTfONv/eqQ498MELen+loCVl2x0w/j+fFHQkr+d8/fuUQ1LxbcpZqEgPHcdGO3Q1nkzOE+664Y6RXynosv+6WRqti6uX6faL6YHx8ixD1I5pHpP1kr6Bf/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=szeaF5C1IEXblw1y8NHpz21eGAwojgP6lzo9wFP7Ec8=;
- b=INLrGd3RdaVY4XXpqOjeXe0FKufunSdS80zF4dr8PQCIyjWjRBd95ZfOOf/SGsK/e+TekMPrWdUoH40Cfz3EGIiZdXpA3Q1TMeLPkU6dHDm9m0TvxEdvhlPKnV+hpx22NITxNgjD8X3fO+cOUdNBx8RDKDx4VFh6VfA7jJ7T+Hw=
-Received: from AS8PR04MB8946.eurprd04.prod.outlook.com (2603:10a6:20b:42d::18)
- by AS8PR04MB8945.eurprd04.prod.outlook.com (2603:10a6:20b:42c::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.21; Mon, 29 Nov
- 2021 23:28:28 +0000
-Received: from AS8PR04MB8946.eurprd04.prod.outlook.com
- ([fe80::60be:d568:a436:894b]) by AS8PR04MB8946.eurprd04.prod.outlook.com
- ([fe80::60be:d568:a436:894b%6]) with mapi id 15.20.4734.024; Mon, 29 Nov 2021
- 23:28:28 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Shawn Guo <shawnguo@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH 02/11] dt-bindings: fsl,layerscape-dcfg: add missing
- compatible for lx2160a
-Thread-Topic: [PATCH 02/11] dt-bindings: fsl,layerscape-dcfg: add missing
- compatible for lx2160a
-Thread-Index: AQHX1oF3mYCqvyMsK022bwSfKQvzYawbGV6AgAAqnQA=
-Date:   Mon, 29 Nov 2021 23:28:28 +0000
-Message-ID: <AS8PR04MB894647B096661C2030EB84F98F669@AS8PR04MB8946.eurprd04.prod.outlook.com>
-References: <20211110222200.6780-1-leoyang.li@nxp.com>
- <20211110222200.6780-3-leoyang.li@nxp.com>
- <YaU91SxgAFXtDMyW@robh.at.kernel.org>
-In-Reply-To: <YaU91SxgAFXtDMyW@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 84f37930-6e71-42a4-c96a-08d9b38ff2d4
-x-ms-traffictypediagnostic: AS8PR04MB8945:
-x-microsoft-antispam-prvs: <AS8PR04MB8945DBCF667CF74762F8CFA18F669@AS8PR04MB8945.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: tFyF5gdlIVLBfUkBHR0XjRhyxjKTnX+INcEEa4htPmwTNF+IPty9zwx0sUulY1vjLKXtav/yE/fmR+HnZjUUVpxIi0CH6qOkpEGP755netQ17uyezDyujzuQH+s3Pe2Bde7gY1zLS7lx9m3E9m7ddSZz2umjscRRGeR/HJzTEMJbgiEuODbFnQ1ZgsG3uo09WAW5EVSVYwywIRVzK8otZuw+qtJ7JHzoZRypY8PBGnih0PbtC+PKOEhFUD2avmV1IF+eFzubcbttRcz+E8VW0JY6pREZ9C9T64zugFL8PBdYk/uQHyzR+7OqHiTp1LLh/+d+auKBb0paW+0Of0MBUtetW/w7mj7zX89k5Vf0UIVEpIu+fJeJxntnPo7Y1M2Yy0wNN6frp+p8enNsnWTL54TrL9VZTYrBbygeWxgv1GWQDSOUpiFbQsoNwD/62C7PBGIhVrFsDLXPbfKW5lRFo9BKBZV/r3c/HUEuee2wZCfsRDcxhmYK9r+XweqnnH4oWz6DEeo63OiNzD2HX8xb/mABslyn3cfWg44qqYKZwmLNAsEgcO/9q8EJirHtWnm1wtjHKU/KEZjLyirOsJSMeuzYQwdst8VmEsrz5AC/FVcy4VTwdV7eu25O9IH2h33iav0GAqOvKVEnzbPBdvOxMOvk9xBu/WedgaZLHG4SCENrRr3zME8l/8hywn5eTvcbE18fR+iV4fmdztbnlN8Ibw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8946.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(4326008)(2906002)(55016003)(76116006)(186003)(316002)(9686003)(66446008)(6916009)(83380400001)(66476007)(64756008)(66556008)(66946007)(54906003)(4744005)(26005)(122000001)(52536014)(53546011)(86362001)(8936002)(7696005)(5660300002)(508600001)(38070700005)(8676002)(6506007)(33656002)(38100700002)(71200400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?gXFBA7bqSJ/YStyKp5x5G6Lf2qhRhGVkMbB5vmC7mfOZBIDq9yZFYPlHjc5n?=
- =?us-ascii?Q?pbhnxWDNN6KtMDjaAI2hW0rXxFP1DE89t9idgU3M/SJPhKcpObaQHEg2OtCx?=
- =?us-ascii?Q?SidWW7feLPY4CpDuZFfsghEYxZ+ANNBYd4uhGNxCT2nS/dyLnJ90xNWftwkJ?=
- =?us-ascii?Q?VRWGD6M3dsaEHzVgFfGEbuz9dcnt0gcSF5JU8XJsVPMpMaP7liyZKX1wFmFZ?=
- =?us-ascii?Q?LlB5ASYJq2HTTB5xExiGrsURV5n9CTDTZXElOEryBBXBvsedkxl6QjXXKXc4?=
- =?us-ascii?Q?zW/H7FbAPCDDY0QEvs03jSEoXgZHCkCsY3Ddk6OsaGg21Z5355dWRgR/9dbV?=
- =?us-ascii?Q?3r8Cm8sPzIjdOoHWWxHiDRLP8l93vKzVW/41S5PKZfXRxk6MTxYrHJhuwqSe?=
- =?us-ascii?Q?bsqmI5PoN2Sr9qPzUaB35efWTmH6P7Vy2yYOqHy34kq4jhg/QE+m0rCvFoGc?=
- =?us-ascii?Q?I7g8dw8pRkm+Z745gc8+SHJKSUEGqb96cT4PZdb+BiWmUGP9gRSBDSVDQh2j?=
- =?us-ascii?Q?xsbsV48JJoi+/QauhpS1Tfwh5q7wPxof2EH3+G12anURU80rZ63GfZTynZmy?=
- =?us-ascii?Q?K8ET1+91jmemV9eWXUPgQfLAn0c/Bm6roRfw4Q2yLtdrXDlhGM1fefV/zEp/?=
- =?us-ascii?Q?kMZazi8EN25z+weoxwh8co/W0z1dT7Kefbkra/748SzO+UHfJpKW/02P/zv1?=
- =?us-ascii?Q?s6OC1sqXWi3wGeNpXrD1/H/gC0biZFrHFshtP8r1uDSOBxisoPHJT3fWUBf8?=
- =?us-ascii?Q?f+JqEqjbBJOao1sn0nwm+mWPBB9LSqlsJCnUs8bfSSxozz3xLd2KgNwjR7Fs?=
- =?us-ascii?Q?Os037eYJPz67tYFWts8OKjO28HZGPp5z0/xcxF3whApFCRfgJgQYzGj61otG?=
- =?us-ascii?Q?ep+UGlhRMBZ43+9DDs6qWhLanl7WMhd57hkUMkZULAXgmfd9ChqSO8tLH28o?=
- =?us-ascii?Q?llGsI0KXr3Eu0x5DywtcilGsbH9jBOwGNpeRLXjXrwJQMMwiEoo52r/Xgjgh?=
- =?us-ascii?Q?hIu+JQjgTgVSWFqa+ti6XerHBt7SUs8dPnf/owSCp0507ekpU3vwxEYMcK3D?=
- =?us-ascii?Q?y7DSzzKoSrOLFAWVDfoMbmnWk9d76ZvGsvjAlQqLDm+bFDaHbBCgbvwgIXHh?=
- =?us-ascii?Q?hRvEOu+5YzW3HZlCkfrNs4xjy5PCw8q16MckuK5Wb3suYAPT1RvxsLYO493b?=
- =?us-ascii?Q?ercEARh0a/VXWiUg6eHqSXgMTxr8+6OxCOzXVfrzFShE6GBVVYqdkJgkjiaX?=
- =?us-ascii?Q?A+aPLQ/KQhWxmPdypWFzD5/CsSQNJejebAxVfuXmQ9dCmsAKSBg46d8VHyF+?=
- =?us-ascii?Q?hMafOls6PGgbUgEeyu75QW3YwdAHLYCIFFH36Rtw1Yzs7hsCprar228pu3uJ?=
- =?us-ascii?Q?YUMSKPxBZu4oUy7/7Xkg/pc7goLNfF/ajdz21bSDhETnTd9J8aPxF/dZteff?=
- =?us-ascii?Q?/0QU5SnAGQVC9yqXAPgjEUk9IwCIR23Df7wFXhXUL9pyNCQUrL1gKqt/NDY0?=
- =?us-ascii?Q?5nsgfE5ekURwN00Hk8vY5fMpoXqb0KJuFRv7cvKdMBVPjC9iLjuac2wfxeQO?=
- =?us-ascii?Q?BAj9Ydw/4JmEkWLA2CjS1A4N8M7MVuW2fM48rcG0Z+80RPWIQXVNyNlvANo8?=
- =?us-ascii?Q?Hw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S231336AbhK2Xsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 18:48:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51160 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229506AbhK2Xsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 18:48:53 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A428DC061714
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 15:45:35 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id q74so47039139ybq.11
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 15:45:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AxXr7NzoOaAEG2HqFzsFUv+olwI5UjMu/0Q0OMgMWIA=;
+        b=PMpQ/AlVcXnmaj6em4Tnt7KBFtx5l0luWo9PlCtHeCzk28LsUG5BYnHs1J0r68pHqO
+         33ImPWHHhFVeUO0aG6Fo2tQGkSCW53lqBMABgFDSNApQu6zEEdpn2FxFuUWFHg4A26p1
+         owAEb5WaKi6z4j5pU6Up3nX73NdRvZiRuyOYY8Ay3Pw9hZSUjzQ7KkIQw3hoWeKCD0SY
+         Sq3xfrq4b3ppN85tZFassMkP6Ac3dJ0Wvg3zzXs+1bIky+Pesay+pWpa7wC2vY8Vmfps
+         L58mH2GrEa3r0XnNOdNIGrW/Use766GfU2kSz370F5sZ1PkBuY7S2psMz1xZhjK/bcAU
+         TfjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AxXr7NzoOaAEG2HqFzsFUv+olwI5UjMu/0Q0OMgMWIA=;
+        b=I7xNJP6IZE5ai20WgPbuGPObT/Kw1D2vgxv2NCNy20sCrjgcbpv+diLs0sWjPR8WW4
+         j/J1rTgdCc4eHmz6OKS3FLOQ8y0hKyhW/GLFYKZs/PtcQNmemO0xAidqcTnKwkMs280Y
+         QYoG7avclaxXsS8aV7P3iKY4+QelgZjl0KboKFTzvvHmeu8CmKf1SogVMUMUcZHKgdcZ
+         LQ3HQm5zx0kN3rRgw4P/J6vjddF1iUC+gP6JNgBQAM0Vh0dR8OT7dCWEtvZMQ0Bufdqd
+         9CkvZ8eNruK54DcbqvJEa9tsa0AhHq1XJwc2vnGz2401lqo471BkLy94fD+cOruiynen
+         zY2w==
+X-Gm-Message-State: AOAM5329YkX5K3nyWCYNU7cEQh85k7oApj/wtcPaebwJwy8f38y2hmKv
+        i3xaz6ZohTH7FBXrl9dcXgT47XRTuUl5S80l4gfAyg==
+X-Google-Smtp-Source: ABdhPJyPK5nbiFI2zf0yQIuvaSfU0KS8zzd9EXj7FavCPWv3Ufk9qPokAeFlb5O92v+ZbU/Xh8CTY7wGSWFQ5kBKoVI=
+X-Received: by 2002:a25:2d67:: with SMTP id s39mr39913718ybe.140.1638229534696;
+ Mon, 29 Nov 2021 15:45:34 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8946.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 84f37930-6e71-42a4-c96a-08d9b38ff2d4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2021 23:28:28.4098
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3mbzuZLcZ6ITL5a30I94diOUBnuRf8inj7BpdVdlmJgZwqVEwwFvFXYONfH4aLtlMnRpnK7UYcMfuVqc4Bay/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8945
+References: <20211126002612.1030246-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20211126002612.1030246-1-dmitry.baryshkov@linaro.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 29 Nov 2021 15:44:58 -0800
+Message-ID: <CAGETcx-oBFSueaXZ1nypzS2DE06RrC5=QM25L+FvBrizvfZxvA@mail.gmail.com>
+Subject: Re: [PATCH] of: property: stop parsing remote-endpoint graph properties
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 25, 2021 at 4:26 PM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> When parsing remote-endpoint properties, two counter devlinks will be
+> created, resulting in the circular dependency, which is later broken. In
+> most of the cases, the order in which depency is broken does not matter
+> (or is correct). However lately I stumbled upon the following
+> configuration.
+>
+> In this case for some reason devlink code decided to break the loop by
+> making panel depend on the bridge driver, enforcing that bridge is
+> probed before the panel.
 
+Let's find and fix the "for some reason" part then instead of just
+removing support for a property.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Monday, November 29, 2021 2:54 PM
-> To: Leo Li <leoyang.li@nxp.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>; Michael Turquette
-> <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org
-> Subject: Re: [PATCH 02/11] dt-bindings: fsl,layerscape-dcfg: add missing
-> compatible for lx2160a
->=20
-> On Wed, Nov 10, 2021 at 04:21:51PM -0600, Li Yang wrote:
-> > The compatbile string is already in use, fix the chip list in binding t=
-o
->=20
-> same typo.
->=20
-> > include it.
-> >
-> > Signed-off-by: Li Yang <leoyang.li@nxp.com>
-> > ---
-> >  .../devicetree/bindings/arm/freescale/fsl,layerscape-dcfg.txt   | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> Acked-by: Rob Herring <robh@kernel.org>
+> However in such cases the bridge will lookup next bridge or panel using
+> drm_of_find_panel_or_bridge() in the probe callback. Thus we have a
+> deadlock: panel is waiting for the bridge because of the devlink
+> dependency and bridge probe() expects the panel to be available and thus
+> returns -EPROBE_DEFER.
+>
+> To prevent such deadlocks, stop parsing the remote-endpoint property and
+> let drivers decide their probe order using standard -EPROBE_DEFER
+> returns.
 
-Thanks.  Both typo fixed and applied to fsl-soc tree.
+Nak.
 
-Regards,
-Leo
+Removing support for a property will always be NAKed. Not because I
+care about one specific property. It's because fw_devlink needs to get
+the full view of the dependencies to be able to break cycles. The
+cycle detection and fixing logic has been improving steadily. So
+there's no reason to give up on it suddenly.
+
+-Saravana
+
+>
+> DTS except follows:
+>
+> / {
+>         panel0 {
+>                 compatible = "powertip,ph800480t013-idf02";
+>                 power-supply = <&vreg_l11c_3p3>;
+>                 backlight = <&lcd0_reg>;
+>                 port {
+>                         panel0_in: endpoint {
+>                                 remote-endpoint = <&bridge0_out>;
+>                         };
+>                 };
+>         };
+> };
+>
+> &dsi0 {
+>         #address-cells = <1>;
+>         #size-cells = <0>;
+>         status = "okay";
+>
+>         bridge@0 {
+>                 reg = <0>;
+>                 compatible = "toshiba,tc358762";
+>
+>                 ports {
+>                         #address-cells = <1>;
+>                         #size-cells = <0>;
+>
+>                         port@0 {
+>                                 reg = <0>;
+>                                 bridge0_in: endpoint {
+>                                         remote-endpoint = <&dsi0_out>;
+>                                 };
+>                         };
+>
+>                         port@1 {
+>                                 reg = <1>;
+>                                 bridge0_out: endpoint {
+>                                         remote-endpoint = <&panel0_in>;
+>                                 };
+>                         };
+>                 };
+>         };
+>         ports {
+>                 port@1 {
+>                         endpoint {
+>                                 remote-endpoint = <&bridge0_in>;
+>                                 data-lanes = <0 1 2 3>;
+>                         };
+>                 };
+>         };
+>
+> };
+>
+> Fixes: f7514a663016 ("of: property: fw_devlink: Add support for remote-endpoint")
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Stephen Boyd <swboyd@chromium.org>
+> Cc: Saravana Kannan <saravanak@google.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/of/property.c | 8 +-------
+>  1 file changed, 1 insertion(+), 7 deletions(-)
+>
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index f7229e4030e3..83548076ee63 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1249,7 +1249,6 @@ static struct device_node *parse_##fname(struct device_node *np,       \
+>   * @parse_prop.index: For properties holding a list of phandles, this is the
+>   *                   index into the list
+>   * @optional: Describes whether a supplier is mandatory or not
+> - * @node_not_dev: The consumer node containing the property is never a device.
+>   *
+>   * Returns:
+>   * parse_prop() return values are
+> @@ -1261,7 +1260,6 @@ struct supplier_bindings {
+>         struct device_node *(*parse_prop)(struct device_node *np,
+>                                           const char *prop_name, int index);
+>         bool optional;
+> -       bool node_not_dev;
+>  };
+>
+>  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
+> @@ -1285,7 +1283,6 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
+>  DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
+>  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+>  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+> -DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
+>  DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
+>  DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
+>  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
+> @@ -1388,7 +1385,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+>         { .parse_prop = parse_pinctrl6, },
+>         { .parse_prop = parse_pinctrl7, },
+>         { .parse_prop = parse_pinctrl8, },
+> -       { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
+>         { .parse_prop = parse_pwms, },
+>         { .parse_prop = parse_resets, },
+>         { .parse_prop = parse_leds, },
+> @@ -1437,9 +1433,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
+>                 while ((phandle = s->parse_prop(con_np, prop_name, i))) {
+>                         struct device_node *con_dev_np;
+>
+> -                       con_dev_np = s->node_not_dev
+> -                                       ? of_get_compat_node(con_np)
+> -                                       : of_node_get(con_np);
+> +                       con_dev_np = of_node_get(con_np);
+>                         matched = true;
+>                         i++;
+>                         of_link_to_phandle(con_dev_np, phandle);
+> --
+> 2.33.0
+>
