@@ -2,82 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9F5B46258D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AA2646251B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 23:32:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233657AbhK2WlB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 17:41:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33692 "EHLO
+        id S233494AbhK2WfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 17:35:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233215AbhK2Wjz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 17:39:55 -0500
-Received: from mail-pf1-x42f.google.com (mail-pf1-x42f.google.com [IPv6:2607:f8b0:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 207CFC1262BA
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 10:02:22 -0800 (PST)
-Received: by mail-pf1-x42f.google.com with SMTP id i12so17725561pfd.6
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 10:02:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=QXp6Rjdb9so9tn9PWuGIbuOUwfs9Jwsb1LIx5Ujs/yw=;
-        b=OWuHk7RoCEwXKDMDXfCljE037wZMeREf4yKV9u6svRDiDf1m8rOYK2y6iK2FrztOTt
-         ulu8jIK1sFPK88tkYTVGUMBm/iwGCD1nk1R1B5xcDAuMU8MRkTSuxNThPJ+ExZYIGyG+
-         qn/tj3SRQs4Igp74uqeU0o/fqEg5xwKxZp3CU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=QXp6Rjdb9so9tn9PWuGIbuOUwfs9Jwsb1LIx5Ujs/yw=;
-        b=nFIljnTIP0L2OACP36zpNJBvuQ+LfNup97xZ/tQX5Q79OdKSBTh22RvDOIE+NBeJ7p
-         iKv5NVH2jAgU1ZYbNIFf7/eHNOXEAYZdJJhRkwrQhR7inB7aAL1i8fEq8mlML3bJQNDD
-         LRzkEq0TBizR4fLcG31/t8js2bdUycWZHBWkJIwA0QMfuh8Zg2TrHr8y3YmyA+/QW8JJ
-         vzKM8KPxIgisWco/pGRV2RIVOOnlRwo+NsEzADlGx2EmtKlQN0+MnizH5/JRtdp8vJh9
-         yFEztmQGaanuJfh224NlOLCYflqLfIeTZPWE9Qg9NwZpjjYDTlsv5+Pv+jZ1OqW0KpgJ
-         ImiQ==
-X-Gm-Message-State: AOAM533U5OKC+yff90SJwtl8PFdugx3+7J0nhe7uCrEtMqjhs3CW08hI
-        h2xhdN8/2y3XmhJBJzqrcWDIPQ==
-X-Google-Smtp-Source: ABdhPJzmsIA11/pFaCm4cakUSOz2ziL/uU5FLtsc2LHAl9CDHjLHoupWOsGCvTUPwfVjMQ9Wn70QUw==
-X-Received: by 2002:a63:1956:: with SMTP id 22mr36174289pgz.452.1638208941713;
-        Mon, 29 Nov 2021 10:02:21 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:d16f:3a09:ab7a:238e])
-        by smtp.gmail.com with UTF8SMTPSA id k19sm18083179pff.20.2021.11.29.10.02.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Nov 2021 10:02:21 -0800 (PST)
-Date:   Mon, 29 Nov 2021 10:02:20 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com
-Subject: Re: [PATCH 1/2] arm64: qcom: sc7280: Remove USB2 controller and phy
- nodes from common dtsi
-Message-ID: <YaUVrDw9j0Aks/pn@google.com>
-References: <1637837815-8532-1-git-send-email-quic_c_sanm@quicinc.com>
- <1637837815-8532-2-git-send-email-quic_c_sanm@quicinc.com>
+        with ESMTP id S233479AbhK2We6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 17:34:58 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88D2CC03AA1C;
+        Mon, 29 Nov 2021 10:15:59 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id C0EC1CE13AB;
+        Mon, 29 Nov 2021 18:15:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6452EC53FAD;
+        Mon, 29 Nov 2021 18:15:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638209755;
+        bh=4ZvxN/3yB6BIkS5mjsWCkybDGiWY3Py98ZFJY+s6Vj4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=E3PEpP+W+hDsvuPyeAajJimQVmbwxj2vGUyUBwsK5ThTOCuv+YHmnBNMyLUG7G8rF
+         5o01BTshaoBe4BVtxyMikV3YpDda7S2O7n4eJe7DEADKrRJkrc8hg8g9lx+h5AYnRp
+         JtJNrW2SfymVAqN0xI4bM+fie8mRqdne78USgugV5E5JwVWJT5abjwphwrAcmT+OwE
+         ZL4CZ2ydWXwx6fSODO6V6qeQ5ytH7zXy7etv/RfSxAqg3b2nnPSHcxLwwyF2ldGQPJ
+         0pgUSn0IkJKU1xSBqlha2PjmY6Uigr9n+kpysW/wNU5DBimNjt+01icl/evZTh+Ifd
+         D9pEACPTwiJdg==
+Date:   Mon, 29 Nov 2021 18:15:50 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Pratyush Yadav <p.yadav@ti.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-spi@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add bindings for peripheral-specific SPI
+ controller properties
+Message-ID: <YaUY1gKnyoOEvo/M@sirena.org.uk>
+References: <20211109181911.2251-1-p.yadav@ti.com>
+ <20211129180935.nmymboy336hllly7@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="qhLQH2s+5hgBKos4"
 Content-Disposition: inline
-In-Reply-To: <1637837815-8532-2-git-send-email-quic_c_sanm@quicinc.com>
+In-Reply-To: <20211129180935.nmymboy336hllly7@ti.com>
+X-Cookie: Thank god!! ... It's HENNY YOUNGMAN!!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 04:26:54PM +0530, Sandeep Maheswaram wrote:
-> Remove USB2 controller and phy nodes from common dtsi file as it is
-> required only for SKU1 board.
-> 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
 
-A series shouldn't break things if it is only applied partially (in order). In
-this case the USB2 controller wouldn't work on the SKU1 board if only this patch
-is applied. It should be squashed with patch 2 of this series ("arm64: qcom:
-sc7280: Add USB2 controller and phy nodes for SKU1 board").
+--qhLQH2s+5hgBKos4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Also doing the move in a single patch instead of two separate patches for remove
-and add makes it easier to review the latter part, since it's evident from the
-patch itself that it's just a move.
+On Mon, Nov 29, 2021 at 11:39:35PM +0530, Pratyush Yadav wrote:
+> On 09/11/21 11:49PM, Pratyush Yadav wrote:
+
+> > This is the best approach that I came up with with my limited knowledge
+> > of JSON schema. It has some limitations that are mentioned in patch 1. I
+> > don't know of any better ways to model this. Suggestions are welcome!
+
+> Do you plan to take this series through your tree or should I poke Mark=
+=20
+> about it?
+
+I'd expect to take it through my tree but please allow a reasonable time
+for reviews...
+
+--qhLQH2s+5hgBKos4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGlGNUACgkQJNaLcl1U
+h9BdUAf8CPx2aYIuPUWc4Ka8OhpPDQXy+JJkgrtPsqFeOqDqSk2dwAUHat/zea2+
+GJatBwnEcSdBPtjJ9Lhu7MOI+Lj4255qllxHtem4dr4HtKUhFPFzxrlfaHpZ7b6g
+g3ilAzVvilA/svq+UldUzrI2X0x4eJx9vfb5DU57IJV55iYzKokCLUfcUxXPwGWi
+LXNwGOX8Gd8I+o9bnEUeAakeac+UEl0jwfyzea9wQb7+9QovJAFt0EfxnZ5aXXSL
+9Mg90x6V6YzzL06tntkPs4FNF7N5QrS+Lnb3temdqn21Wr3ezdCuf9wHwizXzyCz
+SA+x9BeNFM4Z6o72ym0004LMiYmb9w==
+=4TaM
+-----END PGP SIGNATURE-----
+
+--qhLQH2s+5hgBKos4--
