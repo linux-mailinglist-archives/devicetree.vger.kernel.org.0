@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A499346234E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:28:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB83F462355
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 22:28:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230346AbhK2Vbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 16:31:37 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:36713 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231272AbhK2V3h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:29:37 -0500
-Received: by mail-oi1-f178.google.com with SMTP id t23so37157066oiw.3;
-        Mon, 29 Nov 2021 13:26:19 -0800 (PST)
+        id S231199AbhK2VcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 16:32:08 -0500
+Received: from mail-oi1-f177.google.com ([209.85.167.177]:46672 "EHLO
+        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232517AbhK2VaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 16:30:08 -0500
+Received: by mail-oi1-f177.google.com with SMTP id s139so37076040oie.13;
+        Mon, 29 Nov 2021 13:26:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=xCkc+edsnuz578j3nM7LxocCQHXE8TQPUnChXmN1Bfk=;
-        b=AzpvJZWNOcCKykbQi1MGNuu0B1qkdsn2ALrU9P9qvOgW4ex25G6Hqd9VNLP/rW2iXF
-         T272gsZISHGcy6Bs5WgfhZ+9HxkGpskGlpDVnm3D82c7Ria+HKVo+CH7As9px8MECMWq
-         3x+sDFxQPdjYvpP4NwBU80tl/nIHYDneYKWeWWJFL48w2/XW8zVd1Grxyl6Syc9k7mOR
-         JfDrnSB/R4odBEA7g12odFWYkWoz9Fqt3GI0VDc3BEbH116NV8YJhzRskCsnxfNDZY0v
-         hnAXurk+F+pQk9YNBZ3GeqVLHE9XHhsTfhvemnXK+KpWvYBl50hNOMkMCkAdGh30cYXs
-         VMgA==
-X-Gm-Message-State: AOAM531CQCzC8L/qtpUuXJ+sT9AD+FYBIUw2mFK8NoAVosOwxcJfup9A
-        3FSiDqmfO7M5oT9hGf/5GE2WxBK7wQ==
-X-Google-Smtp-Source: ABdhPJxKZSsc0IJcsg3GjgSw0PgzgarXSf2BR/s4hyp+T38G0EdF0/6grP8nUqPDecJJnfdcItLSwg==
-X-Received: by 2002:a54:4486:: with SMTP id v6mr561266oiv.90.1638221178764;
-        Mon, 29 Nov 2021 13:26:18 -0800 (PST)
+        bh=KAU7+bZHiWEp2yIBieWGgyI8VLCnh42RRI0vBGHa9/4=;
+        b=q662PeQkNJD//NGtk6K7VmrnR1ngtFDCnb05wg0VsfUScBfNRzfgM1QLkkUQmkpyPG
+         4yGc7a/u3SOq0kRDkI8mCHgfczXport6PMV3mFaYGFV3kxdDJ5RHH7T2b/8bZAHfFQmf
+         wA7EUiQw8U7MD1S+6gUdz20MgvHzq3HbLiVPtSEmRAwWlsV4c3s5em3ffDxE1Vq0mOet
+         v4I9bkEl6u7yUdGaRRRuTWvY3afGVonBWD6o3m4rL/nVppwrg0tBYIKhS/DYYGFtUp1w
+         TDYJ5hlxHEHY+E97deaBEKwLMRfWDI9R57bvTAPhabvew/2Edk10mYOtn6LqNkhthibX
+         zXcA==
+X-Gm-Message-State: AOAM53145TD24oBmtrRtRH2Ap4KI82YXZqpqT/SavS5jKljxbblgFx3j
+        r19wfWq+rPjqveWmGrPQIw==
+X-Google-Smtp-Source: ABdhPJzQJ8YAzrRP8aRWzJTSjXg0Uz87YRg+E6Vk7gRhNjh6UYwPLj19H9agfaotDJ+Ni7iW3SCk2g==
+X-Received: by 2002:a05:6808:b0d:: with SMTP id s13mr548263oij.53.1638221209579;
+        Mon, 29 Nov 2021 13:26:49 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x17sm2444712oot.30.2021.11.29.13.26.17
+        by smtp.gmail.com with ESMTPSA id q9sm2829077oti.32.2021.11.29.13.26.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 13:26:18 -0800 (PST)
-Received: (nullmailer pid 637898 invoked by uid 1000);
-        Mon, 29 Nov 2021 21:26:17 -0000
-Date:   Mon, 29 Nov 2021 15:26:17 -0600
+        Mon, 29 Nov 2021 13:26:49 -0800 (PST)
+Received: (nullmailer pid 638684 invoked by uid 1000);
+        Mon, 29 Nov 2021 21:26:48 -0000
+Date:   Mon, 29 Nov 2021 15:26:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     jic23@kernel.org, lorenzo.bianconi@redhat.com,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        mario.tesi@st.com
-Subject: Re: [PATCH v2 2/2] Documentation: dt: iio: st_lsm6dsx: add
- disable-sensor-hub property
-Message-ID: <YaVFeYsGYVOBS65b@robh.at.kernel.org>
-References: <cover.1636816719.git.lorenzo@kernel.org>
- <54287a93922ac839501b776d288cc368aa81f0ab.1636816719.git.lorenzo@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: simple: Add HannStar
+ HSD101PWW2
+Message-ID: <YaVFmNji2CR5klCS@robh.at.kernel.org>
+References: <20211114200431.28484-1-digetx@gmail.com>
+ <20211114200431.28484-2-digetx@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <54287a93922ac839501b776d288cc368aa81f0ab.1636816719.git.lorenzo@kernel.org>
+In-Reply-To: <20211114200431.28484-2-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 13 Nov 2021 16:23:15 +0100, Lorenzo Bianconi wrote:
-> Enable/disable internal i2c controller slave autoprobing at bootstrap.
-> Disable sensor-hub is useful if i2c controller clock/data lines are
-> connected through a pull-up with other chip lines (e.g. SDO/SA0).
+On Sun, 14 Nov 2021 23:04:30 +0300, Dmitry Osipenko wrote:
+> From: Svyatoslav Ryhel <clamor95@gmail.com>
 > 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Add HannStar HSD101PWW2 10.1" WXGA (1280x800) TFT-LCD LVDS panel
+> to the list of compatibles.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
