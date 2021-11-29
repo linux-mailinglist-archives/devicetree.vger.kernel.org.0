@@ -2,93 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31DC1461F91
-	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 19:47:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBFAD46200D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Nov 2021 20:15:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380040AbhK2Sun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 13:50:43 -0500
-Received: from vps5.brixit.nl ([192.81.221.234]:53226 "EHLO vps5.brixit.nl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1380792AbhK2Ssm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Nov 2021 13:48:42 -0500
-X-Greylist: delayed 697 seconds by postgrey-1.27 at vger.kernel.org; Mon, 29 Nov 2021 13:48:42 EST
-Received: from [192.168.20.102] (unknown [77.239.252.99])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by vps5.brixit.nl (Postfix) with ESMTPSA id 702A6618B4;
-        Mon, 29 Nov 2021 18:33:44 +0000 (UTC)
-Subject: Re: [PATCH] arm64: dts: qcom: sdm660-xiaomi-lavender: Add volume up
- button
-To:     Dang Huynh <danct12@riseup.net>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Caleb Connolly <caleb@connolly.tech>
-References: <20211121170449.1124048-1-danct12@riseup.net>
-From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
-Message-ID: <ce775ef5-2e88-af2b-264b-da77a2e23007@postmarketos.org>
-Date:   Mon, 29 Nov 2021 21:35:15 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S1349386AbhK2TS1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 14:18:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44862 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229918AbhK2TQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 14:16:12 -0500
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 356BCC08EC69;
+        Mon, 29 Nov 2021 07:33:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+         s=20160729; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=uiLb1gICfT2LSIzGyLrHbKByJX69DDfTkndQNPjdmhw=; b=pHl8TrmiGPlW5BYNzRhOvSdp4P
+        2BA8YDkuO66OcPsDtTvJbMFonedcaAORvP+0e7r4MzJqY05Cgcv9+v2S0A6UCT9ftua53uAzruvR4
+        zfejNpn0qI67E/EzwdQh9a/VdtmAswXaE11I9v7mxUNM49v+VEzehZTtdChQrc/kmkbA=;
+Received: from p54ae943f.dip0.t-ipconnect.de ([84.174.148.63] helo=localhost.localdomain)
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <nbd@nbd.name>)
+        id 1mrier-0000mo-Gg; Mon, 29 Nov 2021 16:33:33 +0100
+From:   Felix Fietkau <nbd@nbd.name>
+To:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     john@phrozen.org, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 01/13] dt-bindings: Add vendor prefix for Airoha
+Date:   Mon, 29 Nov 2021 16:33:17 +0100
+Message-Id: <20211129153330.37719-2-nbd@nbd.name>
+X-Mailer: git-send-email 2.30.1
+In-Reply-To: <20211129153330.37719-1-nbd@nbd.name>
+References: <20211129153330.37719-1-nbd@nbd.name>
 MIME-Version: 1.0
-In-Reply-To: <20211121170449.1124048-1-danct12@riseup.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/21/21 8:04 PM, Dang Huynh wrote:
-> This enables the volume up key.
-> 
-> Signed-off-by: Dang Huynh <danct12@riseup.net>
-> ---
-> This patch is a continuation of this series [1]. The other patches in
-> the series have been applied and remains this.
-> 
-> Changes in v5:
-> - Remove deprecated input-name property.
-> 
-> [1]: https://patchwork.kernel.org/cover/12630601/
-> 
->   arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> index 9a6684922804..6586b8e47483 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm660-xiaomi-lavender.dts
-> @@ -9,6 +9,8 @@
->   #include "sdm660.dtsi"
->   #include "pm660.dtsi"
->   #include "pm660l.dtsi"
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/input/gpio-keys.h>
->   
->   / {
->   	model = "Xiaomi Redmi Note 7";
-> @@ -33,6 +35,17 @@ vph_pwr: vph-pwr-regulator {
->   		regulator-boot-on;
->   	};
->   
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		volup {
-> +			label = "Volume Up";
-> +			gpios = <&pm660l_gpios 7 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			debounce-interval = <15>;
-> +		};
-> +	};
-> +
->   	reserved-memory {
->   		#address-cells = <2>;
->   		#size-cells = <2>;
-> 
+From: John Crispin <john@phrozen.org>
 
-Nice, works on my Redmi Note 7.
+Add vendor prefix "airoha" for Airoha, a subsidiary of MediaTek
 
-Tested-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Bert Vermeulen <bert@biot.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 66d6432fd781..025df36aee5f 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -59,6 +59,8 @@ patternProperties:
+     description: Aeroflex Gaisler AB
+   "^aesop,.*":
+     description: AESOP Embedded Forum
++  "^airoha,.*":
++    description: Airoha
+   "^al,.*":
+     description: Annapurna Labs
+   "^alcatel,.*":
+-- 
+2.30.1
+
