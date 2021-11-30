@@ -2,144 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1528F46317A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:46:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 205B74631C0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:02:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236119AbhK3KtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 05:49:18 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:51744 "EHLO
+        id S236800AbhK3LGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 06:06:14 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51892 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236057AbhK3KtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:49:18 -0500
+        with ESMTP id S236684AbhK3LGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 06:06:13 -0500
 Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: andrzej.p)
-        with ESMTPSA id B354B1F44F2D
+        (Authenticated sender: sre)
+        with ESMTPSA id 9C35E1F44BBC
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638269158; bh=/RU/bGA0G+1VSMjZzfteTmOKhmey5jYlUnzg1C33/vY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ZfqxTcNUU33RZqcVcJm1vLEobPNkx0lNf3/6QQg7TM481dUYWTKDAqgYV7wrtXiOH
-         Q55F6e94R96b69VQ5M2gxQYlUSAyastL35cgW0R1I0+cSyW3PSk9VfvnO5diq7s5Ry
-         tK5eQAopwYynipX5C+P7E89Ch/Lg0BKGP/A6TasmEZyCxak4iLWW039lC0oITGK090
-         1KUwwGOlVLtE5ZHXJcIhVY9yvhy5P2sYoD6xbrzAwNS0V0yR/3ZYMjMNQvY3FH7B29
-         Q1+XQOta+a/JDYjJoJCjWdzUDgefPCG8IruradVCLlONA7W2g2uhLRnWen2Bs1+Nt1
-         p9xXSuYlfHJiA==
-Subject: Re: [PATCH v2 6/9] media: hantro: Convert imx8m_vpu_g2_irq to helper
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-media@vger.kernel.org
-Cc:     ezequiel@vanguardiasur.com.ar, nicolas.dufresne@collabora.com,
-        mchehab@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
-        wens@csie.org, p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-References: <20211129182633.480021-1-jernej.skrabec@gmail.com>
- <20211129182633.480021-7-jernej.skrabec@gmail.com>
-From:   Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Message-ID: <eed931f4-a556-bcf2-d275-f57f6354cb28@collabora.com>
-Date:   Tue, 30 Nov 2021 11:45:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        t=1638270173; bh=l98QiWJLerDn9mqrR91nYQugxDENe5cVgoLVb3pluVc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=J4pV1AD9qM8OrAcSvPDBWAsPHYQQ9BQmb2E/mlkJ3L/EEeNQSV4F4BhvIJpmALoRW
+         /5MD1jojOanc6EVvFoEq62Ig390EbIqTFa0UAXdf2AtFKJDHOu4s7Uhy9B2bWNKijn
+         XCxB8vwP1ODKzAaAln0S/1XRVtw3LyhNF3D7I8osuZFNPB2yNyXEtttffAzL94rH/L
+         yEijKCm6RITgEdGa99ZPZZpqXX3wlMwKsSfg4V1j933kKOV7+LSjPii5xCBsemXBny
+         slirmlgUN1VVx0Cejw1079siC6/vANgWCxqs5yHSTzKZ5W+44lvoE9YjYi0yj9ch5+
+         NH4S3Y4t2KP9A==
+Received: by earth.universe (Postfix, from userid 1000)
+        id 3E42B3C0CA8; Tue, 30 Nov 2021 12:02:51 +0100 (CET)
+Date:   Tue, 30 Nov 2021 12:02:51 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Luca Weiss <luca@z3ntu.xyz>, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: power: supply: pm8941-charger: add
+ pm8226
+Message-ID: <20211130110251.o7fdea4spwd5qntl@earth.universe>
+References: <20211118210210.160895-1-luca@z3ntu.xyz>
+ <YaVeBGAnU2CY9SLr@robh.at.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20211129182633.480021-7-jernej.skrabec@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gjnpwqyqafz37nmp"
+Content-Disposition: inline
+In-Reply-To: <YaVeBGAnU2CY9SLr@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jernej,
 
-W dniu 29.11.2021 o 19:26, Jernej Skrabec pisze:
-> It turns out that imx8m_vpu_g2_irq() doesn't depend on any platform
-> specifics and can be used with other G2 platform drivers too.
-> 
-> Move it to common code.
-> 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+--gjnpwqyqafz37nmp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
+Hi,
 
-> ---
->   drivers/staging/media/hantro/hantro_g2.c    | 18 ++++++++++++++++++
->   drivers/staging/media/hantro/hantro_hw.h    |  1 +
->   drivers/staging/media/hantro/imx8m_vpu_hw.c | 20 +-------------------
->   3 files changed, 20 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/staging/media/hantro/hantro_g2.c b/drivers/staging/media/hantro/hantro_g2.c
-> index 6f3e1f797f83..ee5f14c5f8f2 100644
-> --- a/drivers/staging/media/hantro/hantro_g2.c
-> +++ b/drivers/staging/media/hantro/hantro_g2.c
-> @@ -24,3 +24,21 @@ void hantro_g2_check_idle(struct hantro_dev *vpu)
->   		}
->   	}
->   }
-> +
-> +irqreturn_t hantro_g2_irq(int irq, void *dev_id)
-> +{
-> +	struct hantro_dev *vpu = dev_id;
-> +	enum vb2_buffer_state state;
-> +	u32 status;
-> +
-> +	status = vdpu_read(vpu, G2_REG_INTERRUPT);
-> +	state = (status & G2_REG_INTERRUPT_DEC_RDY_INT) ?
-> +		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
-> +
-> +	vdpu_write(vpu, 0, G2_REG_INTERRUPT);
-> +	vdpu_write(vpu, G2_REG_CONFIG_DEC_CLK_GATE_E, G2_REG_CONFIG);
-> +
-> +	hantro_irq_done(vpu, state);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> index dbe51303724b..c33b1f5df37b 100644
-> --- a/drivers/staging/media/hantro/hantro_hw.h
-> +++ b/drivers/staging/media/hantro/hantro_hw.h
-> @@ -413,5 +413,6 @@ void hantro_g2_vp9_dec_done(struct hantro_ctx *ctx);
->   int hantro_vp9_dec_init(struct hantro_ctx *ctx);
->   void hantro_vp9_dec_exit(struct hantro_ctx *ctx);
->   void hantro_g2_check_idle(struct hantro_dev *vpu);
-> +irqreturn_t hantro_g2_irq(int irq, void *dev_id);
->   
->   #endif /* HANTRO_HW_H_ */
-> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> index 1a43f6fceef9..f5991b8e553a 100644
-> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> @@ -191,24 +191,6 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
->   	return IRQ_HANDLED;
->   }
->   
-> -static irqreturn_t imx8m_vpu_g2_irq(int irq, void *dev_id)
-> -{
-> -	struct hantro_dev *vpu = dev_id;
-> -	enum vb2_buffer_state state;
-> -	u32 status;
-> -
-> -	status = vdpu_read(vpu, G2_REG_INTERRUPT);
-> -	state = (status & G2_REG_INTERRUPT_DEC_RDY_INT) ?
-> -		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
-> -
-> -	vdpu_write(vpu, 0, G2_REG_INTERRUPT);
-> -	vdpu_write(vpu, G2_REG_CONFIG_DEC_CLK_GATE_E, G2_REG_CONFIG);
-> -
-> -	hantro_irq_done(vpu, state);
-> -
-> -	return IRQ_HANDLED;
-> -}
-> -
->   static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
->   {
->   	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
-> @@ -280,7 +262,7 @@ static const struct hantro_irq imx8mq_irqs[] = {
->   };
->   
->   static const struct hantro_irq imx8mq_g2_irqs[] = {
-> -	{ "g2", imx8m_vpu_g2_irq },
-> +	{ "g2", hantro_g2_irq },
->   };
->   
->   static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
-> 
+On Mon, Nov 29, 2021 at 05:11:00PM -0600, Rob Herring wrote:
+> On Thu, 18 Nov 2021 22:02:04 +0100, Luca Weiss wrote:
+> > The charger in PM8226 (used in MSM8226) is similar to the charger in
+> > PM8941.
+> >=20
+> > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> > ---
+> >  .../devicetree/bindings/power/supply/qcom,pm8941-charger.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> >=20
+>=20
+> Acked-by: Rob Herring <robh@kernel.org>
 
+Thanks, queued.
+
+-- Sebastian
+
+--gjnpwqyqafz37nmp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmGmBNAACgkQ2O7X88g7
++pptUA/+NOVilzivowBa8AyUf9dPhz6xP9hhQwNeR5I6Fa5Abq3uaHHzOwik2mP3
+SjcOKdazMq6fnpoaqxw5ecVXlGACSvbTJPef1nUH5nxD7NR0gwRlPjBKoepAo83l
+CGAiwNSJ3NG/qmCF52lPS48fle3KB3jSr24ak4bZVU3liIdEkutevgB2EG5ryWi0
+LHu+kpfcXzRsj8qDBsz4O0hraXPr5SxbhxJhNjzwhHeVrwWr40VLTEOV2rwPgWJp
+ttGrXZa3uzYvJkob6B9fLSh+W5dRkFB0ETUofJQbq6EK58ApDqA3l7J6h2/7Vul6
+b0jASLQGWqutcCtyMnD73W3kNuFK3LN4bbYGQ4IqXdnN/Qn/IEbc60s/+BKlSkWq
+/3H9kkY8+P/4IPthLCO3zneTFPbHU59+Qa1g9RDSRDeujzPmmx1uFKC7aLr/EvLK
++pbKUUfh+ZUT+tCE4pW+WIVS1DoSYn7HbSZ+fg5jwjpfZIMc98+nDkeBgKrdTtxs
+WRPP5HYQG7kDSyrSGKbiApBtinRreOBdoVhpm16rKOtilc0cbb/r3tXiRoWV8q6N
+pgnmUQs2nJlzhKqU864MIds6ACQ9i/cNMm2pww6LsxrmlZ+1XBuZI0W2bBybJhqt
+/4Gihh/ovqwbcoEMKaLnhE0jjzfhhMJDYRx9hNNx3/5C8xq7rvM=
+=3o7m
+-----END PGP SIGNATURE-----
+
+--gjnpwqyqafz37nmp--
