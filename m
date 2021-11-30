@@ -2,90 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB64A4635EB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 14:56:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CF104635F7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 15:00:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241933AbhK3OAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 09:00:03 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:41882 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229803AbhK3N76 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 08:59:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-        Date:Message-ID:From:References:Cc:Subject:Sender:Reply-To:To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=U+vPSEQPYX8gP340qKGYbsQniEHCy1ogHkhFwcmSah8=; b=JrnFnS3HbIhAnE+4wthIXa6C3h
-        0Ds346gF2nf7MNQW+RIv6jAucGdH0dNIhAdAy7Jp6BihP2vTu1hmnz0pNS31xopD27S+3taHchJgR
-        KUBzylj13vemud1wqWILhmxxhGZoVU+kuWDduD0jIB2zWseUw9KpHb84XVidc0mSWDGROecUCDiNi
-        11woojoCf2RAPiey3saA5OO5XKhzHj+Tu3KxkT8Vx3JaXaBUgyFl7qovk5vLblC4ukYwl5CTX2i3U
-        A7I0hkLrXKRYLnpqJPCHicwzP01L9qQg54ssoxv88PTtsiQsEXK8iiHoDrtno3N0NpES6kUxb7Iwm
-        rtH+M+pQ==;
-Received: from [89.212.21.243] (port=49996 helo=[192.168.69.215])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1ms3cX-003BJ3-Na; Tue, 30 Nov 2021 14:56:33 +0100
-Subject: Re: [PATCH v2 4/4] ARM: dts: imx6: phycore-som: set watchdog timeout
- mode to shutdown
-Cc:     support.opensource@diasemi.com, wim@linux-watchdog.org,
-        linux@roeck-us.net, linux-watchdog@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-References: <20211130134242.3516619-1-andrej.picej@norik.com>
- <20211130134242.3516619-4-andrej.picej@norik.com>
-From:   Andrej Picej <andrej.picej@norik.com>
-Message-ID: <5808b9fd-8378-c348-0856-bec961b1ace1@norik.com>
-Date:   Tue, 30 Nov 2021 14:56:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S241920AbhK3OEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 09:04:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241952AbhK3OD5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 09:03:57 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34C08C06174A
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 06:00:38 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id g14so87170098edb.8
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 06:00:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=QaxZlmGeTiNSpZpCZqH57v2oCRS32AJdCJEiZtFl+fo=;
+        b=UAL3sYoqWMmwujNOP724FqBzW5uObd++LAtVKS3v5u5Uf2OdsqcJyTAd46VvaTh5Bd
+         CI7BPxy7k5sgJDqLq1RcsS3wNsihI78jdpDJIITTaw/+RdV8uJbwUA5jL3bVoiO2CnZz
+         ECP+wZYQCeXwsVT03Cwq3TmyYVTdLKIqSaQxxB77ysN7pTZ6rhWOALXsXCermCrGDEm9
+         xTqkC17qeHkGGjhP+HwJkZNAmoWQo1WEBi97ntM6TwL06wMqG3TUZavTpeNmgqXB4xXm
+         gxbfUwfLqghdmcJf/K4rHwrkHT+sXq/VtbjNBGcKK6hDHJkwFOSBqyz3GYb+FTIsRGl6
+         hXsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=QaxZlmGeTiNSpZpCZqH57v2oCRS32AJdCJEiZtFl+fo=;
+        b=wJybjwbTCXYW6KVCgREJyyeklxxIH/FHI26l3vKeC9KQkfBP2o4OIEdvTWghdAxDMR
+         SWTvha61Xpd+yBBGXvEuqfGHJSMc6c7LWfWc56+WLDIEwhkNmkqEaqSot1Hhm/oyngmp
+         AFGnj14R1PlkJhBC4AE6Ier3naq382pfFAbkYqTWnyX2NEiGoLr2KWN70weZzRp5oDfX
+         E+xsOpJNegRk6FpbOXTcieQVgkXcijPcdOtIdmwUG4M0quqOMAwZ2bXDSUzFWpe3JYwV
+         LGl93ks8hhINB4BIYzhdhUjwMzWX4JkLMigWh4/29MikWpmOcGp0bCAUU2G/dnzxu+uK
+         z0jA==
+X-Gm-Message-State: AOAM533iAxfmaH5fC3bnOC/nSgeVGbGcRFw6gBcE2FYzlhb7Ypegziq/
+        2e4NPAwrqP+UrjHWqVwC+bpa2vWRbWVdeq0Jd9YLGA==
+X-Google-Smtp-Source: ABdhPJwnUIPwozxEvD8GWiVDDYw5ZDqSXm6R85I9zeuQ3bp/QzgWXBdhWWpkvOKxcxv7W9iIJOUZHicmrUxw7zSXQ5g=
+X-Received: by 2002:a05:6402:34c1:: with SMTP id w1mr83741602edc.179.1638280836615;
+ Tue, 30 Nov 2021 06:00:36 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211130134242.3516619-4-andrej.picej@norik.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-To:     unlisted-recipients:; (no To-header on input)
+References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+ <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
+ <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+ <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
+ <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
+ <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
+ <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
+ <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
+ <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
+ <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
+ <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
+ <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
+ <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
+ <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
+ <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com> <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
+In-Reply-To: <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Tue, 30 Nov 2021 11:00:24 -0300
+Message-ID: <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Adam Ford <aford173@gmail.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        linux-media <linux-media@vger.kernel.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tim,
 
+On Mon, 29 Nov 2021 at 16:36, Tim Harvey <tharvey@gateworks.com> wrote:
+>
+> On Mon, Nov 29, 2021 at 10:59 AM Adam Ford <aford173@gmail.com> wrote:
+..
+> >
+>
+> Adam,
+>
+> What deps did you install in order to get v4l2codecs building? I
+> installed libgudev-1.0-dev based on Nicolas' suggestion and rebuilt
+> (not sure if I needed to re-configure somehow) but there is still
+> nothing in build/subprojects/gst-plugins-bad/sys/v4l2codecs/. A 'meson
+> configure' tells me that v4l2codecs is set to 'auto' but I'm not sure
+> how to find out what dependencies are needed or what may be missing.
+>
 
-On 30. 11. 21 14:42, Andrej Picej wrote:
-> Enable system restart when the watchdog timeout occurs.
-> 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> ---
->   arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-> index a80aa08a37cb..743343e525cf 100644
-> --- a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-> @@ -111,6 +111,7 @@ da9062_onkey: onkey {
->   		watchdog {
->   			compatible = "dlg,da9062-watchdog";
->   			dlg,use-sw-pm;
-> +			dlg,wdt-sd = <1>;
->   		};
->   
->   		regulators {
-> 
+At least in my case (Centps-derivative), this is what I've done:
 
-Changes in v2:
-- new patch, enable shutdown mode for phytec-phycore (da9062 user)
+...
+gst-plugins-bad| Run-time dependency gudev-1.0 found: NO (tried
+pkgconfig and cmake)
+
+Installed gudev ... and then:
+
+...
+gst-plugins-bad| Dependency gudev-1.0 found: YES 232 (cached)
+...
+gst-plugins-bad 1.19.3.1
+
+    Plugins               : accurip, adpcmdec, adpcmenc, aiff, asfmux,
+audiobuffersplit, audiofxbad, audiomixmatrix, audiolatency,
+audiovisualizers, autoconvert, bayer,
+                            camerabin, codecalpha, coloreffects,
+debugutilsbad, dvbsubenc, dvbsuboverlay, dvdspu, faceoverlay,
+festival, fieldanalysis, freeverb, frei0r,
+                            gaudieffects, gdp, geometrictransform,
+id3tag, inter, interlace, ivfparse, ivtc, jp2kdecimator, jpegformat,
+rfbsrc, midi, mpegpsdemux,
+                            mpegpsmux, mpegtsdemux, mpegtsmux, mxf,
+netsim, rtponvif, pcapparse, pnm, proxy, legacyrawparse,
+removesilence, rist, rtmp2, rtpmanagerbad,
+                            sdpelem, segmentclip, siren, smooth,
+speed, subenc, switchbin, timecode, transcode, videofiltersbad,
+videoframe_audiolevel, videoparsersbad,
+                            videosignal, vmnc, y4mdec, decklink, dvb,
+fbdevsink, ipcpipeline, nvcodec, shm, v4l2codecs, hls, sctp
+
+GStreamer current master build fails. It's a known issue which will be
+fixed today:
+
+[...]
+[8/9] Compiling C object
+subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gstv4l2cod=
+ecvp9dec.c.o
+FAILED: subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gs=
+tv4l2codecvp9dec.c.o
+cc -Isubprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p
+-Isubprojects/gst-plugins-bad/sys/v4l2codecs
+-I../subprojects/gst-plugins-bad/sys/v4l2codecs
+-Isubprojects/gst-plugins-bad -I../subprojects/gst-plugins-bad
+-Isubprojects/gstreamer/libs -I../subprojects/gstreamer/libs
+-Isubprojects/gstreamer -I../subprojects/gstreamer
+-Isubprojects/gst-plugins-bad/gst-libs
+-I../subprojects/gst-plugins-bad/gst-libs
+-Isubprojects/gst-plugins-base/gst-libs
+-I../subprojects/gst-plugins-base/gst-libs -Isubprojects/orc
+-I../subprojects/orc -Isubprojects/gstreamer/gst
+-Isubprojects/gst-plugins-base/gst-libs/gst/video
+-Isubprojects/gst-plugins-base/gst-libs/gst/pbutils
+-Isubprojects/gst-plugins-base/gst-libs/gst/audio
+-Isubprojects/gst-plugins-base/gst-libs/gst/tag
+-I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include
+-I/usr/include/gudev-1.0 -fdiagnostics-color=3Dalways
+-D_FILE_OFFSET_BITS=3D64 -Wall -Winvalid-pch -O2 -g -fvisibility=3Dhidden
+-fno-strict-aliasing -DG_DISABLE_DEPRECATED -Wmissing-prototypes
+-Wdeclaration-after-statement -Wold-style-definition
+-Wmissing-declarations -Wredundant-decls -Wwrite-strings -Wformat
+-Wformat-security -Winit-self -Wmissing-include-dirs -Waddress
+-Wno-multichar -Wvla -Wpointer-arith -fPIC -pthread -DHAVE_CONFIG_H
+-MD -MQ subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gs=
+tv4l2codecvp9dec.c.o
+-MF subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gstv4l=
+2codecvp9dec.c.o.d
+-o subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gstv4l2=
+codecvp9dec.c.o
+-c ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:92:3:
+error: unknown type name =E2=80=98grefcount=E2=80=99
+   grefcount ref_count;
+   ^~~~~~~~~
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c: In
+function =E2=80=98gst_v4l2_codec_vp9_dec_picture_data_new=E2=80=99:
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:106:3:
+warning: implicit declaration of function =E2=80=98g_ref_count_init=E2=80=
+=99; did you
+mean =E2=80=98g_cond_init=E2=80=99? [-Wimplicit-function-declaration]
+   g_ref_count_init (&pic_data->ref_count);
+   ^~~~~~~~~~~~~~~~
+   g_cond_init
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c: In
+function =E2=80=98gst_v4l2_codec_vp9_dec_picture_data_ref=E2=80=99:
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:118:3:
+warning: implicit declaration of function =E2=80=98g_ref_count_inc=E2=80=99=
+; did you
+mean =E2=80=98g_strv_contains=E2=80=99? [-Wimplicit-function-declaration]
+   g_ref_count_inc (&data->ref_count);
+   ^~~~~~~~~~~~~~~
+   g_strv_contains
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c: In
+function =E2=80=98gst_v4l2_codec_vp9_dec_picture_data_unref=E2=80=99:
+../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:125:7:
+warning: implicit declaration of function =E2=80=98g_ref_count_dec=E2=80=99
+[-Wimplicit-function-declaration]
+   if (g_ref_count_dec (&data->ref_count)) {
+       ^~~~~~~~~~~~~~~
+ninja: build stopped: subcommand failed.
+
+Hope this helps get you started!
+Ezequiel
