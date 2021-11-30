@@ -2,277 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D57E462F9F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 10:28:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CC40462FAE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 10:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240233AbhK3JcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 04:32:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41290 "EHLO
+        id S240246AbhK3JfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 04:35:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235239AbhK3JcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 04:32:11 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5C5EC061746
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 01:28:52 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id 133so16883134wme.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 01:28:52 -0800 (PST)
+        with ESMTP id S233674AbhK3JfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 04:35:03 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580CBC061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 01:31:44 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id h24so14895792pjq.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 01:31:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ydMPP+rzHmOMEEgYyVDZvKAwWBch53F19D/eQXwTEQw=;
-        b=hH+7XrW33GqrJ6WPl28jU6Dv0stolWydSfKUAZPT3Qe7FEOW3J1AFwjpckhZc7jfeg
-         wz+uoMTCwjEgTtnyYzUJSEaG/jnBh5fDspQ2VWG+25i5l2+Sh7GzyfPEyJgq4sdmoTjQ
-         G42+qBQVEPlkz7ICud/LABQ8E25xu24VI0aC5yml8ALuOAUmBe7tIs4Mkb1NyWDvF7gw
-         czXRLsqtxmXQIEJv/UOvxp6IRi2FFTQMFbCsIgSgk4Ikg9XNBxf/eJ2BdbNJcE5+8ypF
-         Yo4m0mhQbV1RnffSwcy1+z1TC6H51I6AHzw9zU9mN6TawcsbDBfPFzfe4JNWpmeswf73
-         2wMw==
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=XNU3SMz79nxxU1DwZbU8oUVUolqcAlujurYqOOjZ1TA=;
+        b=fFNFFpfYHqSsL/SNVPdnEPZ6jmf4kZ1XjOuYxcxURjpMmEV9lvwWE6Lg/6yKiTMQ+C
+         ifikmrtIdAAVOi82mWQURg9R8IqAzy+smQpl4l1ZArTumd5VPmiTeOfK9r/6XsIMfpVP
+         fYACrYKPSCZ6Pd/xigY/ecUmqWjTxs8j4g/NZw1H7Af4vB3OD3GEM9dxge4rpy1nHuBo
+         16cCRW6GsT5wmpVhw+Swi9uk/Gb/Va3odVYGw40HsQOCTKIqR/Kkw+YgxBq2tLiy1DOp
+         xDIiZ3kKQLZGtsva1jm3zFcx1/AQVPHS6S5BeovTmQbWLJW54Gl6T2KqBYfvHCHwO0vP
+         R1mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=ydMPP+rzHmOMEEgYyVDZvKAwWBch53F19D/eQXwTEQw=;
-        b=N1SffjFfcIQloHPoURTLikSN6QdrYdIMdCjVMV6R2e4Ohab2CpvYJ0Swqy9okmtIwg
-         xyjpqiXCiiyi3S1ylE7021IDmKDODtKkm5xAMvMA5npBBOLu1uoIzY4suDKVVyeCK2eY
-         2trIgcjf9oej99+A5l/845C/1Jm9hb/AAJJQz0JFDFAo+XjYXc/pRovTvjpxNdUDCwoz
-         oaJTny5yNuU4APLEkoxc4QCthfIhifaJKvRI115qpxnpaH6G+7AW8knUj1ktwE6/MGsK
-         jhbM6NFadsspV4NIpn+jUomAvHo8pdmG9Gt5F82zBkW68oUOnlPYEyHRmMqW9BoYvw8B
-         OJtQ==
-X-Gm-Message-State: AOAM533an2ga08BxdM4kw+33bV+m0xLwlnA3rcpH/bj536UrhoPll39q
-        fbsghmTQUB5OLgs5ckFvcoKPfA==
-X-Google-Smtp-Source: ABdhPJyQ/yNF4X7GSZ8DNdpsH5VZJr1rb42VyysX8gWQiLTy6z1ptZiHHKXbe49IC+/6Wa7Z3y7UYw==
-X-Received: by 2002:a05:600c:214f:: with SMTP id v15mr3519928wml.194.1638264531321;
-        Tue, 30 Nov 2021 01:28:51 -0800 (PST)
-Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id t4sm1733246wmi.48.2021.11.30.01.28.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 01:28:50 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     robh+dt@kernel.org, gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, ekangupt@qti.qualcomm.com,
-        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3] dt-bindings: misc: fastrpc convert bindings to yaml
-Date:   Tue, 30 Nov 2021 09:28:46 +0000
-Message-Id: <20211130092846.18804-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=XNU3SMz79nxxU1DwZbU8oUVUolqcAlujurYqOOjZ1TA=;
+        b=hlNQD8XQGbE8nqTpSjf+shIMOEjPStVT2FIJWJ0XNqJP6TSN6iwvDx4Yb/n/UkI2IL
+         CswtUj9oNoMEJaroZTfbdq8tTAWBII0h4qSfIowi0bzSzeH+MYQUVsKnwiZ8apD0dcUX
+         kqE74qp4/2YdQTbEP76jcHiA7pn3/Ao3BKKnXylBjA1y8z7PYLD/xsYSXtoSNgpWOGDA
+         lzcQq1/9ogftxVyKrlgAOHyCGcvcccfjzWguOJYwszmq+1yuB+Y2anwlhd9KUoZCT3jj
+         jTJt0+flDeAEHX2QQ3132h23FFyo+i5Adc3RQS1qzAgyu7JmWxnHA6bxD+gpqK7/J7RC
+         +qMg==
+X-Gm-Message-State: AOAM530Llxvk3zUGDCuaJ3Ori+COIYzUcEyQ4BjzuV8hQUNb/RyAVk5e
+        iIOSEQTDqeiJHrfYLtLZViOBHFPfd6Ij/KzouQ==
+X-Google-Smtp-Source: ABdhPJwUQX6U3xuOI2tzK6jO7WvNF/6nKvAlEBkVswYKNJotAiaoBs5EZi5vwuBh/a9R00xp2UVEVEH6KDmxdTWiwkA=
+X-Received: by 2002:a17:902:aa43:b0:143:e20b:f37f with SMTP id
+ c3-20020a170902aa4300b00143e20bf37fmr65872952plr.65.1638264703817; Tue, 30
+ Nov 2021 01:31:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:a17:90b:1bc5:0:0:0:0 with HTTP; Tue, 30 Nov 2021 01:31:43
+ -0800 (PST)
+Reply-To: filefileo532@naver.com
+From:   James Pott <ubagroupplc9@gmail.com>
+Date:   Tue, 30 Nov 2021 10:31:43 +0100
+Message-ID: <CAEoctr7YeeH=v26eQiW-jJt8Cu_ofObL-dnCaKkhJeuZEwKefQ@mail.gmail.com>
+Subject: Attention Beneficiary!
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-dt-entries correctly and any future additions can go into yaml format.
+Attention Beneficiary!
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
+This is to bring to your notice that you have inheritance funds to
+receive from this noble bank. Your US$15,500,000.00 has been loaded in
+an ATM card for onward shipment to you. With the Automated Teller
+Machine (ATM), you can withdraw your funds in any ATM machine. The
+maximum withdrawal is $5000.00 in a go. But you will have a special
+right to withdraw 2 times per day, which is US$10000 daily.
 
-Changes since v2:
- fixed typo in pil compatible string 
- added required properties for pil example node
+You can also order for online banking transfer if you wish to receive
+your funds via the online banking system.
 
- .../devicetree/bindings/misc/qcom,fastrpc.txt |  78 -------------
- .../bindings/misc/qcom,fastrpc.yaml           | 104 ++++++++++++++++++
- 2 files changed, 104 insertions(+), 78 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
- create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+Please furnish us with your receiving information to expedite your
+funds delivery process.
 
-diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt b/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-deleted file mode 100644
-index 2a1827ab50d2..000000000000
---- a/Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
-+++ /dev/null
-@@ -1,78 +0,0 @@
--Qualcomm Technologies, Inc. FastRPC Driver
--
--The FastRPC implements an IPC (Inter-Processor Communication)
--mechanism that allows for clients to transparently make remote method
--invocations across DSP and APPS boundaries. This enables developers
--to offload tasks to the DSP and free up the application processor for
--other tasks.
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "qcom,fastrpc"
--
--- label
--	Usage: required
--	Value type: <string>
--	Definition: should specify the dsp domain name this fastrpc
--	corresponds to. must be one of this: "adsp", "mdsp", "sdsp", "cdsp"
--
--- #address-cells
--	Usage: required
--	Value type: <u32>
--	Definition: Must be 1
--
--- #size-cells
--	Usage: required
--	Value type: <u32>
--	Definition: Must be 0
--
--= COMPUTE BANKS
--Each subnode of the Fastrpc represents compute context banks available
--on the dsp.
--- All Compute context banks MUST contain the following properties:
--
--- compatible:
--	Usage: required
--	Value type: <stringlist>
--	Definition: must be "qcom,fastrpc-compute-cb"
--
--- reg
--	Usage: required
--	Value type: <u32>
--	Definition: Context Bank ID.
--
--- qcom,nsessions:
--	Usage: Optional
--	Value type: <u32>
--	Defination: A value indicating how many sessions can share this
--		    context bank. Defaults to 1 when this property
--		    is not specified.
--
--Example:
--
--adsp-pil {
--	compatible = "qcom,msm8996-adsp-pil";
--	...
--	smd-edge {
--		label = "lpass";
--		fastrpc {
--			compatible = "qcom,fastrpc";
--			qcom,smd-channels = "fastrpcsmd-apps-dsp";
--			label = "adsp";
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			cb@1 {
--				compatible = "qcom,fastrpc-compute-cb";
--				reg = <1>;
--			};
--
--			cb@2 {
--				compatible = "qcom,fastrpc-compute-cb";
--				reg = <2>;
--			};
--			...
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-new file mode 100644
-index 000000000000..1840db08500c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
-@@ -0,0 +1,104 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/misc/qcom,fastrpc.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm Technologies, Inc. FastRPC Driver
-+
-+maintainers:
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+description: |
-+  This binding describes Qualcomm FastRPC an IPC (Inter-Processor Communication)
-+  mechanism that allows for clients to transparently make remote method
-+  invocations across DSP and APPS boundaries. This enables developers
-+  to offload tasks to the DSP and free up the application processor for
-+  other tasks.
-+
-+properties:
-+  compatible:
-+    const: qcom,fastrpc
-+
-+  label:
-+    enum:
-+      - adsp
-+      - mdsp
-+      - sdsp
-+      - cdsp
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^cb@[0-9a-f]$":
-+    type: object
-+    description: |
-+      Compute context bank
-+
-+    properties:
-+      compatible:
-+        const: qcom,fastrpc-compute-cb
-+
-+      reg:
-+        maxItems: 1
-+        description: Context Bank ID
-+
-+      qcom,nsessions:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: How many sessions can share this context bank.
-+                     Defaults to 1 when this property is not specified.
-+
-+    required:
-+      - compatible
-+      - reg
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - label
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    adsp {
-+        compatible = "qcom,msm8996-adsp-pil";
-+        interrupts-extended = <&intc 0 162 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
-+                              <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "wdog", "fatal", "ready", "handover", "stop-ack";
-+        clocks = <&xo_board>;
-+        clock-names = "xo";
-+        memory-region = <&adsp_region>;
-+        qcom,smem-states = <&smp2p_adsp_out 0>;
-+        qcom,smem-state-names = "stop";
-+
-+        smd-edge {
-+            label = "lpass";
-+
-+            fastrpc {
-+                compatible = "qcom,fastrpc";
-+                label = "adsp";
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                cb@1 {
-+                    compatible = "qcom,fastrpc-compute-cb";
-+                    reg = <1>;
-+                };
-+
-+                cb@2 {
-+                    compatible = "qcom,fastrpc-compute-cb";
-+                    reg = <2>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.21.0
+Your Full Name........
+Your Country............
+Your City Airport........
+Your Home Address........
+Telephone Number.........
+Gender...................
 
+Upon receipt of the above information from you, your funds will be delivered.
+
+Respectfully
+James Pott
