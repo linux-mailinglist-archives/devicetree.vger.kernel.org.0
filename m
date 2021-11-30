@@ -2,143 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1595E463FC5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 22:17:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A7AD463FCE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 22:20:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343975AbhK3VU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 16:20:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343979AbhK3VUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 16:20:07 -0500
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD34C061746;
-        Tue, 30 Nov 2021 13:16:47 -0800 (PST)
-Received: by mail-ed1-x530.google.com with SMTP id y13so92381969edd.13;
-        Tue, 30 Nov 2021 13:16:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=YExRoIvi7i7R5zagT3u/D1cyGj3kreE8VGtG4x03o0s=;
-        b=hgLUCdPRBn86lbfXSiT0q3sQDoRDO2qh+IzZIUm+jYQJEkmyiBS8WTM8TJqjD6J2Of
-         giJcK1gpY2iSgGkH1lggj8PhLctXxNYDvmEh9l1QZVKv5pEYWm6d6IsksXtDDiIBI+bd
-         kXTo4wZi5p5ANZSxhLxDikj4kzKz+NJPiwLJF2UPF6iADZ2WRwvAZ7v0P3n7A3NiYIj4
-         dxQBxU9cubxQJ+RVDRn4FAouPgE1wJwO7Xs94jBI0PwKKDa6qcBmPWCDvMpo/NRKsvov
-         D/eYGq/dMgTRDk9V9ZgHc1jJBD0R9bu4qOLXyQcQPKlXMNbu0oW7KGQBUn8nMPq4QnOl
-         K7+g==
+        id S1343959AbhK3VXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 16:23:47 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:43639 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235943AbhK3VXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 16:23:47 -0500
+Received: by mail-ot1-f48.google.com with SMTP id i5-20020a05683033e500b0057a369ac614so10632219otu.10;
+        Tue, 30 Nov 2021 13:20:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=YExRoIvi7i7R5zagT3u/D1cyGj3kreE8VGtG4x03o0s=;
-        b=m/6FmXmTmlbJSjfmBpLUrZNcsm/QqEllppcfJKtyoR4NwTHUgCtHlz95WBd03wY1v1
-         DEnt5ytp8JCBO28TFNYZETGVPsWA9P+6u8H1DVm8nh28fns0dsTcgKfx2qdzPR5C4QmJ
-         mXPLZ0F0AW8loXhxt3YuB1hH5lhveR5vX8DnmplR8nJAK8ev0WcQz+GXRYHhN70UnEZ6
-         CxiqtcMGGoIrYgkF3gKAYVYwT5YsEoMxg374RQ5sYChc1J2MfFusaAey9OaoR1v8NJf2
-         MZlrLmXXAoL0GfUIf7Ku24KHxTgi8MrzG8SgmZ8e5Mc1uAgWqwQdQmTH9nOB7/ROgYOh
-         4Jbg==
-X-Gm-Message-State: AOAM533t2/LFbMIupiOhvd6L0KtQ0r43ezWX9gL9qFyYr9/KGLTSLFqs
-        X3+16Z1g+fT3WvqYm09howA=
-X-Google-Smtp-Source: ABdhPJzN3Fz2CCVkITuPmOXAd8mJgSmRUjCHj/t3duUmoTej31dKqiExhdHHeGJT6WDUNVzVnYtUdg==
-X-Received: by 2002:a17:906:9753:: with SMTP id o19mr1810343ejy.243.1638307006053;
-        Tue, 30 Nov 2021 13:16:46 -0800 (PST)
-Received: from localhost.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.googlemail.com with ESMTPSA id p13sm12271753eds.38.2021.11.30.13.16.45
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uttqLLzkhZ5PvfjarafBrrsjvdkxiFqyLh0LB7EUbNE=;
+        b=eqCgo3LhM+ICVjK1Khn9G+2HNvwSElJdSd5ETQVqddaOX1R0h0lHeEJBk5qvUvoHzU
+         7Lll51fTXZ73zMc8sJ9SRmc/2D29/EqULf/omcq0wP3iEu3IRElPSReKp0wTWN899trv
+         I/dVn/Wn4OVPIFAsvhVMkgiwtnB8ZA6YCr/I9CMaWRtUytgsn2yAlR4qLalbfMsVMlOx
+         Bge0f/6t3fW6M+RIeNWFepE5DqjWFQvKK1g18CIxt0FMNNyxzda9ersvne7lcy3zTZkB
+         5YWe0GXsnNEVGclx18ggSFGZ/oSwdWrktPmuAogylN6kKpqQTLxiQGVxlZFmIvkMeR9X
+         YA3w==
+X-Gm-Message-State: AOAM5330iUdajfBc4pmvDvFZ3sjMrvWggeZE74PjMOnS7gQt9FkBIuKw
+        +dr65Cxa/OvvuYPZD6dnTi2g0CPP+Q==
+X-Google-Smtp-Source: ABdhPJxtYMzDwKFXZgF6aNVjRjrm9pYF50V1isyFSgu9M5MJsu6PUWm59QiaYe0PF9rjZo7im+4BWQ==
+X-Received: by 2002:a05:6830:4414:: with SMTP id q20mr1724487otv.14.1638307226913;
+        Tue, 30 Nov 2021 13:20:26 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id i29sm3420074ots.49.2021.11.30.13.20.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 13:16:45 -0800 (PST)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        John Crispin <john@phrozen.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>
-Subject: [net-next PATCH v2 2/2] dt-bindings: net: dsa: qca8k: improve port definition documentation
-Date:   Tue, 30 Nov 2021 22:16:25 +0100
-Message-Id: <20211130211625.29724-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211130211625.29724-1-ansuelsmth@gmail.com>
-References: <20211130211625.29724-1-ansuelsmth@gmail.com>
+        Tue, 30 Nov 2021 13:20:26 -0800 (PST)
+Received: (nullmailer pid 3030663 invoked by uid 1000);
+        Tue, 30 Nov 2021 21:20:25 -0000
+Date:   Tue, 30 Nov 2021 15:20:25 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vincent Knecht <vincent.knecht@mailoo.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, stephan@gerhold.net
+Subject: Re: [RESEND PATCH 2/5] dt-bindings: input: touchscreen: msg2638:
+ Document msg2138 support
+Message-ID: <YaaVmfK5X+xckmkB@robh.at.kernel.org>
+References: <20211123081433.2797395-1-vincent.knecht@mailoo.org>
+ <20211123081433.2797395-3-vincent.knecht@mailoo.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123081433.2797395-3-vincent.knecht@mailoo.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clean and improve port definition for qca8k documentation by referencing
-the dsa generic port definition and adding the additional specific port
-definition.
+On Tue, 23 Nov 2021 09:14:30 +0100, Vincent Knecht wrote:
+> Document msg2138 support by adding mstar,msg2138 compatible.
+> 
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> ---
+>  .../devicetree/bindings/input/touchscreen/mstar,msg2638.yaml  | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/net/dsa/qca8k.yaml    | 40 ++-----------------
- 1 file changed, 3 insertions(+), 37 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-index 48de0ace265d..89c21b289447 100644
---- a/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/qca8k.yaml
-@@ -99,40 +99,9 @@ patternProperties:
-         type: object
-         description: Ethernet switch ports
- 
--        properties:
--          reg:
--            description: Port number
--
--          label:
--            description:
--              Describes the label associated with this port, which will become
--              the netdev name
--            $ref: /schemas/types.yaml#/definitions/string
--
--          link:
--            description:
--              Should be a list of phandles to other switch's DSA port. This
--              port is used as the outgoing port towards the phandle ports. The
--              full routing information must be given, not just the one hop
--              routes to neighbouring switches
--            $ref: /schemas/types.yaml#/definitions/phandle-array
--
--          ethernet:
--            description:
--              Should be a phandle to a valid Ethernet device node.  This host
--              device is what the switch port is connected to
--            $ref: /schemas/types.yaml#/definitions/phandle
--
--          phy-handle: true
--
--          phy-mode: true
--
--          fixed-link: true
--
--          mac-address: true
--
--          sfp: true
-+        $ref: dsa-port.yaml#
- 
-+        properties:
-           qca,sgmii-rxclk-falling-edge:
-             $ref: /schemas/types.yaml#/definitions/flag
-             description:
-@@ -154,10 +123,7 @@ patternProperties:
-               SGMII on the QCA8337, it is advised to set this unless a communication
-               issue is observed.
- 
--        required:
--          - reg
--
--        additionalProperties: false
-+        unevaluatedProperties: false
- 
- oneOf:
-   - required:
--- 
-2.32.0
-
+Acked-by: Rob Herring <robh@kernel.org>
