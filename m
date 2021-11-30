@@ -2,221 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA0D5463E88
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 20:17:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDCB9463E8C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 20:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343520AbhK3TUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 14:20:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbhK3TT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 14:19:56 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4830C061574;
-        Tue, 30 Nov 2021 11:16:34 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id u1so46672765wru.13;
-        Tue, 30 Nov 2021 11:16:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ef3pNAvFyeJjbNmdet3IMAdRtnds6OW8kq/F+gFt22k=;
-        b=CtVOjrOJO/4rb85gtmbkXVMXJA7w5ibhKEfc7HveyKmKxoyIZIho9u4IfdG7rkI4hd
-         IDuexFjBYgFiZRmz8K6ypPpB9p3umOb90vOeG6TY7Wwqtfp7ag3hIRYWB9PYproE66dr
-         cbxiVaMcSUF8LZm9691lf2QkszzSqaqjyHpWngi7BGVgY2ESMMpe3wVZ7u28A01rlosE
-         Er02wUZP6tWouAl6c7XraZlPSMeOf/8O6kW4PB8x/wDmh35onYaRmFrLnuL3U9f/O/E2
-         WfoRLVH18Z+adygcSXbc7lZjawn/obmxBc2dJM/CgFAXAerh/zukr5zqXR7ezqkfauc7
-         6xEA==
+        id S245704AbhK3TW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 14:22:27 -0500
+Received: from mail-ot1-f47.google.com ([209.85.210.47]:33291 "EHLO
+        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245699AbhK3TW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 14:22:26 -0500
+Received: by mail-ot1-f47.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso31768315otf.0;
+        Tue, 30 Nov 2021 11:19:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ef3pNAvFyeJjbNmdet3IMAdRtnds6OW8kq/F+gFt22k=;
-        b=l6mGTvFcoyVYiz6o69iBMXsy7+ztqCysr6qzJeAw9hUgVZ+29yTDRptSGcPl4FiafL
-         j8mxbKTdB2QDMmkLKJEYqToeJaiEFyEG7iKZkJs1wNtLUchMy9kyCLtEg9U6QIt0KWA2
-         0W9X14ukIH09cPiGEoVDP1L0lLjq6BwY1KCnDMKBAtLflY4ID5CPrdNyYJxLT/lSoXMV
-         dlVtVEMPYEToxkqR1G5YzjiAL7hBsbSFH6Brc0AN7DiyOGxtxI11RO8uJts8dZoOFeLh
-         mewy4Qwdz4/b2uUYvPpbiRVChbtO7bM71Ck4ZhM0+qK6omhA6cZnrV52qS/+UT1sh2LZ
-         dJFQ==
-X-Gm-Message-State: AOAM530oaWeNfXBvWbCbuXuXOe8cE4TysmKnE+upOBlOkw9w0hnPdhbi
-        ClVfPI19UIGeMt5jBBHUBdA=
-X-Google-Smtp-Source: ABdhPJyffvNw0qfX1lL78dpOYLQgp+oWkJkRGWN9lsL8P8CbfAHkgVc5i12qejLoXuHogvxwfAwnGg==
-X-Received: by 2002:adf:82d3:: with SMTP id 77mr928486wrc.377.1638299793299;
-        Tue, 30 Nov 2021 11:16:33 -0800 (PST)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id o3sm3808644wms.10.2021.11.30.11.16.32
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=OF1LduFTTSRI9VRvBAmxpKfvR5vYDD0TXr59BS8NBsk=;
+        b=6exX1GNUyKmqWS/UgOqu1fylVaoNQLKdu54Wxvvt4hmdJk+fYptVyN3nljitEPaxzS
+         NQnJIF62xu+arThRUXLMgtTWCbHoSmCoGrTxIKra2YyXjjWaT+dXyOGzWoDqTFndqQ/Y
+         qNXvdhefRPxL/px/Ojhe7+j9Dn6+KRB3gFR+lmqJaV/4CxPpOAmh1XMETYqvKkxkt4yS
+         TXryN8n8xa7/2Mokv8m1hQ1jGMrMTyDSt5CO0fwmSUZBqKYoTgzu5s8Y1QxRMyaywk32
+         WlS+MhU4U9sCenDDLMvsHJZb5n68I1fxf0QnxN8P5vzgbtibStojKzUTl+oaFiZ2oA27
+         jrgA==
+X-Gm-Message-State: AOAM530VTaVaCVuww5E+WAzNIY8NUGyEhTcb5ocU9ykELTS35wvmE8jR
+        vRQBIvI13iphI1IsdMtB+g==
+X-Google-Smtp-Source: ABdhPJxPuvTylUr8LHoXN6srxSCAQqg8d9HqWMXsxY0z3t4QMbxbqZQ9Y51mP+wRoX5sJHuOz24LKQ==
+X-Received: by 2002:a9d:24c3:: with SMTP id z61mr1157237ota.100.1638299942808;
+        Tue, 30 Nov 2021 11:19:02 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id e21sm3262978ote.72.2021.11.30.11.19.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 11:16:32 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, heiko@sntech.de, sre@kernel.org,
-        maccraft123mc@gmail.com, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v4 RESEND 0/4] power: supply: Add Support for RK817 Charger
-Date:   Tue, 30 Nov 2021 20:16:31 +0100
-Message-ID: <5790471.3iNxtBKjHZ@archbook>
-In-Reply-To: <SN6PR06MB5342DF2234B8F9599E1AF125A5679@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20210916194208.10387-1-macroalpha82@gmail.com> <2197533.Eh1vGvx6NY@archbook> <SN6PR06MB5342DF2234B8F9599E1AF125A5679@SN6PR06MB5342.namprd06.prod.outlook.com>
+        Tue, 30 Nov 2021 11:19:01 -0800 (PST)
+Received: (nullmailer pid 2848687 invoked by uid 1000);
+        Tue, 30 Nov 2021 19:19:00 -0000
+Date:   Tue, 30 Nov 2021 13:19:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [RFC PATCH] dt-bindings: nvmem: add transformation support
+Message-ID: <YaZ5JNCFeKcdIfu8@robh.at.kernel.org>
+References: <20211123134425.3875656-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211123134425.3875656-1-michael@walle.cc>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Dienstag, 30. November 2021 19:33:02 CET you wrote:
-> On Tue, Nov 30, 2021 at 07:12:11PM +0100, Nicolas Frattaroli wrote:
-> > On Dienstag, 30. November 2021 17:10:21 CET Chris Morgan wrote:
-> > > On Tue, Nov 30, 2021 at 03:03:03AM +0100, Nicolas Frattaroli wrote:
-> > > > On Donnerstag, 16. September 2021 21:42:04 CET Chris Morgan wrote:
-> > > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > > 
-> > > > > This series is to add support for the Rockchip rk817 battery charger
-> > > > > which is present in all Rockchip RK817 PMICs. The driver was written
-> > > > > as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
-> > > > > myself Chris Morgan <macromorgan@hotmail.com>.
-> > > > 
-> > > > Hi Chris and Maya,
-> > > > 
-> > > > Gave this a whirl on my Quartz64 Model A. I noticed that this will
-> > > > happily let me discharge past voltage_min_design:
-> > > > 
-> > > >  $ cat /sys/class/power_supply/rk817-battery/voltage_min_design 
-> > > >  3625000
-> > > >  $ cat /sys/class/power_supply/rk817-battery/voltage_avg 
-> > > >  3381360
-> > > > 
-> > > > Is this normal? It went all the way to under 3V before the
-> > > > board finally locked up.
-> > > > 
-> > > > Does the minimum voltage not affect some sort of cutout on
-> > > > the RK817? Does it even have one? Is it the driver's job to
-> > > > do something here or not?
-> > 
-> > Hi Chris,
-> > 
-> > > It does not look like I coded that, but I can. The PMIC has a
-> > > selectable register (RK817_PMIC_SYS_CFG0 = 0xf1) to automatically shut
-> > > down the system at a certain voltage (between 2.7v and 3.4v in
-> > > increments of 100mv; bits 6-4), a register to set a low voltage value
-> > > (between 2.8v and 3.5v in increments of 100mv; bits 2-0), and a
-> > > register to set a low voltage action (either shut down the machine or
-> > > trigger an interrupt; bit 3 and then I believe the interrupt is read at
-> > > bit 7 of RK817_PMIC_INT_STS0 - 0xf8).
-> > 
-> > Excellent, I think shutting down the system is definitely the way to
-> > go here, as by reaching this voltage we can assume userspace has gone
-> > missing and we don't know if the kernel is still alive.
-> > 
-> > > I guess I just assumed userspace would handle it, but that's probably
-> > > a bad assumption.
-> > 
-> > Yes, I didn't have upower installed, but over discharge protection
-> > shouldn't be handled by userspace at all. Had I connected an unprotected
-> > cell that didn't cut out at below 3V, it would've been irreversibly
-> > damaged due to a simple forgotten package install. Even if unprotected
-> > batteries are a bad idea, I think we best assume the worst case
-> > situation here.
-> > 
-> > > What if I set the low voltage value to either 3.5v
-> > > or the min design voltage, whichever is less; and then set the low
-> > > voltage trigger to shut down the system? This would prevent your
-> > > battery from dropping below 3.5v or the min design voltage (whichever
-> > > is less, sadly 3.5v is as high as I can go for the minimum) in the
-> > > event userspace doesn't take action first? We could also set the
-> > > shutdown voltage to be 100mv less than the min design voltage and use
-> > > the low voltage interrupt to trigger an action, but I'm not sure what
-> > > action would be appropriate (and if userspace isn't listening it would
-> > > be moot anyway).
-> > 
-> > A very simple solution would be to simply set the shutoff point to the
-> > voltage reaching less than 3.1V. The RK817 only charges Lithium/Li-Po
-> > batteries, and they should generally not be discharged below 3.0V. Of
-> > the protected batteries I own, over-discharge protection generally
-> > kicks in at the 3V threshold.
-> > 
-> > This gets rid of a lot of logic that could lead to bugs by simply setting
-> > a known good value to begin with.
-> > 
-> > I think I can summarise how I understand this is supposed to work as
-> > follows:
-> > 
-> >  - if battery reaches 0% and the battery alarm is rang, userspace should
-> >    power down the system
-> >      - this prevents unclean shutdowns
-> >  - if the battery reaches a dangerously low voltage for its chemistry,
-> >    the PMIC should cut power to the system as instructed by the kernel
-> >      - last resort measure in case userspace is absent and the battery
-> >        happens to be unprotected
-> >  - there may or may not be battery protection which kicks in at 3V, but
-> >    we should not rely on this working
-> >       - some 18650 cases infamously aren't sized to fit cells with a
-> >         protection circuit connected to it. I shan't name names.
-> > 
-> > In a freak accident where the kernel is completely locked up and the
-> > battery is unprotected and being drained, I presume that having set
-> > this PMIC register will still make it kick in, which lets me sleep
-> > a little sounder at night.
-> > 
+On Tue, Nov 23, 2021 at 02:44:25PM +0100, Michael Walle wrote:
+> This is my second attempt to solve the use case where there is only the
+> base MAC address stored in an EEPROM or similar storage provider. This
+> is the case for the Kontron sl28 board and multiple openwrt supported
+> boards.
 > 
-> Okay. The default value for automatic shutdown is 2.7v, but that's
-> probably too low. I'm wondering though if this should go in the main
-> MFD driver, rather than the battery driver? The reason why I ask is
-> that without a battery driver to raise the shutdown voltage to 3.1v,
-> the shutdown will not happen until 2.7v which risks damage to the
-> battery. This means devices in production today (such as anyone running
-> the Odroid Go Advance on a mainline kernel) on a battery will
-> experience this behavior. Setting that register value shouldn't do
-> anything harmful if you don't have a battery, so I assume if it's safe
-> to set it 100% of the time for battery users it's safe to set 100% of
-> the time in total. Which also begs the question, if this is such a
-> danger to the hardware, should we even be doing it in Linux? We could
-> be setting it in U-Boot, because if the MFD driver fails to load or the
-> kernel freezes before the MFD driver loads there is STILL the risk you
-> could undervolt the battery, regardless of fixing this in the MFD driver
-> or the battery driver.
+> The first proposal [1] didn't find much appreciation and there wasn't
+> any reply to my question or new proposal [2]. So here we are with my new
+> proposal, that is more flexible and doesn't fix the ethernet mac only.
+> This is just an RFC for the device tree representation for now to see if
+> this is the correct way to tackle this.
+> 
+> I'm also aware of the latest post process hook support [3]. This doesn't
+> fix the base mac address issue, but I think it also doesn't solve the
+> case with swapped ethernet addresses in the general case. That hook will
+> involve the driver to do the swapping, but how would the driver know
+> if that swapping is actually required. Usually the interpretation of the
+> content is opaque to the driver, after all it is the user/board
+> manufacturer who does program the storage device. We might be lucky in
+> the imx-ocotp case because the IMX reference manual actually states
+> where and in which format the mac address is programmed.
 
-I believe 2.7V is still fine. The protection circuits may cut off before
-that because they want to keep the longevity of the battery and there
-isn't much juice left between 2.7V and 3.0V anyway. If the PMIC always
-shuts down at 2.7V then there isn't anything to fear really, that's
-still above the 2.5V that Wikipedia states as being the lower end of
-the safe voltage range. While that's not the source to end all sources,
-the PMIC having a lower cutoff probably means that some engineer did
-think of this and pulled up the correct numbers.
+A compatible string can define what is the format of the data.
 
-Now that I've learned of this, I suspect there isn't really an issue
-at all here. If we shut off at 2.7V we're good. Userspace should shut
-down before then, and if there's battery protection that kicks in
-before that, it makes really no difference to the end result, as
-long as there is some cutoff somewhere
+> Introduce a transformation property. This is intended to be just an
+> enumeration of operations. If there will be a new operation, support for
+> it has to be added to the nvmem core.
+> 
+> A transformation might have multiple output values, like in the base mac
+> address case. It reads the mac address from the nvmem storage and
+> generates multiple individual addresses, i.e. on our board we reserve 8
+> consecutive addresses. These addresses then can be assigned to different
+> network interfaces. To make it possible to reference different values we
+> need to introduce an argument to the phandle. This additional argument
+> is then an index into a list of values.
 
-Thanks for your quick responses, my concerns regarding this are
-alleviated. Devices that are already out there should be fine
-in this regard.
+I still don't think trying to encode transformations of data into the DT 
+is right approach.
 
 > 
-> Thank you.
+> Example:
+>   mac_addresses: base-mac-address@10 {
+>     #nvmem-cell-cells = <1>;
+>     reg = <10 6>;
+>     transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
+>   }
 > 
-> > Regards,
-> > Nicolas Frattaroli
-> > 
-> > > 
-> > > Thank you.
-> > > 
-> > > > 
-> > > > Regards,
-> > > > Nicolas Frattaroli
-> > > > 
-> > > > 
-> > > 
-> > 
-> > 
-> > 
-> > 
+>   &eth0 {
+>     nvmem-cells = <&mac_addresses 0>;
+>     nvmem-cell-names = "mac-address";
+>   };
 > 
+>   &eth1 {
+>     nvmem-cells = <&mac_addresses 2>;
+>     nvmem-cell-names = "mac-address";
+>   };
+> 
+> The NVMEM_T_ETH_OFFSET transformation takes N additional (dt) cells and
+> will generate N values. In this example BASE_MAC+0, BASE_MAC+1, BASE_MAC+7.
+> An nvmem consumer can then reference the nvmem cell with an index. So eth0
+> will get BASE_MAC+0 and eth1 will get BASE_MAC+7.
+> 
+> This should be sufficient flexible for many different transformations
+> without having to touch the bindings except for adding documentation and
+> checks for new transformations.
+
+The content and number of cells is supposed to be opaque to the client 
+and interpreted by the provider. That's sort of true here, but not 
+really because the interpretation is tied to 'transformation'. So I'm 
+okay with adding cells, but not fixing the interpretation of them. A 
+compatible should determine how the cells are interpreted.
 
 
+> I do have one question regarding "#nvmem-cell-cells" (aside from the
+> awkward naming): is it allowed to have that property optional if there
+> is no additional argument to the phandle?
 
+We don't have any choice if we add "#nvmem-cell-cells". There's already 
+cases without it.
 
+> 
+> [1] https://lore.kernel.org/all/20210414152657.12097-2-michael@walle.cc/
+> [2] https://lore.kernel.org/linux-devicetree/362f1c6a8b0ec191b285ac6a604500da@walle.cc/
+> [3] https://lore.kernel.org/lkml/20211013131957.30271-1-srinivas.kandagatla@linaro.org/
+> 
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+>  .../devicetree/bindings/nvmem/nvmem.yaml      | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> index 456fb808100a..8893d045be77 100644
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> @@ -26,11 +26,34 @@ properties:
+>    "#size-cells":
+>      const: 1
+>  
+> +  '#nvmem-cell-cells':
+> +    enum: [0, 1]
+> +    description:
+> +      Must be 1 if the transformations has multiple output values.
+> +      The argument is then the index into the list of output values.
+> +      For example, if the nvmem cell only specify a base ethernet
+> +      address the transformation can then create different individual
+> +      ethernet addresses.
+> +
+>    read-only:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
+>        Mark the provider as read only.
+>  
+> +  transformation:
+> +    description:
+> +      Transform the content of a NVMEM cell. Sometimes it is necessary
+> +      to preprocess the content of a cell so it is usable by the NVMEM
+> +      consumer. There are also cases where one NVMEM cell value can
+> +      generate a list of values.
+> +
+> +      Use one of the NVMEM_T_* prefixed definitions from the header
+> +      include/dt-bindings/nvmem/nvmem.h.
+> +
+> +      Some transformations might have additional arguments.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +
+>    wp-gpios:
+>      description:
+>        GPIO to which the write-protect pin of the chip is connected.
+> @@ -98,6 +121,12 @@ examples:
+>                reg = <0xc 0x1>;
+>                bits = <2 3>;
+>            };
+> +
+> +          ethernet_base_mac: base-mac-address@100 {
+> +              #nvmem-cell-cells = <1>;
+> +              reg = <0x100 0x6>;
+> +              transformation = <NVMEM_T_ETH_OFFSET 0 1 2 7>;
+> +          };
+>        };
+>  
+>  ...
+> -- 
+> 2.30.2
+> 
+> 
