@@ -2,177 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A8ECF463D31
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D05F8463D6D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:12:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231362AbhK3Ruq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 12:50:46 -0500
-Received: from mail-eopbgr20055.outbound.protection.outlook.com ([40.107.2.55]:3970
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S239347AbhK3Rtw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 12:49:52 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W3PzodjXp0Fs09qG/g1iw1431+59h2heN6+8LBwOpDsLv2Z3MO/cwSHPmepiAMBR8J09e8iw5hrqjjI/LLQYfke5Wh4Elyxs04d6yhJSJF4sov5s4bRc6cAchX/ZdzUPHAg6/lHm/L+xBX7acA/eH7JRaQwFXz+FOVB2HBRjg7SL5TdMGuyEEgwuDf4jW6ywRX44U1GWmyd2zavwq1rp8xXWLljDK4JfpyvomgqqvDoOT3CEylVKkpcxeFMyL2uAELktv759rvlyoWNKwW1Rs2N03db+D4Hx2vhihoxSB86SuAfIfBrsBb4y9eM9gv26L946H7k7X+ub4J6ljFGsvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bCnQwPvHidGFysNXGzvXyj8xvMNWP68mM1SlK5+uiGs=;
- b=FbOuQCeTFThtsWXoGVgyF1dvCzQ5myFTvBhGsNL6S4hzNdU7HnmHQsIl0P0irGV3IlYuRovICCUa93Op7bBXrRdvc/pFn9gSbcpXK6HQRDccDffzi9So7N8NO5210aCGorZDeUGzaopEyiZzy0ET010mk+qWUHV3cakveVmaHy4C4YwCeu4I5UxIcJnElS3h0m8S/ZHjxn5sG4M5u2SHHJBgb8pMZ+2Ihq57W42uyA79LT4nAi8UJO66LIRcr84PIsRtw78tj1ARLMP4O9dMtentafwXBHSqIb5w7uYhZPdJPYE2LHIg+Lmsz1FgZqNxdgAsCaRldS/WgKqWIjV8SQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=diasemi.com; dmarc=pass action=none header.from=diasemi.com;
- dkim=pass header.d=diasemi.com; arc=none
+        id S245315AbhK3SPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 13:15:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51788 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238080AbhK3SPe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:15:34 -0500
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1DAC061574;
+        Tue, 30 Nov 2021 10:12:14 -0800 (PST)
+Received: by mail-wm1-x334.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso20224604wml.1;
+        Tue, 30 Nov 2021 10:12:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dialogsemiconductor.onmicrosoft.com;
- s=selector1-dialogsemiconductor-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bCnQwPvHidGFysNXGzvXyj8xvMNWP68mM1SlK5+uiGs=;
- b=qOQ6C3GyMif2Tlk6xEivSjFSbWmFCW+OUn3mS9ToPguvohGUqXT7h/2m0CtNCN0n1cwjitr5LGq1QI/+feyeVSCm8i9AlHgeBpGDV4S6zzx17lgHZJOA63aKDyOUccMNaCCYXMOF/HgxhblWgg9uzt+LCBi5RHUAaST6C31EYo0=
-Received: from DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:255::23)
- by DB9PR10MB4476.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:22f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Tue, 30 Nov
- 2021 17:46:23 +0000
-Received: from DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::852d:c54f:8414:3276]) by DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::852d:c54f:8414:3276%3]) with mapi id 15.20.4734.024; Tue, 30 Nov 2021
- 17:46:23 +0000
-From:   Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Andrej Picej <andrej.picej@norik.com>
-CC:     Support Opensource <Support.Opensource@diasemi.com>,
-        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
- timeout mode
-Thread-Topic: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
- timeout mode
-Thread-Index: AQHX5fAwp6aBl2Hn4kyu/pPkB5+TWawcImuAgAAZNOCAAAppgIAADhYg
-Date:   Tue, 30 Nov 2021 17:46:23 +0000
-Message-ID: <DB9PR10MB46521F419F43685F7103D32480679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
-References: <20211130134242.3516619-1-andrej.picej@norik.com>
- <20211130134242.3516619-3-andrej.picej@norik.com>
- <4591cdd6-9a7b-cd1d-817d-8950c8976d10@roeck-us.net>
- <DB9PR10MB4652C8A69A6A3F38B93ED18880679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
- <dcd75a82-5837-8d78-0a9f-6e5b7eafff28@roeck-us.net>
-In-Reply-To: <dcd75a82-5837-8d78-0a9f-6e5b7eafff28@roeck-us.net>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=diasemi.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e8e9c642-41fe-4ebb-2048-08d9b429538f
-x-ms-traffictypediagnostic: DB9PR10MB4476:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-microsoft-antispam-prvs: <DB9PR10MB4476EEF166E70A7061EA867AA7679@DB9PR10MB4476.EURPRD10.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: H1j1MO/eKMHyli1z5RY/hzDLpe48ObvFX8I/BRSNkGHiJpRYI9oApwqjSr7icdoYIEaVtU5WlQZzCztSPQpRhctBpDeA5ToLTyKvhbEj5R31HGhpkSjztSzKD4BS1g8VuHv2rcUZ7mIMnu6gVCZ4TNv+ZT7nxIMhdPJVJkGQ/5M7apTfnXINMFH9hVIvtPRfZ9PlqtlRpaGM/3BVDfkvWllEEvUbJvP36MxYurv/fp1jj1u3FSuqaiIMHIwiuNxq0MvB6lkK8xFxe8Q0NrCorl6s14XX3vz6ea57zKJ542qetAbGP/jNxEGCa/zX5qDx7mVpqRsa3wYCH6xHd8eEohfyuWNaN1obtSOnAS6Q6DOA1mdVtin/wW9B8cCbAsZb5CV3CG2PdYHiiXAWap0X2S74/5yvY6VnbCx9XlPSSHP9fwo9GESJBBpGyQxcZcEr3Un+fVenQ2HsaIObL47CE7XGDLEECUoEWq8aKbX1bKlX0Zxm5ZOrKdB2ZLMH85PUHCmM20zaA2ae3C7XqxaU2QP4ZnXewlW/QKbcSQys3Rwvyk+sK3c5dyGF2Lj+XbJgj5Kd5OScOjHzoy3Gh+49vIrVao/4K/aWoPDVeK9UoFKoAP1UdpE3XplQMewLJuIBTY0JxlQYkOah8V6rtLhJBZW1H1OhnSKpWY6+DM4iDWxeCx/LBBTatgT+Vp19K8p0QpOVUAoBK3kkjwouKJfWJg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(366004)(8676002)(8936002)(9686003)(86362001)(7696005)(66556008)(186003)(5660300002)(110136005)(33656002)(6506007)(53546011)(71200400001)(122000001)(38100700002)(83380400001)(7416002)(2906002)(55236004)(316002)(66446008)(26005)(38070700005)(54906003)(66476007)(52536014)(4326008)(508600001)(55016003)(76116006)(64756008)(66946007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZVlJTUszWFdJZk9pK2JsR2FZbHhxSktRUVVWV0FVRCtGd0dqU3hOQU9ua0E0?=
- =?utf-8?B?Z04zTUdIaXlmQTZWR3pJYjBEVjY4OEZQVXlTQkl0STRqQXdjOEZPRitLUWlU?=
- =?utf-8?B?aytTYW9Kd2dNaENhTzFrSFZVWmhOTU9MeFQxMFplYmYrSjlUbmdQaENxcW1M?=
- =?utf-8?B?dmEyWFNIUm1zNlpibVRCNDEzRytSYUR2WjR4aUkzRmpzdllqTW10Q1RqQlZL?=
- =?utf-8?B?Nll5QTYxRDlEUjJUVkt2YTQ4a1o1LzlOeENNa1NDL3lKb1JPcksvb0YwSXA2?=
- =?utf-8?B?RTVZUlZYZnhsaUdYb2c5bnNIcERjVVpXdzZSRmk0VnFTTml3UFptVDI1bHNp?=
- =?utf-8?B?dENmbWNvYitJNWZPYW1uelcra2tHSDA3UDRuU3BZbDZWQmlTdG9TaTQxclJ6?=
- =?utf-8?B?dlBXRWtkc3ByZ2U2dWYyME8xb2JUTXE5SnhOUXFETloxSFBRMlNOWmk3Mjli?=
- =?utf-8?B?VnNZOGRnOUxpQy9rbTY0NXFmOHhTQ3JqbHVEK0Jsa2hYaEJ4cFZNQmhsSENE?=
- =?utf-8?B?V0EwTUgycnVuQ2lEeFVRTGxnalcrejR1RUwraUVhN1hFUDFSbDZsTGRZbzBH?=
- =?utf-8?B?alErTlVab2lRT2phdTJscXY5Tnd0TXd6bmdFdER2ZHFkTy8wQlpBNGdaakRV?=
- =?utf-8?B?RTRFVVpqZkdkd3JudlVMajZ0b0ZFUUpVVWRyTUUyb3I1WTI1dUViWTRsMWt0?=
- =?utf-8?B?ei82NDUwY25pbjd2V3RxNnluSWViMlVnMklCYlcrR1Vnd04zSzFpYkpiSDVq?=
- =?utf-8?B?R1VzV2wvVjI5ZVVmUEdYWmhiZDlWemZ3NjlYN0FzSjljYUtYN3BDaStaQm4v?=
- =?utf-8?B?aXZJWVhxbGJueEhQWndTSjhrUmJmaVQzQXJQcWJraEI4QlRSb3UwejRkU2xW?=
- =?utf-8?B?SDBSWWpFU2kzbjYvemxxL3Bxc1RFVmFZckJLOWdUTlp2OUttL3ZhTjlvUnZp?=
- =?utf-8?B?UjBMNXFkNUZCYXV0VjNrSVlqekhDcjlxMkgrNHhTTXo5WXdKUWpxTldOWSt4?=
- =?utf-8?B?MFZqK1cvYmFyTys3UmYrZEtGMWpGWHByVS9xQktTci9BQU50NlRaQnpBck9a?=
- =?utf-8?B?QWNudkN1UEcxYWRQL2JMczVFdEVKZzVwOUtZeElSakE1QzZ1TGRWc1FLNExl?=
- =?utf-8?B?eHNEYmNiVFhjL3pVcVBJQm8zK1J3MXgrY05oOEZwb2dEY01BNmdPZHR6bFVS?=
- =?utf-8?B?OW5iTlFjbUhxeTBhN2JzZmlRNnptVCtLMTg0VWhxaVMzWHJoVXJyTE9GM1dY?=
- =?utf-8?B?U2NIeDNQbmk4RjRvaTFxU2l6TUUxVC8vakRqOGhNcVVYWDlhWGdDWlJYZFFv?=
- =?utf-8?B?S1pmSmpyMWNYUFpMY280ZVRPTnQ0MUhvNlY4ZDI1STBTNXlJNmhBVGZUdm91?=
- =?utf-8?B?bGRXQktXUzQvWXJzQ0lId2R5a2s2dmZDVG9SMkNUSWYrY0pCOVF5Yy9EN2or?=
- =?utf-8?B?V3dweFBNdG9FQTlOVXloeFBtSmxGQnVUTm1DTDlFSjFlUlhzZmQ4T2Y5bFFS?=
- =?utf-8?B?NVZ4U3lyOXh0d0J1R1d3dXV6U1lPVWpJblFBYTdFa2M4ZlkvZ3JBcUU1M3BS?=
- =?utf-8?B?N0FJVVpobzNzQnNRckZ1RjA0NWJVb1VkR1pyRXB1MTB2bU96dGpjVERTdHJq?=
- =?utf-8?B?YjduSWZMalRRNkpOWCtOTWJLdUNzZElEVUpUR2gyeCs1U0NwSVRNSWJ3MlNl?=
- =?utf-8?B?OElDcjNaQXBJS1JtMzhPOUtsNmJDdkUwNEYvVzBsUm1sRjFwWERwcUNGRjNK?=
- =?utf-8?B?VzZRZGY2RGQrbTBIU2ZuRHovSVNiU0VHUXRrMzNmcWs3bXl3ZlpJbnVremV0?=
- =?utf-8?B?K28rc0RnVUFKSFU0SHpFc2VVUUNlWHhSUVJEaTVMUHNIOEdLTHFBM0Fzd1hh?=
- =?utf-8?B?UGg3VWFyRXpCQnVGVlhxS05mRGc2ekdGc2pGeno3eVQ3SWNvcUExRFA1cGZQ?=
- =?utf-8?B?NHZYUnJkaExKTnlsL0lNMms5V1V4Y0FKTytPc3BiN1JJcGVoVktOT0IrQWs5?=
- =?utf-8?B?ZXZXMUpOa0Y3ZG8zUGN1UzJzRGlwMnVJVk53enlZQUVUOWxISlRQakp0UG40?=
- =?utf-8?B?bS9rcERBcFBjSTlZVDBiU25XYjZoSzI4dUVWYmpmOExkT3FLU0RyaEhQV09r?=
- =?utf-8?B?aXgrTzIrUy9QUEpDZ2MzN2c0ZkQvODdYdnRlZnQ4Z2E0d3pyNWt3ekQzRDBS?=
- =?utf-8?B?dkRjck5RZWE4cFg5SHBkWkgzRGJEOHUzUW4zNncyaVRYSlpnTzJGMlV0NXJm?=
- =?utf-8?B?cStmcUJQUkxrYWZwVzFrbzV1UFFBPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=1GfV3zta/z9JoKzgmdmEEj9hpTBApmNs4j7cDZBMOGc=;
+        b=VPyaZj70LNlfmo8vyq/bdkYc5lM+6a2xPAMr1Tx4rjiSzTAVfo6mUj1NAJhjKCwNDd
+         MtIdyee+YfNfMjDrQ/gqmflPr+f770yMKESXCE+jTlfMdhM+q6oiHTVPI83Zfa82oz6z
+         +V5PEMWvE2OsKs8NDpQIsOHL8xqoEpFxiiXAYROdczoIj0Y6tuNkj1M4UH91qTRsHG3O
+         PGtsc6hmnXnaI4SaQNny5PkEXDejaJMRHVZc/kSVUEXLML7SFGgpv7y8gxaPq5bAJVWQ
+         WvAZuFvYmmefFt6sWsgXhVCY6Rbw4C77d1UDQ6S08O+I+qO6QGcd5PkaeRXgvWRXcgVQ
+         x6PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=1GfV3zta/z9JoKzgmdmEEj9hpTBApmNs4j7cDZBMOGc=;
+        b=ZFAHPPbHTKcDef3TX0BGFg7LmcFWT05QrBEiIvf9V4xonQwCCaBpgIcvA2XQdEmZus
+         8UNV9AiauhXBZ7cWAJdPRi8qKBBZWNDTHJcpZLFdqQ0Op5B6AU30E4UYYDd5efSlNNia
+         y8RU9w26ZCCbyPb53M4V62dgecfqI7i2Suc5SuiC/o57Tyc9GR/ST1fraIuKU7vGLizk
+         i3R8+uP8HWwiBnGnwuN7YfB/mNXxRnpGTAqeItc7cRGoGitOQm1kqpqnvyShu7uGEDIW
+         qcsedF06W5sUuG70hHigflljldgxga/I2a9X/rq2uOWiiaTMng04TDI54hLSxj8N6ygI
+         AslA==
+X-Gm-Message-State: AOAM532Im0v6DSPRUyXoB41K2PDS0MLDKjmb+fU3wVQ8mChiQpc2g3fU
+        X+6C7zO++X//AFHdxt1/E1I=
+X-Google-Smtp-Source: ABdhPJxLLBjy+5pV2Vw7yzKGxAyLHcEUZ/+Cw37st1U6y37HezvYTYbnP5+zZ03FIrQK80aMum5LZg==
+X-Received: by 2002:a1c:a711:: with SMTP id q17mr330188wme.158.1638295933311;
+        Tue, 30 Nov 2021 10:12:13 -0800 (PST)
+Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
+        by smtp.gmail.com with ESMTPSA id l4sm16775043wrv.94.2021.11.30.10.12.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Nov 2021 10:12:12 -0800 (PST)
+From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
+        robh+dt@kernel.org, heiko@sntech.de, sre@kernel.org,
+        maccraft123mc@gmail.com, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
+Subject: Re: [PATCH v4 RESEND 0/4] power: supply: Add Support for RK817 Charger
+Date:   Tue, 30 Nov 2021 19:12:11 +0100
+Message-ID: <2197533.Eh1vGvx6NY@archbook>
+In-Reply-To: <SN6PR06MB534222D7CA5732E689F5BA21A5679@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20210916194208.10387-1-macroalpha82@gmail.com> <2759402.V8G6Gt6Xmj@archbook> <SN6PR06MB534222D7CA5732E689F5BA21A5679@SN6PR06MB5342.namprd06.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: diasemi.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: e8e9c642-41fe-4ebb-2048-08d9b429538f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Nov 2021 17:46:23.6411
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4jIxY9x/5fhSmatzbXgQnpNUfpyBov8qj04OgTXG9CfQW8T5DPu1efO6TqBIgR+DqsWUEl0fD3VbL9TcEG/ovr28TdI1BMHX9lxa5WjKXhg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB4476
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMzAgTm92ZW1iZXIgMjAyMSAxNjo0MCwgR3VlbnRlciBSb2VjayB3cm90ZToNCg0KPiA+PiBX
-aHkgZG9lcyBpdCBuZWVkIGEgdmFsdWUgPyBXaHkgbm90IGp1c3QgYm9vbCA/DQo+ID4NCj4gPiBP
-bmUgYXJndW1lbnQgbWlnaHQgYmUgdGhhdCBpZiB0aGUgcHJvcGVydHkgaXNuJ3QgcHJvdmlkZWQg
-dGhlbiB0aGUgT1RQDQo+ID4gY29uZmlndXJlZCB2YWx1ZSBjYW4gcGVyc2lzdCB3aXRob3V0IG5l
-ZWRpbmcgYSBGVyBjaGFuZ2UgYXJvdW5kIHRoaXMgRFQNCj4gYmluZGluZy4NCj4gPg0KPiA+IE15
-IGJlbGllZiB0aG91Z2ggaXMgdGhhdCB0aGUgbWFqb3JpdHkgb2YgdXNlcnMgd291bGQgaGF2ZSB0
-aGlzIHByb3BlcnR5IHNldCB0byAwDQo+ID4gYnkgZGVmYXVsdCBpbiBPVFAsIHNvIGEgYm9vbGVh
-biB3b3VsZCBiZSBPSyBJIHRoaW5rIGhlcmUgdG8gZW5hYmxlIHdhdGNoZG9nDQo+ID4gc2h1dGRv
-d24uDQo+ID4NCj4gDQo+IFNvcnJ5LCB5b3UgbG9zdCBtZS4NCj4gCWRsZyx3ZHQtc2QgPSA8MD47
-DQo+IGlzIHRoZSBjdXJyZW50IHNpdHVhdGlvbiwgYW5kIGlkZW50aWNhbCB0byBub3QgaGF2aW5n
-IHRoZSBwcm9wZXJ0eSBpbg0KPiB0aGUgZmlyc3QgcGxhY2UuDQo+IAlkbGcsd2R0LXNkID0gPDE+
-Ow0KPiBpcyBuZXcuIEkgZG9uJ3Qgc2VlIHRoZSBkaWZmZXJlbmNlIHRvDQo+IAlkbGcsd2R0LXNk
-Ow0KPiB2cy4gbm90IGhhdmluZyB0aGUgcHJvcGVydHkgYXQgYWxsICh3aGljaCBpcywgYWdhaW4s
-IHRoZSBjdXJyZW50IHNpdHVhdGlvbikuDQo+IFNpbmNlIGl0IGhhcyB0byBiZSBiYWNrd2FyZCBj
-b21wYXRpYmxlLA0KPiAJZGxnLHdkdC1zZCA9IDwwPjsNCj4gd2lsbCBhbHdheXMgYmUgaWRlbnRp
-Y2FsIHRvIG5vdCBoYXZpbmcgdGhlIHByb3BlcnR5IGF0IGFsbC4NCj4gSSBjYW4gbm90IGZpbmQg
-YSBzaXR1YXRpb24gd2hlcmUgYW4gaW50ZWdlciB3b3VsZCBoYXZlIGFueSBiZW5lZml0cyBvdmVy
-IGENCj4gYm9vbGVhbi4NCg0KU28gaWYgeW91IGhhdmUgYSBiaW5hcnkgRFQgYmluZGluZywgaXQn
-cyBlaXRoZXIgdGhlcmUgb3IgaXQgaXNuJ3Qgd2hpY2ggaW1wbGllcw0KdGhlIGJpdCB0byBiZSBz
-ZXQgdG8gMC8xIGluIHRoaXMgY2FzZS4gSWYgeW91IGhhdmUgYSBiaW5kaW5nIHdoaWNoIGhhcyBh
-IHZhbHVlLA0KdGhlcmUgY2FuIGJlIDMgb3V0Y29tZXMgaW4gdGhpcyBkaXNjdXNzaW9uOg0KDQog
-MSkgQmluZGluZyA9IDAsIGJpdCBpcyBzZXQgdG8gMA0KIDIpIEJpbmRpbmcgPSAxLCBiaXQgaXMg
-c2V0IHRvIDENCiAzKSBCaW5kaW5nIE5PVCBwcmVzZW50IGluIERULCBPVFAgZGVmYXVsdCB2YWx1
-ZSBpbiBIVyByZW1haW5zIHVudG91Y2hlZA0KDQpTYXkgYSBwbGF0Zm9ybSB1cGRhdGVzIHRvIGEg
-bGF0ZXIga2VybmVsIHZlcnNpb24sIGJ1dCBzdGlja3Mgd2l0aCBleGlzdGluZyBEVA0KRlcgKGku
-ZS4gdGhlIG5ldyBib29sZWFuIGJpbmRpbmcgaXNuJ3QgcHJlc2VudCBpbiBGVyksIHRoZW4gdGhl
-IGZvbGxvd2luZyBjb3VsZA0KaGFwcGVuOg0KDQogMSkgT1RQIGZvciBEQTkwNjEvMiBoYXMgdGhp
-cyBiaXQgc2V0IHRvIDEsIHN5c3RlbSBleHBlY3RhdGlvbiBpcyB0aGF0IHdhdGNoZG9nDQogICAg
-dHJpZ2dlcnMgU0hVVERPV04uDQogMikgTmV3IGRyaXZlciBjaGVja3MgZXhpc3RhbmNlIG9mICdk
-bGcsd2R0LXNkJyBidXQgaXQncyBvYnZpb3VzbHkgbm90IHRoZXJlIHNvDQogICAgYXNzdW1lcyB0
-aGUgYml0IHNob3VsZCBiZSBzZXQgdG8gMCBhbmQgZG9lcyBzbw0KIDMpIFdoZW4gdGhlIHdhdGNo
-ZG9nIGZpcmVzLCBpdCB3aWxsIG5vIGxvbmdlciB0cmlnZ2VyIFNIVVRET1dOIGJ1dCBpbnN0ZWFk
-DQogICAgUE9XRVItRE9XTiBkdWUgdG8gYmluYXJ5IGhhbmRsaW5nIG9mIG5ldyBib29sZWFuIGJp
-bmRpbmcuDQo=
+On Dienstag, 30. November 2021 17:10:21 CET Chris Morgan wrote:
+> On Tue, Nov 30, 2021 at 03:03:03AM +0100, Nicolas Frattaroli wrote:
+> > On Donnerstag, 16. September 2021 21:42:04 CET Chris Morgan wrote:
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > This series is to add support for the Rockchip rk817 battery charger
+> > > which is present in all Rockchip RK817 PMICs. The driver was written
+> > > as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
+> > > myself Chris Morgan <macromorgan@hotmail.com>.
+> > 
+> > Hi Chris and Maya,
+> > 
+> > Gave this a whirl on my Quartz64 Model A. I noticed that this will
+> > happily let me discharge past voltage_min_design:
+> > 
+> >  $ cat /sys/class/power_supply/rk817-battery/voltage_min_design 
+> >  3625000
+> >  $ cat /sys/class/power_supply/rk817-battery/voltage_avg 
+> >  3381360
+> > 
+> > Is this normal? It went all the way to under 3V before the
+> > board finally locked up.
+> > 
+> > Does the minimum voltage not affect some sort of cutout on
+> > the RK817? Does it even have one? Is it the driver's job to
+> > do something here or not?
+
+Hi Chris,
+
+> It does not look like I coded that, but I can. The PMIC has a
+> selectable register (RK817_PMIC_SYS_CFG0 = 0xf1) to automatically shut
+> down the system at a certain voltage (between 2.7v and 3.4v in
+> increments of 100mv; bits 6-4), a register to set a low voltage value
+> (between 2.8v and 3.5v in increments of 100mv; bits 2-0), and a
+> register to set a low voltage action (either shut down the machine or
+> trigger an interrupt; bit 3 and then I believe the interrupt is read at
+> bit 7 of RK817_PMIC_INT_STS0 - 0xf8).
+
+Excellent, I think shutting down the system is definitely the way to
+go here, as by reaching this voltage we can assume userspace has gone
+missing and we don't know if the kernel is still alive.
+
+> I guess I just assumed userspace would handle it, but that's probably
+> a bad assumption.
+
+Yes, I didn't have upower installed, but over discharge protection
+shouldn't be handled by userspace at all. Had I connected an unprotected
+cell that didn't cut out at below 3V, it would've been irreversibly
+damaged due to a simple forgotten package install. Even if unprotected
+batteries are a bad idea, I think we best assume the worst case
+situation here.
+
+> What if I set the low voltage value to either 3.5v
+> or the min design voltage, whichever is less; and then set the low
+> voltage trigger to shut down the system? This would prevent your
+> battery from dropping below 3.5v or the min design voltage (whichever
+> is less, sadly 3.5v is as high as I can go for the minimum) in the
+> event userspace doesn't take action first? We could also set the
+> shutdown voltage to be 100mv less than the min design voltage and use
+> the low voltage interrupt to trigger an action, but I'm not sure what
+> action would be appropriate (and if userspace isn't listening it would
+> be moot anyway).
+
+A very simple solution would be to simply set the shutoff point to the
+voltage reaching less than 3.1V. The RK817 only charges Lithium/Li-Po
+batteries, and they should generally not be discharged below 3.0V. Of
+the protected batteries I own, over-discharge protection generally
+kicks in at the 3V threshold.
+
+This gets rid of a lot of logic that could lead to bugs by simply setting
+a known good value to begin with.
+
+I think I can summarise how I understand this is supposed to work as
+follows:
+
+ - if battery reaches 0% and the battery alarm is rang, userspace should
+   power down the system
+     - this prevents unclean shutdowns
+ - if the battery reaches a dangerously low voltage for its chemistry,
+   the PMIC should cut power to the system as instructed by the kernel
+     - last resort measure in case userspace is absent and the battery
+       happens to be unprotected
+ - there may or may not be battery protection which kicks in at 3V, but
+   we should not rely on this working
+      - some 18650 cases infamously aren't sized to fit cells with a
+        protection circuit connected to it. I shan't name names.
+
+In a freak accident where the kernel is completely locked up and the
+battery is unprotected and being drained, I presume that having set
+this PMIC register will still make it kick in, which lets me sleep
+a little sounder at night.
+
+Regards,
+Nicolas Frattaroli
+
+> 
+> Thank you.
+> 
+> > 
+> > Regards,
+> > Nicolas Frattaroli
+> > 
+> > 
+> 
+
+
+
+
