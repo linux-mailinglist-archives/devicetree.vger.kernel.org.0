@@ -2,81 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED5F3463648
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 15:14:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDF9646368A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 15:22:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237368AbhK3OSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 09:18:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242098AbhK3OSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 09:18:04 -0500
-Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DF41C061574;
-        Tue, 30 Nov 2021 06:14:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-        Sender:Reply-To:Content-ID:Content-Description;
-        bh=KgWIeLOf+hPIIUfEYbPiR7H+jakBISA9A6p+Lcr3OXA=; b=A1zJXn471mfYkvMNW9l0NjuGUL
-        l5uTdpnbOzaMWtdgY36EnpDQ5CmQ27S8Cej1bprF6hA5vSbWEa7L9RR0Soktpsy6YZlYHsVh5Hbtf
-        lQt8wPxRTTevFRlJXsRvG9EVldp5mFQxayVlohVoQkS9IIhqR4Akc8oBN4sI421gu0uxD7x3xaHLU
-        9bh8zpbqrKRjgdg0G/jaoZEGBItdSMAnJwULoW6WDKeRhxZclK8Vb78MiAwUamXHBUHwZgXZnToEd
-        SukoSAwT8M5FfgL69eJsCV5YRNrZqTcf35IsuxC9M80NqQGyPvkEoopL04f1gyb55Y/ikhx+qAkqR
-        2Ha3vhEw==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1ms3tn-001Sgj-P4; Tue, 30 Nov 2021 14:14:24 +0000
-Message-ID: <f6c47b8c-6c88-f64f-fdaf-3bb240d4dab0@infradead.org>
-Date:   Tue, 30 Nov 2021 06:14:17 -0800
+        id S237559AbhK3OZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 09:25:49 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:33190 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237388AbhK3OZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 09:25:49 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DF0F5B81A02;
+        Tue, 30 Nov 2021 14:22:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 532E0C53FCD;
+        Tue, 30 Nov 2021 14:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638282147;
+        bh=3+/5iwystls40fckNW8SLuocskVo5H8LAK4JbnvcCtM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=RAzG8hmI7LxL3BsrQSEg7baE1yLleKswlv0YpfPcJLzTquLaLi/7BpU3PA/G84B42
+         D3WwknTGIZx4Ynpe6iySTdD3lpPU8HcAqvch7j8IGOti/G3RJxgo2QAcH1gJWkPR6Q
+         t/jPZ5g5hnTq2YJseuGnW8nse+3JncCDkDGK9sVkx/aQBRIvVWqJ1DNjhn616oafZs
+         r4wZGlvG+RXkBzADJJyZPw1Ezwz1YUmbyYOto6MjXD87N76nm+lu4jOlc7Z/Ts8Rod
+         XwtXFF73NFsAKDEzjTW1ZZ8ChMJ4QvjLi0+chh+5n8laVO+CT7yJ9jZrHThcLyG8EY
+         /Qpp9ylavnytg==
+Date:   Tue, 30 Nov 2021 08:22:25 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Li Yang <leoyang.li@nxp.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: Re: [PATCH 4/4] dt-bindings: pci: layerscape-pci: define aer/pme
+ interrupts
+Message-ID: <20211130142225.GA2731608@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [RFC PATCH 5/6] crypto: xilinx: Add Xilinx SHA3 driver
-Content-Language: en-US
-To:     Harsha <harsha.harsha@xilinx.com>, herbert@gondor.apana.org.au,
-        davem@davemloft.net, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-Cc:     saratcha@xilinx.com, harshj@xilinx.com
-References: <1638262465-10790-1-git-send-email-harsha.harsha@xilinx.com>
- <1638262465-10790-6-git-send-email-harsha.harsha@xilinx.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <1638262465-10790-6-git-send-email-harsha.harsha@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211120001621.21246-5-leoyang.li@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi--
+On Fri, Nov 19, 2021 at 06:16:21PM -0600, Li Yang wrote:
+> Some platforms using this controller have separated interrupt lines for
+> aer or pme events instead of having a single interrupt line for
+> miscellaneous events.  Define interrupts in the binding for these
+> interrupt lines.
 
-On 11/30/21 00:54, Harsha wrote:
-> diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-> index 51690e7..5df252e 100644
-> --- a/drivers/crypto/Kconfig
-> +++ b/drivers/crypto/Kconfig
-> @@ -796,6 +796,16 @@ config CRYPTO_DEV_ZYNQMP_AES
->  	  accelerator. Select this if you want to use the ZynqMP module
->  	  for AES algorithms.
->  
-> +config CRYPTO_DEV_ZYNQMP_SHA3
-> +	bool "Support for Xilinx ZynqMP SHA3 hw accelerator"
+s/separated/separate/
 
-s/hw/hardware/
+In subject, commit log, and description and comments below:
 
-> +	depends on ARCH_ZYNQMP || COMPILE_TEST
-> +	select CRYPTO_SHA3
-> +	help
-> +	  Xilinx ZynqMP has SHA3 engine used for secure hash calculation.
-> +	  This driver interfaces with SHA3 hw engine.
+s/aer/AER/
+s/pme/PME/
 
-s/hw/hardware/
+These are acronyms, not words, and capitalizing them matches usage in
+the specs.
 
-> +	  Select this if you want to use the ZynqMP module
-> +	  for SHA3 hash computation.
+It's OK to keep them lower-case in code-like things like variable
+names and interrupt-names.
 
-thanks.
--- 
-~Randy
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> ---
+>  .../devicetree/bindings/pci/layerscape-pci.txt     | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+> index 8fd6039a826b..bcf11bfc4bab 100644
+> --- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+> +++ b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+> @@ -31,8 +31,13 @@ Required properties:
+>  - reg: base addresses and lengths of the PCIe controller register blocks.
+>  - interrupts: A list of interrupt outputs of the controller. Must contain an
+>    entry for each entry in the interrupt-names property.
+> -- interrupt-names: Must include the following entries:
+> -  "intr": The interrupt that is asserted for controller interrupts
+> +- interrupt-names: It could include the following entries:
+> +  "aer": For interrupt line reporting aer events when non MSI/MSI-X/INTx mode
+> +		is used
+> +  "pme": For interrupt line reporting pme events when non MSI/MSI-X/INTx mode
+> +		is used
+> +  "intr": For interrupt line reporting miscellaneous controller events
+> +  ......
+>  - fsl,pcie-scfg: Must include two entries.
+>    The first entry must be a link to the SCFG device node
+>    The second entry is the physical PCIe controller index starting from '0'.
+> @@ -52,8 +57,9 @@ Example:
+>  		reg = <0x00 0x03400000 0x0 0x00010000   /* controller registers */
+>  		       0x40 0x00000000 0x0 0x00002000>; /* configuration space */
+>  		reg-names = "regs", "config";
+> -		interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>; /* controller interrupt */
+> -		interrupt-names = "intr";
+> +		interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>, /* aer interrupt */
+> +			<GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>; /* pme interrupt */
+> +		interrupt-names = "aer", "pme";
+>  		fsl,pcie-scfg = <&scfg 0>;
+>  		#address-cells = <3>;
+>  		#size-cells = <2>;
+> -- 
+> 2.25.1
+> 
