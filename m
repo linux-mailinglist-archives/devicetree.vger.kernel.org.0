@@ -2,85 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1850A462FD4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 10:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F1A5462FF7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 10:44:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240300AbhK3JkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 04:40:15 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:37424 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240291AbhK3JkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 04:40:14 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1AU9aSvb088095;
-        Tue, 30 Nov 2021 03:36:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638264988;
-        bh=N+Gbrxz85CPm2g1QNSdZgtR2Dpod+ABYilbEGbZO5Vk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=f11y++twHtndHk25Su6Mv+3/Lu8qRYpj0fY7iIWSNqli/sTizzbV0az831WGznz0L
-         nPWDgwDhcVJo4iNGWwn8TrkREBTubVLhaCJq+9K+knxRNIPE+NJktul9fE9L2m5vd+
-         HyikD39b08tkzACMfG4bVnEBwjc4EXEzhUFZN/vA=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1AU9aS62050668
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 30 Nov 2021 03:36:28 -0600
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 30
- Nov 2021 03:36:28 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 30 Nov 2021 03:36:28 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1AU9aRFI051313;
-        Tue, 30 Nov 2021 03:36:28 -0600
-Date:   Tue, 30 Nov 2021 15:06:26 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <linux-spi@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] Add bindings for peripheral-specific SPI
- controller properties
-Message-ID: <20211130093624.kc5ivrhzjwfo7rke@ti.com>
-References: <20211109181911.2251-1-p.yadav@ti.com>
- <20211129180935.nmymboy336hllly7@ti.com>
- <YaUY1gKnyoOEvo/M@sirena.org.uk>
+        id S235308AbhK3Jrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 04:47:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44878 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233009AbhK3Jrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 04:47:32 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03712C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 01:44:13 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id x6so83833018edr.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 01:44:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=Wb8YLQANc5QRzYld+Cz8kvavn4ZutkCVadi3QcaIrpY=;
+        b=XUk6wR2ipcoaG5LFuWdF55HJtY0AF/vtcQ6H88LvjhufPXkjFBU30eplHveJLRsmmD
+         lmjXX2BYrRmGQK3zaRIAJTk1K1A3kmGsatagwJNWMkGEkLLPljs59SZm/0kd4gGmNd43
+         7/RDnhjIwEmq3dXLfE6qG4j8zYOkWHAlF/NCbQZYd9zxkacqV6NxgzJB11BZ0VBVWKRz
+         yqkTem+jqbX7ykLsDc7M6IoXwitKNJDi0EFQoI/GtIu/YNuVw4hjwbf8iuP6eDThm0Ib
+         26VQQc9dnaCa2K4MH6eLXw3/Xba2v+43CW8Cn2PqhwNXIN7+5MeWuF5O1jb9NIqeOdLH
+         CWgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:content-transfer-encoding;
+        bh=Wb8YLQANc5QRzYld+Cz8kvavn4ZutkCVadi3QcaIrpY=;
+        b=gJtY/sFyts8hbKvYxn79bUxwMqw3kVrjFvm5Vu9VmZBqPEPEHnTCcbCTwfb5aEgLiW
+         wN91VJAhyibqixCkWQ+AFYU+F4AGP6Wr49xlRF5kupGLaV+moey/0HCazMDRUtzEpgKR
+         4z2Ls1DRv1HTMyeM/GVyGSxI2Kq/kJt5ytl9BoNk0RNUGtehuBpCBSpsm35P6uwqRNKU
+         6hwsmwT3PRT9gk0HrUr62MQ2Lyj4utXA0n5l3AKmxw2d1yVF7WZxfQaVDmTUxZ2QMzfm
+         eA1dUPTMia5b8s7sUnG2dBuZf7455m9dA2CyWM5f4QF/aPiuzHN/APnWwKPHIgA+srIm
+         X5HA==
+X-Gm-Message-State: AOAM5333ZvbQLq+nncw7RWHmbejQV3Q6YjtCov/MYdXl/fmdvIg+FFPj
+        l34VjOkPqj2JKunFKwImQfFkxdlQR1COOA7nGO4=
+X-Google-Smtp-Source: ABdhPJyNtEgMWCENaRtSxWFi49hZjdIhZo0qtPPtkvG59Jcrvh4IAO2XKDzT7QunU6RGFgHe/mvWf9Z0azGBWDo9tVI=
+X-Received: by 2002:a17:906:5d0b:: with SMTP id g11mr65572245ejt.110.1638265451568;
+ Tue, 30 Nov 2021 01:44:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YaUY1gKnyoOEvo/M@sirena.org.uk>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Sender: mrsaliceragnvar@gmail.com
+Received: by 2002:a17:907:2da1:0:0:0:0 with HTTP; Tue, 30 Nov 2021 01:44:11
+ -0800 (PST)
+From:   DINA MCKENNA <dinamckennahowley@gmail.com>
+Date:   Tue, 30 Nov 2021 09:44:11 +0000
+X-Google-Sender-Auth: zXSiffNfQvjjZe2mwf5HDFz28xk
+Message-ID: <CAGHGhXCMvbU2az0YkpjORenvK0KjiuwSF+h8S=5Xzh-3r_35jA@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/11/21 06:15PM, Mark Brown wrote:
-> On Mon, Nov 29, 2021 at 11:39:35PM +0530, Pratyush Yadav wrote:
-> > On 09/11/21 11:49PM, Pratyush Yadav wrote:
-> 
-> > > This is the best approach that I came up with with my limited knowledge
-> > > of JSON schema. It has some limitations that are mentioned in patch 1. I
-> > > don't know of any better ways to model this. Suggestions are welcome!
-> 
-> > Do you plan to take this series through your tree or should I poke Mark 
-> > about it?
-> 
-> I'd expect to take it through my tree but please allow a reasonable time
-> for reviews...
+Hello my dear,.
 
-Sure, thanks. I just wanted to make sure this series didn't fall through 
-the cracks if there was some confusion on who is supposed to pick it up.
+ I sent this mail praying it will get to you in a good condition of
+health, since I myself are in a very critical health condition in
+which I sleep every night without knowing if I may be alive to see the
+next day. I bring peace and love to you. It is by the grace of God, I
+had no choice than to do what is lawful and right in the sight of God
+for eternal life and in the sight of man, for witness of God=E2=80=99s merc=
+y
+and glory upon my life. I am Mrs. Dina. Howley Mckenna,. a widow. I am
+suffering from a long time brain tumor, It has defiled all forms of
+medical treatment, and right now I have about a few months to leave,
+according to medical experts. The situation has gotten complicated
+recently with my inability to hear proper, am communicating with you
+with the help of the chief nurse herein the hospital, from all
+indication my conditions is really deteriorating and it is quite
+obvious that, according to my doctors they have advised me that I may
+not live too long, Because this illness has gotten to a very bad
+stage. I plead that you will not expose or betray this trust and
+confidence that I am about to repose on you for the mutual benefit of
+the orphans and the less privilege. I have some funds I inherited from
+my late husband, the sum of ($ 11,000,000.00, Eleven Million Dollars).
+Having known my condition, I decided to donate this fund to you
+believing that you will utilize it the way i am going to instruct
+herein. I need you to assist me and reclaim this money and use it for
+Charity works therein your country  for orphanages and gives justice
+and help to the poor, needy and widows says The Lord." Jeremiah
+22:15-16.=E2=80=9C and also build schools for less privilege that will be
+named after my late husband if possible and to promote the word of God
+and the effort that the house of God is maintained. I do not want a
+situation where this money will be used in an ungodly manner. That's
+why I'm taking this decision. I'm not afraid of death, so I know where
+I'm going. I accept this decision because I do not have any child who
+will inherit this money after I die.. Please I want your sincerely and
+urgent answer to know if you will be able to execute this project for
+the glory of God, and I will give you more information on how the fund
+will be transferred to your bank account. May the grace, peace, love
+and the truth in the Word of God be with you and all those that you
+love and care for.
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+I'm waiting for your immediate reply..
+
+May God Bless you,
+Mrs. Dina. Howley Mckenna.
