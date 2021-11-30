@@ -2,148 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23A1D4631F9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 341B44632AD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:43:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237918AbhK3LRK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 06:17:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37552 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237891AbhK3LQ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 06:16:57 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2372C061761
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:13:36 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id bi37so52781840lfb.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:13:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Sw2B10ZabkZdmPrt9wGzMiX2Z/pOJb9hGFk18ZvN3TQ=;
-        b=KyQMaENJy/y9ufWjeUtozEDTjYQDfgjJ/84QCGlkPy8EDG1tSFROm5+nnIOverfwwl
-         DdldrQB6r+hLkqulPqffzTt8mYrayukNi+gOo86hTUg61GGbRlXMqpPLP18kgVr4B6qC
-         se5EYcpoF8AzAFKlmtXyELufXHGw8wgTD6wi7ral3bOxLBgOell2JWUM3VzvcqTgLY2Z
-         6aD2R4UYc6HlD+ga4w6EVkGxIhYKK5ujr5sRlvNq+CUGEBDpAEC0SUvfhzGAIKpoQgMV
-         D9xRZZPmYXsr/ACwNDo+QT52Esxr54rY3wI1EFpifeGU3VIL4uqDic7t5q4k73lQg7pg
-         SPGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Sw2B10ZabkZdmPrt9wGzMiX2Z/pOJb9hGFk18ZvN3TQ=;
-        b=q4xRIQFnka8DKrqKAFmI7DK7ZUplyhD2IwfmbKm+20qrGicsXMIhgTk5+fJvgpWAX4
-         jLsl0aDEatlxPq8g/SNIFPFkoJfrDU1qYDA2R9PVtlOO7AWweKe5wsvuihlOJ1p2Dz5Y
-         i3ZRCiHorYyMNvSyHZrXPUyRUCPyIRs/O9n9Q8zGZ8i8HcxchPPmIShDhudzeiHLdtpH
-         haay+ik+iTZHwhhB4uu1K9s48F5Txgvh86lnrGN+sNqcurzL856WeJmXDAP3OJOjocsq
-         ag7xwVIlPagoKC+vC/ustksmm8z9PHuTmsptNsx2umlvSWOzYdEPhAOvtCXmn2XeTK0A
-         wM4w==
-X-Gm-Message-State: AOAM5302yrMBIVrRgqnnoy1L/B3bkNwLd67vbk67DTqVSBNCmA6xdWAJ
-        bJoGTFaFCC1bKXp1jqGA4QwWQw==
-X-Google-Smtp-Source: ABdhPJwSJTHwzr6Ih07eZr4IZE7hEJcEmFr6lYjOOM69O7BbJUiCHOOLbYNE1SiwRIixP/tjCrzb5Q==
-X-Received: by 2002:a05:6512:310e:: with SMTP id n14mr55417635lfb.475.1638270815283;
-        Tue, 30 Nov 2021 03:13:35 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id m24sm1678428lfc.208.2021.11.30.03.13.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 03:13:34 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Jiri Slaby <jirislaby@kernel.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 RESEND 5/5] tty: serial: samsung: Fix console registration from module
-Date:   Tue, 30 Nov 2021 13:13:25 +0200
-Message-Id: <20211130111325.29328-6-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211130111325.29328-1-semen.protsenko@linaro.org>
-References: <20211130111325.29328-1-semen.protsenko@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S240931AbhK3Lqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 06:46:45 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:50761 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S240929AbhK3Lqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 06:46:43 -0500
+X-IronPort-AV: E=Sophos;i="5.87,275,1631545200"; 
+   d="scan'208";a="102288474"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 30 Nov 2021 20:43:21 +0900
+Received: from localhost.localdomain (unknown [10.226.93.28])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 40DE44264D8F;
+        Tue, 30 Nov 2021 20:43:19 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v4 0/2] Add WDT driver for RZ/G2L
+Date:   Tue, 30 Nov 2021 11:43:14 +0000
+Message-Id: <20211130114316.16622-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On modern Exynos SoCs (like Exynos850) the UART can be implemented as a
-part of USI IP-core. In such case, USI driver is used to initialize USI
-registers, and it also calls of_platform_populate() to instantiate all
-sub-nodes (e.g. serial node) of USI node. When serial driver is
-built-in, but USI driver is a module, and CONFIG_SERIAL_SAMSUNG_CONSOLE
-is enabled, next call chain will happen when loading USI module from
-user space:
+This patch series aims to add WDT driver support for RZ/G2L SoC's.
 
-    usi_init
-      v
-    usi_probe
-      v
-    of_platform_populate
-      v
-    s3c24xx_serial_probe
-      v
-    uart_add_one_port
-      v
-    uart_configure_port
-      v
-    register_console
-      v
-    try_enable_new_console
-      v
-    s3c24xx_serial_console_setup
+WDT has 3 channels 
+1) CH0 to check the operation of Cortex-A55-CPU Core0
+2) CH1 to check the operation of Cortex-A55-CPU Core1
+3) CH2 to check the operation of Cortex-M33 CPU
 
-But because the serial driver is built-in, and
-s3c24xx_serial_console_setup() is marked with __init keyword, that
-symbol will discarded and long gone by that time already, causing failed
-paging request.
+WDT IP supports 
+1) Normal Watchdog Timer Function
+2) Reset Request Function due to CPU Parity Error
 
-That happens during the next config combination:
+Once the software activates the watchdog timer, the watchdog timer does
+not stop until it is reset.
 
-    EXYNOS_USI=m
-    SERIAL_SAMSUNG=y
-    SERIAL_SAMSUNG_CONSOLE=y
+Current driver supports Normal Watchdog Timer basic functionality.
 
-That config should be completely possible, so rather than limiting
-SERIAL_SAMSUNG choice to "m" only when USI=m, remove __init keyword for
-all affected functions.
+Tested WDT driver with selftests tool and reboot command
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-Changes in v2:
-  - This patch is added in v2
+All 3 channels tested with below command.
 
- drivers/tty/serial/samsung_tty.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+cat /dev/watchdog  & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800808; done
+cat /dev/watchdog1  & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800c08; done
+cat /dev/watchdog2 & for i in {1..60}; do sleep 1; echo $i; devmem2 0x12800408; done
 
-diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-index 61ccb359620a..d002a4e48ed9 100644
---- a/drivers/tty/serial/samsung_tty.c
-+++ b/drivers/tty/serial/samsung_tty.c
-@@ -2500,7 +2500,8 @@ s3c24xx_serial_console_write(struct console *co, const char *s,
- 	uart_console_write(cons_uart, s, count, s3c24xx_serial_console_putchar);
- }
- 
--static void __init
-+/* Shouldn't be __init, as it can be instantiated from other module */
-+static void
- s3c24xx_serial_get_options(struct uart_port *port, int *baud,
- 			   int *parity, int *bits)
- {
-@@ -2563,7 +2564,8 @@ s3c24xx_serial_get_options(struct uart_port *port, int *baud,
- 	}
- }
- 
--static int __init
-+/* Shouldn't be __init, as it can be instantiated from other module */
-+static int
- s3c24xx_serial_console_setup(struct console *co, char *options)
- {
- 	struct uart_port *port;
+V3->V4:
+ * Fixed the build issue reported by kernel test robot
+V2->V3:
+ * Added Rb tag from Guenter Roeck
+ * Removed Removed patch#1, as the clock changes related to WDT reset selection
+   will be handled in TF-A.
+V1->V2:
+ * started using clk_get/put instead of devm_clk_get/put
+ * Moved devm_add_action_or_reset after set_drvdata() and 
+ * removed redundant action on devm_add_action_or_reset() failure.
+RFC->V1
+ * Removed patch#3, the clk patch is queued for 5.17
+ * Added clock-names and interrupt-names as required properties for RZ/G2L
+ * Re-order clocknames with internal module clock first
+ * Removed pclk_rate from priv.
+ * rzg2l_wdt_write() returns void and Removed tiemout related to register update 
+ * rzg2l_wdt_init_timeout() returns void and removed delays.
+ * removed set_bit(WDOG_HW_RUNNING,..) as we can stop watchdog
+ * renamed reset_assert_clock_disable->reset_assert_pm_disable_put
+ * started using devm_reset_control_get_exclusive()
+ * removed platform_set_drvdata(pdev, priv) as there is no user
+ * removed watchdog_set_restart_priority(&priv->wdev, 0) as 0 is the default.
+ * removed remove callback as it is empty.
+
+Biju Das (3):
+  clk: renesas: rzg2l: Add support for watchdog reset selection
+  dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
+  watchdog: Add Watchdog Timer driver for RZ/G2L
+
+ .../bindings/watchdog/renesas,wdt.yaml        |  75 +++--
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/rzg2l_wdt.c                  | 260 ++++++++++++++++++
+ 4 files changed, 326 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/watchdog/rzg2l_wdt.c
+
 -- 
-2.30.2
+2.17.1
 
