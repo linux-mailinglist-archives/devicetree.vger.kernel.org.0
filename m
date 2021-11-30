@@ -2,380 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40BDB463B89
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA12463BC7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:31:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238730AbhK3QVv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 11:21:51 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:52171 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238903AbhK3QVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 11:21:48 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id D086F580213;
-        Tue, 30 Nov 2021 11:18:28 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Tue, 30 Nov 2021 11:18:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=3BTPInC2V1tNA
-        iGSMK74dZBDb3JPQWngVML55zeHlaM=; b=CbDknupDAAwi5oUpyU9Ja41lnLTqB
-        aVD8oamgHKj6NfVCWgem8WnqFlfw9nHhlh2gi00g+0TrjD/to9e+sPto0YS0XgnT
-        rKizmKk/b3SFpuzCDebv6YYB5AlrYZwh4yjeei0nenSkjxd6fecLs7JHRByrdgOA
-        2dWWgIW9T4vstpO5gosfpigXz3Lp2/ZtNonA/s7e9R45XjB9UYKzGyIdpqJsCf+h
-        9S9Qc+43bb57NOeyyfxDLu/N6NKLAtzkaLSfy4VcBVAbwmvHQS42yNDj2u6PMav6
-        N31TxqQYpaAEW8df7vmOwIF7AG3+q0Te8KJks2WNwMCwrWjxqHiMn+MqQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=3BTPInC2V1tNAiGSMK74dZBDb3JPQWngVML55zeHlaM=; b=Ut1JehAY
-        PFXKxNMVDdgLjToEgaiZ9uYC8AMJN7pdpuNMSFxdRS2JQGXDqor5e9MjyVUwv4nB
-        1IxNj4Yfa7VdfOYJOwZhcVSsljYtLfPxIx/fS810rWYuwC0YgdzVG+9Drhrp76XL
-        16u4+ayXIBv3nbJto3hWpLFmltPYKNPyjHnKH38wCMV0UTDjen5U9T9S3Lz4DsYW
-        jWTU0v/UTa2vf7pgvkUfi8i9nrWr213SZ7oL/hhKQdZ+yFuH04QXgM+Jp0/h2EB2
-        4aeQXasJ7qKefXFIy0oX+JoPqwYkm1wt8X5DaY7u4EZhsqP1bAS5S81h/DbZGO7u
-        C3lyuOWWz4LnZA==
-X-ME-Sender: <xms:006mYU-xcW4JGDDcgExFjKkterGIN2wXStqprCtS5YzP3vE8VAUArg>
-    <xme:006mYcuUf2qiRocHN6cCcoMyvSzqyHOrAc0lYkZnpQApZgVCFumU1NfWvQvPAnaLb
-    SSjWOxBbl8oZoJt6Bk>
-X-ME-Received: <xmr:006mYaAUhSTvLl0bBJlSH4QCGo3h36goQc4uRsCHbYLmh66eLDklmzv-8j1QmPBmMIzJVRlSojGDdLQwf9PgiyPvMcUkZE1F8tMflFFNjEyn4DT3gHt7MnqzjDSFFA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddriedugdekjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepufhvvghnucfr
-    vghtvghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrh
-    hnpeetvdekteeluefffffhkeetteffgefggfevheeileeufedvtdeuffevveelhfefjeen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsvhgvnh
-    esshhvvghnphgvthgvrhdruggvvh
-X-ME-Proxy: <xmx:1E6mYUf0lCXNYgKHC5VHuRuSpFJiNVDhetgOD0dfTSZYW7dLVEsWnA>
-    <xmx:1E6mYZOQm9NYzoSCkvABETyvxQ2X-z5vdK5vYhEiqGAdg6mvTx5waA>
-    <xmx:1E6mYek8ix_Qtb_jQjk4o24ixiGMUU56_pqa9A2PFuEqUe0TCcmJvQ>
-    <xmx:1E6mYcq0-yG56qgJFmPAjnP3TcomCXS9pwW83KHeZ60K08KesNMXjg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 30 Nov 2021 11:18:26 -0500 (EST)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     Sven Peter <sven@svenpeter.dev>, Hector Martin <marcan@marcan.st>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Janne Grunau <j@jannau.net>
-Subject: [PATCH v2 2/2] watchdog: Add Apple SoC watchdog driver
-Date:   Tue, 30 Nov 2021 17:18:09 +0100
-Message-Id: <20211130161809.64591-2-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20211130161809.64591-1-sven@svenpeter.dev>
-References: <20211130161809.64591-1-sven@svenpeter.dev>
+        id S235269AbhK3Qel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 11:34:41 -0500
+Received: from mail-vi1eur05on2125.outbound.protection.outlook.com ([40.107.21.125]:60033
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S231442AbhK3Qek (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 11:34:40 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KHq1SxGpD5/isPp+z2UqSyIPG8d8mdHGMr+MygqduwbFvSux6R87/c5tMS5s75AlJN3/N1RssXSKVDF5neNTcIOd1CZ0POpbNQys0OnPNcBlL1GJIMjObJfv3sk5bRm2hgHT97V4igS6pQhPgYquT0Sep6LH32X7p4m1YQnZu9S9Ogylx/jdecq9i6Njd05p5rOSDea2ohjjDXN4qLMlWyFbT8tQYIIkCGZ2nOngwOGa63Pdi3uv314ppf/TaBo9M08itCld6buLZNVApsI/WInUmXHtB7QEAJeJV1LsFNwYFiPTWnVs5J8uJgj3onEmaGZ9OR1nHW5YXKMSfJzS7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PegZci59j5HhJDFJIzFuUnZjgoZ//pGaIQ7Iuk1SG9s=;
+ b=cnKhBJuS2ss+gVhfeKZIrGMmNXx7WGmkUKwlkD2bpSlho/eYf0wGNgPixKhCEda7fP6K4HqnhX4jlTcMpdw3mAtys2seKjWV8mdyD7bKt1e9MCvBMMWhL1fxQT5BvSnyoeVApMevhqn1tkie1LRZ4zbAg/34Bqt18oaU4zTKQzqfM+xp7VXM3oKMmf33HIBOqo6sAsECtvMbevspIx9mZfWyqoejo3KQ82ntHsKDH9zdWEnKs/qgqTGYfR/f9AX/gXlhQNW0edIIYK/+7XnUllNelGf1QhPHJOcSvvHvB0N5GhwcZ7TNa2WVeaeIqclmYvF7w7O19NhTvLSinJEcug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PegZci59j5HhJDFJIzFuUnZjgoZ//pGaIQ7Iuk1SG9s=;
+ b=AhB2nchYLwcfEf37CHgIjYruHkSYr5T7T8N4FJ+Vfai/DSomEeFZ8ZMh7q1Zalg5f9n5c0RG2H0hf1GpWYTJQCoU4VZhFsrMOeyQQXL4OLMEHygcKsxjMyUoQg90EKxDUEedz6aXsakn0hVLmktjcgqOX74WzfAmYNnJL7G6aQc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=axentia.se;
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
+ by DBAPR02MB6421.eurprd02.prod.outlook.com (2603:10a6:10:195::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Tue, 30 Nov
+ 2021 16:31:18 +0000
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::7519:c72c:98b1:a39]) by DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::7519:c72c:98b1:a39%4]) with mapi id 15.20.4734.024; Tue, 30 Nov 2021
+ 16:31:18 +0000
+Message-ID: <ce308034-b988-877d-8908-51ab4120c26e@axentia.se>
+Date:   Tue, 30 Nov 2021 17:31:14 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH 1/2] dt-bindings: mux: Document mux-states property
+Content-Language: sv-SE
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20211130121847.11112-1-a-govindraju@ti.com>
+ <20211130121847.11112-2-a-govindraju@ti.com>
+From:   Peter Rosin <peda@axentia.se>
+Organization: Axentia Technologies AB
+In-Reply-To: <20211130121847.11112-2-a-govindraju@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: AS9PR06CA0278.eurprd06.prod.outlook.com
+ (2603:10a6:20b:45a::18) To DB8PR02MB5482.eurprd02.prod.outlook.com
+ (2603:10a6:10:eb::29)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from [192.168.13.3] (185.178.140.238) by AS9PR06CA0278.eurprd06.prod.outlook.com (2603:10a6:20b:45a::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23 via Frontend Transport; Tue, 30 Nov 2021 16:31:17 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 629ddcd8-28b0-4890-6da9-08d9b41ed60a
+X-MS-TrafficTypeDiagnostic: DBAPR02MB6421:
+X-Microsoft-Antispam-PRVS: <DBAPR02MB64214A500727250E3E977F65BC679@DBAPR02MB6421.eurprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:1002;
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4L3kXVMKhp7WRzBSjIkx2YlG9sf5jdwINpg+uqT1xSnmolMiJ9MZhcOc8RsxbO09YIw5CpEAwl0PeyS9xrX46CxV9NKVLs3+h/GwTBpVgqfacf3/zikfP4AUyxJddFlS6BMIlD5iJoMlBrhC82B1n1HnQq8YBXyu5KPkBSubv9hjizZjq2s71aWntKy2b0+me8wxpEkNmc9JXpXGv/AaCC84DzGgurpkRelS8SGY/m7ZGKrqcFLoVo9b1x+5k8qd5KWj0sF63oEbVsZ+8TukBN0zSGQjRr+b1L76dTCNEVvOwOZAiETNfDuaPfwbCkdoJ4tBsX5aUnpWfkM95de1jzYLL6+XsZMFz3NkygOUeFtjqWRjOpXrTmMll0Xgjiv1c9/XoNVS4in42qe+Uw+An4qmwmkO8GCnZBij27nz31r8daV4wmb06JnGIlFQoAJRfh/UsXyRoVW3WFQ8Ky7a6PZ3yjmWjb0X4nLJkxlE3WqsBxJz+i4Myu3AknbYbz0a9gLW79ufU/zQ8OvUEULQrf4prSp1+VxuptMRpIYkDYcB8EIPEeIjUqax3Y59f5ctMKjOsRFC6w2kPjAjou5puTJsPevWvlh3pww/HJo+iuyLLtQ58eoCvvpPGyBptGZUP/JbJOdAFlY8I+uRCasdqOU2ZHifXJppqQSrAUmf0okZLw9QrogpxTS8c6E2zJBBkZc0f1mpS3V5N1W3IoS0DeUToVK1vfEvsEpOCeA0a04=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(346002)(366004)(396003)(136003)(39840400004)(8676002)(26005)(86362001)(83380400001)(53546011)(186003)(31696002)(5660300002)(2616005)(8936002)(66946007)(38100700002)(36916002)(66476007)(66556008)(316002)(54906003)(16576012)(31686004)(4001150100001)(2906002)(36756003)(6666004)(6486002)(508600001)(956004)(6916009)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UFIzMjdrVFpsa2Q0NGkvU3RUN3JEMlVyZ1FjTnhLa1doN1NNYlRJL0ZKRGFI?=
+ =?utf-8?B?VkR1R1krVUpUeE1jbjE4Y3Y3WVBBTWVLOHVuY0xTQXd2ZEVvQ2RYWlhNMkVi?=
+ =?utf-8?B?SHcrdEs4WWlPd1RvZHBBd0t5Ym5kU3UvL2VEY05hVFIwNEcwNUVxRitnUkow?=
+ =?utf-8?B?YWxGSkZhOFVlQ0tLL2ZZQVVDU0RkWHFKWFJxWHV1Y21GQnlHRjBSR2RsWDVw?=
+ =?utf-8?B?UHVha2tWYXlJemQ3T1FGamVCVjNPZ2NId3h4bk8yUWFoOS9YTitXSU9ZR2FH?=
+ =?utf-8?B?YTU5YTIwRXNmRmptUkF2TnNYVnYwUVdaZ3ZUeHZpSE56U1F1WWJhL0llTTlD?=
+ =?utf-8?B?OWM3RVlqd3RPdTVOMU9RaUd2aE5ZK3crYm13QS9vMmFnTVQrVExndlhXcmE4?=
+ =?utf-8?B?TDRHdDZ3SlZxb0pNRURFaW1pdmV1RjRxQkNJUUVEd1RlRjN0MjFSdjN2T3B0?=
+ =?utf-8?B?UmxQMXFtVUxzTk91LzV2U1JHRUlnb2IwMmNQOUczRWJFODg0MEx4bGRWVVM5?=
+ =?utf-8?B?bVlVbkYxZXpXZ3ZlUWhvdkhnWU9CblNMYVg5ckN3V3JRb08zajdKTDZ0WU1N?=
+ =?utf-8?B?MTdRbWt0dEJ2NHZUWUxlTzVEYU9MMW9jUW5obWhCTHB5N29NK1hxcStKZlMv?=
+ =?utf-8?B?OW5CZEN6MkdFa0dNbzZZYTFzV2RXRFJ0MVFkV1Q4VEZmMmxJV2tha0xHTUZM?=
+ =?utf-8?B?Z1lxbjV1ck1Td2g2aXlabWxHZE9NYnJtd1VXNzAzM3ppdzU2SnpHRjFoR0Jn?=
+ =?utf-8?B?OUtyQW43b0VOTlNwTEJvSktDeUJJUjQ4TXpRSGppUk9jb3V5cjZ6TXMrSEZ4?=
+ =?utf-8?B?Ukc3cUFERDhNSjNKL3N3L29XaXVHa3Ercks2VEc5WW9zcFVIQU9zU0J6WEVI?=
+ =?utf-8?B?czZuU1ZraGNMSEUrcE1ybmsvNklpWnU4TnJlL2p0OXFTMkJIU0tndDZBdXJ6?=
+ =?utf-8?B?Q2lOaTFqMkxKNTluSE84TXpyUlhVekUwQkxMb2c3STdRN2oxeTNiTURqZE5p?=
+ =?utf-8?B?KzFWMTJQS3hncU5ac0tiajlzVVdHbWxlejc3dDVnbWNmY1lVYnFRVExjVnBU?=
+ =?utf-8?B?TGxaRWRyY1gwZTVDTHYvSFdjRHJ5TlR4MUw2SlIvMkFQaFJucnN6bGNIMWdR?=
+ =?utf-8?B?cXlSZmNTK25zcXgrVjAwZE55dTlQZmtlbTBEcE4veWxNdVdocmtTSTJVY2Zw?=
+ =?utf-8?B?VWlhTHNPcWRzcUJxUkcxbXM3YmVNZFo4cTBRTE9Kc21SU2V5K3NuUVN3bFU4?=
+ =?utf-8?B?K0g3RmdGOEVUdUpXcDBOSnJxMU9vQWZnRys0YkxzdE5JNFo3WWVuWUYxN0pv?=
+ =?utf-8?B?MnNETlQ2WkVuYlJ3N1AyUDM4R21jd2E5SlpjWWo4enZtNkdxUzNVbXF3UkdV?=
+ =?utf-8?B?dzFKdUdKeWV1aW45elR4MjRaOXJISnVYM09UR0hLbWp5T0FlN09aTTMwdHdZ?=
+ =?utf-8?B?TzljbVVuWFZkOWdtVWVDOHJ0K2hOeW9QSkt2NFdHL2dlbTNJdTRUTVYzY0kr?=
+ =?utf-8?B?NXFYdXA1ZXdoWERYV1VvTWFYNEhHUGdDQVJ0bWQ5QzRBdWkwbVFObk1EUWxG?=
+ =?utf-8?B?VmF4NWg3dy9qcFJuMVE0TEZwa3pyUmw3dnpnNWIzOXVQZmpCVVpuRGt1eU5Z?=
+ =?utf-8?B?b1ROZ29SOGVqOThLbTN3WGZZdGp0bVduL0tCcW1JcEtiQm5KbFFYVjc4OEVs?=
+ =?utf-8?B?RWF0ZTlGalo2NHA3YXFYdHJ4R2hrdXU4c2sxU0ZtOWlndkpTdmw4V2NxaDlN?=
+ =?utf-8?B?RitCZ2VtWkl3K0swRGlYaFJMTnExZWZzZStPbC9jMHFrMWZiWVZYVHRjL2Ny?=
+ =?utf-8?B?WEF6M01LYzVoa0RNbHZyblkzdmZib2JRZ3ZTMnV5djlQNWFENm5HdDV4YWdl?=
+ =?utf-8?B?ZTk0dk1nV1hGZER3K29XVmZ3a2F1eG9ZSkV0eDQzNy9vV0pYS0dOd1ZjN3Vo?=
+ =?utf-8?B?TmhYcmQ4MGJPUDArQXlKZktNeThIWnhicU9yUjVodXJ3TVAzV0t5algvZzB2?=
+ =?utf-8?B?QVZ4bjRhWXN1aXBFYkNrcE42YWtQSkhvTjUzZHFZR3BIME5ya1IvM1JQZ1F6?=
+ =?utf-8?B?Vmt2TURlZjNkcjlINTNpOGs2MktYV280emV2U3VrOHQ4d2RHT1oxbXJ4VVoy?=
+ =?utf-8?Q?K3L0=3D?=
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: 629ddcd8-28b0-4890-6da9-08d9b41ed60a
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2021 16:31:18.5620
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EqaPPQWTlyZOFWopKczitye42DjpDY6q8+0sbALxWuBrp+/Q+9fQ681QwRJPMx4R
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6421
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the watchdog timer found in Apple SoCs. This driver is
-also required to reboot these machines.
+Hi Aswath!
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
-v1 -> v2:
- - set the default timeout to 30s and call watchdog_init_timeout
-   to allow the device tree to override it
- - set WDOG_HW_RUNNING if the watchdog is enabled at boot
- - check that the clock rate is not zero
- - use unsigned long instead of u32 for clk_rate
- - use devm_add_action_or_reset instead of manually calling
-   clk_disable_unprepare
- - explain the magic number in apple_wdt_restart
+Some language nits. But other than that it looks good to me!
 
- MAINTAINERS                  |   1 +
- drivers/watchdog/Kconfig     |  12 ++
- drivers/watchdog/Makefile    |   1 +
- drivers/watchdog/apple_wdt.c | 226 +++++++++++++++++++++++++++++++++++
- 4 files changed, 240 insertions(+)
- create mode 100644 drivers/watchdog/apple_wdt.c
+On 2021-11-30 13:18, Aswath Govindraju wrote:
+> In some cases, it is required to provide the state to which the mux
+> controller has be set to, from the consumer device tree node. Document the
+s/has be/has to be/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 859201bbd4e8..6190f0b40983 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1757,6 +1757,7 @@ F:	drivers/i2c/busses/i2c-pasemi-platform.c
- F:	drivers/irqchip/irq-apple-aic.c
- F:	drivers/mailbox/apple-mailbox.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
-+F:	drivers/watchdog/apple_wdt.c
- F:	include/dt-bindings/interrupt-controller/apple-aic.h
- F:	include/dt-bindings/pinctrl/apple.h
- F:	include/linux/apple-mailbox.h
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 9d222ba17ec6..170dec880c8f 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -976,6 +976,18 @@ config MSC313E_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called msc313e_wdt.
- 
-+config APPLE_WATCHDOG
-+	tristate "Apple SoC watchdog"
-+	depends on ARCH_APPLE || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for the Watchdog found in Apple
-+	  SoCs such as the M1. Next to the common watchdog features this
-+	  driver is also required in order to reboot these SoCs.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called apple_wdt.
-+
- # X86 (i386 + ia64 + x86_64) Architecture
- 
- config ACQUIRE_WDT
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 2ee97064145b..270a518bd8f3 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -93,6 +93,7 @@ obj-$(CONFIG_PM8916_WATCHDOG) += pm8916_wdt.o
- obj-$(CONFIG_ARM_SMC_WATCHDOG) += arm_smc_wdt.o
- obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
- obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
-+obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
- 
- # X86 (i386 + ia64 + x86_64) Architecture
- obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-diff --git a/drivers/watchdog/apple_wdt.c b/drivers/watchdog/apple_wdt.c
-new file mode 100644
-index 000000000000..76e5bedd50d1
---- /dev/null
-+++ b/drivers/watchdog/apple_wdt.c
-@@ -0,0 +1,226 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Apple SoC Watchdog driver
-+ *
-+ * Copyright (C) The Asahi Linux Contributors
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/limits.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/watchdog.h>
-+
-+/*
-+ * Apple Watchdog MMIO registers
-+ *
-+ * This HW block has three separate watchdogs. WD0 resets the machine
-+ * to recovery mode and is not very useful for us. WD1 and WD2 trigger a normal
-+ * machine reset. WD0 additionally supports a configurable interrupt.
-+ * This information can be used to implement pretimeout support at a later time.
-+ *
-+ * APPLE_WDT_WDx_CUR_TIME is a simple counter incremented for each tick of the
-+ * reference clock. It can also be overwritten to any value.
-+ * Whenever APPLE_WDT_CTRL_RESET_EN is set in APPLE_WDT_WDx_CTRL and
-+ * APPLE_WDTx_WD1_CUR_TIME >= APPLE_WDTx_WD1_BITE_TIME the entire machine is
-+ * reset.
-+ * Whenever APPLE_WDT_CTRL_IRQ_EN is set and APPLE_WDTx_WD1_CUR_TIME >=
-+ * APPLE_WDTx_WD1_BARK_TIME an interrupt is triggered and
-+ * APPLE_WDT_CTRL_IRQ_STATUS is set. The interrupt can be cleared by writing
-+ * 1 to APPLE_WDT_CTRL_IRQ_STATUS.
-+ */
-+#define APPLE_WDT_WD0_CUR_TIME		0x00
-+#define APPLE_WDT_WD0_BITE_TIME		0x04
-+#define APPLE_WDT_WD0_BARK_TIME		0x08
-+#define APPLE_WDT_WD0_CTRL		0x0c
-+
-+#define APPLE_WDT_WD1_CUR_TIME		0x10
-+#define APPLE_WDT_WD1_BITE_TIME		0x14
-+#define APPLE_WDT_WD1_CTRL		0x1c
-+
-+#define APPLE_WDT_WD2_CUR_TIME		0x20
-+#define APPLE_WDT_WD2_BITE_TIME		0x24
-+#define APPLE_WDT_WD2_CTRL		0x2c
-+
-+#define APPLE_WDT_CTRL_IRQ_EN		BIT(0)
-+#define APPLE_WDT_CTRL_IRQ_STATUS	BIT(1)
-+#define APPLE_WDT_CTRL_RESET_EN		BIT(2)
-+
-+#define APPLE_WDT_TIMEOUT_DEFAULT	30
-+
-+struct apple_wdt {
-+	struct watchdog_device wdd;
-+	void __iomem *regs;
-+	unsigned long clk_rate;
-+};
-+
-+static struct apple_wdt *to_apple_wdt(struct watchdog_device *wdd)
-+{
-+	return container_of(wdd, struct apple_wdt, wdd);
-+}
-+
-+static int apple_wdt_start(struct watchdog_device *wdd)
-+{
-+	struct apple_wdt *wdt = to_apple_wdt(wdd);
-+
-+	writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
-+	writel_relaxed(APPLE_WDT_CTRL_RESET_EN, wdt->regs + APPLE_WDT_WD1_CTRL);
-+
-+	return 0;
-+}
-+
-+static int apple_wdt_stop(struct watchdog_device *wdd)
-+{
-+	struct apple_wdt *wdt = to_apple_wdt(wdd);
-+
-+	writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CTRL);
-+
-+	return 0;
-+}
-+
-+static int apple_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct apple_wdt *wdt = to_apple_wdt(wdd);
-+
-+	writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
-+
-+	return 0;
-+}
-+
-+static int apple_wdt_set_timeout(struct watchdog_device *wdd, unsigned int s)
-+{
-+	struct apple_wdt *wdt = to_apple_wdt(wdd);
-+
-+	writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
-+	writel_relaxed(wdt->clk_rate * s, wdt->regs + APPLE_WDT_WD1_BITE_TIME);
-+
-+	wdd->timeout = s;
-+
-+	return 0;
-+}
-+
-+static unsigned int apple_wdt_get_timeleft(struct watchdog_device *wdd)
-+{
-+	struct apple_wdt *wdt = to_apple_wdt(wdd);
-+	u32 cur_time, reset_time;
-+
-+	cur_time = readl_relaxed(wdt->regs + APPLE_WDT_WD1_CUR_TIME);
-+	reset_time = readl_relaxed(wdt->regs + APPLE_WDT_WD1_BITE_TIME);
-+
-+	return (reset_time - cur_time) / wdt->clk_rate;
-+}
-+
-+static int apple_wdt_restart(struct watchdog_device *wdd, unsigned long mode,
-+			     void *cmd)
-+{
-+	struct apple_wdt *wdt = to_apple_wdt(wdd);
-+
-+	writel_relaxed(APPLE_WDT_CTRL_RESET_EN, wdt->regs + APPLE_WDT_WD1_CTRL);
-+	writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_BITE_TIME);
-+	writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
-+
-+	/*
-+	 * Flush writes and then wait for the SoC to reset. Even though the
-+	 * reset is queued almost immediately experiments have shown that it
-+	 * can take up to ~20-25ms until the SoC is actually reset. Just wait
-+	 * 50ms here to be safe.
-+	 */
-+	(void)readl_relaxed(wdt->regs + APPLE_WDT_WD1_CUR_TIME);
-+	mdelay(50);
-+
-+	return 0;
-+}
-+
-+static void apple_wdt_clk_disable_unprepare(void *data)
-+{
-+	clk_disable_unprepare(data);
-+}
-+
-+static struct watchdog_ops apple_wdt_ops = {
-+	.owner = THIS_MODULE,
-+	.start = apple_wdt_start,
-+	.stop = apple_wdt_stop,
-+	.ping = apple_wdt_ping,
-+	.set_timeout = apple_wdt_set_timeout,
-+	.get_timeleft = apple_wdt_get_timeleft,
-+	.restart = apple_wdt_restart,
-+};
-+
-+static struct watchdog_info apple_wdt_info = {
-+	.identity = "Apple SoC Watchdog",
-+	.options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
-+};
-+
-+static int apple_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct apple_wdt *wdt;
-+	struct clk *clk;
-+	u32 wdt_ctrl;
-+	int ret;
-+
-+	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-+	if (!wdt)
-+		return -ENOMEM;
-+
-+	wdt->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(wdt->regs))
-+		return PTR_ERR(wdt->regs);
-+
-+	clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk))
-+		return PTR_ERR(clk);
-+
-+	ret = clk_prepare_enable(clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = devm_add_action_or_reset(dev, apple_wdt_clk_disable_unprepare,
-+				       clk);
-+	if (ret)
-+		return ret;
-+
-+	wdt->clk_rate = clk_get_rate(clk);
-+	if (!wdt->clk_rate)
-+		return -EINVAL;
-+
-+	wdt->wdd.ops = &apple_wdt_ops;
-+	wdt->wdd.info = &apple_wdt_info;
-+	wdt->wdd.max_timeout = U32_MAX / wdt->clk_rate;
-+	wdt->wdd.timeout = APPLE_WDT_TIMEOUT_DEFAULT;
-+
-+	wdt_ctrl = readl_relaxed(wdt->regs + APPLE_WDT_WD1_CTRL);
-+	if (wdt_ctrl & APPLE_WDT_CTRL_RESET_EN)
-+		set_bit(WDOG_HW_RUNNING, &wdt->wdd.status);
-+
-+	watchdog_init_timeout(&wdt->wdd, 0, dev);
-+	apple_wdt_set_timeout(&wdt->wdd, wdt->wdd.timeout);
-+	watchdog_stop_on_unregister(&wdt->wdd);
-+	watchdog_set_restart_priority(&wdt->wdd, 128);
-+
-+	return devm_watchdog_register_device(dev, &wdt->wdd);
-+}
-+
-+static const struct of_device_id apple_wdt_of_match[] = {
-+	{ .compatible = "apple,wdt" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, apple_wdt_of_match);
-+
-+static struct platform_driver apple_wdt_driver = {
-+	.driver = {
-+		.name = "apple-watchdog",
-+		.of_match_table = apple_wdt_of_match,
-+	},
-+	.probe = apple_wdt_probe,
-+};
-+module_platform_driver(apple_wdt_driver);
-+
-+MODULE_DESCRIPTION("Apple SoC watchdog driver");
-+MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
-+MODULE_LICENSE("Dual MIT/GPL");
--- 
-2.25.1
+> property mux-states that can be used for adding this support.
+> 
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
+> ---
+>  .../devicetree/bindings/mux/gpio-mux.yaml     | 11 ++++++--
+>  .../devicetree/bindings/mux/mux-consumer.yaml | 14 ++++++++++
+>  .../bindings/mux/mux-controller.yaml          | 26 ++++++++++++++++++-
+>  3 files changed, 48 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mux/gpio-mux.yaml b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+> index 0a7c8d64981a..ee4de9fbaf4d 100644
+> --- a/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+> +++ b/Documentation/devicetree/bindings/mux/gpio-mux.yaml
+> @@ -26,7 +26,10 @@ properties:
+>        List of gpios used to control the multiplexer, least significant bit first.
+>  
+>    '#mux-control-cells':
+> -    const: 0
+> +    enum: [ 0, 1 ]
+> +
+> +  '#mux-state-cells':
+> +    enum: [ 1, 2 ]
+>  
+>    idle-state:
+>      default: -1
+> @@ -34,7 +37,11 @@ properties:
+>  required:
+>    - compatible
+>    - mux-gpios
+> -  - "#mux-control-cells"
+> +anyOf:
+> +  - required:
+> +      - "#mux-control-cells"
+> +  - required:
+> +      - "#mux-state-cells"
+>  
+>  additionalProperties: false
+>  
+> diff --git a/Documentation/devicetree/bindings/mux/mux-consumer.yaml b/Documentation/devicetree/bindings/mux/mux-consumer.yaml
+> index 7af93298ab5c..64f353714227 100644
+> --- a/Documentation/devicetree/bindings/mux/mux-consumer.yaml
+> +++ b/Documentation/devicetree/bindings/mux/mux-consumer.yaml
+> @@ -25,6 +25,11 @@ description: |
+>    strings to label each of the mux controllers listed in the "mux-controls"
+>    property.
+>  
+> +  If it is required to provide the state that the mux controller needs to
+> +  be set to, the property "mux-states" must be used. An optional property
+> +  "mux-state-names" can be used to provide a list of strings, to label
+> +  each of the mux controllers listed in the "mux-states" property.
 
+s/mux controllers/multiplexer states/
+
+> +
+>    mux-ctrl-specifier typically encodes the chip-relative mux controller number.
+>    If the mux controller chip only provides a single mux controller, the
+>    mux-ctrl-specifier can typically be left out.
+> @@ -35,12 +40,21 @@ properties:
+>    mux-controls:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+>  
+> +  mux-states:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +
+>    mux-control-names:
+>      description:
+>        Devices that use more than a single mux controller can use the
+>        "mux-control-names" property to map the name of the requested mux
+>        controller to an index into the list given by the "mux-controls" property.
+>  
+> +  mux-state-names:
+> +    description:
+> +      Devices that use more than a single mux controller can use the
+
+s/mux controller/multiplexer state/
+
+> +      "mux-state-names" property to map the name of the requested mux
+> +      controller to an index into the list given by the "mux-states" property.
+
+And again, over the line break.
+
+> +
+>  additionalProperties: true
+>  
+>  ...
+> diff --git a/Documentation/devicetree/bindings/mux/mux-controller.yaml b/Documentation/devicetree/bindings/mux/mux-controller.yaml
+> index 736a84c3b6a5..b29dbf521f01 100644
+> --- a/Documentation/devicetree/bindings/mux/mux-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mux/mux-controller.yaml
+> @@ -25,7 +25,9 @@ description: |
+>    --------------------
+>  
+>    Mux controller nodes must specify the number of cells used for the
+> -  specifier using the '#mux-control-cells' property.
+> +  specifier using the '#mux-control-cells' or 'mux-state-cells'
+
+'#mux-state-cells' (missing #)
+
+> +  property. Value of '#mux-state-cells' will always be one greater then
+
+s/Value/The value/
+s/then/than/
+
+Cheers,
+Peter
+
+> +  the value of '#mux-control-cells'.
+>  
+>    Optionally, mux controller nodes can also specify the state the mux should
+>    have when it is idle. The idle-state property is used for this. If the
+> @@ -67,6 +69,8 @@ select:
+>            pattern: '^mux-controller'
+>      - required:
+>          - '#mux-control-cells'
+> +    - required:
+> +        - '#mux-state-cells'
+>  
+>  properties:
+>    $nodename:
+> @@ -75,6 +79,9 @@ properties:
+>    '#mux-control-cells':
+>      enum: [ 0, 1 ]
+>  
+> +  '#mux-state-cells':
+> +    enum: [ 1, 2 ]
+> +
+>    idle-state:
+>      $ref: /schemas/types.yaml#/definitions/int32
+>      minimum: -2
+> @@ -179,4 +186,21 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    mux1: mux-controller {
+> +        compatible = "gpio-mux";
+> +        #mux-state-cells = <1>;
+> +        mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    transceiver4: can-phy4 {
+> +        compatible = "ti,tcan1042";
+> +        #phy-cells = <0>;
+> +        max-bitrate = <5000000>;
+> +        standby-gpios = <&exp_som 7 GPIO_ACTIVE_HIGH>;
+> +        mux-states = <&mux1 1>;
+> +    };
+>  ...
+> 
