@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CF52463414
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 13:20:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B38046341E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 13:20:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232858AbhK3MX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 07:23:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53492 "EHLO
+        id S241527AbhK3MYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 07:24:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbhK3MX2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 07:23:28 -0500
-Received: from mail-vk1-xa36.google.com (mail-vk1-xa36.google.com [IPv6:2607:f8b0:4864:20::a36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D577C061746
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 04:20:09 -0800 (PST)
-Received: by mail-vk1-xa36.google.com with SMTP id s17so13437711vka.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 04:20:09 -0800 (PST)
+        with ESMTP id S241533AbhK3MXy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 07:23:54 -0500
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61402C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 04:20:35 -0800 (PST)
+Received: by mail-ua1-x933.google.com with SMTP id w23so40905502uao.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 04:20:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=VVEC9MyOR43khg1i5T22QR4aHRP9iObZnCLCzY2Cxbo=;
-        b=n7rjdnb4XjbplJU1heJ9DsQqw/9v+Bl1JBdtfkTzF3oDmsQ27HI/vyc2NQRy4fuiEb
-         rKf4Hge+6zsOxTPw0OkMp7tpBk3rOEqu7e5H2rRBp6OXCCkXOG9w7BxC3PvALQE79RkQ
-         jgqpCvO3dhBxm+kvVr9XSjUoTdNL0q2bGCTOgivz/mjehawZflh8GwnSHv9h3YuPXaKO
-         anmNsOsadNEm4HP2X69ZqxD2VisZTkQX67RHH3gaK8QVGbEn7uMdIWopa8VmvLE5HoAv
-         2qsMqiX2V2lLvxtuzubAQtYA4QQN2yYF1GGtWQ8hAdGZ62ask7X/ZNpxkSWsldExO92h
-         9krg==
+        bh=1ujyhkOvhZ/kn/EYuuMP69Y9Kl5Rfhh28pCEODUUTUw=;
+        b=TDL1Jnm+i7rMI3JPan6whzMZuH9BqyfVzBTAbtrBjHjMsn4/bmlYsdCHDFZ32kCYKW
+         Hs7pfxAPXtX72xorhXY6u7BfaRMG/F5q3IeylpBtakiOlsqxQZd2AbLZMEzSgBjOzd1E
+         kiHMT3PKUuLn+ocVUTbdCB7WCRy/uV+L8su/Wrr+x+jTyhAxEpK3Hmd0wpREVKoJAip3
+         V6WdhBdnqc1uE3dKDxP8GlVjLfFxsHqCkhnfYOOXgviLAAkPUlvpp7jAPdOhYHuIto54
+         UQVk6FEXAhZSHfuBS2bqACxYf0ZQLdNjSJqB1W4MLmGE4D5QVBsHpRsp9/VVV2trxk6r
+         GzAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VVEC9MyOR43khg1i5T22QR4aHRP9iObZnCLCzY2Cxbo=;
-        b=BV02ZL3Vr5NqjSfiyGXBTFoVrf3o0TUVsxiv41QsdAvqiUKPL2jqjHJHWj0nLM3xjT
-         CWxHwFs0EeVM1ael8oBK5ewQ1uAIyzRuxn1z3IHe7Vbq985Y88u0GpCeJyresTbJGRLI
-         6CCHI6vmT9ft3+bgDRw15Qh5kIAq6pz7Qt9/h++1icf2K1nt5QKUHbMJYRSSZ2jKuuiS
-         IBhJE/cD8xApy7mAUxxz8Hx7NJTNm7IT7ehfNznZQp5DsEmDIfYh3hLSLAWDCB7lQqRs
-         eKiD3AXaS8y3zFtBvwJGS26iNlTAe55sNAeRuFyzSCxkcGtvBdyukH7fAbZnCu5Q91fe
-         18hg==
-X-Gm-Message-State: AOAM532VIr4uPiefZi5K/gT4Lk11sw936exghVO71zEIsnv3PxyfHumK
-        yojv6uokYB8n3hr0WTqOPhEfxQ==
-X-Google-Smtp-Source: ABdhPJx4pjcG+r16tI53s5Kfp7uWbm31oMJatWgIFBrtQICorJtMeQMcOZOMxsNpcGFmaeirrwxXLg==
-X-Received: by 2002:a05:6122:1788:: with SMTP id o8mr43886681vkf.8.1638274808616;
-        Tue, 30 Nov 2021 04:20:08 -0800 (PST)
+        bh=1ujyhkOvhZ/kn/EYuuMP69Y9Kl5Rfhh28pCEODUUTUw=;
+        b=xmu5dbhi7v3z8pUHPHt3411INcb35qvf9XR0ey2jE2CqZUALgeGW0Lld5PBXQHQp0Q
+         KbenRxNMlyW6yTxHqiACk6skSuMCTHvDOkmgVjO1vbfuubIdJvsWG/EtX94tFvZ6bvOu
+         WBDODkrgzgwAzMEcPLitHe2GF/BXjI7YdttIRC9BsHSr4aMQT0p5SrQ5Eu1FvBbgScFy
+         oLmXujp67yfRroIBxOpLjzjXq4rDYipjCVlIH6bHJ50FBYkpLV7k2vIs5XJqYwGk1r8M
+         lu8K9JgPZQf2/39ap/FC2gqjf5x7rOFcI4EkKn5Setyls9OkM+kHPI04qhiNjBorAccy
+         MLsw==
+X-Gm-Message-State: AOAM531rO1xfoCRFPHn6tm7FCOhS8+3NPpfabXylLLmBUrHp3XIvLKkb
+        iltUZiWJMbJw23Lm9EppIb1a5g==
+X-Google-Smtp-Source: ABdhPJx5S2Jj7XzelHbH7Z+x2bLpGTgFk4TmBKFZ6CJekTj133gVTp88B6hZSlYFXqAP+Yth7WSoRQ==
+X-Received: by 2002:a05:6102:ec6:: with SMTP id m6mr39022285vst.50.1638274834536;
+        Tue, 30 Nov 2021 04:20:34 -0800 (PST)
 Received: from eze-laptop (host208.201-253-22.telecom.net.ar. [201.253.22.208])
-        by smtp.gmail.com with ESMTPSA id h10sm10097739vsl.34.2021.11.30.04.20.05
+        by smtp.gmail.com with ESMTPSA id e13sm9804329vkd.21.2021.11.30.04.20.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 04:20:07 -0800 (PST)
-Date:   Tue, 30 Nov 2021 09:20:03 -0300
+        Tue, 30 Nov 2021 04:20:33 -0800 (PST)
+Date:   Tue, 30 Nov 2021 09:20:28 -0300
 From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 To:     Jernej Skrabec <jernej.skrabec@gmail.com>
 Cc:     linux-media@vger.kernel.org, nicolas.dufresne@collabora.com,
@@ -56,23 +56,23 @@ Cc:     linux-media@vger.kernel.org, nicolas.dufresne@collabora.com,
         gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
         linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 5/9] media: hantro: move postproc enablement for old
- cores
-Message-ID: <YaYW8yLNrXvWkopx@eze-laptop>
+Subject: Re: [PATCH v2 6/9] media: hantro: Convert imx8m_vpu_g2_irq to helper
+Message-ID: <YaYXDLumCr7BfzMR@eze-laptop>
 References: <20211129182633.480021-1-jernej.skrabec@gmail.com>
- <20211129182633.480021-6-jernej.skrabec@gmail.com>
+ <20211129182633.480021-7-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211129182633.480021-6-jernej.skrabec@gmail.com>
+In-Reply-To: <20211129182633.480021-7-jernej.skrabec@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 29, 2021 at 07:26:29PM +0100, Jernej Skrabec wrote:
-> Older G2 cores, like that in Allwinner H6, seem to have issue with
-> latching postproc register values if this is first thing done in job.
-> Moving that to the end solves the issue.
+On Mon, Nov 29, 2021 at 07:26:30PM +0100, Jernej Skrabec wrote:
+> It turns out that imx8m_vpu_g2_irq() doesn't depend on any platform
+> specifics and can be used with other G2 platform drivers too.
+> 
+> Move it to common code.
 > 
 > Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
@@ -81,57 +81,86 @@ Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 Thanks!
 
 > ---
->  drivers/staging/media/hantro/hantro.h     | 2 ++
->  drivers/staging/media/hantro/hantro_drv.c | 9 ++++++++-
->  2 files changed, 10 insertions(+), 1 deletion(-)
+>  drivers/staging/media/hantro/hantro_g2.c    | 18 ++++++++++++++++++
+>  drivers/staging/media/hantro/hantro_hw.h    |  1 +
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c | 20 +-------------------
+>  3 files changed, 20 insertions(+), 19 deletions(-)
 > 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index 83ed25d9657b..06d0f3597694 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -75,6 +75,7 @@ struct hantro_irq {
->   * @num_regs:			number of register range names in the array
->   * @double_buffer:		core needs double buffering
->   * @legacy_regs:		core uses legacy register set
-> + * @late_postproc:		postproc must be set up at the end of the job
->   */
->  struct hantro_variant {
->  	unsigned int enc_offset;
-> @@ -98,6 +99,7 @@ struct hantro_variant {
->  	int num_regs;
->  	unsigned int double_buffer : 1;
->  	unsigned int legacy_regs : 1;
-> +	unsigned int late_postproc : 1;
+> diff --git a/drivers/staging/media/hantro/hantro_g2.c b/drivers/staging/media/hantro/hantro_g2.c
+> index 6f3e1f797f83..ee5f14c5f8f2 100644
+> --- a/drivers/staging/media/hantro/hantro_g2.c
+> +++ b/drivers/staging/media/hantro/hantro_g2.c
+> @@ -24,3 +24,21 @@ void hantro_g2_check_idle(struct hantro_dev *vpu)
+>  		}
+>  	}
+>  }
+> +
+> +irqreturn_t hantro_g2_irq(int irq, void *dev_id)
+> +{
+> +	struct hantro_dev *vpu = dev_id;
+> +	enum vb2_buffer_state state;
+> +	u32 status;
+> +
+> +	status = vdpu_read(vpu, G2_REG_INTERRUPT);
+> +	state = (status & G2_REG_INTERRUPT_DEC_RDY_INT) ?
+> +		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+> +
+> +	vdpu_write(vpu, 0, G2_REG_INTERRUPT);
+> +	vdpu_write(vpu, G2_REG_CONFIG_DEC_CLK_GATE_E, G2_REG_CONFIG);
+> +
+> +	hantro_irq_done(vpu, state);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> index dbe51303724b..c33b1f5df37b 100644
+> --- a/drivers/staging/media/hantro/hantro_hw.h
+> +++ b/drivers/staging/media/hantro/hantro_hw.h
+> @@ -413,5 +413,6 @@ void hantro_g2_vp9_dec_done(struct hantro_ctx *ctx);
+>  int hantro_vp9_dec_init(struct hantro_ctx *ctx);
+>  void hantro_vp9_dec_exit(struct hantro_ctx *ctx);
+>  void hantro_g2_check_idle(struct hantro_dev *vpu);
+> +irqreturn_t hantro_g2_irq(int irq, void *dev_id);
+>  
+>  #endif /* HANTRO_HW_H_ */
+> diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> index 1a43f6fceef9..f5991b8e553a 100644
+> --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> @@ -191,24 +191,6 @@ static irqreturn_t imx8m_vpu_g1_irq(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t imx8m_vpu_g2_irq(int irq, void *dev_id)
+> -{
+> -	struct hantro_dev *vpu = dev_id;
+> -	enum vb2_buffer_state state;
+> -	u32 status;
+> -
+> -	status = vdpu_read(vpu, G2_REG_INTERRUPT);
+> -	state = (status & G2_REG_INTERRUPT_DEC_RDY_INT) ?
+> -		 VB2_BUF_STATE_DONE : VB2_BUF_STATE_ERROR;
+> -
+> -	vdpu_write(vpu, 0, G2_REG_INTERRUPT);
+> -	vdpu_write(vpu, G2_REG_CONFIG_DEC_CLK_GATE_E, G2_REG_CONFIG);
+> -
+> -	hantro_irq_done(vpu, state);
+> -
+> -	return IRQ_HANDLED;
+> -}
+> -
+>  static int imx8mq_vpu_hw_init(struct hantro_dev *vpu)
+>  {
+>  	vpu->ctrl_base = vpu->reg_bases[vpu->variant->num_regs - 1];
+> @@ -280,7 +262,7 @@ static const struct hantro_irq imx8mq_irqs[] = {
 >  };
 >  
->  /**
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index 770f4ce71d29..33bf78be145b 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -130,7 +130,7 @@ void hantro_start_prepare_run(struct hantro_ctx *ctx)
->  	v4l2_ctrl_request_setup(src_buf->vb2_buf.req_obj.req,
->  				&ctx->ctrl_handler);
+>  static const struct hantro_irq imx8mq_g2_irqs[] = {
+> -	{ "g2", imx8m_vpu_g2_irq },
+> +	{ "g2", hantro_g2_irq },
+>  };
 >  
-> -	if (!ctx->is_encoder) {
-> +	if (!ctx->is_encoder && !ctx->dev->variant->late_postproc) {
->  		if (hantro_needs_postproc(ctx, ctx->vpu_dst_fmt))
->  			hantro_postproc_enable(ctx);
->  		else
-> @@ -142,6 +142,13 @@ void hantro_end_prepare_run(struct hantro_ctx *ctx)
->  {
->  	struct vb2_v4l2_buffer *src_buf;
->  
-> +	if (!ctx->is_encoder && ctx->dev->variant->late_postproc) {
-> +		if (hantro_needs_postproc(ctx, ctx->vpu_dst_fmt))
-> +			hantro_postproc_enable(ctx);
-> +		else
-> +			hantro_postproc_disable(ctx);
-> +	}
-> +
->  	src_buf = hantro_get_src_buf(ctx);
->  	v4l2_ctrl_request_complete(src_buf->vb2_buf.req_obj.req,
->  				   &ctx->ctrl_handler);
+>  static const char * const imx8mq_clk_names[] = { "g1", "g2", "bus" };
 > -- 
 > 2.34.1
 > 
