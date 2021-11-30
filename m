@@ -2,97 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED9B24635CC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 14:49:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6ED64635D3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 14:51:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241445AbhK3Nw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 08:52:56 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:40168 "EHLO cpanel.siel.si"
+        id S241832AbhK3NzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 08:55:16 -0500
+Received: from mga07.intel.com ([134.134.136.100]:23353 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S240008AbhK3Nw4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 08:52:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-        Date:Message-ID:From:References:Cc:Subject:Sender:Reply-To:To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=UUkiGbBHuD3eoYdG87cPn3KIRvGU68JXHLpxrL5OQnA=; b=WarnI8/lds1InnXOVfZIELG5iC
-        O/avmgMNYpz41a5i//VEf3U/fQwgciuiunGT99nwUmKSxoSK73VXihYsveJroy5+uDP+Qe5oMjW5I
-        E+lllwkkgfoCRb+U757HjUN4BEgtrI9HsuMIq2b9wnv52bzQ9JCSg3+cudIA6GmZ+5rknHSuKqUnC
-        QrQaZqD6Ta30XUcCCg06d8BMS39kqhAudcr/6Zrp5WkiEp3Q4/T8N5HpPGGTjUIZzqgt3XlfUOfgy
-        YZmORsYGSiq7/l8SOt+toJXPeaKKR8ri286dZ2vffRhyrcb5KWuKHPNPPMnqA/orWqlzMa9AQkP4U
-        hcz6eYBQ==;
-Received: from [89.212.21.243] (port=49774 helo=[192.168.69.215])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1ms3Vj-003AE3-EG; Tue, 30 Nov 2021 14:49:31 +0100
-Subject: Re: [PATCH v2 1/4] mfd: da9062: make register CONFIG_I writable
-Cc:     support.opensource@diasemi.com, wim@linux-watchdog.org,
-        linux@roeck-us.net, linux-watchdog@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-References: <20211130134242.3516619-1-andrej.picej@norik.com>
-From:   Andrej Picej <andrej.picej@norik.com>
-Message-ID: <b62b026d-3f89-6638-d2b9-c8ddd002458b@norik.com>
-Date:   Tue, 30 Nov 2021 14:49:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S241821AbhK3NzN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 08:55:13 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10183"; a="299609782"
+X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; 
+   d="scan'208";a="299609782"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Nov 2021 05:51:53 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,276,1631602800"; 
+   d="scan'208";a="744738557"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 30 Nov 2021 05:51:50 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1ms3Xx-000DN9-Pn; Tue, 30 Nov 2021 13:51:49 +0000
+Date:   Tue, 30 Nov 2021 21:51:29 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Wells Lu <wellslutw@gmail.com>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de
+Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
+        vincent.shih@sunplus.com, Wells Lu <wellslutw@gmail.com>
+Subject: Re: [PATCH net-next v3 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Message-ID: <202111302126.kdjsLCiQ-lkp@intel.com>
+References: <1638266572-5831-3-git-send-email-wellslutw@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20211130134242.3516619-1-andrej.picej@norik.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1638266572-5831-3-git-send-email-wellslutw@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Wells,
 
-On 30. 11. 21 14:42, Andrej Picej wrote:
-> From: Stefan Christ <s.christ@phytec.de>
-> 
-> Make the config register CONFIG_I writable to change the watchdog mode.
-> 
-> Signed-off-by: Stefan Christ <s.christ@phytec.de>
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> ---
->   drivers/mfd/da9062-core.c | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
-> index 01f8e10dfa55..7041ba53efb4 100644
-> --- a/drivers/mfd/da9062-core.c
-> +++ b/drivers/mfd/da9062-core.c
-> @@ -556,6 +556,7 @@ static const struct regmap_range da9062_aa_writeable_ranges[] = {
->   	regmap_reg_range(DA9062AA_VBUCK3_B, DA9062AA_VBUCK3_B),
->   	regmap_reg_range(DA9062AA_VLDO1_B, DA9062AA_VLDO4_B),
->   	regmap_reg_range(DA9062AA_BBAT_CONT, DA9062AA_BBAT_CONT),
-> +	regmap_reg_range(DA9062AA_CONFIG_I, DA9062AA_CONFIG_I),
->   	regmap_reg_range(DA9062AA_GP_ID_0, DA9062AA_GP_ID_19),
->   };
->   
-> 
+I love your patch! Perhaps something to improve:
 
-Changes in v2:
-- no changes
+[auto build test WARNING on net-next/master]
 
-sorry, just noticed I forgot to add what I changed for v2 patch series.
-Should I resend the patches with that fixed/added? Should that be v3 
-then or still v2?
+url:    https://github.com/0day-ci/linux/commits/Wells-Lu/This-is-a-patch-series-for-pinctrl-driver-for-Sunplus-SP7021-SoC/20211130-180452
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/davem/net-next.git 09ae03e2fc9d04240c21759ce9f1ef63d7651850
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20211130/202111302126.kdjsLCiQ-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/c5416cd4312a02ecbd1752129b61392a857a45fb
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Wells-Lu/This-is-a-patch-series-for-pinctrl-driver-for-Sunplus-SP7021-SoC/20211130-180452
+        git checkout c5416cd4312a02ecbd1752129b61392a857a45fb
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash drivers/net/ethernet/sunplus/
 
-Thanks.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+   drivers/net/ethernet/sunplus/spl2sw_int.c: In function 'spl2sw_tx_poll':
+>> drivers/net/ethernet/sunplus/spl2sw_int.c:157:28: warning: variable 'mac' set but not used [-Wunused-but-set-variable]
+     157 |         struct spl2sw_mac *mac;
+         |                            ^~~
+
+
+vim +/mac +157 drivers/net/ethernet/sunplus/spl2sw_int.c
+
+   151	
+   152	int spl2sw_tx_poll(struct napi_struct *napi, int budget)
+   153	{
+   154		struct spl2sw_common *comm = container_of(napi, struct spl2sw_common, tx_napi);
+   155		struct spl2sw_skb_info *skbinfo;
+   156		struct net_device_stats *stats;
+ > 157		struct spl2sw_mac *mac;
+   158		u32 tx_done_pos;
+   159		u32 mask;
+   160		u32 cmd;
+   161		int i;
+   162	
+   163		spin_lock(&comm->tx_lock);
+   164	
+   165		tx_done_pos = comm->tx_done_pos;
+   166		while ((tx_done_pos != comm->tx_pos) || (comm->tx_desc_full == 1)) {
+   167			cmd = comm->tx_desc[tx_done_pos].cmd1;
+   168			if (cmd & TXD_OWN)
+   169				break;
+   170	
+   171			skbinfo = &comm->tx_temp_skb_info[tx_done_pos];
+   172			if (unlikely(!skbinfo->skb))
+   173				goto spl2sw_tx_poll_next;
+   174	
+   175			i = spl2sw_bit_pos_to_port_num(FIELD_GET(TXD_VLAN, cmd));
+   176			if (i < MAX_NETDEV_NUM && comm->ndev[i]) {
+   177				mac = netdev_priv(comm->ndev[i]);
+   178				stats = &comm->ndev[i]->stats;
+   179			} else {
+   180				goto spl2sw_tx_poll_unmap;
+   181			}
+   182	
+   183			if (unlikely(cmd & (TXD_ERR_CODE))) {
+   184				stats->tx_errors++;
+   185			} else {
+   186				stats->tx_packets++;
+   187				stats->tx_bytes += skbinfo->len;
+   188			}
+   189	
+   190	spl2sw_tx_poll_unmap:
+   191			dma_unmap_single(&comm->pdev->dev, skbinfo->mapping, skbinfo->len,
+   192					 DMA_TO_DEVICE);
+   193			skbinfo->mapping = 0;
+   194			dev_kfree_skb_irq(skbinfo->skb);
+   195			skbinfo->skb = NULL;
+   196	
+   197	spl2sw_tx_poll_next:
+   198			/* Move tx_done_pos to next position */
+   199			tx_done_pos = ((tx_done_pos + 1) == TX_DESC_NUM) ? 0 : tx_done_pos + 1;
+   200	
+   201			if (comm->tx_desc_full == 1)
+   202				comm->tx_desc_full = 0;
+   203		}
+   204	
+   205		comm->tx_done_pos = tx_done_pos;
+   206		if (!comm->tx_desc_full)
+   207			for (i = 0; i < MAX_NETDEV_NUM; i++)
+   208				if (comm->ndev[i])
+   209					if (netif_queue_stopped(comm->ndev[i]))
+   210						netif_wake_queue(comm->ndev[i]);
+   211	
+   212		spin_unlock(&comm->tx_lock);
+   213	
+   214		wmb();			/* make sure settings are effective. */
+   215		mask = readl(comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+   216		mask &= ~MAC_INT_TX;
+   217		writel(mask, comm->l2sw_reg_base + L2SW_SW_INT_MASK_0);
+   218	
+   219		napi_complete(napi);
+   220		return 0;
+   221	}
+   222	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
