@@ -2,116 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F47F463EF9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 21:03:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D88B4463EFD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 21:04:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343581AbhK3UGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 15:06:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240057AbhK3UGw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 15:06:52 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5D44C061748
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 12:03:32 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id q16so20993974pgq.10
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 12:03:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=muJ29bKDUUrSskXGJgCVK4wH9p4Q4vUd1+SeB9qzFgg=;
-        b=XDJWQaFkILCWUUvLb/uIFXGwaHNQA23YQSjzfGzmjHMA+Yk81MtuPk/2syrX4YfPQe
-         7YqIaR9kX3AZsj37NacVff2cRF5tSnsnhGEP/b91nJHIzRm3CyUvVxkcwPbVH5LzCnl2
-         AT1NPZEXAHN/2YBaOSvDf0SgEjaGLYcfk+/gM=
+        id S1343586AbhK3UH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 15:07:27 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:43884
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S240032AbhK3UH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 15:07:26 -0500
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id C60003FFE1
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 20:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1638302644;
+        bh=fw6PzsUlrYkA4VQaJdC32HD2E/40nvvVW3E5iBZZ8sw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=tCZpeMs+S7v4ZL+muHr45oxKVtvkCCKk8l33zQ7L3Y742OEh+KRpuwuctK7PtFiq+
+         TPVd9hX2Ykb0Y495x7M/k/14atcIOn9nabNPLUeX3q9sR15HY7H4dfLZBwxvOJTn69
+         34+sheX2N0gVoYWMGZikiubTuhMkNcyxb+gQRzVLqxJupGnjU1X1sqTJKA3NGQ7JxJ
+         bCoUIvpOzSHXZwtafeILc/K8/0cfu5uWndTFR5lA5XszF3F18EoYS536GNPjPMJ/aS
+         nf7Dc+JOxzK3kq9BxzXtJN+UOFnY7Lrn0kj2hMzapQFK12zk9W4MeBJ6sbjkd/yuve
+         UFNFAHoQKcPyw==
+Received: by mail-lj1-f198.google.com with SMTP id 83-20020a2e0556000000b00218db3260bdso7940034ljf.9
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 12:04:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=muJ29bKDUUrSskXGJgCVK4wH9p4Q4vUd1+SeB9qzFgg=;
-        b=Pc7GM8kvPPQTKZevLcyYeiN5euJyZl5GFjeCjQdtZvpGBhjGKFYHIJUFlenmmfLMBC
-         5kAb/ayIe6/8mELA05RL6M0cRmkalPmQ5erC1Dz8Zuxv+2iBG9+p2nvI6ANv5PiXlE5h
-         HLpC6Fo4NM8GEP+eosEMaf5nxVb6VNTgRVZ74KA5GIKHjK7Y5MyEJLt725ItvfVYFaJJ
-         Dt3ac1Wej4GDzIqbFnb+yKzAIGisallfCHR+Ern4d56+9bj+2iiFoc+EpQS1K3vz1bmy
-         SUJICjnNcLQNb2FfzxhaWT0kTs5PVd08wIasQaxyP959WU0gg+GQa9/RmMGs8LQvViFr
-         aUiQ==
-X-Gm-Message-State: AOAM5322mn+krEDmaFlIkrh1CZ4ORWBpyfF5Fdi9LzZ+QurTk7SM8e8q
-        uZSWLOG/dhgaMtzqWzDBov+Olg==
-X-Google-Smtp-Source: ABdhPJwa83bFfumktwKpBVwFszz7w+WHjUH+gWSuMVgxt159xo92in7siC73ZSAdZFLdAAZFwuEmtw==
-X-Received: by 2002:a63:5147:: with SMTP id r7mr1095295pgl.448.1638302612301;
-        Tue, 30 Nov 2021 12:03:32 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:ecc:102f:1eec:93da])
-        by smtp.gmail.com with UTF8SMTPSA id p2sm3346951pja.55.2021.11.30.12.03.31
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=fw6PzsUlrYkA4VQaJdC32HD2E/40nvvVW3E5iBZZ8sw=;
+        b=nTSOO3gQOxLoa71WpldVBcOkEIHeQPuqixdj0GuvHJ/5jQFUjNciggaeM4peQ+3M5P
+         JcJlyKH7kcbPz3AOha8Roovh5bQNzmXYl+uRFB3LNQTc4jaHCdpDMmgHLxiE5lULPDYW
+         HBrB0YIrfNptQHCbk5dR1aYHGa2B5246nCKCwzI7ar8ePJrj7xxfh/d/Jj+jVaLucUOg
+         pSXBdPmai+//anBlkjpT8PzgwKUsfIQ+EPps2bao2VkPiGY80VGcYl3wS8zhyD4JTcQx
+         eYP7m6fE8hKjggd333mPdjB+eCjvDMQgd+4nNRxFNjpQkS5ILaPdM/J7VmDS3YMhezXZ
+         0/Dw==
+X-Gm-Message-State: AOAM530MYQtZO6jYYlUESOeyS/bEOZGqvnOzGqIF2kk0tMC+JeDujp1c
+        Oz8gjLNb/jIViPvfJVESiUpOLcgiXe3n99exiDrBGXvt9sce9bukTxYkMmZwjNk5f6VRmRO4E44
+        LOhCywbmL2lP5NDHjI2KbTxsUKQ/fZm/0odZuEbo=
+X-Received: by 2002:a05:6512:1313:: with SMTP id x19mr1315882lfu.279.1638302642837;
+        Tue, 30 Nov 2021 12:04:02 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwFLghjinwu+ez5oEJYvHxibl/oZqNQ9vjDrtAMuAhvpEiBodlkvDGbx0fxE9dNxNZ4Hjs+pg==
+X-Received: by 2002:a05:6512:1313:: with SMTP id x19mr1315862lfu.279.1638302642618;
+        Tue, 30 Nov 2021 12:04:02 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id v17sm1816842lfd.287.2021.11.30.12.04.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Nov 2021 12:03:31 -0800 (PST)
-Date:   Tue, 30 Nov 2021 12:03:30 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        kgodara@codeaurora.org, Kshitiz Godara <kgodara1@codeaurora.org>
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7280-crd: Add Touchscreen and
- touchpad support
-Message-ID: <YaaDkiFp54mLAbJH@google.com>
-References: <1638185497-26477-1-git-send-email-quic_rjendra@quicinc.com>
- <1638185497-26477-5-git-send-email-quic_rjendra@quicinc.com>
+        Tue, 30 Nov 2021 12:04:02 -0800 (PST)
+Message-ID: <4b5bebb0-ed74-8132-1e6b-cb7cbc21439c@canonical.com>
+Date:   Tue, 30 Nov 2021 21:04:01 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1638185497-26477-5-git-send-email-quic_rjendra@quicinc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI
+ bindings
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Jiri Slaby <jirislaby@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        linux-serial@vger.kernel.org,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        David Virag <virag.david003@gmail.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+References: <20211130111325.29328-1-semen.protsenko@linaro.org>
+ <20211130111325.29328-2-semen.protsenko@linaro.org>
+ <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 29, 2021 at 05:01:37PM +0530, Rajendra Nayak wrote:
-> From: Kshitiz Godara <kgodara1@codeaurora.org>
+On 30/11/2021 18:43, Rob Herring wrote:
+> On Tue, 30 Nov 2021 13:13:21 +0200, Sam Protsenko wrote:
+>> Add constants for choosing USIv2 configuration mode in device tree.
+>> Those are further used in USI driver to figure out which value to write
+>> into SW_CONF register. Also document USIv2 IP-core bindings.
+>>
+>> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+>> ---
+>> Changes in v2:
+>>   - Combined dt-bindings doc and dt-bindings header patches
+>>   - Added i2c node to example in bindings doc
+>>   - Added mentioning of shared internal circuits
+>>   - Added USI_V2_NONE value to bindings header
+>>
+>>  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
+>>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
+>>  2 files changed, 152 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+>>
 > 
-> Add Touchscreen and touchpad hid-over-i2c node for the sc7280 CRD board
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Signed-off-by: Kshitiz Godara <kgodara1@codeaurora.org>
-> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 61 +++++++++++++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
+> yamllint warnings/errors:
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> index 1e3e2f3..fcfb14d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-> @@ -23,6 +23,47 @@
->  	};
->  };
->  
-> +ap_tp_i2c: &i2c0 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	trackpad: trackpad@15 {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x15>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tp_int_odl>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		post-power-on-delay-ms = <20>;
-> +		hid-descr-addr = <0x0001>;
-> +		vdd-supply = <&vreg_l18b_1p8>;
-> +
-> +		wakeup-source;
-> +	};
-> +};
-> +
-> +ap_ts_pen_1v8: &i2c13 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	ap_ts: touchscreen@5c {
-> +		compatible = "hid-over-i2c";
-> +		reg = <0x5C>;
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dts:35.39-42.15: Warning (unique_unit_address): /example-0/usi@138200c0/serial@13820000: duplicate unit-address (also used in node /example-0/usi@138200c0/i2c@13820000)
 
-nit: the convention seems to be to use lowercase characters for hex numbers.
+Rob,
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+The checker complains about two nodes with same unit-address, even
+though the node name is different. Does it mean that our idea of
+embedding two children in USI and having enabled only one (used one) is
+wrong?
+
+  usi0: usi@138200c0 {
+    // enabled device/child
+    serial@13820000 {
+      status = "okay";
+    };
+
+    // disabled device, keep for reference and for boards which
+    // would like to use it
+    i2c@13820000 {
+      status = "disabled";
+    };
+  };
+
+
+Best regards,
+Krzysztof
