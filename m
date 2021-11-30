@@ -2,136 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C98CC462991
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:19:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A184629AC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:29:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235704AbhK3BWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 20:22:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235657AbhK3BWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:22:21 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 683D0C061748
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:18:59 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id bj13so38112502oib.4
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:18:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=h7dfI3SuNLbI8eu2t4U0v+H2ni+TuABrtKx5R3CfOHM=;
-        b=yJc94fLQTljmDterLRcug2eR/c+vDp0LTI+vRv2nR+c/ddCjsYXmPTE02Vayv09E3R
-         Kv8LNcOXnMkrzyWweCyKQNq91Omh0l7IFZLiSEs3jXCZXnBJ67lffzr40aZWtneQarqb
-         bKVmqXvIjRi8CEqJPV+fdwbCsmIYY0oya15SfMc4WnqZwgpCckZ2362UkaNMbQ3rnE6Q
-         L2ZqySG/zeIswlIiFzrpwKLl+Vdekd1MbW0XqN5PD7lMKjSU87ArTZPmkYsxYkiO7meU
-         q/F+WzMnW2TPdv54KXLgDmIsF6YCCQZ+rb+ylC+w3Hz/3rP1sQ2Mx1L73iPSSK5zyfls
-         mjsw==
+        id S236008AbhK3BcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 20:32:23 -0500
+Received: from mail-ot1-f50.google.com ([209.85.210.50]:33630 "EHLO
+        mail-ot1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229459AbhK3BcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:32:22 -0500
+Received: by mail-ot1-f50.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso28179020otf.0;
+        Mon, 29 Nov 2021 17:29:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=h7dfI3SuNLbI8eu2t4U0v+H2ni+TuABrtKx5R3CfOHM=;
-        b=QJLHV8oUsMwXynJRc1ihsF8jN0TwkHGg+RRa4eB7drSYTgg+tN3T7UClNfoicpsBt0
-         gdpOBmwN2xLH1d04WuKOHpLkrbOXHrrrVYeIiLaBxjIQVn2UhFYHdr4/FAu9cmEOhcfQ
-         6OGrRRPbZyPcS2s26K5DrXjgsxKHWFKPq0WT3dVy0niL7JErVvt63yJP8FOBiJ/+o7Nf
-         IrqOUYTdkNuX+BVtefXOErKgNXVnzBg8E3YlF1T+PKlQSlmwc3BFA261NqnZ3XFZ2wfo
-         9xuA1rm09uR1G7Iz6JaSbYNNCnHmsYb6hayAUqZDcHukpZuYprN9Bz/C/EvA2PmtPwBz
-         Va9Q==
-X-Gm-Message-State: AOAM532NjQGUeTo3k86HNKIw+0BbrQXO/yZX+XM5CaZcO6LiUc/a1tUT
-        gxtlxtZWRrb784bBqBxRFFh5E3pRJnZjTr0cd9pKAnMN2nc=
-X-Google-Smtp-Source: ABdhPJzmLyeQbxd78GNxBdXwDedwzxM3MZT96tDdvy8hzbjtS6grHN+iBJetLmTlLj/SPYPMXXf9itVMOmqvKPpjHwU=
-X-Received: by 2002:a54:4791:: with SMTP id o17mr1541501oic.114.1638235138666;
- Mon, 29 Nov 2021 17:18:58 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YIVCC2AuT9fW74wWn6WPnb/tEa/jMUCd2A/efeYY8os=;
+        b=ZlxKygGa5uxI7WhgaSD9tFRhQefzl1075eq7rL3rgc5Aah0hyNCEk2hBMEZspvcpwY
+         Ku1hO9jXjSMUl4N3bMxj26Ya7i4EZdW/FlVE1CsaEYtFBcT6zjaH0thHrzF/EhjFYBak
+         5EBbDZEkiIcXZf0SUpp+qed23jcsL9W2yC0XTjS1eW8zZkaeccGLBDHgIB5pj6Ol50Mq
+         6LvQUZU9PbEeH5sU+VjPaMYkoK2nbqIObxipqTCZeY+eEc943IKB8+qbkkKfTejSfqcK
+         ZXlo3aYZLSZ8Zb1vUiLM3EvhCWYR1mrZC/BR/d3e+D8lg+XWd7px9fKaEsO125pGUePT
+         SzVA==
+X-Gm-Message-State: AOAM530L3TdWHQgITw0wUtcwy/IXXnCyYyEKosXZ5cUpOCFDWk9NuJBJ
+        LpNo6D8Dp4evczl6rkEKSw==
+X-Google-Smtp-Source: ABdhPJzeeHSkvHc2wC/ryJwNiVhXAHLKmgS+bri3WDaDqp/VnQdrVCaDwSrXS7mrxgZ1gQeZt3+X8A==
+X-Received: by 2002:a05:6830:270c:: with SMTP id j12mr48087345otu.231.1638235743501;
+        Mon, 29 Nov 2021 17:29:03 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a12sm2959855otk.35.2021.11.29.17.29.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 17:29:02 -0800 (PST)
+Received: (nullmailer pid 975148 invoked by uid 1000);
+        Tue, 30 Nov 2021 01:29:02 -0000
+Date:   Mon, 29 Nov 2021 19:29:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, Jon Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 01/16] dt-bindings: misc: Convert Tegra MISC to
+ json-schema
+Message-ID: <YaV+XhEueXJVHMC1@robh.at.kernel.org>
+References: <20211119143839.1950739-1-thierry.reding@gmail.com>
+ <20211119143839.1950739-2-thierry.reding@gmail.com>
 MIME-Version: 1.0
-References: <20211127192510.35723-1-demonsingur@gmail.com> <20211127192510.35723-4-demonsingur@gmail.com>
-In-Reply-To: <20211127192510.35723-4-demonsingur@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 30 Nov 2021 02:18:46 +0100
-Message-ID: <CACRpkda7-5YDQ6Gc+Ad0eHYO8pW3nLuUh1rKn9dEZ0PS-xHyJg@mail.gmail.com>
-Subject: Re: [PATCH v7 3/3] iio: addac: add AD74413R driver
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211119143839.1950739-2-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 27, 2021 at 8:25 PM Cosmin Tanislav <demonsingur@gmail.com> wro=
-te:
+On Fri, 19 Nov 2021 15:38:24 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Convert the device tree bindings for the MISC register block found on
+> NVIDIA Tegra SoCs from plain text to json-schema format.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../bindings/misc/nvidia,tegra186-misc.txt    | 14 -----
+>  .../bindings/misc/nvidia,tegra186-misc.yaml   | 43 ++++++++++++++++
+>  .../bindings/misc/nvidia,tegra20-apbmisc.txt  | 17 -------
+>  .../bindings/misc/nvidia,tegra20-apbmisc.yaml | 51 +++++++++++++++++++
+>  4 files changed, 94 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra186-misc.txt
+>  create mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra186-misc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra20-apbmisc.txt
+>  create mode 100644 Documentation/devicetree/bindings/misc/nvidia,tegra20-apbmisc.yaml
+> 
 
-> The AD74412R and AD74413R are quad-channel software configurable input/ou=
-tput
-> solutions for building and process control applications. They contain
-> functionality for analog output, analog input, digital input, resistance
-> temperature detector, and thermocouple measurements integrated
-> into a single chip solution with an SPI interface.
-> The devices feature a 16-bit ADC and four configurable 13-bit DACs to pro=
-vide
-> four configurable input/output channels and a suite of diagnostic functio=
-ns.
-> The AD74413R differentiates itself from the AD74412R by being HART-compat=
-ible.
->
-> When configured with channel 0 as voltage output, channel 1 as current
-> output, channel 2 as voltage input and channel 3 as current input, the
-> following structure is created under the corresponding IIO device.
->
-> .
-> =E2=94=9C=E2=94=80=E2=94=80 in_current0_offset
-> =E2=94=9C=E2=94=80=E2=94=80 in_current0_raw
-> =E2=94=9C=E2=94=80=E2=94=80 in_current0_sampling_frequency
-> =E2=94=9C=E2=94=80=E2=94=80 in_current0_sampling_frequency_available
-> =E2=94=9C=E2=94=80=E2=94=80 in_current0_scale
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_offset
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_raw
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_sampling_frequency
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_sampling_frequency_available
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_scale
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_offset
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_raw
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_sampling_frequency
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_sampling_frequency_available
-> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_scale
-> =E2=94=9C=E2=94=80=E2=94=80 in_current3_offset
-> =E2=94=9C=E2=94=80=E2=94=80 in_current3_raw
-> =E2=94=9C=E2=94=80=E2=94=80 in_current3_sampling_frequency
-> =E2=94=9C=E2=94=80=E2=94=80 in_current3_sampling_frequency_available
-> =E2=94=9C=E2=94=80=E2=94=80 in_current3_scale
-> =E2=94=9C=E2=94=80=E2=94=80 out_voltage0_raw
-> =E2=94=9C=E2=94=80=E2=94=80 out_voltage0_scale
-> =E2=94=9C=E2=94=80=E2=94=80 out_current1_raw
-> =E2=94=9C=E2=94=80=E2=94=80 out_current1_scale
-> =E2=94=9C=E2=94=80=E2=94=80 name
-> =E2=94=9C=E2=94=80=E2=94=80 buffer
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 data_available
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 enable
-> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 length
-> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 watermark
-> =E2=94=94=E2=94=80=E2=94=80 scan_elements
->     =E2=94=9C=E2=94=80=E2=94=80 in_current0_en
->     =E2=94=9C=E2=94=80=E2=94=80 in_current0_index
->     =E2=94=9C=E2=94=80=E2=94=80 in_current0_type
->     =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_en
->     =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_index
->     =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_type
->     =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_en
->     =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_index
->     =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_type
->     =E2=94=9C=E2=94=80=E2=94=80 in_current3_en
->     =E2=94=9C=E2=94=80=E2=94=80 in_current3_index
->     =E2=94=94=E2=94=80=E2=94=80 in_current3_type
->
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-
-From a GPIO point of view there is nothing to complain about here
-so:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+Reviewed-by: Rob Herring <robh@kernel.org>
