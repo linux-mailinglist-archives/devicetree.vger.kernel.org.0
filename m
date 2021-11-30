@@ -2,162 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77963463B56
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:12:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8955E463B8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232345AbhK3QPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 11:15:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52174 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbhK3QPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 11:15:17 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB4CC061574
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 08:11:58 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ms5jU-0006YV-Kl; Tue, 30 Nov 2021 17:11:52 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ms5jT-001xE3-NJ; Tue, 30 Nov 2021 17:11:50 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1ms5jS-0000QL-Ct; Tue, 30 Nov 2021 17:11:50 +0100
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: [PATCH] arm: bcm2711-rpi-4-b: Add gpio offsets to line name array
-Date:   Tue, 30 Nov 2021 17:11:47 +0100
-Message-Id: <20211130161147.317653-1-u.kleine-koenig@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
+        id S238686AbhK3QVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 11:21:50 -0500
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:42027 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S234552AbhK3QVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 11:21:48 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 6E760580129;
+        Tue, 30 Nov 2021 11:18:24 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Tue, 30 Nov 2021 11:18:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=yqwoBj/vWfeXNQgCvpj+YqonSU
+        yi2vtvBoiOZzTnEUE=; b=ULWafKAXsOC4xDUqQoDhiXfx1RWMiIAmrDWWBX8qzl
+        ni1OfFtOpZGeBIq3Xtk5YCO1Z4gsTP0Id5qI+f6HBeLqD8GwOlb7ns1KsPr+t3Th
+        fFw9/oCNEHG+1kVB1TYPluxJrBGS1ZneiC3Jpm/xzLbB9+cAi2AqAVyzN0Hjju9f
+        Pi+SCnzMdp8PeeUOqCtibzozOwPQF2241J+bw/oBDOGO9sg3YGxEkJzK5xxbQ/Iz
+        R7FbJcMEwTllpHYOe32I+a3FKJiyeDTd7Z6WuyzjewarXZDcmQnO8JGeHwJ0RLrS
+        7BygfMfp2EzuWMtaUO57b8CsjFpBra3z1l4iEUU0Rv0w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=yqwoBj/vWfeXNQgCv
+        pj+YqonSUyi2vtvBoiOZzTnEUE=; b=a5sCJf0LHQjoYtkMzotyeH+cK5YxpoWrx
+        9t2t8wogWoaYqXwU9bNjtjhyEflfUsIBw+L2EjjtKIbO70yPz44tin3eGChm6aIO
+        diIdIg48lZt6qizBn9TfxEsqS6KSGULMM+JLXKJoXazFWbxzTThgoeAd38udFGP3
+        Ghq+atmLLvrvpSKM2VjDmC2UxmAHFcEnvq5oyHyP9tcYAuv+aHxUsqccf9ej3z09
+        3CkwbSdt3UL4IyDwuNgnAwTTCOweCTWX4fNiddiM9ZJGPJLYy0XjqHJJwlfGPwnK
+        PH1SyuUifM3mlsQk6bL63Xy7ByN5T8JG2lD+IXRbvLUdxvXRPjEog==
+X-ME-Sender: <xms:zk6mYZfODQkcXoBDMklRzjYFNRhtv4EW7LjcB9gb3fb0MIM2kL_qyg>
+    <xme:zk6mYXO8pu-tHKb6yuDlCR_d1Hc1EjqetkBmhNXXRRiCEj4pl8Lo4BanRVetnqKp6
+    B2ZR8dYKURBTc0jCT8>
+X-ME-Received: <xmr:zk6mYSjnsUKyGfGrA21nJvKgRPs2PxnozFlFufvkzEoWPlLwcJq_iHq7zWDLFH9ue18HxWPAOqv9jcZlx2eyqiuqFC8fq8r2PdTt1fjJvSAtXSA64iDZYaa-7bNUig>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddriedugdekjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfrvght
+    vghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrhhnpe
+    duffejkeevlefggfekkeevjeffgeekjedtjedtfeethfeludehkeehgfeuteekhfenucff
+    ohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:zk6mYS_IMEmtmXTbC9SM0zfNK-3G0PYuW5JvOQk4PvHM90D-hw5Hkg>
+    <xmx:zk6mYVs6N4df1vEWS4r8xesFb-3QktPtoyXBCXG96x-vdu2BVxruhA>
+    <xmx:zk6mYRE3vGdO-relrVef_wyVif1EenhIS0qmn33aTTXRMfrOUcZMcQ>
+    <xmx:0E6mYREwgmGM23QNvd__2xfwrX1MDAwYojBx2RIRm8XG2Jjbsyl7Aw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 30 Nov 2021 11:18:20 -0500 (EST)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Sven Peter <sven@svenpeter.dev>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Janne Grunau <j@jannau.net>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: watchdog: Add Apple Watchdog
+Date:   Tue, 30 Nov 2021 17:18:08 +0100
+Message-Id: <20211130161809.64591-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Patch-Hashes: v=1; h=sha256; i=kBVidhOxwShimdZcqlEPcyBTQw9/orJrGa8fDCbEi7I=; m=gn/r04GgTDu+2Wucrdhl+C9zSpEcfdMj4AZIWd0sxyg=; p=Ws+68farOMBRTTUg38TESQR8cYQZo+aKlzNlq2qqV9Y=; g=94a11cd512e065304801117b79115690e5c4d916
-X-Patch-Sig: m=pgp; i=u.kleine-koenig@pengutronix.de; s=0x0D2511F322BFAB1C1580266BE2DCDD9132669BD6; b=iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmGmTUAACgkQwfwUeK3K7AnAzggAinM lRLsepI5c4CnO1yGqaz72ipFf/j+FDSzMqaJaSk/RJtN68aIeTTaIAr91HxqrLE5nKMSAcrbuU97R ZFUgdMhBiDo+NbS/CE0GoMFoE7cq0zvtjPL2enD6sH7dWliPsU28Zd1gSXQ7ZeMFaDuV/nijSbMzE lOloFxIQ7kitz9a4g8b5dvXw/yYFs1FhaiQ1gY8yPq8C7nvzMYTrv3L0a7uthUgKRJWnoZf1WZoDN f0f9EUKtb8MBwSkehwbELV5gVTKWi7ZUKT350laHt4PTzKJNKRfHQEy3EuPY5EBEvsRri0Jm9nDRs 9Zx8m9Vk4FD6w7wwYEVIIVTZb5r5U3Q==
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-this helps human readers considerably to determine the line name for a
-given offset or vice versa.
+Apple SoCs come with a simple embedded watchdog. This watchdog is also
+required in order to reset the SoC.
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sven Peter <sven@svenpeter.dev>
 ---
- arch/arm/boot/dts/bcm2711-rpi-4-b.dts | 28 +++++++++++++--------------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+v1 --> v2:
+  - add Mark's and Rob's r-b tags
 
-diff --git a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-index 631dd5baf68d..4432412044de 100644
---- a/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-+++ b/arch/arm/boot/dts/bcm2711-rpi-4-b.dts
-@@ -65,12 +65,12 @@ &ddc1 {
- };
- 
- &expgpio {
--	gpio-line-names = "BT_ON",
-+	gpio-line-names = "BT_ON",		/*  0 */
- 			  "WL_ON",
- 			  "PWR_LED_OFF",
- 			  "GLOBAL_RESET",
- 			  "VDD_SD_IO_SEL",
--			  "CAM_GPIO",
-+			  "CAM_GPIO",		/*  5 */
- 			  "SD_PWR_ON",
- 			  "";
- };
-@@ -84,66 +84,66 @@ &gpio {
- 	 * "FOO" = GPIO line named "FOO" on the schematic
- 	 * "FOO_N" = GPIO line named "FOO" on schematic, active low
- 	 */
--	gpio-line-names = "ID_SDA",
-+	gpio-line-names = "ID_SDA",		/*  0 */
- 			  "ID_SCL",
- 			  "SDA1",
- 			  "SCL1",
- 			  "GPIO_GCLK",
--			  "GPIO5",
-+			  "GPIO5",		/*  5 */
- 			  "GPIO6",
- 			  "SPI_CE1_N",
- 			  "SPI_CE0_N",
- 			  "SPI_MISO",
--			  "SPI_MOSI",
-+			  "SPI_MOSI",		/* 10 */
- 			  "SPI_SCLK",
- 			  "GPIO12",
- 			  "GPIO13",
- 			  /* Serial port */
- 			  "TXD1",
--			  "RXD1",
-+			  "RXD1",		/* 15 */
- 			  "GPIO16",
- 			  "GPIO17",
- 			  "GPIO18",
- 			  "GPIO19",
--			  "GPIO20",
-+			  "GPIO20",		/* 20 */
- 			  "GPIO21",
- 			  "GPIO22",
- 			  "GPIO23",
- 			  "GPIO24",
--			  "GPIO25",
-+			  "GPIO25",		/* 25 */
- 			  "GPIO26",
- 			  "GPIO27",
- 			  "RGMII_MDIO",
- 			  "RGMIO_MDC",
- 			  /* Used by BT module */
--			  "CTS0",
-+			  "CTS0",		/* 30 */
- 			  "RTS0",
- 			  "TXD0",
- 			  "RXD0",
- 			  /* Used by Wifi */
- 			  "SD1_CLK",
--			  "SD1_CMD",
-+			  "SD1_CMD",		/* 35 */
- 			  "SD1_DATA0",
- 			  "SD1_DATA1",
- 			  "SD1_DATA2",
- 			  "SD1_DATA3",
- 			  /* Shared with SPI flash */
--			  "PWM0_MISO",
-+			  "PWM0_MISO",		/* 40 */
- 			  "PWM1_MOSI",
- 			  "STATUS_LED_G_CLK",
- 			  "SPIFLASH_CE_N",
- 			  "SDA0",
--			  "SCL0",
-+			  "SCL0",		/* 45 */
- 			  "RGMII_RXCLK",
- 			  "RGMII_RXCTL",
- 			  "RGMII_RXD0",
- 			  "RGMII_RXD1",
--			  "RGMII_RXD2",
-+			  "RGMII_RXD2",		/* 50 */
- 			  "RGMII_RXD3",
- 			  "RGMII_TXCLK",
- 			  "RGMII_TXCTL",
- 			  "RGMII_TXD0",
--			  "RGMII_TXD1",
-+			  "RGMII_TXD1",		/* 55 */
- 			  "RGMII_TXD2",
- 			  "RGMII_TXD3";
- };
+ .../bindings/watchdog/apple,wdt.yaml          | 52 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
 
-base-commit: fa55b7dcdc43c1aa1ba12bca9d2dd4318c2a0dbf
+diff --git a/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+new file mode 100644
+index 000000000000..e58c56a6fdf6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+@@ -0,0 +1,52 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/apple,wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Apple SoC Watchdog
++
++allOf:
++  - $ref: "watchdog.yaml#"
++
++maintainers:
++  - Sven Peter <sven@svenpeter.dev>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - apple,t8103-wdt
++          - apple,t6000-wdt
++      - const: apple,wdt
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/apple-aic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    wdt: watchdog@50000000 {
++        compatible = "apple,t8103-wdt", "apple,wdt";
++        reg = <0x50000000 0x4000>;
++        clocks = <&clk>;
++        interrupts = <AIC_IRQ 123 IRQ_TYPE_LEVEL_HIGH>;
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 360e9aa0205d..859201bbd4e8 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1750,6 +1750,7 @@ F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+ F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
+ F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
++F:	Documentation/devicetree/bindings/watchdog/apple,wdt.yaml
+ F:	arch/arm64/boot/dts/apple/
+ F:	drivers/i2c/busses/i2c-pasemi-core.c
+ F:	drivers/i2c/busses/i2c-pasemi-platform.c
 -- 
-2.30.2
+2.25.1
 
