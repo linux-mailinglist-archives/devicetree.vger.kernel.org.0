@@ -2,88 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F2E5462E83
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 09:28:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFAC462E92
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 09:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234388AbhK3Ib0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 03:31:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55530 "EHLO
+        id S239674AbhK3IfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 03:35:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234594AbhK3Ib0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 03:31:26 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D60C061574
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 00:28:07 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id b1so51572212lfs.13
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 00:28:07 -0800 (PST)
+        with ESMTP id S239632AbhK3IfJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 03:35:09 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B81FC061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 00:31:51 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id g18so19871019pfk.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 00:31:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=AYzkcPJiZY57TKXX+Xfo66mV3OnHJwJxefxPgIT35gI=;
-        b=Y5Eb7+3BjLBsknPmZbfq9xE86YMx71V5GnGNsWNWxlKeRwHQtJ/vhQtjU0V19YXv3x
-         dOUdRW/44oGuJa9kKH0HmkX/b2yKN6jVJG9g39oHT0e+WyjQRnWDpSbFg3Ye8FisHIWM
-         820APjptzz/cKQBqfrKqzuW7/P7zwaOzNKNAKwjepobjuaOTW/aywr62MatTbU5aKgL3
-         qHrv53cLZtbCFpLJV9YN2ylb+58wCpprb1MOQ7rH5g/9jvj6uS28i5af/NgIz8G807Vy
-         mDrqn5Mo/RD5BuzyntOKeeb0C71WelKIkbOnDQVabDCOZZgMquhXx4tgx1Fn4ASFwnaR
-         PhEA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=X2rX5g1aB3ao6Mz+KBNuCJKa2ATJHaYDNFIn2W26y0k=;
+        b=Vvf9yRDbDirxKAxZG/3T/MRzfvWn4X3bVmO6Q+T9At9jezo3XTJLTr08aof/C6VMCs
+         UvFx4/WoENskJGjeiCmK8jw97ea/Jdl4KfUggvOUN76ztl1VY5lM32kGoY2hxFjTl8U8
+         efCQioAGrR1sRorj4bRQx+3fORaIuoWJbjyWJ9p6jZ2Ds2X4suinMYYQ3jKiTUWri3qj
+         bfOHpCdmd8WhoCNWfMXdnFDGYmJePi2FuvreIqLtqG3HUsaVi+5v0UkEwUvfrdLE6ugm
+         40SaVQ28WKa3/bm6lVk7batcP8lwtUFkSCjfhGjdKWw8Ib6UYBf8w9EgVUYvrSiGdh8x
+         exhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=AYzkcPJiZY57TKXX+Xfo66mV3OnHJwJxefxPgIT35gI=;
-        b=dsrkIDMz8kYVshiwVqDTcV2lWFlkFAqdFktXponWbv84XJzfyFOIfcjzrvJh9OFPWl
-         Y5e4NrE1EZ3d3nE1WA3t0RFt0ykW0XOdssbvzUeeVRQUE55aU8tz9IVowsmP67j9vYZz
-         x2TxwXwi8ClTWuHciadLahMJFMhzSPsOPSKBjnOyY2y4yU5+GH4C4X3gt8hCFfhq53wB
-         +7ksu5exgXXsAjWCcFT8UkODymKG8B9wTW+iIN1HISJC0VfDwmvEvNe8iUDYpB/VDSOB
-         NCk2KSMZcDqLkAWMcowrqAcV2u2OPQlfJNrHOO1Etzt0CpIp4s2x6rKkhbFE3Gky4Bnt
-         Wxuw==
-X-Gm-Message-State: AOAM532kq1NP6sxnDayY0OfivgBZh7tyD+IVb7pk9OVi6JogZhUakSfh
-        jo5yiV2Ju48c1QG8FCPA9p5qQ12XPu4VQvaXbm4=
-X-Google-Smtp-Source: ABdhPJxscZTK+i/hCmVwfJqdC7K/aylTvn27YC0j9zzN9QT0Z5Q+phpG8GQKohe8aAKHlcdlCvL3HDLKFPOJfecUZSY=
-X-Received: by 2002:a05:6512:3108:: with SMTP id n8mr53938236lfb.344.1638260885142;
- Tue, 30 Nov 2021 00:28:05 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=X2rX5g1aB3ao6Mz+KBNuCJKa2ATJHaYDNFIn2W26y0k=;
+        b=i6SJqzvel+GPbBjYx9IZ+KZu14ZQNJKjDooXAeFSJYflzTu3GXv5RrXqOT69A1I+df
+         65GbHCMGRfWngcuad0BvzssD8IHP9zA3G20c4ZFFtuF6C0NmMaUDNPvyCAEehvr068vA
+         fg/Eefg5OBaxXdGeNdRD+IDtKRZQ80LZyUrJC3qVasbzLg5JthEGCqcqXvkZmHHqIXAN
+         NbayD94osQlHEllvT9ewwTEbZX5xe2MelTxyykNcc6e5yJZb+0LVSdl7rj+4lf3X9RtM
+         Pz99KFtlcc8Di2sPtSeUA6E9B+uOnpTV27iOV2uAD9UwPMxpTKHP850N5KFdljf9LfJc
+         cIGg==
+X-Gm-Message-State: AOAM531tI3LiCL+0ONp4CTFhCl6JC7gNrBryi9IJGKsqH4Y0iq7AxPXF
+        lADgSozhiO8vTYCXa6v5SyPUYA==
+X-Google-Smtp-Source: ABdhPJxX/0BAg0okPbx9lj9wYat5fdBiNW3O/EylVD0yCf550J23PN1GTSeFNwRiBtqdIFYDPTcwPQ==
+X-Received: by 2002:a62:1a03:0:b0:494:64b5:3e01 with SMTP id a3-20020a621a03000000b0049464b53e01mr45220700pfa.35.1638261110526;
+        Tue, 30 Nov 2021 00:31:50 -0800 (PST)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id z15sm19622141pfc.2.2021.11.30.00.31.48
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 30 Nov 2021 00:31:50 -0800 (PST)
+Date:   Tue, 30 Nov 2021 16:31:44 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Maulik Shah <quic_mkshah@quicinc.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] irqchip: Add Qualcomm MPM controller driver
+Message-ID: <20211130083143.GF10105@dragon>
+References: <20211126093529.31661-1-shawn.guo@linaro.org>
+ <20211126093529.31661-3-shawn.guo@linaro.org>
+ <87czmmbu8k.wl-maz@kernel.org>
+ <20211129133308.GB10105@dragon>
+ <87pmqjm1c8.wl-maz@kernel.org>
+ <20211130023151.GD10105@dragon>
+ <2e821841-a921-3fda-9ee6-3d5127653033@quicinc.com>
 MIME-Version: 1.0
-Received: by 2002:a05:6520:4ca9:b0:150:9709:bfd with HTTP; Tue, 30 Nov 2021
- 00:28:04 -0800 (PST)
-Reply-To: deborahkouassi011@gmail.com
-From:   Deborah Kouassi <mmzee0015@gmail.com>
-Date:   Tue, 30 Nov 2021 08:28:04 +0000
-Message-ID: <CAOgV-vMT8Dewo512KSPi4H6+77K7SEVp8dJKWCsa4t=fzL7MBw@mail.gmail.com>
-Subject: Hello Dear
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e821841-a921-3fda-9ee6-3d5127653033@quicinc.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-.
-Dear,
+On Tue, Nov 30, 2021 at 01:19:48PM +0530, Maulik Shah wrote:
+>    Hi Shawn,
+> 
+>    On 11/30/2021 8:01 AM, Shawn Guo wrote:
+> 
+> +       do {
+> +               r_val = readl(priv->base + offset);
+> +               udelay(5);
+> +       } while (r_val != val);
+> 
+> What? Is this waiting for a bit to clear? Why isn't this one of the
+> read*_poll_timeout*() function instead? Surely you can't wait forever
+> here.
+> 
+> This is taken from downstream, and it seems to double check the written
+> value by reading it back.  But to be honest, I'm not really this is
+> necessary.  I will do some testing with the read-back check dropped.
+> 
+> How about asking for specs instead? There are QC people on Cc, and
+> many more reading the list. Hopefully they can explain what this is
+> all about.
+> 
+> Maulik,
+> 
+> If you have some information about this, that would be great.
+> 
+>    This can be converted to read poll_timeout(). This was introduced in
+>    place of wmb() to make sure writes are completed.
 
-Permit me to introduce myself to you, I am Mrs. Deborah Kouassi, am
-the regional bank manager of Bank Of Africa C=C3=B4te d'Ivoire.
+Hmm, in this case, writel() will just do the right thing, as it wraps
+wmb() there.  Or am I missing something?
 
-As the regional bank manager of BOA, it's my duty to send a financial
-report to our head office at the end of each year but in year 2017
-report, i discovered an excess profits of seventeen million united
-states dollar which i have kept in suspense account without any
-beneficiary.
-
-That is why am contacting you for us to work together to get the said
-fund transfer to your bank account and the percentage ratio is forty
-percent for you and sixty percent for me.
-
-All i need from you is to stand as the depositor next of kin, so that
-our bank head office will order the transfer to your designated bank
-account.
-
-If you accept this offer to work with me, if you find this proposal
-suitable for you, kindly reply your full details. I will appreciate it
-very much if this proposal is acceptable by you but do not take undue
-advantage of the trust I have bestowed on you and I assure you that we
-shall achieve it successfully.
-
-Yours sincerely.
-
-Mrs. Deborah Kouassi.
+Shawn
