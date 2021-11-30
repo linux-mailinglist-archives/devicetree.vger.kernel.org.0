@@ -2,254 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B92A462938
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 01:41:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C98CC462991
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:19:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234232AbhK3ApP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 19:45:15 -0500
-Received: from mail-qt1-f175.google.com ([209.85.160.175]:36506 "EHLO
-        mail-qt1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbhK3ApP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 19:45:15 -0500
-Received: by mail-qt1-f175.google.com with SMTP id t11so18524609qtw.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 16:41:56 -0800 (PST)
+        id S235704AbhK3BWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 20:22:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235657AbhK3BWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:22:21 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 683D0C061748
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:18:59 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id bj13so38112502oib.4
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:18:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gXWcjgAmwn5xbsX3NCCgIGZffLmwwj4LxTmpgL7Kf/0=;
-        b=xNS/gCuUMuZ1EA3kjzCzu5PLgQmSmihtwGoGmPZFb3aaRO7zvZ+pazC1Pfe3kFSxDo
-         BEG2sZN06PBiX8q72DmDZ2MWeb2ZB24ohBBhJz556I0Ta2yYSdmpPqDnE72DrrrxzXOD
-         2q24tW8VRuhh7leIDnhBIGH6OtXD8AVO5CNGLDX20jlxc3LkeG5clUmLom9+m136RplS
-         gTUD62yf61LtqSp7Bl7w6OFq7Bj9mOLbY9Xd9W4a4pu6kEpv/2EBHnlK5zDgwe9ycG3U
-         d2e4Eo2HIbSWtznSgCdJPYGzXgVIKx+GenIvdTkv2zceQLA33BwYjAUUFXpoLDF/+vgL
-         aJ3g==
+         :cc:content-transfer-encoding;
+        bh=h7dfI3SuNLbI8eu2t4U0v+H2ni+TuABrtKx5R3CfOHM=;
+        b=yJc94fLQTljmDterLRcug2eR/c+vDp0LTI+vRv2nR+c/ddCjsYXmPTE02Vayv09E3R
+         Kv8LNcOXnMkrzyWweCyKQNq91Omh0l7IFZLiSEs3jXCZXnBJ67lffzr40aZWtneQarqb
+         bKVmqXvIjRi8CEqJPV+fdwbCsmIYY0oya15SfMc4WnqZwgpCckZ2362UkaNMbQ3rnE6Q
+         L2ZqySG/zeIswlIiFzrpwKLl+Vdekd1MbW0XqN5PD7lMKjSU87ArTZPmkYsxYkiO7meU
+         q/F+WzMnW2TPdv54KXLgDmIsF6YCCQZ+rb+ylC+w3Hz/3rP1sQ2Mx1L73iPSSK5zyfls
+         mjsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gXWcjgAmwn5xbsX3NCCgIGZffLmwwj4LxTmpgL7Kf/0=;
-        b=nbvgrDptMe6AX5b/1LBaa9b8RLJwObSIYYqrAMa+ojvRyxfv8uLmyAWR5qm1wnGmaD
-         f2zEAd/S9N03YrtKRMB40yiY8lDfArWJzvWf/s+IUt45m0q5agePU1TS1Y5XScSudqeI
-         zTJ3yBuiKfBeEO07XuvS8XAFDp79b2jN2Rm+bqjtbTONlXtI9eV8EErE+s2wh4eTlN/2
-         /UXaWQdLYQBhJlo/sXLxn0YndeBtI/28OJ2g5Yy8ZWOlNCgBbmvIgs05RuyBYxKKVi2f
-         +yVbAmfm5J3gfc9jeY9D1WwoRk2qiHUkBX+yvNXm3KXTqbjgfpKiUsSYLtqhB5M1JZkQ
-         Etwg==
-X-Gm-Message-State: AOAM530bp/6xxd9jq4B4BAz+4LBesNNXYmj2WkTxeuRLGS0qYcrwn4j8
-        iTgu0lLdZm19eQx4bjbLWJQ6fS8dpPQ9fGSEgzjsrg==
-X-Google-Smtp-Source: ABdhPJyAUQwjEkdsYtR8Jm+l0bDap4StYQuthd9DAH0ex8xf5HSvU0CC7+wDnsD9Mvd4CspgBFV88vRr4I21LngpP+I=
-X-Received: by 2002:ac8:4e56:: with SMTP id e22mr48470079qtw.72.1638232856568;
- Mon, 29 Nov 2021 16:40:56 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=h7dfI3SuNLbI8eu2t4U0v+H2ni+TuABrtKx5R3CfOHM=;
+        b=QJLHV8oUsMwXynJRc1ihsF8jN0TwkHGg+RRa4eB7drSYTgg+tN3T7UClNfoicpsBt0
+         gdpOBmwN2xLH1d04WuKOHpLkrbOXHrrrVYeIiLaBxjIQVn2UhFYHdr4/FAu9cmEOhcfQ
+         6OGrRRPbZyPcS2s26K5DrXjgsxKHWFKPq0WT3dVy0niL7JErVvt63yJP8FOBiJ/+o7Nf
+         IrqOUYTdkNuX+BVtefXOErKgNXVnzBg8E3YlF1T+PKlQSlmwc3BFA261NqnZ3XFZ2wfo
+         9xuA1rm09uR1G7Iz6JaSbYNNCnHmsYb6hayAUqZDcHukpZuYprN9Bz/C/EvA2PmtPwBz
+         Va9Q==
+X-Gm-Message-State: AOAM532NjQGUeTo3k86HNKIw+0BbrQXO/yZX+XM5CaZcO6LiUc/a1tUT
+        gxtlxtZWRrb784bBqBxRFFh5E3pRJnZjTr0cd9pKAnMN2nc=
+X-Google-Smtp-Source: ABdhPJzmLyeQbxd78GNxBdXwDedwzxM3MZT96tDdvy8hzbjtS6grHN+iBJetLmTlLj/SPYPMXXf9itVMOmqvKPpjHwU=
+X-Received: by 2002:a54:4791:: with SMTP id o17mr1541501oic.114.1638235138666;
+ Mon, 29 Nov 2021 17:18:58 -0800 (PST)
 MIME-Version: 1.0
-References: <20211126002612.1030246-1-dmitry.baryshkov@linaro.org> <CAGETcx-oBFSueaXZ1nypzS2DE06RrC5=QM25L+FvBrizvfZxvA@mail.gmail.com>
-In-Reply-To: <CAGETcx-oBFSueaXZ1nypzS2DE06RrC5=QM25L+FvBrizvfZxvA@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 30 Nov 2021 03:40:45 +0300
-Message-ID: <CAA8EJprP79u9FO-vydsvoA+aqcZvN38TT8FwY8ow6cYxPnuK-g@mail.gmail.com>
-Subject: Re: [PATCH] of: property: stop parsing remote-endpoint graph properties
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>
+References: <20211127192510.35723-1-demonsingur@gmail.com> <20211127192510.35723-4-demonsingur@gmail.com>
+In-Reply-To: <20211127192510.35723-4-demonsingur@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 30 Nov 2021 02:18:46 +0100
+Message-ID: <CACRpkda7-5YDQ6Gc+Ad0eHYO8pW3nLuUh1rKn9dEZ0PS-xHyJg@mail.gmail.com>
+Subject: Re: [PATCH v7 3/3] iio: addac: add AD74413R driver
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <michael.hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Nov 2021 at 02:45, Saravana Kannan <saravanak@google.com> wrote:
+On Sat, Nov 27, 2021 at 8:25 PM Cosmin Tanislav <demonsingur@gmail.com> wro=
+te:
+
+> The AD74412R and AD74413R are quad-channel software configurable input/ou=
+tput
+> solutions for building and process control applications. They contain
+> functionality for analog output, analog input, digital input, resistance
+> temperature detector, and thermocouple measurements integrated
+> into a single chip solution with an SPI interface.
+> The devices feature a 16-bit ADC and four configurable 13-bit DACs to pro=
+vide
+> four configurable input/output channels and a suite of diagnostic functio=
+ns.
+> The AD74413R differentiates itself from the AD74412R by being HART-compat=
+ible.
 >
-> On Thu, Nov 25, 2021 at 4:26 PM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > When parsing remote-endpoint properties, two counter devlinks will be
-> > created, resulting in the circular dependency, which is later broken. In
-> > most of the cases, the order in which depency is broken does not matter
-> > (or is correct). However lately I stumbled upon the following
-> > configuration.
-> >
-> > In this case for some reason devlink code decided to break the loop by
-> > making panel depend on the bridge driver, enforcing that bridge is
-> > probed before the panel.
+> When configured with channel 0 as voltage output, channel 1 as current
+> output, channel 2 as voltage input and channel 3 as current input, the
+> following structure is created under the corresponding IIO device.
 >
-> Let's find and fix the "for some reason" part then instead of just
-> removing support for a property.
-
-How can I help you to debug this? I can post the resulting device tree
-or add debugging patches of your choice.
-
-How is the cycle dependency broken? Is it done by removing a single
-arc or by dropping all the arcs that form a cycle?
-If the former is true, then we know the case: it sees a circular
-dependency and just decides incorrectly, which arc should be dropped.
-
+> .
+> =E2=94=9C=E2=94=80=E2=94=80 in_current0_offset
+> =E2=94=9C=E2=94=80=E2=94=80 in_current0_raw
+> =E2=94=9C=E2=94=80=E2=94=80 in_current0_sampling_frequency
+> =E2=94=9C=E2=94=80=E2=94=80 in_current0_sampling_frequency_available
+> =E2=94=9C=E2=94=80=E2=94=80 in_current0_scale
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_offset
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_raw
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_sampling_frequency
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_sampling_frequency_available
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_scale
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_offset
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_raw
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_sampling_frequency
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_sampling_frequency_available
+> =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_scale
+> =E2=94=9C=E2=94=80=E2=94=80 in_current3_offset
+> =E2=94=9C=E2=94=80=E2=94=80 in_current3_raw
+> =E2=94=9C=E2=94=80=E2=94=80 in_current3_sampling_frequency
+> =E2=94=9C=E2=94=80=E2=94=80 in_current3_sampling_frequency_available
+> =E2=94=9C=E2=94=80=E2=94=80 in_current3_scale
+> =E2=94=9C=E2=94=80=E2=94=80 out_voltage0_raw
+> =E2=94=9C=E2=94=80=E2=94=80 out_voltage0_scale
+> =E2=94=9C=E2=94=80=E2=94=80 out_current1_raw
+> =E2=94=9C=E2=94=80=E2=94=80 out_current1_scale
+> =E2=94=9C=E2=94=80=E2=94=80 name
+> =E2=94=9C=E2=94=80=E2=94=80 buffer
+> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 data_available
+> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 enable
+> =E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 length
+> =E2=94=82   =E2=94=94=E2=94=80=E2=94=80 watermark
+> =E2=94=94=E2=94=80=E2=94=80 scan_elements
+>     =E2=94=9C=E2=94=80=E2=94=80 in_current0_en
+>     =E2=94=9C=E2=94=80=E2=94=80 in_current0_index
+>     =E2=94=9C=E2=94=80=E2=94=80 in_current0_type
+>     =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_en
+>     =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_index
+>     =E2=94=9C=E2=94=80=E2=94=80 in_voltage1_type
+>     =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_en
+>     =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_index
+>     =E2=94=9C=E2=94=80=E2=94=80 in_voltage2_type
+>     =E2=94=9C=E2=94=80=E2=94=80 in_current3_en
+>     =E2=94=9C=E2=94=80=E2=94=80 in_current3_index
+>     =E2=94=94=E2=94=80=E2=94=80 in_current3_type
 >
-> > However in such cases the bridge will lookup next bridge or panel using
-> > drm_of_find_panel_or_bridge() in the probe callback. Thus we have a
-> > deadlock: panel is waiting for the bridge because of the devlink
-> > dependency and bridge probe() expects the panel to be available and thus
-> > returns -EPROBE_DEFER.
-> >
-> > To prevent such deadlocks, stop parsing the remote-endpoint property and
-> > let drivers decide their probe order using standard -EPROBE_DEFER
-> > returns.
->
-> Nak.
->
-> Removing support for a property will always be NAKed. Not because I
-> care about one specific property. It's because fw_devlink needs to get
-> the full view of the dependencies to be able to break cycles. The
-> cycle detection and fixing logic has been improving steadily. So
-> there's no reason to give up on it suddenly.
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 
-Regarding the remote-endpoint.
+From a GPIO point of view there is nothing to complain about here
+so:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-While I highly value the whole devlink idea and the way it
-eases/streamlines device probing in typical dependency cases, I still
-think that graph/remote-endpoint handling is not a proper way.
-
-Current code handles remote-endpoint links in the same way as it
-handles directional links does not look right. Generic code can not
-predict, which side of bidirectional link is the primary side for the
-link, checking for the existence of the counterpart, and which one is
-a secondary side which just gets probed (and waits for the primary
-part to find it). Always getting a circular dependency (for each graph
-link) and always breaking should have the same result, as not getting
-the circular dependency at all, Is this statement correct?
-
-In fact I can predict that creating such extra dependencies can hide
-actual dependencies between devices. Consider for example two devices
-A and B, with a graph connection between A and B and another
-dependency (for example, clocks or regulator supply) from A to B. How
-will devlink handle such a case? Will it correctly determine that A
-depends on B or will it break the cycle by removing both dependencies?
-
-The MSM DRM driver employs several graphs, and things were very
-fragile here. Dropping remote-endpoint parsing typically fixed those
-extra dependency/devlink issues. So selecting between running with
-fw_devlink turned off (to let the driver to bind at all) and just
-disabling remote-endpoint parsing I'd choose the second option.
-
->
-> -Saravana
->
-> >
-> > DTS except follows:
-> >
-> > / {
-> >         panel0 {
-> >                 compatible = "powertip,ph800480t013-idf02";
-> >                 power-supply = <&vreg_l11c_3p3>;
-> >                 backlight = <&lcd0_reg>;
-> >                 port {
-> >                         panel0_in: endpoint {
-> >                                 remote-endpoint = <&bridge0_out>;
-> >                         };
-> >                 };
-> >         };
-> > };
-> >
-> > &dsi0 {
-> >         #address-cells = <1>;
-> >         #size-cells = <0>;
-> >         status = "okay";
-> >
-> >         bridge@0 {
-> >                 reg = <0>;
-> >                 compatible = "toshiba,tc358762";
-> >
-> >                 ports {
-> >                         #address-cells = <1>;
-> >                         #size-cells = <0>;
-> >
-> >                         port@0 {
-> >                                 reg = <0>;
-> >                                 bridge0_in: endpoint {
-> >                                         remote-endpoint = <&dsi0_out>;
-> >                                 };
-> >                         };
-> >
-> >                         port@1 {
-> >                                 reg = <1>;
-> >                                 bridge0_out: endpoint {
-> >                                         remote-endpoint = <&panel0_in>;
-> >                                 };
-> >                         };
-> >                 };
-> >         };
-> >         ports {
-> >                 port@1 {
-> >                         endpoint {
-> >                                 remote-endpoint = <&bridge0_in>;
-> >                                 data-lanes = <0 1 2 3>;
-> >                         };
-> >                 };
-> >         };
-> >
-> > };
-> >
-> > Fixes: f7514a663016 ("of: property: fw_devlink: Add support for remote-endpoint")
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Stephen Boyd <swboyd@chromium.org>
-> > Cc: Saravana Kannan <saravanak@google.com>
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> >  drivers/of/property.c | 8 +-------
-> >  1 file changed, 1 insertion(+), 7 deletions(-)
-> >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index f7229e4030e3..83548076ee63 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1249,7 +1249,6 @@ static struct device_node *parse_##fname(struct device_node *np,       \
-> >   * @parse_prop.index: For properties holding a list of phandles, this is the
-> >   *                   index into the list
-> >   * @optional: Describes whether a supplier is mandatory or not
-> > - * @node_not_dev: The consumer node containing the property is never a device.
-> >   *
-> >   * Returns:
-> >   * parse_prop() return values are
-> > @@ -1261,7 +1260,6 @@ struct supplier_bindings {
-> >         struct device_node *(*parse_prop)(struct device_node *np,
-> >                                           const char *prop_name, int index);
-> >         bool optional;
-> > -       bool node_not_dev;
-> >  };
-> >
-> >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
-> > @@ -1285,7 +1283,6 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
-> >  DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
-> >  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> > -DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
-> >  DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
-> >  DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
-> >  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
-> > @@ -1388,7 +1385,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
-> >         { .parse_prop = parse_pinctrl6, },
-> >         { .parse_prop = parse_pinctrl7, },
-> >         { .parse_prop = parse_pinctrl8, },
-> > -       { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
-> >         { .parse_prop = parse_pwms, },
-> >         { .parse_prop = parse_resets, },
-> >         { .parse_prop = parse_leds, },
-> > @@ -1437,9 +1433,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
-> >                 while ((phandle = s->parse_prop(con_np, prop_name, i))) {
-> >                         struct device_node *con_dev_np;
-> >
-> > -                       con_dev_np = s->node_not_dev
-> > -                                       ? of_get_compat_node(con_np)
-> > -                                       : of_node_get(con_np);
-> > +                       con_dev_np = of_node_get(con_np);
-> >                         matched = true;
-> >                         i++;
-> >                         of_link_to_phandle(con_dev_np, phandle);
-> > --
-> > 2.33.0
-> >
-
--- 
-With best wishes
-Dmitry
+Yours,
+Linus Walleij
