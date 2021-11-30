@@ -2,66 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BB8C4629CC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:33:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B39C84629D2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:34:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236451AbhK3BhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 20:37:03 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:40745 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236408AbhK3BhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:37:00 -0500
-Received: by mail-ot1-f45.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so28068510otj.7;
-        Mon, 29 Nov 2021 17:33:42 -0800 (PST)
+        id S236523AbhK3BiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 20:38:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236573AbhK3BiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:38:00 -0500
+Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C69C061746
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:34:41 -0800 (PST)
+Received: by mail-oi1-x230.google.com with SMTP id n66so38129547oia.9
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:34:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jlAlW8lzEiwMilapgFJ9XcVfAOd8fce3a/oZQ90BQPU=;
+        b=fncGRT3xZrQM0eMsLHETx9uok4uUmgxob4q2WDOg/zAZGZTgK9XgbV6AhGDTtAZV1M
+         dnJ42UowfZnxY0PNQvFaPxDmttQX4zfddVCqyRkzYHtEyh3J6HfhU3ogVh6PX8vt0iCY
+         jkfAb7LlRrvpI/Sn0v27MyDpQhG1MoZiAN9p0jv6rVKBlbppOhYccyXV+lMOleoV0riX
+         nXX6B4ndA0AJaQlyDAdUWG74TMUbXRYVBDLaN846lYl8Wd2jfM+aOb0V/kBel7ZZdR1i
+         GLPIQ23Bmcg7+PdePjV00uwqnw3IRFTiP1o+EEQvcwoHA5eIKu3da2kI8XPSmEeo/goT
+         a95Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cQgruC3ondj144+vF3GMUzRIfRfotiedKLmEwHG4YbU=;
-        b=G76I2+iiWNmT80IDaTmqOyAETSfe5mhuIT2yJCuBf+jM995/XobBuOUJjIqiVQgZn2
-         g+jo+Og26mWt588p05ta2hzLxT0pu1ORAluX2vUDegYErmrPsib4WTJ7zuKXyVRQ5MvD
-         4HPp7aGfTGvAN3L/iZQUCWkHfQ52dJFPxPfP+XEX9+Jp7Zff9hFrSANV3oabbkdCrsFw
-         tSAwCvceZtm5thVgw5CeNnKO+lefNj6k6+j0RVH/Nlfqn2wmDKluJkvyhuqXg4Sjxjy1
-         GfPAv0me1wi19SKONd2CnUYM6l2eeRiEm07liJkPGCbrs/I91bqu8WidPbcYbDR3FCsx
-         rB0g==
-X-Gm-Message-State: AOAM533ok3HLRIV9J1F/kvX7z5YZD+Z1fC1SdrTr48/R86JjJCzAzKy5
-        7vH2K4d4Dfjmd9O0IhFfIw==
-X-Google-Smtp-Source: ABdhPJxvLSUHJXpb2ZtbJyG1qS/eZGT4QZSaTqNtLkKddvBStHOGALdeF/3z6+FSonXnc+2OenztLQ==
-X-Received: by 2002:a9d:4e89:: with SMTP id v9mr49179413otk.352.1638236022157;
-        Mon, 29 Nov 2021 17:33:42 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n26sm2538566ooq.36.2021.11.29.17.33.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 17:33:41 -0800 (PST)
-Received: (nullmailer pid 982221 invoked by uid 1000);
-        Tue, 30 Nov 2021 01:33:40 -0000
-Date:   Mon, 29 Nov 2021 19:33:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 06/16] dt-bindings: rtc: tegra: Document Tegra234 RTC
-Message-ID: <YaV/dFhzblWnDMLK@robh.at.kernel.org>
-References: <20211119143839.1950739-1-thierry.reding@gmail.com>
- <20211119143839.1950739-7-thierry.reding@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jlAlW8lzEiwMilapgFJ9XcVfAOd8fce3a/oZQ90BQPU=;
+        b=BWbrTT1yaKq4bEA/g8Fv7LF7EI/1zoUKHJKoUw8HogLvVYuP7InV9+jSwOFW+GDHbh
+         9GdMKdU0MjEbQhDgwoqsZIS6KnNL9eQ5+nFMdmlt+mk7cYjXfvIA3vUrv5JxHLRTdJh/
+         reD0UQR4/iNuycqHf8C9ORWpRMO0ndJHQ5MRbHHsBTpEmwqXCjcf/zXNS2aygIE2Kand
+         PmlN5+xFjzxESFYSo63lODoLdE4tYsnIKG/fWr/aS/B/MWNrywZru741//ZG5pzIOwIw
+         pyMRAj4t3EYbMzxKvIh/0wbkud8bBc/ZJMn/BsxM+EP6gonZziH9fe7vxSFbkx4nIMUV
+         79jA==
+X-Gm-Message-State: AOAM532V3yKI0sxvduA/Dq7o4lp2S5e62zaJ8pJkMHdh4UhrwO3CNDiv
+        /k+oEm1FYw3fYV5Ht0haP1swENUUhAI+ELSxrZ3vbw==
+X-Google-Smtp-Source: ABdhPJyAuUEjDcA9GzFX3njqloe8SERPQYlO82Dy2P7l1F4bCJEdMiSuXAzx7o2eFssirsvu4ANhvlkzXemDlIxSVwQ=
+X-Received: by 2002:a54:4791:: with SMTP id o17mr1605375oic.114.1638236079803;
+ Mon, 29 Nov 2021 17:34:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211119143839.1950739-7-thierry.reding@gmail.com>
+References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+ <6123f62ac44e6513a498d15034a4b6b22abe5f5b.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
+ <CACRpkdbKeW+pJ8SZ0fPD+9kEtgHgi2A9U=f6XyKTHogKU-9F9g@mail.gmail.com>
+ <7b34e88f-54f3-6d0a-293e-b2b411d1c5c2@fi.rohmeurope.com> <676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com>
+ <CACRpkdZXhw9+txdLv-k01nzH3+GvGivyAoCO1JCf2VyYK96CnQ@mail.gmail.com> <57f97c5f-aedb-7f7e-d269-90bd97bbba09@fi.rohmeurope.com>
+In-Reply-To: <57f97c5f-aedb-7f7e-d269-90bd97bbba09@fi.rohmeurope.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 30 Nov 2021 02:34:27 +0100
+Message-ID: <CACRpkdZ9EEmWSb4mq7WJywma4dFCms+Z3BAKfntcsb9y_1THNQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v3 3/9] power: supply: Support DT originated
+ temperature-capacity tables
+To:     "Vaittinen, Matti" <matti.vaittinen@fi.rohmeurope.com>
+Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        "rostokus@gmail.com" <rostokus@gmail.com>,
+        "fan.chen@mediatek.com" <fan.chen@mediatek.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021 15:38:29 +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Add the compatible string for the RTC block found on the Tegra234 SoC.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/rtc/nvidia,tegra20-rtc.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Hi Matti,
 
-Acked-by: Rob Herring <robh@kernel.org>
+not so much time so trying to answer the central question here!
+
+On Sun, Nov 28, 2021 at 9:51 AM Vaittinen, Matti
+<Matti.Vaittinen@fi.rohmeurope.com> wrote:
+
+> I am pretty
+> sure the current power-supply framework allows us to expose the current
+> full_cap to userlans - so building your Tesla example with the star
+> should be doable - if the drivers can somehow get the information about
+> the absolute capacity drop.
+
+To do this we would need to export a capacity at current temperature
+and capacity at nominal temperature (which is usually 25 deg C)
+so you can scale to something. This isn't in sysfs today but we could
+probably add it (and then the world of UI:s battery icons need to change
+in response).
+
+> > Then the question is: is the method used by Rohm universal and
+> > well-known and something many chargers will do exactly this
+> > way, so it should be in the core, or is it a particularity that should
+> > be in your driver?
+>
+> I am not sure this is the correct question. I'd rephrase it to: Would it
+> be beneficial for drivers to come if the core did support this
+> functionality - or is the feature unnecessary, or are there better
+> alternatives. If core does not provide the support - then it is a high
+> mountain for one to climb if he wants to use such improvement.
+
+I think we need this.
+
+> I think that the agreement we can do is that the OCV+temperature => SOC
+> tables do not provide quite same information as the suggested
+> temperature => capacity-drop tables would. Whether there are better
+> alternatives - or if this is generally useful remains to be discussed -
+> and this is something where I _do_ appreciate your (and everyone else's)
+> input!
+
+temperature + OCV => SOC isn't enough I think.
+
+We probably need something to tell us what the total usable
+capacity will be under different temperatures. I suspect an
+interpolated table is best though, this is going to be quite
+nonlinear in practice.
+
+Yours,
+Linus Walleij
