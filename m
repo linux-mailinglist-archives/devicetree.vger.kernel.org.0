@@ -2,162 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63F80463C73
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:03:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EABB463C98
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:13:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232839AbhK3RG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 12:06:27 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:10227 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229547AbhK3RGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:06:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638291671;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=UIf15iMEtDEvJh887G0IYN5tzrRPMwEaqTyUehQEpsc=;
-    b=gcTD6DNbCqRZgz3hRCZCtBRA9Ot4gxTXz9DhxAeHr97rIeO6H8W956dM7G8rkpQQKD
-    l4Jww2PBhgDF7Ko6tBTb2NU/SaNsbtuxrAYm0H4hb6u6U7rByUId+2Iq9eCRR1Z1J3KQ
-    pKrCfI8N7jQX71gklajTwYLXpP4Ukf5KTeg+YldFYiL/9OOU+MeEidqg5RyRECuP1G5C
-    GhM3kKUjMnhSPih6otLPI9Fnddx0fN+RTn+j6ZSy8/fwFCs47GRpBzFDq8UO1m8wKpO/
-    ai87qt/r+DTJPVfY9+1e8kpKssTKltSyVxRpURukUsf3pb6Esvd2Xd1oao8SBFJvyc+a
-    c3Pg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMERYA=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
-    with ESMTPSA id e05ed8xAUH19Sxv
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Tue, 30 Nov 2021 18:01:09 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v9 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
- DT Schema
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <1637875562.255498.2858308.nullmailer@robh.at.kernel.org>
-Date:   Tue, 30 Nov 2021 18:01:08 +0100
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Kees Cook <keescook@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>,
-        David Airlie <airlied@linux.ie>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        dri-devel@lists.freedesktop.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Mark Brown <broonie@kernel.org>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jonas Karlman <jonas@kwiboo.se>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <A72D034E-EDBC-44F5-82DF-9EEBC5EC7E0B@goldelico.com>
-References: <cover.1637789354.git.hns@goldelico.com>
- <d678e785d95487202ac0660eb66796e9fb5beb50.1637789354.git.hns@goldelico.com>
- <1637875562.255498.2858308.nullmailer@robh.at.kernel.org>
-To:     Rob Herring <robh@kernel.org>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S244154AbhK3RQW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 12:16:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38280 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244682AbhK3RQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:16:20 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22F56C061748
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 09:13:01 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id q3so23127658wru.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 09:13:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=r/RzzACEGmvpF3IiOGI/VeVi04SG1oxFn0L0QmRaXOU=;
+        b=EDHBCnZV+Wl+S6/VL/Eiow7Rf87bWTxqhf+0uHr57WEzNWkSATf4UO0qpCY8Iy97CC
+         TJYxPMSUgDCTum4RriKuoAPtPRpqXLJNSgqMCUfZKggyaPZ1JzgrRiZgHaYuJ3llBNY4
+         q5UOM0TlC3qFiTozbSF6V9rwXCw5NqrjOS9nHRdyJia0aLhALTunb8Ypb3oqwskk0tBh
+         sTkCvdAVzurcNp22JDLlU9sZMtP1UJT6tktTzABhMQtKcjHkQnlzIG76eX/syvc4lzAu
+         ktGbMVPcPFoATkrc/UZmWpv/236DiZXivEvVt0WqkNpls10kohBMwtcTHNZMCBKm9xJO
+         UGBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=r/RzzACEGmvpF3IiOGI/VeVi04SG1oxFn0L0QmRaXOU=;
+        b=OPHPTUTPI11yZ27b5oNSeq9fe1dh/Ch21r0HMxE/Tr0RPbUkHqSRpafeatxbPAXCVL
+         Bmj5SJmTpfkbWdpwjopgjN/Yx92bntRrSYw3Werl57KNhqDIXycK7SopZrvRq9RXgvC7
+         +/cyODUd2PCr3Jc310hRvrKchhvZqrxgvOszeFikT6ntzXN6UqePkJ39sPS8NM4NHhNw
+         AuU0YnsLSRRqsdS8nGQtXr2iPfXF/gxU/9Gx0AsSTVqR+3OmHKjeMYJ9iUQZakRVWtwB
+         UhO3iI6kifmUHJB0hM7AG7/Bk7lsp/EntkhEq1LJnIhqslUkhgqfumWSxcsIafyBbnPn
+         yKJg==
+X-Gm-Message-State: AOAM530Z+a4ovPtX0tnZeCUII/rDDYviiBkIzXG07HtYJVHXl0ceZh/E
+        oHsiT7HYJY/v8KbDjfG2Jrg6nQ==
+X-Google-Smtp-Source: ABdhPJym3UsIoYgofoLQvjSzZVsW6tJDx1MN2tq9DcLrNaC0QZOit3T/fTuKusXLjpplBoXsBqFaJg==
+X-Received: by 2002:adf:ed83:: with SMTP id c3mr204682wro.169.1638292379523;
+        Tue, 30 Nov 2021 09:12:59 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id n13sm17342354wrt.44.2021.11.30.09.12.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Nov 2021 09:12:59 -0800 (PST)
+Subject: Re: [PATCH v3 1/5] dt-bindings: pinctrl: qcom: Update lpass lpi file
+ name to SoC specific
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1638179932-3353-1-git-send-email-srivasam@codeaurora.org>
+ <1638179932-3353-2-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <14163c1c-c453-0cec-c7e9-1ff0a8a982d3@linaro.org>
+Date:   Tue, 30 Nov 2021 17:12:57 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <1638179932-3353-2-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-> Am 25.11.2021 um 22:26 schrieb Rob Herring <robh@kernel.org>:
->=20
-> On Wed, 24 Nov 2021 22:29:09 +0100, H. Nikolaus Schaller wrote:
->> From: Sam Ravnborg <sam@ravnborg.org>
->>=20
->> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
->> Based on .txt binding from Zubair Lutfullah Kakakhel
->>=20
->> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
->>=20
->> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> ---
->> .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 =
-+++++++++++++++++++
->> .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
->> 2 files changed, 79 insertions(+)
->> create mode 100644 =
-Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
->>=20
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m =
-dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> Unknown file referenced: [Errno 2] No such file or directory: =
-'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/syn=
-opsys,dw-hdmi.yaml'
 
-I wasn't able to fix that.
+On 29/11/2021 09:58, Srinivasa Rao Mandadapu wrote:
+> Change generic lpass lpi pincotrol bindings file to SoC specific file,
+> to distinguish and accomadate other SoC specific dt bindings.
 
-If I change
 
- allOf:
--  - $ref: bridge/synopsys,dw-hdmi.yaml#
-+  - $ref: synopsys,dw-hdmi.yaml#
+TBH, for adding sc7820 lpass lpi support, this rename patch is totally 
+not necessary.
 
-then make dt_binding_check still reports:
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> ---
+>   .../bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml   | 130 ---------------------
+>   .../pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 130 +++++++++++++++++++++
 
-Unknown file referenced: [Errno 2] No such file or directory: =
-'/Users/hns/Library/Python/3.7/lib/python/site-packages/dtschema/schemas/b=
-ridge/synopsys,dw-hdmi.yaml'
+Consider using "git mv" when renaming files, this would give a better 
+diff stat.
 
-BR and thanks,
-Nikolaus Schaller
-
-> xargs: dt-doc-validate: exited with status 255; aborting
-> make[1]: *** Deleting file =
-'Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.exam=
-ple.dt.yaml'
-> Unknown file referenced: [Errno 2] No such file or directory: =
-'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/syn=
-opsys,dw-hdmi.yaml'
-> make[1]: *** [scripts/Makefile.lib:373: =
-Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.examp=
-le.dt.yaml] Error 255
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1413: dt_binding_check] Error 2
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See https://patchwork.ozlabs.org/patch/1559375
->=20
-> This check can fail if there are any dependencies. The base for a =
-patch
-> series is generally the most recent rc1.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up =
-to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit.
->=20
-
+--srini
+>   2 files changed, 130 insertions(+), 130 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+>   create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+> deleted file mode 100644
+> index e47ebf9..0000000
+> --- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+> +++ /dev/null
+> @@ -1,130 +0,0 @@
+> -# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> -%YAML 1.2
+> ----
+> -$id: http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-pinctrl.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
+> -  Low Power Island (LPI) TLMM block
+> -
+> -maintainers:
+> -  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> -
+> -description: |
+> -  This binding describes the Top Level Mode Multiplexer block found in the
+> -  LPASS LPI IP on most Qualcomm SoCs
+> -
+> -properties:
+> -  compatible:
+> -    const: qcom,sm8250-lpass-lpi-pinctrl
+> -
+> -  reg:
+> -    minItems: 2
+> -    maxItems: 2
+> -
+> -  clocks:
+> -    items:
+> -      - description: LPASS Core voting clock
+> -      - description: LPASS Audio voting clock
+> -
+> -  clock-names:
+> -    items:
+> -      - const: core
+> -      - const: audio
+> -
+> -  gpio-controller: true
+> -
+> -  '#gpio-cells':
+> -    description: Specifying the pin number and flags, as defined in
+> -      include/dt-bindings/gpio/gpio.h
+> -    const: 2
+> -
+> -  gpio-ranges:
+> -    maxItems: 1
+> -
+> -#PIN CONFIGURATION NODES
+> -patternProperties:
+> -  '-pins$':
+> -    type: object
+> -    description:
+> -      Pinctrl node's client devices use subnodes for desired pin configuration.
+> -      Client device subnodes use below standard properties.
+> -    $ref: "/schemas/pinctrl/pincfg-node.yaml"
+> -
+> -    properties:
+> -      pins:
+> -        description:
+> -          List of gpio pins affected by the properties specified in this
+> -          subnode.
+> -        items:
+> -          oneOf:
+> -            - pattern: "^gpio([0-9]|[1-9][0-9])$"
+> -        minItems: 1
+> -        maxItems: 14
+> -
+> -      function:
+> -        enum: [ gpio, swr_tx_clk, qua_mi2s_sclk, swr_tx_data, qua_mi2s_ws,
+> -                qua_mi2s_data, swr_rx_clk, swr_rx_data, dmic1_clk, i2s1_clk,
+> -                dmic1_data, i2s1_ws, dmic2_clk, dmic2_data, i2s1_data,
+> -                i2s2_clk, wsa_swr_clk, i2s2_ws, wsa_swr_data, dmic3_clk,
+> -                dmic3_data, i2s2_data ]
+> -        description:
+> -          Specify the alternative function to be configured for the specified
+> -          pins.
+> -
+> -      drive-strength:
+> -        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> -        default: 2
+> -        description:
+> -          Selects the drive strength for the specified pins, in mA.
+> -
+> -      slew-rate:
+> -        enum: [0, 1, 2, 3]
+> -        default: 0
+> -        description: |
+> -            0: No adjustments
+> -            1: Higher Slew rate (faster edges)
+> -            2: Lower Slew rate (slower edges)
+> -            3: Reserved (No adjustments)
+> -
+> -      bias-pull-down: true
+> -
+> -      bias-pull-up: true
+> -
+> -      bias-disable: true
+> -
+> -      output-high: true
+> -
+> -      output-low: true
+> -
+> -    required:
+> -      - pins
+> -      - function
+> -
+> -    additionalProperties: false
+> -
+> -required:
+> -  - compatible
+> -  - reg
+> -  - clocks
+> -  - clock-names
+> -  - gpio-controller
+> -  - '#gpio-cells'
+> -  - gpio-ranges
+> -
+> -additionalProperties: false
+> -
+> -examples:
+> -  - |
+> -    #include <dt-bindings/sound/qcom,q6afe.h>
+> -    lpi_tlmm: pinctrl@33c0000 {
+> -        compatible = "qcom,sm8250-lpass-lpi-pinctrl";
+> -        reg = <0x33c0000 0x20000>,
+> -              <0x3550000 0x10000>;
+> -        clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> -                 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> -        clock-names = "core", "audio";
+> -        gpio-controller;
+> -        #gpio-cells = <2>;
+> -        gpio-ranges = <&lpi_tlmm 0 0 14>;
+> -    };
+> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+> new file mode 100644
+> index 0000000..e47ebf9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
+> +  Low Power Island (LPI) TLMM block
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  This binding describes the Top Level Mode Multiplexer block found in the
+> +  LPASS LPI IP on most Qualcomm SoCs
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm8250-lpass-lpi-pinctrl
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    items:
+> +      - description: LPASS Core voting clock
+> +      - description: LPASS Audio voting clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: audio
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    description: Specifying the pin number and flags, as defined in
+> +      include/dt-bindings/gpio/gpio.h
+> +    const: 2
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +#PIN CONFIGURATION NODES
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    description:
+> +      Pinctrl node's client devices use subnodes for desired pin configuration.
+> +      Client device subnodes use below standard properties.
+> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
+> +
+> +    properties:
+> +      pins:
+> +        description:
+> +          List of gpio pins affected by the properties specified in this
+> +          subnode.
+> +        items:
+> +          oneOf:
+> +            - pattern: "^gpio([0-9]|[1-9][0-9])$"
+> +        minItems: 1
+> +        maxItems: 14
+> +
+> +      function:
+> +        enum: [ gpio, swr_tx_clk, qua_mi2s_sclk, swr_tx_data, qua_mi2s_ws,
+> +                qua_mi2s_data, swr_rx_clk, swr_rx_data, dmic1_clk, i2s1_clk,
+> +                dmic1_data, i2s1_ws, dmic2_clk, dmic2_data, i2s1_data,
+> +                i2s2_clk, wsa_swr_clk, i2s2_ws, wsa_swr_data, dmic3_clk,
+> +                dmic3_data, i2s2_data ]
+> +        description:
+> +          Specify the alternative function to be configured for the specified
+> +          pins.
+> +
+> +      drive-strength:
+> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
+> +        default: 2
+> +        description:
+> +          Selects the drive strength for the specified pins, in mA.
+> +
+> +      slew-rate:
+> +        enum: [0, 1, 2, 3]
+> +        default: 0
+> +        description: |
+> +            0: No adjustments
+> +            1: Higher Slew rate (faster edges)
+> +            2: Lower Slew rate (slower edges)
+> +            3: Reserved (No adjustments)
+> +
+> +      bias-pull-down: true
+> +
+> +      bias-pull-up: true
+> +
+> +      bias-disable: true
+> +
+> +      output-high: true
+> +
+> +      output-low: true
+> +
+> +    required:
+> +      - pins
+> +      - function
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - gpio-ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/sound/qcom,q6afe.h>
+> +    lpi_tlmm: pinctrl@33c0000 {
+> +        compatible = "qcom,sm8250-lpass-lpi-pinctrl";
+> +        reg = <0x33c0000 0x20000>,
+> +              <0x3550000 0x10000>;
+> +        clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+> +                 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +        clock-names = "core", "audio";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        gpio-ranges = <&lpi_tlmm 0 0 14>;
+> +    };
+> 
