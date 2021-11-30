@@ -2,96 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DED1462A1D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 03:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E724462A1F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 03:03:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237213AbhK3CGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 21:06:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54080 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231586AbhK3CGY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 21:06:24 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46271C061574;
-        Mon, 29 Nov 2021 18:03:06 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso18286251wml.1;
-        Mon, 29 Nov 2021 18:03:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oNAyLgnuZABX+bMA51k+CzRNb1OQiDBReWGxpwrvkAA=;
-        b=ESmty3TuZqmk8BEd9I61fOy+QGqtPAfmBTZAQxLblWJkEazUKnzIJQP4TnVikuDtC9
-         7ZY6nXEbueVbMMdm4go2LwFHT81DXrY6uIPH6mM63PLILkBr0tY5MJ//ftbQ4KlcalaV
-         eHmWVrT5HLMFmzGEaQPGhjhrrfVbaq0aQZKBRha8quIazJEIq+p+3Igi/XBmsNNwbVte
-         thYYLn4z1Kq9cwUirUkdM3+a9dg/lMftgcrbxJU+U4jNG0MkYPhPZ4WSHasIw8MlZs+S
-         oLUNKjqWrz7iFKtwladsdT07nHOCFJ+cM8mMRUlr0PAu/TTUDz9txkZFeYd84x8iM8WP
-         wSqA==
+        id S237226AbhK3CHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 21:07:07 -0500
+Received: from mail-oi1-f171.google.com ([209.85.167.171]:39691 "EHLO
+        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231586AbhK3CHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 21:07:07 -0500
+Received: by mail-oi1-f171.google.com with SMTP id bf8so38285969oib.6;
+        Mon, 29 Nov 2021 18:03:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oNAyLgnuZABX+bMA51k+CzRNb1OQiDBReWGxpwrvkAA=;
-        b=kUaIECIAU2WJHTtYWd/ZJOtdNI+LUCLl9XbbKFM+MwvOrwxpDl4hebp9lyYN9Phf5+
-         sdkrG9f6D3uWN1wHnki9GK8HoWp/WLOul2l0/lkLe4NvfWzpUHWqen3w1pQ4pPbo02fi
-         AvPcLeK5HV+7F5dCs8MutexKJdNYAvKtEP6Gllljrva3kXsPj64I2+2jkxOo+0lsQlrO
-         9DGIoA5IY1ysltLIjoredU0zYf7eGgy2+6IxJOLol3NvtWju/J9Evpi69GNvSGZZ8XwL
-         6OfSbSpNKXG7MCdhL8d3laiOHaYNjyNKeUCy33JDe/eu6hlSnB4OxoabTFvhYbHqL88b
-         BQKA==
-X-Gm-Message-State: AOAM53087zGuVs5GyjOU3Cl+PzfReGQhlIzsrVy0DhPDMuqrH11Aiery
-        AonjqiBPmAjXXjGzmwWREwU=
-X-Google-Smtp-Source: ABdhPJyoyZIn7vYgj4XrwOEkc0ib3WyviLwl6D1rFwxG20nXGR+6JZAT3PPQpF9WiXhUbOxMA4Dcnw==
-X-Received: by 2002:a05:600c:221a:: with SMTP id z26mr1871268wml.20.1638237784953;
-        Mon, 29 Nov 2021 18:03:04 -0800 (PST)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id r17sm983950wmq.5.2021.11.29.18.03.03
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6HL57uNm/H3xt7eFy3jGsf6zDANHIZw3K9BhNFFQgsU=;
+        b=KxPsovdTEdf6kEHp8FDMR6HqKgZP6gJkekukYn9t3HQhuRCmC5uWCZP5yV4q5zypr0
+         eczFh22RWJ85b0/0h5BlsJlWIDW0za7YiXVQmFY/lq0qz4nQWlQAzao0RiBoqBH/6qiI
+         aWUt0TWwZUZoHdX7fYCrUaSE5eXUjzTIaVdVTl5UcApWHIwacYZjSmrCNPGS4dDB2IpV
+         c8BTnfKuItrR+zTYy8UxlquxjZ7p80n4K3RqNzwBKtWTR4I14TL1/2H4YTqCk5qIIQwq
+         hVXh6kGh8hD7k154f9tabK6ny3REB4PIgk04GuoEUszOhawmaw76jdPkqIIJt6JmwPxQ
+         0zXg==
+X-Gm-Message-State: AOAM532MQX/siJOtQcDlqkuPYipU7lhhOZskdMWU8sEwx2oCnfKSMrgM
+        kJdQ9em5cNlZJHkFhDDRHQ==
+X-Google-Smtp-Source: ABdhPJzOmVmNGzsEMWhKZIgbvbXPWb4ecvt+TZtewukIEOSoqpZKG7AzZEk7dQl7Uh6mwUZLEEvFTg==
+X-Received: by 2002:a05:6808:bc7:: with SMTP id o7mr1633511oik.172.1638237828387;
+        Mon, 29 Nov 2021 18:03:48 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id q44sm3008476otv.80.2021.11.29.18.03.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 18:03:04 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, heiko@sntech.de,
-        sre@kernel.org, maccraft123mc@gmail.com,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v4 RESEND 0/4] power: supply: Add Support for RK817 Charger
-Date:   Tue, 30 Nov 2021 03:03:03 +0100
-Message-ID: <2759402.V8G6Gt6Xmj@archbook>
-In-Reply-To: <20210916194208.10387-1-macroalpha82@gmail.com>
-References: <20210916194208.10387-1-macroalpha82@gmail.com>
+        Mon, 29 Nov 2021 18:03:47 -0800 (PST)
+Received: (nullmailer pid 1025108 invoked by uid 1000);
+        Tue, 30 Nov 2021 02:03:46 -0000
+Date:   Mon, 29 Nov 2021 20:03:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linux-kernel@vger.kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, devicetree@vger.kernel.org,
+        aisheng.dong@nxp.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        kuba@kernel.org, Peng Fan <peng.fan@nxp.com>, davem@davemloft.net,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        festevam@gmail.com, kernel@pengutronix.de, qiangqing.zhang@nxp.com
+Subject: Re: [PATCH 1/4] dt-bindings: net: fec: simplify yaml
+Message-ID: <YaWGgt1grmKCMQNZ@robh.at.kernel.org>
+References: <20211120115825.851798-1-peng.fan@oss.nxp.com>
+ <20211120115825.851798-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211120115825.851798-2-peng.fan@oss.nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Donnerstag, 16. September 2021 21:42:04 CET Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Sat, 20 Nov 2021 19:58:22 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> This series is to add support for the Rockchip rk817 battery charger
-> which is present in all Rockchip RK817 PMICs. The driver was written
-> as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
-> myself Chris Morgan <macromorgan@hotmail.com>.
+> i.MX7D, i.MX8MQ and i.MX8QM are compatible with i.MX6SX, so no need
+> to split them into three items.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/net/fsl,fec.yaml | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
+> 
 
-Hi Chris and Maya,
-
-Gave this a whirl on my Quartz64 Model A. I noticed that this will
-happily let me discharge past voltage_min_design:
-
- $ cat /sys/class/power_supply/rk817-battery/voltage_min_design 
- 3625000
- $ cat /sys/class/power_supply/rk817-battery/voltage_avg 
- 3381360
-
-Is this normal? It went all the way to under 3V before the
-board finally locked up.
-
-Does the minimum voltage not affect some sort of cutout on
-the RK817? Does it even have one? Is it the driver's job to
-do something here or not?
-
-Regards,
-Nicolas Frattaroli
-
-
+Reviewed-by: Rob Herring <robh@kernel.org>
