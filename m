@@ -2,209 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4517146337B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:54:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A65C4633F3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 13:12:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232428AbhK3L5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 06:57:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47350 "EHLO
+        id S234039AbhK3MPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 07:15:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232939AbhK3L5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 06:57:49 -0500
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC1EC061757
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:54:26 -0800 (PST)
-Received: by mail-wm1-x336.google.com with SMTP id d72-20020a1c1d4b000000b00331140f3dc8so14577791wmd.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:54:26 -0800 (PST)
+        with ESMTP id S240965AbhK3MPO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 07:15:14 -0500
+Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9262C061746
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 04:11:55 -0800 (PST)
+Received: by mail-ua1-x931.google.com with SMTP id p2so40777276uad.11
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 04:11:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=s/MCC1O3IE0ZQH2CohqUhzPHI1Euqff0ThFYq8pwzS4=;
-        b=BjqK1ZKqktax3hF6VltM9cidNs9XqcShJKucxE2q6M7Zl7KwTvM22Fspla59TycN+p
-         B8M4bTlCs2dEytRrSJqxbKoF4cAobCa2PB0klheKQpkf0hdUbJuzKMLfn+q8Jkfo7erR
-         oC3ZzlzV2Apm0jZuknuyhBqH/4VMPtcUdQewru+Y+VYqKK1nGqA076Vo9nXljLJWXYLX
-         pLPFhHZD0VO2JSKEZyI1m3zSCTjmuFvPrLLLpwnArpwdORzaF+2Fog9vsS2g2R0uEnRd
-         vTAu11oTyK+SVY4HbFImPbSiwi3XSQz87dKf0i49tTBA7PKs5aZwEi1EyEny286WfAcU
-         ooPg==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ezWEJY1UxPw2PKLFovyt/KEg8Ohs2gMv1LSWNGSFZEM=;
+        b=O4wjtzO3oSmjpegvP0d5IYeBeM4kG4ToTjzD/3PruseWwAGb5cdISnLLUb5hEAIVNY
+         wmeJA0GLnfKGt09V6oEsF8HesJaRWNZnMFH7h947bSxxBmb+ilkkhMHbie2QMXyUMebg
+         JU8XJOwSGKCkwWhv3hLlPJIBciMmE+wTYcpjuJ9IGNpcMseH0FiyPqqWyPRiExfBc8mQ
+         vzc2AYzIwVZ68BzIbhw3j1NpG5Jf6V8NE5y7wdqkjmGtDKdqvB3geomqlex8POnJ7FOQ
+         vurW53g2dzU7MrJNgQLMQG1S7wHlLRpVhYjriz1narmIPOH+4qRRuzjSmOaz9Yq22170
+         zIlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=s/MCC1O3IE0ZQH2CohqUhzPHI1Euqff0ThFYq8pwzS4=;
-        b=69Qc+Nzi6XTaVxcsbGjUHZRkWyCBKSDdBisjPpxsvtcPz1Vc/GGCxBg/o4Vmn3jJE1
-         5yjUWYjQaC28ZWb+NMQLuGtszBZ7wvdwme74QRZChAC+TpmP6Ishwf+BYbJn7DFjbkZt
-         vtH3lmCevvTEOFkvwZf6txa1zz323wkwltxWyL8O0x98g9X9yTbnAn37FOBbzazE1p/X
-         nUYNe2KHblLAP4qCyWNqa2xhJvvi4PsoPnn7iHxxMStWu9aE5XFZLx8feI2BqFHhZwS8
-         +E27mlg36nkJNW8gk4QfxBDrQhtQmhPBT5RtBP8kgmly1tk2aceBVjzIAWbGWT0qW+y3
-         amZw==
-X-Gm-Message-State: AOAM530USBDMfjFtmXvcOvC4Dlas0agRCVzQOpsEKxElwEj4uhUGc9gL
-        8VGwn44OQe5VN8dLDzvm2jxhbQ==
-X-Google-Smtp-Source: ABdhPJwF8317Xox73+G2snJoD+SBuc5iH5MnErcxK+DWaH5CAMClLp3wFLMY5PFDp0AqivJXsiPBcA==
-X-Received: by 2002:a05:600c:2118:: with SMTP id u24mr4438317wml.0.1638273265220;
-        Tue, 30 Nov 2021 03:54:25 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id q4sm15851381wrs.56.2021.11.30.03.54.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Nov 2021 03:54:24 -0800 (PST)
-Subject: Re: [RFC PATCH] dt-bindings: nvmem: add transformation support
-To:     Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-References: <20211123134425.3875656-1-michael@walle.cc>
- <7807ac74-5b5c-f0a0-804a-497b67d2c985@linaro.org>
- <31ee8f287bb410fabae11f31c42d5c86@walle.cc>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <c36aaeb5-117a-b0df-2b2d-c86bc29fe881@linaro.org>
-Date:   Tue, 30 Nov 2021 11:54:23 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ezWEJY1UxPw2PKLFovyt/KEg8Ohs2gMv1LSWNGSFZEM=;
+        b=bZfehBTE+LcdUMqb+tm1Ef+Xk+Lf0XMw1Dx0N2C9RRhA12aPy+dcmkqdlHkd9TIDIX
+         Ky78IUGvNpCemYuuX6RYAvt0BlkrGnNk13UjdexcqfZkJS11diFpIvGRZB7WerLMT2FW
+         sjb2m+W/l6KvsFtXY3+BEnrAPuoCmz7pTshBbogaS06EsvOoeDVEq5gw3FpB6/8Iodxo
+         QDO7PGK6LhWr4u6YiM0Cz/cU+zciCXZr4phA7Og/RH1FDcJPwnezweIPHqnay0iOJ27V
+         aPv/p+XOVe4jn1UfnH6x9709rL8a+aXBcyqBkKxWSd/c+VcoImZOBwW1/NKke7cslfE2
+         RQEg==
+X-Gm-Message-State: AOAM5313M+KqBRX3npNJGLJQvrBPg4UgGhEsSqMkRHTB24j4XI/ajoOr
+        3TE9MjLJA6JKLpYeR8QBU9dGpg==
+X-Google-Smtp-Source: ABdhPJxLXNhuLHrxh6uP38+mjJjJNBxkZpXCbKo3QO6/zmhliW+JnAqbYneMwOFJzA7HoYYmlfSDzg==
+X-Received: by 2002:ab0:22c6:: with SMTP id z6mr57430523uam.80.1638274314802;
+        Tue, 30 Nov 2021 04:11:54 -0800 (PST)
+Received: from eze-laptop (host208.201-253-22.telecom.net.ar. [201.253.22.208])
+        by smtp.gmail.com with ESMTPSA id s13sm9960047vkh.32.2021.11.30.04.11.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Nov 2021 04:11:53 -0800 (PST)
+Date:   Tue, 30 Nov 2021 09:11:48 -0300
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     linux-media@vger.kernel.org, nicolas.dufresne@collabora.com,
+        mchehab@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
+        wens@csie.org, p.zabel@pengutronix.de, andrzej.p@collabora.com,
+        gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
+Subject: Re: [PATCH v2 1/9] media: hantro: Fix probe func error path
+Message-ID: <YaYVBDdhhG2c7enw@eze-laptop>
+References: <20211129182633.480021-1-jernej.skrabec@gmail.com>
+ <20211129182633.480021-2-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <31ee8f287bb410fabae11f31c42d5c86@walle.cc>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211129182633.480021-2-jernej.skrabec@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 29, 2021 at 07:26:25PM +0100, Jernej Skrabec wrote:
+> If clocks for some reason couldn't be enabled, probe function returns
+> immediately, without disabling PM. This obviously leaves PM ref counters
+> unbalanced.
+> 
+> Fix that by jumping to appropriate error path, so effects of PM functions
+> are reversed.
+> 
+> Fixes: 775fec69008d ("media: add Rockchip VPU JPEG encoder driver")
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
+Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
 
-On 29/11/2021 17:43, Michael Walle wrote:
-> Hi Srinivas,
-> 
-> Am 2021-11-29 13:54, schrieb Srinivas Kandagatla:
->> On 23/11/2021 13:44, Michael Walle wrote:
->>> This is my second attempt to solve the use case where there is only the
->>> base MAC address stored in an EEPROM or similar storage provider. This
->>> is the case for the Kontron sl28 board and multiple openwrt supported
->>> boards.
->>>
->>> The first proposal [1] didn't find much appreciation and there wasn't
->>> any reply to my question or new proposal [2]. So here we are with my new
->>> proposal, that is more flexible and doesn't fix the ethernet mac only.
->>> This is just an RFC for the device tree representation for now to see if
->>> this is the correct way to tackle this.
->>>
->>> I'm also aware of the latest post process hook support [3]. This doesn't
->>> fix the base mac address issue, but I think it also doesn't solve the
->>> case with swapped ethernet addresses in the general case. That hook will
->>> involve the driver to do the swapping, but how would the driver know
->>> if that swapping is actually required. Usually the interpretation of the
->>> content is opaque to the driver, after all it is the user/board
->>
->> But this is the path for any post processing hook, which ever
->> direction we endup with(using core helpers or provider specific
->> post-processing).
-> 
-> Mh? I don't understand. My point was that the driver is unlikely
-> to know what it should process. Take the mtd (or the mtd otp)
+Thanks!
 
-What if the drivers know what it should do for post processing?
-
-TBH, all the post processing is provider centric, Its hard to really 
-standardize this for every possible encoding that vendor programs into 
-there nvmem. There is no standardization here that can go in to nvmem core.
-
-My approach for this would be to use the same callback hook. Either set 
-this at provider driver level or at core level.
-
-> nvmem provider for example. If I understand it correctly, it just
-> gets the nvmem name, for example, "mac-address". How should
-> the post process hook know, what it should do? IMHO that just
-> works for very specific drivers, which tied to the content
-> they provide.
-Currently the callback hook is just dealing with names but it can be 
-extended to support other arguments.
-
-
+> ---
+>  drivers/staging/media/hantro/hantro_drv.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 > 
->>> manufacturer who does program the storage device. We might be lucky in
->>> the imx-ocotp case because the IMX reference manual actually states
->>> where and in which format the mac address is programmed.
->>>
->>> Introduce a transformation property. This is intended to be just an
->>> enumeration of operations. If there will be a new operation, support for
->>> it has to be added to the nvmem core.
->>>
->>> A transformation might have multiple output values, like in the base mac
->>> address case. It reads the mac address from the nvmem storage and
->>> generates multiple individual addresses, i.e. on our board we reserve 8
->>> consecutive addresses. These addresses then can be assigned to different
->>> network interfaces. To make it possible to reference different values we
->>> need to introduce an argument to the phandle. This additional argument
->>> is then an index into a list of values.
->>>
->>> Example:
->>>    mac_addresses: base-mac-address@10 {
->>>      #nvmem-cell-cells = <1>;
->>>      reg = <10 6>;
->>>      transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
->>
->> IMO, this is totally redundant. we could probably encode this info
->> directly in the cell specifiers, something like:
->>
->>>    }
->>>
->>>    &eth0 {
->>>      nvmem-cells = <&mac_addresses 0>;
->>
->> nvmem-cells = <&base_mac_addresses NVMEM_T_ETH_OFFSET 0>;
+> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> index ab2467998d29..3d3107a39dae 100644
+> --- a/drivers/staging/media/hantro/hantro_drv.c
+> +++ b/drivers/staging/media/hantro/hantro_drv.c
+> @@ -981,7 +981,7 @@ static int hantro_probe(struct platform_device *pdev)
+>  	ret = clk_bulk_prepare(vpu->variant->num_clocks, vpu->clocks);
+>  	if (ret) {
+>  		dev_err(&pdev->dev, "Failed to prepare clocks\n");
+> -		return ret;
+> +		goto err_pm_disable;
+>  	}
+>  
+>  	ret = v4l2_device_register(&pdev->dev, &vpu->v4l2_dev);
+> @@ -1037,6 +1037,7 @@ static int hantro_probe(struct platform_device *pdev)
+>  	v4l2_device_unregister(&vpu->v4l2_dev);
+>  err_clk_unprepare:
+>  	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
+> +err_pm_disable:
+>  	pm_runtime_dont_use_autosuspend(vpu->dev);
+>  	pm_runtime_disable(vpu->dev);
+>  	return ret;
+> -- 
+> 2.34.1
 > 
-> I had he same idea, but keep in mind, that there could be more
-> than just one nvmem cells:
-> 
-> nvmem-cells = <&phandle1 arg1 &pandle2 arg2 arg3>;
-> nvmem-cell-names = "name1", "name2";
-> 
-AFAIU, This should just work.
-
-> So you'd need the #nvmem-cell-cells either way.
-> 
->> And value of #nvmem-cell-cells is dependent on the first cell specifier.
-That does not sound correct. You can see lots of example in dt that have 
-phandles with different number of arguments.
-
-AFAIU, both phandle1 and phandle2 will have different #nvmem-cell-cells 
-values specified in there dt nodes.
-
---srini
-
-> 
-> What do you mean with first cell specifier? the phandle (base_mac_address
-> in the example) or the NVMEM_T_ETH_OFFSET? I guess the latter, because the
-> arguments depend on the transformation. But this is not how the
-> of_parse_phandle_with_args() works, it will look the '#nvmem-cell-cells'
-> property up, to see how many arguments it should expect, which is ann
-> property to the referenced node. Thus I've come up with the additional
-> indirection. The number of arguments for the reference cell is either
-> 0 or 1 and the transformation is part of the nvmem cell.
-> 
->> I understand that these 3 bits of info is required for this type of
->> post processing and this can only come from DT and its not possible to
->> determine this at runtime.
-> 
-> ok :)
-> 
->> Would this address other usecases?
-> 
-> I think so, but see above for why it can't work. Or I am missing
-> something.
-> 
->> Are you in a position to test few of them?
-> 
-> Sure (at least after my vacation). And TBH I think the imxotp mac
-> swap should use the same or it will be likely that there are future
-> SoCs which will always swap the ethnet
-> 
->> Lets wait for Rob's opinion on adding #nvmem-cell-cells property with
->> cell specifiers describing the encoding information?
-> 
-> +1
-> 
-> Thanks for looking into this,
-> -michael
