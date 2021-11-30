@@ -2,79 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F3BD4629DF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE9C4629DC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 02:36:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236702AbhK3Bjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 20:39:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236666AbhK3Bjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:39:51 -0500
-Received: from mail-ot1-x336.google.com (mail-ot1-x336.google.com [IPv6:2607:f8b0:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C4ABC061748
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:36:33 -0800 (PST)
-Received: by mail-ot1-x336.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso28053657otj.11
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 17:36:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1bkKJSaouiSl3MZWJNEaP90lU/eu+6PH4+TkdzrZfVM=;
-        b=d7tQ7aWzXsLTRLUZzEa/V+bGEgKrWdt8hHOJ3b9+Wh7/ljk8/Y8tA+1YLsNkOUlrU4
-         ZYvQIK8Tu4RX+T1RGIHW1+375Y/eEnMLI6Krrq5ToT68LJ2VoKWCX8QQYk9mSP+fTQst
-         /sKqTrspWPi50muqTsJaYcUPN/eYK/p28V+XnuMMLaAJ6hSgKNs+2EEQmt3qO4DIm52L
-         AK3IYyL+bcZr+5yEoYQcvqBCoP4LqYpAqQ6YjmAWzHUrwCy7YbRS7Gh297/s41nQe133
-         Cp7NCe/3MoehHlKO/93bmWy8hNb+IPqYNopmM3svscKd5jgmM0g1xWAP/HvaAujQIxp2
-         /X4Q==
+        id S236639AbhK3Bjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 20:39:42 -0500
+Received: from mail-oi1-f169.google.com ([209.85.167.169]:40759 "EHLO
+        mail-oi1-f169.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236601AbhK3Bjm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 20:39:42 -0500
+Received: by mail-oi1-f169.google.com with SMTP id bk14so38180479oib.7;
+        Mon, 29 Nov 2021 17:36:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1bkKJSaouiSl3MZWJNEaP90lU/eu+6PH4+TkdzrZfVM=;
-        b=dNm1uZQSSdfwlO4sPjGHdAZOH5JKzv61vwg8yy5N0fudjI6q/Oordf+fVOMo96UuUp
-         kz6Jr+54b3KFK215Ou1qPJTuWFsi8hrcFLdbKsnt3OJfNc8vHDGopoK+aA/EGvwLpqaO
-         Jxdz4uVP/11xd1KvtNJ7MqauICjiRbeQSPKTdxcCy2ORU8afF1RRyMdKhRl6r6R8vZs+
-         7fLTfTtOHXynnjnyixCc4b3qRsRXNEWVH8kUdwsbd6/0Py6IO7uvsimYSB7IjuaMgQaZ
-         dqdjKdN/ErAvOUQ5mv8dt9LjSl78y9Z3CP8ujp+lXmzh854CEl8BQq0pFQ+BLMCGpMyL
-         keEg==
-X-Gm-Message-State: AOAM533U3q+SbUrS89owdHx748SZ21KCVOjOjYF/uoX7kPNh6w9KvwiP
-        QzEZPQ8nadaQlCEtEq5KImiKZQ0gN+w1V/zDUxte4g==
-X-Google-Smtp-Source: ABdhPJzwrns8Zsnpi4oJB2u7KPEXT7RKogihtUoB/0QcdwLDwrw/RZ6DmnQN+b//RNBdmR5zjIzdfU0n/Y4pbML/iJY=
-X-Received: by 2002:a9d:ed6:: with SMTP id 80mr47447824otj.35.1638236192907;
- Mon, 29 Nov 2021 17:36:32 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3Oqrvj0nH2vfkGJxsWHUmfahiELqVtl1zb8WPq0K8ew=;
+        b=AjFPb9iBY8UFpsjvl6S6+YwIzGinBn6d1ymXtOxXIEZJdz7OUnUSvzMoYwE/cDWcuI
+         U6k9go21qBANmNhYDh7R/7KD/djgLwjZ5BWDD1kId/cx3c7ODjEbNkazF9LHoYeYyqxV
+         Ky0Qs7T3V2ZZkkhw6Cjf5mHeXCUoVt2G1XGytu4K14ajJXCND9+p0PvpYNvnPMxrHMU8
+         y0ioF8V5f24P6FZ1lV6jkDeaOEdAW+U+OBpiEwrN8ooQlf5PalhiFMKbh4QomBynU9A9
+         Uo0zOFG6VTbakdVen4YTEB3g4MIxAPTa41cF2SIzjdAp1xq0sVMAQnACkoLQARpzJzV8
+         kLSA==
+X-Gm-Message-State: AOAM530EWEMWF+BmHFF3sTqG0SkdSzTjyPn259nvkzA/45TAeLxj+AkQ
+        HbgxtSeXpvP2B9ilFR/z2g==
+X-Google-Smtp-Source: ABdhPJwcv/Rt68JQviY8oWlHKrGQ4bLnoMWH0ixkI2DUZnQRan25DOeAX8wBO4mBIOXMxbb8OrM18g==
+X-Received: by 2002:a54:4381:: with SMTP id u1mr1574008oiv.70.1638236183386;
+        Mon, 29 Nov 2021 17:36:23 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id m12sm2956158ots.59.2021.11.29.17.36.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Nov 2021 17:36:22 -0800 (PST)
+Received: (nullmailer pid 986167 invoked by uid 1000);
+        Tue, 30 Nov 2021 01:36:22 -0000
+Date:   Mon, 29 Nov 2021 19:36:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-tegra@vger.kernel.org, Jon Hunter <jonathanh@nvidia.com>
+Subject: Re: [PATCH v2 10/16] dt-bindings: serial: 8250: Document Tegra234
+ UART
+Message-ID: <YaWAFliX1IfY5YLf@robh.at.kernel.org>
+References: <20211119143839.1950739-1-thierry.reding@gmail.com>
+ <20211119143839.1950739-11-thierry.reding@gmail.com>
 MIME-Version: 1.0
-References: <20211127192510.35723-1-demonsingur@gmail.com> <20211127192510.35723-3-demonsingur@gmail.com>
-In-Reply-To: <20211127192510.35723-3-demonsingur@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 30 Nov 2021 02:36:20 +0100
-Message-ID: <CACRpkdYbqBH=EFC4NK3G0-BU2g6kFXLB8CkWGdughWR2So35_w@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] dt-bindings: iio: add AD74413R
-To:     Cosmin Tanislav <demonsingur@gmail.com>
-Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <michael.hennerich@analog.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211119143839.1950739-11-thierry.reding@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 27, 2021 at 8:25 PM Cosmin Tanislav <demonsingur@gmail.com> wrote:
+On Fri, 19 Nov 2021 15:38:33 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+> 
+> Add the compatible string for the UART found on the Tegra234 SoC.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  Documentation/devicetree/bindings/serial/8250.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-> The AD74412R and AD74413R are quad-channel software configurable input/output
-> solutions for building and process control applications. They contain
-> functionality for analog output, analog input, digital input, resistance
-> temperature detector, and thermocouple measurements integrated
-> into a single chip solution with an SPI interface.
-> The devices feature a 16-bit ADC and four configurable 13-bit DACs to provide
-> four configurable input/output channels and a suite of diagnostic functions.
-> The AD74413R differentiates itself from the AD74412R by being HART-compatible.
->
-> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
-
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+Acked-by: Rob Herring <robh@kernel.org>
