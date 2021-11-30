@@ -2,112 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C77A7463E03
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27BD1463E1D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245593AbhK3SxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 13:53:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
+        id S239766AbhK3SzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 13:55:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245600AbhK3Sw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:52:28 -0500
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D97EC06174A
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 10:49:09 -0800 (PST)
-Received: by mail-yb1-xb4a.google.com with SMTP id h134-20020a25d08c000000b005f5cd3befbbso30665871ybg.10
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 10:49:09 -0800 (PST)
+        with ESMTP id S245609AbhK3SzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:55:24 -0500
+Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2395C061574;
+        Tue, 30 Nov 2021 10:52:04 -0800 (PST)
+Received: by mail-qv1-xf30.google.com with SMTP id j9so18917481qvm.10;
+        Tue, 30 Nov 2021 10:52:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=KC1KslsAWcLKbueuly8tNpIr1XMybfLtjcHTyhp9kPA=;
-        b=eoiEVlkLUz8iLCc3q+yUTxvA+3ZF7VsDhtl4WNZsBLzc6K46xzxSsjbsJD2C/tUHQu
-         hn1szDmsYDQEtq4mVVsib7hSyrVVtFUHOJSMktoUe0M9QwqANtBjEzFHCYFOlQohZlb2
-         5V1qSXN0RYsQe+2wNIcWm1OBS+pLNVRZUErpC1A+gDCf/ym+cIRx7gmDsg8Gt9X00Cmw
-         S9tsr0LIM5s5DUGziknCita87jgmV0kvP4+Zuoe0ZB0PfsGX4cinsHwwz+9yuxPi8wB5
-         Dm/KpffAoPLZyqeBhsP02HHxIQDeavUkd0f3aiCzPLLVcb4ifSEkagflgH4726bZx6v8
-         9SdQ==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HYgQcPIIPvgM39TNU0DivkMndXlTezB5uIXJqA5tLd8=;
+        b=A5okFLpjQuq0KmkSffiRYdczNaMLRLiw4xkqtk/X12nOP79VjQj4LODamzir5ivihO
+         fCA8pMC6tEijWYTXsmfGyinlqh5u3T4G9y69AC8S0IVzWqSqIuyiXtscyK64kQChMsR6
+         OU9OFwwexCMTLU9B5XtrQdbISvhWaVD0shrdrYUvGHgThGmflPCvYXxPayrLyeSvwPVG
+         3aopSX0FF1IX4fY1RBQIs7/Bfb3nzQbY/q7GUF5QPdJPKmlPRrkAG34TipreewHIt5eO
+         +xro/dszTRCLNpXwFPs6jvrXVdcb+ItqtB8bywC121mThUnc/Vm4iTxOBt+Norl/kRU3
+         Rfag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=KC1KslsAWcLKbueuly8tNpIr1XMybfLtjcHTyhp9kPA=;
-        b=kjaMMuMjlkEupCbdZ1SsB7WyiCCGZT+QKO2DaNUKSiyJQXGTcFojyV4ESxfUFniM/I
-         fq0D98NJeB+nMofYzlt0DQtEuwdvaF+0PO8+4a0LAqFDuAxdl6cW0Lg63n4menscIyi0
-         mLq4FuIcox1dHY88N4QNAeL86NIg1ZJnEZvGUX8uODhyHsesWmKnoYLopPvdzUyy2r68
-         IEDaoOQIzJCfniIDK7yJrJ58E/lGrmSiHPrkpkNzaLHjnNc3kCcEBSCvFZZ/xLKcyPGx
-         ZrcxfYUsl2ne0HR1l6067QtgiKFqPissT3Rh4+OhfFyqx0FMZ/T6f/w2bejLxs/szJU4
-         4cQg==
-X-Gm-Message-State: AOAM5313jy85z20+lMcnqawSfkJE859DDZj0eGN3OvdYfjL/sospu+z9
-        RGNtOgk2Ldzz9p1isP275eY5Vew=
-X-Google-Smtp-Source: ABdhPJywuox5pRKXk/NzXZXHKmmoDVKC5pZnFGHOmy8w2yLDI/QOrQVy8Knol8P4jpbS+i0jDk7kXL4=
-X-Received: from osk.cam.corp.google.com ([2620:15c:93:a:bd6e:e7b3:bbdb:f3df])
- (user=osk job=sendgmr) by 2002:a25:9781:: with SMTP id i1mr1064086ybo.638.1638298148193;
- Tue, 30 Nov 2021 10:49:08 -0800 (PST)
-Date:   Tue, 30 Nov 2021 13:48:55 -0500
-Message-Id: <20211130184855.1779353-1-osk@google.com>
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.34.0.rc2.393.gf8c9666880-goog
-Subject: [PATCH] ARM: dts: aspeed: tyan-s7106: Add uart_routing and fix vuart config
-From:   Oskar Senft <osk@google.com>
-To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     aaelhaj@google.com, Oskar Senft <osk@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HYgQcPIIPvgM39TNU0DivkMndXlTezB5uIXJqA5tLd8=;
+        b=KRER1RXVyHDmGstErgOBul4PMuBTLeGoqAsqVdUsu5HHymygKfZMvdyZSM0ZaieBWu
+         6J1VaMHAVcVoXm/bkPRYC3X8tDt6Kg/TKFeo2Z7ymK23yO9/BMXS5IK7rayZRMTcRvG5
+         W+HPld1y6YfzOfR6e/5bO79egx2EkqD1bcN7refZWkJIidcERzcFyiENO6x4Z5lA2P/e
+         HFnVrUGlTnyWA8Ob6ke1CHJWU4AGHRYJKZ7hqDBw5c4+8KEXXvWRBwsKfpd19Pakdh8j
+         rMKUsLVv7tDDhoiGrhY48UwlMWGwVXV5xqnJ4gjaaXPd836qlj2UQzYvHAa/fILgd7Il
+         GYkg==
+X-Gm-Message-State: AOAM533wPS97ABgqjECKkmWdLSC63oyMokhflcwD67gxotua6rKEzmxi
+        Eyf3FsDdAhYN8XRQ7tuElk/omg82vTs=
+X-Google-Smtp-Source: ABdhPJwp+bd+jO7MNGmPEsW94/xpc45CoZb+zOP+5/vzPsxmcVSt3EabGm+LV2pPqeCWtCaLpjeelg==
+X-Received: by 2002:a05:6214:27ee:: with SMTP id jt14mr783291qvb.47.1638298323789;
+        Tue, 30 Nov 2021 10:52:03 -0800 (PST)
+Received: from shaak (198-48-202-89.cpe.pppoe.ca. [198.48.202.89])
+        by smtp.gmail.com with ESMTPSA id t11sm10387838qkp.56.2021.11.30.10.52.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Nov 2021 10:52:03 -0800 (PST)
+Date:   Tue, 30 Nov 2021 13:52:01 -0500
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Peter Rosin <peda@axentia.se>
+Cc:     jic23@kernel.org, lars@metafoo.de, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v9 00/14] iio: afe: add temperature rescaling support
+Message-ID: <YaZy0Wk4Kzptt0SX@shaak>
+References: <20211115034334.1713050-1-liambeguin@gmail.com>
+ <156bc2fa-6754-2350-4a12-ff25b23ae8a2@axentia.se>
+ <YaKUmha11ft6gip2@shaak>
+ <b9e1e804-fb59-660f-a9b8-ad6e20dd41aa@axentia.se>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b9e1e804-fb59-660f-a9b8-ad6e20dd41aa@axentia.se>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the vuart in such a way that it does not inhibit the SuperIO's
-UART from functioning correctly. This allows the same DTS to be used for
-both configurations with SuperIO and VUART (depending on the BIOS
-build). The decision on whether to actually enable VUART can then be
-made at runtime.
+Hi Peter,
 
-This change also enables the new uart_routing driver for the SuperIO
-case.
+On Sun, Nov 28, 2021 at 10:17:50AM +0100, Peter Rosin wrote:
+> Hi!
+> 
+> On 2021-11-27 21:27, Liam Beguin wrote:
+> > Hi Peter,
+> > 
+> > On Mon, Nov 22, 2021 at 01:53:44AM +0100, Peter Rosin wrote:
+> >> Hi Liam!
+> >>
+> >> On 2021-11-15 04:43, Liam Beguin wrote:
+> >>> Hi Jonathan, Peter,
+> 
+> snip
+> 
+> >>> - keep IIO_VAL_FRACTIONAL scale when possible, if not default to fixed
+> >>>   point
+> >>
+> >> This is not what is going on. Patch 9/14 will convert all fractional
+> >> scales to fixed point. But I would really like if you in the "reduce
+> >> risk of integer overflow" patch (8/14) would hold true to the above
+> >> and keep the fractional scale when possible and only fall back to
+> >> the less precise fractional-log case if any of the multiplications
+> >> needed for an exact fractional scale causes overflow.
+> > 
+> > Thanks for looking at these patches again.
+> > 
+> >> The v8 discussion concluded that this was a valid approach, right?
+> > 
+> > Yes, I remember you saying that you'd be more comfortable keeping the
+> > IIO_VAL_FRACTIONAL.
+> > 
+> >> I know you also said that the core exposes the scale with nano
+> >> precision in sysfs anyway, but that is not true for in-kernel
+> >> consumers. They have an easier time reading the "real" scale value
+> >> compared to going via the string representation of fixed point
+> >> returned from iio_format_value. At least the rescaler itself does so,
+> >> which means that chaining rescalers might suffer needless accuracy
+> >> degradation.
+> > 
+> > Agreed, that makes total sense.
+> > 
+> > If I'm not mistaken, the first condition in the case, if (!rem), will
+> > return IIO_VAL_FRACTIONAL if the division is exact, keeping all the
+> > precision. No?
+> 
+> Only if the resulting scale fits in nine decimals. That's never the
+> case if you have primes other than 2 and 5 in the denominator (after
+> eliminating gcd of course). Which mean that if you chain one rescaler
+> doing 1/3 and one doing 3/1, you would get a combined scale of
+> 0.999999999 instead of 3/3 if we take the approach of these patches.
+> 
+> So, what I'm after is that - for IIO_VAL_FRACTIONAL - not take the
+> multiply-by-1e9 code path /unless/ the existing fractional approach
+> overflows in either numerator or denominator (or both).
 
-Signed-off-by: Oskar Senft <osk@google.com>
----
- arch/arm/boot/dts/aspeed-bmc-tyan-s7106.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+Understood, I'll update based on this.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-tyan-s7106.dts b/arch/arm/boot/dts/aspeed-bmc-tyan-s7106.dts
-index 60ac6d3f03b5..aff27c1d4b06 100644
---- a/arch/arm/boot/dts/aspeed-bmc-tyan-s7106.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-tyan-s7106.dts
-@@ -3,6 +3,7 @@
- 
- #include "aspeed-g5.dtsi"
- #include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	model = "Tyan S7106 BMC";
-@@ -127,8 +128,23 @@ &uart5 {
- 	status = "okay";
- };
- 
-+&uart_routing {
-+	status = "okay";
-+};
-+
- &vuart {
- 	status = "okay";
-+
-+	/* We enable the VUART here, but leave it in a state that does
-+	 * not interfere with the SuperIO. The goal is to have both the
-+	 * VUART and the SuperIO available and decide at runtime whether
-+	 * the VUART should actually be used. For that reason, configure
-+	 * an "invalid" IO address and an IRQ that is not used by the
-+	 * BMC.
-+	 */
-+
-+	aspeed,lpc-io-reg = <0xffff>;
-+	aspeed,lpc-interrupts = <15 IRQ_TYPE_LEVEL_HIGH>;
- };
- 
- &lpc_ctrl {
--- 
-2.34.0.rc2.393.gf8c9666880-goog
+> Side note: The same could be done for IIO_VAL_INT when the numerator
+> overflows (since the denominator cannot overflow), but I guess that
+> can be done later.
 
+Agreed, I don't mind working on this later but I'd like to focus on
+getting the current changes in first.
+
+Thanks,
+Liam
+
+> Cheers,
+> Peter
