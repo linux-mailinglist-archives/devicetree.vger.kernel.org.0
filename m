@@ -2,88 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92E34463161
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:44:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32C6B463165
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:44:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234029AbhK3KrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 05:47:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58944 "EHLO
+        id S235840AbhK3Krl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 05:47:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235660AbhK3KrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:47:20 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288A8C061574
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:44:01 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id t9so26401823wrx.7
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:44:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/dRrW73L/+aQvawdDWHM9eDTSLKvhZrt7/ceBiWtq0Q=;
-        b=2aFe8uZRO1Htx0Beqk4tImbRLvYAba/GKyjPzF6n6hAWf/GzPWblHuO4bONfs5gBAI
-         zlWNhrihD3l0hMGdePAQltyWYcnaX/0vKJ4S4rDRxqbpHVF2VcQCREIhHG715y8mLE0J
-         pO8O/Nt4Tz9uyKOOuwMesK94SO3J1MR3D1Io5VFucyCIbo5R6alLQ/vsRT5HZArfobc+
-         4BYDrqQUKZn+Iv+HL7UZxdd4F+h5B2bELBiqa3W43Tzoe5GeLV628VhZcjboalsQZB4d
-         4jIR5oHKZGiFWOUhl59rrvd3Xt68gkEtEUJC2CBnFpwjQ4G9ZN85raIPSPp6d4vU+zxG
-         ZC3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/dRrW73L/+aQvawdDWHM9eDTSLKvhZrt7/ceBiWtq0Q=;
-        b=6HzMlUDmRSTkHpvPxvwy99Sx1HrTywXTsSJZL6lXdOPXedl3z/cn6C6pr8Dgf8d2uX
-         TljTGa/dsRA+e13I60zQrENEfQSxC9nSdXuxpflanuPJJzYgsnVm6Chvucejpk5Yc9++
-         G+9y65iNXHpPVT1FF6d+uQoRwwjpIzQpKWxAWnj+Lxu/vR+n1pshkfWSxapHETOfRboA
-         7oZOtoqlX3hKx6+vhoZMDvH8dgfMGjSEWqZNoj70CylAA0Dx2ZAuTtlF/l/QCkeEk8O2
-         UlXHv2nD2mDzClsv2xiJeg062yYDMWiV4+gQddlVB8oKwBoyLoAUpvYTrpnTIVYUOzJY
-         lVWQ==
-X-Gm-Message-State: AOAM531HkMxR8njeRLm2TiXm1UG5yqlUOa3fLYYOWxJlunchjxLOJi7w
-        PqXEeKGEHCq1NR9gosQP1DkGsMpoVz008Q9d
-X-Google-Smtp-Source: ABdhPJxEpdVKo8wvsxi4+aXMUdgoRqK5cg2Kk9uYqcgTsf2EFPRvq6FKcxgHoepgS9UQiRhCQE6qJA==
-X-Received: by 2002:a05:6000:1acd:: with SMTP id i13mr39844590wry.398.1638269039704;
-        Tue, 30 Nov 2021 02:43:59 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a])
-        by smtp.gmail.com with ESMTPSA id l21sm16186804wrb.38.2021.11.30.02.43.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 02:43:59 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        with ESMTP id S235845AbhK3Krk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:47:40 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0091FC061574;
+        Tue, 30 Nov 2021 02:44:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 4CA3DCE1876;
+        Tue, 30 Nov 2021 10:44:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 779F5C53FCD;
+        Tue, 30 Nov 2021 10:44:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638269057;
+        bh=04yVuabJJKMCBpJ/rygyY4iuEHZdBxTgTl3/sUcLTuQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=q566dTw467Yo4WZqnE6Nrl31P9gBrp0+Gzh09ZA82a/1Doa/JbDlHSHrU8vktzQ5v
+         JBxYVHyGDUGvZgqysWfJ5OtpR5ssF+NtmVjjc619Ld+EJnOHITztt7NASRjjwl0v7g
+         5myDRXoF4+bF2vNeDIW+6uuHPB7/Fg1+EQN9arKPwexgKb+ce8Fwh+3yq7I0N0Z19h
+         y6E20j0oXDUTsLnA6S6hpQrOFxeu1Hl+Hz6/NOXpGyFDF/3VVNa/lhXqQlM4N8nOjm
+         B8ToJrMwaT/m/c2RMuP9ghxb5CjljAouizQQMudkmTzYfJ+TYJUAnmQZzfZPgu+6HW
+         ycGHSK/NxLe9w==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1ms0cR-008qUU-Do; Tue, 30 Nov 2021 10:44:15 +0000
+Date:   Tue, 30 Nov 2021 10:44:15 +0000
+Message-ID: <87fsrdncsg.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: p241: add internal sound support
-Date:   Tue, 30 Nov 2021 11:43:58 +0100
-Message-Id: <163826902317.1314212.8226710157799410590.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211130100159.214489-1-jbrunet@baylibre.com>
-References: <20211130100159.214489-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 2/2] irqchip: Add Qualcomm MPM controller driver
+In-Reply-To: <20211130091708.GH10105@dragon>
+References: <20211126093529.31661-1-shawn.guo@linaro.org>
+        <20211126093529.31661-3-shawn.guo@linaro.org>
+        <87czmmbu8k.wl-maz@kernel.org>
+        <20211129133308.GB10105@dragon>
+        <87pmqjm1c8.wl-maz@kernel.org>
+        <20211130023151.GD10105@dragon>
+        <87lf16m3ua.wl-maz@kernel.org>
+        <20211130091708.GH10105@dragon>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, robh+dt@kernel.org, loic.poulain@linaro.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, 30 Nov 2021 11:01:57 +0100, Jerome Brunet wrote:
-> This patchset adds support for the internal sound card of the s805x p241
-> reference design. Audio is available on HDMI and 3.5mm jack connector.
+On Tue, 30 Nov 2021 09:17:08 +0000,
+Shawn Guo <shawn.guo@linaro.org> wrote:
 > 
-> Jerome Brunet (2):
->   arm64: dts: meson: p241: add vcc_5v regulator
->   arm64: dts: meson: p241: add sound support
+> On Tue, Nov 30, 2021 at 08:42:53AM +0000, Marc Zyngier wrote:
+> > On Tue, 30 Nov 2021 02:31:52 +0000,
+> > Shawn Guo <shawn.guo@linaro.org> wrote:
+> > > 
+> > > + Maulik
+> > > 
+> > > On Mon, Nov 29, 2021 at 03:24:39PM +0000, Marc Zyngier wrote:
+> > > [...]
+> > > > > > > @@ -430,6 +430,14 @@ config QCOM_PDC
+> > > > > > >  	  Power Domain Controller driver to manage and configure wakeup
+> > > > > > >  	  IRQs for Qualcomm Technologies Inc (QTI) mobile chips.
+> > > > > > >  
+> > > > > > > +config QCOM_MPM
+> > > > > > > +	bool "QCOM MPM"
+> > > > > > 
+> > > > > > Can't be built as a module?
+> > > > > 
+> > > > > The driver is implemented as a builtin_platform_driver().
+> > > > 
+> > > > This, on its own, shouldn't preclude the driver from being built as a
+> > > > module. However, the config option only allows it to be built in. Why?
+> > > 
+> > > I just tried to build it as a module, and it seems that "irq_to_desc" is
+> > > only available for built-in build.
+> > 
+> > Yet another thing that you should not be using. The irqdomain code
+> > gives you everything you need without having to resort to the
+> > internals of the core IRQ infrastructure.
 > 
-> [...]
+> I see.  I should use irq_get_irq_data() rather than &desc->irq_data.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.17/dt64)
+Even better:
 
-[1/2] arm64: dts: meson: p241: add vcc_5v regulator
-      https://git.kernel.org/amlogic/c/bca54f711c0a2506efcce03a02f96f39b311f188
-[2/2] arm64: dts: meson: p241: add sound support
-      https://git.kernel.org/amlogic/c/c5468e3c930d4d2937d3a842a85df0f74e95e152
+	desc = irq_resolve_mapping(domain, hwirq);
+
+Job done. No extra tracking, no dubious hack in the unmask callback,
+works with modules.
+
+> 
+> > 
+> > > > Furthermore, why would you look up anywhere other than the wake-up
+> > > > domain? My impression was that only these interrupts would require
+> > > > being re-triggered.
+> > > 
+> > > Both domains have MPM pins that could wake up system.
+> > 
+> > Then why do you need two domains?
+> 
+> This is basically the same situation as qcom-pdc, and I have some
+> description about that in the commit log:
+> 
+> - For given SoC, a fixed number of MPM pins are supported, e.g. 96 pins
+>   on QCM2290.  Each of these MPM pins can be either a MPM_GIC pin or
+>   a MPM_GPIO pin. The mapping between MPM_GIC pin and GIC interrupt
+>   is defined by SoC, as well as the mapping between MPM_GPIO pin and
+>   GPIO number.  The former mapping can be found as the SoC data in this
+>   MPM driver, while the latter can be found as the msm_gpio_wakeirq_map[]
+>   in TLMM driver.
+> 
+> - Two irq domains are created for a single irq_chip to handle MPM_GIC
+>   and MPM_GPIO pins respectively, i.e. MPM_GIC domain and MPM_GPIO domain.
+>   The former is a child domain of GIC irq domain, while the latter is
+>   a parent domain of TLMM/GPIO irq domain.
+
+That doesn't answer my question.
+
+It doesn't matter what the pins are used for as long as you can
+identify which ones are routed to the GIC and which are not. You are
+obviously are able to do so, since you are able to disconnect part of
+the hierarchy (why is qcom_mpm_gic_alloc() named as such, since most
+of the interrupts it deals with are *never* routed to the GIC).
+
+All the interrupts have the same irqchip callbacks and act on the same
+'priv' data, so they it is obvious they don't overlap in the hwirq
+space.
+
+Ergo: you can implement the whole thing with a single domain. All you
+need to make sure is that you identify the pins that are routed to the
+GIC, and you already have that information.
+
+	M.
 
 -- 
-Neil
+Without deviation from the norm, progress is not possible.
