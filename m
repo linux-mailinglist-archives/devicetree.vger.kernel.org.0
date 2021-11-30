@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DA26462A27
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 03:04:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41FFE462A29
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 03:05:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237265AbhK3CIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 21:08:07 -0500
-Received: from mail-ot1-f52.google.com ([209.85.210.52]:34326 "EHLO
-        mail-ot1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231586AbhK3CIG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 21:08:06 -0500
-Received: by mail-ot1-f52.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso28174822otj.1;
-        Mon, 29 Nov 2021 18:04:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wbQymcP+21yk6oynLQVFlXzpHpqZPTkxpaAmnOmiAFM=;
-        b=Rbft+u1rKEMXkuI5ANkmSTHn4FhtiLYwl7D4Uq1Sk3JQ0m6ONKhb6NmsQM2wgzGVjV
-         vsA0QexDVb6W8Y+RSpOz8wyffd6nZ0FS4YxMkt+ZCDNamwpMDlvF9rutGUq0VVwaecGR
-         859vh+gvHsfhrIFlbKWfhAjnsmKEtYsYxskkt+mcaBJnsoh0mk25xeCTlGigJmSs41gZ
-         tkfaw7GElzenQl+pIyU/8HQMvK9YC/GxqSr/g2W+/iX+3Z+c+H0rUzY4kYXEj02UnUS6
-         MRbm6hhANTdNdf2zBbusV/gOBLr7bO6gxKRR8FZ1Oo7YrVsS9Athiehq91B56YZYTBSV
-         tCFg==
-X-Gm-Message-State: AOAM530AzJ9j+vPjJaxgi0ym4daqlmasQDAQDHLXn6DxcB25rnN0+W3r
-        /4I5BcM5iqXmA+Neu5cXSg==
-X-Google-Smtp-Source: ABdhPJwmzEi4PMk2SlLn/PHaE2RR7lx9hJxlOFilZE2im0L+wCpcji+Wt2GwlyM7yGa4BLqn/kdOhw==
-X-Received: by 2002:a05:6830:4119:: with SMTP id w25mr47075376ott.256.1638237887848;
-        Mon, 29 Nov 2021 18:04:47 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c9sm2644025oog.43.2021.11.29.18.04.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 18:04:47 -0800 (PST)
-Received: (nullmailer pid 1026610 invoked by uid 1000);
-        Tue, 30 Nov 2021 02:04:46 -0000
-Date:   Mon, 29 Nov 2021 20:04:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-pm@vger.kernel.org, Biju Das <biju.das@bp.renesas.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: Document Renesas RZ/G2L TSU
-Message-ID: <YaWGvmJZrfP/Ujyj@robh.at.kernel.org>
-References: <20211120194711.9073-1-biju.das.jz@bp.renesas.com>
- <20211120194711.9073-2-biju.das.jz@bp.renesas.com>
+        id S237280AbhK3CI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 21:08:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54666 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231586AbhK3CI6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 21:08:58 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F07E5C061574;
+        Mon, 29 Nov 2021 18:05:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 3FCCDCE16EA;
+        Tue, 30 Nov 2021 02:05:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52D0FC53FC7;
+        Tue, 30 Nov 2021 02:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638237936;
+        bh=MjWwVT64eoyCbc1/O2psCx9reohaUCeSTRbK/whaPFE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=NYrBBQhpMMwiGnPokNzFZCGoDmDnHwv+FYxImN45IzOuDdZsBvwlKblFIoz2rvmcs
+         C5togcT5j0Try0e6ySJyYrAOmfCYLZMQ2lCNQup9d/NSAd/tEDlRh9BEplyvTB/y8/
+         K+GCFEwrvkBh81WqK/H/eQZZhOpSryQkKQuM1QUCJY9gxzqY113wHZoZV7ooukQnZX
+         kJpY45Bd2C4Fub0PtXeOd/0zruuGn+bPzHKX28VIXN7ND1Itiko/P9MfFiGECzH3qU
+         RWJvklvamIp+LzM5EOqrL35nhLoEWBU1Qzv2DGHqpSTZG+86qCIQwpRKyX/Lw93cC/
+         5adJmRhGlRSTg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211120194711.9073-2-biju.das.jz@bp.renesas.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211114012755.112226-4-konrad.dybcio@somainline.org>
+References: <20211114012755.112226-1-konrad.dybcio@somainline.org> <20211114012755.112226-4-konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 04/16] arm64: dts: qcom: sm8350: Specify clock-frequency for arch timer
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Date:   Mon, 29 Nov 2021 18:05:34 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20211130020536.52D0FC53FC7@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 20 Nov 2021 19:47:10 +0000, Biju Das wrote:
-> Document the Thermal Sensor Unit(TSU) in the RZ/G2L SoC.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Quoting Konrad Dybcio (2021-11-13 17:27:43)
+> Arch timer runs at 19.2 MHz. Specify the rate in the timer node.
+>=20
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
-> v1->v2:
->  * No change
-> ---
->  .../bindings/thermal/rzg2l-thermal.yaml       | 76 +++++++++++++++++++
->  1 file changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
-> 
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/q=
+com/sm8350.dtsi
+> index a30ba3193d84..60866a20a55c 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -2484,5 +2484,6 @@ timer {
+>                              <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TY=
+PE_LEVEL_LOW)>,
+>                              <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TY=
+PE_LEVEL_LOW)>,
+>                              <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TY=
+PE_LEVEL_LOW)>;
+> +               clock-frequency =3D <19200000>;
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Does the firmware not set the frequency properly?
