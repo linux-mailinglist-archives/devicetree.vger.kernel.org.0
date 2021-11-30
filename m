@@ -2,85 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 526BE4641B6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 23:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF834641C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 23:45:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344588AbhK3WrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 17:47:16 -0500
-Received: from mail-ot1-f43.google.com ([209.85.210.43]:40682 "EHLO
-        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345332AbhK3WrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 17:47:02 -0500
-Received: by mail-ot1-f43.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so32365560otj.7;
-        Tue, 30 Nov 2021 14:43:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bgNkZ9Km7uslGW9spgB64Ff0uwinA/sUJ4dW12Hx5NQ=;
-        b=7zoMPYl4UsYVZuIdiuSm7NYTRxnoAoz/NRA6kHnoPzIf2eOIjKEwqmKIH9vcdS0NJL
-         D/nE/lpVz/0cXzyEuMSpepnyak8Voz9wcjC98CXS0XG88XsKv7j9E0ajxAA1qxJ5wCw1
-         fT93G4+mjN/qNE0Oa8LvUPPCAdhqyQ7W5KyFAWCQnA94PgCYgX7GCsHpUVbxpkipMDU3
-         Hc7/6PosrS3vhFilA0pbtBnv+jJKiosGeFxBJ3m9miUC709XF7txUCAok8hmKG5F1Swp
-         hYfL2+1Jlws5SGu1B7UXFBVHCW4MszsnAIGyDi89n4iKB4OX5ezYCB4zSxOiJySKxVM+
-         jgCw==
-X-Gm-Message-State: AOAM533zmPdHw7sNvm2oQO9ZfhAfJwYI1dkCLki2SRU0f5ir8wEVwB5l
-        GvgoieBr1ncb5UT767yFmQ==
-X-Google-Smtp-Source: ABdhPJzzNxeCz/g28KThw4laZ7VZ4CBNkktlUh1TUdViKWztFqJrvQFOHaXnbD/wHUUc+yOXcVd/+Q==
-X-Received: by 2002:a9d:364b:: with SMTP id w69mr2131689otb.18.1638312212779;
-        Tue, 30 Nov 2021 14:43:32 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g1sm2943995ooq.2.2021.11.30.14.43.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 14:43:31 -0800 (PST)
-Received: (nullmailer pid 3146302 invoked by uid 1000);
-        Tue, 30 Nov 2021 22:43:31 -0000
-Date:   Tue, 30 Nov 2021 16:43:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Calvin Zhang <calvinzhang.cool@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] of: unmap memory regions in /memreserve node
-Message-ID: <YaapE8oys5zQEdD5@robh.at.kernel.org>
-References: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
+        id S237792AbhK3Wsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 17:48:51 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:41861 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344991AbhK3Wsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 17:48:43 -0500
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 11BBE1C0002;
+        Tue, 30 Nov 2021 22:45:19 +0000 (UTC)
+Date:   Tue, 30 Nov 2021 23:45:18 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        rw-r-r-0644 <r.r.qwertyuiop.r.r@gmail.com>,
+        Ash Logan <ash@heyquark.com>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.ne@posteo.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] rtc: gamecube: Report low battery as invalid data
+Message-ID: <YaapfmykL0BOHHhF@piout.net>
+References: <20211014220524.9988-1-linkmauve@linkmauve.fr>
+ <20211027223516.2031-1-linkmauve@linkmauve.fr>
+ <20211027223516.2031-3-linkmauve@linkmauve.fr>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211027223516.2031-3-linkmauve@linkmauve.fr>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+linuxppc-dev
+Hello,
 
-On Wed, Nov 24, 2021 at 09:33:47PM +0800, Calvin Zhang wrote:
-> Reserved memory regions in /memreserve node aren't and shouldn't
-> be referenced elsewhere. So mark them no-map to skip direct mapping
-> for them.
-
-I suspect this has a high chance of breaking some platform. There's no 
-rule a region can't be accessed.
-
+On 28/10/2021 00:35:12+0200, Emmanuel Gil Peyrot wrote:
+> I haven’t been able to test this patch as all of my consoles have a
+> working RTC battery, but according to the documentation it should work
+> like that.
 > 
-> Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
 > ---
->  drivers/of/fdt.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/rtc/rtc-gamecube.c | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
 > 
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index bdca35284ceb..9e88cc8445f6 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -638,7 +638,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
->  		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
->  		if (!size)
->  			break;
-> -		early_init_dt_reserve_memory_arch(base, size, false);
-> +		early_init_dt_reserve_memory_arch(base, size, true);
->  	}
+> diff --git a/drivers/rtc/rtc-gamecube.c b/drivers/rtc/rtc-gamecube.c
+> index e8260c82c07d..1932c6fe1301 100644
+> --- a/drivers/rtc/rtc-gamecube.c
+> +++ b/drivers/rtc/rtc-gamecube.c
+> @@ -83,6 +83,10 @@
+>  #define RTC_CONTROL0	0x21000c
+>  #define RTC_CONTROL1	0x21000d
 >  
->  	fdt_scan_reserved_mem();
+> +/* RTC flags */
+> +#define RTC_CONTROL0_UNSTABLE_POWER	0x00000800
+> +#define RTC_CONTROL0_LOW_BATTERY	0x00000200
+> +
+>  struct priv {
+>  	struct regmap *regmap;
+>  	void __iomem *iob;
+> @@ -182,9 +186,35 @@ static int gamecube_rtc_set_time(struct device *dev, struct rtc_time *t)
+>  	return regmap_write(d->regmap, RTC_COUNTER, timestamp - d->rtc_bias);
+>  }
+>  
+> +static int gamecube_rtc_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
+> +{
+> +	struct priv *d = dev_get_drvdata(dev);
+> +	int value;
+> +	int control0;
+> +	int ret;
+> +
+> +	switch (cmd) {
+> +	case RTC_VL_READ:
+> +		ret = regmap_read(d->regmap, RTC_CONTROL0, &control0);
+> +		if (ret)
+> +			return ret;
+> +
+> +		value = 0;
+> +		if (control0 & RTC_CONTROL0_UNSTABLE_POWER)
+> +			value |= RTC_VL_DATA_INVALID;
+> +		if (control0 & RTC_CONTROL0_LOW_BATTERY)
+> +			value |= RTC_VL_DATA_INVALID;
+
+Shouldn't that one be RTC_VL_BACKUP_LOW?
+
+Else, the driver is great, I'm ready to apply it.
+
+> +		return put_user(value, (unsigned int __user *)arg);
+> +
+> +	default:
+> +		return -ENOIOCTLCMD;
+> +	}
+> +}
+> +
+>  static const struct rtc_class_ops gamecube_rtc_ops = {
+>  	.read_time	= gamecube_rtc_read_time,
+>  	.set_time	= gamecube_rtc_set_time,
+> +	.ioctl		= gamecube_rtc_ioctl,
+>  };
+>  
+>  static int gamecube_rtc_read_offset_from_sram(struct priv *d)
 > -- 
-> 2.30.2
+> 2.33.1
 > 
-> 
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
