@@ -2,120 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73454463A6C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 16:42:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E1A463AAE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 16:54:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242986AbhK3PqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 10:46:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
+        id S230402AbhK3P55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 10:57:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243128AbhK3PqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 10:46:06 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51772C0613D7
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 07:42:31 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id z7so20531780lfi.11
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 07:42:31 -0800 (PST)
+        with ESMTP id S230247AbhK3P54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 10:57:56 -0500
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D1FC061574;
+        Tue, 30 Nov 2021 07:54:37 -0800 (PST)
+Received: by mail-lf1-x12a.google.com with SMTP id l22so54937952lfg.7;
+        Tue, 30 Nov 2021 07:54:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3BR7hOfrZU5BLrILn7SjH/zgKfBPjj6UDPHMgMpgom8=;
-        b=DUc0FOzRm7dRuC+cBWtQBMgfNccTuyOlgJIqfMMbxXXplx1F7UCPr9b3UsEK+HAlQ/
-         JkLZRCjIqOWfztTcXX7hzZ3G25gsx2Kvptl7oKXvrfywJzlURRqLg7a3Rw1wPnjB52lu
-         x69YeunIj95F13hsHjMlJoB6LE5H/46MrWRcukUMwn9Zq3HhrDG32SKQ55KK9GJ1cIaf
-         X88TKNsTSwCPqohes+XxWyCgFGfC5SWzd4BPDIVxMMWhSnVWD4JYCI6M+eTOx+q2NeDJ
-         BtEpxIOksIK79Ls6ThbOWsQ7LGGv13XjcxlI6JNzyo/fKPm6Cdz9g/mmjPX6owYkyBPq
-         +ivQ==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=U5qik7JkxsV5L1nyIiJAzLGGqdU8Lv8lfNJJdZtpwB0=;
+        b=RylwZe89Gypz3GfzQSBHd0yTJdUBDZytxEh0mEKj30BcarBB4LEdiIcNBm+4gc2f7l
+         6lhx7QrVSHrj3DhV7qmkd8tGWUmyM8xsXbocB6Z+O9SVijMvhXlnAVxD8CwuZTCXCDgV
+         HP81x3lmR8wGcfB3cd/sQYSjmGp/Xf3WrdKqFn4XEuN/KMnCjrnnSdclgF7AL81C6wWA
+         U1ssQsizpD3vG2qtB1jbdA2tLh+79Z8NWh53EhmDBdL6vWrQz1/FKKY7REB/ckXWLN5d
+         yIBhDKP5SSC2QUxiovsBjVhKbpimlyiEKhoFpIH+46pR8ZI6VuAaB50DCxAjtSlytoJU
+         t8xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3BR7hOfrZU5BLrILn7SjH/zgKfBPjj6UDPHMgMpgom8=;
-        b=jPnMT07tOcIgH/WV9xmhu5TuYpbycGbOnkdU2W107CPSijQTe9nUmBePrX3BxPMuvI
-         fjHgOQsq2SQhRYzQ9C5XNUDFNHUjlhM3J0VHkcf3ye0J5GubYALu5bk1r0bsQrgYNOu/
-         DCydME1L7PZUBWZLtjhgMya3P+PHxRWbAZrNUOM0kMtMNtrUrl4diyo1t+EWsT+oTBMM
-         6nJAKFi1kwXOHjaErxsU24J/GmHAQCDnHNZa3cirkdApoD2NZVZl4xoZTZz3D8DrqYOi
-         m6q/zN+dgRcGa8E5aapnQEjom4PnKG4v4m2P2eosqOqI3TEbELe+N3g7dHeSwqb6y1rk
-         t3QQ==
-X-Gm-Message-State: AOAM533xPSUSGTTRAoovHVh4HauBJtHv32niNK5onkncT8H8GFS9T5xB
-        D7V9haP954akMfrxRQxwE96BuS+DHf1Gax5oGkB15A==
-X-Google-Smtp-Source: ABdhPJxC4zWXmedOcmpEm0bfpRKItjopzS1RjY1QxCV3VEacaM6KDFcN4qGG64b0icX1eQf5MVEa6XMx1dC4FSgRIL0=
-X-Received: by 2002:a05:6512:10c4:: with SMTP id k4mr55168022lfg.373.1638286949602;
- Tue, 30 Nov 2021 07:42:29 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=U5qik7JkxsV5L1nyIiJAzLGGqdU8Lv8lfNJJdZtpwB0=;
+        b=rc6ReoR/WDYe5OJVi8/7//nScR0dvO1knpvdJQs5EwtaA3WIfv2XxZmgXGdvAwRjDH
+         ANth6O+cvf/oZ0auOVbT91uufHBILyzGyTJZW1A6KADwjQevtUKwZf3JH/PUIEI4MIXV
+         fmeLKzWczSQRl26ZQmCDbnYtDQBCNZAylSFObIaoFqghxXMxO7jF6aclZ6zYK18+WdXz
+         9P9hCw2fGWLhfZnWSEwNh1gTpfRpMjfZTcYjLvD2sO/jxvC68THlDucQnSNlf6h0mymG
+         rzS2Qcks6HPXGLBuP+8qXrXIB8GIUCr+zLC2b2bqZZ9duPy6q7t1HGFKzUTkrvO8FJ84
+         z0mA==
+X-Gm-Message-State: AOAM532oGxr8ape2Yoq3JqL4ozXhGz5JYjZUQa+CeaSmWPYt4E3BArL6
+        wALdnZ934dVeB+rvf4Q+E1Yt46LyjD4=
+X-Google-Smtp-Source: ABdhPJy7QhmKwfLB5R6+JEk12Qsc2zj/1kqkJEqaJM8bGr5pAdx1OFEqLSkVbe3uceco1zRz+Cg/Gg==
+X-Received: by 2002:a05:6512:39c7:: with SMTP id k7mr10824lfu.571.1638287675500;
+        Tue, 30 Nov 2021 07:54:35 -0800 (PST)
+Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
+        by smtp.googlemail.com with ESMTPSA id b13sm1985266lfv.200.2021.11.30.07.54.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Nov 2021 07:54:35 -0800 (PST)
+Subject: Re: [PATCH v1 1/2] dt-bindings: sharp,lq101r1sx01: Add compatible for
+ LQ101R1SX03
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Anton Bambura <jenneron@protonmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20211114200717.28986-1-digetx@gmail.com>
+ <20211114200717.28986-2-digetx@gmail.com>
+ <YaVG93LCF6MQYiSi@robh.at.kernel.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <a8f05850-1c18-1a7d-e529-08d9a6bd9923@gmail.com>
+Date:   Tue, 30 Nov 2021 18:54:34 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211125211443.1150135-1-Mr.Bossman075@gmail.com> <20211125211443.1150135-12-Mr.Bossman075@gmail.com>
-In-Reply-To: <20211125211443.1150135-12-Mr.Bossman075@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 30 Nov 2021 16:41:53 +0100
-Message-ID: <CAPDyKFqNghVZYdtR8dACGvqAyy9xC8LWnbg6Sq+EGRmv2g5P+A@mail.gmail.com>
-Subject: Re: [PATCH v3 11/13] mmc: sdhci-esdhc-imx: Add sdhc support for
- i.MXRT series
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        Kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <YaVG93LCF6MQYiSi@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 25 Nov 2021 at 22:15, Jesse Taube <mr.bossman075@gmail.com> wrote:
->
-> From: Jesse Taube <mr.bossman075@gmail.com>
->
-> Add support for i.MXRT1050's sdhc.
->
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
+30.11.2021 00:32, Rob Herring пишет:
+> On Sun, Nov 14, 2021 at 11:07:16PM +0300, Dmitry Osipenko wrote:
+>> From: Anton Bambura <jenneron@protonmail.com>
+>>
+>> LQ101R1SX03 is compatible with LQ101R1SX01, document it.
+> 
+> Then sounds like '"sharp,lq101r1sx03", "sharp,lq101r1sx01"' would be the 
+> appropriate compatible value. Do that, and you don't need a driver 
+> change.
 
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
-> ---
-> V1->V2:
-> * Nothing done
-> V2->V3:
-> * Rename imxrt to imxrt1050
-> * Remove BROKEN_AUTO_CMD23 and MAN_TUNING flags
-> ---
->  drivers/mmc/host/sdhci-esdhc-imx.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
-> index 764ee1b761d9..55981b0f0b10 100644
-> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
-> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
-> @@ -305,6 +305,9 @@ static struct esdhc_soc_data usdhc_imx7ulp_data = {
->                         | ESDHC_FLAG_PMQOS | ESDHC_FLAG_HS400
->                         | ESDHC_FLAG_STATE_LOST_IN_LPMODE,
->  };
-> +static struct esdhc_soc_data usdhc_imxrt1050_data = {
-> +       .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_HS200 | ESDHC_FLAG_ERR004536,
-> +};
->
->  static struct esdhc_soc_data usdhc_imx8qxp_data = {
->         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
-> @@ -355,6 +358,7 @@ static const struct of_device_id imx_esdhc_dt_ids[] = {
->         { .compatible = "fsl,imx7ulp-usdhc", .data = &usdhc_imx7ulp_data, },
->         { .compatible = "fsl,imx8qxp-usdhc", .data = &usdhc_imx8qxp_data, },
->         { .compatible = "fsl,imx8mm-usdhc", .data = &usdhc_imx8mm_data, },
-> +       { .compatible = "fsl,imxrt1050-usdhc", .data = &usdhc_imxrt1050_data, },
->         { .compatible = "nxp,s32g2-usdhc", .data = &usdhc_s32g2_data, },
->         { /* sentinel */ }
->  };
-> --
-> 2.34.0
->
+Apparently you're right. The "sharp,lq101r1sx03" should be a slightly
+improved revision of "sharp,lq101r1sx01". I see now that LQ101R1SX03 is
+sold as a spare part panel for ASUS TF701T, hence these panels should be
+entirely compatible with each other.
