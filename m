@@ -2,199 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D825A462A3F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 03:14:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EBA8462A52
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 03:22:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbhK3CSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 21:18:15 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:35440 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229485AbhK3CSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 21:18:15 -0500
-Received: by mail-oi1-f175.google.com with SMTP id m6so38346243oim.2;
-        Mon, 29 Nov 2021 18:14:56 -0800 (PST)
+        id S237424AbhK3C0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 21:26:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58518 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229485AbhK3C0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 21:26:12 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196ECC061574
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 18:22:54 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id k2so38202859lji.4
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 18:22:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=skodrfetI6sQYeMS84TqmzdXMiAWMy4xHtCAByWVHFI=;
+        b=bbVlySitNulojxKNQQ8ngwgYFkULqgbWWmRVoRSk3H8bMyFfkSoSLBJgHIWIfGbDgu
+         iFCTjlBS3fcCA0S0un3T2LwZic9OyCDZtw5Jokcyj99g1178UlQBzzjLjC2uXINhJiwP
+         MeSAm6xWoK/aXDNmHlPoYb37Xavs+6DlD0ScFYO+zALf06yEgEcRKFF78jyarpF1CGZ3
+         s+90ffS3b2yUK6ZuHhdQUEUclTwrxcZvSNFD6rznZ7YARbHw7vg487xzvs0Ova2XxYFi
+         V3K4D9W+qsY8K343GvJjmUFbxHXza3W/m6c6QCpLwSMgLZu0+F/GaIalUos5uc9QyxA8
+         t7Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Hip/5vmWbCWITdNRECGO+Z6l+xnhvisfEqtSpDmXpVc=;
-        b=xN/U+RoaVfBbjaLHLx9+wC42leRILI0RJB8P6STLbnfMPw5sFTzWMlk1gUBZK4Ulld
-         zVRflhC6mV3YjC7glPXLie22Ow1CCSN/LLJOiNLoetL62Ym2oocyGf1uapj/6pB+IDtd
-         nWO2CrDw4CN2eAcpTAvAxBZ/BWebZxb8iPNZ7HWOVFLeodqMsIjcc+2dRf+4iiT/XjVH
-         CFv8t+KApfwCsGwu73wnfrk8zE1dpDabtZAfXJ1bWFp6G8Vxd/8AMpql9+iDpWkhWZvh
-         5rj2rlUxfW3Ev4Kxdo+wscfB0gUtZrUmohlKW+k4N3Q3jOBQbmextGXKhbImQVmPsF/Y
-         KuvA==
-X-Gm-Message-State: AOAM533FOhcwvCE1eFqpMLdCAXAbCVuyYHGDSQalail5cCAWqj04efkp
-        sKFxkI7S0ZJDePhvY7XUQQ==
-X-Google-Smtp-Source: ABdhPJyGysL/BVBUeRSIy/keqfl6G0j0uVhfNiGaPiMP5yq3ESdgnEJdaXao5YxKpUYuVOaUbJvTzw==
-X-Received: by 2002:a05:6808:11c6:: with SMTP id p6mr1748013oiv.44.1638238495774;
-        Mon, 29 Nov 2021 18:14:55 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v19sm2939161ott.13.2021.11.29.18.14.54
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=skodrfetI6sQYeMS84TqmzdXMiAWMy4xHtCAByWVHFI=;
+        b=GGGqRbFh2SfXdByAE+EGPEY6HvlqBi73MMaDGoKUjaUnifzmhrHuOLTlW1cLoMSTS1
+         z5CB0xnJHctkpJe/X+Np8ODN/j2yphKfvIzMf29Q8CJxPeju4lYhy2T2iZV7SuJKS7pj
+         6hwQ7anWaeBcw/ZIANLjFGi1y4C0w2hCju5N4YQm4XiyHT1kfYQm2EldxYt+YXucQtH3
+         GR1VZ8ZRUckuklKF5lzUAbxE21T8pPAxvO3YoH4Hr6WLlq+vH2R/O0XlveoYy/+s0jj4
+         eZQI8+sKnToxaIrlJG7abjEGBp2lBiecPjTSyIFjS2lUa8odFxbJ51Qn4R6qzjReNVDQ
+         3q5g==
+X-Gm-Message-State: AOAM530Q7jXXIUrM6M/bq4xEExJAI48S660yXWS7jk99zkNImBKSii2Q
+        oQr9j/ySO2VgRmYB+vxpZ8g+Jg==
+X-Google-Smtp-Source: ABdhPJzbQjHPWKFGyNsFRwbVGmhUdKhSrsWJwMsK/Qyy5iQbpNmLx265oR/zw1HBJOxgDvAso0jIwQ==
+X-Received: by 2002:a2e:b816:: with SMTP id u22mr32739595ljo.51.1638238972342;
+        Mon, 29 Nov 2021 18:22:52 -0800 (PST)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id e11sm1539911lfq.65.2021.11.29.18.22.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 18:14:55 -0800 (PST)
-Received: (nullmailer pid 1040881 invoked by uid 1000);
-        Tue, 30 Nov 2021 02:14:54 -0000
-Date:   Mon, 29 Nov 2021 20:14:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michal Simek <michal.simek@xilinx.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>,
-        Piyush Mehta <piyush.mehta@xilinx.com>, mka@chromium.org,
-        ravisadineni@chromium.org, stern@rowland.harvard.edu,
-        alcooperx@gmail.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        git@xilinx.com, sgoud@xilinx.com
-Subject: Re: [PATCH V2 2/2] usb: misc: usb244: add support for USB2 ultra
- fast sd controller
-Message-ID: <YaWJHip//HzL8so5@robh.at.kernel.org>
-References: <20211122062834.1812005-1-piyush.mehta@xilinx.com>
- <20211122062834.1812005-3-piyush.mehta@xilinx.com>
- <YZtAb9lz8WLnWu7E@kroah.com>
- <b4064914-40b5-3789-bebd-793cb27a29cd@xilinx.com>
+        Mon, 29 Nov 2021 18:22:51 -0800 (PST)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Jiri Slaby <jirislaby@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 0/5] soc: samsung: Add USI driver
+Date:   Tue, 30 Nov 2021 04:22:45 +0200
+Message-Id: <20211130022250.28519-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b4064914-40b5-3789-bebd-793cb27a29cd@xilinx.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 22, 2021 at 12:02:52PM +0100, Michal Simek wrote:
-> 
-> nit: Just spot typo in subject. It is usb2244.
-> 
-> On 11/22/21 08:02, Greg KH wrote:
-> > On Mon, Nov 22, 2021 at 11:58:34AM +0530, Piyush Mehta wrote:
-> > > Microchip's USB224x family of Hi-Speed USB 2.0 flash media card controllers
-> > > provides an ultra-fast interface between a USB host controller and flash
-> > > media cards.
-> > > 
-> > > This patch adds a GPIO based usb-sd reset for USB2244 USB2 ultra fast
-> > > SD controller. This usb2244 driver trigger sd reset signal after soft
-> > > reset or core Reset. The SD needs to be resetted after completion of
-> > > phy initialization. After the toggling of gpio, controller gets out
-> > > form reset. USB2244 is a simple platform device driver.
-> > > 
-> > > As part of the reset, sets the direction of the pin to output before
-> > > toggling the pin. Delay of microseconds is added in between high and
-> > > low to meet the setup and hold time requirement of the reset.
-> > > 
-> > > Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
-> > > ---
-> > > Changes for V2:
-> > > - Update reset polarity, make reset ACTIVE LOW in the usb2244 driver.
-> > > - Fix WARNING: msleep < 20ms can sleep for up to 20ms by changing msleep to
-> > >    usleep_range()
-> > > ---
-> > >   drivers/usb/misc/Kconfig   | 10 +++++++
-> > >   drivers/usb/misc/Makefile  |  1 +
-> > >   drivers/usb/misc/usb2244.c | 69 ++++++++++++++++++++++++++++++++++++++++++++++
-> > 
-> > This isn't really a USB driver, so maybe drivers/misc/ instead?
-> > 
-> > >   3 files changed, 80 insertions(+)
-> > >   create mode 100644 drivers/usb/misc/usb2244.c
-> > > 
-> > > diff --git a/drivers/usb/misc/Kconfig b/drivers/usb/misc/Kconfig
-> > > index 8f11443..e1c66a2 100644
-> > > --- a/drivers/usb/misc/Kconfig
-> > > +++ b/drivers/usb/misc/Kconfig
-> > > @@ -215,6 +215,16 @@ config USB_ISIGHTFW
-> > >   	  driver beforehand. Tools for doing so are available at
-> > >   	  http://bersace03.free.fr
-> > > +config USB_USB2244
-> > > +	tristate "Microchip USB2244 Ultra Fast USB 2.0 SD driver"
-> > > +	depends on GPIOLIB
-> > > +	help
-> > > +	  Say Y or M here if you want to reset Microchip USB2244 Ultra Fast
-> > > +	  USB 2.0 SD controller.
-> > > +	  This option enables support for Microchip USB2244 Ultra Fast USB 2.0
-> > > +	  SD controller. This driver reset the gpio pin makes controller out of
-> > > +	  reset.
-> > 
-> > Module name?
-> > 
-> > > +
-> > >   config USB_YUREX
-> > >   	tristate "USB YUREX driver support"
-> > >   	help
-> > > diff --git a/drivers/usb/misc/Makefile b/drivers/usb/misc/Makefile
-> > > index 5f4e598..5b4af7d 100644
-> > > --- a/drivers/usb/misc/Makefile
-> > > +++ b/drivers/usb/misc/Makefile
-> > > @@ -21,6 +21,7 @@ obj-$(CONFIG_USB_LEGOTOWER)		+= legousbtower.o
-> > >   obj-$(CONFIG_USB_TEST)			+= usbtest.o
-> > >   obj-$(CONFIG_USB_EHSET_TEST_FIXTURE)    += ehset.o
-> > >   obj-$(CONFIG_USB_TRANCEVIBRATOR)	+= trancevibrator.o
-> > > +obj-$(CONFIG_USB_USB2244)		+= usb2244.o
-> > >   obj-$(CONFIG_USB_USS720)		+= uss720.o
-> > >   obj-$(CONFIG_USB_SEVSEG)		+= usbsevseg.o
-> > >   obj-$(CONFIG_USB_YUREX)			+= yurex.o
-> > > diff --git a/drivers/usb/misc/usb2244.c b/drivers/usb/misc/usb2244.c
-> > > new file mode 100644
-> > > index 0000000..5a868c2
-> > > --- /dev/null
-> > > +++ b/drivers/usb/misc/usb2244.c
-> > > @@ -0,0 +1,69 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Driver for the Microchip USB2244 Ultra Fast USB 2.0 Multi-Format,
-> > > + * SD/MMC, and MS Flash Media Controllers
-> > > + *
-> > > + * Copyright (c) 2021 Xilinx, Inc.
-> > > + */
-> > > +
-> > > +#include <linux/delay.h>
-> > > +#include <linux/err.h>
-> > > +#include <linux/kernel.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/of_platform.h>
-> > > +#include <linux/gpio/consumer.h>
-> > > +#include <linux/platform_device.h>
-> > > +
-> > > +struct usb2244 {
-> > > +	struct gpio_desc *reset_gpio;
-> > > +};
-> > 
-> > Why is this structure needed?
-> > 
-> > > +
-> > > +static int usb2244_init_hw(struct device *dev, struct usb2244 *data)
-> > > +{
-> > > +	data = devm_kzalloc(dev, sizeof(struct usb2244), GFP_KERNEL);
-> > > +	if (!data)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	data->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-> > > +	if (IS_ERR(data->reset_gpio)) {
-> > > +		dev_err_probe(dev, PTR_ERR(data->reset_gpio),
-> > > +			      "Failed to request reset GPIO %ld, errcode",
-> > > +			      PTR_ERR(data->reset_gpio));
-> > > +		return PTR_ERR(data->reset_gpio);
-> > > +	}
-> > > +
-> > > +	/* Toggle RESET_N to reset the hub. */
-> > > +	gpiod_set_value_cansleep(data->reset_gpio, 1);
-> > > +	usleep_range(5, 10);
-> > > +	gpiod_set_value_cansleep(data->reset_gpio, 0);
-> > > +	usleep_range(5000, 6000);
-> > 
-> > Why do you need a kernel driver for this at all?  Why not just toggle
-> > the pin from userspace?
-> 
-> It is usb-sd convertor. If you have rootfs on SD you need to get the chip
-> out of reset to be able to access init. There is no way how to do it via
-> userspace.
+USIv2 IP-core provides selectable serial protocol (UART, SPI or
+High-Speed I2C); only one can be chosen at a time. This series
+implements USIv2 driver, which allows one to select particular USI
+function in device tree, and also performs USI block initialization.
 
-Then by the bootloader...
+With that driver implemented, it's not needed to do USI initialization
+in protocol drivers anymore, so that code is removed from the serial
+driver.
 
-> Maybe there could be a different way how to do it via different driver to
-> toggle the reset. It is dwc3 -> usb-hub(usb5744) -> usb-sd(usb2244) + usb
-> phys for sd2.0 and it should be also reset in the right order.
+Because USI driver is tristate (can be built as a module), serial driver
+was reworked so it's possible to use its console part as a module too.
+This way we can load serial driver module from user space and still have
+serial console functional.
 
-Otherwise, you need to define the whole USB hierarchy to add the GPIO 
-line to the USB device. Unfortunately, getting all that to work in the 
-kernel is not a solved problem. It's the same issue on all the 
-'discoverable' buses.
+Make it impossible to build UART/SPI/I2C driver as a built-in when USIv2
+driver built as a module: USIv2 configuration must be always done before
+tinkering with particular protocol it implements.
 
-Rob
+Design features:
+  - "reg" property contains USI registers start address (0xc0 offset);
+    it's used in the driver to access USI_CON and USI_OPTION registers.
+    This way all USI initialization (reset, HWACG, etc) can be done in
+    USIv2 driver separately, rather than duplicating that code over
+    UART/SPI/I2C drivers
+  - System Register (system controller node) and its SW_CONF register
+    offset are provided in "samsung,sysreg" property; it's used to
+    select USI function (protocol to be used)
+  - USI function is specified in "samsung,mode" property; integer value
+    is used to simplify parsing
+  - there is "samsung,clkreq-on" bool property, which makes driver
+    disable HWACG control (needed for UART to work properly)
+  - PCLK and IPCLK clocks are both provided to USI node; apparently both
+    need to be enabled to access USI registers
+  - protocol nodes are embedded (as a child nodes) in USI node; it
+    allows correct init order, and reflects HW properly
+  - USIv2 driver is a tristate: can be also useful from Android GKI
+    requirements point of view
+  - driver functions are implemented with further development in mind:
+    we might want to add some SysFS interface later for example, or
+    provide some functions to serial drivers with EXPORT_SYMBOL(), etc;
+    also another USI revisions could be added (like USIv1)
+
+Changes in v2:
+  - Renamed all 'usi_v2' wording to just 'usi' everywhere
+  - Removed patches adding dependency on EXYNOS_USI for UART/I2C/SPI
+    drivers
+  - Added patch: "tty: serial: samsung: Fix console registration from
+    module"
+  - Combined dt-bindings doc and dt-bindings header patches
+  - Reworked USI driver to be ready for USIv1 addition
+  - Improved dt-bindings
+  - Added USI_V2_NONE mode value
+
+Sam Protsenko (5):
+  dt-bindings: soc: samsung: Add Exynos USI bindings
+  soc: samsung: Add USI driver
+  tty: serial: samsung: Remove USI initialization
+  tty: serial: samsung: Enable console as module
+  tty: serial: samsung: Fix console registration from module
+
+ .../bindings/soc/samsung/exynos-usi.yaml      | 135 +++++++++
+ drivers/soc/samsung/Kconfig                   |  14 +
+ drivers/soc/samsung/Makefile                  |   2 +
+ drivers/soc/samsung/exynos-usi.c              | 274 ++++++++++++++++++
+ drivers/tty/serial/Kconfig                    |   2 +-
+ drivers/tty/serial/samsung_tty.c              |  78 ++---
+ include/dt-bindings/soc/samsung,exynos-usi.h  |  17 ++
+ include/linux/serial_s3c.h                    |   9 -
+ 8 files changed, 483 insertions(+), 48 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+ create mode 100644 drivers/soc/samsung/exynos-usi.c
+ create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+
+-- 
+2.30.2
+
