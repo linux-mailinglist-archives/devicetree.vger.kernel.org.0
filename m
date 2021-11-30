@@ -2,529 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95890463BCB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:32:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47100463BF4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:38:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237872AbhK3Qfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 11:35:51 -0500
-Received: from mail-vi1eur05on2121.outbound.protection.outlook.com ([40.107.21.121]:27560
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        id S238410AbhK3QmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 11:42:02 -0500
+Received: from mail-dm6nam11on2077.outbound.protection.outlook.com ([40.107.223.77]:39264
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S231822AbhK3Qfu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 11:35:50 -0500
+        id S230154AbhK3QmA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 11:42:00 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CjiCHt2Dr0+eSfRK9SW7wM+wbm6qZVfvjhVui2uI4hCtDSchsH59FcLb34WM2UMmsBGGQ9uRXrmpEc8yoayaxADgC7Xh0nhju7ETJxe/jssFLPxflwA0x3yOfLwN+vY5dYjjknCf8xOFy8GcjAfjVN7ms+yr+fTmxS73LUQgYTU3XFr2ZVYEFtVuUJ4+jUtj6t4NDGFl2yylw4iLCpdBoL2cpLpUwP8VQj22HdrhIqhZYvqBbwCRkpFyLo+Ua4FGSZnB8shnjYUhR4KrkNSQGhanpD4x0ArIjdfPbIg8AQGXANPApfps5ZQlSsxsy9Ghf5eylENc7tnfWy1bIRcxgA==
+ b=Jfzu7jP5B06JIwD8EWUsfRC6kfmlFOxcFN8wVYEcB+RkSAzQ8NNSA9sU4uLDFSqzrSKPvi96lno0kGIFsw13lKe483nJn4DmeQ370fW7v5L//SvPNxC/qpm+8QYWEoi4ykuh1+VZq+QZwQds3UFYvi7DLjcCT+tNfKdEUZUS2u5/lhbaj/eykQhYCz7DRldvJ0rE+HBBS7rxueAOOlfa7kvyixWHOJbOo9JDuhmc8mc4GI7K8xqDGt6noENvlk/EbZ1Rk3zBRH5Ug2UAXtX6u3esyYt+d4TV48xZ+kpFzh0Y8vzSeFbcy9PniaDfXJVBbhD9xWAub8aZ4dlLxDfT1g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9NWEqKcIMvqzW+pEKEhQTTnaSMTvffofnK+PLzeuTAc=;
- b=I4JUr9+5BjxWHaqsJzi3Zn/6ig1KomUEToZtWseDuL58/7g8/Ix9uEjKJ1QOrn78tjGajEDxMx5N4NiSfovv8HpW40XvvnmTc+BDsgPCYcv0G6cuj/oD0KAKL9swgf/Ac9MUaFImDk576Pf7Frnqzl77g67MbdJjMKB4RKiXTC4TAFNqPbECS2yRvq3WEb1VvyTSHJg5iUBZpbFf7lFG1ArsYej+UOUvAloSNOkLGRQ+mP25Za4jFayX68yzZti7C44R3eDdVGEgNJmFt6onwwJaKjdFSr0FMc/NxXEn+nCjV/qC2VDlTK0R9cmHiCLGMInYXsUGzYv2HPLv/ya7pQ==
+ bh=Jyc/TYbkhGEq5fih8ZSZ9jawSbE1dJp0dhpQbfwJ5wQ=;
+ b=YgiWcXshk2WbXTSCuUBhw+JIb1nsk2+EMVCVqCCz2l+jwKU6Kmcwp5HjRKLxDIHPTbbjquswVnFfF8S9T6GO3v9awtr/v+vh0FGkSqMIxrX4GOjrkhZSffAIAev5NGxSfusdJp4hOzohk8EjbihPVPT9TBsbXcVp6+G6Jl1MTeFJwy4O6QclLukpSgI5lRw/v24c1HlFeFCrAqgj42xS7QnJWO/jlGZhFaLmK5zyFWbtkKwwHvd204Zk3ZHUFd7c6ZHfVZMKimxZ1HjnmFFgWiMvqINKItnm4ThjiGg3gF8s8KRdbAjKojR/7p8CicjE9m5zJ032y2yx7SPBf2EsIA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
- dkim=pass header.d=axentia.se; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
- s=selector2;
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9NWEqKcIMvqzW+pEKEhQTTnaSMTvffofnK+PLzeuTAc=;
- b=HBJygaaLdcJQWjX24YdDc83eJawkZlAsISwM68+rSkwc+9Kfv4tm3L2gCeyfqD0Z1E1oJDiJpGgpEuMeRRRIzgXkuYTd5D9yMiiRDIs9sgGI0fwIjoScs03iHmU0mi33XWYJ3UrHrEUjkFp9PgpvwBNZo7Ws2sBkTMBxyyT0Asc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axentia.se;
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
- by DBAPR02MB6421.eurprd02.prod.outlook.com (2603:10a6:10:195::18) with
+ bh=Jyc/TYbkhGEq5fih8ZSZ9jawSbE1dJp0dhpQbfwJ5wQ=;
+ b=dXsoqBwOPijGA4vJWa7tclLt6kFpVbj2A0U7GYGhsw1kG1LZfYQcs01eDYzuGYxCTMflMl/nCTWk6/HAOwSI0Jrt9+YZWz2vWpzk/1Ki1o7pD1H9V97z1r/LvbuB2/BCtPYcTsSf5VjbEi5fCAaOQCFE1s++NFG9igO4PUGLACc=
+Received: from SJ0PR02MB7279.namprd02.prod.outlook.com (2603:10b6:a03:2a1::9)
+ by BYAPR02MB4519.namprd02.prod.outlook.com (2603:10b6:a03:59::29) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Tue, 30 Nov
- 2021 16:32:29 +0000
-Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39]) by DB8PR02MB5482.eurprd02.prod.outlook.com
- ([fe80::7519:c72c:98b1:a39%4]) with mapi id 15.20.4734.024; Tue, 30 Nov 2021
- 16:32:29 +0000
-Message-ID: <62c04e5a-cd6b-5081-69d6-ce8ad1612560@axentia.se>
-Date:   Tue, 30 Nov 2021 17:32:25 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH 2/2] mux: Add support for reading mux state from consumer
- DT node
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.24; Tue, 30 Nov
+ 2021 16:38:38 +0000
+Received: from SJ0PR02MB7279.namprd02.prod.outlook.com
+ ([fe80::dc7:5777:fa1b:ad83]) by SJ0PR02MB7279.namprd02.prod.outlook.com
+ ([fe80::dc7:5777:fa1b:ad83%9]) with mapi id 15.20.4734.024; Tue, 30 Nov 2021
+ 16:38:38 +0000
+From:   Harsha Harsha <harshah@xilinx.com>
+To:     Randy Dunlap <rdunlap@infradead.org>,
+        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     Sarat Chand Savitala <saratcha@xilinx.com>,
+        Harsh Jain <harshj@xilinx.com>
+Subject: RE: [RFC PATCH 5/6] crypto: xilinx: Add Xilinx SHA3 driver
+Thread-Topic: [RFC PATCH 5/6] crypto: xilinx: Add Xilinx SHA3 driver
+Thread-Index: AQHX5cfv/Gtkq75oe0GYT8ahmwjfo6wcHY6AgAAm3pA=
+Date:   Tue, 30 Nov 2021 16:38:38 +0000
+Message-ID: <SJ0PR02MB7279ADF2CBC68F753B43288FDE679@SJ0PR02MB7279.namprd02.prod.outlook.com>
+References: <1638262465-10790-1-git-send-email-harsha.harsha@xilinx.com>
+ <1638262465-10790-6-git-send-email-harsha.harsha@xilinx.com>
+ <f6c47b8c-6c88-f64f-fdaf-3bb240d4dab0@infradead.org>
+In-Reply-To: <f6c47b8c-6c88-f64f-fdaf-3bb240d4dab0@infradead.org>
+Accept-Language: en-US
 Content-Language: en-US
-To:     Aswath Govindraju <a-govindraju@ti.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20211130121847.11112-1-a-govindraju@ti.com>
- <20211130121847.11112-3-a-govindraju@ti.com>
-From:   Peter Rosin <peda@axentia.se>
-Organization: Axentia Technologies AB
-In-Reply-To: <20211130121847.11112-3-a-govindraju@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: GV3P280CA0097.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:8::29) To DB8PR02MB5482.eurprd02.prod.outlook.com
- (2603:10a6:10:eb::29)
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=xilinx.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 55f222cf-5ecb-4a48-e2c8-08d9b41fdc84
+x-ms-traffictypediagnostic: BYAPR02MB4519:
+x-microsoft-antispam-prvs: <BYAPR02MB4519B26D253A9AD1A722B625DE679@BYAPR02MB4519.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1079;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 40CvOGVU9Yo6O4qtXtENjRcuPP3coZufl/D6zEA7X7RSc/9CwVcU3ZyppFy9NCGGIs2m3Bmy140Q6TW+gVjFd1vxR6lhRFTBG5ucs0PfF5Qur4xt300Dr6SsqM4NUwyI9nDQvoUOLqKptQURpiKZaomXlxMhsZIqXVrvCZR8nK3meH0DS9bIPtPJxP3l7Rnjgc2naT3M+5nkYmvZsRIuOMsBjbJrThTCQTdp3NGihYVpmtoX80K8xA2eCTF7kIpxwd5I4rkXtSWqpn74E2NKtaUhwDFWtbRB3WLMsHEGgr8hkWgpBGxpG8le8xXiklnuBLlj8Wu9oGbiewKuwvbywbe/pW2Kq+iudCxYYwJUeTEqTlYDqF52iNhWbvRbdMRCdy7yBRxgYH1VK4sbIazymlCQKElb559T3i3HWRkTfleVYVfzLtiGNH7tCah5wq0vjHQIbDaP0J6ojnnESnD1JbHySCXNUQ3OI0gqvUd0s6PUIbUE31ZVzJY8uUHi+TT3SkToDSvf4w6RHV19kZFEFwOCnaTVJVyaHF5bphpQ537cxznBOeXzfm0UtgwR0tiec6uACfwmPF9Few1SlUJ5Zq8xsMTCdLl7AbOfFA/pV5EjOFW4K1pzRFGJOURcm7L2mzgKo+eysSWJiDeeB7GSqjiQY2NzwkMI1HkTqk0w0kJFaugUi13W0qtxs+jzv5kQw2mgAOmjzrkKWnKgvlJT5w==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR02MB7279.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(38100700002)(33656002)(64756008)(107886003)(4326008)(186003)(52536014)(8936002)(508600001)(55016003)(38070700005)(6506007)(66446008)(2906002)(66476007)(66556008)(54906003)(86362001)(83380400001)(316002)(53546011)(122000001)(5660300002)(7696005)(76116006)(9686003)(8676002)(66946007)(110136005)(71200400001)(26005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cFI4bEYyZjl6eXNkQnphMERsRnA1SG5PWGlId3Q3R1JXSGtaU25La3VtRWpv?=
+ =?utf-8?B?OWZobGtsL3d6TURwcm54RGZ4TWJLRVFzOU9wQm1NVFNLVkRBdVFWbW9QMkdp?=
+ =?utf-8?B?akNjNEZXKzVXVnI2MUl1TTd1L2xOckJISWxpelQyczhONEFpckVVbm95UkxH?=
+ =?utf-8?B?MEZpaWVmd1NtVzFudWxQRmU1Y1VZSlE0T3J6YWxqT0g4dk5MUW9aem1lQUps?=
+ =?utf-8?B?a1FrblY3N2ZReWhBNG5sM3UxKys2aVBnSkdOaEd1M3pid0tsL1ZUcExwamNL?=
+ =?utf-8?B?Njl3WUR0aXZoS1dvT2NoV21HZUFuU21qSWpOajJEdlA4eFlZT3Q3bVJ4ZmV1?=
+ =?utf-8?B?eG5NcWNaeWY1bkYwa08rU3Z0SUJORWFCRWpqY2E0M3JyS2h3bDVlTkp2VS91?=
+ =?utf-8?B?eDZ4RVIzcUZaVi9wZml3RjhSdmJtUTJIeFJLS1ZMYjUybEtvSWc0VGE4cVBr?=
+ =?utf-8?B?SURmSmVRMHkydTZ3MC9mbmN0Y204UUpxTGpjSS83aHZmd2w1U3RmMUppNkhG?=
+ =?utf-8?B?bHVlMmxyUnB4bDM0UUlKWitmNlRGWElqN3d4OUZibVJHOHRJYzNoZHVUanZr?=
+ =?utf-8?B?Ui9xaGVMZ2tsUXZ1THhYbnhXVmhtVWFPZ3NSeE1tUGVvUXVXRk9OVE1lK0lR?=
+ =?utf-8?B?SDBrN1psaWNHNjVvbDE2dVUrOW8wdVdRcm9GY09MOWo2R2t4c0ZmTDZtYTZl?=
+ =?utf-8?B?V3NDa2w2UmFKQTB6b281SnF1cHlmVWRCQzFsUGFIUmJNRW5pMzhJMFR0Qzdz?=
+ =?utf-8?B?NUJxZlNwWEtrbk1WR2toU21xU2pKc2ZhVjBueVU1Szc4NThIVG5UR21BWVlx?=
+ =?utf-8?B?SkYwMW1rRjM0ZzZHT2k0eml3SkExTXFmSm9BRVppRGowTDBlc0FtMXdmSmdO?=
+ =?utf-8?B?cE1lc2xJNXNYWEJMaU9idldlRTdyMlcybVJyVjZDWlJTTGVtc1JBVnlrYjdS?=
+ =?utf-8?B?Tnd6UGZuV2podDFPM1RWWkhFWU8yQkV3SXRpR2dpejhMam5BeUtDVjFweStW?=
+ =?utf-8?B?WUNpcWUwV0I0d2p1U3JHdGdWdzJHZmJuMHlGODdiS2VSMUFSQTB5Z3RSbVMz?=
+ =?utf-8?B?dUNuVStZL2pTNkxUQWlyRjZTR2VsNDF5eE5WcGl4Vmg0Q214S1VJM1Z6dGdU?=
+ =?utf-8?B?ZmZabysvamV4c3NQTitzbEV0Q3J6TDUwQkZ6amdLK1FuRHNoQUNwSWJTRGQ5?=
+ =?utf-8?B?M0JwWEJtQUs4VFZFalFhZmM4dUpSc0R6TzRLT2x0WlBGODFHa28vSTd2RUNq?=
+ =?utf-8?B?RTZGUkhPSE5KLy9QenVvTXJwNkxLaEVjYjh0Nk4waHZzMWRlZ2RBMEhUY1N6?=
+ =?utf-8?B?Q3BTVEZEM2pWU1pmNVFzVXFaczlYUzVVSzQrYTVqbEtReVdNY2RCR2NNYW5N?=
+ =?utf-8?B?ZWlPMnkvVXNKTkhJcUdIdGlLYkQyVThYcHJMZVIzSzdkNnNENmxjVUwrcU9N?=
+ =?utf-8?B?cXZWZUpoZ0MwclAvZjZaRWpVV1pMQ2syQ1hnK200cWRGUWtZSnB4MDh1UWxP?=
+ =?utf-8?B?NVphMUlDbnJCRWU4VGVoYldCOS9Fc3pJYStKNURUNTJjYUllSXpXN0J6a3pO?=
+ =?utf-8?B?NEdGY2pCSWNtT0tueDhrbkhNVWxQT29hZXlSS0Q3NFVkOS9SbnRENHBxd0c0?=
+ =?utf-8?B?SmFYeUF1dHd2ejhRRmNlbXFNU3RBSmRSQ05oRWx5VnJGYksxY1VOMzEvRkF3?=
+ =?utf-8?B?Q0F0ZXZUNGpWTU1xM2hRaFJWTWovRVd2U2hTYW9FR0ludUFhNUVpaVRpVzNE?=
+ =?utf-8?B?bkV3bDU3OXBraXkyVVVxOE9uNEVhcXduemdoNFN6T01sOUV4RVJRTmZwdDBG?=
+ =?utf-8?B?SWRkRllBeVprSzNaTEo0eDN0am1Gd0dJOVByYzJ5OUc3M2s3WWdRWEVUSXV4?=
+ =?utf-8?B?MDRQeHFJTlJWaXg0S3hybEpEWS9SRzdJODdTRUg2RFlBbzlqVjFZaXQvL2hL?=
+ =?utf-8?B?RUJ1Rnp5VXdmSmVoUzhEOFZiOFM5eU1qM3licFYzWi9SWWZyQkZiQlZNUjRx?=
+ =?utf-8?B?UHVmL1hvZEZnemhNdVc5TkZCY0E1ODJvbXpGRVBFaHloZzBQZFJienZJWS84?=
+ =?utf-8?B?NGJOSFBoNVY1SjZkNExkRjNmY1hGZDdSQ3pUQU8zVWd3azZBcUZ3VEhzMU9k?=
+ =?utf-8?B?SXYxalpibkdYcG55ZWo5d2x4RTlJQ2NaOEFJcElteVg4dnFCTE9vZVJqZmdM?=
+ =?utf-8?B?NFE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Received: from [192.168.13.3] (185.178.140.238) by GV3P280CA0097.SWEP280.PROD.OUTLOOK.COM (2603:10a6:150:8::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22 via Frontend Transport; Tue, 30 Nov 2021 16:32:27 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9c256673-3640-4390-91e0-08d9b41f001b
-X-MS-TrafficTypeDiagnostic: DBAPR02MB6421:
-X-Microsoft-Antispam-PRVS: <DBAPR02MB64211302253612F1DEEB0ED0BC679@DBAPR02MB6421.eurprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:409;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HOV8qYnbYjajyWF19XUCJW18U73QZ+igLLANDakWVwPH2v3kWrhfBLcMxNJMhqubsLF7NYV/PcSfRxHDcxO1RsvoisEPLpw3Wg72h+jNL75SBCPSZmNXFsNSJ+/E+wnZg+Gceh5AO4sILWvyyFH6yA36EuoQh+26XgTn81Bb/ntQekOo7hdn2j154WhSVv7X7gWeVf+95hMW3E1Wb5ENundWoMrOmSF1ToW/khZ865Y5Kv6Hu6wk+PDz75QlTno6PRF3e+nXessGIfCE+7wPES/EAnQRgOE9hsh0bY+OY9SmBf6H+bFIK/vaGxcL54u3wZXt1I9Ly4yxvN76ZTFccDAxGTLzHArzlhP1ICZDVvEcfG4pSkxh5laJe0AmxB96Asj8Y70pcZA0oSSX3XLDKglKRO+W2KjefU6ju4OD36vcksx1+4j13xPbjftE5DJ5YGW2LLBCTy1tovSzZPjThE5jZmf4qze4O3xGbhNplTITrzZkQvckOlNO25wTq4lAZ6WzOg9YKkFFuFwkUPibe1a3v1YdJ6g6zpBHv6ASO6swUu27p+W1jA/5nn4Mp0tOwd4YlbfXysLoHBpPVzrBglunODRXPaPRtOwTa2QcK25EEDl/Lt73o7HRIMLdu1ttqPdZS2MsputrMgqWHDkpEEZ+b5yowSVNg48qbwsLAFqwbnYVQZupDupR/qZGwGTGoHTJblcWtl+2aM4MdEV1ZxepRHzzbvX7GB/xsQVrDFM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(346002)(366004)(396003)(136003)(39840400004)(8676002)(26005)(86362001)(83380400001)(53546011)(186003)(31696002)(5660300002)(2616005)(8936002)(66946007)(38100700002)(36916002)(66476007)(66556008)(30864003)(316002)(54906003)(16576012)(31686004)(4001150100001)(2906002)(36756003)(6486002)(508600001)(956004)(6916009)(4326008)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RzZIaFNFdUVDclBLc1ZnSDEwWm94dkN2bEpiQWtESVdDeUREeHVKY0lLS2hm?=
- =?utf-8?B?ZFRXWGR3T1JPVFJuSnRHQ0Vqb2VMd3ltQmJlVkZtSU1uaCt4STNSb3Bjbm5o?=
- =?utf-8?B?SGRZZ0trdkV6d2NhSVFENlF5TEorZXVMaDcxc0JvdzRUNit6T01kTmtTS0xm?=
- =?utf-8?B?N1pKMnZGd0hnVzQzampYWjg2Y1VURnc5QmUxZXZTK1VSS0RMZ2dta3Z2TnV2?=
- =?utf-8?B?SkQxc1U0SWtYMU9uNmJnMzlnOEtuUUlzelpKZTJ4R0RUOTUwVEMzS3g2Uk1K?=
- =?utf-8?B?R3Bnd280b0p3eFpJcXdqNmEwd21tbndqYWYvYldZYlc3TzFzbk9jbFdES3hQ?=
- =?utf-8?B?R1I0QU56WCt4ZnhFZFd5c3dsdTV2OFhqT0xwQjRWR0VTaWhCOWgyYStUbS9O?=
- =?utf-8?B?MTBkOE8xK3VER0hPRVZMc09IUkk3RnJ2UitNR1dCbG1zVHRQME5wNHRjcGJQ?=
- =?utf-8?B?emtVbDdYNXVEMFdMbnFHd0xlOFNod3J6c3cxbXQ4L25pdEJMMmQ4cC9ncEJ0?=
- =?utf-8?B?TUJYQTFLcS8xMGkxZjZCK1R1U0pzbWxzZm5zOTZ1OXNRZGV1ZFV4N0ZGN3FR?=
- =?utf-8?B?S2ZOOVBFZEc5bkcyZW9Ta2M0cnVmb2ZHazNMa0Z6dGtJVVNkc2VFOXJJbGNV?=
- =?utf-8?B?QUZPYW9KL2ZHc0tFQXRBN3JCYzVhenBYVG1tMWh5UVVJMkxnd1NVN0wxNlFx?=
- =?utf-8?B?TXVJT1R2WnRFWDNZY1hEbTV2YkxxblJpeUVpUmVHWS9xSmY3dFZpc29iQW0z?=
- =?utf-8?B?L29kc1AwN0hTM2pIM3ZqdElSdWoxKytOZGFwZkwxZUJTZjZxbXgxVHF6Z2lx?=
- =?utf-8?B?VUJhNXhDOXRzRGsxN1J1T2VIblhqeU9mQzQ2T29pcTUrVWx4Zk1McHBiakNl?=
- =?utf-8?B?SXZ3Mlgxa2krMkx6L1NnUFNQNlU3UVJZOEVGWUVjcnZWZ3ppSzZtSXlkNGVI?=
- =?utf-8?B?VU9iNmErU1Vzd0piOVpyTUxCc0xsZlJOMTlyUW5mQW5yaUplemhsV3hQVDg0?=
- =?utf-8?B?dlFLYmJFaE5XTDlPSFcrMTNWdDZQL2pXWkFEbU01S1h0a3FzMUUycDhSUlhw?=
- =?utf-8?B?Vk80THF2cVVKK1hYSmNwck8zaDdjckJpSjhzbnRJOTZ1UjhyYXJhMTFobElB?=
- =?utf-8?B?eTNleGtGeUgrTUtPNnhIa2czR3V1MTl1QlduNlA3YXpuZUM0UE5DU25OQUJS?=
- =?utf-8?B?dHU0aTk1a0xlbEpqRHZRRG9ud0NvY3VRd0ltM0hFQzJ4MUZxSUU2WGxPTHA4?=
- =?utf-8?B?QnRURkg3RmtBM1QvejhxSlhwcjI0Z2hyZFhXMDFTM2lVMERxbUtvTENyUGVS?=
- =?utf-8?B?TzkxckN2SzJrWVVVKy8vdEo2cDl6NkliR3EzRElrb2pHdWZoOWpackxrWFhz?=
- =?utf-8?B?OFBLK3NyYU12bHJlRDVtVDJ5aE90SGRkRDU2bTEvSFZJM0d0RVNDWThHN1Nj?=
- =?utf-8?B?bGlEdWR6WUFCUUVFN3J5WUhhbjlqMVpseHh0MXJIUGdaczZjMkFERDU5Zm5o?=
- =?utf-8?B?VDZOZFowclFnSCtxU2tjbGp6N2JtaEx0TlpkeGhNOFdKYVh5dEVHczVTNkMr?=
- =?utf-8?B?Z21PY08zSThDbnBpeVljTm1KNjJObTMrMjdBVmFFWTZDdC9KRGFJSHZNZlEr?=
- =?utf-8?B?TGIwVnYyT3JWUi96YnVNcUpiZlFJMlg5RTRVc05Dcld4SkdRajVNT2N3ejlX?=
- =?utf-8?B?bHJvWktFVTB4OGRSS3Q4WGpDRmQyYVRIT2JKT1BkQllGM2lMUUxGeFJ4Ungr?=
- =?utf-8?B?VzJ0cHA0bU9XaTJoTHdDeVY1STdPd243OGZBeWNVMENxZkhrUnkyUVU2ZTlJ?=
- =?utf-8?B?K3lwL1BUbm5QOTk4U010dkkzUzNNc0lhUWRzNTVvaC9MMGo0VWFEcmdxMGdW?=
- =?utf-8?B?MTBTUnpaQlhiUm5MN2J3SDVheUhMUVRTVmV3czdUZDAwckRMVXJGdlJmbkkr?=
- =?utf-8?B?QjN6VEpVRlZiQnp1M3VHdTl2WGxaZ09XbEhwcjM3LzRJZE9HR0MvM1VqODVP?=
- =?utf-8?B?TktTR3BZSEQrRzhGc09Vb2paOXBTMVBHUVJDbk9rV0tZYVNUaE80b3dCdVRL?=
- =?utf-8?B?UCtRczdkcUhsaDBRc2pBT2VscmpOV0dEbUhCZUhVNHJkbm4razBSSmlXcU1x?=
- =?utf-8?Q?wI6k=3D?=
-X-OriginatorOrg: axentia.se
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c256673-3640-4390-91e0-08d9b41f001b
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
+X-OriginatorOrg: xilinx.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2021 16:32:29.0307
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR02MB7279.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 55f222cf-5ecb-4a48-e2c8-08d9b41fdc84
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Nov 2021 16:38:38.4306
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A04c0YIO4KYDgVEbD7TgkphWFsflBN7yzPtDA53WRUuV4dcF28GrBjxyVU1+Cs0L
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6421
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kawHVPWv6NqlhCIoLS1AkKpDuzv18iSG+k9MXrGxOrPmpTsQOrPX64NSwUDnlX5ECzE8ekqIG7xxV9fd6P9qlA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4519
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-Looks good, I think. I have some nits, but nothing major...
-
-On 2021-11-30 13:18, Aswath Govindraju wrote:
-> In some cases, we might need to provide the state of the mux to be set for
-> the operation of a given peripheral. Therefore, pass this information using
-> mux-states property.
-> 
-> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
-> ---
->  drivers/mux/core.c           | 213 +++++++++++++++++++++++++++++++----
->  include/linux/mux/consumer.h |  19 +++-
->  2 files changed, 212 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-> index 22f4709768d1..38869c3680a8 100644
-> --- a/drivers/mux/core.c
-> +++ b/drivers/mux/core.c
-> @@ -29,6 +29,19 @@
->   */
->  #define MUX_CACHE_UNKNOWN MUX_IDLE_AS_IS
->  
-> +/**
-> + * struct mux_state -	Represents a mux controller specific to a given device
-> + * @mux:		Pointer to a mux controller
-> + * @state		State of the mux to be set
-> + *
-> + * This structure is specific to a device that acquires it and has information
-> + * specific to the device.
-> + */
-> +struct mux_state {
-> +	struct mux_control *mux;
-> +	unsigned int state;
-> +};
-> +
->  static struct class mux_class = {
->  	.name = "mux",
->  	.owner = THIS_MODULE,
-> @@ -370,6 +383,30 @@ int mux_control_select_delay(struct mux_control *mux, unsigned int state,
->  }
->  EXPORT_SYMBOL_GPL(mux_control_select_delay);
->  
-> +/**
-> + * mux_state_select_delay() - Select mux-state
-> + * @mux: The mux-state to select
-
-@mstate
-
-> + * @delay_us: The time to delay (in microseconds) if the mux control
-> + *            changes state on select
-> + *
-> + * On successfully selecting the mux-state, it will be locked until
-> + * there is a call to mux_state_deselect(). If the mux-control is already
-> + * selected when mux_state_select() is called, the caller will be blocked
-> + * until mux_state_deselect() is called (by someone else).
-
-If the other consumer has the whole mux control, that consumer will
-deselect with mux_control_deselect() (i.e. not mux_state_deselect()).
-
-> + *
-> + * Therefore, make sure to call mux_state_deselect() when the operation is
-> + * complete and the mux-control is free for others to use, but do not call
-> + * mux_state_deselect() if mux_state_select() fails.
-> + *
-> + * Return: 0 when the mux-state has been selected or a negative
-> + * errno on error.
-> + */
-> +int mux_state_select_delay(struct mux_state *mstate, unsigned int delay_us)
-> +{
-> +	return mux_control_select_delay(mstate->mux, mstate->state, delay_us);
-> +}
-> +EXPORT_SYMBOL_GPL(mux_state_select_delay);
-> +
->  /**
->   * mux_control_try_select_delay() - Try to select the given multiplexer state.
->   * @mux: The mux-control to request a change of state from.
-> @@ -405,6 +442,27 @@ int mux_control_try_select_delay(struct mux_control *mux, unsigned int state,
->  }
->  EXPORT_SYMBOL_GPL(mux_control_try_select_delay);
->  
-> +/**
-> + * mux_state_try_select_delay() - Try to select the mux-state.
-> + * @mux: The mux-state to select
-
-@mstate
-
-> + * @delay_us: The time to delay (in microseconds) if the mux state is changed.
-> + *
-> + * On successfully selecting the mux-state, it will be locked until
-> + * mux_state_deselect() called.
-> + *
-> + * Therefore, make sure to call mux_state_deselect() when the operation is
-> + * complete and the mux-control is free for others to use, but do not call
-> + * mux_state_deselect() if mux_state_try_select() fails.
-> + *
-> + * Return: 0 when the mux-control state has the requested state or a negative
-
- * Return: 0 when the mux-state has been selected or a negative
-
-> + * errno on error. Specifically -EBUSY if the mux-control is contended.
-> + */
-> +int mux_state_try_select_delay(struct mux_state *mstate, unsigned int delay_us)
-> +{
-> +	return mux_control_try_select_delay(mstate->mux, mstate->state, delay_us);
-> +}
-> +EXPORT_SYMBOL_GPL(mux_state_try_select_delay);
-> +
->  /**
->   * mux_control_deselect() - Deselect the previously selected multiplexer state.
->   * @mux: The mux-control to deselect.
-> @@ -431,6 +489,24 @@ int mux_control_deselect(struct mux_control *mux)
->  }
->  EXPORT_SYMBOL_GPL(mux_control_deselect);
->  
-> +/**
-> + * mux_state_deselect() - Deselect the previously selected multiplexer state.
-> + * @mux: The mux-state to deselect.
-
-@mstate
-
-> + *
-> + * It is required that a single call is made to mux_state_deselect() for
-> + * each and every successful call made to either of mux_state_select() or
-> + * mux_state_try_select().
-> + *
-> + * Return: 0 on success and a negative errno on error. An error can only
-> + * occur if the mux has an idle state. Note that even if an error occurs, the
-> + * mux-control is unlocked and is thus free for the next access.
-> + */
-> +int mux_state_deselect(struct mux_state *mstate)
-> +{
-> +	return mux_control_deselect(mstate->mux);
-> +}
-> +EXPORT_SYMBOL_GPL(mux_state_deselect);
-> +
->  /* Note this function returns a reference to the mux_chip dev. */
->  static struct mux_chip *of_find_mux_chip_by_node(struct device_node *np)
->  {
-> @@ -442,13 +518,15 @@ static struct mux_chip *of_find_mux_chip_by_node(struct device_node *np)
->  }
->  
->  /**
-
-I think this should be an ordinary comment now that this function is refactored
-into a static helper, so just go with a plain old /* instead of /**
-
-> - * mux_control_get() - Get the mux-control for a device.
-> + * mux_get() - Get the mux-control for a device.
->   * @dev: The device that needs a mux-control.
->   * @mux_name: The name identifying the mux-control.
-> + * @state: The variable to store the enable state for the requested device
-
- * @state: Pointer to where the requested state is returned, or NULL when the
-           required multiplexer states are handled by other means.
-
->   *
->   * Return: A pointer to the mux-control, or an ERR_PTR with a negative errno.
->   */
-> -struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
-> +static struct mux_control *mux_get(struct device *dev, const char *mux_name,
-> +				   unsigned int *state)
->  {
->  	struct device_node *np = dev->of_node;
->  	struct of_phandle_args args;
-> @@ -458,8 +536,12 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
->  	int ret;
->  
->  	if (mux_name) {
-> -		index = of_property_match_string(np, "mux-control-names",
-> -						 mux_name);
-> +		if (state)
-> +			index = of_property_match_string(np, "mux-state-names",
-> +							 mux_name);
-> +		else
-> +			index = of_property_match_string(np, "mux-control-names",
-> +							 mux_name);
->  		if (index < 0) {
->  			dev_err(dev, "mux controller '%s' not found\n",
->  				mux_name);
-> @@ -467,12 +549,17 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
->  		}
->  	}
->  
-> -	ret = of_parse_phandle_with_args(np,
-> -					 "mux-controls", "#mux-control-cells",
-> -					 index, &args);
-> +	if (state)
-> +		ret = of_parse_phandle_with_args(np,
-> +						 "mux-states", "#mux-state-cells",
-> +						 index, &args);
-> +	else
-> +		ret = of_parse_phandle_with_args(np,
-> +						 "mux-controls", "#mux-control-cells",
-> +						 index, &args);
->  	if (ret) {
-> -		dev_err(dev, "%pOF: failed to get mux-control %s(%i)\n",
-> -			np, mux_name ?: "", index);
-> +		dev_err(dev, "%pOF: failed to get mux-%s %s(%i)\n",
-> +			np, state ? "state" : "control", mux_name ?: "", index);
->  		return ERR_PTR(ret);
->  	}
->  
-> @@ -481,17 +568,35 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
->  	if (!mux_chip)
->  		return ERR_PTR(-EPROBE_DEFER);
->  
-> -	if (args.args_count > 1 ||
-> -	    (!args.args_count && (mux_chip->controllers > 1))) {
-> -		dev_err(dev, "%pOF: wrong #mux-control-cells for %pOF\n",
-> -			np, args.np);
-> -		put_device(&mux_chip->dev);
-> -		return ERR_PTR(-EINVAL);
-> -	}
-> -
->  	controller = 0;
-> -	if (args.args_count)
-> -		controller = args.args[0];
-> +	if (state) {
-> +		if (args.args_count > 2 || args.args_count == 0 ||
-> +		    (args.args_count < 2 && mux_chip->controllers > 1)) {
-> +			dev_err(dev, "%pOF: wrong #mux-state-cells for %pOF\n",
-> +				np, args.np);
-> +			put_device(&mux_chip->dev);
-> +			return ERR_PTR(-EINVAL);
-> +		}
-> +
-> +		if (args.args_count == 2) {
-> +			controller = args.args[0];
-> +			*state = args.args[1];
-> +		} else {
-> +			*state = args.args[0];
-> +		}
-> +
-> +	} else {
-> +		if (args.args_count > 1 ||
-> +		    (!args.args_count && mux_chip->controllers > 1)) {
-> +			dev_err(dev, "%pOF: wrong #mux-control-cells for %pOF\n",
-> +				np, args.np);
-> +			put_device(&mux_chip->dev);
-> +			return ERR_PTR(-EINVAL);
-> +		}
-> +
-> +		if (args.args_count)
-> +			controller = args.args[0];
-> +	}
->  
->  	if (controller >= mux_chip->controllers) {
->  		dev_err(dev, "%pOF: bad mux controller %u specified in %pOF\n",
-> @@ -502,6 +607,18 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
->  
->  	return &mux_chip->mux[controller];
->  }
-> +
-> +/**
-> + * mux_control_get() - Get the mux-control for a device.
-> + * @dev: The device that needs a mux-control.
-> + * @mux_name: The name identifying the mux-control.
-> + *
-> + * Return: A pointer to the mux-control, or an ERR_PTR with a negative errno.
-> + */
-> +struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
-> +{
-> +	return mux_get(dev, mux_name, NULL);
-> +}
->  EXPORT_SYMBOL_GPL(mux_control_get);
->  
->  /**
-> @@ -523,6 +640,26 @@ static void devm_mux_control_release(struct device *dev, void *res)
->  	mux_control_put(mux);
->  }
->  
-> +/**
-> + * mux_state_put() - Put away the mux-state for good.
-> + * @mux: The mux-state to put away.
-
-@mstate
-
-Cheers,
-Peter
-
-> + *
-> + * mux_control_put() reverses the effects of mux_control_get().
-> + */
-> +void mux_state_put(struct mux_state *mstate)
-> +{
-> +	mux_control_put(mstate->mux);
-> +	kfree(mstate);
-> +}
-> +EXPORT_SYMBOL_GPL(mux_state_put);
-> +
-> +static void devm_mux_state_release(struct device *dev, void *res)
-> +{
-> +	struct mux_state *mstate = *(struct mux_state **)res;
-> +
-> +	mux_state_put(mstate);
-> +}
-> +
->  /**
->   * devm_mux_control_get() - Get the mux-control for a device, with resource
->   *			    management.
-> @@ -553,6 +690,44 @@ struct mux_control *devm_mux_control_get(struct device *dev,
->  }
->  EXPORT_SYMBOL_GPL(devm_mux_control_get);
->  
-> +/**
-> + * devm_mux_state_get() - Get the mux-state for a device, with resource
-> + *			  management.
-> + * @dev: The device that needs a mux-control.
-> + * @mux_name: The name identifying the mux-control.
-> + *
-> + * Return: Pointer to the mux-state, or an ERR_PTR with a negative errno.
-> + */
-> +struct mux_state *devm_mux_state_get(struct device *dev,
-> +				     const char *mux_name)
-> +{
-> +	struct mux_state **ptr, *mstate;
-> +	struct mux_control *mux_ctrl;
-> +	int state;
-> +
-> +	mstate = devm_kzalloc(dev, sizeof(struct mux_state), GFP_KERNEL);
-> +	if (!mstate)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	ptr = devres_alloc(devm_mux_state_release, sizeof(*ptr), GFP_KERNEL);
-> +	if (!ptr)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	mux_ctrl = mux_get(dev, mux_name, &state);
-> +	if (IS_ERR(mux_ctrl)) {
-> +		devres_free(ptr);
-> +		return (struct mux_state *)mux_ctrl;
-> +	}
-> +
-> +	mstate->mux = mux_ctrl;
-> +	mstate->state = state;
-> +	*ptr = mstate;
-> +	devres_add(dev, ptr);
-> +
-> +	return mstate;
-> +}
-> +EXPORT_SYMBOL_GPL(devm_mux_state_get);
-> +
->  /*
->   * Using subsys_initcall instead of module_init here to try to ensure - for
->   * the non-modular case - that the subsystem is initialized when mux consumers
-> diff --git a/include/linux/mux/consumer.h b/include/linux/mux/consumer.h
-> index 7a09b040ac39..bf5abf062c21 100644
-> --- a/include/linux/mux/consumer.h
-> +++ b/include/linux/mux/consumer.h
-> @@ -14,33 +14,50 @@
->  
->  struct device;
->  struct mux_control;
-> +struct mux_state;
->  
->  unsigned int mux_control_states(struct mux_control *mux);
->  int __must_check mux_control_select_delay(struct mux_control *mux,
->  					  unsigned int state,
->  					  unsigned int delay_us);
-> +int __must_check mux_state_select_delay(struct mux_state *mstate,
-> +					unsigned int delay_us);
->  int __must_check mux_control_try_select_delay(struct mux_control *mux,
->  					      unsigned int state,
->  					      unsigned int delay_us);
-> -
-> +int __must_check mux_state_try_select_delay(struct mux_state *mstate,
-> +					    unsigned int delay_us);
->  static inline int __must_check mux_control_select(struct mux_control *mux,
->  						  unsigned int state)
->  {
->  	return mux_control_select_delay(mux, state, 0);
->  }
->  
-> +static inline int __must_check mux_state_select(struct mux_state *mstate)
-> +{
-> +	return mux_state_select_delay(mstate, 0);
-> +}
->  static inline int __must_check mux_control_try_select(struct mux_control *mux,
->  						      unsigned int state)
->  {
->  	return mux_control_try_select_delay(mux, state, 0);
->  }
->  
-> +static inline int __must_check mux_state_try_select(struct mux_state *mstate)
-> +{
-> +	return mux_state_try_select_delay(mstate, 0);
-> +}
-> +
->  int mux_control_deselect(struct mux_control *mux);
-> +int mux_state_deselect(struct mux_state *mstate);
->  
->  struct mux_control *mux_control_get(struct device *dev, const char *mux_name);
->  void mux_control_put(struct mux_control *mux);
-> +void mux_state_put(struct mux_state *mstate);
->  
->  struct mux_control *devm_mux_control_get(struct device *dev,
->  					 const char *mux_name);
-> +struct mux_state *devm_mux_state_get(struct device *dev,
-> +				     const char *mux_name);
->  
->  #endif /* _LINUX_MUX_CONSUMER_H */
-> 
+SGkgUmFuZHksDQoNClRoYW5rcyBmb3IgcmV2aWV3aW5nIHRoZSBwYXRjaC4gSSB3aWxsIG1ha2Ug
+dGhlIGZvbGxvd2luZyBjaGFuZ2VzOg0KLSAgWnlucU1QIFNIQTMgaHcgYWNjZWxlcmF0b3IgLT4g
+WnlucU1QIFNIQTMgaGFyZHdhcmUgYWNjZWxlcmF0b3INCi0gIFNIQTMgaHcgZW5naW5lIC0+IFNI
+QTMgaGFyZHdhcmUgZW5naW5lDQoNClJlZ2FyZHMsDQpIYXJzaGENCg0KPiAtLS0tLU9yaWdpbmFs
+IE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSYW5keSBEdW5sYXAgPHJkdW5sYXBAaW5mcmFkZWFkLm9y
+Zz4NCj4gU2VudDogVHVlc2RheSwgTm92ZW1iZXIgMzAsIDIwMjEgNzo0NCBQTQ0KPiBUbzogSGFy
+c2hhIEhhcnNoYSA8aGFyc2hhaEB4aWxpbnguY29tPjsgaGVyYmVydEBnb25kb3IuYXBhbmEub3Jn
+LmF1OyBkYXZlbUBkYXZlbWxvZnQubmV0OyBsaW51eC1jcnlwdG9Admdlci5rZXJuZWwub3JnOw0K
+PiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBNaWNoYWwgU2ltZWsgPG1pY2hhbHNAeGls
+aW54LmNvbT47IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgcm9iaCtkdEBr
+ZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiBDYzogU2FyYXQgQ2hh
+bmQgU2F2aXRhbGEgPHNhcmF0Y2hhQHhpbGlueC5jb20+OyBIYXJzaCBKYWluIDxoYXJzaGpAeGls
+aW54LmNvbT4NCj4gU3ViamVjdDogUmU6IFtSRkMgUEFUQ0ggNS82XSBjcnlwdG86IHhpbGlueDog
+QWRkIFhpbGlueCBTSEEzIGRyaXZlcg0KPiANCj4gSGktLQ0KPiANCj4gT24gMTEvMzAvMjEgMDA6
+NTQsIEhhcnNoYSB3cm90ZToNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jcnlwdG8vS2NvbmZp
+ZyBiL2RyaXZlcnMvY3J5cHRvL0tjb25maWcNCj4gPiBpbmRleCA1MTY5MGU3Li41ZGYyNTJlIDEw
+MDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvY3J5cHRvL0tjb25maWcNCj4gPiArKysgYi9kcml2ZXJz
+L2NyeXB0by9LY29uZmlnDQo+ID4gQEAgLTc5Niw2ICs3OTYsMTYgQEAgY29uZmlnIENSWVBUT19E
+RVZfWllOUU1QX0FFUw0KPiA+ICAJICBhY2NlbGVyYXRvci4gU2VsZWN0IHRoaXMgaWYgeW91IHdh
+bnQgdG8gdXNlIHRoZSBaeW5xTVAgbW9kdWxlDQo+ID4gIAkgIGZvciBBRVMgYWxnb3JpdGhtcy4N
+Cj4gPg0KPiA+ICtjb25maWcgQ1JZUFRPX0RFVl9aWU5RTVBfU0hBMw0KPiA+ICsJYm9vbCAiU3Vw
+cG9ydCBmb3IgWGlsaW54IFp5bnFNUCBTSEEzIGh3IGFjY2VsZXJhdG9yIg0KPiANCj4gcy9ody9o
+YXJkd2FyZS8NCj4gDQo+ID4gKwlkZXBlbmRzIG9uIEFSQ0hfWllOUU1QIHx8IENPTVBJTEVfVEVT
+VA0KPiA+ICsJc2VsZWN0IENSWVBUT19TSEEzDQo+ID4gKwloZWxwDQo+ID4gKwkgIFhpbGlueCBa
+eW5xTVAgaGFzIFNIQTMgZW5naW5lIHVzZWQgZm9yIHNlY3VyZSBoYXNoIGNhbGN1bGF0aW9uLg0K
+PiA+ICsJICBUaGlzIGRyaXZlciBpbnRlcmZhY2VzIHdpdGggU0hBMyBodyBlbmdpbmUuDQo+IA0K
+PiBzL2h3L2hhcmR3YXJlLw0KPiANCj4gPiArCSAgU2VsZWN0IHRoaXMgaWYgeW91IHdhbnQgdG8g
+dXNlIHRoZSBaeW5xTVAgbW9kdWxlDQo+ID4gKwkgIGZvciBTSEEzIGhhc2ggY29tcHV0YXRpb24u
+DQo+IA0KPiB0aGFua3MuDQo+IC0tDQo+IH5SYW5keQ0K
