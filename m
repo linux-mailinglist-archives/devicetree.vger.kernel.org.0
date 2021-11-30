@@ -2,122 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B82F463C23
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:45:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FD17463C39
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:49:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbhK3Qsm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 30 Nov 2021 11:48:42 -0500
-Received: from mail-ua1-f41.google.com ([209.85.222.41]:45650 "EHLO
-        mail-ua1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233320AbhK3Qsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 11:48:42 -0500
-Received: by mail-ua1-f41.google.com with SMTP id ay21so42707061uab.12;
-        Tue, 30 Nov 2021 08:45:23 -0800 (PST)
+        id S244408AbhK3Qwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 11:52:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244399AbhK3Qwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 11:52:31 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27F37C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 08:48:50 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso20041320wms.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 08:48:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:cc:references:to:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=fUtjjnW/Xur7zV2zhkBycInNirXdYIMaImNBHYOml7c=;
+        b=Lc7eZfadSX8PFumt4lkRky52U9gNWQ6KUsR07sNJLsHu9SoP/vEVnMGM4BQnitfw3+
+         2/C+nNGybN0JGe8UPI05/nb7ueoGYIYzQCeGJfEY3YC9y3rU1xZu6deuv5XNPVzMbc++
+         4iJ+tkZk9q6JQiXSU7vKzr96dyZrwfqxVvlqlQCyUkKp9cXQdHBhWWcpNJi28ZbRdetG
+         V4CziyMGXe/0l8yceVShfUT4JqijymTvhi05pJl49URULVpy7Tf4+pljp4YBV2pfL7nU
+         OhprbZwE5yQCZNoA5VRcgNSOYgZ9chGo6z49Mo9ZDg6wYmPYune6mhmxjs9DLS2STEDL
+         S2tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=iWgemuLdY/QvKYnwAaq261iQpjOIP4k64nwlshQt2Gk=;
-        b=06tGN5zT7nu8LL2I5jvkSjwI9uYYQXPRleYUx8BSWYfAWwN9TP6iNn98PUktY7ibyc
-         uGRjxHFZ4vEDU7keyaMe1T9Li7xf5L3xISg+tZXUlU+hdTQjQVjpe2bjemEIbZ0D9Pj6
-         MiZhh9ACG/k8FXTgjYRbFIityyZm55lv61gVokSy9ijOCaxLEpvO9CWZaaXJQh3K6NLP
-         9navW24vMwHADXt5kzcOOTaxgBeiiNUiQHGBNpVdgkOC6oGFAa5DxlJj9StNEAZhSBeW
-         r0XtwaHbkrj8Y0CU7QjpAE3U1FBpzoPX/ftkJyUmYZa8KO29CTzmi4yRtUeqEYXXTFFP
-         eKWQ==
-X-Gm-Message-State: AOAM531GMvFDw2drvg5xTElaU1CiLFMMqmgDpK64YXjoDj4GTUQMx7tO
-        1BDmH6vA+wwwReiJHyJlOqwZ6OwZc4uyug==
-X-Google-Smtp-Source: ABdhPJzWFBi+9YzLqxNYPpo5Vw5ER0M1AsEPaK939U5P1mm6CN5DHogz53UvV5qw4tbm5zk1phUy2Q==
-X-Received: by 2002:a67:eb54:: with SMTP id x20mr42992663vso.18.1638290722616;
-        Tue, 30 Nov 2021 08:45:22 -0800 (PST)
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
-        by smtp.gmail.com with ESMTPSA id j17sm10084776vkp.27.2021.11.30.08.45.22
+        h=x-gm-message-state:subject:cc:references:to:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=fUtjjnW/Xur7zV2zhkBycInNirXdYIMaImNBHYOml7c=;
+        b=eiZEREaSMIgix70pAq4A2mXu8sTlFttXVxiVhRoiuAhrJ8CGTBUP4K4tQ2vE/+HXMV
+         mGnHo0w2L2onCKEl+nXjiAVozjLrpWBA0NuSScOl4wDSlCJAYFiv0aDwhOBoMYg8cln4
+         W5UWDL1rYjZdn5cVHwpYY4oDi70gfXPb3NE1ZGrMaHZnrKBW73bVkUcbL8tzHW1yPPt+
+         COI+ltauE5eLtTYq0sykD7PGkTiqtG8uNXMwZzyN7vlbtCydLGpO+eo10HrTfNEV4JXJ
+         zPoMOtRBV3tqRBNvPzKKuNXI/hUS0lIT0gDHgFkL91ZCSAkA6MEQy/E0udhbmA0WWXBF
+         +NGw==
+X-Gm-Message-State: AOAM531XgcT+lHfHNLuBjYVit2U8/j1QdgIwVLGO3+bxDbvvOePBFzzV
+        Xwp4opeCS+Jptlh8xMH24nbDmQ==
+X-Google-Smtp-Source: ABdhPJzHsW0Cm+sJwXLAWaU0mkh/35WP9qjf5GLiAU2FFMaPO7gtVcUwQ3esKftfeF7Ziew/X3aEMg==
+X-Received: by 2002:a05:600c:510d:: with SMTP id o13mr723422wms.104.1638290928598;
+        Tue, 30 Nov 2021 08:48:48 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:ae29:582a:93e5:4eb8? ([2a01:e34:ed2f:f020:ae29:582a:93e5:4eb8])
+        by smtp.googlemail.com with ESMTPSA id s8sm17833568wra.9.2021.11.30.08.48.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Nov 2021 08:45:22 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id p2so42632524uad.11;
-        Tue, 30 Nov 2021 08:45:22 -0800 (PST)
-X-Received: by 2002:a67:c106:: with SMTP id d6mr42038722vsj.77.1638290721992;
- Tue, 30 Nov 2021 08:45:21 -0800 (PST)
-MIME-Version: 1.0
-References: <20211104224033.3997504-1-kieran.bingham+renesas@ideasonboard.com>
- <CAMuHMdXVBj58ZM3LqCN3cudsE3VJV8AQC5OCOJP96RaqYf4NDQ@mail.gmail.com>
- <YYo0syH9m/CYlB2d@oden.dyn.berto.se> <YYo62jdzSTxqCMtk@oden.dyn.berto.se>
-In-Reply-To: <YYo62jdzSTxqCMtk@oden.dyn.berto.se>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 30 Nov 2021 17:45:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUNZ+TOGU-H9dZu08WKO2fO2sbgL1BbN3JzEVBkOyMhdA@mail.gmail.com>
-Message-ID: <CAMuHMdUNZ+TOGU-H9dZu08WKO2fO2sbgL1BbN3JzEVBkOyMhdA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] arm64: dts: renesas: Thermal binding validation
-To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Tue, 30 Nov 2021 08:48:48 -0800 (PST)
+Subject: Re: [PATCH v2 1/5] dt-bindings: Powerzone new bindings
+Cc:     heiko@sntech.de, rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>
+References: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
+To:     robh@kernel.org, arnd@linaro.org, ulf.hansson@linaro.org,
         Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <46496cb1-9707-e9c7-3c06-3248a433bafe@linaro.org>
+Date:   Tue, 30 Nov 2021 17:48:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Niklas,
 
-On Tue, Nov 9, 2021 at 10:09 AM Niklas Söderlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> On 2021-11-09 09:43:33 +0100, Niklas Söderlund wrote:
-> > > > linux/arch/arm64/boot/dts/renesas/r8a77951-ulcb-kf.dt.yaml:
-> > > > thermal-zones: sensor3-thermal:cooling-maps:map0:contribution:0:0:
-> > > > 1024 is greater than the maximum of 100
-> > > >         From schema: Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> > > >
-> > > > This validation error appears to be pervasive across all of these
-> > > > bindings, but changing that will be more invasive and require someone to
-> > > > perform dedicated testing with the thermal drivers to ensure that the
-> > > > updates to the ranges do not cause unexpected side effects.
-> > >
-> > > Niklas?
-> >
-> > I will have a look. The thermal driver is the one driver where I have
-> > automated CI test running.
->
-> So the core of the issue is that the definition of the property changed
-> in the txt to yaml conversion. The original definition was,
->
->   Optional property:
->   - contribution:         The cooling contribution to the thermal zone of the
->     Type: unsigned        referred cooling device at the referred trip point.
->     Size: one cell        The contribution is a ratio of the sum
->                             of all cooling contributions within a thermal zone.
->
-> While the  new binding states,
->
->   contribution:
->     $ref: /schemas/types.yaml#/definitions/uint32
->     minimum: 0
->     maximum: 100
->     description:
->       The percentage contribution of the cooling devices at the
->       specific trip temperature referenced in this map
->       to this thermal zone
->
-> Looking at the real world usage of this only 2 out of 17 platforms sets
-> a contribution value less or equal to 100. I will send a patch to fix
-> the bindings.
+Hi,
 
-Given Rob said he applied your patch[1], does that mean this series
-is good to be applied?
-Thanks!
+I believe I took into account all the comments, is this bindings fine?
 
-[1] https://lore.kernel.org/all/YaU4XuiaJgEjGCdQ@robh.at.kernel.org/
+Thanks
+   -- D.
 
-Gr{oetje,eeting}s,
+On 26/11/2021 19:14, Daniel Lezcano wrote:
+> The proposed bindings are describing a set of powerzones.
+> 
+> A power zone is the logical name for a component which is capable of
+> power capping and where we can measure the power consumption.
+> 
+> A power zone can aggregate several power zones in terms of power
+> measurement and power limitations. That allows to apply power
+> constraint to a group of components and let the system balance the
+> allocated power in order to comply with the constraint.
+> 
+> The ARM System Control and Management Interface (SCMI) can provide a
+> power zone description.
+> 
+> The powerzone semantic is also found on the Intel platform with the
+> RAPL register.
+> 
+> The Linux kernel powercap framework deals with the powerzones:
+> 
+> https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
+> 
+> The powerzone can also represent a group of children powerzones, hence
+> the description can result on a hierarchy. Such hierarchy already
+> exists with the hardware or can be represented an computed from the
+> kernel.
+> 
+> The hierarchical description was initially proposed but not desired
+> given there are other descriptions like the power domain proposing
+> almost the same description.
+> 
+> https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
+> 
+> The description gives the power constraint dependencies to apply on a
+> specific group of logically or physically aggregated devices. They do
+> not represent the physical location or the power domains of the SoC
+> even if the description could be similar.
+> 
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>    V1: Initial post
+>    V2:
+>      - Added pattern properties and stick to powerzone-*
+>      - Added required property compatible and powerzone-cells
+>      - Added additionnal property
+>      - Added compatible
+>      - Renamed to 'powerzones'
+>      - Added missing powerzone-cells to the topmost node
+>      - Fixed errors reported by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> ---
+>  .../devicetree/bindings/power/powerzones.yaml | 109 ++++++++++++++++++
+>  1 file changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
+> new file mode 100644
+> index 000000000000..6e63bbc750c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/powerzones.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/powerzones.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Power zones description
+> +
+> +maintainers:
+> +  - Daniel Lezcano <daniel.lezcano@linaro.org>
+> +
+> +description: |+
+> +
+> +  A System on Chip contains a multitude of active components and each
+> +  of them is a source of heat. Even if a temperature sensor is not
+> +  present, a source of heat can be controlled by acting on the
+> +  consumed power via different techniques.
+> +
+> +  A powerzone describes a component or a group of components where we
+> +  can control the maximum power consumption. For instance, a group of
+> +  CPUs via the performance domain, a LCD screen via the brightness,
+> +  etc ...
+> +
+> +  Different components when they are used together can significantly
+> +  increase the overall temperature, so the description needs to
+> +  reflect this dependency in order to assign a power budget for a
+> +  group of powerzones.
+> +
+> +  This description is done via a hierarchy and the DT reflects it. It
+> +  does not represent the physical location or a topology, eg. on a
+> +  big.Little system, the little CPUs may not be represented as they do
+> +  not contribute significantly to the heat, however the GPU can be
+> +  tied with the big CPUs as they usually have a connection for
+> +  multimedia or game workloads.
+> +    
+> +properties:
+> +  $nodename:
+> +    const: powerzones
+> +
+> +  compatible:
+> +    const: powerzones
+> +
+> +patternProperties:
+> +  "^(powerzone)([@-].*)?$":
+> +    type: object
+> +    description:
+> +      A node representing a powerzone acting as an aggregator for all
+> +      its children powerzones.
+> +
+> +    properties:
+> +      "#powerzone-cells":
+> +        description:
+> +          Number of cells in powerzone specifier. Typically 0 for nodes
+> +          representing but it can be any number in the future to
+> +          describe parameters of the powerzone.
+> +
+> +      powerzones:
+> +        description:
+> +          A phandle to a parent powerzone. If no powerzone attribute is
+> +          set, the described powerzone is the topmost in the hierarchy.
+> +
+> +    required:
+> +      - "#powerzone-cells"
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    powerzones {
+> +
+> +      compatible = "powerzones";
+> +
+> +      #powerzone-cells = <0>;
+> +
+> +      SOC_PZ: powerzone-soc {
+> +        #powerzone-cells = <0>;
+> +      };
+> +
+> +      PKG_PZ: powerzone-pkg {
+> +        #powerzone-cells = <0>;
+> +        powerzones = <&SOC_PZ>;
+> +      };
+> +
+> +      GPU_PZ: powerzone-gpu {
+> +        #powerzone-cells = <0>;
+> +        powerzones = <&PKG_PZ>;
+> +      };
+> +    };
+> +
+> +  - |
+> +    A57_0: big@0 {
+> +      compatible = "arm,cortex-a57";
+> +      reg = <0x0 0x0>;
+> +      device_type = "cpu";
+> +      #powerzone-cells = <0>;
+> +      powerzones = <&PKG_PZ>;
+> +    };
+> +
+> +    A57_1: big@1 {
+> +      compatible = "arm,cortex-a57";
+> +      reg = <0x0 0x0>;
+> +      device_type = "cpu";
+> +      #powerzone-cells = <0>;
+> +      powerzones = <&PKG_PZ>;
+> +    };
+> +...
+> 
 
-                        Geert
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
