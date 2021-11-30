@@ -2,80 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6409E463CF0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BCF8463D13
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244896AbhK3Rlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 12:41:37 -0500
-Received: from mail-oi1-f180.google.com ([209.85.167.180]:41965 "EHLO
-        mail-oi1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbhK3Rlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:41:36 -0500
-Received: by mail-oi1-f180.google.com with SMTP id u74so42714849oie.8;
-        Tue, 30 Nov 2021 09:38:17 -0800 (PST)
+        id S245081AbhK3Rqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 12:46:31 -0500
+Received: from mail-oi1-f172.google.com ([209.85.167.172]:40581 "EHLO
+        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245054AbhK3Rq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:46:27 -0500
+Received: by mail-oi1-f172.google.com with SMTP id bk14so42754535oib.7;
+        Tue, 30 Nov 2021 09:43:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IVskb/ISpBqZuEtdpCnNgJLJvCNne/nWtwhEnf4hzBQ=;
-        b=OJVG+6wCVNJXhl19HKSUUND3LkqMdmkjruD1JmQcWRv9uMr/zr7VhGHLemu5aeQwWG
-         Q3ZQrJW0oIdC3fLjRTCuMN5fuhwPGV3ePRXpxvlhh5h5JJL04ZhJfJ36cI2KFYzd8JJ2
-         pxbiK9Qee3Yz4V9dnpmhr0OPFI1S8tnb2Ihvj6weovMm7+HNnmIp/HOyCfmraGCUf3f8
-         eVljGXxRt3ni/Wr92EfNJyPCU0eGgTNVzIu91TOHYyrR0fjwDargDTk59qELCB39fQ5Z
-         +4gH206ibdSElBkOt3i6xOJbLIFMohceFrRakmJp6QmPB7ZekjfomyszFwU6LjllElHX
-         5oFg==
-X-Gm-Message-State: AOAM532jxz/DYB4FlKLQfVDRf3Pndcg/rM5fQh5LzEeM9JQ4OU5xwgHk
-        IL0zYy1hbrpgJPCeoBGWew==
-X-Google-Smtp-Source: ABdhPJx5iNLS5t/74IBuyIZJqeX+F2q/SZvRGhTOtfzD31IeDiUb8q9xNANuVkbmrO5YvcQOtnX0Kg==
-X-Received: by 2002:aca:1a05:: with SMTP id a5mr350709oia.146.1638293897229;
-        Tue, 30 Nov 2021 09:38:17 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=KOr9fOym22LN3Vmi79Rc9gKhOAdZkrFN5TntEcaqynU=;
+        b=m9RZopGugw3bMARD1esCkCes++1uJ6uLhN65dATc8kvnLMjX+f+L9HvI+eGWDvFiEx
+         jTiWVEAsYpSTfSfsHxxY5ObQAmRCqopllHRaw2q6rzxAxbAoDxVMWKMkhBjh7FwJvXMR
+         OynCL5EMfL2sSK261gV65ZlXfHdH6XSX5LgS4lU/YSNplSE8NCBXJvPMpqt7E/diuCkh
+         yUmfMvbOKXTfDNR3pn/G5HHu4/wx06d9kJ/dV4bT1e/Sfnjy1gDkPHv+u43uKyoW0W9d
+         cVS5qFslUTl0x+ghzevJy+IsgdblsqLQm8DhsDkvLTkieT4YdoL0e/rQRC7B2gn07SSK
+         CSYw==
+X-Gm-Message-State: AOAM531Mh4e+NEiSk2kgJzFyFUsAVI61wRXrTx7SnV5Af2OGvfYlUXGt
+        sXu3/Uz6k066/6K5IwN+dPlmxbiqEg==
+X-Google-Smtp-Source: ABdhPJyoSeMBzjlATY+tg+5Yr2+nzO4zZxmIP4ZpLhfbvN/2xFF+jJXqBStE3svx6EQo6MQVR2lOCw==
+X-Received: by 2002:aca:5b87:: with SMTP id p129mr402512oib.30.1638294187809;
+        Tue, 30 Nov 2021 09:43:07 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d3sm3215159otc.0.2021.11.30.09.38.16
+        by smtp.gmail.com with ESMTPSA id 111sm3214603otu.55.2021.11.30.09.43.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 09:38:16 -0800 (PST)
-Received: (nullmailer pid 2706219 invoked by uid 1000);
-        Tue, 30 Nov 2021 17:38:15 -0000
-Date:   Tue, 30 Nov 2021 11:38:15 -0600
+        Tue, 30 Nov 2021 09:43:06 -0800 (PST)
+Received: (nullmailer pid 2713646 invoked by uid 1000);
+        Tue, 30 Nov 2021 17:43:04 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+To:     Aswath Govindraju <a-govindraju@ti.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>, devicetree@vger.kernel.org,
+        Peter Rosin <peda@axentia.se>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] of: base: Skip CPU nodes with "fail"/"fail-..." status
-Message-ID: <YaZhhxB1RmXTPJpt@robh.at.kernel.org>
-References: <20211122114536.2981-1-matthias.schiffer@ew.tq-group.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211122114536.2981-1-matthias.schiffer@ew.tq-group.com>
+In-Reply-To: <20211130121847.11112-2-a-govindraju@ti.com>
+References: <20211130121847.11112-1-a-govindraju@ti.com> <20211130121847.11112-2-a-govindraju@ti.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mux: Document mux-states property
+Date:   Tue, 30 Nov 2021 11:43:04 -0600
+Message-Id: <1638294184.190493.2713645.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Nov 2021 12:45:36 +0100, Matthias Schiffer wrote:
-> Allow fully disabling CPU nodes using status = "fail".
+On Tue, 30 Nov 2021 17:48:46 +0530, Aswath Govindraju wrote:
+> In some cases, it is required to provide the state to which the mux
+> controller has be set to, from the consumer device tree node. Document the
+> property mux-states that can be used for adding this support.
 > 
-> This allows a bootloader to change the number of available CPUs (for
-> example when a common DTS is used for SoC variants with different numbers
-> of cores) without deleting the nodes altogether, which could require
-> additional fixups to avoid dangling phandle references.
-> 
-> Unknown status values (everything that is not "okay"/"ok", "disabled" or
-> "fail"/"fail-...") will continue to be interpreted like "disabled",
-> meaning that the CPU can be enabled during boot.
-> 
-> References:
-> - https://www.lkml.org/lkml/2020/8/26/1237
-> - https://www.spinics.net/lists/devicetree-spec/msg01007.html
-> - https://github.com/devicetree-org/dt-schema/pull/61
-> 
-> Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+> Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
 > ---
-> 
-> v2: Treat unknown status values like "disabled", not like "fail"
-> 
-> 
->  drivers/of/base.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
+>  .../devicetree/bindings/mux/gpio-mux.yaml     | 11 ++++++--
+>  .../devicetree/bindings/mux/mux-consumer.yaml | 14 ++++++++++
+>  .../bindings/mux/mux-controller.yaml          | 26 ++++++++++++++++++-
+>  3 files changed, 48 insertions(+), 3 deletions(-)
 > 
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mux/mux-controller.example.dt.yaml: can-phy4: 'mux-states' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1561624
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
