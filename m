@@ -2,173 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE82A4632AF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 392C0463332
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240929AbhK3Lqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 06:46:46 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:21702 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S236614AbhK3Lqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 06:46:44 -0500
-X-IronPort-AV: E=Sophos;i="5.87,275,1631545200"; 
-   d="scan'208";a="102288480"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 30 Nov 2021 20:43:24 +0900
-Received: from localhost.localdomain (unknown [10.226.93.28])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 5A6D34264D8F;
-        Tue, 30 Nov 2021 20:43:22 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v4 1/2] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
-Date:   Tue, 30 Nov 2021 11:43:15 +0000
-Message-Id: <20211130114316.16622-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211130114316.16622-1-biju.das.jz@bp.renesas.com>
-References: <20211130114316.16622-1-biju.das.jz@bp.renesas.com>
+        id S234687AbhK3LuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 06:50:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S241180AbhK3Ltm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 06:49:42 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCD29C061377
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:46:01 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 0B6B1CE18B8
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 11:46:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B290C53FD2;
+        Tue, 30 Nov 2021 11:45:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638272758;
+        bh=NaJPt5ZfhcOqGwPuUoJxkdXpkvIfXMuvm1EjiLlhrA8=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=l6SVrj96Z9TEcxscLwygYJqGqnP8XY6ccBjU5L1bUR0Xu+aCdPbem7raqQp1lWlj3
+         zyjudDEyIVFZ4AggYGgiY3bT1/KgrszWwdWGwY6ifHsyaOm3Ojxrmc0o7GfOflxJ/U
+         zcU6cu6hqs1uyOJraEnZKJiu3bI/j/7EKsJXAEBCWcuW32wNZfq1jUq7Y6Xfl+jrA+
+         rEfivr+GXb8t0jthTGX8x5nfZxPGd8oKGba6Bv6gh1U3fO8L1asf8sNAPIUX9Zgwlv
+         GZ2wlmvH/taqmPK+IxH90TobtHa1yWSSdiOmOoj565egkY0sgto89YFvVuFXIYWfv4
+         kblF0b/QpOLaQ==
+Message-ID: <cad0e66b5cb88f224bbbe54e7ed8552275864733.camel@kernel.org>
+Subject: Re: [PATCH 0/5] drm/vc4: Use the firmware to stop the display
+ pipeline
+From:   nicolas saenz julienne <nsaenz@kernel.org>
+To:     Maxime Ripard <maxime@cerno.tech>,
+        Scott Branden <sbranden@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     linux-rpi-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Date:   Tue, 30 Nov 2021 12:45:49 +0100
+In-Reply-To: <20211117145040.334827-1-maxime@cerno.tech>
+References: <20211117145040.334827-1-maxime@cerno.tech>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the WDT hardware in the RZ/G2L series.
+Hi Maxime,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
-V3->V4:
- * Added Rb tags from Geert, Rob and Guenter
-V2->v3:
- * No change.
-V1->V2:
- * No Change
-RFC->V1:
- * Added clock-names and interrupt-names as required properties for RZ/G2L
- * Re-order clocknames with internal module clock first
----
- .../bindings/watchdog/renesas,wdt.yaml        | 75 ++++++++++++++-----
- 1 file changed, 57 insertions(+), 18 deletions(-)
+On Wed, 2021-11-17 at 15:50 +0100, Maxime Ripard wrote:
+> Hi,
+> 
+> The VC4 driver has had limited support to disable the HDMI controllers and
+> pixelvalves at boot if the firmware has enabled them.
+> 
+> However, this proved to be limited, and a bit unreliable so a new firmware
+> command has been introduced some time ago to make it free all its resources and
+> disable any display output it might have enabled.
+> 
+> This series takes advantage of that command to call it once the transition from
+> simplefb to the KMS driver has been done.
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index ab66d3f0c476..91a98ccd4226 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -10,9 +10,6 @@ maintainers:
-   - Wolfram Sang <wsa+renesas@sang-engineering.com>
-   - Geert Uytterhoeven <geert+renesas@glider.be>
- 
--allOf:
--  - $ref: "watchdog.yaml#"
--
- properties:
-   compatible:
-     oneOf:
-@@ -22,6 +19,11 @@ properties:
-               - renesas,r7s9210-wdt      # RZ/A2
-           - const: renesas,rza-wdt       # RZ/A
- 
-+      - items:
-+          - enum:
-+              - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
-+          - const: renesas,rzg2l-wdt     # RZ/G2L
-+
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -56,11 +58,13 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    maxItems: 1
-+  interrupts: true
- 
--  clocks:
--    maxItems: 1
-+  interrupt-names: true
-+
-+  clocks: true
-+
-+  clock-names: true
- 
-   power-domains:
-     maxItems: 1
-@@ -75,17 +79,52 @@ required:
-   - reg
-   - clocks
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          enum:
--            - renesas,rza-wdt
--then:
--  required:
--    - power-domains
--    - resets
-+allOf:
-+  - $ref: "watchdog.yaml#"
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - renesas,rza-wdt
-+    then:
-+      required:
-+        - power-domains
-+        - resets
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        interrupt-names:
-+          items:
-+            - const: wdt
-+            - const: perrout
-+        clocks:
-+          items:
-+            - description: Register access clock
-+            - description: Main clock
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: oscclk
-+      required:
-+        - clock-names
-+        - interrupt-names
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        clocks:
-+          maxItems: 1
- 
- additionalProperties: false
- 
--- 
-2.17.1
+I think it would make sense to integrate this funtionality into
+'reset/reset-raspberrypi.c' and pass it to VC4 as a reset controller. It fits
+the same startup situation as the one we have with the USB controller. Also, it
+would contain the firmware weirdness in a single spot.
 
+Otherwise, please use 'devm_rpi_firmware_get()'.
+
+Regards,
+Nicolas
