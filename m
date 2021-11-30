@@ -2,144 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56995463156
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:43:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 92E34463161
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:44:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235366AbhK3Kq1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 05:46:27 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:51716 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235408AbhK3KqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:46:19 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: andrzej.p)
-        with ESMTPSA id 7D4131F41ACB
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638268979; bh=bt/LR2VtIbVnsC+RvQt24STBUKA1tZH4+bQbyFyrYfI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=otBHZjseqfl5oMG/tE+COQ/aLb44rsX6s36RICOPAPw5dIr5/Yb3RuW7UpymihyDG
-         yFasrSgkPp4Hgo1Xf0lbokikcb7zFOQX98KjdZ/MBAhmzhVLjZde7twhcCyvjpqILb
-         NGB2nl59oEDMz58n2ZFtFl/MQnDnLZ9hsgQs9vojMW1EVjkfAn8X+yv6l2N/1MbiRs
-         Ek9LiGsOdN1wfdV/7hKbSckgK7Ofq1vmvWm4TszWIWjtpJ/qbyRwjRZ/tQfZh1Cqaq
-         h1a35L8Dt5dxGdegsBW1zbydTWADD957x6VueUE9yoB8Ki/MpgZBtCg9j+d4d4zSyP
-         KxE694ixt+L+A==
-Subject: Re: [PATCH v2 2/9] media: hantro: add support for reset lines
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-media@vger.kernel.org
-Cc:     ezequiel@vanguardiasur.com.ar, nicolas.dufresne@collabora.com,
-        mchehab@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
-        wens@csie.org, p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-staging@lists.linux.dev
-References: <20211129182633.480021-1-jernej.skrabec@gmail.com>
- <20211129182633.480021-3-jernej.skrabec@gmail.com>
-From:   Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-Message-ID: <f04d8f57-f246-110b-8cbc-4a589eff76a5@collabora.com>
-Date:   Tue, 30 Nov 2021 11:42:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S234029AbhK3KrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 05:47:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S235660AbhK3KrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:47:20 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 288A8C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:44:01 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id t9so26401823wrx.7
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:44:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=/dRrW73L/+aQvawdDWHM9eDTSLKvhZrt7/ceBiWtq0Q=;
+        b=2aFe8uZRO1Htx0Beqk4tImbRLvYAba/GKyjPzF6n6hAWf/GzPWblHuO4bONfs5gBAI
+         zlWNhrihD3l0hMGdePAQltyWYcnaX/0vKJ4S4rDRxqbpHVF2VcQCREIhHG715y8mLE0J
+         pO8O/Nt4Tz9uyKOOuwMesK94SO3J1MR3D1Io5VFucyCIbo5R6alLQ/vsRT5HZArfobc+
+         4BYDrqQUKZn+Iv+HL7UZxdd4F+h5B2bELBiqa3W43Tzoe5GeLV628VhZcjboalsQZB4d
+         4jIR5oHKZGiFWOUhl59rrvd3Xt68gkEtEUJC2CBnFpwjQ4G9ZN85raIPSPp6d4vU+zxG
+         ZC3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=/dRrW73L/+aQvawdDWHM9eDTSLKvhZrt7/ceBiWtq0Q=;
+        b=6HzMlUDmRSTkHpvPxvwy99Sx1HrTywXTsSJZL6lXdOPXedl3z/cn6C6pr8Dgf8d2uX
+         TljTGa/dsRA+e13I60zQrENEfQSxC9nSdXuxpflanuPJJzYgsnVm6Chvucejpk5Yc9++
+         G+9y65iNXHpPVT1FF6d+uQoRwwjpIzQpKWxAWnj+Lxu/vR+n1pshkfWSxapHETOfRboA
+         7oZOtoqlX3hKx6+vhoZMDvH8dgfMGjSEWqZNoj70CylAA0Dx2ZAuTtlF/l/QCkeEk8O2
+         UlXHv2nD2mDzClsv2xiJeg062yYDMWiV4+gQddlVB8oKwBoyLoAUpvYTrpnTIVYUOzJY
+         lVWQ==
+X-Gm-Message-State: AOAM531HkMxR8njeRLm2TiXm1UG5yqlUOa3fLYYOWxJlunchjxLOJi7w
+        PqXEeKGEHCq1NR9gosQP1DkGsMpoVz008Q9d
+X-Google-Smtp-Source: ABdhPJxEpdVKo8wvsxi4+aXMUdgoRqK5cg2Kk9uYqcgTsf2EFPRvq6FKcxgHoepgS9UQiRhCQE6qJA==
+X-Received: by 2002:a05:6000:1acd:: with SMTP id i13mr39844590wry.398.1638269039704;
+        Tue, 30 Nov 2021 02:43:59 -0800 (PST)
+Received: from localhost.localdomain ([2001:861:44c0:66c0:f80b:b9bd:4d6e:b61a])
+        by smtp.gmail.com with ESMTPSA id l21sm16186804wrb.38.2021.11.30.02.43.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Nov 2021 02:43:59 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: meson: p241: add internal sound support
+Date:   Tue, 30 Nov 2021 11:43:58 +0100
+Message-Id: <163826902317.1314212.8226710157799410590.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20211130100159.214489-1-jbrunet@baylibre.com>
+References: <20211130100159.214489-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20211129182633.480021-3-jernej.skrabec@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jernej,
+Hi,
 
-W dniu 29.11.2021 o 19:26, Jernej Skrabec pisze:
-> Some SoCs like Allwinner H6 use reset lines for resetting Hantro G2. Add
-> support for them.
+On Tue, 30 Nov 2021 11:01:57 +0100, Jerome Brunet wrote:
+> This patchset adds support for the internal sound card of the s805x p241
+> reference design. Audio is available on HDMI and 3.5mm jack connector.
 > 
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Reviewed-by: Andrzej Pietrasiewicz <andrzej.p@collabora.com>
-
-> ---
->   drivers/staging/media/hantro/hantro.h     |  3 +++
->   drivers/staging/media/hantro/hantro_drv.c | 15 ++++++++++++++-
->   2 files changed, 17 insertions(+), 1 deletion(-)
+> Jerome Brunet (2):
+>   arm64: dts: meson: p241: add vcc_5v regulator
+>   arm64: dts: meson: p241: add sound support
 > 
-> diff --git a/drivers/staging/media/hantro/hantro.h b/drivers/staging/media/hantro/hantro.h
-> index 7da23f7f207a..33eb3e092cc1 100644
-> --- a/drivers/staging/media/hantro/hantro.h
-> +++ b/drivers/staging/media/hantro/hantro.h
-> @@ -16,6 +16,7 @@
->   #include <linux/videodev2.h>
->   #include <linux/wait.h>
->   #include <linux/clk.h>
-> +#include <linux/reset.h>
->   
->   #include <media/v4l2-ctrls.h>
->   #include <media/v4l2-device.h>
-> @@ -171,6 +172,7 @@ hantro_vdev_to_func(struct video_device *vdev)
->    * @dev:		Pointer to device for convenient logging using
->    *			dev_ macros.
->    * @clocks:		Array of clock handles.
-> + * @resets:		Array of reset handles.
->    * @reg_bases:		Mapped addresses of VPU registers.
->    * @enc_base:		Mapped address of VPU encoder register for convenience.
->    * @dec_base:		Mapped address of VPU decoder register for convenience.
-> @@ -190,6 +192,7 @@ struct hantro_dev {
->   	struct platform_device *pdev;
->   	struct device *dev;
->   	struct clk_bulk_data *clocks;
-> +	struct reset_control *resets;
->   	void __iomem **reg_bases;
->   	void __iomem *enc_base;
->   	void __iomem *dec_base;
-> diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> index 3d3107a39dae..770f4ce71d29 100644
-> --- a/drivers/staging/media/hantro/hantro_drv.c
-> +++ b/drivers/staging/media/hantro/hantro_drv.c
-> @@ -905,6 +905,10 @@ static int hantro_probe(struct platform_device *pdev)
->   			return PTR_ERR(vpu->clocks[0].clk);
->   	}
->   
-> +	vpu->resets = devm_reset_control_array_get(&pdev->dev, false, true);
-> +	if (IS_ERR(vpu->resets))
-> +		return PTR_ERR(vpu->resets);
-> +
->   	num_bases = vpu->variant->num_regs ?: 1;
->   	vpu->reg_bases = devm_kcalloc(&pdev->dev, num_bases,
->   				      sizeof(*vpu->reg_bases), GFP_KERNEL);
-> @@ -978,10 +982,16 @@ static int hantro_probe(struct platform_device *pdev)
->   	pm_runtime_use_autosuspend(vpu->dev);
->   	pm_runtime_enable(vpu->dev);
->   
-> +	ret = reset_control_deassert(vpu->resets);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to deassert resets\n");
-> +		goto err_pm_disable;
-> +	}
-> +
->   	ret = clk_bulk_prepare(vpu->variant->num_clocks, vpu->clocks);
->   	if (ret) {
->   		dev_err(&pdev->dev, "Failed to prepare clocks\n");
-> -		goto err_pm_disable;
-> +		goto err_rst_assert;
->   	}
->   
->   	ret = v4l2_device_register(&pdev->dev, &vpu->v4l2_dev);
-> @@ -1037,6 +1047,8 @@ static int hantro_probe(struct platform_device *pdev)
->   	v4l2_device_unregister(&vpu->v4l2_dev);
->   err_clk_unprepare:
->   	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
-> +err_rst_assert:
-> +	reset_control_assert(vpu->resets);
->   err_pm_disable:
->   	pm_runtime_dont_use_autosuspend(vpu->dev);
->   	pm_runtime_disable(vpu->dev);
-> @@ -1056,6 +1068,7 @@ static int hantro_remove(struct platform_device *pdev)
->   	v4l2_m2m_release(vpu->m2m_dev);
->   	v4l2_device_unregister(&vpu->v4l2_dev);
->   	clk_bulk_unprepare(vpu->variant->num_clocks, vpu->clocks);
-> +	reset_control_assert(vpu->resets);
->   	pm_runtime_dont_use_autosuspend(vpu->dev);
->   	pm_runtime_disable(vpu->dev);
->   	return 0;
-> 
+> [...]
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.17/dt64)
+
+[1/2] arm64: dts: meson: p241: add vcc_5v regulator
+      https://git.kernel.org/amlogic/c/bca54f711c0a2506efcce03a02f96f39b311f188
+[2/2] arm64: dts: meson: p241: add sound support
+      https://git.kernel.org/amlogic/c/c5468e3c930d4d2937d3a842a85df0f74e95e152
+
+-- 
+Neil
