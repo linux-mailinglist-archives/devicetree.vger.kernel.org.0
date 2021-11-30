@@ -2,102 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 187B14636BE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 15:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 411A54636E4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 15:39:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233105AbhK3OgM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 09:36:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56196 "EHLO
+        id S237030AbhK3Om0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 09:42:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229879AbhK3OgL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 09:36:11 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A792C061574;
-        Tue, 30 Nov 2021 06:32:52 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id t23so41610652oiw.3;
-        Tue, 30 Nov 2021 06:32:52 -0800 (PST)
+        with ESMTP id S231570AbhK3OmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 09:42:25 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D395C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 06:39:06 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id j140-20020a1c2392000000b003399ae48f58so19700248wmj.5
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 06:39:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LLwxz7SFD0/zX8V9RD59BizGhzKcy4KZ67rMTjYc8Kk=;
-        b=OViSCVRoEqVSygJrCSpQyhT6cmkJNP3vr/izo8plBCxe+hFGKi1mczQMVHoIE8FThk
-         E515M3/LE+V602oggPHC+bFFFr2Lll0z5rHarPhn76c4P6WD95UDry944juV3R9rEhOc
-         KJcg8Klm1epavV5fsAwMnByag2pTpjInCqEhmAEgkMGWG7f3Y+z+a7stIj85ZETf0q9u
-         MO6islpSyCflnmXBXgr7gXN2C1kVOpjDUO2t+hlj1NNPCDhvqxgEeVu4kTyyKh+TC5fk
-         8h8UbVa3Lo8AXkH0/6AjwPMD05BmPNxQymfUcQ3qEEsa4NUkZwXomXGMHaVMmPGDQHBZ
-         mKhg==
+        bh=2bmfZ8/yojigYMGWoM6Ilhlpc1qceboy4zfRftSi5oE=;
+        b=LelNjI21+uPTpwJ76SNMdaV3DjtJsBx8dnjf0VwM+0LmcN1y5BCEDw7nCes7XUOh+z
+         yTrad4N4KdCVh/LnluKSRW8e/vcF4dArQZv+RNbruDy1uHiBV4OJKaFUXgVND4uubtB0
+         8eot2gMSqo2kjJct9du0xxt+A6Aj71b0sjIlQKrt32wHieUro8uqKCvHPqRUk9+qtSOq
+         2Dljh1tnUsYvjb1Je36fa5D1T/ltcG2WfTi1otHsxmRkOB4p/SKc0fYI1+3fW/WOfwG7
+         LuH2epm7K+gLsltmVwc5N1MUQYA81PLO5Owp+vVfaZQqhMJargSvH35WC3RRJGtrr2KU
+         Iwiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=LLwxz7SFD0/zX8V9RD59BizGhzKcy4KZ67rMTjYc8Kk=;
-        b=nlTRdA+ZOTqiDUt1n4xTwCrTLDxL4Z3OKFD3ehix6WpF3oz3jSxyIZMLHd5vD956Xj
-         H+myNOxbVkpmzCM2V0RlaaPRDuH9c5+a9P7yyNAw5Via7aidHZMv+n7+KU1IJnX/93KP
-         xodGg3M2VBpJBb2Msfqr5rZZXLe7FhBzTWy6heSp2rBTg79j+qQ6ZwKkySOe9SJiAR6g
-         cC8pLAO5Xd7LPyFoYEPGk/irT5xS9iJ8BF0XasM7JOdSkN6yK0Zh0QGG9szBPtrLKeur
-         tU0jrMP0UCdKCNoFQN1LzRYmJmlV7FVAEBJFzFN/IEnVPFqoP6i7TOPtjfDEF6zpp5XW
-         s8OQ==
-X-Gm-Message-State: AOAM533182JFYwiqzkj9EUhVJX8b8UyQISTz6ciaQfGNqwPAG73ZHN/w
-        nJQWxM8NwChpxtpf8gkvCxwq32rHWyc=
-X-Google-Smtp-Source: ABdhPJy+9kI4mY22RgVBh+6yLQ65HqbIuahK0rru/6vF3iYXu7m6xkerBVmyeHc73/MAWOuGfkYYsA==
-X-Received: by 2002:a05:6808:dc5:: with SMTP id g5mr4462456oic.58.1638282771857;
-        Tue, 30 Nov 2021 06:32:51 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id c3sm3864156oiw.8.2021.11.30.06.32.50
+        bh=2bmfZ8/yojigYMGWoM6Ilhlpc1qceboy4zfRftSi5oE=;
+        b=IoerEjWL6V3uY1edO49DRejDMpBRpkzkfSEPjMLeY/rUlL8XCdhEYvkIJ/is22YEek
+         HZ9g5JGVcJc0cIf6LgcVnHAy75KCciTNAK0kyORYqF41PdRQwTHMBM/QE5ldbXbL3qH2
+         BzzjuNbaVmjj654odBnxed9TNfOfwXfbqKCrH/ASAPzzXgb8K3UsFGj434qo8ujVqsqA
+         X0CNf8ouxf7x0vog6NhTGeBRBwi7i+pHMjQ92pxv0LQxXFcL/AC4ESUfaluKU9kVHOlG
+         nPasEKRs3AAgFlKdfChju8ZjcoSfBwuJAw2w1byCiDrYYrGVzXlv4ZLILwAFP2MLewY/
+         cgZQ==
+X-Gm-Message-State: AOAM532746/6wXRhx0Gh4cSmC3U9xr9hQQFBYGE0iKaC3QUsAB4dCB10
+        kZdgN3GhcIfX4oex+78tJuN2xw==
+X-Google-Smtp-Source: ABdhPJxZ5sFmuSWzUiRoOR58P5Y8QszFbL7xBmWKGG3s4ojQayuw4RebmZPdbWjTK045kEQSGPY6bQ==
+X-Received: by 2002:a05:600c:4f87:: with SMTP id n7mr5508835wmq.63.1638283144644;
+        Tue, 30 Nov 2021 06:39:04 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:7880:daae:2d50:bb5e? ([2a01:e34:ed2f:f020:7880:daae:2d50:bb5e])
+        by smtp.googlemail.com with ESMTPSA id u13sm3008168wmq.14.2021.11.30.06.39.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Nov 2021 06:32:51 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
- timeout mode
-To:     Andrej Picej <andrej.picej@norik.com>
-Cc:     support.opensource@diasemi.com, wim@linux-watchdog.org,
-        linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20211130134242.3516619-1-andrej.picej@norik.com>
- <20211130134242.3516619-3-andrej.picej@norik.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <4591cdd6-9a7b-cd1d-817d-8950c8976d10@roeck-us.net>
-Date:   Tue, 30 Nov 2021 06:32:49 -0800
+        Tue, 30 Nov 2021 06:39:04 -0800 (PST)
+Subject: Re: [PATCH 1/5] clocksource: Add MStar MSC313e timer support
+To:     Romain Perier <romain.perier@gmail.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20211126202144.72936-1-romain.perier@gmail.com>
+ <20211126202144.72936-2-romain.perier@gmail.com>
+ <6cf881ea-1761-b3b2-5d0d-9a83595c1246@linaro.org>
+ <CABgxDo+W3vg_dDTphkOLxRPzKER891CxTJnPPVuryj9YQOg1EQ@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <4703d6f2-a056-b76b-b313-2695430683be@linaro.org>
+Date:   Tue, 30 Nov 2021 15:39:02 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-In-Reply-To: <20211130134242.3516619-3-andrej.picej@norik.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <CABgxDo+W3vg_dDTphkOLxRPzKER891CxTJnPPVuryj9YQOg1EQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/30/21 5:42 AM, Andrej Picej wrote:
-> Document the watchdog timeout mode property. If this property is used
-> the user can select what happens on watchdog timeout. Set this property
-> to 1 to enable SHUTDOWN (the device resets), set it to 0 and the device
-> will go to POWERDOWN on watchdog timeout.
+On 30/11/2021 15:12, Romain Perier wrote:
+> Hi,
 > 
-> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
-> ---
->   Documentation/devicetree/bindings/watchdog/da9062-wdt.txt | 3 +++
->   1 file changed, 3 insertions(+)
+> Le lun. 29 nov. 2021 à 18:02, Daniel Lezcano <daniel.lezcano@linaro.org
+> <mailto:daniel.lezcano@linaro.org>> a écrit :
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-> index 950e4fba8dbc..e3e6e56cee21 100644
-> --- a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-> +++ b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
-> @@ -10,6 +10,9 @@ Optional properties:
->   - dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
->   	Only use this option if you can't use the watchdog automatic suspend
->   	function during a suspend (see register CONTROL_B).
-> +- dlg,wdt-sd: Set what happens on watchdog timeout. If this bit is set the
-> +	watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
-> +	POWERDOWN. Can be 0 or 1.
->   
+>     On 26/11/2021 21:21, Romain Perier wrote:
+>     > The MSC313e-compatible SoCs have 3 timer hardware blocks. All of these
+>     > are free running 32-bit increasing counters and can generate
+>     interrupts.
+>     > This commit adds basic support for these timers, the first timer block
+>     > being used as clocksource/sched_clock and delay, while the others will
+>     > be used as clockevents.
+> 
+>     Please you elaborate a bit more the internals of this timer as it is a
+>     initial submission
+> 
+> 
+> Ok, will try to elaborate.
+>  
+> 
+> 
+> 
+>     > Signed-off-by: Romain Perier <romain.perier@gmail.com
+>     <mailto:romain.perier@gmail.com>>
+>     > Co-developed-by: Daniel Palmer <daniel@0x0f.com
+>     <mailto:daniel@0x0f.com>>
+>     > Signed-off-by: Daniel Palmer <daniel@0x0f.com
+>     <mailto:daniel@0x0f.com>>
+>     > ---
+>     >  MAINTAINERS                         |   1 +
+>     >  drivers/clocksource/Kconfig         |  10 ++
+>     >  drivers/clocksource/Makefile        |   1 +
+>     >  drivers/clocksource/timer-msc313e.c | 228
+>     ++++++++++++++++++++++++++++
+>     >  4 files changed, 240 insertions(+)
+>     >  create mode 100644 drivers/clocksource/timer-msc313e.c
+>     >
+>     > diff --git a/MAINTAINERS b/MAINTAINERS
+>     > index 7a2345ce8521..f39a1617bf50 100644
+>     > --- a/MAINTAINERS
+>     > +++ b/MAINTAINERS
+>     > @@ -2282,6 +2282,7 @@ F:     
+>     Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+>     >  F:   arch/arm/boot/dts/mstar-*
+>     >  F:   arch/arm/mach-mstar/
+>     >  F:   drivers/clk/mstar/
+>     > +F:   drivers/clocksource/timer-msc313e.c
+>     >  F:   drivers/gpio/gpio-msc313.c
+>     >  F:   drivers/rtc/rtc-msc313.c
+>     >  F:   drivers/watchdog/msc313e_wdt.c
+>     > diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
+>     > index f65e31bab9ae..822e711da284 100644
+>     > --- a/drivers/clocksource/Kconfig
+>     > +++ b/drivers/clocksource/Kconfig
+>     > @@ -671,6 +671,16 @@ config MILBEAUT_TIMER
+>     >       help
+>     >         Enables the support for Milbeaut timer driver.
+>     > 
+>     > +config MSC313E_TIMER
+>     > +     bool "MSC313E timer driver"
+> 
+>     Silent option please and platform config option enables it.
+> 
+> 
+> What do you mean ? no short description at all ?
 
-Why does it need a value ? Why not just bool ?
+We try to let the platform Kconfig option to select silently the timer
+in order to prevent selecting it manually.
 
-Guenter
+If the timer is mandatory on your platform it should be a silent option,
+except for COMPILE_TEST
+
+That leads to:
+
+	bool "MSC313E timer driver" if COMPILE_TEST
+
+and you should be able to compile it on x86, ...
+
+If the timer is optional because there is another one on the platform,
+it could be unselected manually. That is the configuration you've done here.
+
+So if there is no other broadcast timer, this timer should selected for
+the platform and the option should be silent (except in case of
+COMPILE_TEST).
+
+>     > +     depends on ARCH_MSTARV7 || COMPILE_TEST
+>     > +     select TIMER_OF
+>     > +     select CLKSRC_MMIO
+>     > +     help
+>     > +       Enables support for the MStar MSC313E timer driver.
+>     > +       This provides access to multiple interrupt generating
+>     > +       programmable 32-bit free running incrementing counters.
+>     > +
+>     >  config INGENIC_TIMER
+
+[ ... ]
+
+>     > +
+>     > +struct msc313e_delay {
+>     > +     void __iomem *base;
+>     > +     struct delay_timer delay;
+>     > +};
+>     > +
+>     > +static void __iomem *msc313e_clksrc;
+>     > +static struct msc313e_delay msc313e_delay;
+> 
+>     I'm not sure that compiles on other platform than mstarv7
+> 
+> 
+> It is armv7-based, and its size is known at build-time, no ?
+> Everything builds with WERROR here.
+
+I should have say "arch" instead of "platform".
+
+The COMPILE_TEST option is set above, that means the driver can be
+compiled on a x86 (for compilation test coverage, stubs already exists
+except for delay AFAIR).
+
+[ ... ]
+
+>     > +     msc313e_delay.base = timer_of_base(&to);
+>     > +     msc313e_delay.delay.read_current_timer =
+>     msc313e_read_delay_timer_read;
+>     > +     msc313e_delay.delay.freq = timer_of_rate(&to);
+>     > +
+>     > +     msc313e_clksrc = timer_of_base(&to);
+>     > +     reg = readw(msc313e_clksrc + MSC313E_REG_CTRL);
+>     > +     reg |= MSC313E_REG_CTRL_TIMER_EN;
+>     > +     writew(reg, msc313e_clksrc + MSC313E_REG_CTRL);
+>     > +
+>     > +     register_current_timer_delay(&msc313e_delay.delay);
+>     > +
+>     > +     sched_clock_register(msc313e_timer_sched_clock_read, 32,
+>     timer_of_rate(&to));
+>     > +     return clocksource_mmio_init(timer_of_base(&to), TIMER_NAME,
+>     timer_of_rate(&to), 300, 32,
+>     > +                                  msc313e_timer_clksrc_read);
+> 
+>     format 80char max please, run checkpatch.pl <http://checkpatch.pl>
+>     before submitting
+> 
+> 
+> max_line_lenght is set to "100" in checkpatch.pl <http://checkpatch.pl>
+> since a while now :) .
+> I have passed it with "--strict" before sending the series, however, if
+> you prefer 80 chars
+> max just ask, I can limit to 80 chars.
+
+Oh, indeed. Fair enough, limit to 80 chars is now deprecated and
+suggested length is 100.
+
+In this case, at your convenience.
+
+Thanks
+  -- Daniel
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
