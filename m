@@ -2,90 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E1A463AAE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 16:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 899F6463AC1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 16:58:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbhK3P55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 10:57:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47968 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230247AbhK3P54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 10:57:56 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65D1FC061574;
-        Tue, 30 Nov 2021 07:54:37 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id l22so54937952lfg.7;
-        Tue, 30 Nov 2021 07:54:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=U5qik7JkxsV5L1nyIiJAzLGGqdU8Lv8lfNJJdZtpwB0=;
-        b=RylwZe89Gypz3GfzQSBHd0yTJdUBDZytxEh0mEKj30BcarBB4LEdiIcNBm+4gc2f7l
-         6lhx7QrVSHrj3DhV7qmkd8tGWUmyM8xsXbocB6Z+O9SVijMvhXlnAVxD8CwuZTCXCDgV
-         HP81x3lmR8wGcfB3cd/sQYSjmGp/Xf3WrdKqFn4XEuN/KMnCjrnnSdclgF7AL81C6wWA
-         U1ssQsizpD3vG2qtB1jbdA2tLh+79Z8NWh53EhmDBdL6vWrQz1/FKKY7REB/ckXWLN5d
-         yIBhDKP5SSC2QUxiovsBjVhKbpimlyiEKhoFpIH+46pR8ZI6VuAaB50DCxAjtSlytoJU
-         t8xQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=U5qik7JkxsV5L1nyIiJAzLGGqdU8Lv8lfNJJdZtpwB0=;
-        b=rc6ReoR/WDYe5OJVi8/7//nScR0dvO1knpvdJQs5EwtaA3WIfv2XxZmgXGdvAwRjDH
-         ANth6O+cvf/oZ0auOVbT91uufHBILyzGyTJZW1A6KADwjQevtUKwZf3JH/PUIEI4MIXV
-         fmeLKzWczSQRl26ZQmCDbnYtDQBCNZAylSFObIaoFqghxXMxO7jF6aclZ6zYK18+WdXz
-         9P9hCw2fGWLhfZnWSEwNh1gTpfRpMjfZTcYjLvD2sO/jxvC68THlDucQnSNlf6h0mymG
-         rzS2Qcks6HPXGLBuP+8qXrXIB8GIUCr+zLC2b2bqZZ9duPy6q7t1HGFKzUTkrvO8FJ84
-         z0mA==
-X-Gm-Message-State: AOAM532oGxr8ape2Yoq3JqL4ozXhGz5JYjZUQa+CeaSmWPYt4E3BArL6
-        wALdnZ934dVeB+rvf4Q+E1Yt46LyjD4=
-X-Google-Smtp-Source: ABdhPJy7QhmKwfLB5R6+JEk12Qsc2zj/1kqkJEqaJM8bGr5pAdx1OFEqLSkVbe3uceco1zRz+Cg/Gg==
-X-Received: by 2002:a05:6512:39c7:: with SMTP id k7mr10824lfu.571.1638287675500;
-        Tue, 30 Nov 2021 07:54:35 -0800 (PST)
-Received: from [192.168.2.145] (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.googlemail.com with ESMTPSA id b13sm1985266lfv.200.2021.11.30.07.54.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Nov 2021 07:54:35 -0800 (PST)
-Subject: Re: [PATCH v1 1/2] dt-bindings: sharp,lq101r1sx01: Add compatible for
- LQ101R1SX03
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Anton Bambura <jenneron@protonmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211114200717.28986-1-digetx@gmail.com>
- <20211114200717.28986-2-digetx@gmail.com>
- <YaVG93LCF6MQYiSi@robh.at.kernel.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a8f05850-1c18-1a7d-e529-08d9a6bd9923@gmail.com>
-Date:   Tue, 30 Nov 2021 18:54:34 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S243159AbhK3QBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 11:01:24 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:48449 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S240633AbhK3QBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 11:01:24 -0500
+X-IronPort-AV: E=Sophos;i="5.87,276,1631545200"; 
+   d="scan'208";a="101916626"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 01 Dec 2021 00:58:03 +0900
+Received: from localhost.localdomain (unknown [10.226.93.28])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 847E3400C440;
+        Wed,  1 Dec 2021 00:58:00 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3 0/2] Add Thermal support for RZ/G2L
+Date:   Tue, 30 Nov 2021 15:57:55 +0000
+Message-Id: <20211130155757.17837-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <YaVG93LCF6MQYiSi@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-30.11.2021 00:32, Rob Herring пишет:
-> On Sun, Nov 14, 2021 at 11:07:16PM +0300, Dmitry Osipenko wrote:
->> From: Anton Bambura <jenneron@protonmail.com>
->>
->> LQ101R1SX03 is compatible with LQ101R1SX01, document it.
-> 
-> Then sounds like '"sharp,lq101r1sx03", "sharp,lq101r1sx01"' would be the 
-> appropriate compatible value. Do that, and you don't need a driver 
-> change.
+RZ/G2L SoC incorporates a thermal sensor unit (TSU) that measures
+the temperature inside the LSI.
+ 
+The thermal sensor in this unit measures temperatures in the range from
+−40°C to 125°C with an accuracy of ±3°C. The TSU repeats measurement at
+20-µs intervals, and automatically updates the results of measurement.
 
-Apparently you're right. The "sharp,lq101r1sx03" should be a slightly
-improved revision of "sharp,lq101r1sx01". I see now that LQ101R1SX03 is
-sold as a spare part panel for ASUS TF701T, hence these panels should be
-entirely compatible with each other.
+The TSU has no external pins as well as no interrupts.
+
+This patch series aims to add TSU driver support for RZ/G2L SoC.
+v2->v3:
+ * Added Rb tag from Rob.
+ * Updated commit description with technical description of the sensor
+ * Included math.h and unit.h for round_up() and MILLIDEGREE_PER_DEGREE
+ * Updated the comments.
+v1->v2:
+ * Removed clk patch and dts pthes from this series
+ * Removed devm_add_action_or_reset from probe.
+
+Biju Das (2):
+  dt-bindings: thermal: Document Renesas RZ/G2L TSU
+  thermal/drivers: Add TSU driver for RZ/G2L
+
+ .../bindings/thermal/rzg2l-thermal.yaml       |  76 ++++++
+ drivers/thermal/Kconfig                       |   9 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/rzg2l_thermal.c               | 240 ++++++++++++++++++
+ 4 files changed, 326 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml
+ create mode 100644 drivers/thermal/rzg2l_thermal.c
+
+-- 
+2.17.1
+
