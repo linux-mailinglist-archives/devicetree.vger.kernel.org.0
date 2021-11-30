@@ -2,89 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 392C0463332
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:47:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4517146337B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 12:54:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234687AbhK3LuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 06:50:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45340 "EHLO
+        id S232428AbhK3L5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 06:57:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241180AbhK3Ltm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 06:49:42 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCD29C061377
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:46:01 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 0B6B1CE18B8
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 11:46:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B290C53FD2;
-        Tue, 30 Nov 2021 11:45:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638272758;
-        bh=NaJPt5ZfhcOqGwPuUoJxkdXpkvIfXMuvm1EjiLlhrA8=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=l6SVrj96Z9TEcxscLwygYJqGqnP8XY6ccBjU5L1bUR0Xu+aCdPbem7raqQp1lWlj3
-         zyjudDEyIVFZ4AggYGgiY3bT1/KgrszWwdWGwY6ifHsyaOm3Ojxrmc0o7GfOflxJ/U
-         zcU6cu6hqs1uyOJraEnZKJiu3bI/j/7EKsJXAEBCWcuW32wNZfq1jUq7Y6Xfl+jrA+
-         rEfivr+GXb8t0jthTGX8x5nfZxPGd8oKGba6Bv6gh1U3fO8L1asf8sNAPIUX9Zgwlv
-         GZ2wlmvH/taqmPK+IxH90TobtHa1yWSSdiOmOoj565egkY0sgto89YFvVuFXIYWfv4
-         kblF0b/QpOLaQ==
-Message-ID: <cad0e66b5cb88f224bbbe54e7ed8552275864733.camel@kernel.org>
-Subject: Re: [PATCH 0/5] drm/vc4: Use the firmware to stop the display
- pipeline
-From:   nicolas saenz julienne <nsaenz@kernel.org>
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Scott Branden <sbranden@broadcom.com>,
+        with ESMTP id S232939AbhK3L5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 06:57:49 -0500
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC1EC061757
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:54:26 -0800 (PST)
+Received: by mail-wm1-x336.google.com with SMTP id d72-20020a1c1d4b000000b00331140f3dc8so14577791wmd.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 03:54:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=s/MCC1O3IE0ZQH2CohqUhzPHI1Euqff0ThFYq8pwzS4=;
+        b=BjqK1ZKqktax3hF6VltM9cidNs9XqcShJKucxE2q6M7Zl7KwTvM22Fspla59TycN+p
+         B8M4bTlCs2dEytRrSJqxbKoF4cAobCa2PB0klheKQpkf0hdUbJuzKMLfn+q8Jkfo7erR
+         oC3ZzlzV2Apm0jZuknuyhBqH/4VMPtcUdQewru+Y+VYqKK1nGqA076Vo9nXljLJWXYLX
+         pLPFhHZD0VO2JSKEZyI1m3zSCTjmuFvPrLLLpwnArpwdORzaF+2Fog9vsS2g2R0uEnRd
+         vTAu11oTyK+SVY4HbFImPbSiwi3XSQz87dKf0i49tTBA7PKs5aZwEi1EyEny286WfAcU
+         ooPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=s/MCC1O3IE0ZQH2CohqUhzPHI1Euqff0ThFYq8pwzS4=;
+        b=69Qc+Nzi6XTaVxcsbGjUHZRkWyCBKSDdBisjPpxsvtcPz1Vc/GGCxBg/o4Vmn3jJE1
+         5yjUWYjQaC28ZWb+NMQLuGtszBZ7wvdwme74QRZChAC+TpmP6Ishwf+BYbJn7DFjbkZt
+         vtH3lmCevvTEOFkvwZf6txa1zz323wkwltxWyL8O0x98g9X9yTbnAn37FOBbzazE1p/X
+         nUYNe2KHblLAP4qCyWNqa2xhJvvi4PsoPnn7iHxxMStWu9aE5XFZLx8feI2BqFHhZwS8
+         +E27mlg36nkJNW8gk4QfxBDrQhtQmhPBT5RtBP8kgmly1tk2aceBVjzIAWbGWT0qW+y3
+         amZw==
+X-Gm-Message-State: AOAM530USBDMfjFtmXvcOvC4Dlas0agRCVzQOpsEKxElwEj4uhUGc9gL
+        8VGwn44OQe5VN8dLDzvm2jxhbQ==
+X-Google-Smtp-Source: ABdhPJwF8317Xox73+G2snJoD+SBuc5iH5MnErcxK+DWaH5CAMClLp3wFLMY5PFDp0AqivJXsiPBcA==
+X-Received: by 2002:a05:600c:2118:: with SMTP id u24mr4438317wml.0.1638273265220;
+        Tue, 30 Nov 2021 03:54:25 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id q4sm15851381wrs.56.2021.11.30.03.54.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Nov 2021 03:54:24 -0800 (PST)
+Subject: Re: [RFC PATCH] dt-bindings: nvmem: add transformation support
+To:     Michael Walle <michael@walle.cc>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     linux-rpi-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Date:   Tue, 30 Nov 2021 12:45:49 +0100
-In-Reply-To: <20211117145040.334827-1-maxime@cerno.tech>
-References: <20211117145040.334827-1-maxime@cerno.tech>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+References: <20211123134425.3875656-1-michael@walle.cc>
+ <7807ac74-5b5c-f0a0-804a-497b67d2c985@linaro.org>
+ <31ee8f287bb410fabae11f31c42d5c86@walle.cc>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <c36aaeb5-117a-b0df-2b2d-c86bc29fe881@linaro.org>
+Date:   Tue, 30 Nov 2021 11:54:23 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <31ee8f287bb410fabae11f31c42d5c86@walle.cc>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
 
-On Wed, 2021-11-17 at 15:50 +0100, Maxime Ripard wrote:
-> Hi,
+
+On 29/11/2021 17:43, Michael Walle wrote:
+> Hi Srinivas,
 > 
-> The VC4 driver has had limited support to disable the HDMI controllers and
-> pixelvalves at boot if the firmware has enabled them.
+> Am 2021-11-29 13:54, schrieb Srinivas Kandagatla:
+>> On 23/11/2021 13:44, Michael Walle wrote:
+>>> This is my second attempt to solve the use case where there is only the
+>>> base MAC address stored in an EEPROM or similar storage provider. This
+>>> is the case for the Kontron sl28 board and multiple openwrt supported
+>>> boards.
+>>>
+>>> The first proposal [1] didn't find much appreciation and there wasn't
+>>> any reply to my question or new proposal [2]. So here we are with my new
+>>> proposal, that is more flexible and doesn't fix the ethernet mac only.
+>>> This is just an RFC for the device tree representation for now to see if
+>>> this is the correct way to tackle this.
+>>>
+>>> I'm also aware of the latest post process hook support [3]. This doesn't
+>>> fix the base mac address issue, but I think it also doesn't solve the
+>>> case with swapped ethernet addresses in the general case. That hook will
+>>> involve the driver to do the swapping, but how would the driver know
+>>> if that swapping is actually required. Usually the interpretation of the
+>>> content is opaque to the driver, after all it is the user/board
+>>
+>> But this is the path for any post processing hook, which ever
+>> direction we endup with(using core helpers or provider specific
+>> post-processing).
 > 
-> However, this proved to be limited, and a bit unreliable so a new firmware
-> command has been introduced some time ago to make it free all its resources and
-> disable any display output it might have enabled.
+> Mh? I don't understand. My point was that the driver is unlikely
+> to know what it should process. Take the mtd (or the mtd otp)
+
+What if the drivers know what it should do for post processing?
+
+TBH, all the post processing is provider centric, Its hard to really 
+standardize this for every possible encoding that vendor programs into 
+there nvmem. There is no standardization here that can go in to nvmem core.
+
+My approach for this would be to use the same callback hook. Either set 
+this at provider driver level or at core level.
+
+> nvmem provider for example. If I understand it correctly, it just
+> gets the nvmem name, for example, "mac-address". How should
+> the post process hook know, what it should do? IMHO that just
+> works for very specific drivers, which tied to the content
+> they provide.
+Currently the callback hook is just dealing with names but it can be 
+extended to support other arguments.
+
+
 > 
-> This series takes advantage of that command to call it once the transition from
-> simplefb to the KMS driver has been done.
+>>> manufacturer who does program the storage device. We might be lucky in
+>>> the imx-ocotp case because the IMX reference manual actually states
+>>> where and in which format the mac address is programmed.
+>>>
+>>> Introduce a transformation property. This is intended to be just an
+>>> enumeration of operations. If there will be a new operation, support for
+>>> it has to be added to the nvmem core.
+>>>
+>>> A transformation might have multiple output values, like in the base mac
+>>> address case. It reads the mac address from the nvmem storage and
+>>> generates multiple individual addresses, i.e. on our board we reserve 8
+>>> consecutive addresses. These addresses then can be assigned to different
+>>> network interfaces. To make it possible to reference different values we
+>>> need to introduce an argument to the phandle. This additional argument
+>>> is then an index into a list of values.
+>>>
+>>> Example:
+>>>    mac_addresses: base-mac-address@10 {
+>>>      #nvmem-cell-cells = <1>;
+>>>      reg = <10 6>;
+>>>      transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
+>>
+>> IMO, this is totally redundant. we could probably encode this info
+>> directly in the cell specifiers, something like:
+>>
+>>>    }
+>>>
+>>>    &eth0 {
+>>>      nvmem-cells = <&mac_addresses 0>;
+>>
+>> nvmem-cells = <&base_mac_addresses NVMEM_T_ETH_OFFSET 0>;
+> 
+> I had he same idea, but keep in mind, that there could be more
+> than just one nvmem cells:
+> 
+> nvmem-cells = <&phandle1 arg1 &pandle2 arg2 arg3>;
+> nvmem-cell-names = "name1", "name2";
+> 
+AFAIU, This should just work.
 
-I think it would make sense to integrate this funtionality into
-'reset/reset-raspberrypi.c' and pass it to VC4 as a reset controller. It fits
-the same startup situation as the one we have with the USB controller. Also, it
-would contain the firmware weirdness in a single spot.
+> So you'd need the #nvmem-cell-cells either way.
+> 
+>> And value of #nvmem-cell-cells is dependent on the first cell specifier.
+That does not sound correct. You can see lots of example in dt that have 
+phandles with different number of arguments.
 
-Otherwise, please use 'devm_rpi_firmware_get()'.
+AFAIU, both phandle1 and phandle2 will have different #nvmem-cell-cells 
+values specified in there dt nodes.
 
-Regards,
-Nicolas
+--srini
+
+> 
+> What do you mean with first cell specifier? the phandle (base_mac_address
+> in the example) or the NVMEM_T_ETH_OFFSET? I guess the latter, because the
+> arguments depend on the transformation. But this is not how the
+> of_parse_phandle_with_args() works, it will look the '#nvmem-cell-cells'
+> property up, to see how many arguments it should expect, which is ann
+> property to the referenced node. Thus I've come up with the additional
+> indirection. The number of arguments for the reference cell is either
+> 0 or 1 and the transformation is part of the nvmem cell.
+> 
+>> I understand that these 3 bits of info is required for this type of
+>> post processing and this can only come from DT and its not possible to
+>> determine this at runtime.
+> 
+> ok :)
+> 
+>> Would this address other usecases?
+> 
+> I think so, but see above for why it can't work. Or I am missing
+> something.
+> 
+>> Are you in a position to test few of them?
+> 
+> Sure (at least after my vacation). And TBH I think the imxotp mac
+> swap should use the same or it will be likely that there are future
+> SoCs which will always swap the ethnet
+> 
+>> Lets wait for Rob's opinion on adding #nvmem-cell-cells property with
+>> cell specifiers describing the encoding information?
+> 
+> +1
+> 
+> Thanks for looking into this,
+> -michael
