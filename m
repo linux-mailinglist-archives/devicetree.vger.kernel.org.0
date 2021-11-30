@@ -2,201 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDCB9463E8C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 20:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 403C9463E9E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 20:28:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245704AbhK3TW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 14:22:27 -0500
-Received: from mail-ot1-f47.google.com ([209.85.210.47]:33291 "EHLO
-        mail-ot1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245699AbhK3TW0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 14:22:26 -0500
-Received: by mail-ot1-f47.google.com with SMTP id 35-20020a9d08a6000000b00579cd5e605eso31768315otf.0;
-        Tue, 30 Nov 2021 11:19:07 -0800 (PST)
+        id S1343509AbhK3TcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 14:32:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40850 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239818AbhK3TcN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 14:32:13 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B772C06174A
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 11:28:54 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id nn15-20020a17090b38cf00b001ac7dd5d40cso2201830pjb.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 11:28:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=8xRMmiakU1EMVn9KGKZK7gagQ/r6zpi2qMLSAdpg+SI=;
+        b=thWQBaHWuu9s2KaF+kB2PIi9KtLxsHh7eG3TkQeCYjWAUOqPWdMJ2vxaWgYKBR62oZ
+         p+xzjo6xIBpCezORDzSae7OIF33kxlz7WIf0K6DvztbwAXFLB17xgTGG1VXvQE22swyd
+         /YWNzng0aWMn13Cwrw4EzwgrPAdH5EA87S5+T7s668tmJo2TDjUrxXorwjRrb4b8lO8M
+         awBozzMv4wuIcFH89Pw6usuBj35gtBpi/ZTy5X0vInU6I8f0RLtO4NfnB4CmWms7ECfv
+         gOwfJ5RpJp4zTNbtCHc1uNJ5LucMosInTDxgPo3NKiWLxbo7pkL8IcQSfUbw0GBBVFBo
+         3ivg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OF1LduFTTSRI9VRvBAmxpKfvR5vYDD0TXr59BS8NBsk=;
-        b=6exX1GNUyKmqWS/UgOqu1fylVaoNQLKdu54Wxvvt4hmdJk+fYptVyN3nljitEPaxzS
-         NQnJIF62xu+arThRUXLMgtTWCbHoSmCoGrTxIKra2YyXjjWaT+dXyOGzWoDqTFndqQ/Y
-         qNXvdhefRPxL/px/Ojhe7+j9Dn6+KRB3gFR+lmqJaV/4CxPpOAmh1XMETYqvKkxkt4yS
-         TXryN8n8xa7/2Mokv8m1hQ1jGMrMTyDSt5CO0fwmSUZBqKYoTgzu5s8Y1QxRMyaywk32
-         WlS+MhU4U9sCenDDLMvsHJZb5n68I1fxf0QnxN8P5vzgbtibStojKzUTl+oaFiZ2oA27
-         jrgA==
-X-Gm-Message-State: AOAM530VTaVaCVuww5E+WAzNIY8NUGyEhTcb5ocU9ykELTS35wvmE8jR
-        vRQBIvI13iphI1IsdMtB+g==
-X-Google-Smtp-Source: ABdhPJxPuvTylUr8LHoXN6srxSCAQqg8d9HqWMXsxY0z3t4QMbxbqZQ9Y51mP+wRoX5sJHuOz24LKQ==
-X-Received: by 2002:a9d:24c3:: with SMTP id z61mr1157237ota.100.1638299942808;
-        Tue, 30 Nov 2021 11:19:02 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e21sm3262978ote.72.2021.11.30.11.19.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 11:19:01 -0800 (PST)
-Received: (nullmailer pid 2848687 invoked by uid 1000);
-        Tue, 30 Nov 2021 19:19:00 -0000
-Date:   Tue, 30 Nov 2021 13:19:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Michael Walle <michael@walle.cc>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ansuel Smith <ansuelsmth@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [RFC PATCH] dt-bindings: nvmem: add transformation support
-Message-ID: <YaZ5JNCFeKcdIfu8@robh.at.kernel.org>
-References: <20211123134425.3875656-1-michael@walle.cc>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=8xRMmiakU1EMVn9KGKZK7gagQ/r6zpi2qMLSAdpg+SI=;
+        b=52EwD7Yne44krx13ip7LAskkYLr9EQqsC2LcI4s2yWSn6p1klnAmcZwUrItjIBnds3
+         YpVR4diel+EKxZ4cZ0E3lEp+6yTO2gBMpfDAZoG+tWgrH8wpi2BRBDt/0Cf27/Hcq012
+         AGTEtXZeTLczdWahEVc0qrkD/I+zOGGGdhfjvPNXz05QLuOKnepxgccSASne7t8dKzvg
+         D3DIEbKUT/i53A3IIuKFpRojEAeipRaujE2xjRHsWI4RfaPQDmxXO7ctzmdfWIuvkepf
+         RP/LUFRsH4o3VhMdA1XRl1aZl1q3IYA8iKjwQSTFzIoxGdd8q/JiVLFh/4EJ7O9Xterq
+         DgMQ==
+X-Gm-Message-State: AOAM532PeNCuo+E6IA0X4nxAIQQ2w07GoDJ/SCbIODo8wS/rUebBkvA+
+        tOeutTWS0YhEkpcPnLLq3tGVDzF0fCd6nBo5jxil8w==
+X-Google-Smtp-Source: ABdhPJzuiIzyC7Gkuy0Pli9c4g7qlHhacM7DFcW7lvc8EjG4/8pLDgcxWOFJYEasHl31T4xiue4p2duA2/U138yvOqk=
+X-Received: by 2002:a17:90b:1b06:: with SMTP id nu6mr1142360pjb.155.1638300533615;
+ Tue, 30 Nov 2021 11:28:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211123134425.3875656-1-michael@walle.cc>
+References: <20211106183802.893285-1-aford173@gmail.com> <718f7f6d6cd564d031c1963f1590c62d549ae725.camel@ndufresne.ca>
+ <CAHCN7xKM9RUE7z-+ug1on+D=nDoEm589R4m03ofys92Aq75ZVQ@mail.gmail.com>
+ <8db00a4b6faa99c940d9bc86e17161eb0db5efe3.camel@ndufresne.ca>
+ <CAJ+vNU28UJffFv9jQ2KryJMudqYxvCaoVOVcU5dPqRA209iN6A@mail.gmail.com>
+ <d91532c2c0772f9aa708ead36b2a97203727a7ea.camel@ndufresne.ca>
+ <CAJ+vNU3H-V+bPoZ3qKead45h=W7AhQK6Lhjrx5ssdF4c_qfe=A@mail.gmail.com>
+ <CAHCN7x+0LwwU_rEST+TZxGquswGKL19gnTy9WLofsXtGAtWqdw@mail.gmail.com>
+ <7f94eaacfddb8c5434c17f1e069ea87a17657ce9.camel@ndufresne.ca>
+ <CAHCN7xKRzxMBmPbDobWTuvNNSpTXk5XENvfBnfkhRY3eZKhn6w@mail.gmail.com>
+ <CAHCN7xJFLNi_g+HX8PCy1Rkgf0jnWpO5QGYVz8nH19xrJkwHrA@mail.gmail.com>
+ <CAJ+vNU3zFd=6k_Emc5aafxKkGwCPp4crgOFezQ-E_MbWsn1_EA@mail.gmail.com>
+ <fed6c2fd7cf4971062c417ce41ed1e3812b900e0.camel@ndufresne.ca>
+ <CAHCN7xK+wROHaqDcsY-3WYFQ82qX17L-LHNL3siSWnWvwFShzQ@mail.gmail.com>
+ <CAAEAJfC1xXvemaFP+vTFVJ3S-SpYtrxyZgDamSOgLC1F3ua5xw@mail.gmail.com>
+ <CAHCN7x+UMMP6RXsNm0=OC=UTQzh=RKqQo6B7FD5e4eoJAEfmpg@mail.gmail.com>
+ <CAJ+vNU1epi9SwPMHkuDmKcb68RLemYF=bsp7AVnzz06zKc2efw@mail.gmail.com> <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
+In-Reply-To: <CAAEAJfCpjk5nWWkJYjjDT-YEpJi4pTZqZbzp_if9OGC0HKspzw@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Tue, 30 Nov 2021 11:28:42 -0800
+Message-ID: <CAJ+vNU2we5mGXgYsR6CfimvFXZsc0zktR3fDa-h6RRa02jTT0g@mail.gmail.com>
+Subject: Re: [RFC 0/5] arm64: imx8mm: Enable Hantro VPUs
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>
+Cc:     Adam Ford <aford173@gmail.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        cstevens@beaconembedded.com,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 23, 2021 at 02:44:25PM +0100, Michael Walle wrote:
-> This is my second attempt to solve the use case where there is only the
-> base MAC address stored in an EEPROM or similar storage provider. This
-> is the case for the Kontron sl28 board and multiple openwrt supported
-> boards.
-> 
-> The first proposal [1] didn't find much appreciation and there wasn't
-> any reply to my question or new proposal [2]. So here we are with my new
-> proposal, that is more flexible and doesn't fix the ethernet mac only.
-> This is just an RFC for the device tree representation for now to see if
-> this is the correct way to tackle this.
-> 
-> I'm also aware of the latest post process hook support [3]. This doesn't
-> fix the base mac address issue, but I think it also doesn't solve the
-> case with swapped ethernet addresses in the general case. That hook will
-> involve the driver to do the swapping, but how would the driver know
-> if that swapping is actually required. Usually the interpretation of the
-> content is opaque to the driver, after all it is the user/board
-> manufacturer who does program the storage device. We might be lucky in
-> the imx-ocotp case because the IMX reference manual actually states
-> where and in which format the mac address is programmed.
+On Tue, Nov 30, 2021 at 6:00 AM Ezequiel Garcia
+<ezequiel@vanguardiasur.com.ar> wrote:
+>
+> Hi Tim,
+>
+> On Mon, 29 Nov 2021 at 16:36, Tim Harvey <tharvey@gateworks.com> wrote:
+> >
+> > On Mon, Nov 29, 2021 at 10:59 AM Adam Ford <aford173@gmail.com> wrote:
+> ..
+> > >
+> >
+> > Adam,
+> >
+> > What deps did you install in order to get v4l2codecs building? I
+> > installed libgudev-1.0-dev based on Nicolas' suggestion and rebuilt
+> > (not sure if I needed to re-configure somehow) but there is still
+> > nothing in build/subprojects/gst-plugins-bad/sys/v4l2codecs/. A 'meson
+> > configure' tells me that v4l2codecs is set to 'auto' but I'm not sure
+> > how to find out what dependencies are needed or what may be missing.
+> >
+>
+> At least in my case (Centps-derivative), this is what I've done:
+>
+> ...
+> gst-plugins-bad| Run-time dependency gudev-1.0 found: NO (tried
+> pkgconfig and cmake)
+>
+> Installed gudev ... and then:
+>
+> ...
+> gst-plugins-bad| Dependency gudev-1.0 found: YES 232 (cached)
+> ...
+> gst-plugins-bad 1.19.3.1
+>
+>     Plugins               : accurip, adpcmdec, adpcmenc, aiff, asfmux,
+> audiobuffersplit, audiofxbad, audiomixmatrix, audiolatency,
+> audiovisualizers, autoconvert, bayer,
+>                             camerabin, codecalpha, coloreffects,
+> debugutilsbad, dvbsubenc, dvbsuboverlay, dvdspu, faceoverlay,
+> festival, fieldanalysis, freeverb, frei0r,
+>                             gaudieffects, gdp, geometrictransform,
+> id3tag, inter, interlace, ivfparse, ivtc, jp2kdecimator, jpegformat,
+> rfbsrc, midi, mpegpsdemux,
+>                             mpegpsmux, mpegtsdemux, mpegtsmux, mxf,
+> netsim, rtponvif, pcapparse, pnm, proxy, legacyrawparse,
+> removesilence, rist, rtmp2, rtpmanagerbad,
+>                             sdpelem, segmentclip, siren, smooth,
+> speed, subenc, switchbin, timecode, transcode, videofiltersbad,
+> videoframe_audiolevel, videoparsersbad,
+>                             videosignal, vmnc, y4mdec, decklink, dvb,
+> fbdevsink, ipcpipeline, nvcodec, shm, v4l2codecs, hls, sctp
+>
+> GStreamer current master build fails. It's a known issue which will be
+> fixed today:
+>
+> [...]
+> [8/9] Compiling C object
+> subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gstv4l2c=
+odecvp9dec.c.o
+> FAILED: subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/=
+gstv4l2codecvp9dec.c.o
+> cc -Isubprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p
+> -Isubprojects/gst-plugins-bad/sys/v4l2codecs
+> -I../subprojects/gst-plugins-bad/sys/v4l2codecs
+> -Isubprojects/gst-plugins-bad -I../subprojects/gst-plugins-bad
+> -Isubprojects/gstreamer/libs -I../subprojects/gstreamer/libs
+> -Isubprojects/gstreamer -I../subprojects/gstreamer
+> -Isubprojects/gst-plugins-bad/gst-libs
+> -I../subprojects/gst-plugins-bad/gst-libs
+> -Isubprojects/gst-plugins-base/gst-libs
+> -I../subprojects/gst-plugins-base/gst-libs -Isubprojects/orc
+> -I../subprojects/orc -Isubprojects/gstreamer/gst
+> -Isubprojects/gst-plugins-base/gst-libs/gst/video
+> -Isubprojects/gst-plugins-base/gst-libs/gst/pbutils
+> -Isubprojects/gst-plugins-base/gst-libs/gst/audio
+> -Isubprojects/gst-plugins-base/gst-libs/gst/tag
+> -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include
+> -I/usr/include/gudev-1.0 -fdiagnostics-color=3Dalways
+> -D_FILE_OFFSET_BITS=3D64 -Wall -Winvalid-pch -O2 -g -fvisibility=3Dhidden
+> -fno-strict-aliasing -DG_DISABLE_DEPRECATED -Wmissing-prototypes
+> -Wdeclaration-after-statement -Wold-style-definition
+> -Wmissing-declarations -Wredundant-decls -Wwrite-strings -Wformat
+> -Wformat-security -Winit-self -Wmissing-include-dirs -Waddress
+> -Wno-multichar -Wvla -Wpointer-arith -fPIC -pthread -DHAVE_CONFIG_H
+> -MD -MQ subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/=
+gstv4l2codecvp9dec.c.o
+> -MF subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gstv=
+4l2codecvp9dec.c.o.d
+> -o subprojects/gst-plugins-bad/sys/v4l2codecs/libgstv4l2codecs.so.p/gstv4=
+l2codecvp9dec.c.o
+> -c ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:92:3:
+> error: unknown type name =E2=80=98grefcount=E2=80=99
+>    grefcount ref_count;
+>    ^~~~~~~~~
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c: In
+> function =E2=80=98gst_v4l2_codec_vp9_dec_picture_data_new=E2=80=99:
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:106:3:
+> warning: implicit declaration of function =E2=80=98g_ref_count_init=E2=80=
+=99; did you
+> mean =E2=80=98g_cond_init=E2=80=99? [-Wimplicit-function-declaration]
+>    g_ref_count_init (&pic_data->ref_count);
+>    ^~~~~~~~~~~~~~~~
+>    g_cond_init
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c: In
+> function =E2=80=98gst_v4l2_codec_vp9_dec_picture_data_ref=E2=80=99:
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:118:3:
+> warning: implicit declaration of function =E2=80=98g_ref_count_inc=E2=80=
+=99; did you
+> mean =E2=80=98g_strv_contains=E2=80=99? [-Wimplicit-function-declaration]
+>    g_ref_count_inc (&data->ref_count);
+>    ^~~~~~~~~~~~~~~
+>    g_strv_contains
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c: In
+> function =E2=80=98gst_v4l2_codec_vp9_dec_picture_data_unref=E2=80=99:
+> ../subprojects/gst-plugins-bad/sys/v4l2codecs/gstv4l2codecvp9dec.c:125:7:
+> warning: implicit declaration of function =E2=80=98g_ref_count_dec=E2=80=
+=99
+> [-Wimplicit-function-declaration]
+>    if (g_ref_count_dec (&data->ref_count)) {
+>        ^~~~~~~~~~~~~~~
+> ninja: build stopped: subcommand failed.
+>
+> Hope this helps get you started!
+> Ezequiel
 
-A compatible string can define what is the format of the data.
+Ezequiel and Nicolas,
 
-> Introduce a transformation property. This is intended to be just an
-> enumeration of operations. If there will be a new operation, support for
-> it has to be added to the nvmem core.
-> 
-> A transformation might have multiple output values, like in the base mac
-> address case. It reads the mac address from the nvmem storage and
-> generates multiple individual addresses, i.e. on our board we reserve 8
-> consecutive addresses. These addresses then can be assigned to different
-> network interfaces. To make it possible to reference different values we
-> need to introduce an argument to the phandle. This additional argument
-> is then an index into a list of values.
+Thanks - I did manage to get gstreamer 1.19.3 built successfully with
+v4l2codecs finally by getting the correct dependencies. I've attempted
+to software encode from another system and decode/display on the IMX8M
+Mini but thus far have not been successful.
 
-I still don't think trying to encode transformations of data into the DT 
-is right approach.
+I see that v4l2codecs plugin v4l2slh264dec/v4l2slmpeg2dec/v4l2slvp8dec
+and these all can output video/x-raw NV12/YUY2 which kmssink should
+accept so I'm attempting the following :
 
-> 
-> Example:
->   mac_addresses: base-mac-address@10 {
->     #nvmem-cell-cells = <1>;
->     reg = <10 6>;
->     transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
->   }
-> 
->   &eth0 {
->     nvmem-cells = <&mac_addresses 0>;
->     nvmem-cell-names = "mac-address";
->   };
-> 
->   &eth1 {
->     nvmem-cells = <&mac_addresses 2>;
->     nvmem-cell-names = "mac-address";
->   };
-> 
-> The NVMEM_T_ETH_OFFSET transformation takes N additional (dt) cells and
-> will generate N values. In this example BASE_MAC+0, BASE_MAC+1, BASE_MAC+7.
-> An nvmem consumer can then reference the nvmem cell with an index. So eth0
-> will get BASE_MAC+0 and eth1 will get BASE_MAC+7.
-> 
-> This should be sufficient flexible for many different transformations
-> without having to touch the bindings except for adding documentation and
-> checks for new transformations.
+# vp8 encode from x86
+gst-launch-1.0 -v videotestsrc ! video/x-raw,width=3D800,height=3D480 !
+vp8enc ! rtpvp8pay ! udpsink host=3D172.24.33.15 port=3D9001
+# vp8 decode on imx8mm@172.24.33.15 which has a 800x480 display
+[gst-main] root@focal-venice:~/gstreamer/build# gst-launch-1.0 -v
+udpsrc port=3D9001 caps =3D "application/x-rtp, media=3D(string)video,
+clock-rate=3D(int)90000, encoding-name=3D(string)VP8, payload=3D(int)96,
+ssrc=3D(uint)2745262155, timestamp-offset=3D(uint)2515032683,
+seqnum-offset=3D(uint)19579, a-framerate=3D(string)30" ! rtpvp8depay !
+v4l2slvp8dec ! kmssink
+Setting pipeline to PAUSED ...
+Pipeline is live and does not need PREROLL ...
+/GstPipeline:pipeline0/GstKMSSink:kmssink0: display-width =3D 800
+/GstPipeline:pipeline0/GstKMSSink:kmssink0: display-height =3D 480
+Pipeline is PREROLLED ...
+Setting pipeline to PLAYING ...
+/GstPipeline:pipeline0/GstUDPSrc:udpsrc0.GstPad:src: caps =3D
+application/x-rtp, media=3D(string)video, clock-rate=3D(int)90000,
+encoding-name=3D(string)VP8, payload=3D(int)96, ssrc=3D(uint)2745262155,
+timestamp-offset=3D(uint)2515032683, seqnum-offset=3D(uint)19579,
+a-framerate=3D(string)30
+New clock: GstSystemClock
+/GstPipeline:pipeline0/GstRtpVP8Depay:rtpvp8depay0.GstPad:sink: caps =3D
+application/x-rtp, media=3D(string)video, clock-rate=3D(int)90000,
+encoding-name=3D(string)VP8, payload=3D(int)96, ssrc=3D(uint)2745262155,
+timestamp-offset=3D(uint)2515032683, seqnum-offset=3D(uint)19579,
+a-framerate=3D(string)30
+/GstPipeline:pipeline0/GstRtpVP8Depay:rtpvp8depay0.GstPad:src: caps =3D
+video/x-vp8, framerate=3D(fraction)0/1, height=3D(int)480, width=3D(int)800=
+,
+profile=3D(string)0
+ERROR: from element /GstPipeline:pipeline0/GstUDPSrc:udpsrc0: Internal
+data stream error.
+Additional debug info:
+../subprojects/gstreamer/libs/gst/base/gstbasesrc.c(3127):
+gst_base_src_loop (): /GstPipeline:pipeline0/GstUDPSrc:udpsrc0:
+streaming stopped, reason not-negotiated (-4)
+Execution ended after 0:00:02.076839644
+Setting pipeline to NULL ...
+Freeing pipeline ...
 
-The content and number of cells is supposed to be opaque to the client 
-and interpreted by the provider. That's sort of true here, but not 
-really because the interpretation is tied to 'transformation'. So I'm 
-okay with adding cells, but not fixing the interpretation of them. A 
-compatible should determine how the cells are interpreted.
+I'm getting the same thing when trying to use h264.
 
+I've never quite been able to grasp how to debug GStreamer's
+negotiation issues. If I end with fakesink it appears to decode so it
+must be the v4l2slvp8dec to kmssink. I tried forcing the pixel format
+using 'v4l2slvp8dec ! "video/x-raw,format=3D(string)NV12" ! kmssink' but
+I still get the negotiation error.
 
-> I do have one question regarding "#nvmem-cell-cells" (aside from the
-> awkward naming): is it allowed to have that property optional if there
-> is no additional argument to the phandle?
+What interrupts should I be seeing in /proc/interrupts? I don't see
+anything vpu/hantro related there.
 
-We don't have any choice if we add "#nvmem-cell-cells". There's already 
-cases without it.
+I also want to make sure I have a basic understanding of the vpu
+drivers and usersapce on the IMX8M Mini. The IMX6Q/DL that I'm more
+familiar with has a vpu that is supported by the GStreamer video4linux
+plugin which shows the following (on GStreamer 1.16.2):
+  v4l2jpegenc: V4L2 JPEG Encoder
+  v4l2jpegdec: V4L2 JPEG Decoder
+  v4l2h264enc: V4L2 H.264 Encoder
+  v4l2mpeg4enc: V4L2 MPEG4 Encoder
+  v4l2mpeg4dec: V4L2 MPEG4 Decoder
+  v4l2mpeg2dec: V4L2 MPEG2 Decoder
+  v4l2h264dec: V4L2 H264 Decoder
+The IMX6Q/DL also has an IPU that has an M2M driver that provides the
+following for scaling/colorspace conversion:
+  v4l2convert: V4L2 Video Converter
 
-> 
-> [1] https://lore.kernel.org/all/20210414152657.12097-2-michael@walle.cc/
-> [2] https://lore.kernel.org/linux-devicetree/362f1c6a8b0ec191b285ac6a604500da@walle.cc/
-> [3] https://lore.kernel.org/lkml/20211013131957.30271-1-srinivas.kandagatla@linaro.org/
-> 
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> ---
->  .../devicetree/bindings/nvmem/nvmem.yaml      | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> index 456fb808100a..8893d045be77 100644
-> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> @@ -26,11 +26,34 @@ properties:
->    "#size-cells":
->      const: 1
->  
-> +  '#nvmem-cell-cells':
-> +    enum: [0, 1]
-> +    description:
-> +      Must be 1 if the transformations has multiple output values.
-> +      The argument is then the index into the list of output values.
-> +      For example, if the nvmem cell only specify a base ethernet
-> +      address the transformation can then create different individual
-> +      ethernet addresses.
-> +
->    read-only:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
->        Mark the provider as read only.
->  
-> +  transformation:
-> +    description:
-> +      Transform the content of a NVMEM cell. Sometimes it is necessary
-> +      to preprocess the content of a cell so it is usable by the NVMEM
-> +      consumer. There are also cases where one NVMEM cell value can
-> +      generate a list of values.
-> +
-> +      Use one of the NVMEM_T_* prefixed definitions from the header
-> +      include/dt-bindings/nvmem/nvmem.h.
-> +
-> +      Some transformations might have additional arguments.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +
->    wp-gpios:
->      description:
->        GPIO to which the write-protect pin of the chip is connected.
-> @@ -98,6 +121,12 @@ examples:
->                reg = <0xc 0x1>;
->                bits = <2 3>;
->            };
-> +
-> +          ethernet_base_mac: base-mac-address@100 {
-> +              #nvmem-cell-cells = <1>;
-> +              reg = <0x100 0x6>;
-> +              transformation = <NVMEM_T_ETH_OFFSET 0 1 2 7>;
-> +          };
->        };
->  
->  ...
-> -- 
-> 2.30.2
-> 
-> 
+I believe what I'm reading is that the IMX8M Mini Hantro codecs are
+'stateful' where more software is required to drive them and is
+supported by the newer v4l2codecs plugin. I haven't been able to
+understand what kernel version/requirements the v4l2codecs plugin
+users/requires.
+
+I'm also trying to understand how we can get scaling/colorspace
+conversion on the IMX8M Mini. The IMX8M lacks an IPU... is there some
+way to utilize scaling/colorspace conversion from the 2D GPU bound to
+the etnaviv driver?
+
+Best regards,
+
+Tim
