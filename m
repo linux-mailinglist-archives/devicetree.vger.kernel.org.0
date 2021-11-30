@@ -2,90 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED141463C3B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:49:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63F80463C73
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:03:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244433AbhK3Qw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 11:52:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32958 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233257AbhK3Qwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 11:52:55 -0500
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D3A3C061748
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 08:49:34 -0800 (PST)
-Received: by mail-lf1-x12e.google.com with SMTP id r26so55369193lfn.8
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 08:49:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20210112.gappssmtp.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=y+9tzdDCGsDUUrL8c3qTMvpYPvBp/D8362sjA+sSoxc=;
-        b=b1YdeDgvuEBYxuKI5iRpU0uIL2G7IvIn23HtKfuf4Hu2s4ACAcbx21l/1IBuBD5haG
-         0c0nAuUIz27f9DBsXonJIoP2UimM6JXNlwFSyq18HBoZx1ab/eajk7U7rSzZsf2GDW5l
-         tFkNESpU7qRULDVUmZO6JfaomBw58IzyWkPiNi61lPpkM10mU5ULje4MEkEutwWoFb/q
-         ZdX/q1tAcuQtyp3H8SFBVto0UMUV66NV455soQ/BRjS2KhShnygJtxBYTiEwW6HehZj6
-         yqVs/DZwFONqhZaVUW8BP11WNYL/DBVKoEBnlqB6olE/zTlzHMq93mzQujRbzrETif7K
-         gxgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=y+9tzdDCGsDUUrL8c3qTMvpYPvBp/D8362sjA+sSoxc=;
-        b=x1SlzoPnM3Z0eqtkEK72nuP+GrVXaJ5wb5WIugKWokKFq9/2QJ3OGfbl7ABaiY68CX
-         NkSVfq2GKxB+83LtKOcX/FZpPbJYzUYGkJ0qs3/jrjN/1x8/2wPFrbRmjfdvVI2N/EnJ
-         QeptFLnjWScBLhVjMS5oygikVoq/MpyW8XcYl/XXOYBJfdVQynAVQTplXYjRATLd0KJQ
-         AQ3ReybzOgLwJCFn6K56ykoq1nzetp+qEhfIR0FwflQ4gmbDpThcubbxrMB+b2JaS1yQ
-         M3gi/ok+BRrRGlUE/5Pu3E6Eq3W0lWEfG/WJKq9jttZqd32vM6RffkV/53ypi2tEcZl4
-         zfHw==
-X-Gm-Message-State: AOAM5338MxhL9+hXoZ/KnFqGfPILsDQlxtdmPsQwbsJT6yEKK3ShQZ0w
-        ldtVGXk2p4tgl2tcbm0UIeja4w==
-X-Google-Smtp-Source: ABdhPJwW9pz1BIYwEbsOEzh9cfE3squ8ovlpDNkHfSy6oLtimjIT/JCgbbdRu/Nn+7KfqkAj2sjejA==
-X-Received: by 2002:a05:6512:3217:: with SMTP id d23mr367957lfe.572.1638290972757;
-        Tue, 30 Nov 2021 08:49:32 -0800 (PST)
-Received: from localhost (h-46-59-88-219.A463.priv.bahnhof.se. [46.59.88.219])
-        by smtp.gmail.com with ESMTPSA id q1sm1771260lfh.234.2021.11.30.08.49.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 08:49:32 -0800 (PST)
-Date:   Tue, 30 Nov 2021 17:49:31 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 0/9] arm64: dts: renesas: Thermal binding validation
-Message-ID: <YaZWG6+ty4UCeQu8@oden.dyn.berto.se>
-References: <20211104224033.3997504-1-kieran.bingham+renesas@ideasonboard.com>
- <CAMuHMdXVBj58ZM3LqCN3cudsE3VJV8AQC5OCOJP96RaqYf4NDQ@mail.gmail.com>
- <YYo0syH9m/CYlB2d@oden.dyn.berto.se>
- <YYo62jdzSTxqCMtk@oden.dyn.berto.se>
- <CAMuHMdUNZ+TOGU-H9dZu08WKO2fO2sbgL1BbN3JzEVBkOyMhdA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdUNZ+TOGU-H9dZu08WKO2fO2sbgL1BbN3JzEVBkOyMhdA@mail.gmail.com>
+        id S232839AbhK3RG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 12:06:27 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:10227 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229547AbhK3RGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:06:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638291671;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=UIf15iMEtDEvJh887G0IYN5tzrRPMwEaqTyUehQEpsc=;
+    b=gcTD6DNbCqRZgz3hRCZCtBRA9Ot4gxTXz9DhxAeHr97rIeO6H8W956dM7G8rkpQQKD
+    l4Jww2PBhgDF7Ko6tBTb2NU/SaNsbtuxrAYm0H4hb6u6U7rByUId+2Iq9eCRR1Z1J3KQ
+    pKrCfI8N7jQX71gklajTwYLXpP4Ukf5KTeg+YldFYiL/9OOU+MeEidqg5RyRECuP1G5C
+    GhM3kKUjMnhSPih6otLPI9Fnddx0fN+RTn+j6ZSy8/fwFCs47GRpBzFDq8UO1m8wKpO/
+    ai87qt/r+DTJPVfY9+1e8kpKssTKltSyVxRpURukUsf3pb6Esvd2Xd1oao8SBFJvyc+a
+    c3Pg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7gpw91N5y2S3iMERYA=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.10 DYNA|AUTH)
+    with ESMTPSA id e05ed8xAUH19Sxv
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 30 Nov 2021 18:01:09 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v9 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
+ DT Schema
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <1637875562.255498.2858308.nullmailer@robh.at.kernel.org>
+Date:   Tue, 30 Nov 2021 18:01:08 +0100
+Cc:     Daniel Vetter <daniel@ffwll.ch>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Kees Cook <keescook@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>,
+        David Airlie <airlied@linux.ie>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        linux-mips@vger.kernel.org, letux-kernel@openphoenux.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        dri-devel@lists.freedesktop.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Mark Brown <broonie@kernel.org>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jonas Karlman <jonas@kwiboo.se>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <A72D034E-EDBC-44F5-82DF-9EEBC5EC7E0B@goldelico.com>
+References: <cover.1637789354.git.hns@goldelico.com>
+ <d678e785d95487202ac0660eb66796e9fb5beb50.1637789354.git.hns@goldelico.com>
+ <1637875562.255498.2858308.nullmailer@robh.at.kernel.org>
+To:     Rob Herring <robh@kernel.org>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Rob,
 
-On 2021-11-30 17:45:11 +0100, Geert Uytterhoeven wrote:
-> Given Rob said he applied your patch[1], does that mean this series
-> is good to be applied?
-> Thanks!
-> 
-> [1] https://lore.kernel.org/all/YaU4XuiaJgEjGCdQ@robh.at.kernel.org/
+> Am 25.11.2021 um 22:26 schrieb Rob Herring <robh@kernel.org>:
+>=20
+> On Wed, 24 Nov 2021 22:29:09 +0100, H. Nikolaus Schaller wrote:
+>> From: Sam Ravnborg <sam@ravnborg.org>
+>>=20
+>> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+>> Based on .txt binding from Zubair Lutfullah Kakakhel
+>>=20
+>> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
+>>=20
+>> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> ---
+>> .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 =
++++++++++++++++++++
+>> .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
+>> 2 files changed, 79 insertions(+)
+>> create mode 100644 =
+Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+>>=20
+>=20
+> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m =
+dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>=20
+> yamllint warnings/errors:
+>=20
+> dtschema/dtc warnings/errors:
+> Unknown file referenced: [Errno 2] No such file or directory: =
+'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/syn=
+opsys,dw-hdmi.yaml'
 
-Yes, with that patch applied this change won't generate any (new)
-warnings from DT :-)
+I wasn't able to fix that.
 
--- 
-Kind Regards,
-Niklas Söderlund
+If I change
+
+ allOf:
+-  - $ref: bridge/synopsys,dw-hdmi.yaml#
++  - $ref: synopsys,dw-hdmi.yaml#
+
+then make dt_binding_check still reports:
+
+Unknown file referenced: [Errno 2] No such file or directory: =
+'/Users/hns/Library/Python/3.7/lib/python/site-packages/dtschema/schemas/b=
+ridge/synopsys,dw-hdmi.yaml'
+
+BR and thanks,
+Nikolaus Schaller
+
+> xargs: dt-doc-validate: exited with status 255; aborting
+> make[1]: *** Deleting file =
+'Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.exam=
+ple.dt.yaml'
+> Unknown file referenced: [Errno 2] No such file or directory: =
+'/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/syn=
+opsys,dw-hdmi.yaml'
+> make[1]: *** [scripts/Makefile.lib:373: =
+Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.examp=
+le.dt.yaml] Error 255
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1413: dt_binding_check] Error 2
+>=20
+> doc reference errors (make refcheckdocs):
+>=20
+> See https://patchwork.ozlabs.org/patch/1559375
+>=20
+> This check can fail if there are any dependencies. The base for a =
+patch
+> series is generally the most recent rc1.
+>=20
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up =
+to
+> date:
+>=20
+> pip3 install dtschema --upgrade
+>=20
+> Please check and re-submit.
+>=20
+
