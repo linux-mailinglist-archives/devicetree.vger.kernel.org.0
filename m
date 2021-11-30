@@ -2,174 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D05F8463D6D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:12:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D072463DA8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:20:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245315AbhK3SPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 13:15:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51788 "EHLO
+        id S235199AbhK3SX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 13:23:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238080AbhK3SPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:15:34 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA1DAC061574;
-        Tue, 30 Nov 2021 10:12:14 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso20224604wml.1;
-        Tue, 30 Nov 2021 10:12:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1GfV3zta/z9JoKzgmdmEEj9hpTBApmNs4j7cDZBMOGc=;
-        b=VPyaZj70LNlfmo8vyq/bdkYc5lM+6a2xPAMr1Tx4rjiSzTAVfo6mUj1NAJhjKCwNDd
-         MtIdyee+YfNfMjDrQ/gqmflPr+f770yMKESXCE+jTlfMdhM+q6oiHTVPI83Zfa82oz6z
-         +V5PEMWvE2OsKs8NDpQIsOHL8xqoEpFxiiXAYROdczoIj0Y6tuNkj1M4UH91qTRsHG3O
-         PGtsc6hmnXnaI4SaQNny5PkEXDejaJMRHVZc/kSVUEXLML7SFGgpv7y8gxaPq5bAJVWQ
-         WvAZuFvYmmefFt6sWsgXhVCY6Rbw4C77d1UDQ6S08O+I+qO6QGcd5PkaeRXgvWRXcgVQ
-         x6PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1GfV3zta/z9JoKzgmdmEEj9hpTBApmNs4j7cDZBMOGc=;
-        b=ZFAHPPbHTKcDef3TX0BGFg7LmcFWT05QrBEiIvf9V4xonQwCCaBpgIcvA2XQdEmZus
-         8UNV9AiauhXBZ7cWAJdPRi8qKBBZWNDTHJcpZLFdqQ0Op5B6AU30E4UYYDd5efSlNNia
-         y8RU9w26ZCCbyPb53M4V62dgecfqI7i2Suc5SuiC/o57Tyc9GR/ST1fraIuKU7vGLizk
-         i3R8+uP8HWwiBnGnwuN7YfB/mNXxRnpGTAqeItc7cRGoGitOQm1kqpqnvyShu7uGEDIW
-         qcsedF06W5sUuG70hHigflljldgxga/I2a9X/rq2uOWiiaTMng04TDI54hLSxj8N6ygI
-         AslA==
-X-Gm-Message-State: AOAM532Im0v6DSPRUyXoB41K2PDS0MLDKjmb+fU3wVQ8mChiQpc2g3fU
-        X+6C7zO++X//AFHdxt1/E1I=
-X-Google-Smtp-Source: ABdhPJxLLBjy+5pV2Vw7yzKGxAyLHcEUZ/+Cw37st1U6y37HezvYTYbnP5+zZ03FIrQK80aMum5LZg==
-X-Received: by 2002:a1c:a711:: with SMTP id q17mr330188wme.158.1638295933311;
-        Tue, 30 Nov 2021 10:12:13 -0800 (PST)
-Received: from archbook.localnet (84-72-105-84.dclient.hispeed.ch. [84.72.105.84])
-        by smtp.gmail.com with ESMTPSA id l4sm16775043wrv.94.2021.11.30.10.12.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 10:12:12 -0800 (PST)
-From:   Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, heiko@sntech.de, sre@kernel.org,
-        maccraft123mc@gmail.com, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Chris Morgan <macroalpha82@gmail.com>
-Subject: Re: [PATCH v4 RESEND 0/4] power: supply: Add Support for RK817 Charger
-Date:   Tue, 30 Nov 2021 19:12:11 +0100
-Message-ID: <2197533.Eh1vGvx6NY@archbook>
-In-Reply-To: <SN6PR06MB534222D7CA5732E689F5BA21A5679@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20210916194208.10387-1-macroalpha82@gmail.com> <2759402.V8G6Gt6Xmj@archbook> <SN6PR06MB534222D7CA5732E689F5BA21A5679@SN6PR06MB5342.namprd06.prod.outlook.com>
+        with ESMTP id S239565AbhK3SXR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:23:17 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6F3C061574;
+        Tue, 30 Nov 2021 10:19:58 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 79993B81BBE;
+        Tue, 30 Nov 2021 18:19:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28EB6C53FC7;
+        Tue, 30 Nov 2021 18:19:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638296395;
+        bh=Rg3X5WgEx/fu1vO7MTLJTKOCZa6PxvqcsrwTHphDJDI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=i9FRLvgj2xYrkiwZdLPpY85Fjd6ZvT5+FmwmpPxuUtFK4QNsRJhQU8B+M80/mMbEJ
+         eVLQQqRbZgJBtxNq5289CGCrLodfzfGEXyrOUGSgyiLPJJuoVUsEkqNkH3JwAFgRvm
+         GGV6Z7P5+HN77l28Bpsk1fIQQNyumFBWcvDubcX8gxv7Fyq6mZYv7qsguxqC2kFozs
+         htzdXGmYz1azXmkFiMYJ+M00zXnJyTOT47NERz3vDatUbikeS0R8tiilXVV06eXOGp
+         93/ftkaxSSgw7FlwZjxF+gj/UTRQtTNl6ANpL36vjQ1G1oiKviDRmYoNj6V30VMIl6
+         TrMILntbTqsVw==
+Received: by mail-ed1-f42.google.com with SMTP id y12so90512342eda.12;
+        Tue, 30 Nov 2021 10:19:55 -0800 (PST)
+X-Gm-Message-State: AOAM533UqO3GNaR2ADrYMcpgDBqTshAvtqah8VN+fic8gmim3Gwoho+h
+        UV7HprmqxvD9m8o9ZXixHDVPPu6whCPluXK1jA==
+X-Google-Smtp-Source: ABdhPJzlzmKd9f1PSVWhZws80WIcbDQrGSGIeTyLxWwF+f3fDK1WoMt3xMdzMHMCPFI2ghaCJdwDEwf+RBBhN7lbrhs=
+X-Received: by 2002:a17:907:a411:: with SMTP id sg17mr867105ejc.84.1638296393423;
+ Tue, 30 Nov 2021 10:19:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <cover.1637789354.git.hns@goldelico.com> <d678e785d95487202ac0660eb66796e9fb5beb50.1637789354.git.hns@goldelico.com>
+ <1637875562.255498.2858308.nullmailer@robh.at.kernel.org> <A72D034E-EDBC-44F5-82DF-9EEBC5EC7E0B@goldelico.com>
+In-Reply-To: <A72D034E-EDBC-44F5-82DF-9EEBC5EC7E0B@goldelico.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 30 Nov 2021 12:19:41 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ_E_USDuK3kEDKm9TsNsRdpcGNEjz==sKFS-Tv5KYCkA@mail.gmail.com>
+Message-ID: <CAL_JsqJ_E_USDuK3kEDKm9TsNsRdpcGNEjz==sKFS-Tv5KYCkA@mail.gmail.com>
+Subject: Re: [PATCH v9 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
+ DT Schema
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Kees Cook <keescook@chromium.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>,
+        David Airlie <airlied@linux.ie>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Robert Foss <robert.foss@linaro.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Mark Brown <broonie@kernel.org>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jonas Karlman <jonas@kwiboo.se>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Dienstag, 30. November 2021 17:10:21 CET Chris Morgan wrote:
-> On Tue, Nov 30, 2021 at 03:03:03AM +0100, Nicolas Frattaroli wrote:
-> > On Donnerstag, 16. September 2021 21:42:04 CET Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > 
-> > > This series is to add support for the Rockchip rk817 battery charger
-> > > which is present in all Rockchip RK817 PMICs. The driver was written
-> > > as a joint effort by Maya Matuszczyk <maccraft123mc@gmail.com> and
-> > > myself Chris Morgan <macromorgan@hotmail.com>.
-> > 
-> > Hi Chris and Maya,
-> > 
-> > Gave this a whirl on my Quartz64 Model A. I noticed that this will
-> > happily let me discharge past voltage_min_design:
-> > 
-> >  $ cat /sys/class/power_supply/rk817-battery/voltage_min_design 
-> >  3625000
-> >  $ cat /sys/class/power_supply/rk817-battery/voltage_avg 
-> >  3381360
-> > 
-> > Is this normal? It went all the way to under 3V before the
-> > board finally locked up.
-> > 
-> > Does the minimum voltage not affect some sort of cutout on
-> > the RK817? Does it even have one? Is it the driver's job to
-> > do something here or not?
+On Tue, Nov 30, 2021 at 11:03 AM H. Nikolaus Schaller <hns@goldelico.com> wrote:
+>
+> Hi Rob,
+>
+> > Am 25.11.2021 um 22:26 schrieb Rob Herring <robh@kernel.org>:
+> >
+> > On Wed, 24 Nov 2021 22:29:09 +0100, H. Nikolaus Schaller wrote:
+> >> From: Sam Ravnborg <sam@ravnborg.org>
+> >>
+> >> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
+> >> Based on .txt binding from Zubair Lutfullah Kakakhel
+> >>
+> >> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
+> >>
+> >> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
+> >> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> >> Cc: Rob Herring <robh@kernel.org>
+> >> Cc: devicetree@vger.kernel.org
+> >> ---
+> >> .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 +++++++++++++++++++
+> >> .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
+> >> 2 files changed, 79 insertions(+)
+> >> create mode 100644 Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
+> >>
+> >
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/synopsys,dw-hdmi.yaml'
+>
+> I wasn't able to fix that.
+>
+> If I change
+>
+>  allOf:
+> -  - $ref: bridge/synopsys,dw-hdmi.yaml#
+> +  - $ref: synopsys,dw-hdmi.yaml#
 
-Hi Chris,
+That is correct.
 
-> It does not look like I coded that, but I can. The PMIC has a
-> selectable register (RK817_PMIC_SYS_CFG0 = 0xf1) to automatically shut
-> down the system at a certain voltage (between 2.7v and 3.4v in
-> increments of 100mv; bits 6-4), a register to set a low voltage value
-> (between 2.8v and 3.5v in increments of 100mv; bits 2-0), and a
-> register to set a low voltage action (either shut down the machine or
-> trigger an interrupt; bit 3 and then I believe the interrupt is read at
-> bit 7 of RK817_PMIC_INT_STS0 - 0xf8).
+>
+> then make dt_binding_check still reports:
+>
+> Unknown file referenced: [Errno 2] No such file or directory: '/Users/hns/Library/Python/3.7/lib/python/site-packages/dtschema/schemas/bridge/synopsys,dw-hdmi.yaml'
 
-Excellent, I think shutting down the system is definitely the way to
-go here, as by reaching this voltage we can assume userspace has gone
-missing and we don't know if the kernel is still alive.
+The $id is wrong:
 
-> I guess I just assumed userspace would handle it, but that's probably
-> a bad assumption.
+$id: http://devicetree.org/schemas/bridge/ingenic,jz4780-hdmi.yaml#
 
-Yes, I didn't have upower installed, but over discharge protection
-shouldn't be handled by userspace at all. Had I connected an unprotected
-cell that didn't cut out at below 3V, it would've been irreversibly
-damaged due to a simple forgotten package install. Even if unprotected
-batteries are a bad idea, I think we best assume the worst case
-situation here.
+The path should be:
+http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
 
-> What if I set the low voltage value to either 3.5v
-> or the min design voltage, whichever is less; and then set the low
-> voltage trigger to shut down the system? This would prevent your
-> battery from dropping below 3.5v or the min design voltage (whichever
-> is less, sadly 3.5v is as high as I can go for the minimum) in the
-> event userspace doesn't take action first? We could also set the
-> shutdown voltage to be 100mv less than the min design voltage and use
-> the low voltage interrupt to trigger an action, but I'm not sure what
-> action would be appropriate (and if userspace isn't listening it would
-> be moot anyway).
-
-A very simple solution would be to simply set the shutoff point to the
-voltage reaching less than 3.1V. The RK817 only charges Lithium/Li-Po
-batteries, and they should generally not be discharged below 3.0V. Of
-the protected batteries I own, over-discharge protection generally
-kicks in at the 3V threshold.
-
-This gets rid of a lot of logic that could lead to bugs by simply setting
-a known good value to begin with.
-
-I think I can summarise how I understand this is supposed to work as
-follows:
-
- - if battery reaches 0% and the battery alarm is rang, userspace should
-   power down the system
-     - this prevents unclean shutdowns
- - if the battery reaches a dangerously low voltage for its chemistry,
-   the PMIC should cut power to the system as instructed by the kernel
-     - last resort measure in case userspace is absent and the battery
-       happens to be unprotected
- - there may or may not be battery protection which kicks in at 3V, but
-   we should not rely on this working
-      - some 18650 cases infamously aren't sized to fit cells with a
-        protection circuit connected to it. I shan't name names.
-
-In a freak accident where the kernel is completely locked up and the
-battery is unprotected and being drained, I presume that having set
-this PMIC register will still make it kick in, which lets me sleep
-a little sounder at night.
-
-Regards,
-Nicolas Frattaroli
-
-> 
-> Thank you.
-> 
-> > 
-> > Regards,
-> > Nicolas Frattaroli
-> > 
-> > 
-> 
-
-
-
-
+Rob
