@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C13D463D10
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 411B6463D19
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:44:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243469AbhK3Rq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 12:46:26 -0500
-Received: from mail-oi1-f175.google.com ([209.85.167.175]:41704 "EHLO
-        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238847AbhK3RqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:46:25 -0500
-Received: by mail-oi1-f175.google.com with SMTP id u74so42743562oie.8;
-        Tue, 30 Nov 2021 09:43:06 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ybArtp5NAo1h9pHzQHYt4+Qs6w6iIvokhHnIINTzz0I=;
-        b=qftcKr4sOsBIREMtVai33g8u791raNbou+On9oUBMNdjgb19mw06ybGKdw8ACaqm+T
-         sdvFJ+Tc0bcU4cdMgPyGc7ZQjQ5wU0r2UGkkaKFt/4eo67cLCYJHz7akQq4NfzoAHXOo
-         lGame3nv6g49nxTuOz3peByCEgcK6GtFuOi/IMsoSbu+V87kQK35k68TSWpzqb4eGDdm
-         REKGlhfilQMygH0bR5dgz/DCeR1aKVUItplASTrq4yGZDmacq163qN9cIFp6tv479djs
-         npceBK6Ks9sta4jmdVZ+SnrXU5vsR3Ohzlpny3BJ4+soxDGU2cPm+E0e+xcG2IcKdXGa
-         7LMw==
-X-Gm-Message-State: AOAM533AaRDR2LJ4Om1NeR3MROi/pFId4cvt50wrb77Ts/uFlGZv/P9v
-        gPaOrTcYxHyPanj/IqW1Qg==
-X-Google-Smtp-Source: ABdhPJxpfwZHaJJsQJrxxxdGKQhKNwmK7qoAn5Ox2tfeIPsdhQ8/yFLYB/VG+xooU2jW+OEAPMZFqg==
-X-Received: by 2002:a05:6808:144f:: with SMTP id x15mr329339oiv.157.1638294185979;
-        Tue, 30 Nov 2021 09:43:05 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v19sm3208026ott.13.2021.11.30.09.43.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 09:43:05 -0800 (PST)
-Received: (nullmailer pid 2713643 invoked by uid 1000);
-        Tue, 30 Nov 2021 17:43:04 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        linux-serial@vger.kernel.org,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        David Virag <virag.david003@gmail.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20211130111325.29328-2-semen.protsenko@linaro.org>
-References: <20211130111325.29328-1-semen.protsenko@linaro.org> <20211130111325.29328-2-semen.protsenko@linaro.org>
-Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
-Date:   Tue, 30 Nov 2021 11:43:04 -0600
-Message-Id: <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
+        id S236319AbhK3Rrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 12:47:32 -0500
+Received: from linux.microsoft.com ([13.77.154.182]:36626 "EHLO
+        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229655AbhK3Rrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:47:32 -0500
+Received: from linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net (linux.microsoft.com [13.77.154.182])
+        by linux.microsoft.com (Postfix) with ESMTPSA id 8C4F020DED70;
+        Tue, 30 Nov 2021 09:44:12 -0800 (PST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8C4F020DED70
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+        s=default; t=1638294252;
+        bh=EAfl+8ZtWcOr7MGbBjK12p6Zs4Xgqan1DBcDEBeNGnM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PVCqwbrC42Rctjz/oCpjE/+qfi10+tb44cz1rY8RbAY38zDia0+kOb2v9DpH0RspM
+         7/QeFddVmlCumensX99JkbMURgZkHs+zeHVwD0wwJOwmbGqNZlICiY1FoYdHHyQOMH
+         waJpJtmqcw+AOflqAgICWUEGPijV4fajkxCCUnC8=
+Date:   Tue, 30 Nov 2021 09:44:11 -0800
+From:   Katherine Perez <kaperez@linux.microsoft.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] arm64: dts: add minimal DTS for Microsoft Surface
+ Duo2
+Message-ID: <20211130174411.GA18994@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
+References: <20211122190552.74073-1-kaperez@linux.microsoft.com>
+ <20211122190552.74073-2-kaperez@linux.microsoft.com>
+ <YZxnQfB6V7GOlygq@matsya>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YZxnQfB6V7GOlygq@matsya>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Nov 2021 13:13:21 +0200, Sam Protsenko wrote:
-> Add constants for choosing USIv2 configuration mode in device tree.
-> Those are further used in USI driver to figure out which value to write
-> into SW_CONF register. Also document USIv2 IP-core bindings.
+On Tue, Nov 23, 2021 at 09:30:01AM +0530, Vinod Koul wrote:
+> On 22-11-21, 11:05, Katherine Perez wrote:
+> > This is a minimal devicetree for Microsoft Surface Duo 2 with SM8350
+> > Chipset
+> > 
+> > Signed-off-by: Katherine Perez <kaperez@linux.microsoft.com>
+> > ---
+> > 
+> > Changes since v1:
+> > - Change remoteprocs firmware-naming scheme to qcom/sm8350/microsft/*
+> > - Add chassis-type
+> > 
+> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+> >  .../qcom/sm8350-microsoft-surface-duo2.dts    | 369 ++++++++++++++++++
+> >  2 files changed, 370 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 6b816eb33309..a8cc6bd3c423 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -106,4 +106,5 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-mtp.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx203.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sm8250-sony-xperia-edo-pdx206.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-hdk.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-microsoft-surface-duo2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sm8350-mtp.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dts b/arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dts
+> > new file mode 100644
+> > index 000000000000..d4963c9015cb
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dts
+> > @@ -0,0 +1,369 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (C) 2021, Microsoft Corporation
+> > + */
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> > +#include "sm8350.dtsi"
+> > +#include "pm8350.dtsi"
+> > +#include "pm8350b.dtsi"
+> > +#include "pm8350c.dtsi"
+> > +#include "pmk8350.dtsi"
+> > +#include "pmr735a.dtsi"
+> > +#include "pmr735b.dtsi"
+> > +
+> > +/ {
+> > +	model = "Microsoft Surface Duo 2";
+> > +	compatible = "microsoft,surface-duo2", "qcom,sm8350";
+> > +	chassis-type = "handset";
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> ---
-> Changes in v2:
->   - Combined dt-bindings doc and dt-bindings header patches
->   - Added i2c node to example in bindings doc
->   - Added mentioning of shared internal circuits
->   - Added USI_V2_NONE value to bindings header
+> This is interesting, I see it used at lot of place, unfortunately, it
+> does not seem to be documented :(
 > 
->  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
->  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
->  2 files changed, 152 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
->  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
-> 
+> -- 
+> ~Vinod
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi Vinod,
 
-yamllint warnings/errors:
+Looks like "chassis-type" is documented in the Devicetree Specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter3-devicenodes.html.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dts:35.39-42.15: Warning (unique_unit_address): /example-0/usi@138200c0/serial@13820000: duplicate unit-address (also used in node /example-0/usi@138200c0/i2c@13820000)
-Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dt.yaml:0:0: /example-0/usi@138200c0/i2c@13820000: failed to match any schema with compatible: ['samsung,exynosautov9-hsi2c']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1561571
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+-Katherine
