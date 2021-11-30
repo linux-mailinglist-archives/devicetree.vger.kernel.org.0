@@ -2,175 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60059463EE7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 20:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0A1B463EF4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 20:59:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343536AbhK3T51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 14:57:27 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:1793 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1343538AbhK3T50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 14:57:26 -0500
-X-IronPort-AV: E=Sophos;i="5.87,276,1631545200"; 
-   d="scan'208";a="101928854"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 01 Dec 2021 04:54:05 +0900
-Received: from localhost.localdomain (unknown [10.226.93.28])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D799F4003876;
-        Wed,  1 Dec 2021 04:54:02 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v5 1/2] dt-bindings: watchdog: renesas,wdt: Add support for RZ/G2L
-Date:   Tue, 30 Nov 2021 19:53:56 +0000
-Message-Id: <20211130195357.18626-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211130195357.18626-1-biju.das.jz@bp.renesas.com>
-References: <20211130195357.18626-1-biju.das.jz@bp.renesas.com>
+        id S1343564AbhK3UC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 15:02:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239950AbhK3UC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 15:02:28 -0500
+Received: from relay03.th.seeweb.it (relay03.th.seeweb.it [IPv6:2001:4b7a:2000:18::164])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2D1CC061574;
+        Tue, 30 Nov 2021 11:59:08 -0800 (PST)
+Received: from [10.1.250.9] (riviera.nat.ds.pw.edu.pl [194.29.137.1])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 91811201DF;
+        Tue, 30 Nov 2021 20:59:04 +0100 (CET)
+Message-ID: <dee30442-8a78-07f3-1fa1-e5922a510182@somainline.org>
+Date:   Tue, 30 Nov 2021 20:59:03 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.3.2
+Subject: Re: [PATCH 04/16] arm64: dts: qcom: sm8350: Specify clock-frequency
+ for arch timer
+To:     Stephen Boyd <sboyd@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211114012755.112226-1-konrad.dybcio@somainline.org>
+ <20211114012755.112226-4-konrad.dybcio@somainline.org>
+ <20211130020536.52D0FC53FC7@smtp.kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20211130020536.52D0FC53FC7@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the WDT hardware in the RZ/G2L series.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
-v4->v5:
- * No change.
-V3->V4:
- * Added Rb tags from Geert, Rob and Guenter
-V2->v3:
- * No change.
-V1->V2:
- * No Change
-RFC->V1:
- * Added clock-names and interrupt-names as required properties for RZ/G2L
- * Re-order clocknames with internal module clock first
----
- .../bindings/watchdog/renesas,wdt.yaml        | 75 ++++++++++++++-----
- 1 file changed, 57 insertions(+), 18 deletions(-)
+On 30/11/2021 03:05, Stephen Boyd wrote:
+> Quoting Konrad Dybcio (2021-11-13 17:27:43)
+>> Arch timer runs at 19.2 MHz. Specify the rate in the timer node.
+>>
+>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> index a30ba3193d84..60866a20a55c 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>> @@ -2484,5 +2484,6 @@ timer {
+>>                               <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>>                               <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>>                               <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+>> +               clock-frequency = <19200000>;
+> Does the firmware not set the frequency properly?
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index ab66d3f0c476..91a98ccd4226 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -10,9 +10,6 @@ maintainers:
-   - Wolfram Sang <wsa+renesas@sang-engineering.com>
-   - Geert Uytterhoeven <geert+renesas@glider.be>
- 
--allOf:
--  - $ref: "watchdog.yaml#"
--
- properties:
-   compatible:
-     oneOf:
-@@ -22,6 +19,11 @@ properties:
-               - renesas,r7s9210-wdt      # RZ/A2
-           - const: renesas,rza-wdt       # RZ/A
- 
-+      - items:
-+          - enum:
-+              - renesas,r9a07g044-wdt    # RZ/G2{L,LC}
-+          - const: renesas,rzg2l-wdt     # RZ/G2L
-+
-       - items:
-           - enum:
-               - renesas,r8a7742-wdt      # RZ/G1H
-@@ -56,11 +58,13 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts:
--    maxItems: 1
-+  interrupts: true
- 
--  clocks:
--    maxItems: 1
-+  interrupt-names: true
-+
-+  clocks: true
-+
-+  clock-names: true
- 
-   power-domains:
-     maxItems: 1
-@@ -75,17 +79,52 @@ required:
-   - reg
-   - clocks
- 
--if:
--  not:
--    properties:
--      compatible:
--        contains:
--          enum:
--            - renesas,rza-wdt
--then:
--  required:
--    - power-domains
--    - resets
-+allOf:
-+  - $ref: "watchdog.yaml#"
-+
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - renesas,rza-wdt
-+    then:
-+      required:
-+        - power-domains
-+        - resets
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,rzg2l-wdt
-+    then:
-+      properties:
-+        interrupts:
-+          maxItems: 2
-+        interrupt-names:
-+          items:
-+            - const: wdt
-+            - const: perrout
-+        clocks:
-+          items:
-+            - description: Register access clock
-+            - description: Main clock
-+        clock-names:
-+          items:
-+            - const: pclk
-+            - const: oscclk
-+      required:
-+        - clock-names
-+        - interrupt-names
-+    else:
-+      properties:
-+        interrupts:
-+          maxItems: 1
-+        clocks:
-+          maxItems: 1
- 
- additionalProperties: false
- 
--- 
-2.17.1
+It does on my device on the current firmware version (it wouldn't really 
+boot if it didn't, no?),
+
+but who knows if it always will, or if it always has been..
+
+
+It's present in downstream too, so I reckon it does not hurt to have it 
+here too, even
+
+for completeness-of-describing-the-machine-properly sake.
+
+
+Konrad
 
