@@ -2,145 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C1D4628F6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 01:15:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46B32462911
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 01:25:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231682AbhK3ASr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 19:18:47 -0500
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:43914 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231627AbhK3ASr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 19:18:47 -0500
-Received: by mail-oi1-f178.google.com with SMTP id o4so37812908oia.10;
-        Mon, 29 Nov 2021 16:15:28 -0800 (PST)
+        id S233663AbhK3A27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 19:28:59 -0500
+Received: from mail-qt1-f174.google.com ([209.85.160.174]:38859 "EHLO
+        mail-qt1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233633AbhK3A27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 19:28:59 -0500
+Received: by mail-qt1-f174.google.com with SMTP id 8so18496929qtx.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 16:25:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vmZ6yrLmHwc8oKXeav6AR62kh5AMJR8Zb4JZJaz0P08=;
+        b=DBEkx795Uw6fLNqGYRAJVtlZkCRGhXBdFMyUXeEPpWqIb0RbyoU6zJvV/tiK5rlx0Z
+         o/pc5XRqkdNH9++SuLAqP8OoU1NWAhT5R+XH/EpVNuNZGKD4kB3eq3E6aZ2xqrnFE9xW
+         UZw8m+mQ3cP99xYuZqAb2vUV0nJy6eej/Pck3ah/DfB+VnVeRsCpGVPcOg+B4O6OEqYP
+         7kK9Vmut6rztoi676Ra+YzSHb8MzTnpXVtEfT+TkqwU2qltJTH2CRqX3xOf0RDLpQHsK
+         OGnSUs3xGLFWJ7Mimb/g2ao3npiKtRre6wLQNpaz678kLoaOM9Lo/nlWTcHr9UO7bsTi
+         yUCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=yTXlF6Gnm/rT0qldVGXfz0tI0LWvoagfDepzULfghYw=;
-        b=jpnIWVJE7+Vl6MZxhVUcuE7ZyqyLEDeJVyeX9k90TgdOhl1+lqn8BN6jmokd1w4A51
-         KeLGGI1R9WNZovBrASPN2gKTAir3U7MX5rc7lH1VRTRs43Xe/SHD+16+OUjsrFsqB13f
-         wjU5SsqgjjpKJsXEx+HkV5P3OQZ02tgu/SrpGArvwCEz6pnqvtrbetwklTJB79rcN+cw
-         ZjL7HjtAcMoC40Tv8SHmtlPwnuIj+oIVpElRdzE3ijyRWh1vnqDFEOMUyGPC8u7p5sXB
-         hSmGsQWA+O21je4oudcuthF7Z6vR6I2IG2Gty0hk73fb/l8+sokwYxAb7tOdjr2gnXh6
-         5eiA==
-X-Gm-Message-State: AOAM533Vjt4GtkjWSWgBKFnsqPKH1UY1lPqkB93dMNe8Sfc8uYyQ3v9T
-        5y64toZEzA1LYVy+CqpZRw==
-X-Google-Smtp-Source: ABdhPJzWvVLBFUM1w9MIGxp1dvanjID+SCvk9UvCvwk3mkyhqzj1CD5wwDV8UPTwhuCcK/jo7SmJvA==
-X-Received: by 2002:a05:6808:1381:: with SMTP id c1mr1161897oiw.129.1638231328337;
-        Mon, 29 Nov 2021 16:15:28 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bg38sm3563993oib.40.2021.11.29.16.15.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Nov 2021 16:15:27 -0800 (PST)
-Received: (nullmailer pid 875053 invoked by uid 1000);
-        Tue, 30 Nov 2021 00:15:26 -0000
-Date:   Mon, 29 Nov 2021 18:15:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Manish Narani <manish.narani@xilinx.com>
-Cc:     git@xilinx.com, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        michal.simek@xilinx.com, linux-kernel@vger.kernel.org,
-        gregkh@linuxfoundation.org
-Subject: Re: [PATCH] dt-bindings: usb: dwc3-xilinx: Convert USB DWC3 bindings
-Message-ID: <YaVtHpb5kQk9xduz@robh.at.kernel.org>
-References: <1637329568-31756-1-git-send-email-manish.narani@xilinx.com>
- <1637341102.285159.4078689.nullmailer@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vmZ6yrLmHwc8oKXeav6AR62kh5AMJR8Zb4JZJaz0P08=;
+        b=fkwDwn03rSOLf7aOiTxpW43CYWV5gAa1g9E5xRkrGK2hQSUd2KSFcBV9+PIE8IkF1F
+         UnlT4Amz4SmTdFVneFsv+ebrlW5uRuw9ZXAEwRnqOjoBI2sBC3X5gy+ciM1RYA6ydXwH
+         ygVwzPD2H8NPycE6dU0Z9k+0rk/cRHYt9O/S7YXa6EnrzHvtHilHJ9KYLwunnlpdtOgT
+         l0e6KiRDHwnlSKZADtBUFjRF+ZWwOyI7EY1L/2NdaunuBKmu/8+hHRAodoiEI6uIas6S
+         8dG+t225kJOfmIn0qAac3BX43T+Z8j5xXGgSqaxVHAFfS1oxRuDb9Fn/UUivHucatF6W
+         azTg==
+X-Gm-Message-State: AOAM533A/Y+55i4/WGiFF3y+UvO5yPrGfrvw1Wka3XHlDPNtubdhZ2cD
+        ZgfuaCYnbl+kGaoqRbywmr7ZSYe/woduXAzma3X44w==
+X-Google-Smtp-Source: ABdhPJwuErsaT5p6jX4BOEb7NrgrXWKD2lSqqGnHf0k7Irhr5BOzwSiJBNdUTkXJxVX8QU247dtoj2Z/Wf5u6TZUnN8=
+X-Received: by 2002:a05:622a:15c6:: with SMTP id d6mr38396525qty.439.1638231880398;
+ Mon, 29 Nov 2021 16:24:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1637341102.285159.4078689.nullmailer@robh.at.kernel.org>
+References: <20211125183622.597177-1-dmitry.baryshkov@linaro.org>
+ <CAGETcx-_6OvcJM1nAoX3pxE3Rard5CRxEuEsmhfLANOzOS1BSQ@mail.gmail.com> <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com>
+In-Reply-To: <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 30 Nov 2021 03:24:29 +0300
+Message-ID: <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com>
+Subject: Re: [PATCH] of: property: do not create clocks device link for clock controllers
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 19, 2021 at 10:58:22AM -0600, Rob Herring wrote:
-> On Fri, 19 Nov 2021 19:16:08 +0530, Manish Narani wrote:
-> > Convert USB DWC3 bindings to DT schema format using json-schema.
-> > 
-> > Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-> > ---
-> >  .../devicetree/bindings/usb/dwc3-xilinx.txt        |  56 ----------
-> >  .../devicetree/bindings/usb/dwc3-xilinx.yaml       | 119 +++++++++++++++++++++
-> >  2 files changed, 119 insertions(+), 56 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> >  create mode 100644 Documentation/devicetree/bindings/usb/dwc3-xilinx.yaml
-> > 
-> 
-> Running 'make dtbs_check' with the schema in this patch gives the
-> following warnings. Consider if they are expected or the schema is
-> incorrect. These may not be new warnings.
-> 
-> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> This will change in the future.
-> 
-> Full log is available here: https://patchwork.ozlabs.org/patch/1557119
-> 
-> 
-> usb@ff9d0000: 'phy-names', 'phys' do not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
+On Tue, 30 Nov 2021 at 02:53, Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Mon, Nov 29, 2021 at 3:48 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > On Thu, Nov 25, 2021 at 10:36 AM Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> > >
+> > > Do not create device link for clock controllers.
+> >
+> > Nak.
+> >
+> > > Some of the clocks
+> > > provided to the device via OF can be the clocks that are just parents to
+> > > the clocks provided by this clock controller. Clock subsystem already
+> > > has support for handling missing clock parents correctly (clock
+> > > orphans). Later when the parent clock is registered, clocks get
+> > > populated properly.
+> > >
+> > > An example of the system where this matters is the SDM8450 MTP board
+> > > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
+> > > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
+> > > dispcc itself provides clocks to both PHYs, to the PHY parent device,
+> > > etc. With just dsi0_phy in place devlink is able to break the
+> > > dependency,
+> >
+> > Right, because I wrote code to make sure we handle these clock
+> > controller cases properly. If that logic isn't smart enough, let's fix
+> > that.
 
-Looks like the schema is missing some properties.
+As I said, devlink was delaying dispcc probing ,waiting for the second
+DSI PHY clock provider.
+Thus came my proposal to let clock orphans handle the case (which it
+does perfectly).
 
-> 
-> usb@ff9d0000: usb@fe200000:interrupt-names: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
-> 
-> usb@ff9e0000: 'phy-names', 'phys' do not match any of the regexes: '^usb@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> 	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
-> 
-> usb@ff9e0000: usb@fe300000:interrupt-names: 'oneOf' conditional failed, one must be fixed:
-> 	arch/arm64/boot/dts/xilinx/avnet-ultra96-rev1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-smk-k26-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1275-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm016-dc2.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm017-dc3.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm019-dc5.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.0.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-rev1.1.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revB.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dt.yaml
-> 	arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dt.yaml
-> 
-> 
+> >
+> > > but with two PHYs, dispcc doesn't get probed at all, thus
+> > > breaking display support.
+> >
+> > Then let's find out why and fix this instead of hiding some
+> > dependencies from fw_devlink. You could be breaking other cases/boards
+> > with this change you are making.
+>
+> Btw, forgot to mention. I'll look into this one and try to find the
+> reason why it wasn't handled automatically. And then come up with a
+> fix.
+>
+> If you want to find out why fw_devlink didn't notice the cycle
+> correctly for the case of 2 PHYs vs 1 PHY, I'd appreciate that too.
+>
+> Btw, same comment for remote-endpoint. I'll look into what's going on
+> in that case. Btw, I'm assuming all the code and DT you are testing
+> this on is already upstream. Can you please confirm that?
+
+All the code and basic DT is upstreamed. The DT part I
+referenced/posted was written for the custom extender for the
+qrb5165-rb5 board that I use here to test MSM DRM driver, but the
+result DT should be more or less the same as smd845-mtp.
+
+>
+> -Saravana
+>
+> >
+> > -Saravana
+> >
+> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Cc: Stephen Boyd <swboyd@chromium.org>
+> > > Cc: Saravana Kannan <saravanak@google.com>
+> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > > ---
+> > >  drivers/of/property.c | 16 +++++++++++++++-
+> > >  1 file changed, 15 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > index a3483484a5a2..f7229e4030e3 100644
+> > > --- a/drivers/of/property.c
+> > > +++ b/drivers/of/property.c
+> > > @@ -1264,7 +1264,6 @@ struct supplier_bindings {
+> > >         bool node_not_dev;
+> > >  };
+> > >
+> > > -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
+> > >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
+> > >  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
+> > >  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
+> > > @@ -1294,6 +1293,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
+> > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+> > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> > >
+> > > +static struct device_node *parse_clocks(struct device_node *np,
+> > > +                                       const char *prop_name, int index)
+> > > +{
+> > > +       /*
+> > > +        * Do not create clock-related device links for clocks controllers,
+> > > +        * clock orphans will handle missing clock parents automatically.
+> > > +        */
+> > > +       if (!strcmp(prop_name, "clocks") &&
+> > > +           of_find_property(np, "#clock-cells", NULL))
+> > > +               return NULL;
+> > > +
+> > > +       return parse_prop_cells(np, prop_name, index, "clocks",
+> > > +                                      "#clock-cells");
+> > > +}
+> > > +
+> > >  static struct device_node *parse_gpios(struct device_node *np,
+> > >                                        const char *prop_name, int index)
+> > >  {
+> > > --
+> > > 2.33.0
+> > >
+
+
+
+-- 
+With best wishes
+Dmitry
