@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ACA0463075
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E384463077
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:02:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240602AbhK3KF3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 05:05:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49204 "EHLO
+        id S240618AbhK3KFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 05:05:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240597AbhK3KF3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:05:29 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D4B5C061574
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:02:10 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id a9so43123614wrr.8
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:02:10 -0800 (PST)
+        with ESMTP id S240610AbhK3KFa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:05:30 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F31BC061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:02:11 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id t9so26146236wrx.7
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:02:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mxGGLWiQP1URa2RClGBG4bbowEUOqfLTXCyeksWHJak=;
-        b=5f8ABW1zZtNjGY52IL+i4PbJ8cbZ23szB0iWo74difvp7IqT+JD6Kk7CCUo9/v+RgB
-         /asJDH/j2rKieMVdk3LNhgKhxYqU6ZlIoNd7RJiEhOVFJdjfuqlKUYEtQ3+R/9ZAQ7YF
-         6Vyi9+FnEgCXSWWbo3uskTucO22yeFP3INDaiejKeth45Dm0ZzjKdOsazQZTnJOH7jsJ
-         D3+tAkMNLepuDlMZRXESq5FPZjiN1Jf+uAGzXa7xpc4niNhhUSKk0msiVF9wxwLQ6rth
-         9jFf5jnK4wdJaeq95/6MAAws+UzpLE/zE6+Ocw5BdCz0vujXP8YvNMGvQJBAmqC+X1vE
-         PCOg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=wQNf1jb+oM4Q0vCqJnqmXLx+F84dNeiuJDE210Yt7E4=;
+        b=JloMFV+eOjaemtIsi6SlE3gSiN/2NjlDv5Q8eL9sKoO/ogaDDDrugB5Da56fUqKX6B
+         0A9J41R2AurwDoBgRAKDYWSwTOC02AnHm5egm0FxYDV7MZnK8tpb4ATnLb5avGsNEs0S
+         44Zcdn/nqrclaLb2t6+KS3ynvMfpKJ3ienvxiEX3Q9fQDP/ckDpO7bT6HjKSfjL1x1g1
+         2+aGi4QP2JDt7U7+EI92Kqexm6sLRD50oNzFBWChatgXdLMsBioVComUOXOiFl3Et0Jj
+         ApCKBfP4c6RfPsGQOOtsI3nIJyO8bly8t6RRc3nsFOssKJZuyqmTPRiZddGE+l6dHY30
+         ZRRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=mxGGLWiQP1URa2RClGBG4bbowEUOqfLTXCyeksWHJak=;
-        b=IsZMVKWeoK1wb5u/3Ohd6UKoIs5mRUH0nCNj3tBU6TANW+azzekF6BflhSb0JDaeAu
-         E9NrET/EKHUiRFIW6jNjE8tUN7NOrTLmCj0P3G+KOXV37X4t2dvtaabeeaI0hSnUGP2R
-         Tr3jUHSOcaZ2sgPPac/KRgPzN+yLTbNk2EghRm90dV3eG7JubpLkFpQgIlMmA152iXcm
-         nJR7x4lAdRCJdgGOpwtnQm/lWdfPGMy5rRL+AAbABHC9nEaVOCFat8I5X9NT+HWcFVFv
-         Unw0pz/sExWcmMFi/rCmVubGblqm1dOOdrgIc6GVT6BRH011NrIDWNlrbT+/dcBgQI0g
-         qKjA==
-X-Gm-Message-State: AOAM530nKHG1ui8PFlZxyrTG0fPuT+rUOBSvxwwPHHeit5hhtMeQjexa
-        roZ6ajPHVuvMISfthwju9XXhAw==
-X-Google-Smtp-Source: ABdhPJz0zFU+8v8aXJOMRSoOlU4RtE0adVzFNEOwgHXFlg5BrDaJcdOIuhVOgvZz+Q6A+FYiEFmi5w==
-X-Received: by 2002:a5d:61ca:: with SMTP id q10mr37714903wrv.102.1638266529024;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=wQNf1jb+oM4Q0vCqJnqmXLx+F84dNeiuJDE210Yt7E4=;
+        b=DTx3arxCiudljGxaChkYCsS/Z5HJEHGdmqsQ3/VCakUh0knYDdD4Oaj2eTCKnf9/98
+         I1SpgZNBf6qEQodeg2tAo/T3n0ZqzZG5EKLPImohi8FVlb9+jNUfQD+7rQyJiR6yO33c
+         UsFcttxVw4fvTvM5vk8VdojEGlrLJ79YvpXvr3N7fW5f9DTLhC5JR0CpyH1px+bpk4wK
+         UsD5bHSQcjkwoEXShBQOOSSXPWXH2AkU4GN1fDXKR+itgbFfZPj8ou+p+yLDLZ+AF6f1
+         S+afAGTi7aNblreKESnLx5MwZbRkFkK+CZTsNqhrS9Uoe0DIJlGHYQsSPydzwvzCXRq+
+         B1nQ==
+X-Gm-Message-State: AOAM533c9Bm1/T++5pGcK2LIS9r3CcatgDXV3pQ7xG3e5CH2GFsR+EBn
+        9B/s5MnBU0uKfVhqLgNF3JMrxw==
+X-Google-Smtp-Source: ABdhPJxT2VWRB6le7wRc5VAZr2LTZ47CKl+OU8xp96iK5sGkVWvF1Zr5R/74ZxBPJK1Tys/l9d2vVQ==
+X-Received: by 2002:adf:a145:: with SMTP id r5mr37573738wrr.462.1638266529843;
         Tue, 30 Nov 2021 02:02:09 -0800 (PST)
 Received: from jackdaw.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id e12sm21117166wrq.20.2021.11.30.02.02.08
+        by smtp.googlemail.com with ESMTPSA id e12sm21117166wrq.20.2021.11.30.02.02.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 02:02:08 -0800 (PST)
+        Tue, 30 Nov 2021 02:02:09 -0800 (PST)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>,
         Neil Armstrong <narmstrong@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] arm64: dts: meson: p241: add internal sound support
-Date:   Tue, 30 Nov 2021 11:01:57 +0100
-Message-Id: <20211130100159.214489-1-jbrunet@baylibre.com>
+Subject: [PATCH 1/2] arm64: dts: meson: p241: add vcc_5v regulator
+Date:   Tue, 30 Nov 2021 11:01:58 +0100
+Message-Id: <20211130100159.214489-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.34.0
+In-Reply-To: <20211130100159.214489-1-jbrunet@baylibre.com>
+References: <20211130100159.214489-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
@@ -64,16 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds support for the internal sound card of the s805x p241
-reference design. Audio is available on HDMI and 3.5mm jack connector.
+Add the VCC_5V regulator, which feeds the HDMI, USB and audio amplifier.
 
-Jerome Brunet (2):
-  arm64: dts: meson: p241: add vcc_5v regulator
-  arm64: dts: meson: p241: add sound support
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
- .../boot/dts/amlogic/meson-gxl-s805x-p241.dts | 83 +++++++++++++++++++
- 1 file changed, 83 insertions(+)
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
+index eb7f5a3fefd4..9d0684a8264b 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
+@@ -84,6 +84,14 @@ vcc_3v3: regulator-vcc_3v3 {
+ 		regulator-max-microvolt = <3300000>;
+ 	};
+ 
++	vcc_5v: regulator-vcc-5v {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_5V";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
++
++
+ 	emmc_pwrseq: emmc-pwrseq {
+ 		compatible = "mmc-pwrseq-emmc";
+ 		reset-gpios = <&gpio BOOT_9 GPIO_ACTIVE_LOW>;
+@@ -136,6 +144,7 @@ &hdmi_tx {
+ 	status = "okay";
+ 	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
+ 	pinctrl-names = "default";
++	hdmi-supply = <&vcc_5v>;
+ };
+ 
+ &hdmi_tx_tmds_port {
+@@ -220,3 +229,7 @@ &usb {
+ 	status = "okay";
+ 	dr_mode = "host";
+ };
++
++&usb2_phy0 {
++	phy-supply = <&vcc_5v>;
++};
 -- 
 2.34.0
 
