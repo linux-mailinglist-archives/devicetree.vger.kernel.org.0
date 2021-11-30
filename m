@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A74BF463F85
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 21:56:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD432463F89
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 21:58:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343847AbhK3U7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 15:59:35 -0500
-Received: from soltyk.jannau.net ([144.76.91.90]:49970 "EHLO soltyk.jannau.net"
+        id S243639AbhK3VA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 16:00:59 -0500
+Received: from soltyk.jannau.net ([144.76.91.90]:50062 "EHLO soltyk.jannau.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1343817AbhK3U7F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 15:59:05 -0500
+        id S1343866AbhK3VAE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 16:00:04 -0500
 Received: by soltyk.jannau.net (Postfix, from userid 1000)
-        id 5C4AB261BA6; Tue, 30 Nov 2021 21:55:28 +0100 (CET)
-Date:   Tue, 30 Nov 2021 21:55:28 +0100
+        id 6F085261BA6; Tue, 30 Nov 2021 21:56:31 +0100 (CET)
+Date:   Tue, 30 Nov 2021 21:56:31 +0100
 From:   Janne Grunau <j@jannau.net>
 To:     Sven Peter <sven@svenpeter.dev>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
+Cc:     iommu@lists.linux-foundation.org, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Hector Martin <marcan@marcan.st>,
+        Robin Murphy <robin.murphy@arm.com>,
         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] watchdog: Add Apple SoC watchdog driver
-Message-ID: <20211130205528.GC28130@jannau.net>
-References: <20211130161809.64591-1-sven@svenpeter.dev>
- <20211130161809.64591-2-sven@svenpeter.dev>
+Subject: Re: [PATCH 0/4] iommu: M1 Pro/Max DART support
+Message-ID: <20211130205631.GD28130@jannau.net>
+References: <20211117211509.28066-1-sven@svenpeter.dev>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211130161809.64591-2-sven@svenpeter.dev>
+In-Reply-To: <20211117211509.28066-1-sven@svenpeter.dev>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -38,30 +38,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hej,
 
-On 2021-11-30 17:18:09 +0100, Sven Peter wrote:
-> Add support for the watchdog timer found in Apple SoCs. This driver is
-> also required to reboot these machines.
+On 2021-11-17 22:15:05 +0100, Sven Peter wrote:
 > 
-> Signed-off-by: Sven Peter <sven@svenpeter.dev>
-> ---
-> v1 -> v2:
->  - set the default timeout to 30s and call watchdog_init_timeout
->    to allow the device tree to override it
->  - set WDOG_HW_RUNNING if the watchdog is enabled at boot
->  - check that the clock rate is not zero
->  - use unsigned long instead of u32 for clk_rate
->  - use devm_add_action_or_reset instead of manually calling
->    clk_disable_unprepare
->  - explain the magic number in apple_wdt_restart
+> This is a fairly brief series to add support for the DARTs present in the
+> M1 Pro/Max. They have two differences that make them incompatible with
+> those in the M1:
 > 
->  MAINTAINERS                  |   1 +
->  drivers/watchdog/Kconfig     |  12 ++
->  drivers/watchdog/Makefile    |   1 +
->  drivers/watchdog/apple_wdt.c | 226 +++++++++++++++++++++++++++++++++++
->  4 files changed, 240 insertions(+)
->  create mode 100644 drivers/watchdog/apple_wdt.c
+>   - the physical addresses are shifted left by 4 bits and and have 2 more
+>     bits inside the PTE entries
+>   - the subpage protection feature is now mandatory. For Linux we can
+>     just configure it to always allow access to the entire page.
+> 
+> Note that this needs a fix to the core pagetable code. Hector already
+> sent a first version separately to the mailing list since the problem
+> is (at least in theory) also present on other SoCs using the LPAE format
+> with a large physical address space [1].
+> 
+> Sven
+> 
+> [1] https://lore.kernel.org/linux-iommu/a2b45243-7e0a-a2ac-4e14-5256a3e7abb4@arm.com/T/#t
+> 
+> Sven Peter (4):
+>   dt-bindings: iommu: dart: add t6000 compatible
+>   iommu/io-pgtable: Add DART subpage protection support
+>   iommu/io-pgtable: Add DART PTE support for t6000
+>   iommu: dart: Support t6000 variant
+> 
+>  .../devicetree/bindings/iommu/apple,dart.yaml |  4 +-
+>  drivers/iommu/apple-dart.c                    | 19 ++++++++-
+>  drivers/iommu/io-pgtable-arm.c                | 40 ++++++++++++++++++-
+>  include/linux/io-pgtable.h                    |  2 +
+>  4 files changed, 61 insertions(+), 4 deletions(-)
 
-Tested on M1 and M1 Max. Feel free to add
+Whole series tested on M1 Max. Feel free to add
 Tested-by: Janne Grunau <j@jannau.net>
 
 best
