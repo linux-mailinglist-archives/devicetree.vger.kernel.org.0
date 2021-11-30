@@ -2,59 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7283F4635E3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 14:55:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F27E24635DE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 14:55:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241863AbhK3N6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 08:58:34 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:59298 "EHLO vps0.lunn.ch"
+        id S241830AbhK3N6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 08:58:16 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:41486 "EHLO cpanel.siel.si"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241852AbhK3N6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 08:58:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=KCc2MMCWZ8q6d2gB0zQijecdCHnObUuCL3+wBGe+gv8=; b=WFIMvfTrivvLpWcvPEXD1RapuL
-        918PXEecSkmLieG+sM+uwnNiCw4gqtKWmQlnyhMRW0Tl0F6tZG/k7o6amBgSx1eFNhoARuZVei+xv
-        6XhQa3uIyWqrAkZZ+IJAkq/KSEhhwzem0MVQLSLI3oBTAE+kvF3JydqBHLJceOxTihz0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ms3as-00F6S2-Va; Tue, 30 Nov 2021 14:54:50 +0100
-Date:   Tue, 30 Nov 2021 14:54:50 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: net: Reintroduce PHY no lane swap
- binding
-Message-ID: <YaYtKhrBAOaktQn6@lunn.ch>
-References: <20211130082756.713919-1-alexander.stein@ew.tq-group.com>
+        id S234735AbhK3N6P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 08:58:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+        Date:Message-ID:From:References:Cc:Subject:Sender:Reply-To:To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=4GrTBbrBSIUJPUnHUuP+Y97Va2ThjHSn5LLuF+6XDlQ=; b=OlcES8s3yH7u5diGUmwtf0Lq4H
+        5kGCXtNp5kcjZFBcwvzKKF/FCoTlJV3l8G5I2D2vpH0hyaFmaNVXfEF+OI6gLldwNkjTyafjnpP00
+        81yHFF+7CNBzBee9B+bhoOucmVIZ9w+GWd65bf6oCR6XGMS6hmaA1vLbr41nxANBlGExE7en9UmIJ
+        G4rcP0Nwi9i/xayYytAAnDKEDPIAoqFLtH0HnaC8ok3iOjWaWQSrQqcOu7EvbfUMBxTxzKAXbdvD0
+        PQDn7XEiEBlqDb60ArxDMT1uG3G37djeuTeHAEicFPtVWZVzAV/qWfsrs5H1HRupEx8Vcq5KqzFO9
+        clNwS3Hw==;
+Received: from [89.212.21.243] (port=49970 helo=[192.168.69.215])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1ms3as-003Au1-Sg; Tue, 30 Nov 2021 14:54:50 +0100
+Subject: Re: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
+ timeout mode
+Cc:     support.opensource@diasemi.com, wim@linux-watchdog.org,
+        linux@roeck-us.net, linux-watchdog@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
+References: <20211130134242.3516619-1-andrej.picej@norik.com>
+ <20211130134242.3516619-3-andrej.picej@norik.com>
+From:   Andrej Picej <andrej.picej@norik.com>
+Message-ID: <14ac09ca-749a-0d4c-da1a-46ce7c4f2fc2@norik.com>
+Date:   Tue, 30 Nov 2021 14:54:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211130082756.713919-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20211130134242.3516619-3-andrej.picej@norik.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 09:27:56AM +0100, Alexander Stein wrote:
-> This binding was already documented in phy.txt, commit 252ae5330daa
-> ("Documentation: devicetree: Add PHY no lane swap binding"), but got
-> accidently removed during YAML conversion in commit d8704342c109
-> ("dt-bindings: net: Add a YAML schemas for the generic PHY options").
-> 
-> Note: 'enet-phy-lane-no-swap' and the absence of 'enet-phy-lane-swap' are
-> not identical, as the former one disable this feature, while the latter
-> one doesn't change anything.
-> 
-> Fixes: d8704342c109 ("dt-bindings: net: Add a YAML schemas for the generic PHY options")
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-    Andrew
+On 30. 11. 21 14:42, Andrej Picej wrote:
+> Document the watchdog timeout mode property. If this property is used
+> the user can select what happens on watchdog timeout. Set this property
+> to 1 to enable SHUTDOWN (the device resets), set it to 0 and the device
+> will go to POWERDOWN on watchdog timeout.
+> 
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+> ---
+>   Documentation/devicetree/bindings/watchdog/da9062-wdt.txt | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+> index 950e4fba8dbc..e3e6e56cee21 100644
+> --- a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+> +++ b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+> @@ -10,6 +10,9 @@ Optional properties:
+>   - dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
+>   	Only use this option if you can't use the watchdog automatic suspend
+>   	function during a suspend (see register CONTROL_B).
+> +- dlg,wdt-sd: Set what happens on watchdog timeout. If this bit is set the
+> +	watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
+> +	POWERDOWN. Can be 0 or 1.
+>   
+>   Example: DA9062
+>   
+> 
+Changes in v2:
+  - new patch, document new DT binding
