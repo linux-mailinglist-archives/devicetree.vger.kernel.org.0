@@ -2,173 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8DB9463078
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:02:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FFF7463084
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 11:03:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240610AbhK3KFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 05:05:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49218 "EHLO
+        id S240636AbhK3KGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 05:06:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240601AbhK3KFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:05:31 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239CCC061748
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:02:12 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id l16so43113728wrp.11
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 02:02:12 -0800 (PST)
+        with ESMTP id S235159AbhK3KGI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 05:06:08 -0500
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE99C061574;
+        Tue, 30 Nov 2021 02:02:49 -0800 (PST)
+Received: by mail-pg1-x52c.google.com with SMTP id s137so19241399pgs.5;
+        Tue, 30 Nov 2021 02:02:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2StaEqVy9B8+ZfyW369JbxqFphYPc6IMTPWpr8yAUuQ=;
-        b=CWupZEVGGC6d32E+1UEuD7BmkxvC73SyoaKJt1B+bj0IaS4oBm4h0YfoNhIzNybvqJ
-         sDPgGk9SxiHxr2eqgHXxnmB3GUcPUGQwXvdynyLDpttddDHV/aEmiJ3/tFT/8hcAamVl
-         qpHrVCfoFSHnL3MmvzxIu7YcHOMnNjlNfoRYNZI14wcn/XKs80gZd7OhmtqaUrSrsrhD
-         tMKiVEwfm6WcWLbUOq6qvTeWrVW3I5FCQJIk/sEP3XhMlRDGZX/bBNcQxNMXUYi1Xb7I
-         ZCqYZEPuW3RoXA3uHdYpfAZfMo96J4e/iYwUowJjC4QEsi01nZyZLhYYD5EMSKJu38xd
-         VzSA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=l1L3Wfgv7hXmKfSeVoSWOOaT+iJpEmEXH9jk/Ny4R8w=;
+        b=JIH0xpiC8UwqgJ0Q+ip+i0xbc7GbhnUSTJnZeRdPMvHuKRRcnPcbsYLf9FhUlqLr6j
+         Aprtsrx1+Lu45+1JDNAN1yoC1sCv3rj+oXqUbkHkT/Nvn4hxW5FeufRTDq55o/PhKSeU
+         ev7PL1DwOSsov7IY+Ysg3JvZeU3/cJkyaLYC7tcJ3ZLA2a3T/+KTUPv/QJVmKbWu111Q
+         W0FezK3m37t+oS+gyhhaGQhrPMgKvXQzULZ7aGT/iNJftYso7nQlFf/SKhiXHeEE16bG
+         roFWj1E5vEyeJhi0xLL3aQ369q3aZrTDqhzXi/Lvizbksqeyy7SUsFh0ooGY2g6HFhx0
+         JwCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2StaEqVy9B8+ZfyW369JbxqFphYPc6IMTPWpr8yAUuQ=;
-        b=YRSdkj7g+C4WxvyWADLK/0gpP6GHvAYlg3feypEqMfhkAVtcJTTpzrftT7MtvaPWwY
-         UdJ9euVvkGBmfcRkclFi/LYKZCXk1AXlD6VRQbdZuiZVthDdEdhESnhjiqkejgb/dIdc
-         LPe0roXYTaEcYkyuQp9rUBhURYFXWhsoWQ+Duws6fDWcR8HNMWIURXOTmqVapVlxh7zO
-         WVBSJY+1u40rFGyr4MO2V03wFO05y7x0TecBgoNdhrdXt3X99Ocnp0hZ1WUHeEh9WXRv
-         1XutMSItLVeWuENPl7t77O+jgOWuJ42ww3k/wgyevqnfEykohYpmK2VDrjKj8a/gCtG/
-         F+QQ==
-X-Gm-Message-State: AOAM5338STx1hRAKuQe7opfmLkulcsR3I13zBcdYswpkPrxZonDwF+Ka
-        tKiTzjww+gP9Yb+YqFdsywwUbQ==
-X-Google-Smtp-Source: ABdhPJxAAvutkQ/CSzmM4k0ljhFTQPLnHG9Yg8AI6TQdmyY5geq4w7Nmn2rB8BsTgH34lKzABlDF9A==
-X-Received: by 2002:adf:cd89:: with SMTP id q9mr39425844wrj.205.1638266530710;
-        Tue, 30 Nov 2021 02:02:10 -0800 (PST)
-Received: from jackdaw.lan (82-65-169-74.subs.proxad.net. [82.65.169.74])
-        by smtp.googlemail.com with ESMTPSA id e12sm21117166wrq.20.2021.11.30.02.02.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 02:02:10 -0800 (PST)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: meson: p241: add sound support
-Date:   Tue, 30 Nov 2021 11:01:59 +0100
-Message-Id: <20211130100159.214489-3-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.34.0
-In-Reply-To: <20211130100159.214489-1-jbrunet@baylibre.com>
-References: <20211130100159.214489-1-jbrunet@baylibre.com>
-MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=l1L3Wfgv7hXmKfSeVoSWOOaT+iJpEmEXH9jk/Ny4R8w=;
+        b=5OlCgM9DVA5RVedwWB9eGJ1VOgXdtCST9TxuFWYldAN03VaVsDcZ88E1a9uVGvideE
+         0/RZFugPm1sIHH0tbZaKgL1XD7Tcmue8XMigE4d24JRV+mkPgY7TbSdnuqOgf1faf++l
+         acNu1c2oap6ljMQwSJQ4cS7EJlzU2rcfTGgX7XWiFvXK1CltbSxknEFzpXfEgA4Xhi5T
+         Dq5DT3wNySC7aEuVgcXisiavQWklKl7RcqT0jz+N0M5SCxkMSEdRjtBcD3RWo8E8ryh/
+         1ZPR8hb5HZ2b69IyK74bmkgLq7OcSRi/R1mkCuIOdexeq9CBP4N/M7WAHjR5iOVd4oXS
+         SRVA==
+X-Gm-Message-State: AOAM532tj4seVyXsw7vFmmGzREzYsUyv8+EfG4jZyrgNfdv+wVOwfScC
+        T7o7DN0XwEple/V0scJ4L8NKMstIrDw=
+X-Google-Smtp-Source: ABdhPJw9oFmGRTwNh6ojXx3ZFK+VMY1kzKTWTS0rX6bVQvk9rIYW5j/f9daHAJuUlLVOE44osnWoZw==
+X-Received: by 2002:a63:1d63:: with SMTP id d35mr5562570pgm.135.1638266569159;
+        Tue, 30 Nov 2021 02:02:49 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id e29sm10497114pge.17.2021.11.30.02.02.46
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 30 Nov 2021 02:02:48 -0800 (PST)
+From:   Wells Lu <wellslutw@gmail.com>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de
+Cc:     wells.lu@sunplus.com, vincent.shih@sunplus.com,
+        Wells Lu <wellslutw@gmail.com>
+Subject: [PATCH net-next v3 0/2] This is a patch series for pinctrl driver for Sunplus SP7021 SoC.
+Date:   Tue, 30 Nov 2021 18:02:50 +0800
+Message-Id: <1638266572-5831-1-git-send-email-wellslutw@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the p241 sound card support. This board can play audio through HDMI
-and the internal DAC.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control
+applications.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../boot/dts/amlogic/meson-gxl-s805x-p241.dts | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-index 9d0684a8264b..ff906becd2ab 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s805x-p241.dts
-@@ -8,6 +8,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/sound/meson-aiu.h>
- 
- #include "meson-gxl-s805x.dtsi"
- 
-@@ -21,6 +22,13 @@ aliases {
- 		ethernet0 = &ethmac;
- 	};
- 
-+	au2: analog-amplifier {
-+		compatible = "simple-audio-amplifier";
-+		sound-name-prefix = "AU2";
-+		VCC-supply = <&vcc_5v>;
-+		enable-gpios = <&gpio GPIOH_5 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-@@ -110,6 +118,68 @@ sdio_pwrseq: sdio-pwrseq {
- 		clocks = <&wifi32k>;
- 		clock-names = "ext_clock";
- 	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "GXL-P241";
-+		audio-aux-devs = <&au2>;
-+		audio-widgets = "Line", "Lineout";
-+		audio-routing = "AU2 INL", "ACODEC LOLN",
-+				"AU2 INR", "ACODEC LORN",
-+				"Lineout", "AU2 OUTL",
-+				"Lineout", "AU2 OUTR";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&aiu AIU_ACODEC CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_ACODEC CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+	};
-+};
-+
-+&acodec {
-+	AVDD-supply = <&vddio_ao18>;
-+	status = "okay";
-+};
-+
-+&aiu {
-+	status = "okay";
- };
- 
- &cec_AO {
+Wells Lu (2):
+  devicetree: bindings: net: Add bindings doc for Sunplus SP7021.
+  net: ethernet: Add driver for Sunplus SP7021
+
+ .../bindings/net/sunplus,sp7021-emac.yaml          | 172 ++++++
+ MAINTAINERS                                        |   8 +
+ drivers/net/ethernet/Kconfig                       |   1 +
+ drivers/net/ethernet/Makefile                      |   1 +
+ drivers/net/ethernet/sunplus/Kconfig               |  36 ++
+ drivers/net/ethernet/sunplus/Makefile              |   6 +
+ drivers/net/ethernet/sunplus/spl2sw_define.h       | 301 ++++++++++
+ drivers/net/ethernet/sunplus/spl2sw_desc.c         | 224 ++++++++
+ drivers/net/ethernet/sunplus/spl2sw_desc.h         |  21 +
+ drivers/net/ethernet/sunplus/spl2sw_driver.c       | 627 +++++++++++++++++++++
+ drivers/net/ethernet/sunplus/spl2sw_driver.h       |  19 +
+ drivers/net/ethernet/sunplus/spl2sw_int.c          | 272 +++++++++
+ drivers/net/ethernet/sunplus/spl2sw_int.h          |  15 +
+ drivers/net/ethernet/sunplus/spl2sw_mac.c          | 336 +++++++++++
+ drivers/net/ethernet/sunplus/spl2sw_mac.h          |  23 +
+ drivers/net/ethernet/sunplus/spl2sw_mdio.c         | 117 ++++
+ drivers/net/ethernet/sunplus/spl2sw_mdio.h         |  14 +
+ drivers/net/ethernet/sunplus/spl2sw_phy.c          |  89 +++
+ drivers/net/ethernet/sunplus/spl2sw_phy.h          |  14 +
+ drivers/net/ethernet/sunplus/spl2sw_register.h     |  96 ++++
+ 20 files changed, 2392 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/sunplus,sp7021-emac.yaml
+ create mode 100644 drivers/net/ethernet/sunplus/Kconfig
+ create mode 100644 drivers/net/ethernet/sunplus/Makefile
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_define.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_desc.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_desc.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_driver.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_driver.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_int.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_int.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mac.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mac.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mdio.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_mdio.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_phy.c
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_phy.h
+ create mode 100644 drivers/net/ethernet/sunplus/spl2sw_register.h
+
 -- 
-2.34.0
+2.7.4
 
