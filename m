@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A4F4641A4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 23:41:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 526BE4641B6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 23:43:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345042AbhK3Wok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 17:44:40 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:39661 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236654AbhK3WoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 17:44:04 -0500
-Received: by mail-ot1-f42.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso32323136ots.6;
-        Tue, 30 Nov 2021 14:40:44 -0800 (PST)
+        id S1344588AbhK3WrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 17:47:16 -0500
+Received: from mail-ot1-f43.google.com ([209.85.210.43]:40682 "EHLO
+        mail-ot1-f43.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345332AbhK3WrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 17:47:02 -0500
+Received: by mail-ot1-f43.google.com with SMTP id v15-20020a9d604f000000b0056cdb373b82so32365560otj.7;
+        Tue, 30 Nov 2021 14:43:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2neI0tSUgaH4gBDXgfQXS8SaEeaSPmkM7rMYMUj4LwI=;
-        b=6U/8biUGQa6jH1XmxYSdlITr/TzvRNEG8SauTvpSI053T4Pr67O3F+jun8o2G3HG46
-         EmpQo8KzqCSoBkKHygdif8FuWcBGA0csBJcVv0PY8dBxYElDO501yUgmCx51u1uVvOYn
-         QMF56qOQMH0IvfYfQ+JPr9X7MOe32CL9dtrxI6puHzaiVn4RSg952JHFmVBlZL4qi/g4
-         UkDc36vB9v8OPTQbTarjF84h+VEEBveqWdBYQKA3qQ9pBHx74Fye4Ueqeghc0XZAimW/
-         BFe/enfZ2+eW6v3SXsnTkNIeAXVr7Gm3/f7/n+Im1rTcP4Gp9XY3gfDe2TUbnrESJ1wq
-         PE+g==
-X-Gm-Message-State: AOAM531sf9wYU3oCSZgo65KbfxCRo7Z5Yl6Lo71qdskqHE5XgnTUEtQ/
-        Sbjmj1KdGrjk0AS8J1PTjazbowxS6Q==
-X-Google-Smtp-Source: ABdhPJxFEQXA8WQceL+bGLgO2h89ED+skOXRZd+IRcPvheFczsOk+DcEMiy0XHkvEC23oppTn0GPqw==
-X-Received: by 2002:a05:6830:2683:: with SMTP id l3mr2100482otu.258.1638312044412;
-        Tue, 30 Nov 2021 14:40:44 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=bgNkZ9Km7uslGW9spgB64Ff0uwinA/sUJ4dW12Hx5NQ=;
+        b=7zoMPYl4UsYVZuIdiuSm7NYTRxnoAoz/NRA6kHnoPzIf2eOIjKEwqmKIH9vcdS0NJL
+         D/nE/lpVz/0cXzyEuMSpepnyak8Voz9wcjC98CXS0XG88XsKv7j9E0ajxAA1qxJ5wCw1
+         fT93G4+mjN/qNE0Oa8LvUPPCAdhqyQ7W5KyFAWCQnA94PgCYgX7GCsHpUVbxpkipMDU3
+         Hc7/6PosrS3vhFilA0pbtBnv+jJKiosGeFxBJ3m9miUC709XF7txUCAok8hmKG5F1Swp
+         hYfL2+1Jlws5SGu1B7UXFBVHCW4MszsnAIGyDi89n4iKB4OX5ezYCB4zSxOiJySKxVM+
+         jgCw==
+X-Gm-Message-State: AOAM533zmPdHw7sNvm2oQO9ZfhAfJwYI1dkCLki2SRU0f5ir8wEVwB5l
+        GvgoieBr1ncb5UT767yFmQ==
+X-Google-Smtp-Source: ABdhPJzzNxeCz/g28KThw4laZ7VZ4CBNkktlUh1TUdViKWztFqJrvQFOHaXnbD/wHUUc+yOXcVd/+Q==
+X-Received: by 2002:a9d:364b:: with SMTP id w69mr2131689otb.18.1638312212779;
+        Tue, 30 Nov 2021 14:43:32 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e26sm175589oog.46.2021.11.30.14.40.43
+        by smtp.gmail.com with ESMTPSA id g1sm2943995ooq.2.2021.11.30.14.43.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 14:40:43 -0800 (PST)
-Received: (nullmailer pid 3142512 invoked by uid 1000);
-        Tue, 30 Nov 2021 22:40:42 -0000
-Date:   Tue, 30 Nov 2021 16:40:42 -0600
+        Tue, 30 Nov 2021 14:43:31 -0800 (PST)
+Received: (nullmailer pid 3146302 invoked by uid 1000);
+        Tue, 30 Nov 2021 22:43:31 -0000
+Date:   Tue, 30 Nov 2021 16:43:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        linux-leds@vger.kernel.org, Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH V2 1/2] dt-bindings: leds: add Broadcom's BCM63138
- controller
-Message-ID: <Yaaoan2BnAh6ayak@robh.at.kernel.org>
-References: <20211124111952.22419-1-zajec5@gmail.com>
+To:     Calvin Zhang <calvinzhang.cool@gmail.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH] of: unmap memory regions in /memreserve node
+Message-ID: <YaapE8oys5zQEdD5@robh.at.kernel.org>
+References: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211124111952.22419-1-zajec5@gmail.com>
+In-Reply-To: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Nov 2021 12:19:51 +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
-> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
-> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
-> 
-> The newer one was also later also used on BCM4908 SoC.
-> 
-> Old block is already documented in the leds-bcm6328.yaml. This binding
-> documents the new one which uses different registers & programming. It's
-> first used in BCM63138 thus the binding name.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> V2: Rename to bcm63138 & make "brcm,bcm63138-leds" the main compatible
-> ---
->  .../bindings/leds/leds-bcm63138.yaml          | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
-> 
++linuxppc-dev
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Wed, Nov 24, 2021 at 09:33:47PM +0800, Calvin Zhang wrote:
+> Reserved memory regions in /memreserve node aren't and shouldn't
+> be referenced elsewhere. So mark them no-map to skip direct mapping
+> for them.
+
+I suspect this has a high chance of breaking some platform. There's no 
+rule a region can't be accessed.
+
+> 
+> Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
+> ---
+>  drivers/of/fdt.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index bdca35284ceb..9e88cc8445f6 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -638,7 +638,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
+>  		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
+>  		if (!size)
+>  			break;
+> -		early_init_dt_reserve_memory_arch(base, size, false);
+> +		early_init_dt_reserve_memory_arch(base, size, true);
+>  	}
+>  
+>  	fdt_scan_reserved_mem();
+> -- 
+> 2.30.2
+> 
+> 
