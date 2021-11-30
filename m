@@ -2,161 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47100463BF4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:38:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A4E463C00
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 17:40:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238410AbhK3QmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 11:42:02 -0500
-Received: from mail-dm6nam11on2077.outbound.protection.outlook.com ([40.107.223.77]:39264
-        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S230154AbhK3QmA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 11:42:00 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jfzu7jP5B06JIwD8EWUsfRC6kfmlFOxcFN8wVYEcB+RkSAzQ8NNSA9sU4uLDFSqzrSKPvi96lno0kGIFsw13lKe483nJn4DmeQ370fW7v5L//SvPNxC/qpm+8QYWEoi4ykuh1+VZq+QZwQds3UFYvi7DLjcCT+tNfKdEUZUS2u5/lhbaj/eykQhYCz7DRldvJ0rE+HBBS7rxueAOOlfa7kvyixWHOJbOo9JDuhmc8mc4GI7K8xqDGt6noENvlk/EbZ1Rk3zBRH5Ug2UAXtX6u3esyYt+d4TV48xZ+kpFzh0Y8vzSeFbcy9PniaDfXJVBbhD9xWAub8aZ4dlLxDfT1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Jyc/TYbkhGEq5fih8ZSZ9jawSbE1dJp0dhpQbfwJ5wQ=;
- b=YgiWcXshk2WbXTSCuUBhw+JIb1nsk2+EMVCVqCCz2l+jwKU6Kmcwp5HjRKLxDIHPTbbjquswVnFfF8S9T6GO3v9awtr/v+vh0FGkSqMIxrX4GOjrkhZSffAIAev5NGxSfusdJp4hOzohk8EjbihPVPT9TBsbXcVp6+G6Jl1MTeFJwy4O6QclLukpSgI5lRw/v24c1HlFeFCrAqgj42xS7QnJWO/jlGZhFaLmK5zyFWbtkKwwHvd204Zk3ZHUFd7c6ZHfVZMKimxZ1HjnmFFgWiMvqINKItnm4ThjiGg3gF8s8KRdbAjKojR/7p8CicjE9m5zJ032y2yx7SPBf2EsIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
+        id S244112AbhK3Qnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 11:43:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232542AbhK3Qnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 11:43:40 -0500
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6606DC061574;
+        Tue, 30 Nov 2021 08:40:21 -0800 (PST)
+Received: by mail-oi1-x235.google.com with SMTP id r26so42341422oiw.5;
+        Tue, 30 Nov 2021 08:40:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Jyc/TYbkhGEq5fih8ZSZ9jawSbE1dJp0dhpQbfwJ5wQ=;
- b=dXsoqBwOPijGA4vJWa7tclLt6kFpVbj2A0U7GYGhsw1kG1LZfYQcs01eDYzuGYxCTMflMl/nCTWk6/HAOwSI0Jrt9+YZWz2vWpzk/1Ki1o7pD1H9V97z1r/LvbuB2/BCtPYcTsSf5VjbEi5fCAaOQCFE1s++NFG9igO4PUGLACc=
-Received: from SJ0PR02MB7279.namprd02.prod.outlook.com (2603:10b6:a03:2a1::9)
- by BYAPR02MB4519.namprd02.prod.outlook.com (2603:10b6:a03:59::29) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.24; Tue, 30 Nov
- 2021 16:38:38 +0000
-Received: from SJ0PR02MB7279.namprd02.prod.outlook.com
- ([fe80::dc7:5777:fa1b:ad83]) by SJ0PR02MB7279.namprd02.prod.outlook.com
- ([fe80::dc7:5777:fa1b:ad83%9]) with mapi id 15.20.4734.024; Tue, 30 Nov 2021
- 16:38:38 +0000
-From:   Harsha Harsha <harshah@xilinx.com>
-To:     Randy Dunlap <rdunlap@infradead.org>,
-        "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=eg2/gpyOdiIomdCdelA6H7DCG0PWicFoqQpH5lOFnDs=;
+        b=RnktTIw+dSyyOAS1q1ZCi7423/03SJvhJ800pC0zSszQogcR9Z2QtI0vrJa7q2f8yJ
+         lNLlcK7G4U/hx0InOTfEed+OgL7+EyqFMGDe69i4L2DXJ1K43lFpeQ0P7iInY/P+kdi7
+         V+2ZMguDhQizW5xBFjODd9QY5eCRLmLFuI9bTeh3iMmVivDNP2a95xfY7qM1rqvdZ+EV
+         zD5V+id/mvsEixIdn7a5QmmmP9VuR4X549agw/L89MacGhyr3d675XJcQuJa4MqIanII
+         7TE2OVUNlSJ4oIRK25JUSOZcNR2ylX9DHaF3oGsSArummjMt8liCEhyVMGD6vHmXqaO5
+         eswg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eg2/gpyOdiIomdCdelA6H7DCG0PWicFoqQpH5lOFnDs=;
+        b=SWxygVw5vCuQoyGEqBnoCdZfCaGcIE4ulKsZEBpOtByqPKQR6A/ta/5kc0TZbguYPB
+         EGafz8JTlkvo6yL+ygLxq19hh0AJHRmm/vZBRkEE9njE4NtiJe7N6t0VGqnDikQkIcrx
+         SFlLw9CnnKCCqSHIiBlfvit93n68qYbIMJzrPw5zzPmUXyNa/8TS+zMMTPAhPT2P4YlZ
+         Fy5AlWrID+afo+sgTqYgrO83E2xbWGvQIOsSrumcC26avoEVccsLdBclf6yGPzTrUAOD
+         WqrTYb8UXsET+oQbnvvSstJdlTftf75UujvSqt76jesX/nYYnrsX2uHGLZ9E6Me4Mk5V
+         dAbQ==
+X-Gm-Message-State: AOAM532Xrd6gza9G4yB/OMWMzNoxI1RLoM49JuP1FObwBcoYg2LleHAC
+        WIJcOTCP81GYo+bQy8WXj+A=
+X-Google-Smtp-Source: ABdhPJwLW7RWf2bJLcllr9oXFsxnRR7DaHlPuADOa93/8O9xTtx9b0JUWVFr6BWeFUsYJ5Q+VFckNw==
+X-Received: by 2002:a05:6808:1a01:: with SMTP id bk1mr33582oib.46.1638290420694;
+        Tue, 30 Nov 2021 08:40:20 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b1sm3210587otj.5.2021.11.30.08.40.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Nov 2021 08:40:19 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
+ timeout mode
+To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Andrej Picej <andrej.picej@norik.com>
+Cc:     Support Opensource <Support.Opensource@diasemi.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     Sarat Chand Savitala <saratcha@xilinx.com>,
-        Harsh Jain <harshj@xilinx.com>
-Subject: RE: [RFC PATCH 5/6] crypto: xilinx: Add Xilinx SHA3 driver
-Thread-Topic: [RFC PATCH 5/6] crypto: xilinx: Add Xilinx SHA3 driver
-Thread-Index: AQHX5cfv/Gtkq75oe0GYT8ahmwjfo6wcHY6AgAAm3pA=
-Date:   Tue, 30 Nov 2021 16:38:38 +0000
-Message-ID: <SJ0PR02MB7279ADF2CBC68F753B43288FDE679@SJ0PR02MB7279.namprd02.prod.outlook.com>
-References: <1638262465-10790-1-git-send-email-harsha.harsha@xilinx.com>
- <1638262465-10790-6-git-send-email-harsha.harsha@xilinx.com>
- <f6c47b8c-6c88-f64f-fdaf-3bb240d4dab0@infradead.org>
-In-Reply-To: <f6c47b8c-6c88-f64f-fdaf-3bb240d4dab0@infradead.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=xilinx.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 55f222cf-5ecb-4a48-e2c8-08d9b41fdc84
-x-ms-traffictypediagnostic: BYAPR02MB4519:
-x-microsoft-antispam-prvs: <BYAPR02MB4519B26D253A9AD1A722B625DE679@BYAPR02MB4519.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1079;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 40CvOGVU9Yo6O4qtXtENjRcuPP3coZufl/D6zEA7X7RSc/9CwVcU3ZyppFy9NCGGIs2m3Bmy140Q6TW+gVjFd1vxR6lhRFTBG5ucs0PfF5Qur4xt300Dr6SsqM4NUwyI9nDQvoUOLqKptQURpiKZaomXlxMhsZIqXVrvCZR8nK3meH0DS9bIPtPJxP3l7Rnjgc2naT3M+5nkYmvZsRIuOMsBjbJrThTCQTdp3NGihYVpmtoX80K8xA2eCTF7kIpxwd5I4rkXtSWqpn74E2NKtaUhwDFWtbRB3WLMsHEGgr8hkWgpBGxpG8le8xXiklnuBLlj8Wu9oGbiewKuwvbywbe/pW2Kq+iudCxYYwJUeTEqTlYDqF52iNhWbvRbdMRCdy7yBRxgYH1VK4sbIazymlCQKElb559T3i3HWRkTfleVYVfzLtiGNH7tCah5wq0vjHQIbDaP0J6ojnnESnD1JbHySCXNUQ3OI0gqvUd0s6PUIbUE31ZVzJY8uUHi+TT3SkToDSvf4w6RHV19kZFEFwOCnaTVJVyaHF5bphpQ537cxznBOeXzfm0UtgwR0tiec6uACfwmPF9Few1SlUJ5Zq8xsMTCdLl7AbOfFA/pV5EjOFW4K1pzRFGJOURcm7L2mzgKo+eysSWJiDeeB7GSqjiQY2NzwkMI1HkTqk0w0kJFaugUi13W0qtxs+jzv5kQw2mgAOmjzrkKWnKgvlJT5w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR02MB7279.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(38100700002)(33656002)(64756008)(107886003)(4326008)(186003)(52536014)(8936002)(508600001)(55016003)(38070700005)(6506007)(66446008)(2906002)(66476007)(66556008)(54906003)(86362001)(83380400001)(316002)(53546011)(122000001)(5660300002)(7696005)(76116006)(9686003)(8676002)(66946007)(110136005)(71200400001)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cFI4bEYyZjl6eXNkQnphMERsRnA1SG5PWGlId3Q3R1JXSGtaU25La3VtRWpv?=
- =?utf-8?B?OWZobGtsL3d6TURwcm54RGZ4TWJLRVFzOU9wQm1NVFNLVkRBdVFWbW9QMkdp?=
- =?utf-8?B?akNjNEZXKzVXVnI2MUl1TTd1L2xOckJISWxpelQyczhONEFpckVVbm95UkxH?=
- =?utf-8?B?MEZpaWVmd1NtVzFudWxQRmU1Y1VZSlE0T3J6YWxqT0g4dk5MUW9aem1lQUps?=
- =?utf-8?B?a1FrblY3N2ZReWhBNG5sM3UxKys2aVBnSkdOaEd1M3pid0tsL1ZUcExwamNL?=
- =?utf-8?B?Njl3WUR0aXZoS1dvT2NoV21HZUFuU21qSWpOajJEdlA4eFlZT3Q3bVJ4ZmV1?=
- =?utf-8?B?eG5NcWNaeWY1bkYwa08rU3Z0SUJORWFCRWpqY2E0M3JyS2h3bDVlTkp2VS91?=
- =?utf-8?B?eDZ4RVIzcUZaVi9wZml3RjhSdmJtUTJIeFJLS1ZMYjUybEtvSWc0VGE4cVBr?=
- =?utf-8?B?SURmSmVRMHkydTZ3MC9mbmN0Y204UUpxTGpjSS83aHZmd2w1U3RmMUppNkhG?=
- =?utf-8?B?bHVlMmxyUnB4bDM0UUlKWitmNlRGWElqN3d4OUZibVJHOHRJYzNoZHVUanZr?=
- =?utf-8?B?Ui9xaGVMZ2tsUXZ1THhYbnhXVmhtVWFPZ3NSeE1tUGVvUXVXRk9OVE1lK0lR?=
- =?utf-8?B?SDBrN1psaWNHNjVvbDE2dVUrOW8wdVdRcm9GY09MOWo2R2t4c0ZmTDZtYTZl?=
- =?utf-8?B?V3NDa2w2UmFKQTB6b281SnF1cHlmVWRCQzFsUGFIUmJNRW5pMzhJMFR0Qzdz?=
- =?utf-8?B?NUJxZlNwWEtrbk1WR2toU21xU2pKc2ZhVjBueVU1Szc4NThIVG5UR21BWVlx?=
- =?utf-8?B?SkYwMW1rRjM0ZzZHT2k0eml3SkExTXFmSm9BRVppRGowTDBlc0FtMXdmSmdO?=
- =?utf-8?B?cE1lc2xJNXNYWEJMaU9idldlRTdyMlcybVJyVjZDWlJTTGVtc1JBVnlrYjdS?=
- =?utf-8?B?Tnd6UGZuV2podDFPM1RWWkhFWU8yQkV3SXRpR2dpejhMam5BeUtDVjFweStW?=
- =?utf-8?B?WUNpcWUwV0I0d2p1U3JHdGdWdzJHZmJuMHlGODdiS2VSMUFSQTB5Z3RSbVMz?=
- =?utf-8?B?dUNuVStZL2pTNkxUQWlyRjZTR2VsNDF5eE5WcGl4Vmg0Q214S1VJM1Z6dGdU?=
- =?utf-8?B?ZmZabysvamV4c3NQTitzbEV0Q3J6TDUwQkZ6amdLK1FuRHNoQUNwSWJTRGQ5?=
- =?utf-8?B?M0JwWEJtQUs4VFZFalFhZmM4dUpSc0R6TzRLT2x0WlBGODFHa28vSTd2RUNq?=
- =?utf-8?B?RTZGUkhPSE5KLy9QenVvTXJwNkxLaEVjYjh0Nk4waHZzMWRlZ2RBMEhUY1N6?=
- =?utf-8?B?Q3BTVEZEM2pWU1pmNVFzVXFaczlYUzVVSzQrYTVqbEtReVdNY2RCR2NNYW5N?=
- =?utf-8?B?ZWlPMnkvVXNKTkhJcUdIdGlLYkQyVThYcHJMZVIzSzdkNnNENmxjVUwrcU9N?=
- =?utf-8?B?cXZWZUpoZ0MwclAvZjZaRWpVV1pMQ2syQ1hnK200cWRGUWtZSnB4MDh1UWxP?=
- =?utf-8?B?NVphMUlDbnJCRWU4VGVoYldCOS9Fc3pJYStKNURUNTJjYUllSXpXN0J6a3pO?=
- =?utf-8?B?NEdGY2pCSWNtT0tueDhrbkhNVWxQT29hZXlSS0Q3NFVkOS9SbnRENHBxd0c0?=
- =?utf-8?B?SmFYeUF1dHd2ejhRRmNlbXFNU3RBSmRSQ05oRWx5VnJGYksxY1VOMzEvRkF3?=
- =?utf-8?B?Q0F0ZXZUNGpWTU1xM2hRaFJWTWovRVd2U2hTYW9FR0ludUFhNUVpaVRpVzNE?=
- =?utf-8?B?bkV3bDU3OXBraXkyVVVxOE9uNEVhcXduemdoNFN6T01sOUV4RVJRTmZwdDBG?=
- =?utf-8?B?SWRkRllBeVprSzNaTEo0eDN0am1Gd0dJOVByYzJ5OUc3M2s3WWdRWEVUSXV4?=
- =?utf-8?B?MDRQeHFJTlJWaXg0S3hybEpEWS9SRzdJODdTRUg2RFlBbzlqVjFZaXQvL2hL?=
- =?utf-8?B?RUJ1Rnp5VXdmSmVoUzhEOFZiOFM5eU1qM3licFYzWi9SWWZyQkZiQlZNUjRx?=
- =?utf-8?B?UHVmL1hvZEZnemhNdVc5TkZCY0E1ODJvbXpGRVBFaHloZzBQZFJienZJWS84?=
- =?utf-8?B?NGJOSFBoNVY1SjZkNExkRjNmY1hGZDdSQ3pUQU8zVWd3azZBcUZ3VEhzMU9k?=
- =?utf-8?B?SXYxalpibkdYcG55ZWo5d2x4RTlJQ2NaOEFJcElteVg4dnFCTE9vZVJqZmdM?=
- =?utf-8?B?NFE9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211130134242.3516619-1-andrej.picej@norik.com>
+ <20211130134242.3516619-3-andrej.picej@norik.com>
+ <4591cdd6-9a7b-cd1d-817d-8950c8976d10@roeck-us.net>
+ <DB9PR10MB4652C8A69A6A3F38B93ED18880679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <dcd75a82-5837-8d78-0a9f-6e5b7eafff28@roeck-us.net>
+Date:   Tue, 30 Nov 2021 08:40:17 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR02MB7279.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55f222cf-5ecb-4a48-e2c8-08d9b41fdc84
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Nov 2021 16:38:38.4306
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: kawHVPWv6NqlhCIoLS1AkKpDuzv18iSG+k9MXrGxOrPmpTsQOrPX64NSwUDnlX5ECzE8ekqIG7xxV9fd6P9qlA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB4519
+In-Reply-To: <DB9PR10MB4652C8A69A6A3F38B93ED18880679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUmFuZHksDQoNClRoYW5rcyBmb3IgcmV2aWV3aW5nIHRoZSBwYXRjaC4gSSB3aWxsIG1ha2Ug
-dGhlIGZvbGxvd2luZyBjaGFuZ2VzOg0KLSAgWnlucU1QIFNIQTMgaHcgYWNjZWxlcmF0b3IgLT4g
-WnlucU1QIFNIQTMgaGFyZHdhcmUgYWNjZWxlcmF0b3INCi0gIFNIQTMgaHcgZW5naW5lIC0+IFNI
-QTMgaGFyZHdhcmUgZW5naW5lDQoNClJlZ2FyZHMsDQpIYXJzaGENCg0KPiAtLS0tLU9yaWdpbmFs
-IE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSYW5keSBEdW5sYXAgPHJkdW5sYXBAaW5mcmFkZWFkLm9y
-Zz4NCj4gU2VudDogVHVlc2RheSwgTm92ZW1iZXIgMzAsIDIwMjEgNzo0NCBQTQ0KPiBUbzogSGFy
-c2hhIEhhcnNoYSA8aGFyc2hhaEB4aWxpbnguY29tPjsgaGVyYmVydEBnb25kb3IuYXBhbmEub3Jn
-LmF1OyBkYXZlbUBkYXZlbWxvZnQubmV0OyBsaW51eC1jcnlwdG9Admdlci5rZXJuZWwub3JnOw0K
-PiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyBNaWNoYWwgU2ltZWsgPG1pY2hhbHNAeGls
-aW54LmNvbT47IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsgcm9iaCtkdEBr
-ZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiBDYzogU2FyYXQgQ2hh
-bmQgU2F2aXRhbGEgPHNhcmF0Y2hhQHhpbGlueC5jb20+OyBIYXJzaCBKYWluIDxoYXJzaGpAeGls
-aW54LmNvbT4NCj4gU3ViamVjdDogUmU6IFtSRkMgUEFUQ0ggNS82XSBjcnlwdG86IHhpbGlueDog
-QWRkIFhpbGlueCBTSEEzIGRyaXZlcg0KPiANCj4gSGktLQ0KPiANCj4gT24gMTEvMzAvMjEgMDA6
-NTQsIEhhcnNoYSB3cm90ZToNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jcnlwdG8vS2NvbmZp
-ZyBiL2RyaXZlcnMvY3J5cHRvL0tjb25maWcNCj4gPiBpbmRleCA1MTY5MGU3Li41ZGYyNTJlIDEw
-MDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvY3J5cHRvL0tjb25maWcNCj4gPiArKysgYi9kcml2ZXJz
-L2NyeXB0by9LY29uZmlnDQo+ID4gQEAgLTc5Niw2ICs3OTYsMTYgQEAgY29uZmlnIENSWVBUT19E
-RVZfWllOUU1QX0FFUw0KPiA+ICAJICBhY2NlbGVyYXRvci4gU2VsZWN0IHRoaXMgaWYgeW91IHdh
-bnQgdG8gdXNlIHRoZSBaeW5xTVAgbW9kdWxlDQo+ID4gIAkgIGZvciBBRVMgYWxnb3JpdGhtcy4N
-Cj4gPg0KPiA+ICtjb25maWcgQ1JZUFRPX0RFVl9aWU5RTVBfU0hBMw0KPiA+ICsJYm9vbCAiU3Vw
-cG9ydCBmb3IgWGlsaW54IFp5bnFNUCBTSEEzIGh3IGFjY2VsZXJhdG9yIg0KPiANCj4gcy9ody9o
-YXJkd2FyZS8NCj4gDQo+ID4gKwlkZXBlbmRzIG9uIEFSQ0hfWllOUU1QIHx8IENPTVBJTEVfVEVT
-VA0KPiA+ICsJc2VsZWN0IENSWVBUT19TSEEzDQo+ID4gKwloZWxwDQo+ID4gKwkgIFhpbGlueCBa
-eW5xTVAgaGFzIFNIQTMgZW5naW5lIHVzZWQgZm9yIHNlY3VyZSBoYXNoIGNhbGN1bGF0aW9uLg0K
-PiA+ICsJICBUaGlzIGRyaXZlciBpbnRlcmZhY2VzIHdpdGggU0hBMyBodyBlbmdpbmUuDQo+IA0K
-PiBzL2h3L2hhcmR3YXJlLw0KPiANCj4gPiArCSAgU2VsZWN0IHRoaXMgaWYgeW91IHdhbnQgdG8g
-dXNlIHRoZSBaeW5xTVAgbW9kdWxlDQo+ID4gKwkgIGZvciBTSEEzIGhhc2ggY29tcHV0YXRpb24u
-DQo+IA0KPiB0aGFua3MuDQo+IC0tDQo+IH5SYW5keQ0K
+On 11/30/21 8:11 AM, Adam Thomson wrote:
+> On Guenter Roeck wrote:
+> 
+>>> Document the watchdog timeout mode property. If this property is used
+>>> the user can select what happens on watchdog timeout. Set this property
+>>> to 1 to enable SHUTDOWN (the device resets), set it to 0 and the device
+>>> will go to POWERDOWN on watchdog timeout.
+>>>
+>>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>>> ---
+>>>    Documentation/devicetree/bindings/watchdog/da9062-wdt.txt | 3 +++
+>>>    1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+>> b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+>>> index 950e4fba8dbc..e3e6e56cee21 100644
+>>> --- a/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+>>> +++ b/Documentation/devicetree/bindings/watchdog/da9062-wdt.txt
+>>> @@ -10,6 +10,9 @@ Optional properties:
+>>>    - dlg,use-sw-pm: Add this property to disable the watchdog during suspend.
+>>>    	Only use this option if you can't use the watchdog automatic suspend
+>>>    	function during a suspend (see register CONTROL_B).
+>>> +- dlg,wdt-sd: Set what happens on watchdog timeout. If this bit is set the
+>>> +	watchdog timeout triggers SHUTDOWN, if cleared the watchdog triggers
+>>> +	POWERDOWN. Can be 0 or 1.
+>>>
+>>
+>> Why does it need a value ? Why not just bool ?
+> 
+> One argument might be that if the property isn't provided then the OTP
+> configured value can persist without needing a FW change around this DT binding.
+> 
+> My belief though is that the majority of users would have this property set to 0
+> by default in OTP, so a boolean would be OK I think here to enable watchdog
+> shutdown.
+> 
+
+Sorry, you lost me.
+	dlg,wdt-sd = <0>;
+is the current situation, and identical to not having the property in
+the first place.
+	dlg,wdt-sd = <1>;
+is new. I don't see the difference to
+	dlg,wdt-sd;
+vs. not having the property at all (which is, again, the current situation).
+Since it has to be backward compatible,
+	dlg,wdt-sd = <0>;
+will always be identical to not having the property at all.
+I can not find a situation where an integer would have any benefits over a boolean.
+
+Guenter
