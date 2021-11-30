@@ -2,239 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 411A54636E4
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 15:39:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5970F46391D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 16:04:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237030AbhK3Om0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 09:42:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57710 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231570AbhK3OmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 09:42:25 -0500
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D395C061574
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 06:39:06 -0800 (PST)
-Received: by mail-wm1-x332.google.com with SMTP id j140-20020a1c2392000000b003399ae48f58so19700248wmj.5
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 06:39:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2bmfZ8/yojigYMGWoM6Ilhlpc1qceboy4zfRftSi5oE=;
-        b=LelNjI21+uPTpwJ76SNMdaV3DjtJsBx8dnjf0VwM+0LmcN1y5BCEDw7nCes7XUOh+z
-         yTrad4N4KdCVh/LnluKSRW8e/vcF4dArQZv+RNbruDy1uHiBV4OJKaFUXgVND4uubtB0
-         8eot2gMSqo2kjJct9du0xxt+A6Aj71b0sjIlQKrt32wHieUro8uqKCvHPqRUk9+qtSOq
-         2Dljh1tnUsYvjb1Je36fa5D1T/ltcG2WfTi1otHsxmRkOB4p/SKc0fYI1+3fW/WOfwG7
-         LuH2epm7K+gLsltmVwc5N1MUQYA81PLO5Owp+vVfaZQqhMJargSvH35WC3RRJGtrr2KU
-         Iwiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2bmfZ8/yojigYMGWoM6Ilhlpc1qceboy4zfRftSi5oE=;
-        b=IoerEjWL6V3uY1edO49DRejDMpBRpkzkfSEPjMLeY/rUlL8XCdhEYvkIJ/is22YEek
-         HZ9g5JGVcJc0cIf6LgcVnHAy75KCciTNAK0kyORYqF41PdRQwTHMBM/QE5ldbXbL3qH2
-         BzzjuNbaVmjj654odBnxed9TNfOfwXfbqKCrH/ASAPzzXgb8K3UsFGj434qo8ujVqsqA
-         X0CNf8ouxf7x0vog6NhTGeBRBwi7i+pHMjQ92pxv0LQxXFcL/AC4ESUfaluKU9kVHOlG
-         nPasEKRs3AAgFlKdfChju8ZjcoSfBwuJAw2w1byCiDrYYrGVzXlv4ZLILwAFP2MLewY/
-         cgZQ==
-X-Gm-Message-State: AOAM532746/6wXRhx0Gh4cSmC3U9xr9hQQFBYGE0iKaC3QUsAB4dCB10
-        kZdgN3GhcIfX4oex+78tJuN2xw==
-X-Google-Smtp-Source: ABdhPJxZ5sFmuSWzUiRoOR58P5Y8QszFbL7xBmWKGG3s4ojQayuw4RebmZPdbWjTK045kEQSGPY6bQ==
-X-Received: by 2002:a05:600c:4f87:: with SMTP id n7mr5508835wmq.63.1638283144644;
-        Tue, 30 Nov 2021 06:39:04 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:7880:daae:2d50:bb5e? ([2a01:e34:ed2f:f020:7880:daae:2d50:bb5e])
-        by smtp.googlemail.com with ESMTPSA id u13sm3008168wmq.14.2021.11.30.06.39.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Nov 2021 06:39:04 -0800 (PST)
-Subject: Re: [PATCH 1/5] clocksource: Add MStar MSC313e timer support
-To:     Romain Perier <romain.perier@gmail.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20211126202144.72936-1-romain.perier@gmail.com>
- <20211126202144.72936-2-romain.perier@gmail.com>
- <6cf881ea-1761-b3b2-5d0d-9a83595c1246@linaro.org>
- <CABgxDo+W3vg_dDTphkOLxRPzKER891CxTJnPPVuryj9YQOg1EQ@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <4703d6f2-a056-b76b-b313-2695430683be@linaro.org>
-Date:   Tue, 30 Nov 2021 15:39:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        id S239035AbhK3PHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 10:07:20 -0500
+Received: from comms.puri.sm ([159.203.221.185]:49510 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S244319AbhK3PBW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 10:01:22 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id 31F2AE1239;
+        Tue, 30 Nov 2021 06:57:26 -0800 (PST)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id XcmA9cMzm6fl; Tue, 30 Nov 2021 06:57:25 -0800 (PST)
+Message-ID: <cbf47818643901943b844fb729c9ac360d7f3bd3.camel@puri.sm>
+Subject: Re: [PATCH v9 2/4] dt-bindings: media: document SK Hynix Hi-846
+ MIPI CSI-2 8M pixel sensor
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, kernel@puri.sm,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        phone-devel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        shawnx.tu@intel.com
+Date:   Tue, 30 Nov 2021 15:57:18 +0100
+In-Reply-To: <CAMuHMdXaywzfzLDoWYj0vfQ=xjUc+exgwUrrfNvp0Z-eVcNNMg@mail.gmail.com>
+References: <20210906102837.2190387-1-martin.kepplinger@puri.sm>
+         <20210906102837.2190387-3-martin.kepplinger@puri.sm>
+         <CAMuHMdVVNhLa2p-ywmpcEj-sw+NyRNp2z9jsVqsXEDrKphivCQ@mail.gmail.com>
+         <d5e0fe8f8a5445c9c2d2b90fcf454829daf393e8.camel@puri.sm>
+         <YaC0cxmXB8kDcDAI@valkosipuli.retiisi.eu>
+         <CAMuHMdXaywzfzLDoWYj0vfQ=xjUc+exgwUrrfNvp0Z-eVcNNMg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-In-Reply-To: <CABgxDo+W3vg_dDTphkOLxRPzKER891CxTJnPPVuryj9YQOg1EQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2021 15:12, Romain Perier wrote:
-> Hi,
+Am Freitag, dem 26.11.2021 um 13:03 +0100 schrieb Geert Uytterhoeven:
+> Hi Martin,
 > 
-> Le lun. 29 nov. 2021 à 18:02, Daniel Lezcano <daniel.lezcano@linaro.org
-> <mailto:daniel.lezcano@linaro.org>> a écrit :
+> On Fri, Nov 26, 2021 at 11:18 AM Sakari Ailus <sakari.ailus@iki.fi>
+> wrote:
+> > On Fri, Nov 26, 2021 at 11:02:31AM +0100, Martin Kepplinger wrote:
+> > > Am Donnerstag, dem 25.11.2021 um 12:15 +0100 schrieb Geert
+> > > Uytterhoeven:
+> > > > On Mon, Sep 6, 2021 at 12:30 PM Martin Kepplinger
+> > > > <martin.kepplinger@puri.sm> wrote:
+> > > > > Document the bindings used for the SK Hynix Hi-846 CMOS
+> > > > > camera
+> > > > > driver.
+> > > > > 
+> > > > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > > > Reviewed-by: Laurent Pinchart <
+> > > > > laurent.pinchart@ideasonboard.com>
+> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > ---
+> > > > >  .../bindings/media/i2c/hynix,hi846.yaml       | 120
+> > > > > ++++++++++++++++++
+> > > > >  1 file changed, 120 insertions(+)
+> > > > >  create mode 100644
+> > > > > Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > > > 
+> > > > > diff --git
+> > > > > a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yam
+> > > > > l
+> > > > > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yam
+> > > > > l
+> > > > > new file mode 100644
+> > > > > index 000000000000..85a8877c2f38
+> > > > > --- /dev/null
+> > > > > +++
+> > > > > b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yam
+> > > > > l
+> > > > > @@ -0,0 +1,120 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: 
+> > > > > http://devicetree.org/schemas/media/i2c/hynix,hi846.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: SK Hynix Hi-846 1/4" 8M Pixel MIPI CSI-2 sensor
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Martin Kepplinger <martin.kepplinger@puri.sm>
+> > > > > +
+> > > > > +description: |-
+> > > > > +  The Hi-846 is a raw image sensor with an MIPI CSI-2 image
+> > > > > data
+> > > > > +  interface and CCI (I2C compatible) control bus. The output
+> > > > > format
+> > > > > +  is raw Bayer.
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: hynix,hi846
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    items:
+> > > > > +      - description: Reference to the mclk clock.
+> > > > > +
+> > > > > +  assigned-clocks:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  assigned-clock-rates:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  reset-gpios:
+> > > > > +    description: Reference to the GPIO connected to the
+> > > > > RESETB
+> > > > > pin. Active low.
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  shutdown-gpios:
+> > > > > +    description: Reference to the GPIO connected to the
+> > > > > XSHUTDOWN
+> > > > > pin. Active low.
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  vddio-supply:
+> > > > > +    description: Definition of the regulator used for the
+> > > > > VDDIO
+> > > > > power supply.
+> > > > > +
+> > > > > +  vdda-supply:
+> > > > > +    description: Definition of the regulator used for the
+> > > > > VDDA
+> > > > > power supply.
+> > > > > +
+> > > > > +  vddd-supply:
+> > > > > +    description: Definition of the regulator used for the
+> > > > > VDDD
+> > > > > power supply.
+> > > > > +
+> > > > > +  port:
+> > > > > +    $ref: /schemas/graph.yaml#/properties/port
+> > > > > +
+> > > > > +    properties:
+> > > > > +      endpoint:
+> > > > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > > > +        unevaluatedProperties: false
+> > > > > +
+> > > > > +        properties:
+> > > > > +          data-lanes:
+> > > > > +            oneOf:
+> > > > > +              - items:
+> > > > > +                  - const: 1
+> > > > > +                  - const: 2
+> > > > > +                  - const: 3
+> > > > > +                  - const: 4
+> > > > > +              - items:
+> > > > > +                  - const: 1
+> > > > > +                  - const: 2
+> > > > > +
+> > > > > +        required:
+> > > > > +          - data-lanes
+> > > > > +
+> > > > > +required:
+> > > > > +  - compatible
+> > > > > +  - reg
+> > > > > +  - clocks
+> > > > > +  - assigned-clocks
+> > > > > +  - assigned-clock-rates
+> > > > > +  - vddio-supply
+> > > > > +  - vdda-supply
+> > > > > +  - vddd-supply
+> > > > > +  - port
+> > > > > +
+> > > > > +additionalProperties: false
+> > > > > +
+> > > > > +examples:
+> > > > > +  - |
+> > > > > +    #include <dt-bindings/gpio/gpio.h>
+> > > > > +
+> > > > > +    i2c {
+> > > > > +        #address-cells = <1>;
+> > > > > +        #size-cells = <0>;
+> > > > > +
+> > > > > +        hi846: camera@20 {
+> > > > > +            compatible = "hynix,hi846";
+> > > > > +            reg = <0x20>;
+> > > > > +            pinctrl-names = "default";
+> > > > > +            pinctrl-0 = <&pinctrl_csi1>;
+> > > > > +            clocks = <&clk 0>;
+> > > > > +            assigned-clocks = <&clk 0>;
+> > > > > +            assigned-clock-rates = <25000000>;
+> > > > > +            vdda-supply = <&reg_camera_vdda>;
+> > > > > +            vddd-supply = <&reg_camera_vddd>;
+> > > > > +            vddio-supply = <&reg_camera_vddio>;
+> > > > > +            reset-gpios = <&gpio1 25 GPIO_ACTIVE_LOW>;
+> > > > > +            shutdown-gpios = <&gpio5 4 GPIO_ACTIVE_LOW>;
+> > > > > +
+> > > > > +            port {
+> > > > > +                camera_out: endpoint {
+> > > > > +                    remote-endpoint = <&csi1_ep1>;
+> > > > > +                    link-frequencies = /bits/ 64
+> > > > > +                        <80000000 200000000>;
+> > > > > +                    data-lanes = <1 2>;
+> > > > 
+> > > > "make dt_binding_check":
+> > > > 
+> > > > 
+> > > > Documentation/devicetree/bindings/media/i2c/hynix,hi846.example
+> > > > .dt.ya
+> > > > ml:
+> > > > camera@20: port:endpoint: Unevaluated properties are not
+> > > > allowed
+> > > > ('link-frequencies', 'data-lanes' were unexpected)
+> > > >     From schema:
+> > > > Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > > 
+> > > > > +                };
+> > > > > +            };
+> > > > > +        };
+> > > > > +    };
+> > > > 
+> > > > Gr{oetje,eeting}s,
+> > > > 
+> > > >                         Geert
+> > > 
+> > > 
+> > > thanks a lot Geert, but I can't reproduce this on linux-next.
+> > > Which
+> > > tree did you run it against?
+> > > 
+> > > What I *do* see is the following during dtbs_check, so I guess I
+> > > could
+> > > remove "orientation" and "rotation" from the example, which would
+> > > be
+> > > kind of sad because these useful properties are not yet too wide
+> > > know
+> > > anyway in the media device driver world...
+> > > 
+> > > /home/martin/dev/purism-forks/linux-
+> > > next/arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
+> > > camera-front@20: 'orientation', 'rotation' do not match any of
+> > > the
+> > > regexes: 'pinctrl-[0-9]+'
+> > >       From schema: /home/martin/dev/purism-forks/linux-
+> > > next/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > > 
+> > > 
+> > > if you can be more speicific I'll definitely try to reproduce
+> > > again
+> > > though.
 > 
->     On 26/11/2021 21:21, Romain Perier wrote:
->     > The MSC313e-compatible SoCs have 3 timer hardware blocks. All of these
->     > are free running 32-bit increasing counters and can generate
->     interrupts.
->     > This commit adds basic support for these timers, the first timer block
->     > being used as clocksource/sched_clock and delay, while the others will
->     > be used as clockevents.
+> This is reproducible on next-20211126.
+> Is your dt-schema up-to-date?
+
+it is now, I'm running
+
+make -j7 ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- dt_binding_check
+dtbs_check
+
+but I can't reproduce that error. weird.
+
 > 
->     Please you elaborate a bit more the internals of this timer as it is a
->     initial submission
+> > link-frequencies is present in the example (as it needs to be) but
+> > missing
+> > from required properties. I don't know why there's a complaint
+> > about
+> > data-lanes though.
 > 
+> I also don't know what's wrong with data-lanes (else I would have
+> sent a patch to fix it ;-)
 > 
-> Ok, will try to elaborate.
->  
+> Gr{oetje,eeting}s,
 > 
+>                         Geert
 > 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- 
+> geert@linux-m68k.org
 > 
->     > Signed-off-by: Romain Perier <romain.perier@gmail.com
->     <mailto:romain.perier@gmail.com>>
->     > Co-developed-by: Daniel Palmer <daniel@0x0f.com
->     <mailto:daniel@0x0f.com>>
->     > Signed-off-by: Daniel Palmer <daniel@0x0f.com
->     <mailto:daniel@0x0f.com>>
->     > ---
->     >  MAINTAINERS                         |   1 +
->     >  drivers/clocksource/Kconfig         |  10 ++
->     >  drivers/clocksource/Makefile        |   1 +
->     >  drivers/clocksource/timer-msc313e.c | 228
->     ++++++++++++++++++++++++++++
->     >  4 files changed, 240 insertions(+)
->     >  create mode 100644 drivers/clocksource/timer-msc313e.c
->     >
->     > diff --git a/MAINTAINERS b/MAINTAINERS
->     > index 7a2345ce8521..f39a1617bf50 100644
->     > --- a/MAINTAINERS
->     > +++ b/MAINTAINERS
->     > @@ -2282,6 +2282,7 @@ F:     
->     Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
->     >  F:   arch/arm/boot/dts/mstar-*
->     >  F:   arch/arm/mach-mstar/
->     >  F:   drivers/clk/mstar/
->     > +F:   drivers/clocksource/timer-msc313e.c
->     >  F:   drivers/gpio/gpio-msc313.c
->     >  F:   drivers/rtc/rtc-msc313.c
->     >  F:   drivers/watchdog/msc313e_wdt.c
->     > diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
->     > index f65e31bab9ae..822e711da284 100644
->     > --- a/drivers/clocksource/Kconfig
->     > +++ b/drivers/clocksource/Kconfig
->     > @@ -671,6 +671,16 @@ config MILBEAUT_TIMER
->     >       help
->     >         Enables the support for Milbeaut timer driver.
->     > 
->     > +config MSC313E_TIMER
->     > +     bool "MSC313E timer driver"
-> 
->     Silent option please and platform config option enables it.
-> 
-> 
-> What do you mean ? no short description at all ?
-
-We try to let the platform Kconfig option to select silently the timer
-in order to prevent selecting it manually.
-
-If the timer is mandatory on your platform it should be a silent option,
-except for COMPILE_TEST
-
-That leads to:
-
-	bool "MSC313E timer driver" if COMPILE_TEST
-
-and you should be able to compile it on x86, ...
-
-If the timer is optional because there is another one on the platform,
-it could be unselected manually. That is the configuration you've done here.
-
-So if there is no other broadcast timer, this timer should selected for
-the platform and the option should be silent (except in case of
-COMPILE_TEST).
-
->     > +     depends on ARCH_MSTARV7 || COMPILE_TEST
->     > +     select TIMER_OF
->     > +     select CLKSRC_MMIO
->     > +     help
->     > +       Enables support for the MStar MSC313E timer driver.
->     > +       This provides access to multiple interrupt generating
->     > +       programmable 32-bit free running incrementing counters.
->     > +
->     >  config INGENIC_TIMER
-
-[ ... ]
-
->     > +
->     > +struct msc313e_delay {
->     > +     void __iomem *base;
->     > +     struct delay_timer delay;
->     > +};
->     > +
->     > +static void __iomem *msc313e_clksrc;
->     > +static struct msc313e_delay msc313e_delay;
-> 
->     I'm not sure that compiles on other platform than mstarv7
-> 
-> 
-> It is armv7-based, and its size is known at build-time, no ?
-> Everything builds with WERROR here.
-
-I should have say "arch" instead of "platform".
-
-The COMPILE_TEST option is set above, that means the driver can be
-compiled on a x86 (for compilation test coverage, stubs already exists
-except for delay AFAIR).
-
-[ ... ]
-
->     > +     msc313e_delay.base = timer_of_base(&to);
->     > +     msc313e_delay.delay.read_current_timer =
->     msc313e_read_delay_timer_read;
->     > +     msc313e_delay.delay.freq = timer_of_rate(&to);
->     > +
->     > +     msc313e_clksrc = timer_of_base(&to);
->     > +     reg = readw(msc313e_clksrc + MSC313E_REG_CTRL);
->     > +     reg |= MSC313E_REG_CTRL_TIMER_EN;
->     > +     writew(reg, msc313e_clksrc + MSC313E_REG_CTRL);
->     > +
->     > +     register_current_timer_delay(&msc313e_delay.delay);
->     > +
->     > +     sched_clock_register(msc313e_timer_sched_clock_read, 32,
->     timer_of_rate(&to));
->     > +     return clocksource_mmio_init(timer_of_base(&to), TIMER_NAME,
->     timer_of_rate(&to), 300, 32,
->     > +                                  msc313e_timer_clksrc_read);
-> 
->     format 80char max please, run checkpatch.pl <http://checkpatch.pl>
->     before submitting
-> 
-> 
-> max_line_lenght is set to "100" in checkpatch.pl <http://checkpatch.pl>
-> since a while now :) .
-> I have passed it with "--strict" before sending the series, however, if
-> you prefer 80 chars
-> max just ask, I can limit to 80 chars.
-
-Oh, indeed. Fair enough, limit to 80 chars is now deprecated and
-suggested length is 100.
-
-In this case, at your convenience.
-
-Thanks
-  -- Daniel
+> In personal conversations with technical people, I call myself a
+> hacker. But
+> when I'm talking to journalists I just say "programmer" or something
+> like that.
+>                                 -- Linus Torvalds
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
