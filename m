@@ -2,112 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA8246414C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 23:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26FFC464150
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 23:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232821AbhK3WfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 17:35:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55046 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245138AbhK3WfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 17:35:15 -0500
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69EFFC061748
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 14:31:55 -0800 (PST)
-Received: by mail-io1-xd30.google.com with SMTP id 14so28125889ioe.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 14:31:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AXXJ26Wt6dMZ0zORFCiW5WUqSHwbGwHJdBTa4iT2mVM=;
-        b=azsCj/Xo7luiuJG3TgVodDC6kPkHmTnZZNjFIQRBNJHvod/t5kJhL+3sFQ39CkElhi
-         qt3gxzzWZL6bhROlbkR5eapdsFYRXgJvxPC9b0UY4E9okDXc8IOHgyDgrYh5Q5UWRunb
-         JE/nIziF8kLAGWW57/42rdDqwwrIzGEOnYhCLrUiXYTRjXkG2CzIfUEGzdCLHGe95wSX
-         o6YclUuvPm1AyWV2P10GHzFCDsgH+tDrL3O8A1mmwmDxOxYyNMdJIFCBOM/oxjFc1KgJ
-         XnlwphAl1r9BlxtMri+YDJ429Mz34xzM3IkHZjidJeqgQB/Yf1TqgKk/jRRJvi4iE3OJ
-         7D0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AXXJ26Wt6dMZ0zORFCiW5WUqSHwbGwHJdBTa4iT2mVM=;
-        b=bgbntsT3+5Y9r/5Q0yYYobg9S2KpR8Z/FoKwFlyyCHRgqui97NT9XlqGxG3xLnlvi3
-         xEx85a7f3ZGVmzvo9faHxlwfCFCGyNKUgvnSyoehXdX6Hq5Wk3aE1y5KNRbsrzn24umT
-         D1hhfg4gkVtNFQWm5xE4e43A15aIyci1J/hHEdqYZE06+P+czsbbDE+2or0FQnBHJtbI
-         h0Xvg/P9gYTTqBbOs0gudFFeuzlVUG71gbxBwnjEnPftrrjV14/Y8pEzl1OxQmjW/6oa
-         jQldF8RcQloqx9VljaH3ZB+ZQJ49SAEhr3J2cApa7Cm8sOlb2zDLK3SpsknR/UZgdsRt
-         Ca/g==
-X-Gm-Message-State: AOAM530AD3OoSq5tfmlLv9zq/VHYgyNgbZRQI3zH7VnYg1F8YsTWNvWk
-        3VRkrQRQDIFsoeV7UBAyc680gNc4jFdSaGsOi/Ju5Sl4ArFsxw==
-X-Google-Smtp-Source: ABdhPJz1icdhjs029/3/wHzP6fD9o5E170eQhe4Tn7lyO0TJjPeJHsCU8ig12rKaMR80FMbMdbWkBs5TIS+o+SzjSuI=
-X-Received: by 2002:a02:cc91:: with SMTP id s17mr3959716jap.3.1638311514465;
- Tue, 30 Nov 2021 14:31:54 -0800 (PST)
+        id S243986AbhK3Wfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 17:35:38 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:37853 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1344545AbhK3Wf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 17:35:29 -0500
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 62E591C0004;
+        Tue, 30 Nov 2021 22:32:05 +0000 (UTC)
+Date:   Tue, 30 Nov 2021 23:32:05 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Alexey Firago <alexey_firago@mentor.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 1/2] rtc: max31343: Add a driver for Maxim MAX31343
+Message-ID: <YaamZW1nyOGDXfyw@piout.net>
+References: <20211016192118.255624-1-alexey_firago@mentor.com>
+ <20211016192118.255624-2-alexey_firago@mentor.com>
 MIME-Version: 1.0
-References: <20211123075205.2457975-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20211123075205.2457975-1-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Tue, 30 Nov 2021 14:31:42 -0800
-Message-ID: <CAD=FV=W=9Ux4ym4GsFME2L9Qjis-pJckOinRXaese4aO4YCq2w@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: Update BOE and INX initial code
-To:     yangcong <yangcong5@huaqin.corp-partner.google.com>
-Cc:     thierry.reding@gmail.com, sam@ravnborg.org, airlied@linux.ie,
-        daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211016192118.255624-2-alexey_firago@mentor.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello,
 
-On Mon, Nov 22, 2021 at 11:52 PM yangcong
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> At present, we have enough panel to confirm the effect,
-> update the initial code to achieve the best effect.
-> such as gamma, Gtp timing. They are all minor modifications
-> and doesn't affect the lighting of the panel.
->
-> a)Boe panel Optimized touch horizontal grain.
-> b)Inx panel Optimized GOP timming and gamma.
+On 16/10/2021 22:21:17+0300, Alexey Firago wrote:
+> +#define MAX31343_REG_TIMER_CFG	(0x05)
+> +#define  TIMER_CFG_TFS		GENMASK(1, 0) /* Timer frequency */
+> +#define  TIMER_CFG_TRPT		BIT(2) /* Timer repeat mode */
+> +#define  TIMER_CFG_TPAUSE	BIT(3) /* Timer Pause */
+> +#define  TIMER_CFG_TE		BIT(4) /* Timer enable */
+> +
+> +/* RTC section */
+> +#define MAX31343_REG_SEC	(0x06)
+> +#define  SEC10_MASK	GENMASK(6, 4) /* RTC seconds in multiples of 10 */
+> +#define  SEC_MASK	GENMASK(3, 0) /* RTC seconds value */
 
-s/timming/timing
+I'm not convinced having separate masks is useful here, was that
+automatically generated?
 
+> +static int max31343_rtc_set_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct max31343_rtc_data *max31343 = dev_get_drvdata(dev);
+> +	u8 date[7];
+> +	int ret;
+> +
+> +	dev_dbg(dev, "RTC set time %04d-%02d-%02d %02d/%02d/%02d\n",
+> +		tm->tm_year + 1900, tm->tm_mon, tm->tm_mday,
+> +		tm->tm_hour, tm->tm_min, tm->tm_sec);
+> +
 
-> Signed-off-by: yangcong <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 108 ++++++++++++------
->  1 file changed, 71 insertions(+), 37 deletions(-)
+This could use %ptR
 
-Please resend and include the panel model in "${SUBJECT}". Right now
-your subject makes it sound as if this affects _all_ BOE and INX
-panels but it only affects two particular ones.
+> +	date[0] = bin2bcd(tm->tm_sec);
+> +	date[1] = bin2bcd(tm->tm_min);
+> +	date[2] = bin2bcd(tm->tm_hour);
+> +	date[3] = tm->tm_wday;
+> +	date[4] = bin2bcd(tm->tm_mday);
+> +	date[5] = bin2bcd(tm->tm_mon + 1);
+> +
+> +	if (tm->tm_year >= 200)
+> +		date[5] |= CENTURY;
+> +	date[6] = bin2bcd(tm->tm_year % 100);
+> +
+> +	ret = regmap_bulk_write(max31343->regmap, MAX31343_REG_SEC, date,
+> +				sizeof(date));
+> +	return ret;
+> +}
+> +
 
+[...]
 
-> @@ -111,18 +111,16 @@ static const struct panel_init_cmd boe_tv110c9m_init_cmd[] = {
->         _INIT_DCS_CMD(0xB0, 0x00, 0x00, 0x00, 0x1B, 0x00, 0x45, 0x00, 0x65, 0x00, 0x81, 0x00, 0x99, 0x00, 0xAE, 0x00, 0xC1),
->         _INIT_DCS_CMD(0xB1, 0x00, 0xD2, 0x01, 0x0B, 0x01, 0x34, 0x01, 0x76, 0x01, 0xA3, 0x01, 0xEF, 0x02, 0x27, 0x02, 0x29),
->         _INIT_DCS_CMD(0xB2, 0x02, 0x5F, 0x02, 0x9E, 0x02, 0xC9, 0x03, 0x00, 0x03, 0x26, 0x03, 0x53, 0x03, 0x63, 0x03, 0x73),
-> -       _INIT_DCS_CMD(0xB3, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xAF, 0x03, 0xDF, 0x03, 0xF5, 0x03, 0xF7),
-> -
-> +       _INIT_DCS_CMD(0xB3, 0x03, 0x86, 0x03, 0x9A, 0x03, 0xA7, 0x03, 0xCF, 0x03, 0xDE, 0x03, 0xE0),
+> +static int
+> +max31343_probe(struct i2c_client *client, const struct i2c_device_id *id)
+> +{
+> +	struct max31343_rtc_data *max31343 = NULL;
+> +	int ret, status;
+> +	struct nvmem_config nvmem_cfg = {
+> +		.name = "max31343_nvram",
+> +		.word_size = 1,
+> +		.stride = 1,
+> +		.size = MAX31343_RAM_SIZE,
+> +		.type = NVMEM_TYPE_BATTERY_BACKED,
+> +		.reg_read = max31343_nvram_read,
+> +		.reg_write = max31343_nvram_write,
+> +	};
+> +
+> +	max31343 = devm_kzalloc(&client->dev, sizeof(struct max31343_rtc_data),
+> +				GFP_KERNEL);
+> +	if (!max31343)
+> +		return -ENOMEM;
+> +
+> +	max31343->regmap = devm_regmap_init_i2c(client, &max31343_regmap_config);
+> +	if (IS_ERR(max31343->regmap))
+> +		return PTR_ERR(max31343->regmap);
+> +
+> +	i2c_set_clientdata(client, max31343);
+> +
+> +	ret = regmap_read(max31343->regmap, MAX31343_REG_STATUS, &status);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	max31343->rtc = devm_rtc_allocate_device(&client->dev);
+> +	if (IS_ERR(max31343->rtc))
+> +		return PTR_ERR(max31343->rtc);
+> +
+> +	max31343->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
+> +	max31343->rtc->range_max = RTC_TIMESTAMP_END_2199;
 
-You would know better than I would, but it seems like you've randomly
-added / removed some blank lines in this patch. Since these are
-totally opaque to me (which I hate) I don't know which is better or
-worse, but it seems rather arbitrary to be messing with the spacing.
+For my information, did you check the time continuity in this interval?
 
+> +	max31343->rtc->ops = &max31343_rtc_ops;
+> +	ret = devm_rtc_register_device(max31343->rtc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	nvmem_cfg.priv = max31343->regmap;
+> +	devm_rtc_nvmem_register(max31343->rtc, &nvmem_cfg);
+> +	max31343_hwmon_register(&client->dev);
 
-> @@ -428,10 +452,10 @@ static const struct panel_init_cmd inx_init_cmd[] = {
+The whole driver seems ok, I'd like to get a review from the hwmon
+maintainers on the hwmon part as it is quite large.
 
-I should have noticed before, but the name "inx_init_cmd" is way too
-generic. Can you also include a patch to rename this to
-"inx_hj110iz_init_cmd" ?
-
-
-Other than nits then I guess this is fine. I'll probably wait about a
-week from whenever you send the next version and then plan to land it
-in drm-misc-next barring any other feedback.
-
--Doug
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
