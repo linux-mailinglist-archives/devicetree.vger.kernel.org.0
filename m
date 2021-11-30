@@ -2,387 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 800F1462F47
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 10:09:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37345462F35
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 10:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240009AbhK3JMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 04:12:34 -0500
-Received: from mickerik.phytec.de ([195.145.39.210]:61056 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239991AbhK3JMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 04:12:33 -0500
-X-Greylist: delayed 916 seconds by postgrey-1.27 at vger.kernel.org; Tue, 30 Nov 2021 04:12:31 EST
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1638262435; x=1640854435;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=pqCeDGdKy4jAKCH+dsX7ZhXbfXdITnyvvdiw1VU2nac=;
-        b=MU84XJLAAClRE33kecjE9pa9nAi1K9GFiMGKNQm/eWyFWTtCxG8NWU5xR65lzsKE
-        eOLYIznMkD61ut1uDZSZlTaLCz9cYIlIK7xgLb9R+fX/0OKsne5dxL2/vNMLICo/
-        mmWleQ0+hFNlNjpadZmJwHLq4qUY5jzwfCWBX5Qs1dw=;
-X-AuditID: c39127d2-4ef327000000426a-b9-61a5e6a34ee8
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id E1.4F.17002.3A6E5A16; Tue, 30 Nov 2021 09:53:55 +0100 (CET)
-Received: from augenblix2.phytec.de ([172.16.0.56])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2021113009535556-2244391 ;
-          Tue, 30 Nov 2021 09:53:55 +0100 
-From:   Yunus Bas <y.bas@phytec.de>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        devicetree@vger.kernel.org
-Cc:     kernel@pengutronix.de, festevam@gmail.com,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: imx6: phytec: Add PEB-WLBT-05 support
-Date:   Tue, 30 Nov 2021 09:53:55 +0100
-Message-Id: <20211130085355.2291607-3-y.bas@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211130085355.2291607-1-y.bas@phytec.de>
-References: <20211130085355.2291607-1-y.bas@phytec.de>
+        id S233648AbhK3JHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 04:07:17 -0500
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:52857 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S235401AbhK3JHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 04:07:17 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4F4805C019E;
+        Tue, 30 Nov 2021 04:03:58 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Tue, 30 Nov 2021 04:03:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=cIzPzDIMNvXI+7c5/F0qLyKpS+g
+        RyMx/VWujNf7m6rI=; b=TP+hM5/Jqy+yttAB+5jFxgnNDQdl8BXiMSVkWYj/krO
+        2DxkvWWkeAB+4dDvWRx1bHSTTGTsi28dqz0fhxI45UVzOsBxAmeyw0d0uG+74vXz
+        ShXmHs0p3GTtAfI9VD1g9YCRta5lcuRhhrgKWfyvskG5lKV9d+uuKNmhUDGdQK6C
+        5+gfMydCh0pyxwI3NyXyfydpj+j1fP7e0kVHKK/zXXQIsZug8h1N0y+DwY2YaksE
+        El7poTMWI5CWVi8/cJs7pUhCT6k58Xf+NPP79acSyxVfGO3ElFyEyduRd1BAMJO2
+        gDVFXN3uQv8OJ3p4xZQWE/FcRX/aMONDh2Y5CJxabXw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=cIzPzD
+        IMNvXI+7c5/F0qLyKpS+gRyMx/VWujNf7m6rI=; b=Ah1ZdrSLFy/WRXjwqNsSTa
+        yMu/rC+Fwtub7VtUx+/9k6qPiawVxXNdQ179FUk7J9ExonbAVSXgN2Z3MVndw301
+        VBMH9qhd3xjMoWA9YKPLuBS4L/Prv6khNNOp6drEY+Dv5fLkLH+OBToDjY8YXI2G
+        Dj8wIug8kFAKcCNX20xmYeMigd4W9XUYr0RQ9mdcMWrUtRMMMK0CkIQAHbqq+CMA
+        7xJJk6yWN6q2j1EQL4kvi3TwnLoK7rahp3I2fCQZTO29jVOTxMWId5yLfnudkd5j
+        ayDIvjHrR1d7+byrvxWWb3IqvMFcqBZQroG+fmglKZ694Jok9gba2J8bW9iNNJbQ
+        ==
+X-ME-Sender: <xms:_eilYdowOwhkH3hdFUk4EX0A2t6axI6-_ftbrrKf6ddcMAEzAKW2BQ>
+    <xme:_eilYfrEBQyrazRxRkq1rcEnMfv3thk5Cf-gTVyTYPi6q_V4tkaY4zklbKR7p90KL
+    aDSRgENN98ee46h4pI>
+X-ME-Received: <xmr:_eilYaPSRaf7VLATHV3qpkzOjpTY4Q2lbAUeyGE585xMd-XPmIKu27fTM9COOF_G2a77v2dFfZknABI2_f8nMWxhz8hA5DUApIA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieduucetufdoteggodetrfdotffvucfrrh
+    hofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgenuceurghi
+    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
+    epfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhmvgcutfhi
+    phgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnh
+    epleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieehgedunecu
+    vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimh
+    gvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:_eilYY6NIME2jiFXqw3q7kjkqGNwXPePzMFw1OMz8PEmdyg-1PdzaA>
+    <xmx:_eilYc6dNVnbAIkrvy9jcFq3EsiQRFr6Jtz4QZJgeMDCJX8aS90zcg>
+    <xmx:_eilYQjhacbFEMubLiiB1E_gJvWkH70Y6rJw_iuOFreWYYoX_Xph2A>
+    <xmx:_uilYbaBsgx006dUvOGfFeTthDGqByO0o06E4aWKr1-ITu9SgJ1HgA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 30 Nov 2021 04:03:56 -0500 (EST)
+Date:   Tue, 30 Nov 2021 10:03:55 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     David Lechner <david@lechnology.com>,
+        Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
+        linux-staging@lists.linux.dev,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
+Message-ID: <20211130090355.2mqe3lixbn6j53sq@houat>
+References: <20211124150757.17929-1-noralf@tronnes.org>
+ <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
+ <20211129093946.xhp22mvdut3m67sc@houat>
+ <CAMuHMdUKcOuTjSOQmEywXWJtK+15jPD5jfxXx06JJG1f1U+fog@mail.gmail.com>
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 30.11.2021 09:53:55,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 30.11.2021 09:53:55
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWyRoCBS3fxs6WJBgcPmVvMP3KO1eLhVX+L
-        VVN3slhc3jWHzaJ17xF2i7/bN7FYvNgi7sDusXPWXXaPTas62Tz6/xp4fN4kF8ASxWWTkpqT
-        WZZapG+XwJWx4OI19oIn4RWX985ga2B8493FyMkhIWAi8fPwC/YuRi4OIYGtjBI/ulqZIJwL
-        jBITW54yg1SxCShKnL/9lhXEFhGIl5i6/ycjiM0s4C3ReuMqWI2wgIvElDXLmUBsFgFVif3H
-        Z7OD2LwCZhLrVr9lgdgmLzHz0newOKeAucS75YfYQGwhoJqzr9YwQtQLSpyc+YQF5AgJgSuM
-        Er33brFDNAtJnF58lhlisbbEsoWvmScwCsxC0jMLSWoBI9MqRqHczOTs1KLMbL2CjMqS1GS9
-        lNRNjMDQPTxR/dIOxr45HocYmTgYDzFKcDArifB6n1mcKMSbklhZlVqUH19UmpNafIhRmoNF
-        SZz3fg9TopBAemJJanZqakFqEUyWiYNTqoGRN3KugsBJwy4JYQnld2uPb9fKj3klFPFln4KI
-        cpr85amsGyuup7pIVZ0WdXDRdr6sEu/2xTa189wX7pTos1M3JjiznJvSJbeDK0bqnJOUb1NY
-        idjfHtOVLElz9lwqu3tg/jq9ScnHEpZGbL/jeKnMbodPzYOW1MdNX758m8xV56NwQ/dQ41El
-        luKMREMt5qLiRAACpJnqSwIAAA==
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="tszzmrkvbr2nm6rh"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUKcOuTjSOQmEywXWJtK+15jPD5jfxXx06JJG1f1U+fog@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PEB-WLBT-05 is equipped with a Sterling-LWB radio module, which is
-capable of Wi-Fi 802.11 b/g/n and Bluetooth 4.2.
 
-Signed-off-by: Yunus Bas <y.bas@phytec.de>
----
- .../boot/dts/imx6dl-phytec-mira-rdk-nand.dts  |  1 +
- .../boot/dts/imx6q-phytec-mira-rdk-emmc.dts   |  1 +
- .../boot/dts/imx6q-phytec-mira-rdk-nand.dts   |  1 +
- .../dts/imx6qdl-phytec-mira-peb-wlbt-05.dtsi  | 82 +++++++++++++++++
- .../boot/dts/imx6qp-phytec-mira-rdk-nand.dts  |  1 +
- .../dts/imx6ul-phytec-segin-ff-rdk-nand.dts   |  1 +
- .../dts/imx6ul-phytec-segin-peb-wlbt-05.dtsi  | 88 +++++++++++++++++++
- .../dts/imx6ull-phytec-segin-ff-rdk-nand.dts  |  1 +
- .../dts/imx6ull-phytec-segin-lc-rdk-nand.dts  |  1 +
- .../dts/imx6ull-phytec-segin-peb-wlbt-05.dtsi | 19 ++++
- 10 files changed, 196 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6qdl-phytec-mira-peb-wlbt-05.dtsi
- create mode 100644 arch/arm/boot/dts/imx6ul-phytec-segin-peb-wlbt-05.dtsi
- create mode 100644 arch/arm/boot/dts/imx6ull-phytec-segin-peb-wlbt-05.dtsi
+--tszzmrkvbr2nm6rh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/imx6dl-phytec-mira-rdk-nand.dts b/arch/arm/b=
-oot/dts/imx6dl-phytec-mira-rdk-nand.dts
-index 8165fae2b1d1..d906a7f05aaa 100644
---- a/arch/arm/boot/dts/imx6dl-phytec-mira-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6dl-phytec-mira-rdk-nand.dts
-@@ -10,6 +10,7 @@
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-+#include "imx6qdl-phytec-mira-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Mira DualLite/Solo Carrier-Board with NAND";
-diff --git a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-emmc.dts b/arch/arm/bo=
-ot/dts/imx6q-phytec-mira-rdk-emmc.dts
-index bbf5097ca974..322f071d972f 100644
---- a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-emmc.dts
-+++ b/arch/arm/boot/dts/imx6q-phytec-mira-rdk-emmc.dts
-@@ -10,6 +10,7 @@
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-+#include "imx6qdl-phytec-mira-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Mira Quad Carrier-Board with eMMC";
-diff --git a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-nand.dts b/arch/arm/bo=
-ot/dts/imx6q-phytec-mira-rdk-nand.dts
-index 95051e18324f..3f13726c8058 100644
---- a/arch/arm/boot/dts/imx6q-phytec-mira-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6q-phytec-mira-rdk-nand.dts
-@@ -10,6 +10,7 @@
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-+#include "imx6qdl-phytec-mira-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Mira Quad Carrier-Board with NAND";
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-mira-peb-wlbt-05.dtsi b/arch/=
-arm/boot/dts/imx6qdl-phytec-mira-peb-wlbt-05.dtsi
-new file mode 100644
-index 000000000000..13d64393b5a5
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-mira-peb-wlbt-05.dtsi
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2021 PHYTEC Messtechnik GmbH
-+ * Author: Yunus Bas <y.bas@phytec.de>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	reg=5Fwl=5Fen: regulator-wl-en {
-+		compatible =3D "regulator-fixed";
-+		regulator-name =3D "wlan=5Fen";
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-max-microvolt =3D <3300000>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fwl>;
-+		gpio =3D <&gpio5 2 GPIO=5FACTIVE=5FHIGH>;
-+		startup-delay-us =3D <100>;
-+		enable-active-high;
-+		status =3D "disabled";
-+	};
-+};
-+
-+&uart3 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fuart3=5Fbt>;
-+	uart-has-rtscts;
-+
-+	bluetooth {
-+		compatible =3D "brcm,bcm43438-bt";
-+		shutdown-gpios =3D <&gpio7 0 GPIO=5FACTIVE=5FHIGH>;
-+		device-wakeup-gpios =3D <&gpio7 1 GPIO=5FACTIVE=5FHIGH>;
-+		host-wakeup-gpios =3D <&gpio5 26 GPIO=5FACTIVE=5FHIGH>;
-+		status =3D "disabled";
-+	};
-+};
-+
-+&usdhc3 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fusdhc3=5Fwl>;
-+	vmmc-supply =3D <&reg=5Fwl=5Fen>;
-+	bus-width =3D <4>;
-+	non-removable;
-+	no-1-8-v;
-+	status =3D "disabled";
-+
-+	brmcf: wifi@1 {
-+		compatible =3D "brcm,bcm4329-fmac";
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl=5Fuart3=5Fbt: uart3grp=5Fbt {
-+		fsl,pins =3D <
-+			MX6QDL=5FPAD=5FEIM=5FD25=5F=5FUART3=5FRX=5FDATA	0x1b0b1
-+			MX6QDL=5FPAD=5FEIM=5FD24=5F=5FUART3=5FTX=5FDATA	0x1b0b1
-+			MX6QDL=5FPAD=5FEIM=5FEB3=5F=5FUART3=5FRTS=5FB		0x1b0b1
-+			MX6QDL=5FPAD=5FEIM=5FD23=5F=5FUART3=5FCTS=5FB		0x1b0b1
-+			MX6QDL=5FPAD=5FSD3=5FDAT5=5F=5FGPIO7=5FIO00		0xb0b1	/* BT ENABLE */
-+			MX6QDL=5FPAD=5FSD3=5FDAT4=5F=5FGPIO7=5FIO01		0xb0b1	/* DEV WAKEUP */
-+			MX6QDL=5FPAD=5FCSI0=5FDAT8=5F=5FGPIO5=5FIO26	0xb0b1  /* HOST WAKEUP */
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc3=5Fwl: usdhc3grp=5Fwl {
-+		fsl,pins =3D <
-+			MX6QDL=5FPAD=5FSD3=5FCMD=5F=5FSD3=5FCMD		0x17059
-+			MX6QDL=5FPAD=5FSD3=5FCLK=5F=5FSD3=5FCLK		0x10059
-+			MX6QDL=5FPAD=5FSD3=5FDAT0=5F=5FSD3=5FDATA0		0x17059
-+			MX6QDL=5FPAD=5FSD3=5FDAT1=5F=5FSD3=5FDATA1		0x17059
-+			MX6QDL=5FPAD=5FSD3=5FDAT2=5F=5FSD3=5FDATA2		0x17059
-+			MX6QDL=5FPAD=5FSD3=5FDAT3=5F=5FSD3=5FDATA3		0x17059
-+		>;
-+	};
-+
-+	pinctrl=5Fwl: wlgrp {
-+		fsl,pins =3D <
-+			MX6QDL=5FPAD=5FEIM=5FA25=5F=5FGPIO5=5FIO02      0xb0b1	/* WLAN ENABLE */
-+		>;
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6qp-phytec-mira-rdk-nand.dts b/arch/arm/b=
-oot/dts/imx6qp-phytec-mira-rdk-nand.dts
-index 343639cb035c..a18266598d39 100644
---- a/arch/arm/boot/dts/imx6qp-phytec-mira-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6qp-phytec-mira-rdk-nand.dts
-@@ -10,6 +10,7 @@
- #include "imx6qdl-phytec-mira.dtsi"
- #include "imx6qdl-phytec-mira-peb-eval-01.dtsi"
- #include "imx6qdl-phytec-mira-peb-av-02.dtsi"
-+#include "imx6qdl-phytec-mira-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Mira QuadPlus Carrier-Board with NAND";
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dts b/arch/a=
-rm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dts
-index bff98e676980..607eddc5030f 100644
---- a/arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6ul-phytec-segin-ff-rdk-nand.dts
-@@ -10,6 +10,7 @@
- #include "imx6ul-phytec-segin.dtsi"
- #include "imx6ul-phytec-segin-peb-eval-01.dtsi"
- #include "imx6ul-phytec-segin-peb-av-02.dtsi"
-+#include "imx6ul-phytec-segin-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Segin i.MX6 UltraLite Full Featured with NAND";
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-wlbt-05.dtsi b/arch/=
-arm/boot/dts/imx6ul-phytec-segin-peb-wlbt-05.dtsi
-new file mode 100644
-index 000000000000..5312a2a2efe3
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-wlbt-05.dtsi
-@@ -0,0 +1,88 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2021 PHYTEC Messtechnik GmbH
-+ * Author: Yunus Bas <y.bas@phytec.de>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	reg=5Fwl=5Fen: regulator-wl-en {
-+		compatible =3D "regulator-fixed";
-+		regulator-name =3D "wlan=5Fen";
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-max-microvolt =3D <3300000>;
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl=5Fwl>;
-+		gpio =3D <&gpio5 9 GPIO=5FACTIVE=5FHIGH>;
-+		startup-delay-us =3D <100>;
-+		enable-active-high;
-+		status =3D "disabled";
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl=5Fuart2=5Fbt: uart2grp=5Fbt {
-+		fsl,pins =3D <
-+			MX6UL=5FPAD=5FUART2=5FTX=5FDATA=5F=5FUART2=5FDCE=5FTX   0x17059
-+			MX6UL=5FPAD=5FUART2=5FRX=5FDATA=5F=5FUART2=5FDCE=5FRX   0x17059
-+			MX6UL=5FPAD=5FUART2=5FCTS=5FB=5F=5FUART2=5FDCE=5FCTS    0x17059
-+			MX6UL=5FPAD=5FUART2=5FRTS=5FB=5F=5FUART2=5FDCE=5FRTS    0x17059
-+		>;
-+	};
-+
-+	pinctrl=5Fbt: btgrp {
-+		fsl,pins =3D <
-+			MX6UL=5FPAD=5FGPIO1=5FIO01=5F=5FGPIO1=5FIO01	0x3031	/* BT ENABLE */
-+			MX6UL=5FPAD=5FGPIO1=5FIO03=5F=5FGPIO1=5FIO03	0x3031	/* HOST WAKEUP */
-+			MX6UL=5FPAD=5FJTAG=5FMOD=5F=5FGPIO1=5FIO10		0x3031	/* DEV WAKEUP */
-+		>;
-+	};
-+
-+	pinctrl=5Fusdhc2=5Fwl: usdhc2grp=5Fwl {
-+		fsl,pins =3D <
-+			MX6UL=5FPAD=5FLCD=5FDATA18=5F=5FUSDHC2=5FCMD    0x10051
-+			MX6UL=5FPAD=5FLCD=5FDATA19=5F=5FUSDHC2=5FCLK    0x10061
-+			MX6UL=5FPAD=5FLCD=5FDATA20=5F=5FUSDHC2=5FDATA0  0x10051
-+			MX6UL=5FPAD=5FLCD=5FDATA21=5F=5FUSDHC2=5FDATA1  0x10051
-+			MX6UL=5FPAD=5FLCD=5FDATA22=5F=5FUSDHC2=5FDATA2  0x10051
-+			MX6UL=5FPAD=5FLCD=5FDATA23=5F=5FUSDHC2=5FDATA3  0x10051
-+		>;
-+	};
-+
-+	pinctrl=5Fwl: wlgrp {
-+		fsl,pins =3D <
-+			/* WLAN ENABLE */
-+			MX6UL=5FPAD=5FSNVS=5FTAMPER9=5F=5FGPIO5=5FIO09  0x3031
-+		>;
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fuart2=5Fbt &pinctrl=5Fbt>;
-+	uart-has-rtscts;
-+	status =3D "disabled";
-+
-+	bluetooth {
-+		compatible =3D "brcm,bcm43438-bt";
-+		shutdown-gpios =3D <&gpio1 1 GPIO=5FACTIVE=5FHIGH>;
-+		device-wakeup-gpios =3D <&gpio1 10 GPIO=5FACTIVE=5FHIGH>;
-+		host-wakeup-gpios =3D <&gpio1 3 GPIO=5FACTIVE=5FHIGH>;
-+	};
-+};
-+
-+&usdhc2 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl=5Fusdhc2=5Fwl>;
-+	vmmc-supply =3D <&reg=5Fwl=5Fen>;
-+	bus-width =3D <4>;
-+	non-removable;
-+	no-1-8-v;
-+	status =3D "disabled";
-+
-+	brmcf: wifi@1 {
-+		compatible =3D "brcm,bcm4329-fmac";
-+	};
-+};
-diff --git a/arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dts b/arch/=
-arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dts
-index c8d3eff9ed4b..1d7362b5ac91 100644
---- a/arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6ull-phytec-segin-ff-rdk-nand.dts
-@@ -10,6 +10,7 @@
- #include "imx6ull-phytec-segin.dtsi"
- #include "imx6ull-phytec-segin-peb-eval-01.dtsi"
- #include "imx6ull-phytec-segin-peb-av-02.dtsi"
-+#include "imx6ull-phytec-segin-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Segin i.MX6 ULL Full Featured with NAND";
-diff --git a/arch/arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dts b/arch/=
-arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dts
-index e168494e0a6d..4bcbae024d8d 100644
---- a/arch/arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dts
-+++ b/arch/arm/boot/dts/imx6ull-phytec-segin-lc-rdk-nand.dts
-@@ -9,6 +9,7 @@
- #include "imx6ull-phytec-phycore-som.dtsi"
- #include "imx6ull-phytec-segin.dtsi"
- #include "imx6ull-phytec-segin-peb-eval-01.dtsi"
-+#include "imx6ull-phytec-segin-peb-wlbt-05.dtsi"
-=20
- / {
- 	model =3D "PHYTEC phyBOARD-Segin i.MX6 ULL Low Cost with NAND";
-diff --git a/arch/arm/boot/dts/imx6ull-phytec-segin-peb-wlbt-05.dtsi b/arch=
-/arm/boot/dts/imx6ull-phytec-segin-peb-wlbt-05.dtsi
-new file mode 100644
-index 000000000000..df25814a3371
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6ull-phytec-segin-peb-wlbt-05.dtsi
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2021 PHYTEC Messtechnik GmbH
-+ * Author: Yunus Bas <y.bas@phytec.de>
-+ */
-+
-+#include "imx6ul-phytec-segin-peb-wlbt-05.dtsi"
-+
-+&iomuxc {
-+	/delete-node/ wlgrp;
-+};
-+
-+&iomuxc=5Fsnvs {
-+	pinctrl=5Fwl: wlgrp {
-+		fsl,pins =3D <
-+			MX6ULL=5FPAD=5FSNVS=5FTAMPER9=5F=5FGPIO5=5FIO09	0x3031
-+		>;
-+	};
-+};
---=20
-2.25.1
+Hi Geert,
 
+On Tue, Nov 30, 2021 at 09:13:45AM +0100, Geert Uytterhoeven wrote:
+> On Mon, Nov 29, 2021 at 11:17 PM Maxime Ripard <maxime@cerno.tech> wrote:
+> > The problem that fbtft (and this series) wants to fix is completely
+> > different though: it wants to address the issue the users are facing.
+> > Namely, you get a cheap display from wherever, connect it to your shiny
+> > new SBC and wants to get something on the display.
+> >
+> > In this situation, the user probably doesn't have the knowledge to
+> > introduce the compatible in the kernel in the first place. But there's
+> > also some technical barriers there: if they use secure boot, they can't
+> > change the kernel (well, at least the knowledge required is far above
+> > what we can expect from the average user). If the platform doesn't allow
+>=20
+> If you can change the DT, you can introduce a vulnerability to change
+> the kernel ;-)
+
+Indeed
+
+> > access to the DT, you can't change the DT either.
+>=20
+> How do people connect a cheap display from wherever to their shiny
+> new SBC and make it work, without modifying DT?
+
+Through overlays, usually. I guess it would still qualify as "DT", but
+it's not the main DT
+
+And the other issues remain the same: while the DT could be "easily"
+patched, the kernel certainly isn't and we need both with the current
+expectations.
+
+Maxime
+
+--tszzmrkvbr2nm6rh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaXo+wAKCRDj7w1vZxhR
+xQNnAP4lb/slXlYnbnN/0BM8RqZs3CnVmes7f36wIK3jZH3bOwD9E5JJUnb7qGRN
+g03xo7yQIoO4napOWZViabsJErR65gk=
+=nhFG
+-----END PGP SIGNATURE-----
+
+--tszzmrkvbr2nm6rh--
