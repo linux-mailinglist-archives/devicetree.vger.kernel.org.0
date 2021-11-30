@@ -2,139 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D072463DA8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:20:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2F45463DE5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 19:37:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235199AbhK3SX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 13:23:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
+        id S245514AbhK3SkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 13:40:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239565AbhK3SXR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:23:17 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6F3C061574;
-        Tue, 30 Nov 2021 10:19:58 -0800 (PST)
+        with ESMTP id S244668AbhK3SkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 13:40:24 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF892C061574;
+        Tue, 30 Nov 2021 10:37:04 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 79993B81BBE;
-        Tue, 30 Nov 2021 18:19:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28EB6C53FC7;
-        Tue, 30 Nov 2021 18:19:55 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 4313ACE1AEF;
+        Tue, 30 Nov 2021 18:37:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D832C53FC7;
+        Tue, 30 Nov 2021 18:37:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638296395;
-        bh=Rg3X5WgEx/fu1vO7MTLJTKOCZa6PxvqcsrwTHphDJDI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=i9FRLvgj2xYrkiwZdLPpY85Fjd6ZvT5+FmwmpPxuUtFK4QNsRJhQU8B+M80/mMbEJ
-         eVLQQqRbZgJBtxNq5289CGCrLodfzfGEXyrOUGSgyiLPJJuoVUsEkqNkH3JwAFgRvm
-         GGV6Z7P5+HN77l28Bpsk1fIQQNyumFBWcvDubcX8gxv7Fyq6mZYv7qsguxqC2kFozs
-         htzdXGmYz1azXmkFiMYJ+M00zXnJyTOT47NERz3vDatUbikeS0R8tiilXVV06eXOGp
-         93/ftkaxSSgw7FlwZjxF+gj/UTRQtTNl6ANpL36vjQ1G1oiKviDRmYoNj6V30VMIl6
-         TrMILntbTqsVw==
-Received: by mail-ed1-f42.google.com with SMTP id y12so90512342eda.12;
-        Tue, 30 Nov 2021 10:19:55 -0800 (PST)
-X-Gm-Message-State: AOAM533UqO3GNaR2ADrYMcpgDBqTshAvtqah8VN+fic8gmim3Gwoho+h
-        UV7HprmqxvD9m8o9ZXixHDVPPu6whCPluXK1jA==
-X-Google-Smtp-Source: ABdhPJzlzmKd9f1PSVWhZws80WIcbDQrGSGIeTyLxWwF+f3fDK1WoMt3xMdzMHMCPFI2ghaCJdwDEwf+RBBhN7lbrhs=
-X-Received: by 2002:a17:907:a411:: with SMTP id sg17mr867105ejc.84.1638296393423;
- Tue, 30 Nov 2021 10:19:53 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1637789354.git.hns@goldelico.com> <d678e785d95487202ac0660eb66796e9fb5beb50.1637789354.git.hns@goldelico.com>
- <1637875562.255498.2858308.nullmailer@robh.at.kernel.org> <A72D034E-EDBC-44F5-82DF-9EEBC5EC7E0B@goldelico.com>
-In-Reply-To: <A72D034E-EDBC-44F5-82DF-9EEBC5EC7E0B@goldelico.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 30 Nov 2021 12:19:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ_E_USDuK3kEDKm9TsNsRdpcGNEjz==sKFS-Tv5KYCkA@mail.gmail.com>
-Message-ID: <CAL_JsqJ_E_USDuK3kEDKm9TsNsRdpcGNEjz==sKFS-Tv5KYCkA@mail.gmail.com>
-Subject: Re: [PATCH v9 3/8] dt-bindings: display: Add ingenic,jz4780-dw-hdmi
- DT Schema
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
+        s=k20201202; t=1638297421;
+        bh=o3Iz7VwsUP948/hQZNiQs7goDefOwmFTcWB682uxvjY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZnsQZ77XCRuNu1E3WqhpiVkADzYug7CqIU0FQQK6xpUmZdnRp4uH6Y/qp8SJ15qCQ
+         7X1kEX2dgcxBJinvvujaJNDF5J6Qms1Y7AeDqdEb8FY8BlFPeVE0td+7uQlY+d3PiP
+         ylO6iP53N3/jvQJS0Ew3RTmnlKcDv8qfmGV9IAt0uQEMdlG+CKiF1MnFGSiGEldMJc
+         F8ZBhII/STPwnTl7IuDCbffvX4yOMJY2db76TZBXWgHXHCAg8Zr82qgslewkX92Yk6
+         yNCoUQdsxpZnp4Vuuud51AfR/2by0NiINvCLnGF9DrlNeh0X4zPTOtaREzXJAGrUKq
+         f4GV2RjctEQtQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1ms7zv-008xQB-M5; Tue, 30 Nov 2021 18:36:59 +0000
+Date:   Tue, 30 Nov 2021 18:36:59 +0000
+Message-ID: <87bl21mqwk.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Kees Cook <keescook@chromium.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>,
-        David Airlie <airlied@linux.ie>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Robert Foss <robert.foss@linaro.org>,
-        Paul Cercueil <paul@crapouillou.net>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Mark Brown <broonie@kernel.org>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jonas Karlman <jonas@kwiboo.se>
-Content-Type: text/plain; charset="UTF-8"
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel-team@android.com" <kernel-team@android.com>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own definition of interrupt-map
+In-Reply-To: <CA+V-a8sVS_1hUWJ3uM+VffGyMtdnctBOJTyHTQAoJZGOh0a1Tw@mail.gmail.com>
+References: <20211122103032.517923-1-maz@kernel.org>
+        <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+        <8735no70tt.wl-maz@kernel.org>
+        <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+        <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
+        <87tug3clvc.wl-maz@kernel.org>
+        <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
+        <87r1b7ck40.wl-maz@kernel.org>
+        <OSZPR01MB7019E7DD7119EFF9C994AA62AA649@OSZPR01MB7019.jpnprd01.prod.outlook.com>
+        <87tufvmes9.wl-maz@kernel.org>
+        <CA+V-a8siHRjF+bJu88QFwz0a_MZ+kiJEwmER58_feyr8O+WNGA@mail.gmail.com>
+        <CAL_JsqK+GcnChx3i9fsYnw+FzZgON4PtKB=CzYLUj6sXtxX6fQ@mail.gmail.com>
+        <CA+V-a8sVS_1hUWJ3uM+VffGyMtdnctBOJTyHTQAoJZGOh0a1Tw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, robh@kernel.org, prabhakar.mahadev-lad.rj@bp.renesas.com, geert@linux-m68k.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, kernel-team@android.com, john@phrozen.org, biwen.li@nxp.com, Chris.Brandt@renesas.com, linux-renesas-soc@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 11:03 AM H. Nikolaus Schaller <hns@goldelico.com> wrote:
->
-> Hi Rob,
->
-> > Am 25.11.2021 um 22:26 schrieb Rob Herring <robh@kernel.org>:
+On Tue, 30 Nov 2021 12:52:21 +0000,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> On Mon, Nov 29, 2021 at 6:33 PM Rob Herring <robh@kernel.org> wrote:
 > >
-> > On Wed, 24 Nov 2021 22:29:09 +0100, H. Nikolaus Schaller wrote:
-> >> From: Sam Ravnborg <sam@ravnborg.org>
-> >>
-> >> Add DT bindings for the hdmi driver for the Ingenic JZ4780 SoC.
-> >> Based on .txt binding from Zubair Lutfullah Kakakhel
-> >>
-> >> We also add generic ddc-i2c-bus to synopsys,dw-hdmi.yaml
-> >>
-> >> Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> >> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> >> Cc: Rob Herring <robh@kernel.org>
-> >> Cc: devicetree@vger.kernel.org
-> >> ---
-> >> .../display/bridge/ingenic,jz4780-hdmi.yaml   | 76 +++++++++++++++++++
-> >> .../display/bridge/synopsys,dw-hdmi.yaml      |  3 +
-> >> 2 files changed, 79 insertions(+)
-> >> create mode 100644 Documentation/devicetree/bindings/display/bridge/ingenic,jz4780-hdmi.yaml
-> >>
+> > interrupts would work just fine here:
 > >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> >   <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
 > >
-> > yamllint warnings/errors:
+> > We don't need a different solution for N:1 interrupts from N:M. Sure,
+> > that could become unweldy if there are a lot of interrupts (just like
+> > interrupt-map), but is that an immediate problem?
 > >
-> > dtschema/dtc warnings/errors:
-> > Unknown file referenced: [Errno 2] No such file or directory: '/usr/local/lib/python3.8/dist-packages/dtschema/schemas/bridge/bridge/synopsys,dw-hdmi.yaml'
->
-> I wasn't able to fix that.
->
-> If I change
->
->  allOf:
-> -  - $ref: bridge/synopsys,dw-hdmi.yaml#
-> +  - $ref: synopsys,dw-hdmi.yaml#
+> It's just that with this approach the driver will have to index the
+> interrupts instead of reading from DT.
+> 
+> Marc - is it OK with the above approach?
 
-That is correct.
+Anything that uses standard properties in a standard way works for me.
 
->
-> then make dt_binding_check still reports:
->
-> Unknown file referenced: [Errno 2] No such file or directory: '/Users/hns/Library/Python/3.7/lib/python/site-packages/dtschema/schemas/bridge/synopsys,dw-hdmi.yaml'
+	M.
 
-The $id is wrong:
-
-$id: http://devicetree.org/schemas/bridge/ingenic,jz4780-hdmi.yaml#
-
-The path should be:
-http://devicetree.org/schemas/display/bridge/ingenic,jz4780-hdmi.yaml#
-
-Rob
+-- 
+Without deviation from the norm, progress is not possible.
