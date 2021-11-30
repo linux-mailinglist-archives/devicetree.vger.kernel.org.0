@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46B32462911
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 01:25:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B92A462938
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 01:41:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233663AbhK3A27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Nov 2021 19:28:59 -0500
-Received: from mail-qt1-f174.google.com ([209.85.160.174]:38859 "EHLO
-        mail-qt1-f174.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233633AbhK3A27 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 19:28:59 -0500
-Received: by mail-qt1-f174.google.com with SMTP id 8so18496929qtx.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 16:25:40 -0800 (PST)
+        id S234232AbhK3ApP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Nov 2021 19:45:15 -0500
+Received: from mail-qt1-f175.google.com ([209.85.160.175]:36506 "EHLO
+        mail-qt1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229724AbhK3ApP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Nov 2021 19:45:15 -0500
+Received: by mail-qt1-f175.google.com with SMTP id t11so18524609qtw.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Nov 2021 16:41:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vmZ6yrLmHwc8oKXeav6AR62kh5AMJR8Zb4JZJaz0P08=;
-        b=DBEkx795Uw6fLNqGYRAJVtlZkCRGhXBdFMyUXeEPpWqIb0RbyoU6zJvV/tiK5rlx0Z
-         o/pc5XRqkdNH9++SuLAqP8OoU1NWAhT5R+XH/EpVNuNZGKD4kB3eq3E6aZ2xqrnFE9xW
-         UZw8m+mQ3cP99xYuZqAb2vUV0nJy6eej/Pck3ah/DfB+VnVeRsCpGVPcOg+B4O6OEqYP
-         7kK9Vmut6rztoi676Ra+YzSHb8MzTnpXVtEfT+TkqwU2qltJTH2CRqX3xOf0RDLpQHsK
-         OGnSUs3xGLFWJ7Mimb/g2ao3npiKtRre6wLQNpaz678kLoaOM9Lo/nlWTcHr9UO7bsTi
-         yUCA==
+        bh=gXWcjgAmwn5xbsX3NCCgIGZffLmwwj4LxTmpgL7Kf/0=;
+        b=xNS/gCuUMuZ1EA3kjzCzu5PLgQmSmihtwGoGmPZFb3aaRO7zvZ+pazC1Pfe3kFSxDo
+         BEG2sZN06PBiX8q72DmDZ2MWeb2ZB24ohBBhJz556I0Ta2yYSdmpPqDnE72DrrrxzXOD
+         2q24tW8VRuhh7leIDnhBIGH6OtXD8AVO5CNGLDX20jlxc3LkeG5clUmLom9+m136RplS
+         gTUD62yf61LtqSp7Bl7w6OFq7Bj9mOLbY9Xd9W4a4pu6kEpv/2EBHnlK5zDgwe9ycG3U
+         d2e4Eo2HIbSWtznSgCdJPYGzXgVIKx+GenIvdTkv2zceQLA33BwYjAUUFXpoLDF/+vgL
+         aJ3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vmZ6yrLmHwc8oKXeav6AR62kh5AMJR8Zb4JZJaz0P08=;
-        b=fkwDwn03rSOLf7aOiTxpW43CYWV5gAa1g9E5xRkrGK2hQSUd2KSFcBV9+PIE8IkF1F
-         UnlT4Amz4SmTdFVneFsv+ebrlW5uRuw9ZXAEwRnqOjoBI2sBC3X5gy+ciM1RYA6ydXwH
-         ygVwzPD2H8NPycE6dU0Z9k+0rk/cRHYt9O/S7YXa6EnrzHvtHilHJ9KYLwunnlpdtOgT
-         l0e6KiRDHwnlSKZADtBUFjRF+ZWwOyI7EY1L/2NdaunuBKmu/8+hHRAodoiEI6uIas6S
-         8dG+t225kJOfmIn0qAac3BX43T+Z8j5xXGgSqaxVHAFfS1oxRuDb9Fn/UUivHucatF6W
-         azTg==
-X-Gm-Message-State: AOAM533A/Y+55i4/WGiFF3y+UvO5yPrGfrvw1Wka3XHlDPNtubdhZ2cD
-        ZgfuaCYnbl+kGaoqRbywmr7ZSYe/woduXAzma3X44w==
-X-Google-Smtp-Source: ABdhPJwuErsaT5p6jX4BOEb7NrgrXWKD2lSqqGnHf0k7Irhr5BOzwSiJBNdUTkXJxVX8QU247dtoj2Z/Wf5u6TZUnN8=
-X-Received: by 2002:a05:622a:15c6:: with SMTP id d6mr38396525qty.439.1638231880398;
- Mon, 29 Nov 2021 16:24:40 -0800 (PST)
+        bh=gXWcjgAmwn5xbsX3NCCgIGZffLmwwj4LxTmpgL7Kf/0=;
+        b=nbvgrDptMe6AX5b/1LBaa9b8RLJwObSIYYqrAMa+ojvRyxfv8uLmyAWR5qm1wnGmaD
+         f2zEAd/S9N03YrtKRMB40yiY8lDfArWJzvWf/s+IUt45m0q5agePU1TS1Y5XScSudqeI
+         zTJ3yBuiKfBeEO07XuvS8XAFDp79b2jN2Rm+bqjtbTONlXtI9eV8EErE+s2wh4eTlN/2
+         /UXaWQdLYQBhJlo/sXLxn0YndeBtI/28OJ2g5Yy8ZWOlNCgBbmvIgs05RuyBYxKKVi2f
+         +yVbAmfm5J3gfc9jeY9D1WwoRk2qiHUkBX+yvNXm3KXTqbjgfpKiUsSYLtqhB5M1JZkQ
+         Etwg==
+X-Gm-Message-State: AOAM530bp/6xxd9jq4B4BAz+4LBesNNXYmj2WkTxeuRLGS0qYcrwn4j8
+        iTgu0lLdZm19eQx4bjbLWJQ6fS8dpPQ9fGSEgzjsrg==
+X-Google-Smtp-Source: ABdhPJyAUQwjEkdsYtR8Jm+l0bDap4StYQuthd9DAH0ex8xf5HSvU0CC7+wDnsD9Mvd4CspgBFV88vRr4I21LngpP+I=
+X-Received: by 2002:ac8:4e56:: with SMTP id e22mr48470079qtw.72.1638232856568;
+ Mon, 29 Nov 2021 16:40:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20211125183622.597177-1-dmitry.baryshkov@linaro.org>
- <CAGETcx-_6OvcJM1nAoX3pxE3Rard5CRxEuEsmhfLANOzOS1BSQ@mail.gmail.com> <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com>
-In-Reply-To: <CAGETcx86iFm04PxnmrRQhooxtd4_kv87rAu=T0RauqFXmRLKNA@mail.gmail.com>
+References: <20211126002612.1030246-1-dmitry.baryshkov@linaro.org> <CAGETcx-oBFSueaXZ1nypzS2DE06RrC5=QM25L+FvBrizvfZxvA@mail.gmail.com>
+In-Reply-To: <CAGETcx-oBFSueaXZ1nypzS2DE06RrC5=QM25L+FvBrizvfZxvA@mail.gmail.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 30 Nov 2021 03:24:29 +0300
-Message-ID: <CAA8EJpr4+B1Q3voOr__3M37jxxBRi0g3avzE1Y8CDLkZB+rSGg@mail.gmail.com>
-Subject: Re: [PATCH] of: property: do not create clocks device link for clock controllers
+Date:   Tue, 30 Nov 2021 03:40:45 +0300
+Message-ID: <CAA8EJprP79u9FO-vydsvoA+aqcZvN38TT8FwY8ow6cYxPnuK-g@mail.gmail.com>
+Subject: Re: [PATCH] of: property: stop parsing remote-endpoint graph properties
 To:     Saravana Kannan <saravanak@google.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -60,117 +59,196 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Nov 2021 at 02:53, Saravana Kannan <saravanak@google.com> wrote:
+On Tue, 30 Nov 2021 at 02:45, Saravana Kannan <saravanak@google.com> wrote:
 >
-> On Mon, Nov 29, 2021 at 3:48 PM Saravana Kannan <saravanak@google.com> wrote:
+> On Thu, Nov 25, 2021 at 4:26 PM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
 > >
-> > On Thu, Nov 25, 2021 at 10:36 AM Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> > >
-> > > Do not create device link for clock controllers.
+> > When parsing remote-endpoint properties, two counter devlinks will be
+> > created, resulting in the circular dependency, which is later broken. In
+> > most of the cases, the order in which depency is broken does not matter
+> > (or is correct). However lately I stumbled upon the following
+> > configuration.
 > >
-> > Nak.
-> >
-> > > Some of the clocks
-> > > provided to the device via OF can be the clocks that are just parents to
-> > > the clocks provided by this clock controller. Clock subsystem already
-> > > has support for handling missing clock parents correctly (clock
-> > > orphans). Later when the parent clock is registered, clocks get
-> > > populated properly.
-> > >
-> > > An example of the system where this matters is the SDM8450 MTP board
-> > > (see arch/arm64/boot/dts/qcom/sdm845-mtp.dts). Here the dispcc uses
-> > > clocks provided by dsi0_phy and dsi1_phy device tree nodes. However the
-> > > dispcc itself provides clocks to both PHYs, to the PHY parent device,
-> > > etc. With just dsi0_phy in place devlink is able to break the
-> > > dependency,
-> >
-> > Right, because I wrote code to make sure we handle these clock
-> > controller cases properly. If that logic isn't smart enough, let's fix
-> > that.
+> > In this case for some reason devlink code decided to break the loop by
+> > making panel depend on the bridge driver, enforcing that bridge is
+> > probed before the panel.
+>
+> Let's find and fix the "for some reason" part then instead of just
+> removing support for a property.
 
-As I said, devlink was delaying dispcc probing ,waiting for the second
-DSI PHY clock provider.
-Thus came my proposal to let clock orphans handle the case (which it
-does perfectly).
+How can I help you to debug this? I can post the resulting device tree
+or add debugging patches of your choice.
 
-> >
-> > > but with two PHYs, dispcc doesn't get probed at all, thus
-> > > breaking display support.
-> >
-> > Then let's find out why and fix this instead of hiding some
-> > dependencies from fw_devlink. You could be breaking other cases/boards
-> > with this change you are making.
->
-> Btw, forgot to mention. I'll look into this one and try to find the
-> reason why it wasn't handled automatically. And then come up with a
-> fix.
->
-> If you want to find out why fw_devlink didn't notice the cycle
-> correctly for the case of 2 PHYs vs 1 PHY, I'd appreciate that too.
->
-> Btw, same comment for remote-endpoint. I'll look into what's going on
-> in that case. Btw, I'm assuming all the code and DT you are testing
-> this on is already upstream. Can you please confirm that?
+How is the cycle dependency broken? Is it done by removing a single
+arc or by dropping all the arcs that form a cycle?
+If the former is true, then we know the case: it sees a circular
+dependency and just decides incorrectly, which arc should be dropped.
 
-All the code and basic DT is upstreamed. The DT part I
-referenced/posted was written for the custom extender for the
-qrb5165-rb5 board that I use here to test MSM DRM driver, but the
-result DT should be more or less the same as smd845-mtp.
+>
+> > However in such cases the bridge will lookup next bridge or panel using
+> > drm_of_find_panel_or_bridge() in the probe callback. Thus we have a
+> > deadlock: panel is waiting for the bridge because of the devlink
+> > dependency and bridge probe() expects the panel to be available and thus
+> > returns -EPROBE_DEFER.
+> >
+> > To prevent such deadlocks, stop parsing the remote-endpoint property and
+> > let drivers decide their probe order using standard -EPROBE_DEFER
+> > returns.
+>
+> Nak.
+>
+> Removing support for a property will always be NAKed. Not because I
+> care about one specific property. It's because fw_devlink needs to get
+> the full view of the dependencies to be able to break cycles. The
+> cycle detection and fixing logic has been improving steadily. So
+> there's no reason to give up on it suddenly.
+
+Regarding the remote-endpoint.
+
+While I highly value the whole devlink idea and the way it
+eases/streamlines device probing in typical dependency cases, I still
+think that graph/remote-endpoint handling is not a proper way.
+
+Current code handles remote-endpoint links in the same way as it
+handles directional links does not look right. Generic code can not
+predict, which side of bidirectional link is the primary side for the
+link, checking for the existence of the counterpart, and which one is
+a secondary side which just gets probed (and waits for the primary
+part to find it). Always getting a circular dependency (for each graph
+link) and always breaking should have the same result, as not getting
+the circular dependency at all, Is this statement correct?
+
+In fact I can predict that creating such extra dependencies can hide
+actual dependencies between devices. Consider for example two devices
+A and B, with a graph connection between A and B and another
+dependency (for example, clocks or regulator supply) from A to B. How
+will devlink handle such a case? Will it correctly determine that A
+depends on B or will it break the cycle by removing both dependencies?
+
+The MSM DRM driver employs several graphs, and things were very
+fragile here. Dropping remote-endpoint parsing typically fixed those
+extra dependency/devlink issues. So selecting between running with
+fw_devlink turned off (to let the driver to bind at all) and just
+disabling remote-endpoint parsing I'd choose the second option.
 
 >
 > -Saravana
 >
 > >
-> > -Saravana
+> > DTS except follows:
 > >
-> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Cc: Stephen Boyd <swboyd@chromium.org>
-> > > Cc: Saravana Kannan <saravanak@google.com>
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > ---
-> > >  drivers/of/property.c | 16 +++++++++++++++-
-> > >  1 file changed, 15 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > index a3483484a5a2..f7229e4030e3 100644
-> > > --- a/drivers/of/property.c
-> > > +++ b/drivers/of/property.c
-> > > @@ -1264,7 +1264,6 @@ struct supplier_bindings {
-> > >         bool node_not_dev;
-> > >  };
-> > >
-> > > -DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
-> > >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
-> > >  DEFINE_SIMPLE_PROP(iommus, "iommus", "#iommu-cells")
-> > >  DEFINE_SIMPLE_PROP(mboxes, "mboxes", "#mbox-cells")
-> > > @@ -1294,6 +1293,21 @@ DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
-> > >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> > >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> > >
-> > > +static struct device_node *parse_clocks(struct device_node *np,
-> > > +                                       const char *prop_name, int index)
-> > > +{
-> > > +       /*
-> > > +        * Do not create clock-related device links for clocks controllers,
-> > > +        * clock orphans will handle missing clock parents automatically.
-> > > +        */
-> > > +       if (!strcmp(prop_name, "clocks") &&
-> > > +           of_find_property(np, "#clock-cells", NULL))
-> > > +               return NULL;
-> > > +
-> > > +       return parse_prop_cells(np, prop_name, index, "clocks",
-> > > +                                      "#clock-cells");
-> > > +}
-> > > +
-> > >  static struct device_node *parse_gpios(struct device_node *np,
-> > >                                        const char *prop_name, int index)
-> > >  {
-> > > --
-> > > 2.33.0
-> > >
-
-
+> > / {
+> >         panel0 {
+> >                 compatible = "powertip,ph800480t013-idf02";
+> >                 power-supply = <&vreg_l11c_3p3>;
+> >                 backlight = <&lcd0_reg>;
+> >                 port {
+> >                         panel0_in: endpoint {
+> >                                 remote-endpoint = <&bridge0_out>;
+> >                         };
+> >                 };
+> >         };
+> > };
+> >
+> > &dsi0 {
+> >         #address-cells = <1>;
+> >         #size-cells = <0>;
+> >         status = "okay";
+> >
+> >         bridge@0 {
+> >                 reg = <0>;
+> >                 compatible = "toshiba,tc358762";
+> >
+> >                 ports {
+> >                         #address-cells = <1>;
+> >                         #size-cells = <0>;
+> >
+> >                         port@0 {
+> >                                 reg = <0>;
+> >                                 bridge0_in: endpoint {
+> >                                         remote-endpoint = <&dsi0_out>;
+> >                                 };
+> >                         };
+> >
+> >                         port@1 {
+> >                                 reg = <1>;
+> >                                 bridge0_out: endpoint {
+> >                                         remote-endpoint = <&panel0_in>;
+> >                                 };
+> >                         };
+> >                 };
+> >         };
+> >         ports {
+> >                 port@1 {
+> >                         endpoint {
+> >                                 remote-endpoint = <&bridge0_in>;
+> >                                 data-lanes = <0 1 2 3>;
+> >                         };
+> >                 };
+> >         };
+> >
+> > };
+> >
+> > Fixes: f7514a663016 ("of: property: fw_devlink: Add support for remote-endpoint")
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Stephen Boyd <swboyd@chromium.org>
+> > Cc: Saravana Kannan <saravanak@google.com>
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> >  drivers/of/property.c | 8 +-------
+> >  1 file changed, 1 insertion(+), 7 deletions(-)
+> >
+> > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > index f7229e4030e3..83548076ee63 100644
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1249,7 +1249,6 @@ static struct device_node *parse_##fname(struct device_node *np,       \
+> >   * @parse_prop.index: For properties holding a list of phandles, this is the
+> >   *                   index into the list
+> >   * @optional: Describes whether a supplier is mandatory or not
+> > - * @node_not_dev: The consumer node containing the property is never a device.
+> >   *
+> >   * Returns:
+> >   * parse_prop() return values are
+> > @@ -1261,7 +1260,6 @@ struct supplier_bindings {
+> >         struct device_node *(*parse_prop)(struct device_node *np,
+> >                                           const char *prop_name, int index);
+> >         bool optional;
+> > -       bool node_not_dev;
+> >  };
+> >
+> >  DEFINE_SIMPLE_PROP(interconnects, "interconnects", "#interconnect-cells")
+> > @@ -1285,7 +1283,6 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl-5", NULL)
+> >  DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
+> >  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+> >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+> > -DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NULL)
+> >  DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
+> >  DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
+> >  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
+> > @@ -1388,7 +1385,6 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+> >         { .parse_prop = parse_pinctrl6, },
+> >         { .parse_prop = parse_pinctrl7, },
+> >         { .parse_prop = parse_pinctrl8, },
+> > -       { .parse_prop = parse_remote_endpoint, .node_not_dev = true, },
+> >         { .parse_prop = parse_pwms, },
+> >         { .parse_prop = parse_resets, },
+> >         { .parse_prop = parse_leds, },
+> > @@ -1437,9 +1433,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
+> >                 while ((phandle = s->parse_prop(con_np, prop_name, i))) {
+> >                         struct device_node *con_dev_np;
+> >
+> > -                       con_dev_np = s->node_not_dev
+> > -                                       ? of_get_compat_node(con_np)
+> > -                                       : of_node_get(con_np);
+> > +                       con_dev_np = of_node_get(con_np);
+> >                         matched = true;
+> >                         i++;
+> >                         of_link_to_phandle(con_dev_np, phandle);
+> > --
+> > 2.33.0
+> >
 
 -- 
 With best wishes
