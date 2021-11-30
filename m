@@ -2,155 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D3EB463D15
-	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C13D463D10
+	for <lists+devicetree@lfdr.de>; Tue, 30 Nov 2021 18:43:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245078AbhK3Rqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 12:46:31 -0500
-Received: from mail-oi1-f177.google.com ([209.85.167.177]:44718 "EHLO
-        mail-oi1-f177.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245069AbhK3Rq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:46:29 -0500
-Received: by mail-oi1-f177.google.com with SMTP id be32so42689654oib.11;
-        Tue, 30 Nov 2021 09:43:09 -0800 (PST)
+        id S243469AbhK3Rq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 12:46:26 -0500
+Received: from mail-oi1-f175.google.com ([209.85.167.175]:41704 "EHLO
+        mail-oi1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S238847AbhK3RqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 12:46:25 -0500
+Received: by mail-oi1-f175.google.com with SMTP id u74so42743562oie.8;
+        Tue, 30 Nov 2021 09:43:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=sRiUXiOlT2Ve+gr84A0lFsHe7uYfdTdxUD9C9/YzIbA=;
-        b=ztkb0I748Ihx3aNal0pm1d8P1gxSx4Vt+Lcr6wGAKblLe9MB/tSqJMnjwWncfjgF5y
-         1f39Cw1z1UuuAb2tSdF2UKpWo86KQGalZvQ2ubXAUQYaLpIQ0gnKywDpPnW7B1h/gHX7
-         p5R7gYSWjeFkX2H6RNtSmGuy1vNbmjQkWVWDQblnmgwNtNWyVMu7M3F1wmvDDvto9Q/o
-         qSchZPnFG9GlrdhxAGJbpkjHZD+2GHXO7n4pfPW1vudjjPZ7ybV7SRnfHO1fi3LcUihp
-         5ooERXd/waaLXvmaF23B14Us4D9xeHlR7hhbb5k1BUE8+Bbgox8IoensVRzEqWPP5eDU
-         u+pw==
-X-Gm-Message-State: AOAM531h989vOmd2NG1Z4wAoTgRLNSCjO7c1zDqm7x9J0BiK40EUsmru
-        3rVdcpuPtmQVXUg2gbU8Sw==
-X-Google-Smtp-Source: ABdhPJwyGYMhtxYm6pMgV0MXwp6PSGDn61hIwC4lTQAgVaDvf7Qz6uhyI+g7sggB5OSOJcExU05/VA==
-X-Received: by 2002:aca:502:: with SMTP id 2mr333374oif.121.1638294189464;
-        Tue, 30 Nov 2021 09:43:09 -0800 (PST)
+        bh=ybArtp5NAo1h9pHzQHYt4+Qs6w6iIvokhHnIINTzz0I=;
+        b=qftcKr4sOsBIREMtVai33g8u791raNbou+On9oUBMNdjgb19mw06ybGKdw8ACaqm+T
+         sdvFJ+Tc0bcU4cdMgPyGc7ZQjQ5wU0r2UGkkaKFt/4eo67cLCYJHz7akQq4NfzoAHXOo
+         lGame3nv6g49nxTuOz3peByCEgcK6GtFuOi/IMsoSbu+V87kQK35k68TSWpzqb4eGDdm
+         REKGlhfilQMygH0bR5dgz/DCeR1aKVUItplASTrq4yGZDmacq163qN9cIFp6tv479djs
+         npceBK6Ks9sta4jmdVZ+SnrXU5vsR3Ohzlpny3BJ4+soxDGU2cPm+E0e+xcG2IcKdXGa
+         7LMw==
+X-Gm-Message-State: AOAM533AaRDR2LJ4Om1NeR3MROi/pFId4cvt50wrb77Ts/uFlGZv/P9v
+        gPaOrTcYxHyPanj/IqW1Qg==
+X-Google-Smtp-Source: ABdhPJxpfwZHaJJsQJrxxxdGKQhKNwmK7qoAn5Ox2tfeIPsdhQ8/yFLYB/VG+xooU2jW+OEAPMZFqg==
+X-Received: by 2002:a05:6808:144f:: with SMTP id x15mr329339oiv.157.1638294185979;
+        Tue, 30 Nov 2021 09:43:05 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id t3sm3283873otk.44.2021.11.30.09.43.08
+        by smtp.gmail.com with ESMTPSA id v19sm3208026ott.13.2021.11.30.09.43.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 09:43:08 -0800 (PST)
-Received: (nullmailer pid 2713648 invoked by uid 1000);
+        Tue, 30 Nov 2021 09:43:05 -0800 (PST)
+Received: (nullmailer pid 2713643 invoked by uid 1000);
         Tue, 30 Nov 2021 17:43:04 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        jeyr@codeaurora.org, bkumar@qti.qualcomm.com,
-        gregkh@linuxfoundation.org, ekangupt@qti.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20211130092846.18804-1-srinivas.kandagatla@linaro.org>
-References: <20211130092846.18804-1-srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH v3] dt-bindings: misc: fastrpc convert bindings to yaml
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        linux-serial@vger.kernel.org,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        David Virag <virag.david003@gmail.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20211130111325.29328-2-semen.protsenko@linaro.org>
+References: <20211130111325.29328-1-semen.protsenko@linaro.org> <20211130111325.29328-2-semen.protsenko@linaro.org>
+Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
 Date:   Tue, 30 Nov 2021 11:43:04 -0600
-Message-Id: <1638294184.202173.2713647.nullmailer@robh.at.kernel.org>
+Message-Id: <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Nov 2021 09:28:46 +0000, Srinivas Kandagatla wrote:
-> Convert Qualcomm FastRPC bindings to yaml format, so that we could validate
-> dt-entries correctly and any future additions can go into yaml format.
+On Tue, 30 Nov 2021 13:13:21 +0200, Sam Protsenko wrote:
+> Add constants for choosing USIv2 configuration mode in device tree.
+> Those are further used in USI driver to figure out which value to write
+> into SW_CONF register. Also document USIv2 IP-core bindings.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
+> Changes in v2:
+>   - Combined dt-bindings doc and dt-bindings header patches
+>   - Added i2c node to example in bindings doc
+>   - Added mentioning of shared internal circuits
+>   - Added USI_V2_NONE value to bindings header
 > 
-> Changes since v2:
->  fixed typo in pil compatible string
->  added required properties for pil example node
-> 
->  .../devicetree/bindings/misc/qcom,fastrpc.txt |  78 -------------
->  .../bindings/misc/qcom,fastrpc.yaml           | 104 ++++++++++++++++++
->  2 files changed, 104 insertions(+), 78 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.txt
->  create mode 100644 Documentation/devicetree/bindings/misc/qcom,fastrpc.yaml
+>  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
+>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
+>  2 files changed, 152 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1561468
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dts:35.39-42.15: Warning (unique_unit_address): /example-0/usi@138200c0/serial@13820000: duplicate unit-address (also used in node /example-0/usi@138200c0/i2c@13820000)
+Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dt.yaml:0:0: /example-0/usi@138200c0/i2c@13820000: failed to match any schema with compatible: ['samsung,exynosautov9-hsi2c']
 
+doc reference errors (make refcheckdocs):
 
-fastrpc: 'compute-cb@1', 'compute-cb@2', 'compute-cb@3', 'compute-cb@4', 'compute-cb@5', 'compute-cb@6', 'compute-cb@7', 'compute-cb@8', 'qcom,glink-channels' do not match any of the regexes: '^cb@[0-9a-f]$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
+See https://patchwork.ozlabs.org/patch/1561571
 
-fastrpc: 'compute-cb@1', 'compute-cb@2', 'compute-cb@3', 'qcom,glink-channels' do not match any of the regexes: '^cb@[0-9a-f]$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-fastrpc: 'compute-cb@3', 'compute-cb@4', 'compute-cb@5', 'qcom,glink-channels' do not match any of the regexes: '^cb@[0-9a-f]$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-fastrpc: 'compute-cb@3', 'compute-cb@4', 'qcom,glink-channels' do not match any of the regexes: '^cb@[0-9a-f]$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
+pip3 install dtschema --upgrade
 
-fastrpc: 'qcom,smd-channels' does not match any of the regexes: '^cb@[0-9a-f]$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/apq8016-sbc.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-alcatel-idol347.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-asus-z00l.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-huawei-g7.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-longcheer-l8910.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8916-wingtech-wt88047.dt.yaml
-	arch/arm/boot/dts/qcom-msm8916-samsung-serranove.dt.yaml
+Please check and re-submit.
 
