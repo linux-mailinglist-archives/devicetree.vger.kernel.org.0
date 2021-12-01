@@ -2,134 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE150464889
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 08:30:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 167BB46488B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 08:30:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347710AbhLAHdg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 02:33:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34540 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347537AbhLAHdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 02:33:25 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5376FC06175C;
-        Tue, 30 Nov 2021 23:30:04 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1347737AbhLAHdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 02:33:40 -0500
+Received: from mx1.tq-group.com ([93.104.207.81]:24263 "EHLO mx1.tq-group.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1347654AbhLAHdZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 02:33:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1638343805; x=1669879805;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iMAVgNFJrRkMzoxIES2g+e2qL15Hbp1w1JuJqWBXSKs=;
+  b=WGGBkZtTmyiwV0D0X7D2jVN0lzqUjjdz+Viajgjqohp3Q9ZK+ECtfxcA
+   qQC/XujB0B6twI9NGp8ELkGNuGYKsx/AusXk16BxIHPiD2+zo/J3oJOlh
+   fY44aCQf8SmAVUBc8S6hAtYmGLI/kfZgodkBv2I4Wgr4VoEyNl0wEfK2v
+   8YYe2LQj5H5AXKLyZFkdCmCoPhVtgFdWtNwg5Xp/0FLmOO29UPf0J8W/q
+   vs4gBG1RmI4HbmZLfzHRvXhJB/tnBNS7CA3m9kuIxy9XM6SuwKnYpXicr
+   hZYGbeA6DVAhdrkQONA9ks8Iy7fBG5MrPHdy2wF6OLmSV5ktuZ5vrT/cE
+   A==;
+X-IronPort-AV: E=Sophos;i="5.87,278,1631570400"; 
+   d="scan'208";a="20773221"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 01 Dec 2021 08:30:03 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 01 Dec 2021 08:30:03 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 01 Dec 2021 08:30:03 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1638343803; x=1669879803;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=iMAVgNFJrRkMzoxIES2g+e2qL15Hbp1w1JuJqWBXSKs=;
+  b=W8dFFVix2sVBhlPCf6GtNIS042Z2hPm50VvfHs7mzitfiiAixP7sSw3q
+   XGXdRMhxYJ5C2HSvrbAjOiFpu3GQXP/1u4YniEUVEyJcyaJ5ouFNo51n5
+   WDEIYH/33HSxUfoK89NWYemdqgP1xSgjgB/t3s7KhU9r9x8MrUDrMqHm+
+   Sh9X04e+JEN66DucxqmIekxVMYabQQmuSpyDfpNwlRUmX2lXNUcZbA38f
+   Cs4pB+XF7Q/FlwqUfYtrpceBGo/526pmC7OsIYxABR2a0LmMnE6koXELv
+   H7Lge9CCCwklLzWe4GPEKuMMc4JMUViuzDfG4+uAySgQXG88W8gBdLFFc
+   w==;
+X-IronPort-AV: E=Sophos;i="5.87,278,1631570400"; 
+   d="scan'208";a="20773220"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 01 Dec 2021 08:30:02 +0100
+Received: from steina-w.tq-net.de (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 9FCE3CE1D67;
-        Wed,  1 Dec 2021 07:30:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33C7FC53FD2;
-        Wed,  1 Dec 2021 07:29:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638343800;
-        bh=O3yKs0vj19W5/BZ/Tdv8ra+JxyZYiCDB3WZbbopGoNc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CKfWPz/ywrjiFAqe+TH4KwsnbY7lON0wrCdS1J/EFEfmoC0Cmne5FJ5TvtKL4Rc4m
-         c6iQwTbR7vR/aY4mEsjiET5CG1mL18l75+jeaeRQEb6BQJPV7bcRCIWfShfmIIwZ3y
-         CMv0+llIQIKRndOZyJu+xGHHAXF04mx7Uo8t2RHmPbkHIz1/zGr2epAU//djG4lvpt
-         1ApFj5VtsbcpGvRZ32cFHXesb9KmVU2L5/ob9YQuTrSVSkqjDdcJ2598bW1Lvv/r/Z
-         j0knfwdviW7eGqVCaRI4GLI/BLj2AjtehOzeWD2vyAh5hhOBE1O2I9moGsk4kn2qcX
-         UfF9ib3Q8If2w==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH 13/15] arm64: dts: qcom: sm8450: Add rpmhpd node
-Date:   Wed,  1 Dec 2021 12:59:13 +0530
-Message-Id: <20211201072915.3969178-14-vkoul@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211201072915.3969178-1-vkoul@kernel.org>
-References: <20211201072915.3969178-1-vkoul@kernel.org>
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id A8071280065;
+        Wed,  1 Dec 2021 08:30:02 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/7] Support for some TQMa8M* boards
+Date:   Wed,  1 Dec 2021 08:29:41 +0100
+Message-Id: <20211201072949.53947-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thanks for the review on v2!
 
-This adds RPMH power domain found in SM8450 SoC
+Changes in v3:
+* Rebased to next-20211129
+* Adjusted commit subjects (tree -> device tree)
+* Use hyphen in node names instead of underscore
+* Removed bootargs from DT
+* Fixed audio-codec node name and handle name
+* Property 'enet-phy-lane-no-swap' was already documented, but got accidently
+  removed during YAML conversion. Fix is pending at at [2]
+* Use matrix instead of array for 'fsl,pins' as required by pinctrl bindings.
+  This reduces the lines in stderr from dtbs_check for these DT files from 475
+  down to 191
+* Removed TODO regarding unsupported USB over-current polarity
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 52 ++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+Changes in v2:
+* Rebased to next-20211101
+* Added Rob's Acked-By on Patch for DT bindings
+* for other changes please refer to individual patches
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 25d93a51ac19..8f0819df8039 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -7,6 +7,7 @@
- #include <dt-bindings/clock/qcom,gcc-sm8450.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
- #include <dt-bindings/interconnect/qcom,sm8450.h>
-+#include <dt-bindings/power/qcom-rpmpd.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
- 
- / {
-@@ -889,6 +890,57 @@ rpmhcc: clock-controller {
- 				clock-names = "xo";
- 				clocks = <&xo_board>;
- 			};
-+
-+			rpmhpd: power-controller {
-+				compatible = "qcom,sm8450-rpmhpd";
-+				#power-domain-cells = <1>;
-+				operating-points-v2 = <&rpmhpd_opp_table>;
-+
-+				rpmhpd_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					rpmhpd_opp_ret: opp1 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_RETENTION>;
-+					};
-+
-+					rpmhpd_opp_min_svs: opp2 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_MIN_SVS>;
-+					};
-+
-+					rpmhpd_opp_low_svs: opp3 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_LOW_SVS>;
-+					};
-+
-+					rpmhpd_opp_svs: opp4 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS>;
-+					};
-+
-+					rpmhpd_opp_svs_l1: opp5 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-+					};
-+
-+					rpmhpd_opp_nom: opp6 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM>;
-+					};
-+
-+					rpmhpd_opp_nom_l1: opp7 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L1>;
-+					};
-+
-+					rpmhpd_opp_nom_l2: opp8 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_NOM_L2>;
-+					};
-+
-+					rpmhpd_opp_turbo: opp9 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_TURBO>;
-+					};
-+
-+					rpmhpd_opp_turbo_l1: opp10 {
-+						opp-level = <RPMH_REGULATOR_LEVEL_TURBO_L1>;
-+					};
-+				};
-+			};
-+
- 		};
- 
- 		gem_noc: interconnect@19100000 {
+Note on TQMa8Mx:
+Due to CPU errata cpuidle is broken and needs to be disabled, see [1] for
+pending patch.
+
+This patch set adds support for the following modules:
+* TQMa8Mx
+* TQMa8MxML
+* TQMa8MxNL
+
+Each of the modules is available with different i.MX8M variants, the
+bootloader modifies the device tree and disabled paripherals which
+are not available on the actual hardware.
+
+All of them can be attached to the same mainboard MBa8Mx, although
+TQMa8MxML & TQMa8MxNL need an adapter. For that reason there is a single
+mainboard .dtsi file named mba8mx.dtsi.
+
+There is a .dtsi file for each module named imx8m?-tmqa8m*.dts.
+
+Finally there is the final .dts file which includes the mainboard and
+the attached module and contains the missing connection, prominently clk
+and pinctrl defines.
+
+[1] https://patchwork.kernel.org/project/linux-arm-kernel/patch/20211105095535.3920998-1-alexander.stein@ew.tq-group.com/
+[2] https://www.spinics.net/lists/devicetree/msg460023.html
+
+Alexander Stein (7):
+  dt-bindings: arm: fsl: add TQMa8MxML boards
+  arm64: dts: freescale: add initial device tree for TQMa8MQML with
+    i.MX8MM
+  arm64: defconfig: enable drivers for TQ TQMa8MxML-MBa8Mx
+  dt-bindings: arm: fsl: add TQMa8MxNL boards
+  arm64: dts: freescale: add initial device tree for TQMa8MQNL with
+    i.MX8MN
+  dt-bindings: arm: fsl: add TQMa8Mx boards
+  arm64: dts: freescale: add initial device tree for TQMa8Mx with i.MX8M
+
+ .../devicetree/bindings/arm/fsl.yaml          |  31 ++
+ arch/arm64/boot/dts/freescale/Makefile        |   3 +
+ .../dts/freescale/imx8mm-tqma8mqml-mba8mx.dts | 253 ++++++++++++
+ .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  | 335 ++++++++++++++++
+ .../dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts | 237 ++++++++++++
+ .../boot/dts/freescale/imx8mn-tqma8mqnl.dtsi  | 322 ++++++++++++++++
+ .../dts/freescale/imx8mq-tqma8mq-mba8mx.dts   | 349 +++++++++++++++++
+ .../boot/dts/freescale/imx8mq-tqma8mq.dtsi    | 360 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi     | 282 ++++++++++++++
+ arch/arm64/configs/defconfig                  |   7 +
+ 10 files changed, 2179 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/mba8mx.dtsi
+
 -- 
-2.31.1
+2.25.1
 
