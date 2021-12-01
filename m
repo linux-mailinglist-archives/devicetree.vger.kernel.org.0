@@ -2,112 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A9D7464FD7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:34:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 604AD464FF0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:36:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350324AbhLAOht (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 09:37:49 -0500
-Received: from mail-ot1-f53.google.com ([209.85.210.53]:37663 "EHLO
-        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350332AbhLAOgw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:36:52 -0500
-Received: by mail-ot1-f53.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so35407972otg.4;
-        Wed, 01 Dec 2021 06:33:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=H6m7rkj8DPoqTZFqopgze2pKI1kgM/G/Mrby5ukjdGE=;
-        b=0kClOwpJ5hCDdaCKtdi8kJDr9xT9fknvp0kXF2l01J/JWJsUv7jaAKUrxivNddNhJ9
-         A3blMP8jwBDI96hfrYHkNzdJqgiSR/kwBC/+/ZlMDBB3hznJrGNCOlD/13BPIYGlYjx+
-         CAP5Sg4Jx/s08jU5DduokpOVr3Q8z0K/M6XrUMYJFxcITibI/Cc8GFJuXJgnyK9PgMpk
-         Oq5h8Tu6SKEtnRtn8o+RfjgvsjIrhAzMXd2lJ7rZReNRAYOGWJe1cJfHSRRW1hYlu7m3
-         AL+RpBcETFcpVNQU9g/An9sC/94QtJyfLJLBXy9nJ9tq24uzx5K3tptJ2ysYx0e//BsU
-         oNRg==
-X-Gm-Message-State: AOAM532ro/ziShjOdhqE+GGgrmOO2+p2S/z0yWHCbezPnmFBWAOLYbZb
-        rsYyPRDKxT/B31eqthVnnNHF1bxSgA==
-X-Google-Smtp-Source: ABdhPJzBwSLT8YLHWoK6yMQSNpniPp0mVIv+o85r1M9hWK0ych8mx/NRnEfsorSNB2DyXxIC0PryPg==
-X-Received: by 2002:a9d:709a:: with SMTP id l26mr6022358otj.287.1638369204591;
-        Wed, 01 Dec 2021 06:33:24 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id g61sm3685059otg.43.2021.12.01.06.33.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 06:33:23 -0800 (PST)
-Received: (nullmailer pid 1684342 invoked by uid 1000);
-        Wed, 01 Dec 2021 14:33:22 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        =?utf-8?b?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        "David S. Miller" <davem@davemloft.net>,
-        Doug Berger <opendmb@gmail.com>, Ray Jui <rjui@broadcom.com>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Scott Branden <sbranden@broadcom.com>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20211201041228.32444-5-f.fainelli@gmail.com>
-References: <20211201041228.32444-1-f.fainelli@gmail.com> <20211201041228.32444-5-f.fainelli@gmail.com>
-Subject: Re: [PATCH net-next 4/7] dt-bindings: net: Convert GENET binding to YAML
-Date:   Wed, 01 Dec 2021 08:33:22 -0600
-Message-Id: <1638369202.185942.1684341.nullmailer@robh.at.kernel.org>
+        id S1349955AbhLAOjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 09:39:23 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:22728 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1350163AbhLAOhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:37:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638369206;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=gDqNSwOY4krNXyZJKC9cA8DBCihhfe+kQxeeBXbUBDM=;
+    b=TfZuFK7agOXamEYkB331yuxjVMDwyGsNTY8R0Li9/tuv7nXqulBYXsJv2tlVUyYlQM
+    W94ccGIt4GcPDz3A4IwNOafPlCVGhQ54ZJ6wIda3FkhtRXdVm0H3fnWVg8MGYYwGT9MZ
+    dsJj76pnYPTAsaJu8BQkOkWVvOqJxhn78qiRhP654LUjf7b8PpGx+EnCXYQlMOCtspMv
+    2xLfEVo5igd9WxRUFZopnEwq3s0bZJ4Xc6VplGnA41Cuc15OCNX+35dtZ9kOzKQmO003
+    IPpM5rMjgYvOHLFugSaLRZY0+4mtgMrFhHE8HgwuZ0W6gLG5OcL3JPnrm2fKuIM/59dH
+    wwWA==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43u22M="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.10 SBL|AUTH)
+    with ESMTPSA id e05ed8xB1EXPXiK
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 1 Dec 2021 15:33:25 +0100 (CET)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <EDWF3R.CMVWMJL42OH9@crapouillou.net>
+Date:   Wed, 1 Dec 2021 15:33:24 +0100
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <58C550A4-A21E-47BA-8BAE-00B927DC7A2E@goldelico.com>
+References: <cover.1638307601.git.hns@goldelico.com>
+ <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
+ <LKTF3R.YREPOCHOSMQN2@crapouillou.net> <Yad69aTXcGixXvy3@sirena.org.uk>
+ <46070A95-0FA9-43F9-A9A9-52A7B58B88F5@goldelico.com>
+ <EDWF3R.CMVWMJL42OH9@crapouillou.net>
+To:     Paul Cercueil <paul@crapouillou.net>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Nov 2021 20:12:25 -0800, Florian Fainelli wrote:
-> Convert the GENET binding to YAML, leveraging brcm,unimac-mdio.yaml and
-> the standard ethernet-controller.yaml files.
-> 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
->  .../devicetree/bindings/net/brcm,bcmgenet.txt | 125 ---------------
->  .../bindings/net/brcm,bcmgenet.yaml           | 146 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 147 insertions(+), 126 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/brcm,bcmgenet.txt
->  create mode 100644 Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
-> 
+Hi Paul,
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> Am 01.12.2021 um 15:03 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+> Hi Nikolaus, Mark,
+>=20
+> Le mer., d=C3=A9c. 1 2021 at 14:51:51 +0100, H. Nikolaus Schaller =
+<hns@goldelico.com> a =C3=A9crit :
+>> Hi,
+>>> Am 01.12.2021 um 14:39 schrieb Mark Brown <broonie@kernel.org>:
+>>> On Wed, Dec 01, 2021 at 01:02:45PM +0000, Paul Cercueil wrote:
+>>>> Le mar., nov. 30 2021 at 22:26:37 +0100, H. Nikolaus Schaller
+>>>>> +	regulator =3D devm_regulator_get_optional(&pdev->dev, =
+"hdmi-5v");
+>>>>> +	if (IS_ERR(regulator)) {
+>>>>> +		ret =3D PTR_ERR(regulator);
+>>> Why is this using _optional()?  This should only be done when the =
+supply
+>>> can be physically absent
+>> There can be +5V for HDMI but without a regulator that is visible to =
+or controllable
+>> by the driver.
+>=20
+> There is always a power supply though. Either a controllable one =
+(through e.g. a GPIO), or it's just connected to the mains +5V; the pin =
+is never left floating. In the second case, in DTS the "hdmi-5v" would =
+be connected to some 5v regulator, even if it's just a dummy VCC-5V =
+regulator. So Mark has a point.
+>=20
+>> So hdmi-5v can be simply missing in DTS in which case the driver does =
+not need to
+>> care about. The driver just can't turn it on or off.
+>=20
+> Please make it mandatory in DTS then, and use devm_regulator_get() in =
+the driver.
 
-yamllint warnings/errors:
+Well, I just wonder why the elegant devm_regulator_get_optional() exists =
+at all
+and seems to be used in ca. 80 places.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml: properties:interrupts: {'minItems': 2, 'maxItems': 3, 'items': [{'description': 'general purpose interrupt line'}, {'description': 'RX and TX rings interrupt line'}, {'description': 'Wake-on-LAN interrupt line'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml: properties:clocks: {'minItems': 1, 'maxItems': 3, 'items': [{'description': 'main clock'}, {'description': 'EEE clock'}, {'description': 'Wake-on-LAN clock'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml: properties:clock-names: {'minItems': 1, 'maxItems': 3, 'items': [{'const': 'enet'}, {'const': 'enet-eee'}, {'const': 'enet-wol'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml: ignoring, error in schema: properties: interrupts
-warning: no schema found in file: ./Documentation/devicetree/bindings/net/brcm,bcmgenet.yaml
-Documentation/devicetree/bindings/net/brcm,bcmgenet.example.dt.yaml:0:0: /example-0/ethernet@f0b60000: failed to match any schema with compatible: ['brcm,genet-v4']
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.example.dt.yaml: mdio@e14: 'reg-names' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
-Documentation/devicetree/bindings/net/brcm,bcmgenet.example.dt.yaml:0:0: /example-1/ethernet@f0b80000: failed to match any schema with compatible: ['brcm,genet-v4']
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.example.dt.yaml: mdio@e14: 'reg-names' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
-Documentation/devicetree/bindings/net/brcm,bcmgenet.example.dt.yaml:0:0: /example-2/ethernet@f0ba0000: failed to match any schema with compatible: ['brcm,genet-v4']
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,bcmgenet.example.dt.yaml: mdio@e14: 'reg-names' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml
+And if it is not allowed, why some DTS should be forced to add not =
+physically existing dummy-regulators.
+AFAIR drivers should implement functionality defined by DTS but not the =
+other way round: enforce DTS style.
+BTW: there is no +5 mains dummy regulator defined in ci20.dts.
 
-doc reference errors (make refcheckdocs):
+What I fear is that if we always have to define the mains +5V (which is =
+for example not
+defined in ci20.dts), which rules stops us from asking to add a =
+dummy-regulator from 110/230V to +5V as well.
+In last consequence, it seems as if we have to describe all dummy =
+regulators from the power plant to our hdmi-5v :)
 
-See https://patchwork.ozlabs.org/patch/1561997
+Since I always follow the KISS principle I tend to leave out what is not =
+relevant...
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+Of course adding a dummy regulator to the DTS allows to avoid the NULL =
+pointer test
+in the driver code.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Anyways, you are maintainers :)
 
-pip3 install dtschema --upgrade
+So should I spin a v11 for the series or just this patch or how should =
+we do it?
 
-Please check and re-submit.
+BR and thanks,
+Nikolaus
+
+>=20
+> Cheers,
+> -Paul
+>=20
+>>> (in which case I'd expect to see special
+>>> handling).
+>> The special case is to not enable/disable the regulator if it does =
+not exist
+>> and assume that there is hardware providing it otherwise (the driver =
+can't know
+>> that except by using get_optional). This is done by the code below
+>>>>> +	if (IS_ERR(regulator)) {
+>> ...
+>>> +	if (!regulator)
+>>> +		return 0;
+>>> +	ret =3D regulator_enable(regulator);
+>> ...
+>> BR and thanks,
+>> Nikolaus
+>=20
+>=20
 
