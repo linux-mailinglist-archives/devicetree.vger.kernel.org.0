@@ -2,108 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CC0465285
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:08:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF78C465295
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351382AbhLAQLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:11:40 -0500
-Received: from foss.arm.com ([217.140.110.172]:40938 "EHLO foss.arm.com"
+        id S1351423AbhLAQSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:18:10 -0500
+Received: from out0.migadu.com ([94.23.1.103]:60722 "EHLO out0.migadu.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351380AbhLAQLj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 11:11:39 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7D62D143B;
-        Wed,  1 Dec 2021 08:08:18 -0800 (PST)
-Received: from FVFF77S0Q05N (unknown [10.57.65.205])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9BDF03F766;
-        Wed,  1 Dec 2021 08:08:16 -0800 (PST)
-Date:   Wed, 1 Dec 2021 16:08:13 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Dougall <dougallj@gmail.com>, kernel-team@android.com
-Subject: Re: [PATCH v2 3/8] irqchip/apple-aic: Add cpumasks for E and P cores
-Message-ID: <Yaed7VAlwwCBcP13@FVFF77S0Q05N>
-References: <20211201134909.390490-1-maz@kernel.org>
- <20211201134909.390490-4-maz@kernel.org>
+        id S1351472AbhLAQP5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 11:15:57 -0500
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+        t=1638375148;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=lFszSLMJlckqMgj199+C+7TCwWXJukck64IGKpiISBg=;
+        b=i0yNjGxrUmQUBsNO+augWPsvo+7IopxwG1/mpq+SghSpQelceGeudz6JuXdcU/QG0wMqZX
+        2eKeQfajrnSMdmH1s4Lk4fhveabBMLB+lSMYU/78bGQFqk3amfU+ANqSVmlLCkFh3DVdn+
+        HEqEXjV2cwUpyWeFxXJDzfgA4IEJ5IU=
+From:   richard.leitner@linux.dev
+To:     richard.leitner@skidata.com
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: tegra: tamonten: Fix I2C3 pad setting
+Date:   Wed,  1 Dec 2021 17:11:48 +0100
+Message-Id: <20211201161148.238263-1-richard.leitner@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211201134909.390490-4-maz@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: linux.dev
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 01, 2021 at 01:49:04PM +0000, Marc Zyngier wrote:
-> In order to be able to tell the core IRQ code about the affinity
-> of the PMU interrupt in later patches, compute the cpumasks of the
-> P and E cores at boot time.
-> 
-> This relies on the affinity scheme used by the vendor, which seems
-> to work for the couple of SoCs that are out in the wild.
+From: Richard Leitner <richard.leitner@skidata.com>
 
-... but may change at any arbitrary point in future?
+This patch fixes the tristate configuration for i2c3 function assigned
+to the dtf pins on the Tamonten Tegra20 SoM.
 
-Can we please put the affinity in the DT, like we do for other SoCs and
-devices?
+Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+---
+ arch/arm/boot/dts/tegra20-tamonten.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I don't think we should treat this HW specially in this regard; we certaintly
-don't want other folk hard-coding system topology in their irqchip driver, and
-it should be possible to do something like the ppi-partitions binding, no?
+diff --git a/arch/arm/boot/dts/tegra20-tamonten.dtsi b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+index 02a1a4fa3a27..01e98605d5be 100644
+--- a/arch/arm/boot/dts/tegra20-tamonten.dtsi
++++ b/arch/arm/boot/dts/tegra20-tamonten.dtsi
+@@ -184,8 +184,8 @@ uca {
+ 			};
+ 			conf_ata {
+ 				nvidia,pins = "ata", "atb", "atc", "atd", "ate",
+-					"cdev1", "cdev2", "dap1", "dtb", "gma",
+-					"gmb", "gmc", "gmd", "gme", "gpu7",
++					"cdev1", "cdev2", "dap1", "dtb", "dtf",
++					"gma", "gmb", "gmc", "gmd", "gme", "gpu7",
+ 					"gpv", "i2cp", "irrx", "irtx", "pta",
+ 					"rm", "slxa", "slxk", "spia", "spib",
+ 					"uac";
+@@ -204,7 +204,7 @@ conf_csus {
+ 			};
+ 			conf_crtp {
+ 				nvidia,pins = "crtp", "dap2", "dap3", "dap4",
+-					"dtc", "dte", "dtf", "gpu", "sdio1",
++					"dtc", "dte", "gpu", "sdio1",
+ 					"slxc", "slxd", "spdi", "spdo", "spig",
+ 					"uda";
+ 				nvidia,pull = <TEGRA_PIN_PULL_NONE>;
+-- 
+2.33.1
 
-Thanks,
-Mark.
-
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->  drivers/irqchip/irq-apple-aic.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
-> index 3759dc36cc8f..30ca80ccda8b 100644
-> --- a/drivers/irqchip/irq-apple-aic.c
-> +++ b/drivers/irqchip/irq-apple-aic.c
-> @@ -177,6 +177,8 @@ struct aic_irq_chip {
->  	void __iomem *base;
->  	struct irq_domain *hw_domain;
->  	struct irq_domain *ipi_domain;
-> +	struct cpumask ecore_mask;
-> +	struct cpumask pcore_mask;
->  	int nr_hw;
->  	int ipi_hwirq;
->  };
-> @@ -200,6 +202,11 @@ static void aic_ic_write(struct aic_irq_chip *ic, u32 reg, u32 val)
->  	writel_relaxed(val, ic->base + reg);
->  }
->  
-> +static bool __is_pcore(u64 mpidr)
-> +{
-> +	return MPIDR_AFFINITY_LEVEL(mpidr, 2) == 1;
-> +}
-> +
->  /*
->   * IRQ irqchip
->   */
-> @@ -833,6 +840,13 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
->  		return -ENODEV;
->  	}
->  
-> +	for_each_possible_cpu(i) {
-> +		if (__is_pcore(cpu_logical_map(i)))
-> +			cpumask_set_cpu(i, &irqc->pcore_mask);
-> +		else
-> +			cpumask_set_cpu(i, &irqc->ecore_mask);
-> +	}
-> +
->  	set_handle_irq(aic_handle_irq);
->  	set_handle_fiq(aic_handle_fiq);
->  
-> -- 
-> 2.30.2
-> 
