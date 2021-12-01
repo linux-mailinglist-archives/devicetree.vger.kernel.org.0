@@ -2,255 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7719C464A81
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:24:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A056464A98
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:28:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348174AbhLAJ1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 04:27:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60410 "EHLO
+        id S229459AbhLAJbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 04:31:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348177AbhLAJ1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:27:43 -0500
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 045B0C06174A
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 01:24:22 -0800 (PST)
-Received: by mail-lj1-x22a.google.com with SMTP id k2so46884923lji.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 01:24:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gM/Yc8EtoWbZo84DxZuXQbB3MA0/ZTzJxXksQrQpskM=;
-        b=p0dwxIjabirFBsABSCPUCdkrccuD7bMLwdD4o3pXTKDnOL7itEU05FMhOJ4P5Cczbe
-         YMkOAsr9pm1L5ZEBq+GRMkfQLJzMFQXHpx1gn+FfC+Yby0x6O0xJlQJYXkJEpX6/gLsB
-         uw39A6zuQFLKWeMvuPdZNv2n5KmluPqgqBeDrNiAYIQXVO7rN9+cM48vaEaL8yHmZXq4
-         KwW70P8SK2mKjC4fimwiq+5Trt4X1Wr5+Vq/wxB9Y69CmhKn/AKmqFK7w3FYGM2t/gRz
-         GMh4iKOHldz8EIESw9VNJonRILxub3nUP3bqzCm1ruMA32xgMG2bbxgcFH9PpCElxsda
-         dYHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gM/Yc8EtoWbZo84DxZuXQbB3MA0/ZTzJxXksQrQpskM=;
-        b=54G5wiCEif2uQzVLHkmwg4Sgkchf4Iq/4MR7gXlZI26vDe1hFLtVp6DxZ1stMngHwE
-         +i+HswaBkkkCDDT5IcqdT1U2sNqF/Iqf+Sxj+ml1wrndyM44jWDgRacZAQ/H9dVUbaoi
-         ucn0Gkmmi4u+R36XK7dEl1JeuC+bcadOee55fNxZzByu6xZVZXHjXV3RtJtIrZEv0Oqx
-         UWyB+/Ontd/jI3guTC8M0XLFuQ+c5r8eUrNDDLmvt0SKuONPfcizTv0tIaSq/THoC3qr
-         76OyLHC/x1hMXCeTKzQh4miNY93AIFhFrgRzKcoBnUbVl9CJz6gtTnJrumy/iO0iix9c
-         NvVg==
-X-Gm-Message-State: AOAM531UD0vME1RkNZyOf/AuD6SL3HN6OiVMtFFBs3w6bQDXwwQWLMcl
-        BRyFh89NhRrr4EDWSHWlbm+h3B1tnhQFhYEFNKLGxQ==
-X-Google-Smtp-Source: ABdhPJxdaXt+eWtKhQK6uoSvHNyf0JqYJR7quIKd3xMMBh2XBIfik0f8Mkp/IN428brlJT7cIaRLCtFx1oF74H8xIBc=
-X-Received: by 2002:a2e:93c4:: with SMTP id p4mr4553125ljh.367.1638350661085;
- Wed, 01 Dec 2021 01:24:21 -0800 (PST)
+        with ESMTP id S242304AbhLAJbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:31:23 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C530C061574;
+        Wed,  1 Dec 2021 01:28:03 -0800 (PST)
+Received: from [IPv6:2a01:e0a:120:3210:81b0:4101:d4f2:ecb7] (unknown [IPv6:2a01:e0a:120:3210:81b0:4101:d4f2:ecb7])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id D03FE1F456A8;
+        Wed,  1 Dec 2021 09:28:00 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638350881; bh=GOanvQHnMURC6UIEgHUa/+fTqbcJzEywsBQPZpD0MJA=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=St1k4d/bgtbXVPjdtfbYA9aV4V9ZWSYVYtYwv4/c4FjJvQMSIbZKlzc18tl6VVxys
+         +9+W64Jyao7xM80jFjcykCzfwQDYjw89p7rBHr5qi0Cc1R05nxmVPzOT0jlpRb9rG9
+         6FBaB7Bag9wbRydqBhvX98QQGE9a6Xra6HO0xPpuZqDpIwqp6DeX9+mhrm8A+8cnl+
+         HvLVl0bZkut7JlsYbQhDgdZw4Nt7bFrJQEyef6DumdrKef6n2MMUspFScI6081vh7B
+         kaRZc9wY5l5YgSoO6GU2a0YWVRzaKeCyY+7HBAIl0LGQcQfDovjeL7PEXy/4stwN8y
+         kMEDbFLZRlL9g==
+Subject: Re: [RFC V2 0/2] arm64: imx8mm: Enable Hantro VPUs
+To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     ezequiel@vanguardiasur.com.ar, hverkuil@xs4all.nl,
+        tharvey@gateworks.com, nicolas@ndufresne.ca,
+        aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-staging@lists.linux.dev
+References: <20211201013329.15875-1-aford173@gmail.com>
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Message-ID: <a07677bc-0a18-c910-222d-d6faee3fe5a0@collabora.com>
+Date:   Wed, 1 Dec 2021 10:27:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
-In-Reply-To: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 1 Dec 2021 10:23:44 +0100
-Message-ID: <CAPDyKFoZo4p93JZUm4CUqO4DfrL8_YbyomqBzC59C0eTwa60CA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: Powerzone new bindings
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
-        rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20211201013329.15875-1-aford173@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Nov 2021 at 19:15, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->
-> The proposed bindings are describing a set of powerzones.
->
-> A power zone is the logical name for a component which is capable of
-> power capping and where we can measure the power consumption.
->
-> A power zone can aggregate several power zones in terms of power
-> measurement and power limitations. That allows to apply power
-> constraint to a group of components and let the system balance the
-> allocated power in order to comply with the constraint.
->
-> The ARM System Control and Management Interface (SCMI) can provide a
-> power zone description.
->
-> The powerzone semantic is also found on the Intel platform with the
-> RAPL register.
->
-> The Linux kernel powercap framework deals with the powerzones:
->
-> https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
->
-> The powerzone can also represent a group of children powerzones, hence
-> the description can result on a hierarchy. Such hierarchy already
-> exists with the hardware or can be represented an computed from the
-> kernel.
->
-> The hierarchical description was initially proposed but not desired
-> given there are other descriptions like the power domain proposing
-> almost the same description.
->
-> https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
->
-> The description gives the power constraint dependencies to apply on a
-> specific group of logically or physically aggregated devices. They do
-> not represent the physical location or the power domains of the SoC
-> even if the description could be similar.
->
-> Cc: Arnd Bergmann <arnd@arndb.de>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
->    V1: Initial post
->    V2:
->      - Added pattern properties and stick to powerzone-*
->      - Added required property compatible and powerzone-cells
->      - Added additionnal property
->      - Added compatible
->      - Renamed to 'powerzones'
->      - Added missing powerzone-cells to the topmost node
->      - Fixed errors reported by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> ---
->  .../devicetree/bindings/power/powerzones.yaml | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
->
-> diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
-> new file mode 100644
-> index 000000000000..6e63bbc750c6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/powerzones.yaml
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/power/powerzones.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Power zones description
-> +
-> +maintainers:
-> +  - Daniel Lezcano <daniel.lezcano@linaro.org>
-> +
-> +description: |+
-> +
-> +  A System on Chip contains a multitude of active components and each
-> +  of them is a source of heat. Even if a temperature sensor is not
-> +  present, a source of heat can be controlled by acting on the
-> +  consumed power via different techniques.
-> +
-> +  A powerzone describes a component or a group of components where we
-> +  can control the maximum power consumption. For instance, a group of
-> +  CPUs via the performance domain, a LCD screen via the brightness,
-> +  etc ...
-> +
-> +  Different components when they are used together can significantly
-> +  increase the overall temperature, so the description needs to
-> +  reflect this dependency in order to assign a power budget for a
-> +  group of powerzones.
-> +
-> +  This description is done via a hierarchy and the DT reflects it. It
-> +  does not represent the physical location or a topology, eg. on a
-> +  big.Little system, the little CPUs may not be represented as they do
-> +  not contribute significantly to the heat, however the GPU can be
-> +  tied with the big CPUs as they usually have a connection for
-> +  multimedia or game workloads.
-> +
-> +properties:
-> +  $nodename:
-> +    const: powerzones
-> +
-> +  compatible:
-> +    const: powerzones
 
-This looks odd. Why do we need const compatible string? Shouldn't this
-be allowed to be an SoC-powerzone specific compatible?
-
-> +
-> +patternProperties:
-> +  "^(powerzone)([@-].*)?$":
-> +    type: object
-> +    description:
-> +      A node representing a powerzone acting as an aggregator for all
-> +      its children powerzones.
-> +
-> +    properties:
-> +      "#powerzone-cells":
-> +        description:
-> +          Number of cells in powerzone specifier. Typically 0 for nodes
-> +          representing but it can be any number in the future to
-> +          describe parameters of the powerzone.
-> +
-> +      powerzones:
-> +        description:
-> +          A phandle to a parent powerzone. If no powerzone attribute is
-> +          set, the described powerzone is the topmost in the hierarchy.
-> +
-> +    required:
-> +      - "#powerzone-cells"
-> +
-> +required:
-> +  - compatible
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    powerzones {
-> +
-> +      compatible = "powerzones";
-> +
-> +      #powerzone-cells = <0>;
-> +
-> +      SOC_PZ: powerzone-soc {
-> +        #powerzone-cells = <0>;
-> +      };
-> +
-> +      PKG_PZ: powerzone-pkg {
-> +        #powerzone-cells = <0>;
-> +        powerzones = <&SOC_PZ>;
-> +      };
-> +
-> +      GPU_PZ: powerzone-gpu {
-> +        #powerzone-cells = <0>;
-> +        powerzones = <&PKG_PZ>;
-> +      };
-> +    };
-> +
-> +  - |
-> +    A57_0: big@0 {
-> +      compatible = "arm,cortex-a57";
-> +      reg = <0x0 0x0>;
-> +      device_type = "cpu";
-> +      #powerzone-cells = <0>;
-> +      powerzones = <&PKG_PZ>;
-> +    };
-
-I think we discussed this in the earlier version too...
-
-The above example describes a powerzone provider, but it doesn't
-really conform to the binding. That's because the binding states that
-powerzone providers should be inside a top-level "powerzone {" node.
-
-I am wondering if we really need the toplevel "powerzone" node.
-
-> +
-> +    A57_1: big@1 {
-> +      compatible = "arm,cortex-a57";
-> +      reg = <0x0 0x0>;
-> +      device_type = "cpu";
-> +      #powerzone-cells = <0>;
-> +      powerzones = <&PKG_PZ>;
-> +    };
-> +...
-> --
-> 2.25.1
+Le 01/12/2021 à 02:33, Adam Ford a écrit :
+> The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
+> to be related to the video decoders used on the i.MX8MQ, but because of
+> how the Mini handles the power domains, the VPU driver does not need to
+> handle all the functions, nor does it support the post-processor,
+> so a new compatible flag is required.
 >
+> With the suggestion from Hans Verkuil, I was able to get the G2 splat to go away
+> with changes to FORCE_MAX_ZONEORDER, but I found I could also set cma=512M, however
+> it's unclear to me if that's an acceptable alternative.
+>
+> At the suggestion of Ezequiel Garcia and Nicolas Dufresne I have some
+> results from Fluster. However, the G2 VPU appears to fail most tests.
+>
+> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> Ran 90/135 tests successfully               in 76.431 secs
+>
+>   ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> Ran 55/61 tests successfully               in 21.454 secs
+>
+> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> Ran 0/303 tests successfully               in 20.016 secs
+>
+> Each day seems to show more and more G2 submissions, and gstreamer seems to be
+> still working on the VP9, so I am not sure if I should drop G2 as well.
 
-No further comments from my side.
+I think it is going in the good direction.
+I'm trying to do the same on IMX6MQ but still have hang issue on G2.
 
-Kind regards
-Uffe
+Regards,
+Benjamin
+
+>
+> Adam Ford (2):
+>    media: hantro: Add support for i.MX8M Mini
+>    arm64: dts: imx8mm: Enable VPU-G1 and VPU-G2
+>
+>   arch/arm64/boot/dts/freescale/imx8mm.dtsi   | 41 +++++++++++++++
+>   drivers/staging/media/hantro/hantro_drv.c   |  2 +
+>   drivers/staging/media/hantro/hantro_hw.h    |  2 +
+>   drivers/staging/media/hantro/imx8m_vpu_hw.c | 57 +++++++++++++++++++++
+>   4 files changed, 102 insertions(+)
+>
