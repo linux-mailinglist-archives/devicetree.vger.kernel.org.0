@@ -2,177 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEB7B4659BB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 00:20:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B949E4659C6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 00:25:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353804AbhLAXXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 18:23:52 -0500
-Received: from mail-ot1-f45.google.com ([209.85.210.45]:34340 "EHLO
-        mail-ot1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353839AbhLAXXo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 18:23:44 -0500
-Received: by mail-ot1-f45.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso37520492otj.1;
-        Wed, 01 Dec 2021 15:20:22 -0800 (PST)
+        id S245754AbhLAX2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 18:28:54 -0500
+Received: from mail-oi1-f170.google.com ([209.85.167.170]:41593 "EHLO
+        mail-oi1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232038AbhLAX2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 18:28:53 -0500
+Received: by mail-oi1-f170.google.com with SMTP id u74so51904400oie.8;
+        Wed, 01 Dec 2021 15:25:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=s3VfKp0svPniJPx3S2KRfg6+sZau5YCfKLct8VulnAI=;
-        b=dEjwfDYLp21t5uaa56TkGqiFGOskNyCF0iTUJ1gCuL2WjZnEAWYDN3Y2UnV7smi68E
-         HAzFPNs5blHtpmMMd0a6JJ4X58RDMbWWE2ehTyJ/WHKAiqonq3IQrumTAgro3aXDNmrj
-         U9UCUFF7WfohGo7lerHlJsRAAa2nVmZkTPlMH2z46Cj/64ylcx4tl7R3zH0zM9918sUy
-         CCAZQ3xV+Sm6nKysW8BnGwV6rsjBSJpiBMcdh/3WHJWCorOLQoz2XBfgpl4K9V4/I1wt
-         osKH6K2h2P8NgamYQ/+GBPFwXlpiJEJ5T0YACGvOV4wbL+3M6j12BojYXisu7tWT8hvF
-         MplA==
-X-Gm-Message-State: AOAM532m6My7Lu72OTzqpeDJpoFnXf1dqb7dBde24Z5OjIJmc7x8P5nS
-        UFL5e5tw4pEMkplS/vUOIw==
-X-Google-Smtp-Source: ABdhPJwgXa+JwMa+UIdiWdNVSPZAGFCYemTgRhJO5gLo2NywfsC7syhoN5+dj5qjTcDpaGEdqoWfUg==
-X-Received: by 2002:a05:6830:2b14:: with SMTP id l20mr8617911otv.42.1638400822290;
-        Wed, 01 Dec 2021 15:20:22 -0800 (PST)
+        bh=WTjMPCDcvihuyQh1uMy5fkLE4TiLB9ELZo1Z/fdtOEw=;
+        b=WTVFkVslcTWA49+QYlHt62STpwRIzrvjFztO1+AefJx4gqAV6+y0V7gWkIStg8ajw5
+         HAwzYvYJSSDjl2kfvRtsF4J177BaNt6+UNf2i+rnvjKvrTjRDCGiBfREN4BnkG2V5CFR
+         tDfW4N/uFjmvlhCtjZN06xfahCKQdyk4iqBUyFHBUUpzIBlV+7S5NjO2MEYd2qmHfh2+
+         mc0AMYmE8EK3WhaRKIl85/TXATrUzRDKRvPfr1RnBYVtkPyjKww8aACsBt3wXW0xA3di
+         uup2GrZP6izEr3G8mYrzZrE3/Ma34wTAw1sq5EI5DV8uraiJaIREYXzdDzdtzF5412gR
+         Xthw==
+X-Gm-Message-State: AOAM531FcFuhk/UXU2SyjUfHCHpjCY/7ZKTIJT+e8ZyU30MrpjRBlcNa
+        HDopsKz6Fo21SbhLp5YD63i2ZvGttw==
+X-Google-Smtp-Source: ABdhPJztTIjtw8p6wfPDDYXpZSzufRDbtyNTF/8BLndTPrdzJ33MB5cgnYIg8K+nbzlsmt/oPcwitA==
+X-Received: by 2002:aca:2b0f:: with SMTP id i15mr1457619oik.114.1638401131619;
+        Wed, 01 Dec 2021 15:25:31 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bb8sm629332oib.9.2021.12.01.15.20.20
+        by smtp.gmail.com with ESMTPSA id f20sm686814oiw.48.2021.12.01.15.25.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 15:20:21 -0800 (PST)
-Received: (nullmailer pid 3150169 invoked by uid 1000);
-        Wed, 01 Dec 2021 23:20:20 -0000
-Date:   Wed, 1 Dec 2021 17:20:20 -0600
+        Wed, 01 Dec 2021 15:25:31 -0800 (PST)
+Received: (nullmailer pid 3176562 invoked by uid 1000);
+        Wed, 01 Dec 2021 23:25:30 -0000
+Date:   Wed, 1 Dec 2021 17:25:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Xiangsheng Hou <Xiangsheng.Hou@mediatek.com>,
-        Julien Su <juliensu@mxic.com.tw>,
-        Jaime Liao <jaimeliao@mxic.com.tw>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 03/20] dt-bindings: mtd: nand-chip: Create a NAND chip
- description
-Message-ID: <YagDNLy+gGFiH5oU@robh.at.kernel.org>
-References: <20211126113924.310459-1-miquel.raynal@bootlin.com>
- <20211126113924.310459-4-miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: cdns,macb: Convert to json-schema
+Message-ID: <YagEai+VPAnjAq4X@robh.at.kernel.org>
+References: <104dcbfd22f95fc77de9fe15e8abd83869603ea5.1637927673.git.geert@linux-m68k.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20211126113924.310459-4-miquel.raynal@bootlin.com>
+In-Reply-To: <104dcbfd22f95fc77de9fe15e8abd83869603ea5.1637927673.git.geert@linux-m68k.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 26, 2021 at 12:39:07PM +0100, Miquel Raynal wrote:
-> Move the NAND chip description out of the NAND controller file. Indeed,
-> a subsequent part of the properties supported by a raw NAND chip are
-> also supported by SPI-NAND chips. So let's create a generic NAND chip
-> description which will be pulled by nand-controller.yaml and later by
-> spi-nand.yaml as well.
+On Fri, Nov 26, 2021 at 12:57:00PM +0100, Geert Uytterhoeven wrote:
+> Convert the Cadence MACB/GEM Ethernet controller Device Tree binding
+> documentation to json-schema.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Re-add "cdns,gem" (removed in commit a217d8711da5c87f ("dt-bindings:
+> Remove PicoXcell bindings")) as there are active users on non-PicoXcell
+> platforms.
+> Add missing "ether_clk" clock.
+> Add missing properties.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 > ---
->  .../devicetree/bindings/mtd/nand-chip.yaml    | 71 +++++++++++++++++++
->  .../bindings/mtd/nand-controller.yaml         | 53 ++------------
->  2 files changed, 75 insertions(+), 49 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mtd/nand-chip.yaml
+>  .../devicetree/bindings/net/cdns,macb.yaml    | 162 ++++++++++++++++++
+>  .../devicetree/bindings/net/macb.txt          |  60 -------
+>  2 files changed, 162 insertions(+), 60 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/cdns,macb.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/macb.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/mtd/nand-chip.yaml b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
+> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
 > new file mode 100644
-> index 000000000000..6d13e8cdbb21
+> index 0000000000000000..c7d00350430aa503
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/nand-chip.yaml
-> @@ -0,0 +1,71 @@
+> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> @@ -0,0 +1,162 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/mtd/nand-chip.yaml#
+> +$id: http://devicetree.org/schemas/net/cdns,macb.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: NAND Chip and NAND Controller Generic Binding
+> +title: Cadence MACB/GEM Ethernet controller
 > +
 > +maintainers:
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> +
-> +description: |
-> +  This file covers the generic description of a NAND chip. It implies that the
-> +  bus interface should not be taken into account: both raw NAND devices and
-> +  SPI-NAND devices are concerned by this description.
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
 > +
 > +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - cdns,at91rm9200-emac  # Atmel at91rm9200 SoC
+> +          - const: cdns,emac          # Generic
+> +
+> +      - items:
+> +          - enum:
+> +              - cdns,zynq-gem         # Xilinx Zynq-7xxx SoC
+> +              - cdns,zynqmp-gem       # Xilinx Zynq Ultrascale+ MPSoC
+> +          - const: cdns,gem           # Generic
+> +
+> +      - items:
+> +          - enum:
+> +              - cdns,at91sam9260-macb # Atmel at91sam9 SoCs
+> +              - cdns,sam9x60-macb     # Microchip sam9x60 SoC
+> +          - const: cdns,macb          # Generic
+> +
+> +      - items:
+> +          - enum:
+> +              - atmel,sama5d3-macb    # 10/100Mbit IP on Atmel sama5d3 SoCs
+> +          - enum:
+> +              - cdns,at91sam9260-macb # Atmel at91sam9 SoCs.
+> +          - const: cdns,macb          # Generic
+> +
+> +      - enum:
+> +          - atmel,sama5d29-gem        # GEM XL IP (10/100) on Atmel sama5d29 SoCs
+> +          - atmel,sama5d2-gem         # GEM IP (10/100) on Atmel sama5d2 SoCs
+> +          - atmel,sama5d3-gem         # Gigabit IP on Atmel sama5d3 SoCs
+> +          - atmel,sama5d4-gem         # GEM IP (10/100) on Atmel sama5d4 SoCs
+> +          - cdns,at32ap7000-macb      # Other 10/100 usage or use the generic form
+> +          - cdns,np4-macb             # NP4 SoC devices
+> +          - microchip,sama7g5-emac    # Microchip SAMA7G5 ethernet interface
+> +          - microchip,sama7g5-gem     # Microchip SAMA7G5 gigabit ethernet interface
+> +          - sifive,fu540-c000-gem     # SiFive FU540-C000 SoC
+> +          - cdns,emac                 # Generic
+> +          - cdns,gem                  # Generic
+> +          - cdns,macb                 # Generic
+> +
 > +  reg:
-> +    description:
-> +      Contains the chip-select IDs.
+> +    minItems: 1
+> +    items:
+> +      - description: Basic register set
+> +      - description: GEMGXL Management block registers on SiFive FU540-C000 SoC
 > +
-> +  nand-ecc-engine:
-> +    allOf:
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 8
+> +    description: One interrupt per available hardware queue
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 5
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - enum: [ ether_clk, hclk, pclk ]
+> +      - enum: [ hclk, pclk ]
+> +      - const: tx_clk
+> +      - enum: [ rx_clk, tsu_clk ]
+> +      - const: tsu_clk
+> +
+> +  local-mac-address: true
+> +
+> +  phy-mode: true
+> +
+> +  phy-handle: true
+> +
+> +  fixed-link: true
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#stream-id-cells':
+> +    const: 1
 
-Can you drop the allOf here.
+I can't figure out why you have this here. I'll drop it while applying.
 
-> +      - $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: |
-> +      A phandle on the hardware ECC engine if any. There are
-> +      basically three possibilities:
-> +      1/ The ECC engine is part of the NAND controller, in this
-> +      case the phandle should reference the parent node.
-> +      2/ The ECC engine is part of the NAND part (on-die), in this
-> +      case the phandle should reference the node itself.
-> +      3/ The ECC engine is external, in this case the phandle should
-> +      reference the specific ECC engine node.
 > +
-> +  nand-use-soft-ecc-engine:
-> +    type: boolean
-> +    description: Use a software ECC engine.
-> +
-> +  nand-no-ecc-engine:
-> +    type: boolean
-> +    description: Do not use any ECC correction.
-> +
-> +  nand-ecc-algo:
+> +  mdio:
+> +    type: object
 > +    description:
-> +      Desired ECC algorithm.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [hamming, bch, rs]
+> +      Node containing PHY children. If this node is not present, then PHYs will
+> +      be direct children.
 > +
-> +  nand-ecc-strength:
-> +    description:
-> +      Maximum number of bits that can be corrected per ECC step.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
+> +patternProperties:
+> +  "^ethernet-phy@[0-9a-f]$":
+> +    type: object
+> +    $ref: ethernet-phy.yaml#
 > +
-> +  nand-ecc-step-size:
-> +    description:
-> +      Number of data bytes covered by a single ECC step.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
+> +    properties:
+> +      reset-gpios: true
 > +
-> +  secure-regions:
-> +    $ref: /schemas/types.yaml#/definitions/uint64-matrix
-> +    description:
-> +      Regions in the NAND chip which are protected using a secure element
-> +      like Trustzone. This property contains the start address and size of
-> +      the secure regions present.
+> +      magic-packet:
+> +        description:
+> +          Indicates that the hardware supports waking up via magic packet.
+> +
+> +    unevaluatedProperties: false
 > +
 > +required:
+> +  - compatible
 > +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - phy-mode
 > +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/mtd/nand-controller.yaml b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> index 5cd144a9ec99..44825dc95412 100644
-> --- a/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/nand-controller.yaml
-> @@ -52,32 +52,15 @@ properties:
->  patternProperties:
->    "^nand@[a-f0-9]$":
->      type: object
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
 > +
-> +    allOf:
-
-Also not needed here.
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +      - $ref: "nand-chip.yaml#"
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            contains:
+> +              const: sifive,fu540-c000-gem
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
 > +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    macb0: ethernet@fffc4000 {
+> +            compatible = "cdns,at32ap7000-macb";
+> +            reg = <0xfffc4000 0x4000>;
+> +            interrupts = <21>;
+> +            phy-mode = "rmii";
+> +            local-mac-address = [3a 0e 03 04 05 06];
+> +            clock-names = "pclk", "hclk", "tx_clk";
+> +            clocks = <&clkc 30>, <&clkc 30>, <&clkc 13>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            ethernet-phy@1 {
+> +                    reg = <0x1>;
+> +                    reset-gpios = <&pioE 6 1>;
+> +            };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/net/macb.txt b/Documentation/devicetree/bindings/net/macb.txt
+> deleted file mode 100644
+> index a1b06fd1962e4d93..0000000000000000
+> --- a/Documentation/devicetree/bindings/net/macb.txt
+> +++ /dev/null
+> @@ -1,60 +0,0 @@
+> -* Cadence MACB/GEM Ethernet controller
+> -
+> -Required properties:
+> -- compatible: Should be "cdns,[<chip>-]{macb|gem}"
+> -  Use "cdns,at91rm9200-emac" Atmel at91rm9200 SoC.
+> -  Use "cdns,at91sam9260-macb" for Atmel at91sam9 SoCs.
+> -  Use "cdns,sam9x60-macb" for Microchip sam9x60 SoC.
+> -  Use "cdns,np4-macb" for NP4 SoC devices.
+> -  Use "cdns,at32ap7000-macb" for other 10/100 usage or use the generic form: "cdns,macb".
+> -  Use "atmel,sama5d2-gem" for the GEM IP (10/100) available on Atmel sama5d2 SoCs.
+> -  Use "atmel,sama5d29-gem" for GEM XL IP (10/100) available on Atmel sama5d29 SoCs.
+> -  Use "atmel,sama5d3-macb" for the 10/100Mbit IP available on Atmel sama5d3 SoCs.
+> -  Use "atmel,sama5d3-gem" for the Gigabit IP available on Atmel sama5d3 SoCs.
+> -  Use "atmel,sama5d4-gem" for the GEM IP (10/100) available on Atmel sama5d4 SoCs.
+> -  Use "cdns,zynq-gem" Xilinx Zynq-7xxx SoC.
+> -  Use "cdns,zynqmp-gem" for Zynq Ultrascale+ MPSoC.
+> -  Use "sifive,fu540-c000-gem" for SiFive FU540-C000 SoC.
+> -  Use "microchip,sama7g5-emac" for Microchip SAMA7G5 ethernet interface.
+> -  Use "microchip,sama7g5-gem" for Microchip SAMA7G5 gigabit ethernet interface.
+> -  Or the generic form: "cdns,emac".
+> -- reg: Address and length of the register set for the device
+> -	For "sifive,fu540-c000-gem", second range is required to specify the
+> -	address and length of the registers for GEMGXL Management block.
+> -- interrupts: Should contain macb interrupt
+> -- phy-mode: See ethernet.txt file in the same directory.
+> -- clock-names: Tuple listing input clock names.
+> -	Required elements: 'pclk', 'hclk'
+> -	Optional elements: 'tx_clk'
+> -	Optional elements: 'rx_clk' applies to cdns,zynqmp-gem
+> -	Optional elements: 'tsu_clk'
+> -- clocks: Phandles to input clocks.
+> -
+> -Optional properties:
+> -- mdio: node containing PHY children. If this node is not present, then PHYs
+> -        will be direct children.
+> -
+> -The MAC address will be determined using the optional properties
+> -defined in ethernet.txt.
+> -
+> -Optional properties for PHY child node:
+> -- reset-gpios : Should specify the gpio for phy reset
+> -- magic-packet : If present, indicates that the hardware supports waking
+> -  up via magic packet.
+> -- phy-handle : see ethernet.txt file in the same directory
+> -
+> -Examples:
+> -
+> -	macb0: ethernet@fffc4000 {
+> -		compatible = "cdns,at32ap7000-macb";
+> -		reg = <0xfffc4000 0x4000>;
+> -		interrupts = <21>;
+> -		phy-mode = "rmii";
+> -		local-mac-address = [3a 0e 03 04 05 06];
+> -		clock-names = "pclk", "hclk", "tx_clk";
+> -		clocks = <&clkc 30>, <&clkc 30>, <&clkc 13>;
+> -		ethernet-phy@1 {
+> -			reg = <0x1>;
+> -			reset-gpios = <&pioE 6 1>;
+> -		};
+> -	};
+> -- 
+> 2.25.1
+> 
+> 
