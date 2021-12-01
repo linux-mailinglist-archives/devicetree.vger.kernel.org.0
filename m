@@ -2,79 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E174650F2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 16:07:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F64F4650F7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 16:09:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238987AbhLAPLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 10:11:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54328 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238216AbhLAPLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 10:11:01 -0500
-Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [IPv6:2001:4b7a:2000:18::166])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43C6C061748
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 07:07:39 -0800 (PST)
-Received: from [192.168.1.101] (83.6.166.111.neoplus.adsl.tpnet.pl [83.6.166.111])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B7BC13F747;
-        Wed,  1 Dec 2021 16:07:37 +0100 (CET)
-Message-ID: <7449e40f-d8ac-3ee9-c453-163c1310ca9d@somainline.org>
-Date:   Wed, 1 Dec 2021 16:07:36 +0100
+        id S230096AbhLAPMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 10:12:45 -0500
+Received: from smtp2.axis.com ([195.60.68.18]:33582 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S229933AbhLAPMo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 10:12:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1638371363;
+  x=1669907363;
+  h=date:from:to:cc:subject:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DSVPT1RETG549ajOLLGEnilMUMx9Lq5dsNal0HI0fyQ=;
+  b=Fu5wv2emdKBALSRej+tNjmFb0VXBpEKRWOA046AwIJ7Q5+EPsGUEDLpE
+   jOj+e+tVoe5gBfHWfA/F9TUik5n1WCwovez8Zu3xG4PpPN7C1U4Lt9HAx
+   mrRNNs2nDZ8/jbLqSAStfwpw5dpGh31KnuKG0DcoS/A4zGr7uPpCJuFwj
+   8xcaze0wZMN//LZWpd+PVvHK7ruVEh65UoPowODAurpMesVlA+6GazBcb
+   G31+BHspxHJLzzzwl4Ik1IDC52UubwuPGcXUVmtFPbwXipxwb0Ec4Gq16
+   DBUUPhn6TnqeQCOb50C3JT5S884TQUrGPw0DDuEgxXslYQLCREABGGo9y
+   w==;
+Date:   Wed, 1 Dec 2021 16:09:17 +0100
+From:   Ricard Wanderlof <ricardw@axis.com>
+X-X-Sender: ricardw@lnxricardw1.se.axis.com
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     alsa-devel <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [RESEND, PATCH v6 1/2] dt-bindings: sound: tlv320adc3xxx: New codec
+ driver
+Message-ID: <alpine.DEB.2.21.2112011603080.30606@lnxricardw1.se.axis.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH 04/15] arm64: dts: qcom: sm8450-qrd: Add reserved gpio
- range for QRD
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211201072915.3969178-1-vkoul@kernel.org>
- <20211201072915.3969178-5-vkoul@kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20211201072915.3969178-5-vkoul@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="ISO-8859-15"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail05w.axis.com (10.20.40.11) To se-mail07w.axis.com
+ (10.20.40.13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 01.12.2021 08:29, Vinod Koul wrote:
-> Some tlmm gpios are reserved, so mark them as such in QRD DTS
->
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450-qrd.dts | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-> index 127d32502555..8dcd41c4e5ab 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-qrd.dts
-> @@ -24,6 +24,10 @@ &qupv3_id_0 {
->  	status = "okay";
->  };
->  
-> +&tlmm {
-> +	gpio-reserved-ranges = <28 4>, <36 4>;
-> +};
-> +
->  &uart7 {
->  	status = "okay";
->  };
->
-Personally I'd squash this into the patch that introduced the DT and
+DT bindings for tlv320adc3xxx driver, currently supporting
+Texas Instruments TLV320ADC3001 and TLV320ADC3101 audio ADCs.
 
-move it to the end of the series, but I reckon it's fine either way..
+Signed-off-by: Ricard Wanderlof <ricardw@axis.com>
+---
+ .../bindings/sound/ti,tlv320adc3xxx.yaml      | 137 ++++++++++++++++++
+ include/dt-bindings/sound/tlv320adc3xxx.h     |  28 ++++
+ 2 files changed, 165 insertions(+)
+ create mode 100644
+Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+ create mode 100644 include/dt-bindings/sound/tlv320adc3xxx.h
 
+diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+new file mode 100644
+index 000000000000..c4fed6335230
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
+@@ -0,0 +1,137 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/ti,tlv320adc3xxx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TLV320ADC3001/TLV320ADC3101 Stereo ADC
++
++maintainers:
++  - Ricard Wanderlof <ricardw@axis.com>
++
++description: |
++  Texas Instruments TLV320ADC3001 and TLV320ADC3101 Stereo ADC
++  https://www.ti.com/product/TLV320ADC3001
++  https://www.ti.com/product/TLV320ADC3101
++
++properties:
++  compatible:
++    enum:
++      - ti,tlv320adc3001
++      - ti,tlv320adc3101
++
++  reg:
++    maxItems: 1
++    description: I2C address
++
++  '#sound-dai-cells':
++    const: 0
++
++  '#gpio-cells':
++    const: 2
++
++  gpio-controller: true
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO pin used for codec reset (RESET pin)
++
++  clocks:
++    maxItems: 1
++    description: Master clock (MCLK)
++
++  ti,dmdin-gpio1:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not
+used
++      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
++      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
++      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
++      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX
+reg
++      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
++      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
++      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
++    default: 0
++    description: |
++      Configuration for DMDIN/GPIO1 pin.
++
++      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
++      ALSA control "GPIOx Output" to appear, as a switch control.
++
++  ti,dmclk-gpio2:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not
+used
++      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
++      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
++      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
++      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX
+reg
++      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
++      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
++      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
++    default: 0
++    description: |
++      Configuration for DMCLK/GPIO2 pin.
++
++      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
++      ALSA control "GPIOx Output" to appear, as a switch control.
++
++      Note that there is currently no support for reading the GPIO pins as
++      inputs.
++
++  ti,micbias1-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_MICBIAS_OFF                - Mic bias is powered down
++      - 1 # ADC3XXX_MICBIAS_2_0V       - Mic bias is set to 2.0V
++      - 2 # ADC3XXX_MICBIAS_2_5V       - Mic bias is set to 2.5V
++      - 3 # ADC3XXX_MICBIAS_AVDD       - Mic bias is same as AVDD supply
++    default: 0
++    description: |
++      Mic bias voltage output on MICBIAS1 pin
++
++  ti,micbias2-vg:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # ADC3XXX_MICBIAS_OFF                - Mic bias is powered down
++      - 1 # ADC3XXX_MICBIAS_2_0V       - Mic bias is set to 2.0V
++      - 2 # ADC3XXX_MICBIAS_2_5V       - Mic bias is set to 2.5V
++      - 3 # ADC3XXX_MICBIAS_AVDD       - Mic bias is same as AVDD supply
++    default: 0
++    description: |
++      Mic bias voltage output on MICBIAS2 pin
++
++required:
++  - compatible
++  - reg
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/sound/tlv320adc3xxx.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        tlv320adc3101: tlv320adc3101@18 {
++            compatible = "ti,tlv320adc3101";
++            reg = <0x18>;
++            reset-gpios = <&gpio_pc 3 GPIO_ACTIVE_LOW>;
++            clocks = <&audio_mclk>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            ti,dmdin-gpio1 = <ADC3XXX_GPIO_GPO>;
++            ti,micbias1-vg = <ADC3XXX_MICBIAS_AVDD>;
++        };
++    };
++
++    audio_mclk: clock {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <24576000>;
++    };
++...
+diff --git a/include/dt-bindings/sound/tlv320adc3xxx.h
+b/include/dt-bindings/sound/tlv320adc3xxx.h
+new file mode 100644
+index 000000000000..3b3fa43fa961
+--- /dev/null
++++ b/include/dt-bindings/sound/tlv320adc3xxx.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Devicetree bindings definitions for tlv320adc3xxx driver.
++ *
++ * Copyright (C) 2021 Axis Communications AB
++ */
++#ifndef __DT_TLV320ADC3XXX_H
++#define __DT_TLV320ADC3XXX_H
++
++#define ADC3XXX_GPIO_DISABLED          0 /* I/O buffers powered down */
++#define ADC3XXX_GPIO_INPUT             1 /* Various non-GPIO inputs */
++#define ADC3XXX_GPIO_GPI               2 /* General purpose input */
++#define ADC3XXX_GPIO_GPO               3 /* General purpose output */
++#define ADC3XXX_GPIO_CLKOUT            4 /* Source set in reg. CLKOUT_MUX
+*/
++#define ADC3XXX_GPIO_INT1              5 /* INT1 output */
++#define ADC3XXX_GPIO_INT2              6 /* INT2 output */
++/* value 7 is reserved */
++#define ADC3XXX_GPIO_SECONDARY_BCLK    8 /* Codec interface secondary BCLK
+*/
++#define ADC3XXX_GPIO_SECONDARY_WCLK    9 /* Codec interface secondary WCLK
+*/
++#define ADC3XXX_GPIO_ADC_MOD_CLK       10 /* Clock output for digital mics
+*/
++/* values 11-15 reserved */
++
++#define ADC3XXX_MICBIAS_OFF            0 /* Micbias pin powered off */
++#define ADC3XXX_MICBIAS_2_0V           1 /* Micbias pin set to 2.0V */
++#define ADC3XXX_MICBIAS_2_5V           2 /* Micbias pin set to 2.5V */
++#define ADC3XXX_MICBIAS_AVDD           3 /* Use AVDD voltage for micbias
+pin */
++
++#endif /* __DT_TLV320ADC3XXX_H */
+--
+2.20.1
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-
-
-Konrad
+--
+Ricard Wolf Wanderlof                           ricardw(at)axis.com
+Axis Communications AB, Lund, Sweden            www.axis.com
+Phone +46 46 272 2016                           Fax +46 46 13 61 30
 
