@@ -2,169 +2,473 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18F38464BFD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:50:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5031F464C12
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:53:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237773AbhLAKyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 05:54:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51970 "EHLO
+        id S1348815AbhLAK4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 05:56:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232626AbhLAKyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:54:09 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 927A1C06174A
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 02:50:48 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id i5so51239495wrb.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 02:50:48 -0800 (PST)
+        with ESMTP id S242505AbhLAK4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:56:51 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8CC5C061574;
+        Wed,  1 Dec 2021 02:53:30 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id v1so99710990edx.2;
+        Wed, 01 Dec 2021 02:53:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=iaRWBZ6wVn64G1eYkYsgJ4iKQtxS+t5xqE+mjeZLe9c=;
-        b=LjOJIErsYA3H5R/SQ3MD0negXvGCfLzN7pYzmbRI9icpQz6ov+X3wjjzpbSp4pqnko
-         pD1xP83AEpwysggEIadi2K24Tft1s86g/mSUuCA9d/EfpZrr7aDhCPEXwV4VwAzg9Spj
-         9M4Qya3M8XGahlRBFlyBp+oG0hWjyZ1JLUftiNsKgkGkgyU0y/Z5oOga0mJQU3Q4xzri
-         CPA/Z1FFGRhDjJCg2ApbPw9jHL/GJDgPlI2jCPMl/KPZlmHw1zBWQppm75vtf5dQBYfG
-         6FV9+D2Jy8jucyR7nkc+Dp2VgTa5xP9E+0IvUHXQGhbIE+r8RbkIfyhwU8ol8hze8rV7
-         v8ag==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=njdmelRvCk+c4A0jl2+cstAddUR1eEr8TJPEY6E85O0=;
+        b=FGcJiKA4rLaZFQQgK2D94rL6MLj5xEWQf54W18/ZvZ54XLg1mVqo2ptXbE2fFHRgdg
+         e2iL8KzSh/Eln3uWcPKlV5UHlBAHnvSBdWR5MExjcp5CpcUJiniqnQPiwSwPNX9gw4WZ
+         FNFoAV0ryeDsHoJd1ArfYFW55+8BSyFwbTo1Zu8a7xGLx+CxBGJ12PseZnj9DgsB4KCm
+         qkyP7pVWnYkoTedxIdwITKmgLlDiJvD8wd+368iPXm+uK7XUPtqKXe13ENN8zsF0oulS
+         ODWrk/OI3rtLwy2SZg212zXicXiq1CYt6mNk3b1DpgIAvcBUIZVe5ABUsICSJf24PrRW
+         3cUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=iaRWBZ6wVn64G1eYkYsgJ4iKQtxS+t5xqE+mjeZLe9c=;
-        b=xgURxXZ8ikhDbpdvcTb1ObJbGlEtAIlm8V/CsdNBKwRRdB6VjRMLJbGXXR/AiH9wsr
-         0H4dbEe57M+kF0G7WNoaTwsLRYrUlizGOJVQKup/UUF+vPAR6StukLaeehJ97geuPQ9K
-         2rUx5P1vDrqDCSydLDUcsoLUS3D9qhXVLh/kOebCayd9u8Rcegke1xUNRvW4iibuMwFE
-         LJqcV6fxOvjGW7xv209oEb0CGGhA01NLz5wZM5K13SK/WMM1zlUgtg1q4DAX4a8X0wpA
-         G1rAPRZ2FiUPF6l+U495BFGgbak8p/sgtvDPuTh+TzefIWks3Y3ZmFpOszAa2BhesFsB
-         DZrw==
-X-Gm-Message-State: AOAM530MqF8fR68IuOW/mR8yerK8DapxcZV/a0ljGoKNLImE6qH540GL
-        BsTR+aR8e2CpIbVB9+J4CyqmGQ==
-X-Google-Smtp-Source: ABdhPJzUoU308MNHGmdz4H3mCfq+Qg4jBYUexDHukpCokTgVqQC15BFqy/Uc3KNflk686Ows/ubGPA==
-X-Received: by 2002:adf:ab53:: with SMTP id r19mr5827984wrc.584.1638355847050;
-        Wed, 01 Dec 2021 02:50:47 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id g18sm853449wmq.4.2021.12.01.02.50.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Dec 2021 02:50:46 -0800 (PST)
-Subject: Re: [PATCH v6 10/10] ASoC: qcom: SC7280: Update config for building
- codec dma drivers
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1637928282-2819-1-git-send-email-srivasam@codeaurora.org>
- <1637928282-2819-11-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <0d51b0fd-61a9-e68f-6ab8-27708667d787@linaro.org>
-Date:   Wed, 1 Dec 2021 10:50:45 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=njdmelRvCk+c4A0jl2+cstAddUR1eEr8TJPEY6E85O0=;
+        b=7JfWNpA2Df8BY+2XwoPKNFFtMMMDCDsbJMExqoYSzmQBPCfTM/eIYuY+lYOtDRQYRx
+         3Abb9wIZKvOy20C9I8Bu8qCxJn1pcHF6Crc4Eg1sJlg7f9FyY32EqJpcBxRO0w7dK6QD
+         oweTx2TB3gQBD2XZD2K3fdQBMea+m387cUvQ/aKCHAoaRjiS/HB7wlUTkdncMtAQ1hMt
+         fRyc0NI/WpdMxlOpcVxk3ea6UPh+LdQZ9SSAR3+zRVHuye/5nP0X5eRIIMqxhgX9jV6F
+         yRNOKBwenOJ4hl3wtrTydY5wAE3tc3lP1wGXPapStC4Y5bH3guFTCglx8prwDS8Q5/EM
+         i9BQ==
+X-Gm-Message-State: AOAM532mVodAR6yiO60J0Pxp4UhA9i8Q8MVkyCo1YgXoplSssNu1TBmd
+        mD/O8+AuVYs94TFztrO9rkE6wX0i2NVydWDU0bY=
+X-Google-Smtp-Source: ABdhPJxAlgMfSYNttB2rFlnB8h6tPe3Ml8h5UAk9iHJgK727Bd1eFlIrOriJdKhxZlRMk1oB7S0UtV+R0urL9fz4su4=
+X-Received: by 2002:a05:6402:4394:: with SMTP id o20mr7342907edc.342.1638356009079;
+ Wed, 01 Dec 2021 02:53:29 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1637928282-2819-11-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211130111325.29328-1-semen.protsenko@linaro.org> <20211130111325.29328-3-semen.protsenko@linaro.org>
+In-Reply-To: <20211130111325.29328-3-semen.protsenko@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 1 Dec 2021 12:52:52 +0200
+Message-ID: <CAHp75Vet9avpGHey45JT9pQajrcX71OPizJ+eTGs6g08OAENQg@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND 2/5] soc: samsung: Add USI driver
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Dec 1, 2021 at 12:42 AM Sam Protsenko
+<semen.protsenko@linaro.org> wrote:
+>
+> USIv2 IP-core is found on modern ARM64 Exynos SoCs (like Exynos850) and
+> provides selectable serial protocol (one of: UART, SPI, I2C). USIv2
+> registers usually reside in the same register map as a particular
+> underlying protocol it implements, but have some particular offset. E.g.
+> on Exynos850 the USI_UART has 0x13820000 base address, where UART
+> registers have 0x00..0x40 offsets, and USI registers have 0xc0..0xdc
+> offsets. Desired protocol can be chosen via SW_CONF register from System
+> Register block of the same domain as USI.
+>
+> Before starting to use a particular protocol, USIv2 must be configured
+> properly:
+>   1. Select protocol to be used via System Register
+>   2. Clear "reset" flag in USI_CON
+>   3. Configure HWACG behavior (e.g. for UART Rx the HWACG must be
+>      disabled, so that the IP clock is not gated automatically); this is
+>      done using USI_OPTION register
+>   4. Keep both USI clocks (PCLK and IPCLK) running during USI registers
+>      modification
+>
+> This driver implements above behavior. Of course, USIv2 driver should be
 
+the above
 
-On 26/11/2021 12:04, Srinivasa Rao Mandadapu wrote:
-> Add configuration for building SC7280 audio codec dma drivers.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> probed before UART/I2C/SPI drivers. It can be achived by embedding
+
+achieved
+
+> UART/I2C/SPI nodes inside of USI node (in Device Tree); driver then
+
+the USI node
+
+> walks underlying nodes and instantiates those. Driver also handles USI
+> configuration on PM resume, as register contents can be lost during CPU
+> suspend.
+>
+> This driver is designed with different USI versions in mind. So it
+> should be relatively easy to add new USI revisions to it later.
+>
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
-> This patch set depends on:
->      -- https://patchwork.kernel.org/project/alsa-devel/list/?series=582321
-> 
->   sound/soc/qcom/Kconfig  | 13 +++++++++++++
->   sound/soc/qcom/Makefile |  4 ++++
->   2 files changed, 17 insertions(+)
-> 
-> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-> index 530d01f..b46a2e7 100644
-> --- a/sound/soc/qcom/Kconfig
-> +++ b/sound/soc/qcom/Kconfig
-> @@ -20,6 +20,10 @@ config SND_SOC_LPASS_PLATFORM
->   	tristate
->   	select REGMAP_MMIO
->   
-> +config SND_SOC_LPASS_CDC_DMA
-> +	tristate
-> +	select REGMAP_MMIO
+> Changes in v2:
+>   - Replaced arch_initcall() with module_platform_driver()
+>   - Reworked the whole driver for the easy adoption of other USI
+>     revisions
+>   - Added "mode" validation right after reading it from device tree
+>   - Handled new USI_V2_NONE value
+>
+>  drivers/soc/samsung/Kconfig      |  14 ++
+>  drivers/soc/samsung/Makefile     |   2 +
+>  drivers/soc/samsung/exynos-usi.c | 274 +++++++++++++++++++++++++++++++
+>  3 files changed, 290 insertions(+)
+>  create mode 100644 drivers/soc/samsung/exynos-usi.c
+>
+> diff --git a/drivers/soc/samsung/Kconfig b/drivers/soc/samsung/Kconfig
+> index e2cedef1e8d1..a9f8b224322e 100644
+> --- a/drivers/soc/samsung/Kconfig
+> +++ b/drivers/soc/samsung/Kconfig
+> @@ -23,6 +23,20 @@ config EXYNOS_CHIPID
+>           Support for Samsung Exynos SoC ChipID and Adaptive Supply Voltage.
+>           This driver can also be built as module (exynos_chipid).
+>
+> +config EXYNOS_USI
+> +       tristate "Exynos USI (Universal Serial Interface) driver"
+> +       default ARCH_EXYNOS && ARM64
+> +       depends on ARCH_EXYNOS || COMPILE_TEST
+> +       select MFD_SYSCON
+> +       help
+> +         Enable support for USI block. USI (Universal Serial Interface) is an
+> +         IP-core found in modern Samsung Exynos SoCs, like Exynos850 and
+> +         ExynosAutoV0. USI block can be configured to provide one of the
+> +         following serial protocols: UART, SPI or High Speed I2C.
 > +
->   config SND_SOC_LPASS_IPQ806X
->   	tristate
->   	select SND_SOC_LPASS_CPU
-> @@ -36,6 +40,13 @@ config SND_SOC_LPASS_SC7180
->   	select SND_SOC_LPASS_PLATFORM
->   	select SND_SOC_LPASS_HDMI
->   
-> +config SND_SOC_LPASS_SC7280
-> +	tristate
-> +	select SND_SOC_LPASS_CPU
-> +	select SND_SOC_LPASS_PLATFORM
-> +	select SND_SOC_LPASS_HDMI
-> +	select SND_SOC_LPASS_CDC_DMA
+> +         This driver allows one to configure USI for desired protocol, which
+> +         is usually done in USI node in Device Tree.
 > +
->   config SND_SOC_STORM
->   	tristate "ASoC I2S support for Storm boards"
->   	select SND_SOC_LPASS_IPQ806X
-> @@ -156,7 +167,9 @@ config SND_SOC_SC7280
->   	tristate "SoC Machine driver for SC7280 boards"
->   	depends on I2C && SOUNDWIRE || COMPILE_TEST
->   	select SND_SOC_QCOM_COMMON
-> +	select SND_SOC_LPASS_SC7280
->   	select SND_SOC_MAX98357A
-> +	select SND_SOC_WCD938X
+>  config EXYNOS_PMU
+>         bool "Exynos PMU controller driver" if COMPILE_TEST
+>         depends on ARCH_EXYNOS || ((ARM || ARM64) && COMPILE_TEST)
+> diff --git a/drivers/soc/samsung/Makefile b/drivers/soc/samsung/Makefile
+> index 2ae4bea804cf..9f59d1905ab0 100644
+> --- a/drivers/soc/samsung/Makefile
+> +++ b/drivers/soc/samsung/Makefile
+> @@ -4,6 +4,8 @@ obj-$(CONFIG_EXYNOS_ASV_ARM)    += exynos5422-asv.o
+>  obj-$(CONFIG_EXYNOS_CHIPID)    += exynos_chipid.o
+>  exynos_chipid-y                        += exynos-chipid.o exynos-asv.o
+>
+> +obj-$(CONFIG_EXYNOS_USI)       += exynos-usi.o
+> +
+>  obj-$(CONFIG_EXYNOS_PMU)       += exynos-pmu.o
+>
+>  obj-$(CONFIG_EXYNOS_PMU_ARM_DRIVERS)   += exynos3250-pmu.o exynos4-pmu.o \
+> diff --git a/drivers/soc/samsung/exynos-usi.c b/drivers/soc/samsung/exynos-usi.c
+> new file mode 100644
+> index 000000000000..6e4112696f49
+> --- /dev/null
+> +++ b/drivers/soc/samsung/exynos-usi.c
+> @@ -0,0 +1,274 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2021 Linaro Ltd.
+> + * Author: Sam Protsenko <semen.protsenko@linaro.org>
+> + *
+> + * Samsung Exynos USI driver (Universal Serial Interface).
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
 
-Why are we updating machine Kconfigs in this patch, should that be not 
-in your machine driver patch series?
+Sorted?
 
-I think I did point this out in previous versions too.
+> +#include <dt-bindings/soc/samsung,exynos-usi.h>
+> +
+> +/* USIv2: System Register: SW_CONF register bits */
+> +#define USI_V2_SW_CONF_NONE    0x0
+> +#define USI_V2_SW_CONF_UART    BIT(0)
+> +#define USI_V2_SW_CONF_SPI     BIT(1)
+> +#define USI_V2_SW_CONF_I2C     BIT(2)
+> +#define USI_V2_SW_CONF_MASK    (USI_V2_SW_CONF_UART | USI_V2_SW_CONF_SPI | \
+> +                                USI_V2_SW_CONF_I2C)
+> +
+> +/* USIv2: USI register offsets */
+> +#define USI_CON                        0x04
+> +#define USI_OPTION             0x08
+> +
+> +/* USIv2: USI register bits */
+> +#define USI_CON_RESET          BIT(0)
+> +#define USI_OPTION_CLKREQ_ON   BIT(1)
+> +#define USI_OPTION_CLKSTOP_ON  BIT(2)
+> +
+> +enum exynos_usi_ver {
+> +       USI_VER2 = 2,
+> +};
+> +
+> +struct exynos_usi_variant {
+> +       enum exynos_usi_ver ver;        /* USI IP-core version */
+> +       unsigned int sw_conf_mask;      /* SW_CONF mask for all protocols */
+> +       size_t min_mode;                /* first index in exynos_usi_modes[] */
+> +       size_t max_mode;                /* last index in exynos_usi_modes[] */
+> +};
+> +
+> +struct exynos_usi {
+> +       struct device *dev;
+> +       void __iomem *regs;             /* USI register map */
+> +       struct clk *pclk;               /* USI bus clock */
+> +       struct clk *ipclk;              /* USI operating clock */
+> +
+> +       size_t mode;                    /* current USI SW_CONF mode index */
+> +       bool clkreq_on;                 /* always provide clock to IP */
+> +
+> +       /* System Register */
+> +       struct regmap *sysreg;          /* System Register map */
+> +       unsigned int sw_conf;           /* SW_CONF register offset in sysreg */
+> +
+> +       const struct exynos_usi_variant *data;
+> +};
+> +
+> +struct exynos_usi_mode {
+> +       const char *name;               /* mode name */
+> +       unsigned int val;               /* mode register value */
+> +};
+> +
+> +static const struct exynos_usi_mode exynos_usi_modes[] = {
+> +       [USI_V2_NONE] = { .name = "none", .val = USI_V2_SW_CONF_NONE },
+> +       [USI_V2_UART] = { .name = "uart", .val = USI_V2_SW_CONF_UART },
+> +       [USI_V2_SPI] =  { .name = "spi",  .val = USI_V2_SW_CONF_SPI },
+> +       [USI_V2_I2C] =  { .name = "i2c",  .val = USI_V2_SW_CONF_I2C },
+> +};
+> +
+> +static const struct exynos_usi_variant exynos_usi_v2_data = {
+> +       .ver            = USI_VER2,
+> +       .sw_conf_mask   = USI_V2_SW_CONF_MASK,
+> +       .min_mode       = USI_V2_NONE,
+> +       .max_mode       = USI_V2_I2C,
+> +};
+> +
+> +static const struct of_device_id exynos_usi_dt_match[] = {
+> +       {
+> +               .compatible = "samsung,exynos-usi-v2",
+> +               .data = &exynos_usi_v2_data,
+> +       },
+
+> +       { }, /* sentinel */
+
+Comma is not needed.
+
+> +};
+> +MODULE_DEVICE_TABLE(of, exynos_usi_dt_match);
+> +
+> +/**
+> + * exynos_usi_set_sw_conf - Set USI block configuration mode
+> + * @usi: USI driver object
+> + * @mode: Mode index
+> + *
+> + * Select underlying serial protocol (UART/SPI/I2C) in USI IP-core.
+> + *
+> + * Return: 0 on success, or negative error code on failure.
+> + */
+> +static int exynos_usi_set_sw_conf(struct exynos_usi *usi, size_t mode)
+> +{
+> +       unsigned int val;
+> +       int ret;
+> +
+> +       if (mode < usi->data->min_mode || mode > usi->data->max_mode)
+> +               return -EINVAL;
+> +
+> +       val = exynos_usi_modes[mode].val;
+> +       ret = regmap_update_bits(usi->sysreg, usi->sw_conf,
+> +                                usi->data->sw_conf_mask, val);
+> +       if (ret)
+> +               return ret;
+> +
+> +       usi->mode = mode;
+> +       dev_dbg(usi->dev, "protocol: %s\n", exynos_usi_modes[usi->mode].name);
+> +
+> +       return 0;
+> +}
+> +
+> +/**
+> + * exynos_usi_enable - Initialize USI block
+> + * @usi: USI driver object
+> + *
+> + * USI IP-core start state is "reset" (on startup and after CPU resume). This
+> + * routine enables USI block by clearing the reset flag. It also configures
+
+the USI block
+
+> + * HWACG behavior (needed e.g. for UART Rx). It should be performed before
+> + * underlying protocol becomes functional.
+> + *
+> + * Return: 0 on success, or negative error code on failure.
+> + */
+> +static int exynos_usi_enable(const struct exynos_usi *usi)
+> +{
+> +       u32 val;
+> +       int ret;
+> +
+> +       ret = clk_prepare_enable(usi->pclk);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = clk_prepare_enable(usi->ipclk);
+> +       if (ret)
+> +               goto err_pclk;
+
+Wondering if these clocks may be operated as a bulk.
+
+> +       /* Enable USI block */
+> +       val = readl(usi->regs + USI_CON);
+> +       val &= ~USI_CON_RESET;
+> +       writel(val, usi->regs + USI_CON);
+> +       udelay(1);
+> +
+> +       /* Continuously provide the clock to USI IP w/o gating */
+> +       if (usi->clkreq_on) {
+> +               val = readl(usi->regs + USI_OPTION);
+> +               val &= ~USI_OPTION_CLKSTOP_ON;
+> +               val |= USI_OPTION_CLKREQ_ON;
+> +               writel(val, usi->regs + USI_OPTION);
+> +       }
+> +
+> +       clk_disable_unprepare(usi->ipclk);
+> +err_pclk:
+> +       clk_disable_unprepare(usi->pclk);
+> +       return ret;
+> +}
+> +
+> +static int exynos_usi_configure(struct exynos_usi *usi)
+> +{
+> +       int ret;
+> +
+> +       ret = exynos_usi_set_sw_conf(usi, usi->mode);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (usi->data->ver == USI_VER2)
+> +               return exynos_usi_enable(usi);
+> +
+> +       return 0;
+> +}
+> +
+> +static int exynos_usi_parse_dt(struct device_node *np, struct exynos_usi *usi)
+> +{
+> +       int ret;
+> +       u32 mode;
+> +
+> +       ret = of_property_read_u32(np, "samsung,mode", &mode);
+> +       if (ret)
+> +               return ret;
+> +       if (mode < usi->data->min_mode || mode > usi->data->max_mode)
+> +               return -EINVAL;
+> +       usi->mode = mode;
+> +
+> +       usi->sysreg = syscon_regmap_lookup_by_phandle(np, "samsung,sysreg");
+> +       if (IS_ERR(usi->sysreg))
+> +               return PTR_ERR(usi->sysreg);
+> +
+> +       ret = of_property_read_u32_index(np, "samsung,sysreg", 1,
+> +                                        &usi->sw_conf);
+> +       if (ret)
+> +               return ret;
+> +
+> +       usi->clkreq_on = of_property_read_bool(np, "samsung,clkreq-on");
+> +
+> +       return 0;
+> +}
+> +
+> +static int exynos_usi_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *np = dev->of_node;
+> +       struct exynos_usi *usi;
+> +       int ret;
+> +
+> +       usi = devm_kzalloc(dev, sizeof(*usi), GFP_KERNEL);
+> +       if (!usi)
+> +               return -ENOMEM;
+> +
+> +       usi->dev = dev;
+> +       platform_set_drvdata(pdev, usi);
+> +
+> +       usi->data = of_device_get_match_data(dev);
+> +       if (!usi->data)
+> +               return -EINVAL;
+> +
+> +       ret = exynos_usi_parse_dt(np, usi);
+> +       if (ret)
+> +               return ret;
+> +
+> +       if (usi->data->ver == USI_VER2) {
+> +               usi->regs = devm_platform_ioremap_resource(pdev, 0);
+> +               if (IS_ERR(usi->regs))
+> +                       return PTR_ERR(usi->regs);
+> +
+> +               usi->pclk = devm_clk_get(dev, "pclk");
+> +               if (IS_ERR(usi->pclk))
+> +                       return PTR_ERR(usi->pclk);
+> +
+> +               usi->ipclk = devm_clk_get(dev, "ipclk");
+> +               if (IS_ERR(usi->ipclk))
+> +                       return PTR_ERR(usi->ipclk);
+
+Sounds like a bulk clock.
+
+> +       }
+> +
+> +       ret = exynos_usi_configure(usi);
+> +       if (ret)
+> +               return ret;
+> +
+> +       /* Make it possible to embed protocol nodes into USI np */
+> +       return of_platform_populate(np, NULL, NULL, dev);
+> +}
+
+> +#ifdef CONFIG_PM_SLEEP
+
+__maybe_unused?
+
+> +static int exynos_usi_resume_noirq(struct device *dev)
+> +{
+> +       struct exynos_usi *usi = dev_get_drvdata(dev);
+> +
+> +       return exynos_usi_configure(usi);
+> +}
+> +#endif
+> +
+> +static const struct dev_pm_ops exynos_usi_pm = {
+> +       SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(NULL, exynos_usi_resume_noirq)
+> +};
+> +
+> +static struct platform_driver exynos_usi_driver = {
+> +       .driver = {
+> +               .name           = "exynos-usi",
+> +               .pm             = &exynos_usi_pm,
+> +               .of_match_table = exynos_usi_dt_match,
+> +       },
+> +       .probe = exynos_usi_probe,
+> +};
+
+> +
+
+No need for a blank line here.
+
+> +module_platform_driver(exynos_usi_driver);
+> +
+> +MODULE_DESCRIPTION("Samsung USI driver");
+> +MODULE_AUTHOR("Sam Protsenko <semen.protsenko@linaro.org>");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.30.2
+>
 
 
---srini
-
-
->   	select SND_SOC_LPASS_RX_MACRO
->   	select SND_SOC_LPASS_TX_MACRO
->   	help
-> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
-> index 625aec6..8b7b876 100644
-> --- a/sound/soc/qcom/Makefile
-> +++ b/sound/soc/qcom/Makefile
-> @@ -1,18 +1,22 @@
->   # SPDX-License-Identifier: GPL-2.0
->   # Platform
->   snd-soc-lpass-cpu-objs := lpass-cpu.o
-> +snd-soc-lpass-cdc-dma-objs := lpass-cdc-dma.o
->   snd-soc-lpass-hdmi-objs := lpass-hdmi.o
->   snd-soc-lpass-platform-objs := lpass-platform.o
->   snd-soc-lpass-ipq806x-objs := lpass-ipq806x.o
->   snd-soc-lpass-apq8016-objs := lpass-apq8016.o
->   snd-soc-lpass-sc7180-objs := lpass-sc7180.o
-> +snd-soc-lpass-sc7280-objs := lpass-sc7280.o
->   
->   obj-$(CONFIG_SND_SOC_LPASS_CPU) += snd-soc-lpass-cpu.o
-> +obj-$(CONFIG_SND_SOC_LPASS_CDC_DMA) += snd-soc-lpass-cdc-dma.o
->   obj-$(CONFIG_SND_SOC_LPASS_HDMI) += snd-soc-lpass-hdmi.o
->   obj-$(CONFIG_SND_SOC_LPASS_PLATFORM) += snd-soc-lpass-platform.o
->   obj-$(CONFIG_SND_SOC_LPASS_IPQ806X) += snd-soc-lpass-ipq806x.o
->   obj-$(CONFIG_SND_SOC_LPASS_APQ8016) += snd-soc-lpass-apq8016.o
->   obj-$(CONFIG_SND_SOC_LPASS_SC7180) += snd-soc-lpass-sc7180.o
-> +obj-$(CONFIG_SND_SOC_LPASS_SC7280) += snd-soc-lpass-sc7280.o
->   
->   # Machine
->   snd-soc-storm-objs := storm.o
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
