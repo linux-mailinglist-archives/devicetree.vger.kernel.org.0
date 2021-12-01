@@ -2,235 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DDD6464638
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 06:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D681C464680
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 06:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233143AbhLAFE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 00:04:57 -0500
-Received: from m43-7.mailgun.net ([69.72.43.7]:53505 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231172AbhLAFE5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 00:04:57 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1638334897; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=md+WhcXo9Co1RVUTL3+oTqB7noJAW/K8AXFDsva3XTE=;
- b=dnkMujwRcaU66w0ZwW3YW5E0d+qONJTG4CFuVS2PpmzUwgWywibhyLAssJzJ2CxrX9UssFMW
- lvdX9eJJ8AqLo8cezWLuc0QGfNtN/2BdnLGizMFtJMD6gM/q/JcIfEYfhxuNr3ke4pv+Rq4/
- HAHQXWdBIJbi59+0kLAwBoePpsw=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
- 61a701b01abc6f02d037f4a8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 01 Dec 2021 05:01:36
- GMT
-Sender: schowdhu=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 016B8C43618; Wed,  1 Dec 2021 05:01:35 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: schowdhu)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id BE8CCC4338F;
-        Wed,  1 Dec 2021 05:01:34 +0000 (UTC)
+        id S232601AbhLAF2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 00:28:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34486 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230006AbhLAF2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 00:28:01 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC5DC061574;
+        Tue, 30 Nov 2021 21:24:41 -0800 (PST)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EB57ADEE;
+        Wed,  1 Dec 2021 06:24:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1638336278;
+        bh=YbxmCCu6ojK3xz/51HcvwWOkL+O6wJk+ekyjkAR67GI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=gCAeJVguL/gNVIpd2QXLRCY6i0QW9ER+6VMsIdAqSaMvsRn4WpCTEQ1CN07xqT2iz
+         o4cpuKjgcCxa/ccEr9DOX7gEN/HO6qvLBYJPtGFibXXhsMw3n0iZLL4Aim2tfmj92y
+         Lgb3XCUHQVegK6F6fY3c3vcE5PGRj1kimrB1Pkec=
+From:   Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: display: bridge: Add binding for R-Car MIPI DSI/CSI-2 TX
+Date:   Wed,  1 Dec 2021 07:24:05 +0200
+Message-Id: <20211201052406.13074-2-laurent.pinchart+renesas@ideasonboard.com>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20211201052406.13074-1-laurent.pinchart+renesas@ideasonboard.com>
+References: <20211201052406.13074-1-laurent.pinchart+renesas@ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 01 Dec 2021 10:31:34 +0530
-From:   schowdhu@codeaurora.org
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>, vkoul@kernel.org
-Subject: Re: [PATCH V6 0/7] Add driver support for Data Capture and Compare
- Engine(DCC) for SM8150,SC7280,SC7180,SDM845
-In-Reply-To: <cover.1628617260.git.schowdhu@codeaurora.org>
-References: <cover.1628617260.git.schowdhu@codeaurora.org>
-Message-ID: <48d00ef8167fc6df17d1f83d28cbc4c4@codeaurora.org>
-X-Sender: schowdhu@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-08-10 23:24, Souradeep Chowdhury wrote:
-> DCC(Data Capture and Compare) is a DMA engine designed for debugging
-> purposes.In case of a system
-> crash or manual software triggers by the user the DCC hardware stores
-> the value at the register
-> addresses which can be used for debugging purposes.The DCC driver
-> provides the user with sysfs
-> interface to configure the register addresses.The options that the DCC
-> hardware provides include
-> reading from registers,writing to registers,first reading and then
-> writing to registers and looping
-> through the values of the same register.
-> 
-> In certain cases a register write needs to be executed for accessing
-> the rest of the registers,
-> also the user might want to record the changing values of a register
-> with time for which he has the
-> option to use the loop feature.
-> 
-> The options mentioned above are exposed to the user by sysfs files
-> once the driver is probed.The
-> details and usage of this sysfs files are documented in
-> Documentation/ABI/testing/sysfs-driver-dcc.
-> 
-> As an example let us consider a couple of debug scenarios where DCC
-> has been proved to be effective
-> for debugging purposes:-
-> 
-> i)TimeStamp Related Issue
-> 
-> On SC7180, there was a coresight timestamp issue where it would
-> occasionally be all 0 instead of proper
-> timestamp values.
-> 
-> Proper timestamp:
-> Idx:3373; ID:10; I_TIMESTAMP : Timestamp.; Updated val =
-> 0x13004d8f5b7aa; CC=0x9e
-> 
-> Zero timestamp:
-> Idx:3387; ID:10; I_TIMESTAMP : Timestamp.; Updated val = 0x0; CC=0xa2
-> 
-> Now this is a non-fatal issue and doesn't need a system reset, but 
-> still needs
-> to be rootcaused and fixed for those who do care about coresight etm 
-> traces.
-> Since this is a timestamp issue, we would be looking for any timestamp 
-> related
-> clocks and such.
-> 
-> o we get all the clk register details from IP documentation and 
-> configure it
-> via DCC config syfs node. Before that we set the current linked list.
-> 
-> /* Set the current linked list */
-> echo 3 > /sys/bus/platform/devices/10a2000.dcc/curr_list
-> 
-> /* Program the linked list with the addresses */
-> echo 0x10c004 > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c008 > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c00c > /sys/bus/platform/devices/10a2000.dcc/config
-> echo 0x10c010 > /sys/bus/platform/devices/10a2000.dcc/config
-> ..... and so on for other timestamp related clk registers
-> 
-> /* Other way of specifying is in "addr len" pair, in below case it
-> specifies to capture 4 words starting 0x10C004 */
-> 
-> echo 0x10C004 4 > /sys/bus/platform/devices/10a2000.dcc/config
-> 
-> /* Enable DCC */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/enable
-> 
-> /* Run the timestamp test for working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram1.bin
-> 
-> /* Run the timestamp test for non-working case */
-> 
-> /* Send SW trigger */
-> echo 1 > /sys/bus/platform/devices/10a2000.dcc/trigger
-> 
-> /* Read SRAM */
-> cat /dev/dcc_sram > dcc_sram2.bin
-> 
-> Get the parser from [1] and checkout the latest branch.
-> 
-> /* Parse the SRAM bin */
-> python dcc_parser.py -s dcc_sram1.bin --v2 -o output/
-> python dcc_parser.py -s dcc_sram2.bin --v2 -o output/
-> 
-> Sample parsed output of dcc_sram1.bin:
-> 
-> <hwioDump version="1">
->         <timestamp>03/14/21</timestamp>
->             <generator>Linux DCC Parser</generator>
->                 <chip name="None" version="None">
->                 <register address="0x0010c004" value="0x80000000" />
->                 <register address="0x0010c008" value="0x00000008" />
->                 <register address="0x0010c00c" value="0x80004220" />
->                 <register address="0x0010c010" value="0x80000000" />
->             </chip>
->     <next_ll_offset>next_ll_offset : 0x1c </next_ll_offset>
-> </hwioDump>
-> 
-> ii)NOC register errors
-> 
-> A particular class of registers called NOC which are functional
-> registers was reporting
-> errors while logging the values.To trace these errors the DCC has been
-> used effectively.
-> The steps followed were similar to the ones mentioned above.
-> In addition to NOC registers a few other dependent registers were
-> configured in DCC to
-> monitor it's values during a crash. A look at the dependent register
-> values revealed that
-> the crash was happening due to a secured access to one of these
-> dependent registers.
-> All these debugging activity and finding the root cause was achieved 
-> using DCC.
-> 
-> DCC parser is available at the following open source location
-> 
-> https://source.codeaurora.org/quic/la/platform/vendor/qcom-opensource/tools/tree/dcc_parser
-> 
-> Changes in v6:
-> 
-> *Added support in the dcc driver to handle multiple Qualcomm SoCs
-> including SC7180,SC7280,SDM845
->  along with existing SM8150.
-> 
-> *Added the support node in the respective device tree files for
-> SC7180,SC7280,SDM845.
-> 
-> Souradeep Chowdhury (7):
->   dt-bindings: Added the yaml bindings for DCC
->   soc: qcom: dcc:Add driver support for Data Capture and Compare
->     unit(DCC)
->   MAINTAINERS: Add the entry for DCC(Data Capture and Compare) driver
->     support
->   arm64: dts: qcom: sm8150: Add Data Capture and Compare(DCC) support
->     node
->   arm64: dts: qcom: sc7280: Add Data Capture and Compare(DCC) support
->     node
->   arm64: dts: qcom: sc7180: Add Data Capture and Compare(DCC) support
->     node
->   arm64: dts: qcom: sdm845: Add Data Capture and Compare(DCC) support
->     node
-> 
->  Documentation/ABI/testing/sysfs-driver-dcc         |  114 ++
->  .../devicetree/bindings/arm/msm/qcom,dcc.yaml      |   43 +
->  MAINTAINERS                                        |    8 +
->  arch/arm64/boot/dts/qcom/sc7180.dtsi               |    6 +
->  arch/arm64/boot/dts/qcom/sc7280.dtsi               |    6 +
->  arch/arm64/boot/dts/qcom/sdm845.dtsi               |    6 +
->  arch/arm64/boot/dts/qcom/sm8150.dtsi               |    6 +
->  drivers/soc/qcom/Kconfig                           |    8 +
->  drivers/soc/qcom/Makefile                          |    1 +
->  drivers/soc/qcom/dcc.c                             | 1549 
-> ++++++++++++++++++++
->  10 files changed, 1747 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-dcc
->  create mode 100644 
-> Documentation/devicetree/bindings/arm/msm/qcom,dcc.yaml
->  create mode 100644 drivers/soc/qcom/dcc.c
+The R-Car MIPI DSI/CSI-2 TX is embedded in the Renesas R-Car V3U SoC. It
+can operate in either DSI or CSI-2 mode, with up to four data lanes.
 
-Gentle ping
+Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../display/bridge/renesas,dsi-csi2-tx.yaml   | 118 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 119 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+new file mode 100644
+index 000000000000..afeeb967393d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+@@ -0,0 +1,118 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/renesas,dsi-csi2-tx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Car MIPI DSI/CSI-2 Encoder
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description: |
++  This binding describes the MIPI DSI/CSI-2 encoder embedded in the Renesas
++  R-Car V3U SoC. The encoder can operate in either DSI or CSI-2 mode, with up
++  to four data lanes.
++
++properties:
++  compatible:
++    enum:
++      - renesas,r8a779a0-dsi-csi2-tx    # for V3U
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Functional clock
++      - description: DSI (and CSI-2) functional clock
++      - description: PLL reference clock
++
++  clock-names:
++    items:
++      - const: fck
++      - const: dsi
++      - const: pll
++
++  power-domains:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Parallel input port
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description: DSI/CSI-2 output port
++
++        properties:
++          endpoint:
++            $ref: /schemas/media/video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - data-lanes
++
++    required:
++      - port@0
++      - port@1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - power-domains
++  - resets
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
++    #include <dt-bindings/power/r8a779a0-sysc.h>
++
++    dsi0: dsi-encoder@fed80000 {
++        compatible = "renesas,r8a779a0-dsi-csi2-tx";
++        reg = <0xfed80000 0x10000>;
++        power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
++        clocks = <&cpg CPG_MOD 415>,
++                 <&cpg CPG_CORE R8A779A0_CLK_DSI>,
++                 <&cpg CPG_CORE R8A779A0_CLK_CP>;
++        clock-names = "fck", "dsi", "pll";
++        resets = <&cpg 415>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                dsi0_in: endpoint {
++                    remote-endpoint = <&du_out_dsi0>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                dsi0_out: endpoint {
++                    data-lanes = <1 2>;
++                    remote-endpoint = <&sn65dsi86_in>;
++                };
++            };
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 53b859d10de6..caf359403a97 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -6413,6 +6413,7 @@ L:	dri-devel@lists.freedesktop.org
+ L:	linux-renesas-soc@vger.kernel.org
+ S:	Supported
+ T:	git git://linuxtv.org/pinchartl/media drm/du/next
++F:	Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+ F:	Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+ F:	Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+ F:	Documentation/devicetree/bindings/display/renesas,du.yaml
+-- 
+Regards,
+
+Laurent Pinchart
+
