@@ -2,90 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91949464E3E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:53:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC6AC464E48
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244589AbhLAM5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 07:57:00 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:57898 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1349433AbhLAM46 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 07:56:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=HAAqevlSyhhUK7PXaqdxc+kJMIISEYQG+9JTs1Nsa+o=; b=AwoUyUPUDgWFgbA5MsEqHdPuEE
-        5NE5jJBrBvGUKZN5RpAFMefgOryXc3KyweBz9KyF0ctTk92tH5IZQmvvnRzupfhxjFboSOXdRnZC/
-        A22myFrFQWnaJa9FFPyurSmlUzkyLCmDdsQSSchCDKJttNeRmnBLZn7FBq6PLDBuHgnyYBheoU5An
-        SGXoNTv8nXZdC8Wp6yUNwhW8DK3hThy2Gn/PTcMYeWiphYaowu0zaHXPWJqwHtHxZJk0wC7+X0bZX
-        I8mtUIvrjlLfPc8j9ewXa03dgy0W6G93Fwycatbx9YxiIGnJl2GiEe9iUCXHqJVvy+lxuRAmTK0Gs
-        qoV4zYUA==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:37890 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1msP76-008Rde-MJ; Wed, 01 Dec 2021 13:53:32 +0100
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        soc@kernel.org
-Cc:     robh+dt@kernel.org, kernel@pengutronix.de, shawnguo@kernel.org,
-        leoyang.li@nxp.com, krzysztof.kozlowski@canonical.com,
-        linux@rempel-privat.de, festevam@gmail.com, arnd@arndb.de,
-        linux-imx@nxp.com, andrej.picej@norik.com, y.bas@phytec.de
-Subject: [PATCH 4/4] ARM: dts: imx6ul: peb-av-02: move to 3 cell pwm
-Date:   Wed,  1 Dec 2021 13:53:27 +0100
-Message-Id: <20211201125327.3704500-5-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211201125327.3704500-1-andrej.picej@norik.com>
-References: <20211201125327.3704500-1-andrej.picej@norik.com>
+        id S244396AbhLANA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 08:00:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236755AbhLANA1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:00:27 -0500
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A698CC061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 04:57:06 -0800 (PST)
+Received: by mail-wr1-x430.google.com with SMTP id q3so29198802wru.5
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 04:57:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=72iRR/4HeBeHQCE5DFGR/jYYshMAqvGdf4VZ9pZlAio=;
+        b=Nuh/0QfVdSMTgZX9RlkLMaPfmpqQB/tItEsChBU+1Xn39Gp2i+GCr9QANy1WUzUNcE
+         f0Ckxl6RIwGYaJ3eUz42xgq6gwNr6JLGskdRrcNA6L66tCSneHLmWoNz/D3u+5q65xSn
+         EBrvJZ9cAtQdaIRxiyaRkax+wKpM/5kkoqnrg7yKA8VsotNCEMFUE5z4HPKfRlFcbn3h
+         dQrvPSrZ5p/fPMFCMzB67/20WeHoSIO/mjroLbCS+Hqwx+3M2MbqFtXbslbq/V7YfdeK
+         boWVmCPbeeODRaZ/CMWnv4filT7wWTT6seR+y33v1cbAhTvU9HzEE3QJ1EPa8zG2uV2B
+         mSRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=72iRR/4HeBeHQCE5DFGR/jYYshMAqvGdf4VZ9pZlAio=;
+        b=GoLR+F9mqrRFNyC7W3VkiqTPljX8BHKXIONMf54PQpvyrgQpKqkaKoweRfAw1L0CB6
+         pCqPTl7yqOBQwWmdLcBMBIhB14S/+s/00mFuN46pj8GlmRBRdPk44cjlP1krnjKU+1Zl
+         5unLT4Bc9pzNmaN0CXhWhGztumQyZKMEOALMHkjMde47lXJC3Oa9DFZ2xt3WblJuvviK
+         woiZIpboczEgiW6i2k8B9V//Nx2rffglIk3ER5G/LqxcctZidkKTF0hHZMgr9xNTpVm5
+         AdosiESD25/RxRFTKHkW5As7tFQHgWA4rTgqy4nn3EDFQQZpHAjB8vGX1X4dTnoLp6bT
+         e/CA==
+X-Gm-Message-State: AOAM533Lt6/2C8m5R62Pz6AqRVi93p6eU56nc3TZr37GyWTnlcI1bycW
+        ZzCASpLJRreo5uqR+vQkK20=
+X-Google-Smtp-Source: ABdhPJwvGEuHE3Yw0/PZ68FzcsLDLYJ3ys57awxjg+TYbyDN6X+zEsHFRsUZmALw7D4VybEu7xiu+Q==
+X-Received: by 2002:a5d:4084:: with SMTP id o4mr6793235wrp.47.1638363425135;
+        Wed, 01 Dec 2021 04:57:05 -0800 (PST)
+Received: from debian64.daheim (p5b0d7321.dip0.t-ipconnect.de. [91.13.115.33])
+        by smtp.gmail.com with ESMTPSA id r17sm1187671wmq.5.2021.12.01.04.57.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 04:57:04 -0800 (PST)
+Received: from chuck by debian64.daheim with local (Exim 4.95)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1msPAW-000Dlu-0I;
+        Wed, 01 Dec 2021 13:57:04 +0100
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Hans Ulli Kroll <ulli.kroll@googlemail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Steven Maddox <s.maddox@lantizia.me.uk>
+Subject: [PATCH v1] ARM: dts: gemini: NAS4220-B: fis-index-block with 128 KiB sectors
+Date:   Wed,  1 Dec 2021 13:57:03 +0100
+Message-Id: <20211201125703.52935-1-chunkeey@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of changing default pwm-cells property, use the default
-"#pwm-cells = <3>" and add the third option.
+Steven Maddox reported in the OpenWrt bugzilla, that his
+RaidSonic IB-NAS4220-B was no longer booting with the new
+OpenWrt 21.02 (uses linux 5.10's device-tree). However, it was
+working with the previous OpenWrt 19.07 series (uses 4.14).
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+|[    5.548038] No RedBoot partition table detected in 30000000.flash
+|[    5.618553] Searching for RedBoot partition table in 30000000.flash at offset 0x0
+|[    5.739093] No RedBoot partition table detected in 30000000.flash
+|...
+|[    7.039504] Waiting for root device /dev/mtdblock3...
+
+The provided bootlog shows that the RedBoot partition parser was
+looking for the partition table "at offset 0x0". Which is strange
+since the comment in the device-tree says it should be at 0xfe0000.
+
+Further digging on the internet led to a review site that took
+some useful PCB pictures of their review unit back in February 2009.
+Their picture shows a Spansion S29GL128N11TFI01 flash chip.
+
+From Spansion's Datasheet:
+"S29GL128N: One hundred twenty-eight 64 Kword (128 Kbyte) sectors"
+Steven also provided a "cat /sys/class/mtd/mtd0/erasesize" from his
+unit: "131072".
+
+With the 128 KiB Sector/Erasesize in mind. This patch changes the
+fis-index-block property to (0xfe0000 / 0x20000) = 0x7f.
+
+Fixes: b5a923f8c739 ("ARM: dts: gemini: Switch to redboot partition parsing")
+Bugzilla: https://bugs.openwrt.org/index.php?do=details&task_id=4137
+Reported-by: Steven Maddox <s.maddox@lantizia.me.uk>
+Tested-by: Steven Maddox <s.maddox@lantizia.me.uk>
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
 ---
- arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm/boot/dts/gemini-nas4220b.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-index 7cda6944501d..6ce534a896ef 100644
---- a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-@@ -11,7 +11,7 @@ backlight_lcd: backlight-lcd {
- 		brightness-levels = <0 4 8 16 32 64 128 255>;
- 		default-brightness-level = <5>;
- 		power-supply = <&reg_backlight_en>;
--		pwms = <&pwm3 0 5000000>;
-+		pwms = <&pwm3 0 5000000 0>;
- 		status = "disabled";
- 	};
+diff --git a/arch/arm/boot/dts/gemini-nas4220b.dts b/arch/arm/boot/dts/gemini-nas4220b.dts
+index 13112a8a5dd8..6544c730340f 100644
+--- a/arch/arm/boot/dts/gemini-nas4220b.dts
++++ b/arch/arm/boot/dts/gemini-nas4220b.dts
+@@ -84,7 +84,7 @@ flash@30000000 {
+ 			partitions {
+ 				compatible = "redboot-fis";
+ 				/* Eraseblock at 0xfe0000 */
+-				fis-index-block = <0x1fc>;
++				fis-index-block = <0x7f>;
+ 			};
+ 		};
  
-@@ -91,7 +91,6 @@ lcdif_parallel_out: endpoint {
- };
- 
- &pwm3 {
--	#pwm-cells = <2>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm3>;
- 	status = "disabled";
 -- 
-2.25.1
+2.34.1
 
