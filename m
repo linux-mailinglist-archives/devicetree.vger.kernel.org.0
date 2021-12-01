@@ -2,75 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D42F464F61
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 363C6464FAF
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:30:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349658AbhLAOMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 09:12:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40564 "EHLO
+        id S1349931AbhLAOeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 09:34:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349603AbhLAOMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:12:35 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42ED4C061574;
-        Wed,  1 Dec 2021 06:09:14 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S239486AbhLAOeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:34:04 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E200C061574;
+        Wed,  1 Dec 2021 06:30:43 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C7118B81F54;
-        Wed,  1 Dec 2021 14:09:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93BDBC53FCC;
-        Wed,  1 Dec 2021 14:09:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638367751;
-        bh=nuUXKRE6eOnlBMrB9QF0r8JlMK0zxOIH+2kBllCxWyM=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ZaytimcU9aldqnICrRRmjMWo3koR6l2mqGVNbCK6jTS9m8A/qEcksX38weVya9egG
-         jKZrJc8zHXAgMWHKcXAb+z+LjYL6NDhLHFxOcOyZuYQGWePk2k5SZvPqpVuhwYXx0M
-         MSD1OCFhYn4n6SEmbKkHlQShGro/rRS7LFJMIMHt3d0+LUYnUytkhmsTD7d203ADku
-         KyWhrfTDGmk14WGeckaE7r02dWfxp7ZYN4tUsx+BoB38Yi15WyM1sD5XHZqu/QS2Mw
-         O/CMAbCdb0+KOf+rxBITfI0p7ktWeBoEqYqJGIIJ9A9Pc8VsZ4012ikQTDGoiQqyEZ
-         QMeJJ5QJXl4tA==
-Subject: Re: [PATCH] arm64: dts: Update NAND MTD partition for Agilex and
- Stratix 10
-To:     sin.hui.kho@linux.intel.com, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yau Wai Gan <yau.wai.gan@intel.com>,
-        Sin Hui Kho <sin.hui.kho@intel.com>
-References: <20211201101353.51670-1-sin.hui.kho@linux.intel.com>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-Message-ID: <b7a7cf43-fc22-e95e-0dca-f900d338e441@kernel.org>
-Date:   Wed, 1 Dec 2021 08:09:08 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 1363222205;
+        Wed,  1 Dec 2021 15:30:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1638369040;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=lVaEf+1NM2So+kTq80FzpycJTmmcisqm5SIgbP3uITk=;
+        b=Z06xCh7jTKgRnW/vb1qnGcdbE1jViZUV3y4N4iGqGk8kbsGKK3zz0B4Lcx2tmrZsDDrpCL
+        AK5uLX/JnSjLISXONHE3/QgWnz4Bp97DAxH5ftbopwwUZWBRUA8EipQN27Oahznb/gpsV3
+        XCnG1SQydX/+KfsAjawB/ur7DxZ3tn4=
 MIME-Version: 1.0
-In-Reply-To: <20211201101353.51670-1-sin.hui.kho@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Date:   Wed, 01 Dec 2021 15:30:37 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [RFC PATCH] dt-bindings: nvmem: add transformation support
+In-Reply-To: <YaZ5JNCFeKcdIfu8@robh.at.kernel.org>
+References: <20211123134425.3875656-1-michael@walle.cc>
+ <YaZ5JNCFeKcdIfu8@robh.at.kernel.org>
+User-Agent: Roundcube Webmail/1.4.11
+Message-ID: <bc05fb3483cef4869ae390096bb95985@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
+Am 2021-11-30 20:19, schrieb Rob Herring:
+> On Tue, Nov 23, 2021 at 02:44:25PM +0100, Michael Walle wrote:
+..
 
-On 12/1/21 4:13 AM, sin.hui.kho@linux.intel.com wrote:
-> From: Sin Hui Kho <sin.hui.kho@intel.com>
+>> Introduce a transformation property. This is intended to be just an
+>> enumeration of operations. If there will be a new operation, support 
+>> for
+>> it has to be added to the nvmem core.
+>> 
+>> A transformation might have multiple output values, like in the base 
+>> mac
+>> address case. It reads the mac address from the nvmem storage and
+>> generates multiple individual addresses, i.e. on our board we reserve 
+>> 8
+>> consecutive addresses. These addresses then can be assigned to 
+>> different
+>> network interfaces. To make it possible to reference different values 
+>> we
+>> need to introduce an argument to the phandle. This additional argument
+>> is then an index into a list of values.
 > 
-> Change NAND flash MTD partition in device tree after implementation of
-> UBI and UBIFS. "u-boot" partition remain for raw u-boot image, but "root"
-> partition is use for UBI image containing all other components.
+> I still don't think trying to encode transformations of data into the 
+> DT
+> is right approach.
 > 
-> Signed-off-by: Sin Hui Kho <sin.hui.kho@intel.com>
-> ---
->   .../dts/altera/socfpga_stratix10_socdk_nand.dts    | 24 ++--------------------
->   .../boot/dts/intel/socfpga_agilex_socdk_nand.dts   | 20 ++----------------
->   2 files changed, 4 insertions(+), 40 deletions(-)
+>> 
+>> Example:
+>>   mac_addresses: base-mac-address@10 {
+>>     #nvmem-cell-cells = <1>;
+>>     reg = <10 6>;
+>>     transformation = <NVMEM_T_ETH_OFFSET 0 1 7>;
+>>   }
+>> 
+>>   &eth0 {
+>>     nvmem-cells = <&mac_addresses 0>;
+>>     nvmem-cell-names = "mac-address";
+>>   };
+>> 
+>>   &eth1 {
+>>     nvmem-cells = <&mac_addresses 2>;
+>>     nvmem-cell-names = "mac-address";
+>>   };
+>> 
+>> The NVMEM_T_ETH_OFFSET transformation takes N additional (dt) cells 
+>> and
+>> will generate N values. In this example BASE_MAC+0, BASE_MAC+1, 
+>> BASE_MAC+7.
+>> An nvmem consumer can then reference the nvmem cell with an index. So 
+>> eth0
+>> will get BASE_MAC+0 and eth1 will get BASE_MAC+7.
+>> 
+>> This should be sufficient flexible for many different transformations
+>> without having to touch the bindings except for adding documentation 
+>> and
+>> checks for new transformations.
 > 
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk_nand.dts
+> The content and number of cells is supposed to be opaque to the client
+> and interpreted by the provider. That's sort of true here, but not
+> really because the interpretation is tied to 'transformation'. So I'm
+> okay with adding cells, but not fixing the interpretation of them. A
+> compatible should determine how the cells are interpreted.
 
+What do you mean by "adding cells"? The additional argument to the
+phandle?
 
-Applied!
+So an example would be:
 
-Thanks,
-Dinh
+ethernet_base_mac: base-mac-address@100 {
+     #nvmem-cell-cells = <1>;
+     compatible = "nvmem-ethernet-address";
+     reg = <0x100 0x6>;
+};
+
+&eth0 {
+     nvmem-cells = <&ethernet_base_mac 0>;
+     nvmem-cell-names = "mac-address";
+};
+
+&eth1 {
+     nvmem-cells = <&ethernet_base_mac 7>;
+     nvmem-cell-names = "mac-address";
+};
+
+Right? Any suggestions for a better compatible name?
+
+>> I do have one question regarding "#nvmem-cell-cells" (aside from the
+>> awkward naming): is it allowed to have that property optional if there
+>> is no additional argument to the phandle?
+> 
+> We don't have any choice if we add "#nvmem-cell-cells". There's already
+> cases without it.
+
+Yes, that was the reason for the question. But I wasn't sure, whether
+that is allowed.
+
+-michael
