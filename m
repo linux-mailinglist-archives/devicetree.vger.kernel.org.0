@@ -2,67 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BDFA465282
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:08:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A92465284
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351384AbhLAQLU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:11:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40478 "EHLO
+        id S1351358AbhLAQL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:11:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351376AbhLAQLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:11:17 -0500
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4F52C061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:07:55 -0800 (PST)
-Received: from IcarusMOD.eternityproject.eu (unknown [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id A46701F4B5;
-        Wed,  1 Dec 2021 17:07:51 +0100 (CET)
-Subject: Re: [PATCH 2/3] clk: qcom: Add display clock controller driver for
- SM6125
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>
-Cc:     martin.botka1@gmail.com, ~postmarketos/upstreaming@lists.sr.ht,
-        konrad.dybcio@somainline.org, jamipkettunen@somainline.org,
-        paul.bouchara@somainline.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20211130212137.25303-1-martin.botka@somainline.org>
- <20211130212137.25303-2-martin.botka@somainline.org>
- <20211201154642.24j5emibojfel2vr@SoMainline.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-Message-ID: <e9dacf69-c354-aba1-da17-0bbad9ad9c0a@somainline.org>
-Date:   Wed, 1 Dec 2021 17:07:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S1351381AbhLAQL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:11:28 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59840C061748
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:08:07 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id d9so32567104wrw.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:08:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=up9aWqNU++fIqZ5rpoghBL3aWKa9Mbv5J65Y802nH48=;
+        b=CKLuRG1D/Fx9ICAVbH1iS1A9K282AihRM8V+4+Ka4FPetKWVwqJ6X8fH1KtoniSpob
+         vAVoRSBj/87eusJ+X3eB5LFALpxuzQfjFgvoBdoBNJWHqvfVl/riYCVXiok4BoeJaMNb
+         gQBvEPgXqAPrOC3EXXZkcvfZQY02BjcM+tDCT8FNSozuf1nbCOQSejYXtsJfUW6Eq+ot
+         p0MSoqZjCGwOwCHl0OmKJiVQUabXOR7za9y9pdmjYwdx4iqsElI6Cg3ulPTh77QtN+ZJ
+         ybOgy3aE9hf3Uo9T5Q13MHPOEsps696kieVPGMMc9+04nto6X3/1CP18LZWwXWNtNmVN
+         AN7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=up9aWqNU++fIqZ5rpoghBL3aWKa9Mbv5J65Y802nH48=;
+        b=ORKED5yKSa0jgCUFaNJ4Jhhf4YoUn1hlXXtFv3aAgS1UOsT2DfkQ0skYTmDoGPGtcx
+         emVtuDjqWftOwzk/yKmA9+m26xhEHdHJ2CqSHryHR45EUU1PxyMBhTE7iLKf3Ch8Xhhf
+         iZXw6roFFCVE1Wx/DENBk9U0CGe65X6u+VEE2LMYICvgaw7193ZbUgZ6iDpNdatYzgBb
+         uEJb5lRyReExJdVsSlptoxLS0oRA+ucPqB1yIZtc4ukxQlnyDKE4H6G5qCX0HEK1kdJH
+         Gw+XInQ4iQx2tAIf6iYCx2qZxUQ80H/buBJpgmxyEwI45JSHbvD8fZs+mvm+hKxJ0Db1
+         3J7Q==
+X-Gm-Message-State: AOAM530YRB1QLcpdsr4AWn6NCsvzYspkUmn+cL/E4RoHbfLg1iDB6B+i
+        ICSpOQVRM2bZbJDmWBKVPf/tmfNdULNnm8CM
+X-Google-Smtp-Source: ABdhPJwIcn/Ajhb5/TTb5upg1Lb8z70PlKpvwWbi04Ie5jC8PsHijD5v++Ql5vwM9pYClpU4O4Lk9Q==
+X-Received: by 2002:a5d:5144:: with SMTP id u4mr7895393wrt.91.1638374885967;
+        Wed, 01 Dec 2021 08:08:05 -0800 (PST)
+Received: from ?IPV6:2a00:1098:3142:14:3430:4041:27d3:fbce? ([2a00:1098:3142:14:3430:4041:27d3:fbce])
+        by smtp.gmail.com with ESMTPSA id l26sm235841wms.15.2021.12.01.08.08.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 08:08:05 -0800 (PST)
+Message-ID: <3f03d11b-ed73-9f1e-5de1-44cb3ae3e415@raspberrypi.com>
+Date:   Wed, 1 Dec 2021 16:08:05 +0000
 MIME-Version: 1.0
-In-Reply-To: <20211201154642.24j5emibojfel2vr@SoMainline.org>
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Language: en-US
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH 1/2] pinctrl: bcm2835: Change init order for gpio hogs
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "bcm-kernel-feedback-list@broadcom.com" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <treding@nvidia.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-rpi-kernel@lists.infradead.org" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20211129105556.675235-1-phil@raspberrypi.com>
+ <20211129105556.675235-2-phil@raspberrypi.com>
+ <CAHp75Vei9FUY0gGD99gVv_FZzcpN1y_i65BB-auyAFUwqsQxNA@mail.gmail.com>
+ <06345f5a-c8e7-848b-d25f-3f3e32ab5418@raspberrypi.com>
+ <CAHp75VcZNUXxk7rD2sL=AFe4kz+hXX361rp15K8fN1c4x8zhXA@mail.gmail.com>
+From:   Phil Elwell <phil@raspberrypi.com>
+In-Reply-To: <CAHp75VcZNUXxk7rD2sL=AFe4kz+hXX361rp15K8fN1c4x8zhXA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/12/21 16:46, Marijn Suijten ha scritto:
-> On 2021-11-30 22:21:33, Martin Botka wrote:
->> Add support for the display clock controller found on SM6125
->> based devices. This allows display drivers to probe and
->> control their clocks.
+On 01/12/2021 15:38, Andy Shevchenko wrote:
+> On Wed, Dec 1, 2021 at 5:18 PM Phil Elwell <phil@raspberrypi.com> wrote:
+>> On 01/12/2021 12:06, Andy Shevchenko wrote:
+>>> On Monday, November 29, 2021, Phil Elwell <phil@raspberrypi.com
+>>> <mailto:phil@raspberrypi.com>> wrote:
+>>>
+>>>      ...and gpio-ranges
+>>>
+>>>      pinctrl-bcm2835 is a combined pinctrl/gpio driver. Currently the gpio
+>>>      side is registered first, but this breaks gpio hogs (which are
+>>>      configured during gpiochip_add_data). Part of the hog initialisation
+>>>      is a call to pinctrl_gpio_request, and since the pinctrl driver hasn't
+>>>      yet been registered this results in an -EPROBE_DEFER from which it can
+>>>      never recover.
+>>>
+>>>      Change the initialisation sequence to register the pinctrl driver
+>>>      first.
+>>>
+>>>      This also solves a similar problem with the gpio-ranges property, which
+>>>      is required in order for released pins to be returned to inputs.
+>>>
+>>>
+>>> We have a callback in GPIO chip to register pin ranges, why driver does it
+>>> separately?
 >>
->> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+>> A few experiments (this is not my driver) appear to show that the call to
+>> pinctrl_add_gpio_range can be removed, but only once the gpio-ranges DT property
+>> has been added if we want to remain functionality throughout a bisect. That tidy
+>> up might be better done with a followup commit once the DT patch has also
+>> been accepted, unless it's possible to guarantee the sequencing between
+>> the pinctrl/gpio tree and the DT tree.
 > 
-> This got lost in the pipeline:
-> 
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-> 
+> What I meant is why these calls are done in the probe and not in
+> ->add_pin_ranges() callback?
+> Shouldn't it fix the issue you have observed?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+I'm no expert in the field, isn't it preferable to set the gpio-ranges 
+pinctrl<->GPIO correspondence with a single line of DT rather than several lines 
+of code? A quick grep shows over 700 instances of gpio-ranges in DT, at least 
+some of which are reflexive, and only 7 drivers with add_pin_ranges methods.
+
+>>>      Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding
+>>>                              gpiochip")
+>>>      Signed-off-by: Phil Elwell <phil@raspberrypi.com <mailto:phil@raspberrypi.com>>
+>>>
+>>> Is it originally so strange indentation or is it only on my side?
+>>
+>> The "g" is below the "p" in the patch.
+> 
+> Which is wrong. Tags mustn't be multilines (i.e. split over a single line).
+
+checkpatch disagrees:
+
+scripts/checkpatch.pl 0001-ARM-dts-gpio-ranges-property-is-now-required.patch
+WARNING: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+#10:
+[1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without pin-ranges")
+
+Phil
 
