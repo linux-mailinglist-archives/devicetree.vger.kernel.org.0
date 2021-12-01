@@ -2,214 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA29346452A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 03:55:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 18FDF464554
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 04:15:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241277AbhLAC7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 21:59:11 -0500
-Received: from szxga01-in.huawei.com ([45.249.212.187]:15000 "EHLO
-        szxga01-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241503AbhLAC7K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 21:59:10 -0500
-Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.53])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4J3kD31TKCzZdDZ;
-        Wed,  1 Dec 2021 10:53:07 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 1 Dec 2021 10:55:48 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.20; Wed, 1 Dec 2021 10:55:47 +0800
-Subject: Re: [PATCH v16 10/11] of: fdt: Add memory for devices by DT property
- "linux,usable-memory-range"
-To:     Rob Herring <robh@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Baoquan He <bhe@redhat.com>, Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Frank Rowand" <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>
-References: <20211123124646.1995-1-thunder.leizhen@huawei.com>
- <20211123124646.1995-11-thunder.leizhen@huawei.com>
- <YaaitPTArUZEriob@robh.at.kernel.org>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <0dc664f7-65ae-767c-3fe6-d1bcf50d41e1@huawei.com>
-Date:   Wed, 1 Dec 2021 10:55:46 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S241504AbhLADS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 22:18:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34336 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236945AbhLADSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 22:18:55 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 598A9C061574
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 19:15:35 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id s139so45519176oie.13
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 19:15:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=rfbZNyOXs7UYt/C8SkmVXDzLeccdUraAry8kNt9rMZA=;
+        b=qhCz1BA+Ld/I+a6hUZz6GSfV78ZB1+C79IXb383OdSPqeFCVEhXucliIAqQIYfb2RH
+         oDJWNmAWyb8xSfdx30TDI0BtGIQN8xHiz1mSHBJ4pPWdavVjJPu0NV9mpGjkPw4ZzZlu
+         fs4EYjDvCTad7QOeoj1m4sPkc8WJz62YBUeIGsuxnpbpz0Uo0Gcv1S7rImzTrrKzjLsv
+         hoNptFJ3CKWy/DWK1pX4e/5T5pRIETdrJnqRTcecI3lk/X/iTgox8Xfgw6M/gakVBNA3
+         Ps4FC1JualEzgrTB4DL02JhoOz/bRHWkY5TQmr9YfQxzYN2twPUOnZ4+GuwxpksYWCnG
+         N4tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rfbZNyOXs7UYt/C8SkmVXDzLeccdUraAry8kNt9rMZA=;
+        b=XGxoEoCx/8JJ9W5jaxtSeqcEmOpocrStGVt1ErFAQ+zX8N3lg0h6rSgAlBfz9/5wC1
+         Y4kI5n5TNCPozRthKDPURXSgSH+uO6xHC/aaNMs6tWt3dhsHXZEvsegswNCtMPzRiB5a
+         wj2wRBO+mqJzPYCBwNmRs8faTOGu9XsTByBWtc59OOxC0+Zvr4HDIyQjjwsSUKxGaEUx
+         pPA4slxGhvW8PF1221DK9hVlLw9at/J5yUwAyLL8lKnk7TaXohb6+MhNqEQgfjrbMuKz
+         SqLIel9Rv2eADP3Mutv49k8uBPDW4Pwr75nej6CGJfrmUkRUmadwIziJJ4KftGHd2BWL
+         xmbA==
+X-Gm-Message-State: AOAM532Lqf5jmrl2L71L6B6+ufugD87rg0c7CAkfqWOK3TBL7A2AhkTy
+        Ybal+kbrM9SNV4gW5NXfMgwCLTv9yu0pTQ==
+X-Google-Smtp-Source: ABdhPJwg6EqePcEwKHucsIyJya6VWBAF7FYeTcj8e1CJTYhg7dUqr13M8WjqUM3vCIK1ZVGKUj9BBg==
+X-Received: by 2002:a05:6808:1285:: with SMTP id a5mr3515158oiw.104.1638328534673;
+        Tue, 30 Nov 2021 19:15:34 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s17sm3057269ooj.42.2021.11.30.19.15.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Nov 2021 19:15:34 -0800 (PST)
+Date:   Tue, 30 Nov 2021 21:15:29 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Katherine Perez <kaperez@linux.microsoft.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: sm8350: fix tlmm base address
+Message-ID: <Yabo0fGXC1rITmsM@builder.lan>
+References: <20211122190552.74073-1-kaperez@linux.microsoft.com>
+ <20211122190552.74073-3-kaperez@linux.microsoft.com>
+ <YZxoGp33Seaa2WEG@matsya>
 MIME-Version: 1.0
-In-Reply-To: <YaaitPTArUZEriob@robh.at.kernel.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems705-chm.china.huawei.com (10.3.19.182) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YZxoGp33Seaa2WEG@matsya>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon 22 Nov 22:03 CST 2021, Vinod Koul wrote:
 
-
-On 2021/12/1 6:16, Rob Herring wrote:
-> On Tue, Nov 23, 2021 at 08:46:45PM +0800, Zhen Lei wrote:
->> From: Chen Zhou <chenzhou10@huawei.com>
->>
->> When reserving crashkernel in high memory, some low memory is reserved
->> for crash dump kernel devices and never mapped by the first kernel.
->> This memory range is advertised to crash dump kernel via DT property
->> under /chosen,
->>         linux,usable-memory-range = <BASE1 SIZE1 [BASE2 SIZE2]>
->>
->> We reused the DT property linux,usable-memory-range and made the low
->> memory region as the second range "BASE2 SIZE2", which keeps compatibility
->> with existing user-space and older kdump kernels.
->>
->> Crash dump kernel reads this property at boot time and call memblock_add()
->> to add the low memory region after memblock_cap_memory_range() has been
->> called.
->>
->> Signed-off-by: Chen Zhou <chenzhou10@huawei.com>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  drivers/of/fdt.c | 36 ++++++++++++++++++++++++++----------
->>  1 file changed, 26 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
->> index 37b477a51175359..1ea2a0b1657e3a9 100644
->> --- a/drivers/of/fdt.c
->> +++ b/drivers/of/fdt.c
->> @@ -967,6 +967,15 @@ static void __init early_init_dt_check_for_elfcorehdr(unsigned long node)
->>  
->>  static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
->>  
->> +/*
->> + * The main usage of linux,usable-memory-range is for crash dump kernel.
->> + * Originally, the number of usable-memory regions is one. Now there may
->> + * be two regions, low region and high region.
->> + * To make compatibility with existing user-space and older kdump, the low
->> + * region is always the last range of linux,usable-memory-range if exist.
->> + */
->> +#define MAX_USABLE_RANGES		2
->> +
->>  /**
->>   * early_init_dt_check_for_usable_mem_range - Decode usable memory range
->>   * location from flat tree
->> @@ -974,10 +983,9 @@ static unsigned long chosen_node_offset = -FDT_ERR_NOTFOUND;
->>   */
->>  static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
->>  {
->> -	const __be32 *prop;
->> -	int len;
->> -	phys_addr_t cap_mem_addr;
->> -	phys_addr_t cap_mem_size;
->> +	struct memblock_region rgn[MAX_USABLE_RANGES] = {0};
->> +	const __be32 *prop, *endp;
->> +	int len, i = 0;
->>  
->>  	if ((long)node < 0)
->>  		return;
->> @@ -985,16 +993,24 @@ static void __init early_init_dt_check_for_usable_mem_range(unsigned long node)
->>  	pr_debug("Looking for usable-memory-range property... ");
->>  
->>  	prop = of_get_flat_dt_prop(node, "linux,usable-memory-range", &len);
->> -	if (!prop || (len < (dt_root_addr_cells + dt_root_size_cells)))
->> +	if (!prop)
+> On 22-11-21, 11:05, Katherine Perez wrote:
+> > TLMM controller base address is incorrect and will hang on some platforms.
+> > Fix by giving the correct address.
 > 
-> if (!prop || (len % (dt_root_addr_cells + dt_root_size_cells)))
-
-OK.
-
+> Thanks, recheck the spec this looks correct. We should have tlmm reg
+> space here and not tlmm base which also contains xpu region (thus hang)
 > 
->>  		return;
->>  
->> -	cap_mem_addr = dt_mem_next_cell(dt_root_addr_cells, &prop);
->> -	cap_mem_size = dt_mem_next_cell(dt_root_size_cells, &prop);
->> +	endp = prop + (len / sizeof(__be32));
->> +	while ((endp - prop) >= (dt_root_addr_cells + dt_root_size_cells)) {
+
+Aren't you reading the patch backwards?
+
+Afaict downstream the driver carries an offset of 0x100000, which we
+dropped as we upstreamed the driver. As such changing reg to 0x0f000000
+should cause most gpio register accesses to fall outside the actual
+register window.
+
+Or perhaps I'm missing something here?
+
+Regards,
+Bjorn
+
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> Fixes: b7e8f433a673 ("arm64: dts: qcom: Add basic devicetree support for SM8350 SoC")
 > 
-> for (i = 0; i < MAX_USABLE_RANGES, prop < endp; i++) {
+> > 
+> > Signed-off-by: Katherine Perez <kaperez@linux.microsoft.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8350.dtsi | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > index d134280e2939..624d294612d8 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> > @@ -960,9 +960,9 @@ spmi_bus: spmi@c440000 {
+> >  			#interrupt-cells = <4>;
+> >  		};
+> >  
+> > -		tlmm: pinctrl@f100000 {
+> > +		tlmm: pinctrl@f000000 {
+> >  			compatible = "qcom,sm8350-tlmm";
+> > -			reg = <0 0x0f100000 0 0x300000>;
+> > +			reg = <0 0x0f000000 0 0x300000>;
+> >  			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> >  			gpio-controller;
+> >  			#gpio-cells = <2>;
+> > -- 
+> > 2.31.1
 > 
->> +		rgn[i].base = dt_mem_next_cell(dt_root_addr_cells, &prop);
->> +		rgn[i].size = dt_mem_next_cell(dt_root_size_cells, &prop);
->> +
->> +		pr_debug("cap_mem_regions[%d]: base=%pa, size=%pa\n",
->> +			 i, &rgn[i].base, &rgn[i].size);
->>  
->> -	pr_debug("cap_mem_start=%pa cap_mem_size=%pa\n", &cap_mem_addr,
->> -		 &cap_mem_size);
->> +		if (++i >= MAX_USABLE_RANGES)
->> +			break;
-> 
-> And drop this if.
-
-OK.
-
-> 
->> +	}
->>  
->> -	memblock_cap_memory_range(cap_mem_addr, cap_mem_size);
->> +	memblock_cap_memory_range(rgn[0].base, rgn[0].size);
->> +	for (i = 1; i < MAX_USABLE_RANGES && rgn[i].size; i++)
-> 
-> s/ &&/,/
-
-Hi Rob:
-
-The comma operator may not be suitable for logical judgment. The logical judgment
-before commas (,) is ignored.
-
-Here's my test：
-
-C code：
-int main()
-{
-        int i, j;
-
-        printf("&&:\n");
-        for (i = 0, j = 0; i < 2 && j < 3; i++, j++)
-                printf("i=%d, j=%d\n", i, j);
-
-        printf("\ncomma:\n");
-        for (i = 0, j = 0; i < 2, j < 3; i++, j++)	//(i < 2） before comma is ignored
-                printf("i=%d, j=%d\n", i, j);
-
-        return 0;
-}
-
-Output：
-&&:
-i=0, j=0
-i=1, j=1
-
-comma:
-i=0, j=0
-i=1, j=1
-i=2, j=2
-
-
-> 
->> +		memblock_add(rgn[i].base, rgn[i].size);
->>  }
->>  
->>  #ifdef CONFIG_SERIAL_EARLYCON
->> -- 
->> 2.25.1
->>
->>
-> 
-> .
-> 
+> -- 
+> ~Vinod
