@@ -2,117 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD5346556D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 19:29:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A41AC465591
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 19:34:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241963AbhLAScd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 13:32:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45484 "EHLO
+        id S1352498AbhLAShg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 13:37:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232750AbhLAScc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 13:32:32 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B190BC061574;
-        Wed,  1 Dec 2021 10:29:11 -0800 (PST)
+        with ESMTP id S1352591AbhLASgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 13:36:22 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E00C06175D;
+        Wed,  1 Dec 2021 10:32:35 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 77886B820F7;
-        Wed,  1 Dec 2021 18:29:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B7C9C53FD4;
-        Wed,  1 Dec 2021 18:29:09 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 493B5CE1EEE;
+        Wed,  1 Dec 2021 18:32:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E019C53FAD;
+        Wed,  1 Dec 2021 18:32:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638383349;
-        bh=Gn4s0yYJcCdTZW0pUo1N9BUlN3v2wBrSWSlLzly3FV0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MYEGIxeR5R3F9QL3vNUxbtHHPEvJvx04hOpkkTqCIWElDJU5uLRDez/Z1Hk7Bvp48
-         uAGACV5GlVSIzsuLqvqJJgYPNTPk4CEtiz5+8pAk1k2J2hSIm2FGVDiprtZWqCE2nh
-         uzLMX9kuL0H89YhF7OAubvcP39ByEeHo0Tcnk2M+tg42IV+3Q7UuTSjBD9D3OxZTWf
-         hJSIe3NY6O8IDL0h4NNP60kgOlMaLbsJOiyum0M5Ki/JCqQlV7gH5RTgJA3frhJiWX
-         0T5xaBlVY/89GS1q030MBl/icIVjSx18ySg1rJ7Q1JOTYIxeVdmh20YM1h6XpxECcW
-         WR6HsnQrkSRbQ==
-Received: by mail-ed1-f49.google.com with SMTP id x6so105254680edr.5;
-        Wed, 01 Dec 2021 10:29:09 -0800 (PST)
-X-Gm-Message-State: AOAM531b0XGNBDS+1LIdMVuBMgDmdqridyF7eIiDlKz1RxK1XOPhuPZ+
-        lEO6XCNBjCy6G5SymbvzVFUNe08VRnEJKEEKPg==
-X-Google-Smtp-Source: ABdhPJz0M9hONwYhapDgbKr1pBiOAqlDdueW1VKpz+27eyVJ9lUcLA/6diG99b9tulXoZY4rO5Q4CZ5Bn5+5Pw2c3HI=
-X-Received: by 2002:a17:907:3f24:: with SMTP id hq36mr9044894ejc.390.1638383347204;
- Wed, 01 Dec 2021 10:29:07 -0800 (PST)
+        s=k20201202; t=1638383551;
+        bh=k2RPRS4bfjVfz7mCoadcSXBrEPElf3gU/exvA6eYqNI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=IegrtML5gxAQBzH5g0FG14VD+0lmSOP85HEXxv7B3maolSzkR+6FoF4JTwBlyDyZr
+         UphzirPlJdxvSHtorBWjAUZDyjLzY2IiUiuSXGXSy8mIo+qYlmbFiy0312NQb4Bxr3
+         8Ofwtt0r5/yGcssm+TeLJf3VUYVMznNS4rrVUeM9i+zlYW0+ykWtcAL2wfoD3WlzaO
+         5CTQLnNzRgXlyH6/4q4pbfIGU6ZpJXiAh6ZbMi/rBFQIDZyjU1uTkHVXtR37XLuoyS
+         FNiyz2ur8MhbFdP6fE45lILerzjhBhxyL3RthVTy5sKHy/DmDowDcEP/IAQKJJN2Lf
+         tq0SZFJjNLkzw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Adam Ward <Adam.Ward.opensource@diasemi.com>
+Cc:     devicetree@vger.kernel.org,
+        Support Opensource <support.opensource@diasemi.com>,
+        linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>
+In-Reply-To: <cover.1637709844.git.Adam.Ward.opensource@diasemi.com>
+References: <cover.1637709844.git.Adam.Ward.opensource@diasemi.com>
+Subject: Re: [PATCH V3 0/3] regulator: da9121: add DA914x support
+Message-Id: <163838354996.2179928.12475633790824117230.b4-ty@kernel.org>
+Date:   Wed, 01 Dec 2021 18:32:29 +0000
 MIME-Version: 1.0
-References: <20211201041228.32444-1-f.fainelli@gmail.com> <20211201041228.32444-4-f.fainelli@gmail.com>
- <1638369202.233948.1684354.nullmailer@robh.at.kernel.org> <52926c88-a51d-d4e8-a6ab-7cf92e35c7ba@gmail.com>
-In-Reply-To: <52926c88-a51d-d4e8-a6ab-7cf92e35c7ba@gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 1 Dec 2021 12:28:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJeO9eL-ygU-dEoV0DGOKwbM_i+PWaBTk2QCP6Wc69S5g@mail.gmail.com>
-Message-ID: <CAL_JsqJeO9eL-ygU-dEoV0DGOKwbM_i+PWaBTk2QCP6Wc69S5g@mail.gmail.com>
-Subject: Re: [PATCH net-next 3/7] dt-bindings: net: Document moca PHY interface
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        Doug Berger <opendmb@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 1, 2021 at 11:15 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On 12/1/21 6:33 AM, Rob Herring wrote:
-> > On Tue, 30 Nov 2021 20:12:24 -0800, Florian Fainelli wrote:
-> >> MoCA (Multimedia over Coaxial) is used by the internal GENET/MOCA cores
-> >> and will be needed in order to convert GENET to YAML in subsequent
-> >> changes.
-> >>
-> >> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> >> ---
-> >>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
-> >>  1 file changed, 1 insertion(+)
-> >>
-> >
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> >
-> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-> > This will change in the future.
-> >
-> > Full log is available here: https://patchwork.ozlabs.org/patch/1561996
-> >
-> >
-> > ethernet@0,2: fixed-link:speed:0:0: 2500 is not one of [10, 100, 1000]
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dt.yaml
-> >       arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dt.yaml
-> >
-> > ethernet@17020000: phy-handle: [[36], [37]] is too long
-> >       arch/arm64/boot/dts/apm/apm-mustang.dt.yaml
-> >
-> > ethernet@30000: fixed-link:speed:0:0: 2500 is not one of [10, 100, 1000]
-> >       arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dt.yaml
-> >       arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dt.yaml
->
-> These are all pre-existing warnings, but we should be documenting speed
-> 2500 in ethernet-controller.yaml, so I will add a patch towards that end.
+On Tue, 23 Nov 2021 23:27:54 +0000, Adam Ward wrote:
+> This series extends the DA9121 driver to add support for related products:
+> 
+>   DA9141, 40A, Quad-Phase
+>   DA9142, 20A, Dual-Phase
+> 
+> The changing of current limit when active is now prohibited, for the range,
+> due to possibility of undefined behaviour during transition
+> 
+> [...]
 
-Thanks.
+Applied to
 
-> The one for apm-mustand.dts however I am not sure how to best resolve
-> since it looks like there was an intention to provide two Ethernet PHYs
-> and presumably have the firmware prune the one that is not in use. I
-> don't even know if that platform is supported mainline anymore.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-Unfortunately it is, barely. I just fixed a breakage I caused 2 years
-ago and just now noticed. I would not worry about it for now.
+Thanks!
 
-Rob
+[1/3] dt-bindings: da9121: Remove erroneous compatible from binding
+      (no commit info)
+[2/3] dt-bindings: da9121: Add DA914x binding info
+      (no commit info)
+[3/3] regulator: da9121: Add DA914x support
+      commit: c5187a245e9bb0af2da8d37ede191569c824c66b
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
