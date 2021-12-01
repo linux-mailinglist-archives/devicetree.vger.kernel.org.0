@@ -2,111 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE674464C6E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 12:15:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15C1D464CA9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 12:32:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242554AbhLALSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 06:18:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57410 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237786AbhLALS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 06:18:27 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0DAC061574;
-        Wed,  1 Dec 2021 03:15:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id E05DECE1DCA;
-        Wed,  1 Dec 2021 11:15:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB200C53FCC;
-        Wed,  1 Dec 2021 11:15:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638357303;
-        bh=ehVTzL9X6BysmNP85++ptIBdmSpHTbsCMyi3z2tu5D0=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=HjFzzYB/CE/19drSrda2JNv9tdyBGIIOGNr0il7/WmQa5vCF21CUBUS0bqKZAhtJS
-         1Y5T6A/VJuGdGKwjxK4C7YXojve9Ebi7/l6p9wXK/12GFeOAY/945ZeMm2h1+k8FD7
-         qYTXtZ6UV4jXuP85XZ0bVSeNZ8VUCtIufsHsPcWzwba5KOf27Y7DhN67pxKhflnmod
-         l86/bg4KTuPQQUQhI2TUphk1hutcOl2JpIb73VBnCQVRZt4Ugkp35EoJfjvdMwa7RA
-         jFA/kWHDls45bQUQYSCpF3EVrB4n7zfQRWJAsKFc56WMXcYl57CamD6qZDBI1L8lAG
-         ifEiSWROxQQCw==
-Subject: Re: [PATCH 1/4] dt-bindings: memory-controllers: ti,gpmc: Add
- compatible for AM64
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     tony@atomide.com, kishon@ti.com, nm@ti.com, vigneshr@ti.com,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1348978AbhLALgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 06:36:16 -0500
+Received: from ptr.189.cn ([183.61.185.103]:11452 "EHLO 189.cn"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1348972AbhLALf6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 06:35:58 -0500
+HMM_SOURCE_IP: 10.64.8.43:55430.125480071
+HMM_ATTACHE_NUM: 0000
+HMM_SOURCE_TYPE: SMTP
+Received: from clientip-114.242.206.180 (unknown [10.64.8.43])
+        by 189.cn (HERMES) with SMTP id D3A031001C8;
+        Wed,  1 Dec 2021 19:32:17 +0800 (CST)
+Received: from  ([14.17.101.176])
+        by gateway-151646-dep-b7fbf7d79-vjdjk with ESMTP id 2f60f39930b8491c945ffa4904a28edc for l.stach@pengutronix.de;
+        Wed, 01 Dec 2021 19:32:19 CST
+X-Transaction-ID: 2f60f39930b8491c945ffa4904a28edc
+X-Real-From: 15330273260@189.cn
+X-Receive-IP: 14.17.101.176
+X-MEDUSA-Status: 0
+Sender: 15330273260@189.cn
+From:   Sui Jingfeng <15330273260@189.cn>
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Tiezhu Yang <yangtiezhu@loongson.cn>,
+        Qing Zhang <zhangqing@loongson.cn>,
+        Jinyang He <hejinyang@loongson.cn>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Xiaochuan Mao <maoxiaochuan@loongson.cn>,
+        zhaoxiao <zhaoxiao@uniontech.com>,
+        suijingfeng <suijingfeng@loongson.cn>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
         devicetree@vger.kernel.org
-References: <20211123102607.13002-1-rogerq@kernel.org>
- <20211123102607.13002-2-rogerq@kernel.org>
- <a28532b1-bfa0-031b-91cc-070cad557599@canonical.com>
- <YaafXKXfzBQaNSvq@robh.at.kernel.org>
-From:   Roger Quadros <rogerq@kernel.org>
-Message-ID: <acc05242-8d0a-093a-c076-af35a339333c@kernel.org>
-Date:   Wed, 1 Dec 2021 13:14:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+Subject: [PATCH v2 1/3] dt-bindings: ls2k1000: add gpu device node
+Date:   Wed,  1 Dec 2021 19:32:13 +0800
+Message-Id: <20211201113215.3062-1-15330273260@189.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <YaafXKXfzBQaNSvq@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: suijingfeng <suijingfeng@loongson.cn>
 
-On 01/12/2021 00:02, Rob Herring wrote:
-> On Tue, Nov 23, 2021 at 08:47:57PM +0100, Krzysztof Kozlowski wrote:
->> On 23/11/2021 11:26, Roger Quadros wrote:
->>> AM64 SoC contains the GPMC module. Add compatible for it.
->>>
->>> Newer SoCs don't necessarily map GPMC data region at the same place
->>> as legacy SoCs. Add reg-names "data", to provide this information to
->>> the device driver.
->>>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>> ---
->>>  .../bindings/memory-controllers/ti,gpmc.yaml         | 12 +++++++++++-
->>>  1 file changed, 11 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
->>> index 25b42d68f9b3..1869cc6f949b 100644
->>> --- a/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
->>> +++ b/Documentation/devicetree/bindings/memory-controllers/ti,gpmc.yaml
->>> @@ -23,13 +23,20 @@ properties:
->>>      items:
->>>        - enum:
->>>            - ti,am3352-gpmc
->>> +          - ti,am64-gpmc
->>>            - ti,omap2420-gpmc
->>>            - ti,omap2430-gpmc
->>>            - ti,omap3430-gpmc
->>>            - ti,omap4430-gpmc
->>>  
->>>    reg:
->>> -    maxItems: 1
->>> +    minItems: 1
->>> +    maxItems: 2
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: cfg
->>> +      - const: data
->>
->> I see your driver handles cases with only one reg item, but I have other
->> question - is it correct to have older (ARMv7) platform with two reg
->> items? Or can am64-gpmc come with only one reg?
->> IOW, I am surprised there is no if-else case precising this minItems
->> requirement for different SocS.
-> 
-> I don't think that is needed here. If the assumption is 'reg-names' is 
-> only present when there are 2 entries, then it is fine. Maybe 
-> 'reg-names' should be required for ti,am64-gpmc though.
+There is a vivante gpu (GC1000 V5037) in ls2k1000,
+but it is pci device not platform device.
 
-Yes, I'll make 'reg-names' property required for ti,am64-gpmc.
+ls2k1000 is dual-core mips64 cpu made by loongson.
 
-cheers,
--roger
+Signed-off-by: suijingfeng <suijingfeng@loongson.cn>
+Signed-off-by: Sui Jingfeng <15330273260@189.cn>
+---
+ arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+index bfc3d3243ee7..f1feffac78a6 100644
+--- a/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
++++ b/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi
+@@ -193,6 +193,17 @@
+ 				interrupt-parent = <&liointc0>;
+ 			};
+ 
++			gpu@5,0 {
++				compatible = "pci0014,7a05.0",
++						   "pci0014,7a05",
++						   "pciclass030200",
++						   "pciclass0302";
++
++				reg = <0x2800 0x0 0x0 0x0 0x0>;
++				interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
++				interrupt-parent = <&liointc0>;
++			};
++
+ 			pci_bridge@9,0 {
+ 				compatible = "pci0014,7a19.0",
+ 						   "pci0014,7a19",
+-- 
+2.20.1
+
