@@ -2,159 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98C06465A0C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 00:55:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D11465A15
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 00:57:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344131AbhLAX6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 18:58:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344046AbhLAX6s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 18:58:48 -0500
-Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com [IPv6:2607:f8b0:4864:20::72c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CEEC061748
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 15:55:26 -0800 (PST)
-Received: by mail-qk1-x72c.google.com with SMTP id t6so32994135qkg.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 15:55:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GVZ70Dywr625UyFi302s6LjnjHklxJb/tfvnMbwjLaM=;
-        b=jCkXdMKskBUT2OYx7Iaa2BLRafUdDejK8djqWKix9T6swIAuLZxsGqdR4LzM5/sE3G
-         JDmzjvBHFhnRgl47r/VjZFASHCgHpTdLo1VGBGxbbWxVmTPdWgGsuRfuzt8akpS21HLg
-         OTBZNZBgwEoYUu53vs0qkpJYiVPEorqa7Ri40=
+        id S1353906AbhLBAAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 19:00:39 -0500
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:34801 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236154AbhLBAAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 19:00:39 -0500
+Received: by mail-ot1-f41.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso37615645otj.1;
+        Wed, 01 Dec 2021 15:57:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GVZ70Dywr625UyFi302s6LjnjHklxJb/tfvnMbwjLaM=;
-        b=5v6CKa3aohmLzI9je3wUdVfOiITXtzEDSACJ3ppRG41uWzGLOGyOT78UvczMbz2dUn
-         fkL6MOqqZ5xjnq9ws3eVmFy/fXt3fW/MCWFRz7+JjctNs0iHKwAUw+Xbza5ZcRQ+hW5h
-         Fnny6gWo+Ar8LcSbNXtTjad6RlvzC6kZWKaY6EwrTVbMZ4u5dohjHUrsNdEu/RDbUObT
-         tB9oiLVcY8ftrvfjb0lnb1usQLLynvxtQRThvICEbVhvy4zSjg/2xwoZnqT77w1/ksWV
-         Z+jTDzl82HWxh9YdF9n+ZfIuYmdNHrzN5mpBXhyk8JzSmELvIvChWj3jErlnCU3bXMAh
-         20aw==
-X-Gm-Message-State: AOAM533NZKJQ19RU6BY10/m9nIKTbTCT3+/CZ3XE3TmuHoqhk5JuApLH
-        GPGYm8QSmuyfybxj3oELlYHmJVysVo/oWObhI+LkIQ==
-X-Google-Smtp-Source: ABdhPJwDrESPOFAKGV76+3Yd4DHuNO5qwOKr/plQ6gy9TgikmfsgmMo5D/ZY+B7br+XAoX3AcL0s/vToKivqbssMv5Q=
-X-Received: by 2002:a37:8805:: with SMTP id k5mr9678214qkd.426.1638402926057;
- Wed, 01 Dec 2021 15:55:26 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=GdYKlP0LT1ahpmU3oI3bcKznEMIHXNXlW8Bp4/Ld1E0=;
+        b=Z+ZikqhVkwJFMj7YIsRPz09FA3BCHY7ZeczrlaQcaOxt0+FyKCzwFWkGVCgw7uTTMP
+         R4bAMFqLwDflgSfVD5qv6MMAUswcN6iNYFAHQuD1snWu1gzszD581Crc8i57vCkaaXnh
+         2YgF7p1pm/MXP6r+8vnrPIWEeO9LPwsE5onpj4t3+em2HNtmvtkhmU13zoqD+ydTm5jP
+         7cBqcaxPkYwz9uA6+xBxaN/0iybjzAwi/OSlQGGmtNqj3pBa0NlFZKeurtg2AypBo8yo
+         K1BUB/DiKjoDc+8FdLCAQiKhEQWVLBdqG1acekwX2kb//B9y1Mfq+wUYCxW79Y1f2FEE
+         gkbQ==
+X-Gm-Message-State: AOAM531sbuRHTzEyLqkHptglduteP1NSuiQFurwFPYxqfP3D7n/9jfgP
+        X6u6jKxVmlWl3ysMCiI7qQ==
+X-Google-Smtp-Source: ABdhPJwhY5Y9vM8+vyvH88bL0iQ5cXqMc9aDFA0LrcfcMs5twctjw4Ko3C1J0hX0jjaI/4xsm859ZA==
+X-Received: by 2002:a9d:77ce:: with SMTP id w14mr8835797otl.252.1638403037263;
+        Wed, 01 Dec 2021 15:57:17 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id o10sm455435oom.32.2021.12.01.15.57.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 15:57:16 -0800 (PST)
+Received: (nullmailer pid 3253597 invoked by uid 1000);
+        Wed, 01 Dec 2021 23:57:15 -0000
+Date:   Wed, 1 Dec 2021 17:57:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     linux-spi@vger.kernel.org,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Mark Brown <broonie@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
+        Michal Simek <monstr@monstr.eu>, linux-mtd@lists.infradead.org,
+        Pratyush Yadav <p.yadav@ti.com>
+Subject: Re: [PATCH v2 5/5] spi: dt-bindings: Add an example with two stacked
+ flashes
+Message-ID: <YagL29VKiKZcu7KQ@robh.at.kernel.org>
+References: <20211126163450.394861-1-miquel.raynal@bootlin.com>
+ <20211126163450.394861-6-miquel.raynal@bootlin.com>
+ <1638054802.100671.1973542.nullmailer@robh.at.kernel.org>
+ <YaO0ahOhM3XwLqND@robh.at.kernel.org>
+ <20211129102319.1efe1841@xps13>
 MIME-Version: 1.0
-References: <20211129034201.5767-1-yunfei.dong@mediatek.com> <20211129034201.5767-3-yunfei.dong@mediatek.com>
-In-Reply-To: <20211129034201.5767-3-yunfei.dong@mediatek.com>
-From:   Steve Cho <stevecho@chromium.org>
-Date:   Wed, 1 Dec 2021 15:55:15 -0800
-Message-ID: <CAC-pXoPXc=q8KPUcSfY6XZ=sLt71vDZbJV=f4SZx55Gc6VbRQw@mail.gmail.com>
-Subject: Re: [PATCH v11, 02/19] media: mtk-vcodec: Align vcodec wake up
- interrupt interface
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211129102319.1efe1841@xps13>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LGTM.
+On Mon, Nov 29, 2021 at 10:23:19AM +0100, Miquel Raynal wrote:
+> Hi Rob,
+> 
+> robh@kernel.org wrote on Sun, 28 Nov 2021 10:55:06 -0600:
+> 
+> > On Sat, Nov 27, 2021 at 04:13:22PM -0700, Rob Herring wrote:
+> > > On Fri, 26 Nov 2021 17:34:50 +0100, Miquel Raynal wrote:  
+> > > > Provide an example of how to describe two flashes in eg. stacked mode.
+> > > > 
+> > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
+> > > >  1 file changed, 7 insertions(+)
+> > > >   
+> > > 
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > 
+> > > yamllint warnings/errors:
+> > > 
+> > > dtschema/dtc warnings/errors:
+> > > Documentation/devicetree/bindings/spi/spi-controller.example.dts:40.23-45.15: Warning (spi_bus_reg): /example-0/spi@80010000/flash@2,3: SPI bus unit address format error, expected "2"  
+> > 
+> > Unit-addresses are based on the first reg entry.
+> 
+> Yes, I believe this error is expected since dtc has not been yet
+> updated. Below the patch for adapting dtc to this new situation and
+> keep the robots happy.
+> 
+> How should we proceed?
 
-On Sun, Nov 28, 2021 at 7:44 PM Yunfei Dong <yunfei.dong@mediatek.com> wrote:
->
-> Vdec and venc can use the same function to wake up interrupt event.
->
-> Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c | 9 +--------
->  drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h     | 8 ++++++++
->  drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c | 8 --------
->  3 files changed, 9 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> index 59caf2163349..055d50e52720 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_drv.c
-> @@ -31,13 +31,6 @@
->  module_param(mtk_v4l2_dbg_level, int, 0644);
->  module_param(mtk_vcodec_dbg, bool, 0644);
->
-> -/* Wake up context wait_queue */
-> -static void wake_up_ctx(struct mtk_vcodec_ctx *ctx)
-> -{
-> -       ctx->int_cond = 1;
-> -       wake_up_interruptible(&ctx->queue);
-> -}
-> -
->  static irqreturn_t mtk_vcodec_dec_irq_handler(int irq, void *priv)
->  {
->         struct mtk_vcodec_dev *dev = priv;
-> @@ -69,7 +62,7 @@ static irqreturn_t mtk_vcodec_dec_irq_handler(int irq, void *priv)
->         writel((readl(vdec_misc_addr) & ~VDEC_IRQ_CLR),
->                 dev->reg_base[VDEC_MISC] + VDEC_IRQ_CFG_REG);
->
-> -       wake_up_ctx(ctx);
-> +       wake_up_ctx(ctx, MTK_INST_IRQ_RECEIVED);
+No, I'm saying you have this wrong. A unit-address is composed of 
+different fields, not different entries of the same field. For 
+example, an external parallel bus has a chip select plus address, so the 
+unit-address is '<cs>,<addr>'. If you have 2 SPI chip selects, that's 2 
+entries of the same thing. The SPI bus is not 2 address cells, but 1 
+cell with 2 entries.
 
-Assuming setting up reason doesn't change functionality.
-
->
->         mtk_v4l2_debug(3,
->                         "mtk_vcodec_dec_irq_handler :wake up ctx %d, dec_done_status=%x",
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> index 581522177308..1d2370608d0d 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> @@ -473,4 +473,12 @@ static inline struct mtk_vcodec_ctx *ctrl_to_ctx(struct v4l2_ctrl *ctrl)
->         return container_of(ctrl->handler, struct mtk_vcodec_ctx, ctrl_hdl);
->  }
->
-> +/* Wake up context wait_queue */
-> +static inline void wake_up_ctx(struct mtk_vcodec_ctx *ctx, unsigned int reason)
-> +{
-> +       ctx->int_cond = 1;
-> +       ctx->int_type = reason;
-> +       wake_up_interruptible(&ctx->queue);
-> +}
-> +
->  #endif /* _MTK_VCODEC_DRV_H_ */
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-> index eed67394cf46..7c3487fb3498 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_drv.c
-> @@ -65,14 +65,6 @@ static const struct mtk_video_fmt mtk_video_formats_capture_vp8[] =  {
->         },
->  };
->
-> -/* Wake up context wait_queue */
-> -static void wake_up_ctx(struct mtk_vcodec_ctx *ctx, unsigned int reason)
-> -{
-> -       ctx->int_cond = 1;
-> -       ctx->int_type = reason;
-> -       wake_up_interruptible(&ctx->queue);
-> -}
-> -
->  static void clean_irq_status(unsigned int irq_status, void __iomem *addr)
->  {
->         if (irq_status & MTK_VENC_IRQ_STATUS_PAUSE)
-> --
-> 2.25.1
->
+Rob
