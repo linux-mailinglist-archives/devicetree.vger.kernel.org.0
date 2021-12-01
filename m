@@ -2,147 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08289464B5D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:12:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85DF3464B51
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:12:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348565AbhLAKPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 05:15:45 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:23696 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1348570AbhLAKPl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:15:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1638353540; x=1669889540;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=gjBVeyKaLkCO7bAeM3ck+O0c1L6Xud05nOQIuJCJfoM=;
-  b=DpcEH4HvRpPvEaF0r7sG9k551vyOSKekc7JcwMi1jUs5UGivTxCX24u4
-   kZv70RBERryUezm0x/laaWnnnEKTTL7Kqwlz4Lzfd+4iDX8ukscNmooBj
-   2EqxATcvU/pEjdjhNXSH02He85n5zuJ4X6EtxRhBba5KnIsiebMipVVHy
-   Q=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 01 Dec 2021 02:12:19 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2021 02:12:19 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 1 Dec 2021 02:12:18 -0800
-Received: from blr-ubuntu-173.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 1 Dec 2021 02:12:15 -0800
-From:   Rajendra Nayak <quic_rjendra@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <robh+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dianders@chromium.org>,
-        <mka@chromium.org>, <kgodara@codeaurora.org>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sc7280-crd: Add Touchscreen and touchpad support
-Date:   Wed, 1 Dec 2021 15:41:42 +0530
-Message-ID: <1638353502-23640-5-git-send-email-quic_rjendra@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1638353502-23640-1-git-send-email-quic_rjendra@quicinc.com>
-References: <1638353502-23640-1-git-send-email-quic_rjendra@quicinc.com>
+        id S242472AbhLAKPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 05:15:19 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:57561 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237392AbhLAKPT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:15:19 -0500
+Received: (Authenticated sender: foss@0leil.net)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 1B44E1C0015;
+        Wed,  1 Dec 2021 10:11:54 +0000 (UTC)
+Date:   Wed, 1 Dec 2021 11:11:52 +0100
+From:   Quentin Schulz <foss+kernel@0leil.net>
+To:     Evgeny Boger <boger@wirenboard.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH 1/2] iio:adc:axp20x: add support for NTC thermistor
+Message-ID: <20211201101152.fyimgddfd7mpwjg2@fiqs>
+References: <20211118141233.247907-1-boger@wirenboard.com>
+ <20211118141233.247907-2-boger@wirenboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211118141233.247907-2-boger@wirenboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kshitiz Godara <kgodara@codeaurora.org>
+Hi Evgeny,
 
-Add Touchscreen and touchpad hid-over-i2c node for the sc7280 CRD board
+On Thu, Nov 18, 2021 at 05:12:32PM +0300, Evgeny Boger wrote:
+> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
+> TS pin. When appropriately configured, AXP PMICs will inject fixed
+> current (80uA by default) into TS pin and measure the voltage across a
+> thermistor. The PMIC itself will by default compare this voltage with
+> predefined thresholds  and disable battery charging whenever
 
-Signed-off-by: Kshitiz Godara <kgodara@codeaurora.org>
-Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
----
- arch/arm64/boot/dts/qcom/sc7280-crd.dts | 61 +++++++++++++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+They actually are configurable, it's just that we don't have the means
+to configure it currently from the kernel.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-index 1e3e2f3..cd2755c 100644
---- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
-@@ -23,6 +23,47 @@
- 	};
- };
- 
-+ap_tp_i2c: &i2c0 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	trackpad: trackpad@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tp_int_odl>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+
-+		post-power-on-delay-ms = <20>;
-+		hid-descr-addr = <0x0001>;
-+		vdd-supply = <&vreg_l18b_1p8>;
-+
-+		wakeup-source;
-+	};
-+};
-+
-+ap_ts_pen_1v8: &i2c13 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	ap_ts: touchscreen@5c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x5c>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ts_int_l>, <&ts_reset_l>;
-+
-+		interrupt-parent = <&tlmm>;
-+		interrupts = <55 IRQ_TYPE_LEVEL_LOW>;
-+
-+		post-power-on-delay-ms = <500>;
-+		hid-descr-addr = <0x0000>;
-+
-+		vdd-supply = <&vreg_l19b_1p8>;
-+	};
-+};
-+
- &nvme_3v3_regulator {
- 	gpio = <&tlmm 51 GPIO_ACTIVE_HIGH>;
- };
-@@ -30,3 +71,23 @@
- &nvme_pwren {
- 	pins = "gpio51";
- };
-+
-+&tlmm {
-+	tp_int_odl: tp-int-odl {
-+		pins = "gpio7";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
-+	ts_int_l: ts-int-l {
-+		pins = "gpio55";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
-+
-+	ts_reset_l: ts-reset-l {
-+		pins = "gpio54";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+};
--- 
-2.7.4
+"In the diagram above, VTH/VTL refers to the high temperature threshold
+and low temperature threshold, which is programmable via registers
+REG38H/39H/3CH/3DH respectively." in the AXP209 datasheet, section
+"Battery temperature detection".
 
+> the battery is too hot or too cold.
+> 
+> Alternatively, the TS pin can be configured as general-purpose
+> ADC input. This mode is not supported by the driver.
+> 
+> This patch allows reading the voltage on the TS pin. It can be then
+> either processed by userspace or used by kernel consumer like hwmon
+> ntc thermistor driver.
+> 
+> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
+> ---
+>  drivers/iio/adc/axp20x_adc.c | 45 +++++++++++++++++++++++++++++++-----
+>  1 file changed, 39 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
+> index 3e0c0233b431..12d469a52cea 100644
+> --- a/drivers/iio/adc/axp20x_adc.c
+> +++ b/drivers/iio/adc/axp20x_adc.c
+[...]
+> +static int axp22x_adc_scale_voltage(int channel, int *val, int *val2)
+> +{
+> +	switch (channel) {
+> +	case AXP22X_BATT_V:
+> +		/* 1.1 mV per LSB */
+> +		*val = 1;
+> +		*val2 = 100000;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +
+> +	case AXP22X_TS_IN:
+> +		/* 0.8 mV per LSB */
+> +		*val = 0;
+> +		*val2 = 800000;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+[...]
+> @@ -378,12 +415,7 @@ static int axp22x_adc_scale(struct iio_chan_spec const *chan, int *val,
+>  {
+>  	switch (chan->type) {
+>  	case IIO_VOLTAGE:
+> -		if (chan->channel != AXP22X_BATT_V)
+> -			return -EINVAL;
+> -
+> -		*val = 1;
+> -		*val2 = 100000;
+> -		return IIO_VAL_INT_PLUS_MICRO;
+> +		return axp22x_adc_scale_voltage(chan->channel, val, val2);
+>  
+
+I would actually have made the move to axp22x_adc_scale_voltage function
+for AXP22X_BATT_V channel separate from this commit because I was a bit
+confused in the original review why suddenly there was an addition for
+AXP22X_BATT_V while this patch is about AXP22X_TS_IN.
+
+If maintainers are ok with this, I don't mind.
+
+I don't have any HW to test this but the changes make sense to me:
+Reviewed-by: Quentin Schulz <foss+kernel@0leil.net>
+
+Thanks!
+Quentin
