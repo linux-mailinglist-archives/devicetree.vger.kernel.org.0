@@ -2,120 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC6AC464E48
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:57:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B984D464E49
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:58:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244396AbhLANA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 08:00:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52384 "EHLO
+        id S1348428AbhLANBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 08:01:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236755AbhLANA1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:00:27 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A698CC061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 04:57:06 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id q3so29198802wru.5
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 04:57:06 -0800 (PST)
+        with ESMTP id S236755AbhLANBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:01:51 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E99C061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 04:58:30 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id z5so36175658edd.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 04:58:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=72iRR/4HeBeHQCE5DFGR/jYYshMAqvGdf4VZ9pZlAio=;
-        b=Nuh/0QfVdSMTgZX9RlkLMaPfmpqQB/tItEsChBU+1Xn39Gp2i+GCr9QANy1WUzUNcE
-         f0Ckxl6RIwGYaJ3eUz42xgq6gwNr6JLGskdRrcNA6L66tCSneHLmWoNz/D3u+5q65xSn
-         EBrvJZ9cAtQdaIRxiyaRkax+wKpM/5kkoqnrg7yKA8VsotNCEMFUE5z4HPKfRlFcbn3h
-         dQrvPSrZ5p/fPMFCMzB67/20WeHoSIO/mjroLbCS+Hqwx+3M2MbqFtXbslbq/V7YfdeK
-         boWVmCPbeeODRaZ/CMWnv4filT7wWTT6seR+y33v1cbAhTvU9HzEE3QJ1EPa8zG2uV2B
-         mSRQ==
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=D5PW8BhdAuu4oqSswIsrh+4cgg8Ko16BHPb2BC0DyDc=;
+        b=ShtUvDfW5PyLg35gKksvBhAIF13Qdlo2k1kJ5nf9ddtcN2IWargq9oK9uH9Mj7mOlM
+         yrZ5ncJ7wlQ3v3gaY2hNqU4iayvlI7vavUCnibRCmaVdQk34nmuQKcpVe0PohmHbMvqP
+         Nx1ViR1M93mzRFKRGh73XszDpowN3KMR+Opzfq2PvivLIH0YhKXdc+DMIXTeShsMgFxl
+         9/rGywoLb97EPLIPX0ys7IEZFihb9iHe1IeX3ailUU8luIz9EXUyP9Qn6V0BocL4t0CC
+         j9BgxuSZEW7jn2HQAkvAuK6mVu7ghUJOjDX/Fe7XXV7vRQ/AHlnQE8pbKWqG8SpIt0l0
+         Nf9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=72iRR/4HeBeHQCE5DFGR/jYYshMAqvGdf4VZ9pZlAio=;
-        b=GoLR+F9mqrRFNyC7W3VkiqTPljX8BHKXIONMf54PQpvyrgQpKqkaKoweRfAw1L0CB6
-         pCqPTl7yqOBQwWmdLcBMBIhB14S/+s/00mFuN46pj8GlmRBRdPk44cjlP1krnjKU+1Zl
-         5unLT4Bc9pzNmaN0CXhWhGztumQyZKMEOALMHkjMde47lXJC3Oa9DFZ2xt3WblJuvviK
-         woiZIpboczEgiW6i2k8B9V//Nx2rffglIk3ER5G/LqxcctZidkKTF0hHZMgr9xNTpVm5
-         AdosiESD25/RxRFTKHkW5As7tFQHgWA4rTgqy4nn3EDFQQZpHAjB8vGX1X4dTnoLp6bT
-         e/CA==
-X-Gm-Message-State: AOAM533Lt6/2C8m5R62Pz6AqRVi93p6eU56nc3TZr37GyWTnlcI1bycW
-        ZzCASpLJRreo5uqR+vQkK20=
-X-Google-Smtp-Source: ABdhPJwvGEuHE3Yw0/PZ68FzcsLDLYJ3ys57awxjg+TYbyDN6X+zEsHFRsUZmALw7D4VybEu7xiu+Q==
-X-Received: by 2002:a5d:4084:: with SMTP id o4mr6793235wrp.47.1638363425135;
-        Wed, 01 Dec 2021 04:57:05 -0800 (PST)
-Received: from debian64.daheim (p5b0d7321.dip0.t-ipconnect.de. [91.13.115.33])
-        by smtp.gmail.com with ESMTPSA id r17sm1187671wmq.5.2021.12.01.04.57.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 04:57:04 -0800 (PST)
-Received: from chuck by debian64.daheim with local (Exim 4.95)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1msPAW-000Dlu-0I;
-        Wed, 01 Dec 2021 13:57:04 +0100
-From:   Christian Lamparter <chunkeey@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Hans Ulli Kroll <ulli.kroll@googlemail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Steven Maddox <s.maddox@lantizia.me.uk>
-Subject: [PATCH v1] ARM: dts: gemini: NAS4220-B: fis-index-block with 128 KiB sectors
-Date:   Wed,  1 Dec 2021 13:57:03 +0100
-Message-Id: <20211201125703.52935-1-chunkeey@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=D5PW8BhdAuu4oqSswIsrh+4cgg8Ko16BHPb2BC0DyDc=;
+        b=00BaqWDNGsuxuV4QvU0KkwyLjYU12eAyXEkFybTjmY7QvWLaWnzl7H+XAYfXPanUuq
+         afnbWNjeptxHdZBNXSTziVbXxvuSu2e1kL6EBKeOnMsi8qELcfo62FwrRUgkGMApf8OE
+         ++kVyGMTTWZj3M59fYPCF5kH6Ll1yB6ABY4bLbd3ULGktUyS79/ITRfu8JIM2CG3yena
+         KlZLTuD0smonXMBEBfeDYi29UMdLbQ1dDHI4uJyXyH1QZT+eGyZn6bLhFy5URIU8keQa
+         PNZKU6AnbcwveXrLHJw1NgIJq17Adf0Wmi+KxhICTiip9Zu2WOYgAB6xmw1o+rh6p5L/
+         xeNA==
+X-Gm-Message-State: AOAM530WGe6e/3ssm1EGz43Kq9ntFPOakoE1UJDoFv8F9eTFZImERdFq
+        RuYkyiugzoOrGGebLRfVF1kGXAnfcpcNDKr3LsQrQA==
+X-Google-Smtp-Source: ABdhPJz9iOdDKNgMdJzD0gqeRB73Q1A4iiFR0FxNxz9fFpszk+uTamQrvcRyI5fCgzr/AcT0r10edZjMU7/6TzU7sCE=
+X-Received: by 2002:aa7:c946:: with SMTP id h6mr8446283edt.190.1638363509446;
+ Wed, 01 Dec 2021 04:58:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211201013329.15875-1-aford173@gmail.com> <20211201013329.15875-2-aford173@gmail.com>
+ <CAAEAJfBBFhRtW2wmoA6T+yyM-nurUbtPqYHKPHjeRdKzA34PcQ@mail.gmail.com> <CAHCN7xLGTadbr+=-j2yJHFn233dgHic28njej8LHS2M0WwtqYQ@mail.gmail.com>
+In-Reply-To: <CAHCN7xLGTadbr+=-j2yJHFn233dgHic28njej8LHS2M0WwtqYQ@mail.gmail.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Wed, 1 Dec 2021 09:58:17 -0300
+Message-ID: <CAAEAJfDqBezv1_ZsF3vjAFprZYuaE7krkSXa4vzAfMZp5_z+sA@mail.gmail.com>
+Subject: Re: [RFC V2 1/2] media: hantro: Add support for i.MX8M Mini
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Steven Maddox reported in the OpenWrt bugzilla, that his
-RaidSonic IB-NAS4220-B was no longer booting with the new
-OpenWrt 21.02 (uses linux 5.10's device-tree). However, it was
-working with the previous OpenWrt 19.07 series (uses 4.14).
+On Wed, 1 Dec 2021 at 09:36, Adam Ford <aford173@gmail.com> wrote:
+>
+> On Wed, Dec 1, 2021 at 6:25 AM Ezequiel Garcia
+> <ezequiel@vanguardiasur.com.ar> wrote:
+> >
+> > Hi Adam,
+> >
+> > On Tue, 30 Nov 2021 at 22:33, Adam Ford <aford173@gmail.com> wrote:
+> > >
+> > > The i.MX8M Mini has a similar implementation of the Hantro G1 and
+> > > h decoders, but the Mini uses the vpu-blk-ctrl for handling the
+> > > VPU resets through the power domain system.  As such, there are
+> > > functions present in the 8MQ that are not applicable to the Mini
+> > > which requires the driver to have a different compatible flags.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > >
+> > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> > > index fb82b9297a2b..2aa1c520be50 100644
+> > > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > > @@ -592,6 +592,8 @@ static const struct of_device_id of_hantro_match[] = {
+> > >         { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
+> > >  #endif
+> > >  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+> > > +       { .compatible = "nxp,imx8mm-vpu", .data = &imx8mm_vpu_variant, },
+> > > +       { .compatible = "nxp,imx8mm-vpu-g2", .data = &imx8mm_vpu_g2_variant },
+> > >         { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
+> > >         { .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant },
+> > >  #endif
+> > > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> > > index 267a6d33a47b..ae7c3fff760c 100644
+> > > --- a/drivers/staging/media/hantro/hantro_hw.h
+> > > +++ b/drivers/staging/media/hantro/hantro_hw.h
+> > > @@ -211,6 +211,8 @@ enum hantro_enc_fmt {
+> > >         ROCKCHIP_VPU_ENC_FMT_UYVY422 = 3,
+> > >  };
+> > >
+> > > +extern const struct hantro_variant imx8mm_vpu_g2_variant;
+> > > +extern const struct hantro_variant imx8mm_vpu_variant;
+> > >  extern const struct hantro_variant imx8mq_vpu_g2_variant;
+> > >  extern const struct hantro_variant imx8mq_vpu_variant;
+> > >  extern const struct hantro_variant px30_vpu_variant;
+> > > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > index ea919bfb9891..c68516c00c6d 100644
+> > > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > @@ -242,6 +242,32 @@ static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
+> > >         },
+> > >  };
+> > >
+> > > +static const struct hantro_codec_ops imx8mm_vpu_codec_ops[] = {
+> > > +       [HANTRO_MODE_MPEG2_DEC] = {
+> > > +               .run = hantro_g1_mpeg2_dec_run,
+> > > +               .init = hantro_mpeg2_dec_init,
+> > > +               .exit = hantro_mpeg2_dec_exit,
+> > > +       },
+> > > +       [HANTRO_MODE_VP8_DEC] = {
+> > > +               .run = hantro_g1_vp8_dec_run,
+> > > +               .init = hantro_vp8_dec_init,
+> > > +               .exit = hantro_vp8_dec_exit,
+> > > +       },
+> > > +       [HANTRO_MODE_H264_DEC] = {
+> > > +               .run = hantro_g1_h264_dec_run,
+> > > +               .init = hantro_h264_dec_init,
+> > > +               .exit = hantro_h264_dec_exit,
+> > > +       },
+> > > +};
+> > > +
+> > > +static const struct hantro_codec_ops imx8mm_vpu_g2_codec_ops[] = {
+> > > +       [HANTRO_MODE_HEVC_DEC] = {
+> > > +               .run = hantro_g2_hevc_dec_run,
+> > > +               .init = hantro_hevc_dec_init,
+> > > +               .exit = hantro_hevc_dec_exit,
+> > > +       },
+> > > +};
+> > > +
+> >
+> > I believe you are missing VP9, which explains why you get
+> > a zero fluster score.
+>
+> That's what I was thinking too and that's why I was wondering if I
+> should wait on G2 until more of those G2 patches have been finalized
+> and accepted.  Is there a way to test the HEVC?  I didn't see one in
+> the fluster list.
+>
 
-|[    5.548038] No RedBoot partition table detected in 30000000.flash
-|[    5.618553] Searching for RedBoot partition table in 30000000.flash at offset 0x0
-|[    5.739093] No RedBoot partition table detected in 30000000.flash
-|...
-|[    7.039504] Waiting for root device /dev/mtdblock3...
+VP9 is on its way to be merged. There is a pull request from Hans
+already: see https://www.spinics.net/lists/linux-media/msg202448.html
+which includes the git repository and tag you can merge/rebase to test
+it.
 
-The provided bootlog shows that the RedBoot partition parser was
-looking for the partition table "at offset 0x0". Which is strange
-since the comment in the device-tree says it should be at 0xfe0000.
+It would be great if you can test G2 on top of that, but it's also fine
+if you want to just submit G1 for now. Up to you.
 
-Further digging on the internet led to a review site that took
-some useful PCB pictures of their review unit back in February 2009.
-Their picture shows a Spansion S29GL128N11TFI01 flash chip.
+Regarding HEVC, currently Benjamin is who knows best how to test it.
+Thinking about it, perhaps we should document this somewhere?
 
-From Spansion's Datasheet:
-"S29GL128N: One hundred twenty-eight 64 Kword (128 Kbyte) sectors"
-Steven also provided a "cat /sys/class/mtd/mtd0/erasesize" from his
-unit: "131072".
-
-With the 128 KiB Sector/Erasesize in mind. This patch changes the
-fis-index-block property to (0xfe0000 / 0x20000) = 0x7f.
-
-Fixes: b5a923f8c739 ("ARM: dts: gemini: Switch to redboot partition parsing")
-Bugzilla: https://bugs.openwrt.org/index.php?do=details&task_id=4137
-Reported-by: Steven Maddox <s.maddox@lantizia.me.uk>
-Tested-by: Steven Maddox <s.maddox@lantizia.me.uk>
-Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
----
- arch/arm/boot/dts/gemini-nas4220b.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/gemini-nas4220b.dts b/arch/arm/boot/dts/gemini-nas4220b.dts
-index 13112a8a5dd8..6544c730340f 100644
---- a/arch/arm/boot/dts/gemini-nas4220b.dts
-+++ b/arch/arm/boot/dts/gemini-nas4220b.dts
-@@ -84,7 +84,7 @@ flash@30000000 {
- 			partitions {
- 				compatible = "redboot-fis";
- 				/* Eraseblock at 0xfe0000 */
--				fis-index-block = <0x1fc>;
-+				fis-index-block = <0x7f>;
- 			};
- 		};
- 
--- 
-2.34.1
-
+Regards,
+Ezequiel
