@@ -2,108 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D8C64652D8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4821465309
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:42:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351161AbhLAQiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:38:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46678 "EHLO
+        id S243708AbhLAQpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:45:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351107AbhLAQiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:38:14 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB2BFC061748
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:34:51 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id s13so53666306wrb.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:34:51 -0800 (PST)
+        with ESMTP id S238010AbhLAQpW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:45:22 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10476C061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:42:01 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id u1so53616135wru.13
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:42:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=3sEGuWI76stDnurv18Sa0jyWxu5kNd2FGaaOg39vJxc=;
-        b=POGxka8o+dDai8yOx0YedKy/Ak1H7hVlKjgjI/1HTgqZUpXzAixSKlxhgIPOpyiB5P
-         xZO2BegLDxuZY8G/4qavPqIBaY/B3KKGXHO7z0gANg6ETJ0Hm9KXQI5h9rkkthiAPYHi
-         6oG7+EXcmrIalStVf+GZ+y7OeN+Y6IM7w0ZLS6VbENxt6l8bYqgSgj0B/oqBL85T3xzo
-         3wA0sp3oGvaVQFOpCEEqJFwKJ1s1a8+zOX4VpYhWDSfnqRPPxjgCwADdXRW4h2fYQWxD
-         TcSMi43DdKdK9R3W/wRrol+Zfzzoo6oG0BEbw8juG3hycTVf/VWnEvXDhzWm9pXZxyxY
-         eOdQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3BE63UjIea96EvWdRiabOg7XkHyFmGcLZ5+e2gzNYLQ=;
+        b=zB3jquT5qUdpkKO6qjWfpveRmENlToJ9TwSRZzPzuMDt+XI/McIR4vcRceMtBD6h4p
+         tJnimoJvFAwQOtQB42/b50V+W/LJx4yXWwZQ+x8K+TzcFBA2zlAT//GESDnAdfitfQbd
+         A3d+07cO8EX7JlaVGpo0ZpsNzJd8iOmS5a96sMprvxf4QllQ1vBCsddEKlt80vx8v1Eu
+         O2eF/RjQwmiEV2Wp4D0yDjtYtfBeicdpf7U+CzYaGE0wrUokjtYsOBK1KK0Z8cEpJ5qK
+         07SYQ+PqwHoe6cZ9OYsli0VcXmrcJ7J5ZL5BOfal2n+BpYWja//bnHJt7cG2SkpdWIAW
+         LxJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3sEGuWI76stDnurv18Sa0jyWxu5kNd2FGaaOg39vJxc=;
-        b=t8yBd03t9kEfxOTtsqV5YT+fZQkv8DkOvP/0wj1bQauKD6EKLd5z5kboiW4HQA6WmU
-         0iMsL1kAg/Wg8NiHnRn3w+nIJMW9KNtidQkeHsVSj/ZKFR/+XtMThrBUXI0YMDQcnJUk
-         wy8G+dzKdLAIJpRgUm/gvavv8xUk+KP+DPC4uPf9i9gDL7WnGFP5KlXDhJ7eZsyofYq5
-         Y/hOvwZ0etKuUqdghJyOfmhlZYU45rQslf12yGUvL4/gYeaFp1k04P7Qr8OqPu9jMZPq
-         aYihevfqvCn3/zn+yZajDVlF2nrxA7SaTTdohYbT6YF3ZE2ZTyn0I/vEhlWxzI24aqKv
-         ZI8w==
-X-Gm-Message-State: AOAM530U3aV0R84B3RWMZ37Yp8TjqSAFkb7x/aJQar11Z8IxCOBlEOhm
-        PQeGsq8zQ1ReoVOb4Qx60B5g7Q==
-X-Google-Smtp-Source: ABdhPJx1vXaQUgoVYXk4KwfFJpda+AzTkrp3TsTVTBAuQP5AGHXbVmJRxqYFH9lTWUwmu+iZnCn6kg==
-X-Received: by 2002:a5d:668c:: with SMTP id l12mr8156141wru.19.1638376490548;
-        Wed, 01 Dec 2021 08:34:50 -0800 (PST)
-Received: from ?IPV6:2a00:1098:3142:14:3430:4041:27d3:fbce? ([2a00:1098:3142:14:3430:4041:27d3:fbce])
-        by smtp.gmail.com with ESMTPSA id b188sm246755wmd.45.2021.12.01.08.34.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Dec 2021 08:34:50 -0800 (PST)
-Message-ID: <155d6d14-8556-9466-fb41-1f40ef202cdd@raspberrypi.com>
-Date:   Wed, 1 Dec 2021 16:34:49 +0000
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3BE63UjIea96EvWdRiabOg7XkHyFmGcLZ5+e2gzNYLQ=;
+        b=SmP+tzMmvOBFGLHiQlCzbfHPaIzyvjKu9KNVmBfD7K/B95Q+7pYp2U5ityot9D/+2J
+         74gVv+OVYf7Lwg03oTPhyEea9E1V0FCHhZEl9EfuhsiWhM47RYnudk/d4IfUyW1vpeIW
+         XemAuAUHotYEtMuFCLQWzVsK9zsk3QevqZZqaeMuCZJb/U1Z/bIr9tH7+/3YCsFNFbMl
+         ECjE2B2GX0pQ/+04nBl2nDLN0m840Tslpw68wV5QTqDja4EyfEGqJF1XFClNmHfb1/Y1
+         kffVtT/jlWeVU8KDEVAoBHNvhvgbQ2k+1jOA0FlyJqaoMvowwuMutsfKkKsHNXl2F2Af
+         GU1A==
+X-Gm-Message-State: AOAM532tVh2vsXKfxslp0my2JmvquKnjEPTuRl8nTXYI/iswjkKX9pBY
+        AexsYsL2AR98PNYf0SebtKDqbQ==
+X-Google-Smtp-Source: ABdhPJyji0CmyijyOZLAdo2xKamQ3JhV7HZ1zTsvkoYMmG5KkLCwm1Y3vZ8cbtL+LN/Zh7EYKgX0ow==
+X-Received: by 2002:adf:cd89:: with SMTP id q9mr7948147wrj.205.1638376919412;
+        Wed, 01 Dec 2021 08:41:59 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e34:ed2f:f020:72d0:52a1:d4ea:f564])
+        by smtp.gmail.com with ESMTPSA id v8sm255547wrd.84.2021.12.01.08.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 08:41:58 -0800 (PST)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     daniel.lezcano@linaro.org, robh@kernel.org
+Cc:     arnd@linaro.org, heiko@sntech.de, ulf.hansson@linaro.org,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v3 1/5] dt-bindings: Powerzone new bindings
+Date:   Wed,  1 Dec 2021 17:38:50 +0100
+Message-Id: <20211201163856.41419-1-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 1/2] pinctrl: bcm2835: Change init order for gpio hogs
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "bcm-kernel-feedback-list@broadcom.com" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-rpi-kernel@lists.infradead.org" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-References: <20211129105556.675235-1-phil@raspberrypi.com>
- <20211129105556.675235-2-phil@raspberrypi.com>
- <CAHp75Vei9FUY0gGD99gVv_FZzcpN1y_i65BB-auyAFUwqsQxNA@mail.gmail.com>
- <06345f5a-c8e7-848b-d25f-3f3e32ab5418@raspberrypi.com>
- <CAHp75VcZNUXxk7rD2sL=AFe4kz+hXX361rp15K8fN1c4x8zhXA@mail.gmail.com>
- <3f03d11b-ed73-9f1e-5de1-44cb3ae3e415@raspberrypi.com>
- <CAHp75VfWCpi+kzch1qH6rZkd+8mZmnBTYF-MWnmUvTRdJCFLtw@mail.gmail.com>
-From:   Phil Elwell <phil@raspberrypi.com>
-In-Reply-To: <CAHp75VfWCpi+kzch1qH6rZkd+8mZmnBTYF-MWnmUvTRdJCFLtw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The proposed bindings are describing a set of powerzones.
 
+A power zone is the logical name for a component which is capable of
+power capping and where we can measure the power consumption.
 
-On 01/12/2021 16:25, Andy Shevchenko wrote:
-> On Wed, Dec 1, 2021 at 6:08 PM Phil Elwell <phil@raspberrypi.com> wrote:
->> On 01/12/2021 15:38, Andy Shevchenko wrote:
-> 
-> ...
-> 
->>>>>       Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding
->>>>>                               gpiochip")
-> 
->>>>> Is it originally so strange indentation or is it only on my side?
->>>>
->>>> The "g" is below the "p" in the patch.
->>>
->>> Which is wrong. Tags mustn't be multilines (i.e. split over a single line).
->>
->> checkpatch disagrees:
-> 
-> I don't care less about checkpatch false positives. You have a chance
-> to fix it, btw.
+A power zone can aggregate several power zones in terms of power
+measurement and power limitations. That allows to apply power
+constraint to a group of components and let the system balance the
+allocated power in order to comply with the constraint.
 
-I only split it because of checkpatch. What a great tool.
+The ARM System Control and Management Interface (SCMI) can provide a
+power zone description.
 
-I'll change for V2, which I can submit now if you'll ack it with just that change.
+The powerzone semantic is also found on the Intel platform with the
+RAPL register.
 
-Phil
+The Linux kernel powercap framework deals with the powerzones:
+
+https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
+
+The powerzone can also represent a group of children powerzones, hence
+the description can result on a hierarchy. Such hierarchy already
+exists with the hardware or can be represented and computed from the
+kernel.
+
+The hierarchical description was initially proposed but not desired
+given there are other descriptions like the power domain proposing
+almost the same description.
+
+https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
+
+The description gives the power constraint dependencies to apply on a
+specific group of logically or physically aggregated devices. They do
+not represent the physical location or the power domains of the SoC
+even if the description could be similar.
+
+Cc: Arnd Bergmann <arnd@arndb.de>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+   V3:
+     - Removed required property 'compatible'
+     - Removed powerzone-cells from the topmost node
+     - Removed powerzone-cells from cpus 'consumers' in example
+     - Set additionnal property to false
+   V2:
+     - Added pattern properties and stick to powerzone-*
+     - Added required property compatible and powerzone-cells
+     - Added additionnal property
+     - Added compatible
+     - Renamed to 'powerzones'
+     - Added missing powerzone-cells to the topmost node
+     - Fixed errors reported by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+   V1: Initial post
+---
+ .../devicetree/bindings/power/powerzones.yaml | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
+
+diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
+new file mode 100644
+index 000000000000..ddb790acfea6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/powerzones.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/powerzones.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Power zones description
++
++maintainers:
++  - Daniel Lezcano <daniel.lezcano@linaro.org>
++
++description: |+
++
++  A System on Chip contains a multitude of active components and each
++  of them is a source of heat. Even if a temperature sensor is not
++  present, a source of heat can be controlled by acting on the
++  consumed power via different techniques.
++
++  A powerzone describes a component or a group of components where we
++  can control the maximum power consumption. For instance, a group of
++  CPUs via the performance domain, a LCD screen via the brightness,
++  etc ...
++
++  Different components when they are used together can significantly
++  increase the overall temperature, so the description needs to
++  reflect this dependency in order to assign a power budget for a
++  group of powerzones.
++
++  This description is done via a hierarchy and the DT reflects it. It
++  does not represent the physical location or a topology, eg. on a
++  big.Little system, the little CPUs may not be represented as they do
++  not contribute significantly to the heat, however the GPU can be
++  tied with the big CPUs as they usually have a connection for
++  multimedia or game workloads.
++    
++properties:
++  $nodename:
++    const: powerzones
++
++patternProperties:
++  "^(powerzone)([@-].*)?$":
++    type: object
++    description:
++      A node representing a powerzone acting as an aggregator for all
++      its children powerzones.
++
++    properties:
++      "#powerzone-cells":
++        description:
++          Number of cells in powerzone specifier. Typically 0 for nodes
++          representing but it can be any number in the future to
++          describe parameters of the powerzone.
++
++      powerzones:
++        description:
++          A phandle to a parent powerzone. If no powerzone attribute is
++          set, the described powerzone is the topmost in the hierarchy.
++
++    required:
++      - "#powerzone-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    powerzones {
++
++      SOC_PZ: powerzone-soc {
++        #powerzone-cells = <0>;
++      };
++
++      PKG_PZ: powerzone-pkg {
++        #powerzone-cells = <0>;
++        powerzones = <&SOC_PZ>;
++      };
++
++      GPU_PZ: powerzone-gpu {
++        #powerzone-cells = <0>;
++        powerzones = <&PKG_PZ>;
++      };
++    };
++
++  - |
++    A57_0: big@0 {
++      compatible = "arm,cortex-a57";
++      reg = <0x0 0x0>;
++      device_type = "cpu";
++      powerzones = <&PKG_PZ>;
++    };
++
++    A57_1: big@1 {
++      compatible = "arm,cortex-a57";
++      reg = <0x0 0x0>;
++      device_type = "cpu";
++      powerzones = <&PKG_PZ>;
++    };
++...
+-- 
+2.25.1
+
