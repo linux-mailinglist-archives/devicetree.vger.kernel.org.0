@@ -2,74 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 745A446478B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 08:02:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6548F464795
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 08:05:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240202AbhLAHFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 02:05:52 -0500
-Received: from 113.196.136.162.ll.static.sparqnet.net ([113.196.136.162]:60406
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S239960AbhLAHFv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 02:05:51 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(5598:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Wed, 01 Dec 2021 15:02:24 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Wed, 1 Dec 2021 15:02:19 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Wed, 1 Dec 2021
- 15:02:19 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Wells Lu <wellslutw@gmail.com>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        id S1347094AbhLAHI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 02:08:58 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:40652 "EHLO cpanel.siel.si"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1347093AbhLAHI5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 02:08:57 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=0HHMdY7fH0VJJ8PY9BgTfcGDckAtgaxqMGwy0bZ1jWA=; b=IiC1fVHbnhjVsbphiyWNRppGL6
+        SbfcGMptqAziTVkRHCv4ADFPkY6LhEV8DNuNip7EIErX4/8lellSeqUXWb/xlOk2lPDBSTgSfxXi1
+        54DW88/zTkLzeGn0pFNi6SUWt8usRwhcNMluz3Nq3qtBHNxpw38RxI3RJySUVJ/py9iKEnfsTs8Wi
+        A5oxr0OnfsPG0CqWUFhfGI4zdaCQozc5jU3HbUsScV4c+JRIa9b1DVd0/bXS5I0L9xWgirfU+KLvK
+        iNRC5yRp0FFVRPfmPgulcBs5oKUtOoMJfUBGv0vQvFLx4afrDsS5fvWS+uUNt1uVqwGzRj+1tJn32
+        e5Uu0rWA==;
+Received: from [89.212.21.243] (port=58890 helo=[192.168.69.215])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1msJgE-007VqG-KX; Wed, 01 Dec 2021 08:05:33 +0100
+Subject: Re: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
+ timeout mode
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
+Cc:     Support Opensource <Support.Opensource@diasemi.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
-Subject: RE: [PATCH net-next v3 1/2] devicetree: bindings: net: Add bindings
- doc for Sunplus SP7021.
-Thread-Topic: [PATCH net-next v3 1/2] devicetree: bindings: net: Add bindings
- doc for Sunplus SP7021.
-Thread-Index: AQHX5dF96kpitI8abkuv1MQy393+pKwcW5WAgADaG8A=
-Date:   Wed, 1 Dec 2021 07:02:19 +0000
-Message-ID: <cafbb308e5554fa2ab5db4ffe01a777d@sphcmbx02.sunplus.com.tw>
-References: <1638266572-5831-1-git-send-email-wellslutw@gmail.com>
- <1638266572-5831-2-git-send-email-wellslutw@gmail.com>
- <YabWUQdIP288U09d@lunn.ch>
-In-Reply-To: <YabWUQdIP288U09d@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211130134242.3516619-1-andrej.picej@norik.com>
+ <20211130134242.3516619-3-andrej.picej@norik.com>
+ <4591cdd6-9a7b-cd1d-817d-8950c8976d10@roeck-us.net>
+ <DB9PR10MB4652C8A69A6A3F38B93ED18880679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+ <dcd75a82-5837-8d78-0a9f-6e5b7eafff28@roeck-us.net>
+ <DB9PR10MB46521F419F43685F7103D32480679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+ <ef3f98e1-6661-84ed-1bde-747b1330aba2@norik.com>
+ <8257f965-7f0f-f513-9d86-e43baf010967@roeck-us.net>
+From:   Andrej Picej <andrej.picej@norik.com>
+Message-ID: <180e8f8e-f31c-fa80-ef64-24758a634abf@norik.com>
+Date:   Wed, 1 Dec 2021 08:05:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <8257f965-7f0f-f513-9d86-e43baf010967@roeck-us.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciByZXZpZXcuDQoNCkknbGwgbW92
-ZSBwcm9wZXJ0aWVzIG52bWVtLWNlbGxzIGFuZCBudm1lbS1jZWxsLW5hbWVzIHRvIGV0aGVybmV0
-IHBvcnRzDQphbmQgY2hhbmdlIHZhbHVlIG9mIG52bWVtLWNlbGwtbmFtZXMgdG8gIm1hYy1hZGRy
-ZXNzIiBuZXh0IHBhdGNoLg0KDQpJJ2xsIHJlZmVyIHRvICJudm1lbV9nZXRfbWFjX2FkZHJlc3Mo
-KSIgd2hlbiBtb2RpZnlpbmcgY29kZS4NCg0KDQpCZXN0IHJlZ2FyZHMsDQpXZWxscw0KDQoNCj4g
-PiArICBudm1lbS1jZWxsczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0
-aW9uOiBudm1lbSBjZWxsIGFkZHJlc3Mgb2YgTUFDIGFkZHJlc3Mgb2YgMXN0IE1BQw0KPiA+ICsg
-ICAgICAtIGRlc2NyaXB0aW9uOiBudm1lbSBjZWxsIGFkZHJlc3Mgb2YgTUFDIGFkZHJlc3Mgb2Yg
-Mm5kIE1BQw0KPiA+ICsNCj4gPiArICBudm1lbS1jZWxsLW5hbWVzOg0KPiA+ICsgICAgZGVzY3Jp
-cHRpb246IG5hbWVzIGNvcnJlc3BvbmRpbmcgdG8gdGhlIG52bWVtIGNlbGxzIG9mIE1BQyBhZGRy
-ZXNzDQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogbWFjX2FkZHIwDQo+ID4g
-KyAgICAgIC0gY29uc3Q6IG1hY19hZGRyMQ0KPiANCj4gVGhlc2UgYXJlIHBvcnQgcHJvcGVydGll
-cywgc28gcHV0IHRoZW0gaW4gdGhlIHBvcnQgc2VjdGlvbi4NCj4gDQo+IEFsc28sIHRoZSBuYW1l
-IHlvdSBzaG91bGQgdXNlIGlzIHdlbGwgZGVmaW5lZCwgIm1hYy1hZGRyZXNzIi4gIFNlZSBudm1l
-bV9nZXRfbWFjX2FkZHJlc3MoKS4NCj4gQnV0IHlvdSB3b24ndCBiZSBhYmxlIHRvIHVzZSB0aGF0
-IGhlbHBlciBiZWNhdXNlIGl0IHRha2UgZGV2LCBub3QgYW4gb2Ygbm9kZS4NCj4gDQo+IAlBbmRy
-ZXcNCg==
+
+
+On 1. 12. 21 08:01, Guenter Roeck wrote:
+> On 11/30/21 10:42 PM, Andrej Picej wrote:
+>>
+>> On 30. 11. 21 18:46, Adam Thomson wrote:
+>>> On 30 November 2021 16:40, Guenter Roeck wrote:
+>>>
+>>>>>> Why does it need a value ? Why not just bool ?
+>>>>>
+>>>>> One argument might be that if the property isn't provided then the OTP
+>>>>> configured value can persist without needing a FW change around 
+>>>>> this DT
+>>>> binding.
+>>>>>
+>>>>> My belief though is that the majority of users would have this 
+>>>>> property set to 0
+>>>>> by default in OTP, so a boolean would be OK I think here to enable 
+>>>>> watchdog
+>>>>> shutdown.
+>>>>>
+>>>>
+>>>> Sorry, you lost me.
+>>>>     dlg,wdt-sd = <0>;
+>>>> is the current situation, and identical to not having the property in
+>>>> the first place.
+>>>>     dlg,wdt-sd = <1>;
+>>>> is new. I don't see the difference to
+>>>>     dlg,wdt-sd;
+>>>> vs. not having the property at all (which is, again, the current 
+>>>> situation).
+>>>> Since it has to be backward compatible,
+>>>>     dlg,wdt-sd = <0>;
+>>>> will always be identical to not having the property at all.
+>>>> I can not find a situation where an integer would have any benefits 
+>>>> over a
+>>>> boolean.
+>>>
+>>> So if you have a binary DT binding, it's either there or it isn't 
+>>> which implies
+>>> the bit to be set to 0/1 in this case. If you have a binding which 
+>>> has a value,
+>>> there can be 3 outcomes in this discussion:
+>>>
+>>>   1) Binding = 0, bit is set to 0
+>>>   2) Binding = 1, bit is set to 1
+>>>   3) Binding NOT present in DT, OTP default value in HW remains 
+>>> untouched
+>>>
+>>> Say a platform updates to a later kernel version, but sticks with 
+>>> existing DT
+>>> FW (i.e. the new boolean binding isn't present in FW), then the 
+>>> following could
+>>> happen:
+>>>
+>>>   1) OTP for DA9061/2 has this bit set to 1, system expectation is 
+>>> that watchdog
+>>>      triggers SHUTDOWN.
+>>>   2) New driver checks existance of 'dlg,wdt-sd' but it's obviously 
+>>> not there so
+>>>      assumes the bit should be set to 0 and does so
+>>>   3) When the watchdog fires, it will no longer trigger SHUTDOWN but 
+>>> instead
+>>>      POWER-DOWN due to binary handling of new boolean binding.
+>>>
+>>
+>> This was my thinking exactly. I also first thought about boolean 
+>> value, but I then moved to the integer value of 0 or 1 after checking 
+>> the OTP default for this bit. The da9062 I'm working with has the bit 
+>> set to 1 by default.
+> 
+> That needs to be be documented.
+> 
+> Guenter
+
+Ok, I will add a note about the default value and how it is defined by 
+OTP. Will submit a v3.
+
+Thanks for review.
+
+BR,
+Andrej
