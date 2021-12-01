@@ -2,72 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE53C4646B6
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 06:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31039464751
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 07:42:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232204AbhLAFcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 00:32:25 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53340 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230006AbhLAFcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 00:32:24 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 71C1CA15;
-        Wed,  1 Dec 2021 06:29:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1638336543;
-        bh=18rskSMhCWOeDsN6haLX9hFk3hSUOW3sLWSQxJqBq2g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YX515xM6wIxFMa55P6ePQTTCdGELPEkfBn83BIb3/wx379UtoS3Ln4WGZE98OF51x
-         PrxYYVAJFxY5s6hDsTIGoUvNZ7Mg38EtcsfHQwPSRmH5lJEB3202L2/18gVno/0I1d
-         H0+hmcYMVn7ltUSDI5BSzreAXhy5rBbZSQpHGmhs=
-Date:   Wed, 1 Dec 2021 07:28:38 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc:     Geert Uytterhoeven <geert@glider.be>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 0/2] arm64: dts: renesas: r8a779a0 DU support
-Message-ID: <YacIBqPcq12TEDeM@pendragon.ideasonboard.com>
-References: <20211130164311.2909616-1-kieran.bingham+renesas@ideasonboard.com>
+        id S236929AbhLAGqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 01:46:09 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:37018 "EHLO cpanel.siel.si"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231351AbhLAGqJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 01:46:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=9tEWLLnoJ9e/iCRhS+OvG8quy9qZa4ZHjFXJse9l/Ag=; b=EQkdbl7ihTADupGzMOsgPpKTj/
+        ikIB0kjr8s7dqsUO2H/ZuT6bYtj7F8Zu6/p3WUEuRpd7sYGFYQECxS+lCaINd5Zu7liN3obNYyy6p
+        YIsJigoVgTwVtL4J3x5drEnvW4Q0f1Wf599K9VhtffYGONNB/8GErSjkFIJJG7OEe5hBi1jHhhxf3
+        h+R7tgYZ9unVfmnl4ogCHkamH6a3toBu+1qwrESAR9cXJQaaGbIrATxnMK4GGEHPndF/8uezDe1pA
+        rieW9UbBXtPxkXw3QxdsvG6fV+rQ6GjZ+gJjPLOXNzV5eMfM6QuGs5+OWi17dN1ROIz9LBha+RaJq
+        xB+zzKEw==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:58376 helo=[192.168.69.215])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1msJK8-007T3q-Me; Wed, 01 Dec 2021 07:42:44 +0100
+Subject: Re: [PATCH v2 3/4] dt-bindings: watchdog: da9062: add watchdog
+ timeout mode
+To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     Support Opensource <Support.Opensource@diasemi.com>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211130134242.3516619-1-andrej.picej@norik.com>
+ <20211130134242.3516619-3-andrej.picej@norik.com>
+ <4591cdd6-9a7b-cd1d-817d-8950c8976d10@roeck-us.net>
+ <DB9PR10MB4652C8A69A6A3F38B93ED18880679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+ <dcd75a82-5837-8d78-0a9f-6e5b7eafff28@roeck-us.net>
+ <DB9PR10MB46521F419F43685F7103D32480679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+From:   Andrej Picej <andrej.picej@norik.com>
+Message-ID: <ef3f98e1-6661-84ed-1bde-747b1330aba2@norik.com>
+Date:   Wed, 1 Dec 2021 07:42:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20211130164311.2909616-1-kieran.bingham+renesas@ideasonboard.com>
+In-Reply-To: <DB9PR10MB46521F419F43685F7103D32480679@DB9PR10MB4652.EURPRD10.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kieran,
 
-On Tue, Nov 30, 2021 at 04:43:09PM +0000, Kieran Bingham wrote:
-> Provide the DT nodes for the DSI found on the r8a779a0, and extend the
-> falcon-cpu board add on with the TI SN65DSI86 bridge which is used to
-> connect the DSI output to the mini display-port connector on the Falcon
-> CPU board.
+On 30. 11. 21 18:46, Adam Thomson wrote:
+> On 30 November 2021 16:40, Guenter Roeck wrote:
 > 
-> This has been successfully tested on a Falcon-V3U with patches to the
-> rcar_du and sn65dsi86 which will be sent separately.
+>>>> Why does it need a value ? Why not just bool ?
+>>>
+>>> One argument might be that if the property isn't provided then the OTP
+>>> configured value can persist without needing a FW change around this DT
+>> binding.
+>>>
+>>> My belief though is that the majority of users would have this property set to 0
+>>> by default in OTP, so a boolean would be OK I think here to enable watchdog
+>>> shutdown.
+>>>
+>>
+>> Sorry, you lost me.
+>> 	dlg,wdt-sd = <0>;
+>> is the current situation, and identical to not having the property in
+>> the first place.
+>> 	dlg,wdt-sd = <1>;
+>> is new. I don't see the difference to
+>> 	dlg,wdt-sd;
+>> vs. not having the property at all (which is, again, the current situation).
+>> Since it has to be backward compatible,
+>> 	dlg,wdt-sd = <0>;
+>> will always be identical to not having the property at all.
+>> I can not find a situation where an integer would have any benefits over a
+>> boolean.
 > 
-> Since the previous version, the core "r8a779a0: Add DU support" has
-> already been accepted into the renesas-drivers tree, and the "r8a779a0:
-> Provide default DSI data-lanes" patch has been dropped in favour of a
-> better construction in the two patches supplied here.
-
-I've reposted the DSI driver and its bindings, and unless something goes
-terribly wrong, I'll send a pull request in a couple of days.
-
-Geert, how would you like to proceed with the DT changes ?
-
-> Kieran Bingham (2):
->   arm64: dts: renesas: r8a779a0: Add DSI encoders
->   arm64: dts: renesas: r8a779a0: falcon-cpu: Add DSI display output
+> So if you have a binary DT binding, it's either there or it isn't which implies
+> the bit to be set to 0/1 in this case. If you have a binding which has a value,
+> there can be 3 outcomes in this discussion:
 > 
->  .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi | 79 +++++++++++++++++++
->  arch/arm64/boot/dts/renesas/r8a779a0.dtsi     | 60 ++++++++++++++
->  2 files changed, 139 insertions(+)
+>   1) Binding = 0, bit is set to 0
+>   2) Binding = 1, bit is set to 1
+>   3) Binding NOT present in DT, OTP default value in HW remains untouched
+> 
+> Say a platform updates to a later kernel version, but sticks with existing DT
+> FW (i.e. the new boolean binding isn't present in FW), then the following could
+> happen:
+> 
+>   1) OTP for DA9061/2 has this bit set to 1, system expectation is that watchdog
+>      triggers SHUTDOWN.
+>   2) New driver checks existance of 'dlg,wdt-sd' but it's obviously not there so
+>      assumes the bit should be set to 0 and does so
+>   3) When the watchdog fires, it will no longer trigger SHUTDOWN but instead
+>      POWER-DOWN due to binary handling of new boolean binding.
 > 
 
--- 
-Regards,
-
-Laurent Pinchart
+This was my thinking exactly. I also first thought about boolean value, 
+but I then moved to the integer value of 0 or 1 after checking the OTP 
+default for this bit. The da9062 I'm working with has the bit set to 1 
+by default.
