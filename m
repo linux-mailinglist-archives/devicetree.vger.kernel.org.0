@@ -2,121 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02067464BD7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:42:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB595464BE5
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:46:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348769AbhLAKpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 05:45:43 -0500
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:43587 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242525AbhLAKpl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:45:41 -0500
-Received: (Authenticated sender: foss@0leil.net)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id D299E40005;
-        Wed,  1 Dec 2021 10:42:17 +0000 (UTC)
-Date:   Wed, 1 Dec 2021 11:42:15 +0100
-From:   Quentin Schulz <foss+kernel@0leil.net>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/2] iio:adc:axp20x: add support for NTC thermistor
-Message-ID: <20211201104215.usstwfbvrv7pamqp@fiqs>
-References: <20211118141233.247907-1-boger@wirenboard.com>
- <20211118141233.247907-2-boger@wirenboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211118141233.247907-2-boger@wirenboard.com>
+        id S1348768AbhLAKuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 05:50:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348765AbhLAKuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:50:08 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3606AC061574;
+        Wed,  1 Dec 2021 02:46:48 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id u11so17368637plf.3;
+        Wed, 01 Dec 2021 02:46:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=QgI8xfOKbtqJvm3pifM8iV6LJY7gb3a9XtF8BRLsjus=;
+        b=ix8S9kprhXYll66e5bza/ClsATBsMxTY00mtPqwtjQb69tlbPV/zss/b7p6jeGUEqX
+         GHuZAA/IxBu1qAIyYRC2aceIo3IqdLkSMeRl0huJjN/j1vN1NqVTqwJc/JI6Y38JS9Xh
+         pjXh8J8tnahIZRFb9snFsOhpljsnlT3J0bMeJCZ6d4EODmuXzOaIhTj5KaTTt0YFQ+O6
+         ee8Pk7ytgxybwgTA6eLIZtUXEVCVuwivedIopApbSEh6p/Cht0wcLgsbpB9ggIW5HI+O
+         NoR+d5WScTrrD3FJ8tw1dIaMJiFeZPz6V5GHUXkwibUuJRxqAKbQgLcra2+Tg5BCe9c9
+         yyCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=QgI8xfOKbtqJvm3pifM8iV6LJY7gb3a9XtF8BRLsjus=;
+        b=4UvM6zC0FeU5JMHNlYsXkPfDhg/uuqpm6r0mbR1OJ0iiCIP9lqGRic82mZxerORSwb
+         2VRRZDcQedNN0UhndhZYSJsuVM7GORpi0Fus1mqeNV/d0lw9rSb6b4OdsN96f1CuB8J7
+         CcgEtXo1shz/iFOelikRqDKESJ5v8fkH4hsaEkEv+m1fjIQQF3+RktKmGPs/4Oxnlx6I
+         RfzVOv39s1EMMDePwQnLs3oqsY/mAT6DDq4hqhoe2u7rp6jkqKzxX5Q1+IUB1WkQy2CT
+         +Kvahzddk3hJL1zyrBwo0+MUg8O/vu9tGHxH8eXHkxb3USdd/bXbFxw7+mAGTuwpk6Ss
+         EqDw==
+X-Gm-Message-State: AOAM533rEqMMczOT1Cyf1U9foRbrNJh/juoTTjRQkt83OsZ+h9YKN9jp
+        5U4Odw9Qrm7JgX2Yni+rlwA=
+X-Google-Smtp-Source: ABdhPJwPfbK12znXFavPJ3yqk3Xt9XK8n+hr6qdOJR2JiO0LaP3Paje4qQq1UqINPE1Qtd1NOmBcsQ==
+X-Received: by 2002:a17:902:d505:b0:141:f5f7:848e with SMTP id b5-20020a170902d50500b00141f5f7848emr6454307plg.72.1638355607514;
+        Wed, 01 Dec 2021 02:46:47 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id f22sm26395318pfj.49.2021.12.01.02.46.45
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 01 Dec 2021 02:46:47 -0800 (PST)
+From:   Hammer Hsieh <hammerh0314@gmail.com>
+X-Google-Original-From: Hammer Hsieh <hammer.hsieh@sunplus.com>
+To:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jirislaby@kernel.org,
+        p.zabel@pengutronix.de
+Cc:     tony.huang@sunplus.com, wells.lu@sunplus.com,
+        Hammer Hsieh <hammer.hsieh@sunplus.com>
+Subject: [PATCH v4 0/2] Add UART driver for Suplus SP7021 SoC
+Date:   Wed,  1 Dec 2021 18:46:42 +0800
+Message-Id: <1638355604-24002-1-git-send-email-hammer.hsieh@sunplus.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Evgeny,
+This is a patch series for UART driver for Suplus SP7021 SoC.
 
-On Thu, Nov 18, 2021 at 05:12:32PM +0300, Evgeny Boger wrote:
-> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
-> TS pin. When appropriately configured, AXP PMICs will inject fixed
-> current (80uA by default) into TS pin and measure the voltage across a
-> thermistor. The PMIC itself will by default compare this voltage with
-> predefined thresholds  and disable battery charging whenever
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-They actually are configurable, we just don't have the knobs for this in
-the kernel.
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-"In the diagram above, VTH/VTL refers to the high temperature threshold
-and low temperature threshold, which is programmable via registers
-REG38H/39H/3CH/3DH respectively. " in AXP209 datasheet, section
-"Battery temperature detection".
+Hammer Hsieh (2):
+  dt-bindings:serial:Add bindings doc for Sunplus SoC UART Driver
+  serial:sunplus-uart:Add Sunplus SoC UART Driver
 
-> the battery is too hot or too cold.
-> 
-> Alternatively, the TS pin can be configured as general-purpose
-> ADC input. This mode is not supported by the driver.
-> 
-> This patch allows reading the voltage on the TS pin. It can be then
-> either processed by userspace or used by kernel consumer like hwmon
-> ntc thermistor driver.
-> 
-> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> ---
->  drivers/iio/adc/axp20x_adc.c | 45 +++++++++++++++++++++++++++++++-----
->  1 file changed, 39 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
-> index 3e0c0233b431..12d469a52cea 100644
-> --- a/drivers/iio/adc/axp20x_adc.c
-> +++ b/drivers/iio/adc/axp20x_adc.c
-[...]
-> +static int axp22x_adc_scale_voltage(int channel, int *val, int *val2)
-> +{
-> +	switch (channel) {
-> +	case AXP22X_BATT_V:
-> +		/* 1.1 mV per LSB */
-> +		*val = 1;
-> +		*val2 = 100000;
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +
-> +	case AXP22X_TS_IN:
-> +		/* 0.8 mV per LSB */
-> +		*val = 0;
-> +		*val2 = 800000;
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
->  static int axp813_adc_scale_voltage(int channel, int *val, int *val2)
->  {
->  	switch (channel) {
-[...]
-> @@ -378,12 +415,7 @@ static int axp22x_adc_scale(struct iio_chan_spec const *chan, int *val,
->  {
->  	switch (chan->type) {
->  	case IIO_VOLTAGE:
-> -		if (chan->channel != AXP22X_BATT_V)
-> -			return -EINVAL;
-> -
-> -		*val = 1;
-> -		*val2 = 100000;
-> -		return IIO_VAL_INT_PLUS_MICRO;
-> +		return axp22x_adc_scale_voltage(chan->channel, val, val2);
->  
+ .../bindings/serial/sunplus,sp7021-uart.yaml       |  58 ++
+ MAINTAINERS                                        |   6 +
+ drivers/tty/serial/Kconfig                         |  23 +
+ drivers/tty/serial/Makefile                        |   1 +
+ drivers/tty/serial/sunplus-uart.c                  | 848 +++++++++++++++++++++
+ 5 files changed, 936 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/serial/sunplus,sp7021-uart.yaml
+ create mode 100644 drivers/tty/serial/sunplus-uart.c
 
-I would have personally split the move to a separate
-axp22x_adc_scale_voltage function in a separate commit. I was a bit
-confused at first why in the diff above there was a AXP22X_BATT_V
-addition since this commit is about AXP22X_TS_IN.
+-- 
+2.7.4
 
-If the maintainers are ok with it, I don't mind too much.
-
-I don't have the HW to test this, but changes look ok.
-
-Reviewed-by: Quentin Schulz <foss+kernel@0leil.net>
-
-Thanks!
-Quentin
