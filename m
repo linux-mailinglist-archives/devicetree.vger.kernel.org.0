@@ -2,881 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 661F9464588
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 04:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B1C464595
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 04:50:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241617AbhLADnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 22:43:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39732 "EHLO
+        id S231571AbhLADxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 22:53:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241585AbhLADnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 22:43:05 -0500
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82598C061574;
-        Tue, 30 Nov 2021 19:39:45 -0800 (PST)
-Received: by mail-pg1-x52e.google.com with SMTP id 71so22105853pgb.4;
-        Tue, 30 Nov 2021 19:39:45 -0800 (PST)
+        with ESMTP id S231776AbhLADxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 22:53:32 -0500
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A66C061748
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 19:50:12 -0800 (PST)
+Received: by mail-oo1-xc34.google.com with SMTP id b1-20020a4a8101000000b002c659ab1342so7415846oog.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 19:50:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kWIpySF1d/Zr8IMCAyrZ2vbt1slTq5eegO5DTaOjHWg=;
-        b=DuikULykV/vrW/nqtehNTXEhaTKypwk0ZY8V096ivzMbZM99GgJRnRj7dpZRFpjkVT
-         bYFAxLgmLbCF7lpJFBEPtrJwvfrqzd5BSZQXiD4QfBtF1Whhi/EatWXrp/u1p6Dx34nK
-         8HqqMzhlKGLkF5Vmt8LA9ijGyyv0+IK2mBJ0sClHQkysg//iTE9I0xge5XCQGyRt/Qu5
-         jP1++FfKFSZGuFiFHwOz8oAIfzXNSTzbELaWMtxTVyH63vpbXNsrQy4SnjhuuRRTSdeM
-         1GGMwmlcW991B02VlGYQAaOM9fLAq82gQrXRi0fRdiVTXWrf2AVEKOE9wvCEh5Wq6AE2
-         qfxg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Vh64HlEJjPzjJ+Mpfa13ShJlj+Z94ObsnHICCNTz+Qs=;
+        b=lgIhSMrQStWm/xh3G3jIw9VllTe2uKgdqLWQywK8mPMN+TqFpMnWA8BVqxedCNZIp0
+         tfQc8DXMlTjFF4Mh5ojJuwIVQesS4v57XTZM//Z39i1QChQU1Dsu1aGMXjBCicJXJm7B
+         Jx4/Ht00O9olvh5hPGd/uv2678KjeqEYOfEFNoSpPbBvGMtvgOvM6aGOQuYBcokK1u1u
+         INobD5negB4q1vdB3i4zUVAbOYa3ZkpJ3RDJYEwBZe4oXxE1moESg3Vr5ni+nfJVs1BR
+         mGOXt2ti5p+WmIiRwXIuxwkmdNPwAXIIkZ1XJEYTm4BEMnYkCekrCuJHb57FTkGemFsW
+         hiow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kWIpySF1d/Zr8IMCAyrZ2vbt1slTq5eegO5DTaOjHWg=;
-        b=M9ZGTRr84Z0VCTUo2OBZ70l7XUDRIWDCWpTbntl5nsxtZDmOVgDg6uXv4+/drFtas7
-         CYOjRzh7446bjslyheFF4IVTWsmlmuceO1YbbzTVdAdl8hUf66WdOFEzWkj449M4YZBI
-         dr78bRIicgX+jotYAaOLqp1HAUWsR74FkR3pL74jLfIsLXQdpzCsnLJrx79T1m8RbBNT
-         TfbsMoJfakJc5HTc1Bh5Nz2uTKVKqX8zF9ibW2wlB3biXNUjHcmZslreTriRD58HTtyn
-         7AzBvdZpQyFaAmvAl2EhexxYiJsopTLnfUjcwvt7WN9Tjne1KElRCl+Wbp2WaMBitCF/
-         BypA==
-X-Gm-Message-State: AOAM533FNLIhv17bo87tQ5uBbvfW6J/0A8O9oXcaLZ3lsVgFiNkMChTr
-        O+7z65RbjB+nYIMe0xFsMrE=
-X-Google-Smtp-Source: ABdhPJwyP4ISD99M43VmamWFXL0MAi/rZzgbyLUJbpWpl3+MnH/K6AZprlX5KBgaeZoAfLAduOQcTQ==
-X-Received: by 2002:a63:6849:: with SMTP id d70mr2674853pgc.269.1638329984855;
-        Tue, 30 Nov 2021 19:39:44 -0800 (PST)
-Received: from howard-System-Product-Name.dhcpserver.bu9bmc.local (125-228-123-29.hinet-ip.hinet.net. [125.228.123.29])
-        by smtp.gmail.com with ESMTPSA id bf19sm3989591pjb.6.2021.11.30.19.39.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Vh64HlEJjPzjJ+Mpfa13ShJlj+Z94ObsnHICCNTz+Qs=;
+        b=qGd5mW+2lQLbMYBVT+ZR0CzZchFw0A6ks699Yxz9m8ElKJS/74Ey54WOpwYliiXygd
+         ysoLEdyLnVCiTb8eckH96IIWeIfnN06ECVrQtXm/jY/4LmxgUc1b5F7xNUMGGderc+ma
+         B72E8SjYtkSU4atDNu70Dm8vYoVIaJFSTh+ChuTTwHwvUy+v96+v25lupNpwvqfjD92S
+         lrP9n1/ImuwwF9U6pWURqZswYfsaPyOepIdi5tR8lkXryOEjlAAmPR8lJ8qnmsVY2kY1
+         PDSMwyRz5xqJNPN4zwCPBNLVByxKzhyoBg+D3y626vmdr0ZBWNFGAoRbHxh8/c77dIoR
+         3u8g==
+X-Gm-Message-State: AOAM532qTP46ajfpd/UMBCaiXXr7H/BpUtzEovVkbmbfbsYgWud2ed4X
+        LP6AJp2nQUo3zLGxs+3pQJ76Mg==
+X-Google-Smtp-Source: ABdhPJzH+r5KszynhMHork3TPK+4l/u0Mu1pjmCk4Dh4XaNoVyejeWYQu/mXe80D4FYluMpd7xN6VQ==
+X-Received: by 2002:a4a:a641:: with SMTP id j1mr2714339oom.63.1638330611085;
+        Tue, 30 Nov 2021 19:50:11 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id x16sm3574994otq.47.2021.11.30.19.50.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Nov 2021 19:39:44 -0800 (PST)
-From:   Howard Chiu <howard10703049@gmail.com>
-X-Google-Original-From: Howard Chiu <howard.chiu@quantatw.com>
-To:     arnd@arndb.de, olof@lixom.net, soc@kernel.org, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        patrick@stwcx.xyz
-Cc:     Howard Chiu <howard.chiu@quantatw.com>
-Subject: [PATCH v6] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-Date:   Wed,  1 Dec 2021 11:37:38 +0800
-Message-Id: <20211201033738.121846-1-howard.chiu@quantatw.com>
-X-Mailer: git-send-email 2.25.1
+        Tue, 30 Nov 2021 19:50:10 -0800 (PST)
+Date:   Tue, 30 Nov 2021 21:50:06 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-remoteproc@vger.kernel.org, phone-devel@vger.kernel.org,
+        Aleksander Morgado <aleksander@aleksander.es>
+Subject: Re: [PATCH 1/2] remoteproc: qcom_q6v5_mss: Populate additional
+ devices from DT
+Message-ID: <Yabw7kCsbhE1EFhW@builder.lan>
+References: <20211129132930.6901-1-stephan@gerhold.net>
+ <20211129132930.6901-2-stephan@gerhold.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211129132930.6901-2-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Initial introduction of Facebook Bletchley equipped with
-Aspeed 2600 BMC SoC.
+On Mon 29 Nov 07:29 CST 2021, Stephan Gerhold wrote:
 
-Signed-off-by: Howard Chiu <howard.chiu@quantatw.com>
+> Some devices without own memory resources could be placed anywhere in the
+> device tree but they logically belong to the modem remote processor. Make
+> it possible to probe them when defined under the mpss device tree node
+> by calling of_platform_populate().
+> 
 
-Change since v5:
-- Add an EEPROM on i2c-7
-- Change address of FUSB302 to 0x22
-- Assign interrupt pin to FUSB302
-- Rework pin assignment of pca9539
+This seems reasonable, but other "child devices" of the remoteproc
+follows the state of the remoteproc instance. So I'm worried that this
+will create an inconsistency in that assumption.
 
-Change since v4:
-- Change address of TMP421 on i2c-12 to 0x4d
+> This can be used for BAM-DMUX for example, which provides the WWAN network
+> interfaces on some older Qualcomm SoCs such as MSM8916 or MSM8974.
+> 
 
-Change since v3:
-- Add a TMP421 on i2c-10
+Is there a technical reason for placing the BAM-DMUX within the modem
+remoteproc node? Can we simply move it to / ?
 
-Change since v2:
-- Remove uart5 workaround
-- Remove gpio nodes of pca9552/pca9539
-- Modify gpio-line-name of led/power/presence pins with openbmc pattern
-- Add MP5023 devices
+Regards,
+Bjorn
 
-Change since v1:
-- Keep sorted in Makefile
-- Change baudrate to 57600 from 115200
-- Rename node *-ember to *-amber
-- Use openbmc-flash-layout-128.dtsi
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/aspeed-bmc-facebook-bletchley.dts     | 760 ++++++++++++++++++
- 2 files changed, 761 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 0de64f237cd8..b804b577010a 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1482,6 +1482,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
- 	aspeed-bmc-bytedance-g220a.dtb \
-+	aspeed-bmc-facebook-bletchley.dtb \
- 	aspeed-bmc-facebook-cloudripper.dtb \
- 	aspeed-bmc-facebook-cmm.dtb \
- 	aspeed-bmc-facebook-elbert.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-new file mode 100644
-index 000000000000..c013ebe1704a
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-@@ -0,0 +1,760 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2021 Facebook Inc.
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+#include <dt-bindings/usb/pd.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "Facebook Bletchley BMC";
-+	compatible = "facebook,bletchley-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		bootargs = "console=ttyS4,57600n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+			<&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-+	};
-+
-+	spi_gpio: spi-gpio {
-+		status = "okay";
-+		compatible = "spi-gpio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-sck = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-+		gpio-mosi = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-+		gpio-miso = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-+		num-chipselects = <1>;
-+		cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-+
-+		tpmdev@0 {
-+			compatible = "tcg,tpm_tis-spi";
-+			spi-max-frequency = <33000000>;
-+			reg = <0>;
-+		};
-+	};
-+
-+	switchphy: ethernet-phy@0 {
-+		// Fixed-link
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		sys_log_id {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&front_leds 0 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan0_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 8 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan1_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 9 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan2_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 10 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan3_blue {
-+			retain-state-shutdown;
-+			default-state = "on";
-+			gpios = <&fan_ioexp 11 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan0_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 12 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan1_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 13 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan2_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 14 GPIO_ACTIVE_HIGH>;
-+		};
-+		fan3_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&fan_ioexp 15 GPIO_ACTIVE_HIGH>;
-+		};
-+		sled0_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled0_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled0_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled0_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled1_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled1_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled1_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled1_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled2_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled2_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled2_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled2_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled3_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled3_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled3_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled3_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled4_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled4_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled4_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled4_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+		sled5_amber {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled5_leds 0 GPIO_ACTIVE_LOW>;
-+		};
-+		sled5_blue {
-+			retain-state-shutdown;
-+			default-state = "off";
-+			gpios = <&sled5_leds 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&mac2 {
-+	status = "okay";
-+	phy-mode = "rgmii";
-+	phy-handle = <&switchphy>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii3_default>;
-+
-+	fixed-link {
-+		speed = <1000>;
-+		full-duplex;
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-128.dtsi"
-+	};
-+};
-+
-+&spi2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "pnor";
-+		spi-max-frequency = <100000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled0_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED0_MS_DETECT1","SLED0_VBUS_BMC_EN","SLED0_INA230_ALERT","SLED0_P12V_STBY_ALERT",
-+		"SLED0_SSD_ALERT","SLED0_MS_DETECT0","SLED0_RST_CCG5","SLED0_FUSB302_INT",
-+		"SLED0_MD_STBY_RESET","SLED0_MD_IOEXP_EN_FAULT","SLED0_MD_DIR","SLED0_MD_DECAY",
-+		"SLED0_MD_MODE1","SLED0_MD_MODE2","SLED0_MD_MODE3","power-host0";
-+	};
-+
-+	sled0_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled0-amber","led-sled0-blue","SLED0_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled0_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <ASPEED_GPIO(M, 0) IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled1_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED1_MS_DETECT1","SLED1_VBUS_BMC_EN","SLED1_INA230_ALERT","SLED1_P12V_STBY_ALERT",
-+		"SLED1_SSD_ALERT","SLED1_MS_DETECT0","SLED1_RST_CCG5","SLED1_FUSB302_INT",
-+		"SLED1_MD_STBY_RESET","SLED1_MD_IOEXP_EN_FAULT","SLED1_MD_DIR","SLED1_MD_DECAY",
-+		"SLED1_MD_MODE1","SLED1_MD_MODE2","SLED1_MD_MODE3","power-host1";
-+	};
-+
-+	sled1_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled1-amber","led-sled1-blue","SLED1_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled1_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <ASPEED_GPIO(M, 1) IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled2_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED2_MS_DETECT1","SLED2_VBUS_BMC_EN","SLED2_INA230_ALERT","SLED2_P12V_STBY_ALERT",
-+		"SLED2_SSD_ALERT","SLED2_MS_DETECT0","SLED2_RST_CCG5","SLED2_FUSB302_INT",
-+		"SLED2_MD_STBY_RESET","SLED2_MD_IOEXP_EN_FAULT","SLED2_MD_DIR","SLED2_MD_DECAY",
-+		"SLED2_MD_MODE1","SLED2_MD_MODE2","SLED2_MD_MODE3","power-host2";
-+	};
-+
-+	sled2_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled2-amber","led-sled2-blue","SLED2_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled2_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <ASPEED_GPIO(M, 2) IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled3_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED3_MS_DETECT1","SLED3_VBUS_BMC_EN","SLED3_INA230_ALERT","SLED3_P12V_STBY_ALERT",
-+		"SLED3_SSD_ALERT","SLED3_MS_DETECT0","SLED3_RST_CCG5","SLED3_FUSB302_INT",
-+		"SLED3_MD_STBY_RESET","SLED3_MD_IOEXP_EN_FAULT","SLED3_MD_DIR","SLED3_MD_DECAY",
-+		"SLED3_MD_MODE1","SLED3_MD_MODE2","SLED3_MD_MODE3","power-host3";
-+	};
-+
-+	sled3_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled3-amber","led-sled3-blue","SLED3_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled3_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <ASPEED_GPIO(M, 3) IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			data-role = "dual";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled4_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED4_MS_DETECT1","SLED4_VBUS_BMC_EN","SLED4_INA230_ALERT","SLED4_P12V_STBY_ALERT",
-+		"SLED4_SSD_ALERT","SLED4_MS_DETECT0","SLED4_RST_CCG5","SLED4_FUSB302_INT",
-+		"SLED4_MD_STBY_RESET","SLED4_MD_IOEXP_EN_FAULT","SLED4_MD_DIR","SLED4_MD_DECAY",
-+		"SLED4_MD_MODE1","SLED4_MD_MODE2","SLED4_MD_MODE3","power-host4";
-+	};
-+
-+	sled4_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled4-amber","led-sled4-blue","SLED4_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled4_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <ASPEED_GPIO(M, 4) IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	/* TODO: Add ADC INA230 */
-+
-+	mp5023@40 {
-+		compatible = "pmbus";
-+		reg = <0x40>;
-+	};
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	sled5_ioexp: pca9539@76 {
-+		compatible = "nxp,pca9539";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"SLED5_MS_DETECT1","SLED5_VBUS_BMC_EN","SLED5_INA230_ALERT","SLED5_P12V_STBY_ALERT",
-+		"SLED5_SSD_ALERT","SLED5_MS_DETECT0","SLED5_RST_CCG5","SLED5_FUSB302_INT",
-+		"SLED5_MD_STBY_RESET","SLED5_MD_IOEXP_EN_FAULT","SLED5_MD_DIR","SLED5_MD_DECAY",
-+		"SLED5_MD_MODE1","SLED5_MD_MODE2","SLED5_MD_MODE3","power-host5";
-+	};
-+
-+	sled5_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-sled5-amber","led-sled5-blue","SLED5_RST_IOEXP","",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+
-+	sled5_fusb302: typec-portc@54 {
-+		compatible = "fcs,fusb302";
-+		reg = <0x22>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <ASPEED_GPIO(M, 5) IRQ_TYPE_LEVEL_LOW>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-+					PDO_VAR(3000, 12000, 3000)
-+					PDO_PPS_APDO(3000, 11000, 3000)>;
-+			op-sink-microwatt = <10000000>;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	eeprom@56 {
-+		compatible = "atmel,24c64";
-+		reg = <0x56>;
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf85263";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+
-+	eeprom@54 {
-+		compatible = "atmel,24c64";
-+		reg = <0x54>;
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+
-+	tmp421@4f {
-+		compatible = "ti,tmp421";
-+		reg = <0x4f>;
-+	};
-+
-+	hdc1080@40 {
-+		compatible = "ti,hdc1080";
-+		reg = <0x40>;
-+	};
-+
-+	front_leds: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"led-fault-identify","power-p5v-stby-good",
-+		"power-p1v0-dvdd-good","power-p1v0-avdd-good",
-+		"","","","",
-+		"","","","",
-+		"","","","";
-+	};
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+
-+	adm1278@11 {
-+		compatible = "adi,adm1278";
-+		reg = <0x11>;
-+	};
-+
-+	tmp421@4c {
-+		compatible = "ti,tmp421";
-+		reg = <0x4c>;
-+	};
-+
-+	tmp421@4d {
-+		compatible = "ti,tmp421";
-+		reg = <0x4d>;
-+	};
-+
-+	fan_ioexp: pca9552@67 {
-+		compatible = "nxp,pca9552";
-+		reg = <0x67>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio-line-names =
-+		"presence-fan0","presence-fan1",
-+		"presence-fan2","presence-fan3",
-+		"power-fan0-good","power-fan1-good",
-+		"power-fan2-good","power-fan3-good",
-+		"","","","",
-+		"","","","";
-+	};
-+};
-+
-+&i2c13 {
-+	multi-master;
-+	aspeed,hw-timeout-ms = <1000>;
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"","","","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"presence-riser1","presence-riser2",
-+			"presence-sled0","presence-sled1",
-+			"presence-sled2","presence-sled3",
-+			"presence-sled4","presence-sled5",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"alert_sled0","alert_sled1",
-+			"alert_sled2","alert_sled3",
-+			"alert_sled4","alert_sled5",
-+			"p12v_aux_alert1","",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
-+&adc0 {
-+	vref = <1800>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	vref = <2500>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		&pinctrl_adc10_default &pinctrl_adc11_default
-+		&pinctrl_adc12_default &pinctrl_adc13_default
-+		&pinctrl_adc14_default &pinctrl_adc15_default>;
-+};
--- 
-2.25.1
-
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> ---
+>  drivers/remoteproc/qcom_q6v5_mss.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> index 43ea8455546c..69f3d1ebf1f1 100644
+> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> @@ -1989,8 +1989,14 @@ static int q6v5_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto remove_sysmon_subdev;
+>  
+> +	ret = of_platform_populate(pdev->dev.of_node, NULL, NULL, &pdev->dev);
+> +	if (ret)
+> +		goto remove_rproc;
+> +
+>  	return 0;
+>  
+> +remove_rproc:
+> +	rproc_del(rproc);
+>  remove_sysmon_subdev:
+>  	qcom_remove_sysmon_subdev(qproc->sysmon);
+>  remove_subdevs:
+> @@ -2010,6 +2016,7 @@ static int q6v5_remove(struct platform_device *pdev)
+>  	struct q6v5 *qproc = platform_get_drvdata(pdev);
+>  	struct rproc *rproc = qproc->rproc;
+>  
+> +	of_platform_depopulate(&pdev->dev);
+>  	rproc_del(rproc);
+>  
+>  	qcom_q6v5_deinit(&qproc->q6v5);
+> -- 
+> 2.34.1
+> 
