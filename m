@@ -2,290 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C76D465864
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 22:33:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 021944658AD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 22:57:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245514AbhLAVgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 16:36:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60160 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243044AbhLAVgu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 16:36:50 -0500
-Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60DFC061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 13:33:29 -0800 (PST)
-Received: by mail-io1-xd31.google.com with SMTP id w22so32860444ioa.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 13:33:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6Qp270mTJJmheLxOpx+/bI49+tvfHTmm4oUd49RduB0=;
-        b=KgShW3yutE/e+kc9vCrnJ2375IXfRY+efDNYHGi9nPwASBMvodn/e6i85LHztWqG1K
-         4GvRhny6OyeeYAIRQAjH9E82D5SA56VDRdVjhcb2RxkwMRg19pakXXCxj/F6sccro2CW
-         q/lKfC3ThWviSQu2AgLmYqY8Rq0PAmAlJ5HHz74omoTv0GcWPUVaZGUlQXMRHSrFPH4o
-         FVIGndhiV01ER8T6VQSHSKkPtctWjo/B343pLhr8jzjfpn26er8Rd6sisEwifc7kXoEc
-         KiG0cwCpzOA3Cw65mt490tL7sqcTJvw68/yLLT4wj3DnwhjEw6mYKsVNXcC5MbzUobNv
-         dl0g==
+        id S231935AbhLAWAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 17:00:30 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:34400 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229905AbhLAWA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:00:29 -0500
+Received: by mail-ot1-f42.google.com with SMTP id x19-20020a9d7053000000b0055c8b39420bso37257209otj.1;
+        Wed, 01 Dec 2021 13:57:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6Qp270mTJJmheLxOpx+/bI49+tvfHTmm4oUd49RduB0=;
-        b=FvwffrTP7N+0mTDBrIHyEEQkSKAf6V+UhgTRHOlaMaWDMNEPY/O14C8wv3loLdwtAF
-         ynIjkU4obKhc0d5LWE5jpo2h48Q07+YsuQlJZ/KOjcrG0QFXhge1MP8KcaeScAX+PXW9
-         GtuHGdLyWKxlOQAp4TTefNq6txSWHxzjO9Df8hGJo24448UQW8gTuMHRdtajrtKTfym8
-         ZlTGhgKtV47JKTQoUCzwywFM8ePVprNGyr8P1VolR/Z/uv9cj1jzr/yof04GWfn5/m4s
-         YUlnLM6hhwb9n0Az925fZykuyQJb8Db4980VqHbxXacjAWaG9KP3BC7syfHTsDOXhvOA
-         bB8w==
-X-Gm-Message-State: AOAM532zHai4WVPy04SlsTsYfAYW2UN4dSrBDM3+DaXNVfplpeIete8Y
-        DeutV6ngGYcL0q3mhtJ7JIGHGE8JHy98B0YzT7T/mg==
-X-Google-Smtp-Source: ABdhPJzaF/aKzWWLXooCG2LmHB5GbYAsO2NrBFMvag+s90HrFcD0l92L5rJS6x4O/JAfNY9D+tEDatN3dJF89ZXBj2k=
-X-Received: by 2002:a05:6638:1506:: with SMTP id b6mr13774165jat.31.1638394409022;
- Wed, 01 Dec 2021 13:33:29 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=YrRZ+cDt9aijwJi2m8Tkj3TgFbHG9MWj6VoJ8Ts+1zU=;
+        b=M0OhF9Xq0ZuZww4QvZ3LhBjwPzVUAPcx9TQZp87yfQFSe73PgrOZOnm7s3njGKqDRw
+         j/X+b/EXmo7plzNWzWUyE+8EaDFt8MqiMbDm+PCisJGDEnMImZgEv29O1yWy87K7pFnP
+         HPwe+DQEuLSMABVe4G6pkBLhEn/4IXkmzUHEKMMDwwmnB48HSekjash+G6KP5U01o+10
+         mrgKwQGMaS8R2fGWzLW5VTz//2i6bGRM1uqT8RyDh7YzQpZxaQKeUAabpK2kQqLG7Jv7
+         bPMg/1Ksm8OnnN4qAYs8FVlnCwAsWzs5X1yCcCwd6f/HUMmqTa2kGNj8JBC2Vk32PC+4
+         3UpQ==
+X-Gm-Message-State: AOAM532wY+IUa81ksVMnN5Fb3Ru3whbUpMZxcuoG9ErNsEKUQDJvrOED
+        Mha0Ycx4oGtSYI6JuisHld1ZjtJK9Q==
+X-Google-Smtp-Source: ABdhPJziPLuy+LbX4tUcDrFPtbefkHNQNGxg04CykWpyhOEvg829/JhZ5WltvkfPJ+HJXg+GN1Nt/A==
+X-Received: by 2002:a05:6830:18b:: with SMTP id q11mr8427647ota.113.1638395826668;
+        Wed, 01 Dec 2021 13:57:06 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id h26sm346938oor.17.2021.12.01.13.57.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 13:57:06 -0800 (PST)
+Received: (nullmailer pid 2748731 invoked by uid 1000);
+        Wed, 01 Dec 2021 21:57:04 -0000
+Date:   Wed, 1 Dec 2021 15:57:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
+Cc:     linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        david@lechnology.com, devicetree@vger.kernel.org,
+        linux-staging@lists.linux.dev, robh+dt@kernel.org,
+        maxime@cerno.tech, dave.stevenson@raspberrypi.com
+Subject: Re: [PATCH 1/6] dt-bindings: display: sitronix,st7735r: Fix
+ backlight in example
+Message-ID: <YafvsMJksKEYn5n/@robh.at.kernel.org>
+References: <20211124150757.17929-1-noralf@tronnes.org>
+ <20211124150757.17929-2-noralf@tronnes.org>
 MIME-Version: 1.0
-References: <20211109113239.93493-1-robert.marko@sartura.hr> <20211109113239.93493-5-robert.marko@sartura.hr>
-In-Reply-To: <20211109113239.93493-5-robert.marko@sartura.hr>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Wed, 1 Dec 2021 22:33:18 +0100
-Message-ID: <CA+HBbNEZ4Vu5UkE6F251LiY-LRa1YVemV71vHj=H6Rt2XEWuOA@mail.gmail.com>
-Subject: Re: [PATCH v9 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Michael Walle <michael@walle.cc>, Andrew Lunn <andrew@lunn.ch>
-Cc:     Luka Perkov <luka.perkov@sartura.hr>,
-        Bruno Banelli <bruno.banelli@sartura.hr>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211124150757.17929-2-noralf@tronnes.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 9, 2021 at 12:32 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> Add binding documents for the Delta TN48M CPLD drivers.
->
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+On Wed, 24 Nov 2021 16:07:52 +0100, Noralf Trønnes wrote:
+> The backlight property was lost during conversion to yaml in commit
+> abdd9e3705c8 ("dt-bindings: display: sitronix,st7735r: Convert to DT schema").
+> Put it back.
+> 
+> Fixes: abdd9e3705c8 ("dt-bindings: display: sitronix,st7735r: Convert to DT schema")
+> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
 > ---
-> Changes in v7:
-> * Update bindings to reflect driver updates
->
-> Changes in v3:
-> * Include bindings for reset driver
->
-> Changes in v2:
-> * Implement MFD as a simple I2C MFD
-> * Add GPIO bindings as separate
-> ---
->  .../bindings/gpio/delta,tn48m-gpio.yaml       | 39 ++++++++
->  .../bindings/mfd/delta,tn48m-cpld.yaml        | 90 +++++++++++++++++++
->  .../bindings/reset/delta,tn48m-reset.yaml     | 35 ++++++++
->  3 files changed, 164 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
->  create mode 100644 Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
->
-> diff --git a/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> new file mode 100644
-> index 000000000000..e3e668a12091
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/delta,tn48m-gpio.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/delta,tn48m-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD GPIO controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  This module is part of the Delta TN48M multi-function device. For more
-> +  details see ../mfd/delta,tn48m-cpld.yaml.
-> +
-> +  Delta TN48M has an onboard Lattice CPLD that is used as an GPIO expander.
-> +  It provides 12 pins in total, they are input-only or ouput-only type.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - delta,tn48m-gpo
-> +      - delta,tn48m-gpi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#gpio-cells":
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#gpio-cells"
-> +  - gpio-controller
-> +
-> +additionalProperties: false
-> diff --git a/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> new file mode 100644
-> index 000000000000..f6967c1f6235
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/delta,tn48m-cpld.yaml
-> @@ -0,0 +1,90 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/delta,tn48m-cpld.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  Lattice CPLD onboard the TN48M switches is used for system
-> +  management.
-> +
-> +  It provides information about the hardware model, revision,
-> +  PSU status etc.
-> +
-> +  It is also being used as a GPIO expander and reset controller
-> +  for the switch MAC-s and other peripherals.
-> +
-> +properties:
-> +  compatible:
-> +    const: delta,tn48m-cpld
-> +
-> +  reg:
-> +    description:
-> +      I2C device address.
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +patternProperties:
-> +  "^gpio(@[0-9a-f]+)?$":
-> +    $ref: ../gpio/delta,tn48m-gpio.yaml
-> +
-> +  "^reset-controller?$":
-> +    $ref: ../reset/delta,tn48m-reset.yaml
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        cpld@41 {
-> +            compatible = "delta,tn48m-cpld";
-> +            reg = <0x41>;
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            gpio@31 {
-> +                compatible = "delta,tn48m-gpo";
-> +                reg = <0x31>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            gpio@3a {
-> +                compatible = "delta,tn48m-gpi";
-> +                reg = <0x3a>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            gpio@40 {
-> +                compatible = "delta,tn48m-gpi";
-> +                reg = <0x40>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +            };
-> +
-> +            reset-controller {
-> +              compatible = "delta,tn48m-reset";
-> +              #reset-cells = <1>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> new file mode 100644
-> index 000000000000..0e5ee8decc0d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/delta,tn48m-reset.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/delta,tn48m-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Delta Networks TN48M CPLD reset controller
-> +
-> +maintainers:
-> +  - Robert Marko <robert.marko@sartura.hr>
-> +
-> +description: |
-> +  This module is part of the Delta TN48M multi-function device. For more
-> +  details see ../mfd/delta,tn48m-cpld.yaml.
-> +
-> +  Reset controller modules provides resets for the following:
-> +  * 88F7040 SoC
-> +  * 88F6820 SoC
-> +  * 98DX3265 switch MAC-s
-> +  * 88E1680 PHY-s
-> +  * 88E1512 PHY
-> +  * PoE PSE controller
-> +
-> +properties:
-> +  compatible:
-> +    const: delta,tn48m-reset
-> +
-> +  "#reset-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#reset-cells"
-> +
-> +additionalProperties: false
-> --
-> 2.33.1
->
+>  Documentation/devicetree/bindings/display/sitronix,st7735r.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Rob, do you have any comments?
-The rest of the series has been reviewed, so I would like to move forward.
-
-Regards,
-Robert
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Acked-by: Rob Herring <robh@kernel.org>
