@@ -2,185 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E01C465016
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5844C46504C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:45:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350795AbhLAOm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 09:42:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46590 "EHLO
+        id S1350745AbhLAOso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 09:48:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350796AbhLAOkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:40:40 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F63C0619F0;
-        Wed,  1 Dec 2021 06:36:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 05BEECE1F45;
-        Wed,  1 Dec 2021 14:36:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36097C53FAD;
-        Wed,  1 Dec 2021 14:36:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638369372;
-        bh=fDcjDlre3zNps+euRe6r4MeUW9GiVltCf2FiglTDJMs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=VLTlm+NlLTM0kPmYPSPC6h9zN18cLntfOTO5Rn7DcIIBiO4T9qMaNUwZ1ina5SVdq
-         jt1zBgCxUFCePozohANIKWOYgkFPdUcTnBHvEPTFxPiPTZnhvqLC3fkqAbJhzKl7ku
-         ajETGRMDZE4TosIOsFrRu+f/Bu6DfRfEdS50NobUXqz85xoSyADSd3HBC1PAl8zMH/
-         RMBRQ1NB71RPefklnKpWwJ0Dz/dBMCB5LyevsXePyz6jFbo5ns/S5wbAj0/GUVnMDf
-         LS4+28h5hukLa/smezZ2m/oUjjkmp5pSCduV6uLjSl+60PHzv34uapDF7VO+dNQZGU
-         AtTrjPEVMWVBg==
-Received: by mail-ed1-f47.google.com with SMTP id e3so102642682edu.4;
-        Wed, 01 Dec 2021 06:36:12 -0800 (PST)
-X-Gm-Message-State: AOAM530UTRbSU2ONP1cIj2Q6YYpQ70hLIuT2bsEDgfLTEZlpWAOPz1A7
-        UwhvrzNO7d2hYJaj36WLjZkKEQXlIXgKR7pTww==
-X-Google-Smtp-Source: ABdhPJycrMzjLRRzGghWaRYfmnXIZP4mbV7XJfZv7HiaQKS7jnZWOj0jW3iacRJ5wzExr310Lv3vHf2qBAx4QlVmRfI=
-X-Received: by 2002:a17:907:a411:: with SMTP id sg17mr7542058ejc.84.1638369370499;
- Wed, 01 Dec 2021 06:36:10 -0800 (PST)
+        with ESMTP id S1350575AbhLAOrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:47:15 -0500
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85245C061756
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 06:43:51 -0800 (PST)
+Received: by mail-lf1-x12b.google.com with SMTP id b40so63479062lfv.10
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 06:43:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gxTGNH4RjZnXC09mFHvXZGKvlJs0ViDxwUF13VP4Qnc=;
+        b=j1sE7JdBShi/drRIhEhZBO6Hp8GoxIqTZ6X76Z4WdL4ClkjzJQawZwwxSyHJvThbkQ
+         ZkA05uk98Wr8NHK3d8DBM0PVbPx1pa1hg5zXgKJEo+k1LSud82VtG94R67OuXuXZEkcw
+         A+IOdOXLToG3/WZ0yYJHn0q8H1NuD5Uiuhzi7J87S9U3rIVekTdWElUcXELCpas/s3PR
+         TOT7jsRHpS6bMNxCKwv6t3IyPcuYn+A3U3trC4B9K1XlFN+eQHd2jfXkOzEBxb5npEln
+         ZPgC6y1dYfkjYJABVbOhiPiFn3SlidHHhD05wboAlT29k+UajlBI0t13iz9+wcaNsSfO
+         DspA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gxTGNH4RjZnXC09mFHvXZGKvlJs0ViDxwUF13VP4Qnc=;
+        b=YjG85S6Ii5IEAxCkTr3q1KrYRUTaoT72FqxCfdyDsgmvLW3etyWTkiif5mvMIBJKrZ
+         +gf55IL4fZFRnDhfqKyeQBurxjKuXfNU5Wqd2J0mTjjPH6zfrOlEs7WYG5uiK1UPF7/K
+         4BnzMbBWacWBq7suRNHPkeL5rnG3VnHFD+Yg3ViGfN0itGW1Mqwx0d0SqWnszCGiJSpO
+         JptS2x9ylFOLjht8n6oTQaiBGV3oKuD1h/R+bG7v4vRzLpY7AKNsQWpbyaIGpq0lE+im
+         vTR4dPTj8rWXxnNftOHGcInCxOpqNi1SslH1n6ZQGF+7k1GV4rBQSwN0bb8RL0Vxsz8x
+         vN6Q==
+X-Gm-Message-State: AOAM533Je787WujZf0ZwWqhdwdYhxMsq3jCPjv20Vqj5N26fh16QU1rB
+        wDzys5JgpiqikPP1W/YPBTFkzIvgxyfsvNKP2MaSEQ==
+X-Google-Smtp-Source: ABdhPJxVYx2b3NkGS8YC0h/FYV805PvlFm04JQsMyVC9RHmRfwgvzlv9TZ9QEWvSvv5Kz90my11HVJhsXcHlNDrWXa4=
+X-Received: by 2002:ac2:4bc1:: with SMTP id o1mr6344492lfq.254.1638369829729;
+ Wed, 01 Dec 2021 06:43:49 -0800 (PST)
 MIME-Version: 1.0
-References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
- <8735no70tt.wl-maz@kernel.org> <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
- <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
- <87tug3clvc.wl-maz@kernel.org> <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
- <87r1b7ck40.wl-maz@kernel.org> <OSZPR01MB7019E7DD7119EFF9C994AA62AA649@OSZPR01MB7019.jpnprd01.prod.outlook.com>
- <87tufvmes9.wl-maz@kernel.org> <CA+V-a8siHRjF+bJu88QFwz0a_MZ+kiJEwmER58_feyr8O+WNGA@mail.gmail.com>
- <CAL_JsqK+GcnChx3i9fsYnw+FzZgON4PtKB=CzYLUj6sXtxX6fQ@mail.gmail.com>
- <CA+V-a8sVS_1hUWJ3uM+VffGyMtdnctBOJTyHTQAoJZGOh0a1Tw@mail.gmail.com>
- <87bl21mqwk.wl-maz@kernel.org> <CA+V-a8vA0P-yhm2SHJmVh+cuUw7qodQLQBqzNPTz31x5q18xaA@mail.gmail.com>
-In-Reply-To: <CA+V-a8vA0P-yhm2SHJmVh+cuUw7qodQLQBqzNPTz31x5q18xaA@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 1 Dec 2021 08:35:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ1Dw9C_GQjto-E2ch7fdN=3f4Qz9qYuf2iYwMRLkdroA@mail.gmail.com>
-Message-ID: <CAL_JsqJ1Dw9C_GQjto-E2ch7fdN=3f4Qz9qYuf2iYwMRLkdroA@mail.gmail.com>
-Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
- definition of interrupt-map
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel-team@android.com" <kernel-team@android.com>,
-        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
-        Chris Brandt <Chris.Brandt@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
+References: <20211126181500.3404129-1-daniel.lezcano@linaro.org> <CAPDyKFoZo4p93JZUm4CUqO4DfrL8_YbyomqBzC59C0eTwa60CA@mail.gmail.com>
+In-Reply-To: <CAPDyKFoZo4p93JZUm4CUqO4DfrL8_YbyomqBzC59C0eTwa60CA@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 1 Dec 2021 15:43:13 +0100
+Message-ID: <CAPDyKFoY3b=sbFffDRTAwnXc7OJ9w_B8t337BPbnU66SB-xQjg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: Powerzone new bindings
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 1, 2021 at 7:37 AM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
+On Wed, 1 Dec 2021 at 10:23, Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
-> Hi Marc/Rob,
->
-> On Tue, Nov 30, 2021 at 6:37 PM Marc Zyngier <maz@kernel.org> wrote:
+> On Fri, 26 Nov 2021 at 19:15, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
 > >
-> > On Tue, 30 Nov 2021 12:52:21 +0000,
-> > "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> > >
-> > > On Mon, Nov 29, 2021 at 6:33 PM Rob Herring <robh@kernel.org> wrote:
-> > > >
-> > > > interrupts would work just fine here:
-> > > >
-> > > > interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> > > >   <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> > > >
-> > > > We don't need a different solution for N:1 interrupts from N:M. Sure,
-> > > > that could become unweldy if there are a lot of interrupts (just like
-> > > > interrupt-map), but is that an immediate problem?
-> > > >
-> > > It's just that with this approach the driver will have to index the
-> > > interrupts instead of reading from DT.
-> > >
-> > > Marc - is it OK with the above approach?
+> > The proposed bindings are describing a set of powerzones.
 > >
-> > Anything that uses standard properties in a standard way works for me.
+> > A power zone is the logical name for a component which is capable of
+> > power capping and where we can measure the power consumption.
 > >
-> I added interrupts property now instead of interrupt-map as below:
+> > A power zone can aggregate several power zones in terms of power
+> > measurement and power limitations. That allows to apply power
+> > constraint to a group of components and let the system balance the
+> > allocated power in order to comply with the constraint.
+> >
+> > The ARM System Control and Management Interface (SCMI) can provide a
+> > power zone description.
+> >
+> > The powerzone semantic is also found on the Intel platform with the
+> > RAPL register.
+> >
+> > The Linux kernel powercap framework deals with the powerzones:
+> >
+> > https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
+> >
+> > The powerzone can also represent a group of children powerzones, hence
+> > the description can result on a hierarchy. Such hierarchy already
+> > exists with the hardware or can be represented an computed from the
+> > kernel.
+> >
+> > The hierarchical description was initially proposed but not desired
+> > given there are other descriptions like the power domain proposing
+> > almost the same description.
+> >
+> > https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
+> >
+> > The description gives the power constraint dependencies to apply on a
+> > specific group of logically or physically aggregated devices. They do
+> > not represent the physical location or the power domains of the SoC
+> > even if the description could be similar.
+> >
+> > Cc: Arnd Bergmann <arnd@arndb.de>
+> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > ---
+> >    V1: Initial post
+> >    V2:
+> >      - Added pattern properties and stick to powerzone-*
+> >      - Added required property compatible and powerzone-cells
+> >      - Added additionnal property
+> >      - Added compatible
+> >      - Renamed to 'powerzones'
+> >      - Added missing powerzone-cells to the topmost node
+> >      - Fixed errors reported by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > ---
+> >  .../devicetree/bindings/power/powerzones.yaml | 109 ++++++++++++++++++
+> >  1 file changed, 109 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
+> > new file mode 100644
+> > index 000000000000..6e63bbc750c6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/power/powerzones.yaml
+> > @@ -0,0 +1,109 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/power/powerzones.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Power zones description
+> > +
+> > +maintainers:
+> > +  - Daniel Lezcano <daniel.lezcano@linaro.org>
+> > +
+> > +description: |+
+> > +
+> > +  A System on Chip contains a multitude of active components and each
+> > +  of them is a source of heat. Even if a temperature sensor is not
+> > +  present, a source of heat can be controlled by acting on the
+> > +  consumed power via different techniques.
+> > +
+> > +  A powerzone describes a component or a group of components where we
+> > +  can control the maximum power consumption. For instance, a group of
+> > +  CPUs via the performance domain, a LCD screen via the brightness,
+> > +  etc ...
+> > +
+> > +  Different components when they are used together can significantly
+> > +  increase the overall temperature, so the description needs to
+> > +  reflect this dependency in order to assign a power budget for a
+> > +  group of powerzones.
+> > +
+> > +  This description is done via a hierarchy and the DT reflects it. It
+> > +  does not represent the physical location or a topology, eg. on a
+> > +  big.Little system, the little CPUs may not be represented as they do
+> > +  not contribute significantly to the heat, however the GPU can be
+> > +  tied with the big CPUs as they usually have a connection for
+> > +  multimedia or game workloads.
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    const: powerzones
+> > +
+> > +  compatible:
+> > +    const: powerzones
 >
-> irqc: interrupt-controller@110a0000 {
->       compatible = "renesas,r9a07g044-irqc", "renesas,rzg2l-irqc";
->        #address-cells = <0>;
->        interrupt-parent = <&gic>;
->        interrupt-controller;
->        reg = <0 0x110a0000 0 0x10000>;
->        interrupts =
->                       <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
->                       <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
->                      <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
->          clocks = <&cpg CPG_MOD R9A07G044_IA55_CLK>,
->                        <&cpg CPG_MOD R9A07G044_IA55_PCLK>;
->           clock-names = "clk", "pclk";
->           power-domains = <&cpg>;
->           resets = <&cpg R9A07G044_IA55_RESETN>;
-> };
->
->
-> In the hierarchal interrupt code its parsed as below:
-> on probe fetch the details:
-> range = of_get_property(np, "interrupts", &len);
-> if (!range)
->       return -EINVAL;
->
-> for (len /= sizeof(*range), j = 0; len >= 3; len -= 3) {
->       if (j >= IRQC_NUM_IRQ)
->             return -EINVAL;
->
->       priv->map[j].args[0] = be32_to_cpu(*range++);
->       priv->map[j].args[1] = be32_to_cpu(*range++);
->       priv->map[j].args[2] = be32_to_cpu(*range++);
->       priv->map[j].args_count = 3;
->       j++;
+> This looks odd. Why do we need const compatible string? Shouldn't this
+> be allowed to be an SoC-powerzone specific compatible?
 
-Not sure what's wrong, but you shouldn't be doing your own parsing.
-The setup shouldn't look much different than a GPIO controller
-interrupts except you have multiple parent interrupts.
+Alright, after our recent discussions offlist, I believe the
+compatible property should be entirely removed.
 
-Rob
+>
+> > +
+> > +patternProperties:
+> > +  "^(powerzone)([@-].*)?$":
+> > +    type: object
+> > +    description:
+> > +      A node representing a powerzone acting as an aggregator for all
+> > +      its children powerzones.
+> > +
+> > +    properties:
+> > +      "#powerzone-cells":
+> > +        description:
+> > +          Number of cells in powerzone specifier. Typically 0 for nodes
+> > +          representing but it can be any number in the future to
+> > +          describe parameters of the powerzone.
+> > +
+> > +      powerzones:
+> > +        description:
+> > +          A phandle to a parent powerzone. If no powerzone attribute is
+> > +          set, the described powerzone is the topmost in the hierarchy.
+> > +
+> > +    required:
+> > +      - "#powerzone-cells"
+> > +
+> > +required:
+> > +  - compatible
+
+This should be removed too, of course.
+
+> > +
+> > +additionalProperties: true
+
+This should be set to "false", I think. There is no need for any
+additional properties besides those that are being part of the binding
+above.
+
+> > +
+> > +examples:
+> > +  - |
+> > +    powerzones {
+> > +
+> > +      compatible = "powerzones";
+> > +
+> > +      #powerzone-cells = <0>;
+
+This toplevel "powerzones" node, should neither contain a compatible
+nor a #powerzone-cells. Please drop this.
+
+Instead we only need to describe the topology by using child nodes, as
+in the example below.
+
+> > +
+> > +      SOC_PZ: powerzone-soc {
+> > +        #powerzone-cells = <0>;
+> > +      };
+> > +
+> > +      PKG_PZ: powerzone-pkg {
+> > +        #powerzone-cells = <0>;
+> > +        powerzones = <&SOC_PZ>;
+> > +      };
+> > +
+> > +      GPU_PZ: powerzone-gpu {
+> > +        #powerzone-cells = <0>;
+> > +        powerzones = <&PKG_PZ>;
+> > +      };
+> > +    };
+> > +
+> > +  - |
+> > +    A57_0: big@0 {
+> > +      compatible = "arm,cortex-a57";
+> > +      reg = <0x0 0x0>;
+> > +      device_type = "cpu";
+> > +      #powerzone-cells = <0>;
+> > +      powerzones = <&PKG_PZ>;
+> > +    };
+>
+> I think we discussed this in the earlier version too...
+>
+> The above example describes a powerzone provider, but it doesn't
+> really conform to the binding. That's because the binding states that
+> powerzone providers should be inside a top-level "powerzone {" node.
+
+From our offlist discussion, it seems like the cpu nodes should not
+have a #powerzone-cells. Instead, the powerzones property should be
+sufficient, as it allows you to describe what powerzone(s) the cpu
+belongs to, which is exactly what you need.
+
+This also means that we need to extend the DT bindings for CPUs
+(Documentation/devicetree/bindings/arm/cpus.yaml), to allow cpu nodes
+to have a "powerzones" property. I believe we can do that separately,
+on top of $subject patch, as cpus.yaml has "additionalProperties:
+true".
+
+>
+> I am wondering if we really need the toplevel "powerzone" node.
+
+Please ignore this comment. It has become clear to me that the
+toplevel node serves a purpose.
+
+>
+> > +
+> > +    A57_1: big@1 {
+> > +      compatible = "arm,cortex-a57";
+> > +      reg = <0x0 0x0>;
+> > +      device_type = "cpu";
+> > +      #powerzone-cells = <0>;
+
+Ditto.
+
+> > +      powerzones = <&PKG_PZ>;
+> > +    };
+> > +...
+> > --
+> > 2.25.1
+> >
+>
+
+Kind regards
+Uffe
