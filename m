@@ -2,139 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9051F4656B3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 20:43:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EBB34656B7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 20:49:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240028AbhLATrM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 14:47:12 -0500
-Received: from mga09.intel.com ([134.134.136.24]:33990 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S245450AbhLATpI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 14:45:08 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="236357922"
-X-IronPort-AV: E=Sophos;i="5.87,279,1631602800"; 
-   d="scan'208";a="236357922"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2021 11:41:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,279,1631602800"; 
-   d="scan'208";a="459369634"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 01 Dec 2021 11:41:43 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1msVU6-000FKR-EE; Wed, 01 Dec 2021 19:41:42 +0000
-Date:   Thu, 2 Dec 2021 03:40:49 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vinod Koul <vkoul@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kbuild-all@lists.01.org, linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] clk: qcom: Add clock driver for SM8450
-Message-ID: <202112020334.Hw8YGuXD-lkp@intel.com>
-References: <20211201072310.3968679-4-vkoul@kernel.org>
+        id S236459AbhLATwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 14:52:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36372 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237703AbhLATwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 14:52:22 -0500
+Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65E14C061574;
+        Wed,  1 Dec 2021 11:48:54 -0800 (PST)
+Received: by mail-pj1-x102d.google.com with SMTP id nh10-20020a17090b364a00b001a69adad5ebso2581820pjb.2;
+        Wed, 01 Dec 2021 11:48:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=oL3wdxAt3wkQd9kCKUB3Vib1vH+Yv4Fjc3Goi+/KQ4c=;
+        b=U2mH2UwDGKGfVXwUAm2E+l6agtDsMBmRqHT8q/a98xvuWX8JJB+ZLJ8BtuRNpIl8oR
+         e0TtZZg+M+khzd81k7Z7R/BPOCEv8opFrpr3H7RVO+EQ7Avijaa1VyauYE6n2SUrRoyF
+         z4YoE5rKjjy7F1Almn4vlocbQe4IjPYbDDUtLF7TRjVm7CuqWH3ouZiLrf8dvjY6OZjQ
+         vals9DmsPTd1Y5OqMRu2kSXa/bjrTcmMnzX2QEMlXyRN9c9vGUAK1UrUzzCL9SZ9iJ8B
+         sPI6/20p0BM6B5Fbtm+tDXK8dqsuqfgD3KnUxiwBnV3eIVZ2tKX+FmPj9fKCtEy0IuTq
+         +OfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=oL3wdxAt3wkQd9kCKUB3Vib1vH+Yv4Fjc3Goi+/KQ4c=;
+        b=F37oajSJK3uRESemUAkIvznt3Jv3w3D2fLn5de2CVkGA9mJzFIdM4HXKzFi3OrJbdM
+         ixXneKQvkYQ/pa0GOlcU/IZMWgVGttshRvTQPgf4WhCio+IpL5yztWsW+lRAJ6IS0tCT
+         sxCVbSMQ/I2cBZTbMEYnv4SkayGuY6URS66ns+mnDcTEfL7XBEz4vhUm+sIZ43lS0gYd
+         gz/262laJaqT9GQn5/MYaKSYF+V8LGeWeTtS/GchMPF8K5zqhZbgvc00Bazq+d8S5D+S
+         Tdbo3r0mVqjTSiM9t/bmH6xJ6X0RqLl+4mgf4gbqPgRPLiLCQusUOkxhlwZPWpmCJ7wN
+         vUIA==
+X-Gm-Message-State: AOAM530zcDjGiRUTKBgxMnR8b/608ZnRmUswr5TG9smEq4CWitqQP3hc
+        Ut6GXHv1HYyhf9V8oneKL5Y=
+X-Google-Smtp-Source: ABdhPJzV2YXZzUvZsfhJRruR1dYP/GDV32dldTWUYKFhqlIoj348wlKRdJBLnSfRu2eGfBm3oMNLyQ==
+X-Received: by 2002:a17:90b:128e:: with SMTP id fw14mr338996pjb.173.1638388133872;
+        Wed, 01 Dec 2021 11:48:53 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id f29sm418759pgf.34.2021.12.01.11.48.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 11:48:53 -0800 (PST)
+Subject: Re: [PATCH net-next 7/7] dt-bindings: net: Convert iProc MDIO mux to
+ YAML
+To:     Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "maintainer:BROADCOM IPROC GBIT ETHERNET DRIVER" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Doug Berger <opendmb@gmail.com>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211201041228.32444-1-f.fainelli@gmail.com>
+ <20211201041228.32444-8-f.fainelli@gmail.com>
+ <YafH0nADqO7DTU4A@robh.at.kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <85b4d71e-243f-7bb1-4e0f-b68b8cff4652@gmail.com>
+Date:   Wed, 1 Dec 2021 11:48:51 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211201072310.3968679-4-vkoul@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <YafH0nADqO7DTU4A@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On 12/1/21 11:06 AM, Rob Herring wrote:
 
-I love your patch! Yet something to improve:
+[snip]
 
-[auto build test ERROR on clk/clk-next]
-[also build test ERROR on robh/for-next v5.16-rc3 next-20211201]
-[cannot apply to agross-msm/qcom/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+>> diff --git a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+>> new file mode 100644
+>> index 000000000000..a576fb87bfc8
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+>> @@ -0,0 +1,80 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+> 
+> All Broadcom authors on the original. Please add BSD-2-Clause.
 
-url:    https://github.com/0day-ci/linux/commits/Vinod-Koul/clk-qcom-Add-clocks-for-SM8450-SoC/20211201-152534
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git clk-next
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20211202/202112020334.Hw8YGuXD-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/e1e0cc0fd39b5e08530730ff2e973252bba25fc0
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Vinod-Koul/clk-qcom-Add-clocks-for-SM8450-SoC/20211201-152534
-        git checkout e1e0cc0fd39b5e08530730ff2e973252bba25fc0
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=alpha SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
->> drivers/clk/qcom/gcc-sm8450.c:40:36: error: 'CLK_ALPHA_PLL_TYPE_LUCID_EVO' undeclared here (not in a function); did you mean 'CLK_ALPHA_PLL_TYPE_LUCID'?
-      40 |         .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-         |                                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                                    CLK_ALPHA_PLL_TYPE_LUCID
->> drivers/clk/qcom/gcc-sm8450.c:51:33: error: 'clk_alpha_pll_fixed_lucid_evo_ops' undeclared here (not in a function); did you mean 'clk_alpha_pll_fixed_lucid_5lpe_ops'?
-      51 |                         .ops = &clk_alpha_pll_fixed_lucid_evo_ops,
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                                 clk_alpha_pll_fixed_lucid_5lpe_ops
->> drivers/clk/qcom/gcc-sm8450.c:74:25: error: 'clk_alpha_pll_postdiv_lucid_evo_ops' undeclared here (not in a function); did you mean 'clk_alpha_pll_postdiv_lucid_5lpe_ops'?
-      74 |                 .ops = &clk_alpha_pll_postdiv_lucid_evo_ops,
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                         clk_alpha_pll_postdiv_lucid_5lpe_ops
-
-
-vim +40 drivers/clk/qcom/gcc-sm8450.c
-
-    37	
-    38	static struct clk_alpha_pll gcc_gpll0 = {
-    39		.offset = 0x0,
-  > 40		.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-    41		.clkr = {
-    42			.enable_reg = 0x62018,
-    43			.enable_mask = BIT(0),
-    44			.hw.init = &(struct clk_init_data){
-    45				.name = "gcc_gpll0",
-    46				.parent_data = &(const struct clk_parent_data){
-    47					.fw_name = "bi_tcxo",
-    48					.name = "bi_tcxo",
-    49				},
-    50				.num_parents = 1,
-  > 51				.ops = &clk_alpha_pll_fixed_lucid_evo_ops,
-    52			},
-    53		},
-    54	};
-    55	
-    56	static const struct clk_div_table post_div_table_gcc_gpll0_out_even[] = {
-    57		{ 0x1, 2 },
-    58		{ }
-    59	};
-    60	
-    61	static struct clk_alpha_pll_postdiv gcc_gpll0_out_even = {
-    62		.offset = 0x0,
-    63		.post_div_shift = 10,
-    64		.post_div_table = post_div_table_gcc_gpll0_out_even,
-    65		.num_post_div = ARRAY_SIZE(post_div_table_gcc_gpll0_out_even),
-    66		.width = 4,
-    67		.regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID_EVO],
-    68		.clkr.hw.init = &(struct clk_init_data){
-    69			.name = "gcc_gpll0_out_even",
-    70			.parent_data = &(const struct clk_parent_data){
-    71				.hw = &gcc_gpll0.clkr.hw,
-    72			},
-    73			.num_parents = 1,
-  > 74			.ops = &clk_alpha_pll_postdiv_lucid_evo_ops,
-    75		},
-    76	};
-    77	
-
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Sure, please review v2 and let me know if there are other changes that
+should be done, v2 was sent before you had a chance to reply to this one.
+-- 
+Florian
