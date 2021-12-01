@@ -2,145 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11721464A5A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6582A464A5F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:12:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348147AbhLAJMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 04:12:30 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.51]:32268 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242325AbhLAJM3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:12:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638349744;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=ktYS9iuRKHdZDzICD4l2BwfqGtaFxG7/qEVsEt7N3Jg=;
-    b=BJ7ga5T8603X7+gtXhrnhRDXGVPHG29IJ4lhXtDhebeYWxwhw7JvQ62EZaH0jQJlZW
-    PlaQhg6pGz1lEpLJWHxloYKC20Kry0Lr4RvB++V/gEtrXSSE2hBKKZ2TQXxbSsS0qPSB
-    ylsAZjTtCsuyHsLIgfHAntGCJItreV87YB1BuZ2XYLzqxVoZ9B3KVpCRoU/UJfbIzYUf
-    uuykiATar6su76mAezl1VG7jyxXDY8vOwxOxiXmOOH4mYqy/iRAbHN51D6BEognwWMdy
-    QonYQh/nDPSNLwgDhVTrsakf/WRjNgaYIrBkobCQbLq5CNsuLtQKKXzE9F4kMhPzCVzz
-    b/9A==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrK85/aY="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.34.10 AUTH)
-    with ESMTPSA id j03bcbxB1993eju
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Wed, 1 Dec 2021 10:09:03 +0100 (CET)
-Date:   Wed, 1 Dec 2021 10:09:02 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-remoteproc@vger.kernel.org, phone-devel@vger.kernel.org,
-        Aleksander Morgado <aleksander@aleksander.es>
-Subject: Re: [PATCH 1/2] remoteproc: qcom_q6v5_mss: Populate additional
- devices from DT
-Message-ID: <Yac7rvxHhWld1/s3@gerhold.net>
-References: <20211129132930.6901-1-stephan@gerhold.net>
- <20211129132930.6901-2-stephan@gerhold.net>
- <Yabw7kCsbhE1EFhW@builder.lan>
+        id S231585AbhLAJP1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Dec 2021 04:15:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348013AbhLAJP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:15:27 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0AEC061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 01:12:06 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1msLeW-0003Y6-1e; Wed, 01 Dec 2021 10:11:48 +0100
+Received: from pza by lupine with local (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1msLeQ-0003CH-IM; Wed, 01 Dec 2021 10:11:42 +0100
+Message-ID: <3b80b2a52362cbadb26052685566e2c1f75a0b68.camel@pengutronix.de>
+Subject: Re: [v13 2/2] pwm: Add Aspeed ast2600 PWM support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
+Cc:     BMC-SW <BMC-SW@aspeedtech.com>
+Date:   Wed, 01 Dec 2021 10:11:42 +0100
+In-Reply-To: <CDB0374F-3835-4501-964E-DB771588114D@aspeedtech.com>
+References: <20211129064329.27006-1-billy_tsai@aspeedtech.com>
+         <20211129064329.27006-3-billy_tsai@aspeedtech.com>
+         <e28a5d5de9b940717e6444f019eab63ab1bb0b75.camel@pengutronix.de>
+         <CDB0374F-3835-4501-964E-DB771588114D@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.38.3-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yabw7kCsbhE1EFhW@builder.lan>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 09:50:06PM -0600, Bjorn Andersson wrote:
-> On Mon 29 Nov 07:29 CST 2021, Stephan Gerhold wrote:
+Hi Billy,
+
+On Wed, 2021-12-01 at 03:30 +0000, Billy Tsai wrote:
+> Hi Philipp,
 > 
-> > Some devices without own memory resources could be placed anywhere in the
-> > device tree but they logically belong to the modem remote processor. Make
-> > it possible to probe them when defined under the mpss device tree node
-> > by calling of_platform_populate().
-> > 
+> On 2021/11/30, 5:52 PM, "Philipp Zabel" <p.zabel@pengutronix.de> wrote:
 > 
-> This seems reasonable, but other "child devices" of the remoteproc
-> follows the state of the remoteproc instance. So I'm worried that this
-> will create an inconsistency in that assumption.
+>     On Mon, 2021-11-29 at 14:43 +0800, Billy Tsai wrote:
+>     [...]
+>     >   > +	ret = clk_prepare_enable(priv->clk);
+>     >   > +	if (ret)
+>     >   > +		return dev_err_probe(dev, ret, "Couldn't enable clock\n");
+>     >   > +
+>     >   > +	ret = reset_control_deassert(priv->reset);
+>     >   > +	if (ret) {
+>     >   > +		dev_err_probe(dev, ret, "Couldn't deassert reset control\n");
+>     >   > +		goto err_disable_clk;
+>     >   > +	}
 > 
-
-On Linux there are two devices managed by qcom_q6v5_mss, the platform
-device used by the driver and the actual remoteproc instance that has
-the state. The devices that follow the state are children of the
-remoteproc instance. I'm creating BAM-DMUX below the platform device.
-
-This is just not represented in the device tree very well since both
-platform device and remoteproc instance share the same device tree node.
-However, all the state managed nodes are manually managed and do not
-have a compatible so it should not cause problems.
-
-> > This can be used for BAM-DMUX for example, which provides the WWAN network
-> > interfaces on some older Qualcomm SoCs such as MSM8916 or MSM8974.
-> > 
+>     >   Is there any reason to keep the clocks running and the controller out of
+>     >   reset while the PWM outputs are disabled?
 > 
-> Is there a technical reason for placing the BAM-DMUX within the modem
-> remoteproc node? Can we simply move it to / ?
-> 
+> Can you tell me about your concerns with this process?
 
-I had it at / originally and at the moment it would still work there.
-I moved it below the remoteproc when the whole "WWAN subsystem"
-discussion came up. The goal is to have a common parent device for all
-the ports of a WWAN modem.
+No particular concerns, just curiosity.
 
-The way it works is that you give the WWAN subsystem a (parent) device
-that represents the modem itself, and then it groups all WWAN ports
-below that. The control ports (rpmsg_wwan_ctrl driver) are currently
-already created below the modem platform device.
+> In my opinion, they are used to provide the clock and de-assert the reset of the PWM engine. If we didn't release
+> them in probe stage the CPU can't and shouldn't read the register of the PWM engine when call the get_state.
+> Assume that we want to adjust them dynamically, the driver needs to add more conditions to check and keep the status
+> of each PWM channel, which is not a good deal for the server platform.
 
-The bam-dmux driver does not integrate with the WWAN subsystem yet
-because of some unrelated open problems, but in the future I will likely
-need a reference to the modem platform device there as well.
+Thanks. I don't know the hardware, so I have no idea whether disabling
+the clocks would even save a measurable (let alone appreciable) amount
+of power.
 
-There are other approaches of course (e.g. a phandle to the modem
-remoteproc node), but I still think it logically fits best somewhere
-below the modem node. If the modem remoteproc is status = "disabled",
-it does not make sense to load bam-dmux either etc.
+I've just seen other PWM drivers use runtime PM or enable/disable clocks
+dynamically, and wondered why this one doesn't.
 
-Thanks,
-Stephan
-
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> > ---
-> >  drivers/remoteproc/qcom_q6v5_mss.c | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
-> > index 43ea8455546c..69f3d1ebf1f1 100644
-> > --- a/drivers/remoteproc/qcom_q6v5_mss.c
-> > +++ b/drivers/remoteproc/qcom_q6v5_mss.c
-> > @@ -1989,8 +1989,14 @@ static int q6v5_probe(struct platform_device *pdev)
-> >  	if (ret)
-> >  		goto remove_sysmon_subdev;
-> >  
-> > +	ret = of_platform_populate(pdev->dev.of_node, NULL, NULL, &pdev->dev);
-> > +	if (ret)
-> > +		goto remove_rproc;
-> > +
-> >  	return 0;
-> >  
-> > +remove_rproc:
-> > +	rproc_del(rproc);
-> >  remove_sysmon_subdev:
-> >  	qcom_remove_sysmon_subdev(qproc->sysmon);
-> >  remove_subdevs:
-> > @@ -2010,6 +2016,7 @@ static int q6v5_remove(struct platform_device *pdev)
-> >  	struct q6v5 *qproc = platform_get_drvdata(pdev);
-> >  	struct rproc *rproc = qproc->rproc;
-> >  
-> > +	of_platform_depopulate(&pdev->dev);
-> >  	rproc_del(rproc);
-> >  
-> >  	qcom_q6v5_deinit(&qproc->q6v5);
-> > -- 
-> > 2.34.1
-> > 
+regards
+Philipp
