@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BE4F46560F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 20:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7BF7465611
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 20:05:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352622AbhLATI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 14:08:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54300 "EHLO
+        id S244958AbhLATI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 14:08:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352322AbhLATIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 14:08:24 -0500
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A54DC06174A
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 11:05:03 -0800 (PST)
-Received: by mail-lf1-x12a.google.com with SMTP id b1so65277390lfs.13
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 11:05:03 -0800 (PST)
+        with ESMTP id S1352617AbhLATI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 14:08:26 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C529FC06174A
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 11:05:04 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id r26so65448779lfn.8
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 11:05:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=RUQx5kq3VrQOJzLJrHIG10H6hCDxVpxGzWKF98as5kk=;
-        b=In8k5sq2384AcnFdRb15c2gEmINBS3KJi7PU5aATZmmOIwm71wY+dCo1UfvvCI8ubY
-         JrQ/3mNIyh5OOfqFRcY9UCd8oSyhc1xh2Hpi7AMODLgBd2wdhiTIEkHae6+aks0/0TwF
-         FYsmK/fu3LQa/TvYW3yTnL6PTiDnFX5+FGMKgA+K/G/y+7iwfx/Iu7gJ+oLFTNmwhoyz
-         ZFdMWczP+U08BUVaO33E/meDGAYiFL22EwDK/QFaCnjmleEA10M7HnVLI/rWH+15Ob83
-         69+p04MC0BRa9jrE+tT0vrdcuq1CdRN4Q8nBf1UMHkGHjAf+VyPvTmYxwM3OK8CFund8
-         IiDA==
+        bh=aAo5L8S04r7ipl+uXm9qNiK/iV6LQnGWXB0cFhZkmdM=;
+        b=rHqvSkrjyON28Or7auVY6T++aDwISh/E4oAAgovbxJ8YKWassoYx1nH9Wc8W5t2LIK
+         HpJh5rttDdFr4ReJ38i2CphfVYXPFEMq9biC78GRdUQjEjghLp02PoN+QxxnyTg86aoz
+         x3oFQmBnuM2hXssgFYik2THgZO2aH6mELyKuHxUhg4/VKKWS0Lv1QA/cNVhBzFuf90I/
+         Hx2822kzjmdOk5XD2WFYwpBgKUd4rwVSzo9vKUPMWdohJEqv+KzCFXqOlap+2WR+VWPC
+         pvPyBf368FB8oTBosJJYtbKCpTlu2rjQ8XG4qC2gwkRCCshNexVAI8DcQWGDEOU4vju1
+         70pQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=RUQx5kq3VrQOJzLJrHIG10H6hCDxVpxGzWKF98as5kk=;
-        b=OJaABdQjOSBFd7bwxhoDt/qD2+mxNYF3YrcY5Q8005xjVJSy3nE1R5jnMFyqHQujAt
-         jTZm9ptjdbfOYeXuovBN1IBTAZuJsjuIVIT38XvriwnoRgxclLGjmjO4XxGFwzEaHb5P
-         EPfTwndLc/JQDdHYMY9lGuF59iW48z4Z6/v8WCozB96BlU+Nquw3TAD7f4Bf5XvVm2Za
-         S69fmkr8ev6xehwsPZeSRlqVZzUtcW0frq4z5lsCfAOTl5/RQpCLT7pr5XBYvPqyv8aL
-         0auJbYRzwzLMVxhn++dzmjbnIiqkmLUhE9QRCV1/GxAIbJPfqHa1OQpYr6O0G4epj8Im
-         yDHw==
-X-Gm-Message-State: AOAM533aQSvTQTvIIu/1n88dzMIPtE/1JCsJ3smZk8r8aSyHwqqmJZTY
-        SiuLBYpKCso8jL3Rt9loTKcmfw==
-X-Google-Smtp-Source: ABdhPJyXfA1Aj/HuZe6HAzGr6uRY6CRxqJOxRkA1rtTvcyqa/VFMR4R6HUAfwPmKzWFpso4Sn5/UEA==
-X-Received: by 2002:ac2:42c6:: with SMTP id n6mr7403216lfl.553.1638385501381;
-        Wed, 01 Dec 2021 11:05:01 -0800 (PST)
+        bh=aAo5L8S04r7ipl+uXm9qNiK/iV6LQnGWXB0cFhZkmdM=;
+        b=4GvivVaPewjZnwuTXkevaHiM8vpItb6rfCRDXDhJO4fRJvSFPAlW9/gx6qoUpCPzuV
+         pR+Lj+njj/sM+WrS0YOTjyeCTa7AJrt3zuqaonwdTNmh/zi5BqnKFKGllwe/4R/YxB6G
+         3UuOMgI843ZNsEVJBN/ITQsNbP/X0+DlkyjyZ2trovKpoowRqAzeEQB9R5Xo0pNFEhDn
+         +kT10g5Pxzdmfy7QBdXZAN18ay72A1d4YdJyCPLffWE7qH0907ge1FWpQT3T8Oz4fbMw
+         6Kd0LT4uQ8BlJv1EUDPEjTia8fvW9UQza7S9UIphcniS4uGAJ7d6ARLL5BQWD0zteRZD
+         hDkg==
+X-Gm-Message-State: AOAM533ALE5SeBBkfwdMwdoF9mgesy27sBXk75lqwuzh4keLtm+y8TWa
+        DXY2BNpwPYeUFOmsitqczpLHBg==
+X-Google-Smtp-Source: ABdhPJyYuXcZhjzewZlCgGHfjAN9uPoQI44hRzrim9QZljFWb/IJjkjq+16q4MdxUHqa29lzRPl4qQ==
+X-Received: by 2002:a05:6512:11c5:: with SMTP id h5mr7501361lfr.431.1638385503089;
+        Wed, 01 Dec 2021 11:05:03 -0800 (PST)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id e20sm71103ljo.119.2021.12.01.11.05.00
+        by smtp.gmail.com with ESMTPSA id p26sm72178ljj.70.2021.12.01.11.05.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 11:05:00 -0800 (PST)
+        Wed, 01 Dec 2021 11:05:02 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>
@@ -58,9 +58,9 @@ Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 3/6] dt-bindings: i2c: exynos5: Add bus clock
-Date:   Wed,  1 Dec 2021 21:04:52 +0200
-Message-Id: <20211201190455.31646-4-semen.protsenko@linaro.org>
+Subject: [PATCH 4/6] i2c: exynos5: Add support for ExynosAutoV9 SoC
+Date:   Wed,  1 Dec 2021 21:04:53 +0200
+Message-Id: <20211201190455.31646-5-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211201190455.31646-1-semen.protsenko@linaro.org>
 References: <20211201190455.31646-1-semen.protsenko@linaro.org>
@@ -70,46 +70,155 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In new Exynos SoCs (like Exynos850) where HSI2C is implemented as a
-part of USIv2 block, there are two clocks provided to HSI2C controller:
-  - PCLK: bus clock (APB), provides access to register interface
-  - IPCLK: operating IP-core clock; SCL is derived from this one
+From: Jaewon Kim <jaewon02.kim@samsung.com>
 
-Both clocks have to be asserted for HSI2C to be functional in that case.
+ExynosAutoV9 functioning logic mostly follows I2C_TYPE_EXYNOS7, but
+timing calculation and configuration procedure is changed: e.g. only
+timing_s3 has to be set now.
 
-Modify bindings doc to allow specifying bus clock in addition to
-already described operating clock. Make it optional though, as older
-Exynos SoC variants only have one HSI2C clock.
+Another change of HSI2C controller in ExynosAutoV9 SoC is that it's now
+a part of USIv2 IP-core. No changes is needed for I2C driver though, as
+all USI related configuration is done in USI driver.
 
+Signed-off-by: Jaewon Kim <jaewon02.kim@samsung.com>
 Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 ---
- .../devicetree/bindings/i2c/i2c-exynos5.yaml          | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/i2c/busses/i2c-exynos5.c | 62 +++++++++++++++++++++++++++-----
+ 1 file changed, 53 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml b/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
-index db20e703dea0..a212c1d5e7d9 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
-@@ -49,11 +49,16 @@ properties:
-       clock-frequency is >= 1MHz.
+diff --git a/drivers/i2c/busses/i2c-exynos5.c b/drivers/i2c/busses/i2c-exynos5.c
+index c2e4bab11366..5198e71e8dab 100644
+--- a/drivers/i2c/busses/i2c-exynos5.c
++++ b/drivers/i2c/busses/i2c-exynos5.c
+@@ -169,6 +169,7 @@
+ enum i2c_type_exynos {
+ 	I2C_TYPE_EXYNOS5,
+ 	I2C_TYPE_EXYNOS7,
++	I2C_TYPE_EXYNOSAUTOV9,
+ };
  
-   clocks:
--    maxItems: 1
--    description: I2C operating clock
-+    minItems: 1
-+    items:
-+      - description: I2C operating clock
-+      - description: Bus clock (APB)
+ struct exynos5_i2c {
+@@ -230,6 +231,11 @@ static const struct exynos_hsi2c_variant exynos7_hsi2c_data = {
+ 	.hw		= I2C_TYPE_EXYNOS7,
+ };
  
-   clock-names:
--    const: hsi2c
-+    minItems: 1
-+    items:
-+      - const: hsi2c
-+      - const: hsi2c_pclk
++static const struct exynos_hsi2c_variant exynosautov9_hsi2c_data = {
++	.fifo_depth	= 64,
++	.hw		= I2C_TYPE_EXYNOSAUTOV9,
++};
++
+ static const struct of_device_id exynos5_i2c_match[] = {
+ 	{
+ 		.compatible = "samsung,exynos5-hsi2c",
+@@ -243,6 +249,9 @@ static const struct of_device_id exynos5_i2c_match[] = {
+ 	}, {
+ 		.compatible = "samsung,exynos7-hsi2c",
+ 		.data = &exynos7_hsi2c_data
++	}, {
++		.compatible = "samsung,exynosautov9-hsi2c",
++		.data = &exynosautov9_hsi2c_data
+ 	}, {},
+ };
+ MODULE_DEVICE_TABLE(of, exynos5_i2c_match);
+@@ -281,6 +290,31 @@ static int exynos5_i2c_set_timing(struct exynos5_i2c *i2c, bool hs_timings)
+ 		i2c->op_clock;
+ 	int div, clk_cycle, temp;
  
- required:
-   - compatible
++	/*
++	 * In case of HSI2C controllers in ExynosAutoV9:
++	 *
++	 * FSCL = IPCLK / ((CLK_DIV + 1) * 16)
++	 * T_SCL_LOW = IPCLK * (CLK_DIV + 1) * (N + M)
++	 *   [N : number of 0's in the TSCL_H_HS]
++	 *   [M : number of 0's in the TSCL_L_HS]
++	 * T_SCL_HIGH = IPCLK * (CLK_DIV + 1) * (N + M)
++	 *   [N : number of 1's in the TSCL_H_HS]
++	 *   [M : number of 1's in the TSCL_L_HS]
++	 *
++	 * Result of (N + M) is always 8.
++	 * In general case, we don't need to control timing_s1 and timing_s2.
++	 */
++	if (i2c->variant->hw == I2C_TYPE_EXYNOSAUTOV9) {
++		div = ((clkin / (16 * i2c->op_clock)) - 1);
++		i2c_timing_s3 = div << 16;
++		if (hs_timings)
++			writel(i2c_timing_s3, i2c->regs + HSI2C_TIMING_HS3);
++		else
++			writel(i2c_timing_s3, i2c->regs + HSI2C_TIMING_FS3);
++
++		return 0;
++	}
++
+ 	/*
+ 	 * In case of HSI2C controller in Exynos5 series
+ 	 * FPCLK / FI2C =
+@@ -422,7 +456,10 @@ static irqreturn_t exynos5_i2c_irq(int irqno, void *dev_id)
+ 	writel(int_status, i2c->regs + HSI2C_INT_STATUS);
+ 
+ 	/* handle interrupt related to the transfer status */
+-	if (i2c->variant->hw == I2C_TYPE_EXYNOS7) {
++	switch (i2c->variant->hw) {
++	case I2C_TYPE_EXYNOSAUTOV9:
++		fallthrough;
++	case I2C_TYPE_EXYNOS7:
+ 		if (int_status & HSI2C_INT_TRANS_DONE) {
+ 			i2c->trans_done = 1;
+ 			i2c->state = 0;
+@@ -443,7 +480,12 @@ static irqreturn_t exynos5_i2c_irq(int irqno, void *dev_id)
+ 			i2c->state = -ETIMEDOUT;
+ 			goto stop;
+ 		}
+-	} else if (int_status & HSI2C_INT_I2C) {
++
++		break;
++	case I2C_TYPE_EXYNOS5:
++		if (!(int_status & HSI2C_INT_I2C))
++			break;
++
+ 		trans_status = readl(i2c->regs + HSI2C_TRANS_STATUS);
+ 		if (trans_status & HSI2C_NO_DEV_ACK) {
+ 			dev_dbg(i2c->dev, "No ACK from device\n");
+@@ -465,6 +507,8 @@ static irqreturn_t exynos5_i2c_irq(int irqno, void *dev_id)
+ 			i2c->trans_done = 1;
+ 			i2c->state = 0;
+ 		}
++
++		break;
+ 	}
+ 
+ 	if ((i2c->msg->flags & I2C_M_RD) && (int_status &
+@@ -569,13 +613,13 @@ static void exynos5_i2c_bus_check(struct exynos5_i2c *i2c)
+ {
+ 	unsigned long timeout;
+ 
+-	if (i2c->variant->hw != I2C_TYPE_EXYNOS7)
++	if (i2c->variant->hw == I2C_TYPE_EXYNOS5)
+ 		return;
+ 
+ 	/*
+-	 * HSI2C_MASTER_ST_LOSE state in EXYNOS7 variant before transaction
+-	 * indicates that bus is stuck (SDA is low). In such case bus recovery
+-	 * can be performed.
++	 * HSI2C_MASTER_ST_LOSE state (in Exynos7 and ExynosAutoV9 variants)
++	 * before transaction indicates that bus is stuck (SDA is low).
++	 * In such case bus recovery can be performed.
+ 	 */
+ 	timeout = jiffies + msecs_to_jiffies(100);
+ 	for (;;) {
+@@ -611,10 +655,10 @@ static void exynos5_i2c_message_start(struct exynos5_i2c *i2c, int stop)
+ 	unsigned long flags;
+ 	unsigned short trig_lvl;
+ 
+-	if (i2c->variant->hw == I2C_TYPE_EXYNOS7)
+-		int_en |= HSI2C_INT_I2C_TRANS;
+-	else
++	if (i2c->variant->hw == I2C_TYPE_EXYNOS5)
+ 		int_en |= HSI2C_INT_I2C;
++	else
++		int_en |= HSI2C_INT_I2C_TRANS;
+ 
+ 	i2c_ctl = readl(i2c->regs + HSI2C_CTL);
+ 	i2c_ctl &= ~(HSI2C_TXCHON | HSI2C_RXCHON);
 -- 
 2.30.2
 
