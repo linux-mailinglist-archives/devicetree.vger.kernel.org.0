@@ -2,135 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F29A46533F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:46:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 57BE8465342
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:46:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232822AbhLAQtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49520 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232136AbhLAQtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:49:41 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45D5AC061748
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:46:20 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id cq22-20020a17090af99600b001a9550a17a5so200386pjb.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:46:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=wBDlagZhzaCKQPO8KQRJcEbdw+pTfLmf8ix5585yKYE=;
-        b=cDYR9mbfas8zcxichBHZJo10Gp7Lm7XyQANLAtsQdZcrQRWtsvQ9FmsS+3cUbSpPei
-         D737Mj5iSi/mzkaeVQ0sIkhYtWBZdDmIU02oe2nxMmeabpZXGApjZi7328TCTK11/ldP
-         HN2CEvwmXQrmDpsY8J+4V6MZ3YpBAW1oHnICnBwWN1WmCi3amn+rjlllvSN6MkcYjzl3
-         7mefC7ANsTXu8FB8CjCJl3p/8+JyyC+O58GQd7J11Mdi7OGdMVE/J1LTLNWzxMWZ1Pf+
-         IucYaTl63tPyBVHs4EhijQ2nIWDeyYyunawoZeOGKssOdWyLnFP2C4M1BDKzpMO4wwM9
-         BYSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wBDlagZhzaCKQPO8KQRJcEbdw+pTfLmf8ix5585yKYE=;
-        b=ujnxv4YQe3BE/PNB3oy72UXqeyxDS2S3dV/VKStbdELftFwsbhnebkdhVsxK1fG5vA
-         pqaCdEAT0hMRqykVU3rKYSbVdG1DDyv9e2iBWd+qD7GToiMElwBdfHG8qjWGAfieQDIK
-         BwyaQejOK+dgYOokvUGz05qfIrJbn8rTUO040qHmav9hHuBM47NNQtjhA/xZYXxE/a4U
-         19p2XY82ckeJg2C0z7Rd98YZNHupZSdQPXY9r8OHVhshuAIU++Rw7K4SKeC2eqsdKMBZ
-         EoH5z9IapTiIakYK5nHmNebPJ6CbxH3FXaCCTEzsMhdJA/vVwDrvZqcLWSLvRZPCvX8+
-         VKCw==
-X-Gm-Message-State: AOAM53222Yx51t55oTwVWbn36VJ2br2ns27VtdAv/S7HhygULHi7GwUl
-        wf0+kYXIATahlmE9Mp06Yfjh9g==
-X-Google-Smtp-Source: ABdhPJw1KJ3akbkNHnkpRR0aVBwuKap2U8kx/wsFNADR5HXFaJmmqShB3r0PApZxx+T3Mq2LN8muGg==
-X-Received: by 2002:a17:903:22cc:b0:142:d31:bd9 with SMTP id y12-20020a17090322cc00b001420d310bd9mr8743022plg.64.1638377179767;
-        Wed, 01 Dec 2021 08:46:19 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id v63sm196215pgv.71.2021.12.01.08.46.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 08:46:18 -0800 (PST)
-Date:   Wed, 1 Dec 2021 09:46:16 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Julien Massot <julien.massot@iot.bzh>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] Initial Renesas R-Car remoteproc support
-Message-ID: <20211201164616.GA834591@p14s>
-References: <20211130100049.129418-1-julien.massot@iot.bzh>
+        id S230361AbhLAQuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:50:01 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:57522 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237171AbhLAQt7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:49:59 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 4DF75B8203B;
+        Wed,  1 Dec 2021 16:46:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25152C53FCC;
+        Wed,  1 Dec 2021 16:46:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638377196;
+        bh=De0l1TCNnWmOFVACDlWbZQNb96CZZ1WfCc0UphiqXPs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AcTs3bAE3d5ngdNUq/a37qM4Th2Hu9p/OCKJPxJI3xuKljnAPOu5A1u6RsCfl0fcG
+         3ZoLAMm2tbTEoF+a9QGHMHMFY8B0TcVVjcyEyxpJFj4OjS3TK6BB9wZqAtRymfpu0+
+         WBstzg05f+TdvOdp3taAinF5owBkzWov8UrZ1bXWeH9xIMrtjzsXZ+Ql+T5ty5k1wd
+         Z1lN2PsHcqBeVzNoD16T4QvWTVf6dBZwS+WKty79/YDNbBDpL9og/zCQVvKrQ7mS0M
+         XivXU0y2pX2X7fh3qyWOZMaBvGQ3nKPSpsyvZeGqyKV3p7pnY21xt4zauEnq7ZFKZ9
+         G+Rjx6Swi4rpA==
+Message-ID: <b4c43541-ffcd-d43c-3405-86d770905dd2@kernel.org>
+Date:   Wed, 1 Dec 2021 18:46:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211130100049.129418-1-julien.massot@iot.bzh>
+Subject: Re: [PATCH 2/2] interconnect: qcom: Add SM8450 interconnect provider
+ driver
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211201072557.3968915-1-vkoul@kernel.org>
+ <20211201072557.3968915-3-vkoul@kernel.org>
+From:   Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <20211201072557.3968915-3-vkoul@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Good morning,
+Hi Vinod,
 
-On Tue, Nov 30, 2021 at 11:00:47AM +0100, Julien Massot wrote:
-> Most of the SoCs in the R-Car gen3 SoC series such as
-> H3,M3 and E3 have an 'Arm Realtime Core'.
-> This Realtime core is an Arm Cortex-R7 clocked at 800MHz.
-> This series adds initial support to load a firmware and start
-> this remote processor through the remoteproc subsystem.
+Thanks for working on this!
+
+On 1.12.21 9:25, Vinod Koul wrote:
+> Add driver for the Qualcomm interconnect buses found in SM8450 based
+> platforms. The topology consists of several NoCs that are controlled by
+> a remote processor that collects the aggregated bandwidth for each
+> master-slave pairs.
 > 
-> This series depends on
-> https://patchwork.kernel.org/project/linux-renesas-soc/patch/20211022122101.66998-1-julien.massot@iot.bzh/
-> to be able to set the Cortex-R7 boot address.
+> This is based on the downstream driver by
+> Vivek Aknurwar <viveka@codeaurora.org>
 
-The above depencency is needed for this patchset to compile properly.  Since
-Geert has already applied it to his renesas-devel tree we can do two things:
+Maybe CC him too.
 
-1) Make this set go through Geert's tree.
-2) Geert publishes an immutable branch I can pull the dependency from.
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>   drivers/interconnect/qcom/Kconfig  |    9 +
+>   drivers/interconnect/qcom/Makefile |    2 +
+>   drivers/interconnect/qcom/sm8450.c | 1988 ++++++++++++++++++++++++++++
+>   drivers/interconnect/qcom/sm8450.h |  169 +++
+>   4 files changed, 2168 insertions(+)
+>   create mode 100644 drivers/interconnect/qcom/sm8450.c
+>   create mode 100644 drivers/interconnect/qcom/sm8450.h
+> 
+[..]
+> +static struct platform_driver qnoc_driver = {
+> +	.probe = qnoc_probe,
+> +	.remove = qnoc_remove,
+> +	.driver = {
+> +		.name = "qnoc-sm8450",
+> +		.of_match_table = qnoc_of_match,
+> +		.sync_state = icc_sync_state,
 
-I'm good either way, just let me know what you want to do.
+We should set this callback only after we enable the client drivers to
+request bandwidth. Otherwise some path might get disabled because of no
+users. I would suggest to add sync_state after we describe the paths in
+DT.
 
 Thanks,
-Mathieu
+Georgi
 
-> 
-> One of the way to test this driver is to use the zephyr upstream support
-> for h3ulcb board 'blinky' demo is my favorite testing firmware.
-> 
-> To generate a firmware with the zephyr project.
-> 
-> follow this starting guide
-> https://docs.zephyrproject.org/2.7.0/getting_started/index.html
-> 
-> Then compile your zephyr demo
-> west build -b rcar_h3ulcb_cr7 zephyr/samples/basic/blinky \
->     -DCONFIG_KERNEL_ENTRY=\"_vector_table\" \
->     --build-dir h3-blinky
-> 
-> Then you can use h3-blinky/zephyr/zephyr.elf as a testing
-> firmware.
-> 
-> Patch 1/2 adds the dt-bindings
-> 
-> Patch 2/2 is a small driver to cover basic remoteproc
-> usage: loading firmware from filesystem, starting and stopping the
-> Cortex-r7 processor.
-> 
-> Device tree modifications have been dropped in this patchset version.
-> Reason is that memory range used by the Cortex-R7 depends on
-> design choice.
-> One thing we could do in the future is to add CR7 node
-> in the different Gen3 SoCs dtsi files such as r8a77951.dtsi, r8a77990.dtsi,
-> r8a77961.dtsi.. 
-> 
-> Julien Massot (2):
->   dt-bindings: remoteproc: Add Renesas R-Car
->   remoteproc: Add Renesas rcar driver
-> 
->  .../remoteproc/renesas,rcar-rproc.yaml        |  65 +++++
->  drivers/remoteproc/Kconfig                    |  11 +
->  drivers/remoteproc/Makefile                   |   1 +
->  drivers/remoteproc/rcar_rproc.c               | 226 ++++++++++++++++++
->  4 files changed, 303 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
->  create mode 100644 drivers/remoteproc/rcar_rproc.c
-> 
-> -- 
-> 2.33.1
-> 
-> 
