@@ -2,92 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 657DA465949
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:31:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4258D46594C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:32:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353630AbhLAWfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 17:35:13 -0500
-Received: from mail-ot1-f42.google.com ([209.85.210.42]:42977 "EHLO
-        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353601AbhLAWfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:35:04 -0500
-Received: by mail-ot1-f42.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so37311371otv.9;
-        Wed, 01 Dec 2021 14:31:42 -0800 (PST)
+        id S1353642AbhLAWfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 17:35:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45348 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353641AbhLAWfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:35:14 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC60CC061748
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 14:31:52 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id r138so25013348pgr.13
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 14:31:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=umzTzWZcfP0yiExHMah/W0arzACFOIq7DI/DXIKQLOc=;
+        b=D9PL+HXvJS7bjkOniCqpNV9drNtiGClJAgGX4FT/dqmyJgslns0Do3DDQH2OE/Ffuz
+         /DI/8ixpT2m9MEpqIzGvjFWWK+cIZjSKv/KI45gMc+YcDJkccqLzMceLMKjFBxgEo7oV
+         W3Zuohl1F9secLmaHcTPyNAzFZ7gWOxvTzunE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=T5dDFTbqoVtVfAAIqapjKcFefz1Su1Y3Jb3TmXDSfLM=;
-        b=e6VKxm8ii0bpywP7FhVKOpVA+d/4HNzpb/ZRgmo54rxf9mwvuEYPz+7EcKN8bqgIzn
-         Mz2wqIGuQoui8iTLfpLvpIn16VA2YxfycdLxc8gymU+W/gtcYYr8Pi8XOi9xoz3d7wU7
-         Ejj1kn3bTjP1vu4cBdzg0Anf4fwq64rXzjuqNDKopaUCn4c3Q8vlElqEGPgIZQ2TR78T
-         VV0GPVLI4nFBRUPNsLVGIAIA2lw5CQIl/RrtjDnBNz6D2hfRdWbJ1kBSHSS/eBkDPNMT
-         3wjv5D9puJxdIJUPD8R/dBS+uCyQpzt+CzzTpD6FLky52/oha8Jjc2yAJuGuv4UJx7gV
-         8/0A==
-X-Gm-Message-State: AOAM530uJlHltI+1e7nk97kUhUo6HwsPfgwUhjVgZyzc3VVUPEvjaBdV
-        tJ+zWam0/l+Z3uPbFPzkc9E2ccVNeA==
-X-Google-Smtp-Source: ABdhPJy8bnGR48W/xJpn01QnF07dEzkJUHFVw79LlhkqiRr6++P/Ysr9/PjH2SDv8XKQNdKBo6V6lg==
-X-Received: by 2002:a05:6830:2aa7:: with SMTP id s39mr8424157otu.151.1638397901599;
-        Wed, 01 Dec 2021 14:31:41 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bi20sm592910oib.29.2021.12.01.14.31.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 14:31:40 -0800 (PST)
-Received: (nullmailer pid 2899335 invoked by uid 1000);
-        Wed, 01 Dec 2021 22:31:39 -0000
-Date:   Wed, 1 Dec 2021 16:31:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Olivier Moysan <olivier.moysan@foss.st.com>
-Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Olivier Moysan <olivier.moysan@st.com>,
-        arnaud.pouliquen@foss.st.com, amelie.delaunay@foss.st.com,
-        alain.volmat@foss.st.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: stm32: i2s: allow additional
- properties.
-Message-ID: <Yaf3yy3tiTOaNBDY@robh.at.kernel.org>
-References: <20211125144053.774-1-olivier.moysan@foss.st.com>
- <20211125144053.774-3-olivier.moysan@foss.st.com>
+        bh=umzTzWZcfP0yiExHMah/W0arzACFOIq7DI/DXIKQLOc=;
+        b=OH0RU/SK338HJ/MOTS67ajewJgH33/EoJq5OEztMCLvg0X6Qy0qNALzim6e0FnJMx7
+         RSaOD/15T1Dk4RHDhlAzc0o4ku/m2PbE5prGEQXqiPLB5URsDmELycIIRZZ+5C7XmUdx
+         TOZMe8BEOcsh7MrWsp2rWLzHKB4dTo64LatHBWw+B46acbyHxVZnAtC6TAE7Js9t0SvB
+         q8l3isSCspj++lkHMifoU7ycZXbYzFQ1f2uyvnM+dFdPWj2T/X+NeW5rNfD0S89QHYJR
+         iJ4Qf2Yeg9Zh4++XPzR2F1ctoZZpvKQ9ClmM29dKEvyas0qcR0gGMIdUJR8bBjMLsHs5
+         tM7Q==
+X-Gm-Message-State: AOAM531mhyPuSeCNIk85riXw94UtRSbNvS4xLt7EC/K1vQ/1jG64tgM9
+        FUOaQCVDQCR6+aNtZ0GHVTl21g==
+X-Google-Smtp-Source: ABdhPJxtxvfFfZW1bkf55O/MgtlKEV+J1nodvrXMKmcbIq9+C4VdZJe2ZuIaW0GnPRVP53bfzxRVsw==
+X-Received: by 2002:a05:6a00:1482:b0:49f:d9af:27dc with SMTP id v2-20020a056a00148200b0049fd9af27dcmr9310139pfu.9.1638397912453;
+        Wed, 01 Dec 2021 14:31:52 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:b371:4539:c97c:c751])
+        by smtp.gmail.com with UTF8SMTPSA id d12sm558927pgf.19.2021.12.01.14.31.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 14:31:52 -0800 (PST)
+Date:   Wed, 1 Dec 2021 14:31:51 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Peter Chen <peter.chen@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>
+Subject: Re: [PATCH v17 2/7] of/platform: Add stubs for
+ of_platform_device_create/destroy()
+Message-ID: <Yaf318q5CcqLMCK6@google.com>
+References: <20211116200739.924401-1-mka@chromium.org>
+ <20211116120642.v17.2.I08fd2e1c775af04f663730e9fb4d00e6bbb38541@changeid>
+ <YZvW3UEkXy8dPmpz@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20211125144053.774-3-olivier.moysan@foss.st.com>
+In-Reply-To: <YZvW3UEkXy8dPmpz@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 25, 2021 at 03:40:51PM +0100, Olivier Moysan wrote:
-> The STM32 SPI peripheral supports both SPI and I2S protocols.
-> In the SoC device tree the node describes the peripheral as an
-> SPI peripheral by default. This default configuration can be
-> overwritten in board device tree to use the IP as an I2S peripheral.
-> In this case the address-cells and size-cells properties from
-> SoC DT SPI node should not be checked against STM32 I2S bindings.
-> Set additionalProperties to "true" to allow these extra properties.
+On Mon, Nov 22, 2021 at 09:43:57AM -0800, Matthias Kaehlcke wrote:
+> On Tue, Nov 16, 2021 at 12:07:34PM -0800, Matthias Kaehlcke wrote:
+> > Code for platform_device_create() and of_platform_device_destroy() is
+> > only generated if CONFIG_OF_ADDRESS=y. Add stubs to avoid unresolved
+> > symbols when CONFIG_OF_ADDRESS is not set.
+> > 
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > Acked-by: Rob Herring <robh@kernel.org>
 > 
-> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-> index 64b70ac539f8..33ba15363c0f 100644
-> --- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-> +++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
-> @@ -73,7 +73,7 @@ required:
->    - dmas
->    - dma-names
->  
-> -additionalProperties: false
-> +additionalProperties: true
+> Is anything preventing this patch from landing? It has Rob's ack and is
+> an improvement regardless of the fate of the rest of the series it is
+> part of. The patch was carried around unchanged in the last 10 versions
+> of the series, it would be nice if it could just get landed instead of
+> keep carrying it around :)
 
-This is only allowed for schemas that are incomplete collections of 
-properties such as common bindings.
+ping
 
-Rob
+Rob/Frank: is there any reason why this patch can't be landed?
+
+Thanks
+
+Matthias
