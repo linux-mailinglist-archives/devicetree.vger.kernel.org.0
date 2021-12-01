@@ -2,218 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D79FE4657A0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 21:53:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DBB846581D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 22:03:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353241AbhLAU4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 15:56:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50738 "EHLO
+        id S1343716AbhLAVGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 16:06:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353232AbhLAUz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 15:55:28 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3660C06174A;
-        Wed,  1 Dec 2021 12:52:07 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id z6so18649904plk.6;
-        Wed, 01 Dec 2021 12:52:07 -0800 (PST)
+        with ESMTP id S1353681AbhLAVGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 16:06:44 -0500
+Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111B2C061748
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 13:03:23 -0800 (PST)
+Received: by mail-qv1-xf2e.google.com with SMTP id m17so22990944qvx.8
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 13:03:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Z+SJkx7gZpNSKY4hP5L7YJpSZTXuOMEA5gcyCCsEvsg=;
-        b=HlQUEM8THquWt6x0dLOJGG/7ST0cRNjhD2RO0NxDe9QDgSRYzpjnChlTkF+gPXhz62
-         qVgHu+jifwqKySgi9hwWXucaQbivTi3wBwJEieRnadI95e+5Dzfjd4spx/f3E6IqpqwR
-         lpSQZy00/0SlBL4eK7QRcv0WUfW3zqgVt8QkZZ4J1ibQiZi36+bieo67cjUPwRDAwDIB
-         R5Jq3sfjH22mxgMpjYrqRm/mwO/ZJfGXda01W/4VRt2MREcIyfQBQraq40rIlrfsV825
-         6Vm5O3PqWnB00RDHSa+RE2CtLEJCLuX2Q1TVb91F/wl1g5qZk69eWgpneUfXRnExaumJ
-         zG1Q==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=zzUyVZkYHJ/EtGhQX/pmQIpQONhG4g4J+RvLaS350ZU=;
+        b=ZI7scObmozGOck8w7W6H7cRqNiKozmSQ0jvWo7vGzBlQfhrCf7FkrsMjygkzFh9LFh
+         LWITGcH6q8MfYq/EaEHKpk8QbbfnIKtcaBVedIkXcPwhHyI9Z7ziaDZpTsmedGbEJL+E
+         nBZFSrmp6/YMldfMIpYRfvWyTeqi5rwwEZudbocxgZZ4lSCN1fwi3O6GJ0y4Vf9JO+XB
+         M03fHBu0WzbYlA2kVxuABwvHT24CUnSfKgnV6BYtQZEMR02CwmfntUdzwgFhvtjgsD43
+         ALG4hDvTjlTuqivqL5alKt5fdhtVCo/Mq+I8b1oijSnnXOdQfhijgKDnbUxUHCrM2z/X
+         FUdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Z+SJkx7gZpNSKY4hP5L7YJpSZTXuOMEA5gcyCCsEvsg=;
-        b=h1lVr1At93Gj6bXPHRuhpVmU00IYelLkhCvt0QPbG3kdErq9ypb3UtL3zGrWTMIY/L
-         MUkbUx5OKXfWt9uSD3XexvK94o8HrfVqQa7yrwJC3cigDSZQa5J2zOBJ1211mpE1g8hK
-         YTjV/vhtHUJCtHk9KzzTH3dr7cq2JUvd2MtoTEUZQH2YP12Ht8EpkRZ9748koikRPtgy
-         ON2+6+of5CAZtGzRUEOSlTY8z0wR+ivrj0zZevOmsNWosmcIurEGdp4ZguKt3AN0UvY0
-         X2YvyVU11Bsgd6SC1GYMegMA/lWBdRgA9kKSca00D16ZgpOhgWvP7qVcxFArmvH4j6Fb
-         sdhQ==
-X-Gm-Message-State: AOAM532mYqSlR60Gxf0MsbX9+Ithp8/F1LeHO4bftgRZ+9abgDctxRsm
-        ABpDKrtzhH2Xb6m7cecK3rObQ8JnG1Q=
-X-Google-Smtp-Source: ABdhPJycFkYcanZu711/X/cGVfD11g1lE+wluwV3VRtNHqKIZWwA+CdO5KEBLg047YADwpUvmJSe5Q==
-X-Received: by 2002:a17:90b:19c8:: with SMTP id nm8mr725245pjb.163.1638391926915;
-        Wed, 01 Dec 2021 12:52:06 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id p20sm729117pfw.96.2021.12.01.12.52.04
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=zzUyVZkYHJ/EtGhQX/pmQIpQONhG4g4J+RvLaS350ZU=;
+        b=jTuuuzIPfU2AGvLcZ/w+pSPhdbZvGsXAfaH8lpJRSLE6wnRvgQlPUPB/Zrrr3bz1rd
+         REfKzWagGJrSn1eZ2kyxG+ipgDfdsOz/PBTQd9ntjeqNZtVvBSiAJdV5AfHplVc8EBpc
+         GacSlk/Qr/63sXXe+aBblAfo+bmbPgRWU3prSm33FhdN6chhgW5W9Nv7FnUVZU9T2MTS
+         j0ILHChm1An1IBoN6sShMTpWGZu++LrR1X0IunbRTl09Ws9y+zendTlufN/jVlZPRmsa
+         uvIVC9ufn2dBh66j8zBUzZVAWA1f9SZis+C7vEmNJ53znuXbpyBfbspVCwHRKMik9ZqO
+         P7vQ==
+X-Gm-Message-State: AOAM5315NNmKladnnzCTv1ie6nechaOA874ebFwAswwiu4Zx9qFOb1gb
+        T7YcZ+MYQllKA0HKgpp0+AHbgA==
+X-Google-Smtp-Source: ABdhPJwHo89Y0ElsYVSWh/R6qNsHkOikRJSJcPfLtzPsRdk3EejBbMpKLw8GyLWQT7w8bCh04oLn9Q==
+X-Received: by 2002:a05:6214:e41:: with SMTP id o1mr8967705qvc.88.1638392602056;
+        Wed, 01 Dec 2021 13:03:22 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (mtl.collabora.ca. [66.171.169.34])
+        by smtp.gmail.com with ESMTPSA id w10sm454063qtk.90.2021.12.01.13.03.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 12:52:06 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Wed, 01 Dec 2021 13:03:21 -0800 (PST)
+Message-ID: <d8335964ece000814c8ec2ea0274498b3280812c.camel@ndufresne.ca>
+Subject: Re: [RFC V2 1/2] media: hantro: Add support for i.MX8M Mini
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Adam Ford <aford173@gmail.com>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Adam Ford-BE <aford@beaconembedded.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
-        ARCHITECTURE), Gregory Fong <gregory.0xf0@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
-        Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Markus Mayer <mmayer@broadcom.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Al Cooper <alcooperx@gmail.com>,
-        Doug Berger <opendmb@gmail.com>,
-        linux-ide@vger.kernel.org (open list:LIBATA SUBSYSTEM (Serial and
-        Parallel ATA drivers)), linux-kernel@vger.kernel.org (open list),
-        linux-gpio@vger.kernel.org (open list:GPIO SUBSYSTEM),
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-mmc@vger.kernel.org (open list:MULTIMEDIA CARD (MMC), SECURE
-        DIGITAL (SD) AND...),
-        linux-pwm@vger.kernel.org (open list:PWM SUBSYSTEM),
-        linux-crypto@vger.kernel.org (open list:HARDWARE RANDOM NUMBER
-        GENERATOR CORE),
-        linux-rtc@vger.kernel.org (open list:REAL TIME CLOCK (RTC) SUBSYSTEM),
-        linux-pm@vger.kernel.org (open list:THERMAL),
-        linux-usb@vger.kernel.org (open list:USB SUBSYSTEM)
-Subject: [PATCH 14/14] dt-bindings: usb: Convert BDC to YAML
-Date:   Wed,  1 Dec 2021 12:51:10 -0800
-Message-Id: <20211201205110.41656-15-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211201205110.41656-1-f.fainelli@gmail.com>
-References: <20211201205110.41656-1-f.fainelli@gmail.com>
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Date:   Wed, 01 Dec 2021 16:03:19 -0500
+In-Reply-To: <CAAEAJfDqBezv1_ZsF3vjAFprZYuaE7krkSXa4vzAfMZp5_z+sA@mail.gmail.com>
+References: <20211201013329.15875-1-aford173@gmail.com>
+         <20211201013329.15875-2-aford173@gmail.com>
+         <CAAEAJfBBFhRtW2wmoA6T+yyM-nurUbtPqYHKPHjeRdKzA34PcQ@mail.gmail.com>
+         <CAHCN7xLGTadbr+=-j2yJHFn233dgHic28njej8LHS2M0WwtqYQ@mail.gmail.com>
+         <CAAEAJfDqBezv1_ZsF3vjAFprZYuaE7krkSXa4vzAfMZp5_z+sA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Broadcom BDC device controller Device Tree binding to YAML
-to help with validation.
+Le mercredi 01 décembre 2021 à 09:58 -0300, Ezequiel Garcia a écrit :
+> On Wed, 1 Dec 2021 at 09:36, Adam Ford <aford173@gmail.com> wrote:
+> > 
+> > On Wed, Dec 1, 2021 at 6:25 AM Ezequiel Garcia
+> > <ezequiel@vanguardiasur.com.ar> wrote:
+> > > 
+> > > Hi Adam,
+> > > 
+> > > On Tue, 30 Nov 2021 at 22:33, Adam Ford <aford173@gmail.com> wrote:
+> > > > 
+> > > > The i.MX8M Mini has a similar implementation of the Hantro G1 and
+> > > > h decoders, but the Mini uses the vpu-blk-ctrl for handling the
+> > > > VPU resets through the power domain system.  As such, there are
+> > > > functions present in the 8MQ that are not applicable to the Mini
+> > > > which requires the driver to have a different compatible flags.
+> > > > 
+> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > 
+> > > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
+> > > > index fb82b9297a2b..2aa1c520be50 100644
+> > > > --- a/drivers/staging/media/hantro/hantro_drv.c
+> > > > +++ b/drivers/staging/media/hantro/hantro_drv.c
+> > > > @@ -592,6 +592,8 @@ static const struct of_device_id of_hantro_match[] = {
+> > > >         { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
+> > > >  #endif
+> > > >  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
+> > > > +       { .compatible = "nxp,imx8mm-vpu", .data = &imx8mm_vpu_variant, },
+> > > > +       { .compatible = "nxp,imx8mm-vpu-g2", .data = &imx8mm_vpu_g2_variant },
+> > > >         { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
+> > > >         { .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant },
+> > > >  #endif
+> > > > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
+> > > > index 267a6d33a47b..ae7c3fff760c 100644
+> > > > --- a/drivers/staging/media/hantro/hantro_hw.h
+> > > > +++ b/drivers/staging/media/hantro/hantro_hw.h
+> > > > @@ -211,6 +211,8 @@ enum hantro_enc_fmt {
+> > > >         ROCKCHIP_VPU_ENC_FMT_UYVY422 = 3,
+> > > >  };
+> > > > 
+> > > > +extern const struct hantro_variant imx8mm_vpu_g2_variant;
+> > > > +extern const struct hantro_variant imx8mm_vpu_variant;
+> > > >  extern const struct hantro_variant imx8mq_vpu_g2_variant;
+> > > >  extern const struct hantro_variant imx8mq_vpu_variant;
+> > > >  extern const struct hantro_variant px30_vpu_variant;
+> > > > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > > index ea919bfb9891..c68516c00c6d 100644
+> > > > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
+> > > > @@ -242,6 +242,32 @@ static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
+> > > >         },
+> > > >  };
+> > > > 
+> > > > +static const struct hantro_codec_ops imx8mm_vpu_codec_ops[] = {
+> > > > +       [HANTRO_MODE_MPEG2_DEC] = {
+> > > > +               .run = hantro_g1_mpeg2_dec_run,
+> > > > +               .init = hantro_mpeg2_dec_init,
+> > > > +               .exit = hantro_mpeg2_dec_exit,
+> > > > +       },
+> > > > +       [HANTRO_MODE_VP8_DEC] = {
+> > > > +               .run = hantro_g1_vp8_dec_run,
+> > > > +               .init = hantro_vp8_dec_init,
+> > > > +               .exit = hantro_vp8_dec_exit,
+> > > > +       },
+> > > > +       [HANTRO_MODE_H264_DEC] = {
+> > > > +               .run = hantro_g1_h264_dec_run,
+> > > > +               .init = hantro_h264_dec_init,
+> > > > +               .exit = hantro_h264_dec_exit,
+> > > > +       },
+> > > > +};
+> > > > +
+> > > > +static const struct hantro_codec_ops imx8mm_vpu_g2_codec_ops[] = {
+> > > > +       [HANTRO_MODE_HEVC_DEC] = {
+> > > > +               .run = hantro_g2_hevc_dec_run,
+> > > > +               .init = hantro_hevc_dec_init,
+> > > > +               .exit = hantro_hevc_dec_exit,
+> > > > +       },
+> > > > +};
+> > > > +
+> > > 
+> > > I believe you are missing VP9, which explains why you get
+> > > a zero fluster score.
+> > 
+> > That's what I was thinking too and that's why I was wondering if I
+> > should wait on G2 until more of those G2 patches have been finalized
+> > and accepted.  Is there a way to test the HEVC?  I didn't see one in
+> > the fluster list.
+> > 
+> 
+> VP9 is on its way to be merged. There is a pull request from Hans
+> already: see https://www.spinics.net/lists/linux-media/msg202448.html
+> which includes the git repository and tag you can merge/rebase to test
+> it.
+> 
+> It would be great if you can test G2 on top of that, but it's also fine
+> if you want to just submit G1 for now. Up to you.
+> 
+> Regarding HEVC, currently Benjamin is who knows best how to test it.
+> Thinking about it, perhaps we should document this somewhere?
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- .../devicetree/bindings/usb/brcm,bdc.txt      | 29 ------------
- .../devicetree/bindings/usb/brcm,bdc.yaml     | 46 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 47 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/brcm,bdc.txt
- create mode 100644 Documentation/devicetree/bindings/usb/brcm,bdc.yaml
+There is GStreamer-H.265-V4L2SL-Gst1.0 decoder already in fluster. And GStreamer
+support is still WIP.
 
-diff --git a/Documentation/devicetree/bindings/usb/brcm,bdc.txt b/Documentation/devicetree/bindings/usb/brcm,bdc.txt
-deleted file mode 100644
-index c9f52b97cef1..000000000000
---- a/Documentation/devicetree/bindings/usb/brcm,bdc.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Broadcom USB Device Controller (BDC)
--====================================
--
--Required properties:
--
--- compatible: must be one of:
--                "brcm,bdc-udc-v2"
--                "brcm,bdc"
--- reg: the base register address and length
--- interrupts: the interrupt line for this controller
--
--Optional properties:
--
--On Broadcom STB platforms, these properties are required:
--
--- phys: phandle to one or two USB PHY blocks
--        NOTE: Some SoC's have a single phy and some have
--        USB 2.0 and USB 3.0 phys
--- clocks: phandle to the functional clock of this block
--
--Example:
--
--        bdc@f0b02000 {
--                compatible = "brcm,bdc-udc-v2";
--                reg = <0xf0b02000 0xfc4>;
--                interrupts = <0x0 0x60 0x0>;
--                phys = <&usbphy_0 0x0>;
--                clocks = <&sw_usbd>;
--        };
-diff --git a/Documentation/devicetree/bindings/usb/brcm,bdc.yaml b/Documentation/devicetree/bindings/usb/brcm,bdc.yaml
-new file mode 100644
-index 000000000000..48831b62ab31
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/brcm,bdc.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/brcm,bdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom USB Device Controller (BDC)
-+
-+maintainers:
-+  - Al Cooper <alcooperx@gmail.com>
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bdc-udc-v2
-+          - brcm,bdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts: true
-+
-+  phys:
-+    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        bdc@f0b02000 {
-+                compatible = "brcm,bdc-udc-v2";
-+                reg = <0xf0b02000 0xfc4>;
-+                interrupts = <0x0 0x60 0x0>;
-+                phys = <&usbphy_0 0x0>;
-+                clocks = <&sw_usbd>;
-+        };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 11808be8e128..2f657775eb59 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3690,7 +3690,7 @@ M:	Al Cooper <alcooperx@gmail.com>
- L:	linux-usb@vger.kernel.org
- L:	bcm-kernel-feedback-list@broadcom.com
- S:	Maintained
--F:	Documentation/devicetree/bindings/usb/brcm,bdc.txt
-+F:	Documentation/devicetree/bindings/usb/brcm,bdc.yaml
- F:	drivers/usb/gadget/udc/bdc/
- 
- BROADCOM BMIPS CPUFREQ DRIVER
--- 
-2.25.1
+https://gitlab.freedesktop.org/gstreamer/gstreamer/-/merge_requests/1079
+
+We had put on hold the HEVC work in order to focus on VP9. Now that VP9 is on
+its way (I've sent another MR today to GStreamer to fix some more tests). I
+haven't tested myself imx8mq recently, will likely do soon, so I can give you
+the expected score. Your VP8 and H264 score matches the result I got. Note that
+H264 driver is missing interlace support, which is half the tests.
+
+We will can resume this work. Help is welcome of course. The HEVC staging API is
+by was the worst, so there is quite some work to move this API to stable and
+then port all the drivers to the require changes that will be needed.
+
+> 
+> Regards,
+> Ezequiel
 
