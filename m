@@ -2,256 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F64F4650F7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 16:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45F8C4650FA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 16:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230096AbhLAPMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 10:12:45 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:33582 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S229933AbhLAPMo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 10:12:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1638371363;
-  x=1669907363;
-  h=date:from:to:cc:subject:message-id:mime-version:
-   content-transfer-encoding;
-  bh=DSVPT1RETG549ajOLLGEnilMUMx9Lq5dsNal0HI0fyQ=;
-  b=Fu5wv2emdKBALSRej+tNjmFb0VXBpEKRWOA046AwIJ7Q5+EPsGUEDLpE
-   jOj+e+tVoe5gBfHWfA/F9TUik5n1WCwovez8Zu3xG4PpPN7C1U4Lt9HAx
-   mrRNNs2nDZ8/jbLqSAStfwpw5dpGh31KnuKG0DcoS/A4zGr7uPpCJuFwj
-   8xcaze0wZMN//LZWpd+PVvHK7ruVEh65UoPowODAurpMesVlA+6GazBcb
-   G31+BHspxHJLzzzwl4Ik1IDC52UubwuPGcXUVmtFPbwXipxwb0Ec4Gq16
-   DBUUPhn6TnqeQCOb50C3JT5S884TQUrGPw0DDuEgxXslYQLCREABGGo9y
-   w==;
-Date:   Wed, 1 Dec 2021 16:09:17 +0100
-From:   Ricard Wanderlof <ricardw@axis.com>
-X-X-Sender: ricardw@lnxricardw1.se.axis.com
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     alsa-devel <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [RESEND, PATCH v6 1/2] dt-bindings: sound: tlv320adc3xxx: New codec
- driver
-Message-ID: <alpine.DEB.2.21.2112011603080.30606@lnxricardw1.se.axis.com>
-User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
+        id S230031AbhLAPNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 10:13:51 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:34856 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229933AbhLAPNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 10:13:50 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 04BEAB81F6E;
+        Wed,  1 Dec 2021 15:10:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 445F5C53FAD;
+        Wed,  1 Dec 2021 15:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638371427;
+        bh=FCqeRLXF2VMVm3yt6gJHFdWgv9xL0KxQlSQpzBtnUxI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qdEk9dF+fvXqeKr+VVHH5Au1zNimX1ep8FxHJ1E1JMAXY2xRds2J25uXy0ENwvMpp
+         0RAF6YJqUNx62zt/pqgvGssVjewJdtSaganLOg/zrjch7AGAWZovWZMcOCSVF4/g6P
+         +YF6PKux0eA0DYuWRFeKi6dAb350HthWM8LOMeu5aUV28FMdn7UVcyg2nS7JE6HGZu
+         uWgmjgUzJjQafFy9xG9u2euT8VCMnq3f72xtcowDFosOnJGvAozVAhtYS+/+TFBUSb
+         Vn4wcmKCM+kySmw2KS8miSxmadTNv4V+/+5hX9aPcjXfevjbmT+qvYd4T/AlGFELNg
+         cU4hrX00KPkWA==
+Date:   Wed, 1 Dec 2021 15:10:19 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
+Message-ID: <YaeQW/akoLE6SpEi@sirena.org.uk>
+Mail-Followup-To: "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+References: <cover.1638307601.git.hns@goldelico.com>
+ <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
+ <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
+ <Yad69aTXcGixXvy3@sirena.org.uk>
+ <46070A95-0FA9-43F9-A9A9-52A7B58B88F5@goldelico.com>
+ <EDWF3R.CMVWMJL42OH9@crapouillou.net>
+ <58C550A4-A21E-47BA-8BAE-00B927DC7A2E@goldelico.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-15"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.0.5.60]
-X-ClientProxiedBy: se-mail05w.axis.com (10.20.40.11) To se-mail07w.axis.com
- (10.20.40.13)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uxl0m5XHgmPX4QRQ"
+Content-Disposition: inline
+In-Reply-To: <58C550A4-A21E-47BA-8BAE-00B927DC7A2E@goldelico.com>
+X-Cookie: All true wisdom is found on T-shirts.
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-DT bindings for tlv320adc3xxx driver, currently supporting
-Texas Instruments TLV320ADC3001 and TLV320ADC3101 audio ADCs.
+--uxl0m5XHgmPX4QRQ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Ricard Wanderlof <ricardw@axis.com>
----
- .../bindings/sound/ti,tlv320adc3xxx.yaml      | 137 ++++++++++++++++++
- include/dt-bindings/sound/tlv320adc3xxx.h     |  28 ++++
- 2 files changed, 165 insertions(+)
- create mode 100644
-Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
- create mode 100644 include/dt-bindings/sound/tlv320adc3xxx.h
+On Wed, Dec 01, 2021 at 03:33:24PM +0100, H. Nikolaus Schaller wrote:
+> > Am 01.12.2021 um 15:03 schrieb Paul Cercueil <paul@crapouillou.net>:
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
-b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
-new file mode 100644
-index 000000000000..c4fed6335230
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,tlv320adc3xxx.yaml
-@@ -0,0 +1,137 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,tlv320adc3xxx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TLV320ADC3001/TLV320ADC3101 Stereo ADC
-+
-+maintainers:
-+  - Ricard Wanderlof <ricardw@axis.com>
-+
-+description: |
-+  Texas Instruments TLV320ADC3001 and TLV320ADC3101 Stereo ADC
-+  https://www.ti.com/product/TLV320ADC3001
-+  https://www.ti.com/product/TLV320ADC3101
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tlv320adc3001
-+      - ti,tlv320adc3101
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C address
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO pin used for codec reset (RESET pin)
-+
-+  clocks:
-+    maxItems: 1
-+    description: Master clock (MCLK)
-+
-+  ti,dmdin-gpio1:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not
-used
-+      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
-+      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
-+      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
-+      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX
-reg
-+      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
-+      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
-+      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
-+    default: 0
-+    description: |
-+      Configuration for DMDIN/GPIO1 pin.
-+
-+      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
-+      ALSA control "GPIOx Output" to appear, as a switch control.
-+
-+  ti,dmclk-gpio2:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_GPIO_DISABLED       - I/O buffers powered down and not
-used
-+      - 1 # ADC3XXX_GPIO_INPUT          - Various non-GPIO input functions
-+      - 2 # ADC3XXX_GPIO_GPI            - General purpose input
-+      - 3 # ADC3XXX_GPIO_GPO            - General purpose output
-+      - 4 # ADC3XXX_GPIO_CLKOUT         - Clock source set in CLKOUT_MUX
-reg
-+      - 5 # ADC3XXX_GPIO_INT1           - INT1 output
-+      - 6 # ADC3XXX_GPIO_SECONDARY_BCLK - Codec interface secondary BCLK
-+      - 7 # ADC3XXX_GPIO_SECONDARY_WCLK - Codec interface secondary WCLK
-+    default: 0
-+    description: |
-+      Configuration for DMCLK/GPIO2 pin.
-+
-+      When ADC3XXX_GPIO_GPO is configured, this causes corresponding the
-+      ALSA control "GPIOx Output" to appear, as a switch control.
-+
-+      Note that there is currently no support for reading the GPIO pins as
-+      inputs.
-+
-+  ti,micbias1-vg:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_MICBIAS_OFF                - Mic bias is powered down
-+      - 1 # ADC3XXX_MICBIAS_2_0V       - Mic bias is set to 2.0V
-+      - 2 # ADC3XXX_MICBIAS_2_5V       - Mic bias is set to 2.5V
-+      - 3 # ADC3XXX_MICBIAS_AVDD       - Mic bias is same as AVDD supply
-+    default: 0
-+    description: |
-+      Mic bias voltage output on MICBIAS1 pin
-+
-+  ti,micbias2-vg:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # ADC3XXX_MICBIAS_OFF                - Mic bias is powered down
-+      - 1 # ADC3XXX_MICBIAS_2_0V       - Mic bias is set to 2.0V
-+      - 2 # ADC3XXX_MICBIAS_2_5V       - Mic bias is set to 2.5V
-+      - 3 # ADC3XXX_MICBIAS_AVDD       - Mic bias is same as AVDD supply
-+    default: 0
-+    description: |
-+      Mic bias voltage output on MICBIAS2 pin
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/sound/tlv320adc3xxx.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        tlv320adc3101: tlv320adc3101@18 {
-+            compatible = "ti,tlv320adc3101";
-+            reg = <0x18>;
-+            reset-gpios = <&gpio_pc 3 GPIO_ACTIVE_LOW>;
-+            clocks = <&audio_mclk>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            ti,dmdin-gpio1 = <ADC3XXX_GPIO_GPO>;
-+            ti,micbias1-vg = <ADC3XXX_MICBIAS_AVDD>;
-+        };
-+    };
-+
-+    audio_mclk: clock {
-+        compatible = "fixed-clock";
-+        #clock-cells = <0>;
-+        clock-frequency = <24576000>;
-+    };
-+...
-diff --git a/include/dt-bindings/sound/tlv320adc3xxx.h
-b/include/dt-bindings/sound/tlv320adc3xxx.h
-new file mode 100644
-index 000000000000..3b3fa43fa961
---- /dev/null
-+++ b/include/dt-bindings/sound/tlv320adc3xxx.h
-@@ -0,0 +1,28 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Devicetree bindings definitions for tlv320adc3xxx driver.
-+ *
-+ * Copyright (C) 2021 Axis Communications AB
-+ */
-+#ifndef __DT_TLV320ADC3XXX_H
-+#define __DT_TLV320ADC3XXX_H
-+
-+#define ADC3XXX_GPIO_DISABLED          0 /* I/O buffers powered down */
-+#define ADC3XXX_GPIO_INPUT             1 /* Various non-GPIO inputs */
-+#define ADC3XXX_GPIO_GPI               2 /* General purpose input */
-+#define ADC3XXX_GPIO_GPO               3 /* General purpose output */
-+#define ADC3XXX_GPIO_CLKOUT            4 /* Source set in reg. CLKOUT_MUX
-*/
-+#define ADC3XXX_GPIO_INT1              5 /* INT1 output */
-+#define ADC3XXX_GPIO_INT2              6 /* INT2 output */
-+/* value 7 is reserved */
-+#define ADC3XXX_GPIO_SECONDARY_BCLK    8 /* Codec interface secondary BCLK
-*/
-+#define ADC3XXX_GPIO_SECONDARY_WCLK    9 /* Codec interface secondary WCLK
-*/
-+#define ADC3XXX_GPIO_ADC_MOD_CLK       10 /* Clock output for digital mics
-*/
-+/* values 11-15 reserved */
-+
-+#define ADC3XXX_MICBIAS_OFF            0 /* Micbias pin powered off */
-+#define ADC3XXX_MICBIAS_2_0V           1 /* Micbias pin set to 2.0V */
-+#define ADC3XXX_MICBIAS_2_5V           2 /* Micbias pin set to 2.5V */
-+#define ADC3XXX_MICBIAS_AVDD           3 /* Use AVDD voltage for micbias
-pin */
-+
-+#endif /* __DT_TLV320ADC3XXX_H */
---
-2.20.1
+> > Please make it mandatory in DTS then, and use devm_regulator_get() in the driver.
 
---
-Ricard Wolf Wanderlof                           ricardw(at)axis.com
-Axis Communications AB, Lund, Sweden            www.axis.com
-Phone +46 46 272 2016                           Fax +46 46 13 61 30
+> Well, I just wonder why the elegant devm_regulator_get_optional() exists at all
+> and seems to be used in ca. 80 places.
 
+Frankly because half of them are broken usages like this since people
+seem determined to have the most fragile error handling they can :/
+There are valid use cases for it, with things like SD cards where some
+supplies are genuinely optional and simply constrain what features are
+available if they're omitted from the design.  You also see some devices
+with the ability to replace internal regulators with external ones.
+
+> And if it is not allowed, why some DTS should be forced to add not physically existing dummy-regulators.
+
+Again, if the supply can be physically absent that is a sensible use
+case but that means completely absent, not just not software
+controllable.  We can represent fixed voltage regulators just fine.
+
+> AFAIR drivers should implement functionality defined by DTS but not the other way round: enforce DTS style.
+> BTW: there is no +5 mains dummy regulator defined in ci20.dts.
+
+It wouldn't be the first time a DTS were incomplete, and I'm sure it
+won't be the last.
+
+> What I fear is that if we always have to define the mains +5V (which is for example not
+> defined in ci20.dts), which rules stops us from asking to add a dummy-regulator from 110/230V to +5V as well.
+
+It is good practice to specify the full tree of supplies all the way to
+the main supply rail of the board, this ensures that if we need the
+information for something we've got it (even if that thing is just that
+we've got to the root of the tree).  There's potential applications in
+battery supplied devices for managing very low power situations.
+
+--uxl0m5XHgmPX4QRQ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGnkFoACgkQJNaLcl1U
+h9A32gf/ZYHl/RIiCZDvdUvGhhXUQ5m3dke8DEbkuGwIbHOYqQDdVOpbI+NpTIMu
+vmWcV7LpARb1R1Mst3T9J8O7p5STJUJulPLzFGsARuhjMeLE2z9+oyaocNmgXEfQ
+54NPwbUWho0pcNd+GCtvoPzRiAMMkCxBrH2exwosdTPDYpF0gIOdpuSZ3YJXRsWU
+eeni01wlGuXgswuy3SiXBc2nkmb0cNAPZlfxtdDvBoiDuR2zkIkSumfBuEeDvSvq
+1rg+fYGi6vrNgTsbEnrfLaDB1GS5xzqdQryJizNS48arBhTalMrKXP0CVmfEYOc8
+Edqu+7QgOTmmsAHtTGtymBAt2WnBUg==
+=ZCY4
+-----END PGP SIGNATURE-----
+
+--uxl0m5XHgmPX4QRQ--
