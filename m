@@ -2,294 +2,427 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5844C46504C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:45:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62FA2465073
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:51:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350745AbhLAOso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 09:48:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48524 "EHLO
+        id S237504AbhLAOyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 09:54:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350575AbhLAOrP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:47:15 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85245C061756
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 06:43:51 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id b40so63479062lfv.10
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 06:43:51 -0800 (PST)
+        with ESMTP id S236817AbhLAOyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:54:46 -0500
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE63FC061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 06:51:24 -0800 (PST)
+Received: by mail-wm1-x331.google.com with SMTP id p3-20020a05600c1d8300b003334fab53afso22480129wms.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 06:51:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gxTGNH4RjZnXC09mFHvXZGKvlJs0ViDxwUF13VP4Qnc=;
-        b=j1sE7JdBShi/drRIhEhZBO6Hp8GoxIqTZ6X76Z4WdL4ClkjzJQawZwwxSyHJvThbkQ
-         ZkA05uk98Wr8NHK3d8DBM0PVbPx1pa1hg5zXgKJEo+k1LSud82VtG94R67OuXuXZEkcw
-         A+IOdOXLToG3/WZ0yYJHn0q8H1NuD5Uiuhzi7J87S9U3rIVekTdWElUcXELCpas/s3PR
-         TOT7jsRHpS6bMNxCKwv6t3IyPcuYn+A3U3trC4B9K1XlFN+eQHd2jfXkOzEBxb5npEln
-         ZPgC6y1dYfkjYJABVbOhiPiFn3SlidHHhD05wboAlT29k+UajlBI0t13iz9+wcaNsSfO
-         DspA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=9Gb2u8KwssgNnYQE671ubZFTIQrFKxdfnexkUxxMbkM=;
+        b=c1e83Im7e4gfZsyzSuBRhzTy8cTd/kesVoL5iFE1sfPY7fgN9C6+Il8MDd2pok9Zlt
+         4E9n/ieM5Rjr5gDP+1n2jP6sZ3f9FYWPBYzkavxzAAdKg/d1eL80eyWnIqNH5QIpI+2Q
+         uEBLAsnsr1YcNdJyxXtDDUGW4iw0hVcWwHgKW1J1uE8+cuy18QXsp6Hu9XHlaeAMhF0s
+         7jmJMsRpsxgQyxHnD2CKb0h2VW70RiiNw3nVfhfoV3OqzUeawuZ7fdt2GgAU8SvHMrmt
+         08DWFyc1tCFLPV7d260sj8OPYaAU2Cjrzs+lbejY+QAjHkqZYghrMQx4mLgZMvvZi7ZH
+         X6TQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gxTGNH4RjZnXC09mFHvXZGKvlJs0ViDxwUF13VP4Qnc=;
-        b=YjG85S6Ii5IEAxCkTr3q1KrYRUTaoT72FqxCfdyDsgmvLW3etyWTkiif5mvMIBJKrZ
-         +gf55IL4fZFRnDhfqKyeQBurxjKuXfNU5Wqd2J0mTjjPH6zfrOlEs7WYG5uiK1UPF7/K
-         4BnzMbBWacWBq7suRNHPkeL5rnG3VnHFD+Yg3ViGfN0itGW1Mqwx0d0SqWnszCGiJSpO
-         JptS2x9ylFOLjht8n6oTQaiBGV3oKuD1h/R+bG7v4vRzLpY7AKNsQWpbyaIGpq0lE+im
-         vTR4dPTj8rWXxnNftOHGcInCxOpqNi1SslH1n6ZQGF+7k1GV4rBQSwN0bb8RL0Vxsz8x
-         vN6Q==
-X-Gm-Message-State: AOAM533Je787WujZf0ZwWqhdwdYhxMsq3jCPjv20Vqj5N26fh16QU1rB
-        wDzys5JgpiqikPP1W/YPBTFkzIvgxyfsvNKP2MaSEQ==
-X-Google-Smtp-Source: ABdhPJxVYx2b3NkGS8YC0h/FYV805PvlFm04JQsMyVC9RHmRfwgvzlv9TZ9QEWvSvv5Kz90my11HVJhsXcHlNDrWXa4=
-X-Received: by 2002:ac2:4bc1:: with SMTP id o1mr6344492lfq.254.1638369829729;
- Wed, 01 Dec 2021 06:43:49 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9Gb2u8KwssgNnYQE671ubZFTIQrFKxdfnexkUxxMbkM=;
+        b=CWr6Pxiu9Qncui0uqe4oSTP/UyTForEhjMXT6bzVc5z0RjmqzLKoAup66QljGZqZnT
+         OXvU8lOPP2amvWIQc77t/xJmXzIuJJ9HxM3eDTk96SFyTkIJoX4M46qtpK1Ft+VilkHc
+         kKOQ0NtNa0ldy7aENDcO25hFtR44jUjtYX8hvk2bjZBr3iEeCZM1wLmeljO7u4scTE0e
+         /nfypxm2wUu7DE3EjR6cSbk1quYWcjCPbOhTYiOpxM8OtmSSj7g5Z2KbUWjIGlpOLuDC
+         o5VG/vVi1cxA19zXQ2mbTrzFm5nkbilcbYRvbCAo48OUdCQ2/8oTmvXGtjxho5zkN2hE
+         TkWg==
+X-Gm-Message-State: AOAM530qWVnOMznFaVHFiiSSaHneOUm+kRc8I3EDrVGdTtmagS58Txaz
+        lRDB+1RYvkUPry8U9GOWzpHOnA==
+X-Google-Smtp-Source: ABdhPJynR2EJWu30h829urnDjwycFMpMQ89ALzJRAbP/wOqdc3+Fz5EZOrDgq4Ow1a6QemVm+2Cctg==
+X-Received: by 2002:a05:600c:4113:: with SMTP id j19mr7844382wmi.48.1638370283304;
+        Wed, 01 Dec 2021 06:51:23 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id 38sm63820wrc.1.2021.12.01.06.51.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 06:51:22 -0800 (PST)
+Subject: Re: [PATCH v6 06/10] ASoC: qcom: Add support for codec dma driver
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1637928282-2819-1-git-send-email-srivasam@codeaurora.org>
+ <1637928282-2819-7-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <0fadec22-9301-9a25-2263-a9a1b57fe8d4@linaro.org>
+Date:   Wed, 1 Dec 2021 14:51:21 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-References: <20211126181500.3404129-1-daniel.lezcano@linaro.org> <CAPDyKFoZo4p93JZUm4CUqO4DfrL8_YbyomqBzC59C0eTwa60CA@mail.gmail.com>
-In-Reply-To: <CAPDyKFoZo4p93JZUm4CUqO4DfrL8_YbyomqBzC59C0eTwa60CA@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 1 Dec 2021 15:43:13 +0100
-Message-ID: <CAPDyKFoY3b=sbFffDRTAwnXc7OJ9w_B8t337BPbnU66SB-xQjg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: Powerzone new bindings
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
-        rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1637928282-2819-7-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Dec 2021 at 10:23, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Fri, 26 Nov 2021 at 19:15, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
-> >
-> > The proposed bindings are describing a set of powerzones.
-> >
-> > A power zone is the logical name for a component which is capable of
-> > power capping and where we can measure the power consumption.
-> >
-> > A power zone can aggregate several power zones in terms of power
-> > measurement and power limitations. That allows to apply power
-> > constraint to a group of components and let the system balance the
-> > allocated power in order to comply with the constraint.
-> >
-> > The ARM System Control and Management Interface (SCMI) can provide a
-> > power zone description.
-> >
-> > The powerzone semantic is also found on the Intel platform with the
-> > RAPL register.
-> >
-> > The Linux kernel powercap framework deals with the powerzones:
-> >
-> > https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
-> >
-> > The powerzone can also represent a group of children powerzones, hence
-> > the description can result on a hierarchy. Such hierarchy already
-> > exists with the hardware or can be represented an computed from the
-> > kernel.
-> >
-> > The hierarchical description was initially proposed but not desired
-> > given there are other descriptions like the power domain proposing
-> > almost the same description.
-> >
-> > https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
-> >
-> > The description gives the power constraint dependencies to apply on a
-> > specific group of logically or physically aggregated devices. They do
-> > not represent the physical location or the power domains of the SoC
-> > even if the description could be similar.
-> >
-> > Cc: Arnd Bergmann <arnd@arndb.de>
-> > Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > ---
-> >    V1: Initial post
-> >    V2:
-> >      - Added pattern properties and stick to powerzone-*
-> >      - Added required property compatible and powerzone-cells
-> >      - Added additionnal property
-> >      - Added compatible
-> >      - Renamed to 'powerzones'
-> >      - Added missing powerzone-cells to the topmost node
-> >      - Fixed errors reported by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > ---
-> >  .../devicetree/bindings/power/powerzones.yaml | 109 ++++++++++++++++++
-> >  1 file changed, 109 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
-> > new file mode 100644
-> > index 000000000000..6e63bbc750c6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/powerzones.yaml
-> > @@ -0,0 +1,109 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/powerzones.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Power zones description
-> > +
-> > +maintainers:
-> > +  - Daniel Lezcano <daniel.lezcano@linaro.org>
-> > +
-> > +description: |+
-> > +
-> > +  A System on Chip contains a multitude of active components and each
-> > +  of them is a source of heat. Even if a temperature sensor is not
-> > +  present, a source of heat can be controlled by acting on the
-> > +  consumed power via different techniques.
-> > +
-> > +  A powerzone describes a component or a group of components where we
-> > +  can control the maximum power consumption. For instance, a group of
-> > +  CPUs via the performance domain, a LCD screen via the brightness,
-> > +  etc ...
-> > +
-> > +  Different components when they are used together can significantly
-> > +  increase the overall temperature, so the description needs to
-> > +  reflect this dependency in order to assign a power budget for a
-> > +  group of powerzones.
-> > +
-> > +  This description is done via a hierarchy and the DT reflects it. It
-> > +  does not represent the physical location or a topology, eg. on a
-> > +  big.Little system, the little CPUs may not be represented as they do
-> > +  not contribute significantly to the heat, however the GPU can be
-> > +  tied with the big CPUs as they usually have a connection for
-> > +  multimedia or game workloads.
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: powerzones
-> > +
-> > +  compatible:
-> > +    const: powerzones
->
-> This looks odd. Why do we need const compatible string? Shouldn't this
-> be allowed to be an SoC-powerzone specific compatible?
 
-Alright, after our recent discussions offlist, I believe the
-compatible property should be entirely removed.
 
->
-> > +
-> > +patternProperties:
-> > +  "^(powerzone)([@-].*)?$":
-> > +    type: object
-> > +    description:
-> > +      A node representing a powerzone acting as an aggregator for all
-> > +      its children powerzones.
-> > +
-> > +    properties:
-> > +      "#powerzone-cells":
-> > +        description:
-> > +          Number of cells in powerzone specifier. Typically 0 for nodes
-> > +          representing but it can be any number in the future to
-> > +          describe parameters of the powerzone.
-> > +
-> > +      powerzones:
-> > +        description:
-> > +          A phandle to a parent powerzone. If no powerzone attribute is
-> > +          set, the described powerzone is the topmost in the hierarchy.
-> > +
-> > +    required:
-> > +      - "#powerzone-cells"
-> > +
-> > +required:
-> > +  - compatible
+On 26/11/2021 12:04, Srinivasa Rao Mandadapu wrote:
+> Upadate lpass cpu and platform driver to support audio over codec dma
+> in ADSP bypass use case.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> ---
+>   sound/soc/qcom/lpass-cpu.c      |  59 +++++-
+>   sound/soc/qcom/lpass-platform.c | 460 ++++++++++++++++++++++++++++++++++++++--
+>   sound/soc/qcom/lpass.h          |  12 ++
+>   3 files changed, 510 insertions(+), 21 deletions(-)
+> 
+> diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+> index 3bd9eb3..70feb9e 100644
+> --- a/sound/soc/qcom/lpass-cpu.c
+> +++ b/sound/soc/qcom/lpass-cpu.c
+> @@ -857,7 +857,9 @@ static void of_lpass_cpu_parse_dai_data(struct device *dev,
+>   		}
+...
 
-This should be removed too, of course.
+>   
+>   		drvdata->mi2s_osr_clk[dai_id] = devm_clk_get_optional(dev,
+> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+> index 5d77240..4419d3b 100644
+> --- a/sound/soc/qcom/lpass-platform.c
+> +++ b/sound/soc/qcom/lpass-platform.c
+> @@ -20,6 +20,9 @@
+>   
+>   
+>   static const struct snd_pcm_hardware lpass_platform_pcm_hardware = {
+>   	.info			=	SNDRV_PCM_INFO_MMAP |
+> @@ -45,6 +48,99 @@ static const struct snd_pcm_hardware lpass_platform_pcm_hardware = {
+>   	.fifo_size		=	0,
+>   };
+>   
 
-> > +
-> > +additionalProperties: true
+...
+> +static int lpass_platform_pcmops_mmap(struct snd_soc_component *component,
+> +				      struct snd_pcm_substream *substream,
+> +				      struct vm_area_struct *vma)
+> +{
+> +	struct snd_soc_pcm_runtime *soc_runtime = asoc_substream_to_rtd(substream);
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	unsigned int dai_id = cpu_dai->driver->id;
+> +
+> +	if (is_cdc_dma_port(dai_id))
+> +		return lpass_platform_cdc_dma_mmap(component, substream, vma);
+> +
+> +	return 0;
 
-This should be set to "false", I think. There is no need for any
-additional properties besides those that are being part of the binding
-above.
+Now we have broken what was working before,
 
-> > +
-> > +examples:
-> > +  - |
-> > +    powerzones {
-> > +
-> > +      compatible = "powerzones";
-> > +
-> > +      #powerzone-cells = <0>;
+This should proably be
 
-This toplevel "powerzones" node, should neither contain a compatible
-nor a #powerzone-cells. Please drop this.
+if (is_cdc_dma_port(dai_id))
+	err = lpass_platform_cdc_dma_mmap(component, substream, vma);
+else
+	err = snd_pcm_lib_default_mmap(substream, vma);
 
-Instead we only need to describe the topology by using child nodes, as
-in the example below.
+return err;
 
-> > +
-> > +      SOC_PZ: powerzone-soc {
-> > +        #powerzone-cells = <0>;
-> > +      };
-> > +
-> > +      PKG_PZ: powerzone-pkg {
-> > +        #powerzone-cells = <0>;
-> > +        powerzones = <&SOC_PZ>;
-> > +      };
-> > +
-> > +      GPU_PZ: powerzone-gpu {
-> > +        #powerzone-cells = <0>;
-> > +        powerzones = <&PKG_PZ>;
-> > +      };
-> > +    };
-> > +
-> > +  - |
-> > +    A57_0: big@0 {
-> > +      compatible = "arm,cortex-a57";
-> > +      reg = <0x0 0x0>;
-> > +      device_type = "cpu";
-> > +      #powerzone-cells = <0>;
-> > +      powerzones = <&PKG_PZ>;
-> > +    };
->
-> I think we discussed this in the earlier version too...
->
-> The above example describes a powerzone provider, but it doesn't
-> really conform to the binding. That's because the binding states that
-> powerzone providers should be inside a top-level "powerzone {" node.
+> +}
+> +
+>   static irqreturn_t lpass_dma_interrupt_handler(
+>   			struct snd_pcm_substream *substream,
+>   			struct lpass_data *drvdata,
+> @@ -674,6 +908,17 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>   		reg = LPAIF_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST);
+>   		val = 0;
+>   	break;
+> +	case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
+> +	case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
+> +		map = drvdata->rxtx_lpaif_map;
+> +		reg = LPAIF_RXTX_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +		val = 0;
+> +	break;
+> +	case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
+> +		map = drvdata->va_lpaif_map;
+> +		reg = LPAIF_RXTX_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST, dai_id);
+> +		val = 0;
+> +	break;
+>   	default:
+>   	dev_err(soc_runtime->dev, "%s: invalid  %d interface\n", __func__, dai_id);
+>   	return -EINVAL;
+> @@ -781,18 +1026,123 @@ static irqreturn_t lpass_platform_hdmiif_irq(int irq, void *data)
+>   				return rv;
+>   		}
+>   	}
+> +	return IRQ_HANDLED;
+> +}
+>   
+> +static irqreturn_t lpass_platform_rxtxif_irq(int irq, void *data)
+> +{
+> +	struct lpass_data *drvdata = data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	unsigned int irqs;
+> +	int rv, chan;
+> +
+> +	rv = regmap_read(drvdata->rxtx_lpaif_map,
+> +			LPAIF_RXTX_IRQSTAT_REG(v, LPAIF_IRQ_PORT_HOST, LPASS_CDC_DMA_RX0), &irqs);
+> +	if (rv)
+> +		return IRQ_NONE;
+> +	/* Handle per channel interrupts */
+> +	for (chan = 0; chan < LPASS_MAX_CDC_DMA_CHANNELS; chan++) {
+> +		if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->rxtx_substream[chan]) {
+> +			rv = lpass_dma_interrupt_handler(
+> +						drvdata->rxtx_substream[chan],
+> +						drvdata, chan, irqs);
+> +			if (rv != IRQ_HANDLED)
+> +				return rv;
+> +		}
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t lpass_platform_vaif_irq(int irq, void *data)
+> +{
+> +	struct lpass_data *drvdata = data;
+> +	struct lpass_variant *v = drvdata->variant;
+> +	unsigned int irqs;
+> +	int rv, chan;
+> +
+> +	rv = regmap_read(drvdata->va_lpaif_map,
+> +			LPAIF_RXTX_IRQSTAT_REG(v, LPAIF_IRQ_PORT_HOST,
+> +			LPASS_CDC_DMA_VA_TX0), &irqs);
+> +	if (rv)
+> +		return IRQ_NONE;
+> +	/* Handle per channel interrupts */
+> +	for (chan = 0; chan < LPASS_MAX_VA_CDC_DMA_CHANNELS; chan++) {
+> +		if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->va_substream[chan]) {
+> +			rv = lpass_dma_interrupt_handler(
+> +						drvdata->va_substream[chan],
+> +						drvdata, chan, irqs);
+> +			if (rv != IRQ_HANDLED)
+> +				return rv;
+> +		}
+> +	}
+>   	return IRQ_HANDLED;
+>   }
+>   
+> +static int lpass_platform_prealloc_cdc_dma_buffer(struct snd_soc_component *component,
+> +			struct snd_pcm *pcm, int dai_id)
+> +{
+> +	struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
+> +	struct snd_pcm_substream *substream;
+> +	struct snd_dma_buffer *buf;
+> +	int ret;
+> +
+> +	if (pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream)
+> +		substream = pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
+> +	else
+> +		substream = pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream;
+> +
+> +	ret = dma_coerce_mask_and_coherent(pcm->card->dev, DMA_BIT_MASK(64));
+> +	if (ret)
+> +		return ret;
+> +
+> +	buf = &substream->dma_buffer;
+> +	buf->dev.dev = pcm->card->dev;
+> +	buf->private_data = NULL;
+> +
+> +	/* Assign Codec DMA buffer pointers */
+> +	buf->dev.type = SNDRV_DMA_TYPE_CONTINUOUS;
+> +
+> +	switch (dai_id) {
+> +	case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
+> +		buf->bytes = lpass_platform_rxtx_hardware.buffer_bytes_max;
+> +		buf->addr = drvdata->rxtx_cdc_dma_lpm_buf;
+> +		break;
+> +	case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
+> +		buf->bytes = lpass_platform_rxtx_hardware.buffer_bytes_max;
+> +		buf->addr = drvdata->rxtx_cdc_dma_lpm_buf + LPASS_RXTX_CDC_DMA_LPM_BUFF_SIZE;
+> +		break;
+> +	case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
+> +		buf->bytes = lpass_platform_va_hardware.buffer_bytes_max;
+> +		buf->addr = drvdata->va_cdc_dma_lpm_buf;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	buf->area = (unsigned char * __force)ioremap(buf->addr, buf->bytes);
+> +
+> +	return 0;
+> +}
+> +
+>   static int lpass_platform_pcm_new(struct snd_soc_component *component,
+>   				  struct snd_soc_pcm_runtime *soc_runtime)
+>   {
+>   	struct snd_pcm *pcm = soc_runtime->pcm;
+> +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +	unsigned int dai_id = cpu_dai->driver->id;
+> +
+>   	size_t size = lpass_platform_pcm_hardware.buffer_bytes_max;
+>   
+> -	return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
+> -					    component->dev, size);
+> +	/*
+> +	 * Lpass codec dma can access only lpass lpm hardware memory.
+> +	 * ioremap is for HLOS to access hardware memory.
+> +	 */
+> +	if (is_cdc_dma_port(dai_id))
+> +		return lpass_platform_prealloc_cdc_dma_buffer(component, pcm, dai_id);
+> +	else
+> +		return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
+> +						component->dev, size);
+>   }
+>   
+>   static int lpass_platform_pcmops_suspend(struct snd_soc_component *component)
+> @@ -827,6 +1177,22 @@ static int lpass_platform_pcmops_resume(struct snd_soc_component *component)
+>   	return regcache_sync(map);
+>   }
+>   
+> +int lpass_platform_copy(struct snd_soc_component *component,
+> +			 struct snd_pcm_substream *substream, int channel,
+> +			 unsigned long pos, void __user *buf, unsigned long bytes)
+> +{
+> +	struct snd_pcm_runtime *rt = substream->runtime;
+> +
+> +	unsigned char *dma_buf = rt->dma_area + pos +
+> +				channel * (rt->dma_bytes / rt->channels);
+> +
+> +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
+> +		return copy_from_user_toio(dma_buf, buf, bytes);
+> +	else if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
+> +		return copy_to_user_fromio(buf, dma_buf, bytes);
 
-From our offlist discussion, it seems like the cpu nodes should not
-have a #powerzone-cells. Instead, the powerzones property should be
-sufficient, as it allows you to describe what powerzone(s) the cpu
-belongs to, which is exactly what you need.
+Should this be:
 
-This also means that we need to extend the DT bindings for CPUs
-(Documentation/devicetree/bindings/arm/cpus.yaml), to allow cpu nodes
-to have a "powerzones" property. I believe we can do that separately,
-on top of $subject patch, as cpus.yaml has "additionalProperties:
-true".
+if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
+	if (is_cdc_dma_port(dai_id))
+		ret = copy_from_user_toio(dma_buf, buf, bytes);
+	else
+		ret = copy_from_user((void __force *)dma_buf, buf, bytes);
+} else if (substream->stream == SNDRV_PCM_STREAM_CAPTURE) {
+	if (is_cdc_dma_port(dai_id))
+		ret = copy_to_user_fromio(buf, dma_buf, bytes);
+	else
+		ret = copy_to_user(buf, dma_buf, bytes);
+}
 
->
-> I am wondering if we really need the toplevel "powerzone" node.
+return ret;
 
-Please ignore this comment. It has become clear to me that the
-toplevel node serves a purpose.
+--srini
 
->
-> > +
-> > +    A57_1: big@1 {
-> > +      compatible = "arm,cortex-a57";
-> > +      reg = <0x0 0x0>;
-> > +      device_type = "cpu";
-> > +      #powerzone-cells = <0>;
-
-Ditto.
-
-> > +      powerzones = <&PKG_PZ>;
-> > +    };
-> > +...
-> > --
-> > 2.25.1
-> >
->
-
-Kind regards
-Uffe
+> +
+> +	return 0;
+> +}
+>   
+>   static const struct snd_soc_component_driver lpass_component_driver = {
+>   	.name		= DRV_NAME,
+> @@ -837,9 +1203,11 @@ static const struct snd_soc_component_driver lpass_component_driver = {
+>   	.prepare	= lpass_platform_pcmops_prepare,
+>   	.trigger	= lpass_platform_pcmops_trigger,
+>   	.pointer	= lpass_platform_pcmops_pointer,
+> +	.mmap		= lpass_platform_pcmops_mmap,
+>   	.pcm_construct	= lpass_platform_pcm_new,
+>   	.suspend		= lpass_platform_pcmops_suspend,
+>   	.resume			= lpass_platform_pcmops_resume,
+> +	.copy_user		= lpass_platform_copy,
+>   
+>   };
+>   
+> @@ -877,6 +1245,60 @@ int asoc_qcom_lpass_platform_register(struct platform_device *pdev)
+>   		return ret;
+>   	}
+>   
+> +	if (drvdata->codec_dma_enable) {
+> +		ret = regmap_write(drvdata->rxtx_lpaif_map,
+> +			LPAIF_RXTX_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST, LPASS_CDC_DMA_TX3), 0x0);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "error writing to rxtx irqen reg: %d\n", ret);
+> +			return ret;
+> +		}
+> +		ret = regmap_write(drvdata->va_lpaif_map,
+> +			LPAIF_RXTX_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST, LPASS_CDC_DMA_VA_TX0), 0x0);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "error writing to rxtx irqen reg: %d\n", ret);
+> +			return ret;
+> +		}
+> +		drvdata->rxtxif_irq = platform_get_irq_byname(pdev, "lpass-irq-rxtxif");
+> +		if (drvdata->rxtxif_irq < 0)
+> +			return -ENODEV;
+> +
+> +		ret = devm_request_irq(&pdev->dev, drvdata->rxtxif_irq,
+> +				lpass_platform_rxtxif_irq, IRQF_TRIGGER_RISING,
+> +				"lpass-irq-rxtxif", drvdata);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "rxtx irq request failed: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = lpass_platform_alloc_rxtx_dmactl_fields(&pdev->dev,
+> +						 drvdata->rxtx_lpaif_map);
+> +		if (ret) {
+> +			dev_err(&pdev->dev,
+> +				"error initializing rxtx dmactl fields: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		drvdata->vaif_irq = platform_get_irq_byname(pdev, "lpass-irq-vaif");
+> +		if (drvdata->vaif_irq < 0)
+> +			return -ENODEV;
+> +
+> +		ret = devm_request_irq(&pdev->dev, drvdata->vaif_irq,
+> +				lpass_platform_vaif_irq, IRQF_TRIGGER_RISING,
+> +				"lpass-irq-vaif", drvdata);
+> +		if (ret) {
+> +			dev_err(&pdev->dev, "va irq request failed: %d\n", ret);
+> +			return ret;
+> +		}
+> +
+> +		ret = lpass_platform_alloc_va_dmactl_fields(&pdev->dev,
+> +						 drvdata->va_lpaif_map);
+> +		if (ret) {
+> +			dev_err(&pdev->dev,
+> +				"error initializing va dmactl fields: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+>   	if (drvdata->hdmi_port_enable) {
+>   		drvdata->hdmiif_irq = platform_get_irq_byname(pdev, "lpass-irq-hdmi");
+>   		if (drvdata->hdmiif_irq < 0)
+> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+> index 48602c1..d35dc93 100644
+> --- a/sound/soc/qcom/lpass.h
+> +++ b/sound/soc/qcom/lpass.h
+> @@ -38,6 +38,18 @@
+>   			return -EINVAL;         \
+>   	} while (0)
+>   
+> +static inline bool is_cdc_dma_port(int dai_id)
+> +{
+> +	switch (dai_id) {
+> +	case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
+> +	case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
+> +	case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
+> +		return true;
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>   struct lpaif_i2sctl {
+>   	struct regmap_field *loopback;
+>   	struct regmap_field *spken;
+> 
