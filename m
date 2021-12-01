@@ -2,126 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A1BE464EE8
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 14:39:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F53464F06
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 14:49:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349580AbhLANmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 08:42:37 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:57554 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349578AbhLANmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:42:37 -0500
+        id S1349651AbhLANxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 08:53:13 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:46928 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1349638AbhLANwy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:52:54 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A22B1CE1E6F;
-        Wed,  1 Dec 2021 13:39:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16209C53FAD;
-        Wed,  1 Dec 2021 13:39:04 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id A38A8B81F42;
+        Wed,  1 Dec 2021 13:49:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59C52C53FCC;
+        Wed,  1 Dec 2021 13:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638365952;
-        bh=OkFkg4SRT3IbrSqIc6ZCbd/DtTHU30OPhfc04/lnNWs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U4wQkk/KPrKKZ6dQzs14gda4o1k/Qp0XOZRvnAiuaOzI/KzgMxXV3+DCjHQOiVaxi
-         vPkpktHNQqv9MuV40AULna1+NwRs40hRF9pA13avqwallmxNsoopM3k0HchlmzXODh
-         NNxdY1+Q71eKSQwPj28we0Y+kH+0VVwMuN4WBybMozx5R/VFVL+GMDjQ0f4rzYRl2x
-         2/KeywZQ/IlOdgSOU6KgqZfqbZ4r/bLfvKlP4TSQCMI6xYk3wpXre9FlnE+upmaLoF
-         k2E9kyAk1ohRRaGogNmApbN+I8KGg7d6Zw4rHlbIl3c5ztI5ixIvd1Ejyv9zLowN45
-         Dl+32xSgFjHRA==
-Date:   Wed, 1 Dec 2021 13:39:01 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        s=k20201202; t=1638366560;
+        bh=HEReuV7gswevA5y2LP1YzSmPqDGDjaqY08h/BUth7yc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=sn3HlZrIbJXw0GUCQniF/Wtcq1/mL42xv7j9bVX3/lGN3mEHkTcUhlYA3h4DDgBa6
+         dKWPr91dX0yCzXdshKbfM8MCM6Ve9R9amyNn1jC4XcqQLLRYwjHSLtrVKUEjzZyGHf
+         GQx2T3cj40jTY8kaMst+mRWMhpZQHyr8tZm2sAcWXoiOoscUBndAWumXSCwl4CrNCo
+         TE438krE7bvZMhUMBGnHzbnEdPH4ESwjqQO9A7MMRBtHuuJgew39glz19zaZh+Lc2E
+         vp1OBDpTcCM6/rZhxC+qaxOuVeejjxrlrgaCPJ5BOyRLKX1QL2kBlcpXstkHAzy/vk
+         rKmbeiB2x8nYQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.lan)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1msPz4-0098G7-50; Wed, 01 Dec 2021 13:49:18 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
-Message-ID: <Yad69aTXcGixXvy3@sirena.org.uk>
-Mail-Followup-To: Paul Cercueil <paul@crapouillou.net>,
-        "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-References: <cover.1638307601.git.hns@goldelico.com>
- <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
- <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: [PATCH v2 0/8] drivers/perf: CPU PMU driver for Apple M1
+Date:   Wed,  1 Dec 2021 13:49:01 +0000
+Message-Id: <20211201134909.390490-1-maz@kernel.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="urTHJbSJd+hEE4ly"
-Content-Disposition: inline
-In-Reply-To: <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
-X-Cookie: All true wisdom is found on T-shirts.
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The M1 SoC embeds a per-CPU PMU that has a very different programming
+interface compared to the architected PMUv3 that is normally present
+on standard implementations.
 
---urTHJbSJd+hEE4ly
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This small series adds a driver for this HW by leveraging the arm_pmu
+infrastructure, resulting in a rather simple driver.
 
-On Wed, Dec 01, 2021 at 01:02:45PM +0000, Paul Cercueil wrote:
-> Le mar., nov. 30 2021 at 22:26:37 +0100, H. Nikolaus Schaller
+Of course, we know next to nothing about the actual events this PMU
+counts, aside from CPU cycles and instructions. Everything else is
+undocumented (though as Dougall pointed out, someone could extract the
+relevant information from a macOS install if they wanted -- I don't).
 
-> > +	regulator = devm_regulator_get_optional(&pdev->dev, "hdmi-5v");
-> > +	if (IS_ERR(regulator)) {
-> > +		ret = PTR_ERR(regulator);
+My hope is that this driver will help people to explore the event
+space and propose possible interpretations for these events using
+reproducible test cases.
 
-Why is this using _optional()?  This should only be done when the supply
-can be physically absent (in which case I'd expect to see special
-handling).
+* From v1 [1]:
+  - Added a few comments clarifying the event mapping to counters
+  - Spelling fixes
+  - Collected Acks from Rob
 
---urTHJbSJd+hEE4ly
-Content-Type: application/pgp-signature; name="signature.asc"
+[1] https://lore.kernel.org/r/20211113115429.4027571-1-maz@kernel.org
 
------BEGIN PGP SIGNATURE-----
+Marc Zyngier (8):
+  dt-bindings: arm-pmu: Document Apple PMU compatible strings
+  dt-bindings: apple,aic: Add CPU PMU per-cpu pseudo-interrupts
+  irqchip/apple-aic: Add cpumasks for E and P cores
+  irqchip/apple-aic: Wire PMU interrupts
+  irqchip/apple-aic: Move PMU-specific registers to their own include
+    file
+  arm64: apple: t8301: Add PMU nodes
+  drivers/perf: arm_pmu: Handle 47 bit counters
+  drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGnevQACgkQJNaLcl1U
-h9Dsbwf/e+Vh4NXLEM4GwwLFBAyDYCgyZOJxrdbM4ruocDneNLXbljJTQhnP40/5
-NQY2reFsFCX2dDUeaLgmeBH1JgXmP4cstxeIifm7hVWPBtyzbiNEZ31mzoczVwXc
-CRLE93/Y4Vt0dBmK6/zPrlYri1QRUgmC8JEI9oGNgTmJPeUzJeRtrqTn6qgMCBIf
-FA99JndFSq6KpNBn3gb9EeC+fenFK2RWTSxbDlowTmhRAk0ADSvbbzEDRqiPVIHt
-V6xxybtHL0vYRibGYj2h8mqTqdYQ+38Lpwb0UU9GhyRCXvY6ofFSaycULe6a+uWU
-rTBMUeX7y57rdLq61ZW3XAr1G6y/KQ==
-=yrgX
------END PGP SIGNATURE-----
+ .../devicetree/bindings/arm/pmu.yaml          |   2 +
+ .../interrupt-controller/apple,aic.yaml       |   2 +
+ arch/arm64/boot/dts/apple/t8103.dtsi          |  12 +
+ arch/arm64/include/asm/apple_m1_pmu.h         |  64 ++
+ drivers/irqchip/irq-apple-aic.c               |  59 +-
+ drivers/perf/Kconfig                          |   7 +
+ drivers/perf/Makefile                         |   1 +
+ drivers/perf/apple_m1_cpu_pmu.c               | 637 ++++++++++++++++++
+ drivers/perf/arm_pmu.c                        |   2 +
+ .../interrupt-controller/apple-aic.h          |   2 +
+ include/linux/perf/arm_pmu.h                  |   2 +
+ 11 files changed, 768 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/include/asm/apple_m1_pmu.h
+ create mode 100644 drivers/perf/apple_m1_cpu_pmu.c
 
---urTHJbSJd+hEE4ly--
+-- 
+2.30.2
+
