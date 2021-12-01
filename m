@@ -2,177 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B984D464E49
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:58:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D100464E6D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 14:03:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348428AbhLANBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 08:01:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236755AbhLANBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:01:51 -0500
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8E99C061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 04:58:30 -0800 (PST)
-Received: by mail-ed1-x535.google.com with SMTP id z5so36175658edd.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 04:58:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D5PW8BhdAuu4oqSswIsrh+4cgg8Ko16BHPb2BC0DyDc=;
-        b=ShtUvDfW5PyLg35gKksvBhAIF13Qdlo2k1kJ5nf9ddtcN2IWargq9oK9uH9Mj7mOlM
-         yrZ5ncJ7wlQ3v3gaY2hNqU4iayvlI7vavUCnibRCmaVdQk34nmuQKcpVe0PohmHbMvqP
-         Nx1ViR1M93mzRFKRGh73XszDpowN3KMR+Opzfq2PvivLIH0YhKXdc+DMIXTeShsMgFxl
-         9/rGywoLb97EPLIPX0ys7IEZFihb9iHe1IeX3ailUU8luIz9EXUyP9Qn6V0BocL4t0CC
-         j9BgxuSZEW7jn2HQAkvAuK6mVu7ghUJOjDX/Fe7XXV7vRQ/AHlnQE8pbKWqG8SpIt0l0
-         Nf9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D5PW8BhdAuu4oqSswIsrh+4cgg8Ko16BHPb2BC0DyDc=;
-        b=00BaqWDNGsuxuV4QvU0KkwyLjYU12eAyXEkFybTjmY7QvWLaWnzl7H+XAYfXPanUuq
-         afnbWNjeptxHdZBNXSTziVbXxvuSu2e1kL6EBKeOnMsi8qELcfo62FwrRUgkGMApf8OE
-         ++kVyGMTTWZj3M59fYPCF5kH6Ll1yB6ABY4bLbd3ULGktUyS79/ITRfu8JIM2CG3yena
-         KlZLTuD0smonXMBEBfeDYi29UMdLbQ1dDHI4uJyXyH1QZT+eGyZn6bLhFy5URIU8keQa
-         PNZKU6AnbcwveXrLHJw1NgIJq17Adf0Wmi+KxhICTiip9Zu2WOYgAB6xmw1o+rh6p5L/
-         xeNA==
-X-Gm-Message-State: AOAM530WGe6e/3ssm1EGz43Kq9ntFPOakoE1UJDoFv8F9eTFZImERdFq
-        RuYkyiugzoOrGGebLRfVF1kGXAnfcpcNDKr3LsQrQA==
-X-Google-Smtp-Source: ABdhPJz9iOdDKNgMdJzD0gqeRB73Q1A4iiFR0FxNxz9fFpszk+uTamQrvcRyI5fCgzr/AcT0r10edZjMU7/6TzU7sCE=
-X-Received: by 2002:aa7:c946:: with SMTP id h6mr8446283edt.190.1638363509446;
- Wed, 01 Dec 2021 04:58:29 -0800 (PST)
+        id S244537AbhLANGZ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Dec 2021 08:06:25 -0500
+Received: from aposti.net ([89.234.176.197]:38406 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S233645AbhLANGY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 08:06:24 -0500
+Date:   Wed, 01 Dec 2021 13:02:45 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Message-Id: <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
+In-Reply-To: <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
+References: <cover.1638307601.git.hns@goldelico.com>
+        <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
 MIME-Version: 1.0
-References: <20211201013329.15875-1-aford173@gmail.com> <20211201013329.15875-2-aford173@gmail.com>
- <CAAEAJfBBFhRtW2wmoA6T+yyM-nurUbtPqYHKPHjeRdKzA34PcQ@mail.gmail.com> <CAHCN7xLGTadbr+=-j2yJHFn233dgHic28njej8LHS2M0WwtqYQ@mail.gmail.com>
-In-Reply-To: <CAHCN7xLGTadbr+=-j2yJHFn233dgHic28njej8LHS2M0WwtqYQ@mail.gmail.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Wed, 1 Dec 2021 09:58:17 -0300
-Message-ID: <CAAEAJfDqBezv1_ZsF3vjAFprZYuaE7krkSXa4vzAfMZp5_z+sA@mail.gmail.com>
-Subject: Re: [RFC V2 1/2] media: hantro: Add support for i.MX8M Mini
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Dec 2021 at 09:36, Adam Ford <aford173@gmail.com> wrote:
->
-> On Wed, Dec 1, 2021 at 6:25 AM Ezequiel Garcia
-> <ezequiel@vanguardiasur.com.ar> wrote:
-> >
-> > Hi Adam,
-> >
-> > On Tue, 30 Nov 2021 at 22:33, Adam Ford <aford173@gmail.com> wrote:
-> > >
-> > > The i.MX8M Mini has a similar implementation of the Hantro G1 and
-> > > h decoders, but the Mini uses the vpu-blk-ctrl for handling the
-> > > VPU resets through the power domain system.  As such, there are
-> > > functions present in the 8MQ that are not applicable to the Mini
-> > > which requires the driver to have a different compatible flags.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > >
-> > > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> > > index fb82b9297a2b..2aa1c520be50 100644
-> > > --- a/drivers/staging/media/hantro/hantro_drv.c
-> > > +++ b/drivers/staging/media/hantro/hantro_drv.c
-> > > @@ -592,6 +592,8 @@ static const struct of_device_id of_hantro_match[] = {
-> > >         { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
-> > >  #endif
-> > >  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
-> > > +       { .compatible = "nxp,imx8mm-vpu", .data = &imx8mm_vpu_variant, },
-> > > +       { .compatible = "nxp,imx8mm-vpu-g2", .data = &imx8mm_vpu_g2_variant },
-> > >         { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
-> > >         { .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant },
-> > >  #endif
-> > > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> > > index 267a6d33a47b..ae7c3fff760c 100644
-> > > --- a/drivers/staging/media/hantro/hantro_hw.h
-> > > +++ b/drivers/staging/media/hantro/hantro_hw.h
-> > > @@ -211,6 +211,8 @@ enum hantro_enc_fmt {
-> > >         ROCKCHIP_VPU_ENC_FMT_UYVY422 = 3,
-> > >  };
-> > >
-> > > +extern const struct hantro_variant imx8mm_vpu_g2_variant;
-> > > +extern const struct hantro_variant imx8mm_vpu_variant;
-> > >  extern const struct hantro_variant imx8mq_vpu_g2_variant;
-> > >  extern const struct hantro_variant imx8mq_vpu_variant;
-> > >  extern const struct hantro_variant px30_vpu_variant;
-> > > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > > index ea919bfb9891..c68516c00c6d 100644
-> > > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > > @@ -242,6 +242,32 @@ static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
-> > >         },
-> > >  };
-> > >
-> > > +static const struct hantro_codec_ops imx8mm_vpu_codec_ops[] = {
-> > > +       [HANTRO_MODE_MPEG2_DEC] = {
-> > > +               .run = hantro_g1_mpeg2_dec_run,
-> > > +               .init = hantro_mpeg2_dec_init,
-> > > +               .exit = hantro_mpeg2_dec_exit,
-> > > +       },
-> > > +       [HANTRO_MODE_VP8_DEC] = {
-> > > +               .run = hantro_g1_vp8_dec_run,
-> > > +               .init = hantro_vp8_dec_init,
-> > > +               .exit = hantro_vp8_dec_exit,
-> > > +       },
-> > > +       [HANTRO_MODE_H264_DEC] = {
-> > > +               .run = hantro_g1_h264_dec_run,
-> > > +               .init = hantro_h264_dec_init,
-> > > +               .exit = hantro_h264_dec_exit,
-> > > +       },
-> > > +};
-> > > +
-> > > +static const struct hantro_codec_ops imx8mm_vpu_g2_codec_ops[] = {
-> > > +       [HANTRO_MODE_HEVC_DEC] = {
-> > > +               .run = hantro_g2_hevc_dec_run,
-> > > +               .init = hantro_hevc_dec_init,
-> > > +               .exit = hantro_hevc_dec_exit,
-> > > +       },
-> > > +};
-> > > +
-> >
-> > I believe you are missing VP9, which explains why you get
-> > a zero fluster score.
->
-> That's what I was thinking too and that's why I was wondering if I
-> should wait on G2 until more of those G2 patches have been finalized
-> and accepted.  Is there a way to test the HEVC?  I didn't see one in
-> the fluster list.
->
+Hi Nikolaus,
 
-VP9 is on its way to be merged. There is a pull request from Hans
-already: see https://www.spinics.net/lists/linux-media/msg202448.html
-which includes the git repository and tag you can merge/rebase to test
-it.
+Le mar., nov. 30 2021 at 22:26:37 +0100, H. Nikolaus Schaller 
+<hns@goldelico.com> a écrit :
+> From: Paul Boddie <paul@boddie.org.uk>
+> 
+> A specialisation of the generic Synopsys HDMI driver is employed for
+> JZ4780 HDMI support. This requires a new driver, plus device tree and
+> configuration modifications.
+> 
+> Here we add Kconfig DRM_INGENIC_DW_HDMI, Makefile and driver code.
+> 
+> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
+> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> ---
+>  drivers/gpu/drm/ingenic/Kconfig           |   9 ++
+>  drivers/gpu/drm/ingenic/Makefile          |   1 +
+>  drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 138 
+> ++++++++++++++++++++++
+>  3 files changed, 148 insertions(+)
+>  create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+> 
+> diff --git a/drivers/gpu/drm/ingenic/Kconfig 
+> b/drivers/gpu/drm/ingenic/Kconfig
+> index 3b57f8be007c4..4efc709d77b0a 100644
+> --- a/drivers/gpu/drm/ingenic/Kconfig
+> +++ b/drivers/gpu/drm/ingenic/Kconfig
+> @@ -25,4 +25,13 @@ config DRM_INGENIC_IPU
+> 
+>  	  The Image Processing Unit (IPU) will appear as a second primary 
+> plane.
+> 
+> +config DRM_INGENIC_DW_HDMI
+> +	tristate "Ingenic specific support for Synopsys DW HDMI"
+> +	depends on MACH_JZ4780
+> +	select DRM_DW_HDMI
+> +	help
+> +	  Choose this option to enable Synopsys DesignWare HDMI based 
+> driver.
+> +	  If you want to enable HDMI on Ingenic JZ4780 based SoC, you should
+> +	  select this option..
+> +
+>  endif
+> diff --git a/drivers/gpu/drm/ingenic/Makefile 
+> b/drivers/gpu/drm/ingenic/Makefile
+> index d313326bdddbb..f10cc1c5a5f22 100644
+> --- a/drivers/gpu/drm/ingenic/Makefile
+> +++ b/drivers/gpu/drm/ingenic/Makefile
+> @@ -1,3 +1,4 @@
+>  obj-$(CONFIG_DRM_INGENIC) += ingenic-drm.o
+>  ingenic-drm-y = ingenic-drm-drv.o
+>  ingenic-drm-$(CONFIG_DRM_INGENIC_IPU) += ingenic-ipu.o
+> +obj-$(CONFIG_DRM_INGENIC_DW_HDMI) += ingenic-dw-hdmi.o
+> diff --git a/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c 
+> b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+> new file mode 100644
+> index 0000000000000..199e39c227d29
+> --- /dev/null
+> +++ b/drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
+> @@ -0,0 +1,138 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (C) 2011-2013 Freescale Semiconductor, Inc.
+> + * Copyright (C) 2019, 2020 Paul Boddie <paul@boddie.org.uk>
+> + *
+> + * Derived from dw_hdmi-imx.c with i.MX portions removed.
+> + * Probe and remove operations derived from rcar_dw_hdmi.c.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <drm/bridge/dw_hdmi.h>
+> +#include <drm/drm_of.h>
+> +#include <drm/drm_print.h>
+> +
+> +static const struct dw_hdmi_mpll_config ingenic_mpll_cfg[] = {
+> +	{ 45250000,  { { 0x01e0, 0x0000 }, { 0x21e1, 0x0000 }, { 0x41e2, 
+> 0x0000 } } },
+> +	{ 92500000,  { { 0x0140, 0x0005 }, { 0x2141, 0x0005 }, { 0x4142, 
+> 0x0005 } } },
+> +	{ 148500000, { { 0x00a0, 0x000a }, { 0x20a1, 0x000a }, { 0x40a2, 
+> 0x000a } } },
+> +	{ 216000000, { { 0x00a0, 0x000a }, { 0x2001, 0x000f }, { 0x4002, 
+> 0x000f } } },
+> +	{ ~0UL,      { { 0x0000, 0x0000 }, { 0x0000, 0x0000 }, { 0x0000, 
+> 0x0000 } } }
+> +};
+> +
+> +static const struct dw_hdmi_curr_ctrl ingenic_cur_ctr[] = {
+> +	/*pixelclk     bpp8    bpp10   bpp12 */
+> +	{ 54000000,  { 0x091c, 0x091c, 0x06dc } },
+> +	{ 58400000,  { 0x091c, 0x06dc, 0x06dc } },
+> +	{ 72000000,  { 0x06dc, 0x06dc, 0x091c } },
+> +	{ 74250000,  { 0x06dc, 0x0b5c, 0x091c } },
+> +	{ 118800000, { 0x091c, 0x091c, 0x06dc } },
+> +	{ 216000000, { 0x06dc, 0x0b5c, 0x091c } },
+> +	{ ~0UL,      { 0x0000, 0x0000, 0x0000 } },
+> +};
+> +
+> +/*
+> + * Resistance term 133Ohm Cfg
+> + * PREEMP config 0.00
+> + * TX/CK level 10
+> + */
+> +static const struct dw_hdmi_phy_config ingenic_phy_config[] = {
+> +	/*pixelclk   symbol   term   vlev */
+> +	{ 216000000, 0x800d, 0x0005, 0x01ad},
+> +	{ ~0UL,      0x0000, 0x0000, 0x0000}
+> +};
+> +
+> +static enum drm_mode_status
+> +ingenic_dw_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
+> +			   const struct drm_display_info *info,
+> +			   const struct drm_display_mode *mode)
+> +{
+> +	if (mode->clock < 13500)
+> +		return MODE_CLOCK_LOW;
+> +	/* FIXME: Hardware is capable of 270MHz, but setup data is missing. 
+> */
+> +	if (mode->clock > 216000)
+> +		return MODE_CLOCK_HIGH;
+> +
+> +	return MODE_OK;
+> +}
+> +
+> +static struct dw_hdmi_plat_data ingenic_dw_hdmi_plat_data = {
+> +	.mpll_cfg   = ingenic_mpll_cfg,
+> +	.cur_ctr    = ingenic_cur_ctr,
+> +	.phy_config = ingenic_phy_config,
+> +	.mode_valid = ingenic_dw_hdmi_mode_valid,
+> +	.output_port	= 1,
+> +};
+> +
+> +static const struct of_device_id ingenic_dw_hdmi_dt_ids[] = {
+> +	{ .compatible = "ingenic,jz4780-dw-hdmi" },
+> +	{ /* Sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, ingenic_dw_hdmi_dt_ids);
+> +
+> +static void ingenic_dw_hdmi_cleanup(void *data)
+> +{
+> +	struct dw_hdmi *hdmi = (struct dw_hdmi *)data;
+> +
+> +	dw_hdmi_remove(hdmi);
+> +}
+> +
+> +static void ingenic_dw_hdmi_disable_regulator(void *data)
+> +{
+> +	struct regulator *regulator = (struct regulator *)data;
+> +
+> +	regulator_disable(regulator);
+> +}
+> +
+> +static int ingenic_dw_hdmi_probe(struct platform_device *pdev)
+> +{
+> +	struct dw_hdmi *hdmi;
+> +	struct regulator *regulator;
+> +	int ret;
+> +
+> +	hdmi = dw_hdmi_probe(pdev, &ingenic_dw_hdmi_plat_data);
+> +	if (IS_ERR(hdmi))
+> +		return PTR_ERR(hdmi);
+> +
+> +	ret = devm_add_action_or_reset(&pdev->dev, ingenic_dw_hdmi_cleanup, 
+> hdmi);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regulator = devm_regulator_get_optional(&pdev->dev, "hdmi-5v");
+> +	if (IS_ERR(regulator)) {
+> +		ret = PTR_ERR(regulator);
+> +
+> +		DRM_DEV_ERROR(&pdev->dev, "failed to get hpd regulator: %s (%d)\n",
+> +			      "hdmi-5v", ret);
+> +
+> +		return ret;
+> +	}
+> +
+> +	if (!regulator)
+> +		return 0;
 
-It would be great if you can test G2 on top of that, but it's also fine
-if you want to just submit G1 for now. Up to you.
+Blank line here.
 
-Regarding HEVC, currently Benjamin is who knows best how to test it.
-Thinking about it, perhaps we should document this somewhere?
+But I can add it myself when applying. I'll just wait for Rob's ack 
+first.
 
-Regards,
-Ezequiel
+-Paul
+
+> +	ret = regulator_enable(regulator);
+> +	if (ret) {
+> +		DRM_DEV_ERROR(&pdev->dev, "Failed to enable hpd regulator: %d\n",
+> +			      ret);
+> +
+> +		return ret;
+> +	}
+> +
+> +	return devm_add_action_or_reset(&pdev->dev, 
+> ingenic_dw_hdmi_disable_regulator,
+> +				       regulator);
+> +}
+> +
+> +static struct platform_driver ingenic_dw_hdmi_driver = {
+> +	.probe  = ingenic_dw_hdmi_probe,
+> +	.driver = {
+> +		.name = "dw-hdmi-ingenic",
+> +		.of_match_table = ingenic_dw_hdmi_dt_ids,
+> +	},
+> +};
+> +module_platform_driver(ingenic_dw_hdmi_driver);
+> +
+> +MODULE_DESCRIPTION("JZ4780 Specific DW-HDMI Driver Extension");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_ALIAS("platform:dwhdmi-ingenic");
+> --
+> 2.33.0
+> 
+
+
