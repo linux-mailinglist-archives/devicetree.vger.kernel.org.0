@@ -2,121 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D67D6464910
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 08:45:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F9E6464966
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 09:15:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347623AbhLAHsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 02:48:47 -0500
-Received: from sin.source.kernel.org ([145.40.73.55]:60844 "EHLO
-        sin.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347769AbhLAHsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 02:48:41 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 9A053CE1D68;
-        Wed,  1 Dec 2021 07:45:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65D92C53FD0;
-        Wed,  1 Dec 2021 07:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638344717;
-        bh=OMSYCijhi9mHPXribUljpaln0YA/jwCKn5SpeihydXo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mGoLqgCvvCewfCJY2gtoPfQBSsed8M9+WrUxAUzeMT19V/UAVCTUUpoireJv5U6OY
-         G72PmqKIuxGxc+ypjKQwi179vUuSKzuGCgejL7kY5F/rrjMLXraNhMoWD1yDhKy05T
-         hwimgwyaTT4gwZJlE+LSrfCuOK4SJF+GQ3fD+4NtaAEZ8XxZR/nPfDFP5sQn2wUrPb
-         Auw1Q5V59AeFqqepsZS3NYHR5BlVkR8/xfxUzoet5P2OsN/g7+4itPuV4vKuGrfmJ5
-         8H/jdCuJLHSgyQOTYUeeKREBlywj4oRBQiNwNQTnziGD+4H29L9Yhz0gKi8GIh8eYr
-         YiiR4Cj9ArPtA==
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH 3/3] phy: qcom-qmp: Add SM8450 UFS QMP Phy
-Date:   Wed,  1 Dec 2021 13:14:56 +0530
-Message-Id: <20211201074456.3969849-4-vkoul@kernel.org>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211201074456.3969849-1-vkoul@kernel.org>
-References: <20211201074456.3969849-1-vkoul@kernel.org>
+        id S1347911AbhLAISz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 03:18:55 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:54120 "EHLO cpanel.siel.si"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1347890AbhLAISw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 03:18:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=ajvHKaf0+LgO7cQ6eDi53nI2uxKkWsWNL99lhHLwFXQ=; b=UEq6+zMDDxyoHd5XFekh30hfX5
+        tYp9ePkTomqGlxaWpQXqUj0a5wyo+09gb0SW0D3nVA8+4SeSEqG5e9LxHIJBdmJ8gmIALuN+Ia8pt
+        3T8B0K47atN8eBKUw61cqEb6QcldJTv5umdEBMskQmOT2qSc9os8xdxICBWXFyd8AijsYeHbECXtB
+        6Rt2Pn7WwZ6bljMyvnFJKs8HCGQctCUY29nuMmrmaTeGgg2eIwTgQg5AxcxGar/72JMl+p5KANLDY
+        2oikykbLP2eYX4OpbN/DfN+RqWD1NbgnGCfMsCgGCY9mgZYeEh8at28vIN826iv9rdsE48ZWW1tRJ
+        Duulrjjw==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:60688 helo=localhost.localdomain)
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1msKls-007fXk-AT; Wed, 01 Dec 2021 09:15:27 +0100
+From:   Andrej Picej <andrej.picej@norik.com>
+To:     support.opensource@diasemi.com, linux@roeck-us.net,
+        linux-watchdog@vger.kernel.org
+Cc:     andrej.picej@norik.com, wim@linux-watchdog.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 1/4] mfd: da9062: make register CONFIG_I writable
+Date:   Wed,  1 Dec 2021 09:15:09 +0100
+Message-Id: <20211201081512.3580837-1-andrej.picej@norik.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM8450 UFS seems to use same sequence as SM8350, so reuse the sequence
-from SM8450. Add the new clock list for this phy and the new compatible
+From: Stefan Christ <s.christ@phytec.de>
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Co-developed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Make the config register CONFIG_I writable to change the watchdog mode.
+
+Signed-off-by: Stefan Christ <s.christ@phytec.de>
+Signed-off-by: Andrej Picej <andrej.picej@norik.com>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp.c | 32 +++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+Changes in v3:
+ - no chagnes
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-index 456a59d8c7d0..a959c97a699f 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-@@ -3091,6 +3091,10 @@ static const char * const qmp_v4_sm8250_usbphy_clk_l[] = {
- 	"aux", "ref_clk_src", "com_aux"
+Changes in v2:
+ - no changes
+---
+ drivers/mfd/da9062-core.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
+index 01f8e10dfa55..7041ba53efb4 100644
+--- a/drivers/mfd/da9062-core.c
++++ b/drivers/mfd/da9062-core.c
+@@ -556,6 +556,7 @@ static const struct regmap_range da9062_aa_writeable_ranges[] = {
+ 	regmap_reg_range(DA9062AA_VBUCK3_B, DA9062AA_VBUCK3_B),
+ 	regmap_reg_range(DA9062AA_VLDO1_B, DA9062AA_VLDO4_B),
+ 	regmap_reg_range(DA9062AA_BBAT_CONT, DA9062AA_BBAT_CONT),
++	regmap_reg_range(DA9062AA_CONFIG_I, DA9062AA_CONFIG_I),
+ 	regmap_reg_range(DA9062AA_GP_ID_0, DA9062AA_GP_ID_19),
  };
  
-+static const char * const sm8450_ufs_phy_clk_l[] = {
-+	"qref", "ref", "ref_aux",
-+};
-+
- static const char * const sdm845_ufs_phy_clk_l[] = {
- 	"ref", "ref_aux",
- };
-@@ -4087,6 +4091,31 @@ static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
- 	.pwrdn_delay_max	= POWER_DOWN_DELAY_US_MAX,
- };
- 
-+static const struct qmp_phy_cfg sm8450_ufsphy_cfg = {
-+	.type			= PHY_TYPE_UFS,
-+	.nlanes			= 2,
-+
-+	.serdes_tbl		= sm8350_ufsphy_serdes_tbl,
-+	.serdes_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_serdes_tbl),
-+	.tx_tbl			= sm8350_ufsphy_tx_tbl,
-+	.tx_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_tx_tbl),
-+	.rx_tbl			= sm8350_ufsphy_rx_tbl,
-+	.rx_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_rx_tbl),
-+	.pcs_tbl		= sm8350_ufsphy_pcs_tbl,
-+	.pcs_tbl_num		= ARRAY_SIZE(sm8350_ufsphy_pcs_tbl),
-+	.clk_list		= sm8450_ufs_phy_clk_l,
-+	.num_clks		= ARRAY_SIZE(sm8450_ufs_phy_clk_l),
-+	.vreg_list		= qmp_phy_vreg_l,
-+	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs			= sm8150_ufsphy_regs_layout,
-+
-+	.start_ctrl		= SERDES_START,
-+	.pwrdn_ctrl		= SW_PWRDN,
-+	.phy_status		= PHYSTATUS,
-+
-+	.is_dual_lane_phy	= true,
-+};
-+
- static const struct qmp_phy_cfg qcm2290_usb3phy_cfg = {
- 	.type			= PHY_TYPE_USB3,
- 	.nlanes			= 1,
-@@ -5745,6 +5774,9 @@ static const struct of_device_id qcom_qmp_phy_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sm8350-qmp-usb3-uni-phy",
- 		.data = &sm8350_usb3_uniphy_cfg,
-+	}, {
-+		.compatible = "qcom,sm8450-qmp-ufs-phy",
-+		.data = &sm8450_ufsphy_cfg,
- 	}, {
- 		.compatible = "qcom,qcm2290-qmp-usb3-phy",
- 		.data = &qcm2290_usb3phy_cfg,
 -- 
-2.31.1
+2.25.1
 
