@@ -2,68 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C8F46449A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 02:42:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31BF54644AA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 02:56:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345475AbhLABp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 20:45:56 -0500
-Received: from 113.196.136.146.ll.static.sparqnet.net ([113.196.136.146]:33474
-        "EHLO mg.sunplus.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1345425AbhLABpz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 20:45:55 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg02.sunplus.com with MailGates ESMTP Server V5.0(31414:0:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Wed, 01 Dec 2021 09:42:18 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Wed, 1 Dec 2021 09:42:17 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Wed, 1 Dec 2021
- 09:42:18 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Wells Lu <wellslutw@gmail.com>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
-Subject: RE: [PATCH net-next v3 0/2] This is a patch series for pinctrl driver
- for Sunplus SP7021 SoC.
-Thread-Topic: [PATCH net-next v3 0/2] This is a patch series for pinctrl
- driver for Sunplus SP7021 SoC.
-Thread-Index: AQHX5dF8/zm+xm8A+EOVliANx386Oawb/PqAgADfDSA=
-Date:   Wed, 1 Dec 2021 01:42:18 +0000
-Message-ID: <b488fe7aec1c4beebe8b6fd2f52aba7e@sphcmbx02.sunplus.com.tw>
+        id S230168AbhLAB77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 20:59:59 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:60720 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345669AbhLAB76 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Nov 2021 20:59:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=isYqJuMlihCuSnvWm4iCbTGnsWks1qOBMHPHEeG74ZE=; b=GKT1pIla99xOOCGYVJCYnNwamo
+        HOtVXVRSQ4z/Vh/DIzgaJ68sob9V4c3UpX080NmTWzE4VFDj8BfP2AN3Dk6iwRw5KtEE5M1kCSAqh
+        dU82oXLwgH4hIiyolBiy7KLl/3TJEAkC8k8iORJndAnY9C82tkEOG3V+dLpx5jU4vo5U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1msErJ-00FA9E-Qn; Wed, 01 Dec 2021 02:56:33 +0100
+Date:   Wed, 1 Dec 2021 02:56:33 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Wells Lu <wellslutw@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        wells.lu@sunplus.com, vincent.shih@sunplus.com
+Subject: Re: [PATCH net-next v3 1/2] devicetree: bindings: net: Add bindings
+ doc for Sunplus SP7021.
+Message-ID: <YabWUQdIP288U09d@lunn.ch>
 References: <1638266572-5831-1-git-send-email-wellslutw@gmail.com>
- <YaaG9V2c/DL11GJC@lunn.ch>
-In-Reply-To: <YaaG9V2c/DL11GJC@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+ <1638266572-5831-2-git-send-email-wellslutw@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1638266572-5831-2-git-send-email-wellslutw@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQpTb3JyeSBmb3Igd3Jvbmcgc3ViamVjdCBsaW5lLg0KSSBkaWQgYSB3cm9u
-ZyBjb3B5Lg0KDQoNCkJlc3QgcmVnYXJkcywNCldlbGxzIEx1DQoNClNtYXJ0IENvbXB1dGluZyBQ
-cm9ncmFtDQpIb21lIEVudGVydGFpbm1lbnQgQnVzaW5lc3MgVW5pdA0KU3VucGx1cyBUZWNobm9s
-b2d5IENvLiwgTHRkLg0KMTksIElubm92YXRpb24gMXN0IFJvYWQsDQpTY2llbmNlLWJhc2VkIElu
-ZHVzdHJpYWwgUGFyaw0KSHNpbi1DaHUsIFRhaXdhbiAzMDANClRFTKFHODg2LTMtNTc4NjAwNSBl
-eHQuIDI1ODANCg0KDQo+ID4gU3VucGx1cyBTUDcwMjEgaXMgYW4gQVJNIENvcnRleCBBNyAoNCBj
-b3JlcykgYmFzZWQgU29DLiBJdCBpbnRlZ3JhdGVzDQo+ID4gbWFueSBwZXJpcGhlcmFscyAoZXg6
-IFVBUlQsIEkyQywgU1BJLCBTRElPLCBlTU1DLCBVU0IsIFNEIGNhcmQgYW5kDQo+ID4gZXRjLikg
-aW50byBhIHNpbmdsZSBjaGlwLiBJdCBpcyBkZXNpZ25lZCBmb3IgaW5kdXN0cmlhbCBjb250cm9s
-DQo+ID4gYXBwbGljYXRpb25zLg0KPiANCj4gVGhlIHN1YmplY3QgbGluZSBpcyB3cm9uZyBhZ2Fp
-bi4gVGhpcyBoYXMgbm90aGluZyB0byBkbyB3aXRoIGEgcGluIGNvbnRyb2xsZXIuDQo+IA0KPiAJ
-QW5kcmV3DQo=
+> +  nvmem-cells:
+> +    items:
+> +      - description: nvmem cell address of MAC address of 1st MAC
+> +      - description: nvmem cell address of MAC address of 2nd MAC
+> +
+> +  nvmem-cell-names:
+> +    description: names corresponding to the nvmem cells of MAC address
+> +    items:
+> +      - const: mac_addr0
+> +      - const: mac_addr1
+
+These are port properties, so put them in the port section.
+
+Also, the name you should use is well defined, "mac-address".  See
+nvmem_get_mac_address(). But you won't be able to use that helper
+because it take dev, not an of node.
+
+	Andrew
