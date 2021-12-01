@@ -2,87 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF74464969
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 09:15:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D96CA464984
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 09:21:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347923AbhLAIS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 03:18:58 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:54172 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1347892AbhLAISw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 03:18:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=xdrTiqESD9Grk59I9BTw6TCEauQQQ1XgoZZ8AlUk9+4=; b=AEj7bM395MwdEr3quD5g0zsT5Z
-        NPqde2E8s1Iadoi3ymZpic4N4em6q2fVbsMkY2fyXgbrp96glFUA/57YTUZjPn3k8QpNeowRgsk9y
-        HCXCFgR9b5uMnGvgUie8rNArmIrkJqIprvqJn7GUOMLfxn4wBym9HNJJ8CuYQaDpJirJByUaewbdS
-        YuTDst6sBU9qy+j+grPpPVb4vIfsenf10dJxBpHshVgFtGJ5/+oraGlDvYefqCUTC3zZ++KO3Io+D
-        f1jQEj08f2w8XPkTRG0yfjLRMRgGYgTKs49BPq/Oi6Ly1szaOSmsAszX/S4b06osNnzQpBOQye64q
-        FUnHa1+A==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:60688 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1msKls-007fXk-Rz; Wed, 01 Dec 2021 09:15:28 +0100
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     support.opensource@diasemi.com, linux@roeck-us.net,
-        linux-watchdog@vger.kernel.org
-Cc:     andrej.picej@norik.com, wim@linux-watchdog.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 4/4] ARM: dts: imx6: phycore-som: set watchdog timeout mode to shutdown
-Date:   Wed,  1 Dec 2021 09:15:12 +0100
-Message-Id: <20211201081512.3580837-4-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211201081512.3580837-1-andrej.picej@norik.com>
-References: <20211201081512.3580837-1-andrej.picej@norik.com>
+        id S241966AbhLAIZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 03:25:14 -0500
+Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:48623 "EHLO
+        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S229564AbhLAIZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 03:25:12 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 5549B3200E31;
+        Wed,  1 Dec 2021 03:21:49 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 01 Dec 2021 03:21:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+        tdPEg+U3TLS2hwbuuXjF2mBi3jyYrUxzHA4hSiAkcLo=; b=NFodBgGHT6f+Quak
+        mJ8rLKHUS27NrdwrsHsrQN+KYnQyk5GYGf6rdKkZKx2s4ct1VvGOyKrYJfJbNXfH
+        +PBHduh81GhvXM3joNX+nP8BgSDcIpyNU1Oba+12ila7zRvfFL8EvYMu5DbcN8e8
+        V6IeWTVjVZQmQGyykp27Cz90wUVX8SqOAaciTHGE35gkzDwFqcxcSm85JmGr5ak3
+        FvUhvqRQffX2JsmIIhCSD3D4eCsNW2DySxuLgFb6VAI2NXrL8IrPkZ9tvUDvX6G6
+        clJMezIBZtY6ock9c048v067J7tyXHom7JcjzQ9q02FGECzqzVXng5fnl6j78qYZ
+        +t1CMQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=tdPEg+U3TLS2hwbuuXjF2mBi3jyYrUxzHA4hSiAkc
+        Lo=; b=TYBOMs9cJPCSCYJ11VaITJZgbWBiNHZW9R0Ft9tnqur/qZPQmD+vx8zd4
+        CykskVCHtIj3Fw/MPlNwKgv5TsgGjDNgK8A6VHP0DHTMefZzWkmOwdaupayOhJdo
+        DZQafi3CPxMATiGNSw38h31bJxcmU0D74Tw5Hkfs7kRwNnEmYgKvEnowtGlmgWkS
+        O9cntTs6uJilnSH1jmm+81RUwlufYJ4LZTgK1Gk+5pASMvmRu/UrjpontTGvd5Io
+        44y8anHQ97M7KldlY7eSnCmaV4PTxlK3/KlgbCWBp8zjzwFKk4acIx9rnPcy+LGm
+        8toprgiOu8JkkO+3BngRdJNWeQadw==
+X-ME-Sender: <xms:mzCnYUZaHyfxm4plR3wbThO803wgiEMrIKR-dZQ-E4xTK054AXX7uA>
+    <xme:mzCnYfZv8gemPNOLkGz2Jl2_oN0z5EQpQhFt_LCFp3f1ppy4mLkdTPdAeURL21F7w
+    zKTKS0TFWlNWgS7iew>
+X-ME-Received: <xmr:mzCnYe8H-bTB7MYbSY9sErABSrDNVgBs-BN8xhDA3swT9U0sUMOhFqFnMkTWe5Oe4ITcTcinQawa1R2_oXYsKp4LS4wXfB51A_Q6gY9XusgbbQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddriedvgdduvddtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
+    ieekkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:nDCnYeqGYKJCgrmGS3SuhV4Up0g-d-OJ-tfIE73hcOdI-62aAp-NpQ>
+    <xmx:nDCnYfpxS2RKJYNpOxf0u6NdVXuvXnW3pWvEzwrh1vFXImGNtzYxnw>
+    <xmx:nDCnYcS_5NtyDoyFJTyD-84oyLNuhMcedr32b0MdNhWRg3jTInchKA>
+    <xmx:nDCnYTfKRVVZKCBwtDu7kmX1xIhDwyjGRcsgS7B5MukO0M9tBuo3dQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 1 Dec 2021 03:21:47 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     wens@csie.org, mripard@kernel.org,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-sunxi@lists.linux.dev, Michael Klein <michael@fossekall.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2] ARM: dts: sun8i: Adjust power key nodes
+Date:   Wed,  1 Dec 2021 09:21:44 +0100
+Message-Id: <163834688049.16473.3626415624264430661.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211129165510.370717-1-jernej.skrabec@gmail.com>
+References: <20211129165510.370717-1-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable system restart when the watchdog timeout occurs.
+On Mon, 29 Nov 2021 17:55:10 +0100, Jernej Skrabec wrote:
+> Several H3 and one H2+ board have power key nodes, which are slightly
+> off. Some are missing wakeup-source property and some have BTN_0 code
+> assigned instead of KEY_POWER.
+> 
+> Adjust them, so they can function as intended by designer.
+> 
+> 
+> [...]
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
-Changes in v3:
- - no changes
+Applied to sunxi/linux.git (sunxi/dt-for-5.17).
 
-Changes in v2:
- - new patch, enable shutdown mode for phytec-phycore (da9062 user)
----
- arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-index a80aa08a37cb..743343e525cf 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-phycore-som.dtsi
-@@ -111,6 +111,7 @@ da9062_onkey: onkey {
- 		watchdog {
- 			compatible = "dlg,da9062-watchdog";
- 			dlg,use-sw-pm;
-+			dlg,wdt-sd = <1>;
- 		};
- 
- 		regulators {
--- 
-2.25.1
-
+Thanks!
+Maxime
