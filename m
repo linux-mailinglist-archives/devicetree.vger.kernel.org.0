@@ -2,202 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D8B646523C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 16:58:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48A58465275
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:05:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351254AbhLAQBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:01:55 -0500
-Received: from mail-dm3nam07on2084.outbound.protection.outlook.com ([40.107.95.84]:53848
-        "EHLO NAM02-DM3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1351244AbhLAQBm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 11:01:42 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZyO0wpSm0IHDoxxFtqzZCoipzXpd9hJZVaMFYFwHGCkHJjoNCLAxCXSqv6jCS+AdIdhb7SeoMEluQl7X2yTUAKDJe48k7CDzyGLP9dU8hdZJVtAohzjltOjq+rfTRQkGbQYMqN5DH+/v0xxB5yzluME3crcWmbEBoOspB150s+Qd4Bp6CbHpYpHo5UPQxhl6PGgqjDSrFUI6J1mIbXheUZB+0V09L8C7zsDt/mEIChpPXtI6hhl3h+yl0JR4uYxOsMWAqVIxWnDmWVFK1+eP/o0UJ6N5+zW9LTRngRQ6tLSNZA30iemM9dROH7MbPJoBf0QwtGKxFuVEO9Yr7zZS4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mNWkotrzllGzIok0az6trHY44j17oSTdQuZiGqw6Lq0=;
- b=Dk0XnPsxNkh8JpIksWvttedV0xphz31s1gDE9AXLtGfgFrHnWTsq44wWgyFLxP0sYBW+eoBCMrfiI47bM+QvRANrv5OcUWfyorKgSbm/OYWvXQfEQwXaIINmEzcXQT/1P+3gCBIijopQfPnPdaNtH/1LCPJjPQGWD7oPm4HJJw36OEPTbuOLc2pzmJh1l7EvT7vA3G/9yFCzWflo2eJ/jNUIcGgGgnHURylDcglmnkCxRbTzKDPHwJ3eubHy5vJrpLBS7P5J/Nz/MEsRNYVz63FeRDLTscGcGrUe6aJkHEgEjYMPpzcm6FdMrG7em9cyJ7jxpu/uMu6qTIgv9s5N/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.112.32) smtp.rcpttodomain=lists.linux-foundation.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=quarantine sp=quarantine pct=100)
- action=none header.from=nvidia.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mNWkotrzllGzIok0az6trHY44j17oSTdQuZiGqw6Lq0=;
- b=kyvVpPA8Ix+b+zrVA3TJE2dSDMl/AQu8U5vEkZFHSnaNm7rxmO1981J1w4W5VGBrKu+nQYHXw9w1b3bZKeUm4AltTfyz2qYlfgELb6sHCSZyZSg00emE4qNtRPxXmt9Kabs8DouEfdb0vGmZGZYAH7kvafzj44jMiUmw61QUP8SMGMiIDgYURA6ZVzirvYMZCeG+xdx38UxfKpjE5WsZF9p82vbtUJlVhoDIrT8VHiuYBeZNcb35FnEQ1wdTgwnpQQFD+hAt/usPDZFIFvc05K5i286Kl/VrrvVkEP/X1Q4nZ5prg0LEQChqVggdzi6YLrICdZ6VcjBonWwNGVd0gQ==
-Received: from BN9P221CA0015.NAMP221.PROD.OUTLOOK.COM (2603:10b6:408:10a::20)
- by BN8PR12MB3330.namprd12.prod.outlook.com (2603:10b6:408:43::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4755.11; Wed, 1 Dec
- 2021 15:58:17 +0000
-Received: from BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:10a:cafe::ac) by BN9P221CA0015.outlook.office365.com
- (2603:10b6:408:10a::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23 via Frontend
- Transport; Wed, 1 Dec 2021 15:58:17 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.112.32)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.112.32 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.112.32; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (216.228.112.32) by
- BN8NAM11FT046.mail.protection.outlook.com (10.13.177.127) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.4755.13 via Frontend Transport; Wed, 1 Dec 2021 15:58:17 +0000
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1497.18; Wed, 1 Dec
- 2021 07:57:38 -0800
-Received: from moonraker.nvidia.com (172.20.187.6) by mail.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server id 15.0.1497.18 via Frontend
- Transport; Wed, 1 Dec 2021 07:57:36 -0800
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH 2/2] arm64: tegra: Add ISO SMMU controller for Tegra194
-Date:   Wed, 1 Dec 2021 15:57:16 +0000
-Message-ID: <20211201155716.149543-2-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211201155716.149543-1-jonathanh@nvidia.com>
-References: <20211201155716.149543-1-jonathanh@nvidia.com>
+        id S1351152AbhLAQI5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:08:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39528 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1351355AbhLAQIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:08:46 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24A3DC061759
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:05:01 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1msS6G-00018X-SS; Wed, 01 Dec 2021 17:04:52 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1msS6D-0007gg-9U; Wed, 01 Dec 2021 17:04:49 +0100
+Date:   Wed, 1 Dec 2021 17:04:49 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 09/12] arm64: dts: rockchip: rk356x: Add HDMI nodes
+Message-ID: <20211201160449.GF25697@pengutronix.de>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+ <20211117143347.314294-10-s.hauer@pengutronix.de>
+ <CAL_JsqJH4NZkte_2w9i1zf9UrkYZx3du4ja5i__Vzki5p13zBQ@mail.gmail.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 347301d3-5722-4c33-59f5-08d9b4e363ca
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3330:
-X-Microsoft-Antispam-PRVS: <BN8PR12MB3330E363E160ECA9B8E980F8D9689@BN8PR12MB3330.namprd12.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JR+Fa/ZQYDg8UqG7yQvDj2eGVa+ZtFDrR52LEpGPmHnWxQ16up1wR0xX3c4MPKLYZRpxLkiiBUoz8xSYB6Ryu4t/I68DAsj6JcpZZyJ3d2tQj6AUH5T0G7/Viq5RAqDh3Nsz3k43MJZCpk6qFVZvFD7NJD+3M+tu9UH23ihXkiEIptZrKsi4yP/y6Pfa2RMmvnAVWmrV5vHO59q+sNws60gWByXpYMt1fMzh2+EJz44Ml+kyXYd5zTND9MKIa+J4Lgr2v25DQmOBH00do2+By8Js7khpX5OhClP/WQVLFa7xf+i18GGjyMEN4vsWGnZX6f7tp0bVjtvcO24yd+nkPI6dTVF3DP5ERVGuhxnHzlHdI0P0BCOeApSaXEfeDHOn3H+PRcW5uK2xnCRny553RDmNr+K3H7HQJl2uLNkWt0+xgPYlHx91KjYB8/Qje44UWQPy07hjmOoWLDbp0b4jNq685eZx2jkrQoyZXZzMcHihY6m/ln20WOY8pYIiao5vMtmK9R7ip6MHwp0fMGTk//Mlvp1A3wDPHAaZLzezhHUnjXrOwVMl9CQKrtR/sxJJhkox0vAweQjsucv6FnJAF/WVsEVur8u9xCl4cafYIX552Uf8ykzLyq8eaFVm9FonISCkVtqf/vcZ5TsgpgDkjnUGojclJbT39kF0mnn5d2FqWwOxMpO1TZ5ApMqNYFfurYlXHbv/c8zeUfePWJk/mOuLzyyGCzdoiuOo+L8ZGNeWWTFyPnrX7JsCYvZEEjdKcZtsRyqx8Fm0nMNTgm9+5A==
-X-Forefront-Antispam-Report: CIP:216.228.112.32;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:schybrid01.nvidia.com;CAT:NONE;SFS:(4636009)(46966006)(36840700001)(40470700001)(186003)(82310400004)(8936002)(86362001)(54906003)(4326008)(47076005)(2906002)(508600001)(36860700001)(40460700001)(26005)(110136005)(7696005)(1076003)(6666004)(36756003)(5660300002)(8676002)(336012)(356005)(7636003)(70206006)(316002)(107886003)(2616005)(70586007)(426003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2021 15:58:17.2705
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 347301d3-5722-4c33-59f5-08d9b4e363ca
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.112.32];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT046.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR12MB3330
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJH4NZkte_2w9i1zf9UrkYZx3du4ja5i__Vzki5p13zBQ@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 17:03:19 up 286 days, 19:27, 150 users,  load average: 0.49, 0.50,
+ 0.37
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The display controllers are attached to a separate ARM SMMU instance
-that is dedicated to servicing isochronous memory clients. Add this ISO
-instance of the ARM SMMU to device tree.
+On Wed, Nov 17, 2021 at 09:13:33AM -0600, Rob Herring wrote:
+> On Wed, Nov 17, 2021 at 8:34 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+> >
+> > Add support for the HDMI port found on RK3568.
+> >
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 65 ++++++++++++++++++++++++
+> >  1 file changed, 65 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > index 6ebf7c14e096a..53be61a7ce595 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -472,18 +472,36 @@ vp0: port@0 {
+> >                                 #address-cells = <1>;
+> >                                 #size-cells = <0>;
+> >                                 reg = <0>;
+> > +
+> > +                               vp0_out_hdmi: endpoint@0 {
+> > +                                       reg = <0>;
+> > +                                       remote-endpoint = <&hdmi_in_vp0>;
+> > +                                       status = "disabled";
+> > +                               };
+> >                         };
+> >
+> >                         vp1: port@1 {
+> >                                 #address-cells = <1>;
+> >                                 #size-cells = <0>;
+> >                                 reg = <1>;
+> > +
+> > +                               vp1_out_hdmi: endpoint@0 {
+> > +                                       reg = <0>;
+> > +                                       remote-endpoint = <&hdmi_in_vp1>;
+> > +                                       status = "disabled";
+> > +                               };
+> >                         };
+> >
+> >                         vp2: port@2 {
+> >                                 #address-cells = <1>;
+> >                                 #size-cells = <0>;
+> >                                 reg = <2>;
+> > +
+> > +                               vp2_out_hdmi: endpoint@0 {
+> > +                                       reg = <0>;
+> > +                                       remote-endpoint = <&hdmi_in_vp2>;
+> > +                                       status = "disabled";
+> > +                               };
+> >                         };
+> >                 };
+> >         };
+> > @@ -499,6 +517,53 @@ vop_mmu: iommu@fe043e00 {
+> >                 status = "disabled";
+> >         };
+> >
+> > +       hdmi: hdmi@fe0a0000 {
+> > +               compatible = "rockchip,rk3568-dw-hdmi";
+> > +               reg = <0x0 0xfe0a0000 0x0 0x20000>;
+> > +               interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> > +               clocks = <&cru PCLK_HDMI_HOST>,
+> > +                        <&cru CLK_HDMI_SFR>,
+> > +                        <&cru CLK_HDMI_CEC>,
+> > +                        <&cru HCLK_VOP>;
+> > +               clock-names = "iahb", "isfr", "cec", "hclk";
+> > +               power-domains = <&power RK3568_PD_VO>;
+> > +               reg-io-width = <4>;
+> > +               rockchip,grf = <&grf>;
+> > +               #sound-dai-cells = <0>;
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&hdmitx_scl &hdmitx_sda &hdmitxm0_cec>;
+> > +               status = "disabled";
+> > +
+> > +               ports {
+> > +                       #address-cells = <1>;
+> > +                       #size-cells = <0>;
+> > +
+> > +                       hdmi_in: port@0 {
+> 
+> 
+> The schema says there is only 1 'port' node. Please run schema
+> validation when making DT changes.
+> 
+> However, an HDMI bridge should also define an output port to a
+> connector node (or another bridge). So the fix is to allow 'port@0'
+> and add an output port.
 
-Please note that the display controllers are not hooked up to this SMMU
-yet, because we are still missing a means to transition framebuffers
-used by the bootloader to the kernel.
+The rockchip bindings traditionally don't have a connector explicitly
+specified in their device trees. I'll stick to that for the next round.
+If necessary I'll look later what it takes to add a connector node.
 
-This based upon an initial patch by Thierry Reding <treding@nvidia.com>.
+Sascha
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194.dtsi | 76 ++++++++++++++++++++++++
- 1 file changed, 76 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194.dtsi b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-index d78c9ed08c47..496e31b5c637 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194.dtsi
-@@ -1474,6 +1474,82 @@ pmc: pmc@c360000 {
- 			interrupt-controller;
- 		};
- 
-+		iommu@10000000 {
-+			compatible = "nvidia,tegra194-smmu", "nvidia,smmu-500";
-+			reg = <0x10000000 0x800000>;
-+			interrupts = <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 240 IRQ_TYPE_LEVEL_HIGH>;
-+			stream-match-mask = <0x7f80>;
-+			#global-interrupts = <1>;
-+			#iommu-cells = <1>;
-+
-+			nvidia,memory-controller = <&mc>;
-+			status = "okay";
-+		};
-+
- 		smmu: iommu@12000000 {
- 			compatible = "nvidia,tegra194-smmu", "nvidia,smmu-500";
- 			reg = <0x12000000 0x800000>,
 -- 
-2.25.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
