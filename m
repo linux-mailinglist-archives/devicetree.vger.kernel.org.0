@@ -2,106 +2,404 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D807A465369
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A0F646536F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:58:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350424AbhLAQ7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:59:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243262AbhLAQ7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:59:01 -0500
-Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8DFC061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:55:40 -0800 (PST)
-Received: by mail-pl1-x62d.google.com with SMTP id k4so18158549plx.8
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:55:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/GEph3CsAnqkBmuszOY71LQEgCEpXd5UoZsLjaKm3Ks=;
-        b=SmHa3I5Fj8apyYpqNqZLP9qXj+V+9UyWOsx09t0MWFM3v0NmYuq2RXDHsW7yLUFKQZ
-         WL5vH0YTWfXcnHC6QqrLJd5w840dTvYnb+zXBHxLobtoZwRd2wcqkDq610L4pouCV2ey
-         ADQwiWzXwknALzIHKNRME5/u1tkTs1rppnx6y0gmxq0TCRG6lLXOGt5MP9Sg3Yn+eSW9
-         +dgk9Fj1dX3PZGMFQOIxObSoeplyHvlhDT7PbocrqKsDSOBzxNDIxcQwp7S1Bx1Lkce1
-         QBldqPIyJX7fkPQAqXPt+WKVRA7gG8G0BYFmWo3qpDjHKLxK94QKK0cN86DDX49lFjve
-         Hy0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/GEph3CsAnqkBmuszOY71LQEgCEpXd5UoZsLjaKm3Ks=;
-        b=HHGdHDNZ4u5kTeS6+lEneJHYXbVsTUEY7h6yncWVGsogwhZOy4WSbmsd6RAF68oeof
-         /cWoqK+r7JKSucj6fEwLlrhmef2Pbo9zGU0jOjujXcB1Dw6RqeyZs4dnO9INgVo0p7yL
-         t1ubH+o00e8wCItU9cnFyvNtsc3Awq8dk+J2+qzkNQSFPMCT7ha5vlLPHFe3LYcK0SCk
-         FthGBde0UE8PWdyzlANfFvqEPTzqc/WcPLkeVyMz0m1iB+ersM6NgfWt9lmodnXeAF0H
-         xtkO+5kcaTCYuJcd3kjc87qD3ZWUnYuUx+BmzmtN3/yRS1xfLvEPqXL5DIkznuysf0CS
-         Ki+g==
-X-Gm-Message-State: AOAM530QH7/yU0WRO7d8+WMbKjXFHxEA0fVgl0Q0rlFx1pWgSx6qAbWy
-        dlabrp195yjmlEWyfGKQA/vGAg==
-X-Google-Smtp-Source: ABdhPJwNmrHtXyiauPc74AkBweAHVvl4gi9KlnzVNKf/U4DRqOx7KtAxJkein27Ecb6gfx6SXhHh3Q==
-X-Received: by 2002:a17:90b:4f42:: with SMTP id pj2mr9072875pjb.7.1638377740373;
-        Wed, 01 Dec 2021 08:55:40 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id k16sm389735pfu.183.2021.12.01.08.55.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 08:55:39 -0800 (PST)
-Date:   Wed, 1 Dec 2021 09:55:36 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Hari Nagalla <hnagalla@ti.com>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        a-govindraju@ti.com
-Subject: Re: [PATCH 0/4] TI K3 R5F and C71x support on J721S2
-Message-ID: <20211201165536.GC834591@p14s>
-References: <20211122122726.8532-1-hnagalla@ti.com>
+        id S238065AbhLARBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 12:01:37 -0500
+Received: from foss.arm.com ([217.140.110.172]:42172 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S243465AbhLARBg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 12:01:36 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7A26314BF;
+        Wed,  1 Dec 2021 08:58:15 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.65.205])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 99A573F766;
+        Wed,  1 Dec 2021 08:58:13 -0800 (PST)
+Date:   Wed, 1 Dec 2021 16:58:10 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v2 8/8] drivers/perf: Add Apple icestorm/firestorm CPU
+ PMU driver
+Message-ID: <YaepolizIKkzDQoV@FVFF77S0Q05N>
+References: <20211201134909.390490-1-maz@kernel.org>
+ <20211201134909.390490-9-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211122122726.8532-1-hnagalla@ti.com>
+In-Reply-To: <20211201134909.390490-9-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 22, 2021 at 06:27:22AM -0600, Hari Nagalla wrote:
-> Hi All,
-> 
-> The following series enhances the K3 R5F and DSP remoteproc drivers to
-> add support for the R5F clusters and C71x DSP on the newer TI K3 J721S2
-> SoC family. The J721S2 SoCs have 3 R5FSS clusters, one in MCU voltage
-> domain and the other two in MAIN voltage domain. There are also 2 C71x
-> DSP subsystems in MAIN voltage domain. The R5FSS is similar to the R5FSS
-> in J7200 SoCs, while the C71x DSPs are similar to the C71x DSP on J721e
-> SoCs.
-> 
-> See J721S2 Technical Reference Manual (SPRUJ28 – NOVEMBER 2021)
-> for further details: http://www.ti.com/lit/pdf/spruj28
-> 
-> Regards
-> Hari
-> 
-> Hari Nagalla (4):
->   dt-bindings: remoteproc: k3-r5f: Update bindings for J721S2 SoCs
->   dt-bindings: remoteproc: k3-dsp: Update bindings for J721S2 SoCs
->   remoteproc: k3-dsp: Extend support for C71x DSPs on J721S2 SoCs
->   remoteproc: k3-r5: Extend support for R5F clusters on J721S2 SoCs
-> 
->  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml   | 3 +++
->  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml   | 8 +++++---
->  drivers/remoteproc/ti_k3_dsp_remoteproc.c                 | 1 +
->  drivers/remoteproc/ti_k3_r5_remoteproc.c                  | 5 +++--
->  4 files changed, 12 insertions(+), 5 deletions(-)
+On Wed, Dec 01, 2021 at 01:49:09PM +0000, Marc Zyngier wrote:
+> Add a new, weird and wonderful driver for the equally weird Apple
+> PMU HW. Although the PMU itself is functional, we don't know much
+> about the events yet, so this can be considered as yet another
+> random number generator...
 
-I have applied this set.
+It's really frustrating that Apple built this rather than the architected PMU,
+because we've generally pushed back on IMPLEMENTATION DEFINED junk in this
+area, and supporting this makes it harder to push back on other vendors going
+the same route, which I'm not keen on. That, and the usual state of IMP-DEF
+stuff making this stupidly painful to reason about. 
+
+I can see that we can get this working bare-metal with DT, but I really don't
+want to try to support this in other cases (e.g. in a VM, potentially with
+ACPI), or this IMP-DEFness is going to spread more throughout the arm_pmu code.
+
+How does this interact with PMU emulation for a KVM guest?
+
+I have a bunch of comments and questions below.
+
+[...]
+
+> +#define ANY_BUT_0_1			GENMASK(9, 2)
+> +#define ONLY_2_TO_7			GENMASK(7, 2)
+> +#define ONLY_2_4_6			(BIT(2) | BIT(4) | BIT(6))
+> +#define ONLY_5_6_7			GENMASK(7, 5)
+
+For clarity/consistency it might be better to use separate BIT()s for
+ONLY_5_6_7 too.
+
+> +/*
+> + * Description of the events we actually know about, as well as those with
+> + * a specific counter affinity. Yes, this is a grand total of two known
+> + * counters, and the rest is anybody's guess.
+> + *
+> + * Not all counters can count all events. Counters #0 and #1 are wired to
+> + * count cycles and instructions respectively, and some events have
+> + * bizarre mappings (every other counter, or even *one* counter). These
+> + * restrictions equally apply to both P and E cores.
+> + *
+> + * It is worth noting that the PMUs attached to P and E cores are likely
+> + * to be different because the underlying uarches are different. At the
+> + * moment, we don't really need to distinguish between the two because we
+> + * know next to nothing about the events themselves, and we already have
+> + * per cpu-type PMU abstractions.
+> + *
+> + * If we eventually find out that the events are different across
+> + * implementations, we'll have to introduce per cpu-type tables.
+> + */
+> +enum m1_pmu_events {
+> +	M1_PMU_PERFCTR_UNKNOWN_01	= 0x01,
+> +	M1_PMU_PERFCTR_CPU_CYCLES	= 0x02,
+> +	M1_PMU_PERFCTR_INSTRUCTIONS	= 0x8c,
+> +	M1_PMU_PERFCTR_UNKNOWN_8d	= 0x8d,
+> +	M1_PMU_PERFCTR_UNKNOWN_8e	= 0x8e,
+> +	M1_PMU_PERFCTR_UNKNOWN_8f	= 0x8f,
+> +	M1_PMU_PERFCTR_UNKNOWN_90	= 0x90,
+> +	M1_PMU_PERFCTR_UNKNOWN_93	= 0x93,
+> +	M1_PMU_PERFCTR_UNKNOWN_94	= 0x94,
+> +	M1_PMU_PERFCTR_UNKNOWN_95	= 0x95,
+> +	M1_PMU_PERFCTR_UNKNOWN_96	= 0x96,
+> +	M1_PMU_PERFCTR_UNKNOWN_97	= 0x97,
+> +	M1_PMU_PERFCTR_UNKNOWN_98	= 0x98,
+> +	M1_PMU_PERFCTR_UNKNOWN_99	= 0x99,
+> +	M1_PMU_PERFCTR_UNKNOWN_9a	= 0x9a,
+> +	M1_PMU_PERFCTR_UNKNOWN_9b	= 0x9b,
+> +	M1_PMU_PERFCTR_UNKNOWN_9c	= 0x9c,
+> +	M1_PMU_PERFCTR_UNKNOWN_9f	= 0x9f,
+> +	M1_PMU_PERFCTR_UNKNOWN_bf	= 0xbf,
+> +	M1_PMU_PERFCTR_UNKNOWN_c0	= 0xc0,
+> +	M1_PMU_PERFCTR_UNKNOWN_c1	= 0xc1,
+> +	M1_PMU_PERFCTR_UNKNOWN_c4	= 0xc4,
+> +	M1_PMU_PERFCTR_UNKNOWN_c5	= 0xc5,
+> +	M1_PMU_PERFCTR_UNKNOWN_c6	= 0xc6,
+> +	M1_PMU_PERFCTR_UNKNOWN_c8	= 0xc8,
+> +	M1_PMU_PERFCTR_UNKNOWN_ca	= 0xca,
+> +	M1_PMU_PERFCTR_UNKNOWN_cb	= 0xcb,
+> +	M1_PMU_PERFCTR_UNKNOWN_f5	= 0xf5,
+> +	M1_PMU_PERFCTR_UNKNOWN_f6	= 0xf6,
+> +	M1_PMU_PERFCTR_UNKNOWN_f7	= 0xf7,
+> +	M1_PMU_PERFCTR_UNKNOWN_f8	= 0xf8,
+> +	M1_PMU_PERFCTR_UNKNOWN_fd	= 0xfd,
+> +	M1_PMU_PERFCTR_LAST		= M1_PMU_CFG_EVENT,
+> +
+> +	/*
+> +	 * From this point onwards, these are not actual HW events,
+> +	 * but attributes that get stored in hw->config_base.
+> +	 */
+> +	M1_PMU_CFG_COUNT_USER		= BIT(8),
+> +	M1_PMU_CFG_COUNT_KERNEL		= BIT(9),
+> +};
+> +
+> +/*
+> + * Per-event affinity table. Most events can be installed on counter
+> + * 2-9, but there are a numbre of exceptions. Note that this table
+> + * has been created experimentally, and I wouldn't be surprised if more
+> + * counters had strange affinities.
+> + */
+> +static const u16 m1_pmu_event_affinity[M1_PMU_PERFCTR_LAST + 1] = {
+> +	[0 ... M1_PMU_PERFCTR_LAST]	= ANY_BUT_0_1,
+> +	[M1_PMU_PERFCTR_UNKNOWN_01]	= BIT(7),
+> +	[M1_PMU_PERFCTR_CPU_CYCLES]	= ANY_BUT_0_1 | BIT(0),
+> +	[M1_PMU_PERFCTR_INSTRUCTIONS]	= BIT(7) | BIT(1),
+> +	[M1_PMU_PERFCTR_UNKNOWN_8d]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_8e]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_8f]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_90]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_93]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_94]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_95]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_96]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_97]	= BIT(7),
+> +	[M1_PMU_PERFCTR_UNKNOWN_98]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_99]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_9a]	= BIT(7),
+> +	[M1_PMU_PERFCTR_UNKNOWN_9b]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_9c]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_9f]	= BIT(7),
+> +	[M1_PMU_PERFCTR_UNKNOWN_bf]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_c0]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_c1]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_c4]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_c5]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_c6]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_c8]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_ca]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_cb]	= ONLY_5_6_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_f5]	= ONLY_2_4_6,
+> +	[M1_PMU_PERFCTR_UNKNOWN_f6]	= ONLY_2_4_6,
+> +	[M1_PMU_PERFCTR_UNKNOWN_f7]	= ONLY_2_4_6,
+> +	[M1_PMU_PERFCTR_UNKNOWN_f8]	= ONLY_2_TO_7,
+> +	[M1_PMU_PERFCTR_UNKNOWN_fd]	= ONLY_2_4_6,
+> +};
+
+I don't entirely follow what's going on here. Is this a matrix scheme like what
+QC had in their IMP-DEF Krait PMUs? See:
+
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/kernel/perf_event_v7.c?h=v5.16-rc3#n1286
+
+I'm a bit worried about this, since is this is of that shape, there are
+potential constraints on which counters and/or events you can use concurrently,
+and if you violate those they can conflict. If so, we need to be *very* careful
+about the abstraction we provide to userspace.
+
+[...]
+
+> +/* Low level accessors. No synchronisation. */
+> +#define PMU_READ_COUNTER(_idx)						\
+> +	case _idx:	return read_sysreg_s(SYS_IMP_APL_PMC## _idx ##_EL1)
+> +
+> +#define PMU_WRITE_COUNTER(_val, _idx)					\
+> +	case _idx:							\
+> +		write_sysreg_s(_val, SYS_IMP_APL_PMC## _idx ##_EL1);	\
+> +		return
+> +
+> +static u64 m1_pmu_read_hw_counter(unsigned int index)
+> +{
+> +	switch (index) {
+> +		PMU_READ_COUNTER(0);
+> +		PMU_READ_COUNTER(1);
+> +		PMU_READ_COUNTER(2);
+> +		PMU_READ_COUNTER(3);
+> +		PMU_READ_COUNTER(4);
+> +		PMU_READ_COUNTER(5);
+> +		PMU_READ_COUNTER(6);
+> +		PMU_READ_COUNTER(7);
+> +		PMU_READ_COUNTER(8);
+> +		PMU_READ_COUNTER(9);
+> +	}
+> +
+> +	BUG();
+> +}
+> +
+> +static void m1_pmu_write_hw_counter(u64 val, unsigned int index)
+> +{
+> +	switch (index) {
+> +		PMU_WRITE_COUNTER(val, 0);
+> +		PMU_WRITE_COUNTER(val, 1);
+> +		PMU_WRITE_COUNTER(val, 2);
+> +		PMU_WRITE_COUNTER(val, 3);
+> +		PMU_WRITE_COUNTER(val, 4);
+> +		PMU_WRITE_COUNTER(val, 5);
+> +		PMU_WRITE_COUNTER(val, 6);
+> +		PMU_WRITE_COUNTER(val, 7);
+> +		PMU_WRITE_COUNTER(val, 8);
+> +		PMU_WRITE_COUNTER(val, 9);
+> +	}
+> +
+> +	BUG();
+> +}
+
+As an aside, since this pattern has cropped up in a few places, maybe we want
+to look into scripting the generation of sysreg banki accessors like this.
+
+[...]
+
+> +static void m1_pmu_configure_counter(unsigned int index, u8 event,
+> +				     bool user, bool kernel)
+> +{
+> +	u64 val, user_bit, kernel_bit;
+> +	int shift;
+> +
+> +	switch (index) {
+> +	case 0 ... 7:
+> +		user_bit = BIT(get_bit_offset(index, PMCR1_COUNT_A64_EL0_0_7));
+> +		kernel_bit = BIT(get_bit_offset(index, PMCR1_COUNT_A64_EL1_0_7));
+> +		break;
+> +	case 8 ... 9:
+> +		user_bit = BIT(get_bit_offset(index - 8, PMCR1_COUNT_A64_EL0_8_9));
+> +		kernel_bit = BIT(get_bit_offset(index - 8, PMCR1_COUNT_A64_EL1_8_9));
+> +		break;
+
+When this says 'EL1', presuambly that's counting at EL2 in VHE?
+
+Are there separate EL1 / EL2 controls, or anythign of that sort we need to be
+aware of?
+
+[...]
+
+> +/* arm_pmu backend */
+> +static void m1_pmu_enable_event(struct perf_event *event)
+> +{
+> +	struct arm_pmu *cpu_pmu = to_arm_pmu(event->pmu);
+> +	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
+> +	unsigned long flags;
+> +	bool user, kernel;
+> +	u8 evt;
+> +
+> +	evt = event->hw.config_base & M1_PMU_CFG_EVENT;
+> +	user = event->hw.config_base & M1_PMU_CFG_COUNT_USER;
+> +	kernel = event->hw.config_base & M1_PMU_CFG_COUNT_KERNEL;
+> +
+> +	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
+
+You shouldn't need this locking. The perf core always calls into the HW access
+functions with IRQs disabled and we don't do cross-cpu state modification.
+Likewise elsewhere in this file.
+
+We pulled similar out of the architectural PMU driver in commit:
+
+2a0e2a02e4b71917 ("arm64: perf: Remove PMU locking")
+
+... though that says non-preemptible when it should say non-interruptible.
+
+I should clean up the 32-bit drivers and remove pmu_hw_events::pmu_lock
+entirely.
+
+> +
+> +	m1_pmu_disable_counter_interrupt(event->hw.idx);
+> +	m1_pmu_disable_counter(event->hw.idx);
+> +	isb();
+> +
+> +	m1_pmu_configure_counter(event->hw.idx, evt, user, kernel);
+> +	m1_pmu_enable_counter(event->hw.idx);
+> +	m1_pmu_enable_counter_interrupt(event->hw.idx);
+> +	isb();
+> +
+> +	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
+> +}
+> +
+> +static void __m1_pmu_disable_event(struct perf_event *event)
+> +{
+> +	m1_pmu_disable_counter_interrupt(event->hw.idx);
+> +	m1_pmu_disable_counter(event->hw.idx);
+> +	isb();
+> +}
+> +
+> +static void m1_pmu_disable_event(struct perf_event *event)
+> +{
+> +	struct arm_pmu *cpu_pmu = to_arm_pmu(event->pmu);
+> +	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
+> +	unsigned long flags;
+> +
+> +	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
+> +
+> +	__m1_pmu_disable_event(event);
+> +
+> +	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
+> +}
+
+As with m1_pmu_enable_event(), I don't believe the locking is necessary here.
+
+> +static irqreturn_t m1_pmu_handle_irq(struct arm_pmu *cpu_pmu)
+> +{
+> +	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
+> +	irqreturn_t ret = IRQ_HANDLED;
+> +	struct pt_regs *regs;
+> +	u64 overflow, state;
+> +	unsigned long flags;
+> +	int idx;
+> +
+> +	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
+
+Likewise, no need for a lock here, and certainly not an irqsave!
+
+Same comment for subsequent usage in this file.
+
+> +	state = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
+> +	overflow = read_sysreg_s(SYS_IMP_APL_PMSR_EL1);
+
+I assume the overflow behaviour is free-running rather than stopping?
+
+> +	if (!overflow) {
+> +		ret = IRQ_NONE;
+> +		goto out;
+> +	}
+> +
+> +	regs = get_irq_regs();
+> +
+> +	for (idx = 0; idx < cpu_pmu->num_events; idx++) {
+> +		struct perf_event *event = cpuc->events[idx];
+> +		struct perf_sample_data data;
+> +
+> +		if (!event)
+> +			continue;
+> +
+> +		armpmu_event_update(event);
+> +		perf_sample_data_init(&data, 0, event->hw.last_period);
+> +		if (!armpmu_event_set_period(event))
+> +			continue;
+> +
+> +		if (perf_event_overflow(event, &data, regs))
+> +			__m1_pmu_disable_event(event);
+> +	}
+> +
+> +out:
+> +	state &= ~PMCR0_IACT;
+> +	write_sysreg_s(state, SYS_IMP_APL_PMCR0_EL1);
+> +	isb();
+> +
+> +	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
+> +
+> +	return ret;
+> +}
+
+[...]
+
+> +static int m1_pmu_device_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+> +
+> +	ret = arm_pmu_device_probe(pdev, m1_pmu_of_device_ids, NULL);
+> +	if (!ret) {
+> +		/*
+> +		 * If probe succeeds, taint the kernel as this is all
+> +		 * undocumented, implementation defined black magic.
+> +		 */
+> +		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
+> +	}
+> +
+> +	return ret;
+> +}
+
+Hmmm... that means we're always going to TAINT on this HW with an appropriate
+DT, which could mask other reasons TAINT_CPU_OUT_OF_SPEC would be set, even
+where the user isn't using the PMU.
+
+Maybe we should have a cmdline option to opt-in to using the IMP-DEF PMU (and
+only tainting in that case)?
 
 Thanks,
-Mathieu
-
-> 
-> -- 
-> 2.17.1
-> 
+Mark.
