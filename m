@@ -2,139 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A92465284
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:08:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CC0465285
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:08:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351358AbhLAQL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:11:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351381AbhLAQL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:11:28 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59840C061748
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:08:07 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id d9so32567104wrw.4
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:08:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=raspberrypi.com; s=google;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=up9aWqNU++fIqZ5rpoghBL3aWKa9Mbv5J65Y802nH48=;
-        b=CKLuRG1D/Fx9ICAVbH1iS1A9K282AihRM8V+4+Ka4FPetKWVwqJ6X8fH1KtoniSpob
-         vAVoRSBj/87eusJ+X3eB5LFALpxuzQfjFgvoBdoBNJWHqvfVl/riYCVXiok4BoeJaMNb
-         gQBvEPgXqAPrOC3EXXZkcvfZQY02BjcM+tDCT8FNSozuf1nbCOQSejYXtsJfUW6Eq+ot
-         p0MSoqZjCGwOwCHl0OmKJiVQUabXOR7za9y9pdmjYwdx4iqsElI6Cg3ulPTh77QtN+ZJ
-         ybOgy3aE9hf3Uo9T5Q13MHPOEsps696kieVPGMMc9+04nto6X3/1CP18LZWwXWNtNmVN
-         AN7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=up9aWqNU++fIqZ5rpoghBL3aWKa9Mbv5J65Y802nH48=;
-        b=ORKED5yKSa0jgCUFaNJ4Jhhf4YoUn1hlXXtFv3aAgS1UOsT2DfkQ0skYTmDoGPGtcx
-         emVtuDjqWftOwzk/yKmA9+m26xhEHdHJ2CqSHryHR45EUU1PxyMBhTE7iLKf3Ch8Xhhf
-         iZXw6roFFCVE1Wx/DENBk9U0CGe65X6u+VEE2LMYICvgaw7193ZbUgZ6iDpNdatYzgBb
-         uEJb5lRyReExJdVsSlptoxLS0oRA+ucPqB1yIZtc4ukxQlnyDKE4H6G5qCX0HEK1kdJH
-         Gw+XInQ4iQx2tAIf6iYCx2qZxUQ80H/buBJpgmxyEwI45JSHbvD8fZs+mvm+hKxJ0Db1
-         3J7Q==
-X-Gm-Message-State: AOAM530YRB1QLcpdsr4AWn6NCsvzYspkUmn+cL/E4RoHbfLg1iDB6B+i
-        ICSpOQVRM2bZbJDmWBKVPf/tmfNdULNnm8CM
-X-Google-Smtp-Source: ABdhPJwIcn/Ajhb5/TTb5upg1Lb8z70PlKpvwWbi04Ie5jC8PsHijD5v++Ql5vwM9pYClpU4O4Lk9Q==
-X-Received: by 2002:a5d:5144:: with SMTP id u4mr7895393wrt.91.1638374885967;
-        Wed, 01 Dec 2021 08:08:05 -0800 (PST)
-Received: from ?IPV6:2a00:1098:3142:14:3430:4041:27d3:fbce? ([2a00:1098:3142:14:3430:4041:27d3:fbce])
-        by smtp.gmail.com with ESMTPSA id l26sm235841wms.15.2021.12.01.08.08.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Dec 2021 08:08:05 -0800 (PST)
-Message-ID: <3f03d11b-ed73-9f1e-5de1-44cb3ae3e415@raspberrypi.com>
-Date:   Wed, 1 Dec 2021 16:08:05 +0000
+        id S1351382AbhLAQLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:11:40 -0500
+Received: from foss.arm.com ([217.140.110.172]:40938 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1351380AbhLAQLj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 11:11:39 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7D62D143B;
+        Wed,  1 Dec 2021 08:08:18 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.65.205])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9BDF03F766;
+        Wed,  1 Dec 2021 08:08:16 -0800 (PST)
+Date:   Wed, 1 Dec 2021 16:08:13 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v2 3/8] irqchip/apple-aic: Add cpumasks for E and P cores
+Message-ID: <Yaed7VAlwwCBcP13@FVFF77S0Q05N>
+References: <20211201134909.390490-1-maz@kernel.org>
+ <20211201134909.390490-4-maz@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH 1/2] pinctrl: bcm2835: Change init order for gpio hogs
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "bcm-kernel-feedback-list@broadcom.com" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <treding@nvidia.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-rpi-kernel@lists.infradead.org" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-References: <20211129105556.675235-1-phil@raspberrypi.com>
- <20211129105556.675235-2-phil@raspberrypi.com>
- <CAHp75Vei9FUY0gGD99gVv_FZzcpN1y_i65BB-auyAFUwqsQxNA@mail.gmail.com>
- <06345f5a-c8e7-848b-d25f-3f3e32ab5418@raspberrypi.com>
- <CAHp75VcZNUXxk7rD2sL=AFe4kz+hXX361rp15K8fN1c4x8zhXA@mail.gmail.com>
-From:   Phil Elwell <phil@raspberrypi.com>
-In-Reply-To: <CAHp75VcZNUXxk7rD2sL=AFe4kz+hXX361rp15K8fN1c4x8zhXA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211201134909.390490-4-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2021 15:38, Andy Shevchenko wrote:
-> On Wed, Dec 1, 2021 at 5:18 PM Phil Elwell <phil@raspberrypi.com> wrote:
->> On 01/12/2021 12:06, Andy Shevchenko wrote:
->>> On Monday, November 29, 2021, Phil Elwell <phil@raspberrypi.com
->>> <mailto:phil@raspberrypi.com>> wrote:
->>>
->>>      ...and gpio-ranges
->>>
->>>      pinctrl-bcm2835 is a combined pinctrl/gpio driver. Currently the gpio
->>>      side is registered first, but this breaks gpio hogs (which are
->>>      configured during gpiochip_add_data). Part of the hog initialisation
->>>      is a call to pinctrl_gpio_request, and since the pinctrl driver hasn't
->>>      yet been registered this results in an -EPROBE_DEFER from which it can
->>>      never recover.
->>>
->>>      Change the initialisation sequence to register the pinctrl driver
->>>      first.
->>>
->>>      This also solves a similar problem with the gpio-ranges property, which
->>>      is required in order for released pins to be returned to inputs.
->>>
->>>
->>> We have a callback in GPIO chip to register pin ranges, why driver does it
->>> separately?
->>
->> A few experiments (this is not my driver) appear to show that the call to
->> pinctrl_add_gpio_range can be removed, but only once the gpio-ranges DT property
->> has been added if we want to remain functionality throughout a bisect. That tidy
->> up might be better done with a followup commit once the DT patch has also
->> been accepted, unless it's possible to guarantee the sequencing between
->> the pinctrl/gpio tree and the DT tree.
+On Wed, Dec 01, 2021 at 01:49:04PM +0000, Marc Zyngier wrote:
+> In order to be able to tell the core IRQ code about the affinity
+> of the PMU interrupt in later patches, compute the cpumasks of the
+> P and E cores at boot time.
 > 
-> What I meant is why these calls are done in the probe and not in
-> ->add_pin_ranges() callback?
-> Shouldn't it fix the issue you have observed?
+> This relies on the affinity scheme used by the vendor, which seems
+> to work for the couple of SoCs that are out in the wild.
 
-I'm no expert in the field, isn't it preferable to set the gpio-ranges 
-pinctrl<->GPIO correspondence with a single line of DT rather than several lines 
-of code? A quick grep shows over 700 instances of gpio-ranges in DT, at least 
-some of which are reflexive, and only 7 drivers with add_pin_ranges methods.
+... but may change at any arbitrary point in future?
 
->>>      Fixes: 73345a18d464b ("pinctrl: bcm2835: Pass irqchip when adding
->>>                              gpiochip")
->>>      Signed-off-by: Phil Elwell <phil@raspberrypi.com <mailto:phil@raspberrypi.com>>
->>>
->>> Is it originally so strange indentation or is it only on my side?
->>
->> The "g" is below the "p" in the patch.
+Can we please put the affinity in the DT, like we do for other SoCs and
+devices?
+
+I don't think we should treat this HW specially in this regard; we certaintly
+don't want other folk hard-coding system topology in their irqchip driver, and
+it should be possible to do something like the ppi-partitions binding, no?
+
+Thanks,
+Mark.
+
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> ---
+>  drivers/irqchip/irq-apple-aic.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> Which is wrong. Tags mustn't be multilines (i.e. split over a single line).
-
-checkpatch disagrees:
-
-scripts/checkpatch.pl 0001-ARM-dts-gpio-ranges-property-is-now-required.patch
-WARNING: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#10:
-[1] commit 2ab73c6d8323 ("gpio: Support GPIO controllers without pin-ranges")
-
-Phil
-
+> diff --git a/drivers/irqchip/irq-apple-aic.c b/drivers/irqchip/irq-apple-aic.c
+> index 3759dc36cc8f..30ca80ccda8b 100644
+> --- a/drivers/irqchip/irq-apple-aic.c
+> +++ b/drivers/irqchip/irq-apple-aic.c
+> @@ -177,6 +177,8 @@ struct aic_irq_chip {
+>  	void __iomem *base;
+>  	struct irq_domain *hw_domain;
+>  	struct irq_domain *ipi_domain;
+> +	struct cpumask ecore_mask;
+> +	struct cpumask pcore_mask;
+>  	int nr_hw;
+>  	int ipi_hwirq;
+>  };
+> @@ -200,6 +202,11 @@ static void aic_ic_write(struct aic_irq_chip *ic, u32 reg, u32 val)
+>  	writel_relaxed(val, ic->base + reg);
+>  }
+>  
+> +static bool __is_pcore(u64 mpidr)
+> +{
+> +	return MPIDR_AFFINITY_LEVEL(mpidr, 2) == 1;
+> +}
+> +
+>  /*
+>   * IRQ irqchip
+>   */
+> @@ -833,6 +840,13 @@ static int __init aic_of_ic_init(struct device_node *node, struct device_node *p
+>  		return -ENODEV;
+>  	}
+>  
+> +	for_each_possible_cpu(i) {
+> +		if (__is_pcore(cpu_logical_map(i)))
+> +			cpumask_set_cpu(i, &irqc->pcore_mask);
+> +		else
+> +			cpumask_set_cpu(i, &irqc->ecore_mask);
+> +	}
+> +
+>  	set_handle_irq(aic_handle_irq);
+>  	set_handle_fiq(aic_handle_fiq);
+>  
+> -- 
+> 2.30.2
+> 
