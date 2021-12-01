@@ -2,165 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 893D1464DFC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:37:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1C73464E24
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 13:44:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349254AbhLAMjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 07:39:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47838 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243419AbhLAMjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 07:39:52 -0500
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A98DCC061574;
-        Wed,  1 Dec 2021 04:36:31 -0800 (PST)
-Received: by mail-ed1-x529.google.com with SMTP id l25so100849526eda.11;
-        Wed, 01 Dec 2021 04:36:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZSROiNgB2UD7hNEXl0pvdtL5Q+m1xl2P/sbsa7knooE=;
-        b=SoPfXemzg5TzT+sBidzycYY9aJtz55gqbZKRgPbjofKMsQEgUsRJp7eiFKrC5FRIiC
-         3efWgavyxuItZt0vmKspBT5/wx3zan6mD5oaAsRAbemEZa9Vw0tWCkJUs3lGl4atg39M
-         kbYJFMZ4Ovkhx744nToxDBL0wv/kwzCdfE+E537/O3ajUNvlwyOeQdtaBfaix8a0MzdE
-         ADfYtO7gorce92DA5CzMmIQrmRMIWOJkh0B+8GWV5AujiqmqaTFkoZkVxuFKOubAd54E
-         9PCmTKPwGnU2ewXjlVibv2wo27uMEGYurWPRoeXVuOofVkL/qXMaRCPWCB/8XEJ3tX+g
-         +3mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZSROiNgB2UD7hNEXl0pvdtL5Q+m1xl2P/sbsa7knooE=;
-        b=lO4d1LBod5s3D/TYpggRhbjZ7Ay4ZKpAT9e1o/wsH2o3qM6VfxJ8FM8xysc5eQ6Zvv
-         bGtwUDobqfoIp6Pgr2c3I2KAiKHcCzV1HOLi0t4XEir8/xNiS2Rawl2Gw4BIMdC4xBLE
-         dQ16D4F9rEzBhmnLXw71dCtBXDvI0nzubdbdhnqd2DZdmRbXhf1El32d6luFf6HTLHLP
-         AtCDBcu1sJt5ML69WzTBiSNfM4RKSG6RzZHTojYQR+YaF3K1Lh9u/znaCC/ibwWNvLZs
-         ZAbPJKSb1YLFAK/UX5ZiYLPo7EqTumyHHFhom1tvRANy8nx1xQ9C9rObeFLuoOgwrwRr
-         RLuA==
-X-Gm-Message-State: AOAM531wbOH/vl3Y7ViYAhhaV/pWu2oiMxsMTM8ZXTiL0T4yF7tojvks
-        EM/752JyNfTBqqTpkNyxTMN9P7BGvaInMsNST7E=
-X-Google-Smtp-Source: ABdhPJwRBzIkt+7WMfehsNJxTzyw1z+gmeMXpKs1X1qC9gIGtgcHmbIx5M/4LYRrbSurRB/40F9cWFs5Grlb+4QS8Oo=
-X-Received: by 2002:a17:906:1993:: with SMTP id g19mr6900902ejd.50.1638362189981;
- Wed, 01 Dec 2021 04:36:29 -0800 (PST)
+        id S244197AbhLAMrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 07:47:49 -0500
+Received: from foss.arm.com ([217.140.110.172]:36208 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234846AbhLAMrs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 07:47:48 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 553801477;
+        Wed,  1 Dec 2021 04:44:27 -0800 (PST)
+Received: from lpieralisi (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E2503F694;
+        Wed,  1 Dec 2021 04:44:25 -0800 (PST)
+Date:   Wed, 1 Dec 2021 12:44:19 +0000
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, bhelgaas@google.com,
+        marcel.ziswiler@toradex.com, tharvey@gateworks.com, kishon@ti.com,
+        vkoul@kernel.org, robh@kernel.org, galak@kernel.crashing.org,
+        shawnguo@kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com
+Subject: Re: [PATCH v6 0/8] Add the imx8m pcie phy driver and imx8mm pcie
+ support
+Message-ID: <20211201124419.GA13080@lpieralisi>
+References: <1637200489-11855-1-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-References: <20211201013329.15875-1-aford173@gmail.com> <20211201013329.15875-2-aford173@gmail.com>
- <CAAEAJfBBFhRtW2wmoA6T+yyM-nurUbtPqYHKPHjeRdKzA34PcQ@mail.gmail.com>
-In-Reply-To: <CAAEAJfBBFhRtW2wmoA6T+yyM-nurUbtPqYHKPHjeRdKzA34PcQ@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 1 Dec 2021 06:36:18 -0600
-Message-ID: <CAHCN7xLGTadbr+=-j2yJHFn233dgHic28njej8LHS2M0WwtqYQ@mail.gmail.com>
-Subject: Re: [RFC V2 1/2] media: hantro: Add support for i.MX8M Mini
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1637200489-11855-1-git-send-email-hongxing.zhu@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Dec 1, 2021 at 6:25 AM Ezequiel Garcia
-<ezequiel@vanguardiasur.com.ar> wrote:
->
-> Hi Adam,
->
-> On Tue, 30 Nov 2021 at 22:33, Adam Ford <aford173@gmail.com> wrote:
-> >
-> > The i.MX8M Mini has a similar implementation of the Hantro G1 and
-> > h decoders, but the Mini uses the vpu-blk-ctrl for handling the
-> > VPU resets through the power domain system.  As such, there are
-> > functions present in the 8MQ that are not applicable to the Mini
-> > which requires the driver to have a different compatible flags.
-> >
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> >
-> > diff --git a/drivers/staging/media/hantro/hantro_drv.c b/drivers/staging/media/hantro/hantro_drv.c
-> > index fb82b9297a2b..2aa1c520be50 100644
-> > --- a/drivers/staging/media/hantro/hantro_drv.c
-> > +++ b/drivers/staging/media/hantro/hantro_drv.c
-> > @@ -592,6 +592,8 @@ static const struct of_device_id of_hantro_match[] = {
-> >         { .compatible = "rockchip,rk3399-vpu", .data = &rk3399_vpu_variant, },
-> >  #endif
-> >  #ifdef CONFIG_VIDEO_HANTRO_IMX8M
-> > +       { .compatible = "nxp,imx8mm-vpu", .data = &imx8mm_vpu_variant, },
-> > +       { .compatible = "nxp,imx8mm-vpu-g2", .data = &imx8mm_vpu_g2_variant },
-> >         { .compatible = "nxp,imx8mq-vpu", .data = &imx8mq_vpu_variant, },
-> >         { .compatible = "nxp,imx8mq-vpu-g2", .data = &imx8mq_vpu_g2_variant },
-> >  #endif
-> > diff --git a/drivers/staging/media/hantro/hantro_hw.h b/drivers/staging/media/hantro/hantro_hw.h
-> > index 267a6d33a47b..ae7c3fff760c 100644
-> > --- a/drivers/staging/media/hantro/hantro_hw.h
-> > +++ b/drivers/staging/media/hantro/hantro_hw.h
-> > @@ -211,6 +211,8 @@ enum hantro_enc_fmt {
-> >         ROCKCHIP_VPU_ENC_FMT_UYVY422 = 3,
-> >  };
-> >
-> > +extern const struct hantro_variant imx8mm_vpu_g2_variant;
-> > +extern const struct hantro_variant imx8mm_vpu_variant;
-> >  extern const struct hantro_variant imx8mq_vpu_g2_variant;
-> >  extern const struct hantro_variant imx8mq_vpu_variant;
-> >  extern const struct hantro_variant px30_vpu_variant;
-> > diff --git a/drivers/staging/media/hantro/imx8m_vpu_hw.c b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > index ea919bfb9891..c68516c00c6d 100644
-> > --- a/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > +++ b/drivers/staging/media/hantro/imx8m_vpu_hw.c
-> > @@ -242,6 +242,32 @@ static const struct hantro_codec_ops imx8mq_vpu_g2_codec_ops[] = {
-> >         },
-> >  };
-> >
-> > +static const struct hantro_codec_ops imx8mm_vpu_codec_ops[] = {
-> > +       [HANTRO_MODE_MPEG2_DEC] = {
-> > +               .run = hantro_g1_mpeg2_dec_run,
-> > +               .init = hantro_mpeg2_dec_init,
-> > +               .exit = hantro_mpeg2_dec_exit,
-> > +       },
-> > +       [HANTRO_MODE_VP8_DEC] = {
-> > +               .run = hantro_g1_vp8_dec_run,
-> > +               .init = hantro_vp8_dec_init,
-> > +               .exit = hantro_vp8_dec_exit,
-> > +       },
-> > +       [HANTRO_MODE_H264_DEC] = {
-> > +               .run = hantro_g1_h264_dec_run,
-> > +               .init = hantro_h264_dec_init,
-> > +               .exit = hantro_h264_dec_exit,
-> > +       },
-> > +};
-> > +
-> > +static const struct hantro_codec_ops imx8mm_vpu_g2_codec_ops[] = {
-> > +       [HANTRO_MODE_HEVC_DEC] = {
-> > +               .run = hantro_g2_hevc_dec_run,
-> > +               .init = hantro_hevc_dec_init,
-> > +               .exit = hantro_hevc_dec_exit,
-> > +       },
-> > +};
-> > +
->
-> I believe you are missing VP9, which explains why you get
-> a zero fluster score.
+On Thu, Nov 18, 2021 at 09:54:41AM +0800, Richard Zhu wrote:
+> Refer to the discussion [1] when try to enable i.MX8MM PCIe support,
+> one standalone PCIe PHY driver should be seperated from i.MX PCIe
+> driver when enable i.MX8MM PCIe support.
+> 
+> This patch-set adds the standalone PCIe PHY driver suport[1-5], and i.MX8MM
+> PCIe support[6-8] to have whole view to review this patch-set.
+> 
+> The PCIe works on i.MX8MM EVK board based the the blkctrl power driver
+> [2] and this patch-set. And tested by Tim and Marcel on the different
+> reference clock modes boards.
+> 
+> [1] https://patchwork.ozlabs.org/project/linux-pci/patch/20210510141509.929120-3-l.stach@pengutronix.de/
+> [2] https://patchwork.kernel.org/project/linux-arm-kernel/cover/20210910202640.980366-1-l.stach@pengutronix.de/
+> 
+> Main changes v5 --> v6:
+> - Add "Reviewed-by: Rob Herring <robh@kernel.org>" into #1 and #3 patches.
+> - Merge Rob's review comments to the #2 patch.
+> 
+> Main changes v4 --> v5:
+> - Set the AUX_EN always 1b'1, thus it can fix the regression introduced in v4
+>   series on Marcel's board.
+> - Use the lower-case letter in the devicetreee refer to Marcel's comments.
+> _ Since the default value of the deemphasis parameters are zero, only set
+>   the deemphasis registers when the input paramters are none zero.
+> 
+> Main changes v3 --> v4:
+> - Update the yaml to fix syntax error, add maxitems and drop description of phy
+> - Correct the clock name in PHY DT node.
+> - Squash the EVK board relalted dts changes into one patch, and drop the
+>   useless dummy clock and gpio suffix in DT nodes.
+> - Add board specific de-emphasis parameters as DT properties. Thus each board
+>   can specify its actual de-emphasis values.
+> - Update the commit log of PHY driver.
+> - Remove the useless codes from PCIe driver, since they are moved to PHY driver
+> - After the discussion and verification of the CLKREQ# configurations with Tim,
+>   agree to add an optional boolean property "fsl,clkreq-unsupported", indicates
+>   the CLKREQ# signal is hooked or not in HW designs.
+> - Add "Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>" tag, since
+>   Marcel help to test the v3 patch-set.
+> 
+> Main changes v2 --> v3:
+> - Regarding Lucas' comments.
+>  - to have a whole view to review the patches, send out the i.MX8MM PCIe support too.
+>  - move the PHY related bits manipulations of the GPR/SRC to standalone PHY driver.
+>  - split the dts changes to SOC and board DT, and use the enum instead of raw value.
+>  - update the license of the dt-binding header file.
+> 
+> Changes v1 --> v2:
+> - Update the license of the dt-binding header file to make the license
+>   compatible with dts files.
+> - Fix the dt_binding_check errors.
+> 
+> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   6 +++
+> Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |  92 +++++++++++++++++++++++++++++++
+> arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi                |  55 +++++++++++++++++++
+> arch/arm64/boot/dts/freescale/imx8mm.dtsi                    |  46 +++++++++++++++-
+> drivers/pci/controller/dwc/pci-imx6.c                        |  73 ++++++++++++++++++++++---
+> drivers/phy/freescale/Kconfig                                |   9 ++++
+> drivers/phy/freescale/Makefile                               |   1 +
+> drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 237 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+> include/dt-bindings/phy/phy-imx8-pcie.h                      |  14 +++++
+> 9 files changed, 525 insertions(+), 8 deletions(-)
 
-That's what I was thinking too and that's why I was wondering if I
-should wait on G2 until more of those G2 patches have been finalized
-and accepted.  Is there a way to test the HEVC?  I didn't see one in
-the fluster list.
+Hi Richard,
 
-adam
->
-> Thanks,
-> Ezequiel
+I can pull this series into the PCI tree (but not the dts changes
+that should be routed elsewhere) or give an ACK for patch 8, please
+let me know what's the best option.
+
+Thanks,
+Lorenzo
+
+> [PATCH v6 1/8] dt-bindings: phy: phy-imx8-pcie: Add binding for the
+> [PATCH v6 2/8] dt-bindings: phy: Add imx8 pcie phy driver support
+> [PATCH v6 3/8] dt-bindings: imx6q-pcie: Add PHY phandles and name
+> [PATCH v6 4/8] arm64: dts: imx8mm: Add the pcie phy support
+> [PATCH v6 5/8] phy: freescale: pcie: Initialize the imx8 pcie
+> [PATCH v6 6/8] arm64: dts: imx8mm: Add the pcie support
+> [PATCH v6 7/8] arm64: dts: imx8mm-evk: Add the pcie support on imx8mm
+> [PATCH v6 8/8] PCI: imx: Add the imx8mm pcie support
