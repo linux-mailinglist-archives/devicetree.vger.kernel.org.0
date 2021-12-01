@@ -2,129 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A043E464EAD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 14:18:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66845464EE2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 14:37:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244743AbhLANVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 08:21:35 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.80]:12496 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234027AbhLANVe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:21:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638364685;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=4c3epF2ScffUjNFE7pqyVEAU/QWj/7JeeA6yeKVR/Xw=;
-    b=ed5XJ6A0DHDOixvsBEnMCR/tZI4nrM6770k+bAgJ/0JHUnyN+x7zhyk/nrEGbiiBE4
-    +00amMPfU8SLs0KhySY3C6FHXQLohYA51L3nFcggRaxRoQ2FB7FUZzEWXaH8wn+cmH0x
-    PI4l4kQ2BBVPKL30u7py2gHXByEAyDlhFRpdcQbyShx+Jop3mq7nHsG/WFULSxnNck0W
-    rojwHKwQdYNG2wSegzNxoep9lnttsWGoJircnP7KFGKRgQnwlk9/ksXXLDwxaMlsOass
-    8MAkSsL6jm8JyJ5NMhSqLoBXCjc596a7MMhRZm4L6JCdIm8lvYaOLl94w4DOiW1EuKgM
-    PotA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43u22M="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 SBL|AUTH)
-    with ESMTPSA id e05ed8xB1DI4XDF
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Wed, 1 Dec 2021 14:18:04 +0100 (CET)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
-Date:   Wed, 1 Dec 2021 14:18:02 +0100
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <F852C647-7368-4BC1-A3C6-CE40F5A757F9@goldelico.com>
-References: <cover.1638307601.git.hns@goldelico.com>
- <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
- <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
-To:     Paul Cercueil <paul@crapouillou.net>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S242876AbhLANkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 08:40:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239346AbhLANkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 08:40:41 -0500
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6840CC061574;
+        Wed,  1 Dec 2021 05:37:20 -0800 (PST)
+Received: by mail-yb1-xb2b.google.com with SMTP id x32so63432721ybi.12;
+        Wed, 01 Dec 2021 05:37:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fJQwgAcn3m3gWE5P+/ZzPN9/7OfOm1vUbRkJxx4e0j8=;
+        b=TEaLkNsTM5R2G2hzecnDKfJVQfE4lPZuYkiffO/Pi8fuRQCqKA4zTZ2Kk4PFhqVYhJ
+         FpA/OYHeANU8BDNHZq7/VJdD6ADAFpiAb/VUfSBTkfi2bUIlxfvIeNABTY68xbzokAmS
+         CydYFIKccHYe4zwo81gDqg4Xhpz6YTKP3qjqeicHJVvgK2+3lRbLPRxXv0Zai0rZyoZV
+         Jn+8r1ALpTlpeTH0JJwKHz1TOZDRaebSJ3O0cIgpPqBUXc++l/Mo8KHwwO5Nsdh5J57V
+         gHA/MstmFVLJrTuhbeNl8au4kzmt5IgEHhd84g5ddPJySEfUBuTXPFDcrvrRu6b8peoz
+         nDCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fJQwgAcn3m3gWE5P+/ZzPN9/7OfOm1vUbRkJxx4e0j8=;
+        b=qJCEbfNQGYFFKDEQDcBHPbEqEJc2aFU+HD2eMPEE21I6sx8L3JsPha5jTivRO1kXc+
+         6Eh50Ih63QEoVT5QyBPiFv3GtOc9qVoSg/39kkXMsGcJFpv+SU/br4YsAhaE60+9gQFi
+         Erfk6kKlou+cSLVS1lPl2yqq9In3c6axrVDyfzi3970FwwCOkSjI1Y1ev76A99ObhJmE
+         HC4CV7M2nu3nLDZGC4H2NyVy3ofbbUXevQ9gsOb0acrFII9rAkbWug7CDVYSnPLHQQab
+         VRiQLmCq2yeIyUI9GVm9YWCeKP6PaqsyCwIuXAExsyjxKe1N9j8AjJWYi5DziIhfXMSp
+         2jmQ==
+X-Gm-Message-State: AOAM533z5pOFNFP09pVBHLNZTmkJn2nS/ji8pJxsPfMGvZyrX/DC3NKF
+        vvz3K5OydQB/yrOH1QMcKRlCY0oBC2nUChbFYegQ0YwtHeOjvw==
+X-Google-Smtp-Source: ABdhPJyuLtjiZFz4i2ldW8v3MFG5mNquGjqnktLLVNQsky5FbQuHfCfTQXhSVxd+Gm/dhkk1ijm/KcESk/upnIYQqro=
+X-Received: by 2002:a25:dc4d:: with SMTP id y74mr7040527ybe.422.1638365839479;
+ Wed, 01 Dec 2021 05:37:19 -0800 (PST)
+MIME-Version: 1.0
+References: <20211122103032.517923-1-maz@kernel.org> <CAMuHMdX2ZRvDYA3idmw3nBcP6CO=2od6ZU-UeJo9vYsuB=fQNQ@mail.gmail.com>
+ <8735no70tt.wl-maz@kernel.org> <CAMuHMdVS67BLP2XEdD6ZvVBVE2x11gKnQa1TqG659HXPM5scqQ@mail.gmail.com>
+ <CAMuHMdWJhnXabKGpW7k944dzQHtwQtxw-yb2bRBsoaMw6N6nuA@mail.gmail.com>
+ <87tug3clvc.wl-maz@kernel.org> <CAMuHMdWGb2xik+94RVwtq8E6+9eN=HfQLX3a4sTjKQXR96Udkw@mail.gmail.com>
+ <87r1b7ck40.wl-maz@kernel.org> <OSZPR01MB7019E7DD7119EFF9C994AA62AA649@OSZPR01MB7019.jpnprd01.prod.outlook.com>
+ <87tufvmes9.wl-maz@kernel.org> <CA+V-a8siHRjF+bJu88QFwz0a_MZ+kiJEwmER58_feyr8O+WNGA@mail.gmail.com>
+ <CAL_JsqK+GcnChx3i9fsYnw+FzZgON4PtKB=CzYLUj6sXtxX6fQ@mail.gmail.com>
+ <CA+V-a8sVS_1hUWJ3uM+VffGyMtdnctBOJTyHTQAoJZGOh0a1Tw@mail.gmail.com> <87bl21mqwk.wl-maz@kernel.org>
+In-Reply-To: <87bl21mqwk.wl-maz@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 1 Dec 2021 13:36:53 +0000
+Message-ID: <CA+V-a8vA0P-yhm2SHJmVh+cuUw7qodQLQBqzNPTz31x5q18xaA@mail.gmail.com>
+Subject: Re: [PATCH] of/irq: Add a quirk for controllers with their own
+ definition of interrupt-map
+To:     Marc Zyngier <maz@kernel.org>, Rob Herring <robh@kernel.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel-team@android.com" <kernel-team@android.com>,
+        John Crispin <john@phrozen.org>, Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <Chris.Brandt@renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Hi Marc/Rob,
+
+On Tue, Nov 30, 2021 at 6:37 PM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Tue, 30 Nov 2021 12:52:21 +0000,
+> "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> >
+> > On Mon, Nov 29, 2021 at 6:33 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > interrupts would work just fine here:
+> > >
+> > > interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> > >   <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
+> > >
+> > > We don't need a different solution for N:1 interrupts from N:M. Sure,
+> > > that could become unweldy if there are a lot of interrupts (just like
+> > > interrupt-map), but is that an immediate problem?
+> > >
+> > It's just that with this approach the driver will have to index the
+> > interrupts instead of reading from DT.
+> >
+> > Marc - is it OK with the above approach?
+>
+> Anything that uses standard properties in a standard way works for me.
+>
+I added interrupts property now instead of interrupt-map as below:
+
+irqc: interrupt-controller@110a0000 {
+      compatible = "renesas,r9a07g044-irqc", "renesas,rzg2l-irqc";
+       #address-cells = <0>;
+       interrupt-parent = <&gic>;
+       interrupt-controller;
+       reg = <0 0x110a0000 0 0x10000>;
+       interrupts =
+                      <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 455 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 457 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 470 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 471 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 472 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 473 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>,
+                     <GIC_SPI 475 IRQ_TYPE_LEVEL_HIGH>;
+         clocks = <&cpg CPG_MOD R9A07G044_IA55_CLK>,
+                       <&cpg CPG_MOD R9A07G044_IA55_PCLK>;
+          clock-names = "clk", "pclk";
+          power-domains = <&cpg>;
+          resets = <&cpg R9A07G044_IA55_RESETN>;
+};
 
 
-> Am 01.12.2021 um 14:02 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
-> Hi Nikolaus,
->=20
-> Le mar., nov. 30 2021 at 22:26:37 +0100, H. Nikolaus Schaller =
-<hns@goldelico.com> a =C3=A9crit :
->> From: Paul Boddie <paul@boddie.org.uk>
->> A specialisation of the generic Synopsys HDMI driver is employed for
->> JZ4780 HDMI support. This requires a new driver, plus device tree and
->> configuration modifications.
->> Here we add Kconfig DRM_INGENIC_DW_HDMI, Makefile and driver code.
->> Signed-off-by: Paul Boddie <paul@boddie.org.uk>
->> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
->> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
->> ---
->> drivers/gpu/drm/ingenic/Kconfig           |   9 ++
->> drivers/gpu/drm/ingenic/Makefile          |   1 +
->> drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c | 138 =
-++++++++++++++++++++++
->> 3 files changed, 148 insertions(+)
->> create mode 100644 drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c
->> diff --git a/drivers/gpu/drm/ingenic/Kconfig =
-b/drivers/gpu/drm/ingenic/Kconfig
->> index 3b57f8be007c4..4efc709d77b0a 100644
->> --- a/drivers/gpu/drm/ingenic/Kconfig
->> +++ b/drivers/gpu/drm/ingenic/Kconfig
->>=20
+In the hierarchal interrupt code its parsed as below:
+on probe fetch the details:
+range = of_get_property(np, "interrupts", &len);
+if (!range)
+      return -EINVAL;
+
+for (len /= sizeof(*range), j = 0; len >= 3; len -= 3) {
+      if (j >= IRQC_NUM_IRQ)
+            return -EINVAL;
+
+      priv->map[j].args[0] = be32_to_cpu(*range++);
+      priv->map[j].args[1] = be32_to_cpu(*range++);
+      priv->map[j].args[2] = be32_to_cpu(*range++);
+      priv->map[j].args_count = 3;
+      j++;
+}
+
+On alloc callback:
+     spec.fwnode = domain->parent->fwnode;
+     spec.param_count = priv->map[hwirq].args_count;
+     for (i = 0; i < spec.param_count; i++)
+          spec.param[i] = priv->map[hwirq].args[i];
+
+     return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &spec);
+
+In the board DTS (map interrupt 3 (index 3 is used as hwirq) to GIC):
+&eth0 {
+    pinctrl-0 = <&eth0_pins>;
+    ...
+    phy0: ethernet-phy@7 {
+        compatible = "ethernet-phy-id0022.1640", "ethernet-phy-ieee802.3-c22";
+        reg = <7>;
+        interrupt-parent = <&irqc>;
+        interrupts = <3  IRQ_TYPE_LEVEL_LOW>;
+        rxc-skew-psec = <2400>;
+       ....
+    };
+};
+
+With this approach I see the kernel hangs. It looks like using
+"interrupts" property makes the core to parse it and is used somewhere
+(I have not looked where exactly it's done or causes this issue) I say
+this because if I rename the "interrupts" property to something else I
+no longer see any kernel hangs.
+
+Is there something else I'm missing here?
+
+Cheers,
+Prabhakar
 
 
->> +	}
->> +
->> +	if (!regulator)
->> +		return 0;
->=20
-> Blank line here.
 
-It is one of these cases where checkpatch doesn't complain although it =
-should be improved...
-
->=20
-> But I can add it myself when applying.
-
-Yes, please. So that we are not wasting mailing list bandwidth...
-
-> I'll just wait for Rob's ack first.
-
-Indeed. Fortunately he had the right hint how to fix 3/8 quickly.
-
-BR and thanks,
-NIkolaus
-
+>         M.
+>
+> --
+> Without deviation from the norm, progress is not possible.
