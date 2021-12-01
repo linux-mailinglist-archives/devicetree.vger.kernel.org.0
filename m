@@ -2,142 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9301146537B
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 18:02:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1087D4653B7
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 18:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351578AbhLARGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 12:06:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53328 "EHLO
+        id S1351651AbhLARS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 12:18:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238178AbhLARGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 12:06:12 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB314C061574;
-        Wed,  1 Dec 2021 09:02:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B01CAB82047;
-        Wed,  1 Dec 2021 17:02:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84061C53FCC;
-        Wed,  1 Dec 2021 17:02:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638378168;
-        bh=CvHtrXfgBU4nCjU0B0+DUSu63UaEebLTtzXAzA4qmq4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RSi8vBwTLTb2mtXwaqcm1aN8fQhZZXHxwRfVIv3Ph+E+KA80w09id79HSoWdMxh52
-         Le083FK28TbGxOEYGbMSHTxk2sjdp40ebUWMOBZZ4McGEDNBV0CCawssYOcsYaM0qG
-         cTyMKkw9UX17F3DG7cc5qHLBbPXtGm4oa2q3ex6HUWHd7IP/yRFypKJQfxTKkhsl4M
-         O5Nz/iDP0+6EUK2mnTmAOoIKBKACBTUooxsJX8TzlAVxgS4aBBCnd4a33nF+5H8fGS
-         mTG5ucT7w1HynJIwfHZhg7pk9b2haywLl+H4vMJGZaJfHZ4Wnou80e1ZWGDkUEVAh4
-         0fjdkTRY9HnNQ==
-Date:   Wed, 1 Dec 2021 17:02:38 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
-Message-ID: <YaeqrhJg4664Tr/y@sirena.org.uk>
-Mail-Followup-To: "H. Nikolaus Schaller" <hns@goldelico.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-References: <cover.1638307601.git.hns@goldelico.com>
- <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
- <LKTF3R.YREPOCHOSMQN2@crapouillou.net>
- <Yad69aTXcGixXvy3@sirena.org.uk>
- <46070A95-0FA9-43F9-A9A9-52A7B58B88F5@goldelico.com>
- <EDWF3R.CMVWMJL42OH9@crapouillou.net>
- <58C550A4-A21E-47BA-8BAE-00B927DC7A2E@goldelico.com>
- <YaeQW/akoLE6SpEi@sirena.org.uk>
- <3174DA41-EB38-4C30-8752-0D9C894C74A7@goldelico.com>
+        with ESMTP id S1351657AbhLARS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 12:18:28 -0500
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6057C061574;
+        Wed,  1 Dec 2021 09:15:06 -0800 (PST)
+Received: by mail-pg1-x52e.google.com with SMTP id l190so24298523pge.7;
+        Wed, 01 Dec 2021 09:15:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hWswA44oaaS3jQ+owzgmDJn6tg2JS9UVUfN6QFbLpOM=;
+        b=Qe0Zp2jhMjaxRsRzx8wghK8U3pvBo6xkXZ/4HNiIWLpZtP2MNaV/+Lf6Lrol1YY9yX
+         5I/3bc0yA7iIaktmOgoRQcEhrXQGT6EmoosFkmCMfZfogZO7pL6PMnBbq0paR9+noAdK
+         DnsO8Hxktvbb+qcCJqp7zwVl7cEMmEqu0OYFRzGSnWxO1aEZR1L0wGR3KisQcwpjTK6Z
+         nK2s1vYSosOzVIa8MWxQjEhr+lqtPhsOYqiYDmPXm5fB3qcBI+nXF592usPqnLUuhCeU
+         wlxTEne/ikbu8FdXK2mbs9aAm2RMQWFClPRu0Xkf9suTsLPzYY1Shf1LoDOtNsI5vxZz
+         n68g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hWswA44oaaS3jQ+owzgmDJn6tg2JS9UVUfN6QFbLpOM=;
+        b=Z5/ImyGbwaBJ1I5xZHEr0PVgrgl2v6GQr9MQjel3XazvvmYzAl1qjDDV9kBTcOUPeW
+         DN6DuExEDA8rZ0d5/0DWKEoFd32KqvgTlCTjbWAK9DtVISEG5KKji9cz9RDr78Z2h7n1
+         U1IJxuuzx7ERKqxJXmJgd/nFg4M/PX5jsn875ssc6GRvvlgH9z3PDR+zvy8szSyyxnUA
+         X+GfNXcyecoFQ4WkblNPHMfmOPn1deVKv5sJFCaMadcswhDx0uSNodztVXSwjtYL8S1J
+         7RYmBZC+HJyL6gaxAl4kv23WumgWbSNylMurbAvMZuROcHsGSpNGnYkVbK1skeL49YCy
+         oj0Q==
+X-Gm-Message-State: AOAM530HHd/+lXuDw+kZlBeqZgDmp5Xi3OV5eas8t3NrTPvqQCmLA/uu
+        XX0PVSljfF5m7pu4AxsaMZH0YSD/hzA=
+X-Google-Smtp-Source: ABdhPJxh2sINwTG6LLdLqHseVoYT6LEFTDf5+qEOnJuStVRFCFl6IHzV5RLtKiaZd3dnsdA2h4ansQ==
+X-Received: by 2002:a05:6a00:1903:b0:47c:34c1:c6b6 with SMTP id y3-20020a056a00190300b0047c34c1c6b6mr7455572pfi.17.1638378906160;
+        Wed, 01 Dec 2021 09:15:06 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id o23sm370967pfp.209.2021.12.01.09.15.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 09:15:05 -0800 (PST)
+Subject: Re: [PATCH net-next 3/7] dt-bindings: net: Document moca PHY
+ interface
+To:     Rob Herring <robh@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        Doug Berger <opendmb@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20211201041228.32444-1-f.fainelli@gmail.com>
+ <20211201041228.32444-4-f.fainelli@gmail.com>
+ <1638369202.233948.1684354.nullmailer@robh.at.kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <52926c88-a51d-d4e8-a6ab-7cf92e35c7ba@gmail.com>
+Date:   Wed, 1 Dec 2021 09:15:03 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="06/7sdeAneQqaZKj"
-Content-Disposition: inline
-In-Reply-To: <3174DA41-EB38-4C30-8752-0D9C894C74A7@goldelico.com>
-X-Cookie: All true wisdom is found on T-shirts.
+In-Reply-To: <1638369202.233948.1684354.nullmailer@robh.at.kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 12/1/21 6:33 AM, Rob Herring wrote:
+> On Tue, 30 Nov 2021 20:12:24 -0800, Florian Fainelli wrote:
+>> MoCA (Multimedia over Coaxial) is used by the internal GENET/MOCA cores
+>> and will be needed in order to convert GENET to YAML in subsequent
+>> changes.
+>>
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+> 
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
+> 
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1561996
+> 
+> 
+> ethernet@0,2: fixed-link:speed:0:0: 2500 is not one of [10, 100, 1000]
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-kbox-a-230-ls.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var1.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var2.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28-var4.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dt.yaml
+> 	arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dt.yaml
+> 
+> ethernet@17020000: phy-handle: [[36], [37]] is too long
+> 	arch/arm64/boot/dts/apm/apm-mustang.dt.yaml
+> 
+> ethernet@30000: fixed-link:speed:0:0: 2500 is not one of [10, 100, 1000]
+> 	arch/arm/boot/dts/armada-385-clearfog-gtr-l8.dt.yaml
+> 	arch/arm/boot/dts/armada-385-clearfog-gtr-s4.dt.yaml
 
---06/7sdeAneQqaZKj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+These are all pre-existing warnings, but we should be documenting speed
+2500 in ethernet-controller.yaml, so I will add a patch towards that end.
 
-On Wed, Dec 01, 2021 at 05:53:03PM +0100, H. Nikolaus Schaller wrote:
-> > Am 01.12.2021 um 16:10 schrieb Mark Brown <broonie@kernel.org>:
-
-> > Again, if the supply can be physically absent that is a sensible use
-> > case but that means completely absent, not just not software
-> > controllable.  We can represent fixed voltage regulators just fine.
-
-> The question may be how we can know for a more generic driver that there is always a regulator.
-> In the present case we know the schematics but it is just one example.
-
-The datasheet will generally explicitly call out if a supply can be
-disconnected.  In general it is astonishingly rare for this to be the
-case, supporting that case will tend to make designing the chip harder
-(you have to cope with what happens where the power domains meet) and
-results in whatever functionality the supplies power not working.  If
-not otherwise specified it's safer to assume that the supplies must be
-connected.
-
---06/7sdeAneQqaZKj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGnqq0ACgkQJNaLcl1U
-h9AiKgf6A1p3c1dtOyuPYAkfziLEMTL656L/Ng0sT/e9yjZ9D6KPZxQqSYqZJI2F
-AxQcNhi9BBM7R94mawqJ6jekuZZ0RJoVo2iPJYWJ/vM36tq01U1SeojIamTmD1LN
-IF4vSf9paAEB6kQGTW1WB9onUyNpaIyz358HSRZ6FzxP/9W1qVhuCgw2M16JPM5G
-wFd64VVU8pyBLxa8glflmm8MGFaeKBqkNFJBSnRG2kX79RRtaVeX8wN6niXIsGQp
-T7Uv+fFGAT+w315hhRUx10oTaZNghDPE6dYLm6SaV4fqYqhIFspHZ9GsOLPvDDvC
-E4+8AFtE7h0IearW001RSgvJHmQFiw==
-=8Z88
------END PGP SIGNATURE-----
-
---06/7sdeAneQqaZKj--
+The one for apm-mustand.dts however I am not sure how to best resolve
+since it looks like there was an intention to provide two Ethernet PHYs
+and presumably have the firmware prune the one that is not in use. I
+don't even know if that platform is supported mainline anymore.
+-- 
+Florian
