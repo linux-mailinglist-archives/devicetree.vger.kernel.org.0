@@ -2,143 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0351465365
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:53:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D807A465369
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244009AbhLAQ4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:56:44 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:17416 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244011AbhLAQ4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:56:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638377585;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=IrLqeXQ7cnKmOP13b28CuGf9NhUY4ybFFkNm3lBDdyo=;
-    b=cwvV9r0cfsuiCVIDsFf+gsOiOZF2MIZ+8JrpB08rAyftCZMzf/t0j5XO31u//9JMy/
-    eQirRIPZN9oUQ9ADd0gC//++YlflpmOR2jfpz8QcOq4KBXlH+YlUGp/+8sxlIaFcE5Tt
-    jLD/beSSzkw3Sg1zcDQAVWe05xCpYpL/uwGXCqGwtI/gW6K+1uL7yYmQGG8dsWECdI7o
-    eHPbCT9oWVV38jrE0+V/Nb7Pd92TY7PXUSnbliI/91bOA4TqKGCtTQmW54ftNnGmgHWC
-    foV60zyyOZlUaQ9p08IY+JYhyrYK6ybWduR+rtkFlOFFILCP49f283jnGR3YRbLhB8gM
-    FhUg==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43u22M="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.34.10 SBL|AUTH)
-    with ESMTPSA id e05ed8xB1Gr4YRR
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Wed, 1 Dec 2021 17:53:04 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <YaeQW/akoLE6SpEi@sirena.org.uk>
-Date:   Wed, 1 Dec 2021 17:53:03 +0100
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kees Cook <keescook@chromium.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Harry Wentland <harry.wentland@amd.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
-        dri-devel@lists.freedesktop.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <3174DA41-EB38-4C30-8752-0D9C894C74A7@goldelico.com>
-References: <cover.1638307601.git.hns@goldelico.com>
- <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
- <LKTF3R.YREPOCHOSMQN2@crapouillou.net> <Yad69aTXcGixXvy3@sirena.org.uk>
- <46070A95-0FA9-43F9-A9A9-52A7B58B88F5@goldelico.com>
- <EDWF3R.CMVWMJL42OH9@crapouillou.net>
- <58C550A4-A21E-47BA-8BAE-00B927DC7A2E@goldelico.com>
- <YaeQW/akoLE6SpEi@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Mailer: Apple Mail (2.3445.104.21)
+        id S1350424AbhLAQ7C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:59:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243262AbhLAQ7B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:59:01 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF8DFC061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:55:40 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id k4so18158549plx.8
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:55:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=/GEph3CsAnqkBmuszOY71LQEgCEpXd5UoZsLjaKm3Ks=;
+        b=SmHa3I5Fj8apyYpqNqZLP9qXj+V+9UyWOsx09t0MWFM3v0NmYuq2RXDHsW7yLUFKQZ
+         WL5vH0YTWfXcnHC6QqrLJd5w840dTvYnb+zXBHxLobtoZwRd2wcqkDq610L4pouCV2ey
+         ADQwiWzXwknALzIHKNRME5/u1tkTs1rppnx6y0gmxq0TCRG6lLXOGt5MP9Sg3Yn+eSW9
+         +dgk9Fj1dX3PZGMFQOIxObSoeplyHvlhDT7PbocrqKsDSOBzxNDIxcQwp7S1Bx1Lkce1
+         QBldqPIyJX7fkPQAqXPt+WKVRA7gG8G0BYFmWo3qpDjHKLxK94QKK0cN86DDX49lFjve
+         Hy0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=/GEph3CsAnqkBmuszOY71LQEgCEpXd5UoZsLjaKm3Ks=;
+        b=HHGdHDNZ4u5kTeS6+lEneJHYXbVsTUEY7h6yncWVGsogwhZOy4WSbmsd6RAF68oeof
+         /cWoqK+r7JKSucj6fEwLlrhmef2Pbo9zGU0jOjujXcB1Dw6RqeyZs4dnO9INgVo0p7yL
+         t1ubH+o00e8wCItU9cnFyvNtsc3Awq8dk+J2+qzkNQSFPMCT7ha5vlLPHFe3LYcK0SCk
+         FthGBde0UE8PWdyzlANfFvqEPTzqc/WcPLkeVyMz0m1iB+ersM6NgfWt9lmodnXeAF0H
+         xtkO+5kcaTCYuJcd3kjc87qD3ZWUnYuUx+BmzmtN3/yRS1xfLvEPqXL5DIkznuysf0CS
+         Ki+g==
+X-Gm-Message-State: AOAM530QH7/yU0WRO7d8+WMbKjXFHxEA0fVgl0Q0rlFx1pWgSx6qAbWy
+        dlabrp195yjmlEWyfGKQA/vGAg==
+X-Google-Smtp-Source: ABdhPJwNmrHtXyiauPc74AkBweAHVvl4gi9KlnzVNKf/U4DRqOx7KtAxJkein27Ecb6gfx6SXhHh3Q==
+X-Received: by 2002:a17:90b:4f42:: with SMTP id pj2mr9072875pjb.7.1638377740373;
+        Wed, 01 Dec 2021 08:55:40 -0800 (PST)
+Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id k16sm389735pfu.183.2021.12.01.08.55.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 08:55:39 -0800 (PST)
+Date:   Wed, 1 Dec 2021 09:55:36 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Hari Nagalla <hnagalla@ti.com>
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        a-govindraju@ti.com
+Subject: Re: [PATCH 0/4] TI K3 R5F and C71x support on J721S2
+Message-ID: <20211201165536.GC834591@p14s>
+References: <20211122122726.8532-1-hnagalla@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211122122726.8532-1-hnagalla@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+On Mon, Nov 22, 2021 at 06:27:22AM -0600, Hari Nagalla wrote:
+> Hi All,
+> 
+> The following series enhances the K3 R5F and DSP remoteproc drivers to
+> add support for the R5F clusters and C71x DSP on the newer TI K3 J721S2
+> SoC family. The J721S2 SoCs have 3 R5FSS clusters, one in MCU voltage
+> domain and the other two in MAIN voltage domain. There are also 2 C71x
+> DSP subsystems in MAIN voltage domain. The R5FSS is similar to the R5FSS
+> in J7200 SoCs, while the C71x DSPs are similar to the C71x DSP on J721e
+> SoCs.
+> 
+> See J721S2 Technical Reference Manual (SPRUJ28 – NOVEMBER 2021)
+> for further details: http://www.ti.com/lit/pdf/spruj28
+> 
+> Regards
+> Hari
+> 
+> Hari Nagalla (4):
+>   dt-bindings: remoteproc: k3-r5f: Update bindings for J721S2 SoCs
+>   dt-bindings: remoteproc: k3-dsp: Update bindings for J721S2 SoCs
+>   remoteproc: k3-dsp: Extend support for C71x DSPs on J721S2 SoCs
+>   remoteproc: k3-r5: Extend support for R5F clusters on J721S2 SoCs
+> 
+>  .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml   | 3 +++
+>  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml   | 8 +++++---
+>  drivers/remoteproc/ti_k3_dsp_remoteproc.c                 | 1 +
+>  drivers/remoteproc/ti_k3_r5_remoteproc.c                  | 5 +++--
+>  4 files changed, 12 insertions(+), 5 deletions(-)
 
+I have applied this set.
 
-> Am 01.12.2021 um 16:10 schrieb Mark Brown <broonie@kernel.org>:
->=20
-> On Wed, Dec 01, 2021 at 03:33:24PM +0100, H. Nikolaus Schaller wrote:
->>> Am 01.12.2021 um 15:03 schrieb Paul Cercueil <paul@crapouillou.net>:
->=20
->>> Please make it mandatory in DTS then, and use devm_regulator_get() =
-in the driver.
->=20
->> Well, I just wonder why the elegant devm_regulator_get_optional() =
-exists at all
->> and seems to be used in ca. 80 places.
->=20
-> Frankly because half of them are broken usages like this since people
-> seem determined to have the most fragile error handling they can :/
+Thanks,
+Mathieu
 
-I see. I had made the mistake myself to not check for NULL pointer on
-regulator_disable here...
-
-> There are valid use cases for it, with things like SD cards where some
-> supplies are genuinely optional and simply constrain what features are
-> available if they're omitted from the design.  You also see some =
-devices
-> with the ability to replace internal regulators with external ones.
->=20
->> And if it is not allowed, why some DTS should be forced to add not =
-physically existing dummy-regulators.
->=20
-> Again, if the supply can be physically absent that is a sensible use
-> case but that means completely absent, not just not software
-> controllable.  We can represent fixed voltage regulators just fine.
-
-The question may be how we can know for a more generic driver that there =
-is always a regulator.
-In the present case we know the schematics but it is just one example.
-
->=20
->> AFAIR drivers should implement functionality defined by DTS but not =
-the other way round: enforce DTS style.
->> BTW: there is no +5 mains dummy regulator defined in ci20.dts.
->=20
-> It wouldn't be the first time a DTS were incomplete, and I'm sure it
-> won't be the last.
->=20
->> What I fear is that if we always have to define the mains +5V (which =
-is for example not
->> defined in ci20.dts), which rules stops us from asking to add a =
-dummy-regulator from 110/230V to +5V as well.
->=20
-> It is good practice to specify the full tree of supplies all the way =
-to
-> the main supply rail of the board, this ensures that if we need the
-> information for something we've got it (even if that thing is just =
-that
-> we've got to the root of the tree).  There's potential applications in
-> battery supplied devices for managing very low power situations.
-
-Indeed. So let's modify it as you have suggested.
-
-BR and thanks,
-Nikolaus
-
+> 
+> -- 
+> 2.17.1
+> 
