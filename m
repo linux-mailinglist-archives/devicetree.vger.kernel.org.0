@@ -2,116 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78989465940
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:27:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 657DA465949
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353617AbhLAWa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 17:30:26 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:17042 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353610AbhLAWaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:30:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1638397624; x=1669933624;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AMYlyWRGk0rGyJ8aOEHYyVAkZ0ZG0osDorr4K/cqWvQ=;
-  b=ULQTbgZz1z3aOzvCR1XCX92sxQQKOTE2+O4FVLjlsXX7CBHPOv3hkc9V
-   UyA42k15SXtlXXghHCtl4r5A8tZbz+547HOxgCSrXlAWyIs9sc64HFZqv
-   CwbLg6iU+t/Ol/+WtCFavOXFneExMP/9YZjcYIghTz0ZZLUYxdDgPYHz9
-   E=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 01 Dec 2021 14:27:03 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2021 14:27:01 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.922.19; Wed, 1 Dec 2021 14:26:40 -0800
-Received: from quicinc.com (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Wed, 1 Dec 2021
- 14:26:40 -0800
-Date:   Wed, 1 Dec 2021 14:26:38 -0800
-From:   Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <agross@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <manivannan.sadhasivam@linaro.org>, Rob Herring <robh@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v5 6/6] dt-bindings: clock: Introduce pdc bindings for
- SDX65
-Message-ID: <20211201222638.GB586@quicinc.com>
-References: <cover.1637302009.git.quic_vamslank@quicinc.com>
- <538438f41153587043741747db5218e9f575c0f5.1637302009.git.quic_vamslank@quicinc.com>
- <YaF2eBKMkIvGapCY@ripper>
+        id S1353630AbhLAWfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 17:35:13 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:42977 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353601AbhLAWfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:35:04 -0500
+Received: by mail-ot1-f42.google.com with SMTP id 47-20020a9d0332000000b005798ac20d72so37311371otv.9;
+        Wed, 01 Dec 2021 14:31:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=T5dDFTbqoVtVfAAIqapjKcFefz1Su1Y3Jb3TmXDSfLM=;
+        b=e6VKxm8ii0bpywP7FhVKOpVA+d/4HNzpb/ZRgmo54rxf9mwvuEYPz+7EcKN8bqgIzn
+         Mz2wqIGuQoui8iTLfpLvpIn16VA2YxfycdLxc8gymU+W/gtcYYr8Pi8XOi9xoz3d7wU7
+         Ejj1kn3bTjP1vu4cBdzg0Anf4fwq64rXzjuqNDKopaUCn4c3Q8vlElqEGPgIZQ2TR78T
+         VV0GPVLI4nFBRUPNsLVGIAIA2lw5CQIl/RrtjDnBNz6D2hfRdWbJ1kBSHSS/eBkDPNMT
+         3wjv5D9puJxdIJUPD8R/dBS+uCyQpzt+CzzTpD6FLky52/oha8Jjc2yAJuGuv4UJx7gV
+         8/0A==
+X-Gm-Message-State: AOAM530uJlHltI+1e7nk97kUhUo6HwsPfgwUhjVgZyzc3VVUPEvjaBdV
+        tJ+zWam0/l+Z3uPbFPzkc9E2ccVNeA==
+X-Google-Smtp-Source: ABdhPJy8bnGR48W/xJpn01QnF07dEzkJUHFVw79LlhkqiRr6++P/Ysr9/PjH2SDv8XKQNdKBo6V6lg==
+X-Received: by 2002:a05:6830:2aa7:: with SMTP id s39mr8424157otu.151.1638397901599;
+        Wed, 01 Dec 2021 14:31:41 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bi20sm592910oib.29.2021.12.01.14.31.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 14:31:40 -0800 (PST)
+Received: (nullmailer pid 2899335 invoked by uid 1000);
+        Wed, 01 Dec 2021 22:31:39 -0000
+Date:   Wed, 1 Dec 2021 16:31:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Olivier Moysan <olivier.moysan@foss.st.com>
+Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Olivier Moysan <olivier.moysan@st.com>,
+        arnaud.pouliquen@foss.st.com, amelie.delaunay@foss.st.com,
+        alain.volmat@foss.st.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        fabrice.gasnier@foss.st.com
+Subject: Re: [PATCH v2 2/4] ASoC: dt-bindings: stm32: i2s: allow additional
+ properties.
+Message-ID: <Yaf3yy3tiTOaNBDY@robh.at.kernel.org>
+References: <20211125144053.774-1-olivier.moysan@foss.st.com>
+ <20211125144053.774-3-olivier.moysan@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YaF2eBKMkIvGapCY@ripper>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
+In-Reply-To: <20211125144053.774-3-olivier.moysan@foss.st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 26, 2021 at 04:06:16PM -0800, Bjorn Andersson wrote:
-> On Thu 18 Nov 22:11 PST 2021, quic_vamslank@quicinc.com wrote:
+On Thu, Nov 25, 2021 at 03:40:51PM +0100, Olivier Moysan wrote:
+> The STM32 SPI peripheral supports both SPI and I2S protocols.
+> In the SoC device tree the node describes the peripheral as an
+> SPI peripheral by default. This default configuration can be
+> overwritten in board device tree to use the IP as an I2S peripheral.
+> In this case the address-cells and size-cells properties from
+> SoC DT SPI node should not be checked against STM32 I2S bindings.
+> Set additionalProperties to "true" to allow these extra properties.
 > 
-> > From: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> > 
-> > Add compatible for SDX65 pdc.
-> > 
-> > Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Acked-by: Rob Herring <robh@kernel.org>
-> > Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+>  Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Sorry for not spotting this before, but as you can tell from the path of
-> the file you're changing, this has nothing to do with "clocks".
-> 
-> git log on qcom,pdc.txt shows that $subject should be:
-> 
->   dt-bindings: qcom,pdc: Add compatible for SDX65
-> 
-> Also, as this is unrelated to clocks, Stephen is not going to merge this
-> patch. You will have to repost it, with Marc Zyngier as recipient to get
-> it merged; per get_maintainer.
-> 
-> 
-> I think it's fine to keep the reviews and acks while adjusting $subject
-> and reposting this patch  - separate from the other 5 patches.
+> diff --git a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
+> index 64b70ac539f8..33ba15363c0f 100644
+> --- a/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml
+> @@ -73,7 +73,7 @@ required:
+>    - dmas
+>    - dma-names
+>  
+> -additionalProperties: false
+> +additionalProperties: true
 
-Thank you for the review. Will repost this as a new patch.
+This is only allowed for schemas that are incomplete collections of 
+properties such as common bindings.
 
-Thanks,
-Vamsi
-> 
-> Thanks,
-> Bjorn
-> 
-> > ---
-> >  .../devicetree/bindings/interrupt-controller/qcom,pdc.txt        | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> > index 98d89e53013d..ce631d853db4 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-> > @@ -23,6 +23,7 @@ Properties:
-> >  		    - "qcom,sdm845-pdc": For SDM845
-> >  		    - "qcom,sdm8250-pdc": For SM8250
-> >  		    - "qcom,sdm8350-pdc": For SM8350
-> > +		    - "qcom,sdx65-pdc": For SDX65
-> >  
-> >  - reg:
-> >  	Usage: required
-> > -- 
-> > 2.33.1
-> > 
+Rob
