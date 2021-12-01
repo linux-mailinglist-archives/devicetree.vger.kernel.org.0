@@ -2,101 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6582A464A5F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:12:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7719C464A81
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:24:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231585AbhLAJP1 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 1 Dec 2021 04:15:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
+        id S1348174AbhLAJ1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 04:27:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348013AbhLAJP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:15:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F0AEC061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 01:12:06 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1msLeW-0003Y6-1e; Wed, 01 Dec 2021 10:11:48 +0100
-Received: from pza by lupine with local (Exim 4.94.2)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1msLeQ-0003CH-IM; Wed, 01 Dec 2021 10:11:42 +0100
-Message-ID: <3b80b2a52362cbadb26052685566e2c1f75a0b68.camel@pengutronix.de>
-Subject: Re: [v13 2/2] pwm: Add Aspeed ast2600 PWM support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Cc:     BMC-SW <BMC-SW@aspeedtech.com>
-Date:   Wed, 01 Dec 2021 10:11:42 +0100
-In-Reply-To: <CDB0374F-3835-4501-964E-DB771588114D@aspeedtech.com>
-References: <20211129064329.27006-1-billy_tsai@aspeedtech.com>
-         <20211129064329.27006-3-billy_tsai@aspeedtech.com>
-         <e28a5d5de9b940717e6444f019eab63ab1bb0b75.camel@pengutronix.de>
-         <CDB0374F-3835-4501-964E-DB771588114D@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.38.3-1 
+        with ESMTP id S1348177AbhLAJ1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:27:43 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 045B0C06174A
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 01:24:22 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id k2so46884923lji.4
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 01:24:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gM/Yc8EtoWbZo84DxZuXQbB3MA0/ZTzJxXksQrQpskM=;
+        b=p0dwxIjabirFBsABSCPUCdkrccuD7bMLwdD4o3pXTKDnOL7itEU05FMhOJ4P5Cczbe
+         YMkOAsr9pm1L5ZEBq+GRMkfQLJzMFQXHpx1gn+FfC+Yby0x6O0xJlQJYXkJEpX6/gLsB
+         uw39A6zuQFLKWeMvuPdZNv2n5KmluPqgqBeDrNiAYIQXVO7rN9+cM48vaEaL8yHmZXq4
+         KwW70P8SK2mKjC4fimwiq+5Trt4X1Wr5+Vq/wxB9Y69CmhKn/AKmqFK7w3FYGM2t/gRz
+         GMh4iKOHldz8EIESw9VNJonRILxub3nUP3bqzCm1ruMA32xgMG2bbxgcFH9PpCElxsda
+         dYHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gM/Yc8EtoWbZo84DxZuXQbB3MA0/ZTzJxXksQrQpskM=;
+        b=54G5wiCEif2uQzVLHkmwg4Sgkchf4Iq/4MR7gXlZI26vDe1hFLtVp6DxZ1stMngHwE
+         +i+HswaBkkkCDDT5IcqdT1U2sNqF/Iqf+Sxj+ml1wrndyM44jWDgRacZAQ/H9dVUbaoi
+         ucn0Gkmmi4u+R36XK7dEl1JeuC+bcadOee55fNxZzByu6xZVZXHjXV3RtJtIrZEv0Oqx
+         UWyB+/Ontd/jI3guTC8M0XLFuQ+c5r8eUrNDDLmvt0SKuONPfcizTv0tIaSq/THoC3qr
+         76OyLHC/x1hMXCeTKzQh4miNY93AIFhFrgRzKcoBnUbVl9CJz6gtTnJrumy/iO0iix9c
+         NvVg==
+X-Gm-Message-State: AOAM531UD0vME1RkNZyOf/AuD6SL3HN6OiVMtFFBs3w6bQDXwwQWLMcl
+        BRyFh89NhRrr4EDWSHWlbm+h3B1tnhQFhYEFNKLGxQ==
+X-Google-Smtp-Source: ABdhPJxdaXt+eWtKhQK6uoSvHNyf0JqYJR7quIKd3xMMBh2XBIfik0f8Mkp/IN428brlJT7cIaRLCtFx1oF74H8xIBc=
+X-Received: by 2002:a2e:93c4:: with SMTP id p4mr4553125ljh.367.1638350661085;
+ Wed, 01 Dec 2021 01:24:21 -0800 (PST)
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
+In-Reply-To: <20211126181500.3404129-1-daniel.lezcano@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 1 Dec 2021 10:23:44 +0100
+Message-ID: <CAPDyKFoZo4p93JZUm4CUqO4DfrL8_YbyomqBzC59C0eTwa60CA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: Powerzone new bindings
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
+        rjw@rjwysocki.net, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Billy,
+On Fri, 26 Nov 2021 at 19:15, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>
+> The proposed bindings are describing a set of powerzones.
+>
+> A power zone is the logical name for a component which is capable of
+> power capping and where we can measure the power consumption.
+>
+> A power zone can aggregate several power zones in terms of power
+> measurement and power limitations. That allows to apply power
+> constraint to a group of components and let the system balance the
+> allocated power in order to comply with the constraint.
+>
+> The ARM System Control and Management Interface (SCMI) can provide a
+> power zone description.
+>
+> The powerzone semantic is also found on the Intel platform with the
+> RAPL register.
+>
+> The Linux kernel powercap framework deals with the powerzones:
+>
+> https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
+>
+> The powerzone can also represent a group of children powerzones, hence
+> the description can result on a hierarchy. Such hierarchy already
+> exists with the hardware or can be represented an computed from the
+> kernel.
+>
+> The hierarchical description was initially proposed but not desired
+> given there are other descriptions like the power domain proposing
+> almost the same description.
+>
+> https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
+>
+> The description gives the power constraint dependencies to apply on a
+> specific group of logically or physically aggregated devices. They do
+> not represent the physical location or the power domains of the SoC
+> even if the description could be similar.
+>
+> Cc: Arnd Bergmann <arnd@arndb.de>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> ---
+>    V1: Initial post
+>    V2:
+>      - Added pattern properties and stick to powerzone-*
+>      - Added required property compatible and powerzone-cells
+>      - Added additionnal property
+>      - Added compatible
+>      - Renamed to 'powerzones'
+>      - Added missing powerzone-cells to the topmost node
+>      - Fixed errors reported by 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> ---
+>  .../devicetree/bindings/power/powerzones.yaml | 109 ++++++++++++++++++
+>  1 file changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/powerzones.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/power/powerzones.yaml b/Documentation/devicetree/bindings/power/powerzones.yaml
+> new file mode 100644
+> index 000000000000..6e63bbc750c6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/powerzones.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/powerzones.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Power zones description
+> +
+> +maintainers:
+> +  - Daniel Lezcano <daniel.lezcano@linaro.org>
+> +
+> +description: |+
+> +
+> +  A System on Chip contains a multitude of active components and each
+> +  of them is a source of heat. Even if a temperature sensor is not
+> +  present, a source of heat can be controlled by acting on the
+> +  consumed power via different techniques.
+> +
+> +  A powerzone describes a component or a group of components where we
+> +  can control the maximum power consumption. For instance, a group of
+> +  CPUs via the performance domain, a LCD screen via the brightness,
+> +  etc ...
+> +
+> +  Different components when they are used together can significantly
+> +  increase the overall temperature, so the description needs to
+> +  reflect this dependency in order to assign a power budget for a
+> +  group of powerzones.
+> +
+> +  This description is done via a hierarchy and the DT reflects it. It
+> +  does not represent the physical location or a topology, eg. on a
+> +  big.Little system, the little CPUs may not be represented as they do
+> +  not contribute significantly to the heat, however the GPU can be
+> +  tied with the big CPUs as they usually have a connection for
+> +  multimedia or game workloads.
+> +
+> +properties:
+> +  $nodename:
+> +    const: powerzones
+> +
+> +  compatible:
+> +    const: powerzones
 
-On Wed, 2021-12-01 at 03:30 +0000, Billy Tsai wrote:
-> Hi Philipp,
-> 
-> On 2021/11/30, 5:52 PM, "Philipp Zabel" <p.zabel@pengutronix.de> wrote:
-> 
->     On Mon, 2021-11-29 at 14:43 +0800, Billy Tsai wrote:
->     [...]
->     >   > +	ret = clk_prepare_enable(priv->clk);
->     >   > +	if (ret)
->     >   > +		return dev_err_probe(dev, ret, "Couldn't enable clock\n");
->     >   > +
->     >   > +	ret = reset_control_deassert(priv->reset);
->     >   > +	if (ret) {
->     >   > +		dev_err_probe(dev, ret, "Couldn't deassert reset control\n");
->     >   > +		goto err_disable_clk;
->     >   > +	}
-> 
->     >   Is there any reason to keep the clocks running and the controller out of
->     >   reset while the PWM outputs are disabled?
-> 
-> Can you tell me about your concerns with this process?
+This looks odd. Why do we need const compatible string? Shouldn't this
+be allowed to be an SoC-powerzone specific compatible?
 
-No particular concerns, just curiosity.
+> +
+> +patternProperties:
+> +  "^(powerzone)([@-].*)?$":
+> +    type: object
+> +    description:
+> +      A node representing a powerzone acting as an aggregator for all
+> +      its children powerzones.
+> +
+> +    properties:
+> +      "#powerzone-cells":
+> +        description:
+> +          Number of cells in powerzone specifier. Typically 0 for nodes
+> +          representing but it can be any number in the future to
+> +          describe parameters of the powerzone.
+> +
+> +      powerzones:
+> +        description:
+> +          A phandle to a parent powerzone. If no powerzone attribute is
+> +          set, the described powerzone is the topmost in the hierarchy.
+> +
+> +    required:
+> +      - "#powerzone-cells"
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    powerzones {
+> +
+> +      compatible = "powerzones";
+> +
+> +      #powerzone-cells = <0>;
+> +
+> +      SOC_PZ: powerzone-soc {
+> +        #powerzone-cells = <0>;
+> +      };
+> +
+> +      PKG_PZ: powerzone-pkg {
+> +        #powerzone-cells = <0>;
+> +        powerzones = <&SOC_PZ>;
+> +      };
+> +
+> +      GPU_PZ: powerzone-gpu {
+> +        #powerzone-cells = <0>;
+> +        powerzones = <&PKG_PZ>;
+> +      };
+> +    };
+> +
+> +  - |
+> +    A57_0: big@0 {
+> +      compatible = "arm,cortex-a57";
+> +      reg = <0x0 0x0>;
+> +      device_type = "cpu";
+> +      #powerzone-cells = <0>;
+> +      powerzones = <&PKG_PZ>;
+> +    };
 
-> In my opinion, they are used to provide the clock and de-assert the reset of the PWM engine. If we didn't release
-> them in probe stage the CPU can't and shouldn't read the register of the PWM engine when call the get_state.
-> Assume that we want to adjust them dynamically, the driver needs to add more conditions to check and keep the status
-> of each PWM channel, which is not a good deal for the server platform.
+I think we discussed this in the earlier version too...
 
-Thanks. I don't know the hardware, so I have no idea whether disabling
-the clocks would even save a measurable (let alone appreciable) amount
-of power.
+The above example describes a powerzone provider, but it doesn't
+really conform to the binding. That's because the binding states that
+powerzone providers should be inside a top-level "powerzone {" node.
 
-I've just seen other PWM drivers use runtime PM or enable/disable clocks
-dynamically, and wondered why this one doesn't.
+I am wondering if we really need the toplevel "powerzone" node.
 
-regards
-Philipp
+> +
+> +    A57_1: big@1 {
+> +      compatible = "arm,cortex-a57";
+> +      reg = <0x0 0x0>;
+> +      device_type = "cpu";
+> +      #powerzone-cells = <0>;
+> +      powerzones = <&PKG_PZ>;
+> +    };
+> +...
+> --
+> 2.25.1
+>
+
+No further comments from my side.
+
+Kind regards
+Uffe
