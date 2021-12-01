@@ -2,244 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA2E4658EA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:08:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67FD84658F6
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:16:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353350AbhLAWMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 17:12:01 -0500
-Received: from mail-oi1-f173.google.com ([209.85.167.173]:35424 "EHLO
-        mail-oi1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234903AbhLAWL5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:11:57 -0500
-Received: by mail-oi1-f173.google.com with SMTP id m6so51590886oim.2;
-        Wed, 01 Dec 2021 14:08:36 -0800 (PST)
+        id S1353465AbhLAWUC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 17:20:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41760 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353526AbhLAWT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:19:56 -0500
+Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBEC0C06175B
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 14:16:33 -0800 (PST)
+Received: by mail-pj1-x1034.google.com with SMTP id fv9-20020a17090b0e8900b001a6a5ab1392so2944144pjb.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 14:16:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=HQuYumB8/bJEvmu3jjyCcx1HSt5teTsP9wJzylD90kc=;
+        b=Yq6h3VB5RHQdU5gPJ8iGKqw4jcvgaNXbGBUIUD24fDwVp7TBS8Uflep/Qr/Jtaw6oA
+         Q4/WgIqIJWx033FiJdtL3UMQV5ZUWW7rH4x/ZT59Hj/Hnf8ZL24He5/z7t6Iq9S8AMLq
+         tP17mG2Aymyjrd5j/m9vGtY1mJjEaQ0DLo+6+Sev/mWPSOff9OLKc01ygTfDw8YkZGaI
+         WEEerVLk0e2Gtw09scrYErXCIdAaJpct+qOvYJ48TRde/pk1S78E48Bj2J9I4RY4j1Rl
+         hLBUCg8Lqz4hdwPM5d+zsIIqRrUTr+R/aZRF1g36qHm1LMfDXeVUGiMafVJEkb2Pm0Md
+         lv7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=61rAikMT2xFefgUe5g0NFULS9kpnMPEF5LrvcuuTYAU=;
-        b=IDGXs5ECjthXMyZxVSzBLjlL1woGo+xmfQVatWN8ICij1q2Nm4S3s7B4gzwI7d2Ez4
-         WqKCWO7+usNsT1qSmkN29r95ALpnhQ2cOCcPUJ7/PcdcRIpqLZciV6lnkook1VB9KE53
-         ufkWBFDwB8HHRqFGaxO8LwzRVkxCE0rk+orebQomhCWep/LyJpO0EeJs/ekdFYx4qXjP
-         HvvnZ5HFKmXkbpkXqEvy705mHm3uuaNRDJ6TsJg1nWdm42IxJtjNo6uf0zNF3ps2gKR1
-         NcRQOmKXScu8Mj4dXdpNVJuOMh+sNGCr6+MZHBzv4cfp4gBDZuhDyxMMq3Nc/eg2W7nz
-         8flQ==
-X-Gm-Message-State: AOAM532LYYYDbcygf5l40saGW7zEN/Bc4qrmBUUJTjG0TXeynmDkspKv
-        3P7r/vQBBqgF++JtG+fKaA==
-X-Google-Smtp-Source: ABdhPJxtSafNCNJSoXOFWLNnynN6wCIJQOugyj5c5EA3SsbJixIS28ajEXBr/1ehe/2yFDSR2rhwDg==
-X-Received: by 2002:a05:6808:14e:: with SMTP id h14mr1048175oie.28.1638396516123;
-        Wed, 01 Dec 2021 14:08:36 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a3sm632937oil.32.2021.12.01.14.08.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 14:08:35 -0800 (PST)
-Received: (nullmailer pid 2780052 invoked by uid 1000);
-        Wed, 01 Dec 2021 22:08:34 -0000
-Date:   Wed, 1 Dec 2021 16:08:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
-Cc:     david@lechnology.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-staging@lists.linux.dev, dave.stevenson@raspberrypi.com,
-        maxime@cerno.tech
-Subject: Re: [PATCH 4/6] dt-bindings: display: sitronix,st7735r: Add
- initialization properties
-Message-ID: <YafyYgrwga0Tf/EB@robh.at.kernel.org>
-References: <20211124150757.17929-1-noralf@tronnes.org>
- <20211124150757.17929-5-noralf@tronnes.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=HQuYumB8/bJEvmu3jjyCcx1HSt5teTsP9wJzylD90kc=;
+        b=eBSu1T7uo0BDSDmbHTo7xn0NTetHoxutm7r+wApL3MKJekcTpJtOLJt076TH+y4TTb
+         DP2/Kr7vLOcVasmG1yVQ1KBUYu4+AIxp6CxyG1GVQr5OX+5/YUPj4DzRmsR7EymMHDSO
+         uTeCMtiIqkac5IxZcqOdath64BEhOG43sz9TEOJei9iBCb7IaA6GvxNGk05saM+Kw+q6
+         sHetXNkb29IoRLHnbKICzzWb70buRrJHt/jo7nMQTv4r6WSowdq3xDZihQW3sPW3roVX
+         s8tvua4jZGtqdyWGDO1P7qAoM+Vv+z7TTU0uHHzgic+RrL9ixo19+4ciSeJAoR+/N3zp
+         9bOg==
+X-Gm-Message-State: AOAM533K3lIIJ2B8zQnZ2pd8MJ01vXIdiOGU08D4bi4TgXOUsQtS+8g8
+        176MI74oHsUps4UdGQBp7gP9wTb3gdo=
+X-Google-Smtp-Source: ABdhPJwezF5V55nOEDpjRFfCJYqjru22MdOrveOfv+WcOoXF/bO8LXIdfGG01m/7zmaOGkVse8oWeA==
+X-Received: by 2002:a17:902:6b07:b0:142:852a:9e1f with SMTP id o7-20020a1709026b0700b00142852a9e1fmr10613497plk.29.1638396993215;
+        Wed, 01 Dec 2021 14:16:33 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id fw21sm270770pjb.25.2021.12.01.14.16.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 14:16:32 -0800 (PST)
+Subject: Re: [PATCH] arm: bcm2711-rpi-4-b: Add gpio offsets to line name array
+To:     nicolas saenz julienne <nsaenz@kernel.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org, kernel@pengutronix.de
+References: <20211130161147.317653-1-u.kleine-koenig@pengutronix.de>
+ <3dd6940acac27e5577b54ded8f2d472bbb6f7733.camel@kernel.org>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <bc412de6-1f77-b8ba-fdff-af27c47c8e30@gmail.com>
+Date:   Wed, 1 Dec 2021 14:16:31 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+In-Reply-To: <3dd6940acac27e5577b54ded8f2d472bbb6f7733.camel@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211124150757.17929-5-noralf@tronnes.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 24, 2021 at 04:07:55PM +0100, Noralf Trønnes wrote:
-> Add initialization properties that are commonly used to initialize the
-> controller for a specific display panel. It is common for displays to have
-> a datasheet listing the necessary controller settings or some example code
-> doing the same. These settings can be matched directly to the DT
-> properties.
+On 12/1/21 3:40 AM, nicolas saenz julienne wrote:
+> On Tue, 2021-11-30 at 17:11 +0100, Uwe Kleine-KÃ¶nig wrote:
+>> this helps human readers considerably to determine the line name for a
+>> given offset or vice versa.
+>>
+>> Signed-off-by: Uwe Kleine-KÃ¶nig <u.kleine-koenig@pengutronix.de>
+>> ---
 > 
-> The commands FRMCTR2, FRMCTR3, PWCTR4 and PWCTR5 are usually part of the
-> setup examples but they are skipped here since they deal with partial and
-> idle mode which are powersaving modes for very special use cases.
-> 
-> dc-gpios is made optional because its absence indicates 3-line mode.
-> 
-> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
-> ---
->  .../bindings/display/sitronix,st7735r.yaml    | 118 +++++++++++++++++-
->  1 file changed, 116 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml b/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
-> index 157b1a7b18f9..2db1cfe6ae30 100644
-> --- a/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
-> +++ b/Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
-> @@ -19,6 +19,10 @@ allOf:
->  properties:
->    compatible:
->      oneOf:
-> +      - description:
-> +          Sitronix ST7735R 262K Color Single-Chip TFT Controller/Driver
-> +        items:
-> +          - const: sitronix,st7735r
->        - description:
->            Adafruit 1.8" 160x128 Color TFT LCD (Product ID 358 or 618)
->          items:
-> @@ -32,20 +36,99 @@ properties:
->                - okaya,rh128128t
->            - const: sitronix,st7715r
->  
-> +  width:
-> +    description:
-> +      Width of display panel in pixels
-> +
-> +  height:
-> +    description:
-> +      Height of display panel in pixels
+> Applied for next.
 
+Subject should be:
 
-We already have width-mm and height-mm for physical size so this might 
-be a bit confusing. There's also panel-timing 'vactive' and 'hactive' 
-which is effectively the same thing you are defining.
+ARM: dts: bcm2711-rpi-4-b: Add gpio offsets to line name array
 
-> +
-> +  frmctr1:
-
-Are all these standardized by MIPI or otherwise common? If not, they 
-need vendor prefixes.
-
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Frame Rate Control (In normal mode/Full colors) (B1h)
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  invctr:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Display Inversion Control (B4h)
-> +    minItems: 1
-> +    maxItems: 1
-> +
-> +  pwctr1:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Power Control 1 (C0h)
-> +    minItems: 3
-> +    maxItems: 3
-> +
-> +  pwctr2:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Power Control 2 (C1h)
-> +    minItems: 1
-> +    maxItems: 1
-> +
-> +  pwctr3:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Power Control 3 (in Normal mode/Full colors) (C2h)
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  vmctr1:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      VCOM Control 1 (C5h)
-> +    minItems: 1
-> +    maxItems: 1
-> +
-> +  madctl:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Memory Data Access Control (36h)
-> +    minItems: 1
-> +    maxItems: 1
-> +
-> +  gamctrp1:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Gamma Positive Polarity Correction Characteristics Setting (E0h)
-> +    minItems: 16
-> +    maxItems: 16
-> +
-> +  gamctrn1:
-> +    $ref: /schemas/types.yaml#definitions/uint8-array
-> +    description:
-> +      Gamma Negative Polarity Correction Characteristics Setting (E1h)
-> +    minItems: 16
-> +    maxItems: 16
-> +
-> +  write-only:
-> +    type: boolean
-> +    description:
-> +      Controller is not readable (ie. MISO is not wired up).
-> +
->    dc-gpios:
->      maxItems: 1
-> -    description: Display data/command selection (D/CX)
-> +    description: |
-> +      Controller data/command selection (D/CX) in 4-line SPI mode.
-> +      If not set, the controller is in 3-line SPI mode.
->  
->    backlight: true
->    reg: true
->    spi-max-frequency: true
->    reset-gpios: true
->    rotation: true
-> +  width-mm: true
-> +  height-mm: true
->  
->  required:
->    - compatible
->    - reg
-> -  - dc-gpios
->  
->  additionalProperties: false
->  
-> @@ -72,5 +155,36 @@ examples:
->                      backlight = <&backlight>;
->              };
->      };
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            sainsmart18@0{
-> +                    compatible = "sitronix,st7735r";
-> +                    reg = <0>;
-> +                    spi-max-frequency = <40000000>;
-> +
-> +                    width = <160>;
-> +                    height = <128>;
-> +
-> +                    frmctr1 = [ 01 2C 2D ];
-> +                    invctr = [ 07 ];
-> +                    pwctr1 = [ A2 02 84 ];
-> +                    pwctr2 = [ C5 ];
-> +                    pwctr3 = [ 0A 00 ];
-> +                    vmctr1 = [ 0E ];
-> +                    madctl = [ 60 ];
-> +                    gamctrp1 = [ 0F 1A 0F 18 2F 28 20 22 1F 1B 23 37 00 07 02 10 ];
-> +                    gamctrn1 = [ 0F 1B 0F 17 33 2C 29 2E 30 30 39 3F 00 07 03 10 ];
-> +
-> +                    dc-gpios = <&gpio 43 GPIO_ACTIVE_HIGH>;
-> +                    reset-gpios = <&gpio 80 GPIO_ACTIVE_HIGH>;
-> +                    write-only;
-> +            };
-> +    };
-> +
->  
->  ...
-> -- 
-> 2.33.0
-> 
-> 
+Can you fix that up before sending this to me as a pull request? Thanks
+-- 
+Florian
