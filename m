@@ -2,368 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DDC0F465346
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:46:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0351465365
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 17:53:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237638AbhLAQuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 11:50:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49652 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238341AbhLAQuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:50:13 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23700C061756
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 08:46:52 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id v23so18419078pjr.5
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 08:46:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=OTZAqqPHXVPZ4c7CaB2crj6dY+T1DeaEBw1bpomq2HA=;
-        b=oLFcf1azANgImlTMoneyKa+wRgK0sBfrEubUq7jqZegjsIzbMjMadfLZlcGzcbsDNg
-         uT2eYi96tkjKWmkR2Eb1+2NBqqZv+WmwtXSaOm5aex1wVtYZlN5Ujs2jivceMM111AA6
-         0vhc4KNUZKM3ElKcKZ19cVCbZ+yZVC4lF8DqbZq6VRXtgDc89XMhdMMJT0lv1extMoUc
-         xlqeG5C+gm5uZxzaYA0/cnHMkWIyl2Lg+ZcM5NQX6anEtzlqX5n5VmcIuiODIxjoCEwa
-         4VcKAiN5awqmX0IvzT56rotrfzEWsi7+vWLen/6gMoQccyq77z86K1UdQ6vTrPxNrYDV
-         AQzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OTZAqqPHXVPZ4c7CaB2crj6dY+T1DeaEBw1bpomq2HA=;
-        b=mYATJ9FofTllGgCqM/3a+WqE4Fqrm8P/8JhSq6njPGLEsJw9fQ9m28LAVBn+JI7PSH
-         xlDZCY9A0GDqVVAExffz2kI4yDwFcTnFrqOYsI/IuWxWjT7MveRcnKaKJQsFJZU3cMpx
-         Z4ourY6IOQk20v7k+rXmuct3tZn5UwmEGr4m2jx48vpx9EedPSLsI6RsvmiV/adcQos3
-         9Wu5jNqtw6dkj0lMVBFtLRtzuojiL9XmSeuqSu0xwfo+oojPmpfb86olfhYFVKjHewB9
-         5zLrw++m/8RsmAnEHgyKEvER+YzSYUaFfbaR+0OxL3DiRpQ+B/3wN69772bN7hyJFfQ5
-         Z3wA==
-X-Gm-Message-State: AOAM533Z8pCLQW/lDtP0rBwGtceISI7NCEBahoSxsx782K8CWfIaQTHy
-        PfwyYL435wkih4yXJLHpBh/KWQ==
-X-Google-Smtp-Source: ABdhPJwHs5CzNCNLWckM62Ud2tS3jyX+k5r5ZHVStlPTxsw06XxUkcC3caKjtzw1xlxC5BjJE0m5qA==
-X-Received: by 2002:a17:902:c206:b0:142:631:5ffc with SMTP id 6-20020a170902c20600b0014206315ffcmr8945395pll.38.1638377211603;
-        Wed, 01 Dec 2021 08:46:51 -0800 (PST)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id p3sm106408pjd.45.2021.12.01.08.46.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 08:46:50 -0800 (PST)
-Date:   Wed, 1 Dec 2021 09:46:47 -0700
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Julien Massot <julien.massot@iot.bzh>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        geert+renesas@glider.be, linux-renesas-soc@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] remoteproc: Add Renesas rcar driver
-Message-ID: <20211201164647.GB834591@p14s>
-References: <20211130100049.129418-1-julien.massot@iot.bzh>
- <20211130100049.129418-3-julien.massot@iot.bzh>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211130100049.129418-3-julien.massot@iot.bzh>
+        id S244009AbhLAQ4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 11:56:44 -0500
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.82]:17416 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244011AbhLAQ4n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 11:56:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638377585;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=IrLqeXQ7cnKmOP13b28CuGf9NhUY4ybFFkNm3lBDdyo=;
+    b=cwvV9r0cfsuiCVIDsFf+gsOiOZF2MIZ+8JrpB08rAyftCZMzf/t0j5XO31u//9JMy/
+    eQirRIPZN9oUQ9ADd0gC//++YlflpmOR2jfpz8QcOq4KBXlH+YlUGp/+8sxlIaFcE5Tt
+    jLD/beSSzkw3Sg1zcDQAVWe05xCpYpL/uwGXCqGwtI/gW6K+1uL7yYmQGG8dsWECdI7o
+    eHPbCT9oWVV38jrE0+V/Nb7Pd92TY7PXUSnbliI/91bOA4TqKGCtTQmW54ftNnGmgHWC
+    foV60zyyOZlUaQ9p08IY+JYhyrYK6ybWduR+rtkFlOFFILCP49f283jnGR3YRbLhB8gM
+    FhUg==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43u22M="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.34.10 SBL|AUTH)
+    with ESMTPSA id e05ed8xB1Gr4YRR
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Wed, 1 Dec 2021 17:53:04 +0100 (CET)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH v10 4/8] drm/ingenic: Add dw-hdmi driver for jz4780
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <YaeQW/akoLE6SpEi@sirena.org.uk>
+Date:   Wed, 1 Dec 2021 17:53:03 +0100
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Kees Cook <keescook@chromium.org>,
+        "Eric W. Biederman" <ebiederm@xmission.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Robert Foss <robert.foss@linaro.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Harry Wentland <harry.wentland@amd.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Boddie <paul@boddie.org.uk>, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        letux-kernel@openphoenux.org, Jonas Karlman <jonas@kwiboo.se>,
+        dri-devel@lists.freedesktop.org,
+        Ezequiel Garcia <ezequiel@collabora.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <3174DA41-EB38-4C30-8752-0D9C894C74A7@goldelico.com>
+References: <cover.1638307601.git.hns@goldelico.com>
+ <4daf0c5dbed2c47c97003ab8de0a7dbd2a335dc3.1638307601.git.hns@goldelico.com>
+ <LKTF3R.YREPOCHOSMQN2@crapouillou.net> <Yad69aTXcGixXvy3@sirena.org.uk>
+ <46070A95-0FA9-43F9-A9A9-52A7B58B88F5@goldelico.com>
+ <EDWF3R.CMVWMJL42OH9@crapouillou.net>
+ <58C550A4-A21E-47BA-8BAE-00B927DC7A2E@goldelico.com>
+ <YaeQW/akoLE6SpEi@sirena.org.uk>
+To:     Mark Brown <broonie@kernel.org>
+X-Mailer: Apple Mail (2.3445.104.21)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 11:00:49AM +0100, Julien Massot wrote:
-> Renesas Gen3 platform includes a Cortex-r7 processor.
-> 
-> Both: the application cores (A5x) and the realtime core (CR7)
-> share access to the RAM and devices with the same address map,
-> so device addresses are equal to the Linux physical addresses.
-> 
-> In order to initialize this remote processor we need to:
-> - power on the realtime core
-> - put the firmware in a ram area
-> - set the boot address for this firmware (reset vector)
-> - Deassert the reset
-> 
-> This initial driver allows to start and stop the Cortex R7
-> processor.
-> 
-> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
-> ---
-> Change since v1:
-> - use "%zx" printf specifier for size_t
-> - drop depends on REMOTEPROC in Kconfig file
-> 
-> ---
->  drivers/remoteproc/Kconfig      |  11 ++
->  drivers/remoteproc/Makefile     |   1 +
->  drivers/remoteproc/rcar_rproc.c | 226 ++++++++++++++++++++++++++++++++
->  3 files changed, 238 insertions(+)
->  create mode 100644 drivers/remoteproc/rcar_rproc.c
+Hi Mark,
 
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 
-> 
-> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> index f2e961f998ca..10cde1f9dbe0 100644
-> --- a/drivers/remoteproc/Kconfig
-> +++ b/drivers/remoteproc/Kconfig
-> @@ -283,6 +283,17 @@ config QCOM_WCNSS_PIL
->  	  verified and booted with the help of the Peripheral Authentication
->  	  System (PAS) in TrustZone.
->  
-> +config RCAR_REMOTEPROC
-> +	tristate "Renesas R-CAR Gen3 remoteproc support"
-> +	depends on ARCH_RENESAS
-> +	help
-> +	  Say y here to support R-Car realtime processor via the
-> +	  remote processor framework. An elf firmware can be loaded
-> +	  thanks to sysfs remoteproc entries. The remote processor
-> +	  can be started and stopped.
-> +	  This can be either built-in or a loadable module.
-> +	  If compiled as module (M), the module name is rcar_rproc.
-> +
->  config ST_REMOTEPROC
->  	tristate "ST remoteproc support"
->  	depends on ARCH_STI
-> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-> index 0ac256b6c977..5478c7cb9e07 100644
-> --- a/drivers/remoteproc/Makefile
-> +++ b/drivers/remoteproc/Makefile
-> @@ -32,6 +32,7 @@ obj-$(CONFIG_QCOM_SYSMON)		+= qcom_sysmon.o
->  obj-$(CONFIG_QCOM_WCNSS_PIL)		+= qcom_wcnss_pil.o
->  qcom_wcnss_pil-y			+= qcom_wcnss.o
->  qcom_wcnss_pil-y			+= qcom_wcnss_iris.o
-> +obj-$(CONFIG_RCAR_REMOTEPROC)		+= rcar_rproc.o
->  obj-$(CONFIG_ST_REMOTEPROC)		+= st_remoteproc.o
->  obj-$(CONFIG_ST_SLIM_REMOTEPROC)	+= st_slim_rproc.o
->  obj-$(CONFIG_STM32_RPROC)		+= stm32_rproc.o
-> diff --git a/drivers/remoteproc/rcar_rproc.c b/drivers/remoteproc/rcar_rproc.c
-> new file mode 100644
-> index 000000000000..d01bbca41697
-> --- /dev/null
-> +++ b/drivers/remoteproc/rcar_rproc.c
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) IoT.bzh 2021
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/remoteproc.h>
-> +#include <linux/reset.h>
-> +#include <linux/soc/renesas/rcar-rst.h>
-> +
-> +#include "remoteproc_internal.h"
-> +
-> +struct rcar_rproc {
-> +	struct reset_control *rst;
-> +};
-> +
-> +static int rcar_rproc_mem_alloc(struct rproc *rproc,
-> +				 struct rproc_mem_entry *mem)
-> +{
-> +	struct device *dev = &rproc->dev;
-> +	void *va;
-> +
-> +	dev_dbg(dev, "map memory: %pa+%zx\n", &mem->dma, mem->len);
-> +	va = ioremap_wc(mem->dma, mem->len);
-> +	if (IS_ERR_OR_NULL(va)) {
-> +		dev_err(dev, "Unable to map memory region: %pa+%zx\n",
-> +			&mem->dma, mem->len);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	/* Update memory entry va */
-> +	mem->va = va;
-> +
-> +	return 0;
-> +}
-> +
-> +static int rcar_rproc_mem_release(struct rproc *rproc,
-> +				   struct rproc_mem_entry *mem)
-> +{
-> +	dev_dbg(&rproc->dev, "unmap memory: %pa\n", &mem->dma);
-> +	iounmap(mem->va);
-> +
-> +	return 0;
-> +}
-> +
-> +static int rcar_rproc_prepare(struct rproc *rproc)
-> +{
-> +	struct device *dev = rproc->dev.parent;
-> +	struct device_node *np = dev->of_node;
-> +	struct of_phandle_iterator it;
-> +	struct rproc_mem_entry *mem;
-> +	struct reserved_mem *rmem;
-> +	u64 da;
-> +
-> +	/* Register associated reserved memory regions */
-> +	of_phandle_iterator_init(&it, np, "memory-region", NULL, 0);
-> +	while (of_phandle_iterator_next(&it) == 0) {
-> +
-> +		rmem = of_reserved_mem_lookup(it.node);
-> +		if (!rmem) {
-> +			dev_err(&rproc->dev,
-> +				"unable to acquire memory-region\n");
-> +			return -EINVAL;
-> +		}
-> +
-> +		/* No need to translate pa to da, R-Car use same map */
-> +		da = rmem->base;
-> +
-> +		mem = rproc_mem_entry_init(dev, NULL,
-> +					   (dma_addr_t)rmem->base,
-> +					   rmem->size, da,
-> +					   rcar_rproc_mem_alloc,
-> +					   rcar_rproc_mem_release,
-> +					   it.node->name);
-> +
-> +		if (!mem)
-> +			return -ENOMEM;
-> +
-> +		rproc_add_carveout(rproc, mem);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int rcar_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
-> +{
-> +	int ret;
-> +
-> +	ret = rproc_elf_load_rsc_table(rproc, fw);
-> +	if (ret)
-> +		dev_info(&rproc->dev, "No resource table in elf\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int rcar_rproc_start(struct rproc *rproc)
-> +{
-> +	struct rcar_rproc *priv = rproc->priv;
-> +	int err;
-> +
-> +	if (!rproc->bootaddr)
-> +		return -EINVAL;
-> +
-> +	err = rcar_rst_set_rproc_boot_addr(rproc->bootaddr);
-> +	if (err) {
-> +		dev_err(&rproc->dev, "failed to set rproc boot addr\n");
-> +		return err;
-> +	}
-> +
-> +	err = reset_control_deassert(priv->rst);
-> +	if (err)
-> +		dev_err(&rproc->dev, "failed to deassert reset\n");
-> +
-> +	return err;
-> +}
-> +
-> +static int rcar_rproc_stop(struct rproc *rproc)
-> +{
-> +	struct rcar_rproc *priv = rproc->priv;
-> +	int err;
-> +
-> +	err = reset_control_assert(priv->rst);
-> +	if (err)
-> +		dev_err(&rproc->dev, "failed to assert reset\n");
-> +
-> +	return err;
-> +}
-> +
-> +static struct rproc_ops rcar_rproc_ops = {
-> +	.prepare	= rcar_rproc_prepare,
-> +	.start		= rcar_rproc_start,
-> +	.stop		= rcar_rproc_stop,
-> +	.load		= rproc_elf_load_segments,
-> +	.parse_fw	= rcar_rproc_parse_fw,
-> +	.find_loaded_rsc_table = rproc_elf_find_loaded_rsc_table,
-> +	.sanity_check	= rproc_elf_sanity_check,
-> +	.get_boot_addr	= rproc_elf_get_boot_addr,
-> +
-> +};
-> +
-> +static int rcar_rproc_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct rcar_rproc *priv;
-> +	struct rproc *rproc;
-> +	int ret;
-> +
-> +	rproc = rproc_alloc(dev, np->name, &rcar_rproc_ops,
-> +			    NULL, sizeof(*priv));
-> +	if (!rproc)
-> +		return -ENOMEM;
-> +
-> +	priv = rproc->priv;
-> +
-> +	priv->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(priv->rst)) {
-> +		ret = PTR_ERR(priv->rst);
-> +		dev_err(dev, "fail to acquire rproc reset\n");
-> +		goto free_rproc;
-> +	}
-> +
-> +	pm_runtime_enable(dev);
-> +	ret = pm_runtime_get_sync(dev);
-> +	if (ret) {
-> +		dev_err(dev, "failed to power up\n");
-> +		goto free_rproc;
-> +	}
-> +
-> +	dev_set_drvdata(dev, rproc);
-> +
-> +	/* Manually start the rproc */
-> +	rproc->auto_boot = false;
-> +
-> +	ret = rproc_add(rproc);
-> +	if (ret) {
-> +		dev_err(dev, "rproc_add failed\n");
-> +		goto pm_disable;
-> +	}
-> +
-> +	return 0;
-> +
-> +pm_disable:
-> +	pm_runtime_disable(dev);
-> +free_rproc:
-> +	rproc_free(rproc);
-> +
-> +	return ret;
-> +}
-> +
-> +static int rcar_rproc_remove(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct rproc *rproc = platform_get_drvdata(pdev);
-> +
-> +	rproc_del(rproc);
-> +	pm_runtime_disable(dev);
-> +	rproc_free(rproc);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id rcar_rproc_of_match[] = {
-> +	{ .compatible = "renesas,rcar-cr7" },
-> +	{},
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, rcar_rproc_of_match);
-> +
-> +static struct platform_driver rcar_rproc_driver = {
-> +	.probe = rcar_rproc_probe,
-> +	.remove = rcar_rproc_remove,
-> +	.driver = {
-> +		.name = "rcar-rproc",
-> +		.of_match_table = rcar_rproc_of_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(rcar_rproc_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_DESCRIPTION("Renesas Gen3 R-Car remote processor control driver");
-> +MODULE_AUTHOR("Julien Massot <julien.massot@iot.bzh>");
-> -- 
-> 2.33.1
-> 
-> 
+> Am 01.12.2021 um 16:10 schrieb Mark Brown <broonie@kernel.org>:
+>=20
+> On Wed, Dec 01, 2021 at 03:33:24PM +0100, H. Nikolaus Schaller wrote:
+>>> Am 01.12.2021 um 15:03 schrieb Paul Cercueil <paul@crapouillou.net>:
+>=20
+>>> Please make it mandatory in DTS then, and use devm_regulator_get() =
+in the driver.
+>=20
+>> Well, I just wonder why the elegant devm_regulator_get_optional() =
+exists at all
+>> and seems to be used in ca. 80 places.
+>=20
+> Frankly because half of them are broken usages like this since people
+> seem determined to have the most fragile error handling they can :/
+
+I see. I had made the mistake myself to not check for NULL pointer on
+regulator_disable here...
+
+> There are valid use cases for it, with things like SD cards where some
+> supplies are genuinely optional and simply constrain what features are
+> available if they're omitted from the design.  You also see some =
+devices
+> with the ability to replace internal regulators with external ones.
+>=20
+>> And if it is not allowed, why some DTS should be forced to add not =
+physically existing dummy-regulators.
+>=20
+> Again, if the supply can be physically absent that is a sensible use
+> case but that means completely absent, not just not software
+> controllable.  We can represent fixed voltage regulators just fine.
+
+The question may be how we can know for a more generic driver that there =
+is always a regulator.
+In the present case we know the schematics but it is just one example.
+
+>=20
+>> AFAIR drivers should implement functionality defined by DTS but not =
+the other way round: enforce DTS style.
+>> BTW: there is no +5 mains dummy regulator defined in ci20.dts.
+>=20
+> It wouldn't be the first time a DTS were incomplete, and I'm sure it
+> won't be the last.
+>=20
+>> What I fear is that if we always have to define the mains +5V (which =
+is for example not
+>> defined in ci20.dts), which rules stops us from asking to add a =
+dummy-regulator from 110/230V to +5V as well.
+>=20
+> It is good practice to specify the full tree of supplies all the way =
+to
+> the main supply rail of the board, this ensures that if we need the
+> information for something we've got it (even if that thing is just =
+that
+> we've got to the root of the tree).  There's potential applications in
+> battery supplied devices for managing very low power situations.
+
+Indeed. So let's modify it as you have suggested.
+
+BR and thanks,
+Nikolaus
+
