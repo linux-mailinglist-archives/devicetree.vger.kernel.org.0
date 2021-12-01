@@ -2,199 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6AF464AC1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:36:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AD77464AE9
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 10:50:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348226AbhLAJjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 04:39:51 -0500
-Received: from comms.puri.sm ([159.203.221.185]:38332 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S237675AbhLAJju (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 04:39:50 -0500
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 06F3FE1252;
-        Wed,  1 Dec 2021 01:36:00 -0800 (PST)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id u2HVHb4u-Iec; Wed,  1 Dec 2021 01:35:59 -0800 (PST)
-Message-ID: <f18b5b0329e8963f277014e38aaf887245f0e1a7.camel@puri.sm>
-Subject: Re: [RFC 06/19] devfreq: imx8m-ddrc: Add late system sleep PM ops
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>, Dong Aisheng <aisheng.dong@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <djakov@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        linux-serial@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Wed, 01 Dec 2021 10:35:51 +0100
-In-Reply-To: <YaaENEqlQbW8W6PI@ryzen>
-References: <1631554694-9599-1-git-send-email-abel.vesa@nxp.com>
-         <1631554694-9599-7-git-send-email-abel.vesa@nxp.com>
-         <e9a3a64dcfec858e612037199df7627b77ececd9.camel@puri.sm>
-         <YaaENEqlQbW8W6PI@ryzen>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1 
+        id S1348340AbhLAJyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 04:54:08 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:47522 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S242341AbhLAJyH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 04:54:07 -0500
+X-UUID: 73354f1af04f4557ae21da22f967560f-20211201
+X-UUID: 73354f1af04f4557ae21da22f967560f-20211201
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 784406573; Wed, 01 Dec 2021 17:50:44 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 1 Dec 2021 17:50:42 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 1 Dec
+ 2021 17:50:42 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 1 Dec 2021 17:50:42 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
+        <moudy.ho@mediatek.com>, <jason-jh.lin@mediatek.com>,
+        <roy-cw.yeh@mediatek.com>, <river.cheng@mediatek.com>,
+        <srv_heupstream@mediatek.com>
+Subject: [PATCH v9 0/7] media: mediatek: support mdp3 on mt8183 platform
+Date:   Wed, 1 Dec 2021 17:50:24 +0800
+Message-ID: <20211201095031.31606-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, dem 30.11.2021 um 22:06 +0200 schrieb Abel Vesa:
-> On 21-11-10 13:15:26, Martin Kepplinger wrote:
-> > Am Montag, dem 13.09.2021 um 20:38 +0300 schrieb Abel Vesa:
-> > > Seems that, in order to be able to resume from suspend, the dram
-> > > rate
-> > > needs to be the highest one available. Therefore, add the late
-> > > system
-> > > suspend/resume PM ops which set the highest rate on suspend and
-> > > the
-> > > latest one used before suspending on resume.
-> > 
-> > Hi Abel, wouldn't this mean that s2idle / freeze would be kind of
-> > broken by this?
-> > 
-> 
-> Nope. Only the DDR rate needs to be raised at 800M before suspending.
-> Everything else stays the same.
+Change since v8:
+- Rebase on v5.16-rc2.
+- Refer to Angelo's suggestion, adjust the register writing format to increase
+  readability and significance.
+- Refer to Angelo's suggestion, adjust or reduce inappropriate debugging
+  messages.
+- Refer to Rob Herring's suggestion to correct the the binding file
+  to make it with the specification.
+- Fix compile warning reported by kernel test robot.
 
-well, for s2idle, linux stays running, so no calling out to atf (dram
-retention...) is happening, so it'll stay at 800M *during* being
-suspended.
+Change since v7:
+- Rebase on v5.15-rc6.
+- Revise several V4L2 M2M settings to pass v4l2-compliance test.
+- Integrate those same component dt-binding documents of DRM and MDP, and
+  move them under the MMSYS domain.
+- Split MMSYS and MUTEX into two different files according to
+  their functional properties.
 
-I tested that by observing power consumption of the system - although
-for now without the cpu-sleep state (via your workaround) due to
-https://lore.kernel.org/linux-arm-kernel/6ca0bcabfa3b6643f9ab7e311cd8697df223c5cb.camel@puri.sm/
+Changes since v6:
+- Refactor GCE event to corresponding node.
+- Fix dt_binding_check fail.
+- Fix compilation errors.
+
+Changes since v5:
+- Rebase on v5.14-rc6.
+- Move MMSYS/Mutex settings to corresponding driver.
+- Revise the software license description and copyright.
+- Remove unnecessary enum. or definitions.
+- Optimize platform/chip definition conditions.
+- Use general printing functions instead of MDP3 private ones.
+- Fix compile warning.
+
+Changes since v4:
+- Rebase on v5.13-rc1.
+- Remove the CMDQ flush flow to match the CMDQ API change.
+- Integrate four of MDP's direct-link subcomponents into MDP controller node
+  from syscon node to avoid illegal clock usage.
+- Rewrite dt-binding in a JSON compatible subset of YAML
+- Fix a bit of macro argument precedence.
+
+Changes since v3:
+- Rebase on v5.9-rc1.
+- modify code for review comment from Rob Herring, cancel multiple nodes using
+  same register base situation.
+- control IOMMU port through pm runtime get/put to DMA components' device.
+- SCP(VPU) driver revision.
+- stop queuing jobs(remove flush_workqueue()) after mdp_m2m_release().
+- add computation of plane address with data_offset.
+- fix scale ratio check issue.
+- add default v4l2_format setting.
+
+Changes since v2:
+- modify code for review comment from Tomasz Figa & Alexandre Courbot
+- review comment from Rob Herring will offer code revision in v4, due to
+  it's related to device node modification, will need to modify code
+  architecture
+
+Changes since v1:
+- modify code for CMDQ v3 API support
+- EC ipi cmd migration
+- fix compliance test fail item (m2m cmd with -f) due to there is two problem in runing all format(-f) cmd:
+1. out of memory before test complete
+        Due to capture buffer mmap (refcount + 1) after reqbuf but seems
+        no corresponding munmap called before device close.
+        There are total 12XX items(formats) in format test and each format
+        alloc 8 capture/output buffers.
+2. unceasingly captureBufs() (randomly)
+        Seems the break statement didn't catch the count == 0 situation:
+        In v4l2-test-buffers.cpp, function: captureBufs()
+                        ...
+                        count--;
+                        if (!node->is_m2m && !count)
+                                break;
+        Log is as attachment
+
+I will paste the test result with problem part in another e-mail
+
+Hi,
+
+This is the first version of RFC patch for Media Data Path 3 (MDP3),
+MDP3 is used for scaling and color format conversion.
+support using GCE to write register in critical time limitation.
+support V4L2 m2m device control.
 
 
-> 
-> > Does is make sense to test the lowest rate? How would I force that
-> > here? (just for testing)
-> 
-> You can try, but it will surely freeze. See [1] what you need to
-> change
-> for testing.
+Moudy Ho (7):
+  soc: mediatek: mmsys: add support for MDP
+  soc: mediatek: mmsys: add support for ISP control
+  soc: mediatek: mutex: add support for MDP
+  soc: mediatek: mutex: add functions that operate registers by CMDQ
+  dt-binding: mt8183: add Mediatek MDP3 dt-bindings
+  dts: arm64: mt8183: add Mediatek MDP3 nodes
+  media: platform: mtk-mdp3: add Mediatek MDP3 driver
 
-thanks, that looks nicer than forcing 50M.
+ .../bindings/media/mediatek,mdp3-rsz.yaml     |   65 +
+ .../bindings/media/mediatek,mdp3-wrot.yaml    |   67 +
+ .../bindings/soc/mediatek/mediatek,ccorr.yaml |   57 +
+ .../bindings/soc/mediatek/mediatek,rdma.yaml  |  216 +++
+ .../bindings/soc/mediatek/mediatek,wdma.yaml  |   68 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  115 +-
+ drivers/media/platform/Kconfig                |   19 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/mtk-mdp3/Makefile      |    6 +
+ .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   19 +
+ drivers/media/platform/mtk-mdp3/mdp_reg_isp.h |   27 +
+ .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   65 +
+ drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |   39 +
+ .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |   47 +
+ .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   55 +
+ drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  280 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  514 +++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   46 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1264 +++++++++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  147 ++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  338 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   76 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  789 ++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   49 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  737 ++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  372 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  312 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   78 +
+ drivers/soc/mediatek/Kconfig                  |    1 +
+ drivers/soc/mediatek/mt8183-mmsys.h           |  294 ++++
+ drivers/soc/mediatek/mtk-mmsys.c              |  173 +++
+ drivers/soc/mediatek/mtk-mmsys.h              |    3 +
+ drivers/soc/mediatek/mtk-mutex.c              |   98 +-
+ include/linux/soc/mediatek/mtk-mmsys.h        |   86 ++
+ include/linux/soc/mediatek/mtk-mutex.h        |    8 +
+ 35 files changed, 6530 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-rsz.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mdp3-wrot.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,ccorr.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,rdma.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,wdma.yaml
+ create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ccorr.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_isp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
 
-> > 
-> > Also, you could think about splitting this series up a bit and do
-> > this
-> > patch seperately onto mainline (before or after the other work).
-> > 
-> 
-> Well, I sent as RFC until now. Seems there are no big issues with the
-> approach. So I'll split the patches between subsystems on the next
-> iteration.
-
-great, looking forward to it!
-
-> 
-> > thank you
-> >                           martin
-> > 
-> > 
-> > > 
-> > > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> > > ---
-> > >  drivers/devfreq/imx8m-ddrc.c | 28 +++++++++++++++++++++++++++-
-> > >  1 file changed, 27 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/devfreq/imx8m-ddrc.c
-> > > b/drivers/devfreq/imx8m-
-> > > ddrc.c
-> > > index f18a5c3c1c03..f39741b4a0b0 100644
-> > > --- a/drivers/devfreq/imx8m-ddrc.c
-> > > +++ b/drivers/devfreq/imx8m-ddrc.c
-> > > @@ -72,6 +72,8 @@ struct imx8m_ddrc {
-> > >         struct clk *dram_alt;
-> > >         struct clk *dram_apb;
-> > >  
-> > > +       unsigned long suspend_rate;
-> > > +       unsigned long resume_rate;
-> > >         int freq_count;
-> > >         struct imx8m_ddrc_freq
-> > > freq_table[IMX8M_DDRC_MAX_FREQ_COUNT];
-> > >  };
-> > > @@ -271,6 +273,22 @@ static int imx8m_ddrc_target(struct device
-> > > *dev,
-> > > unsigned long *freq, u32 flags)
-> > >         return ret;
-> > >  }
-> > >  
-> > > +static int imx8m_ddrc_suspend(struct device *dev)
-> > > +{
-> > > +       struct imx8m_ddrc *priv = dev_get_drvdata(dev);
-> > > +
-> > > +       priv->resume_rate = clk_get_rate(priv->dram_core);
-> > > +
-> > > +       return imx8m_ddrc_target(dev, &priv->suspend_rate, 0);
-> > > +}
-> > > +
-> > > +static int imx8m_ddrc_resume(struct device *dev)
-> > > +{
-> > > +       struct imx8m_ddrc *priv = dev_get_drvdata(dev);
-> > > +
-> > > +       return imx8m_ddrc_target(dev, &priv->resume_rate, 0);
-> > > +}
-> > > +
-> > >  static int imx8m_ddrc_get_cur_freq(struct device *dev, unsigned
-> > > long
-> > > *freq)
-> > >  {
-> > >         struct imx8m_ddrc *priv = dev_get_drvdata(dev);
-> > > @@ -324,6 +342,9 @@ static int imx8m_ddrc_init_freq_info(struct
-> > > device *dev)
-> > >  
-> > >                 if (dev_pm_opp_add(dev, freq->rate * 250000, 0))
-> > >                         return -ENODEV;
-> > > +
-> > > +               if (index ==  0)
-> 
-> [1] Change this line to:
->                     if (index == 1)
-> 
-> It will select the 166935483 freq for suspending.
-> 
-> > > +                       priv->suspend_rate = freq->rate * 250000;
-> > >         }
-> > >  
-> > >         return 0;
-> > > @@ -399,11 +420,16 @@ static const struct of_device_id
-> > > imx8m_ddrc_of_match[] = {
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, imx8m_ddrc_of_match);
-> > >  
-> > > +static const struct dev_pm_ops imx8m_ddrc_pm_ops = {
-> > > +       SET_LATE_SYSTEM_SLEEP_PM_OPS(imx8m_ddrc_suspend,
-> > > imx8m_ddrc_resume)
-> > > +};
-> > > +
-> > >  static struct platform_driver imx8m_ddrc_platdrv = {
-> > >         .probe          = imx8m_ddrc_probe,
-> > >         .driver = {
-> > >                 .name   = "imx8m-ddrc-devfreq",
-> > > -               .of_match_table = imx8m_ddrc_of_match,
-> > > +               .pm = &imx8m_ddrc_pm_ops,
-> > > +               .of_match_table =
-> > > of_match_ptr(imx8m_ddrc_of_match),
-> > >         },
-> > >  };
-> > >  module_platform_driver(imx8m_ddrc_platdrv);
-> > 
-> > 
-
+-- 
+2.18.0
 
