@@ -2,195 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD00464BC3
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:38:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8E26464BD2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:41:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348722AbhLAKlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 05:41:32 -0500
-Received: from mail-sgaapc01on2136.outbound.protection.outlook.com ([40.107.215.136]:14881
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S237823AbhLAKlb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 1 Dec 2021 05:41:31 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BJ797Z5TfHahBZ5s6t2pEjFkWUZAYMvVKtjIyBbcy5yTyd7WuKsQ2Eff8qBWwGu7QqzrQI0Nv4+Bi98wzgfJkuNJaYqgfjpOBbEUilkdnstOJoPI5dJhfjtD/4Y92EweFP/qsXUvrUxBwWUP2JA1bM5F329idvsEA6xRxQvKHpLuYd/U86ty+nJKqm7D/+DB+3Wl1sa9zdBD6puCzSoKmz5KOIKWv6geyPrjF6et+ORmraF4GbYHA8IERoswNhHFUUGddavAamxbctkjmksiOKfCo9u9aLQhtNcasidXttmNSOURRnrTS7NYfWB8IPsZD08HaJQZM4+YDEdao4pxOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+XSTIcn471gaDdP75ZD1Gvdn2Gsxm54WaIqKEhLFOPw=;
- b=l5jld+5DR/ShlQ+lRCUVsLerOzPfrSpm2AtcFni7QyvJuCVfAhlsaVi1JlyOh9fi+VKJE5oIFFo/oGEu6DVoflS485mpLiRA1z7YgWNjr4BRiHWAPpMDdQXMchnm9MlQ1btiXlKHrpNTY5/+w8oO0vb5fVvjEswW4I7xM2jJesxasFi54k0PvVKnr1/y4doYgJUTILT3vr9qJYzsQwaKm8MC2x9UkQY+9iyENwzxUvzgwelG5iZJPanWxVTWcYHOCOl4jSFXGJUEQE6ZcHk0O1+RRO9L7hljcEZ02UEY3gIsBGb59onXJzFXPWIZiXymjpT0oAFkaIfaZWpRy8YtOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+XSTIcn471gaDdP75ZD1Gvdn2Gsxm54WaIqKEhLFOPw=;
- b=si09feaDoHkRkfd7xvugD0XYkxRaUn/pobzUtxP9wk0Eo9HDNeBDnOK29QsTpToa2RwvQnFccA5E8/5QVWPeJiUsyiQPeDTlGlTJ244WDsnZwOMERHy5k5ywS2fMIbk1O8GNkPqpNEtSYG53NvgXaWTj+IdeK6dKPFAyneNmf4vZM5A2lZ1wF4Q2AP86ad7bKGgwj+6iAPKUwL9o2T4IaL4rJc2UqGv0Km5flpC8FYWjUaA9CsZ1+qSUQx0KvwYh21QTo7TUPVfwdfN7CdbqLDXcRTCXb+YJun97cl6TUcPAXKS+496DzuWCgv9N0hFUgFqyFRHbyZ93Ez+sXNHfVA==
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com (2603:1096:203:8b::10)
- by HK2PR0601MB1985.apcprd06.prod.outlook.com (2603:1096:202:c::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.22; Wed, 1 Dec
- 2021 10:38:05 +0000
-Received: from HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::7941:2fad:3c82:52eb]) by HK0PR06MB3362.apcprd06.prod.outlook.com
- ([fe80::7941:2fad:3c82:52eb%3]) with mapi id 15.20.4734.024; Wed, 1 Dec 2021
- 10:38:04 +0000
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     Iwona Winiarska <iwona.winiarska@intel.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Dave Hansen <dave.hansen@intel.com>,
-        Zev Weiss <zweiss@equinix.com>, Rob Herring <robh@kernel.org>,
-        Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Dan Williams <dan.j.williams@intel.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Olof Johansson <olof@lixom.net>
-Subject: Re: [PATCH v4 02/13] dt-bindings: Add bindings for peci-aspeed
-Thread-Topic: [PATCH v4 02/13] dt-bindings: Add bindings for peci-aspeed
-Thread-Index: AQHX4HPXMbpig5e+0UWtpGOsbqQ2CaweBD8A
-Date:   Wed, 1 Dec 2021 10:38:04 +0000
-Message-ID: <DDB2E224-472B-41CC-A5C6-BEADB4BF2041@aspeedtech.com>
-References: <20211123140706.2945700-1-iwona.winiarska@intel.com>
- <20211123140706.2945700-3-iwona.winiarska@intel.com>
-In-Reply-To: <20211123140706.2945700-3-iwona.winiarska@intel.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3ae57822-fb57-4606-7594-08d9b4b6a84b
-x-ms-traffictypediagnostic: HK2PR0601MB1985:
-x-microsoft-antispam-prvs: <HK2PR0601MB19852D76E28D42F74604BBB38B689@HK2PR0601MB1985.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: VrSaXsn/pJu22pohqjMH0636NsNxw3zV0axEdRphqhI8is+BcbbXabK4hQm+DU1h+PRF59xlH7lTFUWBvZPPgaPozygdntUpL1FUhJwHEjCh4Z5u05sSMuxaThMo5dKwEBI/rN9KBDmqlJi3TO+GFdfwx6GlxIMlKkMHQtNLI1xou5NgSghAZXnYVqhg8m7qbJFWG26MVJnaispf9zdqzxFvsCEWu6P49Qg6zHy71fmJyQsvhoON0SAoVPma1XMcuaYLzNPvamnJKkP7DbPMdn5dBrsM2qwtPAUGGaWLwCRGjNpBTWAPHW//3iQkYXlesYtB5T7H3rE12akDGUJ+rFxHFEejXye4bRshqMwO69PdON0I3Frkvg7SYMy6TN7M2u0jlashoDSd49cbzQ6t0tiDDaASDdwqlPDtwYQau9qNERFHP8/GVdH4kX1aRPe7mNUEX5zxFi1K9kcp3ZtOQyxYfxXU157KM5gYSoMEJlRC7zZV6OhwsOetu9uEOr2UW/KKsNggTmtPQdUCzWwCE1iu4fmmxt/sVIlHUyTMqpFg0z0Tuv3DV5ipbYkmPh62cowEBzZNgF+pDdrq+ndgtj5NSeaTvFyGiFpOBCROs7HqECBQhkFPLNhhXyHzfVlcy1gfBE9GbCfAB398eVUrEqKlOkUzK6WXiE/+bAw0glCJ/J1kVoJdtnFIeceiSwDu1DpKcQGVS0a1+70jyjDS3e0NPftu64iglHNrJIFLUTT/DEprcf1pMNS1tEEgoEii
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3362.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(366004)(39850400004)(376002)(136003)(346002)(86362001)(54906003)(83380400001)(316002)(110136005)(2616005)(8676002)(64756008)(66476007)(66556008)(76116006)(5660300002)(508600001)(122000001)(66946007)(71200400001)(66446008)(8936002)(6486002)(36756003)(26005)(33656002)(7416002)(38100700002)(4326008)(6506007)(6512007)(186003)(53546011)(2906002)(38070700005)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SkdBeFd0S2xqNU54eVpWSTlEVDVWNFFkdjZGbnVLN29nRkFqMUd5M0dLZVFk?=
- =?utf-8?B?b3QyRGF3Vktsb0NCMS9DcjlMN2dVMm5ibFNFK0ZodVdZL0hEcmpFVVMwMmNM?=
- =?utf-8?B?alJQb2tMSHNHRzE2WUhBSDA0SkRud3d4TnJhb2M1eis2a3A1aTI1TUJsU0dv?=
- =?utf-8?B?cTYyV1lxSno5SjMzNGszMzA4MFZUVlhzWnZXTnNCaldWeFhzU2x6UzlHVXMr?=
- =?utf-8?B?RXNmb2xLQmpZS1lHNEkxUFQ3Y0NEUENaelpzeCtvZ1Roek5XZDJqSGoyc1hz?=
- =?utf-8?B?NzJFUzFyM1ZlVkFuQjN5YVBuaTFWR3ZJQjQxbzljVWJEYkZVSDE5WVJXR3lD?=
- =?utf-8?B?OGsvdTl6eDcveWhCbG9JNHRkQkc4OEhZdENkSXNrRXhtT0dqTkFOOHJxaUdX?=
- =?utf-8?B?Z29KdVIxSTlPdjFyZlM2eWFGMk0rSmVBKzBXQ2lkZlZvamkzUlN1WTdTK0pQ?=
- =?utf-8?B?L3RUMVFMRVkxUEZnY3hobVNmVUxmZjYzUFRRbVRrUndqK3h5L3BybVRMN1kw?=
- =?utf-8?B?VXcwMjM5UGZKSm41aW5iVEJ4ZnliWGRWb1g5bVFMT1hsVFZXenVGblBkbUlw?=
- =?utf-8?B?Y1crTHl4OWUxVm1JWnJINnZLNDRCWUNXWmd0SElRend2MEJuVTM3K3pPRWo5?=
- =?utf-8?B?ZExuUGoxcHZQWE1ONEoyQzJLdy8wZndhb1EvSzJ2OW5BTU54enJPcjdiL2pE?=
- =?utf-8?B?WDhCVlptcDU1a25wbXl1MVJPMWphY05QVFordzl4TXJDN0xvU04xeWQ0b2pV?=
- =?utf-8?B?Znl0WnhLLy9rWC9WRmFTditoY2JzaGxtVlpTQzZjR1V4VGZ0STl4V1lhWUFh?=
- =?utf-8?B?cTlxdUlRUTk3Z1d0QUdmbUZjSVV1V2F1RWd5Q1h2K3VuY2JqK2RRL01BNlZt?=
- =?utf-8?B?R0VpbEpBVEZlYXNGNm12bmpyT1EvdGRXOUx1S0dtb3NSZmRueXdRUXdRaElp?=
- =?utf-8?B?YXVhV3A3MmdCWTF6MWhEY3RrWDZEb2YycUp6bThDZ1VXdDZzZ1BPd0pWY3J0?=
- =?utf-8?B?SmtnckVnblRDQUxvSTZTM1M3cVltbC9wKzRKRkk5NjRmelBCeHRlQUZRNU95?=
- =?utf-8?B?YmpGd1BleHpxOFdBY2N6Mk0yeTF6blVITlh6YmlWTFJ4cFlQalFiZmlCeUFE?=
- =?utf-8?B?aVZQNlJXR055OFlIa0FJTXB6cm1kSEd5OEF5RkYwYityT2VnSHRhNnRuU3RW?=
- =?utf-8?B?K2lrSjlCQ3N2YnZTQldlSnMzcGExUkR4RkhZc2VzRlpFYXdaV3hNQmFRN0pz?=
- =?utf-8?B?YjhqbDhpODJaanRac2EyTTJYNXVOS1A4ajJjNHh2dmVBVmltczdsNW1LUS9o?=
- =?utf-8?B?S1d0d0Q3N2xvUVZhY3R1eU5lMDBEZEJmN0gzeDB2RnNvSHVvNHp3Y1ZFMzVh?=
- =?utf-8?B?dVh6SVBuUXdiT3RvdlZqWEhoMVJkbXZOTVYxN1M0UGkvWmtxV2w2M3REYVhH?=
- =?utf-8?B?OCtjVHFrVDZCNndaWlJBYnVvUmJmRzc2TkNtejc0VW1ldFViUXpVcGhXa2ts?=
- =?utf-8?B?a1pTL2R1eVZUeHVMN3VDM1Vocnpjdjk0djJUeHNmc09KQ3QzZCtoSk9ERXRT?=
- =?utf-8?B?QlQ1cWpIOWpGMTRqU2pQelZwYjJvSUFJWGFUMnNvMmlybU1PSnNNampoTXhY?=
- =?utf-8?B?dUh1QWs3OGVPVmRhSiszc255Mnl4ZTk1MzdRWk94NXNLQ1lzcGJDVW85R1Zj?=
- =?utf-8?B?cHNnMmFjRGJwa254TEtHWmlROXltTmhUeE1KZWtHVHR4Y3d3bGZLOWdhWW5a?=
- =?utf-8?B?SGFnbjNnczZtQWxQaVNnbGJIKzh4SlhHL2NWbWRRRXVaWllYZk1sZWxkZFVL?=
- =?utf-8?B?TFE3UkRkek9XWnpKTnpWTWNkd3pOYXhra0JNRS9aRDFMbVArMjQxSmhmZXlV?=
- =?utf-8?B?QWFvN2FneS94dHpsK0V3Ykt5TXZ0THpHemxod2JmVkxQSGZFYzlHOWNTRWdV?=
- =?utf-8?B?Z3NySGkvYlFCWjUrbGNiVUtwVmgzZ1o4ajJCdXpwdHpFQVZzaTVQdUhmS1Yz?=
- =?utf-8?B?RmJVd1ljazN6aUZyMmorR0VxRElDZlNKZkpiQmRmSGVMeEkxRGI3Y0FEdmti?=
- =?utf-8?B?WWVmeWV1UCtHdDRUUzQ2ZHJJZGZXS3kxVFNBNEpTQ0hqd2dTeS9Fb0xBbmtU?=
- =?utf-8?B?amlEQThxTTNuR1RpYmY1cVo4WC9PaVI3NXRVZWV2RXpIVFlEZVFSYUZyK2Fi?=
- =?utf-8?B?TnNNL2NKbjFxSmZHWThWVW1jTHpyWUVGNlBEd1EzVFludDFlNFh2YXZpTlpJ?=
- =?utf-8?Q?rtSoMSbDvYrHvy1Z8ui8WfzGZPDBnQuASTZ/kYfDVI=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <DC988721F0343842B4FB1A58B01A56AA@apcprd06.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S242815AbhLAKot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 05:44:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49844 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232908AbhLAKot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:44:49 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84178C061748
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 02:41:28 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id k37-20020a05600c1ca500b00330cb84834fso21875144wms.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 02:41:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ibHT0Tw2kI63la9g5/e7JK0voy9pB0hwBxOsML4cQWY=;
+        b=M0xlwYkMfBSDhb1COxiSIw3PukI0zbWBcPI5Lr06ZioqlX127taxVighQ90uy21gaZ
+         TzbbNtLfUHjJctXzFMJAsKDqC0wfm/nPNOdYjf/KutokP7fKJxCaioGgRDiSToJJWWXZ
+         /9cXUNYtiA0JKmZmMUEsNi0lETQDif8W4FtxHpqEgFzIMOhMAVfJQsP5qegLyQM5oaZ8
+         LxwGFEgQDO5Xh3PMizhp9zLOeh9kWIvdLhQaFl6ylrorGQq9l1S7gipy8B7u3hc299hN
+         8sVakR2W1Fe9vHUP17IaYkkIvUUKv8YN3c/TlslXRL+r8KH7AeRE8aixBeIghhyG5q3y
+         HkHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ibHT0Tw2kI63la9g5/e7JK0voy9pB0hwBxOsML4cQWY=;
+        b=Kd+vMabXFvICxAAMbKHv4xaiJ0l/OyVvDStFdw6xxDc6MU8nmIhilxMe99kZLq5jGh
+         o6Vlp/jTvSmYRYhvR0rEQWYl8DnXYcS7u6srctY4+W0DMXHCrOA4f3CP1cNxtpmxzFZN
+         ua6iEQX+wEs0QhpK6fln9sjRZjHJBEXMjRzQG1OIgMSpD2/1j6f3SbgShI375t7y0Vve
+         0cVOv19csjqwXf7UoXdaOqrQrh869zmRyqmaAolKiZDc8pMwhawdM3tzDPzBD/mZZP6j
+         oFSQ7V97u59xGWKhB5HZbdTPdcvAAji/DDoJgXcC2uFLPo0Z6wrd6Gji/GPEtUvYIcid
+         2c7A==
+X-Gm-Message-State: AOAM5311FtAdhEWDtEBUKDxMjdvHK40iFEUr0W3xKdsYk8NMsT93EKkM
+        e1WadhnwGrEyZh2WjEjMtKD/pA==
+X-Google-Smtp-Source: ABdhPJzcxkjtMoybZu6h0nI9AlFS5ZtL6bj9Td4YIh1MJlCIRbBS8WWcU39uUn2eJZsxwi73jj30sQ==
+X-Received: by 2002:a05:600c:35c8:: with SMTP id r8mr5997191wmq.8.1638355287096;
+        Wed, 01 Dec 2021 02:41:27 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id o5sm18419836wrx.83.2021.12.01.02.41.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 02:41:26 -0800 (PST)
+Subject: Re: [PATCH v3 3/5] pinctrl: qcom: Move chip specific functions to
+ right files
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
+References: <1638179932-3353-1-git-send-email-srivasam@codeaurora.org>
+ <1638179932-3353-4-git-send-email-srivasam@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <bb08af7e-3b90-2d64-3bb1-f82cc6686184@linaro.org>
+Date:   Wed, 1 Dec 2021 10:41:25 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3362.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ae57822-fb57-4606-7594-08d9b4b6a84b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2021 10:38:04.7182
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /SW6Tci5rzfI71CxL0GDNKcyxQymvhKbng4F0mm6xpgORaxMxMjrXlioigXmwq97u4anW1M8BLOX1oi+Z+gGtA0+0X2+U0vkGEc2hUo12n0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB1985
+In-Reply-To: <1638179932-3353-4-git-send-email-srivasam@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCk9uIDIwMjEvMTEvMjMsIDEwOjEwIFBNLCAib3BlbmJtYyBvbiBiZWhhbGYgb2YgSXdv
-bmEgV2luaWFyc2thIiA8b3BlbmJtYy1ib3VuY2VzK2JpbGx5X3RzYWk9YXNwZWVkdGVjaC5jb21A
-bGlzdHMub3psYWJzLm9yZyBvbiBiZWhhbGYgb2YgaXdvbmEud2luaWFyc2thQGludGVsLmNvbT4g
-d3JvdGU6DQoNCiAgICBBZGQgZGV2aWNlIHRyZWUgYmluZGluZ3MgZm9yIHRoZSBwZWNpLWFzcGVl
-ZCBjb250cm9sbGVyIGRyaXZlci4NCg0KICAgID4gICArICBhc3BlZWQsY2xvY2stZGl2aWRlcjoN
-CiAgICA+ICAgKyAgICBkZXNjcmlwdGlvbjoNCiAgICA+ICAgKyAgICAgIFRoaXMgdmFsdWUgZGV0
-ZXJtaW5lcyBQRUNJIGNvbnRyb2xsZXIgaW50ZXJuYWwgY2xvY2sgZGl2aWRpbmcNCiAgICA+ICAg
-KyAgICAgIHJhdGUuIFRoZSBkaXZpZGVyIHdpbGwgYmUgY2FsY3VsYXRlZCBhcyAyIHJhaXNlZCB0
-byB0aGUgcG93ZXIgb2YNCiAgICA+ICAgKyAgICAgIHRoZSBnaXZlbiB2YWx1ZS4NCiAgICA+ICAg
-KyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCiAgICA+
-ICAgKyAgICBtaW5pbXVtOiAwDQogICAgPiAgICsgICAgbWF4aW11bTogNw0KICAgID4gICArICAg
-IGRlZmF1bHQ6IDANCiAgICA+ICAgKw0KICAgID4gICArICBhc3BlZWQsbXNnLXRpbWluZzoNCiAg
-ICA+ICAgKyAgICBkZXNjcmlwdGlvbjoNCiAgICA+ICAgKyAgICAgIE1lc3NhZ2UgdGltaW5nIG5l
-Z290aWF0aW9uIHBlcmlvZC4gVGhpcyB2YWx1ZSB3aWxsIGRldGVybWluZSB0aGUgcGVyaW9kDQog
-ICAgPiAgICsgICAgICBvZiBtZXNzYWdlIHRpbWluZyBuZWdvdGlhdGlvbiB0byBiZSBpc3N1ZWQg
-YnkgUEVDSSBjb250cm9sbGVyLiBUaGUgdW5pdA0KICAgID4gICArICAgICAgb2YgdGhlIHByb2dy
-YW1tZWQgdmFsdWUgaXMgZm91ciB0aW1lcyBvZiBQRUNJIGNsb2NrIHBlcmlvZC4NCiAgICA+ICAg
-KyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCiAgICA+
-ICAgKyAgICBtaW5pbXVtOiAwDQogICAgPiAgICsgICAgbWF4aW11bTogMjU1DQogICAgPiAgICsg
-ICAgZGVmYXVsdDogMQ0KICAgID4gICArDQogICAgPiAgICsgIGFzcGVlZCxhZGRyLXRpbWluZzoN
-CiAgICA+ICAgKyAgICBkZXNjcmlwdGlvbjoNCiAgICA+ICAgKyAgICAgIEFkZHJlc3MgdGltaW5n
-IG5lZ290aWF0aW9uIHBlcmlvZC4gVGhpcyB2YWx1ZSB3aWxsIGRldGVybWluZSB0aGUgcGVyaW9k
-DQogICAgPiAgICsgICAgICBvZiBhZGRyZXNzIHRpbWluZyBuZWdvdGlhdGlvbiB0byBiZSBpc3N1
-ZWQgYnkgUEVDSSBjb250cm9sbGVyLiBUaGUgdW5pdA0KICAgID4gICArICAgICAgb2YgdGhlIHBy
-b2dyYW1tZWQgdmFsdWUgaXMgZm91ciB0aW1lcyBvZiBQRUNJIGNsb2NrIHBlcmlvZC4NCiAgICA+
-ICAgKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCiAg
-ICA+ICAgKyAgICBtaW5pbXVtOiAwDQogICAgPiAgICsgICAgbWF4aW11bTogMjU1DQogICAgPiAg
-ICsgICAgZGVmYXVsdDogMQ0KSSBzdWdnZXN0IGRlbGV0aW5nIHRoZXNlIHRocmVlIHByb3BlcnRp
-ZXMgYW5kIHJlcGxhY2luZyB0aGVtIHdpdGggdGhlIGZvbGxvd2luZw0KDQphc3BlZWQscGVjaS1i
-aXQtdGltZToNCiAgICAgICAgZGVzY3JpcHRpb246DQogICAgICAgICAgVGhlIGJpdCB0aW1lIGRy
-aXZlbiBieSBQRUNJIGNvbnRyb2xsZXIuIFRoZSB1bml0IG9mIHRoZSB2YWx1ZSBpcyBIei4NCiAg
-ICBtaW5pbXVtOiAyMDAwDQogICAgbWF4aW11bTogMTAwMDAwMA0KDQpBbmQgdGhlIGRyaXZlciBz
-aG91bGQgdXNlIHRoaXMgcHJvcGVydHkgdG8gY2FjdWxhdGUgdGhlIGFwcHJvcHJpYXRlIGNsb2Nr
-LWRpdmlkZXIsDQptc2ctdGltaW5nIGFuZCBhZGRyLXRpbWluZywgaW5zdGVhZCBvZiBleHBvc2lu
-ZyBoYXJkd2FyZSByZWdpc3RlcnMgdG8gZHRzLg0KDQogICAgPiAgICBbLi4uXQ0KICAgID4gICAr
-ZXhhbXBsZXM6DQogICAgPiAgICsgIC0gfA0KICAgID4gICArICAgICNpbmNsdWRlIDxkdC1iaW5k
-aW5ncy9pbnRlcnJ1cHQtY29udHJvbGxlci9hcm0tZ2ljLmg+DQogICAgPiAgICsgICAgI2luY2x1
-ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL2FzdDI2MDAtY2xvY2suaD4NCiAgICA+ICAgKyAgICBwZWNp
-LWNvbnRyb2xsZXJAMWU3OGIwMDAgew0KICAgID4gICArICAgICAgY29tcGF0aWJsZSA9ICJhc3Bl
-ZWQsYXN0MjYwMC1wZWNpIjsNCiAgICA+ICAgKyAgICAgIHJlZyA9IDwweDFlNzhiMDAwIDB4MTAw
-PjsNCiAgICA+ICAgKyAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSAzOCBJUlFfVFlQRV9MRVZF
-TF9ISUdIPjsNCiAgICA+ICAgKyAgICAgIGNsb2NrcyA9IDwmc3lzY29uIEFTUEVFRF9DTEtfR0FU
-RV9SRUYwQ0xLPjsNCiAgICA+ICAgKyAgICAgIHJlc2V0cyA9IDwmc3lzY29uIEFTUEVFRF9SRVNF
-VF9QRUNJPjsNCiAgICA+ICAgKyAgICAgIGNtZC10aW1lb3V0LW1zID0gPDEwMDA+Ow0KICAgID4g
-ICArICAgICAgYXNwZWVkLGNsb2NrLWRpdmlkZXIgPSA8MD47DQogICAgPiAgICsgICAgICBhc3Bl
-ZWQsbXNnLXRpbWluZyA9IDwxPjsNCiAgICA+ICAgKyAgICAgIGFzcGVlZCxhZGRyLXRpbWluZyA9
-IDwxPjsNCiAgICA+ICAgKyAgICAgIGFzcGVlZCxyZC1zYW1wbGluZy1wb2ludCA9IDw4PjsNCiAg
-ICA+ICAgKyAgICB9Ow0KICAgID4gICArLi4uDQogICAgLS0gDQogICAgMi4zMS4xDQoNClRoYW5r
-cw0KDQpCZXN0IFJlZ2FyZHMsDQpCaWxseSBUc2FpDQoNCg0KDQo=
+
+
+On 29/11/2021 09:58, Srinivasa Rao Mandadapu wrote:
+> Update lpass lpi pin control driver to accommodate new lpass variant
+> SoC specific drivers.
+> Move sm8250 SoC specific functions to pinctrl-sm8250-lpass-lpi.c file
+> and common declarations to pinctrl-lpass-lpi.h header file.
+> 
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> ---
+>   drivers/pinctrl/qcom/Makefile                   |   1 +
+>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c        | 251 +-----------------------
+>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.h        | 139 +++++++++++++
+>   drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c | 125 ++++++++++++
+>   4 files changed, 271 insertions(+), 245 deletions(-)
+>   create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+>   create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
+> 
+> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
+> index 7a12e8c..74568cf 100644
+> --- a/drivers/pinctrl/qcom/Makefile
+> +++ b/drivers/pinctrl/qcom/Makefile
+> @@ -37,3 +37,4 @@ obj-$(CONFIG_PINCTRL_SM8150) += pinctrl-sm8150.o
+>   obj-$(CONFIG_PINCTRL_SM8250) += pinctrl-sm8250.o
+>   obj-$(CONFIG_PINCTRL_SM8350) += pinctrl-sm8350.o
+>   obj-$(CONFIG_PINCTRL_LPASS_LPI) += pinctrl-lpass-lpi.o
+> +obj-$(CONFIG_PINCTRL_LPASS_LPI) += pinctrl-sm8250-lpass-lpi.o
+
+This is confusing, either we make new
+CONFIG_PINCTRL_SM8250_LPASS_LPI here and use it for 
+pinctrl-sm8250-lpass-lpi.o
+
+> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> index 2f19ab4..2641489 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+> @@ -4,237 +4,16 @@
+>    * Copyright (c) 2020 Linaro Ltd.
+>    */
+>   
+> -#include <linux/bitops.h>
+> -#include <linux/bitfield.h>
+
+Looks like some of these are removed without a reason.
+
+
+>   #include <linux/clk.h>
+>   #include <linux/gpio/driver.h>
+> -#include <linux/io.h>
+> -#include <linux/module.h>
+>   #include <linux/of_device.h>
+> -#include <linux/of.h>
+>   #include <linux/pinctrl/pinconf-generic.h>
+>   #include <linux/pinctrl/pinconf.h>
+>   #include <linux/pinctrl/pinmux.h>
+> -#include <linux/platform_device.h>
+> -#include <linux/slab.h>
+> -#include <linux/types.h>
+>   #include "../core.h"
+>   #include "../pinctrl-utils.h"
+> +#include "pinctrl-lpass-lpi.h"
+
+...
+
+
+> -
+> -module_platform_driver(lpi_pinctrl_driver);
+> -MODULE_DESCRIPTION("QTI LPI GPIO pin control driver");
+> -MODULE_LICENSE("GPL");
+
+if you build this as Modules your build would fail without MODULE_LICENSE().
+
+
+> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+> new file mode 100644
+> index 0000000..b0afb40
+> --- /dev/null
+> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
+> @@ -0,0 +1,139 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2020 Linaro Ltd.
+> + */
+> +#ifndef __PINCTRL_LPASS_LPI_H__
+> +#define __PINCTRL_LPASS_LPI_H__
+> +
+> +#define LPI_SLEW_RATE_CTL_REG	0xa000
+> +#define LPI_TLMM_REG_OFFSET		0x1000
+> +#define LPI_SLEW_RATE_MAX		0x03
+> +#define LPI_SLEW_BITS_SIZE		0x02
+> +#define LPI_SLEW_RATE_MASK		GENMASK(1, 0)
+> +#define LPI_GPIO_CFG_REG		0x00
+> +#define LPI_GPIO_PULL_MASK		GENMASK(1, 0)
+> +#define LPI_GPIO_FUNCTION_MASK		GENMASK(5, 2)
+> +#define LPI_GPIO_OUT_STRENGTH_MASK	GENMASK(8, 6)
+> +#define LPI_GPIO_OE_MASK		BIT(9)
+> +#define LPI_GPIO_VALUE_REG		0x04
+> +#define LPI_GPIO_VALUE_IN_MASK		BIT(0)
+> +#define LPI_GPIO_VALUE_OUT_MASK		BIT(1)
+> +
+> +#define LPI_GPIO_BIAS_DISABLE		0x0
+> +#define LPI_GPIO_PULL_DOWN		0x1
+> +#define LPI_GPIO_KEEPER			0x2
+> +#define LPI_GPIO_PULL_UP		0x3
+> +#define LPI_GPIO_DS_TO_VAL(v)		(v / 2 - 1)
+> +#define NO_SLEW				-1
+> +
+> +#define LPI_FUNCTION(fname)			                \
+> +	[LPI_MUX_##fname] = {		                \
+> +		.name = #fname,				\
+> +		.groups = fname##_groups,               \
+> +		.ngroups = ARRAY_SIZE(fname##_groups),	\
+> +	}
+> +
+> +#define LPI_PINGROUP(id, soff, f1, f2, f3, f4)		\
+> +	{						\
+> +		.name = "gpio" #id,			\
+> +		.pins = gpio##id##_pins,		\
+> +		.pin = id,				\
+> +		.slew_offset = soff,			\
+> +		.npins = ARRAY_SIZE(gpio##id##_pins),	\
+> +		.funcs = (int[]){			\
+> +			LPI_MUX_gpio,			\
+> +			LPI_MUX_##f1,			\
+> +			LPI_MUX_##f2,			\
+> +			LPI_MUX_##f3,			\
+> +			LPI_MUX_##f4,			\
+> +		},					\
+> +		.nfuncs = 5,				\
+> +	}
+> +
+> +struct lpi_pingroup {
+> +	const char *name;
+> +	const unsigned int *pins;
+> +	unsigned int npins;
+> +	unsigned int pin;
+> +	/* Bit offset in slew register for SoundWire pins only */
+> +	int slew_offset;
+> +	unsigned int *funcs;
+> +	unsigned int nfuncs;
+> +};
+> +
+> +struct lpi_function {
+> +	const char *name;
+> +	const char * const *groups;
+> +	unsigned int ngroups;
+> +};
+> +
+> +struct lpi_pinctrl_variant_data {
+> +	const struct pinctrl_pin_desc *pins;
+> +	int npins;
+> +	const struct lpi_pingroup *groups;
+> +	int ngroups;
+> +	const struct lpi_function *functions;
+> +	int nfunctions;
+> +};
+> +
+> +#define MAX_LPI_NUM_CLKS	2
+> +
+> +struct lpi_pinctrl {
+> +	struct device *dev;
+> +	struct pinctrl_dev *ctrl;
+> +	struct gpio_chip chip;
+> +	struct pinctrl_desc desc;
+> +	char __iomem *tlmm_base;
+> +	char __iomem *slew_base;
+> +	struct clk_bulk_data clks[MAX_LPI_NUM_CLKS];
+> +	struct mutex slew_access_lock;
+> +	const struct lpi_pinctrl_variant_data *data;
+> +};
+> +
+
+ From here
+<<<
+
+> +enum lpass_lpi_functions {
+> +	LPI_MUX_dmic1_clk,
+> +	LPI_MUX_dmic1_data,
+> +	LPI_MUX_dmic2_clk,
+> +	LPI_MUX_dmic2_data,
+> +	LPI_MUX_dmic3_clk,
+> +	LPI_MUX_dmic3_data,
+> +	LPI_MUX_i2s1_clk,
+> +	LPI_MUX_i2s1_data,
+> +	LPI_MUX_i2s1_ws,
+> +	LPI_MUX_i2s2_clk,
+> +	LPI_MUX_i2s2_data,
+> +	LPI_MUX_i2s2_ws,
+> +	LPI_MUX_qua_mi2s_data,
+> +	LPI_MUX_qua_mi2s_sclk,
+> +	LPI_MUX_qua_mi2s_ws,
+> +	LPI_MUX_swr_rx_clk,
+> +	LPI_MUX_swr_rx_data,
+> +	LPI_MUX_swr_tx_clk,
+> +	LPI_MUX_swr_tx_data,
+> +	LPI_MUX_wsa_swr_clk,
+> +	LPI_MUX_wsa_swr_data,
+> +	LPI_MUX_gpio,
+> +	LPI_MUX__,
+> +};
+> +
+> +static const unsigned int gpio0_pins[] = { 0 };
+> +static const unsigned int gpio1_pins[] = { 1 };
+> +static const unsigned int gpio2_pins[] = { 2 };
+> +static const unsigned int gpio3_pins[] = { 3 };
+> +static const unsigned int gpio4_pins[] = { 4 };
+> +static const unsigned int gpio5_pins[] = { 5 };
+> +static const unsigned int gpio6_pins[] = { 6 };
+> +static const unsigned int gpio7_pins[] = { 7 };
+> +static const unsigned int gpio8_pins[] = { 8 };
+> +static const unsigned int gpio9_pins[] = { 9 };
+> +static const unsigned int gpio10_pins[] = { 10 };
+> +static const unsigned int gpio11_pins[] = { 11 };
+> +static const unsigned int gpio12_pins[] = { 12 };
+> +static const unsigned int gpio13_pins[] = { 13 };
+ >>>
+to here are specific to sm8250, so it should not be in header file to 
+start with.
+
+
+> +
+> +int lpi_pinctrl_probe(struct platform_device *pdev);
+> +int lpi_pinctrl_remove(struct platform_device *pdev);
+> +
+> +#endif /*__PINCTRL_LPASS_LPI_H__*/
+> +
+> diff --git a/drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
+> new file mode 100644
+> index 0000000..3eba8b3
+> --- /dev/null
+> +++ b/drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
+> @@ -0,0 +1,125 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+
+...
+
+> +
+> +static struct platform_driver lpi_pinctrl_driver = {
+> +	.driver = {
+> +		   .name = "qcom-sm8250-lpass-lpi-pinctrl",
+> +		   .of_match_table = lpi_pinctrl_of_match,
+> +	},
+> +	.probe = lpi_pinctrl_probe,
+> +	.remove = lpi_pinctrl_remove,
+> +};
+> +
+> +module_platform_driver(lpi_pinctrl_driver);
+> +MODULE_DESCRIPTION("QTI LPI GPIO pin control driver");
+
+may be :
+"SM8250 LPI GPIO pin control driver"
+
+--srini
+> +MODULE_LICENSE("GPL");
+> +
+> 
