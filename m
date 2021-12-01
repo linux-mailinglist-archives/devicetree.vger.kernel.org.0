@@ -2,97 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 983FC46597C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:50:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E0C465994
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 23:55:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343851AbhLAWxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 17:53:34 -0500
-Received: from mail-oi1-f171.google.com ([209.85.167.171]:38875 "EHLO
-        mail-oi1-f171.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234878AbhLAWxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:53:33 -0500
-Received: by mail-oi1-f171.google.com with SMTP id r26so51690643oiw.5;
-        Wed, 01 Dec 2021 14:50:12 -0800 (PST)
+        id S1353723AbhLAW6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 17:58:33 -0500
+Received: from mail-oi1-f181.google.com ([209.85.167.181]:41533 "EHLO
+        mail-oi1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343872AbhLAW6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 17:58:32 -0500
+Received: by mail-oi1-f181.google.com with SMTP id u74so51774986oie.8;
+        Wed, 01 Dec 2021 14:55:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=uDut9FDjyS7cvZ6OtKt3ZhA8ckXBN4QI5o6gqsIbxQU=;
-        b=ZdKm+zlxqog0LTsVnvU0TwIZCThAug5yP2zS+JsOS8Or0l/ttBaoQSJVT80UqwveIE
-         wBSDjdA+ygx/AT16kPCJu1BGTqqa1nnR4rWBmkNxJ/3vsrxsA8ZZ5/fl02v1bvEgvmPO
-         0TrAzh0jCbE+bcIHRE9nuXEIm3BaK/yojnm2Si/d6x0i7OQlDXCr3jcRn8TqpJOC7h0L
-         yZ7jMzfH54zZASoztyzpPhYG3XqwXwufW5tW7iKmHzCG4hDvdguRcKnk8I6KzIW4ZI2m
-         z3sgz1/RKi4977wedLEJGp4ZA+fDp8gF/8qaCqlOsLKqHIZcTcckCMfVVARSzecSOF6X
-         eySw==
-X-Gm-Message-State: AOAM530gKDkzRWt+PS2nZDJbmgMSFWoN1wflfWheuWNzFnx2/aI0I55G
-        5HmKJipH0/BdPhxu5xgOCl43X0kfVw==
-X-Google-Smtp-Source: ABdhPJx5+/+tgHcjnm0WO+tKo1il1G9G5wjCb2EVFfjoCYR+Hp83LHdRTEyX/xQy5SrSCFXzK1w2EA==
-X-Received: by 2002:a05:6808:44:: with SMTP id v4mr1244447oic.123.1638399011641;
-        Wed, 01 Dec 2021 14:50:11 -0800 (PST)
+        bh=ib/q2WdtptujHEB1lSaLIrDhy6pKI5PXBCEmpVwVMTc=;
+        b=wmMFlxH2H5vX194tEXwow9kvI7nSn5ZFuYw1v+WuU242gr7NeAbcxFsPNCikpJY9t/
+         0yRRZc0Twv14l7j8DgcvZfUexGQSJ25N1bRzYzU928k0upL8B7Rg0EeJPJt4WIWZKaNi
+         J9gp9+kRLUU/klu4mSize5r9YMI4T25FsznYy/xG31SB8k/E/geQT7LziJ70uqEXwakw
+         fwSuDIz6HeGWV6nRFmTfejQWFWVeu9P5bBqlFYHFYGXyY8/4pkVeu1va6i7uitITm3xa
+         DWe5flxPcbp92QXV1LAyuv+vMrQDImQDsFpXteeYYW5LnYsZ1Zs4rFoHffDgmDnqPLT3
+         uGPQ==
+X-Gm-Message-State: AOAM533aId674PSxgTGmX3V5wSNTZGZghen3LfPB32yQx25LpetQSGJ+
+        LYatUWyY1gXOXcWu7qsaRg==
+X-Google-Smtp-Source: ABdhPJycbEcaMETSqXei9OfAshaCZRuZAW9lmaRdJVOfv6dvTwQ/VYgm04Ezv1ZyHkpShGuTXfHpeA==
+X-Received: by 2002:a05:6808:14e:: with SMTP id h14mr1291601oie.28.1638399311073;
+        Wed, 01 Dec 2021 14:55:11 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y192sm506680oie.21.2021.12.01.14.50.10
+        by smtp.gmail.com with ESMTPSA id q9sm444496oti.32.2021.12.01.14.55.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 14:50:11 -0800 (PST)
-Received: (nullmailer pid 2995089 invoked by uid 1000);
-        Wed, 01 Dec 2021 22:50:10 -0000
-Date:   Wed, 1 Dec 2021 16:50:10 -0600
+        Wed, 01 Dec 2021 14:55:10 -0800 (PST)
+Received: (nullmailer pid 3020368 invoked by uid 1000);
+        Wed, 01 Dec 2021 22:55:09 -0000
+Date:   Wed, 1 Dec 2021 16:55:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: iio: adc: exynos-adc: Fix node name in
- example
-Message-ID: <Yaf8IkypvCTHi3xO@robh.at.kernel.org>
-References: <20211125152154.162780-1-geert@linux-m68k.org>
- <3fec093a-df46-6096-3f66-891734a5f140@canonical.com>
- <20211127174343.1b9dcabe@jic23-huawei>
- <CAMuHMdVWZEai-EYvoWc5eToSqK9N8KsXi6u0Ej6fQzQE77aNoA@mail.gmail.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: PCI: ti,am65: Fix
+ "ti,syscon-pcie-id"/"ti,syscon-pcie-mode" to take argument
+Message-ID: <Yaf9TbHHdT7RMSSd@robh.at.kernel.org>
+References: <20211126083119.16570-1-kishon@ti.com>
+ <20211126083119.16570-2-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdVWZEai-EYvoWc5eToSqK9N8KsXi6u0Ej6fQzQE77aNoA@mail.gmail.com>
+In-Reply-To: <20211126083119.16570-2-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 29, 2021 at 09:22:35AM +0100, Geert Uytterhoeven wrote:
-> Hi Jonathan,
+On Fri, 26 Nov 2021 14:01:15 +0530, Kishon Vijay Abraham I wrote:
+> Fix binding documentation of "ti,syscon-pcie-id" and "ti,syscon-pcie-mode"
+> to take phandle with argument. The argument is the register offset within
+> "syscon" used to configure PCIe controller. Similar change for j721e is
+> discussed in [1]
 > 
-> On Sat, Nov 27, 2021 at 6:38 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> > On Thu, 25 Nov 2021 16:26:16 +0100
-> > Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> wrote:
-> > > On 25/11/2021 16:21, Geert Uytterhoeven wrote:
-> > > > "make dt_binding_check":
-> > > >
-> > > >     Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.example.dt.yaml: ncp15wb473: $nodename:0: 'ncp15wb473' does not match '^thermistor(.*)?$'
-> > > >         From schema: Documentation/devicetree/bindings/hwmon/ntc-thermistor.yaml
-> > > >
-> > > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > > ---
-> > > >  .../devicetree/bindings/iio/adc/samsung,exynos-adc.yaml         | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > >
-> > >
-> > > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> > >
-> > This doesn't particularly feel like we need to rush it in, so applied
-> > to the togreg branch of iio.git which will go in next merge window.
-> >
-> > Shout if I should pull it to a fixes branch.
+> [1] -> http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
 > 
-> Thank you, that's fine. We're still far from the point where we can start
-> enforcing "no errors" in "make dt_binding_check dtbs_check".
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> ---
+>  .../devicetree/bindings/pci/ti,am65-pci-ep.yaml  |  8 ++++++--
+>  .../bindings/pci/ti,am65-pci-host.yaml           | 16 ++++++++++++----
+>  2 files changed, 18 insertions(+), 6 deletions(-)
+> 
 
-No errors/warnings is the rule for dt_binding_check, but not dtbs_check.
-
-Jonathan, Can you drop this and I'll apply with some other fixes I have 
-for 5.16.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
