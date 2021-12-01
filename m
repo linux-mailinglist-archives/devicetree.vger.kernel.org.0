@@ -2,96 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F7AF465617
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 20:05:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F8CE465624
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 20:07:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352652AbhLATIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 14:08:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352651AbhLATIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 14:08:31 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9E15C0613DD
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 11:05:07 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id t26so65437580lfk.9
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 11:05:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=d6fIBufmD5QRMsiw/gE/8E+34ToRCzmP+LytC0+70WA=;
-        b=fEwES4k7XV41oxKjE9076qaNcNBSMHNFAhXgS+OoH/wfCgfA7Omf9+QTWzXH+1O22P
-         bJjzldE4J2xo8XME/WQRtuDpwzg/NmNVjUy4lYve9X5mM0vKBfgszZ1EedRZtYjS8gxS
-         SCwbVv4WXThSbX1fPCzbqzfjGrAF/W3wS9IXCT63GL5QfNE1Dig8v92tAGkB/eP15+V2
-         FSEVaqfrRFO3fKoBr6aZQscuTG5tH1c3ICI4w1lZie+wqeFub5gCYdGU5QV43JlY/B3a
-         BzlOkHaNCmMXicSPAPKmrq3an0KR1khryejau7fF09f5PyZi3MyLFKD660GpUOew1+HU
-         Gefw==
+        id S239268AbhLATK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 14:10:28 -0500
+Received: from mail-ot1-f51.google.com ([209.85.210.51]:37604 "EHLO
+        mail-ot1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S239347AbhLATK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 14:10:26 -0500
+Received: by mail-ot1-f51.google.com with SMTP id h19-20020a9d3e53000000b0056547b797b2so36611328otg.4;
+        Wed, 01 Dec 2021 11:07:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=d6fIBufmD5QRMsiw/gE/8E+34ToRCzmP+LytC0+70WA=;
-        b=AXxFihMvfrjELBGBtyfvkgaN58ZaDBEWfnbGwcSEZ8dITjb6Dd41HdBfvR+uwxHZCp
-         RceIOdWMwLlD+Uf+jo1EZ9nxtLODhzdE4z9s8P/HI2lj3xmbowCmuUBXZO6CUzxnHIGv
-         qrrS7r+/nsHAtPurN43VWdbpvOXAK2+Wb3/kqmk8TE5nRpfUslzuv/ZtX1PzopVIvBMU
-         GnhbMmez6tF0Xrp7T1qqdleL63h21HGug6MKFUxvgbNRRaeHPuyDsh1nR1pQctvJkwJw
-         9F2lKaYBLYJNvtehXkVLKARE2H7oe1sfeQ+n4japNOrtg63OjWqTUnyDF6S0+5AEMUEJ
-         wlYA==
-X-Gm-Message-State: AOAM530XbNrmcgkhGh/b1gcB1D5cKeTYi69xyEbC56ilUv2uBLZqcPu4
-        wGvdmsYiC0LaVCxzz0SPeoodXg==
-X-Google-Smtp-Source: ABdhPJyvjE/0qbt84gWoIGc+pyqYk+/D639fFxWAkgip4SenMEvpmY1/UWceA3HcjGJREntdEe18JQ==
-X-Received: by 2002:ac2:5bce:: with SMTP id u14mr7529672lfn.467.1638385506127;
-        Wed, 01 Dec 2021 11:05:06 -0800 (PST)
-Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id q1sm68855lfo.255.2021.12.01.11.05.05
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ns1VGFmIcxV8dyTDHSaaXTsKQnH3/DvAnnTtMRYBS+Q=;
+        b=ERHEm+eSieZOplMSofp1XjojM34V/fNPDhjBawGpNSfUez5ls4INXm3s4gaGwV6aIk
+         Od0843fwnxmu3igurGD6OOoTXq6Rr3jNxmSJe//cnxDsUelIiLSgpXl5JE+RbdK8chBj
+         5Wv5jKk+h2SuCLtJ+YbVcyh+vYnrSSD+Q1iA5HoUCqDOFEykjBEGHG09kaFlvfCnvPAW
+         XYjWnk5PTQ9WhiPl7Twsk630A1N6yBv7TuQQZR+8bDYe9s7y+1CFEiIANKWd8aDrVixU
+         SD7kv9PIP5K7Jx/yIPkyd7JcXRj7KGKwL8MLvRnY9Oj4rpXT6IXwaDmVjmMV0TaOSe1X
+         06pQ==
+X-Gm-Message-State: AOAM5304O65amjDcPA7i4OF1KJ+2pB/W7kh9QTxtiaxntnrUsadCnj9P
+        pD36GE3Qj5spA5qEdUi65g==
+X-Google-Smtp-Source: ABdhPJyuR82qEd6pOKlVcbGE8T/SQxfzOcBBPB6zaklRvnXx6zarsyFBDAGE0kbYD4LuWHhdyxwljg==
+X-Received: by 2002:a05:6830:195:: with SMTP id q21mr7238076ota.355.1638385620493;
+        Wed, 01 Dec 2021 11:07:00 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id n26sm201220ooq.36.2021.12.01.11.06.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 11:05:05 -0800 (PST)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        Wolfram Sang <wsa@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 6/6] i2c: exynos5: Mention Exynos850 and ExynosAutoV9 in Kconfig
-Date:   Wed,  1 Dec 2021 21:04:55 +0200
-Message-Id: <20211201190455.31646-7-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211201190455.31646-1-semen.protsenko@linaro.org>
-References: <20211201190455.31646-1-semen.protsenko@linaro.org>
+        Wed, 01 Dec 2021 11:06:59 -0800 (PST)
+Received: (nullmailer pid 2270663 invoked by uid 1000);
+        Wed, 01 Dec 2021 19:06:58 -0000
+Date:   Wed, 1 Dec 2021 13:06:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        "maintainer:BROADCOM IPROC GBIT ETHERNET DRIVER" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Doug Berger <opendmb@gmail.com>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH net-next 7/7] dt-bindings: net: Convert iProc MDIO mux to
+ YAML
+Message-ID: <YafH0nADqO7DTU4A@robh.at.kernel.org>
+References: <20211201041228.32444-1-f.fainelli@gmail.com>
+ <20211201041228.32444-8-f.fainelli@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211201041228.32444-8-f.fainelli@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I2C controller chosen by I2C_EXYNOS5 config option is also suitable for
-Exynos850 and ExynosAutoV9 SoCs. State that specifically in I2C_EXYNOS5
-symbol help section.
+On Tue, Nov 30, 2021 at 08:12:28PM -0800, Florian Fainelli wrote:
+> Conver the Broadcom iProc MDIO mux Device Tree binding to YAML.
+> 
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
+>  .../bindings/net/brcm,mdio-mux-iproc.txt      | 62 --------------
+>  .../bindings/net/brcm,mdio-mux-iproc.yaml     | 80 +++++++++++++++++++
+>  2 files changed, 80 insertions(+), 62 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt
+> deleted file mode 100644
+> index deb9e852ea27..000000000000
+> --- a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.txt
+> +++ /dev/null
+> @@ -1,62 +0,0 @@
+> -Properties for an MDIO bus multiplexer found in Broadcom iProc based SoCs.
+> -
+> -This MDIO bus multiplexer defines buses that could be internal as well as
+> -external to SoCs and could accept MDIO transaction compatible to C-22 or
+> -C-45 Clause. When child bus is selected, one needs to select these two
+> -properties as well to generate desired MDIO transaction on appropriate bus.
+> -
+> -Required properties in addition to the generic multiplexer properties:
+> -
+> -MDIO multiplexer node:
+> -- compatible: brcm,mdio-mux-iproc.
+> -
+> -Every non-ethernet PHY requires a compatible so that it could be probed based
+> -on this compatible string.
+> -
+> -Optional properties:
+> -- clocks: phandle of the core clock which drives the mdio block.
+> -
+> -Additional information regarding generic multiplexer properties can be found
+> -at- Documentation/devicetree/bindings/net/mdio-mux.yaml
+> -
+> -
+> -for example:
+> -		mdio_mux_iproc: mdio-mux@66020000 {
+> -			compatible = "brcm,mdio-mux-iproc";
+> -			reg = <0x66020000 0x250>;
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			mdio@0 {
+> -				reg = <0x0>;
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				pci_phy0: pci-phy@0 {
+> -					compatible = "brcm,ns2-pcie-phy";
+> -					reg = <0x0>;
+> -					#phy-cells = <0>;
+> -				};
+> -			};
+> -
+> -			mdio@7 {
+> -				reg = <0x7>;
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				pci_phy1: pci-phy@0 {
+> -					compatible = "brcm,ns2-pcie-phy";
+> -					reg = <0x0>;
+> -					#phy-cells = <0>;
+> -				};
+> -			};
+> -			mdio@10 {
+> -				reg = <0x10>;
+> -				#address-cells = <1>;
+> -				#size-cells = <0>;
+> -
+> -				gphy0: eth-phy@10 {
+> -					reg = <0x10>;
+> -				};
+> -			};
+> -		};
+> diff --git a/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+> new file mode 100644
+> index 000000000000..a576fb87bfc8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/brcm,mdio-mux-iproc.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
- drivers/i2c/busses/Kconfig | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+All Broadcom authors on the original. Please add BSD-2-Clause.
 
-diff --git a/drivers/i2c/busses/Kconfig b/drivers/i2c/busses/Kconfig
-index df89cb809330..42da31c1ab70 100644
---- a/drivers/i2c/busses/Kconfig
-+++ b/drivers/i2c/busses/Kconfig
-@@ -617,7 +617,7 @@ config I2C_EXYNOS5
- 	help
- 	  High-speed I2C controller on Samsung Exynos5 and newer Samsung SoCs:
- 	  Exynos5250, Exynos5260, Exynos5410, Exynos542x, Exynos5800,
--	  Exynos5433 and Exynos7.
-+	  Exynos5433, Exynos7, Exynos850 and ExynosAutoV9.
- 	  Choose Y here only if you build for such Samsung SoC.
- 
- config I2C_GPIO
--- 
-2.30.2
-
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/brcm,mdio-mux-iproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MDIO bus multiplexer found in Broadcom iProc based SoCs.
+> +
+> +maintainers:
+> +  - Florian Fainelli <f.fainelli@gmail.com>
+> +
+> +description:
+> +  This MDIO bus multiplexer defines buses that could be internal as well as
+> +  external to SoCs and could accept MDIO transaction compatible to C-22 or
+> +  C-45 Clause. When child bus is selected, one needs to select these two
+> +  properties as well to generate desired MDIO transaction on appropriate bus.
+> +
+> +allOf:
+> +  - $ref: /schemas/net/mdio-mux.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: brcm,mdio-mux-iproc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: core clock driving the MDIO block
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    mdio_mux_iproc: mdio-mux@66020000 {
+> +        compatible = "brcm,mdio-mux-iproc";
+> +        reg = <0x66020000 0x250>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        mdio@0 {
+> +           reg = <0x0>;
+> +           #address-cells = <1>;
+> +           #size-cells = <0>;
+> +
+> +           pci_phy0: pci-phy@0 {
+> +              compatible = "brcm,ns2-pcie-phy";
+> +              reg = <0x0>;
+> +              #phy-cells = <0>;
+> +           };
+> +        };
+> +
+> +        mdio@7 {
+> +           reg = <0x7>;
+> +           #address-cells = <1>;
+> +           #size-cells = <0>;
+> +
+> +           pci_phy1: pci-phy@0 {
+> +              compatible = "brcm,ns2-pcie-phy";
+> +              reg = <0x0>;
+> +              #phy-cells = <0>;
+> +           };
+> +        };
+> +
+> +        mdio@10 {
+> +           reg = <0x10>;
+> +           #address-cells = <1>;
+> +           #size-cells = <0>;
+> +
+> +           gphy0: eth-phy@10 {
+> +              reg = <0x10>;
+> +           };
+> +        };
+> +    };
+> -- 
+> 2.25.1
+> 
+> 
