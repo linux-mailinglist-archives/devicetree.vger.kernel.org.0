@@ -2,96 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E653E464558
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 04:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 10DB946456E
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 04:28:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346280AbhLADTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Nov 2021 22:19:10 -0500
-Received: from mx24.baidu.com ([111.206.215.185]:36474 "EHLO baidu.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1346377AbhLADTJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Nov 2021 22:19:09 -0500
-Received: from BJHW-Mail-Ex11.internal.baidu.com (unknown [10.127.64.34])
-        by Forcepoint Email with ESMTPS id E60C8E10313B84848A20;
-        Wed,  1 Dec 2021 11:15:46 +0800 (CST)
-Received: from BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42) by
- BJHW-Mail-Ex11.internal.baidu.com (10.127.64.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.2308.20; Wed, 1 Dec 2021 11:15:46 +0800
-Received: from localhost (172.31.63.8) by BJHW-MAIL-EX27.internal.baidu.com
- (10.127.64.42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.20; Wed, 1
- Dec 2021 11:15:46 +0800
-Date:   Wed, 1 Dec 2021 11:15:54 +0800
-From:   Cai Huoqing <caihuoqing@baidu.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-staging@lists.linux.dev>
-Subject: Re: [PATCH v3 1/3] staging: zynpu: Add driver support for ARM(China)
- ZHOUYI AI accelerator
-Message-ID: <20211201031554.GA865@LAPTOP-UKSR4ENP.internal.baidu.com>
-References: <20211126021904.32325-1-caihuoqing@baidu.com>
- <20211126021904.32325-2-caihuoqing@baidu.com>
- <YaCCFv2DLzeng+UE@kroah.com>
- <20211126071444.GA32426@LAPTOP-UKSR4ENP.internal.baidu.com>
+        id S1346445AbhLADcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Nov 2021 22:32:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346443AbhLADcA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Nov 2021 22:32:00 -0500
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5E97C061748
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 19:28:39 -0800 (PST)
+Received: by mail-oo1-xc36.google.com with SMTP id m37-20020a4a9528000000b002b83955f771so7339117ooi.7
+        for <devicetree@vger.kernel.org>; Tue, 30 Nov 2021 19:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=MO98g5+euDpCVh/jM+G9QFzSNcP/DvDPu2ZrHFjPZiI=;
+        b=q6TBdnlLfvm7R0HoW22oepN5kftiW3DpHBwcdL5EVMVlQpGgSqkDtufnZK0r4iNdIh
+         D6RdI8R8ln6MLdW4KiWC2Rx6rbXBLAJuvtf3lRKF2ZTk+btOyK5q4eAVTg1NuhnMH60N
+         ir2AG6gVWCd+7tsmMUpib0VI1SFZTXsWTALpSenGMRJuKxA4me3+VxiJ68sGGyW7rsSy
+         hQWPJpQPuFRXS2IVI+hunuBpke78ZuO1pj7rH17exKzYX6ifp2647hw5KHKf7u5df+K2
+         rVlmY2XsKYDHsuZjjuOnSt1HZnLUx3m0A8nhApcOn+uH3etDRRTKh7HB6aSfpkjg820p
+         fNqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MO98g5+euDpCVh/jM+G9QFzSNcP/DvDPu2ZrHFjPZiI=;
+        b=lEBdfNv0AgK6iW+yzRdqTpz6AQ6cS4se2QmJ5gOnwoJhZ2cYCMJ4bEmR9A7mptby7x
+         N66r0vDuICjf7N1QyuO/FHvayeU/YQx41w0IUvb0YYx365cYmIDCuiljhBxgSDDP7O0s
+         yUKJrqvuRF00RVcfvy7QiUaoDtCYjkeDe9Iyf5oC/jeCOrn4DJT/ars9t+gJ72VbE9xL
+         RIfgcAUkOyYEHiTA295+n5GMLda4Jql6nFCUOVp/mWeg0Nq2MtCy6MeZGBQQ1VAtKU5Q
+         wBpklZHe2CkuK1NrJJkcYX/E0t9RzCt0ubkd984cPBtACYjaahZO1CrRIYEgRfP3USe2
+         dPCg==
+X-Gm-Message-State: AOAM5322UZp5TZBvUhz5mNO/uh/8Ysn/Drl2UaSBtOIL5IMd9uSvGXSj
+        UrzlxFZsAx50BuvIerCqKu6eYQ==
+X-Google-Smtp-Source: ABdhPJxRV0wt7Uha2/z9XZkBUc9mYcppiJ72YLqp1ThPKmdn8S+ZpdjExghjKIx6cLzq0lU87Q2lnA==
+X-Received: by 2002:a4a:d854:: with SMTP id g20mr2695766oov.6.1638329319096;
+        Tue, 30 Nov 2021 19:28:39 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id w24sm3394628ots.10.2021.11.30.19.28.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Nov 2021 19:28:38 -0800 (PST)
+Date:   Tue, 30 Nov 2021 21:28:33 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
+        quic_ppratap@quicinc.com
+Subject: Re: [PATCH 2/2] arm64: qcom: sc7280: Add USB2 controller and phy
+ nodes for SKU1 board
+Message-ID: <Yabr4azUasmQDy7U@builder.lan>
+References: <1637837815-8532-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1637837815-8532-3-git-send-email-quic_c_sanm@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20211126071444.GA32426@LAPTOP-UKSR4ENP.internal.baidu.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [172.31.63.8]
-X-ClientProxiedBy: BC-Mail-Ex09.internal.baidu.com (172.31.51.49) To
- BJHW-MAIL-EX27.internal.baidu.com (10.127.64.42)
+In-Reply-To: <1637837815-8532-3-git-send-email-quic_c_sanm@quicinc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26 11月 21 15:14:44, Cai Huoqing wrote:
-> On 26 11月 21 07:43:34, Greg Kroah-Hartman wrote:
-> > On Fri, Nov 26, 2021 at 10:18:59AM +0800, Cai Huoqing wrote:
-> > > ZHOUYI NPU is an AI accelerator chip which is integrated into ARM SOC,
-> > > such as Allwinner R329 SOC.
-> > > Add driver support for this AI accelerator here.
-> > > 
-> > > This driver is not standard linux style, there are some clean up works,
-> > > fixing code style, refactorring.
-> > > And it only works with a closed source usermode driver, so need to
-> > > reverse the libraries, and impelement it, then open source
-> > > the usermode driver.
-> > > So add this driver to linux-staging
-> > 
-> > Sorry, but no, I can not take this driver into the kernel tree until
-> > there is an open source user of the new api that you are creating with
-> > this driver.  This was discussed many times on the linux-kernel mailing
-> > list and at the Linux kernel summit a few months ago (see the summary at
-> > lwn.net about it.)
-> > 
-> > So please work on that first, and then we will be glad to revisit taking
-> > this kernel driver into the tree.
-> OK, I will do that.
-> And after doing some clean up, try to take this code to the "real" linux tree.
+On Thu 25 Nov 04:56 CST 2021, Sandeep Maheswaram wrote:
+
+> Adding USB2 controller and phy nodes for SC7280 SKU1 board.
 > 
-> Thanks,
-> Cai
-Recently arm china contact me for some opensource issue. 
+> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dts | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dts b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> index 9b991ba..ffd483d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dts
+> @@ -80,3 +80,19 @@
+>  		qcom,pre-scaling = <1 1>;
+>  	};
+>  };
+> +
+> +&usb_2 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_dwc3 {
+> +	dr_mode = "host";
 
-Reply here -
+The commit messages doesn't capture why the mode changes from peripheral
+to host.
 
-Hi arm-china folks, it's appropriate for you to submit this driver
-for GPL,
-be glad to revisit the opensource kernel mode and userspace driver:).
+> +};
+> +
+> +&usb_2_hsphy {
 
-If you have any questions, reply here directly.
+Is this specific to this SKU? Is there a reason not to keep this in the
+dtsi?
 
-Thanks
-Cai
 
-> > 
-> > Also, it is much simpler just to take a few hours and clean up the
-> > coding style issues yourself rather than relying on the community to do
-> > it for you over a few months.
-> > 
-> > thanks,
-> > 
-> > greg k-h
+Please squash the two patches and please write a proper commit message.
+
+Thanks,
+Bjorn
+
+> +	status = "okay";
+> +
+> +	vdda-pll-supply = <&vreg_l10c_0p8>;
+> +	vdda33-supply = <&vreg_l2b_3p0>;
+> +	vdda18-supply = <&vreg_l1c_1p8>;
+> +};
+> -- 
+> 2.7.4
+> 
