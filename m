@@ -2,190 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E35F0465087
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:52:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EC64650B0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 16:00:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243532AbhLAO4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 09:56:04 -0500
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:52997 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231266AbhLAO4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:56:04 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 2BACD3201805;
-        Wed,  1 Dec 2021 09:52:42 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Wed, 01 Dec 2021 09:52:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=97XXQ3gLcRUr43IrksH+Lte3PkG
-        vGsPSg5dKT/RQncY=; b=WRXsQ1zZbZU0/hp8JVnGkjViCfc9hRM+81X2xVv5M7g
-        dj/PbDX4mjWqAdN8VVq3d3VS4XO3tW+WoNRtJlVz3GOaAI0XVlNANTm67nL8qoZ1
-        qozpQLBhrTUsWGteXwt9J+SN4E3w+tHd5SMsZITROhisuuTVTN014jyX9jWUGrZX
-        C97TnZ1WcLtKSSvg74YsU2s5KKYyqrvoe1YRDJPjFfW2xWhPZ0CAvXmNq+ekDZJH
-        DOezxZXH4xw9PnzKueCgfCOmWjKDXZ5wapOMhVLy9KnZ5vSRZnn2NJQM6GaMBL3D
-        lyRHWWkWAXLHjAsDRUMTPL618cu9Ma0HIsYAyXyynNQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=97XXQ3
-        gLcRUr43IrksH+Lte3PkGvGsPSg5dKT/RQncY=; b=IhIlvJTcucuSqNav6zd38y
-        no+ASvcpz6SxmcnKJ1mW0y7Hxx1AovCnt4K/e9C0eToF8D73Blbzds+/oyBRUqFM
-        AcEmYsVdYPvyvLn/uDeNlsC2Vww7rU2Bu5xIOgKHQ1uD3YwmjrS4rFpFeqlNH7O2
-        kAFIIRO70rs1qjMFDYAGzvSy6Yttcwao1kBtD4MfaHpf69A40lM1Sl2Xw2s0x/lq
-        E1cbZQAqM9KEno5WkAgLq2kTK0s9UzDhAWoRdLfpm+79LvwLSAQxzZtBYR251HxC
-        tsMOl2ReyoosmpeXANsQaEqVfUBVyJ6L62Vqkgg5p0VGMhr1MupRUNAVcqo8iP4w
-        ==
-X-ME-Sender: <xms:OYynYVnRx7P5vkZ9XxLHkTR-lbZlw2ZfYjS0dgfqAxUJuhWbvYwyFw>
-    <xme:OYynYQ01LIYqvfjWQ7WFlHKX95lWwrzpzs1WMBgyCOLlzzxsfrm43wlr6qYY03p2J
-    G25XK_da8VHGIX0sYU>
-X-ME-Received: <xmr:OYynYbqc2P2kaLmtkBPZKUCCOCHsnEMzUgt7-LdsWcO1mSZ1ydwcCr7W0BQL_B1jxuC7_C0TqDLLNaQLFpnFB5RzN4erlObuwSTxNqsCTD9s6g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieefgdeikecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
-    veenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:OYynYVlDZb5nGbBLdXrUBy5chSiPeH7BK7VepZCxsPcSoMo7F09_Hw>
-    <xmx:OYynYT1n74sfS69dwrAPM0z2lCj9i2uxMbJOyeq12PmG-9yyTaSIBw>
-    <xmx:OYynYUtf0j7Rla3wGx5ZhBuGQixAD-NLiu8bB6g9NYhkmWfRBck9XQ>
-    <xmx:OYynYdo-IB3nT-xP6YOc9NmzykniJohE-aVhVajLWLz3Px7QVQZ_6g>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Dec 2021 09:52:40 -0500 (EST)
-Date:   Wed, 1 Dec 2021 15:52:37 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
-Cc:     David Lechner <david@lechnology.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
-        dave.stevenson@raspberrypi.com
-Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
-Message-ID: <20211201145237.6ezs4pwkmku3pesv@houat>
-References: <20211124150757.17929-1-noralf@tronnes.org>
- <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
- <20211129093946.xhp22mvdut3m67sc@houat>
- <ca9e432a-6b04-9935-2469-135a9b47514e@tronnes.org>
+        id S245597AbhLAPDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 10:03:52 -0500
+Received: from relay08.th.seeweb.it ([5.144.164.169]:58213 "EHLO
+        relay08.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245331AbhLAPDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 10:03:50 -0500
+Received: from [192.168.1.101] (83.6.166.111.neoplus.adsl.tpnet.pl [83.6.166.111])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 91A103F6CF;
+        Wed,  1 Dec 2021 16:00:23 +0100 (CET)
+Message-ID: <bd109d31-4f87-1155-613b-7df4293b3163@somainline.org>
+Date:   Wed, 1 Dec 2021 16:00:22 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="t7h6p5wa7vue6hpy"
-Content-Disposition: inline
-In-Reply-To: <ca9e432a-6b04-9935-2469-135a9b47514e@tronnes.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH 2/2] iommu: arm-smmu-impl: Add SM8450 qcom iommu
+ implementation
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211201073943.3969549-1-vkoul@kernel.org>
+ <20211201073943.3969549-3-vkoul@kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20211201073943.3969549-3-vkoul@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---t7h6p5wa7vue6hpy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Noralf,
-
-On Tue, Nov 30, 2021 at 03:30:11PM +0100, Noralf Tr=F8nnes wrote:
-> Den 29.11.2021 10.39, skrev Maxime Ripard:
-> > On Wed, Nov 24, 2021 at 04:03:07PM -0600, David Lechner wrote:
-> >> On 11/24/21 9:07 AM, Noralf Tr=F8nnes wrote:
-> > I agree that it doesn't really fit in the DT either though. Noralf, what
-> > kind of data do we need to setup a display in fbtft? The init sequence,
-> > and maybe some enable/reset GPIO, plus some timing duration maybe?
-> >=20
-> > There's one similar situation I can think of: wifi chips. Those also
-> > need a few infos from the DT (like what bus it's connected to, enable
-> > GPIO, etc) and a different sequence (firmware), sometimes different from
-> > one board to the other.
-> >=20
-> > Could we have a binding that would be something like:
-> >=20
-> > panel@42 {
-> > 	 compatible =3D "panel-spi";
-> > 	 model =3D "panel-from-random-place-42";
-> > 	 enable-gpios =3D <&...>;
-> > }
-> >=20
-> > And then, the driver would request the init sequence through the
-> > firmware mechanism using a name generated from the model property.
-> >=20
-> > It allows to support multiple devices in a given system, since the
-> > firmware name wouldn't conflict, it makes a decent binding, and users
-> > can adjust the init sequence easily (maybe with a bit of tooling)
-> >=20
-> > Would that work?
+On 01.12.2021 08:39, Vinod Koul wrote:
+> Add SM8450 qcom iommu implementation to the table of
+> qcom_smmu_impl_of_match table which brings in iommu support for
+> SM8450 SoC
 >
-> I really like this idea. An added benefit is that one driver can handle
-> all MIPI DBI compatible controllers avoiding the need to do a patchset
-> like this for all the various MIPI DBI controllers. The firmware will
-> just contain numeric commands with parameters, so no need for different
-> controller drivers to handle the controller specific command names.
->=20
-> The following is a list of the MIPI DBI compatible controllers currently
-> in staging/fbtft: ili9341, hx8357d, st7735r, ili9163, ili9163, ili9163,
-> ili9163, ili9486, ili9481, tinylcd, s6d02a1, s6d02a1, hx8340bn, ili9340.
->=20
-> The compatible needs to be a bit more specific though since there are 2
-> major SPI protocols for these display: MIPI DBI and the one used by
-> ILI9325 and others.
->=20
-> The full binding would be something like this:
->=20
-> panel@42 {
-> 	compatible =3D "panel-mipi-dbi-spi";
-> 	model =3D "panel-from-random-place-42";
->=20
-> 	/* The MIPI DBI spec lists these powers supply pins */
-> 	vdd-supply =3D <&...>;
-> 	vddi-supply =3D <&...>;
->=20
-> 	/* Optional gpio to drive the RESX line */
-> 	reset-gpios =3D <&...>;
->=20
-> 	/*
-> 	 * D/CX: Data/Command, Command is active low
-> 	 * Abcense: Interface option 1 (D/C embedded in 9-bit word)
-> 	 * Precense: Interface option 3
-> 	 */
-> 	dc-gpios =3D <&...>;
->=20
-> 	/*
-> 	 * If set the driver won't try to read from the controller to see
-> 	 * if it's already configured by the bootloader or previously by
-> 	 * the driver. A readable controller avoids flicker and/or delay
-> 	 * enabling the pipeline.
-> 	 *
-> 	 * This property might not be necessary if we are guaranteed to
-> 	 * always read back all 1's or 0's when MISO is not connected.
-> 	 * I don't know if all setups can guarantee that.
-> 	 */
-> 	write-only;
->=20
-> 	/* Optional ref to backlight node */
-> 	backlight =3D <&...>;
-> }
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-It looks decent to me. We'll want Rob to give his opinion though, but it
-looks in a much better shape compared to what we usually have :)
+With deep pain, as we've had to deal with this for a few generations now..
 
-> Many of these controllers also have a RGB interface option for the
-> pixels and only do configuration over SPI.
-> Maybe the compatible should reflect these 2 options somehow?
+Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 
-I think we'll want a "real" panel for RGB, with its own compatible
-though. We have a few of these drivers in tree already, so it's better
-to remain consistent.
 
-Maxime
 
---t7h6p5wa7vue6hpy
-Content-Type: application/pgp-signature; name="signature.asc"
+Konrad
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaeMNQAKCRDj7w1vZxhR
-xS9tAP97O/fE4VyFUMC/zgJm79yHc1PNoOp9KscuTXy6u8NB9QD/cXZGBJe2Qh7Y
-16Qdu45H/3tqX4UKfzsOrCoz7emoRgk=
-=4AhX
------END PGP SIGNATURE-----
-
---t7h6p5wa7vue6hpy--
