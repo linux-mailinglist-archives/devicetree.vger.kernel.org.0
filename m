@@ -2,320 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94878465082
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:52:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E35F0465087
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 15:52:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245680AbhLAOze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 09:55:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50566 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242496AbhLAOzc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:55:32 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5638DC061756
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 06:52:05 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id v11so52880425wrw.10
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 06:52:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Im4lhnDU7h1zzEhl7Bg6dNQdOJiiGLdPlwaGdlFdY0w=;
-        b=N0a7Yiilgm9EGpuyCzXLbA5mmqYCItPOful2q8+86Y8Az88yCITQKe9AqyBa4pDWqN
-         lAyrbGoNCHs4VALD+g5PxHaKlLldcuXhXkeWwQImSJxPJPySV39xQHXIj7vdUY1RTfLz
-         gKWTrp12/+PBD2LLijhRcDiZLkA2ydXM92JKtr/bBX6Q03JGqJeE9+AlxM8fDKQ9+mpl
-         k7tTzNgYFyGhhmxzgOPf0RPUmXxLaGeJTzBez5ot0AE4qNXl18R0vAlNN1gh+Zs+6ifD
-         vXhPCQmpO0Z0baMTozp5rmYzflECFVtosStlfYN3mbnhkxcSMXCEYbMQys7VGEecQE0W
-         K6yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Im4lhnDU7h1zzEhl7Bg6dNQdOJiiGLdPlwaGdlFdY0w=;
-        b=uJxRnxisROd/uHfTfTebbJzX//ck5iYF8pvyvqHncAntSXJ8U9xiVemvvUEq0O5HyE
-         54cl/aq+YquuAzkV2GCbUVFW4FUKpAKnnzhu9vOVnq4rqizQi2Ni/rIBb2Qb9eApfiDk
-         QbWmAh2fZ2+rMBYxzjW/w5Pr4v6A6ctZtV1smqquvfPr73llG9nF9e8o6aOb9UEyYryP
-         ISp7MxY6gZlxjy10HI3KQagpJ4GVTH5FrluwUE1MiWWBmQxM1NH9hGFhEkzcAXbZ2CKC
-         XfbztQNzuRKD61JvI3/Kydd6UdQ31ntRCRXVIYUN9ELS1VHeUeDZ3kIBOalu+irjNYef
-         JN5Q==
-X-Gm-Message-State: AOAM530CN/nX/EvbQ2QZFu6o/TYo/sGwf82Qduf1dZOnrY5rbl47pU8E
-        6APnwFrcI4cwClieOJiJyl3ZEw==
-X-Google-Smtp-Source: ABdhPJyAt928KhsGzc7akjW3LCjIvAwdtXvf03dwEyiYbCd2F1dSKNV1Hl1qm6/oNSiWMY4mjNzZmw==
-X-Received: by 2002:a05:6000:82:: with SMTP id m2mr7044492wrx.202.1638370323944;
-        Wed, 01 Dec 2021 06:52:03 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id j40sm1282103wms.19.2021.12.01.06.52.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Dec 2021 06:52:03 -0800 (PST)
-Subject: Re: [PATCH v6 02/10] ASoC: qcom: lpass: Add dma fields for codec dma
- lpass interface
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org
-Cc:     Venkata Prasad Potturu <potturu@codeaurora.org>
-References: <1637928282-2819-1-git-send-email-srivasam@codeaurora.org>
- <1637928282-2819-3-git-send-email-srivasam@codeaurora.org>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <bf9e086f-29d0-6df0-f8b8-8a26b4c052a8@linaro.org>
-Date:   Wed, 1 Dec 2021 14:52:02 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S243532AbhLAO4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 09:56:04 -0500
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:52997 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S231266AbhLAO4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 09:56:04 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 2BACD3201805;
+        Wed,  1 Dec 2021 09:52:42 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Wed, 01 Dec 2021 09:52:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=97XXQ3gLcRUr43IrksH+Lte3PkG
+        vGsPSg5dKT/RQncY=; b=WRXsQ1zZbZU0/hp8JVnGkjViCfc9hRM+81X2xVv5M7g
+        dj/PbDX4mjWqAdN8VVq3d3VS4XO3tW+WoNRtJlVz3GOaAI0XVlNANTm67nL8qoZ1
+        qozpQLBhrTUsWGteXwt9J+SN4E3w+tHd5SMsZITROhisuuTVTN014jyX9jWUGrZX
+        C97TnZ1WcLtKSSvg74YsU2s5KKYyqrvoe1YRDJPjFfW2xWhPZ0CAvXmNq+ekDZJH
+        DOezxZXH4xw9PnzKueCgfCOmWjKDXZ5wapOMhVLy9KnZ5vSRZnn2NJQM6GaMBL3D
+        lyRHWWkWAXLHjAsDRUMTPL618cu9Ma0HIsYAyXyynNQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=97XXQ3
+        gLcRUr43IrksH+Lte3PkGvGsPSg5dKT/RQncY=; b=IhIlvJTcucuSqNav6zd38y
+        no+ASvcpz6SxmcnKJ1mW0y7Hxx1AovCnt4K/e9C0eToF8D73Blbzds+/oyBRUqFM
+        AcEmYsVdYPvyvLn/uDeNlsC2Vww7rU2Bu5xIOgKHQ1uD3YwmjrS4rFpFeqlNH7O2
+        kAFIIRO70rs1qjMFDYAGzvSy6Yttcwao1kBtD4MfaHpf69A40lM1Sl2Xw2s0x/lq
+        E1cbZQAqM9KEno5WkAgLq2kTK0s9UzDhAWoRdLfpm+79LvwLSAQxzZtBYR251HxC
+        tsMOl2ReyoosmpeXANsQaEqVfUBVyJ6L62Vqkgg5p0VGMhr1MupRUNAVcqo8iP4w
+        ==
+X-ME-Sender: <xms:OYynYVnRx7P5vkZ9XxLHkTR-lbZlw2ZfYjS0dgfqAxUJuhWbvYwyFw>
+    <xme:OYynYQ01LIYqvfjWQ7WFlHKX95lWwrzpzs1WMBgyCOLlzzxsfrm43wlr6qYY03p2J
+    G25XK_da8VHGIX0sYU>
+X-ME-Received: <xmr:OYynYbqc2P2kaLmtkBPZKUCCOCHsnEMzUgt7-LdsWcO1mSZ1ydwcCr7W0BQL_B1jxuC7_C0TqDLLNaQLFpnFB5RzN4erlObuwSTxNqsCTD9s6g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieefgdeikecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:OYynYVlDZb5nGbBLdXrUBy5chSiPeH7BK7VepZCxsPcSoMo7F09_Hw>
+    <xmx:OYynYT1n74sfS69dwrAPM0z2lCj9i2uxMbJOyeq12PmG-9yyTaSIBw>
+    <xmx:OYynYUtf0j7Rla3wGx5ZhBuGQixAD-NLiu8bB6g9NYhkmWfRBck9XQ>
+    <xmx:OYynYdo-IB3nT-xP6YOc9NmzykniJohE-aVhVajLWLz3Px7QVQZ_6g>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 1 Dec 2021 09:52:40 -0500 (EST)
+Date:   Wed, 1 Dec 2021 15:52:37 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Noralf =?utf-8?Q?Tr=C3=B8nnes?= <noralf@tronnes.org>
+Cc:     David Lechner <david@lechnology.com>, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
+        dave.stevenson@raspberrypi.com
+Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
+Message-ID: <20211201145237.6ezs4pwkmku3pesv@houat>
+References: <20211124150757.17929-1-noralf@tronnes.org>
+ <eba23198-5c52-6520-079b-d2d41f71dc25@lechnology.com>
+ <20211129093946.xhp22mvdut3m67sc@houat>
+ <ca9e432a-6b04-9935-2469-135a9b47514e@tronnes.org>
 MIME-Version: 1.0
-In-Reply-To: <1637928282-2819-3-git-send-email-srivasam@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="t7h6p5wa7vue6hpy"
+Content-Disposition: inline
+In-Reply-To: <ca9e432a-6b04-9935-2469-135a9b47514e@tronnes.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--t7h6p5wa7vue6hpy
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 26/11/2021 12:04, Srinivasa Rao Mandadapu wrote:
-> Add lpass interface memebers to support audio path over codec dma.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+Hi Noralf,
 
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+On Tue, Nov 30, 2021 at 03:30:11PM +0100, Noralf Tr=F8nnes wrote:
+> Den 29.11.2021 10.39, skrev Maxime Ripard:
+> > On Wed, Nov 24, 2021 at 04:03:07PM -0600, David Lechner wrote:
+> >> On 11/24/21 9:07 AM, Noralf Tr=F8nnes wrote:
+> > I agree that it doesn't really fit in the DT either though. Noralf, what
+> > kind of data do we need to setup a display in fbtft? The init sequence,
+> > and maybe some enable/reset GPIO, plus some timing duration maybe?
+> >=20
+> > There's one similar situation I can think of: wifi chips. Those also
+> > need a few infos from the DT (like what bus it's connected to, enable
+> > GPIO, etc) and a different sequence (firmware), sometimes different from
+> > one board to the other.
+> >=20
+> > Could we have a binding that would be something like:
+> >=20
+> > panel@42 {
+> > 	 compatible =3D "panel-spi";
+> > 	 model =3D "panel-from-random-place-42";
+> > 	 enable-gpios =3D <&...>;
+> > }
+> >=20
+> > And then, the driver would request the init sequence through the
+> > firmware mechanism using a name generated from the model property.
+> >=20
+> > It allows to support multiple devices in a given system, since the
+> > firmware name wouldn't conflict, it makes a decent binding, and users
+> > can adjust the init sequence easily (maybe with a bit of tooling)
+> >=20
+> > Would that work?
+>
+> I really like this idea. An added benefit is that one driver can handle
+> all MIPI DBI compatible controllers avoiding the need to do a patchset
+> like this for all the various MIPI DBI controllers. The firmware will
+> just contain numeric commands with parameters, so no need for different
+> controller drivers to handle the controller specific command names.
+>=20
+> The following is a list of the MIPI DBI compatible controllers currently
+> in staging/fbtft: ili9341, hx8357d, st7735r, ili9163, ili9163, ili9163,
+> ili9163, ili9486, ili9481, tinylcd, s6d02a1, s6d02a1, hx8340bn, ili9340.
+>=20
+> The compatible needs to be a bit more specific though since there are 2
+> major SPI protocols for these display: MIPI DBI and the one used by
+> ILI9325 and others.
+>=20
+> The full binding would be something like this:
+>=20
+> panel@42 {
+> 	compatible =3D "panel-mipi-dbi-spi";
+> 	model =3D "panel-from-random-place-42";
+>=20
+> 	/* The MIPI DBI spec lists these powers supply pins */
+> 	vdd-supply =3D <&...>;
+> 	vddi-supply =3D <&...>;
+>=20
+> 	/* Optional gpio to drive the RESX line */
+> 	reset-gpios =3D <&...>;
+>=20
+> 	/*
+> 	 * D/CX: Data/Command, Command is active low
+> 	 * Abcense: Interface option 1 (D/C embedded in 9-bit word)
+> 	 * Precense: Interface option 3
+> 	 */
+> 	dc-gpios =3D <&...>;
+>=20
+> 	/*
+> 	 * If set the driver won't try to read from the controller to see
+> 	 * if it's already configured by the bootloader or previously by
+> 	 * the driver. A readable controller avoids flicker and/or delay
+> 	 * enabling the pipeline.
+> 	 *
+> 	 * This property might not be necessary if we are guaranteed to
+> 	 * always read back all 1's or 0's when MISO is not connected.
+> 	 * I don't know if all setups can guarantee that.
+> 	 */
+> 	write-only;
+>=20
+> 	/* Optional ref to backlight node */
+> 	backlight =3D <&...>;
+> }
 
-> ---
->   sound/soc/qcom/lpass.h | 133 +++++++++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 133 insertions(+)
-> 
-> diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
-> index 63aaa6f..4142f12 100644
-> --- a/sound/soc/qcom/lpass.h
-> +++ b/sound/soc/qcom/lpass.h
-> @@ -19,6 +19,17 @@
->   #define LPASS_MAX_MI2S_PORTS			(8)
->   #define LPASS_MAX_DMA_CHANNELS			(8)
->   #define LPASS_MAX_HDMI_DMA_CHANNELS		(4)
-> +#define LPASS_MAX_CDC_DMA_CHANNELS		(8)
-> +#define LPASS_MAX_VA_CDC_DMA_CHANNELS		(8)
-> +#define LPASS_CDC_DMA_INTF_ONE_CHANNEL		(0x01)
-> +#define LPASS_CDC_DMA_INTF_TWO_CHANNEL		(0x03)
-> +#define LPASS_CDC_DMA_INTF_FOUR_CHANNEL		(0x0F)
-> +#define LPASS_CDC_DMA_INTF_SIX_CHANNEL		(0x3F)
-> +#define LPASS_CDC_DMA_INTF_EIGHT_CHANNEL	(0xFF)
-> +
-> +#define LPASS_MAX_CDC_CLKS			(9)
-> +#define LPASS_ACTIVE_PDS			(4)
-> +#define LPASS_PROXY_PDS			(8)
->   
->   #define QCOM_REGMAP_FIELD_ALLOC(d, m, f, mf)    \
->   	do { \
-> @@ -50,6 +61,12 @@ struct lpaif_dmactl {
->   	struct regmap_field *burst8;
->   	struct regmap_field *burst16;
->   	struct regmap_field *dynburst;
-> +	struct regmap_field *codec_enable;
-> +	struct regmap_field *codec_pack;
-> +	struct regmap_field *codec_intf;
-> +	struct regmap_field *codec_fs_sel;
-> +	struct regmap_field *codec_channel;
-> +	struct regmap_field *codec_fs_delay;
->   };
->   
->   /* Both the CPU DAI and platform drivers will access this data */
-> @@ -64,6 +81,25 @@ struct lpass_data {
->   	/* MI2S bit clock (derived from system clock by a divider */
->   	struct clk *mi2s_bit_clk[LPASS_MAX_MI2S_PORTS];
->   
-> +	struct clk *cdc_dma_clks[LPASS_MAX_CDC_CLKS];
-> +
-> +	struct clk *xo;
-> +	struct clk *gcc_cfg_noc_lpass;
-> +	struct clk *core_cc_core;
-> +	struct clk *aon_cc_audio_hm_h;
-> +	struct clk *core_cc_sysnoc_mport_core;
-> +	struct clk *audio_cc_ext_mclk0;
-> +	struct clk *audio_cc_ext_mclk1;
-> +	struct clk *core_cc_lpm_core;
-> +	struct clk *core_cc_lpm_mem0_core;
-> +	struct clk *audio_cc_codec_mem;
-> +	struct clk *audio_cc_codec_mem0;
-> +	struct clk *audio_cc_codec_mem1;
-> +	struct clk *audio_cc_codec_mem2;
-> +	struct clk *audio_cc_rx_mclk_2x;
-> +	struct clk *audio_cc_rx_mclk;
-> +	struct clk *aon_cc_va_mem0;
-> +
->   	/* MI2S SD lines to use for playback/capture */
->   	unsigned int mi2s_playback_sd_mode[LPASS_MAX_MI2S_PORTS];
->   	unsigned int mi2s_capture_sd_mode[LPASS_MAX_MI2S_PORTS];
-> @@ -72,38 +108,61 @@ struct lpass_data {
->   	bool mi2s_was_prepared[LPASS_MAX_MI2S_PORTS];
->   
->   	int hdmi_port_enable;
-> +	int codec_dma_enable;
->   
->   	/* low-power audio interface (LPAIF) registers */
->   	void __iomem *lpaif;
->   	void __iomem *hdmiif;
-> +	void __iomem *rxtx_lpaif;
-> +	void __iomem *va_lpaif;
-> +
-> +	u32 rxtx_cdc_dma_lpm_buf;
-> +	u32 va_cdc_dma_lpm_buf;
->   
->   	/* regmap backed by the low-power audio interface (LPAIF) registers */
->   	struct regmap *lpaif_map;
->   	struct regmap *hdmiif_map;
-> +	struct regmap *rxtx_lpaif_map;
-> +	struct regmap *va_lpaif_map;
->   
->   	/* interrupts from the low-power audio interface (LPAIF) */
->   	int lpaif_irq;
->   	int hdmiif_irq;
-> +	int rxtxif_irq;
-> +	int vaif_irq;
-> +
->   	/* SOC specific variations in the LPASS IP integration */
->   	struct lpass_variant *variant;
->   
->   	/* bit map to keep track of static channel allocations */
->   	unsigned long dma_ch_bit_map;
->   	unsigned long hdmi_dma_ch_bit_map;
-> +	unsigned long rxtx_dma_ch_bit_map;
-> +	unsigned long va_dma_ch_bit_map;
->   
->   	/* used it for handling interrupt per dma channel */
->   	struct snd_pcm_substream *substream[LPASS_MAX_DMA_CHANNELS];
->   	struct snd_pcm_substream *hdmi_substream[LPASS_MAX_HDMI_DMA_CHANNELS];
-> +	struct snd_pcm_substream *rxtx_substream[LPASS_MAX_CDC_DMA_CHANNELS];
-> +	struct snd_pcm_substream *va_substream[LPASS_MAX_CDC_DMA_CHANNELS];
->   
->   	/* SOC specific clock list */
->   	struct clk_bulk_data *clks;
->   	int num_clks;
-> +	struct clk_bulk_data *cdc_clks;
-> +	int cdc_num_clks;
->   
->   	/* Regmap fields of I2SCTL & DMACTL registers bitfields */
->   	struct lpaif_i2sctl *i2sctl;
->   	struct lpaif_dmactl *rd_dmactl;
->   	struct lpaif_dmactl *wr_dmactl;
->   	struct lpaif_dmactl *hdmi_rd_dmactl;
-> +
-> +	/* Regmap fields of CODEC DMA CTRL registers*/
-> +	struct lpaif_dmactl *rxtx_rd_dmactl;
-> +	struct lpaif_dmactl *rxtx_wr_dmactl;
-> +	struct lpaif_dmactl *va_wr_dmactl;
-> +
->   	/* Regmap fields of HDMI_CTRL registers*/
->   	struct regmap_field *hdmitx_legacy_en;
->   	struct regmap_field *hdmitx_parity_calc_en;
-> @@ -130,6 +189,24 @@ struct lpass_variant {
->   	u32	wrdma_reg_base;
->   	u32	wrdma_reg_stride;
->   	u32	wrdma_channels;
-> +	u32	rxtx_irq_reg_base;
-> +	u32	rxtx_irq_reg_stride;
-> +	u32	rxtx_irq_ports;
-> +	u32	rxtx_rdma_reg_base;
-> +	u32	rxtx_rdma_reg_stride;
-> +	u32	rxtx_rdma_channels;
-> +	u32	rxtx_wrdma_reg_base;
-> +	u32	rxtx_wrdma_reg_stride;
-> +	u32	rxtx_wrdma_channels;
-> +	u32	va_irq_reg_base;
-> +	u32	va_irq_reg_stride;
-> +	u32	va_irq_ports;
-> +	u32	va_rdma_reg_base;
-> +	u32	va_rdma_reg_stride;
-> +	u32	va_rdma_channels;
-> +	u32	va_wrdma_reg_base;
-> +	u32	va_wrdma_reg_stride;
-> +	u32	va_wrdma_channels;
->   	u32	i2sctrl_reg_base;
->   	u32	i2sctrl_reg_stride;
->   	u32	i2s_ports;
-> @@ -233,12 +310,66 @@ struct lpass_variant {
->   	struct reg_field wrdma_enable;
->   	struct reg_field wrdma_dyncclk;
->   
-> +	/*CDC RXTX RD_DMA */
-> +	struct reg_field rxtx_rdma_intf;
-> +	struct reg_field rxtx_rdma_bursten;
-> +	struct reg_field rxtx_rdma_wpscnt;
-> +	struct reg_field rxtx_rdma_fifowm;
-> +	struct reg_field rxtx_rdma_enable;
-> +	struct reg_field rxtx_rdma_dyncclk;
-> +	struct reg_field rxtx_rdma_burst8;
-> +	struct reg_field rxtx_rdma_burst16;
-> +	struct reg_field rxtx_rdma_dynburst;
-> +	struct reg_field rxtx_rdma_codec_enable;
-> +	struct reg_field rxtx_rdma_codec_pack;
-> +	struct reg_field rxtx_rdma_codec_intf;
-> +	struct reg_field rxtx_rdma_codec_fs_sel;
-> +	struct reg_field rxtx_rdma_codec_ch;
-> +	struct reg_field rxtx_rdma_codec_fs_delay;
-> +
-> +	/*CDC RXTX WR_DMA */
-> +	struct reg_field rxtx_wrdma_intf;
-> +	struct reg_field rxtx_wrdma_bursten;
-> +	struct reg_field rxtx_wrdma_wpscnt;
-> +	struct reg_field rxtx_wrdma_fifowm;
-> +	struct reg_field rxtx_wrdma_enable;
-> +	struct reg_field rxtx_wrdma_dyncclk;
-> +	struct reg_field rxtx_wrdma_burst8;
-> +	struct reg_field rxtx_wrdma_burst16;
-> +	struct reg_field rxtx_wrdma_dynburst;
-> +	struct reg_field rxtx_wrdma_codec_enable;
-> +	struct reg_field rxtx_wrdma_codec_pack;
-> +	struct reg_field rxtx_wrdma_codec_intf;
-> +	struct reg_field rxtx_wrdma_codec_fs_sel;
-> +	struct reg_field rxtx_wrdma_codec_ch;
-> +	struct reg_field rxtx_wrdma_codec_fs_delay;
-> +
-> +	/*CDC VA WR_DMA */
-> +	struct reg_field va_wrdma_intf;
-> +	struct reg_field va_wrdma_bursten;
-> +	struct reg_field va_wrdma_wpscnt;
-> +	struct reg_field va_wrdma_fifowm;
-> +	struct reg_field va_wrdma_enable;
-> +	struct reg_field va_wrdma_dyncclk;
-> +	struct reg_field va_wrdma_burst8;
-> +	struct reg_field va_wrdma_burst16;
-> +	struct reg_field va_wrdma_dynburst;
-> +	struct reg_field va_wrdma_codec_enable;
-> +	struct reg_field va_wrdma_codec_pack;
-> +	struct reg_field va_wrdma_codec_intf;
-> +	struct reg_field va_wrdma_codec_fs_sel;
-> +	struct reg_field va_wrdma_codec_ch;
-> +	struct reg_field va_wrdma_codec_fs_delay;
-> +
->   	/**
->   	 * on SOCs like APQ8016 the channel control bits start
->   	 * at different offset to ipq806x
->   	 **/
->   	u32	dmactl_audif_start;
->   	u32	wrdma_channel_start;
-> +	u32	rxtx_wrdma_channel_start;
-> +	u32	va_wrdma_channel_start;
-> +
->   	/* SOC specific initialization like clocks */
->   	int (*init)(struct platform_device *pdev);
->   	int (*exit)(struct platform_device *pdev);
-> @@ -250,10 +381,12 @@ struct lpass_variant {
->   	int num_dai;
->   	const char * const *dai_osr_clk_names;
->   	const char * const *dai_bit_clk_names;
-> +	const char * const *cdc_dma_clk_names;
->   
->   	/* SOC specific clocks configuration */
->   	const char **clk_name;
->   	int num_clks;
-> +	int cdc_dma_num_clks;
->   };
->   
->   struct lpass_pcm_data {
-> 
+It looks decent to me. We'll want Rob to give his opinion though, but it
+looks in a much better shape compared to what we usually have :)
+
+> Many of these controllers also have a RGB interface option for the
+> pixels and only do configuration over SPI.
+> Maybe the compatible should reflect these 2 options somehow?
+
+I think we'll want a "real" panel for RGB, with its own compatible
+though. We have a few of these drivers in tree already, so it's better
+to remain consistent.
+
+Maxime
+
+--t7h6p5wa7vue6hpy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaeMNQAKCRDj7w1vZxhR
+xS9tAP97O/fE4VyFUMC/zgJm79yHc1PNoOp9KscuTXy6u8NB9QD/cXZGBJe2Qh7Y
+16Qdu45H/3tqX4UKfzsOrCoz7emoRgk=
+=4AhX
+-----END PGP SIGNATURE-----
+
+--t7h6p5wa7vue6hpy--
