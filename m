@@ -2,117 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85DF3464B51
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:12:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7942464B66
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 11:14:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242472AbhLAKPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 05:15:19 -0500
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:57561 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237392AbhLAKPT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:15:19 -0500
-Received: (Authenticated sender: foss@0leil.net)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 1B44E1C0015;
-        Wed,  1 Dec 2021 10:11:54 +0000 (UTC)
-Date:   Wed, 1 Dec 2021 11:11:52 +0100
-From:   Quentin Schulz <foss+kernel@0leil.net>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 1/2] iio:adc:axp20x: add support for NTC thermistor
-Message-ID: <20211201101152.fyimgddfd7mpwjg2@fiqs>
-References: <20211118141233.247907-1-boger@wirenboard.com>
- <20211118141233.247907-2-boger@wirenboard.com>
+        id S237507AbhLAKRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 05:17:32 -0500
+Received: from mail-vk1-f179.google.com ([209.85.221.179]:35722 "EHLO
+        mail-vk1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S242865AbhLAKRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 05:17:08 -0500
+Received: by mail-vk1-f179.google.com with SMTP id q21so15680923vkn.2;
+        Wed, 01 Dec 2021 02:13:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fDQGCPKgNjOGlOGfr9DTBVT3/yVTaxIqaon2+L7qbgU=;
+        b=BIA5zmJ1GiQNCW0cygm5dIsnvCoMQUal/YAnyweEeKSW4boykCFmW6/uIqhZsQnjWW
+         dcu6Xg2uX3T9jMzivNlhI6J4vp4HH3TgpyOrJYNqR48LitUg6ZQ7+AVapbcUuNutI6si
+         3jWWJDvR9GpTd7NKHL9MPsfFCvf906umCaY9qgam3MwnmyZnYbbyD4+TUaLyi/qt8CQN
+         SCs11QjT5o0J6s0kdtC4UqMkTz65U/Vhjbpn6p63h1uuBeV2rHCl0GUBc30hlkp8RXZY
+         /5JNRTYkVa+e3lxXG2mq336A1hNyB8TAKgapu1UHmBLLJ/CPvhOErljLgxIKnArt5qLq
+         PZag==
+X-Gm-Message-State: AOAM531aJmlnHPWdfhZnDhQ1hQTLcQbrobU2Hy22H2ptljAwwQvE9eGQ
+        KzMgAgsirtrFhiojhtHV0t3iAu9T2C6gcw==
+X-Google-Smtp-Source: ABdhPJwhgdLsIfOYy5Nk+ljgN8CrmBzlq0MewMovoeP30ra6fOnRZSWrLKnm2Em4zoV6DplsZNWDbg==
+X-Received: by 2002:a1f:3f4f:: with SMTP id m76mr6649633vka.1.1638353626321;
+        Wed, 01 Dec 2021 02:13:46 -0800 (PST)
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com. [209.85.222.46])
+        by smtp.gmail.com with ESMTPSA id q12sm11640947vkd.1.2021.12.01.02.13.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Dec 2021 02:13:46 -0800 (PST)
+Received: by mail-ua1-f46.google.com with SMTP id j14so47629401uan.10;
+        Wed, 01 Dec 2021 02:13:45 -0800 (PST)
+X-Received: by 2002:a05:6102:e10:: with SMTP id o16mr5533316vst.5.1638353625764;
+ Wed, 01 Dec 2021 02:13:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211118141233.247907-2-boger@wirenboard.com>
+References: <20211130164311.2909616-1-kieran.bingham+renesas@ideasonboard.com> <YacIBqPcq12TEDeM@pendragon.ideasonboard.com>
+In-Reply-To: <YacIBqPcq12TEDeM@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 1 Dec 2021 11:13:34 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXbL-bhDFLxKngj-uw-ophk-d414M=fxv=i7aD=1bk5Qg@mail.gmail.com>
+Message-ID: <CAMuHMdXbL-bhDFLxKngj-uw-ophk-d414M=fxv=i7aD=1bk5Qg@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] arm64: dts: renesas: r8a779a0 DU support
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Evgeny,
+Hi Laurent,
 
-On Thu, Nov 18, 2021 at 05:12:32PM +0300, Evgeny Boger wrote:
-> Most AXPxxx-based reference designs place a 10k NTC thermistor on a
-> TS pin. When appropriately configured, AXP PMICs will inject fixed
-> current (80uA by default) into TS pin and measure the voltage across a
-> thermistor. The PMIC itself will by default compare this voltage with
-> predefined thresholds  and disable battery charging whenever
+On Wed, Dec 1, 2021 at 6:29 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Tue, Nov 30, 2021 at 04:43:09PM +0000, Kieran Bingham wrote:
+> > Provide the DT nodes for the DSI found on the r8a779a0, and extend the
+> > falcon-cpu board add on with the TI SN65DSI86 bridge which is used to
+> > connect the DSI output to the mini display-port connector on the Falcon
+> > CPU board.
+> >
+> > This has been successfully tested on a Falcon-V3U with patches to the
+> > rcar_du and sn65dsi86 which will be sent separately.
+> >
+> > Since the previous version, the core "r8a779a0: Add DU support" has
+> > already been accepted into the renesas-drivers tree, and the "r8a779a0:
+> > Provide default DSI data-lanes" patch has been dropped in favour of a
+> > better construction in the two patches supplied here.
+>
+> I've reposted the DSI driver and its bindings, and unless something goes
+> terribly wrong, I'll send a pull request in a couple of days.
+>
+> Geert, how would you like to proceed with the DT changes ?
 
-They actually are configurable, it's just that we don't have the means
-to configure it currently from the kernel.
-
-"In the diagram above, VTH/VTL refers to the high temperature threshold
-and low temperature threshold, which is programmable via registers
-REG38H/39H/3CH/3DH respectively." in the AXP209 datasheet, section
-"Battery temperature detection".
-
-> the battery is too hot or too cold.
-> 
-> Alternatively, the TS pin can be configured as general-purpose
-> ADC input. This mode is not supported by the driver.
-> 
-> This patch allows reading the voltage on the TS pin. It can be then
-> either processed by userspace or used by kernel consumer like hwmon
-> ntc thermistor driver.
-> 
-> Signed-off-by: Evgeny Boger <boger@wirenboard.com>
-> ---
->  drivers/iio/adc/axp20x_adc.c | 45 +++++++++++++++++++++++++++++++-----
->  1 file changed, 39 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/axp20x_adc.c b/drivers/iio/adc/axp20x_adc.c
-> index 3e0c0233b431..12d469a52cea 100644
-> --- a/drivers/iio/adc/axp20x_adc.c
-> +++ b/drivers/iio/adc/axp20x_adc.c
-[...]
-> +static int axp22x_adc_scale_voltage(int channel, int *val, int *val2)
-> +{
-> +	switch (channel) {
-> +	case AXP22X_BATT_V:
-> +		/* 1.1 mV per LSB */
-> +		*val = 1;
-> +		*val2 = 100000;
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +
-> +	case AXP22X_TS_IN:
-> +		/* 0.8 mV per LSB */
-> +		*val = 0;
-> +		*val2 = 800000;
-> +		return IIO_VAL_INT_PLUS_MICRO;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-[...]
-> @@ -378,12 +415,7 @@ static int axp22x_adc_scale(struct iio_chan_spec const *chan, int *val,
->  {
->  	switch (chan->type) {
->  	case IIO_VOLTAGE:
-> -		if (chan->channel != AXP22X_BATT_V)
-> -			return -EINVAL;
-> -
-> -		*val = 1;
-> -		*val2 = 100000;
-> -		return IIO_VAL_INT_PLUS_MICRO;
-> +		return axp22x_adc_scale_voltage(chan->channel, val, val2);
->  
-
-I would actually have made the move to axp22x_adc_scale_voltage function
-for AXP22X_BATT_V channel separate from this commit because I was a bit
-confused in the original review why suddenly there was an addition for
-AXP22X_BATT_V while this patch is about AXP22X_TS_IN.
-
-If maintainers are ok with this, I don't mind.
-
-I don't have any HW to test this but the changes make sense to me:
-Reviewed-by: Quentin Schulz <foss+kernel@0leil.net>
-
+I can take the DTS changes as soon as the DT bindings have been
+accepted in linux-next.
 Thanks!
-Quentin
+
+> > Kieran Bingham (2):
+> >   arm64: dts: renesas: r8a779a0: Add DSI encoders
+> >   arm64: dts: renesas: r8a779a0: falcon-cpu: Add DSI display output
+> >
+> >  .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi | 79 +++++++++++++++++++
+> >  arch/arm64/boot/dts/renesas/r8a779a0.dtsi     | 60 ++++++++++++++
+> >  2 files changed, 139 insertions(+)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
