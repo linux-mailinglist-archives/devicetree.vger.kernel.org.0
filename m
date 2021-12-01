@@ -2,90 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D96CA464984
-	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 09:21:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 585354649BD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Dec 2021 09:31:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241966AbhLAIZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 03:25:14 -0500
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:48623 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S229564AbhLAIZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 03:25:12 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id 5549B3200E31;
-        Wed,  1 Dec 2021 03:21:49 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 01 Dec 2021 03:21:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
-        tdPEg+U3TLS2hwbuuXjF2mBi3jyYrUxzHA4hSiAkcLo=; b=NFodBgGHT6f+Quak
-        mJ8rLKHUS27NrdwrsHsrQN+KYnQyk5GYGf6rdKkZKx2s4ct1VvGOyKrYJfJbNXfH
-        +PBHduh81GhvXM3joNX+nP8BgSDcIpyNU1Oba+12ila7zRvfFL8EvYMu5DbcN8e8
-        V6IeWTVjVZQmQGyykp27Cz90wUVX8SqOAaciTHGE35gkzDwFqcxcSm85JmGr5ak3
-        FvUhvqRQffX2JsmIIhCSD3D4eCsNW2DySxuLgFb6VAI2NXrL8IrPkZ9tvUDvX6G6
-        clJMezIBZtY6ock9c048v067J7tyXHom7JcjzQ9q02FGECzqzVXng5fnl6j78qYZ
-        +t1CMQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=tdPEg+U3TLS2hwbuuXjF2mBi3jyYrUxzHA4hSiAkc
-        Lo=; b=TYBOMs9cJPCSCYJ11VaITJZgbWBiNHZW9R0Ft9tnqur/qZPQmD+vx8zd4
-        CykskVCHtIj3Fw/MPlNwKgv5TsgGjDNgK8A6VHP0DHTMefZzWkmOwdaupayOhJdo
-        DZQafi3CPxMATiGNSw38h31bJxcmU0D74Tw5Hkfs7kRwNnEmYgKvEnowtGlmgWkS
-        O9cntTs6uJilnSH1jmm+81RUwlufYJ4LZTgK1Gk+5pASMvmRu/UrjpontTGvd5Io
-        44y8anHQ97M7KldlY7eSnCmaV4PTxlK3/KlgbCWBp8zjzwFKk4acIx9rnPcy+LGm
-        8toprgiOu8JkkO+3BngRdJNWeQadw==
-X-ME-Sender: <xms:mzCnYUZaHyfxm4plR3wbThO803wgiEMrIKR-dZQ-E4xTK054AXX7uA>
-    <xme:mzCnYfZv8gemPNOLkGz2Jl2_oN0z5EQpQhFt_LCFp3f1ppy4mLkdTPdAeURL21F7w
-    zKTKS0TFWlNWgS7iew>
-X-ME-Received: <xmr:mzCnYe8H-bTB7MYbSY9sErABSrDNVgBs-BN8xhDA3swT9U0sUMOhFqFnMkTWe5Oe4ITcTcinQawa1R2_oXYsKp4LS4wXfB51A_Q6gY9XusgbbQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddriedvgdduvddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfgggtgfesthekredtredtjeenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeejuefggeekfffgueevtddvudffhfejffejjedvvdduudethefhfefhfeeg
-    ieekkeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:nDCnYeqGYKJCgrmGS3SuhV4Up0g-d-OJ-tfIE73hcOdI-62aAp-NpQ>
-    <xmx:nDCnYfpxS2RKJYNpOxf0u6NdVXuvXnW3pWvEzwrh1vFXImGNtzYxnw>
-    <xmx:nDCnYcS_5NtyDoyFJTyD-84oyLNuhMcedr32b0MdNhWRg3jTInchKA>
-    <xmx:nDCnYTfKRVVZKCBwtDu7kmX1xIhDwyjGRcsgS7B5MukO0M9tBuo3dQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 1 Dec 2021 03:21:47 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     wens@csie.org, mripard@kernel.org,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Maxime Ripard <maxime@cerno.tech>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-sunxi@lists.linux.dev, Michael Klein <michael@fossekall.de>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v2] ARM: dts: sun8i: Adjust power key nodes
-Date:   Wed,  1 Dec 2021 09:21:44 +0100
-Message-Id: <163834688049.16473.3626415624264430661.b4-ty@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211129165510.370717-1-jernej.skrabec@gmail.com>
-References: <20211129165510.370717-1-jernej.skrabec@gmail.com>
+        id S241384AbhLAIfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 03:35:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236902AbhLAIfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 03:35:15 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD241C061748
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 00:31:54 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id r25so32909980edq.7
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 00:31:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d5HOck1fEk2VUiruxwewQWZzWWWlPc/W2sLGU1bYMrc=;
+        b=tcvSR5VNdA3GOJ0wdRaUkZ12xaQZCRclO2Rmxaf/cusWemvGwLfvHTqq6FLFEr6fZk
+         nPj7+B/CK4LARDHsHbYrxJyHX53LQUjKXtkeBcrRXx0bSjSSO1KXRyG+X/il5UXsuJFG
+         z9g0hS1eNWXOOxUeWht/oXKSDTeF63Wd2nYK8cqmSyKIfUi7fb97ZUES0AGBxwzNjtCz
+         3LP6Zdv8Bef3bNkzKgh8Ek/C4LuJgI2TYO/QJzL+wz5i8VMOfS1fNms+HCA1Q15O08DJ
+         cwMYNsqMB04F/4hhIMjjKiwG3egZhTkblyQjzJFEigZfjCs/6pN/GXXk/UWnzNP8PB5J
+         6JNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d5HOck1fEk2VUiruxwewQWZzWWWlPc/W2sLGU1bYMrc=;
+        b=EDx04JqO6cZfUQLeeSgy6ZD0OnGGh9kWZ11qFLiU8qmXlN+7S8JC9ipJJnCzpR98Uq
+         4YggD2KkGPrneUUvFteK8xkaQ+2j10EyPiYbnBFqOCjyCK146nbaFzQ+7JvAplpcpyq7
+         X1XMqoxQzibkiT8ykhAQ6n4f1/FWW1wc60zAYG2jhKi/LHLjdagii6GiOQZ4fHQ0bm+0
+         yvDAPF3TlB2le2wKtZWKSoDloqfxF1O9uAJ3CUGzLuNpNPM5RNLjo4of6ZmFOVITMh+c
+         vW8+OiuNrF5um4vmehfy38MQ0qdiRZ73l1K+xbXE21hwIA2cThzyKGgTtt1Oql1Bu9mA
+         xRag==
+X-Gm-Message-State: AOAM530MZJ4ic8GYe9VzaPGVMjd8q87smuCwpqT/GtQMxWu2Gj60vjQ6
+        jDfGaAAY/4QoRDmt8VpQMrg1BIdB7Z/0170kjsem/A==
+X-Google-Smtp-Source: ABdhPJwc153YPxsCmrMpC83eX6OEq/+lb+TpgYJaHlvE++shwkC6Y1HTqxmqyp56ZKFJLq4p0tdfAhGegMst5hWjvDE=
+X-Received: by 2002:a50:e611:: with SMTP id y17mr6611165edm.270.1638347513444;
+ Wed, 01 Dec 2021 00:31:53 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20211125152043.162655-1-geert@linux-m68k.org>
+In-Reply-To: <20211125152043.162655-1-geert@linux-m68k.org>
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+Date:   Wed, 1 Dec 2021 09:31:42 +0100
+Message-ID: <CAMRc=McNjiOhth7YURTppWnL_rvd2Erh97PJt09cchCqbGrQsw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: sifive,gpio: Group interrupt tuples
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 29 Nov 2021 17:55:10 +0100, Jernej Skrabec wrote:
-> Several H3 and one H2+ board have power key nodes, which are slightly
-> off. Some are missing wakeup-source property and some have BTN_0 code
-> assigned instead of KEY_POWER.
-> 
-> Adjust them, so they can function as intended by designer.
-> 
-> 
-> [...]
+On Thu, Nov 25, 2021 at 4:20 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> To improve human readability and enable automatic validation, the tuples
+> in "interrupts" properties should be grouped using angle brackets.
+>
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+> ---
+>  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> index c2902aac25145205..e04349567eebb72c 100644
+> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+> @@ -77,7 +77,8 @@ examples:
+>        gpio@10060000 {
+>          compatible = "sifive,fu540-c000-gpio", "sifive,gpio0";
+>          interrupt-parent = <&plic>;
+> -        interrupts = <7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22>;
+> +        interrupts = <7>, <8>, <9>, <10>, <11>, <12>, <13>, <14>, <15>, <16>,
+> +                     <17>, <18>, <19>, <20>, <21>, <22>;
+>          reg = <0x10060000 0x1000>;
+>          clocks = <&tlclk PRCI_CLK_TLCLK>;
+>          gpio-controller;
+> --
+> 2.25.1
+>
 
-Applied to sunxi/linux.git (sunxi/dt-for-5.17).
+Applied, thanks!
 
-Thanks!
-Maxime
+Bart
