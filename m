@@ -2,124 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A1546D153
-	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 11:48:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 877CA46D24E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Dec 2021 12:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231935AbhLHKvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 8 Dec 2021 05:51:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45750 "EHLO
+        id S229806AbhLHLlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 8 Dec 2021 06:41:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231925AbhLHKvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 05:51:54 -0500
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EA9C061A32
-        for <devicetree@vger.kernel.org>; Wed,  8 Dec 2021 02:48:22 -0800 (PST)
-Received: by mail-lj1-x231.google.com with SMTP id b19so1429632ljr.12
-        for <devicetree@vger.kernel.org>; Wed, 08 Dec 2021 02:48:22 -0800 (PST)
+        with ESMTP id S229457AbhLHLlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 8 Dec 2021 06:41:09 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3C90C061746;
+        Wed,  8 Dec 2021 03:37:37 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id g16so1853930pgi.1;
+        Wed, 08 Dec 2021 03:37:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b+SdIraKU1h/VTJU366bK+146L0b2CZSCkrC1RqcLiI=;
-        b=fhXHxYwOAsjpDT7PFmr/Ay2Bpv6Q52w7gzhLvGp3vi03x0kgJwC1mR2nR1tEBwpntR
-         5BIgAfnWN19+UstNXJU4S3pPdsYuWBgNebk4d3ZIyHcMtWi3YzAF0eZIz8zZvhekOaoN
-         dpXhu+rLaGYfNU3wPEK81pcn5RGWC+TYP50YKir8VfeN5bYZl1TC19FCevLctaRQ7GbS
-         gPCsf9ihaBJkTM0mvs/9FwV0KyzdDAXiEqb7QKxeQwaG8ND1MHBq/EpD6AasS8g7Ta3l
-         bXpZYLOXalhq5nbUEDXeIJBRG84NeR6F77adUrF6zH9WKGEaVG6SVgZm6ihC4RzUHLYr
-         VlWQ==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xO2rDUNr4dM0DivbOJCUEO9EGtz1DZV/xU/rC001g6E=;
+        b=WYE5MWlsxeXmu8ATLr6u4QlVazvcfGd7VX2fp+hVfeZqie7bP9OA63JRkj/yR9BBeW
+         DxN+UG0gCLXxP74DD9OMxv5edMIpMzuQczGyVKtbBDFMC2NU97l51qs+EqA5rSLjdBeM
+         j6lHPYMKycagWGG/O6QLCypFHIk0ZQ4TgXM0DhNYqjrD8dE35EgYMdrKuf03a5b0VBUX
+         DCWpQJCw6jEdK+CmqtOmw9IW8Or4Mhs+sWY1xl7IKDqyX2n5O11LartJhTEhuMBR7USS
+         oy3xdGiUc3siLC5mj34So6U3PDQ5/l2DwHDdaGMJxaTD58WzghDJbkOeIYGAmPbLd0R1
+         yc4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b+SdIraKU1h/VTJU366bK+146L0b2CZSCkrC1RqcLiI=;
-        b=Vvf31/ZBiHp91yYIr+0n70u6ytHRoH2GEAhd8AjCMNDw4Ysem3gadF1eWm8J/BfQaP
-         e8ckAOeN4PaCq9EUfrKB8pDaWiIY3CQh70EWxp+jQhj/oYt2wEz54OXLJemFa5TJWpdY
-         4L0TOg3+YqCasDGhM4V1oYriBSEvWuase2U7ZS5oqm+0At2L7/lB6+U3ak1/duUR42rR
-         O3w4ASL0VQ2PEk5Ow4GFrZX/sNzUj+phob0N0GgTq2GTJKag2IyQX6/oA4ednD5rBdUG
-         Yi/UkPzwQPFkqeAO3+fCwGwPee7eqO8IRzlwKvWwO096/eBTdM7mHufl3WVXRw0ONrHW
-         Xqvg==
-X-Gm-Message-State: AOAM533/L7fU5ug7mEme+6TMenaoN4f/6QJg3S3Nc1KjsS0rnbvzA5Tu
-        Jsn4Dv61kxR+EfAuDKpcS3oz7LNpHRheJK+/VHZfUQ==
-X-Google-Smtp-Source: ABdhPJwVpthnKSrDF/C2HexBrqNAjJ6E3HCFUU7MoAlXVzpyAbLD4i9B/Oo9exkRlkxfOdIXnrTziCam6tJi8meqZow=
-X-Received: by 2002:a2e:a22a:: with SMTP id i10mr48977767ljm.16.1638960500425;
- Wed, 08 Dec 2021 02:48:20 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xO2rDUNr4dM0DivbOJCUEO9EGtz1DZV/xU/rC001g6E=;
+        b=UcB8m2bsLiyDXOXJIsEzusxqpaXnQ4fv0lwjV+1LQLa1qSJusFCCcfVbCMzc90wCIe
+         yEG8nAw6DXVrJMM8Sti5IoOlNdeJsNiZZ9biOAC5cJmN23zHD9Kv1rqQUOHhZafiECcX
+         7noMkNsQARcl+xsflA0p1k2k317Ske3l+k4uhFDN8ZUl723VNZ3uwon7JGfBao8Xqju0
+         YP+PyaAzT+tbnIQ3O8nAFQpeqnU9bMqxKKRtbGEb4n9me2L1JYEi54OnbdhqlrexJHLk
+         FYG/4JxE210NhnKjuNOH/S/YHf9ozqKMc0OG/hIgnRsqr7cTxsemECQu0F54efRxeC1O
+         m19g==
+X-Gm-Message-State: AOAM532CIV7DCxR90fe9I4U1C9w3DUsTLz62/8KIUTXqadjn0d7kVv9r
+        s4dYfjS5tPI/bpXQgdf9jg0=
+X-Google-Smtp-Source: ABdhPJx7ebaiUkfmrjz5qdBzKzazxl3asV2HWm8kgDXFZvJivPvGA4qTJapF8QPKc5HewZHsAncm6A==
+X-Received: by 2002:a05:6a00:24cd:b0:49f:a4d8:3d43 with SMTP id d13-20020a056a0024cd00b0049fa4d83d43mr5112051pfv.49.1638963457170;
+        Wed, 08 Dec 2021 03:37:37 -0800 (PST)
+Received: from LAPTOP-M5MOLEEC.localdomain (61-231-106-143.dynamic-ip.hinet.net. [61.231.106.143])
+        by smtp.gmail.com with ESMTPSA id h1sm3270813pfh.219.2021.12.08.03.37.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Dec 2021 03:37:36 -0800 (PST)
+From:   Joseph CHANG <josright123@gmail.com>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joseph CHANG <josright123@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] *** ADD DM9051 NET DEVICE ***
+Date:   Fri,  3 Dec 2021 04:46:54 +0800
+Message-Id: <20211202204656.4411-1-josright123@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211204061042.1248028-1-Mr.Bossman075@gmail.com> <20211204061042.1248028-12-Mr.Bossman075@gmail.com>
-In-Reply-To: <20211204061042.1248028-12-Mr.Bossman075@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 8 Dec 2021 11:47:44 +0100
-Message-ID: <CAPDyKFohGQ9M08sJmM5eo2jNhrvFSHA2bnb31AEgiFCFfV78ng@mail.gmail.com>
-Subject: Re: [PATCH v4 11/13] mmc: sdhci-esdhc-imx: Add sdhc support for
- i.MXRT series
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     linux-imx@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        Kernel@pengutronix.de, festevam@gmail.com, aisheng.dong@nxp.com,
-        stefan@agner.ch, linus.walleij@linaro.org,
-        gregkh@linuxfoundation.org, arnd@arndb.de, olof@lixom.net,
-        soc@kernel.org, linux@armlinux.org.uk, abel.vesa@nxp.com,
-        adrian.hunter@intel.com, jirislaby@kernel.org,
-        giulio.benetti@benettiengineering.com,
-        nobuhiro1.iwamatsu@toshiba.co.jp, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 4 Dec 2021 at 07:11, Jesse Taube <mr.bossman075@gmail.com> wrote:
->
-> From: Jesse Taube <mr.bossman075@gmail.com>
->
-> Add support for i.MXRT1050's sdhc.
->
-> Cc: Giulio Benetti <giulio.benetti@benettiengineering.com>
-> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
+*** DM9051 is a SPI interface ethernet controller chip ***
+*** For a embedded Linux device to construct an ethernet port ***
+*** Fewer CPU interface pins is its advantage comapre to DM9000 ***
+*** It need only cs / mosi / miso / clock and an interrupt pin ***
 
-No need to resend this, it's already been applied.
+Joseph CHANG (2):
+  yaml: Add dm9051 SPI network yaml file
+  net: Add DM9051 driver
 
-Kind regards
-Uffe
+ .../bindings/net/davicom,dm9051.yaml          |  62 ++
+ drivers/net/ethernet/davicom/Kconfig          |  30 +
+ drivers/net/ethernet/davicom/Makefile         |   1 +
+ drivers/net/ethernet/davicom/dm9051.c         | 987 ++++++++++++++++++
+ drivers/net/ethernet/davicom/dm9051.h         | 259 +++++
+ 5 files changed, 1339 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/davicom,dm9051.yaml
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.c
+ create mode 100644 drivers/net/ethernet/davicom/dm9051.h
 
 
+base-commit: ce83278f313ce65a9bbd780a3e07fa3f62d82525
+-- 
+2.25.1
 
-> ---
-> V1->V2:
-> * Nothing done
-> V2->V3:
-> * Rename imxrt to imxrt1050
-> * Remove BROKEN_AUTO_CMD23 and MAN_TUNING flags
-> V3->V4:
-> * Nothing done
-> ---
->  drivers/mmc/host/sdhci-esdhc-imx.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-esdhc-imx.c b/drivers/mmc/host/sdhci-esdhc-imx.c
-> index 764ee1b761d9..55981b0f0b10 100644
-> --- a/drivers/mmc/host/sdhci-esdhc-imx.c
-> +++ b/drivers/mmc/host/sdhci-esdhc-imx.c
-> @@ -305,6 +305,9 @@ static struct esdhc_soc_data usdhc_imx7ulp_data = {
->                         | ESDHC_FLAG_PMQOS | ESDHC_FLAG_HS400
->                         | ESDHC_FLAG_STATE_LOST_IN_LPMODE,
->  };
-> +static struct esdhc_soc_data usdhc_imxrt1050_data = {
-> +       .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_HS200 | ESDHC_FLAG_ERR004536,
-> +};
->
->  static struct esdhc_soc_data usdhc_imx8qxp_data = {
->         .flags = ESDHC_FLAG_USDHC | ESDHC_FLAG_STD_TUNING
-> @@ -355,6 +358,7 @@ static const struct of_device_id imx_esdhc_dt_ids[] = {
->         { .compatible = "fsl,imx7ulp-usdhc", .data = &usdhc_imx7ulp_data, },
->         { .compatible = "fsl,imx8qxp-usdhc", .data = &usdhc_imx8qxp_data, },
->         { .compatible = "fsl,imx8mm-usdhc", .data = &usdhc_imx8mm_data, },
-> +       { .compatible = "fsl,imxrt1050-usdhc", .data = &usdhc_imxrt1050_data, },
->         { .compatible = "nxp,s32g2-usdhc", .data = &usdhc_s32g2_data, },
->         { /* sentinel */ }
->  };
-> --
-> 2.34.0
->
