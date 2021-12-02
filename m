@@ -2,118 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A257C46673B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E84AA466749
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347663AbhLBPz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 10:55:29 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:46074 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359294AbhLBPzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:55:24 -0500
+        id S1347720AbhLBP5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 10:57:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347568AbhLBP5S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:57:18 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AD2C06174A;
+        Thu,  2 Dec 2021 07:53:55 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 815F76268F;
-        Thu,  2 Dec 2021 15:51:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5886C00446;
-        Thu,  2 Dec 2021 15:51:58 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9564762666;
+        Thu,  2 Dec 2021 15:53:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE27CC00446;
+        Thu,  2 Dec 2021 15:53:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638460318;
-        bh=g3x2golTGf5LugWWOotMX5nRZX1ofZdncgn84uvvPlw=;
+        s=k20201202; t=1638460435;
+        bh=p9hg5KiYEIKDgkuhP8bMh5fQC9zCuDcZvD38zcEt4Qs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=g6yl5S3JYHbzjRbXILCSprPqXuXohk/c8wPkgDh3Wx7E7ZAVwZ0YvZkSMHkcliUhu
-         8iN8cz92mLSvsOv1EdQXKIj2//eUuorBmlQEP7bSRjTSSLvCoOLwuY2sySf1nmxfFP
-         yxJ85XxtnxRQAFxVOZZ/mw+iDqTndt+quoFAzwRrFAmYSNsM06722ogs2TJh7XCC6d
-         x8qOQSgr42rq8v+p5NtTdsw/4ghC3gqP4sBv4gQ2Oukgsg4+6T7f1jDtmyVBP6yD8w
-         GQ69kB4Jja4TlQSIS3+Bk2orG0ojUvjgf1DkuswlDqjGTPHG41VHpM1lhEa/OeKTVx
-         BDfEl2Z6fXpkg==
-Received: by mail-ed1-f41.google.com with SMTP id y12so117393334eda.12;
-        Thu, 02 Dec 2021 07:51:58 -0800 (PST)
-X-Gm-Message-State: AOAM530zA4qaVCWBxDlsQ+ZwFUp2eVDCOY42I1vFbVm95Es2UVY3wGp9
-        qJnbAsrNAToN5VyjJbQWiHbpRRlSr1UZ0capyg==
-X-Google-Smtp-Source: ABdhPJwQBKOUdKbAtcY9buMEqJoescJX1oqIF6R8Pi1NUjzxQDmpidmsR3w6UdwGQEcoQbYSmGssgYFJ11kH/XOXeDU=
-X-Received: by 2002:aa7:cc82:: with SMTP id p2mr18177641edt.201.1638460310108;
- Thu, 02 Dec 2021 07:51:50 -0800 (PST)
+        b=qgJ/QDh4OPh/hMUjUVPVOIbzcKzIL1J6XVNujvVQOm4Bdr525kZ36hSaJi8zuAENh
+         jMtx+6k6hwowemst2PjPOdCCKMETjkiSCX9IVub+i64T5ztdQdrbExOVJXLEhcuvz9
+         nPa7l//wTk9SSJVy0QUfnNqCHp6htDLUuLeELiCrpMbdAXNFlm6kPx3J3dG8fYgpJv
+         sWoxDdIBYxWZ5ehAR5NEGkK2fDLTjOsRSxETrg+q8obKsPljpy4jGjHSjfOW1Osu0A
+         modG8/GSbiEBsnPidmxYJLMt6twdZZjjra1RrmlSxrJVxGlQkgU76U1LVFRhUauOC4
+         5OAzvXTDQdqnQ==
+Received: by mail-ed1-f47.google.com with SMTP id y13so117893128edd.13;
+        Thu, 02 Dec 2021 07:53:54 -0800 (PST)
+X-Gm-Message-State: AOAM533hz6GXyzX8O6j/exUF3rBKVC28ECd88lzDX1J3P5ZK/XG7tZHB
+        3f6zl6dVq6SNbOuPtpK+7dzq8nMoQAZZJ3TLcg==
+X-Google-Smtp-Source: ABdhPJwROJ4+lSwyI3qjOChmDMbVmrc95Ha+N5fwobg4BPs5x0NI009WfnFBvuItnpPvBAM40zWIJb2e+KbZ07m2c5E=
+X-Received: by 2002:a05:6402:4394:: with SMTP id o20mr18414066edc.342.1638460424728;
+ Thu, 02 Dec 2021 07:53:44 -0800 (PST)
 MIME-Version: 1.0
-References: <20211126163450.394861-1-miquel.raynal@bootlin.com>
- <20211126163450.394861-3-miquel.raynal@bootlin.com> <YagN1c7/Ltt/mhNp@robh.at.kernel.org>
- <20211202082521.77c2837f@xps13>
-In-Reply-To: <20211202082521.77c2837f@xps13>
+References: <104dcbfd22f95fc77de9fe15e8abd83869603ea5.1637927673.git.geert@linux-m68k.org>
+ <YagEai+VPAnjAq4X@robh.at.kernel.org> <CAMuHMdW5Ng9225a6XK0VKd0kj=m8a1xr_oKeazQYxdpvn4Db=g@mail.gmail.com>
+In-Reply-To: <CAMuHMdW5Ng9225a6XK0VKd0kj=m8a1xr_oKeazQYxdpvn4Db=g@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 2 Dec 2021 09:51:37 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLL3rxA4p7T1girYOJ2cHTWSEJWWvSUpFOfz9ZTjMXAHQ@mail.gmail.com>
-Message-ID: <CAL_JsqLL3rxA4p7T1girYOJ2cHTWSEJWWvSUpFOfz9ZTjMXAHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: mtd: spi-nor: Allow external properties
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Mark Brown <broonie@kernel.org>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Michal Simek <monstr@monstr.eu>
+Date:   Thu, 2 Dec 2021 09:53:30 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJHkL_Asqd5WPc7rfqXkbz1dpYfR0zxp5erVCyLiHaJNQ@mail.gmail.com>
+Message-ID: <CAL_JsqJHkL_Asqd5WPc7rfqXkbz1dpYfR0zxp5erVCyLiHaJNQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: net: cdns,macb: Convert to json-schema
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 1:25 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+On Thu, Dec 2, 2021 at 4:10 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
 > Hi Rob,
 >
-> robh@kernel.org wrote on Wed, 1 Dec 2021 18:05:41 -0600:
+> CC Michal
 >
-> > On Fri, Nov 26, 2021 at 05:34:47PM +0100, Miquel Raynal wrote:
-> > > Setting "additionalProperties: false" will refuse any generic SPI
-> > > property while they should be of course authorized. In practice it looks
-> > > like many people used compatibles different than "jedec,spi-nor" in
-> > > order to workaround this limitation because otherwise no SPI property
-> > > could be used in the examples. Use "unevaluatedProperties: false"
-> > > instead to allow defined properties to be used. It is likely that at the
-> > > time of the conversion to yaml of the jedec file, the unevaluated
-> > > keyword was not yet introduced.
+> On Thu, Dec 2, 2021 at 12:25 AM Rob Herring <robh@kernel.org> wrote:
+> > On Fri, Nov 26, 2021 at 12:57:00PM +0100, Geert Uytterhoeven wrote:
+> > > Convert the Cadence MACB/GEM Ethernet controller Device Tree binding
+> > > documentation to json-schema.
 > > >
-> > > Fixes: 3ff9ee2a8890 ("dt-bindings: mtd: spi-nor: Convert to DT schema format")
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > Re-add "cdns,gem" (removed in commit a217d8711da5c87f ("dt-bindings:
+> > > Remove PicoXcell bindings")) as there are active users on non-PicoXcell
+> > > platforms.
+> > > Add missing "ether_clk" clock.
+> > > Add missing properties.
 > > >
-> > > diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > index ed590d7c6e37..81be0620b264 100644
-> > > --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> > > @@ -88,7 +88,7 @@ patternProperties:
-> > >    "^otp(-[0-9]+)?$":
-> > >      type: object
-> > >
-> > > -additionalProperties: false
-> > > +unevaluatedProperties: false
+> > > Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+>
+> > > +  '#stream-id-cells':
+> > > +    const: 1
 > >
-> > This has no effect unless you have referenced some other schema here.
-> > The series I referenced will solve what your trying to solve I think.
+> > I can't figure out why you have this here. I'll drop it while applying.
 >
-> Maybe this is not the right fix indeed, but my understanding of json
-> reaches its bounds here.
+> See arch/arm64/boot/dts/xilinx/zynqmp.dtsi and
+> drivers/iommu/arm/arm-smmu/arm-smmu.c.
 >
-> Without this change, any example in this file that references a
-> spi-controller.yaml property (which is correctly defined) will throw an
-> error. The fact is, all the examples out there with a spi-nor flash
-> using the jedec,spi-nor compatible *cannot* contain any
-> spi-controller.yaml property, otherwise the tooling errors out. This is
-> a real issue.
+> It wasn't clear to me if this is still needed, or legacy. Michal?
 
-That's probably because unevaluatedProperties is unimplemented in the
-last dtschema release, but now supported in main branch. I'll be
-tagging a release soon. So once the newer version is used, you should
-be back to the same error.
-
-> I will give Pratyush's series a try.
-
-Referencing spi-peripheral.yaml with 'unevaluatedProperties: false'
-should give you what you need.
+They should update to the iommu binding instead of the legacy smmu
+one. It's been around for years now.
 
 Rob
