@@ -2,135 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BEA7466B08
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 21:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D1659466B51
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 22:00:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348958AbhLBUsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 15:48:03 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:51170 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348866AbhLBUsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 15:48:02 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CE617B82478;
-        Thu,  2 Dec 2021 20:44:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75BB8C53FD1;
-        Thu,  2 Dec 2021 20:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638477877;
-        bh=D+XIVtJBMJs6vJlJVkfubqTw2gl+Mh7CJ9ZRrFKA0R4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hiHyCQ1237rTv8Tp6276FGKCYm3JCk6Ml5zsrxqfAXeGJnuDaKMDQnVTeCNEZ7870
-         Gnkgx7FG3lxMdmu+ndqjYmhw5GJRY/M8Kr3T3qMnfHXQUR+m8iiXdpsIF1YI2sQjve
-         pjTNZziNRSNXti7JgKMutTGlyeSc+6yUHZl9FL/5LiZltOny0oZxUflB1oAYjGQesb
-         D4uH6VXNWpDsWNLnfddncksvWOXxSh7i8KLfeh+GmVm3hjK8KFs5BuhaTjhFeEbFYs
-         rCIn5SDcCqJ+tYLV0ZPDXMGe0RsiQQ9UNry92rgEmnFPMuWCP36JHaujE2C6ICdHuk
-         Z7h4AY8tDFmJA==
-Received: by mail-ed1-f53.google.com with SMTP id z5so3045942edd.3;
-        Thu, 02 Dec 2021 12:44:37 -0800 (PST)
-X-Gm-Message-State: AOAM533hw/+V4v5uQJuCV3SfYj/oj73STwuhiwRQRedFD6g/uHknPjDX
-        Nb5edHdNLU5vcZE0AMwlDi+9mAEmaXllYcaWLA==
-X-Google-Smtp-Source: ABdhPJyzThOhhiZuR6ye1HIiOYkJBH+7pZpAES4RrvIAKS54c2WOOBHFZcf0F8jp2b9OzH5zBx/GUv/DYwgH126mvgg=
-X-Received: by 2002:a17:906:bccc:: with SMTP id lw12mr17641007ejb.128.1638477875718;
- Thu, 02 Dec 2021 12:44:35 -0800 (PST)
+        id S234616AbhLBVDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 16:03:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41054 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232968AbhLBVDp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 16:03:45 -0500
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F181EC06174A;
+        Thu,  2 Dec 2021 13:00:22 -0800 (PST)
+Received: by mail-ed1-x529.google.com with SMTP id l25so2951841eda.11;
+        Thu, 02 Dec 2021 13:00:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bh3FkLB+q+IhBnShvoY1GO0GV+nrEdn+PjaCXWUUYOc=;
+        b=VJQf+7H+nZE/4Atz54WLI2qgPxceJ4EAgS2M5r3wJnoaUAaq7dBzEl1CDSCJHhvbPG
+         Yjcpl+DI5cm+PlzbPSzZ8fwQnjnf9n5h+3yPt0aTT0M0w0G2du+p8G5KPk2Bk7Lpl5ai
+         h2ytk6TGndnsA8YXNRN6HicdaaPxWJBD3IrRU2Y20UyZN/kWqVokNzH5AjMZ5KfkPFRS
+         r5OYZky0NEGw7CB5hkvPfhdje1cU6cm491NtXzlvgaVuGEvilzwIGg2QyjFdRck6gYvL
+         rU8b6l/f3dqbKHTwNy9fT0NyFnZM2++21paFakjDcNSWk8oip8CREB1Jrs32C49e5jTL
+         7SIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bh3FkLB+q+IhBnShvoY1GO0GV+nrEdn+PjaCXWUUYOc=;
+        b=EacNzu0v+6QxLCkzOxvetip03LJyqISflYjBqokWqLH4W81uMAZNCSEQXoM6wpVD+J
+         jS5X0PNjs8bD01rph0bX2FzkP/qjHWtPlMRo8TiypDMmsofPbmEFdzB+OO6WdqceFhQN
+         6C2cUGoTCheKvhsTjfCI1eF2mbVsSD5O3SRMcZCUTBX/2tVA+5KymWcmZPjZ8b5X5TSy
+         ZyeBSrVBtSCVaCCJZGYXq3ouRlLiaYiN0U0U3vpslzQN8F/MenwwZ6lDPhAcmNYSjGfZ
+         /fPvTaJQwk1SmzyerlYaJxPg0quQW1MMFIrBXywpLccLD9LkaDL4UGkf0Z8hNMTYzZTe
+         J9Yg==
+X-Gm-Message-State: AOAM531/72TodwdAqUE3g06EU2J4TJMZzjyDxjtptqwV0hyAlVDB/LTR
+        w14/wv+C4w6LrikrBxBTzRuBH83MThglwaAmmME=
+X-Google-Smtp-Source: ABdhPJyMPW1OcigW7e9CCbjgXJ/K6L2Wg+y5swFfQKOCkjrdriWNyhtUcXxkvAzdQwnh3K47pPVeqGNW0tUxlyIRmok=
+X-Received: by 2002:a05:6402:3488:: with SMTP id v8mr21163665edc.398.1638478821295;
+ Thu, 02 Dec 2021 13:00:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20211130111325.29328-1-semen.protsenko@linaro.org>
- <20211130111325.29328-2-semen.protsenko@linaro.org> <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
- <4b5bebb0-ed74-8132-1e6b-cb7cbc21439c@canonical.com> <CAL_JsqJb4nMBoGLcf-bKpi5kEE+zXQ=dfo5JSBhrqPFeLnCsHw@mail.gmail.com>
- <CAPLW+4=Zdvf4HRNUeVMR9URLSdA867hdXVLYy+k47yLH82uTnA@mail.gmail.com>
-In-Reply-To: <CAPLW+4=Zdvf4HRNUeVMR9URLSdA867hdXVLYy+k47yLH82uTnA@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 2 Dec 2021 14:44:24 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+FTB+mWOyCBwLFifk8obpMh1ysJ6pqpUzSoW7jzo5FAg@mail.gmail.com>
-Message-ID: <CAL_Jsq+FTB+mWOyCBwLFifk8obpMh1ysJ6pqpUzSoW7jzo5FAg@mail.gmail.com>
-Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
-To:     Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        linux-samsung-soc@vger.kernel.org,
+References: <20211202041627.291625-1-aford173@gmail.com> <CAHCN7xJHuOFTQBQWk1yKsk3M0iDB7aKc0=L2DisUoSXVeO3xXQ@mail.gmail.com>
+ <CAJ+vNU2t7Yp5OGtWj432Y-8hL62nQBbG58zM-gAj5YfuCO__sA@mail.gmail.com>
+In-Reply-To: <CAJ+vNU2t7Yp5OGtWj432Y-8hL62nQBbG58zM-gAj5YfuCO__sA@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 2 Dec 2021 15:00:10 -0600
+Message-ID: <CAHCN7xJXMUHHBACuozY3nUdZ0QqHFLrmwrXnArtCKBG7+P4UZQ@mail.gmail.com>
+Subject: Re: [RFC V3 0/2] arm64: imx8mm: Enable Hantro VPUs
+To:     Tim Harvey <tharvey@gateworks.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        linux-media <linux-media@vger.kernel.org>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Chanho Park <chanho61.park@samsung.com>,
-        linux-serial@vger.kernel.org,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        David Virag <virag.david003@gmail.com>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        linux-kernel@vger.kernel.org
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 5:01 AM Sam Protsenko <semen.protsenko@linaro.org> wrote:
+On Thu, Dec 2, 2021 at 12:54 PM Tim Harvey <tharvey@gateworks.com> wrote:
 >
-> On Wed, 1 Dec 2021 at 18:20, Rob Herring <robh@kernel.org> wrote:
+> On Thu, Dec 2, 2021 at 4:29 AM Adam Ford <aford173@gmail.com> wrote:
 > >
-> > On Tue, Nov 30, 2021 at 2:04 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@canonical.com> wrote:
+> > On Wed, Dec 1, 2021 at 10:17 PM Adam Ford <aford173@gmail.com> wrote:
 > > >
-> > > On 30/11/2021 18:43, Rob Herring wrote:
-> > > > On Tue, 30 Nov 2021 13:13:21 +0200, Sam Protsenko wrote:
-> > > >> Add constants for choosing USIv2 configuration mode in device tree.
-> > > >> Those are further used in USI driver to figure out which value to write
-> > > >> into SW_CONF register. Also document USIv2 IP-core bindings.
-> > > >>
-> > > >> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > > >> ---
-> > > >> Changes in v2:
-> > > >>   - Combined dt-bindings doc and dt-bindings header patches
-> > > >>   - Added i2c node to example in bindings doc
-> > > >>   - Added mentioning of shared internal circuits
-> > > >>   - Added USI_V2_NONE value to bindings header
-> > > >>
-> > > >>  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
-> > > >>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
-> > > >>  2 files changed, 152 insertions(+)
-> > > >>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
-> > > >>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
-> > > >>
-> > > >
-> > > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > >
-> > > > yamllint warnings/errors:
-> > > >
-> > > > dtschema/dtc warnings/errors:
-> > > > Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dts:35.39-42.15: Warning (unique_unit_address): /example-0/usi@138200c0/serial@13820000: duplicate unit-address (also used in node /example-0/usi@138200c0/i2c@13820000)
+> > > The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
+> > > to be related to the video decoders used on the i.MX8MQ, but because of
+> > > how the Mini handles the power domains, the VPU driver does not need to
+> > > handle all the functions, so a new compatible flag is required.
 > > >
-> > > Rob,
+> > > V3 is rebased from git://linuxtv.org/hverkuil/media_tree.git for-v5.17c
+> > > This branch has support for VP9.
 > > >
-> > > The checker complains about two nodes with same unit-address, even
-> > > though the node name is different. Does it mean that our idea of
-> > > embedding two children in USI and having enabled only one (used one) is
-> > > wrong?
+> > > I set cma=512M, but this may not be enough memory as some tests appeard to run out of memory
+> > >
+> > > V3 of this series has several changes:
+> > >
+> > > Update imx8m_vpu_hw to add missing 'reg' reference names for G2 and include references to VP9
+> > > Update device tree to remove IMX8MQ_VPU_RESET, remove some duplicate vpu clock parenting
+> > > Fix missing reg-names from vpu_g2 node.
+> > > Apply patch [1] to manage the power domains powering down.
+> > > [1] - https://lore.kernel.org/linux-arm-kernel/20211016210547.171717-1-marex@denx.de/t/
+> > >
+> > > With the above, the following Fluster scores are produced:
+> > >
+> > > G1:
+> > > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> > > Ran 90/135 tests successfully               in 74.406 secs
+> > >
+> > > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> > > Ran 55/61 tests successfully               in 8.080 secs
+> > >
+> > > G2:
+> > > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> > > Ran 127/303 tests successfully               in 203.873 secs
+> > >
+> > > Fluster and G-Streamer were both built from their respective git repos using their respective master/main branches.
+> > >
 > >
-> > IIRC, we allow for this exact scenario, and there was a change in dtc
-> > for it. So I'm not sure why this triggered.
+> > I should note, that both interrupts appear to be triggering.
+> >
+> > # cat /proc/interrupts |grep codec
+> >  57:      13442          0          0          0     GICv3  39 Level
+> >   38300000.video-codec
+> >  58:       7815          0          0          0     GICv3  40 Level
+> >   38310000.video-codec
 > >
 >
-> It's triggered from WARNING(unique_unit_address, ...), because it
-> calls static void check_unique_unit_address_common() function with
-> disable_check=false. I guess we should interpret that this way: the
-> warning makes sense in regular case, when having the same unit address
-> for two nodes is wrong. So the warning is reasonable, it's just not
-> relevant in this particular case. What can be done:
+> Adam,
 >
->   1. We can introduce some specific property to mark nodes with
-> duplicated address as intentional. check_unique_unit_address_common()
-> can be extended then to omit checking the nodes if that property is
-> present.
->   2. We can just ignore that warning in this particular case (and
-> similar cases).
->   3. We can add some disambiguation note to that warning message, like
-> "if it's intentional -- please ignore this message"
+> On another thread you had let me know that you also removed the reset
+> from the pgc_vpumix power domain which does appear to resolve the
+> hang:
 >
-> I'm all for option (3), as it's the easiest one, and still reasonable.
-> Rob, what do you think? Can we just ignore that warning in further
-> versions of this patch series?
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index eb9dcd9d1a31..31710af544dc 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -681,7 +681,6 @@
+>                                                 clocks = <&clk
+> IMX8MM_CLK_VPU_DEC_ROOT>;
+>                                                 assigned-clocks =
+> <&clk IMX8MM_CLK_VPU_BUS>;
+>                                                 assigned-clock-parents
+> = <&clk IMX8MM_SYS_PLL1_800M>;
+> -                                               resets = <&src
+> IMX8MQ_RESET_VPU_RESET>;
+>                                         };
+>
+>                                         pgc_vpu_g1: power-domain@7 {
+>
+> That would make such a patch have a 'Fixes commit d39d4bb15310
+> ("arm64: dts: imx8mm: add GPC node")' but of course that vpu domain
+> isn't active until your series so I'm not sure if we should send this
+> separate or squash it with "arm64: dts: imx8mm: Enable VPU-G1 and
+> VPU-G2". I'm also not clear if removing the reset requires some
+> further discussion with Lucas.
 
-Just change the dtc flags to '-Wno-unique_unit_address
--Wunique_unit_address_if_enabled' for both examples and dtbs.
+Unless there is objection from Lucas, I'll likely make it the first
+patch in the series marking it with a fixes tag so it gets backported,
+then the rest of the series would be adding the bindings, update the
+driver and adding the G1 and G2 nodes.
 
-Rob
+adam
+>
+> Best regards,
+>
+> Tim
