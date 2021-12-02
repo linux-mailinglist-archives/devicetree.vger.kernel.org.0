@@ -2,137 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 575BD4666E8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A56BA4666EE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:43:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347998AbhLBPoy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 10:44:54 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:33640 "EHLO gloria.sntech.de"
+        id S232833AbhLBPrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 10:47:17 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:47243 "EHLO m43-7.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1359094AbhLBPow (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Dec 2021 10:44:52 -0500
-Received: from ip4d17a2ab.dynamic.kabel-deutschland.de ([77.23.162.171] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1msoD1-0000g5-2c; Thu, 02 Dec 2021 16:41:19 +0100
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Rob Herring <robh@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 10/12] arm64: dts: rockchip: rk3568-evb: Enable VOP2 and hdmi
-Date:   Thu, 02 Dec 2021 16:41:17 +0100
-Message-ID: <6427725.puVkvWICD3@diego>
-In-Reply-To: <20211202153449.GG25697@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de> <CAL_JsqL7C32FB47=xfUtndtCvfOQx7f3Gq0O0FqZxRoeS1fNSQ@mail.gmail.com> <20211202153449.GG25697@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S232664AbhLBPrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Dec 2021 10:47:16 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1638459833; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=Mam5fJ/g0ud+mA5jIn/QLyomgHNukbcMWyEljhMxKKE=; b=HOn4wzhr6smbfuQ6EI0tY53zFVbsw38xjaQ0yfEKODs+k7h6sDjRqQSSGNLhFYoB+v4/ZS1L
+ xEDVUAtUbQ42rMjpdPJ87PrZ+Uw+ZXFO4On4oWLzUBC/FyJi8kZTPZg+hQMbyy3vwigip66J
+ 2KrkdoycZtxL1kWF4PwnR4Q8nZI=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 61a8e9b9642caac318df4f99 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 02 Dec 2021 15:43:53
+ GMT
+Sender: srivasam=codeaurora.com@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 71139C43637; Thu,  2 Dec 2021 15:43:52 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7FF68C4338F;
+        Thu,  2 Dec 2021 15:43:46 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 7FF68C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.com
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.com
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Subject: [PATCH v7 00/10] Add support for audio on SC7280 based targets
+Date:   Thu,  2 Dec 2021 21:13:16 +0530
+Message-Id: <1638459806-27600-1-git-send-email-srivasam@codeaurora.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
+From: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
 
-Am Donnerstag, 2. Dezember 2021, 16:34:49 CET schrieb Sascha Hauer:
-> On Wed, Nov 17, 2021 at 09:19:38AM -0600, Rob Herring wrote:
-> > On Wed, Nov 17, 2021 at 8:34 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> > >
-> > > This enabled the VOP2 display controller along with hdmi and the
-> > > required port routes which is enough to get a picture out of the
-> > > hdmi port of the board.
-> > >
-> > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > ---
-> > >  .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 24 +++++++++++++++++++
-> > >  1 file changed, 24 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > > index 184e2aa2416af..156e001492173 100644
-> > > --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > > +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > > @@ -106,6 +106,12 @@ &gmac1m1_rgmii_clk
-> > >         status = "okay";
-> > >  };
-> > >
-> > > +&hdmi {
-> > > +       status = "okay";
-> > > +       avdd-0v9-supply = <&vdda0v9_image>;
-> > > +       avdd-1v8-supply = <&vcca1v8_image>;
-> > > +};
-> > > +
-> > >  &i2c0 {
-> > >         status = "okay";
-> > >
-> > > @@ -390,3 +396,21 @@ &sdmmc0 {
-> > >  &uart2 {
-> > >         status = "okay";
-> > >  };
-> > > +
-> > > +&vop {
-> > > +       status = "okay";
-> > > +       assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-> > > +       assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
-> > > +};
-> > > +
-> > > +&vop_mmu {
-> > > +       status = "okay";
-> > > +};
-> > > +
-> > > +&hdmi_in_vp0 {
-> > > +       status = "okay";
-> > > +};
-> > > +
-> > > +&vp0_out_hdmi {
-> > > +       status = "okay";
-> > > +};
-> > 
-> > You can accomplish the same thing already with:
-> > 
-> > &vp0_out_hdmi {
-> >   remote-endpoint = <&hdmi_in_vp0>;
-> > };
-> 
-> My idea was to describe all possible connections in the dtsi file and
-> let the board dts writer only en/disable the needed connections. When
-> the connections are specified in the dts file then writing it is more
-> difficult and error prone.
-> 
-> > 
-> > or:
-> > 
-> > &vp0_out_hdmi {
-> >   /delete-property/ remote-endpoint;
-> > };
-> 
-> With this I have to change all connections that I don't need. With
-> status = "okay" I have to change all connections that I actually do
-> need, which will be much easier to read and write.
-> 
-> I'll stick to the status = "okay" method for the next round, maybe I can
-> still convince you ;)
-> 
-> If it's the 'status' property you don't like being used when it's not a
-> device that is enabled/disabled, then every other name would be fine
-> with me as well.
+This patch set is to add support for Audio over wcd codec,
+digital mics, through digital codecs and without ADSP.
 
-hmm, we do have code in the rockchip drm-driver to find out
-if the device at the end of a graph-connection is disabled or not [0] ,
-So on previous Rockchip socs, there are already all connections
-established, and the driver weeds out the disabled ones.
+Changes Since V6:
+    -- Split cdc dma regmap config macros.
+    -- Add write dma reg fields for i2s path.
+    -- Add helper function to distinguish rxtx and va dma ports.
+    -- Optimizing clock and reg name in cpu dt-bindings.
+    -- Update buffer management for cdc dma path.
+    -- Remove Kconfig fields of machine driver.
+Changes Since V5:
+    -- Include MI2S primary node to snd_soc_dai_driver in lpass-sc7280 platform driver.
+    -- Move dependency patch list to corresponding patch.
+    -- Add support for missing cdc-dma ports.
+    -- Change if/else conditional statements to switch cases.
+    -- Add missing error handlings.
+    -- Typo errors fix.
+Changes Since V4:
+    -- Remove unused variable in lpass-sc7280 platform driver.
+Changes Since V3:
+    -- Remove redundant power domain controls. As power domains can be configured from dtsi.
+Changes Since V2:
+    -- Split lpass sc7280 cpu driver patch and create regmap config patch.
+    -- Create patches based on latest kernel tip.
+    -- Add helper function to get dma control and lpaif handle.
+    -- Remove unused variables.
+Changes Since V1:
+    -- Typo errors fix
+    -- CPU driver readable/writable apis optimization.
+    -- Add Missing config patch
+    -- Add Common api for repeated dmactl initialization.
 
-So I'm wondering what is missing to use that in a vop2 context?
+Srinivasa Rao Mandadapu (10):
+  ASoC: qcom: Move lpass_pcm_data structure to lpass header
+  ASoC: qcom: lpass: Add dma fields for codec dma lpass interface
+  ASoC: qcom: Add register definition for codec rddma and wrdma
+  ASoC: qcom: Add lpass CPU driver for codec dma control
+  ASoC: qcom: Add helper function to get dma control and lpaif handle
+  ASoC: qcom: Add support for codec dma driver
+  ASoC: qcom: Add regmap config support for codec dma driver
+  ASoC: dt-bindings: Add SC7280 lpass cpu bindings
+  ASoC: qcom: lpass-sc7280: Add platform driver for lpass audio
+  ASoC: qcom: SC7280: Update config for building codec dma drivers
 
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  70 ++-
+ sound/soc/qcom/Kconfig                             |  11 +
+ sound/soc/qcom/Makefile                            |   4 +
+ sound/soc/qcom/lpass-cdc-dma.c                     | 275 +++++++++
+ sound/soc/qcom/lpass-cpu.c                         | 244 +++++++-
+ sound/soc/qcom/lpass-lpaif-reg.h                   | 127 ++++-
+ sound/soc/qcom/lpass-platform.c                    | 617 ++++++++++++++++++---
+ sound/soc/qcom/lpass-sc7280.c                      | 441 +++++++++++++++
+ sound/soc/qcom/lpass.h                             | 162 ++++++
+ 9 files changed, 1864 insertions(+), 87 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+ create mode 100644 sound/soc/qcom/lpass-sc7280.c
 
-Heiko
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/rockchip/rockchip_drm_drv.c#n274
-
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
