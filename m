@@ -2,442 +2,1017 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 910714663D6
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 13:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AD6B466402
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 13:52:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347295AbhLBMoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 07:44:39 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:55678 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241480AbhLBMoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 07:44:38 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B2Cf5jB004546;
-        Thu, 2 Dec 2021 06:41:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638448865;
-        bh=sJlHYGHLohMDPJBTCgxX+Dpi5/1dn4ahE9byziVj/YQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ta+YEZ+X78YLDZbT5pOz0uoY2QDf/F9iFZSzkeWxyqyvjGIlAS+oSxAmNZEgM0ZSi
-         I8NKrkeo/z/8F5wJuhqlE5uKrUo4tcbwyNsLWQAFxEPBe3qvkWNsMEqxEFP3SnKeMB
-         jLBXi2Vbtq6rP5N6sVcNrpSk6LrAw7o8mjiRSJco=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B2Cf5HK081655
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Dec 2021 06:41:05 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
- Dec 2021 06:41:05 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 2 Dec 2021 06:41:05 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B2CesQE051666;
-        Thu, 2 Dec 2021 06:41:02 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH v2 2/2] mux: Add support for reading mux state from consumer DT node
-Date:   Thu, 2 Dec 2021 18:10:53 +0530
-Message-ID: <20211202124053.2835-3-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211202124053.2835-1-a-govindraju@ti.com>
-References: <20211202124053.2835-1-a-govindraju@ti.com>
+        id S1346613AbhLBMzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 07:55:51 -0500
+Received: from out2.migadu.com ([188.165.223.204]:17676 "EHLO out2.migadu.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S230001AbhLBMzu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Dec 2021 07:55:50 -0500
+Date:   Thu, 2 Dec 2021 20:52:00 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+        t=1638449546;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=/IaNmCOcgdtkqB2nyRdXHwV/y3uil89QWJDlRqw2hFA=;
+        b=B2ysc1ErFp9eEYT5zzYLMp0bAyIw5wGIEpKh9KpHIvzB9tVMIumq8tuHfBk0czvnBVwaco
+        BVc5A/UGsjW1dpqqpekobYY9zZi/5Xsp8SHCsUT8601Y1c4yA1Cm3KJdcMg12ej7eXIkNG
+        Ff0bvawYZWA8gTsQTxKGnt0G7wFQXyQ=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From:   Cai Huoqing <cai.huoqing@linux.dev>
+To:     Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc:     jic23@kernel.org, robh+dt@kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] iio:dac:ad7293: add support for AD7293
+Message-ID: <20211202125200.GA11548@chq-T47>
+References: <20211202110139.189087-1-antoniu.miclaus@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20211202110139.189087-1-antoniu.miclaus@analog.com>
+X-Migadu-Flow: FLOW_OUT
+X-Migadu-Auth-User: linux.dev
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In some cases, we might need to provide the state of the mux to be set for
-the operation of a given peripheral. Therefore, pass this information using
-mux-states property.
-
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- drivers/mux/core.c           | 219 +++++++++++++++++++++++++++++++----
- include/linux/mux/consumer.h |  19 ++-
- 2 files changed, 216 insertions(+), 22 deletions(-)
-
-diff --git a/drivers/mux/core.c b/drivers/mux/core.c
-index 22f4709768d1..7355c5ad41f7 100644
---- a/drivers/mux/core.c
-+++ b/drivers/mux/core.c
-@@ -29,6 +29,19 @@
-  */
- #define MUX_CACHE_UNKNOWN MUX_IDLE_AS_IS
- 
-+/**
-+ * struct mux_state -	Represents a mux controller specific to a given device
-+ * @mux:		Pointer to a mux controller
-+ * @state		State of the mux to be set
-+ *
-+ * This structure is specific to a device that acquires it and has information
-+ * specific to the device.
-+ */
-+struct mux_state {
-+	struct mux_control *mux;
-+	unsigned int state;
-+};
-+
- static struct class mux_class = {
- 	.name = "mux",
- 	.owner = THIS_MODULE,
-@@ -370,6 +383,31 @@ int mux_control_select_delay(struct mux_control *mux, unsigned int state,
- }
- EXPORT_SYMBOL_GPL(mux_control_select_delay);
- 
-+/**
-+ * mux_state_select_delay() - Select mux-state
-+ * @mstate: The mux-state to select
-+ * @delay_us: The time to delay (in microseconds) if the mux control
-+ *            changes state on select
-+ *
-+ * On successfully selecting the mux-state, it will be locked until
-+ * there is a call to mux_state_deselect() or mux_control_deselect().
-+ * If the mux-control is already selected when mux_state_select() is
-+ * called, the caller will be blocked until mux_state_deselect() or
-+ * mux_control_deselect() is called (by someone else).
-+ *
-+ * Therefore, make sure to call mux_state_deselect() when the operation is
-+ * complete and the mux-control is free for others to use, but do not call
-+ * mux_state_deselect() if mux_state_select() fails.
-+ *
-+ * Return: 0 when the mux-state has been selected or a negative
-+ * errno on error.
-+ */
-+int mux_state_select_delay(struct mux_state *mstate, unsigned int delay_us)
-+{
-+	return mux_control_select_delay(mstate->mux, mstate->state, delay_us);
-+}
-+EXPORT_SYMBOL_GPL(mux_state_select_delay);
-+
- /**
-  * mux_control_try_select_delay() - Try to select the given multiplexer state.
-  * @mux: The mux-control to request a change of state from.
-@@ -377,7 +415,7 @@ EXPORT_SYMBOL_GPL(mux_control_select_delay);
-  * @delay_us: The time to delay (in microseconds) if the mux state is changed.
-  *
-  * On successfully selecting the mux-control state, it will be locked until
-- * mux_control_deselect() called.
-+ * mux_control_deselect() or mux_state_deselect() called.
-  *
-  * Therefore, make sure to call mux_control_deselect() when the operation is
-  * complete and the mux-control is free for others to use, but do not call
-@@ -405,6 +443,27 @@ int mux_control_try_select_delay(struct mux_control *mux, unsigned int state,
- }
- EXPORT_SYMBOL_GPL(mux_control_try_select_delay);
- 
-+/**
-+ * mux_state_try_select_delay() - Try to select the mux-state.
-+ * @mstate: The mux-state to select
-+ * @delay_us: The time to delay (in microseconds) if the mux state is changed.
-+ *
-+ * On successfully selecting the mux-state, it will be locked until
-+ * mux_state_deselect() or mux_control_deselect() is called.
-+ *
-+ * Therefore, make sure to call mux_state_deselect() when the operation is
-+ * complete and the mux-control is free for others to use, but do not call
-+ * mux_state_deselect() if mux_state_try_select() fails.
-+ *
-+ * Return: 0 when the mux-state has been selected or a negative errno on
-+ * error. Specifically -EBUSY if the mux-control is contended.
-+ */
-+int mux_state_try_select_delay(struct mux_state *mstate, unsigned int delay_us)
-+{
-+	return mux_control_try_select_delay(mstate->mux, mstate->state, delay_us);
-+}
-+EXPORT_SYMBOL_GPL(mux_state_try_select_delay);
-+
- /**
-  * mux_control_deselect() - Deselect the previously selected multiplexer state.
-  * @mux: The mux-control to deselect.
-@@ -431,6 +490,24 @@ int mux_control_deselect(struct mux_control *mux)
- }
- EXPORT_SYMBOL_GPL(mux_control_deselect);
- 
-+/**
-+ * mux_state_deselect() - Deselect the previously selected multiplexer state.
-+ * @mstate: The mux-state to deselect.
-+ *
-+ * It is required that a single call is made to mux_state_deselect() for
-+ * each and every successful call made to either of mux_state_select() or
-+ * mux_state_try_select().
-+ *
-+ * Return: 0 on success and a negative errno on error. An error can only
-+ * occur if the mux has an idle state. Note that even if an error occurs, the
-+ * mux-control is unlocked and is thus free for the next access.
-+ */
-+int mux_state_deselect(struct mux_state *mstate)
-+{
-+	return mux_control_deselect(mstate->mux);
-+}
-+EXPORT_SYMBOL_GPL(mux_state_deselect);
-+
- /* Note this function returns a reference to the mux_chip dev. */
- static struct mux_chip *of_find_mux_chip_by_node(struct device_node *np)
- {
-@@ -441,14 +518,17 @@ static struct mux_chip *of_find_mux_chip_by_node(struct device_node *np)
- 	return dev ? to_mux_chip(dev) : NULL;
- }
- 
--/**
-- * mux_control_get() - Get the mux-control for a device.
-+/*
-+ * mux_get() - Get the mux-control for a device.
-  * @dev: The device that needs a mux-control.
-  * @mux_name: The name identifying the mux-control.
-+ * @state: Pointer to where the requested state is returned, or NULL when
-+ *         the required multiplexer states are handled by other means.
-  *
-  * Return: A pointer to the mux-control, or an ERR_PTR with a negative errno.
-  */
--struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
-+static struct mux_control *mux_get(struct device *dev, const char *mux_name,
-+				   unsigned int *state)
- {
- 	struct device_node *np = dev->of_node;
- 	struct of_phandle_args args;
-@@ -458,8 +538,12 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
- 	int ret;
- 
- 	if (mux_name) {
--		index = of_property_match_string(np, "mux-control-names",
--						 mux_name);
-+		if (state)
-+			index = of_property_match_string(np, "mux-state-names",
-+							 mux_name);
-+		else
-+			index = of_property_match_string(np, "mux-control-names",
-+							 mux_name);
- 		if (index < 0) {
- 			dev_err(dev, "mux controller '%s' not found\n",
- 				mux_name);
-@@ -467,12 +551,17 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
- 		}
- 	}
- 
--	ret = of_parse_phandle_with_args(np,
--					 "mux-controls", "#mux-control-cells",
--					 index, &args);
-+	if (state)
-+		ret = of_parse_phandle_with_args(np,
-+						 "mux-states", "#mux-state-cells",
-+						 index, &args);
-+	else
-+		ret = of_parse_phandle_with_args(np,
-+						 "mux-controls", "#mux-control-cells",
-+						 index, &args);
- 	if (ret) {
--		dev_err(dev, "%pOF: failed to get mux-control %s(%i)\n",
--			np, mux_name ?: "", index);
-+		dev_err(dev, "%pOF: failed to get mux-%s %s(%i)\n",
-+			np, state ? "state" : "control", mux_name ?: "", index);
- 		return ERR_PTR(ret);
- 	}
- 
-@@ -481,17 +570,35 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
- 	if (!mux_chip)
- 		return ERR_PTR(-EPROBE_DEFER);
- 
--	if (args.args_count > 1 ||
--	    (!args.args_count && (mux_chip->controllers > 1))) {
--		dev_err(dev, "%pOF: wrong #mux-control-cells for %pOF\n",
--			np, args.np);
--		put_device(&mux_chip->dev);
--		return ERR_PTR(-EINVAL);
--	}
--
- 	controller = 0;
--	if (args.args_count)
--		controller = args.args[0];
-+	if (state) {
-+		if (args.args_count > 2 || args.args_count == 0 ||
-+		    (args.args_count < 2 && mux_chip->controllers > 1)) {
-+			dev_err(dev, "%pOF: wrong #mux-state-cells for %pOF\n",
-+				np, args.np);
-+			put_device(&mux_chip->dev);
-+			return ERR_PTR(-EINVAL);
-+		}
-+
-+		if (args.args_count == 2) {
-+			controller = args.args[0];
-+			*state = args.args[1];
-+		} else {
-+			*state = args.args[0];
-+		}
-+
-+	} else {
-+		if (args.args_count > 1 ||
-+		    (!args.args_count && mux_chip->controllers > 1)) {
-+			dev_err(dev, "%pOF: wrong #mux-control-cells for %pOF\n",
-+				np, args.np);
-+			put_device(&mux_chip->dev);
-+			return ERR_PTR(-EINVAL);
-+		}
-+
-+		if (args.args_count)
-+			controller = args.args[0];
-+	}
- 
- 	if (controller >= mux_chip->controllers) {
- 		dev_err(dev, "%pOF: bad mux controller %u specified in %pOF\n",
-@@ -502,6 +609,18 @@ struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
- 
- 	return &mux_chip->mux[controller];
- }
-+
-+/**
-+ * mux_control_get() - Get the mux-control for a device.
-+ * @dev: The device that needs a mux-control.
-+ * @mux_name: The name identifying the mux-control.
-+ *
-+ * Return: A pointer to the mux-control, or an ERR_PTR with a negative errno.
-+ */
-+struct mux_control *mux_control_get(struct device *dev, const char *mux_name)
-+{
-+	return mux_get(dev, mux_name, NULL);
-+}
- EXPORT_SYMBOL_GPL(mux_control_get);
- 
- /**
-@@ -523,6 +642,26 @@ static void devm_mux_control_release(struct device *dev, void *res)
- 	mux_control_put(mux);
- }
- 
-+/**
-+ * mux_state_put() - Put away the mux-state for good.
-+ * @mstate: The mux-state to put away.
-+ *
-+ * mux_control_put() reverses the effects of mux_control_get().
-+ */
-+void mux_state_put(struct mux_state *mstate)
-+{
-+	mux_control_put(mstate->mux);
-+	kfree(mstate);
-+}
-+EXPORT_SYMBOL_GPL(mux_state_put);
-+
-+static void devm_mux_state_release(struct device *dev, void *res)
-+{
-+	struct mux_state *mstate = *(struct mux_state **)res;
-+
-+	mux_state_put(mstate);
-+}
-+
- /**
-  * devm_mux_control_get() - Get the mux-control for a device, with resource
-  *			    management.
-@@ -553,6 +692,44 @@ struct mux_control *devm_mux_control_get(struct device *dev,
- }
- EXPORT_SYMBOL_GPL(devm_mux_control_get);
- 
-+/**
-+ * devm_mux_state_get() - Get the mux-state for a device, with resource
-+ *			  management.
-+ * @dev: The device that needs a mux-control.
-+ * @mux_name: The name identifying the mux-control.
-+ *
-+ * Return: Pointer to the mux-state, or an ERR_PTR with a negative errno.
-+ */
-+struct mux_state *devm_mux_state_get(struct device *dev,
-+				     const char *mux_name)
-+{
-+	struct mux_state **ptr, *mstate;
-+	struct mux_control *mux_ctrl;
-+	int state;
-+
-+	mstate = devm_kzalloc(dev, sizeof(struct mux_state), GFP_KERNEL);
-+	if (!mstate)
-+		return ERR_PTR(-ENOMEM);
-+
-+	ptr = devres_alloc(devm_mux_state_release, sizeof(*ptr), GFP_KERNEL);
-+	if (!ptr)
-+		return ERR_PTR(-ENOMEM);
-+
-+	mux_ctrl = mux_get(dev, mux_name, &state);
-+	if (IS_ERR(mux_ctrl)) {
-+		devres_free(ptr);
-+		return (struct mux_state *)mux_ctrl;
-+	}
-+
-+	mstate->mux = mux_ctrl;
-+	mstate->state = state;
-+	*ptr = mstate;
-+	devres_add(dev, ptr);
-+
-+	return mstate;
-+}
-+EXPORT_SYMBOL_GPL(devm_mux_state_get);
-+
- /*
-  * Using subsys_initcall instead of module_init here to try to ensure - for
-  * the non-modular case - that the subsystem is initialized when mux consumers
-diff --git a/include/linux/mux/consumer.h b/include/linux/mux/consumer.h
-index 7a09b040ac39..bf5abf062c21 100644
---- a/include/linux/mux/consumer.h
-+++ b/include/linux/mux/consumer.h
-@@ -14,33 +14,50 @@
- 
- struct device;
- struct mux_control;
-+struct mux_state;
- 
- unsigned int mux_control_states(struct mux_control *mux);
- int __must_check mux_control_select_delay(struct mux_control *mux,
- 					  unsigned int state,
- 					  unsigned int delay_us);
-+int __must_check mux_state_select_delay(struct mux_state *mstate,
-+					unsigned int delay_us);
- int __must_check mux_control_try_select_delay(struct mux_control *mux,
- 					      unsigned int state,
- 					      unsigned int delay_us);
--
-+int __must_check mux_state_try_select_delay(struct mux_state *mstate,
-+					    unsigned int delay_us);
- static inline int __must_check mux_control_select(struct mux_control *mux,
- 						  unsigned int state)
- {
- 	return mux_control_select_delay(mux, state, 0);
- }
- 
-+static inline int __must_check mux_state_select(struct mux_state *mstate)
-+{
-+	return mux_state_select_delay(mstate, 0);
-+}
- static inline int __must_check mux_control_try_select(struct mux_control *mux,
- 						      unsigned int state)
- {
- 	return mux_control_try_select_delay(mux, state, 0);
- }
- 
-+static inline int __must_check mux_state_try_select(struct mux_state *mstate)
-+{
-+	return mux_state_try_select_delay(mstate, 0);
-+}
-+
- int mux_control_deselect(struct mux_control *mux);
-+int mux_state_deselect(struct mux_state *mstate);
- 
- struct mux_control *mux_control_get(struct device *dev, const char *mux_name);
- void mux_control_put(struct mux_control *mux);
-+void mux_state_put(struct mux_state *mstate);
- 
- struct mux_control *devm_mux_control_get(struct device *dev,
- 					 const char *mux_name);
-+struct mux_state *devm_mux_state_get(struct device *dev,
-+				     const char *mux_name);
- 
- #endif /* _LINUX_MUX_CONSUMER_H */
--- 
-2.17.1
-
+On 02 12月 21 13:01:38, Antoniu Miclaus wrote:
+> The AD7293 is a Power Amplifier drain current controller
+> containing functionality for general-purpose monitoring
+> and control of current, voltage, and temperature, integrated
+> into a single chip solution with an SPI-compatible interface.
+> 
+> Datasheet:
+> https://www.analog.com/media/en/technical-documentation/data-sheets/AD7293.pdf
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> changes in v5:
+>  - perform error check for `regulator_get_voltage`
+>  - more characters per line adjustments
+>  drivers/iio/dac/Kconfig  |  11 +
+>  drivers/iio/dac/Makefile |   1 +
+>  drivers/iio/dac/ad7293.c | 909 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 921 insertions(+)
+>  create mode 100644 drivers/iio/dac/ad7293.c
+> 
+> diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+> index 75e1f2b48638..6206b90fc08f 100644
+> --- a/drivers/iio/dac/Kconfig
+> +++ b/drivers/iio/dac/Kconfig
+> @@ -221,6 +221,17 @@ config AD5791
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called ad5791.
+>  
+> +config AD7293
+> +	tristate "Analog Devices AD7293 Power Amplifier Current Controller"
+> +	depends on SPI
+> +	help
+> +	  Say yes here to build support for Analog Devices AD7293
+> +	  Power Amplifier Current Controller with
+> +	  ADC, DACs, and Temperature and Current Sensors
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called ad7293.
+> +
+>  config AD7303
+>  	tristate "Analog Devices AD7303 DAC driver"
+>  	depends on SPI
+> diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+> index 33e16f14902a..3c17246ee89b 100644
+> --- a/drivers/iio/dac/Makefile
+> +++ b/drivers/iio/dac/Makefile
+> @@ -25,6 +25,7 @@ obj-$(CONFIG_AD5791) += ad5791.o
+>  obj-$(CONFIG_AD5686) += ad5686.o
+>  obj-$(CONFIG_AD5686_SPI) += ad5686-spi.o
+>  obj-$(CONFIG_AD5696_I2C) += ad5696-i2c.o
+> +obj-$(CONFIG_AD7293) += ad7293.o
+>  obj-$(CONFIG_AD7303) += ad7303.o
+>  obj-$(CONFIG_AD8801) += ad8801.o
+>  obj-$(CONFIG_CIO_DAC) += cio-dac.o
+> diff --git a/drivers/iio/dac/ad7293.c b/drivers/iio/dac/ad7293.c
+> new file mode 100644
+> index 000000000000..b5770ff03258
+> --- /dev/null
+> +++ b/drivers/iio/dac/ad7293.c
+> @@ -0,0 +1,909 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * AD7293 driver
+> + *
+> + * Copyright 2021 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +
+> +#include <asm/unaligned.h>
+> +
+> +#define AD7293_R1B				BIT(16)
+> +#define AD7293_R2B				BIT(17)
+> +#define AD7293_PAGE_ADDR_MSK			GENMASK(15, 8)
+> +#define AD7293_PAGE(x)				FIELD_PREP(AD7293_PAGE_ADDR_MSK, x)
+> +
+> +/* AD7293 Register Map Common */
+> +#define AD7293_REG_NO_OP			(AD7293_R1B | AD7293_PAGE(0x0) | 0x0)
+remove unused register macro,  like this.
+> +#define AD7293_REG_PAGE_SELECT			(AD7293_R1B | AD7293_PAGE(0x0) | 0x1)
+> +#define AD7293_REG_CONV_CMD			(AD7293_R2B | AD7293_PAGE(0x0) | 0x2)
+> +#define AD7293_REG_RESULT			(AD7293_R1B | AD7293_PAGE(0x0) | 0x3)
+> +#define AD7293_REG_DAC_EN			(AD7293_R1B | AD7293_PAGE(0x0) | 0x4)
+> +#define AD7293_REG_DEVICE_ID			(AD7293_R2B | AD7293_PAGE(0x0) | 0xC)
+> +#define AD7293_REG_SOFT_RESET			(AD7293_R2B | AD7293_PAGE(0x0) | 0xF)
+> +
+> +/* AD7293 Register Map Page 0x0 */
+> +#define AD7293_REG_VIN0				(AD7293_R2B | AD7293_PAGE(0x0) | 0x10)
+> +#define AD7293_REG_VIN1				(AD7293_R2B | AD7293_PAGE(0x0) | 0x11)
+> +#define AD7293_REG_VIN2				(AD7293_R2B | AD7293_PAGE(0x0) | 0x12)
+> +#define AD7293_REG_VIN3				(AD7293_R2B | AD7293_PAGE(0x0) | 0x13)
+> +#define AD7293_REG_TSENSE_INT			(AD7293_R2B | AD7293_PAGE(0x0) | 0x20)
+> +#define AD7293_REG_TSENSE_D0			(AD7293_R2B | AD7293_PAGE(0x0) | 0x21)
+> +#define AD7293_REG_TSENSE_D1			(AD7293_R2B | AD7293_PAGE(0x0) | 0x22)
+> +#define AD7293_REG_ISENSE_0			(AD7293_R2B | AD7293_PAGE(0x0) | 0x28)
+> +#define AD7293_REG_ISENSE_1			(AD7293_R2B | AD7293_PAGE(0x0) | 0x29)
+> +#define AD7293_REG_ISENSE_2			(AD7293_R2B | AD7293_PAGE(0x0) | 0x2A)
+> +#define AD7293_REG_ISENSE_3			(AD7293_R2B | AD7293_PAGE(0x0) | 0x2B)
+> +#define AD7293_REG_UNI_VOUT0			(AD7293_R2B | AD7293_PAGE(0x0) | 0x30)
+> +#define AD7293_REG_UNI_VOUT1			(AD7293_R2B | AD7293_PAGE(0x0) | 0x31)
+> +#define AD7293_REG_UNI_VOUT2			(AD7293_R2B | AD7293_PAGE(0x0) | 0x32)
+> +#define AD7293_REG_UNI_VOUT3			(AD7293_R2B | AD7293_PAGE(0x0) | 0x33)
+> +#define AD7293_REG_BI_VOUT0			(AD7293_R2B | AD7293_PAGE(0x0) | 0x34)
+> +#define AD7293_REG_BI_VOUT1			(AD7293_R2B | AD7293_PAGE(0x0) | 0x35)
+> +#define AD7293_REG_BI_VOUT2			(AD7293_R2B | AD7293_PAGE(0x0) | 0x36)
+> +#define AD7293_REG_BI_VOUT3			(AD7293_R2B | AD7293_PAGE(0x0) | 0x37)
+> +
+> +/* AD7293 Register Map Page 0x1 */
+> +#define AD7293_REG_AVDD				(AD7293_R2B | AD7293_PAGE(0x1) | 0x10)
+> +#define AD7293_REG_DACVDD_UNI			(AD7293_R2B | AD7293_PAGE(0x1) | 0x11)
+> +#define AD7293_REG_DACVDD_BI			(AD7293_R2B | AD7293_PAGE(0x1) | 0x12)
+> +#define AD7293_REG_AVSS				(AD7293_R2B | AD7293_PAGE(0x1) | 0x13)
+> +#define AD7293_REG_BI_VOUT0_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x14)
+> +#define AD7293_REG_BI_VIOU1_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x15)
+> +#define AD7293_REG_BI_VOUT2_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x16)
+> +#define AD7293_REG_BI_VOUT3_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x17)
+> +#define AD7293_REG_RS0_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x28)
+the same here, not need to define all registers in the datasheet.
+Thanks,
+Cai
+> +#define AD7293_REG_RS1_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x29)
+> +#define AD7293_REG_RS2_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x2A)
+> +#define AD7293_REG_RS3_MON			(AD7293_R2B | AD7293_PAGE(0x1) | 0x2B)
+> +
+> +/* AD7293 Register Map Page 0x2 */
+> +#define AD7293_REG_DIGITAL_OUT_EN		(AD7293_R2B | AD7293_PAGE(0x2) | 0x11)
+> +#define AD7293_REG_DIGITAL_INOUT_FUNC		(AD7293_R2B | AD7293_PAGE(0x2) | 0x12)
+> +#define AD7293_REG_DIGITAL_FUNC_POL		(AD7293_R2B | AD7293_PAGE(0x2) | 0x13)
+> +#define AD7293_REG_GENERAL			(AD7293_R2B | AD7293_PAGE(0x2) | 0x14)
+> +#define AD7293_REG_VINX_RANGE0			(AD7293_R2B | AD7293_PAGE(0x2) | 0x15)
+> +#define AD7293_REG_VINX_RANGE1			(AD7293_R2B | AD7293_PAGE(0x2) | 0x16)
+> +#define AD7293_REG_VINX_DIFF_SE			(AD7293_R2B | AD7293_PAGE(0x2) | 0x17)
+> +#define AD7293_REG_VINX_FILTER			(AD7293_R2B | AD7293_PAGE(0x2) | 0x18)
+> +#define AD7293_REG_BG_EN			(AD7293_R2B | AD7293_PAGE(0x2) | 0x19)
+> +#define AD7293_REG_CONV_DELAY			(AD7293_R2B | AD7293_PAGE(0x2) | 0x1A)
+> +#define AD7293_REG_TSENSE_BG_EN			(AD7293_R2B | AD7293_PAGE(0x2) | 0x1B)
+> +#define AD7293_REG_ISENSE_BG_EN			(AD7293_R2B | AD7293_PAGE(0x2) | 0x1C)
+> +#define AD7293_REG_ISENSE_GAIN			(AD7293_R2B | AD7293_PAGE(0x2) | 0x1D)
+> +#define AD7293_REG_DAC_SNOOZE_O			(AD7293_R2B | AD7293_PAGE(0x2) | 0x1F)
+> +#define AD7293_REG_DAC_SNOOZE_1			(AD7293_R2B | AD7293_PAGE(0x2) | 0x20)
+> +#define AD7293_REG_RSX_MON_BG_EN		(AD7293_R2B | AD7293_PAGE(0x2) | 0x23)
+> +#define AD7293_REG_INTEGR_CL			(AD7293_R2B | AD7293_PAGE(0x2) | 0x28)
+> +#define AD7293_REG_PA_ON_CTRL			(AD7293_R2B | AD7293_PAGE(0x2) | 0x29)
+> +#define AD7293_REG_RAMP_TIME_0			(AD7293_R2B | AD7293_PAGE(0x2) | 0x2A)
+> +#define AD7293_REG_RAMP_TIME_1			(AD7293_R2B | AD7293_PAGE(0x2) | 0x2B)
+> +#define AD7293_REG_RAMP_TIME_2			(AD7293_R2B | AD7293_PAGE(0x2) | 0x2C)
+> +#define AD7293_REG_RAMP_TIME_3			(AD7293_R2B | AD7293_PAGE(0x2) | 0x2D)
+> +#define AD7293_REG_CL_FR_IT			(AD7293_R2B | AD7293_PAGE(0x2) | 0x2E)
+> +#define AD7293_REG_INTX_AVSS_AVDD		(AD7293_R2B | AD7293_PAGE(0x2) | 0x2F)
+> +
+> +/* AD7293 Register Map Page 0x3 */
+> +#define AD7293_REG_VINX_SEQ			(AD7293_R2B | AD7293_PAGE(0x3) | 0x10)
+> +#define AD7293_REG_ISENSEX_TSENSEX_SEQ		(AD7293_R2B | AD7293_PAGE(0x3) | 0x11)
+> +#define AD7293_REG_RSX_MON_BI_VOUTX_SEQ		(AD7293_R2B | AD7293_PAGE(0x3) | 0x12)
+> +
+> +/* AD7293 Register Map Page 0xE */
+> +#define AD7293_REG_VIN0_OFFSET			(AD7293_R1B | AD7293_PAGE(0xE) | 0x10)
+> +#define AD7293_REG_VIN1_OFFSET			(AD7293_R1B | AD7293_PAGE(0xE) | 0x11)
+> +#define AD7293_REG_VIN2_OFFSET			(AD7293_R1B | AD7293_PAGE(0xE) | 0x12)
+> +#define AD7293_REG_VIN3_OFFSET			(AD7293_R1B | AD7293_PAGE(0xE) | 0x13)
+> +#define AD7293_REG_TSENSE_INT_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x20)
+> +#define AD7293_REG_TSENSE_D0_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x21)
+> +#define AD7293_REG_TSENSE_D1_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x22)
+> +#define AD7293_REG_ISENSE0_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x28)
+> +#define AD7293_REG_ISENSE1_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x29)
+> +#define AD7293_REG_ISENSE2_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x2A)
+> +#define AD7293_REG_ISENSE3_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x2B)
+> +#define AD7293_REG_UNI_VOUT0_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x30)
+> +#define AD7293_REG_UNI_VOUT1_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x31)
+> +#define AD7293_REG_UNI_VOUT2_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x32)
+> +#define AD7293_REG_UNI_VOUT3_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x33)
+> +#define AD7293_REG_BI_VOUT0_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x34)
+> +#define AD7293_REG_BI_VOUT1_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x35)
+> +#define AD7293_REG_BI_VOUT2_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x36)
+> +#define AD7293_REG_BI_VOUT3_OFFSET		(AD7293_R1B | AD7293_PAGE(0xE) | 0x37)
+> +
+> +/* AD7293 Miscellaneous Definitions */
+> +#define AD7293_READ				BIT(7)
+> +#define AD7293_TRANSF_LEN_MSK			GENMASK(17, 16)
+> +
+> +#define AD7293_REG_ADDR_MSK			GENMASK(7, 0)
+> +#define AD7293_REG_VOUT_OFFSET_MSK		GENMASK(5, 4)
+> +#define AD7293_REG_DATA_RAW_MSK			GENMASK(15, 4)
+> +#define AD7293_REG_VINX_RANGE_GET_CH_MSK(x, ch)	(((x) >> (ch)) & 0x1)
+> +#define AD7293_REG_VINX_RANGE_SET_CH_MSK(x, ch)	(((x) & 0x1) << (ch))
+> +#define AD7293_CHIP_ID				0x18
+> +
+> +enum ad7293_ch_type {
+> +	AD7293_ADC_VINX,
+> +	AD7293_ADC_TSENSE,
+> +	AD7293_ADC_ISENSE,
+> +	AD7293_DAC,
+> +};
+> +
+> +enum ad7293_max_offset {
+> +	AD7293_TSENSE_MIN_OFFSET_CH = 4,
+> +	AD7293_ISENSE_MIN_OFFSET_CH = 7,
+> +	AD7293_VOUT_MIN_OFFSET_CH = 11,
+> +	AD7293_VOUT_MAX_OFFSET_CH = 18,
+> +};
+> +
+> +static const int dac_offset_table[] = {0, 1, 2};
+> +
+> +static const int isense_gain_table[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+> +
+> +static const int adc_range_table[] = {0, 1, 2, 3};
+> +
+> +struct ad7293_state {
+> +	struct spi_device *spi;
+> +	/* Protect against concurrent accesses to the device, page selection and data content */
+> +	struct mutex lock;
+> +	struct gpio_desc *gpio_reset;
+> +	struct regulator *reg_avdd;
+> +	struct regulator *reg_vdrive;
+> +	u8 page_select;
+> +	u8 data[3] ____cacheline_aligned;
+> +};
+> +
+> +static int ad7293_page_select(struct ad7293_state *st, unsigned int reg)
+> +{
+> +	int ret;
+> +
+> +	if (st->page_select != FIELD_GET(AD7293_PAGE_ADDR_MSK, reg)) {
+> +		st->data[0] = FIELD_GET(AD7293_REG_ADDR_MSK, AD7293_REG_PAGE_SELECT);
+> +		st->data[1] = FIELD_GET(AD7293_PAGE_ADDR_MSK, reg);
+> +
+> +		ret = spi_write(st->spi, &st->data[0], 2);
+> +		if (ret)
+> +			return ret;
+> +
+> +		st->page_select = FIELD_GET(AD7293_PAGE_ADDR_MSK, reg);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __ad7293_spi_read(struct ad7293_state *st, unsigned int reg,
+> +			     u16 *val)
+> +{
+> +	int ret;
+> +	unsigned int length;
+> +	struct spi_transfer t = {0};
+> +
+> +	length = FIELD_GET(AD7293_TRANSF_LEN_MSK, reg);
+> +
+> +	ret = ad7293_page_select(st, reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->data[0] = AD7293_READ | FIELD_GET(AD7293_REG_ADDR_MSK, reg);
+> +	st->data[1] = 0x0;
+> +	st->data[2] = 0x0;
+> +
+> +	t.tx_buf = &st->data[0];
+> +	t.rx_buf = &st->data[0];
+> +	t.len = length + 1;
+> +
+> +	ret = spi_sync_transfer(st->spi, &t, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (length == 1)
+> +		*val = st->data[1];
+> +	else
+> +		*val = get_unaligned_be16(&st->data[1]);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7293_spi_read(struct ad7293_state *st, unsigned int reg,
+> +			   u16 *val)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&st->lock);
+> +	ret = __ad7293_spi_read(st, reg, val);
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int __ad7293_spi_write(struct ad7293_state *st, unsigned int reg,
+> +			      u16 val)
+> +{
+> +	int ret;
+> +	unsigned int length;
+> +
+> +	length = FIELD_GET(AD7293_TRANSF_LEN_MSK, reg);
+> +
+> +	ret = ad7293_page_select(st, reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->data[0] = FIELD_GET(AD7293_REG_ADDR_MSK, reg);
+> +
+> +	if (length == 1)
+> +		st->data[1] = val;
+> +	else
+> +		put_unaligned_be16(val, &st->data[1]);
+> +
+> +	return spi_write(st->spi, &st->data[0], length + 1);
+> +}
+> +
+> +static int ad7293_spi_write(struct ad7293_state *st, unsigned int reg,
+> +			    u16 val)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&st->lock);
+> +	ret = __ad7293_spi_write(st, reg, val);
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int __ad7293_spi_update_bits(struct ad7293_state *st, unsigned int reg,
+> +				    u16 mask, u16 val)
+> +{
+> +	int ret;
+> +	u16 data, temp;
+> +
+> +	ret = __ad7293_spi_read(st, reg, &data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	temp = (data & ~mask) | (val & mask);
+> +
+> +	return __ad7293_spi_write(st, reg, temp);
+> +}
+> +
+> +static int ad7293_spi_update_bits(struct ad7293_state *st, unsigned int reg,
+> +				  u16 mask, u16 val)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&st->lock);
+> +	ret = __ad7293_spi_update_bits(st, reg, mask, val);
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_adc_get_scale(struct ad7293_state *st, unsigned int ch, u16 *range)
+> +{
+> +	int ret;
+> +	u16 data;
+> +
+> +	mutex_lock(&st->lock);
+> +
+> +	ret = __ad7293_spi_read(st, AD7293_REG_VINX_RANGE1, &data);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	*range = AD7293_REG_VINX_RANGE_GET_CH_MSK(data, ch);
+> +
+> +	ret = __ad7293_spi_read(st, AD7293_REG_VINX_RANGE0, &data);
+> +	if (ret)
+> +		goto exit;
+> +
+> +	*range |= AD7293_REG_VINX_RANGE_GET_CH_MSK(data, ch) << 1;
+> +
+> +exit:
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_adc_set_scale(struct ad7293_state *st, unsigned int ch, u16 range)
+> +{
+> +	int ret;
+> +	unsigned int ch_msk = BIT(ch);
+> +
+> +	mutex_lock(&st->lock);
+> +	ret = __ad7293_spi_update_bits(st, AD7293_REG_VINX_RANGE1, ch_msk,
+> +				       AD7293_REG_VINX_RANGE_SET_CH_MSK(range, ch));
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret = __ad7293_spi_update_bits(st, AD7293_REG_VINX_RANGE0, ch_msk,
+> +				       AD7293_REG_VINX_RANGE_SET_CH_MSK((range >> 1), ch));
+> +
+> +exit:
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_get_offset(struct ad7293_state *st, unsigned int ch, u16 *offset)
+> +{
+> +	if (ch < AD7293_TSENSE_MIN_OFFSET_CH)
+> +		return ad7293_spi_read(st, AD7293_REG_VIN0_OFFSET + ch, offset);
+> +	else if (ch < AD7293_ISENSE_MIN_OFFSET_CH)
+> +		return ad7293_spi_read(st, AD7293_REG_TSENSE_INT_OFFSET + (ch - 4), offset);
+> +	else if (ch < AD7293_VOUT_MIN_OFFSET_CH)
+> +		return ad7293_spi_read(st, AD7293_REG_ISENSE0_OFFSET + (ch - 7), offset);
+> +	else if (ch <= AD7293_VOUT_MAX_OFFSET_CH)
+> +		return ad7293_spi_read(st, AD7293_REG_UNI_VOUT0_OFFSET + (ch - 11), offset);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ad7293_set_offset(struct ad7293_state *st, unsigned int ch, u16 offset)
+> +{
+> +	if (ch < AD7293_TSENSE_MIN_OFFSET_CH)
+> +		return ad7293_spi_write(st, AD7293_REG_VIN0_OFFSET + ch, offset);
+> +	else if (ch < AD7293_ISENSE_MIN_OFFSET_CH)
+> +		return ad7293_spi_write(st, AD7293_REG_TSENSE_INT_OFFSET +
+> +					(ch - AD7293_TSENSE_MIN_OFFSET_CH), offset);
+> +	else if (ch < AD7293_VOUT_MIN_OFFSET_CH)
+> +		return ad7293_spi_write(st, AD7293_REG_ISENSE0_OFFSET +
+> +					(ch - AD7293_ISENSE_MIN_OFFSET_CH), offset);
+> +	else if (ch <= AD7293_VOUT_MAX_OFFSET_CH)
+> +		return ad7293_spi_update_bits(st, AD7293_REG_UNI_VOUT0_OFFSET +
+> +						(ch - AD7293_VOUT_MIN_OFFSET_CH),
+> +						AD7293_REG_VOUT_OFFSET_MSK,
+> +						FIELD_PREP(AD7293_REG_VOUT_OFFSET_MSK, offset));
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ad7293_isense_set_scale(struct ad7293_state *st, unsigned int ch, u16 gain)
+> +{
+> +	unsigned int ch_msk = (0xf << (4 * ch));
+> +
+> +	return ad7293_spi_update_bits(st, AD7293_REG_ISENSE_GAIN, ch_msk, gain << (4 * ch));
+> +}
+> +
+> +static int ad7293_isense_get_scale(struct ad7293_state *st, unsigned int ch, u16 *gain)
+> +{
+> +	int ret;
+> +
+> +	ret = ad7293_spi_read(st, AD7293_REG_ISENSE_GAIN, gain);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*gain = (*gain >> (4 * ch)) & 0xf;
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_dac_write_raw(struct ad7293_state *st, unsigned int ch, u16 raw)
+> +{
+> +	int ret;
+> +
+> +	mutex_lock(&st->lock);
+> +
+> +	ret = __ad7293_spi_update_bits(st, AD7293_REG_DAC_EN, BIT(ch), BIT(ch));
+> +	if (ret)
+> +		goto exit;
+> +
+> +	ret =  __ad7293_spi_write(st, AD7293_REG_UNI_VOUT0 + ch,
+> +				  FIELD_PREP(AD7293_REG_DATA_RAW_MSK, raw));
+> +
+> +exit:
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_ch_read_raw(struct ad7293_state *st, enum ad7293_ch_type type, unsigned int ch,
+> +			      u16 *raw)
+> +{
+> +	int ret;
+> +	unsigned int reg_wr, reg_rd, data_wr;
+> +
+> +	switch (type) {
+> +	case AD7293_ADC_VINX:
+> +		reg_wr = AD7293_REG_VINX_SEQ;
+> +		reg_rd = AD7293_REG_VIN0 + ch;
+> +		data_wr = BIT(ch);
+> +
+> +		break;
+> +	case AD7293_ADC_TSENSE:
+> +		reg_wr = AD7293_REG_ISENSEX_TSENSEX_SEQ;
+> +		reg_rd = AD7293_REG_TSENSE_INT + ch;
+> +		data_wr = BIT(ch);
+> +
+> +		break;
+> +	case AD7293_ADC_ISENSE:
+> +		reg_wr = AD7293_REG_ISENSEX_TSENSEX_SEQ;
+> +		reg_rd = AD7293_REG_ISENSE_0 + ch;
+> +		data_wr = BIT(ch) << 8;
+> +
+> +		break;
+> +	case AD7293_DAC:
+> +		reg_rd = AD7293_REG_UNI_VOUT0 + ch;
+> +
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	mutex_lock(&st->lock);
+> +
+> +	if (type != AD7293_DAC) {
+> +		if (type == AD7293_ADC_TSENSE) {
+> +			ret = __ad7293_spi_write(st, AD7293_REG_TSENSE_BG_EN, BIT(ch));
+> +			if (ret)
+> +				goto exit;
+> +
+> +			usleep_range(9000, 9900);
+> +		} else if (type == AD7293_ADC_ISENSE) {
+> +			ret = __ad7293_spi_write(st, AD7293_REG_ISENSE_BG_EN, BIT(ch));
+> +			if (ret)
+> +				goto exit;
+> +
+> +			usleep_range(2000, 7000);
+> +		}
+> +
+> +		ret = __ad7293_spi_write(st, reg_wr, data_wr);
+> +		if (ret)
+> +			goto exit;
+> +
+> +		ret = __ad7293_spi_write(st, AD7293_REG_CONV_CMD, 0x82);
+> +		if (ret)
+> +			goto exit;
+> +	}
+> +
+> +	ret = __ad7293_spi_read(st, reg_rd, raw);
+> +
+> +	*raw = FIELD_GET(AD7293_REG_DATA_RAW_MSK, *raw);
+> +
+> +exit:
+> +	mutex_unlock(&st->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan,
+> +			   int *val, int *val2, long info)
+> +{
+> +	struct ad7293_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +	u16 data;
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (chan->output)
+> +				ret =  ad7293_ch_read_raw(st, AD7293_DAC, chan->channel, &data);
+> +			else
+> +				ret =  ad7293_ch_read_raw(st, AD7293_ADC_VINX, chan->channel, &data);
+> +
+> +			break;
+> +		case IIO_CURRENT:
+> +			ret =  ad7293_ch_read_raw(st, AD7293_ADC_ISENSE, chan->channel, &data);
+> +
+> +			break;
+> +		case IIO_TEMP:
+> +			ret =  ad7293_ch_read_raw(st, AD7293_ADC_TSENSE, chan->channel, &data);
+> +
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = data;
+> +
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (chan->output) {
+> +				ret = ad7293_get_offset(st, chan->channel +
+> +							AD7293_VOUT_MIN_OFFSET_CH, &data);
+> +
+> +				data = FIELD_GET(AD7293_REG_VOUT_OFFSET_MSK, data);
+> +			} else {
+> +				ret = ad7293_get_offset(st, chan->channel, &data);
+> +			}
+> +
+> +			break;
+> +		case IIO_CURRENT:
+> +			ret = ad7293_get_offset(st, chan->channel +
+> +						AD7293_ISENSE_MIN_OFFSET_CH, &data);
+> +
+> +			break;
+> +		case IIO_TEMP:
+> +			ret = ad7293_get_offset(st, chan->channel +
+> +						AD7293_TSENSE_MIN_OFFSET_CH, &data);
+> +
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = data;
+> +
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			ret = ad7293_adc_get_scale(st, chan->channel, &data);
+> +			if (ret)
+> +				return ret;
+> +
+> +			*val = data;
+> +
+> +			return IIO_VAL_INT;
+> +		case IIO_CURRENT:
+> +			ret = ad7293_isense_get_scale(st, chan->channel, &data);
+> +			if (ret)
+> +				return ret;
+> +
+> +			*val = data;
+> +
+> +			return IIO_VAL_INT;
+> +		case IIO_TEMP:
+> +			*val = 1;
+> +			*val2 = 8;
+> +
+> +			return IIO_VAL_FRACTIONAL;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int ad7293_write_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int val, int val2, long info)
+> +{
+> +	struct ad7293_state *st = iio_priv(indio_dev);
+> +
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (!chan->output)
+> +				return -EINVAL;
+> +
+> +			return ad7293_dac_write_raw(st, chan->channel, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			if (chan->output)
+> +				return ad7293_set_offset(st, chan->channel +
+> +							 AD7293_VOUT_MIN_OFFSET_CH, val);
+> +			else
+> +				return ad7293_set_offset(st, chan->channel, val);
+> +		case IIO_CURRENT:
+> +			return ad7293_set_offset(st, chan->channel +
+> +						 AD7293_ISENSE_MIN_OFFSET_CH, val);
+> +		case IIO_TEMP:
+> +			return ad7293_set_offset(st, chan->channel +
+> +						 AD7293_TSENSE_MIN_OFFSET_CH, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			return ad7293_adc_set_scale(st, chan->channel, val);
+> +		case IIO_CURRENT:
+> +			return ad7293_isense_set_scale(st, chan->channel, val);
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int ad7293_reg_access(struct iio_dev *indio_dev,
+> +			     unsigned int reg,
+> +			     unsigned int write_val,
+> +			     unsigned int *read_val)
+> +{
+> +	struct ad7293_state *st = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (read_val)
+> +		ret = ad7293_spi_read(st, reg, (u16 *)read_val);
+> +	else
+> +		ret = ad7293_spi_write(st, reg, (u16)write_val);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ad7293_read_avail(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan,
+> +			     const int **vals, int *type, int *length,
+> +			     long info)
+> +{
+> +	switch (info) {
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		*vals = dac_offset_table;
+> +		*type = IIO_VAL_INT;
+> +		*length = ARRAY_SIZE(dac_offset_table);
+> +
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*type = IIO_VAL_INT;
+> +
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			*vals = adc_range_table;
+> +			*length = ARRAY_SIZE(adc_range_table);
+> +			return IIO_AVAIL_LIST;
+> +		case IIO_CURRENT:
+> +			*vals = isense_gain_table;
+> +			*length = ARRAY_SIZE(isense_gain_table);
+> +			return IIO_AVAIL_LIST;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +#define AD7293_CHAN_ADC(_channel) {						\
+> +	.type = IIO_VOLTAGE,							\
+> +	.output = 0,								\
+> +	.indexed = 1,								\
+> +	.channel = _channel,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_SCALE) | \
+> +			      BIT(IIO_CHAN_INFO_OFFSET),			\
+> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE)		\
+> +}
+> +
+> +#define AD7293_CHAN_DAC(_channel) {						\
+> +	.type = IIO_VOLTAGE,							\
+> +	.output = 1,								\
+> +	.indexed = 1,								\
+> +	.channel = _channel,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_OFFSET), \
+> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OFFSET)		\
+> +}
+> +
+> +#define AD7293_CHAN_ISENSE(_channel) {						\
+> +	.type = IIO_CURRENT,							\
+> +	.output = 0,								\
+> +	.indexed = 1,								\
+> +	.channel = _channel,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_OFFSET) | \
+> +			      BIT(IIO_CHAN_INFO_SCALE),				\
+> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE)		\
+> +}
+> +
+> +#define AD7293_CHAN_TEMP(_channel) {						\
+> +	.type = IIO_TEMP,							\
+> +	.output = 0,								\
+> +	.indexed = 1,								\
+> +	.channel = _channel,							\
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) | BIT(IIO_CHAN_INFO_OFFSET), \
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE)			\
+> +}
+> +
+> +static const struct iio_chan_spec ad7293_channels[] = {
+> +	AD7293_CHAN_ADC(0),
+> +	AD7293_CHAN_ADC(1),
+> +	AD7293_CHAN_ADC(2),
+> +	AD7293_CHAN_ADC(3),
+> +	AD7293_CHAN_ISENSE(0),
+> +	AD7293_CHAN_ISENSE(1),
+> +	AD7293_CHAN_ISENSE(2),
+> +	AD7293_CHAN_ISENSE(3),
+> +	AD7293_CHAN_TEMP(0),
+> +	AD7293_CHAN_TEMP(1),
+> +	AD7293_CHAN_TEMP(2),
+> +	AD7293_CHAN_DAC(0),
+> +	AD7293_CHAN_DAC(1),
+> +	AD7293_CHAN_DAC(2),
+> +	AD7293_CHAN_DAC(3),
+> +	AD7293_CHAN_DAC(4),
+> +	AD7293_CHAN_DAC(5),
+> +	AD7293_CHAN_DAC(6),
+> +	AD7293_CHAN_DAC(7)
+> +};
+> +
+> +static int ad7293_soft_reset(struct ad7293_state *st)
+> +{
+> +	int ret;
+> +
+> +	ret = __ad7293_spi_write(st, AD7293_REG_SOFT_RESET, 0x7293);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return __ad7293_spi_write(st, AD7293_REG_SOFT_RESET, 0x0000);
+> +}
+> +
+> +static int ad7293_reset(struct ad7293_state *st)
+> +{
+> +	if (st->gpio_reset) {
+> +		gpiod_set_value(st->gpio_reset, 0);
+> +		usleep_range(100, 1000);
+> +		gpiod_set_value(st->gpio_reset, 1);
+> +		usleep_range(100, 1000);
+> +
+> +		return 0;
+> +	}
+> +
+> +	/* Perform a software reset */
+> +	return ad7293_soft_reset(st);
+> +}
+> +
+> +static int ad7293_properties_parse(struct ad7293_state *st)
+> +{
+> +	struct spi_device *spi = st->spi;
+> +
+> +	st->gpio_reset = devm_gpiod_get_optional(&st->spi->dev, "reset",
+> +						 GPIOD_OUT_HIGH);
+> +	if (IS_ERR(st->gpio_reset))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(st->gpio_reset),
+> +				     "failed to get the reset GPIO\n");
+> +
+> +	st->reg_avdd = devm_regulator_get(&spi->dev, "avdd");
+> +	if (IS_ERR(st->reg_avdd))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(st->reg_avdd),
+> +				     "failed to get the AVDD voltage\n");
+> +
+> +	st->reg_vdrive = devm_regulator_get(&spi->dev, "vdrive");
+> +	if (IS_ERR(st->reg_vdrive))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(st->reg_vdrive),
+> +				     "failed to get the VDRIVE voltage\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static void ad7293_reg_disable(void *data)
+> +{
+> +	regulator_disable(data);
+> +}
+> +
+> +static int ad7293_init(struct ad7293_state *st)
+> +{
+> +	int ret;
+> +	u16 chip_id;
+> +	struct spi_device *spi = st->spi;
+> +
+> +	ret = ad7293_properties_parse(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7293_reset(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regulator_enable(st->reg_avdd);
+> +	if (ret) {
+> +		dev_err(&spi->dev, "Failed to enable specified AVDD Voltage!\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(&spi->dev, ad7293_reg_disable,
+> +				       st->reg_avdd);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regulator_enable(st->reg_vdrive);
+> +	if (ret) {
+> +		dev_err(&spi->dev, "Failed to enable specified VDRIVE Voltage!\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(&spi->dev, ad7293_reg_disable,
+> +				       st->reg_vdrive);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regulator_get_voltage(st->reg_avdd);
+> +	if (ret < 0) {
+> +		dev_err(&spi->dev, "Failed to read avdd regulator: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (ret > 5500000 || ret < 4500000)
+> +		return -EINVAL;
+> +
+> +	ret = regulator_get_voltage(st->reg_vdrive);
+> +	if (ret < 0) {
+> +		dev_err(&spi->dev, "Failed to read vdrive regulator: %d\n", ret);
+> +		return ret;
+> +	}
+> +	if (ret > 5500000 || ret < 1700000)
+> +		return -EINVAL;
+> +
+> +	/* Check Chip ID */
+> +	ret = __ad7293_spi_read(st, AD7293_REG_DEVICE_ID, &chip_id);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (chip_id != AD7293_CHIP_ID) {
+> +		dev_err(&spi->dev, "Invalid Chip ID.\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct iio_info ad7293_info = {
+> +	.read_raw = ad7293_read_raw,
+> +	.write_raw = ad7293_write_raw,
+> +	.read_avail = &ad7293_read_avail,
+> +	.debugfs_reg_access = &ad7293_reg_access,
+> +};
+> +
+> +static int ad7293_probe(struct spi_device *spi)
+> +{
+> +	struct iio_dev *indio_dev;
+> +	struct ad7293_state *st;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +
+> +	indio_dev->info = &ad7293_info;
+> +	indio_dev->name = "ad7293";
+> +	indio_dev->channels = ad7293_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(ad7293_channels);
+> +
+> +	st->spi = spi;
+> +	st->page_select = 0;
+> +
+> +	mutex_init(&st->lock);
+> +
+> +	ret = ad7293_init(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+> +
+> +static const struct spi_device_id ad7293_id[] = {
+> +	{ "ad7293", 0 },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(spi, ad7293_id);
+> +
+> +static const struct of_device_id ad7293_of_match[] = {
+> +	{ .compatible = "adi,ad7293" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, ad7293_of_match);
+> +
+> +static struct spi_driver ad7293_driver = {
+> +	.driver = {
+> +		.name = "ad7293",
+> +		.of_match_table = ad7293_of_match,
+> +	},
+> +	.probe = ad7293_probe,
+> +	.id_table = ad7293_id,
+> +};
+> +module_spi_driver(ad7293_driver);
+> +
+> +MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com");
+> +MODULE_DESCRIPTION("Analog Devices AD7293");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.34.1
+> 
