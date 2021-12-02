@@ -2,83 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E921466AD3
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 21:18:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BEA7466B08
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 21:44:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348661AbhLBUWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 15:22:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60170 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348747AbhLBUWK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 15:22:10 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DB1C061757
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 12:18:47 -0800 (PST)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        id S1348958AbhLBUsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 15:48:03 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:51170 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348866AbhLBUsC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 15:48:02 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E892D806A8;
-        Fri,  3 Dec 2021 09:18:42 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1638476323;
-        bh=t9w9XFU2HzkdIXgBw1+w4e3pTYHFtUoYw7d6MqtA6QA=;
-        h=From:To:CC:Subject:Date;
-        b=dDweBuk8lYlS0b6185b23GjoURYmR6xMU+ARnZx2qsstzLQMzX6OMvt9CIgkM4Xx5
-         EA+/DrSo+bNGGppTBWH0dhJBcrfU8DNdPsiWut8HmCakP14F+73Y0llfWN1gxCsWr6
-         YXFRz3KzW4n62l/akYIbyZw0zVbfQbY2KeByNMJo1PFj/E29ShOZRJN72TDL1Z7Dgj
-         ASr9LZWmSkPAXas/fuWnyqWsNiuIbFguJPA2T+Ij5DeFrmF06LU4nbvaT1c8eStDra
-         NVAVSp0nY4hyXJaug+ynKHtBQIi3McGoeL+SUXPerfyMEV9xvq3Iji3Og5dgRDPkNd
-         Dch8lXocJVY+w==
-Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B61a92a220000>; Fri, 03 Dec 2021 09:18:42 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.26; Fri, 3 Dec 2021 09:18:42 +1300
-Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
- svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
- 15.00.1497.026; Fri, 3 Dec 2021 09:18:42 +1300
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: pca954x devices sharing reset-gpios
-Thread-Topic: pca954x devices sharing reset-gpios
-Thread-Index: AQHX57nMktjeGOiQoEWm9JTLScC8+g==
-Date:   Thu, 2 Dec 2021 20:18:42 +0000
-Message-ID: <ff1f75bb-75aa-e22e-9e68-721e8d80a755@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.32.1.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E7631ECDE38DEF4193444A1B9F127204@atlnz.lc>
-Content-Transfer-Encoding: base64
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CE617B82478;
+        Thu,  2 Dec 2021 20:44:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75BB8C53FD1;
+        Thu,  2 Dec 2021 20:44:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638477877;
+        bh=D+XIVtJBMJs6vJlJVkfubqTw2gl+Mh7CJ9ZRrFKA0R4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hiHyCQ1237rTv8Tp6276FGKCYm3JCk6Ml5zsrxqfAXeGJnuDaKMDQnVTeCNEZ7870
+         Gnkgx7FG3lxMdmu+ndqjYmhw5GJRY/M8Kr3T3qMnfHXQUR+m8iiXdpsIF1YI2sQjve
+         pjTNZziNRSNXti7JgKMutTGlyeSc+6yUHZl9FL/5LiZltOny0oZxUflB1oAYjGQesb
+         D4uH6VXNWpDsWNLnfddncksvWOXxSh7i8KLfeh+GmVm3hjK8KFs5BuhaTjhFeEbFYs
+         rCIn5SDcCqJ+tYLV0ZPDXMGe0RsiQQ9UNry92rgEmnFPMuWCP36JHaujE2C6ICdHuk
+         Z7h4AY8tDFmJA==
+Received: by mail-ed1-f53.google.com with SMTP id z5so3045942edd.3;
+        Thu, 02 Dec 2021 12:44:37 -0800 (PST)
+X-Gm-Message-State: AOAM533hw/+V4v5uQJuCV3SfYj/oj73STwuhiwRQRedFD6g/uHknPjDX
+        Nb5edHdNLU5vcZE0AMwlDi+9mAEmaXllYcaWLA==
+X-Google-Smtp-Source: ABdhPJyzThOhhiZuR6ye1HIiOYkJBH+7pZpAES4RrvIAKS54c2WOOBHFZcf0F8jp2b9OzH5zBx/GUv/DYwgH126mvgg=
+X-Received: by 2002:a17:906:bccc:: with SMTP id lw12mr17641007ejb.128.1638477875718;
+ Thu, 02 Dec 2021 12:44:35 -0800 (PST)
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=XOZOtjpE c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=IOMw9HtfNCkA:10 a=gI1U_EXz3-_qf3ap8AEA:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+References: <20211130111325.29328-1-semen.protsenko@linaro.org>
+ <20211130111325.29328-2-semen.protsenko@linaro.org> <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
+ <4b5bebb0-ed74-8132-1e6b-cb7cbc21439c@canonical.com> <CAL_JsqJb4nMBoGLcf-bKpi5kEE+zXQ=dfo5JSBhrqPFeLnCsHw@mail.gmail.com>
+ <CAPLW+4=Zdvf4HRNUeVMR9URLSdA867hdXVLYy+k47yLH82uTnA@mail.gmail.com>
+In-Reply-To: <CAPLW+4=Zdvf4HRNUeVMR9URLSdA867hdXVLYy+k47yLH82uTnA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 2 Dec 2021 14:44:24 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+FTB+mWOyCBwLFifk8obpMh1ysJ6pqpUzSoW7jzo5FAg@mail.gmail.com>
+Message-ID: <CAL_Jsq+FTB+mWOyCBwLFifk8obpMh1ysJ6pqpUzSoW7jzo5FAg@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
+To:     Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        linux-serial@vger.kernel.org,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        David Virag <virag.david003@gmail.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQWxsLA0KDQpJJ3ZlIHJ1biBpbnRvIGEgcHJvYmxlbSB0cnlpbmcgdG8gYWNjdXJhdGVseSBt
-b2RlbCBzb21lIGhhcmR3YXJlLg0KDQpJbiB0aGlzIHBhcnRpY3VsYXIgZGVzaWduIHRoZXJlIGFy
-ZSBhIGJ1bmNoIG9mIHBjYTk1NDggaTJjIG11eGVzIGFuZCANCnNvbWUgb2YgdGhlbSBzaGFyZSB0
-aGUgc2FtZSByZXNldCBwaW5zIGNvbWluZyBvdXQgb2YgYSBjdXN0b20gRlBHQSANCih3ZSd2ZSB3
-cml0dGVuIGEgZ3BpbyBkcml2ZXIgdG8gcmVwcmVzZW50IHRoYXQgcGFydCBvZiB0aGUgRlBHQSku
-IA0KSW5pdGlhbGx5IHdlIGhhZCB0aGlzIHdvcmtpbmcgYnkgdXNpbmcgYSBncGlvLWhvZyBmb3Ig
-dGhlIHJlc2V0IGxpbmVzIA0KYW5kIHByZXR0eSBtdWNoIGZvcmdldHRpbmcgdGhleSB3ZXJlIHRo
-ZXJlLg0KDQpJZiBJIHN0YXJ0IGJ1aWxkaW5nIHRoZSBmcGdhLWdwaW8gZHJpdmVyIGFzIGEgbW9k
-dWxlIEkgcnVuIGludG8gYSANCnNpdHVhdGlvbiB3aGVyZSB0aGVyZSBpcyBhbiBpbXBsaWNpdCBk
-ZXBlbmRlbmN5IGJldHdlZW4gdGhlIGZwZ2EtZ3BpbyANCmRyaXZlciBhbmQgdGhlIHBjYTk1NHgg
-aTJjIG11eGVzLiBCZWNhdXNlIGl0J3MgaW1wbGljaXQgdGhlIA0KcGNhOTU0eF9wcm9iZSBydW5z
-IGVhcmx5IGFuZCBmYWlscyBmb3IgdGhlc2UgZGV2aWNlcy4gSSBjYW4gbWFrZSB0aGF0IA0KZGVw
-ZW5kZW5jeSBleHBsaWNpdCBieSB1c2luZyB0aGUgcmVzZXQtZ3Bpb3MgcHJvcGVydHkgd2hpY2gg
-Y29ycmVjdGx5IA0KZGVmZXJzIHRoZSBwcm9iZSB1bnRpbCB0aGUgZnBnYS1ncGlvIGRyaXZlciBp
-cyBsb2FkZWQuIEJ1dCBhcyBzb21lIG9mIA0KdGhlc2UgcGNhOTU0OCBzaGFyZSByZXNldCBsaW5l
-cyB0aGV5IG9uZXMgdGhhdCBnZXQgcHJvYmVkIHNlY29uZCBnZXQgDQotRUJVU1kgd2hlbiB0aGV5
-IHJlcXVlc3QgdGhlIEdQSU8uDQoNCklzIHRoZXJlIGFueSB3YXkgSSBjYW4gcmVwcmVzZW50IHRo
-ZXNlIHBjYTk1NDggZGV2aWNlcyBhcyBhIGdyb3VwIHdpdGggYSANCnNpbmdsZSByZXNldC1ncGlv
-IHByb3BlcnR5IGZvciB0aGUgZ3JvdXA/DQoNClRoYW5rcywNCkNocmlzDQo=
+On Thu, Dec 2, 2021 at 5:01 AM Sam Protsenko <semen.protsenko@linaro.org> wrote:
+>
+> On Wed, 1 Dec 2021 at 18:20, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Nov 30, 2021 at 2:04 PM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@canonical.com> wrote:
+> > >
+> > > On 30/11/2021 18:43, Rob Herring wrote:
+> > > > On Tue, 30 Nov 2021 13:13:21 +0200, Sam Protsenko wrote:
+> > > >> Add constants for choosing USIv2 configuration mode in device tree.
+> > > >> Those are further used in USI driver to figure out which value to write
+> > > >> into SW_CONF register. Also document USIv2 IP-core bindings.
+> > > >>
+> > > >> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > > >> ---
+> > > >> Changes in v2:
+> > > >>   - Combined dt-bindings doc and dt-bindings header patches
+> > > >>   - Added i2c node to example in bindings doc
+> > > >>   - Added mentioning of shared internal circuits
+> > > >>   - Added USI_V2_NONE value to bindings header
+> > > >>
+> > > >>  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
+> > > >>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
+> > > >>  2 files changed, 152 insertions(+)
+> > > >>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> > > >>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+> > > >>
+> > > >
+> > > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > > >
+> > > > yamllint warnings/errors:
+> > > >
+> > > > dtschema/dtc warnings/errors:
+> > > > Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dts:35.39-42.15: Warning (unique_unit_address): /example-0/usi@138200c0/serial@13820000: duplicate unit-address (also used in node /example-0/usi@138200c0/i2c@13820000)
+> > >
+> > > Rob,
+> > >
+> > > The checker complains about two nodes with same unit-address, even
+> > > though the node name is different. Does it mean that our idea of
+> > > embedding two children in USI and having enabled only one (used one) is
+> > > wrong?
+> >
+> > IIRC, we allow for this exact scenario, and there was a change in dtc
+> > for it. So I'm not sure why this triggered.
+> >
+>
+> It's triggered from WARNING(unique_unit_address, ...), because it
+> calls static void check_unique_unit_address_common() function with
+> disable_check=false. I guess we should interpret that this way: the
+> warning makes sense in regular case, when having the same unit address
+> for two nodes is wrong. So the warning is reasonable, it's just not
+> relevant in this particular case. What can be done:
+>
+>   1. We can introduce some specific property to mark nodes with
+> duplicated address as intentional. check_unique_unit_address_common()
+> can be extended then to omit checking the nodes if that property is
+> present.
+>   2. We can just ignore that warning in this particular case (and
+> similar cases).
+>   3. We can add some disambiguation note to that warning message, like
+> "if it's intentional -- please ignore this message"
+>
+> I'm all for option (3), as it's the easiest one, and still reasonable.
+> Rob, what do you think? Can we just ignore that warning in further
+> versions of this patch series?
+
+Just change the dtc flags to '-Wno-unique_unit_address
+-Wunique_unit_address_if_enabled' for both examples and dtbs.
+
+Rob
