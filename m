@@ -2,89 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ADA5466D0C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:38:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E1B466D0F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:38:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377499AbhLBWlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 17:41:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35016 "EHLO
+        id S1377496AbhLBWls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 17:41:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349807AbhLBWlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:41:31 -0500
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F814C06175B
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 14:38:07 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id v22so1392715qtx.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 14:38:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=/YgkxkUgYa3cGXFN75ZNVpxqudNeMPhQu2Vflsaslk8=;
-        b=kXDO6ZiBZCIi/mnCweRXGLA2xMwJarSMYy8jU8Z8J97OsNm9qT9phk279CqJLkXe6C
-         5DZfMIaCv0yJnDUQC1GhxA9g+q2wTyOiTURiMqwAqAmMLBMnlrXu8UOsTSKS14GWUisV
-         2w/D3o4NV3RxmAFx2gxN4xub2KfvmqX/rbRQRbewW+bHRa/aEvsgl56iTkPKQrIZyrNe
-         P5ZX4ntuJFRUFY5HC1ZTXzSVx+/jvgFWCC74+7oCctqssZ+zC3vV/VqF9amWg8tkWiFB
-         n0+ZJmcNgWxSoxD2JmOboNsMenMN+6zrbu4iD/TWCEcy+kXDlJY8zzPNYl2olhOZ6D/B
-         DEfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=/YgkxkUgYa3cGXFN75ZNVpxqudNeMPhQu2Vflsaslk8=;
-        b=hQ/aneeEE2HpyrxG/1obALhz3Km1rrME9z4sLqyPT8dEKuZaqXzR+Ysz9Un9rpADHF
-         r8O5lNb4wMgj8o0C2yo6Lrs/knrUVqNa+LfsPtx4HOZdunduoaqTQfspEAJrJGf8XeDC
-         ISuOJGYNiy2SFsO2QwT7sykCFEdcx6bG85Rw6v11JFipS6vlDDzdGTsadS3KtTarxaLV
-         CaEO/qeGQzzOgkI4PYX+kbOin/O9dPViGRicb+8AE7I1pJficibKxS5cXKcKqiVSeyrJ
-         d0zkKqCJAh7b+39NCpUFhUyTxj+KKEU8FgEBBu88WuyWPqAxrvkgPeUzz2NEfDWXNEOL
-         iqoA==
-X-Gm-Message-State: AOAM530REYFaYroj/Ek+nVsAO0AsKYnw2ZB6v83w8YC1jRBOBnr/ITYe
-        bTmTe8dML0BSSsUL+RSLIOyeNg==
-X-Google-Smtp-Source: ABdhPJw5thbB/dwtKRrrsemIkR0hgl49PqQvYWmXUWSSKHPwBpOe14Uc2RUufrjd5T2vkX1MAo4jAg==
-X-Received: by 2002:ac8:5c53:: with SMTP id j19mr16615598qtj.40.1638484686382;
-        Thu, 02 Dec 2021 14:38:06 -0800 (PST)
-Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id h3sm961152qko.78.2021.12.02.14.38.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Dec 2021 14:38:06 -0800 (PST)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        daniel.lezcano@linaro.org, rafael@kernel.org, rui.zhang@intel.com,
-        robh+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: thermal: Add sm8150 compatible string for LMh
-Date:   Thu,  2 Dec 2021 17:38:02 -0500
-Message-Id: <20211202223802.382068-4-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211202223802.382068-1-thara.gopinath@linaro.org>
-References: <20211202223802.382068-1-thara.gopinath@linaro.org>
+        with ESMTP id S1377331AbhLBWlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:41:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D05C06174A;
+        Thu,  2 Dec 2021 14:38:20 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 925046288D;
+        Thu,  2 Dec 2021 22:38:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1EA1C53FCC;
+        Thu,  2 Dec 2021 22:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638484699;
+        bh=eCQdRQeoLT8kjg3MQLOIfSv3SGDXKbkijV9amNxq63Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=r0h036N3J3vfGrA/G9S88xmo18p43rx/XYLCpe6Zz9Rppyt0rfYSoMOCK3Cp36S7N
+         oRKqKBMZUPZpO/e+D6VJx5Y11eY37/lJzJBQXtUQYHHpGU3RAIMjioi2NdPqsJtk34
+         e86cX264PXauxI4/UxH5JdHjnEwV1YV6KXAryVdgWygQ3ettiJEBAsljSLf9pESVT9
+         s9VWA5fPIhY1NYWPyPVP4nus63VmTnPfQODdy/Nmgml91nJ8xEov0PeSkXPgTpuHSt
+         qKXjep4vpoDPENk1FgGC0PyclXlpdPAC+IMb6iY44oW3NPjUzemiySHR/zgT5Gzm4e
+         /2D+ROIDeLBYg==
+Received: by mail-ed1-f53.google.com with SMTP id r11so3807856edd.9;
+        Thu, 02 Dec 2021 14:38:18 -0800 (PST)
+X-Gm-Message-State: AOAM533NnkhaYj54siQAM6w9RHtlI0H7q40pkhRo1Jmk+hJEArfqXCjq
+        Ti+EzMLtlcmSUvwheB1B1MMDCGaiJ36kigYtfA==
+X-Google-Smtp-Source: ABdhPJxWZbOYJhHoT3DHIAb5JqTei+fe/SmfOBJYQktQY1sAsS2RvEfUEn+PEnMvf1jc9N/t/XFlop9MsVhOS/pPRHU=
+X-Received: by 2002:a17:907:7f25:: with SMTP id qf37mr18683877ejc.147.1638484697293;
+ Thu, 02 Dec 2021 14:38:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211119143839.1950739-1-thierry.reding@gmail.com>
+ <20211119143839.1950739-14-thierry.reding@gmail.com> <YaWCAGQU0sjCwz66@robh.at.kernel.org>
+ <Yae0DwCpFu8F/Gbw@orome.fritz.box> <CAL_Jsq+JvZQjN3q4A3yoM+pUPHLYKtwUT=QsDq+oQ7jk8mD3CA@mail.gmail.com>
+ <YakIePafm3t6rJLE@orome.fritz.box> <CAL_JsqKb-azHGWkNzEJfCffiJ7FzscV4--8sKgq+uEONFmRD0w@mail.gmail.com>
+In-Reply-To: <CAL_JsqKb-azHGWkNzEJfCffiJ7FzscV4--8sKgq+uEONFmRD0w@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 2 Dec 2021 16:38:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJqCEr6JsTb_ZnadaDg_zxsdYxMyyyZT3JT=4uLLShGUQ@mail.gmail.com>
+Message-ID: <CAL_JsqJqCEr6JsTb_ZnadaDg_zxsdYxMyyyZT3JT=4uLLShGUQ@mail.gmail.com>
+Subject: Re: [PATCH v2 13/16] dt-bindings: i2c: tegra-bpmp: Convert to json-schema
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the LMh dt binding document to include compatible string
-supporting sm8150 SoC.
+On Thu, Dec 2, 2021 at 3:08 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Dec 2, 2021 at 11:55 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+> >
+> > On Wed, Dec 01, 2021 at 12:42:07PM -0600, Rob Herring wrote:
+> > > On Wed, Dec 1, 2021 at 11:42 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+> > > >
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 1 +
- 1 file changed, 1 insertion(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-lmh.yaml b/Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
-index 289e9a845600..a9b7388ca9ac 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qcom-lmh.yaml
-@@ -19,6 +19,7 @@ properties:
-   compatible:
-     enum:
-       - qcom,sdm845-lmh
-+      - qcom,sm8150-lmh
- 
-   reg:
-     items:
--- 
-2.25.1
+> > > > However, a side-effect seems to be that now it also ignores any
+> > > > properties that aren't defined anywhere. So for example if I touch
+> > > > up the example in firmware/nvidia,tegra186-bpmp.yaml and add a bogus
+> > > > "foo-bar = <0>;" property in the BPMP I2C node, then it'll blindly
+> > > > accept that as valid.
+> > >
+> > > Do you have unevaluatedProperties within the i2c node? It only applies
+> > > to 1 level, and you can't have a parent+child schema evaluated with
+> > > another child (or parent+child) schema. This is why the graph schema
+> > > is done the way it is and why we're splitting spi-controller.yaml
+> > > child node schema out to spi-peripheral.yaml.
+> >
+> > Let me give an example based on a schema that's already upstream. So
+> > looking at this:
+> >
+> >         Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+> >
+> > it does include spi-controller.yaml via an allOf: [ $ref: ... ], so it
+> > uses unevaluatedProperties to validate against any generic SPI
+> > controller properties. For example, #address-cells and #size-cells are
+> > validated based on the schema from spi-controller.yaml.
+> >
+> > However, if I now apply the following patch to add an undocumented
+> > property to the example, then validation doesn't fail as I would expect
+> > it to.
+>
+> Indeed you are right. The problem is 'additionalProperties: true' in
+> spi-controller.yaml makes everything evaluated. I thought
+> 'additionalProperties: true' was equivalent to the default, but that's
+> not how it's working. Now to figure out if this is correct operation
+> or not. No wonder there were relatively few fixes when
+> 'unevaluatedProperties' got implemented...
 
+Based on the json-schema test cases[1], it looks like the tool is
+doing the right thing and our schemas are wrong.
+
+It's a quick fixup in the tools though to just delete any
+'additionalProperties: true':
+
+index 3cc5e428b0eb..a0f22aab935a 100644
+--- a/dtschema/lib.py
++++ b/dtschema/lib.py
+@@ -367,6 +367,9 @@ def fixup_sub_schema(schema, is_prop):
+     if not isinstance(schema, dict):
+         return
+
++    if 'additionalProperties' in schema and
+schema['additionalProperties'] == True:
++        schema.pop('additionalProperties', None)
++
+     schema.pop('description', None)
+     fixup_interrupts(schema)
+     if is_prop:
+
+I'm leaning towards this route besides being easy because the whole
+reason for the explicit 'additionalProperties: true' was so that
+missing 'additionalProperties' is flagged as an error. The only other
+way I've come up with handling this is making common schema use a
+different meta-schema.
+
+The result with the above is about 150 warnings. I quickly got this
+down to 100 with only a couple of fixes, but the rest appear to be
+individual schemas...
+
+Rob
+
+[1] https://github.com/json-schema-org/JSON-Schema-Test-Suite/blob/master/tests/draft2019-09/unevaluatedProperties.json#L230
