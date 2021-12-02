@@ -2,92 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 864E5465EAA
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 08:26:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21581465EC6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 08:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240828AbhLBHaA convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 2 Dec 2021 02:30:00 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:33511 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235587AbhLBHaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 02:30:00 -0500
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 314DF200005;
-        Thu,  2 Dec 2021 07:26:35 +0000 (UTC)
-Date:   Thu, 2 Dec 2021 08:26:34 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-spi@vger.kernel.org,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Michael Walle <michael@walle.cc>, devicetree@vger.kernel.org,
-        Michal Simek <monstr@monstr.eu>, linux-mtd@lists.infradead.org,
-        Pratyush Yadav <p.yadav@ti.com>
-Subject: Re: [PATCH v2 5/5] spi: dt-bindings: Add an example with two
- stacked flashes
-Message-ID: <20211202082634.0592fecf@xps13>
-In-Reply-To: <YagL29VKiKZcu7KQ@robh.at.kernel.org>
-References: <20211126163450.394861-1-miquel.raynal@bootlin.com>
-        <20211126163450.394861-6-miquel.raynal@bootlin.com>
-        <1638054802.100671.1973542.nullmailer@robh.at.kernel.org>
-        <YaO0ahOhM3XwLqND@robh.at.kernel.org>
-        <20211129102319.1efe1841@xps13>
-        <YagL29VKiKZcu7KQ@robh.at.kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1345699AbhLBHjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 02:39:48 -0500
+Received: from st43p00im-ztfb10071701.me.com ([17.58.63.173]:34682 "EHLO
+        st43p00im-ztfb10071701.me.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S241313AbhLBHjr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 02:39:47 -0500
+X-Greylist: delayed 433 seconds by postgrey-1.27 at vger.kernel.org; Thu, 02 Dec 2021 02:39:47 EST
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1638430151; bh=KSVWAl5J+L7CAYIxSh1y9C3k9R9sIqe1hOj5vyjrZD4=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=Dk6T2cCDQcly0SYNloRyrflAcsaj35JukCc1XS/8TG7QXrTxYsHsG2VZZFhCX5P+e
+         VVOP7Ck0g/Nnn/sX6i/VTh/onOcJCn+7Oe2oO54rGFykUFlgUU287FhXYkhRhVtAov
+         mwDcxI99i9Z2mDn3aOxm++owKB1/oKsCGnftfn6TKLLvcB1YrB3JRr9P9g5WuVPFgo
+         iPz4oh7VE0WpEhbj+RSwmGHKmqV+kfu++2L2ovD9en0GwjGN8QXgOYntM+ybu9Lj3g
+         OXkreyu4EP5QLKoPHEtMSkQxxJLd+KF7KQHkSTbGt58ONVWa4QT99ZmZD6Jwrs2Dkd
+         4bybJzJFdOwqw==
+Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
+        by st43p00im-ztfb10071701.me.com (Postfix) with ESMTPSA id E69ED8A0373;
+        Thu,  2 Dec 2021 07:29:08 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Patrice Chotard <patrice.chotard@foss.st.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
+Subject: [PATCH 0/2] clk: st: update to avoid DT warnings
+Date:   Thu,  2 Dec 2021 08:28:48 +0100
+Message-Id: <20211202072850.194314-1-avolmat@me.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.425,18.0.790
+ definitions=2021-12-01_01:2021-11-30,2021-11-30 signatures=0
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 mlxscore=0
+ mlxlogscore=614 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-2009150000 definitions=main-2112020043
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+The serie contains 2 updates within clkgen-fsyn and clkgen-mux
+in order to allow those drivers to pick up the reg property
+within their parent node instead of their own node.  Such
+behavior is already in place for the other st clk drivers and
+to allow to not have several time the same reg value within
+the device tree.
+Those changes are also done in order to avoid DT warning seen
+when compiling with W=1 and indicating unique-unit-address issues.
 
-robh@kernel.org wrote on Wed, 1 Dec 2021 17:57:15 -0600:
+Alain Volmat (2):
+  clk: st: clkgen-fsyn: search reg within node or parent
+  clk: st: clkgen-mux: search reg within node or parent
 
-> On Mon, Nov 29, 2021 at 10:23:19AM +0100, Miquel Raynal wrote:
-> > Hi Rob,
-> > 
-> > robh@kernel.org wrote on Sun, 28 Nov 2021 10:55:06 -0600:
-> >   
-> > > On Sat, Nov 27, 2021 at 04:13:22PM -0700, Rob Herring wrote:  
-> > > > On Fri, 26 Nov 2021 17:34:50 +0100, Miquel Raynal wrote:    
-> > > > > Provide an example of how to describe two flashes in eg. stacked mode.
-> > > > > 
-> > > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/spi/spi-controller.yaml | 7 +++++++
-> > > > >  1 file changed, 7 insertions(+)
-> > > > >     
-> > > > 
-> > > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > > > 
-> > > > yamllint warnings/errors:
-> > > > 
-> > > > dtschema/dtc warnings/errors:
-> > > > Documentation/devicetree/bindings/spi/spi-controller.example.dts:40.23-45.15: Warning (spi_bus_reg): /example-0/spi@80010000/flash@2,3: SPI bus unit address format error, expected "2"    
-> > > 
-> > > Unit-addresses are based on the first reg entry.  
-> > 
-> > Yes, I believe this error is expected since dtc has not been yet
-> > updated. Below the patch for adapting dtc to this new situation and
-> > keep the robots happy.
-> > 
-> > How should we proceed?  
-> 
-> No, I'm saying you have this wrong. A unit-address is composed of 
-> different fields, not different entries of the same field. For 
-> example, an external parallel bus has a chip select plus address, so the 
-> unit-address is '<cs>,<addr>'. If you have 2 SPI chip selects, that's 2 
-> entries of the same thing. The SPI bus is not 2 address cells, but 1 
-> cell with 2 entries.
+ drivers/clk/st/clkgen-fsyn.c | 11 +++++++++--
+ drivers/clk/st/clkgen-mux.c  | 11 +++++++++--
+ 2 files changed, 18 insertions(+), 4 deletions(-)
 
-My bad, now I get it, thanks.
+-- 
+2.25.1
 
-Cheers,
-Miquèl
