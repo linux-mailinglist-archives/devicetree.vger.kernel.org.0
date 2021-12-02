@@ -2,132 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C31AA46607D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 10:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E658C46608F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 10:39:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356510AbhLBJgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 04:36:42 -0500
-Received: from mailout2.samsung.com ([203.254.224.25]:24604 "EHLO
-        mailout2.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356554AbhLBJgj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 04:36:39 -0500
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20211202093315epoutp02b7d5899e943c84e7d445c96d4d0ed5ef~85lACQ08D0938409384epoutp02n
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 09:33:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20211202093315epoutp02b7d5899e943c84e7d445c96d4d0ed5ef~85lACQ08D0938409384epoutp02n
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1638437595;
-        bh=gpRxoJZAoC8y5a9Heh3Hx8M2upBoA5wNGJpAqTMLmg8=;
-        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-        b=UWebvgaY+UIJk7ssdYMeoWqGX3CN+Tkmnq7VdrwWzHJZvVvwAr/w13oo12XRXmkuf
-         Hg/JMzfQ/eZntN4j6NLbhL5t1skBRbTwVMdnvnPwXe1pXr1QRlip12oFKZWuJWavGj
-         RvZYu06JmsnpbcQiD8V/ecF3HSm9xeR1GqWTF7XA=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTP id
-        20211202093315epcas2p35a4223de970d9c0fe6dac20704952af4~85k-kdI3q0217802178epcas2p3e;
-        Thu,  2 Dec 2021 09:33:15 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.98]) by
-        epsnrtp1.localdomain (Postfix) with ESMTP id 4J4W3D65Sdz4x9QG; Thu,  2 Dec
-        2021 09:33:12 +0000 (GMT)
-Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        2D.AC.10018.8D298A16; Thu,  2 Dec 2021 18:33:12 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-        20211202093312epcas2p337fa78734139e0a8193d8577c13ae054~85k8t5ZgP2206222062epcas2p3Y;
-        Thu,  2 Dec 2021 09:33:12 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20211202093312epsmtrp24e4af9a7b837b2a98d495f90735d9925~85k8sOZDu1784217842epsmtrp2L;
-        Thu,  2 Dec 2021 09:33:12 +0000 (GMT)
-X-AuditID: b6c32a46-a25ff70000002722-5b-61a892d8d6f5
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        23.86.29871.7D298A16; Thu,  2 Dec 2021 18:33:12 +0900 (KST)
-Received: from KORCO082417 (unknown [10.229.8.121]) by epsmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20211202093311epsmtip1bdf66a7835b2efb60d450866d622c5e4~85k8cuVuM2239822398epsmtip1M;
-        Thu,  2 Dec 2021 09:33:11 +0000 (GMT)
-From:   "Chanho Park" <chanho61.park@samsung.com>
-To:     "'Sam Protsenko'" <semen.protsenko@linaro.org>,
-        "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
-        "'Rob Herring'" <robh+dt@kernel.org>
-Cc:     "'Jaewon Kim'" <jaewon02.kim@samsung.com>,
-        "'David Virag'" <virag.david003@gmail.com>,
-        "'Youngmin Nam'" <youngmin.nam@samsung.com>,
-        "'Wolfram Sang'" <wsa@kernel.org>,
-        "'Arnd Bergmann'" <arnd@arndb.de>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>
-In-Reply-To: <20211201190455.31646-7-semen.protsenko@linaro.org>
-Subject: RE: [PATCH 6/6] i2c: exynos5: Mention Exynos850 and ExynosAutoV9 in
- Kconfig
-Date:   Thu, 2 Dec 2021 18:33:11 +0900
-Message-ID: <002201d7e75f$9fd62580$df827080$@samsung.com>
+        id S1345544AbhLBJnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 04:43:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54122 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345216AbhLBJnI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 04:43:08 -0500
+Received: from lb2-smtp-cloud8.xs4all.net (lb2-smtp-cloud8.xs4all.net [IPv6:2001:888:0:108::2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60097C06174A;
+        Thu,  2 Dec 2021 01:39:45 -0800 (PST)
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id siZ1mcwTuyGz2siZ5mL26B; Thu, 02 Dec 2021 10:39:43 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
+        t=1638437983; bh=NB009B6v0eAw3dT3srPxYEFz06NHYHmUC1PrxnHY47o=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=dpKZeWsu3qlMzb4rlHYrNoj7Y7PizQueiB9n8TqasYOQcgZEH6DN0jnwVEfTaGW0y
+         cm3YmFrIyfMox1NofDSN5Vs0n6U/S6yMhLXD3s62lm1U02S58XUl5NUNbsexZLbByd
+         ljNxs9S8wIe+wmxfMq8Y8WUY/E39in8QPJ0o1ujhOrA+f40dGEz7CwY/mJjoYTktnq
+         dqxqb7aTQk+trV/0Bj4ffDPVqwfT2j2k+f53lIa9OAAGjFZHOxOypP9R4oM+tIHfqK
+         pvg+aMbqg7eyvQsMkEKmSbZymHOmdvynIPAqh6gl+rmFvoQXR+mswvvb7580mmkxZt
+         uDyhBbIAnhk9Q==
+Subject: Re: [PATCH v13 02/13] media:Add nv12mt_8l128 and nv12mt_10be_8l128
+ video format.
+To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
+        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        aisheng.dong@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1638263914.git.ming.qian@nxp.com>
+ <c7a7bf7a1d3c10a0e28064e37a472cbd45470e82.1638263914.git.ming.qian@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <3760b86b-b146-3382-595e-cf6483a883c8@xs4all.nl>
+Date:   Thu, 2 Dec 2021 10:39:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <c7a7bf7a1d3c10a0e28064e37a472cbd45470e82.1638263914.git.ming.qian@nxp.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJ+Fna5aS4J9DFonoTtOdjbcAGMmgLJ1qU6AcoLHguqrfLr8A==
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCJsWRmVeSWpSXmKPExsWy7bCmme6NSSsSDf7c0rL4O+kYu8X8I+dY
-        LXY0HGG12Pj2B5PFpsfXWC06/n5htLi8aw6bxYzz+5gsWvceYbd43gdkHX//mNHi7v65jBaL
-        D3xid+D1+P1rEqPHrIZeNo+ds+6ye2xa1cnmcefaHjaPzUvqPfq2rGL0+LxJLoAjKtsmIzUx
-        JbVIITUvOT8lMy/dVsk7ON453tTMwFDX0NLCXEkhLzE31VbJxSdA1y0zB+hkJYWyxJxSoFBA
-        YnGxkr6dTVF+aUmqQkZ+cYmtUmpBSk6BeYFecWJucWleul5eaomVoYGBkSlQYUJ2xo8zf5kK
-        TjJV7Olaw9zAOIGpi5GDQ0LAROLvSe4uRi4OIYEdjBKrf75jg3A+MUpM2nWLCcL5xiixe8t/
-        5i5GTrCOtU9PMEIk9jJKPFk6F6rlBaPEvSXbWEGq2AT0JV52gNhcHCIC0xkljneuYwdxmAX+
-        MUm0Nv5gB6niFHCQ6D/cCNYhLBAmcWbRehYQm0VARWLOtn9sIDavgKXE4d6lLBC2oMTJmU/A
-        bGYBeYntb+dA3aQg8fPpMrA5IgJOEpcndDNC1IhIzO5sg6q5wSEx5VEAhO0isfD4XUYIW1ji
-        1fEt7BC2lMTnd3vB3pEQ6GaUaH30HyqxmlGis9EHwraX+DV9Cyso+JgFNCXW79KHhKSyxJFb
-        UKfxSXQc/ssOEeaV6GgTgmhUlziwfToLhC0r0T3nM+sERqVZSB6bheSxWUgemIWwawEjyypG
-        sdSC4tz01GKjAiN4bCfn525iBCdnLbcdjFPeftA7xMjEwXiIUYKDWUmEV37mskQh3pTEyqrU
-        ovz4otKc1OJDjKbAoJ7ILCWanA/MD3kl8YYmlgYmZmaG5kamBuZK4rwf/KcnCgmkJ5akZqem
-        FqQWwfQxcXBKNTDZbX34/ULExfgvvkm79gZln4qpSRDnS/rQbxwb2dv7obr4YrP2sZywpF8B
-        934xXk3K/Zao9PODxtlPqd+XeAZ2XFla4aL+pqbDW4X92u9boeVaM0R3L9Vm6Em1vs59p2K/
-        KMNThRcv9v84dd/q79myzY7KthYn+Cw+vP7eNyUiTJLfOmzPrXn/F30rPnmufXHf6yYJ5Vnm
-        GcqXVRYu+RBuPOHu55tfPujum1ey62yIz6pPl0Kb2JdtPKNr+07BmT/goORk0fnqErUysW+q
-        fx8oXN70+JW+sdy9baa+X58E9x7/fW228n3L5Ovv1kgzbM/ZPLnghuOzG3WBpZLzZWYeOuMy
-        0ej74qxdgi75YWcClViKMxINtZiLihMBcSGJwlcEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrAIsWRmVeSWpSXmKPExsWy7bCSnO6NSSsSDe6eZLL4O+kYu8X8I+dY
-        LXY0HGG12Pj2B5PFpsfXWC06/n5htLi8aw6bxYzz+5gsWvceYbd43gdkHX//mNHi7v65jBaL
-        D3xid+D1+P1rEqPHrIZeNo+ds+6ye2xa1cnmcefaHjaPzUvqPfq2rGL0+LxJLoAjissmJTUn
-        syy1SN8ugSvjx5m/TAUnmSr2dK1hbmCcwNTFyMkhIWAisfbpCcYuRi4OIYHdjBJzZjWyQCRk
-        JZ6928EOYQtL3G85wgpR9IxRou35CrAiNgF9iZcd28ASIgIzGSWOf53LBuIwC7QxS3x/9Zkd
-        ouUoo8T522fAFnIKOEj0H25kBbGFBUIk9my7BmazCKhIzNn2jw3E5hWwlDjcu5QFwhaUODnz
-        CZDNATRVT6JtIyNImFlAXmL72znMEOcpSPx8ugxsjIiAk8TlCd1QNSISszvbmCcwCs9CMmkW
-        wqRZSCbNQtKxgJFlFaNkakFxbnpusWGBYV5quV5xYm5xaV66XnJ+7iZGcKRqae5g3L7qg94h
-        RiYOxkOMEhzMSiK88jOXJQrxpiRWVqUW5ccXleakFh9ilOZgURLnvdB1Ml5IID2xJDU7NbUg
-        tQgmy8TBKdXAJHNl/u5mZlVbqQMMubsdgtdlLfiWcnrttb9zpugLx86XfphctGBpyKZ+03fi
-        AUzcLisuJrs+jj6rmpm1s2WXpur0OlOduYwuFxRnaxzj/1v2yMfn/9WjH6Njcl689pI7F5zY
-        O8n6dez69swTk/Vi9/Lcvf6xsf5YyIUN7XdPfcuYO0s2u+Bi/67/3f/8Lp09YXn8k4aSSY5i
-        frhP1cmZV1n0tM9YucSZsU+XaUuwCOy/6vvftdgs4RVfntf7w7tikoV9unqqyuf1aDJLib6+
-        r32zRf//69B8wUcTRTulO44u2Vqkczbq779/qwuPnF7FKRBzM/GhZfB5Rckprcn3y6RvJFs2
-        t/vWFS/ueftYiaU4I9FQi7moOBEAno5UlUMDAAA=
-X-CMS-MailID: 20211202093312epcas2p337fa78734139e0a8193d8577c13ae054
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20211201190510epcas2p491796defc810ab67435eee58c34e7bdf
-References: <20211201190455.31646-1-semen.protsenko@linaro.org>
-        <CGME20211201190510epcas2p491796defc810ab67435eee58c34e7bdf@epcas2p4.samsung.com>
-        <20211201190455.31646-7-semen.protsenko@linaro.org>
+X-CMAE-Envelope: MS4xfCR/0dhhfdwQevvg/jHwV/Pje+Vh+tcrL4BZXKjNox3faw6f165FhRJM5wbWALkXkibOIpGrS3rZydX2jyfuXQySsTIwhxdiWALrmLQcirWMNswGUEbA
+ nbvCBKuwNikPFWFPOnyqwRabqyURL9C2vNGjbWNVotcAffs0Dss/MKl8wgwYABiP1m+4sqMqiW6x92RB1vCZpqSIGpWlybGnnttQqSUQCYfqbLeYfLgOY+Eo
+ HG9whZINvCNPT0qm3ehwVlIUfS83oszYOvNyQH+hL57/CKxs3VLAlNipajkOjWZyzCaHBVcndbnJ02E3YYggv86gWat4A8ppLG+er3AKC4/gtIm90m0hHx+z
+ cuon8u0XPh1CAJ+1bOeyLRmFUGZpODvkv2DPWmLrA+BaQ5TMXKITo38bhFOGdRvc8DQsmkNb6vCOPwiEGdkYbkEIprRxBoaJHrP4uGoTaVoucXvnaptMFjKk
+ Z1OrNPaR7zuJB30yM19AWqcrV3U15OaRss8Q7TQ7CooUHDxuv69Bqw8UHd7ki6Ihe2X6YIWT9EmPxOdwxkmIigbnR55GSb4rzziKCMV0WAWmMvKQy20yVCAx
+ z2q54dhO6vTPiDtAEpG394TG
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I2C controller chosen by I2C_EXYNOS5 config option is also suitable for
-> Exynos850 and ExynosAutoV9 SoCs. State that specifically in I2C_EXYNOS5
-> symbol help section.
+On 30/11/2021 10:48, Ming Qian wrote:
+> nv12mt_8l128 is 8-bit tiled nv12 format used by amphion decoder.
+> nv12mt_10be_8l128 is 10-bit tiled format used by amphion decoder.
+> The tile size is 8x128
 > 
-> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+> ---
+>  .../userspace-api/media/v4l/pixfmt-yuv-planar.rst | 15 +++++++++++++++
+>  drivers/media/v4l2-core/v4l2-ioctl.c              |  2 ++
+>  include/uapi/linux/videodev2.h                    |  2 ++
+>  3 files changed, 19 insertions(+)
+> 
+> diff --git a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> index 3a09d93d405b..fc3baa2753ab 100644
+> --- a/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> +++ b/Documentation/userspace-api/media/v4l/pixfmt-yuv-planar.rst
+> @@ -257,6 +257,8 @@ of the luma plane.
+>  .. _V4L2-PIX-FMT-NV12-4L4:
+>  .. _V4L2-PIX-FMT-NV12-16L16:
+>  .. _V4L2-PIX-FMT-NV12-32L32:
+> +.. _V4L2_PIX_FMT_NV12MT_8L128:
+> +.. _V4L2_PIX_FMT_NV12MT_10BE_8L128:
+>  
+>  Tiled NV12
+>  ----------
+> @@ -296,6 +298,19 @@ tiles linearly in memory. The line stride and image height must be
+>  aligned to a multiple of 32. The layouts of the luma and chroma planes are
+>  identical.
+>  
+> +``V4L2_PIX_FMT_NV12MT_8L128`` is similar to ``V4L2_PIX_FMT_NV12M`` but stores
+> +pixel in 2D 8x128 tiles, and stores tiles linearly in memory.
 
-Reviewed-by: Chanho Park <chanho61.park@samsung.com>
+pixel -> pixels (note: also wrong in the text V4L2_PIX_FMT_NV12_4L4/16L16/32L32)
 
-Best Regards,
-Chanho Park
+Shouldn't this be called V4L2_PIX_FMT_NV12M_8L128? The 'MT' suffix seems to be specific
+to macroblock tiles and not linear tiles.
 
+> +The image height must be aligned to a multiple of 128.
+> +The layouts of the luma and chroma planes are identical.
+> +
+> +``V4L2_PIX_FMT_NV12MT_10BE_8L128`` is similar to ``V4L2_PIX_FMT_NV12M`` but stores
+> +10 bits pixel in 2D 8x128 tiles, and stores tiles linearly in memory.
+> +the data is arranged at the big end.
 
+at the big end -> in big endian order
+
+I assume the 10 bit pixels are packed? So 5 bytes contain 4 10-bit pixels layout like
+this (for luma):
+
+byte 0: Y0(bits 9-2)
+byte 1: Y0(bits 1-0) Y1(bits 9-4)
+byte 2: Y1(bits 3-0) Y2(bits 9-6)
+byte 3: Y2(bits 5-0) Y3(bits 9-8)
+byte 4: Y3(bits 7-0)
+
+> +The image height must be aligned to a multiple of 128.
+> +The layouts of the luma and chroma planes are identical.
+> +Note the tile size is 8bytes multiplied by 128 bytes,
+> +it means that the low bits and high bits of one pixel may be in differnt tiles.
+
+differnt -> different
+
+> +
+>  .. _nv12mt:
+>  
+>  .. kernel-figure:: nv12mt.svg
+> diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+> index 69b74d0e8a90..400eec0157a7 100644
+> --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> @@ -1388,6 +1388,8 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+>  	case V4L2_META_FMT_VIVID:       descr = "Vivid Metadata"; break;
+>  	case V4L2_META_FMT_RK_ISP1_PARAMS:	descr = "Rockchip ISP1 3A Parameters"; break;
+>  	case V4L2_META_FMT_RK_ISP1_STAT_3A:	descr = "Rockchip ISP1 3A Statistics"; break;
+> +	case V4L2_PIX_FMT_NV12MT_8L128:	descr = "NV12M (8x128 Linear)"; break;
+> +	case V4L2_PIX_FMT_NV12MT_10BE_8L128:	descr = "NV12M 10BE(8x128 Linear)"; break;
+
+"10-bit NV12M (8x128 Linear, BE)"
+
+>  
+>  	default:
+>  		/* Compressed formats */
+> diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+> index f118fe7a9f58..9443c3109928 100644
+> --- a/include/uapi/linux/videodev2.h
+> +++ b/include/uapi/linux/videodev2.h
+> @@ -632,6 +632,8 @@ struct v4l2_pix_format {
+>  /* Tiled YUV formats, non contiguous planes */
+>  #define V4L2_PIX_FMT_NV12MT  v4l2_fourcc('T', 'M', '1', '2') /* 12  Y/CbCr 4:2:0 64x32 tiles */
+>  #define V4L2_PIX_FMT_NV12MT_16X16 v4l2_fourcc('V', 'M', '1', '2') /* 12  Y/CbCr 4:2:0 16x16 tiles */
+> +#define V4L2_PIX_FMT_NV12MT_8L128      v4l2_fourcc('N', 'A', '1', '2') /* Y/CbCr 4:2:0 8x128 tiles */
+> +#define V4L2_PIX_FMT_NV12MT_10BE_8L128 v4l2_fourcc('N', 'T', '1', '2') /* Y/CbCr 4:2:0 10-bit 8x128 tiles */
+
+Use v4l2_fourcc_be to denote that this is a BE format.
+
+>  
+>  /* Bayer formats - see http://www.siliconimaging.com/RGB%20Bayer.htm */
+>  #define V4L2_PIX_FMT_SBGGR8  v4l2_fourcc('B', 'A', '8', '1') /*  8  BGBG.. GRGR.. */
+> 
+
+Regards,
+
+	Hans
