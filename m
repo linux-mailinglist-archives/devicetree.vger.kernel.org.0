@@ -2,92 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C00F3465A20
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 01:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0121E465A23
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 01:00:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353916AbhLBAD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 19:03:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36836 "EHLO
+        id S1353933AbhLBADa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 19:03:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343981AbhLBAD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 19:03:27 -0500
-Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF15C06174A
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 16:00:06 -0800 (PST)
-Received: by mail-qt1-x830.google.com with SMTP id j17so25876885qtx.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 16:00:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YzFMI5oWE2o+jFyOP5vbILw8vGd41FKbBUY66oRdEQk=;
-        b=HVyEG20SBKF/jqmTGVh7Dh/M0D4FVk1nCzH++iKpmlf4sjOzLgIFju63Hl9Ed9BGhp
-         m/HR14Jg/zzhVH6f8hsABaAUF0TrZGvGQ7qOxJWv1GPxlYKLiMTwAiS1Ujvt8ReOCeBW
-         Zk0Wf82z+4aMUjNuedm8E4Rft/118UNq0bX0w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YzFMI5oWE2o+jFyOP5vbILw8vGd41FKbBUY66oRdEQk=;
-        b=Aw+zKgztXFdqWzSfzU/T39vadHLqzjgfBFOU0pKe96toBgdVC5DRIXaS6nCKyeJqXX
-         33WwBTyV7jJA12rKApG4JVZfI9vzeINkqxt6PUvZtP8UM5pGVnsaRj9277Y6/DWENdy2
-         F1pewGMKWoIS7mzzGOeyjV4EXpW2qFIKOA4zaHTGD5tfeAVONXtDLLSSlDkvuSGfGMJD
-         WD/ElgHxSHhRuDn7uw3OTGtMQppquPQf71jY0v8JjRw9YgBaC11FOWYrmQMT3IlhrGgb
-         gkNg2Gl9QrqH7UVoI91AZHeuDsdx4hfL26wH9CLhQgoV/DorH77J+3HEvE5teMmJlkDE
-         HpYw==
-X-Gm-Message-State: AOAM531EmCbacb+kcLvI4C4cKB+sluGgUMpHDKTmt3v84o6zk/6/wxWu
-        PDJsZSoMt9AI7sNeKFZyEqOj/J+SrLuVynuu5d6x0Q==
-X-Google-Smtp-Source: ABdhPJwuwORHr25rSusAmz6Rw8B8e2m0YmLSJeSuvEmJ4pbHkBNQlMFlJSCM9HXMUs06MfzXrMPJl/3J77nepYoci9c=
-X-Received: by 2002:ac8:5a10:: with SMTP id n16mr10785131qta.278.1638403205087;
- Wed, 01 Dec 2021 16:00:05 -0800 (PST)
+        with ESMTP id S1353930AbhLBAD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 19:03:29 -0500
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1538C061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 16:00:07 -0800 (PST)
+Received: from [192.168.1.101] (83.6.166.111.neoplus.adsl.tpnet.pl [83.6.166.111])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 5866B3F35C;
+        Thu,  2 Dec 2021 01:00:05 +0100 (CET)
+Message-ID: <0b171f2e-4bbc-a54a-7615-87fd4559fee9@somainline.org>
+Date:   Thu, 2 Dec 2021 01:00:04 +0100
 MIME-Version: 1.0
-References: <20211129034201.5767-1-yunfei.dong@mediatek.com>
- <20211129034201.5767-5-yunfei.dong@mediatek.com> <8a5afa81-71b7-ba42-d1ce-2bbf82a7e557@collabora.com>
-In-Reply-To: <8a5afa81-71b7-ba42-d1ce-2bbf82a7e557@collabora.com>
-From:   Steve Cho <stevecho@chromium.org>
-Date:   Wed, 1 Dec 2021 15:59:54 -0800
-Message-ID: <CAC-pXoP2nn-DdSJTWDES19UdMp9A5unj9u7Bs=Qw+ex9=HvyVw@mail.gmail.com>
-Subject: Re: [PATCH v11, 04/19] media: mtk-vcodec: export decoder pm functions
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.0
+Subject: Re: [PATCH 04/16] arm64: dts: qcom: sm8350: Specify clock-frequency
+ for arch timer
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Cc:     martin.botka@somainline.org,
+        angelogioacchino.delregno@somainline.org,
+        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20211114012755.112226-1-konrad.dybcio@somainline.org>
+ <20211114012755.112226-4-konrad.dybcio@somainline.org>
+ <20211130020536.52D0FC53FC7@smtp.kernel.org>
+ <dee30442-8a78-07f3-1fa1-e5922a510182@somainline.org>
+ <20211201204543.1286DC53FAD@smtp.kernel.org>
+From:   Konrad Dybcio <konrad.dybcio@somainline.org>
+In-Reply-To: <20211201204543.1286DC53FAD@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Steve Cho <stevecho@chromium.org>
 
-On Wed, Dec 1, 2021 at 4:09 AM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 29/11/21 04:41, Yunfei Dong ha scritto:
-> > Register each hardware as platform device, need to call pm functions
-> > to open/close power and clock from module mtk-vcodec-dec, export these
-> > functions.
-> >
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> > Reviewed-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
->
->
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On 01.12.2021 21:45, Stephen Boyd wrote:
+> Quoting Konrad Dybcio (2021-11-30 11:59:03)
+>> On 30/11/2021 03:05, Stephen Boyd wrote:
+>>> Quoting Konrad Dybcio (2021-11-13 17:27:43)
+>>>> Arch timer runs at 19.2 MHz. Specify the rate in the timer node.
+>>>>
+>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+>>>> ---
+>>>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
+>>>>   1 file changed, 1 insertion(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>>>> index a30ba3193d84..60866a20a55c 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+>>>> @@ -2484,5 +2484,6 @@ timer {
+>>>>                               <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>>>>                               <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+>>>>                               <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
+>>>> +               clock-frequency = <19200000>;
+>>> Does the firmware not set the frequency properly?
+>> It does on my device on the current firmware version (it wouldn't really 
+>> boot if it didn't, no?),
+>>
+>> but who knows if it always will, or if it always has been..
+>>
+>>
+>> It's present in downstream too, so I reckon it does not hurt to have it 
+>> here too, even
+>>
+>> for completeness-of-describing-the-machine-properly sake.
+>>
+> No. We don't want dts files to have this. The property is only there to
+> workaround bad firmware that doesn't set the frequency. Please drop this
+> patch.
+
+After looking at it again, I see I was indeed wrong, and so was this patch.
+
+Sorry, and green light for dropping..
+
+
+Konrad
+
