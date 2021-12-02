@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E4FF46604B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 10:25:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A1E81466072
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 10:32:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356387AbhLBJ2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 04:28:53 -0500
-Received: from foss.arm.com ([217.140.110.172]:59952 "EHLO foss.arm.com"
+        id S1356481AbhLBJgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 04:36:10 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:49366 "EHLO cpanel.siel.si"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1356342AbhLBJ2w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Dec 2021 04:28:52 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 543BE139F;
-        Thu,  2 Dec 2021 01:25:29 -0800 (PST)
-Received: from FVFF77S0Q05N (unknown [10.57.65.131])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 364903F7D7;
-        Thu,  2 Dec 2021 01:25:28 -0800 (PST)
-Date:   Thu, 2 Dec 2021 09:25:20 +0000
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Calvin Zhang <calvinzhang.cool@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] of: unmap memory regions in /memreserve node
-Message-ID: <YaiRAD40xCK7u3Hl@FVFF77S0Q05N>
-References: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
- <YaapE8oys5zQEdD5@robh.at.kernel.org>
+        id S240976AbhLBJgJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Dec 2021 04:36:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:
+        Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=wM4XQpviNRkCpNz0ADbhoMhzhrXl/Jd+ZQAiAEjEdT8=; b=gbuqLeEln0eFh/QXtvgCW7NWNl
+        etufhgHKmTAYRpD/bKllV0qB8ukN5ItQ/45z+qJ0grSPVJzoLA7nNLUPuWWw/L0lpYBWpehsYbqAW
+        TACAupfGaCy4hTyGSo2l9BPcEdeefBlWFUQDMhFSbfrYPkrV3+IG1sP/U6j1980Uq2Q4WrMk+3X48
+        lZYEzmKb8e+6sxwIK3EuU8ParnUtBwju6320H6O0zIv9o9xUcY7y6SOsoBxzFYCN/OvXf+doKeCwZ
+        /ta4O4x7TKtUrAPF8nCnVpyM/99yr3Snr8u45K4ya5ugEC6P8w7sitj6IHkbxJdLqXbprczH8adKf
+        BnXahqVQ==;
+Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:52018 helo=localhost.localdomain)
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1msiSA-00DPB6-Rd; Thu, 02 Dec 2021 10:32:42 +0100
+From:   Andrej Picej <andrej.picej@norik.com>
+To:     support.opensource@diasemi.com, linux@roeck-us.net,
+        linux-watchdog@vger.kernel.org
+Cc:     andrej.picej@norik.com, wim@linux-watchdog.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 1/4] mfd: da9062: make register CONFIG_I writable
+Date:   Thu,  2 Dec 2021 10:32:27 +0100
+Message-Id: <20211202093230.3951996-1-andrej.picej@norik.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YaapE8oys5zQEdD5@robh.at.kernel.org>
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 04:43:31PM -0600, Rob Herring wrote:
-> +linuxppc-dev
-> 
-> On Wed, Nov 24, 2021 at 09:33:47PM +0800, Calvin Zhang wrote:
-> > Reserved memory regions in /memreserve node aren't and shouldn't
-> > be referenced elsewhere. So mark them no-map to skip direct mapping
-> > for them.
-> 
-> I suspect this has a high chance of breaking some platform. There's no 
-> rule a region can't be accessed.
+From: Stefan Christ <s.christ@phytec.de>
 
-The subtlety is that the region shouldn't be explicitly accessed (e.g.
-modified), but the OS is permitted to have the region mapped. In ePAPR this is
-described as:
+Make the config register CONFIG_I writable to change the watchdog mode.
 
-   This requirement is necessary because the client program is permitted to map
-   memory with storage attributes specified as not Write Through Required, not
-   Caching Inhibited, and Memory Coherence Required (i.e., WIMG = 0b001x), and
-   VLE=0 where supported. The client program may use large virtual pages that
-   contain reserved memory. However, the client program may not modify reserved
-   memory, so the boot program may perform accesses to reserved memory as Write
-   Through Required where conflicting values for this storage attribute are
-   architecturally permissible.
+Signed-off-by: Stefan Christ <s.christ@phytec.de>
+Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+---
+Chnages in v4:
+ - no changes
 
-Historically arm64 relied upon this for spin-table to work, and I *think* we
-might not need that any more I agree that there's a high chance this will break
-something (especially on 16K or 64K page size kernels), so I'd prefer to leave
-it as-is.
+Changes in v3:
+ - no chagnes
 
-If someone requires no-map behaviour, they should use a /reserved-memory entry
-with a no-map property, which will work today and document their requirement
-explicitly.
+Changes in v2:
+ - no changes
+---
+ drivers/mfd/da9062-core.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks,
-Mark.
+diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
+index 01f8e10dfa55..7041ba53efb4 100644
+--- a/drivers/mfd/da9062-core.c
++++ b/drivers/mfd/da9062-core.c
+@@ -556,6 +556,7 @@ static const struct regmap_range da9062_aa_writeable_ranges[] = {
+ 	regmap_reg_range(DA9062AA_VBUCK3_B, DA9062AA_VBUCK3_B),
+ 	regmap_reg_range(DA9062AA_VLDO1_B, DA9062AA_VLDO4_B),
+ 	regmap_reg_range(DA9062AA_BBAT_CONT, DA9062AA_BBAT_CONT),
++	regmap_reg_range(DA9062AA_CONFIG_I, DA9062AA_CONFIG_I),
+ 	regmap_reg_range(DA9062AA_GP_ID_0, DA9062AA_GP_ID_19),
+ };
+ 
+-- 
+2.25.1
 
-> > Signed-off-by: Calvin Zhang <calvinzhang.cool@gmail.com>
-> > ---
-> >  drivers/of/fdt.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index bdca35284ceb..9e88cc8445f6 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -638,7 +638,7 @@ void __init early_init_fdt_scan_reserved_mem(void)
-> >  		fdt_get_mem_rsv(initial_boot_params, n, &base, &size);
-> >  		if (!size)
-> >  			break;
-> > -		early_init_dt_reserve_memory_arch(base, size, false);
-> > +		early_init_dt_reserve_memory_arch(base, size, true);
-> >  	}
-> >  
-> >  	fdt_scan_reserved_mem();
-> > -- 
-> > 2.30.2
-> > 
-> > 
