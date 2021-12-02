@@ -2,158 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED8B946656F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 15:38:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0D046657F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 15:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240835AbhLBOmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 09:42:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38706 "EHLO
+        id S233178AbhLBOoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 09:44:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347353AbhLBOmG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 09:42:06 -0500
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D834CC06174A;
-        Thu,  2 Dec 2021 06:38:43 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id 132so26476qkj.11;
-        Thu, 02 Dec 2021 06:38:43 -0800 (PST)
+        with ESMTP id S231202AbhLBOoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 09:44:08 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 629F1C06174A;
+        Thu,  2 Dec 2021 06:40:46 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id r26so55808045oiw.5;
+        Thu, 02 Dec 2021 06:40:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VgDjPHWQtBMrsk7Xspu/tckVd6Djo6s/n0KZKeeebi4=;
-        b=FTJFuM3/CLZYgxGFGBcV6ABFgv7YzLQDBATNd2mByxsnUoyHfQRnkKMUCaGgf2FWm4
-         oS1PKlPsvROpypHb83KYtTDFYSVKKVKjA44T+hZqVGzPuCIWrurLKKNcn8ZUgx8lMXpy
-         V7UMIcyjnCc7CcGFykSHy0ECuzLitQTKVxRSOVsBBT+SxXCX8ItVk7FmWTigvjAzhd/v
-         orvWtjIx3/kuHsAsKNu2QgcRwX8aIj4klCNYall1WorSNyRchX9GIYR8W0vSn+dSD1RF
-         AxOGYluw+A4Oe/AzffW6iO0Oo4MriKwPUuxacSdgo2FUVbGFGGvQWinMG/7gVmfbTD9U
-         8J9w==
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=JzjMw6Bxg74ODBmRNh64G8wfqH9GoiId/mAlE/vVMDY=;
+        b=oZhW11CRVWpdVd7awXzzSqJKsouCjsdhVo+44hQ+g8stK0yY+85tMz4TQX7dls4TX+
+         02hVQ1UvbSxyJZ4pwUWQM2Z8CCRnDHhQN99qXCZ0bRgxJYTA7jsrvu7v1NDM74Pm1EKE
+         XBErasK5aQk493CGiOIObz1or6flLZQ9iSghKQ03fxYI0gdq/e1PTaAJw48bWVQ/s6jT
+         xKAkiSgWUYSAfjWL6x0VAZiEh1871BrXrAepLplNW2WZIy1axxlMgQi1Cd1tWJMfdown
+         Hd7Kr9ws2wrw+SzHtYuaZGa6XH1JX3/Y6oSZNzxrXUgSI8uXDceRorxluRF+ZkCRiI0I
+         lGVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VgDjPHWQtBMrsk7Xspu/tckVd6Djo6s/n0KZKeeebi4=;
-        b=Fu6SOHM+sq1zOdqglULIg5bI3Ls8Dtlzh/7Pr/kqCvR4rI/+x2l+DxQArC9gfKd7uS
-         4kDybIwwnysXHjhC6eCY3OIYSbFElffrpnCaG2C5WyH7dttOat+0cEc6nm7fARLu3Nrz
-         om2UDvFDKbicYoq1sf7tMQJqbaB4XLIYLw2wN7qFxrQz6dI1IttXyXU5K9LlSmm4vT7S
-         /dEdh74f8tFnxF4arPI0udaXONMj3yPTEbgoOb3wQWK001jcVdpL4tqOyVCskcD4tybN
-         z7C8zSWtSmd4iHabMy/sokQCQRJGYvfTB/Pq1AvX72akm3HJo4zSqzr3xDQDnlwjGBpS
-         NG/A==
-X-Gm-Message-State: AOAM530/3jDM8cYH+UoWPjvfUxqorB2r4y8WKP7HvG/8YFRcfINbBRK7
-        C7AcQpO9ytG7xH+JHiJ9gqY=
-X-Google-Smtp-Source: ABdhPJxDx+FYGN2loRqDCXpep9QPBSguSM4MIB8hPSXWpLMreV45y5vwzNcHbgXP8ajCgZXT2BI0Iw==
-X-Received: by 2002:a05:620a:4446:: with SMTP id w6mr12468705qkp.273.1638455922929;
-        Thu, 02 Dec 2021 06:38:42 -0800 (PST)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id bp38sm21840qkb.66.2021.12.02.06.38.41
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to;
+        bh=JzjMw6Bxg74ODBmRNh64G8wfqH9GoiId/mAlE/vVMDY=;
+        b=bnC72yK8wxPI2nN83uOf8H3XoTI8RUEH9dHtPWQoBE3SjE9baCsznW+kppL+y8e7uE
+         AcuzXMlvMeCoLNxZ2zMgtxoBzuCf+QfE+n8yXWMnFgUOtcKZ0ScmVc1Ps4rfJENRpmr8
+         V/fTqKkwRckMtIzVgvOsbAlu8knYomSdV8TCX1d6ZK50kCjOHnNeBmwf9knR1vXpFGOJ
+         Hj//0dF+kLbfpFEfvAz3DgARfNIWCMQxfGAdtmskm9OE7s4No4+2JzDRJbuofPZGEYgK
+         TznHz3L/HOCcCUibtfkOZt2vrUjYliycj5mThPnnwBelgW/o+5sCQUwsihxXCjfaVEwQ
+         Vv7w==
+X-Gm-Message-State: AOAM533Yxg+qzAfh99WQXe/gXqydiQ8JW3TZjpegg8IgDT8FepmiGQ58
+        wJqmLyJsgqQDsilZudqeAMI=
+X-Google-Smtp-Source: ABdhPJyLWBNRI1o+GL8ue6SURuIQkxXT2NUjFmtnAeYDba7Xcg/6gwo4HrkRVhIH5Gud+60Zq7m7AA==
+X-Received: by 2002:aca:3642:: with SMTP id d63mr4515126oia.95.1638456045810;
+        Thu, 02 Dec 2021 06:40:45 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id w19sm10787oih.44.2021.12.02.06.40.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Dec 2021 06:38:42 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V6 2/2] arm: dts: imx25/31/50/51/53/6qdl: Change spba to spba-bus
-Date:   Thu,  2 Dec 2021 08:38:27 -0600
-Message-Id: <20211202143828.3335-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211202143828.3335-1-aford173@gmail.com>
-References: <20211202143828.3335-1-aford173@gmail.com>
+        Thu, 02 Dec 2021 06:40:45 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 2 Dec 2021 06:40:43 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Andrej Picej <andrej.picej@norik.com>
+Cc:     support.opensource@diasemi.com, linux-watchdog@vger.kernel.org,
+        wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] mfd: da9062: make register CONFIG_I writable
+Message-ID: <20211202144043.GA828760@roeck-us.net>
+References: <20211202093230.3951996-1-andrej.picej@norik.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211202093230.3951996-1-andrej.picej@norik.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-With the updated dt-bindings for the spba-bus, rename spba@xxxx
-to spba-bus@xxxx.  There are no functional changes.
+On Thu, Dec 02, 2021 at 10:32:27AM +0100, Andrej Picej wrote:
+> From: Stefan Christ <s.christ@phytec.de>
+> 
+> Make the config register CONFIG_I writable to change the watchdog mode.
+> 
+> Signed-off-by: Stefan Christ <s.christ@phytec.de>
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V6:  New to series to address warnings generated by dtb checks.
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-diff --git a/arch/arm/boot/dts/imx25.dtsi b/arch/arm/boot/dts/imx25.dtsi
-index fdcca82c9986..83278b390c70 100644
---- a/arch/arm/boot/dts/imx25.dtsi
-+++ b/arch/arm/boot/dts/imx25.dtsi
-@@ -200,7 +200,7 @@ audmux: audmux@43fb0000 {
- 			};
- 		};
- 
--		spba@50000000 {
-+		spba-bus@50000000 {
- 			compatible = "fsl,spba-bus", "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx31.dtsi b/arch/arm/boot/dts/imx31.dtsi
-index 948d2a543f8d..2adb923c0b27 100644
---- a/arch/arm/boot/dts/imx31.dtsi
-+++ b/arch/arm/boot/dts/imx31.dtsi
-@@ -166,7 +166,7 @@ uart5: serial@43fb4000 {
- 			};
- 		};
- 
--		spba@50000000 {
-+		spba-bus@50000000 {
- 			compatible = "fsl,spba-bus", "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx50.dtsi b/arch/arm/boot/dts/imx50.dtsi
-index a969f335b240..a31e3694fa2b 100644
---- a/arch/arm/boot/dts/imx50.dtsi
-+++ b/arch/arm/boot/dts/imx50.dtsi
-@@ -108,7 +108,7 @@ bus@50000000 { /* AIPS1 */
- 			reg = <0x50000000 0x10000000>;
- 			ranges;
- 
--			spba@50000000 {
-+			spba-bus@50000000 {
- 				compatible = "fsl,spba-bus", "simple-bus";
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx51.dtsi b/arch/arm/boot/dts/imx51.dtsi
-index 01cfcbe5928e..ba496fdfe8cb 100644
---- a/arch/arm/boot/dts/imx51.dtsi
-+++ b/arch/arm/boot/dts/imx51.dtsi
-@@ -178,7 +178,7 @@ bus@70000000 { /* AIPS1 */
- 			reg = <0x70000000 0x10000000>;
- 			ranges;
- 
--			spba@70000000 {
-+			spba-bus@70000000 {
- 				compatible = "fsl,spba-bus", "simple-bus";
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx53.dtsi b/arch/arm/boot/dts/imx53.dtsi
-index 2cf3909cca2f..6082cd347124 100644
---- a/arch/arm/boot/dts/imx53.dtsi
-+++ b/arch/arm/boot/dts/imx53.dtsi
-@@ -229,7 +229,7 @@ bus@50000000 { /* AIPS1 */
- 			reg = <0x50000000 0x10000000>;
- 			ranges;
- 
--			spba@50000000 {
-+			spba-bus@50000000 {
- 				compatible = "fsl,spba-bus", "simple-bus";
- 				#address-cells = <1>;
- 				#size-cells = <1>;
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index f5de5def876d..6dc1b970bcad 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -481,7 +481,7 @@ asrc: asrc@2034000 {
- 					status = "okay";
- 				};
- 
--				spba@203c000 {
-+				spba-bus@203c000 {
- 					reg = <0x0203c000 0x4000>;
- 				};
- 			};
--- 
-2.32.0
-
+> ---
+> Chnages in v4:
+>  - no changes
+> 
+> Changes in v3:
+>  - no chagnes
+> 
+> Changes in v2:
+>  - no changes
+> ---
+>  drivers/mfd/da9062-core.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
+> index 01f8e10dfa55..7041ba53efb4 100644
+> --- a/drivers/mfd/da9062-core.c
+> +++ b/drivers/mfd/da9062-core.c
+> @@ -556,6 +556,7 @@ static const struct regmap_range da9062_aa_writeable_ranges[] = {
+>  	regmap_reg_range(DA9062AA_VBUCK3_B, DA9062AA_VBUCK3_B),
+>  	regmap_reg_range(DA9062AA_VLDO1_B, DA9062AA_VLDO4_B),
+>  	regmap_reg_range(DA9062AA_BBAT_CONT, DA9062AA_BBAT_CONT),
+> +	regmap_reg_range(DA9062AA_CONFIG_I, DA9062AA_CONFIG_I),
+>  	regmap_reg_range(DA9062AA_GP_ID_0, DA9062AA_GP_ID_19),
+>  };
+>  
+> -- 
+> 2.25.1
+> 
