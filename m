@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB29346643A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 14:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9503046644D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 14:12:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346633AbhLBNIR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 08:08:17 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:35678 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S241818AbhLBNIP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Dec 2021 08:08:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=BVqw7MpQPVSfrDQsvcV3mEpYc9ny+418FpeFJbGTXoI=; b=Nqc00gKYLPUaP9IJ6SxkNolL0B
-        C5yF+x7K+TfcW8sSmNtmJsnM2HBv/20tPDxVEbWz+A7MDHU95gJ7qGEmiHbXFHCdN/zT8qV6vhqIN
-        lPYXoKBYpO/DQTCheykANxaISAZNdILEvEh+bmb8lK8g+I1FB/vxfd61p1HOjkg4OKpA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1msllV-00FKI4-Fu; Thu, 02 Dec 2021 14:04:45 +0100
-Date:   Thu, 2 Dec 2021 14:04:45 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Wells Lu =?utf-8?B?5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Cc:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Vincent Shih =?utf-8?B?5pa96YyV6bS7?= 
-        <vincent.shih@sunplus.com>
-Subject: Re: [PATCH net-next v3 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Message-ID: <YajEbXtBwlDL4gOL@lunn.ch>
-References: <1638266572-5831-1-git-send-email-wellslutw@gmail.com>
- <1638266572-5831-3-git-send-email-wellslutw@gmail.com>
- <YabsT0/dASvYUH2p@lunn.ch>
- <cf60c230950747ec918acfc6dda595d6@sphcmbx02.sunplus.com.tw>
+        id S1358226AbhLBNNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 08:13:54 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:50698 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1358178AbhLBNNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 08:13:50 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B2DA8Vk024561;
+        Thu, 2 Dec 2021 07:10:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638450608;
+        bh=f6sAaoaJOz1208IHW4aLleeoCN8L+qtJVwhz1Pk2fiI=;
+        h=From:To:CC:Subject:Date;
+        b=dPTEQfPSVyldlt8CiVQrKdzQhIUT5oy9IzFVh3eZR7WPVGxk7AtxLib4/+cL+Z+cO
+         wWnYvbzm+X9cJPv31TpyB6Mr2KsFJeJf1mptiZHjogSvwwh27nm+OflxOPg+GjQ7he
+         SEgzAMnxipzqGcGM0wrTMc97IZgfW1VqD8KrQ6Tw=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B2DA8gt110535
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 2 Dec 2021 07:10:08 -0600
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
+ Dec 2021 07:10:08 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 2 Dec 2021 07:10:08 -0600
+Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B2DA4Ki031324;
+        Thu, 2 Dec 2021 07:10:05 -0600
+From:   Aswath Govindraju <a-govindraju@ti.com>
+CC:     Aswath Govindraju <a-govindraju@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <linux-can@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] CAN: Add support for setting mux
+Date:   Thu, 2 Dec 2021 18:40:00 +0530
+Message-ID: <20211202131002.12217-1-a-govindraju@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cf60c230950747ec918acfc6dda595d6@sphcmbx02.sunplus.com.tw>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I printed out the value of 'supported' and 'advertising'.
-> 'supported' shows PHY device supports Pause and AsymPause (0x62cf).
-> But 'advertising' shows PHY device does not support Pause or AsymPause (0x02cf).
-> Is this correct?
-> 
-> How to let link partner know local node supports 
-> Pause & AsymPause (flow control)?
->
+The following series of patches add support for setting
+muxes to route signals from CAN controller to transceiver
+by reading the property mux-states from the device tree
+node
 
-'supported' indicates that the PHY can do. It has the ability to
-advertise pause. But we don't automatically copy those bits into
-'advertising' because we don't know if the MAC actually supports
-pause/asym pause.
+The following series of patches are dependent on,
+- https://lkml.org/lkml/2021/12/2/423
 
-The MAC driver needs to call phy_support_sym_pause() or
-phy_support_asym_pause() to let phylib know what it can do. phylib
-will then add the appropriate bits to 'advertising'.
+Aswath Govindraju (2):
+  dt-bindings: phy: ti,tcan104x-can: Document mux-states property
+  phy: phy-can-transceiver: Add support for setting mux
 
-> Will mii_read() and mii_write() be called in interrupt context?
+ .../bindings/phy/ti,tcan104x-can.yaml         | 13 +++++++++++
+ drivers/phy/Kconfig                           |  1 +
+ drivers/phy/phy-can-transceiver.c             | 22 +++++++++++++++++++
+ 3 files changed, 36 insertions(+)
 
-No. Only thread context, because it uses a mutex to prevent multiple
-accesses at the same time.
+-- 
+2.17.1
 
-	 Andrew
