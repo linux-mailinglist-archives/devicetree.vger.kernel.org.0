@@ -2,117 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40FE34662A8
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:46:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE524662B2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241789AbhLBLt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 06:49:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55414 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241648AbhLBLt2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:49:28 -0500
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F2BC061757;
-        Thu,  2 Dec 2021 03:46:06 -0800 (PST)
-Received: by mail-il1-x135.google.com with SMTP id r2so28489765ilb.10;
-        Thu, 02 Dec 2021 03:46:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YEdHF4KJKTYSiwvgeGVXr086G6djyECpBx5i6YHw3iU=;
-        b=bnT2/ZSmZW4ilIAK9tc30TRKHsqopibryksSIfL58i1q6j7jg5K2lEh8EajMfKlGrY
-         n49x+n17HRAWV0UCN6xrh8+gnyq2SVyTtifUqnEKyS2sUyQ+jR4J6QG0QqS4x3m9fPTb
-         mHTwcBDkyahHcsMKXPX0Agtp/YYav2HTEr1iPctm2nbqn2aG8bbrv/1yZrVDTyxhkDnz
-         ikhRgEIUN/YisSQmsXoX13Que4nTZH74vE3oDpUvtbmJmq0fzSPhpFmvFENz2a4BT/Wd
-         IDhAWEmnFyEI1Uq7nTAcb6//56+2kHQ8iTFb8Fg8z5BHYdUr0PoLLgPsTSU1ZMpZM8LZ
-         RPAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YEdHF4KJKTYSiwvgeGVXr086G6djyECpBx5i6YHw3iU=;
-        b=AXk3UAnnto7mZWFQnBoo5/35wUk/KtVmZ3lMv2DyCO/9Rc4A1vUbyTd8FSje2isWRU
-         mHua7Th7xdhp+cEldvfKO2VEJn83tOmb95vvboa43xe+c1pNUHpsTtAkkC/o5EQ8bOOE
-         Rh/gzTn8aaLRFCYeb6vJ3zQ+Oy9hhxbiShbbIQFEpdFSbHV36VoHJubS75r6X58BILJC
-         1CtVuh52Wntz0R3XR6P0m3D5WLkdJvI1ilOqrjqQJ4qLDJP6/ukycMYSRfPvrKv2YVlt
-         +ZVA2Vbr7IZ8DM8poRdawgH2oIZulto4YwM5PmawBh+dRMy7vF3OTzAzMCO8Y22xP5EA
-         uwQQ==
-X-Gm-Message-State: AOAM531sG2kDNxdqaZak5D2xO5dN12hFS1emkvbY1J5MMn5Fp3dZPZyy
-        Mkkp0EbES/0IfBfOFyzzTmLenbbk1YLeDGOa0U26W3fo1qfMHUZe
-X-Google-Smtp-Source: ABdhPJyjmQQXr53Xjn9D+X20ISm4gu9JuXeic+JsXYnsuTloveVBDokNAuS6xg4KI8O+bXQzniqvhZUEySfuJ1cHoII=
-X-Received: by 2002:a05:6e02:1b08:: with SMTP id i8mr11594764ilv.74.1638445565683;
- Thu, 02 Dec 2021 03:46:05 -0800 (PST)
-MIME-Version: 1.0
-References: <20211110122948.188683-1-alistair@alistair23.me>
- <20211110122948.188683-2-alistair@alistair23.me> <20211117223950.3a7eaf7a@aktux>
- <CAKmqyKP_gQ1qSADMPwmyf-V0TqGOYf2GitzpDXsmBUO6_iqK7Q@mail.gmail.com>
- <20211125235935.5a1b7d33@aktux> <CAKmqyKO-KUhfeeOTFtMzLrZ5MUiL2-5qov-g+VYZxC_8du=ksA@mail.gmail.com>
- <20211201233559.3bc64f8b@aktux>
-In-Reply-To: <20211201233559.3bc64f8b@aktux>
-From:   Alistair Francis <alistair23@gmail.com>
-Date:   Thu, 2 Dec 2021 21:45:39 +1000
-Message-ID: <CAKmqyKNvt=wPAKH7d1why=i43+QXpfWYbvL6qBy88NpAOmVJCA@mail.gmail.com>
-Subject: Re: [PATCH v15 1/8] dt-bindings: mfd: Initial commit of silergy,sy7636a.yaml
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     Alistair Francis <alistair@alistair23.me>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>, lgirdwood@gmail.com,
+        id S1346586AbhLBLwd convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 2 Dec 2021 06:52:33 -0500
+Received: from relay10.mail.gandi.net ([217.70.178.230]:40113 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346549AbhLBLw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:52:29 -0500
+Received: (Authenticated sender: herve.codina@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 4E29B240004;
+        Thu,  2 Dec 2021 11:48:58 +0000 (UTC)
+Date:   Thu, 2 Dec 2021 12:48:55 +0100
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        rui.zhang@intel.com, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-hwmon@vger.kernel.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, dl-linux-imx <linux-imx@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 0/6] spear: Fix SPEAr3XX plgpio support
+Message-ID: <20211202124855.1c1298e7@bootlin.com>
+In-Reply-To: <20211202112700.mkjmwibabj2cpr6u@vireshk-i7>
+References: <20211202095255.165797-1-herve.codina@bootlin.com>
+        <20211202112700.mkjmwibabj2cpr6u@vireshk-i7>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 8:36 AM Andreas Kemnade <andreas@kemnade.info> wrote:
->
-> Hi,
->
-> [...]
-> > > > This is a vcom in the sense of voltage for compensation. We just
-> > > > currently don't support setting the vcom.
-> > > >
-> > > > I had a look at the Kobo code and this is similar to
-> > > > https://github.com/akemnade/linux/blob/kobo/epdc-pmic-5.15/drivers/regulator/sy7636-regulator.c#L614
-> > > >
-> > > > So I think that vcom is still the appropriate name for this.
-> > > >
-> > > seems that you did not get me. If I understand the code behind it
-> > > correctly, it turns on all power rails (the +-15V stuff, VEE and so on)
-> > > with the defined delays, not just vcom because it sets
-> > > SY7636A_OPERATION_MODE_CRL_ONOFF. Controlling VCOM separately is possible
-> > > by using SY7636A_OPERATION_MODE_CRL_VCOMCTL in combintion with a
-> > > vcom_en gpio.
-> > >
-> > > I do not see a reason to turn on vcom only without the other higher
-> > > voltage rails, so the behaviour is not necessarily wrong but if I read
-> > > the binding documentation I would expect that just vcom is turned on.
-> > > That is the mismatch I am talking about.
-> >
-> > Ah! Ok I understand. I'll rename it to vdd then.
-> >
-> Most important is IMHO some human-readable description in the bindings
-> document.
+On Thu, 2 Dec 2021 16:57:00 +0530
+Viresh Kumar <viresh.kumar@linaro.org> wrote:
 
-That is what I ended up going with instead.
+> On 02-12-21, 10:52, Herve Codina wrote:
+> > Hi,
+> > 
+> > This patch series fixes the plgpio support on SPEAr3xx SOCs.
+> > 
+> > The first four patches of this series fixes a ressources
+> > sharing issue between the plgpio driver and the pinmux
+> > driver.
+> > Indeed, these two drivers can use the same IO address range
+> > on some SPEAr3xx SOCs.
+> > To solve the issue, a regmap (syscon managed) is used in both
+> > drivers and the plgpio driver can reference the pinmux regmap
+> > to use it.
+> > 
+> > The second part of this series is related to IRQs.
+> > The plgpio on SPEAr320s SOC uses an IRQ line in the reserve
+> > range (from SPEAr320 point of view).
+> > This issue is fixed enabling all the 'reserved' IRQs and
+> > adding a dtsi file for the SPEAr320s with the correct interrupt
+> > for the plgpio node.  
+> 
+> Are these changes backwards compatible ? I mean new kernel will work
+> with old DTBs ? It may be quite important to not break that here.
+> 
 
-Alistair
+Yes they are.
+- the regmap reference (phandle) is optional.
+- The IRQ for plgpio is used only on the new spear320s.dtsi.
 
->
-> I am also just wondering whether this kind of logical
-> regulator which turns on several other regulators is actually accepted
-> or just slipped through review. I have no strong opinion here. I just
-> want to be able to clean up the tps65185 driver in the same way and not
-> having two similar pmics with different bindings and then a mess at the
-> consumer side.
->
-> Regards,
-> Andreas
+I have not seen any issues on my board (spear320s SOC) when I only add support
+for the 'reserved' IRQs (ie no spurious interrupts occur when I apply the patch
+related to shirq).
+I cannot test on SPEAr320 SOC as I haven't got any board with this SOC.
+
+Herve
+
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
