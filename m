@@ -2,84 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE524662B2
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C28C4662E3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:56:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346586AbhLBLwd convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 2 Dec 2021 06:52:33 -0500
-Received: from relay10.mail.gandi.net ([217.70.178.230]:40113 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346549AbhLBLw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:52:29 -0500
-Received: (Authenticated sender: herve.codina@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 4E29B240004;
-        Thu,  2 Dec 2021 11:48:58 +0000 (UTC)
-Date:   Thu, 2 Dec 2021 12:48:55 +0100
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 0/6] spear: Fix SPEAr3XX plgpio support
-Message-ID: <20211202124855.1c1298e7@bootlin.com>
-In-Reply-To: <20211202112700.mkjmwibabj2cpr6u@vireshk-i7>
-References: <20211202095255.165797-1-herve.codina@bootlin.com>
-        <20211202112700.mkjmwibabj2cpr6u@vireshk-i7>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.33; x86_64-redhat-linux-gnu)
+        id S1346488AbhLBL76 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 06:59:58 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:44259 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1346631AbhLBL7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:59:53 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id A5AF8580270;
+        Thu,  2 Dec 2021 06:56:30 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Thu, 02 Dec 2021 06:56:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
+         h=from:to:cc:subject:date:message-id:content-type:mime-version
+        :content-transfer-encoding; s=fm2; bh=b0tdTiDj0xDYlY8hlxr76FNmq2
+        CIwDq3lkmM++qy+nA=; b=o4S+0op+dRVl4TvJOWGiPxvmODK1+oZS08mQpTsc6m
+        TICFX5gJ1a1Rfnyev5TvsTeKw7FB8tjyFU3Iy0ghQXZQMDQJo7Qfw8VrdN/HtreU
+        JWtbGEWVkZrYOmBUm+d3r/XrGettUELK/d45JW5Uvk60TF5IOf6nKpadMQQM35hl
+        VnPhWZHBgg26eqNXblcWYp9iukTYzdkz8Tl1L1L5AAzFtIIVfVJd7XEjewU6KTUp
+        EU91SXjo8A599vNGvsl8fMduwTXPpPmhlP+lRlpZiaXbr7bJuCIihMR+e+vEMSn3
+        q+02RE8YxseLZ9mAyXkRer4wsETjUfZ4gIJK7OZTN99A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=b0tdTi
+        Dj0xDYlY8hlxr76FNmq2CIwDq3lkmM++qy+nA=; b=WPcjOj2Z9ix0z/wRlJU7uF
+        r43V91Ui959nb/AMWiwuW7PAdc8MEuqGvGI5h7vveiJBo1ATE3VL2kDO4CnpL/rn
+        7gAvVcHQJsXaDhOYl3mognwezqLpRYv36cQLED4mCf+sy6FFixjC8D45yHmhkXzz
+        AyBKe1AY9SXXMpxACRBdzv4F8gPFuiTfbZH75DUbcN/hBYle6+QiTDqqwRsPyLjN
+        qLz2pAyqLWk3GsGbBvFQJXa3R/Sw7i+oDqm437xX0s6skr/fVHyUeE181cAK5TBL
+        41bLPfKDt3cXIBnGodx5hZhmGDY8h5D8xZdm2P05jLfXW1MHsZoQn1xax7CD0y5Q
+        ==
+X-ME-Sender: <xms:brSoYRdDg5boS_wHBseUkUa-dE7ANADqMknG2_5qrk6_dT5htuiNrA>
+    <xme:brSoYfNWVBcdcunS2XomTdkSF22pD60A9uwc2Zq_H6mSakFNJ1qBeThf5CDW965YQ
+    7UeZF6mvwj2aejwPDk>
+X-ME-Received: <xmr:brSoYaiva44lRIPD7RDBMuhlQVdMci8JKt20ePc6xYAnFrmZQKi38BJiKgF0fqmmCJTKt34NzJ5L5h72zTdNAdQTaX-vwiM9b_6pcvUBZ4e0uJE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieehgdefgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffotggggfesthhqredtre
+    dtjeenucfhrhhomheptehlihhsthgrihhrucfhrhgrnhgtihhsuceorghlihhsthgrihhr
+    segrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtthgvrhhnpeehteefgfejueejtd
+    egvdfggefhiefgheffvdffudevveetjeduhfdukeduteevjeenucevlhhushhtvghrufhi
+    iigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlhhishhtrghirhesrghlihhsth
+    grihhrvdefrdhmvg
+X-ME-Proxy: <xmx:brSoYa8mbkc_tdJDB2PiZzuYA7tckv2Yn0shSsLxaV1naRjYaghxFQ>
+    <xmx:brSoYdt2PwiuHQH-SBNGLiPYAx35r_AMtBmn0SUaYlPIglF13jJGVA>
+    <xmx:brSoYZH5mIR5pH1pP1fsaRUZX11P2Y59pUOauBYR4UYSOE2A3V1ePw>
+    <xmx:brSoYdHuhBkjmQHA1wczK5oBv0RO3ej5xkdz7x8ClRG-_bV629qeBA>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 2 Dec 2021 06:56:24 -0500 (EST)
+From:   Alistair Francis <alistair@alistair23.me>
+To:     benjamin.tissoires@redhat.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com
+Cc:     Ping.Cheng@wacom.com, linux-arm-kernel@lists.infradead.org,
+        linux-imx@nxp.com, alistair23@gmail.com,
+        tatsunosuke.tobita@wacom.com, linux-input@vger.kernel.org,
+        Jason.Gerecke@wacom.com, linux-kernel@vger.kernel.org,
+        jikos@kernel.org, martin.chen@wacom.com,
+        devicetree@vger.kernel.org,
+        Alistair Francis <alistair@alistair23.me>
+Subject: [PATCH v15 0/3] Add Wacom I2C support to rM2
+Date:   Thu,  2 Dec 2021 21:56:19 +1000
+Message-Id: <20211202115622.40153-1-alistair@alistair23.me>
+X-Mailer: git-send-email 2.31.1
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2 Dec 2021 16:57:00 +0530
-Viresh Kumar <viresh.kumar@linaro.org> wrote:
-
-> On 02-12-21, 10:52, Herve Codina wrote:
-> > Hi,
-> > 
-> > This patch series fixes the plgpio support on SPEAr3xx SOCs.
-> > 
-> > The first four patches of this series fixes a ressources
-> > sharing issue between the plgpio driver and the pinmux
-> > driver.
-> > Indeed, these two drivers can use the same IO address range
-> > on some SPEAr3xx SOCs.
-> > To solve the issue, a regmap (syscon managed) is used in both
-> > drivers and the plgpio driver can reference the pinmux regmap
-> > to use it.
-> > 
-> > The second part of this series is related to IRQs.
-> > The plgpio on SPEAr320s SOC uses an IRQ line in the reserve
-> > range (from SPEAr320 point of view).
-> > This issue is fixed enabling all the 'reserved' IRQs and
-> > adding a dtsi file for the SPEAr320s with the correct interrupt
-> > for the plgpio node.  
-> 
-> Are these changes backwards compatible ? I mean new kernel will work
-> with old DTBs ? It may be quite important to not break that here.
-> 
-
-Yes they are.
-- the regmap reference (phandle) is optional.
-- The IRQ for plgpio is used only on the new spear320s.dtsi.
-
-I have not seen any issues on my board (spear320s SOC) when I only add support
-for the 'reserved' IRQs (ie no spurious interrupts occur when I apply the patch
-related to shirq).
-I cannot test on SPEAr320 SOC as I haven't got any board with this SOC.
-
-Herve
-
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Add Wacom I2C support for the reMarkable 2 eInk tablet using the=0D
+generic I2C HID framework.=0D
+=0D
+Alistair Francis (3):=0D
+  HID: quirks: Allow inverting the absolute X/Y values=0D
+  HID: i2c-hid-of: Expose the touchscreen-inverted properties=0D
+  ARM: dts: imx7d: remarkable2: add wacom digitizer device=0D
+=0D
+ .../bindings/input/hid-over-i2c.txt           |  2 +=0D
+ arch/arm/boot/dts/imx7d-remarkable2.dts       | 59 +++++++++++++++++++=0D
+ drivers/hid/hid-input.c                       |  6 ++=0D
+ drivers/hid/i2c-hid/i2c-hid-acpi.c            |  2 +-=0D
+ drivers/hid/i2c-hid/i2c-hid-core.c            |  4 +-=0D
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c       |  2 +-=0D
+ drivers/hid/i2c-hid/i2c-hid-of.c              | 11 +++-=0D
+ drivers/hid/i2c-hid/i2c-hid.h                 |  2 +-=0D
+ include/linux/hid.h                           |  2 +=0D
+ 9 files changed, 85 insertions(+), 5 deletions(-)=0D
+=0D
+-- =0D
+2.31.1=0D
+=0D
