@@ -2,281 +2,589 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19924465E0B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 07:07:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D3A465E1F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 07:13:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355655AbhLBGKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 01:10:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344972AbhLBGKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 01:10:33 -0500
-Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 524F7C061574;
-        Wed,  1 Dec 2021 22:07:09 -0800 (PST)
-Received: by mail-qv1-xf33.google.com with SMTP id i12so10675059qvh.11;
-        Wed, 01 Dec 2021 22:07:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pO6cSPpB1t4D4Pt6yGxXTPztMRKSF+ZBfosbEur348s=;
-        b=WQqwlmvRc7h3U/hML3l03I0t4e3qisI1b4V2HjA0xVFEbfBVU9XayDyazQKhYOBvI6
-         CIINAJdh0ETNh44u9uNGs9wuWpfXeaxJ+FC9dNQHToDBfj46zVL3XkcZjj3R4adqZnSE
-         gcuZ5D8CClz+f/9Ab3WdItQj0IdlpHCT+Jvsw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pO6cSPpB1t4D4Pt6yGxXTPztMRKSF+ZBfosbEur348s=;
-        b=1byzzbytxhlHpNSb1KRHoJFpkwv4S4fMidgjv+UHo/D8QWRSzqZM7K+ZgOljm0zy0V
-         BUouIbAM9wZMjRDONoo16ksbNjqCJpgMo8sIEN7SORAGBR+LnnziDIktXAILDlKoe4dy
-         4yZ1GK5lbKGKetiY0/RCaeXL+tLpEFTsPw61g/R3yB4+OJ4CSUGfzS5FGw3ZowwhlCxj
-         Iv+RvckOZ2hGtC9/MaAPcjovxhBMFaN4cW+9g8nCaBLI2zZ4tH62x1Qt3giaeoLLOUfI
-         YHfbqWg8PbW7xqa6DAhrYmmmiEpn0A3qJ1U4SMrfxzr3T0KbPiU4g4TBnNbmPXAkqOym
-         cHUw==
-X-Gm-Message-State: AOAM532P+I748BCVdldqmMEo+GTgeIU1ia+UBda83AYiGqvyEIPzDCtP
-        U3/0EhiG47hKV+nZ2aJPQGY0FeCKi0QzDqbAAs1+6tqBoVqW9A==
-X-Google-Smtp-Source: ABdhPJycPsKdS5BQs2tO3HKSSx2b+qrhYgKgRswIukwPM6sYv5nM1bdN8ivu0gqB9MjmtRlGZpxLH0CFcI0ixtmedrg=
-X-Received: by 2002:ad4:5ce8:: with SMTP id iv8mr11447207qvb.21.1638425228334;
- Wed, 01 Dec 2021 22:07:08 -0800 (PST)
+        id S1355742AbhLBGQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 01:16:55 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49276 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1355723AbhLBGQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 01:16:52 -0500
+X-UUID: d257ff05d8a2497b82aaec5592be6779-20211202
+X-UUID: d257ff05d8a2497b82aaec5592be6779-20211202
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <moudy.ho@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 902142290; Thu, 02 Dec 2021 14:13:26 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 2 Dec 2021 14:13:25 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 2 Dec
+ 2021 14:13:25 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 2 Dec 2021 14:13:24 +0800
+From:   Moudy Ho <moudy.ho@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        <tfiga@chromium.org>, <drinkcat@chromium.org>,
+        <pihsun@chromium.org>, <hsinyi@google.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
+        <moudy.ho@mediatek.com>, <jason-jh.lin@mediatek.com>,
+        <roy-cw.yeh@mediatek.com>, <river.cheng@mediatek.com>,
+        <srv_heupstream@mediatek.com>
+Subject: [PATCH v10 1/4] soc: mediatek: mmsys: add support for MDP
+Date:   Thu, 2 Dec 2021 14:13:19 +0800
+Message-ID: <20211202061322.19917-2-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20211202061322.19917-1-moudy.ho@mediatek.com>
+References: <20211202061322.19917-1-moudy.ho@mediatek.com>
 MIME-Version: 1.0
-References: <20211201033738.121846-1-howard.chiu@quantatw.com>
-In-Reply-To: <20211201033738.121846-1-howard.chiu@quantatw.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 2 Dec 2021 06:06:56 +0000
-Message-ID: <CACPK8Xd9i_8LcnKXwA7myots9N=fH0FnpnPdzXAkiRW9=LSVTA@mail.gmail.com>
-Subject: Re: [PATCH v6] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-To:     Howard Chiu <howard10703049@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Patrick Williams <patrick@stwcx.xyz>,
-        Howard Chiu <howard.chiu@quantatw.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Howard,
+For the purpose of module independence, related settings should be moved
+from MDP to the corresponding driver.
+This patch adds more 8183 MDP settings and interface. and MDP
+related settings must be set via CMDQ to avoid frame unsynchronized.
 
-Please just cc the people that get_maintainers.pl spits out. You don't
-want to cc soc@kenrel.org (that's for when patches are ready to apply,
-and something that the maintainer for the platform will handle).
+Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ drivers/soc/mediatek/Kconfig           |   1 +
+ drivers/soc/mediatek/mt8183-mmsys.h    | 268 +++++++++++++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c       |  56 ++++++
+ drivers/soc/mediatek/mtk-mmsys.h       |   2 +
+ include/linux/soc/mediatek/mtk-mmsys.h |  56 ++++++
+ 5 files changed, 383 insertions(+)
 
-$ ./scripts/get_maintainer.pl -f
-arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
-FLATTENED DEVICE TREE BINDINGS)
-Joel Stanley <joel@jms.id.au> (supporter:ARM/ASPEED MACHINE SUPPORT)
-Andrew Jeffery <andrew@aj.id.au> (reviewer:ARM/ASPEED MACHINE SUPPORT)
-devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-DEVICE TREE BINDINGS)
-linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE SUPPORT)
-linux-aspeed@lists.ozlabs.org (moderated list:ARM/ASPEED MACHINE SUPPORT)
-linux-kernel@vger.kernel.org (open list)
+diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+index fdd8bc08569e..172bc7828aca 100644
+--- a/drivers/soc/mediatek/Kconfig
++++ b/drivers/soc/mediatek/Kconfig
+@@ -69,6 +69,7 @@ config MTK_MMSYS
+ 	bool "MediaTek MMSYS Support"
+ 	default ARCH_MEDIATEK
+ 	depends on HAS_IOMEM
++	select MTK_CMDQ
+ 	help
+ 	  Say yes here to add support for the MediaTek Multimedia
+ 	  Subsystem (MMSYS).
+diff --git a/drivers/soc/mediatek/mt8183-mmsys.h b/drivers/soc/mediatek/mt8183-mmsys.h
+index 9dee485807c9..48865973314d 100644
+--- a/drivers/soc/mediatek/mt8183-mmsys.h
++++ b/drivers/soc/mediatek/mt8183-mmsys.h
+@@ -12,6 +12,25 @@
+ #define MT8183_DISP_DPI0_SEL_IN			0xf30
+ #define MT8183_DISP_RDMA0_SOUT_SEL_IN		0xf50
+ #define MT8183_DISP_RDMA1_SOUT_SEL_IN		0xf54
++#define MT8183_MDP_ISP_MOUT_EN			0xf80
++#define MT8183_MDP_RDMA0_MOUT_EN		0xf84
++#define MT8183_MDP_PRZ0_MOUT_EN			0xf8c
++#define MT8183_MDP_PRZ1_MOUT_EN			0xf90
++#define MT8183_MDP_COLOR_MOUT_EN		0xf94
++#define MT8183_MDP_IPU_MOUT_EN			0xf98
++#define MT8183_MDP_PATH0_SOUT_SEL		0xfa8
++#define MT8183_MDP_PATH1_SOUT_SEL		0xfac
++#define MT8183_MDP_PRZ0_SEL_IN			0xfc0
++#define MT8183_MDP_PRZ1_SEL_IN			0xfc4
++#define MT8183_MDP_TDSHP_SEL_IN			0xfc8
++#define MT8183_MDP_WROT0_SEL_IN			0xfd0
++#define MT8183_MDP_WDMA_SEL_IN			0xfd4
++#define MT8183_MDP_PATH0_SEL_IN			0xfe0
++#define MT8183_MDP_PATH1_SEL_IN			0xfe4
++#define MT8183_MDP_AAL_MOUT_EN			0xfe8
++#define MT8183_MDP_AAL_SEL_IN			0xfec
++#define MT8183_MDP_CCORR_SEL_IN			0xff0
++#define MT8183_MDP_CCORR_SOUT_SEL		0xff4
+ 
+ #define MT8183_OVL0_MOUT_EN_OVL0_2L		BIT(4)
+ #define MT8183_OVL0_2L_MOUT_EN_DISP_PATH0	BIT(0)
+@@ -24,6 +43,55 @@
+ #define MT8183_DPI0_SEL_IN_RDMA1		0x2
+ #define MT8183_RDMA0_SOUT_COLOR0		0x1
+ #define MT8183_RDMA1_SOUT_DSI0			0x1
++#define MT8183_MDP_ISP_MOUT_EN_CCORR0		BIT(0)
++#define MT8183_MDP_ISP_MOUT_EN_RSZ1		BIT(1)
++#define MT8183_MDP_ISP_MOUT_EN_AAL0		BIT(2)
++#define MT8183_MDP_IPU_MOUT_EN_CCORR0		BIT(0)
++#define MT8183_MDP_IPU_MOUT_EN_RSZ1		BIT(1)
++#define MT8183_MDP_IPU_MOUT_EN_AAL0		BIT(2)
++#define MT8183_MDP_RDMA0_MOUT_EN_CCORR0		BIT(0)
++#define MT8183_MDP_RDMA0_MOUT_EN_RSZ1		BIT(1)
++#define MT8183_MDP_RDMA0_MOUT_EN_PATH0_OUT	BIT(2)
++#define MT8183_MDP_RDMA0_MOUT_EN_AAL0		BIT(3)
++#define MT8183_MDP_AAL_MOUT_EN_CCORR0		BIT(0)
++#define MT8183_MDP_AAL_MOUT_EN_RSZ1		BIT(1)
++#define MT8183_MDP_AAL_MOUT_EN_RSZ0		BIT(2)
++#define MT8183_MDP_PRZ0_MOUT_EN_PATH0_OUT	BIT(0)
++#define MT8183_MDP_PRZ0_MOUT_EN_TDSHP0		BIT(1)
++#define MT8183_MDP_PRZ1_MOUT_EN_PATH0_OUT	BIT(0)
++#define MT8183_MDP_PRZ1_MOUT_EN_TDSHP0		BIT(1)
++#define MT8183_MDP_PRZ1_MOUT_EN_PATH1_OUT	BIT(2)
++#define MT8183_MDP_PRZ1_MOUT_EN_COLOR0		BIT(4)
++#define MT8183_MDP_COLOR_MOUT_EN_PATH0_OUT	BIT(0)
++#define MT8183_MDP_COLOR_MOUT_EN_PATH1_OUT	BIT(1)
++#define MT8183_MDP_AAL_SEL_IN_CAMIN		0
++#define MT8183_MDP_AAL_SEL_IN_RDMA0		1
++#define MT8183_MDP_AAL_SEL_IN_CAMIN2		2
++#define MT8183_MDP_AAL_SEL_IN_CCORR0		3
++#define MT8183_MDP_CCORR_SEL_IN_CAMIN		0
++#define MT8183_MDP_CCORR_SEL_IN_RDMA0		1
++#define MT8183_MDP_CCORR_SEL_IN_CAMIN2		3
++#define MT8183_MDP_CCORR_SEL_IN_AAL0		4
++#define MT8183_MDP_PRZ0_SEL_IN_AAL0		0
++#define MT8183_MDP_PRZ0_SEL_IN_CCORR0		1
++#define MT8183_MDP_PRZ1_SEL_IN_CAMIN		0
++#define MT8183_MDP_PRZ1_SEL_IN_RDMA0		1
++#define MT8183_MDP_PRZ1_SEL_IN_CAMIN2		4
++#define MT8183_MDP_PRZ1_SEL_IN_AAL0		5
++#define MT8183_MDP_TDSHP_SEL_IN_RSZ0		0
++#define MT8183_MDP_TDSHP_SEL_IN_RSZ1		1
++#define MT8183_MDP_PATH0_SEL_IN_RSZ0		0
++#define MT8183_MDP_PATH0_SEL_IN_RSZ1		1
++#define MT8183_MDP_PATH0_SEL_IN_COLOR0		2
++#define MT8183_MDP_PATH0_SEL_IN_RDMA0		3
++#define MT8183_MDP_PATH1_SEL_IN_RSZ1		0
++#define MT8183_MDP_PATH1_SEL_IN_COLOR0		1
++#define MT8183_MDP_WROT0_SEL_IN_PATH0_OUT	0
++#define MT8183_MDP_WDMA_SEL_IN_PATH1_OUT	0
++#define MT8183_MDP_CCORR_SOUT_SEL_AAL0		0
++#define MT8183_MDP_CCORR_SOUT_SEL_RSZ0		1
++#define MT8183_MDP_PATH0_SOUT_SEL_WROT0		0
++#define MT8183_MDP_PATH1_SOUT_SEL_WDMA		0
+ 
+ static const struct mtk_mmsys_routes mmsys_mt8183_routing_table[] = {
+ 	{
+@@ -57,5 +125,205 @@ static const struct mtk_mmsys_routes mmsys_mt8183_routing_table[] = {
+ 	}
+ };
+ 
++static const struct mtk_mmsys_routes mmsys_mt8183_mdp_routing_table[] = {
++	{
++		MDP_COMP_CAMIN, MDP_COMP_CCORR0,
++		MT8183_MDP_ISP_MOUT_EN, MT8183_MDP_ISP_MOUT_EN_CCORR0,
++		MT8183_MDP_ISP_MOUT_EN_CCORR0
++	}, {
++		MDP_COMP_CAMIN, MDP_COMP_RSZ1,
++		MT8183_MDP_ISP_MOUT_EN, MT8183_MDP_ISP_MOUT_EN_RSZ1,
++		MT8183_MDP_ISP_MOUT_EN_RSZ1
++	}, {
++		MDP_COMP_CAMIN, MDP_COMP_AAL0,
++		MT8183_MDP_ISP_MOUT_EN, MT8183_MDP_ISP_MOUT_EN_AAL0,
++		MT8183_MDP_ISP_MOUT_EN_AAL0
++	}, {
++		MDP_COMP_CAMIN2, MDP_COMP_CCORR0,
++		MT8183_MDP_IPU_MOUT_EN, MT8183_MDP_IPU_MOUT_EN_CCORR0,
++		MT8183_MDP_IPU_MOUT_EN_CCORR0
++	}, {
++		MDP_COMP_CAMIN2, MDP_COMP_RSZ1,
++		MT8183_MDP_IPU_MOUT_EN, MT8183_MDP_IPU_MOUT_EN_RSZ1,
++		MT8183_MDP_IPU_MOUT_EN_RSZ1
++	}, {
++		MDP_COMP_CAMIN2, MDP_COMP_AAL0,
++		MT8183_MDP_IPU_MOUT_EN, MT8183_MDP_IPU_MOUT_EN_AAL0,
++		MT8183_MDP_IPU_MOUT_EN_AAL0
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_CCORR0,
++		MT8183_MDP_RDMA0_MOUT_EN, MT8183_MDP_RDMA0_MOUT_EN_CCORR0,
++		MT8183_MDP_RDMA0_MOUT_EN_CCORR0
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_RSZ1,
++		MT8183_MDP_RDMA0_MOUT_EN, MT8183_MDP_RDMA0_MOUT_EN_RSZ1,
++		MT8183_MDP_RDMA0_MOUT_EN_RSZ1
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_RDMA0_MOUT_EN, MT8183_MDP_RDMA0_MOUT_EN_PATH0_OUT,
++		MT8183_MDP_RDMA0_MOUT_EN_PATH0_OUT
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_AAL0,
++		MT8183_MDP_RDMA0_MOUT_EN, MT8183_MDP_RDMA0_MOUT_EN_AAL0,
++		MT8183_MDP_RDMA0_MOUT_EN_AAL0
++	}, {
++		MDP_COMP_AAL0, MDP_COMP_CCORR0,
++		MT8183_MDP_AAL_MOUT_EN, MT8183_MDP_AAL_MOUT_EN_CCORR0,
++		MT8183_MDP_AAL_MOUT_EN_CCORR0
++	}, {
++		MDP_COMP_AAL0, MDP_COMP_RSZ1,
++		MT8183_MDP_AAL_MOUT_EN, MT8183_MDP_AAL_MOUT_EN_RSZ1,
++		MT8183_MDP_AAL_MOUT_EN_RSZ1
++	}, {
++		MDP_COMP_AAL0, MDP_COMP_RSZ0,
++		MT8183_MDP_AAL_MOUT_EN, MT8183_MDP_AAL_MOUT_EN_RSZ0,
++		MT8183_MDP_AAL_MOUT_EN_RSZ0
++	}, {
++		MDP_COMP_RSZ0, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_PRZ0_MOUT_EN, MT8183_MDP_PRZ0_MOUT_EN_PATH0_OUT,
++		MT8183_MDP_PRZ0_MOUT_EN_PATH0_OUT
++	}, {
++		MDP_COMP_RSZ0, MDP_COMP_TDSHP0,
++		MT8183_MDP_PRZ0_MOUT_EN, MT8183_MDP_PRZ0_MOUT_EN_TDSHP0,
++		MT8183_MDP_PRZ0_MOUT_EN_TDSHP0
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_PRZ1_MOUT_EN, MT8183_MDP_PRZ1_MOUT_EN_PATH0_OUT,
++		MT8183_MDP_PRZ1_MOUT_EN_PATH0_OUT
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_TDSHP0,
++		MT8183_MDP_PRZ1_MOUT_EN, MT8183_MDP_PRZ1_MOUT_EN_TDSHP0,
++		MT8183_MDP_PRZ1_MOUT_EN_TDSHP0
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_PATH1_SOUT,
++		MT8183_MDP_PRZ1_MOUT_EN, MT8183_MDP_PRZ1_MOUT_EN_PATH1_OUT,
++		MT8183_MDP_PRZ1_MOUT_EN_PATH1_OUT
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_COLOR0,
++		MT8183_MDP_PRZ1_MOUT_EN, MT8183_MDP_PRZ1_MOUT_EN_COLOR0,
++		MT8183_MDP_PRZ1_MOUT_EN_COLOR0
++	}, {
++		MDP_COMP_COLOR0, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_COLOR_MOUT_EN, MT8183_MDP_COLOR_MOUT_EN_PATH0_OUT,
++		MT8183_MDP_COLOR_MOUT_EN_PATH0_OUT
++	}, {
++		MDP_COMP_COLOR0, MDP_COMP_PATH1_SOUT,
++		MT8183_MDP_COLOR_MOUT_EN, MT8183_MDP_COLOR_MOUT_EN_PATH1_OUT,
++		MT8183_MDP_COLOR_MOUT_EN_PATH1_OUT
++	}, {
++		MDP_COMP_CAMIN, MDP_COMP_AAL0,
++		MT8183_MDP_AAL_SEL_IN, MT8183_MDP_AAL_SEL_IN_CAMIN,
++		MT8183_MDP_AAL_SEL_IN_CAMIN
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_AAL0,
++		MT8183_MDP_AAL_SEL_IN, MT8183_MDP_AAL_SEL_IN_RDMA0,
++		MT8183_MDP_AAL_SEL_IN_RDMA0
++	}, {
++		MDP_COMP_CAMIN2, MDP_COMP_AAL0,
++		MT8183_MDP_AAL_SEL_IN, MT8183_MDP_AAL_SEL_IN_CAMIN2,
++		MT8183_MDP_AAL_SEL_IN_CAMIN2
++	}, {
++		MDP_COMP_CCORR0, MDP_COMP_AAL0,
++		MT8183_MDP_AAL_SEL_IN, MT8183_MDP_AAL_SEL_IN_CCORR0,
++		MT8183_MDP_AAL_SEL_IN_CCORR0
++	}, {
++		MDP_COMP_CAMIN, MDP_COMP_CCORR0,
++		MT8183_MDP_CCORR_SEL_IN, MT8183_MDP_CCORR_SEL_IN_CAMIN,
++		MT8183_MDP_CCORR_SEL_IN_CAMIN
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_CCORR0,
++		MT8183_MDP_CCORR_SEL_IN, MT8183_MDP_CCORR_SEL_IN_RDMA0,
++		MT8183_MDP_CCORR_SEL_IN_RDMA0
++	}, {
++		MDP_COMP_CAMIN2, MDP_COMP_CCORR0,
++		MT8183_MDP_CCORR_SEL_IN, MT8183_MDP_CCORR_SEL_IN_CAMIN2,
++		MT8183_MDP_CCORR_SEL_IN_CAMIN2
++	}, {
++		MDP_COMP_AAL0, MDP_COMP_CCORR0,
++		MT8183_MDP_CCORR_SEL_IN, MT8183_MDP_CCORR_SEL_IN_AAL0,
++		MT8183_MDP_CCORR_SEL_IN_AAL0
++	}, {
++		MDP_COMP_AAL0, MDP_COMP_RSZ0,
++		MT8183_MDP_PRZ0_SEL_IN, MT8183_MDP_PRZ0_SEL_IN_AAL0,
++		MT8183_MDP_PRZ0_SEL_IN_AAL0
++	}, {
++		MDP_COMP_CCORR0, MDP_COMP_RSZ0,
++		MT8183_MDP_PRZ0_SEL_IN, MT8183_MDP_PRZ0_SEL_IN_CCORR0,
++		MT8183_MDP_PRZ0_SEL_IN_CCORR0
++	}, {
++		MDP_COMP_CAMIN, MDP_COMP_RSZ1,
++		MT8183_MDP_PRZ1_SEL_IN, MT8183_MDP_PRZ1_SEL_IN_CAMIN,
++		MT8183_MDP_PRZ1_SEL_IN_CAMIN
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_RSZ1,
++		MT8183_MDP_PRZ1_SEL_IN, MT8183_MDP_PRZ1_SEL_IN_RDMA0,
++		MT8183_MDP_PRZ1_SEL_IN_RDMA0
++	}, {
++		MDP_COMP_CAMIN2, MDP_COMP_RSZ1,
++		MT8183_MDP_PRZ1_SEL_IN, MT8183_MDP_PRZ1_SEL_IN_CAMIN2,
++		MT8183_MDP_PRZ1_SEL_IN_CAMIN2
++	}, {
++		MDP_COMP_AAL0, MDP_COMP_RSZ1,
++		MT8183_MDP_PRZ1_SEL_IN, MT8183_MDP_PRZ1_SEL_IN_AAL0,
++		MT8183_MDP_PRZ1_SEL_IN_AAL0
++	}, {
++		MDP_COMP_RSZ0, MDP_COMP_TDSHP0,
++		MT8183_MDP_TDSHP_SEL_IN, MT8183_MDP_TDSHP_SEL_IN_RSZ0,
++		MT8183_MDP_TDSHP_SEL_IN_RSZ0
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_TDSHP0,
++		MT8183_MDP_TDSHP_SEL_IN, MT8183_MDP_TDSHP_SEL_IN_RSZ1,
++		MT8183_MDP_TDSHP_SEL_IN_RSZ1
++	}, {
++		MDP_COMP_RSZ0, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_PATH0_SEL_IN, MT8183_MDP_PATH0_SEL_IN_RSZ0,
++		MT8183_MDP_PATH0_SEL_IN_RSZ0
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_PATH0_SEL_IN, MT8183_MDP_PATH0_SEL_IN_RSZ1,
++		MT8183_MDP_PATH0_SEL_IN_RSZ1
++	}, {
++		MDP_COMP_COLOR0, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_PATH0_SEL_IN, MT8183_MDP_PATH0_SEL_IN_COLOR0,
++		MT8183_MDP_PATH0_SEL_IN_COLOR0
++	}, {
++		MDP_COMP_RDMA0, MDP_COMP_PATH0_SOUT,
++		MT8183_MDP_PATH0_SEL_IN, MT8183_MDP_PATH0_SEL_IN_RDMA0,
++		MT8183_MDP_PATH0_SEL_IN_RDMA0
++	}, {
++		MDP_COMP_RSZ1, MDP_COMP_PATH1_SOUT,
++		MT8183_MDP_PATH1_SEL_IN, MT8183_MDP_PATH1_SEL_IN_RSZ1,
++		MT8183_MDP_PATH1_SEL_IN_RSZ1
++	}, {
++		MDP_COMP_COLOR0, MDP_COMP_PATH1_SOUT,
++		MT8183_MDP_PATH1_SEL_IN, MT8183_MDP_PATH1_SEL_IN_COLOR0,
++		MT8183_MDP_PATH1_SEL_IN_COLOR0
++	}, {
++		MDP_COMP_PATH0_SOUT, MDP_COMP_WROT0,
++		MT8183_MDP_WROT0_SEL_IN, MT8183_MDP_WROT0_SEL_IN_PATH0_OUT,
++		MT8183_MDP_WROT0_SEL_IN_PATH0_OUT
++	}, {
++		MDP_COMP_PATH1_SOUT, MDP_COMP_WDMA,
++		MT8183_MDP_WDMA_SEL_IN, MT8183_MDP_WDMA_SEL_IN_PATH1_OUT,
++		MT8183_MDP_WDMA_SEL_IN_PATH1_OUT
++	}, {
++		MDP_COMP_CCORR0, MDP_COMP_AAL0,
++		MT8183_MDP_CCORR_SOUT_SEL, MT8183_MDP_CCORR_SOUT_SEL_AAL0,
++		MT8183_MDP_CCORR_SOUT_SEL_AAL0
++	}, {
++		MDP_COMP_CCORR0, MDP_COMP_RSZ0,
++		MT8183_MDP_CCORR_SOUT_SEL, MT8183_MDP_CCORR_SOUT_SEL_RSZ0,
++		MT8183_MDP_CCORR_SOUT_SEL_RSZ0
++	}, {
++		MDP_COMP_PATH0_SOUT, MDP_COMP_WROT0,
++		MT8183_MDP_PATH0_SOUT_SEL, MT8183_MDP_PATH0_SOUT_SEL_WROT0,
++		MT8183_MDP_PATH0_SOUT_SEL_WROT0
++	}, {
++		MDP_COMP_PATH1_SOUT, MDP_COMP_WDMA,
++		MT8183_MDP_PATH1_SOUT_SEL, MT8183_MDP_PATH1_SOUT_SEL_WDMA,
++		MT8183_MDP_PATH1_SOUT_SEL_WDMA
++	}
++};
++
+ #endif /* __SOC_MEDIATEK_MT8183_MMSYS_H */
+ 
+diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
+index 1e448f1ffefb..905847d6e16c 100644
+--- a/drivers/soc/mediatek/mtk-mmsys.c
++++ b/drivers/soc/mediatek/mtk-mmsys.c
+@@ -8,9 +8,11 @@
+ #include <linux/device.h>
+ #include <linux/io.h>
+ #include <linux/of_device.h>
++#include <linux/of_address.h>
+ #include <linux/platform_device.h>
+ #include <linux/reset-controller.h>
+ #include <linux/soc/mediatek/mtk-mmsys.h>
++#include <linux/soc/mediatek/mtk-cmdq.h>
+ 
+ #include "mtk-mmsys.h"
+ #include "mt8167-mmsys.h"
+@@ -54,6 +56,8 @@ static const struct mtk_mmsys_driver_data mt8183_mmsys_driver_data = {
+ 	.clk_driver = "clk-mt8183-mm",
+ 	.routes = mmsys_mt8183_routing_table,
+ 	.num_routes = ARRAY_SIZE(mmsys_mt8183_routing_table),
++	.mdp_routes = mmsys_mt8183_mdp_routing_table,
++	.mdp_num_routes = ARRAY_SIZE(mmsys_mt8183_mdp_routing_table),
+ };
+ 
+ static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
+@@ -73,6 +77,8 @@ struct mtk_mmsys {
+ 	const struct mtk_mmsys_driver_data *data;
+ 	spinlock_t lock; /* protects mmsys_sw_rst_b reg */
+ 	struct reset_controller_dev rcdev;
++	phys_addr_t addr;
++	u8 subsys_id;
+ };
+ 
+ void mtk_mmsys_ddp_connect(struct device *dev,
+@@ -112,6 +118,45 @@ void mtk_mmsys_ddp_disconnect(struct device *dev,
+ }
+ EXPORT_SYMBOL_GPL(mtk_mmsys_ddp_disconnect);
+ 
++void mtk_mmsys_mdp_connect(struct device *dev, struct mmsys_cmdq_cmd *cmd,
++			   enum mtk_mdp_comp_id cur,
++			   enum mtk_mdp_comp_id next)
++{
++	struct mtk_mmsys *mmsys = dev_get_drvdata(dev);
++	const struct mtk_mmsys_routes *routes = mmsys->data->mdp_routes;
++	int i;
++
++	if (!routes) {
++		WARN_ON(!routes);
++		return;
++	}
++
++	WARN_ON(mmsys->subsys_id == 0);
++	for (i = 0; i < mmsys->data->mdp_num_routes; i++)
++		if (cur == routes[i].from_comp && next == routes[i].to_comp)
++			cmdq_pkt_write_mask(cmd->pkt, mmsys->subsys_id,
++					    mmsys->addr + routes[i].addr,
++					    routes[i].val, routes[i].mask);
++}
++EXPORT_SYMBOL_GPL(mtk_mmsys_mdp_connect);
++
++void mtk_mmsys_mdp_disconnect(struct device *dev, struct mmsys_cmdq_cmd *cmd,
++			      enum mtk_mdp_comp_id cur,
++			      enum mtk_mdp_comp_id next)
++{
++	struct mtk_mmsys *mmsys = dev_get_drvdata(dev);
++	const struct mtk_mmsys_routes *routes = mmsys->data->mdp_routes;
++	int i;
++
++	WARN_ON(mmsys->subsys_id == 0);
++	for (i = 0; i < mmsys->data->mdp_num_routes; i++)
++		if (cur == routes[i].from_comp && next == routes[i].to_comp)
++			cmdq_pkt_write_mask(cmd->pkt, mmsys->subsys_id,
++					    mmsys->addr + routes[i].addr,
++					    0, routes[i].mask);
++}
++EXPORT_SYMBOL_GPL(mtk_mmsys_mdp_disconnect);
++
+ static int mtk_mmsys_reset_update(struct reset_controller_dev *rcdev, unsigned long id,
+ 				  bool assert)
+ {
+@@ -170,6 +215,8 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
+ 	struct platform_device *clks;
+ 	struct platform_device *drm;
+ 	struct mtk_mmsys *mmsys;
++	struct resource res;
++	struct cmdq_client_reg cmdq_reg;
+ 	int ret;
+ 
+ 	mmsys = devm_kzalloc(dev, sizeof(*mmsys), GFP_KERNEL);
+@@ -195,6 +242,15 @@ static int mtk_mmsys_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
++	if (of_address_to_resource(dev->of_node, 0, &res) < 0)
++		mmsys->addr = 0L;
++	else
++		mmsys->addr = res.start;
++
++	if (cmdq_dev_get_client_reg(dev, &cmdq_reg, 0) != 0)
++		dev_info(dev, "cmdq subsys id has not been set\n");
++	mmsys->subsys_id = cmdq_reg.subsys;
++
+ 	mmsys->data = of_device_get_match_data(&pdev->dev);
+ 	platform_set_drvdata(pdev, mmsys);
+ 
+diff --git a/drivers/soc/mediatek/mtk-mmsys.h b/drivers/soc/mediatek/mtk-mmsys.h
+index 8b0ed05117ea..7ec2107b9823 100644
+--- a/drivers/soc/mediatek/mtk-mmsys.h
++++ b/drivers/soc/mediatek/mtk-mmsys.h
+@@ -92,6 +92,8 @@ struct mtk_mmsys_driver_data {
+ 	const char *clk_driver;
+ 	const struct mtk_mmsys_routes *routes;
+ 	const unsigned int num_routes;
++	const struct mtk_mmsys_routes *mdp_routes;
++	const unsigned int mdp_num_routes;
+ };
+ 
+ /*
+diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/mediatek/mtk-mmsys.h
+index 4bba275e235a..c5a4d6b181ce 100644
+--- a/include/linux/soc/mediatek/mtk-mmsys.h
++++ b/include/linux/soc/mediatek/mtk-mmsys.h
+@@ -7,8 +7,14 @@
+ #define __MTK_MMSYS_H
+ 
+ enum mtk_ddp_comp_id;
++enum mtk_mdp_comp_id;
+ struct device;
+ 
++struct mmsys_cmdq_cmd {
++	struct cmdq_pkt *pkt;
++	s32 *event;
++};
++
+ enum mtk_ddp_comp_id {
+ 	DDP_COMPONENT_AAL0,
+ 	DDP_COMPONENT_AAL1,
+@@ -45,6 +51,46 @@ enum mtk_ddp_comp_id {
+ 	DDP_COMPONENT_ID_MAX,
+ };
+ 
++enum mtk_mdp_comp_id {
++	MDP_COMP_NONE = -1,	/* Invalid engine */
++
++	/* ISP */
++	MDP_COMP_WPEI = 0,
++	MDP_COMP_WPEO,		/* 1 */
++	MDP_COMP_WPEI2,		/* 2 */
++	MDP_COMP_WPEO2,		/* 3 */
++	MDP_COMP_ISP_IMGI,	/* 4 */
++	MDP_COMP_ISP_IMGO,	/* 5 */
++	MDP_COMP_ISP_IMG2O,	/* 6 */
++
++	/* IPU */
++	MDP_COMP_IPUI,		/* 7 */
++	MDP_COMP_IPUO,		/* 8 */
++
++	/* MDP */
++	MDP_COMP_CAMIN,		/* 9 */
++	MDP_COMP_CAMIN2,	/* 10 */
++	MDP_COMP_RDMA0,		/* 11 */
++	MDP_COMP_AAL0,		/* 12 */
++	MDP_COMP_CCORR0,	/* 13 */
++	MDP_COMP_RSZ0,		/* 14 */
++	MDP_COMP_RSZ1,		/* 15 */
++	MDP_COMP_TDSHP0,	/* 16 */
++	MDP_COMP_COLOR0,	/* 17 */
++	MDP_COMP_PATH0_SOUT,	/* 18 */
++	MDP_COMP_PATH1_SOUT,	/* 19 */
++	MDP_COMP_WROT0,		/* 20 */
++	MDP_COMP_WDMA,		/* 21 */
++
++	/* Dummy Engine */
++	MDP_COMP_RDMA1,		/* 22 */
++	MDP_COMP_RSZ2,		/* 23 */
++	MDP_COMP_TDSHP1,	/* 24 */
++	MDP_COMP_WROT1,		/* 25 */
++
++	MDP_MAX_COMP_COUNT	/* ALWAYS keep at the end */
++};
++
+ void mtk_mmsys_ddp_connect(struct device *dev,
+ 			   enum mtk_ddp_comp_id cur,
+ 			   enum mtk_ddp_comp_id next);
+@@ -53,4 +99,14 @@ void mtk_mmsys_ddp_disconnect(struct device *dev,
+ 			      enum mtk_ddp_comp_id cur,
+ 			      enum mtk_ddp_comp_id next);
+ 
++void mtk_mmsys_mdp_connect(struct device *dev,
++			   struct mmsys_cmdq_cmd *cmd,
++			   enum mtk_mdp_comp_id cur,
++			   enum mtk_mdp_comp_id next);
++
++void mtk_mmsys_mdp_disconnect(struct device *dev,
++			      struct mmsys_cmdq_cmd *cmd,
++			      enum mtk_mdp_comp_id cur,
++			      enum mtk_mdp_comp_id next);
++
+ #endif /* __MTK_MMSYS_H */
+-- 
+2.18.0
 
-
-On Wed, 1 Dec 2021 at 03:39, Howard Chiu <howard10703049@gmail.com> wrote:
->
-> Initial introduction of Facebook Bletchley equipped with
-> Aspeed 2600 BMC SoC.
-
-I like to have some background on the machine, as it provides context
-for the review. Is it a x86 server? A x86 switch? Of course if this
-information is confidential then that's fine to omit it, only provide
-what you can.
-
->
-> Signed-off-by: Howard Chiu <howard.chiu@quantatw.com>
->
-
-
-Put the changes below under ---. This is so they are not included in
-the commit message when added to the kernel.
-
-If the information is relevant, then put it in the commit message
-above your s-o-b.
-
-> Change since v5:
-> - Add an EEPROM on i2c-7
-> - Change address of FUSB302 to 0x22
-> - Assign interrupt pin to FUSB302
-> - Rework pin assignment of pca9539
->
-> Change since v4:
-> - Change address of TMP421 on i2c-12 to 0x4d
->
-> Change since v3:
-> - Add a TMP421 on i2c-10
->
-> Change since v2:
-> - Remove uart5 workaround
-> - Remove gpio nodes of pca9552/pca9539
-> - Modify gpio-line-name of led/power/presence pins with openbmc pattern
-> - Add MP5023 devices
->
-> Change since v1:
-> - Keep sorted in Makefile
-> - Change baudrate to 57600 from 115200
-> - Rename node *-ember to *-amber
-> - Use openbmc-flash-layout-128.dtsi
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../dts/aspeed-bmc-facebook-bletchley.dts     | 760 ++++++++++++++++++
->  2 files changed, 761 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
->
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 0de64f237cd8..b804b577010a 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1482,6 +1482,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->         aspeed-bmc-arm-stardragon4800-rep2.dtb \
->         aspeed-bmc-asrock-e3c246d4i.dtb \
->         aspeed-bmc-bytedance-g220a.dtb \
-> +       aspeed-bmc-facebook-bletchley.dtb \
->         aspeed-bmc-facebook-cloudripper.dtb \
->         aspeed-bmc-facebook-cmm.dtb \
->         aspeed-bmc-facebook-elbert.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-> new file mode 100644
-> index 000000000000..c013ebe1704a
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts
-> @@ -0,0 +1,760 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +// Copyright (c) 2021 Facebook Inc.
-> +/dts-v1/;
-> +
-> +#include "aspeed-g6.dtsi"
-> +#include <dt-bindings/gpio/aspeed-gpio.h>
-> +#include <dt-bindings/usb/pd.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +       model = "Facebook Bletchley BMC";
-> +       compatible = "facebook,bletchley-bmc", "aspeed,ast2600";
-> +
-> +       aliases {
-> +               serial4 = &uart5;
-> +       };
-> +
-> +       chosen {
-> +               bootargs = "console=ttyS4,57600n8";
-> +       };
-> +
-> +       memory@80000000 {
-> +               device_type = "memory";
-> +               reg = <0x80000000 0x80000000>;
-> +       };
-> +
-> +       iio-hwmon {
-> +               compatible = "iio-hwmon";
-> +               io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-> +                       <&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-> +                       <&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-> +                       <&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-> +       };
-> +
-> +       spi_gpio: spi-gpio {
-> +               status = "okay";
-
-The okay is redundant.
-
-> +               compatible = "spi-gpio";
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-sck = <&gpio0 ASPEED_GPIO(Z, 3) GPIO_ACTIVE_HIGH>;
-> +               gpio-mosi = <&gpio0 ASPEED_GPIO(Z, 4) GPIO_ACTIVE_HIGH>;
-> +               gpio-miso = <&gpio0 ASPEED_GPIO(Z, 5) GPIO_ACTIVE_HIGH>;
-> +               num-chipselects = <1>;
-> +               cs-gpios = <&gpio0 ASPEED_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-> +
-> +               tpmdev@0 {
-> +                       compatible = "tcg,tpm_tis-spi";
-> +                       spi-max-frequency = <33000000>;
-> +                       reg = <0>;
-> +               };
-> +       };
-> +
-> +       switchphy: ethernet-phy@0 {
-> +               // Fixed-link
-
-Are there any properties we should be adding here? Other examples
-mention the speed and duplex setting.
-
-> +       };
-> +
-
-> +
-> +&i2c0 {
-
-> +
-> +       sled0_fusb302: typec-portc@54 {
-> +               compatible = "fcs,fusb302";
-> +               reg = <0x22>;
-
-Your reg property is 22, but the unit address is 54. These need to
-math or you will get a warning from the device tree compiler:
-
-arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:254.32-271.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@80/typec-portc@54: I2C bus unit address
-format error, expected "22"
-
-Please fix this for all the fusb302 nodes, and make sure you build
-test with this patch applied to v5.16-rc1, or newer.
-
-../arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:254.32-271.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@80/typec-portc@54: I2C bus unit address
-format error, expected "22"
-../arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:318.32-335.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@100/typec-portc@54: I2C bus unit address
-format error, expected "22"
-../arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:386.32-404.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@180/typec-portc@54: I2C bus unit address
-format error, expected "22"
-../arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:451.32-469.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@200/typec-portc@54: I2C bus unit address
-format error, expected "22"
-../arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:516.32-533.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@280/typec-portc@54: I2C bus unit address
-format error, expected "22"
-../arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:580.32-597.4:
-Warning (i2c_bus_reg):
-/ahb/apb/bus@1e78a000/i2c-bus@300/typec-portc@54: I2C bus unit address
-format error, expected "22"
-
-
-> +               interrupt-parent = <&gpio0>;
-> +               interrupts = <ASPEED_GPIO(M, 0) IRQ_TYPE_LEVEL_LOW>;
-> +
-> +               connector {
-> +                       compatible = "usb-c-connector";
-> +                       label = "USB-C";
-> +                       power-role = "dual";
-> +                       try-power-role = "sink";
-> +                       source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-> +                       sink-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)
-> +                                       PDO_VAR(3000, 12000, 3000)
-> +                                       PDO_PPS_APDO(3000, 11000, 3000)>;
-> +                       op-sink-microwatt = <10000000>;
-> +               };
-> +       };
-> +};
-> +
-
-Cheers,
-
-Joel
