@@ -2,108 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDD6465FBE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 09:41:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D3B6D465FD2
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 09:48:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356278AbhLBIov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 03:44:51 -0500
-Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47306
-        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1356270AbhLBIob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 03:44:31 -0500
-Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A5F923F1BA
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 08:41:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638434467;
-        bh=FIwRIWabElMuSh13dNs8xwk0guQGLGLYUJ8I7QxS5UA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=SumPOPsmyhEdvmd/bWWtffs0kQIDv4VD6P1/ao6wC7LrzuBRiZeVosav+SjoBrNzR
-         nmGo3Sgolrhx0xFIzY8fP+KTXpqeCxlckP/QL6ljCrxUTyoHdTDyvvZOf1j2LIecfS
-         FBbB+PWtI5W2AixwVXu28wXeuxPIg6pY9v3GJVceajTQMrTWHWMRLJVzCEI4PE6xQx
-         PBBLpxBCLpOTlC+bZTRVg1seXsiAEKCqAk1PmlJFGo4mLZbcK6ltVj3L4Ox4wsHZn7
-         ENW91J3ROE5i49x3Rod0IHnBUQv0w+7pImcaamqUS6Sl76UxUvtmpmdmJxdq7F5NQW
-         8x7iBCnFdsiXw==
-Received: by mail-lj1-f198.google.com with SMTP id p18-20020a2eb7d2000000b0021ba3ea3c42so7323855ljo.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 00:41:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FIwRIWabElMuSh13dNs8xwk0guQGLGLYUJ8I7QxS5UA=;
-        b=6YzPeYYLsKdqQfh+JsFy9nLa+Le56S6jkJ1lJNMJPw35mdeT0dfjeOHVVTxFvi4piJ
-         uwKNahmKm3chnollLB8WJM6ke5fHo7f1ENIEDo+Fu+U95f1kdY78Mkn7bNhlDQ36JV9k
-         fc1scoq2UUsQqmzHxMdMoA5DvWObu0LYkUgCU66ALQUXDciCxGHUUDyLmZbgkmAgjwAt
-         qEoWfwnIq3lyx9vc0XIZvFyIxwS7TR3t3ezLRCw2SYjvQZT16MBDYWDzJTbKp23GAxHH
-         aqA/rD7BuUTCBzAbmN0g8RwsgrabpoH4AYYn+0cjH5Z7CxhNywFOIh/bMsDh2WioQYHs
-         bxiQ==
-X-Gm-Message-State: AOAM532XPfsk++tFEuJ8/OT01fv8sXA9Q+qUnBJhL8ic8yauVpWOGpYP
-        cXwEvmasEC8/Ny2Pezc2ykF/O9/EnY+mDhwyDGfszn7rlNln3Z3SdXB8cU9IX4SgZlPpisnLb6i
-        1UjCnI+U8IazfEqX4pFSN6H7Dd4y4rLE5O66YmF0=
-X-Received: by 2002:a2e:8691:: with SMTP id l17mr10288234lji.119.1638434467077;
-        Thu, 02 Dec 2021 00:41:07 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwOzAYA0rXNf6qxmuG4HJayRcLcb2MW0+iM9hyKq55/nQxtJmM0dNWEAgdHZ4YJPVsPd578gA==
-X-Received: by 2002:a2e:8691:: with SMTP id l17mr10288212lji.119.1638434466896;
-        Thu, 02 Dec 2021 00:41:06 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id cf34sm260062lfb.222.2021.12.02.00.41.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Dec 2021 00:41:06 -0800 (PST)
-Message-ID: <c6a44fd1-ad48-06cc-4a96-818ca124afca@canonical.com>
-Date:   Thu, 2 Dec 2021 09:41:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 1/4] dt-bindings: mmc: exynos-dw-mshc: Add support for
- ARTPEC-8
-Content-Language: en-US
-To:     =?UTF-8?Q?M=c3=a5rten_Lindahl?= <marten.lindahl@axis.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S1343576AbhLBIwM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 03:52:12 -0500
+Received: from mailgw01.mediatek.com ([60.244.123.138]:55398 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S229768AbhLBIwM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 03:52:12 -0500
+X-UUID: a4744ec0d2494c12be104fdeddc89597-20211202
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=SuJncVDagDXOzN1D2iihDmF/nabu9iVaqVHy+cMfib8=;
+        b=NxAQ/MjZ3wqUobF6eG8KTDZjl/wdmepxaTU1L+C0kkvj8BvmFgg9pJoVGqwTTGy3AXFKoS0gr3bJMOXWAeGdlFotkkc9GDTrfHKEyZojklsJ84eUa3+jgq7naly2l/0VokXbr3Zd5McCugAIuny75AO0p49BlpANE+Nxb2nq6SM=;
+X-UUID: a4744ec0d2494c12be104fdeddc89597-20211202
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2060012540; Thu, 02 Dec 2021 16:48:45 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 2 Dec 2021 16:48:44 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 2 Dec 2021 16:48:43 +0800
+Message-ID: <8b6d3066fb94bc01291f1c283e299e57214d2784.camel@mediatek.com>
+Subject: Re: [PATCH 5/6] phy: phy-mtk-tphy: add support efuse setting
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>
-Cc:     Doug Anderson <dianders@google.com>, kernel@axis.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-References: <20211201153804.27655-1-marten.lindahl@axis.com>
- <20211201153804.27655-2-marten.lindahl@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211201153804.27655-2-marten.lindahl@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        Eddie Hung <eddie.hung@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        "Yz Wu" <yz.wu@mediatek.com>
+Date:   Thu, 2 Dec 2021 16:48:43 +0800
+In-Reply-To: <YZ8bW+bAkxcg2G/U@matsya>
+References: <20211107075646.4366-1-chunfeng.yun@mediatek.com>
+         <20211107075646.4366-5-chunfeng.yun@mediatek.com> <YZuAab3j+flr1xXj@matsya>
+         <1e51d7bf0e77ddb4d558f0a4407dec5cdc1bc35e.camel@mediatek.com>
+         <YZ8bW+bAkxcg2G/U@matsya>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/12/2021 16:38, Mårten Lindahl wrote:
-> The ARTPEC-8 SoC has a DWMMC controller that is compatible with the
-> Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
-> does not support HS400 and has extended data read timeout.
-> 
-> Add compatibility string "samsung,artpec8-dw-mshc" for ARTPEC-8.
-> 
-> Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> ---
->  Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> index 0419a63f73a0..161be451a1f0 100644
-> --- a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> +++ b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> @@ -22,6 +22,8 @@ Required Properties:
->  	  specific extensions.
->  	- "samsung,exynos7-dw-mshc-smu": for controllers with Samsung Exynos7
->  	  specific extensions having an SMU.
-> +	- "samsung,artpec8-dw-mshc": for controllers with ARTPEC-8 specific
-> +	  extensions.
+T24gVGh1LCAyMDIxLTExLTI1IGF0IDEwOjQyICswNTMwLCBWaW5vZCBLb3VsIHdyb3RlOg0KPiBP
+biAyNC0xMS0yMSwgMTQ6NTQsIENodW5mZW5nIFl1biB3cm90ZToNCj4gPiBPbiBNb24sIDIwMjEt
+MTEtMjIgYXQgMTc6MDUgKzA1MzAsIFZpbm9kIEtvdWwgd3JvdGU6DQo+ID4gPiBPbiAwNy0xMS0y
+MSwgMTU6NTYsIENodW5mZW5nIFl1biB3cm90ZToNCj4gPiA+ID4gRHVlIHRvIHNvbWUgU29DcyBo
+YXZlIGEgYml0IHNoaWZ0IGlzc3VlIHRoYXQgd2lsbCBkcm9wIGEgYml0DQo+ID4gPiA+IGZvcg0K
+PiA+ID4gPiB1c2IzDQo+ID4gPiA+IHBoeSBvciBwY2llIHBoeSwgZml4IGl0IGJ5IGFkZGluZyBz
+b2Z0d2FyZSBlZnVzZSByZWFkaW5nIGFuZA0KPiA+ID4gPiBzZXR0aW5nLA0KPiA+ID4gPiBidXQg
+b25seSBzdXBwb3J0IGl0IG9wdGlvbmFsbHkgZm9yIHZlcnNvaW4gMi8zLg0KPiA+ID4gDQo+ID4g
+PiBzL3ZlcnNvaW4vdmVyc2lvbg0KPiA+IA0KPiA+IE9rDQo+ID4gPiANCj4gPiA+ID4gDQo+ID4g
+PiA+IFNpZ25lZC1vZmYtYnk6IENodW5mZW5nIFl1biA8Y2h1bmZlbmcueXVuQG1lZGlhdGVrLmNv
+bT4NCj4gPiA+ID4gLS0tDQo+ID4gPiA+ICBkcml2ZXJzL3BoeS9tZWRpYXRlay9waHktbXRrLXRw
+aHkuYyB8IDE2Mg0KPiA+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gPiA+
+ICAxIGZpbGUgY2hhbmdlZCwgMTYyIGluc2VydGlvbnMoKykNCj4gPiA+ID4gDQo+ID4gPiA+IGRp
+ZmYgLS1naXQgYS9kcml2ZXJzL3BoeS9tZWRpYXRlay9waHktbXRrLXRwaHkuYw0KPiA+ID4gPiBi
+L2RyaXZlcnMvcGh5L21lZGlhdGVrL3BoeS1tdGstdHBoeS5jDQo+ID4gPiA+IGluZGV4IGNkY2Vm
+ODY1ZmU5ZS4uM2I1YjFjMjY2NTk1IDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3BoeS9t
+ZWRpYXRlay9waHktbXRrLXRwaHkuYw0KPiA+ID4gPiArKysgYi9kcml2ZXJzL3BoeS9tZWRpYXRl
+ay9waHktbXRrLXRwaHkuYw0KPiA+ID4gPiBAQCAtMTIsNiArMTIsNyBAQA0KPiA+ID4gPiAgI2lu
+Y2x1ZGUgPGxpbnV4L2lvcG9sbC5oPg0KPiA+ID4gPiAgI2luY2x1ZGUgPGxpbnV4L21mZC9zeXNj
+b24uaD4NCj4gPiA+ID4gICNpbmNsdWRlIDxsaW51eC9tb2R1bGUuaD4NCj4gPiA+ID4gKyNpbmNs
+dWRlIDxsaW51eC9udm1lbS1jb25zdW1lci5oPg0KPiA+ID4gPiAgI2luY2x1ZGUgPGxpbnV4L29m
+X2FkZHJlc3MuaD4NCj4gPiA+ID4gICNpbmNsdWRlIDxsaW51eC9vZl9kZXZpY2UuaD4NCj4gPiA+
+ID4gICNpbmNsdWRlIDxsaW51eC9waHkvcGh5Lmg+DQo+ID4gPiA+IEBAIC00MSw2ICs0Miw5IEBA
+DQo+ID4gPiA+ICAjZGVmaW5lIFNTVVNCX1NJRlNMVl9WMl9VM1BIWUQJCTB4MjAwDQo+ID4gPiA+
+ICAjZGVmaW5lIFNTVVNCX1NJRlNMVl9WMl9VM1BIWUEJCTB4NDAwDQo+ID4gPiA+ICANCj4gPiA+
+ID4gKyNkZWZpbmUgVTNQX01JU0NfUkVHMQkJMHgwNA0KPiA+ID4gPiArI2RlZmluZSBNUjFfRUZV
+U0VfQVVUT19MT0FEX0RJUwkJQklUKDYpDQo+ID4gPiA+ICsNCj4gPiA+ID4gICNkZWZpbmUgVTNQ
+X1VTQlBIWUFDUjAJCTB4MDAwDQo+ID4gPiA+ICAjZGVmaW5lIFBBMF9SR19VMlBMTF9GT1JDRV9P
+TgkJQklUKDE1KQ0KPiA+ID4gPiAgI2RlZmluZSBQQTBfVVNCMjBfUExMX1BSRURJVgkJR0VOTUFT
+Syg3LCA2KQ0KPiA+ID4gPiBAQCAtMTMzLDYgKzEzNyw4IEBADQo+ID4gPiA+ICAjZGVmaW5lIFAz
+Q19SR19TV1JTVF9VM19QSFlEX0ZPUkNFX0VOCUJJVCgyNCkNCj4gPiA+ID4gIA0KPiA+ID4gPiAg
+I2RlZmluZSBVM1BfVTNfUEhZQV9SRUcwCTB4MDAwDQo+ID4gPiA+ICsjZGVmaW5lIFAzQV9SR19J
+RVhUX0lOVFIJCUdFTk1BU0soMTUsIDEwKQ0KPiA+ID4gPiArI2RlZmluZSBQM0FfUkdfSUVYVF9J
+TlRSX1ZBTCh4KQkJKCgweDNmICYgKHgpKQ0KPiA+ID4gPiA8PCAxMCkNCj4gPiA+ID4gICNkZWZp
+bmUgUDNBX1JHX0NMS0RSVl9PRkYJCUdFTk1BU0soMywgMikNCj4gPiA+ID4gICNkZWZpbmUgUDNB
+X1JHX0NMS0RSVl9PRkZfVkFMKHgpCSgoMHgzICYgKHgpKSA8PCAyKQ0KPiA+ID4gPiAgDQo+ID4g
+PiA+IEBAIC0xODcsNiArMTkzLDE5IEBADQo+ID4gPiA+ICAjZGVmaW5lIFAzRF9SR19GV0FLRV9U
+SAkJR0VOTUFTSygyMSwgMTYpDQo+ID4gPiA+ICAjZGVmaW5lIFAzRF9SR19GV0FLRV9USF9WQUwo
+eCkJKCgweDNmICYgKHgpKSA8PCAxNikNCj4gPiA+ID4gIA0KPiA+ID4gPiArI2RlZmluZSBVM1Bf
+VTNfUEhZRF9JTVBDQUwwCQkweDAxMA0KPiA+ID4gPiArI2RlZmluZSBQM0RfUkdfRk9SQ0VfVFhf
+SU1QRUwJCUJJVCgzMSkNCj4gPiA+ID4gKyNkZWZpbmUgUDNEX1JHX1RYX0lNUEVMCQkJR0VOTUFT
+SygyOCwgMjQpDQo+ID4gPiA+ICsjZGVmaW5lIFAzRF9SR19UWF9JTVBFTF9WQUwoeCkJCSgoMHgx
+ZiAmICh4KSkgPDwgMjQpDQo+ID4gPiA+ICsNCj4gPiA+ID4gKyNkZWZpbmUgVTNQX1UzX1BIWURf
+SU1QQ0FMMQkJMHgwMTQNCj4gPiA+ID4gKyNkZWZpbmUgUDNEX1JHX0ZPUkNFX1JYX0lNUEVMCQlC
+SVQoMzEpDQo+ID4gPiA+ICsjZGVmaW5lIFAzRF9SR19SWF9JTVBFTAkJCUdFTk1BU0soMjgsIDI0
+KQ0KPiA+ID4gPiArI2RlZmluZSBQM0RfUkdfUlhfSU1QRUxfVkFMKHgpCQkoKDB4MWYgJiAoeCkp
+IDw8IDI0KQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsjZGVmaW5lIFUzUF9VM19QSFlEX1JTVgkJCTB4
+MDU0DQo+ID4gPiA+ICsjZGVmaW5lIFAzRF9SR19FRlVTRV9BVVRPX0xPQURfRElTCUJJVCgxMikN
+Cj4gPiA+ID4gKw0KPiA+ID4gPiAgI2RlZmluZSBVM1BfVTNfUEhZRF9DRFIxCQkweDA1Yw0KPiA+
+ID4gPiAgI2RlZmluZSBQM0RfUkdfQ0RSX0JJUl9MVEQxCQlHRU5NQVNLKDI4LCAyNCkNCj4gPiA+
+ID4gICNkZWZpbmUgUDNEX1JHX0NEUl9CSVJfTFREMV9WQUwoeCkJKCgweDFmICYgKHgpKSA8PCAy
+NCkNCj4gPiA+ID4gQEAgLTMwNyw2ICszMjYsMTEgQEAgc3RydWN0IG10a19waHlfcGRhdGEgew0K
+PiA+ID4gPiAgCSAqIDQ4TSBQTEwsIGZpeCBpdCBieSBzd2l0Y2hpbmcgUExMIHRvIDI2TSBmcm9t
+IGRlZmF1bHQNCj4gPiA+ID4gNDhNDQo+ID4gPiA+ICAJICovDQo+ID4gPiA+ICAJYm9vbCBzd19w
+bGxfNDhtX3RvXzI2bTsNCj4gPiA+ID4gKwkvKg0KPiA+ID4gPiArCSAqIFNvbWUgU29DcyAoZS5n
+LiBtdDgxOTUpIGRyb3AgYSBiaXQgd2hlbiB1c2UgYXV0bw0KPiA+ID4gPiBsb2FkIGVmdXNlLA0K
+PiA+ID4gPiArCSAqIHN1cHBvcnQgc3cgd2F5LCBhbHNvIHN1cHBvcnQgaXQgZm9yIHYyL3YzDQo+
+ID4gPiA+IG9wdGlvbmFsbHkuDQo+ID4gPiA+ICsJICovDQo+ID4gPiA+ICsJYm9vbCBzd19lZnVz
+ZV9zdXBwb3J0ZWQ7DQo+ID4gPiA+ICAJZW51bSBtdGtfcGh5X3ZlcnNpb24gdmVyc2lvbjsNCj4g
+PiA+ID4gIH07DQo+ID4gPiA+ICANCj4gPiA+ID4gQEAgLTMzNiw2ICszNjAsMTAgQEAgc3RydWN0
+IG10a19waHlfaW5zdGFuY2Ugew0KPiA+ID4gPiAgCXN0cnVjdCByZWdtYXAgKnR5cGVfc3c7DQo+
+ID4gPiA+ICAJdTMyIHR5cGVfc3dfcmVnOw0KPiA+ID4gPiAgCXUzMiB0eXBlX3N3X2luZGV4Ow0K
+PiA+ID4gPiArCXUzMiBlZnVzZV9zd19lbjsNCj4gPiA+ID4gKwl1MzIgZWZ1c2VfaW50cjsNCj4g
+PiA+ID4gKwl1MzIgZWZ1c2VfdHhfaW1wOw0KPiA+ID4gPiArCXUzMiBlZnVzZV9yeF9pbXA7DQo+
+ID4gPiA+ICAJaW50IGV5ZV9zcmM7DQo+ID4gPiA+ICAJaW50IGV5ZV92cnQ7DQo+ID4gPiA+ICAJ
+aW50IGV5ZV90ZXJtOw0KPiA+ID4gPiBAQCAtMTA0MCw2ICsxMDY4LDEzMCBAQCBzdGF0aWMgaW50
+IHBoeV90eXBlX3NldChzdHJ1Y3QNCj4gPiA+ID4gbXRrX3BoeV9pbnN0YW5jZSAqaW5zdGFuY2Up
+DQo+ID4gPiA+ICAJcmV0dXJuIDA7DQo+ID4gPiA+ICB9DQo+ID4gPiA+ICANCj4gPiA+ID4gK3N0
+YXRpYyBpbnQgcGh5X2VmdXNlX2dldChzdHJ1Y3QgbXRrX3RwaHkgKnRwaHksIHN0cnVjdA0KPiA+
+ID4gPiBtdGtfcGh5X2luc3RhbmNlICppbnN0YW5jZSkNCj4gPiA+ID4gK3sNCj4gPiA+ID4gKwlz
+dHJ1Y3QgZGV2aWNlICpkZXYgPSAmaW5zdGFuY2UtPnBoeS0+ZGV2Ow0KPiA+ID4gPiArCWludCBy
+ZXQgPSAwOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsJLyogdHBoeSB2MSBkb2Vzbid0IHN1cHBvcnQg
+c3cgZWZ1c2UsIHNraXAgaXQgKi8NCj4gPiA+ID4gKwlpZiAoIXRwaHktPnBkYXRhLT5zd19lZnVz
+ZV9zdXBwb3J0ZWQpIHsNCj4gPiA+ID4gKwkJaW5zdGFuY2UtPmVmdXNlX3N3X2VuID0gMDsNCj4g
+PiA+ID4gKwkJcmV0dXJuIDA7DQo+ID4gPiA+ICsJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsJLyog
+c29mdHdhcmUgZWZ1c2UgaXMgb3B0aW9uYWwgKi8NCj4gPiA+ID4gKwlpbnN0YW5jZS0+ZWZ1c2Vf
+c3dfZW4gPSBkZXZpY2VfcHJvcGVydHlfcmVhZF9ib29sKGRldiwNCj4gPiA+ID4gIm52bWVtLQ0K
+PiA+ID4gPiBjZWxscyIpOw0KPiA+ID4gPiArCWlmICghaW5zdGFuY2UtPmVmdXNlX3N3X2VuKQ0K
+PiA+ID4gPiArCQlyZXR1cm4gMDsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCXN3aXRjaCAoaW5zdGFu
+Y2UtPnR5cGUpIHsNCj4gPiA+ID4gKwljYXNlIFBIWV9UWVBFX1VTQjI6DQo+ID4gPiA+ICsJCXJl
+dCA9IG52bWVtX2NlbGxfcmVhZF92YXJpYWJsZV9sZV91MzIoZGV2LA0KPiA+ID4gPiAiaW50ciIs
+DQo+ID4gPiA+ICZpbnN0YW5jZS0+ZWZ1c2VfaW50cik7DQo+ID4gPiA+ICsJCWlmIChyZXQpIHsN
+Cj4gPiA+ID4gKwkJCWRldl9lcnIoZGV2LCAiZmFpbCB0byBnZXQgdTIgaW50cg0KPiA+ID4gPiBl
+ZnVzZSwgJWRcbiIsDQo+ID4gPiA+IHJldCk7DQo+ID4gPiA+ICsJCQlicmVhazsNCj4gPiA+ID4g
+KwkJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsJCS8qIG5vIGVmdXNlLCBpZ25vcmUgaXQgKi8NCj4g
+PiA+ID4gKwkJaWYgKCFpbnN0YW5jZS0+ZWZ1c2VfaW50cikgew0KPiA+ID4gPiArCQkJZGV2X3dh
+cm4oZGV2LCAibm8gdTIgaW50ciBlZnVzZSwgYnV0DQo+ID4gPiA+IGR0cyBlbmFibGUNCj4gPiA+
+ID4gaXRcbiIpOw0KPiA+ID4gPiArCQkJaW5zdGFuY2UtPmVmdXNlX3N3X2VuID0gMDsNCj4gPiA+
+ID4gKwkJCWJyZWFrOw0KPiA+ID4gPiArCQl9DQo+ID4gPiANCj4gPiA+IFdoYXQgZG9lcyB0aGlz
+IGNoZWNrIGRvLi4uPyBzbyBhIHplcm8gdmFsdWUgaXMgbm90IHZhbGlkLi4/DQo+ID4gDQo+ID4g
+WWVzLCBiZWNhdXNlIGl0J3MgYWxzbyB6ZXJvIGZvciBTb0Mgd2l0aG91dCBlZnVzZSwgcHJlZmVy
+IHRvIHVzZQ0KPiA+IGRlZmF1bHQgdmFsdWUgaW5zdGVhZC4NCj4gPiANCj4gPiA+IA0KPiA+ID4g
+PiArDQo+ID4gPiA+ICsJCWRldl9pbmZvKGRldiwgInUyIGVmdXNlIC0gaW50ciAleFxuIiwgaW5z
+dGFuY2UtDQo+ID4gPiA+ID4gZWZ1c2VfaW50cik7DQo+ID4gPiANCj4gPiA+IGRldl9kYmcoKT8N
+Cj4gPiANCj4gPiBXZSB1c3VhbGx5IHVzZSBIVyBhdXRvIGxvYWQgd2F5LCBwcmludCB0aGlzIGxv
+ZyBjYW4gaGVscCB0byBwb2ludA0KPiA+IG91dA0KPiA+IHRoYXQgaXQncyBzcGVjaWZpYyBTb0Mu
+DQo+IA0KPiBZb3UgY2FuIGVuYWJsZSB0aGlzIHByaW50IHRocnUgZHluYW1pYyBkZWJ1ZyBvciBl
+bmFibGUgZGVidWcgcHJpbnRzDQo+IHdoZW4NCj4gZGVidWdnaW5nLCBsZXQgdXMgbm90IHNwYW0g
+bWVzc2FnZSBsb2cNCk9rLCB3aWxsIHVzZSBkZXZfZGJnKCkNCj4gDQo+ID4gDQo+ID4gPiANCj4g
+PiA+ID4gKwkJYnJlYWs7DQo+ID4gPiANCj4gPiA+IGVtcHR5IGxpbmUgYWZ0ZXIgYnJlYWsgaW1w
+cm92ZXMgcmVhZGFiaWxpdHksIHBscyBhZGQNCj4gPiANCj4gPiBPaw0KPiA+ID4gDQo+ID4gPiA+
+ICsJY2FzZSBQSFlfVFlQRV9VU0IzOg0KPiA+ID4gPiArCWNhc2UgUEhZX1RZUEVfUENJRToNCj4g
+PiA+ID4gKwkJcmV0ID0gbnZtZW1fY2VsbF9yZWFkX3ZhcmlhYmxlX2xlX3UzMihkZXYsDQo+ID4g
+PiA+ICJpbnRyIiwNCj4gPiA+ID4gJmluc3RhbmNlLT5lZnVzZV9pbnRyKTsNCj4gPiA+ID4gKwkJ
+aWYgKHJldCkgew0KPiA+ID4gPiArCQkJZGV2X2VycihkZXYsICJmYWlsIHRvIGdldCB1MyBpbnRy
+DQo+ID4gPiA+IGVmdXNlLCAlZFxuIiwNCj4gPiA+ID4gcmV0KTsNCj4gPiA+ID4gKwkJCWJyZWFr
+Ow0KPiA+ID4gPiArCQl9DQo+ID4gPiANCj4gPiA+IFRoaXMgc2VlbXMgdG8gYmUgY29tbW9uLCB3
+aHkgbm90IHJlYWQgdGhpcyBiZWZvcmUgc3dpdGNoPw0KPiA+IA0KPiA+IEl0J3Mgbm90IHVzZWQg
+Zm9yIFNHTUlJIG9yIFNBVEEsIGJ1dCBub3QgYXBwbGllZCB1bnRpbCBub3cNCj4gPiANCj4gPiA+
+IA0KPiA+ID4gPiArDQo+ID4gPiA+ICsJCXJldCA9IG52bWVtX2NlbGxfcmVhZF92YXJpYWJsZV9s
+ZV91MzIoZGV2LA0KPiA+ID4gPiAicnhfaW1wIiwNCj4gPiA+ID4gJmluc3RhbmNlLT5lZnVzZV9y
+eF9pbXApOw0KPiA+ID4gPiArCQlpZiAocmV0KSB7DQo+ID4gPiA+ICsJCQlkZXZfZXJyKGRldiwg
+ImZhaWwgdG8gZ2V0IHUzIHJ4X2ltcA0KPiA+ID4gPiBlZnVzZSwNCj4gPiA+ID4gJWRcbiIsIHJl
+dCk7DQo+ID4gPiA+ICsJCQlicmVhazsNCj4gPiA+ID4gKwkJfQ0KPiA+ID4gPiArDQo+ID4gPiA+
+ICsJCXJldCA9IG52bWVtX2NlbGxfcmVhZF92YXJpYWJsZV9sZV91MzIoZGV2LA0KPiA+ID4gPiAi
+dHhfaW1wIiwNCj4gPiA+ID4gJmluc3RhbmNlLT5lZnVzZV90eF9pbXApOw0KPiA+ID4gPiArCQlp
+ZiAocmV0KSB7DQo+ID4gPiA+ICsJCQlkZXZfZXJyKGRldiwgImZhaWwgdG8gZ2V0IHUzIHR4X2lt
+cA0KPiA+ID4gPiBlZnVzZSwNCj4gPiA+ID4gJWRcbiIsIHJldCk7DQo+ID4gPiA+ICsJCQlicmVh
+azsNCj4gPiA+ID4gKwkJfQ0KPiA+ID4gPiArDQo+ID4gPiA+ICsJCS8qIG5vIGVmdXNlLCBpZ25v
+cmUgaXQgKi8NCj4gPiA+ID4gKwkJaWYgKCFpbnN0YW5jZS0+ZWZ1c2VfaW50ciAmJg0KPiA+ID4g
+PiArCQkgICAgIWluc3RhbmNlLT5lZnVzZV9yeF9pbXAgJiYNCj4gPiA+ID4gKwkJICAgICFpbnN0
+YW5jZS0+ZWZ1c2VfcnhfaW1wKSB7DQo+ID4gPiA+ICsJCQlkZXZfd2FybihkZXYsICJubyB1MyBp
+bnRyIGVmdXNlLCBidXQNCj4gPiA+ID4gZHRzIGVuYWJsZQ0KPiA+ID4gPiBpdFxuIik7DQo+ID4g
+PiA+ICsJCQlpbnN0YW5jZS0+ZWZ1c2Vfc3dfZW4gPSAwOw0KPiA+ID4gPiArCQkJYnJlYWs7DQo+
+ID4gPiA+ICsJCX0NCj4gPiA+IA0KPiA+ID4gYWdhaW4sIHplcm8gdmFsdWVzIGFyZSBub3QgdmFs
+aWQ/DQo+ID4gDQo+ID4gSXQncyBhbHNvIHplcm8gZm9yIFNvQyB3aXRob3V0IGVmdXNlLCB0cmVh
+dCBpdCBhcyBpbnZhbGlkIHZhbHVlDQo+ID4gDQo+ID4gPiANCj4gPiA+ID4gKw0KPiA+ID4gPiAr
+CQlkZXZfaW5mbyhkZXYsICJ1MyBlZnVzZSAtIGludHIgJXgsIHJ4X2ltcCAleCwNCj4gPiA+ID4g
+dHhfaW1wDQo+ID4gPiA+ICV4XG4iLA0KPiA+ID4gPiArCQkJIGluc3RhbmNlLT5lZnVzZV9pbnRy
+LCBpbnN0YW5jZS0NCj4gPiA+ID4gPmVmdXNlX3J4X2ltcCwNCj4gPiA+ID4gKwkJCSBpbnN0YW5j
+ZS0+ZWZ1c2VfdHhfaW1wKTsNCj4gPiA+IA0KPiA+ID4gZGJnIHBscw0KPiA+IA0KPiA+IE9rDQo+
+ID4gPiANCj4gPiA+ID4gKwkJYnJlYWs7DQo+ID4gPiA+ICsJZGVmYXVsdDoNCj4gPiA+ID4gKwkJ
+ZGV2X2VycihkZXYsICJubyBzdyBlZnVzZSBmb3IgdHlwZSAlZFxuIiwNCj4gPiA+ID4gaW5zdGFu
+Y2UtDQo+ID4gPiA+ID4gdHlwZSk7DQo+ID4gPiA+IA0KPiA+ID4gPiArCQlyZXQgPSAtRUlOVkFM
+Ow0KPiA+ID4gPiArCX0NCj4gPiA+ID4gKw0KPiA+ID4gPiArCXJldHVybiByZXQ7DQo+ID4gPiA+
+ICt9DQo+ID4gPiA+ICsNCj4gPiA+ID4gK3N0YXRpYyB2b2lkIHBoeV9lZnVzZV9zZXQoc3RydWN0
+IG10a19waHlfaW5zdGFuY2UgKmluc3RhbmNlKQ0KPiA+ID4gPiArew0KPiA+ID4gPiArCXN0cnVj
+dCBkZXZpY2UgKmRldiA9ICZpbnN0YW5jZS0+cGh5LT5kZXY7DQo+ID4gPiA+ICsJc3RydWN0IHUy
+cGh5X2JhbmtzICp1Ml9iYW5rcyA9ICZpbnN0YW5jZS0+dTJfYmFua3M7DQo+ID4gPiA+ICsJc3Ry
+dWN0IHUzcGh5X2JhbmtzICp1M19iYW5rcyA9ICZpbnN0YW5jZS0+dTNfYmFua3M7DQo+ID4gPiA+
+ICsJdTMyIHRtcDsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCWlmICghaW5zdGFuY2UtPmVmdXNlX3N3
+X2VuKQ0KPiA+ID4gPiArCQlyZXR1cm47DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwlzd2l0Y2ggKGlu
+c3RhbmNlLT50eXBlKSB7DQo+ID4gPiA+ICsJY2FzZSBQSFlfVFlQRV9VU0IyOg0KPiA+ID4gPiAr
+CQl0bXAgPSByZWFkbCh1Ml9iYW5rcy0+bWlzYyArIFUzUF9NSVNDX1JFRzEpOw0KPiA+ID4gPiAr
+CQl0bXAgfD0gTVIxX0VGVVNFX0FVVE9fTE9BRF9ESVM7DQo+ID4gPiA+ICsJCXdyaXRlbCh0bXAs
+IHUyX2JhbmtzLT5taXNjICsgVTNQX01JU0NfUkVHMSk7DQo+ID4gPiA+ICsNCj4gPiA+ID4gKwkJ
+dG1wID0gcmVhZGwodTJfYmFua3MtPmNvbSArIFUzUF9VU0JQSFlBQ1IxKTsNCj4gPiA+ID4gKwkJ
+dG1wICY9IH5QQTFfUkdfSU5UUl9DQUw7DQo+ID4gPiA+ICsJCXRtcCB8PSBQQTFfUkdfSU5UUl9D
+QUxfVkFMKGluc3RhbmNlLQ0KPiA+ID4gPiA+ZWZ1c2VfaW50cik7DQo+ID4gPiA+ICsJCXdyaXRl
+bCh0bXAsIHUyX2JhbmtzLT5jb20gKyBVM1BfVVNCUEhZQUNSMSk7DQo+ID4gPiA+ICsJCWJyZWFr
+Ow0KPiA+ID4gPiArCWNhc2UgUEhZX1RZUEVfVVNCMzoNCj4gPiA+ID4gKwljYXNlIFBIWV9UWVBF
+X1BDSUU6DQo+ID4gPiA+ICsJCXRtcCA9IHJlYWRsKHUzX2JhbmtzLT5waHlkICsgVTNQX1UzX1BI
+WURfUlNWKTsNCj4gPiA+ID4gKwkJdG1wIHw9IFAzRF9SR19FRlVTRV9BVVRPX0xPQURfRElTOw0K
+PiA+ID4gPiArCQl3cml0ZWwodG1wLCB1M19iYW5rcy0+cGh5ZCArIFUzUF9VM19QSFlEX1JTVik7
+DQo+ID4gPiANCj4gPiA+IGFkZCBhIHVwZGF0ZWwoKSBtYWNybyBhbmQgdXNlIHRoaXMgaGVyZSBh
+bmQgb3RoZXIgcGxhY2VzPw0KPiA+IA0KPiA+IFlvdSBtZWFuIGFkZCBtYWNybyB0byBzZXQvY2xl
+YXIgYml0cz8NCj4gPiBJZiBzbywgSSBuZWVkIHByZXBhcmUgYW5vdGhlciBwYXRjaCBmb3IgdGhp
+cyBwdXJwb3NlDQo+IA0KPiBTdXJlLCB0aGF0IHdvdWxkIGJlIG5pY2UNCk9rDQo+IA0K
 
-Artpec8 does not look like Samsung, so vendor prefix does not match.
-
-Best regards,
-Krzysztof
