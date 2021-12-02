@@ -2,149 +2,539 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79020466697
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63CF346669C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:35:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347762AbhLBPi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 10:38:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51826 "EHLO
+        id S1359037AbhLBPjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 10:39:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347193AbhLBPi1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:38:27 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DCF5C06174A
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 07:35:04 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mso6o-0003wx-BZ; Thu, 02 Dec 2021 16:34:54 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1mso6j-0002L9-NR; Thu, 02 Dec 2021 16:34:49 +0100
-Date:   Thu, 2 Dec 2021 16:34:49 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH 10/12] arm64: dts: rockchip: rk3568-evb: Enable VOP2 and
- hdmi
-Message-ID: <20211202153449.GG25697@pengutronix.de>
-References: <20211117143347.314294-1-s.hauer@pengutronix.de>
- <20211117143347.314294-11-s.hauer@pengutronix.de>
- <CAL_JsqL7C32FB47=xfUtndtCvfOQx7f3Gq0O0FqZxRoeS1fNSQ@mail.gmail.com>
+        with ESMTP id S1359035AbhLBPjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:39:06 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4911AC061759
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 07:35:43 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id p18so46340wmq.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 07:35:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Q0TCZqUsV/OIZaKtPIfEAHhmhGteHpwoYWq5Gwb4DW8=;
+        b=ZvKpOqDVar+z5isWT5ORUbVcqILDip7BT1fVgdEIj/p6Xn8TIHjYqV4+A9kjyiS0SJ
+         uBSZIdpXRfPi/LQLcgPFUK1OxfEB1M8TGv+ct+7TPKHw4gAF4RA9R9Zxj05PVFz1Jvnu
+         S10a8R6QAFb2FhKFGteizCjqFmaLWsP1hPGGZIXqyYN1+rPfXOpouwJ8D7g86tjSrqJ9
+         jiU4xt/KqNB83csduHK2ihqXo4WGjd2xigaydaKTUWxymgmFsiUxcO5T9e3731If00Ln
+         YX+yGsbzY5KwtcFPqMTmstJ2kKGUu+ZWy/7XAnmxQ4bh4XslXJLKZ5hXIXRhPlQiSP2v
+         bavA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Q0TCZqUsV/OIZaKtPIfEAHhmhGteHpwoYWq5Gwb4DW8=;
+        b=NWY6415wfsJ3Moit4rcBav5CAgpiIcFfIm1EqeIeNuL0W/kVj14XxAnBpgSI4JUJuK
+         PO500CjG04ARK/3kQ/x0QvZqwZ0Sg6TrcI44NSthgD6eJHefqb6St3HqLQT0/InUKVPv
+         G7inMO2NIuwfR6jZqwojm+xqSDNn0Tsub7bx0/MYS41pYGrPIqhKO+YFL20y0t6Bb+9L
+         Nip3PdDhddIi5lG/6gYJHLJJav2d/4irupgvFZTXn4S8WhzK4Klx7kUNDl58I2uPG7dV
+         Me0uPbDUofa4GseO0AtWTFOGGqCbueyet06zSI/wXTgzk09/F64YHyGkytHxThsTIflK
+         Z/IA==
+X-Gm-Message-State: AOAM5316StPAqGfkxVmOXt1VcPpyP2tKDpoBNojKL/Ub37fGVvUja1E6
+        mENyG5zeETYmBkmg3U4zZuTEbA==
+X-Google-Smtp-Source: ABdhPJwIufOZNY2Pj7UFXSxzwL2hirPQMReAdTc37UkXXPnRGCAc2cEp+wxsMODg/5PfwM86cPXxcQ==
+X-Received: by 2002:a7b:cbd1:: with SMTP id n17mr7239291wmi.145.1638459341782;
+        Thu, 02 Dec 2021 07:35:41 -0800 (PST)
+Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id bd18sm3662wmb.43.2021.12.02.07.35.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Dec 2021 07:35:41 -0800 (PST)
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        robert.foss@linaro.org, jonathan@marek.ca
+Cc:     andrey.konovalov@linaro.org, todor.too@gmail.com,
+        agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
+        jgrahsl@snap.com, hfink@snap.com, bryan.odonoghue@linaro.org,
+        devicetree@vger.kernel.org
+Subject: [RESEND PATCH v2 01/19] media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
+Date:   Thu,  2 Dec 2021 15:37:11 +0000
+Message-Id: <20211202153729.3362372-2-bryan.odonoghue@linaro.org>
+X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20211202153729.3362372-1-bryan.odonoghue@linaro.org>
+References: <20211202153729.3362372-1-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqL7C32FB47=xfUtndtCvfOQx7f3Gq0O0FqZxRoeS1fNSQ@mail.gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 16:25:33 up 287 days, 18:49, 150 users,  load average: 0.12, 0.11,
- 0.16
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 17, 2021 at 09:19:38AM -0600, Rob Herring wrote:
-> On Wed, Nov 17, 2021 at 8:34 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
-> >
-> > This enabled the VOP2 display controller along with hdmi and the
-> > required port routes which is enough to get a picture out of the
-> > hdmi port of the board.
-> >
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> >  .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 24 +++++++++++++++++++
-> >  1 file changed, 24 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > index 184e2aa2416af..156e001492173 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-> > @@ -106,6 +106,12 @@ &gmac1m1_rgmii_clk
-> >         status = "okay";
-> >  };
-> >
-> > +&hdmi {
-> > +       status = "okay";
-> > +       avdd-0v9-supply = <&vdda0v9_image>;
-> > +       avdd-1v8-supply = <&vcca1v8_image>;
-> > +};
-> > +
-> >  &i2c0 {
-> >         status = "okay";
-> >
-> > @@ -390,3 +396,21 @@ &sdmmc0 {
-> >  &uart2 {
-> >         status = "okay";
-> >  };
-> > +
-> > +&vop {
-> > +       status = "okay";
-> > +       assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-> > +       assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
-> > +};
-> > +
-> > +&vop_mmu {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&hdmi_in_vp0 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&vp0_out_hdmi {
-> > +       status = "okay";
-> > +};
-> 
-> You can accomplish the same thing already with:
-> 
-> &vp0_out_hdmi {
->   remote-endpoint = <&hdmi_in_vp0>;
-> };
+From: Jonathan Marek <jonathan@marek.ca>
 
-My idea was to describe all possible connections in the dtsi file and
-let the board dts writer only en/disable the needed connections. When
-the connections are specified in the dts file then writing it is more
-difficult and error prone.
+Add bindings for qcom,sm8250-camss in order to support the camera
+subsystem for SM8250.
 
-> 
-> or:
-> 
-> &vp0_out_hdmi {
->   /delete-property/ remote-endpoint;
-> };
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+ .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
+ 1 file changed, 450 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
 
-With this I have to change all connections that I don't need. With
-status = "okay" I have to change all connections that I actually do
-need, which will be much easier to read and write.
-
-I'll stick to the status = "okay" method for the next round, maybe I can
-still convince you ;)
-
-If it's the 'status' property you don't like being used when it's not a
-device that is enabled/disabled, then every other name would be fine
-with me as well.
-
-Sascha
-
+diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+new file mode 100644
+index 000000000000..af877d61b607
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+@@ -0,0 +1,450 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/qcom,sm8250-camss.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Qualcomm CAMSS ISP
++
++maintainers:
++  - Robert Foss <robert.foss@linaro.org>
++
++description: |
++  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
++
++properties:
++  compatible:
++    const: qcom,sm8250-camss
++
++  clocks:
++    minItems: 37
++    maxItems: 37
++
++  clock-names:
++    items:
++      - const: cam_ahb_clk
++      - const: cam_hf_axi
++      - const: cam_sf_axi
++      - const: camnoc_axi
++      - const: camnoc_axi_src
++      - const: core_ahb
++      - const: cpas_ahb
++      - const: csiphy0
++      - const: csiphy0_timer
++      - const: csiphy1
++      - const: csiphy1_timer
++      - const: csiphy2
++      - const: csiphy2_timer
++      - const: csiphy3
++      - const: csiphy3_timer
++      - const: csiphy4
++      - const: csiphy4_timer
++      - const: csiphy5
++      - const: csiphy5_timer
++      - const: slow_ahb_src
++      - const: vfe0_ahb
++      - const: vfe0_axi
++      - const: vfe0
++      - const: vfe0_cphy_rx
++      - const: vfe0_csid
++      - const: vfe0_areg
++      - const: vfe1_ahb
++      - const: vfe1_axi
++      - const: vfe1
++      - const: vfe1_cphy_rx
++      - const: vfe1_csid
++      - const: vfe1_areg
++      - const: vfe_lite_ahb
++      - const: vfe_lite_axi
++      - const: vfe_lite
++      - const: vfe_lite_cphy_rx
++      - const: vfe_lite_csid
++
++  interrupts:
++    minItems: 14
++    maxItems: 14
++
++  interrupt-names:
++    items:
++      - const: csiphy0
++      - const: csiphy1
++      - const: csiphy2
++      - const: csiphy3
++      - const: csiphy4
++      - const: csiphy5
++      - const: csid0
++      - const: csid1
++      - const: csid2
++      - const: csid3
++      - const: vfe0
++      - const: vfe1
++      - const: vfe_lite0
++      - const: vfe_lite1
++
++  iommus:
++    minItems: 8
++    maxItems: 8
++
++  interconnects:
++    minItems: 4
++    maxItems: 4
++
++  interconnect-names:
++    items:
++      - const: cam_ahb
++      - const: cam_hf_0_mnoc
++      - const: cam_sf_0_mnoc
++      - const: cam_sf_icp_mnoc
++
++  power-domains:
++    items:
++      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
++      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
++      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    description:
++      CSI input ports.
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@2:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@3:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@4:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++      port@5:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        unevaluatedProperties: false
++        description:
++          Input port for receiving CSI data.
++
++        properties:
++          endpoint:
++            $ref: video-interfaces.yaml#
++            unevaluatedProperties: false
++
++            properties:
++              clock-lanes:
++                maxItems: 1
++
++              data-lanes:
++                minItems: 1
++                maxItems: 4
++
++            required:
++              - clock-lanes
++              - data-lanes
++
++  reg:
++    minItems: 10
++    maxItems: 10
++
++  reg-names:
++    items:
++      - const: csiphy0
++      - const: csiphy1
++      - const: csiphy2
++      - const: csiphy3
++      - const: csiphy4
++      - const: csiphy5
++      - const: vfe0
++      - const: vfe1
++      - const: vfe_lite0
++      - const: vfe_lite1
++
++required:
++  - clock-names
++  - clocks
++  - compatible
++  - interconnects
++  - interconnect-names
++  - interrupts
++  - interrupt-names
++  - iommus
++  - power-domains
++  - reg
++  - reg-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/qcom,camcc-sm8250.h>
++    #include <dt-bindings/interconnect/qcom,sm8250.h>
++    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
++    #include <dt-bindings/power/qcom-rpmpd.h>
++
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        camss: camss@ac6a000 {
++            compatible = "qcom,sm8250-camss";
++
++            reg = <0 0xac6a000 0 0x2000>,
++                  <0 0xac6c000 0 0x2000>,
++                  <0 0xac6e000 0 0x1000>,
++                  <0 0xac70000 0 0x1000>,
++                  <0 0xac72000 0 0x1000>,
++                  <0 0xac74000 0 0x1000>,
++                  <0 0xacb4000 0 0xd000>,
++                  <0 0xacc3000 0 0xd000>,
++                  <0 0xacd9000 0 0x2200>,
++                  <0 0xacdb200 0 0x2200>;
++            reg-names = "csiphy0",
++                        "csiphy1",
++                        "csiphy2",
++                        "csiphy3",
++                        "csiphy4",
++                        "csiphy5",
++                        "vfe0",
++                        "vfe1",
++                        "vfe_lite0",
++                        "vfe_lite1";
++
++            interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
++                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
++            interrupt-names = "csiphy0",
++                              "csiphy1",
++                              "csiphy2",
++                              "csiphy3",
++                              "csiphy4",
++                              "csiphy5",
++                              "csid0",
++                              "csid1",
++                              "csid2",
++                              "csid3",
++                              "vfe0",
++                              "vfe1",
++                              "vfe_lite0",
++                              "vfe_lite1";
++
++            power-domains = <&camcc IFE_0_GDSC>,
++                            <&camcc IFE_1_GDSC>,
++                            <&camcc TITAN_TOP_GDSC>;
++
++            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
++                     <&gcc GCC_CAMERA_HF_AXI_CLK>,
++                     <&gcc GCC_CAMERA_SF_AXI_CLK>,
++                     <&camcc CAM_CC_CAMNOC_AXI_CLK>,
++                     <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
++                     <&camcc CAM_CC_CORE_AHB_CLK>,
++                     <&camcc CAM_CC_CPAS_AHB_CLK>,
++                     <&camcc CAM_CC_CSIPHY0_CLK>,
++                     <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY1_CLK>,
++                     <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY2_CLK>,
++                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY3_CLK>,
++                     <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY4_CLK>,
++                     <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
++                     <&camcc CAM_CC_CSIPHY5_CLK>,
++                     <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
++                     <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
++                     <&camcc CAM_CC_IFE_0_AHB_CLK>,
++                     <&camcc CAM_CC_IFE_0_AXI_CLK>,
++                     <&camcc CAM_CC_IFE_0_CLK>,
++                     <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
++                     <&camcc CAM_CC_IFE_0_CSID_CLK>,
++                     <&camcc CAM_CC_IFE_0_AREG_CLK>,
++                     <&camcc CAM_CC_IFE_1_AHB_CLK>,
++                     <&camcc CAM_CC_IFE_1_AXI_CLK>,
++                     <&camcc CAM_CC_IFE_1_CLK>,
++                     <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
++                     <&camcc CAM_CC_IFE_1_CSID_CLK>,
++                     <&camcc CAM_CC_IFE_1_AREG_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
++                     <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
++            clock-names = "cam_ahb_clk",
++                          "cam_hf_axi",
++                          "cam_sf_axi",
++                          "camnoc_axi",
++                          "camnoc_axi_src",
++                          "core_ahb",
++                          "cpas_ahb",
++                          "csiphy0",
++                          "csiphy0_timer",
++                          "csiphy1",
++                          "csiphy1_timer",
++                          "csiphy2",
++                          "csiphy2_timer",
++                          "csiphy3",
++                          "csiphy3_timer",
++                          "csiphy4",
++                          "csiphy4_timer",
++                          "csiphy5",
++                          "csiphy5_timer",
++                          "slow_ahb_src",
++                          "vfe0_ahb",
++                          "vfe0_axi",
++                          "vfe0",
++                          "vfe0_cphy_rx",
++                          "vfe0_csid",
++                          "vfe0_areg",
++                          "vfe1_ahb",
++                          "vfe1_axi",
++                          "vfe1",
++                          "vfe1_cphy_rx",
++                          "vfe1_csid",
++                          "vfe1_areg",
++                          "vfe_lite_ahb",
++                          "vfe_lite_axi",
++                          "vfe_lite",
++                          "vfe_lite_cphy_rx",
++                          "vfe_lite_csid";
++
++            iommus = <&apps_smmu 0x800 0x400>,
++                     <&apps_smmu 0x801 0x400>,
++                     <&apps_smmu 0x840 0x400>,
++                     <&apps_smmu 0x841 0x400>,
++                     <&apps_smmu 0xC00 0x400>,
++                     <&apps_smmu 0xC01 0x400>,
++                     <&apps_smmu 0xC40 0x400>,
++                     <&apps_smmu 0xC41 0x400>;
++
++            interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
++                            <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
++                            <&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
++                            <&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
++            interconnect-names = "cam_ahb",
++                                 "cam_hf_0_mnoc",
++                                 "cam_sf_0_mnoc",
++                                 "cam_sf_icp_mnoc";
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++            };
++        };
++    };
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.33.0
+
