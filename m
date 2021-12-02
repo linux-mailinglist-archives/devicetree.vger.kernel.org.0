@@ -2,281 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3D184665F1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 15:57:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F6A466628
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:07:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358657AbhLBPAi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 10:00:38 -0500
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:13158 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347178AbhLBPAh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:00:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638457028;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=ISZlpR6q5TTOU01pzGOmn4MD3nIWfwVyycowlhQUl7s=;
-    b=XEuEI+T7A7+0dbRXcG7rSBPaP/7UsnZVmazgO2Do8eMu1d2aNoydi5SZZDMKHk+0Ui
-    ufypw2b/ooYUeP3zBZYhbvIpus+jlnLtXZLWs5E/eC0EMEPfeObjTwTaQkmswL26fKZp
-    V+/uVIp2eeIxIijn5OGGaeBcmI8CKK8+tmOTJ6vl5Hfb+QT2Xiw9zKasLL0iOiQzEZT3
-    /TxVYFpy1xC79JkYbzxCB5nU7e8hB1enq53OaN9QaB7JuZ8i1vhRQD/9YIycQNSB+vSX
-    fTPm1IiBNypYZpGdESx//2JqLfrclL78VN7wJMUv7zoI7KR6S5OwXfASWvW6mkSrIXQ7
-    QLXA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fyLyu9s="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.34.10 AUTH)
-    with ESMTPSA id j03bcbxB2Ev8py0
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Thu, 2 Dec 2021 15:57:08 +0100 (CET)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 5/5] ASoC: qcom: apq8016_sbc: Allow routing audio through QDSP6
-Date:   Thu,  2 Dec 2021 15:55:05 +0100
-Message-Id: <20211202145505.58852-6-stephan@gerhold.net>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211202145505.58852-1-stephan@gerhold.net>
-References: <20211202145505.58852-1-stephan@gerhold.net>
+        id S1358403AbhLBPKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 10:10:34 -0500
+Received: from mail-vk1-f175.google.com ([209.85.221.175]:44027 "EHLO
+        mail-vk1-f175.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1358838AbhLBPJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:09:57 -0500
+Received: by mail-vk1-f175.google.com with SMTP id f7so18646064vkf.10;
+        Thu, 02 Dec 2021 07:06:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WDGy4nIjCyVZtM7ybHd/kS5ZJEnbJoOoJ8VC1mdt39o=;
+        b=ibz2MlndRe4OUQOUzYEMo1J5seLCI8M+5ZK+gNLbajo4TCN7/Ubmt95hME2VdQKPBd
+         mKC3FEEIpk0Hp51YQZYlJhJp0Q9vmRvkzpKor7JlS2R2wbVqWwFdUoUaFuZdYxemNUwU
+         nm2lH+p5SxYqg/oHxQSfvXjEzEDWH4pxFEL3j4SJOEpw6/q7CNlrwV5ff6SKSK8y6SC3
+         hs5htODzTm4p/WW4zFxdykHmTfhgqASObl0dsBaQxjdUSxhpnkwg9pKcwxLAIknCuHcW
+         B930kEk0ytpf/sh7ojTyWZWkm63hW0G6yCOE+u8yiGzt24BS0RbbFB3wzBhV/CcgWDPh
+         Vb/g==
+X-Gm-Message-State: AOAM5307EjN97ZQOWQOW/wUBwtL8BUnou9701zlPAfntxTSCh+pcZJqw
+        n5A6f8tSMHNF8Yf95CEctEdIQll4BhDt/g==
+X-Google-Smtp-Source: ABdhPJxb5Q05LMoQLTBYGcs/C3B6EDL+vEWBk/6eIzJPE92ui69/zxootIiG8778/i+ztvXDFJbYPA==
+X-Received: by 2002:a05:6122:1796:: with SMTP id o22mr16176722vkf.23.1638457594230;
+        Thu, 02 Dec 2021 07:06:34 -0800 (PST)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id r20sm21200vkq.15.2021.12.02.07.06.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Dec 2021 07:06:33 -0800 (PST)
+Received: by mail-vk1-f182.google.com with SMTP id e27so18676745vkd.4;
+        Thu, 02 Dec 2021 07:06:33 -0800 (PST)
+X-Received: by 2002:a05:6122:920:: with SMTP id j32mr17225245vka.20.1638457593048;
+ Thu, 02 Dec 2021 07:06:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211201114102.13446-1-maz@kernel.org>
+In-Reply-To: <20211201114102.13446-1-maz@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 2 Dec 2021 16:06:21 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXM34nNz1nfowNqDvdsdg+d69Bo3_ufs6fbcq65iYd5-A@mail.gmail.com>
+Message-ID: <CAMuHMdXM34nNz1nfowNqDvdsdg+d69Bo3_ufs6fbcq65iYd5-A@mail.gmail.com>
+Subject: Re: [PATCH v2] of/irq: Add a quirk for controllers with their own
+ definition of interrupt-map
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Rob Herring <robh@kernel.org>, John Crispin <john@phrozen.org>,
+        Biwen Li <biwen.li@nxp.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sander Vanheule <sander@svanheule.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The apq8016-sbc-sndcard is designed to be used with the LPASS drivers
-(bypassing the combined audio/modem DSP in MSM8916/APQ8016).
-Make it possible to use QDSP6 audio instead for the msm8916-qdsp6-sndcard.
+Hi Marc,
 
-This only requires adding some additional hooks that set up the DPCM
-backends correctly. Similar code is already used in drivers for newer
-SoCs such as apq8096.c, sdm845.c and sm8250.c.
+On Wed, Dec 1, 2021 at 12:41 PM Marc Zyngier <maz@kernel.org> wrote:
+> Since 041284181226 ("of/irq: Allow matching of an interrupt-map local
+> to an interrupt controller"), a handful of interrupt controllers have
+> stopped working correctly. This is due to the DT exposing a non-sensical
+> interrupt-map property, and their drivers relying on the kernel ignoring
+> this property.
+>
+> Since we cannot realistically fix this terrible behaviour, add a quirk
+> for the limited set of devices that have implemented this monster,
+> and document that this is a pretty bad practice.
+>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: John Crispin <john@phrozen.org>
+> Cc: Biwen Li <biwen.li@nxp.com>
+> Cc: Chris Brandt <chris.brandt@renesas.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Sander Vanheule <sander@svanheule.net>
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> ---
+>
+> Notes:
+>     v2: Switched over to of_device_compatible_match() as per Rob's
+>         request.
 
-A slightly different initialization sequence is used for the apq8016-sbc
-and msm8916-qdsp6 sound card by defining the apq8016_sbc_add_ops()
-function as device match data.
+Thanks for the update!
 
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- sound/soc/qcom/apq8016_sbc.c | 134 +++++++++++++++++++++++++++++++++--
- 1 file changed, 129 insertions(+), 5 deletions(-)
+> --- a/drivers/of/irq.c
+> +++ b/drivers/of/irq.c
 
-diff --git a/sound/soc/qcom/apq8016_sbc.c b/sound/soc/qcom/apq8016_sbc.c
-index ba2a98268ee4..f9d69375320e 100644
---- a/sound/soc/qcom/apq8016_sbc.c
-+++ b/sound/soc/qcom/apq8016_sbc.c
-@@ -17,6 +17,9 @@
- #include <uapi/linux/input-event-codes.h>
- #include <dt-bindings/sound/apq8016-lpass.h>
- #include "common.h"
-+#include "qdsp6/q6afe.h"
-+
-+#define MI2S_COUNT  (MI2S_QUATERNARY + 1)
- 
- struct apq8016_sbc_data {
- 	struct snd_soc_card card;
-@@ -24,6 +27,7 @@ struct apq8016_sbc_data {
- 	void __iomem *spkr_iomux;
- 	struct snd_soc_jack jack;
- 	bool jack_setup;
-+	int mi2s_clk_count[MI2S_COUNT];
- };
- 
- #define MIC_CTRL_TER_WS_SLAVE_SEL	BIT(21)
-@@ -38,10 +42,10 @@ struct apq8016_sbc_data {
- #define SPKR_CTL_TLMM_WS_EN_SEL_MASK	GENMASK(19, 18)
- #define SPKR_CTL_TLMM_WS_EN_SEL_SEC	BIT(18)
- #define DEFAULT_MCLK_RATE		9600000
-+#define MI2S_BCLK_RATE			1536000
- 
--static int apq8016_sbc_dai_init(struct snd_soc_pcm_runtime *rtd)
-+static int apq8016_dai_init(struct snd_soc_pcm_runtime *rtd, int mi2s)
- {
--	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
- 	struct snd_soc_dai *codec_dai;
- 	struct snd_soc_component *component;
- 	struct snd_soc_card *card = rtd->card;
-@@ -49,7 +53,7 @@ static int apq8016_sbc_dai_init(struct snd_soc_pcm_runtime *rtd)
- 	int i, rval;
- 	u32 value;
- 
--	switch (cpu_dai->id) {
-+	switch (mi2s) {
- 	case MI2S_PRIMARY:
- 		writel(readl(pdata->spkr_iomux) | SPKR_CTL_PRI_WS_SLAVE_SEL_11,
- 			pdata->spkr_iomux);
-@@ -128,6 +132,13 @@ static int apq8016_sbc_dai_init(struct snd_soc_pcm_runtime *rtd)
- 	return 0;
- }
- 
-+static int apq8016_sbc_dai_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	return apq8016_dai_init(rtd, cpu_dai->id);
-+}
-+
- static void apq8016_sbc_add_ops(struct snd_soc_card *card)
- {
- 	struct snd_soc_dai_link *link;
-@@ -137,6 +148,113 @@ static void apq8016_sbc_add_ops(struct snd_soc_card *card)
- 		link->init = apq8016_sbc_dai_init;
- }
- 
-+static int qdsp6_dai_get_lpass_id(struct snd_soc_dai *cpu_dai)
-+{
-+	switch (cpu_dai->id) {
-+	case PRIMARY_MI2S_RX:
-+	case PRIMARY_MI2S_TX:
-+		return MI2S_PRIMARY;
-+	case SECONDARY_MI2S_RX:
-+	case SECONDARY_MI2S_TX:
-+		return MI2S_SECONDARY;
-+	case TERTIARY_MI2S_RX:
-+	case TERTIARY_MI2S_TX:
-+		return MI2S_TERTIARY;
-+	case QUATERNARY_MI2S_RX:
-+	case QUATERNARY_MI2S_TX:
-+		return MI2S_QUATERNARY;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int msm8916_qdsp6_dai_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_CBS_CFS);
-+	return apq8016_dai_init(rtd, qdsp6_dai_get_lpass_id(cpu_dai));
-+}
-+
-+static int msm8916_qdsp6_startup(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_card *card = rtd->card;
-+	struct apq8016_sbc_data *data = snd_soc_card_get_drvdata(card);
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	int mi2s, ret;
-+
-+	mi2s = qdsp6_dai_get_lpass_id(cpu_dai);
-+	if (mi2s < 0)
-+		return mi2s;
-+
-+	if (++data->mi2s_clk_count[mi2s] > 1)
-+		return 0;
-+
-+	ret = snd_soc_dai_set_sysclk(cpu_dai, LPAIF_BIT_CLK, MI2S_BCLK_RATE, 0);
-+	if (ret)
-+		dev_err(card->dev, "Failed to enable LPAIF bit clk: %d\n", ret);
-+	return ret;
-+}
-+
-+static void msm8916_qdsp6_shutdown(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_card *card = rtd->card;
-+	struct apq8016_sbc_data *data = snd_soc_card_get_drvdata(card);
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	int mi2s, ret;
-+
-+	mi2s = qdsp6_dai_get_lpass_id(cpu_dai);
-+	if (mi2s < 0)
-+		return;
-+
-+	if (--data->mi2s_clk_count[mi2s] > 0)
-+		return;
-+
-+	ret = snd_soc_dai_set_sysclk(cpu_dai, LPAIF_BIT_CLK, 0, 0);
-+	if (ret)
-+		dev_err(card->dev, "Failed to disable LPAIF bit clk: %d\n", ret);
-+}
-+
-+static const struct snd_soc_ops msm8916_qdsp6_be_ops = {
-+	.startup = msm8916_qdsp6_startup,
-+	.shutdown = msm8916_qdsp6_shutdown,
-+};
-+
-+static int msm8916_qdsp6_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
-+					    struct snd_pcm_hw_params *params)
-+{
-+	struct snd_interval *rate = hw_param_interval(params,
-+					SNDRV_PCM_HW_PARAM_RATE);
-+	struct snd_interval *channels = hw_param_interval(params,
-+					SNDRV_PCM_HW_PARAM_CHANNELS);
-+	struct snd_mask *fmt = hw_param_mask(params, SNDRV_PCM_HW_PARAM_FORMAT);
-+
-+	rate->min = rate->max = 48000;
-+	channels->min = channels->max = 2;
-+	snd_mask_set_format(fmt, SNDRV_PCM_FORMAT_S16_LE);
-+
-+	return 0;
-+}
-+
-+static void msm8916_qdsp6_add_ops(struct snd_soc_card *card)
-+{
-+	struct snd_soc_dai_link *link;
-+	int i;
-+
-+	/* Make it obvious to userspace that QDSP6 is used */
-+	card->components = "qdsp6";
-+
-+	for_each_card_prelinks(card, i, link) {
-+		if (link->no_pcm) {
-+			link->init = msm8916_qdsp6_dai_init;
-+			link->ops = &msm8916_qdsp6_be_ops;
-+			link->be_hw_params_fixup = msm8916_qdsp6_be_hw_params_fixup;
-+		}
-+	}
-+}
-+
- static const struct snd_soc_dapm_widget apq8016_sbc_dapm_widgets[] = {
- 
- 	SND_SOC_DAPM_MIC("Handset Mic", NULL),
-@@ -148,11 +266,16 @@ static const struct snd_soc_dapm_widget apq8016_sbc_dapm_widgets[] = {
- 
- static int apq8016_sbc_platform_probe(struct platform_device *pdev)
- {
-+	void (*add_ops)(struct snd_soc_card *card);
- 	struct device *dev = &pdev->dev;
- 	struct snd_soc_card *card;
- 	struct apq8016_sbc_data *data;
- 	int ret;
- 
-+	add_ops = device_get_match_data(&pdev->dev);
-+	if (!add_ops)
-+		return -EINVAL;
-+
- 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
- 		return -ENOMEM;
-@@ -177,12 +300,13 @@ static int apq8016_sbc_platform_probe(struct platform_device *pdev)
- 
- 	snd_soc_card_set_drvdata(card, data);
- 
--	apq8016_sbc_add_ops(card);
-+	add_ops(card);
- 	return devm_snd_soc_register_card(&pdev->dev, card);
- }
- 
- static const struct of_device_id apq8016_sbc_device_id[] __maybe_unused = {
--	{ .compatible = "qcom,apq8016-sbc-sndcard" },
-+	{ .compatible = "qcom,apq8016-sbc-sndcard", .data = apq8016_sbc_add_ops },
-+	{ .compatible = "qcom,msm8916-qdsp6-sndcard", .data = msm8916_qdsp6_add_ops },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, apq8016_sbc_device_id);
--- 
-2.34.1
+> @@ -159,12 +179,16 @@ int of_irq_parse_raw(const __be32 *addr, struct of_phandle_args *out_irq)
+>                 /*
+>                  * Now check if cursor is an interrupt-controller and
+>                  * if it is then we are done, unless there is an
+> -                * interrupt-map which takes precedence.
+> +                * interrupt-map which takes precedence if we're not
+> +                * in presence of once of these broken platform that
 
+one
+
+> +                * want to parse interrupt-map themselves for $reason.
+>                  */
+>                 bool intc = of_property_read_bool(ipar, "interrupt-controller");
+> +               bool imap_abuse;
+>
+>                 imap = of_get_property(ipar, "interrupt-map", &imaplen);
+> -               if (imap == NULL && intc) {
+> +               imap_abuse = imap && of_device_compatible_match(ipar, of_irq_imap_abusers);
+
+... = intc && imap && of_device_compatible_match(...)
+
+> +               if (intc && (imap == NULL || imap_abuse)) {
+>                         pr_debug(" -> got it !\n");
+>                         return 0;
+>                 }
+
+Still working fine on RZ/A1, so
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
