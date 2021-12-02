@@ -2,130 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3652466840
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 17:28:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 465EC466904
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 18:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242034AbhLBQcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 11:32:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35822 "EHLO
+        id S1376257AbhLBRZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 12:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359795AbhLBQaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 11:30:10 -0500
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1DEBC0613B5
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 08:25:40 -0800 (PST)
-Received: by mail-wr1-x431.google.com with SMTP id t9so43793498wrx.7
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 08:25:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Dck2lwFSLhQLrhBOrhKJjMNBm/lp2IsFyQtzJ5VV7Lg=;
-        b=QPrXpePnyOD1NPMFHEWdXN/AEWUijVa8HyzApRvK4LLPVoNv4bqaOmqpqW6VbBygmP
-         8eOigf8Oatpjjil9IzEkPEewgf8biy5MvO4vumU2FuzI/lxFlULhzOhy9CxaauA/g6jB
-         3DVwe0y1XcJdFp4e82vsuy/Qt2oJjhjpQOFGMBa0IJ7oiPW2dS3bkIJ5W+vvxNmOU1l9
-         rsZkbyhvfCp0WexCi+PBzKJW/K6dttAqNltyFvMz7cZuaL59seO8aRWqfGHFfPUk4U9G
-         UFBWUqh7ob0552UHnNtyxNLP16na3rPekSP/7/4FpiaokSvoEck3l9PR/fbC7E6FxBr4
-         V1lQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Dck2lwFSLhQLrhBOrhKJjMNBm/lp2IsFyQtzJ5VV7Lg=;
-        b=E3DQzNvgsAXhktR6T14+Y0ZGxGJQ3SroUStQ7iN/BdNYS0GjsRha9M/iNBDOhjMofq
-         vRGcKMwpjmg379fjqk8R9s3+1A9+VMevDqW8YakTofnc3m0AiFLVrbTzg8Xq5S54BEmD
-         hw3T6LSv7RvwFvQ/hsMO+fftLGINp/7BjurgNqPaAGZfoklynxUkiQQ+KVPxeemLgh/K
-         ZP7AqZjvK9VfJ8nDntRzfznEAK9p0uqgP56/VbdjkUV2El/Z7EAXiByXhPldKd+2F9kK
-         u9LDh921mg/DHM0dlg4QtZDhUqZ2E4nbGYXk5ajfRrTiUZN6mBa4OjsFeAs38W6tJXfi
-         Ydbg==
-X-Gm-Message-State: AOAM531ZWAHfi3usld/aqXmUhXY1GWVwURRMYRP6DEi9YFKPA4sSWC1b
-        DSOjeSh+m45BpnsCMSc2KKslZQ==
-X-Google-Smtp-Source: ABdhPJyavQrSgE40jYGWY7I5BEv4Rp6rZvt5fRUZpVzX4iYCEZGNq+XG2KGj5905HGU233jJaTGIbA==
-X-Received: by 2002:adf:d18f:: with SMTP id v15mr14784411wrc.447.1638462339011;
-        Thu, 02 Dec 2021 08:25:39 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:b56f:eb59:b51f:d674? ([2a01:e34:ed2f:f020:b56f:eb59:b51f:d674])
-        by smtp.googlemail.com with ESMTPSA id l8sm3011069wmc.40.2021.12.02.08.25.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Dec 2021 08:25:38 -0800 (PST)
-Subject: Re: [PATCH v3 1/5] dt-bindings: Powerzone new bindings
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
-        rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        lukasz.luba@arm.com, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20211201163856.41419-1-daniel.lezcano@linaro.org>
- <CAPDyKFor=OCOYqY2K9WyOa5FrM+tCE8KR8CuBOxHdz-ch9Tzkg@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <ab3b53c0-a765-ad4b-2017-e4a42e73fe42@linaro.org>
-Date:   Thu, 2 Dec 2021 17:25:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S233690AbhLBRZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 12:25:10 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7385C06174A;
+        Thu,  2 Dec 2021 09:21:47 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 040F01F469B6
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638465706; bh=qh2JLdc2/XxdWEDpXV64bL1kvfarfDUoYjEGQ03NKvM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EV0uCbcQdDZcFBgSmqgYs/WUcmMyYZBKtnOGQQVZswtrnk6Ov7+7y2NPMVnPJcR6G
+         QqaDSYTI4oUcMrBaxFxAzYxWb1U9QSy3QrYCb6K4EoBszo4sk3E38y+Fbr09Ky4t39
+         RUmuHM2hr6vgd3KA6boqrZ3ve8GOdZALUwjNHf7whmX9hhA/F01JzTMKKxbJSrs51G
+         +JaRCw1r7gkJ5pOC6mSMIdT/HFpiLWwsbWriIjnb8HcWxBe2GzxqTzQOooI9lhT4O0
+         w+7ZyrryWrCfy6JqU1u27Ia4Ay0kaVvbMH2+Sp9pat+H7SfXFzQB3RJmA6vkYD5wJ9
+         B92eE+mNEmyIw==
+Received: by earth.universe (Postfix, from userid 1000)
+        id 7266F3C0CA8; Thu,  2 Dec 2021 18:21:43 +0100 (CET)
+Date:   Thu, 2 Dec 2021 18:21:43 +0100
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH RFC 0/3] reset: syscon-reboot: add "reg" property support
+Message-ID: <20211202172143.44bwtgiiagczfqlr@earth.universe>
+References: <20211102152207.11891-1-zajec5@gmail.com>
+ <CAL_JsqL5qJZz8K7330cOhV8x86097LUE7oFNx5Qu3M4XLL+gMg@mail.gmail.com>
+ <8f02af47-d9dc-a29d-b839-e10969a448d0@gmail.com>
+ <CAL_JsqJB+KneifCaybF7ng0KuwbLgtYk3UMKjkFNOL5Bj8U2pg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFor=OCOYqY2K9WyOa5FrM+tCE8KR8CuBOxHdz-ch9Tzkg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rb3arto6kdwkg5ns"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJB+KneifCaybF7ng0KuwbLgtYk3UMKjkFNOL5Bj8U2pg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/12/2021 15:42, Ulf Hansson wrote:
-> On Wed, 1 Dec 2021 at 17:41, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->>
->> The proposed bindings are describing a set of powerzones.
->>
->> A power zone is the logical name for a component which is capable of
->> power capping and where we can measure the power consumption.
->>
->> A power zone can aggregate several power zones in terms of power
->> measurement and power limitations. That allows to apply power
->> constraint to a group of components and let the system balance the
->> allocated power in order to comply with the constraint.
->>
->> The ARM System Control and Management Interface (SCMI) can provide a
->> power zone description.
->>
->> The powerzone semantic is also found on the Intel platform with the
->> RAPL register.
->>
->> The Linux kernel powercap framework deals with the powerzones:
->>
->> https://www.kernel.org/doc/html/latest/power/powercap/powercap.html
->>
->> The powerzone can also represent a group of children powerzones, hence
->> the description can result on a hierarchy. Such hierarchy already
->> exists with the hardware or can be represented and computed from the
->> kernel.
->>
->> The hierarchical description was initially proposed but not desired
->> given there are other descriptions like the power domain proposing
->> almost the same description.
->>
->> https://lore.kernel.org/all/CAL_JsqLuLcHj7525tTUmh7pLqe7T2j6UcznyhV7joS8ipyb_VQ@mail.gmail.com/
->>
->> The description gives the power constraint dependencies to apply on a
->> specific group of logically or physically aggregated devices. They do
->> not represent the physical location or the power domains of the SoC
->> even if the description could be similar.
->>
->> Cc: Arnd Bergmann <arnd@arndb.de>
->> Cc: Ulf Hansson <ulf.hansson@linaro.org>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> 
-> This looks good to me, feel free to add:
-> 
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Thanks Ulf for your time to review these bindings
+--rb3arto6kdwkg5ns
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
+On Fri, Nov 12, 2021 at 04:32:48PM -0600, Rob Herring wrote:
+> On Fri, Nov 12, 2021 at 4:23 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com=
+> wrote:
+> >
+> > On 12.11.2021 23:18, Rob Herring wrote:
+> > > On Tue, Nov 2, 2021 at 10:22 AM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail=
+=2Ecom> wrote:
+> > >>
+> > >> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> > >>
+> > >> During my work on MFD binding for Broadcom's TWD block I received
+> > >> comment from Rob saying that "syscon-reboot" should use "reg" proper=
+ty.
+> > >> I'm not sure if my understanding & implementation are correct so I'm
+> > >> sending this RFC.
+> > >>
+> > >> What bothers me is non-standard "reg" property usage. Treating it as=
+ a
+> > >> simple (unsigned) integer number means different logic when it comes=
+ to
+> > >> ranges.
+> > >
+> > > It shouldn't be. The idea is that 'reg' works like normal. See below.
+> > >
+> > >> Consider this example:
+> > >>
+> > >> timer@400 {
+> > >>          compatible =3D "simple-mfd", "syscon";
+> > >>          reg =3D <0x400 0x3c>;
+> > >>          ranges;
+> > >
+> > > ranges =3D <0 0x400 0x100>; // Just guessing for size
+> > >
+> > >>
+> > >>          #address-cells =3D <1>;
+> > >>          #size-cells =3D <1>;
+> > >>
+> > >>          reboot@434 {
+> > >
+> > > reboot@34
+> > >
+> > > Just reading 'reg' is fine, but really, Linux should be either getting
+> > > the translated address or have a function to get the offset from the
+> > > parent base. IOW, it should also work if you just changed 'reg' to
+> > > '<0x434 0x4>'.
+> >
+> > Are you aware of anyone working on support for getting translated
+> > address? Do you recall any efforts on implementing such a helper?
+>=20
+> All the DT address functions give you translated addresses. It's the
+> latter that doesn't exist that I'm aware of offhand. It's just
+> of_address_to_resource() on the child and parent nodes and then
+> calculate the offset.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Has a new version beent sent with this change, that I missed?
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+-- Sebastian
+
+--rb3arto6kdwkg5ns
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmGpAJkACgkQ2O7X88g7
++pp/eRAAm5idb1KmqRkMs2dbt4p4xGRpm0sDiOd+PEEzgt1i77STK69jBrcUUJmT
+I5xBbXkyjKpq1M17axa1c66xzuhCoNLUXzkpzSmreagTgOYWETcrlZYD5j6h7A+R
+QMJEgRzmiq5p2z+b3bH3658+2D4vaOJFvIzaRuZfyVoulecVX138wrmNQ+cOuTYc
+WZlWRJVSgLK0CRbO8ppNkQA7bxgp+5gJyE85ZESsRAZhPI8vePu3CsNz7SU4LeZh
+Z00ln0QpTSm4luWAPe22n84by6oh9KsUZ4x7L1l5lmvsQLn5aQi39JMg+424bB4A
+ftI8B9lXF9oy7NoR0EGSEhWwb1pTpvn96Mfi/m5N7AwTW/19OvKiA+BMAezSs6zc
+mFr4cl1TwNkbYV2Jt8XvYksIOP+hcA0ueU1Xtd12iImZaZVR7yafv652VENF85TF
+GsBJ4znkLByhGvAf0a0Eu4dPbG1960pWZc+lRGb0Zeu1u2+HkUCg4rB5+mbssIRl
+iJ6gMZ5P+4hLPmvwY9SKphFPW3kTL9kMB6J3ptwwB2YNvjCtmkoeBHJ2kreidYUG
+12ILmJKgXQcBu9hBnZBbOa2PsFbMkQPl+nSnozENgYNvQR/qknZwAV9cueGVy359
+WFMBfuKBoIj4keWdsX6PYtCCLeHmHqTo9i1ORfTBXrRJFlDCH8w=
+=dLER
+-----END PGP SIGNATURE-----
+
+--rb3arto6kdwkg5ns--
