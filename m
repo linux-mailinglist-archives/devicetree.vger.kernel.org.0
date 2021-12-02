@@ -2,85 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE258466C1F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:26:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B257D466CF9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:36:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349166AbhLBWaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 17:30:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60260 "EHLO
+        id S244492AbhLBWjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 17:39:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347710AbhLBWaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:30:00 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19EE3C06174A;
-        Thu,  2 Dec 2021 14:26:38 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E7AD6287B;
-        Thu,  2 Dec 2021 22:26:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11C62C53FD0;
-        Thu,  2 Dec 2021 22:26:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638483997;
-        bh=zQx+WdlBrJgBh2cJE7Bq426KrPt/zTwWTF6cGfFrebM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bfPYX+MT6aOEdjrrjYpbkAnO7WnUh22+3EXaQesYApYexZ1iTMg7o14EcJh0Byow0
-         +fzUPP8kvcMu5wDebFS1N8JOWGqCy5YfCHUazwGHtepv+RVBLLfWUJjipbzEgQlkXP
-         IweixgIKDV+aFfszhk461Xrk3u4brHrclvLf5SQRHi4enq7Zm4Yt/Y0KoHzPAI83SB
-         ARGswPgXCQ01sjk+xolkl/RpWW8xWuTzQZydQK809iBz0K+4DVz/tKmmJE46oYyjpj
-         1+Rvnqlg0vtNeD/cjpy2YBe9gSR3tIZSwILikbzlTR73JFLQdaCNVHNVvCoxQOzjBa
-         CG98V8+RQtNgQ==
-Received: by mail-ed1-f47.google.com with SMTP id x6so3813920edr.5;
-        Thu, 02 Dec 2021 14:26:36 -0800 (PST)
-X-Gm-Message-State: AOAM530SF3W0Z3iWNqcO91j5mxZE0jPnJUjB4CuzL5PPjWg8qhgJXyeb
-        ieiTNS4bMEvAzeZmOmMqWZ5G24U9Boqv5Ql4YA==
-X-Google-Smtp-Source: ABdhPJyC2mORvUROF+LKm5s99fEZ92LrBwn6zLKgLCzPI2yFZ2AdzG1rZnvgdOzKgmJgJ+JGkDDFroOuAzoik+CQDKw=
-X-Received: by 2002:a05:6402:35ce:: with SMTP id z14mr21111049edc.197.1638483995372;
- Thu, 02 Dec 2021 14:26:35 -0800 (PST)
+        with ESMTP id S239088AbhLBWjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:39:35 -0500
+Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1912AC06174A;
+        Thu,  2 Dec 2021 14:36:13 -0800 (PST)
+Received: by mail-pj1-x102b.google.com with SMTP id fv9-20020a17090b0e8900b001a6a5ab1392so933065pjb.1;
+        Thu, 02 Dec 2021 14:36:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nAYeNDvhgDILO8lux5iSfJYMw3kenwEJyvnf9qyQGHY=;
+        b=dk9JFHkmHdKrSkr93JaABRmJlytvDl/PdTmdWSrmiRZTD3caX04RaPvbiiINcKEcOV
+         amRtieAZ6db571P8cTk5I+ArMvnfhcZJmkVEFRZPVfor3MrLlONqU3gG5Hq2JwYTdvID
+         Ugd/Bhk9pxmEoKcAd5NUxTBIM+McbMGIPYzZzYaixSjky8Y9B8AY1Otctpc8/tXkRgLX
+         mwcT9CKX13NSNtlOyIRMFgnqP1W+Px92DL9hUkn/UuH/Z72L0ybvN9xnwMHOQ5sI7MUX
+         1FwEusE27ZKg6xWvEsgrPy+GlubHjbzzI5xGxFhTdqJmVFiUXQDqrr1yaqa7ugqKnGvi
+         ZSMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nAYeNDvhgDILO8lux5iSfJYMw3kenwEJyvnf9qyQGHY=;
+        b=TbqhZXMO9f+nucLWsA/wPBHeMiqkza8CFFp9rGbaXgyLnSdABwONNJQrYIrD+JlKWE
+         gbDSi+WWjEiA+P3lYRC+pAPqQVpoUritpNas8Fbe+FaqKr209CmNZ1K6SLQ46Dz1EfXJ
+         TsaABUJ3STjtqUYAnULr2TKCgR00PHPM094jBd+c+/XxXNOpGs7rfOMXIcpRdvmIBvhy
+         PURlO/KYYluGDmp34ntSDOwARh+GbcGv02gkTrm1630DKVX8i3+EQbcY9Gqd/t3zhk8I
+         G+qN3sqXC28tBgQ6yqcX6gqBZBkJviwpRXn8BTt5GhtPeydRIduDf0hJ14Iz57SLuuNd
+         poKg==
+X-Gm-Message-State: AOAM531KNbTBHrkmfBgDQYInAFuMQyjQjeFwSI+FbfwWqFrJWqeqPNy7
+        /neXSlYXbJxdGMcCuSRFobr4VNgmXWQ=
+X-Google-Smtp-Source: ABdhPJzWiCEYVzvMY11bnTFeDDpQl/Ef63/fx3srX8uWojUPNH1LJHpa+wYtCA11gLyzNBz8zu2rJg==
+X-Received: by 2002:a17:90a:7d09:: with SMTP id g9mr9141036pjl.199.1638484572260;
+        Thu, 02 Dec 2021 14:36:12 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id h18sm790996pfh.172.2021.12.02.14.36.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Dec 2021 14:36:11 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM BCM7XXX ARM
+        ARCHITECTURE), Jim Quinlan <jim2101024@gmail.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM
+        BCM2711/BCM2835 ARM ARCHITECTURE),
+        linux-pci@vger.kernel.org (open list:BROADCOM STB PCIE DRIVER),
+        linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH] dt-bindings: PCI: brcmstb: compatible is required
+Date:   Thu,  2 Dec 2021 14:36:09 -0800
+Message-Id: <20211202223609.1171452-1-f.fainelli@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20211202023021.3655384-1-robh@kernel.org> <Yak1NLz2/X3TfeUM@pendragon.ideasonboard.com>
-In-Reply-To: <Yak1NLz2/X3TfeUM@pendragon.ideasonboard.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 2 Dec 2021 16:26:23 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+u=Hr8_2WdqDEnu+wT8zZjngepY1-JqTrt7pazGFCTpQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+u=Hr8_2WdqDEnu+wT8zZjngepY1-JqTrt7pazGFCTpQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: media: nxp,imx7-mipi-csi2: Drop bad if/then schema
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, Rui Miguel Silva <rmfrfs@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 3:06 PM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Rob,
->
-> Thank you for the patch.
->
-> On Wed, Dec 01, 2021 at 08:30:21PM -0600, Rob Herring wrote:
-> > The if/then schema for 'data-lanes' doesn't work as 'compatible' is at a
-> > different level than 'data-lanes'. To make it work, the if/then schema
-> > would have to be moved to the top level and then whole hierarchy of
-> > nodes down to 'data-lanes' created. I don't think it is worth the
-> > complexity to do that, so let's just drop it.
->
-> Fair enough, but then shouldn't there be a comment in the data-lanes
-> property to tell that i.MX7 only supports up to 2 data lanes ?
+The compatible property is required, make sure the binding documents it
+as such.
 
-I'll add this to data-lanes:
+Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+---
+ Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-description: Note that 'fsl,imx7-mipi-csi2' only supports up to 2 data lines.
+diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+index 1fe102743f82..7c24d711b377 100644
+--- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+@@ -76,6 +76,7 @@ properties:
+       maxItems: 3
+ 
+ required:
++  - compatible
+   - reg
+   - ranges
+   - dma-ranges
+-- 
+2.25.1
 
-I assume it is 1 or 2 and not only 2, right?
-
-Rob
