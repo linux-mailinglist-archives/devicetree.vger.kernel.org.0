@@ -2,539 +2,367 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63CF346669C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:35:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDDB34666DB
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:39:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359037AbhLBPjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 10:39:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359035AbhLBPjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:39:06 -0500
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4911AC061759
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 07:35:43 -0800 (PST)
-Received: by mail-wm1-x32f.google.com with SMTP id p18so46340wmq.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 07:35:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Q0TCZqUsV/OIZaKtPIfEAHhmhGteHpwoYWq5Gwb4DW8=;
-        b=ZvKpOqDVar+z5isWT5ORUbVcqILDip7BT1fVgdEIj/p6Xn8TIHjYqV4+A9kjyiS0SJ
-         uBSZIdpXRfPi/LQLcgPFUK1OxfEB1M8TGv+ct+7TPKHw4gAF4RA9R9Zxj05PVFz1Jvnu
-         S10a8R6QAFb2FhKFGteizCjqFmaLWsP1hPGGZIXqyYN1+rPfXOpouwJ8D7g86tjSrqJ9
-         jiU4xt/KqNB83csduHK2ihqXo4WGjd2xigaydaKTUWxymgmFsiUxcO5T9e3731If00Ln
-         YX+yGsbzY5KwtcFPqMTmstJ2kKGUu+ZWy/7XAnmxQ4bh4XslXJLKZ5hXIXRhPlQiSP2v
-         bavA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Q0TCZqUsV/OIZaKtPIfEAHhmhGteHpwoYWq5Gwb4DW8=;
-        b=NWY6415wfsJ3Moit4rcBav5CAgpiIcFfIm1EqeIeNuL0W/kVj14XxAnBpgSI4JUJuK
-         PO500CjG04ARK/3kQ/x0QvZqwZ0Sg6TrcI44NSthgD6eJHefqb6St3HqLQT0/InUKVPv
-         G7inMO2NIuwfR6jZqwojm+xqSDNn0Tsub7bx0/MYS41pYGrPIqhKO+YFL20y0t6Bb+9L
-         Nip3PdDhddIi5lG/6gYJHLJJav2d/4irupgvFZTXn4S8WhzK4Klx7kUNDl58I2uPG7dV
-         Me0uPbDUofa4GseO0AtWTFOGGqCbueyet06zSI/wXTgzk09/F64YHyGkytHxThsTIflK
-         Z/IA==
-X-Gm-Message-State: AOAM5316StPAqGfkxVmOXt1VcPpyP2tKDpoBNojKL/Ub37fGVvUja1E6
-        mENyG5zeETYmBkmg3U4zZuTEbA==
-X-Google-Smtp-Source: ABdhPJwIufOZNY2Pj7UFXSxzwL2hirPQMReAdTc37UkXXPnRGCAc2cEp+wxsMODg/5PfwM86cPXxcQ==
-X-Received: by 2002:a7b:cbd1:: with SMTP id n17mr7239291wmi.145.1638459341782;
-        Thu, 02 Dec 2021 07:35:41 -0800 (PST)
-Received: from sagittarius-a.chello.ie (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id bd18sm3662wmb.43.2021.12.02.07.35.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Dec 2021 07:35:41 -0800 (PST)
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        robert.foss@linaro.org, jonathan@marek.ca
-Cc:     andrey.konovalov@linaro.org, todor.too@gmail.com,
-        agross@kernel.org, bjorn.andersson@linaro.org, mchehab@kernel.org,
-        jgrahsl@snap.com, hfink@snap.com, bryan.odonoghue@linaro.org,
-        devicetree@vger.kernel.org
-Subject: [RESEND PATCH v2 01/19] media: dt-bindings: media: camss: Add qcom,sm8250-camss binding
-Date:   Thu,  2 Dec 2021 15:37:11 +0000
-Message-Id: <20211202153729.3362372-2-bryan.odonoghue@linaro.org>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20211202153729.3362372-1-bryan.odonoghue@linaro.org>
-References: <20211202153729.3362372-1-bryan.odonoghue@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1347780AbhLBPnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 10:43:15 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:44634 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1347358AbhLBPnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:43:14 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 5219BB82245;
+        Thu,  2 Dec 2021 15:39:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF506C00446;
+        Thu,  2 Dec 2021 15:39:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638459590;
+        bh=LPMGnKxP06ktF1QQNpYa8yt8jp1LBixRwcrtOrytL18=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=WWcWFV0A4y4ptZKPn6UDO9cV7lP2oy670mPUpBteZUipWBzDIaGhH+4T5lw2aID/j
+         hVEiOykTmYw8VYtHTH75CND6q03MVI8/wbzKI2AhH7wWgHOc9tYs44tTDkoDDePERA
+         Wkxe679fMLR70Ub09zij9VUontJ3ZQge+g57tTkVlME/Mc5SH4DVl4qYyeUdHstcrB
+         1c/swVNiAY26ud+/wA1pZkSN1H8wA9N9SgS0Q6PPj+3bjhUAZG6f/Uhvs3j4FfowPO
+         GeOmc2UgbviEbJ5ejpZw1vFwx32ApDysCqtQOct679lKW2kFwG9Rz1VlTfKH9AOfwk
+         YkiumMTL3qk0w==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1msoBX-009OlE-BN; Thu, 02 Dec 2021 15:39:47 +0000
+Date:   Thu, 02 Dec 2021 15:39:46 +0000
+Message-ID: <877dcnm2wt.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v2 8/8] drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
+In-Reply-To: <YaepolizIKkzDQoV@FVFF77S0Q05N>
+References: <20211201134909.390490-1-maz@kernel.org>
+        <20211201134909.390490-9-maz@kernel.org>
+        <YaepolizIKkzDQoV@FVFF77S0Q05N>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Marek <jonathan@marek.ca>
+On Wed, 01 Dec 2021 16:58:10 +0000,
+Mark Rutland <mark.rutland@arm.com> wrote:
+> 
+> On Wed, Dec 01, 2021 at 01:49:09PM +0000, Marc Zyngier wrote:
+> > Add a new, weird and wonderful driver for the equally weird Apple
+> > PMU HW. Although the PMU itself is functional, we don't know much
+> > about the events yet, so this can be considered as yet another
+> > random number generator...
+> 
+> It's really frustrating that Apple built this rather than the
+> architected PMU, because we've generally pushed back on
+> IMPLEMENTATION DEFINED junk in this area, and supporting this makes
+> it harder to push back on other vendors going the same route, which
+> I'm not keen on. That, and the usual state of IMP-DEF stuff making
+> this stupidly painful to reason about.
 
-Add bindings for qcom,sm8250-camss in order to support the camera
-subsystem for SM8250.
+As much as I agree with you on the stinking aspect of an IMPDEF PMU,
+this doesn't contradicts the architecture. To avoid the spread of this
+madness, forbidding an IMPDEF implementation in the architecture would
+be the right thing to do.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- .../bindings/media/qcom,sm8250-camss.yaml     | 450 ++++++++++++++++++
- 1 file changed, 450 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
+> 
+> I can see that we can get this working bare-metal with DT, but I
+> really don't want to try to support this in other cases (e.g. in a
+> VM, potentially with ACPI), or this IMP-DEFness is going to spread
+> more throughout the arm_pmu code.
 
-diff --git a/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-new file mode 100644
-index 000000000000..af877d61b607
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/qcom,sm8250-camss.yaml
-@@ -0,0 +1,450 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/qcom,sm8250-camss.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Qualcomm CAMSS ISP
-+
-+maintainers:
-+  - Robert Foss <robert.foss@linaro.org>
-+
-+description: |
-+  The CAMSS IP is a CSI decoder and ISP present on Qualcomm platforms.
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-camss
-+
-+  clocks:
-+    minItems: 37
-+    maxItems: 37
-+
-+  clock-names:
-+    items:
-+      - const: cam_ahb_clk
-+      - const: cam_hf_axi
-+      - const: cam_sf_axi
-+      - const: camnoc_axi
-+      - const: camnoc_axi_src
-+      - const: core_ahb
-+      - const: cpas_ahb
-+      - const: csiphy0
-+      - const: csiphy0_timer
-+      - const: csiphy1
-+      - const: csiphy1_timer
-+      - const: csiphy2
-+      - const: csiphy2_timer
-+      - const: csiphy3
-+      - const: csiphy3_timer
-+      - const: csiphy4
-+      - const: csiphy4_timer
-+      - const: csiphy5
-+      - const: csiphy5_timer
-+      - const: slow_ahb_src
-+      - const: vfe0_ahb
-+      - const: vfe0_axi
-+      - const: vfe0
-+      - const: vfe0_cphy_rx
-+      - const: vfe0_csid
-+      - const: vfe0_areg
-+      - const: vfe1_ahb
-+      - const: vfe1_axi
-+      - const: vfe1
-+      - const: vfe1_cphy_rx
-+      - const: vfe1_csid
-+      - const: vfe1_areg
-+      - const: vfe_lite_ahb
-+      - const: vfe_lite_axi
-+      - const: vfe_lite
-+      - const: vfe_lite_cphy_rx
-+      - const: vfe_lite_csid
-+
-+  interrupts:
-+    minItems: 14
-+    maxItems: 14
-+
-+  interrupt-names:
-+    items:
-+      - const: csiphy0
-+      - const: csiphy1
-+      - const: csiphy2
-+      - const: csiphy3
-+      - const: csiphy4
-+      - const: csiphy5
-+      - const: csid0
-+      - const: csid1
-+      - const: csid2
-+      - const: csid3
-+      - const: vfe0
-+      - const: vfe1
-+      - const: vfe_lite0
-+      - const: vfe_lite1
-+
-+  iommus:
-+    minItems: 8
-+    maxItems: 8
-+
-+  interconnects:
-+    minItems: 4
-+    maxItems: 4
-+
-+  interconnect-names:
-+    items:
-+      - const: cam_ahb
-+      - const: cam_hf_0_mnoc
-+      - const: cam_sf_0_mnoc
-+      - const: cam_sf_icp_mnoc
-+
-+  power-domains:
-+    items:
-+      - description: IFE0 GDSC - Image Front End, Global Distributed Switch Controller.
-+      - description: IFE1 GDSC - Image Front End, Global Distributed Switch Controller.
-+      - description: Titan GDSC - Titan ISP Block, Global Distributed Switch Controller.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    description:
-+      CSI input ports.
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@3:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@4:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+      port@5:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-+        description:
-+          Input port for receiving CSI data.
-+
-+        properties:
-+          endpoint:
-+            $ref: video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              clock-lanes:
-+                maxItems: 1
-+
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - clock-lanes
-+              - data-lanes
-+
-+  reg:
-+    minItems: 10
-+    maxItems: 10
-+
-+  reg-names:
-+    items:
-+      - const: csiphy0
-+      - const: csiphy1
-+      - const: csiphy2
-+      - const: csiphy3
-+      - const: csiphy4
-+      - const: csiphy5
-+      - const: vfe0
-+      - const: vfe1
-+      - const: vfe_lite0
-+      - const: vfe_lite1
-+
-+required:
-+  - clock-names
-+  - clocks
-+  - compatible
-+  - interconnects
-+  - interconnect-names
-+  - interrupts
-+  - interrupt-names
-+  - iommus
-+  - power-domains
-+  - reg
-+  - reg-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/qcom,camcc-sm8250.h>
-+    #include <dt-bindings/interconnect/qcom,sm8250.h>
-+    #include <dt-bindings/clock/qcom,gcc-sm8250.h>
-+    #include <dt-bindings/power/qcom-rpmpd.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        camss: camss@ac6a000 {
-+            compatible = "qcom,sm8250-camss";
-+
-+            reg = <0 0xac6a000 0 0x2000>,
-+                  <0 0xac6c000 0 0x2000>,
-+                  <0 0xac6e000 0 0x1000>,
-+                  <0 0xac70000 0 0x1000>,
-+                  <0 0xac72000 0 0x1000>,
-+                  <0 0xac74000 0 0x1000>,
-+                  <0 0xacb4000 0 0xd000>,
-+                  <0 0xacc3000 0 0xd000>,
-+                  <0 0xacd9000 0 0x2200>,
-+                  <0 0xacdb200 0 0x2200>;
-+            reg-names = "csiphy0",
-+                        "csiphy1",
-+                        "csiphy2",
-+                        "csiphy3",
-+                        "csiphy4",
-+                        "csiphy5",
-+                        "vfe0",
-+                        "vfe1",
-+                        "vfe_lite0",
-+                        "vfe_lite1";
-+
-+            interrupts = <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "csiphy0",
-+                              "csiphy1",
-+                              "csiphy2",
-+                              "csiphy3",
-+                              "csiphy4",
-+                              "csiphy5",
-+                              "csid0",
-+                              "csid1",
-+                              "csid2",
-+                              "csid3",
-+                              "vfe0",
-+                              "vfe1",
-+                              "vfe_lite0",
-+                              "vfe_lite1";
-+
-+            power-domains = <&camcc IFE_0_GDSC>,
-+                            <&camcc IFE_1_GDSC>,
-+                            <&camcc TITAN_TOP_GDSC>;
-+
-+            clocks = <&gcc GCC_CAMERA_AHB_CLK>,
-+                     <&gcc GCC_CAMERA_HF_AXI_CLK>,
-+                     <&gcc GCC_CAMERA_SF_AXI_CLK>,
-+                     <&camcc CAM_CC_CAMNOC_AXI_CLK>,
-+                     <&camcc CAM_CC_CAMNOC_AXI_CLK_SRC>,
-+                     <&camcc CAM_CC_CORE_AHB_CLK>,
-+                     <&camcc CAM_CC_CPAS_AHB_CLK>,
-+                     <&camcc CAM_CC_CSIPHY0_CLK>,
-+                     <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY1_CLK>,
-+                     <&camcc CAM_CC_CSI1PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY2_CLK>,
-+                     <&camcc CAM_CC_CSI2PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY3_CLK>,
-+                     <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY4_CLK>,
-+                     <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_CSIPHY5_CLK>,
-+                     <&camcc CAM_CC_CSI5PHYTIMER_CLK>,
-+                     <&camcc CAM_CC_SLOW_AHB_CLK_SRC>,
-+                     <&camcc CAM_CC_IFE_0_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_0_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_0_CSID_CLK>,
-+                     <&camcc CAM_CC_IFE_0_AREG_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_1_CSID_CLK>,
-+                     <&camcc CAM_CC_IFE_1_AREG_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_AHB_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_AXI_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CPHY_RX_CLK>,
-+                     <&camcc CAM_CC_IFE_LITE_CSID_CLK>;
-+            clock-names = "cam_ahb_clk",
-+                          "cam_hf_axi",
-+                          "cam_sf_axi",
-+                          "camnoc_axi",
-+                          "camnoc_axi_src",
-+                          "core_ahb",
-+                          "cpas_ahb",
-+                          "csiphy0",
-+                          "csiphy0_timer",
-+                          "csiphy1",
-+                          "csiphy1_timer",
-+                          "csiphy2",
-+                          "csiphy2_timer",
-+                          "csiphy3",
-+                          "csiphy3_timer",
-+                          "csiphy4",
-+                          "csiphy4_timer",
-+                          "csiphy5",
-+                          "csiphy5_timer",
-+                          "slow_ahb_src",
-+                          "vfe0_ahb",
-+                          "vfe0_axi",
-+                          "vfe0",
-+                          "vfe0_cphy_rx",
-+                          "vfe0_csid",
-+                          "vfe0_areg",
-+                          "vfe1_ahb",
-+                          "vfe1_axi",
-+                          "vfe1",
-+                          "vfe1_cphy_rx",
-+                          "vfe1_csid",
-+                          "vfe1_areg",
-+                          "vfe_lite_ahb",
-+                          "vfe_lite_axi",
-+                          "vfe_lite",
-+                          "vfe_lite_cphy_rx",
-+                          "vfe_lite_csid";
-+
-+            iommus = <&apps_smmu 0x800 0x400>,
-+                     <&apps_smmu 0x801 0x400>,
-+                     <&apps_smmu 0x840 0x400>,
-+                     <&apps_smmu 0x841 0x400>,
-+                     <&apps_smmu 0xC00 0x400>,
-+                     <&apps_smmu 0xC01 0x400>,
-+                     <&apps_smmu 0xC40 0x400>,
-+                     <&apps_smmu 0xC41 0x400>;
-+
-+            interconnects = <&gem_noc MASTER_AMPSS_M0 &config_noc SLAVE_CAMERA_CFG>,
-+                            <&mmss_noc MASTER_CAMNOC_HF &mc_virt SLAVE_EBI_CH0>,
-+                            <&mmss_noc MASTER_CAMNOC_SF &mc_virt SLAVE_EBI_CH0>,
-+                            <&mmss_noc MASTER_CAMNOC_ICP &mc_virt SLAVE_EBI_CH0>;
-+            interconnect-names = "cam_ahb",
-+                                 "cam_hf_0_mnoc",
-+                                 "cam_sf_0_mnoc",
-+                                 "cam_sf_icp_mnoc";
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+            };
-+        };
-+    };
+Well, an alternative would be to sidestep the arm_pmu framework
+altogether.  Which would probably suck even more.
+
+> How does this interact with PMU emulation for a KVM guest?
+
+It doesn't. No non-architected PMU will get exposed to a KVM guest,
+and the usual "inject an UNDEF exception on IMPDEF access" applies. As
+far as I am concerned, KVM is purely architectural and doesn't need to
+be encumbered with this.
+
+> 
+> I have a bunch of comments and questions below.
+> 
+> [...]
+> 
+> > +#define ANY_BUT_0_1			GENMASK(9, 2)
+> > +#define ONLY_2_TO_7			GENMASK(7, 2)
+> > +#define ONLY_2_4_6			(BIT(2) | BIT(4) | BIT(6))
+> > +#define ONLY_5_6_7			GENMASK(7, 5)
+> 
+> For clarity/consistency it might be better to use separate BIT()s for
+> ONLY_5_6_7 too.
+
+Sure.
+
+[...]
+
+> > +static const u16 m1_pmu_event_affinity[M1_PMU_PERFCTR_LAST + 1] = {
+> > +	[0 ... M1_PMU_PERFCTR_LAST]	= ANY_BUT_0_1,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_01]	= BIT(7),
+> > +	[M1_PMU_PERFCTR_CPU_CYCLES]	= ANY_BUT_0_1 | BIT(0),
+> > +	[M1_PMU_PERFCTR_INSTRUCTIONS]	= BIT(7) | BIT(1),
+> > +	[M1_PMU_PERFCTR_UNKNOWN_8d]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_8e]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_8f]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_90]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_93]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_94]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_95]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_96]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_97]	= BIT(7),
+> > +	[M1_PMU_PERFCTR_UNKNOWN_98]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_99]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_9a]	= BIT(7),
+> > +	[M1_PMU_PERFCTR_UNKNOWN_9b]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_9c]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_9f]	= BIT(7),
+> > +	[M1_PMU_PERFCTR_UNKNOWN_bf]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_c0]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_c1]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_c4]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_c5]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_c6]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_c8]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_ca]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_cb]	= ONLY_5_6_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_f5]	= ONLY_2_4_6,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_f6]	= ONLY_2_4_6,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_f7]	= ONLY_2_4_6,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_f8]	= ONLY_2_TO_7,
+> > +	[M1_PMU_PERFCTR_UNKNOWN_fd]	= ONLY_2_4_6,
+> > +};
+> 
+> I don't entirely follow what's going on here. Is this a matrix
+> scheme like what QC had in their IMP-DEF Krait PMUs? See:
+> 
+>   https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/kernel/perf_event_v7.c?h=v5.16-rc3#n1286
+
+It is nowhere as complicated as that.
+
+> I'm a bit worried about this, since is this is of that shape, there
+> are potential constraints on which counters and/or events you can
+> use concurrently, and if you violate those they can conflict. If so,
+> we need to be *very* careful about the abstraction we provide to
+> userspace.
+
+The HW does have placement constraints (this is what this per-event
+bitmap is expressing), but the counting seems completely independent
+as long as you find an ad-hoc counter to place the event. Which means
+that if you try and count (for example) 4 events that would only fit
+in {5,6,7}, we'll say NO to the fourth one.
+
+As I say somewhere in a comment, we could do a better job if we had a
+global view of the events to be counted, and split them in batches
+that the core perf would then schedule.
+
+If you think any of this somehow breaks the userspace ABI, please let
+me know (my understand of perf is pretty limited...).
+
+> 
+> [...]
+> 
+> > +/* Low level accessors. No synchronisation. */
+> > +#define PMU_READ_COUNTER(_idx)						\
+> > +	case _idx:	return read_sysreg_s(SYS_IMP_APL_PMC## _idx ##_EL1)
+> > +
+> > +#define PMU_WRITE_COUNTER(_val, _idx)					\
+> > +	case _idx:							\
+> > +		write_sysreg_s(_val, SYS_IMP_APL_PMC## _idx ##_EL1);	\
+> > +		return
+> > +
+> > +static u64 m1_pmu_read_hw_counter(unsigned int index)
+> > +{
+> > +	switch (index) {
+> > +		PMU_READ_COUNTER(0);
+> > +		PMU_READ_COUNTER(1);
+> > +		PMU_READ_COUNTER(2);
+> > +		PMU_READ_COUNTER(3);
+> > +		PMU_READ_COUNTER(4);
+> > +		PMU_READ_COUNTER(5);
+> > +		PMU_READ_COUNTER(6);
+> > +		PMU_READ_COUNTER(7);
+> > +		PMU_READ_COUNTER(8);
+> > +		PMU_READ_COUNTER(9);
+> > +	}
+> > +
+> > +	BUG();
+> > +}
+> > +
+> > +static void m1_pmu_write_hw_counter(u64 val, unsigned int index)
+> > +{
+> > +	switch (index) {
+> > +		PMU_WRITE_COUNTER(val, 0);
+> > +		PMU_WRITE_COUNTER(val, 1);
+> > +		PMU_WRITE_COUNTER(val, 2);
+> > +		PMU_WRITE_COUNTER(val, 3);
+> > +		PMU_WRITE_COUNTER(val, 4);
+> > +		PMU_WRITE_COUNTER(val, 5);
+> > +		PMU_WRITE_COUNTER(val, 6);
+> > +		PMU_WRITE_COUNTER(val, 7);
+> > +		PMU_WRITE_COUNTER(val, 8);
+> > +		PMU_WRITE_COUNTER(val, 9);
+> > +	}
+> > +
+> > +	BUG();
+> > +}
+> 
+> As an aside, since this pattern has cropped up in a few places, maybe we want
+> to look into scripting the generation of sysreg banki accessors like this.
+> 
+> [...]
+> 
+> > +static void m1_pmu_configure_counter(unsigned int index, u8 event,
+> > +				     bool user, bool kernel)
+> > +{
+> > +	u64 val, user_bit, kernel_bit;
+> > +	int shift;
+> > +
+> > +	switch (index) {
+> > +	case 0 ... 7:
+> > +		user_bit = BIT(get_bit_offset(index, PMCR1_COUNT_A64_EL0_0_7));
+> > +		kernel_bit = BIT(get_bit_offset(index, PMCR1_COUNT_A64_EL1_0_7));
+> > +		break;
+> > +	case 8 ... 9:
+> > +		user_bit = BIT(get_bit_offset(index - 8, PMCR1_COUNT_A64_EL0_8_9));
+> > +		kernel_bit = BIT(get_bit_offset(index - 8, PMCR1_COUNT_A64_EL1_8_9));
+> > +		break;
+> 
+> When this says 'EL1', presuambly that's counting at EL2 in VHE?
+
+It does.
+
+> Are there separate EL1 / EL2 controls, or anythign of that sort we need to be
+> aware of?
+
+No, there is a single, per-counter control for EL0 and EL2. I couldn't
+get the counters to report anything useful while a guest was running,
+but that doesn't mean such control doesn't exist.
+
+> 
+> [...]
+> 
+> > +/* arm_pmu backend */
+> > +static void m1_pmu_enable_event(struct perf_event *event)
+> > +{
+> > +	struct arm_pmu *cpu_pmu = to_arm_pmu(event->pmu);
+> > +	struct pmu_hw_events *cpuc = this_cpu_ptr(cpu_pmu->hw_events);
+> > +	unsigned long flags;
+> > +	bool user, kernel;
+> > +	u8 evt;
+> > +
+> > +	evt = event->hw.config_base & M1_PMU_CFG_EVENT;
+> > +	user = event->hw.config_base & M1_PMU_CFG_COUNT_USER;
+> > +	kernel = event->hw.config_base & M1_PMU_CFG_COUNT_KERNEL;
+> > +
+> > +	raw_spin_lock_irqsave(&cpuc->pmu_lock, flags);
+> 
+> You shouldn't need this locking. The perf core always calls into the HW access
+> functions with IRQs disabled and we don't do cross-cpu state modification.
+> Likewise elsewhere in this file.
+> 
+> We pulled similar out of the architectural PMU driver in commit:
+> 
+> 2a0e2a02e4b71917 ("arm64: perf: Remove PMU locking")
+> 
+> ... though that says non-preemptible when it should say non-interruptible.
+
+Ah, nice. I'll get rid of it.
+
+[...]
+
+> > +	state = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
+> > +	overflow = read_sysreg_s(SYS_IMP_APL_PMSR_EL1);
+> 
+> I assume the overflow behaviour is free-running rather than stopping?
+
+Configurable, apparently. At the moment, I set it to stop on overflow.
+Happy to change the behaviour though.
+
+> > +	if (!overflow) {
+> > +		ret = IRQ_NONE;
+> > +		goto out;
+> > +	}
+> > +
+> > +	regs = get_irq_regs();
+> > +
+> > +	for (idx = 0; idx < cpu_pmu->num_events; idx++) {
+> > +		struct perf_event *event = cpuc->events[idx];
+> > +		struct perf_sample_data data;
+> > +
+> > +		if (!event)
+> > +			continue;
+> > +
+> > +		armpmu_event_update(event);
+> > +		perf_sample_data_init(&data, 0, event->hw.last_period);
+> > +		if (!armpmu_event_set_period(event))
+> > +			continue;
+> > +
+> > +		if (perf_event_overflow(event, &data, regs))
+> > +			__m1_pmu_disable_event(event);
+> > +	}
+> > +
+> > +out:
+> > +	state &= ~PMCR0_IACT;
+> > +	write_sysreg_s(state, SYS_IMP_APL_PMCR0_EL1);
+> > +	isb();
+> > +
+> > +	raw_spin_unlock_irqrestore(&cpuc->pmu_lock, flags);
+> > +
+> > +	return ret;
+> > +}
+> 
+> [...]
+> 
+> > +static int m1_pmu_device_probe(struct platform_device *pdev)
+> > +{
+> > +	int ret;
+> > +
+> > +	ret = arm_pmu_device_probe(pdev, m1_pmu_of_device_ids, NULL);
+> > +	if (!ret) {
+> > +		/*
+> > +		 * If probe succeeds, taint the kernel as this is all
+> > +		 * undocumented, implementation defined black magic.
+> > +		 */
+> > +		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
+> > +	}
+> > +
+> > +	return ret;
+> > +}
+> 
+> Hmmm... that means we're always going to TAINT on this HW with an appropriate
+> DT, which could mask other reasons TAINT_CPU_OUT_OF_SPEC would be set, even
+> where the user isn't using the PMU.
+> 
+> Maybe we should have a cmdline option to opt-in to using the IMP-DEF PMU (and
+> only tainting in that case)?
+
+I'd rather taint on first use. Requiring a command-line argument for
+this seems a bit over the top...
+
+Thanks,
+
+	M.
+
 -- 
-2.33.0
-
+Without deviation from the norm, progress is not possible.
