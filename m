@@ -2,105 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0900F4661A4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 11:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0EE4661E4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357003AbhLBKr6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 05:47:58 -0500
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:47204 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232856AbhLBKr6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 05:47:58 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B2AiSPV039153;
-        Thu, 2 Dec 2021 04:44:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638441868;
-        bh=tVa90xiSbSoY1tRcCyHb0YgsNeYRASbSTeyOl8WLfko=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=eaS2Y5f8QDsWdaPnQq/NThuZNTtykjReOP0QLt1WirleddDDovrlI4LZ5JGdn1EwC
-         0kSUzsVKgfUvMT/r72W0iwesTMojRxIMPEn5GPWrt+dMFNUXjDH6KLjSSczAhxfGaz
-         PROVACdFSjAtWsh22F69qsBWase9/XTJmhCShfwY=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B2AiSmA109954
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Dec 2021 04:44:28 -0600
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
- Dec 2021 04:44:27 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 2 Dec 2021 04:44:28 -0600
-Received: from [10.250.235.8] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B2AiOOA115426;
-        Thu, 2 Dec 2021 04:44:25 -0600
-Message-ID: <22db4807-7772-abe6-50c6-5812d9692ccc@ti.com>
-Date:   Thu, 2 Dec 2021 16:14:23 +0530
+        id S1346204AbhLBLEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 06:04:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346184AbhLBLE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:04:29 -0500
+Received: from mail-ua1-x933.google.com (mail-ua1-x933.google.com [IPv6:2607:f8b0:4864:20::933])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18035C061758
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 03:01:07 -0800 (PST)
+Received: by mail-ua1-x933.google.com with SMTP id a14so55069666uak.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 03:01:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pk9D0BkgKy2MkHQjOsND26zq44gMYDCnDDc5CGOG3Eo=;
+        b=MQzwMbtX3OEq3xFhbvNV9fwEHoed0BB6w8bpPjpAnSKvxey0w7jr842wcnlTfvUu6S
+         cPvjz+MuNSnBKEyKITaKbLtK3qhcHMKkOEL3TahZ3cY3Id64C34xaAEtURku7txrqTZP
+         TEwzb8URr+IVTqCc78y2Cubsmy4cpXUIop6Si1LFZ8LKATTmVpTz1DqnbTXTm78cmLla
+         JFq0oK5fhC4CXugex+FXNY91Oq1Byoi6ik7eWr7Cq0n3Up3qRQqgxz+Menrr/elTmYWh
+         3rLbGd7mZmQx/ap6gV64cLo0CenIJ5oz3BJaFmcbCq2rsURgqYh9KLdIOeE8/jE/iO4N
+         oD5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pk9D0BkgKy2MkHQjOsND26zq44gMYDCnDDc5CGOG3Eo=;
+        b=VeKNvmCHBsLlBKqNU8T4ENsJ4YQoo8GjjdBwVWU6zbZNyHSpeEX3WZurtwGq53rhUI
+         iFxcaWyuL9uDggaOkxfAM863G5Wg3WaMUttNJA9L0V4MT1IpUHMtsPpXYLNrC+wgICE/
+         1lv+P0fg0BI5xKgGr+gLkKzR+Rw5+EjmIhNWLW1kXpapBzoQ3sR9MESmHNEtMmhTaPL7
+         NY98xPEIF6okvO/CsGWSmVEjaq1Bg/IRfL62PA2krIu/MJWntLxP7i25GAN9qF48YAhK
+         taLBQDYZox+a6lJb3Fm7EURHCw0crDiZID/x5RivwJlafaEx7JMNouKQAiAQHXq/QLeZ
+         Vf6w==
+X-Gm-Message-State: AOAM533PEDHZ7A/PgPMxo9c82CLWQRD+Opl84fUNiNBFhFRbyQWCCCws
+        z19Wb6fvQnfTCkiJDq3eqh70wxKQMjDncMeQH1mSog==
+X-Google-Smtp-Source: ABdhPJxakVPbeV3zYAuA0ClGNGeLE4yam1HSOcyPA7SQE2XyjCmXcnqQqxD6K9GyotZiEP2pJrwvkeSJ6r0RxEK755w=
+X-Received: by 2002:a67:be0f:: with SMTP id x15mr13744954vsq.86.1638442866176;
+ Thu, 02 Dec 2021 03:01:06 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: add timesync router node
-Content-Language: en-US
-To:     Christian Gmeiner <christian.gmeiner@gmail.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20211109150158.164778-1-christian.gmeiner@gmail.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20211109150158.164778-1-christian.gmeiner@gmail.com>
+References: <20211130111325.29328-1-semen.protsenko@linaro.org>
+ <20211130111325.29328-2-semen.protsenko@linaro.org> <1638294184.179325.2713642.nullmailer@robh.at.kernel.org>
+ <4b5bebb0-ed74-8132-1e6b-cb7cbc21439c@canonical.com> <CAL_JsqJb4nMBoGLcf-bKpi5kEE+zXQ=dfo5JSBhrqPFeLnCsHw@mail.gmail.com>
+In-Reply-To: <CAL_JsqJb4nMBoGLcf-bKpi5kEE+zXQ=dfo5JSBhrqPFeLnCsHw@mail.gmail.com>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Thu, 2 Dec 2021 13:00:54 +0200
+Message-ID: <CAPLW+4=Zdvf4HRNUeVMR9URLSdA867hdXVLYy+k47yLH82uTnA@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-samsung-soc@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Chanho Park <chanho61.park@samsung.com>,
+        linux-serial@vger.kernel.org,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        David Virag <virag.david003@gmail.com>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, 1 Dec 2021 at 18:20, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Nov 30, 2021 at 2:04 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+> >
+> > On 30/11/2021 18:43, Rob Herring wrote:
+> > > On Tue, 30 Nov 2021 13:13:21 +0200, Sam Protsenko wrote:
+> > >> Add constants for choosing USIv2 configuration mode in device tree.
+> > >> Those are further used in USI driver to figure out which value to write
+> > >> into SW_CONF register. Also document USIv2 IP-core bindings.
+> > >>
+> > >> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > >> ---
+> > >> Changes in v2:
+> > >>   - Combined dt-bindings doc and dt-bindings header patches
+> > >>   - Added i2c node to example in bindings doc
+> > >>   - Added mentioning of shared internal circuits
+> > >>   - Added USI_V2_NONE value to bindings header
+> > >>
+> > >>  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
+> > >>  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
+> > >>  2 files changed, 152 insertions(+)
+> > >>  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> > >>  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+> > >>
+> > >
+> > > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > > on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> > >
+> > > yamllint warnings/errors:
+> > >
+> > > dtschema/dtc warnings/errors:
+> > > Documentation/devicetree/bindings/soc/samsung/exynos-usi.example.dts:35.39-42.15: Warning (unique_unit_address): /example-0/usi@138200c0/serial@13820000: duplicate unit-address (also used in node /example-0/usi@138200c0/i2c@13820000)
+> >
+> > Rob,
+> >
+> > The checker complains about two nodes with same unit-address, even
+> > though the node name is different. Does it mean that our idea of
+> > embedding two children in USI and having enabled only one (used one) is
+> > wrong?
+>
+> IIRC, we allow for this exact scenario, and there was a change in dtc
+> for it. So I'm not sure why this triggered.
+>
 
-On 11/9/21 8:31 PM, Christian Gmeiner wrote:
-> The Time Sync Event Router (TIMESYNC_INTRTR0) implements a set of
-> multiplexers to provide selection of active CPTS time sync events for
-> routing to CPTS capable modules.
-> 
-> This patch adds DT node TIMESYNC_INTRTR0 using "pinctrl-single" bindings.
-> 
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Signed-off-by: Christian Gmeiner <christian.gmeiner@gmail.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index 42d1d219a3fd..c9321a80353a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -564,6 +564,14 @@ cpts@39000000 {
->  		ti,cpts-ext-ts-inputs = <8>;
->  	};
->  
-> +	timesync_router: timesync-router@a40000 {
+It's triggered from WARNING(unique_unit_address, ...), because it
+calls static void check_unique_unit_address_common() function with
+disable_check=false. I guess we should interpret that this way: the
+warning makes sense in regular case, when having the same unit address
+for two nodes is wrong. So the warning is reasonable, it's just not
+relevant in this particular case. What can be done:
 
-Node with "pinctrl-single" would need to be named pinctrl@reg.
-Else this would probably fail dtbs_check once pinctrl-single bindings is
-converted to YAML format.
+  1. We can introduce some specific property to mark nodes with
+duplicated address as intentional. check_unique_unit_address_common()
+can be extended then to omit checking the nodes if that property is
+present.
+  2. We can just ignore that warning in this particular case (and
+similar cases).
+  3. We can add some disambiguation note to that warning message, like
+"if it's intentional -- please ignore this message"
 
-> +		compatible = "pinctrl-single";
-> +		reg = <0x0 0xa40000 0x0 0x800>;
-> +		#pinctrl-cells = <1>;
-> +		pinctrl-single,register-width = <32>;
-> +		pinctrl-single,function-mask = <0x000107ff>;
-> +	};
-> +
->  	usbss0: cdns-usb@f900000{
->  		compatible = "ti,am64-usb";
->  		reg = <0x00 0xf900000 0x00 0x100>;
-> 
+I'm all for option (3), as it's the easiest one, and still reasonable.
+Rob, what do you think? Can we just ignore that warning in further
+versions of this patch series?
 
-Regards
-Vignesh
+> Rob
