@@ -2,183 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF3B0465ED5
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 08:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A8A8465EE0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 08:51:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355846AbhLBHqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 02:46:50 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:50440 "EHLO cpanel.siel.si"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1345486AbhLBHqt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Dec 2021 02:46:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=tBo6YAMnSGqoGlwdEydrQuSMok3rjMTScuODlnhntX8=; b=jPnrRaMDRPb/8TzJvoiYHeQg5d
-        aaRXeZ0jx0NHqRihC0eHsrwqTiyWdEdu5pkJxjyIRDuw02XvE6lTU1ioHrwrB8dNuA9oi7H6FwLuW
-        Q55J9GHYqVbA4OLzNGr4q6L94AZR5N5koF+s6NxJlh33w3CEcUNQxf97Wx5/6T7xcaLowH+MfH58b
-        kEz0LdjcORRGcnwMXhAaoEUOPDBqQzJmoIuWEtPdWMMcc4VOTQSOkbm0bQO/vjRY7z6zK/40CGuJE
-        vzY00yG6/tpX9tagP2rll5hHCOh1vE1mmKaWz81eiG/ZyXYVL/yXV+wGSDfczENcJPaOhZPHn9qY6
-        +zCsDZTw==;
-Received: from [89.212.21.243] (port=49188 helo=[192.168.69.215])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1msgkO-00D7S7-37; Thu, 02 Dec 2021 08:43:23 +0100
-Subject: Re: [PATCH v3 2/4] watchdog: da9062: reset board on watchdog timeout
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        "support.opensource@diasemi.com" <support.opensource@diasemi.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-Cc:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211201081512.3580837-1-andrej.picej@norik.com>
- <20211201081512.3580837-2-andrej.picej@norik.com>
- <13e0b9047f114722a0b4ebb4c1d24f2b@dh-electronics.com>
-From:   Andrej Picej <andrej.picej@norik.com>
-Message-ID: <9298e77a-d74e-f51a-187f-830da184e67d@norik.com>
-Date:   Thu, 2 Dec 2021 08:43:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1355854AbhLBHyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 02:54:40 -0500
+Received: from st43p00im-ztdg10061801.me.com ([17.58.63.170]:43351 "EHLO
+        st43p00im-ztdg10061801.me.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1345601AbhLBHyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 02:54:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
+        t=1638431476; bh=1PuOkBgRpKHM41Kzpj8lnhhlZGkKZQMc6IJzXdwo2HI=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=zOW8Unzfyxekc69cl5uWyZ50jdankbJu91etXaon+TNciraV0qKMbgu+2y465DcGV
+         ZwKYhoQqrdaXLCtDRzYLAcVrvzNtqZL9iJy6gzINM2qdFhYqLFw58+qWLD4/5wlxQU
+         PgImY0YRhKbP5SLA40lcQY4ngHRLdpMmumy00RLXw7hGWVKIfeB7Si4EYqvxQNDh3q
+         c7hjs6jVcvzpg37wg84u8jHwvIvjaIdV6y91sFv5cpBLo7QLMLMFx0bRBFd1Y5WgiW
+         9LZtZ6+az3A+kv6hGoI90J5IoGjDbjBgSDefZodGtIymnQZndYRl/Ar844k1OxQ1b2
+         w4XOWoTLeGLzg==
+Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
+        by st43p00im-ztdg10061801.me.com (Postfix) with ESMTPSA id 2F9768C082B;
+        Thu,  2 Dec 2021 07:51:14 +0000 (UTC)
+From:   Alain Volmat <avolmat@me.com>
+To:     patrice.chotard@st.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     avolmat@me.com
+Subject: [PATCH 00/12] ARM: dts: sti: various DT fixes to avoid warnings
+Date:   Thu,  2 Dec 2021 08:50:53 +0100
+Message-Id: <20211202075105.195664-1-avolmat@me.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <13e0b9047f114722a0b4ebb4c1d24f2b@dh-electronics.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christoph,
+A first serie to correct a large amount of DT warnings seen when
+building with the W=1 option and mainly due to having several time
+the same reg property (clock) or having unnecessary reg value.
 
-On 1. 12. 21 15:11, Christoph Niedermaier wrote:
-> From: Andrej Picej
-> Sent: Wednesday, December 1, 2021 9:15 AM
->> Implement a method to change watchdog timeout configuration based on DT
->> binding ("dlg,wdt-sd"). There is a possibility to change the bahaviour
->> of watchdog reset. Setting WATCHDOG_SD bit enables SHUTDOWN mode, and
->> clearing it enables POWERDOWN mode on watchdog timeout.
->>
->> If no DT binding is specified the WATCHDOG_SD bit stays in default
->> configuration, not breaking behaviour of devices which might depend on
->> default fuse configuration.
->>
->> Note: This patch requires that the config register CONFIG_I is
->> configured as writable in the da9062 multi function device.
->>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->> ---
->> Changes in v3:
->>   - no changes
->>
->> Changes in v2:
->>   - don't force the "reset" for all da9062-watchdog users, instead add DT
->>     binding where the behavior can be selected
->> ---
->>   drivers/watchdog/da9062_wdt.c | 25 +++++++++++++++++++++++++
->>   1 file changed, 25 insertions(+)
->>
->> diff --git a/drivers/watchdog/da9062_wdt.c b/drivers/watchdog/da9062_wdt.c
->> index f02cbd530538..e342e9e50cb1 100644
->> --- a/drivers/watchdog/da9062_wdt.c
->> +++ b/drivers/watchdog/da9062_wdt.c
->> @@ -85,8 +85,33 @@ static int da9062_wdt_start(struct watchdog_device *wdd)
->>   {
->>          struct da9062_watchdog *wdt = watchdog_get_drvdata(wdd);
->>          unsigned int selector;
->> +       unsigned int mask;
->> +       u32 val;
->>          int ret;
->>
->> +       /* Configure what happens on watchdog timeout. Can be specified with
->> +        * "dlg,wdt-sd" dt-binding (0 -> POWERDOWN, 1 -> SHUTDOWN).
->> +        * If "dlg,wdt-sd" dt-binding is NOT set use the default.
->> +        */
->> +       ret = device_property_read_u32(wdd->parent, "dlg,wdt-sd", &val);
->> +       if (!ret) {
->> +               if (val)
->> +                       /* Use da9062's SHUTDOWN mode */
->> +                       mask = DA9062AA_WATCHDOG_SD_MASK;
->> +               else
->> +                       /* Use da9062's POWERDOWN mode. */
->> +                       mask = 0x0;
->> +
->> +               ret = regmap_update_bits(wdt->hw->regmap,
->> +                                               DA9062AA_CONFIG_I,
->> +                                               DA9062AA_WATCHDOG_SD_MASK,
->> +                                               mask);
->> +
->> +               if (ret)
->> +                       dev_err(wdt->hw->dev, "failed to set wdt reset mode:
->> %d\n",
->> +                               ret);
->> +       }
->> +
->>          selector = da9062_wdt_timeout_to_sel(wdt->wdtdev.timeout);
->>          ret = da9062_wdt_update_timeout_register(wdt, selector);
->>          if (ret)
->> --
->> 2.25.1
->>
-> 
-> I have a question how to correctly restart the system after
-> watchdog timeout.
-> If I understand it correct after watchdog timeout the system
-> restarts only if WATCHDOG_SD (Bit 3) in register CONFIG_I is
-> set.
-> What is the difference if WATCHDOG_SD isn't set, but WAKE_UP
-> (Bit 2) in register CONTROL_F is set? From outside on my
-> system I observe the same behavior. After watchdog timeout
-> my system restarts. So where are the differences?
-> It would be nice if you could answer this question, as you
-> certainly know this chip very well.
+The first 3 patches related to clocks require that recent serie [1] of
+clock drivers improvements be first merged.
 
-To be honest I don't really know the chip that well, I'm just trying to 
-add this feature and hopefully help others if they run into the same 
-problem. I think @Adam will be more helpful here.
+[1] https://lore.kernel.org/linux-clk/20211202072850.194314-1-avolmat@me.com/T/#t
 
-But from quick look at da9062 datasheet, mainly chapter "8.8 Power 
-Modes" I see next main differences:
-- setting WATCHDOG_SD enables SHUTDOWN sequence when the watchdog 
-timeout is triggered. This puts the chip (da9062) in RESET mode.
-Taken from DA9062 datasheet:
-> In RESET mode, the internal supplies, and LDO1 (if configured as an always-on supply) are enabled. 
-> All other DA9062 supplies are disabled.
-> DA9062 is in RESET mode whenever a complete application shutdown is required
-> The DA9062’s register configuration will be re-loaded from OTP when leaving the RESET mode
+Alain Volmat (12):
+  ARM: dts: sti: ensure unique unit-address in stih407-clock
+  ARM: dts: sti: ensure unique unit-address in stih410-clock
+  ARM: dts: sti: ensure unique unit-address in stih418-clock
+  ARM: dts: sti: move some nodes out of the soc section in
+    stih407-family.dtsi
+  ARM: dts: sti: update stih410-b2260 following stih407-family DT update
+  ARM: dts: sti: update stih418-b2199 following stih407-family DT update
+  ARM: dts: sti: update stihxxx-b2120 following stih407-family DT update
+  ARM: dts: sti: remove delta node from stih410.dtsi
+  ARM: dts: sti: move usb picophy nodes out of soc in stih410.dtsi
+  ARM: dts: sti: move usb picophy nodes out of soc in stih418.dtsi
+  ARM: dts: sti: move usb picophy nodes in stih410-b2120.dts
+  ARM: dts: sti: move usb picophy nodes in stih410-b2260.dts
 
-- if you set the WAKE_UP bit than the chip enters POWERDOWN mode on 
-watchdog timeout. I understand the POWERDOWN mode as a not that "deep" 
-mode as a RESET mode Device will go from RESET mode to POWERDOWN mode in 
-the sequence of powering-up.
+ arch/arm/boot/dts/stih407-clock.dtsi  | 101 +++++-----
+ arch/arm/boot/dts/stih407-family.dtsi | 262 +++++++++++++-------------
+ arch/arm/boot/dts/stih410-b2120.dts   |  16 +-
+ arch/arm/boot/dts/stih410-b2260.dts   |  30 +--
+ arch/arm/boot/dts/stih410-clock.dtsi  | 100 +++++-----
+ arch/arm/boot/dts/stih410.dtsi        |  52 ++---
+ arch/arm/boot/dts/stih418-b2199.dts   |  22 +--
+ arch/arm/boot/dts/stih418-clock.dtsi  | 101 +++++-----
+ arch/arm/boot/dts/stih418.dtsi        |  38 ++--
+ arch/arm/boot/dts/stihxxx-b2120.dtsi  |  22 +--
+ 10 files changed, 351 insertions(+), 393 deletions(-)
 
-The above explanation is just my understanding after quick look, @Adam 
-please correct me if I'm talking nonsense.
+-- 
+2.25.1
 
-Please have a look at the DA9062 datasheet for more information. Sorry, 
-that I can't be more helpful here.
-
-Best regards,
-Andrej
