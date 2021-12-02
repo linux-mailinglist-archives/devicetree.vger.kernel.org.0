@@ -2,92 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDCC8466D15
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB49A466D21
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:44:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243050AbhLBWow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 17:44:52 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:39260 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242668AbhLBWow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:44:52 -0500
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3E5576287C;
-        Thu,  2 Dec 2021 22:41:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B69BC53FCD;
-        Thu,  2 Dec 2021 22:41:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638484888;
-        bh=6OiKIjxtmjjpUOCmkRIj43jn8Md1ipCMNo/5OXc5h2U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=A77LaDEakD7rtcB3KbTrqnfE9Ky1ZHZiM38wgDdUrUjeRW9pQo+EuNeoQBMcPWeJq
-         oKk1QW1TP1/R3wsoJY9Z54V6zvQRs8DgjwGlrt8DXXBFguYGn7VkVWGI5t6cEMjRZ+
-         /6Ou1f5zfXafc3vSum3HaCC0pWnxosFtJb0SXlwZ6bk2JUFTufy4s3uqar3NDxMk0q
-         DpKUfnyObNN4rDJVrSKVB0uR5Rni+wZuaWJjWxNp/SO3kdA0ojapUhn2DLxvDurosB
-         6jJrdhE/w1vWBB2NJZcor6xqYyd0g9Pv5cGoh/PNSbnkaDWvxr20JnY2PbsXzI6apd
-         YJMQboRbBeRbA==
-Received: by mail-ed1-f45.google.com with SMTP id z5so4039017edd.3;
-        Thu, 02 Dec 2021 14:41:28 -0800 (PST)
-X-Gm-Message-State: AOAM532qQ0QuDDbRyGaF8bOEt7iupTAmdHSxj//x9NWiinQe8Fi6qoGx
-        bg1cZhAMmVbN2FKRfrBbw5ylk/Qxp1352JVegw==
-X-Google-Smtp-Source: ABdhPJwlI+p9riw2EQARHYYQ7wuw9z4/AosHRQ9rvr5bD+PLTYx0Lh9d9ZeTJuc1FvaYCGMzuZBpIJCZb8ZoQcYci6w=
-X-Received: by 2002:a17:907:16ac:: with SMTP id hc44mr18010068ejc.363.1638484887007;
- Thu, 02 Dec 2021 14:41:27 -0800 (PST)
+        id S1377493AbhLBWrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 17:47:32 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:40158 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1377482AbhLBWrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:47:31 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8F1EB7E;
+        Thu,  2 Dec 2021 23:44:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1638485046;
+        bh=b9wmW+9lDgWgXKRDWJV/3oD6ffkkHYt53ZguaT9G4bs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aucSEzJMJAQuE46RaLeh+EjMqWJvC4xoEVG7/2H+NWQ4sQmQYJyY8VogXtm/JTFJb
+         feGZyjqhILIbduaKtW/V2J6aQd56i9i6gsFol7Ba39KiVGj1VTf4YWBDFXdqT5IZyt
+         gnRVzEu4rnzJUpfhDwhcrgs03NgOeYrKuWaVDHTc=
+Date:   Fri, 3 Dec 2021 00:43:40 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Rui Miguel Silva <rmfrfs@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: media: nxp,imx7-mipi-csi2: Drop bad if/then
+ schema
+Message-ID: <YalMHPsLzQ02v5uO@pendragon.ideasonboard.com>
+References: <20211202023021.3655384-1-robh@kernel.org>
+ <Yak1NLz2/X3TfeUM@pendragon.ideasonboard.com>
+ <CAL_Jsq+u=Hr8_2WdqDEnu+wT8zZjngepY1-JqTrt7pazGFCTpQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20211202223609.1171452-1-f.fainelli@gmail.com>
-In-Reply-To: <20211202223609.1171452-1-f.fainelli@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 2 Dec 2021 16:41:15 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLR=TeKFj1DO-UDcFDcuuw9VUzy9tdxmdK797ywX+fN8g@mail.gmail.com>
-Message-ID: <CAL_JsqLR=TeKFj1DO-UDcFDcuuw9VUzy9tdxmdK797ywX+fN8g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: PCI: brcmstb: compatible is required
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Saenz Julienne <nsaenzjulienne@suse.de>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:BROADCOM STB PCIE DRIVER" <linux-pci@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+u=Hr8_2WdqDEnu+wT8zZjngepY1-JqTrt7pazGFCTpQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 4:36 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> The compatible property is required, make sure the binding documents it
-> as such.
+Hi Rob,
 
-Yes, though if 'compatible' is not present and matching, the schema is
-never applied. I'll apply it later, but I wouldn't be too concerned
-fixing any others.
+On Thu, Dec 02, 2021 at 04:26:23PM -0600, Rob Herring wrote:
+> On Thu, Dec 2, 2021 at 3:06 PM Laurent Pinchart wrote:
+> > On Wed, Dec 01, 2021 at 08:30:21PM -0600, Rob Herring wrote:
+> > > The if/then schema for 'data-lanes' doesn't work as 'compatible' is at a
+> > > different level than 'data-lanes'. To make it work, the if/then schema
+> > > would have to be moved to the top level and then whole hierarchy of
+> > > nodes down to 'data-lanes' created. I don't think it is worth the
+> > > complexity to do that, so let's just drop it.
+> >
+> > Fair enough, but then shouldn't there be a comment in the data-lanes
+> > property to tell that i.MX7 only supports up to 2 data lanes ?
+> 
+> I'll add this to data-lanes:
+> 
+> description: Note that 'fsl,imx7-mipi-csi2' only supports up to 2 data lines.
 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 1fe102743f82..7c24d711b377 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -76,6 +76,7 @@ properties:
->        maxItems: 3
->
->  required:
-> +  - compatible
->    - reg
->    - ranges
->    - dma-ranges
-> --
-> 2.25.1
->
+Looks good to me.
+
+> I assume it is 1 or 2 and not only 2, right?
+
+Correct.
+
+-- 
+Regards,
+
+Laurent Pinchart
