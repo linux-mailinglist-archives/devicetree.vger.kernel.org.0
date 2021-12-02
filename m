@@ -2,75 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB49A466D21
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:44:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9116466D3F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377493AbhLBWrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 17:47:32 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:40158 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377482AbhLBWrb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:47:31 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A8F1EB7E;
-        Thu,  2 Dec 2021 23:44:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1638485046;
-        bh=b9wmW+9lDgWgXKRDWJV/3oD6ffkkHYt53ZguaT9G4bs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aucSEzJMJAQuE46RaLeh+EjMqWJvC4xoEVG7/2H+NWQ4sQmQYJyY8VogXtm/JTFJb
-         feGZyjqhILIbduaKtW/V2J6aQd56i9i6gsFol7Ba39KiVGj1VTf4YWBDFXdqT5IZyt
-         gnRVzEu4rnzJUpfhDwhcrgs03NgOeYrKuWaVDHTc=
-Date:   Fri, 3 Dec 2021 00:43:40 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Rui Miguel Silva <rmfrfs@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: media: nxp,imx7-mipi-csi2: Drop bad if/then
- schema
-Message-ID: <YalMHPsLzQ02v5uO@pendragon.ideasonboard.com>
-References: <20211202023021.3655384-1-robh@kernel.org>
- <Yak1NLz2/X3TfeUM@pendragon.ideasonboard.com>
- <CAL_Jsq+u=Hr8_2WdqDEnu+wT8zZjngepY1-JqTrt7pazGFCTpQ@mail.gmail.com>
+        id S1345953AbhLBWzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 17:55:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38150 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244190AbhLBWzC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:55:02 -0500
+Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0864C061757
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 14:51:39 -0800 (PST)
+Received: by mail-ot1-x331.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso1665993ots.6
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 14:51:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=G+McyWCYbmpjpANc0iPYcABDaPO85Ld/wlLRZjD5kLg=;
+        b=JVh5EP5UyHHaNRAtHYGVi+rhzICB7i9jWA1Llw5vFsL30ZWFm5dov/5HgQ7PrjfyMF
+         cdhIvN66DELXflYZC8l/t0rdBc4UZyRKrrPs4OCNOpZN3vFxTYthGshbxe6zu3eLVXoC
+         mCRNLamhog6hLB5zEO+t7mg5RBtZFQhYanQsg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=G+McyWCYbmpjpANc0iPYcABDaPO85Ld/wlLRZjD5kLg=;
+        b=N4fDxsiyPbdUqrnQs98W7AgyftnOFM9X8yFphtrlLA7e33QZrxhzxnbVT9WU+Sl5eW
+         xXTySkd9mPGiP7jkcI2JDZYeVcY0iFeNsc5SqZIjbp/AFktWfyAp2NViCL1j9TvCBZuS
+         XA2D5w3sRLqG4PvNl+2lrcmSPMcd+u1jNcyxEpS6hGw8xxkZuDoPbCBOCljaIhu6VvoD
+         c9S8BjNcXLN5CmN1ZLnzzVlnxUFJC/GNGYU8iUXyGGpKKV+rpXir2OCx+84RX89J8ZXn
+         X5SGLODQd/3a1GcDhq2LT9upIgv+H7NVoXTT081+EM2SkjcZ9Ifnsslp5uP2RWF2cv5R
+         Eh3w==
+X-Gm-Message-State: AOAM530dpAb15uCnCZWgt2sGBruuxHFFbEmJOguhqy9MHoJwMczGKSES
+        y4xeJe+z9zhep74SowF4VCp2f8xldpASC9hNJYIjIw==
+X-Google-Smtp-Source: ABdhPJzS29+LQ903PdAUxA5kWhCkKjLGFY2Fq0VTw8nEaBMpva7LdDAsgQrfNLDEHcVCbXgEfKRtiUEhJh5gZE/o+P0=
+X-Received: by 2002:a9d:2243:: with SMTP id o61mr13366960ota.126.1638485499138;
+ Thu, 02 Dec 2021 14:51:39 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 2 Dec 2021 14:51:38 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+u=Hr8_2WdqDEnu+wT8zZjngepY1-JqTrt7pazGFCTpQ@mail.gmail.com>
+In-Reply-To: <CAE-0n50R1wfw=V7o19N20YOqSrRZKR7Zd4QLcRcjYQNsdf3QHg@mail.gmail.com>
+References: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org> <CAE-0n50R1wfw=V7o19N20YOqSrRZKR7Zd4QLcRcjYQNsdf3QHg@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.9.1
+Date:   Thu, 2 Dec 2021 14:51:38 -0800
+Message-ID: <CAE-0n51OA3c_hcnpJ-k5ZQvCN3kv8PcjLMRw4BLx9OKZPjGLcA@mail.gmail.com>
+Subject: Re: [PATCH v4] phy: qcom-qmp: add support for display port voltage
+ and pre-emphasis swing
+To:     Kuogee Hsieh <khsieh@codeaurora.org>, agross@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        robdclark@gmail.com, robh+dt@kernel.org, sean@poorly.run,
+        vkoul@kernel.org
+Cc:     abhinavk@codeaurora.org, aravindh@codeaurora.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kishon@ti.com, p.zabel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Thu, Dec 02, 2021 at 04:26:23PM -0600, Rob Herring wrote:
-> On Thu, Dec 2, 2021 at 3:06 PM Laurent Pinchart wrote:
-> > On Wed, Dec 01, 2021 at 08:30:21PM -0600, Rob Herring wrote:
-> > > The if/then schema for 'data-lanes' doesn't work as 'compatible' is at a
-> > > different level than 'data-lanes'. To make it work, the if/then schema
-> > > would have to be moved to the top level and then whole hierarchy of
-> > > nodes down to 'data-lanes' created. I don't think it is worth the
-> > > complexity to do that, so let's just drop it.
+Quoting Stephen Boyd (2021-09-14 12:49:13)
+> Quoting Kuogee Hsieh (2021-09-14 09:45:01)
+> > Both voltage and pre-emphasis swing level are set during link training
+> > negotiation between host and sink. There are totally four tables added.
+> > A voltage swing table for both hbr and hbr1, a voltage table for both
+> > hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
+> > table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
+> > added to complete the sequence of configure dp phy base on HPG.
 > >
-> > Fair enough, but then shouldn't there be a comment in the data-lanes
-> > property to tell that i.MX7 only supports up to 2 data lanes ?
-> 
-> I'll add this to data-lanes:
-> 
-> description: Note that 'fsl,imx7-mipi-csi2' only supports up to 2 data lines.
+> > Chnages in v2:
+> > -- revise commit test
+> > -- add Fixes tag
+> > -- replaced voltage_swing_cfg with voltage
+> > -- replaced pre_emphasis_cfg with emphasis
+> > -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
+> > -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
+> >
+> > Changes in V3:
+> > -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
+> >
+> > Changes in V4:
+> > -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
+> >
+> > Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
+> > Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> > ---
+>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Looks good to me.
-
-> I assume it is 1 or 2 and not only 2, right?
-
-Correct.
-
--- 
-Regards,
-
-Laurent Pinchart
+Can this patch be picked up?
