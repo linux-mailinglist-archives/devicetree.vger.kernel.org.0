@@ -2,222 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84E32466D4E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05EF2466D72
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 00:08:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243921AbhLBW6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 17:58:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38934 "EHLO
+        id S1349392AbhLBXLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 18:11:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234810AbhLBW6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:58:11 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D265C061758
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 14:54:48 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id np6-20020a17090b4c4600b001a90b011e06so935047pjb.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 14:54:48 -0800 (PST)
+        with ESMTP id S240957AbhLBXLy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 18:11:54 -0500
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8478C06174A
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 15:08:31 -0800 (PST)
+Received: by mail-ot1-x32d.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso1727442ota.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 15:08:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Vfw913dxLQGDDDu3u0AH4o7CLm4UyARzu/jOwnTAzDg=;
-        b=zCVZOPDnH85lUefIRg9bWnj7MAId6D6aN+FVUw2OKz0F6YISk7zj6lYaztcaSCySD1
-         82ES1v/dJHv93WFEWnmV2/HDH0yJFGadeEkY0HnnRKRmtiSH6bQJTKDqx76mot+h083R
-         vStvRWP59Kco0YXYzeCtIBcfl2L3bdFA5uJjuTU1wUBn3tMeWiInOYQ1xr9EX5YpzzSi
-         P0HwqMDciy4NIVr0T/l5GOfP1lwGHosCkrgf2ciGZgcXkzp/4ZgtsX2p8QpWJSezbxSy
-         pTolQgF+pLwL/uPNEzHp0m7oRq3n+HDe4Wtf4rXBG5uEZVPFynN085c09LYe/oNLxOR5
-         vmLw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=0L2By4CDtRg7Bo2JcTOelRDpHyD8uA2uf3K9wmjvTeY=;
+        b=mjGPcRuOwbN4C17b9PnbMNsi1lUXjmWJ4/CxM8Z9wCX5kobN1ay8UjMtIy87ikASjI
+         lcWtPhcYpb6TFE3NvjfwEyzS4EGci2AYxvHWzoKLEyn7qBQgXUFt+JKMnfeacRQbjkEX
+         mzeiEuB8JwhsxStXfAM7E7OLK/wGJ4h2JWf5mHJ4oGQjrGdXI5jZndHZnGJDytNxzLEZ
+         /gEJvwI7dx9bgLnG2wpyIkmxiW2MnFFkjBfE4oUVoGinTaj4mz1DKkDeUAYd2n1p48gn
+         BTBNmnDBxMakbG+E+XGwGqQZe6vKtVSbc8MbtdtMKPrDOxRJscfO0HKjesd4dd5QpVuz
+         CI8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Vfw913dxLQGDDDu3u0AH4o7CLm4UyARzu/jOwnTAzDg=;
-        b=ZnE6TG+8hqFy1mif0cQWGat2JQFjKkeMwpYWl4pl1bBCoc6IVVr9xEsOpTdLmqE5Tw
-         d5tISdWPTKTGXDHCGHQfxWD77W44biDJXu7mkBwlCBwYG15/lkHV/34VJcNZuDDgOUsp
-         yM4mB/5MrVfKZObauSPMrmkaf2BInt53AIZW1ce7a6XEn0Ya/Xa3OjiLHsf7MTmCCfrS
-         Z+a3EWVLPhSnkYcyRaD0U524ko5mvYtQokByQgQ/YUlaMUgK7iTIYfZ45bVbuvUAyYcc
-         2iCNrQw+qV4lv4zI7MRH135x4umboyzl/D8e9oc+aledmp6ZUQNj5FTwCCI0JNBx0exq
-         DiAw==
-X-Gm-Message-State: AOAM530JJABhTLaXBsBt4z6fJBTKwJ692xXaiNgWviHgI6RFSyAonsqo
-        pQNIbZwjRAn62KFrWuKPYIQus3DDgF63lMC7Eb2ASg==
-X-Google-Smtp-Source: ABdhPJwNWK1BZ6y85VRBKw2XnnhU2TW8bgHhFWv+lq+A4VRYCiBdHuU2rJQ1o76TWMR9SV0iQzkrAUpUSTIwVNHJ+Cg=
-X-Received: by 2002:a17:902:a717:b0:142:76bc:da69 with SMTP id
- w23-20020a170902a71700b0014276bcda69mr18556804plq.12.1638485687667; Thu, 02
- Dec 2021 14:54:47 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=0L2By4CDtRg7Bo2JcTOelRDpHyD8uA2uf3K9wmjvTeY=;
+        b=ighx7mNC3kVG73GTGhACpPYKStL9LIFR6LYWVjGFpCUogTciwJT87MOX1VAf38qEN/
+         8ggyNi9LbDeA2C2laRdi5sO3SvOPdv9jT9LywP+oU7aXmwLSNl+EtPycJ1pKtTptqxeh
+         dFMlZDl8W98pgRrhmm5kxC+nbrn418VWY+5vq/YyHu3LNtLmQQRB23IVzRHUVvnkYWYQ
+         TuwzxumVXSFFlL4hSJZoesG53+yg3pHtsgJJn0ioibJm5Jm3BvaGQtHftJZvwlAZK3Aq
+         TemOUMMhwaaEbhT0TjItumjH+BEaBpcFxJuVwAbLnnNNijHfwk0OQn2VLcfCtupLMsSe
+         sB8A==
+X-Gm-Message-State: AOAM533WCDHQOJttYre02LpC2SqU8zhGFZ5z0xUhaAenZ+KmFEcTaAPi
+        G+9/JTvDe3w+ChZOz4rdnHPTkQ==
+X-Google-Smtp-Source: ABdhPJx6mI7fGWZL0ZzePlsZqU77AEY3wzrqEGHpOpt9tGQ79tTsazOkSZjY/FKRLicgi6kN2UI52w==
+X-Received: by 2002:a9d:2243:: with SMTP id o61mr13427918ota.126.1638486510998;
+        Thu, 02 Dec 2021 15:08:30 -0800 (PST)
+Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id h3sm273009oon.34.2021.12.02.15.08.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Dec 2021 15:08:30 -0800 (PST)
+Date:   Thu, 2 Dec 2021 15:10:03 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kuogee Hsieh <khsieh@codeaurora.org>
+Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
+        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
+        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kishon@ti.com, p.zabel@pengutronix.de
+Subject: Re: [PATCH v4] phy: qcom-qmp: add support for display port voltage
+ and pre-emphasis swing
+Message-ID: <YalSS1C4/XUzz62q@ripper>
+References: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
 MIME-Version: 1.0
-References: <20211202041627.291625-1-aford173@gmail.com> <CAHCN7xJHuOFTQBQWk1yKsk3M0iDB7aKc0=L2DisUoSXVeO3xXQ@mail.gmail.com>
- <CAJ+vNU2t7Yp5OGtWj432Y-8hL62nQBbG58zM-gAj5YfuCO__sA@mail.gmail.com> <CAHCN7xJXMUHHBACuozY3nUdZ0QqHFLrmwrXnArtCKBG7+P4UZQ@mail.gmail.com>
-In-Reply-To: <CAHCN7xJXMUHHBACuozY3nUdZ0QqHFLrmwrXnArtCKBG7+P4UZQ@mail.gmail.com>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 2 Dec 2021 14:54:36 -0800
-Message-ID: <CAJ+vNU15MWx9t-KUJKZjwPbBZTU=KuRtGYzxgfhypENHKFJpiQ@mail.gmail.com>
-Subject: Re: [RFC V3 0/2] arm64: imx8mm: Enable Hantro VPUs
-To:     Adam Ford <aford173@gmail.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        linux-media <linux-media@vger.kernel.org>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 1:00 PM Adam Ford <aford173@gmail.com> wrote:
->
-> On Thu, Dec 2, 2021 at 12:54 PM Tim Harvey <tharvey@gateworks.com> wrote:
-> >
-> > On Thu, Dec 2, 2021 at 4:29 AM Adam Ford <aford173@gmail.com> wrote:
-> > >
-> > > On Wed, Dec 1, 2021 at 10:17 PM Adam Ford <aford173@gmail.com> wrote:
-> > > >
-> > > > The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
-> > > > to be related to the video decoders used on the i.MX8MQ, but because of
-> > > > how the Mini handles the power domains, the VPU driver does not need to
-> > > > handle all the functions, so a new compatible flag is required.
-> > > >
-> > > > V3 is rebased from git://linuxtv.org/hverkuil/media_tree.git for-v5.17c
-> > > > This branch has support for VP9.
-> > > >
-> > > > I set cma=512M, but this may not be enough memory as some tests appeard to run out of memory
-> > > >
-> > > > V3 of this series has several changes:
-> > > >
-> > > > Update imx8m_vpu_hw to add missing 'reg' reference names for G2 and include references to VP9
-> > > > Update device tree to remove IMX8MQ_VPU_RESET, remove some duplicate vpu clock parenting
-> > > > Fix missing reg-names from vpu_g2 node.
-> > > > Apply patch [1] to manage the power domains powering down.
-> > > > [1] - https://lore.kernel.org/linux-arm-kernel/20211016210547.171717-1-marex@denx.de/t/
-> > > >
-> > > > With the above, the following Fluster scores are produced:
-> > > >
-> > > > G1:
-> > > > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> > > > Ran 90/135 tests successfully               in 74.406 secs
-> > > >
-> > > > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
-> > > > Ran 55/61 tests successfully               in 8.080 secs
-> > > >
-> > > > G2:
-> > > > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
-> > > > Ran 127/303 tests successfully               in 203.873 secs
-> > > >
-> > > > Fluster and G-Streamer were both built from their respective git repos using their respective master/main branches.
-> > > >
-> > >
-> > > I should note, that both interrupts appear to be triggering.
-> > >
-> > > # cat /proc/interrupts |grep codec
-> > >  57:      13442          0          0          0     GICv3  39 Level
-> > >   38300000.video-codec
-> > >  58:       7815          0          0          0     GICv3  40 Level
-> > >   38310000.video-codec
-> > >
-> >
-> > Adam,
-> >
-> > On another thread you had let me know that you also removed the reset
-> > from the pgc_vpumix power domain which does appear to resolve the
-> > hang:
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > index eb9dcd9d1a31..31710af544dc 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > @@ -681,7 +681,6 @@
-> >                                                 clocks = <&clk
-> > IMX8MM_CLK_VPU_DEC_ROOT>;
-> >                                                 assigned-clocks =
-> > <&clk IMX8MM_CLK_VPU_BUS>;
-> >                                                 assigned-clock-parents
-> > = <&clk IMX8MM_SYS_PLL1_800M>;
-> > -                                               resets = <&src
-> > IMX8MQ_RESET_VPU_RESET>;
-> >                                         };
-> >
-> >                                         pgc_vpu_g1: power-domain@7 {
-> >
-> > That would make such a patch have a 'Fixes commit d39d4bb15310
-> > ("arm64: dts: imx8mm: add GPC node")' but of course that vpu domain
-> > isn't active until your series so I'm not sure if we should send this
-> > separate or squash it with "arm64: dts: imx8mm: Enable VPU-G1 and
-> > VPU-G2". I'm also not clear if removing the reset requires some
-> > further discussion with Lucas.
->
-> Unless there is objection from Lucas, I'll likely make it the first
-> patch in the series marking it with a fixes tag so it gets backported,
-> then the rest of the series would be adding the bindings, update the
-> driver and adding the G1 and G2 nodes.
->
+On Tue 14 Sep 09:45 PDT 2021, Kuogee Hsieh wrote:
 
-Adam,
+$suject says "add support", but afaict the code already configures
+voltage and pre-emphasis swing.
 
-I've also gotten decode+display working for vp8/h264 using this series
-and gstreamer-1.19.3 (although I have to use software colorspace
-conversion)
+If I understand your change you're not adding support for the swing, but
+rather you make it possible to have different tables for different
+versions of the phy?
 
-# source: vp8 software encode on x86
-gst-launch-1.0 -v videotestsrc ! vp8enc ! rtpvp8pay ! udpsink
-host=172.24.33.15 port=9001
-# sink: vp8 hardware decode on imx8mm
-gst-launch-1.0 udpsrc port=9001 caps = 'application/x-rtp,
-media=(string)video, clock-rate=(int)90000, encoding-name=(string)VP8,
-payload=(int)96, ssrc=(uint)3363940374,
-timestamp-offset=(uint)3739685909, seqnum-offset=(uint)28161,
-a-framerate=(string)30' ! rtpvp8depay ! v4l2slvp8dec ! videoconvert !
-kmssink
+> Both voltage and pre-emphasis swing level are set during link training
+> negotiation between host and sink. There are totally four tables added.
+> A voltage swing table for both hbr and hbr1, a voltage table for both
+> hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
+> table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
+> added to complete the sequence of configure dp phy base on HPG.
+> 
+> Chnages in v2:
+> -- revise commit test
+> -- add Fixes tag
+> -- replaced voltage_swing_cfg with voltage
+> -- replaced pre_emphasis_cfg with emphasis
+> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
+> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
+> 
+> Changes in V3:
+> -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
+> 
+> Changes in V4:
+> -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
 
-# source: h264 software encode on x86
-gst-launch-1.0 -v videotestsrc ! video/x-raw,width=800,height=480 !
-x264enc ! rtph264pay ! udpsink host=172.24.33.15 port=9001
-# sink: h264 hardware decode on imx8mm
-gst-launch-1.0 udpsrc port=9001 caps = 'application/x-rtp,
-media=(string)video, clock-rate=(int)90000,
-encoding-name=(string)H264, packetization-mode=(string)1,
-profile-level-id=(string)64001f,
-sprop-parameter-sets=(string)"Z2QAH6zZQMg9sBagwCC0oAAAAwAgAAAHkeMGMsA\=\,aOvssiw\=",
-payload=(int)96, ssrc=(uint)2753453329,
-timestamp-offset=(uint)3593065282, seqnum-offset=(uint)12297,
-a-framerate=(string)30' ! rtph264depay ! v4l2slh264dec ! videoconvert
-! kmssink
+Carrying the change log as part of the commit message is a DRM specific
+thing, outside of drivers/gpu this all goes below the '---' below.
 
-# source: vp9 software encode on x86
-gst-launch-1.0 -v videotestsrc ! video/x-raw,width=800,height=480 !
-vp9enc ! rtpvp9pay ! udpsink host=172.24.33.15 port=9001
-# sink: vp9 hardware decode on imx8mm
-gst-launch-1.0 udpsrc port=9001 caps = 'application/x-rtp,
-media=(string)video, clock-rate=(int)90000, encoding-name=(string)VP9,
-payload=(int)96, ssrc=(uint)2246741422,
-timestamp-offset=(uint)3441735424, seqnum-offset=(uint)30250,
-a-framerate=(string)30' ! rtpvp9depay ! v4l2slvp9dec ! fakesink
-^^^ this fails with no-negotiated
+> 
+> Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
 
-Note I have to use videoconvert because v4l2slvp8dev src is
-NV12/YUY2/NV12_32L32 and from testing only BGRx appears compatible
-with kmssink (even though gst-inspect kmssink says it can sink
-NV12/YUY2). With the 800x480 resolution of my display the CPU overhead
-of software colorspcae conversion with videoconvert only about 9%
+It's not clear to me what issue with aff188feb5e1 this patch fixes. In
+what way is aff188feb5e1 broken?
 
-I haven't yet gotten vp9 decode+display working yet as 'rtpvp9depay !
-v4l2slvp9dec ! fakesink' does not negotiate and it might be because my
-vp9enc source is on an old gstreamer 1.16.
+> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp.c | 97 +++++++++++++++++++++++++------------
+>  1 file changed, 66 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> index 31036aa..fb029e4 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
+> @@ -3546,12 +3546,17 @@ static const u8 qmp_dp_v3_voltage_swing_hbr_rbr[4][4] = {
+>  	{ 0x1f, 0xff, 0xff, 0xff }
+>  };
+>  
+> -static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
+> -		unsigned int drv_lvl_reg, unsigned int emp_post_reg)
+> +static int __qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
+> +				unsigned int drv_lvl_reg,
+> +				unsigned int emp_post_reg,
+> +				const u8 voltage_swing_hbr_rbr[4][4],
+> +				const u8 pre_emphasis_hbr_rbr[4][4],
+> +				const u8 voltage_swing_hbr3_hbr2[4][4],
+> +				const u8 pre_emphasis_hbr3_hbr2[4][4])
+>  {
+>  	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
+>  	unsigned int v_level = 0, p_level = 0;
+> -	u8 voltage_swing_cfg, pre_emphasis_cfg;
+> +	u8 voltage, emphasis;
+>  	int i;
+>  
+>  	for (i = 0; i < dp_opts->lanes; i++) {
+> @@ -3560,26 +3565,25 @@ static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
+>  	}
+>  
+>  	if (dp_opts->link_rate <= 2700) {
+> -		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr_rbr[v_level][p_level];
+> -		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr_rbr[v_level][p_level];
+> +		voltage = voltage_swing_hbr_rbr[v_level][p_level];
+> +		emphasis = pre_emphasis_hbr_rbr[v_level][p_level];
+>  	} else {
+> -		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr3_hbr2[v_level][p_level];
+> -		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr3_hbr2[v_level][p_level];
+> +		voltage = voltage_swing_hbr3_hbr2[v_level][p_level];
+> +		emphasis = pre_emphasis_hbr3_hbr2[v_level][p_level];
+>  	}
+>  
+>  	/* TODO: Move check to config check */
+> -	if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
+> +	if (voltage == 0xFF && emphasis == 0xFF)
+>  		return -EINVAL;
+>  
+>  	/* Enable MUX to use Cursor values from these registers */
+> -	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
+> -	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
+> -
+> -	writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
+> -	writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
+> -	writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
+> -	writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
+> +	voltage |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
+> +	emphasis |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
+>  
+> +	writel(voltage, qphy->tx + drv_lvl_reg);
+> +	writel(emphasis, qphy->tx + emp_post_reg);
+> +	writel(voltage, qphy->tx2 + drv_lvl_reg);
+> +	writel(emphasis, qphy->tx2 + emp_post_reg);
+>  	return 0;
+>  }
+>  
+> @@ -3588,9 +3592,13 @@ static void qcom_qmp_v3_phy_configure_dp_tx(struct qmp_phy *qphy)
+>  	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
+>  	u32 bias_en, drvr_en;
+>  
+> -	if (qcom_qmp_phy_configure_dp_swing(qphy,
+> -				QSERDES_V3_TX_TX_DRV_LVL,
+> -				QSERDES_V3_TX_TX_EMP_POST1_LVL) < 0)
+> +	if (__qcom_qmp_phy_configure_dp_swing(qphy,
+> +			QSERDES_V3_TX_TX_DRV_LVL,
+> +			QSERDES_V3_TX_TX_EMP_POST1_LVL,
+> +			qmp_dp_v3_voltage_swing_hbr_rbr,
+> +			qmp_dp_v3_pre_emphasis_hbr_rbr,
+> +			qmp_dp_v3_voltage_swing_hbr3_hbr2,
+> +			qmp_dp_v3_pre_emphasis_hbr3_hbr2) < 0)
+>  		return;
+>  
+>  	if (dp_opts->lanes == 1) {
+> @@ -3728,6 +3736,35 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
+>  	return 0;
+>  }
+>  
+> +/* The values in these tables are given without MUX_EN (0x20) bit set */
+> +static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[4][4] = {
+> +	{ 0x00, 0x0c, 0x15, 0x1b },
+> +	{ 0x02, 0x0e, 0x16, 0xff },
+> +	{ 0x02, 0x11, 0xff, 0xff },
+> +	{ 0x04, 0xff, 0xff, 0xff }
+> +};
+> +
+> +static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[4][4] = {
+> +	{ 0x02, 0x12, 0x16, 0x1a },
+> +	{ 0x09, 0x19, 0x1f, 0xff },
+> +	{ 0x10, 0x1f, 0xff, 0xff },
+> +	{ 0x1f, 0xff, 0xff, 0xff }
+> +};
+> +
+> +static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[4][4] = {
+> +	{ 0x00, 0x0e, 0x15, 0x1b },
+> +	{ 0x00, 0x0e, 0x15, 0xff },
+> +	{ 0x00, 0x0e, 0xff, 0xff },
+> +	{ 0x04, 0xff, 0xff, 0xff }
+> +};
+> +
+> +static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[4][4] = {
+> +	{ 0x08, 0x0f, 0x16, 0x1f },
+> +	{ 0x11, 0x1e, 0x1f, 0xff },
+> +	{ 0x16, 0x1f, 0xff, 0xff },
+> +	{ 0x1f, 0xff, 0xff, 0xff }
+> +};
+> +
+>  static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
+>  {
+>  	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_PSR_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
+> @@ -3757,16 +3794,13 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
+>  
+>  static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
+>  {
+> -	/* Program default values before writing proper values */
+> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
+> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
+> -
+> -	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+> -	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+> -
+> -	qcom_qmp_phy_configure_dp_swing(qphy,
+> +	__qcom_qmp_phy_configure_dp_swing(qphy,
+>  			QSERDES_V4_TX_TX_DRV_LVL,
+> -			QSERDES_V4_TX_TX_EMP_POST1_LVL);
+> +			QSERDES_V4_TX_TX_EMP_POST1_LVL,
+> +			qmp_dp_v4_voltage_swing_hbr_rbr,
+> +			qmp_dp_v4_pre_emphasis_hbr_rbr,
+> +			qmp_dp_v4_voltage_swing_hbr3_hbr2,
+> +			qmp_dp_v4_pre_emphasis_hbr3_hbr2);
+>  }
+>  
+>  static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
+> @@ -3885,6 +3919,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
+>  	writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
+>  	writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
+>  
+> +	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
+> +	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
 
-When you post the next series please add:
-Tested-By: Tim Harvey <tharvey@gateworks.com>
+So specifying TX_POL_INV has do be done before we kick off the
+configuration? This sounds like a real bug fix, separate of the swing
+settings.
+
+Perhaps I'm misunderstanding something with this change?
+
+Thanks,
+Bjorn
+
+> +
+>  	writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
+>  	udelay(2000);
+>  	writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
+> @@ -3896,11 +3933,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
+>  			10000))
+>  		return -ETIMEDOUT;
+>  
+> -	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
+> -	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
+>  
+> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
+> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
+> +	writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
+> +	writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
+>  
+>  	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+>  	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
