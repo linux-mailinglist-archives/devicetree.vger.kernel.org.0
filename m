@@ -2,85 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C25B7466A03
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 19:47:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEEAE466A0F
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 19:54:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343830AbhLBSuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 13:50:35 -0500
-Received: from mswedge1.sunplus.com ([60.248.182.113]:59368 "EHLO
-        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S233228AbhLBSuc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 13:50:32 -0500
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.112
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(5599:6:AUTH_RELAY)
-        (envelope-from <wells.lu@sunplus.com>); Fri, 03 Dec 2021 02:46:53 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Fri, 3 Dec 2021 02:46:40 +0800
-Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
- ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 3 Dec 2021
- 02:46:40 +0800
-From:   =?big5?B?V2VsbHMgTHUgp2aq2sTL?= <wells.lu@sunplus.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Wells Lu <wellslutw@gmail.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        =?big5?B?VmluY2VudCBTaGloIKxJwEPCRQ==?= <vincent.shih@sunplus.com>
-Subject: RE: [PATCH net-next v3 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Thread-Topic: [PATCH net-next v3 2/2] net: ethernet: Add driver for Sunplus
- SP7021
-Thread-Index: AQHX5dF9eGPWQxkNKU64ogPFWvAIaqwcdcyAgAE+n/CAAPQwgIAA4eHw
-Date:   Thu, 2 Dec 2021 18:46:40 +0000
-Message-ID: <2fded2fc3a1344d0882ae2f186257911@sphcmbx02.sunplus.com.tw>
-References: <1638266572-5831-1-git-send-email-wellslutw@gmail.com>
- <1638266572-5831-3-git-send-email-wellslutw@gmail.com>
- <YabsT0/dASvYUH2p@lunn.ch>
- <cf60c230950747ec918acfc6dda595d6@sphcmbx02.sunplus.com.tw>
- <YajEbXtBwlDL4gOL@lunn.ch>
-In-Reply-To: <YajEbXtBwlDL4gOL@lunn.ch>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.39]
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        id S1348597AbhLBS5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 13:57:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41224 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348566AbhLBS5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 13:57:35 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB403C061758
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 10:54:12 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id m15so625644pgu.11
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 10:54:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6IwGVqZy1REKUxcBFcG80oGR30x3aLwEIoJpVG9B4BI=;
+        b=l5FrpB2is2mD+Yvpy6mRKdZR+EZBJcnDMdo9rskXBUM4JYrQxzVeRqom4ewzKqsbGg
+         90ceyu/O/mYE43MHrI169uqejlosdAmjyTj6W6/LG1l1dnkhvZHwazoKxjqQ5GMW6o/p
+         0TXnqq8jC2ZGItrdbBaAbJJepgwrILvssTDFXBp/XwjZjn0Fof/CARZ5WQr03RIyTHdG
+         ZeXxwd0Kys1/cFYMjKFueXMc4pUJGwrkIdPfEXVIvOfPGjGAzlOIxPAqVpq5AqKgpJdd
+         0eExkIWZ3TnP6VHWsScno8keVx2PSYdxXIVtCXfakPaRMVPLYQhYc88yf1L+N+LEGbQF
+         grdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6IwGVqZy1REKUxcBFcG80oGR30x3aLwEIoJpVG9B4BI=;
+        b=hSPVtQFR4RAIUNkTM1P8zo+g5mJ/0EJPqWMnY0eH+tBoiYSI+blbWDDfWlrIvcSM+J
+         Sbt3NTXghjYMcoZ2xqIxmsIrs/bSwVD0pa3Hd8+XGUKR6i+/CVvRdpgy5UNFP3O4UE/0
+         kdEKv5/JJ4hWuEdXWeWDAzmGN6EzzOKuMm5enDX9/tfUx6eAmJ6hpRpnMemFxO+uZ75a
+         hOlIuQ78WVzkYC1Trj7sUG+Tbad2fKYZfe1VRwlkIxrXSgvOS9E95z7dsI9/6NghP16X
+         BcspYfcwTSdyPC6+IZaFW61Bq+wy5TDItebjrMYBr0ODL6cSMcNTt7OtsTcYOYj17w78
+         Czyg==
+X-Gm-Message-State: AOAM5310HO8fAJlzTC3wX7bfuPagWNjmr8CmQ1GFmFRX+Y78fi1s47oe
+        U2eP2avE2Ge0GTmSwnoAzDh8uiM5FYKWmIvrgB6LxQ==
+X-Google-Smtp-Source: ABdhPJwi22wC79DYnZtEO7vqtswfj3tLd4A6lZf/1ejSzPSSrMf4Izl5TW3rYfgwzjchMlFnu8shi0/bOCSwySauJC4=
+X-Received: by 2002:a63:d257:: with SMTP id t23mr729148pgi.533.1638471252152;
+ Thu, 02 Dec 2021 10:54:12 -0800 (PST)
 MIME-Version: 1.0
+References: <20211202041627.291625-1-aford173@gmail.com> <CAHCN7xJHuOFTQBQWk1yKsk3M0iDB7aKc0=L2DisUoSXVeO3xXQ@mail.gmail.com>
+In-Reply-To: <CAHCN7xJHuOFTQBQWk1yKsk3M0iDB7aKc0=L2DisUoSXVeO3xXQ@mail.gmail.com>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Thu, 2 Dec 2021 10:54:00 -0800
+Message-ID: <CAJ+vNU2t7Yp5OGtWj432Y-8hL62nQBbG58zM-gAj5YfuCO__sA@mail.gmail.com>
+Subject: Re: [RFC V3 0/2] arm64: imx8mm: Enable Hantro VPUs
+To:     Adam Ford <aford173@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Cc:     linux-media <linux-media@vger.kernel.org>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Adam Ford-BE <aford@beaconembedded.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:HANTRO VPU CODEC DRIVER" 
+        <linux-rockchip@lists.infradead.org>,
+        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQpUaGFuayB5b3UgZm9yIGV4cGxhbmF0aW9uLg0KDQpJJ2xsIGFkZCBwaHlf
-c3VwcG9ydF9hc3ltX3BhdXNlKCkgYWZ0ZXIgUEhZIGNvbm5lY3RlZCBuZXh0IHBhdGNoLg0KDQpJ
-IGZvdW5kIHNvbWUgZHJpdmVycyBjYWxsIHBoeV9zZXRfbWF4X3NwZWVkKCkgdG8gc2V0IFBIWSBz
-cGVlZCB0bw0KMTAwTSBhZnRlciBQSFkgY29ubmVjdGVkLiBJcyB0aGF0IG5lY2Vzc2FyeT8gRnJv
-bSAnc3VwcG9ydGVkJywgUEhZIA0Kc3VwcG9ydHMgMTBNLzEwME0gYWxyZWFkeS4NCg0KSSBhbHNv
-IGZvdW5kIHNvbWUgZHJpdmVycyBjYWxsIHBoeV9zdGFydF9hbmVnKCkgYWZ0ZXIgUEhZIHN0YXJ0
-ZWQuDQpJcyB0aGF0IG5lY2Vzc2FyeT8gRnJvbSBzdGF0dXMgcmVnaXN0ZXIgb2YgUEhZLCAnYXV0
-by1uZWdvJyBoYXMgDQpjb21wbGV0ZWQuDQoNCg0KQmVzdCByZWdhcmRzLA0KV2VsbHMNCg0KDQo+
-ID4gSSBwcmludGVkIG91dCB0aGUgdmFsdWUgb2YgJ3N1cHBvcnRlZCcgYW5kICdhZHZlcnRpc2lu
-ZycuDQo+ID4gJ3N1cHBvcnRlZCcgc2hvd3MgUEhZIGRldmljZSBzdXBwb3J0cyBQYXVzZSBhbmQg
-QXN5bVBhdXNlICgweDYyY2YpLg0KPiA+IEJ1dCAnYWR2ZXJ0aXNpbmcnIHNob3dzIFBIWSBkZXZp
-Y2UgZG9lcyBub3Qgc3VwcG9ydCBQYXVzZSBvciBBc3ltUGF1c2UgKDB4MDJjZikuDQo+ID4gSXMg
-dGhpcyBjb3JyZWN0Pw0KPiA+DQo+ID4gSG93IHRvIGxldCBsaW5rIHBhcnRuZXIga25vdyBsb2Nh
-bCBub2RlIHN1cHBvcnRzIFBhdXNlICYgQXN5bVBhdXNlDQo+ID4gKGZsb3cgY29udHJvbCk/DQo+
-ID4NCj4gDQo+ICdzdXBwb3J0ZWQnIGluZGljYXRlcyB0aGF0IHRoZSBQSFkgY2FuIGRvLiBJdCBo
-YXMgdGhlIGFiaWxpdHkgdG8gYWR2ZXJ0aXNlIHBhdXNlLiBCdXQgd2UNCj4gZG9uJ3QgYXV0b21h
-dGljYWxseSBjb3B5IHRob3NlIGJpdHMgaW50byAnYWR2ZXJ0aXNpbmcnIGJlY2F1c2Ugd2UgZG9u
-J3Qga25vdyBpZiB0aGUgTUFDDQo+IGFjdHVhbGx5IHN1cHBvcnRzIHBhdXNlL2FzeW0gcGF1c2Uu
-DQo+IA0KPiBUaGUgTUFDIGRyaXZlciBuZWVkcyB0byBjYWxsIHBoeV9zdXBwb3J0X3N5bV9wYXVz
-ZSgpIG9yDQo+IHBoeV9zdXBwb3J0X2FzeW1fcGF1c2UoKSB0byBsZXQgcGh5bGliIGtub3cgd2hh
-dCBpdCBjYW4gZG8uIHBoeWxpYiB3aWxsIHRoZW4gYWRkIHRoZQ0KPiBhcHByb3ByaWF0ZSBiaXRz
-IHRvICdhZHZlcnRpc2luZycuDQo+IA0KPiA+IFdpbGwgbWlpX3JlYWQoKSBhbmQgbWlpX3dyaXRl
-KCkgYmUgY2FsbGVkIGluIGludGVycnVwdCBjb250ZXh0Pw0KPiANCj4gTm8uIE9ubHkgdGhyZWFk
-IGNvbnRleHQsIGJlY2F1c2UgaXQgdXNlcyBhIG11dGV4IHRvIHByZXZlbnQgbXVsdGlwbGUgYWNj
-ZXNzZXMgYXQgdGhlIHNhbWUNCj4gdGltZS4NCj4gDQo+IAkgQW5kcmV3DQo=
+On Thu, Dec 2, 2021 at 4:29 AM Adam Ford <aford173@gmail.com> wrote:
+>
+> On Wed, Dec 1, 2021 at 10:17 PM Adam Ford <aford173@gmail.com> wrote:
+> >
+> > The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
+> > to be related to the video decoders used on the i.MX8MQ, but because of
+> > how the Mini handles the power domains, the VPU driver does not need to
+> > handle all the functions, so a new compatible flag is required.
+> >
+> > V3 is rebased from git://linuxtv.org/hverkuil/media_tree.git for-v5.17c
+> > This branch has support for VP9.
+> >
+> > I set cma=512M, but this may not be enough memory as some tests appeard to run out of memory
+> >
+> > V3 of this series has several changes:
+> >
+> > Update imx8m_vpu_hw to add missing 'reg' reference names for G2 and include references to VP9
+> > Update device tree to remove IMX8MQ_VPU_RESET, remove some duplicate vpu clock parenting
+> > Fix missing reg-names from vpu_g2 node.
+> > Apply patch [1] to manage the power domains powering down.
+> > [1] - https://lore.kernel.org/linux-arm-kernel/20211016210547.171717-1-marex@denx.de/t/
+> >
+> > With the above, the following Fluster scores are produced:
+> >
+> > G1:
+> > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> > Ran 90/135 tests successfully               in 74.406 secs
+> >
+> > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> > Ran 55/61 tests successfully               in 8.080 secs
+> >
+> > G2:
+> > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> > Ran 127/303 tests successfully               in 203.873 secs
+> >
+> > Fluster and G-Streamer were both built from their respective git repos using their respective master/main branches.
+> >
+>
+> I should note, that both interrupts appear to be triggering.
+>
+> # cat /proc/interrupts |grep codec
+>  57:      13442          0          0          0     GICv3  39 Level
+>   38300000.video-codec
+>  58:       7815          0          0          0     GICv3  40 Level
+>   38310000.video-codec
+>
+
+Adam,
+
+On another thread you had let me know that you also removed the reset
+from the pgc_vpumix power domain which does appear to resolve the
+hang:
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index eb9dcd9d1a31..31710af544dc 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -681,7 +681,6 @@
+                                                clocks = <&clk
+IMX8MM_CLK_VPU_DEC_ROOT>;
+                                                assigned-clocks =
+<&clk IMX8MM_CLK_VPU_BUS>;
+                                                assigned-clock-parents
+= <&clk IMX8MM_SYS_PLL1_800M>;
+-                                               resets = <&src
+IMX8MQ_RESET_VPU_RESET>;
+                                        };
+
+                                        pgc_vpu_g1: power-domain@7 {
+
+That would make such a patch have a 'Fixes commit d39d4bb15310
+("arm64: dts: imx8mm: add GPC node")' but of course that vpu domain
+isn't active until your series so I'm not sure if we should send this
+separate or squash it with "arm64: dts: imx8mm: Enable VPU-G1 and
+VPU-G2". I'm also not clear if removing the reset requires some
+further discussion with Lucas.
+
+Best regards,
+
+Tim
