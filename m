@@ -2,135 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95E1B466D0F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:38:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7E7E466D2B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:47:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377496AbhLBWls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 17:41:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
+        id S239164AbhLBWuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 17:50:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377331AbhLBWlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:41:42 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09D05C06174A;
-        Thu,  2 Dec 2021 14:38:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 925046288D;
-        Thu,  2 Dec 2021 22:38:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1EA1C53FCC;
-        Thu,  2 Dec 2021 22:38:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638484699;
-        bh=eCQdRQeoLT8kjg3MQLOIfSv3SGDXKbkijV9amNxq63Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=r0h036N3J3vfGrA/G9S88xmo18p43rx/XYLCpe6Zz9Rppyt0rfYSoMOCK3Cp36S7N
-         oRKqKBMZUPZpO/e+D6VJx5Y11eY37/lJzJBQXtUQYHHpGU3RAIMjioi2NdPqsJtk34
-         e86cX264PXauxI4/UxH5JdHjnEwV1YV6KXAryVdgWygQ3ettiJEBAsljSLf9pESVT9
-         s9VWA5fPIhY1NYWPyPVP4nus63VmTnPfQODdy/Nmgml91nJ8xEov0PeSkXPgTpuHSt
-         qKXjep4vpoDPENk1FgGC0PyclXlpdPAC+IMb6iY44oW3NPjUzemiySHR/zgT5Gzm4e
-         /2D+ROIDeLBYg==
-Received: by mail-ed1-f53.google.com with SMTP id r11so3807856edd.9;
-        Thu, 02 Dec 2021 14:38:18 -0800 (PST)
-X-Gm-Message-State: AOAM533NnkhaYj54siQAM6w9RHtlI0H7q40pkhRo1Jmk+hJEArfqXCjq
-        Ti+EzMLtlcmSUvwheB1B1MMDCGaiJ36kigYtfA==
-X-Google-Smtp-Source: ABdhPJxWZbOYJhHoT3DHIAb5JqTei+fe/SmfOBJYQktQY1sAsS2RvEfUEn+PEnMvf1jc9N/t/XFlop9MsVhOS/pPRHU=
-X-Received: by 2002:a17:907:7f25:: with SMTP id qf37mr18683877ejc.147.1638484697293;
- Thu, 02 Dec 2021 14:38:17 -0800 (PST)
+        with ESMTP id S238755AbhLBWug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:50:36 -0500
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A37CAC06174A;
+        Thu,  2 Dec 2021 14:47:13 -0800 (PST)
+Received: by mail-ed1-x52d.google.com with SMTP id y13so3799617edd.13;
+        Thu, 02 Dec 2021 14:47:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=w6+q0Hg/m5U8mIuV24BSe1tPkUU69WsPj3ofaDA0+Yk=;
+        b=YQRSF/9u//dujNdzC8ktaeM7YNOQOPlC589N6bY15bQkBP0uhxmm3xrvy03o/BiT4Y
+         qn11IypaGsO4Va/zZgYleOFkHkWLJW+yIDIw5Dfm8CHxHdc30crOlqg9cwg4mHXoUZXK
+         9r5ZI70n21hb5DwvJZ7+PBfxRShu7BpDTDVguQe3EmUA+8FNQQ7LSTz33J6jPprw/NPm
+         ciitC7qtfdOZUrOdAdUwuV8gzfwrF6biIYPUZYegKVzTahvFFPpc97BglLtgBmRZxArg
+         4xsCHzEBEW57z+ptOy4jYgU8bZM2RTkYUSQpvGdpgho+//p1Tu68XnfTWXq4hZN9vcvR
+         3HJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=w6+q0Hg/m5U8mIuV24BSe1tPkUU69WsPj3ofaDA0+Yk=;
+        b=dDz/ZrGgALFWeslCO9UCodETQwE+5D9KxSqPVZzmxqxobFu+j38BqK9ZKW5/+MD+NR
+         5S97XzUjkd/vYQqLMhhC8T8bW+ONfqkxosQQ+4hKJTzwJTdVr1DYAzDY2aPz5qKCHNoM
+         oR7db6KQ5I/8wp1zO0740eXMAKX0CQXahq+9Rc+1wcp8Wzy5O/QdF4LyuJmeok9TzOhZ
+         ln/7d3yh88ss7NM+cKycrfbuemhjW2JQcx4ZNTleL0TbvSJ9qYVeuacpf1i0iv2IEbaj
+         IaTGsdzWHAaHFv7pUvDdOcJsHoIYMn+8YF8XOMakHEgB8aQXEX0+w/3sViBpxD0FDhpP
+         OekA==
+X-Gm-Message-State: AOAM530QY/NLKkmX/4l5XFEY8t4x/+WpjQmKSn0QcPWgAaU1ckgJVjjc
+        WOMZD68ZIJumyr/PYw6L6QCLXgUdLOA=
+X-Google-Smtp-Source: ABdhPJw67YeBa0XpCI4LD8GTWf01vgp/fO8UQE6/lbZbhjAekhNHY7VrhY4LOEKKXt1OdEzhybJbwg==
+X-Received: by 2002:a17:906:3157:: with SMTP id e23mr18255451eje.359.1638485232238;
+        Thu, 02 Dec 2021 14:47:12 -0800 (PST)
+Received: from demon-pc.localdomain ([188.24.96.74])
+        by smtp.gmail.com with ESMTPSA id gn16sm641360ejc.67.2021.12.02.14.47.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Dec 2021 14:47:11 -0800 (PST)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+Cc:     cosmin.tanislav@analog.com, demonsingur@gmail.com,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: [PATCH v8 0/3] Add AD74413R driver
+Date:   Fri,  3 Dec 2021 00:41:00 +0200
+Message-Id: <20211202224103.218278-1-cosmin.tanislav@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20211119143839.1950739-1-thierry.reding@gmail.com>
- <20211119143839.1950739-14-thierry.reding@gmail.com> <YaWCAGQU0sjCwz66@robh.at.kernel.org>
- <Yae0DwCpFu8F/Gbw@orome.fritz.box> <CAL_Jsq+JvZQjN3q4A3yoM+pUPHLYKtwUT=QsDq+oQ7jk8mD3CA@mail.gmail.com>
- <YakIePafm3t6rJLE@orome.fritz.box> <CAL_JsqKb-azHGWkNzEJfCffiJ7FzscV4--8sKgq+uEONFmRD0w@mail.gmail.com>
-In-Reply-To: <CAL_JsqKb-azHGWkNzEJfCffiJ7FzscV4--8sKgq+uEONFmRD0w@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 2 Dec 2021 16:38:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJqCEr6JsTb_ZnadaDg_zxsdYxMyyyZT3JT=4uLLShGUQ@mail.gmail.com>
-Message-ID: <CAL_JsqJqCEr6JsTb_ZnadaDg_zxsdYxMyyyZT3JT=4uLLShGUQ@mail.gmail.com>
-Subject: Re: [PATCH v2 13/16] dt-bindings: i2c: tegra-bpmp: Convert to json-schema
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 3:08 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Dec 2, 2021 at 11:55 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> >
-> > On Wed, Dec 01, 2021 at 12:42:07PM -0600, Rob Herring wrote:
-> > > On Wed, Dec 1, 2021 at 11:42 AM Thierry Reding <thierry.reding@gmail.com> wrote:
-> > > >
+V1 -> V2
+ * sign off using company email
 
-[...]
+V2 -> V3
+ * replace gpo config firmware flag with flag specifying whether gpo is in
+   comparator mode
+ * create two separate gpiochips, one output-only gpiochip for GPO pins not
+   in comparator mode and one input-only for the value of digital input
+   channels
+ * wire up all gpo functionalities using pinconf
+ * keep number of characters per line under 80
+ * rework locking
+ * do not invalidate other chip revisions
+ * do not set indio device parent
+ * print probe error for refin regulator
+ * move conversion from range register value to range / offset / raw offset
+   into separate function
+ * module.h -> mod_devicetable.h
+ * use generic firmware interface functions
+ * add comment regarding cache alignment
+ * add comment regarding ADC channels buffered read setup
+ * un-inline comment regarding 100us delay for conversion start
+ * inline return statements
+ * remove assignments to val2 where not necessary
+ * local_channels -> chans
+ * index -> i
+ * channel_config -> config
+ * IIO_ALTVOLTAGE -> IIO_VOLTAGE
+ * .info_mask_shared_by_type_available -> .info_mask_separate_available
+ * remove unlikely probe error messages
+ * use an array indexed by channel function for retrieving iio channels
+ * count iio channels while parsing
+ * move HART rate rejection outside of setter
+ * move channel function validation outside of setter
+ * use SPI messages for read and write
+ * validate DAC code earlier
+ * simplify switches to only handle existing iio channels
+ * pass indio_dev into functions needing access to it
+ * pass spi into devm_regmap_init
+ * dt-bindings: sort compatibles
+ * dt-bindings: remove driver word from description
+ * dt-bindings: remove refin supply description
+ * dt-bindings: specify channel function default value
+ * dt-bindings: remove maxItems from scalar value
 
-> > > > However, a side-effect seems to be that now it also ignores any
-> > > > properties that aren't defined anywhere. So for example if I touch
-> > > > up the example in firmware/nvidia,tegra186-bpmp.yaml and add a bogus
-> > > > "foo-bar = <0>;" property in the BPMP I2C node, then it'll blindly
-> > > > accept that as valid.
-> > >
-> > > Do you have unevaluatedProperties within the i2c node? It only applies
-> > > to 1 level, and you can't have a parent+child schema evaluated with
-> > > another child (or parent+child) schema. This is why the graph schema
-> > > is done the way it is and why we're splitting spi-controller.yaml
-> > > child node schema out to spi-peripheral.yaml.
-> >
-> > Let me give an example based on a schema that's already upstream. So
-> > looking at this:
-> >
-> >         Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
-> >
-> > it does include spi-controller.yaml via an allOf: [ $ref: ... ], so it
-> > uses unevaluatedProperties to validate against any generic SPI
-> > controller properties. For example, #address-cells and #size-cells are
-> > validated based on the schema from spi-controller.yaml.
-> >
-> > However, if I now apply the following patch to add an undocumented
-> > property to the example, then validation doesn't fail as I would expect
-> > it to.
->
-> Indeed you are right. The problem is 'additionalProperties: true' in
-> spi-controller.yaml makes everything evaluated. I thought
-> 'additionalProperties: true' was equivalent to the default, but that's
-> not how it's working. Now to figure out if this is correct operation
-> or not. No wonder there were relatively few fixes when
-> 'unevaluatedProperties' got implemented...
+V3 -> v4
+ * remove double gpo from macro name
+ * reset at probe
+ * config -> chip_info and store chip name inside chip info
+ * cacheline align every DMA buffer
+ * simplify generation of adc samples message by caching xfer, tx_buf and
+   rx_buf
+ * use mask itself for writing the value of channel enable and gpo data
+ * move reg read and write transfers to the same buffers and use local
+   variables for transfers
+ * merge the two for loops handling gpio configuration
+ * let firmware decide irq edge
+ * remove INDIO_BUFFER_SOFTWARE already set by iio framwork
+ * do not set trigger device parent
+ * return dev_err_probe for regulator error case
+ * do not set cs_change to 0 when not needed
+ * do not set spi device drvdata as it is not needed
+ * fix bug regarding wrong channels being created for resistance input,
+   digital input, and current input with hart
+ * use voltage input channels spec for high impedance mode
+ * put () around macro parameters
+ * merge AD74413R_CHANNEL macro into its uses
+ * remove unused switch case scope
+ * inline return IIO_VAL_INT
+ * use {get,put}_unaligned_be16
+ * use proper types for reg and val
+ * move default case handling into switch statements
+ * pass driver state into regmap functions
+ * use genmask for generating a 16bit max value
+ * alphanumeric order for part numbers
+ * dt-bindings: remove $ref from ohms value
 
-Based on the json-schema test cases[1], it looks like the tool is
-doing the right thing and our schemas are wrong.
+V4 -> V5
+ * dt-bindings: include headers necessary
+ * dt-bindings: add IRQ_TYPE_EDGE_FALLING to interrupt flags
+ * dt-bindings: ohm -> ohms
+ * dt-bindings: spi0 -> spi
 
-It's a quick fixup in the tools though to just delete any
-'additionalProperties: true':
+V5 -> V6
+ * fix warnings regarding overflows
 
-index 3cc5e428b0eb..a0f22aab935a 100644
---- a/dtschema/lib.py
-+++ b/dtschema/lib.py
-@@ -367,6 +367,9 @@ def fixup_sub_schema(schema, is_prop):
-     if not isinstance(schema, dict):
-         return
+V6 -> V7
+ * remove extra cache-line alignment
+ * adi,rsense-resistance-ohms -> shunt-resistor-micro-ohms
+ * dt-bindings: add product page links
 
-+    if 'additionalProperties' in schema and
-schema['additionalProperties'] == True:
-+        schema.pop('additionalProperties', None)
-+
-     schema.pop('description', None)
-     fixup_interrupts(schema)
-     if is_prop:
+V7 -> V8
+ * author using company email
+ * also check DAC code lower bound
+ * fix checkpath --strict complaints
+ * add comment regarding mutex lock usage
+ * propagate error when converting adc result to resistance
 
-I'm leaning towards this route besides being easy because the whole
-reason for the explicit 'additionalProperties: true' was so that
-missing 'additionalProperties' is flagged as an error. The only other
-way I've come up with handling this is making common schema use a
-different meta-schema.
+Cosmin Tanislav (3):
+  iio: add addac subdirectory
+  dt-bindings: iio: add AD74413R
+  iio: addac: add AD74413R driver
 
-The result with the above is about 150 warnings. I quickly got this
-down to 100 with only a couple of fixes, but the rest appear to be
-individual schemas...
+ .../bindings/iio/addac/adi,ad74413r.yaml      |  158 ++
+ MAINTAINERS                                   |    9 +
+ drivers/iio/Kconfig                           |    1 +
+ drivers/iio/Makefile                          |    1 +
+ drivers/iio/addac/Kconfig                     |   20 +
+ drivers/iio/addac/Makefile                    |    7 +
+ drivers/iio/addac/ad74413r.c                  | 1475 +++++++++++++++++
+ include/dt-bindings/iio/addac/adi,ad74413r.h  |   21 +
+ 8 files changed, 1692 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+ create mode 100644 drivers/iio/addac/Kconfig
+ create mode 100644 drivers/iio/addac/Makefile
+ create mode 100644 drivers/iio/addac/ad74413r.c
+ create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
 
-Rob
+-- 
+2.34.1
 
-[1] https://github.com/json-schema-org/JSON-Schema-Test-Suite/blob/master/tests/draft2019-09/unevaluatedProperties.json#L230
