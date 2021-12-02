@@ -2,172 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9A974665B1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 15:46:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD324665B7
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 15:47:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358743AbhLBOtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 09:49:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40548 "EHLO
+        id S241999AbhLBOuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 09:50:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358739AbhLBOte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 09:49:34 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 761DAC06174A
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 06:46:11 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id d11so121895ljg.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 06:46:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BxPnHdJ+aJ9D33iSxb5HbYdKxpIsMl+fKEKkdpainPE=;
-        b=mIeUQBnIwa+LR+DWD6zB8iXWvNe82vquVBzQ/4uKsPN/cV3MyjJG29z+LW1R/v+qG1
-         +SxMk6tTwmfOd1hDqDr0LpEtlsimwo1hudzbVrN9UIXHTJQY+zgrD2qBc+nlAxNKIn/a
-         C+F2KxKjS7AKpWw7EkLE9zH8r+0zp990VkAu26nwz0wJZLTRZyEQmcQlKHHDRj7jv/QV
-         +7m5sI6HWXCWS4Yq/kn4PP9/CB5yQEAYVF+4RcO37o2w52wX6qIl0Ev+Ktvqzajuw16o
-         sjfHXUlw1XQQQXrhXQtR6dTlFA3bW/LuS31w7jyu/ENVQLSi/kx3iUJBr9esEdWQgl5z
-         Tnrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BxPnHdJ+aJ9D33iSxb5HbYdKxpIsMl+fKEKkdpainPE=;
-        b=nWt7LJ+i0ckVwtUe7YHrtmDdN34pNCynDVz2lVWGcJKWfx9hjUi2OZUwj/Vt5tsSqh
-         uTjoukV4Ci0ekQ7jGFTPIePaNhcTpysRR4Vpi8hon5hL2x3aTysJ2ca6hAhOIxhO6bH7
-         HvCpFEcMQbO6j+n/yNcVWdoCEhLp6G0oeHl8+9n4AQ0AKv6JC+ExmMfoVU0V3jMGqqW0
-         ftg4bg/uHOxTsGHX+omO+obBOVCwf3AmcQ9RLmlGqhyaEErUy/Rmfwgm6GitrK12V/GB
-         kXmy5u+r28WpXB3+ugAOeiaztV5OCovNtiljzS4cSYAjLrXxdrBwZcun0sa0AqdTlp6w
-         PtCA==
-X-Gm-Message-State: AOAM531g+TvbMG1VJzRFUH7aDutPO32phAmacKX8Kgt3pPuhYfT3Z3UN
-        XuxWZB09UbHP5iOmK47uUPQ8J8dXYNyoLdEVWGKJig==
-X-Google-Smtp-Source: ABdhPJyQIM753aEFPLW9JOZqu+gb1592ytFHS/P+BaHRLTTB+e5vALHEOang9gu8VNBPTccwpNku8gvj4H03BAXaHbM=
-X-Received: by 2002:a2e:b6d1:: with SMTP id m17mr12082827ljo.273.1638456369776;
- Thu, 02 Dec 2021 06:46:09 -0800 (PST)
-MIME-Version: 1.0
-References: <20211201163856.41419-1-daniel.lezcano@linaro.org> <20211201163856.41419-2-daniel.lezcano@linaro.org>
-In-Reply-To: <20211201163856.41419-2-daniel.lezcano@linaro.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 2 Dec 2021 15:45:33 +0100
-Message-ID: <CAPDyKFrx4vyiv6evTPn-j5zn_g1Rc2Azd_XX5NnXzN19NOdHQw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] arm64: dts: rockchip: Add powerzones definition
- for rock960
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     robh@kernel.org, arnd@linaro.org, heiko@sntech.de,
-        rjw@rjwysocki.net, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        lukasz.luba@arm.com, Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S244209AbhLBOut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 09:50:49 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A075C06174A;
+        Thu,  2 Dec 2021 06:47:27 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 3555F1F42F85
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638456445; bh=MUykvhec7Q+F9BL/7BZmg4/vwqFlvV1Za/LaHrYPEZQ=;
+        h=Subject:From:To:Cc:References:Date:In-Reply-To:From;
+        b=OdOE84s+zI270tgBwZnMRazDnisyZnQwxoeFE7beFmkgNIs0x0ZhtHuU5rUDkeMPt
+         NR+KgZY1QdEMTQJ1uTwzm0pgKLh3VFbkbunMmFb1xLrVd5fY4QU2nO+k9xl6DxZujs
+         NbELgg//hXI97t3vn/VZvcihXKe8JDeFoCBtfetrfgJguarGJbtLIhsG3h8esFxAkX
+         EVHJYf2hPU5QvZMadNg+Puv/4NhDtnCzMO2q3CvqJZb8avNQREfbVQGO2N19ApFQ4b
+         DrMMdQwZBprc3cjX6WDvLhVirLEACqf4H30xgPqYtJp7xrKRWD95x1WuI1Hfkiidol
+         Lc44APz6aaUZA==
+Subject: Re: [PATCH v3 8/9] media: platform: mtk-mdp3: support mt8195
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+To:     "roy-cw.yeh" <roy-cw.yeh@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Johan Jonker <jbx6244@gmail.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        "moderated list:ARM/Rockchip SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC support" 
-        <linux-rockchip@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Fabien Parent <fparent@baylibre.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        "river . cheng" <river.cheng@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20211022022146.3577-1-roy-cw.yeh@mediatek.com>
+ <20211022022146.3577-9-roy-cw.yeh@mediatek.com>
+ <59d184c6-87ee-918c-b3cb-abb923c39912@collabora.com>
+Message-ID: <f85f1433-00c6-20b9-8fe0-2ab1500f8520@collabora.com>
+Date:   Thu, 2 Dec 2021 15:47:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <59d184c6-87ee-918c-b3cb-abb923c39912@collabora.com>
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Dec 2021 at 17:42, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->
-> Add the powerzones description. This first step introduces the big,
-> the little as powerzone places.
->
-> Cc: Robin Murphy <robin.murphy@arm.com>
-> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> ---
->    V3:
->      - Remove GPU section as no power is available (yet)
->      - Remove '#powerzone-cells' conforming to the bindings change
->    V2:
->      - Move description in the SoC dtsi specific file
->    V1: Initial post
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index d3cdf6f42a30..c41b20888a44 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -76,6 +76,7 @@ cpu_l0: cpu@0 {
->                         #cooling-cells = <2>; /* min followed by max */
->                         dynamic-power-coefficient = <100>;
->                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                       powerzone = <&PKG_PZ>;
->                 };
->
->                 cpu_l1: cpu@1 {
-> @@ -88,6 +89,7 @@ cpu_l1: cpu@1 {
->                         #cooling-cells = <2>; /* min followed by max */
->                         dynamic-power-coefficient = <100>;
->                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                       powerzone = <&PKG_PZ>;
->                 };
->
->                 cpu_l2: cpu@2 {
-> @@ -100,6 +102,7 @@ cpu_l2: cpu@2 {
->                         #cooling-cells = <2>; /* min followed by max */
->                         dynamic-power-coefficient = <100>;
->                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                       powerzone = <&PKG_PZ>;
->                 };
->
->                 cpu_l3: cpu@3 {
-> @@ -112,6 +115,7 @@ cpu_l3: cpu@3 {
->                         #cooling-cells = <2>; /* min followed by max */
->                         dynamic-power-coefficient = <100>;
->                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                       powerzone = <&PKG_PZ>;
->                 };
->
->                 cpu_b0: cpu@100 {
-> @@ -124,6 +128,7 @@ cpu_b0: cpu@100 {
->                         #cooling-cells = <2>; /* min followed by max */
->                         dynamic-power-coefficient = <436>;
->                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                       powerzone = <&PKG_PZ>;
->
->                         thermal-idle {
->                                 #cooling-cells = <2>;
-> @@ -142,6 +147,7 @@ cpu_b1: cpu@101 {
->                         #cooling-cells = <2>; /* min followed by max */
->                         dynamic-power-coefficient = <436>;
->                         cpu-idle-states = <&CPU_SLEEP &CLUSTER_SLEEP>;
-> +                       powerzone = <&PKG_PZ>;
->
->                         thermal-idle {
->                                 #cooling-cells = <2>;
-> @@ -791,6 +797,17 @@ spi5: spi@ff200000 {
->                 status = "disabled";
->         };
->
-> +       powerzones {
-> +
-> +               PKG_PZ: pkg {
-> +                       #powerzone-cells = <0>;
-> +                        powerzone = <&SOC_PZ>;
-> +               };
-> +
-> +               SOC_PZ: soc {
+Il 22/10/21 10:58, AngeloGioacchino Del Regno ha scritto:
+>> From: "Roy-CW.Yeh" <roy-cw.yeh@mediatek.com>
+>>
+>> Add mt8195 driver
+>>
+>> Signed-off-by: Roy-CW.Yeh <roy-cw.yeh@mediatek.com>
+> 
+> 
+> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> 
+> 
+>> ---
+>>   drivers/media/platform/mtk-mdp3/mdp_reg_aal.h |   24 +
+>>   .../media/platform/mtk-mdp3/mdp_reg_color.h   |   29 +
+>>   drivers/media/platform/mtk-mdp3/mdp_reg_fg.h  |   23 +
+>>   drivers/media/platform/mtk-mdp3/mdp_reg_hdr.h |   31 +
+>>   .../media/platform/mtk-mdp3/mdp_reg_merge.h   |   23 +
+>>   drivers/media/platform/mtk-mdp3/mdp_reg_ovl.h |   24 +
+>>   drivers/media/platform/mtk-mdp3/mdp_reg_pad.h |   20 +
+>>   .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   31 +
+>>   drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |    6 +
+>>   .../media/platform/mtk-mdp3/mdp_reg_tdshp.h   |  114 ++
+>>   .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   18 +
+>>   drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  215 ++-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  496 ++++++-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1196 ++++++++++++++++-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |   83 +-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  703 +++++++++-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   31 +-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |    4 +
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  143 +-
+>>   .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |    2 +
+>>   20 files changed, 3020 insertions(+), 196 deletions(-)
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_aal.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_color.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_fg.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_hdr.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_merge.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ovl.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_pad.h
+>>   create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_tdshp.h
+>>
 
-This needs "#powerzone-cells = <0>;"
 
-> +               };
-> +       };
-> +
->         thermal_zones: thermal-zones {
->                 cpu_thermal: cpu-thermal {
->                         polling-delay-passive = <100>;
-> --
-> 2.25.1
->
+Hello,
+this patch doesn't apply anymore against the latest MDP3 driver series [1].
 
-Other than the minor thing above, feel free to add:
+Can you please rebase ASAP?
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+[1]: https://patchwork.kernel.org/project/linux-mediatek/list/?series=588989
 
-Kind regards
-Uffe
+Thanks,
+- Angelo
