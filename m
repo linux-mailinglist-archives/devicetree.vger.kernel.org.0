@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFB37465FA4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 09:39:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DDD6465FBE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 09:41:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345613AbhLBIm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 03:42:58 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:47864
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1345664AbhLBImz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 03:42:55 -0500
+        id S1356278AbhLBIov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 03:44:51 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:47306
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1356270AbhLBIob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 03:44:31 -0500
 Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id C47ED4003A
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 08:39:32 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id A5F923F1BA
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 08:41:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638434372;
-        bh=bzHPDCQxivWPQ9IWDe85z++O9zhlMxtBFGzHj4yUahI=;
+        s=20210705; t=1638434467;
+        bh=FIwRIWabElMuSh13dNs8xwk0guQGLGLYUJ8I7QxS5UA=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=JgxLBl1sSbuKFYSMie2j5k+UiGdvwO70sgAZqu6bWcccGWQ91PZ93hd2p71DQ6w9O
-         Vmd0teYK9Y8pUu/nfLbD+4tdymJPSD8u2RC9NSK9Dc1+pB4ZvWWh/A/xE9/GLznSLe
-         uQg241mmk5gM9WxD37sKE3y8gMYXIimxGu9nPgIWm3y+894E7wX11WqYghzgTNPeKg
-         adA+vq6oxOi772XQoywM5cUukqMVs+m8XedNVUdUj70fAMa/9SMQs5n5WlGOmocKjE
-         OiTHuyqrE780IHZITjDYpfJnWKYjHncMkCP9tFPMkRY19JC6f6u37hzd6S5HkA47jP
-         wwnzrfGP/VdNg==
-Received: by mail-lj1-f198.google.com with SMTP id p21-20020a2e9ad5000000b00219ee503efeso9272787ljj.14
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 00:39:32 -0800 (PST)
+        b=SumPOPsmyhEdvmd/bWWtffs0kQIDv4VD6P1/ao6wC7LrzuBRiZeVosav+SjoBrNzR
+         nmGo3Sgolrhx0xFIzY8fP+KTXpqeCxlckP/QL6ljCrxUTyoHdTDyvvZOf1j2LIecfS
+         FBbB+PWtI5W2AixwVXu28wXeuxPIg6pY9v3GJVceajTQMrTWHWMRLJVzCEI4PE6xQx
+         PBBLpxBCLpOTlC+bZTRVg1seXsiAEKCqAk1PmlJFGo4mLZbcK6ltVj3L4Ox4wsHZn7
+         ENW91J3ROE5i49x3Rod0IHnBUQv0w+7pImcaamqUS6Sl76UxUvtmpmdmJxdq7F5NQW
+         8x7iBCnFdsiXw==
+Received: by mail-lj1-f198.google.com with SMTP id p18-20020a2eb7d2000000b0021ba3ea3c42so7323855ljo.5
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 00:41:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=bzHPDCQxivWPQ9IWDe85z++O9zhlMxtBFGzHj4yUahI=;
-        b=bbzNgvOuXZaYT0MCCh0KinEP+xDGHYQVOcKzb+2Cyrauvtv0H0J4G6CVQ3Y8Q2j/Oc
-         YwiUfsER07Yp9Y9RThyDy7x+Bdwv3/SzZoqKVdfBXtnh3aQB91mKGcABk9CBGAC6LU3a
-         wMP1OkDElYA+1vq1t6Wy0X1tCi7dPUHIgebXLSNkHNbYnBEFITZ002DMT7syKMCY/M65
-         2tqzXzAOfRUuoUma1gqx5cpakvn7xwT+PoK3/2BgymQdt7wCIrcwTePx4bqlx4S0P1NC
-         E0toGpBV6c63SQGSDFvGdYGxmWctiyQzmS70ozkOtkwnNOtRuolw25p6affTns8hrt4L
-         2cQA==
-X-Gm-Message-State: AOAM530X2I6dS0PEQ6ci4qKb/ryk0lNWMbmmnSbp6Pzk0DSGpmeySghb
-        xGnhTyUNUIeP9o7my4vdrnbRBRY/Yy1jJQyw+DgaMhgzBfsv4xEpEuE80mvoN0XwVIOSj3gzFfw
-        D0QNJZFsanogwMLbzYAkgkTrjca5hMopr5fBPLjo=
-X-Received: by 2002:a05:6512:3322:: with SMTP id l2mr10573102lfe.556.1638434371888;
-        Thu, 02 Dec 2021 00:39:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJza7lLCAo9zxOj1HYXolUOQdlHjybMWwBpr86P/vqEMZGuzy2NQ5lsVP5PlD1kw9r9I8wo+IA==
-X-Received: by 2002:a05:6512:3322:: with SMTP id l2mr10573087lfe.556.1638434371687;
-        Thu, 02 Dec 2021 00:39:31 -0800 (PST)
+        bh=FIwRIWabElMuSh13dNs8xwk0guQGLGLYUJ8I7QxS5UA=;
+        b=6YzPeYYLsKdqQfh+JsFy9nLa+Le56S6jkJ1lJNMJPw35mdeT0dfjeOHVVTxFvi4piJ
+         uwKNahmKm3chnollLB8WJM6ke5fHo7f1ENIEDo+Fu+U95f1kdY78Mkn7bNhlDQ36JV9k
+         fc1scoq2UUsQqmzHxMdMoA5DvWObu0LYkUgCU66ALQUXDciCxGHUUDyLmZbgkmAgjwAt
+         qEoWfwnIq3lyx9vc0XIZvFyIxwS7TR3t3ezLRCw2SYjvQZT16MBDYWDzJTbKp23GAxHH
+         aqA/rD7BuUTCBzAbmN0g8RwsgrabpoH4AYYn+0cjH5Z7CxhNywFOIh/bMsDh2WioQYHs
+         bxiQ==
+X-Gm-Message-State: AOAM532XPfsk++tFEuJ8/OT01fv8sXA9Q+qUnBJhL8ic8yauVpWOGpYP
+        cXwEvmasEC8/Ny2Pezc2ykF/O9/EnY+mDhwyDGfszn7rlNln3Z3SdXB8cU9IX4SgZlPpisnLb6i
+        1UjCnI+U8IazfEqX4pFSN6H7Dd4y4rLE5O66YmF0=
+X-Received: by 2002:a2e:8691:: with SMTP id l17mr10288234lji.119.1638434467077;
+        Thu, 02 Dec 2021 00:41:07 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwOzAYA0rXNf6qxmuG4HJayRcLcb2MW0+iM9hyKq55/nQxtJmM0dNWEAgdHZ4YJPVsPd578gA==
+X-Received: by 2002:a2e:8691:: with SMTP id l17mr10288212lji.119.1638434466896;
+        Thu, 02 Dec 2021 00:41:06 -0800 (PST)
 Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id z14sm260458lfg.173.2021.12.02.00.39.30
+        by smtp.gmail.com with ESMTPSA id cf34sm260062lfb.222.2021.12.02.00.41.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Dec 2021 00:39:31 -0800 (PST)
-Message-ID: <2875d5c8-dc98-0e3c-41b8-c71bd439ced4@canonical.com>
-Date:   Thu, 2 Dec 2021 09:39:30 +0100
+        Thu, 02 Dec 2021 00:41:06 -0800 (PST)
+Message-ID: <c6a44fd1-ad48-06cc-4a96-818ca124afca@canonical.com>
+Date:   Thu, 2 Dec 2021 09:41:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.3.1
-Subject: Re: [PATCH 3/4] mmc: dw_mmc: Add quirk for extended data read timeout
+Subject: Re: [PATCH 1/4] dt-bindings: mmc: exynos-dw-mshc: Add support for
+ ARTPEC-8
 Content-Language: en-US
 To:     =?UTF-8?Q?M=c3=a5rten_Lindahl?= <marten.lindahl@axis.com>,
         Ulf Hansson <ulf.hansson@linaro.org>,
@@ -70,9 +71,9 @@ Cc:     Doug Anderson <dianders@google.com>, kernel@axis.com,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
 References: <20211201153804.27655-1-marten.lindahl@axis.com>
- <20211201153804.27655-4-marten.lindahl@axis.com>
+ <20211201153804.27655-2-marten.lindahl@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20211201153804.27655-4-marten.lindahl@axis.com>
+In-Reply-To: <20211201153804.27655-2-marten.lindahl@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -80,145 +81,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 01/12/2021 16:38, Mårten Lindahl wrote:
-> Current dw_mci driver supports a TMOUT register which consists of a 24
-> bit field (TMOUT[31:8]) for the DATA_TIMEOUT. The maximum value of this
-> field is 0xFFFFFF, which with a 200MHz clock will give a full DRTO of:
+> The ARTPEC-8 SoC has a DWMMC controller that is compatible with the
+> Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
+> does not support HS400 and has extended data read timeout.
 > 
-> 0xFFFFFF / 200000000 => ~84 ms
-> 
-> However, the ARTPEC-8 SoC DWMMC IP version has a TMOUT register with an
-> extended DATA_TIMEOUT field, which supports longer timers for the DRTO.
-> In this version the DATA_TIMEOUT field is split into two, which with the
-> same 200MHz clock as above will allow a maximum timeout of:
-> 
-> ((TMOUT[10:8] -1) * 0xFFFFFF + TMOUT[31:11] * 8) / 200000000 => ~587 ms
-> 
-> Add a quirk to support this. The quirk is enabled for ARTPEC-8 SoCs.
+> Add compatibility string "samsung,artpec8-dw-mshc" for ARTPEC-8.
 > 
 > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
 > ---
->  drivers/mmc/host/dw_mmc-exynos.c |  5 +++++
->  drivers/mmc/host/dw_mmc.c        | 33 ++++++++++++++++++++++++++++----
->  drivers/mmc/host/dw_mmc.h        |  7 +++++++
->  3 files changed, 41 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/drivers/mmc/host/dw_mmc-exynos.c b/drivers/mmc/host/dw_mmc-exynos.c
-> index cae7c94b5d6e..6ae9c0ec1282 100644
-> --- a/drivers/mmc/host/dw_mmc-exynos.c
-> +++ b/drivers/mmc/host/dw_mmc-exynos.c
-> @@ -127,6 +127,11 @@ static int dw_mci_exynos_priv_init(struct dw_mci *host)
->  				DQS_CTRL_GET_RD_DELAY(priv->saved_strobe_ctrl);
->  	}
->  
-> +	if (priv->ctrl_type == DW_MCI_TYPE_ARTPEC8) {
-> +		/* Quirk needed for ARTPEC-8 SoCs */
-> +		host->quirks |= DW_MMC_QUIRK_EXTENDED_TMOUT;
-> +	}
-> +
->  	host->bus_hz /= (priv->ciu_div + 1);
->  
->  	return 0;
-> diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-> index f2a14a434bef..45ea9fd97a6a 100644
-> --- a/drivers/mmc/host/dw_mmc.c
-> +++ b/drivers/mmc/host/dw_mmc.c
-> @@ -1289,6 +1289,7 @@ static void dw_mci_set_data_timeout(struct dw_mci *host,
->  {
->  	u32 clk_div, tmout;
->  	u64 tmp;
-> +	unsigned int tmp2;
->  
->  	clk_div = (mci_readl(host, CLKDIV) & 0xFF) * 2;
->  	if (clk_div == 0)
-> @@ -1301,10 +1302,28 @@ static void dw_mci_set_data_timeout(struct dw_mci *host,
->  	tmout = 0xFF; /* Set maximum */
->  
->  	/* TMOUT[31:8] (DATA_TIMEOUT) */
-> -	if (!tmp || tmp > 0xFFFFFF)
-> -		tmout |= (0xFFFFFF << 8);
-> -	else
-> -		tmout |= (tmp & 0xFFFFFF) << 8;
-> +	if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT) {
-> +		/*
-> +		 * Extended HW timer (max = 0x6FFFFF2):
-> +		 * ((TMOUT[10:8] - 1) * 0xFFFFFF + TMOUT[31:11] * 8)
-> +		 */
-> +		if (!tmp || tmp > 0x6FFFFF2)
-> +			tmout |= (0xFFFFFF << 8);
-> +		else {
-> +			/* TMOUT[10:8] */
-> +			tmp2 = (((unsigned int)tmp / 0xFFFFFF) + 1) & 0x7;
-> +			tmout |= tmp2 << 8;
-> +
-> +			/* TMOUT[31:11] */
-> +			tmp = tmp - ((tmp2 - 1) * 0xFFFFFF);
-> +			tmout |= (tmp & 0xFFFFF8) << 8;
-> +		}
-> +	} else {
-> +		if (!tmp || tmp > 0xFFFFFF)
-> +			tmout |= (0xFFFFFF << 8);
-> +		else
-> +			tmout |= (tmp & 0xFFFFFF) << 8;
-> +	}
->  
->  	mci_writel(host, TMOUT, tmout);
->  	dev_dbg(host->dev, "timeout_ns: %u => TMOUT[31:8]: 0x%#08x",
-> @@ -2005,9 +2024,15 @@ static void dw_mci_set_drto(struct dw_mci *host)
->  	if (drto_div == 0)
->  		drto_div = 1;
->  
-> +	if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> +		drto_clks = (((drto_clks & 0x7) - 1) * 0xFFFFFF) +
-> +			((drto_clks & 0xFFFFF8));
-> +
->  	drto_ms = DIV_ROUND_UP_ULL((u64)MSEC_PER_SEC * drto_clks * drto_div,
->  				   host->bus_hz);
->  
-> +	dev_dbg(host->dev, "drto_ms: %u\n", drto_ms);
-> +
->  	/* add a bit spare time */
->  	drto_ms += 10;
->  
-> diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
-> index 771d5afa3136..071f4479f166 100644
-> --- a/drivers/mmc/host/dw_mmc.h
-> +++ b/drivers/mmc/host/dw_mmc.h
-> @@ -118,6 +118,7 @@ struct dw_mci_dma_slave {
->   * @part_buf: Simple buffer for partial fifo reads/writes.
->   * @push_data: Pointer to FIFO push function.
->   * @pull_data: Pointer to FIFO pull function.
-> + * @quirks: Set of quirks that apply to specific versions of the IP.
->   * @vqmmc_enabled: Status of vqmmc, should be true or false.
->   * @irq_flags: The flags to be passed to request_irq.
->   * @irq: The irq value to be passed to request_irq.
-> @@ -223,6 +224,9 @@ struct dw_mci {
->  	void (*push_data)(struct dw_mci *host, void *buf, int cnt);
->  	void (*pull_data)(struct dw_mci *host, void *buf, int cnt);
->  
-> +	/* Workaround flags */
+> diff --git a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
+> index 0419a63f73a0..161be451a1f0 100644
+> --- a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
+> +++ b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
+> @@ -22,6 +22,8 @@ Required Properties:
+>  	  specific extensions.
+>  	- "samsung,exynos7-dw-mshc-smu": for controllers with Samsung Exynos7
+>  	  specific extensions having an SMU.
+> +	- "samsung,artpec8-dw-mshc": for controllers with ARTPEC-8 specific
+> +	  extensions.
 
-No need for this comment - you already described the field in kerneldoc.
-
-> +	u32			quirks;
-> +
->  	bool			vqmmc_enabled;
->  	unsigned long		irq_flags; /* IRQ flags */
->  	int			irq;
-> @@ -274,6 +278,9 @@ struct dw_mci_board {
->  	struct dma_pdata *data;
->  };
->  
-> +/* Support for longer data read timeout */
-> +#define DW_MMC_QUIRK_EXTENDED_TMOUT	(1<<0)
-
-BIT()
-
-> +
->  #define DW_MMC_240A		0x240a
->  #define DW_MMC_280A		0x280a
->  
-> 
-
+Artpec8 does not look like Samsung, so vendor prefix does not match.
 
 Best regards,
 Krzysztof
