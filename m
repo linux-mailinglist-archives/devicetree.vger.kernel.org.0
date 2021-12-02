@@ -2,73 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 102A9466792
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 17:06:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 011804667A6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 17:09:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242221AbhLBQJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 11:09:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59310 "EHLO
+        id S1359364AbhLBQNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 11:13:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347259AbhLBQJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 11:09:28 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC2DC06174A
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 08:06:05 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id w1so23570edc.6
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 08:06:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=r9BCMwjO86HB40ONAVYZeL2fOZeLbMIo8AUDn8JOWzI=;
-        b=e1cUMy8vAbZrdKne+2GrsU3cb/Lhk4FddaqkgJmQcjeq1h7dNMxWzgD2J0iBlBIIEi
-         ZjQTJfazkFxXnK/nMWxjbjUv/Mo1x51OvkZUj6KkmWG3oGTIY//HrWwAemZU+IWlqZlZ
-         OhvF4UEc/S05ZM+jcfeJnwRo9QNIZW70BjNzckmLlft8X/MHtMWyQmm1a1AuySNAOmrl
-         ATBiLnsbWVvjWW+yU7hn8cgHz8XmfJceh9+xIY7FkqvgW2tEw3/XdnBfhyWYzk49q1cc
-         9JMRp7MM80C3zzlIJocwUO9HYgGbBpfjpnx+J5q/IGq/sqv/UEFiRUfSGBa1k2+ncxR7
-         mmTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=r9BCMwjO86HB40ONAVYZeL2fOZeLbMIo8AUDn8JOWzI=;
-        b=aEUWjDdAxaNF79tUvA2udzlUou8mcAg/dNcf1EiyePRRiitXtysMRIVMLoTF7Z2TwE
-         65Okj3rzw2VepZp2Dx/ElUldfcJ7lFzNxrZ3SlWVW8uBXojh+7TQMgGAKtR8TZfw7Yhd
-         6GqXk/lludA7j8grv2Tqz7ERR76TiHZYqkPTspNjAFNmxCDvJhWJqDi/MgnzeDscQAJf
-         cbi7mGF0/tkPZJ3ocT2IWpUpBq46xQovq1Ma7VZJAAjfcXAMnkgB1dbu5qNFv9s6rky+
-         vxb68fG5d7szDOJnQfyHoNu0pAFHMDzrtnwL3ZCJuAvxhK6KOOl24DbGkM+9uI2eAj0e
-         ZFbA==
-X-Gm-Message-State: AOAM532r1iRV1ysH46rHPt34Q3VpyxxSbeNdMUMTdtEtlXWi2GZq4/kj
-        ApUp9P1V/d9TdMBE1qKkSe++g+zH3Id/xAzB4Vw=
-X-Google-Smtp-Source: ABdhPJzJNLpIISDe3gfq8ZkWlgO9SsS4MM0CC90VIbNVH7hZfrmrH10Q3pfhuaGtWO/3st19brlvARlFwNt9Za0ciNk=
-X-Received: by 2002:a50:9ea6:: with SMTP id a35mr18509977edf.400.1638461163247;
- Thu, 02 Dec 2021 08:06:03 -0800 (PST)
+        with ESMTP id S1359379AbhLBQNL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 11:13:11 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B09BC06174A
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 08:09:48 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1msoeQ-0000jl-Pm; Thu, 02 Dec 2021 17:09:38 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1msoeO-00057P-NW; Thu, 02 Dec 2021 17:09:36 +0100
+Date:   Thu, 2 Dec 2021 17:09:36 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree@vger.kernel.org, Sascha Hauer <kernel@pengutronix.de>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH 10/12] arm64: dts: rockchip: rk3568-evb: Enable VOP2 and
+ hdmi
+Message-ID: <20211202160936.GX28260@pengutronix.de>
+References: <20211117143347.314294-1-s.hauer@pengutronix.de>
+ <CAL_JsqL7C32FB47=xfUtndtCvfOQx7f3Gq0O0FqZxRoeS1fNSQ@mail.gmail.com>
+ <20211202153449.GG25697@pengutronix.de>
+ <6427725.puVkvWICD3@diego>
 MIME-Version: 1.0
-From:   Dweb Fan <dwebfan@gmail.com>
-Date:   Thu, 2 Dec 2021 08:05:52 -0800
-Message-ID: <CA+HNRgDCfto-Y=NdchLZ=GK_xFru1ZNYJEp9g5jO_rdNLGvV0g@mail.gmail.com>
-Subject: help on patch Netgear R6300v2 router to enable USB disk mount
-To:     f.fainelli@gmail.com
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6427725.puVkvWICD3@diego>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 17:03:14 up 287 days, 19:27, 151 users,  load average: 0.62, 0.47,
+ 0.25
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Florian Fainelli,
+Hi Heiko,
 
-I'm trying to enable USB drive on my Netgear R6300v2 router, and got
-one issue I described in
-https://forum.openwrt.org/t/usb2-usb3-on-netgear-r6300v2-doesn-t-detect-any-devices/108385/15.
-Rafal Milecki, who is from openwrt community and also CC in the email,
-suggests that I consult you and see if you or someone can provide one
-kernel patch modifying bcm4708-netgear-r6300-v2.dts, then he can
-backport to OpenWrt. Sorry if the request is too much, please let me
-know if you need any more information, or I need to consult other
-people for help!
+On Thu, Dec 02, 2021 at 04:41:17PM +0100, Heiko Stübner wrote:
+> Hi Sascha,
+> 
+> Am Donnerstag, 2. Dezember 2021, 16:34:49 CET schrieb Sascha Hauer:
+> > On Wed, Nov 17, 2021 at 09:19:38AM -0600, Rob Herring wrote:
+> > > On Wed, Nov 17, 2021 at 8:34 AM Sascha Hauer <s.hauer@pengutronix.de> wrote:
+> > > >
+> > > > This enabled the VOP2 display controller along with hdmi and the
+> > > > required port routes which is enough to get a picture out of the
+> > > > hdmi port of the board.
+> > > >
+> > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > ---
+> > > >  .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 24 +++++++++++++++++++
+> > > >  1 file changed, 24 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+> > > > index 184e2aa2416af..156e001492173 100644
+> > > > --- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
+> > > > @@ -106,6 +106,12 @@ &gmac1m1_rgmii_clk
+> > > >         status = "okay";
+> > > >  };
+> > > >
+> > > > +&hdmi {
+> > > > +       status = "okay";
+> > > > +       avdd-0v9-supply = <&vdda0v9_image>;
+> > > > +       avdd-1v8-supply = <&vcca1v8_image>;
+> > > > +};
+> > > > +
+> > > >  &i2c0 {
+> > > >         status = "okay";
+> > > >
+> > > > @@ -390,3 +396,21 @@ &sdmmc0 {
+> > > >  &uart2 {
+> > > >         status = "okay";
+> > > >  };
+> > > > +
+> > > > +&vop {
+> > > > +       status = "okay";
+> > > > +       assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
+> > > > +       assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
+> > > > +};
+> > > > +
+> > > > +&vop_mmu {
+> > > > +       status = "okay";
+> > > > +};
+> > > > +
+> > > > +&hdmi_in_vp0 {
+> > > > +       status = "okay";
+> > > > +};
+> > > > +
+> > > > +&vp0_out_hdmi {
+> > > > +       status = "okay";
+> > > > +};
+> > > 
+> > > You can accomplish the same thing already with:
+> > > 
+> > > &vp0_out_hdmi {
+> > >   remote-endpoint = <&hdmi_in_vp0>;
+> > > };
+> > 
+> > My idea was to describe all possible connections in the dtsi file and
+> > let the board dts writer only en/disable the needed connections. When
+> > the connections are specified in the dts file then writing it is more
+> > difficult and error prone.
+> > 
+> > > 
+> > > or:
+> > > 
+> > > &vp0_out_hdmi {
+> > >   /delete-property/ remote-endpoint;
+> > > };
+> > 
+> > With this I have to change all connections that I don't need. With
+> > status = "okay" I have to change all connections that I actually do
+> > need, which will be much easier to read and write.
+> > 
+> > I'll stick to the status = "okay" method for the next round, maybe I can
+> > still convince you ;)
+> > 
+> > If it's the 'status' property you don't like being used when it's not a
+> > device that is enabled/disabled, then every other name would be fine
+> > with me as well.
+> 
+> hmm, we do have code in the rockchip drm-driver to find out
+> if the device at the end of a graph-connection is disabled or not [0] ,
+> So on previous Rockchip socs, there are already all connections
+> established, and the driver weeds out the disabled ones.
+> 
+> So I'm wondering what is missing to use that in a vop2 context?
 
-Thanks for your attention!
+The vop2 has three video ports (crtcs) instead of only one. All three are
+described in the device tree and each of them has a of_graph connection
+to the different encoders, so something like:
 
-Best regards
-Dweb
+vp0 <-> hdmi
+vp0 <-> mipi
+vp1 <-> hdmi
+vp1 <-> mipi
+vp2 <-> hdmi
+vp2 <-> mipi
+
+Enabling just vp0 <-> hdmi means only the first video port is can do
+hdmi. Different constraints in the clock tree (hdmi reference clock is
+hardwired to hpll, not enough PLLs to put all video ports on independent
+ones) prevent us from just allowing all connections.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
