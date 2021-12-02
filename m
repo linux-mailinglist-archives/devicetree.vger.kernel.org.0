@@ -2,176 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D32C64662E9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F106D466316
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 13:07:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357567AbhLBMAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 07:00:15 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:47151 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1357554AbhLBMAM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 07:00:12 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 6B5965801C3;
-        Thu,  2 Dec 2021 06:56:49 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 02 Dec 2021 06:56:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-         h=from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm2; bh=FvePu4DfaAI5Y
-        pELNve5G7W9fZNbhwwYhYrMJeaayx4=; b=KM9Tlfq7ZmpHTvPmaRA34UC0sPEDr
-        vw2MhIE4MjaCdy8UYkIDSJbYG/a7g00m74637K1pxIE1U0hg6gkv055KxctnDaJY
-        3CjmVh6p4DLC7K9XOBfHHMSSZxPEytaajWHSm6IEApeGtUSe0IuwBtBg6q0uVzVb
-        TABaJ61R8V8VU4X7UdM7sPIhELt9p5lQwxPGc720frZD28hIqVAm109vAXN6WlSL
-        9RmJtNcGUzCa23bijVIE5RO1vQaSUkbyHda+pMAEZkYk03Uujk8Seo7EoKtRyKb+
-        S51DoDAyBB3uqYCf+RbV3LGYJjnnAwuo7gGHp1kB26YwUpGzyY6efghmw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=FvePu4DfaAI5YpELNve5G7W9fZNbhwwYhYrMJeaayx4=; b=OcL96ON+
-        2kK5nKID4pKY8sAR2jgd055cIdIfEfE50Jv23ZYgSf33eKMgAKzlfW2XdJIxTcxy
-        4y/R+lSbf2NX4uC3o9mIcn/NSllVmoJUarNlaF9PZNJyvg7A8ierXHhpiTCcvZ1k
-        GEUnPzwf8I9JBoAanlVyUp9Z1YXKsclv5hp17w4JkZRd5/SLV9GsT10fqjz2nRff
-        bFSgNYfDXzLzVYxHeD/3D08t1Y4BmKy/2n8WGnATpPnLdXgQwAY7WXlAX4vX0QDe
-        vbjzWCxGrzlzvs0B74PdZtt2W8bQUUJwY0Z7yYMHj9GuOeln6mMgVLBVjDC157sT
-        eM1Q9zrR/5yUdA==
-X-ME-Sender: <xms:gbSoYVY_ULyAdOTcAMS-Jz4Os2TigV2whre8e34ZE4yDrGlUhbji-A>
-    <xme:gbSoYcZXUIaZOVKZNrtXZtHRENOc98ax5AdlraVs0iI1q8DeOrIoHZT_MrXfOUps3
-    _RmE6q0e1HWU2oK_Dc>
-X-ME-Received: <xmr:gbSoYX-b-fRFHYvk4LHntCZ0RrObWK6TvuB1IyKZlCmRZkErr8U1y9ip5_U1PFUbF2RB5AfQvdMyzqh_aiXLszz0EQ3c4KbgXBq7G0DfwfQns-o>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieehgdefgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetlhhishhtrghirhcuhfhrrghntghishcuoegrlhhishhtrghi
-    rhesrghlihhsthgrihhrvdefrdhmvgeqnecuggftrfgrthhtvghrnhepgeegtdetjeekge
-    eguefgheeuvedugedvteejveeiudegvddtkeffkeehtdetudfhnecuvehluhhsthgvrhfu
-    ihiivgepvdenucfrrghrrghmpehmrghilhhfrhhomheprghlihhsthgrihhrsegrlhhish
-    htrghirhdvfedrmhgv
-X-ME-Proxy: <xmx:gbSoYTq78k_wz74P_YUwEIa18MBW3YlnZsTvFhYYJd81HseoC4OlYg>
-    <xmx:gbSoYQqYS0CWN0cveqIR7MQUUiuLVvvOGgy-oOUr1cFZT7J1ohZuSQ>
-    <xmx:gbSoYZRU56AB5Hj0IBtF_PrWxGVAcnoSUhG0AvlCEltMmRyj_0-wTQ>
-    <xmx:gbSoYbAZt0MRhZgp3ThTuzpiUsr-_lIde68L3OsSPTE_6L_FHPfukg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 2 Dec 2021 06:56:43 -0500 (EST)
-From:   Alistair Francis <alistair@alistair23.me>
-To:     benjamin.tissoires@redhat.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, dmitry.torokhov@gmail.com
-Cc:     Ping.Cheng@wacom.com, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, alistair23@gmail.com,
-        tatsunosuke.tobita@wacom.com, linux-input@vger.kernel.org,
-        Jason.Gerecke@wacom.com, linux-kernel@vger.kernel.org,
-        jikos@kernel.org, martin.chen@wacom.com,
-        devicetree@vger.kernel.org,
-        Alistair Francis <alistair@alistair23.me>
-Subject: [PATCH v15 3/3] ARM: dts: imx7d: remarkable2: add wacom digitizer device
-Date:   Thu,  2 Dec 2021 21:56:22 +1000
-Message-Id: <20211202115622.40153-4-alistair@alistair23.me>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <20211202115622.40153-1-alistair@alistair23.me>
-References: <20211202115622.40153-1-alistair@alistair23.me>
+        id S241798AbhLBMLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 07:11:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60550 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346505AbhLBMLK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 07:11:10 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DE92C06174A;
+        Thu,  2 Dec 2021 04:07:48 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id F31B51F464A8
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638446866; bh=pPyD6PF5rFuQOiYOC4+IpwATefnYR78OfW8Ax9aUOMs=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=NcQEqFD9oH8mvt2zCAm3WVtnoZablrIDtMQfHyqK5qlr76zXDuOrHrs3ZaJpgHoKf
+         bTgbuO4n21Cs1J8ib6opRTX8oPiw0YqYvKctLyFS7rRATF3nUhS8u2QzIJFGwKgxWE
+         gBmWKHN45nPI0dUWK+pVP+7T3QkOOqD5RuI8piwc0OlIXql6Fn9Z3H+aCTbME0KAZg
+         UtNx5atp/WgxaobOaT7HGFdirD1ATK46yGjcJSLM0bEKu/N8SNGwY2RO52VWD0yzUP
+         rf8hZVfkAqg2A/MlzMAv6C91+aNnp0c5Jni90o1Hafn9qrYQkZ6pS6lh/eqfFLA7sy
+         U2i1aqXkmv/7A==
+Subject: Re: [PATCH v9 7/7] media: platform: mtk-mdp3: add Mediatek MDP3
+ driver
+To:     moudy ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        menghui.lin@mediatek.com, sj.huang@mediatek.com,
+        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
+        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
+        river.cheng@mediatek.com, srv_heupstream@mediatek.com
+References: <20211201095031.31606-1-moudy.ho@mediatek.com>
+ <20211201095031.31606-8-moudy.ho@mediatek.com>
+ <103b1664-d04c-c1fc-ff4c-e2c92ce45ee8@collabora.com>
+ <0d3f33e26b67cabc82246c49c0e952194a9a88c1.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Message-ID: <038d4a24-7d61-ebb2-796f-63b59001ee54@collabora.com>
+Date:   Thu, 2 Dec 2021 13:07:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.13.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <0d3f33e26b67cabc82246c49c0e952194a9a88c1.camel@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Alistair Francis <alistair@alistair23.me>
----
- arch/arm/boot/dts/imx7d-remarkable2.dts | 59 +++++++++++++++++++++++++
- 1 file changed, 59 insertions(+)
+Il 02/12/21 04:35, moudy ho ha scritto:
+> On Wed, 2021-12-01 at 11:37 +0100, AngeloGioacchino Del Regno wrote:
+>> Il 01/12/21 10:50, Moudy Ho ha scritto:
+>>> This patch adds driver for Mediatek's Media Data Path ver.3 (MDP3).
+>>> It provides the following functions:
+>>>     color transform, format conversion, resize, crop, rotate, flip
+>>>     and additional image quality enhancement.
+>>>
+>>> The MDP3 driver is mainly used for Google Chromebook products to
+>>> import the new architecture to set the HW settings as shown below:
+>>>     User -> V4L2 framework
+>>>       -> MDP3 driver -> SCP (setting calculations)
+>>>         -> MDP3 driver -> CMDQ (GCE driver) -> HW
+>>>
+>>> Each modules' related operation control is sited in mtk-mdp3-comp.c
+>>> Each modules' register table is defined in file with "mdp_reg_"
+>>> prefix
+>>> GCE related API, operation control  sited in mtk-mdp3-cmdq.c
+>>> V4L2 m2m device functions are implemented in mtk-mdp3-m2m.c
+>>> Probe, power, suspend/resume, system level functions are defined in
+>>> mtk-mdp3-core.c
+>>>
+>>> Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+>>> Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
+>>> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>> ---
+>>>    drivers/media/platform/Kconfig                |   19 +
+>>>    drivers/media/platform/Makefile               |    2 +
+>>>    drivers/media/platform/mtk-mdp3/Makefile      |    6 +
+>>>    .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   19 +
+>>>    drivers/media/platform/mtk-mdp3/mdp_reg_isp.h |   27 +
+>>>    .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |   65 +
+>>>    drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |   39 +
+>>>    .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |   47 +
+>>>    .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |   55 +
+>>>    drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  280 ++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  514 +++++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   46 +
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1264
+>>> +++++++++++++++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  147 ++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  338 +++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   76 +
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  789 ++++++++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   49 +
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  737 ++++++++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  372 +++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  312 ++++
+>>>    .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   78 +
+>>>    22 files changed, 5281 insertions(+)
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
+>>>    create mode 100644 drivers/media/platform/mtk-
+>>> mdp3/mdp_reg_ccorr.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_isp.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> cmdq.c
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> cmdq.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> comp.c
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> comp.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> core.c
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> core.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> regs.c
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-
+>>> regs.h
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
+>>>    create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
+>>>
+>>
+>> snip...
+>>
+>>> diff --git a/drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+>>> b/drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+>>> new file mode 100644
+>>> index 000000000000..a643f3ee928b
+>>> --- /dev/null
+>>> +++ b/drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+>>> @@ -0,0 +1,514 @@
+>>
+>> Looks like you forgot to check my review comments to this entire
+>> file.
+>> Can you please send a new version after applying the changes to this
+>> file
+>> suggested in my review of series v8?
+> Hi Angelo,
+> 
+> Thanks for the reminder and sorry for my carelessness. Considering the
+> compatibility of subsequent chips and function independence, I plan to
+> move those mutex mod definition to the corresponding driver, and
+> release next version ASAP.
+> 
+> Thanks & Regards,
+> Moudy Ho
+>> Thanks.
+> 
 
-diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-index 89cbf13097a4..a2a91bfdd98e 100644
---- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-+++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-@@ -34,6 +34,19 @@ reg_brcm: regulator-brcm {
- 		startup-delay-us = <150>;
- 	};
- 
-+	reg_digitizer: regulator-digitizer {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_3V3_DIGITIZER";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pinctrl_digitizer_reg>;
-+		pinctrl-1 = <&pinctrl_digitizer_reg>;
-+		gpio = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		startup-delay-us = <100000>; /* 100 ms */
-+	};
-+
- 	wifi_pwrseq: wifi_pwrseq {
- 		compatible = "mmc-pwrseq-simple";
- 		pinctrl-names = "default";
-@@ -51,6 +64,26 @@ &clks {
- 	assigned-clock-rates = <0>, <32768>;
- };
- 
-+&i2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	wacom_digitizer: digitizer@9 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x09>;
-+		hid-descr-addr = <0x01>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_wacom>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		vdd-supply = <&reg_digitizer>;
-+	};
-+};
-+
- &snvs_pwrkey {
- 	status = "okay";
- };
-@@ -117,6 +150,25 @@ &wdog1 {
- 	fsl,ext-reset-output;
- };
- 
-+&iomuxc_lpsr {
-+	pinctrl_digitizer_reg: digitizerreggrp {
-+		fsl,pins = <
-+			/* DIGITIZER_PWR_EN */
-+			MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x14
-+		>;
-+	};
-+
-+	pinctrl_wacom: wacomgrp {
-+		fsl,pins = <
-+			/*MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x00000014 FWE */
-+			MX7D_PAD_LPSR_GPIO1_IO04__GPIO1_IO4	0x00000074 /* PDCTB */
-+			MX7D_PAD_LPSR_GPIO1_IO01__GPIO1_IO1	0x00000034 /* WACOM INT */
-+			/*MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x00000014 WACOM PWR ENABLE */
-+			/*MX7D_PAD_LPSR_GPIO1_IO00__GPIO1_IO0	0x00000074 WACOM RESET */
-+		>;
-+	};
-+};
-+
- &iomuxc {
- 	pinctrl_brcm_reg: brcmreggrp {
- 		fsl,pins = <
-@@ -125,6 +177,13 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13	0x14
- 		>;
- 	};
- 
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C1_SDA__I2C1_SDA		0x4000007f
-+			MX7D_PAD_I2C1_SCL__I2C1_SCL		0x4000007f
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX	0x79
--- 
-2.31.1
 
+Hi Moudy,
+
+Don't worry, we're humans, it happens to the best. We're always here to improve!
+Thank you for sending the v10 by the way, I will review it as soon as I can.
+
+Regards,
+- Angelo
