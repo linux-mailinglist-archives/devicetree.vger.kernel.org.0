@@ -2,136 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18787465D49
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 05:17:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C82D465D6C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 05:30:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355321AbhLBEVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 23:21:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39028 "EHLO
+        id S1355431AbhLBEdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 23:33:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355398AbhLBEVG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 23:21:06 -0500
-Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D384C061759;
-        Wed,  1 Dec 2021 20:17:42 -0800 (PST)
-Received: by mail-io1-xd2d.google.com with SMTP id b187so22629035iof.11;
-        Wed, 01 Dec 2021 20:17:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+ap+Y2Tz8z5LcHzGO6SA2tif2EyiHYR6r3DF4Am/aoA=;
-        b=IMVFwDqLjFJZ5830/8WtIIy574DKHzJnA5rl6QuLvDGsR7M9+Tz/ukHLXKwNgW0RQJ
-         gYjjNpYjne+UzkYi43KonHunWQOWVUKfyXmZQBp/bzw6njVIyW91+ha6rNQ+HDYz51B1
-         qlgtGMqqY12hY+NekMTiYMAqFzd4QrWlKO3D4X6nQa9SdJ2lMA2OsiR9un7TJmtqgy29
-         i3/wEsM6CnJpG11zAZbTh52FVhUFOXx/AIXC+sYGVkfjw+1UF3dABRLXfcAHuG6q3Hlk
-         4JaM8IOYdIuE10kSrx4+ZxJe0SOzE5pHqxmfbYHMWg4Jltb5eLjH3okjONqSB59U6LzY
-         z/lA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+ap+Y2Tz8z5LcHzGO6SA2tif2EyiHYR6r3DF4Am/aoA=;
-        b=5WulSAdYxxAmnheISsszz50y0DVciGg7nh3nd0P4FjmDJIodu/jZpO/25+a8w2thLA
-         zDNb68SHgKShROvUJpm7sSnocPeO84If4K3vopWcoZnyTJcDpR9VtFfJMv55xC24iUOd
-         zhezgTeNjrv3iwJs+Mwz4zZoT3eA/u/PyARhllIc6Qhs94CpNqLfRtnz2f4scTzCEnFk
-         4GDzcYtMpUyQ6//q3xAP9/j+0sJdEbxkWF+G+LhRDy8yHADIaZfraHu+gSYbu2IydmN0
-         DJreao06ZYoX8bx76J+xPAbxkFnMgSCNbr+gV9yMhcHs23OYI/H5S8KHukA9jyj9+ePk
-         p7+g==
-X-Gm-Message-State: AOAM531n4LPpNvAoRjd52Dl/dmakwo8B0GL/pT44dExUEKMtu3ImS51h
-        lzpZbABuixWR4FSVhctVI+Tqa1UANbobOezV
-X-Google-Smtp-Source: ABdhPJww0AmjAfFnMxyfx6OuE4CZBudf33HaTR6dEqM5D1jeGQF3UfUTzKqHHMGShMO/7lQNUKwPEg==
-X-Received: by 2002:a05:6602:45d:: with SMTP id e29mr13868300iov.202.1638418661156;
-        Wed, 01 Dec 2021 20:17:41 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:c405:2c26:c2b8:506e])
-        by smtp.gmail.com with ESMTPSA id t14sm1030603ilh.62.2021.12.01.20.17.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Dec 2021 20:17:40 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-media@vger.kernel.org
-Cc:     ezequiel@vanguardiasur.com.ar, tharvey@gateworks.com,
-        nicolas@ndufresne.ca, aford@beaconembedded.com,
-        hverkuil-cisco@xs4all.nl, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-staging@lists.linux.dev
-Subject: [RFC V3 2/2] arm64: dts: imx8mm: Enable VPU-G1 and VPU-G2
-Date:   Wed,  1 Dec 2021 22:16:27 -0600
-Message-Id: <20211202041627.291625-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20211202041627.291625-1-aford173@gmail.com>
-References: <20211202041627.291625-1-aford173@gmail.com>
+        with ESMTP id S1355426AbhLBEdn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 23:33:43 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082A5C061574;
+        Wed,  1 Dec 2021 20:30:21 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 53B9DCE21AD;
+        Thu,  2 Dec 2021 04:30:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFB4C53FCC;
+        Thu,  2 Dec 2021 04:30:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638419417;
+        bh=xOtsh6uB0JwyVP3cPswcBfduh5x3rcKpeZ3dUk4ARhw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TTjkRP+XzHN6asg+o1L5lUZNHiqz2zriD1fGUvY2Uk+HB0I5toXBuzyIWJNPCDR1W
+         xTs+fYr8lQMfWz5ra1ZHqcvt8YEhr/7Re0Rwz5Vr8jNTs4zSKoWh/cojqfxUSLOKKk
+         buTrtxijEZlyZKaki2UgM/Sgl9hfL10MWtMT6PQWWe/XH1dSpV7Rnt7Ivx2+vyRNjx
+         TsMh56AAmelDz4Cia+OjadKa3EqelggrB9LHDdNbYkc/kZLBVpywRXioi/4Dkm7X3E
+         NupVyBlAHRPAk3+OZgpKYehnjxuqJI+XfoMw4FJ8pc8vNyt77J8+8//u3JXtE3G97M
+         GhyA8iFtBsM+Q==
+Date:   Thu, 2 Dec 2021 10:00:13 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     l.stach@pengutronix.de, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, marcel.ziswiler@toradex.com,
+        tharvey@gateworks.com, kishon@ti.com, robh@kernel.org,
+        galak@kernel.crashing.org, shawnguo@kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: [PATCH v6 5/8] phy: freescale: pcie: Initialize the imx8 pcie
+ standalone phy driver
+Message-ID: <YahL1TMkt8S0RNX5@matsya>
+References: <1637200489-11855-1-git-send-email-hongxing.zhu@nxp.com>
+ <1637200489-11855-6-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1637200489-11855-6-git-send-email-hongxing.zhu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable two hardware Hantro decoders called G1 and G2.
+On 18-11-21, 09:54, Richard Zhu wrote:
+> Add the standalone i.MX8 PCIe PHY driver.
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+> Reviewed-by: Tim Harvey <tharvey@gateworks.com>
+> Tested-by: Tim Harvey <tharvey@gateworks.com>
+> ---
+>  drivers/phy/freescale/Kconfig              |   9 +
+>  drivers/phy/freescale/Makefile             |   1 +
+>  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 237 +++++++++++++++++++++
+>  3 files changed, 247 insertions(+)
+>  create mode 100644 drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> 
+> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> index 320630ffe3cd..e821498b1f7f 100644
+> --- a/drivers/phy/freescale/Kconfig
+> +++ b/drivers/phy/freescale/Kconfig
+> @@ -14,3 +14,12 @@ config PHY_MIXEL_MIPI_DPHY
+>  	help
+>  	  Enable this to add support for the Mixel DSI PHY as found
+>  	  on NXP's i.MX8 family of SOCs.
+> +
+> +config PHY_FSL_IMX8M_PCIE
+> +	tristate "Freescale i.MX8M PCIE PHY"
+> +	depends on OF && HAS_IOMEM
+> +	select GENERIC_PHY
+> +	default ARCH_MXC && ARM64
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+Why should this be default ? We dont do that for new drivers.. You may
+add this to respective config file though...
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index c2f3f118f82e..eb9dcd9d1a31 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -1197,6 +1197,47 @@ gpu_2d: gpu@38008000 {
- 			power-domains = <&pgc_gpu>;
- 		};
- 
-+		vpu_g1: video-codec@38300000 {
-+			compatible = "nxp,imx8mm-vpu";
-+			reg = <0x38300000 0x10000>;
-+			reg-names = "g1";
-+			interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g1";
-+			clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>,
-+				 <&clk IMX8MM_CLK_VPU_DEC_ROOT>;
-+			clock-names = "g1", "bus";
-+			assigned-clocks = <&clk IMX8MM_CLK_VPU_G1>,
-+					  <&clk IMX8MM_CLK_VPU_BUS>,
-+					  <&clk IMX8MM_VPU_PLL_BYPASS>;
-+			assigned-clock-parents = <&clk IMX8MM_VPU_PLL_OUT>,
-+						 <&clk IMX8MM_SYS_PLL1_800M>,
-+						 <&clk IMX8MM_VPU_PLL>;
-+			assigned-clock-rates = <600000000>,
-+					       <800000000>,
-+					       <0>;
-+			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G1>;
-+		};
-+
-+		vpu_g2: video-codec@38310000 {
-+			compatible = "nxp,imx8mm-vpu-g2";
-+			reg = <0x38310000 0x10000>;
-+			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "g2";
-+			clocks = <&clk IMX8MM_CLK_VPU_G2_ROOT>,
-+				 <&clk IMX8MM_CLK_VPU_DEC_ROOT>;
-+			clock-names = "g2",  "bus";
-+			assigned-clocks = <&clk IMX8MM_CLK_VPU_G2>,
-+					 <&clk IMX8MM_CLK_VPU_BUS>,
-+					 <&clk IMX8MM_VPU_PLL_BYPASS>;
-+			assigned-clock-parents = <&clk IMX8MM_VPU_PLL_OUT>,
-+						<&clk IMX8MM_SYS_PLL1_800M>,
-+						<&clk IMX8MM_VPU_PLL>;
-+			assigned-clock-rates = <600000000>,
-+					       <800000000>,
-+					       <0>;
-+			power-domains = <&vpu_blk_ctrl IMX8MM_VPUBLK_PD_G2>;
-+		};
-+
- 		vpu_blk_ctrl: blk-ctrl@38330000 {
- 			compatible = "fsl,imx8mm-vpu-blk-ctrl", "syscon";
- 			reg = <0x38330000 0x100>;
+> +static int imx8_pcie_phy_init(struct phy *phy)
+> +{
+> +	int ret;
+> +	u32 val, pad_mode;
+> +	struct imx8_pcie_phy *imx8_phy = phy_get_drvdata(phy);
+> +
+> +	reset_control_assert(imx8_phy->reset);
+> +
+> +	pad_mode = imx8_phy->refclk_pad_mode;
+> +	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
+> +			   imx8_phy->clkreq_unused ?
+> +			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_AUX_EN,
+> +			   IMX8MM_GPR_PCIE_AUX_EN);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_SSC_EN, 0);
+> +
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
+> +			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
+> +			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
+> +			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
+> +	usleep_range(100, 200);
+> +
+> +	/* Do the PHY common block reset */
+> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+> +			   IMX8MM_GPR_PCIE_CMN_RST,
+> +			   IMX8MM_GPR_PCIE_CMN_RST);
+> +	usleep_range(200, 500);
+> +
+> +
+
+No multi blank line please
+
+> +static struct platform_driver imx8_pcie_phy_driver = {
+> +	.probe	= imx8_pcie_phy_probe,
+> +	.driver = {
+> +		.name	= "imx8-pcie-phy",
+> +		.of_match_table	= imx8_pcie_phy_of_match,
+> +	}
+> +};
+> +module_platform_driver(imx8_pcie_phy_driver);
+> +
+> +MODULE_DESCRIPTION("FSL IMX8 PCIE PHY driver");
+> +MODULE_LICENSE("GPL");
+
+This does not match the SPDX tag you have given
+
 -- 
-2.32.0
-
+~Vinod
