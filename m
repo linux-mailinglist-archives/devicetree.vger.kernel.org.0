@@ -2,146 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 076AA466453
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 14:12:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9882466473
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 14:22:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358238AbhLBNO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 08:14:26 -0500
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:41460 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358191AbhLBNOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 08:14:09 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B2DAHuC048421;
-        Thu, 2 Dec 2021 07:10:17 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1638450617;
-        bh=/NgGi4z2UeQc+qcSMlJU+oGJHEz7+dU8GUdgk8XoMWM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=sgFp+Jl8WOfIyGB5+lRpNatDWq2bOzta78ho3vng5VRO1lhOoRU4uRS7YmjCjqEN+
-         d4AQWZv/0Z+nFYmHLL88T3yFMv1Ol6jMry573iKpLW1Tk3QnBoAXpfTWMrSyEpTS6J
-         lz0+GsOKGErWypINiFtvtsrHBEckjJfr4UfSc/eQ=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B2DAHRH040638
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Dec 2021 07:10:17 -0600
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 2
- Dec 2021 07:10:17 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Thu, 2 Dec 2021 07:10:17 -0600
-Received: from gsaswath-HP-ProBook-640-G5.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B2DA4Kk031324;
-        Thu, 2 Dec 2021 07:10:14 -0600
-From:   Aswath Govindraju <a-govindraju@ti.com>
-CC:     Aswath Govindraju <a-govindraju@ti.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, <linux-can@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] phy: phy-can-transceiver: Add support for setting mux
-Date:   Thu, 2 Dec 2021 18:40:02 +0530
-Message-ID: <20211202131002.12217-3-a-govindraju@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211202131002.12217-1-a-govindraju@ti.com>
-References: <20211202131002.12217-1-a-govindraju@ti.com>
+        id S1346692AbhLBNZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 08:25:49 -0500
+Received: from mail-vk1-f170.google.com ([209.85.221.170]:44776 "EHLO
+        mail-vk1-f170.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1346690AbhLBNZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 08:25:49 -0500
+Received: by mail-vk1-f170.google.com with SMTP id u68so18396843vke.11;
+        Thu, 02 Dec 2021 05:22:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AAJ3PyU44ARyLbRf7PANv6H6d7q5kQeyFexxbBVhBYA=;
+        b=md07rwan5EKX2Q/gTRMti8Lamn54A5/2t9GOWOvveTrESFuO9+BRSgNS7GB7aBWIEJ
+         PRzw2Qw7Vqpae+tu8+t15QKSXA7qUJvgEZ7XYYgi87SFmd2tNKg8FsZwPsfQqmwAJwx7
+         6aTzduTe4nYlJMjdLYJLYHc3Lu5Tvb4iJTSu5AMcDYwNjMpuZepuL3y8D2b6mG3Y+g/l
+         RGrDwwYdm4kgHHOPOKFTgTa8eOL3fPSWkrflJKA/MWOwVQL+KM5SQkYIC7/FjE7N4l77
+         MiBugTI9NvLabn2UA53ozoBiILw8DNT+l/mb4OZJNyte8S664mhyC67Rtay4g718SjtD
+         VTxg==
+X-Gm-Message-State: AOAM532tLxXnhIIMsubW+XzLXHHWZ5QlUBkMIulU3rsVAarwrwtDciYX
+        iP/RzkjmYycnpmByaA7JpoNAU60LJak0tA==
+X-Google-Smtp-Source: ABdhPJytuU/Eq/1TbQY79WGIapapscpzHzIZRr2RbloUhiDXRXr+a9c3YOWWGraoAleSRQ/WOY0Tlg==
+X-Received: by 2002:a05:6122:886:: with SMTP id 6mr16317201vkf.7.1638451345956;
+        Thu, 02 Dec 2021 05:22:25 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id 6sm823514vkq.23.2021.12.02.05.22.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Dec 2021 05:22:25 -0800 (PST)
+Received: by mail-ua1-f54.google.com with SMTP id j14so55609281uan.10;
+        Thu, 02 Dec 2021 05:22:25 -0800 (PST)
+X-Received: by 2002:a05:6102:e10:: with SMTP id o16mr14279049vst.5.1638451345328;
+ Thu, 02 Dec 2021 05:22:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-To:     unlisted-recipients:; (no To-header on input)
+References: <20211130100049.129418-1-julien.massot@iot.bzh> <20211130100049.129418-2-julien.massot@iot.bzh>
+In-Reply-To: <20211130100049.129418-2-julien.massot@iot.bzh>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 2 Dec 2021 14:22:14 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUoKvgvRcQwq4fuP4WHr5me5cXKG8w0fotVO3Eqrne-2A@mail.gmail.com>
+Message-ID: <CAMuHMdUoKvgvRcQwq4fuP4WHr5me5cXKG8w0fotVO3Eqrne-2A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: remoteproc: Add Renesas R-Car
+To:     Julien Massot <julien.massot@iot.bzh>
+Cc:     =?UTF-8?Q?Bj=C3=B6rn_Andersson?= <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some boards, for routing CAN signals from controller to transceiver,
-muxes might need to be set. Therefore, add support for setting the mux by
-reading the mux-states property from the device tree node.
+Hi Julien,
 
-Signed-off-by: Aswath Govindraju <a-govindraju@ti.com>
----
- drivers/phy/Kconfig               |  1 +
- drivers/phy/phy-can-transceiver.c | 22 ++++++++++++++++++++++
- 2 files changed, 23 insertions(+)
+Thanks for your patch!
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 82b63e60c5a2..300b0f2b5f84 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -64,6 +64,7 @@ config USB_LGM_PHY
- config PHY_CAN_TRANSCEIVER
- 	tristate "CAN transceiver PHY"
- 	select GENERIC_PHY
-+	select MULTIPLEXER
- 	help
- 	  This option enables support for CAN transceivers as a PHY. This
- 	  driver provides function for putting the transceivers in various
-diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-transceiver.c
-index 6f3fe37dee0e..cb91d0e94da7 100644
---- a/drivers/phy/phy-can-transceiver.c
-+++ b/drivers/phy/phy-can-transceiver.c
-@@ -10,6 +10,7 @@
- #include<linux/module.h>
- #include<linux/gpio.h>
- #include<linux/gpio/consumer.h>
-+#include <linux/mux/consumer.h>
- 
- struct can_transceiver_data {
- 	u32 flags;
-@@ -21,13 +22,22 @@ struct can_transceiver_phy {
- 	struct phy *generic_phy;
- 	struct gpio_desc *standby_gpio;
- 	struct gpio_desc *enable_gpio;
-+	struct mux_state *mux_state;
- };
- 
- /* Power on function */
- static int can_transceiver_phy_power_on(struct phy *phy)
- {
-+	int ret;
- 	struct can_transceiver_phy *can_transceiver_phy = phy_get_drvdata(phy);
- 
-+	if (can_transceiver_phy->mux_state) {
-+		ret = mux_state_select(can_transceiver_phy->mux_state);
-+		if (ret) {
-+			dev_err(&phy->dev, "Failed to select CAN mux: %d\n", ret);
-+			return ret;
-+		}
-+	}
- 	if (can_transceiver_phy->standby_gpio)
- 		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 0);
- 	if (can_transceiver_phy->enable_gpio)
-@@ -45,6 +55,8 @@ static int can_transceiver_phy_power_off(struct phy *phy)
- 		gpiod_set_value_cansleep(can_transceiver_phy->standby_gpio, 1);
- 	if (can_transceiver_phy->enable_gpio)
- 		gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio, 0);
-+	if (can_transceiver_phy->mux_state)
-+		mux_state_deselect(can_transceiver_phy->mux_state);
- 
- 	return 0;
- }
-@@ -95,6 +107,16 @@ static int can_transceiver_phy_probe(struct platform_device *pdev)
- 	match = of_match_node(can_transceiver_phy_ids, pdev->dev.of_node);
- 	drvdata = match->data;
- 
-+	if (of_property_read_bool(dev->of_node, "mux-states")) {
-+		struct mux_state *mux_state;
-+
-+		mux_state = devm_mux_state_get(dev, NULL);
-+		if (IS_ERR(mux_state))
-+			return dev_err_probe(&pdev->dev, PTR_ERR(mux_state),
-+					     "failed to get mux\n");
-+		can_transceiver_phy->mux_state = mux_state;
-+	}
-+
- 	phy = devm_phy_create(dev, dev->of_node,
- 			      &can_transceiver_phy_ops);
- 	if (IS_ERR(phy)) {
--- 
-2.17.1
+On Tue, Nov 30, 2021 at 11:01 AM Julien Massot <julien.massot@iot.bzh> wrote:
+> Renesas R-Car SoCs may contains a Realtime processor.
 
+contain
+
+> This patch adds binding for this remote processor.
+
+bindings
+
+>
+> Signed-off-by: Julien Massot <julien.massot@iot.bzh>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes since v1
+> - dropped 'status = "okay";' in the sample
+> - Add Rob's Reviewed-by tag
+>
+> ---
+>  .../remoteproc/renesas,rcar-rproc.yaml        | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+> new file mode 100644
+> index 000000000000..3fe8d49051e6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/renesas,rcar-rproc.yaml
+> @@ -0,0 +1,65 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/remoteproc/renesas,rcar-rproc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Renesas R-Car remote processor controller bindings
+> +
+> +maintainers:
+> +  - Julien Massot <julien.massot@iot.bzh>
+> +
+> +description: |
+> +  This document defines the binding for the remoteproc component that loads and
+
+bindings
+
+> +  boots firmwares on the Renesas R-Car family chipset.
+> +  R-Car gen3 family may have a realtime processor, this processor share peripheral
+
+shares
+
+> +  and RAM with the host processor with the same address map.
+> +
+> +properties:
+> +  compatible:
+> +    const: renesas,rcar-cr7
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  memory-region:
+> +    description:
+> +      List of phandles to the reserved memory regions associated with the
+> +      remoteproc device. This is variable and describes the memories shared with
+> +      the remote processor (e.g. remoteproc firmware and carveouts, rpmsg
+
+carve-out
+
+> +      vrings, ...).
+> +      (see ../reserved-memory/reserved-memory.yaml)
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
