@@ -2,146 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C30F4661EE
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:02:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 455D24661FC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 12:04:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357130AbhLBLFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 06:05:40 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:4554 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1357126AbhLBLFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:05:38 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 1B26dnpd021453;
-        Thu, 2 Dec 2021 06:02:09 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3cpe2tm7f4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 02 Dec 2021 06:02:09 -0500
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 1B2B28ZC052256
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 2 Dec 2021 06:02:08 -0500
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Thu, 2 Dec 2021 06:02:07 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.858.5;
- Thu, 2 Dec 2021 06:02:07 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.858.5 via Frontend
- Transport; Thu, 2 Dec 2021 06:02:07 -0500
-Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.181])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 1B2B2331010304;
-        Thu, 2 Dec 2021 06:02:05 -0500
-From:   Antoniu Miclaus <antoniu.miclaus@analog.com>
-To:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        id S1346184AbhLBLHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 06:07:39 -0500
+Received: from esa.microchip.iphmx.com ([68.232.154.123]:65389 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237400AbhLBLHj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 06:07:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1638443056; x=1669979056;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=1QzA4ro6lBny2rCEPSEYixgPWxFPaj1DtkBwvZUqONI=;
+  b=AYccMY1Vf3Vaf+OFJiVY/waWVdCwFi32KLDuAkuXPY78JvsvZP0dNRKb
+   fhMtIJ0gUIUadRlAydQcrJk5UkPVkfyriXRO8CGOPYIONGAWfFsX5JbZj
+   UveykouhJ9r99Oqx2OVy4vjHgDUPm1MNv22EZOvjzZAVj+a1ARG84CPsi
+   +f/f0bPcChtpkNoeg5QhTC/vaVTIz5miLsEK5Ti3DaEuPA3fhOwqZ+18E
+   3SizYhsKGQltWXl+GHhbc/83vB5MvQo5oq9hYojemhjABMjrDoXDkCAgK
+   kPVh1GVu7Uj6R8M+fOMeZDBa4AeCiyG+jps7sAS5RCaHd4rlCDPpD/V7K
+   g==;
+IronPort-SDR: snkDkGyryEbTByt3q2MiS/Mz5t3YLNWDFjWg63Bfn2OknbDGZAtCkcIEAwMy/ST/+pefgUdo4m
+ ssLVBKUjq1Bs+q6wUSdQKSDthvZbKdPY4Q9ZXOjNm9O2p+n3Np0m07GxkXWGxhUl8mAxFuVtRJ
+ a2IbCx3z7Gl2xd8GHi19A1UBKQKzfbhlat5EC+Mh6F+TJ6o2LTxELNxQ6gIIQXRxmaJpl8Xud8
+ yfYyO/Vlqxs31ZWXq3G8BOLbFKD9JYGShQ68XUG9iJI2uS0DOrIQdTUS6QeDkLlT3hlWPVfZ79
+ 9lgZXek5kP1daPBRip8NseK8
+X-IronPort-AV: E=Sophos;i="5.87,281,1631602800"; 
+   d="scan'208";a="138405741"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Dec 2021 04:04:15 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 2 Dec 2021 04:04:15 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 2 Dec 2021 04:04:14 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>
-CC:     Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v5 2/2] dt-bindings:iio:dac: add ad7293 doc
-Date:   Thu, 2 Dec 2021 13:01:39 +0200
-Message-ID: <20211202110139.189087-2-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20211202110139.189087-1-antoniu.miclaus@analog.com>
-References: <20211202110139.189087-1-antoniu.miclaus@analog.com>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH net-next] dt-bindings: net: lan966x: Add additional properties for lan966x
+Date:   Thu, 2 Dec 2021 12:05:04 +0100
+Message-ID: <20211202110504.480220-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: 46hiet7DGgcBh4IOy4eSW9qp7UBZd_F7
-X-Proofpoint-ORIG-GUID: 46hiet7DGgcBh4IOy4eSW9qp7UBZd_F7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.790,Hydra:6.0.425,FMLib:17.0.607.475
- definitions=2021-12-02_06,2021-12-02_01,2020-04-07_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 spamscore=0 phishscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 mlxlogscore=989 bulkscore=0 lowpriorityscore=0
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2110150000 definitions=main-2112020068
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for the AD7293 Power Amplifier.
+This patch updates the dt-bindings for lan966x switch.
+It adds the properties 'additionalProperties' and
+'unevaluatedProperties' for ethernet-ports and ports nodes. In this way
+it is not possible to add more properties to these nodes.
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
 ---
-changes in v5:
- - remove description for vdrive and set property true
- .../bindings/iio/dac/adi,ad7293.yaml          | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ad7293.yaml
+ .../bindings/net/microchip,lan966x-switch.yaml      | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad7293.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad7293.yaml
-new file mode 100644
-index 000000000000..5ee80bf6aa11
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/dac/adi,ad7293.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/dac/adi,ad7293.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+index d54dc183a033..5bee665d5fcf 100644
+--- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
++++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+@@ -56,12 +56,21 @@ properties:
+ 
+   ethernet-ports:
+     type: object
 +
-+title: AD7293 12-Bit Power Amplifier Current Controller with ADC,
-+       DACs, Temperature and Current Sensors
++    properties:
++      '#address-cells':
++        const: 1
++      '#size-cells':
++        const: 0
 +
-+maintainers:
-+  - Antoniu Miclaus <antoniu.miclaus@analog.com>
++    additionalProperties: false
 +
-+description: |
-+   Power Amplifier drain current controller containing functionality
-+   for general-purpose monitoring and control of current, voltage,
-+   and temperature, integrated into a single chip solution with an
-+   SPI-compatible interface.
-+
-+   https://www.analog.com/en/products/ad7293.html
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7293
-+
-+  avdd-supply: true
-+
-+  vdrive-supply: true
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 1000000
-+
-+required:
-+  - compatible
-+  - reg
-+  - avdd-supply
-+  - vdrive-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      ad7293@0 {
-+        compatible = "adi,ad7293";
-+        reg = <0>;
-+        spi-max-frequency = <1000000>;
-+        avdd-supply = <&avdd>;
-+        vdrive-supply = <&vdrive>;
-+        reset-gpios = <&gpio 10 0>;
-+      };
-+    };
-+...
+     patternProperties:
+       "^port@[0-9a-f]+$":
+         type: object
+ 
+-        allOf:
+-          - $ref: "http://devicetree.org/schemas/net/ethernet-controller.yaml#"
++        $ref: "/schemas/net/ethernet-controller.yaml#"
++        unevaluatedProperties: false
+ 
+         properties:
+           '#address-cells':
 -- 
-2.34.1
+2.33.0
 
