@@ -2,115 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92BAE46692C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 18:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE56466939
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 18:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1376410AbhLBRe4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 12:34:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376411AbhLBRem (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 12:34:42 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA1B3C06175F;
-        Thu,  2 Dec 2021 09:31:15 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id r25so979940edq.7;
-        Thu, 02 Dec 2021 09:31:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9QJn3S6sN6c/cil6HRGGB5x3rsfR1f8MZlKYmc0BRmI=;
-        b=DT1c+DWTwNNvKQKMY6LJfGn6xQXJr09V44GrMl6l0z6nVrQ4tP8pZmotaUrWwyjFvD
-         48LjoFvZoaU2jxKMVZZjJxSvLHO6D5qvxL6WMA8Xz6UQ4XB04qyHDnw2dm7v8Fwvhvig
-         0px7m9fL6yukarZMx3wubaT7QgvSxWsLbR5Kiw4BpBcutpqfnfkTQ0OfUnVOJxOUCnQ7
-         P6qCqs6NTGrlDEtm37s8GM77JJjZIXXjXrtndpbQYoCfSqsbSHZ8kl1SkFNZ8bSiWSk1
-         N91bU1+ygY8rEm7jR6UCdCKeugEPN2WsDvdq/nNquMmwP5Et0WQ6/sb/6a8bLfi8trVY
-         VUCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9QJn3S6sN6c/cil6HRGGB5x3rsfR1f8MZlKYmc0BRmI=;
-        b=h3eLvfk44KYO0bk43GKNU6HhUfObs1BM6RID7pYqvwFMRNQZEudzsG+FNCjbcDSl5E
-         j1Rg4whTGXa5MXClQjg4S8dBOX6eAsd6br1P/FBUjwauMLk92V1HeBErSF+eGBrQ5HJt
-         6Qr0j5KNmye0im9VmeYz/o91unWKzpAlOl/9koI/wSM6+oZDcZw6ga8BE0hnoJrakRyM
-         VhCmnpgHv0q16bxkDq5V7blsBIicXFNssDpaPMscpr2cEps3w7oMJklensKzl4R/DPvj
-         9K2O0S3jE1b6H4iZ1i+wzQpH5rrWWD3QoVIQbaCF9qWqjtVjCiYVCwvx6KSJWqbSAvJc
-         NtbQ==
-X-Gm-Message-State: AOAM531BKoPHUZMX8tGeKKykFOyuggR5aFwBH/EHom9LKZKcNUBoT3L9
-        hh8lNEKnBBV/rrLDZ4uz/Mx8TPWkM5S9eW+LygQ=
-X-Google-Smtp-Source: ABdhPJzAUdOSE8L9NFI0Sln5qChLssjomZBhhOMS8os/94PUedL4UUS0SUuMvqT2izDngMnTUGG+HilDJG2Y1+NLVHo=
-X-Received: by 2002:a17:907:961e:: with SMTP id gb30mr16644694ejc.436.1638466274398;
- Thu, 02 Dec 2021 09:31:14 -0800 (PST)
-MIME-Version: 1.0
-References: <20211109150158.164778-1-christian.gmeiner@gmail.com> <22db4807-7772-abe6-50c6-5812d9692ccc@ti.com>
-In-Reply-To: <22db4807-7772-abe6-50c6-5812d9692ccc@ti.com>
-From:   Christian Gmeiner <christian.gmeiner@gmail.com>
-Date:   Thu, 2 Dec 2021 18:31:02 +0100
-Message-ID: <CAH9NwWfQf7BxrrCSNy1DjOJyjOMXGTTjnNPEAoYmeQdi3JV5Sw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: ti: k3-am64-main: add timesync router node
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        id S242092AbhLBRiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 12:38:13 -0500
+Received: from mga02.intel.com ([134.134.136.20]:34533 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S235806AbhLBRiM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Dec 2021 12:38:12 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="223992960"
+X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; 
+   d="scan'208";a="223992960"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2021 09:34:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; 
+   d="scan'208";a="677739807"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga005.jf.intel.com with ESMTP; 02 Dec 2021 09:34:39 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mspyg-000GY2-BG; Thu, 02 Dec 2021 17:34:38 +0000
+Date:   Fri, 3 Dec 2021 01:34:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Felix Fietkau <nbd@nbd.name>, linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     kbuild-all@lists.01.org, john@phrozen.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 07/13] clk: en7523: Add clock driver for Airoha EN7523
+ SoC
+Message-ID: <202112030121.BuKKR1T4-lkp@intel.com>
+References: <20211129153330.37719-8-nbd@nbd.name>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211129153330.37719-8-nbd@nbd.name>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Hi Felix,
 
->
-> On 11/9/21 8:31 PM, Christian Gmeiner wrote:
-> > The Time Sync Event Router (TIMESYNC_INTRTR0) implements a set of
-> > multiplexers to provide selection of active CPTS time sync events for
-> > routing to CPTS capable modules.
-> >
-> > This patch adds DT node TIMESYNC_INTRTR0 using "pinctrl-single" bindings.
-> >
-> > Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> > Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> > Signed-off-by: Christian Gmeiner <christian.gmeiner@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/ti/k3-am64-main.dtsi | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> > index 42d1d219a3fd..c9321a80353a 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> > @@ -564,6 +564,14 @@ cpts@39000000 {
-> >               ti,cpts-ext-ts-inputs = <8>;
-> >       };
-> >
-> > +     timesync_router: timesync-router@a40000 {
->
-> Node with "pinctrl-single" would need to be named pinctrl@reg.
-> Else this would probably fail dtbs_check once pinctrl-single bindings is
-> converted to YAML format.
->
+I love your patch! Perhaps something to improve:
 
-Okay.. will send a v2.
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on clk/clk-next v5.16-rc3 next-20211202]
+[cannot apply to linusw-gpio/for-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> > +             compatible = "pinctrl-single";
-> > +             reg = <0x0 0xa40000 0x0 0x800>;
-> > +             #pinctrl-cells = <1>;
-> > +             pinctrl-single,register-width = <32>;
-> > +             pinctrl-single,function-mask = <0x000107ff>;
-> > +     };
-> > +
-> >       usbss0: cdns-usb@f900000{
-> >               compatible = "ti,am64-usb";
-> >               reg = <0x00 0xf900000 0x00 0x100>;
-> >
->
+url:    https://github.com/0day-ci/linux/commits/Felix-Fietkau/dt-bindings-Add-vendor-prefix-for-Airoha/20211130-033938
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: mips-randconfig-s031-20211202 (https://download.01.org/0day-ci/archive/20211203/202112030121.BuKKR1T4-lkp@intel.com/config)
+compiler: mips64-linux-gcc (GCC) 11.2.0
+reproduce:
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # apt-get install sparse
+        # sparse version: v0.6.4-dirty
+        # https://github.com/0day-ci/linux/commit/f1c5b70976ce5352c8ac2ae85739e1be63f59ec2
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Felix-Fietkau/dt-bindings-Add-vendor-prefix-for-Airoha/20211130-033938
+        git checkout f1c5b70976ce5352c8ac2ae85739e1be63f59ec2
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=mips SHELL=/bin/bash drivers/clk/ drivers/gpio/
 
--- 
-greets
---
-Christian Gmeiner, MSc
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-https://christian-gmeiner.info/privacypolicy
+
+sparse warnings: (new ones prefixed by >>)
+   command-line: note: in included file:
+   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_ACQUIRE redefined
+   builtin:0:0: sparse: this was the original definition
+   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_SEQ_CST redefined
+   builtin:0:0: sparse: this was the original definition
+   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_ACQ_REL redefined
+   builtin:0:0: sparse: this was the original definition
+   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_RELEASE redefined
+   builtin:0:0: sparse: this was the original definition
+   drivers/clk/clk-en7523.c:202:27: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *np_base @@     got void [noderef] __iomem *base @@
+   drivers/clk/clk-en7523.c:202:27: sparse:     expected void *np_base
+   drivers/clk/clk-en7523.c:202:27: sparse:     got void [noderef] __iomem *base
+>> drivers/clk/clk-en7523.c:206:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:206:29: sparse:     expected void const volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:206:29: sparse:     got void *
+>> drivers/clk/clk-en7523.c:208:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:208:29: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:208:29: sparse:     got void *
+   drivers/clk/clk-en7523.c:213:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:213:29: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:213:29: sparse:     got void *
+   drivers/clk/clk-en7523.c:217:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:217:29: sparse:     expected void const volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:217:29: sparse:     got void *
+   drivers/clk/clk-en7523.c:220:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:220:37: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:220:37: sparse:     got void *
+   drivers/clk/clk-en7523.c:222:36: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:222:36: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:222:36: sparse:     got void *
+   drivers/clk/clk-en7523.c:224:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:224:37: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:224:37: sparse:     got void *
+   drivers/clk/clk-en7523.c:229:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:229:29: sparse:     expected void const volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:229:29: sparse:     got void *
+   drivers/clk/clk-en7523.c:230:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:230:37: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:230:37: sparse:     got void *
+   drivers/clk/clk-en7523.c:232:36: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:232:36: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:232:36: sparse:     got void *
+   drivers/clk/clk-en7523.c:241:27: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *np_base @@     got void [noderef] __iomem *base @@
+   drivers/clk/clk-en7523.c:241:27: sparse:     expected void *np_base
+   drivers/clk/clk-en7523.c:241:27: sparse:     got void [noderef] __iomem *base
+   drivers/clk/clk-en7523.c:244:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:244:29: sparse:     expected void const volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:244:29: sparse:     got void *
+   drivers/clk/clk-en7523.c:246:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
+   drivers/clk/clk-en7523.c:246:29: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/clk/clk-en7523.c:246:29: sparse:     got void *
+
+vim +206 drivers/clk/clk-en7523.c
+
+   198	
+   199	static int en7523_pci_enable(struct clk_hw *hw)
+   200	{
+   201		struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
+   202		void *np_base = cg->base;
+   203		u32 val, mask;
+   204	
+   205		/* Need to pull device low before reset */
+ > 206		val = readl(np_base + REG_PCI_CONTROL);
+   207		val &= ~(REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT);
+ > 208		writel(val, np_base + REG_PCI_CONTROL);
+   209		usleep_range(1000, 2000);
+   210	
+   211		/* Enable PCIe port 1 */
+   212		val |= REG_PCI_CONTROL_REFCLK_EN1;
+   213		writel(val, np_base + REG_PCI_CONTROL);
+   214		usleep_range(1000, 2000);
+   215	
+   216		/* Reset to default */
+   217		val = readl(np_base + REG_RESET_CONTROL);
+   218		mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
+   219		       REG_RESET_CONTROL_PCIEHB;
+   220		writel(val & ~mask, np_base + REG_RESET_CONTROL);
+   221		usleep_range(1000, 2000);
+   222		writel(val | mask, np_base + REG_RESET_CONTROL);
+   223		msleep(100);
+   224		writel(val & ~mask, np_base + REG_RESET_CONTROL);
+   225		usleep_range(5000, 10000);
+   226	
+   227		/* Release device */
+   228		mask = REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT;
+   229		val = readl(np_base + REG_PCI_CONTROL);
+   230		writel(val & ~mask, np_base + REG_PCI_CONTROL);
+   231		usleep_range(1000, 2000);
+   232		writel(val | mask, np_base + REG_PCI_CONTROL);
+   233		msleep(250);
+   234	
+   235		return 0;
+   236	}
+   237	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
