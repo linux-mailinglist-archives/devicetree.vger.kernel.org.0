@@ -2,74 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC94E466AB7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 21:05:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E921466AD3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 21:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348320AbhLBUI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 15:08:29 -0500
-Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:1680 "EHLO
-        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S234495AbhLBUIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 15:08:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1638475500; x=1670011500;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=M6JRb1L5bI93eUvGCDqUCDgna5+vK0854mAKgmhopQc=;
-  b=B03AGRBRbiV6D8ierfHkTF7vl1FRrw6tm7PvwiYUqDOHRPZOcjn8E1sH
-   3K6Jx8lr7GAcxO/YD8cnfbMdjyGzWz5k9t+tzBO+opi11N9HgWvj7b0Pa
-   p1pejHEm1dJAEO7zbEDLJRgJDj7z12oV4zRvcXkhVF80ulr4F3Rb3enA8
-   E=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 02 Dec 2021 12:04:57 -0800
-X-QCInternal: smtphost
-Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2021 12:04:57 -0800
-Received: from [10.110.122.223] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.922.19; Thu, 2 Dec 2021
- 12:04:56 -0800
-Subject: Re: [PATCH 1/5] dt-bindings: platform: microsoft: Document surface
- xbl
-To:     Jarrett Schultz <jaschultzms@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Mark Gross <markgross@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>
-CC:     <linux-arm-msm@vger.kernel.org>,
-        <platform-driver-x86@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Jarrett Schultz <jaschultz@microsoft.com>
-References: <20211202191630.12450-1-jaschultz@microsoft.com>
- <20211202191630.12450-2-jaschultz@microsoft.com>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-Message-ID: <d85dba31-7d79-7c00-b930-41e513aa323d@quicinc.com>
-Date:   Thu, 2 Dec 2021 12:04:56 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <20211202191630.12450-2-jaschultz@microsoft.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+        id S1348661AbhLBUWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 15:22:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1348747AbhLBUWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 15:22:10 -0500
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DB1C061757
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 12:18:47 -0800 (PST)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E892D806A8;
+        Fri,  3 Dec 2021 09:18:42 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1638476323;
+        bh=t9w9XFU2HzkdIXgBw1+w4e3pTYHFtUoYw7d6MqtA6QA=;
+        h=From:To:CC:Subject:Date;
+        b=dDweBuk8lYlS0b6185b23GjoURYmR6xMU+ARnZx2qsstzLQMzX6OMvt9CIgkM4Xx5
+         EA+/DrSo+bNGGppTBWH0dhJBcrfU8DNdPsiWut8HmCakP14F+73Y0llfWN1gxCsWr6
+         YXFRz3KzW4n62l/akYIbyZw0zVbfQbY2KeByNMJo1PFj/E29ShOZRJN72TDL1Z7Dgj
+         ASr9LZWmSkPAXas/fuWnyqWsNiuIbFguJPA2T+Ij5DeFrmF06LU4nbvaT1c8eStDra
+         NVAVSp0nY4hyXJaug+ynKHtBQIi3McGoeL+SUXPerfyMEV9xvq3Iji3Og5dgRDPkNd
+         Dch8lXocJVY+w==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B61a92a220000>; Fri, 03 Dec 2021 09:18:42 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.26; Fri, 3 Dec 2021 09:18:42 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.026; Fri, 3 Dec 2021 09:18:42 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: pca954x devices sharing reset-gpios
+Thread-Topic: pca954x devices sharing reset-gpios
+Thread-Index: AQHX57nMktjeGOiQoEWm9JTLScC8+g==
+Date:   Thu, 2 Dec 2021 20:18:42 +0000
+Message-ID: <ff1f75bb-75aa-e22e-9e68-721e8d80a755@alliedtelesis.co.nz>
+Accept-Language: en-NZ, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E7631ECDE38DEF4193444A1B9F127204@atlnz.lc>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=XOZOtjpE c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=IOMw9HtfNCkA:10 a=gI1U_EXz3-_qf3ap8AEA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/2/2021 11:16 AM, Jarrett Schultz wrote:
-> Introduce yaml for surface xbl driver.
-> 
-> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
-> 
-> 
-
-Is it not possible to send patch email from @microsoft.com ?
-
----Trilok Soni
+SGkgQWxsLA0KDQpJJ3ZlIHJ1biBpbnRvIGEgcHJvYmxlbSB0cnlpbmcgdG8gYWNjdXJhdGVseSBt
+b2RlbCBzb21lIGhhcmR3YXJlLg0KDQpJbiB0aGlzIHBhcnRpY3VsYXIgZGVzaWduIHRoZXJlIGFy
+ZSBhIGJ1bmNoIG9mIHBjYTk1NDggaTJjIG11eGVzIGFuZCANCnNvbWUgb2YgdGhlbSBzaGFyZSB0
+aGUgc2FtZSByZXNldCBwaW5zIGNvbWluZyBvdXQgb2YgYSBjdXN0b20gRlBHQSANCih3ZSd2ZSB3
+cml0dGVuIGEgZ3BpbyBkcml2ZXIgdG8gcmVwcmVzZW50IHRoYXQgcGFydCBvZiB0aGUgRlBHQSku
+IA0KSW5pdGlhbGx5IHdlIGhhZCB0aGlzIHdvcmtpbmcgYnkgdXNpbmcgYSBncGlvLWhvZyBmb3Ig
+dGhlIHJlc2V0IGxpbmVzIA0KYW5kIHByZXR0eSBtdWNoIGZvcmdldHRpbmcgdGhleSB3ZXJlIHRo
+ZXJlLg0KDQpJZiBJIHN0YXJ0IGJ1aWxkaW5nIHRoZSBmcGdhLWdwaW8gZHJpdmVyIGFzIGEgbW9k
+dWxlIEkgcnVuIGludG8gYSANCnNpdHVhdGlvbiB3aGVyZSB0aGVyZSBpcyBhbiBpbXBsaWNpdCBk
+ZXBlbmRlbmN5IGJldHdlZW4gdGhlIGZwZ2EtZ3BpbyANCmRyaXZlciBhbmQgdGhlIHBjYTk1NHgg
+aTJjIG11eGVzLiBCZWNhdXNlIGl0J3MgaW1wbGljaXQgdGhlIA0KcGNhOTU0eF9wcm9iZSBydW5z
+IGVhcmx5IGFuZCBmYWlscyBmb3IgdGhlc2UgZGV2aWNlcy4gSSBjYW4gbWFrZSB0aGF0IA0KZGVw
+ZW5kZW5jeSBleHBsaWNpdCBieSB1c2luZyB0aGUgcmVzZXQtZ3Bpb3MgcHJvcGVydHkgd2hpY2gg
+Y29ycmVjdGx5IA0KZGVmZXJzIHRoZSBwcm9iZSB1bnRpbCB0aGUgZnBnYS1ncGlvIGRyaXZlciBp
+cyBsb2FkZWQuIEJ1dCBhcyBzb21lIG9mIA0KdGhlc2UgcGNhOTU0OCBzaGFyZSByZXNldCBsaW5l
+cyB0aGV5IG9uZXMgdGhhdCBnZXQgcHJvYmVkIHNlY29uZCBnZXQgDQotRUJVU1kgd2hlbiB0aGV5
+IHJlcXVlc3QgdGhlIEdQSU8uDQoNCklzIHRoZXJlIGFueSB3YXkgSSBjYW4gcmVwcmVzZW50IHRo
+ZXNlIHBjYTk1NDggZGV2aWNlcyBhcyBhIGdyb3VwIHdpdGggYSANCnNpbmdsZSByZXNldC1ncGlv
+IHByb3BlcnR5IGZvciB0aGUgZ3JvdXA/DQoNClRoYW5rcywNCkNocmlzDQo=
