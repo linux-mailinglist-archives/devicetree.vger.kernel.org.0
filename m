@@ -2,290 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05EF2466D72
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 00:08:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A69A8466DA8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 00:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349392AbhLBXLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 18:11:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41960 "EHLO
+        id S1349262AbhLBX2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 18:28:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240957AbhLBXLy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 18:11:54 -0500
-Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8478C06174A
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 15:08:31 -0800 (PST)
-Received: by mail-ot1-x32d.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso1727442ota.5
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 15:08:31 -0800 (PST)
+        with ESMTP id S244230AbhLBX2h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 18:28:37 -0500
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC616C06174A;
+        Thu,  2 Dec 2021 15:25:13 -0800 (PST)
+Received: by mail-ed1-x535.google.com with SMTP id o20so4163678eds.10;
+        Thu, 02 Dec 2021 15:25:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=0L2By4CDtRg7Bo2JcTOelRDpHyD8uA2uf3K9wmjvTeY=;
-        b=mjGPcRuOwbN4C17b9PnbMNsi1lUXjmWJ4/CxM8Z9wCX5kobN1ay8UjMtIy87ikASjI
-         lcWtPhcYpb6TFE3NvjfwEyzS4EGci2AYxvHWzoKLEyn7qBQgXUFt+JKMnfeacRQbjkEX
-         mzeiEuB8JwhsxStXfAM7E7OLK/wGJ4h2JWf5mHJ4oGQjrGdXI5jZndHZnGJDytNxzLEZ
-         /gEJvwI7dx9bgLnG2wpyIkmxiW2MnFFkjBfE4oUVoGinTaj4mz1DKkDeUAYd2n1p48gn
-         BTBNmnDBxMakbG+E+XGwGqQZe6vKtVSbc8MbtdtMKPrDOxRJscfO0HKjesd4dd5QpVuz
-         CI8w==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ug/21sYu1auIP5DvnYTXNQcjBVF5VW8r70LbHDK7QcE=;
+        b=pZZTw0RjPY4h0YCqborj+vlwg8t40U1PI+MWuunih2QilvOrRegMM9NngFFLgHiRkl
+         x3CyFbmypVikNwUqXiK3uuzlsP0nmFtcEcQBGBDf6hSRXmF4hSymlCInuDCVtr85hI01
+         i42+T2mWb9WSoJfo1TWaANtR0FPfXpBP2/EyW54oQ8Owe3smBk9DF4sPxntuonbXAkQW
+         R/V4RkrcllulAVeCuucr6x0hTNEWueiSd9bLLdA878U3s+V2vZB/SeOsgCiqJgsEt4k3
+         s55AyeQ/pPsQOume7ynNC9BWEa/BM+ASUpBMgNyamKu4pE8u4V9eZQhlvCjPlcujE9GK
+         7+xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0L2By4CDtRg7Bo2JcTOelRDpHyD8uA2uf3K9wmjvTeY=;
-        b=ighx7mNC3kVG73GTGhACpPYKStL9LIFR6LYWVjGFpCUogTciwJT87MOX1VAf38qEN/
-         8ggyNi9LbDeA2C2laRdi5sO3SvOPdv9jT9LywP+oU7aXmwLSNl+EtPycJ1pKtTptqxeh
-         dFMlZDl8W98pgRrhmm5kxC+nbrn418VWY+5vq/YyHu3LNtLmQQRB23IVzRHUVvnkYWYQ
-         TuwzxumVXSFFlL4hSJZoesG53+yg3pHtsgJJn0ioibJm5Jm3BvaGQtHftJZvwlAZK3Aq
-         TemOUMMhwaaEbhT0TjItumjH+BEaBpcFxJuVwAbLnnNNijHfwk0OQn2VLcfCtupLMsSe
-         sB8A==
-X-Gm-Message-State: AOAM533WCDHQOJttYre02LpC2SqU8zhGFZ5z0xUhaAenZ+KmFEcTaAPi
-        G+9/JTvDe3w+ChZOz4rdnHPTkQ==
-X-Google-Smtp-Source: ABdhPJx6mI7fGWZL0ZzePlsZqU77AEY3wzrqEGHpOpt9tGQ79tTsazOkSZjY/FKRLicgi6kN2UI52w==
-X-Received: by 2002:a9d:2243:: with SMTP id o61mr13427918ota.126.1638486510998;
-        Thu, 02 Dec 2021 15:08:30 -0800 (PST)
-Received: from ripper (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id h3sm273009oon.34.2021.12.02.15.08.30
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ug/21sYu1auIP5DvnYTXNQcjBVF5VW8r70LbHDK7QcE=;
+        b=mn+2xT3AVNiIbwo4yjR8Q0zXduceqzR6Lg7h9vZPNtFWAxAwmcZBJSUww+WeoFayi4
+         SFDjXBCklps1x94YaTlU0C7fSWkr0BWd5vPIRJsHz/ryCcUmJPXCzHd4LvDHbOgeWMVW
+         5U1v/4Ztlu2S+Cwko8L+NXbDE1YdtHC5xzTGVplqz7JZ/ll5f1BAzl7Cltgyk1Tn6cOA
+         0msCRFxAkK0UooKcZ/7fJ2hS+91EJxNvcXZTKfmu+Q802CGW9NHL9GhU9OZC8qsmB1UQ
+         LtW9nCEDgYYoz1PvAMWjeE3c95NW1uY99/5Q5XMBjvgDl9V4wiVmCQpTIDFLdrSN+iC6
+         +6Eg==
+X-Gm-Message-State: AOAM530QwdCm2zqj6u0VofqaNO3c0gmz9YLnplciKN5nxihxd9cYL3Un
+        ilXHOvIHIHVQMhmJxNH0/eE=
+X-Google-Smtp-Source: ABdhPJzrLhrBeZPrRa18nASul0aIiPBOfDnbtNlGdf7Wv+adqaYZyEsYvyN1mPLc+3R8rp8tgDRl6w==
+X-Received: by 2002:a17:906:2788:: with SMTP id j8mr18402118ejc.203.1638487512511;
+        Thu, 02 Dec 2021 15:25:12 -0800 (PST)
+Received: from demon-pc.localdomain ([188.24.96.74])
+        by smtp.gmail.com with ESMTPSA id w18sm701898edx.55.2021.12.02.15.25.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Dec 2021 15:08:30 -0800 (PST)
-Date:   Thu, 2 Dec 2021 15:10:03 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kuogee Hsieh <khsieh@codeaurora.org>
-Cc:     robdclark@gmail.com, sean@poorly.run, swboyd@chromium.org,
-        vkoul@kernel.org, agross@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, abhinavk@codeaurora.org,
-        aravindh@codeaurora.org, freedreno@lists.freedesktop.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kishon@ti.com, p.zabel@pengutronix.de
-Subject: Re: [PATCH v4] phy: qcom-qmp: add support for display port voltage
- and pre-emphasis swing
-Message-ID: <YalSS1C4/XUzz62q@ripper>
-References: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
+        Thu, 02 Dec 2021 15:25:12 -0800 (PST)
+From:   Cosmin Tanislav <demonsingur@gmail.com>
+X-Google-Original-From: Cosmin Tanislav <cosmin.tanislav@analog.com>
+Cc:     cosmin.tanislav@analog.com, demonsingur@gmail.com,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: [PATCH v9 0/3] Add AD74413R driver
+Date:   Fri,  3 Dec 2021 01:25:04 +0200
+Message-Id: <20211202232507.358113-1-cosmin.tanislav@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1631637901-11603-1-git-send-email-khsieh@codeaurora.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 14 Sep 09:45 PDT 2021, Kuogee Hsieh wrote:
 
-$suject says "add support", but afaict the code already configures
-voltage and pre-emphasis swing.
+V1 -> V2
+ * sign off using company email
 
-If I understand your change you're not adding support for the swing, but
-rather you make it possible to have different tables for different
-versions of the phy?
+V2 -> V3
+ * replace gpo config firmware flag with flag specifying whether gpo is in
+   comparator mode
+ * create two separate gpiochips, one output-only gpiochip for GPO pins not
+   in comparator mode and one input-only for the value of digital input
+   channels
+ * wire up all gpo functionalities using pinconf
+ * keep number of characters per line under 80
+ * rework locking
+ * do not invalidate other chip revisions
+ * do not set indio device parent
+ * print probe error for refin regulator
+ * move conversion from range register value to range / offset / raw offset
+   into separate function
+ * module.h -> mod_devicetable.h
+ * use generic firmware interface functions
+ * add comment regarding cache alignment
+ * add comment regarding ADC channels buffered read setup
+ * un-inline comment regarding 100us delay for conversion start
+ * inline return statements
+ * remove assignments to val2 where not necessary
+ * local_channels -> chans
+ * index -> i
+ * channel_config -> config
+ * IIO_ALTVOLTAGE -> IIO_VOLTAGE
+ * .info_mask_shared_by_type_available -> .info_mask_separate_available
+ * remove unlikely probe error messages
+ * use an array indexed by channel function for retrieving iio channels
+ * count iio channels while parsing
+ * move HART rate rejection outside of setter
+ * move channel function validation outside of setter
+ * use SPI messages for read and write
+ * validate DAC code earlier
+ * simplify switches to only handle existing iio channels
+ * pass indio_dev into functions needing access to it
+ * pass spi into devm_regmap_init
+ * dt-bindings: sort compatibles
+ * dt-bindings: remove driver word from description
+ * dt-bindings: remove refin supply description
+ * dt-bindings: specify channel function default value
+ * dt-bindings: remove maxItems from scalar value
 
-> Both voltage and pre-emphasis swing level are set during link training
-> negotiation between host and sink. There are totally four tables added.
-> A voltage swing table for both hbr and hbr1, a voltage table for both
-> hbr2 and hbr3, a pre-emphasis table for both hbr and hbr1 and a pre-emphasis
-> table for both hbr2 and hbr3. In addition, write 0x0a to TX_TX_POL_INV is
-> added to complete the sequence of configure dp phy base on HPG.
-> 
-> Chnages in v2:
-> -- revise commit test
-> -- add Fixes tag
-> -- replaced voltage_swing_cfg with voltage
-> -- replaced pre_emphasis_cfg with emphasis
-> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_v4_phy_configure_dp_swing()
-> -- delete drv_lvl_reg and emp_post_reg parameters from qcom_qmp_phy_configure_dp_swing()
-> 
-> Changes in V3:
-> -- add __qcom_qmp_phy_configure_dp_swing() to commit swing/pre-emphasis level
-> 
-> Changes in V4:
-> -- pass 2D array to __qcom_qmp_phy_configure_dp_swing()
+V3 -> v4
+ * remove double gpo from macro name
+ * reset at probe
+ * config -> chip_info and store chip name inside chip info
+ * cacheline align every DMA buffer
+ * simplify generation of adc samples message by caching xfer, tx_buf and
+   rx_buf
+ * use mask itself for writing the value of channel enable and gpo data
+ * move reg read and write transfers to the same buffers and use local
+   variables for transfers
+ * merge the two for loops handling gpio configuration
+ * let firmware decide irq edge
+ * remove INDIO_BUFFER_SOFTWARE already set by iio framework
+ * do not set trigger device parent
+ * return dev_err_probe for regulator error case
+ * do not set cs_change to 0 when not needed
+ * do not set spi device drvdata as it is not needed
+ * fix bug regarding wrong channels being created for resistance input,
+   digital input, and current input with hart
+ * use voltage input channels spec for high impedance mode
+ * put () around macro parameters
+ * merge AD74413R_CHANNEL macro into its uses
+ * remove unused switch case scope
+ * inline return IIO_VAL_INT
+ * use {get,put}_unaligned_be16
+ * use proper types for reg and val
+ * move default case handling into switch statements
+ * pass driver state into regmap functions
+ * use genmask for generating a 16bit max value
+ * alphanumeric order for part numbers
+ * dt-bindings: remove $ref from ohms value
 
-Carrying the change log as part of the commit message is a DRM specific
-thing, outside of drivers/gpu this all goes below the '---' below.
+V4 -> V5
+ * dt-bindings: include headers necessary
+ * dt-bindings: add IRQ_TYPE_EDGE_FALLING to interrupt flags
+ * dt-bindings: ohm -> ohms
+ * dt-bindings: spi0 -> spi
 
-> 
-> Fixes: aff188feb5e1 ("phy: qcom-qmp: add support for sm8250-usb3-dp phy")
+V5 -> V6
+ * fix warnings regarding overflows
 
-It's not clear to me what issue with aff188feb5e1 this patch fixes. In
-what way is aff188feb5e1 broken?
+V6 -> V7
+ * remove extra cache-line alignment
+ * adi,rsense-resistance-ohms -> shunt-resistor-micro-ohms
+ * dt-bindings: add product page links
 
-> Signed-off-by: Kuogee Hsieh <khsieh@codeaurora.org>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp.c | 97 +++++++++++++++++++++++++------------
->  1 file changed, 66 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.c b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> index 31036aa..fb029e4 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.c
-> @@ -3546,12 +3546,17 @@ static const u8 qmp_dp_v3_voltage_swing_hbr_rbr[4][4] = {
->  	{ 0x1f, 0xff, 0xff, 0xff }
->  };
->  
-> -static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
-> -		unsigned int drv_lvl_reg, unsigned int emp_post_reg)
-> +static int __qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
-> +				unsigned int drv_lvl_reg,
-> +				unsigned int emp_post_reg,
-> +				const u8 voltage_swing_hbr_rbr[4][4],
-> +				const u8 pre_emphasis_hbr_rbr[4][4],
-> +				const u8 voltage_swing_hbr3_hbr2[4][4],
-> +				const u8 pre_emphasis_hbr3_hbr2[4][4])
->  {
->  	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
->  	unsigned int v_level = 0, p_level = 0;
-> -	u8 voltage_swing_cfg, pre_emphasis_cfg;
-> +	u8 voltage, emphasis;
->  	int i;
->  
->  	for (i = 0; i < dp_opts->lanes; i++) {
-> @@ -3560,26 +3565,25 @@ static int qcom_qmp_phy_configure_dp_swing(struct qmp_phy *qphy,
->  	}
->  
->  	if (dp_opts->link_rate <= 2700) {
-> -		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr_rbr[v_level][p_level];
-> -		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr_rbr[v_level][p_level];
-> +		voltage = voltage_swing_hbr_rbr[v_level][p_level];
-> +		emphasis = pre_emphasis_hbr_rbr[v_level][p_level];
->  	} else {
-> -		voltage_swing_cfg = qmp_dp_v3_voltage_swing_hbr3_hbr2[v_level][p_level];
-> -		pre_emphasis_cfg = qmp_dp_v3_pre_emphasis_hbr3_hbr2[v_level][p_level];
-> +		voltage = voltage_swing_hbr3_hbr2[v_level][p_level];
-> +		emphasis = pre_emphasis_hbr3_hbr2[v_level][p_level];
->  	}
->  
->  	/* TODO: Move check to config check */
-> -	if (voltage_swing_cfg == 0xFF && pre_emphasis_cfg == 0xFF)
-> +	if (voltage == 0xFF && emphasis == 0xFF)
->  		return -EINVAL;
->  
->  	/* Enable MUX to use Cursor values from these registers */
-> -	voltage_swing_cfg |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> -	pre_emphasis_cfg |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
-> -
-> -	writel(voltage_swing_cfg, qphy->tx + drv_lvl_reg);
-> -	writel(pre_emphasis_cfg, qphy->tx + emp_post_reg);
-> -	writel(voltage_swing_cfg, qphy->tx2 + drv_lvl_reg);
-> -	writel(pre_emphasis_cfg, qphy->tx2 + emp_post_reg);
-> +	voltage |= DP_PHY_TXn_TX_DRV_LVL_MUX_EN;
-> +	emphasis |= DP_PHY_TXn_TX_EMP_POST1_LVL_MUX_EN;
->  
-> +	writel(voltage, qphy->tx + drv_lvl_reg);
-> +	writel(emphasis, qphy->tx + emp_post_reg);
-> +	writel(voltage, qphy->tx2 + drv_lvl_reg);
-> +	writel(emphasis, qphy->tx2 + emp_post_reg);
->  	return 0;
->  }
->  
-> @@ -3588,9 +3592,13 @@ static void qcom_qmp_v3_phy_configure_dp_tx(struct qmp_phy *qphy)
->  	const struct phy_configure_opts_dp *dp_opts = &qphy->dp_opts;
->  	u32 bias_en, drvr_en;
->  
-> -	if (qcom_qmp_phy_configure_dp_swing(qphy,
-> -				QSERDES_V3_TX_TX_DRV_LVL,
-> -				QSERDES_V3_TX_TX_EMP_POST1_LVL) < 0)
-> +	if (__qcom_qmp_phy_configure_dp_swing(qphy,
-> +			QSERDES_V3_TX_TX_DRV_LVL,
-> +			QSERDES_V3_TX_TX_EMP_POST1_LVL,
-> +			qmp_dp_v3_voltage_swing_hbr_rbr,
-> +			qmp_dp_v3_pre_emphasis_hbr_rbr,
-> +			qmp_dp_v3_voltage_swing_hbr3_hbr2,
-> +			qmp_dp_v3_pre_emphasis_hbr3_hbr2) < 0)
->  		return;
->  
->  	if (dp_opts->lanes == 1) {
-> @@ -3728,6 +3736,35 @@ static int qcom_qmp_v3_dp_phy_calibrate(struct qmp_phy *qphy)
->  	return 0;
->  }
->  
-> +/* The values in these tables are given without MUX_EN (0x20) bit set */
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr3_hbr2[4][4] = {
-> +	{ 0x00, 0x0c, 0x15, 0x1b },
-> +	{ 0x02, 0x0e, 0x16, 0xff },
-> +	{ 0x02, 0x11, 0xff, 0xff },
-> +	{ 0x04, 0xff, 0xff, 0xff }
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr3_hbr2[4][4] = {
-> +	{ 0x02, 0x12, 0x16, 0x1a },
-> +	{ 0x09, 0x19, 0x1f, 0xff },
-> +	{ 0x10, 0x1f, 0xff, 0xff },
-> +	{ 0x1f, 0xff, 0xff, 0xff }
-> +};
-> +
-> +static const u8 qmp_dp_v4_pre_emphasis_hbr_rbr[4][4] = {
-> +	{ 0x00, 0x0e, 0x15, 0x1b },
-> +	{ 0x00, 0x0e, 0x15, 0xff },
-> +	{ 0x00, 0x0e, 0xff, 0xff },
-> +	{ 0x04, 0xff, 0xff, 0xff }
-> +};
-> +
-> +static const u8 qmp_dp_v4_voltage_swing_hbr_rbr[4][4] = {
-> +	{ 0x08, 0x0f, 0x16, 0x1f },
-> +	{ 0x11, 0x1e, 0x1f, 0xff },
-> +	{ 0x16, 0x1f, 0xff, 0xff },
-> +	{ 0x1f, 0xff, 0xff, 0xff }
-> +};
-> +
->  static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  {
->  	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_PSR_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
-> @@ -3757,16 +3794,13 @@ static void qcom_qmp_v4_phy_dp_aux_init(struct qmp_phy *qphy)
->  
->  static void qcom_qmp_v4_phy_configure_dp_tx(struct qmp_phy *qphy)
->  {
-> -	/* Program default values before writing proper values */
-> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> -
-> -	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -
-> -	qcom_qmp_phy_configure_dp_swing(qphy,
-> +	__qcom_qmp_phy_configure_dp_swing(qphy,
->  			QSERDES_V4_TX_TX_DRV_LVL,
-> -			QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> +			QSERDES_V4_TX_TX_EMP_POST1_LVL,
-> +			qmp_dp_v4_voltage_swing_hbr_rbr,
-> +			qmp_dp_v4_pre_emphasis_hbr_rbr,
-> +			qmp_dp_v4_voltage_swing_hbr3_hbr2,
-> +			qmp_dp_v4_pre_emphasis_hbr3_hbr2);
->  }
->  
->  static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
-> @@ -3885,6 +3919,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->  	writel(drvr1_en, qphy->tx2 + QSERDES_V4_TX_HIGHZ_DRVR_EN);
->  	writel(bias1_en, qphy->tx2 + QSERDES_V4_TX_TRANSCEIVER_BIAS_EN);
->  
-> +	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> +	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
+V7 -> V8
+ * also check DAC code lower bound
+ * fix checkpath --strict complaints
+ * add comment regarding mutex lock usage
+ * propagate error when converting adc result to resistance
 
-So specifying TX_POL_INV has do be done before we kick off the
-configuration? This sounds like a real bug fix, separate of the swing
-settings.
+V8 -> V9
+ * fix spelling mistake
+ * undo propagate error when converting adc result to resistance
+ * return void from adc result to resistance function
+ * limit max adc value when doing resistance calculation to avoid
+   a potential division-by-zero case
 
-Perhaps I'm misunderstanding something with this change?
+Cosmin Tanislav (3):
+  iio: add addac subdirectory
+  dt-bindings: iio: add AD74413R
+  iio: addac: add AD74413R driver
 
-Thanks,
-Bjorn
+ .../bindings/iio/addac/adi,ad74413r.yaml      |  158 ++
+ MAINTAINERS                                   |    9 +
+ drivers/iio/Kconfig                           |    1 +
+ drivers/iio/Makefile                          |    1 +
+ drivers/iio/addac/Kconfig                     |   20 +
+ drivers/iio/addac/Makefile                    |    7 +
+ drivers/iio/addac/ad74413r.c                  | 1475 +++++++++++++++++
+ include/dt-bindings/iio/addac/adi,ad74413r.h  |   21 +
+ 8 files changed, 1692 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+ create mode 100644 drivers/iio/addac/Kconfig
+ create mode 100644 drivers/iio/addac/Makefile
+ create mode 100644 drivers/iio/addac/ad74413r.c
+ create mode 100644 include/dt-bindings/iio/addac/adi,ad74413r.h
 
-> +
->  	writel(0x18, qphy->pcs + QSERDES_DP_PHY_CFG);
->  	udelay(2000);
->  	writel(0x19, qphy->pcs + QSERDES_DP_PHY_CFG);
-> @@ -3896,11 +3933,9 @@ static int qcom_qmp_v4_phy_configure_dp_phy(struct qmp_phy *qphy)
->  			10000))
->  		return -ETIMEDOUT;
->  
-> -	writel(0x0a, qphy->tx + QSERDES_V4_TX_TX_POL_INV);
-> -	writel(0x0a, qphy->tx2 + QSERDES_V4_TX_TX_POL_INV);
->  
-> -	writel(0x27, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> -	writel(0x27, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
-> +	writel(0x22, qphy->tx + QSERDES_V4_TX_TX_DRV_LVL);
-> +	writel(0x22, qphy->tx2 + QSERDES_V4_TX_TX_DRV_LVL);
->  
->  	writel(0x20, qphy->tx + QSERDES_V4_TX_TX_EMP_POST1_LVL);
->  	writel(0x20, qphy->tx2 + QSERDES_V4_TX_TX_EMP_POST1_LVL);
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+-- 
+2.34.1
+
