@@ -2,96 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0121E465A23
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 01:00:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32A47465A33
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 01:02:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353933AbhLBADa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 19:03:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353930AbhLBAD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 19:03:29 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1538C061574
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 16:00:07 -0800 (PST)
-Received: from [192.168.1.101] (83.6.166.111.neoplus.adsl.tpnet.pl [83.6.166.111])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 5866B3F35C;
-        Thu,  2 Dec 2021 01:00:05 +0100 (CET)
-Message-ID: <0b171f2e-4bbc-a54a-7615-87fd4559fee9@somainline.org>
-Date:   Thu, 2 Dec 2021 01:00:04 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.0
-Subject: Re: [PATCH 04/16] arm64: dts: qcom: sm8350: Specify clock-frequency
- for arch timer
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Andy Gross <agross@kernel.org>,
+        id S1353951AbhLBAFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 19:05:13 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:3936 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353979AbhLBAEX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 19:04:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1638403263; x=1669939263;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=JGow5gSyCVGGIvARjpIWCWieeUWr8i3gh6AHITcaPMM=;
+  b=ak9cw5YMd5IuHfCLxosGdMnYb405LnUF61ka1ywtUWH1VIxKgh4AbYv0
+   35/1foUcZURIX/Pv4CyNUQfqlkK/Vy4C+LLdx2x1wwDeNXOvZ9ztC4+6C
+   boNCmGMvCIFY6puyLhyJcEFvxOjUaUjDr0T7+8eWoGTtF4jzubdoeltyS
+   8=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 01 Dec 2021 16:01:02 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Dec 2021 16:01:02 -0800
+Received: from nalasex01c.na.qualcomm.com (10.47.97.35) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 1 Dec 2021 16:01:01 -0800
+Received: from fenglinw-gv.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Wed, 1 Dec 2021 16:00:58 -0800
+From:   Fenglin Wu <quic_fenglinw@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20211114012755.112226-1-konrad.dybcio@somainline.org>
- <20211114012755.112226-4-konrad.dybcio@somainline.org>
- <20211130020536.52D0FC53FC7@smtp.kernel.org>
- <dee30442-8a78-07f3-1fa1-e5922a510182@somainline.org>
- <20211201204543.1286DC53FAD@smtp.kernel.org>
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-In-Reply-To: <20211201204543.1286DC53FAD@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <collinsd@codeaurora.org>, <subbaram@codeaurora.org>,
+        <quic_fenglinw@quicinc.com>, <tglx@linutronix.de>, <maz@kernel.org>
+Subject: [RESEND PATCH v3 07/10] bindings: spmi: spmi-pmic-arb: mark interrupt properties as optional
+Date:   Thu, 2 Dec 2021 08:00:09 +0800
+Message-ID: <1638403212-29265-8-git-send-email-quic_fenglinw@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1638403212-29265-1-git-send-email-quic_fenglinw@quicinc.com>
+References: <1638403212-29265-1-git-send-email-quic_fenglinw@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: David Collins <collinsd@codeaurora.org>
 
-On 01.12.2021 21:45, Stephen Boyd wrote:
-> Quoting Konrad Dybcio (2021-11-30 11:59:03)
->> On 30/11/2021 03:05, Stephen Boyd wrote:
->>> Quoting Konrad Dybcio (2021-11-13 17:27:43)
->>>> Arch timer runs at 19.2 MHz. Specify the rate in the timer node.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
->>>> ---
->>>>   arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 +
->>>>   1 file changed, 1 insertion(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>>> index a30ba3193d84..60866a20a55c 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>>> @@ -2484,5 +2484,6 @@ timer {
->>>>                               <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->>>>                               <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
->>>>                               <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
->>>> +               clock-frequency = <19200000>;
->>> Does the firmware not set the frequency properly?
->> It does on my device on the current firmware version (it wouldn't really 
->> boot if it didn't, no?),
->>
->> but who knows if it always will, or if it always has been..
->>
->>
->> It's present in downstream too, so I reckon it does not hurt to have it 
->> here too, even
->>
->> for completeness-of-describing-the-machine-properly sake.
->>
-> No. We don't want dts files to have this. The property is only there to
-> workaround bad firmware that doesn't set the frequency. Please drop this
-> patch.
+Mark all interrupt related properties as optional instead of
+required.  Some boards do not required PMIC IRQ support and it
+isn't needed to handle SPMI bus transactions, so specify it as
+optional.
 
-After looking at it again, I see I was indeed wrong, and so was this patch.
+Signed-off-by: David Collins <collinsd@codeaurora.org>
+Signed-off-by: Fenglin Wu <quic_fenglinw@quicinc.com>
+---
+ Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Sorry, and green light for dropping..
-
-
-Konrad
+diff --git a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
+index ca645e2..6332507 100644
+--- a/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
++++ b/Documentation/devicetree/bindings/spmi/qcom,spmi-pmic-arb.txt
+@@ -29,6 +29,8 @@ Required properties:
+ - #size-cells : must be set to 0
+ - qcom,ee : indicates the active Execution Environment identifier (0-5)
+ - qcom,channel : which of the PMIC Arb provided channels to use for accesses (0-5)
++
++Optional properties:
+ - interrupts : interrupt list for the PMIC Arb controller, must contain a
+                single interrupt entry for the peripheral interrupt
+ - interrupt-names : corresponding interrupt names for the interrupts
+-- 
+2.7.4
 
