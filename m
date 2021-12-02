@@ -2,75 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3391F466711
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:46:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A257C46673B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 16:52:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242186AbhLBPuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 10:50:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242220AbhLBPt5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:49:57 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53147C061759
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 07:46:34 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id y14-20020a17090a2b4e00b001a5824f4918so2790801pjc.4
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 07:46:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=/xOX+MwbYYm6u5nECdOl4Jqy0wvq2qfMu3Pv+iN6kbQ=;
-        b=h2EabMGwDwVYPbOXG0rurfwoabYlkJcUaDSJo1Mpe8o3iddMlcVy8hOg/Gtg2pufMp
-         XXryC51IdgePpIkXtjCAorrvtHzyssnDJKsMXnXokSAfk1k1VrwW/rKGG8m2ZDU3tRQ7
-         EYXhwpA1QbD2QKlwoevsPECMxsYRPpBl1ENyE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/xOX+MwbYYm6u5nECdOl4Jqy0wvq2qfMu3Pv+iN6kbQ=;
-        b=ZFtc+l4ZGlg+Dcl3bziSeYLM4+WNddiND8XesfaqLlb2xY41MxFSgg7q/lZgiRJ8NB
-         FHvE+QNHuNhe1X6Qsqk5vKMZa5JIoV6Jj3u7r5XpTzOqoyPFanxf2Cp4cKruTJQnfeDu
-         +ywHDrGKf+RZtHUvBRmCGWisS3iEV9AeyNG61MyOnecDI48mXjl5EiXXdYWHt/HQMead
-         +UWD2vhZLKECHCTnNljXSrvpHzRBj8D9gH0pGfk38kYohpBAVgA6HGmioXKIkAl0YwJa
-         V7Oc9nplpDfPaqG3GrLe//bvS1LLhu0h+KeH5Tlm8HGISxTu7y00qc+2fbQKXiPQZ9/a
-         rj4g==
-X-Gm-Message-State: AOAM530mDazahMKg8+kWFvTo/u9Zs+4IwAe8GX4tOe4PB36GzuqcuMFu
-        pmScA4Zy9Byta8KpQK5PKduheA==
-X-Google-Smtp-Source: ABdhPJzh642Nqi1c66mNvgl1xHObBn1Zz/bzbAgNs+yRsC6kHayeKfeWLwpe3Kdgi1JuslnvD3euqw==
-X-Received: by 2002:a17:90b:4a83:: with SMTP id lp3mr6914000pjb.242.1638459993828;
-        Thu, 02 Dec 2021 07:46:33 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:b371:4539:c97c:c751])
-        by smtp.gmail.com with UTF8SMTPSA id pg13sm18546pjb.8.2021.12.02.07.46.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Dec 2021 07:46:33 -0800 (PST)
-Date:   Thu, 2 Dec 2021 07:46:32 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com
-Subject: Re: [PATCH v2] arm64: qcom: sc7280: Move USB2 controller nodes from
- common dtsi to SKU1
-Message-ID: <YajqWKBBNY+dTP7a@google.com>
-References: <1638422248-24221-1-git-send-email-quic_c_sanm@quicinc.com>
+        id S1347663AbhLBPz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 10:55:29 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:46074 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359294AbhLBPzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 10:55:24 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 815F76268F;
+        Thu,  2 Dec 2021 15:51:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5886C00446;
+        Thu,  2 Dec 2021 15:51:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638460318;
+        bh=g3x2golTGf5LugWWOotMX5nRZX1ofZdncgn84uvvPlw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=g6yl5S3JYHbzjRbXILCSprPqXuXohk/c8wPkgDh3Wx7E7ZAVwZ0YvZkSMHkcliUhu
+         8iN8cz92mLSvsOv1EdQXKIj2//eUuorBmlQEP7bSRjTSSLvCoOLwuY2sySf1nmxfFP
+         yxJ85XxtnxRQAFxVOZZ/mw+iDqTndt+quoFAzwRrFAmYSNsM06722ogs2TJh7XCC6d
+         x8qOQSgr42rq8v+p5NtTdsw/4ghC3gqP4sBv4gQ2Oukgsg4+6T7f1jDtmyVBP6yD8w
+         GQ69kB4Jja4TlQSIS3+Bk2orG0ojUvjgf1DkuswlDqjGTPHG41VHpM1lhEa/OeKTVx
+         BDfEl2Z6fXpkg==
+Received: by mail-ed1-f41.google.com with SMTP id y12so117393334eda.12;
+        Thu, 02 Dec 2021 07:51:58 -0800 (PST)
+X-Gm-Message-State: AOAM530zA4qaVCWBxDlsQ+ZwFUp2eVDCOY42I1vFbVm95Es2UVY3wGp9
+        qJnbAsrNAToN5VyjJbQWiHbpRRlSr1UZ0capyg==
+X-Google-Smtp-Source: ABdhPJwQBKOUdKbAtcY9buMEqJoescJX1oqIF6R8Pi1NUjzxQDmpidmsR3w6UdwGQEcoQbYSmGssgYFJ11kH/XOXeDU=
+X-Received: by 2002:aa7:cc82:: with SMTP id p2mr18177641edt.201.1638460310108;
+ Thu, 02 Dec 2021 07:51:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1638422248-24221-1-git-send-email-quic_c_sanm@quicinc.com>
+References: <20211126163450.394861-1-miquel.raynal@bootlin.com>
+ <20211126163450.394861-3-miquel.raynal@bootlin.com> <YagN1c7/Ltt/mhNp@robh.at.kernel.org>
+ <20211202082521.77c2837f@xps13>
+In-Reply-To: <20211202082521.77c2837f@xps13>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 2 Dec 2021 09:51:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLL3rxA4p7T1girYOJ2cHTWSEJWWvSUpFOfz9ZTjMXAHQ@mail.gmail.com>
+Message-ID: <CAL_JsqLL3rxA4p7T1girYOJ2cHTWSEJWWvSUpFOfz9ZTjMXAHQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: mtd: spi-nor: Allow external properties
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Michal Simek <monstr@monstr.eu>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 10:47:28AM +0530, Sandeep Maheswaram wrote:
-> Move USB2 controller and phy nodes from common dtsi file as it is
-> required only for SKU1 board and change the mode to host mode as
-> it will be used in host mode for SKU1.
-> 
-> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+On Thu, Dec 2, 2021 at 1:25 AM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> robh@kernel.org wrote on Wed, 1 Dec 2021 18:05:41 -0600:
+>
+> > On Fri, Nov 26, 2021 at 05:34:47PM +0100, Miquel Raynal wrote:
+> > > Setting "additionalProperties: false" will refuse any generic SPI
+> > > property while they should be of course authorized. In practice it looks
+> > > like many people used compatibles different than "jedec,spi-nor" in
+> > > order to workaround this limitation because otherwise no SPI property
+> > > could be used in the examples. Use "unevaluatedProperties: false"
+> > > instead to allow defined properties to be used. It is likely that at the
+> > > time of the conversion to yaml of the jedec file, the unevaluated
+> > > keyword was not yet introduced.
+> > >
+> > > Fixes: 3ff9ee2a8890 ("dt-bindings: mtd: spi-nor: Convert to DT schema format")
+> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > > index ed590d7c6e37..81be0620b264 100644
+> > > --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > > +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> > > @@ -88,7 +88,7 @@ patternProperties:
+> > >    "^otp(-[0-9]+)?$":
+> > >      type: object
+> > >
+> > > -additionalProperties: false
+> > > +unevaluatedProperties: false
+> >
+> > This has no effect unless you have referenced some other schema here.
+> > The series I referenced will solve what your trying to solve I think.
+>
+> Maybe this is not the right fix indeed, but my understanding of json
+> reaches its bounds here.
+>
+> Without this change, any example in this file that references a
+> spi-controller.yaml property (which is correctly defined) will throw an
+> error. The fact is, all the examples out there with a spi-nor flash
+> using the jedec,spi-nor compatible *cannot* contain any
+> spi-controller.yaml property, otherwise the tooling errors out. This is
+> a real issue.
 
-Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+That's probably because unevaluatedProperties is unimplemented in the
+last dtschema release, but now supported in main branch. I'll be
+tagging a release soon. So once the newer version is used, you should
+be back to the same error.
+
+> I will give Pratyush's series a try.
+
+Referencing spi-peripheral.yaml with 'unevaluatedProperties: false'
+should give you what you need.
+
+Rob
