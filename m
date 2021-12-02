@@ -2,150 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 948BA4660A1
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 10:44:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D82B4660BA
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 10:52:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353545AbhLBJsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 04:48:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55300 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356564AbhLBJsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 04:48:11 -0500
-Received: from lb1-smtp-cloud8.xs4all.net (lb1-smtp-cloud8.xs4all.net [IPv6:2001:888:0:108::1b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 908D8C061758;
-        Thu,  2 Dec 2021 01:44:48 -0800 (PST)
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id sidvmcy8FyGz2sidymL2iA; Thu, 02 Dec 2021 10:44:47 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s2;
-        t=1638438287; bh=ZxfQ4v+68ZsHK1oOlFqmClZyuwKlC8mqDwpqsQtx9N4=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=h5qB9hezdtFm7+KuEaKuIoaVVuNPtILkNkltkQlvlmu2PaN4ZznvCV0x4h+wG7msD
-         yiqoSW2ITohrKMC9HdMs8MHA6RE8TvbeYiinUT/8d1lQQivFVA1b24ki1UxBnYg0tD
-         e5OMXdKKgtgoZiHDqXYJwxWmYtTXlU02a1+axwy8uQU8AuZKxbi+nSTNZVMXN6IfhS
-         m68+bLzvPVM0NsCHeYFvOIHkHAqkbHTE/fasNaynFtkf6pkjSG8chWTsySOCAPsARI
-         TCWcF6cP088BWq+RHyTyjy9r/Rw7XI+S390d+158gNWtfRCaJvRSj1mrH0EXUJQ2yN
-         3MQsY1sMR1JGw==
-Subject: Re: [PATCH v13 03/13] media: amphion: add amphion vpu device driver
-To:     Ming Qian <ming.qian@nxp.com>, mchehab@kernel.org,
-        shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        aisheng.dong@nxp.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <cover.1638263914.git.ming.qian@nxp.com>
- <b2219ccda94dd3149c6fa5bd9d5eb77084666ce4.1638263914.git.ming.qian@nxp.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <ea6ed8cc-7f45-d7a6-8169-2b0c726ea3a3@xs4all.nl>
-Date:   Thu, 2 Dec 2021 10:44:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.14.0
+        id S1356671AbhLBJ4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 04:56:08 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:41185 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1356667AbhLBJ4B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 04:56:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1638438760; x=1669974760;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=tC5LXKjUKwQxEKmuAm29KfJD1uoIp9cEC1FTYO6jNx0=;
+  b=cNaKUN5m3J5HsuNAUK8rmgObCal5up7QQ503RjG4LJRjnRODARJpPuDE
+   TJgTJ4hLPOLeno0s8E9Dz0F42PcZQ/jyU+fm7Gb56w1mkem8vshAbKOmK
+   1sRq95xkVnDBKUHP6A1Az9arP+8qDDhufiW5IXNTrKhv22gQ9MuRk09uW
+   g=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 02 Dec 2021 01:52:33 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2021 01:52:33 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 2 Dec 2021 01:52:32 -0800
+Received: from blr-ubuntu-525.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.922.19; Thu, 2 Dec 2021 01:52:27 -0800
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <pure.logic@nexus-software.ie>,
+        <bjorn.andersson@linaro.org>, <greg@kroah.com>, <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <quic_tsoni@quicinc.com>,
+        <quic_psodagud@quicinc.com>, <quic_satyap@quicinc.com>,
+        <quic_pheragu@quicinc.com>, <quic_rjendra@quicinc.com>,
+        <quic_sibis@quicinc.com>, <quic_saipraka@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: [PATCH V2 0/8] Add Embedded USB Debugger (EUD) driver
+Date:   Thu, 2 Dec 2021 15:21:19 +0530
+Message-ID: <cover.1638430506.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <b2219ccda94dd3149c6fa5bd9d5eb77084666ce4.1638263914.git.ming.qian@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfC1aThPEoa4rYiMgtU5qu+ur/Jz24tgSeGQ+nTgB3fmcBoGWiqLmZRQCef3hnGcgfuM8ri9L8Qmy3/IAbbacEKwpkcjWyFW82QQvMAynBapLfrUKI6fk
- rIv3x6Qg6Un/Q3xSJTomtjajSevc9eK74BROk09KNPyEFhOr5syG2s9wm8+vcg9qS2I4aVs8irwbdwmnL/LsbZhJTJtZCoAzrIcRA8qj2zoH/thkrYFA4qof
- H477DJdEe/Gq5dSKTcIu9VWHrPouomUvTOdyyD2kTwqogVb1M/TdTpelSVtd+B2Mtgawmt5Fyi7mUxgX1vGDJdgaT63U2upvzbOVs1jd2Khps7NfeM+E+sVp
- TeiwZQgppS7uXnI6nPvIS97rFjG8mbZtCjDbg/lEkDRVwaH29ad1B0dBI21hfnFlUGdIi7PAOActz/W1FsXI57loHyVL1BmtjksKzox4wYo5idVru0LSXj7K
- 0HVrvNRaoFfsV1wWzNb6unohkiQYFeZ1GZjzLorZvfOCekP0WB8tMJ342b3FlUQFCGJrq611hBaHAsMyfRMBZ1OvGL94qj+RuOxP2JxMtM4e9AuMjlhlB2ej
- l1yYFSSr3VDBsmVTrMRk0Znn
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/11/2021 10:48, Ming Qian wrote:
-> The amphion vpu codec ip contains encoder and decoder.
-> Windsor is the encoder, it supports to encode H.264.
-> Malone is the decoder, it features a powerful
-> video processing unit able to decode many foramts,
+This is a series of patches that implements a driver for the control
+peripheral, EUD (Embedded USB Debugger). The EUD is a mini-USB hub
+implemented on chip to support the USB-based debug and trace capabilities.
+Apart from debug capabilities, EUD has a control peripheral. Control
+Peripheral is on when EUD is on and gets signals like USB attach, pet
+EUD etc. EUD driver listens to events like USB attach or detach and then
+informs the USB about these events via ROLE-SWITCH. At regular intervals,
+the EUD driver receives an interrupt to pet the driver indicating that
+the software is functional.
 
-foramts -> formats
+Changes in V2
 
-> such as H.264, HEVC, and other foramts.
+*Fixed the yaml issue and also implemeted comments on yaml in V1.
 
-ditto
+Changes in V1
 
-> 
-> This Driver is for this IP that is based on the v4l2 mem2mem framework.
-> 
-> Supported SoCs are: IMX8QXP, IMX8QM
-> 
-> Signed-off-by: Ming Qian <ming.qian@nxp.com>
-> Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
-> Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> ---
->  arch/arm64/configs/defconfig               |   1 +
->  drivers/media/platform/Kconfig             |  19 ++
->  drivers/media/platform/Makefile            |   2 +
->  drivers/media/platform/amphion/Makefile    |  20 ++
->  drivers/media/platform/amphion/vpu.h       | 357 +++++++++++++++++++++
->  drivers/media/platform/amphion/vpu_defs.h  | 186 +++++++++++
->  drivers/media/platform/amphion/vpu_drv.c   | 265 +++++++++++++++
->  drivers/media/platform/amphion/vpu_imx8q.c | 271 ++++++++++++++++
->  drivers/media/platform/amphion/vpu_imx8q.h | 116 +++++++
->  9 files changed, 1237 insertions(+)
->  create mode 100644 drivers/media/platform/amphion/Makefile
->  create mode 100644 drivers/media/platform/amphion/vpu.h
->  create mode 100644 drivers/media/platform/amphion/vpu_defs.h
->  create mode 100644 drivers/media/platform/amphion/vpu_drv.c
->  create mode 100644 drivers/media/platform/amphion/vpu_imx8q.c
->  create mode 100644 drivers/media/platform/amphion/vpu_imx8q.h
-> 
-> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-> index f2e2b9bdd702..cc3633112f3f 100644
-> --- a/arch/arm64/configs/defconfig
-> +++ b/arch/arm64/configs/defconfig
-> @@ -657,6 +657,7 @@ CONFIG_V4L_PLATFORM_DRIVERS=y
->  CONFIG_VIDEO_RCAR_CSI2=m
->  CONFIG_VIDEO_RCAR_VIN=m
->  CONFIG_VIDEO_SUN6I_CSI=m
-> +CONFIG_VIDEO_AMPHION_VPU=m
->  CONFIG_V4L_MEM2MEM_DRIVERS=y
->  CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
->  CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
-> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-> index 9fbdba0fd1e7..7d4a8cd52a9e 100644
-> --- a/drivers/media/platform/Kconfig
-> +++ b/drivers/media/platform/Kconfig
-> @@ -216,6 +216,25 @@ config VIDEO_RCAR_ISP
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called rcar-isp.
->  
-> +config VIDEO_AMPHION_VPU
-> +	tristate "Amphion VPU(Video Processing Unit) Codec IP"
+* EUD has now been mapped as a separate DT node as it is an independent QCOM IP.
 
-Add space before (
+* EUD is attached to the connector child of dwc3 via port end point since EUD
+  driver needs the connector for role-switching.
 
-> +	depends on ARCH_MXC
+* EUD driver has been moved now to drivers/soc/qcom/qcom_eud.c.
 
-Add: || COMPILE_TEST
+* All the comments from version 0 of the patch has been implemented.
 
-It should always be possible to compile test drivers, even on other architectures.
+Souradeep Chowdhury (8):
+  dt-bindings: Add the yaml bindings for EUD
+  dt-bindings: connector: Add property for EUD type-C connector
+  bindings: usb: dwc3: Update dwc3 properties for EUD connector
+  usb: dwc3: drd: Register the eud connector child node for dwc3
+  soc: qcom: eud: Add driver support for Embedded USB Debugger(EUD)
+  arm64: dts: qcom: sc7280: Add EUD dt node and dwc3 connector
+  arm64: dts: qcom: sc7280: Set the default dr_mode for usb2
+  MAINTAINERS: Add maintainer entry for EUD
 
-> +	depends on MEDIA_SUPPORT
-> +	depends on VIDEO_DEV
-> +	depends on VIDEO_V4L2
-> +	select MEDIA_CONTROLLER
-> +	select V4L2_MEM2MEM_DEV
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select VIDEOBUF2_VMALLOC
-> +	help
-> +	  Amphion VPU Codec IP contains two parts: Windsor and Malone.
-> +	  Windsor is encoder that supports H.264, and Malone is decoder
-> +	  that supports H.264, HEVC, and other video formats.
-> +	  This is a V4L2 driver for NXP MXC 8Q video accelerator hardware.
-> +	  It accelerates encoding and decoding operations on
-> +	  various NXP SoCs.
-> +	  To compile this driver as a module choose m here.
-> +
->  endif # V4L_PLATFORM_DRIVERS
->  
->  menuconfig V4L_MEM2MEM_DRIVERS
+ Documentation/ABI/testing/sysfs-driver-eud         |   9 +
+ .../bindings/connector/usb-connector.yaml          |   4 +
+ .../devicetree/bindings/soc/qcom/qcom,eud.yaml     |  50 ++++
+ .../devicetree/bindings/usb/snps,dwc3.yaml         |   6 +
+ MAINTAINERS                                        |   8 +
+ arch/arm64/boot/dts/qcom/sc7280-idp.dts            |   4 +
+ arch/arm64/boot/dts/qcom/sc7280.dtsi               |  25 ++
+ drivers/soc/qcom/Kconfig                           |  10 +
+ drivers/soc/qcom/Makefile                          |   1 +
+ drivers/soc/qcom/qcom_eud.c                        | 268 +++++++++++++++++++++
+ drivers/usb/dwc3/drd.c                             |  26 ++
+ 11 files changed, 411 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-driver-eud
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,eud.yaml
+ create mode 100644 drivers/soc/qcom/qcom_eud.c
 
-Regards,
+--
+2.7.4
 
-	Hans
