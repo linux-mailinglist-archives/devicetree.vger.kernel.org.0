@@ -2,143 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C82D465D6C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 05:30:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7948465D7A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 05:42:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355431AbhLBEdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 23:33:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41832 "EHLO
+        id S1355546AbhLBEpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 23:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355426AbhLBEdn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 23:33:43 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082A5C061574;
-        Wed,  1 Dec 2021 20:30:21 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 53B9DCE21AD;
-        Thu,  2 Dec 2021 04:30:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EFB4C53FCC;
-        Thu,  2 Dec 2021 04:30:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638419417;
-        bh=xOtsh6uB0JwyVP3cPswcBfduh5x3rcKpeZ3dUk4ARhw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TTjkRP+XzHN6asg+o1L5lUZNHiqz2zriD1fGUvY2Uk+HB0I5toXBuzyIWJNPCDR1W
-         xTs+fYr8lQMfWz5ra1ZHqcvt8YEhr/7Re0Rwz5Vr8jNTs4zSKoWh/cojqfxUSLOKKk
-         buTrtxijEZlyZKaki2UgM/Sgl9hfL10MWtMT6PQWWe/XH1dSpV7Rnt7Ivx2+vyRNjx
-         TsMh56AAmelDz4Cia+OjadKa3EqelggrB9LHDdNbYkc/kZLBVpywRXioi/4Dkm7X3E
-         NupVyBlAHRPAk3+OZgpKYehnjxuqJI+XfoMw4FJ8pc8vNyt77J8+8//u3JXtE3G97M
-         GhyA8iFtBsM+Q==
-Date:   Thu, 2 Dec 2021 10:00:13 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     l.stach@pengutronix.de, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, marcel.ziswiler@toradex.com,
-        tharvey@gateworks.com, kishon@ti.com, robh@kernel.org,
-        galak@kernel.crashing.org, shawnguo@kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com
-Subject: Re: [PATCH v6 5/8] phy: freescale: pcie: Initialize the imx8 pcie
- standalone phy driver
-Message-ID: <YahL1TMkt8S0RNX5@matsya>
-References: <1637200489-11855-1-git-send-email-hongxing.zhu@nxp.com>
- <1637200489-11855-6-git-send-email-hongxing.zhu@nxp.com>
+        with ESMTP id S1355539AbhLBEpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 23:45:47 -0500
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F2EC061574
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 20:42:25 -0800 (PST)
+Received: by mail-pf1-x433.google.com with SMTP id x131so26741294pfc.12
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 20:42:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=QPV306Cl1hLkT1aLm/ztTcGSxnCGdiyQM9JvOmh+VBI=;
+        b=E13BrctyEiJmk8QUej4+qBU++tdSGEmKsrgPFCfx4zr+AVn8a28NmmgnY75romMi89
+         U7ILmdqSDi4IqU1FQskq+DfQT48XCLWbZJLMOpXKWLcwy2RD/8q48vl9tFE+2fXPsZVR
+         +ZI+StjehXpNDVvQ5L0pIKJzXtyXOPfQ4mivaLwcwCFo1KCxzlZAizfhCRjTso+t4G+L
+         wJgw60wiDhYBTdWf9RshLHW31L2CmL6O4QuDIZMQeurga3UCgV1R1Yyffw6RafTgFsrC
+         Vo2cHqAgDqh1KK0SqqfwDrOZ9Uix5RsQYB+cLuVHGj1NDgJE3P7oVXFxcHf73VIjQ65p
+         T/ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QPV306Cl1hLkT1aLm/ztTcGSxnCGdiyQM9JvOmh+VBI=;
+        b=jk2wbWcLLk+sH0+efsQ5NVxwqyKLw5w2JMNILLSMQWD4Oy53/bxQC8UHLAaw9F1jsw
+         MWVU85NByef0NGqGm5gXFCpsUwKZseTxRm86UXFgVJWLoueM/x4HVvZfPxhwMXyIknCu
+         MF47op4YhAnpcgNlAEcZ12huRLv16byhs6cUkErwCdbNb6flnWAb2rjYfnNmec7ZjIx+
+         PcOVS1h1P1EeQmGlw+t8emN08ZLQhO8k0qukPySdhw5FQA7Qb4b9V6hG0lzYATGc5ShT
+         MrgA8aaKXh+F7kRqwV4rqCR+PuFe6l5LT3gOB7OrxD7erLplr+slUsqGxEX2Tgrure9S
+         qlVQ==
+X-Gm-Message-State: AOAM5322hUEGNpBofm4wADzNpe+hUPMO+PfrgPi6hJC1BGare57bIhbC
+        vTM+niYYSovl2TRD0wstcaOcLQ==
+X-Google-Smtp-Source: ABdhPJyChYJegnkY59sNvTlcAnuBxHuEZK8rD2ydV4fBqk/D+T3tW0FLAm3x803r/bwHx62jIBYF4g==
+X-Received: by 2002:a63:d17:: with SMTP id c23mr7912840pgl.207.1638420143063;
+        Wed, 01 Dec 2021 20:42:23 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:ce4d:ddd8:41f4:d987])
+        by smtp.gmail.com with ESMTPSA id p43sm1426664pfw.4.2021.12.01.20.42.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Dec 2021 20:42:22 -0800 (PST)
+Date:   Thu, 2 Dec 2021 12:42:18 +0800
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        cujomalainey@google.com,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        sound-open-firmware@alsa-project.org
+Subject: Re: [PATCH v9 3/3] mailbox: mediatek: add support for adsp mailbox
+ controller
+Message-ID: <YahOqtgkkj+HmlJ3@google.com>
+References: <20211201075604.27864-1-allen-kh.cheng@mediatek.com>
+ <20211201075604.27864-4-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1637200489-11855-6-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20211201075604.27864-4-allen-kh.cheng@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-11-21, 09:54, Richard Zhu wrote:
-> Add the standalone i.MX8 PCIe PHY driver.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Tested-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> Reviewed-by: Tim Harvey <tharvey@gateworks.com>
-> Tested-by: Tim Harvey <tharvey@gateworks.com>
-> ---
->  drivers/phy/freescale/Kconfig              |   9 +
->  drivers/phy/freescale/Makefile             |   1 +
->  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 237 +++++++++++++++++++++
->  3 files changed, 247 insertions(+)
->  create mode 100644 drivers/phy/freescale/phy-fsl-imx8m-pcie.c
-> 
-> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
-> index 320630ffe3cd..e821498b1f7f 100644
-> --- a/drivers/phy/freescale/Kconfig
-> +++ b/drivers/phy/freescale/Kconfig
-> @@ -14,3 +14,12 @@ config PHY_MIXEL_MIPI_DPHY
->  	help
->  	  Enable this to add support for the Mixel DSI PHY as found
->  	  on NXP's i.MX8 family of SOCs.
-> +
-> +config PHY_FSL_IMX8M_PCIE
-> +	tristate "Freescale i.MX8M PCIE PHY"
-> +	depends on OF && HAS_IOMEM
-> +	select GENERIC_PHY
-> +	default ARCH_MXC && ARM64
-
-Why should this be default ? We dont do that for new drivers.. You may
-add this to respective config file though...
-
-> +static int imx8_pcie_phy_init(struct phy *phy)
-> +{
-> +	int ret;
-> +	u32 val, pad_mode;
-> +	struct imx8_pcie_phy *imx8_phy = phy_get_drvdata(phy);
-> +
-> +	reset_control_assert(imx8_phy->reset);
-> +
-> +	pad_mode = imx8_phy->refclk_pad_mode;
-> +	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
-> +			   imx8_phy->clkreq_unused ?
-> +			   0 : IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE);
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_AUX_EN,
-> +			   IMX8MM_GPR_PCIE_AUX_EN);
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_POWER_OFF, 0);
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_SSC_EN, 0);
-> +
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_REF_CLK_SEL,
-> +			   pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT ?
-> +			   IMX8MM_GPR_PCIE_REF_CLK_EXT :
-> +			   IMX8MM_GPR_PCIE_REF_CLK_PLL);
-> +	usleep_range(100, 200);
-> +
-> +	/* Do the PHY common block reset */
-> +	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
-> +			   IMX8MM_GPR_PCIE_CMN_RST,
-> +			   IMX8MM_GPR_PCIE_CMN_RST);
-> +	usleep_range(200, 500);
-> +
-> +
-
-No multi blank line please
-
-> +static struct platform_driver imx8_pcie_phy_driver = {
-> +	.probe	= imx8_pcie_phy_probe,
-> +	.driver = {
-> +		.name	= "imx8-pcie-phy",
-> +		.of_match_table	= imx8_pcie_phy_of_match,
-> +	}
+On Wed, Dec 01, 2021 at 03:56:04PM +0800, allen-kh.cheng wrote:
+> diff --git a/drivers/mailbox/mtk-adsp-mailbox.c b/drivers/mailbox/mtk-adsp-mailbox.c
+[...]
+> +static const struct mbox_chan_ops adsp_mbox_chan_ops = {
+> +	.send_data	= mtk_adsp_mbox_send_data,
+> +	.startup	= mtk_adsp_mbox_startup,
+> +	.shutdown	= mtk_adsp_mbox_shutdown,
+> +	.last_tx_done	= mtk_adsp_mbox_last_tx_done,
 > +};
-> +module_platform_driver(imx8_pcie_phy_driver);
-> +
-> +MODULE_DESCRIPTION("FSL IMX8 PCIE PHY driver");
-> +MODULE_LICENSE("GPL");
 
-This does not match the SPDX tag you have given
+To be consistent, s/adsp_mbox_chan_ops/mtk_adsp_mbox_chan_ops/.
 
--- 
-~Vinod
+With that,
+Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
