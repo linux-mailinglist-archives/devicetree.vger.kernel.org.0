@@ -2,92 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F358465ECB
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 08:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF3B0465ED5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 08:43:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345682AbhLBHkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 02:40:36 -0500
-Received: from st43p00im-ztbu10063601.me.com ([17.58.63.174]:51775 "EHLO
-        st43p00im-ztbu10063601.me.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S241313AbhLBHkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 02:40:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-        t=1638430158; bh=iKqXzBHkuZ5q5N8jiYDPWRjrVq7onkutlEoCQ2xoOx0=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=B9IPnYfVcR5cgvQEh0v2R5BbH9ctVwFQQG3bBI1XFNX/2jmg3poDroVMkL1GTSFRy
-         Atg+I8puq5skbqNynhGyTWNKFjEQcrHOcBoPtOKKit7N97zE3u3WGIql9XW8leriDS
-         p0NmmIQIihmMBeIDfA2td16WShujO6JMHeVh5ciobrX7BS+Rx52RSVGnY88TkTJA8A
-         7qAIkaXRGfCrSJ0dtVM1QzWOd9EBx7Db1corAVjR0A2JhRQL00WYszGGhxNWuF60D/
-         rJ7TvT9mSrlgt0W3QYIl/zgI9Ww25HzIflui4+cDs5XnsGkj/w7xP2m0kDB75MJcOC
-         B6+REANjsUWEg==
-Received: from localhost (101.220.150.77.rev.sfr.net [77.150.220.101])
-        by st43p00im-ztbu10063601.me.com (Postfix) with ESMTPSA id D6EF77006D1;
-        Thu,  2 Dec 2021 07:29:17 +0000 (UTC)
-From:   Alain Volmat <avolmat@me.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Alain Volmat <avolmat@me.com>
-Subject: [PATCH 2/2] clk: st: clkgen-mux: search reg within node or parent
-Date:   Thu,  2 Dec 2021 08:28:50 +0100
-Message-Id: <20211202072850.194314-3-avolmat@me.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211202072850.194314-1-avolmat@me.com>
-References: <20211202072850.194314-1-avolmat@me.com>
+        id S1355846AbhLBHqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 02:46:50 -0500
+Received: from cpanel.siel.si ([46.19.9.99]:50440 "EHLO cpanel.siel.si"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1345486AbhLBHqt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 2 Dec 2021 02:46:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
+        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
+        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=tBo6YAMnSGqoGlwdEydrQuSMok3rjMTScuODlnhntX8=; b=jPnrRaMDRPb/8TzJvoiYHeQg5d
+        aaRXeZ0jx0NHqRihC0eHsrwqTiyWdEdu5pkJxjyIRDuw02XvE6lTU1ioHrwrB8dNuA9oi7H6FwLuW
+        Q55J9GHYqVbA4OLzNGr4q6L94AZR5N5koF+s6NxJlh33w3CEcUNQxf97Wx5/6T7xcaLowH+MfH58b
+        kEz0LdjcORRGcnwMXhAaoEUOPDBqQzJmoIuWEtPdWMMcc4VOTQSOkbm0bQO/vjRY7z6zK/40CGuJE
+        vzY00yG6/tpX9tagP2rll5hHCOh1vE1mmKaWz81eiG/ZyXYVL/yXV+wGSDfczENcJPaOhZPHn9qY6
+        +zCsDZTw==;
+Received: from [89.212.21.243] (port=49188 helo=[192.168.69.215])
+        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94.2)
+        (envelope-from <andrej.picej@norik.com>)
+        id 1msgkO-00D7S7-37; Thu, 02 Dec 2021 08:43:23 +0100
+Subject: Re: [PATCH v3 2/4] watchdog: da9062: reset board on watchdog timeout
+To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
+        "support.opensource@diasemi.com" <support.opensource@diasemi.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+Cc:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20211201081512.3580837-1-andrej.picej@norik.com>
+ <20211201081512.3580837-2-andrej.picej@norik.com>
+ <13e0b9047f114722a0b4ebb4c1d24f2b@dh-electronics.com>
+From:   Andrej Picej <andrej.picej@norik.com>
+Message-ID: <9298e77a-d74e-f51a-187f-830da184e67d@norik.com>
+Date:   Thu, 2 Dec 2021 08:43:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
+In-Reply-To: <13e0b9047f114722a0b4ebb4c1d24f2b@dh-electronics.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: =?UTF-8?Q?vendor=3Dfsecure_engine=3D1.1.170-22c6f66c430a71ce266a39bfe25bc?=
- =?UTF-8?Q?2903e8d5c8f:6.0.425,18.0.790,17.0.607.475.0000000_definitions?=
- =?UTF-8?Q?=3D2021-12-01=5F01:2021-12-01=5F01,2021-11-30=5F09,2020-04-07?=
- =?UTF-8?Q?=5F01_signatures=3D0?=
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxscore=0 adultscore=0
- suspectscore=0 malwarescore=0 clxscore=1015 bulkscore=0 phishscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2112020042
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel.siel.si
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - norik.com
+X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
+X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to avoid having duplicated addresses within the DT,
-only have one unit-address per clockgen and each driver within
-the clockgen should look at the parent node (overall clockgen)
-to figure out the reg property.  Such behavior is already in
-place in other STi platform clock drivers such as clk-flexgen
-and clkgen-pll.  Keep backward compatibility by first looking
-at reg within the node before looking into the parent node.
+Hi Christoph,
 
-Signed-off-by: Alain Volmat <avolmat@me.com>
----
- drivers/clk/st/clkgen-mux.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+On 1. 12. 21 15:11, Christoph Niedermaier wrote:
+> From: Andrej Picej
+> Sent: Wednesday, December 1, 2021 9:15 AM
+>> Implement a method to change watchdog timeout configuration based on DT
+>> binding ("dlg,wdt-sd"). There is a possibility to change the bahaviour
+>> of watchdog reset. Setting WATCHDOG_SD bit enables SHUTDOWN mode, and
+>> clearing it enables POWERDOWN mode on watchdog timeout.
+>>
+>> If no DT binding is specified the WATCHDOG_SD bit stays in default
+>> configuration, not breaking behaviour of devices which might depend on
+>> default fuse configuration.
+>>
+>> Note: This patch requires that the config register CONFIG_I is
+>> configured as writable in the da9062 multi function device.
+>>
+>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
+>> ---
+>> Changes in v3:
+>>   - no changes
+>>
+>> Changes in v2:
+>>   - don't force the "reset" for all da9062-watchdog users, instead add DT
+>>     binding where the behavior can be selected
+>> ---
+>>   drivers/watchdog/da9062_wdt.c | 25 +++++++++++++++++++++++++
+>>   1 file changed, 25 insertions(+)
+>>
+>> diff --git a/drivers/watchdog/da9062_wdt.c b/drivers/watchdog/da9062_wdt.c
+>> index f02cbd530538..e342e9e50cb1 100644
+>> --- a/drivers/watchdog/da9062_wdt.c
+>> +++ b/drivers/watchdog/da9062_wdt.c
+>> @@ -85,8 +85,33 @@ static int da9062_wdt_start(struct watchdog_device *wdd)
+>>   {
+>>          struct da9062_watchdog *wdt = watchdog_get_drvdata(wdd);
+>>          unsigned int selector;
+>> +       unsigned int mask;
+>> +       u32 val;
+>>          int ret;
+>>
+>> +       /* Configure what happens on watchdog timeout. Can be specified with
+>> +        * "dlg,wdt-sd" dt-binding (0 -> POWERDOWN, 1 -> SHUTDOWN).
+>> +        * If "dlg,wdt-sd" dt-binding is NOT set use the default.
+>> +        */
+>> +       ret = device_property_read_u32(wdd->parent, "dlg,wdt-sd", &val);
+>> +       if (!ret) {
+>> +               if (val)
+>> +                       /* Use da9062's SHUTDOWN mode */
+>> +                       mask = DA9062AA_WATCHDOG_SD_MASK;
+>> +               else
+>> +                       /* Use da9062's POWERDOWN mode. */
+>> +                       mask = 0x0;
+>> +
+>> +               ret = regmap_update_bits(wdt->hw->regmap,
+>> +                                               DA9062AA_CONFIG_I,
+>> +                                               DA9062AA_WATCHDOG_SD_MASK,
+>> +                                               mask);
+>> +
+>> +               if (ret)
+>> +                       dev_err(wdt->hw->dev, "failed to set wdt reset mode:
+>> %d\n",
+>> +                               ret);
+>> +       }
+>> +
+>>          selector = da9062_wdt_timeout_to_sel(wdt->wdtdev.timeout);
+>>          ret = da9062_wdt_update_timeout_register(wdt, selector);
+>>          if (ret)
+>> --
+>> 2.25.1
+>>
+> 
+> I have a question how to correctly restart the system after
+> watchdog timeout.
+> If I understand it correct after watchdog timeout the system
+> restarts only if WATCHDOG_SD (Bit 3) in register CONFIG_I is
+> set.
+> What is the difference if WATCHDOG_SD isn't set, but WAKE_UP
+> (Bit 2) in register CONTROL_F is set? From outside on my
+> system I observe the same behavior. After watchdog timeout
+> my system restarts. So where are the differences?
+> It would be nice if you could answer this question, as you
+> certainly know this chip very well.
 
-diff --git a/drivers/clk/st/clkgen-mux.c b/drivers/clk/st/clkgen-mux.c
-index ce583ded968a..ee39af7a0b72 100644
---- a/drivers/clk/st/clkgen-mux.c
-+++ b/drivers/clk/st/clkgen-mux.c
-@@ -57,10 +57,17 @@ static void __init st_of_clkgen_mux_setup(struct device_node *np,
- 	const char **parents;
- 	int num_parents = 0;
- 
-+	/*
-+	 * First check for reg property within the node to keep backward
-+	 * compatibility, then if reg doesn't exist look at the parent node
-+	 */
- 	reg = of_iomap(np, 0);
- 	if (!reg) {
--		pr_err("%s: Failed to get base address\n", __func__);
--		return;
-+		reg = of_iomap(of_get_parent(np), 0);
-+		if (!reg) {
-+			pr_err("%s: Failed to get base address\n", __func__);
-+			return;
-+		}
- 	}
- 
- 	parents = clkgen_mux_get_parents(np, &num_parents);
--- 
-2.25.1
+To be honest I don't really know the chip that well, I'm just trying to 
+add this feature and hopefully help others if they run into the same 
+problem. I think @Adam will be more helpful here.
 
+But from quick look at da9062 datasheet, mainly chapter "8.8 Power 
+Modes" I see next main differences:
+- setting WATCHDOG_SD enables SHUTDOWN sequence when the watchdog 
+timeout is triggered. This puts the chip (da9062) in RESET mode.
+Taken from DA9062 datasheet:
+> In RESET mode, the internal supplies, and LDO1 (if configured as an always-on supply) are enabled. 
+> All other DA9062 supplies are disabled.
+> DA9062 is in RESET mode whenever a complete application shutdown is required
+> The DA9062’s register configuration will be re-loaded from OTP when leaving the RESET mode
+
+- if you set the WAKE_UP bit than the chip enters POWERDOWN mode on 
+watchdog timeout. I understand the POWERDOWN mode as a not that "deep" 
+mode as a RESET mode Device will go from RESET mode to POWERDOWN mode in 
+the sequence of powering-up.
+
+The above explanation is just my understanding after quick look, @Adam 
+please correct me if I'm talking nonsense.
+
+Please have a look at the DA9062 datasheet for more information. Sorry, 
+that I can't be more helpful here.
+
+Best regards,
+Andrej
