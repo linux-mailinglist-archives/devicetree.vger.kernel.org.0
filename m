@@ -2,258 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08B3F466BBC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 22:42:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5573C466C05
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 23:19:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349091AbhLBVpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 16:45:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50396 "EHLO
+        id S229836AbhLBWXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 17:23:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349076AbhLBVpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 16:45:33 -0500
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CFC7C06174A
-        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 13:42:10 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id k4so1044357pgb.8
-        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 13:42:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
-        h=date:subject:in-reply-to:cc:from:to:message-id;
-        bh=z0U7sXMXxzMUq0YKyxwQpm+mPxbKf8cT9s5Pmci6eQY=;
-        b=ZuspXtWGVJDGGe9JWYuxvvDTFWIFkBZiIM39a98ZoP3vxlhoP6X2BpPBaImkSLc67j
-         1Hfaerxw3P4CtaQ+crg4U75T8v8t6D5tIsq0LN1JS/bxcd1yBud5o8j718phmq3ramjy
-         qYp7YDWyH7m09TrMZC9HgXwfXAevv6rUZSEYViHT9mgjmEXbLAM0ErNVsDO45fixVyu9
-         uVpubcc3YDbQuzgTY0Ajg8oCQmLWcU93AVUknSK1v/QUzPAJ/1iNuBqi6fGP9MSl6vky
-         2/k0whPWWFSJZ92b4YUwv7kp0mvd2/INHhLTjRq8wLsIC98om92Y1eW95VF57Vg8cCsK
-         VP+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id;
-        bh=z0U7sXMXxzMUq0YKyxwQpm+mPxbKf8cT9s5Pmci6eQY=;
-        b=o97zpa1HrQUdLrNRAej+cPfJCAO80lagA2aE13aVvQOmhlPLV+OjTPG39XAbXhObix
-         dAJ5cweqTYcrrpJ161QbyF8XsoKh0+dEePa5Czd1nTZCHy5dXa8y7FDGWf4tsc0Ye8zi
-         mlQITsH+WIKDXYK408WoSO4b5G4Bih8OJRe1ajFZmAJqm972l+wMVb5FLky3TSGmBpJH
-         SkEJ9rf2DK4xHV+rQpjOegTCYrfwBixy9ZRHznC2AgxN52WvBRmvPibViQrhPRlIF3FM
-         4dXtAcanSK+RZUAWZ1f41FaITS3PD2l2kS+AX789N6EGaY0RypgcuI3HkxTvbO2IP7cL
-         6eSg==
-X-Gm-Message-State: AOAM533Wp/O4ZEE+yXCRFsa9qEcsnN2Hxwwr3dqWnAjjNlGrJJY5HZ/W
-        e+7PRah8OuHaJGjmjkFp6bv7Lw==
-X-Google-Smtp-Source: ABdhPJxUWsu0qmz5BcX8JlOveaV/OQsmmKH4peFVYNTsS8Dby17MNH0bj2HinBjsziaJi1FXGhVfjQ==
-X-Received: by 2002:a62:798e:0:b0:4a7:89cf:8526 with SMTP id u136-20020a62798e000000b004a789cf8526mr15288855pfc.10.1638481329518;
-        Thu, 02 Dec 2021 13:42:09 -0800 (PST)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id g22sm758662pfj.29.2021.12.02.13.42.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Dec 2021 13:42:09 -0800 (PST)
-Date:   Thu, 02 Dec 2021 13:42:09 -0800 (PST)
-X-Google-Original-Date: Thu, 02 Dec 2021 13:41:58 PST (-0800)
-Subject:     Re: [PATCH v3 5/6] riscv: dts: sifive unmatched: Fix regulator for board rev3
-In-Reply-To: <537742e7af4a21baf79429469ba7c30947ddca7a.1637362542.git.plr.vincent@gmail.com>
-CC:     robh+dt@kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        qiuwenbo@kylinos.com.cn, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        david.abdurachmanov@sifive.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     plr.vincent@gmail.com
-Message-ID: <mhng-25baa8a5-d7c1-4a37-8489-123fd12499f0@palmer-ri-x1c9>
+        with ESMTP id S237077AbhLBWW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 17:22:59 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97DC0C06174A
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 14:19:36 -0800 (PST)
+Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1AD98B7E;
+        Thu,  2 Dec 2021 23:19:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1638483573;
+        bh=vCXcWm9bW7kU3BglYCKMhUvTt7pTnb66+WtqGFRlUIY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=iOV96cfApAeYJ0QsL1IdPxJwPCWEPSXiwNBklohPEVR4FZX0SFZKIY6UyBZ567QoC
+         EICofMFsjIp2r+83TjwL/IKQXlsIh6+nfFMk8DslkU+DQTK1mi7b8sQyP5y1p5kTuy
+         iksjr0yVM/gqdXfqUne8nB7ULNN2FdatUsFRlqWs=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: [PATCH 0/3] ARM: dts: Fixes for imx7 mipi_csi
+Date:   Fri,  3 Dec 2021 00:19:00 +0200
+Message-Id: <20211202221903.21882-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 19 Nov 2021 14:55:41 PST (-0800), plr.vincent@gmail.com wrote:
-> The existing values are rejected by the da9063 regulator driver, as they
-> are unachievable with the declared chip setup (non-merged vcore and bmem
-> are unable to provide the declared curent).
->
-> Fix voltages to match rev3 schematics, which also matches their boot-up
+Hello,
 
-There's a few references to rev 3 here.  I'm not sure if that means we 
-should have multiple device trees -- this one seems pretty benign, but 
-some of the regulator stuff worries me there, where anything rev 3 
-specific might not be safe on other revisions.
+This small patch series is a follow up on Rob's nxp,imx7-mipi-csi2.yaml
+fix ([1]) and the dtb check warnings that started appearing as a result.
+There's not much else to be said, please see individual patches for
+details.
 
-Did any previous revisions make it out of the lab?
+[1] https://lore.kernel.org/all/20211202023021.3655384-1-robh@kernel.org/
 
-> configuration within the chip's available precision.
-> Declare bcore1/bcore2 and bmem/bio as merged.
-> Set ldo09 and ldo10 as always-on as their consumers are not declared but
-> exist.
-> Drop ldo current limits as there is no current limit feature for these
-> regulators in the DA9063. Fixes warnings like:
->   DA9063_LDO3: Operation of current configuration missing
->
-> Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
->
-> ---
-> Changes since v2:
-> - Fix end-of-commit-message separator so change lists do not end up in them.
-> Changes since v1:
-> - Remove trailing "." on subject line.
-> ---
->  .../boot/dts/sifive/hifive-unmatched-a00.dts  | 84 ++++++-------------
->  1 file changed, 24 insertions(+), 60 deletions(-)
->
-> diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> index 6e7775fdae32..1abad0eec02e 100644
-> --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> @@ -93,47 +93,31 @@ wdt {
->  		};
->
->  		regulators {
-> -			vdd_bcore1: bcore1 {
-> -				regulator-min-microvolt = <900000>;
-> -				regulator-max-microvolt = <900000>;
-> -				regulator-min-microamp = <5000000>;
-> -				regulator-max-microamp = <5000000>;
-> -				regulator-always-on;
-> -			};
-> -
-> -			vdd_bcore2: bcore2 {
-> -				regulator-min-microvolt = <900000>;
-> -				regulator-max-microvolt = <900000>;
-> -				regulator-min-microamp = <5000000>;
-> -				regulator-max-microamp = <5000000>;
-> +			vdd_bcore: bcores-merged {
-> +				regulator-min-microvolt = <1050000>;
-> +				regulator-max-microvolt = <1050000>;
-> +				regulator-min-microamp = <4800000>;
-> +				regulator-max-microamp = <4800000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_bpro: bpro {
->  				regulator-min-microvolt = <1800000>;
->  				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <2500000>;
-> -				regulator-max-microamp = <2500000>;
-> +				regulator-min-microamp = <2400000>;
-> +				regulator-max-microamp = <2400000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_bperi: bperi {
-> -				regulator-min-microvolt = <1050000>;
-> -				regulator-max-microvolt = <1050000>;
-> +				regulator-min-microvolt = <1060000>;
-> +				regulator-max-microvolt = <1060000>;
->  				regulator-min-microamp = <1500000>;
->  				regulator-max-microamp = <1500000>;
->  				regulator-always-on;
->  			};
->
-> -			vdd_bmem: bmem {
-> -				regulator-min-microvolt = <1200000>;
-> -				regulator-max-microvolt = <1200000>;
-> -				regulator-min-microamp = <3000000>;
-> -				regulator-max-microamp = <3000000>;
-> -				regulator-always-on;
-> -			};
-> -
-> -			vdd_bio: bio {
-> +			vdd_bmem_bio: bmem-bio-merged {
->  				regulator-min-microvolt = <1200000>;
->  				regulator-max-microvolt = <1200000>;
->  				regulator-min-microamp = <3000000>;
-> @@ -144,86 +128,66 @@ vdd_bio: bio {
->  			vdd_ldo1: ldo1 {
->  				regulator-min-microvolt = <1800000>;
->  				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <100000>;
-> -				regulator-max-microamp = <100000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo2: ldo2 {
->  				regulator-min-microvolt = <1800000>;
->  				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo3: ldo3 {
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo4: ldo4 {
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
-> +				regulator-min-microvolt = <2500000>;
-> +				regulator-max-microvolt = <2500000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo5: ldo5 {
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <100000>;
-> -				regulator-max-microamp = <100000>;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo6: ldo6 {
-> -				regulator-min-microvolt = <3300000>;
-> -				regulator-max-microvolt = <3300000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo7: ldo7 {
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ldo8: ldo8 {
-> -				regulator-min-microvolt = <1800000>;
-> -				regulator-max-microvolt = <1800000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
-> +				regulator-min-microvolt = <3300000>;
-> +				regulator-max-microvolt = <3300000>;
->  				regulator-always-on;
->  			};
->
->  			vdd_ld09: ldo9 {
->  				regulator-min-microvolt = <1050000>;
->  				regulator-max-microvolt = <1050000>;
-> -				regulator-min-microamp = <200000>;
-> -				regulator-max-microamp = <200000>;
-> +				regulator-always-on;
->  			};
->
->  			vdd_ldo10: ldo10 {
->  				regulator-min-microvolt = <1000000>;
->  				regulator-max-microvolt = <1000000>;
-> -				regulator-min-microamp = <300000>;
-> -				regulator-max-microamp = <300000>;
-> +				regulator-always-on;
->  			};
->
->  			vdd_ldo11: ldo11 {
->  				regulator-min-microvolt = <2500000>;
->  				regulator-max-microvolt = <2500000>;
-> -				regulator-min-microamp = <300000>;
-> -				regulator-max-microamp = <300000>;
->  				regulator-always-on;
->  			};
->  		};
+Laurent Pinchart (3):
+  ARM: dts: imx7s-warp: Drop undefined property in mipi_csi node
+  ARM: dts: imx7: Drop reset-names property for mipi_csi node
+  ARM: dts: imx7: Group mipi_csi 'port' children in a 'ports' node
+
+ arch/arm/boot/dts/imx7s-warp.dts | 14 +++++++-------
+ arch/arm/boot/dts/imx7s.dtsi     | 22 ++++++++++++----------
+ 2 files changed, 19 insertions(+), 17 deletions(-)
+
+
+base-commit: 1f1517fafda598839a02e39968c5063ddcfa51fc
+-- 
+Regards,
+
+Laurent Pinchart
+
