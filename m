@@ -2,142 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55F99465BE7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 02:57:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA9B465BF4
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 03:00:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344435AbhLBCAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 21:00:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35986 "EHLO
+        id S1349500AbhLBCEJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 21:04:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232166AbhLBCAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 21:00:49 -0500
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E72C06174A
-        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 17:57:28 -0800 (PST)
-Received: by mail-ot1-x32a.google.com with SMTP id w6-20020a9d77c6000000b0055e804fa524so37905735otl.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 17:57:28 -0800 (PST)
+        with ESMTP id S1349071AbhLBCEG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 21:04:06 -0500
+Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593ABC061748
+        for <devicetree@vger.kernel.org>; Wed,  1 Dec 2021 18:00:45 -0800 (PST)
+Received: by mail-ot1-x329.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso37971819ota.5
+        for <devicetree@vger.kernel.org>; Wed, 01 Dec 2021 18:00:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5lCMYrhm5t5lva25mCfOVtAtdQc5BhH6E74NoPZjUbA=;
-        b=kbN5VAd3EWzVITSWCiuAVlnCBYntE1oSbkRiiStHk1SRl2vjP37dW0UwV64k66adwJ
-         24qzE5a2BByZfzxyqgIhnICyaWuBh3cNZ5C2z6mXlOayvRTACgLiuXA2g1/BUZ4WjJjP
-         ojly8x07Q/pDR4d7mbyPlm0peu5bCtQRY1yo7pNSbQOgeTiMjPX3e609cubVq0Yy5XRs
-         /EaM+/1qFkCc26ZrmY3ZLJlq41thk/SL4G6sL10fSD9B3Lg/opEU9nQ1gbDZ0cOIObaI
-         eOQVGa52Q1VpEo7UqP0Qn6gBg/OrwMUeNvDtUUUNxlEGcjlLoy4/zF1yznZldgc1Su1Y
-         2C6g==
+         :cc:content-transfer-encoding;
+        bh=2Vc3Qabf4OJ6DDpi6tStMrF6zk7jIEQOWBd5M271vBY=;
+        b=bABFGGIVEbx5sfldUGK4NBiPfHgzxWifNufpKAFs1l0E1qYqdsAlU/JhyMaEnhc+6K
+         Y6b5lJUlupOR+1BM5RRnglqibnnKS+t2tQZx/FXxW3FxlRieNNXWtYun+ks6koUSEg5J
+         WdnURQqaR+vq1/2JDv1+YYtL31SKlzj/Dmw+2p4K3Tw4Yph8Q91p6o6mfwL5toGKDWrW
+         wEu3JlpCWklxkPZJ1G8ZkSvNg5VcQ8fM5v+Fr4RkhZS05caCnmaGS/0L4Ly4XSAIDNHA
+         dyesF+2tyOLnfRPCxf9k93eyRuyTe1dXAyIq/8EhCBQCKWcxXDjmmlww5+Ogepgp9MLp
+         oFsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5lCMYrhm5t5lva25mCfOVtAtdQc5BhH6E74NoPZjUbA=;
-        b=G1fkGhO040GMsqWGgZM4i2m+NUuHF4vcXVEvvJ0oUgr+ktNyt65XuwZvLpDmWvF6cx
-         YW9gtcMLwzMOZN0UOib5M6/ysVZrZtw54BBpwo3SdfbIbLVA0QDagzseWsgmrpAJ14vB
-         Js1PqJl1qRuijJlLplXw13C7tIBsvxwYM5Z54cmYmn1sYc2wQwHZecxAw2GuPunsyjWi
-         JVntsWg8lu3S+RMsGT1yyaBzUeMUMs51Zrtgtq6b5U3uNV2jm+hjwesX6F4OdpuHUAAw
-         67VgK9Z0OzJLCp3NTxr71rn7oxmXdsejhUSRe4EJyTqsGcfLyMMPx+RTc7oCt7UAEB1U
-         UJKQ==
-X-Gm-Message-State: AOAM5312gXAwM0g5PzXXZEPE6gfhRz9bU63QkVY0Tu3Qf6QnXP/6boOx
-        thLonev4z/nm4GlOof5obtxUuVzkA42h2h4N4uwEdw==
-X-Google-Smtp-Source: ABdhPJyuIlyp15f6FFJnwyRvnSdZY2wzuaWptSL7NkR9cG64eNxcHaqNqhS0ll24px3A6oDmh6YoPPsJyo6JDsiPOz0=
-X-Received: by 2002:a9d:74d0:: with SMTP id a16mr8829373otl.237.1638410247820;
- Wed, 01 Dec 2021 17:57:27 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2Vc3Qabf4OJ6DDpi6tStMrF6zk7jIEQOWBd5M271vBY=;
+        b=g2EkRKhz93OZqpMZNU+nMOZ4V4XrrmIxFurREGOK/t6zes1YkcuDeScyJVhiArkJxF
+         6c7Jc3dT8/zjizO/1uMa//1mqVNRMga2Sp9mlKFV6huQ99o7PYTVvmWnBWzSv+PZkRMv
+         UL1fKm+OYlisZpM7hdDRJ7hTUFRDpISf/bXhv1+WcK5v/RxPK8IW8lN01Vhw4xLxbefI
+         69fB6bltXidfzyZ9sI3ziFFl4euaOfALq/jA7XAhvrZ/BTKJLUsyg3VBANeCv8Ta+2xU
+         Rk0AxRBmg6Dinb+wDZ+V6KH6gfgTwSA5JPBajdrC2Vb/Dr9RyIU1I2VZPatYFb9nePtU
+         P7lg==
+X-Gm-Message-State: AOAM5327xGkSJEZ1jV6oywtOz9VZuJ8OrUPxIaD5DAWHXF3RBk0Li4JD
+        6uWJtRybrNKjhxAMQXASXhDlwB8YZgW4x1MgkMx47Q==
+X-Google-Smtp-Source: ABdhPJw8tTDONQzJQmG6nHE3AXUUTh7Sma4wvYXt/tgi5iHBWwjT1b2cetr3Ow9yWiJVbgrVCqBjocL5pcSyZdUhwiA=
+X-Received: by 2002:a9d:ed6:: with SMTP id 80mr9139384otj.35.1638410444735;
+ Wed, 01 Dec 2021 18:00:44 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
- <6123f62ac44e6513a498d15034a4b6b22abe5f5b.1637061794.git.matti.vaittinen@fi.rohmeurope.com>
- <CACRpkdbKeW+pJ8SZ0fPD+9kEtgHgi2A9U=f6XyKTHogKU-9F9g@mail.gmail.com>
- <7b34e88f-54f3-6d0a-293e-b2b411d1c5c2@fi.rohmeurope.com> <676253b9-ff69-7891-1f26-a8b5bb5a421b@fi.rohmeurope.com>
- <CACRpkdZXhw9+txdLv-k01nzH3+GvGivyAoCO1JCf2VyYK96CnQ@mail.gmail.com>
- <57f97c5f-aedb-7f7e-d269-90bd97bbba09@fi.rohmeurope.com> <CACRpkdZ9EEmWSb4mq7WJywma4dFCms+Z3BAKfntcsb9y_1THNQ@mail.gmail.com>
- <d14580b3-1647-5105-4770-2cd8751d9fe5@fi.rohmeurope.com>
-In-Reply-To: <d14580b3-1647-5105-4770-2cd8751d9fe5@fi.rohmeurope.com>
+References: <20211110165720.30242-1-zajec5@gmail.com>
+In-Reply-To: <20211110165720.30242-1-zajec5@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 2 Dec 2021 02:57:16 +0100
-Message-ID: <CACRpkdYvi7__DJNWRRHgL=4QcA0XV2uXXbW+boVU8dy10rEuVw@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 3/9] power: supply: Support DT originated
- temperature-capacity tables
-To:     "Vaittinen, Matti" <matti.vaittinen@fi.rohmeurope.com>
-Cc:     Matti Vaittinen <mazziesaccount@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        "rostokus@gmail.com" <rostokus@gmail.com>,
-        "fan.chen@mediatek.com" <fan.chen@mediatek.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        =?UTF-8?B?c2hpbWkgPj4g5riF5rC0IOW0h+W8mA==?= 
-        <shimizu394@lapis-tech.com>
+Date:   Thu, 2 Dec 2021 03:00:08 +0100
+Message-ID: <CACRpkdYcv92JrxJcSbxkH=AXZDDph2y18hew16yhC=PaL_jYsw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: convert controller description
+ to the json-schema
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 30, 2021 at 7:33 AM Vaittinen, Matti
-<Matti.Vaittinen@fi.rohmeurope.com> wrote:
+On Wed, Nov 10, 2021 at 5:57 PM Rafa=C5=82 Mi=C5=82ecki <zajec5@gmail.com> =
+wrote:
 
-> Hmm. Fair enough. Maybe instead of providing 'temperature range where
-> degradation is constant' we should simply support providing the
-> data-points. Eg, an array of known
-> temperature-[degradation/change]-from-[designed/full]-capacity pairs and
-> leave selecting the best fitting model to the software. Linear
-> interpolation is simple, and may suffice for cases where we have enough
-> of data-points - but you are correct that there probably are better
-> alternatives. Nice thing is software is that it can be changed over time
-> - so even implementing it with linear approach means opening a room for
-> further improvements ;)
+> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+>
+> This helps validating DTS and writing YAML files.
+>
+> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
 
-Yeah someone will implement spline interpolation in the kernel one
-day I bet...
-
-> Well, I don't know how constant such degradation is over time. I just
-> guess it is not constant but might be proportional to age-compensated
-> capacity rather than the designed capacity. It'd be nice to use correct
-> approximation of reality in device-tree...
-
-IIUC the degradation of a battery is related to number of full charge cycles,
-i.e. the times that the battery has been emptied and recharged fully.
-This is of course never happening in practice, so e.g. two recharge cycles
-from 50% to 100% is one full charge cycle. So you integrate this
-over time (needs to be saved in a file system or flash if the battery does
-not say it itself).
-
-This measures how much the lithium ions have moved around in the
-electrolyte and thus how much chemical interaction the battery has
-seen.
-
-Then the relationship between complete charge cycles and capacity
-degradation is certainly also going to be something nonlinear so it
-needs manufacturer data for the battery.
-
-> By the way, I was reading the ab8500 fuel-gauge driver as you suggested.
-> So, if I am correct, you used the battery internal resistance + current
-> to compute the voltage-drop caused by battery internal resistance. This
-> for sure improves the accuracy when we assume VBAT can be used as OCV.
-
-Yes this is how it is done. With a few measurements averaged to
-iron out the noise.
-
-> Epilogue:
-> In general, I see bunch of power-supply drivers scheduling work for
-> running some battery-measurements. Some do this periodically (I think
-> the ab8500 did this although I lost the track when I tried to see in
-> which case the periodic work was not scheduled - and maybe for
-> fuel-gauging) or after an IRQ is triggered (for example to see if change
-> indication should be sent).
-
-Yes there is some tight community of electronic engineers who read the
-right articles and design these things. We don't know them :(
-
-> I think we could simplify a few drivers if the core provided some helper
-> thread (like the simple-gauge) which could be woken by drivers (to do
-> fuel-gauge operations, or to just conditionally send the change
-> notification).
-
-I think so too, I don't think they are very rocket science once the
-right abstractions fall out.
+Patch applied!
 
 Yours,
 Linus Walleij
