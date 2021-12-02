@@ -2,178 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE56466939
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 18:34:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82F7646697C
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 18:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242092AbhLBRiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 12:38:13 -0500
-Received: from mga02.intel.com ([134.134.136.20]:34533 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235806AbhLBRiM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 2 Dec 2021 12:38:12 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10185"; a="223992960"
-X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; 
-   d="scan'208";a="223992960"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Dec 2021 09:34:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,282,1631602800"; 
-   d="scan'208";a="677739807"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by orsmga005.jf.intel.com with ESMTP; 02 Dec 2021 09:34:39 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mspyg-000GY2-BG; Thu, 02 Dec 2021 17:34:38 +0000
-Date:   Fri, 3 Dec 2021 01:34:11 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Felix Fietkau <nbd@nbd.name>, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     kbuild-all@lists.01.org, john@phrozen.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 07/13] clk: en7523: Add clock driver for Airoha EN7523
- SoC
-Message-ID: <202112030121.BuKKR1T4-lkp@intel.com>
-References: <20211129153330.37719-8-nbd@nbd.name>
+        id S1376503AbhLBR6e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 12:58:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56174 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1376499AbhLBR6c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 12:58:32 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15051C061757;
+        Thu,  2 Dec 2021 09:55:10 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id s13so476154wrb.3;
+        Thu, 02 Dec 2021 09:55:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wgKAyiKJ2nfuDveCIUQQb63JtY9dCL63TF7/yqdYMrU=;
+        b=iUUj1rGHRcD9dFr86mAbzhOw4HZTbdjcCSpVJQrcHhUscQFG15HUFbSj640hFPJnez
+         4m+OGejQOaivs3Jy4D4PMoq+aZ0t9G4Ed3u2oeGHA84n26KNXTv/ZwsunyK3veL5hpIt
+         X1XLUAS4e1ep6lRSz9tmTki47WtHhmFC7HGe2Gq4gJNTZ0lqedSepBJnUSkUNj7SR1Qu
+         85O5YaA+bDX8YatW58uczQGOKKG5Vzvbd5QRyReFbU0Ov7h+PwIhtYOhfq8uvntJfzcH
+         kYIf8ODBzg4SzIgUgv9Tw0hbMc5UCKC6gHXxOu0UTRzZ0lX2sRMPAjIYWNJEha5RCqbk
+         56KQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wgKAyiKJ2nfuDveCIUQQb63JtY9dCL63TF7/yqdYMrU=;
+        b=yXKPzDpOsVhv21Do440Z/xWEojeoCklSNpFcY75Qv2jgBgFJ1cHSL1ZngM1nB3Zof8
+         GVROIEO68JjxJSNbKtXGGjQlLtvao+IyAplb1fFcrr4pR2uk3OOAq0+KPK8BzBWJEoj6
+         eJr7QUl+iGT7eUChz+Z76uP5YaDB/xFH5kgYQzw4OZlfw45MXiDsGhXODsQ4gPlGVpY0
+         sMLNjdwe4TMk98B8nn60kI9upBq16lAQHoG2/tixTSBm1ta51FyXvQr+38JZbcT7B8jc
+         Oo+voq72RRlVCUXjzp9+SJUU4JBhBnCT5ktfw4Sanl/YpPk/AHvjS1/l8k9twFiZ2S1N
+         BlPw==
+X-Gm-Message-State: AOAM532zEHiq+wXQ5rBWbI/vw1/g/l6HRkBBeLVTIViut3QFVYJ193bG
+        J+ZmA+0u2L3olbC9tf6S+1k=
+X-Google-Smtp-Source: ABdhPJzxJPKyAIpzw6rE3RcgmFwnD+Jm8wNIXLR+OtFmn3Dq6UkcTgGp/E+x9sew26+DmN9DGzA8Zg==
+X-Received: by 2002:a05:6000:52:: with SMTP id k18mr16404889wrx.192.1638467708485;
+        Thu, 02 Dec 2021 09:55:08 -0800 (PST)
+Received: from orome.fritz.box ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id t17sm2912441wmq.15.2021.12.02.09.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Dec 2021 09:55:07 -0800 (PST)
+Date:   Thu, 2 Dec 2021 18:55:04 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 13/16] dt-bindings: i2c: tegra-bpmp: Convert to
+ json-schema
+Message-ID: <YakIePafm3t6rJLE@orome.fritz.box>
+References: <20211119143839.1950739-1-thierry.reding@gmail.com>
+ <20211119143839.1950739-14-thierry.reding@gmail.com>
+ <YaWCAGQU0sjCwz66@robh.at.kernel.org>
+ <Yae0DwCpFu8F/Gbw@orome.fritz.box>
+ <CAL_Jsq+JvZQjN3q4A3yoM+pUPHLYKtwUT=QsDq+oQ7jk8mD3CA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uOJW5L5kVuAsz1Of"
 Content-Disposition: inline
-In-Reply-To: <20211129153330.37719-8-nbd@nbd.name>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAL_Jsq+JvZQjN3q4A3yoM+pUPHLYKtwUT=QsDq+oQ7jk8mD3CA@mail.gmail.com>
+User-Agent: Mutt/2.1.3 (987dde4c) (2021-09-10)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felix,
 
-I love your patch! Perhaps something to improve:
+--uOJW5L5kVuAsz1Of
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on clk/clk-next v5.16-rc3 next-20211202]
-[cannot apply to linusw-gpio/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+On Wed, Dec 01, 2021 at 12:42:07PM -0600, Rob Herring wrote:
+> On Wed, Dec 1, 2021 at 11:42 AM Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
+> >
+> > On Mon, Nov 29, 2021 at 07:44:32PM -0600, Rob Herring wrote:
+> > > On Fri, Nov 19, 2021 at 03:38:36PM +0100, Thierry Reding wrote:
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >
+> > > > Convert the NVIDIA Tegra186 (and later) BPMP I2C bindings from the
+> > > > free-form text format to json-schema.
+> > > >
+> > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > > ---
+> > > > Changes in v2:
+> > > > - add missing additionalProperties: false
+> > > >
+> > > >  .../bindings/i2c/nvidia,tegra186-bpmp-i2c.txt | 42 ---------------=
+----
+> > > >  .../i2c/nvidia,tegra186-bpmp-i2c.yaml         | 42 +++++++++++++++=
+++++
+> > > >  2 files changed, 42 insertions(+), 42 deletions(-)
+> > > >  delete mode 100644 Documentation/devicetree/bindings/i2c/nvidia,te=
+gra186-bpmp-i2c.txt
+> > > >  create mode 100644 Documentation/devicetree/bindings/i2c/nvidia,te=
+gra186-bpmp-i2c.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-=
+bpmp-i2c.txt b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i=
+2c.txt
+> > > > deleted file mode 100644
+> > > > index ab240e10debc..000000000000
+> > > > --- a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2=
+c.txt
+> > > > +++ /dev/null
+> > > > @@ -1,42 +0,0 @@
+> > > > -NVIDIA Tegra186 BPMP I2C controller
+> > > > -
+> > > > -In Tegra186, the BPMP (Boot and Power Management Processor) owns c=
+ertain HW
+> > > > -devices, such as the I2C controller for the power management I2C b=
+us. Software
+> > > > -running on other CPUs must perform IPC to the BPMP in order to exe=
+cute
+> > > > -transactions on that I2C bus. This binding describes an I2C bus th=
+at is
+> > > > -accessed in such a fashion.
+> > > > -
+> > > > -The BPMP I2C node must be located directly inside the main BPMP no=
+de. See
+> > > > -../firmware/nvidia,tegra186-bpmp.txt for details of the BPMP bindi=
+ng.
+> > > > -
+> > > > -This node represents an I2C controller. See ../i2c/i2c.txt for det=
+ails of the
+> > > > -core I2C binding.
+> > > > -
+> > > > -Required properties:
+> > > > -- compatible:
+> > > > -    Array of strings.
+> > > > -    One of:
+> > > > -    - "nvidia,tegra186-bpmp-i2c".
+> > > > -- #address-cells: Address cells for I2C device address.
+> > > > -    Single-cell integer.
+> > > > -    Must be <1>.
+> > > > -- #size-cells:
+> > > > -    Single-cell integer.
+> > > > -    Must be <0>.
+> > > > -- nvidia,bpmp-bus-id:
+> > > > -    Single-cell integer.
+> > > > -    Indicates the I2C bus number this DT node represent, as define=
+d by the
+> > > > -    BPMP firmware.
+> > > > -
+> > > > -Example:
+> > > > -
+> > > > -bpmp {
+> > > > -   ...
+> > > > -
+> > > > -   i2c {
+> > > > -           compatible =3D "nvidia,tegra186-bpmp-i2c";
+> > > > -           #address-cells =3D <1>;
+> > > > -           #size-cells =3D <0>;
+> > > > -           nvidia,bpmp-bus-id =3D <5>;
+> > > > -   };
+> > > > -};
+> > > > diff --git a/Documentation/devicetree/bindings/i2c/nvidia,tegra186-=
+bpmp-i2c.yaml b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-=
+i2c.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..351e12124959
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/i2c/nvidia,tegra186-bpmp-i2=
+c.yaml
+> > > > @@ -0,0 +1,42 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/i2c/nvidia,tegra186-bpmp-i2c.ya=
+ml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: NVIDIA Tegra186 (and later) BPMP I2C controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Thierry Reding <thierry.reding@gmail.com>
+> > > > +  - Jon Hunter <jonathanh@nvidia.com>
+> > > > +
+> > > > +description: |
+> > > > +  In Tegra186 and later, the BPMP (Boot and Power Management Proce=
+ssor)
+> > > > +  owns certain HW devices, such as the I2C controller for the power
+> > > > +  management I2C bus. Software running on other CPUs must perform =
+IPC to
+> > > > +  the BPMP in order to execute transactions on that I2C bus. This
+> > > > +  binding describes an I2C bus that is accessed in such a fashion.
+> > > > +
+> > > > +  The BPMP I2C node must be located directly inside the main BPMP =
+node.
+> > > > +  See ../firmware/nvidia,tegra186-bpmp.yaml for details of the BPMP
+> > > > +  binding.
+> > > > +
+> > > > +  This node represents an I2C controller. See ../i2c/i2c.txt for d=
+etails
+> > > > +  of the core I2C binding.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: nvidia,tegra186-bpmp-i2c
+> > > > +
+> > >
+> > > > +  "#address-cells":
+> > > > +    const: 1
+> > > > +
+> > > > +  "#size-cells":
+> > > > +    const: 0
+> > >
+> > > Covered by i2c-controller.yaml. Add a reference and then use
+> > > unevaluatedProperties.
+> >
+> > About that: I've recently noticed that this doesn't seem to work
+> > properly. I'm using branch draft2020-12 from your github and my
+>=20
+> Use dtschema main/master branch. That branch is likely stale.
 
-url:    https://github.com/0day-ci/linux/commits/Felix-Fietkau/dt-bindings-Add-vendor-prefix-for-Airoha/20211130-033938
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: mips-randconfig-s031-20211202 (https://download.01.org/0day-ci/archive/20211203/202112030121.BuKKR1T4-lkp@intel.com/config)
-compiler: mips64-linux-gcc (GCC) 11.2.0
-reproduce:
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # apt-get install sparse
-        # sparse version: v0.6.4-dirty
-        # https://github.com/0day-ci/linux/commit/f1c5b70976ce5352c8ac2ae85739e1be63f59ec2
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Felix-Fietkau/dt-bindings-Add-vendor-prefix-for-Airoha/20211130-033938
-        git checkout f1c5b70976ce5352c8ac2ae85739e1be63f59ec2
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross C=1 CF='-fdiagnostic-prefix -D__CHECK_ENDIAN__' O=build_dir ARCH=mips SHELL=/bin/bash drivers/clk/ drivers/gpio/
+That seems to have helped somewhat. I do occasionally see warnings now
+about unevaluated properties being unexpected. I can still reproduce the
+issue, though, see below.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> > understanding was that this should give us support for
+> > unevaluatedProperties. And indeed, it no longer complains about
+> > #address-cells and #size-cells if I remove them from this binding,
+> > presumably because it gets them from i2c-controller.yaml.
+> >
+> > However, a side-effect seems to be that now it also ignores any
+> > properties that aren't defined anywhere. So for example if I touch
+> > up the example in firmware/nvidia,tegra186-bpmp.yaml and add a bogus
+> > "foo-bar =3D <0>;" property in the BPMP I2C node, then it'll blindly
+> > accept that as valid.
+>=20
+> Do you have unevaluatedProperties within the i2c node? It only applies
+> to 1 level, and you can't have a parent+child schema evaluated with
+> another child (or parent+child) schema. This is why the graph schema
+> is done the way it is and why we're splitting spi-controller.yaml
+> child node schema out to spi-peripheral.yaml.
 
+Let me give an example based on a schema that's already upstream. So
+looking at this:
 
-sparse warnings: (new ones prefixed by >>)
-   command-line: note: in included file:
-   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_ACQUIRE redefined
-   builtin:0:0: sparse: this was the original definition
-   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_SEQ_CST redefined
-   builtin:0:0: sparse: this was the original definition
-   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_ACQ_REL redefined
-   builtin:0:0: sparse: this was the original definition
-   builtin:1:9: sparse: sparse: preprocessor token __ATOMIC_RELEASE redefined
-   builtin:0:0: sparse: this was the original definition
-   drivers/clk/clk-en7523.c:202:27: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *np_base @@     got void [noderef] __iomem *base @@
-   drivers/clk/clk-en7523.c:202:27: sparse:     expected void *np_base
-   drivers/clk/clk-en7523.c:202:27: sparse:     got void [noderef] __iomem *base
->> drivers/clk/clk-en7523.c:206:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:206:29: sparse:     expected void const volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:206:29: sparse:     got void *
->> drivers/clk/clk-en7523.c:208:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:208:29: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:208:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:213:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:213:29: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:213:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:217:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:217:29: sparse:     expected void const volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:217:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:220:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:220:37: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:220:37: sparse:     got void *
-   drivers/clk/clk-en7523.c:222:36: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:222:36: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:222:36: sparse:     got void *
-   drivers/clk/clk-en7523.c:224:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:224:37: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:224:37: sparse:     got void *
-   drivers/clk/clk-en7523.c:229:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:229:29: sparse:     expected void const volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:229:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:230:37: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:230:37: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:230:37: sparse:     got void *
-   drivers/clk/clk-en7523.c:232:36: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:232:36: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:232:36: sparse:     got void *
-   drivers/clk/clk-en7523.c:241:27: sparse: sparse: incorrect type in initializer (different address spaces) @@     expected void *np_base @@     got void [noderef] __iomem *base @@
-   drivers/clk/clk-en7523.c:241:27: sparse:     expected void *np_base
-   drivers/clk/clk-en7523.c:241:27: sparse:     got void [noderef] __iomem *base
-   drivers/clk/clk-en7523.c:244:29: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:244:29: sparse:     expected void const volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:244:29: sparse:     got void *
-   drivers/clk/clk-en7523.c:246:29: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got void * @@
-   drivers/clk/clk-en7523.c:246:29: sparse:     expected void volatile [noderef] __iomem *mem
-   drivers/clk/clk-en7523.c:246:29: sparse:     got void *
+	Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
 
-vim +206 drivers/clk/clk-en7523.c
+it does include spi-controller.yaml via an allOf: [ $ref: ... ], so it
+uses unevaluatedProperties to validate against any generic SPI
+controller properties. For example, #address-cells and #size-cells are
+validated based on the schema from spi-controller.yaml.
 
-   198	
-   199	static int en7523_pci_enable(struct clk_hw *hw)
-   200	{
-   201		struct en_clk_gate *cg = container_of(hw, struct en_clk_gate, hw);
-   202		void *np_base = cg->base;
-   203		u32 val, mask;
-   204	
-   205		/* Need to pull device low before reset */
- > 206		val = readl(np_base + REG_PCI_CONTROL);
-   207		val &= ~(REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT);
- > 208		writel(val, np_base + REG_PCI_CONTROL);
-   209		usleep_range(1000, 2000);
-   210	
-   211		/* Enable PCIe port 1 */
-   212		val |= REG_PCI_CONTROL_REFCLK_EN1;
-   213		writel(val, np_base + REG_PCI_CONTROL);
-   214		usleep_range(1000, 2000);
-   215	
-   216		/* Reset to default */
-   217		val = readl(np_base + REG_RESET_CONTROL);
-   218		mask = REG_RESET_CONTROL_PCIE1 | REG_RESET_CONTROL_PCIE2 |
-   219		       REG_RESET_CONTROL_PCIEHB;
-   220		writel(val & ~mask, np_base + REG_RESET_CONTROL);
-   221		usleep_range(1000, 2000);
-   222		writel(val | mask, np_base + REG_RESET_CONTROL);
-   223		msleep(100);
-   224		writel(val & ~mask, np_base + REG_RESET_CONTROL);
-   225		usleep_range(5000, 10000);
-   226	
-   227		/* Release device */
-   228		mask = REG_PCI_CONTROL_PERSTOUT1 | REG_PCI_CONTROL_PERSTOUT;
-   229		val = readl(np_base + REG_PCI_CONTROL);
-   230		writel(val & ~mask, np_base + REG_PCI_CONTROL);
-   231		usleep_range(1000, 2000);
-   232		writel(val | mask, np_base + REG_PCI_CONTROL);
-   233		msleep(250);
-   234	
-   235		return 0;
-   236	}
-   237	
+However, if I now apply the following patch to add an undocumented
+property to the example, then validation doesn't fail as I would expect
+it to.
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+--- >8 ---
+diff --git a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yam=
+l b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+index 35a8045b2c70..e9342faf5194 100644
+--- a/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
++++ b/Documentation/devicetree/bindings/spi/nvidia,tegra210-quad.yaml
+@@ -104,6 +104,7 @@ examples:
+             resets =3D <&tegra_car 211>;
+             dmas =3D <&apbdma 5>, <&apbdma 5>;
+             dma-names =3D "rx", "tx";
++            foo-something =3D <42>;
+=20
+             flash@0 {
+                     compatible =3D "spi-nor";
+--- >8 ---
+
+I would expect the validation to fail for foo-something because it isn't
+defined in any of the schemas.
+
+Or is this one of the cases that you mentioned above. I must admit I did
+not follow what exactly is expected to work and what isn't. The QSPI
+controller example from above seems simple enough.
+
+Thierry
+
+--uOJW5L5kVuAsz1Of
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmGpCHUACgkQ3SOs138+
+s6EN5g//ci+kNNOP378mVU1N8dDsUv0LxAKxTd80fF05q1H74a6A4iCa4Suijb1U
+fc97E/OglW6hD362z68t1sQVCtVjS9NoPvkFvf33RYyoADh/7ztGEB7tHDNXZkFf
+uTggakd5HcDYpuk4eqmXuAs2nR/LOjFraKly9Gg6kM/4BewYphAZJSPjbXhhfcdO
+bk8pG5DQmOeELI+pPqSsOfj5Np8GL5g26chIMgvfxZGLmYlWHRrV9O+FRTLlvQt4
+t+RY0lsP7mYVhG0+j8R2YIb0k2dPhIXCzFOPw4bJYE9j+avrSAgKDEoUuR3OMzxN
+2X2XOvO/jSW4I34YIN4GqSAF49OuAyhw8EkTwgE38FLUMNy/Dnl1LFqQN36137VI
+xaGszztNtlbqIhqzzNNMaJ/w0wGT57l/+qySfSVxagP+qzh9VwKJWSOgJOpmOrTP
+fEutOLDl/j2jdJSuzMz+s0ZgFKe0NPrLB/C+azKYpwkn4wLvBPyLCwHYXIaRxZ8h
+2p7TovUlX0Ij55bGHdhTdpcFRRkoO1M15EkdV1QlqXmvVKkijN0aWTVI+svAZ7JF
+sS4M9bRVRilteK5JB2ouR58oOd05h3vSG6x7tVsQt7T12M7Jo+iqDpx8h1tFWW5w
+7WzV4AbBpr/6jONXhP3XzTj0KSU/mCS+VPkVaTKvajoHoNRKkvg=
+=cldr
+-----END PGP SIGNATURE-----
+
+--uOJW5L5kVuAsz1Of--
