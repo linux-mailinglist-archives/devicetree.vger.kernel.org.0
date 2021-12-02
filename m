@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28981465B2D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 01:43:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA09465B4D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Dec 2021 01:46:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343886AbhLBArC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 1 Dec 2021 19:47:02 -0500
-Received: from relay04.th.seeweb.it ([5.144.164.165]:41591 "EHLO
-        relay04.th.seeweb.it" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240582AbhLBArB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 1 Dec 2021 19:47:01 -0500
-Received: from localhost.localdomain (83.6.166.111.neoplus.adsl.tpnet.pl [83.6.166.111])
-        by m-r1.th.seeweb.it (Postfix) with ESMTPA id AE4251FA18;
-        Thu,  2 Dec 2021 01:43:37 +0100 (CET)
-From:   Konrad Dybcio <konrad.dybcio@somainline.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht
-Cc:     martin.botka@somainline.org,
-        angelogioacchino.delregno@somainline.org,
-        marijn.suijten@somainline.org, jamipkettunen@somainline.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] Revert "arm64: dts: qcom: sm8350: Specify clock-frequency for arch timer"
-Date:   Thu,  2 Dec 2021 01:43:28 +0100
-Message-Id: <20211202004328.459899-1-konrad.dybcio@somainline.org>
-X-Mailer: git-send-email 2.33.1
+        id S1344585AbhLBAuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 1 Dec 2021 19:50:08 -0500
+Received: from inva020.nxp.com ([92.121.34.13]:41248 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1354921AbhLBAuH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 1 Dec 2021 19:50:07 -0500
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2884F1A08CC;
+        Thu,  2 Dec 2021 01:46:45 +0100 (CET)
+Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DDC221A0119;
+        Thu,  2 Dec 2021 01:46:44 +0100 (CET)
+Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.142])
+        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 0111540007;
+        Wed,  1 Dec 2021 17:46:43 -0700 (MST)
+From:   Li Yang <leoyang.li@nxp.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>
+Subject: [PATCH v2 0/4] layerscape-pci binding updates
+Date:   Wed,  1 Dec 2021 18:46:32 -0600
+Message-Id: <20211202004636.5276-1-leoyang.li@nxp.com>
+X-Mailer: git-send-email 2.25.1.377.g2d2118b
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit ed9500c1df59437856d43e657f185fb1eb5d817d.
+This series includes two binding changes from Zhiqiang's previous
+submission rebased to latest 5.16-rc1:
+[PATCHv5 0/6] PCI: layerscape: Add power management support
 
-The clock-frequency property was meant to aid platforms with broken firmwares
-that don't set up the timer properly on their own. Don't include it where it is
-not the case.
+They describe the hardware and are not necessarily connected with the PM
+driver changes.  The series also includes two other binding updates to
+better describe the pcie hardware.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Updates in v2:
+- Refined the description of AER/PME in binding and updated commit
+  message
+- Changed AER/PME to upper case
+- Added Ack from Rob
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 7323ed74f41a..53b39e718fb6 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -3193,6 +3193,5 @@ timer {
- 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
- 			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>;
--		clock-frequency = <19200000>;
- 	};
- };
+Hou Zhiqiang (2):
+  dt-bindings: pci: layerscape-pci: Add a optional property big-endian
+  dt-bindings: pci: layerscape-pci: Update the description of SCFG
+    property
+
+Li Yang (1):
+  dt-bindings: pci: layerscape-pci: define AER/PME interrupts
+
+Xiaowei Bao (1):
+  dt-bindings: pci: layerscape-pci: Add EP mode compatible strings for
+    ls1028a
+
+ .../bindings/pci/layerscape-pci.txt           | 47 ++++++++++++-------
+ 1 file changed, 30 insertions(+), 17 deletions(-)
+
 -- 
-2.33.1
+2.25.1
 
