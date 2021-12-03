@@ -2,141 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7154466E4F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 01:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A390466E65
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 01:18:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238223AbhLCAKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 19:10:24 -0500
-Received: from ams.source.kernel.org ([145.40.68.75]:32868 "EHLO
-        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235444AbhLCAKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 19:10:24 -0500
+        id S237334AbhLCAWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 19:22:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57878 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233413AbhLCAWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 19:22:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77610C06174A;
+        Thu,  2 Dec 2021 16:18:47 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 35AE9B82570;
-        Fri,  3 Dec 2021 00:07:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8F7CC53FD5;
-        Fri,  3 Dec 2021 00:06:58 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DCAD7B82250;
+        Fri,  3 Dec 2021 00:18:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78E7FC00446;
+        Fri,  3 Dec 2021 00:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638490018;
-        bh=hUUGmi1Kxjg4GVMJJk27j4s8CR+5/UrEzujzqqM7DVc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lODZkcZ6BvnOCz4O6iIV8krAEhmKF9YU38giD5x/tcmBjHGC3UagRE9v+yFJwvKCg
-         vj6BIa+dluXsClTi/MxisQBtIOISTtvwatHIfILWRDwS17zmq05s5SQqKHNHB4nvNG
-         J5JxyfEG+BRwHjpfqF4Hxj4PRPsQ/AbshzYRawqO+P4dJhXlv19pa/4EHR4XseSRsA
-         B3ObZEF8xI3U7IwT6l9AUu8peIJdLqzRkud5+SUOpKyn0T+TEhwHhMaynBvaFn8xRq
-         6BH/qAfQJ+saTZr6CJWlVOqGhYAWlwJ9fMb4Z8wNYSVxzyALMQZfhrwdwnNdYOdvcF
-         dGzEVF5XoTayQ==
-Received: by mail-ed1-f54.google.com with SMTP id y12so4359351eda.12;
-        Thu, 02 Dec 2021 16:06:58 -0800 (PST)
-X-Gm-Message-State: AOAM533T36jn6E+O4qP/th9ASEvUqdQ6IVX+6TU+AoaJiKhJ/KF0z+M/
-        1PAiVR9GtU3Nd19/aX3cHcOJePCGlt8JTWNK8Q==
-X-Google-Smtp-Source: ABdhPJy/vfyFg8Uq9KjiNMxw9kzU+8NVCXfS+xyKdO85QAO1nUO0e3tnO/OopVm4P79WiTBhXyFZoO0samMN/lsdoo4=
-X-Received: by 2002:a17:907:7f2a:: with SMTP id qf42mr19657908ejc.388.1638490017099;
- Thu, 02 Dec 2021 16:06:57 -0800 (PST)
+        s=k20201202; t=1638490724;
+        bh=eCmuVJ2jHQacfGspdr0NSDv3DCXYWN5TVlbwLDLU8P8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=a0qBlRrUyJCpD1AcuoYGKiJxFm6lj3pIMsgylvXsetI+KfX3N4xwEEFOuMergjKTO
+         ISQ9MzzWBEqxqEsUUDq2grvAtfK38jXG83+EXyIoQbFcHtK2UAtdCdP2ZLosre2mHZ
+         UGiMXRzD/C0OX5MGWrbSsJ8B7YuTpw1Ux5x6Fbk6bLLxcb7T7cUF2/88weD2fp948E
+         5KA0S6TRwWPj/2QCq/nRwOJv4nIROZzAXA4ZEuRXZ4eMGWUgdeq1AVV+jBI3ZUuzuT
+         bdVcU6NuUNai01q+JVkRxxQb9G4qCKZXZfQ2Vx7jFy35HDg5W/NxLUurdDnwyntdEb
+         rNTwf0LMC4ezQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20211129184439.16892-1-jason-jh.lin@mediatek.com> <20211129184439.16892-11-jason-jh.lin@mediatek.com>
-In-Reply-To: <20211129184439.16892-11-jason-jh.lin@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Fri, 3 Dec 2021 08:06:45 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-edo+HagSJPxgFyYT2itXk4isbY=fnd=o6YO8kx0Ms=g@mail.gmail.com>
-Message-ID: <CAAOTY_-edo+HagSJPxgFyYT2itXk4isbY=fnd=o6YO8kx0Ms=g@mail.gmail.com>
-Subject: Re: [PATCH v13 10/15] drm/mediatek: remove unused define in mtk_drm_ddp_comp.c
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fei Shao <fshao@chromium.org>,
-        Moudy Ho <moudy.ho@mediatek.com>, roy-cw.yeh@mediatek.com,
-        Fabien Parent <fparent@baylibre.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
-        DTML <devicetree@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <7e1805ef3f7cddc1222906d8b8e5b79548b46f63.1638402361.git.quic_vamslank@quicinc.com>
+References: <cover.1638402361.git.quic_vamslank@quicinc.com> <7e1805ef3f7cddc1222906d8b8e5b79548b46f63.1638402361.git.quic_vamslank@quicinc.com>
+Subject: Re: [PATCH v6 2/5] clk: qcom: Add LUCID_EVO PLL type for SDX65
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        manivannan.sadhasivam@linaro.org,
+        Vamsi Krishna Lanka <quic_vamslank@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, maz@kernel.org,
+        mturquette@baylibre.com, quic_vamslank@quicinc.com,
+        robh+dt@kernel.org, tglx@linutronix.de
+Date:   Thu, 02 Dec 2021 16:18:43 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20211203001844.78E7FC00446@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Jason:
+Quoting quic_vamslank@quicinc.com (2021-12-01 16:21:32)
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alph=
+a-pll.c
+> index eaedcceb766f..e0c67b76d8ac 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -1741,35 +1760,47 @@ static int alpha_pll_lucid_5lpe_set_rate(struct c=
+lk_hw *hw, unsigned long rate,
+>                                           LUCID_5LPE_ALPHA_PLL_ACK_LATCH);
+>  }
+> =20
+> +static int __clk_lucid_pll_postdiv_set_rate(struct clk_hw *hw, unsigned =
+long rate,
+> +                                            unsigned long parent_rate, u=
+nsigned long enable_vote_run)
+> +{
+> +        struct clk_alpha_pll_postdiv *pll =3D to_clk_alpha_pll_postdiv(h=
+w);
+> +       struct regmap *regmap =3D pll->clkr.regmap;
 
-jason-jh.lin <jason-jh.lin@mediatek.com> =E6=96=BC 2021=E5=B9=B411=E6=9C=88=
-30=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:44=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Remove the unsed define in mtk_drm_ddp_comp.c
+What's going on with the tabbing here?
 
-Applied to mediatek-drm-next [1], thanks.
+> +        int i, val =3D 0, div, ret;
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
-log/?h=3Dmediatek-drm-next
+Do we need to initialize to 0?
 
-Regards,
-Chun-Kuang.
+> +        u32 mask;
+> +
+> +        /*
+> +         * If the PLL is in FSM mode, then treat set_rate callback as a
+> +         * no-operation.
+> +         */
+> +        ret =3D regmap_read(regmap, PLL_USER_CTL(pll), &val);
+> +        if (ret)
+> +                return ret;
+> +
+> +        if (val & enable_vote_run)
+> +                return 0;
+> +
+> +        if (!pll->post_div_table) {
+> +                pr_err("Missing the post_div_table for the PLL\n");
 
->
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c | 10 ----------
->  1 file changed, 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/dr=
-m/mediatek/mtk_drm_ddp_comp.c
-> index 3704e4b7f3c5..7d3bd6214c15 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
-> @@ -21,8 +21,6 @@
->  #include "mtk_drm_crtc.h"
->
->  #define DISP_OD_EN                             0x0000
-> -#define DISP_OD_INTEN                          0x0008
-> -#define DISP_OD_INTSTA                         0x000c
->  #define DISP_OD_CFG                            0x0020
->  #define DISP_OD_SIZE                           0x0030
->  #define DISP_DITHER_5                          0x0114
-> @@ -39,26 +37,18 @@
->  #define DITHER_ENGINE_EN                       BIT(1)
->  #define DISP_DITHER_SIZE                       0x0030
->
-> -#define LUT_10BIT_MASK                         0x03ff
-> -
->  #define OD_RELAYMODE                           BIT(0)
->
->  #define UFO_BYPASS                             BIT(2)
->
->  #define DISP_DITHERING                         BIT(2)
->  #define DITHER_LSB_ERR_SHIFT_R(x)              (((x) & 0x7) << 28)
-> -#define DITHER_OVFLW_BIT_R(x)                  (((x) & 0x7) << 24)
->  #define DITHER_ADD_LSHIFT_R(x)                 (((x) & 0x7) << 20)
-> -#define DITHER_ADD_RSHIFT_R(x)                 (((x) & 0x7) << 16)
->  #define DITHER_NEW_BIT_MODE                    BIT(0)
->  #define DITHER_LSB_ERR_SHIFT_B(x)              (((x) & 0x7) << 28)
-> -#define DITHER_OVFLW_BIT_B(x)                  (((x) & 0x7) << 24)
->  #define DITHER_ADD_LSHIFT_B(x)                 (((x) & 0x7) << 20)
-> -#define DITHER_ADD_RSHIFT_B(x)                 (((x) & 0x7) << 16)
->  #define DITHER_LSB_ERR_SHIFT_G(x)              (((x) & 0x7) << 12)
-> -#define DITHER_OVFLW_BIT_G(x)                  (((x) & 0x7) << 8)
->  #define DITHER_ADD_LSHIFT_G(x)                 (((x) & 0x7) << 4)
-> -#define DITHER_ADD_RSHIFT_G(x)                 (((x) & 0x7) << 0)
->
->  #define DISP_POSTMASK_EN                       0x0000
->  #define POSTMASK_EN                                    BIT(0)
-> --
-> 2.18.0
->
+Probably useful to know which PLL is missing a table here.
