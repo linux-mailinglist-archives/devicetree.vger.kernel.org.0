@@ -2,114 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B68A466ECD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 01:52:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7FF466F03
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 02:11:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232653AbhLCAzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 19:55:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37412 "EHLO
+        id S233067AbhLCBO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 20:14:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232416AbhLCAzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 19:55:53 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64084C06174A;
-        Thu,  2 Dec 2021 16:52:30 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id k4so1394090pgb.8;
-        Thu, 02 Dec 2021 16:52:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KcgckVJBk609C9n8WlYPxKWxBCCyIgqINt/uZGi6A0Y=;
-        b=Ctf7ofl9Xke/PvNfOa+Vrw+j8ZBmzqUrFn63JewI2pdb1XRMsZgcYJ6ssqVhQpeDjA
-         ya/eT9D/t9b86F/AArvhA/u4vb7Q466qgo9KzGmBFPZijZkkoSob/z+47kRcGLqgoLcX
-         bsKy2XDc+XW2Z3hJyPDbt5ekMsag8vEQ2CepLHEGWHzbT4FUP8ejDg9HntELO6U/kHXv
-         0lfZVQR7cTvYiPYD9S0BPTPNA7HKN4I5EniGd53Riw/4BkWX0Rzro4VxzMSJ2yNh1zWV
-         Ss04cFrELxmFNzr+xgR2eQO2siyrMfdD3g7WfN8Jk6hkDnUt2W+67yQTSa55mAdVQ+Wq
-         eSag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KcgckVJBk609C9n8WlYPxKWxBCCyIgqINt/uZGi6A0Y=;
-        b=EVLha84H23tWr5XtmEvHBREgXMfFIiowzXozBrc2j64U60xK/dFEYOdeQJ5u5c8htH
-         Bk+3UeN8vyQgMmKkKDV7togqu60D/uBXzgD6cswPZ4prr7j9ErjJRkJQNs0X7Ve9mZk1
-         LMOxGMnRUvgp49fthwhGslaXQ5UC5ASd/pClocUfMhvclOvBfDwyZfZZs5aeRWKfUO+w
-         bc4EzgU/od2yurE2dQzsZJmyasOr1T52Dx7nhKYi7LihFaVnXCvjrpW4Mo6Jdvvkp3hd
-         r6eYvvkVjsHE2weaqyeku/u5/Au1yXUQy62zwgJGtKoZIcoLfFnxXWjVtLYN7NrhnDYl
-         ljiQ==
-X-Gm-Message-State: AOAM532exG8ThJcBTM7je0AFQL5NmZ8MBV7wqRYzNVpwdMk+Ann+APYT
-        F/+ZkDRGzz5V4soKNYJYMVM=
-X-Google-Smtp-Source: ABdhPJy0wAKaq2tyZW6eEKVEZ01mPalVC9neiDt4H5evhXCCzzA5axCTHMxBIQfQZL4+VtxXQMlS3g==
-X-Received: by 2002:a05:6a00:15ca:b0:49f:d22b:afff with SMTP id o10-20020a056a0015ca00b0049fd22bafffmr15996509pfu.35.1638492749937;
-        Thu, 02 Dec 2021 16:52:29 -0800 (PST)
-Received: from localhost ([103.99.179.247])
-        by smtp.gmail.com with ESMTPSA id h26sm652480pgm.68.2021.12.02.16.52.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Dec 2021 16:52:29 -0800 (PST)
-Date:   Fri, 3 Dec 2021 08:52:24 +0800
-From:   Calvin Zhang <calvinzhang.cool@gmail.com>
-To:     Catalin Marinas <catalin.marinas@arm.com>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        Christoph Hellwig <hch@lst.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231902AbhLCBO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 20:14:56 -0500
+Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6B0C061757;
+        Thu,  2 Dec 2021 17:11:32 -0800 (PST)
+Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.ozlabs.org (Postfix) with ESMTPSA id 4J4vsv3CSNz4xbC;
+        Fri,  3 Dec 2021 12:11:31 +1100 (AEDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
+        s=201909; t=1638493891;
+        bh=+JylP2RVIbtJzYpK2ZtaZSsm+v7AMw7cQapVbRNSwI8=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=j/t8FbUTVygIvVEoxzzZeVOIlusztuSn4HuxDqsS5CfLp5BE/rNBKoWcnGHmhPitv
+         PzUTw22HhaYWs+WvRmGOXGuScXvgCT3wxz6PIV4ZAjlb8kRYnDCZKhmuQW3vM3TeSi
+         nIz+9c9qz9/3zi1SF13P9qFNiJIWHQqMSGAQnj272Jkd/hMLVJQQTDguqSFB2aQmWj
+         QZp81bpe2lrteGS8N190rWVOJU3dCiIKDgqeB16b+oM2pmF17lblSKI/ydd7qxTCNM
+         kOsh7WJS7l225DTMkC6wTJh7ppHqwW1i1WX+A60L+imI6V/Xhbm2ecGQnWdX3d9ZDu
+         CnBhtLuPtJOLA==
+From:   Michael Ellerman <mpe@ellerman.id.au>
+To:     Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>
+Cc:     Calvin Zhang <calvinzhang.cool@gmail.com>,
         Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, iommu@lists.linux-foundation.org
-Subject: Re: [PATCH] mm: kmemleak: Ignore kmemleak scanning on CMA regions
-Message-ID: <YalqSC0FdhEMpCQH@debian>
-References: <20211126024711.54937-1-calvinzhang.cool@gmail.com>
- <20211127160718.54e82aa93c977a367404a9e3@linux-foundation.org>
- <YaLgfYzxFRVamvdI@debian>
- <YakMQA1A75ZADeHi@arm.com>
+        linuxppc-dev@lists.ozlabs.org
+Subject: Re: [PATCH] of: unmap memory regions in /memreserve node
+In-Reply-To: <YaiRAD40xCK7u3Hl@FVFF77S0Q05N>
+References: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
+ <YaapE8oys5zQEdD5@robh.at.kernel.org> <YaiRAD40xCK7u3Hl@FVFF77S0Q05N>
+Date:   Fri, 03 Dec 2021 12:11:26 +1100
+Message-ID: <874k7qpk5d.fsf@mpe.ellerman.id.au>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YakMQA1A75ZADeHi@arm.com>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 06:11:12PM +0000, Catalin Marinas wrote:
->On Sun, Nov 28, 2021 at 09:50:53AM +0800, Calvin Zhang wrote:
->> On Sat, Nov 27, 2021 at 04:07:18PM -0800, Andrew Morton wrote:
->> >On Fri, 26 Nov 2021 10:47:11 +0800 Calvin Zhang <calvinzhang.cool@gmail.com> wrote:
->> >> Just like this:
->> >> commit 620951e27457 ("mm/cma: make kmemleak ignore CMA regions").
->> >> 
->> >> Add kmemleak_ignore_phys() for CMA created from of reserved node.
->[...]
->> >The 620951e27457 changelog says "Without this, the kernel crashes...". 
->> >Does your patch also fix a crash?  If so under what circumstances and
->> >should we backport this fix into -stable kernels?
+Mark Rutland <mark.rutland@arm.com> writes:
+> On Tue, Nov 30, 2021 at 04:43:31PM -0600, Rob Herring wrote:
+>> +linuxppc-dev
+ 
+Sorry missed this until now ...
+
+>> On Wed, Nov 24, 2021 at 09:33:47PM +0800, Calvin Zhang wrote:
+>> > Reserved memory regions in /memreserve node aren't and shouldn't
+>> > be referenced elsewhere. So mark them no-map to skip direct mapping
+>> > for them.
 >> 
->> No crash occurred. 620951e27457 avoids crashes caused by accessing
->> highmem and it was fixed later. Now kmemleak_alloc_phys() and
->> kmemleak_ignore_phys() skip highmem. This patch is based on the
->> point that CMA regions don't contain pointers to other kmemleak
->> objects, and ignores CMA regions from reserved memory as what
->> 620951e27457 did.
+>> I suspect this has a high chance of breaking some platform. There's no 
+>> rule a region can't be accessed.
 >
->Note that kmemleak_ignore() only works if there was a prior
->kmemleak_alloc() on that address range. With the previous commit we get
->this via the memblock_alloc_range() but I fail to see one on the
->rmem_cma_setup() path.
+> The subtlety is that the region shouldn't be explicitly accessed (e.g.
+> modified),
 
-rmem is from memblock_reserve() or early_init_dt_alloc_reserved_memory_arch()
-kmemleak_alloc() is not called in the first case. And It's bad to add one.
+I think "modified" is the key there, reserved means Linux doesn't use
+the range for its own data, but may still read from whatever is in the
+range.
 
-I think all the reserved regions should be allocated from memblock without
-kmemleak_alloc() and let rmem handler choose to add it as kmemleak object
-by kmemleak_alloc(). Because MEMBLOCK_ALLOC_NOLEAKTRACE conflicts with range
-parameter in memlbock_alloc_* series, all reserved regions and default CMA
-region are allocated with kmemleak_alloc().
+On some platforms the initrd will be marked as reserved, which Linux
+obviously needs to read from.
 
-I think it's better to add memblock_alloc_* series a spearate flag paramter
-(like "NOLEAKTRACE") instead of encoding MEMBLOCK_ALLOC_NOLEAKTRACE in `end`
-parameter.
+> but the OS is permitted to have the region mapped. In ePAPR this is
+> described as:
+>
+>    This requirement is necessary because the client program is permitted to map
+>    memory with storage attributes specified as not Write Through Required, not
+>    Caching Inhibited, and Memory Coherence Required (i.e., WIMG = 0b001x), and
+>    VLE=0 where supported. The client program may use large virtual pages that
+>    contain reserved memory. However, the client program may not modify reserved
+>    memory, so the boot program may perform accesses to reserved memory as Write
+>    Through Required where conflicting values for this storage attribute are
+>    architecturally permissible.
+>
+> Historically arm64 relied upon this for spin-table to work, and I *think* we
+> might not need that any more I agree that there's a high chance this will break
+> something (especially on 16K or 64K page size kernels), so I'd prefer to leave
+> it as-is.
 
---
-Calvin
+Yeah I agree. On powerpc we still use large pages for the linear mapping
+(direct map), so reserved regions will be incidentally mapped as
+described above.
 
+> If someone requires no-map behaviour, they should use a /reserved-memory entry
+> with a no-map property, which will work today and document their requirement
+> explicitly.
+
++1.
+
+cheers
