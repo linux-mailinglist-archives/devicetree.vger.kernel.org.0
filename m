@@ -2,118 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 770E8467EA2
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 21:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE362467EBF
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 21:22:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353700AbhLCULN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 15:11:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46740 "EHLO
+        id S1352808AbhLCU0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 15:26:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353573AbhLCULM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 15:11:12 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9148DC061751;
-        Fri,  3 Dec 2021 12:07:48 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id n26so3890368pff.3;
-        Fri, 03 Dec 2021 12:07:48 -0800 (PST)
+        with ESMTP id S1383073AbhLCU0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 15:26:11 -0500
+Received: from mail-qt1-x830.google.com (mail-qt1-x830.google.com [IPv6:2607:f8b0:4864:20::830])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC59AC061353
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 12:22:46 -0800 (PST)
+Received: by mail-qt1-x830.google.com with SMTP id q14so4541109qtx.10
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 12:22:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=BY4StM0qWwOHdEnKAlQTsARvzXKfpZF6VL/V+dFiAQ8=;
-        b=de262HkpslGoIEW0WtQLDS673GV03/ENqYIlg6yu9c1QsZiln9CQd5RESPzST1Jyqr
-         s81hLXgZdMfuOfbSxvVGRfZXQO5tThE96UjrXqcCBGspM46tNew8MC0za05BTW+r0kqf
-         CGtVxrOXWZUYv0fPp+UG9wc0lV+1eO5IjhQImrERikihLTlIuCghNhRG4RlWhXoLj9lQ
-         UTY5ZpoKj2w8vdqoEpbvy47W0vJM9qkq+2ruB9rLLr6WIiLXVnecqQNFcno7pVhuOji/
-         SgYOYpXPMwn+1oPbAmtHWRxvoxyi42i8ksg4Dw1OaqoHnLACkQf/a2BbFK1XQI2ErX3E
-         qVMQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=x1kq1FdKjUmZxEc0L0fA9v+hSFe1Fbo2xAA2zL+m6AM=;
+        b=a9oNxZXTlUEzUXw8+ENCGBiqU783EAZra7SrY1xlm05gp8zTlt92GuFLwht7F+wxAM
+         5+5SifX86l66n9EnTDq/AOkabo+hNQ8cRy4rgOrbdFVbyVvs+L/kMvbMsJ0hRqvWU4/v
+         iuzkalBK6RNYpXAPRs9hkbxMSRhymF1uz1X8s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BY4StM0qWwOHdEnKAlQTsARvzXKfpZF6VL/V+dFiAQ8=;
-        b=Y2xECowcrmV8HTkj4cJRSNPOKf8HgAC1cud7D43J0S7uT5ayAkar4pBn9fTjUJqsMK
-         Q88lc+PDPVL/WRvw5/4+vFwuH190r4b5L1fQlriMSmOVy9e+xAxrBwMQ7bSwtXW1NSrF
-         fhBOhytZLNHl0plNMPyQOc12x2jUfAn40pmDN7AdOE3k6uw5ikV58aYLmphjjQGUUFR9
-         oHkVoAmT/3fmlgoDk/M/tLfPBwwmaPkz5ryYNEfIQIQ933OqEhIhS1Q5pfUDoNjuGRD3
-         Y9xedIyBNqxivM0nhd9Xr91TrUyWF9XtKZrJb7CQEj8VoNegj9W4zVq4xt6bI9/93DMz
-         Fv9g==
-X-Gm-Message-State: AOAM530fHtaGT80ak4owsJfcTRyIzUDJMIhAAa87r5FIzuth6Gq6NM2B
-        Lcpcm1iq2WpACJUpTQ5OG/0=
-X-Google-Smtp-Source: ABdhPJzjXSHYG1cNnHL9dHSHqe86N4xkrGq4yfOPjwAxw4i1pCePwxR/s4E7FnoqSsneLf7SXalN6g==
-X-Received: by 2002:a63:2b08:: with SMTP id r8mr6242949pgr.211.1638562068049;
-        Fri, 03 Dec 2021 12:07:48 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id n16sm3156272pja.46.2021.12.03.12.07.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Dec 2021 12:07:47 -0800 (PST)
-Subject: Re: [PATCH v5 0/7] Removal of bcm63xx-wdt
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        "maintainer:BROADCOM BCM63XX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Justin Chen <justinpopo6@gmail.com>,
-        "open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "moderated list:BROADCOM BCM63XX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211112224636.395101-1-f.fainelli@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <78c9c9f7-7e7c-abde-066a-240d642f3412@gmail.com>
-Date:   Fri, 3 Dec 2021 12:07:45 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=x1kq1FdKjUmZxEc0L0fA9v+hSFe1Fbo2xAA2zL+m6AM=;
+        b=fURddmZW9mLnNgfLSFGkBGaAnL6geElvwTMK+42T9JzKDLuaRQodV2eKsFpYQnLWyB
+         XV5aafwEh255ZeHzg+uXeHRshdYDehDghSbhcBj5IYSIomzAg+OnQKA52gu/hdCQJ5xK
+         Bec5MZUwbpg8N/Azm7PCDHtOCz7J3JMXgoRYQspCxzlXLao4Dx6Pu7K9/3YciexbcRvU
+         yTriEMFQjPXKa9VkMs3fUcN7bnhXCPY662LStG2r8XJaBZ3NDBz1D1huMvPA2eTrFKx2
+         dwZuwGI4686MTr1QfeCNLUROwGTBW/niw873hdLU7zcorK4cVyinnWNaNNv3+lKYRsFa
+         AnUg==
+X-Gm-Message-State: AOAM530faYFeF6Ik2fZ0NxucSLDPEOHXJgFt38dCMMA2PHu5BiY741eV
+        psgWtX/TikOELWCKYd0xXA6O1VhDHxmk1XXSzrDbNQ==
+X-Google-Smtp-Source: ABdhPJyNp/VQC/spMZ619lxwEGXZv6Q3fXGbTxaqdwnd/3xa4NJokGo1qQMUw8fxocLCzFuyef5asg64k1DS9yAyz+g=
+X-Received: by 2002:a05:622a:120d:: with SMTP id y13mr22612059qtx.155.1638562965867;
+ Fri, 03 Dec 2021 12:22:45 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20211112224636.395101-1-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200714113617.10470-1-hdegoede@redhat.com> <Yakej0+7W+Lk9OWP@google.com>
+ <9a5d71ae-a571-248c-173b-7545f9f7d344@redhat.com>
+In-Reply-To: <9a5d71ae-a571-248c-173b-7545f9f7d344@redhat.com>
+From:   Prashant Malani <pmalani@chromium.org>
+Date:   Fri, 3 Dec 2021 12:22:35 -0800
+Message-ID: <CACeCKafantM4ubxTLnge5DZLT87Pyrpc34nQrUvN1Zu1FgyVKw@mail.gmail.com>
+Subject: Re: PATCH 0/4] usbd: typec: fusb302: Add support for specifying
+ supported alternate-modes through devicetree/fwnodes
+To:     Hans de Goede <hdegoede@redhat.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        bleung@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/21 2:46 PM, Florian Fainelli wrote:
-> his patch series prepares the bcm7038_wdt driver to support its bcm63xx
-> counter part, updates the MIPS BCM63xx platform code to provide the
-> necessary information about the "periph" clock, and finally proceeds
-> with removing the bcm63xx_wdt altogether.
-> 
-> This was only compiled tested as I did not have a readily available
-> BCM63xx system to test with.
-> 
-> This should also help with adding support for BCM4908 which Rafal is
-> working on.
-> 
-> Changes in v5:
-> - removed unnecessary "bcm7038-wdt" platform devtype
-> - added Rob's Reviewed-by tags to the 2 binding patches
-> 
-> Changes in v4:
-> - fixed binding patch (Rob, Guenter)
-> - updated Kconfig description title to mention BCM63xx
-> 
-> Changes in v3:
-> 
-> - added Guenter's and Thomas' tags to patch 6
-> - added missing initialization of id_table
-> - use Rafal's latest binding patch
-> 
-> Changes in v2:
-> 
-> - added Guenter's Reviewed-by where given
-> - update binding patch to pass make dt_bindings_check (Rob)
+Hi Hans,
 
-Are we good with this version? If so, could it be picked up so we have
-one less driver to care about, and we have one additional binding
-converted to YAML?
+On Fri, Dec 3, 2021 at 2:14 AM Hans de Goede <hdegoede@redhat.com> wrote:
+>
+> Hi Prashant,
+>
+> On 12/2/21 20:29, Prashant Malani wrote:
+> > Hi Hans,
+> >
+> > Sorry for posting on an old thread, but I was wondering if there was
+> > still a plan to submit this? This is something we'd like to use on
+> > Chrome OS too.
+> >
+> > It sounded like the primary discussion was whether to have an "altmodes"
+> > property encaspulating the various alt modes, but not sure what the
+> > final consensus on that was (sounded to me like your current
+> > implementation was fine for now, and ACPI use cases would be handled
+> > later?).
+>
+> Support for this has already landed, but so far has only been tested
+> on a x86/ACPI device, where the firmware-nodes parsed by the new
+> typec_port_register_altmodes() helper are setup through software-nodes,
+> see:
+>
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=7b458a4c5d7302947556e12c83cfe4da769665d0
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=55d8b34772e0728a224198ba605eed8cfc570aa0
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=3d28466e5f4f8
+>
+> In theory this should be usable for devicetree as is. But that would
+> require documenting the current in kernel swnode bindings as
+> official devicetree bindings and getting that through the devicetree
+> bindings review process.
 
-Thanks!
--- 
-Florian
+That's good to hear :)
+
+>
+> I have deliberately not done this because the devicetree maintainers
+> have asked for properties / swnode "bindings" used only inside
+> the kernel (1) to NOT be documented as official devicetree bindings,
+> they (the dt bindings maintainers) want to first see at least one
+> real devicetree users before adding things like this to the
+> official devicetree bindings docs.
+>
+> Note if the way typec_port_register_altmodes() parses the fwnode
+> properties needs to change as result of the devicetree bindings review
+> process, please let me know, because then the swnode-s created in
+> drivers/platform/x86/intel/int33fe/intel_cht_int33fe_typec.c
+> need to change to match so as to not regress things on those devices.
+
+Heikki, can we reconcile this with the format you had in mind for ACPI
+devices which specify this in ASL files?
+If not, would you rather:
+1. We handle the actual ACPI format differently in
+typec_port_register_altmodes() itself ? If so, is it documented
+in some place that we can reference?
+<or>
+2. Parse whatever ACPI format there is in the port drivers probe
+function, and then inject software nodes like in the int33fe driver
+[1]
+<or>
+3. Is there scope for updating the ACPI altmode descriptor format to
+match what is being parsed by typec_port_register_altmodes()
+
+Thanks,
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/platform/x86/intel/int33fe/intel_cht_int33fe_typec.c#n221
