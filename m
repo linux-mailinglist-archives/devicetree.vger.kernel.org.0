@@ -2,142 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19E15467B49
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:24:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCEB7467B4E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:24:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352828AbhLCQ1Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 11:27:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51660 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352784AbhLCQ1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:27:25 -0500
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D54DC061354
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 08:24:01 -0800 (PST)
-Received: by mail-ot1-x32b.google.com with SMTP id r10-20020a056830080a00b0055c8fd2cebdso3918593ots.6
-        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 08:24:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=2xACJuOXIrB8FTYoC3MHylDF07OdG/I2Q0C8TaQZfbw=;
-        b=Bbmfm8rkuLgAje49u8sF2Ajj/30Ci3RhjLp3nkql1h9eWRDhLseqdqCb4jRHN7hyQR
-         z3Nva42TdVaLbaBkYzwdDs/uNdw8Cnodr0T9Q+rz3pLFhNBVOz+CkTTdKgaCutiJ2auM
-         OXvS4zqcyWtLAvfqKqjr5GZgeYEtud8dvdEkjM6am//n3bej+nxTCBk+Y5IKH67GSBF5
-         a28xDKViHc8PUQH1J0ESfcRchT5E2o0SvtSEXW5DLOY5MArxJuxrj4azg8jrlgAfpmR8
-         jG2MH2pw/wOzqpOWd0EZ/cSEy4dmOMfuowJWzVnofNWeL1tp4o0nQ+HOG4SaFA7NzNce
-         fbPw==
+        id S1352883AbhLCQ1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 11:27:39 -0500
+Received: from mail-ua1-f42.google.com ([209.85.222.42]:41898 "EHLO
+        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352811AbhLCQ1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:27:38 -0500
+Received: by mail-ua1-f42.google.com with SMTP id p37so6456875uae.8;
+        Fri, 03 Dec 2021 08:24:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2xACJuOXIrB8FTYoC3MHylDF07OdG/I2Q0C8TaQZfbw=;
-        b=rJU/DyCRN63FAdEuByPmqwZt5vFOBLglGxXD4FrpXgU6aSSQkNaGSYQhxBiXyg695m
-         gSsnDLSSHuX65vJHQaLFTatY71V3Y3OR9eGSHU4M3lEzB8lsxZs0aPxWWiNqTD75zPuP
-         c5LDKM2I9zYIN+UzVDR01YxTOrpeSxMEjfgN+sdIGQmVpCFAUq57aZYTGfUpep1wGFry
-         mgr9WL8nleMy1yYYvXWqp+R9k8PhKRbg40uLFz885L/R6Oqgni9QArmmcbJ6azHRncUN
-         PxBBMqbCF33yv+hUDw2MsE8pod1lKd3JRmi+NkkxUgMVVRoETxZB4Vj2FcG8l/1D6+91
-         i5Mw==
-X-Gm-Message-State: AOAM5308nPOQibmD2DY2pSVEKCoW4Nvm3YSFIbozVT2Ua11oIrbTN++2
-        P/MDSR4hQZPPnGxKGVIkBxKkiQ==
-X-Google-Smtp-Source: ABdhPJypLanQ4OMNp0yjPcUuMO08idH8aMtJK+/ehq9m13dhOyhPSsMxP381sLCbFlYqW65eBLY7Bw==
-X-Received: by 2002:a9d:7cce:: with SMTP id r14mr16948126otn.114.1638548640504;
-        Fri, 03 Dec 2021 08:24:00 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id w5sm646756otk.70.2021.12.03.08.23.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Dec 2021 08:24:00 -0800 (PST)
-Date:   Fri, 3 Dec 2021 10:23:57 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     quic_vamslank@quicinc.com
-Cc:     agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, tglx@linutronix.de, maz@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        manivannan.sadhasivam@linaro.org, Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH v6 5/5] clk: qcom: Add support for SDX65 RPMh clocks
-Message-ID: <YapEnd2d8Y9OXvvS@builder.lan>
-References: <cover.1638402361.git.quic_vamslank@quicinc.com>
- <366448562ac52c600c45b5a15129d78b5e8dd5a7.1638402361.git.quic_vamslank@quicinc.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5VAfX84ij/HdA62GWjwqXOlA2DHUK0jO7Ib3am7Oo1A=;
+        b=eZaFruGLA89xDfzB561y48SlHNiZNl7HV1Y7hWLtCwYJEbdEsKc6Kbv922oILgiodg
+         PAPmhm/kKHWhHVXP6jyj90Ll6klbFAt4gNg/Mvh/m7bggSxE8Yd4QlwYZraq0a3ltwrs
+         VNNdwGZYbK08TnKuqy3TGCIAxC3+kLuaC+X2Qbyg4TJweUT0RMneD25MpaMIPmR7i1gt
+         f2Wcxh0D2rkAcsiLhr/9gk5v2eDoLXHDia562T3PlNcMJME+8ZqhDjFkkhvsXIubL3bM
+         v4n6T9DFoC9amM1jOc2mA65NnjipY6r/flXPf0th4nTjslzCcc7+nrNdaWKxz1kmSA1o
+         upXw==
+X-Gm-Message-State: AOAM531dP8uST0rAoYFsRUAIxMHYpFtBlA1WDWwLU5G9kkHsm6czzu0l
+        YmHUmYWCnjkLpxcGAlbn0pmwnpbaFZaq9zkO
+X-Google-Smtp-Source: ABdhPJzsDt3nVPRvhpY3mPwKSIuEGRWmNOAUydF2UmyRh6YLj/mVveb06aG6nAHWtZBMhWcPDyJZQg==
+X-Received: by 2002:ab0:164d:: with SMTP id l13mr22915073uae.34.1638548654079;
+        Fri, 03 Dec 2021 08:24:14 -0800 (PST)
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
+        by smtp.gmail.com with ESMTPSA id c24sm526919vkn.30.2021.12.03.08.24.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Dec 2021 08:24:13 -0800 (PST)
+Received: by mail-ua1-f49.google.com with SMTP id n6so6554981uak.1;
+        Fri, 03 Dec 2021 08:24:13 -0800 (PST)
+X-Received: by 2002:ab0:7354:: with SMTP id k20mr22766819uap.78.1638548653631;
+ Fri, 03 Dec 2021 08:24:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <366448562ac52c600c45b5a15129d78b5e8dd5a7.1638402361.git.quic_vamslank@quicinc.com>
+References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com> <20211201073308.1003945-5-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20211201073308.1003945-5-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 3 Dec 2021 17:24:02 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVHD05pLkdyBKfz-OCLqtPU+GKk6U68fscT8OMnXRzRPQ@mail.gmail.com>
+Message-ID: <CAMuHMdVHD05pLkdyBKfz-OCLqtPU+GKk6U68fscT8OMnXRzRPQ@mail.gmail.com>
+Subject: Re: [PATCH v2 04/14] dt-bindings: serial: renesas,scif: Document
+ r8a779f0 bindings
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 01 Dec 18:21 CST 2021, quic_vamslank@quicinc.com wrote:
+Hi Shimoda-san,
 
-> From: Vamsi krishna Lanka <quic_vamslank@quicinc.com>
-> 
-> Add support for clocks maintained by RPMh in SDX65 SoCs.
-> 
-> Signed-off-by: Vamsi Krishna Lanka <quic_vamslank@quicinc.com>
-> Acked-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+On Wed, Dec 1, 2021 at 8:33 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> R-Car S4-8 (R8A779F0) SoC has the R-Car Gen4 compatible SCIF ports,
+> so document the SoC specific bindings.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-The two RPMh patches are independent of the PLL/GCC patches, so I have
-picked up the RPMh patches from this series.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Please respin the PLL & GCC patches per Stephen's feedback.
+Note that this no longer applies cleanly to tty/tty-next, due to
+commit 0836150c26c4028b ("dt-bindings: serial: renesas,scif: Make
+resets as a required property").
 
+Gr{oetje,eeting}s,
 
-PS. checkpatch --strict complains that the author signature doesn't
-match the Signed-off-by, because you have a lowercase 'k' in the From,
-but uppercase in the s-o-b. Can you please make sure the two matches in
-the future?
+                        Geert
 
-Thanks,
-Bjorn
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> ---
->  drivers/clk/qcom/clk-rpmh.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index 441d7a20e6f3..30b26fb96514 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -556,6 +556,30 @@ static const struct clk_rpmh_desc clk_rpmh_sm6350 = {
->  	.num_clks = ARRAY_SIZE(sm6350_rpmh_clocks),
->  };
->  
-> +DEFINE_CLK_RPMH_VRM(sdx65, ln_bb_clk1, ln_bb_clk1_ao, "lnbclka1", 4);
-> +
-> +static struct clk_hw *sdx65_rpmh_clocks[] = {
-> +	[RPMH_CXO_CLK]          = &sc7280_bi_tcxo.hw,
-> +	[RPMH_CXO_CLK_A]        = &sc7280_bi_tcxo_ao.hw,
-> +	[RPMH_LN_BB_CLK1]       = &sdx65_ln_bb_clk1.hw,
-> +	[RPMH_LN_BB_CLK1_A]     = &sdx65_ln_bb_clk1_ao.hw,
-> +	[RPMH_RF_CLK1]          = &sdm845_rf_clk1.hw,
-> +	[RPMH_RF_CLK1_A]        = &sdm845_rf_clk1_ao.hw,
-> +	[RPMH_RF_CLK2]          = &sdm845_rf_clk2.hw,
-> +	[RPMH_RF_CLK2_A]        = &sdm845_rf_clk2_ao.hw,
-> +	[RPMH_RF_CLK3]          = &sdm845_rf_clk3.hw,
-> +	[RPMH_RF_CLK3_A]        = &sdm845_rf_clk3_ao.hw,
-> +	[RPMH_RF_CLK4]          = &sm8350_rf_clk4.hw,
-> +	[RPMH_RF_CLK4_A]        = &sm8350_rf_clk4_ao.hw,
-> +	[RPMH_IPA_CLK]          = &sdm845_ipa.hw,
-> +	[RPMH_QPIC_CLK]         = &sdx55_qpic_clk.hw,
-> +};
-> +
-> +static const struct clk_rpmh_desc clk_rpmh_sdx65 = {
-> +	.clks = sdx65_rpmh_clocks,
-> +	.num_clks = ARRAY_SIZE(sdx65_rpmh_clocks),
-> +};
-> +
->  static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
->  					 void *data)
->  {
-> @@ -643,6 +667,7 @@ static const struct of_device_id clk_rpmh_match_table[] = {
->  	{ .compatible = "qcom,sc8180x-rpmh-clk", .data = &clk_rpmh_sc8180x},
->  	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
->  	{ .compatible = "qcom,sdx55-rpmh-clk",  .data = &clk_rpmh_sdx55},
-> +	{ .compatible = "qcom,sdx65-rpmh-clk",  .data = &clk_rpmh_sdx65},
->  	{ .compatible = "qcom,sm6350-rpmh-clk", .data = &clk_rpmh_sm6350},
->  	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
->  	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
-> -- 
-> 2.33.1
-> 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
