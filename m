@@ -2,137 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0A54674C3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 11:27:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ED5746752A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 11:34:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357062AbhLCKbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 05:31:10 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:44949 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S235349AbhLCKbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 05:31:09 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 60B0658016F;
-        Fri,  3 Dec 2021 05:27:44 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Fri, 03 Dec 2021 05:27:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=OnV8vEzoZxaVl0qHkwAThSYaRta
-        UEam94WrwlUucJLE=; b=Ne0RikK4OK4w9RY64dqWgdXxNykq8qhu0IP8+vK5/OD
-        Ns5t9xXVi2YLqj4mBhlFqwAAOtU74vFicEjgapkppAOO14AAlKr+1oso54XEmALJ
-        QZU68mj739ZIIub5PP6A+gGciJz9CogyV4raxo8ZDPxV1si0CBubjFWBkfvBkGcj
-        66z2xz/XbFH8rnSsDRAuy9Pegg6iH0IDalqG4+Z4IaB4P8hfFcuXQDWUO4HINc2K
-        MGQNJWrzMVeWEEM5qxEeyJ72I3rdUBXHqw0AexPYDGsEK5e6M6fhETvRsUGxDKyQ
-        RZv0ZnfAL1pQRtwAxJ45Pm2oJgXSFiz4NnPiFr39mZA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=OnV8vE
-        zoZxaVl0qHkwAThSYaRtaUEam94WrwlUucJLE=; b=dXzo9QTCZ9wWbiIaoImVwe
-        QgbZwwrII0q+GnG5jdNbJh7bIwVI0s1U0FQU7W5jof580he2MkhXEgZaZ3dZ9jti
-        XDvtpoELUvLYaxF77tVqLrGFPgu58cMwrJoXlxGqEkYSGSQ0fmpXO/HplZ9tydK0
-        rMbOgusu9rii4dHiJ/aEvhsmVCZVkbKRJMXkVX2irqWHd6nWxs7ahdUsYT6N8UpT
-        f0dMR5p3yrH0VjQRYaw95YHDzDTPVyR/c3NY8Iy/w1vxAZG++xzB8pBpp9nAOkzO
-        MFjMeo9AT6vGgOw63mhoMEEnFTXHtDvPZbgovPrsFUAkpFrSW/xTr+1V94RQnc9Q
-        ==
-X-ME-Sender: <xms:H_GpYXRYG8EQxSo3KjZ_Zpsg4ZDO_98YJYV4t2_IaBRL8_54ARO8Xg>
-    <xme:H_GpYYz9AjVtWHBslGt3qGgkV21cu7N1nlD8DRnV_Z5clkxobb4ZEGEtiazmpLa4Y
-    QF8uSZAp8QFVyzqc2I>
-X-ME-Received: <xmr:H_GpYc0Ugl6j-_374RODhNdkubqettEq1pI6_MzvFDNTSk8B1P9wD6L0i2lwqB41Y2T6CS5BDDh9ioRR0nuLXXcvzWiIH3QrRfsVYtsrAV1v-g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieejgddujecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:H_GpYXB18lMe4cpBzAOMCI88ksL6pSr8s7wpohB661vc5rfAPeA-1w>
-    <xmx:H_GpYQhlQjP2yBlUIvvLJB0YwPO1pYysWIbgtQ2k96AoD7HzGAyFIg>
-    <xmx:H_GpYbrQUA78W_o570mrQ9q0UmnoeO5tuviXjSH-anRU4eTjMGpciA>
-    <xmx:IPGpYfqFBNdu7-cayPetXO7Q06w53rKpHvOnoUv4CEUDNxYi9PWzOw>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 3 Dec 2021 05:27:43 -0500 (EST)
-Date:   Fri, 3 Dec 2021 11:27:41 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     maarten.lankhorst@linux.intel.com, sean@poorly.run,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        mark.rutland@arm.com, pony1.wu@gmail.com, orsonzhai@gmail.com,
-        zhang.lyra@gmail.com, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 4/6] drm/sprd: add Unisoc's drm display controller
- driver
-Message-ID: <20211203102741.danmbjpkb5q3huk4@houat>
-References: <20211025093418.20545-1-kevin3.tang@gmail.com>
- <20211025093418.20545-5-kevin3.tang@gmail.com>
+        id S243430AbhLCKiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 05:38:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S243244AbhLCKiK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 05:38:10 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF0E8C06174A
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 02:34:46 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id k37-20020a05600c1ca500b00330cb84834fso4496953wms.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 02:34:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=n+Dus3eHmtLufPbm4SvZ5gg6kEi5fp5P2DSRbOjthl8=;
+        b=uXuxTTbtb1pN1Bppn4P4bzToqQCL0jT41EcDem7jrDSh1wJMTvb6ZpJAsn1fMwQdfC
+         VPNpuh05dOaHSi35Bhr3i1B6t2zjDgWjWScVacdHFne5KzH+pdZKIBt2TfjUmGLQb9QF
+         DZ/WH9CZy98FKZ/ma1jHWueRlGBnNVUDkggbuvyc5cKGzjsssRE36RAgGdVEn11oxsrx
+         rYewZPbOI33v8gfkXIi7CPxzlFoRNB9xJ6hWeahuUrD6pDW3IoDg+UwuBwNrjF8P5b6S
+         C4aTgJVkUW5uwMU+d7o4gXXoRGH3eYAQNojRVcf/4ON69b0Vd5l51k0fKO3+o4qxFR67
+         km5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=n+Dus3eHmtLufPbm4SvZ5gg6kEi5fp5P2DSRbOjthl8=;
+        b=wP+m5w3yp3qC5GVb1WPTE0iM42sdkwlUcATAphJyCCzHPFYfz7xBJ3/8f47/hcdOGC
+         ebZFFGSQ8UNbrlYgcbGlIclScGdfszxF6Rrohn6L/E1jxrzoHJpmtepl2boLi5RZ+un4
+         Cjl+7Tp8sz7FGCMWECrt02Fi1mJCCRXK46JtsIRiNkh1g4UyiVo4Iq3LBQ9HRSFSD/dE
+         rATQDtxFpqxwYTfluIw9PqxaPjBOxV/QhUINonoBlDBLBYrQUKEXu3Aqu4G3Wg6jspqC
+         ixwlbYajYK67rsfr4UHQaeJI0CpMUwKGExZHBWvg+zpeVjfHpEJoGECCA47nogIPicFY
+         VsdA==
+X-Gm-Message-State: AOAM531T/WIXjSvWV8BHD/WzgVNJucTxrqgEKhc1yEB3Czy2/uWwKXKV
+        m6ymDCy5OhZxRmA3MDtkWUx+Bw==
+X-Google-Smtp-Source: ABdhPJw1oCGhQfauYMuvEYvwt9fqxymm+tx/pLU4hWhduokdPxXKS+1uo5bUH/HJIh+mk4s3NC6y7g==
+X-Received: by 2002:a05:600c:6022:: with SMTP id az34mr14086321wmb.22.1638527685467;
+        Fri, 03 Dec 2021 02:34:45 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id g198sm2321262wme.23.2021.12.03.02.34.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Dec 2021 02:34:45 -0800 (PST)
+Subject: Re: [PATCH 0/5] ASoC: qcom: apq8016_sbc: Allow routing audio through
+ QDSP6
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20211202145505.58852-1-stephan@gerhold.net>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <d8fd4999-0ecf-dd8b-ee4e-094063e941bb@linaro.org>
+Date:   Fri, 3 Dec 2021 10:34:43 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="oqpur3x2efcto2bk"
-Content-Disposition: inline
-In-Reply-To: <20211025093418.20545-5-kevin3.tang@gmail.com>
+In-Reply-To: <20211202145505.58852-1-stephan@gerhold.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Stephan,
 
---oqpur3x2efcto2bk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 02/12/2021 14:55, Stephan Gerhold wrote:
+> This series makes it possible to route audio through the combined
+> audio/modem DSP on MSM8916/APQ8016 devices instead of bypassing it using
+> the LPASS drivers. This is necessary to support certain functionality such
+> as voice call audio. See PATCH 4/5 for details.
+> 
+> Also, qcom,apq8016-sbc.txt is converted to DT schema by adding it to the
+> existing qcom,sm8250.yaml. The bindings are similar enough that it is easier
+> to share a single schema instead of duplicating everything into multiple ones.
 
-On Mon, Oct 25, 2021 at 05:34:16PM +0800, Kevin Tang wrote:
-> Adds DPU(Display Processor Unit) support for the Unisoc's display
-> subsystem.
-> It's support multi planes, scaler, rotation, PQ(Picture Quality) and more.
->=20
-> v2:
->   - Use drm_xxx to replace all DRM_XXX.
->   - Use kzalloc to replace devm_kzalloc for sprd_dpu structure init.
->=20
-> v3:
->   - Remove dpu_layer stuff layer and commit layers by aotmic_update
->=20
-> v4:
->   - Use drmm_helpers to allocate crtc and planes.
->   - Move rotation enum definitions to crtc layer reg bitfields.
->   - Move allocate crtc and planes to bind function.
->=20
-> v5:
->   - Fix the checkpatch warnings.
->   - Use mode_set_nofb instead of mode_valid callback.
->   - Follow the OF-Graph bindings, use of_graph_get_port_by_id
->     instead of of_parse_phandle.
->   - Use zpos to represent the layer position.
->   - Rebase to last drm misc branch.
->=20
-> v6:
->   - Disable and clear interrupts before register dpu IRQ
->   - Init dpi config used by crtc_state->adjusted_mode on mode_set_nofb
->   - Remove enable_irq and disable_irq function call.
->   - Remove drm_format_info function call.
->=20
-> v7:
->   - Remove iommu error interrupt handling function.
->=20
-> Cc: Orson Zhai <orsonzhai@gmail.com>
-> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> Signed-off-by: Kevin Tang <kevin.tang@unisoc.com>
+Yes this is really a good start, we should at some point in time move to 
+a common yaml file, currently most of the dsp based dt-bindings very 
+simillar, except some codec specific routings.
 
-Reviewed-by: Maxime Ripard <maxime@cerno.tech>
 
-Maxime
+> 
+> Stephan Gerhold (5):
+>    ASoC: dt-bindings: qcom: sm8250: Drop redundant MultiMedia routes
+>    ASoC: dt-bindings: qcom: sm8250: Document "aux-devs"
+>    ASoC: dt-bindings: qcom: apq8016-sbc: Move to qcom,sm8250 DT schema
+>    ASoC: dt-bindings: qcom: Document qcom,msm8916-qdsp6-sndcard
+>      compatible
+>    ASoC: qcom: apq8016_sbc: Allow routing audio through QDSP6
+> 
 
---oqpur3x2efcto2bk
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYanxHQAKCRDj7w1vZxhR
-xVOrAP9uqqQLkzJRnj6udGJqT0o56/g+74z/9ri4LMlPaPPeVQD9HRLEUu7ieC5f
-SKuHIPP1fIcYtZxho4aq8vn0I24Nvg0=
-=KMxW
------END PGP SIGNATURE-----
-
---oqpur3x2efcto2bk--
+--srini
+>   .../bindings/sound/qcom,apq8016-sbc.txt       |  96 -------------
+>   .../bindings/sound/qcom,sm8250.yaml           | 136 +++++++++++++++++-
+>   sound/soc/qcom/apq8016_sbc.c                  | 134 ++++++++++++++++-
+>   3 files changed, 259 insertions(+), 107 deletions(-)
+>   delete mode 100644 Documentation/devicetree/bindings/sound/qcom,apq8016-sbc.txt
+> 
