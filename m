@@ -2,129 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4171467A78
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D44C467A7C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:43:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234802AbhLCPpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 10:45:54 -0500
-Received: from smtp-relay-internal-0.canonical.com ([185.125.188.122]:57794
-        "EHLO smtp-relay-internal-0.canonical.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S233978AbhLCPpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 10:45:53 -0500
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3FF6740038
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 15:42:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1638546148;
-        bh=lTk3MNuVLu96YWzY4ffX8Fgx2rZx49FpUrhHnTr7cDA=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=up0Go4dubyJwfQovGf/i5kIuoj1I0dswk8A1A8NKClibaeyUVnXxHZ5aRFgMxAKPM
-         0wKT/weKqVHIAa++Y30bmT9b92azDplKuJkN3avauYd2GybxmScJByTp9rYvjk0oZH
-         Sq9MEnsdELuH/GRdHSQ3YAEORTlTsVDIHVJXSFVq7jaKpeGRNmZA/Ch7b8f9mH/rKN
-         ERBq1UaS83+QST2eiaMp3auTw7Hmxaqo82skdrJGnQpF1xON9zmVqeIhj/TVAH8MFm
-         eG28HeKmJT6vsGytHx+Ss0HWIy5lEWZR/tMcdSUFEVO9Lv7HDTSlXrGsnMKs6/4A6t
-         Cko2JQLCeIhGQ==
-Received: by mail-lj1-f197.google.com with SMTP id s16-20020a2ea710000000b0021b674e9347so1288618lje.8
-        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 07:42:28 -0800 (PST)
+        id S1357967AbhLCPrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 10:47:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233978AbhLCPrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 10:47:21 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22404C061751
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 07:43:57 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id i8-20020a7bc948000000b0030db7b70b6bso5201528wml.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 07:43:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JFb5QjcjkkvOWqOmEGkrbQXfQxx1NzWXe9zva7YzoKg=;
+        b=UFBq+mbwH5xajiKeeTuUMTrYFQuelJMKLfetPhEeNM1Ekdx7RqvGyt6pHsqD/vnjkm
+         QzyulTtrf4tWMB1Sf3OSDCBhPB7ptS06OISrmv2EQHVFNi5CH/OckSu7eX6ri3if1LEG
+         qFfHv0/l0t0Z6AhPrntJFOwjTNKaLoFARIVtLhl17EqCJcV3p+Vd+VVNp7xqniXoltlo
+         VEsnad7IsWhiFhWfaGADF+PiVaC8rGp5XFrK1Gzr+cujk7e3NyGwEwjghgHZVOj3TMYD
+         Wx/MzwTvD3T4AY9PeIthiNoSnOLwxMgMFXU1eKpDlJVLneaZUHLK0u10Bd8L8Eyk+PfC
+         1tng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=lTk3MNuVLu96YWzY4ffX8Fgx2rZx49FpUrhHnTr7cDA=;
-        b=HT13rNO6B0fuy9BofR66HLhbMhdPQLj2uPEG8Owo/MxSI7u2NElI+J6UkqCm/LhIlK
-         JsWF/vckvUv9U8Bb/sa909pqwGNrVw9LOKyu/P9LuWcAsmFpKKRfebPb5ND0w+UldCZs
-         ktPhacBeIUnmrurXcjBRYGseUqLofUuMSfkUO/yiNEFcgBf/VaMl7aJRw1CjZLZsX/BJ
-         1MebTkBJ79bh5ezZzoUVQB7fIwOGM0HFoR5Gr5j62cnKdAGwsfsd2JOAPpzjoP9fju6K
-         khqpjZObixx6j2GXU1YI0F4DkbVqnFkqgBW2Nc2gAGU1E45u2lvgTspsjPqqc5McPkdP
-         VdNQ==
-X-Gm-Message-State: AOAM533ddL/AOCP1T3MjPKAJp7c3Al7s+k4QGEFoAbRWhM06JaVlpzx0
-        JRyHtNQz/1+4dUu/Jd8KI98Zxx7R7lmlbWtYokrb5A92448QwjKxSfXjfpvcgLa+P1dQ04fKvoS
-        4vnxiKalXTxWIBDOn0E0RKDa3OMVrtReU9mak4Js=
-X-Received: by 2002:a2e:86cb:: with SMTP id n11mr19311944ljj.425.1638546147650;
-        Fri, 03 Dec 2021 07:42:27 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxVhurzOWfS+CPRAFQbogE43XnffisN+K6tfpAmvKw/rqZB/xoa3BGf6i3Le0K3rhbqmZw+MQ==
-X-Received: by 2002:a2e:86cb:: with SMTP id n11mr19311918ljj.425.1638546147449;
-        Fri, 03 Dec 2021 07:42:27 -0800 (PST)
-Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
-        by smtp.gmail.com with ESMTPSA id e17sm406965lfr.296.2021.12.03.07.42.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Dec 2021 07:42:27 -0800 (PST)
-Message-ID: <c3364060-fbf8-1151-2816-3784b1731891@canonical.com>
-Date:   Fri, 3 Dec 2021 16:42:25 +0100
+        bh=JFb5QjcjkkvOWqOmEGkrbQXfQxx1NzWXe9zva7YzoKg=;
+        b=wNi8izyh44YYmr72Gli6F23kiO4UfpRhKWZ8Hk6MPeGl/8wZ7d03RiexUzK9FkdL1G
+         +8xNrLRX5q6yYgysavQkp0eavkdTv/JsGga8GFp4ge1+bBmjewYEjZBgxJ2mSavxgG7K
+         bZEzWuaPnhVQ9QX9vTgRDWDBtjlNCuUgQkhYJWW7mQ46WLTh8M3y5pYEhGTJpztrQnaG
+         6gHiZlRE0hoAG5iG511/nfSNuEAnLvkt5A7yODH5jxTCfsjC+a6I/WyzP9PtyErLBqSf
+         nDHKWK+RLLR1V4htKmbjnXbM0B8KIQ/vmRhBnyQawjh4nrASMPQaApLuNh6segFSfoLz
+         cIYg==
+X-Gm-Message-State: AOAM5334fhND6ieILSUdSAIkcA+6DkziiSMe3fjzXaptTCm7ClonzcOe
+        aFPFCNhw1fhenj5mBKc7MtJ3jBhcnwWqLQ==
+X-Google-Smtp-Source: ABdhPJz8oyzdiJ1afHc29W42NqaYCJVvTXmq1L8sBKkQt1BuT6MeDPgPJs2EJZ2qjEEGLknLm+4E/g==
+X-Received: by 2002:a05:600c:4f8f:: with SMTP id n15mr15647700wmq.70.1638546235721;
+        Fri, 03 Dec 2021 07:43:55 -0800 (PST)
+Received: from localhost ([193.209.96.43])
+        by smtp.gmail.com with ESMTPSA id h18sm3367289wre.46.2021.12.03.07.43.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Dec 2021 07:43:54 -0800 (PST)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: panel: Include SPI peripheral properties
+Date:   Fri,  3 Dec 2021 16:43:50 +0100
+Message-Id: <20211203154350.179112-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.1
-Subject: Re: [PATCH 6/9] riscv: dts: microchip: mpfs: Fix reference clock node
-Content-Language: en-US
-To:     Conor.Dooley@microchip.com, geert@linux-m68k.org
-Cc:     devicetree@vger.kernel.org, palmer@dabbelt.com,
-        linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
-        paul.walmsley@sifive.com, robh+dt@kernel.org,
-        damien.lemoal@wdc.com, Lewis.Hanly@microchip.com
-References: <20211125153131.163533-1-geert@linux-m68k.org>
- <20211125153131.163533-7-geert@linux-m68k.org>
- <3b8442c7-fafb-421b-cd5b-4b57d1b545c3@canonical.com>
- <fc4a0c49-1a3f-68d6-de54-820d3e9c0938@microchip.com>
- <738f161a-038a-b6f1-1ff7-65674ae75d06@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <738f161a-038a-b6f1-1ff7-65674ae75d06@microchip.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/12/2021 16:29, Conor.Dooley@microchip.com wrote:
-> On 26/11/2021 10:16, conor wrote:
->> On 26/11/2021 09:48, Krzysztof Kozlowski wrote:
->>> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
->>> the content is safe
->>>
->>> On 25/11/2021 16:31, Geert Uytterhoeven wrote:
->>>> "make dtbs_check" reports:
->>>>
->>>>      arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dt.yaml: 
->>>> soc: refclk: {'compatible': ['fixed-clock'], '#clock-cells': [[0]], 
->>>> 'clock-frequency': [[600000000]], 'clock-output-names': 
->>>> ['msspllclk'], 'phandle': [[7]]} should not be valid under {'type': 
->>>> 'object'}
->>>>        From schema: dtschema/schemas/simple-bus.yaml
->>>>
->>>> Fix this by moving the node out of the "soc" subnode.
->>>> While at it, rename it to "msspllclk", and drop the now superfluous
->>>> "clock-output-names" property.
->>>>
->>>> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
->>>> ---
->>>>   arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi | 13 ++++++-------
->>>>   1 file changed, 6 insertions(+), 7 deletions(-)
->>>>
->>>
->>> It is also logical because refclk usually is not a property of the SoC.
->>> It actually might be a property of board...
->> This is one of the fun FPGAisms like the GPIO interrupt configuration. 
->> This clock setting is determined by what design has been loaded onto the 
->> FPGA - the msspll outputs are configurable, I could redo my FPGA design 
->> and change this to 500 MHz etc. In turn the msspll clock is set by 
->> another clock source that is actually on the board of either 100 or 125 
->> MHz.
->>
->> Since it's not set until bitstream programming time, I would agree that 
->> that property should be moved to out of mpfs.dtsi. (typo fixed)
-> Geert/Krzysztof,
-> Would the following make sense:
-> - Since the refclk hardware is a part of the chip, move the refclk out 
-> of the soc node but leave it in mfps.dtsi
-> - The clk freq itself is set by the fpga bitstream, so move the 
-> clock-frequency property to mpfs-icicle-kit.dts?
+From: Thierry Reding <treding@nvidia.com>
 
-Yes, makes sense to me.
+SPI panels need to reference the SPI peripheral properties so that they
+can be properly validated.
 
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../devicetree/bindings/display/panel/lgphilips,lb035q02.yaml    | 1 +
+ .../devicetree/bindings/display/panel/sony,acx565akm.yaml        | 1 +
+ 2 files changed, 2 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+index 830e335ddb53..240a884b7fa7 100644
+--- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
++++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+@@ -14,6 +14,7 @@ maintainers:
+   - Tomi Valkeinen <tomi.valkeinen@ti.com>
+ 
+ allOf:
++  - $ref: ../../spi/spi-peripheral-props.yaml
+   - $ref: panel-common.yaml#
+ 
+ properties:
+diff --git a/Documentation/devicetree/bindings/display/panel/sony,acx565akm.yaml b/Documentation/devicetree/bindings/display/panel/sony,acx565akm.yaml
+index 95d053c548ab..4459d746592f 100644
+--- a/Documentation/devicetree/bindings/display/panel/sony,acx565akm.yaml
++++ b/Documentation/devicetree/bindings/display/panel/sony,acx565akm.yaml
+@@ -14,6 +14,7 @@ maintainers:
+   - Tomi Valkeinen <tomi.valkeinen@ti.com>
+ 
+ allOf:
++  - $ref: ../../spi/spi-peripheral-props.yaml
+   - $ref: panel-common.yaml#
+ 
+ properties:
+-- 
+2.33.1
+
