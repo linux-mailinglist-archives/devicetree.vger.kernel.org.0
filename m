@@ -2,113 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DAC29467B42
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:22:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FDD7467B44
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:22:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352716AbhLCQ0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 11:26:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51302 "EHLO
+        id S1352706AbhLCQ0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 11:26:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352532AbhLCQ0A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:26:00 -0500
-Received: from mail-ua1-x931.google.com (mail-ua1-x931.google.com [IPv6:2607:f8b0:4864:20::931])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3B72C061359
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 08:22:36 -0800 (PST)
-Received: by mail-ua1-x931.google.com with SMTP id j14so6423760uan.10
-        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 08:22:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NHuewE/Veei0UDZqBdq/IodL9Sy5sNU/wV+cHqy20h4=;
-        b=ZXVR2vMEL+7SlbGxyhg+0gI4ac97562jI/VhZM2Vi9fNRW628RJwHeXLuPIGQ3AQo8
-         eiKAjskuJEosDtGGtLNIQSnN1Nsbq93ExGOFr4SHi5jWeH51tAnMlTwzkuBE8p0+NJ1J
-         9+g2pTEu4TioFPo6mnmYzSTpu2GR7l2+ZjvyykmbQ9iiS099yHHis+lD/gxtHVdWsJ6u
-         DB3AjVFdhOjBYsRIrv+ry6fYFnrdRRdtdGK7aNZUI4879dd+ZZV3t+4S8jAfuEh557oa
-         YlNTUzD5GeazfVVjABVeV0Xy4cSC+Hr8B5hC5DZn9E7F81t9wc4XDCySvi6vqskl9mYM
-         IipQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NHuewE/Veei0UDZqBdq/IodL9Sy5sNU/wV+cHqy20h4=;
-        b=pJd6vcNVlGmzJ5XMbVRyNAw7myMej/sZMbk3P1+1i1cEf/IRBHQjGB5hQPyKrZn71+
-         fD3dZTzyM8irFEV6VLtVuLB3kRAFLw0EM0e1/n7d6PivVkDzlnxI0+TpETVF/WTaHB0q
-         yBUmfLCUK3cCJWlwgAA8nbFOOKwGgdF7C05lwxnAz6Qsh9838U6oFT9UhZEXGh08P6VK
-         eFMIEJQ9d7JWI7ZRf6LS/yJVcYEI27k4nGtVAMTQ/238UNVlg0WqxnoFcWRXD5ffx+KS
-         smpE+PeA2/hSKXLIf1aL7ZTkjKTZOwJZAKTUN8dXHUt92LCZA1SlGoHf49lAJB3s9RTX
-         j9Uw==
-X-Gm-Message-State: AOAM533SpUDeCFnKzMeXTStwt+vC2jSeGxyvGsKHKYEJsASA6Ss962Ms
-        bhwRD1ZIkCf8j0byxbry6uCb56NjXK68E4KFTBgR2g==
-X-Google-Smtp-Source: ABdhPJyZ6EdGq6MVye5nYtnAwXKa3h8vHs+Y4vl7S/236hZNbkcPThWPDTg6QHNVkyE8sxPzbA36EIpvAwud/gmgGrs=
-X-Received: by 2002:a67:d31c:: with SMTP id a28mr22061114vsj.20.1638548555813;
- Fri, 03 Dec 2021 08:22:35 -0800 (PST)
-MIME-Version: 1.0
-References: <20211130111325.29328-1-semen.protsenko@linaro.org>
- <20211130111325.29328-4-semen.protsenko@linaro.org> <CAHp75Vd8PFhs8_Ji5x1X2Ph5ey+8JrRuneWCrG=5a+52Lh-ptQ@mail.gmail.com>
-In-Reply-To: <CAHp75Vd8PFhs8_Ji5x1X2Ph5ey+8JrRuneWCrG=5a+52Lh-ptQ@mail.gmail.com>
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-Date:   Fri, 3 Dec 2021 18:22:24 +0200
-Message-ID: <CAPLW+4mEw0x_rZ19h+rbz4qm=6OVgQvvbEJWL0wWQguMiWB7-g@mail.gmail.com>
-Subject: Re: [PATCH v2 RESEND 3/5] tty: serial: samsung: Remove USI initialization
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Chanho Park <chanho61.park@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Jaewon Kim <jaewon02.kim@samsung.com>,
-        David Virag <virag.david003@gmail.com>,
-        Youngmin Nam <youngmin.nam@samsung.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        with ESMTP id S1352758AbhLCQ0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:26:14 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C97C061751;
+        Fri,  3 Dec 2021 08:22:49 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2A3DDB826AB;
+        Fri,  3 Dec 2021 16:22:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D24B9C53FCE;
+        Fri,  3 Dec 2021 16:22:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638548566;
+        bh=o8Ov1KCD5JfskNb1Eq6DEEuQ+aufK6N7Kjel5xo5kIc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=MAekSrzSOYJG8ymGp0Tbfx6eVazph56R1R1JTsWiX0TvjSLNcckwz+T/wlIbtJVbw
+         eqKDvBzozemVRTm69ivbUJVkrENLUv1Eeet+8h5c2TcMbMrLu0c6jdGBk1jf0/bI0h
+         K14gz4kE+Tddjlo2pICJbf5tYzKKD9+BYNmlKEK7+EZtBwARTFREBUvFyTjSxza8ZS
+         2klyYmwARmpbRNh0UavNVMdIwDUwnG8LCcDocryFOLW51x6xOE4HPGIfRYd/ULD+ZE
+         667lL+LwbtPHMKnA3pTAG9isTVu38sBkd+N+DV0gBRVTM28YiuCWQguTxgfIbjHW0q
+         Qr/WodEzs4BLg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mtBKe-009dus-GP; Fri, 03 Dec 2021 16:22:44 +0000
+Date:   Fri, 03 Dec 2021 16:22:44 +0000
+Message-ID: <871r2tmze3.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v2 8/8] drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
+In-Reply-To: <YaoH07BzWSLKQ6K3@FVFF77S0Q05N>
+References: <20211201134909.390490-1-maz@kernel.org>
+        <20211201134909.390490-9-maz@kernel.org>
+        <YaepolizIKkzDQoV@FVFF77S0Q05N>
+        <877dcnm2wt.wl-maz@kernel.org>
+        <Yajwydy37psEPaS2@lakrids>
+        <875ys6lype.wl-maz@kernel.org>
+        <YaoH07BzWSLKQ6K3@FVFF77S0Q05N>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 1 Dec 2021 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
->
-> On Wed, Dec 1, 2021 at 12:42 AM Sam Protsenko
-> <semen.protsenko@linaro.org> wrote:
-> >
-> > USI control is now extracted to dedicated USI driver. Remove USI related
->
-> the dedicated
->
-> > code from serial driver to avoid conflicts and code duplication.
->
-> Would it break run-time bisectability?
-> If so, why is it not a problem?
->
+On Fri, 03 Dec 2021 12:04:35 +0000,
+Mark Rutland <mark.rutland@arm.com> wrote:
+> 
+> On Fri, Dec 03, 2021 at 11:22:53AM +0000, Marc Zyngier wrote:
+> > On Thu, 02 Dec 2021 16:14:01 +0000, Mark Rutland <mark.rutland@arm.com> wrote:
+> > > On Thu, Dec 02, 2021 at 03:39:46PM +0000, Marc Zyngier wrote:
+> > > > On Wed, 01 Dec 2021 16:58:10 +0000, Mark Rutland <mark.rutland@arm.com> wrote:
+> > > > > On Wed, Dec 01, 2021 at 01:49:09PM +0000, Marc Zyngier wrote:
+> > > > > > +	state = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
+> > > > > > +	overflow = read_sysreg_s(SYS_IMP_APL_PMSR_EL1);
+> > > > > 
+> > > > > I assume the overflow behaviour is free-running rather than stopping?
+> > > > 
+> > > > Configurable, apparently. At the moment, I set it to stop on overflow.
+> > > > Happy to change the behaviour though.
+> > > 
+> > > The architected PMU continues counting upon overflow (which prevents
+> > > losing counts around the overlflow occurring), so I'd prefer that.
+> > > 
+> > > Is that behaviour per-counter, or for the PMU as a whole?
+> > 
+> > It is global. This will probably require some additional rework to
+> > clear bit 47 in overflowing counters, which we can't do atomically.
+> 
+> Ah; I see.
+> 
+> To calrify my comment above, the reason for wanting the counter to keep
+> counting is to count during the window between the IRQ being asserted and the
+> PMU IRQ handler being invoked, and it's fine for there to be a blackout period
+> *within* the PMU IRQ handler.
+> 
+> So for example it would be fine to have:
+> 
+> 	irq_handler() 
+> 	{
+> 		if (!any_counter_overflowed())
+> 			return IRQ_NONE;
+> 
+> 		stop_all_counters();
+> 
+> 		for_each_counter(c) {
+> 			handle_counter(c);
+> 		}
+> 		
+> 		start_all_counters();
+> 
+> 		return IRQ_HANDLED;
+> 
+> 	}
+> 
+> ... and I think with that the regular per-counter period
+> reprogramming would do the right thing?
 
-It shouldn't. This patch is [3/5], and USI driver (which takes the
-control over the USI registers) is [2/5]. As for Device Tree, the only
-platform using "samsung,exynos850-uart" right now is Exynos Auto V9
-SADK (serial node is declared in exynosautov9.dtsi). I don't have
-Exynos Auto V9 datasheet, so I can't really add the USI node properly
-there, nor I can test that. I guess it should be done separately from
-this patch series.
+Yup. It looks like this works just fine.
 
-Chanho, Krzysztof:
+Thanks,
 
-Guys, what are your thoughts on this? Basically with this patch series
-applied, Exynos Auto V9 serial might become not functional. New USI
-node should be added for UART case in Exynos Auto V9 dtsi (providing
-correct sysreg, SW_CONF offset, clocks, etc), and serial node should
-be encapsulated inside of that USI node. Also, USI node should be
-referenced and enabled in SADK dts, providing also "clkreq-on"
-property. More details can be found in [PATCH 1/5]. Do you think it's
-ok to take this series as is, and add that later? Because otherwise we
-might need to collaborate to add that Exynos Auto V9 enablement into
-this patch series, which might take more time...
+	M.
 
-Thanks!
-
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+-- 
+Without deviation from the norm, progress is not possible.
