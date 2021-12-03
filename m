@@ -2,75 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4987C467CB9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 18:42:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D6F0467CD3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 18:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229869AbhLCRpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 12:45:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238577AbhLCRpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 12:45:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7DDC061751;
-        Fri,  3 Dec 2021 09:42:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 706B8B8266A;
-        Fri,  3 Dec 2021 17:42:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF428C53FCD;
-        Fri,  3 Dec 2021 17:42:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638553343;
-        bh=qITFqiG4aRPHfdbrFqKNAIXEJYa92PD9iA88TTUUpvk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PTslTplSSM3NgsfkrOcGGYigkM7RR1b//xUEigcwoNqUUzR+P5Z6wb35HzUpJpzof
-         QR5qeLn7M7+lqmgnfUiMFJ9UKKyteCoz6kafvHGnoKagMzA34ye0hcI8a1p5TBSR2v
-         qSAUKtJFXlqfwxY19FdQAhAWUlKLKxOGKiaRV6e75fvo6LdoI8ajoM0oFmUCDYfX0Q
-         io3r3izXCheQzxtsnaFS46q77E7yS1aSajmo0XJJh5sZtbTFxhKIdWLfX705SQyKFD
-         ildsABREWdyGvQQOUlYnuuTDilhibn+Lh/y3zD4dpYu6Lk4tPqWL/iNQxuP1JnSXog
-         Ih3rpRwkYeZ1A==
-Date:   Fri, 3 Dec 2021 23:12:16 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] scsi|phy: Add SM8450 UFS & Phy support
-Message-ID: <YapW+EY/IeUk1BLz@matsya>
-References: <20211201074456.3969849-1-vkoul@kernel.org>
- <yq135nawg3q.fsf@ca-mkp.ca.oracle.com>
+        id S1382452AbhLCRyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 12:54:08 -0500
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:59124 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1343541AbhLCRyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 12:54:08 -0500
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: adalessandro)
+        with ESMTPSA id 24DA11F41317
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
+        t=1638553842; bh=yGwScbDhyL1oOF9cERSZ73Apg4NOw/m+9XA+Lj/me2k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Vxtjt6famLNA0bPuSzq3bwFuOHlAF37VLUzF6Xnh5G+AEhTP3PK68JyVyLf2GDPSM
+         nukyGs3LqgrALzxv8qz6K6lUp3sngRdfKg4ZQ3zP+Sdupj96LyVycjFMvKbylR34ob
+         Q0cZlKVmXEVjXVHUNLff+O4/1OCqRFhuOTpCca9ZV9VLs4oSgwLb6Af+009/xCkKDk
+         WSN/5bTtQiWnYUTYdjvaeUwcAkpIQZLA6LiGbKeXWiGvz5/xJR6WxiakHvta8BN+QT
+         aoM/ptM7faU2Vu1rRGdqm/W7jNx0l2Oh4E6UlLp4r/V/T57DneNnHeKaZmsGj+syxD
+         +WHh8is4OL9Sg==
+From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     Xiubo.Lee@gmail.com, ariel.dalessandro@collabora.com,
+        bcousson@baylibre.com, broonie@kernel.org, festevam@gmail.com,
+        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
+        michael@amarulasolutions.com, nicoleotsuka@gmail.com,
+        perex@perex.cz, robh+dt@kernel.org, shengjiu.wang@gmail.com,
+        tiwai@suse.com, tony@atomide.com
+Subject: [PATCH 1/1] ASoC: fsl-asoc-card: Add missing Kconfig option for tlv320aic31xx
+Date:   Fri,  3 Dec 2021 14:50:17 -0300
+Message-Id: <20211203175018.252641-1-ariel.dalessandro@collabora.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <yq135nawg3q.fsf@ca-mkp.ca.oracle.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-12-21, 21:58, Martin K. Petersen wrote:
-> 
-> Vinod,
-> 
-> > Add the binding documentation for ufs SM8450 compatible, phy
-> > compatible and SM8450 UFS QMP Phy support.
-> 
-> >  .../devicetree/bindings/phy/qcom,qmp-phy.yaml |  1 +
-> >  .../devicetree/bindings/ufs/ufshcd-pltfrm.txt |  1 +
-> >  drivers/phy/qualcomm/phy-qcom-qmp.c           | 32 +++++++++++++++++++
-> 
-> No objections from me. However, these patches should go through the DT
-> and phy trees.
+This is a follow up of patchsets:
 
-Ok I can pick these up wearing my phy maintainer hat, can u pls ack
-it...
+  [RFC patch 0/5] Support BCLK input clock in tlv320aic31xx
+  [PATCH 0/4] fsl-asoc-card: Add optional dt property for setting mclk-id
 
-Thanks
+Patch "ASoC: fsl-asoc-card: Support fsl,imx-audio-tlv320aic31xx codec"
+in "[RFC patch 0/5] Support BCLK input clock in tlv320aic31xx" missed a
+Kconfig option. Sending incremental patch fix.
+
+Regards,
+Ariel
+
+Ariel D'Alessandro (1):
+  ASoC: fsl-asoc-card: Add missing Kconfig option for tlv320aic31xx
+
+ sound/soc/fsl/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
 -- 
-~Vinod
+2.30.2
+
