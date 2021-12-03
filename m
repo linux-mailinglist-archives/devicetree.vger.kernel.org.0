@@ -2,105 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98493467A0C
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:09:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF66467A14
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:09:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245096AbhLCPMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 10:12:51 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:19066 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233227AbhLCPMu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 10:12:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638544158;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=2bjcp/msHQ00yL90ECtPop5IeeDvIBRlvfdATMh29ng=;
-    b=TjuLqaye4iM4Q7PUGROvuuz9fNjHspIJFXD/K6vmYSMPNnN0p6fhMIooaUFTd2GgGN
-    mSHtVuM2E8JGx75lH7UQ5ct99upPJ7QNd/pui5QPJaCgPA9DMTn1Vclb4rZ3m5XGg4nq
-    j32huNUhTFmx1nVkKXH+0snCynQHN3AH9dCdQ+y7lR4DL7uldDgC3R4L1ZVhlMKDTNPV
-    IzKCnsfnODGM0RqTRBKvUSw3bT/3+Hil5H/mgstTYH2twOr0rRB7tvTCPAmN/Q0LK/Qh
-    ToGIpB4jv69l8QNf3JTMlUAYkPbQdOkJygK+7ORjNye9c6UZ4f6ZZkd3I9/T8nNBrp7J
-    a/sQ==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKY7lg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.34.10 AUTH)
-    with ESMTPSA id j03bcbxB3F9Hvz4
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 3 Dec 2021 16:09:17 +0100 (CET)
-Date:   Fri, 3 Dec 2021 16:09:13 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 5/5] ASoC: qcom: apq8016_sbc: Allow routing audio through
- QDSP6
-Message-ID: <YaozGfiaL2RjeY9W@gerhold.net>
-References: <20211202145505.58852-1-stephan@gerhold.net>
- <20211202145505.58852-6-stephan@gerhold.net>
- <455604c2-9b73-4b9b-2ce7-890aafe41845@linaro.org>
- <YaorZnQTwvXo6vrO@gerhold.net>
- <5c6607cc-ad2a-6f90-e087-78ef3bd39e80@linaro.org>
+        id S1381680AbhLCPNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 10:13:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1381641AbhLCPNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 10:13:20 -0500
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A96DC061751
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 07:09:56 -0800 (PST)
+Received: by mail-qt1-x835.google.com with SMTP id p19so3509156qtw.12
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 07:09:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=5VMkJHZbpjViTRA6Jhw7uB7mIcmNarQHy6QHizi1178=;
+        b=71sGRR2nzOUu+vhocYFVTNVjY6/WqTrpjHHbfXEKt3elniexjPfWxOLr032mBBN+9Y
+         Tw220SxKekKZsp8S/8e/xLS0Hnu6R5ruFD5wh6hN/9mO4ndz4eE7tHjJxeqQWDJNLqrq
+         qfwGlUWt/qpUhoICghex1ctpDy+V5nUt/7Jh5j9M24TsTVjQOgeBpuc3+x3PNRQRmUZc
+         zgAKIocNjvp9XXJRBoWZ3FkdzPnXuIDPL24wz+TmN3YYOYBxPgIVZsut/g6DIsjuL2Gt
+         wSJaQt3bzU4ZgUkvsY6hg+Qq46O2COoQNWpTGqQeLJ24WsmNHOTnIDAckM1UfrhQqwhG
+         F4tQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=5VMkJHZbpjViTRA6Jhw7uB7mIcmNarQHy6QHizi1178=;
+        b=68kbgEW79Oq1rStblQeVyytydw10B0Bkp72whYpoGILyBdBK9DKkb3VgbfQoix22nq
+         boyexWbQ4TN3vQONeMPD+4J4EyiGUPKAwXJqVkgqxuxdJhOV/A17HbZAOz+d5ULBCUuZ
+         01uhjtoPWc0PWWd/j5VwHNQ0aXcnYXm6F75j/ZbsVvJLtOKRGKpfOvHyGbrFCWpj0BVj
+         W4cnL0Xk+aBvu1nwtwXyq3KoSwp+e2T+insbJL4Vj3gt4lUmvgz0msPQgHXjmZScVX5T
+         q7ZTESJDakZ5/ZU9TqPZiYGTa8dWSp2MWJOUlw3oyG8MwbsUakAUnkQTRHM/umE7jQmj
+         Ksfw==
+X-Gm-Message-State: AOAM530JN1tZLpBDwcpDqMLSyvDhxXNmu876S2qV7FQM6VTK2VJEDWvO
+        X4KcRCzUzoXhH/427NaIbqccbQ==
+X-Google-Smtp-Source: ABdhPJy61ZibMg8ILoK2AEsliArYVxsRd68TcRbdLO8nY0DiJ6C4K2+uM90k9CMi4r2w2KTjYsUWmg==
+X-Received: by 2002:ac8:598c:: with SMTP id e12mr21240483qte.337.1638544195661;
+        Fri, 03 Dec 2021 07:09:55 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id u10sm2307205qkp.104.2021.12.03.07.09.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Dec 2021 07:09:55 -0800 (PST)
+Message-ID: <7e63c1665c96feccadd9c05dc603349b3a93900d.camel@ndufresne.ca>
+Subject: Re: [EXT] Re: [PATCH v13 08/13] media: amphion: add v4l2 m2m vpu
+ decoder stateful driver
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Ming Qian <ming.qian@nxp.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Cc:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 03 Dec 2021 10:09:53 -0500
+In-Reply-To: <AM6PR04MB6341537EBD82451CA14A5E3EE76A9@AM6PR04MB6341.eurprd04.prod.outlook.com>
+References: <cover.1638263914.git.ming.qian@nxp.com>
+         <9122e66af668c095548321d45dec33a3fd6ee77d.1638263914.git.ming.qian@nxp.com>
+         <fceda1576bcb2fc4e576b59e09214ab1320558b3.camel@ndufresne.ca>
+         <AM6PR04MB6341AC4C0057B09DB8A58234E76A9@AM6PR04MB6341.eurprd04.prod.outlook.com>
+         <AM6PR04MB6341537EBD82451CA14A5E3EE76A9@AM6PR04MB6341.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5c6607cc-ad2a-6f90-e087-78ef3bd39e80@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 03, 2021 at 02:52:43PM +0000, Srinivas Kandagatla wrote:
-> On 03/12/2021 14:36, Stephan Gerhold wrote:
-> > On Fri, Dec 03, 2021 at 10:35:08AM +0000, Srinivas Kandagatla wrote:
-> > > I have tested DB410c this use case in the past using similar patch [1].
-> > > 
+Le vendredi 03 décembre 2021 à 06:01 +0000, Ming Qian a écrit :
+> > -----Original Message-----
+> > From: Ming Qian
+> > Sent: Friday, December 3, 2021 1:43 PM
+> > To: Nicolas Dufresne <nicolas@ndufresne.ca>; mchehab@kernel.org;
+> > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
+> > dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
+> > linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> > Subject: RE: [EXT] Re: [PATCH v13 08/13] media: amphion: add v4l2 m2m vpu
+> > decoder stateful driver
 > > 
-> > Did you use a different modem DSP firmware? (An older one maybe?)
-> 
-> It was very old which came with some Android release I guess.
-> 
-
-Right, that should be similar to the ones used on MSM8916
-smartphones/tablets. I was really glad that the qdsp6 drivers (q6asm,
-q6afe, ...) worked without any changes on MSM8916 by the way, thanks a
-lot for all your work on them!
-
-> > > > @@ -148,11 +266,16 @@ static const struct snd_soc_dapm_widget apq8016_sbc_dapm_widgets[] = {
-> > > >    static int apq8016_sbc_platform_probe(struct platform_device *pdev)
-> > > >    {
-> > > > +	void (*add_ops)(struct snd_soc_card *card);
-> > > >    	struct device *dev = &pdev->dev;
-> > > >    	struct snd_soc_card *card;
-> > > >    	struct apq8016_sbc_data *data;
-> > > >    	int ret;
-> > > > +	add_ops = device_get_match_data(&pdev->dev);
-> > > > +	if (!add_ops)
-> > > > +		return -EINVAL;
+> > > -----Original Message-----
+> > > From: Nicolas Dufresne [mailto:nicolas@ndufresne.ca]
+> > > Sent: Friday, December 3, 2021 12:56 PM
+> > > To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
+> > > shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
+> > > Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de;
+> > > festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong
+> > > <aisheng.dong@nxp.com>; linux-media@vger.kernel.org;
+> > > linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
+> > > linux-arm-kernel@lists.infradead.org
+> > > Subject: [EXT] Re: [PATCH v13 08/13] media: amphion: add v4l2 m2m vpu
+> > > decoder stateful driver
 > > > 
-> > > We will never hit the error case here because without a match we can not
-> > > even enter the probe function.
+> > > Caution: EXT Email
 > > > 
+> > > Le mardi 30 novembre 2021 à 17:48 +0800, Ming Qian a écrit :
+> > > > This consists of video decoder implementation plus decoder controls.
+> > > > 
+> > > > Signed-off-by: Ming Qian <ming.qian@nxp.com>
+> > > > Signed-off-by: Shijie Qin <shijie.qin@nxp.com>
+> > > > Signed-off-by: Zhou Peng <eagle.zhou@nxp.com>
+> > > > ---
+> > > >  drivers/media/platform/amphion/vdec.c | 1680
+> > > +++++++++++++++++++++++++
 > > 
-> > Theoretically it's possible to create platform devices through other
-> > ways than the device tree (think of old board C files for example).
-> > I agree that nobody should do that, but having this check here
-> > at least avoids a NULL pointer dereference in this unlikely scenario.
 > > 
-> > Please let me know if I should remove it anyway, that's fine for me!
+> > > > +
+> > > > +static void vdec_init_fmt(struct vpu_inst *inst) {
+> > > > +     struct vdec_t *vdec = inst->priv;
+> > > > +     const struct vpu_format *fmt;
+> > > > +     int i;
+> > > > +
+> > > > +     fmt = vpu_helper_find_format(inst, inst->cap_format.type,
+> > > vdec->codec_info.pixfmt);
+> > > > +     inst->out_format.width = vdec->codec_info.width;
+> > > > +     inst->out_format.height = vdec->codec_info.height;
+> > > > +     inst->cap_format.width = vdec->codec_info.decoded_width;
+> > > > +     inst->cap_format.height = vdec->codec_info.decoded_height;
+> > > > +     inst->cap_format.pixfmt = vdec->codec_info.pixfmt;
+> > > > +     if (fmt) {
+> > > > +             inst->cap_format.num_planes = fmt->num_planes;
+> > > > +             inst->cap_format.flags = fmt->flags;
+> > > > +     }
+> > > > +     for (i = 0; i < inst->cap_format.num_planes; i++) {
+> > > > +             inst->cap_format.bytesperline[i] =
+> > > vdec->codec_info.bytesperline[i];
+> > > > +             inst->cap_format.sizeimage[i] =
+> > > vdec->codec_info.sizeimage[i];
+> > > > +     }
+> > > > +     if (vdec->codec_info.progressive)
+> > > > +             inst->cap_format.field = V4L2_FIELD_NONE;
+> > > > +     else
+> > > > +             inst->cap_format.field = V4L2_FIELD_INTERLACED;
+> > > 
+> > > As a followup, this should be conditional to the chosen pixel format.
+> > > If I understood correct, you produce interlaced is only produce for
+> > > linear NV12, for tiled the fields are outputed seperated in their
+> > > respective v4l2_buffer. Note sure where yet, but the V4L2 spec
+> > > requires you to pair the fields by using the same seq_num on both.
+> > 
+> > The amphion vpu will store the two fields into one v4l2_buf, So I'll change
+> > V4L2_FIELD_INTERLACED to V4L2_FIELD_SEQ_TB
+> > 
 > 
-> TBH, I don't have very strong opinion on this.
+> Hi Nicolas,
+>     Seems gstreamer doesn't support V4L2_FIELD_SEQ_TB yet.
 > 
+>   switch (fmt.fmt.pix.field) {
+>     case V4L2_FIELD_ANY:
+>     case V4L2_FIELD_NONE:
+>       interlace_mode = GST_VIDEO_INTERLACE_MODE_PROGRESSIVE;
+>       break;
+>     case V4L2_FIELD_INTERLACED:
+>     case V4L2_FIELD_INTERLACED_TB:
+>     case V4L2_FIELD_INTERLACED_BT:
+>       interlace_mode = GST_VIDEO_INTERLACE_MODE_INTERLEAVED;
+>       break;
+>     case V4L2_FIELD_ALTERNATE:
+>       interlace_mode = GST_VIDEO_INTERLACE_MODE_ALTERNATE;
+>       break;
+>     default:
+>       goto unsupported_field;
+>   }
 
-Great, can I assume your Reviewed-by: applies without any changes then?
+This is correct, I had never had the chance to implement it. So far I only know
+IMX6 camera pipeline producing that, but rarely used in practice. What matters
+here is that your driver does report the right information so that userspace
+don't get fooled into thinking it's interleaved.
 
-Thanks,
-Stephan
+> 
+> > > 
+> > > > +     if (vdec->codec_info.color_primaries ==
+> > V4L2_COLORSPACE_DEFAULT)
+> > > > +             vdec->codec_info.color_primaries =
+> > > V4L2_COLORSPACE_REC709;
+> > > > +     if (vdec->codec_info.transfer_chars == V4L2_XFER_FUNC_DEFAULT)
+> > > > +             vdec->codec_info.transfer_chars = V4L2_XFER_FUNC_709;
+> > > > +     if (vdec->codec_info.matrix_coeffs == V4L2_YCBCR_ENC_DEFAULT)
+> > > > +             vdec->codec_info.matrix_coeffs = V4L2_YCBCR_ENC_709;
+> > > > +     if (vdec->codec_info.full_range == V4L2_QUANTIZATION_DEFAULT)
+> > > > +             vdec->codec_info.full_range =
+> > > V4L2_QUANTIZATION_LIM_RANGE;
+> > > > +}
+> > > > +
+
