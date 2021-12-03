@@ -2,109 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA7E6467222
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 07:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5514946723A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 07:51:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350787AbhLCGo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 01:44:58 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41050 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1350944AbhLCGo5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 01:44:57 -0500
-X-UUID: 415572c1bd9043698ca6696223b56fc9-20211203
-X-UUID: 415572c1bd9043698ca6696223b56fc9-20211203
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1686934265; Fri, 03 Dec 2021 14:41:30 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Fri, 3 Dec 2021 14:41:29 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkcas11.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Fri, 3 Dec 2021 14:41:28 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "Tomasz Figa" <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
-        <lc.kan@mediatek.com>, <yi.kuo@mediatek.com>,
-        <anthony.huang@mediatek.com>
-Subject: [PATCH 4/4] memory: mtk-smi: mt8186: Add smi support
-Date:   Fri, 3 Dec 2021 14:40:27 +0800
-Message-ID: <20211203064027.14993-5-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20211203064027.14993-1-yong.wu@mediatek.com>
-References: <20211203064027.14993-1-yong.wu@mediatek.com>
+        id S238216AbhLCGyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 01:54:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32922 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233948AbhLCGyb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 01:54:31 -0500
+Received: from mail-ua1-x929.google.com (mail-ua1-x929.google.com [IPv6:2607:f8b0:4864:20::929])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7137AC06174A
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 22:51:07 -0800 (PST)
+Received: by mail-ua1-x929.google.com with SMTP id p37so3625054uae.8
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 22:51:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=2Mv9jrqjT3MhcoaOxxXoXpTQsXNDwfELgjBdMyKMz0g=;
+        b=cbJqSx3jRAIT0zbxNpkYna2PvIYBxzDsihUGclALV3zcVvFXcdsw9kO6NEM/2lV/T2
+         1LFFOsLjymtX0VTyf53k7D57/+K2K9HOOlPMtHuiIWCxW1ULaJW1XoLrl29CR1aOSd7S
+         k6O76S0mMH+/v3AbJ5VMschubDl3PzXdL0iaSEt4TiJgvapmjdKlXJq6Ob+tsuPzxmwR
+         kqqKApj1GtJrQzR96LiEjb2h0k+4H82hZJ5YLxrQvOL/QM5Id++GrjaF9GoOE+jIXF1x
+         MQ1j0YTuPD2aGbXN/9Zqk0r/iPQpru2xpyDTH5TaeIWu9MI0HpUa/qqt4ll66zZqZ7s8
+         7fOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=2Mv9jrqjT3MhcoaOxxXoXpTQsXNDwfELgjBdMyKMz0g=;
+        b=mb8sXkPjuus2QE9WIsm7zTL385NDX49OjM1Bafv1WTKrfpYWJNlId41rOTQKnBU1t9
+         C8eOt8IfvIRkaXNKYJwF8HGLS37i8IVctXavaC7J/ZJfAHKUcRSfD+Bcx8Vicfsu8Nsa
+         Z1zLiWxbTBwnfEypGnQid0yHVTbF9CwOYmJft8IXCKshDdEwJVoJKLFfDi3Dsqqk6Isv
+         khDroLb7tmRw+igwsN5fUHRBMbxVI3K+O8LgUK1dNvVFgkfWtlXcH0iCOCM8+HeJK6iM
+         vwv3shhQdgrSX2MZEoxlQ3fEtX9Y2p/pj5jez4doDKa4ww86W557YGm3u7IdSEqYQdV6
+         ++RA==
+X-Gm-Message-State: AOAM530nhcOhUIAOaWZ2klYc0iAoMOS2epMv+g5t6tTZIWMxTqB6oPL6
+        RwsW6lMlnOAYT3ZlclIsxQXT7RxpkFGApxssChE=
+X-Google-Smtp-Source: ABdhPJwoNxSPAacSqDSkNwmsyVDhGSMfJOkZIlQ71tRHBXz0WygIjkxoGFNI0huk6xMLbzev4DdRz1w1s7ldGoLH3bA=
+X-Received: by 2002:a05:6102:292c:: with SMTP id cz44mr19772804vsb.9.1638514266414;
+ Thu, 02 Dec 2021 22:51:06 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Received: by 2002:a59:8852:0:b0:262:687d:8d8f with HTTP; Thu, 2 Dec 2021
+ 22:51:06 -0800 (PST)
+Reply-To: jeffery1@jefferylambertesq.co.uk
+From:   Jeffery Lambert ESQ <ericofili5@gmail.com>
+Date:   Thu, 2 Dec 2021 22:51:06 -0800
+Message-ID: <CANNckNu1-uSJuL1_YPGhPW_XZ_y-1mzotnr9mO6Djac=A_KCxw@mail.gmail.com>
+Subject: Can i trust you?
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mt8186 SMI support.
+Good day,
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/memory/mtk-smi.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+This is a personal email directed to you and I request that it=E2=80=99s be=
+en
+treated as such. I got your email from online directory; I would need
+your assistance in re-profiling funds belonging to my late client who
+shares similar surnames with you. Contact me for more detailed
+information.
 
-diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-index 4b59b28e4d73..29d7cd1cc8f8 100644
---- a/drivers/memory/mtk-smi.c
-+++ b/drivers/memory/mtk-smi.c
-@@ -355,6 +355,11 @@ static const struct mtk_smi_larb_gen mtk_smi_larb_mt8183 = {
- 				      /* IPU0 | IPU1 | CCU */
- };
- 
-+static const struct mtk_smi_larb_gen mtk_smi_larb_mt8186 = {
-+	.config_port                = mtk_smi_larb_config_port_gen2_general,
-+	.flags_general	            = MTK_SMI_FLAG_SLEEP_CTL,
-+};
-+
- static const struct mtk_smi_larb_gen mtk_smi_larb_mt8192 = {
- 	.config_port                = mtk_smi_larb_config_port_gen2_general,
- };
-@@ -372,6 +377,7 @@ static const struct of_device_id mtk_smi_larb_of_ids[] = {
- 	{.compatible = "mediatek,mt8167-smi-larb", .data = &mtk_smi_larb_mt8167},
- 	{.compatible = "mediatek,mt8173-smi-larb", .data = &mtk_smi_larb_mt8173},
- 	{.compatible = "mediatek,mt8183-smi-larb", .data = &mtk_smi_larb_mt8183},
-+	{.compatible = "mediatek,mt8186-smi-larb", .data = &mtk_smi_larb_mt8186},
- 	{.compatible = "mediatek,mt8192-smi-larb", .data = &mtk_smi_larb_mt8192},
- 	{.compatible = "mediatek,mt8195-smi-larb", .data = &mtk_smi_larb_mt8195},
- 	{}
-@@ -575,6 +581,12 @@ static const struct mtk_smi_common_plat mtk_smi_common_mt8183 = {
- 		    F_MMU1_LARB(7),
- };
- 
-+static const struct mtk_smi_common_plat mtk_smi_common_mt8186 = {
-+	.type     = MTK_SMI_GEN2,
-+	.has_gals = true,
-+	.bus_sel  = F_MMU1_LARB(1) | F_MMU1_LARB(4) | F_MMU1_LARB(7),
-+};
-+
- static const struct mtk_smi_common_plat mtk_smi_common_mt8192 = {
- 	.type     = MTK_SMI_GEN2,
- 	.has_gals = true,
-@@ -609,6 +621,7 @@ static const struct of_device_id mtk_smi_common_of_ids[] = {
- 	{.compatible = "mediatek,mt8167-smi-common", .data = &mtk_smi_common_gen2},
- 	{.compatible = "mediatek,mt8173-smi-common", .data = &mtk_smi_common_gen2},
- 	{.compatible = "mediatek,mt8183-smi-common", .data = &mtk_smi_common_mt8183},
-+	{.compatible = "mediatek,mt8186-smi-common", .data = &mtk_smi_common_mt8186},
- 	{.compatible = "mediatek,mt8192-smi-common", .data = &mtk_smi_common_mt8192},
- 	{.compatible = "mediatek,mt8195-smi-common-vdo", .data = &mtk_smi_common_mt8195_vdo},
- 	{.compatible = "mediatek,mt8195-smi-common-vpp", .data = &mtk_smi_common_mt8195_vpp},
--- 
-2.18.0
+Regards,
 
+Jeffery Lambert ESQ
+
+____________________________________________________________________
+This e-mail contains legally privileged and confidential information
+intended for the individual or entity named in the message. If the
+reader of this message is not the intended recipient, or the agent
+responsible to deliver it to the intended recipient, you are hereby
+notified that any review, disseminating or copying of this
+communication is strictly prohibited
