@@ -2,94 +2,400 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A08DC4676EE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 13:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3021A4676F2
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 13:02:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380655AbhLCMDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 07:03:33 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:27975 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1380653AbhLCMDd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Dec 2021 07:03:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1638532810;
-  x=1670068810;
-  h=date:to:cc:subject:message-id:references:mime-version:
-   content-transfer-encoding:in-reply-to:from;
-  bh=58eYs3C3XZxcIoL4sUUVPSKpBAma5YmWgb+uL4b9UBI=;
-  b=IqE2FKgPgUqd654mIdt0B8FjI0372WwTZDTkYTPqX3e1wA48yKFjw3ih
-   KO6Se6hjQLZI3R2Tt2v0jXmb6RQeTJYjwq9QDwF5Ftv/axADWFY85uVJK
-   J87a9sNBpCnuvkkvA8g7fTaAYVbwRAuYZwlb+I8zKBl1dy7PpYoHCBt+n
-   qFKy+T2re8rMYdExMoZFvR6op2dMmG+KNYTs2slNV6bFrKiK+NfqslcE0
-   XllzDLeOUKxzMQ/KnDMvet3tXhphHsEkX/OYOtSX+/0Dz2LkHxoII23Oq
-   kz4d7JKcIuveQtNLRHRrVQisf3VBg8RCvQLE//NMtmmgJ3SJwtGE/wt+Q
-   g==;
-Date:   Fri, 3 Dec 2021 13:00:07 +0100
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Doug Anderson <dianders@google.com>, kernel <kernel@axis.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: mmc: exynos-dw-mshc: Add support for
- ARTPEC-8
-Message-ID: <20211203120007.GA23260@axis.com>
-References: <20211201153804.27655-1-marten.lindahl@axis.com>
- <20211201153804.27655-2-marten.lindahl@axis.com>
- <c6a44fd1-ad48-06cc-4a96-818ca124afca@canonical.com>
+        id S244058AbhLCMGS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 07:06:18 -0500
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:42790 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230154AbhLCMGR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 07:06:17 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B3C2jXr006403;
+        Fri, 3 Dec 2021 06:02:45 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638532965;
+        bh=S1Ea7K+gwD3KhW7hZpn2lGhgj5Q5jpH2NygDW4si5zQ=;
+        h=From:To:CC:Subject:Date;
+        b=BJWqb8rzyAIcHkKQr9itWdj5uVBInK7AMNMxJhmQ22sxebML19DwoA1vcxEeJVDlL
+         mRen4fZ+lA9byA6qUzk6vj0cBTJ830/EsN/PX7Ozmd6K+pIghYNsOG/fi9asfrDm8n
+         /Sq2t6TCOJXEW7+ix8xD3bxyc3eQ+5cY0RRGwsV4=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B3C2job116713
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 3 Dec 2021 06:02:45 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 3
+ Dec 2021 06:02:45 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 3 Dec 2021 06:02:45 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B3C2iue045722;
+        Fri, 3 Dec 2021 06:02:44 -0600
+From:   Jayesh Choudhary <j-choudhary@ti.com>
+To:     <robh+dt@kernel.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <peter.ujfalusi@gmail.com>, <j-choudhary@ti.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4] ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema
+Date:   Fri, 3 Dec 2021 17:32:43 +0530
+Message-ID: <20211203120243.24173-1-j-choudhary@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c6a44fd1-ad48-06cc-4a96-818ca124afca@canonical.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Marten Lindahl <martenli@axis.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 09:41:05AM +0100, Krzysztof Kozlowski wrote:
+Convert the bindings for McASP controllers for TI SOCs from txt
+to YAML schema.
 
-Hi Krzysztof!
-Thanks for looking at this!
+Adds additional properties 'clocks', 'clock-names', 'power-domains',
+'#sound-dai-cells' and 'port' which were missing from txt file.
+Removes properties 'sram-size-playback' and 'sram-size-capture'
+since they are not used.
+Adds 'dmas' and 'dma-names' in the example which were missing from
+the txt file.
+Changes 'interrupts' and 'interrupt-names' from optional to
+required properties.
+Changes 'op-mode', 'serial-dir' and 'tdm-slots' to optional properties
+as they are not needed if the McASP is used only as GPIO.
 
-> On 01/12/2021 16:38, Mårten Lindahl wrote:
-> > The ARTPEC-8 SoC has a DWMMC controller that is compatible with the
-> > Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
-> > does not support HS400 and has extended data read timeout.
-> > 
-> > Add compatibility string "samsung,artpec8-dw-mshc" for ARTPEC-8.
-> > 
-> > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> > index 0419a63f73a0..161be451a1f0 100644
-> > --- a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> > +++ b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
-> > @@ -22,6 +22,8 @@ Required Properties:
-> >  	  specific extensions.
-> >  	- "samsung,exynos7-dw-mshc-smu": for controllers with Samsung Exynos7
-> >  	  specific extensions having an SMU.
-> > +	- "samsung,artpec8-dw-mshc": for controllers with ARTPEC-8 specific
-> > +	  extensions.
-> 
-> Artpec8 does not look like Samsung, so vendor prefix does not match.
+Adds the yaml file in the 'MAINTAINERS' under the heading 'TEXAS
+INSTRUMENTS ASoC DRIVERS'
 
-Since the IP is very similar, I just copied the vendor prefix from the others,
-but ok, I will change it to 'axis'.
+Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+---
+Changelog:
+v4:
+- changes the commit message
+- adds type and description to relevant properties
+- changes maxItems for 'serial-dir'
+- removes properties 'sram-size-playback' and 'sram-size-capture'
+  as they are not used
+- removes 'function-gpios'
+- removes 'num-serializer'
+- marks 'tdm-slots', 'serial-dir' and 'op-mode' as optional properties
+- adds the yaml file in MAINTAINERS
 
-Kind regards
-Mårten
+v3:
+- removes maxItems from 'clock-names'
 
-> 
-> Best regards,
-> Krzysztof
+v2:
+- changes the commit message
+- modifies the properties 'clocks', 'clock-names', 'dma-names',
+  'dmas', 'interrupts' and 'interrupt-names' according to the
+  arm SOCs
+- adds 'ports' and 'num-serializer' as node properties
+
+ .../bindings/sound/davinci-mcasp-audio.txt    |  86 --------
+ .../bindings/sound/davinci-mcasp-audio.yaml   | 185 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 3 files changed, 186 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+
+diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
+deleted file mode 100644
+index bd863bd69501..000000000000
+--- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.txt
++++ /dev/null
+@@ -1,86 +0,0 @@
+-Texas Instruments McASP controller
+-
+-Required properties:
+-- compatible :
+-	"ti,dm646x-mcasp-audio"	: for DM646x platforms
+-	"ti,da830-mcasp-audio"	: for both DA830 & DA850 platforms
+-	"ti,am33xx-mcasp-audio"	: for AM33xx platforms (AM33xx, AM43xx, TI81xx)
+-	"ti,dra7-mcasp-audio"	: for DRA7xx platforms
+-	"ti,omap4-mcasp-audio"	: for OMAP4
+-
+-- reg : Should contain reg specifiers for the entries in the reg-names property.
+-- reg-names : Should contain:
+-         * "mpu" for the main registers (required). For compatibility with
+-           existing software, it is recommended this is the first entry.
+-         * "dat" for separate data port register access (optional).
+-- op-mode : I2S/DIT ops mode. 0 for I2S mode. 1 for DIT mode used for S/PDIF,
+-  	    IEC60958-1, and AES-3 formats.
+-- tdm-slots : Slots for TDM operation. Indicates number of channels transmitted
+-  	      or received over one serializer.
+-- serial-dir : A list of serializer configuration. Each entry is a number
+-               indication for serializer pin direction.
+-               (0 - INACTIVE, 1 - TX, 2 - RX)
+-- dmas: two element list of DMA controller phandles and DMA request line
+-        ordered pairs.
+-- dma-names: identifier string for each DMA request line in the dmas property.
+-	     These strings correspond 1:1 with the ordered pairs in dmas. The dma
+-	     identifiers must be "rx" and "tx".
+-
+-Optional properties:
+-
+-- ti,hwmods : Must be "mcasp<n>", n is controller instance starting 0
+-- tx-num-evt : FIFO levels.
+-- rx-num-evt : FIFO levels.
+-- dismod : Specify the drive on TX pin during inactive slots
+-	0 : 3-state
+-	2 : logic low
+-	3 : logic high
+-	Defaults to 'logic low' when the property is not present
+-- sram-size-playback : size of sram to be allocated during playback
+-- sram-size-capture  : size of sram to be allocated during capture
+-- interrupts : Interrupt numbers for McASP
+-- interrupt-names : Known interrupt names are "tx" and "rx"
+-- pinctrl-0: Should specify pin control group used for this controller.
+-- pinctrl-names: Should contain only one value - "default", for more details
+-  		 please refer to pinctrl-bindings.txt
+-- fck_parent : Should contain a valid clock name which will be used as parent
+-	       for the McASP fck
+-- auxclk-fs-ratio: When McASP is bus master indicates the ratio between AUCLK
+-		   and FS rate if applicable:
+-		   AUCLK rate = auxclk-fs-ratio * FS rate
+-
+-Optional GPIO support:
+-If any McASP pin need to be used as GPIO then the McASP node must have:
+-...
+-  gpio-controller
+-  #gpio-cells = <2>;
+-...
+-
+-When requesting a GPIO, the first parameter is the PIN index in McASP_P*
+-registers.
+-For example to request the AXR2 pin of mcasp8:
+-function-gpios = <&mcasp8 2 0>;
+-
+-Or to request the ACLKR pin of mcasp8:
+-function-gpios = <&mcasp8 29 0>;
+-
+-For generic gpio information, please refer to bindings/gpio/gpio.txt
+-
+-Example:
+-
+-mcasp0: mcasp0@1d00000 {
+-	compatible = "ti,da830-mcasp-audio";
+-	reg = <0x100000 0x3000>;
+-	reg-names "mpu";
+-	interrupts = <82>, <83>;
+-	interrupt-names = "tx", "rx";
+-	op-mode = <0>;		/* MCASP_IIS_MODE */
+-	tdm-slots = <2>;
+-	serial-dir = <
+-			0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
+-			0 0 0 0
+-			0 0 0 1
+-			2 0 0 0 >;
+-	tx-num-evt = <1>;
+-	rx-num-evt = <1>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+new file mode 100644
+index 000000000000..5b553c90771a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+@@ -0,0 +1,185 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/davinci-mcasp-audio.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: McASP Controller for TI SoCs
++
++maintainers:
++  - Jayesh Choudhary <j-choudhary@ti.com>
++
++properties:
++  compatible:
++    enum:
++      - ti,dm646x-mcasp-audio
++      - ti,da830-mcasp-audio
++      - ti,am33xx-mcasp-audio
++      - ti,dra7-mcasp-audio
++      - ti,omap4-mcasp-audio
++
++  reg:
++    minItems: 1
++    items:
++      - description: main registers
++      - description: data port register
++
++  reg-names:
++    minItems: 1
++    items:
++      - const: mpu
++      - const: dat
++
++  op-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: I2S - 0 or DIT - 1 operation mode
++    enum:
++      - 0
++      - 1
++
++  tdm-slots:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: number of channels over one serializer
++    maxItems: 1
++
++  serial-dir:
++    description:
++      A list of serializer configuration
++      Entry is indication for serializer pin direction
++      0 - Inactive, 1 - TX, 2 - RX
++      All AXR pins should be present in the array even if inactive
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 25
++    items:
++      minimum: 0
++      maximum: 2
++      default: 0
++
++  dmas:
++    minItems: 1
++    items:
++      - description: transmission DMA channel
++      - description: reception DMA channel
++
++  dma-names:
++    minItems: 1
++    items:
++      - const: tx
++      - const: rx
++
++  ti,hwmods:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: Name of hwmod associated with McASP
++    maxItems: 1
++    deprecated: true
++
++  tx-num-evt:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: configures WFIFO threshold
++    maxItems: 1
++
++  rx-num-evt:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: configures RFIFO threshold
++    maxItems: 1
++
++  dismod:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      specify the drive on TX pin during inactive time slots
++      0 - 3-state, 2 - logic low, 3 - logic high
++    enum:
++      - 0
++      - 2
++      - 3
++    default: 2
++
++  interrupts:
++    anyOf:
++      - minItems: 1
++        items:
++          - description: TX FIFO interrupt
++          - description: RX FIFO interrupt
++      - items:
++          - description: common FIFO interrupt
++
++  interrupt-names:
++    oneOf:
++      - minItems: 1
++        items:
++          - const: tx
++          - const: rx
++      - const: common
++
++  fck_parent:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: parent clock name for McASP fck
++    maxItems: 1
++
++  auxclk-fs-ratio:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: ratio of AUCLK and FS rate if applicable
++    maxItems: 1
++
++  gpio-controller: true
++
++  "#gpio-cells":
++    const: 2
++
++  clocks:
++    minItems: 1
++    items:
++      - description: functional clock
++      - description: module specific optional ahclkx clock
++      - description: module specific optional ahclkr clock
++
++  clock-names:
++    minItems: 1
++    items:
++      - const: fck
++      - const: ahclkx
++      - const: ahclkr
++
++  power-domains:
++    description: phandle to the corresponding power-domain
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  port:
++    description: connection for when McASP is used via graph card
++    type: object
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - dmas
++  - dma-names
++  - interrupts
++  - interrupt-names
++
++additionalProperties: false
++
++examples:
++  - |
++    mcasp0: mcasp0@1d00000 {
++      compatible = "ti,da830-mcasp-audio";
++      reg = <0x100000 0x3000>;
++      reg-names = "mpu";
++      interrupts = <82>, <83>;
++      interrupt-names = "tx", "rx";
++      op-mode = <0>;		/* MCASP_IIS_MODE */
++      tdm-slots = <2>;
++      dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
++      dma-names = "tx", "rx";
++      serial-dir = <
++          0 0 0 0	/* 0: INACTIVE, 1: TX, 2: RX */
++          0 0 0 0
++          0 0 0 1
++          2 0 0 0 >;
++      tx-num-evt = <1>;
++      rx-num-evt = <1>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 00ad0cb5cb05..3fdf1e23f7d7 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -18855,6 +18855,7 @@ TEXAS INSTRUMENTS ASoC DRIVERS
+ M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
+ L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
+ S:	Maintained
++F:	Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+ F:	sound/soc/ti/
+ 
+ TEXAS INSTRUMENTS' DAC7612 DAC DRIVER
+-- 
+2.17.1
+
