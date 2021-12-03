@@ -2,101 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B736468094
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 00:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C21FD46809D
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 00:34:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383441AbhLCXhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 18:37:53 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:35705 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383487AbhLCXhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 18:37:50 -0500
-Received: by mail-oi1-f172.google.com with SMTP id m6so8846755oim.2;
-        Fri, 03 Dec 2021 15:34:26 -0800 (PST)
+        id S1383533AbhLCXiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 18:38:00 -0500
+Received: from mail-ot1-f48.google.com ([209.85.210.48]:44628 "EHLO
+        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1383526AbhLCXhz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 18:37:55 -0500
+Received: by mail-ot1-f48.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso5349828otj.11;
+        Fri, 03 Dec 2021 15:34:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=slc3RtjWJ70IyFjnYg6xCGKvBvcnCTAMFh09lWbkjek=;
-        b=jd15mJlfGqJS5iEgzAP2amStzUumOMhMPv8mxMCEflbtoKu/qgpnXY/dA6I4fMPVRc
-         xpSo+6x5NQj+9rei3atLcea34xRXtWC+FnhFcipHBRgUOOBYNJn+A4zIe8P98iH59nVQ
-         1Ctv0fRHW/+f2JQRFwjp/yA7M04TMQyK7E0T6YDqrdAHzlUwtQnWWgtHNjx+FzbYYobS
-         4LGVuQvbxyqwpzAH7m3sfcwWYygkADIKb0bBSo46we4t2LBwThO7wwEy+eTK4tzR8m5t
-         dnFySZxxUXisOB+ymYsfqXNIqgklGebjTvHX66aweSFPNadefUFXQdq6fpIQnlNiuXOc
-         AH0w==
-X-Gm-Message-State: AOAM5323iWHzdhgfK78zMlBxQFLhChbDHYyzVLQjxFFF5cBj723wzLuJ
-        HViGLC4OMZ+P04pLOjyoew==
-X-Google-Smtp-Source: ABdhPJyBqKs2RECYaJ9RF6QpjpusBKfo+tfpB2ONa7QgO/1CXxO3kC9NItNo8IWqQhVntJqv6sGJxg==
-X-Received: by 2002:aca:180c:: with SMTP id h12mr12700584oih.138.1638574465907;
-        Fri, 03 Dec 2021 15:34:25 -0800 (PST)
+        bh=YiLKOo6UjENxJNlcLLad7PuFG7LasjEMP8sQf/vfoCY=;
+        b=RIm2ePknVIf1XAh+8D4XHk9aGTYINpU/YF/fPjDjkmQ1Z837Ee2tKGOKbSNKkpX0Ht
+         b4d9PEgE8ZwThwvLySugGDJtmk/crjw7AXedqjLrCdeSJV16wBjjGq7/syezm78mIpOD
+         D9pv9xIQkf0gWz4nta9DaShER8rLSgvzZTEM80kepNqycRLSc1JUhn1fzVgwccV+H22/
+         qcuPmOwP9nGl9+2UOKxVBjit/n8UzQc0TAZF4kkhysbqQHcS2GC81dFRmlQbL0zCsSRP
+         0ZcYrQ7J/VL88SrSyCdTyn4IJqMAAZ7lJoYkAWp2JxWf7Ue6X8BgQKOwaOHgcmVggGh/
+         M9MQ==
+X-Gm-Message-State: AOAM531/06tbmDUVahgXHAadLK7AX7Ff7pAwLs9amnhezv6wiozKLTHW
+        //WEUO9NWHVMtPM99cbdFJ7J8twdaQ==
+X-Google-Smtp-Source: ABdhPJzaChXSNEtZQrVDuuBqE4OOoH38CUdgHcZapsCQUiGSTfOcqkFwFK52oIJ1fUrqoQYuBMT/Hw==
+X-Received: by 2002:a9d:7a5a:: with SMTP id z26mr19045138otm.297.1638574470251;
+        Fri, 03 Dec 2021 15:34:30 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e16sm869290ook.38.2021.12.03.15.34.24
+        by smtp.gmail.com with ESMTPSA id o19sm1051377oiw.22.2021.12.03.15.34.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Dec 2021 15:34:25 -0800 (PST)
-Received: (nullmailer pid 1043009 invoked by uid 1000);
+        Fri, 03 Dec 2021 15:34:29 -0800 (PST)
+Received: (nullmailer pid 1043013 invoked by uid 1000);
         Fri, 03 Dec 2021 23:34:15 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
-Cc:     judyhsiao@chromium.org, bjorn.andersson@linaro.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        tiwai@suse.com, swboyd@chromium.org, agross@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, perex@perex.cz, lgirdwood@gmail.com,
-        bgoswami@codeaurora.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, broonie@kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        plai@codeaurora.org
-In-Reply-To: <1638551345-24979-2-git-send-email-srivasam@codeaurora.com>
-References: <1638551345-24979-1-git-send-email-srivasam@codeaurora.com> <1638551345-24979-2-git-send-email-srivasam@codeaurora.com>
-Subject: Re: [PATCH v8 1/3] ASoC: google: dt-bindings: Add sc7280-herobrine machine bindings
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, Tomasz Figa <tfiga@chromium.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joerg Roedel <joro@8bytes.org>, yi.kuo@mediatek.com,
+        anan.sun@mediatek.com, Will Deacon <will@kernel.org>,
+        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        anthony.huang@mediatek.com, lc.kan@mediatek.com,
+        srv_heupstream@mediatek.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org, youlin.pei@mediatek.com
+In-Reply-To: <20211203064027.14993-2-yong.wu@mediatek.com>
+References: <20211203064027.14993-1-yong.wu@mediatek.com> <20211203064027.14993-2-yong.wu@mediatek.com>
+Subject: Re: [PATCH 1/4] dt-bindings: memory: mediatek: Correct the minItems of clk for larbs
 Date:   Fri, 03 Dec 2021 17:34:15 -0600
-Message-Id: <1638574455.258949.1043008.nullmailer@robh.at.kernel.org>
+Message-Id: <1638574455.281202.1043012.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Dec 2021 22:39:03 +0530, Srinivasa Rao Mandadapu wrote:
-> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+On Fri, 03 Dec 2021 14:40:24 +0800, Yong Wu wrote:
+> If a platform's larb support gals, there will be some larbs have a one
+> more "gals" clock while the others still only need "apb"/"smi" clocks.
+> then the minItems is 2 and the maxItems is 3.
 > 
-> Add devicetree bindings documentation file for sc7280 sound card
-> registration.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+> Fixes: 27bb0e42855a ("dt-bindings: memory: mediatek: Convert SMI to DT schema")
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  .../bindings/sound/google,sc7280-herobrine.yaml    | 171 +++++++++++++++++++++
->  1 file changed, 171 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+>  .../bindings/memory-controllers/mediatek,smi-larb.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
-yamllint warnings/errors:
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dt.yaml: sound: dai-link@0: 'sound-dai' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dt.yaml: sound: dai-link@1: 'sound-dai' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dt.yaml: sound: dai-link@2: 'sound-dai' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dt.yaml: sound: dai-link@3: 'sound-dai' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.example.dt.yaml: sound: dai-link@5: 'sound-dai' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+Full log is available here: https://patchwork.ozlabs.org/patch/1563127
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1563335
+larb@14016000: 'mediatek,larb-id' is a required property
+	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
+larb@14017000: clock-names: ['apb', 'smi'] is too short
+	arch/arm64/boot/dts/mediatek/mt8183-evb.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dt.yaml
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+larb@15001000: 'mediatek,larb-id' is a required property
+	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
 
-pip3 install dtschema --upgrade
+larb@16010000: clock-names: ['apb', 'smi'] is too short
+	arch/arm64/boot/dts/mediatek/mt8183-evb.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dt.yaml
 
-Please check and re-submit.
+larb@16010000: 'mediatek,larb-id' is a required property
+	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
+
+larb@17010000: clock-names: ['apb', 'smi'] is too short
+	arch/arm64/boot/dts/mediatek/mt8183-evb.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
+	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dt.yaml
 
