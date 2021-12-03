@@ -2,187 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA7A7467633
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 12:22:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44C8446763A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 12:23:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380390AbhLCL0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 06:26:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38410 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243477AbhLCL0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 06:26:21 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82CF3C06173E;
-        Fri,  3 Dec 2021 03:22:57 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FEEF62A23;
-        Fri,  3 Dec 2021 11:22:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79904C53FAD;
-        Fri,  3 Dec 2021 11:22:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638530576;
-        bh=C6jd1pq8qBt3DvR7mv0Pq1Oiv6oXrYqrrulI2+vO2EQ=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=b5fMtUwR5jrtbHovFVkMBY5d82S2rbLlyXWrM4V3G7OmuaIHnjhp78mEg4GzVWcvC
-         mEqrW6KZpL4UVIlEuPJlHjYbwqFQfLgMuBHgMHLj8lqDaK29ZMPO+VDifePOVlfgsM
-         xaJ7K7a363Eg1kFQd74g/QDNms2y91wyfY4Dah1TVl0tpbuTzGgdv4LFKj5dn87wVh
-         g1OWu3JBBEr80V80q7THEZjEpLG36gzAqTds5QJg5jI4aKPnU/XAfJI7Zqfdb8cQwh
-         oGr19k6UoLEnBcY+o78HbRTHuYISsy25cdPGZ5awlhksHnReWuqVJsciuNwgphVcSe
-         jpqndEwbky0HA==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1mt6eU-009aI0-8b; Fri, 03 Dec 2021 11:22:54 +0000
-Date:   Fri, 03 Dec 2021 11:22:53 +0000
-Message-ID: <875ys6lype.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Hector Martin <marcan@marcan.st>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        id S1380411AbhLCL1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 06:27:19 -0500
+Received: from mail-db8eur05on2058.outbound.protection.outlook.com ([40.107.20.58]:43712
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1380408AbhLCL1R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Dec 2021 06:27:17 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hFb7IYnSKazoSWR6GyjS2nzTTspkngVQo12nc/UtW9rWWhFiT3/LWn7UXefJohX7Kw8CtrRXbhCeaZzOxIQKOj0OL0ejm99SMqh+8/KMCrU+/Z/G66ERRJuyg1gL73w2M3+U/9l1o0T9aqGDX+bLPsO07Fg8SuoQkRnNuUyO5PPGW+r/nG+5O0h6OMQbcL/PHc2RvzHE7cIWerMK3mhf86JGM9JJaxq/VS+vaMr2hNZuLftdTbXqj0m6v/bcW83q7Y8LBh57caEd672VuVy7zZFboIIh7CQ4+OjVbi05XHKLD3voAvo/IaGorLhz908feLttvwNPgv1iEVqkvfFj6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IVOqssj1qCGoawqOLtGXCqbsdRd6p/bWYw8eo04Gau4=;
+ b=Cok6Ke47d88u7hDST0mqKDNgeWaPy5n4c6xR59Zx2JwPVutQFcLLtC+HLAOHB3Vc2lqmert9DXVNMQp/LQ8TQkj69jdRFrFvv09JKlvEfDXqexx4N8bJhBQzvcXmovJokCrlvBEFN4dSZ/B9IdPMXzxTpICvGtK6R1ds9dUB3qPK9b7sCh00v/D1f17ZC5ipsurzVCA9FJbOGu1oVaPMfro3kj2AAG5DiC/6k9YYlrsu9mTx8PMhEioAUpA+QwIMsnYhN3Azqjl4hs82nTmyzqqYTrV24rmSWpG8Oz4TsjEh823wPrAfA15u0fxhuUChxY10vgtIzEV4sxwsKP15Hg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IVOqssj1qCGoawqOLtGXCqbsdRd6p/bWYw8eo04Gau4=;
+ b=r3oLqLj5apeYItEbuvR5ZlIdQJjsjgdAxfrwy7O8VsAH0XAgFhDa4FKKFrd31P5F9zbSE8rDfS6pxXvYc8659nTz3dQRfCN1vxnY3Lg7lIXYhxwTHW8Gl7zCtXwTGsOoaaODZgrzx0cs/PERbnTFQJSrWDrH7tdoDUUUYuLq46M=
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
+ by VI1PR0402MB3837.eurprd04.prod.outlook.com (2603:10a6:803:25::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.23; Fri, 3 Dec
+ 2021 11:23:44 +0000
+Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::796e:38c:5706:b802]) by VI1PR04MB5136.eurprd04.prod.outlook.com
+ ([fe80::796e:38c:5706:b802%3]) with mapi id 15.20.4755.016; Fri, 3 Dec 2021
+ 11:23:44 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+CC:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Dougall <dougallj@gmail.com>, kernel-team@android.com
-Subject: Re: [PATCH v2 8/8] drivers/perf: Add Apple icestorm/firestorm CPU PMU driver
-In-Reply-To: <Yajwydy37psEPaS2@lakrids>
-References: <20211201134909.390490-1-maz@kernel.org>
-        <20211201134909.390490-9-maz@kernel.org>
-        <YaepolizIKkzDQoV@FVFF77S0Q05N>
-        <877dcnm2wt.wl-maz@kernel.org>
-        <Yajwydy37psEPaS2@lakrids>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Denis Kirjanov <dkirjanov@suse.de>,
+        Julian Wiedmann <jwi@linux.ibm.com>
+Subject: Re: [PATCH net-next v3 4/4] net: ocelot: add FDMA support
+Thread-Topic: [PATCH net-next v3 4/4] net: ocelot: add FDMA support
+Thread-Index: AQHX4ur0oKFzimZda0eyFp+wSrHWQKwXeIeAgAK1KwCAAJzpAIACm2wAgANEmIA=
+Date:   Fri, 3 Dec 2021 11:23:44 +0000
+Message-ID: <20211203112343.m6bhc723szcgcupm@skbuf>
+References: <20211126172739.329098-1-clement.leger@bootlin.com>
+ <20211126172739.329098-5-clement.leger@bootlin.com>
+ <20211127145805.75qh2vim7c5m5hjd@skbuf> <20211129091902.0112eb17@fixe.home>
+ <20211129174038.gptbivgmbqzrrgtz@skbuf> <20211201102926.3eacd95e@fixe.home>
+In-Reply-To: <20211201102926.3eacd95e@fixe.home>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e838a567-0195-4910-7596-08d9b64f5e27
+x-ms-traffictypediagnostic: VI1PR0402MB3837:
+x-microsoft-antispam-prvs: <VI1PR0402MB383793A49F26CCB545FE437BE06A9@VI1PR0402MB3837.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: t66U6srxbmQPTuPhWTyY9nzDDjs730AuVqGTtmir/7DstnduFeqPaa0kn+C4U2Slxpcqa2nhD2ucpBQ2ovHvpqtKS023UlEgwDhtFNR3FWGr1lxu/pfifN4uboBDPEOG+vxQvUcb20XvmzjdqWvAv0K+bnJ7wq2AqOaSfgBQ4QK8st63sPd6GfPnQ1YgREyL8m7ONEyPzNgCB+E5WedXaEGctamRf/wUHoPyt5+yYTOu3WW5g0ryXFw8OD7HiS467tdD/MV2CZTQ/jiG9W7Zo1aLaG5qCObywi1HdPjUFchK57GDtHGiDLBoMbXx+UPLMYD0bsfXizSECIPTVrj34Ar9ThyqZ266SGZyY70w6dPrZ0G43DY0Fy1HnMDMvp8/DBCpphxemBUIPaAs7goQbWNCQKHg+KmslDQ/K/lPsmzUsSDsCRxG7jLz9KmggV5jrHGKLWE9EefiPLuzbg11gYIdrJ+MdPXwUrlBixvsH2+JoeFWzDp1J9aVDzO/a6b9O/jfz5ducHbLnRL0dA2DCSO7p8uEmzfMsBuIRultuYuUdNKMQsYieu6OW9b7l+o58Ofpe6A67LxZUx2T1JwowLXPwvEHU18JYBA810DW0tscpm4KEeYyKwDgy6hJ0uCOr4dWtQGdZnRzx1rU4ugl3/6QKPRyM4Pq0MEEf2Ax8yXNxGKSD0SmokYciGGG62gOGDn7T270w+u/mNRSrRu35Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(366004)(44832011)(8676002)(83380400001)(91956017)(66476007)(64756008)(9686003)(6512007)(508600001)(5660300002)(186003)(86362001)(66446008)(38070700005)(66946007)(66556008)(4326008)(71200400001)(7416002)(6506007)(38100700002)(8936002)(66574015)(6486002)(1076003)(122000001)(2906002)(6916009)(33716001)(54906003)(76116006)(316002)(26005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?1U824sYU6IDbY/jbz2k2Y2KBG0uPwCmhn5O5jQbUPr+23SR/mwwq1PyRCq?=
+ =?iso-8859-1?Q?I/nf3piipix+kq+uIesAZgAhjz6Ht2YWdTnBtDJXVnCf4xqHYB+OX2Aawb?=
+ =?iso-8859-1?Q?LoiSt/A0T+Qu3cr//FF7+y2/Pc1Xylf3NvtlPz5dn8gCwaTHFvgWvN/2xz?=
+ =?iso-8859-1?Q?swDdTxEGepGCLLhoheA/tyZfI88LvlCCGYPzNHsyb+0mEhpz7D0rohUgxP?=
+ =?iso-8859-1?Q?7yY5O2l/kiqltpp/TpyvTfJSkcRIV7wPtrFu6rpKlYq94WjiH6izPKcG4j?=
+ =?iso-8859-1?Q?m7bKNmFytQCH1XFN/xeMtsH7EYf7ZreWqwoPkbH6k5YLnB2ecsEa2QSAvN?=
+ =?iso-8859-1?Q?Pgs0fYGYvo4HSpy/mxvGVzIuAwiuDUvTxKwDBrm7LKGzWOfL1X7d0UvEXH?=
+ =?iso-8859-1?Q?UZuZD9wu5sB0h8CKTaZril2VVS81Wg1gvSx+C0JMhJht1vO6PU8sIksBAZ?=
+ =?iso-8859-1?Q?xa3bodvVTp6B2iHbQXaYcVhspprPcbnktb3P1rFWpvmfmEYkoQuX0XNu+s?=
+ =?iso-8859-1?Q?PcwZW7f6lYyZPJWFQr7pt1hZ9pp4WtoXQGzDyoBlz6bE4X0mWpdw6sQjyV?=
+ =?iso-8859-1?Q?Qmk5rh19qEtOf5OpSYJzI5ipw+7uGTrdDGtYQUANmACz047MSOiJ2FRSGa?=
+ =?iso-8859-1?Q?KUEA5I9wSKLx/GlUeyK9Oz3kAyLrLDNwFqbSD6cMeN2RzlbrfarwJg+tJl?=
+ =?iso-8859-1?Q?y4NkzZV68CFA9q9s8ntcrYO/PbO5yHewTffSmqzU5ATfP7NFjClGYhCNDw?=
+ =?iso-8859-1?Q?/1pfZd2lgVNnccK8Y+2aMd8ZzPiKl3xk6bMpC2fIQ55S9l63P3EdffAg6j?=
+ =?iso-8859-1?Q?69GhqPzjELGay61NKNwCvYgMiZQXFL3D7DtaABbC+kfSHq+wXCmCtumfpN?=
+ =?iso-8859-1?Q?r1U/OQW+ue0hJ4n6kvehflOtntN8gssNeeYpMCgFYufwmQSbxt50CM2SFz?=
+ =?iso-8859-1?Q?vsCfxp/aschliv8A7W4jEYh/TttoXTNAMRw0DanScgeEJRsMR/L5Y1oEuD?=
+ =?iso-8859-1?Q?K0JFImChyRnBmD8UmXRivyQpAjOQ5+lFwCdRjSO1o7dcdLGZ0fDbRSuYXt?=
+ =?iso-8859-1?Q?QgMWjrQWFJvmgJ2LUZ80fJubICvKmTfxcwxnvKm5pZe+2rj/p1VcCB9e9m?=
+ =?iso-8859-1?Q?Ov9esGxqCFMyr+FpjUMfZdzOicZ5DkH30RUsu0Jd0L6DOHjHS19BCMgaPj?=
+ =?iso-8859-1?Q?j2fytln2/3uVCZMCROEVcFC04NlKcyRUGF+0cCsik1HDQzxhBiWdA6ybrR?=
+ =?iso-8859-1?Q?cYW4Tb8TU4S63fZl0JP8Oc4DtdWJO5C8GzGUj3v7NuHYhfxYEP1jd9AYbQ?=
+ =?iso-8859-1?Q?GXk3iTRPg10EGAEwnqrHVtG05sYyBABHzZNhr5TV+UJoaK1cF1nZFnn8Yk?=
+ =?iso-8859-1?Q?4SXYx7NvGxyM2QQnh4dK6ZBy5Amh1FK3Pb2awKd8/K3oVAXa9qYSH2g+vK?=
+ =?iso-8859-1?Q?83NKPXg+HpDHgp/m1Wassbi1Ni5TDkmmeCj+tHIOtKOvriFDH1l72awV5M?=
+ =?iso-8859-1?Q?RY+WIfruV+tAbAGVJik6lltE1TFg9wFR4h98WGvTuVofClfZ360RDZQFbS?=
+ =?iso-8859-1?Q?gs11+GY1OCEYUcMCQK0AOFpFX5MqMzlJXCqPCTaBu8zvVAy4rI/U+C0W9m?=
+ =?iso-8859-1?Q?OyBIE1OAKiqsVLjs8xEaF/ocW5yyM3oP2ZwPbuMaGWuZikKznGyt0DCRPH?=
+ =?iso-8859-1?Q?6soDNY1+TC7kpairyn4=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <EF1717BEA2E474499DD193695182EB44@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e838a567-0195-4910-7596-08d9b64f5e27
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2021 11:23:44.7326
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dkATGaFn3QGLNADdgpBHxnj/xhIkzguavSzFwv5FPt0Q9QY9IOsERvqR0JKo11EDJpToZp6ahiVKo4izeqruRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3837
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 02 Dec 2021 16:14:01 +0000,
-Mark Rutland <mark.rutland@arm.com> wrote:
-> 
-> On Thu, Dec 02, 2021 at 03:39:46PM +0000, Marc Zyngier wrote:
-> > On Wed, 01 Dec 2021 16:58:10 +0000,
-> > Mark Rutland <mark.rutland@arm.com> wrote:
-> > > 
-> > > On Wed, Dec 01, 2021 at 01:49:09PM +0000, Marc Zyngier wrote:
-> > > > Add a new, weird and wonderful driver for the equally weird Apple
-> > > > PMU HW. Although the PMU itself is functional, we don't know much
-> > > > about the events yet, so this can be considered as yet another
-> > > > random number generator...
-> > > 
-> > > It's really frustrating that Apple built this rather than the
-> > > architected PMU, because we've generally pushed back on
-> > > IMPLEMENTATION DEFINED junk in this area, and supporting this makes
-> > > it harder to push back on other vendors going the same route, which
-> > > I'm not keen on. That, and the usual state of IMP-DEF stuff making
-> > > this stupidly painful to reason about.
-> > 
-> > As much as I agree with you on the stinking aspect of an IMPDEF PMU,
-> > this doesn't contradicts the architecture. To avoid the spread of this
-> > madness, forbidding an IMPDEF implementation in the architecture would
-> > be the right thing to do.
-> 
-> Yeah; I'll see what I can do. ;)
-> 
-> > > I can see that we can get this working bare-metal with DT, but I
-> > > really don't want to try to support this in other cases (e.g. in a
-> > > VM, potentially with ACPI), or this IMP-DEFness is going to spread
-> > > more throughout the arm_pmu code.
-> > 
-> > Well, an alternative would be to sidestep the arm_pmu framework
-> > altogether.  Which would probably suck even more.
-> > 
-> > > How does this interact with PMU emulation for a KVM guest?
-> > 
-> > It doesn't. No non-architected PMU will get exposed to a KVM guest,
-> > and the usual "inject an UNDEF exception on IMPDEF access" applies. As
-> > far as I am concerned, KVM is purely architectural and doesn't need to
-> > be encumbered with this.
-> 
-> Cool; I think not exposing this into a VM rules out the other issues I
-> was concerned with, so as long as we're ruling that out I think we're
-> agreed (and I see no reason for us to try to force this platform to work
-> with ACPI on bare-metal).
+On Wed, Dec 01, 2021 at 10:29:26AM +0100, Cl=E9ment L=E9ger wrote:
+> Le Mon, 29 Nov 2021 17:40:39 +0000,
+> Vladimir Oltean <vladimir.oltean@nxp.com> a =E9crit :
+>
+> > On Mon, Nov 29, 2021 at 09:19:02AM +0100, Cl=E9ment L=E9ger wrote:
+> > > > I'm not sure why you're letting the hardware grind to a halt first,
+> > > > before refilling? I think since the CPU is the bottleneck anyway, y=
+ou
+> > > > can stop the extraction channel at any time you want to refill.
+> > > > A constant stream of less data might be better than a bursty one.
+> > > > Or maybe I'm misunderstanding some of the details of the hardware.
+> > >
+> > > Indeed, I can stop the extraction channel but that does not seems a
+> > > good idea to stop the channel in a steady state. At least that's what=
+ I
+> > > thought since it will make the receive "window" non predictable. Not
+> > > sure how well it will play with various protocol but I will try
+> > > implementing the refill we talked previously (ie when there an
+> > > available threshold is reached).
+> > (...)
+> > > > I don't understand why you restart the injection channel from the T=
+X
+> > > > confirmation interrupt. It raised the interrupt to tell you that it=
+ hit
+> > > > a NULL LLP because there's nothing left to send. If you restart it =
+now and
+> > > > no other transmission has happened in the meantime, won't it stop a=
+gain?
+> > >
+> > > Actually, it is only restarted if there is some pending packets to
+> > > send. With this hardware, packets can't be added while the FDMA is
+> > > running and it must be stopped everytime we want to add a packet to t=
+he
+> > > list. To avoid that, in the TX path, if the FDMA is stopped, we set t=
+he
+> > > llp of the packet to NULL and start the chan. However, if the FDMA TX
+> > > channel is running, we don't stop it, we simply add the next packets =
+to
+> > > the ring. However, the FDMA will stop on the previous NULL LLP. So wh=
+en
+> > > we hit a LLP, we might not be at the end of the list. This is why the
+> > > next check verifies if we hit a NULL LLP and if there is still some
+> > > packet to send.
+> >
+> > Oh, is that so? That would be pretty odd if the hardware is so dumb tha=
+t
+> > it doesn't detect changes made to an LLP on the go.
+> >
+> > The manual has this to say, and I'm not sure how to interpret it:
+> >
+> > | It is possible to update an active channels LLP pointer and pointers =
+in
+> > | the DCB chains. Before changing pointers software must schedule the
+> > | channel for disabling (by writing FDMA_CH_DISABLE.CH_DISABLE[ch]) and
+> > | then wait for the channel to set FDMA_CH_SAFE.CH_SAFE[ch]. When the
+> > | pointer update is complete, soft must re-activate the channel by sett=
+ing
+> > | FDMA_CH_ACTIVATE.CH_ACTIVATE[ch]. Setting activate will cancel the
+> > | deactivate-request, or if the channel has disabled itself in the
+> > | meantime, it will re activate the channel.
+> >
+> > So it is possible to update an active channel's LLP pointer, but not
+> > while it's active? Thank you very much!
+>
+> In the manual, this is also stated that:
+>
+> | The FDMA does not reload the current DCB when re- activated,
+> | so if the LLP-field of the current DCB is modified, then software must
+> | also modify FDMA_DCB_LLP[ch].
+>
+> The FDMA present on the next generation (sparx5) is *almost* the same
+> but a new RELOAD register has been added and allows adding a DCB at the
+> end of the linked list without stopping the FDMA, and then simply hit
+> the RELOAD register to restart it if needed. Unfortunately, this is not
+> the case for the ocelot one.
+>
+> >
+> > If true, this will severely limit the termination performance one is
+> > able to obtain with this switch, even with a faster CPU and PCIe.
 
-Nah. This is a tortuous enough system.
+Sadly I don't have the time or hardware to dig deeper into this, so I'll
+have to trust you, even if it sounds like a severe limitation.
 
-> > No, there is a single, per-counter control for EL0 and EL2. I couldn't
-> > get the counters to report anything useful while a guest was running,
-> > but that doesn't mean such control doesn't exist.
-> 
-> Ok. We might need to require the exclude_guest flag for now, assuming
-> the perf tool automatically sets that.
+> > > > > +void ocelot_fdma_netdev_init(struct ocelot_fdma *fdma, struct ne=
+t_device *dev)
+> > > > > +{
+> > > > > +	dev->needed_headroom =3D OCELOT_TAG_LEN;
+> > > > > +	dev->needed_tailroom =3D ETH_FCS_LEN;
+> > > >
+> > > > The needed_headroom is in no way specific to FDMA, right? Why aren'=
+t you
+> > > > doing it for manual register-based injection too? (in a separate pa=
+tch ofc)
+> > >
+> > > Actually, If I switch to page based ring, This won't be useful anymor=
+e
+> > > because the header will be written directly in the page and not anymo=
+re
+> > > directly in the skb header.
+> >
+> > I don't understand this comment. You set up the needed headroom and
+> > tailroom netdev variables to avoid reallocation on TX, not for RX.
+> > And you use half page buffers for RX, not for TX.
+>
+> Ok, so indeed, I don't think it is needed for the register-based
+> injection since the IFH is computed on the stack and pushed word by
+> word into the fifo separately from the skb data. In the case of the
+> FDMA, it is read from the start of the DCB DATAL adress so this is why
+> this is needed. I could also put the IFH in a separate DCB and then
+> split the data in a next DCB using SOF/EOF flags but I'm not sure it
+> will be beneficial from a performance point of view. I could try that
+> since the CPU is slow, it might be better in some case to let the FDMA
+> handle this instead of usign the CPU to increase the SKB size and
+> linearize it.
+>
+> >
+> > > > I can't help but think how painful it is that with a CPU as slow as
+> > > > yours, insult over injury, you also need to check for each packet
+> > > > whether the device tree had defined the "fdma" region or not, becau=
+se
+> > > > you practically keep two traffic I/O implementations due to that so=
+le
+> > > > reason. I think for the ocelot switchdev driver, which is strictly =
+for
+> > > > MIPS CPUs embedded within the device, it should be fine to introduc=
+e a
+> > > > static key here (search for static_branch_likely in the kernel).
+> > >
+> > > I thinked about it *but* did not wanted to add a key since it would b=
+e
+> > > global. However, we could consider that there is always only one
+> > > instance of the driver and indeed a static key is an option.
+> > > Unfortunately, I'm not sure this will yield any noticeable performanc=
+e
+> > > improvement.
+> >
+> > What is the concern with a static key in this driver, exactly?
+>
+> Only that the static key will be global but this driver does not have
+> anything global. If you have no concern about that, I'm ok to add one.
 
-OK.
-
-> 
-> [...]
-> 
-> > > > +	state = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
-> > > > +	overflow = read_sysreg_s(SYS_IMP_APL_PMSR_EL1);
-> > > 
-> > > I assume the overflow behaviour is free-running rather than stopping?
-> > 
-> > Configurable, apparently. At the moment, I set it to stop on overflow.
-> > Happy to change the behaviour though.
-> 
-> The architected PMU continues counting upon overflow (which prevents
-> losing counts around the overlflow occurring), so I'd prefer that.
-> 
-> Is that behaviour per-counter, or for the PMU as a whole?
-
-It is global. This will probably require some additional rework to
-clear bit 47 in overflowing counters, which we can't do atomically.
-
-> 
-> [...]
-> 
-> > > > +static int m1_pmu_device_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = arm_pmu_device_probe(pdev, m1_pmu_of_device_ids, NULL);
-> > > > +	if (!ret) {
-> > > > +		/*
-> > > > +		 * If probe succeeds, taint the kernel as this is all
-> > > > +		 * undocumented, implementation defined black magic.
-> > > > +		 */
-> > > > +		add_taint(TAINT_CPU_OUT_OF_SPEC, LOCKDEP_STILL_OK);
-> > > > +	}
-> > > > +
-> > > > +	return ret;
-> > > > +}
-> > > 
-> > > Hmmm... that means we're always going to TAINT on this HW with an appropriate
-> > > DT, which could mask other reasons TAINT_CPU_OUT_OF_SPEC would be set, even
-> > > where the user isn't using the PMU.
-> > > 
-> > > Maybe we should have a cmdline option to opt-in to using the IMP-DEF PMU (and
-> > > only tainting in that case)?
-> > 
-> > I'd rather taint on first use. Requiring a command-line argument for
-> > this seems a bit over the top...
-> 
-> That does sound nicer.
-> 
-> That said, if we've probed the thing, we're going to be poking it to
-> reset it (including out of idle), even if the user hasn't tried to use
-> it, so I'm not sure what's best after all...
-
-Yup, there is that. I'll have another look.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+I don't see a downside to this, do you? Even if we get support for a
+PCIe ocelot driver later on, we don't know how that is going to look, if
+it's going to reuse the exact same xmit function, etc.=
