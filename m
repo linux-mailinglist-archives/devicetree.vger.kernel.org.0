@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9325467988
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 15:37:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA5B46798D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 15:39:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381439AbhLCOlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 09:41:02 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:38543 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1352361AbhLCOlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:41:02 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 9EDDE58017A;
-        Fri,  3 Dec 2021 09:37:37 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Fri, 03 Dec 2021 09:37:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=i+PDizJ4CygpKjnA6GeSt+T0s59
-        0lhPcJnx/bPZhFRM=; b=J4jfRbK2W0THIdVkbDLJx6o7KjK428mCbchaoQWCtED
-        aJxs3mjZxESxpigGG6Pu7/FCOOFiLnhHFMASA2E/2vzTE7dLWHaEocBSAecapGns
-        v/GgTN7mpVdj3daGcFe04TILklv7Z4AjA8CW1SLDpbI7UjVQU5GA4GqvZnc9WH8o
-        zOq4SlZUhjCvuDk8b1hpkG+ggIrS0d0XLAMUa0VLYtIW+PkSfqX7CrEFC28g2X3d
-        6c59U70mAaf2VrWYFu/6ITh3rO+80YLn6UwF14+pNFIxGE3TUjBMxM6jMKolmi3y
-        XcorOTdFCwras1vM56pEBO4AEt0sZ+BckmgLKxUANlg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=i+PDiz
-        J4CygpKjnA6GeSt+T0s590lhPcJnx/bPZhFRM=; b=C/rT67gmxFNiW49lJW8qsT
-        Npf3M89Enwg5Ozfh0uTs3oGF1OgGa57tBFQLtInIEwNBs4BaUHz7LABFVVT2dONm
-        sluQ4ozF3f7AzsIM/E1LvlbNrwmmlaiWptkdl+9ATfH0nN6Vl3PdnwCpSPMFj45L
-        bytURRM8YFZJluWMeHMYL6dUyN5TNvQTpgGhQ6o6rRRPhv9AhjDIOP6+TerVJQMh
-        QrFha3IThGdhgjTUUmkZNmu9ktGTecxRcEyI+YXyuhF8wuxjRGKQuonxE/oKDb0C
-        6Q7DQBW+NZtueWIlNd3RmqXyeRRmWVfHFD8A/sG4tsogjYTMOUyehAEsl/FL9zIg
-        ==
-X-ME-Sender: <xms:sSuqYVrnnQprUF-dMcQsEjVv3YCCYjwCmXWugrST_noZt3m88lZj-w>
-    <xme:sSuqYXp5BP4ch2g2n6hWV8-QgnPG0ZP2S-YvRYFSpOkxT258fQ0NrYiJ8CSbpFQ9U
-    qHgcAETSByssrH-nkM>
-X-ME-Received: <xmr:sSuqYSOt4-w-i0sZtMYI5s9F_XLPvEed10aD4L0Z3P4ws9dQgmXofFwLrJYcKZDD5YPEsElin3lt0s8ApQ64abQtcjH9UXt7Xtyx5TOP6b3lOQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieejgdeilecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeeutdfgjeeuudehvefgvedvtedtudelfffgffekledtffekgedukeejueevieeg
-    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:sSuqYQ6WpaWjTrKNkdI3nOEk_-O2I8vri1YOmeMMlfCHhLCaw4XfXw>
-    <xmx:sSuqYU48fQGsdTu-kJD-yfKCpqYRXvPyLQA9UlAi44QbLTsVFFzAVQ>
-    <xmx:sSuqYYhdT-NaidE9kDoeWEw5fYUmA2lYVBvXYwE4REazLm2F9FOcwA>
-    <xmx:sSuqYUjiF_bvGMgFoBtm4yUOOfB7mwQvv5-qkZQvMvsVIJ3m9on9tQ>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 3 Dec 2021 09:37:36 -0500 (EST)
-Date:   Fri, 3 Dec 2021 15:37:34 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Kevin Tang <kevin3.tang@gmail.com>
-Cc:     maarten.lankhorst@linux.intel.com, sean@poorly.run,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        mark.rutland@arm.com, pony1.wu@gmail.com, orsonzhai@gmail.com,
-        zhang.lyra@gmail.com, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 6/6] drm/sprd: add Unisoc's drm mipi dsi&dphy driver
-Message-ID: <20211203143734.pn4q6wft4s37ckut@houat>
-References: <20211025093418.20545-1-kevin3.tang@gmail.com>
- <20211025093418.20545-7-kevin3.tang@gmail.com>
- <20211203103841.vkl3sjsbaohsviou@houat>
- <CAFPSGXbWv94vShNAQ9xfkDZRKgZTdjRzH9i60ak1NYaPW-OKgA@mail.gmail.com>
+        id S1381528AbhLCOmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 09:42:31 -0500
+Received: from mail-ua1-f48.google.com ([209.85.222.48]:43806 "EHLO
+        mail-ua1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S236570AbhLCOm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:42:28 -0500
+Received: by mail-ua1-f48.google.com with SMTP id j14so5803480uan.10
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 06:39:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=yQtul6XVsJXpFPVfu70nnM4Df+66ubdDixJV8eC2fn8=;
+        b=Koa/teleULSth+tDNGVUpkfJQ/33FSlYnzD4NhSahxHE8ZHedieK3YOBifXXWVX6cK
+         4KdgGeLSuS+5EOer3DcbfOZoynPAr/jwWo9wOwyYZuQ33jxPNOnofITglhg3UuzAHS2z
+         q4QJOXANhDLxMQIcmqQpmiZW+W9hWQ9IpggxWqeryeX3doS1JUx8d28f5GD3PRK+0y5s
+         1LecB4tJ1S0kkBSYmVqEnvx+NW3k9U9Y+YUR1DUzORIj6QwBDE2/vKT2wQu+QUP8WVT7
+         FSZEB9eDngtlka8pwX/Nvn6/aLLd59uS1oxIiHFKViVql2hbCjADekmIGQWv4W+vlqVc
+         4wIw==
+X-Gm-Message-State: AOAM530eaz0ivi2fCWtJElVQq1hYmyrA8tWM7t5dYHgbkR8ECo8P2Bbx
+        5dNC8taATxhu0vduikM+ls4L2ux7i5CTxa/G
+X-Google-Smtp-Source: ABdhPJxqgEhLUzPmRaUPNcNrz/mZJPUUY4Daq75lL79wITLCnu1s9FvytEMRl5VsfjW9c8SSkx6uog==
+X-Received: by 2002:a05:6102:cd1:: with SMTP id g17mr21378936vst.55.1638542343911;
+        Fri, 03 Dec 2021 06:39:03 -0800 (PST)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id l28sm502232vkn.45.2021.12.03.06.39.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Dec 2021 06:39:03 -0800 (PST)
+Received: by mail-ua1-f51.google.com with SMTP id az37so5781643uab.13
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 06:39:03 -0800 (PST)
+X-Received: by 2002:a05:6102:e10:: with SMTP id o16mr20431032vst.5.1638542342811;
+ Fri, 03 Dec 2021 06:39:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xcgm6vftby67t4i2"
-Content-Disposition: inline
-In-Reply-To: <CAFPSGXbWv94vShNAQ9xfkDZRKgZTdjRzH9i60ak1NYaPW-OKgA@mail.gmail.com>
+References: <20211125153131.163533-1-geert@linux-m68k.org> <20211125153131.163533-5-geert@linux-m68k.org>
+ <be6a6a8e-0642-80b8-5503-cb4d059ee278@microchip.com>
+In-Reply-To: <be6a6a8e-0642-80b8-5503-cb4d059ee278@microchip.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 3 Dec 2021 15:38:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXO8A0ZPq6ngjuFmUb-8RJ69pkA2eAtcskham58RsmSpA@mail.gmail.com>
+Message-ID: <CAMuHMdXO8A0ZPq6ngjuFmUb-8RJ69pkA2eAtcskham58RsmSpA@mail.gmail.com>
+Subject: Re: [PATCH 4/9] riscv: dts: microchip: Group tuples in interrupt properties
+To:     Conor Dooley <Conor.Dooley@microchip.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Lewis Hanly <Lewis.Hanly@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Conor,
 
---xcgm6vftby67t4i2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Dec 03, 2021 at 08:34:50PM +0800, Kevin Tang wrote:
-> Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B412=E6=9C=883=E6=
-=97=A5=E5=91=A8=E4=BA=94 18:38=E5=86=99=E9=81=93=EF=BC=9A
+On Fri, Nov 26, 2021 at 9:42 AM <Conor.Dooley@microchip.com> wrote:
+> On 25/11/2021 15:31, Geert Uytterhoeven wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > To improve human readability and enable automatic validation, the tuples
+> > in the various properties containing interrupt specifiers should be
+> > grouped.
 > >
-> > On Mon, Oct 25, 2021 at 05:34:18PM +0800, Kevin Tang wrote:
-> > > @@ -618,9 +619,25 @@ static void sprd_crtc_mode_set_nofb(struct drm_c=
-rtc *crtc)
-> > >  {
-> > >       struct sprd_dpu *dpu =3D to_sprd_crtc(crtc);
-> > >       struct drm_display_mode *mode =3D &crtc->state->adjusted_mode;
-> > > +     struct drm_encoder *encoder;
-> > > +     struct mipi_dsi_device *slave;
-> > > +     struct sprd_dsi *dsi;
-> > >
-> > >       drm_display_mode_to_videomode(mode, &dpu->ctx.vm);
-> > >
-> > > +     drm_for_each_encoder(encoder, crtc->dev) {
-> > > +             if (encoder->crtc !=3D crtc)
-> > > +                     continue;
-> >
-> > encoder->crtc is deprecated. You should be using
-> > encoder->drm_for_each_encoder_mask, using the encoder_mask in
-> > encoder->drm_crtc_state.
->=20
-> Use drm_for_each_encoder_mask to replace drm_for_each_encoder? like this:
-> drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask) {
->     dsi =3D encoder_to_dsi(encoder);
->     slave =3D dsi->slave;
->=20
->     if (slave->mode_flags & MIPI_DSI_MODE_VIDEO)
->         dpu->ctx.if_type =3D SPRD_DPU_IF_DPI;
->     else
->          dpu->ctx.if_type =3D SPRD_DPU_IF_EDPI;
-> }
+> > Fix this by grouping the tuples of "interrupts" and
+> > "interrupts-extended" properties using angle brackets.
 
-Yes
+> I notice most of the icicle kit patches in this series were feedback
+> items from you on my series. I am assuming your intent is that I drop
 
-Maxime
+Yeah, when I commented on your series, I already had made most of
+these changes to my tree, but they were in an unfinished state.
 
---xcgm6vftby67t4i2
-Content-Type: application/pgp-signature; name="signature.asc"
+> those from my V2 (which should've been here by now but other things got
+> in the way) and base on this?
 
------BEGIN PGP SIGNATURE-----
+That may indeed be the easiest solution: fix existing issues first, then
+enable more features.
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaorrgAKCRDj7w1vZxhR
-xeExAP9ZFUc9viR8jVqxFYksuwT5OhewO0DsPjv856NwUpY+EQEAmIOyKr/k09XD
-mqk6Hu3g1notikrNRfGp2DSQV5MkYgg=
-=yyH3
------END PGP SIGNATURE-----
+Gr{oetje,eeting}s,
 
---xcgm6vftby67t4i2--
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
