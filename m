@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3DAB4678D3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:51:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A604678D5
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:51:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232913AbhLCNy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 08:54:56 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:54981 "EHLO
+        id S238663AbhLCNy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 08:54:57 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:56177 "EHLO
         new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238663AbhLCNyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:54:54 -0500
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 246865800EF;
-        Fri,  3 Dec 2021 08:51:30 -0500 (EST)
+        by vger.kernel.org with ESMTP id S238055AbhLCNy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:54:56 -0500
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 42E075800E3;
+        Fri,  3 Dec 2021 08:51:32 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Fri, 03 Dec 2021 08:51:30 -0500
+  by compute4.internal (MEProxy); Fri, 03 Dec 2021 08:51:32 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:content-type:mime-version
-        :content-transfer-encoding; s=fm1; bh=DjoRVDOV/7ZOVNAsunjkCECVVG
-        QRaa3dBgHKlisr8g4=; b=bCrIRi0ejN+v0nKHnsPTDofnEsoDWSoAT4CJIeoleY
-        DEnet5/UHKle+HuCZTpbj7Wfa8tfn/NM0Ip/JwuNM/Jb9Lsc/Q2GvvqcFkUkbUsR
-        kptLpjA6Twg/4IW7ZLHRUlkL7P+RZSf3lL6BA0jOA9wDGKk9vMej2t4pINTaj2XP
-        4RhhlkyDILQ1rWNTsdeOT4awhxFaVv87jKxnJaEqn/xiyWOLO0gFh4FpFkVOh/Ir
-        zu7dMj6aYhE1DiUxihi10uJsA0YrAcRaEjv33B2vocwqCuqfMnJ/qbaB8jszHHcV
-        Nthzo37p113sRexonTxUKimr2QAwLKWsPdViF21I70qQ==
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm1; bh=0dVVB/OyUykQQ
+        BayNdwbSTIU/wmtxvli48qZr0+pxgg=; b=LhsQ+GtDhypuNR/qxlWrY6eXxxPZ8
+        N8WvBG0xFKKJz2zHMT2nbiJ8GtWemLa/DzgAlM8J2LbEyspL2MyUq8z7TqVSEjVU
+        bJIL/hxP1qolX9+cmLOvNKds5LKObhzrnjB9dYLaNjZpkRQ465So9lmli76NVv7r
+        VkP6utITkDQZe9zxfyHYp5PyD9OF7tZ9RNioKxJDGsX/GeTc/SOGGJksqd+3ZqYY
+        4rAOKYuewQxlA74DUtRTvKHrXiVut4w38cVCUtOHG4mlDmRCiQSRVtV2ssVjDC/s
+        g/L8dx36BHQXdA52iyKT3Uj1HAx3g6VgEKge4ZvDYSEZ61R8gAAuxhkuQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:message-id:mime-version:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=DjoRVD
-        OV/7ZOVNAsunjkCECVVGQRaa3dBgHKlisr8g4=; b=DbumxWWtehAYOniObV98F3
-        AnxH/Qvw31N1W0tzNS6MMTdJgKOgkj7q3eGRTbzXzYHn0Q/VneCZTAHVQcHVRGfo
-        H7od6mWL8E/YMZMTF2N5XUn2NHMD7P4TOEUxwwxGzGV6N8o0Le0H4oTmeAQXvvqy
-        XQsE65SdA84v+Mpjw/+S4xdPVtDfamVAZCszmPPcsiEjnqiVKEZZpfDt4Yh5DUWi
-        aYBfXJj+VFRjpyjSxH3BOykWgfEn5/nae9rCdsNYt7B8Q+fBguHf50HHQ94sSmQm
-        UuAeG50m1Lr4zS9uNQ3e9XrLfk0ALrx6cqGjP9QpSMRe+m7TP9GyHcnizsJVg0vw
-        ==
-X-ME-Sender: <xms:4CCqYXExu48m-QZ1BeXX8rGOvJuQlbFTqQJYPLf_3hQRVpY88fpQwg>
-    <xme:4CCqYUWvQTtxGOVbUZuN7aov7vQz2ewpk1pZH3lLtLHyVdL_bLzAXURWB__ervCIw
-    yBaeF9b7U97DluQpUs>
-X-ME-Received: <xmr:4CCqYZL2a580aefpD1zPkOKOdSZkUkViLSEq2DnRvxG22DmzBzz5z_6GOUiLef2ZzqwB25Eu49wkKYSuxWb3QCtVJUkBMueMEduLqcGCy8NRng>
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; bh=0dVVB/OyUykQQBayNdwbSTIU/wmtxvli48qZr0+pxgg=; b=mLkWuLdr
+        N868uFApRKcUpl1Ogy0q8WEpd9KZozK7EYGrSV18QFUKrYvK3nW4RRF9o8EAYH8x
+        ARoV0F0lEPl70rqDzgOUtr3acawUZrKnQtLMs9Ney/6Rw59PSftSxsXsl3vrySog
+        JsWpBPElqoJUq2aQp8pget87RM+PKZCt6rZKbn+HeszRbWEO+GbDsknOwQz68v3t
+        M3IsyjVV3TephyBml20JMB/p/fmfPTjSZulX8odye8iOXOwRDhKkrd9wdDJ6tM7G
+        ouCFfUIYG4xju7OdbVUgPVP6qF55AeLoNns4eMxUMIVycM0Yq21Wm8s+fWhEZ/nC
+        s2sQGUDPUXYANg==
+X-ME-Sender: <xms:4yCqYf4uEferhIGrAQJ8eoNn5wT7gsWAS7RP-OET0w1Vz0Y9kHr8bg>
+    <xme:4yCqYU5Sp4CTKl_1X-hvASKSDhq0nmEcLnFBaEM5wp7ixRSDaEVkNsBJHIIjVNVG7
+    78c9wnzS9dlDfDAySI>
+X-ME-Received: <xmr:4yCqYWd3eJaZwfkI8ETcP0x0qgONgH06NvELqUywf2FzS2nqyscxYP3ceOZqAtsIcMDSVl5F66QGVCnjet3iZzSeAAhth0PWsmMRzTanp8B4kw>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieejgdehlecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgtggfgsehtqhertdertdejnecuhfhrohhmpeforgigihhmvgcu
-    tfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvg
-    hrnhepteeikefgffekgeekledtheduteetjefgkeeuvefhhfetgedugfektdeugeffgfef
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgi
-    himhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:4CCqYVGU-g-DSWBA5Y_uWvraRIEAlTR3u8m0AIwFr-UkFBnAd1QtsQ>
-    <xmx:4CCqYdWw4SN46Ml8jXHBZKv7suzsdRznjcuaIrO8HbMyD_w-ZdSUjQ>
-    <xmx:4CCqYQNFOkdW1tJPQ4Uf2Y_15jDLPrKBbvpdxJorF8aditbizcsV9A>
-    <xmx:4iCqYUPdTRVoK1UbyR_2278D13KISxnuG3iyWSfodrmp11Y2ozjIgg>
+    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
+    vdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:4yCqYQLNaPY5PLuooOuUKkUj10waA9xwN4FZVVDC2O9sOSav6ulhsw>
+    <xmx:4yCqYTLa6gjxPTWHwQu3rBsiTvOhIrs8UACHfmE4JWKZm8CpD59BVg>
+    <xmx:4yCqYZxvBs82725Z4qFrX6G0GJmrMu86sr51Bro3sS1tYcPOGDnEJw>
+    <xmx:5CCqYYDud3w7zXfh7K_6nuOJbqZOvgUjGj8ZncR0kcSC712MM927sw>
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 3 Dec 2021 08:51:28 -0500 (EST)
+ 3 Dec 2021 08:51:31 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -73,52 +73,39 @@ Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
         linux-arm-kernel@lists.infradead.org,
         dri-devel@lists.freedesktop.org,
         bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH v2 0/3] drm/vc4: Use the firmware to stop the display pipeline
-Date:   Fri,  3 Dec 2021 14:51:23 +0100
-Message-Id: <20211203135126.700165-1-maxime@cerno.tech>
+Subject: [PATCH v2 1/3] firmware: raspberrypi: Add RPI_FIRMWARE_NOTIFY_DISPLAY_DONE
+Date:   Fri,  3 Dec 2021 14:51:24 +0100
+Message-Id: <20211203135126.700165-2-maxime@cerno.tech>
 X-Mailer: git-send-email 2.33.1
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20211203135126.700165-1-maxime@cerno.tech>
+References: <20211203135126.700165-1-maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,=0D
-=0D
-The VC4 driver has had limited support to disable the HDMI controllers and=
-=0D
-pixelvalves at boot if the firmware has enabled them.=0D
-=0D
-However, this proved to be limited, and a bit unreliable so a new firmware=
-=0D
-command has been introduced some time ago to make it free all its resources=
- and=0D
-disable any display output it might have enabled.=0D
-=0D
-This series takes advantage of that command to call it once the transition =
-from=0D
-simplefb to the KMS driver has been done.=0D
-=0D
-Let me know what you think,=0D
-Maxime=0D
-=0D
----=0D
-=0D
-Changes from v2:=0D
-  - Use of_find_compatible_node instead of a phandle=0D
-  - Use devm_rpi_firmware_get=0D
-=0D
-Maxime Ripard (3):=0D
-  firmware: raspberrypi: Add RPI_FIRMWARE_NOTIFY_DISPLAY_DONE=0D
-  drm/vc4: Remove conflicting framebuffers before callind bind_all=0D
-  drm/vc4: Notify the firmware when DRM is in charge=0D
-=0D
- drivers/gpu/drm/vc4/vc4_drv.c              | 27 ++++++++++++++++++----=0D
- drivers/gpu/drm/vc4/vc4_drv.h              |  2 ++=0D
- include/soc/bcm2835/raspberrypi-firmware.h |  1 +=0D
- 3 files changed, 26 insertions(+), 4 deletions(-)=0D
-=0D
--- =0D
-2.33.1=0D
-=0D
+The RPI_FIRMWARE_NOTIFY_DISPLAY_DONE firmware call allows to tell the
+firmware the kernel is in charge of the display now and the firmware can
+free whatever resources it was using.
+
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ include/soc/bcm2835/raspberrypi-firmware.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm2835/raspberrypi-firmware.h
+index 73ad784fca96..811ea668c4a1 100644
+--- a/include/soc/bcm2835/raspberrypi-firmware.h
++++ b/include/soc/bcm2835/raspberrypi-firmware.h
+@@ -91,6 +91,7 @@ enum rpi_firmware_property_tag {
+ 	RPI_FIRMWARE_GET_POE_HAT_VAL =                        0x00030049,
+ 	RPI_FIRMWARE_SET_POE_HAT_VAL =                        0x00030050,
+ 	RPI_FIRMWARE_NOTIFY_XHCI_RESET =                      0x00030058,
++	RPI_FIRMWARE_NOTIFY_DISPLAY_DONE =                    0x00030066,
+ 
+ 	/* Dispmanx TAGS */
+ 	RPI_FIRMWARE_FRAMEBUFFER_ALLOCATE =                   0x00040001,
+-- 
+2.33.1
+
