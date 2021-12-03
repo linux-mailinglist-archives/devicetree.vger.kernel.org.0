@@ -2,88 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC09467CFB
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 19:11:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB7CA467D18
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 19:17:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235281AbhLCSOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 13:14:32 -0500
-Received: from dfw.source.kernel.org ([139.178.84.217]:35496 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234979AbhLCSOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 13:14:32 -0500
+        id S1382516AbhLCSUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 13:20:48 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:57484 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1382520AbhLCSUr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 13:20:47 -0500
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 001A962C76;
-        Fri,  3 Dec 2021 18:11:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB94CC53FAD;
-        Fri,  3 Dec 2021 18:11:03 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 7732FB8266A
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 18:17:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91488C53FCD;
+        Fri,  3 Dec 2021 18:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638555067;
-        bh=igFrEeJpF2OZf9Jo/80sQz+WH1Z+Faa3wH+gun1zpGY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qw4NTfMGNzvYUWRtyWUWBWIFfJbMRl1w+tXmritIu3cq5/GhmZFF7C1Ek7BeaO+7o
-         sg2mlee98y5i72D4684ISJFsfqeJWZl45+7nNvmNYrAZaP1x2k81A9hFFeCFZp8hrE
-         Wt1vOsMs0G7Op+LNIER1akRdDpHd5Qa/r4czfcErcJd4wRPAoDtT7rlGSC7d2rr0+y
-         2d7cuZ9RKtiYbabKfVn30ibthkO8FYNKb/ufKjAjZD9GkYBcU81qdm7VI1YeQDi33z
-         cWodv7KJTcjNzWt6aXf3pwNDX2YXSGH70wE6gGJYg8xp4O22l6x2uoRTawksDCK61a
-         PLAuMJN8v+GXg==
-Date:   Fri, 3 Dec 2021 18:11:00 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, Xiubo.Lee@gmail.com,
-        bcousson@baylibre.com, festevam@gmail.com,
-        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
-        michael@amarulasolutions.com, nicoleotsuka@gmail.com,
-        perex@perex.cz, robh+dt@kernel.org, shengjiu.wang@gmail.com,
-        tiwai@suse.com, tony@atomide.com
-Subject: Re: [PATCH 1/1] ASoC: fsl-asoc-card: Add missing Kconfig option for
- tlv320aic31xx
-Message-ID: <YapdtAAbrhJ8kW0M@sirena.org.uk>
-References: <20211203175018.252641-1-ariel.dalessandro@collabora.com>
+        s=k20201202; t=1638555441;
+        bh=9ajHpeS6kr3mi4mButVxzrRJqooaAZz5lVZTMgrfIdE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=P/MNj3QZ0inXNYDzKoQ9T71XE2mtyRro4Qe+rVtR5yd08juU/B7Ae4jsgCX0t9Atf
+         gdjt1kalt4CYogBhJHYoU1iMTixGApgTLwSsS4Ny2iRZXTdAa5AqnZuLRCAYGC52MH
+         Z2SyN2/cf1AO6ZJ6fAow7LZvjRR9RtEGSb0OeIkSrHkJcHbm5rCFl2JGg1i3bY28fI
+         ewH8r6tFCwwehMAgOSf+UCjoCMdPVLBtj7KbKJbepCOmTLQ5IrAXAirxk6HusvVNXw
+         aPtIV8wDCYwF7dYC4h4b9OqXcoySSKVjHJBOoobeZZAl+d8UiVQg2aQ7VlsdWbtomU
+         hnALTPTE9DmYQ==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     dinguyen@kernel.org, broonie@kernel.org, robh+dt@kernel.org,
+        p.yadav@ti.com
+Subject: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document "cdns,qspi-nor-ver-00-10"
+Date:   Fri,  3 Dec 2021 12:17:12 -0600
+Message-Id: <20211203181714.3138611-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="lh3+hiHCqE5cETDw"
-Content-Disposition: inline
-In-Reply-To: <20211203175018.252641-1-ariel.dalessandro@collabora.com>
-X-Cookie: Don't get mad, get interest.
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The QSPI controller on Intel's SoCFPGA platform does not implement the
+CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
+results in a crash.
 
---lh3+hiHCqE5cETDw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The module/revision ID is written in the MODULE_ID register. For this
+variance, bits 23-8 is 0x0010.
 
-On Fri, Dec 03, 2021 at 02:50:17PM -0300, Ariel D'Alessandro wrote:
-> This is a follow up of patchsets:
->=20
->   [RFC patch 0/5] Support BCLK input clock in tlv320aic31xx
->   [PATCH 0/4] fsl-asoc-card: Add optional dt property for setting mclk-id
+Introduce the dts binding "cdns,qspi-nor-ver-00-10" to differentiate the
+hardware.
 
-Please don't send cover letters for single patches, if there is anything
-that needs saying put it in the changelog of the patch or after the ---
-if it's administrative stuff.  This reduces mail volume and ensures that=20
-any important information is recorded in the changelog rather than being
-lost.=20
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+---
+v2: change binding to "cdns,qspi-nor-0010" to be more generic for other
+    platforms
+---
+ Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
---lh3+hiHCqE5cETDw
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+index ca155abbda7a..2833e1c8841d 100644
+--- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -29,6 +29,7 @@ properties:
+               - ti,am654-ospi
+               - intel,lgm-qspi
+               - xlnx,versal-ospi-1.0
++              - cdns,qspi-nor-ver-00-10
+           - const: cdns,qspi-nor
+       - const: cdns,qspi-nor
+ 
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmGqXbMACgkQJNaLcl1U
-h9D2Cgf/R5khnlu5BvBDSME0pvpG+4+PjCkPFKi3+kdhK7Onjmyln1gLD2p/pjDl
-C2EP3YXQcgiUywBXBrCblKFmsu2XQjqlCco9TcYbnmBzcmtROfr+m3vGVgsVFAtY
-3R0EhJtfcHTVzhtgQokgsTNeUITGdjPFmU/VozNqdDUObyBP2VLr/l4eLtDcEWF8
-RteHve4FrIcJxTQjYNMpAsIBB5ztm2l+IuFI1kAnIcfG3iDgDNaNHeENbhgKIjiU
-LES7XBsQbDmO7S8svN213VOLmfUowwAL5I6mnJBZlkTPATA7zMkZnvMk8L59nnsS
-rgual2IJtpkc4Viaq4BYba1kKrcWXA==
-=gP64
------END PGP SIGNATURE-----
-
---lh3+hiHCqE5cETDw--
