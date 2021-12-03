@@ -2,401 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E2E467A09
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:08:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98493467A0C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:09:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381674AbhLCPLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 10:11:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34314 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381680AbhLCPLx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 10:11:53 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60C4AC061751;
-        Fri,  3 Dec 2021 07:08:29 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id 7so6293556oip.12;
-        Fri, 03 Dec 2021 07:08:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yIYblC5S4bWVv6Ss5On5ojLdFkgPQZuf7S88rtLJsm4=;
-        b=Kdvw+qROaXgHv/NPBlmz9NOD9JtlY0jp1y2n9n+rJfVVUHAfHkLG65uXupe12Z4K7C
-         vEhRrRHtFuxHIvqGIU4BZgpXwenPhcgfA/WOLWH3ONIxqMElNWeoa2Oql4cVZRl9H4q3
-         wcFCsduYWi/KlclgIB+jqBydNgKmvu/kBvBpzkeMa1lkdVQ2Az/Yx6D73rvmV7sgXE7E
-         GaKTSr1025wdVBXmY9k98hdqBSs2fE5m++FHElFRkAL3dRuy9WWHgXjI7pvxMxyW/lTt
-         oMv1hxLd7S8S8W8kR/3QjOzkFLAI00SwCVqZ+Dj2aCClA2absWQQ6snU1cljwZ+8hT3D
-         Xmbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=yIYblC5S4bWVv6Ss5On5ojLdFkgPQZuf7S88rtLJsm4=;
-        b=WfsIndnFht7ZCT3Oj1Ksp0I1NsyGdxr+em90gXg3EORojIoIGLE+WHsdmTm/hYvX8y
-         fhCZNhy6O6XXwxzlawc+oxoTMgDnZHZLmizFz2pQJz2A88rMjXRXzN/3gcDP/F200M1l
-         +ZcIDqFS0yg02i7HsZ4tDS0rP7rFIrpU1LS9EqvyUoLfJ3DMAUW3KFWbuA/jGXkGwj0Z
-         jdkRxhYM0ExHJbOJPPzOTSna+OQfyYQxVgKck2xVpHoKDMcnZIp/lXiTp5rMWZC5aZaB
-         VXtUbadFWmXnjsGKe6TPIHrII/bfdNi5d0q4UNiv04BBfHqVVzVgwAkFfkiyHgJdkwzO
-         xc4A==
-X-Gm-Message-State: AOAM5332yErm7hd1pS78ErBOy97jcKpCGQfL7GC2jc0Em1Dteve9G6S8
-        +b7e7EmGs4K686C319f5kYibzlBYfDQ=
-X-Google-Smtp-Source: ABdhPJyHyVQSFvrRK7oah7UJpTrpvlIkZdaxl+Q5ArOTdiE5Xycp00jqRfLm+Je9rCE1+TG4zCe0ew==
-X-Received: by 2002:aca:4307:: with SMTP id q7mr10132176oia.3.1638544108531;
-        Fri, 03 Dec 2021 07:08:28 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o6sm650106oou.41.2021.12.03.07.08.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Dec 2021 07:08:27 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH v2 2/2] watchdog: Add Apple SoC watchdog driver
-To:     Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Cc:     Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Janne Grunau <j@jannau.net>
-References: <20211130161809.64591-1-sven@svenpeter.dev>
- <20211130161809.64591-2-sven@svenpeter.dev>
- <6CD6E96A-CE02-4D59-9654-1AACF9E2CC0B@marcan.st>
- <1d3abc70-dce3-68c7-662f-63fdc269c1b7@roeck-us.net>
- <cc911fd8-96d2-efac-6163-64592b95b669@marcan.st>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <579a957e-bca7-a410-8c4a-717b60da23a3@roeck-us.net>
-Date:   Fri, 3 Dec 2021 07:08:26 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S245096AbhLCPMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 10:12:51 -0500
+Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.165]:19066 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233227AbhLCPMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 10:12:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638544158;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=2bjcp/msHQ00yL90ECtPop5IeeDvIBRlvfdATMh29ng=;
+    b=TjuLqaye4iM4Q7PUGROvuuz9fNjHspIJFXD/K6vmYSMPNnN0p6fhMIooaUFTd2GgGN
+    mSHtVuM2E8JGx75lH7UQ5ct99upPJ7QNd/pui5QPJaCgPA9DMTn1Vclb4rZ3m5XGg4nq
+    j32huNUhTFmx1nVkKXH+0snCynQHN3AH9dCdQ+y7lR4DL7uldDgC3R4L1ZVhlMKDTNPV
+    IzKCnsfnODGM0RqTRBKvUSw3bT/3+Hil5H/mgstTYH2twOr0rRB7tvTCPAmN/Q0LK/Qh
+    ToGIpB4jv69l8QNf3JTMlUAYkPbQdOkJygK+7ORjNye9c6UZ4f6ZZkd3I9/T8nNBrp7J
+    a/sQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKY7lg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.34.10 AUTH)
+    with ESMTPSA id j03bcbxB3F9Hvz4
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 3 Dec 2021 16:09:17 +0100 (CET)
+Date:   Fri, 3 Dec 2021 16:09:13 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 5/5] ASoC: qcom: apq8016_sbc: Allow routing audio through
+ QDSP6
+Message-ID: <YaozGfiaL2RjeY9W@gerhold.net>
+References: <20211202145505.58852-1-stephan@gerhold.net>
+ <20211202145505.58852-6-stephan@gerhold.net>
+ <455604c2-9b73-4b9b-2ce7-890aafe41845@linaro.org>
+ <YaorZnQTwvXo6vrO@gerhold.net>
+ <5c6607cc-ad2a-6f90-e087-78ef3bd39e80@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <cc911fd8-96d2-efac-6163-64592b95b669@marcan.st>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5c6607cc-ad2a-6f90-e087-78ef3bd39e80@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/3/21 5:50 AM, Hector Martin wrote:
-> On 02/12/2021 23.36, Guenter Roeck wrote:
->> On 12/1/21 10:44 PM, Hector Martin "marcan" wrote:
->>>
->>>
->>> On 2021年12月1日 1:18:09 JST, Sven Peter <sven@svenpeter.dev> wrote:
->>>> Add support for the watchdog timer found in Apple SoCs. This driver is
->>>> also required to reboot these machines.
->>>>
->>>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
->>>> ---
->>>> v1 -> v2:
->>>> - set the default timeout to 30s and call watchdog_init_timeout
->>>>     to allow the device tree to override it
->>>> - set WDOG_HW_RUNNING if the watchdog is enabled at boot
->>>> - check that the clock rate is not zero
->>>> - use unsigned long instead of u32 for clk_rate
->>>> - use devm_add_action_or_reset instead of manually calling
->>>>     clk_disable_unprepare
->>>> - explain the magic number in apple_wdt_restart
->>>>
->>>> MAINTAINERS                  |   1 +
->>>> drivers/watchdog/Kconfig     |  12 ++
->>>> drivers/watchdog/Makefile    |   1 +
->>>> drivers/watchdog/apple_wdt.c | 226 +++++++++++++++++++++++++++++++++++
->>>> 4 files changed, 240 insertions(+)
->>>> create mode 100644 drivers/watchdog/apple_wdt.c
->>>>
->>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>> index 859201bbd4e8..6190f0b40983 100644
->>>> --- a/MAINTAINERS
->>>> +++ b/MAINTAINERS
->>>> @@ -1757,6 +1757,7 @@ F:    drivers/i2c/busses/i2c-pasemi-platform.c
->>>> F:    drivers/irqchip/irq-apple-aic.c
->>>> F:    drivers/mailbox/apple-mailbox.c
->>>> F:    drivers/pinctrl/pinctrl-apple-gpio.c
->>>> +F:    drivers/watchdog/apple_wdt.c
->>>> F:    include/dt-bindings/interrupt-controller/apple-aic.h
->>>> F:    include/dt-bindings/pinctrl/apple.h
->>>> F:    include/linux/apple-mailbox.h
->>>> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
->>>> index 9d222ba17ec6..170dec880c8f 100644
->>>> --- a/drivers/watchdog/Kconfig
->>>> +++ b/drivers/watchdog/Kconfig
->>>> @@ -976,6 +976,18 @@ config MSC313E_WATCHDOG
->>>>       To compile this driver as a module, choose M here: the
->>>>       module will be called msc313e_wdt.
->>>>
->>>> +config APPLE_WATCHDOG
->>>> +    tristate "Apple SoC watchdog"
->>>> +    depends on ARCH_APPLE || COMPILE_TEST
->>>> +    select WATCHDOG_CORE
->>>> +    help
->>>> +      Say Y here to include support for the Watchdog found in Apple
->>>> +      SoCs such as the M1. Next to the common watchdog features this
->>>> +      driver is also required in order to reboot these SoCs.
->>>> +
->>>> +      To compile this driver as a module, choose M here: the
->>>> +      module will be called apple_wdt.
->>>> +
->>>> # X86 (i386 + ia64 + x86_64) Architecture
->>>>
->>>> config ACQUIRE_WDT
->>>> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
->>>> index 2ee97064145b..270a518bd8f3 100644
->>>> --- a/drivers/watchdog/Makefile
->>>> +++ b/drivers/watchdog/Makefile
->>>> @@ -93,6 +93,7 @@ obj-$(CONFIG_PM8916_WATCHDOG) += pm8916_wdt.o
->>>> obj-$(CONFIG_ARM_SMC_WATCHDOG) += arm_smc_wdt.o
->>>> obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
->>>> obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
->>>> +obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
->>>>
->>>> # X86 (i386 + ia64 + x86_64) Architecture
->>>> obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
->>>> diff --git a/drivers/watchdog/apple_wdt.c b/drivers/watchdog/apple_wdt.c
->>>> new file mode 100644
->>>> index 000000000000..76e5bedd50d1
->>>> --- /dev/null
->>>> +++ b/drivers/watchdog/apple_wdt.c
->>>> @@ -0,0 +1,226 @@
->>>> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
->>>> +/*
->>>> + * Apple SoC Watchdog driver
->>>> + *
->>>> + * Copyright (C) The Asahi Linux Contributors
->>>> + */
->>>> +
->>>> +#include <linux/bits.h>
->>>> +#include <linux/clk.h>
->>>> +#include <linux/delay.h>
->>>> +#include <linux/io.h>
->>>> +#include <linux/kernel.h>
->>>> +#include <linux/limits.h>
->>>> +#include <linux/module.h>
->>>> +#include <linux/of.h>
->>>> +#include <linux/platform_device.h>
->>>> +#include <linux/watchdog.h>
->>>> +
->>>> +/*
->>>> + * Apple Watchdog MMIO registers
->>>> + *
->>>> + * This HW block has three separate watchdogs. WD0 resets the machine
->>>> + * to recovery mode and is not very useful for us. WD1 and WD2 trigger a normal
->>>> + * machine reset. WD0 additionally supports a configurable interrupt.
->>>> + * This information can be used to implement pretimeout support at a later time.
->>>> + *
->>>> + * APPLE_WDT_WDx_CUR_TIME is a simple counter incremented for each tick of the
->>>> + * reference clock. It can also be overwritten to any value.
->>>> + * Whenever APPLE_WDT_CTRL_RESET_EN is set in APPLE_WDT_WDx_CTRL and
->>>> + * APPLE_WDTx_WD1_CUR_TIME >= APPLE_WDTx_WD1_BITE_TIME the entire machine is
->>>> + * reset.
->>>> + * Whenever APPLE_WDT_CTRL_IRQ_EN is set and APPLE_WDTx_WD1_CUR_TIME >=
->>>> + * APPLE_WDTx_WD1_BARK_TIME an interrupt is triggered and
->>>> + * APPLE_WDT_CTRL_IRQ_STATUS is set. The interrupt can be cleared by writing
->>>> + * 1 to APPLE_WDT_CTRL_IRQ_STATUS.
->>>> + */
->>>> +#define APPLE_WDT_WD0_CUR_TIME        0x00
->>>> +#define APPLE_WDT_WD0_BITE_TIME        0x04
->>>> +#define APPLE_WDT_WD0_BARK_TIME        0x08
->>>> +#define APPLE_WDT_WD0_CTRL        0x0c
->>>> +
->>>> +#define APPLE_WDT_WD1_CUR_TIME        0x10
->>>> +#define APPLE_WDT_WD1_BITE_TIME        0x14
->>>> +#define APPLE_WDT_WD1_CTRL        0x1c
->>>> +
->>>> +#define APPLE_WDT_WD2_CUR_TIME        0x20
->>>> +#define APPLE_WDT_WD2_BITE_TIME        0x24
->>>> +#define APPLE_WDT_WD2_CTRL        0x2c
->>>> +
->>>> +#define APPLE_WDT_CTRL_IRQ_EN        BIT(0)
->>>> +#define APPLE_WDT_CTRL_IRQ_STATUS    BIT(1)
->>>> +#define APPLE_WDT_CTRL_RESET_EN        BIT(2)
->>>> +
->>>> +#define APPLE_WDT_TIMEOUT_DEFAULT    30
->>>> +
->>>> +struct apple_wdt {
->>>> +    struct watchdog_device wdd;
->>>> +    void __iomem *regs;
->>>> +    unsigned long clk_rate;
->>>> +};
->>>> +
->>>> +static struct apple_wdt *to_apple_wdt(struct watchdog_device *wdd)
->>>> +{
->>>> +    return container_of(wdd, struct apple_wdt, wdd);
->>>> +}
->>>> +
->>>> +static int apple_wdt_start(struct watchdog_device *wdd)
->>>> +{
->>>> +    struct apple_wdt *wdt = to_apple_wdt(wdd);
->>>> +
->>>> +    writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
->>>> +    writel_relaxed(APPLE_WDT_CTRL_RESET_EN, wdt->regs + APPLE_WDT_WD1_CTRL);
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static int apple_wdt_stop(struct watchdog_device *wdd)
->>>> +{
->>>> +    struct apple_wdt *wdt = to_apple_wdt(wdd);
->>>> +
->>>> +    writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CTRL);
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static int apple_wdt_ping(struct watchdog_device *wdd)
->>>> +{
->>>> +    struct apple_wdt *wdt = to_apple_wdt(wdd);
->>>> +
->>>> +    writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static int apple_wdt_set_timeout(struct watchdog_device *wdd, unsigned int s)
->>>> +{
->>>> +    struct apple_wdt *wdt = to_apple_wdt(wdd);
->>>> +
->>>> +    writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
->>>> +    writel_relaxed(wdt->clk_rate * s, wdt->regs + APPLE_WDT_WD1_BITE_TIME);
->>>> +
->>>> +    wdd->timeout = s;
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static unsigned int apple_wdt_get_timeleft(struct watchdog_device *wdd)
->>>> +{
->>>> +    struct apple_wdt *wdt = to_apple_wdt(wdd);
->>>> +    u32 cur_time, reset_time;
->>>> +
->>>> +    cur_time = readl_relaxed(wdt->regs + APPLE_WDT_WD1_CUR_TIME);
->>>> +    reset_time = readl_relaxed(wdt->regs + APPLE_WDT_WD1_BITE_TIME);
->>>> +
->>>> +    return (reset_time - cur_time) / wdt->clk_rate;
->>>> +}
->>>> +
->>>> +static int apple_wdt_restart(struct watchdog_device *wdd, unsigned long mode,
->>>> +                 void *cmd)
->>>> +{
->>>> +    struct apple_wdt *wdt = to_apple_wdt(wdd);
->>>> +
->>>> +    writel_relaxed(APPLE_WDT_CTRL_RESET_EN, wdt->regs + APPLE_WDT_WD1_CTRL);
->>>> +    writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_BITE_TIME);
->>>> +    writel_relaxed(0, wdt->regs + APPLE_WDT_WD1_CUR_TIME);
->>>> +
->>>> +    /*
->>>> +     * Flush writes and then wait for the SoC to reset. Even though the
->>>> +     * reset is queued almost immediately experiments have shown that it
->>>> +     * can take up to ~20-25ms until the SoC is actually reset. Just wait
->>>> +     * 50ms here to be safe.
->>>> +     */
->>>> +    (void)readl_relaxed(wdt->regs + APPLE_WDT_WD1_CUR_TIME);
->>>> +    mdelay(50);
->>>> +
->>>> +    return 0;
->>>> +}
->>>> +
->>>> +static void apple_wdt_clk_disable_unprepare(void *data)
->>>> +{
->>>> +    clk_disable_unprepare(data);
->>>> +}
->>>> +
->>>> +static struct watchdog_ops apple_wdt_ops = {
->>>> +    .owner = THIS_MODULE,
->>>> +    .start = apple_wdt_start,
->>>> +    .stop = apple_wdt_stop,
->>>> +    .ping = apple_wdt_ping,
->>>> +    .set_timeout = apple_wdt_set_timeout,
->>>> +    .get_timeleft = apple_wdt_get_timeleft,
->>>> +    .restart = apple_wdt_restart,
->>>> +};
->>>> +
->>>> +static struct watchdog_info apple_wdt_info = {
->>>> +    .identity = "Apple SoC Watchdog",
->>>> +    .options = WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING | WDIOF_SETTIMEOUT,
->>>> +};
->>>> +
->>>> +static int apple_wdt_probe(struct platform_device *pdev)
->>>> +{
->>>> +    struct device *dev = &pdev->dev;
->>>> +    struct apple_wdt *wdt;
->>>> +    struct clk *clk;
->>>> +    u32 wdt_ctrl;
->>>> +    int ret;
->>>> +
->>>> +    wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
->>>> +    if (!wdt)
->>>> +        return -ENOMEM;
->>>> +
->>>> +    wdt->regs = devm_platform_ioremap_resource(pdev, 0);
->>>> +    if (IS_ERR(wdt->regs))
->>>> +        return PTR_ERR(wdt->regs);
->>>> +
->>>> +    clk = devm_clk_get(dev, NULL);
->>>> +    if (IS_ERR(clk))
->>>> +        return PTR_ERR(clk);
->>>> +
->>>> +    ret = clk_prepare_enable(clk);
->>>> +    if (ret)
->>>> +        return ret;
->>>> +
->>>> +    ret = devm_add_action_or_reset(dev, apple_wdt_clk_disable_unprepare,
->>>> +                       clk);
->>>> +    if (ret)
->>>> +        return ret;
->>>> +
->>>> +    wdt->clk_rate = clk_get_rate(clk);
->>>> +    if (!wdt->clk_rate)
->>>> +        return -EINVAL;
->>>> +
->>>> +    wdt->wdd.ops = &apple_wdt_ops;
->>>> +    wdt->wdd.info = &apple_wdt_info;
->>>> +    wdt->wdd.max_timeout = U32_MAX / wdt->clk_rate;
->>>> +    wdt->wdd.timeout = APPLE_WDT_TIMEOUT_DEFAULT;
->>>> +
->>>> +    wdt_ctrl = readl_relaxed(wdt->regs + APPLE_WDT_WD1_CTRL);
->>>> +    if (wdt_ctrl & APPLE_WDT_CTRL_RESET_EN)
->>>> +        set_bit(WDOG_HW_RUNNING, &wdt->wdd.status);
->>>> +
->>>> +    watchdog_init_timeout(&wdt->wdd, 0, dev);
->>>> +    apple_wdt_set_timeout(&wdt->wdd, wdt->wdd.timeout);
->>>> +    watchdog_stop_on_unregister(&wdt->wdd);
->>>> +    watchdog_set_restart_priority(&wdt->wdd, 128);
->>>> +
->>>> +    return devm_watchdog_register_device(dev, &wdt->wdd);
->>>> +}
->>>> +
->>>> +static const struct of_device_id apple_wdt_of_match[] = {
->>>> +    { .compatible = "apple,wdt" },
->>>> +    {},
->>>> +};
->>>> +MODULE_DEVICE_TABLE(of, apple_wdt_of_match);
->>>> +
->>>> +static struct platform_driver apple_wdt_driver = {
->>>> +    .driver = {
->>>> +        .name = "apple-watchdog",
->>>> +        .of_match_table = apple_wdt_of_match,
->>>> +    },
->>>> +    .probe = apple_wdt_probe,
->>>> +};
->>>> +module_platform_driver(apple_wdt_driver);
->>>> +
->>>> +MODULE_DESCRIPTION("Apple SoC watchdog driver");
->>>> +MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
->>>> +MODULE_LICENSE("Dual MIT/GPL");
->>>
->>> Reviewed-by: Hector Martin <marcan@marcan.st>
->>>
->>> Thanks, looks good! Any chance you can do a quick v3 with the MAINTAINERS changes split off? As usual, I'd rather make life easier for people merging upstream :)
->>>
->>
->> Usually I don't ask for such a split, and I don't recall that being an issue.
->> So, from my perspective, that is not necessary.
+On Fri, Dec 03, 2021 at 02:52:43PM +0000, Srinivas Kandagatla wrote:
+> On 03/12/2021 14:36, Stephan Gerhold wrote:
+> > On Fri, Dec 03, 2021 at 10:35:08AM +0000, Srinivas Kandagatla wrote:
+> > > I have tested DB410c this use case in the past using similar patch [1].
+> > > 
+> > 
+> > Did you use a different modem DSP firmware? (An older one maybe?)
 > 
-> We're upstreaming a bunch of things in parallel that touch the same MAINTAINERS section, and if each of those goes through subsystem trees, they all end up creating a pile of conflicts when merged. This has already happened a few times (I got a ping from linux-next about it the other day).
-> 
-> To make life easier for upstream mergers, we prefer to split off MAINTAINERS changes. Then instead of going through the subsystem tree, I can push those up through the SoC tree, making sure to resolve any conflicts/ordering issues. Then everyone upstream of us is happy :-)
+> It was very old which came with some Android release I guess.
 > 
 
-Ok, makes sense.
+Right, that should be similar to the ones used on MSM8916
+smartphones/tablets. I was really glad that the qdsp6 drivers (q6asm,
+q6afe, ...) worked without any changes on MSM8916 by the way, thanks a
+lot for all your work on them!
+
+> > > > @@ -148,11 +266,16 @@ static const struct snd_soc_dapm_widget apq8016_sbc_dapm_widgets[] = {
+> > > >    static int apq8016_sbc_platform_probe(struct platform_device *pdev)
+> > > >    {
+> > > > +	void (*add_ops)(struct snd_soc_card *card);
+> > > >    	struct device *dev = &pdev->dev;
+> > > >    	struct snd_soc_card *card;
+> > > >    	struct apq8016_sbc_data *data;
+> > > >    	int ret;
+> > > > +	add_ops = device_get_match_data(&pdev->dev);
+> > > > +	if (!add_ops)
+> > > > +		return -EINVAL;
+> > > 
+> > > We will never hit the error case here because without a match we can not
+> > > even enter the probe function.
+> > > 
+> > 
+> > Theoretically it's possible to create platform devices through other
+> > ways than the device tree (think of old board C files for example).
+> > I agree that nobody should do that, but having this check here
+> > at least avoids a NULL pointer dereference in this unlikely scenario.
+> > 
+> > Please let me know if I should remove it anyway, that's fine for me!
+> 
+> TBH, I don't have very strong opinion on this.
+> 
+
+Great, can I assume your Reviewed-by: applies without any changes then?
 
 Thanks,
-Guenter
+Stephan
