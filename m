@@ -2,76 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA8F4467CD7
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 18:50:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E707D467CF3
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 19:05:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382470AbhLCRyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 12:54:14 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:59156 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343541AbhLCRyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 12:54:13 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: adalessandro)
-        with ESMTPSA id 5BF591F4724E
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638553848; bh=sjUDlRzGKvbKVrH0gyQWnGzouzwqlG1XZ4Jt6m71DjQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NwkfaQSTsNOkewcP0B716mc78gWZExuruZKkT+w5vMZK3j5bz16Jz46lMdsSHN6d8
-         vbrQW+rczqrkZv7gADP/scWRDEpZELWkgK9yA3WbJZ7dzxsAcQM3cDW6Z1dSMAb2Ph
-         DNZF/IGm1DuStbG7DGLsA3ifLF43DOGqZelzCHtFwWuhY9wg8KVgqH+XQ0KWLpha4L
-         qG7g0WNvjEWJlWRgAmxQ49gBw/2k9U/fZgKgHc25hoh1vheF6Au/McyIVX/qPQcez6
-         qZRfpnnAGXXsjsVkukAqI/r4Gfni8Z3xi3pR/SlzRu6kHkDoRnRsKTWgE+AyRiCnpk
-         05KK4eUCt4h8g==
-From:   Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Cc:     Xiubo.Lee@gmail.com, ariel.dalessandro@collabora.com,
-        bcousson@baylibre.com, broonie@kernel.org, festevam@gmail.com,
-        kuninori.morimoto.gx@renesas.com, lgirdwood@gmail.com,
-        michael@amarulasolutions.com, nicoleotsuka@gmail.com,
-        perex@perex.cz, robh+dt@kernel.org, shengjiu.wang@gmail.com,
-        tiwai@suse.com, tony@atomide.com
-Subject: [PATCH 1/1] ASoC: fsl-asoc-card: Add missing Kconfig option for tlv320aic31xx
-Date:   Fri,  3 Dec 2021 14:50:18 -0300
-Message-Id: <20211203175018.252641-2-ariel.dalessandro@collabora.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211203175018.252641-1-ariel.dalessandro@collabora.com>
-References: <20211203175018.252641-1-ariel.dalessandro@collabora.com>
+        id S1353368AbhLCSJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 13:09:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1359230AbhLCSJE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 13:09:04 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DC7C061353
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 10:05:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0035CB826AB
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 18:05:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A560DC53FD0
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 18:05:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638554736;
+        bh=1zADHONGe9ye/9HrjsdbUoVUKEcoPvEfRAADvTU6/Q4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jGAp0FNsfkxTCDLwylEseZA8O5OtHf55siaWXwWykRt7Qat6ru8tpSuu7b4dDhCn2
+         TziNhgV4wuTC3zQwoKU8YhDI0hiZmP1yBCUlCaqLSlaphZrMOgmTgHDHqlAYwP4I0M
+         Le3ZE1I2UT2NUEuyoWk4C8EcF0QSbxPtBw5UL3PFEfUYA3jSFRnc1opHY4xEPROmwG
+         eonKYgU8/V3JFrGIl2aRpPn79YzBHtwz99xkdpU7sDzpQEPSG+cqufR3mmMXnN5z7E
+         NFbQmWrwmmKvl8sIDMdRYiiauiyLEjXVl5eksDfp/fW5zdP63KyhfYDCKUqJeUGg5h
+         10yyFN4raLWug==
+Received: by mail-qk1-f177.google.com with SMTP id 193so4260089qkh.10
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 10:05:36 -0800 (PST)
+X-Gm-Message-State: AOAM5321sJBdPU+ZzVo8DHP9EhCL6aXNRF2CiFMiCBDL2ykZmpnu+lTM
+        nSfUn7H6z3SFzkxCQ+NINH8Bbj3EM0nrHtTO3g==
+X-Google-Smtp-Source: ABdhPJw3WzGi3L+5Ta6ODQRfCaYlSmrqLhwP4dxEGuGb/NX/g488jPllZ9zY9A7U4hgeAIa6P7qLsiBzvCJBU6SJxLg=
+X-Received: by 2002:a05:620a:4547:: with SMTP id u7mr19259027qkp.643.1638554735749;
+ Fri, 03 Dec 2021 10:05:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20211203154350.179112-1-thierry.reding@gmail.com>
+In-Reply-To: <20211203154350.179112-1-thierry.reding@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 3 Dec 2021 12:05:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLy8UN2hDoGx3t0ev4jB_+hQ5mjzp31SyY-GOPpsCmMKw@mail.gmail.com>
+Message-ID: <CAL_JsqLy8UN2hDoGx3t0ev4jB_+hQ5mjzp31SyY-GOPpsCmMKw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: panel: Include SPI peripheral properties
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The following commit added support for tlv320aic31xx codec to
-fsl-asoc-card, but missed the related Kconfig option. Fix this.
+On Fri, Dec 3, 2021 at 9:43 AM Thierry Reding <thierry.reding@gmail.com> wrote:
+>
+> From: Thierry Reding <treding@nvidia.com>
+>
+> SPI panels need to reference the SPI peripheral properties so that they
+> can be properly validated.
 
-  commit 8c9b9cfb7724685ce705f511b882f30597596536
-  Author: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-  Date:   Fri Nov 19 12:32:48 2021 -0300
+Thanks for doing this.
 
-      ASoC: fsl-asoc-card: Support fsl,imx-audio-tlv320aic31xx codec
+>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> ---
+>  .../devicetree/bindings/display/panel/lgphilips,lb035q02.yaml    | 1 +
+>  .../devicetree/bindings/display/panel/sony,acx565akm.yaml        | 1 +
+>  2 files changed, 2 insertions(+)
 
-Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
----
- sound/soc/fsl/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+I'm seeing a few more than this. If there's some logic to the ones you
+fixed, I'm not seeing it.
 
-diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig
-index 8e05d092790e..10fa38753453 100644
---- a/sound/soc/fsl/Kconfig
-+++ b/sound/soc/fsl/Kconfig
-@@ -311,6 +311,7 @@ config SND_SOC_FSL_ASOC_CARD
- 	select SND_SOC_FSL_ESAI
- 	select SND_SOC_FSL_SAI
- 	select SND_SOC_FSL_SSI
-+	select SND_SOC_TLV320AIC31XX
- 	select SND_SOC_WM8994
- 	select MFD_WM8994
- 	help
--- 
-2.30.2
+Documentation/devicetree/bindings/display/st,stm32-dsi.example.dt.yaml:
+dsi@5a000000: Unevaluated properties are not allowed ('panel-dsi@0'
+was unexpected)
+Documentation/devicetree/bindings/display/panel/samsung,ld9040.example.dt.yaml:
+lcd@0: Unevaluated properties are not allowed ('#address-cells',
+'#size-cells', 'spi-max-frequency', 'spi-cpol', 'spi-cpha' were
+unexpected)
+Documentation/devicetree/bindings/display/panel/kingdisplay,kd035g6-54nt.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('spi-max-frequency',
+'spi-3wire' were unexpected)
+Documentation/devicetree/bindings/display/panel/ilitek,ili9322.example.dt.yaml:
+display@0: Unevaluated properties are not allowed ('reg' was
+unexpected)
+Documentation/devicetree/bindings/display/panel/samsung,s6e63m0.example.dt.yaml:
+display@0: Unevaluated properties are not allowed ('spi-max-frequency'
+was unexpected)
+Documentation/devicetree/bindings/display/panel/abt,y030xx067a.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('spi-max-frequency'
+was unexpected)
+Documentation/devicetree/bindings/display/panel/sony,acx565akm.example.dt.yaml:
+panel@2: Unevaluated properties are not allowed ('spi-max-frequency',
+'reg' were unexpected)
+Documentation/devicetree/bindings/display/panel/novatek,nt36672a.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('vddi0-supply',
+'#address-cells', '#size-cells' were unexpected)
+Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('reg',
+'spi-max-frequency', 'spi-cpol', 'spi-cpha' were unexpected)
+Documentation/devicetree/bindings/display/panel/tpo,td.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('spi-max-frequency',
+'spi-cpol', 'spi-cpha' were unexpected)
+Documentation/devicetree/bindings/display/panel/innolux,ej030na.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('spi-max-frequency'
+was unexpected)
+Documentation/devicetree/bindings/display/panel/sitronix,st7789v.example.dt.yaml:
+panel@0: Unevaluated properties are not allowed ('spi-max-frequency',
+'spi-cpol', 'spi-cpha' were unexpected)
 
+>
+> diff --git a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+> index 830e335ddb53..240a884b7fa7 100644
+> --- a/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+> +++ b/Documentation/devicetree/bindings/display/panel/lgphilips,lb035q02.yaml
+> @@ -14,6 +14,7 @@ maintainers:
+>    - Tomi Valkeinen <tomi.valkeinen@ti.com>
+>
+>  allOf:
+> +  - $ref: ../../spi/spi-peripheral-props.yaml
+
+Please use /schemas/spi/... instead.
+
+This needs Mark's tree if you want to avoid errors. I'm fine though as
+long as linux-next is okay. Or I can pull in Mark's tree and take this
+and others.
+
+Rob
