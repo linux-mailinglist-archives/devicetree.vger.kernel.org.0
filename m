@@ -2,43 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDDE4678E9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:55:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C25B64678ED
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:58:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381044AbhLCN65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 08:58:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45626 "EHLO
+        id S1357766AbhLCOB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 09:01:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352531AbhLCN65 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:58:57 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07F0CC06174A
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:55:32 -0800 (PST)
+        with ESMTP id S1357669AbhLCOB6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:01:58 -0500
+Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4947FC06174A
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:58:34 -0800 (PST)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:3191:9890:620a:6f4])
-        by michel.telenet-ops.be with bizsmtp
-        id RpvT2600E3eLghq06pvTJX; Fri, 03 Dec 2021 14:55:31 +0100
+        by albert.telenet-ops.be with bizsmtp
+        id RpyY2600D3eLghq06pyYiP; Fri, 03 Dec 2021 14:58:32 +0100
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1mt926-002Lev-S6; Fri, 03 Dec 2021 14:55:26 +0100
+        id 1mt956-002LiF-2g; Fri, 03 Dec 2021 14:58:32 +0100
 Received: from geert by rox.of.borg with local (Exim 4.93)
         (envelope-from <geert@linux-m68k.org>)
-        id 1mt926-000lV8-AW; Fri, 03 Dec 2021 14:55:26 +0100
+        id 1mt954-000lZ6-Ve; Fri, 03 Dec 2021 14:58:31 +0100
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        Dave Hansen <dave.hansen@linux.intel.com>,
-        Darren Hart <dvhart@infradead.org>,
-        Andy Shevchenko <andy@infradead.org>,
-        "H . Peter Anvin" <hpa@zytor.com>
-Cc:     x86@kernel.org, platform-driver-x86@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joe Hung <joe_hung@ilitek.com>, Marek Vasut <marex@denx.de>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v3 resend] x86: ce4100: Replace "ti,pcf8575" by "nxp,pcf8575"
-Date:   Fri,  3 Dec 2021 14:55:23 +0100
-Message-Id: <0c00cec971f5c405e47d04e493d854de0efc2e49.1638539629.git.geert+renesas@glider.be>
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb ili2xxx bindings
+Date:   Fri,  3 Dec 2021 14:58:26 +0100
+Message-Id: <0c5f06c9d262c1720b40d068b6eefe58ca406601.1638539806.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -46,48 +43,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TI part is equivalent to the NXP part, and its compatible value is
-not documented in the DT bindings.
+While Linux uses a different driver, the Ilitek
+ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
+binding documentation is very similar.
 
-Note that while the Linux driver DT match table does not contain the
-compatible value of the TI part, it could still match to this part, as
-i2c_device_id-based matching ignores the vendor part of the compatible
-value.
+  - Drop the fixed reg value, as some controllers use a different
+    address,
+  - Make reset-gpios optional, as it is not always wired.
 
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
-v3:
-  - Add Reviewed-by,
-
 v2:
-  - New.
+  - Add Reviewed-by.
 ---
- arch/x86/platform/ce4100/falconfalls.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/input/ilitek,ili2xxx.txt         | 27 -------------------
+ .../input/touchscreen/ilitek_ts_i2c.yaml      |  7 +++--
+ 2 files changed, 5 insertions(+), 29 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
 
-diff --git a/arch/x86/platform/ce4100/falconfalls.dts b/arch/x86/platform/ce4100/falconfalls.dts
-index 0ac3d43571361112..65fa3d866226ce97 100644
---- a/arch/x86/platform/ce4100/falconfalls.dts
-+++ b/arch/x86/platform/ce4100/falconfalls.dts
-@@ -249,7 +249,7 @@ i2c@1 {
+diff --git a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt b/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
+deleted file mode 100644
+index cdcaa3f52d253670..0000000000000000
+--- a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Ilitek ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller
+-
+-Required properties:
+-- compatible:
+-    ilitek,ili210x for ILI210x
+-    ilitek,ili2117 for ILI2117
+-    ilitek,ili2120 for ILI2120
+-    ilitek,ili251x for ILI251x
+-
+-- reg: The I2C address of the device
+-
+-- interrupts: The sink for the touchscreen's IRQ output
+-    See ../interrupt-controller/interrupts.txt
+-
+-Optional properties for main touchpad device:
+-
+-- reset-gpios: GPIO specifier for the touchscreen's reset pin (active low)
+-
+-Example:
+-
+-	touchscreen@41 {
+-		compatible = "ilitek,ili251x";
+-		reg = <0x41>;
+-		interrupt-parent = <&gpio4>;
+-		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+-		reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
+-	};
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+index a190e7baac3162a3..9f732899975683a8 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
++++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+@@ -15,6 +15,9 @@ allOf:
+ properties:
+   compatible:
+     enum:
++      - ilitek,ili210x
++      - ilitek,ili2117
++      - ilitek,ili2120
+       - ilitek,ili2130
+       - ilitek,ili2131
+       - ilitek,ili2132
+@@ -22,11 +25,12 @@ properties:
+       - ilitek,ili2322
+       - ilitek,ili2323
+       - ilitek,ili2326
++      - ilitek,ili251x
+       - ilitek,ili2520
+       - ilitek,ili2521
  
- 						gpio@26 {
- 							#gpio-cells = <2>;
--							compatible = "ti,pcf8575";
-+							compatible = "nxp,pcf8575";
- 							reg = <0x26>;
- 							gpio-controller;
- 						};
-@@ -263,7 +263,7 @@ i2c@2 {
+   reg:
+-    const: 0x41
++    maxItems: 1
  
- 						gpio@26 {
- 							#gpio-cells = <2>;
--							compatible = "ti,pcf8575";
-+							compatible = "nxp,pcf8575";
- 							reg = <0x26>;
- 							gpio-controller;
- 						};
+   interrupts:
+     maxItems: 1
+@@ -50,7 +54,6 @@ required:
+   - compatible
+   - reg
+   - interrupts
+-  - reset-gpios
+ 
+ examples:
+   - |
 -- 
 2.25.1
 
