@@ -2,70 +2,294 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F36A0467DBF
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 20:05:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CA12467E45
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 20:36:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244645AbhLCTIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 14:08:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60774 "EHLO
+        id S1382889AbhLCTj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 14:39:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238521AbhLCTIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 14:08:52 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CAEDC061751
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 11:05:28 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 51FA0B826AB
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 19:05:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73460C53FCD;
-        Fri,  3 Dec 2021 19:05:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1638558325;
-        bh=UdcnMsVlMBujqaN5bYylt2Wk72+1iY6/OO5n9DF0/hU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=uUVBTcVrBudMsVknoiA5C9CSPOGMCpkeIDrpUYXY0KY7ojF5/4++BFsS0iFB/kNfq
-         Hc7wGhj91jBrRX5uCB6rncr+S7DciXyIVIbpElbKH7TvYA/gcrUU4i5CQM7iWSL6sa
-         9Tb9Gg5v8eQhhNIr2F7pfy3OUThOkc3+QtUdcnLxcS+rhI1nIskcyyr7/ZogNXf2IA
-         4o+rWULpMVjUSbH0ec7a6Z3+Lz/Nolg97/hptSMbJoN2h9fqiMaUhA8SUJ3wooCX5K
-         i2+bicp/fdOov32CPKU4uxKluY/XFkB8tnl/8lUNrKzwP5e4SFSN3F5+ULn/754YeH
-         OjDvzJXV+JADA==
-Subject: Re: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document
- "cdns,qspi-nor-ver-00-10"
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org, p.yadav@ti.com
-References: <20211203181714.3138611-1-dinguyen@kernel.org>
- <YapfkGNetHhA0Bws@sirena.org.uk>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-Message-ID: <1907d1ca-1ce9-6a49-6820-f3f61967341d@kernel.org>
-Date:   Fri, 3 Dec 2021 13:05:24 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        with ESMTP id S1353426AbhLCTj2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 14:39:28 -0500
+Received: from mail-ua1-x92d.google.com (mail-ua1-x92d.google.com [IPv6:2607:f8b0:4864:20::92d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81066C061354
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 11:36:03 -0800 (PST)
+Received: by mail-ua1-x92d.google.com with SMTP id az37so7404143uab.13
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 11:36:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pSx+w54klGuKdyt/Un3Z3/lbOI5wwX527aHiYsNckNM=;
+        b=g1iuVtVfLev2/JnJbWWAnGGWRo55ELpwERWRCixjW9lUjdOplstty8WTG4TdggNkmk
+         FAiHTaXQ/hk9R8J3foJaRGFsYhqVviIR2e6wkU/CvE47Oyk8bPyQsRJVuQKBiHUF5E8J
+         Yl4N9R0dWrjS8k6PjcWaFXUJnFPJ/Z4V0/aHBvBFZElMZlIyf/rjVGSia6bdeGT+94zO
+         ikEw8P0COhI2yD5r0Yyek1POIqV2xkwJijBxxHRQDLFqs9mAVZ+SBo6LwHGVqghwSZs+
+         wgLUUhIJWJjU3gRiNsxit5FWKqlu/+JEeFcF0e/fAg4XGTKxlpkhnoSVjfe3cn1n8iXV
+         jKiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pSx+w54klGuKdyt/Un3Z3/lbOI5wwX527aHiYsNckNM=;
+        b=1Z6Ac0C+FRoPx78y1e2J6/zLELqmqYxhh5brmV3A5fC8j9zra1sAdlSavOtZTCQ+TW
+         NaMMhGEvIdUJCqLc8cmsPWBKQ4I4Shj5VWddocWibe1ofAEDY9lDbNBeZCdtPJCbi+8V
+         aGhPdFHqvB/fXYYBOnCjGyBJl5oSxk9ij2Jy1vQL5Rj+7md6WfTqXRoNA4segBVyiSQa
+         DlSnRcGx9nndIgh4gkqtS9H8QeThlK2FWrkcpnP14marwaQAZ4jmJ4Px5fZ2cNPESwK0
+         yxvPdDhK0OCf7yPLK8YZhAU9YCFWiiruO+aw8E9BxnI5J88Q0cAdebrcSkXp9ybfMsbz
+         /82A==
+X-Gm-Message-State: AOAM531SUVpwSctcRxDY2EHPuFVLuFlWVahEbz3tC8RKrxQTTJlWoIeH
+        E37bcOjj3ErH5RCOOgOfiWRsf/Zap/qZplmolkdYdA==
+X-Google-Smtp-Source: ABdhPJwK5xgq7p4wgh3VKjYDgxwNIVxLXmzl2/lBJJF3NnAK1jP9sXAl8rZi5X4mJ+y8WZzQmAD7cj8QOBL12BBfl4g=
+X-Received: by 2002:a67:d31c:: with SMTP id a28mr23447616vsj.20.1638560162395;
+ Fri, 03 Dec 2021 11:36:02 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <YapfkGNetHhA0Bws@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20211130111325.29328-1-semen.protsenko@linaro.org>
+ <20211130111325.29328-2-semen.protsenko@linaro.org> <YaZ8BpUaaC+sJYqx@robh.at.kernel.org>
+In-Reply-To: <YaZ8BpUaaC+sJYqx@robh.at.kernel.org>
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+Date:   Fri, 3 Dec 2021 21:35:51 +0200
+Message-ID: <CAPLW+4kGGk+umKTVRPNM7R=GaUQa31Uid=K+9ofq8w2mqzGAEA@mail.gmail.com>
+Subject: Re: [PATCH v2 RESEND 1/5] dt-bindings: soc: samsung: Add Exynos USI bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 30 Nov 2021 at 21:31, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Nov 30, 2021 at 01:13:21PM +0200, Sam Protsenko wrote:
+> > Add constants for choosing USIv2 configuration mode in device tree.
+> > Those are further used in USI driver to figure out which value to write
+> > into SW_CONF register. Also document USIv2 IP-core bindings.
+> >
+> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
+> > ---
+> > Changes in v2:
+> >   - Combined dt-bindings doc and dt-bindings header patches
+> >   - Added i2c node to example in bindings doc
+> >   - Added mentioning of shared internal circuits
+> >   - Added USI_V2_NONE value to bindings header
+> >
+> >  .../bindings/soc/samsung/exynos-usi.yaml      | 135 ++++++++++++++++++
+> >  include/dt-bindings/soc/samsung,exynos-usi.h  |  17 +++
+> >  2 files changed, 152 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> >  create mode 100644 include/dt-bindings/soc/samsung,exynos-usi.h
+> >
+> > diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> > new file mode 100644
+> > index 000000000000..a822bc62b3cd
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/soc/samsung/exynos-usi.yaml
+> > @@ -0,0 +1,135 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/soc/samsung/exynos-usi.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Samsung's Exynos USI (Universal Serial Interface) binding
+> > +
+> > +maintainers:
+> > +  - Sam Protsenko <semen.protsenko@linaro.org>
+> > +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > +
+> > +description: |
+> > +  USI IP-core provides selectable serial protocol (UART, SPI or High-Speed I2C).
+> > +  USI shares almost all internal circuits within each protocol, so only one
+> > +  protocol can be chosen at a time. USI is modeled as a node with zero or more
+> > +  child nodes, each representing a serial sub-node device. The mode setting
+> > +  selects which particular function will be used.
+> > +
+> > +  Refer to next bindings documentation for information on protocol subnodes that
+> > +  can exist under USI node:
+> > +
+> > +  [1] Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> > +  [2] Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+> > +  [3] Documentation/devicetree/bindings/spi/spi-samsung.txt
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^usi@[0-9a-f]+$"
+> > +
+> > +  compatible:
+> > +    const: samsung,exynos-usi-v2
+>
+> Use SoC based compatibles.
+>
 
+In this particular case, I'd really prefer to have it like this. Most
+likely we'll only have USIv1 and USIv1 in the end, and I think that
+would be more clear to have USI version in compatible, rather than SoC
+name. Please let me know if you have a strong opinion on this one --
+if so I'll re-send.
 
-On 12/3/21 12:18 PM, Mark Brown wrote:
-> On Fri, Dec 03, 2021 at 12:17:12PM -0600, Dinh Nguyen wrote:
->> The QSPI controller on Intel's SoCFPGA platform does not implement the
->> CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
->> results in a crash.
-> 
-> This is the third copy of this you've sent today with no differences
-> I've spotted between them - what's the story here?
-> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Bus (APB) clock
+> > +      - description: Operating clock for UART/SPI/I2C protocol
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: pclk
+> > +      - const: ipclk
+> > +
+> > +  ranges: true
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  samsung,sysreg:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      Should be phandle/offset pair. The phandle to System Register syscon node
+> > +      (for the same domain where this USI controller resides) and the offset
+> > +      of SW_CONF register for this USI controller.
+> > +
+> > +  samsung,mode:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Selects USI function (which serial protocol to use). Refer to
+> > +      <include/dt-bindings/soc/samsung,exynos-usi.h> for valid USI mode values.
+>
+> This seems to be redundant. Just check which child is enabled.
+>
 
-Apologies, I didn't get a confirmation that the 1st 2 copies went 
-through. Please ignore the 1st and 2nd copies.
+I think it's not that easy. Soon we'll have USIv1 support added, and
+that has some weird configurations, like having dual I2C mode (two
+child I2C nodes must be enabled) and UART+I2C mode, etc. Looks like it
+might take some not very elegant logic to figure out which exactly
+mode value should be written in SW_CONF register in that way, it's
+much easier to just specify mode in USI node. Also, that reflects
+hardware better: we actually write that specified mode to SW_CONF
+register. Also, later we might want to be able to switch that mode via
+SysFS, e.g. for testing purposes. Current design seems to be better
+suited for some things like that.
 
-Sorry for the noise!
+Please let me know if you have a strong opinion on this one, or it's
+ok to leave it as is.
 
-Dinh
+All other comments are addressed and will be present in v3. Thanks for
+the review!
+
+> > +
+> > +  samsung,clkreq-on:
+> > +    type: boolean
+> > +    description:
+> > +      Enable this property if underlying protocol requires the clock to be
+> > +      continuously provided without automatic gating. As suggested by SoC
+> > +      manual, it should be set in case of SPI/I2C slave, UART Rx and I2C
+> > +      multi-master mode. Usually this property is needed if USI mode is set
+> > +      to "UART".
+> > +
+> > +      This property is optional.
+> > +
+> > +patternProperties:
+> > +  # All other properties should be child nodes
+> > +  "^.*@[0-9a-f]+$":
+>
+> Only 'serial', 'spi', or 'i2c' are valid.
+>
+> > +    type: object
+> > +    description: Child node describing underlying USI serial protocol
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - clock-names
+> > +  - ranges
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - samsung,sysreg
+> > +  - samsung,mode
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/soc/samsung,exynos-usi.h>
+> > +
+> > +    usi0: usi@138200c0 {
+> > +        compatible = "samsung,exynos-usi-v2";
+> > +        reg = <0x138200c0 0x20>;
+> > +        samsung,sysreg = <&sysreg_peri 0x1010>;
+> > +        samsung,mode = <USI_V2_UART>;
+> > +        samsung,clkreq-on; /* needed for UART mode */
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +        ranges;
+> > +        clocks = <&cmu_peri 32>, <&cmu_peri 31>;
+> > +        clock-names = "pclk", "ipclk";
+> > +        status = "disabled";
+>
+> Why are you disabling your example? Remove status.
+>
+> > +
+> > +        serial_0: serial@13820000 {
+> > +            compatible = "samsung,exynos850-uart";
+> > +            reg = <0x13820000 0xc0>;
+> > +            interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+> > +            clocks = <&cmu_peri 32>, <&cmu_peri 31>;
+> > +            clock-names = "uart", "clk_uart_baud0";
+> > +            status = "disabled";
+> > +        };
+> > +
+> > +        hsi2c_0: i2c@13820000 {
+> > +            compatible = "samsung,exynosautov9-hsi2c";
+> > +            reg = <0x13820000 0xc0>;
+> > +            interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <0>;
+> > +            clocks = <&cmu_peri 32>, <&cmu_peri 31>;
+> > +            clock-names = "hsi2c_pclk", "hsi2c";
+> > +            status = "disabled";
+> > +        };
+> > +    };
+> > diff --git a/include/dt-bindings/soc/samsung,exynos-usi.h b/include/dt-bindings/soc/samsung,exynos-usi.h
+> > new file mode 100644
+> > index 000000000000..a01af169d249
+> > --- /dev/null
+> > +++ b/include/dt-bindings/soc/samsung,exynos-usi.h
+> > @@ -0,0 +1,17 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * Copyright (c) 2021 Linaro Ltd.
+> > + * Author: Sam Protsenko <semen.protsenko@linaro.org>
+> > + *
+> > + * Device Tree bindings for Samsung Exynos USI (Universal Serial Interface).
+> > + */
+> > +
+> > +#ifndef __DT_BINDINGS_SAMSUNG_EXYNOS_USI_H
+> > +#define __DT_BINDINGS_SAMSUNG_EXYNOS_USI_H
+> > +
+> > +#define USI_V2_NONE          0
+> > +#define USI_V2_UART          1
+> > +#define USI_V2_SPI           2
+> > +#define USI_V2_I2C           3
+> > +
+> > +#endif /* __DT_BINDINGS_SAMSUNG_EXYNOS_USI_H */
+> > --
+> > 2.30.2
+> >
+> >
