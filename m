@@ -2,85 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0A24676CE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 12:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A08DC4676EE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 13:00:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380595AbhLCLzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 06:55:40 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:30036 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1380596AbhLCLzj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 06:55:39 -0500
-X-IronPort-AV: E=Sophos;i="5.87,284,1631545200"; 
-   d="scan'208";a="102302884"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 03 Dec 2021 20:52:14 +0900
-Received: from localhost.localdomain (unknown [10.226.93.66])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A6DC84016D6B;
-        Fri,  3 Dec 2021 20:52:12 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 6/6] arm64: dts: renesas: rzg2l-smarc-som: Add vdd core regulator
-Date:   Fri,  3 Dec 2021 11:51:54 +0000
-Message-Id: <20211203115154.31864-7-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20211203115154.31864-1-biju.das.jz@bp.renesas.com>
-References: <20211203115154.31864-1-biju.das.jz@bp.renesas.com>
+        id S1380655AbhLCMDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 07:03:33 -0500
+Received: from smtp2.axis.com ([195.60.68.18]:27975 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1380653AbhLCMDd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Dec 2021 07:03:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1638532810;
+  x=1670068810;
+  h=date:to:cc:subject:message-id:references:mime-version:
+   content-transfer-encoding:in-reply-to:from;
+  bh=58eYs3C3XZxcIoL4sUUVPSKpBAma5YmWgb+uL4b9UBI=;
+  b=IqE2FKgPgUqd654mIdt0B8FjI0372WwTZDTkYTPqX3e1wA48yKFjw3ih
+   KO6Se6hjQLZI3R2Tt2v0jXmb6RQeTJYjwq9QDwF5Ftv/axADWFY85uVJK
+   J87a9sNBpCnuvkkvA8g7fTaAYVbwRAuYZwlb+I8zKBl1dy7PpYoHCBt+n
+   qFKy+T2re8rMYdExMoZFvR6op2dMmG+KNYTs2slNV6bFrKiK+NfqslcE0
+   XllzDLeOUKxzMQ/KnDMvet3tXhphHsEkX/OYOtSX+/0Dz2LkHxoII23Oq
+   kz4d7JKcIuveQtNLRHRrVQisf3VBg8RCvQLE//NMtmmgJ3SJwtGE/wt+Q
+   g==;
+Date:   Fri, 3 Dec 2021 13:00:07 +0100
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Doug Anderson <dianders@google.com>, kernel <kernel@axis.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: mmc: exynos-dw-mshc: Add support for
+ ARTPEC-8
+Message-ID: <20211203120007.GA23260@axis.com>
+References: <20211201153804.27655-1-marten.lindahl@axis.com>
+ <20211201153804.27655-2-marten.lindahl@axis.com>
+ <c6a44fd1-ad48-06cc-4a96-818ca124afca@canonical.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c6a44fd1-ad48-06cc-4a96-818ca124afca@canonical.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+From:   Marten Lindahl <martenli@axis.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add vdd core regulator (1.1 V).
+On Thu, Dec 02, 2021 at 09:41:05AM +0100, Krzysztof Kozlowski wrote:
 
-This patch add regulator support for gpu.
+Hi Krzysztof!
+Thanks for looking at this!
 
-On the H/W manual nothing mentioned about gpu
-regulator. So using vdd core regulator for gpu.
+> On 01/12/2021 16:38, Mårten Lindahl wrote:
+> > The ARTPEC-8 SoC has a DWMMC controller that is compatible with the
+> > Exynos 7 version v2.70a. The main differences from Exynos 7 is that it
+> > does not support HS400 and has extended data read timeout.
+> > 
+> > Add compatibility string "samsung,artpec8-dw-mshc" for ARTPEC-8.
+> > 
+> > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
+> > ---
+> >  Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
+> > index 0419a63f73a0..161be451a1f0 100644
+> > --- a/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
+> > +++ b/Documentation/devicetree/bindings/mmc/exynos-dw-mshc.txt
+> > @@ -22,6 +22,8 @@ Required Properties:
+> >  	  specific extensions.
+> >  	- "samsung,exynos7-dw-mshc-smu": for controllers with Samsung Exynos7
+> >  	  specific extensions having an SMU.
+> > +	- "samsung,artpec8-dw-mshc": for controllers with ARTPEC-8 specific
+> > +	  extensions.
+> 
+> Artpec8 does not look like Samsung, so vendor prefix does not match.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Since the IP is very similar, I just copied the vendor prefix from the others,
+but ok, I will change it to 'axis'.
 
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-index 41fdae7ba66b..9112e79079a1 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
-@@ -52,6 +52,15 @@
- 		regulator-always-on;
- 	};
- 
-+	reg_1p1v: regulator-vdd-core {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.1V";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
- 	vccq_sdhi0: regulator-vccq-sdhi0 {
- 		compatible = "regulator-gpio";
- 
-@@ -130,6 +139,10 @@
- 	clock-frequency = <24000000>;
- };
- 
-+&gpu {
-+	mali-supply = <&reg_1p1v>;
-+};
-+
- &ostm1 {
- 	status = "okay";
- };
--- 
-2.17.1
+Kind regards
+Mårten
 
+> 
+> Best regards,
+> Krzysztof
