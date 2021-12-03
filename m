@@ -2,101 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7FF466F03
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 02:11:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF72466F28
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 02:38:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233067AbhLCBO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 20:14:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41692 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231902AbhLCBO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 20:14:56 -0500
-Received: from gandalf.ozlabs.org (gandalf.ozlabs.org [IPv6:2404:9400:2:0:216:3eff:fee2:21ea])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C6B0C061757;
-        Thu,  2 Dec 2021 17:11:32 -0800 (PST)
-Received: from authenticated.ozlabs.org (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.ozlabs.org (Postfix) with ESMTPSA id 4J4vsv3CSNz4xbC;
-        Fri,  3 Dec 2021 12:11:31 +1100 (AEDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ellerman.id.au;
-        s=201909; t=1638493891;
-        bh=+JylP2RVIbtJzYpK2ZtaZSsm+v7AMw7cQapVbRNSwI8=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=j/t8FbUTVygIvVEoxzzZeVOIlusztuSn4HuxDqsS5CfLp5BE/rNBKoWcnGHmhPitv
-         PzUTw22HhaYWs+WvRmGOXGuScXvgCT3wxz6PIV4ZAjlb8kRYnDCZKhmuQW3vM3TeSi
-         nIz+9c9qz9/3zi1SF13P9qFNiJIWHQqMSGAQnj272Jkd/hMLVJQQTDguqSFB2aQmWj
-         QZp81bpe2lrteGS8N190rWVOJU3dCiIKDgqeB16b+oM2pmF17lblSKI/ydd7qxTCNM
-         kOsh7WJS7l225DTMkC6wTJh7ppHqwW1i1WX+A60L+imI6V/Xhbm2ecGQnWdX3d9ZDu
-         CnBhtLuPtJOLA==
-From:   Michael Ellerman <mpe@ellerman.id.au>
-To:     Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh@kernel.org>
-Cc:     Calvin Zhang <calvinzhang.cool@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Subject: Re: [PATCH] of: unmap memory regions in /memreserve node
-In-Reply-To: <YaiRAD40xCK7u3Hl@FVFF77S0Q05N>
-References: <20211124133347.3861391-1-calvinzhang.cool@gmail.com>
- <YaapE8oys5zQEdD5@robh.at.kernel.org> <YaiRAD40xCK7u3Hl@FVFF77S0Q05N>
-Date:   Fri, 03 Dec 2021 12:11:26 +1100
-Message-ID: <874k7qpk5d.fsf@mpe.ellerman.id.au>
+        id S1377957AbhLCBlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 20:41:37 -0500
+Received: from mswedge1.sunplus.com ([60.248.182.113]:45288 "EHLO
+        mg.sunplus.com" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1377962AbhLCBlb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 20:41:31 -0500
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.112
+        by mg01.sunplus.com with MailGates ESMTP Server V5.0(5128:0:AUTH_RELAY)
+        (envelope-from <wells.lu@sunplus.com>); Fri, 03 Dec 2021 09:36:40 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx02.sunplus.com.tw (172.17.9.112) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Fri, 3 Dec 2021 09:36:41 +0800
+Received: from sphcmbx02.sunplus.com.tw ([::1]) by sphcmbx02.sunplus.com.tw
+ ([fe80::f8bb:bd77:a854:5b9e%14]) with mapi id 15.00.1497.023; Fri, 3 Dec 2021
+ 09:36:41 +0800
+From:   =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     Wells Lu <wellslutw@gmail.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        =?utf-8?B?VmluY2VudCBTaGloIOaWvemMlem0uw==?= 
+        <vincent.shih@sunplus.com>
+Subject: RE: [PATCH net-next v3 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Thread-Topic: [PATCH net-next v3 2/2] net: ethernet: Add driver for Sunplus
+ SP7021
+Thread-Index: AQHX5dF9eGPWQxkNKU64ogPFWvAIaqwcdcyAgAE+n/CAAPQwgIAA4eHw//+CcACAAPOLMA==
+Date:   Fri, 3 Dec 2021 01:36:41 +0000
+Message-ID: <ad04e59777694bbcbcf52f518a2c16a0@sphcmbx02.sunplus.com.tw>
+References: <1638266572-5831-1-git-send-email-wellslutw@gmail.com>
+ <1638266572-5831-3-git-send-email-wellslutw@gmail.com>
+ <YabsT0/dASvYUH2p@lunn.ch>
+ <cf60c230950747ec918acfc6dda595d6@sphcmbx02.sunplus.com.tw>
+ <YajEbXtBwlDL4gOL@lunn.ch>
+ <2fded2fc3a1344d0882ae2f186257911@sphcmbx02.sunplus.com.tw>
+ <YakYlHzvlAI+1at+@lunn.ch>
+In-Reply-To: <YakYlHzvlAI+1at+@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.39]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark Rutland <mark.rutland@arm.com> writes:
-> On Tue, Nov 30, 2021 at 04:43:31PM -0600, Rob Herring wrote:
->> +linuxppc-dev
- 
-Sorry missed this until now ...
-
->> On Wed, Nov 24, 2021 at 09:33:47PM +0800, Calvin Zhang wrote:
->> > Reserved memory regions in /memreserve node aren't and shouldn't
->> > be referenced elsewhere. So mark them no-map to skip direct mapping
->> > for them.
->> 
->> I suspect this has a high chance of breaking some platform. There's no 
->> rule a region can't be accessed.
->
-> The subtlety is that the region shouldn't be explicitly accessed (e.g.
-> modified),
-
-I think "modified" is the key there, reserved means Linux doesn't use
-the range for its own data, but may still read from whatever is in the
-range.
-
-On some platforms the initrd will be marked as reserved, which Linux
-obviously needs to read from.
-
-> but the OS is permitted to have the region mapped. In ePAPR this is
-> described as:
->
->    This requirement is necessary because the client program is permitted to map
->    memory with storage attributes specified as not Write Through Required, not
->    Caching Inhibited, and Memory Coherence Required (i.e., WIMG = 0b001x), and
->    VLE=0 where supported. The client program may use large virtual pages that
->    contain reserved memory. However, the client program may not modify reserved
->    memory, so the boot program may perform accesses to reserved memory as Write
->    Through Required where conflicting values for this storage attribute are
->    architecturally permissible.
->
-> Historically arm64 relied upon this for spin-table to work, and I *think* we
-> might not need that any more I agree that there's a high chance this will break
-> something (especially on 16K or 64K page size kernels), so I'd prefer to leave
-> it as-is.
-
-Yeah I agree. On powerpc we still use large pages for the linear mapping
-(direct map), so reserved regions will be incidentally mapped as
-described above.
-
-> If someone requires no-map behaviour, they should use a /reserved-memory entry
-> with a no-map property, which will work today and document their requirement
-> explicitly.
-
-+1.
-
-cheers
+SGkgQW5kcmV3LA0KDQpUaGFuayB5b3UgZm9yIGV4cGxhbmF0aW9uLg0KDQoNCkJlc3QgcmVnYXJk
+cywNCldlbGxzIEx1DQoNCg0KPiA+IEhpIEFuZHJldywNCj4gPg0KPiA+IFRoYW5rIHlvdSBmb3Ig
+ZXhwbGFuYXRpb24uDQo+ID4NCj4gPiBJJ2xsIGFkZCBwaHlfc3VwcG9ydF9hc3ltX3BhdXNlKCkg
+YWZ0ZXIgUEhZIGNvbm5lY3RlZCBuZXh0IHBhdGNoLg0KPiA+DQo+ID4gSSBmb3VuZCBzb21lIGRy
+aXZlcnMgY2FsbCBwaHlfc2V0X21heF9zcGVlZCgpIHRvIHNldCBQSFkgc3BlZWQgdG8gMTAwTQ0K
+PiA+IGFmdGVyIFBIWSBjb25uZWN0ZWQuIElzIHRoYXQgbmVjZXNzYXJ5Pw0KPiANCj4gPiBGcm9t
+ICdzdXBwb3J0ZWQnLCBQSFkgc3VwcG9ydHMgMTBNLzEwME0gYWxyZWFkeS4NCj4gDQo+IFlvdSBu
+ZWVkIHBoeV9zZXRfbWF4X3NwZWVkKCkgd2hlbiBpdCBpcyBwb3NzaWJsZSB0byBjb25uZWN0IGEg
+MTAvMTAwIE1BQyB0byBhIDFHIFBIWS4gIFlvdQ0KPiBzb21ldGltZSBkbyB0aGlzIGJlY2F1c2Ug
+YSAxRyBQSFkgaXMgY2hlYXBlciB0aGFuIGEgMTAwTSBQSFkuIFVubGVzcyBsaW1pdGVkLCB0aGUg
+UEhZIHdpbGwNCj4gYWR2ZXJ0aXNlIGFuZCBjb3VsZCBuZWdvdGlhdGUgYSAxRyBsaW5rLCBidXQg
+dGhlIE1BQyBjb3VsZCB0aGVuIG5vdCBzdXBwb3J0IGl0LiBJZiBpdCBpcw0KPiBub3QgcGh5c2lj
+YWxseSBwb3NzaWJsZSB0byBjb25uZWN0IGEgMUcgUEhZIHRvIHlvdXIgTUFDLCB5b3UgZG9uJ3Qg
+bmVlZCB0byB3b3JyeS4NCj4gDQo+ID4gSSBhbHNvIGZvdW5kIHNvbWUgZHJpdmVycyBjYWxsIHBo
+eV9zdGFydF9hbmVnKCkgYWZ0ZXIgUEhZIHN0YXJ0ZWQuDQo+IA0KPiBJdCBpcyBub3QgbmVlZGVk
+Lg0KPiANCj4gICAgQW5kcmV3DQo=
