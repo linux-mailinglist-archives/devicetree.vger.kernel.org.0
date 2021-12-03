@@ -2,61 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DC7B46753E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 11:40:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71A9846757C
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 11:45:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351608AbhLCKnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 05:43:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56634 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242454AbhLCKnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 05:43:22 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B0F5C06173E;
-        Fri,  3 Dec 2021 02:39:59 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A550C629FA;
-        Fri,  3 Dec 2021 10:39:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E14C53FC7;
-        Fri,  3 Dec 2021 10:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1638527998;
-        bh=xfnVuiPmR/ebk9nO736NA9ijLyAQXSePj6AH7oroEz0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ERP0LcHyngBoLMJVnr3cE59l8MCGi3nurdJliGNQCxLwkQW1hf+Bmtf6zv80ua+SO
-         nsN8lJ4DAJmhi93wk6CdCg5EnNYOq1/+/0EUwN62AtTbT9L7Z3vo4RIPGaMfD1IuTa
-         /hHE21O8XH++UGXJi1DgXkd+f6DLLyqr+6/padPU=
-Date:   Fri, 3 Dec 2021 11:39:55 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>
-Cc:     derek.kiernan@xilinx.com, dragan.cvetic@xilinx.com, arnd@arndb.de,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, wells.lu@sunplus.com,
-        tony.huang@sunplus.com
-Subject: Re: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
-Message-ID: <Yanz+1nOCthAq/sN@kroah.com>
-References: <cover.1638499659.git.tonyhuang.sunplus@gmail.com>
- <9bb79f74ff1b08a5f9a1f6707b3b41484506468a.1638499659.git.tonyhuang.sunplus@gmail.com>
+        id S1351909AbhLCKtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 05:49:17 -0500
+Received: from esa.microchip.iphmx.com ([68.232.153.233]:5276 "EHLO
+        esa.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244330AbhLCKtQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 05:49:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1638528353; x=1670064353;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eM8gk6nuiMyvZl4Wht/YwImBBjJo9IuoMykWHAHYhhM=;
+  b=eA36BdrkXDu0MtzPagIMEuAEEkJWVckbA+EUsmotFYzwlOw72lyerLSY
+   xlwnXGHau2VwwWNIufS5W35mb+JFMAScxZHzFBjUG3XtODDRAj0yXvKHm
+   jyb4BRdqtOgk1cxekIyDwOHWJijkP7MtRGLp5bK8zOfNDfMvhmVH/fU/F
+   L2McYn06IQLkExwj7jRd5+wqb4cNEe3C+yEPLtJDjo/2zN4LJhv0C834R
+   Ed1yczxDdjGsWv6JaE3dVmHHarcIGclWrsrxuI7wvzUnEuMY8DGJrOhyr
+   W1nd51rqP7wrysM8KumfMLdixqmROWxX30OEIc3dFTSALyEYKqOv7yjvz
+   A==;
+IronPort-SDR: yr5+QnPJD6dOklguX+h6dXJKoLXOpGzW1eSsIY1AGZPfxZwJBnY2h+bp/daQX9pGNTc8yQU5OG
+ 1aHITf4yfQ14QS27UGWB2F/DKAxEKqfi4HKvJgEAccrXo3oBEno38O9v/XaIme+tyBf66+KerF
+ ZwwBaDmpR0PCId8iXVczW15tW34vnpYVXFvvjIFJ7WWNM885V5xYfZ+sMhQTPIjsNfMVbct1BD
+ cKFvd7lLHFeJr3iyxgHJ375fK8CldK2A2jM8TNRfAYoEqNyBQmgLz5ZMLgPFOAqBrMBcUdqb76
+ hkw+CnjYIseeaBRTW0B49qgC
+X-IronPort-AV: E=Sophos;i="5.87,284,1631602800"; 
+   d="scan'208";a="154153442"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Dec 2021 03:45:52 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Fri, 3 Dec 2021 03:45:52 -0700
+Received: from soft-dev3-1.microsemi.net (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Fri, 3 Dec 2021 03:45:50 -0700
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <linux@armlinux.org.uk>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Subject: [PATCH net-next 0/6] net: lan966x: Add switchdev and vlan support
+Date:   Fri, 3 Dec 2021 11:46:39 +0100
+Message-ID: <20211203104645.1476704-1-horatiu.vultur@microchip.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9bb79f74ff1b08a5f9a1f6707b3b41484506468a.1638499659.git.tonyhuang.sunplus@gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 03, 2021 at 11:48:45AM +0800, Tony Huang wrote:
-> --- /dev/null
-> +++ b/drivers/misc/iop/sunplus_iop.c
-> @@ -0,0 +1,518 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
+This patch series extends lan966x with switchdev and vlan support.
+The first patches just adds new registers and extend the MAC table to
+handle the interrupts when a new address is learn/forget.
+The last 2 patches adds the vlan and the switchdev support.
 
-Are you sure about "or later"?  I have to ask.
+Horatiu Vultur (6):
+  net: lan966x: Add registers that are used for switch and vlan
+    functionality
+  dt-bindings: net: lan966x: Extend with the analyzer interrupt
+  net: lan966x: add support for interrupts from analyzer
+  net: lan966x: More MAC table functionality
+  net: lan966x: Add vlan support
+  net: lan966x: Add switchdev support
 
-Also, no copyright information on the file?  Are you sure about that?
+ .../net/microchip,lan966x-switch.yaml         |   2 +
+ .../net/ethernet/microchip/lan966x/Makefile   |   3 +-
+ .../ethernet/microchip/lan966x/lan966x_mac.c  | 337 +++++++++++
+ .../ethernet/microchip/lan966x/lan966x_main.c |  92 ++-
+ .../ethernet/microchip/lan966x/lan966x_main.h |  71 ++-
+ .../ethernet/microchip/lan966x/lan966x_regs.h | 129 +++++
+ .../microchip/lan966x/lan966x_switchdev.c     | 544 ++++++++++++++++++
+ .../ethernet/microchip/lan966x/lan966x_vlan.c | 439 ++++++++++++++
+ 8 files changed, 1602 insertions(+), 15 deletions(-)
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_switchdev.c
+ create mode 100644 drivers/net/ethernet/microchip/lan966x/lan966x_vlan.c
 
-thanks,
+-- 
+2.33.0
 
-greg k-h
