@@ -2,156 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B6CA4678D8
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:51:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DDDE4678E9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243409AbhLCNzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 08:55:01 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:38943 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S238055AbhLCNzA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:55:00 -0500
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id ADE725800F0;
-        Fri,  3 Dec 2021 08:51:36 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Fri, 03 Dec 2021 08:51:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=HOi4Gz1hW38Xl
-        SjSMQhvunvdi3R7X8A7uhXWityqRXw=; b=QuZxfjfDAuBHCw/qGhRC4wgLfWeav
-        qPT8KIWs+o2yHgHfamUqT+UCa1LzxdvVHvdXEXnNytGaOi/CQW+b6t80sDiu5aEU
-        iHbt/ITVLyfB+e/gavtofrlgAWVYCTYQyY7LcBLEufecbKfgu2ViTpalEYv4Q/LG
-        q5/c9ZwYOguWNkmENK/XlUSTX9PkirZG6h4ZG9Z7ear0dIQ6ulVmu8oW0hbRrWu0
-        M/nFMZGC4kEWA7f245TA2l9Tt9MNiUvCRO0H23yuAlTnM4sddCJ2AZ2GVAAFLDCZ
-        zdWQSgMwGzq0gQq6HIeQI0YT6HZ9Bvuy/xpi1c5R+zu1NhjpGbJ8HhOlg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=HOi4Gz1hW38XlSjSMQhvunvdi3R7X8A7uhXWityqRXw=; b=aNAhwW77
-        VFU1zk7cp6ftINRSXZu105qQjpRFURIl6vMwIwyiZL0toUzK+UtU9f57G33iW2MR
-        7xQXnwFoLttpdB9tldQs+CqMOQwpIVmAuCkMqvmIKGa5JFY4fc6DybiDLkI1o4E4
-        05GqfX7sMx8dQszXs1D2RHc0E4+eOwgrIH95yWolLzzuprzBbBXyXzs1SfXzqJTJ
-        VxU5HPxETeL+nwcGSoiqV06y0UtBw3GgMvpIe7q2gN53PMSd6ej+AUUo4X2b/mPG
-        OZ8sjzuokr9kkDyuo2wai20TU6PFihHbGCoF3/BPCuAFFgU5HpQ8ycbFp0hrl6m2
-        o3OqBU54cIiFCQ==
-X-ME-Sender: <xms:6CCqYYk8e8-1DYBuBf6B52i06QdpY00tdFXAaMsPzB5A5A9QPPe01w>
-    <xme:6CCqYX34HfSl3AzcpJyIcwKuY5ofmXQvrUB4lB-PQ2rWFDR8CZdTW-hkSk8nRMyEZ
-    kT9CtZM8L9UWpbyVq8>
-X-ME-Received: <xmr:6CCqYWpzn06GEoGEbyyeQBChZ5hNE1P_wXyED0NRyOMuKknsNMMyCnRPchIquZnmvQKOY2vqbE8oymwuon4DtfC5YpIlusbI4M4gC7vU4GmvyA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieejgdehlecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefhvffufffkofgjfhgggfestdekredtredttdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpedvkeelveefffekjefhffeuleetleefudeifeehuddugffghffhffehveevheeh
-    vdenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
-    igihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:6CCqYUnMMFJO10MNh0Jjp-iYfxScE1b0ZwdC7PcD_0MCtABSzGdj3A>
-    <xmx:6CCqYW1V4LPUBItwRB6TGyKmHCFgmTRbjHA9SffLwbMqWhYymdOyww>
-    <xmx:6CCqYbvppuoFCyPCeE3f2ZuN6zc8tPK-1tbRCA3Dr2Lsk_E3iwj5Ug>
-    <xmx:6CCqYduS2tz7v5Vbdd6Tlzt_VVgV_8B3MDQMAfElvOfNrdOUh5-kKA>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 3 Dec 2021 08:51:36 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>
-Cc:     Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dom Cobley <dom@raspberrypi.com>,
-        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH v2 3/3] drm/vc4: Notify the firmware when DRM is in charge
-Date:   Fri,  3 Dec 2021 14:51:26 +0100
-Message-Id: <20211203135126.700165-4-maxime@cerno.tech>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211203135126.700165-1-maxime@cerno.tech>
-References: <20211203135126.700165-1-maxime@cerno.tech>
+        id S1381044AbhLCN65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 08:58:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45626 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1352531AbhLCN65 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:58:57 -0500
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07F0CC06174A
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:55:32 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:3191:9890:620a:6f4])
+        by michel.telenet-ops.be with bizsmtp
+        id RpvT2600E3eLghq06pvTJX; Fri, 03 Dec 2021 14:55:31 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mt926-002Lev-S6; Fri, 03 Dec 2021 14:55:26 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1mt926-000lV8-AW; Fri, 03 Dec 2021 14:55:26 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        Dave Hansen <dave.hansen@linux.intel.com>,
+        Darren Hart <dvhart@infradead.org>,
+        Andy Shevchenko <andy@infradead.org>,
+        "H . Peter Anvin" <hpa@zytor.com>
+Cc:     x86@kernel.org, platform-driver-x86@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [PATCH v3 resend] x86: ce4100: Replace "ti,pcf8575" by "nxp,pcf8575"
+Date:   Fri,  3 Dec 2021 14:55:23 +0100
+Message-Id: <0c00cec971f5c405e47d04e493d854de0efc2e49.1638539629.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Once the call to drm_fb_helper_remove_conflicting_framebuffers() has
-been made, simplefb has been unregistered and the KMS driver is entirely
-in charge of the display.
+The TI part is equivalent to the NXP part, and its compatible value is
+not documented in the DT bindings.
 
-Thus, we can notify the firmware it can free whatever resource it was
-using to maintain simplefb functional.
+Note that while the Linux driver DT match table does not contain the
+compatible value of the TI part, it could still match to this part, as
+i2c_device_id-based matching ignores the vendor part of the compatible
+value.
 
-Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
 ---
- drivers/gpu/drm/vc4/vc4_drv.c | 19 +++++++++++++++++++
- drivers/gpu/drm/vc4/vc4_drv.h |  2 ++
- 2 files changed, 21 insertions(+)
+v3:
+  - Add Reviewed-by,
 
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.c b/drivers/gpu/drm/vc4/vc4_drv.c
-index 8ab89f805826..38d55a47c831 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.c
-+++ b/drivers/gpu/drm/vc4/vc4_drv.c
-@@ -37,6 +37,8 @@
- #include <drm/drm_fb_helper.h>
- #include <drm/drm_vblank.h>
+v2:
+  - New.
+---
+ arch/x86/platform/ce4100/falconfalls.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/x86/platform/ce4100/falconfalls.dts b/arch/x86/platform/ce4100/falconfalls.dts
+index 0ac3d43571361112..65fa3d866226ce97 100644
+--- a/arch/x86/platform/ce4100/falconfalls.dts
++++ b/arch/x86/platform/ce4100/falconfalls.dts
+@@ -249,7 +249,7 @@ i2c@1 {
  
-+#include <soc/bcm2835/raspberrypi-firmware.h>
-+
- #include "uapi/drm/vc4_drm.h"
+ 						gpio@26 {
+ 							#gpio-cells = <2>;
+-							compatible = "ti,pcf8575";
++							compatible = "nxp,pcf8575";
+ 							reg = <0x26>;
+ 							gpio-controller;
+ 						};
+@@ -263,7 +263,7 @@ i2c@2 {
  
- #include "vc4_drv.h"
-@@ -251,10 +253,27 @@ static int vc4_drm_bind(struct device *dev)
- 	if (ret)
- 		return ret;
- 
-+	node = of_find_compatible_node(NULL, NULL, "raspberrypi,bcm2835-firmware");
-+	if (node) {
-+		vc4->firmware = devm_rpi_firmware_get(dev, node);
-+		of_node_put(node);
-+
-+		if (!vc4->firmware)
-+			return -EPROBE_DEFER;
-+	}
-+
- 	ret = drm_aperture_remove_framebuffers(false, &vc4_drm_driver);
- 	if (ret)
- 		return ret;
- 
-+	if (vc4->firmware) {
-+		ret = rpi_firmware_property(vc4->firmware,
-+					    RPI_FIRMWARE_NOTIFY_DISPLAY_DONE,
-+					    NULL, 0);
-+		if (ret)
-+			drm_warn(drm, "Couldn't stop firmware display driver: %d\n", ret);
-+	}
-+
- 	ret = component_bind_all(dev, drm);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
-index 4329e09d357c..b840654c53a9 100644
---- a/drivers/gpu/drm/vc4/vc4_drv.h
-+++ b/drivers/gpu/drm/vc4/vc4_drv.h
-@@ -76,6 +76,8 @@ struct vc4_dev {
- 
- 	unsigned int irq;
- 
-+	struct rpi_firmware *firmware;
-+
- 	struct vc4_hvs *hvs;
- 	struct vc4_v3d *v3d;
- 	struct vc4_dpi *dpi;
+ 						gpio@26 {
+ 							#gpio-cells = <2>;
+-							compatible = "ti,pcf8575";
++							compatible = "nxp,pcf8575";
+ 							reg = <0x26>;
+ 							gpio-controller;
+ 						};
 -- 
-2.33.1
+2.25.1
 
