@@ -2,153 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C21FD46809D
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 00:34:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99545468092
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 00:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383533AbhLCXiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 18:38:00 -0500
-Received: from mail-ot1-f48.google.com ([209.85.210.48]:44628 "EHLO
-        mail-ot1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383526AbhLCXhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 18:37:55 -0500
-Received: by mail-ot1-f48.google.com with SMTP id u18-20020a9d7212000000b00560cb1dc10bso5349828otj.11;
-        Fri, 03 Dec 2021 15:34:30 -0800 (PST)
+        id S1383440AbhLCXhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 18:37:53 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:38823 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1383477AbhLCXhs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 18:37:48 -0500
+Received: by mail-ot1-f42.google.com with SMTP id n104-20020a9d2071000000b005799790cf0bso5401190ota.5;
+        Fri, 03 Dec 2021 15:34:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=YiLKOo6UjENxJNlcLLad7PuFG7LasjEMP8sQf/vfoCY=;
-        b=RIm2ePknVIf1XAh+8D4XHk9aGTYINpU/YF/fPjDjkmQ1Z837Ee2tKGOKbSNKkpX0Ht
-         b4d9PEgE8ZwThwvLySugGDJtmk/crjw7AXedqjLrCdeSJV16wBjjGq7/syezm78mIpOD
-         D9pv9xIQkf0gWz4nta9DaShER8rLSgvzZTEM80kepNqycRLSc1JUhn1fzVgwccV+H22/
-         qcuPmOwP9nGl9+2UOKxVBjit/n8UzQc0TAZF4kkhysbqQHcS2GC81dFRmlQbL0zCsSRP
-         0ZcYrQ7J/VL88SrSyCdTyn4IJqMAAZ7lJoYkAWp2JxWf7Ue6X8BgQKOwaOHgcmVggGh/
-         M9MQ==
-X-Gm-Message-State: AOAM531/06tbmDUVahgXHAadLK7AX7Ff7pAwLs9amnhezv6wiozKLTHW
-        //WEUO9NWHVMtPM99cbdFJ7J8twdaQ==
-X-Google-Smtp-Source: ABdhPJzaChXSNEtZQrVDuuBqE4OOoH38CUdgHcZapsCQUiGSTfOcqkFwFK52oIJ1fUrqoQYuBMT/Hw==
-X-Received: by 2002:a9d:7a5a:: with SMTP id z26mr19045138otm.297.1638574470251;
-        Fri, 03 Dec 2021 15:34:30 -0800 (PST)
+        bh=iC865KFxTLPcMpjh7ZOt0xoZbvZ+6a6MRjUFIn4wKjE=;
+        b=tXAtokrSJjTaMBto288pNrE9He1Czgt9g4x0k4313Tcm4GQkYI8X3e/uyTxCMyhhs3
+         6gPuHrwPxYv22PQI7UGWyVVEVj7/MoLdhcaGPOUeQPYlz7A8/S7Qur0wqzlQCMZ/iYuF
+         OKSabJ9H9DHdwbOkHRFHt5m0CPwO7oldSj9tSbg1PZN3mDy2PWgYZl8nWIG91gMqGm63
+         6RgbdAd3oXXre110lHau1C/QwqbpFNBfSDfLkaLjd88Yd+20bD13EszACw7Bja5rQh18
+         g+LD9Af+3fzgWFkIx7WikdrWNmLkV2wb3PAiKY5WC5kGfdCdw3LLNNeoAHgl03gm1j1l
+         MEhQ==
+X-Gm-Message-State: AOAM530YHYeUMZGdufyNaQzQD6+Q1M9ajHjJpcB45yMeTJLjPLgc10Wq
+        2jGTAQ/vVMAKYvu0ntJVMg==
+X-Google-Smtp-Source: ABdhPJw9SZBJilhMiAFCEuqmdNCHQzZc2/FYmICpgHv78bkjKjYOPiDzcdolwABRd3lABaKDyJ5BFQ==
+X-Received: by 2002:a9d:4d08:: with SMTP id n8mr18258991otf.368.1638574463756;
+        Fri, 03 Dec 2021 15:34:23 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id o19sm1051377oiw.22.2021.12.03.15.34.28
+        by smtp.gmail.com with ESMTPSA id w71sm939507oiw.6.2021.12.03.15.34.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Dec 2021 15:34:29 -0800 (PST)
-Received: (nullmailer pid 1043013 invoked by uid 1000);
+        Fri, 03 Dec 2021 15:34:23 -0800 (PST)
+Received: (nullmailer pid 1043003 invoked by uid 1000);
         Fri, 03 Dec 2021 23:34:15 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, Tomasz Figa <tfiga@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joerg Roedel <joro@8bytes.org>, yi.kuo@mediatek.com,
-        anan.sun@mediatek.com, Will Deacon <will@kernel.org>,
-        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        anthony.huang@mediatek.com, lc.kan@mediatek.com,
-        srv_heupstream@mediatek.com,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mediatek@lists.infradead.org, youlin.pei@mediatek.com
-In-Reply-To: <20211203064027.14993-2-yong.wu@mediatek.com>
-References: <20211203064027.14993-1-yong.wu@mediatek.com> <20211203064027.14993-2-yong.wu@mediatek.com>
-Subject: Re: [PATCH 1/4] dt-bindings: memory: mediatek: Correct the minItems of clk for larbs
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+Cc:     swboyd@chromium.org, judyhsiao@chromium.org,
+        devicetree@vger.kernel.org, broonie@kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        plai@codeaurora.org,
+        Venkata Prasad Potturu <potturu@codeaurora.org>,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        srinivas.kandagatla@linaro.org, bjorn.andersson@linaro.org,
+        tiwai@suse.com, bgoswami@codeaurora.org,
+        linux-gpio@vger.kernel.org, rohitkr@codeaurora.org, perex@perex.cz,
+        agross@kernel.org, Linus Walleij <linus.walleij@linaro.org>,
+        lgirdwood@gmail.com
+In-Reply-To: <1638531140-25899-2-git-send-email-srivasam@codeaurora.com>
+References: <1638531140-25899-1-git-send-email-srivasam@codeaurora.com> <1638531140-25899-2-git-send-email-srivasam@codeaurora.com>
+Subject: Re: [PATCH v4 1/5] dt-bindings: pinctrl: qcom: Update lpass lpi file name to SoC specific
 Date:   Fri, 03 Dec 2021 17:34:15 -0600
-Message-Id: <1638574455.281202.1043012.nullmailer@robh.at.kernel.org>
+Message-Id: <1638574455.221589.1043002.nullmailer@robh.at.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Dec 2021 14:40:24 +0800, Yong Wu wrote:
-> If a platform's larb support gals, there will be some larbs have a one
-> more "gals" clock while the others still only need "apb"/"smi" clocks.
-> then the minItems is 2 and the maxItems is 3.
+On Fri, 03 Dec 2021 17:02:16 +0530, Srinivasa Rao Mandadapu wrote:
+> Change generic lpass lpi pincotrol bindings file to SoC specific file,
+> to distinguish and accomadate other SoC specific dt bindings.
 > 
-> Fixes: 27bb0e42855a ("dt-bindings: memory: mediatek: Convert SMI to DT schema")
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
 > ---
->  .../bindings/memory-controllers/mediatek,smi-larb.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml   | 130 ---------------------
+>  .../pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml     | 130 +++++++++++++++++++++
+>  2 files changed, 130 insertions(+), 130 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml
 > 
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+yamllint warnings/errors:
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1563127
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/pinctrl/qcom,sm8250-lpass-lpi-pinctrl.yaml#
 
+doc reference errors (make refcheckdocs):
 
-larb@14016000: 'mediatek,larb-id' is a required property
-	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
+See https://patchwork.ozlabs.org/patch/1563181
 
-larb@14017000: clock-names: ['apb', 'smi'] is too short
-	arch/arm64/boot/dts/mediatek/mt8183-evb.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dt.yaml
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
-larb@15001000: 'mediatek,larb-id' is a required property
-	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-larb@16010000: clock-names: ['apb', 'smi'] is too short
-	arch/arm64/boot/dts/mediatek/mt8183-evb.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dt.yaml
+pip3 install dtschema --upgrade
 
-larb@16010000: 'mediatek,larb-id' is a required property
-	arch/arm64/boot/dts/mediatek/mt8167-pumpkin.dt.yaml
-
-larb@17010000: clock-names: ['apb', 'smi'] is too short
-	arch/arm64/boot/dts/mediatek/mt8183-evb.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel14.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku1.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-fennel-sku6.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-juniper-sku16.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kappa.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-kenzo.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku0.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-willow-sku1.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kakadu.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku16.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku272.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku288.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-kodama-sku32.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku0.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-kukui-krane-sku176.dt.yaml
-	arch/arm64/boot/dts/mediatek/mt8183-pumpkin.dt.yaml
+Please check and re-submit.
 
