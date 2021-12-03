@@ -2,237 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9663F467EF0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 21:48:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69DCE467F6D
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 22:39:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383116AbhLCUvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 15:51:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55744 "EHLO
+        id S1354017AbhLCVnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 16:43:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239909AbhLCUvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 15:51:22 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B24CC061751;
-        Fri,  3 Dec 2021 12:47:58 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: sre)
-        with ESMTPSA id D33A61F4737E
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=collabora.com; s=mail;
-        t=1638564476; bh=rj1VxQi2dWb+NHaEWofff8PIL6ybOwxjGYXKpXTihKE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SMngz7WPwURRIp5At6Ewio/ZfNIHL8KUqfxuul/DamsKWXoXpO5oC6pU1G+xvdw1F
-         5bBURAFkwPsm3M2JItq9uaSvq/N3up2nCalO33UkTmFBCv/Lnr5jORf4hWlPmLJsqu
-         eGxGPSGe4CTelp437aqrebPPLJx5oyzWY26AyPUlaICM1bUpxhSB5Scq3pzQYCu5by
-         22cETcPAFa8zGwukQMuySB58vQKbaKeb/efauQTnSwU0yMjiE5ajoxc41uOaaDKRyB
-         rbojkLjvRPnjqlaADAbL6MdQefXm84iXxSUpDILWQB5e/NUo7q5ym7GxuDcWn4u0zv
-         bB5jTMzJxonfQ==
-Received: by earth.universe (Postfix, from userid 1000)
-        id 19C7B3C0CA8; Fri,  3 Dec 2021 21:47:54 +0100 (CET)
-Date:   Fri, 3 Dec 2021 21:47:54 +0100
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Evgeny Boger <boger@wirenboard.com>
-Cc:     Quentin Schulz <foss+kernel@0leil.net>,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-pm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 2/2] dt-bindings: iio: adc: document TS voltage in AXP
- PMICs
-Message-ID: <20211203204754.2ucaiiwyrvbtwgbz@earth.universe>
-References: <20211118141233.247907-1-boger@wirenboard.com>
- <20211118141233.247907-3-boger@wirenboard.com>
- <20211122104915.zism6uadgwxjz5d2@gilmour>
- <d1a18116-e198-1b26-d73a-36fbf31aaa81@wirenboard.com>
- <35630e89-4988-a6a9-b801-0e9e44419684@sholland.org>
- <206c2a66-42b9-7e07-66c3-6007b010c996@wirenboard.com>
- <20211201110241.kts5caycdmzqtp3i@fiqs>
- <4fd167ed-d5dc-358a-00f5-6590f4c20a68@wirenboard.com>
+        with ESMTP id S229665AbhLCVnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 16:43:01 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95B84C061751;
+        Fri,  3 Dec 2021 13:39:36 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id t19so8386563oij.1;
+        Fri, 03 Dec 2021 13:39:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ZyNCIgbiIUOsipewSvB8dSHnTmGN087PJADPNaEzhY0=;
+        b=S7F9W7eDO6jsIw3246StQzBS+HGkMuuEuUoNVdlPPKe8Ja3zbROrmY7tJeOpNf5pKm
+         LWOJPqNg1mC25OgMfI5BhwokJoUpRJoAwGQfentShI0NMgZuWZwx1ePj7Gayxd4ISJLK
+         tNsHYf/Qi3ND6pc46PGHvxd1CcSjRdm2BNTfm6Vk6xtwRLir+949wxzSQd4u2rAgLKaJ
+         27qs7a1XVaqrM1cDEvWcH1ODGxwAKsbAPPLJSjdwKl0NuE1D6wu2z51Ezu57WV4uEj8K
+         pMh6fRwthx+tkY6VnRrvBHjZXIDbbqHL1Qk+4fRD502zYKw/muhhHiH5vrjelJB/f9kk
+         3Oog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ZyNCIgbiIUOsipewSvB8dSHnTmGN087PJADPNaEzhY0=;
+        b=5ScrDPQ4UkPV0WcXdPMuoXV/dK0Drq5zRBcP/Dkf4u6VnXbg//wwUSQRCCTYi0R+xG
+         DzwMPX+sdQyU4dv8LYuF1bPAqf6tVWAghKQruz6ajJ4/43JuGI/MMmAk7Hp1Kd8agCf0
+         QOxsZ5nit+vRurcRkVgya/sK+cLkY6NJw6JRVvc2qivTOQyPSAtBuTpATZRw/KDL6eG4
+         PasI+bl/c64Ef3yenUq0i2L+hplX68QrYijEoOsuvCh61ljS7kG2oOGoQ0qg6aQ4O4oM
+         jbMzo2fiu4I2EVfjgPTIN1TP/IdMCgtDzYO4fRaJux/V+luyq8aEXkkm/g/+yp4Ddgf7
+         b35g==
+X-Gm-Message-State: AOAM5332J8nvwJCa3EPGfjGXos2wQ6cENwbM9mi8GYE7BvRGYfXjCcIA
+        zeguZ38MyujIH1qrRIEECVraZycHy5M=
+X-Google-Smtp-Source: ABdhPJwK2AaO9PxR5ndkWa/sJyuxW6vQyapK7lFhRRL6gQ+wQVkhDWzh/ALnOAWSd4619q3h970Cbw==
+X-Received: by 2002:a05:6808:2324:: with SMTP id bn36mr11712695oib.131.1638567575896;
+        Fri, 03 Dec 2021 13:39:35 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id n22sm802920oop.29.2021.12.03.13.39.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Dec 2021 13:39:35 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH v2 1/2] watchdog: Add watchdog driver for Sunplus SP7021
+To:     =?UTF-8?B?eHQuaHVb6IOh5YWI6Z+sXQ==?= <xt.hu@cqplus1.com>
+Cc:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        =?UTF-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+References: <20211112105952.216280-1-xt.hu@cqplus1.com>
+ <20211124104149.361019-1-xt.hu@cqplus1.com>
+ <20211124104149.361019-2-xt.hu@cqplus1.com>
+ <20211124142522.GA3939252@roeck-us.net>
+ <0024d27919c04c84a3f13ecba86a3c70@cqplus1.com>
+ <f69d663a-982b-5876-08c9-b1a4f35e8098@roeck-us.net>
+ <8604284aa38d4ab6bc263d4881107e13@cqplus1.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <de9665a9-5fe0-7f57-d281-1b11455f7016@roeck-us.net>
+Date:   Fri, 3 Dec 2021 13:39:33 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jv2resdmlukfd3qt"
-Content-Disposition: inline
-In-Reply-To: <4fd167ed-d5dc-358a-00f5-6590f4c20a68@wirenboard.com>
+In-Reply-To: <8604284aa38d4ab6bc263d4881107e13@cqplus1.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/28/21 11:57 PM, xt.hu[胡先韬] wrote:
+> 
+>> -----Original Message-----
+>> From: Guenter Roeck [mailto:groeck7@gmail.com] On Behalf Of Guenter Roeck
+>> Sent: Thursday, November 25, 2021 12:26 PM
+>> To: xt.hu[胡先韬] <xt.hu@cqplus1.com>
+>> Cc: wim@linux-watchdog.org; p.zabel@pengutronix.de; linux-kernel@vger.kernel.org;
+>> linux-watchdog@vger.kernel.org; robh+dt@kernel.org; devicetree@vger.kernel.org; Wells Lu 呂芳騰
+>> <wells.lu@sunplus.com>; qinjian[覃健] <qinjian@cqplus1.com>
+>> Subject: Re: [PATCH v2 1/2] watchdog: Add watchdog driver for Sunplus SP7021
+>>
+>> On 11/24/21 6:42 PM, xt.hu[胡先韬] wrote:
+>>> Hi
+>>> 	Thanks for your review. I explain this in detail below the comment.
+>>>
+>>> Best Regards,
+>>> Xiantao
+>>>> -----Original Message-----
+>>>> From: Guenter Roeck [mailto:groeck7@gmail.com] On Behalf Of Guenter Roeck
+>>>> Sent: Wednesday, November 24, 2021 10:25 PM
+>>>> To: xt.hu[胡先韬] <xt.hu@cqplus1.com>
+>>>> Cc: wim@linux-watchdog.org; p.zabel@pengutronix.de; linux-kernel@vger.kernel.org;
+>>>> linux-watchdog@vger.kernel.org; robh+dt@kernel.org; devicetree@vger.kernel.org; Wells Lu 呂芳
+>> 騰
+>>>> <wells.lu@sunplus.com>; qinjian[覃健] <qinjian@cqplus1.com>
+>>>> Subject: Re: [PATCH v2 1/2] watchdog: Add watchdog driver for Sunplus SP7021
+>>>>
+>>>> On Wed, Nov 24, 2021 at 06:41:48PM +0800, Xiantao Hu wrote:
+>>>>> Sunplus SP7021 requires watchdog timer support.
+>>>>> Add watchdog driver to enable this.
+>>>>>
+>>>>> Signed-off-by: Xiantao Hu <xt.hu@cqplus1.com>
+>>>>> ---
+>>>>> +
+>>>>> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+>>>>> +	if (IS_ERR(priv->base))
+>>>>> +		return PTR_ERR(priv->base);
+>>>>> +
+>>>>> +	/* The registers accessed here shared by multiple drivers. */
+>>>>> +	wdt_res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+>>>>
+>>>> This is unusual. Why would other drivers access WDT_CTRL and WDT_CNT registers, and how is it
+>>>> ensured that the other drivers do not interfer with the accesses by this driver ?
+>>>>
+>>>> Normally such a resource would be shared through a parent driver with appropriate access functions
+>> to
+>>>> ensure that accesses are synchronized.
+>>>>
+>>>
+>>> The register used by this driver consists of two parts. The first part which contains WDT_CTRL and
+>> WDT_CNT
+>>> registers is exclusive by watchdog.
+>>> In specially, the second part is belong to a multifunctional register group which control IP and bus.
+>> Refer to
+>>> register manual below:
+>>> -------------------------------------------------------------------------------------------------------------------------------------------------
+>>> MO1_STC_WDG_RST_EN	4	RW		STC Watchdog Timeout Trigger System Reset Enable
+>>> 									0: STC watchdog 2 timeout will not trigger system
+>> reset(default)
+>>> 									1: STC watchdog 2 timeout will trigger system reset
+>>> MO1_RI_WDG_RST_EN		1	RW		RBUS Watchdog Timeout Trigger System Reset Enable
+>>> 									0: RBUS watchdog timeout will not trigger system
+>> reset(default)
+>>> 									1: RBUS watchdog timeout will trigger system reset
+>>> MO1_TIMER_STAND_BY_EN	0	RW		Timer Standby Mode Enable
+>>> 									0: Disable (default)
+>>> 									1: Enable Active high to enter timer standby mode,
+>>> 											default not in standby mode
+>>> -------------------------------------------------------------------------------------------------------------------------------------------------
+>>> You can see that in addition to the bits for watchdog there are bit fields for other modules.
+>>> I use this register bit4 and bit1. Default value is 0 that watchdog internal interrupt signal can't trigger
+>> system
+>>> and RBUS reset. I need set 1 when watchdog probe. Early I implement the operation in
+>>> arch/arm/mach-sunplus/sp7021.c and configure by macro. But in arch/arm64, directory mach-XXX is
+>> removed.
+>>> So I solve in this way. Any better way?
+>>>
+>> If the register at 0x9C000274 is accessed by other drivers, accesses
+>> to it must be protected against each other to avoid race conditions.
+>> How to do that would be up to you.
+>>
+> Hi Guenter,
+> 
+>  From the perspective of software, 0x9C000274 is only accessed during
+> driver probe. If the driver is build-in and only one core is running at kernel
+> startup. There is no competition.
+> The only possibility of an error is to compile the driver into a module. In this
+> case, the register at 0x9C000274 offer MASK_BITS[31:16] which write valid
+> bit for each LSB 16 bits. Refer to the define in driver:
+> #define MASK_SET(mask)		((mask) | (mask << 16))
+> Even if both drivers access the register at the same time, the instructions are
+> executed in order on the RBUS. So as long as the same bit in the same register
+> is not accessed at the same time, no error will occur.
+> 
 
---jv2resdmlukfd3qt
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is inherently risky and racy. I am sure there is a better way to solve this
+without risking race conditions, but I don't have time to analyze it further.
+The above rationale needs to be added in detail to the driver as comments,
+including references to all other drivers accessing the same register or
+memory space.
 
-Hi,
-
-On Wed, Dec 01, 2021 at 06:45:44PM +0300, Evgeny Boger wrote:
-> Hi Quentin,
->=20
-> thank you for the feedback!
->=20
-> 01.12.2021 14:02, Quentin Schulz =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > Hi all,
-> >=20
-> > On Tue, Nov 30, 2021 at 02:58:23AM +0300, Evgeny Boger wrote:
-> > > (added linux-pm@ list and maintainers)
-> > >=20
-> > >=20
-> > > Actually, on second though, I think it might be doable to add voltage=
- to
-> > > temperature conversion to this driver.
-> > >=20
-> > > I think since the NTC thermistor belongs to the battery, not charger,=
- the
-> > > thermistor should be described in monitored battery node.
-> > > So I propose to extend battery node (power/supply/battery.yaml) by ad=
-ding
-> > > something like:
-> > >=20
-> > > thermistor-resistance-temp-table =3D <25 10000>, <35 6530>, ...;
-> > >=20
-> > > This driver will then interpolate between points to report temperatur=
-e.
-> > >=20
-> > I disagree, I think it does not make much sense. This is already done by
-> > the NTC thermistor driver.
-> > The battery "subsystem" already provides operating-range-celsius and
-> > alert-celsius properties for that.
-> > Since the battery is linked to the AXP, all we need is to be able to ask
-> > the NTC thermistor driver to do the conversion from temperature to
-> > voltage of the two voltage values we get from the battery and use the
-> > result as threshold in the AXP registers.
-> > I wouldn't want to have the extrapolation done in two different places.
-> >=20
-> > I can see two ways of specifying that interation:
-> >=20
-> > battery -------------------> axp --------------------> ntc
-> > 	min/max =C2=B0C			request =C2=B0C to V
-> > 				 <--------------------
-> > 					response V
-> >=20
-> > This however would require a phandle in the AXP to the NTC thermistor
-> > driver and I don't feel like it's that good of an idea?
-> >=20
-> > Another way would be to use the battery as a proxy for the voltage
-> > request to ntc.
-> >=20
-> > 		     battery --------------------> axp
-> > 				min/max =C2=B0C
-> > ntc <--------------- 	     <--------------------
-> > 	request =C2=B0C to V		request =C2=B0C to V
-> >      --------------->	     --------------------->
-> > 	response V		response V
-> >=20
-> > This would require a phandle to the ntc thermistor in the battery node,
-> > which kind of makes sense to me. And since the AXP already has knowledge
-> > of the battery, it can request the appropriate value to the battery
-> > which then proxies it to and back from the ntc.
-> >=20
-> > Forgive me for my poor ASCII drawing skills :) hopefully it's good
-> > enough to convey my thoughts.
-> I see quite a few problems with NTC driver approach.
->=20
-> The problem is, I don't know any suitable subsystem for that. NTC
-> is not a subsystem, NTC in kernel is a mere hwmon driver, and also
-> is quite an old one.
->=20
-> Also, we already have iio-afe, which, in a sense, already does pretty much
-> the same as NTC
-> hwmon driver. Maybe using iio-afe is the better idea?
-> But then, I think that's a very complicated interaction for a simple
-> interpolation between points.
->=20
-> Another thing is, in our design we ended up using not a simple 10k NTC
-> thermistor, but a 10k NTC is series with fixed 2.2k.
-> The reason why it's needed is that AXP NTC voltage thresholds are fixed at
-> startup time, and if we somehow have to deal
-> with default thresholds to get different behaviour.=C2=A0 So the
-> resistance-temperature curve in our case is different from any standard
-> NTC. Speaking of "standard" NTC, our supplier has like 15 different models
-> for *each* resistance, which slightly differ in
-> resistance-temperature curve. Adding them all into a driver would be
-> strange.
->=20
-> Personally, I think better approach with NTCs is to place the
-> resistance-temperature tables for bunch of models to .dtsi
-> files, describe the thermistor node in DT and then make all drivers (hwmon
-> NTC, iio-afe, this one) to use this data in the same way
-> it's done with monitored-battery node.
->=20
-> > > We can also adjust PMIC voltage thresholds based on this table and
-> > > "alert-celsius" property already described in battery.yaml.
-> > >=20
-> > > I think the driver should report raw TS voltage as well, because the =
-TS pin
-> > > can also be used as general-purpose ADC pin.
-> > >=20
-> > Since the ntc anyway needs this raw TS voltage and that patch does that,
-> > I think it's fine. Specifically, re-using this pin as a general-purpose
-> > ADC won't impact the current patchset.
-> >=20
-> > What we'll need is to have a pinctrl driver for the few pins in the AXP
-> > which have multiple functions. But that's outside of the scope of this
-> > patchset.
-> Should it really be pinctrl, though? Unfortunately the choice will alter
-> other
-> functions as well. Say, if we use TS pin in GPADC mode, we'll have to
-> disable
-> temperature thresholds and current injection.
-> >=20
-> > Regarding the injected current, I don't have enough knowledge in
-> > electronics to understand how this will change things in the thermistor
-> > since in the NTC thermistor driver there's no logic related to the
-> > actual current being injected. Maybe it is related to some operating
-> > value required by the NTC? I can't say unfortunately.
-> It's basically Ohm's law, so it's not related to the NTC thermistor itsel=
-f,
-> but more to the voltage across NTC that the AXP can measure.
-> Say, if maximum measurable voltage is 3.3V, than the maximum measurable
-> resistance
-> at the given current would be 3.3V/80uA =3D 41 kOhm. In case of 10k NTC i=
-t's
-> about -5C or so.
->=20
-> But again, one can't really alter startup voltage thresholds of the AXP. =
-And
-> also, regardless of
-> settings, at least AXP221s will completely disable TS-based protection if
-> voltage on TS pin is below 0.2V.
-> So at the end, unfortunately, there are not so many options when it comes=
- to
-> the thermistor and the injection current.
-
-Linus W. recently sent a series for NTC support in power-supply
-core, please synchronize with him (added to Cc):
-
-https://lore.kernel.org/linux-pm/20211122234141.3356340-1-linus.walleij@lin=
-aro.org/
-
-(FWIW I don't have any strong opinion about any solution)
-
--- Sebastian
-
---jv2resdmlukfd3qt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmGqgnIACgkQ2O7X88g7
-+prZ/g//a2qPyKtdJ+uEKmjaFcSzXLu0fHssW1T0VP7vFUb+ZxIsNM2cL1PiUtKi
-kCjsE5EOP/JLFI7mzXuYTI4uDFOe3d4DThMGj2pzt69Jv8n3b+jOH5W9ypAIfQPZ
-OQ2E13l7wQi1YFLDdjMnB8YZHEeqK6sxGEtSQs3f0nNnC+QMZ9Y025k+YfXe8VvW
-qqz4veJidfOHAC7bbFVsTBRWq57rB34YC0OcUDoVtN5zHf2rs6IWjeYQNRb4y6qw
-AlELWL3fMxMtt6s8IB7RRhAFMN0JAu6VS6EBTEYqPyemdgwWMb4doKyPlCr8eT/y
-+TeypMnmzw95ZLLawgqGriyx0VjEFb5HxEYT/O2zlnQX+5bVOO/hFPpaMDtvjn+8
-xd4l2zKH5mJwez+RjrJ8WpPZFCavk/1z3b7Pcm1f3TBcXhsKEZ63mBq44/LPC2sk
-sXof43zI6haBl00N0YSoZO5CqXS8uMG0PMybJWhXiivnkh/XujlIjm2nYWvMoPvp
-YHD+T7xAlcxL8RHe2Xk/qDTjWi1Mz/EvP/mS5h4V1Sdpma00JXsp3nPGpWMKe/ed
-jBFU9AT/kpuvFL8iTGTSCO3CVan8myU3GwODl7xL0pimBhYqIqQDm2xXdyM+AKaK
-d1y9Uumzcq+3mZug+zle2/kYQZHUQFW9wkjqgEyvZagA1hEmt/U=
-=kU2b
------END PGP SIGNATURE-----
-
---jv2resdmlukfd3qt--
+Guenter
