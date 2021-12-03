@@ -2,185 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52853467982
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 15:36:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9325467988
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 15:37:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381466AbhLCOj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 09:39:59 -0500
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.50]:16506 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381439AbhLCOj6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:39:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1638542189;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=DH5QNh/jjoJsGNSeHw7LpNq4K5gQZY61cJxKrCgXaY8=;
-    b=RBhvp0KYk5ngjfVI3tVuwIiV9xwyQSEHcc5EdpmX1rDvr2Qtn6xsPNG+waKlwGL7E4
-    L65mKhL5wDCSxHqkD7vdLr6yn8Y3yp6MpTuwtjNKLmspCRT8Tgyw71clJBcSv61vWtzQ
-    Xs2PnGbphqdO7LZ3vRKAkLfAGeCpVpiDxeQcGHfx1fZL/vp6qmJAyRl/jLmYTSQvz/yA
-    tx4JWkhrkUusLWSou4mFGOliqWdorixR7TOL7eBN9V3KuENBbUi58oqxwUMKPs7ZEW3g
-    4T3O4pw4vKB8Imj2G/sN63iajr+QgBCMAiRhReEHkntrbR7g3p4sBxg5m54XKRdeHDRV
-    Edxw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLUrKY7lg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 47.34.10 AUTH)
-    with ESMTPSA id j03bcbxB3EaSvqD
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 3 Dec 2021 15:36:28 +0100 (CET)
-Date:   Fri, 3 Dec 2021 15:36:22 +0100
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 5/5] ASoC: qcom: apq8016_sbc: Allow routing audio through
- QDSP6
-Message-ID: <YaorZnQTwvXo6vrO@gerhold.net>
-References: <20211202145505.58852-1-stephan@gerhold.net>
- <20211202145505.58852-6-stephan@gerhold.net>
- <455604c2-9b73-4b9b-2ce7-890aafe41845@linaro.org>
+        id S1381439AbhLCOlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 09:41:02 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:38543 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1352361AbhLCOlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:41:02 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 9EDDE58017A;
+        Fri,  3 Dec 2021 09:37:37 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Fri, 03 Dec 2021 09:37:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=i+PDizJ4CygpKjnA6GeSt+T0s59
+        0lhPcJnx/bPZhFRM=; b=J4jfRbK2W0THIdVkbDLJx6o7KjK428mCbchaoQWCtED
+        aJxs3mjZxESxpigGG6Pu7/FCOOFiLnhHFMASA2E/2vzTE7dLWHaEocBSAecapGns
+        v/GgTN7mpVdj3daGcFe04TILklv7Z4AjA8CW1SLDpbI7UjVQU5GA4GqvZnc9WH8o
+        zOq4SlZUhjCvuDk8b1hpkG+ggIrS0d0XLAMUa0VLYtIW+PkSfqX7CrEFC28g2X3d
+        6c59U70mAaf2VrWYFu/6ITh3rO+80YLn6UwF14+pNFIxGE3TUjBMxM6jMKolmi3y
+        XcorOTdFCwras1vM56pEBO4AEt0sZ+BckmgLKxUANlg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=i+PDiz
+        J4CygpKjnA6GeSt+T0s590lhPcJnx/bPZhFRM=; b=C/rT67gmxFNiW49lJW8qsT
+        Npf3M89Enwg5Ozfh0uTs3oGF1OgGa57tBFQLtInIEwNBs4BaUHz7LABFVVT2dONm
+        sluQ4ozF3f7AzsIM/E1LvlbNrwmmlaiWptkdl+9ATfH0nN6Vl3PdnwCpSPMFj45L
+        bytURRM8YFZJluWMeHMYL6dUyN5TNvQTpgGhQ6o6rRRPhv9AhjDIOP6+TerVJQMh
+        QrFha3IThGdhgjTUUmkZNmu9ktGTecxRcEyI+YXyuhF8wuxjRGKQuonxE/oKDb0C
+        6Q7DQBW+NZtueWIlNd3RmqXyeRRmWVfHFD8A/sG4tsogjYTMOUyehAEsl/FL9zIg
+        ==
+X-ME-Sender: <xms:sSuqYVrnnQprUF-dMcQsEjVv3YCCYjwCmXWugrST_noZt3m88lZj-w>
+    <xme:sSuqYXp5BP4ch2g2n6hWV8-QgnPG0ZP2S-YvRYFSpOkxT258fQ0NrYiJ8CSbpFQ9U
+    qHgcAETSByssrH-nkM>
+X-ME-Received: <xmr:sSuqYSOt4-w-i0sZtMYI5s9F_XLPvEed10aD4L0Z3P4ws9dQgmXofFwLrJYcKZDD5YPEsElin3lt0s8ApQ64abQtcjH9UXt7Xtyx5TOP6b3lOQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieejgdeilecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeeutdfgjeeuudehvefgvedvtedtudelfffgffekledtffekgedukeejueevieeg
+    udenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:sSuqYQ6WpaWjTrKNkdI3nOEk_-O2I8vri1YOmeMMlfCHhLCaw4XfXw>
+    <xmx:sSuqYU48fQGsdTu-kJD-yfKCpqYRXvPyLQA9UlAi44QbLTsVFFzAVQ>
+    <xmx:sSuqYYhdT-NaidE9kDoeWEw5fYUmA2lYVBvXYwE4REazLm2F9FOcwA>
+    <xmx:sSuqYUjiF_bvGMgFoBtm4yUOOfB7mwQvv5-qkZQvMvsVIJ3m9on9tQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 3 Dec 2021 09:37:36 -0500 (EST)
+Date:   Fri, 3 Dec 2021 15:37:34 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Kevin Tang <kevin3.tang@gmail.com>
+Cc:     maarten.lankhorst@linux.intel.com, sean@poorly.run,
+        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        mark.rutland@arm.com, pony1.wu@gmail.com, orsonzhai@gmail.com,
+        zhang.lyra@gmail.com, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 6/6] drm/sprd: add Unisoc's drm mipi dsi&dphy driver
+Message-ID: <20211203143734.pn4q6wft4s37ckut@houat>
+References: <20211025093418.20545-1-kevin3.tang@gmail.com>
+ <20211025093418.20545-7-kevin3.tang@gmail.com>
+ <20211203103841.vkl3sjsbaohsviou@houat>
+ <CAFPSGXbWv94vShNAQ9xfkDZRKgZTdjRzH9i60ak1NYaPW-OKgA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xcgm6vftby67t4i2"
 Content-Disposition: inline
-In-Reply-To: <455604c2-9b73-4b9b-2ce7-890aafe41845@linaro.org>
+In-Reply-To: <CAFPSGXbWv94vShNAQ9xfkDZRKgZTdjRzH9i60ak1NYaPW-OKgA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Srinivas,
 
-Thanks for your review!
+--xcgm6vftby67t4i2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 03, 2021 at 10:35:08AM +0000, Srinivas Kandagatla wrote:
-> I have tested DB410c this use case in the past using similar patch [1].
-> 
+On Fri, Dec 03, 2021 at 08:34:50PM +0800, Kevin Tang wrote:
+> Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2021=E5=B9=B412=E6=9C=883=E6=
+=97=A5=E5=91=A8=E4=BA=94 18:38=E5=86=99=E9=81=93=EF=BC=9A
+> >
+> > On Mon, Oct 25, 2021 at 05:34:18PM +0800, Kevin Tang wrote:
+> > > @@ -618,9 +619,25 @@ static void sprd_crtc_mode_set_nofb(struct drm_c=
+rtc *crtc)
+> > >  {
+> > >       struct sprd_dpu *dpu =3D to_sprd_crtc(crtc);
+> > >       struct drm_display_mode *mode =3D &crtc->state->adjusted_mode;
+> > > +     struct drm_encoder *encoder;
+> > > +     struct mipi_dsi_device *slave;
+> > > +     struct sprd_dsi *dsi;
+> > >
+> > >       drm_display_mode_to_videomode(mode, &dpu->ctx.vm);
+> > >
+> > > +     drm_for_each_encoder(encoder, crtc->dev) {
+> > > +             if (encoder->crtc !=3D crtc)
+> > > +                     continue;
+> >
+> > encoder->crtc is deprecated. You should be using
+> > encoder->drm_for_each_encoder_mask, using the encoder_mask in
+> > encoder->drm_crtc_state.
+>=20
+> Use drm_for_each_encoder_mask to replace drm_for_each_encoder? like this:
+> drm_for_each_encoder_mask(encoder, crtc->dev, crtc->state->encoder_mask) {
+>     dsi =3D encoder_to_dsi(encoder);
+>     slave =3D dsi->slave;
+>=20
+>     if (slave->mode_flags & MIPI_DSI_MODE_VIDEO)
+>         dpu->ctx.if_type =3D SPRD_DPU_IF_DPI;
+>     else
+>          dpu->ctx.if_type =3D SPRD_DPU_IF_EDPI;
+> }
 
-Did you use a different modem DSP firmware? (An older one maybe?)
-In my tests the newer ones seem to have QDSP6 audio completely broken,
-my DB410c simply rebooted when I tried it.
+Yes
 
-> On 02/12/2021 14:55, Stephan Gerhold wrote:
-> > The apq8016-sbc-sndcard is designed to be used with the LPASS drivers
-> > (bypassing the combined audio/modem DSP in MSM8916/APQ8016).
-> > Make it possible to use QDSP6 audio instead for the msm8916-qdsp6-sndcard.
-> > 
-> > This only requires adding some additional hooks that set up the DPCM
-> > backends correctly. Similar code is already used in drivers for newer
-> > SoCs such as apq8096.c, sdm845.c and sm8250.c.
-> > 
-> > A slightly different initialization sequence is used for the apq8016-sbc
-> > and msm8916-qdsp6 sound card by defining the apq8016_sbc_add_ops()
-> > function as device match data.
-> 
-> Other alternative is to reuse card->name populated from "qcom,model"
-> property to differentiate between both of these.
-> 
-> This should also help in differentiating UCM configs.
-> 
+Maxime
 
-I have "qdsp6" in card->components to differentiate the setups in UCM
-configs. I think this is a more flexible approach than adding it to the
-card model. It can be checked in UCM using ${CardComponents}.
+--xcgm6vftby67t4i2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In my setup the card "model" identifies the device in use (e.g.
-smartphone X with a stereo speaker setup). This device might use the
-DSP bypass (apq8016-sbc-sndcard) or QDSP6 (msm8916-qdsp6-sndcard),
-depending on user preference. In UCM this is detected by checking
-if ${CardComponents} contains "qdsp6" or not.
+-----BEGIN PGP SIGNATURE-----
 
-The reason for supporting both setups is that they both have their
-advantages and disadvantages. The DSP must be used when the modem is
-needed, but otherwise the LPASS driver tends to give more easy control
-about sample rate, latency etc.
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCYaorrgAKCRDj7w1vZxhR
+xeExAP9ZFUc9viR8jVqxFYksuwT5OhewO0DsPjv856NwUpY+EQEAmIOyKr/k09XD
+mqk6Hu3g1notikrNRfGp2DSQV5MkYgg=
+=yyH3
+-----END PGP SIGNATURE-----
 
-> 
-> > 
-> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
-> 
-> Few minor nits, other than that it LGTM,
-> 
-> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> 
-> > ---
-> >   sound/soc/qcom/apq8016_sbc.c | 134 +++++++++++++++++++++++++++++++++--
-> >   1 file changed, 129 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/sound/soc/qcom/apq8016_sbc.c b/sound/soc/qcom/apq8016_sbc.c
-> > index ba2a98268ee4..f9d69375320e 100644
-> > --- a/sound/soc/qcom/apq8016_sbc.c
-> > +++ b/sound/soc/qcom/apq8016_sbc.c
-> > [...]
-> > +static int msm8916_qdsp6_startup(struct snd_pcm_substream *substream)
-> > +{
-> > +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> > +	struct snd_soc_card *card = rtd->card;
-> > +	struct apq8016_sbc_data *data = snd_soc_card_get_drvdata(card);
-> > +	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> > +	int mi2s, ret;
-> > +
-> > +	mi2s = qdsp6_dai_get_lpass_id(cpu_dai);
-> > +	if (mi2s < 0)
-> > +		return mi2s;
-> > +
-> > +	if (++data->mi2s_clk_count[mi2s] > 1)
-> > +		return 0;
-> > +
-> 
-> Am assuming that as you are not setting any DIGITAL CDC clock here you might
-> be using an external codec.
-> 
-
-For apq8016-sbc the digital clock is controlled by msm8916-wcd-digital
-through the reference in the device tree (<&gcc GCC_CODEC_DIGCODEC_CLK>).
-It must be carefully managed, because it is needed for register access
-in that driver.
-
-Since QDSP6 also allows controlling this clock though LPAIF_DIG_CLK
-it is a bit of a hack to bypass it using the GCC driver. However, I kept
-the same setup for simplicity and it has been working just fine so far.
-
-AFAICT in your commit you simply turn on the clock twice, once directly
-using GCC and once indirectly via LPAIF_DIG_CLK in QDSP6. :-)
-
-> > +	ret = snd_soc_dai_set_sysclk(cpu_dai, LPAIF_BIT_CLK, MI2S_BCLK_RATE, 0);
-> > +	if (ret)
-> > +		dev_err(card->dev, "Failed to enable LPAIF bit clk: %d\n", ret);
-> > +	return ret;
-> > +}
-> > +
-> > [...]
-> > @@ -148,11 +266,16 @@ static const struct snd_soc_dapm_widget apq8016_sbc_dapm_widgets[] = {
-> >   static int apq8016_sbc_platform_probe(struct platform_device *pdev)
-> >   {
-> > +	void (*add_ops)(struct snd_soc_card *card);
-> >   	struct device *dev = &pdev->dev;
-> >   	struct snd_soc_card *card;
-> >   	struct apq8016_sbc_data *data;
-> >   	int ret;
-> > +	add_ops = device_get_match_data(&pdev->dev);
-> > +	if (!add_ops)
-> > +		return -EINVAL;
-> 
-> We will never hit the error case here because without a match we can not
-> even enter the probe function.
-> 
-
-Theoretically it's possible to create platform devices through other
-ways than the device tree (think of old board C files for example).
-I agree that nobody should do that, but having this check here
-at least avoids a NULL pointer dereference in this unlikely scenario.
-
-Please let me know if I should remove it anyway, that's fine for me!
-
-Thanks,
-Stephan 
+--xcgm6vftby67t4i2--
