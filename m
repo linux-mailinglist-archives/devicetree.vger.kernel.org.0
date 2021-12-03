@@ -2,285 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69B2A4670FA
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 04:56:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C0474670FD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 04:57:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229907AbhLCD71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 2 Dec 2021 22:59:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50284 "EHLO
+        id S1378410AbhLCEA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 2 Dec 2021 23:00:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239074AbhLCD70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 22:59:26 -0500
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49A75C06174A;
-        Thu,  2 Dec 2021 19:56:03 -0800 (PST)
-Received: by mail-lf1-x12d.google.com with SMTP id b1so3286400lfs.13;
-        Thu, 02 Dec 2021 19:56:03 -0800 (PST)
+        with ESMTP id S243765AbhLCEA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 2 Dec 2021 23:00:58 -0500
+Received: from mail-qk1-x732.google.com (mail-qk1-x732.google.com [IPv6:2607:f8b0:4864:20::732])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B548DC061757
+        for <devicetree@vger.kernel.org>; Thu,  2 Dec 2021 19:57:34 -0800 (PST)
+Received: by mail-qk1-x732.google.com with SMTP id p4so2170931qkm.7
+        for <devicetree@vger.kernel.org>; Thu, 02 Dec 2021 19:57:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RqWClX8wf746RWljknNlhrCQutL2BNblsj8hgdUcX34=;
-        b=Z0PiBT5EJSG48ueRdwGCYZ2YEGpS1/EI5veqmY2d+e49m8I+Igi8YFh9LRiov19ajJ
-         h3WbYTKuzknud+jaaJavQDJZWYzl1ZqLw+Sl5oFc1BkBLgTziaXm6taEb8U4HzzR/OwM
-         ZTK9RCNuA/ckTzS6+m9lDHq2R4nKImctiFJUSG/Zp7SKMGudHMxkGn3DT/IU3jeyydoS
-         gSIhb+eBFPE8eNWSjjcxZCB+5jhJcRtNOe2Q8T8PpLvaHkvn0sbBlLJ2vzcWtLZCBg+k
-         R+yGnX1dtIPTJL3EMuI7CvXFvKnYXW5PQYqrxVULcwh4379sNYt9efWtCOGXkziyX1DR
-         xjiw==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=b1g6znamP/o+sXqh0MmEbs0eNjMFa6xH7xXeAUhEo3E=;
+        b=MdinDDH4OFVcc5jcWF/c10RduGORbHRokRkClxhNTV2BBCOMdtiovEB/GuNCnjFN5Z
+         I/qQWcft9TT/Aa730JCaAkrExTPFykLEIz/CJeV3OUPX+K3Dg+2IGiDj6ceEoatg/8UL
+         PZvbzXFFAzqzcUbMm5qTz/YFExiGsMhwlK+SZgraDw90c8T9Ex+GbAHr1696ft7HTsdS
+         uF/uPJvIefaYcIcxxhOqqtTj31Lnx4smqmhDNbfI4jJ6SS7C8X38rr/39n8YX2Z4Gfg1
+         tSrF3ts6yil9+qySTA/ar+SY4l781/EmoGYJczUeUyVB2Ry8L3dJ0V2w6Ugu/83oZrtO
+         pM+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RqWClX8wf746RWljknNlhrCQutL2BNblsj8hgdUcX34=;
-        b=kOGZs/4AEQ8f6Ote3PrFo4ADwNytlupgGZoLQXGgE+OPHYfo13wtD5F1/r2/pVHyeQ
-         9C5+Ki6pwCJKAVFLFLj2CXF5TuoCbY93CTVDJh+UjcHxUzg2uPEZ54NcoUXghWfjBACk
-         szRcMpLaVoEPLnza6fB39HXyQ9c3nJNQBWfnL+tW3wZ1haZ4LdzTHpc/CfQZfcWKW0Zi
-         w8Ozg7DoCqIfpgRHZuciZgERyKeMjEmamm25WOFyprFXoOUa4mrC9Lzg3ENpohJCH2GU
-         3rvp1AYtZwp0yoRlDB22dRU6bRH6uVu9opxs0VejR7WQxxSJI7R7/K733ep3GkRoTVsV
-         56eQ==
-X-Gm-Message-State: AOAM533wB1EFQv9/3Fl6v/ABzPhW/lMENSJ06J09MfBhpvfLyf3IQ0iN
-        BSP4We2iKQkXa3vyBCG+wCSxh8bUPJPpK+qv6Rs=
-X-Google-Smtp-Source: ABdhPJzqLqjG1FfR5n/iHBX9kenXQxkhOBEtQ/bCp2OeEdSaMzLUwYt2983bqJXPJgA2PCkZv0fFA79sHvNOCjA7XT8=
-X-Received: by 2002:a05:6512:3988:: with SMTP id j8mr15859575lfu.599.1638503761493;
- Thu, 02 Dec 2021 19:56:01 -0800 (PST)
-MIME-Version: 1.0
-References: <537742e7af4a21baf79429469ba7c30947ddca7a.1637362542.git.plr.vincent@gmail.com>
- <mhng-25baa8a5-d7c1-4a37-8489-123fd12499f0@palmer-ri-x1c9>
-In-Reply-To: <mhng-25baa8a5-d7c1-4a37-8489-123fd12499f0@palmer-ri-x1c9>
-From:   David Abdurachmanov <david.abdurachmanov@gmail.com>
-Date:   Fri, 3 Dec 2021 05:55:25 +0200
-Message-ID: <CAEn-LTpjqroMXbncWrxa9+3fMyF2jQUkhPocO18qAd2PQJKZFA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] riscv: dts: sifive unmatched: Fix regulator for
- board rev3
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     plr.vincent@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        krzysztof.kozlowski@canonical.com, qiuwenbo@kylinos.com.cn,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        David Abdurachmanov <david.abdurachmanov@sifive.com>
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=b1g6znamP/o+sXqh0MmEbs0eNjMFa6xH7xXeAUhEo3E=;
+        b=AI0nR//gSUNJpvXBc2MxBS/fXE9gG6mPeZFsdRR52ypS7Bh8+Uth+lABNsI83+gGU7
+         WD+yvh9FgVs3hx1PE0tllCWdnjlmuOqj7IwlLPesfMzsoVpc0RCKTTDWLFQQO1EupCD9
+         1nrQ7OKx8WArE9lGYiCcFGVhyLLMwupNLrtMolaaeFTu2gHpEIAdsAyhNoOWkjqon5lC
+         A51UA5WQf2BH3pUS5a/TfBYIkgBAF35ubvwUuq6/eNi9orK7cNfvV3nsq23nPkuey2Hc
+         UkYpt21PC2mT1PtXgWGgrD+jZKzKsubLsrc2QJCiDr4d4Ejk7oH4rAB07+MFfW0pzgV9
+         gpBg==
+X-Gm-Message-State: AOAM531wNTC+jTrzKT9+3PEd7CpYhgeUvmNHbTp7+Kg07bkzROuchDu2
+        m/WXtz8OgcdNsFRctUlWyWeGog==
+X-Google-Smtp-Source: ABdhPJzutcbpudZeo05rbBZZri45oX+slCqUqFIbN1dJ2eUHHNM6A31VnwVHxXSkG/j9FF7+yyb6UQ==
+X-Received: by 2002:a05:620a:2a05:: with SMTP id o5mr15885891qkp.527.1638503853879;
+        Thu, 02 Dec 2021 19:57:33 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id e17sm1473192qtw.18.2021.12.02.19.57.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Dec 2021 19:57:32 -0800 (PST)
+Message-ID: <b30924749421fe30df8a559e9a9ecd21b8d257e6.camel@ndufresne.ca>
+Subject: Re: [RFC V3 0/2] arm64: imx8mm: Enable Hantro VPUs
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Adam Ford <aford173@gmail.com>, linux-media@vger.kernel.org
+Cc:     ezequiel@vanguardiasur.com.ar, tharvey@gateworks.com,
+        aford@beaconembedded.com, hverkuil-cisco@xs4all.nl,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-staging@lists.linux.dev
+Date:   Thu, 02 Dec 2021 22:57:30 -0500
+In-Reply-To: <20211202041627.291625-1-aford173@gmail.com>
+References: <20211202041627.291625-1-aford173@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.1 (3.42.1-1.fc35) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"
+Le mercredi 01 décembre 2021 à 22:16 -0600, Adam Ford a écrit :
+> The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
+> to be related to the video decoders used on the i.MX8MQ, but because of
+> how the Mini handles the power domains, the VPU driver does not need to
+> handle all the functions, so a new compatible flag is required.
+> 
+> V3 is rebased from git://linuxtv.org/hverkuil/media_tree.git for-v5.17c
+> This branch has support for VP9.
+> 
+> I set cma=512M, but this may not be enough memory as some tests appeard to run out of memory
 
-On Thu, Dec 2, 2021 at 11:45 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
->
-> On Fri, 19 Nov 2021 14:55:41 PST (-0800), plr.vincent@gmail.com wrote:
-> > The existing values are rejected by the da9063 regulator driver, as they
-> > are unachievable with the declared chip setup (non-merged vcore and bmem
-> > are unable to provide the declared curent).
-> >
-> > Fix voltages to match rev3 schematics, which also matches their boot-up
->
-> There's a few references to rev 3 here.  I'm not sure if that means we
-> should have multiple device trees -- this one seems pretty benign, but
-> some of the regulator stuff worries me there, where anything rev 3
-> specific might not be safe on other revisions.
+Consider passing -j1 to fluster and using patience, this will spare some memory.
+You can also increase the timeout (like -t 60), that often helps when CMA is
+involved (due to software conversion happening). Thanks for the serious testing,
+this is really appreciated that your submission really reflects the state.
 
-As I mentioned some time before there is no such thing as Unmatched "A00".
+> 
+> V3 of this series has several changes:
+> 
+> Update imx8m_vpu_hw to add missing 'reg' reference names for G2 and include references to VP9
+> Update device tree to remove IMX8MQ_VPU_RESET, remove some duplicate vpu clock parenting
+> Fix missing reg-names from vpu_g2 node.
+> Apply patch [1] to manage the power domains powering down.
+> [1] - https://lore.kernel.org/linux-arm-kernel/20211016210547.171717-1-marex@denx.de/t/
+> 
+> With the above, the following Fluster scores are produced:
+> 
+> G1:
+> ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
+> Ran 90/135 tests successfully               in 74.406 secs
 
-The production boards is:
-PCB revision: 3
-BOM revision: B
-BOM variant: 0
+This matches my results on imx8mq.
 
-Or "3B0".
+> 
+> ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
+> Ran 55/61 tests successfully               in 8.080 secs
 
-There are a few "3A0" boards out in the wild, but the changes are
-minimal and the same DT applies.
+Idem.
 
->
-> Did any previous revisions make it out of the lab?
->
-> > configuration within the chip's available precision.
-> > Declare bcore1/bcore2 and bmem/bio as merged.
-> > Set ldo09 and ldo10 as always-on as their consumers are not declared but
-> > exist.
-> > Drop ldo current limits as there is no current limit feature for these
-> > regulators in the DA9063. Fixes warnings like:
-> >   DA9063_LDO3: Operation of current configuration missing
-> >
-> > Signed-off-by: Vincent Pelletier <plr.vincent@gmail.com>
-> >
-> > ---
-> > Changes since v2:
-> > - Fix end-of-commit-message separator so change lists do not end up in them.
-> > Changes since v1:
-> > - Remove trailing "." on subject line.
-> > ---
-> >  .../boot/dts/sifive/hifive-unmatched-a00.dts  | 84 ++++++-------------
-> >  1 file changed, 24 insertions(+), 60 deletions(-)
-> >
-> > diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> > index 6e7775fdae32..1abad0eec02e 100644
-> > --- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> > +++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-> > @@ -93,47 +93,31 @@ wdt {
-> >               };
-> >
-> >               regulators {
-> > -                     vdd_bcore1: bcore1 {
-> > -                             regulator-min-microvolt = <900000>;
-> > -                             regulator-max-microvolt = <900000>;
-> > -                             regulator-min-microamp = <5000000>;
-> > -                             regulator-max-microamp = <5000000>;
-> > -                             regulator-always-on;
-> > -                     };
-> > -
-> > -                     vdd_bcore2: bcore2 {
-> > -                             regulator-min-microvolt = <900000>;
-> > -                             regulator-max-microvolt = <900000>;
-> > -                             regulator-min-microamp = <5000000>;
-> > -                             regulator-max-microamp = <5000000>;
-> > +                     vdd_bcore: bcores-merged {
-> > +                             regulator-min-microvolt = <1050000>;
-> > +                             regulator-max-microvolt = <1050000>;
-> > +                             regulator-min-microamp = <4800000>;
-> > +                             regulator-max-microamp = <4800000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_bpro: bpro {
-> >                               regulator-min-microvolt = <1800000>;
-> >                               regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <2500000>;
-> > -                             regulator-max-microamp = <2500000>;
-> > +                             regulator-min-microamp = <2400000>;
-> > +                             regulator-max-microamp = <2400000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_bperi: bperi {
-> > -                             regulator-min-microvolt = <1050000>;
-> > -                             regulator-max-microvolt = <1050000>;
-> > +                             regulator-min-microvolt = <1060000>;
-> > +                             regulator-max-microvolt = <1060000>;
-> >                               regulator-min-microamp = <1500000>;
-> >                               regulator-max-microamp = <1500000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> > -                     vdd_bmem: bmem {
-> > -                             regulator-min-microvolt = <1200000>;
-> > -                             regulator-max-microvolt = <1200000>;
-> > -                             regulator-min-microamp = <3000000>;
-> > -                             regulator-max-microamp = <3000000>;
-> > -                             regulator-always-on;
-> > -                     };
-> > -
-> > -                     vdd_bio: bio {
-> > +                     vdd_bmem_bio: bmem-bio-merged {
-> >                               regulator-min-microvolt = <1200000>;
-> >                               regulator-max-microvolt = <1200000>;
-> >                               regulator-min-microamp = <3000000>;
-> > @@ -144,86 +128,66 @@ vdd_bio: bio {
-> >                       vdd_ldo1: ldo1 {
-> >                               regulator-min-microvolt = <1800000>;
-> >                               regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <100000>;
-> > -                             regulator-max-microamp = <100000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo2: ldo2 {
-> >                               regulator-min-microvolt = <1800000>;
-> >                               regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo3: ldo3 {
-> > -                             regulator-min-microvolt = <1800000>;
-> > -                             regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> > +                             regulator-min-microvolt = <3300000>;
-> > +                             regulator-max-microvolt = <3300000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo4: ldo4 {
-> > -                             regulator-min-microvolt = <1800000>;
-> > -                             regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> > +                             regulator-min-microvolt = <2500000>;
-> > +                             regulator-max-microvolt = <2500000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo5: ldo5 {
-> > -                             regulator-min-microvolt = <1800000>;
-> > -                             regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <100000>;
-> > -                             regulator-max-microamp = <100000>;
-> > +                             regulator-min-microvolt = <3300000>;
-> > +                             regulator-max-microvolt = <3300000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo6: ldo6 {
-> > -                             regulator-min-microvolt = <3300000>;
-> > -                             regulator-max-microvolt = <3300000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> > +                             regulator-min-microvolt = <1800000>;
-> > +                             regulator-max-microvolt = <1800000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo7: ldo7 {
-> > -                             regulator-min-microvolt = <1800000>;
-> > -                             regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> > +                             regulator-min-microvolt = <3300000>;
-> > +                             regulator-max-microvolt = <3300000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo8: ldo8 {
-> > -                             regulator-min-microvolt = <1800000>;
-> > -                             regulator-max-microvolt = <1800000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> > +                             regulator-min-microvolt = <3300000>;
-> > +                             regulator-max-microvolt = <3300000>;
-> >                               regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ld09: ldo9 {
-> >                               regulator-min-microvolt = <1050000>;
-> >                               regulator-max-microvolt = <1050000>;
-> > -                             regulator-min-microamp = <200000>;
-> > -                             regulator-max-microamp = <200000>;
-> > +                             regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo10: ldo10 {
-> >                               regulator-min-microvolt = <1000000>;
-> >                               regulator-max-microvolt = <1000000>;
-> > -                             regulator-min-microamp = <300000>;
-> > -                             regulator-max-microamp = <300000>;
-> > +                             regulator-always-on;
-> >                       };
-> >
-> >                       vdd_ldo11: ldo11 {
-> >                               regulator-min-microvolt = <2500000>;
-> >                               regulator-max-microvolt = <2500000>;
-> > -                             regulator-min-microamp = <300000>;
-> > -                             regulator-max-microamp = <300000>;
-> >                               regulator-always-on;
-> >                       };
-> >               };
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> 
+> G2:
+> ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
+> Ran 127/303 tests successfully               in 203.873 secs
+
+Benjamin reports 129, it could be flux. This is still a bit early, hence the low
+score. But most streams do playback normally.
+
+> 
+> Fluster and G-Streamer were both built from their respective git repos using their respective master/main branches.
+
+That gave me an idea, I'll try and print the GStreamer version/commit inside
+fluster along with fluster own commit (ideally in the short summary).
+
+> 
+> 
+> Adam Ford (2):
+>   media: hantro: Add support for i.MX8M Mini
+>   arm64: dts: imx8mm: Enable VPU-G1 and VPU-G2
+> 
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi   | 41 +++++++++++++
+>  drivers/staging/media/hantro/hantro_drv.c   |  2 +
+>  drivers/staging/media/hantro/hantro_hw.h    |  2 +
+>  drivers/staging/media/hantro/imx8m_vpu_hw.c | 65 +++++++++++++++++++++
+>  4 files changed, 110 insertions(+)
+> 
+
