@@ -2,211 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3B14676F6
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 13:03:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 200F04676FE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 13:04:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1380672AbhLCMGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 07:06:24 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:28139 "EHLO smtp2.axis.com"
+        id S1380692AbhLCMIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 07:08:05 -0500
+Received: from foss.arm.com ([217.140.110.172]:48358 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S230154AbhLCMGX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Dec 2021 07:06:23 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1638532980;
-  x=1670068980;
-  h=date:to:cc:subject:message-id:references:mime-version:
-   content-transfer-encoding:in-reply-to:from;
-  bh=yj/0xNzd5mKJtxPQc4qwK79KpAgK+A6FMJkVDzGH4Bk=;
-  b=MsTxrN8hYYCRgGPPStN2DTIQ4TSW+Kkg6GSE5LWOGVN/vvfurrb/0Iqr
-   UJ0eCbBkqp3gni6PNnGHTlRd60PKQMDq6iRiPJIkSpD7BX0i8HPNQ8Mec
-   vs6BQTtD2CEqcbMBFcMCXginHvDfUirfzCujtwtJ5ana2FrfjbWGhMCd5
-   RVQsosljlrJZLsp1HOcrWPUfOpnJk8y0TsCnx0rlpRc71QnWlCSdhUVJG
-   RoETOfg9ka1fHIfy6kUcuDkTW1o2B+CxHYOoiu3Sd1m3DPyQIxKC7KYZ8
-   8Mhky6Np1MYgIrhlFFDF8hzqiU7jc4oFw0F7gfgoWKOqpK8izvZsn1Bbd
-   g==;
-Date:   Fri, 3 Dec 2021 13:02:58 +0100
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     =?iso-8859-1?Q?M=E5rten?= Lindahl <Marten.Lindahl@axis.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        id S1380690AbhLCMID (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Dec 2021 07:08:03 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BAA281396;
+        Fri,  3 Dec 2021 04:04:39 -0800 (PST)
+Received: from FVFF77S0Q05N (unknown [10.57.66.214])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF9613F5A1;
+        Fri,  3 Dec 2021 04:04:37 -0800 (PST)
+Date:   Fri, 3 Dec 2021 12:04:35 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Doug Anderson <dianders@google.com>, kernel <kernel@axis.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
-Subject: Re: [PATCH 3/4] mmc: dw_mmc: Add quirk for extended data read timeout
-Message-ID: <20211203120258.GB23260@axis.com>
-References: <20211201153804.27655-1-marten.lindahl@axis.com>
- <20211201153804.27655-4-marten.lindahl@axis.com>
- <2875d5c8-dc98-0e3c-41b8-c71bd439ced4@canonical.com>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v2 8/8] drivers/perf: Add Apple icestorm/firestorm CPU
+ PMU driver
+Message-ID: <YaoH07BzWSLKQ6K3@FVFF77S0Q05N>
+References: <20211201134909.390490-1-maz@kernel.org>
+ <20211201134909.390490-9-maz@kernel.org>
+ <YaepolizIKkzDQoV@FVFF77S0Q05N>
+ <877dcnm2wt.wl-maz@kernel.org>
+ <Yajwydy37psEPaS2@lakrids>
+ <875ys6lype.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2875d5c8-dc98-0e3c-41b8-c71bd439ced4@canonical.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-From:   Marten Lindahl <martenli@axis.com>
+In-Reply-To: <875ys6lype.wl-maz@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 02, 2021 at 09:39:30AM +0100, Krzysztof Kozlowski wrote:
-
-Hi Krzysztof!
-Thanks for looking at this!
-
-> On 01/12/2021 16:38, Mårten Lindahl wrote:
-> > Current dw_mci driver supports a TMOUT register which consists of a 24
-> > bit field (TMOUT[31:8]) for the DATA_TIMEOUT. The maximum value of this
-> > field is 0xFFFFFF, which with a 200MHz clock will give a full DRTO of:
+On Fri, Dec 03, 2021 at 11:22:53AM +0000, Marc Zyngier wrote:
+> On Thu, 02 Dec 2021 16:14:01 +0000, Mark Rutland <mark.rutland@arm.com> wrote:
+> > On Thu, Dec 02, 2021 at 03:39:46PM +0000, Marc Zyngier wrote:
+> > > On Wed, 01 Dec 2021 16:58:10 +0000, Mark Rutland <mark.rutland@arm.com> wrote:
+> > > > On Wed, Dec 01, 2021 at 01:49:09PM +0000, Marc Zyngier wrote:
+> > > > > +	state = read_sysreg_s(SYS_IMP_APL_PMCR0_EL1);
+> > > > > +	overflow = read_sysreg_s(SYS_IMP_APL_PMSR_EL1);
+> > > > 
+> > > > I assume the overflow behaviour is free-running rather than stopping?
+> > > 
+> > > Configurable, apparently. At the moment, I set it to stop on overflow.
+> > > Happy to change the behaviour though.
 > > 
-> > 0xFFFFFF / 200000000 => ~84 ms
+> > The architected PMU continues counting upon overflow (which prevents
+> > losing counts around the overlflow occurring), so I'd prefer that.
 > > 
-> > However, the ARTPEC-8 SoC DWMMC IP version has a TMOUT register with an
-> > extended DATA_TIMEOUT field, which supports longer timers for the DRTO.
-> > In this version the DATA_TIMEOUT field is split into two, which with the
-> > same 200MHz clock as above will allow a maximum timeout of:
-> > 
-> > ((TMOUT[10:8] -1) * 0xFFFFFF + TMOUT[31:11] * 8) / 200000000 => ~587 ms
-> > 
-> > Add a quirk to support this. The quirk is enabled for ARTPEC-8 SoCs.
-> > 
-> > Signed-off-by: Mårten Lindahl <marten.lindahl@axis.com>
-> > ---
-> >  drivers/mmc/host/dw_mmc-exynos.c |  5 +++++
-> >  drivers/mmc/host/dw_mmc.c        | 33 ++++++++++++++++++++++++++++----
-> >  drivers/mmc/host/dw_mmc.h        |  7 +++++++
-> >  3 files changed, 41 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/mmc/host/dw_mmc-exynos.c b/drivers/mmc/host/dw_mmc-exynos.c
-> > index cae7c94b5d6e..6ae9c0ec1282 100644
-> > --- a/drivers/mmc/host/dw_mmc-exynos.c
-> > +++ b/drivers/mmc/host/dw_mmc-exynos.c
-> > @@ -127,6 +127,11 @@ static int dw_mci_exynos_priv_init(struct dw_mci *host)
-> >  				DQS_CTRL_GET_RD_DELAY(priv->saved_strobe_ctrl);
-> >  	}
-> >  
-> > +	if (priv->ctrl_type == DW_MCI_TYPE_ARTPEC8) {
-> > +		/* Quirk needed for ARTPEC-8 SoCs */
-> > +		host->quirks |= DW_MMC_QUIRK_EXTENDED_TMOUT;
-> > +	}
-> > +
-> >  	host->bus_hz /= (priv->ciu_div + 1);
-> >  
-> >  	return 0;
-> > diff --git a/drivers/mmc/host/dw_mmc.c b/drivers/mmc/host/dw_mmc.c
-> > index f2a14a434bef..45ea9fd97a6a 100644
-> > --- a/drivers/mmc/host/dw_mmc.c
-> > +++ b/drivers/mmc/host/dw_mmc.c
-> > @@ -1289,6 +1289,7 @@ static void dw_mci_set_data_timeout(struct dw_mci *host,
-> >  {
-> >  	u32 clk_div, tmout;
-> >  	u64 tmp;
-> > +	unsigned int tmp2;
-> >  
-> >  	clk_div = (mci_readl(host, CLKDIV) & 0xFF) * 2;
-> >  	if (clk_div == 0)
-> > @@ -1301,10 +1302,28 @@ static void dw_mci_set_data_timeout(struct dw_mci *host,
-> >  	tmout = 0xFF; /* Set maximum */
-> >  
-> >  	/* TMOUT[31:8] (DATA_TIMEOUT) */
-> > -	if (!tmp || tmp > 0xFFFFFF)
-> > -		tmout |= (0xFFFFFF << 8);
-> > -	else
-> > -		tmout |= (tmp & 0xFFFFFF) << 8;
-> > +	if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT) {
-> > +		/*
-> > +		 * Extended HW timer (max = 0x6FFFFF2):
-> > +		 * ((TMOUT[10:8] - 1) * 0xFFFFFF + TMOUT[31:11] * 8)
-> > +		 */
-> > +		if (!tmp || tmp > 0x6FFFFF2)
-> > +			tmout |= (0xFFFFFF << 8);
-> > +		else {
-> > +			/* TMOUT[10:8] */
-> > +			tmp2 = (((unsigned int)tmp / 0xFFFFFF) + 1) & 0x7;
-> > +			tmout |= tmp2 << 8;
-> > +
-> > +			/* TMOUT[31:11] */
-> > +			tmp = tmp - ((tmp2 - 1) * 0xFFFFFF);
-> > +			tmout |= (tmp & 0xFFFFF8) << 8;
-> > +		}
-> > +	} else {
-> > +		if (!tmp || tmp > 0xFFFFFF)
-> > +			tmout |= (0xFFFFFF << 8);
-> > +		else
-> > +			tmout |= (tmp & 0xFFFFFF) << 8;
-> > +	}
-> >  
-> >  	mci_writel(host, TMOUT, tmout);
-> >  	dev_dbg(host->dev, "timeout_ns: %u => TMOUT[31:8]: 0x%#08x",
-> > @@ -2005,9 +2024,15 @@ static void dw_mci_set_drto(struct dw_mci *host)
-> >  	if (drto_div == 0)
-> >  		drto_div = 1;
-> >  
-> > +	if (host->quirks & DW_MMC_QUIRK_EXTENDED_TMOUT)
-> > +		drto_clks = (((drto_clks & 0x7) - 1) * 0xFFFFFF) +
-> > +			((drto_clks & 0xFFFFF8));
-> > +
-> >  	drto_ms = DIV_ROUND_UP_ULL((u64)MSEC_PER_SEC * drto_clks * drto_div,
-> >  				   host->bus_hz);
-> >  
-> > +	dev_dbg(host->dev, "drto_ms: %u\n", drto_ms);
-> > +
-> >  	/* add a bit spare time */
-> >  	drto_ms += 10;
-> >  
-> > diff --git a/drivers/mmc/host/dw_mmc.h b/drivers/mmc/host/dw_mmc.h
-> > index 771d5afa3136..071f4479f166 100644
-> > --- a/drivers/mmc/host/dw_mmc.h
-> > +++ b/drivers/mmc/host/dw_mmc.h
-> > @@ -118,6 +118,7 @@ struct dw_mci_dma_slave {
-> >   * @part_buf: Simple buffer for partial fifo reads/writes.
-> >   * @push_data: Pointer to FIFO push function.
-> >   * @pull_data: Pointer to FIFO pull function.
-> > + * @quirks: Set of quirks that apply to specific versions of the IP.
-> >   * @vqmmc_enabled: Status of vqmmc, should be true or false.
-> >   * @irq_flags: The flags to be passed to request_irq.
-> >   * @irq: The irq value to be passed to request_irq.
-> > @@ -223,6 +224,9 @@ struct dw_mci {
-> >  	void (*push_data)(struct dw_mci *host, void *buf, int cnt);
-> >  	void (*pull_data)(struct dw_mci *host, void *buf, int cnt);
-> >  
-> > +	/* Workaround flags */
+> > Is that behaviour per-counter, or for the PMU as a whole?
 > 
-> No need for this comment - you already described the field in kerneldoc.
+> It is global. This will probably require some additional rework to
+> clear bit 47 in overflowing counters, which we can't do atomically.
 
-Ok, will remove it.
+Ah; I see.
 
-> 
-> > +	u32			quirks;
-> > +
-> >  	bool			vqmmc_enabled;
-> >  	unsigned long		irq_flags; /* IRQ flags */
-> >  	int			irq;
-> > @@ -274,6 +278,9 @@ struct dw_mci_board {
-> >  	struct dma_pdata *data;
-> >  };
-> >  
-> > +/* Support for longer data read timeout */
-> > +#define DW_MMC_QUIRK_EXTENDED_TMOUT	(1<<0)
-> 
-> BIT()
+To calrify my comment above, the reason for wanting the counter to keep
+counting is to count during the window between the IRQ being asserted and the
+PMU IRQ handler being invoked, and it's fine for there to be a blackout period
+*within* the PMU IRQ handler.
 
-Will fix.
+So for example it would be fine to have:
 
-> 
-> > +
-> >  #define DW_MMC_240A		0x240a
-> >  #define DW_MMC_280A		0x280a
-> >  
-> > 
-> 
+	irq_handler() 
+	{
+		if (!any_counter_overflowed())
+			return IRQ_NONE;
 
-Kind regards
-Mårten
-> 
-> Best regards,
-> Krzysztof
+		stop_all_counters();
+
+		for_each_counter(c) {
+			handle_counter(c);
+		}
+		
+		start_all_counters();
+
+		return IRQ_HANDLED;
+
+	}
+
+... and I think with that the regular per-counter period reprogramming would do
+the right thing?
+
+Really, all the PMU drivers should do that so that repgoramming is consistent
+and we don't get skewed groups.
+
+Thanks,
+Mark.
