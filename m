@@ -2,104 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1528846808F
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 00:34:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C654680A2
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 00:34:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1383465AbhLCXhu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 18:37:50 -0500
-Received: from mail-oi1-f179.google.com ([209.85.167.179]:39453 "EHLO
-        mail-oi1-f179.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1383460AbhLCXhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 18:37:47 -0500
-Received: by mail-oi1-f179.google.com with SMTP id bf8so8817170oib.6;
-        Fri, 03 Dec 2021 15:34:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=ZUn8FQjnjR741tg20DRe7x9CBP4T6IYKxGJddf96ELA=;
-        b=bahHkcjGCTGScl2PChNQXZiOIHCaooNteHlLJR4/0//WOmEI3p9/jBg3C8N3+jsUqQ
-         YyxLDOi5vkt58Y95xH0BPJ9UkNIlH+9K4wKWn5JUkgZl9zQG/iGx9XOtiyshrzcr3umd
-         kVEflZ5KWWRs5YYcRAFDscmZ6JZ879fuWgLGhJCb0rfRyrcmEhddb6MNN3wuroUqQGMX
-         xMFSarKog8NegfnkiKSCcaJlST4J1kOSkWSY+q1uRqDgDXOTZietYY4mXzxvyOdoFyor
-         FA/0cBvC0pz1oRF3UWlXfinbbfhvXho5QYlfQss01/3UubkdiuEVQMbrWBwDrhykrhCB
-         po8Q==
-X-Gm-Message-State: AOAM531afPDP4iMuAu4tujrqlUm1o1eBijr3ihk2lRPxRrXy3BnerrDw
-        dsdkhWzIw4QCYFREBslqLA==
-X-Google-Smtp-Source: ABdhPJy74AGa4UHO7hdrd29dN3VU/Loo392gOIOQymkwJy/3MH/KDPcfhRkKc17lGn8+nkOjPntwIA==
-X-Received: by 2002:a05:6808:2392:: with SMTP id bp18mr12443295oib.89.1638574461990;
-        Fri, 03 Dec 2021 15:34:21 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d8sm1093713oiw.24.2021.12.03.15.34.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Dec 2021 15:34:21 -0800 (PST)
-Received: (nullmailer pid 1043007 invoked by uid 1000);
-        Fri, 03 Dec 2021 23:34:15 -0000
+        id S1354147AbhLCXiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 18:38:16 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:60024 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1383542AbhLCXiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 18:38:12 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2275362D3C
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 23:34:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 819F8C53FCD
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 23:34:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638574487;
+        bh=ZM9neIJMB2USARxzYr2mLwWt4b0SXXjybmzBBgT0ISw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YptgcRAoPCRpjBmuxSW9DNhpAb4Mo8RyV1fyk1HmGBMbG7o76Gekct5RX8eZcgtcX
+         1t2gcZfcMLiL1Dib4PUc1pOrpovrgldoXmTgzIQDXltJ6mTNjjl/kTXa4JzonlrGRc
+         RRhdl8HfZaf25ob0Cgh1Ru0lFTX/xJU5TwBHkInFRQMUvsq3Oj4PxnBzTSDLEAlp+x
+         9KQ4OWAdJLLi+KN5uGseRDg4dv7j+geAFm9QEAuP95PYkjRtx/yOSzxMgA6qLCTt+s
+         +Mqbc5UsRwT9gUuJ97E+i+VEYdGJHzYHal3Aqz5idbkwU5gUhUJcBp+1SWes5qx2V2
+         z9YXUsQrIjGiw==
+Received: by mail-ed1-f53.google.com with SMTP id t5so17642810edd.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 15:34:47 -0800 (PST)
+X-Gm-Message-State: AOAM530AhpQ1N0ZVFkTHVYAshKVSLgVtRsTR533Ty+IXYjmE97TvTBFq
+        OKjnOOVv2TxMmuV5U1TlJI/SDbnwLirDT9EVEQ==
+X-Google-Smtp-Source: ABdhPJy0ZGubsg4teT1tbwpxEuhlDhZMm3LqPoZxGl5D1+z7q7SCXtD+zQYj0+6By2HInGfHwBhumWnDYnZudC1dSq8=
+X-Received: by 2002:a17:907:16ac:: with SMTP id hc44mr26216368ejc.363.1638574485841;
+ Fri, 03 Dec 2021 15:34:45 -0800 (PST)
+MIME-Version: 1.0
+References: <cover.1638530442.git.robin.murphy@arm.com> <5f0b372f808f1468e6d9500cedafbecd10254674.1638530442.git.robin.murphy@arm.com>
+In-Reply-To: <5f0b372f808f1468e6d9500cedafbecd10254674.1638530442.git.robin.murphy@arm.com>
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
-Cc:     alsa-devel@alsa-project.org,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        bjorn.andersson@linaro.org, judyhsiao@chromium.org, tiwai@suse.com,
-        linux-kernel@vger.kernel.org, bgoswami@codeaurora.org,
-        agross@kernel.org, plai@codeaurora.org,
-        Venkata Prasad Potturu <potturu@codeaurora.org>,
-        perex@perex.cz, devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        linux-arm-msm@vger.kernel.org, swboyd@chromium.org,
-        rohitkr@codeaurora.org, robh+dt@kernel.org, broonie@kernel.org,
-        srinivas.kandagatla@linaro.org
-In-Reply-To: <1638547658-22032-10-git-send-email-srivasam@codeaurora.com>
-References: <1638547658-22032-1-git-send-email-srivasam@codeaurora.com> <1638547658-22032-10-git-send-email-srivasam@codeaurora.com>
-Subject: Re: [PATCH v8 09/10] ASoC: dt-bindings: Add SC7280 lpass cpu bindings
-Date:   Fri, 03 Dec 2021 17:34:15 -0600
-Message-Id: <1638574455.248037.1043006.nullmailer@robh.at.kernel.org>
+Date:   Fri, 3 Dec 2021 17:34:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJAT515VwUgvCbC6jpsWxSCfcjji-_tHrgn1P=xcMGJQQ@mail.gmail.com>
+Message-ID: <CAL_JsqJAT515VwUgvCbC6jpsWxSCfcjji-_tHrgn1P=xcMGJQQ@mail.gmail.com>
+Subject: Re: [PATCH 12/14] dt-bindings: perf: arm-cmn: Add CI-700
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     will@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 03 Dec 2021 21:37:37 +0530, Srinivasa Rao Mandadapu wrote:
-> From: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> 
-> Add bindings for sc7280 lpass cpu driver which supports
-> audio over i2s based speaker, soundwire based headset, msm dmics
-> and HDMI Port.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Co-developed-by: Venkata Prasad Potturu <potturu@codeaurora.org>
-> Signed-off-by: Venkata Prasad Potturu <potturu@codeaurora.org>
+On Fri, Dec 3, 2021 at 5:45 AM Robin Murphy <robin.murphy@arm.com> wrote:
+>
+> CI-700 is a new client-level coherent interconnect derived from
+> the enterprise-level CMN family, and shares the same PMU design.
+>
+> CC: devicetree@vger.kernel.org
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
->  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 70 +++++++++++++++++++---
->  1 file changed, 62 insertions(+), 8 deletions(-)
-> 
+>  .../devicetree/bindings/perf/arm,cmn.yaml     | 21 ++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+> index 42424ccbdd0c..2d4219ec7eda 100644
+> --- a/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+> +++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+> @@ -12,12 +12,14 @@ maintainers:
+>
+>  properties:
+>    compatible:
+> -    const: arm,cmn-600
+> +    enum:
+> +      - arm,cmn-600
+> +      - arm,ci-700
+>
+>    reg:
+>      items:
+>        - description: Physical address of the base (PERIPHBASE) and
+> -          size (up to 64MB) of the configuration address space.
+> +          size of the configuration address space.
+>
+>    interrupts:
+>      minItems: 1
+> @@ -31,14 +33,23 @@ properties:
+>
+>    arm,root-node:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -    description: Offset from PERIPHBASE of the configuration
+> -      discovery node (see TRM definition of ROOTNODEBASE).
+> +    description: Offset from PERIPHBASE of CMN-600's configuration
+> +      discovery node (see TRM definition of ROOTNODEBASE). Not
+> +      relevant for newer CMN/CI products.
+>
+>  required:
+>    - compatible
+>    - reg
+>    - interrupts
+> -  - arm,root-node
+> +
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: arm,cmn-600
+> +then:
+> +  required:
+> +    - arm,root-node
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+If you want to disallow arm,root-node as the description above suggests:
 
-yamllint warnings/errors:
+else:
+  properties:
+    arm,root-node: false
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg: [[0, 1658351616, 0, 425984], [0, 1659895808, 0, 167936]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: reg-names: ['lpass-hdmiif', 'lpass-lpaif'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupts: [[0, 160, 1], [0, 268, 1]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: interrupt-names: ['lpass-irq-lpaif', 'lpass-irq-hdmi'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.example.dt.yaml: lpass@62d80000: iommus: [[4294967295, 4128, 0], [4294967295, 4146, 0]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+Otherwise,
 
-doc reference errors (make refcheckdocs):
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-See https://patchwork.ozlabs.org/patch/1563323
+>
+>  additionalProperties: false
 
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+>
+> --
+> 2.28.0.dirty
+>
