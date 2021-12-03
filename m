@@ -2,153 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC914672E1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 08:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9841C46730A
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 09:03:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350920AbhLCHts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 02:49:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45498 "EHLO
+        id S244489AbhLCIHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 03:07:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350969AbhLCHtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 02:49:45 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 517D2C061758;
-        Thu,  2 Dec 2021 23:46:22 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id x131so2069759pfc.12;
-        Thu, 02 Dec 2021 23:46:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=uO+ywGBRXxL4/QAnvH9WlWkflgr/aXty12RnyNQ/E8o=;
-        b=PMyAg5VAHhxbi2EqaGTPY71l5TFAoHhZHR0vDXSS+y93EoSnFBbk6nRnnxvtw0UlNH
-         ofjaNjFvE8AVrHnK9Wd3O/3H7bhtAYgxH8MQD1hu5pDw1tMbv1FC/B+L9qfQ3CucZ/X2
-         bBXtp9oDcHTSQlu1UohEXzLb+sFiCcIml1mitrXhQCZkPKdkxXEcmz6e9y+ioBCXGc7R
-         if60JzwpD/odkoLx40pWq6wy6ceogcv3v7F7jBOpe3bGllSA18p9Rp0ZVr+++iBZ2pOS
-         OA9h301py0ngAAHxUP1Dg8/ZcXZ8bJlHjRczO5lDgUuDMU7xlSoanKjfuGewlMvE4nQ5
-         Q72A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=uO+ywGBRXxL4/QAnvH9WlWkflgr/aXty12RnyNQ/E8o=;
-        b=t/aL8MIez6jBGMdg0PG2HvOCR2vlg1rS7xVqtJK/U34QU79Q1dCblGupJdCXZzGcih
-         Ri99antBq4Ub73pm1pGD+Q6lUQ/QdBMSiPnWpOLFHYhpNdG51cg/khaLfEYFHQk+3MeK
-         +QyvgSh+mwjfpRwcf9/S4/tsm/2dsKpnGgO5jFVg/sPe7RRrOxplmZT0XU8xodcbCTOb
-         KCx5fPiT4pBIbNVJGKnbMKWOXWnesRznR/Wmb4yJtz0C1DTvb7jQFeeu+L8oZe6RIFcW
-         GxgP+h3A5vEwdX5YafAXHQ03xi6sN744ZZQhl/n59p797dgGpXPlMTjSnixtMMEi7fax
-         3Z5A==
-X-Gm-Message-State: AOAM531pfj56XFts2LANMjx9+EwmLV2rDvp7OE4ae/EQnRcIm7K8MQKx
-        tyaExyId1ic7tWK5Q9hMczo=
-X-Google-Smtp-Source: ABdhPJyI+SUZljjcfhxI4gwhZqmi9uvUCYIYy2VOb+p3pYpcbXczZs7zVhmyYu9zU6JFFvfUgb8IXQ==
-X-Received: by 2002:a65:6790:: with SMTP id e16mr3432395pgr.112.1638517581782;
-        Thu, 02 Dec 2021 23:46:21 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id d19sm2162364pfv.199.2021.12.02.23.46.19
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 Dec 2021 23:46:21 -0800 (PST)
-From:   Vincent Shih <vincent.sunplus@gmail.com>
-X-Google-Original-From: Vincent Shih <vincent.sunplus@gamil.com>
-To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-rtc@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, wells.lu@sunplus.com
-Cc:     Vincent Shih <vincent.sunplus@gamil.com>
-Subject: [PATCH v3 2/2] dt-bindings: rtc: Add Sunplus RTC json-schema
-Date:   Fri,  3 Dec 2021 15:46:19 +0800
-Message-Id: <1638517579-10316-3-git-send-email-vincent.sunplus@gamil.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1638517579-10316-1-git-send-email-vincent.sunplus@gamil.com>
-References: <1638517579-10316-1-git-send-email-vincent.sunplus@gamil.com>
+        with ESMTP id S235044AbhLCIHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 03:07:10 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A798CC06173E;
+        Fri,  3 Dec 2021 00:03:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DB80B6297A;
+        Fri,  3 Dec 2021 08:03:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B9DBC53FAD;
+        Fri,  3 Dec 2021 08:03:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638518625;
+        bh=SvfGN+PjcnykzpCAThdQO6VCpwrVwDZuHqNRCuT9r+E=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=YFDgkq/+h5PhS1QAfp/s3FZQIo5S73TuxVAGSeiTVhQiy41kzDhCKLghwM0bzXmM5
+         ze0B3BZDvjzHpLejlprVcJZhB8fh5DW6BGTxyBTgdsyAbyIB1RF85fI/9Shi5AmFhv
+         7l6u5AiRWvBcPPHsXaWx+Wxcxg/NBXP3UbHQ3q5H7KR6u6NsrQa4USWCs0/oIapxnU
+         0b1ZQWDgCXe3T93lx+PI7Si4sur779HcEwUEXGyKRHVpuSdN90y3UvY8AW18r6UJ79
+         0K7yB2wUriWgdBom4WRspYUHMwSAe558uHM5U4Zl8f/xxU/lQGrO8Pp8G2fjmpK8gx
+         BNFsC2awjjx2w==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20211129153330.37719-8-nbd@nbd.name>
+References: <20211129153330.37719-1-nbd@nbd.name> <20211129153330.37719-8-nbd@nbd.name>
+Subject: Re: [PATCH v5 07/13] clk: en7523: Add clock driver for Airoha EN7523 SoC
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     john@phrozen.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+To:     Felix Fietkau <nbd@nbd.name>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Fri, 03 Dec 2021 00:03:43 -0800
+User-Agent: alot/0.9.1
+Message-Id: <20211203080345.2B9DBC53FAD@smtp.kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Sunplus RTC json-schema
+Quoting Felix Fietkau (2021-11-29 07:33:23)
+> This driver only registers fixed rate clocks, since the clocks are fully
+> initialized by the boot loader and should not be changed later, according
+> to Airoha.
+>=20
+> Signed-off-by: Felix Fietkau <nbd@nbd.name>
+> ---
+>  arch/arm/boot/dts/en7523.dtsi |   8 +
+>  drivers/clk/Kconfig           |   9 +
+>  drivers/clk/Makefile          |   1 +
+>  drivers/clk/clk-en7523.c      | 356 ++++++++++++++++++++++++++++++++++
+>  4 files changed, 374 insertions(+)
+>  create mode 100644 drivers/clk/clk-en7523.c
 
-Signed-off-by: Vincent Shih <vincent.sunplus@gamil.com>
----
-Changes in v3:
- - Addressed the comments from Mr. Rob Herring
+Pleas don't mix clk driver changes and dts file updates together.
+Instead, introduce the clk driver in one patch and add the dts node in
+another patch so that the different maintainers can pick up the patch
+for the area they maintain.
 
- .../bindings/rtc/sunplus,sp7021-rtc.yaml           | 56 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index c5b3dc97396a..b542f58c58d2 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -192,6 +192,15 @@ config COMMON_CLK_CS2000_CP
+>         help
+>           If you say yes here you get support for the CS2000 clock multip=
+lier.
+> =20
+> +config COMMON_CLK_EN7523
+> +       bool "Clock driver for Airoha EN7523 SoC system clocks"
+> +       depends on OF
+> +       depends on ARCH_AIROHA || ARM || COMPILE_TEST
 
-diff --git a/Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml b/Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
-new file mode 100644
-index 0000000..fd1b3e7
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/sunplus,sp7021-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus SP7021 Real Time Clock controller
-+
-+maintainers:
-+  - Vincent Shih <vincent.sunplus@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  reg-names:
-+    items:
-+      - const: rtc
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - resets
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    rtc: serial@9c003a00 {
-+        compatible = "sunplus,sp7021-rtc";
-+        reg = <0x9c003a00 0x80>;
-+        reg-names = "rtc";
-+        clocks = <&clkc 0x12>;
-+        resets = <&rstc 0x02>;
-+        interrupt-parent = <&intc>;
-+        interrupts = <163 IRQ_TYPE_EDGE_RISING>;
-+    };
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8c86f28..c6dd228 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17949,6 +17949,7 @@ SUNPLUS RTC DRIVER
- M:	Vincent Shih <vincent.sunplus@gmail.com>
- L:	linux-rtc@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/rtc/sunplus,sp7021-rtc.yaml
- F:	drivers/rtc/rtc-sunplus.c
- 
- SUPERH
--- 
-2.7.4
+Is this supposed to have parenthesis somewhere? Why is depending on ARM
+useful?
 
+> +       default ARCH_AIROHA
+> +       help
+> +         This driver provides the fixed clocks and gates present on Airo=
+ha
+> +         ARM silicon.
+> +
+>  config COMMON_CLK_FSL_FLEXSPI
+>         tristate "Clock driver for FlexSPI on Layerscape SoCs"
+>         depends on ARCH_LAYERSCAPE || COMPILE_TEST
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index e42312121e51..be11d88c1603 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -27,6 +27,7 @@ obj-$(CONFIG_COMMON_CLK_CDCE925)      +=3D clk-cdce925.o
+>  obj-$(CONFIG_ARCH_CLPS711X)            +=3D clk-clps711x.o
+>  obj-$(CONFIG_COMMON_CLK_CS2000_CP)     +=3D clk-cs2000-cp.o
+>  obj-$(CONFIG_ARCH_SPARX5)              +=3D clk-sparx5.o
+> +obj-$(CONFIG_COMMON_CLK_EN7523)                +=3D clk-en7523.o
+>  obj-$(CONFIG_COMMON_CLK_FIXED_MMIO)    +=3D clk-fixed-mmio.o
+>  obj-$(CONFIG_COMMON_CLK_FSL_FLEXSPI)   +=3D clk-fsl-flexspi.o
+>  obj-$(CONFIG_COMMON_CLK_FSL_SAI)       +=3D clk-fsl-sai.o
+> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+> new file mode 100644
+> index 000000000000..f1774a5bf537
+> --- /dev/null
+> +++ b/drivers/clk/clk-en7523.c
+> @@ -0,0 +1,356 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +
+> +#include <linux/regmap.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <dt-bindings/clock/en7523-clk.h>
+> +#include <linux/clk.h>
+
+Is this include used?
+
+> +
+> +#define REG_PCI_CONTROL                        0x88
+> +#define   REG_PCI_CONTROL_PERSTOUT     BIT(29)
+> +#define   REG_PCI_CONTROL_PERSTOUT1    BIT(26)
+> +#define   REG_PCI_CONTROL_REFCLK_EN1   BIT(22)
+> +#define REG_GSW_CLK_DIV_SEL            0x1b4
+[...]
+> +
+> +static struct clk *en7523_register_pcie_clk(struct device *dev,
+> +                                           void __iomem *np_base)
+> +{
+> +       static const struct clk_ops pcie_gate_ops =3D {
+> +               .is_enabled =3D en7523_pci_is_enabled,
+> +               .enable =3D en7523_pci_enable,
+> +               .disable =3D en7523_pci_disable,
+> +       };
+> +       struct clk_init_data init =3D {
+> +               .name =3D "pcie",
+> +               .ops =3D &pcie_gate_ops,
+> +       };
+> +       struct en_clk_gate *cg;
+> +       struct clk *clk;
+> +
+> +       cg =3D devm_kzalloc(dev, sizeof(*cg), GFP_KERNEL);
+> +       if (!cg)
+> +               return NULL;
+> +
+> +       cg->base =3D np_base;
+> +       cg->hw.init =3D &init;
+> +       en7523_pci_disable(&cg->hw);
+> +
+> +       clk =3D clk_register(NULL, &cg->hw);
+
+Please use clk_hw_register
+
+> +       if (IS_ERR(clk))
+> +               clk =3D NULL;
+> +
+> +       return clk;
+> +}
+> +
+> +static void en7523_register_clocks(struct device *dev, struct clk_onecel=
+l_data *clk_data,
+> +                                  void __iomem *base, void __iomem *np_b=
+ase)
+> +{
+> +       struct clk *clk;
+> +       u32 rate;
+> +       int i;
+> +
+> +       for (i =3D 0; i < ARRAY_SIZE(en7523_base_clks); i++) {
+> +               const struct en_clk_desc *desc =3D &en7523_base_clks[i];
+> +
+> +               rate =3D en7523_get_base_rate(base, i);
+> +               rate /=3D en7523_get_div(base, i);
+> +
+> +               clk =3D clk_register_fixed_rate(NULL, desc->name, NULL, 0=
+, rate);
+> +               if (IS_ERR(clk)) {
+> +                       pr_err("Failed to register clk %s: %ld\n",
+> +                              desc->name, PTR_ERR(clk));
+> +                       continue;
+> +               }
+> +
+> +               clk_data->clks[desc->id] =3D clk;
+> +       }
+> +
+> +       clk =3D en7523_register_pcie_clk(dev, np_base);
+> +       clk_data->clks[EN7523_CLK_PCIE] =3D clk;
+> +
+> +       clk_data->clk_num =3D EN7523_NUM_CLOCKS;
+> +}
+> +
+> +static int en7523_clk_probe(struct platform_device *pdev)
+> +{
+> +       struct device_node *node =3D pdev->dev.of_node;
+> +       struct clk_onecell_data *clk_data;
+> +       void __iomem *base, *np_base;
+> +       int r;
+> +
+> +       base =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(base))
+> +               return PTR_ERR(base);
+> +
+> +       np_base =3D devm_platform_ioremap_resource(pdev, 1);
+> +       if (IS_ERR(base))
+> +               return PTR_ERR(np_base);
+> +
+> +       clk_data =3D devm_kzalloc(&pdev->dev, sizeof(*clk_data), GFP_KERN=
+EL);
+> +       if (!clk_data)
+> +               return -ENOMEM;
+> +
+> +       clk_data->clks =3D devm_kcalloc(&pdev->dev, EN7523_NUM_CLOCKS,
+> +                                     sizeof(*clk_data->clks), GFP_KERNEL=
+);
+> +       if (!clk_data->clks)
+> +               return -ENOMEM;
+> +
+> +       en7523_register_clocks(&pdev->dev, clk_data, base, np_base);
+> +
+> +       r =3D of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
+
+Please add a clk_hw provider instead of a clk provider.
+
+> +       if (r)
