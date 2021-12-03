@@ -2,254 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51889467BDE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:55:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ADD5467C39
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 18:09:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1382228AbhLCQ6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 11:58:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58936 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240527AbhLCQ63 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:58:29 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDC20C061751
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 08:55:05 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id z6so2523813plk.6
-        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 08:55:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TpS2YL61YHWZgUBV1xYwkCUo8ZrXNrqKv+qQZlMOcKU=;
-        b=fkDmK2/7QbfpGUSzfAnG2GWFoqlztEHg8GsIediZsGV+iSsX9rPmbIenCsx9EMqIQo
-         VzwnXh2IIcGOD9wBCGR4N3Pr8F2bQMXkq5HZTZiyDmbKi2qaHfWMnmOLZENGMK0AksoO
-         5ps12JZ5kobkB/JwouxZDNcbVDtX07esXedeg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TpS2YL61YHWZgUBV1xYwkCUo8ZrXNrqKv+qQZlMOcKU=;
-        b=LlZM1BrNNfIT/ey6tUpayavzhVdx0IBxWdmmijyb+TFMQOOBt2Q+fMsOU3YjclvmRK
-         75fpUTW4xnD/geBBn9CNRg9hj+5Hc4ASzg8TVUXorZ00WCr2SNdwcG3DPmgdlSUyhqcD
-         SeBrnID/oOmg6/CDlGE/Ek3IU0cHmDXQpJimzJ1zdEfEetVw/arUp3+oEd6bnUrNwUpF
-         fyx4qVNP8IK1BztZyLh3zl1VYqYJJOAdKsdDzeYi8D/KP3qXwQ6EjzCdDF8xR8yd88S7
-         V1AC7LbY1TzJfYceIlrHrmw+XOaEW2PKw6KqGvfqsFkBazJ3/oDDhhtVOlcRW5bwLVmg
-         ea/w==
-X-Gm-Message-State: AOAM533gjKzIcC+rG2fYEjtuJIsTjlxnoCIzXGW9GeIn1fRSGst/U9ti
-        C7VNEDGr4sooQYKPyPxxvDi6aQ==
-X-Google-Smtp-Source: ABdhPJwgc3geQjKTnKBjpmGWy9Mp7ji+pJOvmJEealvqKz5JoNEk0k64bKXw+qIIfRZpsYN/jX+7cw==
-X-Received: by 2002:a17:90b:4b04:: with SMTP id lx4mr15463297pjb.11.1638550505453;
-        Fri, 03 Dec 2021 08:55:05 -0800 (PST)
-Received: from localhost.localdomain ([2405:201:c00a:a0a9:9d21:588c:4f26:8400])
-        by smtp.gmail.com with ESMTPSA id s72sm2783693pgc.69.2021.12.03.08.54.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Dec 2021 08:55:05 -0800 (PST)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amarula@amarulasolutions.com,
-        Matteo Lisi <matteo.lisi@engicam.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v3 3/3] ARM: dts: stm32: Add Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1" OF
-Date:   Fri,  3 Dec 2021 22:24:35 +0530
-Message-Id: <20211203165435.8042-3-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20211203165435.8042-1-jagan@amarulasolutions.com>
-References: <20211203165435.8042-1-jagan@amarulasolutions.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1353112AbhLCRNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 12:13:00 -0500
+Received: from m43-7.mailgun.net ([69.72.43.7]:31413 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S234423AbhLCRNA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Dec 2021 12:13:00 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1638551376; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=5AV0HBQ5bTOZ1ZlXigUPvuk/UL1rFaf1lLay1WSO41c=; b=X5lLFpYwXu5CeH9LijVicZW34pnytP1ZTczsPEcmfG8BbFVrwfIH/1VE6pDlbL9AlmiJA6nc
+ 29ukaxFFf5+vrj7OCmqNuEA9UmrJWUEUSzpk8Qxuv3ja9wLG/ROqL24e6W+WbJik6LTWq7Ty
+ To4cLpUZ6uVevFPV4WURIKsBuwg=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n09.prod.us-east-1.postgun.com with SMTP id
+ 61aa4f4e7d878c8ded8e0ba1 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Dec 2021 17:09:34
+ GMT
+Sender: srivasam=codeaurora.com@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 5B26AC4361B; Fri,  3 Dec 2021 17:09:33 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B0BBAC4338F;
+        Fri,  3 Dec 2021 17:09:27 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org B0BBAC4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.com
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.com
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+Subject: [PATCH v8 0/3] Machine driver to support LPASS SC7280 sound card registration
+Date:   Fri,  3 Dec 2021 22:39:02 +0530
+Message-Id: <1638551345-24979-1-git-send-email-srivasam@codeaurora.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Engicam C.TOUCH 2.0 is an EDIMM compliant general purpose Carrier
-board.
+This patch set is to add support for SC7280 sound card registration and
+to add dt-bindings documentation file.
 
-Genaral features:
-- Ethernet 10/100
-- Wifi/BT
-- USB Type A/OTG
-- Audio Out
-- CAN
-- 10" LVDS Panel (SN65DSI84 DSI-LVDS bridge on SoM)
+Srinivasa Rao Mandadapu (3):
+  ASoC: google: dt-bindings: Add sc7280-herobrine machine bindings
+  ASoC: qcom: Add macro for lpass DAI id's max limit
+  ASoC: qcom: SC7280: Add machine driver
 
-i.Core STM32MP1 is an EDIMM SoM based on STM32MP157A from Engicam.
+Changes Since V7:
+    -- Create separate patch for dai id's macro.
+    -- Remove unused dapm widget structure. 
+Changes Since V6:
+    -- Remove redundant headers.
+    -- Move max ports macro to lpass.h header.
+    -- Arrange structure alignment.
+    -- Fix indentation errors.
+    -- Update module license.
+Changes Since V5:
+    -- Add required properties to dt-bindings
+Changes Since V4:
+    -- Add COMPILE_TEST flag in sc7280 configuration.
+    -- Remove redundant startup and shutdown callbacks of snd_soc_ops.
+    -- Fix typo errors.
+Changes Since V3:
+    -- Change audio jack playpause key value.
+Changes Since V2:
+    -- updated required field in bindings
+    -- updated Return type check with proper enum in sc7280.c
+    -- Updated Header name and Typos in sc7280.c
+Changes Since V1:
+    -- Indentation changes and typo.
 
-10.1" OF is a capacitive touch 10.1" Open Frame panel solutions.
+ .../bindings/sound/google,sc7280-herobrine.yaml    | 171 +++++++++++++
+ sound/soc/qcom/Kconfig                             |  14 +
+ sound/soc/qcom/Makefile                            |   2 +
+ sound/soc/qcom/lpass.h                             |   1 +
+ sound/soc/qcom/sc7280.c                            | 284 +++++++++++++++++++++
+ 5 files changed, 472 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/google,sc7280-herobrine.yaml
+ create mode 100644 sound/soc/qcom/sc7280.c
 
-i.Core STM32MP1 needs to mount on top of C.TOUCH 2.0 carrier with
-pluged 10.1" OF for creating complete i.Core STM32MP1 C.TOUCH 2.0
-10.1" Open Frame board.
-
-Add support for it.
-
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
-Changes for v3:
-- drop redundent commit details.
-- fix dtbs_check
-Changes for v2:
-- none
-
- arch/arm/boot/dts/Makefile                    |   1 +
- ...tm32mp157a-icore-stm32mp1-ctouch2-of10.dts | 132 ++++++++++++++++++
- 2 files changed, 133 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 8a2dfdf01ce3..47878c1e878b 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1140,6 +1140,7 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp157a-microgea-stm32mp1-microdev2.0.dtb \
- 	stm32mp157a-microgea-stm32mp1-microdev2.0-of7.dtb \
- 	stm32mp157a-icore-stm32mp1-ctouch2.dtb \
-+	stm32mp157a-icore-stm32mp1-ctouch2-of10.dtb \
- 	stm32mp157a-icore-stm32mp1-edimm2.2.dtb \
- 	stm32mp157a-stinger96.dtb \
- 	stm32mp157c-dhcom-pdk2.dtb \
-diff --git a/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-new file mode 100644
-index 000000000000..2a2829283456
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157a-icore-stm32mp1-ctouch2-of10.dts
-@@ -0,0 +1,132 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (c) STMicroelectronics 2019 - All Rights Reserved
-+ * Copyright (c) 2020 Engicam srl
-+ * Copyright (c) 2020 Amarula Solutons(India)
-+ */
-+
-+/dts-v1/;
-+#include "stm32mp157.dtsi"
-+#include "stm32mp157a-icore-stm32mp1.dtsi"
-+#include "stm32mp15-pinctrl.dtsi"
-+#include "stm32mp15xxaa-pinctrl.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Engicam i.Core STM32MP1 C.TOUCH 2.0 10.1\" Open Frame";
-+	compatible = "engicam,icore-stm32mp1-ctouch2-of10",
-+		     "engicam,icore-stm32mp1", "st,stm32mp157";
-+
-+	aliases {
-+		serial0 = &uart4;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "gpio-backlight";
-+		gpios = <&gpiod 13 GPIO_ACTIVE_HIGH>;
-+		default-on;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	panel {
-+		compatible = "ampire,am-1280800n3tzqw-t00h";
-+		backlight = <&backlight>;
-+		power-supply = <&v3v3>;
-+
-+		port {
-+			panel_in_lvds: endpoint {
-+				remote-endpoint = <&bridge_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi {
-+	status = "okay";
-+	phy-dsi-supply = <&reg18>;
-+
-+	ports {
-+		port@0 {
-+			reg = <0>;
-+			dsi_in: endpoint {
-+				remote-endpoint = <&ltdc_ep0_out>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+			dsi_out: endpoint {
-+				remote-endpoint = <&bridge_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	i2c-scl-falling-time-ns = <20>;
-+	i2c-scl-rising-time-ns = <185>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c6_pins_a>;
-+	pinctrl-1 = <&i2c6_sleep_pins_a>;
-+	status = "okay";
-+
-+	bridge@2c {
-+		compatible = "ti,sn65dsi84";
-+		reg = <0x2c>;
-+		enable-gpios = <&gpiof 15 GPIO_ACTIVE_HIGH>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				bridge_in: endpoint {
-+					remote-endpoint = <&dsi_out>;
-+					data-lanes = <1 2>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+				bridge_out: endpoint {
-+					remote-endpoint = <&panel_in_lvds>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&dsi_in>;
-+		};
-+	};
-+};
-+
-+&sdmmc1 {
-+	bus-width = <4>;
-+	disable-wp;
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	st,neg-edge;
-+	vmmc-supply = <&v3v3>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	status = "okay";
-+};
 -- 
-2.25.1
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
