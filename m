@@ -2,153 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5576F46787F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:35:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B423467893
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:39:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1381076AbhLCNiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 08:38:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40762 "EHLO
+        id S1352007AbhLCNmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 08:42:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1381117AbhLCNin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:38:43 -0500
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB2BC06174A
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:35:18 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:3191:9890:620a:6f4])
-        by albert.telenet-ops.be with bizsmtp
-        id RpbA260083eLghq06pbAhy; Fri, 03 Dec 2021 14:35:11 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mt8iT-002LQZ-La; Fri, 03 Dec 2021 14:35:09 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mt8iT-000kks-8R; Fri, 03 Dec 2021 14:35:09 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Marc Zyngier <maz@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH RFC 3/3] Input: gpio-keys - Fix ghost events with both-edge irqs
-Date:   Fri,  3 Dec 2021 14:35:08 +0100
-Message-Id: <356b31ade897af77a06d6567601f038f56b3b2a2.1638538079.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <cover.1638538079.git.geert+renesas@glider.be>
-References: <cover.1638538079.git.geert+renesas@glider.be>
+        with ESMTP id S237613AbhLCNmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:42:19 -0500
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1108C06173E
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:38:55 -0800 (PST)
+Received: by mail-ed1-x530.google.com with SMTP id r25so11581271edq.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 05:38:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jZ0k65IEv+mkTjXj+Hsssr+TTC6PuB+uri2MNkshlgg=;
+        b=QdEZ/4DlPgf5qAJIhxS4IiSzj47x69iMSbtz+4keNZevkJKHBOQ6KaXs+ONRRpGca4
+         eLfvjCq4/SdlnzYvfJgbw8xWtg/stWatgwswPL+eJ+PjKhoD64Q9NPb+IiJCAujLdP86
+         BsS13GIC/MJa61NY5ljnuOssYsukUWJjZiYlk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jZ0k65IEv+mkTjXj+Hsssr+TTC6PuB+uri2MNkshlgg=;
+        b=UNo7cqkB5mgCRvwcSnUexZKNpDhwDaipr4Cmrr5CH89t6i6jGIM2BrXFQ8OL/ziNx7
+         GC8rPSP2keYmPmYlVjTUTN1LA24KR0HW3VMpHEDCf+jhynhqkuj6wYBcgDS5mGvafzTq
+         TKk+v9NF2a91KKxE9HwHWJxVKYxP/zR/Mti+kQiMGYuKIz12c4+2zH8JcJ74sOTDroSX
+         PlQ2cyoCM4e0v0++JpeuhfLmIeM/aKI9u/80eZBmOU4gtm4X4yoDg68lsd2AOXaphWW9
+         X2EkS+6mLp2eTLRNodnYMZ6qzyltSZhbiH7mYVMyeTEy9FpJpr2SqO8JHEuassMAb3TB
+         4ovA==
+X-Gm-Message-State: AOAM532Ueech2/hqH69wWlzqf0M29ziSDzMwhqbhixoX2wqZrrrV5GF3
+        2XQFG0eC2h/GKMwCPdGlRnZA/Q==
+X-Google-Smtp-Source: ABdhPJzuITPnpzlSsz+9aNcFmFcrY+OtVEN7ewcsLzPDRrY8OL090gK8pD8o0pIwVC2mE1Ynmj9yMg==
+X-Received: by 2002:a05:6402:2809:: with SMTP id h9mr26838816ede.351.1638538734105;
+        Fri, 03 Dec 2021 05:38:54 -0800 (PST)
+Received: from gmail.com ([100.104.168.197])
+        by smtp.gmail.com with ESMTPSA id s2sm2246751ejn.96.2021.12.03.05.38.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Dec 2021 05:38:53 -0800 (PST)
+Date:   Fri, 3 Dec 2021 14:38:35 +0100
+From:   Ricardo Ribalda <ribalda@chromium.org>
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com,
+        irui.wang@mediatek.com
+Subject: Re: [PATCH V6, 0/5] Support multi-hardware jpeg encoding using
+ of_platform_populate
+Message-ID: <Yaod22NaGQveuevu@gmail.com>
+References: <1638501230-13417-1-git-send-email-kyrie.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1638501230-13417-1-git-send-email-kyrie.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When using interrupts instead of GPIOs, the driver auto-generates
-key-release events, either immediately or after a delay.  This works
-fine with rising-edge or falling-edge interrupts, but causes ghost
-events with both-edge interrupts.  Indeed, the driver will generate a
-pair of key press/release events when pressing the key, and another pair
-when releasing the key.
+Hi
 
-Fix this by not auto-generating key-release events for both-edge
-interrupts.  Rename release_delay to auto_release_delay to clarify its
-use.
+Any idea why this series is not available at
+https://patchwork.linuxtv.org/ but it exists in 
+https://lore.kernel.org/all/1638501230-13417-1-git-send-email-kyrie.wu@mediatek.com/#r
 
-Note that unlike with GPIOs, the driver cannot know the state of the key
-at initialization time, or after resume.  Hence the driver assumes the
-key is not pressed at initialization time, and does not reconfigure the
-trigger type for wakeup.
+thanks!
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Tested on rskrza1.
+kyrie.wu wrote:
 
-Are these limitations acceptable? Or should users only use rising-edge
-or falling-edge interrupts?
-There are several existing users of IRQ_TYPE_EDGE_BOTH.
----
- drivers/input/keyboard/gpio_keys.c | 34 +++++++++++++++++++-----------
- 1 file changed, 22 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/input/keyboard/gpio_keys.c b/drivers/input/keyboard/gpio_keys.c
-index ab077dfb90a76ac3..dfcbedec226cb4cf 100644
---- a/drivers/input/keyboard/gpio_keys.c
-+++ b/drivers/input/keyboard/gpio_keys.c
-@@ -38,7 +38,8 @@ struct gpio_button_data {
- 	unsigned short *code;
- 
- 	struct hrtimer release_timer;
--	unsigned int release_delay;	/* in msecs, for IRQ-only buttons */
-+	int auto_release_delay;	/* in msecs, for IRQ-only buttons */
-+				/* a negative value means no auto-release */
- 
- 	struct delayed_work work;
- 	struct hrtimer debounce_timer;
-@@ -474,25 +475,25 @@ static irqreturn_t gpio_keys_irq_isr(int irq, void *dev_id)
- 
- 	spin_lock_irqsave(&bdata->lock, flags);
- 
--	if (!bdata->key_pressed) {
-+	if (!bdata->key_pressed || bdata->auto_release_delay < 0) {
- 		if (bdata->button->wakeup)
- 			pm_wakeup_event(bdata->input->dev.parent, 0);
- 
--		input_report_key(input, *bdata->code, 1);
-+		input_report_key(input, *bdata->code, !bdata->key_pressed);
- 		input_sync(input);
- 
--		if (!bdata->release_delay) {
-+		if (!bdata->auto_release_delay) {
- 			input_report_key(input, *bdata->code, 0);
- 			input_sync(input);
- 			goto out;
- 		}
- 
--		bdata->key_pressed = true;
-+		bdata->key_pressed = !bdata->key_pressed;
- 	}
- 
--	if (bdata->release_delay)
-+	if (bdata->auto_release_delay > 0)
- 		hrtimer_start(&bdata->release_timer,
--			      ms_to_ktime(bdata->release_delay),
-+			      ms_to_ktime(bdata->auto_release_delay),
- 			      HRTIMER_MODE_REL_HARD);
- out:
- 	spin_unlock_irqrestore(&bdata->lock, flags);
-@@ -630,7 +631,6 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
- 			return -EINVAL;
- 		}
- 
--		bdata->release_delay = button->debounce_interval;
- 		hrtimer_init(&bdata->release_timer,
- 			     CLOCK_REALTIME, HRTIMER_MODE_REL_HARD);
- 		bdata->release_timer.function = gpio_keys_irq_timer;
-@@ -638,10 +638,20 @@ static int gpio_keys_setup_key(struct platform_device *pdev,
- 		isr = gpio_keys_irq_isr;
- 		irqflags = 0;
- 
--		/*
--		 * For IRQ buttons, there is no interrupt for release.
--		 * So we don't need to reconfigure the trigger type for wakeup.
--		 */
-+		if (irq_get_trigger_type(bdata->irq) == IRQ_TYPE_EDGE_BOTH) {
-+			bdata->auto_release_delay = -1;
-+			/*
-+			 * Unlike with GPIOs, we do not know what the state of
-+			 * the key is at initialization time, or after resume.
-+			 * So we don't reconfigure the trigger type for wakeup.
-+			 */
-+		} else {
-+			bdata->auto_release_delay = button->debounce_interval;
-+			/*
-+			 * There is no interrupt for release.  So we don't
-+			 * need to reconfigure the trigger type for wakeup.
-+			 */
-+		}
- 	}
- 
- 	bdata->code = &ddata->keymap[idx];
--- 
-2.25.1
-
+> This series adds support for multi hardware jpeg encoding, by first
+> adding use of_platform_populate to manage each hardware information:
+> interrupt, clock, register bases and power. Secondly add encoding 
+> work queue to deal with the encoding requestsof multi-hardware
+> at the same time. Lastly, add output picture reorder function
+> interface to eliminate the out of order images.
+> 
+> This series has been tested with both MT8195.
+> Encoding worked for this chip.
+> 
+> Patches 1~2 use of_platform_populate to replace component framework
+> to manage multi-hardware.
+> 
+> Patch 3 add jpeg encoding timeout function to judge hardware timeout.
+> 
+> Patch 4 add encoding work queue to deal with multi-hardware encoding
+> at the same time.
+> 
+> Patch 5 add output picture reorder function to order images.
+> ---
+> Changes compared with v5:
+> - use of_platform_populate to replace component framework to
+> manage multi-hardware in patch 2.
+> 
+> Changes compared with v4:
+> --No change compaered with v4
+> 
+> Changes compared with v3:
+> --Structure patches for consistency, non-backward
+>   compatible and do not break any existing functionality
+> 
+> Changes compared with v2:
+> --Split the last two patches into several patches
+>   to enhance readability
+> --Correct some syntax errors
+> --Explain why the component framework is used
+> 
+> Changes compared with v1:
+> --Add jpeg encoder dt-bindings for MT8195
+> --Use component framework to manage jpegenc HW
+> --Add jpegenc output pic reorder function interface
+> 
+> kyrie.wu (5):
+>   dt-bindings: mediatek: Add mediatek, mt8195-jpgenc compatible
+>   media: mtk-jpegenc: manage jpegenc multi-hardware
+>   media: mtk-jpegenc: add jpegenc timeout func interface
+>   media: mtk-jpegenc: add jpeg encode worker interface
+>   media: mtk-jpegenc: add output pic reorder interface
+> 
+>  .../bindings/media/mediatek-jpeg-encoder.yaml      |   3 +
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c    | 287 +++++++++++++++----
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h    |  91 +++++-
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c  |   1 +
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.h  |   3 +-
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c  | 316 ++++++++++++++++++++-
+>  6 files changed, 644 insertions(+), 57 deletions(-)
+> 
+> -- 
+> 2.6.4
+> 
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> 
