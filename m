@@ -2,119 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8EE9467396
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 09:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FF344673BA
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 10:13:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351181AbhLCJCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 04:02:30 -0500
-Received: from cpanel.siel.si ([46.19.9.99]:44618 "EHLO cpanel.siel.si"
+        id S1379435AbhLCJQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 04:16:30 -0500
+Received: from mga07.intel.com ([134.134.136.100]:61721 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1351168AbhLCJC3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Dec 2021 04:02:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:MIME-Version:
-        Date:Message-ID:From:References:Cc:To:Subject:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=SusT965a0ta5c2aDyA4YCYsj79hiy5hbuJlqiijsxnM=; b=Ll6dxuzuFyJ22sroDwYh3iICLA
-        TFR2jx/1rxJzsWCIX80rvWx0P5F+6fFzQrvKwVEYCVPIpbo0iOaD6pLp41E/4GRLvxdOMZzcF98qH
-        BJ1rwD8X3SXHHHLVdr7+9dvlBCmMGAI0Cp4N142wWg1fJ4oEICWWVyUQAwYKKrs2WuZhaFoWRkJHN
-        tXlNQel9FC8139ETFOgC4iwYFNW/lNc/kF+2IWEXbX7W2CSxVv+s3ixvjx+fMXR0Rqz5G3kmvQTvr
-        aFjnMf4wvUXwb60Dt9/YQ3iwYZ5ksUvOhPw4u1nkwEFrxcrQnrIFWrtqaeA6BHNxFYhqbiv4hsdSN
-        eCS9XbcQ==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:39492 helo=[192.168.69.215])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94.2)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1mt4P8-001CNz-3X; Fri, 03 Dec 2021 09:59:01 +0100
-Subject: Re: [PATCH v4 1/4] mfd: da9062: make register CONFIG_I writable
-To:     Christoph Niedermaier <cniedermaier@dh-electronics.com>,
-        "support.opensource@diasemi.com" <support.opensource@diasemi.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-Cc:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20211202093230.3951996-1-andrej.picej@norik.com>
- <9e35530f629044e595decb101a097fde@dh-electronics.com>
-From:   Andrej Picej <andrej.picej@norik.com>
-Message-ID: <9524a32b-d7f5-487c-e791-12bf0554a90f@norik.com>
-Date:   Fri, 3 Dec 2021 09:59:02 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S243758AbhLCJQ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 3 Dec 2021 04:16:28 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10186"; a="300329317"
+X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; 
+   d="scan'208";a="300329317"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Dec 2021 01:13:05 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,283,1631602800"; 
+   d="scan'208";a="610330849"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 03 Dec 2021 01:13:02 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mt4cn-000HJh-RL; Fri, 03 Dec 2021 09:13:01 +0000
+Date:   Fri, 3 Dec 2021 17:12:35 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Cc:     kbuild-all@lists.01.org, wells.lu@sunplus.com,
+        tony.huang@sunplus.com, Tony Huang <tonyhuang.sunplus@gmail.com>
+Subject: Re: [PATCH v2 2/2] misc: Add iop driver for Sunplus SP7021
+Message-ID: <202112031753.KIjg9ffN-lkp@intel.com>
+References: <9bb79f74ff1b08a5f9a1f6707b3b41484506468a.1638499659.git.tonyhuang.sunplus@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <9e35530f629044e595decb101a097fde@dh-electronics.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9bb79f74ff1b08a5f9a1f6707b3b41484506468a.1638499659.git.tonyhuang.sunplus@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tony,
+
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on char-misc/char-misc-testing]
+[also build test ERROR on robh/for-next soc/for-next linus/master v5.16-rc3 next-20211202]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Tony-Huang/Add-iop-driver-for-Sunplus-SP7021/20211203-114932
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git 5d331b5922551637c586cdf5fdc1778910fc937f
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20211203/202112031753.KIjg9ffN-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/5a13966416937e820ad198a487deb9308cb86061
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Tony-Huang/Add-iop-driver-for-Sunplus-SP7021/20211203-114932
+        git checkout 5a13966416937e820ad198a487deb9308cb86061
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/misc/iop/sunplus_iop.c:10:
+>> drivers/misc/iop/sunplus_iop.h:5:10: fatal error: mach/io_map.h: No such file or directory
+       5 | #include <mach/io_map.h>
+         |          ^~~~~~~~~~~~~~~
+   compilation terminated.
 
 
-On 2. 12. 21 16:18, Christoph Niedermaier wrote:
-> From: Andrej Picej
-> Sent: Thursday, December 2, 2021 10:32 AM
->> From: Stefan Christ <s.christ@phytec.de>
->>
->> Make the config register CONFIG_I writable to change the watchdog mode.
->>
->> Signed-off-by: Stefan Christ <s.christ@phytec.de>
->> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->> ---
->> Chnages in v4:
->>   - no changes
->>
->> Changes in v3:
->>   - no chagnes
->>
->> Changes in v2:
->>   - no changes
->> ---
->>   drivers/mfd/da9062-core.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
->> index 01f8e10dfa55..7041ba53efb4 100644
->> --- a/drivers/mfd/da9062-core.c
->> +++ b/drivers/mfd/da9062-core.c
->> @@ -556,6 +556,7 @@ static const struct regmap_range
->> da9062_aa_writeable_ranges[] = {
->>          regmap_reg_range(DA9062AA_VBUCK3_B, DA9062AA_VBUCK3_B),
->>          regmap_reg_range(DA9062AA_VLDO1_B, DA9062AA_VLDO4_B),
->>          regmap_reg_range(DA9062AA_BBAT_CONT, DA9062AA_BBAT_CONT),
->> +       regmap_reg_range(DA9062AA_CONFIG_I, DA9062AA_CONFIG_I),
->>          regmap_reg_range(DA9062AA_GP_ID_0, DA9062AA_GP_ID_19),
->>   };
+vim +5 drivers/misc/iop/sunplus_iop.h
 
-> Could you also include the CONFIG_I for the DA9061?
-> So I can test it on my system.
-> 
+     2	
+     3	#ifndef __SP_IOP_H__
+     4	#define __SP_IOP_H__
+   > 5	#include <mach/io_map.h>
+     6	
 
-Yes, I don't see the problem here.
-@Maintainers, should I send a new version with this (then I would also 
-fix the minor spelling mistake in commit message of 2/4), or do you 
-prefer a separate patch?
-
-Thanks,
-Andrej.
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
