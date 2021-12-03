@@ -2,86 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCEB7467B4E
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:24:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1F5467B6F
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:32:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352883AbhLCQ1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 11:27:39 -0500
-Received: from mail-ua1-f42.google.com ([209.85.222.42]:41898 "EHLO
-        mail-ua1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352811AbhLCQ1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:27:38 -0500
-Received: by mail-ua1-f42.google.com with SMTP id p37so6456875uae.8;
-        Fri, 03 Dec 2021 08:24:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5VAfX84ij/HdA62GWjwqXOlA2DHUK0jO7Ib3am7Oo1A=;
-        b=eZaFruGLA89xDfzB561y48SlHNiZNl7HV1Y7hWLtCwYJEbdEsKc6Kbv922oILgiodg
-         PAPmhm/kKHWhHVXP6jyj90Ll6klbFAt4gNg/Mvh/m7bggSxE8Yd4QlwYZraq0a3ltwrs
-         VNNdwGZYbK08TnKuqy3TGCIAxC3+kLuaC+X2Qbyg4TJweUT0RMneD25MpaMIPmR7i1gt
-         f2Wcxh0D2rkAcsiLhr/9gk5v2eDoLXHDia562T3PlNcMJME+8ZqhDjFkkhvsXIubL3bM
-         v4n6T9DFoC9amM1jOc2mA65NnjipY6r/flXPf0th4nTjslzCcc7+nrNdaWKxz1kmSA1o
-         upXw==
-X-Gm-Message-State: AOAM531dP8uST0rAoYFsRUAIxMHYpFtBlA1WDWwLU5G9kkHsm6czzu0l
-        YmHUmYWCnjkLpxcGAlbn0pmwnpbaFZaq9zkO
-X-Google-Smtp-Source: ABdhPJzsDt3nVPRvhpY3mPwKSIuEGRWmNOAUydF2UmyRh6YLj/mVveb06aG6nAHWtZBMhWcPDyJZQg==
-X-Received: by 2002:ab0:164d:: with SMTP id l13mr22915073uae.34.1638548654079;
-        Fri, 03 Dec 2021 08:24:14 -0800 (PST)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id c24sm526919vkn.30.2021.12.03.08.24.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Dec 2021 08:24:13 -0800 (PST)
-Received: by mail-ua1-f49.google.com with SMTP id n6so6554981uak.1;
-        Fri, 03 Dec 2021 08:24:13 -0800 (PST)
-X-Received: by 2002:ab0:7354:: with SMTP id k20mr22766819uap.78.1638548653631;
- Fri, 03 Dec 2021 08:24:13 -0800 (PST)
-MIME-Version: 1.0
-References: <20211201073308.1003945-1-yoshihiro.shimoda.uh@renesas.com> <20211201073308.1003945-5-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20211201073308.1003945-5-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 3 Dec 2021 17:24:02 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVHD05pLkdyBKfz-OCLqtPU+GKk6U68fscT8OMnXRzRPQ@mail.gmail.com>
-Message-ID: <CAMuHMdVHD05pLkdyBKfz-OCLqtPU+GKk6U68fscT8OMnXRzRPQ@mail.gmail.com>
-Subject: Re: [PATCH v2 04/14] dt-bindings: serial: renesas,scif: Document
- r8a779f0 bindings
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S1352806AbhLCQfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 11:35:38 -0500
+Received: from dfw.source.kernel.org ([139.178.84.217]:47306 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S245728AbhLCQfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:35:37 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8895062C1F;
+        Fri,  3 Dec 2021 16:32:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5CFAC53FCD;
+        Fri,  3 Dec 2021 16:32:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638549132;
+        bh=GJjzs4CbpbnwXQCUCUM4r55kJfSeTbIx8bPqA88zfio=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cUIjF0jpDhTzM/R2sl3sUQj18NhOt/pioC+isxM6j8INylDBds1F/iPH1v4favTqT
+         MywEB3cgC9Q6fwnS1w2TBnoWH0SY8An9U25nzj5EGjOgr9cj7oUYcoSdmUL/DEBru9
+         L2RiloOfE8XlvYr/yiYdX5ALpNS8jVrQJjwx8TaHqUZw//UhKjWearLtX/Kx9mQVCK
+         z5e8Ss9m5jQD3HIRCmlBBeVNIC83xGXts/UGENorL5an0gzx5bCOEyzgFyAooJjh6C
+         3qZMhlCj7GcUxv8lNES8uAaoNlE7U1bwzd0KguxNn094uEoNezHAUMhpB21kKP+Gwn
+         zc0ZUjACqnCPQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1mtBTm-009e3e-Uk; Fri, 03 Dec 2021 16:32:11 +0000
+Date:   Fri, 03 Dec 2021 16:32:10 +0000
+Message-ID: <87zgphlkdx.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Mark Rutland <mark.rutland@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v2 3/8] irqchip/apple-aic: Add cpumasks for E and P cores
+In-Reply-To: <Yaed7VAlwwCBcP13@FVFF77S0Q05N>
+References: <20211201134909.390490-1-maz@kernel.org>
+        <20211201134909.390490-4-maz@kernel.org>
+        <Yaed7VAlwwCBcP13@FVFF77S0Q05N>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, will@kernel.org, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+On Wed, 01 Dec 2021 16:08:13 +0000,
+Mark Rutland <mark.rutland@arm.com> wrote:
+> 
+> On Wed, Dec 01, 2021 at 01:49:04PM +0000, Marc Zyngier wrote:
+> > In order to be able to tell the core IRQ code about the affinity
+> > of the PMU interrupt in later patches, compute the cpumasks of the
+> > P and E cores at boot time.
+> > 
+> > This relies on the affinity scheme used by the vendor, which seems
+> > to work for the couple of SoCs that are out in the wild.
+> 
+> ... but may change at any arbitrary point in future?
 
-On Wed, Dec 1, 2021 at 8:33 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> R-Car S4-8 (R8A779F0) SoC has the R-Car Gen4 compatible SCIF ports,
-> so document the SoC specific bindings.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Crystal balls are in short supply, sorry! ;-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Can we please put the affinity in the DT, like we do for other SoCs and
+> devices?
+> 
+> I don't think we should treat this HW specially in this regard; we certaintly
+> don't want other folk hard-coding system topology in their irqchip driver, and
+> it should be possible to do something like the ppi-partitions binding, no?
 
-Note that this no longer applies cleanly to tty/tty-next, due to
-commit 0836150c26c4028b ("dt-bindings: serial: renesas,scif: Make
-resets as a required property").
+The PPI partition is totally overkill here. What it deals with is
+multiple devices sharing a single PPI across the system.
 
-Gr{oetje,eeting}s,
+Here, we can invent our own interrupt number, so the sharing is
+avoided by construction (the joy of not having an interrupt controller
+the first place!).
 
-                        Geert
+I'm happy to stick the affinity in the DT (after all, it is likely
+that other devices on these systems have the same requirements) and
+have it consumed by the irqchip driver. I only need to find a way that
+doesn't completely invalidate the existing binding...
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+	M.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+Without deviation from the norm, progress is not possible.
