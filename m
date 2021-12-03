@@ -2,156 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D1614673CD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 10:17:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED6D467454
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 10:55:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351207AbhLCJVL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 04:21:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37894 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379483AbhLCJVK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 04:21:10 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D637CC06173E
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 01:17:46 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1mt4hE-0000j9-TQ; Fri, 03 Dec 2021 10:17:36 +0100
-Message-ID: <6a274996f96c799db2efef4498a8fc42e78e1d2d.camel@pengutronix.de>
-Subject: Re: [RFC V3 0/2] arm64: imx8mm: Enable Hantro VPUs
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Tim Harvey <tharvey@gateworks.com>, Adam Ford <aford173@gmail.com>
-Cc:     linux-media <linux-media@vger.kernel.org>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:HANTRO VPU CODEC DRIVER" 
-        <linux-rockchip@lists.infradead.org>,
-        "open list:STAGING SUBSYSTEM" <linux-staging@lists.linux.dev>
-Date:   Fri, 03 Dec 2021 10:17:33 +0100
-In-Reply-To: <CAJ+vNU2t7Yp5OGtWj432Y-8hL62nQBbG58zM-gAj5YfuCO__sA@mail.gmail.com>
-References: <20211202041627.291625-1-aford173@gmail.com>
-         <CAHCN7xJHuOFTQBQWk1yKsk3M0iDB7aKc0=L2DisUoSXVeO3xXQ@mail.gmail.com>
-         <CAJ+vNU2t7Yp5OGtWj432Y-8hL62nQBbG58zM-gAj5YfuCO__sA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        id S1379619AbhLCJ7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 04:59:00 -0500
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:57673 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S232991AbhLCJ64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 04:58:56 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 36DED5C03D2;
+        Fri,  3 Dec 2021 04:55:31 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Fri, 03 Dec 2021 04:55:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-type:content-transfer-encoding; s=fm1; bh=
+        XF066aufznsJ0VVJ2AMVED5Bp4crZLwsOB+9OwvG+vk=; b=O9s1ulDr2jcmN6+u
+        bquRYNCdxId8cgdFm40tc0ply85Z2xxv5QxA3qMvQkNUttHgIpLe+pyavjfr0Jn+
+        1L9+jTr835ncwrP1x0axHqwpanOvuSFRgd7F8A881DIUaDYGgIKV9oVHE3yjkQOl
+        9RsKIxsTL/ttlMhXTvl+W7iOOQlAh2cAVh1nrCexXm+3pvQ3NEYtaUCKoJIT6LLo
+        27WMKF2Uhw/r4D6KE2PLnaqbHUtKFsPaMqQlk+2z3BgEn/+vMjhy1czc651uztv+
+        bw302ZtECl8RvZL6XoRGUQ4d89ELP4I737vcNwAi6Tw5oB/5EqcRoE8UkmdQzUbp
+        MKymIg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=XF066aufznsJ0VVJ2AMVED5Bp4crZLwsOB+9OwvG+
+        vk=; b=gHJDgZKaSGS+e7V3q6ENLxJbTYUglMhCyIEKxdEpmvv/RuTgDPnXp6joL
+        wLMfQoEAW1sRBINslbYJqJ+Duykjn0m8YkmqTxBIyHfm1409pwHhagnKGMryaiMK
+        /ID+pCB4rcJSgeNK//eRPxsuKtYTZrG/mWJrutv/TjaYT8t/x8d7uBjd7eYIG3m5
+        9RbX/3dPq0gC9JLMnGKClqPSfURidWd/jWzS0/xz/eCXoB76hrN7d6LJh590mu8g
+        2q7DuhUynE8QOloBqRpvvXn8jWZBvaxIperrim2GtFxJ6mS0K5FFT0zLw1IgTQcI
+        XgXsBP4N6Nmfq7VVXR93hTzInvU+Q==
+X-ME-Sender: <xms:kumpYazfc8tvvp1EfLvhEVV8C-oLcIb8_eIIt4fVSt0gRMSQg0Yafg>
+    <xme:kumpYWTg0F2vyVv3gh6GkXTWLTEMKgOHooKQiRXfHOCQr-9BxpVBm9QWpaUnB8xSR
+    9fwupTDSFspGRc_Fcs>
+X-ME-Received: <xmr:kumpYcW6GSdpQfU-4u6Q2Owq4aS-32sSPpvmMTL7lcxEHPlFC2GEg98O335JVZnsTeuQoAdiG6AYMi7Ft5RwgU9o6Dlxv9ebPHD8Z_I2a8sAiQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvuddrieejgdduudcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgjfhggtgfgsehtkeertdertdejnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepjeeugfegkeffgfeuvedtvddufffhjeffjeejvddvudduteehhfefhfefgeei
+    keeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:kumpYQjwQAywo628Q-YDfd8yH-l6taDVNoydlLRYolN5CAi6zZKo_A>
+    <xmx:kumpYcAn8QJdd1oDgWEwV2gw_Ga929WVjlRo1HLj_pYesF24C4qxpw>
+    <xmx:kumpYRIJS5A9aH7k8sqqV4rACkqS5G1yf7rKEDZ_moE9NXkd5ysEag>
+    <xmx:k-mpYaBLg5N5lZwYUqenfHlEhjoyXeMwaD7YTWhDb6HTdA97zAOvQw>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 3 Dec 2021 04:55:30 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Jernej Skrabec <jernej.skrabec@gmail.com>, mripard@kernel.org,
+        wens@csie.org
+Cc:     Maxime Ripard <maxime@cerno.tech>, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org
+Subject: Re: [PATCH 0/5] arm64: dts: allwinner: h6: tanix tx6
+Date:   Fri,  3 Dec 2021 10:55:26 +0100
+Message-Id: <163852532166.564423.11849623195083021706.b4-ty@cerno.tech>
+X-Mailer: git-send-email 2.33.1
+In-Reply-To: <20211201182118.1213806-1-jernej.skrabec@gmail.com>
+References: <20211201182118.1213806-1-jernej.skrabec@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 02.12.2021 um 10:54 -0800 schrieb Tim Harvey:
-> On Thu, Dec 2, 2021 at 4:29 AM Adam Ford <aford173@gmail.com> wrote:
-> > 
-> > On Wed, Dec 1, 2021 at 10:17 PM Adam Ford <aford173@gmail.com> wrote:
-> > > 
-> > > The i.MX8M has two Hantro video decoders, called G1 and G2 which appear
-> > > to be related to the video decoders used on the i.MX8MQ, but because of
-> > > how the Mini handles the power domains, the VPU driver does not need to
-> > > handle all the functions, so a new compatible flag is required.
-> > > 
-> > > V3 is rebased from git://linuxtv.org/hverkuil/media_tree.git for-v5.17c
-> > > This branch has support for VP9.
-> > > 
-> > > I set cma=512M, but this may not be enough memory as some tests appeard to run out of memory
-> > > 
-> > > V3 of this series has several changes:
-> > > 
-> > > Update imx8m_vpu_hw to add missing 'reg' reference names for G2 and include references to VP9
-> > > Update device tree to remove IMX8MQ_VPU_RESET, remove some duplicate vpu clock parenting
-> > > Fix missing reg-names from vpu_g2 node.
-> > > Apply patch [1] to manage the power domains powering down.
-> > > [1] - https://lore.kernel.org/linux-arm-kernel/20211016210547.171717-1-marex@denx.de/t/
-> > > 
-> > > With the above, the following Fluster scores are produced:
-> > > 
-> > > G1:
-> > > ./fluster.py run -dGStreamer-H.264-V4L2SL-Gst1.0
-> > > Ran 90/135 tests successfully               in 74.406 secs
-> > > 
-> > > ./fluster.py run -d GStreamer-VP8-V4L2SL-Gst1.0
-> > > Ran 55/61 tests successfully               in 8.080 secs
-> > > 
-> > > G2:
-> > > ./fluster.py run -d GStreamer-VP9-V4L2SL-Gst1.0
-> > > Ran 127/303 tests successfully               in 203.873 secs
-> > > 
-> > > Fluster and G-Streamer were both built from their respective git repos using their respective master/main branches.
-> > > 
-> > 
-> > I should note, that both interrupts appear to be triggering.
-> > 
-> > # cat /proc/interrupts |grep codec
-> >  57:      13442          0          0          0     GICv3  39 Level
-> >   38300000.video-codec
-> >  58:       7815          0          0          0     GICv3  40 Level
-> >   38310000.video-codec
-> > 
+On Wed, 1 Dec 2021 19:21:13 +0100, Jernej Skrabec wrote:
+> This series adds new Tanix TX6 mini DT file (less capable as Tanix TX6),
+> adds MMC1 node for wifi and enables bluetooth on Tanix TX6 (no bluetooth
+> on mini).
 > 
-> Adam,
+> Please take a look.
 > 
-> On another thread you had let me know that you also removed the reset
-> from the pgc_vpumix power domain which does appear to resolve the
-> hang:
+> Best regards,
+> Jernej
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index eb9dcd9d1a31..31710af544dc 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -681,7 +681,6 @@
->                                                 clocks = <&clk
-> IMX8MM_CLK_VPU_DEC_ROOT>;
->                                                 assigned-clocks =
-> <&clk IMX8MM_CLK_VPU_BUS>;
->                                                 assigned-clock-parents
-> = <&clk IMX8MM_SYS_PLL1_800M>;
-> -                                               resets = <&src
-> IMX8MQ_RESET_VPU_RESET>;
->                                         };
-> 
->                                         pgc_vpu_g1: power-domain@7 {
-> 
-> That would make such a patch have a 'Fixes commit d39d4bb15310
-> ("arm64: dts: imx8mm: add GPC node")' but of course that vpu domain
-> isn't active until your series so I'm not sure if we should send this
-> separate or squash it with "arm64: dts: imx8mm: Enable VPU-G1 and
-> VPU-G2". I'm also not clear if removing the reset requires some
-> further discussion with Lucas.
-> 
-I'm fine with removing the reset when it fixes things. In normal
-operation the reset should already be triggered by the GPC itself via a
-hardware mechanism. We know that this doesn't work for the GPU reset on
-the i.MX8MM, so we have the ability for the driver to handle it by
-poking the SRC explicitly.
+> [...]
 
-Adding the reset to the VPU DT description wasn't done because I know
-that we need it, but more of a "I know that things are broken with the
-GPU domain, so better be safe than sorry with the VPU domain". My line
-of thought clearly was that it may not be needed, but it may prevent
-some issues in the long run. If it is _causing_ issues however, there
-is no need to discuss anything, just get rid of it.
+Applied to sunxi/linux.git (sunxi/dt-for-5.17).
 
-Regards,
-Lucas
-
+Thanks!
+Maxime
