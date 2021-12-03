@@ -2,40 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C25B64678ED
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:58:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF5FA467900
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 15:02:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357766AbhLCOB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 09:01:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46308 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357669AbhLCOB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:01:58 -0500
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [IPv6:2a02:1800:110:4::f00:1a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4947FC06174A
-        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:58:34 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed10:3191:9890:620a:6f4])
-        by albert.telenet-ops.be with bizsmtp
-        id RpyY2600D3eLghq06pyYiP; Fri, 03 Dec 2021 14:58:32 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mt956-002LiF-2g; Fri, 03 Dec 2021 14:58:32 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1mt954-000lZ6-Ve; Fri, 03 Dec 2021 14:58:31 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joe Hung <joe_hung@ilitek.com>, Marek Vasut <marex@denx.de>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2] dt-bindings: input: touchscreen: ilitek_ts_i2c: Absorb ili2xxx bindings
-Date:   Fri,  3 Dec 2021 14:58:26 +0100
-Message-Id: <0c5f06c9d262c1720b40d068b6eefe58ca406601.1638539806.git.geert+renesas@glider.be>
+        id S242940AbhLCOFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 09:05:44 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:43052 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S237277AbhLCOFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 09:05:43 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 01706B82749
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 14:02:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFF9BC53FC7;
+        Fri,  3 Dec 2021 14:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1638540137;
+        bh=9ajHpeS6kr3mi4mButVxzrRJqooaAZz5lVZTMgrfIdE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=oBf7g3sx+du98LupFj9XhTxc8xs2AW4cxskQZ6ZYofOPqDntsJRBxVIX/RlLhbEkY
+         lHTIRivhobiC3o7AjVWm0xcSxOaWWRImNJpvyFehmTnVTfE1IfjuVYjFMTfLRtddxV
+         +CreVabvjyWRJM6w7GKBU19Js9PD2XZzb8hS/DLrCw/9bBUPIicefZA65uQuw9j3UH
+         db6ndjaNqr6aT+myIRfsa0RKZJGetia6C7XG3krF2ivPps94yp2fru02FptTHVNUcm
+         MchCxptsF0DMGajCeoTY5wJITrQklwZvz7dnCc0S1c7DjnUBpWPxFy9b3GLqYBXwaK
+         XOdQ9rzFQnVwg==
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     dinguyen@kernel.org, broonie@kernel.org, robh+dt@kernel.org,
+        p.yadav@ti.com
+Subject: [PATCHv2 1/3] dt-bindings: spi: cadence-quadspi: document "cdns,qspi-nor-ver-00-10"
+Date:   Fri,  3 Dec 2021 08:01:24 -0600
+Message-Id: <20211203140126.3132770-1-dinguyen@kernel.org>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -43,94 +42,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While Linux uses a different driver, the Ilitek
-ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller Device Tree
-binding documentation is very similar.
+The QSPI controller on Intel's SoCFPGA platform does not implement the
+CQSPI_REG_WR_COMPLETION_CTRL register, thus a write to this register
+results in a crash.
 
-  - Drop the fixed reg value, as some controllers use a different
-    address,
-  - Make reset-gpios optional, as it is not always wired.
+The module/revision ID is written in the MODULE_ID register. For this
+variance, bits 23-8 is 0x0010.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Introduce the dts binding "cdns,qspi-nor-ver-00-10" to differentiate the
+hardware.
+
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 ---
-v2:
-  - Add Reviewed-by.
+v2: change binding to "cdns,qspi-nor-0010" to be more generic for other
+    platforms
 ---
- .../bindings/input/ilitek,ili2xxx.txt         | 27 -------------------
- .../input/touchscreen/ilitek_ts_i2c.yaml      |  7 +++--
- 2 files changed, 5 insertions(+), 29 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
+ Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt b/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-deleted file mode 100644
-index cdcaa3f52d253670..0000000000000000
---- a/Documentation/devicetree/bindings/input/ilitek,ili2xxx.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--Ilitek ILI210x/ILI2117/ILI2120/ILI251x touchscreen controller
--
--Required properties:
--- compatible:
--    ilitek,ili210x for ILI210x
--    ilitek,ili2117 for ILI2117
--    ilitek,ili2120 for ILI2120
--    ilitek,ili251x for ILI251x
--
--- reg: The I2C address of the device
--
--- interrupts: The sink for the touchscreen's IRQ output
--    See ../interrupt-controller/interrupts.txt
--
--Optional properties for main touchpad device:
--
--- reset-gpios: GPIO specifier for the touchscreen's reset pin (active low)
--
--Example:
--
--	touchscreen@41 {
--		compatible = "ilitek,ili251x";
--		reg = <0x41>;
--		interrupt-parent = <&gpio4>;
--		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
--		reset-gpios = <&gpio5 21 GPIO_ACTIVE_LOW>;
--	};
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-index a190e7baac3162a3..9f732899975683a8 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
-@@ -15,6 +15,9 @@ allOf:
- properties:
-   compatible:
-     enum:
-+      - ilitek,ili210x
-+      - ilitek,ili2117
-+      - ilitek,ili2120
-       - ilitek,ili2130
-       - ilitek,ili2131
-       - ilitek,ili2132
-@@ -22,11 +25,12 @@ properties:
-       - ilitek,ili2322
-       - ilitek,ili2323
-       - ilitek,ili2326
-+      - ilitek,ili251x
-       - ilitek,ili2520
-       - ilitek,ili2521
+diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+index ca155abbda7a..2833e1c8841d 100644
+--- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+@@ -29,6 +29,7 @@ properties:
+               - ti,am654-ospi
+               - intel,lgm-qspi
+               - xlnx,versal-ospi-1.0
++              - cdns,qspi-nor-ver-00-10
+           - const: cdns,qspi-nor
+       - const: cdns,qspi-nor
  
-   reg:
--    const: 0x41
-+    maxItems: 1
- 
-   interrupts:
-     maxItems: 1
-@@ -50,7 +54,6 @@ required:
-   - compatible
-   - reg
-   - interrupts
--  - reset-gpios
- 
- examples:
-   - |
 -- 
 2.25.1
 
