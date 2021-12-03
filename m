@@ -2,94 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC42B4676AC
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 12:45:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A50F4676AE
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 12:46:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238228AbhLCLst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 06:48:49 -0500
-Received: from foss.arm.com ([217.140.110.172]:47992 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S234517AbhLCLst (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Dec 2021 06:48:49 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9036514BF;
-        Fri,  3 Dec 2021 03:45:25 -0800 (PST)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id DFF753F5A1;
-        Fri,  3 Dec 2021 03:45:24 -0800 (PST)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     will@kernel.org
-Cc:     mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 12/14] dt-bindings: perf: arm-cmn: Add CI-700
-Date:   Fri,  3 Dec 2021 11:45:01 +0000
-Message-Id: <5f0b372f808f1468e6d9500cedafbecd10254674.1638530442.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.28.0.dirty
-In-Reply-To: <cover.1638530442.git.robin.murphy@arm.com>
-References: <cover.1638530442.git.robin.murphy@arm.com>
+        id S1351166AbhLCLtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 06:49:47 -0500
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:47546 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S234517AbhLCLtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 06:49:46 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 1B3BkFfB012028;
+        Fri, 3 Dec 2021 05:46:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1638531975;
+        bh=S843qUaoy9ANfMUAngWIervNBlNyhONi9iljLEuE674=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=fpmxGXorVBeGIeh9TiwwGYiIelR61a/2EnLdxJAS2GsumSkADQkn+pG/LTN4jz0HH
+         KvWzzPVWd0BWEAXim9qGOGQCMmX7Hn5gZlG7roX7KpH8B9s1CMsgZyvr6F15cZb5Qx
+         TGyeVcbPTPU8MppibfmDMI04GvJn0RaRIBIQDipM=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 1B3BkFgl095901
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 3 Dec 2021 05:46:15 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 3
+ Dec 2021 05:46:14 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 3 Dec 2021 05:46:14 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 1B3BkDhq011552;
+        Fri, 3 Dec 2021 05:46:14 -0600
+Date:   Fri, 3 Dec 2021 17:16:13 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     Nishanth Menon <nm@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2] arm64: dts: ti: k3-j7200: Correct the d-cache-sets
+ info
+Message-ID: <20211203114611.dqorti3g6q7k64sz@ti.com>
+References: <20211113042640.30955-1-nm@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20211113042640.30955-1-nm@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CI-700 is a new client-level coherent interconnect derived from
-the enterprise-level CMN family, and shares the same PMU design.
+On 12/11/21 10:26PM, Nishanth Menon wrote:
+> A72 Cluster (chapter 1.3.1 [1]) has 48KB Icache, 32KB Dcache and 1MB L2 Cache
+>  - ICache is 3-way set-associative
+>  - Dcache is 2-way set-associative
+>  - Line size are 64bytes
+> 
+> 32KB (Dcache)/64 (fixed line length of 64 bytes) = 512 ways
+> 512 ways / 2 (Dcache is 2-way per set) = 256 sets.
+> 
+> So, correct the d-cache-sets info.
+> 
+> [1] https://www.ti.com/lit/pdf/spruiu1
+> 
+> Fixes: d361ed88455f ("arm64: dts: ti: Add support for J7200 SoC")
+> Reported-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
 
-CC: devicetree@vger.kernel.org
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
- .../devicetree/bindings/perf/arm,cmn.yaml     | 21 ++++++++++++++-----
- 1 file changed, 16 insertions(+), 5 deletions(-)
+Reviewed-by: Pratyush Yadav <p.yadav@ti.com>
 
-diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-index 42424ccbdd0c..2d4219ec7eda 100644
---- a/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-+++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-@@ -12,12 +12,14 @@ maintainers:
- 
- properties:
-   compatible:
--    const: arm,cmn-600
-+    enum:
-+      - arm,cmn-600
-+      - arm,ci-700
- 
-   reg:
-     items:
-       - description: Physical address of the base (PERIPHBASE) and
--          size (up to 64MB) of the configuration address space.
-+          size of the configuration address space.
- 
-   interrupts:
-     minItems: 1
-@@ -31,14 +33,23 @@ properties:
- 
-   arm,root-node:
-     $ref: /schemas/types.yaml#/definitions/uint32
--    description: Offset from PERIPHBASE of the configuration
--      discovery node (see TRM definition of ROOTNODEBASE).
-+    description: Offset from PERIPHBASE of CMN-600's configuration
-+      discovery node (see TRM definition of ROOTNODEBASE). Not
-+      relevant for newer CMN/CI products.
- 
- required:
-   - compatible
-   - reg
-   - interrupts
--  - arm,root-node
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        const: arm,cmn-600
-+then:
-+  required:
-+    - arm,root-node
- 
- additionalProperties: false
- 
 -- 
-2.28.0.dirty
-
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
