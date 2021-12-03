@@ -2,185 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3C3467AAD
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 16:57:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CC8B467ACB
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 17:08:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358155AbhLCQAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 11:00:49 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([170.10.133.124]:39588 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1358114AbhLCQAt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:00:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1638547044;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=SI1YU+5e3o1GhpSpRhdySXud9KfKjuS/f8EQzUXhnMM=;
-        b=ZKG4DD/x25Is854q6bCCl5i+wIPU4v0WHDGKs+b5vR5juyyncX0hbF5eMpPIP/jPcyW5sI
-        V9NkOzlxC5qeK9Qic7VK+A8o/uO8jQyxUaOUCnAVnSIDkMK+HnwqUX5Y5IIzWzVWITuSwl
-        LhWrUZLIpsDrnyefow3wat3m1BeYkJk=
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com
- [209.85.210.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-494-I2SzP4aaN16d9WGQMCYo7g-1; Fri, 03 Dec 2021 10:57:23 -0500
-X-MC-Unique: I2SzP4aaN16d9WGQMCYo7g-1
-Received: by mail-pf1-f197.google.com with SMTP id a23-20020a62bd17000000b004a3f6892612so2134303pff.22
-        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 07:57:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SI1YU+5e3o1GhpSpRhdySXud9KfKjuS/f8EQzUXhnMM=;
-        b=LN8FCHIKbfQPrnqIpnQyqK6Gcy1L2gcQwXRfDkzBCVCD8dfzBhTJcuDUbPST+sMU//
-         4T6lpE0qVXF1gRksZnmSrpBkhS2GKQ8Z776CSynH7JHBjaLVdVtSdt8/g6mwBOlyElIy
-         /v10rzj5G2smakxugNPfn/vKTB2PX5ODkmhZ4glv1qv8MH3ONkv8HxrrVMOf77RdPrCi
-         QLfkjBBfeEVaDe0wRxnVjNOByBoWImOtI6f9E0TJT0cjdlmQF5teYoseZBXjwUI4sVI2
-         B5siwrB8/QRLK1if4xRLP6q/Zlb7RikrPdHtq6yjT+DBi6ssZsIQwM+OgKqt29eLPvva
-         wJRA==
-X-Gm-Message-State: AOAM531wQWszIDYzVDPWICFoz1H6jguiiB6A8Uw5XO5jQh0XeNUoUH92
-        TRuPhG4ZJ9fL63ey2rG+q5WBv934gk2P8q+7owHkeCKzgeTGesV7BdkGHVpww+dHSm7NfB0ntux
-        er+Eae72OJk8wLqOzg4XKu5cpdbARvDXmMIgGmQ==
-X-Received: by 2002:a17:90b:1185:: with SMTP id gk5mr15044623pjb.113.1638547042528;
-        Fri, 03 Dec 2021 07:57:22 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx7xrMTNB0QkbrgSng2lNDULxghTBGZ0ukHYDNd8EQcN9SxbRp/egMqv5t46VIGBXphmZyNHFofkRGvz2DXQhg=
-X-Received: by 2002:a17:90b:1185:: with SMTP id gk5mr15044574pjb.113.1638547042174;
- Fri, 03 Dec 2021 07:57:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20211202115622.40153-1-alistair@alistair23.me> <20211202115622.40153-4-alistair@alistair23.me>
-In-Reply-To: <20211202115622.40153-4-alistair@alistair23.me>
-From:   Benjamin Tissoires <benjamin.tissoires@redhat.com>
-Date:   Fri, 3 Dec 2021 16:57:11 +0100
-Message-ID: <CAO-hwJJ7jJJkExu+GxwiGn=6t+aUow9ktmCedMRCfNF0bLAXfQ@mail.gmail.com>
-Subject: Re: [PATCH v15 3/3] ARM: dts: imx7d: remarkable2: add wacom digitizer device
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ping Cheng <Ping.Cheng@wacom.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Alistair Francis <alistair23@gmail.com>,
-        tatsunosuke.tobita@wacom.com,
-        "open list:HID CORE LAYER" <linux-input@vger.kernel.org>,
-        Jason Gerecke <Jason.Gerecke@wacom.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Jiri Kosina <jikos@kernel.org>, martin.chen@wacom.com,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S244701AbhLCQLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 11:11:23 -0500
+Received: from so254-9.mailgun.net ([198.61.254.9]:23471 "EHLO
+        so254-9.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1381952AbhLCQLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 11:11:22 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1638547678; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=WzzSBVHA8ASC7Q4/2/wpuCOHjl5U3+rLQX15XbsmR4s=; b=TutG5Hv8lhq4/9yaToDk+tWPQUr9OQkFQ86Zf1ZxFebD237EqCE1Glq7eN5XPSGrAkKVv6S/
+ 3zXirsIwCC5JVoMipMHYJQ4n4SKTaf9x+Iig60rg4ygLK3JyF4lWKnqIbwkqG1hiYS4BNe9K
+ 5FnekG6fl902FiVo1agYscZ1oVU=
+X-Mailgun-Sending-Ip: 198.61.254.9
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n08.prod.us-east-1.postgun.com with SMTP id
+ 61aa40dde7d68470afc03754 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 03 Dec 2021 16:07:57
+ GMT
+Sender: srivasam=codeaurora.com@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DED44C43639; Fri,  3 Dec 2021 16:07:56 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hu-srivasam-hyd.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 225A8C4338F;
+        Fri,  3 Dec 2021 16:07:50 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.4.1 smtp.codeaurora.org 225A8C4338F
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.com
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=codeaurora.com
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        swboyd@chromium.org, judyhsiao@chromium.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.com>
+Subject: [PATCH v8 00/10] Add support for audio on SC7280 based targets
+Date:   Fri,  3 Dec 2021 21:37:28 +0530
+Message-Id: <1638547658-22032-1-git-send-email-srivasam@codeaurora.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Dec 2, 2021 at 12:56 PM Alistair Francis <alistair@alistair23.me> wrote:
->
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> ---
->  arch/arm/boot/dts/imx7d-remarkable2.dts | 59 +++++++++++++++++++++++++
+This patch set is to add support for Audio over wcd codec,
+digital mics, through digital codecs and without ADSP.
 
-I think I am always asking the same question, but is it fine for me to
-take this patch through the hid tree?
-I seem to remember that this was a little bit free for all but I'd
-like to get the confirmation first.
+Changes Since V7:
+    -- Fix indentation errors.
+    -- Bisect patches to avoid interdependency.
+Changes Since V6:
+    -- Split cdc dma regmap config macros.
+    -- Add write dma reg fields for i2s path.
+    -- Add helper function to distinguish rxtx and va dma ports.
+    -- Optimizing clock and reg name in cpu dt-bindings.
+    -- Update buffer management for cdc dma path.
+    -- Remove Kconfig fields of machine driver.
+Changes Since V5:
+    -- Include MI2S primary node to snd_soc_dai_driver in lpass-sc7280 platform driver.
+    -- Move dependency patch list to corresponding patch.
+    -- Add support for missing cdc-dma ports.
+    -- Change if/else conditional statements to switch cases.
+    -- Add missing error handlings.
+    -- Typo errors fix.
+Changes Since V4:
+    -- Remove unused variable in lpass-sc7280 platform driver.
+Changes Since V3:
+    -- Remove redundant power domain controls. As power domains can be configured from dtsi.
+Changes Since V2:
+    -- Split lpass sc7280 cpu driver patch and create regmap config patch.
+    -- Create patches based on latest kernel tip.
+    -- Add helper function to get dma control and lpaif handle.
+    -- Remove unused variables.
+Changes Since V1:
+    -- Typo errors fix
+    -- CPU driver readable/writable apis optimization.
+    -- Add Missing config patch
+    -- Add Common api for repeated dmactl initialization.
 
-Cheers,
-Benjamin
+Srinivasa Rao Mandadapu (10):
+  ASoC: qcom: SC7280: Update config for building codec dma drivers
+  ASoC: qcom: Move lpass_pcm_data structure to lpass header
+  ASoC: qcom: lpass: Add dma fields for codec dma lpass interface
+  ASoC: qcom: Add helper function to get dma control and lpaif handle
+  ASoC: qcom: Add register definition for codec rddma and wrdma
+  ASoC: qcom: Add regmap config support for codec dma driver
+  ASoC: qcom: Add support for codec dma driver
+  ASoC: qcom: Add lpass CPU driver for codec dma control
+  ASoC: dt-bindings: Add SC7280 lpass cpu bindings
+  ASoC: qcom: lpass-sc7280: Add platform driver for lpass audio
 
+ .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  |  70 ++-
+ sound/soc/qcom/Kconfig                             |  11 +
+ sound/soc/qcom/Makefile                            |   4 +
+ sound/soc/qcom/lpass-cdc-dma.c                     | 275 +++++++++
+ sound/soc/qcom/lpass-cpu.c                         | 244 +++++++-
+ sound/soc/qcom/lpass-lpaif-reg.h                   | 127 ++++-
+ sound/soc/qcom/lpass-platform.c                    | 617 ++++++++++++++++++---
+ sound/soc/qcom/lpass-sc7280.c                      | 441 +++++++++++++++
+ sound/soc/qcom/lpass.h                             | 162 ++++++
+ 9 files changed, 1864 insertions(+), 87 deletions(-)
+ create mode 100644 sound/soc/qcom/lpass-cdc-dma.c
+ create mode 100644 sound/soc/qcom/lpass-sc7280.c
 
->  1 file changed, 59 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/imx7d-remarkable2.dts b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> index 89cbf13097a4..a2a91bfdd98e 100644
-> --- a/arch/arm/boot/dts/imx7d-remarkable2.dts
-> +++ b/arch/arm/boot/dts/imx7d-remarkable2.dts
-> @@ -34,6 +34,19 @@ reg_brcm: regulator-brcm {
->                 startup-delay-us = <150>;
->         };
->
-> +       reg_digitizer: regulator-digitizer {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "VDD_3V3_DIGITIZER";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +               pinctrl-names = "default", "sleep";
-> +               pinctrl-0 = <&pinctrl_digitizer_reg>;
-> +               pinctrl-1 = <&pinctrl_digitizer_reg>;
-> +               gpio = <&gpio1 6 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +               startup-delay-us = <100000>; /* 100 ms */
-> +       };
-> +
->         wifi_pwrseq: wifi_pwrseq {
->                 compatible = "mmc-pwrseq-simple";
->                 pinctrl-names = "default";
-> @@ -51,6 +64,26 @@ &clks {
->         assigned-clock-rates = <0>, <32768>;
->  };
->
-> +&i2c1 {
-> +       clock-frequency = <400000>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_i2c1>;
-> +       status = "okay";
-> +
-> +       wacom_digitizer: digitizer@9 {
-> +               compatible = "hid-over-i2c";
-> +               reg = <0x09>;
-> +               hid-descr-addr = <0x01>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_wacom>;
-> +               interrupt-parent = <&gpio1>;
-> +               interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
-> +               touchscreen-inverted-x;
-> +               touchscreen-inverted-y;
-> +               vdd-supply = <&reg_digitizer>;
-> +       };
-> +};
-> +
->  &snvs_pwrkey {
->         status = "okay";
->  };
-> @@ -117,6 +150,25 @@ &wdog1 {
->         fsl,ext-reset-output;
->  };
->
-> +&iomuxc_lpsr {
-> +       pinctrl_digitizer_reg: digitizerreggrp {
-> +               fsl,pins = <
-> +                       /* DIGITIZER_PWR_EN */
-> +                       MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6     0x14
-> +               >;
-> +       };
-> +
-> +       pinctrl_wacom: wacomgrp {
-> +               fsl,pins = <
-> +                       /*MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5   0x00000014 FWE */
-> +                       MX7D_PAD_LPSR_GPIO1_IO04__GPIO1_IO4     0x00000074 /* PDCTB */
-> +                       MX7D_PAD_LPSR_GPIO1_IO01__GPIO1_IO1     0x00000034 /* WACOM INT */
-> +                       /*MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6   0x00000014 WACOM PWR ENABLE */
-> +                       /*MX7D_PAD_LPSR_GPIO1_IO00__GPIO1_IO0   0x00000074 WACOM RESET */
-> +               >;
-> +       };
-> +};
-> +
->  &iomuxc {
->         pinctrl_brcm_reg: brcmreggrp {
->                 fsl,pins = <
-> @@ -125,6 +177,13 @@ MX7D_PAD_SAI1_TX_BCLK__GPIO6_IO13  0x14
->                 >;
->         };
->
-> +       pinctrl_i2c1: i2c1grp {
-> +               fsl,pins = <
-> +                       MX7D_PAD_I2C1_SDA__I2C1_SDA             0x4000007f
-> +                       MX7D_PAD_I2C1_SCL__I2C1_SCL             0x4000007f
-> +               >;
-> +       };
-> +
->         pinctrl_uart1: uart1grp {
->                 fsl,pins = <
->                         MX7D_PAD_UART1_TX_DATA__UART1_DCE_TX    0x79
-> --
-> 2.31.1
->
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
