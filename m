@@ -2,136 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF934677D0
-	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04B414677DD
+	for <lists+devicetree@lfdr.de>; Fri,  3 Dec 2021 14:11:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239885AbhLCNKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 3 Dec 2021 08:10:52 -0500
-Received: from foss.arm.com ([217.140.110.172]:49102 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S235590AbhLCNKw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 3 Dec 2021 08:10:52 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F307B1396;
-        Fri,  3 Dec 2021 05:07:27 -0800 (PST)
-Received: from [10.57.34.58] (unknown [10.57.34.58])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8E7A3F5A1;
-        Fri,  3 Dec 2021 05:07:25 -0800 (PST)
-Message-ID: <46d9c8dd-d2dc-0d2a-aeb4-08dff9dcb733@arm.com>
-Date:   Fri, 3 Dec 2021 13:07:21 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-From:   Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH 0/3] Allow restricted-dma-pool to customize IO_TLB_SEGSIZE
-To:     Tomasz Figa <tfiga@chromium.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        id S244454AbhLCNOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 3 Dec 2021 08:14:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34888 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S244202AbhLCNOw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 3 Dec 2021 08:14:52 -0500
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E25ABC061757
+        for <devicetree@vger.kernel.org>; Fri,  3 Dec 2021 05:11:28 -0800 (PST)
+Received: by mail-ed1-x533.google.com with SMTP id r25so11250957edq.7
+        for <devicetree@vger.kernel.org>; Fri, 03 Dec 2021 05:11:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ABl0NtQNaMGaQ7u4z+8cjzybRMFdvc0PrfMVxIShPwM=;
+        b=M7I3rJ/rQcixRj353yYPU1q/z/if4icwPYrGYLp/Sqqb4IfDr1Mv6Nl/eTkTEFBz0b
+         q4Zr9iS4JEThqS8u4LeNIFPPhd7jNFKNTAajlplzamu0CuwuLsUSLYzsJE/25U/V7TfK
+         yY7gSBPHJfT1m60VLh7uSmjRdm6hEACA37UH0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ABl0NtQNaMGaQ7u4z+8cjzybRMFdvc0PrfMVxIShPwM=;
+        b=f3hjP9rEXUAhP2Q4arbg3LQkjsyvTlsn5UQW+RnVK3Z99hyZyS6P88C8/5yOAcaSRR
+         x60uwcwWwdotfa1KTtd1+wlG9Rr+DQNHomF9wonO7z9JuA5riKsdKYvM1fYjDpS7hvmy
+         M7lAUzCe/Bucc8gf2n6bTaeVn/Bpdz7takvghkyveDb7BwZ4MWlvUUwwqCr3cDp6Yhl+
+         5JGFGEfsMrEEkpChebOMzx+PcjozgCcJENOZCwLOPZQsvgHsp4ABe2qqgeM6gFad9D1S
+         9ifyNjZJU3wKAPlOQRk60z1oTfEPU1gzOLWrNWfoIR1T+Ix0gFRVViS0dHs1/V6zHKeN
+         XgVQ==
+X-Gm-Message-State: AOAM532ycaTaBsuIvXSzjKZXJqV/wfUeXDgxrOT7kF2BBjpZN/C9zwgJ
+        euCwqVomqiH+x89/8f21wkhaWA==
+X-Google-Smtp-Source: ABdhPJzSmlmWvbiEmXEPSA7O+FJ1Awnby9k+OXFzA8WIIrrbPxAAvYhKN7AQdDaD+EPzmlPP3kEnjg==
+X-Received: by 2002:a17:907:3f9d:: with SMTP id hr29mr24089850ejc.369.1638537087469;
+        Fri, 03 Dec 2021 05:11:27 -0800 (PST)
+Received: from gmail.com ([100.104.168.197])
+        by smtp.gmail.com with ESMTPSA id og14sm1907799ejc.107.2021.12.03.05.11.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Dec 2021 05:11:27 -0800 (PST)
+Date:   Fri, 3 Dec 2021 14:11:20 +0100
+From:   Ricardo Ribalda <ribalda@chromium.org>
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        - <devicetree-spec@vger.kernel.org>, devicetree@vger.kernel.org,
+        Tomasz Figa <tfiga@chromium.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, senozhatsky@chromium.org
-References: <20211123112104.3530135-1-hsinyi@chromium.org>
- <75ea1026-63e5-165a-9e07-27b5ac4c7579@arm.com>
- <CAAFQd5AA3XCqxOSdQOOCMEdByDKRz5J9vWB0QghO2SSCqOvQBQ@mail.gmail.com>
-Content-Language: en-GB
-In-Reply-To: <CAAFQd5AA3XCqxOSdQOOCMEdByDKRz5J9vWB0QghO2SSCqOvQBQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com,
+        irui.wang@mediatek.com
+Subject: Re: [PATCH V1, 5/6] media: mtk-jpegdec: add output pic reorder
+ interface
+Message-ID: <YaoXeLgK30MKKT+S@gmail.com>
+References: <1638509655-14296-1-git-send-email-kyrie.wu@mediatek.com>
+ <1638509655-14296-6-git-send-email-kyrie.wu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1638509655-14296-6-git-send-email-kyrie.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2021-11-25 07:35, Tomasz Figa wrote:
-> Hi Robin,
+kyrie.wu wrote:
+
+> add output reorder func to reorder the output images
+> to ensure the output pic is consistent with the input images.
 > 
-> On Tue, Nov 23, 2021 at 8:59 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 2021-11-23 11:21, Hsin-Yi Wang wrote:
->>> Default IO_TLB_SEGSIZE (128) slabs may be not enough for some use cases.
->>> This series adds support to customize io_tlb_segsize for each
->>> restricted-dma-pool.
->>>
->>> Example use case:
->>>
->>> mtk-isp drivers[1] are controlled by mtk-scp[2] and allocate memory through
->>> mtk-scp. In order to use the noncontiguous DMA API[3], we need to use
->>> the swiotlb pool. mtk-scp needs to allocate memory with 2560 slabs.
->>> mtk-isp drivers also needs to allocate memory with 200+ slabs. Both are
->>> larger than the default IO_TLB_SEGSIZE (128) slabs.
->>
->> Are drivers really doing streaming DMA mappings that large? If so, that
->> seems like it might be worth trying to address in its own right for the
->> sake of efficiency - allocating ~5MB of memory twice and copying it back
->> and forth doesn't sound like the ideal thing to do.
->>
->> If it's really about coherent DMA buffer allocation, I thought the plan
->> was that devices which expect to use a significant amount and/or size of
->> coherent buffers would continue to use a shared-dma-pool for that? It's
->> still what the binding implies. My understanding was that
->> swiotlb_alloc() is mostly just a fallback for the sake of drivers which
->> mostly do streaming DMA but may allocate a handful of pages worth of
->> coherent buffers here and there. Certainly looking at the mtk_scp
->> driver, that seems like it shouldn't be going anywhere near SWIOTLB at all.
+> Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
+> ---
+>  drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c | 50 +++++++++++++++++++++--
+>  1 file changed, 46 insertions(+), 4 deletions(-)
 > 
-> First, thanks a lot for taking a look at this patch series.
+> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c b/drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c
+> index 9138ecb..fad5bf1c 100644
+> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c
+> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_dec_hw.c
+> @@ -443,6 +443,49 @@ void mtk_jpeg_dec_set_config(void __iomem *base,
+>  	mtk_jpeg_dec_set_pause_mcu_idx(base, config->total_mcu);
+>  }
+>  
+> +void mtk_jpegdec_put_buf(struct mtk_jpegdec_comp_dev *jpeg)
+> +{
+> +	struct mtk_jpeg_src_buf *dst_done_buf, *tmp_dst_done_buf;
+> +	struct vb2_v4l2_buffer *dst_buffer;
+> +	struct list_head *temp_entry;
+> +	struct list_head *pos = NULL;
+> +	struct mtk_jpeg_ctx *ctx;
+> +	unsigned long flags;
+> +
+> +	ctx = jpeg->hw_param.curr_ctx;
+> +	if (!ctx) {
+> +		dev_err(jpeg->dev, "comp_jpeg ctx fail !!!\n");
+> +		return;
+> +	}
+> +
+> +	dst_buffer = jpeg->hw_param.dst_buffer;
+> +	if (!dst_buffer) {
+> +		dev_err(jpeg->dev, "comp_jpeg dst_buffer fail !!!\n");
+> +		return;
+> +	}
+> +
+> +	dst_done_buf = container_of(dst_buffer, struct mtk_jpeg_src_buf, b);
+> +
+> +	spin_lock_irqsave(&ctx->done_queue_lock, flags);
+> +	list_add_tail(&dst_done_buf->list, &ctx->dst_done_queue);
+> +	while (!list_empty(&ctx->dst_done_queue) &&
+> +		(pos != &ctx->dst_done_queue)) {
+> +		list_for_each_prev_safe(pos, temp_entry,
+> +			(&ctx->dst_done_queue)) {
+> +			tmp_dst_done_buf = list_entry(pos,
+> +				struct mtk_jpeg_src_buf, list);
+> +			if (tmp_dst_done_buf->frame_num ==
+> +				ctx->last_done_frame_num) {
+> +				list_del(&tmp_dst_done_buf->list);
+> +				v4l2_m2m_buf_done(&tmp_dst_done_buf->b,
+> +					VB2_BUF_STATE_DONE);
+> +				ctx->last_done_frame_num++;
+> +			}
+> +		}
+> +	}
+> +	spin_unlock_irqrestore(&ctx->done_queue_lock, flags);
+> +}
+> +
+>  static void mtk_jpegdec_timeout_work(struct work_struct *work)
+>  {
+>  	enum vb2_buffer_state buf_state = VB2_BUF_STATE_ERROR;
+> @@ -450,10 +493,9 @@ static void mtk_jpegdec_timeout_work(struct work_struct *work)
+>  		container_of(work, struct mtk_jpegdec_comp_dev,
+>  		job_timeout_work.work);
+>  	struct mtk_jpeg_dev *master_jpeg = cjpeg->master_dev;
+> -	struct vb2_v4l2_buffer *src_buf, *dst_buf;
+> +	struct vb2_v4l2_buffer *src_buf;
+>  
+>  	src_buf = cjpeg->hw_param.src_buffer;
+> -	dst_buf = cjpeg->hw_param.dst_buffer;
+>  
+>  	mtk_jpeg_dec_reset(cjpeg->reg_base);
+>  	clk_disable_unprepare(cjpeg->pm.dec_clk.clk_info->jpegdec_clk);
+> @@ -462,7 +504,7 @@ static void mtk_jpegdec_timeout_work(struct work_struct *work)
+>  	atomic_inc(&cjpeg->hw_rdy);
+>  	wake_up(&master_jpeg->dec_hw_wq);
+>  	v4l2_m2m_buf_done(src_buf, buf_state);
+> -	v4l2_m2m_buf_done(dst_buf, buf_state);
+> +	mtk_jpegdec_put_buf(cjpeg);
+>  }
+>  
+>  int mtk_jpegdec_init_pm(struct mtk_jpegdec_comp_dev *mtkdev)
+> @@ -559,7 +601,7 @@ static irqreturn_t mtk_jpegdec_hw_irq_handler(int irq, void *priv)
+>  
+>  dec_end:
+>  	v4l2_m2m_buf_done(src_buf, buf_state);
+> -	v4l2_m2m_buf_done(dst_buf, buf_state);
+> +	mtk_jpegdec_put_buf(jpeg);
+>  	v4l2_m2m_job_finish(master_jpeg->m2m_dev, ctx->fh.m2m_ctx);
+>  	clk_disable_unprepare(jpeg->pm.dec_clk.clk_info->jpegdec_clk);
+>  	pm_runtime_put(ctx->jpeg->dev);
+> -- 
+> 2.6.4
 > 
-> The drivers would do streaming DMA within a reserved region that is
-> the only memory accessible to them for security reasons. This seems to
-> exactly match the definition of the restricted pool as merged
-> recently.
-
-Huh? Of the drivers indicated, the SCP driver is doing nothing but 
-coherent allocations, and I'm not entirely sure what those ISP driver 
-patches are supposed to be doing but I suspect it's probably just buffer 
-allocation too. I don't see any actual streaming DMA anywhere :/
-
-> The new dma_alloc_noncontiguous() API would allow allocating suitable
-> memory directly from the pool, which would eliminate the need to copy.
-
-Can you clarify what's being copied, and where? I'm not all that 
-familiar with the media APIs, but I thought it was all based around 
-preallocated DMA buffers (the whole dedicated "videobuf" thing)? The few 
-instances of actual streaming DMA I can see in drivers/media/ look to be 
-mostly PCI drivers mapping private descriptors, whereas the MTK ISP 
-appears to be entirely register-based.
-
-> However, for a restricted pool, this would exercise the SWIOTLB
-> allocator, which currently suffers from the limitation as described by
-> Hsin-Yi. Since the allocator in general is quite general purpose and
-> already used for coherent allocations as per the current restricted
-> pool implementation, I think it indeed makes sense to lift the
-> limitation, rather than trying to come up with yet another thing.
-
-No, just fix the dma_alloc_noncontiguous() fallback case to split the 
-allocation into dma_max_mapping_size() chunks. *That* makes sense.
-
-Thanks,
-Robin.
-
 > 
-> Best regards,
-> Tomasz
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 > 
->>
->> Robin.
->>
->>> [1] (not in upstream) https://patchwork.kernel.org/project/linux-media/cover/20190611035344.29814-1-jungo.lin@mediatek.com/
->>> [2] https://elixir.bootlin.com/linux/latest/source/drivers/remoteproc/mtk_scp.c
->>> [3] https://patchwork.kernel.org/project/linux-media/cover/20210909112430.61243-1-senozhatsky@chromium.org/
->>>
->>> Hsin-Yi Wang (3):
->>>     dma: swiotlb: Allow restricted-dma-pool to customize IO_TLB_SEGSIZE
->>>     dt-bindings: Add io-tlb-segsize property for restricted-dma-pool
->>>     arm64: dts: mt8183: use restricted swiotlb for scp mem
->>>
->>>    .../reserved-memory/shared-dma-pool.yaml      |  8 +++++
->>>    .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  4 +--
->>>    include/linux/swiotlb.h                       |  1 +
->>>    kernel/dma/swiotlb.c                          | 34 ++++++++++++++-----
->>>    4 files changed, 37 insertions(+), 10 deletions(-)
->>>
