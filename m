@@ -2,135 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6346468522
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 14:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EDB946854D
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 15:17:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1385077AbhLDNtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 08:49:04 -0500
-Received: from mail-eopbgr20067.outbound.protection.outlook.com ([40.107.2.67]:26501
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1344655AbhLDNtC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 Dec 2021 08:49:02 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NIXGLNfMdhQcP0P0/ZVGWKJjMkuwW1AueqXy1lMOLuY1p0id/RSPl53L3hzErGPnAcUuYQm9EUrjsXtNtSrZHUqid3EW8UZovXrqau64AkRxWxUaVg2xGwYulCMA2En05W+kIh+a7mEu0hMArQ7HBlN+LbdZgdGsP9VN9TqWX9s71X7ZCubVIgPpANiwV0I2Tvijajw5En5TA2mSf1zgzwlV58yYo+73BvvKt1HR59iKr9LDVok9O4bcSmadIOB5/QmuTgotUBdeRi9RfcWQ4GD9PopvFc/Mp+l/+X9oDi0wXOImF7uUQ6XQ1d63V8tfyRXNv4bkRTqkxjgMWEjqvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EIYYWyiSWg+W7Nr8aybf/sOlDE8v6zKIAnE4aJXow1o=;
- b=Fl9XxHFg1/NObVq5+Jq94xhmQuw4L/wy1q3z0kOp8duMNwDNC9e7DaSIN5NEEgENZ2A0eWZfKNVcKVHEsNOs/Lw62JPyN0SHUGbQMxYAp7ejf/PD9p/Fz4TKqw+tXVizL+/oVNjpjC/WikVhs0/Zg3R+g/f5amGX23vYQiRBCX6GSibmMEuRj8shK07HbTrg87ZXqXV/lThfkPoskPCispXM7yxFQfJiItwB1nnKXH3tY/gFPmNYyXRwcVIXIUaUc9AgKsqErPYPo2iU1ZNP6e7cxD+l1a/OyspUUAdaWKQFRD+y1/pV3bkt1zHC4Lf1m59sUeQosNlvDNpbw+scmA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EIYYWyiSWg+W7Nr8aybf/sOlDE8v6zKIAnE4aJXow1o=;
- b=k1O9zVGL/NTfj4IrdR/BoqQ7OdMq2KiED8BX8n9rcZzQLX8nTQEZeE+YleYb6GK+Im2aeYpExBXB5ZtVXMSVF2eGkqNn4Hf/lxHWl8FLFOgL9bU5COVZj3U8gPmQ2u+nFnF2NngwAF4CSdL4HPQWN4NPctb1/kILNOMWscJzyp8=
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com (2603:10a6:803:55::19)
- by VI1PR04MB5501.eurprd04.prod.outlook.com (2603:10a6:803:d3::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.28; Sat, 4 Dec
- 2021 13:45:35 +0000
-Received: from VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::796e:38c:5706:b802]) by VI1PR04MB5136.eurprd04.prod.outlook.com
- ([fe80::796e:38c:5706:b802%3]) with mapi id 15.20.4755.020; Sat, 4 Dec 2021
- 13:45:35 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
-CC:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Denis Kirjanov <dkirjanov@suse.de>,
-        Julian Wiedmann <jwi@linux.ibm.com>
-Subject: Re: [PATCH net-next v4 2/4] net: ocelot: add and export
- ocelot_ptp_rx_timestamp()
-Thread-Topic: [PATCH net-next v4 2/4] net: ocelot: add and export
- ocelot_ptp_rx_timestamp()
-Thread-Index: AQHX6GoAMHQlfMnq0kOK2gyGKRszQKwiWZcA
-Date:   Sat, 4 Dec 2021 13:45:35 +0000
-Message-ID: <20211204134534.7kqvfqyicdojjbld@skbuf>
-References: <20211203171916.378735-1-clement.leger@bootlin.com>
- <20211203171916.378735-3-clement.leger@bootlin.com>
-In-Reply-To: <20211203171916.378735-3-clement.leger@bootlin.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 17a95b29-4616-42f5-4a26-08d9b72c595f
-x-ms-traffictypediagnostic: VI1PR04MB5501:
-x-microsoft-antispam-prvs: <VI1PR04MB5501498E5AB1E158707E3752E06B9@VI1PR04MB5501.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lx4AzMe4b0EEuFz1QYmDgxyWNpMQEYHrI9+DBe0Dh+cqoSgr1YtU/yeJdWbd9B2dzk/Vj7CBEE+Bk03hmFxYhRKBl7tnPoL3g6x6rAvEuISZuCh5GXvQI8VYP61MWil4ArLxGuY2JC9vAgYL2ZF97UhwgxAIyU+o3I5GXE1sPsHZ4zvAw/YBzhj+Ws6MFGvmAELKU6WGT2rD5zWApZ4I4jSrQBKv3rGOpHCNuyclT8xlIWYJveRQfMTv3eB1g+2YHE1xdWHKAXRnJUOc85J1v7+WP2yTw2xp+eOblFHYfatPJgivekPyGqkmLgDa3ctAe+RTN87LXC9aF582UmiD5nrRT51HJHwqayceSfsgfJh0wsQD5m5UECqW1btR0cCbKnRmDsxTZ5hR1kh3EbvXQ7Ib4tVtxY/y8X3zKmYtf1aNukOILZKNhXQpGaVeeqRjl2bKz/7/CrotPzYQYCfqS87FoaFKROEmLuPmnd07ucMfp9GFC11pi21Q/mZqhaUBJtkSzTRdhGzf8qv/bfaZrYf2z2nmMLRey75otbDH8V8bmqSX8A8fMA/FKUKD/NfUJYQtwRniVSw3WKUW51bQGJ/fD69hSbeSLQ6SDuZN3k2fad/43WJ3cRJigedzDSCr9ySLsJmGpLo1uqO8X5Hlh3Ex0rwqi7CcxYkt5zAseSkJ+qUR+sbXpqNQE+vtht8ST0D/507Rc0Jh2Hyoewxgxw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5136.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(366004)(66556008)(66446008)(316002)(38070700005)(33716001)(66476007)(38100700002)(86362001)(5660300002)(54906003)(2906002)(122000001)(8936002)(8676002)(66946007)(26005)(4744005)(64756008)(71200400001)(508600001)(83380400001)(186003)(91956017)(76116006)(66574015)(7416002)(1076003)(44832011)(4326008)(6486002)(6512007)(6506007)(9686003)(6916009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?rpAaj9+SzP7AFnjiGPT+YFztdVpZpc/qKkfOyDLgzNFJ/G1h8pXsDlHEnh?=
- =?iso-8859-1?Q?b4BF2VDs56c36Q+pecsaSiXqJZhnUe5SuErz8bGhVOqQjAZCecTvoL3qeU?=
- =?iso-8859-1?Q?rbnWibYMIU4JWmYWa9dHRwEkBYZ4jDTpwX8DM2zj4yZm12MIvI6H37cdeq?=
- =?iso-8859-1?Q?VaQfV2OPDC9tqHv0YDENYE9ZKgX/bfq9zkQG0BAMXuIne4s8vqSFze25b/?=
- =?iso-8859-1?Q?lgdh9VV3rD2OcXMRwPhbElSeQvxFvJ2jkCrDMSLnf9JGrEm66EaUs+VG5R?=
- =?iso-8859-1?Q?eZm81yTlhjD3iSWKBPyzxf4Nr5SjD9jO/6LQEHgJsbGj1YhIBkoFC8iskw?=
- =?iso-8859-1?Q?Z0vrqKFUxCIXjirmGKcAD45N7u59vkGtdbCGTnqW8vtnkJoQTejoENGak9?=
- =?iso-8859-1?Q?ahmftxdGUz/7G0u7ILuU9IccHjySOGlKyXUhpZ8Lhv5aItceg88ZIIZGwt?=
- =?iso-8859-1?Q?TZUZwnuw50qpvd10SW8B4SOAoZ9uKKQZcxvF8zDeCjqTXm5ZDnGADKL6iK?=
- =?iso-8859-1?Q?uczqOJrWr5Apxa/WeTN/9fIBxLFABNZJrHrkDGrZMzhVuFVxjhX3llO4h8?=
- =?iso-8859-1?Q?B/c6sHABexltPSesKeO14UmKmhhBHuLQ2yccyIISgoTTa0d8XFjPIVAgD+?=
- =?iso-8859-1?Q?HACjC0KeBUc8YqoatuhfQPA3xkcN97JrrdpcoRM6Rn1Zg62aemF+tOPRXj?=
- =?iso-8859-1?Q?udG1Gk5RBkybuBqCmOR2iNV2VtBlgnawAD3VbwseHAqf/jrlhqogApFj5o?=
- =?iso-8859-1?Q?guWxjS6AePHEUk7P70ZrJQ6sTfPTvC0dZ3FBL7WzVp7F3QCUq0LCXsoABS?=
- =?iso-8859-1?Q?OLY13+D+4srtV4gsCbsbpElZBxAv6XzYxlw9fqCcHneIanMSGd2U3MlVK5?=
- =?iso-8859-1?Q?2VKz4pIeugSvouHX16H8I08hMMfe1VPxjKWJsUSfGluw7HpOwk4+1Vi/Ml?=
- =?iso-8859-1?Q?MuzT0s7Itc96yeJ0P+D7vBtCnOG9Fid9WoQ+4i4YvifMLZe5KBWyI7+jbL?=
- =?iso-8859-1?Q?cPm80YSCtqdZhDRr14w2W8twY8fYcMbHiNNjJjAHUgCIqDzqWSnTCRKtAQ?=
- =?iso-8859-1?Q?Ym+NZJd1q2bEQJy87XkoFEyvFhv74jiYjjYVTu25+jHkrif/sUdM5R6rCw?=
- =?iso-8859-1?Q?xIs8D/LZ4iNI+N7WZtA//8huA7CtFXq1WWRqNiKsasb/MTfCluahnDuRQg?=
- =?iso-8859-1?Q?yuj5wvkDeSPq2DWrmLG9n109m1KeAHsddtM0NyxKVUhOPwLv22tMUlou7/?=
- =?iso-8859-1?Q?LWEoqOvBlrEtuC1ltmzdkFU+oTDGoI+L9Lm1nun2Gb/lMhoJvIY4eoFy7O?=
- =?iso-8859-1?Q?f7DSVmkNVozpJ61/Fkx9dUp4wZ1S2zWeT/6C0KmYAk1kkMB2mifSllZBCs?=
- =?iso-8859-1?Q?SUTJZo6QAkjOYJbd1J3SEysfmzEE06nKsLscW53oS5FGsploYGiZbnHQGH?=
- =?iso-8859-1?Q?xsRX2pduaPawXzOrRk+TdV3bbGPpfwb2HJOJr7chnu7fyi1tSH0JFbf4hd?=
- =?iso-8859-1?Q?yMbnkdV6p9IrFqnN6QTZLUKMmu9izTyRdEP4hLG+gJ66H7VUH8WrFHuhfe?=
- =?iso-8859-1?Q?pvx/EeAMCS8yfFnxMpdW/J3CE91YFcQMiHun/Bh7PIAE3uPX4IpP3XzUbg?=
- =?iso-8859-1?Q?q3RylkFQFBw9C/pN6MT6T5gmQB5Tf7QgfRJhYPmRj91pp2O6BnMiAFt7Br?=
- =?iso-8859-1?Q?TbU5vB4hrb+EIX4U/8E=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <31C760CCD14C2A4ABFEC4AD70DFE7895@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1385188AbhLDOVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 09:21:21 -0500
+Received: from mga14.intel.com ([192.55.52.115]:63379 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1385174AbhLDOVV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 4 Dec 2021 09:21:21 -0500
+X-IronPort-AV: E=McAfee;i="6200,9189,10187"; a="237346832"
+X-IronPort-AV: E=Sophos;i="5.87,287,1631602800"; 
+   d="scan'208";a="237346832"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2021 06:17:55 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.87,287,1631602800"; 
+   d="scan'208";a="514100772"
+Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
+  by orsmga008.jf.intel.com with ESMTP; 04 Dec 2021 06:17:52 -0800
+Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1mtVrL-000J5T-Lo; Sat, 04 Dec 2021 14:17:51 +0000
+Date:   Sat, 4 Dec 2021 22:16:56 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-kernel@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        Lizhi Hou <lizhi.hou@xilinx.com>, linux-fpga@vger.kernel.org,
+        maxz@xilinx.com, sonal.santan@xilinx.com, yliu@xilinx.com,
+        michal.simek@xilinx.com, stefanos@xilinx.com,
+        devicetree@vger.kernel.org, trix@redhat.com
+Subject: Re: [PATCH V3 XRT Alveo Infrastructure 3/8] of: create empty of root
+Message-ID: <202112042255.DZihRncD-lkp@intel.com>
+References: <20211204003957.1448567-4-lizhi.hou@xilinx.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5136.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17a95b29-4616-42f5-4a26-08d9b72c595f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2021 13:45:35.4403
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hAiBFVOIOvLcL6XvkKmK2Um0G6Zd2Qo05CFXJK4U7iuwlO7SdgmXNAv13bwMgbaXo4vr5AFi8m4N4kgUs0V44g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5501
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20211204003957.1448567-4-lizhi.hou@xilinx.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Dec 03, 2021 at 06:19:14PM +0100, Cl=E9ment L=E9ger wrote:
-> In order to support PTP in FDMA, PTP handling code is needed. Since
-> this is the same as for register-based extraction, export it with
-> a new ocelot_ptp_rx_timestamp() function.
->=20
-> Signed-off-by: Cl=E9ment L=E9ger <clement.leger@bootlin.com>
-> ---
+Hi Lizhi,
 
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>=
+I love your patch! Yet something to improve:
+
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linux/master linus/master v5.16-rc3 next-20211203]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
+
+url:    https://github.com/0day-ci/linux/commits/Lizhi-Hou/XRT-Alveo-driver-infrastructure-overview/20211204-084333
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+config: mips-randconfig-c004-20211203 (https://download.01.org/0day-ci/archive/20211204/202112042255.DZihRncD-lkp@intel.com/config)
+compiler: clang version 14.0.0 (https://github.com/llvm/llvm-project 5f1d1854eb1450d352663ee732235893c5782237)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install mips cross compiling tool for clang build
+        # apt-get install binutils-mips-linux-gnu
+        # https://github.com/0day-ci/linux/commit/1b36c19ebc303a293dff82ed399ea70bf4ddde50
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Lizhi-Hou/XRT-Alveo-driver-infrastructure-overview/20211204-084333
+        git checkout 1b36c19ebc303a293dff82ed399ea70bf4ddde50
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=mips SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All errors (new ones prefixed by >>):
+
+>> drivers/of/fdt.c:505:7: error: implicit declaration of function 'of_resolve_phandles' [-Werror,-Wimplicit-function-declaration]
+           rc = of_resolve_phandles(dt);
+                ^
+   1 error generated.
+
+
+vim +/of_resolve_phandles +505 drivers/of/fdt.c
+
+   468	
+   469	static int __init of_fdt_root_init(void)
+   470	{
+   471		struct device_node *dt = NULL, *np;
+   472		void *fdt, *fdt_aligned;
+   473		int size, rc;
+   474	
+   475	#if !defined(CONFIG_OF_UNITTEST)
+   476		if (of_root)
+   477			return 0;
+   478	#endif
+   479		size = __dtb_fdt_default_end - __dtb_fdt_default_begin;
+   480	
+   481		fdt = kmalloc(size + FDT_ALIGN_SIZE, GFP_KERNEL);
+   482		if (!fdt)
+   483			return -ENOMEM;
+   484	
+   485		fdt_aligned = PTR_ALIGN(fdt, FDT_ALIGN_SIZE);
+   486		memcpy(fdt_aligned, __dtb_fdt_default_begin, size);
+   487	
+   488		if (!of_fdt_unflatten_tree((const unsigned long *)fdt_aligned,
+   489					   NULL, &dt)) {
+   490			pr_warn("%s: unflatten default tree failed\n", __func__);
+   491			kfree(fdt);
+   492			return -ENODATA;
+   493		}
+   494		if (!dt) {
+   495			pr_warn("%s: empty default tree\n", __func__);
+   496			kfree(fdt);
+   497			return -ENODATA;
+   498		}
+   499	
+   500		/*
+   501		 * This lock normally encloses of_resolve_phandles()
+   502		 */
+   503		of_overlay_mutex_lock();
+   504	
+ > 505		rc = of_resolve_phandles(dt);
+   506		if (rc) {
+   507			pr_err("%s: Failed to resolve phandles (rc=%i)\n", __func__, rc);
+   508			of_overlay_mutex_unlock();
+   509			return -EINVAL;
+   510		}
+   511	
+   512		if (!of_root) {
+   513			of_root = dt;
+   514			for_each_of_allnodes(np)
+   515				__of_attach_node_sysfs(np);
+   516			of_aliases = of_find_node_by_path("/aliases");
+   517			of_chosen = of_find_node_by_path("/chosen");
+   518			of_overlay_mutex_unlock();
+   519			return 0;
+   520		}
+   521	
+   522		unittest_data_add(dt);
+   523	
+   524		of_overlay_mutex_unlock();
+   525	
+   526		return 0;
+   527	}
+   528	pure_initcall(of_fdt_root_init);
+   529	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
