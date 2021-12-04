@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D08AD4687EB
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 22:58:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 203574687F3
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 22:58:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355808AbhLDWCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 17:02:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47524 "EHLO
+        id S1379159AbhLDWCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 17:02:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379242AbhLDWB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 17:01:58 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64FE8C0611F7
-        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 13:58:32 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id o13so13611247wrs.12
-        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 13:58:32 -0800 (PST)
+        with ESMTP id S1379413AbhLDWCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 17:02:00 -0500
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00A95C061A83
+        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 13:58:34 -0800 (PST)
+Received: by mail-wr1-x429.google.com with SMTP id j3so13748207wrp.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 13:58:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=68SA4R0NxLIr37Da5nfLfh6Rq6kJdXUgL0ant2P/Sj4=;
-        b=H2STaTK95005QNz2MbBiOt0wdBCil5jdxUtHdHr+h2kznsY+43uu8BOGpeM8ddviyb
-         4kkR520KjL0AdzAAaJwM0QnxG4yAouCHcKEzkMHxIvChopuHSjB+QlUmvrjJTQVVgiud
-         rLtQMkpoRjdJqV+bfmG4eeFZVdgTJUoFZ3qh8gFui2bdmGNMjucltMW7H1jkww1kEUSX
-         LhqbtWbnWdfuJ/ev8Tdhe0yz7mRzZvMmIFj/YC1zr/sRE7+oFqsAscRePpQjW6fmQd8P
-         yXJ2uftobAGZBdxPIpe9R/cRqxlcBOwLC7ZtC5GLjokjVuwrUc0netZH8wt8sCkJjViO
-         blfg==
+        bh=K3czBnhF20hlEpxNiPEsab7v5hRpy0g/kc9Op3PQw6E=;
+        b=BwaXfdv9uHPs4/S9MCysQwKfbqm+jRls2xetHfv7k/INNCJY1MZBG0P+Yyt5CQjUq1
+         iU7tVhKGQFyzhFoJKl/sUovosGLTdgjRG74tuvqJDkvHEFx+n+oqqVOidF4qjTyLHNCX
+         JbZHOcGWBoFRF7LuHNldZGos/kJOhKprlYgjjSfAssUdeiTrvm6Z2hIEqrzu9q13MPD7
+         yiIhQK2gjPaHsurlqNkQ66hUejwvGBndWaqjVzbt2wv32/jz8jIjvJbkyyrQkVuQCRIw
+         QTxAkBnCH5w6Kjudbw3GheGJh/Pu0c/XUQTJ1Iz5krkIekpmonrFKVEb/pCrawhyYXaz
+         BM9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=68SA4R0NxLIr37Da5nfLfh6Rq6kJdXUgL0ant2P/Sj4=;
-        b=0U3FFEZS4VS1GQfTmS1LChAm2yu8LWckfV3IVnVZeF0LaeJPgHbc7ViwCf8kwy1Reg
-         FNn2OdbEKs11w57HG1WyaIqj1WhwwSjNA1qcesOvrTnd8wRRy0njtU0VGS0hCaTk+Klu
-         QhVHGQMan0iFSZvYfKp2clBk4pCoMqIKgibUxNzIwGKQFBQzxGCqjNg5l4Up5I3dT3hH
-         pQay2X7y0/G0ddKY9Uwd4elBa/bMqc8A3AGHUOK0UBaCXtbrWkBoXe6Ydo8jVCnE4f8n
-         TZ3MGFWbw92li2tPQORQrTr3yMtu3Jm5mDxs4oovyWyIeXcMmJ/eCr2oJOqaYvH5aWJU
-         VCgg==
-X-Gm-Message-State: AOAM5320PJ3yJiG7oP2xuQssE+0A4IJ1iRMxMx0eACjGXuFhRs9XkKaj
-        19ANqD7E8mJhFJ5Nzh41BbpfPw==
-X-Google-Smtp-Source: ABdhPJylorT12Ea6K3nYV3saE7kchDm27BgyQlbHQDZ9ALWqcIENW5o7LZFLV4oW5SaGmAabQ7rdaQ==
-X-Received: by 2002:a5d:4ed1:: with SMTP id s17mr32746730wrv.310.1638655110996;
-        Sat, 04 Dec 2021 13:58:30 -0800 (PST)
+        bh=K3czBnhF20hlEpxNiPEsab7v5hRpy0g/kc9Op3PQw6E=;
+        b=ssp8I4afw7vCwYqJS1/Muvkz23BoAYaigaDCGmE158KoH8ONWOW3zE+DC2erymqD8c
+         acp4GuKBc1ooAIBo7XrzebluBYl9EDoCZdQ2JCvzx4DKpij1225sy6Imcgran2TPwpKo
+         aDpbP7AjHZ7SLDhB/woM+2oCbuqMvoHJ3fAa4na3Y66o9Ro8laHxJEi+/ulJBm7vdruI
+         jpHKXPCWzAnP3PCIXTqpN/Ji4LRwOmTeZCIb5fyqIdz30Vqrv2WS3jbS+tlkzSx4djTT
+         Yid9L4/Js32TMHz6dFF1rTHOaz8LzZW5Q7t28voizZfc9Wk3GXwQWHb/8p/JlCi28aio
+         RneQ==
+X-Gm-Message-State: AOAM5312N9XaFNu02hvtRJUnBGgB0tYkmSEvIQg/3jjyY2EeC9VGdFva
+        1B8/XI7HBz9HfrX3GlrQUC0sBA==
+X-Google-Smtp-Source: ABdhPJzRzXh9PoQKBWgC49dO5zw8dDQvG3kBQOHpIfzrNE0X2J0p6J5ntD0kS+faZJyLGgscMtRqxw==
+X-Received: by 2002:adf:e512:: with SMTP id j18mr31678383wrm.532.1638655112603;
+        Sat, 04 Dec 2021 13:58:32 -0800 (PST)
 Received: from localhost ([31.134.121.151])
-        by smtp.gmail.com with ESMTPSA id l21sm6572769wrb.38.2021.12.04.13.58.30
+        by smtp.gmail.com with ESMTPSA id a10sm9315145wmq.27.2021.12.04.13.58.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Dec 2021 13:58:30 -0800 (PST)
+        Sat, 04 Dec 2021 13:58:32 -0800 (PST)
 From:   Sam Protsenko <semen.protsenko@linaro.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Rob Herring <robh+dt@kernel.org>
@@ -58,9 +58,9 @@ Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
         linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 RESEND 7/8] arm: dts: exynos: Rename hsi2c nodes to i2c for Exynos5260
-Date:   Sat,  4 Dec 2021 23:58:19 +0200
-Message-Id: <20211204215820.17378-8-semen.protsenko@linaro.org>
+Subject: [PATCH v2 RESEND 8/8] arm64: dts: exynos: Rename hsi2c nodes to i2c for Exynos5433 and Exynos7
+Date:   Sat,  4 Dec 2021 23:58:20 +0200
+Message-Id: <20211204215820.17378-9-semen.protsenko@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20211204215820.17378-1-semen.protsenko@linaro.org>
 References: <20211204215820.17378-1-semen.protsenko@linaro.org>
@@ -85,49 +85,234 @@ Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 Changes in v2:
   - This patch was added in v2
 
- arch/arm/boot/dts/exynos5260.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi | 24 +++++++++++-----------
+ arch/arm64/boot/dts/exynos/exynos7.dtsi    | 24 +++++++++++-----------
+ 2 files changed, 24 insertions(+), 24 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos5260.dtsi b/arch/arm/boot/dts/exynos5260.dtsi
-index 52fa211525ce..524d244050e0 100644
---- a/arch/arm/boot/dts/exynos5260.dtsi
-+++ b/arch/arm/boot/dts/exynos5260.dtsi
-@@ -368,7 +368,7 @@ mmc_2: mmc@12160000 {
+diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+index 4422021cf4b2..bfe4ed8a23d6 100644
+--- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
+@@ -1585,7 +1585,7 @@ pwm: pwm@14dd0000 {
  			status = "disabled";
  		};
  
--		hsi2c_0: hsi2c@12da0000 {
-+		hsi2c_0: i2c@12da0000 {
- 			compatible = "samsung,exynos5260-hsi2c";
- 			reg = <0x12DA0000 0x1000>;
- 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
-@@ -381,7 +381,7 @@ hsi2c_0: hsi2c@12da0000 {
+-		hsi2c_0: hsi2c@14e40000 {
++		hsi2c_0: i2c@14e40000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e40000 0x1000>;
+ 			interrupts = <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1598,7 +1598,7 @@ hsi2c_0: hsi2c@14e40000 {
  			status = "disabled";
  		};
  
--		hsi2c_1: hsi2c@12db0000 {
-+		hsi2c_1: i2c@12db0000 {
- 			compatible = "samsung,exynos5260-hsi2c";
- 			reg = <0x12DB0000 0x1000>;
- 			interrupts = <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>;
-@@ -394,7 +394,7 @@ hsi2c_1: hsi2c@12db0000 {
+-		hsi2c_1: hsi2c@14e50000 {
++		hsi2c_1: i2c@14e50000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e50000 0x1000>;
+ 			interrupts = <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1611,7 +1611,7 @@ hsi2c_1: hsi2c@14e50000 {
  			status = "disabled";
  		};
  
--		hsi2c_2: hsi2c@12dc0000 {
-+		hsi2c_2: i2c@12dc0000 {
- 			compatible = "samsung,exynos5260-hsi2c";
- 			reg = <0x12DC0000 0x1000>;
- 			interrupts = <GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-@@ -407,7 +407,7 @@ hsi2c_2: hsi2c@12dc0000 {
+-		hsi2c_2: hsi2c@14e60000 {
++		hsi2c_2: i2c@14e60000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e60000 0x1000>;
+ 			interrupts = <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1624,7 +1624,7 @@ hsi2c_2: hsi2c@14e60000 {
  			status = "disabled";
  		};
  
--		hsi2c_3: hsi2c@12dd0000 {
-+		hsi2c_3: i2c@12dd0000 {
- 			compatible = "samsung,exynos5260-hsi2c";
- 			reg = <0x12DD0000 0x1000>;
- 			interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+-		hsi2c_3: hsi2c@14e70000 {
++		hsi2c_3: i2c@14e70000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e70000 0x1000>;
+ 			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1637,7 +1637,7 @@ hsi2c_3: hsi2c@14e70000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_4: hsi2c@14ec0000 {
++		hsi2c_4: i2c@14ec0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14ec0000 0x1000>;
+ 			interrupts = <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1650,7 +1650,7 @@ hsi2c_4: hsi2c@14ec0000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_5: hsi2c@14ed0000 {
++		hsi2c_5: i2c@14ed0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14ed0000 0x1000>;
+ 			interrupts = <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1663,7 +1663,7 @@ hsi2c_5: hsi2c@14ed0000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_6: hsi2c@14ee0000 {
++		hsi2c_6: i2c@14ee0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14ee0000 0x1000>;
+ 			interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1676,7 +1676,7 @@ hsi2c_6: hsi2c@14ee0000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_7: hsi2c@14ef0000 {
++		hsi2c_7: i2c@14ef0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14ef0000 0x1000>;
+ 			interrupts = <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1689,7 +1689,7 @@ hsi2c_7: hsi2c@14ef0000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_8: hsi2c@14d90000 {
++		hsi2c_8: i2c@14d90000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14d90000 0x1000>;
+ 			interrupts = <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1702,7 +1702,7 @@ hsi2c_8: hsi2c@14d90000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_9: hsi2c@14da0000 {
++		hsi2c_9: i2c@14da0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14da0000 0x1000>;
+ 			interrupts = <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1715,7 +1715,7 @@ hsi2c_9: hsi2c@14da0000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_10: hsi2c@14de0000 {
++		hsi2c_10: i2c@14de0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14de0000 0x1000>;
+ 			interrupts = <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>;
+@@ -1728,7 +1728,7 @@ hsi2c_10: hsi2c@14de0000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_11: hsi2c@14df0000 {
++		hsi2c_11: i2c@14df0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14df0000 0x1000>;
+ 			interrupts = <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>;
+diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+index c73a597ca66e..c3efbc8add38 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+@@ -359,7 +359,7 @@ pinctrl_bus1: pinctrl@14870000 {
+ 			interrupts = <GIC_SPI 384 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
+-		hsi2c_0: hsi2c@13640000 {
++		hsi2c_0: i2c@13640000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13640000 0x1000>;
+ 			interrupts = <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>;
+@@ -372,7 +372,7 @@ hsi2c_0: hsi2c@13640000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_1: hsi2c@13650000 {
++		hsi2c_1: i2c@13650000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13650000 0x1000>;
+ 			interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+@@ -385,7 +385,7 @@ hsi2c_1: hsi2c@13650000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_2: hsi2c@14e60000 {
++		hsi2c_2: i2c@14e60000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e60000 0x1000>;
+ 			interrupts = <GIC_SPI 459 IRQ_TYPE_LEVEL_HIGH>;
+@@ -398,7 +398,7 @@ hsi2c_2: hsi2c@14e60000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_3: hsi2c@14e70000 {
++		hsi2c_3: i2c@14e70000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e70000 0x1000>;
+ 			interrupts = <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>;
+@@ -411,7 +411,7 @@ hsi2c_3: hsi2c@14e70000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_4: hsi2c@13660000 {
++		hsi2c_4: i2c@13660000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13660000 0x1000>;
+ 			interrupts = <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>;
+@@ -424,7 +424,7 @@ hsi2c_4: hsi2c@13660000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_5: hsi2c@13670000 {
++		hsi2c_5: i2c@13670000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13670000 0x1000>;
+ 			interrupts = <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>;
+@@ -437,7 +437,7 @@ hsi2c_5: hsi2c@13670000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_6: hsi2c@14e00000 {
++		hsi2c_6: i2c@14e00000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e00000 0x1000>;
+ 			interrupts = <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>;
+@@ -450,7 +450,7 @@ hsi2c_6: hsi2c@14e00000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_7: hsi2c@13e10000 {
++		hsi2c_7: i2c@13e10000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13e10000 0x1000>;
+ 			interrupts = <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>;
+@@ -463,7 +463,7 @@ hsi2c_7: hsi2c@13e10000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_8: hsi2c@14e20000 {
++		hsi2c_8: i2c@14e20000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x14e20000 0x1000>;
+ 			interrupts = <GIC_SPI 463 IRQ_TYPE_LEVEL_HIGH>;
+@@ -476,7 +476,7 @@ hsi2c_8: hsi2c@14e20000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_9: hsi2c@13680000 {
++		hsi2c_9: i2c@13680000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13680000 0x1000>;
+ 			interrupts = <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>;
+@@ -489,7 +489,7 @@ hsi2c_9: hsi2c@13680000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_10: hsi2c@13690000 {
++		hsi2c_10: i2c@13690000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x13690000 0x1000>;
+ 			interrupts = <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>;
+@@ -502,7 +502,7 @@ hsi2c_10: hsi2c@13690000 {
+ 			status = "disabled";
+ 		};
+ 
+-		hsi2c_11: hsi2c@136a0000 {
++		hsi2c_11: i2c@136a0000 {
+ 			compatible = "samsung,exynos7-hsi2c";
+ 			reg = <0x136a0000 0x1000>;
+ 			interrupts = <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>;
 -- 
 2.30.2
 
