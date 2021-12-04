@@ -2,90 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED20646879A
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 21:57:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9133E4687B0
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 22:50:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355567AbhLDVBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 16:01:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
+        id S1377759AbhLDVyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 16:54:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353461AbhLDVBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 16:01:09 -0500
-Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CBDC061751;
-        Sat,  4 Dec 2021 12:57:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
-        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-        Sender:Reply-To:Content-ID:Content-Description;
-        bh=/nmjvTGo1bzzEFPzaiKG9A6pmVRH1jFX+omS59sPR4g=; b=lInKpEMuRAvhW2pUa0Q4eJVE78
-        FJV+JIO6oW+60NZnyZhmQIO3L2uZawlFNtr5ir17/n8tsgPF+/rfsfSaEb5aFdhNQEu6XrYWZiAem
-        oAHjUV23Qlu2MD4azH5THadZ47LJTV51H58cDMeBAmCCAlyXoEKIit8muR/8V3/0IKBetOTrmKxDY
-        2P5kZyvS8fj8QNX3nTQFd6LT6pIfO+IsiejoSXBvXRyl7shjWAC2EYQLdZSS7xGxUsqYwbzWy1eWc
-        Y0KcRJCQaGvU8Z9S/PEGoxB/DWL1IAUcBPM5DkRK132stPwxzObSZZgn/yEy/tV0UzmsOEpdgVYkI
-        z0dNkjTQ==;
-Received: from [2601:1c0:6280:3f0::aa0b]
-        by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
-        id 1mtc6E-002FvR-Qm; Sat, 04 Dec 2021 20:57:39 +0000
-Message-ID: <e99ad542-14f6-2a06-a83e-c5f4e945303c@infradead.org>
-Date:   Sat, 4 Dec 2021 12:57:32 -0800
+        with ESMTP id S1356093AbhLDVyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 16:54:02 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78AB9C0613F8
+        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 13:50:36 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id o13so13589253wrs.12
+        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 13:50:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jHZ/NY52q+fJ8ZyowbxA7ltlvG1kl7aRGse+qxxLYbY=;
+        b=HWiGCfL53Wa7TGAKg5tgcgNN4csXPz7IboCQqiRoy+A6ZZrbHrnX4sxBbaOqjdmC7j
+         XGXNjYR1rqi4HGDjbNtsnyg7c0N8YfghXJ6/uGwv/xufzkhBChwYohLnVJGFW3LOlaZN
+         yesGoqbzzjIcUOXySXtROFeuY/1zEnNSNfbZgBsFWzJ1XUasrcvHIF6ox1xQ4f/pM5N5
+         xxxJlSF54r2U1CbE99za6RLpDwyqCPfGgXicMVRhyBlQU86R5Uj+wD/OsPF6pO11/D3e
+         exB2fQrVXOQX+U0h3aUTxYx2wcFMwcWuUaWk8AgGLiR6aYs0HiuEycv2LSZVzHFCGnq2
+         ge6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jHZ/NY52q+fJ8ZyowbxA7ltlvG1kl7aRGse+qxxLYbY=;
+        b=pezNluXicebPsu9sfb3PPWY0HdsSLIPcJKP8hSkskb8755NIrxhsojFczMCrkwMhKB
+         JRa6qX+kI2gK1x0XEpG7irmkRdr4KJ6OklDBM6CrRPYvBozwBcH8QgFxKIbVNJ2hevZi
+         51qMsd6dWKcVK6jBu4U5YLvVzysB97yqe+24zKBAFDE+O9PP4eYCZSxjNicUUMJg0yQO
+         0GfrTjkaTwFeLHzZUC/o9nEXfKnA0t+2eKcPwSAU5mPQJdhz5trUlHRyyDeG6An+U14N
+         5mKC+m1tnrZid2X6fntjI+Nwtf9wr5cSwbXojTG0IkNorSO4tgiSIBnIlld2jZMRZKXB
+         HIxQ==
+X-Gm-Message-State: AOAM5319gnsnQYIFuRNFTXOIzXZnvppcjXQr5DuJS0xkuhjeQVHxfqw/
+        yy2JTvs/VUiFmrm/a0uqijrlrLR/zGcjd984
+X-Google-Smtp-Source: ABdhPJxILtMVzSvS1Vrd7Lgmv2DVMqTdPl18sdA4LtSUsO6snCPl5qQQFsJ/cYVbFis/6/c3Drwj6w==
+X-Received: by 2002:a5d:59a2:: with SMTP id p2mr31486819wrr.252.1638654635019;
+        Sat, 04 Dec 2021 13:50:35 -0800 (PST)
+Received: from localhost ([31.134.121.151])
+        by smtp.gmail.com with ESMTPSA id h2sm6328676wrz.23.2021.12.04.13.50.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 04 Dec 2021 13:50:34 -0800 (PST)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jaewon Kim <jaewon02.kim@samsung.com>,
+        Chanho Park <chanho61.park@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        Wolfram Sang <wsa@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject:        From a5f512cb01e48f5bfcdef800dd477c8b04a4cacf Mon Sep 17 00:00:00 2001
+Date:   Sat,  4 Dec 2021 23:50:25 +0200
+Message-Id: <20211204215033.5134-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v2 3/3] mmc: Add driver for LiteX's LiteSDCard interface
-Content-Language: en-US
-To:     Gabriel Somlo <gsomlo@gmail.com>, linux-kernel@vger.kernel.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
-        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
-        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
-        shorne@gmail.com, geert@linux-m68k.org,
-        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr
-References: <20211204204121.2367127-1-gsomlo@gmail.com>
- <20211204204121.2367127-4-gsomlo@gmail.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20211204204121.2367127-4-gsomlo@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gabriel--
+Modern ARM64 Samsung Exynos SoCs (like Exynos Auto V9 and Exynos850) use
+pretty much the same High-Speed I2C controller supported in i2c-exynos5
+driver ("samsung,exynos7-hsi2c" variant), but with some differences:
+- timings are now calculated and configured a bit differently
+- two clocks are now provided to HSI2C controller (and must be
+asserted during I2C operation and register access)
 
-On 12/4/21 12:41, Gabriel Somlo wrote:
-> +MODULE_DESCRIPTION("LiteX SDCard driver");
-> +MODULE_AUTHOR("Antmicro <www.antmicro.com>");
+This patch series implements these changes, making it possible to use
+HSI2C driver on modern Exynos SoCs.
 
-Admittedly it's not documented, but we would prefer to have some contact info
-in MODULE_AUTHOR(), like an email address or a person's name.
+Another change in mentioned SoCs is that HSI2C controller is now a part
+of USIv2 IP-core. But no USI modifications are needed in HSI2C driver,
+as all USI related configuration is done in USI driver independently.
+USI driver is added in [1] series (or its later revision, if available).
+To make HSI2C functional, both patch series (this one and [1]) have to
+be applied, but those can be applied independently.
 
-<linux/module.h> says:
+Changes in v2:
+- Added new patches renaming "hsi2c@*" nodes to "i2c@*" for Exynos
+dts's
+- Added R-b tags from v1 review
+- Fixed and improved i2c-exynos5 dt-bindings
 
-/*
- * Author(s), use "Name <email>" or just "Name", for multiple
- * authors use multiple MODULE_AUTHOR() statements/lines.
- */
-#define MODULE_AUTHOR(_author) MODULE_INFO(author, _author)
+[1] https://patchwork.kernel.org/project/linux-samsung-soc/cover/20211204195757.8600-1-semen.protsenko@linaro.org/
 
-> +MODULE_LICENSE("GPL v2");
+Jaewon Kim (2):
+  dt-bindings: i2c: exynos5: Add exynosautov9-hsi2c compatible
+  i2c: exynos5: Add support for ExynosAutoV9 SoC
 
+Sam Protsenko (6):
+  dt-bindings: i2c: exynos5: Convert to dtschema
+  dt-bindings: i2c: exynos5: Add bus clock
+  i2c: exynos5: Add bus clock support
+  i2c: exynos5: Mention Exynos850 and ExynosAutoV9 in Kconfig
+  arm: dts: exynos: Rename hsi2c nodes to i2c for Exynos5260
+  arm64: dts: exynos: Rename hsi2c nodes to i2c for Exynos5433 and
+    Exynos7
 
-Also, it's up to the MMC maintainer (Ulf), but the function signature
-style that is used in this driver is not the preferred style.
+ .../devicetree/bindings/i2c/i2c-exynos5.txt   |  53 -------
+ .../devicetree/bindings/i2c/i2c-exynos5.yaml  | 133 ++++++++++++++++++
+ arch/arm/boot/dts/exynos5260.dtsi             |   8 +-
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  24 ++--
+ arch/arm64/boot/dts/exynos/exynos7.dtsi       |  24 ++--
+ drivers/i2c/busses/Kconfig                    |   2 +-
+ drivers/i2c/busses/i2c-exynos5.c              | 108 +++++++++++---
+ 7 files changed, 253 insertions(+), 99 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-exynos5.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-exynos5.yaml
 
-E.g.:
-
-+static int
-+litex_set_bus_width(struct litex_mmc_host *host)
-+{
-
-should be
-
-+static int litex_set_bus_width(struct litex_mmc_host *host)
-+{
-
-
-thanks.
 -- 
-~Randy
+2.30.2
+
