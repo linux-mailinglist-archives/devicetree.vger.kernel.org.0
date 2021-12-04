@@ -2,172 +2,324 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A7146868C
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 18:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6094468696
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 18:36:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378307AbhLDRgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 12:36:25 -0500
-Received: from esa2.mentor.iphmx.com ([68.232.141.98]:39206 "EHLO
-        esa2.mentor.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345154AbhLDRgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 12:36:25 -0500
-X-Greylist: delayed 427 seconds by postgrey-1.27 at vger.kernel.org; Sat, 04 Dec 2021 12:36:25 EST
-IronPort-SDR: cdjzRu4O0aDPaKIznXfkZ1gg4qmAR8pP7oznVce+ZOKuTy6R55m2EVQscLSWXJ+BqOJNVvo7Ni
- uF0y5IwpuhJFlKD5b0egl1/7RVFQFc0qPmL9xj50raIpWwgNAmt9cc2bSPiDTEPL68URlNmrdq
- AYmpOYVIQS1oIWGavOrcyBShxRJU2gxGar689Hq11lDMRTeE1KIEadSrFdAgNKRYvcbhYkWAjp
- GYvh+1CPmkBrkyYu1KYImFMO0gdHxeNU+jsEHz8Tz3eDxzlQ7KYYyKdoFAXl2YVThOCxne4RfU
- Tl7dZraN3+RP8GqkUPFkII2o
-X-IronPort-AV: E=Sophos;i="5.87,287,1631606400"; 
-   d="scan'208";a="69277906"
-Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
-  by esa2.mentor.iphmx.com with ESMTP; 04 Dec 2021 09:25:51 -0800
-IronPort-SDR: Lk58CnbOOdJuy3uU+QVenspLk63/eMP1Sc3jjRQ3Lyx9mCE022czQbYZ3sTL0ld57XgRfTjMkm
- GcBECKZfP+8TCwDh1zDOM1wA5gvb6O0ErRFtpGv+iXg5C2VlmDX78kruRlZYN0JmBaLhz5HkWe
- u6JG/CYd8LQgFasIqcNt6GsZ1pmYovIy2M8p0qrotOu2lCWUuqd4pF4qOzmUFTJzFwVyOg82oM
- k6CrriQXYjoL063AIEs3ilJyEz3NrMxVw+SQKXaavC31CNvauqqfwKIw6b2D16Sg/rSltSTiN3
- BEA=
-Subject: Re: [PATCH 1/2] rtc: max31343: Add a driver for Maxim MAX31343
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Guenter Roeck <linux@roeck-us.net>
-CC:     <a.zummo@towertech.it>, <robh+dt@kernel.org>,
-        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-hwmon@vger.kernel.org>
-References: <20211016192118.255624-1-alexey_firago@mentor.com>
- <20211016192118.255624-2-alexey_firago@mentor.com>
- <YaamZW1nyOGDXfyw@piout.net>
-From:   afirago <alexey_firago@mentor.com>
-Message-ID: <37ef2ad4-d044-5183-892c-e1fd6ded1b69@mentor.com>
-Date:   Sat, 4 Dec 2021 20:25:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
+        id S1378624AbhLDRjf convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 4 Dec 2021 12:39:35 -0500
+Received: from ams.source.kernel.org ([145.40.68.75]:38090 "EHLO
+        ams.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1345154AbhLDRjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 12:39:35 -0500
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 145BFB80D35;
+        Sat,  4 Dec 2021 17:36:08 +0000 (UTC)
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.kernel.org (Postfix) with ESMTPSA id 60241C341C2;
+        Sat,  4 Dec 2021 17:36:02 +0000 (UTC)
+Date:   Sat, 4 Dec 2021 17:41:11 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cosmin Tanislav <demonsingur@gmail.com>
+Cc:     cosmin.tanislav@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v9 3/3] iio: addac: add AD74413R driver
+Message-ID: <20211204174111.0c657ad1@jic23-huawei>
+In-Reply-To: <20211202232507.358113-4-cosmin.tanislav@analog.com>
+References: <20211202232507.358113-1-cosmin.tanislav@analog.com>
+        <20211202232507.358113-4-cosmin.tanislav@analog.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <YaamZW1nyOGDXfyw@piout.net>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: svr-ies-mbx-15.mgc.mentorg.com (139.181.222.15) To
- SVR-IES-MBX-04.mgc.mentorg.com (139.181.222.4)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Fri,  3 Dec 2021 01:25:07 +0200
+Cosmin Tanislav <demonsingur@gmail.com> wrote:
 
-Thanks for your review.
-
-On 01.12.2021 01:32, Alexandre Belloni wrote:
-> Hello,
+> The AD74412R and AD74413R are quad-channel, software configurable,
+> input/output solutions for building and process control applications.
 > 
-> On 16/10/2021 22:21:17+0300, Alexey Firago wrote:
->> +#define MAX31343_REG_TIMER_CFG	(0x05)
->> +#define  TIMER_CFG_TFS		GENMASK(1, 0) /* Timer frequency */
->> +#define  TIMER_CFG_TRPT		BIT(2) /* Timer repeat mode */
->> +#define  TIMER_CFG_TPAUSE	BIT(3) /* Timer Pause */
->> +#define  TIMER_CFG_TE		BIT(4) /* Timer enable */
->> +
->> +/* RTC section */
->> +#define MAX31343_REG_SEC	(0x06)
->> +#define  SEC10_MASK	GENMASK(6, 4) /* RTC seconds in multiples of 10 */
->> +#define  SEC_MASK	GENMASK(3, 0) /* RTC seconds value */
+> They contain functionality for analog output, analog input, digital input,
+> resistance temperature detector, and thermocouple measurements integrated
+> into a single chip solution with an SPI interface.
 > 
-> I'm not convinced having separate masks is useful here, was that
-> automatically generated?
-
-I've just exported those definitions from the table in the datasheet 
-prior to creating the driver.
-
->> +static int max31343_rtc_set_time(struct device *dev, struct rtc_time *tm)
->> +{
->> +	struct max31343_rtc_data *max31343 = dev_get_drvdata(dev);
->> +	u8 date[7];
->> +	int ret;
->> +
->> +	dev_dbg(dev, "RTC set time %04d-%02d-%02d %02d/%02d/%02d\n",
->> +		tm->tm_year + 1900, tm->tm_mon, tm->tm_mday,
->> +		tm->tm_hour, tm->tm_min, tm->tm_sec);
->> +
+> The devices feature a 16-bit ADC and four configurable 13-bit DACs to
+> provide four configurable input/output channels and a suite of diagnostic
+> functions.
 > 
-> This could use %ptR
-
-Will change it (or probably completely remove it) after hwmon review.
-
->> +	date[0] = bin2bcd(tm->tm_sec);
->> +	date[1] = bin2bcd(tm->tm_min);
->> +	date[2] = bin2bcd(tm->tm_hour);
->> +	date[3] = tm->tm_wday;
->> +	date[4] = bin2bcd(tm->tm_mday);
->> +	date[5] = bin2bcd(tm->tm_mon + 1);
->> +
->> +	if (tm->tm_year >= 200)
->> +		date[5] |= CENTURY;
->> +	date[6] = bin2bcd(tm->tm_year % 100);
->> +
->> +	ret = regmap_bulk_write(max31343->regmap, MAX31343_REG_SEC, date,
->> +				sizeof(date));
->> +	return ret;
->> +}
->> +
+> The AD74413R differentiates itself from the AD74412R by being
+> HART-compatible.
 > 
-> [...]
+> When configured with channel 0 as voltage output, channel 1 as current
+> output, channel 2 as voltage input and channel 3 as current input, the
+> following structure is created under the corresponding IIO device.
 > 
->> +static int
->> +max31343_probe(struct i2c_client *client, const struct i2c_device_id *id)
->> +{
->> +	struct max31343_rtc_data *max31343 = NULL;
->> +	int ret, status;
->> +	struct nvmem_config nvmem_cfg = {
->> +		.name = "max31343_nvram",
->> +		.word_size = 1,
->> +		.stride = 1,
->> +		.size = MAX31343_RAM_SIZE,
->> +		.type = NVMEM_TYPE_BATTERY_BACKED,
->> +		.reg_read = max31343_nvram_read,
->> +		.reg_write = max31343_nvram_write,
->> +	};
->> +
->> +	max31343 = devm_kzalloc(&client->dev, sizeof(struct max31343_rtc_data),
->> +				GFP_KERNEL);
->> +	if (!max31343)
->> +		return -ENOMEM;
->> +
->> +	max31343->regmap = devm_regmap_init_i2c(client, &max31343_regmap_config);
->> +	if (IS_ERR(max31343->regmap))
->> +		return PTR_ERR(max31343->regmap);
->> +
->> +	i2c_set_clientdata(client, max31343);
->> +
->> +	ret = regmap_read(max31343->regmap, MAX31343_REG_STATUS, &status);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	max31343->rtc = devm_rtc_allocate_device(&client->dev);
->> +	if (IS_ERR(max31343->rtc))
->> +		return PTR_ERR(max31343->rtc);
->> +
->> +	max31343->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
->> +	max31343->rtc->range_max = RTC_TIMESTAMP_END_2199;
+> .
+> ├── in_current0_offset
+> ├── in_current0_raw
+> ├── in_current0_sampling_frequency
+> ├── in_current0_sampling_frequency_available
+> ├── in_current0_scale
+> ├── in_voltage1_offset
+> ├── in_voltage1_raw
+> ├── in_voltage1_sampling_frequency
+> ├── in_voltage1_sampling_frequency_available
+> ├── in_voltage1_scale
+> ├── in_voltage2_offset
+> ├── in_voltage2_raw
+> ├── in_voltage2_sampling_frequency
+> ├── in_voltage2_sampling_frequency_available
+> ├── in_voltage2_scale
+> ├── in_current3_offset
+> ├── in_current3_raw
+> ├── in_current3_sampling_frequency
+> ├── in_current3_sampling_frequency_available
+> ├── in_current3_scale
+> ├── out_voltage0_raw
+> ├── out_voltage0_scale
+> ├── out_current1_raw
+> ├── out_current1_scale
+> ├── name
+> ├── buffer
+> │   ├── data_available
+> │   ├── enable
+> │   ├── length
+> │   └── watermark
+> └── scan_elements
+>     ├── in_current0_en
+>     ├── in_current0_index
+>     ├── in_current0_type
+>     ├── in_voltage1_en
+>     ├── in_voltage1_index
+>     ├── in_voltage1_type
+>     ├── in_voltage2_en
+>     ├── in_voltage2_index
+>     ├── in_voltage2_type
+>     ├── in_current3_en
+>     ├── in_current3_index
+>     └── in_current3_type
 > 
-> For my information, did you check the time continuity in this interval?
+> Signed-off-by: Cosmin Tanislav <cosmin.tanislav@analog.com>
 
-Yes, I've checked setting of out-of-range values, checked edge values 
-and checked 2099 -> 2100 -> 2101 transitions.
+You haven't picked up Linus' tag from v7.  I'm assuming that wasn't deliberate
+so please add it for v10. I think there is just enough stuff in here that it makes
+more sense for you to spin a new version than for me to fix it whilst applying...
 
-> 
->> +	max31343->rtc->ops = &max31343_rtc_ops;
->> +	ret = devm_rtc_register_device(max31343->rtc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	nvmem_cfg.priv = max31343->regmap;
->> +	devm_rtc_nvmem_register(max31343->rtc, &nvmem_cfg);
->> +	max31343_hwmon_register(&client->dev);
-> 
-> The whole driver seems ok, I'd like to get a review from the hwmon
-> maintainers on the hwmon part as it is quite large.
+All minor stuff so shouldn't take long hopefully + we still need a dt review
+which might take a while depending on how busy Rob is.
 
-Ok.
+thanks,
 
-Thanks,
-Alexey
+Jonathan
+
+> ---
+> --- /dev/null
+> +++ b/drivers/iio/addac/ad74413r.c
+> @@ -0,0 +1,1476 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2021 Analog Devices, Inc.
+> + * Author: Cosmin Tanislav <cosmin.tanislav@analog.com>
+> + */
+> +
+
+
+...
+
+> +struct ad74413r_state {
+> +	struct ad74413r_channel_config	channel_configs[AD74413R_CHANNEL_MAX];
+> +	unsigned int			gpo_gpio_offsets[AD74413R_CHANNEL_MAX];
+> +	unsigned int			comp_gpio_offsets[AD74413R_CHANNEL_MAX];
+> +	struct gpio_chip		gpo_gpiochip;
+> +	struct gpio_chip		comp_gpiochip;
+> +	struct completion		adc_data_completion;
+> +	unsigned int			num_gpo_gpios;
+> +	unsigned int			num_comparator_gpios;
+> +	u32				sense_resistor_ohms;
+> +
+> +	/*
+> +	 * Synchronize consecutive operations when doing a one-shot
+> +	 * conversion and when updating the ADC samples SPI message.
+> +	 */
+> +	struct mutex			lock;
+> +
+> +	const struct ad74413r_chip_info	*chip_info;
+> +	struct spi_device		*spi;
+> +	struct regulator		*refin_reg;
+> +	struct regmap			*regmap;
+> +	struct device			*dev;
+> +	struct iio_trigger		*trig;
+> +
+> +	size_t			adc_active_channels;
+> +	struct spi_message	adc_samples_msg;
+> +	struct spi_transfer	adc_samples_xfer[AD74413R_CHANNEL_MAX + 1];
+> +
+> +	/*
+> +	 * DMA (thus cache coherency maintenance) requires the
+> +	 * transfer buffers to live in their own cache lines.
+> +	 */
+> +	struct {
+> +		u8 rx_buf[AD74413R_FRAME_SIZE * AD74413R_CHANNEL_MAX];
+> +		s64 timestamp;
+> +	} adc_samples_buf ____cacheline_aligned;
+> +
+> +	u8	adc_samples_tx_buf[AD74413R_FRAME_SIZE * AD74413R_CHANNEL_MAX]
+> +			____cacheline_aligned;
+
+What was your thinking for needing to have both adc_samples_buf and adc_samples_tx_buf
+at force alignment?  I would have expected only adc_samples_buf would be necessary,
+unless there are paths in which you are writing into one whilst DMA is going on into
+the other..  If there is a reason add a comment.
+
+
+> +	u8	reg_tx_buf[AD74413R_FRAME_SIZE];
+> +	u8	reg_rx_buf[AD74413R_FRAME_SIZE];
+> +};
+> +
+
+> +
+> +static int ad74413r_probe(struct spi_device *spi)
+> +{
+> +	struct ad74413r_state *st;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +
+> +	st->spi = spi;
+> +	st->dev = &spi->dev;
+> +	st->chip_info = device_get_match_data(&spi->dev);
+> +	mutex_init(&st->lock);
+> +	init_completion(&st->adc_data_completion);
+> +
+> +	st->regmap = devm_regmap_init(st->dev, NULL, st,
+> +				      &ad74413r_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return PTR_ERR(st->regmap);
+> +
+> +	st->refin_reg = devm_regulator_get(st->dev, "refin");
+> +	if (IS_ERR(st->refin_reg))
+> +		return dev_err_probe(st->dev, PTR_ERR(st->refin_reg),
+> +				     "Failed to get refin regulator\n");
+> +
+> +	ret = regulator_enable(st->refin_reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(st->dev, ad74413r_regulator_disable,
+> +				       st->refin_reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->sense_resistor_ohms = 100000000;
+> +	device_property_read_u32(st->dev, "shunt-resistor-micro-ohms",
+> +				 &st->sense_resistor_ohms);
+> +	st->sense_resistor_ohms /= 1000000;
+> +
+> +	st->trig = devm_iio_trigger_alloc(st->dev, "%s-dev%d",
+> +					  st->chip_info->name, iio_device_id(indio_dev));
+> +	if (!st->trig)
+> +		return -ENOMEM;
+> +
+> +	st->trig->ops = &ad74413r_trigger_ops;
+> +	iio_trigger_set_drvdata(st->trig, st);
+> +
+> +	ret = devm_iio_trigger_register(st->dev, st->trig);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name = st->chip_info->name;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->info = &ad74413r_info;
+> +	indio_dev->trig = iio_trigger_get(st->trig);
+> +
+> +	ret = ad74413r_reset(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad74413r_parse_channel_configs(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad74413r_setup_channels(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad74413r_setup_gpios(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (st->num_gpo_gpios) {
+> +		st->gpo_gpiochip.owner = THIS_MODULE;
+> +		st->gpo_gpiochip.label = st->chip_info->name;
+> +		st->gpo_gpiochip.base = -1;
+> +		st->gpo_gpiochip.ngpio = st->num_gpo_gpios;
+> +		st->gpo_gpiochip.parent = st->dev;
+> +		st->gpo_gpiochip.can_sleep = true;
+> +		st->gpo_gpiochip.set = ad74413r_gpio_set;
+> +		st->gpo_gpiochip.set_multiple = ad74413r_gpio_set_multiple;
+> +		st->gpo_gpiochip.set_config = ad74413r_gpio_set_gpo_config;
+> +		st->gpo_gpiochip.get_direction =
+> +			ad74413r_gpio_get_gpo_direction;
+> +
+> +		ret = devm_gpiochip_add_data(st->dev, &st->gpo_gpiochip, st);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (st->num_comparator_gpios) {
+> +		st->comp_gpiochip.owner = THIS_MODULE;
+> +		st->comp_gpiochip.label = st->chip_info->name;
+> +		st->comp_gpiochip.base = -1;
+> +		st->comp_gpiochip.ngpio = st->num_comparator_gpios;
+> +		st->comp_gpiochip.parent = st->dev;
+> +		st->comp_gpiochip.can_sleep = true;
+> +		st->comp_gpiochip.get = ad74413r_gpio_get;
+> +		st->comp_gpiochip.get_multiple = ad74413r_gpio_get_multiple;
+> +		st->comp_gpiochip.set_config = ad74413r_gpio_set_comp_config;
+> +		st->comp_gpiochip.get_direction =
+> +			ad74413r_gpio_get_comp_direction;
+> +
+> +		ret = devm_gpiochip_add_data(st->dev, &st->comp_gpiochip, st);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = ad74413r_set_adc_conv_seq(st, AD74413R_CONV_SEQ_OFF);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_request_irq(st->dev, spi->irq, ad74413r_adc_data_interrupt,
+> +			       0, st->chip_info->name, indio_dev);
+> +	if (ret)
+
+Minor, but would be good to have a dev_err_probe() here as
+this is something that can result in a deferred response and it would
+be good to log the debugging info.
+
+> +		return ret;
+> +
+> +	ret = devm_iio_triggered_buffer_setup(st->dev, indio_dev,
+> +					      &iio_pollfunc_store_time,
+> +					      &ad74413r_trigger_handler,
+> +					      &ad74413r_buffer_ops);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(st->dev, indio_dev);
+> +}
 
