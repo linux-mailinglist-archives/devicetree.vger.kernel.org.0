@@ -2,69 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E78546843E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 11:51:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A67468471
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 12:23:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233146AbhLDKyi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 05:54:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42562 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233089AbhLDKyh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 05:54:37 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 852ABC061751;
-        Sat,  4 Dec 2021 02:51:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=QRqMG8RGfuulyL/MI0Y5Pjs+qEIm3XSHn3xpOu7rjTc=; b=rQlOAVr97mx1/sQxkZUR7Dfcur
-        GJPPDvZY+jrQ/8M9gvVzpQYE+Yx4prmqBcEqa04XQ/8YedUDEIh1uObKhv+L0uHhblI6Rctc5gewF
-        MRHqCkt3iiOAh3sa77R7yhj2ufJXj6uMNeiTyOrosmJp49NycAViPKDhdcYo/QVoka8Y/My5ezaYA
-        otd20+CaZErP1hJzxTgOw3FLcfXq0eifXZXRqodeAOYTTHaNZdtmuOwkQAKBZuFGrVc/gKQBVz0a/
-        IepWVxwmnM71Cf2UNJeRejyKjKbp7YpW9ftsyr0Fn+De163tbBEFY7q6f5HymbCKoV7q6RM4M1jLh
-        R/cmqSDg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56052)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1mtSdF-0003F5-OJ; Sat, 04 Dec 2021 10:51:05 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1mtSdB-0002Ln-Pm; Sat, 04 Dec 2021 10:51:01 +0000
-Date:   Sat, 4 Dec 2021 10:51:01 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm/arm64: dts: Add MV88E6393X to CN9130-CRB
- device tree
-Message-ID: <YatIFWHBlTV/jm9U@shell.armlinux.org.uk>
-References: <20211018011211.3836590-1-chris.packham@alliedtelesis.co.nz>
- <20211018011211.3836590-3-chris.packham@alliedtelesis.co.nz>
+        id S1376900AbhLDL00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 06:26:26 -0500
+Received: from smtp-relay-internal-1.canonical.com ([185.125.188.123]:42240
+        "EHLO smtp-relay-internal-1.canonical.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1354760AbhLDL00 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 06:26:26 -0500
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 726293F1BA
+        for <devicetree@vger.kernel.org>; Sat,  4 Dec 2021 11:22:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1638616978;
+        bh=VWrgPdQvcehxcTv/NTpHcumL9ZsfNr4LJN61gCWR58c=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=YuNyNiuQ3L/IiHQ7Q8vRWjZtKM1fd9bQ5fXsMmmls5iTTzo0l+HfZOPfmMA2gZR26
+         3nMOj1JoRpgvwRtA7OkdEAl6U6L+YeSrZa/CCqXbq7wvEKKl7znYtvKui07LFk79au
+         MkkJmWyN5DYMdkNPMBEHjb4Ok5ICzzlPNPNH7FErKqwgxSWwBGxDaK8i45ZxwjGVbl
+         7Sn6iU+c79SiGZMsmg3vANHfjIjrLeYy7pw73WjqD5BGCLD6diO3BFUJ4nyj0joZIP
+         ih7/RnN19me5s+YNF+fA8ylKMAF1vZci2KQvtW2OeoQDVslHkhLEUTJebOaBhnY0eX
+         qf04TQrRDhGcg==
+Received: by mail-lj1-f198.google.com with SMTP id q64-20020a2e2a43000000b00218c94eab9bso2121162ljq.18
+        for <devicetree@vger.kernel.org>; Sat, 04 Dec 2021 03:22:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=VWrgPdQvcehxcTv/NTpHcumL9ZsfNr4LJN61gCWR58c=;
+        b=HCXTEkkTfKafGl7fuQOackIgmAOh7hfF+lYJwc+lxWY3nhj4MCWld3RjVR1DkOAvOn
+         KKden7omQBavX61YSwv/aroy24qtNikxjbCaMVBFJUmlqkbfZJk5C0mv4d1ZLrXSt7Zr
+         lmZ4Dw6OI5nd1JHzLsCqUldfiCH0aNNkNCNqdprH1oV9y6vW+0eZX3aP4tSpQw4bMBbU
+         7lxg8Ipp7Z7at7YbpwmcR58QZHPLHWjgcMV35nnrNet+YJ/gTzQgm8JdT3tBKClLp4Bu
+         qTD7YWYNYDRIvGlKZVdPTGfAeqFDQDYoBd0eEeNCKPJTyBgtGcY9bSmIKYF4CjLT7OQr
+         eo9A==
+X-Gm-Message-State: AOAM531xTaFk6ch/poIMQcgjXF6EtAywNia+fDyliZNB1J2qXWGfI+4B
+        2d4TiOTCSgkN3SHRt5xUAS+FhiF3mbCk07yt3F6yOdcqhJemSXJ+IcZ87SN4znQpPMx/IqST91M
+        T1a/gzFQ3T5nFIG3egZSql8RnqFBhMqc8sxEC3tQ=
+X-Received: by 2002:a05:6512:11c5:: with SMTP id h5mr23522428lfr.431.1638616977687;
+        Sat, 04 Dec 2021 03:22:57 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJze2o9ZJ1AQBAsY7I2NINj1v4O5RSoJKKQqolS4JwELuRVFLJalwqvb2oNZ+ZlVRDVHdcFmuw==
+X-Received: by 2002:a05:6512:11c5:: with SMTP id h5mr23522413lfr.431.1638616977476;
+        Sat, 04 Dec 2021 03:22:57 -0800 (PST)
+Received: from [192.168.3.67] (89-77-68-124.dynamic.chello.pl. [89.77.68.124])
+        by smtp.gmail.com with ESMTPSA id k22sm731492lfu.95.2021.12.04.03.22.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Dec 2021 03:22:56 -0800 (PST)
+Message-ID: <f8f9fab1-cea2-ebc6-6870-4929edfaef77@canonical.com>
+Date:   Sat, 4 Dec 2021 12:22:55 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211018011211.3836590-3-chris.packham@alliedtelesis.co.nz>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.1
+Subject: Re: [PATCH v2 RESEND 3/5] tty: serial: samsung: Remove USI
+ initialization
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Chanho Park <chanho61.park@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Jaewon Kim <jaewon02.kim@samsung.com>,
+        David Virag <virag.david003@gmail.com>,
+        Youngmin Nam <youngmin.nam@samsung.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux Samsung SOC <linux-samsung-soc@vger.kernel.org>
+References: <20211130111325.29328-1-semen.protsenko@linaro.org>
+ <20211130111325.29328-4-semen.protsenko@linaro.org>
+ <CAHp75Vd8PFhs8_Ji5x1X2Ph5ey+8JrRuneWCrG=5a+52Lh-ptQ@mail.gmail.com>
+ <CAPLW+4mEw0x_rZ19h+rbz4qm=6OVgQvvbEJWL0wWQguMiWB7-g@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAPLW+4mEw0x_rZ19h+rbz4qm=6OVgQvvbEJWL0wWQguMiWB7-g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 18, 2021 at 02:12:11PM +1300, Chris Packham wrote:
-> The CN9130-CRB boards have a MV88E6393X switch connected to eth0. Add
-> the necessary dts nodes and properties for this.
+On 03/12/2021 17:22, Sam Protsenko wrote:
+> On Wed, 1 Dec 2021 at 12:54, Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+>>
+>> On Wed, Dec 1, 2021 at 12:42 AM Sam Protsenko
+>> <semen.protsenko@linaro.org> wrote:
+>>>
+>>> USI control is now extracted to dedicated USI driver. Remove USI related
+>>
+>> the dedicated
+>>
+>>> code from serial driver to avoid conflicts and code duplication.
+>>
+>> Would it break run-time bisectability?
+>> If so, why is it not a problem?
+>>
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> It shouldn't. This patch is [3/5], and USI driver (which takes the
+> control over the USI registers) is [2/5]. As for Device Tree, the only
+> platform using "samsung,exynos850-uart" right now is Exynos Auto V9
+> SADK (serial node is declared in exynosautov9.dtsi). I don't have
+> Exynos Auto V9 datasheet, so I can't really add the USI node properly
+> there, nor I can test that. I guess it should be done separately from
+> this patch series.
+> 
+> Chanho, Krzysztof:
+> 
+> Guys, what are your thoughts on this? Basically with this patch series
+> applied, Exynos Auto V9 serial might become not functional. New USI
+> node should be added for UART case in Exynos Auto V9 dtsi (providing
+> correct sysreg, SW_CONF offset, clocks, etc), and serial node should
+> be encapsulated inside of that USI node. Also, USI node should be
+> referenced and enabled in SADK dts, providing also "clkreq-on"
+> property. More details can be found in [PATCH 1/5]. Do you think it's
+> ok to take this series as is, and add that later? Because otherwise we
+> might need to collaborate to add that Exynos Auto V9 enablement into
+> this patch series, which might take more time...
 
-This looks fine, thanks.
+The patch in current state will probably break Exynos Auto v9 boards,
+including the in-tree one, unless bootloader sets the USI to serial. The
+trouble is that. Changing the Exynos Auto v9 DTSI in these series would
+solve it only partially, because the kernel still won't be bisectable.
 
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+Breaking Auto v9 serial within a kernel is okay for me, because the
+board was added recently, I don't expect products using it and it is
+still development phase. This of course assuming that it's users agree,
+so the question is to Chanho and other folks.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+Best regards,
+Krzysztof
