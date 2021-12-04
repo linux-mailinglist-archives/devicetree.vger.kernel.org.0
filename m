@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AB6846878C
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 21:46:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED20646879A
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 21:57:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345139AbhLDUta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 15:49:30 -0500
-Received: from mga03.intel.com ([134.134.136.65]:19409 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S231146AbhLDUta (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 4 Dec 2021 15:49:30 -0500
-X-IronPort-AV: E=McAfee;i="6200,9189,10188"; a="237084926"
-X-IronPort-AV: E=Sophos;i="5.87,288,1631602800"; 
-   d="scan'208";a="237084926"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Dec 2021 12:46:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.87,288,1631602800"; 
-   d="scan'208";a="598478173"
-Received: from lkp-server02.sh.intel.com (HELO 9e1e9f9b3bcb) ([10.239.97.151])
-  by FMSMGA003.fm.intel.com with ESMTP; 04 Dec 2021 12:46:01 -0800
-Received: from kbuild by 9e1e9f9b3bcb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1mtbuz-000JQc-0i; Sat, 04 Dec 2021 20:46:01 +0000
-Date:   Sun, 5 Dec 2021 04:45:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Howard Chiu <howard10703049@gmail.com>, robh+dt@kernel.org,
-        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Howard Chiu <howard.chiu@quantatw.com>
-Subject: Re: [PATCH v7] ARM: dts: aspeed: Adding Facebook Bletchley BMC
-Message-ID: <202112050427.TQfPqAXr-lkp@intel.com>
-References: <20211202091303.979044-1-howard.chiu@quantatw.com>
+        id S1355567AbhLDVBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 16:01:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34220 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1353461AbhLDVBJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 16:01:09 -0500
+Received: from desiato.infradead.org (desiato.infradead.org [IPv6:2001:8b0:10b:1:d65d:64ff:fe57:4e05])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CBDC061751;
+        Sat,  4 Dec 2021 12:57:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+        Sender:Reply-To:Content-ID:Content-Description;
+        bh=/nmjvTGo1bzzEFPzaiKG9A6pmVRH1jFX+omS59sPR4g=; b=lInKpEMuRAvhW2pUa0Q4eJVE78
+        FJV+JIO6oW+60NZnyZhmQIO3L2uZawlFNtr5ir17/n8tsgPF+/rfsfSaEb5aFdhNQEu6XrYWZiAem
+        oAHjUV23Qlu2MD4azH5THadZ47LJTV51H58cDMeBAmCCAlyXoEKIit8muR/8V3/0IKBetOTrmKxDY
+        2P5kZyvS8fj8QNX3nTQFd6LT6pIfO+IsiejoSXBvXRyl7shjWAC2EYQLdZSS7xGxUsqYwbzWy1eWc
+        Y0KcRJCQaGvU8Z9S/PEGoxB/DWL1IAUcBPM5DkRK132stPwxzObSZZgn/yEy/tV0UzmsOEpdgVYkI
+        z0dNkjTQ==;
+Received: from [2601:1c0:6280:3f0::aa0b]
+        by desiato.infradead.org with esmtpsa (Exim 4.94.2 #2 (Red Hat Linux))
+        id 1mtc6E-002FvR-Qm; Sat, 04 Dec 2021 20:57:39 +0000
+Message-ID: <e99ad542-14f6-2a06-a83e-c5f4e945303c@infradead.org>
+Date:   Sat, 4 Dec 2021 12:57:32 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20211202091303.979044-1-howard.chiu@quantatw.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH v2 3/3] mmc: Add driver for LiteX's LiteSDCard interface
+Content-Language: en-US
+To:     Gabriel Somlo <gsomlo@gmail.com>, linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        ulf.hansson@linaro.org, linux-mmc@vger.kernel.org,
+        kgugala@antmicro.com, mholenko@antmicro.com, krakoczy@antmicro.com,
+        mdudek@internships.antmicro.com, paulus@ozlabs.org, joel@jms.id.au,
+        shorne@gmail.com, geert@linux-m68k.org,
+        david.abdurachmanov@sifive.com, florent@enjoy-digital.fr
+References: <20211204204121.2367127-1-gsomlo@gmail.com>
+ <20211204204121.2367127-4-gsomlo@gmail.com>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20211204204121.2367127-4-gsomlo@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Howard,
+Hi Gabriel--
 
-Thank you for the patch! Yet something to improve:
+On 12/4/21 12:41, Gabriel Somlo wrote:
+> +MODULE_DESCRIPTION("LiteX SDCard driver");
+> +MODULE_AUTHOR("Antmicro <www.antmicro.com>");
 
-[auto build test ERROR on soc/for-next]
-[also build test ERROR on v5.16-rc3 next-20211203]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Admittedly it's not documented, but we would prefer to have some contact info
+in MODULE_AUTHOR(), like an email address or a person's name.
 
-url:    https://github.com/0day-ci/linux/commits/Howard-Chiu/ARM-dts-aspeed-Adding-Facebook-Bletchley-BMC/20211202-171524
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git for-next
-config: arm-randconfig-c002-20211202 (https://download.01.org/0day-ci/archive/20211205/202112050427.TQfPqAXr-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/4c77c422c22eee6a98c7e5f25325ab535a06c4c5
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Howard-Chiu/ARM-dts-aspeed-Adding-Facebook-Bletchley-BMC/20211202-171524
-        git checkout 4c77c422c22eee6a98c7e5f25325ab535a06c4c5
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm SHELL=/bin/bash
+<linux/module.h> says:
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+/*
+ * Author(s), use "Name <email>" or just "Name", for multiple
+ * authors use multiple MODULE_AUTHOR() statements/lines.
+ */
+#define MODULE_AUTHOR(_author) MODULE_INFO(author, _author)
 
-All errors (new ones prefixed by >>):
+> +MODULE_LICENSE("GPL v2");
 
->> Error: arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:810.1-5 Label or path pwm not found
->> Error: arch/arm/boot/dts/aspeed-bmc-facebook-bletchley.dts:820.1-6 Label or path tach not found
->> FATAL ERROR: Syntax error parsing input tree
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Also, it's up to the MMC maintainer (Ulf), but the function signature
+style that is used in this driver is not the preferred style.
+
+E.g.:
+
++static int
++litex_set_bus_width(struct litex_mmc_host *host)
++{
+
+should be
+
++static int litex_set_bus_width(struct litex_mmc_host *host)
++{
+
+
+thanks.
+-- 
+~Randy
