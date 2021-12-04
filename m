@@ -2,105 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF83346858B
-	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 15:38:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7280E4685D4
+	for <lists+devicetree@lfdr.de>; Sat,  4 Dec 2021 16:07:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241037AbhLDOla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 4 Dec 2021 09:41:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35818 "EHLO
+        id S242924AbhLDPKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 4 Dec 2021 10:10:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345376AbhLDOlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 09:41:16 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCF11C061A83;
-        Sat,  4 Dec 2021 06:37:50 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bi37so13837000lfb.5;
-        Sat, 04 Dec 2021 06:37:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hEN8lxqzB5PkjPszcdUxNpJc6epYJF7n5YUfahDhZts=;
-        b=RzfaFRXrQ7CuSKPzd5O+0D9Mbq84hRoijgOs6hXD+7GKiG52l/xbQwHLkkUHWt8wo/
-         EruzOPP9GeQjoxbrO3uLPWtZkWT1O3F15sjMxxf35CdGZ0vsxrdKYrmGDRYeoaOTO2EZ
-         G7HhLN+0R++d1G7lRodBHCzl9BhdQSEl0bVdOpM9tiRtt8LoSIyvlci8SBbOeKXNCGr8
-         rGso9XNmd7XdPBAgwbdctGo9CKcY5gi9hMHF4PHnghRk+mNMYnFG98LIwqfg3/Nb+Quz
-         ud0jPN/6fTWgNYWOumT/WxHTQ4hxmxT3s2lkhBaPMqajlFTqRbOi7H03sqNM2A+qFWq2
-         4Nzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hEN8lxqzB5PkjPszcdUxNpJc6epYJF7n5YUfahDhZts=;
-        b=M1leF4dtMgJKWZWTgXpJbGEySYwWIkrKJlxrS2cfY+VTDkBAxIboNN4SgUb6TdbGJP
-         tVolTyq0B8slD/uTjgmiWKMrP7nd9kf3062wqfN9OK+orOnoiDiMbSZTSn3YYNF8M9Ic
-         QWFFX50fuSmID3989ACme3kTrTrsHJqIGRzqRbMUPnBXmaNGC3XPoAsNP0MU7Zdg+dDb
-         kmhy0TWess3DZuegTQrcDWDFYEqj4AsvtjMvemNE+DbOoC7iaUpB2uY2+4ShVGanRE6V
-         4hKLPIqUglr4L3e7QaYM6c/FoxIhYU0+3NuYQtFamAQiX6U/4YP3zyh2bTWJEQDoNFFB
-         Pe7Q==
-X-Gm-Message-State: AOAM530hXFRW7I/K0LDZfh67R+2UkWnlA1Nh9xgX9FH//Lrm0lJNuXt2
-        b2+ASkpaLQHPbDH1btMpQeo=
-X-Google-Smtp-Source: ABdhPJwf+GX/2emTs7+L59bwUSAf7ewn6GK+Tt7M5lTMPClzxfZokayjRS6DmCd3RSP5aXksQpYJwA==
-X-Received: by 2002:ac2:4c47:: with SMTP id o7mr24822014lfk.558.1638628669123;
-        Sat, 04 Dec 2021 06:37:49 -0800 (PST)
-Received: from localhost.localdomain (94-29-46-111.dynamic.spd-mgts.ru. [94.29.46.111])
-        by smtp.gmail.com with ESMTPSA id g36sm782934lfv.16.2021.12.04.06.37.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Dec 2021 06:37:48 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, Takashi Iwai <tiwai@suse.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Agneli <poczt@protonmail.ch>
-Cc:     linux-tegra@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: [PATCH v4 22/22] ARM: tegra: paz00: Enable S/PDIF and HDMI audio
-Date:   Sat,  4 Dec 2021 17:37:25 +0300
-Message-Id: <20211204143725.31646-23-digetx@gmail.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20211204143725.31646-1-digetx@gmail.com>
-References: <20211204143725.31646-1-digetx@gmail.com>
+        with ESMTP id S241868AbhLDPKf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 4 Dec 2021 10:10:35 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46341C061751;
+        Sat,  4 Dec 2021 07:07:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 66462B80CF8;
+        Sat,  4 Dec 2021 15:07:08 +0000 (UTC)
+Received: from jic23-huawei (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtp.kernel.org (Postfix) with ESMTPSA id 94B6BC341C0;
+        Sat,  4 Dec 2021 15:07:04 +0000 (UTC)
+Date:   Sat, 4 Dec 2021 15:12:06 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lorenzo Bianconi <lorenzo@kernel.org>, lorenzo.bianconi@redhat.com,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+        mario.tesi@st.com
+Subject: Re: [PATCH v2 2/2] Documentation: dt: iio: st_lsm6dsx: add
+ disable-sensor-hub property
+Message-ID: <20211204151206.03ddb84b@jic23-huawei>
+In-Reply-To: <YaVFeYsGYVOBS65b@robh.at.kernel.org>
+References: <cover.1636816719.git.lorenzo@kernel.org>
+        <54287a93922ac839501b776d288cc368aa81f0ab.1636816719.git.lorenzo@kernel.org>
+        <YaVFeYsGYVOBS65b@robh.at.kernel.org>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.30; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable S/PDIF controller to enable HDMI audio support on Toshiba AC100.
-Use nvidia,fixed-parent-rate property that prevents audio rate conflict
-between S/PDIF and I2S.
+On Mon, 29 Nov 2021 15:26:17 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Tested-by: Agneli <poczt@protonmail.ch>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra20-paz00.dts | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> On Sat, 13 Nov 2021 16:23:15 +0100, Lorenzo Bianconi wrote:
+> > Enable/disable internal i2c controller slave autoprobing at bootstrap.
+> > Disable sensor-hub is useful if i2c controller clock/data lines are
+> > connected through a pull-up with other chip lines (e.g. SDO/SA0).
+> > 
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st,lsm6dsx.yaml | 7 +++++++
+> >  1 file changed, 7 insertions(+)
+> >   
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/arch/arm/boot/dts/tegra20-paz00.dts b/arch/arm/boot/dts/tegra20-paz00.dts
-index 5b2260f61f05..921a811632a1 100644
---- a/arch/arm/boot/dts/tegra20-paz00.dts
-+++ b/arch/arm/boot/dts/tegra20-paz00.dts
-@@ -264,8 +264,16 @@ conf_ld17_0 {
- 		};
- 	};
- 
-+	spdif@70002400 {
-+		status = "okay";
-+
-+		nvidia,fixed-parent-rate;
-+	};
-+
- 	i2s@70002800 {
- 		status = "okay";
-+
-+		nvidia,fixed-parent-rate;
- 	};
- 
- 	serial@70006000 {
--- 
-2.33.1
+Series applied to the togreg branch of iio.git
 
+Thanks,
+
+Jonathan
